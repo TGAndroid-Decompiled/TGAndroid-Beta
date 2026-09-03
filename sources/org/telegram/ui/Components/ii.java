@@ -17,7 +17,7 @@ public final class ii extends d20 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.G.t1(this.f26172r, true);
+        this.G.t1(this.f26132r, true);
         return super.onInterceptTouchEvent(motionEvent);
     }
 }

@@ -42,35 +42,35 @@ public abstract class v0 extends CameraView {
     public final float[] R;
     public float[] S;
     public float[] T;
-    public boolean f46169a;
-    public final PointF f46170b;
-    public final PointF f46171c;
+    public boolean f46187a;
+    public final PointF f46188b;
+    public final PointF f46189c;
     public float d;
-    public double f46172e;
-    public boolean f46173f;
+    public double f46190e;
+    public boolean f46191f;
     public boolean h;
-    public final Matrix f46174n;
-    public final Matrix f46175r;
-    public boolean f46176s;
+    public final Matrix f46192n;
+    public final Matrix f46193r;
+    public boolean f46194s;
     public float v;
-    public boolean f46177w;
-    public final Matrix f46178x;
-    public final Matrix f46179y;
+    public boolean f46195w;
+    public final Matrix f46196x;
+    public final Matrix f46197y;
 
     public v0(Context context, boolean z4) {
         super(context, z4, false);
-        this.f46170b = new PointF();
-        this.f46171c = new PointF();
-        this.f46174n = new Matrix();
-        this.f46175r = new Matrix();
-        this.f46178x = new Matrix();
-        this.f46179y = new Matrix();
+        this.f46188b = new PointF();
+        this.f46189c = new PointF();
+        this.f46192n = new Matrix();
+        this.f46193r = new Matrix();
+        this.f46196x = new Matrix();
+        this.f46197y = new Matrix();
         this.B = true;
         this.I = new Matrix();
         this.L = new float[2];
         new Matrix();
         this.R = new float[2];
-        this.f46169a = q(context);
+        this.f46187a = q(context);
     }
 
     private Matrix getSavedDualMatrix() {
@@ -179,19 +179,19 @@ public abstract class v0 extends CameraView {
         int i10;
         v();
         if (this.E) {
-            g9 g9Var = (g9) this;
+            f9 f9Var = (f9) this;
             if (MessagesController.getGlobalMainSettings().getInt("storysvddualhint", 0) < 2) {
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.s0(g9Var, 29), 340L);
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.s0(f9Var, 29), 340L);
             }
-            ca caVar = g9Var.V;
-            caVar.C0.setValue(g9Var.isDual());
-            oa oaVar = caVar.C0;
-            if (g9Var.isDual()) {
+            ba baVar = f9Var.V;
+            baVar.C0.setValue(f9Var.isDual());
+            na naVar = baVar.C0;
+            if (f9Var.isDual()) {
                 i10 = R.string.AccDescrDualCameraOn;
             } else {
                 i10 = R.string.AccDescrDualCameraOff;
             }
-            oaVar.setContentDescription(LocaleController.getString(i10));
+            naVar.setContentDescription(LocaleController.getString(i10));
         }
         t(true);
     }
@@ -201,11 +201,11 @@ public abstract class v0 extends CameraView {
         if (isDual()) {
             if (!p(getContext(), false)) {
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                this.f46169a = false;
+                this.f46187a = false;
                 edit.putBoolean("dual_available", false).apply();
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
-                alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.DualErrorTitle);
-                alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.DualErrorMessage);
+                alertDialog$Builder.f21168a.O = LocaleController.getString(R.string.DualErrorTitle);
+                alertDialog$Builder.f21168a.Q = LocaleController.getString(R.string.DualErrorMessage);
                 l.d.C(R.string.OK, alertDialog$Builder, null);
             }
             t(false);
@@ -228,11 +228,11 @@ public abstract class v0 extends CameraView {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        Matrix matrix = this.f46178x;
+        Matrix matrix = this.f46196x;
         matrix.reset();
         matrix.postTranslate(1.0f, -1.0f);
         matrix.postScale(getMeasuredWidth() / 2.0f, (-getMeasuredHeight()) / 2.0f);
-        matrix.invert(this.f46179y);
+        matrix.invert(this.f46197y);
     }
 
     @Override
@@ -283,7 +283,7 @@ public abstract class v0 extends CameraView {
         float[] fArr = this.R;
         fArr[0] = f10;
         fArr[1] = f11;
-        this.f46179y.mapPoints(fArr);
+        this.f46197y.mapPoints(fArr);
         Matrix dualPosition = getDualPosition();
         Matrix matrix = this.I;
         dualPosition.invert(matrix);
@@ -306,7 +306,7 @@ public abstract class v0 extends CameraView {
 
     @Override
     public void toggleDual() {
-        if (!isDual() && !this.f46169a) {
+        if (!isDual() && !this.f46187a) {
             return;
         }
         if (!isDual()) {
@@ -345,12 +345,12 @@ public abstract class v0 extends CameraView {
         if (savedDualMatrix != null) {
             dualPosition.set(savedDualMatrix);
         } else {
-            dualPosition.postConcat(this.f46178x);
+            dualPosition.postConcat(this.f46196x);
             float measuredWidth = getMeasuredWidth() * 0.43f;
             float min = Math.min(getMeasuredWidth(), getMeasuredWidth()) * 0.025f;
             dualPosition.postScale(measuredWidth / getMeasuredWidth(), (getMeasuredHeight() * 0.43f) / getMeasuredHeight());
             dualPosition.postTranslate((getMeasuredWidth() - min) - measuredWidth, min);
-            dualPosition.postConcat(this.f46179y);
+            dualPosition.postConcat(this.f46197y);
         }
         updateDualPosition();
     }

@@ -10,25 +10,25 @@ import org.telegram.messenger.RichMessageLayout;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class rm implements fu0 {
-    public final TL_iv.RichMessage f40990a;
-    public final ArrayList f40991b;
-    public final MessageObject f40992c;
+public final class rm implements ku0 {
+    public final TL_iv.RichMessage f40880a;
+    public final ArrayList f40881b;
+    public final MessageObject f40882c;
 
     public rm(TL_iv.RichMessage richMessage, ArrayList arrayList, MessageObject messageObject) {
-        this.f40990a = richMessage;
-        this.f40991b = arrayList;
-        this.f40992c = messageObject;
+        this.f40880a = richMessage;
+        this.f40881b = arrayList;
+        this.f40882c = messageObject;
     }
 
     @Override
     public final boolean a(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f40991b;
+            ArrayList arrayList = this.f40881b;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
                 if (pageBlock instanceof TL_iv.pageBlockVideo) {
-                    TLRPC.Document b10 = i4.b(this.f40990a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
+                    TLRPC.Document b10 = i4.b(this.f40880a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
                     if (b10 != null) {
                         return MessageObject.isVideoDocument(b10);
                     }
@@ -46,11 +46,11 @@ public final class rm implements fu0 {
         TLRPC.Document b10;
         TLRPC.PhotoSize closestPhotoSizeWithSize;
         if (i10 >= 0) {
-            ArrayList arrayList = this.f40991b;
+            ArrayList arrayList = this.f40881b;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
                 boolean z4 = pageBlock instanceof TL_iv.pageBlockPhoto;
-                TL_iv.RichMessage richMessage = this.f40990a;
+                TL_iv.RichMessage richMessage = this.f40880a;
                 if (z4) {
                     TLRPC.Photo f10 = i4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                     if (f10 != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(f10.sizes, AndroidUtilities.getPhotoSize())) != null) {
@@ -80,11 +80,11 @@ public final class rm implements fu0 {
     @Override
     public final TLObject d(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f40991b;
+            ArrayList arrayList = this.f40881b;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
                 boolean z4 = pageBlock instanceof TL_iv.pageBlockPhoto;
-                TL_iv.RichMessage richMessage = this.f40990a;
+                TL_iv.RichMessage richMessage = this.f40880a;
                 if (z4) {
                     return i4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                 }
@@ -138,27 +138,27 @@ public final class rm implements fu0 {
 
     @Override
     public final Object g() {
-        MessageObject messageObject = this.f40992c;
+        MessageObject messageObject = this.f40882c;
         if (messageObject != null) {
             return messageObject;
         }
-        return this.f40990a;
+        return this.f40880a;
     }
 
     @Override
     public final TL_iv.PageBlock get(int i10) {
-        return (TL_iv.PageBlock) this.f40991b.get(i10);
+        return (TL_iv.PageBlock) this.f40881b.get(i10);
     }
 
     @Override
     public final List getAll() {
-        return this.f40991b;
+        return this.f40881b;
     }
 
     @Override
     public final void h(TL_iv.PageBlock pageBlock) {
         RichMessageLayout richMessageLayout;
-        MessageObject messageObject = this.f40992c;
+        MessageObject messageObject = this.f40882c;
         if (messageObject != null && (richMessageLayout = messageObject.richLayout) != null) {
             richMessageLayout.setSlideshowPage(pageBlock);
         }
@@ -171,6 +171,6 @@ public final class rm implements fu0 {
 
     @Override
     public final int j() {
-        return this.f40991b.size();
+        return this.f40881b.size();
     }
 }

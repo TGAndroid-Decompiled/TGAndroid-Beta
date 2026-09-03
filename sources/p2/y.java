@@ -8,10 +8,10 @@ import com.google.android.gms.internal.play_billing.j3;
 import com.google.android.gms.internal.play_billing.k3;
 import com.google.android.gms.internal.play_billing.m3;
 public abstract class y {
-    public static final int f44185a = 0;
+    public static final int f44216a = 0;
 
     static {
-        int i10 = z.f44186q;
+        int i10 = z.f44217q;
     }
 
     public static String a(Exception exc) {
@@ -39,13 +39,13 @@ public abstract class y {
     public static g3 b(int i10, int i11, h hVar, String str, m3 m3Var) {
         try {
             j3 s6 = k3.s();
-            int i12 = hVar.f44145a;
+            int i12 = hVar.f44176a;
             s6.c();
             k3.r((k3) s6.f3602b, i12);
-            String str2 = hVar.f44147c;
+            String str2 = hVar.f44178c;
             s6.c();
             k3.o((k3) s6.f3602b, str2);
-            int i13 = hVar.f44146b;
+            int i13 = hVar.f44177b;
             if (i13 != 0) {
                 s6.c();
                 k3.p((k3) s6.f3602b, i13);

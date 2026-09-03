@@ -14,28 +14,28 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.np;
 public final class z5 extends FrameLayout {
-    public org.telegram.ui.Components.p9 f24488a;
-    public FrameLayout f24489b;
-    public np f24490c;
+    public org.telegram.ui.Components.p9 f24490a;
+    public FrameLayout f24491b;
+    public np f24492c;
     public TextView d;
-    public eg.q1 f24491e;
-    public int f24492f;
+    public eg.q1 f24493e;
+    public int f24494f;
     public int h;
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f24490c.b(org.telegram.ui.ActionBar.k6.W9, org.telegram.ui.ActionBar.k6.X9, org.telegram.ui.ActionBar.k6.V9);
+        this.f24492c.b(org.telegram.ui.ActionBar.k6.W9, org.telegram.ui.ActionBar.k6.X9, org.telegram.ui.ActionBar.k6.V9);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f24492f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f24492f, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f24494f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f24494f, 1073741824));
     }
 
     public void setImage(MediaController.PhotoEntry photoEntry) {
-        eg.q1 q1Var = this.f24491e;
-        org.telegram.ui.Components.p9 p9Var = this.f24488a;
+        eg.q1 q1Var = this.f24493e;
+        org.telegram.ui.Components.p9 p9Var = this.f24490a;
         Drawable drawable = getResources().getDrawable(R.drawable.nophotos);
         String str = photoEntry.thumbPath;
         if (str != null) {
@@ -65,11 +65,11 @@ public final class z5 extends FrameLayout {
     }
 
     public void setNum(int i10) {
-        this.f24490c.setNum(i10);
+        this.f24492c.setNum(i10);
     }
 
     public void setImage(MediaController.SearchImage searchImage) {
-        org.telegram.ui.Components.p9 p9Var = this.f24488a;
+        org.telegram.ui.Components.p9 p9Var = this.f24490a;
         Drawable drawable = getResources().getDrawable(R.drawable.nophotos);
         TLRPC.PhotoSize photoSize = searchImage.thumbPhotoSize;
         if (photoSize != null) {

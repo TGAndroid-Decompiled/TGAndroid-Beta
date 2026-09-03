@@ -4,12 +4,12 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.Components.qk0;
-public final class f3 implements qk0 {
-    public final f4 f17051a;
+import org.telegram.ui.Components.pk0;
+public final class f3 implements pk0 {
+    public final f4 f17053a;
 
     public f3(f4 f4Var) {
-        this.f17051a = f4Var;
+        this.f17053a = f4Var;
     }
 
     @Override
@@ -19,13 +19,13 @@ public final class f3 implements qk0 {
 
     @Override
     public final boolean h() {
-        return this.f17051a.N0();
+        return this.f17053a.N0();
     }
 
     @Override
     public final void j(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i10, boolean z4) {
-        f4 f4Var = this.f17051a;
-        Paint paint = f4Var.f17082k2;
+        f4 f4Var = this.f17053a;
+        Paint paint = f4Var.f17084k2;
         a9.a aVar = f4Var.M1;
         float f13 = -f11;
         float f14 = -f12;
@@ -41,16 +41,16 @@ public final class f3 implements qk0 {
 
     @Override
     public final void m() {
-        ((z8) this.f17051a.N1).b(false);
+        ((z8) this.f17053a.N1).b(false);
     }
 
     @Override
     public final void o(View view, ng.q0 q0Var, boolean z4, boolean z10) {
-        f4 f4Var = this.f17051a;
+        f4 f4Var = this.f17053a;
         if (!z4) {
             f4Var.n0(new dg.t0(this, view, q0Var, z4, z10));
         } else {
-            org.telegram.ui.Components.z4.a0(f4Var.f17133z2, 1, f4Var.f17128y1, new e3(this, z4, q0Var, view));
+            org.telegram.ui.Components.z4.a0(f4Var.f17135z2, 1, f4Var.f17130y1, new e3(this, z4, q0Var, view));
         }
     }
 

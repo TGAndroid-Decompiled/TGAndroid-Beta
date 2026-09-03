@@ -6,13 +6,13 @@ import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
-public final class hl0 extends org.telegram.ui.Components.sl0 {
-    public final Context f37531c;
+public final class hl0 extends org.telegram.ui.Components.rl0 {
+    public final Context f37411c;
     public final PasscodeActivity d;
 
     public hl0(PasscodeActivity passcodeActivity, Context context) {
         this.d = passcodeActivity;
-        this.f37531c = context;
+        this.f37411c = context;
     }
 
     @Override
@@ -99,8 +99,8 @@ public final class hl0 extends org.telegram.ui.Components.sl0 {
                     if (i15 != 3) {
                         if (i15 == 4) {
                             il0 il0Var = (il0) view;
-                            il0Var.f37892a.f(R.raw.utyan_passcode, 100, 100, null);
-                            il0Var.f37892a.d();
+                            il0Var.f37741a.f(R.raw.utyan_passcode, 100, 100, null);
+                            il0Var.f37741a.d();
                             return;
                         }
                         return;
@@ -147,7 +147,7 @@ public final class hl0 extends org.telegram.ui.Components.sl0 {
                     i14 = passcodeActivity.disablePasscodeRow;
                     if (i10 == i14) {
                         aaVar.b(LocaleController.getString(R.string.DisablePasscode), false);
-                        int i17 = org.telegram.ui.ActionBar.k6.f21895q7;
+                        int i17 = org.telegram.ui.ActionBar.k6.f21897q7;
                         aaVar.setTag(Integer.valueOf(i17));
                         aaVar.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, i17, false));
                         return;
@@ -194,7 +194,7 @@ public final class hl0 extends org.telegram.ui.Components.sl0 {
     @Override
     public final f2.m1 x(ViewGroup viewGroup, int i10) {
         View s8Var;
-        Context context = this.f37531c;
+        Context context = this.f37411c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {

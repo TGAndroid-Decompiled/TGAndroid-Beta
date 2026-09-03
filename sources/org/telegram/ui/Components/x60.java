@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.View;
-public final class x60 extends ax0 {
+public final class x60 extends zw0 {
     public final int H;
 
     public x60(Context context, View view, int i10, org.telegram.ui.ActionBar.g6 g6Var, int i11) {
@@ -15,11 +15,11 @@ public final class x60 extends ax0 {
         switch (this.H) {
             case 0:
                 super.onAttachedToWindow();
-                this.f25362b.getImageReceiver().startAnimation();
+                this.f34031b.getImageReceiver().startAnimation();
                 return;
             case 1:
                 super.onAttachedToWindow();
-                this.f25362b.getImageReceiver().startAnimation();
+                this.f34031b.getImageReceiver().startAnimation();
                 return;
             default:
                 super.onAttachedToWindow();

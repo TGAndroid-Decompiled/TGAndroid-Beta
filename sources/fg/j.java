@@ -50,12 +50,12 @@ public final class j extends FrameLayout {
             textView.setTextColor(k6.v0(k6.G6, g6Var));
             textView.setText(LocaleController.getString(R.string.UpgradedStories));
             addView(textView, c6.d(-2, -2.0f, 1, 0.0f, 111.0f, 0.0f, 0.0f));
-            q20Var.f30262m = true;
-            q20Var.f30252a = true;
+            q20Var.f30273m = true;
+            q20Var.f30263a = true;
             q20Var.d(k6.w0(null, k6.Mj, false), k6.w0(null, k6.Lj, false), 0, 0);
-            q20Var.f30254c.setStyle(Paint.Style.STROKE);
-            q20Var.f30254c.setStrokeCap(Paint.Cap.ROUND);
-            q20Var.f30254c.setStrokeWidth(AndroidUtilities.dpf2(3.3f));
+            q20Var.f30265c.setStyle(Paint.Style.STROKE);
+            q20Var.f30265c.setStrokeCap(Paint.Cap.ROUND);
+            q20Var.f30265c.setStrokeWidth(AndroidUtilities.dpf2(3.3f));
         } else if (i10 == 1) {
             h hVar = new h(context, 0);
             addView(hVar, c6.e(-1, 190, 55));
@@ -64,7 +64,7 @@ public final class j extends FrameLayout {
             Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(createBitmap);
             int i11 = k6.Mj;
-            canvas.drawColor(i0.a.d(0.5f, k6.v0(i11, g6Var), k6.v0(k6.f21731h5, g6Var)));
+            canvas.drawColor(i0.a.d(0.5f, k6.v0(i11, g6Var), k6.v0(k6.f21733h5, g6Var)));
             iVar.setBackgroundBitmap(createBitmap);
             gg.a aVar = iVar.f7087b;
             aVar.f7065w = i11;
@@ -79,7 +79,7 @@ public final class j extends FrameLayout {
             addView(g10, c6.d(-2, -2.0f, 1, 33.0f, 150.0f, 33.0f, 0.0f));
             TextView textView2 = new TextView(context);
             textView2.setTextSize(1, 14.0f);
-            textView2.setTextColor(k6.v0(k6.f22053z6, g6Var));
+            textView2.setTextColor(k6.v0(k6.f22055z6, g6Var));
             y3.r(R.string.TelegramBusinessSubtitle2, textView2, 17);
             addView(textView2, c6.d(-2, -2.0f, 1, 33.0f, 183.0f, 33.0f, 20.0f));
         }
@@ -100,7 +100,7 @@ public final class j extends FrameLayout {
                 float f11 = (i10 * f10) - 90.0f;
                 float f12 = 5;
                 float f13 = f11 + f12;
-                canvas.drawArc(AndroidUtilities.rectTmp, f13, ((f11 + f10) - f12) - f13, false, q20Var.f30254c);
+                canvas.drawArc(AndroidUtilities.rectTmp, f13, ((f11 + f10) - f12) - f13, false, q20Var.f30265c);
             }
         }
         super.dispatchDraw(canvas);

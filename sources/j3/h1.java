@@ -28,7 +28,7 @@ public final class h1 {
         int b10 = o2Var.b(obj);
         Object obj2 = obj;
         while (true) {
-            int i11 = m2Var.h.f44203a;
+            int i11 = m2Var.h.f44234a;
             if (i11 == 0) {
                 break;
             }
@@ -119,7 +119,7 @@ public final class h1 {
         g1 g1Var = f1Var.f9141f;
         o4.v vVar = g1Var.f9153a;
         long j14 = g1Var.f9155c;
-        int d = o2Var.d(o2Var.b(vVar.f16579a), this.f9169a, this.f9170b, this.f9173f, this.f9174g);
+        int d = o2Var.d(o2Var.b(vVar.f16581a), this.f9169a, this.f9170b, this.f9173f, this.f9174g);
         if (d != -1) {
             m2 m2Var = this.f9169a;
             int i10 = o2Var.f(d, m2Var, true).f9285c;
@@ -150,7 +150,7 @@ public final class h1 {
             }
             o4.v m9 = m(o2Var, obj, j11, j15, this.f9170b, this.f9169a);
             if (j16 != -9223372036854775807L && j14 != -9223372036854775807L) {
-                int i11 = o2Var.g(vVar.f16579a, m2Var).h.f44203a;
+                int i11 = o2Var.g(vVar.f16581a, m2Var).h.f44234a;
                 int i12 = m2Var.h.d;
                 if (i11 > 0 && m2Var.h(i12) && (i11 > 1 || m2Var.d(i12) != Long.MIN_VALUE)) {
                     z4 = true;
@@ -186,17 +186,17 @@ public final class h1 {
             return c(o2Var, f1Var, j13);
         }
         o4.v vVar = g1Var.f9153a;
-        Object obj = vVar.f16579a;
-        int i10 = vVar.f16582e;
+        Object obj = vVar.f16581a;
+        int i10 = vVar.f16584e;
         m2 m2Var2 = this.f9169a;
         o2Var.g(obj, m2Var2);
         if (vVar.a()) {
-            int i11 = vVar.f16580b;
-            int i12 = m2Var2.h.a(i11).f44193b;
+            int i11 = vVar.f16582b;
+            int i12 = m2Var2.h.a(i11).f44224b;
             if (i12 != -1) {
-                int a2 = m2Var2.h.a(i11).a(vVar.f16581c);
+                int a2 = m2Var2.h.a(i11).a(vVar.f16583c);
                 if (a2 < i12) {
-                    return f(o2Var, vVar.f16579a, i11, a2, g1Var.f9155c, vVar.d);
+                    return f(o2Var, vVar.f16581a, i11, a2, g1Var.f9155c, vVar.d);
                 }
                 long j14 = g1Var.f9155c;
                 if (j14 == -9223372036854775807L) {
@@ -211,7 +211,7 @@ public final class h1 {
                     m2Var = m2Var2;
                     o2Var2 = o2Var;
                 }
-                int i13 = vVar.f16580b;
+                int i13 = vVar.f16582b;
                 o2Var2.g(obj, m2Var);
                 long d = m2Var.d(i13);
                 if (d == Long.MIN_VALUE) {
@@ -219,7 +219,7 @@ public final class h1 {
                 } else {
                     j12 = m2Var.h.a(i13).h + d;
                 }
-                return g(o2Var, vVar.f16579a, Math.max(j12, j14), g1Var.f9155c, vVar.d);
+                return g(o2Var, vVar.f16581a, Math.max(j12, j14), g1Var.f9155c, vVar.d);
             }
             return null;
         } else if (i10 != -1 && m2Var2.g(i10)) {
@@ -231,8 +231,8 @@ public final class h1 {
             } else {
                 z4 = false;
             }
-            if (f10 != m2Var2.h.a(i10).f44193b && !z4) {
-                return f(o2Var, vVar.f16579a, vVar.f16582e, f10, g1Var.f9156e, vVar.d);
+            if (f10 != m2Var2.h.a(i10).f44224b && !z4) {
+                return f(o2Var, vVar.f16581a, vVar.f16584e, f10, g1Var.f9156e, vVar.d);
             }
             o2Var.g(obj, m2Var2);
             long d10 = m2Var2.d(i10);
@@ -241,16 +241,16 @@ public final class h1 {
             } else {
                 j11 = m2Var2.h.a(i10).h + d10;
             }
-            return g(o2Var, vVar.f16579a, j11, g1Var.f9156e, vVar.d);
+            return g(o2Var, vVar.f16581a, j11, g1Var.f9156e, vVar.d);
         }
     }
 
     public final g1 e(o2 o2Var, o4.v vVar, long j10, long j11) {
-        o2Var.g(vVar.f16579a, this.f9169a);
+        o2Var.g(vVar.f16581a, this.f9169a);
         if (vVar.a()) {
-            return f(o2Var, vVar.f16579a, vVar.f16580b, vVar.f16581c, j10, vVar.d);
+            return f(o2Var, vVar.f16581a, vVar.f16582b, vVar.f16583c, j10, vVar.d);
         }
-        return g(o2Var, vVar.f16579a, j11, j10, vVar.d);
+        return g(o2Var, vVar.f16581a, j11, j10, vVar.d);
     }
 
     public final g1 f(o2 o2Var, Object obj, int i10, int i11, long j10, long j11) {
@@ -259,7 +259,7 @@ public final class h1 {
         m2 m2Var = this.f9169a;
         long a2 = o2Var.g(obj, m2Var).a(i10, i11);
         if (i11 == m2Var.f(i10)) {
-            j12 = m2Var.h.f44204b;
+            j12 = m2Var.h.f44235b;
         } else {
             j12 = 0;
         }
@@ -281,16 +281,16 @@ public final class h1 {
         boolean z10;
         o4.v vVar = g1Var.f9153a;
         boolean a2 = vVar.a();
-        int i10 = vVar.f16582e;
+        int i10 = vVar.f16584e;
         if (!a2 && i10 == -1) {
             z4 = true;
         } else {
             z4 = false;
         }
-        int i11 = vVar.f16580b;
+        int i11 = vVar.f16582b;
         boolean j12 = j(o2Var, vVar);
         boolean i12 = i(o2Var, vVar, z4);
-        Object obj = vVar.f16579a;
+        Object obj = vVar.f16581a;
         m2 m2Var = this.f9169a;
         o2Var.g(obj, m2Var);
         if (!vVar.a() && i10 != -1) {
@@ -299,7 +299,7 @@ public final class h1 {
             j10 = -9223372036854775807L;
         }
         if (vVar.a()) {
-            j11 = m2Var.a(i11, vVar.f16581c);
+            j11 = m2Var.a(i11, vVar.f16583c);
         } else if (j10 != -9223372036854775807L && j10 != Long.MIN_VALUE) {
             j11 = j10;
         } else {
@@ -316,7 +316,7 @@ public final class h1 {
     }
 
     public final boolean i(o2 o2Var, o4.v vVar, boolean z4) {
-        int b10 = o2Var.b(vVar.f16579a);
+        int b10 = o2Var.b(vVar.f16581a);
         if (!o2Var.m(o2Var.f(b10, this.f9169a, false).f9285c, this.f9170b, 0L).f9340r) {
             if (o2Var.d(b10, this.f9169a, this.f9170b, this.f9173f, this.f9174g) == -1 && z4) {
                 return true;
@@ -327,12 +327,12 @@ public final class h1 {
 
     public final boolean j(o2 o2Var, o4.v vVar) {
         boolean z4;
-        if (!vVar.a() && vVar.f16582e == -1) {
+        if (!vVar.a() && vVar.f16584e == -1) {
             z4 = true;
         } else {
             z4 = false;
         }
-        Object obj = vVar.f16579a;
+        Object obj = vVar.f16581a;
         if (z4) {
             int i10 = o2Var.g(obj, this.f9169a).f9285c;
             if (o2Var.m(i10, this.f9170b, 0L).C == o2Var.b(obj)) {
@@ -344,7 +344,7 @@ public final class h1 {
 
     public final void k() {
         o4.v vVar;
-        s8.t tVar = s8.v.f47143b;
+        s8.t tVar = s8.v.f47174b;
         com.google.android.gms.common.api.internal.w wVar = new com.google.android.gms.common.api.internal.w();
         for (f1 f1Var = this.h; f1Var != null; f1Var = f1Var.f9146l) {
             wVar.b(f1Var.f9141f.f9153a);
@@ -441,7 +441,7 @@ public final class h1 {
         for (int b12 = o2Var.b(obj); b12 >= n2Var.B; b12--) {
             boolean z10 = true;
             o2Var.f(b12, m2Var, true);
-            if (m2Var.h.f44203a <= 0) {
+            if (m2Var.h.f44234a <= 0) {
                 z10 = false;
             }
             z4 |= z10;

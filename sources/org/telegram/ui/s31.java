@@ -1,36 +1,75 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class s31 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f41125a;
-    public final v31 f41126b;
+import android.content.Context;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class s31 extends org.telegram.ui.Components.rl0 {
+    public final Context f41006c;
+    public final boolean d;
+    public final t31 f41007e;
 
-    public s31(v31 v31Var, int i10) {
-        this.f41125a = i10;
-        this.f41126b = v31Var;
+    public s31(t31 t31Var, Context context, boolean z4) {
+        this.f41007e = t31Var;
+        this.f41006c = context;
+        this.d = z4;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f41125a) {
-            case 0:
-                v31 v31Var = this.f41126b;
-                v31Var.getClass();
-                v31Var.f42113e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                v31Var.g();
-                return;
-            case 1:
-                v31 v31Var2 = this.f41126b;
-                v31Var2.getClass();
-                v31Var2.f42113e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                v31Var2.g();
-                return;
-            default:
-                v31 v31Var3 = this.f41126b;
-                v31Var3.getClass();
-                v31Var3.f42113e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                v31Var3.g();
-                return;
+    public final boolean D(f2.m1 m1Var) {
+        if (m1Var.f5879f == 0) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        boolean z4 = this.d;
+        int i10 = 0;
+        t31 t31Var = this.f41007e;
+        if (z4) {
+            ArrayList arrayList = t31Var.f41428f;
+            if (arrayList == null) {
+                return 0;
+            }
+            return arrayList.size();
+        }
+        if (t31Var.f41427e >= 0) {
+            i10 = 1;
+        }
+        return t31Var.h.size() + i10;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (!this.d && i10 == this.f41007e.f41427e) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(f2.m1 r7, int r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.s31.v(f2.m1, int):void");
+    }
+
+    @Override
+    public final f2.m1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.m4 m4Var;
+        Context context = this.f41006c;
+        if (i10 != 0) {
+            if (i10 != 2) {
+                m4Var = new org.telegram.ui.Cells.z6(context, (b) null);
+            } else {
+                org.telegram.ui.Cells.m4 m4Var2 = new org.telegram.ui.Cells.m4(context);
+                m4Var2.setText(LocaleController.getString(R.string.ChooseLanguages));
+                m4Var = m4Var2;
+            }
+        } else {
+            m4Var = new org.telegram.ui.Cells.t8(context);
+        }
+        return new f2.m1(m4Var);
     }
 }

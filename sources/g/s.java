@@ -130,14 +130,14 @@ public abstract class s extends androidx.activity.n {
         a0 a0Var = qVar.f6779n;
         if (a0Var != null) {
             n3 n3Var = (n3) a0Var.f6680e;
-            if (n3Var.f13269g) {
+            if (n3Var.f13271g) {
                 return;
             }
-            Toolbar toolbar = n3Var.f13264a;
+            Toolbar toolbar = n3Var.f13266a;
             n3Var.h = charSequence;
-            if ((n3Var.f13265b & 8) != 0) {
+            if ((n3Var.f13267b & 8) != 0) {
                 toolbar.setTitle(charSequence);
-                if (n3Var.f13269g) {
+                if (n3Var.f13271g) {
                     j0.l(toolbar.getRootView(), charSequence);
                     return;
                 }
@@ -186,14 +186,14 @@ public abstract class s extends androidx.activity.n {
         a0 a0Var = qVar.f6779n;
         if (a0Var != null) {
             n3 n3Var = (n3) a0Var.f6680e;
-            if (n3Var.f13269g) {
+            if (n3Var.f13271g) {
                 return;
             }
-            Toolbar toolbar = n3Var.f13264a;
+            Toolbar toolbar = n3Var.f13266a;
             n3Var.h = string;
-            if ((n3Var.f13265b & 8) != 0) {
+            if ((n3Var.f13267b & 8) != 0) {
                 toolbar.setTitle(string);
-                if (n3Var.f13269g) {
+                if (n3Var.f13271g) {
                     j0.l(toolbar.getRootView(), string);
                     return;
                 }

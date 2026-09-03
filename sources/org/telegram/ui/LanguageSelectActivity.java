@@ -18,7 +18,7 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public class LanguageSelectActivity extends org.telegram.ui.ActionBar.p2 implements NotificationCenter.NotificationCenterDelegate {
     public l80 f34127a;
     private int autoTranslationPosition;
-    public org.telegram.ui.Components.tl0 f34128b;
+    public org.telegram.ui.Components.sl0 f34128b;
     public l80 f34129c;
     public org.telegram.ui.Components.oz d;
     private int doNotTranslatePosition;
@@ -65,7 +65,7 @@ public class LanguageSelectActivity extends org.telegram.ui.ActionBar.p2 impleme
                 }
                 if (localeInfo != null && localeInfo.pathToFile != null && (!localeInfo.isRemote() || localeInfo.serverIndex == Integer.MAX_VALUE)) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(languageSelectActivity.getParentActivity());
-                    org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+                    org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21168a;
                     d2Var.O = LocaleController.getString(R.string.DeleteLocalizationTitle);
                     d2Var.Q = AndroidUtilities.replaceTags(LocaleController.formatString("DeleteLocalizationText", R.string.DeleteLocalizationText, localeInfo.name));
                     alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new rs(14, languageSelectActivity, localeInfo));
@@ -73,7 +73,7 @@ public class LanguageSelectActivity extends org.telegram.ui.ActionBar.p2 impleme
                     languageSelectActivity.showDialog(d2Var);
                     TextView textView = (TextView) d2Var.d(-1);
                     if (textView != null) {
-                        textView.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21895q7, false));
+                        textView.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21897q7, false));
                     }
                     return true;
                 }
@@ -123,7 +123,7 @@ public class LanguageSelectActivity extends org.telegram.ui.ActionBar.p2 impleme
         if (f5Var != null && ((ActionBarLayout) f5Var).K0) {
             this.actionBar.setBackButtonImage(R.drawable.ic_ab_close);
         }
-        this.actionBar.setActionBarMenuOnItemClick(new org.telegram.ui.Components.z51(this, 19));
+        this.actionBar.setActionBarMenuOnItemClick(new org.telegram.ui.Components.y51(this, 19));
         org.telegram.ui.ActionBar.w0 a2 = this.actionBar.n().a(0, R.drawable.outline_header_search);
         a2.F();
         a2.E = new fb(this, 10);
@@ -132,7 +132,7 @@ public class LanguageSelectActivity extends org.telegram.ui.ActionBar.p2 impleme
         this.f34129c = new l80(this, context, true);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21605a7, false));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21607a7, false));
         FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
         org.telegram.ui.Components.oz ozVar = new org.telegram.ui.Components.oz(context, null);
         this.d = ozVar;
@@ -140,9 +140,9 @@ public class LanguageSelectActivity extends org.telegram.ui.ActionBar.p2 impleme
         this.d.c();
         this.d.setShowAtCenter(true);
         frameLayout2.addView(this.d, k7.c6.c(-1.0f, -1));
-        org.telegram.ui.Components.tl0 tl0Var = new org.telegram.ui.Components.tl0(context, null);
-        this.f34128b = tl0Var;
-        tl0Var.p1();
+        org.telegram.ui.Components.sl0 sl0Var = new org.telegram.ui.Components.sl0(context, null);
+        this.f34128b = sl0Var;
+        sl0Var.o1();
         this.actionBar.setAdaptiveBackground(this.f34128b);
         this.f34128b.setEmptyView(this.d);
         this.f34128b.setLayoutManager(new f2.j0(1, false));
@@ -193,18 +193,18 @@ public class LanguageSelectActivity extends org.telegram.ui.ActionBar.p2 impleme
     @Override
     public final ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f34128b, 16, new Class[]{org.telegram.ui.Cells.q4.class}, null, null, null, org.telegram.ui.ActionBar.k6.f21659d6));
-        arrayList.add(new org.telegram.ui.ActionBar.m6(this.fragmentView, 1, null, null, null, null, org.telegram.ui.ActionBar.k6.f21605a7));
-        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f34128b, 32768, null, null, null, null, org.telegram.ui.ActionBar.k6.f21930s8));
-        arrayList.add(new org.telegram.ui.ActionBar.m6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.k6.f21981v8));
+        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f34128b, 16, new Class[]{org.telegram.ui.Cells.q4.class}, null, null, null, org.telegram.ui.ActionBar.k6.f21661d6));
+        arrayList.add(new org.telegram.ui.ActionBar.m6(this.fragmentView, 1, null, null, null, null, org.telegram.ui.ActionBar.k6.f21607a7));
+        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f34128b, 32768, null, null, null, null, org.telegram.ui.ActionBar.k6.f21932s8));
+        arrayList.add(new org.telegram.ui.ActionBar.m6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.k6.f21983v8));
         arrayList.add(new org.telegram.ui.ActionBar.m6(this.actionBar, 128, null, null, null, null, org.telegram.ui.ActionBar.k6.A8));
-        arrayList.add(new org.telegram.ui.ActionBar.m6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.k6.f21946t8));
+        arrayList.add(new org.telegram.ui.ActionBar.m6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.k6.f21948t8));
         arrayList.add(new org.telegram.ui.ActionBar.m6(this.actionBar, 134217728, null, null, null, null, org.telegram.ui.ActionBar.k6.C8));
         arrayList.add(new org.telegram.ui.ActionBar.m6(this.actionBar, 67108864, null, null, null, null, org.telegram.ui.ActionBar.k6.D8));
-        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f34128b, 4096, null, null, null, null, org.telegram.ui.ActionBar.k6.f21750i6));
-        arrayList.add(new org.telegram.ui.ActionBar.m6(this.d, 4, null, null, null, null, org.telegram.ui.ActionBar.k6.f21642c7));
-        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f34128b, 0, new Class[]{View.class}, org.telegram.ui.ActionBar.k6.f21779k0, null, null, org.telegram.ui.ActionBar.k6.f21660d7));
-        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f34128b, 32, new Class[]{org.telegram.ui.Cells.z6.class}, null, null, null, org.telegram.ui.ActionBar.k6.f21624b7));
+        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f34128b, 4096, null, null, null, null, org.telegram.ui.ActionBar.k6.f21752i6));
+        arrayList.add(new org.telegram.ui.ActionBar.m6(this.d, 4, null, null, null, null, org.telegram.ui.ActionBar.k6.f21644c7));
+        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f34128b, 0, new Class[]{View.class}, org.telegram.ui.ActionBar.k6.f21781k0, null, null, org.telegram.ui.ActionBar.k6.f21662d7));
+        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f34128b, 32, new Class[]{org.telegram.ui.Cells.z6.class}, null, null, null, org.telegram.ui.ActionBar.k6.f21626b7));
         arrayList.add(new org.telegram.ui.ActionBar.m6(this.f34128b, 0, new Class[]{org.telegram.ui.Cells.q4.class}, new String[]{"textView"}, null, null, -1, null, org.telegram.ui.ActionBar.k6.G6));
         arrayList.add(new org.telegram.ui.ActionBar.m6(this.f34128b, 0, new Class[]{org.telegram.ui.Cells.q4.class}, new String[]{"textView2"}, null, null, -1, null, org.telegram.ui.ActionBar.k6.A6));
         arrayList.add(new org.telegram.ui.ActionBar.m6(this.f34128b, 0, new Class[]{org.telegram.ui.Cells.q4.class}, new String[]{"checkImage"}, null, null, -1, null, org.telegram.ui.ActionBar.k6.Mh));
@@ -225,7 +225,7 @@ public class LanguageSelectActivity extends org.telegram.ui.ActionBar.p2 impleme
             }
             return;
         }
-        Utilities.searchQueue.postRunnable(new v10(12, this, str));
+        Utilities.searchQueue.postRunnable(new z10(11, this, str));
     }
 
     @Override

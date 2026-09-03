@@ -28,7 +28,7 @@ public final class f0 extends wc.i implements dd.p {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        return ((f0) create((ld.c0) obj, (uc.c) obj2)).invokeSuspend(sc.i.f47243a);
+        return ((f0) create((ld.c0) obj, (uc.c) obj2)).invokeSuspend(sc.i.f47274a);
     }
 
     @Override

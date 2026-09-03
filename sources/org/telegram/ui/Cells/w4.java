@@ -7,9 +7,9 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.RadialProgressView;
 public final class w4 extends FrameLayout {
-    public RadialProgressView f24354a;
-    public TextView f24355b;
-    public ImageView f24356c;
+    public RadialProgressView f24356a;
+    public TextView f24357b;
+    public ImageView f24358c;
 
     @Override
     public final void onMeasure(int i10, int i11) {
@@ -19,7 +19,7 @@ public final class w4 extends FrameLayout {
     public void setLoading(boolean z4) {
         int i10;
         int i11;
-        RadialProgressView radialProgressView = this.f24354a;
+        RadialProgressView radialProgressView = this.f24356a;
         int i12 = 4;
         if (z4) {
             i10 = 0;
@@ -27,14 +27,14 @@ public final class w4 extends FrameLayout {
             i10 = 4;
         }
         radialProgressView.setVisibility(i10);
-        TextView textView = this.f24355b;
+        TextView textView = this.f24357b;
         if (z4) {
             i11 = 4;
         } else {
             i11 = 0;
         }
         textView.setVisibility(i11);
-        ImageView imageView = this.f24356c;
+        ImageView imageView = this.f24358c;
         if (!z4) {
             i12 = 0;
         }

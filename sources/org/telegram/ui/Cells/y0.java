@@ -6,16 +6,16 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.RadialProgressView;
 public final class y0 extends FrameLayout {
-    public final ag.l f24428a;
-    public final org.telegram.ui.ActionBar.g6 f24429b;
-    public float f24430c;
+    public final ag.l f24430a;
+    public final org.telegram.ui.ActionBar.g6 f24431b;
+    public float f24432c;
     public int d;
 
     public y0(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
-        this.f24429b = g6Var;
+        this.f24431b = g6Var;
         ag.l lVar = new ag.l(this, context);
-        this.f24428a = lVar;
+        this.f24430a = lVar;
         lVar.setWillNotDraw(false);
         addView(lVar, k7.c6.e(36, 36, 17));
         RadialProgressView radialProgressView = new RadialProgressView(context, g6Var);
@@ -25,10 +25,10 @@ public final class y0 extends FrameLayout {
     }
 
     public final void a(float f10, int i10) {
-        if (this.f24430c != f10) {
+        if (this.f24432c != f10) {
             invalidate();
         }
-        this.f24430c = f10;
+        this.f24432c = f10;
         this.d = i10;
     }
 
@@ -44,6 +44,6 @@ public final class y0 extends FrameLayout {
         } else {
             i10 = 4;
         }
-        this.f24428a.setVisibility(i10);
+        this.f24430a.setVisibility(i10);
     }
 }

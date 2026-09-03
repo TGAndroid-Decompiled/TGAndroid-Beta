@@ -1,26 +1,26 @@
 package org.telegram.ui;
 public final class rh implements Runnable {
-    public final int f40962a = 1;
-    public final int f40963b;
-    public final xn f40964c;
+    public final int f40848a = 1;
+    public final int f40849b;
+    public final xn f40850c;
     public final boolean d;
 
     public rh(int i10, xn xnVar, boolean z4) {
-        this.f40963b = i10;
-        this.f40964c = xnVar;
+        this.f40849b = i10;
+        this.f40850c = xnVar;
         this.d = z4;
     }
 
     @Override
     public final void run() {
-        switch (this.f40962a) {
+        switch (this.f40848a) {
             case 0:
                 boolean z4 = this.d;
-                this.f40964c.yc(this.f40963b, z4);
+                this.f40850c.yc(this.f40849b, z4);
                 return;
             default:
-                int i10 = this.f40963b;
-                xn xnVar = this.f40964c;
+                int i10 = this.f40849b;
+                xn xnVar = this.f40850c;
                 if (i10 != 2) {
                     xnVar.U9();
                     xnVar.Yb();
@@ -31,8 +31,8 @@ public final class rh implements Runnable {
     }
 
     public rh(xn xnVar, boolean z4, int i10) {
-        this.f40964c = xnVar;
+        this.f40850c = xnVar;
         this.d = z4;
-        this.f40963b = i10;
+        this.f40849b = i10;
     }
 }

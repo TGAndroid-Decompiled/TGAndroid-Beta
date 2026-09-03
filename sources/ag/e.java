@@ -39,9 +39,9 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Cells.t1;
-import org.telegram.ui.mf1;
+import org.telegram.ui.sf1;
 import org.telegram.ui.xn;
-import qh.o4;
+import qh.n4;
 public final class e implements Runnable {
     public final int f195a;
     public final Object f196b;
@@ -118,13 +118,13 @@ public final class e implements Runnable {
                         if (qVar.h != null) {
                             try {
                                 o0.i d = qVar.d();
-                                int i10 = d.f16304e;
+                                int i10 = d.f16306e;
                                 if (i10 == 2) {
                                     synchronized (qVar.d) {
                                     }
                                 }
                                 if (i10 == 0) {
-                                    int i11 = n0.g.f15180a;
+                                    int i11 = n0.g.f15182a;
                                     Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
                                     cb.b bVar = qVar.f854c;
                                     Context context = qVar.f852a;
@@ -134,7 +134,7 @@ public final class e implements Runnable {
                                     j8.a("TypefaceCompat.createFromFontInfo");
                                     Typeface b10 = i0.e.f7763a.b(context, iVarArr, 0);
                                     Trace.endSection();
-                                    MappedByteBuffer e6 = b8.e(qVar.f852a, d.f16301a);
+                                    MappedByteBuffer e6 = b8.e(qVar.f852a, d.f16303a);
                                     if (e6 != null && b10 != null) {
                                         Trace.beginSection("EmojiCompat.MetadataRepo.create");
                                         s sVar = new s(b10, u.a(e6));
@@ -197,14 +197,14 @@ public final class e implements Runnable {
                 }
                 return;
             case 8:
-                mf1 mf1Var = (mf1) this.f196b;
-                if (mf1Var.getParentLayout() != null) {
-                    mf1Var.E = true;
+                sf1 sf1Var = (sf1) this.f196b;
+                if (sf1Var.getParentLayout() != null) {
+                    sf1Var.E = true;
                     Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", mf1Var.f39102a);
+                    bundle.putLong("chat_id", sf1Var.f41188a);
                     xn xnVar = new xn(bundle);
-                    xnVar.f43201ga = true;
-                    mf1Var.presentFragment(xnVar);
+                    xnVar.f43179ga = true;
+                    sf1Var.presentFragment(xnVar);
                     return;
                 }
                 return;
@@ -292,9 +292,9 @@ public final class e implements Runnable {
                 ((c5.j) this.f196b).A();
                 return;
             case 24:
-                o4 o4Var = (o4) this.f196b;
-                o4Var.f5559u0 = true;
-                o4Var.s();
+                n4 n4Var = (n4) this.f196b;
+                n4Var.f5559u0 = true;
+                n4Var.s();
                 return;
             case 25:
                 ((View) this.f196b).performClick();

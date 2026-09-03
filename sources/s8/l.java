@@ -82,16 +82,16 @@ public abstract class l {
             SortedSet sortedSet = (SortedSet) set;
             if (sortedSet instanceof r0) {
                 r0 r0Var = (r0) sortedSet;
-                r8.f fVar2 = r0Var.f47137b;
+                r8.f fVar2 = r0Var.f47168b;
                 fVar2.getClass();
-                return new r0((SortedSet) r0Var.f47136a, new r8.g(Arrays.asList(fVar2, fVar)));
+                return new r0((SortedSet) r0Var.f47167a, new r8.g(Arrays.asList(fVar2, fVar)));
             }
             return new r0(sortedSet, fVar);
         } else if (set instanceof r0) {
             r0 r0Var2 = (r0) set;
-            r8.f fVar3 = r0Var2.f47137b;
+            r8.f fVar3 = r0Var2.f47168b;
             fVar3.getClass();
-            return new r0(r0Var2.f47136a, new r8.g(Arrays.asList(fVar3, fVar)));
+            return new r0(r0Var2.f47167a, new r8.g(Arrays.asList(fVar3, fVar)));
         } else {
             set.getClass();
             return new r0(set, fVar);

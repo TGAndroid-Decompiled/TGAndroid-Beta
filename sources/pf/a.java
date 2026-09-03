@@ -3,8 +3,8 @@ package pf;
 import java.nio.ShortBuffer;
 import z9.d;
 public interface a {
-    public static final db.a f44369t = new db.a(19);
-    public static final d f44370u = new d(19);
+    public static final db.a f44400t = new db.a(19);
+    public static final d f44401u = new d(19);
 
     void u0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12);
 }

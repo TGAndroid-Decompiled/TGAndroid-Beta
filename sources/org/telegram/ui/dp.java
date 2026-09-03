@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class dp extends org.telegram.ui.Components.tl0 {
+public final class dp extends org.telegram.ui.Components.sl0 {
     public static final int Y2 = 0;
     public final bp U2;
     public boolean V2;
@@ -43,7 +43,7 @@ public final class dp extends org.telegram.ui.Components.tl0 {
             }
         }
         if (i10 < i11) {
-            int v02 = org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21659d6, this.f31383m2);
+            int v02 = org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21661d6, this.f31106m2);
             Paint paint = this.W2;
             paint.setColor(v02);
             canvas2 = canvas;
@@ -59,7 +59,7 @@ public final class dp extends org.telegram.ui.Components.tl0 {
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
     }
 
-    public final void w1(TLRPC.TL_username tL_username, boolean z4, boolean z10) {
+    public final void v1(TLRPC.TL_username tL_username, boolean z4, boolean z10) {
         TLRPC.TL_username tL_username2;
         int min;
         ep epVar = this.X2;
@@ -117,7 +117,7 @@ public final class dp extends org.telegram.ui.Components.tl0 {
                                 maVar.setLoading(epVar.M.contains(tL_username2.username));
                                 TLRPC.TL_username tL_username3 = maVar.v;
                                 if (tL_username3 != null) {
-                                    maVar.a(tL_username3, maVar.f39033w, true, maVar.f39034x);
+                                    maVar.a(tL_username3, maVar.f38904w, true, maVar.f38905x);
                                 }
                             }
                         } else {
@@ -127,7 +127,7 @@ public final class dp extends org.telegram.ui.Components.tl0 {
                     if (i13 >= 0 && i12 != i13) {
                         int i18 = i13 - 1;
                         bp bpVar = this.U2;
-                        ArrayList arrayList2 = bpVar.f35573c.X2.K;
+                        ArrayList arrayList2 = bpVar.f35584c.X2.K;
                         if (i11 < arrayList2.size() && i18 < arrayList2.size()) {
                             arrayList2.add(i18, (TLRPC.TL_username) arrayList2.remove(i11));
                             bpVar.p(i12, i13);

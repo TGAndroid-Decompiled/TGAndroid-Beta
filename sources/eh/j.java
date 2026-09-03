@@ -20,18 +20,18 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.t1;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Components.eq;
+import org.telegram.ui.Components.fo0;
 import org.telegram.ui.Components.go0;
-import org.telegram.ui.Components.ho0;
-import org.telegram.ui.Components.l01;
+import org.telegram.ui.Components.k01;
 import org.telegram.ui.Components.pr;
-public final class j extends Drawable implements DownloadController.FileDownloadProgressListener, go0 {
+public final class j extends Drawable implements DownloadController.FileDownloadProgressListener, fo0 {
     public String B;
     public String C;
     public boolean D;
     public MessageObject E;
     public double F;
     public int G;
-    public final ho0 H;
+    public final go0 H;
     public float I;
     public float J;
     public SvgHelper.SvgDrawable K;
@@ -59,10 +59,10 @@ public final class j extends Drawable implements DownloadController.FileDownload
     public String f5646e;
     public String f5647f;
     public String h;
-    public l01 f5648n;
-    public l01 f5649r;
-    public l01 f5650s;
-    public l01 v;
+    public k01 f5648n;
+    public k01 f5649r;
+    public k01 f5650s;
+    public k01 v;
     public final RadialProgress2 f5652x;
     public final boolean f5653y;
     public final Paint f5651w = new Paint(1);
@@ -77,10 +77,10 @@ public final class j extends Drawable implements DownloadController.FileDownload
         this.f5653y = z4;
         this.f5652x = new RadialProgress2(t1Var, g6Var);
         this.d = t1Var;
-        ho0 ho0Var = new ho0(t1Var);
-        this.H = ho0Var;
-        ho0Var.h = this;
-        this.f5639a = new xd.a(t1Var, wd.a.f49493a, 180L);
+        go0 go0Var = new go0(t1Var);
+        this.H = go0Var;
+        go0Var.h = this;
+        this.f5639a = new xd.a(t1Var, wd.a.f49529a, 180L);
         this.f5640a0 = DownloadController.getInstance(i10).generateObserverTag();
     }
 
@@ -100,49 +100,49 @@ public final class j extends Drawable implements DownloadController.FileDownload
     public final void c(boolean z4) {
         int i10;
         int i11;
-        l01 l01Var = this.f5648n;
-        if (l01Var != null) {
+        k01 k01Var = this.f5648n;
+        if (k01Var != null) {
             if (z4) {
                 i11 = k6.Fb;
             } else {
                 i11 = k6.Dd;
             }
-            l01Var.o(k6.w0(null, i11, false));
+            k01Var.o(k6.w0(null, i11, false));
         }
         this.f5651w.setColor(1711276032);
-        l01 l01Var2 = this.v;
-        if (l01Var2 != null) {
-            l01Var2.o(-1);
+        k01 k01Var2 = this.v;
+        if (k01Var2 != null) {
+            k01Var2.o(-1);
         }
         SvgHelper.SvgDrawable svgDrawable = this.K;
         if (svgDrawable != null) {
             if (z4) {
                 i10 = k6.Pb;
             } else {
-                i10 = k6.f21901qe;
+                i10 = k6.f21903qe;
             }
             svgDrawable.setColorKey(i10);
         }
         boolean z10 = this.U;
         RadialProgress2 radialProgress2 = this.f5652x;
         if (!z10 && !this.T) {
-            radialProgress2.g(k6.f21811le, k6.f21828me, k6.f21846ne, k6.f21864oe);
+            radialProgress2.g(k6.f21813le, k6.f21830me, k6.f21848ne, k6.f21866oe);
             return;
         }
-        ho0 ho0Var = this.H;
+        go0 go0Var = this.H;
         if (z4) {
-            int w02 = k6.w0(null, k6.f22003wb, false);
-            int w03 = k6.w0(null, k6.f22022xb, false);
+            int w02 = k6.w0(null, k6.f22005wb, false);
+            int w03 = k6.w0(null, k6.f22024xb, false);
             int i12 = k6.zb;
-            ho0Var.h(w02, w03, k6.w0(null, i12, false), k6.w0(null, i12, false), k6.w0(null, k6.f22041yb, false));
+            go0Var.h(w02, w03, k6.w0(null, i12, false), k6.w0(null, i12, false), k6.w0(null, k6.f22043yb, false));
             radialProgress2.g(k6.Nb, k6.Ob, k6.Pa, k6.Qa);
             return;
         }
-        radialProgress2.g(k6.f21757ie, k6.f21774je, k6.f21967uc, k6.f21985vc);
-        int w04 = k6.w0(null, k6.f21968ud, false);
-        int w05 = k6.w0(null, k6.f21986vd, false);
-        int i13 = k6.f22024xd;
-        ho0Var.h(w04, w05, k6.w0(null, i13, false), k6.w0(null, i13, false), k6.w0(null, k6.f22005wd, false));
+        radialProgress2.g(k6.f21759ie, k6.f21776je, k6.f21969uc, k6.f21987vc);
+        int w04 = k6.w0(null, k6.f21970ud, false);
+        int w05 = k6.w0(null, k6.f21988vd, false);
+        int i13 = k6.f22026xd;
+        go0Var.h(w04, w05, k6.w0(null, i13, false), k6.w0(null, i13, false), k6.w0(null, k6.f22007wd, false));
     }
 
     @Override
@@ -177,14 +177,14 @@ public final class j extends Drawable implements DownloadController.FileDownload
                     int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * 0.8f);
                     int intrinsicHeight = (int) (this.M.getIntrinsicHeight() * 0.8f);
                     int x10 = (int) e2.c.x(imageReceiver.getImageWidth(), intrinsicWidth, 2.0f, imageReceiver.getImageX());
-                    int imageHeight = (int) ((((imageReceiver.getImageHeight() / 2.0f) - intrinsicHeight) + imageReceiver.getImageY()) - ((1.0f - pr.f30187k.getInterpolation(imageReceiver.getCurrentAlpha())) * AndroidUtilities.dp(16.0f)));
+                    int imageHeight = (int) ((((imageReceiver.getImageHeight() / 2.0f) - intrinsicHeight) + imageReceiver.getImageY()) - ((1.0f - pr.f30172k.getInterpolation(imageReceiver.getCurrentAlpha())) * AndroidUtilities.dp(16.0f)));
                     this.M.setAlpha((int) (imageReceiver.getAlpha() * Math.min(1.0f, imageReceiver.getCurrentAlpha() * 5.0f) * 255.0f));
                     this.M.setBounds(x10, imageHeight, intrinsicWidth + x10, intrinsicHeight + imageHeight);
                     this.M.draw(canvas);
                 }
                 radialProgress2.q(bounds.centerX() - AndroidUtilities.dp(22.0f), bounds.centerY() - AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f) + bounds.centerX(), AndroidUtilities.dp(22.0f) + bounds.centerY());
                 if (this.D && this.v != null) {
-                    canvas.drawRoundRect(AndroidUtilities.dp(6.0f) + bounds.left, AndroidUtilities.dp(6.0f) + bounds.top, bounds.left + this.v.f28521c + AndroidUtilities.dp(18.0f), AndroidUtilities.dp(23.0f) + bounds.top, AndroidUtilities.dp(8.5f), AndroidUtilities.dp(8.5f), this.f5651w);
+                    canvas.drawRoundRect(AndroidUtilities.dp(6.0f) + bounds.left, AndroidUtilities.dp(6.0f) + bounds.top, bounds.left + this.v.f28227c + AndroidUtilities.dp(18.0f), AndroidUtilities.dp(23.0f) + bounds.top, AndroidUtilities.dp(8.5f), AndroidUtilities.dp(8.5f), this.f5651w);
                     this.v.e(canvas, AndroidUtilities.dp(12.0f) + bounds.left, AndroidUtilities.dp(15.0f) + bounds.top);
                 }
             } else {
@@ -206,37 +206,37 @@ public final class j extends Drawable implements DownloadController.FileDownload
                 if (!this.U) {
                     i11 = AndroidUtilities.dp(3.0f);
                 }
-                l01 l01Var = this.f5648n;
-                if (l01Var != null) {
-                    l01Var.e(canvas, AndroidUtilities.dp(56.0f) + i14, AndroidUtilities.dp(15.0f) + i16 + i11);
+                k01 k01Var = this.f5648n;
+                if (k01Var != null) {
+                    k01Var.e(canvas, AndroidUtilities.dp(56.0f) + i14, AndroidUtilities.dp(15.0f) + i16 + i11);
                 }
                 if (this.U) {
-                    float f10 = this.f5639a.f50505e;
+                    float f10 = this.f5639a.f50541e;
                     if (this.f5649r != null && f10 < 1.0f) {
                         canvas.save();
                         float f11 = 1.0f - f10;
                         int i17 = i16 + i11;
                         canvas.scale(f11, f11, AndroidUtilities.dp(56.0f) + i14, AndroidUtilities.dp(35.0f) + i17);
-                        this.f5649r.f28519a.setAlpha((int) (f11 * 255.0f));
+                        this.f5649r.f28225a.setAlpha((int) (f11 * 255.0f));
                         this.f5649r.e(canvas, AndroidUtilities.dp(56.0f) + i14, AndroidUtilities.dp(35.0f) + i17);
                         canvas.restore();
                     }
                     if (f10 > 0.0f) {
-                        ho0 ho0Var = this.H;
-                        ho0Var.f27549t = f10;
-                        ho0Var.j(org.telegram.ui.b.t(56.0f, i14, bounds.right), AndroidUtilities.dp(30.0f));
+                        go0 go0Var = this.H;
+                        go0Var.f27221t = f10;
+                        go0Var.j(org.telegram.ui.b.t(56.0f, i14, bounds.right), AndroidUtilities.dp(30.0f));
                         canvas.save();
                         float dp3 = AndroidUtilities.dp(45.0f) + i14;
                         this.I = dp3;
                         float dp4 = AndroidUtilities.dp(21.0f) + i16 + i11;
                         this.J = dp4;
                         canvas.translate(dp3, dp4);
-                        ho0Var.b(canvas);
+                        go0Var.b(canvas);
                         canvas.restore();
                     }
                 }
-                l01 l01Var2 = this.f5650s;
-                if (l01Var2 != null) {
+                k01 k01Var2 = this.f5650s;
+                if (k01Var2 != null) {
                     float dp5 = AndroidUtilities.dp(56.0f) + i14;
                     int i18 = i11 + i16;
                     if (this.U) {
@@ -244,7 +244,7 @@ public final class j extends Drawable implements DownloadController.FileDownload
                     } else {
                         i10 = 2;
                     }
-                    l01Var2.e(canvas, dp5, AndroidUtilities.dp(i10 + 34) + i18);
+                    k01Var2.e(canvas, dp5, AndroidUtilities.dp(i10 + 34) + i18);
                 }
                 int dp6 = AndroidUtilities.dp(2.0f) + i14;
                 this.X = dp6;
@@ -310,36 +310,36 @@ public final class j extends Drawable implements DownloadController.FileDownload
             String str = this.f5646e;
             if (str != null) {
                 if (this.f5648n == null) {
-                    this.f5648n = new l01(str, 15.0f, AndroidUtilities.bold());
+                    this.f5648n = new k01(str, 15.0f, AndroidUtilities.bold());
                 }
-                l01 l01Var = this.f5648n;
-                l01Var.r(TextUtils.ellipsize(this.f5646e, l01Var.f28519a, dp, TextUtils.TruncateAt.MIDDLE));
+                k01 k01Var = this.f5648n;
+                k01Var.r(TextUtils.ellipsize(this.f5646e, k01Var.f28225a, dp, TextUtils.TruncateAt.MIDDLE));
             }
             String str2 = this.f5647f;
             if (str2 != null) {
                 if (this.f5649r == null) {
-                    this.f5649r = new l01(str2, 14.0f, null);
+                    this.f5649r = new k01(str2, 14.0f, null);
                 }
-                l01 l01Var2 = this.f5649r;
-                l01Var2.r(TextUtils.ellipsize(this.f5647f, l01Var2.f28519a, dp, TextUtils.TruncateAt.END));
+                k01 k01Var2 = this.f5649r;
+                k01Var2.r(TextUtils.ellipsize(this.f5647f, k01Var2.f28225a, dp, TextUtils.TruncateAt.END));
             }
             String str3 = this.h;
             if (str3 != null) {
                 if (this.f5650s == null) {
-                    this.f5650s = new l01(str3, 12.0f, null);
+                    this.f5650s = new k01(str3, 12.0f, null);
                 }
-                l01 l01Var3 = this.f5650s;
-                l01Var3.r(TextUtils.ellipsize(this.h, l01Var3.f28519a, dp, TextUtils.TruncateAt.END));
+                k01 k01Var3 = this.f5650s;
+                k01Var3.r(TextUtils.ellipsize(this.h, k01Var3.f28225a, dp, TextUtils.TruncateAt.END));
             }
             if (this.D && this.v == null) {
-                this.v = new l01(AndroidUtilities.formatLongDuration(this.G), 12.0f, null);
+                this.v = new k01(AndroidUtilities.formatLongDuration(this.G), 12.0f, null);
             }
         }
     }
 
     public final int g() {
         boolean z4 = this.U;
-        if (z4 && this.f5639a.f50506f) {
+        if (z4 && this.f5639a.f50542f) {
             return !MediaController.getInstance().isMessagePaused();
         }
         if (!this.D && !z4) {
@@ -466,12 +466,12 @@ public final class j extends Drawable implements DownloadController.FileDownload
             this.f5639a.a(i11, z4);
             if (playingMessageObject != null && i11) {
                 i10 = playingMessageObject.audioProgressSec;
-                ho0 ho0Var = this.H;
-                if (!ho0Var.f27535e) {
-                    ho0Var.i(playingMessageObject.audioProgress);
-                    ho0Var.f27546q = playingMessageObject.bufferedProgress;
+                go0 go0Var = this.H;
+                if (!go0Var.f27207e) {
+                    go0Var.i(playingMessageObject.audioProgress);
+                    go0Var.f27218q = playingMessageObject.bufferedProgress;
                 }
-                ho0Var.k(playingMessageObject);
+                go0Var.k(playingMessageObject);
             } else {
                 i10 = 0;
             }

@@ -26,7 +26,7 @@ public final class sd implements Utilities.Callback {
                 chatActivityEnterView.B0.setSelection(charSequence.length(), charSequence.length());
                 return;
             default:
-                int i11 = ChatActivityEnterView.f24568j5;
+                int i11 = ChatActivityEnterView.f24570j5;
                 chatActivityEnterView.e0((Canvas) obj, false);
                 return;
         }

@@ -33,7 +33,7 @@ public abstract class v2 extends View {
         }
         this.v = true;
         ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
-        duration.setInterpolator(pr.f30183f);
+        duration.setInterpolator(pr.f30168f);
         duration.addUpdateListener(new m1(this, 2));
         duration.addListener(new u2(0, this, z4));
         duration.start();

@@ -1,29 +1,19 @@
 package qh;
+public final class l2 extends f2.w {
+    public final z2 Q;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import org.telegram.ui.Components.tl0;
-public final class l2 extends tl0 {
-    public final a3 U2;
-
-    public l2(a3 a3Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, g6Var);
-        this.U2 = a3Var;
+    public l2(z2 z2Var) {
+        super(3);
+        this.Q = z2Var;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.U2.H) {
-            return false;
+    public final void b0(bf.f fVar, f2.j1 j1Var) {
+        super.b0(fVar, j1Var);
+        z2 z2Var = this.Q;
+        if (z2Var.R) {
+            z2Var.R = false;
+            z2Var.a();
         }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.U2.H) {
-            return false;
-        }
-        return super.onInterceptTouchEvent(motionEvent);
     }
 }

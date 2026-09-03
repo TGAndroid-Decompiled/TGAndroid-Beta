@@ -4,23 +4,23 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 public final class az implements ImageReceiver.ImageReceiverDelegate {
-    public final bz f35267a;
-    public final boolean f35268b;
-    public final MessageObject f35269c;
+    public final bz f35277a;
+    public final boolean f35278b;
+    public final MessageObject f35279c;
     public final cz d;
 
     public az(cz czVar, bz bzVar, boolean z4, MessageObject messageObject) {
         this.d = czVar;
-        this.f35267a = bzVar;
-        this.f35268b = z4;
-        this.f35269c = messageObject;
+        this.f35277a = bzVar;
+        this.f35278b = z4;
+        this.f35279c = messageObject;
     }
 
     @Override
     public final void didSetImage(ImageReceiver imageReceiver, boolean z4, boolean z10, boolean z11) {
-        bz bzVar = this.f35267a;
-        if (bzVar.f35628r.getLottieAnimation() != null) {
-            bzVar.f35628r.getLottieAnimation().L(0, false, true);
+        bz bzVar = this.f35277a;
+        if (bzVar.f35638r.getLottieAnimation() != null) {
+            bzVar.f35638r.getLottieAnimation().L(0, false, true);
         }
     }
 
@@ -32,7 +32,7 @@ public final class az implements ImageReceiver.ImageReceiverDelegate {
     @Override
     public final void onAnimationReady(ImageReceiver imageReceiver) {
         MessageObject messageObject;
-        if (this.f35268b && (messageObject = this.f35269c) != null && messageObject.isAnimatedAnimatedEmoji() && imageReceiver.getLottieAnimation() != null && imageReceiver.getLottieAnimation().f27841x == null) {
+        if (this.f35278b && (messageObject = this.f35279c) != null && messageObject.isAnimatedAnimatedEmoji() && imageReceiver.getLottieAnimation() != null && imageReceiver.getLottieAnimation().f27548x == null) {
             try {
                 this.d.D.performHapticFeedback(3, 1);
             } catch (Exception unused) {

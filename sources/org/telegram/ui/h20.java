@@ -9,18 +9,18 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Shader;
 public final class h20 {
-    public LinearGradient f37311b;
-    public final Paint[] f37310a = new Paint[4];
-    public final Matrix f37312c = new Matrix();
+    public LinearGradient f37204b;
+    public final Paint[] f37203a = new Paint[4];
+    public final Matrix f37205c = new Matrix();
 
     public final void a(Canvas canvas, RectF rectF, float f10) {
-        Paint[] paintArr = this.f37310a;
+        Paint[] paintArr = this.f37203a;
         if (paintArr[0] == null) {
             Paint paint = new Paint(1);
             paintArr[0] = paint;
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         }
-        paintArr[0].setShader(this.f37311b);
+        paintArr[0].setShader(this.f37204b);
         paintArr[0].setAlpha((int) (f10 * 255.0f));
         canvas.drawRect(rectF, paintArr[0]);
     }
@@ -29,16 +29,16 @@ public final class h20 {
         if (f10 <= 0.0f) {
             return;
         }
-        if (this.f37311b == null) {
-            this.f37311b = new LinearGradient(0.0f, 0.0f, 0.0f, 16.0f, new int[]{-65536, 16711680}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        if (this.f37204b == null) {
+            this.f37204b = new LinearGradient(0.0f, 0.0f, 0.0f, 16.0f, new int[]{-65536, 16711680}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         }
-        Paint[] paintArr = this.f37310a;
+        Paint[] paintArr = this.f37203a;
         if (paintArr[i10] == null) {
             paintArr[i10] = new Paint(1);
             paintArr[i10].setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         }
-        paintArr[i10].setShader(this.f37311b);
-        Matrix matrix = this.f37312c;
+        paintArr[i10].setShader(this.f37204b);
+        Matrix matrix = this.f37205c;
         matrix.reset();
         if (i10 == 0) {
             matrix.postScale(1.0f, rectF.width() / 16.0f);
@@ -56,7 +56,7 @@ public final class h20 {
             matrix.postScale(1.0f, -1.0f);
             matrix.postTranslate(rectF.left, rectF.bottom);
         }
-        this.f37311b.setLocalMatrix(matrix);
+        this.f37204b.setLocalMatrix(matrix);
         paintArr[i10].setAlpha((int) (f10 * 255.0f));
         canvas.drawRect(rectF, paintArr[i10]);
     }

@@ -4,30 +4,30 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.i61;
-import org.telegram.ui.Components.j51;
-import org.telegram.ui.Components.tl0;
-import org.telegram.ui.Components.x51;
-public final class u0 extends i51 {
-    public static final int f50059a = 0;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.w51;
+public final class u0 extends g51 {
+    public static final int f50095a = 0;
 
     static {
-        i51.setup(new i51());
+        g51.setup(new g51());
     }
 
     @Override
-    public final void bindView(View view, j51 j51Var, boolean z4, x51 x51Var, i61 i61Var) {
+    public final void bindView(View view, h51 h51Var, boolean z4, w51 w51Var, h61 h61Var) {
         v0 v0Var = (v0) view;
-        a aVar = (a) j51Var.G;
-        v0Var.f50175a = aVar;
-        v0Var.v = (n2) j51Var.H;
-        v0Var.f50093w = LocaleController.isRTL;
+        a aVar = (a) h51Var.G;
+        v0Var.f50211a = aVar;
+        v0Var.v = (n2) h51Var.H;
+        v0Var.f50129w = LocaleController.isRTL;
         v0Var.c(aVar);
     }
 
     @Override
-    public final View createView(Context context, tl0 tl0Var, int i10, int i11, g6 g6Var) {
+    public final View createView(Context context, sl0 sl0Var, int i10, int i11, g6 g6Var) {
         return new v0(context, g6Var);
     }
 

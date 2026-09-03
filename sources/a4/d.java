@@ -5,7 +5,7 @@ import j3.n0;
 import java.util.Arrays;
 import k7.v6;
 import k7.w6;
-import q5.g0;
+import q5.c0;
 import r3.o;
 public final class d extends j {
     public o f63n;
@@ -39,8 +39,8 @@ public final class d extends j {
         }
         byte b10 = bArr[0];
         if ((b10 & Byte.MAX_VALUE) == 3) {
-            g0 b11 = w6.b(wVar);
-            o oVar3 = new o(oVar.f46566a, oVar.f46567b, oVar.f46568c, oVar.d, oVar.f46569e, oVar.f46571g, oVar.h, oVar.f46573j, b11, oVar.f46575l);
+            c0 b11 = w6.b(wVar);
+            o oVar3 = new o(oVar.f46597a, oVar.f46598b, oVar.f46599c, oVar.d, oVar.f46600e, oVar.f46602g, oVar.h, oVar.f46604j, b11, oVar.f46606l);
             this.f63n = oVar3;
             ?? obj = new Object();
             obj.f62c = oVar3;

@@ -7,11 +7,11 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
-public final class xi implements org.telegram.ui.Components.kl0 {
-    public final xn f43079a;
+public final class xi implements org.telegram.ui.Components.jl0 {
+    public final xn f43057a;
 
     public xi(xn xnVar) {
-        this.f43079a = xnVar;
+        this.f43057a = xnVar;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class xi implements org.telegram.ui.Components.kl0 {
         MessageObject messageObject;
         org.telegram.ui.ActionBar.k kVar;
         TLRPC.ChatFull chatFull;
-        xn xnVar = this.f43079a;
+        xn xnVar = this.f43057a;
         if (!xnVar.z9() && ((tL_availableReaction = xnVar.getMediaDataController().getReactionsMap().get((doubleTapReaction = xnVar.getMediaDataController().getDoubleTapReaction()))) != null || (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")))) {
             if (xnVar.Q5 >= 0) {
                 z4 = true;
@@ -58,7 +58,7 @@ public final class xi implements org.telegram.ui.Components.kl0 {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.Cells.t1 t1Var;
         MessageObject messageObject;
-        xn xnVar = this.f43079a;
+        xn xnVar = this.f43057a;
         z4 = ((org.telegram.ui.ActionBar.p2) xnVar).inPreviewMode;
         if (!z4) {
             xnVar.A4 = true;
@@ -103,7 +103,7 @@ public final class xi implements org.telegram.ui.Components.kl0 {
                     t1Var.t2();
                     view.requestLayout();
                     if (i10 >= 0) {
-                        xnVar.f43403x0.m(i10);
+                        xnVar.f43381x0.m(i10);
                         return;
                     }
                     return;
@@ -127,7 +127,7 @@ public final class xi implements org.telegram.ui.Components.kl0 {
         MessageObject messageObject;
         TLRPC.ChatFull chatFull;
         TLRPC.ChatFull chatFull2;
-        xn xnVar = this.f43079a;
+        xn xnVar = this.f43057a;
         if (xnVar.getParentActivity() != null && !xnVar.w() && !xnVar.c() && !xnVar.isInPreviewMode() && !xnVar.z9()) {
             if (view instanceof org.telegram.ui.Cells.t1) {
                 messageObject = ((org.telegram.ui.Cells.t1) view).getPrimaryMessageObject();
@@ -141,8 +141,8 @@ public final class xi implements org.telegram.ui.Components.kl0 {
             }
             MessageObject messageObject2 = messageObject;
             if (!messageObject2.isSecret() && messageObject2.canSetReaction() && !messageObject2.isExpiredStory() && messageObject2.type != 27) {
-                TLRPC.Chat chat = xnVar.f43165e;
-                if (chat == null || ChatObject.isChannelAndNotMegaGroup(chat) || ChatObject.canUserDoAction(xnVar.f43165e, 26)) {
+                TLRPC.Chat chat = xnVar.f43143e;
+                if (chat == null || ChatObject.isChannelAndNotMegaGroup(chat) || ChatObject.canUserDoAction(xnVar.f43143e, 26)) {
                     boolean z4 = false;
                     ng.m0.b(false);
                     String doubleTapReaction = xnVar.getMediaDataController().getDoubleTapReaction();

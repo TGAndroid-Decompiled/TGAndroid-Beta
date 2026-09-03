@@ -7,7 +7,7 @@ import k7.c6;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.tk0;
+import org.telegram.ui.Components.sk0;
 public final class k1 extends j {
     public final j1 f5315n0;
     public boolean f5316o0;
@@ -82,7 +82,7 @@ public final class k1 extends j {
     }
 
     @Override
-    public tk0 getSelectionBounds() {
+    public sk0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -93,7 +93,7 @@ public final class k1 extends j {
         float scale2 = getScale();
         float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
         float c3 = org.telegram.ui.b.c(dp, 2.0f, getPositionX(), scaleX);
-        return new tk0(c3, org.telegram.ui.b.c(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + c3) - c3, dp2 * scaleX);
+        return new sk0(c3, org.telegram.ui.b.c(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + c3) - c3, dp2 * scaleX);
     }
 
     @Override

@@ -7,18 +7,18 @@ import org.telegram.messenger.AndroidUtilities;
 public final class t7 extends w7 {
     public final Context B;
     public final c8 C;
-    public final int f31275y;
+    public final int f31291y;
 
     public t7(c8 c8Var, Context context, Context context2, int i10) {
         super(context);
-        this.f31275y = i10;
+        this.f31291y = i10;
         this.C = c8Var;
         this.B = context2;
     }
 
     @Override
     public final TextView a() {
-        switch (this.f31275y) {
+        switch (this.f31291y) {
             case 0:
                 v90 v90Var = new v90(this.B);
                 v90Var.setTextColor(this.C.getThemedColor(org.telegram.ui.ActionBar.k6.Oi));
@@ -36,7 +36,7 @@ public final class t7 extends w7 {
                 v90Var2.setEllipsize(TextUtils.TruncateAt.END);
                 v90Var2.setSingleLine(true);
                 v90Var2.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f));
-                v90Var2.setBackground(org.telegram.ui.ActionBar.k6.Y(c8Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21750i6), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
+                v90Var2.setBackground(org.telegram.ui.ActionBar.k6.Y(c8Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21752i6), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
                 v90Var2.setOnClickListener(new w2(3, this, v90Var2));
                 return v90Var2;
         }

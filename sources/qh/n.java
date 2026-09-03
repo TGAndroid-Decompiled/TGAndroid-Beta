@@ -3,7 +3,7 @@ package qh;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.camera.CameraController;
-public final class n extends w5 {
+public final class n extends v5 {
     public final p C;
 
     public n(p pVar, Context context) {
@@ -14,10 +14,10 @@ public final class n extends w5 {
     @Override
     public final void c() {
         AndroidUtilities.cancelRunOnUIThread(this.h);
-        if (this.f46229c <= 0) {
+        if (this.f46212c <= 0) {
             a(true);
         } else {
-            CameraController.getInstance().stopVideoRecording(this.f46227a.getCameraSessionRecording(), false, false);
+            CameraController.getInstance().stopVideoRecording(this.f46210a.getCameraSessionRecording(), false, false);
         }
         p pVar = this.C;
         if (pVar.L1) {

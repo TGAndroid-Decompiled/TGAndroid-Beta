@@ -17,32 +17,32 @@ import k7.c6;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.q31;
 import org.telegram.ui.Components.q70;
-import org.telegram.ui.Components.r31;
 import org.telegram.ui.LaunchActivity;
-import qh.v9;
+import qh.u9;
 import wh.v5;
 public final class r3 implements a3.b {
-    public Object f13327a;
-    public Object f13328b;
-    public Object f13329c;
+    public Object f13329a;
+    public Object f13330b;
+    public Object f13331c;
     public Object d;
-    public Object f13330e;
-    public Object f13331f;
+    public Object f13332e;
+    public Object f13333f;
     public Object h;
 
     public r3(Set set, a0.f fVar, String str, String str2, b8.a aVar) {
         Set unmodifiableSet = set == null ? Collections.EMPTY_SET : DesugarCollections.unmodifiableSet(set);
-        this.f13327a = unmodifiableSet;
+        this.f13329a = unmodifiableSet;
         a0.f fVar2 = fVar == null ? Collections.EMPTY_MAP : fVar;
-        this.f13329c = fVar2;
+        this.f13331c = fVar2;
         this.d = str;
-        this.f13330e = str2;
-        this.f13331f = aVar == null ? b8.a.f1891a : aVar;
+        this.f13332e = str2;
+        this.f13333f = aVar == null ? b8.a.f1891a : aVar;
         HashSet hashSet = new HashSet(unmodifiableSet);
         Iterator it = fVar2.values().iterator();
         if (!it.hasNext()) {
-            this.f13328b = DesugarCollections.unmodifiableSet(hashSet);
+            this.f13330b = DesugarCollections.unmodifiableSet(hashSet);
         } else {
             it.next().getClass();
             throw new ClassCastException();
@@ -50,7 +50,7 @@ public final class r3 implements a3.b {
     }
 
     public void a(cf.f fVar) {
-        if (((cf.f) this.f13330e) == fVar) {
+        if (((cf.f) this.f13332e) == fVar) {
             LaunchActivity launchActivity = (LaunchActivity) this.d;
             if (Build.VERSION.SDK_INT >= 26) {
                 if (fVar != null) {
@@ -64,30 +64,30 @@ public final class r3 implements a3.b {
                 cVar.d(fVar.f2500l);
             }
         }
-        ((cf.a) this.f13329c).invalidate();
+        ((cf.a) this.f13331c).invalidate();
     }
 
     public cf.a b() {
-        if (((cf.a) this.f13329c) == null) {
-            this.f13329c = new cf.a((LaunchActivity) this.d);
+        if (((cf.a) this.f13331c) == null) {
+            this.f13331c = new cf.a((LaunchActivity) this.d);
         }
-        return (cf.a) this.f13329c;
+        return (cf.a) this.f13331c;
     }
 
     public void c() {
         e(null);
-        q70 q70Var = (q70) this.f13329c;
+        q70 q70Var = (q70) this.f13331c;
         if (q70Var != null) {
             q70Var.u();
-            this.f13329c = null;
+            this.f13331c = null;
         }
         this.d = null;
-        this.f13330e = null;
-        this.f13331f = null;
+        this.f13332e = null;
+        this.f13333f = null;
     }
 
     public void d(v5 v5Var, ArrayList arrayList) {
-        g6 g6Var = (g6) this.f13328b;
+        g6 g6Var = (g6) this.f13330b;
         LinearLayout linearLayout = (LinearLayout) this.d;
         if (linearLayout != null) {
             linearLayout.removeAllViews();
@@ -99,8 +99,8 @@ public final class r3 implements a3.b {
                 wh.l0 l0Var = (wh.l0) obj;
                 wh.k0 k0Var = new wh.k0(v5Var.getContext(), l0Var, g6Var);
                 k0Var.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(12.0f), 0);
-                k0Var.setBackground(k6.Y(k6.v0(k6.f21750i6, g6Var), 0, 0));
-                k0Var.setOnClickListener(new r31(this, v5Var, l0Var, 8));
+                k0Var.setBackground(k6.Y(k6.v0(k6.f21752i6, g6Var), 0, 0));
+                k0Var.setOnClickListener(new q31(this, v5Var, l0Var, 8));
                 ((LinearLayout) this.d).addView(k0Var, c6.n(-1, 48));
             }
         }
@@ -132,47 +132,47 @@ public final class r3 implements a3.b {
             return;
         }
         e(v5Var);
-        if (((v5) this.f13331f) == v5Var && a2.equals((ArrayList) this.f13330e) && (q70Var2 = (q70) this.f13329c) != null && q70Var2.D()) {
+        if (((v5) this.f13333f) == v5Var && a2.equals((ArrayList) this.f13332e) && (q70Var2 = (q70) this.f13331c) != null && q70Var2.D()) {
             return;
         }
-        if (((v5) this.f13331f) == v5Var && (q70Var = (q70) this.f13329c) != null && q70Var.D() && ((LinearLayout) this.d) != null) {
-            this.f13330e = a2;
+        if (((v5) this.f13333f) == v5Var && (q70Var = (q70) this.f13331c) != null && q70Var.D() && ((LinearLayout) this.d) != null) {
+            this.f13332e = a2;
             d(v5Var, a2);
-            ((q70) this.f13329c).O();
+            ((q70) this.f13331c).O();
             return;
         }
         c();
         e(v5Var);
-        this.f13331f = v5Var;
-        this.f13330e = a2;
+        this.f13333f = v5Var;
+        this.f13332e = a2;
         LinearLayout linearLayout = new LinearLayout(v5Var.getContext());
         this.d = linearLayout;
         linearLayout.setOrientation(1);
         d(v5Var, a2);
-        q70 a10 = ((wh.m0) this.f13327a).a(v5Var.getEditText());
+        q70 a10 = ((wh.m0) this.f13329a).a(v5Var.getEditText());
         a10.Q = true;
-        a10.f30329s = 0;
-        a10.f30330t = false;
+        a10.f30333s = 0;
+        a10.f30334t = false;
         a10.r((LinearLayout) this.d, c6.n(220, -2));
         a10.X = AndroidUtilities.dp(240.0f);
-        a10.f30311i = 3;
+        a10.f30315i = 3;
         a10.a0(-AndroidUtilities.dp(12.0f), 0.0f);
-        a10.f30324p = new v9(this, 29);
-        a10.f30303d0 = true;
+        a10.f30328p = new u9(this, 29);
+        a10.f30307d0 = true;
         if (a10.D()) {
             a10.C();
         }
         a10.Z();
-        this.f13329c = a10;
+        this.f13331c = a10;
     }
 
     public void g() {
         String str;
         boolean z4;
         boolean z10;
-        cf.f fVar = (cf.f) this.f13330e;
+        cf.f fVar = (cf.f) this.f13332e;
         cf.f fVar2 = null;
-        for (cf.f fVar3 : ((HashMap) this.f13327a).values()) {
+        for (cf.f fVar3 : ((HashMap) this.f13329a).values()) {
             if (fVar3.f2501m || fVar3.f2492b.f5036a != 0) {
                 if (fVar2 == null || fVar3.d > fVar2.d) {
                     fVar2 = fVar3;
@@ -180,7 +180,7 @@ public final class r3 implements a3.b {
             }
         }
         if (fVar != fVar2) {
-            this.f13330e = fVar2;
+            this.f13332e = fVar2;
             LaunchActivity launchActivity = (LaunchActivity) this.d;
             StringBuilder sb = new StringBuilder("onMaxPrioritySourceChanged ");
             if (fVar2 != null) {
@@ -213,18 +213,18 @@ public final class r3 implements a3.b {
                     cVar.d(null);
                     this.h = null;
                 }
-                android.support.v4.media.session.c0 c0Var = (android.support.v4.media.session.c0) this.f13331f;
+                android.support.v4.media.session.c0 c0Var = (android.support.v4.media.session.c0) this.f13333f;
                 if (c0Var != null) {
                     c0Var.c(false);
-                    ((android.support.v4.media.session.c0) this.f13331f).b();
-                    this.f13331f = null;
+                    ((android.support.v4.media.session.c0) this.f13333f).b();
+                    this.f13333f = null;
                 }
                 if (fVar2 != null) {
                     android.support.v4.media.session.c0 c0Var2 = new android.support.v4.media.session.c0(launchActivity, "pip-media-session", null, null);
-                    this.f13331f = c0Var2;
+                    this.f13333f = c0Var2;
                     c0Var2.g(null);
-                    ((android.support.v4.media.session.c0) this.f13331f).c(true);
-                    this.h = new q3.c((android.support.v4.media.session.c0) this.f13331f);
+                    ((android.support.v4.media.session.c0) this.f13333f).c(true);
+                    this.h = new q3.c((android.support.v4.media.session.c0) this.f13333f);
                 }
             }
             if (fVar != null) {
@@ -233,8 +233,8 @@ public final class r3 implements a3.b {
                 eVar.h();
                 cf.f fVar4 = eVar.f5043j;
                 r3 r3Var = fVar4.f2491a;
-                cf.c cVar2 = (cf.c) r3Var.f13328b;
-                ((cf.c) r3Var.f13328b).f2465a.remove(eVar);
+                cf.c cVar2 = (cf.c) r3Var.f13330b;
+                ((cf.c) r3Var.f13330b).f2465a.remove(eVar);
                 cVar2.f2466b.remove(eVar);
                 String str2 = fVar4.f2493c;
                 HashMap hashMap = cVar2.f2467c;
@@ -251,12 +251,12 @@ public final class r3 implements a3.b {
                 if (cVar3 != null) {
                     cVar3.d(fVar2.f2500l);
                 }
-                ((cf.a) this.f13329c).bringToFront();
+                ((cf.a) this.f13331c).bringToFront();
                 ef.e eVar2 = fVar2.f2492b;
                 cf.f fVar5 = eVar2.f5043j;
                 r3 r3Var2 = fVar5.f2491a;
-                cf.c cVar4 = (cf.c) r3Var2.f13328b;
-                ((cf.c) r3Var2.f13328b).f2465a.add(eVar2);
+                cf.c cVar4 = (cf.c) r3Var2.f13330b;
+                ((cf.c) r3Var2.f13330b).f2465a.add(eVar2);
                 cVar4.f2466b.add(eVar2);
                 String str3 = fVar5.f2493c;
                 HashMap hashMap2 = cVar4.f2467c;
@@ -269,7 +269,7 @@ public final class r3 implements a3.b {
             } else if (fVar != null && AndroidUtilities.isInPictureInPictureMode(launchActivity)) {
                 launchActivity.moveTaskToBack(false);
             }
-            ((cf.a) this.f13329c).invalidate();
+            ((cf.a) this.f13331c).invalidate();
         }
     }
 
@@ -278,12 +278,12 @@ public final class r3 implements a3.b {
         z9.d dVar = new z9.d(7);
         h7.u uVar = new h7.u(7);
         ?? obj = new Object();
-        obj.f4931a = (Context) ((rc.a) this.f13327a).mo38get();
-        obj.f4932b = (z2.e) ((rc.a) this.f13328b).mo38get();
-        obj.f4933c = (f3.d) ((rc.a) this.f13329c).mo38get();
+        obj.f4931a = (Context) ((rc.a) this.f13329a).mo38get();
+        obj.f4932b = (z2.e) ((rc.a) this.f13330b).mo38get();
+        obj.f4933c = (f3.d) ((rc.a) this.f13331c).mo38get();
         obj.d = (androidx.biometric.e) ((androidx.biometric.e) this.d).mo38get();
-        obj.f4934e = (Executor) ((rc.a) this.f13330e).mo38get();
-        obj.f4935f = (g3.c) ((rc.a) this.f13331f).mo38get();
+        obj.f4934e = (Executor) ((rc.a) this.f13332e).mo38get();
+        obj.f4935f = (g3.c) ((rc.a) this.f13333f).mo38get();
         obj.f4936g = dVar;
         obj.h = uVar;
         obj.f4937i = (f3.c) ((rc.a) this.h).mo38get();
@@ -291,17 +291,17 @@ public final class r3 implements a3.b {
     }
 
     public r3(wh.m0 m0Var, g6 g6Var) {
-        this.f13327a = m0Var;
-        this.f13328b = g6Var;
+        this.f13329a = m0Var;
+        this.f13330b = g6Var;
     }
 
-    public r3(String str, n9.b bVar, sf.e eVar) {
+    public r3(String str, n9.b bVar, sf.f fVar) {
         this.d = new cb.m(this, false);
-        this.f13330e = new cb.m(this, true);
-        this.f13331f = new p2.v(6, (byte) 0);
+        this.f13332e = new cb.m(this, true);
+        this.f13333f = new p2.v(6, (byte) 0);
         this.h = new AtomicMarkableReference(null, false);
-        this.f13329c = str;
-        this.f13327a = new j9.g(bVar);
-        this.f13328b = eVar;
+        this.f13331c = str;
+        this.f13329a = new j9.g(bVar);
+        this.f13330b = fVar;
     }
 }

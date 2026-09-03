@@ -10,18 +10,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.o5;
 import org.telegram.ui.LaunchActivity;
 public final class o implements RequestDelegate {
-    public final int f20448a;
-    public final int f20449b;
+    public final int f20450a;
+    public final int f20451b;
 
     public o(int i10, int i11) {
-        this.f20448a = i11;
-        this.f20449b = i10;
+        this.f20450a = i11;
+        this.f20451b = i10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f20448a;
-        int i11 = this.f20449b;
+        int i10 = this.f20450a;
+        int i11 = this.f20451b;
         switch (i10) {
             case 0:
                 VoIPGroupNotification.a(i11, tLObject, tL_error);

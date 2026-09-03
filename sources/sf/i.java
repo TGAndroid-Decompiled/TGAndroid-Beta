@@ -1,15 +1,21 @@
 package sf;
 
-import java.net.Socket;
-public final class i {
-    public final int f47322a;
-    public final Socket f47323b;
-    public long f47324c = 4194304;
-    public long d = 4194304;
-    public boolean f47325e;
+import j$.util.function.IntUnaryOperator$CC;
+import java.util.function.IntUnaryOperator;
+public final class i implements IntUnaryOperator {
+    public IntUnaryOperator andThen(IntUnaryOperator intUnaryOperator) {
+        return IntUnaryOperator$CC.$default$andThen(this, intUnaryOperator);
+    }
 
-    public i(int i10, Socket socket) {
-        this.f47322a = i10;
-        this.f47323b = socket;
+    @Override
+    public final int applyAsInt(int i10) {
+        if (i10 >= 16777215) {
+            return 1;
+        }
+        return i10 + 1;
+    }
+
+    public IntUnaryOperator compose(IntUnaryOperator intUnaryOperator) {
+        return IntUnaryOperator$CC.$default$compose(this, intUnaryOperator);
     }
 }

@@ -7,27 +7,27 @@ import android.graphics.RuntimeShader;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class f {
-    public final RenderNode f16793a;
-    public final RuntimeShader f16794b;
-    public float f16795c;
+    public final RenderNode f16795a;
+    public final RuntimeShader f16796b;
+    public float f16797c;
     public float d;
-    public float f16796e;
-    public float f16797f;
-    public float f16798g;
+    public float f16798e;
+    public float f16799f;
+    public float f16800g;
     public float h;
-    public float f16799i;
-    public float f16800j;
-    public float f16801k;
-    public float f16802l;
-    public float f16803m;
-    public float f16804n;
-    public float f16805o;
-    public int f16806p;
+    public float f16801i;
+    public float f16802j;
+    public float f16803k;
+    public float f16804l;
+    public float f16805m;
+    public float f16806n;
+    public float f16807o;
+    public int f16808p;
 
     public f(RenderNode renderNode) {
-        this.f16793a = renderNode;
+        this.f16795a = renderNode;
         RuntimeShader runtimeShader = new RuntimeShader(AndroidUtilities.readRes(R.raw.liquid_glass_shader));
-        this.f16794b = runtimeShader;
+        this.f16796b = runtimeShader;
         renderNode.setRenderEffect(RenderEffect.createRuntimeShaderEffect(runtimeShader, "img"));
     }
 
@@ -36,8 +36,8 @@ public final class f {
         float f20;
         float f21;
         float f22;
-        float width = this.f16793a.getWidth();
-        float height = this.f16793a.getHeight();
+        float width = this.f16795a.getWidth();
+        float height = this.f16795a.getHeight();
         float f23 = (0.0f + f10) / 2.0f;
         float f24 = (0.0f + f11) / 2.0f;
         float f25 = f11 - 0.0f;
@@ -61,39 +61,39 @@ public final class f {
             f21 = f13;
             f22 = f14;
         }
-        if (Math.abs(this.f16795c - width) <= 0.1f && Math.abs(this.d - height) <= 0.1f && Math.abs(this.f16796e - f23) <= 0.1f && Math.abs(this.f16797f - f24) <= 0.1f && Math.abs(this.f16798g - f26) <= 0.1f && Math.abs(this.h - f27) <= 0.1f && Math.abs(this.f16799i - f19) <= 0.1f && Math.abs(this.f16800j - f21) <= 0.1f && Math.abs(this.f16801k - f22) <= 0.1f && Math.abs(this.f16802l - f20) <= 0.1f && Math.abs(this.f16803m - f16) <= 0.1f && Math.abs(this.f16804n - f17) <= 0.1f && Math.abs(this.f16805o - f18) <= 0.1f && this.f16806p == i10) {
+        if (Math.abs(this.f16797c - width) <= 0.1f && Math.abs(this.d - height) <= 0.1f && Math.abs(this.f16798e - f23) <= 0.1f && Math.abs(this.f16799f - f24) <= 0.1f && Math.abs(this.f16800g - f26) <= 0.1f && Math.abs(this.h - f27) <= 0.1f && Math.abs(this.f16801i - f19) <= 0.1f && Math.abs(this.f16802j - f21) <= 0.1f && Math.abs(this.f16803k - f22) <= 0.1f && Math.abs(this.f16804l - f20) <= 0.1f && Math.abs(this.f16805m - f16) <= 0.1f && Math.abs(this.f16806n - f17) <= 0.1f && Math.abs(this.f16807o - f18) <= 0.1f && this.f16808p == i10) {
             return;
         }
-        this.f16806p = i10;
+        this.f16808p = i10;
         float alpha = Color.alpha(i10) / 255.0f;
-        RuntimeShader runtimeShader = this.f16794b;
-        this.f16795c = width;
+        RuntimeShader runtimeShader = this.f16796b;
+        this.f16797c = width;
         this.d = height;
         runtimeShader.setFloatUniform("resolution", width, height);
-        RuntimeShader runtimeShader2 = this.f16794b;
-        this.f16796e = f23;
-        this.f16797f = f24;
+        RuntimeShader runtimeShader2 = this.f16796b;
+        this.f16798e = f23;
+        this.f16799f = f24;
         runtimeShader2.setFloatUniform("center", f23, f24);
-        RuntimeShader runtimeShader3 = this.f16794b;
-        this.f16798g = f26;
+        RuntimeShader runtimeShader3 = this.f16796b;
+        this.f16800g = f26;
         this.h = f27;
         runtimeShader3.setFloatUniform("size", f26, f27);
-        RuntimeShader runtimeShader4 = this.f16794b;
-        this.f16801k = f22;
-        this.f16800j = f21;
-        this.f16802l = f20;
-        this.f16799i = f19;
+        RuntimeShader runtimeShader4 = this.f16796b;
+        this.f16803k = f22;
+        this.f16802j = f21;
+        this.f16804l = f20;
+        this.f16801i = f19;
         runtimeShader4.setFloatUniform("radius", f22, f21, f20, f19);
-        RuntimeShader runtimeShader5 = this.f16794b;
-        this.f16803m = f16;
+        RuntimeShader runtimeShader5 = this.f16796b;
+        this.f16805m = f16;
         runtimeShader5.setFloatUniform("thickness", f16);
-        RuntimeShader runtimeShader6 = this.f16794b;
-        this.f16804n = f17;
+        RuntimeShader runtimeShader6 = this.f16796b;
+        this.f16806n = f17;
         runtimeShader6.setFloatUniform("refract_intensity", f17);
-        RuntimeShader runtimeShader7 = this.f16794b;
-        this.f16805o = f18;
+        RuntimeShader runtimeShader7 = this.f16796b;
+        this.f16807o = f18;
         runtimeShader7.setFloatUniform("refract_index", f18);
-        this.f16794b.setFloatUniform("foreground_color_premultiplied", (Color.red(i10) / 255.0f) * alpha, (Color.green(i10) / 255.0f) * alpha, (Color.blue(i10) / 255.0f) * alpha, alpha);
-        this.f16793a.setRenderEffect(RenderEffect.createRuntimeShaderEffect(this.f16794b, "img"));
+        this.f16796b.setFloatUniform("foreground_color_premultiplied", (Color.red(i10) / 255.0f) * alpha, (Color.green(i10) / 255.0f) * alpha, (Color.blue(i10) / 255.0f) * alpha, alpha);
+        this.f16795a.setRenderEffect(RenderEffect.createRuntimeShaderEffect(this.f16796b, "img"));
     }
 }

@@ -1,22 +1,26 @@
 package qh;
+public final class u4 implements eg.c {
+    public final e9 f46168a;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-public final class u4 extends View {
-    public final f9 f46156a;
-
-    public u4(f9 f9Var, Context context) {
-        super(context);
-        this.f46156a = f9Var;
+    public u4(e9 e9Var) {
+        this.f46168a = e9Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        s4 s4Var = this.f46156a.L0;
-        if (s4Var != null) {
-            s4Var.d(canvas);
+    public final void a() {
+        e9 e9Var = this.f46168a;
+        e9Var.D0(null, true);
+        if (e9Var.J0) {
+            ba baVar = e9Var.f45309x2;
+            baVar.Z0.f45574f.d();
+            baVar.l0(-1, false, true);
+            e9Var.J0 = false;
         }
+        e9Var.O0(false);
+    }
+
+    @Override
+    public final eg.j b() {
+        return this.f46168a.G0;
     }
 }

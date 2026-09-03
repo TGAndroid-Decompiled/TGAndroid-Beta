@@ -20,7 +20,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.q70;
-import org.telegram.ui.g11;
+import org.telegram.ui.k11;
 public final class s0 implements Runnable {
     public final int f7597a;
     public final long f7598b;
@@ -85,7 +85,7 @@ public final class s0 implements Runnable {
                     }
                     tL_inputStorePaymentStarsGiveaway.random_id = System.currentTimeMillis();
                     tL_inputStorePaymentStarsGiveaway.additional_peers = new ArrayList<>();
-                    tL_inputStorePaymentStarsGiveaway.boost_peer = messagesController.getInputPeer(-chat.f20843id);
+                    tL_inputStorePaymentStarsGiveaway.boost_peer = messagesController.getInputPeer(-chat.f20845id);
                     tL_inputStorePaymentStarsGiveaway.currency = "";
                     int size = arrayList2.size();
                     int i15 = 0;
@@ -102,7 +102,7 @@ public final class s0 implements Runnable {
                         i16++;
                         TLObject tLObject = (TLObject) obj5;
                         if (tLObject instanceof TLRPC.Chat) {
-                            tL_inputStorePaymentStarsGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC.Chat) tLObject).f20843id));
+                            tL_inputStorePaymentStarsGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC.Chat) tLObject).f20845id));
                         }
                         arrayList3 = arrayList4;
                     }
@@ -119,7 +119,7 @@ public final class s0 implements Runnable {
                     }
                     tL_inputStorePaymentStarsGiveaway.random_id = System.currentTimeMillis();
                     tL_inputStorePaymentStarsGiveaway.additional_peers = new ArrayList<>();
-                    tL_inputStorePaymentStarsGiveaway.boost_peer = messagesController.getInputPeer(-chat.f20843id);
+                    tL_inputStorePaymentStarsGiveaway.boost_peer = messagesController.getInputPeer(-chat.f20845id);
                     tL_inputStorePaymentStarsGiveaway.currency = "";
                     tL_inputStorePaymentStarsGiveaway.stars = ((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars;
                     tL_inputStorePaymentStarsGiveaway.users = prepaidGiveaway.quantity;
@@ -137,15 +137,15 @@ public final class s0 implements Runnable {
                         i19++;
                         TLObject tLObject2 = (TLObject) obj7;
                         if (tLObject2 instanceof TLRPC.Chat) {
-                            tL_inputStorePaymentStarsGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC.Chat) tLObject2).f20843id));
+                            tL_inputStorePaymentStarsGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC.Chat) tLObject2).f20845id));
                         }
                     }
                 } else {
                     return;
                 }
                 TLRPC.TL_payments_launchPrepaidGiveaway tL_payments_launchPrepaidGiveaway = new TLRPC.TL_payments_launchPrepaidGiveaway();
-                tL_payments_launchPrepaidGiveaway.giveaway_id = prepaidGiveaway.f21079id;
-                tL_payments_launchPrepaidGiveaway.peer = messagesController.getInputPeer(-chat.f20843id);
+                tL_payments_launchPrepaidGiveaway.giveaway_id = prepaidGiveaway.f21081id;
+                tL_payments_launchPrepaidGiveaway.peer = messagesController.getInputPeer(-chat.f20845id);
                 tL_payments_launchPrepaidGiveaway.purpose = tL_inputStorePaymentStarsGiveaway;
                 connectionsManager.sendRequest(tL_payments_launchPrepaidGiveaway, new y((Utilities.Callback) t0Var, messagesController, (Utilities.Callback) x0Var, 2));
                 return;
@@ -176,7 +176,7 @@ public final class s0 implements Runnable {
                 Bundle bundle = new Bundle();
                 bundle.putLong("dialog_id", this.f7598b);
                 bundle.putLong("topic_id", this.f7599c);
-                ((org.telegram.ui.ActionBar.p2) obj2).presentFragment(new g11(bundle, (g6) obj));
+                ((org.telegram.ui.ActionBar.p2) obj2).presentFragment(new k11(bundle, (g6) obj));
                 return;
         }
     }

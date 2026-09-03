@@ -1,18 +1,18 @@
 package na;
 public final class i extends wc.c {
-    public Object f15900a;
-    public final k f15901b;
-    public int f15902c;
+    public Object f15902a;
+    public final k f15903b;
+    public int f15904c;
 
     public i(k kVar, wc.c cVar) {
         super(cVar);
-        this.f15901b = kVar;
+        this.f15903b = kVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f15900a = obj;
-        this.f15902c |= Integer.MIN_VALUE;
-        return this.f15901b.c(null, null, this);
+        this.f15902a = obj;
+        this.f15904c |= Integer.MIN_VALUE;
+        return this.f15903b.c(null, null, this);
     }
 }

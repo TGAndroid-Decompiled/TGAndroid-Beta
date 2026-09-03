@@ -1,27 +1,26 @@
 package org.telegram.ui.Components;
+public final class rm implements Runnable {
+    public final int f30808a;
+    public final rn f30809b;
+    public final int f30810c;
 
-import org.telegram.messenger.Utilities;
-public final class rm implements Utilities.Callback {
-    public final int f30798a;
-    public final sn f30799b;
-    public final int f30800c;
-
-    public rm(sn snVar, int i10, int i11) {
-        this.f30798a = i11;
-        this.f30799b = snVar;
-        this.f30800c = i10;
+    public rm(rn rnVar, int i10, int i11) {
+        this.f30808a = i11;
+        this.f30809b = rnVar;
+        this.f30810c = i10;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f30798a) {
+    public final void run() {
+        switch (this.f30808a) {
             case 0:
-                this.f30799b.e0(this.f30800c, (eh.h) obj);
+                this.f30809b.e0(this.f30810c, null);
+                return;
+            case 1:
+                this.f30809b.b0(this.f30810c);
                 return;
             default:
-                sn snVar = this.f30799b;
-                snVar.getClass();
-                snVar.e0(this.f30800c, new fh.e((String) obj));
+                this.f30809b.e0(this.f30810c, null);
                 return;
         }
     }

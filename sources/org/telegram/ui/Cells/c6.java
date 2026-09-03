@@ -23,25 +23,25 @@ import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.np;
 import org.telegram.ui.Components.og;
+import org.telegram.ui.Components.oy0;
 import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.py0;
 import org.telegram.ui.Components.qg;
-public class c6 extends FrameLayout implements py0, xd.b {
+public class c6 extends FrameLayout implements oy0, xd.b {
     public Integer B;
-    public final xd.a f22647a;
-    public final xd.a f22648b;
-    public final org.telegram.ui.ActionBar.g6 f22649c;
+    public final xd.a f22649a;
+    public final xd.a f22650b;
+    public final org.telegram.ui.ActionBar.g6 f22651c;
     public final eh.b d;
-    public eh.g f22650e;
-    public final ImageView f22651f;
+    public eh.g f22652e;
+    public final ImageView f22653f;
     public final ImageView h;
-    public org.telegram.ui.ActionBar.l5 f22652n;
-    public final np f22653r;
-    public boolean f22654s;
+    public org.telegram.ui.ActionBar.l5 f22654n;
+    public final np f22655r;
+    public boolean f22656s;
     public boolean v;
-    public AnimatorSet f22655w;
-    public boolean f22656x;
-    public final qg f22657y;
+    public AnimatorSet f22657w;
+    public boolean f22658x;
+    public final qg f22659y;
 
     public c6(Context context, int i10, View.OnClickListener onClickListener, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
@@ -67,14 +67,14 @@ public class c6 extends FrameLayout implements py0, xd.b {
         float f19;
         int i21;
         pr prVar = pr.h;
-        this.f22647a = new xd.a(0, this, prVar, 380L, false);
-        this.f22648b = new xd.a(1, this, prVar, 380L, false);
-        this.f22649c = g6Var;
+        this.f22649a = new xd.a(0, this, prVar, 380L, false);
+        this.f22650b = new xd.a(1, this, prVar, 380L, false);
+        this.f22651c = g6Var;
         eh.b bVar = new eh.b(this, context, g6Var, 2);
         this.d = bVar;
         bVar.setAllowTextEntitiesIntersection(true);
         bVar.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.G6, g6Var));
-        bVar.setLinkTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21720gc, g6Var));
+        bVar.setLinkTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21722gc, g6Var));
         bVar.setHintTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.H6, g6Var));
         bVar.setTextSize(1, 16.0f);
         bVar.setMaxLines(Integer.MAX_VALUE);
@@ -112,7 +112,7 @@ public class c6 extends FrameLayout implements py0, xd.b {
             ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
             imageView.setScaleType(scaleType);
             imageView.setImageResource(R.drawable.menu_poll_order_24);
-            int i23 = org.telegram.ui.ActionBar.k6.f21821m6;
+            int i23 = org.telegram.ui.ActionBar.k6.f21823m6;
             int v02 = org.telegram.ui.ActionBar.k6.v0(i23, g6Var);
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
             imageView.setColorFilter(new PorterDuffColorFilter(v02, mode));
@@ -123,7 +123,7 @@ public class c6 extends FrameLayout implements py0, xd.b {
             }
             addView(imageView, k7.c6.d(48, 48.0f, i17 | 48, 6.0f, 2.0f, 6.0f, 0.0f));
             ImageView imageView2 = new ImageView(context);
-            this.f22651f = imageView2;
+            this.f22653f = imageView2;
             imageView2.setFocusable(false);
             imageView2.setScaleType(scaleType);
             imageView2.setBackground(org.telegram.ui.ActionBar.k6.f0(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Vh, g6Var), 1, -1));
@@ -150,16 +150,16 @@ public class c6 extends FrameLayout implements py0, xd.b {
             }
             addView(imageView2, k7.c6.d(48, 50.0f, i24, f16, 0.0f, f17, 0.0f));
             org.telegram.ui.ActionBar.l5 l5Var = new org.telegram.ui.ActionBar.l5(context);
-            this.f22652n = l5Var;
+            this.f22654n = l5Var;
             l5Var.setTextSize(13);
-            org.telegram.ui.ActionBar.l5 l5Var2 = this.f22652n;
+            org.telegram.ui.ActionBar.l5 l5Var2 = this.f22654n;
             if (LocaleController.isRTL) {
                 i19 = 3;
             } else {
                 i19 = 5;
             }
             l5Var2.setGravity(i19 | 48);
-            View view = this.f22652n;
+            View view = this.f22654n;
             boolean z11 = LocaleController.isRTL;
             if (z11) {
                 i20 = 3;
@@ -179,8 +179,8 @@ public class c6 extends FrameLayout implements py0, xd.b {
             }
             addView(view, k7.c6.d(48, 24.0f, i25, f18, 43.0f, f19, 0.0f));
             np npVar = new np(context, 21, g6Var);
-            this.f22653r = npVar;
-            npVar.b(-1, i23, org.telegram.ui.ActionBar.k6.f21786k7);
+            this.f22655r = npVar;
+            npVar.b(-1, i23, org.telegram.ui.ActionBar.k6.f21788k7);
             npVar.setContentDescription(LocaleController.getString(R.string.AccDescrQuizCorrectAnswer));
             npVar.setDrawUnchecked(true);
             npVar.a(true, false);
@@ -193,25 +193,25 @@ public class c6 extends FrameLayout implements py0, xd.b {
             }
             addView(npVar, k7.c6.d(48, 48.0f, i21 | 48, 6.0f, 2.0f, 6.0f, 0.0f));
             npVar.setOnClickListener(new View.OnClickListener(this) {
-                public final c6 f22608b;
+                public final c6 f22610b;
 
                 {
-                    this.f22608b = this;
+                    this.f22610b = this;
                 }
 
                 @Override
                 public final void onClick(View view2) {
                     switch (r2) {
                         case 0:
-                            c6 c6Var = this.f22608b;
-                            np npVar2 = c6Var.f22653r;
+                            c6 c6Var = this.f22610b;
+                            np npVar2 = c6Var.f22655r;
                             if (npVar2.getTag() != null) {
-                                c6Var.h(c6Var, !npVar2.f29606a.f24809q);
+                                c6Var.h(c6Var, !npVar2.f29560a.f24811q);
                                 return;
                             }
                             return;
                         default:
-                            c6 c6Var2 = this.f22608b;
+                            c6 c6Var2 = this.f22610b;
                             c6Var2.j(c6Var2);
                             return;
                     }
@@ -244,13 +244,13 @@ public class c6 extends FrameLayout implements py0, xd.b {
         }
         if (i10 == 1) {
             qg qgVar = new qg(context);
-            this.f22657y = qgVar;
-            qgVar.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21821m6, g6Var), PorterDuff.Mode.SRC_IN));
-            qgVar.j(og.f29750e, false);
+            this.f22659y = qgVar;
+            qgVar.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21823m6, g6Var), PorterDuff.Mode.SRC_IN));
+            qgVar.j(og.f29751e, false);
             int dp = AndroidUtilities.dp(9.5f);
             qgVar.setPadding(dp, dp, dp, dp);
             qgVar.setVisibility(8);
-            if (this.f22651f == null) {
+            if (this.f22653f == null) {
                 i13 = 3;
             } else {
                 i13 = 38;
@@ -274,25 +274,25 @@ public class c6 extends FrameLayout implements py0, xd.b {
             addView(qgVar, k7.c6.d(48, 48.0f, i14, f12, 0.0f, f13, 0.0f));
             qgVar.setBackground(org.telegram.ui.ActionBar.k6.f0(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Vh, g6Var), 1, -1));
             qgVar.setOnClickListener(new View.OnClickListener(this) {
-                public final c6 f22608b;
+                public final c6 f22610b;
 
                 {
-                    this.f22608b = this;
+                    this.f22610b = this;
                 }
 
                 @Override
                 public final void onClick(View view2) {
                     switch (r2) {
                         case 0:
-                            c6 c6Var = this.f22608b;
-                            np npVar2 = c6Var.f22653r;
+                            c6 c6Var = this.f22610b;
+                            np npVar2 = c6Var.f22655r;
                             if (npVar2.getTag() != null) {
-                                c6Var.h(c6Var, !npVar2.f29606a.f24809q);
+                                c6Var.h(c6Var, !npVar2.f29560a.f24811q);
                                 return;
                             }
                             return;
                         default:
-                            c6 c6Var2 = this.f22608b;
+                            c6 c6Var2 = this.f22610b;
                             c6Var2.j(c6Var2);
                             return;
                     }
@@ -307,18 +307,18 @@ public class c6 extends FrameLayout implements py0, xd.b {
         qg qgVar;
         int i11;
         if (i10 == 0) {
-            np npVar = this.f22653r;
+            np npVar = this.f22655r;
             if (npVar != null) {
                 CheckBoxBase checkBoxBase = npVar.getCheckBoxBase();
-                float f12 = this.f22647a.f50505e;
-                if (checkBoxBase.f24814w != f12) {
-                    checkBoxBase.f24814w = f12;
+                float f12 = this.f22649a.f50541e;
+                if (checkBoxBase.f24816w != f12) {
+                    checkBoxBase.f24816w = f12;
                     checkBoxBase.b();
                 }
                 npVar.invalidate();
             }
-        } else if (i10 == 1 && (qgVar = this.f22657y) != null) {
-            float f13 = this.f22648b.f50505e;
+        } else if (i10 == 1 && (qgVar = this.f22659y) != null) {
+            float f13 = this.f22650b.f50541e;
             float f14 = 0.85f * f13;
             qgVar.setScaleX(f14);
             qgVar.setScaleY(f14);
@@ -329,12 +329,12 @@ public class c6 extends FrameLayout implements py0, xd.b {
                 i11 = 8;
             }
             qgVar.setVisibility(i11);
-            org.telegram.ui.ActionBar.l5 l5Var = this.f22652n;
-            if (l5Var != null && this.f22651f == null && l5Var.getVisibility() == 0) {
-                if (this.f22650e != null) {
-                    this.f22652n.setTranslationY(AndroidUtilities.dp(36.0f));
+            org.telegram.ui.ActionBar.l5 l5Var = this.f22654n;
+            if (l5Var != null && this.f22653f == null && l5Var.getVisibility() == 0) {
+                if (this.f22652e != null) {
+                    this.f22654n.setTranslationY(AndroidUtilities.dp(36.0f));
                 } else {
-                    this.f22652n.setTranslationY(AndroidUtilities.dp(26.0f) * f13);
+                    this.f22654n.setTranslationY(AndroidUtilities.dp(26.0f) * f13);
                 }
             }
         }
@@ -355,16 +355,16 @@ public class c6 extends FrameLayout implements py0, xd.b {
         int i13;
         float f13;
         float f14;
-        ImageView imageView = this.f22651f;
+        ImageView imageView = this.f22653f;
         if (imageView != null) {
             imageView.setVisibility(8);
         }
         eh.g gVar = new eh.g(getContext(), 38);
-        this.f22650e = gVar;
+        this.f22652e = gVar;
         gVar.setFocusable(false);
-        this.f22650e.setBackground(org.telegram.ui.ActionBar.k6.f0(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Vh, this.f22649c), 1, -1));
-        k7.e6.a(this.f22650e);
-        eh.g gVar2 = this.f22650e;
+        this.f22652e.setBackground(org.telegram.ui.ActionBar.k6.f0(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Vh, this.f22651c), 1, -1));
+        k7.e6.a(this.f22652e);
+        eh.g gVar2 = this.f22652e;
         boolean z4 = LocaleController.isRTL;
         int i14 = 5;
         if (z4) {
@@ -384,7 +384,7 @@ public class c6 extends FrameLayout implements py0, xd.b {
             f11 = 4.0f;
         }
         addView(gVar2, k7.c6.d(48, 50.0f, i15, f10, 0.0f, f11, 0.0f));
-        qg qgVar = this.f22657y;
+        qg qgVar = this.f22659y;
         if (qgVar != null) {
             boolean z10 = LocaleController.isRTL;
             if (z10) {
@@ -434,7 +434,7 @@ public class c6 extends FrameLayout implements py0, xd.b {
             }
             bVar.setLayoutParams(k7.c6.d(-1, -2.0f, i18, f12, 0.0f, f15, 0.0f));
         }
-        return this.f22650e;
+        return this.f22652e;
     }
 
     public final void c(TextWatcher textWatcher) {
@@ -445,11 +445,11 @@ public class c6 extends FrameLayout implements py0, xd.b {
         int i10;
         float f10;
         float f11;
-        this.f22656x = true;
+        this.f22658x = true;
         org.telegram.ui.ActionBar.l5 l5Var = new org.telegram.ui.ActionBar.l5(getContext());
-        this.f22652n = l5Var;
+        this.f22654n = l5Var;
         l5Var.setTextSize(13);
-        org.telegram.ui.ActionBar.l5 l5Var2 = this.f22652n;
+        org.telegram.ui.ActionBar.l5 l5Var2 = this.f22654n;
         int i11 = 5;
         if (LocaleController.isRTL) {
             i10 = 3;
@@ -457,7 +457,7 @@ public class c6 extends FrameLayout implements py0, xd.b {
             i10 = 5;
         }
         l5Var2.setGravity(i10 | 48);
-        org.telegram.ui.ActionBar.l5 l5Var3 = this.f22652n;
+        org.telegram.ui.ActionBar.l5 l5Var3 = this.f22654n;
         boolean z4 = LocaleController.isRTL;
         if (z4) {
             i11 = 3;
@@ -485,7 +485,7 @@ public class c6 extends FrameLayout implements py0, xd.b {
     }
 
     public np getCheckBox() {
-        return this.f22653r;
+        return this.f22655r;
     }
 
     @Override
@@ -499,7 +499,7 @@ public class c6 extends FrameLayout implements py0, xd.b {
     }
 
     public qg getEmojiButton() {
-        return this.f22657y;
+        return this.f22659y;
     }
 
     @Override
@@ -525,11 +525,11 @@ public class c6 extends FrameLayout implements py0, xd.b {
     }
 
     public org.telegram.ui.ActionBar.l5 getTextView2() {
-        return this.f22652n;
+        return this.f22654n;
     }
 
     public void h(c6 c6Var, boolean z4) {
-        this.f22653r.a(z4, true);
+        this.f22655r.a(z4, true);
     }
 
     public boolean l(ArrayList arrayList) {
@@ -540,7 +540,7 @@ public class c6 extends FrameLayout implements py0, xd.b {
         boolean z11;
         float f10;
         float f11;
-        np npVar = this.f22653r;
+        np npVar = this.f22655r;
         if (npVar.getTag() != null) {
             z11 = true;
         } else {
@@ -549,11 +549,11 @@ public class c6 extends FrameLayout implements py0, xd.b {
         if (z4 == z11) {
             return;
         }
-        AnimatorSet animatorSet = this.f22655w;
+        AnimatorSet animatorSet = this.f22657w;
         Integer num = null;
         if (animatorSet != null) {
             animatorSet.cancel();
-            this.f22655w = null;
+            this.f22657w = null;
         }
         if (z4) {
             num = 1;
@@ -563,7 +563,7 @@ public class c6 extends FrameLayout implements py0, xd.b {
         float f12 = 0.0f;
         if (z10) {
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f22655w = animatorSet2;
+            this.f22657w = animatorSet2;
             if (z4) {
                 f11 = 1.0f;
             } else {
@@ -576,8 +576,8 @@ public class c6 extends FrameLayout implements py0, xd.b {
                 f12 = 1.0f;
             }
             animatorSet2.playTogether(ofFloat, ObjectAnimator.ofFloat(imageView, property, f12));
-            this.f22655w.setDuration(180L);
-            this.f22655w.start();
+            this.f22657w.setDuration(180L);
+            this.f22657w.start();
             return;
         }
         if (z4) {
@@ -593,7 +593,7 @@ public class c6 extends FrameLayout implements py0, xd.b {
     }
 
     public final void n(CharSequence charSequence, String str, boolean z4) {
-        ImageView imageView = this.f22651f;
+        ImageView imageView = this.f22653f;
         if (imageView != null) {
             imageView.setTag(null);
         }
@@ -614,7 +614,7 @@ public class c6 extends FrameLayout implements py0, xd.b {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        np npVar = this.f22653r;
+        np npVar = this.f22655r;
         if (npVar != null) {
             m(o(), false);
             npVar.a(f(this), false);
@@ -650,7 +650,7 @@ public class c6 extends FrameLayout implements py0, xd.b {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21779k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21781k0);
         }
     }
 
@@ -665,8 +665,8 @@ public class c6 extends FrameLayout implements py0, xd.b {
         int i13 = 0;
         while (true) {
             int childCount = getChildCount();
-            qgVar = this.f22657y;
-            imageView = this.f22651f;
+            qgVar = this.f22659y;
+            imageView = this.f22653f;
             bVar = this.d;
             if (i13 >= childCount) {
                 break;
@@ -682,11 +682,11 @@ public class c6 extends FrameLayout implements py0, xd.b {
                     if (childAt == imageView2) {
                         imageView2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                     } else {
-                        org.telegram.ui.ActionBar.l5 l5Var = this.f22652n;
+                        org.telegram.ui.ActionBar.l5 l5Var = this.f22654n;
                         if (childAt == l5Var) {
                             l5Var.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
                         } else {
-                            np npVar = this.f22653r;
+                            np npVar = this.f22655r;
                             if (childAt == npVar) {
                                 npVar.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                             } else {
@@ -706,7 +706,7 @@ public class c6 extends FrameLayout implements py0, xd.b {
         Integer num = this.B;
         if (num != null) {
             i12 = num.intValue();
-        } else if (this.f22652n == null) {
+        } else if (this.f22654n == null) {
             i12 = 42;
         } else if (imageView == null) {
             i12 = 70;
@@ -718,8 +718,8 @@ public class c6 extends FrameLayout implements py0, xd.b {
         bVar.measure(org.telegram.ui.b.d(i12, (size - getPaddingLeft()) - getPaddingRight(), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
         int measuredHeight = bVar.getMeasuredHeight();
         setMeasuredDimension(size, Math.max(AndroidUtilities.dp(50.0f), bVar.getMeasuredHeight()) + (this.v ? 1 : 0));
-        org.telegram.ui.ActionBar.l5 l5Var2 = this.f22652n;
-        if (l5Var2 != null && !this.f22656x) {
+        org.telegram.ui.ActionBar.l5 l5Var2 = this.f22654n;
+        if (l5Var2 != null && !this.f22658x) {
             if (measuredHeight >= AndroidUtilities.dp(52.0f)) {
                 f10 = 1.0f;
             } else {
@@ -730,7 +730,7 @@ public class c6 extends FrameLayout implements py0, xd.b {
     }
 
     public void setEmojiButtonVisibility(boolean z4) {
-        this.f22648b.a(z4, true);
+        this.f22650b.a(z4, true);
     }
 
     @Override
@@ -739,27 +739,27 @@ public class c6 extends FrameLayout implements py0, xd.b {
     }
 
     public void setIconsColor(int i10) {
-        org.telegram.ui.ActionBar.g6 g6Var = this.f22649c;
+        org.telegram.ui.ActionBar.g6 g6Var = this.f22651c;
         ImageView imageView = this.h;
         if (imageView != null) {
             imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.v0(i10, g6Var), PorterDuff.Mode.MULTIPLY));
         }
-        ImageView imageView2 = this.f22651f;
+        ImageView imageView2 = this.f22653f;
         if (imageView2 != null) {
             imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.v0(i10, g6Var), PorterDuff.Mode.MULTIPLY));
         }
-        qg qgVar = this.f22657y;
+        qg qgVar = this.f22659y;
         if (qgVar != null) {
             qgVar.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.v0(i10, g6Var), PorterDuff.Mode.SRC_IN));
         }
     }
 
     public void setShowNextButton(boolean z4) {
-        this.f22654s = z4;
+        this.f22656s = z4;
     }
 
     public void setText2(String str) {
-        org.telegram.ui.ActionBar.l5 l5Var = this.f22652n;
+        org.telegram.ui.ActionBar.l5 l5Var = this.f22654n;
         if (l5Var == null) {
             return;
         }

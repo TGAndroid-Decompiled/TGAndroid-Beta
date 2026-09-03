@@ -4,15 +4,15 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 public final class l3 extends ClickableSpan {
-    public final int f14379a;
+    public final int f14381a;
 
     public l3(int i10) {
-        this.f14379a = i10;
+        this.f14381a = i10;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f14379a) {
+        switch (this.f14381a) {
             case 0:
                 return;
             default:
@@ -23,7 +23,7 @@ public final class l3 extends ClickableSpan {
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f14379a) {
+        switch (this.f14381a) {
             case 0:
                 textPaint.setUnderlineText(false);
                 textPaint.setColor(-1);

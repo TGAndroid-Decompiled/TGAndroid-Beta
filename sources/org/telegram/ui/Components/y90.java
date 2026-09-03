@@ -7,16 +7,16 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class y90 extends org.telegram.ui.ActionBar.j {
-    public final fa0 f33422a;
+    public final fa0 f33443a;
 
     public y90(fa0 fa0Var) {
-        this.f33422a = fa0Var;
+        this.f33443a = fa0Var;
     }
 
     @Override
     public final void b(int i10) {
         int i11;
-        fa0 fa0Var = this.f33422a;
+        fa0 fa0Var = this.f33443a;
         if (i10 == -1) {
             if (!fa0Var.S.L(true)) {
                 fa0Var.finishFragment();
@@ -37,11 +37,11 @@ public final class y90 extends org.telegram.ui.ActionBar.j {
                     } else {
                         i11 = R.string.DeleteStoryTitle;
                     }
-                    alertDialog$Builder.f21166a.O = LocaleController.getString(i11);
-                    alertDialog$Builder.f21166a.Q = LocaleController.formatPluralString("DeleteStoriesSubtitle", arrayList.size(), new Object[0]);
+                    alertDialog$Builder.f21168a.O = LocaleController.getString(i11);
+                    alertDialog$Builder.f21168a.Q = LocaleController.formatPluralString("DeleteStoriesSubtitle", arrayList.size(), new Object[0]);
                     alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new o1(21, this, arrayList));
                     alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new k2(16));
-                    org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+                    org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21168a;
                     d2Var.show();
                     d2Var.h();
                 }

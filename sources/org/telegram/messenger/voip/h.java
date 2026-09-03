@@ -1,13 +1,13 @@
 package org.telegram.messenger.voip;
 public final class h implements Runnable {
-    public final int f20414a;
-    public final Object f20415b;
-    public final Object f20416c;
+    public final int f20416a;
+    public final Object f20417b;
+    public final Object f20418c;
 
     public h(int i10, Object obj, Object obj2) {
-        this.f20414a = i10;
-        this.f20415b = obj;
-        this.f20416c = obj2;
+        this.f20416a = i10;
+        this.f20417b = obj;
+        this.f20418c = obj2;
     }
 
     @Override

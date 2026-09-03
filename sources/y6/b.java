@@ -1,16 +1,16 @@
 package y6;
 public abstract class b {
-    public static final y5.c f50791a;
-    public static final y5.c[] f50792b;
-    public static final y5.c f50793c;
+    public static final y5.c f50827a;
+    public static final y5.c[] f50828b;
+    public static final y5.c f50829c;
     public static final y5.c[] d;
 
     static {
         y5.c cVar = new y5.c("CLIENT_TELEMETRY", 1L);
-        f50791a = cVar;
-        f50792b = new y5.c[]{cVar};
+        f50827a = cVar;
+        f50828b = new y5.c[]{cVar};
         y5.c cVar2 = new y5.c("moduleinstall", 7L);
-        f50793c = cVar2;
+        f50829c = cVar2;
         d = new y5.c[]{cVar2};
     }
 }

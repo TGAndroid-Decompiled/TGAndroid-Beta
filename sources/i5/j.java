@@ -98,14 +98,14 @@ public final class j extends d4.r {
         List e10;
         String str = n0Var.C;
         if (str == null) {
-            s8.t tVar = s8.v.f47143b;
-            return i0.f47108e;
+            s8.t tVar = s8.v.f47174b;
+            return i0.f47139e;
         }
         if (d0.f7237a >= 26 && "video/dolby-vision".equals(str) && !h.a(context)) {
             String b10 = d4.y.b(n0Var);
             if (b10 == null) {
-                s8.t tVar2 = s8.v.f47143b;
-                e10 = i0.f47108e;
+                s8.t tVar2 = s8.v.f47174b;
+                e10 = i0.f47139e;
             } else {
                 sVar.getClass();
                 e10 = d4.y.e(b10, z4, z10);
@@ -120,12 +120,12 @@ public final class j extends d4.r {
         List e11 = d4.y.e(str2, z4, z10);
         String b11 = d4.y.b(n0Var);
         if (b11 == null) {
-            s8.t tVar3 = s8.v.f47143b;
-            e6 = i0.f47108e;
+            s8.t tVar3 = s8.v.f47174b;
+            e6 = i0.f47139e;
         } else {
             e6 = d4.y.e(b11, z4, z10);
         }
-        s8.t tVar4 = s8.v.f47143b;
+        s8.t tVar4 = s8.v.f47174b;
         ?? wVar = new com.google.android.gms.common.api.internal.w();
         wVar.d(e11);
         wVar.d(e6);
@@ -150,7 +150,7 @@ public final class j extends d4.r {
     public final n3.k A(d4.n nVar, n0 n0Var, n0 n0Var2) {
         int i10;
         n3.k b10 = nVar.b(n0Var, n0Var2);
-        int i11 = b10.f15223e;
+        int i11 = b10.f15225e;
         int i12 = n0Var2.H;
         e8.a aVar = this.Y0;
         if (i12 > aVar.f4995a || n0Var2.I > aVar.f4996b) {
@@ -194,18 +194,18 @@ public final class j extends d4.r {
         h5.a.c("skipVideoBuffer");
         kVar.releaseOutputBuffer(i10, false);
         h5.a.q();
-        this.M0.f15208f++;
+        this.M0.f15210f++;
     }
 
     public final void C0(int i10, int i11) {
         n3.f fVar = this.M0;
         fVar.h += i10;
         int i12 = i10 + i11;
-        fVar.f15209g += i12;
+        fVar.f15211g += i12;
         this.l1 += i12;
         int i13 = this.f7843m1 + i12;
         this.f7843m1 = i13;
-        fVar.f15210i = Math.max(i13, fVar.f15210i);
+        fVar.f15212i = Math.max(i13, fVar.f15212i);
         int i14 = this.W0;
         if (i14 > 0 && this.l1 >= i14) {
             v0();
@@ -214,8 +214,8 @@ public final class j extends d4.r {
 
     public final void D0(long j10) {
         n3.f fVar = this.M0;
-        fVar.f15212k += j10;
-        fVar.f15213l++;
+        fVar.f15214k += j10;
+        fVar.f15215l++;
         this.f7847q1 += j10;
         this.f7848r1++;
     }
@@ -680,10 +680,10 @@ public final class j extends d4.r {
             this.f7844n1++;
         }
         if (d0.f7237a < 23 && z4) {
-            long j10 = iVar.f15216f;
+            long j10 = iVar.f15218f;
             p0(j10);
             x0(this.f7850t1);
-            this.M0.f15207e++;
+            this.M0.f15209e++;
             w0();
             X(j10);
         }
@@ -1193,7 +1193,7 @@ public final class j extends d4.r {
         h5.a.c("releaseOutputBuffer");
         kVar.releaseOutputBuffer(i10, true);
         h5.a.q();
-        this.M0.f15207e++;
+        this.M0.f15209e++;
         this.f7843m1 = 0;
         this.U0.getClass();
         this.f7846p1 = SystemClock.elapsedRealtime() * 1000;
@@ -1205,7 +1205,7 @@ public final class j extends d4.r {
         h5.a.c("releaseOutputBuffer");
         kVar.b(i10, j10);
         h5.a.q();
-        this.M0.f15207e++;
+        this.M0.f15209e++;
         this.f7843m1 = 0;
         this.U0.getClass();
         this.f7846p1 = SystemClock.elapsedRealtime() * 1000;

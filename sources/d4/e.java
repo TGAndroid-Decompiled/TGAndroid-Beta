@@ -77,7 +77,7 @@ public final class e {
             b10.d = j10;
             b10.f4207e = 0;
             MediaCodec.CryptoInfo cryptoInfo = b10.f4206c;
-            cryptoInfo.numSubSamples = dVar.f15200f;
+            cryptoInfo.numSubSamples = dVar.f15202f;
             int[] iArr = dVar.d;
             int[] iArr2 = cryptoInfo.numBytesOfClearData;
             if (iArr != null) {
@@ -88,7 +88,7 @@ public final class e {
                 }
             }
             cryptoInfo.numBytesOfClearData = iArr2;
-            int[] iArr3 = dVar.f15199e;
+            int[] iArr3 = dVar.f15201e;
             int[] iArr4 = cryptoInfo.numBytesOfEncryptedData;
             if (iArr3 != null) {
                 if (iArr4 != null && iArr4.length >= iArr3.length) {
@@ -98,7 +98,7 @@ public final class e {
                 }
             }
             cryptoInfo.numBytesOfEncryptedData = iArr4;
-            byte[] bArr = dVar.f15197b;
+            byte[] bArr = dVar.f15199b;
             byte[] bArr2 = cryptoInfo.key;
             if (bArr != null) {
                 if (bArr2 != null && bArr2.length >= bArr.length) {
@@ -109,7 +109,7 @@ public final class e {
             }
             bArr2.getClass();
             cryptoInfo.key = bArr2;
-            byte[] bArr3 = dVar.f15196a;
+            byte[] bArr3 = dVar.f15198a;
             byte[] bArr4 = cryptoInfo.iv;
             if (bArr3 != null) {
                 if (bArr4 != null && bArr4.length >= bArr3.length) {
@@ -120,9 +120,9 @@ public final class e {
             }
             bArr4.getClass();
             cryptoInfo.iv = bArr4;
-            cryptoInfo.mode = dVar.f15198c;
+            cryptoInfo.mode = dVar.f15200c;
             if (d0.f7237a >= 24) {
-                cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f15201g, dVar.h));
+                cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f15203g, dVar.h));
             }
             this.f4211c.obtainMessage(1, b10).sendToTarget();
             return;

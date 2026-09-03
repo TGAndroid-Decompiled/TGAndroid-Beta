@@ -1,27 +1,24 @@
 package org.telegram.ui.Components;
-public final class sm implements Runnable {
-    public final int f31088a;
-    public final sn f31089b;
-    public final int f31090c;
 
-    public sm(sn snVar, int i10, int i11) {
-        this.f31088a = i11;
-        this.f31089b = snVar;
-        this.f31090c = i10;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class sm implements wk, org.telegram.ui.ActionBar.c2 {
+    public final Utilities.Callback f31133a;
+
+    public sm(Utilities.Callback callback) {
+        this.f31133a = callback;
     }
 
     @Override
-    public final void run() {
-        switch (this.f31088a) {
-            case 0:
-                this.f31089b.e0(this.f31090c, null);
-                return;
-            case 1:
-                this.f31089b.b0(this.f31090c);
-                return;
-            default:
-                this.f31089b.e0(this.f31090c, null);
-                return;
+    public void d(TLRPC.MessageMedia messageMedia, int i10, boolean z4, int i11, long j10) {
+        this.f31133a.run(new fh.g(messageMedia));
+    }
+
+    @Override
+    public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        Utilities.Callback callback = this.f31133a;
+        if (callback != null) {
+            callback.run(Boolean.FALSE);
         }
     }
 }

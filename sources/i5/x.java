@@ -21,8 +21,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.no;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.mf1;
 import org.telegram.ui.py;
+import org.telegram.ui.sf1;
 import org.telegram.ui.xn;
 public final class x implements Runnable {
     public final int f7894a;
@@ -96,13 +96,13 @@ public final class x implements Runnable {
                 return;
             case 13:
                 py pyVar = (py) obj2;
-                mf1 mf1Var = (mf1) obj;
-                if (pyVar.f40308z2 != null) {
+                sf1 sf1Var = (sf1) obj;
+                if (pyVar.f40278z2 != null) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(j11, j10));
-                    pyVar.f40308z2.v(pyVar, arrayList, null, false, pyVar.G2, pyVar.H2, pyVar.I2, mf1Var);
-                    if (pyVar.f40209f2) {
-                        pyVar.f40308z2 = null;
+                    pyVar.f40278z2.v(pyVar, arrayList, null, false, pyVar.G2, pyVar.H2, pyVar.I2, sf1Var);
+                    if (pyVar.f40179f2) {
+                        pyVar.f40278z2 = null;
                         return;
                     }
                     return;

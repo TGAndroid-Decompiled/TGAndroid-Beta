@@ -7,13 +7,13 @@ import java.lang.reflect.Field;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class tu extends PopupWindow {
-    public static Field f31455f;
-    public static final org.telegram.ui.ActionBar.h1 f31456g = new org.telegram.ui.ActionBar.h1(1);
-    public ViewTreeObserver.OnScrollChangedListener f31457a;
-    public ViewTreeObserver f31458b;
-    public final su f31459c;
+    public static Field f31415f;
+    public static final org.telegram.ui.ActionBar.h1 f31416g = new org.telegram.ui.ActionBar.h1(1);
+    public ViewTreeObserver.OnScrollChangedListener f31417a;
+    public ViewTreeObserver f31418b;
+    public final su f31419c;
     public boolean d;
-    public final int f31460e;
+    public final int f31420e;
 
     public tu(su suVar) {
         super(suVar);
@@ -23,32 +23,32 @@ public final class tu extends PopupWindow {
         } else {
             f10 = 32.0f;
         }
-        this.f31460e = AndroidUtilities.dp(f10);
-        this.f31459c = suVar;
+        this.f31420e = AndroidUtilities.dp(f10);
+        this.f31419c = suVar;
         setOutsideTouchable(true);
         setClippingEnabled(true);
         setInputMethodMode(2);
         setSoftInputMode(0);
         suVar.setFocusableInTouchMode(true);
-        suVar.setOnKeyListener(new ln(this, 1));
+        suVar.setOnKeyListener(new kn(this, 1));
     }
 
     public final void a(View view) {
         ViewTreeObserver viewTreeObserver;
-        if (this.f31457a != null) {
+        if (this.f31417a != null) {
             if (view.getWindowToken() != null) {
                 viewTreeObserver = view.getViewTreeObserver();
             } else {
                 viewTreeObserver = null;
             }
-            ViewTreeObserver viewTreeObserver2 = this.f31458b;
+            ViewTreeObserver viewTreeObserver2 = this.f31418b;
             if (viewTreeObserver != viewTreeObserver2) {
                 if (viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
-                    this.f31458b.removeOnScrollChangedListener(this.f31457a);
+                    this.f31418b.removeOnScrollChangedListener(this.f31417a);
                 }
-                this.f31458b = viewTreeObserver;
+                this.f31418b = viewTreeObserver;
                 if (viewTreeObserver != null) {
-                    viewTreeObserver.addOnScrollChangedListener(this.f31457a);
+                    viewTreeObserver.addOnScrollChangedListener(this.f31417a);
                 }
             }
         }
@@ -62,11 +62,11 @@ public final class tu extends PopupWindow {
             super.dismiss();
         } catch (Exception unused) {
         }
-        if (this.f31457a != null && (viewTreeObserver = this.f31458b) != null) {
+        if (this.f31417a != null && (viewTreeObserver = this.f31418b) != null) {
             if (viewTreeObserver.isAlive()) {
-                this.f31458b.removeOnScrollChangedListener(this.f31457a);
+                this.f31418b.removeOnScrollChangedListener(this.f31417a);
             }
-            this.f31458b = null;
+            this.f31418b = null;
         }
     }
 
@@ -84,11 +84,11 @@ public final class tu extends PopupWindow {
     public final void showAtLocation(View view, int i10, int i11, int i12) {
         ViewTreeObserver viewTreeObserver;
         super.showAtLocation(view, i10, i11, i12);
-        if (this.f31457a != null && (viewTreeObserver = this.f31458b) != null) {
+        if (this.f31417a != null && (viewTreeObserver = this.f31418b) != null) {
             if (viewTreeObserver.isAlive()) {
-                this.f31458b.removeOnScrollChangedListener(this.f31457a);
+                this.f31418b.removeOnScrollChangedListener(this.f31417a);
             }
-            this.f31458b = null;
+            this.f31418b = null;
         }
     }
 

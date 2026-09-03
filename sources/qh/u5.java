@@ -1,53 +1,37 @@
 package qh;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.AndroidUtilities;
-public final class u5 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f46157a;
-    public final float f46158b;
-    public final float f46159c;
-    public final float d;
-    public final float f46160e;
-    public final Object f46161f;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import org.telegram.messenger.camera.CameraView;
+public final class u5 extends CameraView {
+    public final Path f46169a;
+    public final v5 f46170b;
 
-    public u5(Object obj, float f10, float f11, float f12, float f13, int i10) {
-        this.f46157a = i10;
-        this.f46161f = obj;
-        this.f46158b = f10;
-        this.f46159c = f11;
-        this.d = f12;
-        this.f46160e = f13;
+    public u5(v5 v5Var, Context context) {
+        super(context, true, false);
+        this.f46170b = v5Var;
+        this.f46169a = new Path();
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f46157a) {
-            case 0:
-                n nVar = (n) this.f46161f;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                v5 v5Var = nVar.f46227a;
-                float f10 = this.f46158b;
-                float f11 = this.f46159c;
-                v5Var.setScaleX(AndroidUtilities.lerp(f10, f11, floatValue));
-                v5Var.setScaleY(AndroidUtilities.lerp(f10, f11, floatValue));
-                v5Var.setTranslationX(this.d * floatValue);
-                v5Var.setTranslationY(this.f46160e * floatValue);
-                float f12 = 1.0f - floatValue;
-                v5Var.setAlpha(f12);
-                nVar.f46234s = f12;
-                nVar.invalidate();
-                return;
-            default:
-                wf.j jVar = (wf.j) this.f46161f;
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f13 = this.f46159c;
-                float f14 = this.f46158b;
-                jVar.f49599k = e2.c.w(f13, f14, floatValue2, f14);
-                float f15 = this.f46160e;
-                float f16 = this.d;
-                jVar.f49600l = e2.c.w(f15, f16, floatValue2, f16);
-                jVar.f49591a.a(f13, f15, false);
-                return;
-        }
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        Path path = this.f46169a;
+        path.rewind();
+        path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min(getWidth() / 2.0f, getHeight() / 2.0f), Path.Direction.CW);
+        canvas.clipPath(path);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void receivedAmplitude(double d) {
+        ((n) this.f46170b).C.setAmplitude(d);
+    }
+
+    @Override
+    public final boolean square() {
+        return true;
     }
 }

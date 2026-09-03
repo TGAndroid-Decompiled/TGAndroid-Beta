@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public abstract class wp extends m2.h {
-    public vp f32835t0;
+    public vp f32807t0;
 
     public wp(Context context) {
         super(context);
@@ -20,7 +20,7 @@ public abstract class wp extends m2.h {
     }
 
     public void setAdapter(vp vpVar) {
-        this.f32835t0 = vpVar;
+        this.f32807t0 = vpVar;
         super.setAdapter((m2.a) vpVar);
         if (vpVar != null) {
             x(vpVar.j(), false);

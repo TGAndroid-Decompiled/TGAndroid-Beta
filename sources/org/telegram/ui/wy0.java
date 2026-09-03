@@ -1,51 +1,30 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class wy0 implements hq {
-    public final TLRPC.Chat f42906a;
-    public final kq f42907b;
-    public final ProfileActivity f42908c;
+public final class wy0 implements RequestDelegate {
+    public final int f42875a;
+    public final zy0 f42876b;
 
-    public wy0(ProfileActivity profileActivity, TLRPC.Chat chat, kq kqVar) {
-        this.f42908c = profileActivity;
-        this.f42906a = chat;
-        this.f42907b = kqVar;
+    public wy0(zy0 zy0Var, int i10) {
+        this.f42875a = i10;
+        this.f42876b = zy0Var;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        int i10;
-        ProfileActivity profileActivity = this.f42908c;
-        UndoView undoView = profileActivity.J;
-        long j10 = -profileActivity.f34577c1;
-        if (profileActivity.B2.megagroup) {
-            i10 = 10;
-        } else {
-            i10 = 9;
-        }
-        undoView.m(j10, user, i10);
-    }
-
-    @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLRPC.Chat chat;
-        ProfileActivity profileActivity = this.f42908c;
-        profileActivity.removeSelfFromStack();
-        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f34569b1));
-        if (user != null && (chat = this.f42906a) != null && profileActivity.f34569b1 != 0) {
-            kq kqVar = this.f42907b;
-            if (kqVar.N && kqVar.getParentLayout() != null) {
-                for (org.telegram.ui.ActionBar.p2 p2Var : kqVar.getParentLayout().getFragmentStack()) {
-                    if (p2Var instanceof sb) {
-                        sb sbVar = (sb) p2Var;
-                        sbVar.W0();
-                        AndroidUtilities.runOnUIThread(new if0(sbVar, user, chat, 25));
-                        return;
-                    }
-                }
-            }
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f42875a) {
+            case 0:
+                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
+                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
+                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
+                zy0 zy0Var = this.f42876b;
+                zy0Var.f44047c.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new wy0(zy0Var, 1));
+                return;
+            default:
+                this.f42876b.f44047c.getMessagesController().loadAppConfig();
+                return;
         }
     }
 }

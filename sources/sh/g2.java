@@ -6,12 +6,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons;
 public final class g2 extends m3 {
     public final int W;
-    public final Object f47442a0;
+    public final Object f47478a0;
 
     public g2(Object obj, Context context, int i10) {
         super(context);
         this.W = i10;
-        this.f47442a0 = obj;
+        this.f47478a0 = obj;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class g2 extends m3 {
     public void requestLayout() {
         switch (this.W) {
             case 0:
-                if (!((p2) this.f47442a0).C) {
+                if (!((p2) this.f47478a0).C) {
                     super.requestLayout();
                     return;
                 }
@@ -39,8 +39,8 @@ public final class g2 extends m3 {
         switch (this.W) {
             case 0:
                 super.setTranslationY(f10);
-                p2 p2Var = (p2) this.f47442a0;
-                BotFullscreenButtons botFullscreenButtons = p2Var.f47595j0;
+                p2 p2Var = (p2) this.f47478a0;
+                BotFullscreenButtons botFullscreenButtons = p2Var.f47631j0;
                 if (botFullscreenButtons != null) {
                     botFullscreenButtons.setTranslationY(AndroidUtilities.dp(24.0f) + f10);
                 }
@@ -48,7 +48,7 @@ public final class g2 extends m3 {
                 if (frameLayout != null) {
                     int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - AndroidUtilities.dp(24.0f);
                     int i10 = p2Var.h.top;
-                    frameLayout.setTranslationY(p2Var.v.getTranslationY() + AndroidUtilities.lerp(currentActionBarHeight, AndroidUtilities.dp(70.0f) + i10, p2Var.f47586c0));
+                    frameLayout.setTranslationY(p2Var.v.getTranslationY() + AndroidUtilities.lerp(currentActionBarHeight, AndroidUtilities.dp(70.0f) + i10, p2Var.f47622c0));
                     return;
                 }
                 return;

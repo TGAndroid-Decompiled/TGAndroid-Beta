@@ -4,11 +4,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.fb;
 import org.telegram.ui.Components.ic;
 public final class v8 implements fb {
-    public final float[] f17878a = new float[2];
-    public final w8 f17879b;
+    public final float[] f17880a = new float[2];
+    public final w8 f17881b;
 
     public v8(w8 w8Var) {
-        this.f17879b = w8Var;
+        this.f17881b = w8Var;
     }
 
     @Override
@@ -23,15 +23,15 @@ public final class v8 implements fb {
 
     @Override
     public final int f(int i10) {
-        w8 w8Var = this.f17879b;
+        w8 w8Var = this.f17881b;
         i9 i9Var = w8Var.F0;
         f4 t6 = i9Var.t();
         if (t6 == null) {
             return 0;
         }
         j3 j3Var = t6.Z0;
-        w8 w8Var2 = i9Var.f17293s;
-        float[] fArr = this.f17878a;
+        w8 w8Var2 = i9Var.f17295s;
+        float[] fArr = this.f17880a;
         AndroidUtilities.getViewPositionInParent(j3Var, w8Var2, fArr);
         return (int) (w8Var.getMeasuredHeight() - (fArr[1] + j3Var.getMeasuredHeight()));
     }

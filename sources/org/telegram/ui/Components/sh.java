@@ -24,9 +24,9 @@ public final class sh implements TextWatcher {
         mi miVar = this.f31061c;
         k6 k6Var = miVar.v;
         qh qhVar = miVar.B0;
-        k6 k6Var2 = miVar.f29090s;
+        k6 k6Var2 = miVar.f29108s;
         if (this.f31060b != TextUtils.isEmpty(editable)) {
-            ei eiVar = miVar.f29100v0;
+            ei eiVar = miVar.f29118v0;
             if (eiVar != null) {
                 eiVar.B(eiVar.getSelectedItemsCount());
             }
@@ -42,7 +42,7 @@ public final class sh implements TextWatcher {
         }
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
         miVar.I = codePointCount;
-        xd.a aVar = miVar.f29046e;
+        xd.a aVar = miVar.f29064e;
         if (codePointCount > 0) {
             z4 = true;
         } else {
@@ -71,10 +71,10 @@ public final class sh implements TextWatcher {
             k6Var2.animate().setListener(null).cancel();
             k6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i10 < 0) {
-                k6Var2.setTextColor(miVar.getThemedColor(org.telegram.ui.ActionBar.k6.f21876p7));
+                k6Var2.setTextColor(miVar.getThemedColor(org.telegram.ui.ActionBar.k6.f21878p7));
                 z10 = false;
             } else {
-                k6Var2.setTextColor(miVar.getThemedColor(org.telegram.ui.ActionBar.k6.f22036y6));
+                k6Var2.setTextColor(miVar.getThemedColor(org.telegram.ui.ActionBar.k6.f22038y6));
                 z10 = true;
             }
             k6Var.c(LocaleController.formatNumber(j10, ','), false, true);
@@ -103,12 +103,12 @@ public final class sh implements TextWatcher {
             this.f31059a = true;
         }
         mi miVar = this.f31061c;
-        if (miVar.f29114y2 == null) {
+        if (miVar.f29132y2 == null) {
             mi.Q(miVar);
         }
-        if (miVar.f29114y2.getAdapter() != null) {
-            miVar.f29114y2.setReversed(false);
-            miVar.f29114y2.getAdapter().U(charSequence, miVar.B0.getEditText().getSelectionStart(), null, false, false);
+        if (miVar.f29132y2.getAdapter() != null) {
+            miVar.f29132y2.setReversed(false);
+            miVar.f29132y2.getAdapter().U(charSequence, miVar.B0.getEditText().getSelectionStart(), null, false, false);
             miVar.U1();
         }
     }

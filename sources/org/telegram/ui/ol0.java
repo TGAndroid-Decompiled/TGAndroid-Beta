@@ -6,19 +6,19 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class ol0 implements TextView.OnEditorActionListener {
-    public final int f39801a;
-    public final fn0 f39802b;
+    public final int f39757a;
+    public final fn0 f39758b;
 
     public ol0(fn0 fn0Var, int i10) {
-        this.f39801a = i10;
-        this.f39802b = fn0Var;
+        this.f39757a = i10;
+        this.f39758b = fn0Var;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f39801a) {
+        switch (this.f39757a) {
             case 0:
-                fn0 fn0Var = this.f39802b;
+                fn0 fn0Var = this.f39758b;
                 if (i10 == 5) {
                     fn0Var.V[2].requestFocus();
                     return true;
@@ -30,7 +30,7 @@ public final class ol0 implements TextView.OnEditorActionListener {
                     return false;
                 }
             case 1:
-                fn0 fn0Var2 = this.f39802b;
+                fn0 fn0Var2 = this.f39758b;
                 fn0Var2.getClass();
                 if (i10 == 5) {
                     int intValue = ((Integer) textView.getTag()).intValue() + 1;
@@ -49,7 +49,7 @@ public final class ol0 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 2:
-                fn0 fn0Var3 = this.f39802b;
+                fn0 fn0Var3 = this.f39758b;
                 fn0Var3.getClass();
                 if (i10 == 5) {
                     int intValue2 = ((Integer) textView.getTag()).intValue() + 1;
@@ -68,7 +68,7 @@ public final class ol0 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 3:
-                fn0 fn0Var4 = this.f39802b;
+                fn0 fn0Var4 = this.f39758b;
                 fn0Var4.getClass();
                 if (i10 != 6 && i10 != 5) {
                     return false;
@@ -76,7 +76,7 @@ public final class ol0 implements TextView.OnEditorActionListener {
                 fn0Var4.I.callOnClick();
                 return true;
             case 4:
-                fn0 fn0Var5 = this.f39802b;
+                fn0 fn0Var5 = this.f39758b;
                 fn0Var5.getClass();
                 if (i10 == 5) {
                     int intValue3 = ((Integer) textView.getTag()).intValue() + 1;
@@ -95,7 +95,7 @@ public final class ol0 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 5:
-                fn0 fn0Var6 = this.f39802b;
+                fn0 fn0Var6 = this.f39758b;
                 fn0Var6.getClass();
                 if (i10 != 5 && i10 != 6) {
                     return false;
@@ -103,7 +103,7 @@ public final class ol0 implements TextView.OnEditorActionListener {
                 fn0Var6.I.callOnClick();
                 return true;
             default:
-                fn0 fn0Var7 = this.f39802b;
+                fn0 fn0Var7 = this.f39758b;
                 fn0Var7.getClass();
                 if (i10 != 6 && i10 != 5) {
                     return false;

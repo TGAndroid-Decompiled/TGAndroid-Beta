@@ -2,13 +2,13 @@ package s8;
 public final class n0 extends x {
     public static final n0 h = new n0(null, new Object[0], 0);
     public final transient Object d;
-    public final transient Object[] f47120e;
-    public final transient int f47121f;
+    public final transient Object[] f47151e;
+    public final transient int f47152f;
 
     public n0(Object obj, Object[] objArr, int i10) {
         this.d = obj;
-        this.f47120e = objArr;
-        this.f47121f = i10;
+        this.f47151e = objArr;
+        this.f47152f = i10;
     }
 
     @Override
@@ -18,6 +18,6 @@ public final class n0 extends x {
 
     @Override
     public final int size() {
-        return this.f47121f;
+        return this.f47152f;
     }
 }

@@ -5,29 +5,29 @@ import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.jvm.internal.q;
 public final class a extends Thread {
-    public static final AtomicIntegerFieldUpdater f47244r = AtomicIntegerFieldUpdater.newUpdater(a.class, "workerCtl$volatile");
-    public final m f47245a;
-    public final q f47246b;
-    public b f47247c;
+    public static final AtomicIntegerFieldUpdater f47275r = AtomicIntegerFieldUpdater.newUpdater(a.class, "workerCtl$volatile");
+    public final m f47276a;
+    public final q f47277b;
+    public b f47278c;
     public long d;
-    public long f47248e;
-    public int f47249f;
+    public long f47279e;
+    public int f47280f;
     public boolean h;
     private volatile int indexInArray;
-    public final c f47250n;
+    public final c f47281n;
     private volatile Object nextParkedWorker;
     private volatile int workerCtl$volatile;
 
     public a(c cVar, int i10) {
-        this.f47250n = cVar;
+        this.f47281n = cVar;
         setDaemon(true);
         setContextClassLoader(c.class.getClassLoader());
-        this.f47245a = new m();
-        this.f47246b = new Object();
-        this.f47247c = b.d;
+        this.f47276a = new m();
+        this.f47277b = new Object();
+        this.f47278c = b.d;
         this.nextParkedWorker = c.v;
         int nanoTime = (int) System.nanoTime();
-        this.f47249f = nanoTime == 0 ? 42 : nanoTime;
+        this.f47280f = nanoTime == 0 ? 42 : nanoTime;
         g(i10);
     }
 
@@ -35,22 +35,22 @@ public final class a extends Thread {
         i f10;
         i f11;
         long j10;
-        b bVar = this.f47247c;
-        b bVar2 = b.f47251a;
-        c cVar = this.f47250n;
+        b bVar = this.f47278c;
+        b bVar2 = b.f47282a;
+        c cVar = this.f47281n;
         i iVar = null;
         boolean z10 = true;
-        m mVar = this.f47245a;
+        m mVar = this.f47276a;
         if (bVar != bVar2) {
-            AtomicLongFieldUpdater atomicLongFieldUpdater = c.f47257r;
+            AtomicLongFieldUpdater atomicLongFieldUpdater = c.f47288r;
             do {
                 j10 = atomicLongFieldUpdater.get(cVar);
                 if (((int) ((9223367638808264704L & j10) >> 42)) == 0) {
                     mVar.getClass();
                     loop1: while (true) {
-                        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = m.f47277b;
+                        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = m.f47308b;
                         i iVar2 = (i) atomicReferenceFieldUpdater.get(mVar);
-                        if (iVar2 != null && iVar2.f47268b.f2264a == 1) {
+                        if (iVar2 != null && iVar2.f47299b.f2264a == 1) {
                             while (!atomicReferenceFieldUpdater.compareAndSet(mVar, iVar2, null)) {
                                 if (atomicReferenceFieldUpdater.get(mVar) != iVar2) {
                                     break;
@@ -61,9 +61,9 @@ public final class a extends Thread {
                         }
                     }
                     int i10 = m.d.get(mVar);
-                    int i11 = m.f47278c.get(mVar);
+                    int i11 = m.f47309c.get(mVar);
                     while (true) {
-                        if (i10 != i11 && m.f47279e.get(mVar) != 0) {
+                        if (i10 != i11 && m.f47310e.get(mVar) != 0) {
                             i11--;
                             i b10 = mVar.b(i11, true);
                             if (b10 != null) {
@@ -75,7 +75,7 @@ public final class a extends Thread {
                         }
                     }
                     if (iVar == null) {
-                        i iVar3 = (i) cVar.f47263f.d();
+                        i iVar3 = (i) cVar.f47294f.d();
                         if (iVar3 == null) {
                             return j(1);
                         }
@@ -83,18 +83,18 @@ public final class a extends Thread {
                     }
                     return iVar;
                 }
-            } while (!c.f47257r.compareAndSet(cVar, j10, j10 - 4398046511104L));
-            this.f47247c = b.f47251a;
+            } while (!c.f47288r.compareAndSet(cVar, j10, j10 - 4398046511104L));
+            this.f47278c = b.f47282a;
         }
         if (z4) {
-            if (e(cVar.f47259a * 2) != 0) {
+            if (e(cVar.f47290a * 2) != 0) {
                 z10 = false;
             }
             if (z10 && (f11 = f()) != null) {
                 return f11;
             }
             mVar.getClass();
-            i iVar4 = (i) m.f47277b.getAndSet(mVar, null);
+            i iVar4 = (i) m.f47308b.getAndSet(mVar, null);
             if (iVar4 == null) {
                 iVar4 = mVar.a();
             }
@@ -122,11 +122,11 @@ public final class a extends Thread {
     }
 
     public final int e(int i10) {
-        int i11 = this.f47249f;
+        int i11 = this.f47280f;
         int i12 = i11 ^ (i11 << 13);
         int i13 = i12 ^ (i12 >> 17);
         int i14 = i13 ^ (i13 << 5);
-        this.f47249f = i14;
+        this.f47280f = i14;
         int i15 = i10 - 1;
         if ((i15 & i10) == 0) {
             return i14 & i15;
@@ -136,25 +136,25 @@ public final class a extends Thread {
 
     public final i f() {
         int e6 = e(2);
-        c cVar = this.f47250n;
+        c cVar = this.f47281n;
         if (e6 == 0) {
-            i iVar = (i) cVar.f47262e.d();
+            i iVar = (i) cVar.f47293e.d();
             if (iVar != null) {
                 return iVar;
             }
-            return (i) cVar.f47263f.d();
+            return (i) cVar.f47294f.d();
         }
-        i iVar2 = (i) cVar.f47263f.d();
+        i iVar2 = (i) cVar.f47294f.d();
         if (iVar2 != null) {
             return iVar2;
         }
-        return (i) cVar.f47262e.d();
+        return (i) cVar.f47293e.d();
     }
 
     public final void g(int i10) {
         String valueOf;
         StringBuilder sb = new StringBuilder();
-        sb.append(this.f47250n.d);
+        sb.append(this.f47281n.d);
         sb.append("-worker-");
         if (i10 == 0) {
             valueOf = "TERMINATED";
@@ -172,17 +172,17 @@ public final class a extends Thread {
 
     public final boolean i(b bVar) {
         boolean z4;
-        b bVar2 = this.f47247c;
-        if (bVar2 == b.f47251a) {
+        b bVar2 = this.f47278c;
+        if (bVar2 == b.f47282a) {
             z4 = true;
         } else {
             z4 = false;
         }
         if (z4) {
-            c.f47257r.addAndGet(this.f47250n, 4398046511104L);
+            c.f47288r.addAndGet(this.f47281n, 4398046511104L);
         }
         if (bVar2 != bVar) {
-            this.f47247c = bVar;
+            this.f47278c = bVar;
         }
         return z4;
     }
@@ -195,8 +195,8 @@ public final class a extends Thread {
         long j12;
         i iVar2;
         int i11;
-        AtomicLongFieldUpdater atomicLongFieldUpdater = c.f47257r;
-        c cVar = this.f47250n;
+        AtomicLongFieldUpdater atomicLongFieldUpdater = c.f47288r;
+        c cVar = this.f47281n;
         int i12 = (int) (atomicLongFieldUpdater.get(cVar) & 2097151);
         i iVar3 = null;
         if (i12 < 2) {
@@ -212,14 +212,14 @@ public final class a extends Thread {
             }
             a aVar = (a) cVar.h.b(e6);
             if (aVar != null && aVar != this) {
-                m mVar = aVar.f47245a;
+                m mVar = aVar.f47276a;
                 if (i10 == 3) {
                     iVar = mVar.a();
                     j10 = 0;
                 } else {
                     mVar.getClass();
                     int i14 = m.d.get(mVar);
-                    int i15 = m.f47278c.get(mVar);
+                    int i15 = m.f47309c.get(mVar);
                     if (i10 == 1) {
                         z4 = true;
                     } else {
@@ -228,7 +228,7 @@ public final class a extends Thread {
                     while (true) {
                         if (i14 != i15) {
                             j10 = 0;
-                            if (!z4 || m.f47279e.get(mVar) != 0) {
+                            if (!z4 || m.f47310e.get(mVar) != 0) {
                                 int i16 = i14 + 1;
                                 iVar = mVar.b(i14, z4);
                                 if (iVar != null) {
@@ -245,7 +245,7 @@ public final class a extends Thread {
                     }
                     iVar = iVar3;
                 }
-                q qVar = this.f47246b;
+                q qVar = this.f47277b;
                 if (iVar != null) {
                     qVar.f11340a = iVar;
                     iVar2 = iVar3;
@@ -253,14 +253,14 @@ public final class a extends Thread {
                     j11 = -1;
                 } else {
                     while (true) {
-                        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = m.f47277b;
+                        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = m.f47308b;
                         i iVar4 = (i) atomicReferenceFieldUpdater.get(mVar);
                         if (iVar4 == null) {
                             j11 = -1;
                             break;
                         }
                         j11 = -1;
-                        if (iVar4.f47268b.f2264a == 1) {
+                        if (iVar4.f47299b.f2264a == 1) {
                             i11 = 1;
                         } else {
                             i11 = 2;
@@ -268,10 +268,10 @@ public final class a extends Thread {
                         if ((i11 & i10) == 0) {
                             break;
                         }
-                        k.f47274f.getClass();
+                        k.f47305f.getClass();
                         m mVar2 = mVar;
-                        long nanoTime = System.nanoTime() - iVar4.f47267a;
-                        long j14 = k.f47271b;
+                        long nanoTime = System.nanoTime() - iVar4.f47298a;
+                        long j14 = k.f47302b;
                         if (nanoTime < j14) {
                             j12 = j14 - nanoTime;
                             iVar2 = null;
@@ -305,7 +305,7 @@ public final class a extends Thread {
         if (j13 == Long.MAX_VALUE) {
             j13 = 0;
         }
-        this.f47248e = j13;
+        this.f47279e = j13;
         return null;
     }
 

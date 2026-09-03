@@ -46,7 +46,7 @@ public final class se extends ImageView {
                 super.setAlpha(f10);
                 qe qeVar = this.f31043b.F1;
                 if (qeVar != null) {
-                    qeVar.setTranslationX(qeVar.f30375a);
+                    qeVar.setTranslationX(qeVar.f30391a);
                     return;
                 }
                 return;
@@ -54,7 +54,7 @@ public final class se extends ImageView {
                 super.setAlpha(f10);
                 qe qeVar2 = this.f31043b.F1;
                 if (qeVar2 != null) {
-                    qeVar2.setTranslationX(qeVar2.f30375a);
+                    qeVar2.setTranslationX(qeVar2.f30391a);
                     return;
                 }
                 return;

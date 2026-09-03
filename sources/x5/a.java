@@ -14,27 +14,27 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
-import org.telegram.ui.Components.ul0;
+import org.telegram.ui.Components.tl0;
 import s5.m;
 public final class a {
     public static int h;
-    public static PendingIntent f50404i;
-    public static final Pattern f50405j = Pattern.compile("\\|ID\\|([^|]+)\\|:?+(.*)");
-    public final a0.k f50406a = new a0.k(0);
-    public final Context f50407b;
-    public final p2.g f50408c;
+    public static PendingIntent f50440i;
+    public static final Pattern f50441j = Pattern.compile("\\|ID\\|([^|]+)\\|:?+(.*)");
+    public final a0.k f50442a = new a0.k(0);
+    public final Context f50443b;
+    public final p2.g f50444c;
     public final ScheduledThreadPoolExecutor d;
-    public final Messenger f50409e;
-    public Messenger f50410f;
-    public f f50411g;
+    public final Messenger f50445e;
+    public Messenger f50446f;
+    public f f50447g;
 
     public a(Context context) {
-        this.f50407b = context;
+        this.f50443b = context;
         ?? obj = new Object();
-        obj.f44143b = 0;
-        obj.f44144c = context;
-        this.f50408c = obj;
-        this.f50409e = new Messenger(new c(this, Looper.getMainLooper()));
+        obj.f44174b = 0;
+        obj.f44175c = context;
+        this.f50444c = obj;
+        this.f50445e = new Messenger(new c(this, Looper.getMainLooper()));
         ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1);
         scheduledThreadPoolExecutor.setKeepAliveTime(60L, TimeUnit.SECONDS);
         scheduledThreadPoolExecutor.allowCoreThreadTimeOut(true);
@@ -54,12 +54,12 @@ public final class a {
     public static synchronized void c(Context context, Intent intent) {
         synchronized (a.class) {
             try {
-                if (f50404i == null) {
+                if (f50440i == null) {
                     Intent intent2 = new Intent();
                     intent2.setPackage("com.google.example.invalidpackage");
-                    f50404i = PendingIntent.getBroadcast(context, 0, intent2, z6.a.f51086a);
+                    f50440i = PendingIntent.getBroadcast(context, 0, intent2, z6.a.f51121a);
                 }
-                intent.putExtra("app", f50404i);
+                intent.putExtra("app", f50440i);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -69,32 +69,32 @@ public final class a {
     public final Task a(Bundle bundle) {
         String b10 = b();
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        synchronized (this.f50406a) {
-            this.f50406a.put(b10, taskCompletionSource);
+        synchronized (this.f50442a) {
+            this.f50442a.put(b10, taskCompletionSource);
         }
         Intent intent = new Intent();
         intent.setPackage("com.google.android.gms");
-        if (this.f50408c.h() == 2) {
+        if (this.f50444c.h() == 2) {
             intent.setAction("com.google.iid.TOKEN_REQUEST");
         } else {
             intent.setAction("com.google.android.c2dm.intent.REGISTER");
         }
         intent.putExtras(bundle);
-        c(this.f50407b, intent);
+        c(this.f50443b, intent);
         intent.putExtra("kid", "|ID|" + b10 + "|");
         if (Log.isLoggable("Rpc", 3)) {
             Log.d("Rpc", "Sending ".concat(String.valueOf(intent.getExtras())));
         }
-        intent.putExtra("google.messenger", this.f50409e);
-        if (this.f50410f != null || this.f50411g != null) {
+        intent.putExtra("google.messenger", this.f50445e);
+        if (this.f50446f != null || this.f50447g != null) {
             Message obtain = Message.obtain();
             obtain.obj = intent;
             try {
-                Messenger messenger = this.f50410f;
+                Messenger messenger = this.f50446f;
                 if (messenger != null) {
                     messenger.send(obtain);
                 } else {
-                    Messenger messenger2 = this.f50411g.f50415a;
+                    Messenger messenger2 = this.f50447g.f50451a;
                     messenger2.getClass();
                     messenger2.send(obtain);
                 }
@@ -103,22 +103,22 @@ public final class a {
                     Log.d("Rpc", "Messenger failed, fallback to startService");
                 }
             }
-            taskCompletionSource.getTask().addOnCompleteListener(l.f50432a, new m(this, b10, this.d.schedule(new ul0(taskCompletionSource, 11), 30L, TimeUnit.SECONDS), 7));
+            taskCompletionSource.getTask().addOnCompleteListener(l.f50468a, new m(this, b10, this.d.schedule(new tl0(taskCompletionSource, 11), 30L, TimeUnit.SECONDS), 7));
             return taskCompletionSource.getTask();
         }
-        if (this.f50408c.h() == 2) {
-            this.f50407b.sendBroadcast(intent);
+        if (this.f50444c.h() == 2) {
+            this.f50443b.sendBroadcast(intent);
         } else {
-            this.f50407b.startService(intent);
+            this.f50443b.startService(intent);
         }
-        taskCompletionSource.getTask().addOnCompleteListener(l.f50432a, new m(this, b10, this.d.schedule(new ul0(taskCompletionSource, 11), 30L, TimeUnit.SECONDS), 7));
+        taskCompletionSource.getTask().addOnCompleteListener(l.f50468a, new m(this, b10, this.d.schedule(new tl0(taskCompletionSource, 11), 30L, TimeUnit.SECONDS), 7));
         return taskCompletionSource.getTask();
     }
 
     public final void d(String str, Bundle bundle) {
-        synchronized (this.f50406a) {
+        synchronized (this.f50442a) {
             try {
-                TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f50406a.remove(str);
+                TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f50442a.remove(str);
                 if (taskCompletionSource == null) {
                     Log.w("Rpc", "Missing callback for " + str);
                     return;

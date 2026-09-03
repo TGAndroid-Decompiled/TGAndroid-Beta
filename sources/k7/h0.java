@@ -75,7 +75,7 @@ public abstract class h0 {
     }
 
     public void v(ne.p pVar) {
-        for (ne.p pVar2 = (ne.p) pVar.f15975c; pVar2 != null; pVar2 = (ne.p) pVar2.f15977f) {
+        for (ne.p pVar2 = (ne.p) pVar.f15977c; pVar2 != null; pVar2 = (ne.p) pVar2.f15979f) {
             pVar2.a(this);
         }
     }

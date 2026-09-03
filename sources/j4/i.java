@@ -31,14 +31,14 @@ public final class i extends d7 {
         byte[] bArr = new byte[i12];
         wVar.e(0, i12, bArr);
         if (i11 == 2) {
-            str = "image/" + a7.b(new String(bArr, 0, 3, r8.d.f46737b));
+            str = "image/" + a7.b(new String(bArr, 0, 3, r8.d.f46768b));
             if ("image/jpg".equals(str)) {
                 str = "image/jpeg";
             }
             q10 = 2;
         } else {
             q10 = q(0, bArr);
-            String b10 = a7.b(new String(bArr, 0, q10, r8.d.f46737b));
+            String b10 = a7.b(new String(bArr, 0, q10, r8.d.f46768b));
             if (b10.indexOf(47) == -1) {
                 str = "image/".concat(b10);
             } else {
@@ -62,7 +62,7 @@ public final class i extends d7 {
         long j10;
         int i13 = wVar.f7309b;
         int q10 = q(i13, wVar.f7308a);
-        String str = new String(wVar.f7308a, i13, q10 - i13, r8.d.f46737b);
+        String str = new String(wVar.f7308a, i13, q10 - i13, r8.d.f46768b);
         wVar.F(q10 + 1);
         int g10 = wVar.g();
         int g11 = wVar.g();
@@ -92,7 +92,7 @@ public final class i extends d7 {
         boolean z11;
         int i13 = wVar.f7309b;
         int q10 = q(i13, wVar.f7308a);
-        String str = new String(wVar.f7308a, i13, q10 - i13, r8.d.f46737b);
+        String str = new String(wVar.f7308a, i13, q10 - i13, r8.d.f46768b);
         wVar.F(q10 + 1);
         int u10 = wVar.u();
         if ((u10 & 2) != 0) {
@@ -110,7 +110,7 @@ public final class i extends d7 {
         for (int i14 = 0; i14 < u11; i14++) {
             int i15 = wVar.f7309b;
             int q11 = q(i15, wVar.f7308a);
-            strArr[i14] = new String(wVar.f7308a, i15, q11 - i15, r8.d.f46737b);
+            strArr[i14] = new String(wVar.f7308a, i15, q11 - i15, r8.d.f46768b);
             wVar.F(q11 + 1);
         }
         ArrayList arrayList = new ArrayList();
@@ -154,7 +154,7 @@ public final class i extends d7 {
         byte[] bArr = new byte[i11];
         wVar.e(0, i11, bArr);
         int q10 = q(0, bArr);
-        String str = new String(bArr, 0, q10, r8.d.f46737b);
+        String str = new String(bArr, 0, q10, r8.d.f46768b);
         int i12 = q10 + 1;
         int p10 = p(i12, u10, bArr);
         String k10 = k(bArr, i12, p10, n10);
@@ -202,7 +202,7 @@ public final class i extends d7 {
         if (i11 >= bArr.length) {
             return s8.v.x("");
         }
-        t tVar = s8.v.f47143b;
+        t tVar = s8.v.f47174b;
         s8.l.c(4, "initialCapacity");
         Object[] objArr2 = new Object[4];
         int p10 = p(i11, i10, bArr);
@@ -248,13 +248,13 @@ public final class i extends d7 {
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
-                    return r8.d.f46737b;
+                    return r8.d.f46768b;
                 }
-                return r8.d.f46738c;
+                return r8.d.f46769c;
             }
             return r8.d.d;
         }
-        return r8.d.f46740f;
+        return r8.d.f46771f;
     }
 
     public static String o(int i10, int i11, int i12, int i13, int i14) {

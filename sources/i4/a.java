@@ -11,8 +11,8 @@ import k7.a7;
 import r8.d;
 public final class a extends d7 {
     public static final Pattern f7786c = Pattern.compile("(.+?)='(.*?)';", 32);
-    public final CharsetDecoder f7787a = d.f46738c.newDecoder();
-    public final CharsetDecoder f7788b = d.f46737b.newDecoder();
+    public final CharsetDecoder f7787a = d.f46769c.newDecoder();
+    public final CharsetDecoder f7788b = d.f46768b.newDecoder();
 
     @Override
     public final e4.c b(e eVar, ByteBuffer byteBuffer) {

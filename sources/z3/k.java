@@ -1,43 +1,24 @@
 package z3;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Base64;
-import java.util.ArrayList;
-public final class k implements r8.e, f3.f {
-    public final int f51019a;
+import r3.v;
+import r3.w;
+public final class k {
+    public final o f51055a;
+    public final r f51056b;
+    public final v f51057c;
+    public final w d;
+    public int f51058e;
 
-    public k(int i10) {
-        this.f51019a = i10;
-    }
-
-    @Override
-    public final Object apply(Object obj) {
-        byte[] decode;
-        switch (this.f51019a) {
-            case 0:
-                return (p) obj;
-            default:
-                Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
-                try {
-                    ArrayList arrayList = new ArrayList();
-                    while (rawQuery.moveToNext()) {
-                        s5.m a2 = y2.i.a();
-                        a2.n(rawQuery.getString(1));
-                        a2.d = i3.a.b(rawQuery.getInt(2));
-                        String string = rawQuery.getString(3);
-                        if (string == null) {
-                            decode = null;
-                        } else {
-                            decode = Base64.decode(string, 0);
-                        }
-                        a2.f47063c = decode;
-                        arrayList.add(a2.f());
-                    }
-                    return arrayList;
-                } finally {
-                    rawQuery.close();
-                }
+    public k(o oVar, r rVar, v vVar) {
+        w wVar;
+        this.f51055a = oVar;
+        this.f51056b = rVar;
+        this.f51057c = vVar;
+        if ("audio/true-hd".equals(oVar.f51088f.C)) {
+            wVar = new w();
+        } else {
+            wVar = null;
         }
+        this.d = wVar;
     }
 }

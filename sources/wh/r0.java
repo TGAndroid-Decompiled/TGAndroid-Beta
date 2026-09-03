@@ -19,30 +19,30 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.l9;
 import org.telegram.ui.Cells.m9;
 import org.telegram.ui.Components.AnimatedArrowDrawable;
-import org.telegram.ui.iw0;
+import org.telegram.ui.nw0;
 public final class r0 extends FrameLayout implements b6, l9 {
-    public final g6 f49961a;
-    public final iw0 f49962b;
-    public final AnimatedArrowDrawable f49963c;
+    public final g6 f49997a;
+    public final nw0 f49998b;
+    public final AnimatedArrowDrawable f49999c;
     public final e1 d;
-    public final Paint f49964e;
-    public a f49965f;
+    public final Paint f50000e;
+    public a f50001f;
     public z2 h;
-    public boolean f49966n;
+    public boolean f50002n;
 
     public r0(Context context, g6 g6Var) {
         super(context);
-        this.f49964e = new Paint();
-        this.f49961a = g6Var;
+        this.f50000e = new Paint();
+        this.f49997a = g6Var;
         setClipToPadding(false);
         setWillNotDraw(false);
         AnimatedArrowDrawable animatedArrowDrawable = new AnimatedArrowDrawable(k6.v0(k6.Dk, g6Var));
-        this.f49963c = animatedArrowDrawable;
+        this.f49999c = animatedArrowDrawable;
         animatedArrowDrawable.setCallback(new i.f(this, 10));
-        iw0 iw0Var = new iw0(this, context, 12);
-        this.f49962b = iw0Var;
-        iw0Var.setOnClickListener(new org.telegram.ui.Components.voip.o(this, 27));
-        addView(iw0Var, c6.e(53, -1, 51));
+        nw0 nw0Var = new nw0(this, context, 12);
+        this.f49998b = nw0Var;
+        nw0Var.setOnClickListener(new org.telegram.ui.Components.voip.o(this, 27));
+        addView(nw0Var, c6.e(53, -1, 51));
         e1 e1Var = new e1(context, g6Var);
         this.d = e1Var;
         e1Var.setAllowNewlines(false);
@@ -50,7 +50,7 @@ public final class r0 extends FrameLayout implements b6, l9 {
         e1Var.setHint(LocaleController.getString(R.string.ArticleHintDetailsTitle));
         e1Var.setPadding(0, AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(12.66f));
         e1Var.setListener(new o0(this));
-        e1Var.setDelegate(new sf.g(this, 13));
+        e1Var.setDelegate(new sf.h(this, 13));
         addView(e1Var, c6.d(-1, -2.0f, 51, 53.0f, 0.0f, 16.0f, 0.0f));
         e();
     }
@@ -60,7 +60,7 @@ public final class r0 extends FrameLayout implements b6, l9 {
         m9 m9Var;
         z2 z2Var = this.h;
         if (z2Var != null) {
-            m9Var = z2Var.f50218a.getTextSelectionHelper();
+            m9Var = z2Var.f50254a.getTextSelectionHelper();
         } else {
             m9Var = null;
         }
@@ -80,12 +80,12 @@ public final class r0 extends FrameLayout implements b6, l9 {
     public final void e() {
         this.d.t();
         int i10 = k6.Dk;
-        g6 g6Var = this.f49961a;
+        g6 g6Var = this.f49997a;
         int v02 = k6.v0(i10, g6Var);
-        AnimatedArrowDrawable animatedArrowDrawable = this.f49963c;
-        animatedArrowDrawable.f24550a.setColor(v02);
+        AnimatedArrowDrawable animatedArrowDrawable = this.f49999c;
+        animatedArrowDrawable.f24552a.setColor(v02);
         animatedArrowDrawable.invalidateSelf();
-        this.f49964e.setColor(k6.v0(k6.Fk, g6Var));
+        this.f50000e.setColor(k6.v0(k6.Fk, g6Var));
     }
 
     @Override
@@ -107,20 +107,20 @@ public final class r0 extends FrameLayout implements b6, l9 {
     }
 
     public a getRow() {
-        return this.f49965f;
+        return this.f50001f;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        a aVar = this.f49965f;
+        a aVar = this.f50001f;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f49617b;
+            TL_iv.PageBlock pageBlock = aVar.f49653b;
             if ((pageBlock instanceof TL_iv.pageBlockDetails) && ((TL_iv.pageBlockDetails) pageBlock).open) {
                 return;
             }
         }
         int measuredHeight = getMeasuredHeight();
-        canvas.drawRect(0.0f, measuredHeight - 1, getMeasuredWidth(), measuredHeight, this.f49964e);
+        canvas.drawRect(0.0f, measuredHeight - 1, getMeasuredWidth(), measuredHeight, this.f50000e);
     }
 
     @Override

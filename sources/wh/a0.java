@@ -4,17 +4,17 @@ import android.graphics.Rect;
 import android.text.Layout;
 import org.telegram.ui.Cells.x9;
 public final class a0 implements x9 {
-    public final Layout f49634a;
-    public final Rect f49635b;
+    public final Layout f49670a;
+    public final Rect f49671b;
 
     public a0(Layout layout, Rect rect) {
-        this.f49634a = layout;
-        this.f49635b = rect;
+        this.f49670a = layout;
+        this.f49671b = rect;
     }
 
     @Override
     public final Layout getLayout() {
-        return this.f49634a;
+        return this.f49670a;
     }
 
     @Override
@@ -29,7 +29,7 @@ public final class a0 implements x9 {
 
     @Override
     public final Rect getSelectionBounds() {
-        return this.f49635b;
+        return this.f49671b;
     }
 
     @Override

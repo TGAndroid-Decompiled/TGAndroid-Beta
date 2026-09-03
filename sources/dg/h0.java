@@ -47,7 +47,7 @@ import org.telegram.ui.Components.qb;
 import org.telegram.ui.Components.xt;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.web.BotWebViewContainer$WebViewProxy;
-import qh.o4;
+import qh.n4;
 public final class h0 implements Utilities.Callback {
     public final int f4546a;
     public final Object f4547b;
@@ -98,11 +98,11 @@ public final class h0 implements Utilities.Callback {
                 iVar.h.run();
                 return;
             case 2:
-                o4 o4Var = (o4) this.f4547b;
+                n4 n4Var = (n4) this.f4547b;
                 TextureView textureView = (TextureView) obj;
-                o4Var.f5558t0 = textureView;
+                n4Var.f5558t0 = textureView;
                 if (textureView != null) {
-                    o4Var.f5552n0.addView(textureView, 0);
+                    n4Var.f5552n0.addView(textureView, 0);
                     return;
                 }
                 return;
@@ -183,21 +183,21 @@ public final class h0 implements Utilities.Callback {
                     qb qbVar = new qb(R.getParentActivity(), R.getResourceProvider());
                     if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfoResults) {
                         qbVar.c(R.raw.chats_infotip, 30, 30, new String[0]);
-                        qbVar.f30359b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusEnded));
+                        qbVar.f30375b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusEnded));
                     } else if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfo) {
                         if (((TLRPC.TL_payments_giveawayInfo) payments_giveawayinfo).participating) {
                             qbVar.c(R.raw.forward, 30, 30, new String[0]);
-                            qbVar.f30359b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusParticipating));
+                            qbVar.f30375b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusParticipating));
                         } else {
                             qbVar.c(R.raw.chats_infotip, 30, 30, new String[0]);
-                            qbVar.f30359b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusNotParticipating));
+                            qbVar.f30375b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusNotParticipating));
                         }
                     }
-                    qbVar.f30359b.setSingleLine(false);
-                    qbVar.f30359b.setMaxLines(2);
+                    qbVar.f30375b.setSingleLine(false);
+                    qbVar.f30375b.setMaxLines(2);
                     gc gcVar = new gc(R.getParentActivity(), R.getResourceProvider(), true);
                     gcVar.e(LocaleController.getString(R.string.LearnMore));
-                    gcVar.f27161a = new hg.j(payments_giveawayinfo, z4, b10, j10, tL_messageMediaGiveaway2, R);
+                    gcVar.f27139a = new hg.j(payments_giveawayinfo, z4, b10, j10, tL_messageMediaGiveaway2, R);
                     qbVar.setButton(gcVar);
                     ic.g(R, qbVar, 2750).j();
                     return;
@@ -275,28 +275,28 @@ public final class h0 implements Utilities.Callback {
                 return;
             case 18:
                 mh.m0 m0Var2 = (mh.m0) this.f4547b;
-                int i11 = mh.m0.f14421t0[((Integer) obj).intValue()];
-                if (m0Var2.f14432k0 != i11) {
-                    m0Var2.f14432k0 = i11;
-                    m0Var2.f14424c0.setText(LocaleController.formatPluralString("GiftOfferHours", i11 / 3600, new Object[0]));
+                int i11 = mh.m0.f14423t0[((Integer) obj).intValue()];
+                if (m0Var2.f14434k0 != i11) {
+                    m0Var2.f14434k0 = i11;
+                    m0Var2.f14426c0.setText(LocaleController.formatPluralString("GiftOfferHours", i11 / 3600, new Object[0]));
                 }
                 m0Var2.T(true);
                 return;
             case 19:
                 mh.i1 i1Var = (mh.i1) this.f4547b;
                 Integer num = (Integer) obj;
-                i1Var.f14205f0.g();
-                i1Var.f14207h0.N(true);
+                i1Var.f14207f0.g();
+                i1Var.f14209h0.N(true);
                 return;
             case 20:
                 q3 q3Var = (q3) this.f4547b;
                 q3Var.getClass();
-                q3Var.f14631s = new Matrix();
+                q3Var.f14633s = new Matrix();
                 q3Var.v = new Matrix();
                 Shader.TileMode tileMode3 = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader2 = new BitmapShader((Bitmap) obj, tileMode3, tileMode3);
-                q3Var.f14630r = bitmapShader2;
-                Paint paint3 = q3Var.f14626c;
+                q3Var.f14632r = bitmapShader2;
+                Paint paint3 = q3Var.f14628c;
                 paint3.setShader(bitmapShader2);
                 ColorMatrix colorMatrix3 = new ColorMatrix();
                 AndroidUtilities.adjustSaturationColorMatrix(colorMatrix3, 0.25f);
@@ -333,8 +333,8 @@ public final class h0 implements Utilities.Callback {
                 return;
             case 24:
                 oh.e1 e1Var = (oh.e1) this.f4547b;
-                if (((Boolean) obj).booleanValue() && !e1Var.f17010w) {
-                    e1Var.f17007n = true;
+                if (((Boolean) obj).booleanValue() && !e1Var.f17012w) {
+                    e1Var.f17009n = true;
                     e1Var.F = true;
                     e1Var.u(false);
                     oh.e1.T = e1Var;
@@ -343,13 +343,13 @@ public final class h0 implements Utilities.Callback {
                         DispatchQueue dispatchQueue = Utilities.globalQueue;
                         NativeInstance nativeInstance = e1Var.B;
                         Objects.requireNonNull(nativeInstance);
-                        dispatchQueue.postRunnable(new org.telegram.messenger.voip.s0(nativeInstance, 4));
+                        dispatchQueue.postRunnable(new org.telegram.messenger.voip.s0(nativeInstance, 3));
                         e1Var.J.clear();
                         e1Var.B = null;
                     }
                     e1Var.c();
                     e1Var.k();
-                    NotificationCenter.getInstance(e1Var.f17005e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(e1Var.f17006f.f20860id));
+                    NotificationCenter.getInstance(e1Var.f17007e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(e1Var.f17008f.f20862id));
                     return;
                 }
                 return;
@@ -366,15 +366,15 @@ public final class h0 implements Utilities.Callback {
             case 26:
                 i9 i9Var = (i9) this.f4547b;
                 Boolean bool3 = (Boolean) obj;
-                i9Var.f17272h1 = false;
+                i9Var.f17274h1 = false;
                 i9Var.P();
                 return;
             case 27:
                 t6 t6Var = (t6) this.f4547b;
                 l6 l6Var = (l6) obj;
                 HashMap hashMap3 = t6Var.H;
-                int i13 = l6Var.f17399e;
-                int i14 = l6Var.f17400f;
+                int i13 = l6Var.f17401e;
+                int i14 = l6Var.f17402f;
                 long j11 = l6Var.d;
                 if (i13 == 0 && i14 > 0) {
                     HashMap hashMap4 = (HashMap) hashMap3.get(Long.valueOf(j11));
@@ -399,7 +399,7 @@ public final class h0 implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread((Runnable) obj, 80L);
                 return;
             default:
-                org.telegram.ui.web.x0 x0Var = ((BotWebViewContainer$WebViewProxy) this.f4547b).f42457b;
+                org.telegram.ui.web.x0 x0Var = ((BotWebViewContainer$WebViewProxy) this.f4547b).f42421b;
                 StringBuilder sb = new StringBuilder("window.navigator.__share__receive(");
                 if (((Boolean) obj).booleanValue()) {
                     str2 = "";

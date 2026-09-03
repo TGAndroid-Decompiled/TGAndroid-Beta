@@ -5,15 +5,15 @@ import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class hf implements TextWatcher {
-    public boolean f27477a;
-    public boolean f27478b;
-    public String f27479c;
+    public boolean f27494a;
+    public boolean f27495b;
+    public String f27496c;
     public boolean d;
-    public boolean f27480e;
-    public final ChatActivityEnterView f27481f;
+    public boolean f27497e;
+    public final ChatActivityEnterView f27498f;
 
     public hf(ChatActivityEnterView chatActivityEnterView) {
-        this.f27481f = chatActivityEnterView;
+        this.f27498f = chatActivityEnterView;
     }
 
     @Override
@@ -23,8 +23,8 @@ public final class hf implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        if (!this.d && this.f27481f.B2) {
-            this.f27479c = charSequence.toString();
+        if (!this.d && this.f27498f.B2) {
+            this.f27496c = charSequence.toString();
         }
     }
 
@@ -39,7 +39,7 @@ public final class hf implements TextWatcher {
         boolean z14;
         boolean z15;
         if (!this.d) {
-            ChatActivityEnterView chatActivityEnterView = this.f27481f;
+            ChatActivityEnterView chatActivityEnterView = this.f27498f;
             uf ufVar = chatActivityEnterView.R0;
             if (ufVar == null) {
                 currentPage = MessagesController.getGlobalEmojiSettings().getInt("selected_page", 0);
@@ -70,7 +70,7 @@ public final class hf implements TextWatcher {
                 } else {
                     z13 = false;
                 }
-                this.f27480e = z13;
+                this.f27497e = z13;
                 if (!chatActivityEnterView.P && chatActivityEnterView.B0.getMeasuredWidth() > 0) {
                     chatActivityEnterView.C0(chatActivityEnterView.Q, chatActivityEnterView.B0.getLineCount());
                 }
@@ -89,13 +89,13 @@ public final class hf implements TextWatcher {
                 }
                 chatActivityEnterView.v1(z15);
             } else {
-                this.f27480e = false;
+                this.f27497e = false;
             }
             if (chatActivityEnterView.O2 == 1) {
                 return;
             }
-            if (chatActivityEnterView.f24701x2 && !chatActivityEnterView.f24710z0 && !chatActivityEnterView.A0 && !chatActivityEnterView.N2 && !chatActivityEnterView.T1 && chatActivityEnterView.V1 == null && i12 > i11 && charSequence.length() > 0 && charSequence.length() == i10 + i12 && charSequence.charAt(charSequence.length() - 1) == '\n') {
-                this.f27478b = true;
+            if (chatActivityEnterView.f24703x2 && !chatActivityEnterView.f24712z0 && !chatActivityEnterView.A0 && !chatActivityEnterView.N2 && !chatActivityEnterView.T1 && chatActivityEnterView.V1 == null && i12 > i11 && charSequence.length() > 0 && charSequence.length() == i10 + i12 && charSequence.charAt(charSequence.length() - 1) == '\n') {
+                this.f27495b = true;
             }
             chatActivityEnterView.T1 = false;
             chatActivityEnterView.J(true);
@@ -114,10 +114,10 @@ public final class hf implements TextWatcher {
                 egVar.r1(charSequence, z10, false);
             }
             if (chatActivityEnterView.O2 != 2 && i12 - i11 > 1) {
-                this.f27477a = true;
+                this.f27494a = true;
             }
-            if (chatActivityEnterView.V1 == null && !chatActivityEnterView.f24590d2 && trimmedString.length() != 0 && chatActivityEnterView.f24707y2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.N2) {
-                chatActivityEnterView.f24707y2 = System.currentTimeMillis();
+            if (chatActivityEnterView.V1 == null && !chatActivityEnterView.f24592d2 && trimmedString.length() != 0 && chatActivityEnterView.f24709y2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.N2) {
+                chatActivityEnterView.f24709y2 = System.currentTimeMillis();
                 eg egVar2 = chatActivityEnterView.V2;
                 if (egVar2 != null) {
                     egVar2.M1();

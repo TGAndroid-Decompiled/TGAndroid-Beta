@@ -29,7 +29,7 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.p2;
 import org.telegram.ui.Components.p9;
 import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.sl0;
 import org.telegram.ui.Components.xh0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.t4;
@@ -51,7 +51,7 @@ public final class u extends Dialog {
     public float f11302x;
     public final t f11303y;
 
-    public u(v vVar, Activity activity, tl0 tl0Var, g6 g6Var, boolean z4) {
+    public u(v vVar, Activity activity, sl0 sl0Var, g6 g6Var, boolean z4) {
         super(activity, R.style.TransparentDialog2);
         int i10;
         this.B = vVar;
@@ -80,7 +80,7 @@ public final class u extends Dialog {
         tVar.addView(actionBarPopupWindow$ActionBarPopupWindowLayout);
         ?? t4Var = new t4(getContext());
         this.f11298n = t4Var;
-        xh0 xh0Var = new xh0(activity, p2Var.getActionBar(), tl0Var, t4Var);
+        xh0 xh0Var = new xh0(activity, p2Var.getActionBar(), sl0Var, t4Var);
         this.h = xh0Var;
         xh0Var.setCreateThumbFromParent(true);
         tVar.addView(xh0Var);
@@ -91,7 +91,7 @@ public final class u extends Dialog {
         textView.setTextSize(16.0f);
         textView.setTypeface(AndroidUtilities.bold());
         tVar.addView(textView);
-        textView2.setTextColor(k6.v0(k6.f22036y6, p2Var.getResourceProvider()));
+        textView2.setTextColor(k6.v0(k6.f22038y6, p2Var.getResourceProvider()));
         textView2.setTextSize(14.0f);
         tVar.addView(textView2);
         g1 g1Var = new g1(activity, true, false);
@@ -186,7 +186,7 @@ public final class u extends Dialog {
         });
         actionBarPopupWindow$ActionBarPopupWindowLayout.addView(g1Var2);
         g1 g1Var3 = new g1(activity, false, true);
-        g1Var3.c(k6.v0(k6.f21895q7, g6Var), k6.v0(k6.f21876p7, g6Var));
+        g1Var3.c(k6.v0(k6.f21897q7, g6Var), k6.v0(k6.f21878p7, g6Var));
         g1Var3.setSelectorColor(k6.v0(i14, g6Var));
         g1Var3.g(LocaleController.getString(R.string.DismissRequest), R.drawable.msg_remove, null);
         g1Var3.setOnClickListener(new View.OnClickListener(this) {
@@ -312,7 +312,7 @@ public final class u extends Dialog {
         });
         this.f11300s.addListener(new r(this, z4, width, 0));
         this.f11300s.setDuration(220L);
-        this.f11300s.setInterpolator(pr.f30183f);
+        this.f11300s.setInterpolator(pr.f30168f);
         this.f11300s.start();
     }
 

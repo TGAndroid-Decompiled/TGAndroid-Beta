@@ -28,12 +28,12 @@ public final class m00 extends cg.c {
 
     @Override
     public final int h() {
-        return this.d.f39553a0.size();
+        return this.d.f39490a0.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((s00) this.d.f39553a0.get(i10)).f2505a;
+        return ((s00) this.d.f39490a0.get(i10)).f2505a;
     }
 
     @Override
@@ -77,7 +77,7 @@ public final class m00 extends cg.c {
         int i11;
         int i12 = m1Var.f5879f;
         View view = m1Var.f5875a;
-        ArrayList arrayList = this.d.f39553a0;
+        ArrayList arrayList = this.d.f39490a0;
         s00 s00Var = (s00) arrayList.get(i10);
         int i13 = i10 + 1;
         if (i13 < arrayList.size() && (i11 = ((s00) arrayList.get(i13)).f2505a) != 3 && i11 != 6) {
@@ -86,13 +86,13 @@ public final class m00 extends cg.c {
             z4 = false;
         }
         if (i12 == 7) {
-            ((u00) view).e(s00Var.f41093m, z4);
+            ((u00) view).e(s00Var.f40980m, z4);
         } else if (i12 != 6 && i12 != 3) {
             if (i12 != 0 && i12 == 8) {
                 j00 j00Var = (j00) view;
-                j00Var.f37965a.setText(LocaleController.getString(R.string.CreateNewInviteLink));
-                if (j00Var.f37967c != z4) {
-                    j00Var.f37967c = z4;
+                j00Var.f37812a.setText(LocaleController.getString(R.string.CreateNewInviteLink));
+                if (j00Var.f37814c != z4) {
+                    j00Var.f37814c = z4;
                     j00Var.setWillNotDraw(!z4);
                 }
             }
@@ -115,17 +115,17 @@ public final class m00 extends cg.c {
         o00 o00Var = this.d;
         if (i10 == 8) {
             a9Var = new j00(o00Var.getContext());
-            a9Var.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21731h5, false));
+            a9Var.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21733h5, false));
         } else if (i10 == 7) {
             Context context = o00Var.getContext();
             i11 = ((org.telegram.ui.ActionBar.h3) o00Var).currentAccount;
-            a9Var = new l00(this, context, i11, o00Var.U.f18055id);
-            a9Var.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21731h5, false));
+            a9Var = new l00(this, context, i11, o00Var.U.f18057id);
+            a9Var.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21733h5, false));
         } else if (i10 != 6 && i10 != 3) {
             a9Var = new n00(o00Var, o00Var.getContext());
         } else {
             a9Var = new org.telegram.ui.Cells.a9(o00Var.getContext());
-            a9Var.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21605a7, false));
+            a9Var.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21607a7, false));
         }
         return new f2.m1(a9Var);
     }

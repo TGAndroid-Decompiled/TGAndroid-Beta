@@ -28,14 +28,14 @@ import org.telegram.ui.Cells.r4;
 import org.telegram.ui.Cells.u3;
 import org.telegram.ui.Cells.va;
 import org.telegram.ui.Cells.z6;
-import org.telegram.ui.Components.jn;
-import org.telegram.ui.Components.pl0;
+import org.telegram.ui.Components.in;
+import org.telegram.ui.Components.ol0;
 import org.telegram.ui.Components.q30;
+import org.telegram.ui.Components.sl0;
 import org.telegram.ui.Components.sq;
-import org.telegram.ui.Components.tl0;
-import org.telegram.ui.hc1;
+import org.telegram.ui.mc1;
 import org.telegram.ui.yh;
-public abstract class d extends pl0 {
+public abstract class d extends ol0 {
     public final boolean B;
     public int C;
     public final boolean D;
@@ -43,19 +43,19 @@ public abstract class d extends pl0 {
     public boolean F;
     public boolean G;
     public boolean H;
-    public final int f48528r = UserConfig.selectedAccount;
-    public final Context f48529s;
+    public final int f48564r = UserConfig.selectedAccount;
+    public final Context f48565s;
     public final int v;
-    public final boolean f48530w;
-    public final a0.h f48531x;
-    public ArrayList f48532y;
+    public final boolean f48566w;
+    public final a0.h f48567x;
+    public ArrayList f48568y;
 
     public d(Context context, int i10, boolean z4, a0.h hVar, int i11) {
         boolean z10;
-        this.f48529s = context;
+        this.f48565s = context;
         this.v = i10;
-        this.f48530w = z4;
-        this.f48531x = hVar;
+        this.f48566w = z4;
+        this.f48567x = hVar;
         if (i11 != 0) {
             z10 = true;
         } else {
@@ -69,7 +69,7 @@ public abstract class d extends pl0 {
     public final String F(int i10) {
         ArrayList<String> arrayList;
         if (this.C != 2 && !this.F) {
-            int i11 = this.f48528r;
+            int i11 = this.f48564r;
             int i12 = this.v;
             ContactsController contactsController = ContactsController.getInstance(i11);
             if (i12 == 2) {
@@ -93,7 +93,7 @@ public abstract class d extends pl0 {
     }
 
     @Override
-    public final void G(tl0 tl0Var, float f10, int[] iArr) {
+    public final void G(sl0 sl0Var, float f10, int[] iArr) {
         iArr[0] = (int) (h() * f10);
         iArr[1] = 0;
     }
@@ -114,7 +114,7 @@ public abstract class d extends pl0 {
         ArrayList<String> arrayList;
         int i12;
         boolean z4 = this.H;
-        int i13 = this.f48528r;
+        int i13 = this.f48564r;
         if (z4 && i10 == 1 && i11 > 1 && i11 - 2 < ContactsController.getInstance(i13).phoneBookContacts.size()) {
             return ContactsController.getInstance(i13).phoneBookContacts.get(i12);
         }
@@ -147,10 +147,10 @@ public abstract class d extends pl0 {
         } else {
             if (this.C == 2) {
                 if (i10 == 1) {
-                    if (i11 >= this.f48532y.size()) {
+                    if (i11 >= this.f48568y.size()) {
                         return null;
                     }
-                    return MessagesController.getInstance(i13).getUser(Long.valueOf(((TLRPC.TL_contact) this.f48532y.get(i11)).user_id));
+                    return MessagesController.getInstance(i13).getUser(Long.valueOf(((TLRPC.TL_contact) this.f48568y.get(i11)).user_id));
                 }
             } else {
                 int i15 = i10 - 1;
@@ -162,7 +162,7 @@ public abstract class d extends pl0 {
                     return MessagesController.getInstance(i13).getUser(Long.valueOf(arrayList3.get(i11).user_id));
                 }
             }
-            if (!this.f48530w || i11 < 0 || i11 >= ContactsController.getInstance(i13).phoneBookContacts.size()) {
+            if (!this.f48566w || i11 < 0 || i11 >= ContactsController.getInstance(i13).phoneBookContacts.size()) {
                 return null;
             }
             return ContactsController.getInstance(i13).phoneBookContacts.get(i11);
@@ -178,7 +178,7 @@ public abstract class d extends pl0 {
     public final View T(int i10, View view) {
         ArrayList<String> arrayList;
         View view2;
-        int i11 = this.f48528r;
+        int i11 = this.f48564r;
         int i12 = this.v;
         ContactsController contactsController = ContactsController.getInstance(i11);
         if (i12 == 2) {
@@ -193,10 +193,10 @@ public abstract class d extends pl0 {
             arrayList = contactsController2.sortedUsersSectionsArray;
         }
         if (view == null) {
-            ?? frameLayout = new FrameLayout(this.f48529s);
+            ?? frameLayout = new FrameLayout(this.f48565s);
             frameLayout.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(76.0f), AndroidUtilities.dp(64.0f)));
             TextView textView = new TextView(frameLayout.getContext());
-            frameLayout.f23554a = textView;
+            frameLayout.f23556a = textView;
             yh.p(22.0f, 1, textView);
             yh.t(k6.B6, null, false, textView, 17);
             frameLayout.addView(textView, c6.d(-1, -1.0f, 119, 12.0f, 0.0f, 0.0f, 0.0f));
@@ -240,7 +240,7 @@ public abstract class d extends pl0 {
             }
         } else {
             int i12 = this.v;
-            int i13 = this.f48528r;
+            int i13 = this.f48564r;
             ContactsController contactsController = ContactsController.getInstance(i13);
             if (i12 == 2) {
                 hashMap = contactsController.usersMutualSectionsDict;
@@ -263,7 +263,7 @@ public abstract class d extends pl0 {
                     if (i11 >= 1) {
                         return false;
                     }
-                } else if (this.f48530w) {
+                } else if (this.f48566w) {
                     if (i11 >= 2) {
                         return false;
                     }
@@ -272,7 +272,7 @@ public abstract class d extends pl0 {
                 }
             } else if (!this.F) {
                 if (this.C == 2) {
-                    if (i10 == 1 && i11 >= this.f48532y.size()) {
+                    if (i10 == 1 && i11 >= this.f48568y.size()) {
                         return false;
                     }
                 } else {
@@ -299,7 +299,7 @@ public abstract class d extends pl0 {
         View view = m1Var.f5875a;
         int i14 = 7;
         boolean z4 = this.B;
-        int i15 = this.f48528r;
+        int i15 = this.f48564r;
         boolean z10 = true;
         if (i13 != 0) {
             if (i13 != 1) {
@@ -310,7 +310,7 @@ public abstract class d extends pl0 {
                                 p4 p4Var = (p4) view;
                                 int i16 = i11 - 2;
                                 if (i16 >= 0 && i16 < ContactsController.getInstance(i15).phoneBookContacts.size()) {
-                                    p4Var.f23334f = ContactsController.getInstance(i15).phoneBookContacts.get(i16);
+                                    p4Var.f23336f = ContactsController.getInstance(i15).phoneBookContacts.get(i16);
                                     p4Var.h = null;
                                     p4Var.a();
                                     return;
@@ -353,7 +353,7 @@ public abstract class d extends pl0 {
                 }
             }
             o8 o8Var = (o8) view;
-            boolean z11 = this.f48530w;
+            boolean z11 = this.f48566w;
             if (!z11 && z4) {
                 int i18 = k6.il;
                 o8Var.e(i18, i18);
@@ -403,13 +403,13 @@ public abstract class d extends pl0 {
             }
         }
         va vaVar = (va) view;
-        vaVar.Q.f17223a = false;
+        vaVar.Q.f17225a = false;
         if (this.C != 2 && !this.E) {
             i14 = 58;
         }
         vaVar.b(i14, 1);
         if (this.C == 2) {
-            arrayList2 = this.f48532y;
+            arrayList2 = this.f48568y;
         } else {
             int i20 = this.v;
             ContactsController contactsController = ContactsController.getInstance(i15);
@@ -432,7 +432,7 @@ public abstract class d extends pl0 {
         }
         TLRPC.User user = MessagesController.getInstance(i15).getUser(Long.valueOf(arrayList2.get(i11).user_id));
         vaVar.d(user, null, null, false);
-        if (this.f48531x.h(user.f20990id) < 0) {
+        if (this.f48567x.h(user.f20992id) < 0) {
             z10 = false;
         }
         vaVar.c(z10, false);
@@ -441,17 +441,17 @@ public abstract class d extends pl0 {
     public final void Y(int i10, boolean z4) {
         this.C = i10;
         if (i10 == 2) {
-            if (this.f48532y == null || z4) {
-                int i11 = this.f48528r;
-                this.f48532y = new ArrayList(ContactsController.getInstance(i11).contacts);
+            if (this.f48568y == null || z4) {
+                int i11 = this.f48564r;
+                this.f48568y = new ArrayList(ContactsController.getInstance(i11).contacts);
                 long j10 = UserConfig.getInstance(i11).clientUserId;
-                int size = this.f48532y.size();
+                int size = this.f48568y.size();
                 int i12 = 0;
                 while (true) {
                     if (i12 >= size) {
                         break;
-                    } else if (((TLRPC.TL_contact) this.f48532y.get(i12)).user_id == j10) {
-                        this.f48532y.remove(i12);
+                    } else if (((TLRPC.TL_contact) this.f48568y.get(i12)).user_id == j10) {
+                        this.f48568y.remove(i12);
                         break;
                     } else {
                         i12++;
@@ -465,13 +465,13 @@ public abstract class d extends pl0 {
     }
 
     public final void Z() {
-        int i10 = this.f48528r;
-        if (this.f48532y == null) {
+        int i10 = this.f48564r;
+        if (this.f48568y == null) {
             return;
         }
         try {
             int currentTime = ConnectionsManager.getInstance(i10).getCurrentTime();
-            Collections.sort(this.f48532y, new q30(MessagesController.getInstance(i10), currentTime, 1));
+            Collections.sort(this.f48568y, new q30(MessagesController.getInstance(i10), currentTime, 1));
             l();
         } catch (Exception e6) {
             FileLog.e(e6);
@@ -483,7 +483,7 @@ public abstract class d extends pl0 {
         View view;
         float f10;
         View view2;
-        Context context = this.f48529s;
+        Context context = this.f48565s;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -494,23 +494,23 @@ public abstract class d extends pl0 {
                                     if (i10 != 9) {
                                         view = new z6(context, (org.telegram.ui.b) null);
                                     } else {
-                                        View jnVar = new jn(context, 28);
-                                        jnVar.setId(9);
-                                        jnVar.setTag(-33024);
-                                        view2 = jnVar;
+                                        View inVar = new in(context, 28);
+                                        inVar.setId(9);
+                                        inVar.setTag(-33024);
+                                        view2 = inVar;
                                     }
                                 } else {
                                     view = new p4(context, false);
                                 }
                             } else {
-                                view = new m4(this.f48529s, k6.L6, 21, 14, 5, false, false, null);
+                                view = new m4(this.f48565s, k6.L6, 21, 14, 5, false, false, null);
                             }
                         } else {
-                            FrameLayout hc1Var = new hc1(this, context, viewGroup);
-                            hc1Var.addView(new sq(context), c6.e(-1, -2, 17));
-                            hc1Var.setLayoutParams(new f2.x0(-1, -2));
-                            hc1Var.setTag(-33024);
-                            view2 = hc1Var;
+                            FrameLayout mc1Var = new mc1(this, context, viewGroup);
+                            mc1Var.addView(new sq(context), c6.e(-1, -2, 17));
+                            mc1Var.setLayoutParams(new f2.x0(-1, -2));
+                            mc1Var.setTag(-33024);
+                            view2 = mc1Var;
                         }
                         view = view2;
                     } else {

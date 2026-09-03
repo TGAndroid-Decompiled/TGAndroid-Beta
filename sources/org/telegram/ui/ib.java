@@ -5,7 +5,7 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 public final class ib extends xh.n {
     public int W;
-    public tt0 X;
+    public yt0 X;
     public final sb Y;
 
     public ib(sb sbVar, hb hbVar, org.telegram.ui.ActionBar.g6 g6Var) {
@@ -17,13 +17,13 @@ public final class ib extends xh.n {
     @Override
     public final void N() {
         super.N();
-        tt0 tt0Var = this.X;
-        if (tt0Var != null) {
-            AndroidUtilities.cancelRunOnUIThread(tt0Var);
+        yt0 yt0Var = this.X;
+        if (yt0Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(yt0Var);
         }
-        tt0 tt0Var2 = new tt0(this, 20);
-        this.X = tt0Var2;
-        AndroidUtilities.runOnUIThread(tt0Var2);
+        yt0 yt0Var2 = new yt0(this, 20);
+        this.X = yt0Var2;
+        AndroidUtilities.runOnUIThread(yt0Var2);
     }
 
     @Override
@@ -31,9 +31,9 @@ public final class ib extends xh.n {
         if (this.W == -1) {
             this.W = this.Y.getNotificationCenter().setAnimationInProgress(this.W, sb.V0, false);
         }
-        tt0 tt0Var = this.X;
-        if (tt0Var != null) {
-            AndroidUtilities.cancelRunOnUIThread(tt0Var);
+        yt0 yt0Var = this.X;
+        if (yt0Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(yt0Var);
             this.X = null;
         }
         if (BuildVars.LOGS_ENABLED) {

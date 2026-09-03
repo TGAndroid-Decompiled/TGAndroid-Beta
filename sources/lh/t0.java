@@ -10,20 +10,20 @@ import org.telegram.ui.Components.fb;
 import org.telegram.ui.Components.ic;
 import org.telegram.ui.Components.nb;
 import org.telegram.ui.Components.r7;
-import org.telegram.ui.Components.yx0;
-import qh.ca;
+import org.telegram.ui.Components.xx0;
+import qh.ba;
 public final class t0 implements fb {
-    public final int f12971a;
-    public final Object f12972b;
+    public final int f12973a;
+    public final Object f12974b;
 
     public t0(Object obj, int i10) {
-        this.f12971a = i10;
-        this.f12972b = obj;
+        this.f12973a = i10;
+        this.f12974b = obj;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f12971a) {
+        switch (this.f12973a) {
             case 0:
                 return true;
             case 1:
@@ -55,17 +55,17 @@ public final class t0 implements fb {
     public final void b(ic icVar) {
         g6 g6Var;
         oh.z3 z3Var;
-        switch (this.f12971a) {
+        switch (this.f12973a) {
             case 0:
-                nb nbVar = icVar.f27741e;
-                u0 u0Var = (u0) this.f12972b;
-                qg.b c3 = u0Var.f12984e.c(nbVar, null, true);
+                nb nbVar = icVar.f27774e;
+                u0 u0Var = (u0) this.f12974b;
+                qg.b c3 = u0Var.f12986e.c(nbVar, null, true);
                 g6Var = ((org.telegram.ui.ActionBar.h3) u0Var).resourcesProvider;
                 rg.d dVar = new rg.d(g6Var);
-                dVar.f46811e = new s0.b(21);
+                dVar.f46842e = new s0.b(21);
                 float dpf2 = AndroidUtilities.dpf2(0.5f);
                 float dpf22 = AndroidUtilities.dpf2(0.5f);
-                dVar.f46812f = dpf2;
+                dVar.f46843f = dpf2;
                 dVar.h = dpf22;
                 c3.n(dVar);
                 c3.p(AndroidUtilities.dp(16.0f));
@@ -74,7 +74,7 @@ public final class t0 implements fb {
             case 1:
                 return;
             case 2:
-                if (icVar.f27738a == 2 && (z3Var = ((oh.j3) this.f12972b).f17329x.N1) != null) {
+                if (icVar.f27771a == 2 && (z3Var = ((oh.j3) this.f12974b).f17331x.N1) != null) {
                     i9 i9Var = ((z8) z3Var).d;
                     i9Var.V0 = true;
                     i9Var.P();
@@ -96,18 +96,18 @@ public final class t0 implements fb {
 
     @Override
     public final void c(float f10) {
-        int i10 = this.f12971a;
+        int i10 = this.f12973a;
     }
 
     @Override
     public final void d(ic icVar) {
         oh.z3 z3Var;
-        switch (this.f12971a) {
+        switch (this.f12973a) {
             case 0:
             case 1:
                 return;
             case 2:
-                if (icVar.f27738a == 2 && (z3Var = ((oh.j3) this.f12972b).f17329x.N1) != null) {
+                if (icVar.f27771a == 2 && (z3Var = ((oh.j3) this.f12974b).f17331x.N1) != null) {
                     i9 i9Var = ((z8) z3Var).d;
                     i9Var.V0 = false;
                     i9Var.P();
@@ -129,7 +129,7 @@ public final class t0 implements fb {
 
     @Override
     public final boolean e() {
-        switch (this.f12971a) {
+        switch (this.f12973a) {
             case 0:
                 return true;
             case 1:
@@ -161,49 +161,49 @@ public final class t0 implements fb {
     public final int f(int i10) {
         int dp;
         int bottomInset;
-        switch (this.f12971a) {
+        switch (this.f12973a) {
             case 0:
                 return 0;
             case 1:
-                return (int) ((ng.d0) ((ag.l) this.f12972b).f213c).f16051u;
+                return (int) ((ng.d0) ((ag.l) this.f12974b).f213c).f16053u;
             case 2:
-                if (((oh.j3) this.f12972b).f17329x.f17113u2) {
+                if (((oh.j3) this.f12974b).f17331x.f17115u2) {
                     return 0;
                 }
                 return AndroidUtilities.dp(64.0f);
             case 3:
-                return ((oh.e5) this.f12972b).f17031r.getPaddingBottom();
+                return ((oh.e5) this.f12974b).f17033r.getPaddingBottom();
             case 4:
                 return 0;
             case 5:
-                return ((r7) this.f12972b).f30617e.B.getHeight();
+                return ((r7) this.f12974b).f30677e.B.getHeight();
             case 6:
-                return ((org.telegram.ui.ActionBar.p2) this.f12972b).getBottomInset();
+                return ((org.telegram.ui.ActionBar.p2) this.f12974b).getBottomInset();
             case 7:
-                fb fbVar = (fb) this.f12972b;
+                fb fbVar = (fb) this.f12974b;
                 if (fbVar == null) {
                     return 0;
                 }
                 return fbVar.f(i10);
             case 8:
                 dp = AndroidUtilities.dp(126.0f);
-                bottomInset = ((bm) this.f12972b).f25637c.f26546b.getBottomInset();
+                bottomInset = ((bm) this.f12974b).f25661c.f26590b.getBottomInset();
                 break;
             case 9:
-                FrameLayout frameLayout = ((yx0) this.f12972b).f33637w;
+                FrameLayout frameLayout = ((xx0) this.f12974b).f33243w;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }
                 return 0;
             case 10:
-                org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) this.f12972b;
+                org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) this.f12974b;
                 if (a1Var.getParent() instanceof sh.m3) {
                     sh.m3 m3Var = (sh.m3) a1Var.getParent();
                     return (int) ((m3Var.getSwipeOffsetY() + m3Var.getOffsetY()) - m3Var.getTopActionBarOffsetY());
                 }
                 return 0;
             default:
-                dp = ((ca) this.f12972b).Z0.getEditTextHeight();
+                dp = ((ba) this.f12974b).Z0.getEditTextHeight();
                 bottomInset = AndroidUtilities.dp(12.0f);
                 break;
         }
@@ -212,7 +212,7 @@ public final class t0 implements fb {
 
     @Override
     public final boolean g(int i10) {
-        switch (this.f12971a) {
+        switch (this.f12973a) {
             case 0:
                 return false;
             case 1:
@@ -231,7 +231,7 @@ public final class t0 implements fb {
             case 6:
                 return false;
             case 7:
-                fb fbVar = (fb) this.f12972b;
+                fb fbVar = (fb) this.f12974b;
                 if (fbVar != null && fbVar.g(i10)) {
                     return true;
                 }
@@ -249,7 +249,7 @@ public final class t0 implements fb {
 
     @Override
     public final int h(int i10) {
-        switch (this.f12971a) {
+        switch (this.f12973a) {
             case 0:
                 return AndroidUtilities.statusBarHeight;
             case 1:
@@ -259,13 +259,13 @@ public final class t0 implements fb {
             case 3:
                 return 0;
             case 4:
-                return (int) (((oh.q5) this.f12972b).f17658a + AndroidUtilities.dp(58.0f));
+                return (int) (((oh.q5) this.f12974b).f17660a + AndroidUtilities.dp(58.0f));
             case 5:
                 return 0;
             case 6:
                 return 0;
             case 7:
-                fb fbVar = (fb) this.f12972b;
+                fb fbVar = (fb) this.f12974b;
                 if (fbVar == null) {
                     return AndroidUtilities.statusBarHeight;
                 }

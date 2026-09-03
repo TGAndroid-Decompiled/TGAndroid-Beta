@@ -15,7 +15,7 @@ public final class nw extends lz {
         mz mzVar;
         og.e eVar;
         super.b(recyclerView, i10, i11);
-        if (Build.VERSION.SDK_INT >= 31 && (eVar = (mzVar = this.d).f29287g2) != null) {
+        if (Build.VERSION.SDK_INT >= 31 && (eVar = (mzVar = this.d).f29289g2) != null) {
             eVar.f(i10, i11);
             mzVar.C();
         }

@@ -27,27 +27,27 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.l5;
 import org.telegram.ui.Cells.o4;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.a90;
-import org.telegram.ui.Components.al0;
-import org.telegram.ui.Components.ap0;
+import org.telegram.ui.Components.b90;
 import org.telegram.ui.Components.d70;
 import org.telegram.ui.Components.fg;
 import org.telegram.ui.Components.g20;
 import org.telegram.ui.Components.id;
+import org.telegram.ui.Components.lv0;
 import org.telegram.ui.Components.mi;
-import org.telegram.ui.Components.mv0;
 import org.telegram.ui.Components.mz;
 import org.telegram.ui.Components.nu;
 import org.telegram.ui.Components.p30;
-import org.telegram.ui.Components.qv0;
+import org.telegram.ui.Components.pv0;
 import org.telegram.ui.Components.se;
+import org.telegram.ui.Components.sl0;
 import org.telegram.ui.Components.t50;
-import org.telegram.ui.Components.tl0;
 import org.telegram.ui.Components.u00;
 import org.telegram.ui.Components.ua;
 import org.telegram.ui.Components.wa;
+import org.telegram.ui.Components.wk0;
 import org.telegram.ui.Components.xk0;
-import org.telegram.ui.Components.yk0;
+import org.telegram.ui.Components.zk0;
+import org.telegram.ui.Components.zo0;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.qn;
 import org.telegram.ui.s5;
@@ -81,16 +81,16 @@ public final class w2 extends AnimatorListenerAdapter {
                 return;
             case 8:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.f5528c;
-                if (animator.equals(actionBarLayout.f21127h0)) {
-                    actionBarLayout.f21120e0.clear();
+                if (animator.equals(actionBarLayout.f21129h0)) {
+                    actionBarLayout.f21122e0.clear();
                     actionBarLayout.V.clear();
                     actionBarLayout.W.clear();
-                    actionBarLayout.f21125g0.clear();
+                    actionBarLayout.f21127g0.clear();
                     k6.sl = null;
-                    actionBarLayout.f21123f0 = null;
-                    actionBarLayout.f21117d0 = null;
-                    actionBarLayout.f21127h0 = null;
-                    qn qnVar = ((e5) this.f5527b).f21330j;
+                    actionBarLayout.f21125f0 = null;
+                    actionBarLayout.f21119d0 = null;
+                    actionBarLayout.f21129h0 = null;
+                    qn qnVar = ((e5) this.f5527b).f21332j;
                     if (qnVar != null) {
                         qnVar.run();
                         return;
@@ -100,8 +100,8 @@ public final class w2 extends AnimatorListenerAdapter {
                 return;
             case 15:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f5528c;
-                if (animator.equals(chatActivityEnterView.f24647n2)) {
-                    chatActivityEnterView.f24647n2 = null;
+                if (animator.equals(chatActivityEnterView.f24649n2)) {
+                    chatActivityEnterView.f24649n2 = null;
                     return;
                 }
                 return;
@@ -174,18 +174,18 @@ public final class w2 extends AnimatorListenerAdapter {
                 lg.j jVar2 = (lg.j) obj2;
                 jVar2.removeView((p30) obj);
                 jVar2.h.clear();
-                jVar2.f12553b = null;
-                jVar2.f12554c = false;
-                ((lg.k) jVar2.f12557n).f12559b.setAllowDrawCursor(true);
+                jVar2.f12555b = null;
+                jVar2.f12556c = false;
+                ((lg.k) jVar2.f12559n).f12561b.setAllowDrawCursor(true);
                 return;
             case 4:
                 gb gbVar = (gb) obj2;
-                gbVar.f14134b.remove((fb) obj);
+                gbVar.f14136b.remove((fb) obj);
                 gbVar.M();
                 return;
             case 5:
                 super.onAnimationEnd(animator);
-                ((oh.o) obj2).V.f17585g0 = null;
+                ((oh.o) obj2).V.f17587g0 = null;
                 AndroidUtilities.removeFromParent((View) obj);
                 return;
             case 6:
@@ -207,12 +207,12 @@ public final class w2 extends AnimatorListenerAdapter {
                 AnimatorSet animatorSet3 = kVar.M;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
                     kVar.M = null;
-                    l5 l5Var = kVar.f21550n[0];
+                    l5 l5Var = kVar.f21552n[0];
                     if (l5Var != null) {
                         l5Var.setVisibility(4);
                     }
-                    if (kVar.f21558r != null && !TextUtils.isEmpty(kVar.f21568x0)) {
-                        kVar.f21558r.setVisibility(4);
+                    if (kVar.f21560r != null && !TextUtils.isEmpty(kVar.f21570x0)) {
+                        kVar.f21560r.setVisibility(4);
                     }
                     org.telegram.ui.ActionBar.z zVar = kVar.B;
                     if (zVar != null) {
@@ -239,17 +239,17 @@ public final class w2 extends AnimatorListenerAdapter {
                 break;
             case 8:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) obj2;
-                actionBarLayout.f21129i0.unlock();
-                if (animator.equals(actionBarLayout.f21127h0)) {
-                    actionBarLayout.f21120e0.clear();
+                actionBarLayout.f21131i0.unlock();
+                if (animator.equals(actionBarLayout.f21129h0)) {
+                    actionBarLayout.f21122e0.clear();
                     actionBarLayout.V.clear();
                     actionBarLayout.W.clear();
-                    actionBarLayout.f21125g0.clear();
+                    actionBarLayout.f21127g0.clear();
                     k6.sl = null;
-                    actionBarLayout.f21123f0 = null;
-                    actionBarLayout.f21117d0 = null;
-                    actionBarLayout.f21127h0 = null;
-                    qn qnVar = ((e5) obj).f21330j;
+                    actionBarLayout.f21125f0 = null;
+                    actionBarLayout.f21119d0 = null;
+                    actionBarLayout.f21129h0 = null;
+                    qn qnVar = ((e5) obj).f21332j;
                     if (qnVar != null) {
                         qnVar.run();
                         return;
@@ -258,27 +258,27 @@ public final class w2 extends AnimatorListenerAdapter {
                 }
                 return;
             case 9:
-                ((ActionBarLayout) obj2).f21136n = false;
+                ((ActionBarLayout) obj2).f21138n = false;
                 ((org.telegram.ui.ActionBar.p2) obj).onPreviewOpenAnimationEnd();
                 return;
             case 10:
                 View view2 = (View) obj;
                 xn xnVar = (xn) obj2;
-                xnVar.f43412x9 = 0.0f;
-                if (animator == xnVar.f43163db) {
+                xnVar.f43390x9 = 0.0f;
+                if (animator == xnVar.f43141db) {
                     ViewGroup viewGroup = (ViewGroup) view2.getParent();
                     if (viewGroup != null) {
                         viewGroup.removeView(view2);
                     }
                     xnVar.W2 = null;
-                    xnVar.f43163db = null;
+                    xnVar.f43141db = null;
                     return;
                 }
                 return;
             case 11:
                 org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) ((ih.f) obj2).f8133b;
                 t1Var.setAlpha(1.0f);
-                t1Var.getTransitionParams().f23710x0 = false;
+                t1Var.getTransitionParams().f23712x0 = false;
                 org.telegram.ui.u0 u0Var = new org.telegram.ui.u0("alpha", 2);
                 AnimatorSet animatorSet4 = new AnimatorSet();
                 animatorSet4.playTogether(ObjectAnimator.ofFloat((t50) obj, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(t1Var, u0Var, 1.0f));
@@ -309,7 +309,7 @@ public final class w2 extends AnimatorListenerAdapter {
             case 15:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj2;
                 ImageView imageView = chatActivityEnterView.M0;
-                if (animator.equals(chatActivityEnterView.f24647n2)) {
+                if (animator.equals(chatActivityEnterView.f24649n2)) {
                     if (((String) obj) != null) {
                         imageView.setVisibility(0);
                         chatActivityEnterView.getSendButtonInternal().setVisibility(8);
@@ -323,8 +323,8 @@ public final class w2 extends AnimatorListenerAdapter {
                         seVar.setVisibility(8);
                     }
                     chatActivityEnterView.setSlowModeButtonVisible(false);
-                    chatActivityEnterView.f24647n2 = null;
-                    chatActivityEnterView.f24668r2 = 0;
+                    chatActivityEnterView.f24649n2 = null;
+                    chatActivityEnterView.f24670r2 = 0;
                     return;
                 }
                 return;
@@ -339,7 +339,7 @@ public final class w2 extends AnimatorListenerAdapter {
                 ((ChatActivityEnterView) obj2).H3.unlock();
                 return;
             case 18:
-                ((ChatActivityEnterView) obj2).f24702x3 = null;
+                ((ChatActivityEnterView) obj2).f24704x3 = null;
                 ((id) obj).run();
                 return;
             case 19:
@@ -347,7 +347,7 @@ public final class w2 extends AnimatorListenerAdapter {
                 animatorSet = ((org.telegram.ui.ActionBar.h3) miVar).currentSheetAnimation;
                 if (animatorSet != null) {
                     animatorSet2 = ((org.telegram.ui.ActionBar.h3) miVar).currentSheetAnimation;
-                    if (animatorSet2.equals(animator) && (jVar = miVar.f29072m2) != null && !jVar.f16330f) {
+                    if (animatorSet2.equals(animator) && (jVar = miVar.f29090m2) != null && !jVar.f16332f) {
                         ((p6) obj).run();
                         return;
                     }
@@ -356,23 +356,23 @@ public final class w2 extends AnimatorListenerAdapter {
                 return;
             case 20:
                 nu nuVar = (nu) obj2;
-                if (nuVar.f29627a.f30857e.getVisibility() == 0) {
-                    nuVar.f29627a.f30857e.setAlpha(1.0f);
-                    nuVar.f29627a.f30857e.setVisibility(4);
+                if (nuVar.f29579a.f30896e.getVisibility() == 0) {
+                    nuVar.f29579a.f30896e.setAlpha(1.0f);
+                    nuVar.f29579a.f30896e.setVisibility(4);
                 }
                 ((Runnable) obj).run();
                 return;
             case 21:
-                tl0 tl0Var = (tl0) obj;
+                sl0 sl0Var = (sl0) obj;
                 mz mzVar = (mz) obj2;
                 if (animator.equals(mzVar.J0)) {
-                    tl0Var.setTranslationY(0.0f);
-                    if (tl0Var == mzVar.A0) {
-                        tl0Var.setPadding(0, 0, 0, mzVar.f29307n2);
-                    } else if (tl0Var == mzVar.M) {
-                        tl0Var.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f), mzVar.f29307n2);
-                    } else if (tl0Var == mzVar.f29278e0) {
-                        tl0Var.setPadding(0, mzVar.Y0, 0, mzVar.f29307n2);
+                    sl0Var.setTranslationY(0.0f);
+                    if (sl0Var == mzVar.A0) {
+                        sl0Var.setPadding(0, 0, 0, mzVar.f29309n2);
+                    } else if (sl0Var == mzVar.M) {
+                        sl0Var.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f), mzVar.f29309n2);
+                    } else if (sl0Var == mzVar.f29280e0) {
+                        sl0Var.setPadding(0, mzVar.Y0, 0, mzVar.f29309n2);
                     }
                     mzVar.J0 = null;
                     return;
@@ -381,9 +381,9 @@ public final class w2 extends AnimatorListenerAdapter {
             case 22:
                 g20 g20Var = (g20) obj2;
                 g20Var.removeView((p30) obj);
-                g20Var.f27079e.clear();
-                g20Var.f27076a = null;
-                g20Var.f27077b = false;
+                g20Var.f27067e.clear();
+                g20Var.f27064a = null;
+                g20Var.f27065b = false;
                 return;
             case 23:
                 ArrayList arrayList = (ArrayList) obj;
@@ -391,23 +391,23 @@ public final class w2 extends AnimatorListenerAdapter {
                 for (int i13 = 0; i13 < arrayList.size(); i13++) {
                     g20Var2.removeView((View) arrayList.get(i13));
                 }
-                g20Var2.f27079e.clear();
-                g20Var2.f27076a = null;
-                g20Var2.f27077b = false;
+                g20Var2.f27067e.clear();
+                g20Var2.f27064a = null;
+                g20Var2.f27065b = false;
                 return;
             case 24:
                 d70 d70Var = (d70) obj2;
                 d70Var.removeView((p30) obj);
-                d70Var.f26206c = null;
-                d70Var.f26207e.f26456a0 = null;
-                d70Var.f26204a = false;
+                d70Var.f26209c = null;
+                d70Var.f26210e.f26467a0 = null;
+                d70Var.f26207a = false;
                 return;
             case 25:
-                xk0 xk0Var = (xk0) obj2;
-                c2.y yVar = xk0Var.f33132e;
+                wk0 wk0Var = (wk0) obj2;
+                c2.y yVar = wk0Var.f32787e;
                 if (((ValueAnimator) yVar.f2210g) != null) {
-                    ((tl0) yVar.f2208e).U1 = false;
-                    ArrayList arrayList2 = xk0Var.f33130b;
+                    ((sl0) yVar.f2208e).U1 = false;
+                    ArrayList arrayList2 = wk0Var.f32785b;
                     int size = arrayList2.size();
                     int i14 = 0;
                     while (i14 < size) {
@@ -420,26 +420,26 @@ public final class w2 extends AnimatorListenerAdapter {
                         view3.setTranslationY(0.0f);
                         ((f2.j0) yVar.f2209f).getClass();
                         f2.w0.x0(view3);
-                        ((tl0) yVar.f2208e).removeView(view3);
+                        ((sl0) yVar.f2208e).removeView(view3);
                         d6 d6Var = (d6) yVar.f2211i;
                         if (d6Var != null) {
                             d6Var.d(view3);
                         }
                     }
-                    ((tl0) yVar.f2208e).setScrollEnabled(true);
-                    ((tl0) yVar.f2208e).setVerticalScrollBarEnabled(true);
+                    ((sl0) yVar.f2208e).setScrollEnabled(true);
+                    ((sl0) yVar.f2208e).setVerticalScrollBarEnabled(true);
                     if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                        if (((tl0) yVar.f2208e).f1325e.p() == ((tl0) yVar.f2208e).getChildCount()) {
-                            if (((ArrayList) ((tl0) yVar.f2208e).f1325e.d).size() != 0) {
+                        if (((sl0) yVar.f2208e).f1325e.p() == ((sl0) yVar.f2208e).getChildCount()) {
+                            if (((ArrayList) ((sl0) yVar.f2208e).f1325e.d).size() != 0) {
                                 throw new RuntimeException("hidden child count must be 0");
                             }
                         } else {
                             throw new RuntimeException("views count in child helper must be quals views count in recycler view");
                         }
                     }
-                    int childCount = ((tl0) yVar.f2208e).getChildCount();
+                    int childCount = ((sl0) yVar.f2208e).getChildCount();
                     for (int i15 = 0; i15 < childCount; i15++) {
-                        View childAt = ((tl0) yVar.f2208e).getChildAt(i15);
+                        View childAt = ((sl0) yVar.f2208e).getChildAt(i15);
                         if (childAt instanceof o4) {
                             ((o4) childAt).c(false, false);
                         }
@@ -457,9 +457,9 @@ public final class w2 extends AnimatorListenerAdapter {
                         }
                         view4.setTranslationY(0.0f);
                     }
-                    yk0 yk0Var = xk0Var.d;
-                    if (yk0Var != null) {
-                        yk0Var.E();
+                    xk0 xk0Var = wk0Var.d;
+                    if (xk0Var != null) {
+                        xk0Var.E();
                     }
                     d6 d6Var2 = (d6) yVar.f2211i;
                     if (d6Var2 != null) {
@@ -474,42 +474,42 @@ public final class w2 extends AnimatorListenerAdapter {
                 u00 u00Var = (u00) obj;
                 u00Var.setAlpha(1.0f);
                 f2.w0.x0(u00Var);
-                al0 al0Var = (al0) obj2;
-                al0Var.f25287c.remove(u00Var);
-                al0Var.f25285a.removeView(u00Var);
+                zk0 zk0Var = (zk0) obj2;
+                zk0Var.f33964c.remove(u00Var);
+                zk0Var.f33962a.removeView(u00Var);
                 return;
             case 27:
                 super.onAnimationEnd(animator);
                 wq wqVar = (wq) obj2;
-                ((al0) wqVar.d).f25290g.remove((AnimatorSet) obj);
-                if (((al0) wqVar.d).f25290g.isEmpty()) {
-                    ((al0) wqVar.d).f25286b.clear();
-                    al0 al0Var2 = (al0) wqVar.d;
-                    al0Var2.d = true;
-                    al0Var2.f25285a.invalidate();
+                ((zk0) wqVar.d).f33967g.remove((AnimatorSet) obj);
+                if (((zk0) wqVar.d).f33967g.isEmpty()) {
+                    ((zk0) wqVar.d).f33963b.clear();
+                    zk0 zk0Var2 = (zk0) wqVar.d;
+                    zk0Var2.d = true;
+                    zk0Var2.f33962a.invalidate();
                     return;
                 }
                 return;
             case 28:
-                ap0 ap0Var = (ap0) obj2;
+                zo0 zo0Var = (zo0) obj2;
                 try {
-                    ((WindowManager) obj).removeViewImmediate(ap0Var.B);
+                    ((WindowManager) obj).removeViewImmediate(zo0Var.B);
                 } catch (Exception unused) {
                 }
-                a90 a90Var = ap0Var.C;
-                if (a90Var != null) {
-                    AndroidUtilities.cancelRunOnUIThread(a90Var);
+                b90 b90Var = zo0Var.C;
+                if (b90Var != null) {
+                    AndroidUtilities.cancelRunOnUIThread(b90Var);
                     return;
                 }
                 return;
             default:
                 androidx.activity.g gVar = (androidx.activity.g) obj2;
-                qv0 qv0Var = (qv0) gVar.f335c;
-                qv0Var.f30492c0 = 1.0f;
-                qv0Var.P.add((mv0) obj);
-                ((qv0) gVar.f335c).U.setShader(null);
-                ((qv0) gVar.f335c).W.setShader(null);
-                ((qv0) gVar.f335c).N();
+                pv0 pv0Var = (pv0) gVar.f335c;
+                pv0Var.f30201c0 = 1.0f;
+                pv0Var.P.add((lv0) obj);
+                ((pv0) gVar.f335c).U.setShader(null);
+                ((pv0) gVar.f335c).W.setShader(null);
+                ((pv0) gVar.f335c).N();
                 super.onAnimationEnd(animator);
                 return;
         }
@@ -539,9 +539,9 @@ public final class w2 extends AnimatorListenerAdapter {
         this.f5528c = runnable2;
     }
 
-    public w2(al0 al0Var, u00 u00Var, f2.w0 w0Var) {
+    public w2(zk0 zk0Var, u00 u00Var, f2.w0 w0Var) {
         this.f5526a = 26;
-        this.f5528c = al0Var;
+        this.f5528c = zk0Var;
         this.f5527b = u00Var;
     }
 }

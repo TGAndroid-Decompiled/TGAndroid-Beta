@@ -1,52 +1,25 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.tl.TL_stats;
-public final class ea1 {
-    public TL_stats.PostInteractionCounters f36455a;
-    public MessageObject f36456b;
+import org.telegram.tgnet.TLRPC;
+public final class ea1 extends kq {
+    public final boolean[] f36421a1;
+    public final na1 f36422b1;
+    public final ga1 f36423c1;
 
-    public final int a() {
-        TL_stats.PostInteractionCounters postInteractionCounters = this.f36455a;
-        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
-            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).forwards;
-        }
-        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
-            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).forwards;
-        }
-        return 0;
+    public ea1(ga1 ga1Var, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z4, boolean[] zArr, na1 na1Var) {
+        super(j10, j11, tL_chatAdminRights, null, tL_chatBannedRights, str, 0, true, z4, null);
+        this.f36423c1 = ga1Var;
+        this.f36421a1 = zArr;
+        this.f36422b1 = na1Var;
     }
 
-    public final int b() {
-        TL_stats.PostInteractionCounters postInteractionCounters = this.f36455a;
-        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
-            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).msg_id;
+    @Override
+    public final void onTransitionAnimationEnd(boolean z4, boolean z10) {
+        if (!z4 && z10 && this.f36421a1[0]) {
+            na1 na1Var = this.f36422b1;
+            if (org.telegram.ui.Components.qc.a(na1Var)) {
+                org.telegram.ui.Components.qc.C(na1Var, this.f36423c1.f37049a.first_name).j();
+            }
         }
-        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
-            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).story_id;
-        }
-        return 0;
-    }
-
-    public final int c() {
-        TL_stats.PostInteractionCounters postInteractionCounters = this.f36455a;
-        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
-            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).reactions;
-        }
-        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
-            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).reactions;
-        }
-        return 0;
-    }
-
-    public final int d() {
-        TL_stats.PostInteractionCounters postInteractionCounters = this.f36455a;
-        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
-            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).views;
-        }
-        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
-            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).views;
-        }
-        return 0;
     }
 }

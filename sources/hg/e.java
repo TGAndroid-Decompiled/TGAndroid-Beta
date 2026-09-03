@@ -20,12 +20,12 @@ import org.telegram.ui.Components.p9;
 import org.telegram.ui.Components.q70;
 import org.telegram.ui.Components.t3;
 import org.telegram.ui.Components.v3;
+import org.telegram.ui.Components.xx0;
 import org.telegram.ui.Components.y4;
 import org.telegram.ui.Components.yc0;
-import org.telegram.ui.Components.yx0;
 import org.telegram.ui.Components.z4;
 import org.telegram.ui.Components.z8;
-import org.telegram.ui.g51;
+import org.telegram.ui.l51;
 import org.telegram.ui.vl0;
 public final class e implements View.OnClickListener {
     public final int f7449a;
@@ -60,7 +60,7 @@ public final class e implements View.OnClickListener {
                 calendar.set(11, ((n) this.f7452e).getValue());
                 calendar.set(12, ((o) this.f7453f).getValue() * 5);
                 ((r0) this.h).I((int) (calendar.getTimeInMillis() / 1000), 0, true);
-                runnable = ((c3) this.d).f21207a.dismissRunnable;
+                runnable = ((c3) this.d).f21209a.dismissRunnable;
                 runnable.run();
                 return;
             case 1:
@@ -76,7 +76,7 @@ public final class e implements View.OnClickListener {
                 calendar2.set(11, 0);
                 calendar2.set(13, 0);
                 ((MessagesStorage.IntCallback) this.h).run((int) (calendar2.getTimeInMillis() / 1000));
-                runnable2 = ((c3) this.d).f21207a.dismissRunnable;
+                runnable2 = ((c3) this.d).f21209a.dismissRunnable;
                 runnable2.run();
                 return;
             case 2:
@@ -96,9 +96,9 @@ public final class e implements View.OnClickListener {
                     calendar3.set(14, 0);
                 }
                 int timeInMillis = (int) (calendar3.getTimeInMillis() / 1000);
-                ((boolean[]) vl0Var.f42254c)[0] = true;
-                ((g51) vl0Var.f42253b).e(Integer.valueOf(timeInMillis));
-                runnable3 = c3Var.f21207a.dismissRunnable;
+                ((boolean[]) vl0Var.f42170c)[0] = true;
+                ((l51) vl0Var.f42169b).e(Integer.valueOf(timeInMillis));
+                runnable3 = c3Var.f21209a.dismissRunnable;
                 runnable3.run();
                 return;
             case 3:
@@ -118,11 +118,11 @@ public final class e implements View.OnClickListener {
                     calendar4.set(14, 0);
                 }
                 y4Var.I((int) (calendar4.getTimeInMillis() / 1000), 0, true);
-                runnable4 = c3Var2.f21207a.dismissRunnable;
+                runnable4 = c3Var2.f21209a.dismissRunnable;
                 runnable4.run();
                 return;
             case 4:
-                yx0.x((yx0) this.f7451c, (int[]) this.f7450b, (EditTextBoldCursor) this.f7452e, (TextView) this.f7453f, (TextView) this.h, (AlertDialog$Builder) this.d);
+                xx0.x((xx0) this.f7451c, (int[]) this.f7450b, (EditTextBoldCursor) this.f7452e, (TextView) this.f7453f, (TextView) this.h, (AlertDialog$Builder) this.d);
                 return;
             default:
                 h3 h3Var = (h3) this.f7451c;
@@ -147,10 +147,10 @@ public final class e implements View.OnClickListener {
                     }
                     i10 = i11;
                 }
-                F.f30330t = false;
+                F.f30334t = false;
                 F.Y = true;
-                F.f30329s = 0;
-                F.f30311i = 3;
+                F.f30333s = 0;
+                F.f30315i = 3;
                 F.a0(-AndroidUtilities.dp(8.0f), -AndroidUtilities.dp(8.0f));
                 F.Z();
                 return;

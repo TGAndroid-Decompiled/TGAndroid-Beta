@@ -2,8 +2,8 @@ package ye;
 
 import java.util.logging.Logger;
 public final class g extends we.a {
-    public static final Logger f50872s = Logger.getLogger(g.class.getName());
-    public byte f50873r;
+    public static final Logger f50908s = Logger.getLogger(g.class.getName());
+    public byte f50909r;
 
     public static boolean b(m mVar) {
         boolean z4;
@@ -25,11 +25,11 @@ public final class g extends we.a {
     public static b6.h c(e eVar) {
         b b10 = eVar.b();
         eVar.c(3, b.ISO_8859_1);
-        return new b6.h(5, eVar.d(200, b10), eVar.c((int) eVar.f50863a.e(), b10));
+        return new b6.h(5, eVar.d(200, b10), eVar.c((int) eVar.f50899a.e(), b10));
     }
 
     public static String e(e eVar) {
-        return eVar.c((int) eVar.f50863a.e(), eVar.b());
+        return eVar.c((int) eVar.f50899a.e(), eVar.b());
     }
 
     public final void d(ye.e r12) {

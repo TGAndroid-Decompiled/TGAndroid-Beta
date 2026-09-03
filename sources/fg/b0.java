@@ -28,7 +28,7 @@ public final class b0 implements Runnable {
             case 0:
                 if (LaunchActivity.R() != null) {
                     ?? obj = new Object();
-                    obj.f22156a = true;
+                    obj.f22158a = true;
                     v0Var.H0.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }

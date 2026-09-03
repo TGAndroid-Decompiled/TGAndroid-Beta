@@ -79,7 +79,7 @@ public final class e extends ResultReceiver {
                                             fVar2.f().execute(new a1.e(7, fVar2, (o) d));
                                             break;
                                     }
-                                    return sc.i.f47243a;
+                                    return sc.i.f47274a;
                                 }
                             });
                             return;
@@ -162,13 +162,13 @@ public final class e extends ResultReceiver {
                                 j.d(uVar, "deserializeFromBytes(...)");
                                 LinkedHashMap linkedHashMap = d1.g.f4162a;
                                 Parcelable parcelable3 = uVar.d;
-                                if (parcelable3 != null || (parcelable3 = uVar.f44727e) != null || (parcelable3 = uVar.f44728f) != null) {
+                                if (parcelable3 != null || (parcelable3 = uVar.f44758e) != null || (parcelable3 = uVar.f44759f) != null) {
                                     if (parcelable3 instanceof k) {
                                         k kVar = (k) parcelable3;
-                                        r rVar = kVar.f44688a;
+                                        r rVar = kVar.f44719a;
                                         j.d(rVar, "getErrorCode(...)");
                                         x0.a aVar = (x0.a) d1.g.f4162a.get(rVar);
-                                        String str = kVar.f44689b;
+                                        String str = kVar.f44720b;
                                         if (aVar == null) {
                                             dVar = new y0.a(new x0.a(26), yh.k("unknown fido gms exception - ", str));
                                         } else if (rVar == r.NOT_ALLOWED_ERR && str != null && jd.j.b(str, "Unable to get sync account")) {
@@ -319,7 +319,7 @@ public final class e extends ResultReceiver {
                                 if (i17 >= 34) {
                                     a2 = g1.a.a(intent3);
                                 } else {
-                                    int i19 = w0.d.f49317a;
+                                    int i19 = w0.d.f49353a;
                                     Bundle bundleExtra2 = intent3.getBundleExtra("android.service.credentials.extra.CREATE_CREDENTIAL_EXCEPTION");
                                     if (bundleExtra2 == null) {
                                         a2 = null;
@@ -399,7 +399,7 @@ public final class e extends ResultReceiver {
                                                             fVar2.f().execute(new a1.e(7, fVar2, (o) iVar4));
                                                             break;
                                                     }
-                                                    return sc.i.f47243a;
+                                                    return sc.i.f47274a;
                                                 }
                                             });
                                             return;
@@ -421,7 +421,7 @@ public final class e extends ResultReceiver {
                                         if (i21 >= 34) {
                                             b10 = g1.a.c(intent4);
                                         } else {
-                                            int i23 = i.f49318a;
+                                            int i23 = i.f49354a;
                                             Bundle bundleExtra4 = intent4.getBundleExtra("android.service.credentials.extra.GET_CREDENTIAL_EXCEPTION");
                                             if (bundleExtra4 == null) {
                                                 b10 = null;

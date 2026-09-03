@@ -22,19 +22,19 @@ public final class b extends va {
     public final TextView U;
     public final FrameLayout V;
     public Drawable W;
-    public Drawable f13659a0;
-    public TL_stories.Boost f13660b0;
-    public final a f13661c0;
+    public Drawable f13661a0;
+    public TL_stories.Boost f13662b0;
+    public final a f13663c0;
 
     public b(Context context) {
         super(context, 0, 0, false);
         int i10;
         int i11;
-        this.f13661c0 = new a(getContext());
+        this.f13663c0 = new a(getContext());
         this.V = new FrameLayout(getContext());
         TextView textView = new TextView(getContext());
         this.U = textView;
-        textView.setTextColor(k6.v0(k6.G6, this.f24333y));
+        textView.setTextColor(k6.v0(k6.G6, this.f24335y));
         this.U.setTypeface(AndroidUtilities.bold());
         this.U.setTextSize(12.0f);
         this.U.setGravity(17);
@@ -68,7 +68,7 @@ public final class b extends va {
     }
 
     public TL_stories.Boost getBoost() {
-        return this.f13660b0;
+        return this.f13662b0;
     }
 
     @Override
@@ -93,25 +93,25 @@ public final class b extends va {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, k6.f21779k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, k6.f21781k0);
         }
     }
 
     public void setStatus(TL_stories.Boost boost) {
         int i10;
-        this.f13660b0 = boost;
+        this.f13662b0 = boost;
         boolean z4 = boost.gift;
         FrameLayout frameLayout = this.V;
         TextView textView = this.U;
         int i11 = 0;
-        l5 l5Var = this.f24324b;
+        l5 l5Var = this.f24326b;
         if (!z4 && !boost.giveaway) {
             frameLayout.setVisibility(8);
         } else {
             frameLayout.setVisibility(0);
             int i12 = ((boost.expires - boost.date) / 30) / 86400;
             long j10 = boost.stars;
-            a4 a4Var = this.f24323a;
+            a4 a4Var = this.f24325a;
             z8 z8Var = this.B;
             if (j10 > 0) {
                 l5Var.l(LocaleController.formatPluralString("BoostingBoostStars", (int) j10, new Object[0]), false);
@@ -133,20 +133,20 @@ public final class b extends va {
             }
             String format = LocaleController.getInstance().getFormatterBoostExpired().format(new Date(boost.expires * 1000));
             long j11 = boost.stars;
-            l5 l5Var2 = this.f24325c;
+            l5 l5Var2 = this.f24327c;
             if (j11 > 0) {
                 l5Var2.l(LocaleController.formatString(R.string.BoostingStarsExpires, format), false);
             } else {
                 l5Var2.l(LocaleController.formatString(R.string.BoostingExpires, format), false);
             }
             if (boost.gift) {
-                if (this.f13659a0 == null) {
+                if (this.f13661a0 == null) {
                     Drawable drawable = getResources().getDrawable(R.drawable.mini_gift);
-                    this.f13659a0 = drawable;
+                    this.f13661a0 = drawable;
                     drawable.setColorFilter(new PorterDuffColorFilter(-3240417, PorterDuff.Mode.MULTIPLY));
                 }
                 textView.setTextColor(-3240417);
-                textView.setCompoundDrawablesWithIntrinsicBounds(this.f13659a0, (Drawable) null, (Drawable) null, (Drawable) null);
+                textView.setCompoundDrawablesWithIntrinsicBounds(this.f13661a0, (Drawable) null, (Drawable) null, (Drawable) null);
                 textView.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
                 textView.setText(LocaleController.getString(R.string.BoostingGift));
                 frameLayout.setBackground(k6.c0(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), k6.l1(0.2f, -3240417)));
@@ -167,9 +167,9 @@ public final class b extends va {
         int i13 = boost.multiplier;
         if (i13 > 0) {
             String valueOf = String.valueOf(i13);
-            a aVar = this.f13661c0;
-            aVar.f13658f = valueOf;
-            aVar.f13657e = aVar.f13654a.measureText(valueOf);
+            a aVar = this.f13663c0;
+            aVar.f13660f = valueOf;
+            aVar.f13659e = aVar.f13656a.measureText(valueOf);
             aVar.invalidateSelf();
             l5Var.i(aVar);
         } else {

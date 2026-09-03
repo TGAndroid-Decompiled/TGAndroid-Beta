@@ -11,38 +11,38 @@ import org.telegram.ui.fn0;
 import org.telegram.ui.jn;
 import org.telegram.ui.xn;
 public final class dk implements org.telegram.ui.ActionBar.c2 {
-    public final int f18519a = 0;
-    public final boolean f18520b;
-    public final Object f18521c;
+    public final int f18521a = 0;
+    public final boolean f18522b;
+    public final Object f18523c;
     public final Object d;
-    public final Object f18522e;
-    public final Object f18523f;
+    public final Object f18524e;
+    public final Object f18525f;
 
     public dk(SendMessagesHelper sendMessagesHelper, boolean z4, MessageObject messageObject, TL_keyboard.KeyboardButtonProto keyboardButtonProto, xn xnVar) {
-        this.f18521c = sendMessagesHelper;
-        this.f18520b = z4;
+        this.f18523c = sendMessagesHelper;
+        this.f18522b = z4;
         this.d = messageObject;
-        this.f18522e = keyboardButtonProto;
-        this.f18523f = xnVar;
+        this.f18524e = keyboardButtonProto;
+        this.f18525f = xnVar;
     }
 
     @Override
     public final void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
         int i11;
-        int i12 = this.f18519a;
-        boolean z4 = this.f18520b;
-        Object obj = this.f18523f;
-        Object obj2 = this.f18522e;
+        int i12 = this.f18521a;
+        boolean z4 = this.f18522b;
+        Object obj = this.f18525f;
+        Object obj2 = this.f18524e;
         Object obj3 = this.d;
-        Object obj4 = this.f18521c;
+        Object obj4 = this.f18523c;
         switch (i12) {
             case 0:
-                ((SendMessagesHelper) obj4).lambda$sendCallback$41(this.f18520b, (MessageObject) obj3, (TL_keyboard.KeyboardButtonProto) obj2, (xn) obj, d2Var, i10);
+                ((SendMessagesHelper) obj4).lambda$sendCallback$41(this.f18522b, (MessageObject) obj3, (TL_keyboard.KeyboardButtonProto) obj2, (xn) obj, d2Var, i10);
                 return;
             case 1:
                 jn jnVar = (jn) obj4;
                 TL_account.contentSettings contentsettings = (TL_account.contentSettings) obj;
-                xn xnVar = jnVar.f38188a;
+                xn xnVar = jnVar.f38085a;
                 lh.a1 a1Var = new lh.a1(23, jnVar, (org.telegram.ui.Cells.t1) obj3);
                 if (((boolean[]) obj2)[0]) {
                     if (!z4 && (contentsettings == null || !contentsettings.sensitive_can_change)) {
@@ -71,7 +71,7 @@ public final class dk implements org.telegram.ui.ActionBar.c2 {
                 int i13 = dVar.f4923b;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) dVar.d;
                 if (i13 == 8) {
-                    int[] iArr = fn0Var.f36970x;
+                    int[] iArr = fn0Var.f36873x;
                     iArr[0] = value;
                     iArr[1] = value2 + 1;
                     iArr[2] = value3;
@@ -84,18 +84,18 @@ public final class dk implements org.telegram.ui.ActionBar.c2 {
     }
 
     public dk(jn jnVar, org.telegram.ui.Cells.t1 t1Var, boolean[] zArr, boolean z4, TL_account.contentSettings contentsettings) {
-        this.f18521c = jnVar;
+        this.f18523c = jnVar;
         this.d = t1Var;
-        this.f18522e = zArr;
-        this.f18520b = z4;
-        this.f18523f = contentsettings;
+        this.f18524e = zArr;
+        this.f18522b = z4;
+        this.f18525f = contentsettings;
     }
 
     public dk(boolean z4, yc0 yc0Var, yc0 yc0Var2, yc0 yc0Var3, e3.d dVar) {
-        this.f18520b = z4;
-        this.f18521c = yc0Var;
+        this.f18522b = z4;
+        this.f18523c = yc0Var;
         this.d = yc0Var2;
-        this.f18522e = yc0Var3;
-        this.f18523f = dVar;
+        this.f18524e = yc0Var3;
+        this.f18525f = dVar;
     }
 }

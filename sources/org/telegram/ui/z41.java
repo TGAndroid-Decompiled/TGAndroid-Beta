@@ -1,37 +1,26 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class z41 implements Utilities.Callback {
-    public final int f43814a;
-    public final LinkedHashSet f43815b;
-    public final Runnable f43816c;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
+public final class z41 implements org.telegram.ui.ActionBar.c2, org.telegram.ui.Components.yk0 {
+    public final w61 f43797a;
 
-    public z41(LinkedHashSet linkedHashSet, Runnable runnable, int i10) {
-        this.f43814a = i10;
-        this.f43815b = linkedHashSet;
-        this.f43816c = runnable;
+    public z41(w61 w61Var) {
+        this.f43797a = w61Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f43814a) {
-            case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                if (arrayList != null) {
-                    this.f43815b.addAll(arrayList);
-                }
-                this.f43816c.run();
-                return;
-            default:
-                TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) obj;
-                if (tL_emojiList != null) {
-                    this.f43815b.addAll(tL_emojiList.document_id);
-                }
-                this.f43816c.run();
-                return;
-        }
+    public void d() {
+        this.f43797a.m();
+    }
+
+    @Override
+    public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        w61 w61Var = this.f43797a;
+        int i11 = w61Var.S;
+        ConnectionsManager.getInstance(i11).sendRequest(new TL_account.clearRecentEmojiStatuses(), null);
+        MediaDataController.getInstance(i11).clearRecentEmojiStatuses();
+        w61Var.B(false, true, true);
     }
 }

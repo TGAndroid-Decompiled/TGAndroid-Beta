@@ -12,28 +12,28 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.zk0;
 public final class y1 implements Utilities.Callback2 {
-    public final int f15077a;
-    public final Dialog f15078b;
-    public final Object f15079c;
+    public final int f15079a;
+    public final Dialog f15080b;
+    public final Object f15081c;
     public final Serializable d;
-    public final Object f15080e;
+    public final Object f15082e;
 
     public y1(Dialog dialog, Object obj, Serializable serializable, Object obj2, int i10) {
-        this.f15077a = i10;
-        this.f15078b = dialog;
-        this.f15079c = obj;
+        this.f15079a = i10;
+        this.f15080b = dialog;
+        this.f15081c = obj;
         this.d = serializable;
-        this.f15080e = obj2;
+        this.f15082e = obj2;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         CharSequence replaceSingleLinkBold;
-        int i10 = this.f15077a;
-        Object obj3 = this.f15080e;
+        int i10 = this.f15079a;
+        Object obj3 = this.f15082e;
         Serializable serializable = this.d;
-        Object obj4 = this.f15079c;
-        Dialog dialog = this.f15078b;
+        Object obj4 = this.f15081c;
+        Dialog dialog = this.f15080b;
         switch (i10) {
             case 0:
                 g5.c0((g5) dialog, (Utilities.Callback2) obj4, (ArrayList) serializable, (Runnable) obj3, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
@@ -45,14 +45,14 @@ public final class y1 implements Utilities.Callback2 {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 ((org.telegram.ui.ActionBar.d2) dialog).dismiss();
                 if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolTrue) {
-                    zk0.f43952a = h3Var;
+                    zk0.f43980a = h3Var;
                     h3Var.show();
                     return;
                 }
-                org.telegram.ui.ActionBar.h3 h3Var2 = zk0.f43952a;
+                org.telegram.ui.ActionBar.h3 h3Var2 = zk0.f43980a;
                 if (h3Var2 != null) {
                     h3Var2.dismiss();
-                    zk0.f43952a = null;
+                    zk0.f43980a = null;
                 }
                 qc a2 = zk0.a();
                 int i11 = R.raw.error;

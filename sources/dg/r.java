@@ -51,7 +51,7 @@ public final class r extends View {
                 e0Var.f4504e.rewind();
                 e0Var.f4504e.addRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
                 canvas.clipPath(e0Var.f4504e);
-                eg.c2.w1(canvas, rectF, AndroidUtilities.dp(6.0f));
+                eg.c2.v1(canvas, rectF, AndroidUtilities.dp(6.0f));
                 canvas.restore();
                 rectF.set(dp, f10, getWidth() - dp, f11);
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.f4645b);
@@ -60,7 +60,7 @@ public final class r extends View {
                 float strokeWidth = dp2 - (paint.getStrokeWidth() / 2.0f);
                 float max = Math.max(dp + strokeWidth, (((getWidth() - (2.0f * dp)) * this.d) + dp) - strokeWidth);
                 canvas.drawCircle(max, height, dp2, paint);
-                eg.c2.x1(max, height, strokeWidth, i0.a.k(e0Var.f4505f, (int) (this.d * 255.0f)), canvas);
+                eg.c2.w1(max, height, strokeWidth, i0.a.k(e0Var.f4505f, (int) (this.d * 255.0f)), canvas);
                 return;
             default:
                 super.onDraw(canvas);

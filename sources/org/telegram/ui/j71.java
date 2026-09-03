@@ -1,18 +1,15 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class j71 implements View.OnClickListener {
-    public final TLRPC.TL_authorization f38031a;
-    public final p71 f38032b;
+import androidx.recyclerview.widget.RecyclerView;
+public final class j71 extends f2.a1 {
+    public final k71 f37856a;
 
-    public j71(p71 p71Var, TLRPC.TL_authorization tL_authorization) {
-        this.f38032b = p71Var;
-        this.f38031a = tL_authorization;
+    public j71(k71 k71Var) {
+        this.f37856a = k71Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        p71.m(this.f38032b, this.f38031a.ip);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        this.f37856a.P();
     }
 }

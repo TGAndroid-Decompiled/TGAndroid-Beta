@@ -5,11 +5,11 @@ import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class bp extends org.telegram.ui.Components.sl0 {
-    public final dp f35573c;
+public final class bp extends org.telegram.ui.Components.rl0 {
+    public final dp f35584c;
 
     public bp(dp dpVar) {
-        this.f35573c = dpVar;
+        this.f35584c = dpVar;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class bp extends org.telegram.ui.Components.sl0 {
 
     @Override
     public final int h() {
-        return this.f35573c.X2.K.size() + 2;
+        return this.f35584c.X2.K.size() + 2;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class bp extends org.telegram.ui.Components.sl0 {
         if (i10 == 0) {
             return 0;
         }
-        if (i10 <= this.f35573c.X2.K.size()) {
+        if (i10 <= this.f35584c.X2.K.size()) {
             return 1;
         }
         return 2;
@@ -39,7 +39,7 @@ public final class bp extends org.telegram.ui.Components.sl0 {
     @Override
     public final void v(f2.m1 m1Var, int i10) {
         boolean z4;
-        dp dpVar = this.f35573c;
+        dp dpVar = this.f35584c;
         ep epVar = dpVar.X2;
         int i11 = m1Var.f5879f;
         View view = m1Var.f5875a;
@@ -48,7 +48,7 @@ public final class bp extends org.telegram.ui.Components.sl0 {
                 if (i11 == 2) {
                     org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) view;
                     a9Var.setText(LocaleController.getString(R.string.UsernamesChannelHelp));
-                    a9Var.setBackground(org.telegram.ui.ActionBar.k6.V0(dpVar.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.k6.f21624b7));
+                    a9Var.setBackground(org.telegram.ui.ActionBar.k6.V0(dpVar.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.k6.f21626b7));
                     return;
                 }
                 return;
@@ -71,14 +71,14 @@ public final class bp extends org.telegram.ui.Components.sl0 {
             return;
         }
         org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
-        m4Var.setBackgroundColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21659d6, dpVar.f31383m2));
+        m4Var.setBackgroundColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21661d6, dpVar.f31106m2));
         m4Var.setText(LocaleController.getString(R.string.UsernamesChannelHeader));
     }
 
     @Override
     public final f2.m1 x(ViewGroup viewGroup, int i10) {
-        dp dpVar = this.f35573c;
-        org.telegram.ui.ActionBar.g6 g6Var = dpVar.f31383m2;
+        dp dpVar = this.f35584c;
+        org.telegram.ui.ActionBar.g6 g6Var = dpVar.f31106m2;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

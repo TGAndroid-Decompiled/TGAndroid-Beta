@@ -1,57 +1,82 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Path;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.webkit.CookieManager;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class ut0 extends eg.a3 {
-    public final Path f42034l0;
-    public boolean m0;
-    public final org.telegram.ui.Components.z5 f42035n0;
-    public final PhotoViewer f42036o0;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.Components.RadialProgressView;
+public final class ut0 extends org.telegram.ui.Components.xf0 {
+    public final Rect J;
+    public final PhotoViewer K;
 
-    public ut0(PhotoViewer photoViewer) {
-        super(photoViewer.f34333m5, photoViewer.B, photoViewer.f34387s2, photoViewer.Y);
-        this.f42036o0 = photoViewer;
-        this.f42034l0 = new Path();
-        this.f42035n0 = new org.telegram.ui.Components.z5(this, 0L, 420L, org.telegram.ui.Components.pr.h);
+    public ut0(PhotoViewer photoViewer, PhotoViewer photoViewer2, Context context, org.telegram.ui.ActionBar.g1 g1Var) {
+        super(context);
+        this.K = photoViewer;
+        this.f33053a = UserConfig.selectedAccount;
+        this.v = new ArrayList();
+        this.I = new org.telegram.ui.Components.ec0(this, 10);
+        this.f33054b = photoViewer2;
+        this.f33059r = g1Var;
+        org.telegram.ui.Components.lu luVar = new org.telegram.ui.Components.lu(this, context, context, 1);
+        this.f33057f = luVar;
+        luVar.getSettings().setJavaScriptEnabled(true);
+        luVar.getSettings().setDomStorageEnabled(true);
+        luVar.getSettings().setMediaPlaybackRequiresUserGesture(false);
+        luVar.getSettings().setMixedContentMode(0);
+        CookieManager.getInstance().setAcceptThirdPartyCookies(luVar, true);
+        luVar.setWebViewClient(new org.telegram.ui.Components.tf0(this, 0));
+        addView(luVar, k7.c6.e(-1, -1, 51));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f33055c = linearLayout;
+        linearLayout.setOrientation(1);
+        linearLayout.setGravity(17);
+        linearLayout.setVisibility(8);
+        addView(linearLayout, k7.c6.e(-2, -2, 17));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 16.0f);
+        yh.t(org.telegram.ui.ActionBar.k6.f22038y6, null, false, textView, 17);
+        linearLayout.addView(textView, k7.c6.q(-2, -2, 1));
+        TextView textView2 = new TextView(context);
+        this.f33056e = textView2;
+        textView2.setTextSize(1, 16.0f);
+        int i10 = org.telegram.ui.ActionBar.k6.f21841n6;
+        textView2.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, i10, false));
+        textView2.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f));
+        int i11 = org.telegram.ui.ActionBar.a6.f21186a;
+        textView2.setBackground(org.telegram.ui.ActionBar.a6.d(new float[]{12.0f}, 0, org.telegram.ui.ActionBar.a6.b(org.telegram.ui.ActionBar.k6.w0(null, i10, false))));
+        textView2.setVisibility(8);
+        linearLayout.addView(textView2, k7.c6.t(-2, -2, 1, 0, 8, 0, 0));
+        fg.h0 h0Var = new fg.h0(this, context, 15);
+        this.h = h0Var;
+        h0Var.setBackgroundColor(-16777216);
+        h0Var.setVisibility(4);
+        addView(h0Var, k7.c6.c(-1.0f, -1));
+        RadialProgressView radialProgressView = new RadialProgressView(context, null);
+        this.f33058n = radialProgressView;
+        radialProgressView.setVisibility(4);
+        addView(radialProgressView, k7.c6.e(-2, -2, 17));
+        this.J = new Rect();
     }
 
-    public final void m(boolean z4, boolean z10) {
-        this.m0 = z4;
-        if (!z10) {
-            this.f42035n0.f(z4, true);
+    public final void j(Canvas canvas, int i10, int i11) {
+        Bitmap bitmap = this.K.z4.getBitmap();
+        if (bitmap != null) {
+            float min = Math.min(i10 / bitmap.getWidth(), i11 / bitmap.getHeight());
+            int width = (int) (bitmap.getWidth() * min);
+            int height = (int) (bitmap.getHeight() * min);
+            int i12 = (i11 - height) / 2;
+            int i13 = (i10 - width) / 2;
+            Rect rect = this.J;
+            rect.set(i13, i12, width + i13, height + i12);
+            canvas.drawBitmap(bitmap, (Rect) null, rect, (Paint) null);
         }
-        invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.save();
-        Path path = this.f42034l0;
-        path.rewind();
-        Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(this.f5066f0, AndroidUtilities.dp(this.f5070j0), AndroidUtilities.dp(this.f5070j0), direction);
-        canvas.clipPath(path);
-        canvas.translate(-getX(), -getY());
-        PhotoViewer photoViewer = this.f42036o0;
-        if (this == photoViewer.f34390s5 || this == photoViewer.f34398t5) {
-            canvas.translate(-photoViewer.f34380r5.getX(), -photoViewer.f34380r5.getY());
-        }
-        photoViewer.T0(canvas, this.f5065e0, -13948117, 855638016, false, true, false);
-        float e6 = this.f42035n0.e(this.m0);
-        if (e6 > 0.0f) {
-            canvas.drawColor(org.telegram.ui.ActionBar.k6.l1(e6, -1));
-        }
-        setTextColor(i0.a.d(e6, -1, -16777216));
-        canvas.restore();
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final void onDrawForeground(Canvas canvas) {
-        canvas.save();
-        canvas.clipPath(this.f42034l0);
-        super.onDrawForeground(canvas);
-        canvas.restore();
     }
 }

@@ -41,23 +41,23 @@ public final class g {
             if (vVar.d <= j10) {
                 v vVar2 = this.d;
                 if (vVar2 != null) {
-                    int i10 = vVar2.f16580b;
-                    int b10 = o2Var.b(vVar.f16579a);
-                    int b11 = o2Var.b(vVar2.f16579a);
+                    int i10 = vVar2.f16582b;
+                    int b10 = o2Var.b(vVar.f16581a);
+                    int b11 = o2Var.b(vVar2.f16581a);
                     if (vVar.d >= vVar2.d && b10 >= b11) {
                         if (b10 <= b11) {
                             if (vVar.a()) {
-                                int i11 = vVar.f16580b;
-                                int i12 = vVar.f16581c;
+                                int i11 = vVar.f16582b;
+                                int i12 = vVar.f16583c;
                                 if (i11 <= i10) {
-                                    if (i11 == i10 && i12 > vVar2.f16581c) {
+                                    if (i11 == i10 && i12 > vVar2.f16583c) {
                                         return true;
                                     }
                                     return false;
                                 }
                                 return true;
                             }
-                            int i13 = vVar.f16582e;
+                            int i13 = vVar.f16584e;
                             if (i13 == -1 || i13 > i10) {
                                 return true;
                             }

@@ -28,11 +28,11 @@ public final class g2 implements Runnable {
                 return;
             case 3:
                 q2 q2Var = this.f7500b.W;
-                q2Var.f12559b.setHintText(LocaleController.getString(R.string.Search), true);
+                q2Var.f12561b.setHintText(LocaleController.getString(R.string.Search), true);
                 return;
             case 4:
                 q2 q2Var2 = this.f7500b.W;
-                q2Var2.f12559b.setHintText(LocaleController.getString(R.string.GiftPremiumUsersSearchHint), true);
+                q2Var2.f12561b.setHintText(LocaleController.getString(R.string.GiftPremiumUsersSearchHint), true);
                 return;
             case 5:
                 v2 v2Var2 = this.f7500b;
@@ -54,7 +54,7 @@ public final class g2 implements Runnable {
                 org.telegram.ui.ActionBar.p2 p2Var = this.f7500b.f31017n;
                 if (p2Var != 0) {
                     ?? obj = new Object();
-                    obj.f22156a = true;
+                    obj.f22158a = true;
                     p2Var.showAsSheet(new PrivacyControlActivity(11, false), obj);
                     return;
                 }

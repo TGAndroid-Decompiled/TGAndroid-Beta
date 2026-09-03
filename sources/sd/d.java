@@ -5,12 +5,12 @@ import ld.a0;
 import ld.x0;
 import qd.v;
 public final class d extends x0 implements Executor {
-    public static final d f47264c = new a0();
+    public static final d f47295c = new a0();
     public static final a0 d;
 
     static {
-        a0 a0Var = l.f47276c;
-        int i10 = v.f44822a;
+        a0 a0Var = l.f47307c;
+        int i10 = v.f44853a;
         if (64 >= i10) {
             i10 = 64;
         }
@@ -42,7 +42,7 @@ public final class d extends x0 implements Executor {
 
     @Override
     public final void execute(Runnable runnable) {
-        c(uc.i.f48480a, runnable);
+        c(uc.i.f48516a, runnable);
     }
 
     @Override

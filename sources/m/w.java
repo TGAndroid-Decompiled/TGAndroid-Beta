@@ -14,9 +14,9 @@ import android.widget.MultiAutoCompleteTextView;
 import j7.s7;
 public final class w extends MultiAutoCompleteTextView implements u0.k {
     public static final int[] d = {16843126};
-    public final m f13361a;
-    public final w0 f13362b;
-    public final y f13363c;
+    public final m f13363a;
+    public final w0 f13364b;
+    public final y f13365c;
 
     public w(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 2130968624);
@@ -28,14 +28,14 @@ public final class w extends MultiAutoCompleteTextView implements u0.k {
         }
         y10.A();
         m mVar = new m(this);
-        this.f13361a = mVar;
+        this.f13363a = mVar;
         mVar.d(attributeSet, 2130968624);
         w0 w0Var = new w0(this);
-        this.f13362b = w0Var;
+        this.f13364b = w0Var;
         w0Var.f(attributeSet, 2130968624);
         w0Var.b();
         y yVar = new y(this);
-        this.f13363c = yVar;
+        this.f13365c = yVar;
         yVar.b(attributeSet, 2130968624);
         KeyListener keyListener = getKeyListener();
         if (!(keyListener instanceof NumberKeyListener)) {
@@ -57,18 +57,18 @@ public final class w extends MultiAutoCompleteTextView implements u0.k {
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        m mVar = this.f13361a;
+        m mVar = this.f13363a;
         if (mVar != null) {
             mVar.a();
         }
-        w0 w0Var = this.f13362b;
+        w0 w0Var = this.f13364b;
         if (w0Var != null) {
             w0Var.b();
         }
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        m mVar = this.f13361a;
+        m mVar = this.f13363a;
         if (mVar != null) {
             return mVar.b();
         }
@@ -76,7 +76,7 @@ public final class w extends MultiAutoCompleteTextView implements u0.k {
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        m mVar = this.f13361a;
+        m mVar = this.f13363a;
         if (mVar != null) {
             return mVar.c();
         }
@@ -84,24 +84,24 @@ public final class w extends MultiAutoCompleteTextView implements u0.k {
     }
 
     public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.f13362b.d();
+        return this.f13364b.d();
     }
 
     public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.f13362b.e();
+        return this.f13364b.e();
     }
 
     @Override
     public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
         InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
         k7.m.a(editorInfo, onCreateInputConnection, this);
-        return this.f13363c.c(onCreateInputConnection, editorInfo);
+        return this.f13365c.c(onCreateInputConnection, editorInfo);
     }
 
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        m mVar = this.f13361a;
+        m mVar = this.f13363a;
         if (mVar != null) {
             mVar.e();
         }
@@ -110,7 +110,7 @@ public final class w extends MultiAutoCompleteTextView implements u0.k {
     @Override
     public void setBackgroundResource(int i10) {
         super.setBackgroundResource(i10);
-        m mVar = this.f13361a;
+        m mVar = this.f13363a;
         if (mVar != null) {
             mVar.f(i10);
         }
@@ -119,7 +119,7 @@ public final class w extends MultiAutoCompleteTextView implements u0.k {
     @Override
     public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f13362b;
+        w0 w0Var = this.f13364b;
         if (w0Var != null) {
             w0Var.b();
         }
@@ -128,7 +128,7 @@ public final class w extends MultiAutoCompleteTextView implements u0.k {
     @Override
     public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f13362b;
+        w0 w0Var = this.f13364b;
         if (w0Var != null) {
             w0Var.b();
         }
@@ -140,23 +140,23 @@ public final class w extends MultiAutoCompleteTextView implements u0.k {
     }
 
     public void setEmojiCompatEnabled(boolean z4) {
-        this.f13363c.d(z4);
+        this.f13365c.d(z4);
     }
 
     @Override
     public void setKeyListener(KeyListener keyListener) {
-        super.setKeyListener(this.f13363c.a(keyListener));
+        super.setKeyListener(this.f13365c.a(keyListener));
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        m mVar = this.f13361a;
+        m mVar = this.f13363a;
         if (mVar != null) {
             mVar.h(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        m mVar = this.f13361a;
+        m mVar = this.f13363a;
         if (mVar != null) {
             mVar.i(mode);
         }
@@ -164,14 +164,14 @@ public final class w extends MultiAutoCompleteTextView implements u0.k {
 
     @Override
     public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        w0 w0Var = this.f13362b;
+        w0 w0Var = this.f13364b;
         w0Var.l(colorStateList);
         w0Var.b();
     }
 
     @Override
     public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        w0 w0Var = this.f13362b;
+        w0 w0Var = this.f13364b;
         w0Var.m(mode);
         w0Var.b();
     }
@@ -179,7 +179,7 @@ public final class w extends MultiAutoCompleteTextView implements u0.k {
     @Override
     public final void setTextAppearance(Context context, int i10) {
         super.setTextAppearance(context, i10);
-        w0 w0Var = this.f13362b;
+        w0 w0Var = this.f13364b;
         if (w0Var != null) {
             w0Var.g(context, i10);
         }

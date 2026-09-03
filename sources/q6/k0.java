@@ -11,23 +11,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 public final class k0 extends c6.a {
     public static final Parcelable.Creator<k0> CREATOR = new r0(11);
-    public final List f44691a;
+    public final List f44722a;
 
     public k0(ArrayList arrayList) {
-        this.f44691a = arrayList;
+        this.f44722a = arrayList;
     }
 
     public final JSONArray e() {
         try {
             JSONArray jSONArray = new JSONArray();
-            List list = this.f44691a;
+            List list = this.f44722a;
             if (list != null) {
                 for (int i10 = 0; i10 < list.size(); i10++) {
                     l0 l0Var = (l0) list.get(i10);
                     JSONArray jSONArray2 = new JSONArray();
-                    jSONArray2.put((int) l0Var.f44694c);
-                    jSONArray2.put((int) l0Var.f44693b);
-                    jSONArray2.put((int) l0Var.f44694c);
+                    jSONArray2.put((int) l0Var.f44725c);
+                    jSONArray2.put((int) l0Var.f44724b);
+                    jSONArray2.put((int) l0Var.f44725c);
                     jSONArray.put(i10, jSONArray2);
                 }
             }
@@ -41,8 +41,8 @@ public final class k0 extends c6.a {
         if (!(obj instanceof k0)) {
             return false;
         }
-        List list = ((k0) obj).f44691a;
-        List list2 = this.f44691a;
+        List list = ((k0) obj).f44722a;
+        List list2 = this.f44722a;
         if (list2 == null && list == null) {
             return true;
         }
@@ -54,7 +54,7 @@ public final class k0 extends c6.a {
 
     public final int hashCode() {
         HashSet hashSet;
-        List list = this.f44691a;
+        List list = this.f44722a;
         if (list == null) {
             hashSet = null;
         } else {
@@ -66,7 +66,7 @@ public final class k0 extends c6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q10 = g5.q(parcel, 20293);
-        g5.p(parcel, 1, this.f44691a);
+        g5.p(parcel, 1, this.f44722a);
         g5.r(parcel, q10);
     }
 }

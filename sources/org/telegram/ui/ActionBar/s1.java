@@ -1,21 +1,21 @@
 package org.telegram.ui.ActionBar;
 public final class s1 implements Runnable {
-    public final int f22278a;
-    public final d2 f22279b;
+    public final int f22280a;
+    public final d2 f22281b;
 
     public s1(d2 d2Var, int i10) {
-        this.f22278a = i10;
-        this.f22279b = d2Var;
+        this.f22280a = i10;
+        this.f22281b = d2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f22278a) {
+        switch (this.f22280a) {
             case 0:
-                this.f22279b.dismiss();
+                this.f22281b.dismiss();
                 return;
             default:
-                d2 d2Var = this.f22279b;
+                d2 d2Var = this.f22281b;
                 if (!d2Var.isShowing()) {
                     try {
                         d2Var.show();

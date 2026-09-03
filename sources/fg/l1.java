@@ -15,8 +15,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.c8;
 import org.telegram.ui.Components.f40;
 import org.telegram.ui.Components.jt;
+import org.telegram.ui.Components.lq0;
 import org.telegram.ui.Components.mi;
-import org.telegram.ui.Components.mq0;
 import org.telegram.ui.Components.or;
 import org.telegram.ui.Components.qf0;
 import org.telegram.ui.Components.sa;
@@ -28,10 +28,10 @@ import org.telegram.ui.d6;
 import org.telegram.ui.dc;
 import org.telegram.ui.ep;
 import org.telegram.ui.j8;
+import org.telegram.ui.jc;
 import org.telegram.ui.kc;
 import org.telegram.ui.kq;
 import org.telegram.ui.l9;
-import org.telegram.ui.lc;
 import org.telegram.ui.pa;
 import org.telegram.ui.po;
 import org.telegram.ui.qr;
@@ -184,7 +184,7 @@ public final class l1 extends org.telegram.ui.ActionBar.j {
                 if (i10 == -1) {
                     aaVar.finishFragment();
                     return;
-                } else if (i10 == 1 && aaVar.f35101a.getText().length() != 0) {
+                } else if (i10 == 1 && aaVar.f35095a.getText().length() != 0) {
                     aa.U(aaVar);
                     aaVar.finishFragment();
                     return;
@@ -212,7 +212,7 @@ public final class l1 extends org.telegram.ui.ActionBar.j {
             case 16:
                 bd bdVar = (bd) obj;
                 if (i10 == -1) {
-                    if (bdVar.f35422b >= bdVar.S0() && bdVar.Q0()) {
+                    if (bdVar.f35438b >= bdVar.S0() && bdVar.Q0()) {
                         bdVar.V0();
                         return;
                     } else {
@@ -237,18 +237,18 @@ public final class l1 extends org.telegram.ui.ActionBar.j {
                     float f11 = iArr[1];
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                     paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
-                    kc kcVar = new kc(bdVar, bdVar.getParentActivity(), canvas, (bdVar.I.getMeasuredWidth() / 2.0f) + f10, (bdVar.I.getMeasuredHeight() / 2.0f) + f11, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + AndroidUtilities.navigationBarHeight, paint, createBitmap, paint2, f10, f11, 0);
-                    bdVar.f35434j0 = kcVar;
-                    kcVar.setOnTouchListener(new org.telegram.ui.ActionBar.s2(1));
-                    bdVar.f35435k0 = 0.0f;
+                    jc jcVar = new jc(bdVar, bdVar.getParentActivity(), canvas, (bdVar.I.getMeasuredWidth() / 2.0f) + f10, (bdVar.I.getMeasuredHeight() / 2.0f) + f11, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + AndroidUtilities.navigationBarHeight, paint, createBitmap, paint2, f10, f11, 0);
+                    bdVar.f35450j0 = jcVar;
+                    jcVar.setOnTouchListener(new org.telegram.ui.ActionBar.s2(1));
+                    bdVar.f35451k0 = 0.0f;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    bdVar.f35436l0 = ofFloat;
-                    ofFloat.addUpdateListener(new lc(bdVar, 0));
-                    bdVar.f35436l0.addListener(new s5(bdVar, 16));
-                    bdVar.f35436l0.setDuration(400L);
-                    bdVar.f35436l0.setInterpolator(jt.f28199e);
-                    bdVar.f35436l0.start();
-                    frameLayout.addView(bdVar.f35434j0, new ViewGroup.LayoutParams(-1, -1));
+                    bdVar.f35452l0 = ofFloat;
+                    ofFloat.addUpdateListener(new kc(bdVar, 0));
+                    bdVar.f35452l0.addListener(new s5(bdVar, 16));
+                    bdVar.f35452l0.setDuration(400L);
+                    bdVar.f35452l0.setInterpolator(jt.f28179e);
+                    bdVar.f35452l0.start();
+                    frameLayout.addView(bdVar.f35450j0, new ViewGroup.LayoutParams(-1, -1));
                     AndroidUtilities.runOnUIThread(new dc(bdVar, 0));
                     return;
                 } else {
@@ -274,8 +274,8 @@ public final class l1 extends org.telegram.ui.ActionBar.j {
                     epVar.finishFragment();
                     return;
                 } else if (i10 == 1) {
-                    or orVar = epVar.f36651r;
-                    if (orVar == null || orVar.f29840c <= 0.0f) {
+                    or orVar = epVar.f36558r;
+                    if (orVar == null || orVar.f29874c <= 0.0f) {
                         epVar.Y();
                         return;
                     }
@@ -341,13 +341,13 @@ public final class l1 extends org.telegram.ui.ActionBar.j {
             case 25:
                 mi miVar = (mi) obj;
                 if (i10 == -1) {
-                    if (!miVar.f29100v0.i()) {
+                    if (!miVar.f29118v0.i()) {
                         miVar.dismiss();
                         return;
                     }
                     return;
                 }
-                miVar.f29100v0.t(i10);
+                miVar.f29118v0.t(i10);
                 return;
             case 26:
                 if (i10 == -1) {
@@ -356,7 +356,7 @@ public final class l1 extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             case 27:
-                if (i10 == -1 && (runnable = ((qf0) obj).f30390r) != null) {
+                if (i10 == -1 && (runnable = ((qf0) obj).f30406r) != null) {
                     AndroidUtilities.runOnUIThread(runnable);
                     return;
                 }
@@ -368,7 +368,7 @@ public final class l1 extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             default:
-                ((mq0) obj).onBackPressed();
+                ((lq0) obj).onBackPressed();
                 return;
         }
     }

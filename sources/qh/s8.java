@@ -1,29 +1,26 @@
 package qh;
+public final class s8 implements Runnable {
+    public final int f46104a;
+    public final ba f46105b;
 
-import android.content.DialogInterface;
-public final class s8 implements DialogInterface.OnDismissListener {
-    public final int f46094a;
-    public final ca f46095b;
-
-    public s8(ca caVar, int i10) {
-        this.f46094a = i10;
-        this.f46095b = caVar;
+    public s8(ba baVar, int i10) {
+        this.f46104a = i10;
+        this.f46105b = baVar;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f46094a) {
+    public final void run() {
+        switch (this.f46104a) {
             case 0:
-                ca caVar = this.f46095b;
-                caVar.U0.x(3, false);
-                caVar.f45116n0 = null;
+                ba baVar = this.f46105b;
+                baVar.getClass();
+                baVar.g(1.0f, true, new f8(baVar, 6));
+                baVar.Y0.b(true, true);
                 return;
             default:
-                q9 q9Var = this.f46095b.U0;
-                if (q9Var != null) {
-                    q9Var.x(4, false);
-                    return;
-                }
+                ba baVar2 = this.f46105b;
+                baVar2.f(false);
+                baVar2.f45073j2 = null;
                 return;
         }
     }

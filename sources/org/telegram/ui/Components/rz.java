@@ -18,13 +18,13 @@ public class rz extends f2.j0 {
     public int S;
     public final boolean T;
 
-    public rz(tl0 tl0Var, int i10) {
+    public rz(sl0 sl0Var, int i10) {
         this.I = new SparseArray();
         this.J = -1;
         this.P = true;
         this.Q = true;
         this.T = true;
-        this.N = tl0Var;
+        this.N = sl0Var;
         this.M = i10;
     }
 
@@ -147,14 +147,14 @@ public class rz extends f2.j0 {
         }
     }
 
-    public rz(int i10, int i11, tl0 tl0Var) {
+    public rz(int i10, int i11, sl0 sl0Var) {
         super(1, false);
         this.I = new SparseArray();
         this.J = -1;
         this.P = true;
         this.Q = true;
         this.T = true;
-        this.N = tl0Var;
+        this.N = sl0Var;
         this.M = i10;
     }
 }

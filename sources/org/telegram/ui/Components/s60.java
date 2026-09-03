@@ -17,7 +17,7 @@ public final class s60 extends org.telegram.ui.Cells.va {
         f10.addView(textView, k7.c6.q(-2, -2, 5));
         TextView textView2 = new TextView(context);
         this.V = textView2;
-        textView2.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f22053z6, false));
+        textView2.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f22055z6, false));
         textView2.setTextSize(1, 13.0f);
         f10.addView(textView2, k7.c6.t(-2, -2, 5, 0, 1, 0, 0));
         addView(f10, k7.c6.d(-2, -2.0f, (LocaleController.isRTL ? 3 : 5) | 16, 18.0f, 0.0f, 18.0f, 0.0f));

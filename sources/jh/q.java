@@ -22,12 +22,12 @@ import org.telegram.ui.Components.j6;
 import org.telegram.ui.Components.j80;
 import org.telegram.ui.b10;
 import org.telegram.ui.d60;
-import org.telegram.ui.dh1;
 import org.telegram.ui.h50;
+import org.telegram.ui.jh1;
 import org.telegram.ui.jk;
 import org.telegram.ui.xn;
 import vf.v;
-public final class q implements o, b7, c2, lf.o, MessagesController.ErrorDelegate, dh1 {
+public final class q implements o, b7, c2, lf.o, MessagesController.ErrorDelegate, jh1 {
     public final int f10180a;
     public final boolean f10181b;
     public final Object f10182c;
@@ -44,7 +44,7 @@ public final class q implements o, b7, c2, lf.o, MessagesController.ErrorDelegat
             case 7:
                 b10 b10Var = (b10) this.f10182c;
                 LongSparseIntArray longSparseIntArray = b10Var.E;
-                b10Var.f35299y = i10;
+                b10Var.f35314y = i10;
                 if (this.f10181b) {
                     b10Var.o0(b10Var.C, arrayList, true);
                     b10Var.C = arrayList;
@@ -79,11 +79,11 @@ public final class q implements o, b7, c2, lf.o, MessagesController.ErrorDelegat
                 return;
             default:
                 v vVar = (v) this.f10182c;
-                ArrayList arrayList3 = vVar.f49215k;
-                ArrayList arrayList4 = vVar.f49214j;
+                ArrayList arrayList3 = vVar.f49251k;
+                ArrayList arrayList4 = vVar.f49250j;
                 int i15 = 0;
                 if (this.f10181b) {
-                    vVar.f49211f = i10;
+                    vVar.f49247f = i10;
                     arrayList4.clear();
                     arrayList4.addAll(arrayList);
                     while (i15 < arrayList4.size()) {
@@ -91,7 +91,7 @@ public final class q implements o, b7, c2, lf.o, MessagesController.ErrorDelegat
                         i15++;
                     }
                 } else {
-                    vVar.f49212g = i10;
+                    vVar.f49248g = i10;
                     arrayList3.clear();
                     arrayList3.addAll(arrayList);
                     while (i15 < arrayList3.size()) {
@@ -99,7 +99,7 @@ public final class q implements o, b7, c2, lf.o, MessagesController.ErrorDelegat
                         i15++;
                     }
                 }
-                vVar.f49210e.run();
+                vVar.f49246e.run();
                 return;
         }
     }
@@ -109,15 +109,15 @@ public final class q implements o, b7, c2, lf.o, MessagesController.ErrorDelegat
         oh.p pVar = (oh.p) this.f10182c;
         if (!this.f10181b && z4) {
             boolean z10 = true;
-            if (pVar.f17576b != 1) {
+            if (pVar.f17578b != 1) {
                 z10 = false;
             }
-            t6 t6Var = pVar.f17598s;
+            t6 t6Var = pVar.f17600s;
             if (z10) {
-                if (!t6Var.f17792z) {
+                if (!t6Var.f17794z) {
                     return;
                 }
-            } else if (!t6Var.f17783p) {
+            } else if (!t6Var.f17785p) {
                 return;
             }
             t6Var.Q(z10);
@@ -126,7 +126,7 @@ public final class q implements o, b7, c2, lf.o, MessagesController.ErrorDelegat
 
     @Override
     public void d(long j10) {
-        j6 j6Var = ((t1) this.f10182c).f24043t4;
+        j6 j6Var = ((t1) this.f10182c).f24045t4;
         if (j6Var != null) {
             j6Var.q(LocaleController.formatPollEndTime((int) j10, this.f10181b), true, true);
         }
@@ -141,7 +141,7 @@ public final class q implements o, b7, c2, lf.o, MessagesController.ErrorDelegat
                 return;
             case 3:
             default:
-                d60 d60Var = ((h50) this.f10182c).f37329b;
+                d60 d60Var = ((h50) this.f10182c).f37225b;
                 d60Var.X0.toggleRecord(null, 0);
                 UndoView k12 = d60Var.k1();
                 if (this.f10181b) {

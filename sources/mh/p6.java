@@ -36,23 +36,23 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.dg;
 import org.telegram.ui.Components.dh;
 import org.telegram.ui.Components.ei;
-import org.telegram.ui.Components.gv0;
+import org.telegram.ui.Components.fv0;
 import org.telegram.ui.Components.ic;
 import org.telegram.ui.Components.mi;
 import org.telegram.ui.Components.we;
 import org.telegram.ui.Components.wg;
-import org.telegram.ui.Components.zo0;
+import org.telegram.ui.Components.yo0;
 import org.telegram.ui.xn;
 public final class p6 implements Runnable {
-    public final int f14587a;
-    public final Object f14588b;
-    public final Object f14589c;
+    public final int f14589a;
+    public final Object f14590b;
+    public final Object f14591c;
     public final Object d;
 
     public p6(Object obj, Object obj2, Object obj3, int i10) {
-        this.f14587a = i10;
-        this.f14588b = obj;
-        this.f14589c = obj2;
+        this.f14589a = i10;
+        this.f14590b = obj;
+        this.f14591c = obj2;
         this.d = obj3;
     }
 
@@ -75,12 +75,12 @@ public final class p6 implements Runnable {
         int id2;
         ViewGroup viewGroup;
         float f10;
-        int i10 = this.f14587a;
+        int i10 = this.f14589a;
         int i11 = 0;
         final boolean z4 = false;
         Object obj = this.d;
-        ?? r82 = this.f14589c;
-        Object obj2 = this.f14588b;
+        ?? r82 = this.f14591c;
+        Object obj2 = this.f14590b;
         switch (i10) {
             case 0:
                 t7 t7Var = (t7) obj2;
@@ -102,7 +102,7 @@ public final class p6 implements Runnable {
                 return;
             case 2:
                 o3.l lVar = (o3.l) obj2;
-                r82.e(lVar.f16410a, lVar.f16411b, (Exception) obj);
+                r82.e(lVar.f16412a, lVar.f16413b, (Exception) obj);
                 return;
             case 3:
                 b4.e0 e0Var = (b4.e0) obj2;
@@ -112,42 +112,42 @@ public final class p6 implements Runnable {
                 oh.i3 i3Var = (oh.i3) obj2;
                 ng.q0 q0Var = (ng.q0) r82;
                 View view = (View) obj;
-                oh.f4 f4Var = i3Var.f17206a;
-                f4Var.f17103r3 = true;
+                oh.f4 f4Var = i3Var.f17208a;
+                f4Var.f17105r3 = true;
                 oh.d4 d4Var = f4Var.L1;
-                ImageReceiver imageReceiver = f4Var.f17077i3;
+                ImageReceiver imageReceiver = f4Var.f17079i3;
                 boolean[] zArr = {false};
                 oh.y6 y6Var = f4Var.B0;
                 y6Var.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setListener(new oh.m2(1, y6Var)).setDuration(150L).start();
                 int dp = AndroidUtilities.dp(8.0f);
-                oh.y6 y6Var2 = new oh.y6(f4Var.getContext(), f4Var.f17112u1);
+                oh.y6 y6Var2 = new oh.y6(f4Var.getContext(), f4Var.f17114u1);
                 f4Var.B0 = y6Var2;
                 y6Var2.setPadding(dp, dp, dp, dp);
                 f4Var.A0.addView(f4Var.B0, k7.c6.e(40, 40, 3));
-                org.telegram.ui.Components.l5 l5Var2 = f4Var.f17085l3;
+                org.telegram.ui.Components.l5 l5Var2 = f4Var.f17087l3;
                 if (l5Var2 != null) {
                     l5Var2.o(f4Var);
                     dVar = null;
-                    f4Var.f17085l3 = null;
+                    f4Var.f17087l3 = null;
                 } else {
                     dVar = null;
                 }
-                ng.d dVar2 = f4Var.f17080j3;
+                ng.d dVar2 = f4Var.f17082j3;
                 if (dVar2 != null) {
                     dVar2.d(f4Var);
-                    f4Var.f17080j3 = dVar;
+                    f4Var.f17082j3 = dVar;
                 }
-                f4Var.f17088m3 = false;
-                if (q0Var.f16179g != 0) {
-                    f4Var.f17088m3 = true;
+                f4Var.f17090m3 = false;
+                if (q0Var.f16181g != 0) {
+                    f4Var.f17090m3 = true;
                     j10 = 0;
-                    org.telegram.ui.Components.l5 l5Var3 = new org.telegram.ui.Components.l5(2, f4Var.f17133z2, q0Var.f16179g);
-                    f4Var.f17085l3 = l5Var3;
+                    org.telegram.ui.Components.l5 l5Var3 = new org.telegram.ui.Components.l5(2, f4Var.f17135z2, q0Var.f16181g);
+                    f4Var.f17087l3 = l5Var3;
                     l5Var3.a(f4Var);
                 } else {
                     j10 = 0;
-                    if (q0Var.f16178f != null && (tL_availableReaction = MediaDataController.getInstance(f4Var.f17133z2).getReactionsMap().get(q0Var.f16178f)) != null) {
-                        f4Var.f17083k3.setImage(null, null, ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60", null, null, null, 0L, null, null, 0);
+                    if (q0Var.f16180f != null && (tL_availableReaction = MediaDataController.getInstance(f4Var.f17135z2).getReactionsMap().get(q0Var.f16180f)) != null) {
+                        f4Var.f17085k3.setImage(null, null, ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60", null, null, null, 0L, null, null, 0);
                         imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), ng.m0.a(), null, null, null, 0);
                         if (imageReceiver.getLottieAnimation() != null) {
                             imageReceiver.getLottieAnimation().L(0, false, true);
@@ -156,38 +156,38 @@ public final class p6 implements Runnable {
                 }
                 f4Var.B0.setReaction(q0Var);
                 if (f4Var.A1) {
-                    TL_stories.StoryItem storyItem3 = d4Var.f16961a;
+                    TL_stories.StoryItem storyItem3 = d4Var.f16963a;
                     if (storyItem3.sent_reaction == null) {
                         if (storyItem3.views == null) {
                             storyItem3.views = new TL_stories.TL_storyViews();
                         }
-                        TL_stories.StoryItem storyItem4 = d4Var.f16961a;
+                        TL_stories.StoryItem storyItem4 = d4Var.f16963a;
                         TL_stories.StoryViews storyViews = storyItem4.views;
                         storyViews.reactions_count++;
                         ng.s0.b(null, storyItem4.sent_reaction, storyViews);
                         f4Var.k1(true);
                     }
                 }
-                if (q0Var.f16179g != j10 && (l5Var = f4Var.B0.f17960f) != null) {
+                if (q0Var.f16181g != j10 && (l5Var = f4Var.B0.f17962f) != null) {
                     ng.d a2 = ng.d.a(l5Var, false, true);
-                    f4Var.f17080j3 = a2;
+                    f4Var.f17082j3 = a2;
                     a2.f(f4Var);
                 }
-                f4Var.P1.g0(f4Var.f17128y1, d4Var.f16961a, q0Var);
+                f4Var.P1.g0(f4Var.f17130y1, d4Var.f16963a, q0Var);
                 int[] iArr = new int[2];
                 view.getLocationInWindow(iArr);
                 int[] iArr2 = new int[2];
                 f4Var.getLocationInWindow(iArr2);
-                f4Var.f17110t3 = iArr[0] - iArr2[0];
-                f4Var.f17114u3 = iArr[1] - iArr2[1];
-                f4Var.f17118v3 = view.getMeasuredHeight();
+                f4Var.f17112t3 = iArr[0] - iArr2[0];
+                f4Var.f17116u3 = iArr[1] - iArr2[1];
+                f4Var.f17120v3 = view.getMeasuredHeight();
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                f4Var.f17106s3 = 0.0f;
+                f4Var.f17108s3 = 0.0f;
                 f4Var.invalidate();
                 oh.y6 y6Var3 = f4Var.B0;
                 y6Var3.setAllowDrawReaction(false);
-                ImageReceiver imageReceiver2 = y6Var3.f17959e;
-                if (q0Var.f16179g == j10 && (tL_availableReaction2 = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(q0Var.f16178f)) != null) {
+                ImageReceiver imageReceiver2 = y6Var3.f17961e;
+                if (q0Var.f16181g == j10 && (tL_availableReaction2 = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(q0Var.f16180f)) != null) {
                     imageReceiver2.setImage(ImageLocation.getForDocument(tL_availableReaction2.center_icon), "40_40_nolimit", null, "tgs", tL_availableReaction2, 1);
                     r42 = 0;
                     imageReceiver2.setAutoRepeat(0);
@@ -203,9 +203,9 @@ public final class p6 implements Runnable {
             case 5:
                 oh.y3 y3Var = (oh.y3) obj2;
                 org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) r82;
-                oh.f4 f4Var2 = y3Var.f17950l;
+                oh.f4 f4Var2 = y3Var.f17952l;
                 org.telegram.ui.Components.z4.S(f4Var2.getContext(), null, g6Var, new androidx.car.app.utils.a(y3Var, (TL_stories.StoryItem) obj, g6Var, 9));
-                oh.y3 y3Var2 = f4Var2.f17098q1;
+                oh.y3 y3Var2 = f4Var2.f17100q1;
                 if (y3Var2 != null) {
                     y3Var2.a();
                     return;
@@ -215,9 +215,9 @@ public final class p6 implements Runnable {
                 oh.d6 d6Var = (oh.d6) obj2;
                 TL_stories.StoryItem storyItem5 = (TL_stories.StoryItem) r82;
                 Utilities.Callback callback = (Utilities.Callback) obj;
-                for (int i12 = 0; i12 < d6Var.f17402i.size(); i12++) {
-                    MessageObject messageObject2 = (MessageObject) d6Var.f17402i.get(i12);
-                    if (messageObject2 != null && (storyItem = messageObject2.storyItem) != null && (messageMedia = storyItem.media) != null && (document = storyItem5.media.document) != null && (document2 = messageMedia.document) != null && document2.f20849id == document.f20849id) {
+                for (int i12 = 0; i12 < d6Var.f17404i.size(); i12++) {
+                    MessageObject messageObject2 = (MessageObject) d6Var.f17404i.get(i12);
+                    if (messageObject2 != null && (storyItem = messageObject2.storyItem) != null && (messageMedia = storyItem.media) != null && (document = storyItem5.media.document) != null && (document2 = messageMedia.document) != null && document2.f20851id == document.f20851id) {
                         callback.run(document2);
                         return;
                     }
@@ -228,7 +228,7 @@ public final class p6 implements Runnable {
                 oh.t6 t6Var = (oh.t6) obj2;
                 TLObject tLObject = (TLObject) r82;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                int i13 = t6Var.f17770a;
+                int i13 = t6Var.f17772a;
                 t6Var.R = true;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
                     t6Var.S = null;
@@ -245,7 +245,7 @@ public final class p6 implements Runnable {
             case 8:
                 oh.c6 c6Var = (oh.c6) r82;
                 org.telegram.messenger.h2 h2Var = (org.telegram.messenger.h2) obj;
-                ArrayList arrayList = ((oh.d6) obj2).f17402i;
+                ArrayList arrayList = ((oh.d6) obj2).f17404i;
                 for (int i14 = 0; i14 < arrayList.size(); i14++) {
                     MessageObject messageObject3 = (MessageObject) arrayList.get(i14);
                     if (messageObject3 != null && (storyItem2 = messageObject3.storyItem) != null && (messageMedia2 = storyItem2.media) != null) {
@@ -255,13 +255,13 @@ public final class p6 implements Runnable {
                             TLRPC.Document document4 = messageMedia2.document;
                             if (document4 == null) {
                                 continue;
-                            } else if (document4.f20849id == document3.f20849id) {
+                            } else if (document4.f20851id == document3.f20851id) {
                                 h2Var.run((oh.c6) storyItem2);
                                 return;
                             }
                         }
                         TLRPC.Photo photo2 = messageMedia3.photo;
-                        if (photo2 != null && (photo = messageMedia2.photo) != null && photo.f20867id == photo2.f20867id) {
+                        if (photo2 != null && (photo = messageMedia2.photo) != null && photo.f20869id == photo2.f20869id) {
                             h2Var.run((oh.c6) storyItem2);
                             return;
                         }
@@ -273,14 +273,14 @@ public final class p6 implements Runnable {
                 oh.d6 d6Var2 = (oh.d6) obj2;
                 TLObject tLObject2 = (TLObject) r82;
                 Runnable runnable2 = (Runnable) obj;
-                oh.i6 i6Var = d6Var2.f17410q;
+                oh.i6 i6Var = d6Var2.f17412q;
                 ArrayList arrayList2 = d6Var2.G;
-                ArrayList arrayList3 = d6Var2.f17402i;
+                ArrayList arrayList3 = d6Var2.f17404i;
                 ArrayList arrayList4 = d6Var2.H;
                 d6Var2.F = 0;
                 d6Var2.C = false;
                 d6Var2.D = true;
-                d6Var2.f17411r = true;
+                d6Var2.f17413r = true;
                 ArrayList arrayList5 = new ArrayList();
                 if (tLObject2 instanceof Vector) {
                     ArrayList<T> arrayList6 = ((Vector) tLObject2).objects;
@@ -308,7 +308,7 @@ public final class p6 implements Runnable {
                     Object obj4 = arrayList5.get(i16);
                     i16++;
                     TL_bots.botPreviewMedia botpreviewmedia = (TL_bots.botPreviewMedia) obj4;
-                    MessageObject messageObject4 = new MessageObject(d6Var2.f17398c, new oh.c6(d6Var2, d6Var2.d, botpreviewmedia));
+                    MessageObject messageObject4 = new MessageObject(d6Var2.f17400c, new oh.c6(d6Var2, d6Var2.d, botpreviewmedia));
                     int i17 = 0;
                     while (true) {
                         if (i17 < arrayList7.size()) {
@@ -329,8 +329,8 @@ public final class p6 implements Runnable {
                     } else {
                         id2 = messageObject.getId();
                     }
-                    message.f20864id = id2;
-                    storyItem6.f21080id = id2;
+                    message.f20866id = id2;
+                    storyItem6.f21082id = id2;
                     messageObject4.parentStoriesList = d6Var2;
                     messageObject4.generateThumbs(false);
                     if (arrayList4.isEmpty()) {
@@ -348,27 +348,27 @@ public final class p6 implements Runnable {
                 return;
             case 10:
                 oh.i9 i9Var = ((oh.z8) obj2).d;
-                i9Var.f17277k0.D(i9Var.h, ((oh.l6) r82).d, (ArrayList) obj);
+                i9Var.f17279k0.D(i9Var.h, ((oh.l6) r82).d, (ArrayList) obj);
                 return;
             case 11:
                 oh.r9 r9Var = (oh.r9) obj2;
                 TLObject tLObject3 = (TLObject) r82;
                 TL_stories.TL_stories_getStoriesViews tL_stories_getStoriesViews = (TL_stories.TL_stories_getStoriesViews) obj;
-                oh.t3 t3Var = r9Var.f17707f;
-                int i18 = r9Var.f17704b;
-                oh.r9.f17702g = System.currentTimeMillis();
+                oh.t3 t3Var = r9Var.f17709f;
+                int i18 = r9Var.f17706b;
+                oh.r9.f17704g = System.currentTimeMillis();
                 if (tLObject3 != null) {
                     TL_stories.TL_stories_storyViews tL_stories_storyViews = (TL_stories.TL_stories_storyViews) tLObject3;
                     MessagesController.getInstance(i18).putUsers(tL_stories_storyViews.users, false);
-                    if (!r9Var.d(tL_stories_getStoriesViews.f21088id, tL_stories_storyViews)) {
+                    if (!r9Var.d(tL_stories_getStoriesViews.f21090id, tL_stories_storyViews)) {
                         r9Var.d = 0;
-                        r9Var.f17706e = false;
+                        r9Var.f17708e = false;
                         return;
                     }
                     NotificationCenter.getInstance(i18).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                 }
                 r9Var.d = 0;
-                if (r9Var.f17706e) {
+                if (r9Var.f17708e) {
                     AndroidUtilities.cancelRunOnUIThread(t3Var);
                     AndroidUtilities.runOnUIThread(t3Var, 10000L);
                     return;
@@ -414,7 +414,7 @@ public final class p6 implements Runnable {
                 return;
             case 18:
                 ((org.telegram.ui.ActionBar.p2) r82).presentFragment((xn) obj);
-                ((org.telegram.ui.ActionBar.o3) obj2).f22194c = false;
+                ((org.telegram.ui.ActionBar.o3) obj2).f22196c = false;
                 return;
             case 19:
                 org.telegram.ui.ActionBar.o3 o3Var = (org.telegram.ui.ActionBar.o3) obj2;
@@ -422,7 +422,7 @@ public final class p6 implements Runnable {
                 org.telegram.ui.ActionBar.n3 n3Var = (org.telegram.ui.ActionBar.n3) obj;
                 o3Var.getClass();
                 while (i11 < arrayList8.size()) {
-                    if (((org.telegram.ui.ActionBar.l3) arrayList8.get(i11)).f22065a == n3Var) {
+                    if (((org.telegram.ui.ActionBar.l3) arrayList8.get(i11)).f22067a == n3Var) {
                         arrayList8.remove(i11);
                         i11--;
                     }
@@ -436,7 +436,7 @@ public final class p6 implements Runnable {
                 org.telegram.ui.ActionBar.j6 j6Var2 = (org.telegram.ui.ActionBar.j6) obj;
                 if (tLObject4 instanceof TLRPC.TL_wallPaper) {
                     TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject4;
-                    j6Var.f21509d0 = FileLoader.getAttachFileName(tL_wallPaper.document);
+                    j6Var.f21511d0 = FileLoader.getAttachFileName(tL_wallPaper.document);
                     NotificationCenter.getInstance(j6Var.B).addObserver(j6Var, NotificationCenter.fileLoaded);
                     NotificationCenter.getInstance(j6Var.B).addObserver(j6Var, NotificationCenter.fileLoadFailed);
                     FileLoader.getInstance(j6Var2.B).loadFile(tL_wallPaper.document, tL_wallPaper, 1, 1);
@@ -450,12 +450,12 @@ public final class p6 implements Runnable {
                 return;
             case 22:
                 org.telegram.ui.ActionBar.j6 j6Var3 = (org.telegram.ui.ActionBar.j6) r82;
-                j6Var3.f21512f = !j6Var3.d((File) obj, j6Var3.f21507c);
+                j6Var3.f21514f = !j6Var3.d((File) obj, j6Var3.f21509c);
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.Cells.ja(8, (org.telegram.ui.Cells.la) obj2, j6Var3));
                 return;
             case 23:
                 org.telegram.ui.Components.f0 f0Var = (org.telegram.ui.Components.f0) obj2;
-                org.telegram.ui.Components.z4.M((Context) r82, f0Var.f26696i0, new oh.h4(f0Var, 1), (org.telegram.ui.ActionBar.g6) obj);
+                org.telegram.ui.Components.z4.M((Context) r82, f0Var.f26714i0, new oh.h4(f0Var, 1), (org.telegram.ui.ActionBar.g6) obj);
                 return;
             case 24:
                 org.telegram.ui.Components.c8.o((org.telegram.ui.Components.c8) obj2, (org.telegram.ui.ActionBar.d2) r82, (TLObject) obj);
@@ -463,8 +463,8 @@ public final class p6 implements Runnable {
             case 25:
                 we weVar = (we) obj2;
                 weVar.getClass();
-                ((gv0) r82).getViewTreeObserver().removeOnDrawListener(weVar);
-                ((zo0) obj).f33933a.setHideAvatar(true);
+                ((fv0) r82).getViewTreeObserver().removeOnDrawListener(weVar);
+                ((yo0) obj).f33579a.setHideAvatar(true);
                 return;
             case 26:
                 dg dgVar = (dg) obj2;
@@ -501,7 +501,7 @@ public final class p6 implements Runnable {
             default:
                 final mi miVar = (mi) obj2;
                 final wg wgVar = (wg) obj;
-                if (miVar.f29104w0.getCurrentItemTop() <= ((ei) r82).getButtonsHideOffset()) {
+                if (miVar.f29122w0.getCurrentItemTop() <= ((ei) r82).getButtonsHideOffset()) {
                     z4 = true;
                 }
                 float alpha = miVar.U0.getAlpha();
@@ -519,11 +519,11 @@ public final class p6 implements Runnable {
                     }
                 });
                 o1.k kVar = new o1.k(500.0f);
-                jVar.f16336u = kVar;
+                jVar.f16338u = kVar;
                 kVar.a(1.0f);
-                jVar.f16336u.b(1000.0f);
+                jVar.f16338u.b(1000.0f);
                 jVar.f();
-                miVar.f29084q1 = jVar;
+                miVar.f29102q1 = jVar;
                 return;
         }
     }

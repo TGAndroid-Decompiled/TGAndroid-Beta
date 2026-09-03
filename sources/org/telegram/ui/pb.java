@@ -5,19 +5,19 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.os.SystemClock;
 import android.view.View;
-public abstract class pb extends org.telegram.ui.Components.qv0 {
-    public final sb f40005t0;
+public abstract class pb extends org.telegram.ui.Components.pv0 {
+    public final sb f39966t0;
 
     public pb(sb sbVar, Context context) {
         super(context, null);
-        this.f40005t0 = sbVar;
+        this.f39966t0 = sbVar;
     }
 
     public final void Z(Canvas canvas, RectF rectF) {
         boolean z4;
         long uptimeMillis = SystemClock.uptimeMillis();
-        sb sbVar = this.f40005t0;
-        if (sbVar.B.Z0()) {
+        sb sbVar = this.f39966t0;
+        if (sbVar.B.Y0()) {
             canvas.save();
             canvas.clipRect(rectF);
             drawChild(canvas, sbVar.B, uptimeMillis);

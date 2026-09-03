@@ -1,77 +1,91 @@
 package qh;
 
-import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.pr;
-public final class qa extends View {
-    public final Paint f45920a;
-    public final org.telegram.ui.Components.j6 f45921b;
-    public boolean f45922c;
+import org.telegram.messenger.Utilities;
+public final class qa extends View implements b2 {
+    public Paint f45966a;
+    public Paint f45967b;
+    public org.telegram.ui.Components.j6 f45968c;
+    public boolean d;
+    public org.telegram.ui.Components.z5 f45969e;
 
-    public qa(Activity activity) {
-        super(activity);
-        Paint paint = new Paint(1);
-        this.f45920a = paint;
-        this.f45922c = true;
-        paint.setColor(Integer.MIN_VALUE);
-        org.telegram.ui.Components.j6 j6Var = new org.telegram.ui.Components.j6(false, true, true, false);
-        this.f45921b = j6Var;
-        j6Var.k(0.2f, 200L, pr.h);
-        j6Var.t(AndroidUtilities.dp(13.0f));
-        j6Var.r(-1);
-        j6Var.u(AndroidUtilities.bold());
-        j6Var.setCallback(this);
-        j6Var.f28029b = 1;
-        StringBuilder sb = new StringBuilder(8);
-        sb.append("00:00:00");
-        if (!TextUtils.equals(sb, j6Var.f28033g)) {
-            j6Var.b();
-            j6Var.q(sb, false, true);
+    public final void a(long j10, boolean z4) {
+        long j11 = j10 % 60;
+        long j12 = (j10 - j11) / 60;
+        StringBuilder sb = new StringBuilder(5);
+        if (j12 < 10) {
+            sb.append('0');
         }
+        sb.append(j12);
+        sb.append(':');
+        if (j11 < 10) {
+            sb.append('0');
+        }
+        sb.append(j11);
+        this.f45968c.q(sb, z4, true);
     }
 
-    public final void a(boolean z4) {
-        if (!this.f45922c && z4) {
-            return;
+    public final void b(boolean z4, boolean z10) {
+        float f10;
+        this.d = z4;
+        if (!z10) {
+            org.telegram.ui.Components.z5 z5Var = this.f45969e;
+            if (z4) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.0f;
+            }
+            z5Var.d(f10, true);
         }
-        this.f45922c = false;
-        animate().cancel();
-        if (z4) {
-            org.telegram.ui.b.p(animate().translationY(AndroidUtilities.dp(6.0f)).alpha(0.0f).scaleX(0.8f).scaleY(0.8f), pr.h, 220L);
-            return;
-        }
-        setTranslationY(AndroidUtilities.dp(6.0f));
-        setScaleX(0.8f);
-        setScaleY(0.8f);
-        setAlpha(0.0f);
+        invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
+        float f10;
+        Paint paint = this.f45967b;
+        org.telegram.ui.Components.j6 j6Var = this.f45968c;
         super.onDraw(canvas);
-        org.telegram.ui.Components.j6 j6Var = this.f45921b;
-        float d = j6Var.d();
+        org.telegram.ui.Components.z5 z5Var = this.f45969e;
+        if (this.d) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        float d = z5Var.d(f10, false);
+        float dp = AndroidUtilities.dp(12.66f) * d;
+        float d10 = j6Var.d() + dp;
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(((getWidth() - d) / 2.0f) - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f), ((getWidth() + d) / 2.0f) + AndroidUtilities.dp(6.0f), AndroidUtilities.dp(23.0f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.f45920a);
-        j6Var.setBounds((int) rectF.left, ((int) rectF.top) - AndroidUtilities.dp(1.0f), (int) rectF.right, (int) rectF.bottom);
+        rectF.set(((getWidth() - d10) / 2.0f) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(18.0f), ((getWidth() + d10) / 2.0f) + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(40.0f));
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f45966a);
+        if (d > 0.0f) {
+            paint.setAlpha((int) (Utilities.clamp((((float) Math.sin((((float) (System.currentTimeMillis() % 2000)) / 1000.0f) * 3.141592653589793d)) / 4.0f) + 0.75f, 1.0f, 0.0f) * 255.0f));
+            invalidate();
+            canvas.drawCircle(rectF.left + AndroidUtilities.dp(10.66f), rectF.centerY(), AndroidUtilities.dp(4.0f) * d, paint);
+        }
+        j6Var.setBounds((int) (rectF.left + dp), ((int) rectF.top) - AndroidUtilities.dp(1.0f), (int) rectF.right, (int) rectF.bottom);
         j6Var.draw(canvas);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(25.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(45.0f), 1073741824));
+    }
+
+    @Override
+    public void setInvert(float f10) {
+        this.f45966a.setColor(i0.a.d(f10, 1056964608, 268435456));
+        this.f45968c.r(i0.a.d(f10, -1, -16777216));
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f45921b != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f45968c != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

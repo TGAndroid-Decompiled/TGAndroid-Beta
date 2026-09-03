@@ -6,11 +6,11 @@ import ld.b0;
 import ld.f1;
 import qd.s;
 public final class j extends k implements p {
-    public final g f44368b;
+    public final g f44399b;
 
     public j(g gVar) {
         super(2);
-        this.f44368b = gVar;
+        this.f44399b = gVar;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class j extends k implements p {
         int intValue = ((Number) obj).intValue();
         uc.f fVar = (uc.f) obj2;
         uc.g key = fVar.getKey();
-        uc.f fVar2 = this.f44368b.f44363b.get(key);
+        uc.f fVar2 = this.f44399b.f44394b.get(key);
         if (key != b0.f12283b) {
             if (fVar != fVar2) {
                 i10 = Integer.MIN_VALUE;

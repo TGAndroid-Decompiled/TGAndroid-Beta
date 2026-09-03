@@ -7,7 +7,7 @@ import dg.l0;
 import f2.y;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.sl0;
 public final class d implements Runnable {
     public final int f7075a;
     public final float f7076b;
@@ -77,10 +77,10 @@ public final class d implements Runnable {
                 iVar.Q.start();
                 return;
             default:
-                tl0 tl0Var = (tl0) ((y) obj).f5956b;
-                if (tl0Var.f31361b1 != null && (view = tl0Var.K1) != null) {
-                    tl0Var.h1(view, f11, f10, true);
-                    tl0Var.f31361b1 = null;
+                sl0 sl0Var = (sl0) ((y) obj).f5956b;
+                if (sl0Var.f31084b1 != null && (view = sl0Var.K1) != null) {
+                    sl0Var.g1(view, f11, f10, true);
+                    sl0Var.f31084b1 = null;
                     return;
                 }
                 return;

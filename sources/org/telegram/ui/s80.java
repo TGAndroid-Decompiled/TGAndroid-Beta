@@ -9,21 +9,21 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class s80 implements Runnable {
-    public final int f41155a = 0;
-    public final LaunchActivity f41156b;
-    public final TLRPC.TL_error f41157c;
+    public final int f41048a = 0;
+    public final LaunchActivity f41049b;
+    public final TLRPC.TL_error f41050c;
     public final TLObject d;
-    public final int f41158e;
-    public final String f41159f;
-    public final v10 h;
+    public final int f41051e;
+    public final String f41052f;
+    public final z10 h;
 
-    public s80(LaunchActivity launchActivity, TLObject tLObject, int i10, String str, TLRPC.TL_error tL_error, v10 v10Var) {
-        this.f41156b = launchActivity;
+    public s80(LaunchActivity launchActivity, TLObject tLObject, int i10, String str, TLRPC.TL_error tL_error, z10 z10Var) {
+        this.f41049b = launchActivity;
         this.d = tLObject;
-        this.f41158e = i10;
-        this.f41159f = str;
-        this.f41157c = tL_error;
-        this.h = v10Var;
+        this.f41051e = i10;
+        this.f41052f = str;
+        this.f41050c = tL_error;
+        this.h = z10Var;
     }
 
     @Override
@@ -32,21 +32,21 @@ public final class s80 implements Runnable {
         org.telegram.ui.Components.qc a02;
         int i10;
         int i11;
-        int i12 = this.f41155a;
-        v10 v10Var = this.h;
-        String str2 = this.f41159f;
+        int i12 = this.f41048a;
+        z10 z10Var = this.h;
+        String str2 = this.f41052f;
         TLObject tLObject = this.d;
-        TLRPC.TL_error tL_error = this.f41157c;
+        TLRPC.TL_error tL_error = this.f41050c;
         switch (i12) {
             case 0:
                 Pattern pattern = LaunchActivity.f34134y1;
                 boolean z4 = tLObject instanceof TLRPC.User;
-                LaunchActivity launchActivity = this.f41156b;
+                LaunchActivity launchActivity = this.f41049b;
                 if (z4) {
                     TLRPC.User user = (TLRPC.User) tLObject;
-                    MessagesController.getInstance(this.f41158e).putUser(user, false);
+                    MessagesController.getInstance(this.f41051e).putUser(user, false);
                     Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", user.f20990id);
+                    bundle.putLong("user_id", user.f20992id);
                     launchActivity.p0(new xn(bundle));
                 } else {
                     StringBuilder t6 = android.support.v4.media.a.t("cant import contact token. token=", str2, " err=");
@@ -60,7 +60,7 @@ public final class s80 implements Runnable {
                     org.telegram.messenger.y3.s(R.string.NoUsernameFound, org.telegram.ui.Components.qc.a0((org.telegram.ui.ActionBar.p2) l.d.i(1, launchActivity.f34136a0)), null);
                 }
                 try {
-                    v10Var.run();
+                    z10Var.run();
                     return;
                 } catch (Exception e6) {
                     FileLog.e(e6);
@@ -86,13 +86,13 @@ public final class s80 implements Runnable {
                     }
                 } else if (tLObject instanceof TL_stars.TL_payments_uniqueStarGift) {
                     TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
-                    LaunchActivity launchActivity2 = this.f41156b;
+                    LaunchActivity launchActivity2 = this.f41049b;
                     MessagesController.getInstance(launchActivity2.L).putUsers(tL_payments_uniqueStarGift.users, false);
                     MessagesController.getInstance(launchActivity2.L).putChats(tL_payments_uniqueStarGift.chats, false);
                     org.telegram.ui.ActionBar.p2 U2 = LaunchActivity.U();
                     TL_stars.StarGift starGift = tL_payments_uniqueStarGift.gift;
                     if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                        mh.g5 g5Var = new mh.g5(launchActivity2, this.f41158e, 0L, null, null);
+                        mh.g5 g5Var = new mh.g5(launchActivity2, this.f41051e, 0L, null, null);
                         g5Var.h2(str2, (TL_stars.TL_starGiftUnique) starGift, null);
                         if (U2 != null) {
                             if (U2.getLastStoryViewer() != null && U2.getLastStoryViewer().H0) {
@@ -106,7 +106,7 @@ public final class s80 implements Runnable {
                     }
                 }
                 try {
-                    v10Var.run();
+                    z10Var.run();
                     return;
                 } catch (Exception e10) {
                     FileLog.e(e10);
@@ -115,12 +115,12 @@ public final class s80 implements Runnable {
         }
     }
 
-    public s80(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i10, String str, v10 v10Var) {
-        this.f41156b = launchActivity;
-        this.f41157c = tL_error;
+    public s80(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i10, String str, z10 z10Var) {
+        this.f41049b = launchActivity;
+        this.f41050c = tL_error;
         this.d = tLObject;
-        this.f41158e = i10;
-        this.f41159f = str;
-        this.h = v10Var;
+        this.f41051e = i10;
+        this.f41052f = str;
+        this.h = z10Var;
     }
 }

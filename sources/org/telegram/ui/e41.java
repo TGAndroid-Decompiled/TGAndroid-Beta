@@ -1,23 +1,47 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.WindowInsets;
-public final class e41 implements View.OnApplyWindowInsetsListener {
-    public final int f36394a;
-    public final Object f36395b;
+import j$.util.Objects;
+import org.telegram.messenger.SaveToGallerySettingsHelper;
+public final class e41 extends cg.b {
+    public final SaveToGallerySettingsHelper.DialogException f36359c;
+    public final String d;
 
-    public e41(Object obj, int i10) {
-        this.f36394a = i10;
-        this.f36395b = obj;
+    public e41(int i10) {
+        super(i10, false);
+        this.f36359c = null;
     }
 
-    @Override
-    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-        switch (this.f36394a) {
-            case 0:
-                return SecretMediaViewer.a((SecretMediaViewer) this.f36395b, windowInsets);
-            default:
-                return n61.b((g51) this.f36395b, view, windowInsets);
+    public final boolean equals(Object obj) {
+        SaveToGallerySettingsHelper.DialogException dialogException;
+        if (this == obj) {
+            return true;
         }
+        if (obj == null || e41.class != obj.getClass()) {
+            return false;
+        }
+        e41 e41Var = (e41) obj;
+        if (this.f2505a != e41Var.f2505a) {
+            return false;
+        }
+        String str = this.d;
+        if (str != null) {
+            return Objects.equals(str, e41Var.d);
+        }
+        SaveToGallerySettingsHelper.DialogException dialogException2 = this.f36359c;
+        if (dialogException2 == null || (dialogException = e41Var.f36359c) == null || dialogException2.dialogId == dialogException.dialogId) {
+            return true;
+        }
+        return false;
+    }
+
+    public e41(SaveToGallerySettingsHelper.DialogException dialogException) {
+        super(2, false);
+        this.f36359c = dialogException;
+    }
+
+    public e41(int i10, String str) {
+        super(i10, false);
+        this.d = str;
+        this.f36359c = null;
     }
 }

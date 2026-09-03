@@ -1,65 +1,58 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-public final class m41 implements Runnable {
-    public final int f38963a;
-    public final r41 f38964b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+import java.lang.reflect.Method;
+import org.telegram.messenger.FileLog;
+public final class m41 extends AnimatorListenerAdapter {
+    public final int f38850a;
+    public final org.telegram.ui.Components.mm0 f38851b;
 
-    public m41(r41 r41Var, int i10) {
-        this.f38963a = i10;
-        this.f38964b = r41Var;
+    public m41(org.telegram.ui.Components.mm0 mm0Var, int i10) {
+        this.f38850a = i10;
+        this.f38851b = mm0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38963a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f38850a) {
             case 0:
-                r41 r41Var = this.f38964b;
-                m41 m41Var = r41Var.W;
-                org.telegram.ui.Components.k71 k71Var = r41Var.f40775w;
-                if (k71Var != null) {
-                    r41Var.X = ((float) k71Var.n()) / ((float) r41Var.f40775w.p());
-                    p41 p41Var = r41Var.K;
-                    if (p41Var != null) {
-                        p41Var.Ud = (r41Var.f40775w.p() - r41Var.f40775w.n()) / 1000;
-                        r41Var.K.q4();
-                        org.telegram.ui.Components.no0 seekBarWaveform = r41Var.K.getSeekBarWaveform();
-                        if (seekBarWaveform != null) {
-                            float f10 = r41Var.X;
-                            seekBarWaveform.J = true;
-                            seekBarWaveform.K = f10;
-                            org.telegram.ui.Cells.t1 t1Var = seekBarWaveform.f29594n;
-                            if (t1Var != null) {
-                                t1Var.invalidate();
-                            }
-                        }
-                    }
-                    if (r41Var.f40775w.y()) {
-                        AndroidUtilities.cancelRunOnUIThread(m41Var);
-                        AndroidUtilities.runOnUIThread(m41Var, 16L);
-                        return;
-                    }
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f38851b.f29180b;
+                secretMediaViewer.W.getNextView().setText((CharSequence) null);
+                nt0 nt0Var = secretMediaViewer.X;
+                nt0Var.f35260i0 = false;
+                if (nt0Var.f35261j0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) nt0Var.f35263l0.getLayoutParams()).topMargin = nt0Var.f35261j0;
+                    nt0Var.f35261j0 = -1;
+                    nt0Var.requestLayout();
                     return;
                 }
                 return;
-            case 1:
-                super/*android.app.Dialog*/.dismiss();
-                return;
-            case 2:
-                super/*android.app.Dialog*/.dismiss();
-                return;
             default:
-                r41 r41Var2 = this.f38964b;
-                if (r41Var2.d == null) {
-                    AndroidUtilities.runOnUIThread(new m41(r41Var2, 2));
-                    org.telegram.ui.Cells.t1 t1Var2 = r41Var2.L;
-                    if (t1Var2 != null) {
-                        t1Var2.setVisibility(0);
-                        r41Var2.L.invalidate();
+                ((SecretMediaViewer) this.f38851b.f29180b).W.setTranslationY(0.0f);
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f38850a) {
+            case 0:
+                nt0 nt0Var = ((SecretMediaViewer) this.f38851b.f29180b).X;
+                Method method = nt0Var.f35254c0;
+                if (method != null) {
+                    try {
+                        method.invoke(nt0Var, null);
+                        return;
+                    } catch (Exception e6) {
+                        FileLog.e(e6);
+                        return;
                     }
                 }
-                MediaController.getInstance().tryResumePausedAudio();
+                return;
+            default:
+                super.onAnimationStart(animator);
                 return;
         }
     }

@@ -8,20 +8,20 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.sa;
 import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.tl0;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.y20;
-import qh.d4;
+import qh.c4;
 public final class e1 extends sa {
     public final int U;
     public final String V;
-    public x51 W;
+    public w51 W;
     public final b1 X;
     public boolean Y;
     public boolean Z;
-    public final eh.w f47401a0;
+    public final eh.w f47437a0;
 
     public e1(android.content.Context r27, int r28, long r29, org.telegram.tgnet.TLRPC.TL_messages_preparedInlineMessage r31, java.io.File r32, org.telegram.tgnet.TLRPC.WebPage r33, org.telegram.ui.ActionBar.g6 r34, org.telegram.ui.web.u r35, eh.w r36) {
         throw new UnsupportedOperationException("Method not decompiled: sh.e1.<init>(android.content.Context, int, long, org.telegram.tgnet.TLRPC$TL_messages_preparedInlineMessage, java.io.File, org.telegram.tgnet.TLRPC$WebPage, org.telegram.ui.ActionBar.g6, org.telegram.ui.web.u, eh.w):void");
@@ -36,7 +36,7 @@ public final class e1 extends sa {
         d2Var.q(500L);
         TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
         tL_messages_getPreparedInlineMessage.bot = MessagesController.getInstance(i10).getInputUser(j10);
-        tL_messages_getPreparedInlineMessage.f20941id = str;
+        tL_messages_getPreparedInlineMessage.f20943id = str;
         ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getPreparedInlineMessage, new y20(i10, d2Var, context, j10, g6Var, uVar, wVar));
     }
 
@@ -45,7 +45,7 @@ public final class e1 extends sa {
         super.dismiss();
         if (!this.Y && !this.Z) {
             this.Z = true;
-            eh.w wVar = this.f47401a0;
+            eh.w wVar = this.f47437a0;
             if (wVar != null) {
                 wVar.run("USER_DECLINED", null);
             }
@@ -56,20 +56,20 @@ public final class e1 extends sa {
     public final void onCreate(Bundle bundle) {
         int h;
         super.onCreate(bundle);
-        tl0 tl0Var = this.d;
-        if (tl0Var.getAdapter() == null) {
+        sl0 sl0Var = this.d;
+        if (sl0Var.getAdapter() == null) {
             h = 0;
         } else {
-            h = tl0Var.getAdapter().h();
+            h = sl0Var.getAdapter().h();
         }
-        tl0Var.u0(Math.max(h - 1, 0));
+        sl0Var.u0(Math.max(h - 1, 0));
     }
 
     @Override
-    public final sl0 v(tl0 tl0Var) {
-        x51 x51Var = new x51(tl0Var, getContext(), this.U, 0, true, new d4(this, 10), this.resourcesProvider);
-        this.W = x51Var;
-        return x51Var;
+    public final rl0 v(sl0 sl0Var) {
+        w51 w51Var = new w51(sl0Var, getContext(), this.U, 0, true, new c4(this, 10), this.resourcesProvider);
+        this.W = w51Var;
+        return w51Var;
     }
 
     @Override

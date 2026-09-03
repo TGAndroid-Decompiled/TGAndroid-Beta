@@ -33,12 +33,12 @@ public final class ka extends f2.b0 {
         if (m1Var.f5879f == m1Var2.f5879f) {
             View view = m1Var2.f5875a;
             if (!(view instanceof ma) || ((ma) view).D) {
-                ga gaVar = this.d.f39993c;
+                ga gaVar = this.d.f39953c;
                 int b10 = m1Var.b();
                 int b11 = m1Var2.b();
                 int i10 = b10 - 4;
                 int i11 = b11 - 4;
-                pa paVar = gaVar.f37140c;
+                pa paVar = gaVar.f37045c;
                 ArrayList arrayList = paVar.v;
                 if (i10 < arrayList.size() && i11 < arrayList.size()) {
                     if (b10 != b11) {
@@ -67,7 +67,7 @@ public final class ka extends f2.b0 {
         if (i10 == 0) {
             pa.Y(paVar);
         } else {
-            paVar.f39992b.I0(false);
+            paVar.f39952b.I0(false);
             m1Var.f5875a.setPressed(true);
         }
         if (m1Var != null) {

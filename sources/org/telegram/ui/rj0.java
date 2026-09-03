@@ -23,7 +23,7 @@ public final class rj0 extends AnimatedPhoneNumberEditText {
             case 0:
                 super.onFocusChanged(z4, i10, rect);
                 uj0 uj0Var = (uj0) this.E;
-                org.telegram.ui.Components.cd0 cd0Var = uj0Var.f41959s;
+                org.telegram.ui.Components.cd0 cd0Var = uj0Var.f41859s;
                 if (!z4 && !uj0Var.N.isFocused()) {
                     f10 = 0.0f;
                 } else {
@@ -34,7 +34,7 @@ public final class rj0 extends AnimatedPhoneNumberEditText {
             case 1:
                 super.onFocusChanged(z4, i10, rect);
                 uj0 uj0Var2 = (uj0) this.E;
-                org.telegram.ui.Components.cd0 cd0Var2 = uj0Var2.f41959s;
+                org.telegram.ui.Components.cd0 cd0Var2 = uj0Var2.f41859s;
                 if (!z4 && !uj0Var2.L.isFocused()) {
                     f11 = 0.0f;
                 } else {
@@ -45,15 +45,15 @@ public final class rj0 extends AnimatedPhoneNumberEditText {
             default:
                 super.onFocusChanged(z4, i10, rect);
                 ng0 ng0Var = (ng0) this.E;
-                org.telegram.ui.Components.cd0 cd0Var3 = ng0Var.f39431f;
-                if (!z4 && !ng0Var.f39428b.isFocused()) {
+                org.telegram.ui.Components.cd0 cd0Var3 = ng0Var.f39347f;
+                if (!z4 && !ng0Var.f39344b.isFocused()) {
                     f12 = 0.0f;
                 } else {
                     f12 = 1.0f;
                 }
                 cd0Var3.b(f12, f12, true);
                 if (z4) {
-                    ng0Var.S.f39754c.setEditText(this);
+                    ng0Var.S.f39714c.setEditText(this);
                     return;
                 }
                 return;

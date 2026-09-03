@@ -2,14 +2,14 @@ package lh;
 
 import android.content.Context;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.i61;
-import org.telegram.ui.Components.pr0;
-public final class h3 extends i61 {
-    public final pr0 c3;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.or0;
+public final class h3 extends h61 {
+    public final or0 c3;
 
-    public h3(Context context, int i10, eg.p1 p1Var, f3 f3Var, f3 f3Var2, g6 g6Var, pr0 pr0Var) {
+    public h3(Context context, int i10, eg.p1 p1Var, f3 f3Var, f3 f3Var2, g6 g6Var, or0 or0Var) {
         super(context, i10, 0, false, p1Var, f3Var, f3Var2, g6Var, 3, 1);
-        this.c3 = pr0Var;
+        this.c3 = or0Var;
     }
 
     @Override

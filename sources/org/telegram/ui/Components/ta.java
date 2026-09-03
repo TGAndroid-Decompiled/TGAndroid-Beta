@@ -6,12 +6,12 @@ import android.text.Layout;
 import android.text.Spanned;
 import android.text.style.LeadingMarginSpan;
 public final class ta implements LeadingMarginSpan {
-    public final int f31296a;
-    public final int f31297b;
+    public final int f31311a;
+    public final int f31312b;
 
     public ta(int i10, int i11) {
-        this.f31296a = i10;
-        this.f31297b = i11;
+        this.f31311a = i10;
+        this.f31312b = i11;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class ta implements LeadingMarginSpan {
                 }
                 i14 -= i17;
             }
-            int i18 = this.f31297b;
+            int i18 = this.f31312b;
             canvas.drawCircle((i11 * i18) + i10, (i12 + i14) / 2.0f, i18, paint);
             paint.setColor(color);
             paint.setStyle(style);
@@ -39,6 +39,6 @@ public final class ta implements LeadingMarginSpan {
 
     @Override
     public final int getLeadingMargin(boolean z4) {
-        return (this.f31297b * 2) + this.f31296a;
+        return (this.f31312b * 2) + this.f31311a;
     }
 }

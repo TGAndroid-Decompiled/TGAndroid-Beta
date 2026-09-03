@@ -9,11 +9,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.RadioButton;
 public final class t2 extends FrameLayout {
-    public int f24140a;
-    public TextView f24141b;
-    public TextView f24142c;
+    public int f24142a;
+    public TextView f24143b;
+    public TextView f24144c;
     public RadioButton d;
-    public boolean f24143e;
+    public boolean f24145e;
 
     public final void a(boolean z4, boolean z10) {
         float f10;
@@ -21,8 +21,8 @@ public final class t2 extends FrameLayout {
         float f12;
         float f13;
         RadioButton radioButton = this.d;
-        TextView textView = this.f24142c;
-        TextView textView2 = this.f24141b;
+        TextView textView = this.f24144c;
+        TextView textView2 = this.f24143b;
         setEnabled(z4);
         float f14 = 0.5f;
         if (z10) {
@@ -74,8 +74,8 @@ public final class t2 extends FrameLayout {
         int i11;
         float f12;
         float f13;
-        TextView textView = this.f24141b;
-        TextView textView2 = this.f24142c;
+        TextView textView = this.f24143b;
+        TextView textView2 = this.f24144c;
         int i12 = 3;
         if (textView2.getVisibility() == 0) {
             boolean z4 = LocaleController.isRTL;
@@ -135,7 +135,7 @@ public final class t2 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         float f10;
-        if (this.f24143e) {
+        if (this.f24145e) {
             float f11 = 23.0f;
             if (LocaleController.isRTL) {
                 f10 = 0.0f;
@@ -148,16 +148,16 @@ public final class t2 extends FrameLayout {
             if (!LocaleController.isRTL) {
                 f11 = 0.0f;
             }
-            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f11), getHeight() - 1, org.telegram.ui.ActionBar.k6.f21779k0);
+            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f11), getHeight() - 1, org.telegram.ui.ActionBar.k6.f21781k0);
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12;
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(50.0f) + (this.f24143e ? 1 : 0));
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(50.0f) + (this.f24145e ? 1 : 0));
         int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
-        TextView textView = this.f24142c;
+        TextView textView = this.f24144c;
         if (textView.getVisibility() == 0) {
             i12 = 12;
         } else {
@@ -169,10 +169,10 @@ public final class t2 extends FrameLayout {
             textView.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
             dp = org.telegram.ui.b.t(12.0f, textView.getMeasuredWidth(), dp);
         }
-        this.f24141b.measure(View.MeasureSpec.makeMeasureSpec(dp, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+        this.f24143b.measure(View.MeasureSpec.makeMeasureSpec(dp, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
     }
 
     public void setTextColor(int i10) {
-        this.f24141b.setTextColor(i10);
+        this.f24143b.setTextColor(i10);
     }
 }

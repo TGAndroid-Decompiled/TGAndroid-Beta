@@ -7,25 +7,25 @@ import org.telegram.messenger.FileLog;
 import org.telegram.ui.LanguageSelectActivity;
 import org.telegram.ui.LaunchActivity;
 public final class g1 implements org.telegram.ui.ActionBar.c2 {
-    public final int f27068a;
-    public final LaunchActivity f27069b;
+    public final int f27059a;
+    public final LaunchActivity f27060b;
 
     public g1(LaunchActivity launchActivity, int i10) {
-        this.f27068a = i10;
-        this.f27069b = launchActivity;
+        this.f27059a = i10;
+        this.f27060b = launchActivity;
     }
 
     @Override
     public final void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f27068a) {
+        switch (this.f27059a) {
             case 0:
-                this.f27069b.p0(new LanguageSelectActivity());
+                this.f27060b.p0(new LanguageSelectActivity());
                 return;
             case 1:
-                this.f27069b.p0(new org.telegram.ui.b7());
+                this.f27060b.p0(new org.telegram.ui.b7());
                 return;
             default:
-                LaunchActivity launchActivity = this.f27069b;
+                LaunchActivity launchActivity = this.f27060b;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                     intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));

@@ -23,33 +23,33 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.c9;
 import org.telegram.ui.yh;
 public final class x0 extends FrameLayout {
-    public final g6 f48734a;
-    public final c9 f48735b;
-    public final TextView[] f48736c;
+    public final g6 f48770a;
+    public final c9 f48771b;
+    public final TextView[] f48772c;
     public final TextView[] d;
-    public float f48737e;
-    public ValueAnimator f48738f;
+    public float f48773e;
+    public ValueAnimator f48774f;
 
     public x0(Context context, g6 g6Var) {
         super(context);
         int i10;
-        this.f48736c = new TextView[2];
+        this.f48772c = new TextView[2];
         this.d = new TextView[2];
-        this.f48734a = g6Var;
+        this.f48770a = g6Var;
         setWillNotDraw(false);
         c9 c9Var = new c9(this, false);
-        this.f48735b = c9Var;
-        c9Var.f25873l = true;
-        c9Var.f25877p = AndroidUtilities.dp(75.0f);
-        c9Var.f25876o = AndroidUtilities.dp(48.0f);
-        c9Var.f25884x = true;
-        c9Var.f25880s = AndroidUtilities.dp(22.0f);
+        this.f48771b = c9Var;
+        c9Var.f25849l = true;
+        c9Var.f25853p = AndroidUtilities.dp(75.0f);
+        c9Var.f25852o = AndroidUtilities.dp(48.0f);
+        c9Var.f25860x = true;
+        c9Var.f25856s = AndroidUtilities.dp(22.0f);
         for (int i11 = 0; i11 < 2; i11++) {
-            this.f48736c[i11] = new TextView(context);
-            this.f48736c[i11].setTextColor(k6.v0(k6.G6, g6Var));
-            this.f48736c[i11].setTypeface(AndroidUtilities.bold());
-            this.f48736c[i11].setTextSize(1, 14.0f);
-            TextView textView = this.f48736c[i11];
+            this.f48772c[i11] = new TextView(context);
+            this.f48772c[i11].setTextColor(k6.v0(k6.G6, g6Var));
+            this.f48772c[i11].setTypeface(AndroidUtilities.bold());
+            this.f48772c[i11].setTextSize(1, 14.0f);
+            TextView textView = this.f48772c[i11];
             int i12 = 8;
             if (i11 == 0) {
                 i10 = 0;
@@ -57,9 +57,9 @@ public final class x0 extends FrameLayout {
                 i10 = 8;
             }
             textView.setVisibility(i10);
-            addView(this.f48736c[i11], c6.d(-1, -2.0f, 48, 76.0f, 7.0f, 40.0f, 0.0f));
+            addView(this.f48772c[i11], c6.d(-1, -2.0f, 48, 76.0f, 7.0f, 40.0f, 0.0f));
             this.d[i11] = new TextView(context);
-            this.d[i11].setTextColor(k6.v0(k6.f22053z6, g6Var));
+            this.d[i11].setTextColor(k6.v0(k6.f22055z6, g6Var));
             this.d[i11].setTextSize(1, 12.0f);
             TextView textView2 = this.d[i11];
             if (i11 == 0) {
@@ -80,28 +80,28 @@ public final class x0 extends FrameLayout {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            ArrayList arrayList = f6Var.f17402i;
+            ArrayList arrayList = f6Var.f17404i;
             str = f6Var.D;
             int size = arrayList.size();
-            c9Var = this.f48735b;
+            c9Var = this.f48771b;
             if (i10 >= size || i11 >= 3) {
                 break;
             }
-            MessageObject messageObject = (MessageObject) f6Var.f17402i.get(i10);
+            MessageObject messageObject = (MessageObject) f6Var.f17404i.get(i10);
             long j10 = messageObject.storyItem.dialogId;
             TextUtils.isEmpty(str);
-            c9Var.l(i11, messageObject.storyItem, f6Var.f17398c);
+            c9Var.l(i11, messageObject.storyItem, f6Var.f17400c);
             i11++;
             i10++;
         }
         c9Var.k(i11);
         c9Var.b(false, true);
         boolean isEmpty = TextUtils.isEmpty(str);
-        TextView[] textViewArr = this.f48736c;
+        TextView[] textViewArr = this.f48772c;
         if (!isEmpty) {
             TextView textView = textViewArr[0];
             int i12 = f6Var.J;
-            textView.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatPluralStringSpaced("HashtagStoriesFoundChannel", i12, "@" + str), k6.v0(k6.Oh, this.f48734a), null));
+            textView.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatPluralStringSpaced("HashtagStoriesFoundChannel", i12, "@" + str), k6.v0(k6.Oh, this.f48770a), null));
         } else {
             textViewArr[0].setText(LocaleController.formatPluralStringSpaced("HashtagStoriesFound", f6Var.J));
         }
@@ -114,9 +114,9 @@ public final class x0 extends FrameLayout {
 
     public final void b(int i10, String str, String str2) {
         boolean isEmpty = TextUtils.isEmpty(str2);
-        TextView[] textViewArr = this.f48736c;
+        TextView[] textViewArr = this.f48772c;
         if (!isEmpty) {
-            textViewArr[1].setText(AndroidUtilities.replaceSingleLink(LocaleController.formatPluralStringSpaced("HashtagMessagesFoundChannel", i10, yh.k("@", str2)), k6.v0(k6.Oh, this.f48734a), null));
+            textViewArr[1].setText(AndroidUtilities.replaceSingleLink(LocaleController.formatPluralStringSpaced("HashtagMessagesFoundChannel", i10, yh.k("@", str2)), k6.v0(k6.Oh, this.f48770a), null));
         } else {
             textViewArr[1].setText(LocaleController.formatPluralStringSpaced("HashtagMessagesFound", i10));
         }
@@ -125,18 +125,18 @@ public final class x0 extends FrameLayout {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f48737e > 0.0f) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - this.f48737e) * 255.0f), 31);
+        if (this.f48773e > 0.0f) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - this.f48773e) * 255.0f), 31);
         } else {
             canvas.save();
         }
-        canvas.translate(AndroidUtilities.lerp(0, -AndroidUtilities.dp(62.0f), this.f48737e), 0.0f);
-        this.f48735b.i(canvas);
+        canvas.translate(AndroidUtilities.lerp(0, -AndroidUtilities.dp(62.0f), this.f48773e), 0.0f);
+        this.f48771b.i(canvas);
         canvas.restore();
         super.onDraw(canvas);
-        Paint T0 = k6.T0("paintDivider", this.f48734a);
+        Paint T0 = k6.T0("paintDivider", this.f48770a);
         if (T0 == null) {
-            T0 = k6.f21779k0;
+            T0 = k6.f21781k0;
         }
         canvas.drawRect(0.0f, getHeight() - 1, getWidth(), getHeight(), T0);
     }

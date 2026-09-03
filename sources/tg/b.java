@@ -7,46 +7,46 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
 public final class b implements a {
-    public final Paint f48080a;
-    public final Matrix f48081b;
-    public BitmapShader f48082c;
+    public final Paint f48116a;
+    public final Matrix f48117b;
+    public BitmapShader f48118c;
     public Bitmap d;
-    public final Matrix f48083e;
-    public Bitmap f48084f;
+    public final Matrix f48119e;
+    public Bitmap f48120f;
     public int h;
-    public int f48085n;
+    public int f48121n;
 
     public b() {
         Paint paint = new Paint(3);
-        this.f48080a = paint;
-        this.f48081b = new Matrix();
-        this.f48083e = new Matrix();
+        this.f48116a = paint;
+        this.f48117b = new Matrix();
+        this.f48119e = new Matrix();
         paint.setFilterBitmap(true);
     }
 
     @Override
     public final void I(Canvas canvas, float f10, float f11, float f12, float f13) {
         Bitmap bitmap = this.d;
-        if (bitmap != null && !bitmap.isRecycled() && this.f48082c != null) {
-            Matrix matrix = this.f48083e;
-            Matrix matrix2 = this.f48081b;
+        if (bitmap != null && !bitmap.isRecycled() && this.f48118c != null) {
+            Matrix matrix = this.f48119e;
+            Matrix matrix2 = this.f48117b;
             matrix.set(matrix2);
             matrix.postTranslate(f10, f11);
-            this.f48082c.setLocalMatrix(matrix2);
-            canvas.drawRect(f10, f11, f12, f13, this.f48080a);
+            this.f48118c.setLocalMatrix(matrix2);
+            canvas.drawRect(f10, f11, f12, f13, this.f48116a);
         }
     }
 
     public final void a(Bitmap bitmap) {
         if (this.d != bitmap) {
             this.d = bitmap;
-            Paint paint = this.f48080a;
+            Paint paint = this.f48116a;
             paint.setShader(null);
-            this.f48082c = null;
+            this.f48118c = null;
             if (bitmap != null) {
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-                this.f48082c = bitmapShader;
+                this.f48118c = bitmapShader;
                 paint.setShader(bitmapShader);
                 d();
             }
@@ -54,17 +54,17 @@ public final class b implements a {
     }
 
     public final void c(int i10, int i11) {
-        if (this.h == i10 && this.f48085n == i11) {
+        if (this.h == i10 && this.f48121n == i11) {
             return;
         }
         this.h = i10;
-        this.f48085n = i11;
+        this.f48121n = i11;
         d();
     }
 
     public final void d() {
         Bitmap bitmap = this.d;
-        Matrix matrix = this.f48081b;
+        Matrix matrix = this.f48117b;
         if (bitmap == null) {
             matrix.reset();
             return;
@@ -72,7 +72,7 @@ public final class b implements a {
         int width = bitmap.getWidth();
         int height = this.d.getHeight();
         int i10 = this.h;
-        int i11 = this.f48085n;
+        int i11 = this.f48121n;
         matrix.reset();
         if (width > 0 && height > 0 && i10 > 0 && i11 > 0) {
             float f10 = i10;

@@ -1,39 +1,58 @@
 package org.telegram.ui;
 
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class g81 implements Utilities.Callback5, Utilities.Callback5Return, r0.o {
-    public final p81 f37122a;
+import org.telegram.messenger.MrzRecognizer;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class g81 implements u9 {
+    public TLObject f37024a = null;
+    public TLRPC.TL_error f37025b = null;
+    public final SessionsActivity f37026c;
 
-    public g81(p81 p81Var) {
-        this.f37122a = p81Var;
+    public g81(SessionsActivity sessionsActivity) {
+        this.f37026c = sessionsActivity;
     }
 
     @Override
-    public r0.m1 M0(View view, r0.m1 m1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
-        int i10 = defaultWindowInsets.d;
-        p81 p81Var = this.f37122a;
-        p81Var.P = i10;
-        p81Var.f39949c.setPadding(0, AndroidUtilities.dp(12.0f) + defaultWindowInsets.f7758b, 0, p81Var.P + p81Var.Q);
-        return r0.m1.f46451b;
+    public final String E0() {
+        return null;
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        return Boolean.valueOf(p81.U(this.f37122a, (org.telegram.ui.Components.j51) obj, (View) obj2));
+    public final void J(String str) {
+        TLObject tLObject = this.f37024a;
+        if (tLObject instanceof TLRPC.TL_authorization) {
+            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
+            boolean z4 = tL_authorization.password_pending;
+            SessionsActivity sessionsActivity = this.f37026c;
+            if (z4) {
+                sessionsActivity.f34821f.add(0, tL_authorization);
+                sessionsActivity.S = 4;
+                sessionsActivity.k0(false);
+            } else {
+                sessionsActivity.f34820e.add(0, tL_authorization);
+            }
+            sessionsActivity.m0();
+            sessionsActivity.f34817a.l();
+            sessionsActivity.f34824s.m(0L, this.f37024a, 11);
+        } else if (this.f37025b != null) {
+            AndroidUtilities.runOnUIThread(new f81(this, 0));
+        }
     }
 
     @Override
-    public void mo27run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        p81.e0(this.f37122a, (org.telegram.ui.Components.j51) obj);
+    public final boolean e1(String str, m9 m9Var) {
+        this.f37024a = null;
+        this.f37025b = null;
+        AndroidUtilities.runOnUIThread(new if0(this, str, m9Var, 29), 750L);
+        return true;
+    }
+
+    @Override
+    public final void P0(MrzRecognizer.Result result) {
+    }
+
+    @Override
+    public final void onDismiss() {
     }
 }

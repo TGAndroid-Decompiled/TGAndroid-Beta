@@ -13,7 +13,7 @@ public final class ok extends xg.e {
     public final void setVisibility(int i10) {
         boolean z4;
         super.setVisibility(i10);
-        h5.u uVar = this.I.f43429yc;
+        h5.u uVar = this.I.f43407yc;
         boolean z10 = false;
         if (i10 == 0) {
             z4 = true;

@@ -5,13 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.ui.Components.fc0;
-import org.telegram.ui.Components.qv0;
-public final class p0 extends qv0 {
-    public final u0 f12887t0;
+import org.telegram.ui.Components.pv0;
+public final class p0 extends pv0 {
+    public final u0 f12889t0;
 
     public p0(u0 u0Var, Context context) {
         super(context, null);
-        this.f12887t0 = u0Var;
+        this.f12889t0 = u0Var;
     }
 
     @Override
@@ -29,15 +29,15 @@ public final class p0 extends qv0 {
         if (drawable instanceof fc0) {
             ((fc0) drawable).p();
         }
-        u0 u0Var = this.f12887t0;
-        u0Var.d.f48095a = u0Var.f12983c.c(drawable);
+        u0 u0Var = this.f12889t0;
+        u0Var.d.f48131a = u0Var.f12985c.c(drawable);
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         if (view == this.I) {
-            u0 u0Var = this.f12887t0;
-            tg.a aVar = u0Var.d.f48095a;
+            u0 u0Var = this.f12889t0;
+            tg.a aVar = u0Var.d.f48131a;
             if (aVar instanceof tg.b) {
                 ((tg.b) aVar).c(getWidth(), getHeight());
             }
@@ -49,7 +49,7 @@ public final class p0 extends qv0 {
 
     @Override
     public final Drawable getNewDrawable() {
-        Drawable drawable = this.f12887t0.f12991y;
+        Drawable drawable = this.f12889t0.f12993y;
         if (drawable != null) {
             return drawable;
         }
@@ -59,6 +59,6 @@ public final class p0 extends qv0 {
     @Override
     public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
         super.onLayout(z4, i10, i11, i12, i13);
-        this.f12887t0.o();
+        this.f12889t0.o();
     }
 }

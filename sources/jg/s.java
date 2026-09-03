@@ -45,7 +45,7 @@ public final class s extends FrameLayout {
         Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         int i10 = k6.Mj;
-        canvas.drawColor(i0.a.d(0.5f, k6.v0(i10, g6Var), k6.v0(k6.f21731h5, g6Var)));
+        canvas.drawColor(i0.a.d(0.5f, k6.v0(i10, g6Var), k6.v0(k6.f21733h5, g6Var)));
         iVar.setBackgroundBitmap(createBitmap);
         gg.a aVar = iVar.f7087b;
         aVar.f7065w = i10;
@@ -139,7 +139,7 @@ public final class s extends FrameLayout {
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
         marginLayoutParams.topMargin = -AndroidUtilities.dp(6.0f);
         setLayoutParams(marginLayoutParams);
-        int i11 = k6.f21605a7;
+        int i11 = k6.f21607a7;
         g6 g6Var = this.f10065e;
         setBackgroundColor(k6.v0(i11, g6Var));
         this.f10064c.setText(LocaleController.formatString("BoostingBoostsViaGifts", R.string.BoostingBoostsViaGifts, new Object[0]));
@@ -151,7 +151,7 @@ public final class s extends FrameLayout {
         String formatString = LocaleController.formatString(i10, new Object[0]);
         g90 g90Var = this.d;
         g90Var.setText(formatString);
-        g90Var.setTextColor(k6.v0(k6.f21911r5, g6Var));
+        g90Var.setTextColor(k6.v0(k6.f21913r5, g6Var));
     }
 
     public void setPaused(boolean z4) {

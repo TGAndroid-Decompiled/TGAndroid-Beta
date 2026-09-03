@@ -49,11 +49,11 @@ import org.telegram.ui.Components.bd0;
 import org.telegram.ui.Components.c8;
 import org.telegram.ui.Components.dd0;
 import org.telegram.ui.Components.mi;
+import org.telegram.ui.Components.pz0;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.qz0;
 import org.telegram.ui.Components.rh;
-import org.telegram.ui.Components.sn;
-import org.telegram.ui.Components.tz0;
+import org.telegram.ui.Components.rn;
+import org.telegram.ui.Components.sz0;
 import org.telegram.ui.Components.wc0;
 import org.telegram.ui.Components.y4;
 import org.telegram.ui.Components.yc0;
@@ -61,20 +61,20 @@ import org.telegram.ui.Components.z4;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.NotificationsCustomSettingsActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.c71;
 import org.telegram.ui.d60;
-import org.telegram.ui.gd1;
+import org.telegram.ui.h71;
 import org.telegram.ui.j40;
 import org.telegram.ui.jy;
 import org.telegram.ui.k40;
-import org.telegram.ui.ke1;
 import org.telegram.ui.l4;
-import org.telegram.ui.mf1;
+import org.telegram.ui.ld1;
 import org.telegram.ui.og0;
 import org.telegram.ui.ot;
 import org.telegram.ui.py;
-import org.telegram.ui.r61;
+import org.telegram.ui.qe1;
+import org.telegram.ui.sf1;
 import org.telegram.ui.uj0;
+import org.telegram.ui.w61;
 import org.telegram.ui.xn;
 import p2.h;
 import sh.k2;
@@ -114,9 +114,9 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                 xn.y0((xn) this.f39e, (TLRPC.TL_document) this.f37b, (String) this.f38c, this.d, z4, i10);
                 return;
             case 9:
-                sn snVar = (sn) this.f39e;
-                snVar.f31106g0.b((TLRPC.TL_messageMediaPoll) this.f37b, snVar.L, snVar.f31111i1, (ArrayList) this.f38c, z4, i10, ((Long) this.d).longValue());
-                snVar.f26546b.dismiss(true);
+                rn rnVar = (rn) this.f39e;
+                rnVar.f30826g0.b((TLRPC.TL_messageMediaPoll) this.f37b, rnVar.L, rnVar.f30831i1, (ArrayList) this.f38c, z4, i10, ((Long) this.d).longValue());
+                rnVar.f26590b.dismiss(true);
                 return;
             case 10:
                 ot otVar = (ot) this.f39e;
@@ -181,7 +181,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                     } else {
                         uj0Var.H = str3;
                     }
-                    bd0 bd0Var2 = uj0Var.f41955e;
+                    bd0 bd0Var2 = uj0Var.f41855e;
                     if (bd0Var2 != null) {
                         bd0Var2.getEditText().setText(str);
                     } else {
@@ -203,14 +203,14 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                 notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f34191s);
                 return;
             default:
-                mf1 mf1Var = (mf1) obj4;
+                sf1 sf1Var = (sf1) obj4;
                 HashSet hashSet = (HashSet) obj3;
                 HashSet hashSet2 = new HashSet();
-                mf1Var.f39144x0 = hashSet2;
+                sf1Var.f41230x0 = hashSet2;
                 hashSet2.addAll(hashSet);
-                mf1Var.U0(true, false);
-                qc.a0(mf1Var).U(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), false, new ke1(mf1Var, 4), new gd1(mf1Var, (ArrayList) obj2, (Runnable) obj, 4)).j();
-                mf1Var.C0();
+                sf1Var.U0(true, false);
+                qc.a0(sf1Var).U(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), false, new qe1(sf1Var, 4), new ld1(sf1Var, (ArrayList) obj2, (Runnable) obj, 4)).j();
+                sf1Var.C0();
                 d2Var.dismiss();
                 return;
         }
@@ -261,11 +261,11 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
 
     @Override
     public void run(long j10) {
-        c71.P((c71) this.f39e, (TLRPC.User) this.f37b, (TLRPC.InputCheckPasswordSRP) this.f38c, (TwoStepVerificationActivity) this.d, j10);
+        h71.P((h71) this.f39e, (TLRPC.User) this.f37b, (TLRPC.InputCheckPasswordSRP) this.f38c, (TwoStepVerificationActivity) this.d, j10);
     }
 
     @Override
-    public boolean v(py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, mf1 mf1Var) {
+    public boolean v(py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, sf1 sf1Var) {
         switch (this.f36a) {
             case 7:
                 c8.t((c8) this.f39e, (ArrayList) this.f37b, (TLRPC.TL_document) this.f38c, (MessageObject) this.d, pyVar, arrayList, charSequence, z10, i10);
@@ -274,7 +274,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                 TLRPC.User user = (TLRPC.User) this.f37b;
                 String str = (String) this.f38c;
                 dd0 dd0Var = (dd0) this.d;
-                mi miVar = ((rh) this.f39e).f30699e;
+                mi miVar = ((rh) this.f39e).f30746e;
                 long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 Bundle i12 = android.support.v4.media.a.i("scrollToTopOnResume", true);
                 if (DialogObject.isEncryptedDialog(j10)) {
@@ -285,12 +285,12 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                     i12.putLong("chat_id", -j10);
                 }
                 i12.putString("start_text", "@" + UserObject.getPublicUsername(user) + " " + str);
-                p2 p2Var = miVar.f29040c0;
+                p2 p2Var = miVar.f29058c0;
                 if (MessagesController.getInstance(miVar.G1).checkCanOpenChat(i12, p2Var)) {
                     dd0Var.dismiss();
                     miVar.dismiss(true);
                     d5 d5Var = new d5(new xn(i12));
-                    d5Var.f21277b = true;
+                    d5Var.f21279b = true;
                     p2Var.presentFragment(d5Var);
                 }
                 return true;
@@ -309,14 +309,14 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                     i13.putLong("chat_id", -j11);
                 }
                 i13.putString("start_text", "@" + UserObject.getPublicUsername(user2) + " " + str2);
-                Activity activity = p2Var2.f47593h0;
+                Activity activity = p2Var2.f47629h0;
                 if (activity instanceof LaunchActivity) {
                     p2 lastFragment = ((LaunchActivity) activity).O().getLastFragment();
                     if (MessagesController.getInstance(p2Var2.D).checkCanOpenChat(i13, lastFragment)) {
                         dd0Var2.dismiss();
                         p2Var2.Z = true;
-                        AndroidUtilities.cancelRunOnUIThread(p2Var2.f47602q0);
-                        p2Var2.f47612x.h();
+                        AndroidUtilities.cancelRunOnUIThread(p2Var2.f47638q0);
+                        p2Var2.f47648x.h();
                         NotificationCenter.getInstance(p2Var2.D).removeObserver(p2Var2, NotificationCenter.webViewResultSent);
                         NotificationCenter.getGlobalInstance().removeObserver(p2Var2, NotificationCenter.didSetNewTheme);
                         if (!p2Var2.J0) {
@@ -324,7 +324,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                             p2Var2.J0 = true;
                         }
                         d5 d5Var2 = new d5(new xn(i13));
-                        d5Var2.f21277b = true;
+                        d5Var2.f21279b = true;
                         lastFragment.presentFragment(d5Var2);
                     }
                 }
@@ -345,7 +345,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
         Context context = (Context) this.f39e;
         int[] iArr = (int[]) this.f37b;
         g6 g6Var = (g6) this.f38c;
-        tz0 tz0Var = (tz0) this.d;
+        sz0 sz0Var = (sz0) this.d;
         Integer num = (Integer) obj;
         Float f10 = (Float) obj2;
         LinearLayout f11 = y3.f(context, 1);
@@ -365,7 +365,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
         }
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-        textView.setTextColor(k6.v0(k6.f21766j5, g6Var));
+        textView.setTextColor(k6.v0(k6.f21768j5, g6Var));
         StringBuilder sb = new StringBuilder("x");
         int i11 = (f10.floatValue() > 0.0f ? 1 : (f10.floatValue() == 0.0f ? 0 : -1));
         Object obj3 = f10;
@@ -377,7 +377,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
         textView.setTextSize(1, 13.0f);
         textView.setGravity(17);
         f11.addView(textView, c6.k(0.0f, 3.0f, 0.0f, 0.0f, -1, -2));
-        return new qz0(tz0Var, f11, false);
+        return new pz0(sz0Var, f11, false);
     }
 
     @Override
@@ -387,7 +387,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                 ArrayList arrayList2 = (ArrayList) this.f37b;
                 ArrayList arrayList3 = (ArrayList) this.f38c;
                 Runnable runnable = (Runnable) this.d;
-                TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(((r61) this.f39e).S).getAvailableEffects();
+                TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(((w61) this.f39e).S).getAvailableEffects();
                 HashSet hashSet = new HashSet();
                 if (availableEffects != null) {
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
@@ -396,9 +396,9 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                                 String fixEmoji = Emoji.fixEmoji(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji);
                                 for (int i11 = 0; i11 < availableEffects.effects.size(); i11++) {
                                     TLRPC.TL_availableEffect tL_availableEffect = availableEffects.effects.get(i11);
-                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f20874id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
+                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f20876id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
                                         (tL_availableEffect.effect_animation_id == 0 ? arrayList2 : arrayList3).add(q0.e(tL_availableEffect));
-                                        hashSet.add(Long.valueOf(tL_availableEffect.f20874id));
+                                        hashSet.add(Long.valueOf(tL_availableEffect.f20876id));
                                     }
                                 }
                             }

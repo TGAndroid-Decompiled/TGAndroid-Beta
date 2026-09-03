@@ -27,17 +27,17 @@ import org.telegram.messenger.SecureDocument;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.oy0;
-import org.telegram.ui.Components.pr0;
+import org.telegram.ui.Components.ny0;
+import org.telegram.ui.Components.or0;
 import org.telegram.ui.Components.q70;
-import org.telegram.ui.Components.ry0;
+import org.telegram.ui.Components.qy0;
 import org.telegram.ui.Components.wc0;
 import org.telegram.ui.Components.yc0;
 import org.telegram.ui.Components.z4;
 import org.telegram.ui.dn0;
 import org.telegram.ui.fn0;
-import org.telegram.ui.uq0;
 import org.telegram.ui.xf0;
+import org.telegram.ui.zq0;
 public final class j3 implements OnFailureListener, Utilities.Callback2Return, org.telegram.ui.ActionBar.c2, wc0, MediaDataController.KeywordResultCallback, BillingController.ProductDetailsResponseListenerLegacy {
     public final int f5308a;
     public final int f5309b;
@@ -64,31 +64,31 @@ public final class j3 implements OnFailureListener, Utilities.Callback2Return, o
                 Context context = (Context) this.d;
                 g6 g6Var = (g6) this.f5311e;
                 Utilities.Callback2 callback2 = (Utilities.Callback2) this.f5312f;
-                i4 i4Var = (i4) k4Var.f14345o.get(k4Var.f14347q);
+                i4 i4Var = (i4) k4Var.f14347o.get(k4Var.f14349q);
                 if (i4Var != null) {
-                    mf.a aVar2 = i4Var.f14233c;
-                    t7 x10 = t7.x(this.f5309b, k4Var.f14347q);
-                    if (x10.f14831e) {
+                    mf.a aVar2 = i4Var.f14235c;
+                    t7 x10 = t7.x(this.f5309b, k4Var.f14349q);
+                    if (x10.f14833e) {
                         aVar = mf.a.l(x10.p());
                     } else {
                         aVar = null;
                     }
-                    if (aVar != null && aVar2.f13650b > aVar.f13650b) {
-                        mf.b bVar = k4Var.f14347q;
-                        if (bVar == mf.b.f13651a) {
+                    if (aVar != null && aVar2.f13652b > aVar.f13652b) {
+                        mf.b bVar = k4Var.f14349q;
+                        if (bVar == mf.b.f13653a) {
                             new z9(context, g6Var, aVar2.a(), 14, null, null, 0L).show();
                             return;
-                        } else if (bVar == mf.b.f13652b) {
-                            new rh.f(context, g6Var, i4Var.f14233c, true, null).show();
+                        } else if (bVar == mf.b.f13654b) {
+                            new rh.f(context, g6Var, i4Var.f14235c, true, null).show();
                             return;
                         } else {
                             return;
                         }
                     }
-                    af.f fVar = k4Var.f14344n;
+                    af.f fVar = k4Var.f14346n;
                     if (fVar != null) {
                         fVar.a(false);
-                        k4Var.f14344n = null;
+                        k4Var.f14346n = null;
                     }
                     callback2.run(i4Var, d2Var.g(i10, true, true));
                     return;
@@ -107,12 +107,12 @@ public final class j3 implements OnFailureListener, Utilities.Callback2Return, o
         o3 o3Var = (o3) this.f5310c;
         Bitmap bitmap = (Bitmap) this.d;
         int i10 = this.f5309b;
-        uq0 uq0Var = (uq0) this.f5311e;
+        zq0 zq0Var = (zq0) this.f5311e;
         h3 h3Var = (h3) this.f5312f;
         o3Var.f5422x = false;
         FileLog.e(exc);
         if ((exc instanceof ya.a) && exc.getMessage() != null && exc.getMessage().contains("segmentation optional module to be downloaded") && o3Var.isAttachedToWindow()) {
-            AndroidUtilities.runOnUIThread(new dg.u1(o3Var, bitmap, i10, uq0Var, 2), 2000L);
+            AndroidUtilities.runOnUIThread(new dg.u1(o3Var, bitmap, i10, zq0Var, 2), 2000L);
         } else {
             h3Var.run(new ArrayList());
         }
@@ -134,15 +134,15 @@ public final class j3 implements OnFailureListener, Utilities.Callback2Return, o
 
     @Override
     public void run(ArrayList arrayList, String str) {
-        ry0 ry0Var = (ry0) this.f5310c;
+        qy0 qy0Var = (qy0) this.f5310c;
         String str2 = (String) this.d;
         HashSet hashSet = (HashSet) this.f5311e;
         ArrayList arrayList2 = (ArrayList) this.f5312f;
-        if (this.f5309b != ry0Var.F) {
+        if (this.f5309b != qy0Var.F) {
             return;
         }
-        ry0Var.D = 1;
-        ry0Var.E = str2;
+        qy0Var.D = 1;
+        qy0Var.E = str2;
         if (arrayList != null) {
             int size = arrayList.size();
             int i10 = 0;
@@ -157,31 +157,31 @@ public final class j3 implements OnFailureListener, Utilities.Callback2Return, o
             }
         }
         if (!arrayList2.isEmpty()) {
-            ry0Var.f30907x = false;
-            ry0Var.v = false;
-            ry0Var.c();
-            s2 s2Var = ry0Var.d;
+            qy0Var.f30568x = false;
+            qy0Var.v = false;
+            qy0Var.c();
+            s2 s2Var = qy0Var.d;
             if (s2Var != null) {
                 s2Var.setVisibility(0);
             }
-            ry0Var.R = AndroidUtilities.dp(10.0f);
-            ry0Var.f30906w = arrayList;
-            ry0Var.S = 0;
-            ry0Var.T = Integer.valueOf(str2.length());
-            s2 s2Var2 = ry0Var.d;
+            qy0Var.R = AndroidUtilities.dp(10.0f);
+            qy0Var.f30567w = arrayList;
+            qy0Var.S = 0;
+            qy0Var.T = Integer.valueOf(str2.length());
+            s2 s2Var2 = qy0Var.d;
             if (s2Var2 != null) {
                 s2Var2.invalidate();
             }
-            oy0 oy0Var = ry0Var.f30902f;
-            if (oy0Var != null) {
-                oy0Var.l();
+            ny0 ny0Var = qy0Var.f30563f;
+            if (ny0Var != null) {
+                ny0Var.l();
                 return;
             }
             return;
         }
-        ry0Var.f30906w = null;
-        ry0Var.f30907x = true;
-        ry0Var.f();
+        qy0Var.f30567w = null;
+        qy0Var.f30568x = true;
+        qy0Var.f();
     }
 
     public j3(Object obj, int i10, Object obj2, Object obj3, Object obj4, int i11) {
@@ -215,14 +215,14 @@ public final class j3 implements OnFailureListener, Utilities.Callback2Return, o
     public Object run(Object obj, Object obj2) {
         TL_stars.TL_starGiftCollection tL_starGiftCollection;
         int i10;
-        pr0 pr0Var = (pr0) this.f5310c;
+        or0 or0Var = (or0) this.f5310c;
         org.telegram.ui.ActionBar.p2 p2Var = (org.telegram.ui.ActionBar.p2) this.d;
         Context context = (Context) this.f5311e;
         g6 g6Var = (g6) this.f5312f;
         Integer num = (Integer) obj;
         View view = (View) obj2;
-        j7 j7Var = pr0Var.f13101e;
-        if (num.intValue() != -1 && num.intValue() != -2 && num.intValue() != 0 && !pr0Var.I) {
+        j7 j7Var = or0Var.f13103e;
+        if (num.intValue() != -1 && num.intValue() != -2 && num.intValue() != 0 && !or0Var.I) {
             int i11 = 0;
             while (true) {
                 if (i11 >= j7Var.d().size()) {
@@ -238,19 +238,19 @@ public final class j3 implements OnFailureListener, Utilities.Callback2Return, o
                 }
             }
             int i12 = this.f5309b;
-            String publicUsername = DialogObject.getPublicUsername(MessagesController.getInstance(i12).getUserOrChat(pr0Var.f13100c));
+            String publicUsername = DialogObject.getPublicUsername(MessagesController.getInstance(i12).getUserOrChat(or0Var.f13102c));
             boolean h = j7Var.h();
             if (TextUtils.isEmpty(publicUsername) && !h) {
                 return Boolean.FALSE;
             }
             q70 H = q70.H(p2Var, view);
-            H.W(new lh.s2(pr0Var));
-            H.l(R.drawable.menu_gift_add, LocaleController.getString(R.string.Gift2CollectionsAdd), new lh.k2(pr0Var, 0), h);
-            H.l(R.drawable.msg_share, LocaleController.getString(R.string.Gift2CollectionsShare), new lh.l2(pr0Var, i12, publicUsername, tL_starGiftCollection, context, g6Var, p2Var, 0), !TextUtils.isEmpty(publicUsername));
-            H.l(R.drawable.msg_edit, LocaleController.getString(R.string.Gift2CollectionsRename), new gf.c(25, pr0Var, tL_starGiftCollection), h);
-            H.l(R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2CollectionsReorder), new lh.k2(pr0Var, 1), h);
-            H.m(h, R.drawable.msg_delete, LocaleController.getString(R.string.Gift2CollectionsDelete), true, new bh.a(pr0Var, i10, tL_starGiftCollection, 6));
-            pr0Var.F = H;
+            H.W(new lh.s2(or0Var));
+            H.l(R.drawable.menu_gift_add, LocaleController.getString(R.string.Gift2CollectionsAdd), new lh.k2(or0Var, 0), h);
+            H.l(R.drawable.msg_share, LocaleController.getString(R.string.Gift2CollectionsShare), new lh.l2(or0Var, i12, publicUsername, tL_starGiftCollection, context, g6Var, p2Var, 0), !TextUtils.isEmpty(publicUsername));
+            H.l(R.drawable.msg_edit, LocaleController.getString(R.string.Gift2CollectionsRename), new gf.c(25, or0Var, tL_starGiftCollection), h);
+            H.l(R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2CollectionsReorder), new lh.k2(or0Var, 1), h);
+            H.m(h, R.drawable.msg_delete, LocaleController.getString(R.string.Gift2CollectionsDelete), true, new bh.a(or0Var, i10, tL_starGiftCollection, 6));
+            or0Var.F = H;
             H.Z();
             return Boolean.TRUE;
         }

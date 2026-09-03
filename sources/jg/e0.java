@@ -234,9 +234,9 @@ public final class e0 extends FrameLayout {
             textView = new TextView(getContext());
         }
         if (z4) {
-            i10 = k6.f21820m5;
+            i10 = k6.f21822m5;
         } else {
-            i10 = k6.f21766j5;
+            i10 = k6.f21768j5;
         }
         org.telegram.ui.b.l(i10, g6Var, textView, 1, 14.0f);
         if (!z4) {
@@ -250,7 +250,7 @@ public final class e0 extends FrameLayout {
         if (str != null) {
             textView.setTypeface(AndroidUtilities.bold());
             textView.setText(str);
-            textView.setBackgroundColor(k6.v0(k6.f21678e7, g6Var));
+            textView.setBackgroundColor(k6.v0(k6.f21680e7, g6Var));
             float f11 = 12.0f;
             if (LocaleController.isRTL) {
                 f10 = 32.0f;

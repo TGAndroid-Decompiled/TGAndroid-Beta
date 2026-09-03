@@ -35,7 +35,7 @@ public final class h extends d {
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setBackground(k6.f0(k6.w0(null, k6.Vh, false), 1, -1));
         imageView.setImageResource(R.drawable.poll_remove);
-        imageView.setColorFilter(new PorterDuffColorFilter(k6.w0(null, k6.f21821m6, false), PorterDuff.Mode.MULTIPLY));
+        imageView.setColorFilter(new PorterDuffColorFilter(k6.w0(null, k6.f21823m6, false), PorterDuff.Mode.MULTIPLY));
         imageView.setContentDescription(LocaleController.getString(R.string.Delete));
         boolean z4 = LocaleController.isRTL;
         if (z4) {
@@ -111,7 +111,7 @@ public final class h extends d {
             }
             setSubtitle(LocaleController.formatPluralString(str, i10, new Object[0]));
         }
-        this.f10021e.setTextColor(k6.v0(k6.f21911r5, this.f10018a));
+        this.f10021e.setTextColor(k6.v0(k6.f21913r5, this.f10018a));
         setDivider(true);
         ImageView imageView = this.f10039r;
         if (z4) {

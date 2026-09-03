@@ -5,7 +5,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.ka;
-import org.telegram.ui.rw0;
+import org.telegram.ui.ww0;
 public final class j1 implements m2.f {
     public final ka f6353a;
     public final n1 f6354b;
@@ -19,16 +19,16 @@ public final class j1 implements m2.f {
     public final void a(int i10) {
         n1 n1Var = this.f6354b;
         ArrayList arrayList = n1Var.d;
-        if (((rw0) arrayList.get(i10)).f41056a == 0) {
+        if (((ww0) arrayList.get(i10)).f42867a == 0) {
             n1Var.K.setTitle(LocaleController.getString(R.string.DoubledLimits));
             n1Var.K.requestLayout();
-        } else if (((rw0) arrayList.get(i10)).f41056a == 14) {
+        } else if (((ww0) arrayList.get(i10)).f42867a == 14) {
             n1Var.K.setTitle(LocaleController.getString(R.string.UpgradedStories));
             n1Var.K.requestLayout();
-        } else if (((rw0) arrayList.get(i10)).f41056a == 40) {
+        } else if (((ww0) arrayList.get(i10)).f42867a == 40) {
             n1Var.K.setTitle(LocaleController.getString(R.string.FeaturePreviewGifts));
             n1Var.K.requestLayout();
-        } else if (((rw0) arrayList.get(i10)).f41056a == 28) {
+        } else if (((ww0) arrayList.get(i10)).f42867a == 28) {
             n1Var.K.setTitle(LocaleController.getString(R.string.TelegramBusiness));
             n1Var.K.requestLayout();
         }
@@ -39,8 +39,8 @@ public final class j1 implements m2.f {
     public final void b(float f10, int i10, int i11) {
         int i12;
         ka kaVar = this.f6353a;
-        kaVar.f28352b = f10;
-        kaVar.f28353c = i10;
+        kaVar.f28374b = f10;
+        kaVar.f28375c = i10;
         kaVar.invalidate();
         n1 n1Var = this.f6354b;
         n1Var.D = i10;
@@ -90,13 +90,13 @@ public final class j1 implements m2.f {
             i12++;
         }
         int i14 = n1Var.D;
-        if (i14 >= 0 && i14 < arrayList.size() && ((i11 = ((rw0) arrayList.get(n1Var.D)).f41056a) == 0 || i11 == 14 || i11 == 28)) {
+        if (i14 >= 0 && i14 < arrayList.size() && ((i11 = ((ww0) arrayList.get(n1Var.D)).f42867a) == 0 || i11 == 14 || i11 == 28)) {
             z4 = true;
         } else {
             z4 = false;
         }
         int i15 = n1Var.E;
-        if (i15 >= 0 && i15 < arrayList.size() && ((i10 = ((rw0) arrayList.get(n1Var.E)).f41056a) == 0 || i10 == 14 || i10 == 28)) {
+        if (i15 >= 0 && i15 < arrayList.size() && ((i10 = ((ww0) arrayList.get(n1Var.E)).f42867a) == 0 || i10 == 14 || i10 == 28)) {
             z10 = true;
         } else {
             z10 = false;

@@ -32,7 +32,7 @@ public final class z implements k {
 
     @Override
     public final void c(int i10, n3.d dVar, long j10) {
-        this.f4282a.queueSecureInputBuffer(i10, 0, dVar.f15202i, j10, 0);
+        this.f4282a.queueSecureInputBuffer(i10, 0, dVar.f15204i, j10, 0);
     }
 
     @Override

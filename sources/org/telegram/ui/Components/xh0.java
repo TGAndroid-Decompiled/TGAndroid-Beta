@@ -36,7 +36,7 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
     public final float[] L0;
     public ImageLocation M0;
     public ImageLocation N0;
-    public u61 O0;
+    public t61 O0;
     public MessagesController.DialogPhotos P0;
     public final ArrayList Q0;
     public final ArrayList R0;
@@ -48,33 +48,33 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
     public final ArrayList X0;
     public final ArrayList Y0;
     public int Z0;
-    public final SparseArray f33083a1;
-    public boolean f33084b1;
-    public boolean f33085c1;
-    public boolean f33086d1;
-    public org.telegram.ui.xu0 f33087e1;
-    public boolean f33088f1;
-    public int f33089g1;
-    public int f33090h1;
-    public int f33091i1;
-    public int f33092j1;
-    public int f33093k1;
+    public final SparseArray f33077a1;
+    public boolean f33078b1;
+    public boolean f33079c1;
+    public boolean f33080d1;
+    public org.telegram.ui.cv0 f33081e1;
+    public boolean f33082f1;
+    public int f33083g1;
+    public int f33084h1;
+    public int f33085i1;
+    public int f33086j1;
+    public int f33087k1;
     public int l1;
-    public oh0 f33094m1;
-    public ImageLocation f33095n1;
-    public ImageLocation f33096o1;
-    public final PointF f33097u0;
-    public final int f33098v0;
-    public final org.telegram.ui.ActionBar.k f33099w0;
-    public boolean f33100x0;
-    public boolean f33101y0;
-    public final tl0 f33102z0;
+    public oh0 f33088m1;
+    public ImageLocation f33089n1;
+    public ImageLocation f33090o1;
+    public final PointF f33091u0;
+    public final int f33092v0;
+    public final org.telegram.ui.ActionBar.k f33093w0;
+    public boolean f33094x0;
+    public boolean f33095y0;
+    public final sl0 f33096z0;
 
-    public xh0(Context context, org.telegram.ui.ActionBar.k kVar, tl0 tl0Var, org.telegram.ui.t4 t4Var) {
+    public xh0(Context context, org.telegram.ui.ActionBar.k kVar, sl0 sl0Var, org.telegram.ui.t4 t4Var) {
         super(context);
-        this.f33097u0 = new PointF();
-        this.f33100x0 = true;
-        this.f33101y0 = true;
+        this.f33091u0 = new PointF();
+        this.f33094x0 = true;
+        this.f33095y0 = true;
         int i10 = UserConfig.selectedAccount;
         this.I0 = i10;
         this.J0 = new Path();
@@ -89,17 +89,17 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
         this.W0 = new ArrayList();
         this.X0 = new ArrayList();
         this.Y0 = new ArrayList();
-        this.f33083a1 = new SparseArray();
-        this.f33084b1 = true;
-        this.f33089g1 = -1;
-        this.f33090h1 = -1;
+        this.f33077a1 = new SparseArray();
+        this.f33078b1 = true;
+        this.f33083g1 = -1;
+        this.f33084h1 = -1;
         setOffscreenPageLimit(2);
-        this.f33094m1 = null;
+        this.f33088m1 = null;
         this.G0 = false;
-        this.f33102z0 = tl0Var;
+        this.f33096z0 = sl0Var;
         ConnectionsManager.generateClassGuid();
-        this.f33099w0 = kVar;
-        this.f33098v0 = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f33093w0 = kVar;
+        this.f33092v0 = ViewConfiguration.get(context).getScaledTouchSlop();
         this.D0 = t4Var;
         b(new ph0(this));
         wh0 wh0Var = new wh0(this, getContext(), null);
@@ -126,20 +126,20 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
         this.Y0.add(0, Float.valueOf(0.0f));
         this.A0.g();
         L();
-        this.f33095n1 = imageLocation;
-        this.f33096o1 = imageLocation2;
+        this.f33089n1 = imageLocation;
+        this.f33090o1 = imageLocation2;
     }
 
     public final void B(float f10, int i10) {
         float f11;
-        int i11 = this.f33089g1;
+        int i11 = this.f33083g1;
         float f12 = 0.0f;
-        if (i11 >= 0 || this.f33090h1 >= 0) {
+        if (i11 >= 0 || this.f33084h1 >= 0) {
             if (i11 < 0) {
-                i11 = this.f33090h1;
+                i11 = this.f33084h1;
             }
             int k10 = this.A0.k(i10);
-            if (this.f33088f1) {
+            if (this.f33082f1) {
                 k10--;
             }
             if (k10 == i11) {
@@ -216,12 +216,12 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
     public final View E(int i10) {
         wh0 wh0Var = this.A0;
         if (wh0Var != null) {
-            ArrayList arrayList = wh0Var.f32750c;
+            ArrayList arrayList = wh0Var.f32755c;
             if (arrayList.size() > i10 && i10 >= 0) {
                 th0 th0Var = (th0) arrayList.get(i10);
-                uh0 uh0Var = th0Var.f31341b;
+                uh0 uh0Var = th0Var.f31356b;
                 if (uh0Var == null) {
-                    return th0Var.f31342c;
+                    return th0Var.f31357c;
                 }
                 return uh0Var;
             }
@@ -252,7 +252,7 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
         return null;
     }
 
-    public final boolean H(u61 u61Var, ImageLocation imageLocation, ImageLocation imageLocation2, boolean z4) {
+    public final boolean H(t61 t61Var, ImageLocation imageLocation, ImageLocation imageLocation2, boolean z4) {
         MessagesController.DialogPhotos dialogPhotos;
         int i10;
         MessagesController.DialogPhotos dialogPhotos2;
@@ -290,12 +290,12 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
             if (arrayList.isEmpty()) {
                 this.M0 = imageLocation;
                 this.N0 = imageLocation2;
-                this.O0 = u61Var;
+                this.O0 = t61Var;
                 this.R0.add(null);
                 this.Q0.add(null);
                 arrayList.add(imageLocation);
                 this.V0.add(imageLocation2);
-                this.W0.add(u61Var);
+                this.W0.add(t61Var);
                 this.T0.add(null);
                 this.S0.add(null);
                 this.X0.add(-1);
@@ -310,7 +310,7 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
 
     public final boolean I() {
         int realPosition = getRealPosition();
-        if (this.f33088f1) {
+        if (this.f33082f1) {
             if (realPosition != 0) {
                 realPosition--;
             } else {
@@ -330,7 +330,7 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
     public final boolean J() {
         int realPosition;
         p9 currentItemView;
-        if (this.f33088f1) {
+        if (this.f33082f1) {
             realPosition = getRealPosition() - 1;
         } else {
             realPosition = getRealPosition();
@@ -346,7 +346,7 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
     }
 
     public final void K() {
-        this.f33094m1 = null;
+        this.f33088m1 = null;
         int i10 = this.I0;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.dialogPhotosLoaded);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileLoaded);
@@ -380,7 +380,7 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
             L();
             return;
         }
-        this.f33085c1 = true;
+        this.f33079c1 = true;
         this.Q0.clear();
         this.R0.clear();
         this.S0.clear();
@@ -401,15 +401,15 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
     }
 
     public final void N(int i10, int i11) {
-        this.f33092j1 = i10;
-        this.f33093k1 = i11;
+        this.f33086j1 = i10;
+        this.f33087k1 = i11;
         wh0 wh0Var = this.A0;
         if (wh0Var != null) {
-            for (int i12 = 0; i12 < wh0Var.f32750c.size(); i12++) {
-                if (((th0) wh0Var.f32750c.get(i12)).f31342c != null) {
-                    rh0 rh0Var = ((th0) wh0Var.f32750c.get(i12)).f31342c;
-                    int i13 = this.f33092j1;
-                    int i14 = this.f33093k1;
+            for (int i12 = 0; i12 < wh0Var.f32755c.size(); i12++) {
+                if (((th0) wh0Var.f32755c.get(i12)).f31357c != null) {
+                    rh0 rh0Var = ((th0) wh0Var.f32755c.get(i12)).f31357c;
+                    int i13 = this.f33086j1;
+                    int i14 = this.f33087k1;
                     rh0Var.r(i13, i13, i14, i14);
                 }
             }
@@ -425,7 +425,7 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
                     break;
                 } else if (arrayList.get(i10) == imageLocation) {
                     this.Y0.set(i10, Float.valueOf(f10));
-                    SparseArray sparseArray = this.f33083a1;
+                    SparseArray sparseArray = this.f33077a1;
                     if (sparseArray.get(i10) != null) {
                         ((RadialProgress2) sparseArray.get(i10)).o(f10, true);
                     }
@@ -478,18 +478,18 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
             if (xh0Var2.P0 == dialogPhotos2) {
                 ArrayList arrayList7 = new ArrayList(dialogPhotos2.photos);
                 if (!arrayList7.isEmpty() || !dialogPhotos2.fromCache) {
-                    xh0Var2.f33089g1 = -1;
-                    xh0Var2.f33090h1 = -1;
+                    xh0Var2.f33083g1 = -1;
+                    xh0Var2.f33084h1 = -1;
                     int i17 = xh0Var2.I0;
                     TLRPC.User user4 = MessagesController.getInstance(i17).getUser(Long.valueOf(xh0Var2.B0));
                     TLRPC.UserFull userFull = MessagesController.getInstance(i17).getUserFull(xh0Var2.B0);
                     if (userFull != null && (photo = userFull.personal_photo) != null) {
                         arrayList7.add(0, photo);
-                        xh0Var2.f33089g1 = 0;
+                        xh0Var2.f33083g1 = 0;
                     }
                     if (user4 != null && user4.self && UserObject.hasFallbackPhoto(userFull)) {
                         arrayList7.add(userFull.fallback_photo);
-                        xh0Var2.f33090h1 = arrayList7.size() - 1;
+                        xh0Var2.f33084h1 = arrayList7.size() - 1;
                     }
                     arrayList5.clear();
                     arrayList6.clear();
@@ -672,7 +672,7 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
                                                     } else {
                                                         z13 = false;
                                                     }
-                                                    arrayList11.add(new u61(vectorMarkupVideoSize, z13, 2));
+                                                    arrayList11.add(new t61(vectorMarkupVideoSize, z13, 2));
                                                     obj = null;
                                                     arrayList9.add(null);
                                                     arrayList6.add(null);
@@ -721,7 +721,7 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
                                                 z12 = false;
                                             }
                                             user = user2;
-                                            arrayList11.add(new u61(vectorMarkupVideoSize2, z12, 2));
+                                            arrayList11.add(new t61(vectorMarkupVideoSize2, z12, 2));
                                             z11 = false;
                                             arrayList9.add(null);
                                             arrayList6.add(null);
@@ -773,31 +773,31 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
                     getAdapter().g();
                     if (z4) {
                         xh0Var = this;
-                        if (!xh0Var.E0 || xh0Var.f33085c1) {
+                        if (!xh0Var.E0 || xh0Var.f33079c1) {
                             xh0Var.L();
                         }
                     } else {
                         xh0Var = this;
-                        if (!xh0Var.E0 || xh0Var.f33085c1) {
+                        if (!xh0Var.E0 || xh0Var.f33079c1) {
                             xh0Var.L();
                             xh0Var.getAdapter().g();
                             xh0Var.B(0.0f, xh0Var.getRealPosition());
                         }
                     }
-                    if (xh0Var.f33090h1 < 0 && xh0Var.f33089g1 < 0) {
+                    if (xh0Var.f33084h1 < 0 && xh0Var.f33083g1 < 0) {
                         z10 = false;
                         xh0Var.B(0.0f, 0);
                     } else {
                         z10 = false;
                     }
-                    xh0Var.f33085c1 = z10;
+                    xh0Var.f33079c1 = z10;
                     sh0 sh0Var = xh0Var.D0;
                     if (sh0Var != null) {
                         sh0Var.c();
                     }
-                    ImageLocation imageLocation5 = xh0Var.f33095n1;
+                    ImageLocation imageLocation5 = xh0Var.f33089n1;
                     if (imageLocation5 != null) {
-                        xh0Var.A(imageLocation5, xh0Var.f33096o1);
+                        xh0Var.A(imageLocation5, xh0Var.f33090o1);
                         return;
                     }
                     return;
@@ -806,7 +806,7 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
             return;
         }
         int i28 = NotificationCenter.fileLoaded;
-        SparseArray sparseArray = xh0Var2.f33083a1;
+        SparseArray sparseArray = xh0Var2.f33077a1;
         if (i10 == i28) {
             String str = (String) objArr[0];
             for (int i29 = 0; i29 < arrayList5.size(); i29++) {
@@ -852,7 +852,7 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
     }
 
     public oh0 getBlurDrawer() {
-        return this.f33094m1;
+        return this.f33088m1;
     }
 
     public float getCurrentItemProgress() {
@@ -866,8 +866,8 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
 
     public p9 getCurrentItemView() {
         wh0 wh0Var = this.A0;
-        if (wh0Var != null && !wh0Var.f32750c.isEmpty()) {
-            return ((th0) wh0Var.f32750c.get(getCurrentItem())).f31342c;
+        if (wh0Var != null && !wh0Var.f32755c.isEmpty()) {
+            return ((th0) wh0Var.f32755c.get(getCurrentItem())).f31357c;
         }
         return null;
     }
@@ -878,7 +878,7 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
 
     public int getRealCount() {
         int size = this.S0.size();
-        if (this.f33088f1) {
+        if (this.f33082f1) {
             return size + 1;
         }
         return size;
@@ -890,7 +890,7 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f33102z0.getScrollState() != 0) {
+        if (this.f33096z0.getScrollState() != 0) {
             return false;
         }
         if (getParent() != null && getParent().getParent() != null) {
@@ -902,16 +902,16 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
     @Override
     public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
         super.onLayout(z4, i10, i11, i12, i13);
-        oh0 oh0Var = this.f33094m1;
+        oh0 oh0Var = this.f33088m1;
         if (oh0Var != null) {
-            oh0Var.setTranslationY(getHeight() - this.f33094m1.getMeasuredHeight());
+            oh0Var.setTranslationY(getHeight() - this.f33088m1.getMeasuredHeight());
         }
     }
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        oh0 oh0Var = this.f33094m1;
+        oh0 oh0Var = this.f33088m1;
         if (oh0Var != null) {
             oh0Var.D = true;
             oh0Var.postInvalidateOnAnimation();
@@ -926,7 +926,7 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
     @Override
     public void setAlpha(float f10) {
         super.setAlpha(f10);
-        oh0 oh0Var = this.f33094m1;
+        oh0 oh0Var = this.f33088m1;
         if (oh0Var != null) {
             oh0Var.setAlpha(f10);
         }
@@ -983,7 +983,7 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
     }
 
     public void setCreateThumbFromParent(boolean z4) {
-        this.f33084b1 = z4;
+        this.f33078b1 = z4;
     }
 
     public void setData(long j10) {
@@ -991,32 +991,32 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
     }
 
     public void setHasActiveVideo(boolean z4) {
-        this.f33088f1 = z4;
+        this.f33082f1 = z4;
     }
 
     public void setImagesLayerNum(int i10) {
-        this.f33091i1 = i10;
+        this.f33085i1 = i10;
     }
 
     public void setInvalidateWithParent(boolean z4) {
-        this.f33086d1 = z4;
+        this.f33080d1 = z4;
     }
 
     public void setParentAvatarImage(p9 p9Var) {
         wh0 wh0Var = this.A0;
         if (wh0Var != null) {
-            wh0Var.f32753g = p9Var;
+            wh0Var.f32758g = p9Var;
         }
     }
 
-    public void setPinchToZoomHelper(org.telegram.ui.xu0 xu0Var) {
-        this.f33087e1 = xu0Var;
+    public void setPinchToZoomHelper(org.telegram.ui.cv0 cv0Var) {
+        this.f33081e1 = cv0Var;
     }
 
     @Override
     public void setVisibility(int i10) {
         super.setVisibility(i10);
-        oh0 oh0Var = this.f33094m1;
+        oh0 oh0Var = this.f33088m1;
         if (oh0Var != null) {
             oh0Var.setVisibility(i10);
         }
@@ -1025,11 +1025,11 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
     public void setCustomAvatarProgress(float f10) {
     }
 
-    public xh0(Context context, long j10, org.telegram.ui.ActionBar.k kVar, tl0 tl0Var, org.telegram.ui.vz0 vz0Var, sh0 sh0Var, oh0 oh0Var) {
+    public xh0(Context context, long j10, org.telegram.ui.ActionBar.k kVar, sl0 sl0Var, org.telegram.ui.a01 a01Var, sh0 sh0Var, oh0 oh0Var) {
         super(context);
-        this.f33097u0 = new PointF();
-        this.f33100x0 = true;
-        this.f33101y0 = true;
+        this.f33091u0 = new PointF();
+        this.f33094x0 = true;
+        this.f33095y0 = true;
         int i10 = UserConfig.selectedAccount;
         this.I0 = i10;
         this.J0 = new Path();
@@ -1044,12 +1044,12 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
         this.W0 = new ArrayList();
         this.X0 = new ArrayList();
         this.Y0 = new ArrayList();
-        this.f33083a1 = new SparseArray();
-        this.f33084b1 = true;
-        this.f33089g1 = -1;
-        this.f33090h1 = -1;
-        this.f33094m1 = oh0Var;
-        setPadding(0, 0, 0, oh0Var == null ? 0 : oh0Var.f29765n);
+        this.f33077a1 = new SparseArray();
+        this.f33078b1 = true;
+        this.f33083g1 = -1;
+        this.f33084h1 = -1;
+        this.f33088m1 = oh0Var;
+        setPadding(0, 0, 0, oh0Var == null ? 0 : oh0Var.f29766n);
         if (oh0Var != null) {
             oh0Var.setView(this);
         }
@@ -1058,14 +1058,14 @@ public class xh0 extends wp implements NotificationCenter.NotificationCenterDele
         setOffscreenPageLimit(2);
         this.G0 = true;
         this.B0 = j10;
-        this.f33102z0 = tl0Var;
-        this.f33099w0 = kVar;
-        wh0 wh0Var = new wh0(this, getContext(), vz0Var);
+        this.f33096z0 = sl0Var;
+        this.f33093w0 = kVar;
+        wh0 wh0Var = new wh0(this, getContext(), a01Var);
         this.A0 = wh0Var;
         setAdapter((vp) wh0Var);
-        this.f33098v0 = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f33092v0 = ViewConfiguration.get(context).getScaledTouchSlop();
         this.D0 = sh0Var;
-        b(new qh0((org.telegram.ui.zy0) this));
+        b(new qh0((org.telegram.ui.dz0) this));
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.dialogPhotosLoaded);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileLoaded);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileLoadProgressChanged);

@@ -9,20 +9,20 @@ import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 public final class t0 extends View implements b6 {
-    public final g6 f50042a;
-    public final Paint f50043b;
-    public a f50044c;
+    public final g6 f50078a;
+    public final Paint f50079b;
+    public a f50080c;
 
     public t0(Context context, g6 g6Var) {
         super(context);
-        this.f50043b = new Paint();
-        this.f50042a = g6Var;
+        this.f50079b = new Paint();
+        this.f50078a = g6Var;
         e();
     }
 
     @Override
     public final void e() {
-        this.f50043b.setColor(k6.v0(k6.Fk, this.f50042a));
+        this.f50079b.setColor(k6.v0(k6.Fk, this.f50078a));
     }
 
     public int[] getColorKeys() {
@@ -30,12 +30,12 @@ public final class t0 extends View implements b6 {
     }
 
     public a getRow() {
-        return this.f50044c;
+        return this.f50080c;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, AndroidUtilities.dp(6.0f), getMeasuredWidth(), AndroidUtilities.dp(6.0f) + 1, this.f50043b);
+        canvas.drawRect(0.0f, AndroidUtilities.dp(6.0f), getMeasuredWidth(), AndroidUtilities.dp(6.0f) + 1, this.f50079b);
     }
 
     @Override

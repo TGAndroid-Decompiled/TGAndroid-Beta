@@ -2,9 +2,9 @@ package s8;
 
 import l7.xa;
 public abstract class k {
-    public transient c f47111a;
-    public transient l7.m f47112b;
-    public transient xa f47113c;
+    public transient c f47142a;
+    public transient l7.m f47143b;
+    public transient xa f47144c;
 
     public abstract xa a();
 

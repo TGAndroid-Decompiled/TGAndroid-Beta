@@ -8,12 +8,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VoIPService;
-public final class k30 extends org.telegram.ui.Components.lj0 {
-    public final d60 f38264r;
+public final class k30 extends org.telegram.ui.Components.kj0 {
+    public final d60 f38181r;
 
     public k30(d60 d60Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f38264r = d60Var;
+        this.f38181r = d60Var;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class k30 extends org.telegram.ui.Components.lj0 {
         boolean z4;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName(Button.class.getName());
-        d60 d60Var = this.f38264r;
+        d60 d60Var = this.f38181r;
         int i10 = d60Var.C1;
         if (i10 != 0 && i10 != 1) {
             z4 = false;
@@ -36,8 +36,8 @@ public final class k30 extends org.telegram.ui.Components.lj0 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        d60 d60Var = this.f38264r;
-        q20 q20Var = d60Var.f36100v2;
+        d60 d60Var = this.f38181r;
+        q20 q20Var = d60Var.f36079v2;
         ArrayList arrayList = d60Var.W1;
         if (d60Var.r1()) {
             return super.onTouchEvent(motionEvent);
@@ -50,12 +50,12 @@ public final class k30 extends org.telegram.ui.Components.lj0 {
                 AndroidUtilities.cancelRunOnUIThread(q20Var);
                 d60Var.O1 = false;
             } else if (d60Var.P1) {
-                AndroidUtilities.cancelRunOnUIThread(d60Var.f36096u2);
+                AndroidUtilities.cancelRunOnUIThread(d60Var.f36075u2);
                 d60Var.J1(0, true);
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().setMicMute(true, true, false);
                     try {
-                        d60Var.f36102w.performHapticFeedback(3, 2);
+                        d60Var.f36081w.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
                 }

@@ -83,11 +83,11 @@ public final class sa0 implements Menu {
     @Override
     public final MenuItem add(int i10, int i11, int i12, CharSequence charSequence) {
         Runnable runnable = this.f31025c;
-        if (runnable == null || !org.telegram.ui.ActionBar.z4.f22489r.contains(Integer.valueOf(i11)) || !MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
-            jm jmVar = new jm(this, i11, 2);
+        if (runnable == null || !org.telegram.ui.ActionBar.z4.f22491r.contains(Integer.valueOf(i11)) || !MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
+            im imVar = new im(this, i11, 2);
             q70 q70Var = this.f31023a;
-            q70Var.c(0, charSequence, jmVar, false);
-            if (runnable != null && org.telegram.ui.ActionBar.z4.f22489r.contains(Integer.valueOf(i11))) {
+            q70Var.c(0, charSequence, imVar, false);
+            if (runnable != null && org.telegram.ui.ActionBar.z4.f22491r.contains(Integer.valueOf(i11))) {
                 q70Var.M(runnable);
             }
         }

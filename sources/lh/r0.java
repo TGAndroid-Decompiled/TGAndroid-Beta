@@ -11,12 +11,12 @@ import org.telegram.ui.Components.eg;
 import org.telegram.ui.Components.k6;
 import org.telegram.ui.nn;
 public final class r0 implements eg {
-    public final TL_stars.TL_starGiftUnique f12917a;
-    public final u0 f12918b;
+    public final TL_stars.TL_starGiftUnique f12919a;
+    public final u0 f12920b;
 
     public r0(u0 u0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f12918b = u0Var;
-        this.f12917a = tL_starGiftUnique;
+        this.f12920b = u0Var;
+        this.f12919a = tL_starGiftUnique;
     }
 
     @Override
@@ -43,11 +43,11 @@ public final class r0 implements eg {
         int i10;
         int i11;
         boolean z4;
-        u0 u0Var = this.f12918b;
-        k6 k6Var = u0Var.f12989w;
-        f6 f6Var = u0Var.f12982b;
+        u0 u0Var = this.f12920b;
+        k6 k6Var = u0Var.f12991w;
+        f6 f6Var = u0Var.f12984b;
         i10 = ((org.telegram.ui.ActionBar.h3) u0Var).currentAccount;
-        f6Var.a(this.f12917a, UserConfig.getInstance(i10).getClientUserId(), u0Var.f12986n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
+        f6Var.a(this.f12919a, UserConfig.getInstance(i10).getClientUserId(), u0Var.f12988n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         u0Var.C = codePointCount;
         int i12 = u0Var.B;
@@ -71,10 +71,10 @@ public final class r0 implements eg {
             k6Var.animate().setListener(null).cancel();
             k6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i11 < 0) {
-                k6Var.setTextColor(u0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21876p7));
+                k6Var.setTextColor(u0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21878p7));
                 return;
             } else {
-                k6Var.setTextColor(u0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f22036y6));
+                k6Var.setTextColor(u0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f22038y6));
                 return;
             }
         }

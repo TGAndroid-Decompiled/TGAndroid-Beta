@@ -107,7 +107,7 @@ public final class k0 implements v {
         a0Var2.f11645m = h5.d0.f7241f;
         this.f11537e = a0Var2;
         a0 a0Var3 = new a0();
-        s8.t tVar = s8.v.f47143b;
+        s8.t tVar = s8.v.f47174b;
         Object[] objArr = {a0Var3, a0Var, a0Var2};
         s8.l.b(3, objArr);
         this.f11539f = s8.v.s(3, objArr);
@@ -151,7 +151,7 @@ public final class k0 implements v {
                 return false;
             }
             AudioFormat g10 = g(n0Var.Q, n10, b10);
-            AudioAttributes audioAttributes = (AudioAttributes) dVar.a().f16615b;
+            AudioAttributes audioAttributes = (AudioAttributes) dVar.a().f16617b;
             if (i12 >= 31) {
                 i11 = AudioManager.getPlaybackOffloadSupport(g10, audioAttributes);
             } else if (!AudioManager.isOffloadedPlaybackSupported(g10, audioAttributes)) {

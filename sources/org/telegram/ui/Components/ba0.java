@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class ba0 implements kt0 {
-    public final fa0 f25554a;
+public final class ba0 implements jt0 {
+    public final fa0 f25565a;
 
     public ba0(fa0 fa0Var) {
-        this.f25554a = fa0Var;
+        this.f25565a = fa0Var;
     }
 
     @Override
     public final void R() {
-        this.f25554a.a0();
+        this.f25565a.a0();
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class ba0 implements kt0 {
     }
 
     @Override
-    public final tl0 f() {
+    public final sl0 f() {
         return null;
     }
 

@@ -30,11 +30,11 @@ public final class a {
         } else {
             c3 = '1';
         }
-        int i13 = vVar.f44182b;
-        char[] cArr = (char[]) vVar.f44183c;
+        int i13 = vVar.f44213b;
+        char[] cArr = (char[]) vVar.f44214c;
         if (i13 < cArr.length - 1) {
             cArr[i13] = c3;
-            vVar.f44182b = i13 + 1;
+            vVar.f44213b = i13 + 1;
         }
         f1911f++;
         return i12;
@@ -91,19 +91,19 @@ public final class a {
         StringBuilder sb = new StringBuilder();
         int i10 = f1911f;
         v vVar = this.f1915e;
-        String valueOf = String.valueOf(i10 - vVar.f44182b);
+        String valueOf = String.valueOf(i10 - vVar.f44213b);
         int length = 8 - valueOf.length();
         sb.append("@".concat(valueOf));
         for (int i11 = 0; i11 < length; i11++) {
             sb.append(' ');
         }
         sb.append(str);
-        int length2 = (100 - sb.length()) - vVar.f44182b;
+        int length2 = (100 - sb.length()) - vVar.f44213b;
         for (int i12 = 0; i12 < length2; i12++) {
             sb.append(' ');
         }
         sb.append(vVar);
         sb.append(" (" + str2 + ")");
-        vVar.f44182b = 0;
+        vVar.f44213b = 0;
     }
 }

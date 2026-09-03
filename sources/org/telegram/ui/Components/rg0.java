@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
-public final class rg0 extends tl0 {
+public final class rg0 extends sl0 {
     public final lf.b0 U2;
     public long V2;
     public final xg0 W2;
@@ -45,7 +45,7 @@ public final class rg0 extends tl0 {
             }
             xg0Var.F.setTranslate(f10, 0.0f);
             xg0Var.E.setLocalMatrix(xg0Var.F);
-            f1();
+            e1();
             invalidate();
         }
         super.dispatchDraw(canvas);
@@ -54,7 +54,7 @@ public final class rg0 extends tl0 {
         int measuredHeight2 = getMeasuredHeight();
         lf.b0 b0Var = this.U2;
         b0Var.setBounds(0, measuredHeight, measuredWidth, measuredHeight2);
-        b0Var.b(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21749i5, this.f31383m2));
+        b0Var.b(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21751i5, this.f31106m2));
         b0Var.draw(canvas);
     }
 }

@@ -1,43 +1,57 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
+import android.graphics.Bitmap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MrzRecognizer;
-public final class f21 implements u9 {
-    public final int f36735a;
-    public final org.telegram.ui.ActionBar.p2 f36736b;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SvgHelper;
+public final class f21 implements Runnable {
+    public final int f36637a;
+    public final u21 f36638b;
 
-    public f21(int i10, org.telegram.ui.ActionBar.p2 p2Var) {
-        this.f36735a = i10;
-        this.f36736b = p2Var;
+    public f21(u21 u21Var, int i10) {
+        this.f36637a = i10;
+        this.f36638b = u21Var;
     }
 
     @Override
-    public final String E0() {
-        return null;
-    }
-
-    @Override
-    public final void J(String str) {
-        String b10 = af.g.b(str);
-        if (!TextUtils.isEmpty(b10)) {
-            MessagesController.getInstance(this.f36735a).getUserNameResolver().resolve(b10, new vb(this.f36736b, 4));
-        } else {
-            AndroidUtilities.runOnUIThread(new sj0(2));
+    public final void run() {
+        switch (this.f36637a) {
+            case 0:
+                t21 t21Var = this.f36638b.f41708f;
+                if (t21Var != null) {
+                    t21Var.f41396s.setClickable(true);
+                    return;
+                }
+                return;
+            case 1:
+                u21 u21Var = this.f36638b;
+                u21Var.d0(0, u21Var.G, true);
+                org.telegram.ui.Components.hj0 animatedDrawable = u21Var.C.getAnimatedDrawable();
+                if (u21Var.F == null && animatedDrawable != null) {
+                    u21Var.F = Bitmap.createBitmap(animatedDrawable.f27519b, animatedDrawable.f27521c, Bitmap.Config.ARGB_8888);
+                    animatedDrawable.b();
+                    animatedDrawable.B0 = 33;
+                    animatedDrawable.a(u21Var.F);
+                    animatedDrawable.c();
+                    return;
+                }
+                return;
+            case 2:
+                int i10 = R.raw.default_pattern;
+                u21 u21Var2 = this.f36638b;
+                AndroidUtilities.runOnUIThread(new h21(0, u21Var2, SvgHelper.getBitmap(i10, u21Var2.f41712w.getWidth(), u21Var2.f41712w.getHeight(), -16777216)));
+                return;
+            case 3:
+                u21 u21Var3 = this.f36638b;
+                n7.qa qaVar = u21Var3.f41704a;
+                qaVar.f15701b = u21Var3.G.b(((org.telegram.ui.ActionBar.p2) ((u21) qaVar.f15702c)).currentAccount, u21Var3.H ? 1 : 0);
+                return;
+            case 4:
+                u21.X(this.f36638b);
+                return;
+            default:
+                u21.V(this.f36638b);
+                return;
         }
-    }
-
-    @Override
-    public final boolean e1(String str, m9 m9Var) {
-        return false;
-    }
-
-    @Override
-    public final void P0(MrzRecognizer.Result result) {
-    }
-
-    @Override
-    public final void onDismiss() {
     }
 }

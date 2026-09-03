@@ -37,35 +37,35 @@ import org.telegram.ui.ActionBar.p2;
 import org.telegram.ui.Cells.n4;
 import org.telegram.ui.Cells.r7;
 import org.telegram.ui.Components.ga0;
-import org.telegram.ui.Components.j51;
-import org.telegram.ui.Components.jl0;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.il0;
 import org.telegram.ui.Components.l5;
 import org.telegram.ui.Components.mi;
-import org.telegram.ui.Components.or0;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.nr0;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.z4;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.ay;
-import org.telegram.ui.ht0;
 import org.telegram.ui.hx;
+import org.telegram.ui.mt0;
 import org.telegram.ui.oy;
 import org.telegram.ui.py;
-import org.telegram.ui.web.v1;
+import org.telegram.ui.web.a2;
 import org.telegram.ui.xn;
 import org.telegram.ui.xw;
 import qh.c1;
-import qh.f9;
-import qh.i1;
+import qh.e9;
+import qh.h1;
+import qh.m1;
 import qh.n1;
-import qh.o1;
 import qh.r;
 import qh.u;
-import qh.y1;
 import uf.z;
 import vf.a0;
 import vf.c0;
-import vf.f0;
-public final class h implements jl0 {
+import vf.e0;
+import vf.o1;
+public final class h implements il0 {
     public final int f200a;
     public final Object f201b;
 
@@ -76,7 +76,7 @@ public final class h implements jl0 {
 
     @Override
     public final void f(int i10, View view) {
-        j51 G;
+        h51 G;
         long j10;
         int i11;
         TLRPC.Document document;
@@ -98,18 +98,18 @@ public final class h implements jl0 {
                 }
                 return;
             case 1:
-                ht0 ht0Var = (ht0) this.f201b;
+                mt0 mt0Var = (mt0) this.f201b;
                 s0 s0Var = (s0) s0.c().get(i10);
-                ht0Var.f5127r1.setTypeface(s0Var.f4665a);
-                e1 e6 = e1.e(ht0Var.M1);
+                mt0Var.f5127r1.setTypeface(s0Var.f4665a);
+                e1 e6 = e1.e(mt0Var.M1);
                 String str = s0Var.f4665a;
                 e6.f4521j = str;
                 e6.f4514a.edit().putString("typeface", str).apply();
-                eg.j jVar = ht0Var.P0;
+                eg.j jVar = mt0Var.P0;
                 if (jVar instanceof z3) {
                     ((z3) jVar).setTypeface(s0Var);
                 }
-                ht0Var.z0(false);
+                mt0Var.z0(false);
                 return;
             case 2:
                 c2 c2Var = (c2) this.f201b;
@@ -124,7 +124,7 @@ public final class h implements jl0 {
             case 4:
                 f1 f1Var = (f1) this.f201b;
                 if (view != null) {
-                    f1Var.w1(view, true);
+                    f1Var.v1(view, true);
                     f1Var.f6339a3 = false;
                     f1Var.v0(0, view.getTop() - ((f1Var.getMeasuredHeight() - view.getMeasuredHeight()) / 2), AndroidUtilities.overshootInterpolator);
                     return;
@@ -140,8 +140,8 @@ public final class h implements jl0 {
                 s3 s3Var = (s3) this.f201b;
                 qh.d dVar = s3Var.Y;
                 HashSet hashSet = s3Var.W;
-                x51 x51Var = s3Var.f12962a0;
-                if (x51Var != null && (G = x51Var.G(i10 - 1)) != null) {
+                w51 w51Var = s3Var.f12964a0;
+                if (w51Var != null && (G = w51Var.G(i10 - 1)) != null) {
                     Object obj = G.G;
                     if (obj instanceof TL_stars.SavedStarGift) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
@@ -186,45 +186,45 @@ public final class h implements jl0 {
                 return;
             case 13:
                 ph.l lVar = (ph.l) this.f201b;
-                or0 or0Var = lVar.T;
-                p2 p2Var = or0Var.f44406a;
+                nr0 nr0Var = lVar.T;
+                p2 p2Var = nr0Var.f44437a;
                 if (view instanceof r7) {
                     MessageObject messageObject = ((r7) view).getMessageObject();
-                    if (or0Var.D.f34021z1) {
-                        if (or0Var.c(messageObject)) {
-                            or0Var.g(messageObject);
+                    if (nr0Var.D.f33666z1) {
+                        if (nr0Var.c(messageObject)) {
+                            nr0Var.g(messageObject);
                             return;
                         } else {
-                            or0Var.e(messageObject);
+                            nr0Var.e(messageObject);
                             return;
                         }
                     }
                     i9 orCreateStoryViewer = p2Var.getOrCreateStoryViewer();
                     Context context = lVar.getContext();
                     int id2 = messageObject.getId();
-                    d6 d6Var = lVar.f44391a;
-                    c7 a2 = c7.a(lVar.f44395f);
+                    d6 d6Var = lVar.f44422a;
+                    c7 a2 = c7.a(lVar.f44426f);
                     if ((p2Var instanceof ProfileActivity) && ((ProfileActivity) p2Var).f34667p1) {
                         i11 = AndroidUtilities.dp(68.0f);
                     } else {
                         i11 = 0;
                     }
-                    a2.f16948s += i11;
+                    a2.f16950s += i11;
                     orCreateStoryViewer.C(context, id2, d6Var, a2);
                     return;
                 }
                 return;
             case 14:
-                Utilities.Callback callback = ((u) this.f201b).f46136c;
+                Utilities.Callback callback = ((u) this.f201b).f46151c;
                 if (callback != null) {
                     callback.run((r) r.a().get(i10));
                     return;
                 }
                 return;
             case 15:
-                i1 i1Var = (i1) this.f201b;
-                y1 y1Var = i1Var.f45406r;
-                Object F = i1Var.f45402c.F(i10);
+                h1 h1Var = (h1) this.f201b;
+                qh.x1 x1Var = h1Var.f45388r;
+                Object F = h1Var.f45384c.F(i10);
                 if (F instanceof TLRPC.BotInlineResult) {
                     botInlineResult = (TLRPC.BotInlineResult) F;
                     document = botInlineResult.document;
@@ -234,32 +234,32 @@ public final class h implements jl0 {
                 } else {
                     return;
                 }
-                Utilities.Callback3Return callback3Return = y1Var.f46351y;
+                Utilities.Callback3Return callback3Return = x1Var.f46307y;
                 if (callback3Return != null) {
                     callback3Return.run(botInlineResult, document, Boolean.TRUE);
                 }
-                y1Var.dismiss();
+                x1Var.dismiss();
                 return;
             case 16:
-                o1 o1Var = (o1) this.f201b;
-                y1 y1Var2 = o1Var.f45826s;
-                n1 n1Var = o1Var.f45821c;
+                n1 n1Var = (n1) this.f201b;
+                qh.x1 x1Var2 = n1Var.f45798s;
+                m1 m1Var = n1Var.f45793c;
                 if (i10 >= 0) {
-                    o1Var.d.getClass();
+                    n1Var.d.getClass();
                     if (RecyclerView.U(view).f5879f != 4) {
-                        ArrayList arrayList = n1Var.f45760s;
-                        ArrayList arrayList2 = n1Var.v;
+                        ArrayList arrayList = m1Var.f45737s;
+                        ArrayList arrayList2 = m1Var.v;
                         if (i10 >= arrayList.size()) {
                             document2 = null;
                         } else {
-                            document2 = (TLRPC.Document) n1Var.f45760s.get(i10);
+                            document2 = (TLRPC.Document) m1Var.f45737s.get(i10);
                         }
-                        if (document2 == y1Var2.f46344e) {
-                            vf.g gVar = y1Var2.B;
+                        if (document2 == x1Var2.f46300e) {
+                            vf.g gVar = x1Var2.B;
                             if (gVar != null) {
                                 gVar.run();
                             }
-                            y1Var2.dismiss();
+                            x1Var2.dismiss();
                             return;
                         }
                         if (i10 >= arrayList2.size()) {
@@ -267,19 +267,19 @@ public final class h implements jl0 {
                         } else {
                             longValue = ((Long) arrayList2.get(i10)).longValue();
                         }
-                        if (document2 == null && (view instanceof c1) && (l5Var = ((c1) view).f45046c) != null) {
-                            document2 = l5Var.f28599e;
+                        if (document2 == null && (view instanceof c1) && (l5Var = ((c1) view).f45141c) != null) {
+                            document2 = l5Var.f28632e;
                         }
                         if (document2 == null && longValue != 0) {
-                            i12 = ((h3) y1Var2).currentAccount;
+                            i12 = ((h3) x1Var2).currentAccount;
                             document2 = l5.f(i12, longValue);
                         }
                         if (document2 != null) {
-                            Utilities.Callback3Return callback3Return2 = y1Var2.f46351y;
+                            Utilities.Callback3Return callback3Return2 = x1Var2.f46307y;
                             if (callback3Return2 != null) {
-                                callback3Return2.run(n1Var.f45757f.get(Long.valueOf(document2.f20849id)), document2, Boolean.FALSE);
+                                callback3Return2.run(m1Var.f45734f.get(Long.valueOf(document2.f20851id)), document2, Boolean.FALSE);
                             }
-                            y1Var2.dismiss();
+                            x1Var2.dismiss();
                             return;
                         }
                         return;
@@ -288,26 +288,26 @@ public final class h implements jl0 {
                 }
                 return;
             case 17:
-                f9 f9Var = (f9) this.f201b;
+                e9 e9Var = (e9) this.f201b;
                 s0 s0Var2 = (s0) s0.c().get(i10);
-                f9Var.f44960i1.setTypeface(s0Var2.f4665a);
-                e1 e10 = e1.e(f9Var.C1);
+                e9Var.f44937i1.setTypeface(s0Var2.f4665a);
+                e1 e10 = e1.e(e9Var.C1);
                 String str2 = s0Var2.f4665a;
                 e10.f4521j = str2;
                 e10.f4514a.edit().putString("typeface", str2).apply();
-                eg.j jVar2 = f9Var.G0;
+                eg.j jVar2 = e9Var.G0;
                 if (jVar2 instanceof z3) {
                     ((z3) jVar2).setTypeface(s0Var2);
                 }
-                f9Var.P0(false);
+                e9Var.P0(false);
                 return;
             case 18:
                 rh.g.x0((rh.g) this.f201b, i10);
                 return;
             case 19:
-                x51 x51Var2 = ((rh.f) this.f201b).Y;
-                if (x51Var2 != null) {
-                    x51Var2.G(i10 - 1);
+                w51 w51Var2 = ((rh.f) this.f201b).Y;
+                if (w51Var2 != null) {
+                    w51Var2.G(i10 - 1);
                     return;
                 }
                 return;
@@ -321,7 +321,7 @@ public final class h implements jl0 {
                     if (n4Var.B) {
                         ay ayVar = zVar.R;
                         if (ayVar != null) {
-                            ayVar.f35264a.N4(n4Var.getDialogId(), view);
+                            ayVar.f35273a.N4(n4Var.getDialogId(), view);
                             return;
                         }
                         return;
@@ -329,9 +329,9 @@ public final class h implements jl0 {
                 }
                 ay ayVar2 = zVar.R;
                 if (ayVar2 != null) {
-                    py pyVar = ayVar2.f35264a;
+                    py pyVar = ayVar2.f35273a;
                     long longValue2 = ((Long) view.getTag()).longValue();
-                    if (pyVar.f40224i2) {
+                    if (pyVar.f40194i2) {
                         if (pyVar.h5(longValue2)) {
                             if (!pyVar.F2.isEmpty()) {
                                 pyVar.P3(longValue2, pyVar.i3(longValue2, null));
@@ -352,21 +352,21 @@ public final class h implements jl0 {
                         bundle.putLong("chat_id", -longValue2);
                     }
                     pyVar.J3();
-                    if (AndroidUtilities.isTablet() && pyVar.f40185b0 != null) {
+                    if (AndroidUtilities.isTablet() && pyVar.f40155b0 != null) {
                         int i14 = 0;
                         while (true) {
-                            oy[] oyVarArr = pyVar.f40185b0;
+                            oy[] oyVarArr = pyVar.f40155b0;
                             if (i14 < oyVarArr.length) {
                                 xw xwVar = oyVarArr[i14].d;
-                                pyVar.f40242m2.dialogId = longValue2;
-                                xwVar.f48613s = longValue2;
+                                pyVar.f40212m2.dialogId = longValue2;
+                                xwVar.f48649s = longValue2;
                                 i14++;
                             } else {
                                 pyVar.g5(MessagesController.UPDATE_MASK_SELECT_DIALOG, true);
                             }
                         }
                     }
-                    if (pyVar.f40234k2 != null) {
+                    if (pyVar.f40204k2 != null) {
                         if (pyVar.getMessagesController().checkCanOpenChat(bundle, pyVar)) {
                             pyVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
                             pyVar.presentFragment(new xn(bundle));
@@ -383,10 +383,10 @@ public final class h implements jl0 {
                 return;
             case 22:
                 c0 c0Var = (c0) this.f201b;
-                vf.z zVar2 = c0Var.f49012x;
-                mi miVar = c0Var.f26546b;
-                p0 adapter = c0Var.f49010s.getAdapter();
-                a0 a0Var = c0Var.f49013y;
+                vf.z zVar2 = c0Var.f49048x;
+                mi miVar = c0Var.f26590b;
+                p0 adapter = c0Var.f49046s.getAdapter();
+                a0 a0Var = c0Var.f49049y;
                 if (adapter == a0Var) {
                     ArrayList arrayList3 = a0Var.d;
                     int i15 = i10 - 1;
@@ -404,40 +404,40 @@ public final class h implements jl0 {
                         return;
                     }
                 }
-                if (O instanceof vf.o1) {
+                if (O instanceof o1) {
                     if (!UserConfig.getInstance(miVar.G1).isPremium()) {
-                        if (miVar.f29040c0 != null) {
-                            new fg.n1(miVar.f29040c0, c0Var.getContext(), miVar.G1, true, 31, false, null).show();
+                        if (miVar.f29058c0 != null) {
+                            new fg.n1(miVar.f29058c0, c0Var.getContext(), miVar.G1, true, 31, false, null).show();
                             return;
                         }
                         return;
                     }
-                    vf.o1 o1Var2 = (vf.o1) O;
-                    z4.a0(miVar.G1, o1Var2.a(), miVar.n1(), new v1(18, c0Var, o1Var2));
+                    o1 o1Var = (o1) O;
+                    z4.a0(miVar.G1, o1Var.a(), miVar.n1(), new a2(17, c0Var, o1Var));
                     return;
                 }
                 return;
             case 23:
-                f0 f0Var = (f0) this.f201b;
-                j51 G2 = f0Var.f49046a0.G(i10 - 1);
+                e0 e0Var = (e0) this.f201b;
+                h51 G2 = e0Var.f49071a0.G(i10 - 1);
                 if (G2 != null) {
-                    vf.v vVar = f0Var.W;
+                    vf.v vVar = e0Var.W;
                     if (!vVar.h(G2)) {
                         int i16 = G2.d;
-                        int i17 = f0.f49044d0;
+                        int i17 = e0.f49069d0;
                         if (i16 == -1) {
-                            f0Var.f49047b0 = true;
+                            e0Var.f49072b0 = true;
                             vVar.h = true;
-                            f0Var.f49046a0.N(true);
-                            f0Var.T(true);
+                            e0Var.f49071a0.N(true);
+                            e0Var.T(true);
                             return;
                         }
-                        int i18 = f0.f49045e0;
+                        int i18 = e0.f49070e0;
                         if (i16 == -2) {
-                            f0Var.f49047b0 = false;
+                            e0Var.f49072b0 = false;
                             vVar.h = false;
-                            f0Var.f49046a0.N(true);
-                            f0Var.T(true);
+                            e0Var.f49071a0.N(true);
+                            e0Var.T(true);
                             return;
                         }
                         return;

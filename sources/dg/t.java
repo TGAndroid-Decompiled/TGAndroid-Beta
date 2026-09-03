@@ -3,8 +3,8 @@ package dg;
 import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.e81;
-public final class t extends e81 {
+import org.telegram.ui.Components.d81;
+public final class t extends d81 {
     public final u f4670a;
 
     public t(u uVar) {

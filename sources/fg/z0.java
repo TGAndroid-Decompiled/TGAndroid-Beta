@@ -27,7 +27,7 @@ public final class z0 extends FrameLayout implements x0 {
         this.f6635b = new ArrayList();
         this.f6634a = g6Var;
         for (bb0 bb0Var : bb0.values()) {
-            if (bb0Var.f35411e) {
+            if (bb0Var.f35427e) {
                 this.f6635b.add(bb0Var);
             }
             if (this.f6635b.size() == 3) {
@@ -66,8 +66,8 @@ public final class z0 extends FrameLayout implements x0 {
         o2Var.c();
         paint.setColor(-1);
         qVar.setLayoutParams(c6.d(-2, -2.0f, 17, 0.0f, 52.0f, 0.0f, 0.0f));
-        qVar.setForeground(bb0Var.f35410c);
-        qVar.setBackgroundResource(bb0Var.f35409b);
+        qVar.setForeground(bb0Var.f35426c);
+        qVar.setBackgroundResource(bb0Var.f35425b);
         qVar.setPadding(AndroidUtilities.dp(8.0f));
         qVar.setBackgroundOuterPadding(AndroidUtilities.dp(32.0f));
         addView(qVar);
@@ -104,7 +104,7 @@ public final class z0 extends FrameLayout implements x0 {
             return;
         }
         float abs = Math.abs(f10 / getMeasuredWidth());
-        float interpolation = pr.f30185i.getInterpolation(abs);
+        float interpolation = pr.f30170i.getInterpolation(abs);
         int right = getRight();
         y0 y0Var = this.f6637e;
         y0Var.setTranslationX(((y0Var.getWidth() * 1.5f) + (right - y0Var.getRight()) + AndroidUtilities.dp(32.0f)) * interpolation);
@@ -120,7 +120,7 @@ public final class z0 extends FrameLayout implements x0 {
         float clamp2 = Utilities.clamp(AndroidUtilities.lerp(1.0f, 1.8f, abs), 1.0f, 0.0f);
         y0Var2.setScaleX(clamp2);
         y0Var2.setScaleY(clamp2);
-        float interpolation2 = pr.f30184g.getInterpolation(abs);
+        float interpolation2 = pr.f30169g.getInterpolation(abs);
         int left = getLeft();
         y0 y0Var3 = this.d;
         y0Var3.setTranslationX((((left - y0Var3.getLeft()) - (y0Var3.getWidth() * 2.5f)) + AndroidUtilities.dp(32.0f)) * interpolation2);

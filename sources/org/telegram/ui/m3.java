@@ -5,11 +5,11 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class m3 extends sh.m3 {
     public boolean W;
-    public final p3 f38952a0;
+    public final p3 f38846a0;
 
     public m3(p3 p3Var, Context context) {
         super(context);
-        this.f38952a0 = p3Var;
+        this.f38846a0 = p3Var;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class m3 extends sh.m3 {
         setOffsetY(View.MeasureSpec.getSize(i11) * 0.4f);
         this.W = false;
         int size = View.MeasureSpec.getSize(i11);
-        y3 y3Var = this.f38952a0.H.H;
+        y3 y3Var = this.f38846a0.H.H;
         if (y3Var != null) {
             y3Var.getClass();
         }

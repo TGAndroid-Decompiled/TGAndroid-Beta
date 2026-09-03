@@ -1,19 +1,145 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLObject;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class pj0 {
-    public final TLObject f30094a;
-    public final long f30095b;
-    public int f30096c;
+public final class pj0 extends FrameLayout {
+    public final u00 f30107a;
+    public final TextView f30108b;
+    public final d9 f30109c;
+    public final ImageView d;
+    public final p9 f30110e;
+    public final int f30111f;
+    public boolean h;
+    public final ArrayList f30112n;
+    public final ArrayList f30113r;
+    public final MessageObject f30114s;
+    public int v;
+    public q0.a f30115w;
 
-    public pj0(int i10, TLObject tLObject) {
-        this.f30094a = tLObject;
-        this.f30096c = i10;
-        if (tLObject instanceof TLRPC.User) {
-            this.f30095b = ((TLRPC.User) tLObject).f20990id;
-        } else if (tLObject instanceof TLRPC.Chat) {
-            this.f30095b = -((TLRPC.Chat) tLObject).f20843id;
+    public pj0(Context context, int i10, MessageObject messageObject) {
+        super(context);
+        this.f30112n = new ArrayList();
+        this.f30113r = new ArrayList();
+        this.f30111f = i10;
+        this.f30114s = messageObject;
+        u00 u00Var = new u00(context, null);
+        this.f30107a = u00Var;
+        u00Var.f(org.telegram.ui.ActionBar.k6.G8, org.telegram.ui.ActionBar.k6.f21752i6, -1);
+        u00Var.setViewType(13);
+        u00Var.setIsSingleCell(false);
+        addView(u00Var, k7.c6.c(-1.0f, -2));
+        TextView textView = new TextView(context);
+        this.f30108b = textView;
+        org.telegram.ui.b.q(textView, org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.E8, false), 1, 16.0f, 1);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        addView(textView, k7.c6.i(-2.0f, -2.0f, 8388627, 40.0f, 0.0f, 62.0f, 0.0f));
+        d9 d9Var = new d9(context, false);
+        this.f30109c = d9Var;
+        d9Var.setStyle(11);
+        d9Var.setAvatarsTextSize(AndroidUtilities.dp(22.0f));
+        addView(d9Var, k7.c6.i(56.0f, -1.0f, 8388629, 0.0f, 0.0f, 0.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.d = imageView;
+        addView(imageView, k7.c6.i(24.0f, 24.0f, 8388627, 11.0f, 0.0f, 0.0f, 0.0f));
+        Drawable mutate = context.getDrawable(R.drawable.msg_reactions).mutate();
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.F8, false), PorterDuff.Mode.MULTIPLY));
+        imageView.setImageDrawable(mutate);
+        imageView.setVisibility(8);
+        p9 p9Var = new p9(context);
+        this.f30110e = p9Var;
+        addView(p9Var, k7.c6.i(24.0f, 24.0f, 8388627, 11.0f, 0.0f, 0.0f, 0.0f));
+        textView.setAlpha(0.0f);
+        d9Var.setAlpha(0.0f);
+        setBackground(org.telegram.ui.ActionBar.k6.K0(false));
+    }
+
+    public final void a() {
+        int i10 = this.f30111f;
+        MessagesController messagesController = MessagesController.getInstance(i10);
+        TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();
+        MessageObject messageObject = this.f30114s;
+        tL_messages_getMessageReactionsList.peer = messagesController.getInputPeer(messageObject.getDialogId());
+        tL_messages_getMessageReactionsList.f20938id = messageObject.getId();
+        tL_messages_getMessageReactionsList.limit = 3;
+        tL_messages_getMessageReactionsList.reaction = null;
+        tL_messages_getMessageReactionsList.offset = null;
+        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getMessageReactionsList, new y1(this, 10), 64);
+    }
+
+    public List<oj0> getSeenUsers() {
+        return this.f30112n;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        long j10;
+        super.onAttachedToWindow();
+        int i10 = this.f30111f;
+        MessagesController messagesController = MessagesController.getInstance(i10);
+        MessageObject messageObject = this.f30114s;
+        TLRPC.Chat chat = messagesController.getChat(Long.valueOf(messageObject.getChatId()));
+        TLRPC.ChatFull chatFull = messagesController.getChatFull(messageObject.getChatId());
+        if (chat != null && messageObject.isOutOwner() && messageObject.isSent() && !messageObject.isEditing() && !messageObject.isSending() && !messageObject.isSendError() && !messageObject.isContentUnread() && !messageObject.isUnread() && ConnectionsManager.getInstance(i10).getCurrentTime() - messageObject.messageOwner.date < 604800 && ((ChatObject.isMegagroup(chat) || !ChatObject.isChannel(chat)) && chatFull != null && chatFull.participants_count <= MessagesController.getInstance(i10).chatReadMarkSizeThreshold && !(messageObject.messageOwner.action instanceof TLRPC.TL_messageActionChatJoinedByRequest))) {
+            TLRPC.TL_messages_getMessageReadParticipants tL_messages_getMessageReadParticipants = new TLRPC.TL_messages_getMessageReadParticipants();
+            tL_messages_getMessageReadParticipants.msg_id = messageObject.getId();
+            tL_messages_getMessageReadParticipants.peer = MessagesController.getInstance(i10).getInputPeer(messageObject.getDialogId());
+            TLRPC.Peer peer = messageObject.messageOwner.from_id;
+            if (peer != null) {
+                j10 = peer.user_id;
+            } else {
+                j10 = 0;
+            }
+            ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getMessageReadParticipants, new hg.c0(this, j10, chat, 5), 64);
+            return;
         }
+        a();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int i12 = this.v;
+        if (i12 > 0) {
+            i10 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
+        }
+        u00 u00Var = this.f30107a;
+        if (u00Var.getVisibility() == 0) {
+            this.h = true;
+            u00Var.setVisibility(8);
+            super.onMeasure(i10, i11);
+            u00Var.getLayoutParams().width = getMeasuredWidth();
+            u00Var.setVisibility(0);
+            this.h = false;
+            super.onMeasure(i10, i11);
+            return;
+        }
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.h) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    public void setSeenCallback(q0.a aVar) {
+        this.f30115w = aVar;
     }
 }

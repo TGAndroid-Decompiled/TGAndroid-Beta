@@ -17,7 +17,7 @@ public final class bd0 extends cd0 {
         fVar.setSingleLine(true);
         fVar.setInputType(1);
         fVar.setTypeface(Typeface.DEFAULT);
-        fVar.setCursorColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21803l6, false));
+        fVar.setCursorColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21805l6, false));
         fVar.setCursorWidth(1.5f);
         fVar.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
         e(fVar);

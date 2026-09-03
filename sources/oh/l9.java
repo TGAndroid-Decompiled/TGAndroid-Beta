@@ -12,7 +12,7 @@ public final class l9 extends eg.j1 {
 
     @Override
     public final void invalidate() {
-        View view = this.N.f17473c;
+        View view = this.N.f17475c;
         if (view != null) {
             view.invalidate();
         }

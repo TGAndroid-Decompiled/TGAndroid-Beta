@@ -9,24 +9,24 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class xw extends uf.k {
-    public final oy f43486a0;
-    public final py f43487b0;
+    public final oy f43464a0;
+    public final py f43465b0;
 
     public xw(py pyVar, py pyVar2, Context context, int i10, int i11, boolean z4, ArrayList arrayList, int i12, TLRPC.RequestPeerType requestPeerType, oy oyVar) {
         super(pyVar2, context, i10, i11, z4, arrayList, i12, requestPeerType);
-        this.f43487b0 = pyVar;
-        this.f43486a0 = oyVar;
+        this.f43465b0 = pyVar;
+        this.f43464a0 = oyVar;
     }
 
     @Override
     public final void J() {
-        this.f43487b0.presentFragment(new n());
+        this.f43465b0.presentFragment(new n());
     }
 
     @Override
     public final void K() {
         int i10;
-        py pyVar = this.f43487b0;
+        py pyVar = this.f43465b0;
         org.telegram.ui.ActionBar.d2 d2Var = new org.telegram.ui.ActionBar.d2(pyVar.getParentActivity(), 3, null);
         TLRPC.RequestPeerType requestPeerType = pyVar.D;
         if (requestPeerType instanceof TLRPC.TL_requestPeerTypeBroadcast) {
@@ -36,7 +36,7 @@ public final class xw extends uf.k {
                 h.putBoolean("forcePublic", bool.booleanValue());
             }
             nd ndVar = new nd(h);
-            ndVar.f39404q0 = new p6(pyVar, ndVar, d2Var, 2);
+            ndVar.f39318q0 = new p6(pyVar, ndVar, d2Var, 2);
             pyVar.presentFragment(ndVar);
         } else if (requestPeerType instanceof TLRPC.TL_requestPeerTypeChat) {
             Bundle bundle = new Bundle();
@@ -59,13 +59,13 @@ public final class xw extends uf.k {
     @Override
     public final void L(TLRPC.User user) {
         int i10;
-        i10 = ((org.telegram.ui.ActionBar.p2) this.f43487b0).currentAccount;
+        i10 = ((org.telegram.ui.ActionBar.p2) this.f43465b0).currentAccount;
         MessagesController.getInstance(i10).openApp(user, 0);
     }
 
     @Override
     public final boolean S() {
-        if (this.f43487b0.O0 == 0) {
+        if (this.f43465b0.O0 == 0) {
             return true;
         }
         return false;
@@ -73,21 +73,21 @@ public final class xw extends uf.k {
 
     @Override
     public final void a(org.telegram.ui.Cells.r2 r2Var) {
-        oy oyVar = this.f43486a0;
-        oyVar.f39866a.getClass();
-        this.f43487b0.o4(r2Var, RecyclerView.R(r2Var), 0.0f, oyVar.d);
+        oy oyVar = this.f43464a0;
+        oyVar.f39822a.getClass();
+        this.f43465b0.o4(r2Var, RecyclerView.R(r2Var), 0.0f, oyVar.d);
     }
 
     @Override
     public final void d(org.telegram.ui.Cells.r2 r2Var) {
         int i10;
         if (r2Var.getMessage() != null) {
-            py pyVar = this.f43487b0;
+            py pyVar = this.f43465b0;
             i10 = ((org.telegram.ui.ActionBar.p2) pyVar).currentAccount;
             TLRPC.TL_forumTopic findTopic = pyVar.getMessagesController().getTopicsController().findTopic(-r2Var.getDialogId(), MessageObject.getTopicId(i10, r2Var.getMessage().messageOwner, true));
             if (findTopic != null) {
-                if (pyVar.f40224i2) {
-                    pyVar.O3(r2Var.getDialogId(), findTopic.f20895id, false, null);
+                if (pyVar.f40194i2) {
+                    pyVar.O3(r2Var.getDialogId(), findTopic.f20897id, false, null);
                 } else {
                     bg.e.m(pyVar, -r2Var.getDialogId(), findTopic, 0);
                 }
@@ -105,9 +105,9 @@ public final class xw extends uf.k {
         } catch (Exception e6) {
             FileLog.e(e6);
         }
-        py pyVar = this.f43487b0;
+        py pyVar = this.f43465b0;
         if (pyVar.O0 == 15) {
-            org.telegram.ui.ActionBar.w0 w0Var = pyVar.f40212g0;
+            org.telegram.ui.ActionBar.w0 w0Var = pyVar.f40182g0;
             if (this.R) {
                 i10 = 8;
             } else {

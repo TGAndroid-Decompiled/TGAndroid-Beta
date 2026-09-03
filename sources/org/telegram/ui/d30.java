@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class d30 extends f2.v {
-    public final d60 f35990c;
+    public final d60 f35968c;
 
     public d30(d60 d60Var) {
-        this.f35990c = d60Var;
+        this.f35968c = d60Var;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class d30 extends f2.v {
         } else {
             i11 = 2;
         }
-        if (!d60.D3 && i10 >= (i12 = (x50Var = this.f35990c.M).D) && i10 < (i13 = x50Var.E)) {
+        if (!d60.D3 && i10 >= (i12 = (x50Var = this.f35968c.M).D) && i10 < (i13 = x50Var.E)) {
             int i15 = i13 - i12;
             if (i10 == i13 - 1 && (d60.C3 || i15 % 2 != 0)) {
                 i14 = 2;

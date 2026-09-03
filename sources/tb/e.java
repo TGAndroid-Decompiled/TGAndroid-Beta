@@ -2,22 +2,22 @@ package tb;
 
 import p2.v;
 public final class e {
-    public static final int[] f48050e = {31892, 34236, 39577, 42195, 48118, 51042, 55367, 58893, 63784, 68472, 70749, 76311, 79154, 84390, 87683, 92361, 96236, 102084, 102881, 110507, 110734, 117786, 119615, 126325, 127568, 133589, 136944, 141498, 145311, 150283, 152622, 158308, 161089, 167017};
-    public static final e[] f48051f = a();
-    public final int f48052a;
-    public final int[] f48053b;
-    public final v[] f48054c;
+    public static final int[] f48086e = {31892, 34236, 39577, 42195, 48118, 51042, 55367, 58893, 63784, 68472, 70749, 76311, 79154, 84390, 87683, 92361, 96236, 102084, 102881, 110507, 110734, 117786, 119615, 126325, 127568, 133589, 136944, 141498, 145311, 150283, 152622, 158308, 161089, 167017};
+    public static final e[] f48087f = a();
+    public final int f48088a;
+    public final int[] f48089b;
+    public final v[] f48090c;
     public final int d;
 
     public e(int i10, int[] iArr, v... vVarArr) {
         c5.e[] eVarArr;
-        this.f48052a = i10;
-        this.f48053b = iArr;
-        this.f48054c = vVarArr;
+        this.f48088a = i10;
+        this.f48089b = iArr;
+        this.f48090c = vVarArr;
         v vVar = vVarArr[0];
-        int i11 = vVar.f44182b;
+        int i11 = vVar.f44213b;
         int i12 = 0;
-        for (c5.e eVar : (c5.e[]) vVar.f44183c) {
+        for (c5.e eVar : (c5.e[]) vVar.f44214c) {
             i12 += (eVar.f2269b + i11) * eVar.f2268a;
         }
         this.d = i12;
@@ -31,7 +31,7 @@ public final class e {
         int i11 = Integer.MAX_VALUE;
         int i12 = 0;
         for (int i13 = 0; i13 < 34; i13++) {
-            int i14 = f48050e[i13];
+            int i14 = f48086e[i13];
             if (i14 == i10) {
                 return c(i13 + 7);
             }
@@ -49,12 +49,12 @@ public final class e {
 
     public static e c(int i10) {
         if (i10 >= 1 && i10 <= 40) {
-            return f48051f[i10 - 1];
+            return f48087f[i10 - 1];
         }
         throw new IllegalArgumentException();
     }
 
     public final String toString() {
-        return String.valueOf(this.f48052a);
+        return String.valueOf(this.f48088a);
     }
 }

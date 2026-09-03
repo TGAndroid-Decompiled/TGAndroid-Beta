@@ -126,7 +126,7 @@ public final class f0 implements r3.k {
         long j10;
         boolean z10;
         int i14;
-        long j11 = ((r3.h) lVar).f46556c;
+        long j11 = ((r3.h) lVar).f46587c;
         boolean z11 = this.f1488m;
         int i15 = this.f1478a;
         if (z11) {
@@ -141,15 +141,15 @@ public final class f0 implements r3.k {
                     return 0;
                 } else if (!yVar.f1672f) {
                     r3.h hVar = (r3.h) lVar;
-                    long j13 = hVar.f46556c;
+                    long j13 = hVar.f46587c;
                     int min = (int) Math.min(112800, j13);
                     long j14 = j13 - min;
                     if (hVar.d != j14) {
-                        jbVar.f28091a = j14;
+                        jbVar.f28078a = j14;
                         return 1;
                     }
                     wVar.C(min);
-                    hVar.f46558f = 0;
+                    hVar.f46589f = 0;
                     hVar.f(wVar.f7308a, 0, min, false);
                     int i17 = wVar.f7309b;
                     int i18 = wVar.f7310c;
@@ -190,14 +190,14 @@ public final class f0 implements r3.k {
                     return 0;
                 } else if (!yVar.f1671e) {
                     r3.h hVar2 = (r3.h) lVar;
-                    int min2 = (int) Math.min(112800, hVar2.f46556c);
+                    int min2 = (int) Math.min(112800, hVar2.f46587c);
                     long j15 = 0;
                     if (hVar2.d != j15) {
-                        jbVar.f28091a = j15;
+                        jbVar.f28078a = j15;
                         return 1;
                     }
                     wVar.C(min2);
-                    hVar2.f46558f = 0;
+                    hVar2.f46589f = 0;
                     hVar2.f(wVar.f7308a, 0, min2, false);
                     int i23 = wVar.f7309b;
                     int i24 = wVar.f7310c;
@@ -262,7 +262,7 @@ public final class f0 implements r3.k {
                 this.f1490o = z10;
                 d(j10, j10);
                 if (((r3.h) lVar).d != j10) {
-                    jbVar.f28091a = j10;
+                    jbVar.f28078a = j10;
                     return i14;
                 }
             }

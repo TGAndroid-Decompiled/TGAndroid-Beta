@@ -14,8 +14,8 @@ import org.telegram.ui.Components.PipRoundVideoView;
 import org.telegram.ui.Components.n6;
 import org.telegram.ui.Components.pr;
 import org.telegram.ui.Components.qb;
+import org.telegram.ui.Components.sk0;
 import org.telegram.ui.Components.t50;
-import org.telegram.ui.Components.tk0;
 import org.telegram.ui.dl;
 import org.telegram.ui.jm;
 import org.telegram.ui.ux;
@@ -54,8 +54,8 @@ public final class f implements ViewTreeObserver.OnPreDrawListener {
                         f10 = -qbVar2.getBottomOffset();
                     }
                     jVar.f8159a.getLocationInWindow(iArr);
-                    jVar.U = (jVar.T.f30358a.getMeasuredWidth() / 2.0f) + (f11 - iArr[0]) + jVar.T.f30358a.getLeft();
-                    jVar.V = (jVar.T.f30358a.getMeasuredHeight() / 2.0f) + ((translationY + f10) - iArr[1]) + jVar.T.f30358a.getTop();
+                    jVar.U = (jVar.T.f30374a.getMeasuredWidth() / 2.0f) + (f11 - iArr[0]) + jVar.T.f30374a.getLeft();
+                    jVar.V = (jVar.T.f30374a.getMeasuredHeight() / 2.0f) + ((translationY + f10) - iArr[1]) + jVar.T.f30374a.getTop();
                 }
                 jVar.c();
                 return true;
@@ -69,9 +69,9 @@ public final class f implements ViewTreeObserver.OnPreDrawListener {
                 t1Var.getViewTreeObserver().removeOnPreDrawListener(this);
                 ImageReceiver photoImage = t1Var.getPhotoImage();
                 float imageWidth = photoImage.getImageWidth();
-                tk0 cameraRect = xnVar.Y2.getCameraRect();
-                float f12 = imageWidth / cameraRect.f31357c;
-                t1Var.getTransitionParams().f23710x0 = true;
+                sk0 cameraRect = xnVar.Y2.getCameraRect();
+                float f12 = imageWidth / cameraRect.f31080c;
+                t1Var.getTransitionParams().f23712x0 = true;
                 t1Var.setAlpha(0.0f);
                 t1Var.setTimeAlpha(0.0f);
                 t1Var.getLocationOnScreen(r9);
@@ -84,13 +84,13 @@ public final class f implements ViewTreeObserver.OnPreDrawListener {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_X, f12);
                 ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_Y, f12);
-                ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(cameraContainer, View.TRANSLATION_Y, iArr2[1] - cameraRect.f31356b);
+                ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(cameraContainer, View.TRANSLATION_Y, iArr2[1] - cameraRect.f31079b);
                 View buttonsLayout = xnVar.Y2.getButtonsLayout();
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(buttonsLayout, property, 0.0f), ObjectAnimator.ofInt(xnVar.Y2.getPaint(), n6.f29412b, 0), ObjectAnimator.ofFloat(xnVar.Y2.getMuteImageView(), property, 0.0f));
+                animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(buttonsLayout, property, 0.0f), ObjectAnimator.ofInt(xnVar.Y2.getPaint(), n6.f29395b, 0), ObjectAnimator.ofFloat(xnVar.Y2.getMuteImageView(), property, 0.0f));
                 animatorSet.setInterpolator(pr.h);
-                ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(cameraContainer, View.TRANSLATION_X, iArr2[0] - cameraRect.f31355a);
-                ofFloat4.setInterpolator(pr.f30183f);
+                ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(cameraContainer, View.TRANSLATION_X, iArr2[0] - cameraRect.f31078a);
+                ofFloat4.setInterpolator(pr.f30168f);
                 animatorSet2.playTogether(ofFloat4, animatorSet);
                 animatorSet2.setDuration(300L);
                 dl dlVar = xnVar.Y2;
@@ -101,7 +101,7 @@ public final class f implements ViewTreeObserver.OnPreDrawListener {
                 animatorSet2.start();
                 return true;
             default:
-                ((ux) obj2).f42059b.f40185b0[0].f39866a.getViewTreeObserver().removeOnPreDrawListener(this);
+                ((ux) obj2).f41950b.f40155b0[0].f39822a.getViewTreeObserver().removeOnPreDrawListener(this);
                 AndroidUtilities.runOnUIThread((y1) obj, 100L);
                 return false;
         }

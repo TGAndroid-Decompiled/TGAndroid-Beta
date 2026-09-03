@@ -6,17 +6,17 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class q40 extends Drawable {
-    public byte[] f30270a;
-    public final Paint f30271b = new Paint();
-    public final int[] f30272c = {-1, -2758925, -13805707, -13657655};
+    public byte[] f30281a;
+    public final Paint f30282b = new Paint();
+    public final int[] f30283c = {-1, -2758925, -13805707, -13657655};
 
     @Override
     public final void draw(Canvas canvas) {
-        byte[] bArr = this.f30270a;
+        byte[] bArr = this.f30281a;
         if (bArr != null) {
             int length = bArr.length;
-            int[] iArr = this.f30272c;
-            Paint paint = this.f30271b;
+            int[] iArr = this.f30283c;
+            Paint paint = this.f30282b;
             if (length == 16) {
                 float floor = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 8.0f);
                 float f10 = 8.0f * floor;
@@ -27,7 +27,7 @@ public final class q40 extends Drawable {
                     int i12 = 0;
                     while (i12 < 8) {
                         int i13 = i10 + 2;
-                        paint.setColor(iArr[Math.abs((this.f30270a[i10 / 8] >> (i10 % 8)) & 3) % 4]);
+                        paint.setColor(iArr[Math.abs((this.f30281a[i10 / 8] >> (i10 % 8)) & 3) % 4]);
                         float f11 = (i12 * floor) + max;
                         float f12 = i11 * floor;
                         canvas.drawRect(f11, f12 + max2, f11 + floor, f12 + floor + max2, paint);
@@ -46,7 +46,7 @@ public final class q40 extends Drawable {
             while (i15 < 12) {
                 int i16 = i14;
                 for (int i17 = 0; i17 < 12; i17++) {
-                    paint.setColor(iArr[Math.abs((this.f30270a[i16 / 8] >> (i16 % 8)) & 3) % 4]);
+                    paint.setColor(iArr[Math.abs((this.f30281a[i16 / 8] >> (i16 % 8)) & 3) % 4]);
                     float f14 = (i17 * floor2) + max3;
                     float f15 = i15 * floor2;
                     canvas.drawRect(f14, f15 + max4, f14 + floor2, f15 + floor2 + max4, paint);

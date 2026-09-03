@@ -33,10 +33,10 @@ public final class mb0 extends xh.n {
     @Override
     public final void W() {
         yb0 yb0Var = this.Y.W;
-        AndroidUtilities.cancelRunOnUIThread(yb0Var.f33442y);
-        yb0Var.f33442y.run();
+        AndroidUtilities.cancelRunOnUIThread(yb0Var.f33463y);
+        yb0Var.f33463y.run();
         if (this.W == -1) {
-            this.W = NotificationCenter.getInstance(yb0Var.f33440w).setAnimationInProgress(this.W, null, false);
+            this.W = NotificationCenter.getInstance(yb0Var.f33461w).setAnimationInProgress(this.W, null, false);
         }
         Runnable runnable = this.X;
         if (runnable != null) {

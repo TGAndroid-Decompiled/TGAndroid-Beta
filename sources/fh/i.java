@@ -25,7 +25,7 @@ public final class i extends eh.h {
             z4 = true;
         }
         MessageObject.isAnimatedStickerDocument(document, true);
-        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, k6.f21809lc, 1.0f);
+        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, k6.f21811lc, 1.0f);
         boolean z10 = z4;
         ImageLocation forDocument = ImageLocation.getForDocument(document);
         long j10 = document.size;

@@ -88,8 +88,8 @@ public abstract class p0 {
         ArrayList<TLRPC.Dialog> allDialogs = messagesController.getAllDialogs();
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
-            if (DialogObject.isChatDialog(dialog.f20847id) && ChatObject.isBoostSupported(messagesController.getChat(Long.valueOf(-dialog.f20847id)))) {
-                long j11 = dialog.f20847id;
+            if (DialogObject.isChatDialog(dialog.f20849id) && ChatObject.isBoostSupported(messagesController.getChat(Long.valueOf(-dialog.f20849id)))) {
+                long j11 = dialog.f20849id;
                 if ((-j11) != j10) {
                     arrayList.add(messagesController.getInputPeer(j11));
                 }
@@ -138,7 +138,7 @@ public abstract class p0 {
         TLRPC.TL_payments_getPremiumGiftCodeOptions tL_payments_getPremiumGiftCodeOptions = new TLRPC.TL_payments_getPremiumGiftCodeOptions();
         if (chat != null) {
             tL_payments_getPremiumGiftCodeOptions.flags = 1;
-            tL_payments_getPremiumGiftCodeOptions.boost_peer = messagesController.getInputPeer(-chat.f20843id);
+            tL_payments_getPremiumGiftCodeOptions.boost_peer = messagesController.getInputPeer(-chat.f20845id);
         }
         return connectionsManager.sendRequest(tL_payments_getPremiumGiftCodeOptions, new l0(chat, i10, callback, 0));
     }
@@ -172,7 +172,7 @@ public abstract class p0 {
             }
             if (chat != null) {
                 tL_inputStorePaymentPremiumGiftCode.flags |= 1;
-                tL_inputStorePaymentPremiumGiftCode.boost_peer = messagesController.getInputPeer(-chat.f20843id);
+                tL_inputStorePaymentPremiumGiftCode.boost_peer = messagesController.getInputPeer(-chat.f20845id);
             }
             tL_inputStorePaymentPremiumGiftCode.currency = tL_premiumGiftCodeOption.currency;
             tL_inputStorePaymentPremiumGiftCode.amount = tL_premiumGiftCodeOption.amount;
@@ -205,7 +205,7 @@ public abstract class p0 {
         }
         if (chat != null) {
             tL_inputStorePaymentPremiumGiftCode2.flags = 1;
-            tL_inputStorePaymentPremiumGiftCode2.boost_peer = messagesController2.getInputPeer(-chat.f20843id);
+            tL_inputStorePaymentPremiumGiftCode2.boost_peer = messagesController2.getInputPeer(-chat.f20845id);
         }
         if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
             tL_inputStorePaymentPremiumGiftCode2.flags |= 2;

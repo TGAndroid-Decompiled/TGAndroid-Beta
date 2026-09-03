@@ -49,20 +49,20 @@ public final class t5 extends FrameLayout {
     public r5 R;
     public SpannableString S;
     public SpannableString T;
-    public final p5 f24149a;
-    public final o5 f24150b;
-    public final FrameLayout f24151c;
+    public final p5 f24151a;
+    public final o5 f24152b;
+    public final FrameLayout f24153c;
     public final np d;
-    public final ImageView f24152e;
-    public final TextView f24153f;
+    public final ImageView f24154e;
+    public final TextView f24155f;
     public final q5 h;
-    public AnimatorSet f24154n;
-    public boolean f24155r;
-    public boolean f24156s;
+    public AnimatorSet f24156n;
+    public boolean f24157r;
+    public boolean f24158s;
     public boolean v;
-    public s5 f24157w;
-    public boolean f24158x;
-    public int f24159y;
+    public s5 f24159w;
+    public boolean f24160x;
+    public int f24161y;
 
     public t5(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
@@ -73,24 +73,24 @@ public final class t5 extends FrameLayout {
         this.H = g6Var;
         setWillNotDraw(false);
         o5 o5Var = new o5(this, context);
-        this.f24150b = o5Var;
+        this.f24152b = o5Var;
         addView(o5Var, k7.c6.c(80.0f, 80));
         p5 p5Var = new p5(this, context);
-        this.f24149a = p5Var;
+        this.f24151a = p5Var;
         p5Var.setBlurAllowed(true);
         o5Var.addView(p5Var, k7.c6.c(-1.0f, -1));
         q5 q5Var = new q5(context, 0);
-        q5Var.f23367b = new RectF();
+        q5Var.f23369b = new RectF();
         this.h = q5Var;
         q5Var.setWillNotDraw(false);
         q5Var.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f), 0);
         o5Var.addView(q5Var, k7.c6.d(-2, 17.0f, 83, 4.0f, 0.0f, 0.0f, 4.0f));
         ImageView imageView = new ImageView(context);
-        this.f24152e = imageView;
+        this.f24154e = imageView;
         imageView.setImageResource(R.drawable.play_mini_video);
         q5Var.addView(imageView, k7.c6.e(-2, -2, 19));
         TextView textView = new TextView(context);
-        this.f24153f = textView;
+        this.f24155f = textView;
         textView.setTextColor(-1);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 12.0f);
@@ -104,28 +104,28 @@ public final class t5 extends FrameLayout {
         npVar.setVisibility(0);
         setFocusable(true);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f24151c = frameLayout;
+        this.f24153c = frameLayout;
         addView(frameLayout, k7.c6.d(42, 42.0f, 51, 38.0f, 0.0f, 0.0f, 0.0f));
-        this.f24159y = AndroidUtilities.dp(80.0f);
+        this.f24161y = AndroidUtilities.dp(80.0f);
     }
 
     public final boolean a() {
-        return this.d.f29606a.f24809q;
+        return this.d.f29560a.f24811q;
     }
 
     public final void b(int i10, boolean z4, boolean z10) {
         float f10;
         float f11;
-        this.d.f29606a.f(i10, z4, z10);
+        this.d.f29560a.f(i10, z4, z10);
         boolean z11 = false;
-        if (this.f24158x) {
+        if (this.f24160x) {
             AnimatorSet animatorSet = this.G;
             if (animatorSet != null) {
                 animatorSet.cancel();
                 this.G = null;
             }
             float f12 = 1.0f;
-            o5 o5Var = this.f24150b;
+            o5 o5Var = this.f24152b;
             if (z10) {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 this.G = animatorSet2;
@@ -165,7 +165,7 @@ public final class t5 extends FrameLayout {
     public final void c(boolean z4, Float f10) {
         if (this.K != z4) {
             boolean isLaidOut = isLaidOut();
-            p5 p5Var = this.f24149a;
+            p5 p5Var = this.f24151a;
             if (isLaidOut) {
                 Bitmap bitmap = this.O;
                 this.O = AndroidUtilities.snapshotView(p5Var);
@@ -201,14 +201,14 @@ public final class t5 extends FrameLayout {
             this.G = null;
             np npVar = this.d;
             float f11 = 1.0f;
-            if (npVar.f29606a.f24809q) {
+            if (npVar.f29560a.f24811q) {
                 f10 = 0.787f;
             } else {
                 f10 = 1.0f;
             }
-            o5 o5Var = this.f24150b;
+            o5 o5Var = this.f24152b;
             o5Var.setScaleX(f10);
-            if (npVar.f29606a.f24809q) {
+            if (npVar.f29560a.f24811q) {
                 f11 = 0.787f;
             }
             o5Var.setScaleY(f11);
@@ -221,14 +221,14 @@ public final class t5 extends FrameLayout {
         boolean z14 = false;
         this.v = false;
         this.D = photoEntry;
-        this.f24155r = z11;
-        this.f24156s = z12;
+        this.f24157r = z11;
+        this.f24158s = z12;
         boolean z15 = photoEntry.isVideo;
         float f11 = 0.0f;
-        ImageView imageView = this.f24152e;
-        TextView textView = this.f24153f;
+        ImageView imageView = this.f24154e;
+        TextView textView = this.f24155f;
         q5 q5Var = this.h;
-        p5 p5Var = this.f24149a;
+        p5 p5Var = this.f24151a;
         if (z15 && !photoEntry.isLivePhoto()) {
             p5Var.q(0, true);
             q5Var.setVisibility(0);
@@ -325,10 +325,10 @@ public final class t5 extends FrameLayout {
         } else {
             spannableStringBuilder = null;
         }
-        p5 p5Var = this.f24149a;
+        p5 p5Var = this.f24151a;
         p5Var.setBlurredText(spannableStringBuilder);
         p5Var.invalidate();
-        this.f24150b.invalidate();
+        this.f24152b.invalidate();
     }
 
     public final void g(boolean z4) {
@@ -339,16 +339,16 @@ public final class t5 extends FrameLayout {
             if (!z4 && npVar.getAlpha() == 0.0f) {
                 return;
             }
-            AnimatorSet animatorSet = this.f24154n;
+            AnimatorSet animatorSet = this.f24156n;
             if (animatorSet != null) {
                 animatorSet.cancel();
-                this.f24154n = null;
+                this.f24156n = null;
             }
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f24154n = animatorSet2;
+            this.f24156n = animatorSet2;
             animatorSet2.setInterpolator(new DecelerateInterpolator());
-            this.f24154n.setDuration(180L);
-            AnimatorSet animatorSet3 = this.f24154n;
+            this.f24156n.setDuration(180L);
+            AnimatorSet animatorSet3 = this.f24156n;
             if (z4) {
                 f10 = 1.0f;
             } else {
@@ -362,8 +362,8 @@ public final class t5 extends FrameLayout {
                 f11 = 0.0f;
             }
             animatorSet3.playTogether(ofFloat, ObjectAnimator.ofFloat(npVar, property, f11));
-            this.f24154n.addListener(new org.telegram.ui.s5(this, 7));
-            this.f24154n.start();
+            this.f24156n.addListener(new org.telegram.ui.s5(this, 7));
+            this.f24156n.start();
         }
     }
 
@@ -372,11 +372,11 @@ public final class t5 extends FrameLayout {
     }
 
     public FrameLayout getCheckFrame() {
-        return this.f24151c;
+        return this.f24153c;
     }
 
     public org.telegram.ui.Components.p9 getImageView() {
-        return this.f24149a;
+        return this.f24151a;
     }
 
     public MediaController.PhotoEntry getPhotoEntry() {
@@ -384,7 +384,7 @@ public final class t5 extends FrameLayout {
     }
 
     public float getScale() {
-        return this.f24150b.getScaleX();
+        return this.f24152b.getScaleX();
     }
 
     public View getVideoInfoContainer() {
@@ -393,8 +393,8 @@ public final class t5 extends FrameLayout {
 
     public final void h(boolean z4) {
         p5 p5Var;
-        o5 o5Var = this.f24150b;
-        if (o5Var != null && (p5Var = this.f24149a) != null && p5Var.getMeasuredHeight() > 0 && p5Var.getMeasuredWidth() > 0) {
+        o5 o5Var = this.f24152b;
+        if (o5Var != null && (p5Var = this.f24151a) != null && p5Var.getMeasuredHeight() > 0 && p5Var.getMeasuredWidth() > 0) {
             if (z4) {
                 if (this.J == null) {
                     this.J = jh.j.e(o5Var);
@@ -436,9 +436,9 @@ public final class t5 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         MediaController.PhotoEntry photoEntry;
         MediaController.SearchImage searchImage;
-        boolean z4 = this.d.f29606a.f24809q;
-        p5 p5Var = this.f24149a;
-        if (!z4 && this.f24150b.getScaleX() == 1.0f && p5Var.getImageReceiver().hasNotThumb() && p5Var.getImageReceiver().getCurrentAlpha() == 1.0f && (((photoEntry = this.D) == null || !PhotoViewer.L1(photoEntry.path)) && ((searchImage = this.E) == null || !PhotoViewer.L1(searchImage.getPathToAttach())))) {
+        boolean z4 = this.d.f29560a.f24811q;
+        p5 p5Var = this.f24151a;
+        if (!z4 && this.f24152b.getScaleX() == 1.0f && p5Var.getImageReceiver().hasNotThumb() && p5Var.getImageReceiver().getCurrentAlpha() == 1.0f && (((photoEntry = this.D) == null || !PhotoViewer.L1(photoEntry.path)) && ((searchImage = this.E) == null || !PhotoViewer.L1(searchImage.getPathToAttach())))) {
             return;
         }
         int v02 = org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.X9, this.H);
@@ -471,7 +471,7 @@ public final class t5 extends FrameLayout {
             sb.append(LocaleController.getInstance().getFormatterStats().format(this.D.dateTaken * 1000));
         }
         accessibilityNodeInfo.setText(sb);
-        if (this.d.f29606a.f24809q) {
+        if (this.d.f29560a.f24811q) {
             accessibilityNodeInfo.setSelected(true);
         }
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(R.id.acc_action_open_photo, LocaleController.getString(R.string.Open)));
@@ -479,20 +479,20 @@ public final class t5 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        if (this.f24158x) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f24159y, 1073741824), org.telegram.ui.b.B(2.0f, this.f24159y, 1073741824));
+        if (this.f24160x) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f24161y, 1073741824), org.telegram.ui.b.B(2.0f, this.f24161y, 1073741824));
             return;
         }
         int i12 = 6;
         if (this.B) {
             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824);
-            if (this.f24155r) {
+            if (this.f24157r) {
                 i12 = 0;
             }
             super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(i12 + 80), 1073741824));
             return;
         }
-        if (this.f24155r) {
+        if (this.f24157r) {
             i12 = 0;
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(i12 + 80), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
@@ -514,7 +514,7 @@ public final class t5 extends FrameLayout {
     }
 
     public void setDelegate(s5 s5Var) {
-        this.f24157w = s5Var;
+        this.f24159w = s5Var;
     }
 
     public void setFastScrollDelegate(r5 r5Var) {
@@ -537,11 +537,11 @@ public final class t5 extends FrameLayout {
             MediaController.PhotoEntry photoEntry = this.D;
             if (photoEntry != null) {
                 boolean z11 = photoEntry.isVideo;
-                ImageView imageView = this.f24152e;
+                ImageView imageView = this.f24154e;
                 q5 q5Var = this.h;
-                TextView textView = this.f24153f;
+                TextView textView = this.f24155f;
                 if (z11 && !photoEntry.isLivePhoto()) {
-                    this.f24149a.q(0, true);
+                    this.f24151a.q(0, true);
                     q5Var.setVisibility(0);
                     imageView.setVisibility(0);
                     ((FrameLayout.LayoutParams) textView.getLayoutParams()).leftMargin = AndroidUtilities.dp(13.0f);
@@ -564,12 +564,12 @@ public final class t5 extends FrameLayout {
     }
 
     public void setItemSize(int i10) {
-        this.f24159y = i10;
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f24150b.getLayoutParams();
-        int i11 = this.f24159y;
+        this.f24161y = i10;
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f24152b.getLayoutParams();
+        int i11 = this.f24161y;
         layoutParams.height = i11;
         layoutParams.width = i11;
-        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.f24151c.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.f24153c.getLayoutParams();
         layoutParams2.gravity = 53;
         layoutParams2.leftMargin = 0;
         np npVar = this.d;
@@ -580,7 +580,7 @@ public final class t5 extends FrameLayout {
         layoutParams3.topMargin = dp;
         layoutParams3.rightMargin = dp;
         npVar.setDrawBackgroundAsArc(6);
-        this.f24158x = true;
+        this.f24160x = true;
     }
 
     public void setNum(int i10) {
@@ -588,6 +588,6 @@ public final class t5 extends FrameLayout {
     }
 
     public void setOnCheckClickListener(View.OnClickListener onClickListener) {
-        this.f24151c.setOnClickListener(onClickListener);
+        this.f24153c.setOnClickListener(onClickListener);
     }
 }

@@ -45,32 +45,32 @@ public final class t6 {
     public boolean U;
     public boolean V;
     public final HashSet W;
-    public final int f17770a;
-    public final g7 f17778k;
-    public final SharedPreferences f17779l;
-    public boolean f17781n;
-    public String f17782o;
-    public boolean f17783p;
-    public boolean f17784q;
-    public boolean f17785r;
-    public boolean f17786s;
-    public final HashSet f17787t;
-    public int f17788u;
+    public final int f17772a;
+    public final g7 f17780k;
+    public final SharedPreferences f17781l;
+    public boolean f17783n;
+    public String f17784o;
+    public boolean f17785p;
+    public boolean f17786q;
+    public boolean f17787r;
+    public boolean f17788s;
+    public final HashSet f17789t;
+    public int f17790u;
     public int v;
-    public final qh.t0 f17789w;
-    public String f17791y;
-    public final a0.h f17771b = new a0.h();
-    public final a0.h f17772c = new a0.h();
+    public final qh.t0 f17791w;
+    public String f17793y;
+    public final a0.h f17773b = new a0.h();
+    public final a0.h f17774c = new a0.h();
     public int d = 0;
-    public final a0.h f17773e = new a0.h();
-    public LongSparseIntArray f17774f = new LongSparseIntArray();
-    public final ArrayList f17775g = new ArrayList();
+    public final a0.h f17775e = new a0.h();
+    public LongSparseIntArray f17776f = new LongSparseIntArray();
+    public final ArrayList f17777g = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public final a0.h f17776i = new a0.h();
-    public final LongSparseIntArray f17777j = new LongSparseIntArray();
-    public final a0.h f17780m = new a0.h();
-    public final a0.h f17790x = new a0.h();
-    public boolean f17792z = true;
+    public final a0.h f17778i = new a0.h();
+    public final LongSparseIntArray f17779j = new LongSparseIntArray();
+    public final a0.h f17782m = new a0.h();
+    public final a0.h f17792x = new a0.h();
+    public boolean f17794z = true;
     public boolean A = true;
     public final HashSet C = new HashSet();
     public final HashSet D = new HashSet();
@@ -87,26 +87,26 @@ public final class t6 {
     public long Q = 0;
 
     public t6(int i10) {
-        this.f17782o = "";
+        this.f17784o = "";
         ArrayList arrayList = new ArrayList();
         this.T = arrayList;
         arrayList.add(new TLRPC.TL_inputPeerSelf());
         this.U = false;
         this.V = false;
         this.W = new HashSet();
-        this.f17770a = i10;
+        this.f17772a = i10;
         ?? obj = new Object();
-        obj.f17163a = i10;
-        obj.f17164b = MessagesStorage.getInstance(i10);
-        this.f17778k = obj;
+        obj.f17165a = i10;
+        obj.f17166b = MessagesStorage.getInstance(i10);
+        this.f17780k = obj;
         SharedPreferences mainSettings = MessagesController.getInstance(i10).getMainSettings();
-        this.f17779l = mainSettings;
-        this.f17782o = mainSettings.getString("last_stories_state", "");
-        this.f17791y = mainSettings.getString("last_stories_state_hidden", "");
+        this.f17781l = mainSettings;
+        this.f17784o = mainSettings.getString("last_stories_state", "");
+        this.f17793y = mainSettings.getString("last_stories_state_hidden", "");
         this.v = mainSettings.getInt("total_stores_hidden", 0);
-        this.f17788u = mainSettings.getInt("total_stores", 0);
-        this.f17786s = mainSettings.getBoolean("read_loaded", false);
-        this.f17787t = new HashSet(mainSettings.getStringSet("unsupported_stories_checked", new HashSet()));
+        this.f17790u = mainSettings.getInt("total_stores", 0);
+        this.f17788s = mainSettings.getBoolean("read_loaded", false);
+        this.f17789t = new HashSet(mainSettings.getStringSet("unsupported_stories_checked", new HashSet()));
         TL_stories.TL_storiesStealthMode tL_storiesStealthMode = null;
         String string = mainSettings.getString("stories_stealth_mode", null);
         if (string != null) {
@@ -118,10 +118,10 @@ public final class t6 {
             }
         }
         this.B = tL_storiesStealthMode;
-        g7 g7Var = this.f17778k;
-        g7Var.f17164b.getStorageQueue().postRunnable(new z1(14, g7Var, new w5(this, 0)));
+        g7 g7Var = this.f17780k;
+        g7Var.f17166b.getStorageQueue().postRunnable(new z1(14, g7Var, new w5(this, 0)));
         this.K = new af.b(this, i10, 11);
-        this.f17789w = new qh.t0(i10);
+        this.f17791w = new qh.t0(i10);
     }
 
     public static String a(ArrayList arrayList) {
@@ -135,7 +135,7 @@ public final class t6 {
                 if (((MessageObject) arrayList.get(i10)).storyItem == null) {
                     str = str + "null";
                 } else {
-                    str = str + storyItem.f21080id + "@" + storyItem.dialogId;
+                    str = str + storyItem.f21082id + "@" + storyItem.dialogId;
                 }
             } catch (Exception unused) {
                 return "err";
@@ -181,7 +181,7 @@ public final class t6 {
                 if (i10 > 0) {
                     str = str + ", ";
                 }
-                str = str + ((TL_stories.StoryItem) list.get(i10)).f21080id + "@" + ((TL_stories.StoryItem) list.get(i10)).dialogId;
+                str = str + ((TL_stories.StoryItem) list.get(i10)).f21082id + "@" + ((TL_stories.StoryItem) list.get(i10)).dialogId;
             } catch (Exception unused) {
                 return "err";
             }
@@ -201,7 +201,7 @@ public final class t6 {
             HashMap hashMap3 = hashMap2;
             l6 l6Var = (l6) hashMap3.get(Integer.valueOf(i11));
             if (l6Var == null && z4) {
-                l6 l6Var2 = new l6(this.f17770a, j10, i10, i11, new dg.h0(this, 27));
+                l6 l6Var2 = new l6(this.f17772a, j10, i10, i11, new dg.h0(this, 27));
                 hashMap3.put(Integer.valueOf(i11), l6Var2);
                 return l6Var2;
             }
@@ -216,13 +216,13 @@ public final class t6 {
             if (i10 == 4) {
                 HashMap hashMap4 = hashMapArr[i10];
                 Long valueOf2 = Long.valueOf(j10);
-                d6 d6Var = new d6(this.f17770a, j10, null, new dg.h0(this, 27));
+                d6 d6Var = new d6(this.f17772a, j10, null, new dg.h0(this, 27));
                 hashMap4.put(valueOf2, d6Var);
                 return d6Var;
             }
             HashMap hashMap5 = hashMapArr[i10];
             Long valueOf3 = Long.valueOf(j10);
-            l6 l6Var4 = new l6(this.f17770a, j10, i10, i11, new dg.h0(this, 27));
+            l6 l6Var4 = new l6(this.f17772a, j10, i10, i11, new dg.h0(this, 27));
             hashMap5.put(valueOf3, l6Var4);
             return l6Var4;
         }
@@ -233,7 +233,7 @@ public final class t6 {
         a0.h hVar = this.F;
         h6 h6Var = (h6) hVar.f(j10);
         if (h6Var == null && z4) {
-            h6 h6Var2 = new h6(this.f17770a, j10, this);
+            h6 h6Var2 = new h6(this.f17772a, j10, this);
             hVar.k(h6Var2, j10);
             return h6Var2;
         }
@@ -242,14 +242,14 @@ public final class t6 {
 
     public final int C(boolean z4) {
         if (z4) {
-            if (this.f17792z) {
+            if (this.f17794z) {
                 return Math.max(1, this.v);
             }
             return this.h.size();
-        } else if (this.f17783p) {
-            return Math.max(1, this.f17788u);
+        } else if (this.f17785p) {
+            return Math.max(1, this.f17790u);
         } else {
-            return this.f17775g.size();
+            return this.f17777g.size();
         }
     }
 
@@ -257,23 +257,23 @@ public final class t6 {
         if (j10 == 0) {
             return 0;
         }
-        TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f17776i.f(j10);
+        TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f17778i.f(j10);
         if (peerStories == null) {
             peerStories = z(j10);
         }
         if (peerStories == null) {
             return 0;
         }
-        if (j10 == UserConfig.getInstance(this.f17770a).getClientUserId() && !Utilities.isNullOrEmpty((Collection) this.f17771b.f(j10))) {
+        if (j10 == UserConfig.getInstance(this.f17772a).getClientUserId() && !Utilities.isNullOrEmpty((Collection) this.f17773b.f(j10))) {
             return 1;
         }
-        int max = Math.max(peerStories.max_read_id, this.f17774f.get(j10, 0));
+        int max = Math.max(peerStories.max_read_id, this.f17776f.get(j10, 0));
         boolean z4 = false;
         for (int i11 = 0; i11 < peerStories.stories.size(); i11++) {
             if (peerStories.stories.get(i11).media instanceof TLRPC.TL_messageMediaVideoStream) {
                 return 3;
             }
-            if ((i10 == 0 || peerStories.stories.get(i11).f21080id == i10) && peerStories.stories.get(i11).f21080id > max) {
+            if ((i10 == 0 || peerStories.stories.get(i11).f21082id == i10) && peerStories.stories.get(i11).f21082id > max) {
                 if (peerStories.stories.get(i11).close_friends) {
                     return 2;
                 }
@@ -287,11 +287,11 @@ public final class t6 {
     }
 
     public final ArrayList E(long j10) {
-        return (ArrayList) this.f17771b.f(j10);
+        return (ArrayList) this.f17773b.f(j10);
     }
 
     public final boolean F(long j10) {
-        TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f17776i.f(j10);
+        TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f17778i.f(j10);
         if (peerStories == null) {
             peerStories = z(j10);
         }
@@ -309,8 +309,8 @@ public final class t6 {
 
     public final boolean G() {
         if (H()) {
-            ArrayList arrayList = this.f17775g;
-            if (arrayList.isEmpty() || (arrayList.size() == 1 && DialogObject.getPeerDialogId(((TL_stories.PeerStories) arrayList.get(0)).peer) == UserConfig.getInstance(this.f17770a).clientUserId)) {
+            ArrayList arrayList = this.f17777g;
+            if (arrayList.isEmpty() || (arrayList.size() == 1 && DialogObject.getPeerDialogId(((TL_stories.PeerStories) arrayList.get(0)).peer) == UserConfig.getInstance(this.f17772a).clientUserId)) {
                 return true;
             }
         }
@@ -318,9 +318,9 @@ public final class t6 {
     }
 
     public final boolean H() {
-        long j10 = UserConfig.getInstance(this.f17770a).clientUserId;
-        TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f17776i.f(j10);
-        if ((peerStories != null && !peerStories.stories.isEmpty()) || !Utilities.isNullOrEmpty((Collection) this.f17771b.f(j10))) {
+        long j10 = UserConfig.getInstance(this.f17772a).clientUserId;
+        TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f17778i.f(j10);
+        if ((peerStories != null && !peerStories.stories.isEmpty()) || !Utilities.isNullOrEmpty((Collection) this.f17773b.f(j10))) {
             return true;
         }
         return false;
@@ -333,7 +333,7 @@ public final class t6 {
         if (K(j10) || N(j10)) {
             return true;
         }
-        TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f17776i.f(j10);
+        TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f17778i.f(j10);
         if (peerStories == null) {
             peerStories = z(j10);
         }
@@ -344,19 +344,19 @@ public final class t6 {
     }
 
     public final boolean J(long j10) {
-        TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f17776i.f(j10);
+        TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f17778i.f(j10);
         if (peerStories == null) {
             peerStories = z(j10);
         }
         if (peerStories == null) {
             return false;
         }
-        if (j10 == UserConfig.getInstance(this.f17770a).getClientUserId() && !Utilities.isNullOrEmpty((Collection) this.f17771b.f(j10))) {
+        if (j10 == UserConfig.getInstance(this.f17772a).getClientUserId() && !Utilities.isNullOrEmpty((Collection) this.f17773b.f(j10))) {
             return true;
         }
         for (int i10 = 0; i10 < peerStories.stories.size(); i10++) {
             TL_stories.StoryItem storyItem = peerStories.stories.get(i10);
-            if (storyItem != null && storyItem.f21080id > peerStories.max_read_id) {
+            if (storyItem != null && storyItem.f21082id > peerStories.max_read_id) {
                 return true;
             }
         }
@@ -364,8 +364,8 @@ public final class t6 {
     }
 
     public final boolean K(long j10) {
-        ArrayList arrayList = (ArrayList) this.f17771b.f(j10);
-        HashMap hashMap = (HashMap) this.f17773e.f(j10);
+        ArrayList arrayList = (ArrayList) this.f17773b.f(j10);
+        HashMap hashMap = (HashMap) this.f17775e.f(j10);
         if (arrayList == null || arrayList.isEmpty()) {
             if (hashMap != null && !hashMap.isEmpty()) {
                 return true;
@@ -398,7 +398,7 @@ public final class t6 {
 
     public final boolean M(TLRPC.User user) {
         if (user != null) {
-            if (user.contact || user.f20990id == MessagesController.getInstance(this.f17770a).storiesChangelogUserId) {
+            if (user.contact || user.f20992id == MessagesController.getInstance(this.f17772a).storiesChangelogUserId) {
                 return true;
             }
             return false;
@@ -407,7 +407,7 @@ public final class t6 {
     }
 
     public final boolean N(long j10) {
-        ArrayList arrayList = (ArrayList) this.f17771b.f(j10);
+        ArrayList arrayList = (ArrayList) this.f17773b.f(j10);
         if (arrayList != null && !arrayList.isEmpty()) {
             return ((s6) l.d.i(1, arrayList)).F;
         }
@@ -423,7 +423,7 @@ public final class t6 {
         hashSet.add(Long.valueOf(j10));
         FileLog.d("StoriesController loadAllStoriesForDialog " + j10);
         TL_stories.TL_stories_getPeerStories tL_stories_getPeerStories = new TL_stories.TL_stories_getPeerStories();
-        int i10 = this.f17770a;
+        int i10 = this.f17772a;
         tL_stories_getPeerStories.peer = MessagesController.getInstance(i10).getInputPeer(j10);
         ConnectionsManager.getInstance(i10).sendRequest(tL_stories_getPeerStories, new t5(this, j10, 0));
     }
@@ -437,32 +437,32 @@ public final class t6 {
         tL_contacts_getBlocked.my_stories_from = true;
         tL_contacts_getBlocked.offset = this.L.size();
         tL_contacts_getBlocked.limit = 25;
-        ConnectionsManager.getInstance(this.f17770a).sendRequest(tL_contacts_getBlocked, new s5(this, 3));
+        ConnectionsManager.getInstance(this.f17772a).sendRequest(tL_contacts_getBlocked, new s5(this, 3));
     }
 
     public final void Q(boolean z4) {
         String str;
         boolean z10;
-        if (!z4 || !this.f17785r) {
-            if ((!z4 && this.f17784q) || this.f17781n) {
+        if (!z4 || !this.f17787r) {
+            if ((!z4 && this.f17786q) || this.f17783n) {
                 return;
             }
             boolean z11 = true;
             if (z4) {
-                this.f17785r = true;
+                this.f17787r = true;
             } else {
-                this.f17784q = true;
+                this.f17786q = true;
             }
             TL_stories.TL_stories_getAllStories tL_stories_getAllStories = new TL_stories.TL_stories_getAllStories();
             if (z4) {
-                str = this.f17791y;
+                str = this.f17793y;
             } else {
-                str = this.f17782o;
+                str = this.f17784o;
             }
             if (z4) {
-                z10 = this.f17792z;
+                z10 = this.f17794z;
             } else {
-                z10 = this.f17783p;
+                z10 = this.f17785p;
             }
             if (!TextUtils.isEmpty(str)) {
                 tL_stories_getAllStories.state = str;
@@ -474,14 +474,14 @@ public final class t6 {
                 z11 = false;
             }
             tL_stories_getAllStories.include_hidden = z4;
-            ConnectionsManager.getInstance(this.f17770a).sendRequest(tL_stories_getAllStories, new z5(this, z4, tL_stories_getAllStories, z11));
+            ConnectionsManager.getInstance(this.f17772a).sendRequest(tL_stories_getAllStories, new z5(this, z4, tL_stories_getAllStories, z11));
         }
     }
 
     public final void R() {
         if (!this.U && !this.V) {
             this.U = true;
-            ConnectionsManager.getInstance(this.f17770a).sendRequest(new TL_stories.TL_stories_getChatsToSend(), new s5(this, 2));
+            ConnectionsManager.getInstance(this.f17772a).sendRequest(new TL_stories.TL_stories_getChatsToSend(), new s5(this, 2));
         }
     }
 
@@ -504,7 +504,7 @@ public final class t6 {
                         if (arrayList == null) {
                             arrayList = new ArrayList<>();
                         }
-                        arrayList.add(Integer.valueOf(peerStories.stories.get(i11).f21080id));
+                        arrayList.add(Integer.valueOf(peerStories.stories.get(i11).f21082id));
                     }
                     if (arrayList != null && arrayList.size() > 14) {
                         break;
@@ -513,8 +513,8 @@ public final class t6 {
                 if (arrayList != null) {
                     hashSet.add(Long.valueOf(j10));
                     TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
-                    tL_stories_getStoriesByID.f21087id = arrayList;
-                    int i12 = this.f17770a;
+                    tL_stories_getStoriesByID.f21089id = arrayList;
+                    int i12 = this.f17772a;
                     tL_stories_getStoriesByID.peer = MessagesController.getInstance(i12).getInputPeer(peerDialogId);
                     ConnectionsManager.getInstance(i12).sendRequest(tL_stories_getStoriesByID, new RequestDelegate() {
                         @Override
@@ -529,10 +529,10 @@ public final class t6 {
 
     public final void T() {
         if (this.A) {
-            this.f17781n = true;
+            this.f17783n = true;
             w5 w5Var = new w5(this, 1);
-            g7 g7Var = this.f17778k;
-            g7Var.f17164b.getStorageQueue().postRunnable(new z1(15, g7Var, w5Var));
+            g7 g7Var = this.f17780k;
+            g7Var.f17166b.getStorageQueue().postRunnable(new z1(15, g7Var, w5Var));
         } else {
             Q(false);
             Q(true);
@@ -550,19 +550,19 @@ public final class t6 {
             if (storyItem.justUploaded) {
                 storyItem.justUploaded = false;
             }
-            int i10 = this.f17774f.get(peerDialogId);
-            int max = Math.max(peerStories.max_read_id, Math.max(i10, storyItem.f21080id));
-            int i11 = this.f17770a;
+            int i10 = this.f17776f.get(peerDialogId);
+            int max = Math.max(peerStories.max_read_id, Math.max(i10, storyItem.f21082id));
+            int i11 = this.f17772a;
             NotificationsController.getInstance(i11).processReadStories(peerDialogId, max);
             peerStories.max_read_id = max;
-            this.f17774f.put(peerDialogId, max);
+            this.f17776f.put(peerDialogId, max);
             if (max > i10) {
                 if (!z4) {
-                    this.f17778k.i(max, peerDialogId);
+                    this.f17780k.i(max, peerDialogId);
                 }
                 TL_stories.TL_stories_readStories tL_stories_readStories = new TL_stories.TL_stories_readStories();
                 tL_stories_readStories.peer = MessagesController.getInstance(i11).getInputPeer(peerDialogId);
-                tL_stories_readStories.max_id = storyItem.f21080id;
+                tL_stories_readStories.max_id = storyItem.f21082id;
                 ConnectionsManager.getInstance(i11).sendRequest(tL_stories_readStories, null);
                 NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesReadUpdated, new Object[0]);
                 return true;
@@ -576,7 +576,7 @@ public final class t6 {
         TLRPC.Photo photo;
         ArrayList<TLRPC.PhotoSize> arrayList;
         if (storyItem.attachPath == null) {
-            int i10 = this.f17770a;
+            int i10 = this.f17772a;
             if (DownloadController.getInstance(i10).canPreloadStories()) {
                 TLRPC.MessageMedia messageMedia = storyItem.media;
                 if (messageMedia != null && MessageObject.isVideoDocument(messageMedia.getDocument())) {
@@ -604,14 +604,14 @@ public final class t6 {
                     for (int i11 = 0; i11 < Math.min(2, storyItem.media_areas.size()); i11++) {
                         if (storyItem.media_areas.get(i11) instanceof TL_stories.TL_mediaAreaSuggestedReaction) {
                             ng.q0 d = ng.q0.d(((TL_stories.TL_mediaAreaSuggestedReaction) storyItem.media_areas.get(i11)).reaction);
-                            if (d.f16178f != null) {
-                                TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i10).getReactionsMap().get(d.f16178f);
+                            if (d.f16180f != null) {
+                                TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i10).getReactionsMap().get(d.f16180f);
                                 if (tL_availableReaction != null) {
                                     FileLoader.getInstance(i10).loadFile(tL_availableReaction.select_animation, d, 0, 0);
                                 }
                             } else {
-                                org.telegram.ui.Components.l5 l5Var = new org.telegram.ui.Components.l5(1, i10, d.f16179g);
-                                l5Var.f28606m = true;
+                                org.telegram.ui.Components.l5 l5Var = new org.telegram.ui.Components.l5(1, i10, d.f16181g);
+                                l5Var.f28639m = true;
                                 l5Var.v();
                             }
                         }
@@ -627,7 +627,7 @@ public final class t6 {
         while (true) {
             if (i11 >= peerStories.stories.size()) {
                 break;
-            } else if (peerStories.stories.get(i11).f21080id > peerStories.max_read_id) {
+            } else if (peerStories.stories.get(i11).f21082id > peerStories.max_read_id) {
                 i10 = i11;
                 break;
             } else {
@@ -649,7 +649,7 @@ public final class t6 {
     public final void Y(TL_stories.TL_stories_allStories tL_stories_allStories, boolean z4, boolean z10, boolean z11) {
         ArrayList arrayList;
         ArrayList arrayList2 = this.h;
-        ArrayList arrayList3 = this.f17775g;
+        ArrayList arrayList3 = this.f17777g;
         if (!z11) {
             if (!z4) {
                 arrayList3.clear();
@@ -667,7 +667,7 @@ public final class t6 {
             }
             FileLog.d("StoriesController cache=" + z10 + " hidden=" + z4 + " processAllStoriesResponse {" + ((Object) sb) + "}");
         }
-        int i11 = this.f17770a;
+        int i11 = this.f17772a;
         MessagesController.getInstance(i11).putUsers(tL_stories_allStories.users, z10);
         MessagesController.getInstance(i11).putChats(tL_stories_allStories.chats, z10);
         int currentTime = ConnectionsManager.getInstance(i11).getCurrentTime();
@@ -678,7 +678,7 @@ public final class t6 {
             while (i13 < peerStories.stories.size()) {
                 TL_stories.StoryItem storyItem = peerStories.stories.get(i13);
                 if ((storyItem instanceof TL_stories.TL_storyItemDeleted) || ((storyItem instanceof TL_stories.TL_storyItem) && currentTime > storyItem.expire_date && !(storyItem.media instanceof TLRPC.TL_messageMediaVideoStream))) {
-                    NotificationsController.getInstance(i11).processDeleteStory(peerDialogId, storyItem.f21080id);
+                    NotificationsController.getInstance(i11).processDeleteStory(peerDialogId, storyItem.f21082id);
                     peerStories.stories.remove(i13);
                     i13--;
                 }
@@ -726,14 +726,14 @@ public final class t6 {
                     }
                 }
             } else {
-                this.f17776i.l(peerDialogId);
+                this.f17778i.l(peerDialogId);
             }
         }
         if (!z10) {
             ArrayList<TL_stories.PeerStories> arrayList4 = tL_stories_allStories.peer_stories;
             ag.f fVar = new ag.f(20);
-            g7 g7Var = this.f17778k;
-            g7Var.f17164b.getStorageQueue().postRunnable(new dg.w0(g7Var, arrayList4, z11, z4, fVar, 3));
+            g7 g7Var = this.f17780k;
+            g7Var.f17166b.getStorageQueue().postRunnable(new dg.w0(g7Var, arrayList4, z11, z4, fVar, 3));
         }
         af.b bVar = this.K;
         AndroidUtilities.cancelRunOnUIThread(bVar);
@@ -751,14 +751,14 @@ public final class t6 {
             FileLog.d("StoriesController can't update story dialogId == 0");
             return;
         }
-        g7 g7Var = this.f17778k;
+        g7 g7Var = this.f17780k;
         if (i10 > 0) {
-            user = MessagesController.getInstance(this.f17770a).getUser(Long.valueOf(peerDialogId));
+            user = MessagesController.getInstance(this.f17772a).getUser(Long.valueOf(peerDialogId));
             if (user != null && (M(user) || user.self)) {
-                g7Var.f17164b.getStorageQueue().postRunnable(new z1(13, g7Var, tL_updateStory));
+                g7Var.f17166b.getStorageQueue().postRunnable(new z1(13, g7Var, tL_updateStory));
             }
         } else {
-            g7Var.f17164b.getStorageQueue().postRunnable(new z1(13, g7Var, tL_updateStory));
+            g7Var.f17166b.getStorageQueue().postRunnable(new z1(13, g7Var, tL_updateStory));
             user = null;
         }
         AndroidUtilities.runOnUIThread(new mh.b2(this, peerDialogId, tL_updateStory, user, 8));
@@ -766,25 +766,25 @@ public final class t6 {
 
     public final void a0(long j10, TL_stories.PeerStories peerStories) {
         b0(j10, peerStories);
-        g7 g7Var = this.f17778k;
-        int i10 = this.f17770a;
+        g7 g7Var = this.f17780k;
+        int i10 = this.f17772a;
         if (j10 > 0) {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j10));
             if (M(user) || user.self) {
-                g7Var.f17164b.getStorageQueue().postRunnable(new d7(g7Var, peerStories, 0));
+                g7Var.f17166b.getStorageQueue().postRunnable(new d7(g7Var, peerStories, 0));
             }
         } else if (ChatObject.isInChat(MessagesController.getInstance(i10).getChat(Long.valueOf(-j10)))) {
-            g7Var.f17164b.getStorageQueue().postRunnable(new d7(g7Var, peerStories, 0));
+            g7Var.f17166b.getStorageQueue().postRunnable(new d7(g7Var, peerStories, 0));
         }
     }
 
     public final void b(int i10, long j10, ArrayList arrayList) {
         h6 B = B(j10, true);
         B.getClass();
-        t6 t6Var = B.f17191j;
+        t6 t6Var = B.f17193j;
         TL_stories.TL_updateAlbum tL_updateAlbum = new TL_stories.TL_updateAlbum();
-        int i11 = B.f17184a;
-        tL_updateAlbum.peer = MessagesController.getInstance(i11).getInputPeer(B.f17185b);
+        int i11 = B.f17186a;
+        tL_updateAlbum.peer = MessagesController.getInstance(i11).getInputPeer(B.f17187b);
         tL_updateAlbum.album_id = i10;
         tL_updateAlbum.add_stories = new ArrayList<>(arrayList.size());
         int size = arrayList.size();
@@ -792,7 +792,7 @@ public final class t6 {
         while (i12 < size) {
             Object obj = arrayList.get(i12);
             i12++;
-            tL_updateAlbum.add_stories.add(Integer.valueOf(((TL_stories.StoryItem) obj).f21080id));
+            tL_updateAlbum.add_stories.add(Integer.valueOf(((TL_stories.StoryItem) obj).f21082id));
         }
         int size2 = arrayList.size();
         int i13 = 0;
@@ -810,7 +810,7 @@ public final class t6 {
             }
         }
         ConnectionsManager.getInstance(i11).sendRequest(tL_updateAlbum, null);
-        l6 A = t6Var.A(B.f17185b, 0, i10, false);
+        l6 A = t6Var.A(B.f17187b, 0, i10, false);
         if (A != null) {
             A.D(arrayList, true);
         }
@@ -820,7 +820,7 @@ public final class t6 {
         while (i14 < size3) {
             Object obj3 = arrayList4.get(i14);
             i14++;
-            l6 A2 = t6Var.A(B.f17185b, 0, ((m6) obj3).f17439a, false);
+            l6 A2 = t6Var.A(B.f17187b, 0, ((m6) obj3).f17441a, false);
             if (A2 != null) {
                 A2.E(i10, tL_updateAlbum.add_stories, false);
             }
@@ -830,18 +830,18 @@ public final class t6 {
     public final void b0(long j10, TL_stories.PeerStories peerStories) {
         ArrayList<TL_stories.StoryItem> arrayList;
         ArrayList<TL_stories.StoryItem> arrayList2;
-        a0.h hVar = this.f17776i;
+        a0.h hVar = this.f17778i;
         TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) hVar.f(j10);
         if (peerStories2 != null && (arrayList = peerStories2.stories) != null && !arrayList.isEmpty() && peerStories != null && (arrayList2 = peerStories.stories) != null && !arrayList2.isEmpty()) {
             for (int i10 = 0; i10 < peerStories.stories.size(); i10++) {
                 if (peerStories.stories.get(i10) instanceof TL_stories.TL_storyItemSkipped) {
-                    int i11 = peerStories.stories.get(i10).f21080id;
+                    int i11 = peerStories.stories.get(i10).f21082id;
                     int i12 = 0;
                     while (true) {
                         if (i12 >= peerStories2.stories.size()) {
                             break;
                         }
-                        if (peerStories2.stories.get(i12).f21080id == i11 && (peerStories2.stories.get(i12) instanceof TL_stories.TL_storyItem)) {
+                        if (peerStories2.stories.get(i12).f21082id == i11 && (peerStories2.stories.get(i12) instanceof TL_stories.TL_storyItem)) {
                             peerStories.stories.set(i10, peerStories2.stories.get(i12));
                             break;
                         }
@@ -862,10 +862,10 @@ public final class t6 {
     public final void c0(int i10, long j10, ArrayList arrayList) {
         h6 B = B(j10, true);
         B.getClass();
-        t6 t6Var = B.f17191j;
+        t6 t6Var = B.f17193j;
         TL_stories.TL_updateAlbum tL_updateAlbum = new TL_stories.TL_updateAlbum();
-        int i11 = B.f17184a;
-        tL_updateAlbum.peer = MessagesController.getInstance(i11).getInputPeer(B.f17185b);
+        int i11 = B.f17186a;
+        tL_updateAlbum.peer = MessagesController.getInstance(i11).getInputPeer(B.f17187b);
         tL_updateAlbum.album_id = i10;
         tL_updateAlbum.delete_stories = new ArrayList<>(arrayList.size());
         int size = arrayList.size();
@@ -874,7 +874,7 @@ public final class t6 {
         while (i13 < size) {
             Object obj = arrayList.get(i13);
             i13++;
-            tL_updateAlbum.delete_stories.add(Integer.valueOf(((TL_stories.StoryItem) obj).f21080id));
+            tL_updateAlbum.delete_stories.add(Integer.valueOf(((TL_stories.StoryItem) obj).f21082id));
         }
         int size2 = arrayList.size();
         int i14 = 0;
@@ -891,7 +891,7 @@ public final class t6 {
             }
         }
         ConnectionsManager.getInstance(i11).sendRequest(tL_updateAlbum, null);
-        l6 A = t6Var.A(B.f17185b, 0, i10, false);
+        l6 A = t6Var.A(B.f17187b, 0, i10, false);
         if (A != null) {
             A.A(arrayList);
         }
@@ -900,7 +900,7 @@ public final class t6 {
         while (i12 < size3) {
             Object obj3 = arrayList3.get(i12);
             i12++;
-            l6 A2 = t6Var.A(B.f17185b, 0, ((m6) obj3).f17439a, false);
+            l6 A2 = t6Var.A(B.f17187b, 0, ((m6) obj3).f17441a, false);
             if (A2 != null) {
                 A2.E(i10, tL_updateAlbum.delete_stories, true);
             }
@@ -922,7 +922,7 @@ public final class t6 {
         TL_stories.PeerStories y10 = y(j10);
         if (y10 != null) {
             for (int i11 = 0; i11 < y10.stories.size(); i11++) {
-                if (y10.stories.get(i11).f21080id == i10 && !(y10.stories.get(i11) instanceof TL_stories.TL_storyItemSkipped)) {
+                if (y10.stories.get(i11).f21082id == i10 && !(y10.stories.get(i11) instanceof TL_stories.TL_storyItemSkipped)) {
                     dVar.accept(y10.stories.get(i11));
                     return;
                 }
@@ -935,8 +935,8 @@ public final class t6 {
             return;
         }
         TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
-        tL_stories_getStoriesByID.f21087id.add(Integer.valueOf(i10));
-        int i12 = this.f17770a;
+        tL_stories_getStoriesByID.f21089id.add(Integer.valueOf(i10));
+        int i12 = this.f17772a;
         tL_stories_getStoriesByID.peer = MessagesController.getInstance(i12).getInputPeer(j10);
         ConnectionsManager.getInstance(i12).sendRequest(tL_stories_getStoriesByID, new b6(this, j11, dVar));
     }
@@ -944,7 +944,7 @@ public final class t6 {
     public final void e(TL_stories.PeerStories peerStories) {
         ArrayList arrayList;
         long peerDialogId = DialogObject.getPeerDialogId(peerStories.peer);
-        int i10 = this.f17770a;
+        int i10 = this.f17772a;
         if (peerDialogId == UserConfig.getInstance(i10).getClientUserId()) {
             return;
         }
@@ -967,7 +967,7 @@ public final class t6 {
     }
 
     public final void e0(long j10, boolean z4) {
-        LongSparseIntArray longSparseIntArray = this.f17777j;
+        LongSparseIntArray longSparseIntArray = this.f17779j;
         if (z4) {
             longSparseIntArray.put(j10, 1);
         } else {
@@ -977,7 +977,7 @@ public final class t6 {
 
     public final void f0(TL_stories.TL_storiesStealthMode tL_storiesStealthMode) {
         this.B = tL_storiesStealthMode;
-        int i10 = this.f17770a;
+        int i10 = this.f17772a;
         NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.stealthModeChanged, new Object[0]);
         SharedPreferences.Editor edit = MessagesController.getInstance(i10).getMainSettings().edit();
         if (tL_storiesStealthMode == null) {
@@ -996,7 +996,7 @@ public final class t6 {
         boolean z10;
         ArrayList arrayList2;
         long peerDialogId = DialogObject.getPeerDialogId(peerStories.peer);
-        int i10 = this.f17770a;
+        int i10 = this.f17772a;
         TLRPC.User user = null;
         if (peerDialogId > 0) {
             TLRPC.User user2 = MessagesController.getInstance(i10).getUser(Long.valueOf(peerDialogId));
@@ -1016,7 +1016,7 @@ public final class t6 {
         }
         int i11 = 0;
         while (true) {
-            arrayList = this.f17775g;
+            arrayList = this.f17777g;
             z4 = true;
             if (i11 < arrayList.size()) {
                 if (DialogObject.getPeerDialogId(((TL_stories.PeerStories) arrayList.get(i11)).peer) == peerDialogId) {
@@ -1065,22 +1065,22 @@ public final class t6 {
             return;
         }
         TL_stories.TL_stories_sendReaction tL_stories_sendReaction = new TL_stories.TL_stories_sendReaction();
-        tL_stories_sendReaction.story_id = storyItem.f21080id;
-        int i10 = this.f17770a;
+        tL_stories_sendReaction.story_id = storyItem.f21082id;
+        int i10 = this.f17772a;
         tL_stories_sendReaction.peer = MessagesController.getInstance(i10).getInputPeer(j10);
         if (q0Var == null) {
             tL_stories_sendReaction.reaction = new TLRPC.TL_reactionEmpty();
             storyItem.flags &= -32769;
             storyItem.sent_reaction = null;
-        } else if (q0Var.f16179g != 0) {
+        } else if (q0Var.f16181g != 0) {
             TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji = new TLRPC.TL_reactionCustomEmoji();
-            tL_reactionCustomEmoji.document_id = q0Var.f16179g;
+            tL_reactionCustomEmoji.document_id = q0Var.f16181g;
             tL_stories_sendReaction.reaction = tL_reactionCustomEmoji;
             storyItem.flags |= 32768;
             storyItem.sent_reaction = tL_reactionCustomEmoji;
-        } else if (q0Var.f16178f != null) {
+        } else if (q0Var.f16180f != null) {
             TLRPC.TL_reactionEmoji tL_reactionEmoji = new TLRPC.TL_reactionEmoji();
-            tL_reactionEmoji.emoticon = q0Var.f16178f;
+            tL_reactionEmoji.emoticon = q0Var.f16180f;
             tL_stories_sendReaction.reaction = tL_reactionEmoji;
             storyItem.flags |= 32768;
             storyItem.sent_reaction = tL_reactionEmoji;
@@ -1091,7 +1091,7 @@ public final class t6 {
 
     public final boolean h(long j10) {
         TLRPC.Chat chat;
-        if (j10 >= 0 || (chat = MessagesController.getInstance(this.f17770a).getChat(Long.valueOf(-j10))) == null) {
+        if (j10 >= 0 || (chat = MessagesController.getInstance(this.f17772a).getChat(Long.valueOf(-j10))) == null) {
             return false;
         }
         if (!chat.creator) {
@@ -1105,7 +1105,7 @@ public final class t6 {
     }
 
     public final boolean i(long j10) {
-        if (UserConfig.getInstance(this.f17770a).getClientUserId() != j10 && !h(j10)) {
+        if (UserConfig.getInstance(this.f17772a).getClientUserId() != j10 && !h(j10)) {
             return false;
         }
         return true;
@@ -1114,7 +1114,7 @@ public final class t6 {
     public final void i0(long j10, boolean z4, boolean z10) {
         TL_stories.PeerStories peerStories;
         ArrayList arrayList = this.h;
-        ArrayList arrayList2 = this.f17775g;
+        ArrayList arrayList2 = this.f17777g;
         if (z4) {
             arrayList2 = arrayList;
             arrayList = arrayList2;
@@ -1149,7 +1149,7 @@ public final class t6 {
                 }
             }
         }
-        int i12 = this.f17770a;
+        int i12 = this.f17772a;
         NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
         MessagesController.getInstance(i12).checkArchiveFolder();
         if (z10) {
@@ -1174,7 +1174,7 @@ public final class t6 {
     public final boolean j(long j10) {
         TLRPC.User user;
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
-        int i10 = this.f17770a;
+        int i10 = this.f17772a;
         int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
         if (i11 < 0) {
             TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j10));
@@ -1194,7 +1194,7 @@ public final class t6 {
 
     public final void j0(long j10, boolean z4, boolean z10) {
         TLRPC.TL_contacts_unblock tL_contacts_unblock;
-        int i10 = this.f17770a;
+        int i10 = this.f17772a;
         TLRPC.InputPeer inputPeer = MessagesController.getInstance(i10).getInputPeer(j10);
         if (inputPeer != null && !(inputPeer instanceof TLRPC.TL_inputPeerEmpty)) {
             this.M.k(Boolean.valueOf(z4), j10);
@@ -1213,12 +1213,12 @@ public final class t6 {
                 if (z4) {
                     TLRPC.TL_contacts_block tL_contacts_block = new TLRPC.TL_contacts_block();
                     tL_contacts_block.my_stories_from = true;
-                    tL_contacts_block.f20886id = inputPeer;
+                    tL_contacts_block.f20888id = inputPeer;
                     tL_contacts_unblock = tL_contacts_block;
                 } else {
                     TLRPC.TL_contacts_unblock tL_contacts_unblock2 = new TLRPC.TL_contacts_unblock();
                     tL_contacts_unblock2.my_stories_from = true;
-                    tL_contacts_unblock2.f20891id = inputPeer;
+                    tL_contacts_unblock2.f20893id = inputPeer;
                     tL_contacts_unblock = tL_contacts_unblock2;
                 }
                 ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_unblock, null);
@@ -1229,7 +1229,7 @@ public final class t6 {
 
     public final void k(long j10, h5.d dVar, boolean z4, org.telegram.ui.ActionBar.g6 g6Var) {
         TL_stories.TL_stories_canSendStory tL_stories_canSendStory = new TL_stories.TL_stories_canSendStory();
-        int i10 = this.f17770a;
+        int i10 = this.f17772a;
         tL_stories_canSendStory.peer = MessagesController.getInstance(i10).getInputPeer(j10);
         ConnectionsManager.getInstance(i10).sendRequest(tL_stories_canSendStory, new mh.e(this, z4, j10, dVar, g6Var), 1024);
     }
@@ -1258,7 +1258,7 @@ public final class t6 {
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                l6 A3 = t6Var.A(j10, 0, ((m6) obj).f17439a, false);
+                l6 A3 = t6Var.A(j10, 0, ((m6) obj).f17441a, false);
                 if (A3 != null) {
                     A3.A(list);
                 }
@@ -1273,7 +1273,7 @@ public final class t6 {
         boolean z4 = false;
         while (true) {
             int size = arrayList.size();
-            i10 = this.f17770a;
+            i10 = this.f17772a;
             if (i11 >= size) {
                 break;
             }
@@ -1288,7 +1288,7 @@ public final class t6 {
                 i12++;
             }
             if (peerStories.stories.isEmpty() && !K(peerDialogId)) {
-                this.f17776i.l(peerDialogId);
+                this.f17778i.l(peerDialogId);
                 arrayList.remove(peerStories);
                 z4 = true;
             }
@@ -1302,7 +1302,7 @@ public final class t6 {
     public final void l0(long j10, List list, boolean z4) {
         TL_stories.PeerStories peerStories;
         boolean z10;
-        int i10 = this.f17770a;
+        int i10 = this.f17772a;
         if (j10 > 0) {
             TLRPC.UserFull userFull = MessagesController.getInstance(i10).getUserFull(j10);
             if (userFull != null) {
@@ -1343,7 +1343,7 @@ public final class t6 {
             int i12 = 0;
             while (true) {
                 if (i12 < peerStories.stories.size()) {
-                    if (peerStories.stories.get(i12).f21080id == storyItem.f21080id) {
+                    if (peerStories.stories.get(i12).f21082id == storyItem.f21082id) {
                         z10 = true;
                         if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
                             peerStories.stories.remove(i12);
@@ -1357,7 +1357,7 @@ public final class t6 {
                             if (storyItem.firstFramePath == null) {
                                 storyItem.firstFramePath = storyItem2.firstFramePath;
                             }
-                            l.d.t(storyItem.f21080id, new StringBuilder("StoriesController update story for full peer storyId="));
+                            l.d.t(storyItem.f21082id, new StringBuilder("StoriesController update story for full peer storyId="));
                         }
                     } else {
                         i12++;
@@ -1369,9 +1369,9 @@ public final class t6 {
             }
             if (!z10) {
                 if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
-                    l.d.t(storyItem.f21080id, new StringBuilder("StoriesController story is not found, but already deleted storyId="));
+                    l.d.t(storyItem.f21082id, new StringBuilder("StoriesController story is not found, but already deleted storyId="));
                 } else if (z4) {
-                    l.d.t(storyItem.f21080id, new StringBuilder("StoriesController add new story for full peer storyId="));
+                    l.d.t(storyItem.f21082id, new StringBuilder("StoriesController add new story for full peer storyId="));
                     peerStories.stories.add(storyItem);
                     peerStories.checkedExpired = false;
                 }
@@ -1383,7 +1383,7 @@ public final class t6 {
         if (peerStories != null && peerStories.stories != null) {
             int i10 = 0;
             while (i10 < peerStories.stories.size()) {
-                if (m7.w(this.f17770a, peerStories.stories.get(i10))) {
+                if (m7.w(this.f17772a, peerStories.stories.get(i10))) {
                     peerStories.stories.remove(i10);
                     i10--;
                 }
@@ -1395,17 +1395,17 @@ public final class t6 {
 
     public final void m0(long j10, TL_stories.PeerStories peerStories) {
         TL_stories.PeerStories peerStories2;
-        if (peerStories != null && (peerStories2 = (TL_stories.PeerStories) this.f17776i.f(j10)) != null) {
+        if (peerStories != null && (peerStories2 = (TL_stories.PeerStories) this.f17778i.f(j10)) != null) {
             FileLog.d("StoriesController update stories from full peer " + j10);
             for (int i10 = 0; i10 < peerStories2.stories.size(); i10++) {
                 if (peerStories2.stories.get(i10) instanceof TL_stories.TL_storyItemSkipped) {
-                    int i11 = peerStories2.stories.get(i10).f21080id;
+                    int i11 = peerStories2.stories.get(i10).f21082id;
                     int i12 = 0;
                     while (true) {
                         if (i12 >= peerStories.stories.size()) {
                             break;
                         }
-                        if (peerStories.stories.get(i12).f21080id == i11 && (peerStories.stories.get(i12) instanceof TL_stories.TL_storyItem)) {
+                        if (peerStories.stories.get(i12).f21082id == i11 && (peerStories.stories.get(i12) instanceof TL_stories.TL_storyItem)) {
                             peerStories2.stories.set(i10, peerStories.stories.get(i12));
                             break;
                         }
@@ -1451,7 +1451,7 @@ public final class t6 {
             int size2 = arrayList.size();
             while (i10 < size2) {
                 int i12 = i10 + 1;
-                l6 A3 = t6Var.A(j10, 0, ((m6) arrayList.get(i10)).f17439a, false);
+                l6 A3 = t6Var.A(j10, 0, ((m6) arrayList.get(i10)).f17441a, false);
                 if (A3 != null) {
                     A3.D(list, z4);
                 }
@@ -1465,13 +1465,13 @@ public final class t6 {
         int i10;
         int size;
         ArrayList<TL_stories.StoryItem> arrayList;
-        int i11 = this.f17770a;
+        int i11 = this.f17772a;
         if (UserConfig.getInstance(i11).isPremium()) {
             i10 = MessagesController.getInstance(i11).storyExpiringLimitPremium;
         } else {
             i10 = MessagesController.getInstance(i11).storyExpiringLimitDefault;
         }
-        ArrayList arrayList2 = (ArrayList) this.f17772c.f(UserConfig.getInstance(i11).getClientUserId());
+        ArrayList arrayList2 = (ArrayList) this.f17774c.f(UserConfig.getInstance(i11).getClientUserId());
         if (arrayList2 == null) {
             size = 0;
         } else {
@@ -1500,12 +1500,12 @@ public final class t6 {
             TL_stories.StoryItem storyItem = (TL_stories.StoryItem) arrayList.get(i10);
             if (!(storyItem instanceof TL_stories.TL_storyItemDeleted)) {
                 storyItem.pinned = z4;
-                togglepinned.f21094id.add(Integer.valueOf(storyItem.f21080id));
+                togglepinned.f21096id.add(Integer.valueOf(storyItem.f21082id));
                 if (y10 != null) {
                     for (int i11 = 0; i11 < y10.stories.size(); i11++) {
-                        if (y10.stories.get(i11).f21080id == storyItem.f21080id) {
+                        if (y10.stories.get(i11).f21082id == storyItem.f21082id) {
                             y10.stories.get(i11).pinned = z4;
-                            this.f17778k.k(j10, storyItem);
+                            this.f17780k.k(j10, storyItem);
                         }
                     }
                 }
@@ -1515,7 +1515,7 @@ public final class t6 {
         n0(j10, arrayList, false);
         l0(j10, arrayList, false);
         togglepinned.pinned = z4;
-        int i12 = this.f17770a;
+        int i12 = this.f17772a;
         togglepinned.peer = MessagesController.getInstance(i12).getInputPeer(j10);
         ConnectionsManager.getInstance(i12).sendRequest(togglepinned, new mh.v6(1, e3Var));
     }
@@ -1523,14 +1523,14 @@ public final class t6 {
     public final void p(int i10, long j10) {
         String str = "229:" + j10 + ":" + i10;
         HashSet hashSet = this.W;
-        if (hashSet.contains(str) || this.f17787t.contains(str)) {
+        if (hashSet.contains(str) || this.f17789t.contains(str)) {
             return;
         }
         hashSet.add(str);
         TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
-        int i11 = this.f17770a;
+        int i11 = this.f17772a;
         tL_stories_getStoriesByID.peer = MessagesController.getInstance(i11).getInputPeer(j10);
-        tL_stories_getStoriesByID.f21087id.add(Integer.valueOf(i10));
+        tL_stories_getStoriesByID.f21089id.add(Integer.valueOf(i10));
         ConnectionsManager.getInstance(i11).sendRequest(tL_stories_getStoriesByID, new mh.t(this, i10, str, j10, 2));
     }
 
@@ -1540,28 +1540,28 @@ public final class t6 {
         if (storyItem == null) {
             str = "null";
         } else {
-            str = storyItem.f21080id + "@" + storyItem.dialogId;
+            str = storyItem.f21082id + "@" + storyItem.dialogId;
         }
         s6.append(str);
         FileLog.d(s6.toString());
         n0(j10, Collections.singletonList(storyItem), z4);
-        this.f17778k.k(j10, storyItem);
+        this.f17780k.k(j10, storyItem);
         l0(j10, Collections.singletonList(storyItem), false);
     }
 
     public final void q() {
-        this.f17786s = false;
-        this.f17791y = "";
-        this.f17782o = "";
-        this.f17779l.edit().putBoolean("stories_loaded", false).remove("last_stories_state").putBoolean("stories_loaded_hidden", false).remove("last_stories_state_hidden").putBoolean("read_loaded", false).apply();
-        qh.t0 t0Var = this.f17789w;
+        this.f17788s = false;
+        this.f17793y = "";
+        this.f17784o = "";
+        this.f17781l.edit().putBoolean("stories_loaded", false).remove("last_stories_state").putBoolean("stories_loaded_hidden", false).remove("last_stories_state_hidden").putBoolean("read_loaded", false).apply();
+        qh.t0 t0Var = this.f17791w;
         Objects.requireNonNull(t0Var);
         AndroidUtilities.runOnUIThread(new t3(t0Var, 5));
         T();
-        if (this.f17786s) {
+        if (this.f17788s) {
             return;
         }
-        ConnectionsManager.getInstance(this.f17770a).sendRequest(new TL_stories.TL_stories_getAllReadPeerStories(), new s5(this, 0));
+        ConnectionsManager.getInstance(this.f17772a).sendRequest(new TL_stories.TL_stories_getAllReadPeerStories(), new s5(this, 0));
     }
 
     public final void q0(long j10, int i10, TLRPC.Reaction reaction) {
@@ -1579,13 +1579,13 @@ public final class t6 {
 
     public final void r(long j10, String str, Utilities.Callback callback) {
         h6 B = B(j10, true);
-        int i10 = B.f17184a;
-        if (B.f17190i) {
+        int i10 = B.f17186a;
+        if (B.f17192i) {
             return;
         }
-        B.f17190i = true;
+        B.f17192i = true;
         TL_stories.TL_createAlbum tL_createAlbum = new TL_stories.TL_createAlbum();
-        tL_createAlbum.peer = MessagesController.getInstance(i10).getInputPeer(B.f17185b);
+        tL_createAlbum.peer = MessagesController.getInstance(i10).getInputPeer(B.f17187b);
         tL_createAlbum.title = str;
         ConnectionsManager.getInstance(i10).sendRequest(tL_createAlbum, new eg.b3(14, B, callback));
     }
@@ -1595,13 +1595,13 @@ public final class t6 {
         TL_stories.PeerStories peerStories;
         TLRPC.UserFull userFull;
         TL_stories.TL_stories_deleteStories tL_stories_deleteStories = new TL_stories.TL_stories_deleteStories();
-        int i10 = this.f17770a;
+        int i10 = this.f17772a;
         TLRPC.InputPeer inputPeer = MessagesController.getInstance(i10).getInputPeer(j10);
         tL_stories_deleteStories.peer = inputPeer;
         if (inputPeer == null) {
             return;
         }
-        a0.h hVar = this.f17776i;
+        a0.h hVar = this.f17778i;
         TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) hVar.f(j10);
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
             TL_stories.StoryItem storyItem = (TL_stories.StoryItem) arrayList.get(i11);
@@ -1611,7 +1611,7 @@ public final class t6 {
                     while (true) {
                         if (i12 >= peerStories2.stories.size()) {
                             break;
-                        } else if (peerStories2.stories.get(i12).f21080id == storyItem.f21080id) {
+                        } else if (peerStories2.stories.get(i12).f21082id == storyItem.f21082id) {
                             peerStories2.stories.remove(i12);
                             if (peerStories2.stories.isEmpty()) {
                                 hVar.l(j10);
@@ -1621,7 +1621,7 @@ public final class t6 {
                         }
                     }
                 }
-                tL_stories_deleteStories.f21083id.add(Integer.valueOf(storyItem.f21080id));
+                tL_stories_deleteStories.f21085id.add(Integer.valueOf(storyItem.f21082id));
             }
         }
         if (j10 < 0 ? !((chatFull = MessagesController.getInstance(i10).getChatFull(-j10)) == null || (peerStories = chatFull.stories) == null) : !((userFull = MessagesController.getInstance(i10).getUserFull(j10)) == null || (peerStories = userFull.stories) == null)) {
@@ -1634,7 +1634,7 @@ public final class t6 {
                 while (true) {
                     if (i14 >= peerStories2.stories.size()) {
                         break;
-                    } else if (peerStories2.stories.get(i14).f21080id == storyItem2.f21080id) {
+                    } else if (peerStories2.stories.get(i14).f21082id == storyItem2.f21082id) {
                         peerStories2.stories.remove(i14);
                         break;
                     } else {
@@ -1645,25 +1645,25 @@ public final class t6 {
         }
         ConnectionsManager.getInstance(i10).sendRequest(tL_stories_deleteStories, new s5(this, 4));
         k0(j10, arrayList);
-        ArrayList<Integer> arrayList2 = tL_stories_deleteStories.f21083id;
-        g7 g7Var = this.f17778k;
-        g7Var.f17164b.getStorageQueue().postRunnable(new i5.v(g7Var, arrayList2, j10, 8));
+        ArrayList<Integer> arrayList2 = tL_stories_deleteStories.f21085id;
+        g7 g7Var = this.f17780k;
+        g7Var.f17166b.getStorageQueue().postRunnable(new i5.v(g7Var, arrayList2, j10, 8));
         NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
     }
 
     public final s6 t(long j10, TL_stories.StoryItem storyItem) {
-        HashMap hashMap = (HashMap) this.f17773e.f(j10);
+        HashMap hashMap = (HashMap) this.f17775e.f(j10);
         if (hashMap != null && !hashMap.isEmpty()) {
-            return (s6) hashMap.get(Integer.valueOf(storyItem.f21080id));
+            return (s6) hashMap.get(Integer.valueOf(storyItem.f21082id));
         }
         return null;
     }
 
     public final TL_stories.StoryItem u(int i10, long j10) {
-        TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f17776i.f(j10);
+        TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f17778i.f(j10);
         if (peerStories != null) {
             for (int i11 = 0; i11 < peerStories.stories.size(); i11++) {
-                if (peerStories.stories.get(i11).f21080id == i10) {
+                if (peerStories.stories.get(i11).f21082id == i10) {
                     return peerStories.stories.get(i11);
                 }
             }
@@ -1679,7 +1679,7 @@ public final class t6 {
         while (i10 < arrayList.size()) {
             TL_stories.PeerStories peerStories = (TL_stories.PeerStories) arrayList.get(i10);
             long peerDialogId = DialogObject.getPeerDialogId(peerStories.peer);
-            if (peerDialogId > 0 && (user = MessagesController.getInstance(this.f17770a).getUser(Long.valueOf(peerDialogId))) != null && !M(user)) {
+            if (peerDialogId > 0 && (user = MessagesController.getInstance(this.f17772a).getUser(Long.valueOf(peerDialogId))) != null && !M(user)) {
                 arrayList.remove(i10);
                 i10--;
                 z4 = true;
@@ -1706,7 +1706,7 @@ public final class t6 {
         m6 b10;
         h6 B = B(j10, false);
         if (B != null && (b10 = B.b(i10)) != null) {
-            return b10.f17440b;
+            return b10.f17442b;
         }
         return null;
     }
@@ -1717,19 +1717,19 @@ public final class t6 {
             y10 = z(j10);
         }
         if (y10 != null) {
-            return Math.max(y10.max_read_id, this.f17774f.get(j10, 0));
+            return Math.max(y10.max_read_id, this.f17776f.get(j10, 0));
         }
-        return this.f17774f.get(j10, 0);
+        return this.f17776f.get(j10, 0);
     }
 
     public final TL_stories.PeerStories y(long j10) {
-        return (TL_stories.PeerStories) this.f17776i.f(j10);
+        return (TL_stories.PeerStories) this.f17778i.f(j10);
     }
 
     public final TL_stories.PeerStories z(long j10) {
         TL_stories.PeerStories peerStories;
         TL_stories.PeerStories peerStories2;
-        int i10 = this.f17770a;
+        int i10 = this.f17772a;
         if (j10 > 0) {
             TLRPC.UserFull userFull = MessagesController.getInstance(i10).getUserFull(j10);
             if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.checkedExpired) {

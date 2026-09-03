@@ -24,18 +24,18 @@ import java.util.zip.InflaterInputStream;
 import m.r3;
 import org.telegram.ui.Components.ai;
 public final class m implements t0.h, OnCompleteListener, a3.b {
-    public final int f47061a;
-    public Object f47062b;
-    public Object f47063c;
+    public final int f47092a;
+    public Object f47093b;
+    public Object f47094c;
     public Object d;
 
     public m() {
-        this.f47061a = 10;
+        this.f47092a = 10;
     }
 
     @Override
     public Uri a() {
-        return (Uri) this.f47062b;
+        return (Uri) this.f47093b;
     }
 
     @Override
@@ -50,7 +50,7 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
 
     public y2.i f() {
         String str;
-        if (((String) this.f47062b) == null) {
+        if (((String) this.f47093b) == null) {
             str = " backendName";
         } else {
             str = "";
@@ -59,14 +59,14 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
             str = str.concat(" priority");
         }
         if (str.isEmpty()) {
-            return new y2.i((String) this.f47062b, (byte[]) this.f47063c, (v2.d) this.d);
+            return new y2.i((String) this.f47093b, (byte[]) this.f47094c, (v2.d) this.d);
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }
 
     public void g(Object obj, ByteArrayOutputStream byteArrayOutputStream) {
-        HashMap hashMap = (HashMap) this.f47062b;
-        x9.e eVar = new x9.e(byteArrayOutputStream, hashMap, (HashMap) this.f47063c, (u9.d) this.d);
+        HashMap hashMap = (HashMap) this.f47093b;
+        x9.e eVar = new x9.e(byteArrayOutputStream, hashMap, (HashMap) this.f47094c, (u9.d) this.d);
         if (obj == null) {
             return;
         }
@@ -80,25 +80,25 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
 
     @Override
     public Object mo38get() {
-        return new y2.q(new z9.d(7), new u(7), (d3.b) ((c5.j) this.f47062b).mo38get(), (e3.g) ((r3) this.f47063c).mo38get(), (s) ((sf.e) this.d).mo38get());
+        return new y2.q(new z9.d(7), new u(7), (d3.b) ((c5.j) this.f47093b).mo38get(), (e3.g) ((r3) this.f47094c).mo38get(), (s) ((sf.f) this.d).mo38get());
     }
 
     @Override
     public ClipDescription getDescription() {
-        return (ClipDescription) this.f47063c;
+        return (ClipDescription) this.f47094c;
     }
 
     public ye.e h(ye.f fVar) {
         InflaterInputStream inflaterInputStream;
-        int i10 = fVar.f50869e;
-        InputStream inputStream = (ze.a) this.f47062b;
-        if (fVar.f50867b) {
+        int i10 = fVar.f50905e;
+        InputStream inputStream = (ze.a) this.f47093b;
+        if (fVar.f50903b) {
             ai aiVar = (ai) this.d;
             aiVar.getClass();
             byte[] bArr = new byte[i10];
             int i11 = 0;
             while (i11 < i10) {
-                int read = ((com.google.firebase.messaging.d) aiVar.f25265b).read(bArr, i11, i10 - i11);
+                int read = ((com.google.firebase.messaging.d) aiVar.f25257b).read(bArr, i11, i10 - i11);
                 if (read > 0) {
                     i11 += read;
                 } else {
@@ -122,22 +122,22 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
             inputStream = new ByteArrayInputStream(bArr, 0, i12);
             i10 = i12;
         }
-        if (!fVar.f50870f) {
+        if (!fVar.f50906f) {
             if (fVar.d) {
-                i10 = fVar.f50871g;
+                i10 = fVar.f50907g;
                 inflaterInputStream = new InflaterInputStream(inputStream);
             } else {
                 inflaterInputStream = inputStream;
             }
-            return new ye.e(inflaterInputStream, fVar.f50868c, i10, (ye.h) this.f47063c, fVar);
+            return new ye.e(inflaterInputStream, fVar.f50904c, i10, (ye.h) this.f47094c, fVar);
         }
         throw new Exception("Frame encryption is not supported");
     }
 
     public Object i(Bitmap bitmap) {
-        ug.a aVar = (ug.a) this.f47062b;
+        ug.a aVar = (ug.a) this.f47093b;
         if (aVar.a(bitmap)) {
-            this.d = ((ug.b) this.f47063c).a(bitmap);
+            this.d = ((ug.b) this.f47094c).a(bitmap);
             aVar.b(bitmap);
         }
         return this.d;
@@ -145,7 +145,7 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
 
     public void j(v7.f fVar) {
         try {
-            w7.g gVar = (w7.g) this.f47063c;
+            w7.g gVar = (w7.g) this.f47094c;
             v7.i iVar = new v7.i(fVar);
             Parcel M0 = gVar.M0();
             g7.b.c(M0, iVar);
@@ -156,7 +156,7 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
     }
 
     public int k(tb.e eVar) {
-        ArrayList arrayList = (ArrayList) this.f47062b;
+        ArrayList arrayList = (ArrayList) this.f47093b;
         int size = arrayList.size();
         int i10 = 0;
         int i11 = 0;
@@ -165,7 +165,7 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
             i11++;
             vb.f fVar = (vb.f) obj;
             int i12 = fVar.d;
-            tb.d dVar = fVar.f48958a;
+            tb.d dVar = fVar.f48994a;
             int a2 = dVar.a(eVar);
             int i13 = a2 + 4;
             int ordinal = dVar.ordinal();
@@ -210,7 +210,7 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
 
     public boolean l() {
         String trim;
-        ArrayDeque arrayDeque = (ArrayDeque) this.f47063c;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f47094c;
         if (((String) this.d) != null) {
             return true;
         }
@@ -221,7 +221,7 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
             return true;
         }
         do {
-            String readLine = ((BufferedReader) this.f47062b).readLine();
+            String readLine = ((BufferedReader) this.f47093b).readLine();
             this.d = readLine;
             if (readLine != null) {
                 trim = readLine.trim();
@@ -244,7 +244,7 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
 
     public void n(String str) {
         if (str != null) {
-            this.f47062b = str;
+            this.f47093b = str;
             return;
         }
         throw new NullPointerException("Null backendName");
@@ -252,20 +252,20 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
 
     @Override
     public void onComplete(Task task) {
-        x5.a aVar = (x5.a) this.f47062b;
-        String str = (String) this.f47063c;
+        x5.a aVar = (x5.a) this.f47093b;
+        String str = (String) this.f47094c;
         ScheduledFuture scheduledFuture = (ScheduledFuture) this.d;
-        synchronized (aVar.f50406a) {
-            aVar.f50406a.remove(str);
+        synchronized (aVar.f50442a) {
+            aVar.f50442a.remove(str);
         }
         scheduledFuture.cancel(false);
     }
 
     public String toString() {
-        switch (this.f47061a) {
+        switch (this.f47092a) {
             case 5:
                 StringBuilder sb = new StringBuilder();
-                ArrayList arrayList = (ArrayList) this.f47062b;
+                ArrayList arrayList = (ArrayList) this.f47093b;
                 int size = arrayList.size();
                 vb.f fVar = null;
                 int i10 = 0;
@@ -282,7 +282,7 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
                 return sb.toString();
             case 12:
                 StringBuilder sb2 = new StringBuilder("id3v2tag[pos=");
-                ze.a aVar = (ze.a) this.f47062b;
+                ze.a aVar = (ze.a) this.f47093b;
                 sb2.append(aVar.f4045b);
                 sb2.append(", ");
                 sb2.append(aVar.e());
@@ -294,46 +294,46 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
     }
 
     public m(Object obj, Object obj2, Object obj3, int i10) {
-        this.f47061a = i10;
-        this.f47062b = obj;
-        this.f47063c = obj2;
+        this.f47092a = i10;
+        this.f47093b = obj;
+        this.f47094c = obj2;
         this.d = obj3;
     }
 
     public m(h hVar) {
-        this.f47061a = 0;
+        this.f47092a = 0;
         this.d = hVar;
-        this.f47063c = new AtomicLong((u5.a.f48348b.nextLong() & 65535) * 10000);
+        this.f47094c = new AtomicLong((u5.a.f48384b.nextLong() & 65535) * 10000);
     }
 
     public m(v7.d dVar, w7.g gVar) {
-        this.f47061a = 4;
-        this.f47063c = gVar;
+        this.f47092a = 4;
+        this.f47094c = gVar;
         b6.m.h(dVar);
-        this.f47062b = dVar;
+        this.f47093b = dVar;
     }
 
     public m(ug.b bVar) {
-        this.f47061a = 3;
-        this.f47062b = new ug.a();
-        this.f47063c = bVar;
+        this.f47092a = 3;
+        this.f47093b = new ug.a();
+        this.f47094c = bVar;
     }
 
     public m(InputStream inputStream, long j10, int i10, ye.h hVar) {
-        this.f47061a = 12;
+        this.f47092a = 12;
         ze.a aVar = new ze.a(inputStream, j10, i10);
-        this.f47062b = aVar;
+        this.f47093b = aVar;
         this.d = new ai(aVar, 24);
-        this.f47063c = hVar;
+        this.f47094c = hVar;
     }
 
     public m(cb.m mVar, tb.e eVar, vb.e eVar2) {
         tb.d dVar;
         int i10;
         int i11;
-        this.f47061a = 5;
+        this.f47092a = 5;
         this.d = mVar;
-        this.f47062b = new ArrayList();
+        this.f47093b = new ArrayList();
         vb.e eVar3 = eVar2;
         int i12 = 0;
         int i13 = 0;
@@ -342,21 +342,21 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
             if (eVar3 == null) {
                 break;
             }
-            int i14 = eVar3.f48955c;
+            int i14 = eVar3.f48991c;
             int i15 = i12 + eVar3.d;
-            vb.e eVar4 = eVar3.f48956e;
+            vb.e eVar4 = eVar3.f48992e;
             int i16 = i13;
-            tb.d dVar2 = eVar3.f48953a;
-            boolean z4 = (dVar2 == tb.d.BYTE && eVar4 == null && i14 != 0) || !(eVar4 == null || i14 == eVar4.f48955c);
+            tb.d dVar2 = eVar3.f48989a;
+            boolean z4 = (dVar2 == tb.d.BYTE && eVar4 == null && i14 != 0) || !(eVar4 == null || i14 == eVar4.f48991c);
             i10 = z4 ? 1 : i16;
-            if (eVar4 == null || eVar4.f48953a != dVar2 || z4) {
-                ((ArrayList) this.f47062b).add(0, new vb.f(this, dVar2, eVar3.f48954b, i14, i15));
+            if (eVar4 == null || eVar4.f48989a != dVar2 || z4) {
+                ((ArrayList) this.f47093b).add(0, new vb.f(this, dVar2, eVar3.f48990b, i14, i15));
                 i11 = 0;
             } else {
                 i11 = i15;
             }
             if (z4) {
-                ((ArrayList) this.f47062b).add(0, new vb.f(this, dVar, eVar3.f48954b, eVar3.f48955c, 0));
+                ((ArrayList) this.f47093b).add(0, new vb.f(this, dVar, eVar3.f48990b, eVar3.f48991c, 0));
             }
             i13 = i10;
             eVar3 = eVar4;
@@ -366,13 +366,13 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
         boolean z10 = mVar.f2424a;
         tb.b bVar = (tb.b) mVar.d;
         if (z10) {
-            vb.f fVar = (vb.f) ((ArrayList) this.f47062b).get(0);
-            if (fVar != null && fVar.f48958a != dVar && i17 != 0) {
-                ((ArrayList) this.f47062b).add(0, new vb.f(this, dVar, 0, 0, 0));
+            vb.f fVar = (vb.f) ((ArrayList) this.f47093b).get(0);
+            if (fVar != null && fVar.f48994a != dVar && i17 != 0) {
+                ((ArrayList) this.f47093b).add(0, new vb.f(this, dVar, 0, 0, 0));
             }
-            ((ArrayList) this.f47062b).add(((vb.f) ((ArrayList) this.f47062b).get(0)).f48958a == dVar ? 1 : 0, new vb.f(this, tb.d.FNC1_FIRST_POSITION, 0, 0, 0));
+            ((ArrayList) this.f47093b).add(((vb.f) ((ArrayList) this.f47093b).get(0)).f48994a == dVar ? 1 : 0, new vb.f(this, tb.d.FNC1_FIRST_POSITION, 0, 0, 0));
         }
-        int i18 = eVar.f48052a;
+        int i18 = eVar.f48088a;
         int i19 = 26;
         int c3 = m1.j.c(i18 <= 9 ? 1 : i18 <= 26 ? 2 : 3);
         if (c3 == 0) {
@@ -390,7 +390,7 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
         while (i18 > i10 && vb.c.c(k10, tb.e.c(i18 - 1), bVar)) {
             i18--;
         }
-        this.f47063c = tb.e.c(i18);
+        this.f47094c = tb.e.c(i18);
     }
 
     @Override
@@ -402,8 +402,8 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
     }
 
     public m(ArrayDeque arrayDeque, BufferedReader bufferedReader) {
-        this.f47061a = 2;
-        this.f47063c = arrayDeque;
-        this.f47062b = bufferedReader;
+        this.f47092a = 2;
+        this.f47094c = arrayDeque;
+        this.f47093b = bufferedReader;
     }
 }

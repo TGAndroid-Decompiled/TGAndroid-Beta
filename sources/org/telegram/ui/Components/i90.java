@@ -11,21 +11,21 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class i90 extends View {
-    public final Drawable f27706a;
-    public final Paint f27707b;
-    public final Paint f27708c;
+    public final Drawable f27750a;
+    public final Paint f27751b;
+    public final Paint f27752c;
     public final z5 d;
-    public boolean f27709e;
+    public boolean f27753e;
 
     public i90(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f27707b = paint;
+        this.f27751b = paint;
         Paint paint2 = new Paint(1);
-        this.f27708c = paint2;
+        this.f27752c = paint2;
         this.d = new z5(this, 0L, 320L, pr.h);
         k7.e6.a(this);
-        this.f27706a = context.getResources().getDrawable(R.drawable.media_live_on).mutate();
+        this.f27750a = context.getResources().getDrawable(R.drawable.media_live_on).mutate();
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
         paint2.setColor(-65536);
@@ -35,10 +35,10 @@ public final class i90 extends View {
     }
 
     public final void a(boolean z4, boolean z10) {
-        if (this.f27709e == z4) {
+        if (this.f27753e == z4) {
             return;
         }
-        this.f27709e = z4;
+        this.f27753e = z4;
         if (!z10) {
             this.d.a(z4);
         }
@@ -48,9 +48,9 @@ public final class i90 extends View {
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        float e6 = this.d.e(!this.f27709e);
+        float e6 = this.d.e(!this.f27753e);
         int width = getWidth();
-        Drawable drawable = this.f27706a;
+        Drawable drawable = this.f27750a;
         drawable.setBounds((width - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
         Rect bounds = drawable.getBounds();
         float width2 = (bounds.width() * 0.325f) + bounds.left;
@@ -59,11 +59,11 @@ public final class i90 extends View {
         float width3 = bounds.right - (bounds.width() * 0.101f);
         int i10 = (e6 > 0.0f ? 1 : (e6 == 0.0f ? 0 : -1));
         if (i10 > 0) {
-            Paint paint = this.f27708c;
+            Paint paint = this.f27752c;
             paint.setStrokeWidth(AndroidUtilities.dp(4.0f));
             canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
             drawable.draw(canvas);
-            if (this.f27709e) {
+            if (this.f27753e) {
                 canvas.drawLine(width3 - AndroidUtilities.dp(4.0f), height2 - AndroidUtilities.dp(4.0f), AndroidUtilities.lerp(width3 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + width2, e6), AndroidUtilities.lerp(height2 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + height, e6), paint);
                 canvas2 = canvas;
             } else {
@@ -76,9 +76,9 @@ public final class i90 extends View {
             drawable.draw(canvas2);
         }
         if (i10 > 0) {
-            Paint paint2 = this.f27707b;
+            Paint paint2 = this.f27751b;
             paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-            if (this.f27709e) {
+            if (this.f27753e) {
                 canvas2.drawLine(width3, height2, AndroidUtilities.lerp(width3, width2, e6), AndroidUtilities.lerp(height2, height, e6), paint2);
             } else {
                 canvas.drawLine(width2, height, AndroidUtilities.lerp(width2, width3, e6), AndroidUtilities.lerp(height, height2, e6), paint2);

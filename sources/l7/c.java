@@ -207,7 +207,7 @@ public class c implements Iterator {
                 if (z12) {
                     Collection collection2 = (Collection) entry2.getValue();
                     this.f11814b.remove();
-                    ((fd) this.d).f15341c.getClass();
+                    ((fd) this.d).f15343c.getClass();
                     collection2.size();
                     collection2.clear();
                     this.f11815c = null;
@@ -226,7 +226,7 @@ public class c implements Iterator {
                 }
                 if (z13) {
                     this.f11814b.remove();
-                    ((s8.e0) ((xa) this.d).f12100e).f47101e -= ((Collection) this.f11815c).size();
+                    ((s8.e0) ((xa) this.d).f12100e).f47132e -= ((Collection) this.f11815c).size();
                     ((Collection) this.f11815c).clear();
                     this.f11815c = null;
                     return;
@@ -242,7 +242,7 @@ public class c implements Iterator {
                 if (z14) {
                     Collection collection3 = (Collection) entry3.getValue();
                     this.f11814b.remove();
-                    ((s8.c) this.d).f47095c.f47101e -= collection3.size();
+                    ((s8.c) this.d).f47126c.f47132e -= collection3.size();
                     collection3.clear();
                     this.f11815c = null;
                     return;
@@ -252,7 +252,7 @@ public class c implements Iterator {
                 this.f11814b.remove();
                 e eVar2 = (e) this.d;
                 s8.e0 e0Var = (s8.e0) eVar2.f11833f;
-                e0Var.f47101e--;
+                e0Var.f47132e--;
                 eVar2.o();
                 return;
         }

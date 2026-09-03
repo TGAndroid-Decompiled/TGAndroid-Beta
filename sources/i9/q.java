@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.Locale;
 import k9.o0;
 import k9.p0;
-import q5.g0;
+import q5.c0;
 public final class q {
     public static final HashMap f7995f;
     public static final String f7996g;
     public final Context f7997a;
     public final w f7998b;
     public final a f7999c;
-    public final g0 d;
+    public final c0 d;
     public final e3.g f8000e;
 
     static {
@@ -29,28 +29,28 @@ public final class q {
         f7996g = "Crashlytics Android SDK/18.6.0";
     }
 
-    public q(Context context, w wVar, a aVar, g0 g0Var, e3.g gVar) {
+    public q(Context context, w wVar, a aVar, c0 c0Var, e3.g gVar) {
         this.f7997a = context;
         this.f7998b = wVar;
         this.f7999c = aVar;
-        this.d = g0Var;
+        this.d = c0Var;
         this.f8000e = gVar;
     }
 
-    public static p0 c(sf.e eVar, int i10) {
+    public static p0 c(sf.f fVar, int i10) {
         int i11;
-        String str = (String) eVar.f47316c;
-        String str2 = (String) eVar.f47315b;
-        StackTraceElement[] stackTraceElementArr = (StackTraceElement[]) eVar.d;
+        String str = (String) fVar.f47352c;
+        String str2 = (String) fVar.f47351b;
+        StackTraceElement[] stackTraceElementArr = (StackTraceElement[]) fVar.d;
         int i12 = 0;
         if (stackTraceElementArr == null) {
             stackTraceElementArr = new StackTraceElement[0];
         }
-        sf.e eVar2 = (sf.e) eVar.f47317e;
+        sf.f fVar2 = (sf.f) fVar.f47353e;
         if (i10 >= 8) {
-            sf.e eVar3 = eVar2;
-            while (eVar3 != null) {
-                eVar3 = (sf.e) eVar3.f47317e;
+            sf.f fVar3 = fVar2;
+            while (fVar3 != null) {
+                fVar3 = (sf.f) fVar3.f47353e;
                 i12++;
             }
             i11 = i12;
@@ -60,8 +60,8 @@ public final class q {
         List d = d(stackTraceElementArr, 4);
         if (d != null) {
             p0 p0Var = null;
-            if (eVar2 != null && i11 == 0) {
-                p0Var = c(eVar2, i10 + 1);
+            if (fVar2 != null && i11 == 0) {
+                p0Var = c(fVar2, i10 + 1);
             }
             return new p0(str, str2, d, p0Var, i11);
         }

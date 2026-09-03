@@ -13,9 +13,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.TLRPC;
 public final class l5 extends FrameLayout {
-    public final TextView f23109a;
-    public final TextView f23110b;
-    public final TextView f23111c;
+    public final TextView f23111a;
+    public final TextView f23112b;
+    public final TextView f23113c;
     public final org.telegram.ui.Components.p9 d;
 
     public l5(Context context) {
@@ -42,7 +42,7 @@ public final class l5 extends FrameLayout {
         }
         addView(p9Var, k7.c6.d(100, 100.0f, i10, 10.0f, 10.0f, 10.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f23109a = textView;
+        this.f23111a = textView;
         int i16 = org.telegram.ui.ActionBar.k6.G6;
         textView.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, i16, false));
         textView.setTextSize(1, 16.0f);
@@ -77,7 +77,7 @@ public final class l5 extends FrameLayout {
         }
         addView(textView, k7.c6.d(-1, -2.0f, i17, f10, 9.0f, f11, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f23110b = textView2;
+        this.f23112b = textView2;
         textView2.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, i16, false));
         textView2.setTextSize(1, 14.0f);
         textView2.setMaxLines(3);
@@ -107,8 +107,8 @@ public final class l5 extends FrameLayout {
         }
         addView(textView2, k7.c6.d(-1, -2.0f, i18, f12, 33.0f, f13, 0.0f));
         TextView textView3 = new TextView(context);
-        this.f23111c = textView3;
-        org.telegram.ui.b.q(textView3, org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f22053z6, false), 1, 14.0f, 1);
+        this.f23113c = textView3;
+        org.telegram.ui.b.q(textView3, org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f22055z6, false), 1, 14.0f, 1);
         textView3.setMaxLines(1);
         textView3.setSingleLine(true);
         textView3.setEllipsize(truncateAt);
@@ -145,11 +145,11 @@ public final class l5 extends FrameLayout {
         float f13;
         float f14;
         float f15;
-        TextView textView = this.f23109a;
+        TextView textView = this.f23111a;
         textView.setText(str);
-        TextView textView2 = this.f23110b;
+        TextView textView2 = this.f23112b;
         textView2.setText(str2);
-        TextView textView3 = this.f23111c;
+        TextView textView3 = this.f23113c;
         textView3.setText(str3);
         if (AndroidUtilities.isTablet()) {
             min = AndroidUtilities.getMinTabletSide();
@@ -257,10 +257,10 @@ public final class l5 extends FrameLayout {
             i12 = i10;
         } else {
             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-            TextView textView = this.f23110b;
+            TextView textView = this.f23112b;
             i12 = i10;
             measureChildWithMargins(textView, i12, 0, i11, 0);
-            ((FrameLayout.LayoutParams) this.f23111c.getLayoutParams()).topMargin = AndroidUtilities.dp(3.0f) + textView.getMeasuredHeight() + AndroidUtilities.dp(33.0f);
+            ((FrameLayout.LayoutParams) this.f23113c.getLayoutParams()).topMargin = AndroidUtilities.dp(3.0f) + textView.getMeasuredHeight() + AndroidUtilities.dp(33.0f);
             i13 = makeMeasureSpec;
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i12), 1073741824), i13);

@@ -1,44 +1,44 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public final class b51 extends f2.v {
-    public final int f35337c;
-    public final r61 d;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+public final class b51 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f35358a;
+    public final w61 f35359b;
+    public final boolean f35360c;
 
-    public b51(r61 r61Var, int i10) {
-        this.f35337c = i10;
-        this.d = r61Var;
+    public b51(w61 w61Var, boolean z4, int i10) {
+        this.f35358a = i10;
+        this.f35359b = w61Var;
+        this.f35360c = z4;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        ArrayList arrayList;
-        int i12;
-        switch (this.f35337c) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f35358a) {
             case 0:
-                r61 r61Var = this.d;
-                if (r61Var.f40823t0.indexOfKey(i10) < 0 && r61Var.f40830w0.indexOfKey(i10) < 0 && i10 != r61Var.f40793f && i10 != r61Var.f40835y && i10 != r61Var.f40808n && i10 != r61Var.h && i10 != r61Var.v && i10 != r61Var.f40779a && i10 != r61Var.f40832x) {
-                    if ((i10 >= r61Var.B && i10 < r61Var.C) || r61Var.N) {
-                        return 8;
-                    }
-                    return 5;
+                w61 w61Var = this.f35359b;
+                t51 t51Var = w61Var.f42314e0;
+                i51 i51Var = w61Var.f42317f0;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (!this.f35360c) {
+                    floatValue = 1.0f - floatValue;
                 }
-                return r61Var.f40811o0.J;
+                float f10 = 1.0f - floatValue;
+                t51Var.setAlpha(f10);
+                t51Var.setTranslationY(AndroidUtilities.dp(8.0f) * floatValue);
+                i51Var.setAlpha(floatValue);
+                i51Var.setTranslationY(AndroidUtilities.dp(8.0f) * f10);
+                w61Var.f42319g0.setAlpha(i51Var.getAlpha() * floatValue);
+                return;
             default:
-                r61 r61Var2 = this.d;
-                b61 b61Var = r61Var2.f40809n0;
-                int j10 = b61Var.j(i10);
-                if (j10 == 6) {
-                    return r61Var2.f40811o0.J;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (!this.f35360c) {
+                    floatValue2 = 1.0f - floatValue2;
                 }
-                if (j10 != 5) {
-                    r61 r61Var3 = b61Var.f35346s;
-                    if (r61Var3.T != 14 ? i10 <= (i11 = b61Var.f35341c) || (i10 - i11) - 1 >= r61Var3.f40839z1.size() : (arrayList = r61Var3.f40837y1) == null || i10 < (i12 = b61Var.f35341c) || i10 - i12 >= arrayList.size()) {
-                        return 5;
-                    }
-                }
-                return 8;
+                w61 w61Var2 = this.f35359b;
+                w61Var2.f42319g0.setAlpha(w61Var2.f42317f0.getAlpha() * floatValue2);
+                return;
         }
     }
 }

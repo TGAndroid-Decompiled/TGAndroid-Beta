@@ -10,15 +10,15 @@ import lh.m3;
 import mh.g5;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.e81;
-import org.telegram.ui.c51;
+import org.telegram.ui.Components.d81;
 import org.telegram.ui.f60;
-import org.telegram.ui.hh1;
-import org.telegram.ui.jh1;
-import org.telegram.ui.k31;
-import org.telegram.ui.l31;
-import org.telegram.ui.m31;
-public final class u extends e81 {
+import org.telegram.ui.h51;
+import org.telegram.ui.nh1;
+import org.telegram.ui.p31;
+import org.telegram.ui.ph1;
+import org.telegram.ui.q31;
+import org.telegram.ui.v31;
+public final class u extends d81 {
     public final int f7614a;
     public final Object f7615b;
     public final Object f7616c;
@@ -67,48 +67,48 @@ public final class u extends e81 {
             case 2:
                 return;
             case 3:
-                ((l31) view).a(i11);
+                ((p31) view).a(i11);
                 return;
             case 4:
                 return;
             default:
-                jh1 jh1Var = (jh1) obj;
-                SparseArray sparseArray = jh1Var.f38156a;
-                hh1 hh1Var = (hh1) sparseArray.get(i10);
-                if (hh1Var != null) {
-                    p2Var = hh1Var.f37508a;
+                ph1 ph1Var = (ph1) obj;
+                SparseArray sparseArray = ph1Var.f40020a;
+                nh1 nh1Var = (nh1) sparseArray.get(i10);
+                if (nh1Var != null) {
+                    p2Var = nh1Var.f39375a;
                 } else {
-                    org.telegram.ui.ActionBar.p2 V = jh1Var.V(i10);
-                    hh1 hh1Var2 = new hh1(V);
-                    sparseArray.put(i10, hh1Var2);
+                    org.telegram.ui.ActionBar.p2 V = ph1Var.V(i10);
+                    nh1 nh1Var2 = new nh1(V);
+                    sparseArray.put(i10, nh1Var2);
                     p2Var = V;
-                    hh1Var = hh1Var2;
+                    nh1Var = nh1Var2;
                 }
-                if (!hh1Var.f37509b) {
+                if (!nh1Var.f39376b) {
                     p2Var.onFragmentCreate();
-                    hh1Var.f37509b = true;
+                    nh1Var.f39376b = true;
                 }
-                p2Var.setParentLayout(jh1Var.getParentLayout());
+                p2Var.setParentLayout(ph1Var.getParentLayout());
                 if (p2Var.getFragmentView() == null) {
                     p2Var.performCreateView((Context) this.f7615b);
-                    p2Var.setTitleOverlayText(jh1Var.f38161n, jh1Var.f38162r, jh1Var.f38163s);
+                    p2Var.setTitleOverlayText(ph1Var.f40025n, ph1Var.f40026r, ph1Var.f40027s);
                 }
                 FrameLayout frameLayout2 = (FrameLayout) view;
                 frameLayout2.removeAllViews();
                 View fragmentView = p2Var.getFragmentView();
                 AndroidUtilities.removeFromParent(fragmentView);
                 if (!p2Var.hasOwnBackground() && fragmentView.getBackground() == null) {
-                    fragmentView.setBackgroundColor(k6.w0(null, k6.f21659d6, false));
+                    fragmentView.setBackgroundColor(k6.w0(null, k6.f21661d6, false));
                 }
                 frameLayout2.addView(fragmentView, c6.c(-1.0f, -1));
                 if (p2Var.getActionBar() != null && p2Var.getActionBar().H) {
                     AndroidUtilities.removeFromParent(p2Var.getActionBar());
                     frameLayout2.addView(p2Var.getActionBar());
                 }
-                WeakHashMap weakHashMap = r0.j0.f46438a;
+                WeakHashMap weakHashMap = r0.j0.f46469a;
                 r0.z.c(frameLayout2);
-                jh1Var.checkSystemBarColors();
-                jh1Var.U();
+                ph1Var.checkSystemBarColors();
+                ph1Var.U();
                 return;
         }
     }
@@ -154,16 +154,16 @@ public final class u extends e81 {
                 return frameLayout2;
             case 2:
                 FrameLayout frameLayout3 = new FrameLayout((Context) this.f7615b);
-                frameLayout3.setOnClickListener(new f60(this, 24));
+                frameLayout3.setOnClickListener(new f60(this, 23));
                 return frameLayout3;
             case 3:
-                return new l31((m31) this.f7616c, (Context) this.f7615b);
+                return new p31((q31) this.f7616c, (Context) this.f7615b);
             case 4:
                 FrameLayout frameLayout4 = new FrameLayout((Context) this.f7615b);
-                frameLayout4.setOnClickListener(new k31(this, 8));
+                frameLayout4.setOnClickListener(new v31(this, 7));
                 return frameLayout4;
             default:
-                return new c51((Context) this.f7615b, 7);
+                return new h51((Context) this.f7615b, 7);
         }
     }
 
@@ -182,7 +182,7 @@ public final class u extends e81 {
             case 4:
                 return 2;
             default:
-                ((jh1) this.f7616c).getClass();
+                ((ph1) this.f7616c).getClass();
                 return 4;
         }
     }

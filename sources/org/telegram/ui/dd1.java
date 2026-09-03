@@ -1,6 +1,9 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public interface dd1 {
-    void a(TLRPC.TL_wallPaper tL_wallPaper);
+import org.telegram.messenger.MessageObject;
+public final class dd1 extends MessageObject {
+    @Override
+    public final boolean needDrawAvatar() {
+        return false;
+    }
 }

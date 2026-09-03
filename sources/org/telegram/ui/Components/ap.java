@@ -14,23 +14,23 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.qi1;
+import org.telegram.ui.wi1;
 public final class ap implements ki {
-    public final mi f25301a;
-    public final TL_stories.TL_premium_boostsStatus f25302b;
-    public final org.telegram.ui.ActionBar.g6 f25303c;
+    public final mi f25332a;
+    public final TL_stories.TL_premium_boostsStatus f25333b;
+    public final org.telegram.ui.ActionBar.g6 f25334c;
     public final org.telegram.ui.h d;
-    public final long f25304e;
-    public final org.telegram.ui.w3 f25305f;
+    public final long f25335e;
+    public final org.telegram.ui.w3 f25336f;
     public final org.telegram.ui.bd h;
 
     public ap(mi miVar, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.ActionBar.g6 g6Var, org.telegram.ui.h hVar, long j10, org.telegram.ui.w3 w3Var, org.telegram.ui.bd bdVar) {
-        this.f25301a = miVar;
-        this.f25302b = tL_premium_boostsStatus;
-        this.f25303c = g6Var;
+        this.f25332a = miVar;
+        this.f25333b = tL_premium_boostsStatus;
+        this.f25334c = g6Var;
         this.d = hVar;
-        this.f25304e = j10;
-        this.f25305f = w3Var;
+        this.f25335e = j10;
+        this.f25336f = w3Var;
         this.h = bdVar;
     }
 
@@ -41,9 +41,9 @@ public final class ap implements ki {
 
     @Override
     public final void I1(int i10, boolean z4, boolean z10, int i11, int i12, long j10, boolean z11, boolean z12, long j11) {
-        mi miVar = this.f25301a;
+        mi miVar = this.f25332a;
         try {
-            HashMap<Object, Object> selectedPhotos = miVar.f29054g0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = miVar.f29072g0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -56,18 +56,18 @@ public final class ap implements ki {
                     Point realScreenSize = AndroidUtilities.getRealScreenSize();
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    zo zoVar = new zo(new qi1(file, file, ""), loadBitmap, false, 0);
-                    zoVar.S1 = this.f25302b;
-                    zoVar.f36486a.f36188a = this.f25303c;
-                    zoVar.f36520m1 = this.d;
+                    zo zoVar = new zo(new wi1(file, file, ""), loadBitmap, false, 0);
+                    zoVar.S1 = this.f25333b;
+                    zoVar.f37961a.f37625a = this.f25334c;
+                    zoVar.f37995m1 = this.d;
                     zoVar.C1 = false;
                     zoVar.B1 = false;
-                    zoVar.f36518k1 = 0.2f;
-                    zoVar.c1(this.f25304e);
-                    zoVar.F1 = new yo(miVar, this.f25305f, 0);
+                    zoVar.f37993k1 = 0.2f;
+                    zoVar.c1(this.f25335e);
+                    zoVar.F1 = new yo(miVar, this.f25336f, 0);
                     ?? obj = new Object();
-                    obj.f22156a = true;
-                    obj.f22159e = true;
+                    obj.f22158a = true;
+                    obj.f22161e = true;
                     this.h.showAsSheet(zoVar, obj);
                     miVar.dismiss();
                 }
@@ -80,14 +80,14 @@ public final class ap implements ki {
     @Override
     public final void Z0(Object obj) {
         zo zoVar = new zo(obj, null, true, 1);
-        zoVar.S1 = this.f25302b;
-        zoVar.f36486a.f36188a = this.f25303c;
-        zoVar.f36520m1 = this.d;
-        zoVar.c1(this.f25304e);
-        zoVar.F1 = new yo(this.f25301a, this.f25305f, 1);
+        zoVar.S1 = this.f25333b;
+        zoVar.f37961a.f37625a = this.f25334c;
+        zoVar.f37995m1 = this.d;
+        zoVar.c1(this.f25335e);
+        zoVar.F1 = new yo(this.f25332a, this.f25336f, 1);
         ?? obj2 = new Object();
-        obj2.f22156a = true;
-        obj2.f22159e = true;
+        obj2.f22158a = true;
+        obj2.f22161e = true;
         this.h.showAsSheet(zoVar, obj2);
     }
 

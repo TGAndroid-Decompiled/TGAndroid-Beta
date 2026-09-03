@@ -12,28 +12,28 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.h6;
 import org.telegram.ui.Cells.o8;
 import org.telegram.ui.Cells.u3;
-import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.u00;
 import org.telegram.ui.wt;
-public abstract class c1 extends sl0 {
+public abstract class c1 extends rl0 {
     public int B;
     public int C;
     public ArrayList D;
     public ArrayList E;
     public String F;
     public int G;
-    public Context f48519c;
+    public Context f48555c;
     public ArrayList d;
-    public ArrayList f48520e;
-    public k1 f48521f;
+    public ArrayList f48556e;
+    public k1 f48557f;
     public a0.h h;
-    public Timer f48522n;
-    public boolean f48523r;
-    public boolean f48524s;
+    public Timer f48558n;
+    public boolean f48559r;
+    public boolean f48560s;
     public boolean v;
-    public boolean f48525w;
-    public long f48526x;
-    public boolean f48527y;
+    public boolean f48561w;
+    public long f48562x;
+    public boolean f48563y;
 
     @Override
     public final boolean D(f2.m1 m1Var) {
@@ -47,9 +47,9 @@ public abstract class c1 extends sl0 {
     public final Object E(int i10) {
         int size = this.d.size();
         int size2 = this.E.size();
-        k1 k1Var = this.f48521f;
-        int size3 = k1Var.f48621e.size();
-        int size4 = k1Var.f48625j.size();
+        k1 k1Var = this.f48557f;
+        int size3 = k1Var.f48657e.size();
+        int size4 = k1Var.f48661j.size();
         if (i10 >= 0 && i10 < size) {
             return this.d.get(i10);
         }
@@ -64,20 +64,20 @@ public abstract class c1 extends sl0 {
             i11 -= size2 + 1;
         }
         if (i11 >= 0 && i11 < size4) {
-            return k1Var.f48625j.get(i11);
+            return k1Var.f48661j.get(i11);
         }
         int i12 = i11 - size4;
         if (i12 <= 0 || i12 > size3) {
             return null;
         }
-        return k1Var.f48621e.get(i12 - 1);
+        return k1Var.f48657e.get(i12 - 1);
     }
 
     public abstract void F();
 
     public final void G(String str) {
         try {
-            Timer timer = this.f48522n;
+            Timer timer = this.f48558n;
             if (timer != null) {
                 timer.cancel();
             }
@@ -86,32 +86,32 @@ public abstract class c1 extends sl0 {
         }
         this.d.clear();
         this.E.clear();
-        this.f48520e.clear();
-        if (this.f48523r) {
-            this.f48521f.g(null, true, false, this.f48524s, this.v, this.f48526x, this.f48525w, 0, 0);
+        this.f48556e.clear();
+        if (this.f48559r) {
+            this.f48557f.g(null, true, false, this.f48560s, this.v, this.f48562x, this.f48561w, 0, 0);
         }
         l();
         if (!TextUtils.isEmpty(str)) {
             Timer timer2 = new Timer();
-            this.f48522n = timer2;
+            this.f48558n = timer2;
             timer2.schedule(new wt(this, str, 1), 200L, 300L);
         }
     }
 
     @Override
     public final int h() {
-        k1 k1Var = this.f48521f;
+        k1 k1Var = this.f48557f;
         this.G = -1;
         int size = this.d.size();
         if (!this.E.isEmpty()) {
             this.G = size;
             size += this.E.size() + 1;
         }
-        int size2 = k1Var.f48621e.size();
+        int size2 = k1Var.f48657e.size();
         if (size2 != 0) {
             size += size2 + 1;
         }
-        int size3 = k1Var.f48625j.size();
+        int size3 = k1Var.f48661j.size();
         if (size3 != 0) {
             return size + size3;
         }
@@ -144,7 +144,7 @@ public abstract class c1 extends sl0 {
     @Override
     public final f2.m1 x(ViewGroup viewGroup, int i10) {
         u3 u3Var;
-        Context context = this.f48519c;
+        Context context = this.f48555c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
@@ -155,7 +155,7 @@ public abstract class c1 extends sl0 {
                             u00 u00Var = new u00(context, null);
                             u00Var.setIsSingleCell(true);
                             u00Var.setViewType(29);
-                            u00Var.setBackgroundColor(k6.w0(null, k6.f21659d6, false));
+                            u00Var.setBackgroundColor(k6.w0(null, k6.f21661d6, false));
                             u3Var = u00Var;
                         }
                     } else {

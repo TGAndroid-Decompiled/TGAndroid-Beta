@@ -7,26 +7,26 @@ import java.util.Collection;
 import java.util.Map;
 import u9.g;
 public final class e implements u9.e, g {
-    public final boolean f49479a = true;
-    public final JsonWriter f49480b;
-    public final Map f49481c;
+    public final boolean f49515a = true;
+    public final JsonWriter f49516b;
+    public final Map f49517c;
     public final Map d;
-    public final u9.d f49482e;
-    public final boolean f49483f;
+    public final u9.d f49518e;
+    public final boolean f49519f;
 
     public e(Writer writer, Map map, Map map2, u9.d dVar, boolean z4) {
-        this.f49480b = new JsonWriter(writer);
-        this.f49481c = map;
+        this.f49516b = new JsonWriter(writer);
+        this.f49517c = map;
         this.d = map2;
-        this.f49482e = dVar;
-        this.f49483f = z4;
+        this.f49518e = dVar;
+        this.f49519f = z4;
     }
 
     @Override
     public final u9.e a(u9.c cVar, int i10) {
-        String str = cVar.f48458a;
+        String str = cVar.f48494a;
         j();
-        JsonWriter jsonWriter = this.f49480b;
+        JsonWriter jsonWriter = this.f49516b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(i10);
@@ -35,9 +35,9 @@ public final class e implements u9.e, g {
 
     @Override
     public final u9.e b(u9.c cVar, long j10) {
-        String str = cVar.f48458a;
+        String str = cVar.f48494a;
         j();
-        JsonWriter jsonWriter = this.f49480b;
+        JsonWriter jsonWriter = this.f49516b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(j10);
@@ -46,9 +46,9 @@ public final class e implements u9.e, g {
 
     @Override
     public final u9.e c(u9.c cVar, double d) {
-        String str = cVar.f48458a;
+        String str = cVar.f48494a;
         j();
-        JsonWriter jsonWriter = this.f49480b;
+        JsonWriter jsonWriter = this.f49516b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(d);
@@ -57,9 +57,9 @@ public final class e implements u9.e, g {
 
     @Override
     public final u9.e d(u9.c cVar, boolean z4) {
-        String str = cVar.f48458a;
+        String str = cVar.f48494a;
         j();
-        JsonWriter jsonWriter = this.f49480b;
+        JsonWriter jsonWriter = this.f49516b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(z4);
@@ -68,26 +68,26 @@ public final class e implements u9.e, g {
 
     @Override
     public final u9.e e(u9.c cVar, Object obj) {
-        i(obj, cVar.f48458a);
+        i(obj, cVar.f48494a);
         return this;
     }
 
     @Override
     public final g f(String str) {
         j();
-        this.f49480b.value(str);
+        this.f49516b.value(str);
         return this;
     }
 
     @Override
     public final g g(boolean z4) {
         j();
-        this.f49480b.value(z4);
+        this.f49516b.value(z4);
         return this;
     }
 
     public final e h(Object obj) {
-        JsonWriter jsonWriter = this.f49480b;
+        JsonWriter jsonWriter = this.f49516b;
         if (obj == null) {
             jsonWriter.nullValue();
             return this;
@@ -170,7 +170,7 @@ public final class e implements u9.e, g {
                 jsonWriter.endObject();
                 return this;
             } else {
-                u9.d dVar = (u9.d) this.f49481c.get(obj.getClass());
+                u9.d dVar = (u9.d) this.f49517c.get(obj.getClass());
                 if (dVar != null) {
                     jsonWriter.beginObject();
                     dVar.a(obj, this);
@@ -194,7 +194,7 @@ public final class e implements u9.e, g {
                     return this;
                 } else {
                     jsonWriter.beginObject();
-                    this.f49482e.a(obj, this);
+                    this.f49518e.a(obj, this);
                     jsonWriter.endObject();
                     return this;
                 }
@@ -203,8 +203,8 @@ public final class e implements u9.e, g {
     }
 
     public final e i(Object obj, String str) {
-        boolean z4 = this.f49483f;
-        JsonWriter jsonWriter = this.f49480b;
+        boolean z4 = this.f49519f;
+        JsonWriter jsonWriter = this.f49516b;
         if (z4) {
             if (obj == null) {
                 return this;
@@ -225,7 +225,7 @@ public final class e implements u9.e, g {
     }
 
     public final void j() {
-        if (this.f49479a) {
+        if (this.f49515a) {
             return;
         }
         throw new IllegalStateException("Parent context used since this context was created. Cannot use this context anymore.");

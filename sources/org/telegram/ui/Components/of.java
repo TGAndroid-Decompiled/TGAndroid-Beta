@@ -5,19 +5,19 @@ import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class of extends AnimatorListenerAdapter {
-    public final int f29744a;
-    public final ChatActivityEnterView f29745b;
+    public final int f29745a;
+    public final ChatActivityEnterView f29746b;
 
     public of(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f29745b = chatActivityEnterView;
-        this.f29744a = i10;
+        this.f29746b = chatActivityEnterView;
+        this.f29745a = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f29745b;
-        if (animator.equals(chatActivityEnterView.f24657p2)) {
-            int i10 = this.f29744a;
+        ChatActivityEnterView chatActivityEnterView = this.f29746b;
+        if (animator.equals(chatActivityEnterView.f24659p2)) {
+            int i10 = this.f29745a;
             if (i10 != 3 && chatActivityEnterView.B0 != null && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
                 chatActivityEnterView.B0.requestFocus();
             }

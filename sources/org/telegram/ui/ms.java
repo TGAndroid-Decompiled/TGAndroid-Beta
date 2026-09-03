@@ -17,7 +17,7 @@ public final class ms extends org.telegram.ui.Cells.o8 {
     public int c(int i10) {
         switch (this.N) {
             case 2:
-                ((i01) this.O).f37715e.getClass();
+                ((n01) this.O).f39152e.getClass();
                 return i10;
             default:
                 return i10;
@@ -40,10 +40,10 @@ public final class ms extends org.telegram.ui.Cells.o8 {
                 super.onLayout(z4, i10, i11, i12, i13);
                 int dp2 = AndroidUtilities.dp(21.0f);
                 int measuredHeight3 = getMeasuredHeight();
-                gx0 gx0Var = (gx0) this.O;
-                int measuredHeight4 = (measuredHeight3 - gx0Var.d.f34538s0.getMeasuredHeight()) / 2;
-                org.telegram.ui.Components.p9 p9Var2 = gx0Var.d.f34538s0;
-                p9Var2.layout(dp2, measuredHeight4, p9Var2.getMeasuredWidth() + dp2, gx0Var.d.f34538s0.getMeasuredHeight() + measuredHeight4);
+                lx0 lx0Var = (lx0) this.O;
+                int measuredHeight4 = (measuredHeight3 - lx0Var.d.f34538s0.getMeasuredHeight()) / 2;
+                org.telegram.ui.Components.p9 p9Var2 = lx0Var.d.f34538s0;
+                p9Var2.layout(dp2, measuredHeight4, p9Var2.getMeasuredWidth() + dp2, lx0Var.d.f34538s0.getMeasuredHeight() + measuredHeight4);
                 return;
             default:
                 super.onLayout(z4, i10, i11, i12, i13);
@@ -62,9 +62,9 @@ public final class ms extends org.telegram.ui.Cells.o8 {
                 return;
             case 1:
                 super.onMeasure(i10, i11);
-                gx0 gx0Var = (gx0) this.O;
-                gx0Var.d.f34538s0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-                gx0Var.d.f34538s0.setRoundRadius(AndroidUtilities.dp(30.0f));
+                lx0 lx0Var = (lx0) this.O;
+                lx0Var.d.f34538s0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+                lx0Var.d.f34538s0.setRoundRadius(AndroidUtilities.dp(30.0f));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -72,13 +72,13 @@ public final class ms extends org.telegram.ui.Cells.o8 {
         }
     }
 
-    public ms(gx0 gx0Var, Activity activity) {
+    public ms(lx0 lx0Var, Activity activity) {
         super(activity);
-        this.O = gx0Var;
+        this.O = lx0Var;
     }
 
-    public ms(i01 i01Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+    public ms(n01 n01Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(18, context, g6Var, false, false);
-        this.O = i01Var;
+        this.O = n01Var;
     }
 }

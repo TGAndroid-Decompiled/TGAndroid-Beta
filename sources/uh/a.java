@@ -24,24 +24,24 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.p9;
 import org.telegram.ui.Components.z8;
 public final class a extends FrameLayout implements b6 {
-    public final g6 f48797a;
-    public final p9 f48798b;
-    public final TextView f48799c;
+    public final g6 f48833a;
+    public final p9 f48834b;
+    public final TextView f48835c;
     public final TextView d;
-    public final ImageView f48800e;
+    public final ImageView f48836e;
 
     public a(Context context, g6 g6Var) {
         super(context);
-        this.f48797a = g6Var;
+        this.f48833a = g6Var;
         p9 p9Var = new p9(context);
-        this.f48798b = p9Var;
+        this.f48834b = p9Var;
         p9Var.setRoundRadius(AndroidUtilities.dp(7.3125f));
         addView(p9Var, c6.d(26, 26.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setGravity(16);
         TextView textView = new TextView(context);
-        this.f48799c = textView;
+        this.f48835c = textView;
         textView.setTextSize(1, 16.0f);
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
@@ -55,7 +55,7 @@ public final class a extends FrameLayout implements b6 {
         linearLayout.addView(textView2, c6.k(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
         addView(linearLayout, c6.d(-1, -2.0f, 19, 58.0f, 0.0f, 48.0f, 1.0f));
         ImageView imageView = new ImageView(context);
-        this.f48800e = imageView;
+        this.f48836e = imageView;
         imageView.setImageResource(R.drawable.msg_inputarrow);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView, c6.d(24, 24.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
@@ -67,7 +67,7 @@ public final class a extends FrameLayout implements b6 {
         if (chat == null) {
             return;
         }
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f20843id);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f20845id);
         setTitle(DialogObject.getShortName(chat));
         if (chatFull != null) {
             i11 = chatFull.linked_peers.size();
@@ -75,34 +75,34 @@ public final class a extends FrameLayout implements b6 {
             i11 = 0;
         }
         setSubtitle(LocaleController.formatPluralString("CommunityWithChats", i11, new Object[0]));
-        this.f48798b.e(chat, new z8(chat));
+        this.f48834b.e(chat, new z8(chat));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Paint paint;
         Drawable drawable = k6.S0;
-        p9 p9Var = this.f48798b;
+        p9 p9Var = this.f48834b;
         r.a(canvas, drawable, (p9Var.getWidth() / 2.0f) + p9Var.getLeft(), (p9Var.getHeight() / 2.0f) + p9Var.getTop(), p9Var.getHeight());
         super.dispatchDraw(canvas);
-        g6 g6Var = this.f48797a;
+        g6 g6Var = this.f48833a;
         if (g6Var != null) {
             paint = g6Var.F("paintDivider");
         } else {
             paint = null;
         }
         if (paint == null) {
-            paint = k6.f21779k0;
+            paint = k6.f21781k0;
         }
         canvas.drawLine(AndroidUtilities.dp(58.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, paint);
     }
 
     @Override
     public final void e() {
-        int i10 = k6.f22053z6;
-        g6 g6Var = this.f48797a;
-        this.f48800e.setColorFilter(k6.v0(i10, g6Var));
-        this.f48799c.setTextColor(k6.v0(k6.G6, g6Var));
+        int i10 = k6.f22055z6;
+        g6 g6Var = this.f48833a;
+        this.f48836e.setColorFilter(k6.v0(i10, g6Var));
+        this.f48835c.setTextColor(k6.v0(k6.G6, g6Var));
         this.d.setTextColor(k6.v0(i10, g6Var));
     }
 
@@ -120,6 +120,6 @@ public final class a extends FrameLayout implements b6 {
     }
 
     public void setTitle(CharSequence charSequence) {
-        this.f48799c.setText(charSequence);
+        this.f48835c.setText(charSequence);
     }
 }

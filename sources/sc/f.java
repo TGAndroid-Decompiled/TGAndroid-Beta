@@ -3,18 +3,18 @@ package sc;
 import java.io.Serializable;
 import kotlin.jvm.internal.j;
 public final class f implements Serializable {
-    public final Object f47238a;
+    public final Object f47269a;
 
     public static final Throwable a(Object obj) {
         if (obj instanceof e) {
-            return ((e) obj).f47237a;
+            return ((e) obj).f47268a;
         }
         return null;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof f) {
-            if (!j.a(this.f47238a, ((f) obj).f47238a)) {
+            if (!j.a(this.f47269a, ((f) obj).f47269a)) {
                 return false;
             }
             return true;
@@ -23,7 +23,7 @@ public final class f implements Serializable {
     }
 
     public final int hashCode() {
-        Object obj = this.f47238a;
+        Object obj = this.f47269a;
         if (obj == null) {
             return 0;
         }
@@ -31,7 +31,7 @@ public final class f implements Serializable {
     }
 
     public final String toString() {
-        Object obj = this.f47238a;
+        Object obj = this.f47269a;
         if (obj instanceof e) {
             return ((e) obj).toString();
         }

@@ -34,14 +34,14 @@ public abstract class a3 extends qh.d {
         setTextColor(-1);
         setFlickeringLoading(true);
         this.d.u(AndroidUtilities.bold());
-        removeView(this.f45170r);
+        removeView(this.f45210r);
         setForeground(k6.Y(k6.l1(0.08f, -1), 8, 8));
         setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        boolean z4 = this.f45161a0;
+        boolean z4 = this.f45201a0;
         RectF rectF = this.f5066f0;
         if (z4) {
             float d = this.d.d() + getPaddingLeft() + getPaddingRight();
@@ -109,7 +109,7 @@ public abstract class a3 extends qh.d {
 
     public void setRad(int i10) {
         this.f5070j0 = i10;
-        setForeground(k6.Y(k6.v0(k6.f21750i6, this.f5069i0), i10, i10));
+        setForeground(k6.Y(k6.v0(k6.f21752i6, this.f5069i0), i10, i10));
     }
 
     public void setRestoreState(boolean z4) {

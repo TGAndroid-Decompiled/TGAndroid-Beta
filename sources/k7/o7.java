@@ -6,9 +6,9 @@ public abstract class o7 {
         kotlin.jvm.internal.j.e(th2, "<this>");
         kotlin.jvm.internal.j.e(exception, "exception");
         if (th2 != exception) {
-            Integer num = zc.a.f51103a;
+            Integer num = zc.a.f51138a;
             if (num != null && num.intValue() < 19) {
-                Method method = yc.a.f50849a;
+                Method method = yc.a.f50885a;
                 if (method != null) {
                     method.invoke(th2, exception);
                     return;

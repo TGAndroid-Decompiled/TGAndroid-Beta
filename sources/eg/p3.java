@@ -10,10 +10,10 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ij0;
-import org.telegram.ui.Components.kv0;
+import org.telegram.ui.Components.hj0;
+import org.telegram.ui.Components.jv0;
 import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.tk0;
+import org.telegram.ui.Components.sk0;
 import org.telegram.ui.Components.y5;
 import org.telegram.ui.Components.z5;
 public class p3 extends j {
@@ -22,11 +22,11 @@ public class p3 extends j {
     public final int f5434p0;
     public boolean f5435q0;
     public final z5 f5436r0;
-    public final kv0 f5437s0;
+    public final jv0 f5437s0;
     public final s2 f5438t0;
     public final ImageReceiver f5439u0;
 
-    public p3(Context context, PointF pointF, float f10, float f11, kv0 kv0Var, TLRPC.Document document, Object obj) {
+    public p3(Context context, PointF pointF, float f10, float f11, jv0 jv0Var, TLRPC.Document document, Object obj) {
         super(context, pointF);
         this.f5434p0 = -1;
         int i10 = 0;
@@ -35,7 +35,7 @@ public class p3 extends j {
         setRotation(f10);
         setScale(f11);
         this.f5432n0 = document;
-        this.f5437s0 = kv0Var;
+        this.f5437s0 = jv0Var;
         this.f5433o0 = obj;
         while (true) {
             if (i10 >= document.attributes.size()) {
@@ -45,7 +45,7 @@ public class p3 extends j {
             if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
                 TLRPC.TL_maskCoords tL_maskCoords = documentAttribute.mask_coords;
                 if (tL_maskCoords != null) {
-                    this.f5434p0 = tL_maskCoords.f20918n;
+                    this.f5434p0 = tL_maskCoords.f20920n;
                 }
             } else {
                 i10++;
@@ -74,13 +74,13 @@ public class p3 extends j {
         return this.f5434p0;
     }
 
-    public kv0 getBaseSize() {
+    public jv0 getBaseSize() {
         return this.f5437s0;
     }
 
     public long getDuration() {
         ImageReceiver imageReceiver = this.f5439u0;
-        ij0 lottieAnimation = imageReceiver.getLottieAnimation();
+        hj0 lottieAnimation = imageReceiver.getLottieAnimation();
         if (lottieAnimation != null) {
             return lottieAnimation.p();
         }
@@ -96,7 +96,7 @@ public class p3 extends j {
     }
 
     @Override
-    public tk0 getSelectionBounds() {
+    public sk0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -105,7 +105,7 @@ public class p3 extends j {
         float scale = (getScale() + 0.5f) * getMeasuredWidth();
         float f10 = scale / 2.0f;
         float f11 = scale * scaleX;
-        return new tk0((getPositionX() - f10) * scaleX, (getPositionY() - f10) * scaleX, f11, f11);
+        return new sk0((getPositionX() - f10) * scaleX, (getPositionY() - f10) * scaleX, f11, f11);
     }
 
     public TLRPC.Document getSticker() {
@@ -114,9 +114,9 @@ public class p3 extends j {
 
     @Override
     public final void k() {
-        kv0 kv0Var = this.f5437s0;
-        setX(getPositionX() - (kv0Var.f28463a / 2.0f));
-        setY(getPositionY() - (kv0Var.f28464b / 2.0f));
+        jv0 jv0Var = this.f5437s0;
+        setX(getPositionX() - (jv0Var.f28201a / 2.0f));
+        setY(getPositionY() - (jv0Var.f28202b / 2.0f));
         m();
     }
 
@@ -134,8 +134,8 @@ public class p3 extends j {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        kv0 kv0Var = this.f5437s0;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) kv0Var.f28463a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) kv0Var.f28464b, 1073741824));
+        jv0 jv0Var = this.f5437s0;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) jv0Var.f28201a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) jv0Var.f28202b, 1073741824));
     }
 
     public final void r(boolean z4) {
@@ -154,6 +154,6 @@ public class p3 extends j {
         }
     }
 
-    public void q(ij0 ij0Var) {
+    public void q(hj0 hj0Var) {
     }
 }

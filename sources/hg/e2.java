@@ -13,8 +13,8 @@ import org.telegram.ui.Components.mz;
 import org.telegram.ui.Components.nv;
 import org.telegram.ui.Components.ov;
 import org.telegram.ui.Components.p9;
-import org.telegram.ui.Components.tl0;
-import org.telegram.ui.dp0;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.hp0;
 import org.telegram.ui.ij0;
 import org.telegram.ui.k3;
 import org.telegram.ui.xh0;
@@ -90,7 +90,7 @@ public final class e2 extends f2.v0 {
                         return;
                     }
                     return;
-                } else if (!(view instanceof tl0) && !(view instanceof cy)) {
+                } else if (!(view instanceof sl0) && !(view instanceof cy)) {
                     if (view instanceof p9) {
                         rect.bottom = AndroidUtilities.dp(12.0f);
                         return;
@@ -114,7 +114,7 @@ public final class e2 extends f2.v0 {
                 return;
             case 5:
                 recyclerView.getClass();
-                if (RecyclerView.R(view) == ((xh0) this.f7460b).f43069c.size() - 1) {
+                if (RecyclerView.R(view) == ((xh0) this.f7460b).f43050c.size() - 1) {
                     rect.bottom = AndroidUtilities.dp(4.0f);
                     return;
                 }
@@ -125,17 +125,17 @@ public final class e2 extends f2.v0 {
                 int R2 = RecyclerView.R(view);
                 ij0 ij0Var = (ij0) this.f7460b;
                 if (R2 == ij0Var.Z.size()) {
-                    rect.bottom = ij0Var.f37878i0;
+                    rect.bottom = ij0Var.f37727i0;
                     return;
                 }
                 return;
             case 7:
                 recyclerView.getClass();
                 int R3 = RecyclerView.R(view);
-                dp0 dp0Var = (dp0) this.f7460b;
-                int i13 = dp0Var.Q;
+                hp0 hp0Var = (hp0) this.f7460b;
+                int i13 = hp0Var.V;
                 if (R3 >= i13) {
-                    int i14 = dp0Var.U;
+                    int i14 = hp0Var.f37446c0;
                     if (R3 < i13 + i14) {
                         int i15 = R3 - i13;
                         int i16 = i15 / 3;
@@ -173,13 +173,13 @@ public final class e2 extends f2.v0 {
                         }
                         rect.bottom = i11;
                         if (z11) {
-                            i12 = AndroidUtilities.dp(8.0f);
+                            i12 = AndroidUtilities.dp(10.0f);
                         } else {
                             i12 = 0;
                         }
                         rect.left = i12;
                         if (z12) {
-                            i17 = AndroidUtilities.dp(8.0f);
+                            i17 = AndroidUtilities.dp(10.0f);
                         }
                         rect.right = i17;
                         return;
@@ -188,9 +188,9 @@ public final class e2 extends f2.v0 {
                 }
                 return;
             default:
-                qh.h1 h1Var = ((qh.i1) this.f7460b).f45403e;
+                qh.g1 g1Var = ((qh.h1) this.f7460b).f45385e;
                 recyclerView.getClass();
-                if (h1Var.E1(RecyclerView.R(view))) {
+                if (g1Var.E1(RecyclerView.R(view))) {
                     dp = 0;
                 } else {
                     dp = AndroidUtilities.dp(4.0f);

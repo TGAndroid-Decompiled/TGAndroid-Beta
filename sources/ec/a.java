@@ -30,10 +30,10 @@ public final class a extends AsyncTask {
         i iVar = this.d;
         try {
             e c3 = c.c(p8.a(this.f5023b), new hc.a(this.f5022a));
-            Object obj = iVar.f16615b;
+            Object obj = iVar.f16617b;
             return new b(c3, null);
         } catch (g e6) {
-            Object obj2 = iVar.f16615b;
+            Object obj2 = iVar.f16617b;
             return new b(null, e6);
         }
     }
@@ -41,15 +41,15 @@ public final class a extends AsyncTask {
     @Override
     public final void onPostExecute(Object obj) {
         b bVar = (b) obj;
-        Object obj2 = this.d.f16615b;
+        Object obj2 = this.d.f16617b;
         e eVar = bVar.f5025a;
         ao0 ao0Var = this.f5024c;
         if (eVar != null) {
-            lo0 lo0Var = ao0Var.f35223a;
+            lo0 lo0Var = ao0Var.f35231a;
             if (lo0Var.N0) {
                 return;
             }
-            lo0Var.f38824t0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) eVar.f528c, (String) eVar.f527b);
+            lo0Var.f38736t0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) eVar.f528c, (String) eVar.f527b);
             AndroidUtilities.runOnUIThread(new gl0(ao0Var, 8));
             return;
         }

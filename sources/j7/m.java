@@ -13,18 +13,18 @@ public abstract class m {
                     case 9:
                         break;
                     case 10:
-                        return context.getString(2131689599);
+                        return context.getString(2131689597);
                     case 11:
-                        return context.getString(2131689598);
-                    case 12:
                         return context.getString(2131689596);
+                    case 12:
+                        return context.getString(2131689594);
                     default:
                         Log.e("BiometricUtils", "Unknown error code: " + i10);
-                        return context.getString(2131689579);
+                        return context.getString(2131689577);
                 }
             }
-            return context.getString(2131689597);
+            return context.getString(2131689595);
         }
-        return context.getString(2131689595);
+        return context.getString(2131689593);
     }
 }

@@ -13,15 +13,15 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.CompoundEmoji;
 import org.telegram.messenger.Emoji;
-public abstract class wx extends tl0 {
+public abstract class wx extends sl0 {
     public boolean U2;
     public final SparseArray V2;
     public final ArrayList W2;
     public final ArrayList X2;
     public final ArrayList Y2;
     public final ArrayList Z2;
-    public int f32863a3;
-    public SparseArray f32864b3;
+    public int f32841a3;
+    public SparseArray f32842b3;
     public final mz c3;
 
     public wx(mz mzVar, Context context) {
@@ -32,9 +32,9 @@ public abstract class wx extends tl0 {
         this.X2 = new ArrayList();
         this.Y2 = new ArrayList();
         this.Z2 = new ArrayList();
-        this.f32863a3 = -1;
+        this.f32841a3 = -1;
         new SparseIntArray();
-        pr prVar = pr.f30183f;
+        pr prVar = pr.f30168f;
     }
 
     @Override
@@ -65,8 +65,8 @@ public abstract class wx extends tl0 {
         if (z4 || z10 || z11) {
             int actionIndex = motionEvent.getActionIndex();
             int pointerId = motionEvent.getPointerId(actionIndex);
-            if (this.f32864b3 == null) {
-                this.f32864b3 = new SparseArray();
+            if (this.f32842b3 == null) {
+                this.f32842b3 = new SparseArray();
             }
             float x10 = motionEvent.getX(actionIndex);
             float y10 = motionEvent.getY(actionIndex);
@@ -74,24 +74,24 @@ public abstract class wx extends tl0 {
             if (z4) {
                 if (E != null) {
                     ?? obj = new Object();
-                    obj.f32568a = x10;
-                    obj.f32569b = y10;
-                    obj.f32570c = SystemClock.elapsedRealtime();
+                    obj.f32566a = x10;
+                    obj.f32567b = y10;
+                    obj.f32568c = SystemClock.elapsedRealtime();
                     obj.d = E;
                     if (E.getBackground() instanceof RippleDrawable) {
                         E.getBackground().setState(new int[]{16842919, 16842910});
                     }
                     obj.d.setPressed(true);
-                    this.f32864b3.put(pointerId, obj);
+                    this.f32842b3.put(pointerId, obj);
                     B0();
                 }
             } else {
-                vx vxVar = (vx) this.f32864b3.get(pointerId);
-                this.f32864b3.remove(pointerId);
+                vx vxVar = (vx) this.f32842b3.get(pointerId);
+                this.f32842b3.remove(pointerId);
                 if (E != null && vxVar != null) {
-                    if (Math.sqrt(Math.pow(y10 - vxVar.f32569b, 2.0d) + Math.pow(x10 - vxVar.f32568a, 2.0d)) < AndroidUtilities.touchSlop * 3.0f && !z11) {
+                    if (Math.sqrt(Math.pow(y10 - vxVar.f32567b, 2.0d) + Math.pow(x10 - vxVar.f32566a, 2.0d)) < AndroidUtilities.touchSlop * 3.0f && !z11) {
                         mz mzVar = this.c3;
-                        if (!mzVar.f29344y1.isShowing() || SystemClock.elapsedRealtime() - vxVar.f32570c < ViewConfiguration.getLongPressTimeout()) {
+                        if (!mzVar.f29346y1.isShowing() || SystemClock.elapsedRealtime() - vxVar.f32568c < ViewConfiguration.getLongPressTimeout()) {
                             View view = vxVar.d;
                             int R = RecyclerView.R(view);
                             try {
@@ -117,7 +117,7 @@ public abstract class wx extends tl0 {
                 }
             }
         }
-        if (!super.dispatchTouchEvent(motionEvent) && (z11 || this.f32864b3.size() <= 0)) {
+        if (!super.dispatchTouchEvent(motionEvent) && (z11 || this.f32842b3.size() <= 0)) {
             return false;
         }
         return true;
@@ -141,7 +141,7 @@ public abstract class wx extends tl0 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        x1();
+        w1();
     }
 
     @Override
@@ -174,7 +174,7 @@ public abstract class wx extends tl0 {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        boolean r10 = org.telegram.ui.qt.q().r(motionEvent, this, this.c3.f29276d2, this.f31383m2);
+        boolean r10 = org.telegram.ui.qt.q().r(motionEvent, this, this.c3.f29278d2, this.f31106m2);
         if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
             return false;
         }
@@ -184,7 +184,7 @@ public abstract class wx extends tl0 {
     @Override
     public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
         mz mzVar = this.c3;
-        if (mzVar.f29264a0 && mzVar.W) {
+        if (mzVar.f29266a0 && mzVar.W) {
             this.U2 = true;
             mzVar.N.h1(0, 0);
             mzVar.W = false;
@@ -192,7 +192,7 @@ public abstract class wx extends tl0 {
         }
         super.onLayout(z4, i10, i11, i12, i13);
         mzVar.l(true);
-        x1();
+        w1();
     }
 
     @Override
@@ -221,7 +221,7 @@ public abstract class wx extends tl0 {
         String str;
         mz mzVar = this.c3;
         int[] iArr = mzVar.A1;
-        tu tuVar = mzVar.f29344y1;
+        tu tuVar = mzVar.f29346y1;
         if (mzVar.O1 != null && tuVar != null) {
             if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                 if (motionEvent.getAction() == 2) {
@@ -234,15 +234,15 @@ public abstract class wx extends tl0 {
                     }
                     getLocationOnScreen(iArr);
                     float x10 = motionEvent.getX() + iArr[0];
-                    tuVar.f31459c.getLocationOnScreen(iArr);
+                    tuVar.f31419c.getLocationOnScreen(iArr);
                     int dp = (int) (x10 - (AndroidUtilities.dp(3.0f) + iArr[0]));
                     boolean z4 = tuVar.d;
-                    su suVar = tuVar.f31459c;
+                    su suVar = tuVar.f31419c;
                     if (!z4) {
-                        int max = Math.max(0, Math.min(5, dp / (AndroidUtilities.dp(4.0f) + tuVar.f31460e)));
-                        if (suVar.f31178n[0] != max) {
+                        int max = Math.max(0, Math.min(5, dp / (AndroidUtilities.dp(4.0f) + tuVar.f31420e)));
+                        if (suVar.f31182n[0] != max) {
                             AndroidUtilities.vibrateCursor(suVar);
-                            int[] iArr2 = suVar.f31178n;
+                            int[] iArr2 = suVar.f31182n;
                             if (iArr2[0] != max) {
                                 iArr2[0] = max;
                                 suVar.invalidate();
@@ -253,21 +253,21 @@ public abstract class wx extends tl0 {
             } else {
                 if (tuVar != null && tuVar.isShowing() && !tuVar.d) {
                     tuVar.dismiss();
-                    int i10 = tuVar.f31459c.f31178n[0];
+                    int i10 = tuVar.f31419c.f31182n[0];
                     if (i10 >= 1 && i10 <= 5) {
                         str = CompoundEmoji.skinTones.get(i10 - 1);
                     } else {
                         str = null;
                     }
                     String str2 = (String) mzVar.O1.getTag();
-                    if (!mzVar.O1.f31748c) {
+                    if (!mzVar.O1.f31707c) {
                         if (str != null) {
                             Emoji.emojiColor.put(str2, str);
                             str2 = mz.g(str2, str);
                         } else {
                             Emoji.emojiColor.remove(str2);
                         }
-                        mzVar.O1.a(Emoji.getEmojiBigDrawable(str2), mzVar.O1.f31748c);
+                        mzVar.O1.a(Emoji.getEmojiBigDrawable(str2), mzVar.O1.f31707c);
                         mz.d(mzVar, mzVar.O1, null);
                         try {
                             performHapticFeedback(3, 1);
@@ -306,13 +306,13 @@ public abstract class wx extends tl0 {
         super.requestLayout();
     }
 
-    public final void w1(View view) {
-        if (this.f32864b3 != null) {
+    public final void v1(View view) {
+        if (this.f32842b3 != null) {
             int i10 = 0;
-            while (i10 < this.f32864b3.size()) {
-                vx vxVar = (vx) this.f32864b3.valueAt(i10);
+            while (i10 < this.f32842b3.size()) {
+                vx vxVar = (vx) this.f32842b3.valueAt(i10);
                 if (vxVar.d == view) {
-                    this.f32864b3.removeAt(i10);
+                    this.f32842b3.removeAt(i10);
                     i10--;
                     View view2 = vxVar.d;
                     if (view2 != null && (view2.getBackground() instanceof RippleDrawable)) {
@@ -328,9 +328,9 @@ public abstract class wx extends tl0 {
         }
     }
 
-    public final void x1() {
+    public final void w1() {
         mz mzVar = this.c3;
-        int i10 = mzVar.f29270c;
+        int i10 = mzVar.f29272c;
         kx kxVar = mzVar.M;
         u5[] u5VarArr = new u5[kxVar.getChildCount()];
         for (int i11 = 0; i11 < kxVar.getChildCount(); i11++) {

@@ -1,11 +1,11 @@
 package qh;
 
 import android.content.Context;
-public final class l9 extends c0 {
-    public final ca B;
+public final class l9 extends f0 {
+    public final ba C;
 
-    public l9(ca caVar, Context context, q9 q9Var) {
-        super(context, q9Var);
-        this.B = caVar;
+    public l9(ba baVar, Context context, p9 p9Var) {
+        super(context, p9Var);
+        this.C = baVar;
     }
 }

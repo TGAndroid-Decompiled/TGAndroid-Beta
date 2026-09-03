@@ -1,3 +1,53 @@
 package org.telegram.ui.Components;
-public final class q01 extends p01 {
+
+import android.animation.ValueAnimator;
+public final class q01 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f30252a;
+    public final r01 f30253b;
+
+    public q01(r01 r01Var, int i10) {
+        this.f30252a = i10;
+        this.f30253b = r01Var;
+    }
+
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f30252a) {
+            case 0:
+                r01 r01Var = this.f30253b;
+                r01Var.getClass();
+                r01Var.C = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                r01Var.invalidate();
+                return;
+            case 1:
+                r01 r01Var2 = this.f30253b;
+                r01Var2.getClass();
+                r01Var2.C = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                r01Var2.invalidate();
+                return;
+            case 2:
+                r01 r01Var3 = this.f30253b;
+                r01Var3.getClass();
+                r01Var3.f30597f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                r01Var3.invalidate();
+                return;
+            case 3:
+                r01 r01Var4 = this.f30253b;
+                r01Var4.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                r01Var4.f30600s = floatValue;
+                r01Var4.f30601w = (int) ((r01Var4.h * floatValue) + 0);
+                r01Var4.invalidate();
+                return;
+            default:
+                r01 r01Var5 = this.f30253b;
+                r01Var5.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                r01Var5.v = floatValue2;
+                int i10 = r01Var5.f30599r;
+                r01Var5.f30602x = i10 + ((int) Math.ceil((r01Var5.f30598n - i10) * floatValue2));
+                r01Var5.invalidate();
+                return;
+        }
+    }
 }

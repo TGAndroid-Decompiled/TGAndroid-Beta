@@ -8,7 +8,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class sb implements qk0 {
+public final class sb implements pk0 {
     public final tb f31026a;
 
     public sb(tb tbVar) {
@@ -29,8 +29,8 @@ public final class sb implements qk0 {
     public final void o(View view, ng.q0 q0Var, boolean z4, boolean z10) {
         boolean z11;
         tb tbVar = this.f31026a;
-        org.telegram.ui.ActionBar.p2 p2Var = tbVar.f31310f;
-        if (tbVar.f31309e == null) {
+        org.telegram.ui.ActionBar.p2 p2Var = tbVar.f31325f;
+        if (tbVar.f31324e == null) {
             return;
         }
         long clientUserId = UserConfig.getInstance(p2Var.getCurrentAccount()).getClientUserId();
@@ -40,16 +40,16 @@ public final class sb implements qk0 {
             z11 = false;
         }
         int i10 = 0;
-        for (int i11 = 0; i11 < tbVar.f31309e.size(); i11++) {
-            int keyAt = tbVar.f31309e.keyAt(i11);
+        for (int i11 = 0; i11 < tbVar.f31324e.size(); i11++) {
+            int keyAt = tbVar.f31324e.keyAt(i11);
             TLRPC.Message message = new TLRPC.Message();
             message.dialog_id = p2Var.getUserConfig().getClientUserId();
-            message.f20864id = keyAt;
+            message.f20866id = keyAt;
             MessageObject messageObject = new MessageObject(p2Var.getCurrentAccount(), message, false, false);
             ArrayList<ng.q0> arrayList = new ArrayList<>();
             arrayList.add(q0Var);
-            p2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, q0Var, false, false, tbVar.f31310f, null);
-            i10 = message.f20864id;
+            p2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, q0Var, false, false, tbVar.f31325f, null);
+            i10 = message.f20866id;
         }
         tbVar.f();
         ic.e();

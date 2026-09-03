@@ -27,10 +27,10 @@ import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.kv0;
+import org.telegram.ui.Components.jv0;
 import org.telegram.ui.Components.ml;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.r61;
+import org.telegram.ui.w61;
 import org.telegram.ui.wk0;
 public final class w0 implements Runnable {
     public final int f4702a;
@@ -72,8 +72,8 @@ public final class w0 implements Runnable {
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
                 c1 c1Var = ((m1) obj3).f4615y.f4626c;
-                kv0 kv0Var = c1Var.f4456g;
-                bf.b h = c1Var.h(new RectF(0.0f, 0.0f, kv0Var.f28463a, kv0Var.f28464b), false, z11, z10);
+                jv0 jv0Var = c1Var.f4456g;
+                bf.b h = c1Var.h(new RectF(0.0f, 0.0f, jv0Var.f28201a, jv0Var.f28202b), false, z11, z10);
                 if (h != null) {
                     bitmapArr[0] = (Bitmap) h.f1935b;
                 }
@@ -83,44 +83,44 @@ public final class w0 implements Runnable {
                 t6 t6Var = (t6) obj3;
                 TL_stories.TL_stories_getAllStories tL_stories_getAllStories = (TL_stories.TL_stories_getAllStories) obj2;
                 TLObject tLObject = (TLObject) obj;
-                int i11 = t6Var.f17770a;
-                SharedPreferences sharedPreferences = t6Var.f17779l;
+                int i11 = t6Var.f17772a;
+                SharedPreferences sharedPreferences = t6Var.f17781l;
                 if (z11) {
-                    t6Var.f17785r = false;
+                    t6Var.f17787r = false;
                 } else {
-                    t6Var.f17784q = false;
+                    t6Var.f17786q = false;
                 }
                 FileLog.d("StoriesController loaded stories from server state=" + tL_stories_getAllStories.state + " more=" + tL_stories_getAllStories.next + "  " + tLObject);
                 if (tLObject instanceof TL_stories.TL_stories_allStories) {
                     TL_stories.TL_stories_allStories tL_stories_allStories = (TL_stories.TL_stories_allStories) tLObject;
                     MessagesStorage.getInstance(i11).putUsersAndChats(tL_stories_allStories.users, null, true, true);
                     if (!z11) {
-                        t6Var.f17788u = tL_stories_allStories.count;
-                        t6Var.f17783p = tL_stories_allStories.has_more;
-                        t6Var.f17782o = tL_stories_allStories.state;
-                        sharedPreferences.edit().putString("last_stories_state", t6Var.f17782o).putBoolean("last_stories_has_more", t6Var.f17783p).putInt("total_stores", t6Var.f17788u).apply();
+                        t6Var.f17790u = tL_stories_allStories.count;
+                        t6Var.f17785p = tL_stories_allStories.has_more;
+                        t6Var.f17784o = tL_stories_allStories.state;
+                        sharedPreferences.edit().putString("last_stories_state", t6Var.f17784o).putBoolean("last_stories_has_more", t6Var.f17785p).putInt("total_stores", t6Var.f17790u).apply();
                     } else {
                         t6Var.v = tL_stories_allStories.count;
-                        t6Var.f17792z = tL_stories_allStories.has_more;
-                        t6Var.f17791y = tL_stories_allStories.state;
-                        sharedPreferences.edit().putString("last_stories_state_hidden", t6Var.f17791y).putBoolean("last_stories_has_more_hidden", t6Var.f17792z).putInt("total_stores_hidden", t6Var.v).apply();
+                        t6Var.f17794z = tL_stories_allStories.has_more;
+                        t6Var.f17793y = tL_stories_allStories.state;
+                        sharedPreferences.edit().putString("last_stories_state_hidden", t6Var.f17793y).putBoolean("last_stories_has_more_hidden", t6Var.f17794z).putInt("total_stores_hidden", t6Var.v).apply();
                     }
                     t6Var.Y(tL_stories_allStories, z11, false, z10);
                     return;
                 } else if (tLObject instanceof TL_stories.TL_stories_allStoriesNotModified) {
                     if (!z11) {
-                        t6Var.f17783p = sharedPreferences.getBoolean("last_stories_has_more", false);
-                        t6Var.f17782o = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
-                        sharedPreferences.edit().putString("last_stories_state", t6Var.f17782o).apply();
+                        t6Var.f17785p = sharedPreferences.getBoolean("last_stories_has_more", false);
+                        t6Var.f17784o = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
+                        sharedPreferences.edit().putString("last_stories_state", t6Var.f17784o).apply();
                     } else {
-                        t6Var.f17792z = sharedPreferences.getBoolean("last_stories_has_more_hidden", false);
-                        t6Var.f17791y = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
-                        sharedPreferences.edit().putString("last_stories_state_hidden", t6Var.f17791y).apply();
+                        t6Var.f17794z = sharedPreferences.getBoolean("last_stories_has_more_hidden", false);
+                        t6Var.f17793y = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
+                        sharedPreferences.edit().putString("last_stories_state_hidden", t6Var.f17793y).apply();
                     }
                     if (z11) {
-                        z4 = t6Var.f17792z;
+                        z4 = t6Var.f17794z;
                     } else {
-                        z4 = t6Var.f17783p;
+                        z4 = t6Var.f17785p;
                     }
                     if (z4) {
                         NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
@@ -134,8 +134,8 @@ public final class w0 implements Runnable {
                 g7 g7Var = (g7) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
                 ag.f fVar = (ag.f) obj;
-                int i12 = g7Var.f17163a;
-                MessagesStorage messagesStorage = g7Var.f17164b;
+                int i12 = g7Var.f17165a;
+                MessagesStorage messagesStorage = g7Var.f17166b;
                 SQLiteDatabase database = messagesStorage.getDatabase();
                 for (int i13 = 0; i13 < arrayList.size(); i13++) {
                     TL_stories.PeerStories peerStories = (TL_stories.PeerStories) arrayList.get(i13);
@@ -144,7 +144,7 @@ public final class w0 implements Runnable {
                         ArrayList<TL_stories.StoryItem> arrayList2 = peerStories.stories;
                         for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                             if (arrayList2.get(i14) instanceof TL_stories.TL_storyItemSkipped) {
-                                TL_stories.StoryItem f10 = g7Var.f(arrayList2.get(i14).f21080id, peerDialogId);
+                                TL_stories.StoryItem f10 = g7Var.f(arrayList2.get(i14).f21082id, peerDialogId);
                                 if (f10 instanceof TL_stories.TL_storyItem) {
                                     arrayList2.set(i14, f10);
                                 }
@@ -199,20 +199,20 @@ public final class w0 implements Runnable {
                 ProfileActivity.m0((ProfileActivity) obj3, (TLRPC.User) obj2, (String) obj, z11, z10);
                 return;
             default:
-                final r61 r61Var = (r61) obj3;
+                final w61 w61Var = (w61) obj3;
                 final String str = (String) obj2;
                 String[] strArr = (String[]) obj;
                 final LinkedHashSet linkedHashSet = new LinkedHashSet();
                 final LinkedHashSet linkedHashSet2 = new LinkedHashSet();
-                HashMap<String, TLRPC.TL_availableReaction> reactionsMap = MediaDataController.getInstance(r61Var.S).getReactionsMap();
+                HashMap<String, TLRPC.TL_availableReaction> reactionsMap = MediaDataController.getInstance(w61Var.S).getReactionsMap();
                 final ArrayList arrayList4 = new ArrayList();
                 final ArrayList arrayList5 = new ArrayList();
                 boolean fullyConsistsOfEmojis = Emoji.fullyConsistsOfEmojis(str);
                 ArrayList arrayList6 = new ArrayList();
                 HashMap hashMap = new HashMap();
                 ArrayList arrayList7 = new ArrayList();
-                wk0 wk0Var = new wk0(r61Var, str, this.f4703b, arrayList4, reactionsMap, arrayList5, linkedHashSet, linkedHashSet2, arrayList7, arrayList6, this.f4704c);
-                int i16 = r61Var.T;
+                wk0 wk0Var = new wk0(w61Var, str, this.f4703b, arrayList4, reactionsMap, arrayList5, linkedHashSet, linkedHashSet2, arrayList7, arrayList6, this.f4704c);
+                int i16 = w61Var.T;
                 if (i16 == 13) {
                     Utilities.doCallbacks(new Utilities.Callback() {
                         @Override
@@ -220,10 +220,10 @@ public final class w0 implements Runnable {
                             Runnable runnable2 = (Runnable) obj4;
                             switch (r4) {
                                 case 0:
-                                    MediaDataController.getInstance(r61Var.S).getEmojiSuggestions(r61.X1, str, false, new vl0(15, linkedHashSet2, runnable2), null, false, false, false, 0);
+                                    MediaDataController.getInstance(w61Var.S).getEmojiSuggestions(w61.X1, str, false, new vl0(15, linkedHashSet2, runnable2), null, false, false, false, 0);
                                     return;
                                 default:
-                                    MediaDataController.getInstance(r61Var.S).getAnimatedEmojiByKeywords(str, new z41(linkedHashSet2, runnable2, 0));
+                                    MediaDataController.getInstance(w61Var.S).getAnimatedEmojiByKeywords(str, new e51(linkedHashSet2, runnable2, 0));
                                     return;
                             }
                         }
@@ -239,7 +239,7 @@ public final class w0 implements Runnable {
                                     case 0:
                                         String str2 = str;
                                         Runnable runnable2 = (Runnable) obj4;
-                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(r61Var.S).getAvailableEffects();
+                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(w61Var.S).getAvailableEffects();
                                         if (availableEffects != null) {
                                             for (int i17 = 0; i17 < availableEffects.effects.size(); i17++) {
                                                 try {
@@ -259,8 +259,8 @@ public final class w0 implements Runnable {
                                         runnable2.run();
                                         return;
                                     default:
-                                        r61 r61Var2 = r61Var;
-                                        MediaDataController.getInstance(r61Var2.S).getEmojiSuggestions(r61.X1, str, false, new a1.d(r61Var2, arrayList5, arrayList4, (Runnable) obj4, 16), null, false, false, false, 0);
+                                        w61 w61Var2 = w61Var;
+                                        MediaDataController.getInstance(w61Var2.S).getEmojiSuggestions(w61.X1, str, false, new a1.d(w61Var2, arrayList5, arrayList4, (Runnable) obj4, 16), null, false, false, false, 0);
                                         return;
                                 }
                             }
@@ -274,7 +274,7 @@ public final class w0 implements Runnable {
                                     case 0:
                                         String str2 = str;
                                         Runnable runnable2 = (Runnable) obj4;
-                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(r61Var.S).getAvailableEffects();
+                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(w61Var.S).getAvailableEffects();
                                         if (availableEffects != null) {
                                             for (int i17 = 0; i17 < availableEffects.effects.size(); i17++) {
                                                 try {
@@ -294,8 +294,8 @@ public final class w0 implements Runnable {
                                         runnable2.run();
                                         return;
                                     default:
-                                        r61 r61Var2 = r61Var;
-                                        MediaDataController.getInstance(r61Var2.S).getEmojiSuggestions(r61.X1, str, false, new a1.d(r61Var2, arrayList5, arrayList4, (Runnable) obj4, 16), null, false, false, false, 0);
+                                        w61 w61Var2 = w61Var;
+                                        MediaDataController.getInstance(w61Var2.S).getEmojiSuggestions(w61.X1, str, false, new a1.d(w61Var2, arrayList5, arrayList4, (Runnable) obj4, 16), null, false, false, false, 0);
                                         return;
                                 }
                             }
@@ -310,14 +310,14 @@ public final class w0 implements Runnable {
                             Runnable runnable2 = (Runnable) obj4;
                             switch (r4) {
                                 case 0:
-                                    MediaDataController.getInstance(r61Var.S).getEmojiSuggestions(r61.X1, str, false, new vl0(15, linkedHashSet, runnable2), null, false, false, false, 0);
+                                    MediaDataController.getInstance(w61Var.S).getEmojiSuggestions(w61.X1, str, false, new vl0(15, linkedHashSet, runnable2), null, false, false, false, 0);
                                     return;
                                 default:
-                                    MediaDataController.getInstance(r61Var.S).getAnimatedEmojiByKeywords(str, new z41(linkedHashSet, runnable2, 0));
+                                    MediaDataController.getInstance(w61Var.S).getAnimatedEmojiByKeywords(str, new e51(linkedHashSet, runnable2, 0));
                                     return;
                             }
                         }
-                    }, new hg.c1(r61Var, strArr, str, linkedHashSet, 13), new ok(r61Var, fullyConsistsOfEmojis, linkedHashSet, str, reactionsMap, arrayList4), new hg.c1(14, r61Var, arrayList6, hashMap, str), new org.telegram.ui.a0(r61Var, str, arrayList7, 8), wk0Var);
+                    }, new hg.c1(w61Var, strArr, str, linkedHashSet, 13), new ok(w61Var, fullyConsistsOfEmojis, linkedHashSet, str, reactionsMap, arrayList4), new hg.c1(14, w61Var, arrayList6, hashMap, str), new org.telegram.ui.a0(w61Var, str, arrayList7, 8), wk0Var);
                     return;
                 }
         }

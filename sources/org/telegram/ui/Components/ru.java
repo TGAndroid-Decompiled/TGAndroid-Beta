@@ -51,30 +51,30 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
     public int M;
     public int N;
     public ku O;
-    public lu f30855b;
-    public f91 f30856c;
+    public lu f30894b;
+    public e91 f30895c;
     public View d;
-    public FrameLayout f30857e;
-    public WebChromeClient.CustomViewCallback f30858f;
+    public FrameLayout f30896e;
+    public WebChromeClient.CustomViewCallback f30897f;
     public View h;
-    public RadialProgressView f30859n;
-    public Activity f30860r;
-    public LinearLayout f30861s;
+    public RadialProgressView f30898n;
+    public Activity f30899r;
+    public LinearLayout f30900s;
     public TextView v;
-    public eg.s2 f30862w;
-    public ImageView f30863x;
-    public boolean f30864y;
+    public eg.s2 f30901w;
+    public ImageView f30902x;
+    public boolean f30903y;
 
-    public static void I(org.telegram.ui.ActionBar.p2 p2Var, MessageObject messageObject, org.telegram.ui.au0 au0Var, String str, String str2, String str3, String str4, int i10, int i11, int i12, boolean z4) {
+    public static void I(org.telegram.ui.ActionBar.p2 p2Var, MessageObject messageObject, org.telegram.ui.fu0 fu0Var, String str, String str2, String str3, String str4, int i10, int i11, int i12, boolean z4) {
         float f10;
         TLRPC.MessageMedia messageMedia;
         ru ruVar = P;
         if (ruVar != null) {
             ruVar.G();
         }
-        if (((messageObject == null || (messageMedia = messageObject.messageOwner.media) == null || messageMedia.webpage == null) ? null : f91.e(str4)) != null) {
+        if (((messageObject == null || (messageMedia = messageObject.messageOwner.media) == null || messageMedia.webpage == null) ? null : e91.e(str4)) != null) {
             PhotoViewer.t1().K2(null, p2Var, null);
-            PhotoViewer.t1().e2(messageObject, null, null, null, null, null, null, 0, au0Var, null, 0L, 0L, 0L, true, null, Integer.valueOf(i12));
+            PhotoViewer.t1().e2(messageObject, null, null, null, null, null, null, 0, fu0Var, null, 0L, 0L, 0L, true, null, Integer.valueOf(i12));
             return;
         }
         Activity parentActivity = p2Var.getParentActivity();
@@ -87,7 +87,7 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
         h3Var.setApplyBottomPadding(false);
         h3Var.N = i12;
         if (parentActivity != null) {
-            h3Var.f30860r = parentActivity;
+            h3Var.f30899r = parentActivity;
         }
         h3Var.H = str4;
         boolean z10 = str2 != null && str2.length() > 0;
@@ -101,7 +101,7 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
             h3Var.E = point.y / 2;
         }
         FrameLayout frameLayout = new FrameLayout(parentActivity);
-        h3Var.f30857e = frameLayout;
+        h3Var.f30896e = frameLayout;
         frameLayout.setKeepScreenOn(true);
         frameLayout.setBackgroundColor(-16777216);
         frameLayout.setFitsSystemWindows(true);
@@ -109,11 +109,11 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
         h3Var.container.addView(frameLayout, k7.c6.c(-1.0f, -1));
         frameLayout.setVisibility(4);
         eg.s2 s2Var = new eg.s2((Object) h3Var, parentActivity, 18);
-        h3Var.f30862w = s2Var;
+        h3Var.f30901w = s2Var;
         s2Var.setOnTouchListener(new org.telegram.ui.ActionBar.s2(16));
         h3Var.setCustomView(s2Var);
         lu luVar = new lu(h3Var, parentActivity, parentActivity, 0);
-        h3Var.f30855b = luVar;
+        h3Var.f30894b = luVar;
         luVar.getSettings().setJavaScriptEnabled(true);
         luVar.getSettings().setDomStorageEnabled(true);
         luVar.getSettings().setMediaPlaybackRequiresUserGesture(false);
@@ -122,24 +122,24 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
         luVar.setWebChromeClient(new org.telegram.ui.q1(h3Var, 1));
         luVar.setWebViewClient(new mu(h3Var));
         s2Var.addView(luVar, k7.c6.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, (z10 ? 22 : 0) + 84));
-        f91 f91Var = new f91(parentActivity, true, new nu(h3Var));
-        h3Var.f30856c = f91Var;
-        f91Var.setVisibility(4);
-        s2Var.addView(f91Var, k7.c6.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, (z10 ? 22 : 0) + 74));
+        e91 e91Var = new e91(parentActivity, true, new nu(h3Var));
+        h3Var.f30895c = e91Var;
+        e91Var.setVisibility(4);
+        s2Var.addView(e91Var, k7.c6.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, (z10 ? 22 : 0) + 74));
         View view = new View(parentActivity);
         h3Var.h = view;
         view.setBackgroundColor(-16777216);
         view.setVisibility(4);
         s2Var.addView(view, k7.c6.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, (z10 ? 22 : 0) + 84));
         RadialProgressView radialProgressView = new RadialProgressView(parentActivity, null);
-        h3Var.f30859n = radialProgressView;
+        h3Var.f30898n = radialProgressView;
         radialProgressView.setVisibility(4);
         s2Var.addView(radialProgressView, k7.c6.d(-2, -2.0f, 17, 0.0f, 0.0f, 0.0f, ((z10 ? 22 : 0) + 84) / 2));
         if (z10) {
             TextView textView = new TextView(parentActivity);
             f10 = 18.0f;
             textView.setTextSize(1, 16.0f);
-            textView.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21766j5, false));
+            textView.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21768j5, false));
             textView.setText(str2);
             textView.setSingleLine(true);
             textView.setTypeface(AndroidUtilities.bold());
@@ -151,7 +151,7 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
         }
         TextView textView2 = new TextView(parentActivity);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21874p5, false));
+        textView2.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21876p5, false));
         textView2.setText(str);
         textView2.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
@@ -163,7 +163,7 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
         s2Var.addView(view2, new FrameLayout.LayoutParams(-1, 1, 83));
         ((FrameLayout.LayoutParams) view2.getLayoutParams()).bottomMargin = AndroidUtilities.dp(48.0f);
         FrameLayout frameLayout2 = new FrameLayout(parentActivity);
-        frameLayout2.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21731h5, false));
+        frameLayout2.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21733h5, false));
         s2Var.addView(frameLayout2, k7.c6.e(-1, 48, 83));
         LinearLayout linearLayout = new LinearLayout(parentActivity);
         linearLayout.setOrientation(0);
@@ -171,7 +171,7 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
         frameLayout2.addView(linearLayout, k7.c6.e(-2, -1, 53));
         TextView textView3 = new TextView(parentActivity);
         textView3.setTextSize(1, 14.0f);
-        int i13 = org.telegram.ui.ActionBar.k6.f21856o5;
+        int i13 = org.telegram.ui.ActionBar.k6.f21858o5;
         org.telegram.ui.yh.t(i13, null, false, textView3, 17);
         textView3.setSingleLine(true);
         textView3.setEllipsize(truncateAt);
@@ -182,49 +182,49 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
         textView3.setTypeface(AndroidUtilities.bold());
         frameLayout2.addView(textView3, k7.c6.q(-2, -1, 51));
         textView3.setOnClickListener(new View.OnClickListener(h3Var) {
-            public final ru f27905b;
+            public final ru f27902b;
 
             {
-                this.f27905b = h3Var;
+                this.f27902b = h3Var;
             }
 
             @Override
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        this.f27905b.dismiss();
+                        this.f27902b.dismiss();
                         return;
                     case 1:
-                        ru.m(this.f27905b, view3);
+                        ru.m(this.f27902b, view3);
                         return;
                     case 2:
-                        ru ruVar2 = this.f27905b;
+                        ru ruVar2 = this.f27902b;
                         ruVar2.getClass();
                         try {
                             ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", ruVar2.F));
                         } catch (Exception e6) {
                             FileLog.e(e6);
                         }
-                        Activity activity = ruVar2.f30860r;
+                        Activity activity = ruVar2.f30899r;
                         if (activity instanceof LaunchActivity) {
                             ((LaunchActivity) activity).D0(new k2(14));
                         }
                         ruVar2.dismiss();
                         return;
                     default:
-                        ru ruVar3 = this.f27905b;
-                        af.g.s(ruVar3.f30860r, ruVar3.F);
+                        ru ruVar3 = this.f27902b;
+                        af.g.s(ruVar3.f30899r, ruVar3.F);
                         ruVar3.dismiss();
                         return;
                 }
             }
         });
         LinearLayout linearLayout2 = new LinearLayout(parentActivity);
-        h3Var.f30861s = linearLayout2;
+        h3Var.f30900s = linearLayout2;
         linearLayout2.setVisibility(4);
         frameLayout2.addView(linearLayout2, k7.c6.e(-2, -1, 17));
         ImageView imageView = new ImageView(parentActivity);
-        h3Var.f30863x = imageView;
+        h3Var.f30902x = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(R.drawable.ic_goinline);
@@ -237,76 +237,76 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
         imageView.setBackgroundDrawable(org.telegram.ui.ActionBar.k6.f0(org.telegram.ui.ActionBar.k6.w0(null, i14, false), 0, -1));
         linearLayout2.addView(imageView, k7.c6.d(48, 48.0f, 51, 0.0f, 0.0f, 4.0f, 0.0f));
         imageView.setOnClickListener(new View.OnClickListener(h3Var) {
-            public final ru f27905b;
+            public final ru f27902b;
 
             {
-                this.f27905b = h3Var;
+                this.f27902b = h3Var;
             }
 
             @Override
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        this.f27905b.dismiss();
+                        this.f27902b.dismiss();
                         return;
                     case 1:
-                        ru.m(this.f27905b, view3);
+                        ru.m(this.f27902b, view3);
                         return;
                     case 2:
-                        ru ruVar2 = this.f27905b;
+                        ru ruVar2 = this.f27902b;
                         ruVar2.getClass();
                         try {
                             ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", ruVar2.F));
                         } catch (Exception e6) {
                             FileLog.e(e6);
                         }
-                        Activity activity = ruVar2.f30860r;
+                        Activity activity = ruVar2.f30899r;
                         if (activity instanceof LaunchActivity) {
                             ((LaunchActivity) activity).D0(new k2(14));
                         }
                         ruVar2.dismiss();
                         return;
                     default:
-                        ru ruVar3 = this.f27905b;
-                        af.g.s(ruVar3.f30860r, ruVar3.F);
+                        ru ruVar3 = this.f27902b;
+                        af.g.s(ruVar3.f30899r, ruVar3.F);
                         ruVar3.dismiss();
                         return;
                 }
             }
         });
         View.OnClickListener onClickListener = new View.OnClickListener(h3Var) {
-            public final ru f27905b;
+            public final ru f27902b;
 
             {
-                this.f27905b = h3Var;
+                this.f27902b = h3Var;
             }
 
             @Override
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        this.f27905b.dismiss();
+                        this.f27902b.dismiss();
                         return;
                     case 1:
-                        ru.m(this.f27905b, view3);
+                        ru.m(this.f27902b, view3);
                         return;
                     case 2:
-                        ru ruVar2 = this.f27905b;
+                        ru ruVar2 = this.f27902b;
                         ruVar2.getClass();
                         try {
                             ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", ruVar2.F));
                         } catch (Exception e6) {
                             FileLog.e(e6);
                         }
-                        Activity activity = ruVar2.f30860r;
+                        Activity activity = ruVar2.f30899r;
                         if (activity instanceof LaunchActivity) {
                             ((LaunchActivity) activity).D0(new k2(14));
                         }
                         ruVar2.dismiss();
                         return;
                     default:
-                        ru ruVar3 = this.f27905b;
-                        af.g.s(ruVar3.f30860r, ruVar3.F);
+                        ru ruVar3 = this.f27902b;
+                        af.g.s(ruVar3.f30899r, ruVar3.F);
                         ruVar3.dismiss();
                         return;
                 }
@@ -343,54 +343,54 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
         textView5.setTypeface(AndroidUtilities.bold());
         linearLayout.addView(textView5, k7.c6.e(-2, -1, 51));
         textView5.setOnClickListener(new View.OnClickListener(h3Var) {
-            public final ru f27905b;
+            public final ru f27902b;
 
             {
-                this.f27905b = h3Var;
+                this.f27902b = h3Var;
             }
 
             @Override
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        this.f27905b.dismiss();
+                        this.f27902b.dismiss();
                         return;
                     case 1:
-                        ru.m(this.f27905b, view3);
+                        ru.m(this.f27902b, view3);
                         return;
                     case 2:
-                        ru ruVar2 = this.f27905b;
+                        ru ruVar2 = this.f27902b;
                         ruVar2.getClass();
                         try {
                             ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", ruVar2.F));
                         } catch (Exception e6) {
                             FileLog.e(e6);
                         }
-                        Activity activity = ruVar2.f30860r;
+                        Activity activity = ruVar2.f30899r;
                         if (activity instanceof LaunchActivity) {
                             ((LaunchActivity) activity).D0(new k2(14));
                         }
                         ruVar2.dismiss();
                         return;
                     default:
-                        ru ruVar3 = this.f27905b;
-                        af.g.s(ruVar3.f30860r, ruVar3.F);
+                        ru ruVar3 = this.f27902b;
+                        af.g.s(ruVar3.f30899r, ruVar3.F);
                         ruVar3.dismiss();
                         return;
                 }
             }
         });
-        boolean z11 = f91.a(str4) || f91.a(str3);
-        f91Var.setVisibility(z11 ? 0 : 4);
+        boolean z11 = e91.a(str4) || e91.a(str3);
+        e91Var.setVisibility(z11 ? 0 : 4);
         if (z11) {
-            b91 b91Var = f91Var.f26817c0;
-            b91Var.setVisibility(4);
-            b91Var.d(false, false);
-            f91Var.j(true, false);
+            a91 a91Var = e91Var.f26521c0;
+            a91Var.setVisibility(4);
+            a91Var.d(false, false);
+            e91Var.j(true, false);
         }
         h3Var.setDelegate(new ou(h3Var, z11));
         h3Var.C = new pu(h3Var, ApplicationLoader.applicationContext);
-        String e6 = f91.e(str4);
+        String e6 = e91.e(str4);
         if (e6 != null || !z11) {
             radialProgressView.setVisibility(0);
             luVar.setVisibility(0);
@@ -400,11 +400,11 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
             }
             textView4.setVisibility(4);
             luVar.setKeepScreenOn(true);
-            f91Var.setVisibility(4);
-            f91Var.getControlsView().setVisibility(4);
-            f91Var.getTextureView().setVisibility(4);
-            if (f91Var.getTextureImageView() != null) {
-                f91Var.getTextureImageView().setVisibility(4);
+            e91Var.setVisibility(4);
+            e91Var.getControlsView().setVisibility(4);
+            e91Var.getTextureView().setVisibility(4);
+            if (e91Var.getTextureImageView() != null) {
+                e91Var.getTextureImageView().setVisibility(4);
             }
             if (e6 != null && "disabled".equals(MessagesController.getInstance(h3Var.currentAccount).youtubePipType)) {
                 imageView.setVisibility(8);
@@ -430,26 +430,26 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
             AndroidUtilities.runOnUIThread(new ju(0, view), 300L);
             return;
         }
-        if (ruVar.f30864y && "inapp".equals(MessagesController.getInstance(ruVar.currentAccount).youtubePipType)) {
+        if (ruVar.f30903y && "inapp".equals(MessagesController.getInstance(ruVar.currentAccount).youtubePipType)) {
             z4 = true;
         } else {
             z4 = false;
         }
-        if ((!z4 && !ruVar.F()) || ruVar.f30859n.getVisibility() == 0) {
+        if ((!z4 && !ruVar.F()) || ruVar.f30898n.getVisibility() == 0) {
             return;
         }
-        if (ng0.x(z4, ruVar.f30860r, null, ruVar.f30855b, ruVar.D, ruVar.E, false)) {
+        if (ng0.x(z4, ruVar.f30899r, null, ruVar.f30894b, ruVar.D, ruVar.E, false)) {
             ng0Var.R = ruVar;
         }
-        if (ruVar.f30864y) {
-            ruVar.f30855b.evaluateJavascript("hideControls();", null);
+        if (ruVar.f30903y) {
+            ruVar.f30894b.evaluateJavascript("hideControls();", null);
         }
         ruVar.containerView.setTranslationY(0.0f);
         ruVar.dismissInternal();
     }
 
     public final boolean F() {
-        Activity activity = this.f30860r;
+        Activity activity = this.f30899r;
         if (activity == null) {
             return false;
         }
@@ -461,17 +461,17 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
     }
 
     public final void G() {
-        lu luVar = this.f30855b;
+        lu luVar = this.f30894b;
         if (luVar != null && luVar.getVisibility() == 0) {
-            this.f30862w.removeView(luVar);
+            this.f30901w.removeView(luVar);
             luVar.stopLoading();
             luVar.loadUrl("about:blank");
             luVar.destroy();
         }
         ng0.j(false);
-        f91 f91Var = this.f30856c;
-        if (f91Var != null) {
-            f91Var.b();
+        e91 e91Var = this.f30895c;
+        if (e91Var != null) {
+            e91Var.b();
         }
         P = null;
         dismissInternal();
@@ -479,23 +479,23 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
 
     public final void H() {
         int i10;
-        if (this.f30855b != null && ng0.m0.M) {
+        if (this.f30894b != null && ng0.m0.M) {
             if (ApplicationLoader.mainInterfacePaused) {
                 try {
-                    this.f30860r.startService(new Intent(ApplicationLoader.applicationContext, BringAppForegroundService.class));
+                    this.f30899r.startService(new Intent(ApplicationLoader.applicationContext, BringAppForegroundService.class));
                 } catch (Throwable th2) {
                     FileLog.e(th2);
                 }
             }
-            if (this.f30864y) {
-                this.f30855b.evaluateJavascript("showControls();", null);
+            if (this.f30903y) {
+                this.f30894b.evaluateJavascript("showControls();", null);
             }
-            ViewGroup viewGroup = (ViewGroup) this.f30855b.getParent();
+            ViewGroup viewGroup = (ViewGroup) this.f30894b.getParent();
             if (viewGroup != null) {
-                viewGroup.removeView(this.f30855b);
+                viewGroup.removeView(this.f30894b);
             }
-            eg.s2 s2Var = this.f30862w;
-            lu luVar = this.f30855b;
+            eg.s2 s2Var = this.f30901w;
+            lu luVar = this.f30894b;
             if (this.G) {
                 i10 = 22;
             } else {
@@ -509,22 +509,22 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
     }
 
     public final void J() {
-        f91 f91Var = this.f30856c;
-        View aspectRatioView = f91Var.getAspectRatioView();
+        e91 e91Var = this.f30895c;
+        View aspectRatioView = e91Var.getAspectRatioView();
         int[] iArr = this.B;
         aspectRatioView.getLocationInWindow(iArr);
         iArr[0] = iArr[0] - getLeftInset();
-        if (!f91Var.f() && !this.L) {
-            TextureView textureView = f91Var.getTextureView();
+        if (!e91Var.f() && !this.L) {
+            TextureView textureView = e91Var.getTextureView();
             textureView.setTranslationX(iArr[0]);
             textureView.setTranslationY(iArr[1]);
-            ImageView textureImageView = f91Var.getTextureImageView();
+            ImageView textureImageView = e91Var.getTextureImageView();
             if (textureImageView != null) {
                 textureImageView.setTranslationX(iArr[0]);
                 textureImageView.setTranslationY(iArr[1]);
             }
         }
-        View controlsView = f91Var.getControlsView();
+        View controlsView = e91Var.getControlsView();
         if (controlsView.getParent() == this.container) {
             controlsView.setTranslationY(iArr[1]);
         } else {
@@ -534,8 +534,8 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
 
     @Override
     public final boolean canDismissWithSwipe() {
-        f91 f91Var = this.f30856c;
-        if (f91Var.getVisibility() == 0 && f91Var.Q) {
+        e91 e91Var = this.f30895c;
+        if (e91Var.getVisibility() == 0 && e91Var.Q) {
             return false;
         }
         return true;
@@ -543,7 +543,7 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
 
     @Override
     public final boolean canDismissWithTouchOutside() {
-        if (this.f30857e.getVisibility() != 0) {
+        if (this.f30896e.getVisibility() != 0) {
             return true;
         }
         return false;
@@ -561,23 +561,23 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
 
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
-        f91 f91Var = this.f30856c;
-        if (f91Var.getVisibility() == 0 && f91Var.f26828w && !f91Var.f()) {
+        e91 e91Var = this.f30895c;
+        if (e91Var.getVisibility() == 0 && e91Var.f26532w && !e91Var.f()) {
             if (configuration.orientation == 2) {
-                boolean z4 = f91Var.Q;
+                boolean z4 = e91Var.Q;
                 if (!z4 && !z4) {
-                    f91Var.Q = true;
-                    f91Var.m();
-                    f91Var.l(false);
+                    e91Var.Q = true;
+                    e91Var.m();
+                    e91Var.l(false);
                     return;
                 }
                 return;
             }
-            boolean z10 = f91Var.Q;
+            boolean z10 = e91Var.Q;
             if (z10 && z10) {
-                f91Var.Q = false;
-                f91Var.m();
-                f91Var.l(false);
+                e91Var.Q = false;
+                e91Var.m();
+                e91Var.l(false);
             }
         }
     }
@@ -589,25 +589,25 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
             int i11 = i10 - 1;
             this.M = i11;
             if (i11 == 0) {
-                f91 f91Var = this.f30856c;
-                TextureView textureView = f91Var.d;
-                ImageView imageView = f91Var.f26819e;
+                e91 e91Var = this.f30895c;
+                TextureView textureView = e91Var.d;
+                ImageView imageView = e91Var.f26523e;
                 if (imageView != null) {
                     try {
                         Bitmap createBitmap = Bitmaps.createBitmap(textureView.getWidth(), textureView.getHeight(), Bitmap.Config.ARGB_8888);
-                        f91Var.h = createBitmap;
-                        f91Var.f26825n.getBitmap(createBitmap);
+                        e91Var.h = createBitmap;
+                        e91Var.f26529n.getBitmap(createBitmap);
                     } catch (Throwable th2) {
-                        Bitmap bitmap = f91Var.h;
+                        Bitmap bitmap = e91Var.h;
                         if (bitmap != null) {
                             bitmap.recycle();
-                            f91Var.h = null;
+                            e91Var.h = null;
                         }
                         FileLog.e(th2);
                     }
-                    if (f91Var.h != null) {
+                    if (e91Var.h != null) {
                         imageView.setVisibility(0);
-                        imageView.setImageBitmap(f91Var.h);
+                        imageView.setImageBitmap(e91Var.h);
                     } else {
                         imageView.setImageDrawable(null);
                     }
@@ -626,7 +626,7 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
 
     @Override
     public final boolean onCustomLayout(View view, int i10, int i11, int i12, int i13) {
-        if (view == this.f30856c.getControlsView()) {
+        if (view == this.f30895c.getControlsView()) {
             J();
             return false;
         }
@@ -636,12 +636,12 @@ public final class ru extends org.telegram.ui.ActionBar.h3 {
     @Override
     public final boolean onCustomMeasure(View view, int i10, int i11) {
         int dp;
-        f91 f91Var = this.f30856c;
-        if (view == f91Var.getControlsView()) {
+        e91 e91Var = this.f30895c;
+        if (view == e91Var.getControlsView()) {
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-            layoutParams.width = f91Var.getMeasuredWidth();
-            int measuredHeight = f91Var.getAspectRatioView().getMeasuredHeight();
-            if (f91Var.Q) {
+            layoutParams.width = e91Var.getMeasuredWidth();
+            int measuredHeight = e91Var.getAspectRatioView().getMeasuredHeight();
+            if (e91Var.Q) {
                 dp = 0;
             } else {
                 dp = AndroidUtilities.dp(10.0f);

@@ -21,7 +21,7 @@ public final class e extends View {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float f10 = this.f5620a.f50505e;
+        float f10 = this.f5620a.f50541e;
         lf.r.b(canvas, this.f5621b, 1.0f - f10);
         lf.r.b(canvas, this.f5622c, f10);
     }

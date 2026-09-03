@@ -36,8 +36,8 @@ public final class b implements l {
                 d dVar = (d) this.f4880e;
                 Context context = dVar.f4884e;
                 e eVar = (e) obj;
-                PendingIntent pendingIntent = eVar.f48415a;
-                g gVar = eVar.f48416b;
+                PendingIntent pendingIntent = eVar.f48451a;
+                g gVar = eVar.f48452b;
                 CancellationSignal cancellationSignal = this.f4878b;
                 Executor executor = this.f4879c;
                 i iVar = this.d;
@@ -67,7 +67,7 @@ public final class b implements l {
                         }
                     }
                     if (gVar != null) {
-                        v0.c a2 = d8.a(gVar.f48422a, gVar.f48423b);
+                        v0.c a2 = d8.a(gVar.f48458a, gVar.f48459b);
                         if (a2 instanceof f) {
                             CredentialProviderPlayServicesImpl.Companion.getClass();
                             if (!a1.g.a(cancellationSignal)) {
@@ -82,7 +82,7 @@ public final class b implements l {
                         }
                     }
                 }
-                return sc.i.f47243a;
+                return sc.i.f47274a;
             default:
                 f1.b bVar = (f1.b) this.f4880e;
                 Context context2 = bVar.f5721e;
@@ -92,7 +92,7 @@ public final class b implements l {
                 if (!a1.g.a(cancellationSignal2)) {
                     Intent intent2 = new Intent(context2, HiddenActivity.class);
                     b1.d.a(bVar.f5724i, intent2, "BEGIN_SIGN_IN");
-                    intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", lVar.f48432a);
+                    intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", lVar.f48468a);
                     try {
                         context2.startActivity(intent2);
                     } catch (Exception unused2) {
@@ -102,7 +102,7 @@ public final class b implements l {
                         }
                     }
                 }
-                return sc.i.f47243a;
+                return sc.i.f47274a;
         }
     }
 }

@@ -56,16 +56,16 @@ public final class m extends cg.c {
             int i13 = m1Var.f5879f;
             View view = m1Var.f5875a;
             if (i13 == 0) {
-                ((org.telegram.ui.Cells.m4) view).setText(lVar.f38538c);
+                ((org.telegram.ui.Cells.m4) view).setText(lVar.f38451c);
             } else if (i13 == 2) {
                 org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) view;
-                if (TextUtils.isEmpty(lVar.f38538c)) {
+                if (TextUtils.isEmpty(lVar.f38451c)) {
                     a9Var.setFixedSize(12);
                     a9Var.setText(null);
                     return;
                 }
                 a9Var.setFixedSize(0);
-                a9Var.setText(lVar.f38538c);
+                a9Var.setText(lVar.f38451c);
             } else if (i13 == 1) {
                 org.telegram.ui.Cells.s8 s8Var = (org.telegram.ui.Cells.s8) view;
                 int i14 = lVar.d;
@@ -85,7 +85,7 @@ public final class m extends cg.c {
                 } else {
                     return;
                 }
-                s8Var.f(lVar.f38538c, z10, z4);
+                s8Var.f(lVar.f38451c, z10, z4);
             }
         }
     }

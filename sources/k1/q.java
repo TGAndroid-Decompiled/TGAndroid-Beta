@@ -30,9 +30,9 @@ public final class q extends wc.i implements dd.p {
     public final Object invoke(Object obj, Object obj2) {
         switch (this.f10299a) {
             case 0:
-                return ((q) create((e0) obj, (uc.c) obj2)).invokeSuspend(sc.i.f47243a);
+                return ((q) create((e0) obj, (uc.c) obj2)).invokeSuspend(sc.i.f47274a);
             default:
-                sc.i iVar = sc.i.f47243a;
+                sc.i iVar = sc.i.f47274a;
                 ((q) create((n1.b) obj, (uc.c) obj2)).invokeSuspend(iVar);
                 return iVar;
         }
@@ -45,7 +45,7 @@ public final class q extends wc.i implements dd.p {
         Object obj2 = this.f10301c;
         switch (i10) {
             case 0:
-                vc.a aVar = vc.a.f48962a;
+                vc.a aVar = vc.a.f48998a;
                 q7.b(obj);
                 e0 e0Var = (e0) this.f10300b;
                 e0 e0Var2 = (e0) obj2;
@@ -56,14 +56,14 @@ public final class q extends wc.i implements dd.p {
                 }
                 return Boolean.valueOf(z4);
             default:
-                vc.a aVar2 = vc.a.f48962a;
+                vc.a aVar2 = vc.a.f48998a;
                 q7.b(obj);
                 n1.b bVar = (n1.b) this.f10300b;
                 bVar.getClass();
                 n1.d key = la.w.f12243a;
                 kotlin.jvm.internal.j.e(key, "key");
                 bVar.b(key, (String) obj2);
-                return sc.i.f47243a;
+                return sc.i.f47274a;
         }
     }
 }

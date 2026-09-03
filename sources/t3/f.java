@@ -10,12 +10,12 @@ import s8.l;
 import s8.t;
 import s8.v;
 public final class f implements a {
-    public final v f47871a;
-    public final int f47872b;
+    public final v f47907a;
+    public final int f47908b;
 
     public f(int i10, i0 i0Var) {
-        this.f47872b = i10;
-        this.f47871a = i0Var;
+        this.f47908b = i10;
+        this.f47907a = i0Var;
     }
 
     public static f b(int i10, w wVar) {
@@ -158,7 +158,7 @@ public final class f implements a {
                         gVar = dVar;
                         break;
                     case 1852994675:
-                        gVar = new h(wVar.s(wVar.a(), r8.d.f46738c));
+                        gVar = new h(wVar.s(wVar.a(), r8.d.f46769c));
                         break;
                     default:
                         gVar = dVar;
@@ -167,7 +167,7 @@ public final class f implements a {
             }
             if (gVar != null) {
                 if (gVar.getType() == 1752331379) {
-                    int i30 = ((d) gVar).f47857a;
+                    int i30 = ((d) gVar).f47893a;
                     if (i30 != 1935960438) {
                         if (i30 != 1935963489) {
                             if (i30 != 1937012852) {
@@ -199,7 +199,7 @@ public final class f implements a {
     }
 
     public final a a(Class cls) {
-        t listIterator = this.f47871a.listIterator(0);
+        t listIterator = this.f47907a.listIterator(0);
         while (listIterator.hasNext()) {
             a aVar = (a) listIterator.next();
             if (aVar.getClass() == cls) {
@@ -211,6 +211,6 @@ public final class f implements a {
 
     @Override
     public final int getType() {
-        return this.f47872b;
+        return this.f47908b;
     }
 }

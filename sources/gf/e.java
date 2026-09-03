@@ -41,7 +41,7 @@ public final class e {
     }
 
     public final void a(TLRPC.Document document) {
-        if (document == null || c(document.f20849id) != null) {
+        if (document == null || c(document.f20851id) != null) {
             return;
         }
         ?? obj = new Object();
@@ -70,7 +70,7 @@ public final class e {
         }
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             try {
-                if (arrayList.get(i10) != null && ((d) arrayList.get(i10)).f7033a != null && ((d) arrayList.get(i10)).f7033a.f20849id == j10) {
+                if (arrayList.get(i10) != null && ((d) arrayList.get(i10)).f7033a != null && ((d) arrayList.get(i10)).f7033a.f20851id == j10) {
                     return ((d) arrayList.get(i10)).f7033a;
                 }
             } catch (Exception e6) {
@@ -97,7 +97,7 @@ public final class e {
         while (true) {
             ArrayList arrayList = this.f7041e;
             if (i10 < arrayList.size()) {
-                if (((d) arrayList.get(i10)).f7033a != null && ((d) arrayList.get(i10)).f7033a.f20849id == j10) {
+                if (((d) arrayList.get(i10)).f7033a != null && ((d) arrayList.get(i10)).f7033a.f20851id == j10) {
                     if (!TextUtils.isEmpty(((d) arrayList.get(i10)).f7034b)) {
                         return ((d) arrayList.get(i10)).f7034b;
                     }

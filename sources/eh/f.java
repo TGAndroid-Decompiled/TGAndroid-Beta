@@ -56,7 +56,7 @@ public final class f extends FrameLayout implements ViewTreeObserver.OnPreDrawLi
         this.f5623a = bVar;
         bVar.setAllowTextEntitiesIntersection(true);
         bVar.setTextColor(k6.v0(k6.G6, g6Var));
-        bVar.setLinkTextColor(k6.v0(k6.f21720gc, g6Var));
+        bVar.setLinkTextColor(k6.v0(k6.f21722gc, g6Var));
         bVar.setHintTextColor(k6.v0(k6.H6, g6Var));
         bVar.setHint(LocaleController.getString(R.string.PollAddAnOptionHint));
         bVar.setTextSize(1, 15.0f);
@@ -96,10 +96,10 @@ public final class f extends FrameLayout implements ViewTreeObserver.OnPreDrawLi
 
     public static void a(f fVar) {
         l5 l5Var = fVar.f5627f;
-        a20.d(l5Var, fVar.E.f50505e);
+        a20.d(l5Var, fVar.E.f50541e);
         int i10 = k6.A6;
         xn xnVar = fVar.d;
-        l5Var.setTextColor(i0.a.d(fVar.F.f50505e, k6.v0(i10, xnVar.getResourceProvider()), k6.v0(k6.f21876p7, xnVar.getResourceProvider())));
+        l5Var.setTextColor(i0.a.d(fVar.F.f50541e, k6.v0(i10, xnVar.getResourceProvider()), k6.v0(k6.f21878p7, xnVar.getResourceProvider())));
     }
 
     public h getAttachedMedia() {
@@ -131,7 +131,7 @@ public final class f extends FrameLayout implements ViewTreeObserver.OnPreDrawLi
         t1 t1Var2 = this.f5628n;
         if (t1Var2 != null) {
             int id2 = t1Var2.getMessageObject().getId();
-            if (this.f5628n.isAttachedToWindow() && this.f5629r == id2 && (aVar = (t1Var = this.f5628n).X5) != null && t1Var.f23917k6) {
+            if (this.f5628n.isAttachedToWindow() && this.f5629r == id2 && (aVar = (t1Var = this.f5628n).X5) != null && t1Var.f23919k6) {
                 Rect bounds = aVar.getBounds();
                 Rect rect = this.B;
                 rect.set(bounds);

@@ -4,25 +4,25 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 public final class w2 implements TextWatcher {
-    public boolean f13058a;
-    public final u2 f13059b;
+    public boolean f13060a;
+    public final u2 f13061b;
 
     public w2(u2 u2Var) {
-        this.f13059b = u2Var;
+        this.f13061b = u2Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        if (!this.f13058a && editable.length() > 12) {
-            this.f13058a = true;
+        if (!this.f13060a && editable.length() > 12) {
+            this.f13060a = true;
             editable.delete(12, editable.length());
-            u2 u2Var = this.f13059b;
+            u2 u2Var = this.f13061b;
             AndroidUtilities.shakeView(u2Var);
             try {
                 u2Var.performHapticFeedback(3, 2);
             } catch (Exception unused) {
             }
-            this.f13058a = false;
+            this.f13060a = false;
         }
     }
 

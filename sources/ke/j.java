@@ -95,13 +95,13 @@ public final class j implements oe.a {
     public static void e(s sVar, s sVar2, int i10) {
         if (sVar != null && sVar2 != null && sVar != sVar2) {
             StringBuilder sb = new StringBuilder(i10);
-            sb.append(sVar.f15979g);
-            ne.p pVar = (ne.p) sVar2.f15977f;
-            for (ne.p pVar2 = (ne.p) sVar.f15977f; pVar2 != pVar; pVar2 = (ne.p) pVar2.f15977f) {
-                sb.append(((s) pVar2).f15979g);
+            sb.append(sVar.f15981g);
+            ne.p pVar = (ne.p) sVar2.f15979f;
+            for (ne.p pVar2 = (ne.p) sVar.f15979f; pVar2 != pVar; pVar2 = (ne.p) pVar2.f15979f) {
+                sb.append(((s) pVar2).f15981g);
                 pVar2.g();
             }
-            sVar.f15979g = sb.toString();
+            sVar.f15981g = sb.toString();
         }
     }
 
@@ -115,7 +115,7 @@ public final class j implements oe.a {
                 if (sVar == null) {
                     sVar = sVar2;
                 }
-                i10 = sVar2.f15979g.length() + i10;
+                i10 = sVar2.f15981g.length() + i10;
             } else {
                 e(sVar, sVar2, i10);
                 sVar = null;
@@ -125,7 +125,7 @@ public final class j implements oe.a {
             if (pVar == pVar2) {
                 break;
             }
-            pVar = (ne.p) pVar.f15977f;
+            pVar = (ne.p) pVar.f15979f;
         }
         e(sVar, sVar2, i10);
     }
@@ -201,16 +201,16 @@ public final class j implements oe.a {
                     s sVar2 = cVar4.f11109a;
                     cVar4.f11114g -= i10;
                     cVar2.f11114g -= i10;
-                    sVar2.f15979g = e2.c.j(sVar2.f15979g, i10, 0);
-                    sVar.f15979g = e2.c.j(sVar.f15979g, i10, 0);
+                    sVar2.f15981g = e2.c.j(sVar2.f15981g, i10, 0);
+                    sVar.f15981g = e2.c.j(sVar.f15981g, i10, 0);
                     c cVar5 = cVar2.f11112e;
                     while (cVar5 != null && cVar5 != cVar4) {
                         c cVar6 = cVar5.f11112e;
                         i(cVar5);
                         cVar5 = cVar6;
                     }
-                    if (sVar2 != sVar && (pVar = (ne.p) sVar2.f15977f) != sVar) {
-                        f(pVar, (ne.p) sVar.f15976e);
+                    if (sVar2 != sVar && (pVar = (ne.p) sVar2.f15979f) != sVar) {
+                        f(pVar, (ne.p) sVar.f15978e);
                     }
                     aVar.a(sVar2, sVar, i10);
                     if (cVar4.f11114g == 0) {

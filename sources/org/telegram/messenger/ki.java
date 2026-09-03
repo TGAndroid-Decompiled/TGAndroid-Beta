@@ -2,24 +2,24 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class ki implements Runnable {
-    public final int f19193a;
-    public final SecretChatHelper f19194b;
-    public final ArrayList f19195c;
+    public final int f19195a;
+    public final SecretChatHelper f19196b;
+    public final ArrayList f19197c;
 
     public ki(SecretChatHelper secretChatHelper, ArrayList arrayList, int i10) {
-        this.f19193a = i10;
-        this.f19194b = secretChatHelper;
-        this.f19195c = arrayList;
+        this.f19195a = i10;
+        this.f19196b = secretChatHelper;
+        this.f19197c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f19193a) {
+        switch (this.f19195a) {
             case 0:
-                this.f19194b.lambda$resendMessages$14(this.f19195c);
+                this.f19196b.lambda$resendMessages$14(this.f19197c);
                 return;
             default:
-                this.f19194b.lambda$processPendingEncMessages$0(this.f19195c);
+                this.f19196b.lambda$processPendingEncMessages$0(this.f19197c);
                 return;
         }
     }

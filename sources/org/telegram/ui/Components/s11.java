@@ -1,101 +1,60 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.ViewPropertyAnimator;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class s11 implements TextWatcher {
-    public final t11 f30943a;
+public final class s11 extends FrameLayout {
+    public final ImageView f30958a;
+    public final q11 f30959b;
+    public final ThemeEditorView.EditorAlert f30960c;
 
-    public s11(t11 t11Var) {
-        this.f30943a = t11Var;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z4;
-        boolean z10;
-        float f10;
-        if (this.f30943a.f31235b.length() > 0) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        float f11 = 0.0f;
-        if (this.f30943a.f31234a.getAlpha() != 0.0f) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z4 != z10) {
-            ViewPropertyAnimator animate = this.f30943a.f31234a.animate();
-            float f12 = 1.0f;
-            if (z4) {
-                f11 = 1.0f;
-            }
-            ViewPropertyAnimator duration = animate.alpha(f11).setDuration(150L);
-            if (z4) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.1f;
-            }
-            ViewPropertyAnimator scaleX = duration.scaleX(f10);
-            if (!z4) {
-                f12 = 0.1f;
-            }
-            scaleX.scaleY(f12).start();
-        }
-        String obj = this.f30943a.f31235b.getText().toString();
-        if (obj.length() != 0) {
-            oz ozVar = this.f30943a.f31236c.f25066e;
-            if (ozVar != null) {
-                ozVar.setText(LocaleController.getString(R.string.NoResult));
-            }
-        } else {
-            f2.p0 adapter = this.f30943a.f31236c.f25065c.getAdapter();
-            ThemeEditorView.EditorAlert editorAlert = this.f30943a.f31236c;
-            if (adapter != editorAlert.f25068n) {
-                int I = ThemeEditorView.EditorAlert.I(editorAlert);
-                this.f30943a.f31236c.f25066e.setText(LocaleController.getString(R.string.NoChats));
-                this.f30943a.f31236c.f25066e.c();
-                ThemeEditorView.EditorAlert editorAlert2 = this.f30943a.f31236c;
-                editorAlert2.f25065c.setAdapter(editorAlert2.f25068n);
-                this.f30943a.f31236c.f25068n.l();
-                if (I > 0) {
-                    this.f30943a.f31236c.h.h1(0, -I);
-                }
-            }
-        }
-        p11 p11Var = this.f30943a.f31236c.f25069r;
-        if (p11Var != null && !obj.equals(p11Var.f29929n)) {
-            p11Var.f29929n = obj;
-            if (p11Var.h != null) {
-                Utilities.searchQueue.cancelRunnable(p11Var.h);
-                p11Var.h = null;
-            }
-            if (obj.length() == 0) {
-                p11Var.f29927e.clear();
-                ThemeEditorView.EditorAlert editorAlert3 = p11Var.f29930r;
-                editorAlert3.C = ThemeEditorView.EditorAlert.I(editorAlert3);
-                p11Var.d = -1;
-                p11Var.l();
-                return;
-            }
-            int i10 = p11Var.d + 1;
-            p11Var.d = i10;
-            p11Var.h = new gy(p11Var, obj, i10, 20);
-            Utilities.searchQueue.postRunnable(p11Var.h, 300L);
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public s11(ThemeEditorView.EditorAlert editorAlert, Context context) {
+        super(context);
+        this.f30960c = editorAlert;
+        View view = new View(context);
+        view.setBackgroundDrawable(org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(18.0f), -854795));
+        addView(view, k7.c6.d(-1, 36.0f, 51, 14.0f, 11.0f, 14.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setImageResource(R.drawable.smiles_inputsearch);
+        imageView.setColorFilter(new PorterDuffColorFilter(-6182737, PorterDuff.Mode.MULTIPLY));
+        addView(imageView, k7.c6.d(36, 36.0f, 51, 16.0f, 11.0f, 0.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f30958a = imageView2;
+        imageView2.setScaleType(scaleType);
+        fq fqVar = new fq();
+        imageView2.setImageDrawable(fqVar);
+        fqVar.f26978f = AndroidUtilities.dp(7.0f);
+        imageView2.setScaleX(0.1f);
+        imageView2.setScaleY(0.1f);
+        imageView2.setAlpha(0.0f);
+        addView(imageView2, k7.c6.d(36, 36.0f, 53, 14.0f, 11.0f, 14.0f, 0.0f));
+        imageView2.setOnClickListener(new b80(this, 21));
+        q11 q11Var = new q11(this, context);
+        this.f30959b = q11Var;
+        q11Var.setTextSize(1, 16.0f);
+        q11Var.setHintTextColor(-6774617);
+        q11Var.setTextColor(-14540254);
+        q11Var.setBackgroundDrawable(null);
+        q11Var.setPadding(0, 0, 0, 0);
+        q11Var.setMaxLines(1);
+        q11Var.setLines(1);
+        q11Var.setSingleLine(true);
+        q11Var.setImeOptions(268435459);
+        q11Var.setHint(LocaleController.getString(R.string.Search));
+        q11Var.setCursorColor(-11491093);
+        q11Var.setCursorSize(AndroidUtilities.dp(20.0f));
+        q11Var.setCursorWidth(1.5f);
+        addView(q11Var, k7.c6.d(-1, 40.0f, 51, 54.0f, 9.0f, 46.0f, 0.0f));
+        q11Var.addTextChangedListener(new r11(this));
+        q11Var.setOnEditorActionListener(new d1(this, 9));
     }
 }

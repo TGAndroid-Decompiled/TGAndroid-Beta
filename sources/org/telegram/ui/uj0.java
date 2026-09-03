@@ -36,7 +36,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadialProgressView;
 public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterView.OnItemSelectedListener {
-    public static final int f41952a0 = 0;
+    public static final int f41852a0 = 0;
     public boolean B;
     public boolean C;
     public boolean D;
@@ -62,19 +62,19 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
     public final TextView X;
     public String Y;
     public int Z;
-    public final LinearLayout f41953b;
-    public final org.telegram.ui.Components.tq f41954c;
+    public final LinearLayout f41853b;
+    public final org.telegram.ui.Components.tq f41854c;
     public final org.telegram.ui.Components.bd0 d;
-    public final org.telegram.ui.Components.bd0 f41955e;
-    public final FrameLayout f41956f;
+    public final org.telegram.ui.Components.bd0 f41855e;
+    public final FrameLayout f41856f;
     public final View h;
-    public final qh.d f41957n;
-    public final org.telegram.ui.Components.bd0 f41958r;
-    public final org.telegram.ui.Components.cd0 f41959s;
+    public final qh.d f41857n;
+    public final org.telegram.ui.Components.bd0 f41858r;
+    public final org.telegram.ui.Components.cd0 f41859s;
     public final org.telegram.ui.Components.g90 v;
-    public final ArrayList f41960w;
-    public final HashMap f41961x;
-    public final HashMap f41962y;
+    public final ArrayList f41860w;
+    public final HashMap f41861x;
+    public final HashMap f41862y;
 
     public uj0(android.content.Context r25, org.telegram.ui.ActionBar.p2 r26) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.uj0.<init>(android.content.Context, org.telegram.ui.ActionBar.p2):void");
@@ -124,9 +124,9 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
         boolean z4 = false;
         for (int min = Math.min(3, replaceAll.length()); min >= 0; min--) {
             String substring = replaceAll.substring(0, min);
-            List list = (List) uj0Var.f41961x.get(substring);
+            List list = (List) uj0Var.f41861x.get(substring);
             if (list != null && !list.isEmpty()) {
-                List list2 = (List) uj0Var.f41962y.get(substring);
+                List list2 = (List) uj0Var.f41862y.get(substring);
                 if (list2 != null && !list2.isEmpty()) {
                     Iterator it = list2.iterator();
                     while (true) {
@@ -200,14 +200,14 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
         arrayList.add(new org.telegram.ui.ActionBar.m6(this.d, 4, null, null, null, null, i10));
         int i11 = org.telegram.ui.ActionBar.k6.H6;
         arrayList.add(new org.telegram.ui.ActionBar.m6(this.d, 8388608, null, null, null, null, i11));
-        int i12 = org.telegram.ui.ActionBar.k6.f21785k6;
+        int i12 = org.telegram.ui.ActionBar.k6.f21787k6;
         arrayList.add(new org.telegram.ui.ActionBar.m6(this.d, 32, null, null, null, null, i12));
-        int i13 = org.telegram.ui.ActionBar.k6.f21803l6;
+        int i13 = org.telegram.ui.ActionBar.k6.f21805l6;
         arrayList.add(new org.telegram.ui.ActionBar.m6(this.d, 65568, null, null, null, null, i13));
-        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f41955e, 4, null, null, null, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f41955e, 8388608, null, null, null, null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f41955e, 32, null, null, null, null, i12));
-        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f41955e, 65568, null, null, null, null, i13));
+        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f41855e, 4, null, null, null, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f41855e, 8388608, null, null, null, null, i11));
+        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f41855e, 32, null, null, null, null, i12));
+        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f41855e, 65568, null, null, null, null, i13));
         arrayList.add(new org.telegram.ui.ActionBar.m6(this.L, 4, null, null, null, null, i10));
         arrayList.add(new org.telegram.ui.ActionBar.m6(this.L, 32, null, null, null, null, i12));
         arrayList.add(new org.telegram.ui.ActionBar.m6(this.L, 65568, null, null, null, null, i13));
@@ -215,8 +215,8 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
         arrayList.add(new org.telegram.ui.ActionBar.m6(this.N, 8388608, null, null, null, null, i11));
         arrayList.add(new org.telegram.ui.ActionBar.m6(this.N, 32, null, null, null, null, i12));
         arrayList.add(new org.telegram.ui.ActionBar.m6(this.N, 65568, null, null, null, null, i13));
-        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f41954c, 0, null, null, null, null, org.telegram.ui.ActionBar.k6.D7));
-        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f41954c, 0, null, null, null, null, org.telegram.ui.ActionBar.k6.E7));
+        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f41854c, 0, null, null, null, null, org.telegram.ui.ActionBar.k6.D7));
+        arrayList.add(new org.telegram.ui.ActionBar.m6(this.f41854c, 0, null, null, null, null, org.telegram.ui.ActionBar.k6.E7));
         return arrayList;
     }
 
@@ -227,7 +227,7 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
             return;
         }
         this.B = true;
-        this.L.setText(((tt) this.f41960w.get(i10)).f41705c);
+        this.L.setText(((tt) this.f41860w.get(i10)).f41633c);
         this.B = false;
     }
 
@@ -238,9 +238,9 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
         AndroidUtilities.updateViewVisibilityAnimated(this.V, true, 0.5f, true);
         String str2 = "+" + this.L.getText().toString() + this.N.getText().toString();
         String obj = this.d.getEditText().getText().toString();
-        String obj2 = this.f41955e.getEditText().getText().toString();
-        if (this.f41958r.getVisibility() == 0) {
-            str = this.f41958r.getEditText().getText().toString();
+        String obj2 = this.f41855e.getEditText().getText().toString();
+        if (this.f41858r.getVisibility() == 0) {
+            str = this.f41858r.getEditText().getText().toString();
         } else {
             str = "";
         }
@@ -257,7 +257,7 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
         }
         tL_contacts_importContacts.contacts.add(tL_inputPhoneContact);
         ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_importContacts, new ba(this, tL_inputPhoneContact, tL_contacts_importContacts, 26), 2), this.K);
-        if (this.P.f29606a.f24809q) {
+        if (this.P.f29560a.f24811q) {
             Context context = getContext();
             ArrayList<ContentProviderOperation> arrayList = new ArrayList<>();
             ContentProviderOperation.Builder newInsert = ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI);
@@ -295,7 +295,7 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
     public final void t(CharSequence charSequence) {
         if (TextUtils.isEmpty(charSequence)) {
             ViewPropertyAnimator animate = this.T.animate();
-            org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.f30183f;
+            org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.f30168f;
             animate.setInterpolator(prVar).translationY(AndroidUtilities.dp(30.0f)).setDuration(150L);
             this.X.animate().setInterpolator(prVar).translationX(-AndroidUtilities.dp(30.0f)).setDuration(150L);
             this.L.animate().setInterpolator(prVar).translationX(-AndroidUtilities.dp(30.0f)).setDuration(150L);
@@ -303,7 +303,7 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
         }
         this.T.animate().setInterpolator(AndroidUtilities.overshootInterpolator).translationY(0.0f).setDuration(350L).start();
         ViewPropertyAnimator animate2 = this.X.animate();
-        org.telegram.ui.Components.pr prVar2 = org.telegram.ui.Components.pr.f30183f;
+        org.telegram.ui.Components.pr prVar2 = org.telegram.ui.Components.pr.f30168f;
         animate2.setInterpolator(prVar2).translationX(0.0f).setDuration(150L);
         this.L.animate().setInterpolator(prVar2).translationX(0.0f).setDuration(150L);
         this.T.setText(charSequence);
@@ -326,9 +326,9 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
                 int i10 = 4;
                 while (true) {
                     if (i10 >= 1) {
-                        List list = (List) this.f41961x.get(str2.substring(0, i10));
+                        List list = (List) this.f41861x.get(str2.substring(0, i10));
                         if (list != null && list.size() > 0) {
-                            String str3 = ((tt) list.get(0)).f41705c;
+                            String str3 = ((tt) list.get(0)).f41633c;
                             this.L.setText(str3);
                             if (str3.endsWith("0") && this.F.startsWith("0")) {
                                 this.F = this.F.substring(1);
@@ -369,7 +369,7 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
         ViewPropertyAnimator translationY = animate.translationY(f10);
         org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.h;
         b.p(translationY, prVar, 420L);
-        ViewPropertyAnimator animate2 = this.f41956f.animate();
+        ViewPropertyAnimator animate2 = this.f41856f.animate();
         if (z4) {
             f11 = -AndroidUtilities.dp(10.665f);
         }
@@ -383,13 +383,13 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
         float f11;
         float f12;
         float f13;
-        boolean z10 = this.P.f29606a.f24809q;
+        boolean z10 = this.P.f29560a.f24811q;
         final boolean z11 = !z10;
         float f14 = 0.0f;
         int i12 = 0;
         if (z4) {
-            this.f41957n.setVisibility(0);
-            ViewPropertyAnimator animate = this.f41957n.animate();
+            this.f41857n.setVisibility(0);
+            ViewPropertyAnimator animate = this.f41857n.animate();
             if (!z10) {
                 f12 = 1.0f;
             } else {
@@ -398,10 +398,10 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
             ViewPropertyAnimator alpha = animate.alpha(f12);
             org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.h;
             alpha.setInterpolator(prVar).setDuration(420L).withEndAction(new Runnable(this) {
-                public final uj0 f40070b;
+                public final uj0 f40032b;
 
                 {
-                    this.f40070b = this;
+                    this.f40032b = this;
                 }
 
                 @Override
@@ -409,9 +409,9 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
                     switch (r3) {
                         case 0:
                             boolean z12 = z11;
-                            uj0 uj0Var = this.f40070b;
+                            uj0 uj0Var = this.f40032b;
                             if (!z12) {
-                                uj0Var.f41957n.setVisibility(4);
+                                uj0Var.f41857n.setVisibility(4);
                                 return;
                             } else {
                                 uj0Var.getClass();
@@ -419,7 +419,7 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
                             }
                         case 1:
                             boolean z13 = z11;
-                            uj0 uj0Var2 = this.f40070b;
+                            uj0 uj0Var2 = this.f40032b;
                             if (!z13) {
                                 uj0Var2.h.setVisibility(4);
                                 return;
@@ -429,9 +429,9 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
                             }
                         default:
                             boolean z14 = z11;
-                            uj0 uj0Var3 = this.f40070b;
+                            uj0 uj0Var3 = this.f40032b;
                             if (z14) {
-                                uj0Var3.f41958r.setVisibility(4);
+                                uj0Var3.f41858r.setVisibility(4);
                                 return;
                             } else {
                                 uj0Var3.getClass();
@@ -448,10 +448,10 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
                 f13 = 0.0f;
             }
             animate2.alpha(f13).setInterpolator(prVar).setDuration(420L).withEndAction(new Runnable(this) {
-                public final uj0 f40070b;
+                public final uj0 f40032b;
 
                 {
-                    this.f40070b = this;
+                    this.f40032b = this;
                 }
 
                 @Override
@@ -459,9 +459,9 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
                     switch (r3) {
                         case 0:
                             boolean z12 = z11;
-                            uj0 uj0Var = this.f40070b;
+                            uj0 uj0Var = this.f40032b;
                             if (!z12) {
-                                uj0Var.f41957n.setVisibility(4);
+                                uj0Var.f41857n.setVisibility(4);
                                 return;
                             } else {
                                 uj0Var.getClass();
@@ -469,7 +469,7 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
                             }
                         case 1:
                             boolean z13 = z11;
-                            uj0 uj0Var2 = this.f40070b;
+                            uj0 uj0Var2 = this.f40032b;
                             if (!z13) {
                                 uj0Var2.h.setVisibility(4);
                                 return;
@@ -479,9 +479,9 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
                             }
                         default:
                             boolean z14 = z11;
-                            uj0 uj0Var3 = this.f40070b;
+                            uj0 uj0Var3 = this.f40032b;
                             if (z14) {
-                                uj0Var3.f41958r.setVisibility(4);
+                                uj0Var3.f41858r.setVisibility(4);
                                 return;
                             } else {
                                 uj0Var3.getClass();
@@ -490,16 +490,16 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
                     }
                 }
             }).start();
-            this.f41958r.setVisibility(0);
-            ViewPropertyAnimator animate3 = this.f41958r.animate();
+            this.f41858r.setVisibility(0);
+            ViewPropertyAnimator animate3 = this.f41858r.animate();
             if (z10) {
                 f14 = 1.0f;
             }
             animate3.alpha(f14).setInterpolator(prVar).setDuration(420L).withEndAction(new Runnable(this) {
-                public final uj0 f40070b;
+                public final uj0 f40032b;
 
                 {
-                    this.f40070b = this;
+                    this.f40032b = this;
                 }
 
                 @Override
@@ -507,9 +507,9 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
                     switch (r3) {
                         case 0:
                             boolean z12 = z11;
-                            uj0 uj0Var = this.f40070b;
+                            uj0 uj0Var = this.f40032b;
                             if (!z12) {
-                                uj0Var.f41957n.setVisibility(4);
+                                uj0Var.f41857n.setVisibility(4);
                                 return;
                             } else {
                                 uj0Var.getClass();
@@ -517,7 +517,7 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
                             }
                         case 1:
                             boolean z13 = z11;
-                            uj0 uj0Var2 = this.f40070b;
+                            uj0 uj0Var2 = this.f40032b;
                             if (!z13) {
                                 uj0Var2.h.setVisibility(4);
                                 return;
@@ -527,9 +527,9 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
                             }
                         default:
                             boolean z14 = z11;
-                            uj0 uj0Var3 = this.f40070b;
+                            uj0 uj0Var3 = this.f40032b;
                             if (z14) {
-                                uj0Var3.f41958r.setVisibility(4);
+                                uj0Var3.f41858r.setVisibility(4);
                                 return;
                             } else {
                                 uj0Var3.getClass();
@@ -540,19 +540,19 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
             }).start();
             return;
         }
-        this.f41957n.animate().cancel();
+        this.f41857n.animate().cancel();
         if (!z10) {
             i10 = 0;
         } else {
             i10 = 4;
         }
-        this.f41957n.setVisibility(i10);
+        this.f41857n.setVisibility(i10);
         if (!z10) {
             f10 = 1.0f;
         } else {
             f10 = 0.0f;
         }
-        this.f41957n.setAlpha(f10);
+        this.f41857n.setAlpha(f10);
         this.h.animate().cancel();
         if (!z10) {
             i11 = 0;
@@ -566,15 +566,15 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
             f11 = 0.0f;
         }
         this.h.setAlpha(f11);
-        this.f41958r.animate().cancel();
+        this.f41858r.animate().cancel();
         if (!z10) {
             i12 = 4;
         }
-        this.f41958r.setVisibility(i12);
+        this.f41858r.setVisibility(i12);
         if (z10) {
             f14 = 1.0f;
         }
-        this.f41958r.setAlpha(f14);
+        this.f41858r.setAlpha(f14);
     }
 
     public final void y(String str) {
@@ -589,7 +589,7 @@ public final class uj0 extends org.telegram.ui.ActionBar.h3 implements AdapterVi
             return;
         }
         b.p(this.O.animate().scaleX(1.0f).scaleY(1.0f).alpha(1.0f), org.telegram.ui.Components.pr.h, 420L);
-        this.O.setImageDrawable(new org.telegram.ui.Components.tp(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(3.0f), getThemedColor(org.telegram.ui.ActionBar.k6.f21820m5)));
+        this.O.setImageDrawable(new org.telegram.ui.Components.tp(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(3.0f), getThemedColor(org.telegram.ui.ActionBar.k6.f21822m5)));
         this.v.setText("");
         w(true);
         org.telegram.ui.Components.xk xkVar = new org.telegram.ui.Components.xk(18, this, str);

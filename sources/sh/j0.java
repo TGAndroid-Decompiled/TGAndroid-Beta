@@ -14,21 +14,21 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.u5;
 public final class j0 extends FrameLayout {
-    public final jh.s f47465a;
-    public final ImageView f47466b;
-    public final TL_keyboard.KeyboardButton f47467c;
+    public final jh.s f47501a;
+    public final ImageView f47502b;
+    public final TL_keyboard.KeyboardButton f47503c;
     public boolean d;
-    public boolean f47468e;
-    public boolean f47469f;
+    public boolean f47504e;
+    public boolean f47505f;
     public boolean h;
-    public final l0 f47470n;
+    public final l0 f47506n;
 
     public j0(l0 l0Var, Context context, TL_keyboard.KeyboardButton keyboardButton) {
         super(context);
-        this.f47470n = l0Var;
-        this.f47467c = keyboardButton;
+        this.f47506n = l0Var;
+        this.f47503c = keyboardButton;
         jh.s sVar = new jh.s(context);
-        this.f47465a = sVar;
+        this.f47501a = sVar;
         sVar.f10189f = false;
         sVar.setTextSize(1, 14.0f);
         sVar.setTypeface(AndroidUtilities.bold());
@@ -44,8 +44,8 @@ public final class j0 extends FrameLayout {
         }
         spannableStringBuilder.append(Emoji.replaceEmoji(keyboardButton.text, sVar.getPaint().getFontMetricsInt(), false));
         ImageView imageView = new ImageView(getContext());
-        this.f47466b = imageView;
-        imageView.setColorFilter(k6.v0(k6.Xe, l0Var.f47503a));
+        this.f47502b = imageView;
+        imageView.setColorFilter(k6.v0(k6.Xe, l0Var.f47539a));
         if (mf.c.b(keyboardButton)) {
             imageView.setImageResource(R.drawable.bot_webview);
             imageView.setVisibility(0);
@@ -70,35 +70,35 @@ public final class j0 extends FrameLayout {
         int dp = AndroidUtilities.dp(21.0f);
         int dp2 = AndroidUtilities.dp(11.0f);
         int i16 = k6.Ye;
-        g6 g6Var = this.f47470n.f47503a;
+        g6 g6Var = this.f47506n.f47539a;
         int v02 = k6.v0(i16, g6Var);
         int v03 = k6.v0(k6.Ze, g6Var);
         int v04 = k6.v0(k6.Xe, g6Var);
-        TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.f47467c.style;
+        TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.f47503c.style;
         if (keyboardButtonStyle != null) {
             if (keyboardButtonStyle.bg_primary) {
                 l1 = k6.l1(0.8f, k6.v0(k6.dl, g6Var));
-                h = i0.a.h(k6.v0(k6.f21750i6, g6Var), l1);
+                h = i0.a.h(k6.v0(k6.f21752i6, g6Var), l1);
             } else if (keyboardButtonStyle.bg_danger) {
                 l1 = k6.l1(0.8f, k6.v0(k6.el, g6Var));
-                h = i0.a.h(k6.v0(k6.f21750i6, g6Var), l1);
+                h = i0.a.h(k6.v0(k6.f21752i6, g6Var), l1);
             } else if (keyboardButtonStyle.bg_success) {
                 l1 = k6.l1(0.8f, k6.v0(k6.fl, g6Var));
-                h = i0.a.h(k6.v0(k6.f21750i6, g6Var), l1);
+                h = i0.a.h(k6.v0(k6.f21752i6, g6Var), l1);
             }
             i10 = l1;
             i11 = h;
             v04 = -1;
-            this.f47466b.setColorFilter(v04);
-            this.f47465a.setTextColor(v04);
+            this.f47502b.setColorFilter(v04);
+            this.f47501a.setTextColor(v04);
             z4 = this.d;
-            if (!z4 && this.f47468e) {
+            if (!z4 && this.f47504e) {
                 i12 = dp;
             } else {
                 i12 = dp2;
             }
-            z10 = this.f47469f;
-            if (!z10 && this.f47468e) {
+            z10 = this.f47505f;
+            if (!z10 && this.f47504e) {
                 i13 = dp;
             } else {
                 i13 = dp2;
@@ -117,13 +117,13 @@ public final class j0 extends FrameLayout {
         }
         i10 = v02;
         i11 = v03;
-        this.f47466b.setColorFilter(v04);
-        this.f47465a.setTextColor(v04);
+        this.f47502b.setColorFilter(v04);
+        this.f47501a.setTextColor(v04);
         z4 = this.d;
         if (!z4) {
         }
         i12 = dp2;
-        z10 = this.f47469f;
+        z10 = this.f47505f;
         if (!z10) {
         }
         i13 = dp2;

@@ -7,14 +7,14 @@ import java.util.SortedSet;
 public final class s0 extends r0 implements SortedSet {
     @Override
     public final Comparator comparator() {
-        return ((SortedSet) this.f47136a).comparator();
+        return ((SortedSet) this.f47167a).comparator();
     }
 
     @Override
     public final Object first() {
-        Iterator it = this.f47136a.iterator();
+        Iterator it = this.f47167a.iterator();
         it.getClass();
-        r8.f fVar = this.f47137b;
+        r8.f fVar = this.f47168b;
         fVar.getClass();
         while (it.hasNext()) {
             Object next = it.next();
@@ -27,15 +27,15 @@ public final class s0 extends r0 implements SortedSet {
 
     @Override
     public final SortedSet headSet(Object obj) {
-        return new r0(((SortedSet) this.f47136a).headSet(obj), this.f47137b);
+        return new r0(((SortedSet) this.f47167a).headSet(obj), this.f47168b);
     }
 
     @Override
     public final Object last() {
-        SortedSet sortedSet = (SortedSet) this.f47136a;
+        SortedSet sortedSet = (SortedSet) this.f47167a;
         while (true) {
             Object last = sortedSet.last();
-            if (this.f47137b.apply(last)) {
+            if (this.f47168b.apply(last)) {
                 return last;
             }
             sortedSet = sortedSet.headSet(last);
@@ -44,11 +44,11 @@ public final class s0 extends r0 implements SortedSet {
 
     @Override
     public final SortedSet subSet(Object obj, Object obj2) {
-        return new r0(((SortedSet) this.f47136a).subSet(obj, obj2), this.f47137b);
+        return new r0(((SortedSet) this.f47167a).subSet(obj, obj2), this.f47168b);
     }
 
     @Override
     public final SortedSet tailSet(Object obj) {
-        return new r0(((SortedSet) this.f47136a).tailSet(obj), this.f47137b);
+        return new r0(((SortedSet) this.f47167a).tailSet(obj), this.f47168b);
     }
 }

@@ -1,18 +1,53 @@
 package org.telegram.ui.Components;
-public final class t41 {
-    public final c51 f31259a;
-    public final f51 f31260b;
 
-    public t41(f51 f51Var, c51 c51Var) {
-        this.f31260b = f51Var;
-        this.f31259a = c51Var;
+import android.content.Context;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+public final class t41 extends sl0 {
+    public final a51 U2;
+    public final d51 V2;
+
+    public t41(d51 d51Var, Context context, a51 a51Var) {
+        super(context, null);
+        this.V2 = d51Var;
+        this.U2 = a51Var;
     }
 
-    public final int a() {
-        return this.f31260b.f26764s.v;
+    @Override
+    public final boolean E0(float f10) {
+        if (f10 >= AndroidUtilities.dp(58.0f) + this.V2.B) {
+            return true;
+        }
+        return false;
     }
 
-    public final void b(boolean r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.t41.b(boolean):void");
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        this.V2.C = true;
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        boolean d = this.U2.d(this, motionEvent);
+        if (!super.onInterceptTouchEvent(motionEvent) && !d) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.V2.I != null) {
+            return false;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (!this.V2.E) {
+            super.requestLayout();
+        }
     }
 }

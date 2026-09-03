@@ -107,7 +107,7 @@ public final class g {
                     f("Loaded cached settings: ", O);
                     ((db.a) this.d).getClass();
                     long currentTimeMillis = System.currentTimeMillis();
-                    if (!j.b(3, i10) && i11.f44219c < currentTimeMillis) {
+                    if (!j.b(3, i10) && i11.f44250c < currentTimeMillis) {
                         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                             Log.v("FirebaseCrashlytics", "Cached settings have expired.", null);
                             return null;

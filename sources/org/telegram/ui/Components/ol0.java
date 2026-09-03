@@ -1,134 +1,172 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
+import android.util.SparseIntArray;
 import android.view.View;
-import android.view.ViewConfiguration;
-import org.telegram.messenger.AndroidUtilities;
-public final class ol0 extends n20 {
-    public View f29796a;
-    public final f2.y f29797b;
+import j$.util.Objects;
+import java.util.ArrayList;
+public abstract class ol0 extends cl0 {
+    public SparseIntArray f29806c;
+    public SparseIntArray d;
+    public SparseIntArray f29807e;
+    public int f29808f;
+    public int h;
+    public final ArrayList f29809n = new ArrayList();
 
-    public ol0(f2.y yVar) {
-        this.f29797b = yVar;
+    public ol0() {
+        L();
     }
 
     @Override
-    public final boolean a() {
-        if (((tl0) this.f29797b.f5956b).V0 != null) {
-            return true;
-        }
-        return false;
+    public final boolean D(f2.m1 m1Var) {
+        int b10 = m1Var.b();
+        return V(S(b10), Q(b10), m1Var);
     }
 
-    public final void b(MotionEvent motionEvent, View view) {
-        tl0 tl0Var = (tl0) this.f29797b.f5956b;
-        if (view != null) {
-            if (tl0Var.S0 != null || tl0Var.T0 != null) {
-                float x10 = motionEvent.getX();
-                float y10 = motionEvent.getY();
-                tl0Var.h1(view, x10, y10, true);
-                int i10 = tl0Var.L1;
-                if (tl0Var.O1 && i10 != -1) {
-                    try {
-                        view.playSoundEffect(0);
-                    } catch (Exception unused) {
-                    }
-                    view.sendAccessibilityEvent(1);
-                    jl0 jl0Var = tl0Var.S0;
-                    if (jl0Var != null) {
-                        jl0Var.f(i10, view);
-                    } else {
-                        kl0 kl0Var = tl0Var.T0;
-                        if (kl0Var != null) {
-                            kl0Var.c(x10 - view.getX(), y10 - view.getY(), i10, view);
-                        }
-                    }
-                }
-                nl0 nl0Var = new nl0(this, view, i10, x10, y10);
-                tl0Var.P1 = nl0Var;
-                AndroidUtilities.runOnUIThread(nl0Var, ViewConfiguration.getPressedStateDuration());
-                gg.d dVar = tl0Var.f31361b1;
-                if (dVar != null) {
-                    AndroidUtilities.cancelRunOnUIThread(dVar);
-                    tl0Var.f31361b1 = null;
-                    tl0Var.K1 = null;
-                    tl0Var.M1 = false;
-                    tl0Var.k1(motionEvent, view);
-                }
+    public final void L() {
+        SparseIntArray sparseIntArray = this.d;
+        if (sparseIntArray == null) {
+            this.d = new SparseIntArray();
+            this.f29806c = new SparseIntArray();
+            this.f29807e = new SparseIntArray();
+        } else {
+            sparseIntArray.clear();
+            this.f29806c.clear();
+            this.f29807e.clear();
+        }
+        this.h = -1;
+        this.f29808f = -1;
+    }
+
+    public abstract int M(int i10);
+
+    public int N(int i10, int i11) {
+        return Objects.hash(Integer.valueOf((-49612) * i10), O(i10, i11));
+    }
+
+    public abstract Object O(int i10, int i11);
+
+    public abstract int P(int i10, int i11);
+
+    public final int Q(int i10) {
+        int i11 = this.f29806c.get(i10, Integer.MAX_VALUE);
+        if (i11 != Integer.MAX_VALUE) {
+            return i11;
+        }
+        int i12 = this.f29808f;
+        if (i12 < 0) {
+            i12 = R();
+            this.f29808f = i12;
+        }
+        int i13 = 0;
+        int i14 = 0;
+        while (i13 < i12) {
+            int U = U(i13) + i14;
+            if (i10 >= i14 && i10 < U) {
+                int i15 = i10 - i14;
+                this.f29806c.put(i10, i15);
+                return i15;
+            }
+            i13++;
+            i14 = U;
+        }
+        return -1;
+    }
+
+    public abstract int R();
+
+    public final int S(int i10) {
+        int i11 = this.d.get(i10, Integer.MAX_VALUE);
+        if (i11 != Integer.MAX_VALUE) {
+            return i11;
+        }
+        int i12 = this.f29808f;
+        if (i12 < 0) {
+            i12 = R();
+            this.f29808f = i12;
+        }
+        int i13 = 0;
+        int i14 = 0;
+        while (i13 < i12) {
+            int U = U(i13) + i14;
+            if (i10 >= i14 && i10 < U) {
+                this.d.put(i10, i13);
+                return i13;
+            }
+            i13++;
+            i14 = U;
+        }
+        return -1;
+    }
+
+    public abstract View T(int i10, View view);
+
+    public final int U(int i10) {
+        int i11 = this.f29807e.get(i10, Integer.MAX_VALUE);
+        if (i11 != Integer.MAX_VALUE) {
+            return i11;
+        }
+        int M = M(i10);
+        this.f29807e.put(i10, M);
+        return M;
+    }
+
+    public abstract boolean V(int i10, int i11, f2.m1 m1Var);
+
+    public abstract void W(int i10, int i11, f2.m1 m1Var);
+
+    public final void X(boolean z4) {
+        ArrayList arrayList = this.f29809n;
+        ArrayList arrayList2 = new ArrayList(arrayList);
+        L();
+        arrayList.clear();
+        int i10 = this.f29808f;
+        if (i10 < 0) {
+            i10 = R();
+            this.f29808f = i10;
+        }
+        for (int i11 = 0; i11 < i10; i11++) {
+            int U = U(i11);
+            for (int i12 = 0; i12 < U; i12++) {
+                arrayList.add(Integer.valueOf(N(i11, i12)));
             }
         }
-    }
-
-    @Override
-    public final boolean onDoubleTap(MotionEvent motionEvent) {
-        kl0 kl0Var;
-        tl0 tl0Var = (tl0) this.f29797b.f5956b;
-        View view = this.f29796a;
-        if (view != null && (kl0Var = tl0Var.T0) != null && kl0Var.Y0(view)) {
-            tl0Var.T0.r0(this.f29796a, motionEvent.getX(), motionEvent.getY());
-            this.f29796a = null;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void onLongPress(MotionEvent motionEvent) {
-        int i10;
-        tl0 tl0Var = (tl0) this.f29797b.f5956b;
-        View view = tl0Var.K1;
-        if (view != null && (i10 = tl0Var.L1) != -1) {
-            ll0 ll0Var = tl0Var.U0;
-            if (ll0Var != null || tl0Var.V0 != null) {
-                if (ll0Var != null) {
-                    if (ll0Var.f(i10, view)) {
-                        try {
-                            view.performHapticFeedback(0);
-                        } catch (Exception unused) {
-                        }
-                        view.sendAccessibilityEvent(2);
-                    }
-                } else if (tl0Var.V0.mo17c(motionEvent.getX() - tl0Var.K1.getX(), motionEvent.getY() - tl0Var.K1.getY(), i10, view)) {
-                    try {
-                        view.performHapticFeedback(0);
-                    } catch (Exception unused2) {
-                    }
-                    view.sendAccessibilityEvent(2);
-                    tl0Var.W0 = true;
-                }
-            }
+        if (z4) {
+            f2.q.c(new cg.a(this, arrayList2, 2), true).b(this);
+        } else {
+            super.l();
         }
     }
 
     @Override
-    public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        kl0 kl0Var;
-        View view = this.f29796a;
-        if (view != null && (kl0Var = ((tl0) this.f29797b.f5956b).T0) != null && kl0Var.Y0(view)) {
-            b(motionEvent, this.f29796a);
-            this.f29796a = null;
-            return true;
+    public final int h() {
+        int i10 = this.h;
+        if (i10 >= 0) {
+            return i10;
         }
-        return false;
+        this.h = 0;
+        int i11 = this.f29808f;
+        if (i11 < 0) {
+            i11 = R();
+            this.f29808f = i11;
+        }
+        for (int i12 = 0; i12 < i11; i12++) {
+            this.h = U(i12) + this.h;
+        }
+        return this.h;
     }
 
     @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        tl0 tl0Var = (tl0) this.f29797b.f5956b;
-        View view = tl0Var.K1;
-        if (view != null) {
-            kl0 kl0Var = tl0Var.T0;
-            if (kl0Var != null && kl0Var.Y0(view)) {
-                this.f29796a = tl0Var.K1;
-                return false;
-            }
-            b(motionEvent, tl0Var.K1);
-        }
-        return false;
+    public final int j(int i10) {
+        return P(S(i10), Q(i10));
+    }
+
+    @Override
+    public void l() {
+        X(false);
+    }
+
+    @Override
+    public final void v(f2.m1 m1Var, int i10) {
+        W(S(i10), Q(i10), m1Var);
     }
 }

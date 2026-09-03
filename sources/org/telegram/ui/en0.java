@@ -8,14 +8,14 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class en0 extends FrameLayout {
-    public TextView f36621a;
-    public TextView f36622b;
-    public ImageView f36623c;
+    public TextView f36528a;
+    public TextView f36529b;
+    public ImageView f36530c;
     public boolean d;
 
     public final void a(String str, boolean z4) {
-        this.f36621a.setText(str);
-        this.f36622b.setText("");
+        this.f36528a.setText(str);
+        this.f36529b.setText("");
         this.d = z4;
         setWillNotDraw(!z4);
     }
@@ -37,7 +37,7 @@ public final class en0 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21779k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21781k0);
         }
     }
 
@@ -48,7 +48,7 @@ public final class en0 extends FrameLayout {
 
     public void setChecked(boolean z4) {
         int i10;
-        ImageView imageView = this.f36623c;
+        ImageView imageView = this.f36530c;
         if (z4) {
             i10 = 0;
         } else {
@@ -64,6 +64,6 @@ public final class en0 extends FrameLayout {
     }
 
     public void setValue(CharSequence charSequence) {
-        this.f36622b.setText(charSequence);
+        this.f36529b.setText(charSequence);
     }
 }

@@ -126,7 +126,7 @@ public final class s implements Runnable {
                 iVar3.b(recyclerView2, true);
                 if (iVar3.f735c != 0) {
                     try {
-                        int i17 = n0.g.f15180a;
+                        int i17 = n0.g.f15182a;
                         Trace.beginSection("RV Nested Prefetch");
                         j1 j1Var = recyclerView2.f1339q0;
                         p0 p0Var = recyclerView2.f1347w;
@@ -145,7 +145,7 @@ public final class s implements Runnable {
                         rVar.d = null;
                         rVar.f5916e = 0;
                     } catch (Throwable th2) {
-                        int i19 = n0.g.f15180a;
+                        int i19 = n0.g.f15182a;
                         Trace.endSection();
                         throw th2;
                     }
@@ -163,7 +163,7 @@ public final class s implements Runnable {
     public final void run() {
         ArrayList arrayList = this.f5922a;
         try {
-            int i10 = n0.g.f15180a;
+            int i10 = n0.g.f15182a;
             Trace.beginSection("RV Prefetch");
             if (!arrayList.isEmpty()) {
                 int size = arrayList.size();
@@ -182,7 +182,7 @@ public final class s implements Runnable {
             Trace.endSection();
         } catch (Throwable th2) {
             this.f5923b = 0L;
-            int i12 = n0.g.f15180a;
+            int i12 = n0.g.f15182a;
             Trace.endSection();
             throw th2;
         }

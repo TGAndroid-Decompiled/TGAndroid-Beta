@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class t8 extends tl0 {
+public final class t8 extends sl0 {
     public final ArrayList U2;
     public final int V2;
     public int W2;
@@ -25,30 +25,30 @@ public final class t8 extends tl0 {
             ?? obj = new Object();
             int i11 = this.V2;
             this.V2 = i11 + 1;
-            obj.f31004a = i11;
+            obj.f31000a = i11;
             int[] iArr = w8.Z[i10];
-            obj.f31006c = iArr[0];
+            obj.f31002c = iArr[0];
             obj.d = iArr[1];
-            obj.f31007e = iArr[2];
-            obj.f31008f = iArr[3];
+            obj.f31003e = iArr[2];
+            obj.f31004f = iArr[3];
             this.U2.add(obj);
         }
         for (int i12 = 0; i12 < 30; i12++) {
             ?? obj2 = new Object();
             int i13 = this.V2;
             this.V2 = i13 + 1;
-            obj2.f31004a = i13;
-            int[] iArr2 = w8.f32669a0[i12];
-            obj2.f31006c = iArr2[0];
+            obj2.f31000a = i13;
+            int[] iArr2 = w8.f32674a0[i12];
+            obj2.f31002c = iArr2[0];
             obj2.d = iArr2[1];
-            obj2.f31007e = 0;
-            obj2.f31008f = 0;
-            obj2.f31005b = true;
+            obj2.f31003e = 0;
+            obj2.f31004f = 0;
+            obj2.f31001b = true;
             this.U2.add(obj2);
         }
         setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         setClipToPadding(false);
-        this.f31367e1 = true;
+        this.f31090e1 = true;
         setOnItemClickListener(new k(this, 2));
         org.telegram.ui.y7 y7Var = new org.telegram.ui.y7(this, 2);
         this.X2 = y7Var;
@@ -69,13 +69,13 @@ public final class t8 extends tl0 {
         super.onMeasure(i10, i11);
     }
 
-    public final void w1(s8 s8Var) {
+    public final void v1(s8 s8Var) {
         int i10 = 0;
         while (true) {
             ArrayList arrayList = this.U2;
             if (i10 < arrayList.size()) {
                 if (((s8) arrayList.get(i10)).equals(s8Var)) {
-                    this.W2 = ((s8) arrayList.get(i10)).f31004a;
+                    this.W2 = ((s8) arrayList.get(i10)).f31000a;
                     break;
                 }
                 i10++;

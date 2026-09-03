@@ -1,11 +1,11 @@
 package x7;
 public final class c extends h {
-    public final int f50445c;
+    public final int f50481c;
     public final float d;
 
     public c(float f10, int i10) {
         super(0, Float.valueOf(Math.max(f10, 0.0f)));
-        this.f50445c = i10;
+        this.f50481c = i10;
         switch (i10) {
             case 1:
                 super(2, Float.valueOf(Math.max(f10, 0.0f)));
@@ -19,7 +19,7 @@ public final class c extends h {
 
     @Override
     public final String toString() {
-        switch (this.f50445c) {
+        switch (this.f50481c) {
             case 0:
                 return "[Dash: length=" + this.d + "]";
             default:

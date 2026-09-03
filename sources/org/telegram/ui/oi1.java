@@ -1,30 +1,21 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class oi1 extends View {
-    public int f39789a;
-    public final WallpapersListActivity f39790b;
+import org.telegram.tgnet.TLRPC;
+public final class oi1 implements org.telegram.ui.ActionBar.c2, id1 {
+    public final WallpapersListActivity f39746a;
 
-    public oi1(WallpapersListActivity wallpapersListActivity, Context context) {
-        super(context);
-        this.f39790b = wallpapersListActivity;
+    public oi1(WallpapersListActivity wallpapersListActivity) {
+        this.f39746a = wallpapersListActivity;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        WallpapersListActivity wallpapersListActivity = this.f39790b;
-        wallpapersListActivity.f34961w.setColor(this.f39789a);
-        canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.f34961w);
-        if (this.f39789a == org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21659d6, false)) {
-            canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.f34962x);
-        }
+    public void a(TLRPC.TL_wallPaper tL_wallPaper) {
+        int[][] iArr = WallpapersListActivity.f34941h0;
+        this.f39746a.removeSelfFromStack();
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(AndroidUtilities.dp(50.0f), AndroidUtilities.dp(62.0f));
+    public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        WallpapersListActivity.U(this.f39746a);
     }
 }

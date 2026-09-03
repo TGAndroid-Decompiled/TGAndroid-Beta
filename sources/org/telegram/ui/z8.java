@@ -33,8 +33,8 @@ public final class z8 extends FragmentContextView {
                 return;
             case 1:
                 org.telegram.ui.Components.xi xiVar = (org.telegram.ui.Components.xi) this.L0;
-                org.telegram.ui.Components.ls lsVar2 = xiVar.f33118x;
-                FrameLayout frameLayout2 = xiVar.f33119y;
+                org.telegram.ui.Components.ls lsVar2 = xiVar.f33112x;
+                FrameLayout frameLayout2 = xiVar.f33113y;
                 if (i10 == 0) {
                     z10 = true;
                 } else {
@@ -43,9 +43,9 @@ public final class z8 extends FragmentContextView {
                 lsVar2.i(frameLayout2, z10, true);
                 return;
             default:
-                mf1 mf1Var = (mf1) this.L0;
-                org.telegram.ui.Components.ls lsVar3 = mf1Var.R0;
-                FrameLayout frameLayout3 = mf1Var.C0;
+                sf1 sf1Var = (sf1) this.L0;
+                org.telegram.ui.Components.ls lsVar3 = sf1Var.R0;
+                FrameLayout frameLayout3 = sf1Var.C0;
                 if (i10 == 0) {
                     z11 = true;
                 } else {
@@ -56,9 +56,9 @@ public final class z8 extends FragmentContextView {
         }
     }
 
-    public z8(mf1 mf1Var, Context context, mf1 mf1Var2) {
-        super(context, mf1Var2, null, false, null);
+    public z8(sf1 sf1Var, Context context, sf1 sf1Var2) {
+        super(context, sf1Var2, null, false, null);
         this.K0 = 2;
-        this.L0 = mf1Var;
+        this.L0 = sf1Var;
     }
 }

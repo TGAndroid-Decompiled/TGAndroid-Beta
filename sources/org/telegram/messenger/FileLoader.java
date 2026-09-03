@@ -238,8 +238,8 @@ public class FileLoader extends BaseController {
         public void saveFilePath(FilePathDatabase.PathData pathData, File file) {
             String str;
             FilePathDatabase fileDatabase = FileLoader.this.getFileDatabase();
-            long j10 = pathData.f18046id;
-            int i10 = pathData.f18045dc;
+            long j10 = pathData.f18048id;
+            int i10 = pathData.f18047dc;
             int i11 = pathData.type;
             if (file != null) {
                 str = file.toString();
@@ -705,7 +705,7 @@ public class FileLoader extends BaseController {
 
     public static long getPhotoId(TLObject tLObject) {
         if (tLObject instanceof TLRPC.Photo) {
-            return ((TLRPC.Photo) tLObject).f20867id;
+            return ((TLRPC.Photo) tLObject).f20869id;
         }
         if (tLObject instanceof TLRPC.ChatPhoto) {
             return ((TLRPC.ChatPhoto) tLObject).photo_id;
@@ -1470,7 +1470,7 @@ public class FileLoader extends BaseController {
             } else {
                 i11 = 3;
             }
-            this.filePathDatabase.putPath(document.f20849id, document.dc_id, i11, 1, str);
+            this.filePathDatabase.putPath(document.f20851id, document.dc_id, i11, 1, str);
         } else if (tLObject instanceof TLRPC.PhotoSize) {
             TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) tLObject;
             if (!(photoSize instanceof TLRPC.TL_photoStrippedSize) && !(photoSize instanceof TLRPC.TL_photoPathSize)) {
@@ -1580,21 +1580,21 @@ public class FileLoader extends BaseController {
                 StringBuilder sb = new StringBuilder();
                 sb.append(document.dc_id);
                 sb.append("_");
-                return android.support.v4.media.a.q(sb, document.f20849id, substring);
+                return android.support.v4.media.a.q(sb, document.f20851id, substring);
             }
-            return document.dc_id + "_" + document.f20849id;
+            return document.dc_id + "_" + document.f20851id;
         } else if (tLObject instanceof SecureDocument) {
             SecureDocument secureDocument = (SecureDocument) tLObject;
             StringBuilder sb2 = new StringBuilder();
             sb2.append(secureDocument.secureFile.dc_id);
             sb2.append("_");
-            return android.support.v4.media.a.q(sb2, secureDocument.secureFile.f20978id, ".jpg");
+            return android.support.v4.media.a.q(sb2, secureDocument.secureFile.f20980id, ".jpg");
         } else if (tLObject instanceof TLRPC.TL_secureFile) {
             TLRPC.TL_secureFile tL_secureFile = (TLRPC.TL_secureFile) tLObject;
             StringBuilder sb3 = new StringBuilder();
             sb3.append(tL_secureFile.dc_id);
             sb3.append("_");
-            return android.support.v4.media.a.q(sb3, tL_secureFile.f20978id, ".jpg");
+            return android.support.v4.media.a.q(sb3, tL_secureFile.f20980id, ".jpg");
         } else if (tLObject instanceof WebFile) {
             WebFile webFile = (WebFile) tLObject;
             return Utilities.MD5(webFile.url) + "." + ImageLoader.getHttpUrlExtension(webFile.url, getMimeTypePart(webFile.mime_type));
@@ -1879,7 +1879,7 @@ public class FileLoader extends BaseController {
                     return true;
                 }
             }
-            if ((-fileLocation.volume_id) == photo.f20867id) {
+            if ((-fileLocation.volume_id) == photo.f20869id) {
                 return true;
             }
         }

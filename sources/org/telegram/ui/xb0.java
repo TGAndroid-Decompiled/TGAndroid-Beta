@@ -16,19 +16,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
 public final class xb0 {
-    public final LaunchActivity f43021a;
-    public final int f43022b;
-    public final af.f f43023c;
+    public final LaunchActivity f43000a;
+    public final int f43001b;
+    public final af.f f43002c;
     public final boolean d;
-    public org.telegram.ui.ActionBar.d2 f43024e;
-    public boolean f43025f;
-    public boolean f43026g;
+    public org.telegram.ui.ActionBar.d2 f43003e;
+    public boolean f43004f;
+    public boolean f43005g;
     public int h = -1;
 
     public xb0(LaunchActivity launchActivity, int i10, af.f fVar, boolean z4) {
-        this.f43021a = launchActivity;
-        this.f43022b = i10;
-        this.f43023c = fVar;
+        this.f43000a = launchActivity;
+        this.f43001b = i10;
+        this.f43002c = fVar;
         this.d = z4;
     }
 
@@ -45,26 +45,26 @@ public final class xb0 {
     }
 
     public final void a() {
-        if (this.f43026g) {
+        if (this.f43005g) {
             return;
         }
-        org.telegram.ui.ActionBar.d2 d2Var = this.f43024e;
+        org.telegram.ui.ActionBar.d2 d2Var = this.f43003e;
         if (d2Var != null) {
             d2Var.dismiss();
         }
-        af.f fVar = this.f43023c;
+        af.f fVar = this.f43002c;
         if (fVar != null) {
             fVar.b();
         }
-        this.f43026g = true;
+        this.f43005g = true;
     }
 
     public final org.telegram.ui.ActionBar.f5 c() {
-        return this.f43021a.O();
+        return this.f43000a.O();
     }
 
     public final UserConfig d() {
-        return UserConfig.getInstance(this.f43022b);
+        return UserConfig.getInstance(this.f43001b);
     }
 
     public final boolean e(Uri uri) {
@@ -77,7 +77,7 @@ public final class xb0 {
         if (uri != null) {
             String scheme2 = uri.getScheme();
             boolean equalsIgnoreCase = "tonsite".equalsIgnoreCase(scheme2);
-            LaunchActivity launchActivity = this.f43021a;
+            LaunchActivity launchActivity = this.f43000a;
             if (equalsIgnoreCase) {
                 af.g.p(launchActivity, uri, true, true);
                 return true;
@@ -161,7 +161,7 @@ public final class xb0 {
                                     if ("live".equalsIgnoreCase(str2)) {
                                         r15 = -1;
                                     }
-                                    qh.ca E = qh.ca.E(launchActivity, this.f43022b);
+                                    qh.ba E = qh.ba.E(launchActivity, this.f43001b);
                                     if (E.L1 != r15) {
                                         E.L1 = r15;
                                         ?? r22 = E.N0;
@@ -278,7 +278,7 @@ public final class xb0 {
         inputaicomposetoneslug.slug = str;
         gettone.tone = inputaicomposetoneslug;
         k();
-        ConnectionsManager.getInstance(this.f43022b).sendRequestTyped(gettone, new Object(), new d5(this, 14));
+        ConnectionsManager.getInstance(this.f43001b).sendRequestTyped(gettone, new Object(), new d5(this, 14));
         return true;
     }
 
@@ -291,7 +291,7 @@ public final class xb0 {
         TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug = new TLRPC.TL_inputInvoiceSlug();
         tL_inputInvoiceSlug.slug = str;
         tL_payments_getPaymentForm.invoice = tL_inputInvoiceSlug;
-        this.h = ConnectionsManager.getInstance(this.f43022b).sendRequest(tL_payments_getPaymentForm, new ba((Object) this, (TLObject) tL_inputInvoiceSlug, str, 18));
+        this.h = ConnectionsManager.getInstance(this.f43001b).sendRequest(tL_payments_getPaymentForm, new ba((Object) this, (TLObject) tL_inputInvoiceSlug, str, 18));
         return true;
     }
 
@@ -310,7 +310,7 @@ public final class xb0 {
         if (U != null && U.getContext() != null) {
             k();
             TLRPC.User[] userArr = {null};
-            MessagesController.getInstance(this.f43022b).getUserNameResolver().resolve(str, new jh(this, userArr, new b30(this, U, userArr, tL_requestPeerTypeCreateBot, 6), 3));
+            MessagesController.getInstance(this.f43001b).getUserNameResolver().resolve(str, new jh(this, userArr, new b30(this, U, userArr, tL_requestPeerTypeCreateBot, 6), 3));
         }
     }
 
@@ -325,7 +325,7 @@ public final class xb0 {
         TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = new TLRPC.TL_messages_requestUrlAuth();
         tL_messages_requestUrlAuth.flags |= 4;
         tL_messages_requestUrlAuth.url = uri.toString();
-        ConnectionsManager.getInstance(this.f43022b).sendRequestTyped(tL_messages_requestUrlAuth, new Object(), new eh.w(21, this, tL_messages_requestUrlAuth));
+        ConnectionsManager.getInstance(this.f43001b).sendRequestTyped(tL_messages_requestUrlAuth, new Object(), new eh.w(21, this, tL_messages_requestUrlAuth));
         return true;
     }
 
@@ -334,19 +334,19 @@ public final class xb0 {
     }
 
     public final void k() {
-        if (!this.f43025f && !this.f43026g) {
-            af.f fVar = this.f43023c;
+        if (!this.f43004f && !this.f43005g) {
+            af.f fVar = this.f43002c;
             if (fVar == null) {
-                if (this.f43024e == null) {
-                    this.f43024e = new org.telegram.ui.ActionBar.d2(this.f43021a, 3, null);
+                if (this.f43003e == null) {
+                    this.f43003e = new org.telegram.ui.ActionBar.d2(this.f43000a, 3, null);
                 }
-                this.f43024e.setOnCancelListener(new ig(this, 3));
-                this.f43024e.q(300L);
+                this.f43003e.setOnCancelListener(new ig(this, 3));
+                this.f43003e.q(300L);
             } else {
                 fVar.f180b = new qb0(this, 0);
                 fVar.d();
             }
-            this.f43025f = true;
+            this.f43004f = true;
         }
     }
 
@@ -355,7 +355,7 @@ public final class xb0 {
     }
 
     public final void n(org.telegram.ui.ActionBar.p2 p2Var, boolean z4) {
-        LaunchActivity launchActivity = this.f43021a;
+        LaunchActivity launchActivity = this.f43000a;
         launchActivity.q0(p2Var, z4, false);
         if (AndroidUtilities.isTablet()) {
             launchActivity.f34160n0.U(true, true);
@@ -364,6 +364,6 @@ public final class xb0 {
     }
 
     public final void o(String str) {
-        AndroidUtilities.scrollToFragmentRow(this.f43021a.O(), str);
+        AndroidUtilities.scrollToFragmentRow(this.f43000a.O(), str);
     }
 }

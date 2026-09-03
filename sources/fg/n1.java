@@ -26,15 +26,15 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.ka;
 import org.telegram.ui.Components.pr;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.rw0;
-import org.telegram.ui.sw0;
+import org.telegram.ui.ww0;
+import org.telegram.ui.xw0;
 public final class n1 extends h3 implements NotificationCenter.NotificationCenterDelegate {
     public final boolean B;
     public boolean C;
     public int D;
     public int E;
     public float F;
-    public final sw0 G;
+    public final xw0 G;
     public int H;
     public int I;
     public int J;
@@ -59,8 +59,8 @@ public final class n1 extends h3 implements NotificationCenter.NotificationCente
 
     public final ViewGroup A(Context context, int i10) {
         int i11;
-        rw0 rw0Var = (rw0) this.d.get(i10);
-        int i12 = rw0Var.f41056a;
+        ww0 ww0Var = (ww0) this.d.get(i10);
+        int i12 = ww0Var.f42867a;
         if (i12 == 0) {
             b bVar = new b(context, this.resourcesProvider);
             bVar.f6240b.setOnScrollListener(new e1(this, 1));
@@ -72,7 +72,7 @@ public final class n1 extends h3 implements NotificationCenter.NotificationCente
             if (i12 == 10) {
                 return new z0(context, this.resourcesProvider);
             }
-            return new t2(context, this.f6419x, this.currentAccount, rw0Var.f41056a, this.resourcesProvider);
+            return new t2(context, this.f6419x, this.currentAccount, ww0Var.f42867a, this.resourcesProvider);
         } else {
             if (i12 == 28) {
                 i11 = 1;
@@ -169,11 +169,11 @@ public final class n1 extends h3 implements NotificationCenter.NotificationCente
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         k1 k1Var = new k1(this, getContext(), 0);
         this.K = k1Var;
-        k1Var.setBackgroundColor(getThemedColor(k6.f21731h5));
+        k1Var.setBackgroundColor(getThemedColor(k6.f21733h5));
         this.K.setTitleColor(getThemedColor(k6.G6));
-        this.K.B(getThemedColor(k6.f22055z8), false);
+        this.K.B(getThemedColor(k6.f22057z8), false);
         k1 k1Var2 = this.K;
-        int i10 = k6.f22038y8;
+        int i10 = k6.f22040y8;
         k1Var2.C(getThemedColor(i10), false);
         this.K.C(getThemedColor(i10), true);
         this.K.setCastShadows(true);
@@ -185,13 +185,13 @@ public final class n1 extends h3 implements NotificationCenter.NotificationCente
         AndroidUtilities.updateViewVisibilityAnimated(this.K, false, 1.0f, false);
         int i11 = this.D;
         ArrayList arrayList = this.d;
-        if (((rw0) arrayList.get(i11)).f41056a == 14) {
+        if (((ww0) arrayList.get(i11)).f42867a == 14) {
             this.K.setTitle(LocaleController.getString(R.string.UpgradedStories));
             this.K.requestLayout();
-        } else if (((rw0) arrayList.get(this.D)).f41056a == 28) {
+        } else if (((ww0) arrayList.get(this.D)).f42867a == 28) {
             this.K.setTitle(LocaleController.getString(R.string.TelegramBusiness));
             this.K.requestLayout();
-        } else if (((rw0) arrayList.get(this.D)).f41056a == 40) {
+        } else if (((ww0) arrayList.get(this.D)).f42867a == 40) {
             this.K.setTitle(LocaleController.getString(R.string.FeaturePreviewGifts));
             this.K.requestLayout();
         } else {
@@ -309,18 +309,18 @@ public final class n1 extends h3 implements NotificationCenter.NotificationCente
         this(p2Var, context, i10, false, i11, z4, null);
     }
 
-    public n1(org.telegram.ui.ActionBar.p2 r11, android.content.Context r12, int r13, boolean r14, int r15, boolean r16, org.telegram.ui.sw0 r17) {
-        throw new UnsupportedOperationException("Method not decompiled: fg.n1.<init>(org.telegram.ui.ActionBar.p2, android.content.Context, int, boolean, int, boolean, org.telegram.ui.sw0):void");
+    public n1(org.telegram.ui.ActionBar.p2 r11, android.content.Context r12, int r13, boolean r14, int r15, boolean r16, org.telegram.ui.xw0 r17) {
+        throw new UnsupportedOperationException("Method not decompiled: fg.n1.<init>(org.telegram.ui.ActionBar.p2, android.content.Context, int, boolean, int, boolean, org.telegram.ui.xw0):void");
     }
 
-    public n1(org.telegram.ui.ActionBar.p2 p2Var, Context context, int i10, boolean z4, int i11, boolean z10, sw0 sw0Var, g6 g6Var) {
+    public n1(org.telegram.ui.ActionBar.p2 p2Var, Context context, int i10, boolean z4, int i11, boolean z10, xw0 xw0Var, g6 g6Var) {
         super(context, g6Var, false, false);
         ArrayList arrayList = new ArrayList();
         this.d = arrayList;
         this.H = 255;
         this.f6411b = p2Var;
-        this.G = sw0Var;
-        fixNavigationBar(getThemedColor(k6.f21731h5));
+        this.G = xw0Var;
+        fixNavigationBar(getThemedColor(k6.f21733h5));
         this.f6420y = i11;
         this.B = z10;
         this.f6419x = SvgHelper.getDrawable(AndroidUtilities.readRes(R.raw.star_loader));
@@ -333,14 +333,14 @@ public final class n1 extends h3 implements NotificationCenter.NotificationCente
         }
         if (i11 == 40) {
             arrayList.clear();
-            arrayList.add(new rw0(40, R.drawable.gift, LocaleController.getString(R.string.FeaturePreviewGifts), LocaleController.getString(R.string.FeaturePreviewGiftsDescription)));
+            arrayList.add(new ww0(40, R.drawable.gift, LocaleController.getString(R.string.FeaturePreviewGifts), LocaleController.getString(R.string.FeaturePreviewGiftsDescription)));
         }
         int i12 = 0;
         while (true) {
             if (i12 >= this.d.size()) {
                 i12 = 0;
                 break;
-            } else if (((rw0) this.d.get(i12)).f41056a == i11) {
+            } else if (((ww0) this.d.get(i12)).f42867a == i11) {
                 break;
             } else {
                 i12++;
@@ -348,10 +348,10 @@ public final class n1 extends h3 implements NotificationCenter.NotificationCente
         }
         if (z10) {
             this.d.clear();
-            this.d.add((rw0) this.d.get(i12));
+            this.d.add((ww0) this.d.get(i12));
             i12 = 0;
         }
-        rw0 rw0Var = (rw0) this.d.get(i12);
+        ww0 ww0Var = (ww0) this.d.get(i12);
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         this.useBackgroundTopPadding = false;
@@ -408,14 +408,14 @@ public final class n1 extends h3 implements NotificationCenter.NotificationCente
         linearLayout.setOrientation(1);
         int i13 = k6.V8;
         int i14 = k6.P9;
-        kaVar.f28356n = i13;
-        kaVar.f28357r = i14;
+        kaVar.f28378n = i13;
+        kaVar.f28379r = i14;
         if (!z10) {
             linearLayout.addView(kaVar, c6.t(this.d.size() * 11, 5, 1, 0, 0, 0, 10));
         }
         b1 b1Var = new b1(getContext(), g6Var, true);
         this.f6412c = b1Var;
-        b1Var.f6250r.setOnClickListener(new d1(this, p2Var, z10, rw0Var, 0));
+        b1Var.f6250r.setOnClickListener(new d1(this, p2Var, z10, ww0Var, 0));
         b1Var.f6247e.setOnClickListener(new View.OnClickListener(this) {
             public final n1 f6260b;
 
@@ -437,7 +437,7 @@ public final class n1 extends h3 implements NotificationCenter.NotificationCente
         });
         FrameLayout frameLayout2 = new FrameLayout(getContext());
         frameLayout2.addView(b1Var, c6.d(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        frameLayout2.setBackgroundColor(getThemedColor(k6.f21731h5));
+        frameLayout2.setBackgroundColor(getThemedColor(k6.f21733h5));
         linearLayout.addView(frameLayout2, c6.q(-1, 68, 80));
         if (i11 == 40) {
             b1Var.c(g5.g2(LocaleController.getString(R.string.Understood)), true, false);

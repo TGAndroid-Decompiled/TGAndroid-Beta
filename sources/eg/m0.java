@@ -26,7 +26,7 @@ public final class m0 implements ki {
     public final void I1(int i10, boolean z4, boolean z10, int i11, int i12, long j10, boolean z11, boolean z12, long j11) {
         mi miVar = this.f5345a;
         try {
-            HashMap<Object, Object> selectedPhotos = miVar.f29054g0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = miVar.f29072g0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;

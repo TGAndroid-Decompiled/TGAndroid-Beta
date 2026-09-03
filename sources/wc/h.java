@@ -4,16 +4,16 @@ import kotlin.jvm.internal.j;
 import kotlin.jvm.internal.r;
 import kotlin.jvm.internal.s;
 public abstract class h extends g implements kotlin.jvm.internal.g {
-    public final int f49492a;
+    public final int f49528a;
 
     public h(uc.c cVar) {
         super(cVar);
-        this.f49492a = 2;
+        this.f49528a = 2;
     }
 
     @Override
     public final int getArity() {
-        return this.f49492a;
+        return this.f49528a;
     }
 
     @Override

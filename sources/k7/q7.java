@@ -9,6 +9,6 @@ public abstract class q7 {
         if (!(obj instanceof sc.e)) {
             return;
         }
-        throw ((sc.e) obj).f47237a;
+        throw ((sc.e) obj).f47268a;
     }
 }

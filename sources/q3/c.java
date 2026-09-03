@@ -28,45 +28,45 @@ import java.util.Map;
 import n7.qa;
 import o5.i;
 public final class c {
-    public static final MediaMetadataCompat f44444l;
-    public final c0 f44445a;
-    public final Looper f44446b;
-    public final a f44447c;
+    public static final MediaMetadataCompat f44475l;
+    public final c0 f44476a;
+    public final Looper f44477b;
+    public final a f44478c;
     public final ArrayList d;
-    public final ArrayList f44448e;
-    public final b[] f44449f;
-    public Map f44450g;
+    public final ArrayList f44479e;
+    public final b[] f44480f;
+    public Map f44481g;
     public final qa h;
-    public a2 f44451i;
-    public final long f44452j;
-    public final boolean f44453k;
+    public a2 f44482i;
+    public final long f44483j;
+    public final boolean f44484k;
 
     static {
         l0.a("goog.exo.mediasession");
-        f44444l = new MediaMetadataCompat(new Bundle());
+        f44475l = new MediaMetadataCompat(new Bundle());
     }
 
     public c(c0 c0Var) {
-        this.f44445a = c0Var;
+        this.f44476a = c0Var;
         int i10 = d0.f7237a;
         Looper myLooper = Looper.myLooper();
         myLooper = myLooper == null ? Looper.getMainLooper() : myLooper;
-        this.f44446b = myLooper;
+        this.f44477b = myLooper;
         a aVar = new a(this);
-        this.f44447c = aVar;
+        this.f44478c = aVar;
         this.d = new ArrayList();
-        this.f44448e = new ArrayList();
-        this.f44449f = new b[0];
-        this.f44450g = Collections.EMPTY_MAP;
+        this.f44479e = new ArrayList();
+        this.f44480f = new b[0];
+        this.f44481g = Collections.EMPTY_MAP;
         this.h = new qa(c0Var.f280b);
-        this.f44452j = 2360143L;
+        this.f44483j = 2360143L;
         c0Var.f279a.f303a.setFlags(3);
         c0Var.d(aVar, new Handler(myLooper));
-        this.f44453k = true;
+        this.f44484k = true;
     }
 
     public static boolean a(c cVar, long j10) {
-        if (cVar.f44451i != null && (j10 & cVar.f44452j) != 0) {
+        if (cVar.f44482i != null && (j10 & cVar.f44483j) != 0) {
             return true;
         }
         return false;
@@ -77,14 +77,14 @@ public final class c {
         long duration;
         ArrayList arrayList;
         Object obj;
-        MediaMetadataCompat mediaMetadataCompat = f44444l;
+        MediaMetadataCompat mediaMetadataCompat = f44475l;
         qa qaVar = this.h;
-        if (qaVar != null && (a2Var = this.f44451i) != null) {
-            bf.b bVar = (bf.b) qaVar.f15699b;
-            String str = (String) qaVar.f15700c;
+        if (qaVar != null && (a2Var = this.f44482i) != null) {
+            bf.b bVar = (bf.b) qaVar.f15701b;
+            String str = (String) qaVar.f15702c;
             if (!a2Var.z().p()) {
                 i iVar = new i(1);
-                Bundle bundle = (Bundle) iVar.f16615b;
+                Bundle bundle = (Bundle) iVar.f16617b;
                 if (a2Var.f()) {
                     iVar.x(1L, "android.media.metadata.ADVERTISEMENT");
                 }
@@ -224,7 +224,7 @@ public final class c {
                 mediaMetadataCompat = iVar.b();
             }
         }
-        this.f44445a.e(mediaMetadataCompat);
+        this.f44476a.e(mediaMetadataCompat);
     }
 
     public final void c() {
@@ -233,18 +233,18 @@ public final class c {
 
     public final void d(a2 a2Var) {
         boolean z4;
-        if (a2Var != null && a2Var.A() != this.f44446b) {
+        if (a2Var != null && a2Var.A() != this.f44477b) {
             z4 = false;
         } else {
             z4 = true;
         }
         h5.a.f(z4);
-        a2 a2Var2 = this.f44451i;
-        a aVar = this.f44447c;
+        a2 a2Var2 = this.f44482i;
+        a aVar = this.f44478c;
         if (a2Var2 != null) {
             a2Var2.u(aVar);
         }
-        this.f44451i = a2Var;
+        this.f44482i = a2Var;
         if (a2Var != null) {
             a2Var.n(aVar);
         }

@@ -15,20 +15,20 @@ import org.telegram.ui.Components.pr;
 import org.telegram.ui.Components.q20;
 import org.telegram.ui.Stories.ProfileStoriesView;
 public final class i4 {
-    public final int f17207a;
-    public final ImageReceiver f17208b;
-    public int f17209c;
+    public final int f17209a;
+    public final ImageReceiver f17210b;
+    public int f17211c;
     public boolean d;
-    public float f17210e;
-    public final org.telegram.ui.Components.z5 f17211f;
-    public final org.telegram.ui.Components.z5 f17212g;
+    public float f17212e;
+    public final org.telegram.ui.Components.z5 f17213f;
+    public final org.telegram.ui.Components.z5 f17214g;
     public final org.telegram.ui.Components.z5 h;
-    public float f17213i;
-    public float f17214j;
-    public float f17215k;
-    public final boolean f17216l;
-    public final RectF f17217m;
-    public final RectF f17218n;
+    public float f17215i;
+    public float f17216j;
+    public float f17217k;
+    public final boolean f17218l;
+    public final RectF f17219m;
+    public final RectF f17220n;
 
     public i4(ProfileStoriesView profileStoriesView, TL_stories.StoryItem storyItem) {
         TLRPC.Photo photo;
@@ -36,24 +36,24 @@ public final class i4 {
         TLRPC.Document document;
         org.telegram.ui.Components.z8 z8Var = new org.telegram.ui.Components.z8((org.telegram.ui.ActionBar.g6) null);
         ImageReceiver imageReceiver = new ImageReceiver();
-        this.f17208b = imageReceiver;
-        this.f17209c = 0;
+        this.f17210b = imageReceiver;
+        this.f17211c = 0;
         this.d = false;
-        this.f17210e = 1.0f;
+        this.f17212e = 1.0f;
         pr prVar = pr.h;
-        this.f17211f = new org.telegram.ui.Components.z5(profileStoriesView, 420L, prVar);
-        this.f17212g = new org.telegram.ui.Components.z5(profileStoriesView, 420L, prVar);
+        this.f17213f = new org.telegram.ui.Components.z5(profileStoriesView, 420L, prVar);
+        this.f17214g = new org.telegram.ui.Components.z5(profileStoriesView, 420L, prVar);
         this.h = new org.telegram.ui.Components.z5(profileStoriesView, 420L, prVar);
-        this.f17217m = new RectF();
-        this.f17218n = new RectF();
-        this.f17207a = storyItem.f21080id;
+        this.f17219m = new RectF();
+        this.f17220n = new RectF();
+        this.f17209a = storyItem.f21082id;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(200.0f));
         imageReceiver.setParentView(profileStoriesView);
-        this.f17216l = storyItem.media instanceof TLRPC.TL_messageMediaVideoStream;
+        this.f17218l = storyItem.media instanceof TLRPC.TL_messageMediaVideoStream;
         if (profileStoriesView.f34865x) {
             imageReceiver.onAttachedToWindow();
         }
-        q20[] q20VarArr = m7.f17442a;
+        q20[] q20VarArr = m7.f17444a;
         TLRPC.MessageMedia messageMedia = storyItem.media;
         if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
             TLObject userOrChat = MessagesController.getInstance(imageReceiver.getCurrentAccount()).getUserOrChat(storyItem.dialogId);

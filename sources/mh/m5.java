@@ -25,43 +25,43 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.jl0;
 import org.telegram.ui.Components.kl0;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.or0;
-import org.telegram.ui.Components.zk0;
+import org.telegram.ui.Components.nr0;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.yk0;
 import org.telegram.ui.ko0;
 import org.webrtc.GlGenericDrawer;
-public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callback2Return, kl0, org.telegram.ui.ActionBar.c2, oh.b7, oh.c9, jh.o, r0.o, Vector.TLDeserializer, GlGenericDrawer.TextureCallback, org.telegram.ui.Components.voip.k1, zk0, dg.g2, CameraController.VideoTakeCallback {
-    public final int f14449a;
-    public final Object f14450b;
+public final class m5 implements Utilities.Callback5, ko0, kl0, Utilities.Callback2Return, jl0, org.telegram.ui.ActionBar.c2, oh.b7, oh.c9, jh.o, r0.o, Vector.TLDeserializer, GlGenericDrawer.TextureCallback, org.telegram.ui.Components.voip.k1, yk0, dg.g2, CameraController.VideoTakeCallback {
+    public final int f14451a;
+    public final Object f14452b;
 
     public m5(Object obj, int i10) {
-        this.f14449a = i10;
-        this.f14450b = obj;
+        this.f14451a = i10;
+        this.f14452b = obj;
     }
 
     @Override
     public r0.m1 M0(View view, r0.m1 m1Var) {
         int a2;
-        oh.i9 i9Var = (oh.i9) this.f14450b;
+        oh.i9 i9Var = (oh.i9) this.f14452b;
         int i10 = 0;
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) i9Var.v.getLayoutParams();
-        if (!i9Var.f17258c) {
+        if (!i9Var.f17260c) {
             i10 = m1Var.d();
         }
         marginLayoutParams.topMargin = i10;
-        if (i9Var.f17258c) {
-            a2 = m1Var.f46452a.f(2).d;
+        if (i9Var.f17260c) {
+            a2 = m1Var.f46483a.f(2).d;
         } else {
             a2 = m1Var.a();
         }
         marginLayoutParams.bottomMargin = a2;
         marginLayoutParams.leftMargin = defaultWindowInsets.f7757a;
         marginLayoutParams.rightMargin = defaultWindowInsets.f7759c;
-        oh.w8 w8Var = i9Var.f17293s;
+        oh.w8 w8Var = i9Var.f17295s;
         if (w8Var != null) {
             w8Var.requestLayout();
         }
@@ -69,7 +69,7 @@ public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callba
         if (x8Var != null) {
             x8Var.requestLayout();
         }
-        return r0.m1.f46451b;
+        return r0.m1.f46482b;
     }
 
     @Override
@@ -79,9 +79,9 @@ public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callba
 
     @Override
     public void a(int i10) {
-        switch (this.f14449a) {
+        switch (this.f14451a) {
             case 1:
-                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f14450b;
+                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f14452b;
                 if (i10 == 1) {
                     callback2.run(Boolean.TRUE, null);
                     return;
@@ -92,7 +92,7 @@ public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callba
                     return;
                 }
             case 2:
-                eh.w wVar = (eh.w) this.f14450b;
+                eh.w wVar = (eh.w) this.f14452b;
                 if (i10 == 1) {
                     wVar.run(Boolean.TRUE, null);
                     return;
@@ -103,7 +103,7 @@ public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callba
                     return;
                 }
             default:
-                lh.i5 i5Var = (lh.i5) this.f14450b;
+                lh.i5 i5Var = (lh.i5) this.f14452b;
                 if (i10 == 1) {
                     i5Var.run(Boolean.TRUE, null);
                     return;
@@ -118,7 +118,7 @@ public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callba
 
     @Override
     public void b(boolean z4) {
-        oh.d5 d5Var = (oh.d5) this.f14450b;
+        oh.d5 d5Var = (oh.d5) this.f14452b;
         if (d5Var != null) {
             d5Var.c();
         }
@@ -131,10 +131,10 @@ public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callba
         int i11;
         int i12;
         int i13;
-        oh.h2 h2Var = (oh.h2) this.f14450b;
-        d1 d1Var = h2Var.f17831c;
-        ArrayList arrayList = h2Var.f17837r;
-        oh.u0 u0Var = ((oh.s0) view).f17712f;
+        oh.h2 h2Var = (oh.h2) this.f14452b;
+        d1 d1Var = h2Var.f17833c;
+        ArrayList arrayList = h2Var.f17839r;
+        oh.u0 u0Var = ((oh.s0) view).f17714f;
         int i14 = h2Var.K;
         int currentTime = ConnectionsManager.getInstance(i14).getCurrentTime();
         HashSet hashSet = new HashSet();
@@ -142,13 +142,13 @@ public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callba
         int i16 = 0;
         while (true) {
             j10 = 0;
-            if (i16 >= u0Var.f17802f.size()) {
+            if (i16 >= u0Var.f17804f.size()) {
                 break;
             }
-            oh.t0 t0Var = (oh.t0) u0Var.f17802f.get(i16);
-            long j12 = t0Var.f17760g;
+            oh.t0 t0Var = (oh.t0) u0Var.f17804f.get(i16);
+            long j12 = t0Var.f17762g;
             if (j12 > 0 && currentTime - t0Var.d <= oh.s.b(i14, (int) j12, 0)) {
-                hashSet.add(Integer.valueOf(t0Var.f17755a));
+                hashSet.add(Integer.valueOf(t0Var.f17757a));
             }
             i16++;
         }
@@ -160,13 +160,13 @@ public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callba
         int i18 = 0;
         while (i17 < arrayList.size()) {
             oh.t0 t0Var2 = (oh.t0) arrayList.get(i17);
-            if (!t0Var2.f17756b && t0Var2.f17758e && t0Var2.f17760g < j10) {
+            if (!t0Var2.f17758b && t0Var2.f17760e && t0Var2.f17762g < j10) {
                 j11 = j10;
             } else {
-                if (hashSet.contains(Integer.valueOf(t0Var2.f17755a))) {
+                if (hashSet.contains(Integer.valueOf(t0Var2.f17757a))) {
                     j11 = j10;
-                    if (h2Var.f17839w != u0Var.f17799b || (i13 = h2Var.f17840x) == 0 || t0Var2.f17755a < i13) {
-                        i11 = t0Var2.f17755a;
+                    if (h2Var.f17841w != u0Var.f17801b || (i13 = h2Var.f17842x) == 0 || t0Var2.f17757a < i13) {
+                        i11 = t0Var2.f17757a;
                         break;
                     }
                 } else {
@@ -184,9 +184,9 @@ public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callba
             while (true) {
                 if (i15 < arrayList.size()) {
                     oh.t0 t0Var3 = (oh.t0) arrayList.get(i15);
-                    if (t0Var3.f17756b || !t0Var3.f17758e || t0Var3.f17760g >= j11) {
-                        if (hashSet.contains(Integer.valueOf(t0Var3.f17755a))) {
-                            i12 = t0Var3.f17755a;
+                    if (t0Var3.f17758b || !t0Var3.f17760e || t0Var3.f17762g >= j11) {
+                        if (hashSet.contains(Integer.valueOf(t0Var3.f17757a))) {
+                            i12 = t0Var3.f17757a;
                             i18 = i19;
                             break;
                         }
@@ -205,31 +205,31 @@ public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callba
         if (i12 < 0) {
             return;
         }
-        h2Var.f17839w = u0Var.f17799b;
-        h2Var.f17840x = i12;
-        h2Var.f17841y = true;
+        h2Var.f17841w = u0Var.f17801b;
+        h2Var.f17842x = i12;
+        h2Var.f17843y = true;
         f2.u0 itemAnimator = d1Var.getItemAnimator();
         d1Var.setItemAnimator(null);
         h2Var.d.i1(i18, d1Var.getHeight() / 2, true);
-        h2Var.f17834e.m(i18);
+        h2Var.f17836e.m(i18);
         d1Var.setItemAnimator(itemAnimator);
     }
 
     @Override
     public void d() {
-        ((qh.d1) this.f14450b).invalidate();
+        ((qh.d1) this.f14452b).invalidate();
     }
 
     @Override
     public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z4) {
         TLRPC.PhotoSize lambda$readParams$0;
         TLRPC.PhotoSize lambda$readParams$02;
-        switch (this.f14449a) {
+        switch (this.f14451a) {
             case 16:
-                lambda$readParams$0 = ((TLRPC.TL_stickerSet) this.f14450b).lambda$readParams$0(inputSerializedData, i10, z4);
+                lambda$readParams$0 = ((TLRPC.TL_stickerSet) this.f14452b).lambda$readParams$0(inputSerializedData, i10, z4);
                 return lambda$readParams$0;
             default:
-                lambda$readParams$02 = ((TLRPC.TL_stickerSet_layer143) this.f14450b).lambda$readParams$0(inputSerializedData, i10, z4);
+                lambda$readParams$02 = ((TLRPC.TL_stickerSet_layer143) this.f14452b).lambda$readParams$0(inputSerializedData, i10, z4);
                 return lambda$readParams$02;
         }
     }
@@ -237,10 +237,10 @@ public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callba
     @Override
     public void e() {
         float f10;
-        qh.f9 f9Var = (qh.f9) this.f14450b;
-        TextView textView = f9Var.l1;
-        boolean a2 = f9Var.A0.a();
-        ImageView imageView = f9Var.f44964k1;
+        qh.e9 e9Var = (qh.e9) this.f14452b;
+        TextView textView = e9Var.l1;
+        boolean a2 = e9Var.A0.a();
+        ImageView imageView = e9Var.f44941k1;
         imageView.animate().cancel();
         ViewPropertyAnimator animate = imageView.animate();
         float f11 = 0.6f;
@@ -267,7 +267,7 @@ public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callba
 
     @Override
     public void g(float f10, Canvas canvas, RectF rectF, boolean z4) {
-        Path path = (Path) this.f14450b;
+        Path path = (Path) this.f14452b;
         if (z4) {
             return;
         }
@@ -279,62 +279,62 @@ public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callba
 
     @Override
     public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f14449a) {
+        switch (this.f14451a) {
             case 9:
-                ((Runnable) this.f14450b).run();
+                ((Runnable) this.f14452b).run();
                 return;
             case 20:
-                ((org.telegram.ui.web.z) this.f14450b).run();
+                ((org.telegram.ui.web.z) this.f14452b).run();
                 return;
             case 23:
-                qh.ca caVar = ((qh.r9) ((qh.p) this.f14450b)).P1;
-                qh.q9 q9Var = caVar.U0;
+                qh.ba baVar = ((qh.q9) ((qh.p) this.f14452b)).P1;
+                qh.p9 p9Var = baVar.U0;
+                if (p9Var != null) {
+                    p9Var.s(null, null, true);
+                }
+                qh.e9 e9Var = baVar.f45100s1;
+                if (e9Var != null) {
+                    e9Var.q0();
+                }
+                qh.q9 q9Var = baVar.Z0;
                 if (q9Var != null) {
-                    q9Var.s(null, null, true);
+                    q9Var.setHasRoundVideo(false);
                 }
-                qh.f9 f9Var = caVar.f45134s1;
-                if (f9Var != null) {
-                    f9Var.q0();
-                }
-                qh.r9 r9Var = caVar.Z0;
-                if (r9Var != null) {
-                    r9Var.setHasRoundVideo(false);
-                }
-                qh.s6 s6Var = caVar.H1;
-                if (s6Var != null) {
-                    File file = s6Var.f46072o0;
+                qh.r6 r6Var = baVar.H1;
+                if (r6Var != null) {
+                    File file = r6Var.f46023o0;
                     if (file != null) {
                         try {
                             file.delete();
                         } catch (Exception unused) {
                         }
-                        caVar.H1.f46072o0 = null;
+                        baVar.H1.f46023o0 = null;
                     }
-                    if (caVar.H1.f46074p0 != null) {
+                    if (baVar.H1.f46025p0 != null) {
                         try {
-                            new File(caVar.H1.f46074p0).delete();
+                            new File(baVar.H1.f46025p0).delete();
                         } catch (Exception unused2) {
                         }
-                        caVar.H1.f46074p0 = null;
+                        baVar.H1.f46025p0 = null;
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                ((qh.r4) this.f14450b).f45945a.f44968m2.r();
+                ((qh.q4) this.f14452b).f45924a.f44945m2.r();
                 return;
         }
     }
 
     @Override
     public void o(jh.k kVar, float f10, float f11) {
-        oh.y7 y7Var = (oh.y7) this.f14450b;
+        oh.y7 y7Var = (oh.y7) this.f14452b;
         oh.z7 z7Var = y7Var.v;
-        if (!z7Var.f18006x) {
+        if (!z7Var.f18008x) {
             kVar.f10147q = new oh.x7(y7Var, 2);
             float sqrt = (float) Math.sqrt(Math.pow(z7Var.getHeight(), 2.0d) + Math.pow(z7Var.getWidth(), 2.0d));
-            ArrayList arrayList = y7Var.f17970i;
+            ArrayList arrayList = y7Var.f17972i;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
@@ -347,34 +347,34 @@ public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callba
 
     @Override
     public void onFinishVideoRecording(String str, long j10) {
-        qh.y8 y8Var = (qh.y8) this.f14450b;
-        qh.ca caVar = y8Var.f46362a;
-        qh.r5 r5Var = caVar.L0;
-        int i10 = caVar.f45081c;
-        if (r5Var != null) {
-            r5Var.g(true);
+        qh.x8 x8Var = (qh.x8) this.f14452b;
+        qh.ba baVar = x8Var.f46318a;
+        qh.q5 q5Var = baVar.L0;
+        int i10 = baVar.f45047c;
+        if (q5Var != null) {
+            q5Var.g(true);
         }
-        if (caVar.q0()) {
-            caVar.f45132s.d();
+        if (baVar.q0()) {
+            baVar.f45098s.d();
         }
-        if (caVar.D1 != null && caVar.f45154y0 != null) {
-            caVar.N1 = false;
-            caVar.O1 = false;
-            qh.n5 n5Var = caVar.f45157z0;
-            if (n5Var != null) {
-                n5Var.c(false);
+        if (baVar.D1 != null && baVar.f45120y0 != null) {
+            baVar.N1 = false;
+            baVar.O1 = false;
+            qh.m5 m5Var = baVar.f45123z0;
+            if (m5Var != null) {
+                m5Var.c(false);
             }
             if (j10 <= 800) {
-                caVar.h(false, true);
-                caVar.d0(false);
-                caVar.G0.b(false, true);
-                qh.r5 r5Var2 = caVar.L0;
-                if (r5Var2 != null) {
-                    r5Var2.g(true);
+                baVar.h(false, true);
+                baVar.d0(false);
+                baVar.G0.b(false, true);
+                qh.q5 q5Var2 = baVar.L0;
+                if (q5Var2 != null) {
+                    q5Var2.g(true);
                 }
                 try {
-                    caVar.D1.delete();
-                    caVar.D1 = null;
+                    baVar.D1.delete();
+                    baVar.D1 = null;
                 } catch (Exception e6) {
                     FileLog.e(e6);
                 }
@@ -389,118 +389,118 @@ public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callba
                 }
                 return;
             }
-            caVar.i0(false, true);
-            qh.s6 o10 = qh.s6.o(caVar.D1, str, j10);
-            o10.J0 = caVar.f45133s0;
-            o10.K0 = caVar.f45136t0;
+            baVar.i0(false, true);
+            qh.r6 o10 = qh.r6.o(baVar.D1, str, j10);
+            o10.J0 = baVar.f45099s0;
+            o10.K0 = baVar.f45102t0;
             o10.B();
-            caVar.h(false, true);
-            caVar.d0(false);
-            caVar.G0.b(false, true);
-            qh.r5 r5Var3 = caVar.L0;
-            if (r5Var3 != null) {
-                r5Var3.g(true);
+            baVar.h(false, true);
+            baVar.d0(false);
+            baVar.G0.b(false, true);
+            qh.q5 q5Var3 = baVar.L0;
+            if (q5Var3 != null) {
+                q5Var3.g(true);
             }
-            if (caVar.f45150x0.j()) {
-                caVar.D1 = null;
+            if (baVar.f45116x0.j()) {
+                baVar.D1 = null;
                 o10.P = 1.0f;
-                if (caVar.f45150x0.l(o10)) {
-                    qh.s6 a2 = qh.s6.a(caVar.f45150x0.getLayout(), caVar.f45150x0.getContent());
-                    caVar.H1 = a2;
-                    qh.f8.a(i10, a2);
-                    caVar.I1 = false;
-                    int videoWidth = caVar.f45154y0.getVideoWidth();
-                    int videoHeight = caVar.f45154y0.getVideoHeight();
+                if (baVar.f45116x0.l(o10)) {
+                    qh.r6 a2 = qh.r6.a(baVar.f45116x0.getLayout(), baVar.f45116x0.getContent());
+                    baVar.H1 = a2;
+                    qh.e8.a(i10, a2);
+                    baVar.I1 = false;
+                    int videoWidth = baVar.f45120y0.getVideoWidth();
+                    int videoHeight = baVar.f45120y0.getVideoHeight();
                     if (videoWidth > 0 && videoHeight > 0) {
-                        qh.s6 s6Var = caVar.H1;
-                        s6Var.f46065k0 = videoWidth;
-                        s6Var.f46067l0 = videoHeight;
-                        s6Var.A();
+                        qh.r6 r6Var = baVar.H1;
+                        r6Var.f46016k0 = videoWidth;
+                        r6Var.f46018l0 = videoHeight;
+                        r6Var.A();
                     }
                 }
-                caVar.m0(true);
+                baVar.m0(true);
                 return;
             }
-            caVar.H1 = o10;
-            qh.f8.a(i10, o10);
-            caVar.I1 = false;
-            int videoWidth2 = caVar.f45154y0.getVideoWidth();
-            int videoHeight2 = caVar.f45154y0.getVideoHeight();
+            baVar.H1 = o10;
+            qh.e8.a(i10, o10);
+            baVar.I1 = false;
+            int videoWidth2 = baVar.f45120y0.getVideoWidth();
+            int videoHeight2 = baVar.f45120y0.getVideoHeight();
             if (videoWidth2 > 0 && videoHeight2 > 0) {
-                qh.s6 s6Var2 = caVar.H1;
-                s6Var2.f46065k0 = videoWidth2;
-                s6Var2.f46067l0 = videoHeight2;
-                s6Var2.A();
+                qh.r6 r6Var2 = baVar.H1;
+                r6Var2.f46016k0 = videoWidth2;
+                r6Var2.f46018l0 = videoHeight2;
+                r6Var2.A();
             }
-            caVar.L(new qh.w8(y8Var, 3), 0L);
+            baVar.L(new qh.v8(x8Var, 3), 0L);
         }
     }
 
     @Override
     public void mo27run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        switch (this.f14449a) {
+        switch (this.f14451a) {
             case 0:
-                t7.b((t7) this.f14450b, (ArrayList) obj, (Integer) obj2, (Long) obj3, (ArrayList) obj4, (ArrayList) obj5);
+                t7.b((t7) this.f14452b, (ArrayList) obj, (Integer) obj2, (Long) obj3, (ArrayList) obj4, (ArrayList) obj5);
                 return;
             case 4:
-                ga gaVar = (ga) this.f14450b;
-                j51 j51Var = (j51) obj;
+                ga gaVar = (ga) this.f14452b;
+                h51 h51Var = (h51) obj;
                 View view = (View) obj2;
                 ((Integer) obj3).intValue();
                 ((Float) obj4).floatValue();
                 ((Float) obj5).floatValue();
                 gaVar.getClass();
-                if (j51Var.G instanceof TL_stars.StarsTransaction) {
-                    ja.h1(gaVar.getContext(), false, 0L, gaVar.f14131c, (TL_stars.StarsTransaction) j51Var.G, gaVar.f14130b);
+                if (h51Var.G instanceof TL_stars.StarsTransaction) {
+                    ja.h1(gaVar.getContext(), false, 0L, gaVar.f14133c, (TL_stars.StarsTransaction) h51Var.G, gaVar.f14132b);
                     return;
                 }
                 return;
             default:
-                qh.u8 u8Var = (qh.u8) this.f14450b;
-                j51 j51Var2 = (j51) obj;
+                qh.t8 t8Var = (qh.t8) this.f14452b;
+                h51 h51Var2 = (h51) obj;
                 View view2 = (View) obj2;
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                int i10 = j51Var2.d;
-                qh.s6 s6Var = (qh.s6) j51Var2.G;
-                u8Var.c(false, true);
-                qh.ca caVar = u8Var.L;
-                if (s6Var == caVar.H1 || caVar.U1) {
+                int i10 = h51Var2.d;
+                qh.r6 r6Var = (qh.r6) h51Var2.G;
+                t8Var.c(false, true);
+                qh.ba baVar = t8Var.L;
+                if (r6Var == baVar.H1 || baVar.U1) {
                     return;
                 }
-                caVar.f45076a1.setSelected(i10);
-                caVar.U1 = true;
-                qh.e8 e8Var = new qh.e8(caVar, i10, 1);
-                qh.f9 f9Var = caVar.f45134s1;
-                qh.s6 s6Var2 = caVar.H1;
-                if (f9Var != null && s6Var2 != null) {
-                    if (!f9Var.u0()) {
-                        e8Var.run();
+                baVar.f45042a1.setSelected(i10);
+                baVar.U1 = true;
+                qh.d8 d8Var = new qh.d8(baVar, i10, 1);
+                qh.e9 e9Var = baVar.f45100s1;
+                qh.r6 r6Var2 = baVar.H1;
+                if (e9Var != null && r6Var2 != null) {
+                    if (!e9Var.u0()) {
+                        d8Var.run();
                         return;
                     }
-                    s6Var2.f();
-                    boolean u02 = f9Var.u0();
-                    boolean z4 = f9Var.L0.getPainting().E;
-                    Utilities.searchQueue.postRunnable(new qh.j8(caVar, f9Var, s6Var2.f46061i0, s6Var2.f46063j0, s6Var2, z4, u02, e8Var, 0));
+                    r6Var2.f();
+                    boolean u02 = e9Var.u0();
+                    boolean z4 = e9Var.L0.getPainting().E;
+                    Utilities.searchQueue.postRunnable(new qh.i8(baVar, e9Var, r6Var2.f46012i0, r6Var2.f46014j0, r6Var2, z4, u02, d8Var, 0));
                     return;
                 }
-                e8Var.run();
+                d8Var.run();
                 return;
         }
     }
 
     @Override
     public Object run(Object obj, Object obj2) {
-        switch (this.f14449a) {
+        switch (this.f14451a) {
             case 7:
                 Long l10 = (Long) obj;
-                return oh.v0.a((oh.v0) this.f14450b, (Long) obj2);
+                return oh.v0.a((oh.v0) this.f14452b, (Long) obj2);
             default:
-                or0 or0Var = (or0) this.f14450b;
+                nr0 nr0Var = (nr0) this.f14452b;
                 Integer num = (Integer) obj2;
                 if (((Integer) obj).intValue() == -1) {
-                    new ph.o(or0Var.f44406a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new org.telegram.ui.web.d1(or0Var, 2)).show();
+                    new ph.o(nr0Var.f44437a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new org.telegram.ui.web.d1(nr0Var, 2)).show();
                     return Boolean.TRUE;
                 }
                 return Boolean.FALSE;
@@ -509,12 +509,12 @@ public final class m5 implements Utilities.Callback5, ko0, ll0, Utilities.Callba
 
     @Override
     public void run(Bitmap bitmap, int i10) {
-        org.telegram.ui.Components.voip.u uVar = (org.telegram.ui.Components.voip.u) this.f14450b;
+        org.telegram.ui.Components.voip.u uVar = (org.telegram.ui.Components.voip.u) this.f14452b;
         if (bitmap == null || bitmap.getPixel(0, 0) == 0) {
             return;
         }
         Utilities.stackBlurBitmap(bitmap, Math.max(7, Math.max(bitmap.getWidth(), bitmap.getHeight()) / 180));
-        AndroidUtilities.runOnUIThread(new l41(8, uVar, bitmap));
+        AndroidUtilities.runOnUIThread(new q51(7, uVar, bitmap));
     }
 
     @Override

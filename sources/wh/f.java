@@ -8,26 +8,26 @@ import org.telegram.ui.Components.mi;
 import org.telegram.ui.Components.ui;
 import org.telegram.ui.Components.wk;
 public final class f implements wk, ui {
-    public final q f49734a;
-    public final mi f49735b;
+    public final q f49770a;
+    public final mi f49771b;
 
     public f(q qVar, mi miVar) {
-        this.f49734a = qVar;
-        this.f49735b = miVar;
+        this.f49770a = qVar;
+        this.f49771b = miVar;
     }
 
     @Override
     public void d(TLRPC.MessageMedia messageMedia, int i10, boolean z4, int i11, long j10) {
-        q qVar = this.f49734a;
+        q qVar = this.f49770a;
         qVar.getClass();
-        mi miVar = this.f49735b;
+        mi miVar = this.f49771b;
         if (messageMedia != null && messageMedia.geo != null) {
             TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
             pageblockmap.geo = messageMedia.geo;
             pageblockmap.zoom = 15;
-            pageblockmap.f21066w = 600;
+            pageblockmap.f21068w = 600;
             pageblockmap.h = 400;
-            qVar.f49930r.R1(pageblockmap);
+            qVar.f49966r.Q1(pageblockmap);
             qVar.V(true);
             miVar.dismiss(true);
             return;
@@ -38,8 +38,8 @@ public final class f implements wk, ui {
     @Override
     public void i(ArrayList arrayList, CharSequence charSequence, boolean z4, int i10, int i11, long j10, boolean z10, long j11) {
         if (!arrayList.isEmpty()) {
-            this.f49734a.f49930r.b2((MessageObject) arrayList.get(0));
+            this.f49770a.f49966r.a2((MessageObject) arrayList.get(0));
         }
-        this.f49735b.dismiss(true);
+        this.f49771b.dismiss(true);
     }
 }

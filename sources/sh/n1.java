@@ -19,7 +19,7 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.l5;
 import org.telegram.ui.Components.p9;
 import org.telegram.ui.Components.z8;
-import org.telegram.ui.li1;
+import org.telegram.ui.ri1;
 public abstract class n1 {
     public static void a(Activity activity, final int i10, final long j10, final long j11, TL_bots.botVerifierSettings botverifiersettings, final j1 j1Var) {
         String str;
@@ -50,11 +50,11 @@ public abstract class n1 {
         p9Var.e(user, z8Var);
         frameLayout2.addView(p9Var, c6.e(28, 28, 51));
         p9 p9Var2 = new p9(activity);
-        p9Var2.setEmojiColorFilter(new PorterDuffColorFilter(k6.w0(null, k6.f22056z9, false), PorterDuff.Mode.SRC_IN));
+        p9Var2.setEmojiColorFilter(new PorterDuffColorFilter(k6.w0(null, k6.f22058z9, false), PorterDuff.Mode.SRC_IN));
         p9Var2.setAnimatedEmojiDrawable(l5.n(i10, botverifiersettings.icon, null, 3));
         frameLayout2.addView(p9Var2, c6.d(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
         org.telegram.ui.ActionBar.l5 l5Var = new org.telegram.ui.ActionBar.l5(activity);
-        l5Var.setTextColor(k6.w0(null, k6.f21766j5, false));
+        l5Var.setTextColor(k6.w0(null, k6.f21768j5, false));
         l5Var.setTextSize(13);
         l5Var.setEllipsizeByGradient(true);
         l5Var.l(str, false);
@@ -63,13 +63,13 @@ public abstract class n1 {
         frameLayout.addView(frameLayout2, c6.d(-2, -2.0f, 17, 16.0f, 0.0f, 16.0f, 0.0f));
         final boolean[] zArr = new boolean[1];
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
-        alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.BotRemoveVerificationTitle);
+        alertDialog$Builder.f21168a.O = LocaleController.getString(R.string.BotRemoveVerificationTitle);
         if (i12 >= 0) {
             i11 = R.string.BotRemoveVerificationText;
         } else {
             i11 = R.string.BotRemoveVerificationChatText;
         }
-        alertDialog$Builder.f21166a.Q = LocaleController.getString(i11);
+        alertDialog$Builder.f21168a.Q = LocaleController.getString(i11);
         alertDialog$Builder.n(frameLayout);
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
         alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new org.telegram.ui.ActionBar.c2() {
@@ -86,7 +86,7 @@ public abstract class n1 {
                 int i14 = i10;
                 setcustomverification.bot = MessagesController.getInstance(i14).getInputUser(j10);
                 setcustomverification.peer = MessagesController.getInstance(i14).getInputPeer(j11);
-                ConnectionsManager.getInstance(i14).sendRequest(setcustomverification, new li1(4, zArr2, j1Var));
+                ConnectionsManager.getInstance(i14).sendRequest(setcustomverification, new ri1(4, zArr2, j1Var));
             }
         });
         alertDialog$Builder.d(-1);

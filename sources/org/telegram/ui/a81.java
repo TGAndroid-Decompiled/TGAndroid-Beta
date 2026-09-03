@@ -1,58 +1,36 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MrzRecognizer;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class a81 implements u9 {
-    public TLObject f35061a = null;
-    public TLRPC.TL_error f35062b = null;
-    public final SessionsActivity f35063c;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_account;
+public final class a81 implements Utilities.Callback {
+    public final int f35059a;
+    public final SessionsActivity f35060b;
 
-    public a81(SessionsActivity sessionsActivity) {
-        this.f35063c = sessionsActivity;
+    public a81(SessionsActivity sessionsActivity, int i10) {
+        this.f35059a = i10;
+        this.f35060b = sessionsActivity;
     }
 
     @Override
-    public final String E0() {
-        return null;
-    }
-
-    @Override
-    public final void J(String str) {
-        TLObject tLObject = this.f35061a;
-        if (tLObject instanceof TLRPC.TL_authorization) {
-            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
-            boolean z4 = tL_authorization.password_pending;
-            SessionsActivity sessionsActivity = this.f35063c;
-            if (z4) {
-                sessionsActivity.f34821f.add(0, tL_authorization);
-                sessionsActivity.S = 4;
-                sessionsActivity.k0(false);
-            } else {
-                sessionsActivity.f34820e.add(0, tL_authorization);
-            }
-            sessionsActivity.m0();
-            sessionsActivity.f34817a.l();
-            sessionsActivity.f34824s.m(0L, this.f35061a, 11);
-        } else if (this.f35062b != null) {
-            AndroidUtilities.runOnUIThread(new z71(this, 0));
+    public final void run(Object obj) {
+        switch (this.f35059a) {
+            case 0:
+                TL_account.connectedBots connectedbots = (TL_account.connectedBots) obj;
+                SessionsActivity sessionsActivity = this.f35060b;
+                sessionsActivity.getClass();
+                if (connectedbots != null) {
+                    sessionsActivity.h = connectedbots.connected_bots;
+                    if (sessionsActivity.f34817a != null) {
+                        sessionsActivity.m0();
+                        sessionsActivity.f34817a.l();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                SessionsActivity.V(this.f35060b, (Boolean) obj);
+                return;
         }
-    }
-
-    @Override
-    public final boolean e1(String str, m9 m9Var) {
-        this.f35061a = null;
-        this.f35062b = null;
-        AndroidUtilities.runOnUIThread(new if0(this, str, m9Var, 29), 750L);
-        return true;
-    }
-
-    @Override
-    public final void P0(MrzRecognizer.Result result) {
-    }
-
-    @Override
-    public final void onDismiss() {
     }
 }

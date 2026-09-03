@@ -44,9 +44,9 @@ public final class d0 implements BillingController.ProductDetailsResponseListene
                 MessageObject messageObject = (MessageObject) this.h;
                 org.telegram.ui.Cells.z1[] z1VarArr = (org.telegram.ui.Cells.z1[]) this.d;
                 if (user != null) {
-                    accountInstance.getMessagesStorage().deleteUserChatHistory(xnVar.a(), user.f20990id);
+                    accountInstance.getMessagesStorage().deleteUserChatHistory(xnVar.a(), user.f20992id);
                 } else {
-                    accountInstance.getMessagesStorage().deleteUserChatHistory(xnVar.a(), -chat.f20843id);
+                    accountInstance.getMessagesStorage().deleteUserChatHistory(xnVar.a(), -chat.f20845id);
                 }
                 TLRPC.TL_contacts_blockFromReplies tL_contacts_blockFromReplies = new TLRPC.TL_contacts_blockFromReplies();
                 tL_contacts_blockFromReplies.msg_id = messageObject.getId();
@@ -56,7 +56,7 @@ public final class d0 implements BillingController.ProductDetailsResponseListene
                     tL_contacts_blockFromReplies.report_spam = true;
                     if (xnVar.getParentActivity() != null) {
                         xnVar.Q7();
-                        UndoView undoView = xnVar.f43378v3;
+                        UndoView undoView = xnVar.f43356v3;
                         if (undoView != null) {
                             undoView.j(74, 0L, null);
                         }
@@ -66,7 +66,7 @@ public final class d0 implements BillingController.ProductDetailsResponseListene
                 return;
             default:
                 nm0 nm0Var = (nm0) this.f7446e;
-                fn0 fn0Var = nm0Var.f39483a;
+                fn0 fn0Var = nm0Var.f39404a;
                 fn0Var.V[0].setText((String) this.f7444b);
                 fn0Var.V[1].setText((String) this.f7445c);
                 fn0Var.V[2].setText((String) this.f7447f);
@@ -84,8 +84,8 @@ public final class d0 implements BillingController.ProductDetailsResponseListene
                 Utilities.Callback callback = (Utilities.Callback) this.h;
                 org.telegram.ui.ActionBar.p2 p2Var = (org.telegram.ui.ActionBar.p2) this.d;
                 p2.j a2 = ((p2.m) list.get(0)).a();
-                tL_inputStorePaymentPremiumGiftCode.currency = a2.f44150c;
-                tL_inputStorePaymentPremiumGiftCode.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(((TLRPC.TL_premiumGiftCodeOption) this.f7444b).currency)) * (a2.f44149b / Math.pow(10.0d, 6.0d)));
+                tL_inputStorePaymentPremiumGiftCode.currency = a2.f44181c;
+                tL_inputStorePaymentPremiumGiftCode.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(((TLRPC.TL_premiumGiftCodeOption) this.f7444b).currency)) * (a2.f44180b / Math.pow(10.0d, 6.0d)));
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
                 tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentPremiumGiftCode;
                 ((ConnectionsManager) this.f7445c).sendRequest(tL_payments_canPurchaseStore, new i0((Utilities.Callback) this.f7447f, list, hVar, callback, p2Var, tL_inputStorePaymentPremiumGiftCode, 1));
@@ -95,8 +95,8 @@ public final class d0 implements BillingController.ProductDetailsResponseListene
                 t0 t0Var = (t0) this.h;
                 org.telegram.ui.ActionBar.p2 p2Var2 = (org.telegram.ui.ActionBar.p2) this.d;
                 p2.j a10 = ((p2.m) list.get(0)).a();
-                tL_inputStorePaymentPremiumGiveaway.currency = a10.f44150c;
-                tL_inputStorePaymentPremiumGiveaway.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(((TLRPC.TL_premiumGiftCodeOption) this.f7444b).currency)) * (a10.f44149b / Math.pow(10.0d, 6.0d)));
+                tL_inputStorePaymentPremiumGiveaway.currency = a10.f44181c;
+                tL_inputStorePaymentPremiumGiveaway.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(((TLRPC.TL_premiumGiftCodeOption) this.f7444b).currency)) * (a10.f44180b / Math.pow(10.0d, 6.0d)));
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore2 = new TLRPC.TL_payments_canPurchaseStore();
                 tL_payments_canPurchaseStore2.purpose = tL_inputStorePaymentPremiumGiveaway;
                 ((ConnectionsManager) this.f7445c).sendRequest(tL_payments_canPurchaseStore2, new i0((t0) this.f7447f, list, hVar, t0Var, p2Var2, tL_inputStorePaymentPremiumGiveaway, 0));

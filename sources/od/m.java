@@ -3,7 +3,7 @@ package od;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class m extends pd.b implements k, b {
-    public static final AtomicReferenceFieldUpdater f16743e = AtomicReferenceFieldUpdater.newUpdater(m.class, Object.class, "_state$volatile");
+    public static final AtomicReferenceFieldUpdater f16745e = AtomicReferenceFieldUpdater.newUpdater(m.class, Object.class, "_state$volatile");
     private volatile Object _state$volatile;
     public int d;
 
@@ -12,8 +12,8 @@ public final class m extends pd.b implements k, b {
     }
 
     public final Object b() {
-        Object obj = f16743e.get(this);
-        if (obj == pd.e.f44360a) {
+        Object obj = f16745e.get(this);
+        if (obj == pd.e.f44391a) {
             return null;
         }
         return obj;
@@ -22,7 +22,7 @@ public final class m extends pd.b implements k, b {
     @Override
     public final Object c(Object obj, wc.c cVar) {
         d(obj);
-        return sc.i.f47243a;
+        return sc.i.f47274a;
     }
 
     public final void d(Object obj) {
@@ -30,10 +30,10 @@ public final class m extends pd.b implements k, b {
         o[] oVarArr;
         com.google.android.gms.internal.clearcut.e eVar;
         if (obj == null) {
-            obj = pd.e.f44360a;
+            obj = pd.e.f44391a;
         }
         synchronized (this) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f16743e;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f16745e;
             if (kotlin.jvm.internal.j.a(atomicReferenceFieldUpdater.get(this), obj)) {
                 return;
             }
@@ -42,16 +42,16 @@ public final class m extends pd.b implements k, b {
             if ((i11 & 1) == 0) {
                 int i12 = i11 + 1;
                 this.d = i12;
-                o[] oVarArr2 = this.f44354a;
+                o[] oVarArr2 = this.f44385a;
                 while (true) {
                     if (oVarArr2 != null) {
                         for (o oVar : oVarArr2) {
                             if (oVar != null) {
-                                AtomicReference atomicReference = oVar.f16746a;
+                                AtomicReference atomicReference = oVar.f16748a;
                                 while (true) {
                                     Object obj2 = atomicReference.get();
-                                    if (obj2 != null && obj2 != (eVar = n.f16745b)) {
-                                        com.google.android.gms.internal.clearcut.e eVar2 = n.f16744a;
+                                    if (obj2 != null && obj2 != (eVar = n.f16747b)) {
+                                        com.google.android.gms.internal.clearcut.e eVar2 = n.f16746a;
                                         if (obj2 == eVar2) {
                                             while (!atomicReference.compareAndSet(obj2, eVar)) {
                                                 if (atomicReference.get() != obj2) {
@@ -64,7 +64,7 @@ public final class m extends pd.b implements k, b {
                                                     break;
                                                 }
                                             }
-                                            ((ld.m) obj2).resumeWith(sc.i.f47243a);
+                                            ((ld.m) obj2).resumeWith(sc.i.f47274a);
                                             break;
                                         }
                                     }
@@ -78,7 +78,7 @@ public final class m extends pd.b implements k, b {
                             this.d = i12 + 1;
                             return;
                         }
-                        oVarArr = this.f44354a;
+                        oVarArr = this.f44385a;
                     }
                     oVarArr2 = oVarArr;
                     i12 = i10;

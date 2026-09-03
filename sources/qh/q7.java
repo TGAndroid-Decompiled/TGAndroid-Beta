@@ -1,70 +1,53 @@
 package qh;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class q7 implements Utilities.Callback {
-    public final int f45915a;
-    public final x7 f45916b;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class q7 extends z7 {
+    public final w7 I;
 
-    public q7(x7 x7Var, int i10) {
-        this.f45915a = i10;
-        this.f45916b = x7Var;
+    public q7(w7 w7Var, Context context, org.telegram.ui.ActionBar.g6 g6Var, o7 o7Var) {
+        super(context, g6Var, o7Var);
+        this.I = w7Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        int i10;
-        switch (this.f45915a) {
-            case 0:
-                x7 x7Var = this.f45916b;
-                d8 d8Var = x7Var.T;
-                d8Var.f45223c = (TLRPC.InputPeer) obj;
-                HashSet hashSet = d8Var.v;
-                hashSet.clear();
-                if (d8Var.H && d8Var.D) {
-                    d8Var.D = false;
-                }
-                Utilities.Callback callback = d8Var.T;
-                if (callback != null) {
-                    callback.run(d8Var.f45223c);
-                }
-                h8 h8Var = d8Var.U;
-                if (h8Var != null) {
-                    h8Var.run(new HashSet(hashSet));
-                }
-                x7Var.g(true);
-                return;
-            case 1:
-                d8 d8Var2 = this.f45916b.T;
-                i10 = ((org.telegram.ui.ActionBar.h3) d8Var2).currentAccount;
-                d8Var2.g1(new b8(5, i10, (ArrayList) obj), new oh.v3(d8Var2, 1), false);
-                return;
-            case 2:
-                x7 x7Var2 = this.f45916b;
-                d8 d8Var3 = x7Var2.T;
-                HashSet hashSet2 = d8Var3.v;
-                hashSet2.add(Integer.valueOf(((oh.m6) obj).f17439a));
-                x7Var2.g(true);
-                h8 h8Var2 = d8Var3.U;
-                if (h8Var2 != null) {
-                    h8Var2.run(new HashSet(hashSet2));
-                    return;
-                }
-                return;
-            default:
-                String str = (String) obj;
-                x7 x7Var3 = this.f45916b;
-                if (str != null) {
-                    x7Var3.getClass();
-                    if (str.isEmpty()) {
-                        str = null;
-                    }
-                }
-                x7Var3.F = str;
-                x7Var3.g(false);
-                return;
+    public final void setContainerHeight(float f10) {
+        int paddingTop;
+        super.setContainerHeight(f10);
+        w7 w7Var = this.I;
+        org.telegram.ui.Cells.u3 u3Var = w7Var.f46272y;
+        float y10 = getY();
+        FrameLayout frameLayout = w7Var.f46265e;
+        if (frameLayout == null) {
+            paddingTop = 0;
+        } else {
+            paddingTop = frameLayout.getPaddingTop();
+        }
+        u3Var.setTranslationY((Math.min(AndroidUtilities.dp(150.0f), this.F) + (y10 - paddingTop)) - 1.0f);
+        FrameLayout frameLayout2 = w7Var.f46265e;
+        if (frameLayout2 != null) {
+            frameLayout2.invalidate();
+        }
+    }
+
+    @Override
+    public final void setTranslationY(float f10) {
+        int paddingTop;
+        super.setTranslationY(f10);
+        w7 w7Var = this.I;
+        org.telegram.ui.Cells.u3 u3Var = w7Var.f46272y;
+        float y10 = getY();
+        FrameLayout frameLayout = w7Var.f46265e;
+        if (frameLayout == null) {
+            paddingTop = 0;
+        } else {
+            paddingTop = frameLayout.getPaddingTop();
+        }
+        u3Var.setTranslationY((Math.min(AndroidUtilities.dp(150.0f), this.F) + (y10 - paddingTop)) - 1.0f);
+        FrameLayout frameLayout2 = w7Var.f46265e;
+        if (frameLayout2 != null) {
+            frameLayout2.invalidate();
         }
     }
 }

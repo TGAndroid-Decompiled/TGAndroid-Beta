@@ -46,12 +46,12 @@ public final class b extends Handler {
         if (i10 != 264 && i10 != 262) {
             a0Var = (a0) obj;
         } else {
-            a0Var = (a0) ((q0.b) obj).f44418b;
+            a0Var = (a0) ((q0.b) obj).f44449b;
         }
         if (i10 != 264 && i10 != 262) {
             a0Var2 = null;
         } else {
-            a0Var2 = (a0) ((q0.b) obj).f44417a;
+            a0Var2 = (a0) ((q0.b) obj).f44448a;
         }
         if (a0Var != null) {
             boolean z10 = true;
@@ -135,13 +135,13 @@ public final class b extends Handler {
                         break;
                 }
             } else {
-                a0 a0Var2 = (a0) ((q0.b) obj).f44418b;
+                a0 a0Var2 = (a0) ((q0.b) obj).f44449b;
                 arrayList3.add(a0Var2);
                 p0Var.v(a0Var2);
                 p0Var.x(a0Var2);
             }
         } else {
-            a0 a0Var3 = (a0) ((q0.b) obj).f44418b;
+            a0 a0Var3 = (a0) ((q0.b) obj).f44449b;
             p0Var.x(a0Var3);
             if (eVar.v != null && a0Var3.d()) {
                 int size = arrayList3.size();

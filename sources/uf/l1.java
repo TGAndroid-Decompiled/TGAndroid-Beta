@@ -1,13 +1,13 @@
 package uf;
 public final class l1 implements Runnable {
-    public final m1 f48638a;
+    public final m1 f48674a;
 
     public l1(m1 m1Var) {
-        this.f48638a = m1Var;
+        this.f48674a = m1Var;
     }
 
     public final void a() {
-        m1 m1Var = this.f48638a;
+        m1 m1Var = this.f48674a;
         if (m1Var.N) {
             return;
         }

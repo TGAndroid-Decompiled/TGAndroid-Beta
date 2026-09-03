@@ -4,7 +4,7 @@ import android.view.View;
 import androidx.biometric.f0;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.ui.Components.sn;
+import org.telegram.ui.Components.rn;
 public final class a implements View.OnClickListener {
     public final int f7688a;
     public final f f7689b;
@@ -23,13 +23,13 @@ public final class a implements View.OnClickListener {
                 f0 f0Var = fVar.f7706h0;
                 if (f0Var != null) {
                     ArrayList arrayList = new ArrayList(fVar.f7705g0.keySet());
-                    sn snVar = (sn) f0Var.f532b;
-                    ArrayList arrayList2 = snVar.M0;
+                    rn rnVar = (rn) f0Var.f532b;
+                    ArrayList arrayList2 = rnVar.M0;
                     arrayList2.clear();
                     arrayList2.addAll(arrayList);
-                    int i11 = snVar.I0;
+                    int i11 = rnVar.I0;
                     if (i11 >= 0) {
-                        snVar.f31120r.m(i11);
+                        rnVar.f30840r.m(i11);
                     }
                 }
                 fVar.dismiss();
@@ -38,13 +38,13 @@ public final class a implements View.OnClickListener {
                 f0 f0Var2 = fVar.f7706h0;
                 if (f0Var2 != null) {
                     ArrayList arrayList3 = new ArrayList(fVar.f7705g0.keySet());
-                    sn snVar2 = (sn) f0Var2.f532b;
-                    ArrayList arrayList4 = snVar2.M0;
+                    rn rnVar2 = (rn) f0Var2.f532b;
+                    ArrayList arrayList4 = rnVar2.M0;
                     arrayList4.clear();
                     arrayList4.addAll(arrayList3);
-                    int i12 = snVar2.I0;
+                    int i12 = rnVar2.I0;
                     if (i12 >= 0) {
-                        snVar2.f31120r.m(i12);
+                        rnVar2.f30840r.m(i12);
                     }
                 }
                 fVar.dismiss();

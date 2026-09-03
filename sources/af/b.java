@@ -42,7 +42,7 @@ import org.telegram.ui.Components.bd;
 import org.telegram.ui.Components.eg;
 import org.telegram.ui.Components.g90;
 import org.telegram.ui.Components.h8;
-import org.telegram.ui.Components.ij0;
+import org.telegram.ui.Components.hj0;
 import org.telegram.ui.Components.l1;
 import org.telegram.ui.Components.pr;
 import org.telegram.ui.Components.u1;
@@ -50,16 +50,16 @@ import org.telegram.ui.Components.uf;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.fe;
 import org.telegram.ui.h;
-import org.telegram.ui.ht0;
-import org.telegram.ui.is0;
 import org.telegram.ui.jn;
+import org.telegram.ui.mt0;
+import org.telegram.ui.ns0;
 import org.telegram.ui.pm;
 import org.telegram.ui.s4;
 import org.telegram.ui.vi;
 import org.telegram.ui.wi;
 import org.telegram.ui.xi;
 import org.telegram.ui.xn;
-import qh.f3;
+import qh.e3;
 public final class b implements Runnable {
     public final int f169a;
     public final int f170b;
@@ -125,15 +125,15 @@ public final class b implements Runnable {
                 }
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
                 jVar.M = duration;
-                duration.setInterpolator(pr.f30183f);
+                duration.setInterpolator(pr.f30168f);
                 jVar.M.addUpdateListener(new eg.f(jVar, 5));
                 jVar.M.addListener(new eg.g(jVar, 2));
                 jVar.M.start();
                 return;
             case 3:
-                ht0 ht0Var = (ht0) obj;
-                e2 e2Var = ht0Var.H1;
-                ht0Var.s0(e2Var, null);
+                mt0 mt0Var = (mt0) obj;
+                e2 e2Var = mt0Var.H1;
+                mt0Var.s0(e2Var, null);
                 e1.e(i17).j(e2Var.f4526c);
                 return;
             case 4:
@@ -207,11 +207,11 @@ public final class b implements Runnable {
                 g.s(((p) obj).getParentActivity(), LocaleController.getString(i17));
                 return;
             case 9:
-                ConnectionsManager.getInstance(((t7) obj).f14828a).cancelRequest(i17, true);
+                ConnectionsManager.getInstance(((t7) obj).f14830a).cancelRequest(i17, true);
                 return;
             case 10:
                 ng.f fVar = (ng.f) obj;
-                if (fVar.f16060b) {
+                if (fVar.f16062b) {
                     Utilities.Callback callback = fVar.d;
                     if (callback != null) {
                         if (i17 < 300) {
@@ -219,11 +219,11 @@ public final class b implements Runnable {
                         }
                         callback.run(Boolean.valueOf(z4));
                         try {
-                            fVar.f16059a.performHapticFeedback(3);
+                            fVar.f16061a.performHapticFeedback(3);
                         } catch (Exception unused3) {
                         }
                     }
-                    fVar.f16061c = true;
+                    fVar.f16063c = true;
                     int max = Math.max(50, i17 - 100);
                     AndroidUtilities.runOnUIThread(new b(fVar, max, 10), max);
                     return;
@@ -231,7 +231,7 @@ public final class b implements Runnable {
                 return;
             case 11:
                 t6 t6Var = (t6) obj;
-                ArrayList arrayList = t6Var.f17775g;
+                ArrayList arrayList = t6Var.f17777g;
                 t6Var.v(arrayList);
                 t tVar = t6Var.J;
                 Collections.sort(arrayList, tVar);
@@ -244,86 +244,86 @@ public final class b implements Runnable {
                 ConnectionsManager.lambda$onUpdateConfig$21(i17, (TLRPC.TL_config) obj);
                 return;
             case 13:
-                MessagesController.getInstance(i17).loadFullChat(((TLRPC.Chat) obj).f20843id, 0, true);
+                MessagesController.getInstance(i17).loadFullChat(((TLRPC.Chat) obj).f20845id, 0, true);
                 return;
             case 14:
-                ((s4) ((h) obj).f37295b).V(i17, true);
+                ((s4) ((h) obj).f37188b).V(i17, true);
                 return;
             case 15:
                 t1 t1Var = (t1) obj;
-                int i18 = t1Var.f24033s7;
+                int i18 = t1Var.f24035s7;
                 if (i17 == i18) {
-                    e0 e0Var = (e0) t1Var.f23932l7.get(i18);
+                    e0 e0Var = (e0) t1Var.f23934l7.get(i18);
                     if (e0Var != null) {
-                        z zVar = e0Var.f22714s;
+                        z zVar = e0Var.f22716s;
                         if (zVar != null) {
                             zVar.setState(StateSet.NOTHING);
                         }
                         e0Var.b(false);
-                        if (!t1Var.f24073v7.scheduled) {
-                            if (e0Var.f22705j != null) {
+                        if (!t1Var.f24075v7.scheduled) {
+                            if (e0Var.f22707j != null) {
                                 t1Var.k();
-                            } else if (e0Var.f22704i != null) {
+                            } else if (e0Var.f22706i != null) {
                                 t1Var.k();
                                 k1 k1Var = t1Var.Gc;
                                 if (k1Var != null) {
-                                    k1Var.O1(t1Var, e0Var.f22704i);
+                                    k1Var.O1(t1Var, e0Var.f22706i);
                                 }
                             }
                         }
                     }
-                    t1Var.f24033s7 = -1;
+                    t1Var.f24035s7 = -1;
                     t1Var.a3();
                     return;
                 }
                 return;
             case 16:
-                ((fe) obj).f36863f.c(i17);
+                ((fe) obj).f36782f.c(i17);
                 return;
             case 17:
-                ((xi) obj).f43079a.j(this.f170b, 0, true, 0, true, 0);
+                ((xi) obj).f43057a.j(this.f170b, 0, true, 0, true, 0);
                 return;
             case 18:
-                xn xnVar = ((vi) obj).f42241g;
-                if (xnVar.f43360tb == i17) {
+                xn xnVar = ((vi) obj).f42149g;
+                if (xnVar.f43338tb == i17) {
                     xnVar.Ma();
                     return;
                 }
                 return;
             case 19:
-                xn xnVar2 = ((wi) obj).f42825g;
-                if (xnVar2.f43360tb == i17) {
+                xn xnVar2 = ((wi) obj).f42783g;
+                if (xnVar2.f43338tb == i17) {
                     xnVar2.Ma();
                     return;
                 }
                 return;
             case 20:
-                xn xnVar3 = ((vi) obj).f42241g;
-                if (xnVar3.f43360tb == i17) {
+                xn xnVar3 = ((vi) obj).f42149g;
+                if (xnVar3.f43338tb == i17) {
                     xnVar3.Ma();
                     return;
                 }
                 return;
             case 21:
-                xn xnVar4 = ((wi) obj).f42825g;
-                if (xnVar4.f43360tb == i17) {
+                xn xnVar4 = ((wi) obj).f42783g;
+                if (xnVar4.f43338tb == i17) {
                     xnVar4.Ma();
                     return;
                 }
                 return;
             case 22:
-                xn xnVar5 = ((wi) obj).f42825g;
-                if (xnVar5.f43360tb == i17) {
+                xn xnVar5 = ((wi) obj).f42783g;
+                if (xnVar5.f43338tb == i17) {
                     xnVar5.Ma();
                     return;
                 }
                 return;
             case 23:
                 xn xnVar6 = ((pm) obj).G0;
-                xnVar6.f43389w0.h1(i17, xnVar6.f43379v4);
+                xnVar6.f43367w0.h1(i17, xnVar6.f43357v4);
                 return;
             case 24:
-                i10 = ((p2) ((jn) obj).f38188a).currentAccount;
+                i10 = ((p2) ((jn) obj).f38085a).currentAccount;
                 ConnectionsManager.getInstance(i10).cancelRequest(i17, true);
                 return;
             case 25:
@@ -356,71 +356,71 @@ public final class b implements Runnable {
                 return;
             case 28:
                 bd bdVar = (bd) obj;
-                f3 f3Var = bdVar.f25567a1;
+                e3 e3Var = bdVar.f25578a1;
                 if (bdVar.Y0 != i17) {
                     bdVar.setTimer(i17);
-                    Utilities.Callback callback2 = bdVar.f25580o1;
+                    Utilities.Callback callback2 = bdVar.f25591o1;
                     if (callback2 != null) {
                         callback2.run(Integer.valueOf(i17));
                     }
                     float f10 = 1.0f;
                     if (i17 == 0) {
-                        if (bdVar.f25579n1) {
+                        if (bdVar.f25590n1) {
                             i13 = R.string.TimerPeriodVideoKeep;
                         } else {
                             i13 = R.string.TimerPeriodPhotoKeep;
                         }
                         charSequence = LocaleController.getString(i13);
-                        f3Var.h = bdVar.getMeasuredWidth();
-                        f3Var.q(false);
-                        f3Var.l(13.0f, 4.0f, 10.0f, 4.0f);
-                        f3Var.f45288b0 = AndroidUtilities.dp(0);
-                        f3Var.f45286a0 = -AndroidUtilities.dp(1.0f);
+                        e3Var.h = bdVar.getMeasuredWidth();
+                        e3Var.p(false);
+                        e3Var.k(13.0f, 4.0f, 10.0f, 4.0f);
+                        e3Var.f45262b0 = AndroidUtilities.dp(0);
+                        e3Var.f45260a0 = -AndroidUtilities.dp(1.0f);
                     } else if (i17 == Integer.MAX_VALUE) {
-                        if (bdVar.f25579n1) {
+                        if (bdVar.f25590n1) {
                             i11 = R.string.TimerPeriodVideoSetOnce;
                         } else {
                             i11 = R.string.TimerPeriodPhotoSetOnce;
                         }
                         charSequence = LocaleController.getString(i11);
-                        f3Var.h = bdVar.getMeasuredWidth();
-                        f3Var.q(false);
-                        f3Var.l(13.0f, 4.0f, 10.0f, 4.0f);
-                        f3Var.f45288b0 = AndroidUtilities.dp(0);
-                        f3Var.f45286a0 = -AndroidUtilities.dp(1.0f);
+                        e3Var.h = bdVar.getMeasuredWidth();
+                        e3Var.p(false);
+                        e3Var.k(13.0f, 4.0f, 10.0f, 4.0f);
+                        e3Var.f45262b0 = AndroidUtilities.dp(0);
+                        e3Var.f45260a0 = -AndroidUtilities.dp(1.0f);
                     } else if (i17 > 0) {
-                        if (bdVar.f25579n1) {
+                        if (bdVar.f25590n1) {
                             str = "TimerPeriodVideoSetSeconds";
                         } else {
                             str = "TimerPeriodPhotoSetSeconds";
                         }
                         SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString(str, i17, new Object[0]));
-                        f3Var.q(true);
-                        f3Var.h = f3.a(replaceTags, f3Var.getTextPaint());
-                        f3Var.l(12.0f, 7.0f, 11.0f, 7.0f);
-                        f3Var.f45288b0 = AndroidUtilities.dp(2);
-                        f3Var.f45286a0 = 0.0f;
+                        e3Var.p(true);
+                        e3Var.h = e3.a(replaceTags, e3Var.getTextPaint());
+                        e3Var.k(12.0f, 7.0f, 11.0f, 7.0f);
+                        e3Var.f45262b0 = AndroidUtilities.dp(2);
+                        e3Var.f45260a0 = 0.0f;
                         charSequence = replaceTags;
                     } else {
                         return;
                     }
                     float dp = (-Math.min(AndroidUtilities.dp(34.0f), bdVar.getEditTextHeight())) - AndroidUtilities.dp(14.0f);
-                    if (bdVar instanceof is0) {
+                    if (bdVar instanceof ns0) {
                         f10 = -1.0f;
                     }
-                    f3Var.setTranslationY(dp * f10);
-                    f3Var.t(charSequence);
+                    e3Var.setTranslationY(dp * f10);
+                    e3Var.s(charSequence);
                     if (i17 > 0) {
                         i12 = R.raw.fire_on;
                     } else {
                         i12 = R.raw.fire_off;
                     }
-                    ij0 ij0Var = new ij0(i12, AndroidUtilities.dp(34.0f), l.d.j(i12, ""), AndroidUtilities.dp(34.0f));
-                    ij0Var.start();
-                    f3Var.k(ij0Var);
-                    f3Var.v();
+                    hj0 hj0Var = new hj0(i12, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
+                    hj0Var.start();
+                    e3Var.j(hj0Var);
+                    e3Var.u();
                     bdVar.l1 = false;
-                    AndroidUtilities.cancelRunOnUIThread(bdVar.f25578m1);
+                    AndroidUtilities.cancelRunOnUIThread(bdVar.f25589m1);
                     bdVar.invalidate();
                     return;
                 }
@@ -428,7 +428,7 @@ public final class b implements Runnable {
             default:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj;
                 if (i17 == 0) {
-                    chatActivityEnterView.f24695w2 = 0;
+                    chatActivityEnterView.f24697w2 = 0;
                 }
                 chatActivityEnterView.S0 = null;
                 uf ufVar = chatActivityEnterView.R0;
@@ -437,7 +437,7 @@ public final class b implements Runnable {
                         ufVar.setTranslationY(0.0f);
                     }
                     chatActivityEnterView.R0.setVisibility(8);
-                    chatActivityEnterView.f24627j1.removeView(chatActivityEnterView.R0);
+                    chatActivityEnterView.f24629j1.removeView(chatActivityEnterView.R0);
                     if (chatActivityEnterView.C3) {
                         chatActivityEnterView.C3 = false;
                         chatActivityEnterView.R0 = null;

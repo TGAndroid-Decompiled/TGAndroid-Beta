@@ -5,7 +5,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class mh0 extends org.telegram.ui.Components.mq0 {
+public final class mh0 extends org.telegram.ui.Components.lq0 {
     public final nh0 Y0;
 
     public mh0(nh0 nh0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.g6 g6Var) {
@@ -21,7 +21,7 @@ public final class mh0 extends org.telegram.ui.Components.mq0 {
             return;
         }
         if (hVar != null && hVar.m() == 1) {
-            long j10 = ((TLRPC.Dialog) hVar.n(0)).f20847id;
+            long j10 = ((TLRPC.Dialog) hVar.n(0)).f20849id;
             if (j10 != 0 && j10 != qh0Var.getUserConfig().getClientUserId()) {
                 formatString = LocaleController.formatString(R.string.InvLinkToUser, qh0Var.getMessagesController().getPeerName(j10, true));
             } else {
@@ -31,7 +31,7 @@ public final class mh0 extends org.telegram.ui.Components.mq0 {
             formatString = LocaleController.formatString(R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i10, new Object[0]));
         }
         org.telegram.ui.Components.ic Q = org.telegram.ui.Components.qc.a0(qh0Var).Q(R.raw.forward, 36, AndroidUtilities.replaceTags(formatString));
-        Q.f27753r = false;
+        Q.f27786r = false;
         Q.k(true);
     }
 }

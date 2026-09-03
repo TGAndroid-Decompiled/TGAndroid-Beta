@@ -64,7 +64,7 @@ public final class b implements com.google.android.gms.common.api.internal.s, g5
     public m1 M0(View view, m1 m1Var) {
         m2.h hVar = (m2.h) this.f6121c;
         m1 h = j0.h(view, m1Var);
-        if (h.f46452a.n()) {
+        if (h.f46483a.n()) {
             return h;
         }
         Rect rect = (Rect) this.f6120b;
@@ -195,7 +195,7 @@ public final class b implements com.google.android.gms.common.api.internal.s, g5
         try {
             n9.b bVar = (n9.b) this.f6121c;
             bVar.getClass();
-            new File(bVar.f15872b, str).createNewFile();
+            new File(bVar.f15874b, str).createNewFile();
         } catch (IOException e6) {
             Log.e("FirebaseCrashlytics", "Error creating marker: ".concat(str), e6);
         }
@@ -250,7 +250,7 @@ public final class b implements com.google.android.gms.common.api.internal.s, g5
             while (true) {
                 if (i11 < p1Var.f9373c.size()) {
                     if (((o4.v) p1Var.f9373c.get(i11)).d == vVar.d) {
-                        Object obj = vVar.f16579a;
+                        Object obj = vVar.f16581a;
                         Object obj2 = p1Var.f9372b;
                         int i12 = j3.a.d;
                         vVar2 = vVar.b(Pair.create(obj2, obj));
@@ -282,8 +282,8 @@ public final class b implements com.google.android.gms.common.api.internal.s, g5
     }
 
     public void t(k.a aVar) {
-        sf.e eVar = (sf.e) this.f6120b;
-        ((ActionMode.Callback) eVar.f47315b).onDestroyActionMode(eVar.s(aVar));
+        sf.f fVar = (sf.f) this.f6120b;
+        ((ActionMode.Callback) fVar.f47351b).onDestroyActionMode(fVar.s(aVar));
         g.q qVar = (g.q) this.f6121c;
         if (qVar.B != null) {
             qVar.f6771f.getDecorView().removeCallbacks(qVar.C);
@@ -300,7 +300,7 @@ public final class b implements com.google.android.gms.common.api.internal.s, g5
         }
         qVar.f6783x = null;
         ViewGroup viewGroup = qVar.G;
-        WeakHashMap weakHashMap = j0.f46438a;
+        WeakHashMap weakHashMap = j0.f46469a;
         r0.z.c(viewGroup);
         qVar.y();
     }
@@ -335,15 +335,15 @@ public final class b implements com.google.android.gms.common.api.internal.s, g5
 
     public boolean u(k.a aVar, Menu menu) {
         ViewGroup viewGroup = ((g.q) this.f6121c).G;
-        WeakHashMap weakHashMap = j0.f46438a;
+        WeakHashMap weakHashMap = j0.f46469a;
         r0.z.c(viewGroup);
-        sf.e eVar = (sf.e) this.f6120b;
-        ActionMode.Callback callback = (ActionMode.Callback) eVar.f47315b;
-        k.e s6 = eVar.s(aVar);
-        a0.k kVar = (a0.k) eVar.f47317e;
+        sf.f fVar = (sf.f) this.f6120b;
+        ActionMode.Callback callback = (ActionMode.Callback) fVar.f47351b;
+        k.e s6 = fVar.s(aVar);
+        a0.k kVar = (a0.k) fVar.f47353e;
         Menu menu2 = (Menu) kVar.get(menu);
         if (menu2 == null) {
-            menu2 = new b0((Context) eVar.f47316c, (l.l) menu);
+            menu2 = new b0((Context) fVar.f47352c, (l.l) menu);
             kVar.put(menu, menu2);
         }
         return callback.onPrepareActionMode(s6, menu2);
@@ -369,10 +369,10 @@ public final class b implements com.google.android.gms.common.api.internal.s, g5
     @Override
     public Object x(od.c cVar, wc.c cVar2) {
         Object x10 = ((qa) this.f6120b).x(new k1.s(cVar, (la.z) this.f6121c), cVar2);
-        if (x10 == vc.a.f48962a) {
+        if (x10 == vc.a.f48998a) {
             return x10;
         }
-        return sc.i.f47243a;
+        return sc.i.f47274a;
     }
 
     public b(int i10, Object obj, Object obj2) {

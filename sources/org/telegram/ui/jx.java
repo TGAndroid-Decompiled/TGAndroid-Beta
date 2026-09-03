@@ -11,7 +11,7 @@ public final class jx extends f2.j0 {
     @Override
     public final int R0() {
         oy oyVar = this.I;
-        if (oyVar.f39873s == 0 && this.J.T.Z3() && oyVar.v == 2) {
+        if (oyVar.f39829s == 0 && this.J.T.Z3() && oyVar.v == 2) {
             return 1;
         }
         return 0;

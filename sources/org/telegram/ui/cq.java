@@ -6,19 +6,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class cq implements Runnable {
-    public final int f35890a;
-    public final kq f35891b;
+    public final int f35840a;
+    public final kq f35841b;
 
     public cq(kq kqVar, int i10) {
-        this.f35890a = i10;
-        this.f35891b = kqVar;
+        this.f35840a = i10;
+        this.f35841b = kqVar;
     }
 
     @Override
     public final void run() {
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
-        int i10 = this.f35890a;
-        kq kqVar = this.f35891b;
+        int i10 = this.f35840a;
+        kq kqVar = this.f35841b;
         int i11 = 1;
         switch (i10) {
             case 0:
@@ -33,7 +33,7 @@ public final class cq implements Runnable {
                     hqVar.b(0, tL_chatAdminRights, null, kqVar.P);
                 }
                 Bundle i12 = android.support.v4.media.a.i("scrollToTopOnResume", true);
-                i12.putLong("chat_id", kqVar.f38484w.f20843id);
+                i12.putLong("chat_id", kqVar.f38394w.f20845id);
                 if (!kqVar.getMessagesController().checkCanOpenChat(i12, kqVar)) {
                     kqVar.t0(false);
                     return;
@@ -44,9 +44,9 @@ public final class cq implements Runnable {
                     boolean z4 = kqVar.W0;
                     if (z4 && kqVar.H) {
                         String str = user.first_name;
-                        org.telegram.ui.Components.qb qbVar = new org.telegram.ui.Components.qb(xnVar.getParentActivity(), xnVar.f43136ba);
+                        org.telegram.ui.Components.qb qbVar = new org.telegram.ui.Components.qb(xnVar.getParentActivity(), xnVar.f43114ba);
                         qbVar.d(R.raw.ic_admin, "Shield");
-                        qbVar.f30359b.setText(AndroidUtilities.replaceTags(LocaleController.formatString("UserAddedAsAdminHint", R.string.UserAddedAsAdminHint, str)));
+                        qbVar.f30375b.setText(AndroidUtilities.replaceTags(LocaleController.formatString("UserAddedAsAdminHint", R.string.UserAddedAsAdminHint, str)));
                         org.telegram.ui.Components.ic.g(xnVar, qbVar, 1500).j();
                         return;
                     } else if (!z4 && !kqVar.I && kqVar.H) {
@@ -61,10 +61,10 @@ public final class cq implements Runnable {
                 kqVar.r0(false);
                 return;
             default:
-                if (kqVar.f38477r) {
-                    long j10 = kqVar.f38472n;
+                if (kqVar.f38387r) {
+                    long j10 = kqVar.f38382n;
                     org.telegram.ui.ActionBar.d2[] d2VarArr = {new org.telegram.ui.ActionBar.d2(kqVar.getParentActivity(), 3, null)};
-                    kqVar.getMessagesController().toggleChatJoinRequest(kqVar.f38479s, j10, true, false, true, new qg(d2VarArr, 2), new qg(d2VarArr, 3));
+                    kqVar.getMessagesController().toggleChatJoinRequest(kqVar.f38389s, j10, true, false, true, new qg(d2VarArr, 2), new qg(d2VarArr, 3));
                     d2VarArr[0].q(300L);
                 }
                 hq hqVar2 = kqVar.U0;

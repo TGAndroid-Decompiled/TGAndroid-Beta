@@ -1,8 +1,8 @@
 package org.telegram.ui.Cells;
 
 import android.view.View;
-import org.telegram.ui.Components.tl0;
-import org.telegram.ui.Components.xn;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.wn;
 import org.telegram.ui.LaunchActivity;
 public final class l6 extends oh.i7 {
     public final int S = 0;
@@ -24,13 +24,13 @@ public final class l6 extends oh.i7 {
                 org.telegram.ui.ActionBar.p2 R = LaunchActivity.R();
                 if (R != null) {
                     R.getOrCreateStoryViewer().getClass();
-                    R.getOrCreateStoryViewer().D(vaVar.getContext(), j10, oh.c7.a((tl0) vaVar.getParent()));
+                    R.getOrCreateStoryViewer().D(vaVar.getContext(), j10, oh.c7.a((sl0) vaVar.getParent()));
                     return;
                 }
                 return;
             default:
-                xn xnVar = (xn) this.T;
-                xnVar.E.getOrCreateStoryViewer().D(xnVar.getContext(), j10, new org.telegram.ui.Components.t(this, 25));
+                wn wnVar = (wn) this.T;
+                wnVar.E.getOrCreateStoryViewer().D(wnVar.getContext(), j10, new org.telegram.ui.Components.t(this, 25));
                 return;
         }
     }
@@ -40,8 +40,8 @@ public final class l6 extends oh.i7 {
         this.T = vaVar;
     }
 
-    public l6(xn xnVar) {
+    public l6(wn wnVar) {
         super(null, true);
-        this.T = xnVar;
+        this.T = wnVar;
     }
 }

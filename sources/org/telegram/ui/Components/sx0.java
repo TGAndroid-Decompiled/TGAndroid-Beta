@@ -1,19 +1,18 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-public final class sx0 implements View.OnClickListener {
-    public final int f31193a;
-    public final Object f31194b;
-    public final Object f31195c;
+public final class sx0 extends org.telegram.ui.Cells.d8 {
+    public final tx0 L;
 
-    public sx0(int i10, Object obj, Object obj2) {
-        this.f31193a = i10;
-        this.f31194b = obj;
-        this.f31195c = obj2;
+    public sx0(tx0 tx0Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, g6Var, false);
+        this.L = tx0Var;
     }
 
     @Override
-    public final void onClick(android.view.View r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.sx0.onClick(android.view.View):void");
+    public final void onMeasure(int i10, int i11) {
+        tx0 tx0Var = this.L;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(tx0Var.f31438r.L, 1073741824), View.MeasureSpec.makeMeasureSpec(tx0Var.f31438r.L, 1073741824));
     }
 }

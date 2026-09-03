@@ -14,27 +14,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class rv extends LinearLayout {
-    public final a0.h f30876a;
-    public final Paint f30877b;
-    public final RectF f30878c;
+    public final a0.h f30904a;
+    public final Paint f30905b;
+    public final RectF f30906c;
     public final RectF d;
-    public final RectF f30879e;
-    public final Path f30880f;
+    public final RectF f30907e;
+    public final Path f30908f;
     public final boolean h;
-    public final boolean f30881n;
-    public final zv f30882r;
+    public final boolean f30909n;
+    public final zv f30910r;
 
     public rv(zv zvVar, Context context, boolean z4, boolean z10) {
         super(context);
-        this.f30882r = zvVar;
+        this.f30910r = zvVar;
         this.h = z4;
-        this.f30881n = z10;
-        this.f30876a = new a0.h();
-        this.f30877b = new Paint(1);
-        this.f30878c = new RectF();
+        this.f30909n = z10;
+        this.f30904a = new a0.h();
+        this.f30905b = new Paint(1);
+        this.f30906c = new RectF();
         this.d = new RectF();
-        this.f30879e = new RectF();
-        this.f30880f = new Path();
+        this.f30907e = new RectF();
+        this.f30908f = new Path();
     }
 
     public final void a(RectF rectF, int i10) {
@@ -50,8 +50,8 @@ public final class rv extends LinearLayout {
     public final void dispatchDraw(Canvas canvas) {
         float f10;
         float f11;
-        zv zvVar = this.f30882r;
-        boolean z4 = zvVar.f34025n;
+        zv zvVar = this.f30910r;
+        boolean z4 = zvVar.f34021n;
         xv xvVar = zvVar.D;
         for (Map.Entry entry : zvVar.E.entrySet()) {
             View view = (View) entry.getKey();
@@ -64,12 +64,12 @@ public final class rv extends LinearLayout {
                 canvas.restore();
             }
         }
-        if (zvVar.f34027s == null) {
-            zvVar.f34027s = new z5(this, 350L, pr.h);
+        if (zvVar.f34023s == null) {
+            zvVar.f34023s = new z5(this, 350L, pr.h);
         }
-        z5 z5Var = zvVar.f34027s;
+        z5 z5Var = zvVar.f34023s;
         float f12 = 0.0f;
-        if (zvVar.f34026r) {
+        if (zvVar.f34022r) {
             f10 = 1.0f;
         } else {
             f10 = 0.0f;
@@ -77,12 +77,12 @@ public final class rv extends LinearLayout {
         int i10 = 0;
         float d = z5Var.d(f10, false);
         int floor = (int) Math.floor(zvVar.H);
-        RectF rectF = this.f30878c;
+        RectF rectF = this.f30906c;
         a(rectF, floor);
         RectF rectF2 = this.d;
         a(rectF2, (int) Math.ceil(zvVar.H));
         float f13 = zvVar.H - floor;
-        RectF rectF3 = this.f30879e;
+        RectF rectF3 = this.f30907e;
         AndroidUtilities.lerp(rectF, rectF2, f13, rectF3);
         if (xvVar != null) {
             float f14 = zvVar.H;
@@ -98,16 +98,16 @@ public final class rv extends LinearLayout {
         rectF3.set(rectF3.centerX() - y10, rectF3.centerY() - height, rectF3.centerX() + y10, rectF3.centerY() + height);
         float dp = AndroidUtilities.dp(AndroidUtilities.lerp(8.0f, 16.0f, f12));
         int k10 = zvVar.k();
-        Paint paint = this.f30877b;
+        Paint paint = this.f30905b;
         paint.setColor(k10);
         if (z4) {
             paint.setAlpha((int) ((1.0f - (f12 * 0.5f)) * paint.getAlpha() * d));
         } else {
             paint.setAlpha((int) (paint.getAlpha() * d));
         }
-        Path path = this.f30880f;
+        Path path = this.f30908f;
         path.rewind();
-        boolean z10 = this.f30881n;
+        boolean z10 = this.f30909n;
         if (z10) {
             f11 = rectF3.height() / 2.0f;
         } else {
@@ -135,9 +135,9 @@ public final class rv extends LinearLayout {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f30882r.D) {
+        if (view == this.f30910r.D) {
             canvas.save();
-            canvas.clipPath(this.f30880f);
+            canvas.clipPath(this.f30908f);
             boolean drawChild = super.drawChild(canvas, view, j10);
             canvas.restore();
             return drawChild;
@@ -150,7 +150,7 @@ public final class rv extends LinearLayout {
         a0.h hVar;
         long j10;
         TLRPC.StickerSet stickerSet;
-        zv zvVar = this.f30882r;
+        zv zvVar = this.f30910r;
         vv vvVar = zvVar.C;
         int i14 = (i13 - i11) / 2;
         if (this.h) {
@@ -158,7 +158,7 @@ public final class rv extends LinearLayout {
             int i15 = 0;
             while (true) {
                 int childCount = getChildCount();
-                hVar = this.f30876a;
+                hVar = this.f30904a;
                 if (i15 >= childCount) {
                     break;
                 }
@@ -169,17 +169,17 @@ public final class rv extends LinearLayout {
                     Long l10 = null;
                     if (z10) {
                         vv vvVar2 = (vv) childAt;
-                        Long l11 = vvVar2.f32544a;
+                        Long l11 = vvVar2.f32555a;
                         if (l11 == null) {
                             xx xxVar = vvVar2.v;
-                            if (xxVar != null && (stickerSet = xxVar.f33189b) != null) {
-                                l10 = Long.valueOf(stickerSet.f20870id);
+                            if (xxVar != null && (stickerSet = xxVar.f33212b) != null) {
+                                l10 = Long.valueOf(stickerSet.f20872id);
                             } else {
-                                l11 = vvVar2.f32550r;
+                                l11 = vvVar2.f32561r;
                                 if (l11 == null) {
-                                    TLRPC.Document document = vvVar2.f32551s;
+                                    TLRPC.Document document = vvVar2.f32562s;
                                     if (document != null) {
-                                        l10 = Long.valueOf(document.f20849id);
+                                        l10 = Long.valueOf(document.f20851id);
                                     }
                                 }
                             }
@@ -190,8 +190,8 @@ public final class rv extends LinearLayout {
                     }
                     if (zvVar.L && z10) {
                         vv vvVar3 = (vv) childAt;
-                        if (vvVar3.f32545b) {
-                            vvVar3.f32545b = false;
+                        if (vvVar3.f32556b) {
+                            vvVar3.f32556b = false;
                             childAt.setScaleX(0.0f);
                             childAt.setScaleY(0.0f);
                             childAt.setAlpha(0.0f);
@@ -212,14 +212,14 @@ public final class rv extends LinearLayout {
                         }
                         hVar.k(Integer.valueOf(paddingLeft), l10.longValue());
                     }
-                    if ((childAt != zvVar.f34030y || zvVar.T) && (childAt != zvVar.B || zvVar.V)) {
+                    if ((childAt != zvVar.f34026y || zvVar.T) && (childAt != zvVar.B || zvVar.V)) {
                         paddingLeft = org.telegram.messenger.y3.C(3.0f, childAt.getMeasuredWidth(), paddingLeft);
                     }
                 }
                 i15++;
             }
             if (vvVar != null) {
-                Long l12 = vvVar.f32544a;
+                Long l12 = vvVar.f32555a;
                 if (getPaddingRight() + vvVar.getMeasuredWidth() + paddingLeft <= zvVar.getMeasuredWidth()) {
                     int i16 = i12 - i10;
                     paddingLeft = (i16 - getPaddingRight()) - vvVar.getMeasuredWidth();
@@ -259,9 +259,9 @@ public final class rv extends LinearLayout {
         vv vvVar2;
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(99999999, Integer.MIN_VALUE);
         int paddingRight = getPaddingRight() + getPaddingLeft();
-        zv zvVar = this.f30882r;
+        zv zvVar = this.f30910r;
         float f11 = 0.0f;
-        if (!zvVar.T && (vvVar2 = zvVar.f34030y) != null) {
+        if (!zvVar.T && (vvVar2 = zvVar.f34026y) != null) {
             f10 = vvVar2.getAlpha() * AndroidUtilities.dp(33.0f);
         } else {
             f10 = 0.0f;

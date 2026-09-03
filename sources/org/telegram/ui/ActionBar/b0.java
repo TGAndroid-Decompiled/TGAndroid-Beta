@@ -6,25 +6,25 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class b0 implements View.OnClickListener {
-    public final int f21188a;
-    public final w0 f21189b;
+    public final int f21190a;
+    public final w0 f21191b;
 
     public b0(w0 w0Var, int i10) {
-        this.f21188a = i10;
-        this.f21189b = w0Var;
+        this.f21190a = i10;
+        this.f21191b = w0Var;
     }
 
     @Override
     public final void onClick(View view) {
         i5 i5Var;
-        switch (this.f21188a) {
+        switch (this.f21190a) {
             case 0:
-                w0 w0Var = this.f21189b;
-                ArrayList arrayList = w0Var.f22348d0;
-                if (w0Var.f22349e.length() != 0) {
-                    w0Var.f22349e.setText("");
+                w0 w0Var = this.f21191b;
+                ArrayList arrayList = w0Var.f22350d0;
+                if (w0Var.f22351e.length() != 0) {
+                    w0Var.f22351e.setText("");
                 } else if (w0Var.p()) {
-                    w0Var.f22349e.hideActionMode();
+                    w0Var.f22351e.hideActionMode();
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
                         if (w0Var.E != null && ((uf.e0) arrayList.get(i10)).h) {
                             w0Var.E.o((uf.e0) arrayList.get(i10));
@@ -41,11 +41,11 @@ public final class b0 implements View.OnClickListener {
                         }
                     }
                 }
-                w0Var.f22349e.requestFocus();
-                AndroidUtilities.showKeyboard(w0Var.f22349e);
+                w0Var.f22351e.requestFocus();
+                AndroidUtilities.showKeyboard(w0Var.f22351e);
                 return;
             case 1:
-                w0 w0Var2 = this.f21189b;
+                w0 w0Var2 = this.f21191b;
                 p1 p1Var = w0Var2.d;
                 if (p1Var != null && p1Var.isShowing()) {
                     if (!w0Var2.Q) {
@@ -55,7 +55,7 @@ public final class b0 implements View.OnClickListener {
                         return;
                     }
                 }
-                z zVar = w0Var2.f22346c;
+                z zVar = w0Var2.f22348c;
                 if (zVar != null) {
                     zVar.o(((Integer) view.getTag()).intValue());
                     return;
@@ -67,8 +67,8 @@ public final class b0 implements View.OnClickListener {
                 }
                 return;
             case 2:
-                w0 w0Var3 = this.f21189b;
-                z zVar2 = w0Var3.f22346c;
+                w0 w0Var3 = this.f21191b;
+                z zVar2 = w0Var3.f22348c;
                 if (zVar2 != null) {
                     zVar2.o(((Integer) view.getTag()).intValue());
                     return;
@@ -80,7 +80,7 @@ public final class b0 implements View.OnClickListener {
                 }
                 return;
             default:
-                w0 w0Var4 = this.f21189b;
+                w0 w0Var4 = this.f21191b;
                 p1 p1Var2 = w0Var4.d;
                 if (p1Var2 != null && p1Var2.isShowing()) {
                     if (!w0Var4.Q) {
@@ -93,7 +93,7 @@ public final class b0 implements View.OnClickListener {
                         return;
                     }
                 }
-                z zVar3 = w0Var4.f22346c;
+                z zVar3 = w0Var4.f22348c;
                 if (zVar3 != null) {
                     zVar3.o(((Integer) view.getTag()).intValue());
                     return;

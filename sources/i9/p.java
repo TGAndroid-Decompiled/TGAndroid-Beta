@@ -24,7 +24,7 @@ public final class p {
     public final e9.a f7988i;
     public final e9.a f7989j;
     public final ExecutorService f7990k;
-    public final sf.e f7991l;
+    public final sf.f f7991l;
     public final k f7992m;
     public final f9.a f7993n;
     public final f0 f7994o;
@@ -32,14 +32,14 @@ public final class p {
     public p(w8.g gVar, w wVar, f9.a aVar, s sVar, e9.a aVar2, e9.a aVar3, n9.b bVar, ExecutorService executorService, k kVar, f0 f0Var) {
         this.f7983b = sVar;
         gVar.a();
-        this.f7982a = gVar.f49452a;
+        this.f7982a = gVar.f49488a;
         this.f7987g = wVar;
         this.f7993n = aVar;
         this.f7988i = aVar2;
         this.f7989j = aVar3;
         this.f7990k = executorService;
         this.h = bVar;
-        this.f7991l = new sf.e(executorService);
+        this.f7991l = new sf.f(executorService);
         this.f7992m = kVar;
         this.f7994o = f0Var;
         System.currentTimeMillis();
@@ -49,8 +49,8 @@ public final class p {
     public static Task a(p pVar, e3.g gVar) {
         Task forException;
         o oVar;
-        sf.e eVar = pVar.f7991l;
-        if (Boolean.TRUE.equals(((ThreadLocal) eVar.f47317e).get())) {
+        sf.f fVar = pVar.f7991l;
+        if (Boolean.TRUE.equals(((ThreadLocal) fVar.f47353e).get())) {
             pVar.d.n();
             if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                 Log.v("FirebaseCrashlytics", "Initialization marker file was created.", null);
@@ -59,7 +59,7 @@ public final class p {
                 try {
                     pVar.f7988i.a(new f5.u(19));
                     pVar.f7986f.g();
-                    if (!gVar.d().f44218b.f13622a) {
+                    if (!gVar.d().f44249b.f13624a) {
                         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                             Log.d("FirebaseCrashlytics", "Collection of crash reports disabled in Crashlytics settings.", null);
                         }
@@ -77,10 +77,10 @@ public final class p {
                     forException = Tasks.forException(e6);
                     oVar = new o(pVar, 0);
                 }
-                eVar.H(oVar);
+                fVar.H(oVar);
                 return forException;
             } catch (Throwable th2) {
-                eVar.H(new o(pVar, 0));
+                fVar.H(new o(pVar, 0));
                 throw th2;
             }
         }

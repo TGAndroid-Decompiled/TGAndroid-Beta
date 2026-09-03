@@ -1,8 +1,8 @@
 package th;
 
 import org.telegram.ui.Cells.r2;
-import org.telegram.ui.Components.ao0;
-public final class x implements ao0 {
+import org.telegram.ui.Components.zn0;
+public final class x implements zn0 {
     @Override
     public final void finish() {
     }

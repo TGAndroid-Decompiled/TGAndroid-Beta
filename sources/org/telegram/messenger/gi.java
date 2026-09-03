@@ -1,29 +1,29 @@
 package org.telegram.messenger;
 public final class gi implements Runnable {
-    public final int f18780a;
-    public final SecretChatHelper f18781b;
-    public final long f18782c;
+    public final int f18782a;
+    public final SecretChatHelper f18783b;
+    public final long f18784c;
 
     public gi(SecretChatHelper secretChatHelper, long j10, int i10) {
-        this.f18780a = i10;
-        this.f18781b = secretChatHelper;
-        this.f18782c = j10;
+        this.f18782a = i10;
+        this.f18783b = secretChatHelper;
+        this.f18784c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18780a) {
+        switch (this.f18782a) {
             case 0:
-                SecretChatHelper.x(this.f18781b, this.f18782c);
+                SecretChatHelper.x(this.f18783b, this.f18784c);
                 return;
             case 1:
-                SecretChatHelper.t(this.f18781b, this.f18782c);
+                SecretChatHelper.t(this.f18783b, this.f18784c);
                 return;
             case 2:
-                SecretChatHelper.j(this.f18781b, this.f18782c);
+                SecretChatHelper.j(this.f18783b, this.f18784c);
                 return;
             default:
-                SecretChatHelper.w(this.f18781b, this.f18782c);
+                SecretChatHelper.w(this.f18783b, this.f18784c);
                 return;
         }
     }

@@ -7,25 +7,25 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.qv0;
+import org.telegram.ui.Components.pv0;
 public final class z5 extends org.telegram.ui.Cells.f3 {
     public final e6 B;
-    public final qg.d f13134x;
-    public final int f13135y;
+    public final qg.d f13136x;
+    public final int f13137y;
 
-    public z5(e6 e6Var, Context context, qv0 qv0Var, String str, int i10, g6 g6Var, qg.d dVar, int i11) {
-        super(context, qv0Var, str, true, i10, g6Var);
+    public z5(e6 e6Var, Context context, pv0 pv0Var, String str, int i10, g6 g6Var, qg.d dVar, int i11) {
+        super(context, pv0Var, str, true, i10, g6Var);
         this.B = e6Var;
-        this.f13134x = dVar;
-        this.f13135y = i11;
+        this.f13136x = dVar;
+        this.f13137y = i11;
     }
 
     @Override
     public final void b() {
         TLRPC.TL_textWithEntities tL_textWithEntities;
         e6 e6Var = this.B;
-        MessageObject messageObject = e6Var.f12707j0;
-        TLRPC.MessageAction messageAction = e6Var.f12706i0;
+        MessageObject messageObject = e6Var.f12709j0;
+        TLRPC.MessageAction messageAction = e6Var.f12708i0;
         if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
             tL_textWithEntities = new TLRPC.TL_textWithEntities();
             ((TLRPC.TL_messageActionStarGift) messageAction).message = tL_textWithEntities;
@@ -42,12 +42,12 @@ public final class z5 extends org.telegram.ui.Cells.f3 {
         } else {
             return;
         }
-        CharSequence[] charSequenceArr = {e6Var.f12712p0.getText()};
-        tL_textWithEntities.entities = MediaDataController.getInstance(this.f13135y).getEntities(charSequenceArr, true);
+        CharSequence[] charSequenceArr = {e6Var.f12714p0.getText()};
+        tL_textWithEntities.entities = MediaDataController.getInstance(this.f13137y).getEntities(charSequenceArr, true);
         tL_textWithEntities.text = charSequenceArr[0].toString();
         messageObject.setType();
-        e6Var.f12705h0.U(messageObject, true);
-        e6Var.f12713q0.N(true);
+        e6Var.f12707h0.U(messageObject, true);
+        e6Var.f12715q0.N(true);
         e6Var.Z(true);
     }
 
@@ -56,7 +56,7 @@ public final class z5 extends org.telegram.ui.Cells.f3 {
         int dp = AndroidUtilities.dp(10.0f);
         int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(10.0f);
         int measuredHeight = getMeasuredHeight();
-        qg.d dVar = this.f13134x;
+        qg.d dVar = this.f13136x;
         dVar.setBounds(dp, 0, measuredWidth, measuredHeight);
         dVar.draw(canvas);
         super.dispatchDraw(canvas);

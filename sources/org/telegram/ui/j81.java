@@ -1,37 +1,36 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-public final class j81 extends org.telegram.ui.Components.i51 {
-    public static final int f38056a = 0;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class j81 implements Runnable {
+    public final int f37880a;
+    public final v81 f37881b;
 
-    static {
-        org.telegram.ui.Components.i51.setup(new org.telegram.ui.Components.i51());
+    public j81(v81 v81Var, int i10) {
+        this.f37880a = i10;
+        this.f37881b = v81Var;
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.j51 j51Var, boolean z4, org.telegram.ui.Components.x51 x51Var, org.telegram.ui.Components.i61 i61Var) {
-        ((k81) view).set(j51Var.f28027z);
-    }
-
-    @Override
-    public final boolean contentsEquals(org.telegram.ui.Components.j51 j51Var, org.telegram.ui.Components.j51 j51Var2) {
-        if (j51Var.f28027z == j51Var2.f28027z) {
-            return true;
+    public final void run() {
+        switch (this.f37880a) {
+            case 0:
+                this.f37881b.f42046c.V2.N(true);
+                return;
+            case 1:
+                af.g.s(this.f37881b.getParentActivity(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
+                return;
+            case 2:
+                v81 v81Var = this.f37881b;
+                v81Var.f42046c.postOnAnimation(new j81(v81Var, 3));
+                return;
+            case 3:
+                this.f37881b.i0();
+                return;
+            default:
+                MessagesController.getInstance(this.f37881b.currentAccount).deleteUserPhoto(null);
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final View createView(Context context, org.telegram.ui.Components.tl0 tl0Var, int i10, int i11, org.telegram.ui.ActionBar.g6 g6Var) {
-        return new k81(context, g6Var);
-    }
-
-    @Override
-    public final boolean equals(org.telegram.ui.Components.j51 j51Var, org.telegram.ui.Components.j51 j51Var2) {
-        if (j51Var.d == j51Var2.d) {
-            return true;
-        }
-        return false;
     }
 }

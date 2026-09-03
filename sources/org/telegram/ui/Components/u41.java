@@ -1,41 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.TextUtils;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.ConnectionsManager;
-public final class u41 extends fn0 {
-    public final f51 h;
+import org.telegram.messenger.LocaleController;
+public final class u41 extends qz {
+    public final d51 Y;
 
-    public u41(f51 f51Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, 14.0f, g6Var);
-        this.h = f51Var;
+    public u41(d51 d51Var, int i10, t41 t41Var) {
+        super(5, i10, t41Var);
+        this.Y = d51Var;
     }
 
     @Override
-    public final void a(String str) {
-        uf.m1 m1Var = this.h.v;
-        uf.l1 l1Var = m1Var.P;
-        int i10 = m1Var.f48646c;
-        if (m1Var.K != 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(m1Var.K, true);
-            m1Var.K = 0;
+    public final boolean D1() {
+        d51 d51Var = this.Y;
+        if (d51Var.f26191n.getAdapter() == d51Var.v) {
+            return true;
         }
-        if (m1Var.L != 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(m1Var.L, true);
-            m1Var.L = 0;
+        return false;
+    }
+
+    @Override
+    public final boolean Y0() {
+        return LocaleController.isRTL;
+    }
+
+    @Override
+    public final int o0(int i10, bf.f fVar, f2.j1 j1Var) {
+        int i11;
+        View m9;
+        d51 d51Var = this.Y;
+        if (d51Var.K) {
+            return super.o0(i10, fVar, j1Var);
         }
-        if (TextUtils.isEmpty(str)) {
-            m1Var.O = null;
-            m1Var.C.clear();
-            m1Var.F.clear();
-            m1Var.B.clear();
-            m1Var.f48647e.b(false);
-            m1Var.l();
-        } else {
-            m1Var.O = str.toLowerCase();
+        int i12 = 0;
+        if (d51Var.I != null) {
+            return 0;
         }
-        AndroidUtilities.cancelRunOnUIThread(l1Var);
-        AndroidUtilities.runOnUIThread(l1Var, 300L);
+        if (d51Var.J) {
+            while (true) {
+                i11 = 1;
+                if (i12 >= r()) {
+                    break;
+                }
+                t41 t41Var = d51Var.f26191n;
+                View q10 = q(i12);
+                t41Var.getClass();
+                int R = RecyclerView.R(q10);
+                if (R < 1) {
+                    i11 = R;
+                    break;
+                }
+                i12++;
+            }
+            if (i11 == 0 && (m9 = d51Var.f26192r.m(i11)) != null && m9.getTop() - i10 > AndroidUtilities.dp(58.0f)) {
+                i10 = m9.getTop() - AndroidUtilities.dp(58.0f);
+            }
+        }
+        return super.o0(i10, fVar, j1Var);
+    }
+
+    @Override
+    public final boolean y0() {
+        return false;
     }
 }

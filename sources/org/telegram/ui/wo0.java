@@ -1,82 +1,70 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stars;
-public final class wo0 implements Utilities.Callback {
-    public final int f42866a;
-    public final xo0 f42867b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class wo0 extends Drawable {
+    public final org.telegram.ui.Components.k01 f42827a;
+    public final Drawable f42828b;
+    public final fg.p1 f42829c;
 
-    public wo0(xo0 xo0Var, int i10) {
-        this.f42866a = i10;
-        this.f42867b = xo0Var;
+    public wo0(int i10, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z4) {
+        String str;
+        if (z4) {
+            str = "BoostLevelPlus";
+        } else {
+            str = "BoostLevel";
+        }
+        this.f42827a = new org.telegram.ui.Components.k01(LocaleController.formatPluralString(str, i10, new Object[0]), 12.0f, AndroidUtilities.bold());
+        Drawable mutate = context.getResources().getDrawable(R.drawable.mini_switch_lock).mutate();
+        this.f42828b = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        this.f42829c = new fg.p1(org.telegram.ui.ActionBar.k6.Lj, org.telegram.ui.ActionBar.k6.Mj, -1, -1, g6Var);
     }
 
     @Override
-    public final void run(Object obj) {
-        TL_stars.StarGift starGift;
-        int i10;
-        dp0 dp0Var;
-        hp0 hp0Var;
-        dp0 dp0Var2;
-        switch (this.f42866a) {
-            case 0:
-                Integer num = (Integer) obj;
-                xo0 xo0Var = this.f42867b;
-                dp0 dp0Var3 = xo0Var.f43444e;
-                if (num.intValue() == 0) {
-                    starGift = null;
-                } else {
-                    starGift = (TL_stars.StarGift) dp0Var3.E.get(num);
-                }
-                dp0Var3.C = starGift;
-                ip0 ip0Var = dp0Var3.f36282g0;
-                if (starGift == null) {
-                    lh.b5 b5Var = dp0Var3.B;
-                    if (b5Var != null) {
-                        b5Var.f();
-                        dp0Var3.B = null;
-                    }
-                } else {
-                    lh.b5 b5Var2 = dp0Var3.B;
-                    if (b5Var2 == null || b5Var2.f12619b != starGift.f21070id) {
-                        i10 = ((org.telegram.ui.ActionBar.p2) ip0Var).currentAccount;
-                        lh.b5 b5Var3 = new lh.b5(dp0Var3.C.f21070id, i10, new wo0(xo0Var, 2));
-                        dp0Var3.B = b5Var3;
-                        b5Var3.g(false);
-                    }
-                }
-                dp0Var3.e();
-                if (ip0Var.f37914y.getCurrentPosition() == 1) {
-                    dp0Var = ip0Var.h;
-                } else {
-                    dp0Var = ip0Var.f37908f;
-                }
-                dp0Var.e();
-                return;
-            case 1:
-                dp0 dp0Var4 = this.f42867b.f43444e;
-                dp0Var4.f36283n = ((Integer) obj).intValue();
-                dp0Var4.f36285s = null;
-                dp0Var4.v = null;
-                dp0Var4.f36288y = null;
-                dp0Var4.i(true);
-                dp0Var4.h();
-                dp0Var4.f();
-                cp0 cp0Var = dp0Var4.f36287x;
-                if (cp0Var != null) {
-                    cp0Var.invalidate();
-                }
-                ip0 ip0Var2 = dp0Var4.f36282g0;
-                dp0 dp0Var5 = ip0Var2.h;
-                if (dp0Var5 != null && (hp0Var = dp0Var5.f36271a) != null && (dp0Var2 = ip0Var2.f37908f) != null) {
-                    hp0Var.a(dp0Var2.f36283n);
-                    return;
-                }
-                return;
-            default:
-                Boolean bool = (Boolean) obj;
-                this.f42867b.f43444e.e();
-                return;
-        }
+    public final void draw(Canvas canvas) {
+        int i10 = getBounds().left;
+        int centerY = getBounds().centerY();
+        RectF rectF = AndroidUtilities.rectTmp;
+        float f10 = centerY;
+        rectF.set(i10, f10 - (AndroidUtilities.dp(18.33f) / 2.0f), getIntrinsicWidth() + i10, (AndroidUtilities.dp(18.33f) / 2.0f) + f10);
+        fg.p1 p1Var = this.f42829c;
+        p1Var.e(rectF);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), p1Var.f6490f);
+        Drawable drawable = this.f42828b;
+        drawable.setBounds(AndroidUtilities.dp(3.33f) + i10, (int) (f10 - ((drawable.getIntrinsicHeight() * 0.875f) / 2.0f)), (int) ((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.33f) + i10), (int) android.support.v4.media.a.d(drawable.getIntrinsicHeight(), 0.875f, 2.0f, f10));
+        drawable.draw(canvas);
+        this.f42827a.c((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.66f) + i10, f10, 1.0f, -1, canvas);
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.33f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return (int) (this.f42827a.l() + (this.f42828b.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(9.66f));
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

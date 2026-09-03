@@ -9,23 +9,23 @@ import org.telegram.ui.Components.nb;
 import org.telegram.ui.Components.oq;
 import org.telegram.ui.Components.qb;
 public final class c implements Runnable {
-    public final int f13785a;
-    public final p f13786b;
+    public final int f13787a;
+    public final p f13788b;
 
     public c(p pVar, int i10) {
-        this.f13785a = i10;
-        this.f13786b = pVar;
+        this.f13787a = i10;
+        this.f13788b = pVar;
     }
 
     @Override
     public final void run() {
         boolean z4;
         String formatPluralStringSpaced;
-        int i10 = this.f13785a;
-        p pVar = this.f13786b;
+        int i10 = this.f13787a;
+        p pVar = this.f13788b;
         switch (i10) {
             case 0:
-                c cVar = pVar.f14567k0;
+                c cVar = pVar.f14569k0;
                 int currentTime = pVar.getConnectionsManager().getCurrentTime();
                 n nVar = pVar.O;
                 if (pVar.M <= 0 && pVar.D <= currentTime) {
@@ -36,20 +36,20 @@ public final class c implements Runnable {
                 nVar.setEnabled(z4);
                 if (currentTime < pVar.D) {
                     pVar.O.g(LocaleController.getString(R.string.BotStarsButtonWithdrawShortUntil), true, true);
-                    if (pVar.f14566j0 == null) {
-                        pVar.f14566j0 = new SpannableStringBuilder("l");
+                    if (pVar.f14568j0 == null) {
+                        pVar.f14568j0 = new SpannableStringBuilder("l");
                         oq oqVar = new oq(R.drawable.mini_switch_lock, 0);
                         oqVar.setTopOffset(1);
-                        pVar.f14566j0.setSpan(oqVar, 0, 1, 33);
+                        pVar.f14568j0.setSpan(oqVar, 0, 1, 33);
                     }
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) pVar.f14566j0).append((CharSequence) p.j0(pVar.D - currentTime));
+                    spannableStringBuilder.append((CharSequence) pVar.f14568j0).append((CharSequence) p.j0(pVar.D - currentTime));
                     pVar.O.f(spannableStringBuilder, true);
                     ic icVar = pVar.X;
                     if (icVar != null) {
-                        nb nbVar = icVar.f27741e;
+                        nb nbVar = icVar.f27774e;
                         if ((nbVar instanceof qb) && nbVar.isAttachedToWindow()) {
-                            org.telegram.ui.b.o(R.string.BotStarsWithdrawalToast, new Object[]{p.j0(pVar.D - currentTime)}, ((qb) pVar.X.f27741e).f30359b);
+                            org.telegram.ui.b.o(R.string.BotStarsWithdrawalToast, new Object[]{p.j0(pVar.D - currentTime)}, ((qb) pVar.X.f27774e).f30375b);
                         }
                     }
                     AndroidUtilities.cancelRunOnUIThread(cVar);

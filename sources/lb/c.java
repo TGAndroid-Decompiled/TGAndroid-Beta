@@ -32,7 +32,7 @@ public final class c implements b {
         this.f12259a = context;
         Locale.getDefault().getLanguage().equals(Locale.ENGLISH.getLanguage());
         this.f12260b = new t6(1, -1, bVar.f9992a, 1);
-        y5.e.f50769b.getClass();
+        y5.e.f50805b.getClass();
         if (y5.e.a(context) >= 200400000) {
             str = "com.google.android.gms.vision.ica";
         } else {
@@ -111,7 +111,7 @@ public final class c implements b {
         Log.d("LegacyLabelDelegate", "Try to load legacy label module.");
         if (this.f12262e == null) {
             try {
-                IBinder b10 = m6.e.c(context, m6.e.f13466b, str).b("com.google.android.gms.vision.label.ChimeraNativeImageLabelerCreator");
+                IBinder b10 = m6.e.c(context, m6.e.f13468b, str).b("com.google.android.gms.vision.label.ChimeraNativeImageLabelerCreator");
                 int i10 = q2.f11995b;
                 if (b10 == null) {
                     aVar = null;

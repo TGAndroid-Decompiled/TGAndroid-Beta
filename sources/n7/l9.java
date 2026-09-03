@@ -6,21 +6,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class l9 extends l7.d0 {
-    public final l7.xa f15644b;
+    public final l7.xa f15646b;
 
     public l9(l7.xa xaVar) {
         super(1);
-        this.f15644b = xaVar;
+        this.f15646b = xaVar;
     }
 
     @Override
     public final void clear() {
-        this.f15644b.clear();
+        this.f15646b.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f15644b.f12098b.entrySet();
+        Set entrySet = this.f15646b.f12098b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -31,12 +31,12 @@ public final class l9 extends l7.d0 {
 
     @Override
     public final boolean isEmpty() {
-        return this.f15644b.isEmpty();
+        return this.f15646b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new l7.c(this.f15644b, (byte) 0);
+        return new l7.c(this.f15646b, (byte) 0);
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class l9 extends l7.d0 {
         Map.Entry entry = (Map.Entry) obj;
         entry.getClass();
         Object key = entry.getKey();
-        d dVar = ((mg) this.f15644b.f12100e).f15661c;
+        d dVar = ((mg) this.f15646b.f12100e).f15663c;
         dVar.getClass();
         try {
             obj2 = dVar.remove(key);
@@ -107,11 +107,11 @@ public final class l9 extends l7.d0 {
                     hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            mg mgVar = (mg) this.f15644b.f12100e;
-            fd fdVar = mgVar.f15645a;
+            mg mgVar = (mg) this.f15646b.f12100e;
+            fd fdVar = mgVar.f15647a;
             if (fdVar == null) {
-                fdVar = new fd(mgVar, mgVar.f15661c);
-                mgVar.f15645a = fdVar;
+                fdVar = new fd(mgVar, mgVar.f15663c);
+                mgVar.f15647a = fdVar;
             }
             return fdVar.retainAll(hashSet);
         }
@@ -119,6 +119,6 @@ public final class l9 extends l7.d0 {
 
     @Override
     public final int size() {
-        return this.f15644b.f12098b.size();
+        return this.f15646b.f12098b.size();
     }
 }

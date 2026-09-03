@@ -14,6 +14,6 @@ public final class r2 extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        canvas.drawColor(this.f7594a.getThemedColor(k6.f21678e7));
+        canvas.drawColor(this.f7594a.getThemedColor(k6.f21680e7));
     }
 }

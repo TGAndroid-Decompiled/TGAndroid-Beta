@@ -16,7 +16,7 @@ public final class si implements TextWatcher {
     public final void afterTextChanged(Editable editable) {
         boolean z4;
         xi xiVar = this.f31062a;
-        ni niVar = xiVar.f33106d0;
+        ni niVar = xiVar.f33100d0;
         TextUtils.isEmpty(xiVar.B);
         xiVar.B = editable.toString().trim();
         ni niVar2 = xiVar.V;
@@ -33,17 +33,17 @@ public final class si implements TextWatcher {
             if (!TextUtils.equals(xiVar.T, xiVar.B)) {
                 xiVar.J.clear();
                 xiVar.W = 0;
-                xiVar.f33103a0 = false;
+                xiVar.f33097a0 = false;
             }
             AndroidUtilities.runOnUIThread(niVar2, 1500L);
         }
         AndroidUtilities.cancelRunOnUIThread(niVar);
         if (!TextUtils.isEmpty(xiVar.B)) {
             String str2 = xiVar.B;
-            xiVar.f33113k0 = (str2 == null || str2.length() < 3 || TextUtils.isEmpty(MessagesController.getInstance(xiVar.f26546b.G1).config.musicSearchUsername.get())) ? false : false;
-            if (!TextUtils.equals(xiVar.f33105c0, xiVar.B)) {
+            xiVar.f33107k0 = (str2 == null || str2.length() < 3 || TextUtils.isEmpty(MessagesController.getInstance(xiVar.f26590b.G1).config.musicSearchUsername.get())) ? false : false;
+            if (!TextUtils.equals(xiVar.f33099c0, xiVar.B)) {
                 xiVar.K.clear();
-                xiVar.f33107e0 = false;
+                xiVar.f33101e0 = false;
             }
             AndroidUtilities.runOnUIThread(niVar, 1500L);
         }

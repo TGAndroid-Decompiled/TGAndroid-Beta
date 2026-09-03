@@ -1,14 +1,14 @@
 package org.telegram.ui.ActionBar;
 
 import android.util.SparseIntArray;
-import org.telegram.ui.ed1;
+import org.telegram.ui.jd1;
 public final class r5 extends h5 {
     public final int R = 1;
     public final Object S;
 
-    public r5(ed1 ed1Var, int i10, boolean z4) {
+    public r5(jd1 jd1Var, int i10, boolean z4) {
         super(i10, true, z4, null);
-        this.S = ed1Var;
+        this.S = jd1Var;
     }
 
     @Override
@@ -40,7 +40,7 @@ public final class r5 extends h5 {
     public void n(int i10, int i11, int i12) {
         switch (this.R) {
             case 1:
-                if (!((ed1) this.S).a2) {
+                if (!((jd1) this.S).a2) {
                     super.n(i10, i11, i12);
                     return;
                 }
@@ -55,7 +55,7 @@ public final class r5 extends h5 {
     public void o(int i10, int i11, int i12, int i13, int i14, int i15, boolean z4, boolean z10) {
         switch (this.R) {
             case 1:
-                if (!((ed1) this.S).a2) {
+                if (!((jd1) this.S).a2) {
                     super.o(i10, i11, i12, i13, i14, i15, z4, z10);
                     return;
                 }

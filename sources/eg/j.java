@@ -17,7 +17,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.pr;
 import org.telegram.ui.Components.rc;
-import org.telegram.ui.Components.tk0;
+import org.telegram.ui.Components.sk0;
 public abstract class j extends FrameLayout {
     public static final List m0 = Arrays.asList(-90, 0, 90, 180);
     public boolean B;
@@ -434,7 +434,7 @@ public abstract class j extends FrameLayout {
                 }
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
                 this.N = duration;
-                duration.setInterpolator(pr.f30183f);
+                duration.setInterpolator(pr.f30168f);
                 this.N.addUpdateListener(new f(this, 0));
                 this.N.addListener(new g(this, 3));
                 this.N.start();
@@ -528,8 +528,8 @@ public abstract class j extends FrameLayout {
         return getScaleX();
     }
 
-    public tk0 getSelectionBounds() {
-        return new tk0(0.0f, 0.0f, 0.0f, 0.0f);
+    public sk0 getSelectionBounds() {
+        return new sk0(0.0f, 0.0f, 0.0f, 0.0f);
     }
 
     public float getStickyPaddingBottom() {
@@ -567,7 +567,7 @@ public abstract class j extends FrameLayout {
         }
         ValueAnimator duration = ValueAnimator.ofFloat(fArr).setDuration(150L);
         this.U = duration;
-        duration.setInterpolator(pr.f30183f);
+        duration.setInterpolator(pr.f30168f);
         this.U.addUpdateListener(new f(this, 3));
         this.U.addListener(new g(this, 0));
         this.U.start();
@@ -580,7 +580,7 @@ public abstract class j extends FrameLayout {
         }
         ValueAnimator duration = ValueAnimator.ofFloat(fArr).setDuration(150L);
         this.V = duration;
-        duration.setInterpolator(pr.f30183f);
+        duration.setInterpolator(pr.f30168f);
         this.V.addUpdateListener(new f(this, 4));
         this.V.addListener(new g(this, 1));
         this.V.start();

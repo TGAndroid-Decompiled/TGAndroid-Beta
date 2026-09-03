@@ -2,9 +2,9 @@ package fg;
 
 import android.view.View;
 import hg.v2;
-import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.kl0;
 import org.telegram.ui.PremiumPreviewFragment;
-public final class c0 implements org.telegram.ui.ActionBar.c2, ll0 {
+public final class c0 implements org.telegram.ui.ActionBar.c2, kl0 {
     public final int f6257a;
     public final v0 f6258b;
 

@@ -3,18 +3,18 @@ package ma;
 import i9.k;
 import kotlin.jvm.internal.j;
 public final class a {
-    public final ud.d f13602a;
-    public k f13603b = null;
+    public final ud.d f13604a;
+    public k f13605b = null;
 
     public a(ud.d dVar) {
-        this.f13602a = dVar;
+        this.f13604a = dVar;
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj instanceof a) {
                 a aVar = (a) obj;
-                if (!this.f13602a.equals(aVar.f13602a) || !j.a(this.f13603b, aVar.f13603b)) {
+                if (!this.f13604a.equals(aVar.f13604a) || !j.a(this.f13605b, aVar.f13605b)) {
                     return false;
                 }
                 return true;
@@ -26,8 +26,8 @@ public final class a {
 
     public final int hashCode() {
         int hashCode;
-        int hashCode2 = this.f13602a.hashCode() * 31;
-        k kVar = this.f13603b;
+        int hashCode2 = this.f13604a.hashCode() * 31;
+        k kVar = this.f13605b;
         if (kVar == null) {
             hashCode = 0;
         } else {
@@ -37,6 +37,6 @@ public final class a {
     }
 
     public final String toString() {
-        return "Dependency(mutex=" + this.f13602a + ", subscriber=" + this.f13603b + ')';
+        return "Dependency(mutex=" + this.f13604a + ", subscriber=" + this.f13605b + ')';
     }
 }

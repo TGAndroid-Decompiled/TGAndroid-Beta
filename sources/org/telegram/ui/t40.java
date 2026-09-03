@@ -3,10 +3,10 @@ package org.telegram.ui;
 import android.graphics.Paint;
 import android.view.ViewGroup;
 public final class t40 extends Paint {
-    public final d60 f41498a;
+    public final d60 f41442a;
 
     public t40(d60 d60Var) {
-        this.f41498a = d60Var;
+        this.f41442a = d60Var;
     }
 
     @Override
@@ -14,7 +14,7 @@ public final class t40 extends Paint {
         ViewGroup viewGroup;
         ViewGroup viewGroup2;
         super.setAlpha(i10);
-        d60 d60Var = this.f41498a;
+        d60 d60Var = this.f41442a;
         viewGroup = ((org.telegram.ui.ActionBar.h3) d60Var).containerView;
         if (viewGroup != null) {
             viewGroup2 = ((org.telegram.ui.ActionBar.h3) d60Var).containerView;

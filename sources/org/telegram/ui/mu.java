@@ -4,13 +4,13 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.SharedConfig;
-public final class mu extends org.telegram.ui.Components.sl0 {
-    public final Context f39227c;
+public final class mu extends org.telegram.ui.Components.rl0 {
+    public final Context f39069c;
     public final DataSettingsActivity d;
 
     public mu(DataSettingsActivity dataSettingsActivity, Context context) {
         this.d = dataSettingsActivity;
-        this.f39227c = context;
+        this.f39069c = context;
     }
 
     @Override
@@ -103,7 +103,7 @@ public final class mu extends org.telegram.ui.Components.sl0 {
     @Override
     public final f2.m1 x(ViewGroup viewGroup, int i10) {
         View z6Var;
-        Context context = this.f39227c;
+        Context context = this.f39069c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

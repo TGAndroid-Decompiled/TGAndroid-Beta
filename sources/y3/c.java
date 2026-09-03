@@ -4,15 +4,15 @@ import android.util.Pair;
 import h5.d0;
 import r3.r;
 import r3.t;
-public final class c implements f {
-    public final long[] f50717a;
-    public final long[] f50718b;
-    public final long f50719c;
+public final class c implements g {
+    public final long[] f50753a;
+    public final long[] f50754b;
+    public final long f50755c;
 
     public c(long j10, long[] jArr, long[] jArr2) {
-        this.f50717a = jArr;
-        this.f50718b = jArr2;
-        this.f50719c = j10 == -9223372036854775807L ? d0.G(jArr2[jArr2.length - 1]) : j10;
+        this.f50753a = jArr;
+        this.f50754b = jArr2;
+        this.f50755c = j10 == -9223372036854775807L ? d0.G(jArr2[jArr2.length - 1]) : j10;
     }
 
     public static Pair d(long j10, long[] jArr, long[] jArr2) {
@@ -36,7 +36,7 @@ public final class c implements f {
 
     @Override
     public final long a(long j10) {
-        return d0.G(((Long) d(j10, this.f50717a, this.f50718b).second).longValue());
+        return d0.G(((Long) d(j10, this.f50753a, this.f50754b).second).longValue());
     }
 
     @Override
@@ -51,13 +51,13 @@ public final class c implements f {
 
     @Override
     public final r f(long j10) {
-        Pair d = d(d0.S(d0.i(j10, 0L, this.f50719c)), this.f50718b, this.f50717a);
+        Pair d = d(d0.S(d0.i(j10, 0L, this.f50755c)), this.f50754b, this.f50753a);
         t tVar = new t(d0.G(((Long) d.first).longValue()), ((Long) d.second).longValue());
         return new r(tVar, tVar);
     }
 
     @Override
     public final long g() {
-        return this.f50719c;
+        return this.f50755c;
     }
 }

@@ -1,13 +1,13 @@
 package eg;
 
-import org.telegram.ui.ht0;
+import org.telegram.ui.mt0;
 public final class n implements q0.a {
     public final int f5375a;
-    public final ht0 f5376b;
+    public final mt0 f5376b;
 
-    public n(ht0 ht0Var, int i10) {
+    public n(mt0 mt0Var, int i10) {
         this.f5375a = i10;
-        this.f5376b = ht0Var;
+        this.f5376b = mt0Var;
     }
 
     @Override

@@ -8,24 +8,24 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class uo implements View.OnClickListener {
-    public final int f41979a;
-    public final ep f41980b;
+    public final int f41879a;
+    public final ep f41880b;
 
     public uo(ep epVar, int i10) {
-        this.f41979a = i10;
-        this.f41980b = epVar;
+        this.f41879a = i10;
+        this.f41880b = epVar;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f41979a;
-        ep epVar = this.f41980b;
+        int i10 = this.f41879a;
+        ep epVar = this.f41880b;
         switch (i10) {
             case 0:
                 TLRPC.Chat currentChannel = ((org.telegram.ui.Cells.n) view.getParent()).getCurrentChannel();
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(epVar.getParentActivity());
                 String string = LocaleController.getString(R.string.AppName);
-                org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+                org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21168a;
                 d2Var.O = string;
                 if (epVar.X) {
                     d2Var.Q = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlertChannel", R.string.RevokeLinkAlertChannel, epVar.getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername(currentChannel), currentChannel.title));
@@ -56,7 +56,7 @@ public final class uo implements View.OnClickListener {
                 return;
             case 3:
                 qh0 qh0Var = new qh0(epVar.W, 0L, 0);
-                qh0Var.g0(epVar.V, epVar.f36642i0);
+                qh0Var.g0(epVar.V, epVar.f36549i0);
                 epVar.presentFragment(qh0Var);
                 return;
             default:

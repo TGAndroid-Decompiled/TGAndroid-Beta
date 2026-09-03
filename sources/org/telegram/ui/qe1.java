@@ -1,23 +1,39 @@
 package org.telegram.ui;
+public final class qe1 implements Runnable {
+    public final int f40449a;
+    public final sf1 f40450b;
 
-import android.view.View;
-import org.telegram.messenger.NotificationCenter;
-public final class qe1 implements View.OnClickListener {
-    public final mf1 f40458a;
-
-    public qe1(mf1 mf1Var) {
-        this.f40458a = mf1Var;
+    public qe1(sf1 sf1Var, int i10) {
+        this.f40449a = i10;
+        this.f40450b = sf1Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        mf1 mf1Var = this.f40458a;
-        if (mf1Var.J == 1) {
-            org.telegram.ui.Components.z4.j0(mf1Var, -mf1Var.f39102a, null, mf1Var.g(), null, false, mf1Var.G, new ta(this, 5), mf1Var.getResourceProvider());
-            return;
+    public final void run() {
+        switch (this.f40449a) {
+            case 0:
+                sf1 sf1Var = this.f40450b;
+                sf1Var.x0();
+                sf1Var.B0();
+                return;
+            case 1:
+                this.f40450b.x0();
+                return;
+            case 2:
+                this.f40450b.O0(true);
+                return;
+            case 3:
+                this.f40450b.finishPreviewFragment();
+                return;
+            case 4:
+                sf1 sf1Var2 = this.f40450b;
+                sf1Var2.f41230x0 = null;
+                sf1Var2.U0(true, false);
+                return;
+            default:
+                sf1 sf1Var3 = this.f40450b;
+                sf1Var3.K.postOnAnimation(new qe1(sf1Var3, 1));
+                return;
         }
-        mf1Var.getMessagesController().addUserToChat(mf1Var.f39102a, mf1Var.getUserConfig().getCurrentUser(), 0, null, mf1Var, false, new ke1(mf1Var, 2), new le1(mf1Var));
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeSearchByActiveAction, new Object[0]);
-        mf1Var.O0(false);
     }
 }

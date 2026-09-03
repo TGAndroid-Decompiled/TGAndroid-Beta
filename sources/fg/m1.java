@@ -31,7 +31,7 @@ public final class m1 extends LinearLayout {
         TextView textView = new TextView(context);
         this.f6391b = textView;
         textView.setGravity(1);
-        int i11 = k6.f21766j5;
+        int i11 = k6.f21768j5;
         textView.setTextColor(n1Var.getThemedColor(i11));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());

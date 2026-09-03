@@ -3,23 +3,23 @@ package org.telegram.ui;
 import java.util.regex.Pattern;
 import org.telegram.messenger.FileLog;
 public final class p80 implements Runnable {
-    public final int f39945a;
-    public final v10 f39946b;
+    public final int f39917a;
+    public final z10 f39918b;
 
-    public p80(v10 v10Var, int i10) {
-        this.f39945a = i10;
-        this.f39946b = v10Var;
+    public p80(z10 z10Var, int i10) {
+        this.f39917a = i10;
+        this.f39918b = z10Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f39945a;
-        v10 v10Var = this.f39946b;
+        int i10 = this.f39917a;
+        z10 z10Var = this.f39918b;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.f34134y1;
                 try {
-                    v10Var.run();
+                    z10Var.run();
                     return;
                 } catch (Exception e6) {
                     FileLog.e(e6);
@@ -28,7 +28,7 @@ public final class p80 implements Runnable {
             case 1:
                 Pattern pattern2 = LaunchActivity.f34134y1;
                 try {
-                    v10Var.run();
+                    z10Var.run();
                     return;
                 } catch (Exception e10) {
                     FileLog.e(e10);
@@ -37,7 +37,7 @@ public final class p80 implements Runnable {
             default:
                 Pattern pattern3 = LaunchActivity.f34134y1;
                 try {
-                    v10Var.run();
+                    z10Var.run();
                     return;
                 } catch (Exception e11) {
                     FileLog.e(e11);

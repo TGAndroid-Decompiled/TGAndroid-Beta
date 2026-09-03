@@ -1,59 +1,34 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class e91 implements pg.a {
-    public final RectF f36450a = new RectF();
-    public final lh.j4 f36451b;
-    public final ha1 f36452c;
+import android.text.TextWatcher;
+import android.widget.TextView;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class e91 implements TextWatcher {
+    public boolean f36414a;
+    public final int f36415b;
+    public final EditTextBoldCursor f36416c;
+    public final org.telegram.ui.Components.cd0 d;
+    public final int[] f36417e;
+    public final TextView f36418f;
 
-    public e91(ha1 ha1Var, lh.j4 j4Var) {
-        this.f36452c = ha1Var;
-        this.f36451b = j4Var;
+    public e91(int i10, EditTextBoldCursor editTextBoldCursor, org.telegram.ui.Components.cd0 cd0Var, int[] iArr, TextView textView) {
+        this.f36415b = i10;
+        this.f36416c = editTextBoldCursor;
+        this.d = cd0Var;
+        this.f36417e = iArr;
+        this.f36418f = textView;
     }
 
     @Override
-    public final void e(Canvas canvas, RectF rectF) {
-        og.k kVar;
-        ac acVar;
-        ac acVar2;
-        ha1 ha1Var = this.f36452c;
-        ha1Var.fragmentView.getMeasuredWidth();
-        ha1Var.fragmentView.getMeasuredHeight();
-        canvas.drawColor(ha1Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21659d6));
-        for (int i10 = 0; i10 < 3; i10++) {
-            if (i10 == 0) {
-                kVar = ha1Var.Q;
-                acVar = ha1Var.P;
-            } else if (i10 == 1 && (acVar2 = ha1Var.f37427g0) != null) {
-                kVar = acVar2.D;
-                acVar = acVar2;
-            } else {
-                ke keVar = ha1Var.f37428h0;
-                if (keVar != null) {
-                    kVar = keVar.Y0;
-                    acVar = keVar;
-                } else {
-                    kVar = null;
-                    acVar = null;
-                }
-            }
-            if (kVar != null && acVar != null) {
-                lh.j4 j4Var = this.f36451b;
-                RectF rectF2 = this.f36450a;
-                vg.i.c(acVar, j4Var, rectF2);
-                if (rectF2.right > 0.0f) {
-                    ha1Var.fragmentView.getMeasuredWidth();
-                }
-                canvas.save();
-                kVar.e(canvas, rectF);
-                canvas.restore();
-            }
-        }
+    public final void afterTextChanged(android.text.Editable r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.e91.afterTextChanged(android.text.Editable):void");
     }
 
     @Override
-    public final void g(g.x xVar, RectF rectF) {
-        xVar.f6800b = true;
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

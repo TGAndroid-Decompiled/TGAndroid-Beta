@@ -1,94 +1,102 @@
 package qh;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Timer;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-public final class u1 extends t1 {
-    public Drawable f46141i;
-    public Drawable f46142j;
-    public StaticLayout f46143k;
-    public float f46144l;
-    public float f46145m;
-    public Paint f46146n;
-    public final w1 f46147o;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.i50;
+import org.telegram.ui.du;
+public final class u1 extends s1 {
+    public ng.h0 f46156i;
+    public ng.h0 f46157j;
+    public int f46158k;
+    public final org.telegram.ui.Components.z5 f46159l;
+    public Timer f46160m;
+    public final oh.o8 f46161n;
+    public final ArrayList f46162o;
+    public final v1 f46163p;
 
-    public u1(w1 w1Var, int i10, int i11, String str) {
-        super(w1Var);
-        this.f46147o = w1Var;
-        this.f46108a = i10;
-        Drawable mutate = w1Var.getContext().getResources().getDrawable(i11).mutate();
-        this.f46141i = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        String upperCase = str.toUpperCase();
-        TextPaint textPaint = w1Var.f46216b;
-        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(upperCase, textPaint, AndroidUtilities.displaySize.x * 0.8f, TextUtils.TruncateAt.END), textPaint, 99999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.f46143k = staticLayout;
-        this.f46144l = staticLayout.getLineCount() > 0 ? this.f46143k.getLineWidth(0) : 0.0f;
-        this.f46145m = this.f46143k.getLineCount() > 0 ? this.f46143k.getLineLeft(0) : 0.0f;
-        this.f46109b = AndroidUtilities.dpf2(45.6f) + this.f46144l;
-        this.f46110c = AndroidUtilities.dpf2(36.0f);
+    public u1(v1 v1Var) {
+        super(v1Var);
+        int i10;
+        this.f46163p = v1Var;
+        this.f46156i = new ng.h0(v1Var);
+        this.f46157j = new ng.h0(v1Var);
+        this.f46159l = new org.telegram.ui.Components.z5(v1Var);
+        this.f46161n = new oh.o8(v1Var);
+        this.f46162o = new ArrayList();
+        this.f46088a = 3;
+        this.f46089b = AndroidUtilities.dp(44.0f);
+        this.f46090c = AndroidUtilities.dp(36.0f);
+        i10 = ((org.telegram.ui.ActionBar.h3) v1Var.f46202f).currentAccount;
+        List<TLRPC.TL_availableReaction> reactionsList = MediaDataController.getInstance(i10).getReactionsList();
+        for (int i11 = 0; i11 < Math.min(reactionsList.size(), 8); i11++) {
+            this.f46162o.add(ng.q0.c(reactionsList.get(i11)));
+        }
+        Collections.sort(this.f46162o, new du(16));
+        if (!this.f46162o.isEmpty()) {
+            this.f46156i.e((ng.q0) this.f46162o.get(this.f46158k));
+        }
+        this.f46159l.d(1.0f, true);
     }
 
     @Override
     public final void a(Canvas canvas, float f10, float f11) {
-        RectF rectF = this.f46112f;
-        rectF.set(f10, f11, this.f46109b + f10, this.f46110c + f11);
-        float a2 = this.f46113g.a(0.05f);
+        float dp = f11 - AndroidUtilities.dp(4.0f);
+        float f12 = this.f46089b;
+        RectF rectF = this.f46092f;
+        rectF.set((int) f10, (int) dp, (int) (f10 + f12), (int) (dp + f12));
+        float a2 = this.f46093g.a(0.05f);
         canvas.save();
         canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f46147o.f46215a);
-        if (this.f46142j != null) {
-            canvas.saveLayerAlpha(rectF, 255, 31);
-        }
-        int i10 = 0;
-        if (this.f46141i == null) {
-            Drawable emojiBigDrawable = Emoji.getEmojiBigDrawable(null);
-            this.f46141i = emojiBigDrawable;
-            if (emojiBigDrawable instanceof Emoji.EmojiDrawable) {
-                ((Emoji.EmojiDrawable) emojiBigDrawable).fullSize = false;
-            }
-        }
-        if (this.f46141i != null) {
-            float dp = AndroidUtilities.dp(24.0f) / 2;
-            this.f46141i.setBounds((int) ((rectF.left + AndroidUtilities.dp(18.0f)) - dp), (int) (((this.f46110c / 2.0f) + rectF.top) - dp), (int) (rectF.left + AndroidUtilities.dp(18.0f) + dp), (int) ((this.f46110c / 2.0f) + rectF.top + dp));
-            this.f46141i.draw(canvas);
-        }
-        if (this.f46142j != null) {
-            RectF rectF2 = AndroidUtilities.rectTmp;
-            rectF2.set(rectF.left + AndroidUtilities.dp(18.55f), ((rectF.top + this.f46110c) - AndroidUtilities.dp(5.0f)) - AndroidUtilities.dp(12.55f), rectF.left + AndroidUtilities.dp(29.45f), rectF.left + AndroidUtilities.dp(31.0f));
-            canvas.drawRoundRect(rectF2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.f46146n);
-            this.f46142j.setBounds((int) (rectF.left + AndroidUtilities.dp(18.0f)), (int) (((rectF.top + this.f46110c) - AndroidUtilities.dp(5.0f)) - AndroidUtilities.dp(12.0f)), (int) (rectF.left + AndroidUtilities.dp(30.0f)), (int) ((rectF.top + this.f46110c) - AndroidUtilities.dp(5.0f)));
-            this.f46142j.draw(canvas);
+        oh.o8 o8Var = this.f46161n;
+        o8Var.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+        o8Var.draw(canvas);
+        Rect rect = AndroidUtilities.rectTmp2;
+        float dp2 = AndroidUtilities.dp(30.0f) / 2.0f;
+        rect.set((int) (rectF.centerX() - dp2), (int) (rectF.centerY() - dp2), (int) (rectF.centerX() + dp2), (int) (rectF.centerY() + dp2));
+        float d = this.f46159l.d(1.0f, false);
+        this.f46157j.c(rect);
+        this.f46156i.c(rect);
+        if (d == 1.0f) {
+            this.f46156i.a(canvas);
+        } else {
+            canvas.save();
+            float f13 = 1.0f - d;
+            canvas.scale(f13, f13, rectF.centerX(), rectF.top);
+            ng.h0 h0Var = this.f46157j;
+            h0Var.h = f13;
+            h0Var.a(canvas);
+            canvas.restore();
+            canvas.save();
+            canvas.scale(d, d, rectF.centerX(), rectF.bottom);
+            ng.h0 h0Var2 = this.f46156i;
+            h0Var2.h = d;
+            h0Var2.a(canvas);
             canvas.restore();
         }
-        float f12 = rectF.left;
-        if (this.f46141i != null) {
-            i10 = 28;
-        }
-        canvas.translate((f12 + AndroidUtilities.dp(i10 + 6)) - this.f46145m, ((this.f46110c / 2.0f) + rectF.top) - (this.f46143k.getHeight() / 2.0f));
-        this.f46143k.draw(canvas);
         canvas.restore();
     }
 
-    public u1(w1 w1Var, CharSequence charSequence) {
-        super(w1Var);
-        this.f46147o = w1Var;
-        this.f46108a = 5;
-        TextPaint textPaint = w1Var.f46216b;
-        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(charSequence, textPaint, AndroidUtilities.displaySize.x * 0.8f, TextUtils.TruncateAt.END), textPaint, 99999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.f46143k = staticLayout;
-        this.f46144l = staticLayout.getLineCount() > 0 ? this.f46143k.getLineWidth(0) : 0.0f;
-        this.f46145m = this.f46143k.getLineCount() > 0 ? this.f46143k.getLineLeft(0) : 0.0f;
-        this.f46109b = AndroidUtilities.dpf2(12.0f) + this.f46144l;
-        this.f46110c = AndroidUtilities.dpf2(36.0f);
+    @Override
+    public final void b(boolean z4) {
+        this.f46156i.b(z4);
+        this.f46157j.b(z4);
+        Timer timer = this.f46160m;
+        if (timer != null) {
+            timer.cancel();
+            this.f46160m = null;
+        }
+        if (z4) {
+            Timer timer2 = new Timer();
+            this.f46160m = timer2;
+            timer2.schedule(new i50(this, 3), 2000L, 2000L);
+        }
     }
 }

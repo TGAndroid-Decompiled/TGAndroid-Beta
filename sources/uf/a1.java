@@ -3,10 +3,10 @@ package uf;
 import java.util.ArrayList;
 import org.telegram.ui.ws;
 public final class a1 implements j1 {
-    public final ws f48504a;
+    public final ws f48540a;
 
     public a1(ws wsVar) {
-        this.f48504a = wsVar;
+        this.f48540a = wsVar;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class a1 implements j1 {
 
     @Override
     public final void g(int i10) {
-        ws wsVar = this.f48504a;
+        ws wsVar = this.f48540a;
         wsVar.l();
         if (i10 != 0) {
             wsVar.F();

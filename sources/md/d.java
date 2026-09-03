@@ -16,20 +16,20 @@ import ld.w1;
 import qd.o;
 import uc.h;
 public final class d extends a0 implements j0 {
-    public final Handler f13642c;
+    public final Handler f13644c;
     public final boolean d;
-    public final d f13643e;
+    public final d f13645e;
 
     public d(Handler handler, boolean z4) {
         d dVar;
-        this.f13642c = handler;
+        this.f13644c = handler;
         this.d = z4;
         if (z4) {
             dVar = this;
         } else {
             dVar = new d(handler, true);
         }
-        this.f13643e = dVar;
+        this.f13645e = dVar;
     }
 
     @Override
@@ -37,11 +37,11 @@ public final class d extends a0 implements j0 {
         if (j10 > 4611686018427387903L) {
             j10 = 4611686018427387903L;
         }
-        if (this.f13642c.postDelayed(e2Var, j10)) {
+        if (this.f13644c.postDelayed(e2Var, j10)) {
             return new o0() {
                 @Override
                 public final void dispose() {
-                    d.this.f13642c.removeCallbacks(e2Var);
+                    d.this.f13644c.removeCallbacks(e2Var);
                 }
             };
         }
@@ -55,7 +55,7 @@ public final class d extends a0 implements j0 {
         if (j10 > 4611686018427387903L) {
             j10 = 4611686018427387903L;
         }
-        if (this.f13642c.postDelayed(kVar, j10)) {
+        if (this.f13644c.postDelayed(kVar, j10)) {
             mVar.u(new j(1, this, kVar));
         } else {
             f(mVar.f12330e, kVar);
@@ -64,14 +64,14 @@ public final class d extends a0 implements j0 {
 
     @Override
     public final void c(h hVar, Runnable runnable) {
-        if (!this.f13642c.post(runnable)) {
+        if (!this.f13644c.post(runnable)) {
             f(hVar, runnable);
         }
     }
 
     @Override
     public final boolean e() {
-        if (this.d && kotlin.jvm.internal.j.a(Looper.myLooper(), this.f13642c.getLooper())) {
+        if (this.d && kotlin.jvm.internal.j.a(Looper.myLooper(), this.f13644c.getLooper())) {
             return false;
         }
         return true;
@@ -80,7 +80,7 @@ public final class d extends a0 implements j0 {
     public final boolean equals(Object obj) {
         if (obj instanceof d) {
             d dVar = (d) obj;
-            if (dVar.f13642c == this.f13642c && dVar.d == this.d) {
+            if (dVar.f13644c == this.f13644c && dVar.d == this.d) {
                 return true;
             }
             return false;
@@ -95,7 +95,7 @@ public final class d extends a0 implements j0 {
 
     public final int hashCode() {
         int i10;
-        int identityHashCode = System.identityHashCode(this.f13642c);
+        int identityHashCode = System.identityHashCode(this.f13644c);
         if (this.d) {
             i10 = 1231;
         } else {
@@ -109,12 +109,12 @@ public final class d extends a0 implements j0 {
         d dVar;
         String str;
         sd.e eVar = m0.f12331a;
-        d dVar2 = o.f44818a;
+        d dVar2 = o.f44849a;
         if (this == dVar2) {
             str = "Dispatchers.Main";
         } else {
             try {
-                dVar = dVar2.f13643e;
+                dVar = dVar2.f13645e;
             } catch (UnsupportedOperationException unused) {
                 dVar = null;
             }
@@ -125,7 +125,7 @@ public final class d extends a0 implements j0 {
             }
         }
         if (str == null) {
-            String handler = this.f13642c.toString();
+            String handler = this.f13644c.toString();
             if (this.d) {
                 return w.c.e(handler, ".immediate");
             }

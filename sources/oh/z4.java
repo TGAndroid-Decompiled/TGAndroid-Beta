@@ -3,11 +3,11 @@ package oh;
 import android.content.Context;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
-import org.telegram.ui.Components.ax0;
 import org.telegram.ui.Components.jk;
 import org.telegram.ui.Components.u00;
-import org.telegram.ui.mf1;
-public final class z4 extends ax0 {
+import org.telegram.ui.Components.zw0;
+import org.telegram.ui.sf1;
+public final class z4 extends zw0 {
     public final int H = 0;
     public final Object I;
 
@@ -20,19 +20,19 @@ public final class z4 extends ax0 {
     public void e(boolean z4, boolean z10) {
         switch (this.H) {
             case 2:
-                mf1 mf1Var = (mf1) this.I;
+                sf1 sf1Var = (sf1) this.I;
                 super.e(z4, z10);
                 float f10 = 1.0f;
                 if (z10) {
-                    ViewPropertyAnimator animate = mf1Var.f39129n.f35795a.animate();
+                    ViewPropertyAnimator animate = sf1Var.f41215n.f37651a.animate();
                     if (z4) {
                         f10 = 0.0f;
                     }
                     animate.alpha(f10).start();
                     return;
                 }
-                mf1Var.f39129n.f35795a.animate().cancel();
-                TextView textView = mf1Var.f39129n.f35795a;
+                sf1Var.f41215n.f37651a.animate().cancel();
+                TextView textView = sf1Var.f41215n.f37651a;
                 if (z4) {
                     f10 = 0.0f;
                 }
@@ -59,7 +59,7 @@ public final class z4 extends ax0 {
         switch (this.H) {
             case 0:
                 e5 e5Var = ((a5) this.I).d;
-                super.onMeasure(i10, org.telegram.ui.b.d(e5Var.f17028e, e5Var.f17030n - e5Var.f17031r.getPaddingTop(), 1073741824));
+                super.onMeasure(i10, org.telegram.ui.b.d(e5Var.f17030e, e5Var.f17032n - e5Var.f17033r.getPaddingTop(), 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -84,8 +84,8 @@ public final class z4 extends ax0 {
         this.I = a5Var;
     }
 
-    public z4(mf1 mf1Var, Context context, u00 u00Var) {
+    public z4(sf1 sf1Var, Context context, u00 u00Var) {
         super(context, u00Var, 0, null);
-        this.I = mf1Var;
+        this.I = sf1Var;
     }
 }

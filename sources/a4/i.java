@@ -54,7 +54,7 @@ public final class i extends j {
             if (!this.f80n) {
                 this.f80n = true;
                 wVar.G(8);
-                e4.c a10 = x6.a(v.u(x6.b(wVar, false, false).f46596a));
+                e4.c a10 = x6.a(v.u(x6.b(wVar, false, false).f46627a));
                 if (a10 != null) {
                     m0 a11 = ((n0) bVar.f1935b).a();
                     e4.c cVar = ((n0) bVar.f1935b).f9325s;

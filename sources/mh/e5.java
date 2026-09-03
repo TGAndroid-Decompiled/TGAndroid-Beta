@@ -13,8 +13,8 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.Premium.LimitPreviewView;
-import org.telegram.ui.Components.tl0;
-import org.telegram.ui.Components.tz0;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.sz0;
 public final class e5 extends org.telegram.ui.Components.ma {
     public final ArrayList X;
     public final LimitPreviewView Y;
@@ -43,7 +43,7 @@ public final class e5 extends org.telegram.ui.Components.ma {
         b11.setText(LocaleController.getString(R.string.Gift2UpgradeCostsText));
         this.U.addView(b11, k7.c6.t(-1, -2, 17, 32, 10, 32, 10));
         int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
-        tz0 tz0Var = new tz0(context, g6Var);
+        sz0 sz0Var = new sz0(context, g6Var);
         int i12 = 0;
         boolean z4 = false;
         while (i12 < arrayList.size()) {
@@ -53,7 +53,7 @@ public final class e5 extends org.telegram.ui.Components.ma {
             } else {
                 f10 = f12;
                 Date date = new Date(starGiftUpgradePrice.date * 1000);
-                tz0Var.c(LocaleController.getInstance().getFormatterDay().format(date) + ", " + LocaleController.getInstance().getFormatterDayMonth().format(date), ja.X0(false, l.d.l((int) starGiftUpgradePrice.upgrade_stars, ',', new StringBuilder("⭐️ ")), 0.8f, null), null, null);
+                sz0Var.c(LocaleController.getInstance().getFormatterDay().format(date) + ", " + LocaleController.getInstance().getFormatterDayMonth().format(date), ja.X0(false, l.d.l((int) starGiftUpgradePrice.upgrade_stars, ',', new StringBuilder("⭐️ ")), 0.8f, null), null, null);
                 z4 = true;
             }
             i12++;
@@ -68,29 +68,29 @@ public final class e5 extends org.telegram.ui.Components.ma {
                 i13++;
                 TL_stars.StarGiftUpgradePrice starGiftUpgradePrice2 = (TL_stars.StarGiftUpgradePrice) obj;
                 Date date2 = new Date(starGiftUpgradePrice2.date * 1000);
-                tz0Var.c(LocaleController.getInstance().getFormatterDay().format(date2) + ", " + LocaleController.getInstance().getFormatterDayMonth().format(date2), ja.X0(false, l.d.l((int) starGiftUpgradePrice2.upgrade_stars, ',', new StringBuilder("⭐️ ")), 0.8f, null), null, null);
+                sz0Var.c(LocaleController.getInstance().getFormatterDay().format(date2) + ", " + LocaleController.getInstance().getFormatterDayMonth().format(date2), ja.X0(false, l.d.l((int) starGiftUpgradePrice2.upgrade_stars, ',', new StringBuilder("⭐️ ")), 0.8f, null), null, null);
             }
         }
         float f14 = f13 + 14.0f;
-        this.U.addView(tz0Var, k7.c6.r(-1, -2, 7, f14, 16.0f, f14, 15.0f));
-        TextView b12 = k7.g6.b(context, 12.0f, org.telegram.ui.ActionBar.k6.f22036y6, false, null);
+        this.U.addView(sz0Var, k7.c6.r(-1, -2, 7, f14, 16.0f, f14, 15.0f));
+        TextView b12 = k7.g6.b(context, 12.0f, org.telegram.ui.ActionBar.k6.f22038y6, false, null);
         b12.setGravity(17);
         b12.setText(LocaleController.getString(R.string.Gift2UpgradeCostsFooter));
         this.U.addView(b12, k7.c6.t(-1, -2, 17, 32, 0, 32, 15));
         float f15 = this.backgroundPaddingLeft / AndroidUtilities.density;
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.V = frameLayout;
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21731h5, this.resourcesProvider));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21733h5, this.resourcesProvider));
         View view = new View(getContext());
-        view.setBackgroundColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21660d7, this.resourcesProvider));
+        view.setBackgroundColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21662d7, this.resourcesProvider));
         this.V.addView(view, k7.c6.a(-1.0f, 1.0f / AndroidUtilities.density, 55));
         qh.d dVar = new qh.d(getContext(), this.resourcesProvider, true);
         this.W = dVar;
         float f16 = f15 + 16.0f;
         this.V.addView(dVar, k7.c6.d(-1, 48.0f, 119, f16, 16.0f, f16, 16.0f));
         this.containerView.addView(this.V, k7.c6.e(-1, -2, 87));
-        tl0 tl0Var = this.d;
-        tl0Var.setPadding(tl0Var.getPaddingLeft(), tl0Var.getPaddingTop(), tl0Var.getPaddingRight(), AndroidUtilities.dp(80.0f) + tl0Var.getPaddingBottom());
+        sl0 sl0Var = this.d;
+        sl0Var.setPadding(sl0Var.getPaddingLeft(), sl0Var.getPaddingTop(), sl0Var.getPaddingRight(), AndroidUtilities.dp(80.0f) + sl0Var.getPaddingBottom());
         this.W.g(g5.g2(LocaleController.getString(R.string.Understood)), false, true);
         this.W.setOnClickListener(new androidx.mediarouter.app.c(this, 21));
     }
@@ -107,14 +107,14 @@ public final class e5 extends org.telegram.ui.Components.ma {
             int i10 = org.telegram.ui.ActionBar.k6.Oh;
             org.telegram.ui.ActionBar.g6 g6Var = limitPreviewView.P;
             paint.setColor(org.telegram.ui.ActionBar.k6.v0(i10, g6Var));
-            limitPreviewView.f24944a = AndroidUtilities.ilerp((float) j10, (float) starGiftUpgradePrice.upgrade_stars, (float) starGiftUpgradePrice2.upgrade_stars);
+            limitPreviewView.f24946a = AndroidUtilities.ilerp((float) j10, (float) starGiftUpgradePrice.upgrade_stars, (float) starGiftUpgradePrice2.upgrade_stars);
             org.telegram.ui.Components.k6 k6Var = limitPreviewView.K;
             k6Var.setText(LocaleController.formatPluralStringComma("Stars", (int) starGiftUpgradePrice.upgrade_stars));
             org.telegram.ui.Components.k6 k6Var2 = limitPreviewView.v;
             k6Var2.setText(LocaleController.formatPluralStringComma("Stars", (int) starGiftUpgradePrice2.upgrade_stars));
             ((FrameLayout.LayoutParams) k6Var2.getLayoutParams()).gravity = 5;
             limitPreviewView.setType(17);
-            limitPreviewView.f24960w.setVisibility(8);
+            limitPreviewView.f24962w.setVisibility(8);
             limitPreviewView.L.setVisibility(8);
             if (limitPreviewView.I) {
                 v02 = -1;

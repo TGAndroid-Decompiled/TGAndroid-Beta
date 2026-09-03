@@ -19,17 +19,17 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.h6;
 import org.telegram.ui.Cells.i6;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.q31;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.sa;
 import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.tl0;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.z4;
-import org.telegram.ui.xq0;
+import org.telegram.ui.cr0;
+import qh.c4;
 import qh.d;
-import qh.d4;
 public final class a extends sa {
-    public x51 U;
+    public w51 U;
     public boolean V;
     public final FrameLayout W;
     public final boolean X;
@@ -46,7 +46,7 @@ public final class a extends sa {
         this.I = false;
         this.H = AndroidUtilities.dp(12.0f);
         this.f31015e.setTitle(y());
-        setBackgroundColor(k6.v0(k6.f21605a7, this.resourcesProvider));
+        setBackgroundColor(k6.v0(k6.f21607a7, this.resourcesProvider));
         FrameLayout frameLayout = new FrameLayout(context);
         this.W = frameLayout;
         frameLayout.setPadding(0, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f));
@@ -58,10 +58,10 @@ public final class a extends sa {
             h6Var.t(user, null, DialogObject.getName(user), LocaleController.getString(R.string.Bot), false, false);
         }
         frameLayout.addView(h6Var, c6.c(-2.0f, -1));
-        tl0 tl0Var = this.d;
+        sl0 sl0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        tl0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
-        this.d.p1();
+        sl0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
+        this.d.o1();
         this.d.setClipToPadding(false);
         this.d.setOnItemClickListener(new h(this, 24));
         d dVar = new d(context, this.resourcesProvider, true);
@@ -76,7 +76,7 @@ public final class a extends sa {
             dVar.setText(LocaleController.getString(R.string.CommunityCreateCommunity));
         }
         dVar.e();
-        dVar.setOnClickListener(new r31(this, callback, chat, 7));
+        dVar.setOnClickListener(new q31(this, callback, chat, 7));
         this.containerView.addView(dVar, c6.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
         this.U.N(false);
     }
@@ -92,7 +92,7 @@ public final class a extends sa {
             } else {
                 i10 = R.string.CommunityAddToCommunityGroupMessage;
             }
-            z4.P(context, g6Var, string, LocaleController.getString(i10), LocaleController.getString(R.string.Add), new xq0(this, callback, z4, 11)).show();
+            z4.P(context, g6Var, string, LocaleController.getString(i10), LocaleController.getString(R.string.Add), new cr0(this, callback, z4, 11)).show();
             return;
         }
         callback.run(Boolean.valueOf(z4));
@@ -103,17 +103,17 @@ public final class a extends sa {
         boolean z10;
         if (this.V != z4) {
             this.V = z4;
-            tl0 tl0Var = this.d;
-            View U0 = tl0Var.U0(this.Z + 1);
-            if (U0 instanceof i6) {
-                ((i6) U0).a(!z4);
+            sl0 sl0Var = this.d;
+            View T0 = sl0Var.T0(this.Z + 1);
+            if (T0 instanceof i6) {
+                ((i6) T0).a(!z4);
                 z10 = false;
             } else {
                 z10 = true;
             }
-            View U02 = tl0Var.U0(this.Z + 2);
-            if (U02 instanceof i6) {
-                ((i6) U02).a(z4);
+            View T02 = sl0Var.T0(this.Z + 2);
+            if (T02 instanceof i6) {
+                ((i6) T02).a(z4);
             } else {
                 z10 = true;
             }
@@ -124,11 +124,11 @@ public final class a extends sa {
     }
 
     @Override
-    public final sl0 v(tl0 tl0Var) {
-        x51 x51Var = new x51(this.d, getContext(), this.currentAccount, 0, false, new d4(this, 25), this.resourcesProvider);
-        this.U = x51Var;
-        x51Var.f32957r = false;
-        return x51Var;
+    public final rl0 v(sl0 sl0Var) {
+        w51 w51Var = new w51(this.d, getContext(), this.currentAccount, 0, false, new c4(this, 25), this.resourcesProvider);
+        this.U = w51Var;
+        w51Var.f32651r = false;
+        return w51Var;
     }
 
     @Override

@@ -2,10 +2,10 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.MessageObject;
 public final class gb0 extends f2.v {
-    public final sb0 f27160c;
+    public final sb0 f27138c;
 
     public gb0(sb0 sb0Var) {
-        this.f27160c = sb0Var;
+        this.f27138c = sb0Var;
     }
 
     @Override
@@ -13,7 +13,7 @@ public final class gb0 extends f2.v {
         MessageObject messageObject;
         MessageObject.GroupedMessages a2;
         if (i10 >= 0) {
-            sb0 sb0Var = this.f27160c;
+            sb0 sb0Var = this.f27138c;
             if (i10 < sb0Var.f31033r.previewMessages.size() && (a2 = sb0.a(sb0Var, (messageObject = sb0Var.f31033r.previewMessages.get(i10)))) != null) {
                 return a2.getPosition(messageObject).spanSize;
             }

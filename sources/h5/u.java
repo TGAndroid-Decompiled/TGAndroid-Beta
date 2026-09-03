@@ -149,7 +149,7 @@ public final class u implements OnSuccessListener, xd.i {
         Iterator it = ((xd.j) this.d).iterator();
         while (it.hasNext()) {
             xd.e eVar = (xd.e) it.next();
-            fArr[((Integer) eVar.f50513a).intValue()] = eVar.c();
+            fArr[((Integer) eVar.f50549a).intValue()] = eVar.c();
         }
         ((ng) this.f7301c).run();
     }
@@ -167,10 +167,10 @@ public final class u implements OnSuccessListener, xd.i {
     public void i(Throwable th2) {
         p2.x xVar = (p2.x) this.d;
         if (th2 instanceof TimeoutException) {
-            xVar.F(102, 28, p2.a0.f44102p);
+            xVar.F(102, 28, p2.a0.f44133p);
             com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "Asynchronous call to Billing Override Service timed out.", th2);
         } else {
-            xVar.F(95, 28, p2.a0.f44102p);
+            xVar.F(95, 28, p2.a0.f44133p);
             com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An error occurred while retrieving billing override.", th2);
         }
         ((Runnable) this.f7301c).run();

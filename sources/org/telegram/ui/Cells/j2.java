@@ -23,7 +23,7 @@ public final class j2 extends oh.i7 {
     public final boolean d(long j10) {
         r2 r2Var = this.S;
         int i10 = r2Var.C0;
-        py pyVar = r2Var.f23526w4;
+        py pyVar = r2Var.f23528w4;
         if (pyVar != null && !r2Var.L0) {
             if (j10 > 0) {
                 TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j10));
@@ -46,7 +46,7 @@ public final class j2 extends oh.i7 {
     @Override
     public final void e() {
         r2 r2Var = this.S;
-        n2 n2Var = r2Var.f23411a0;
+        n2 n2Var = r2Var.f23413a0;
         if (n2Var == null) {
             return;
         }
@@ -56,7 +56,7 @@ public final class j2 extends oh.i7 {
     @Override
     public final void f(long j10) {
         r2 r2Var = this.S;
-        n2 n2Var = r2Var.f23411a0;
+        n2 n2Var = r2Var.f23413a0;
         if (n2Var == null) {
             return;
         }

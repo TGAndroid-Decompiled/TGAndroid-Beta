@@ -5,20 +5,20 @@ import java.io.Serializable;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class z implements Runnable {
-    public final int f42782a;
-    public final Object f42783b;
-    public final Object f42784c;
+    public final int f42747a;
+    public final Object f42748b;
+    public final Object f42749c;
     public final Object d;
-    public final Serializable f42785e;
-    public final Object f42786f;
+    public final Serializable f42750e;
+    public final Object f42751f;
 
     public z(Object obj, String str, Serializable serializable, String str2, String str3, int i10) {
-        this.f42782a = i10;
-        this.f42783b = obj;
-        this.f42785e = str;
+        this.f42747a = i10;
+        this.f42748b = obj;
+        this.f42750e = str;
         this.d = serializable;
-        this.f42786f = str2;
-        this.f42784c = str3;
+        this.f42751f = str2;
+        this.f42749c = str3;
     }
 
     @Override
@@ -27,29 +27,29 @@ public final class z implements Runnable {
     }
 
     public z(a1 a1Var, TLObject tLObject, String[] strArr, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.d2 d2Var) {
-        this.f42782a = 1;
-        this.f42783b = a1Var;
-        this.f42784c = tLObject;
-        this.f42785e = strArr;
+        this.f42747a = 1;
+        this.f42748b = a1Var;
+        this.f42749c = tLObject;
+        this.f42750e = strArr;
         this.d = tL_error;
-        this.f42786f = d2Var;
+        this.f42751f = d2Var;
     }
 
     public z(a1 a1Var, TLRPC.TL_error tL_error, String str, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, TLObject tLObject) {
-        this.f42782a = 0;
-        this.f42783b = a1Var;
+        this.f42747a = 0;
+        this.f42748b = a1Var;
         this.d = tL_error;
-        this.f42785e = str;
-        this.f42786f = tL_inputInvoiceSlug;
-        this.f42784c = tLObject;
+        this.f42750e = str;
+        this.f42751f = tL_inputInvoiceSlug;
+        this.f42749c = tLObject;
     }
 
-    public z(boolean[] zArr, WebView webView, b2 b2Var, String str, z1 z1Var) {
-        this.f42782a = 4;
-        this.f42783b = zArr;
+    public z(boolean[] zArr, WebView webView, b2 b2Var, String str, y1 y1Var) {
+        this.f42747a = 4;
+        this.f42748b = zArr;
         this.d = webView;
-        this.f42786f = b2Var;
-        this.f42785e = str;
-        this.f42784c = z1Var;
+        this.f42751f = b2Var;
+        this.f42750e = str;
+        this.f42749c = y1Var;
     }
 }

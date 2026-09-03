@@ -16,15 +16,15 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 public final class e extends DefaultHandler implements o0 {
-    public static final Pattern f46965b = Pattern.compile("(\\d+)(?:/(\\d+))?");
-    public static final Pattern f46966c = Pattern.compile("CC([1-4])=.*");
+    public static final Pattern f46996b = Pattern.compile("(\\d+)(?:/(\\d+))?");
+    public static final Pattern f46997c = Pattern.compile("CC([1-4])=.*");
     public static final Pattern d = Pattern.compile("([1-9]|[1-5][0-9]|6[0-3])=.*");
-    public static final int[] f46967e = {-1, 1, 2, 3, 4, 5, 6, 8, 2, 3, 4, 7, 8, 24, 8, 12, 10, 12, 14, 12, 14};
-    public final XmlPullParserFactory f46968a;
+    public static final int[] f46998e = {-1, 1, 2, 3, 4, 5, 6, 8, 2, 3, 4, 7, 8, 24, 8, 12, 10, 12, 14, 12, 14};
+    public final XmlPullParserFactory f46999a;
 
     public e() {
         try {
-            this.f46968a = XmlPullParserFactory.newInstance();
+            this.f46999a = XmlPullParserFactory.newInstance();
         } catch (XmlPullParserException e6) {
             throw new RuntimeException("Couldn't create XmlPullParserFactory instance", e6);
         }
@@ -111,16 +111,16 @@ public final class e extends DefaultHandler implements o0 {
         ArrayList arrayList2 = new ArrayList();
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
             b bVar = (b) arrayList.get(i12);
-            String G = h5.a.G(bVar.f46945a, str2);
+            String G = h5.a.G(bVar.f46976a, str2);
             if (attributeValue3 == null) {
                 str = G;
             } else {
                 str = attributeValue3;
             }
             if (z4) {
-                i10 = bVar.f46947c;
+                i10 = bVar.f46978c;
                 i11 = bVar.d;
-                str = bVar.f46946b;
+                str = bVar.f46977b;
             }
             arrayList2.add(new b(i10, i11, G, str));
         }
@@ -235,7 +235,7 @@ public final class e extends DefaultHandler implements o0 {
     public static float j(XmlPullParser xmlPullParser, float f10) {
         String attributeValue = xmlPullParser.getAttributeValue(null, "frameRate");
         if (attributeValue != null) {
-            Matcher matcher = f46965b.matcher(attributeValue);
+            Matcher matcher = f46996b.matcher(attributeValue);
             if (matcher.matches()) {
                 int parseInt = Integer.parseInt(matcher.group(1));
                 String group = matcher.group(2);
@@ -387,7 +387,7 @@ public final class e extends DefaultHandler implements o0 {
     public static int n(ArrayList arrayList) {
         int i10 = 0;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            if (a7.a("http://dashif.org/guidelines/trickmode", ((f) arrayList.get(i11)).f46969a)) {
+            if (a7.a("http://dashif.org/guidelines/trickmode", ((f) arrayList.get(i11)).f47000a)) {
                 i10 = 16384;
             }
         }
@@ -399,7 +399,7 @@ public final class e extends DefaultHandler implements o0 {
         long j11;
         long j12;
         if (rVar != null) {
-            j10 = rVar.f47005b;
+            j10 = rVar.f47036b;
         } else {
             j10 = 1;
         }
@@ -411,7 +411,7 @@ public final class e extends DefaultHandler implements o0 {
         long j13 = j10;
         long j14 = 0;
         if (rVar != null) {
-            j11 = rVar.f47006c;
+            j11 = rVar.f47037c;
         } else {
             j11 = 0;
         }
@@ -426,7 +426,7 @@ public final class e extends DefaultHandler implements o0 {
             j12 = 0;
         }
         if (rVar != null) {
-            j14 = rVar.f47003e;
+            j14 = rVar.f47034e;
         }
         String attributeValue3 = xmlPullParser.getAttributeValue(null, "indexRange");
         if (attributeValue3 != null) {
@@ -437,7 +437,7 @@ public final class e extends DefaultHandler implements o0 {
         long j16 = j14;
         long j17 = j12;
         if (rVar != null) {
-            jVar = rVar.f47004a;
+            jVar = rVar.f47035a;
         }
         while (true) {
             xmlPullParser.next();
@@ -462,7 +462,7 @@ public final class e extends DefaultHandler implements o0 {
         long j19;
         long j20 = 1;
         if (oVar != null) {
-            j15 = oVar.f47005b;
+            j15 = oVar.f47036b;
         } else {
             j15 = 1;
         }
@@ -473,7 +473,7 @@ public final class e extends DefaultHandler implements o0 {
         }
         long j21 = j15;
         if (oVar != null) {
-            j16 = oVar.f47006c;
+            j16 = oVar.f47037c;
         } else {
             j16 = 0;
         }
@@ -483,7 +483,7 @@ public final class e extends DefaultHandler implements o0 {
         }
         long j22 = j16;
         if (oVar != null) {
-            j17 = oVar.f46993e;
+            j17 = oVar.f47024e;
         } else {
             j17 = -9223372036854775807L;
         }
@@ -529,13 +529,13 @@ public final class e extends DefaultHandler implements o0 {
         } while (!h5.a.y(xmlPullParser, "SegmentList"));
         if (oVar != null) {
             if (jVar == null) {
-                jVar = oVar.f47004a;
+                jVar = oVar.f47035a;
             }
             if (list2 == null) {
-                list2 = oVar.f46994f;
+                list2 = oVar.f47025f;
             }
             if (list == null) {
-                list = oVar.f46997j;
+                list = oVar.f47028j;
             }
         }
         return new o(jVar, j21, j22, j24, j23, list2, j19, list, d0.G(j14), d0.G(j10));
@@ -552,7 +552,7 @@ public final class e extends DefaultHandler implements o0 {
         x5.k kVar2;
         long j21 = 1;
         if (pVar != null) {
-            j15 = pVar.f47005b;
+            j15 = pVar.f47036b;
         } else {
             j15 = 1;
         }
@@ -563,7 +563,7 @@ public final class e extends DefaultHandler implements o0 {
         }
         long j22 = j15;
         if (pVar != null) {
-            j16 = pVar.f47006c;
+            j16 = pVar.f47037c;
         } else {
             j16 = 0;
         }
@@ -573,7 +573,7 @@ public final class e extends DefaultHandler implements o0 {
         }
         long j23 = j16;
         if (pVar != null) {
-            j17 = pVar.f46993e;
+            j17 = pVar.f47024e;
         } else {
             j17 = -9223372036854775807L;
         }
@@ -594,8 +594,8 @@ public final class e extends DefaultHandler implements o0 {
         while (true) {
             if (i10 < list.size()) {
                 f fVar = (f) list.get(i10);
-                if (a7.a("http://dashif.org/guidelines/last-segment-number", fVar.f46969a)) {
-                    j18 = Long.parseLong(fVar.f46970b);
+                if (a7.a("http://dashif.org/guidelines/last-segment-number", fVar.f47000a)) {
+                    j18 = Long.parseLong(fVar.f47001b);
                     break;
                 }
                 i10++;
@@ -616,13 +616,13 @@ public final class e extends DefaultHandler implements o0 {
             j20 = j19;
         }
         if (pVar != null) {
-            kVar = pVar.f46999k;
+            kVar = pVar.f47030k;
         } else {
             kVar = null;
         }
         x5.k s6 = s(xmlPullParser, "media", kVar);
         if (pVar != null) {
-            kVar2 = pVar.f46998j;
+            kVar2 = pVar.f47029j;
         } else {
             kVar2 = null;
         }
@@ -640,10 +640,10 @@ public final class e extends DefaultHandler implements o0 {
         } while (!h5.a.y(xmlPullParser, "SegmentTemplate"));
         if (pVar != null) {
             if (jVar == null) {
-                jVar = pVar.f47004a;
+                jVar = pVar.f47035a;
             }
             if (list2 == null) {
-                list2 = pVar.f46994f;
+                list2 = pVar.f47025f;
             }
         }
         return new p(jVar, j22, j23, j25, j26, j24, list2, j20, s9, s6, d0.G(j14), d0.G(j10));
@@ -788,7 +788,7 @@ public final class e extends DefaultHandler implements o0 {
     @Override
     public final Object w(Uri uri, g5.o oVar) {
         try {
-            XmlPullParser newPullParser = this.f46968a.newPullParser();
+            XmlPullParser newPullParser = this.f46999a.newPullParser();
             newPullParser.setInput(oVar, null);
             if (newPullParser.next() == 2 && "MPD".equals(newPullParser.getName())) {
                 return k(newPullParser, uri);

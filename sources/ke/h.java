@@ -16,12 +16,12 @@ public final class h extends pe.a {
     @Override
     public final void a(CharSequence charSequence) {
         v vVar = this.d;
-        StringBuilder sb = (StringBuilder) vVar.f44183c;
-        if (vVar.f44182b != 0) {
+        StringBuilder sb = (StringBuilder) vVar.f44214c;
+        if (vVar.f44213b != 0) {
             sb.append('\n');
         }
         sb.append(charSequence);
-        vVar.f44182b++;
+        vVar.f44213b++;
         Pattern pattern = this.f11140b;
         if (pattern != null && pattern.matcher(charSequence).find()) {
             this.f11141c = true;
@@ -30,7 +30,7 @@ public final class h extends pe.a {
 
     @Override
     public final void d() {
-        this.f11139a.f15967g = ((StringBuilder) this.d.f44183c).toString();
+        this.f11139a.f15969g = ((StringBuilder) this.d.f44214c).toString();
         this.d = null;
     }
 

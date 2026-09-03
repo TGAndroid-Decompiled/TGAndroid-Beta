@@ -6,9 +6,9 @@ import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.sl0;
 import org.telegram.ui.bb0;
-public final class t extends tl0 implements NotificationCenter.NotificationCenterDelegate {
+public final class t extends sl0 implements NotificationCenter.NotificationCenterDelegate {
     public ArrayList U2;
     public f2.j0 V2;
     public int W2;
@@ -16,7 +16,7 @@ public final class t extends tl0 implements NotificationCenter.NotificationCente
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.premiumStatusChangedGlobal) {
-            w1();
+            v1();
         }
     }
 
@@ -43,14 +43,14 @@ public final class t extends tl0 implements NotificationCenter.NotificationCente
         a0();
     }
 
-    public final void w1() {
+    public final void v1() {
         ArrayList arrayList = this.U2;
         arrayList.clear();
         arrayList.addAll(Arrays.asList(bb0.values()));
         if (MessagesController.getInstance(this.W2).premiumFeaturesBlocked()) {
             int i10 = 0;
             while (i10 < arrayList.size()) {
-                if (((bb0) arrayList.get(i10)).f35411e) {
+                if (((bb0) arrayList.get(i10)).f35427e) {
                     arrayList.remove(i10);
                     i10--;
                 }

@@ -20,9 +20,9 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.m4;
 import org.telegram.ui.Cells.z6;
 import org.telegram.ui.Components.g90;
-import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.yh;
-public final class q1 extends sl0 {
+public final class q1 extends rl0 {
     public final w1 f7592c;
 
     public q1(w1 w1Var) {
@@ -86,7 +86,7 @@ public final class q1 extends sl0 {
                     str = chat.title;
                 }
                 SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPluralWithLink", i12, str, "%3$s"));
-                SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), k6.f21720gc, 2, new eh.m(w1Var, 16));
+                SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), k6.f21722gc, 2, new eh.m(w1Var, 16));
                 int indexOf = TextUtils.indexOf(replaceTags, "%3$s");
                 replaceTags.replace(indexOf, indexOf + 4, (CharSequence) replaceSingleTag);
                 g90Var.setText(replaceTags, TextView.BufferType.EDITABLE);
@@ -116,7 +116,7 @@ public final class q1 extends sl0 {
                     view = new m4(context, 22);
                 }
             } else {
-                view = new z6(context, k6.w0(null, k6.f21605a7, false), 0);
+                view = new z6(context, k6.w0(null, k6.f21607a7, false), 0);
             }
         } else {
             v1 v1Var = new v1(context);

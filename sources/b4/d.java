@@ -84,7 +84,7 @@ public final class d implements r3.k {
                 int i13 = vVar.i(13);
                 if (i13 <= 6) {
                     i10++;
-                    hVar.f46558f = 0;
+                    hVar.f46589f = 0;
                     hVar.a(i10, false);
                 } else {
                     hVar.a(i13 - 6, false);
@@ -92,7 +92,7 @@ public final class d implements r3.k {
                 }
             } else {
                 i10++;
-                hVar.f46558f = 0;
+                hVar.f46589f = 0;
                 hVar.a(i10, false);
             }
             i11 = 0;

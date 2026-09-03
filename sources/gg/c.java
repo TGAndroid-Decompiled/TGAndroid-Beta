@@ -2,7 +2,7 @@ package gg;
 
 import android.animation.ValueAnimator;
 import org.telegram.ui.Components.voip.l0;
-import org.telegram.ui.ci1;
+import org.telegram.ui.ii1;
 public final class c implements ValueAnimator.AnimatorUpdateListener {
     public final int f7071a;
     public final float f7072b;
@@ -34,18 +34,18 @@ public final class c implements ValueAnimator.AnimatorUpdateListener {
                 l0 l0Var = (l0) this.f7074e;
                 l0Var.getClass();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l0Var.f32166v0 = e2.c.w(1.0f, floatValue2, 1.0f, this.f7072b * floatValue2);
-                l0Var.f32157o0 = this.f7073c * floatValue2;
-                l0Var.f32158p0 = this.d * floatValue2;
+                l0Var.f32171v0 = e2.c.w(1.0f, floatValue2, 1.0f, this.f7072b * floatValue2);
+                l0Var.f32162o0 = this.f7073c * floatValue2;
+                l0Var.f32163p0 = this.d * floatValue2;
                 l0Var.invalidate();
                 return;
             default:
-                ci1 ci1Var = (ci1) this.f7074e;
+                ii1 ii1Var = (ii1) this.f7074e;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ci1Var.f35826c1 = e2.c.w(1.0f, floatValue3, 1.0f, this.f7072b * floatValue3);
-                ci1Var.V0 = this.f7073c * floatValue3;
-                ci1Var.W0 = this.d * floatValue3;
-                ci1Var.f35852s.invalidate();
+                ii1Var.f37678c1 = e2.c.w(1.0f, floatValue3, 1.0f, this.f7072b * floatValue3);
+                ii1Var.V0 = this.f7073c * floatValue3;
+                ii1Var.W0 = this.d * floatValue3;
+                ii1Var.f37704s.invalidate();
                 return;
         }
     }

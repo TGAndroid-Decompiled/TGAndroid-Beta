@@ -1409,7 +1409,7 @@ public final class a {
     }
 
     public static t0 g(JsonReader jsonReader) {
-        sf.e eVar = new sf.e(6, false);
+        sf.f fVar = new sf.f(6, false);
         jsonReader.beginObject();
         while (jsonReader.hasNext()) {
             String nextName = jsonReader.nextName();
@@ -1443,21 +1443,21 @@ public final class a {
             }
             switch (c3) {
                 case 0:
-                    eVar.f47316c = Integer.valueOf(jsonReader.nextInt());
+                    fVar.f47352c = Integer.valueOf(jsonReader.nextInt());
                     break;
                 case 1:
                     String nextString = jsonReader.nextString();
                     if (nextString != null) {
-                        eVar.f47315b = nextString;
+                        fVar.f47351b = nextString;
                         break;
                     } else {
                         throw new NullPointerException("Null processName");
                     }
                 case 2:
-                    eVar.f47317e = Boolean.valueOf(jsonReader.nextBoolean());
+                    fVar.f47353e = Boolean.valueOf(jsonReader.nextBoolean());
                     break;
                 case 3:
-                    eVar.d = Integer.valueOf(jsonReader.nextInt());
+                    fVar.d = Integer.valueOf(jsonReader.nextInt());
                     break;
                 default:
                     jsonReader.skipValue();
@@ -1465,7 +1465,7 @@ public final class a {
             }
         }
         jsonReader.endObject();
-        return eVar.n();
+        return fVar.n();
     }
 
     public static a0 h(JsonReader jsonReader) {
@@ -1893,7 +1893,7 @@ public final class a {
                                 obj2.f10886k = DesugarCollections.unmodifiableList(arrayList);
                                 break;
                             case 6:
-                                sf.e eVar = new sf.e(7, false);
+                                sf.f fVar = new sf.f(7, false);
                                 jsonReader.beginObject();
                                 while (jsonReader.hasNext()) {
                                     String nextName5 = jsonReader.nextName();
@@ -1935,24 +1935,24 @@ public final class a {
                                         case 0:
                                             String nextString9 = jsonReader.nextString();
                                             if (nextString9 != null) {
-                                                eVar.d = nextString9;
+                                                fVar.d = nextString9;
                                                 break;
                                             } else {
                                                 throw new NullPointerException("Null buildVersion");
                                             }
                                         case 1:
-                                            eVar.f47317e = Boolean.valueOf(jsonReader.nextBoolean());
+                                            fVar.f47353e = Boolean.valueOf(jsonReader.nextBoolean());
                                             break;
                                         case 2:
                                             String nextString10 = jsonReader.nextString();
                                             if (nextString10 != null) {
-                                                eVar.f47316c = nextString10;
+                                                fVar.f47352c = nextString10;
                                                 break;
                                             } else {
                                                 throw new NullPointerException("Null version");
                                             }
                                         case 3:
-                                            eVar.f47315b = Integer.valueOf(jsonReader.nextInt());
+                                            fVar.f47351b = Integer.valueOf(jsonReader.nextInt());
                                             break;
                                         default:
                                             jsonReader.skipValue();
@@ -1960,7 +1960,7 @@ public final class a {
                                     }
                                 }
                                 jsonReader.endObject();
-                                obj2.f10884i = eVar.o();
+                                obj2.f10884i = fVar.o();
                                 break;
                             case 7:
                                 jsonReader.beginObject();

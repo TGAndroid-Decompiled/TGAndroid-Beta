@@ -6,17 +6,17 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class vs extends org.telegram.ui.ActionBar.j {
-    public final ContactsActivity f42284a;
+    public final ContactsActivity f42203a;
 
     public vs(ContactsActivity contactsActivity) {
-        this.f42284a = contactsActivity;
+        this.f42203a = contactsActivity;
     }
 
     @Override
     public final void b(int i10) {
         int i11;
         org.telegram.ui.ActionBar.k kVar;
-        ContactsActivity contactsActivity = this.f42284a;
+        ContactsActivity contactsActivity = this.f42203a;
         if (i10 == -1) {
             kVar = ((org.telegram.ui.ActionBar.p2) contactsActivity).actionBar;
             if (kVar.s()) {
@@ -32,15 +32,15 @@ public final class vs extends org.telegram.ui.ActionBar.j {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(contactsActivity.getParentActivity(), 0, contactsActivity.getResourceProvider());
             a0.h hVar = contactsActivity.f34052a0;
             if (hVar.m() == 1) {
-                alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.DeleteContactTitle);
-                alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.DeleteContactSubtitle);
+                alertDialog$Builder.f21168a.O = LocaleController.getString(R.string.DeleteContactTitle);
+                alertDialog$Builder.f21168a.Q = LocaleController.getString(R.string.DeleteContactSubtitle);
             } else {
-                alertDialog$Builder.f21166a.O = LocaleController.formatPluralString("DeleteContactsTitle", hVar.m(), new Object[0]);
-                alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.DeleteContactsSubtitle);
+                alertDialog$Builder.f21168a.O = LocaleController.formatPluralString("DeleteContactsTitle", hVar.m(), new Object[0]);
+                alertDialog$Builder.f21168a.Q = LocaleController.getString(R.string.DeleteContactsSubtitle);
             }
             alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new ss(contactsActivity));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new org.telegram.ui.Components.mh0(18));
-            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21168a;
             d2Var.show();
             d2Var.h();
         } else if (i10 == 1) {
@@ -61,7 +61,7 @@ public final class vs extends org.telegram.ui.ActionBar.j {
             w0Var.setIcon(i11);
         } else if (i10 == 0) {
             contactsActivity.f34060f.x0(0);
-            AndroidUtilities.doOnPreDraw(contactsActivity.W.f26172r, new zi(this, 14));
+            AndroidUtilities.doOnPreDraw(contactsActivity.W.f26132r, new zi(this, 14));
         }
     }
 }

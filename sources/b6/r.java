@@ -32,11 +32,11 @@ public abstract class r {
                 if (i10 != 3) {
                     return resources.getString(17039370);
                 }
-                return resources.getString(2131689560);
+                return resources.getString(2131689558);
             }
-            return resources.getString(2131689570);
+            return resources.getString(2131689568);
         }
-        return resources.getString(2131689563);
+        return resources.getString(2131689561);
     }
 
     public static String c(Context context, int i10) {
@@ -55,38 +55,38 @@ public abstract class r {
                                         case 17:
                                             return e(context, "common_google_play_services_sign_in_failed_text", a2);
                                         case 18:
-                                            return resources.getString(2131689573, a2);
+                                            return resources.getString(2131689571, a2);
                                         default:
-                                            return resources.getString(2131689568, a2);
+                                            return resources.getString(2131689566, a2);
                                     }
                                 }
                                 return e(context, "common_google_play_services_restricted_profile_text", a2);
                             }
-                            return resources.getString(2131689569, a2);
+                            return resources.getString(2131689567, a2);
                         }
                         return e(context, "common_google_play_services_network_error_text", a2);
                     }
                     return e(context, "common_google_play_services_invalid_account_text", a2);
                 }
-                return resources.getString(2131689561, a2);
+                return resources.getString(2131689559, a2);
             } else if (i6.b.f(context)) {
-                return resources.getString(2131689574);
+                return resources.getString(2131689572);
             } else {
-                return resources.getString(2131689571, a2);
+                return resources.getString(2131689569, a2);
             }
         }
-        return resources.getString(2131689564, a2);
+        return resources.getString(2131689562, a2);
     }
 
     public static String d(Context context, int i10) {
         Resources resources = context.getResources();
         switch (i10) {
             case 1:
-                return resources.getString(2131689565);
+                return resources.getString(2131689563);
             case 2:
-                return resources.getString(2131689572);
+                return resources.getString(2131689570);
             case 3:
-                return resources.getString(2131689562);
+                return resources.getString(2131689560);
             case 4:
             case 6:
             case 18:
@@ -133,7 +133,7 @@ public abstract class r {
         Resources resources = context.getResources();
         String f10 = f(context, str);
         if (f10 == null) {
-            f10 = resources.getString(2131689568);
+            f10 = resources.getString(2131689566);
         }
         return String.format(resources.getConfiguration().locale, f10, str2);
     }
@@ -143,7 +143,7 @@ public abstract class r {
         a0.k kVar = f1771a;
         synchronized (kVar) {
             try {
-                Locale locale = k7.x.a(context.getResources().getConfiguration()).f15175a.get(0);
+                Locale locale = k7.x.a(context.getResources().getConfiguration()).f15177a.get(0);
                 if (!locale.equals(f1772b)) {
                     kVar.clear();
                     f1772b = locale;
@@ -152,7 +152,7 @@ public abstract class r {
                 if (str2 != null) {
                     return str2;
                 }
-                AtomicBoolean atomicBoolean = y5.g.f50771a;
+                AtomicBoolean atomicBoolean = y5.g.f50807a;
                 try {
                     resources = context.getPackageManager().getResourcesForApplication("com.google.android.gms");
                 } catch (PackageManager.NameNotFoundException unused) {

@@ -1,21 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class e71 extends j3.l {
-    public final k71 d;
+import android.net.Uri;
+import java.util.Map;
+import org.telegram.messenger.secretmedia.ExtendedDefaultDataSource;
+public final class e71 implements g5.m {
+    public final g5.m f26489a;
+    public final long f26490b;
 
-    public e71(Context context, k71 k71Var) {
-        super(context);
-        this.d = k71Var;
+    public e71(ExtendedDefaultDataSource extendedDefaultDataSource, long j10) {
+        this.f26489a = extendedDefaultDataSource;
+        this.f26490b = j10;
     }
 
     @Override
-    public final l3.k0 a(Context context) {
-        com.google.firebase.messaging.s sVar = new com.google.firebase.messaging.s(8);
-        l3.g a2 = l3.g.a(context);
-        a2.getClass();
-        sVar.f4081b = a2;
-        sVar.f4082c = new androidx.biometric.e(new l3.n[]{new l3.t0(new j71(this.d))});
-        return new l3.k0(sVar);
+    public final void addTransferListener(g5.v0 v0Var) {
+        this.f26489a.addTransferListener(v0Var);
+    }
+
+    @Override
+    public final void close() {
+        this.f26489a.close();
+    }
+
+    @Override
+    public final Map getResponseHeaders() {
+        return this.f26489a.getResponseHeaders();
+    }
+
+    @Override
+    public final Uri getUri() {
+        return this.f26489a.getUri();
+    }
+
+    @Override
+    public final long open(g5.p pVar) {
+        c4.c a2 = pVar.a();
+        a2.f2242b = pVar.f6888e + this.f26490b;
+        return this.f26489a.open(a2.d());
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        return this.f26489a.read(bArr, i10, i11);
     }
 }

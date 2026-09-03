@@ -8,12 +8,12 @@ import java.io.IOException;
 import oh.h4;
 import org.telegram.tgnet.SerializedData;
 public final class a {
-    public static SparseIntArray f48971b;
-    public static final a f48972c = new a();
-    public final SparseArray f48973a;
+    public static SparseIntArray f49007b;
+    public static final a f49008c = new a();
+    public final SparseArray f49009a;
 
     public a() {
-        this.f48973a = new SparseArray();
+        this.f49009a = new SparseArray();
     }
 
     public static SparseArray a(Context context, String str, SparseArray sparseArray) {
@@ -48,7 +48,7 @@ public final class a {
 
     public final String b(Context context, int i10) {
         if (context != null && i10 != 0) {
-            if (f48971b == null) {
+            if (f49007b == null) {
                 try {
                     BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getResources().getAssets().open("string_resource_ids.bin"));
                     SerializedData serializedData = new SerializedData(bufferedInputStream);
@@ -58,14 +58,14 @@ public final class a {
                         sparseIntArray.append(serializedData.readInt32(true), serializedData.readInt32(true));
                     }
                     bufferedInputStream.close();
-                    f48971b = sparseIntArray;
+                    f49007b = sparseIntArray;
                 } catch (IOException e6) {
                     throw new RuntimeException(e6);
                 }
             }
-            int i12 = f48971b.get(i10);
+            int i12 = f49007b.get(i10);
             if (i12 != 0) {
-                return (String) this.f48973a.get(i12);
+                return (String) this.f49009a.get(i12);
             }
             return null;
         }
@@ -75,7 +75,7 @@ public final class a {
     public final String c(Context context, String str, int i10) {
         String str2;
         if (str != null) {
-            str2 = (String) this.f48973a.get(str.hashCode());
+            str2 = (String) this.f49009a.get(str.hashCode());
         } else {
             str2 = null;
         }
@@ -86,7 +86,7 @@ public final class a {
     }
 
     public a(h4 h4Var) {
-        SparseArray sparseArray = (SparseArray) h4Var.f17180b;
-        this.f48973a = sparseArray == null ? new SparseArray() : sparseArray;
+        SparseArray sparseArray = (SparseArray) h4Var.f17182b;
+        this.f49009a = sparseArray == null ? new SparseArray() : sparseArray;
     }
 }

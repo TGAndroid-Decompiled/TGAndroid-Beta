@@ -20,7 +20,7 @@ public final class o implements Callable {
                     f7.b bVar = this.f7981b.d;
                     n9.b bVar2 = (n9.b) bVar.f6121c;
                     bVar2.getClass();
-                    boolean delete = new File(bVar2.f15872b, (String) bVar.f6120b).delete();
+                    boolean delete = new File(bVar2.f15874b, (String) bVar.f6120b).delete();
                     if (!delete) {
                         Log.w("FirebaseCrashlytics", "Initialization marker file was not properly removed.", null);
                     }
@@ -36,7 +36,7 @@ public final class o implements Callable {
                 String str = (String) bVar3.f6120b;
                 bVar4.getClass();
                 boolean z4 = true;
-                if (!new File(bVar4.f15872b, str).exists()) {
+                if (!new File(bVar4.f15874b, str).exists()) {
                     String e10 = nVar.e();
                     if (e10 == null || !nVar.f7972j.c(e10)) {
                         z4 = false;
@@ -47,7 +47,7 @@ public final class o implements Callable {
                     }
                     n9.b bVar5 = (n9.b) bVar3.f6121c;
                     bVar5.getClass();
-                    new File(bVar5.f15872b, str).delete();
+                    new File(bVar5.f15874b, str).delete();
                 }
                 return Boolean.valueOf(z4);
         }

@@ -9,7 +9,7 @@ public final class jb0 extends org.telegram.ui.Cells.n9 {
 
     public jb0(sb0 sb0Var) {
         this.B0 = sb0Var;
-        this.f24513h0 = sb0Var.W.C;
+        this.f24515h0 = sb0Var.W.C;
     }
 
     @Override
@@ -27,17 +27,17 @@ public final class jb0 extends org.telegram.ui.Cells.n9 {
         MessageObject messageObject2;
         sb0 sb0Var = this.B0;
         jb0 jb0Var = sb0Var.f31030e;
-        int i12 = jb0Var.v - jb0Var.f24537u;
+        int i12 = jb0Var.v - jb0Var.f24539u;
         yb0 yb0Var = sb0Var.W;
-        if (i12 > MessagesController.getInstance(yb0Var.f33440w).quoteLengthMax) {
+        if (i12 > MessagesController.getInstance(yb0Var.f33461w).quoteLengthMax) {
             sb0Var.f();
             return;
         }
         MessagePreviewParams messagePreviewParams = yb0Var.d;
-        messagePreviewParams.quoteStart = jb0Var.f24537u;
+        messagePreviewParams.quoteStart = jb0Var.f24539u;
         messagePreviewParams.quoteEnd = jb0Var.v;
         MessageObject c3 = sb0Var.c(messageObject);
-        if (c3 != null && ((nnVar = yb0Var.d.quote) == null || (messageObject2 = nnVar.f39484a) == null || messageObject2.getId() != c3.getId())) {
+        if (c3 != null && ((nnVar = yb0Var.d.quote) == null || (messageObject2 = nnVar.f39405a) == null || messageObject2.getId() != c3.getId())) {
             yb0Var.d.quote = org.telegram.ui.nn.b(i10, i11, c3);
         }
         yb0Var.b();
@@ -76,7 +76,7 @@ public final class jb0 extends org.telegram.ui.Cells.n9 {
 
     @Override
     public final org.telegram.ui.ActionBar.g6 r() {
-        return this.f24513h0;
+        return this.f24515h0;
     }
 
     @Override

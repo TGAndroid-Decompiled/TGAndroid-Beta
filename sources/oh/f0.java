@@ -15,11 +15,11 @@ public final class f0 extends f2.l {
 
     @Override
     public final void M() {
-        this.F.f17831c.invalidate();
+        this.F.f17833c.invalidate();
     }
 
     @Override
     public final void P(f2.m1 m1Var) {
-        this.F.f17831c.invalidate();
+        this.F.f17833c.invalidate();
     }
 }

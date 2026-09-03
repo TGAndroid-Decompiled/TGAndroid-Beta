@@ -16,13 +16,13 @@ public final class uc0 extends uf.i0 {
     @Override
     public final void l() {
         bd0 bd0Var = this.K;
-        org.telegram.ui.ActionBar.w0 w0Var = bd0Var.f35481w;
+        org.telegram.ui.ActionBar.w0 w0Var = bd0Var.f35497w;
         if (w0Var != null) {
             w0Var.setShowSearchProgress(bd0Var.T.G);
         }
-        TextView textView = bd0Var.f35474r;
+        TextView textView = bd0Var.f35490r;
         if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, bd0Var.T.f48514x)));
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, bd0Var.T.f48550x)));
         }
         super.l();
     }

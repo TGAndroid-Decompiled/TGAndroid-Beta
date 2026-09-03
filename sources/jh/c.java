@@ -49,7 +49,7 @@ public final class c extends Path {
                     break;
                 }
                 xi0 xi0Var = (xi0) arrayList.get(i10);
-                if (f15 >= xi0Var.f33121b && f15 <= xi0Var.f33122c) {
+                if (f15 >= xi0Var.f33115b && f15 <= xi0Var.f33116c) {
                     kVar.f10154y = true;
                     break;
                 }
@@ -72,7 +72,7 @@ public final class c extends Path {
         }
         kVar.setBounds(max, i11, (int) Math.min(f12, f14), (int) f13);
         kVar.h(this.f10093b.getPaint().getColor());
-        kVar.f10150t = jt.f28198c;
+        kVar.f10150t = jt.f28178c;
         int width = kVar.getBounds().width() / AndroidUtilities.dp(6.0f);
         int i13 = k.B;
         int b10 = k7.o.b(width * i13, i13, k.A);

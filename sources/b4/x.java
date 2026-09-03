@@ -21,7 +21,7 @@ public final class x {
         if (j10 == lVar.getPosition()) {
             return 0;
         }
-        jbVar.f28091a = j10;
+        jbVar.f28078a = j10;
         return 1;
     }
 
@@ -31,10 +31,10 @@ public final class x {
 
     public final void d(long j10) {
         r3.b bVar = this.f1667c;
-        if (bVar != null && bVar.f46534a == j10) {
+        if (bVar != null && bVar.f46565a == j10) {
             return;
         }
         r3.a aVar = this.f1665a;
-        this.f1667c = new r3.b(j10, aVar.f46529a.f(j10), aVar.f46531c, aVar.d, aVar.f46532e, aVar.f46533f);
+        this.f1667c = new r3.b(j10, aVar.f46560a.f(j10), aVar.f46562c, aVar.d, aVar.f46563e, aVar.f46564f);
     }
 }

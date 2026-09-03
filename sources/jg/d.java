@@ -40,8 +40,8 @@ public abstract class d extends FrameLayout {
         this.f10018a = g6Var;
         View view = new View(context);
         addView(view, c6.n(-1, -1));
-        view.setBackgroundColor(k6.v0(k6.f21731h5, g6Var));
-        z8Var.f33805r = AndroidUtilities.dp(40.0f);
+        view.setBackgroundColor(k6.v0(k6.f21733h5, g6Var));
+        z8Var.f33849r = AndroidUtilities.dp(40.0f);
         p9 p9Var = new p9(context);
         this.f10020c = p9Var;
         p9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
@@ -51,7 +51,7 @@ public abstract class d extends FrameLayout {
         NotificationCenter.listenEmojiLoading(cVar);
         NotificationCenter.listenEmojiLoading(p9Var);
         cVar.setTextSize(16);
-        int i11 = k6.f21766j5;
+        int i11 = k6.f21768j5;
         cVar.setTextColor(k6.v0(i11, g6Var));
         if (LocaleController.isRTL) {
             i10 = 5;
@@ -69,7 +69,7 @@ public abstract class d extends FrameLayout {
         RadioButton radioButton = new RadioButton(context);
         this.f10022f = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        radioButton.b(k6.v0(k6.f21768j7, g6Var), k6.v0(k6.E5, g6Var));
+        radioButton.b(k6.v0(k6.f21770j7, g6Var), k6.v0(k6.E5, g6Var));
         addView(radioButton);
         d();
         if (!b()) {
@@ -201,7 +201,7 @@ public abstract class d extends FrameLayout {
         int i10;
         super.dispatchDraw(canvas);
         if (this.f10023n) {
-            int v02 = k6.v0(k6.f21660d7, this.f10018a);
+            int v02 = k6.v0(k6.f21662d7, this.f10018a);
             Paint paint = this.h;
             paint.setColor(v02);
             if (b()) {

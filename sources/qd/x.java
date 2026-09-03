@@ -5,22 +5,22 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import ld.t0;
 import ld.u0;
 public class x {
-    public static final AtomicIntegerFieldUpdater f44826b = AtomicIntegerFieldUpdater.newUpdater(x.class, "_size$volatile");
+    public static final AtomicIntegerFieldUpdater f44857b = AtomicIntegerFieldUpdater.newUpdater(x.class, "_size$volatile");
     private volatile int _size$volatile;
-    public t0[] f44827a;
+    public t0[] f44858a;
 
     public final void a(t0 t0Var) {
         t0Var.e((u0) this);
-        t0[] t0VarArr = this.f44827a;
-        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = f44826b;
+        t0[] t0VarArr = this.f44858a;
+        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = f44857b;
         if (t0VarArr == null) {
             t0VarArr = new t0[4];
-            this.f44827a = t0VarArr;
+            this.f44858a = t0VarArr;
         } else if (atomicIntegerFieldUpdater.get(this) >= t0VarArr.length) {
             Object[] copyOf = Arrays.copyOf(t0VarArr, atomicIntegerFieldUpdater.get(this) * 2);
             kotlin.jvm.internal.j.d(copyOf, "copyOf(...)");
             t0VarArr = (t0[]) copyOf;
-            this.f44827a = t0VarArr;
+            this.f44858a = t0VarArr;
         }
         int i10 = atomicIntegerFieldUpdater.get(this);
         atomicIntegerFieldUpdater.set(this, i10 + 1);
@@ -32,7 +32,7 @@ public class x {
     public final t0 b() {
         t0 t0Var;
         synchronized (this) {
-            t0[] t0VarArr = this.f44827a;
+            t0[] t0VarArr = this.f44858a;
             if (t0VarArr != null) {
                 t0Var = t0VarArr[0];
             } else {
@@ -56,7 +56,7 @@ public class x {
 
     public final void e(int i10) {
         while (i10 > 0) {
-            t0[] t0VarArr = this.f44827a;
+            t0[] t0VarArr = this.f44858a;
             kotlin.jvm.internal.j.b(t0VarArr);
             int i11 = (i10 - 1) / 2;
             t0 t0Var = t0VarArr[i11];
@@ -72,7 +72,7 @@ public class x {
     }
 
     public final void f(int i10, int i11) {
-        t0[] t0VarArr = this.f44827a;
+        t0[] t0VarArr = this.f44858a;
         kotlin.jvm.internal.j.b(t0VarArr);
         t0 t0Var = t0VarArr[i11];
         kotlin.jvm.internal.j.b(t0Var);

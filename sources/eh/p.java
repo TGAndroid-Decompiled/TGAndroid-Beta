@@ -16,7 +16,7 @@ public final class p extends a1 {
         u uVar = this.f5663a;
         if (!uVar.h && !uVar.f5677i) {
             v vVar = this.f5664b;
-            if ((vVar.f5681c.V2.f32960x.size() - 1) - vVar.f5681c.U2.M0() < 5) {
+            if ((vVar.f5681c.V2.f32654x.size() - 1) - vVar.f5681c.U2.M0() < 5) {
                 uVar.a();
             }
         }

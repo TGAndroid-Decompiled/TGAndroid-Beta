@@ -34,7 +34,7 @@ public final class il extends org.telegram.ui.ActionBar.l5 {
         switch (this.J0) {
             case 2:
                 super.onAttachedToWindow();
-                ((hp0) this.K0).f37567s.a();
+                ((lp0) this.K0).f38755s.a();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -47,7 +47,7 @@ public final class il extends org.telegram.ui.ActionBar.l5 {
         switch (this.J0) {
             case 2:
                 super.onDetachedFromWindow();
-                ((hp0) this.K0).f37567s.b();
+                ((lp0) this.K0).f38755s.b();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -114,10 +114,10 @@ public final class il extends org.telegram.ui.ActionBar.l5 {
                 xn xnVar = (xn) this.K0;
                 if (this == xnVar.A2[0] && xnVar.E2[1] != null) {
                     if (xnVar.L4 && f10 < 0.0f) {
-                        xnVar.f43391w2.setTranslationY(f10 / 2.0f);
+                        xnVar.f43369w2.setTranslationY(f10 / 2.0f);
                         return;
                     } else {
-                        xnVar.f43391w2.setTranslationY(0.0f);
+                        xnVar.f43369w2.setTranslationY(0.0f);
                         return;
                     }
                 }

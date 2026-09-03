@@ -28,9 +28,9 @@ import org.telegram.messenger.MrzRecognizer;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.l9;
-import org.telegram.ui.Components.go0;
-import org.telegram.ui.Components.h71;
-import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.fo0;
+import org.telegram.ui.Components.g71;
+import org.telegram.ui.Components.j71;
 import org.telegram.ui.Components.ki;
 import org.telegram.ui.Components.wg;
 import org.telegram.ui.Components.y4;
@@ -38,56 +38,56 @@ import org.telegram.ui.m9;
 import org.telegram.ui.ti0;
 import org.telegram.ui.u9;
 import org.telegram.ui.xn;
-import qh.h5;
-import qh.j5;
+import qh.g5;
+import qh.i5;
 import wh.g4;
 import wh.i4;
 import wh.n3;
 import wh.r3;
-public final class e0 implements u9, com.google.android.gms.common.api.internal.s, zf.m, h71, OnCompleteListener, ra.m, t5.a, th.m0, v0.i, ki, go0, y4, wh.h0 {
-    public final int f42527a;
-    public Object f42528b;
+public final class e0 implements u9, com.google.android.gms.common.api.internal.s, zf.m, g71, OnCompleteListener, ra.m, t5.a, th.m0, v0.i, ki, fo0, y4, wh.h0 {
+    public final int f42490a;
+    public Object f42491b;
 
     public e0(com.google.android.gms.common.api.j jVar, Object obj, int i10) {
-        this.f42527a = i10;
-        this.f42528b = obj;
+        this.f42490a = i10;
+        this.f42491b = obj;
     }
 
     @Override
     public void B(CharSequence charSequence) {
-        g4 g4Var = ((i4) this.f42528b).D;
+        g4 g4Var = ((i4) this.f42491b).D;
         if (g4Var != null) {
             n3 n3Var = (n3) g4Var;
             n3Var.getClass();
             if (charSequence != null && charSequence.length() > 0) {
-                n3Var.f49890a.t4(charSequence.toString());
+                n3Var.f49926a.s4(charSequence.toString());
             }
         }
     }
 
     @Override
     public void B0(wg wgVar) {
-        NotificationCenter.getInstance(vf.k.a0((vf.k) this.f42528b)).doOnIdle(wgVar);
+        NotificationCenter.getInstance(vf.k.a0((vf.k) this.f42491b)).doOnIdle(wgVar);
     }
 
     @Override
     public l9 E() {
-        return (i4) this.f42528b;
+        return (i4) this.f42491b;
     }
 
     @Override
     public String E0() {
-        return ((a1) this.f42528b).f42475f0;
+        return ((a1) this.f42491b).f42439f0;
     }
 
     @Override
     public wh.a G() {
-        return ((i4) this.f42528b).f50175a;
+        return ((i4) this.f42491b).f50211a;
     }
 
     @Override
     public void I(int i10, int i11, boolean z4) {
-        wh.z1 z1Var = (wh.z1) this.f42528b;
+        wh.z1 z1Var = (wh.z1) this.f42491b;
         z1Var.s0(i10, i11, z4);
         ti0 ti0Var = z1Var.L0;
         if (ti0Var != null) {
@@ -98,7 +98,7 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
 
     @Override
     public void J(String str) {
-        a1 a1Var = (a1) this.f42528b;
+        a1 a1Var = (a1) this.f42491b;
         try {
             a1Var.M = System.currentTimeMillis();
             a1Var.v("qr_text_received", new JSONObject().put("data", str));
@@ -109,11 +109,11 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
 
     @Override
     public boolean L() {
-        i4 i4Var = (i4) this.f42528b;
+        i4 i4Var = (i4) this.f42491b;
         g4 g4Var = i4Var.D;
         if (g4Var != null) {
-            wh.a aVar = i4Var.f50175a;
-            if (((n3) g4Var).f49890a.S4()) {
+            wh.a aVar = i4Var.f50211a;
+            if (((n3) g4Var).f49926a.R4()) {
                 return true;
             }
             return false;
@@ -123,11 +123,11 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
 
     @Override
     public void M(int i10, int i11) {
-        i4 i4Var = (i4) this.f42528b;
+        i4 i4Var = (i4) this.f42491b;
         g4 g4Var = i4Var.D;
         if (g4Var != null) {
-            wh.a aVar = i4Var.f50175a;
-            wh.d2 d2Var = ((n3) g4Var).f49890a.G3;
+            wh.a aVar = i4Var.f50211a;
+            wh.d2 d2Var = ((n3) g4Var).f49926a.G3;
             if (d2Var != null) {
                 d2Var.f(i10, i11);
             }
@@ -136,37 +136,37 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
 
     @Override
     public void Q() {
-        i4 i4Var = (i4) this.f42528b;
+        i4 i4Var = (i4) this.f42491b;
         g4 g4Var = i4Var.D;
         if (g4Var != null) {
-            wh.a aVar = i4Var.f50175a;
-            r3 r3Var = ((n3) g4Var).f49890a;
+            wh.a aVar = i4Var.f50211a;
+            r3 r3Var = ((n3) g4Var).f49926a;
             wh.d2 d2Var = r3Var.G3;
             if (d2Var != null) {
                 d2Var.g();
             }
-            r3Var.f49980e3.onContentChanged();
+            r3Var.f50016e3.onContentChanged();
         }
     }
 
     @Override
     public void W() {
-        i4 i4Var = (i4) this.f42528b;
+        i4 i4Var = (i4) this.f42491b;
         g4 g4Var = i4Var.D;
         if (g4Var != null) {
-            wh.a aVar = i4Var.f50175a;
-            r3.O1(((n3) g4Var).f49890a);
+            wh.a aVar = i4Var.f50211a;
+            r3.N1(((n3) g4Var).f49926a);
         }
     }
 
     @Override
     public void a(long j10) {
-        ((th.q) this.f42528b).presentFragment(xn.R9(j10));
+        ((th.q) this.f42491b).presentFragment(xn.R9(j10));
     }
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f42527a) {
+        switch (this.f42490a) {
             case 2:
                 p6.b bVar = new p6.b(0, (TaskCompletionSource) obj2);
                 b7.r1 r1Var = (b7.r1) ((b7.q1) obj).u();
@@ -175,7 +175,7 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
                 int i10 = b7.l.f1837a;
                 obtain.writeStrongBinder(bVar);
                 obtain.writeInt(1);
-                ((q6.v) this.f42528b).writeToParcel(obtain, 0);
+                ((q6.v) this.f42491b).writeToParcel(obtain, 0);
                 Parcel obtain2 = Parcel.obtain();
                 try {
                     r1Var.f1868a.transact(1, obtain, obtain2, 0);
@@ -188,9 +188,9 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
             case 4:
                 u5.x xVar = (u5.x) obj;
                 u5.f fVar = (u5.f) xVar.u();
-                q5.d0 d0Var = ((q5.e0) this.f42528b).f44540k;
+                q5.e0 e0Var = ((q5.f0) this.f42491b).f44574k;
                 Parcel M0 = fVar.M0();
-                com.google.android.gms.internal.cast.s.d(M0, d0Var);
+                com.google.android.gms.internal.cast.s.d(M0, e0Var);
                 fVar.R0(M0, 18);
                 u5.f fVar2 = (u5.f) xVar.u();
                 fVar2.R0(fVar2.M0(), 17);
@@ -201,7 +201,7 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
                 u5.i iVar = (u5.i) ((u5.t) obj).u();
                 Parcel M02 = iVar.M0();
                 com.google.android.gms.internal.cast.s.d(M02, rVar);
-                M02.writeStringArray((String[]) this.f42528b);
+                M02.writeStringArray((String[]) this.f42491b);
                 iVar.R0(M02, 7);
                 return;
             case 16:
@@ -211,16 +211,16 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
                 obtain3.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
                 int i11 = e7.a.f4991a;
                 obtain3.writeStrongBinder(fVar3);
-                e7.a.b(obtain3, (u6.f) this.f42528b);
+                e7.a.b(obtain3, (u6.f) this.f42491b);
                 e7.a.b(obtain3, gVar);
                 ((v6.b) ((v6.d) ((v6.e) obj).u())).E0(obtain3, 6);
                 return;
             default:
                 w6.a aVar = new w6.a((TaskCompletionSource) obj2);
                 w6.i iVar2 = (w6.i) ((w6.c) obj).u();
-                String str = ((w6.b) this.f42528b).f49438k;
+                String str = ((w6.b) this.f42491b).f49474k;
                 Parcel I0 = iVar2.I0();
-                int i12 = w6.f.f49442a;
+                int i12 = w6.f.f49478a;
                 I0.writeStrongBinder(aVar);
                 I0.writeString(str);
                 iVar2.J0(I0, 2);
@@ -230,7 +230,7 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
 
     @Override
     public void b(float f10) {
-        wh.y yVar = (wh.y) this.f42528b;
+        wh.y yVar = (wh.y) this.f42491b;
         MessageObject messageObject = yVar.M;
         if (messageObject == null) {
             return;
@@ -246,22 +246,22 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
 
     @Override
     public void c(wh.e1 e1Var) {
-        g4 g4Var = ((i4) this.f42528b).D;
+        g4 g4Var = ((i4) this.f42491b).D;
         if (g4Var != null) {
-            r3 r3Var = ((n3) g4Var).f49890a;
-            r3.M1(r3Var, e1Var);
-            r3Var.f49980e3.h(e1Var, true);
+            r3 r3Var = ((n3) g4Var).f49926a;
+            r3.L1(r3Var, e1Var);
+            r3Var.f50016e3.h(e1Var, true);
         }
     }
 
     @Override
     public void close() {
-        ((th.q) this.f42528b).finishFragment();
+        ((th.q) this.f42491b).finishFragment();
     }
 
     @Override
     public void d(float f10) {
-        MessageObject messageObject = ((wh.y) this.f42528b).M;
+        MessageObject messageObject = ((wh.y) this.f42491b).M;
         if (messageObject == null) {
             return;
         }
@@ -271,10 +271,10 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
     @Override
     public void e() {
         boolean z4;
-        th.q qVar = (th.q) this.f42528b;
-        xd.a aVar = qVar.f48182a;
+        th.q qVar = (th.q) this.f42491b;
+        xd.a aVar = qVar.f48218a;
         th.n0 n0Var = qVar.v;
-        if (n0Var.f48174n && n0Var.f48172l == 0) {
+        if (n0Var.f48210n && n0Var.f48208l == 0) {
             z4 = true;
         } else {
             z4 = false;
@@ -290,10 +290,10 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
 
     @Override
     public void f() {
-        i4 i4Var = (i4) this.f42528b;
+        i4 i4Var = (i4) this.f42491b;
         g4 g4Var = i4Var.D;
         if (g4Var != null) {
-            r3.P1(((n3) g4Var).f49890a, i4Var.f50175a);
+            r3.O1(((n3) g4Var).f49926a, i4Var.f50211a);
         }
     }
 
@@ -307,11 +307,11 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
         int i15;
         byte[] bArr;
         int i16;
-        x3.d dVar = (x3.d) this.f42528b;
-        x3.e eVar = dVar.f50340b;
-        SparseArray sparseArray = dVar.f50342c;
-        h5.w wVar = dVar.f50346i;
-        h5.w wVar2 = dVar.f50345g;
+        x3.d dVar = (x3.d) this.f42491b;
+        x3.e eVar = dVar.f50376b;
+        SparseArray sparseArray = dVar.f50378c;
+        h5.w wVar = dVar.f50382i;
+        h5.w wVar2 = dVar.f50381g;
         int i17 = 1;
         int i18 = 0;
         if (i10 != 161 && i10 != 163) {
@@ -324,7 +324,7 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
                                     if (i10 == 30322) {
                                         dVar.b(i10);
                                         byte[] bArr2 = new byte[i11];
-                                        dVar.f50358u.v = bArr2;
+                                        dVar.f50394u.v = bArr2;
                                         lVar.readFully(bArr2, 0, i11);
                                         return;
                                     }
@@ -332,31 +332,31 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
                                 }
                                 dVar.b(i10);
                                 byte[] bArr3 = new byte[i11];
-                                dVar.f50358u.f50317k = bArr3;
+                                dVar.f50394u.f50353k = bArr3;
                                 lVar.readFully(bArr3, 0, i11);
                                 return;
                             }
                             Arrays.fill(wVar.f7308a, (byte) 0);
                             lVar.readFully(wVar.f7308a, 4 - i11, i11);
                             wVar.F(0);
-                            dVar.f50359w = (int) wVar.v();
+                            dVar.f50395w = (int) wVar.v();
                             return;
                         }
                         byte[] bArr4 = new byte[i11];
                         lVar.readFully(bArr4, 0, i11);
                         dVar.b(i10);
-                        dVar.f50358u.f50316j = new r3.u(1, 0, 0, bArr4);
+                        dVar.f50394u.f50352j = new r3.u(1, 0, 0, bArr4);
                         return;
                     }
                     dVar.b(i10);
                     byte[] bArr5 = new byte[i11];
-                    dVar.f50358u.f50315i = bArr5;
+                    dVar.f50394u.f50351i = bArr5;
                     lVar.readFully(bArr5, 0, i11);
                     return;
                 }
                 dVar.b(i10);
-                x3.c cVar = dVar.f50358u;
-                int i19 = cVar.f50314g;
+                x3.c cVar = dVar.f50394u;
+                int i19 = cVar.f50350g;
                 if (i19 != 1685485123 && i19 != 1685480259) {
                     lVar.s(i11);
                     return;
@@ -368,8 +368,8 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
             } else if (dVar.G == 2) {
                 x3.c cVar2 = (x3.c) sparseArray.get(dVar.M);
                 int i20 = dVar.P;
-                h5.w wVar3 = dVar.f50351n;
-                if (i20 == 4 && "V_VP9".equals(cVar2.f50310b)) {
+                h5.w wVar3 = dVar.f50387n;
+                if (i20 == 4 && "V_VP9".equals(cVar2.f50346b)) {
                     wVar3.C(i11);
                     lVar.readFully(wVar3.f7308a, 0, i11);
                     return;
@@ -382,7 +382,7 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
         }
         if (dVar.G == 0) {
             dVar.M = (int) eVar.b(lVar, false, true, 8);
-            dVar.N = eVar.f50365c;
+            dVar.N = eVar.f50401c;
             dVar.I = -9223372036854775807L;
             dVar.G = 1;
             wVar2.C(0);
@@ -533,7 +533,7 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
             while (true) {
                 int i37 = dVar.J;
                 if (i37 < dVar.K) {
-                    dVar.c(cVar3, ((dVar.J * cVar3.f50312e) / 1000) + dVar.H, dVar.O, dVar.l(lVar, cVar3, dVar.L[i37], false), 0);
+                    dVar.c(cVar3, ((dVar.J * cVar3.f50348e) / 1000) + dVar.H, dVar.O, dVar.l(lVar, cVar3, dVar.L[i37], false), 0);
                     dVar.J++;
                 } else {
                     dVar.G = 0;
@@ -555,18 +555,18 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
     }
 
     public void h(int i10, long j10) {
-        x3.d dVar = (x3.d) this.f42528b;
+        x3.d dVar = (x3.d) this.f42491b;
         if (i10 != 20529) {
             if (i10 != 20530) {
                 boolean z4 = false;
                 switch (i10) {
                     case 131:
                         dVar.b(i10);
-                        dVar.f50358u.d = (int) j10;
+                        dVar.f50394u.d = (int) j10;
                         return;
                     case 136:
                         dVar.b(i10);
-                        x3.c cVar = dVar.f50358u;
+                        x3.c cVar = dVar.f50394u;
                         if (j10 == 1) {
                             z4 = true;
                         }
@@ -577,11 +577,11 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
                         return;
                     case 159:
                         dVar.b(i10);
-                        dVar.f50358u.O = (int) j10;
+                        dVar.f50394u.O = (int) j10;
                         return;
                     case 176:
                         dVar.b(i10);
-                        dVar.f50358u.f50319m = (int) j10;
+                        dVar.f50394u.f50355m = (int) j10;
                         return;
                     case 179:
                         dVar.a(i10);
@@ -589,11 +589,11 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
                         return;
                     case 186:
                         dVar.b(i10);
-                        dVar.f50358u.f50320n = (int) j10;
+                        dVar.f50394u.f50356n = (int) j10;
                         return;
                     case 215:
                         dVar.b(i10);
-                        dVar.f50358u.f50311c = (int) j10;
+                        dVar.f50394u.f50347c = (int) j10;
                         return;
                     case 231:
                         dVar.B = dVar.k(j10);
@@ -614,7 +614,7 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
                         return;
                     case 16871:
                         dVar.b(i10);
-                        dVar.f50358u.f50314g = (int) j10;
+                        dVar.f50394u.f50350g = (int) j10;
                         return;
                     case 16980:
                         if (j10 != 3) {
@@ -642,7 +642,7 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
                         }
                         return;
                     case 21420:
-                        dVar.f50360x = j10 + dVar.f50354q;
+                        dVar.f50396x = j10 + dVar.f50390q;
                         return;
                     case 21432:
                         int i11 = (int) j10;
@@ -651,34 +651,34 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
                             if (i11 != 1) {
                                 if (i11 != 3) {
                                     if (i11 == 15) {
-                                        dVar.f50358u.f50328w = 3;
+                                        dVar.f50394u.f50364w = 3;
                                         return;
                                     }
                                     return;
                                 }
-                                dVar.f50358u.f50328w = 1;
+                                dVar.f50394u.f50364w = 1;
                                 return;
                             }
-                            dVar.f50358u.f50328w = 2;
+                            dVar.f50394u.f50364w = 2;
                             return;
                         }
-                        dVar.f50358u.f50328w = 0;
+                        dVar.f50394u.f50364w = 0;
                         return;
                     case 21680:
                         dVar.b(i10);
-                        dVar.f50358u.f50321o = (int) j10;
+                        dVar.f50394u.f50357o = (int) j10;
                         return;
                     case 21682:
                         dVar.b(i10);
-                        dVar.f50358u.f50323q = (int) j10;
+                        dVar.f50394u.f50359q = (int) j10;
                         return;
                     case 21690:
                         dVar.b(i10);
-                        dVar.f50358u.f50322p = (int) j10;
+                        dVar.f50394u.f50358p = (int) j10;
                         return;
                     case 21930:
                         dVar.b(i10);
-                        x3.c cVar2 = dVar.f50358u;
+                        x3.c cVar2 = dVar.f50394u;
                         if (j10 == 1) {
                             z4 = true;
                         }
@@ -686,19 +686,19 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
                         return;
                     case 21998:
                         dVar.b(i10);
-                        dVar.f50358u.f50313f = (int) j10;
+                        dVar.f50394u.f50349f = (int) j10;
                         return;
                     case 22186:
                         dVar.b(i10);
-                        dVar.f50358u.R = j10;
+                        dVar.f50394u.R = j10;
                         return;
                     case 22203:
                         dVar.b(i10);
-                        dVar.f50358u.S = j10;
+                        dVar.f50394u.S = j10;
                         return;
                     case 25188:
                         dVar.b(i10);
-                        dVar.f50358u.P = (int) j10;
+                        dVar.f50394u.P = (int) j10;
                         return;
                     case 30114:
                         dVar.R = j10;
@@ -710,25 +710,25 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
                             if (i12 != 1) {
                                 if (i12 != 2) {
                                     if (i12 == 3) {
-                                        dVar.f50358u.f50324r = 3;
+                                        dVar.f50394u.f50360r = 3;
                                         return;
                                     }
                                     return;
                                 }
-                                dVar.f50358u.f50324r = 2;
+                                dVar.f50394u.f50360r = 2;
                                 return;
                             }
-                            dVar.f50358u.f50324r = 1;
+                            dVar.f50394u.f50360r = 1;
                             return;
                         }
-                        dVar.f50358u.f50324r = 0;
+                        dVar.f50394u.f50360r = 0;
                         return;
                     case 2352003:
                         dVar.b(i10);
-                        dVar.f50358u.f50312e = (int) j10;
+                        dVar.f50394u.f50348e = (int) j10;
                         return;
                     case 2807729:
-                        dVar.f50355r = j10;
+                        dVar.f50391r = j10;
                         return;
                     default:
                         switch (i10) {
@@ -737,37 +737,37 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
                                 int i13 = (int) j10;
                                 if (i13 != 1) {
                                     if (i13 == 2) {
-                                        dVar.f50358u.A = 1;
+                                        dVar.f50394u.A = 1;
                                         return;
                                     }
                                     return;
                                 }
-                                dVar.f50358u.A = 2;
+                                dVar.f50394u.A = 2;
                                 return;
                             case 21946:
                                 dVar.b(i10);
                                 int c3 = i5.b.c((int) j10);
                                 if (c3 != -1) {
-                                    dVar.f50358u.f50331z = c3;
+                                    dVar.f50394u.f50367z = c3;
                                     return;
                                 }
                                 return;
                             case 21947:
                                 dVar.b(i10);
-                                dVar.f50358u.f50329x = true;
+                                dVar.f50394u.f50365x = true;
                                 int b10 = i5.b.b((int) j10);
                                 if (b10 != -1) {
-                                    dVar.f50358u.f50330y = b10;
+                                    dVar.f50394u.f50366y = b10;
                                     return;
                                 }
                                 return;
                             case 21948:
                                 dVar.b(i10);
-                                dVar.f50358u.B = (int) j10;
+                                dVar.f50394u.B = (int) j10;
                                 return;
                             case 21949:
                                 dVar.b(i10);
-                                dVar.f50358u.C = (int) j10;
+                                dVar.f50394u.C = (int) j10;
                                 return;
                             default:
                                 return;
@@ -796,14 +796,14 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
         } else {
             aVar = new ab.a(19);
         }
-        return aVar.f((db.a) this.f42528b, jSONObject);
+        return aVar.f((db.a) this.f42491b, jSONObject);
     }
 
     public void j() {
-        s5.h hVar = (s5.h) this.f42528b;
+        s5.h hVar = (s5.h) this.f42491b;
         Iterator it = hVar.h.iterator();
         if (!it.hasNext()) {
-            Iterator it2 = hVar.f47051i.iterator();
+            Iterator it2 = hVar.f47082i.iterator();
             while (it2.hasNext()) {
                 ((s5.g) it2.next()).a();
             }
@@ -815,21 +815,21 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
 
     @Override
     public void onComplete(Task task) {
-        r5.c.h((r5.c) ((r5.j) this.f42528b).f46722c, "launchApplication", task);
+        r5.c.h((r5.c) ((r5.j) this.f42491b).f46753c, "launchApplication", task);
     }
 
     @Override
     public void onDismiss() {
-        a1 a1Var = (a1) this.f42528b;
+        a1 a1Var = (a1) this.f42491b;
         a1Var.v("scan_qr_popup_closed", null);
-        a1Var.f42473e0 = false;
+        a1Var.f42437e0 = false;
     }
 
     @Override
     public void onError(Object obj) {
         w0.d e6 = (w0.d) obj;
         kotlin.jvm.internal.j.e(e6, "e");
-        ld.m mVar = (ld.m) this.f42528b;
+        ld.m mVar = (ld.m) this.f42491b;
         if (mVar.w()) {
             mVar.resumeWith(q7.a(e6));
         }
@@ -843,7 +843,7 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
     public void onResult(Object obj) {
         v0.c result = (v0.c) obj;
         kotlin.jvm.internal.j.e(result, "result");
-        ld.m mVar = (ld.m) this.f42528b;
+        ld.m mVar = (ld.m) this.f42491b;
         if (mVar.w()) {
             mVar.resumeWith(result);
         }
@@ -851,16 +851,16 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
 
     @Override
     public void onStateChanged(boolean z4, int i10) {
-        j5 j5Var = (j5) this.f42528b;
-        h5 h5Var = j5Var.J;
-        k71 k71Var = j5Var.f45493x;
-        if (k71Var == null) {
+        i5 i5Var = (i5) this.f42491b;
+        g5 g5Var = i5Var.J;
+        j71 j71Var = i5Var.f45463x;
+        if (j71Var == null) {
             return;
         }
-        if (k71Var.y()) {
-            AndroidUtilities.runOnUIThread(h5Var);
+        if (j71Var.y()) {
+            AndroidUtilities.runOnUIThread(g5Var);
         } else {
-            AndroidUtilities.cancelRunOnUIThread(h5Var);
+            AndroidUtilities.cancelRunOnUIThread(g5Var);
         }
     }
 
@@ -871,10 +871,10 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
 
     @Override
     public void onVideoSizeChanged(int i10, int i11, int i12, float f10) {
-        j5 j5Var = (j5) this.f42528b;
-        j5Var.getClass();
-        j5Var.getClass();
-        z2 z2Var = j5Var.f45491w;
+        i5 i5Var = (i5) this.f42491b;
+        i5Var.getClass();
+        i5Var.getClass();
+        z2 z2Var = i5Var.f45461w;
         if (z2Var != null) {
             float f11 = i10 / i11;
             if (Math.abs(z2Var.f5594v0 - f11) >= 1.0E-4f) {
@@ -886,17 +886,17 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
 
     @Override
     public void t(Bitmap bitmap) {
-        ((t5.h) this.f42528b).e(bitmap, 3);
+        ((t5.h) this.f42491b).e(bitmap, 3);
     }
 
     @Override
     public void w() {
-        ((qh.f0) this.f42528b).f45275e.invalidate();
+        ((qh.f0) this.f42491b).f45323e.invalidate();
     }
 
     @Override
     public Object y2() {
-        Type type = (Type) this.f42528b;
+        Type type = (Type) this.f42491b;
         if (type instanceof ParameterizedType) {
             Type type2 = ((ParameterizedType) type).getActualTypeArguments()[0];
             if (type2 instanceof Class) {
@@ -909,16 +909,16 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
 
     @Override
     public org.telegram.ui.Cells.m9 z() {
-        g4 g4Var = ((i4) this.f42528b).D;
+        g4 g4Var = ((i4) this.f42491b).D;
         if (g4Var != null) {
-            return ((n3) g4Var).f49890a.getTextSelectionHelper();
+            return ((n3) g4Var).f49926a.getTextSelectionHelper();
         }
         return null;
     }
 
     public e0(Object obj, int i10) {
-        this.f42527a = i10;
-        this.f42528b = obj;
+        this.f42490a = i10;
+        this.f42491b = obj;
     }
 
     @Override
@@ -926,23 +926,23 @@ public final class e0 implements u9, com.google.android.gms.common.api.internal.
     }
 
     public e0(h4 h4Var) {
-        this.f42527a = 1;
-        this.f42528b = (com.google.android.gms.internal.play_billing.r) h4Var.f17180b;
+        this.f42490a = 1;
+        this.f42491b = (com.google.android.gms.internal.play_billing.r) h4Var.f17182b;
     }
 
     public e0(int i10) {
-        this.f42527a = i10;
+        this.f42490a = i10;
         switch (i10) {
             case 23:
                 return;
             default:
-                this.f42528b = new LinkedHashMap(5, 1.0f, false);
+                this.f42491b = new LinkedHashMap(5, 1.0f, false);
                 return;
         }
     }
 
     @Override
-    public void onError(k71 k71Var, Exception exc) {
+    public void onError(j71 j71Var, Exception exc) {
     }
 
     @Override

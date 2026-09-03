@@ -7,21 +7,21 @@ import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Components.ba;
-import org.telegram.ui.Components.sl0;
-import qh.i5;
-import qh.o4;
-public final class u1 extends sl0 {
+import org.telegram.ui.Components.rl0;
+import qh.h5;
+import qh.n4;
+public final class u1 extends rl0 {
     public final Context f5503c;
     public final ba d;
-    public final i5 f5504e;
+    public final h5 f5504e;
     public final boolean f5505f;
-    public final o4 h;
+    public final n4 h;
 
-    public u1(o4 o4Var, Context context, ba baVar, i5 i5Var, boolean z4) {
-        this.h = o4Var;
+    public u1(n4 n4Var, Context context, ba baVar, h5 h5Var, boolean z4) {
+        this.h = n4Var;
         this.f5503c = context;
         this.d = baVar;
-        this.f5504e = i5Var;
+        this.f5504e = h5Var;
         this.f5505f = z4;
     }
 
@@ -47,13 +47,13 @@ public final class u1 extends sl0 {
         boolean z10;
         MessageObject.GroupedMessagePosition position;
         boolean z11;
-        o4 o4Var = this.h;
-        ArrayList arrayList = o4Var.f5554p0;
+        n4 n4Var = this.h;
+        ArrayList arrayList = n4Var.f5554p0;
         MessageObject messageObject = (MessageObject) arrayList.get((arrayList.size() - 1) - i10);
         View view = m1Var.f5875a;
         if (view instanceof org.telegram.ui.Cells.t1) {
             org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) view;
-            MessageObject.GroupedMessages groupedMessages = o4Var.f5555q0;
+            MessageObject.GroupedMessages groupedMessages = n4Var.f5555q0;
             if (groupedMessages != null && (position = groupedMessages.getPosition(messageObject)) != null) {
                 if (position.minY != 0) {
                     z11 = true;
@@ -64,7 +64,7 @@ public final class u1 extends sl0 {
             } else {
                 z4 = false;
             }
-            MessageObject.GroupedMessages groupedMessages2 = o4Var.f5555q0;
+            MessageObject.GroupedMessages groupedMessages2 = n4Var.f5555q0;
             if (groupedMessages2 != null) {
                 z10 = true;
             } else {

@@ -13,7 +13,7 @@ public final class ow extends yy {
     public final void setTranslationY(float f10) {
         if (getTranslationY() != f10) {
             super.setTranslationY(f10);
-            this.E.f29274d0.invalidate();
+            this.E.f29276d0.invalidate();
         }
     }
 }

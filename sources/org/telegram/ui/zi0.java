@@ -5,13 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLObject;
-public final class zi0 extends org.telegram.ui.Components.sl0 {
-    public final Context f43946c;
+public final class zi0 extends org.telegram.ui.Components.rl0 {
+    public final Context f43972c;
     public final bj0 d;
 
     public zi0(bj0 bj0Var, Context context) {
         this.d = bj0Var;
-        this.f43946c = context;
+        this.f43972c = context;
     }
 
     @Override
@@ -74,7 +74,7 @@ public final class zi0 extends org.telegram.ui.Components.sl0 {
         bj0 bj0Var = this.d;
         if (i10 != 0) {
             int i11 = 1;
-            Context context = this.f43946c;
+            Context context = this.f43972c;
             if (i10 != 1) {
                 if (i10 != 2) {
                     if (i10 != 4) {
@@ -97,9 +97,9 @@ public final class zi0 extends org.telegram.ui.Components.sl0 {
                     }
                     wf.f fVar = new wf.f(bj0Var.getResourceProvider());
                     bj0Var.Z = fVar;
-                    view = new yi0(this, this.f43946c, i11, fVar, bj0Var.getResourceProvider());
+                    view = new yi0(this, this.f43972c, i11, fVar, bj0Var.getResourceProvider());
                 } else {
-                    org.telegram.ui.Cells.m4 m4Var = new org.telegram.ui.Cells.m4(this.f43946c, org.telegram.ui.ActionBar.k6.G6, 16, 11, false, bj0Var.getResourceProvider());
+                    org.telegram.ui.Cells.m4 m4Var = new org.telegram.ui.Cells.m4(this.f43972c, org.telegram.ui.ActionBar.k6.G6, 16, 11, false, bj0Var.getResourceProvider());
                     m4Var.setHeight(43);
                     z6Var = m4Var;
                 }
@@ -109,8 +109,8 @@ public final class zi0 extends org.telegram.ui.Components.sl0 {
             }
             view = z6Var;
         } else {
-            org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(6, 2, this.f43946c, bj0Var.getResourceProvider(), false);
-            b5Var.setDividerColor(org.telegram.ui.ActionBar.k6.f21660d7);
+            org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(6, 2, this.f43972c, bj0Var.getResourceProvider(), false);
+            b5Var.setDividerColor(org.telegram.ui.ActionBar.k6.f21662d7);
             view = b5Var;
         }
         return new f2.m1(view);

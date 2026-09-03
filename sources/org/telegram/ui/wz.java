@@ -5,43 +5,43 @@ import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class wz implements TextWatcher {
-    public final int f42909a;
-    public boolean f42910b;
-    public final EditTextBoldCursor f42911c;
+    public final int f42877a;
+    public boolean f42878b;
+    public final EditTextBoldCursor f42879c;
 
     public wz(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f42909a = i10;
-        this.f42911c = editTextBoldCursor;
+        this.f42877a = i10;
+        this.f42879c = editTextBoldCursor;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        switch (this.f42909a) {
+        switch (this.f42877a) {
             case 0:
-                if (!this.f42910b && editable.length() > 32) {
-                    this.f42910b = true;
+                if (!this.f42878b && editable.length() > 32) {
+                    this.f42878b = true;
                     editable.delete(32, editable.length());
-                    EditTextBoldCursor editTextBoldCursor = this.f42911c;
+                    EditTextBoldCursor editTextBoldCursor = this.f42879c;
                     AndroidUtilities.shakeView(editTextBoldCursor);
                     try {
                         editTextBoldCursor.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    this.f42910b = false;
+                    this.f42878b = false;
                     return;
                 }
                 return;
             default:
-                if (!this.f42910b && editable.length() > 40) {
-                    this.f42910b = true;
+                if (!this.f42878b && editable.length() > 40) {
+                    this.f42878b = true;
                     editable.delete(40, editable.length());
-                    EditTextBoldCursor editTextBoldCursor2 = this.f42911c;
+                    EditTextBoldCursor editTextBoldCursor2 = this.f42879c;
                     AndroidUtilities.shakeView(editTextBoldCursor2);
                     try {
                         editTextBoldCursor2.performHapticFeedback(3, 2);
                     } catch (Exception unused2) {
                     }
-                    this.f42910b = false;
+                    this.f42878b = false;
                     return;
                 }
                 return;
@@ -50,12 +50,12 @@ public final class wz implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f42909a;
+        int i13 = this.f42877a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f42909a;
+        int i13 = this.f42877a;
     }
 
     private final void a(int i10, int i11, int i12, CharSequence charSequence) {

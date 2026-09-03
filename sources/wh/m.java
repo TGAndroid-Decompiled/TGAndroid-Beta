@@ -10,24 +10,24 @@ import org.telegram.ui.Components.ki;
 import org.telegram.ui.Components.mi;
 import org.telegram.ui.Components.wg;
 public final class m implements ki {
-    public final mi f49869a;
-    public final q f49870b;
+    public final mi f49905a;
+    public final q f49906b;
 
     public m(q qVar, mi miVar) {
-        this.f49870b = qVar;
-        this.f49869a = miVar;
+        this.f49906b = qVar;
+        this.f49905a = miVar;
     }
 
     @Override
     public final void B0(wg wgVar) {
-        NotificationCenter.getInstance(this.f49870b.f49929n).doOnIdle(wgVar);
+        NotificationCenter.getInstance(this.f49906b.f49965n).doOnIdle(wgVar);
     }
 
     @Override
     public final void I1(int i10, boolean z4, boolean z10, int i11, int i12, long j10, boolean z11, boolean z12, long j11) {
-        mi miVar = this.f49869a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = miVar.f29054g0;
-        r3 r3Var = this.f49870b.f49930r;
+        mi miVar = this.f49905a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = miVar.f29072g0;
+        r3 r3Var = this.f49906b.f49966r;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
@@ -41,9 +41,9 @@ public final class m implements ki {
                 Object obj = selectedPhotos.get(selectedPhotosOrder.get(i13));
                 if (obj instanceof MediaController.PhotoEntry) {
                     if (aVar != null) {
-                        r3Var.T1(aVar, (MediaController.PhotoEntry) obj);
+                        r3Var.S1(aVar, (MediaController.PhotoEntry) obj);
                     } else {
-                        r3Var.f2((MediaController.PhotoEntry) obj);
+                        r3Var.e2((MediaController.PhotoEntry) obj);
                     }
                 } else {
                     i13++;

@@ -13,12 +13,12 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.qi1;
+import org.telegram.ui.wi1;
 public final class cp implements ki {
-    public final mp f26064a;
+    public final mp f26019a;
 
     public cp(mp mpVar) {
-        this.f26064a = mpVar;
+        this.f26019a = mpVar;
     }
 
     @Override
@@ -28,9 +28,9 @@ public final class cp implements ki {
 
     @Override
     public final void I1(int i10, boolean z4, boolean z10, int i11, int i12, long j10, boolean z11, boolean z12, long j11) {
-        mp mpVar = this.f26064a;
+        mp mpVar = this.f26019a;
         try {
-            HashMap<Object, Object> selectedPhotos = mpVar.V.f29054g0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = mpVar.V.f29072g0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -43,11 +43,11 @@ public final class cp implements ki {
                     Point realScreenSize = AndroidUtilities.getRealScreenSize();
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    zo zoVar = new zo(new qi1(file, file, ""), loadBitmap, false, 2);
-                    zoVar.S1 = mpVar.f29170c0;
+                    zo zoVar = new zo(new wi1(file, file, ""), loadBitmap, false, 2);
+                    zoVar.S1 = mpVar.f29213c0;
                     zoVar.C1 = false;
                     zoVar.B1 = false;
-                    zoVar.f36518k1 = 0.2f;
+                    zoVar.f37993k1 = 0.2f;
                     zoVar.c1(mpVar.v.a());
                     zoVar.F1 = new bp(this, 0);
                     mp.q(mpVar, zoVar);
@@ -61,8 +61,8 @@ public final class cp implements ki {
     @Override
     public final void Z0(Object obj) {
         zo zoVar = new zo(obj, null, true, 3);
-        mp mpVar = this.f26064a;
-        zoVar.S1 = mpVar.f29170c0;
+        mp mpVar = this.f26019a;
+        zoVar.S1 = mpVar.f29213c0;
         zoVar.c1(mpVar.v.a());
         zoVar.F1 = new bp(this, 1);
         mp.q(mpVar, zoVar);

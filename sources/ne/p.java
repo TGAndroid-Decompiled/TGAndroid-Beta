@@ -5,20 +5,20 @@ import java.io.EOFException;
 import java.io.IOException;
 import k7.h0;
 public abstract class p {
-    public final int f15973a;
-    public Object f15974b;
-    public Object f15975c;
+    public final int f15975a;
+    public Object f15976b;
+    public Object f15977c;
     public Object d;
-    public Object f15976e;
-    public Object f15977f;
+    public Object f15978e;
+    public Object f15979f;
 
     public p() {
-        this.f15973a = 0;
-        this.f15974b = null;
-        this.f15975c = null;
+        this.f15975a = 0;
+        this.f15976b = null;
+        this.f15977c = null;
         this.d = null;
-        this.f15976e = null;
-        this.f15977f = null;
+        this.f15978e = null;
+        this.f15979f = null;
     }
 
     public abstract void a(h0 h0Var);
@@ -28,23 +28,23 @@ public abstract class p {
         pVar.e(this);
         p pVar2 = (p) this.d;
         if (pVar2 != null) {
-            pVar2.f15977f = pVar;
-            pVar.f15976e = pVar2;
+            pVar2.f15979f = pVar;
+            pVar.f15978e = pVar2;
             this.d = pVar;
             return;
         }
-        this.f15975c = pVar;
+        this.f15977c = pVar;
         this.d = pVar;
     }
 
     public xe.b c() {
         ze.a aVar;
-        com.google.firebase.messaging.d dVar = (com.google.firebase.messaging.d) this.f15974b;
-        DataInputStream dataInputStream = (DataInputStream) this.f15976e;
-        xe.b bVar = (xe.b) this.f15977f;
+        com.google.firebase.messaging.d dVar = (com.google.firebase.messaging.d) this.f15976b;
+        DataInputStream dataInputStream = (DataInputStream) this.f15978e;
+        xe.b bVar = (xe.b) this.f15979f;
         if (bVar != null) {
             while (bVar.i() > 0) {
-                if (((ze.a) ((com.google.firebase.messaging.d) bVar.f15974b)).skip(bVar.i()) == 0) {
+                if (((ze.a) ((com.google.firebase.messaging.d) bVar.f15976b)).skip(bVar.i()) == 0) {
                     throw new EOFException("Cannot skip atom");
                 }
             }
@@ -59,7 +59,7 @@ public abstract class p {
             aVar = new ze.a(dVar, 8L, readInt - 8);
         }
         xe.b bVar2 = new xe.b(aVar, this, str, 0);
-        this.f15977f = bVar2;
+        this.f15979f = bVar2;
         return bVar2;
     }
 
@@ -73,7 +73,7 @@ public abstract class p {
     }
 
     public void e(p pVar) {
-        this.f15974b = pVar;
+        this.f15976b = pVar;
     }
 
     public String f() {
@@ -81,31 +81,31 @@ public abstract class p {
     }
 
     public void g() {
-        p pVar = (p) this.f15976e;
+        p pVar = (p) this.f15978e;
         if (pVar != null) {
-            pVar.f15977f = (p) this.f15977f;
+            pVar.f15979f = (p) this.f15979f;
         } else {
-            p pVar2 = (p) this.f15974b;
+            p pVar2 = (p) this.f15976b;
             if (pVar2 != null) {
-                pVar2.f15975c = (p) this.f15977f;
+                pVar2.f15977c = (p) this.f15979f;
             }
         }
-        p pVar3 = (p) this.f15977f;
+        p pVar3 = (p) this.f15979f;
         if (pVar3 != null) {
-            pVar3.f15976e = pVar;
+            pVar3.f15978e = pVar;
         } else {
-            p pVar4 = (p) this.f15974b;
+            p pVar4 = (p) this.f15976b;
             if (pVar4 != null) {
                 pVar4.d = pVar;
             }
         }
-        this.f15974b = null;
-        this.f15977f = null;
-        this.f15976e = null;
+        this.f15976b = null;
+        this.f15979f = null;
+        this.f15978e = null;
     }
 
     public String toString() {
-        switch (this.f15973a) {
+        switch (this.f15975a) {
             case 0:
                 return getClass().getSimpleName() + "{" + f() + "}";
             default:
@@ -114,10 +114,10 @@ public abstract class p {
     }
 
     public p(com.google.firebase.messaging.d dVar, p pVar, String str) {
-        this.f15973a = 1;
-        this.f15974b = dVar;
-        this.f15975c = pVar;
+        this.f15975a = 1;
+        this.f15976b = dVar;
+        this.f15977c = pVar;
         this.d = str;
-        this.f15976e = new DataInputStream(dVar);
+        this.f15978e = new DataInputStream(dVar);
     }
 }

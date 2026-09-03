@@ -19,7 +19,7 @@ import org.telegram.messenger.y3;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.j90;
 import org.telegram.ui.Components.k6;
-import org.telegram.ui.Components.lj0;
+import org.telegram.ui.Components.kj0;
 import org.telegram.ui.Components.pr;
 import org.telegram.ui.Components.tp;
 import org.telegram.ui.Components.vq;
@@ -50,7 +50,7 @@ public class b1 extends FrameLayout implements j90 {
     public final Path v;
     public final org.telegram.ui.Components.voip.h f6252w;
     public boolean f6253x;
-    public final lj0 f6254y;
+    public final kj0 f6254y;
 
     public b1(Context context, g6 g6Var, boolean z4) {
         this(AndroidUtilities.dp(8.0f), context, g6Var, z4);
@@ -62,7 +62,7 @@ public class b1 extends FrameLayout implements j90 {
         }
         this.B = true;
         a1 a1Var = this.d;
-        if (z4 && a1Var.f28277c.f()) {
+        if (z4 && a1Var.f28282c.f()) {
             a1Var.a();
         }
         a1Var.c(str, z4, true);
@@ -111,7 +111,7 @@ public class b1 extends FrameLayout implements j90 {
         ofFloat.addUpdateListener(new f2.d0(this, 1));
         this.f6251s.addListener(new dg.l0(this, 3));
         this.f6251s.setDuration(250L);
-        this.f6251s.setInterpolator(pr.f30183f);
+        this.f6251s.setInterpolator(pr.f30168f);
         this.f6251s.start();
     }
 
@@ -121,19 +121,19 @@ public class b1 extends FrameLayout implements j90 {
         wq wqVar = this.D;
         a1 a1Var = this.f6247e;
         if (wqVar != null) {
-            vq vqVar = wqVar.f32837a;
+            vq vqVar = wqVar.f32815a;
             if (vqVar.h == 0) {
                 dp = 0;
             } else {
-                dp = AndroidUtilities.dp(vqVar.C - 0.5f) + vqVar.f32520s;
+                dp = AndroidUtilities.dp(vqVar.C - 0.5f) + vqVar.f32523s;
             }
             z5 z5Var = this.G;
             z5Var.d(((dp * 0.85f) + AndroidUtilities.dp(3.0f)) / 2.0f, false);
             float e6 = (a1Var.getDrawable().e() / 2.0f) + (getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(3.0f);
             z5 z5Var2 = this.H;
             z5Var2.d(e6, false);
-            a1Var.setTranslationX(-z5Var.f33725c);
-            this.D.setTranslationX(z5Var2.f33725c - z5Var.f33725c);
+            a1Var.setTranslationX(-z5Var.f33763c);
+            this.D.setTranslationX(z5Var2.f33763c - z5Var.f33763c);
         } else if (a1Var != null) {
             a1Var.setTranslationX(0.0f);
         }
@@ -170,7 +170,7 @@ public class b1 extends FrameLayout implements j90 {
         if (!BuildVars.IS_BILLING_UNAVAILABLE && !this.C) {
             int measuredWidth = getMeasuredWidth();
             org.telegram.ui.Components.voip.h hVar = this.f6252w;
-            hVar.f32055f = measuredWidth;
+            hVar.f32060f = measuredWidth;
             hVar.a(i10, canvas, rectF, null);
         }
         float f15 = this.f6249n;
@@ -216,7 +216,7 @@ public class b1 extends FrameLayout implements j90 {
         invalidate();
     }
 
-    public lj0 getIconView() {
+    public kj0 getIconView() {
         return this.f6254y;
     }
 
@@ -246,13 +246,13 @@ public class b1 extends FrameLayout implements j90 {
     }
 
     public void setIcon(int i10) {
-        lj0 lj0Var = this.f6254y;
-        lj0Var.f(i10, 24, 24, null);
+        kj0 kj0Var = this.f6254y;
+        kj0Var.f(i10, 24, 24, null);
         org.telegram.ui.Components.voip.h hVar = this.f6252w;
-        hVar.f32056g = 2.0f;
-        hVar.f32064p = new eh.m(this, 5);
+        hVar.f32061g = 2.0f;
+        hVar.f32069p = new eh.m(this, 5);
         invalidate();
-        lj0Var.setVisibility(0);
+        kj0Var.setVisibility(0);
     }
 
     @Override
@@ -293,9 +293,9 @@ public class b1 extends FrameLayout implements j90 {
         this.f6248f = i10;
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
         this.f6252w = hVar;
-        hVar.f32062n = 1.2f;
-        hVar.f32059k = false;
-        hVar.f32061m = 4.0f;
+        hVar.f32067n = 1.2f;
+        hVar.f32064k = false;
+        hVar.f32066m = 4.0f;
         LinearLayout f10 = y3.f(context, 0);
         a1 a1Var = new a1(this, context, 0);
         this.d = a1Var;

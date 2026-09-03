@@ -8,19 +8,19 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.py;
 public final class hg implements Runnable {
-    public final int f18872a;
-    public final long f18873b;
-    public final boolean f18874c;
+    public final int f18874a;
+    public final long f18875b;
+    public final boolean f18876c;
     public final int d;
-    public final Object f18875e;
-    public final Object f18876f;
+    public final Object f18877e;
+    public final Object f18878f;
 
     public hg(BaseController baseController, long j10, List list, boolean z4, int i10, int i11) {
-        this.f18872a = i11;
-        this.f18875e = baseController;
-        this.f18873b = j10;
-        this.f18876f = list;
-        this.f18874c = z4;
+        this.f18874a = i11;
+        this.f18877e = baseController;
+        this.f18875b = j10;
+        this.f18878f = list;
+        this.f18876c = z4;
         this.d = i10;
     }
 
@@ -28,15 +28,15 @@ public final class hg implements Runnable {
     public final void run() {
         oh.c7 c7Var;
         TL_stories.StoryItem storyItem;
-        int i10 = this.f18872a;
-        Object obj = this.f18876f;
-        Object obj2 = this.f18875e;
+        int i10 = this.f18874a;
+        Object obj = this.f18878f;
+        Object obj2 = this.f18877e;
         switch (i10) {
             case 0:
-                ((MessagesStorage) obj2).lambda$saveTopics$47(this.f18873b, (List) obj, this.f18874c, this.d);
+                ((MessagesStorage) obj2).lambda$saveTopics$47(this.f18875b, (List) obj, this.f18876c, this.d);
                 return;
             case 1:
-                ((TopicsController) obj2).lambda$loadTopics$0(this.f18873b, (ArrayList) obj, this.f18874c, this.d);
+                ((TopicsController) obj2).lambda$loadTopics$0(this.f18875b, (ArrayList) obj, this.f18876c, this.d);
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) obj2;
@@ -48,7 +48,7 @@ public final class hg implements Runnable {
                     while (true) {
                         c7Var = null;
                         if (i11 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i11).f21080id == this.d) {
+                            if (tL_stories_stories.stories.get(i11).f21082id == this.d) {
                                 storyItem = tL_stories_stories.stories.get(i11);
                             } else {
                                 i11++;
@@ -58,7 +58,7 @@ public final class hg implements Runnable {
                         }
                     }
                     if (storyItem != null) {
-                        long j10 = this.f18873b;
+                        long j10 = this.f18875b;
                         storyItem.dialogId = j10;
                         org.telegram.ui.ActionBar.p2 R = LaunchActivity.R();
                         if (R != null) {
@@ -72,8 +72,8 @@ public final class hg implements Runnable {
                             R.getOrCreateStoryViewer().v();
                             ArrayList arrayList = new ArrayList();
                             arrayList.add(Long.valueOf(j10));
-                            if (this.f18874c) {
-                                R.getOrCreateStoryViewer().f17297t1 = true;
+                            if (this.f18876c) {
+                                R.getOrCreateStoryViewer().f17299t1 = true;
                             }
                             R.getOrCreateStoryViewer().F(launchActivity, storyItem, arrayList, 0, null, null, c7Var2, false);
                             return;
@@ -87,11 +87,11 @@ public final class hg implements Runnable {
     }
 
     public hg(LaunchActivity launchActivity, TLObject tLObject, int i10, long j10, boolean z4) {
-        this.f18872a = 2;
-        this.f18875e = launchActivity;
-        this.f18876f = tLObject;
+        this.f18874a = 2;
+        this.f18877e = launchActivity;
+        this.f18878f = tLObject;
         this.d = i10;
-        this.f18873b = j10;
-        this.f18874c = z4;
+        this.f18875b = j10;
+        this.f18876c = z4;
     }
 }

@@ -1,22 +1,22 @@
 package org.telegram.ui.Components;
 public final class nx extends k7.d6 {
-    public final mz f29630a;
+    public final mz f29602a;
 
     public nx(mz mzVar) {
-        this.f29630a = mzVar;
+        this.f29602a = mzVar;
     }
 
     @Override
     public final void a() {
-        mz mzVar = this.f29630a;
-        mzVar.f29271c0 = false;
-        mzVar.M.x1();
+        mz mzVar = this.f29602a;
+        mzVar.f29273c0 = false;
+        mzVar.M.w1();
     }
 
     @Override
     public final void b() {
-        mz mzVar = this.f29630a;
-        mzVar.M.x1();
-        mzVar.f29271c0 = true;
+        mz mzVar = this.f29602a;
+        mzVar.M.w1();
+        mzVar.f29273c0 = true;
     }
 }

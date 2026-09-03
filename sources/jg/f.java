@@ -61,7 +61,7 @@ public final class f extends e {
     }
 
     public void setGiveaway(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.f10021e.setTextColor(k6.v0(k6.f21911r5, this.f10018a));
+        this.f10021e.setTextColor(k6.v0(k6.f21913r5, this.f10018a));
         boolean z4 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
         c cVar = this.d;
         z8 z8Var = this.f10019b;

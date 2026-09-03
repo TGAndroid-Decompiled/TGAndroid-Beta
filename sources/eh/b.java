@@ -18,8 +18,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Cells.c6;
 import org.telegram.ui.Components.xt;
-import org.telegram.ui.e61;
-import org.telegram.ui.i51;
+import org.telegram.ui.j61;
+import org.telegram.ui.n51;
 public final class b extends xt {
     public final int f5616c;
     public final Object d;
@@ -62,7 +62,7 @@ public final class b extends xt {
     public void invalidate() {
         switch (this.f5616c) {
             case 3:
-                if (!g0.f16068b) {
+                if (!g0.f16070b) {
                     super.invalidate();
                     return;
                 }
@@ -85,7 +85,7 @@ public final class b extends xt {
                 return super.onCreateInputConnection(editorInfo);
             case 2:
                 InputConnection onCreateInputConnection2 = super.onCreateInputConnection(editorInfo);
-                if (((c6) this.d).f22654s) {
+                if (((c6) this.d).f22656s) {
                     editorInfo.imeOptions &= -1073741825;
                 }
                 return onCreateInputConnection2;
@@ -114,8 +114,8 @@ public final class b extends xt {
                 return;
             case 3:
                 if (z4) {
-                    ((i51) this.d).f37104y.q();
-                    AndroidUtilities.runOnUIThread(new e61(this, 0), 200L);
+                    ((n51) this.d).f38561y.q();
+                    AndroidUtilities.runOnUIThread(new j61(this, 0), 200L);
                 }
                 super.onFocusChanged(z4, i10, rect);
                 return;
@@ -181,8 +181,8 @@ public final class b extends xt {
                 }
                 return super.onTouchEvent(motionEvent);
             case 3:
-                if (motionEvent.getAction() == 1 && ((i51) this.d).f37104y.u()) {
-                    AndroidUtilities.runOnUIThread(new e61(this, 1), 200L);
+                if (motionEvent.getAction() == 1 && ((n51) this.d).f38561y.u()) {
+                    AndroidUtilities.runOnUIThread(new j61(this, 1), 200L);
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);

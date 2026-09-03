@@ -17,20 +17,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class n80 implements jy, org.telegram.ui.ActionBar.c2 {
-    public final int f39346a;
-    public final KeyEvent.Callback f39347b;
-    public final Object f39348c;
+    public final int f39223a;
+    public final KeyEvent.Callback f39224b;
+    public final Object f39225c;
     public final Object d;
-    public final Object f39349e;
-    public final Object f39350f;
+    public final Object f39226e;
+    public final Object f39227f;
 
     public n80(LaunchActivity launchActivity, int i10, TLRPC.User user, String str, String str2, py pyVar) {
-        this.f39347b = launchActivity;
-        this.f39346a = i10;
-        this.f39348c = user;
+        this.f39224b = launchActivity;
+        this.f39223a = i10;
+        this.f39225c = user;
         this.d = str;
-        this.f39349e = str2;
-        this.f39350f = pyVar;
+        this.f39226e = str2;
+        this.f39227f = pyVar;
     }
 
     @Override
@@ -46,21 +46,21 @@ public final class n80 implements jy, org.telegram.ui.ActionBar.c2 {
     @Override
     public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
         int i11;
-        vf.g1 g1Var = (vf.g1) this.f39347b;
-        hg.c1 c1Var = (hg.c1) this.f39348c;
+        vf.g1 g1Var = (vf.g1) this.f39224b;
+        hg.c1 c1Var = (hg.c1) this.f39225c;
         vf.o1 o1Var = (vf.o1) this.d;
-        TextView textView = (TextView) this.f39349e;
-        Utilities.Callback callback = (Utilities.Callback) this.f39350f;
+        TextView textView = (TextView) this.f39226e;
+        Utilities.Callback callback = (Utilities.Callback) this.f39227f;
         String obj = g1Var.getText().toString();
         if (obj.length() > 0 && obj.length() <= 32) {
-            vf.p1 f10 = vf.p1.f(this.f39346a);
+            vf.p1 f10 = vf.p1.f(this.f39223a);
             if (o1Var == null) {
                 i11 = -1;
             } else {
-                i11 = o1Var.f49160a;
+                i11 = o1Var.f49196a;
             }
             vf.o1 d = f10.d(obj);
-            if (d != null && d.f49160a != i11) {
+            if (d != null && d.f49196a != i11) {
                 AndroidUtilities.shakeView(g1Var);
                 textView.setText(LocaleController.getString(R.string.BusinessRepliesNameBusy));
                 c1Var.run(Boolean.TRUE);
@@ -75,18 +75,18 @@ public final class n80 implements jy, org.telegram.ui.ActionBar.c2 {
     }
 
     @Override
-    public boolean v(py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, mf1 mf1Var) {
+    public boolean v(py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, sf1 sf1Var) {
         String str;
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
-        final LaunchActivity launchActivity = (LaunchActivity) this.f39347b;
-        final TLRPC.User user = (TLRPC.User) this.f39348c;
+        final LaunchActivity launchActivity = (LaunchActivity) this.f39224b;
+        final TLRPC.User user = (TLRPC.User) this.f39225c;
         final String str2 = (String) this.d;
-        final String str3 = (String) this.f39349e;
-        final py pyVar2 = (py) this.f39350f;
+        final String str3 = (String) this.f39226e;
+        final py pyVar2 = (py) this.f39227f;
         Pattern pattern = LaunchActivity.f34134y1;
         final long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         final TLRPC.Chat chat = MessagesController.getInstance(launchActivity.L).getChat(Long.valueOf(-j10));
-        final int i12 = this.f39346a;
+        final int i12 = this.f39223a;
         if (chat != null && (chat.creator || ((tL_chatAdminRights = chat.admin_rights) != null && tL_chatAdminRights.add_admins))) {
             MessagesController.getInstance(i12).checkIsInChat(false, chat, user, new MessagesController.IsInChatCheckedCallback() {
                 @Override
@@ -98,7 +98,7 @@ public final class n80 implements jy, org.telegram.ui.ActionBar.c2 {
         } else {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(launchActivity);
             String string = LocaleController.getString(R.string.AddBot);
-            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21168a;
             d2Var.O = string;
             if (chat == null) {
                 str = "";
@@ -127,11 +127,11 @@ public final class n80 implements jy, org.telegram.ui.ActionBar.c2 {
     }
 
     public n80(vf.g1 g1Var, hg.c1 c1Var, int i10, vf.o1 o1Var, TextView textView, Utilities.Callback callback) {
-        this.f39347b = g1Var;
-        this.f39348c = c1Var;
-        this.f39346a = i10;
+        this.f39224b = g1Var;
+        this.f39225c = c1Var;
+        this.f39223a = i10;
         this.d = o1Var;
-        this.f39349e = textView;
-        this.f39350f = callback;
+        this.f39226e = textView;
+        this.f39227f = callback;
     }
 }

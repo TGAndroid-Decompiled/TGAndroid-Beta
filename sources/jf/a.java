@@ -7,7 +7,6 @@ import android.os.IInterface;
 import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
-import com.google.android.gms.internal.play_billing.f;
 import com.google.android.gms.internal.play_billing.g;
 import com.google.android.gms.internal.play_billing.i3;
 import com.google.android.gms.internal.play_billing.m3;
@@ -28,6 +27,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import p2.x;
 import p2.y;
+import sf.f;
 import uc.h;
 public final class a implements ServiceConnection {
     public final int f10004a;
@@ -74,24 +74,24 @@ public final class a implements ServiceConnection {
                 return;
             case 1:
                 StringBuilder sb = new StringBuilder("Connected to SessionLifecycleService. Queue size ");
-                sf.e eVar2 = (sf.e) this.f10005b;
-                LinkedBlockingDeque linkedBlockingDeque = (LinkedBlockingDeque) eVar2.d;
+                f fVar = (f) this.f10005b;
+                LinkedBlockingDeque linkedBlockingDeque = (LinkedBlockingDeque) fVar.d;
                 sb.append(linkedBlockingDeque.size());
                 Log.d("SessionLifecycleClient", sb.toString());
-                eVar2.f47316c = new Messenger(iBinder);
+                fVar.f47352c = new Messenger(iBinder);
                 ArrayList arrayList = new ArrayList();
                 linkedBlockingDeque.drainTo(arrayList);
-                e0.q(e0.b((h) eVar2.f47315b), new k1.c(eVar2, arrayList, null, 5));
+                e0.q(e0.b((h) fVar.f47351b), new k1.c(fVar, arrayList, null, 5));
                 return;
             case 2:
                 o8.c cVar = (o8.c) this.f10005b;
-                cVar.f16627b.b("ServiceConnectionImpl.onServiceConnected(%s)", componentName);
+                cVar.f16629b.b("ServiceConnectionImpl.onServiceConnected(%s)", componentName);
                 cVar.a().post(new o8.a(this, iBinder));
                 return;
             default:
                 u.g("BillingClientTesting", "Billing Override Service connected.");
                 x xVar = (x) this.f10005b;
-                int i11 = f.f3472b;
+                int i11 = com.google.android.gms.internal.play_billing.f.f3472b;
                 if (iBinder != null) {
                     IInterface queryLocalInterface2 = iBinder.queryLocalInterface("com.google.android.apps.play.billingtestcompanion.aidl.IBillingOverrideService");
                     if (queryLocalInterface2 instanceof g) {
@@ -102,13 +102,13 @@ public final class a implements ServiceConnection {
                 }
                 xVar.E = gVar;
                 xVar.D = 2;
-                int i12 = y.f44185a;
+                int i12 = y.f44216a;
                 i3 c3 = y.c(26, m3.BROADCAST_ACTION_UNSPECIFIED);
                 Objects.requireNonNull(c3, "ApiSuccess should not be null");
                 qa qaVar = xVar.h;
                 qaVar.getClass();
                 try {
-                    qaVar.w1(c3, (p3) qaVar.f15699b);
+                    qaVar.w1(c3, (p3) qaVar.f15701b);
                     return;
                 } catch (Throwable th2) {
                     u.i("BillingLogger", "Unable to log.", th2);
@@ -128,13 +128,13 @@ public final class a implements ServiceConnection {
                 return;
             case 1:
                 Log.d("SessionLifecycleClient", "Disconnected from SessionLifecycleService");
-                sf.e eVar = (sf.e) this.f10005b;
-                eVar.f47316c = null;
-                eVar.getClass();
+                f fVar = (f) this.f10005b;
+                fVar.f47352c = null;
+                fVar.getClass();
                 return;
             case 2:
                 o8.c cVar = (o8.c) this.f10005b;
-                cVar.f16627b.b("ServiceConnectionImpl.onServiceDisconnected(%s)", componentName);
+                cVar.f16629b.b("ServiceConnectionImpl.onServiceDisconnected(%s)", componentName);
                 cVar.a().post(new o8.b(this, 0));
                 return;
             default:

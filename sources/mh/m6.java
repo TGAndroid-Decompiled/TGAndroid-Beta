@@ -2,14 +2,14 @@ package mh;
 
 import org.telegram.messenger.Utilities;
 public final class m6 implements Utilities.Callback {
-    public final int f14451a;
-    public final boolean f14452b;
-    public final Object f14453c;
+    public final int f14453a;
+    public final boolean f14454b;
+    public final Object f14455c;
 
     public m6(int i10, Object obj, boolean z4) {
-        this.f14451a = i10;
-        this.f14453c = obj;
-        this.f14452b = z4;
+        this.f14453a = i10;
+        this.f14455c = obj;
+        this.f14454b = z4;
     }
 
     @Override

@@ -4,24 +4,24 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import qh.d6;
+import qh.l6;
 public final class a2 implements RequestDelegate {
-    public final int f47351a;
-    public final p2 f47352b;
+    public final int f47387a;
+    public final p2 f47388b;
 
     public a2(p2 p2Var, int i10) {
-        this.f47351a = i10;
-        this.f47352b = p2Var;
+        this.f47387a = i10;
+        this.f47388b = p2Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f47351a) {
+        switch (this.f47387a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new d6(14, this.f47352b, tL_error));
+                AndroidUtilities.runOnUIThread(new l6(13, this.f47388b, tL_error));
                 return;
             case 1:
-                final p2 p2Var = this.f47352b;
+                final p2 p2Var = this.f47388b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -32,7 +32,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var2.getClass();
                                     return;
                                 }
-                                y3 y3Var = p2Var2.f47606s0;
+                                y3 y3Var = p2Var2.f47642s0;
                                 if (y3Var != null) {
                                     y3Var.a(tLObject);
                                     p2Var2.n();
@@ -45,7 +45,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var3.getClass();
                                     return;
                                 }
-                                y3 y3Var2 = p2Var3.f47606s0;
+                                y3 y3Var2 = p2Var3.f47642s0;
                                 if (y3Var2 != null) {
                                     y3Var2.a(tLObject);
                                     p2Var3.n();
@@ -58,7 +58,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var4.getClass();
                                     return;
                                 }
-                                y3 y3Var3 = p2Var4.f47606s0;
+                                y3 y3Var3 = p2Var4.f47642s0;
                                 if (y3Var3 != null) {
                                     y3Var3.a(tLObject);
                                     p2Var4.n();
@@ -71,7 +71,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var5.getClass();
                                     return;
                                 }
-                                y3 y3Var4 = p2Var5.f47606s0;
+                                y3 y3Var4 = p2Var5.f47642s0;
                                 if (y3Var4 != null) {
                                     y3Var4.a(tLObject);
                                     p2Var5.n();
@@ -84,7 +84,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var6.getClass();
                                     return;
                                 }
-                                y3 y3Var5 = p2Var6.f47606s0;
+                                y3 y3Var5 = p2Var6.f47642s0;
                                 if (y3Var5 != null) {
                                     y3Var5.a(tLObject);
                                     p2Var6.n();
@@ -96,7 +96,7 @@ public final class a2 implements RequestDelegate {
                 });
                 return;
             case 2:
-                final p2 p2Var2 = this.f47352b;
+                final p2 p2Var2 = this.f47388b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -107,7 +107,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var22.getClass();
                                     return;
                                 }
-                                y3 y3Var = p2Var22.f47606s0;
+                                y3 y3Var = p2Var22.f47642s0;
                                 if (y3Var != null) {
                                     y3Var.a(tLObject);
                                     p2Var22.n();
@@ -120,7 +120,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var3.getClass();
                                     return;
                                 }
-                                y3 y3Var2 = p2Var3.f47606s0;
+                                y3 y3Var2 = p2Var3.f47642s0;
                                 if (y3Var2 != null) {
                                     y3Var2.a(tLObject);
                                     p2Var3.n();
@@ -133,7 +133,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var4.getClass();
                                     return;
                                 }
-                                y3 y3Var3 = p2Var4.f47606s0;
+                                y3 y3Var3 = p2Var4.f47642s0;
                                 if (y3Var3 != null) {
                                     y3Var3.a(tLObject);
                                     p2Var4.n();
@@ -146,7 +146,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var5.getClass();
                                     return;
                                 }
-                                y3 y3Var4 = p2Var5.f47606s0;
+                                y3 y3Var4 = p2Var5.f47642s0;
                                 if (y3Var4 != null) {
                                     y3Var4.a(tLObject);
                                     p2Var5.n();
@@ -159,7 +159,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var6.getClass();
                                     return;
                                 }
-                                y3 y3Var5 = p2Var6.f47606s0;
+                                y3 y3Var5 = p2Var6.f47642s0;
                                 if (y3Var5 != null) {
                                     y3Var5.a(tLObject);
                                     p2Var6.n();
@@ -171,7 +171,7 @@ public final class a2 implements RequestDelegate {
                 });
                 return;
             case 3:
-                final p2 p2Var3 = this.f47352b;
+                final p2 p2Var3 = this.f47388b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -182,7 +182,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var22.getClass();
                                     return;
                                 }
-                                y3 y3Var = p2Var22.f47606s0;
+                                y3 y3Var = p2Var22.f47642s0;
                                 if (y3Var != null) {
                                     y3Var.a(tLObject);
                                     p2Var22.n();
@@ -195,7 +195,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var32.getClass();
                                     return;
                                 }
-                                y3 y3Var2 = p2Var32.f47606s0;
+                                y3 y3Var2 = p2Var32.f47642s0;
                                 if (y3Var2 != null) {
                                     y3Var2.a(tLObject);
                                     p2Var32.n();
@@ -208,7 +208,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var4.getClass();
                                     return;
                                 }
-                                y3 y3Var3 = p2Var4.f47606s0;
+                                y3 y3Var3 = p2Var4.f47642s0;
                                 if (y3Var3 != null) {
                                     y3Var3.a(tLObject);
                                     p2Var4.n();
@@ -221,7 +221,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var5.getClass();
                                     return;
                                 }
-                                y3 y3Var4 = p2Var5.f47606s0;
+                                y3 y3Var4 = p2Var5.f47642s0;
                                 if (y3Var4 != null) {
                                     y3Var4.a(tLObject);
                                     p2Var5.n();
@@ -234,7 +234,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var6.getClass();
                                     return;
                                 }
-                                y3 y3Var5 = p2Var6.f47606s0;
+                                y3 y3Var5 = p2Var6.f47642s0;
                                 if (y3Var5 != null) {
                                     y3Var5.a(tLObject);
                                     p2Var6.n();
@@ -246,7 +246,7 @@ public final class a2 implements RequestDelegate {
                 });
                 return;
             case 4:
-                final p2 p2Var4 = this.f47352b;
+                final p2 p2Var4 = this.f47388b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -257,7 +257,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var22.getClass();
                                     return;
                                 }
-                                y3 y3Var = p2Var22.f47606s0;
+                                y3 y3Var = p2Var22.f47642s0;
                                 if (y3Var != null) {
                                     y3Var.a(tLObject);
                                     p2Var22.n();
@@ -270,7 +270,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var32.getClass();
                                     return;
                                 }
-                                y3 y3Var2 = p2Var32.f47606s0;
+                                y3 y3Var2 = p2Var32.f47642s0;
                                 if (y3Var2 != null) {
                                     y3Var2.a(tLObject);
                                     p2Var32.n();
@@ -283,7 +283,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var42.getClass();
                                     return;
                                 }
-                                y3 y3Var3 = p2Var42.f47606s0;
+                                y3 y3Var3 = p2Var42.f47642s0;
                                 if (y3Var3 != null) {
                                     y3Var3.a(tLObject);
                                     p2Var42.n();
@@ -296,7 +296,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var5.getClass();
                                     return;
                                 }
-                                y3 y3Var4 = p2Var5.f47606s0;
+                                y3 y3Var4 = p2Var5.f47642s0;
                                 if (y3Var4 != null) {
                                     y3Var4.a(tLObject);
                                     p2Var5.n();
@@ -309,7 +309,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var6.getClass();
                                     return;
                                 }
-                                y3 y3Var5 = p2Var6.f47606s0;
+                                y3 y3Var5 = p2Var6.f47642s0;
                                 if (y3Var5 != null) {
                                     y3Var5.a(tLObject);
                                     p2Var6.n();
@@ -321,7 +321,7 @@ public final class a2 implements RequestDelegate {
                 });
                 return;
             default:
-                final p2 p2Var5 = this.f47352b;
+                final p2 p2Var5 = this.f47388b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -332,7 +332,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var22.getClass();
                                     return;
                                 }
-                                y3 y3Var = p2Var22.f47606s0;
+                                y3 y3Var = p2Var22.f47642s0;
                                 if (y3Var != null) {
                                     y3Var.a(tLObject);
                                     p2Var22.n();
@@ -345,7 +345,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var32.getClass();
                                     return;
                                 }
-                                y3 y3Var2 = p2Var32.f47606s0;
+                                y3 y3Var2 = p2Var32.f47642s0;
                                 if (y3Var2 != null) {
                                     y3Var2.a(tLObject);
                                     p2Var32.n();
@@ -358,7 +358,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var42.getClass();
                                     return;
                                 }
-                                y3 y3Var3 = p2Var42.f47606s0;
+                                y3 y3Var3 = p2Var42.f47642s0;
                                 if (y3Var3 != null) {
                                     y3Var3.a(tLObject);
                                     p2Var42.n();
@@ -371,7 +371,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var52.getClass();
                                     return;
                                 }
-                                y3 y3Var4 = p2Var52.f47606s0;
+                                y3 y3Var4 = p2Var52.f47642s0;
                                 if (y3Var4 != null) {
                                     y3Var4.a(tLObject);
                                     p2Var52.n();
@@ -384,7 +384,7 @@ public final class a2 implements RequestDelegate {
                                     p2Var6.getClass();
                                     return;
                                 }
-                                y3 y3Var5 = p2Var6.f47606s0;
+                                y3 y3Var5 = p2Var6.f47642s0;
                                 if (y3Var5 != null) {
                                     y3Var5.a(tLObject);
                                     p2Var6.n();

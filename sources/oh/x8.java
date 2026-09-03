@@ -18,42 +18,42 @@ public final class x8 extends t {
     public final void dispatchDraw(Canvas canvas) {
         float f10;
         i9 i9Var = this.d;
-        f4 currentPeerView = i9Var.f17277k0.getCurrentPeerView();
-        n5 n5Var = i9Var.f17300w;
+        f4 currentPeerView = i9Var.f17279k0.getCurrentPeerView();
+        n5 n5Var = i9Var.f17302w;
         if (n5Var != null && currentPeerView != null) {
             j3 j3Var = currentPeerView.Z0;
-            n5Var.setOffset(i9Var.f17256b0);
-            if (i9Var.f17300w.f17491f == 1.0f) {
-                i9Var.f17277k0.setVisibility(4);
+            n5Var.setOffset(i9Var.f17258b0);
+            if (i9Var.f17302w.f17493f == 1.0f) {
+                i9Var.f17279k0.setVisibility(4);
             } else {
-                i9Var.f17277k0.setVisibility(0);
+                i9Var.f17279k0.setVisibility(0);
             }
-            i9Var.f17277k0.B();
+            i9Var.f17279k0.B();
             float top = j3Var.getTop() + currentPeerView.getTop();
-            float f11 = i9Var.f17300w.f17491f;
+            float f11 = i9Var.f17302w.f17493f;
             getMeasuredHeight();
             getMeasuredHeight();
             if (j3Var.getMeasuredHeight() > 0) {
-                i9Var.f17283n1 = j3Var.getMeasuredHeight();
+                i9Var.f17285n1 = j3Var.getMeasuredHeight();
             }
-            float lerp = AndroidUtilities.lerp(1.0f, i9Var.f17300w.f17492n / i9Var.f17283n1, f11);
-            i9Var.f17277k0.setPivotY(top);
-            i9Var.f17277k0.setPivotX(getMeasuredWidth() / 2.0f);
-            i9Var.f17277k0.setScaleX(lerp);
-            i9Var.f17277k0.setScaleY(lerp);
+            float lerp = AndroidUtilities.lerp(1.0f, i9Var.f17302w.f17494n / i9Var.f17285n1, f11);
+            i9Var.f17279k0.setPivotY(top);
+            i9Var.f17279k0.setPivotX(getMeasuredWidth() / 2.0f);
+            i9Var.f17279k0.setScaleX(lerp);
+            i9Var.f17279k0.setScaleY(lerp);
             currentPeerView.S2 = true;
-            if (i9Var.f17256b0 == 0.0f) {
+            if (i9Var.f17258b0 == 0.0f) {
                 currentPeerView.X0(0.0f, 0.0f, null);
             } else {
-                currentPeerView.X0(f11, lerp, i9Var.f17300w.getCrossfadeToImage());
+                currentPeerView.X0(f11, lerp, i9Var.f17302w.getCrossfadeToImage());
             }
             currentPeerView.invalidate();
-            currentPeerView.f17116v1.f12498b = (int) AndroidUtilities.lerp(10.0f, 6.0f / f10, i9Var.f17300w.f17491f);
+            currentPeerView.f17118v1.f12498b = (int) AndroidUtilities.lerp(10.0f, 6.0f / f10, i9Var.f17302w.f17493f);
             j3Var.invalidateOutline();
-            i9Var.f17277k0.setTranslationY((i9Var.f17300w.f17488b - top) * f11);
+            i9Var.f17279k0.setTranslationY((i9Var.f17302w.f17490b - top) * f11);
         }
         if (currentPeerView != null) {
-            i9Var.f17254a1.setTranslationY(((currentPeerView.Z0.getY() + currentPeerView.getY()) - i9Var.f17254a1.getTop()) - AndroidUtilities.dp(4.0f));
+            i9Var.f17256a1.setTranslationY(((currentPeerView.Z0.getY() + currentPeerView.getY()) - i9Var.f17256a1.getTop()) - AndroidUtilities.dp(4.0f));
         }
         super.dispatchDraw(canvas);
     }
@@ -63,7 +63,7 @@ public final class x8 extends t {
         int i12;
         int size = View.MeasureSpec.getSize(i11);
         i9 i9Var = this.d;
-        if (!i9Var.f17255b || i9Var.f17258c) {
+        if (!i9Var.f17257b || i9Var.f17260c) {
             View rootView = getRootView();
             Rect rect = AndroidUtilities.rectTmp2;
             getWindowVisibleDisplayFrame(rect);
@@ -83,16 +83,16 @@ public final class x8 extends t {
         int size2 = View.MeasureSpec.getSize(i10);
         int i14 = (int) ((size2 * 16.0f) / 9.0f);
         if (size > i14) {
-            i9Var.f17277k0.getLayoutParams().width = -1;
+            i9Var.f17279k0.getLayoutParams().width = -1;
             size = i14;
         } else {
             int i15 = (int) ((size / 16.0f) * 9.0f);
-            i9Var.f17277k0.getLayoutParams().width = i15;
+            i9Var.f17279k0.getLayoutParams().width = i15;
             size2 = i15;
         }
-        i9Var.f17299v0.getLayoutParams().height = size + 1;
-        i9Var.f17299v0.getLayoutParams().width = size2;
-        ((FrameLayout.LayoutParams) i9Var.f17299v0.getLayoutParams()).topMargin = AndroidUtilities.statusBarHeight;
+        i9Var.f17301v0.getLayoutParams().height = size + 1;
+        i9Var.f17301v0.getLayoutParams().width = size2;
+        ((FrameLayout.LayoutParams) i9Var.f17301v0.getLayoutParams()).topMargin = AndroidUtilities.statusBarHeight;
         super.onMeasure(i10, i11);
     }
 }

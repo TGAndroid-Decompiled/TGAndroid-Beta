@@ -38,7 +38,7 @@ public abstract class b0 {
         Object tag = view.getTag();
         if (tag instanceof Float) {
             float floatValue = ((Float) tag).floatValue();
-            WeakHashMap weakHashMap = r0.j0.f46438a;
+            WeakHashMap weakHashMap = r0.j0.f46469a;
             r0.b0.i(view, floatValue);
         }
         view.setTag(null);
@@ -114,14 +114,14 @@ public abstract class b0 {
     public void m(Canvas canvas, RecyclerView recyclerView, m1 m1Var, float f10, float f11, int i10, boolean z4) {
         View view = m1Var.f5875a;
         if (z4 && view.getTag() == null) {
-            WeakHashMap weakHashMap = r0.j0.f46438a;
+            WeakHashMap weakHashMap = r0.j0.f46469a;
             Float valueOf = Float.valueOf(r0.b0.e(view));
             int childCount = recyclerView.getChildCount();
             float f12 = 0.0f;
             for (int i11 = 0; i11 < childCount; i11++) {
                 View childAt = recyclerView.getChildAt(i11);
                 if (childAt != view) {
-                    WeakHashMap weakHashMap2 = r0.j0.f46438a;
+                    WeakHashMap weakHashMap2 = r0.j0.f46469a;
                     float e6 = r0.b0.e(childAt);
                     if (e6 > f12) {
                         f12 = e6;

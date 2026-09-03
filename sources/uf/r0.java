@@ -1,10 +1,10 @@
 package uf;
 public final class r0 {
-    public final String f48678a;
-    public final long f48679b;
+    public final String f48714a;
+    public final long f48715b;
 
     public r0(String str, long j10) {
-        this.f48678a = str;
-        this.f48679b = j10;
+        this.f48714a = str;
+        this.f48715b = j10;
     }
 }

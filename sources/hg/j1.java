@@ -7,6 +7,10 @@ import org.telegram.messenger.AndroidUtilities;
 public final class j1 extends ViewOutlineProvider {
     public final int f7529a;
 
+    public j1(int i10) {
+        this.f7529a = i10;
+    }
+
     @Override
     public final void getOutline(View view, Outline outline) {
         switch (this.f7529a) {

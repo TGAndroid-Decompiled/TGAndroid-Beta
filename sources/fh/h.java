@@ -29,7 +29,7 @@ public final class h extends eh.h {
                 radialProgress2.i(null, null, null);
             }
         }
-        radialProgress2.g(k6.f21757ie, k6.f21774je, k6.f21967uc, k6.f21985vc);
+        radialProgress2.g(k6.f21759ie, k6.f21776je, k6.f21969uc, k6.f21987vc);
     }
 
     @Override

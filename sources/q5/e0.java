@@ -1,124 +1,107 @@
 package q5;
 
-import android.content.Context;
-import android.os.Handler;
-import com.google.android.gms.cast.CastDevice;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.internal.s1;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
-public final class e0 extends com.google.android.gms.common.api.j implements f0 {
-    public static final u5.b G = new u5.b("CastClient", null);
-    public static final com.google.android.gms.common.api.e H = new com.google.android.gms.common.api.e("Cast.API_CXLESS", new a8.j(14), u5.j.f48358a);
-    public final CastDevice A;
-    public final HashMap B;
-    public final HashMap C;
-    public final r5.e0 D;
-    public final List E;
-    public int F;
-    public final d0 f44540k;
-    public a7.e f44541l;
-    public boolean f44542m;
-    public boolean f44543n;
-    public TaskCompletionSource f44544o;
-    public TaskCompletionSource f44545p;
-    public final AtomicLong f44546q;
-    public final Object f44547r;
-    public final Object f44548s;
-    public d f44549t;
-    public String f44550u;
-    public double v;
-    public boolean f44551w;
-    public int f44552x;
-    public int f44553y;
-    public x f44554z;
+import org.telegram.ui.zy;
+public final class e0 extends u5.g {
+    public final f0 f44573b;
 
-    public e0(Context context, e eVar) {
-        super(context, H, eVar, com.google.android.gms.common.api.i.f2658c);
-        this.f44540k = new d0(this);
-        this.f44547r = new Object();
-        this.f44548s = new Object();
-        this.E = DesugarCollections.synchronizedList(new ArrayList());
-        this.D = eVar.f44538b;
-        this.A = eVar.f44537a;
-        this.B = new HashMap();
-        this.C = new HashMap();
-        this.f44546q = new AtomicLong(0L);
-        this.F = 1;
-        j();
+    public e0(f0 f0Var) {
+        this.f44573b = f0Var;
     }
 
-    public static void f(e0 e0Var, long j10, int i10) {
-        TaskCompletionSource taskCompletionSource;
-        synchronized (e0Var.B) {
-            HashMap hashMap = e0Var.B;
-            Long valueOf = Long.valueOf(j10);
-            taskCompletionSource = (TaskCompletionSource) hashMap.get(valueOf);
-            e0Var.B.remove(valueOf);
-        }
-        if (taskCompletionSource != null) {
-            if (i10 == 0) {
-                taskCompletionSource.setResult(null);
-            } else {
-                taskCompletionSource.setException(b6.m.m(new Status(i10, null, null, null)));
-            }
-        }
+    @Override
+    public final void I(int i10) {
+        f0.k(this.f44573b).post(new d0(this, i10, 0));
     }
 
-    public static void g(e0 e0Var, int i10) {
-        synchronized (e0Var.f44548s) {
+    @Override
+    public final void L(u5.d dVar) {
+        f0.k(this.f44573b).post(new zy(this, dVar, false, 5));
+    }
+
+    @Override
+    public final void M(String str, String str2) {
+        f0.G.b("Receive (type=text, ns=%s) %s", str, str2);
+        f0.k(this.f44573b).post(new s1(this, str, str2, false, 12));
+    }
+
+    @Override
+    public final void U(int i10) {
+        this.f44573b.i(i10);
+    }
+
+    @Override
+    public final void W(long j10) {
+        f0.f(this.f44573b, j10, 0);
+    }
+
+    @Override
+    public final void c(int i10) {
+        f0.g(this.f44573b, i10);
+    }
+
+    @Override
+    public final void d(int i10) {
+        f0.k(this.f44573b).post(new d0(this, i10, 1));
+    }
+
+    @Override
+    public final void n0(u5.c cVar) {
+        f0.k(this.f44573b).post(new zy(this, cVar, false, 6));
+    }
+
+    @Override
+    public final void t0(d dVar, String str, String str2, boolean z4) {
+        f0 f0Var = this.f44573b;
+        f0Var.f44583t = dVar;
+        f0Var.f44584u = str;
+        u5.u uVar = new u5.u(new Status(0, null, null, null), dVar, str, str2, z4);
+        synchronized (f0Var.f44581r) {
             try {
-                TaskCompletionSource taskCompletionSource = e0Var.f44545p;
-                if (taskCompletionSource == null) {
-                    return;
-                }
-                if (i10 == 0) {
-                    taskCompletionSource.setResult(new Status(0, null, null, null));
-                } else {
-                    taskCompletionSource.setException(b6.m.m(new Status(i10, null, null, null)));
-                }
-                e0Var.f44545p = null;
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-    }
-
-    public static Handler k(e0 e0Var) {
-        if (e0Var.f44541l == null) {
-            e0Var.f44541l = new a7.e(e0Var.f2856f, 2);
-        }
-        return e0Var.f44541l;
-    }
-
-    public final void h() {
-        G.b("removing all MessageReceivedCallbacks", new Object[0]);
-        synchronized (this.C) {
-            this.C.clear();
-        }
-    }
-
-    public final void i(int i10) {
-        synchronized (this.f44547r) {
-            try {
-                TaskCompletionSource taskCompletionSource = this.f44544o;
+                TaskCompletionSource taskCompletionSource = f0Var.f44578o;
                 if (taskCompletionSource != null) {
-                    taskCompletionSource.setException(b6.m.m(new Status(i10, null, null, null)));
+                    taskCompletionSource.setResult(uVar);
                 }
-                this.f44544o = null;
+                f0Var.f44578o = null;
             } catch (Throwable th2) {
                 throw th2;
             }
         }
     }
 
-    public final void j() {
-        CastDevice castDevice = this.A;
-        if (!castDevice.f(2048) && castDevice.f(4) && !castDevice.f(1)) {
-            "Chromecast Audio".equals(castDevice.f2598e);
+    @Override
+    public final void u0(int i10) {
+        f0.k(this.f44573b).post(new d0(this, i10, 3));
+    }
+
+    @Override
+    public final void z0(String str, byte[] bArr) {
+        f0.G.b("IGNORING: Receive (type=binary, ns=%s) <%d bytes>", str, Integer.valueOf(bArr.length));
+    }
+
+    @Override
+    public final void zzd(int i10) {
+        f0 f0Var = this.f44573b;
+        f0.g(f0Var, i10);
+        if (f0Var.D != null) {
+            f0.k(f0Var).post(new d0(this, i10, 2));
         }
+    }
+
+    @Override
+    public final void zzg(int i10) {
+        f0.g(this.f44573b, i10);
+    }
+
+    @Override
+    public final void zzm(int i10, long j10) {
+        f0.f(this.f44573b, j10, i10);
+    }
+
+    @Override
+    public final void zzn() {
+        f0.G.b("Deprecated callback: \"onStatusReceived\"", new Object[0]);
     }
 }

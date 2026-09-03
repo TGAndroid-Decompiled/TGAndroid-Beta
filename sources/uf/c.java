@@ -14,7 +14,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.li1;
+import org.telegram.ui.ri1;
 public abstract class c extends cg.c {
     public a B;
     public int C;
@@ -22,21 +22,21 @@ public abstract class c extends cg.c {
     public boolean F;
     public boolean G;
     public final boolean d;
-    public final boolean f48508e;
+    public final boolean f48544e;
     public boolean h;
-    public boolean f48510n;
+    public boolean f48546n;
     public Location v;
-    public String f48513w;
-    public String f48514x;
-    public b f48515y;
-    public boolean f48509f = false;
-    public final ArrayList f48511r = new ArrayList();
-    public final ArrayList f48512s = new ArrayList();
+    public String f48549w;
+    public String f48550x;
+    public b f48551y;
+    public boolean f48545f = false;
+    public final ArrayList f48547r = new ArrayList();
+    public final ArrayList f48548s = new ArrayList();
     public final int D = UserConfig.selectedAccount;
 
     public c(boolean z4, boolean z10) {
         this.d = z4;
-        this.f48508e = z10;
+        this.f48544e = z10;
     }
 
     public final void F() {
@@ -59,8 +59,8 @@ public abstract class c extends cg.c {
             dispatchQueue.postRunnable(aVar, 400L);
             return;
         }
-        this.f48512s.clear();
-        this.f48511r.clear();
+        this.f48548s.clear();
+        this.f48547r.clear();
         this.G = false;
         l();
     }
@@ -83,7 +83,7 @@ public abstract class c extends cg.c {
                 location3 = new Location(location);
             }
             this.v = location3;
-            this.f48513w = str;
+            this.f48549w = str;
             if (this.h) {
                 this.h = false;
                 if (this.C != 0) {
@@ -93,7 +93,7 @@ public abstract class c extends cg.c {
             }
             h();
             this.h = true;
-            this.f48509f = true;
+            this.f48545f = true;
             MessagesController messagesController = MessagesController.getInstance(this.D);
             if (this.d) {
                 str2 = MessagesController.getInstance(this.D).storyVenueSearchBot;
@@ -139,13 +139,13 @@ public abstract class c extends cg.c {
                 } else {
                     tL_messages_getInlineBotResults.peer = MessagesController.getInstance(this.D).getInputPeer(this.E);
                 }
-                if (TextUtils.isEmpty(str) || (!this.d && !this.f48508e)) {
+                if (TextUtils.isEmpty(str) || (!this.d && !this.f48544e)) {
                     cVar = this;
                     str4 = str;
                     location4 = location;
-                    cVar.f48510n = false;
+                    cVar.f48546n = false;
                 } else {
-                    this.f48510n = true;
+                    this.f48546n = true;
                     Locale currentLocale = LocaleController.getInstance().getCurrentLocale();
                     if (this.d) {
                         if (currentLocale.getLanguage().contains("en")) {
@@ -167,7 +167,7 @@ public abstract class c extends cg.c {
                 if (location4 == null) {
                     return;
                 }
-                cVar.C = ConnectionsManager.getInstance(cVar.D).sendRequest(tL_messages_getInlineBotResults, new li1(6, this, str4));
+                cVar.C = ConnectionsManager.getInstance(cVar.D).sendRequest(tL_messages_getInlineBotResults, new ri1(6, this, str4));
                 l();
             }
         }

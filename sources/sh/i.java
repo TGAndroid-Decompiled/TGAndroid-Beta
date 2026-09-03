@@ -13,16 +13,16 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.yh;
 public final class i extends FrameLayout {
-    public final ImageView f47456a;
-    public final TextView f47457b;
-    public final TextView f47458c;
+    public final ImageView f47492a;
+    public final TextView f47493b;
+    public final TextView f47494c;
 
     public i(Context context, g6 g6Var, boolean z4) {
         super(context);
         float f10;
         float f11;
         ImageView imageView = new ImageView(context);
-        this.f47456a = imageView;
+        this.f47492a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         int i10 = k6.G6;
         imageView.setColorFilter(new PorterDuffColorFilter(k6.v0(i10, g6Var), PorterDuff.Mode.SRC_IN));
@@ -41,23 +41,23 @@ public final class i extends FrameLayout {
         }
         addView(linearLayout, c6.d(-1, -2.0f, 23, 64.0f, f10, 24.0f, f11));
         TextView textView = new TextView(context);
-        this.f47457b = textView;
+        this.f47493b = textView;
         textView.setTextColor(k6.v0(i10, g6Var));
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 14.0f);
         TextView i11 = yh.i(linearLayout, textView, c6.t(-1, -2, 55, 0, 0, 0, 1), context);
-        this.f47458c = i11;
-        org.telegram.ui.b.l(k6.f22053z6, g6Var, i11, 1, 14.0f);
+        this.f47494c = i11;
+        org.telegram.ui.b.l(k6.f22055z6, g6Var, i11, 1, 14.0f);
         linearLayout.addView(i11, c6.t(-1, -2, 55, 0, 0, 0, 0));
     }
 
     public final void a(CharSequence charSequence, CharSequence charSequence2, int i10) {
-        this.f47456a.setImageResource(i10);
-        this.f47457b.setText(charSequence);
-        this.f47458c.setText(charSequence2);
+        this.f47492a.setImageResource(i10);
+        this.f47493b.setText(charSequence);
+        this.f47494c.setText(charSequence2);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f47458c.setText(charSequence);
+        this.f47494c.setText(charSequence);
     }
 }

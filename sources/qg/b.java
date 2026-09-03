@@ -24,64 +24,64 @@ import lf.l0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.tl;
-import org.telegram.ui.zw0;
+import org.telegram.ui.ex0;
 import tg.e;
 public abstract class b extends Drawable {
     public static final float[] C = new float[8];
     public static Path D = new Path();
     public NinePatchDrawable A;
     public long B;
-    public float f44849a;
-    public float f44850b;
-    public rg.a f44851c;
+    public float f44880a;
+    public float f44881b;
+    public rg.a f44882c;
     public int d;
-    public int f44852e;
-    public int f44853f;
-    public int f44854g;
+    public int f44883e;
+    public int f44884f;
+    public int f44885g;
     public final a h;
-    public tl f44855i;
-    public int f44856j;
-    public boolean f44857k;
-    public float f44858l;
-    public float f44859m;
-    public float f44860n;
-    public final Paint f44861o;
-    public final Paint f44862p;
-    public final Paint f44863q;
-    public final Paint f44864r;
-    public final Paint f44865s;
-    public final Matrix f44866t;
-    public final WeakReference f44867u;
+    public tl f44886i;
+    public int f44887j;
+    public boolean f44888k;
+    public float f44889l;
+    public float f44890m;
+    public float f44891n;
+    public final Paint f44892o;
+    public final Paint f44893p;
+    public final Paint f44894q;
+    public final Paint f44895r;
+    public final Paint f44896s;
+    public final Matrix f44897t;
+    public final WeakReference f44898u;
     public BitmapShader v;
-    public final RectF f44868w;
-    public final RectF f44869x;
-    public final x f44870y;
-    public final Rect f44871z;
+    public final RectF f44899w;
+    public final RectF f44900x;
+    public final x f44901y;
+    public final Rect f44902z;
 
     public b() {
         a aVar = new a();
         this.h = aVar;
-        this.f44856j = 255;
-        this.f44860n = 1.0f;
-        this.f44861o = new Paint(1);
-        this.f44862p = new Paint(1);
+        this.f44887j = 255;
+        this.f44891n = 1.0f;
+        this.f44892o = new Paint(1);
+        this.f44893p = new Paint(1);
         Paint paint = new Paint(1);
-        this.f44863q = paint;
-        this.f44864r = new Paint(1);
+        this.f44894q = paint;
+        this.f44895r = new Paint(1);
         Paint paint2 = new Paint(1);
-        this.f44865s = paint2;
-        this.f44866t = new Matrix();
-        this.f44867u = new WeakReference(null);
+        this.f44896s = paint2;
+        this.f44897t = new Matrix();
+        this.f44898u = new WeakReference(null);
         paint2.setColor(0);
         paint.setFilterBitmap(true);
-        this.f44868w = new RectF();
-        this.f44869x = new RectF();
-        this.f44870y = new Object();
-        this.f44871z = new Rect();
-        aVar.f44842i = AndroidUtilities.dpf2(1.0f);
-        aVar.f44843j = AndroidUtilities.dpf2(0.6666667f);
-        this.f44858l = AndroidUtilities.dpf2(1.0f);
-        this.f44859m = AndroidUtilities.dpf2(0.33333334f);
+        this.f44899w = new RectF();
+        this.f44900x = new RectF();
+        this.f44901y = new Object();
+        this.f44902z = new Rect();
+        aVar.f44873i = AndroidUtilities.dpf2(1.0f);
+        aVar.f44874j = AndroidUtilities.dpf2(0.6666667f);
+        this.f44889l = AndroidUtilities.dpf2(1.0f);
+        this.f44890m = AndroidUtilities.dpf2(0.33333334f);
     }
 
     public static void e(android.graphics.Canvas r17, float r18, float r19, float[] r20, float r21, boolean r22, android.graphics.Paint r23) {
@@ -129,24 +129,24 @@ public abstract class b extends Drawable {
     public final NinePatchDrawable a(int i10, boolean z4) {
         long j10;
         int i11;
-        x xVar = this.f44870y;
+        x xVar = this.f44901y;
         xVar.f6799a = 0L;
         xVar.f6800b = false;
         xVar.a(i10);
         xVar.a(this.d);
         a aVar = this.h;
-        for (float f10 : aVar.f44837b) {
+        for (float f10 : aVar.f44868b) {
             xVar.c(f10);
         }
-        xVar.c(this.f44858l);
+        xVar.c(this.f44889l);
         xVar.c(0.0f);
-        xVar.c(this.f44859m);
+        xVar.c(this.f44890m);
         xVar.b(z4);
         if (z4) {
-            xVar.a(this.f44853f);
-            xVar.a(this.f44854g);
-            xVar.c(aVar.f44842i);
-            xVar.c(aVar.f44843j);
+            xVar.a(this.f44884f);
+            xVar.a(this.f44885g);
+            xVar.c(aVar.f44873i);
+            xVar.c(aVar.f44874j);
         }
         if (xVar.f6800b) {
             j10 = -1;
@@ -160,19 +160,19 @@ public abstract class b extends Drawable {
             } else {
                 i11 = 1;
             }
-            NinePatchDrawable b10 = c8.b(null, aVar.f44837b, this.f44858l, this.f44859m, i11, new zw0(i10, this, z4));
+            NinePatchDrawable b10 = c8.b(null, aVar.f44868b, this.f44889l, this.f44890m, i11, new ex0(i10, this, z4));
             this.A = b10;
-            b10.getPadding(this.f44871z);
+            b10.getPadding(this.f44902z);
         }
         return this.A;
     }
 
     public final void b() {
-        Rect rect = this.h.f44846m;
-        RectF rectF = this.f44868w;
+        Rect rect = this.h.f44877m;
+        RectF rectF = this.f44899w;
         rectF.set(rect);
-        rectF.offset(this.f44849a, this.f44850b);
-        RectF rectF2 = this.f44869x;
+        rectF.offset(this.f44880a, this.f44881b);
+        RectF rectF2 = this.f44900x;
         if (!rectF.equals(rectF2)) {
             rectF2.set(rectF);
             l();
@@ -183,18 +183,18 @@ public abstract class b extends Drawable {
         int i10;
         boolean z4;
         a aVar2 = this.h;
-        Rect rect = aVar2.f44846m;
-        Rect rect2 = aVar2.f44846m;
+        Rect rect = aVar2.f44877m;
+        Rect rect2 = aVar2.f44877m;
         if (!rect.isEmpty()) {
-            if (Color.alpha(this.f44852e) == 255) {
+            if (Color.alpha(this.f44883e) == 255) {
                 d(canvas, 0);
             } else if (aVar instanceof tg.c) {
-                d(canvas, ((tg.c) aVar).f48086a.getColor());
+                d(canvas, ((tg.c) aVar).f48122a.getColor());
             } else if (aVar instanceof tg.b) {
                 tg.b bVar = (tg.b) aVar;
                 Bitmap bitmap = bVar.d;
-                Bitmap bitmap2 = (Bitmap) this.f44867u.get();
-                Paint paint = this.f44863q;
+                Bitmap bitmap2 = (Bitmap) this.f44898u.get();
+                Paint paint = this.f44894q;
                 if (bitmap != bitmap2) {
                     if (bitmap != null && !bitmap.isRecycled()) {
                         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
@@ -209,23 +209,23 @@ public abstract class b extends Drawable {
                 if (Color.alpha(this.d) > 0) {
                     NinePatchDrawable a2 = a(0, false);
                     int i11 = rect2.left;
-                    Rect rect3 = this.f44871z;
+                    Rect rect3 = this.f44902z;
                     a2.setBounds(i11 - rect3.left, rect2.top - rect3.top, rect2.right + rect3.right, rect2.bottom + rect3.bottom);
-                    a2.setAlpha(this.f44856j);
+                    a2.setAlpha(this.f44887j);
                     a2.draw(canvas);
                 }
-                if (this.v != null && bitmap != null && !bitmap.isRecycled() && this.f44856j > 0) {
-                    Matrix matrix = bVar.f48081b;
-                    Matrix matrix2 = this.f44866t;
+                if (this.v != null && bitmap != null && !bitmap.isRecycled() && this.f44887j > 0) {
+                    Matrix matrix = bVar.f48117b;
+                    Matrix matrix2 = this.f44897t;
                     matrix2.set(matrix);
-                    matrix2.postTranslate(-this.f44849a, -this.f44850b);
+                    matrix2.postTranslate(-this.f44880a, -this.f44881b);
                     this.v.setLocalMatrix(matrix2);
-                    paint.setAlpha(this.f44856j);
+                    paint.setAlpha(this.f44887j);
                     aVar2.b(canvas, paint);
                 }
-                int l1 = k6.l1(this.f44856j / 255.0f, this.f44852e);
+                int l1 = k6.l1(this.f44887j / 255.0f, this.f44883e);
                 if (Color.alpha(l1) > 0) {
-                    Paint paint2 = this.f44864r;
+                    Paint paint2 = this.f44895r;
                     paint2.setColor(l1);
                     aVar2.b(canvas, paint2);
                 }
@@ -233,25 +233,25 @@ public abstract class b extends Drawable {
             } else if (Build.VERSION.SDK_INT >= 29 && (aVar instanceof tg.d)) {
                 tg.d dVar = (tg.d) aVar;
                 if (!canvas.isHardwareAccelerated()) {
-                    c(canvas, dVar.f48087a);
+                    c(canvas, dVar.f48123a);
                 }
             } else if (aVar instanceof e) {
-                c(canvas, ((e) aVar).f48095a);
-            } else if (aVar != null && (i10 = this.f44856j) != 0) {
-                int l12 = k6.l1(i10 / 255.0f, this.f44852e);
-                if (Color.alpha(this.d) > 0 && this.f44856j == 255) {
-                    float f10 = this.f44860n;
+                c(canvas, ((e) aVar).f48131a);
+            } else if (aVar != null && (i10 = this.f44887j) != 0) {
+                int l12 = k6.l1(i10 / 255.0f, this.f44883e);
+                if (Color.alpha(this.d) > 0 && this.f44887j == 255) {
+                    float f10 = this.f44891n;
                     if (f10 > 0.0f) {
-                        float f11 = this.f44858l;
-                        float f12 = this.f44859m;
+                        float f11 = this.f44889l;
+                        float f12 = this.f44890m;
                         int l13 = k6.l1(f10, this.d);
-                        Paint paint3 = this.f44865s;
+                        Paint paint3 = this.f44896s;
                         paint3.setShadowLayer(f11, 0.0f, f12, l13);
-                        aVar2.c(canvas, paint3, this.f44857k);
+                        aVar2.c(canvas, paint3, this.f44888k);
                     }
                 }
-                float f13 = this.f44849a;
-                float f14 = this.f44850b;
+                float f13 = this.f44880a;
+                float f14 = this.f44881b;
                 float f15 = rect2.left;
                 float f16 = f15 + f13;
                 float f17 = rect2.top;
@@ -260,7 +260,7 @@ public abstract class b extends Drawable {
                 float f20 = f19 + f13;
                 float f21 = rect2.bottom;
                 float f22 = f21 + f14;
-                int i12 = this.f44856j;
+                int i12 = this.f44887j;
                 if (i12 != 255) {
                     z4 = true;
                 } else {
@@ -270,13 +270,13 @@ public abstract class b extends Drawable {
                     canvas.saveLayerAlpha(f15, f17, f19, f21, i12);
                 }
                 canvas.save();
-                canvas.clipPath(aVar2.f44844k);
+                canvas.clipPath(aVar2.f44875k);
                 canvas.translate(rect2.left, rect2.top);
                 canvas.translate(-f16, -f18);
                 aVar.I(canvas, f16, f18, f20, f22);
                 canvas.restore();
                 if (Color.alpha(l12) > 0) {
-                    Paint paint4 = this.f44861o;
+                    Paint paint4 = this.f44892o;
                     paint4.setColor(l12);
                     aVar2.b(canvas, paint4);
                 }
@@ -289,38 +289,38 @@ public abstract class b extends Drawable {
     }
 
     public final void d(Canvas canvas, int i10) {
-        int h = i0.a.h(this.f44852e, i10);
+        int h = i0.a.h(this.f44883e, i10);
         if (Color.alpha(h) == 0 && Color.alpha(this.d) == 0) {
             return;
         }
         NinePatchDrawable a2 = a(h, true);
-        Rect rect = this.h.f44846m;
+        Rect rect = this.h.f44877m;
         int i11 = rect.left;
-        Rect rect2 = this.f44871z;
+        Rect rect2 = this.f44902z;
         a2.setBounds(i11 - rect2.left, rect.top - rect2.top, rect.right + rect2.right, rect.bottom + rect2.bottom);
-        a2.setAlpha(this.f44856j);
+        a2.setAlpha(this.f44887j);
         a2.draw(canvas);
     }
 
     public final void g(Canvas canvas) {
-        int l1 = k6.l1(this.f44856j / 255.0f, this.f44853f);
-        int l12 = k6.l1(this.f44856j / 255.0f, this.f44854g);
+        int l1 = k6.l1(this.f44887j / 255.0f, this.f44884f);
+        int l12 = k6.l1(this.f44887j / 255.0f, this.f44885g);
         int alpha = Color.alpha(l1);
         a aVar = this.h;
-        Paint paint = this.f44862p;
+        Paint paint = this.f44893p;
         if (alpha > 0) {
             paint.setColor(l1);
-            canvas.drawPath(aVar.f44847n, paint);
+            canvas.drawPath(aVar.f44878n, paint);
         }
         if (Color.alpha(l12) > 0) {
             paint.setColor(l12);
-            canvas.drawPath(aVar.f44848o, paint);
+            canvas.drawPath(aVar.f44879o, paint);
         }
     }
 
     @Override
     public final int getAlpha() {
-        return this.f44856j;
+        return this.f44887j;
     }
 
     @Override
@@ -331,7 +331,7 @@ public abstract class b extends Drawable {
     @Override
     public final void getOutline(Outline outline) {
         a aVar = this.h;
-        h(outline, aVar.f44846m, aVar.f44837b);
+        h(outline, aVar.f44877m, aVar.f44868b);
     }
 
     @Override
@@ -339,7 +339,7 @@ public abstract class b extends Drawable {
         a aVar = this.h;
         int i10 = aVar.d;
         rect.set(i10, i10, i10, i10);
-        return aVar.f44839e;
+        return aVar.f44870e;
     }
 
     public abstract tg.a i();
@@ -353,19 +353,19 @@ public abstract class b extends Drawable {
     }
 
     public final void n(rg.a aVar) {
-        this.f44851c = aVar;
+        this.f44882c = aVar;
         u();
         if (aVar instanceof rg.d) {
             rg.d dVar = (rg.d) aVar;
-            float f10 = dVar.f46812f;
+            float f10 = dVar.f46843f;
             float f11 = dVar.h;
             a aVar2 = this.h;
-            aVar2.f44842i = f10;
-            aVar2.f44843j = f11;
-            float f12 = dVar.f46813n;
-            float f13 = dVar.f46814r;
-            this.f44858l = f12;
-            this.f44859m = f13;
+            aVar2.f44873i = f10;
+            aVar2.f44874j = f11;
+            float f12 = dVar.f46844n;
+            float f13 = dVar.f46845r;
+            this.f44889l = f12;
+            this.f44890m = f13;
         }
     }
 
@@ -382,22 +382,22 @@ public abstract class b extends Drawable {
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
         a aVar = this.h;
-        aVar.f44836a.set(rect);
+        aVar.f44867a.set(rect);
         aVar.a();
         j();
     }
 
     public final void p(float f10) {
         a aVar = this.h;
-        Arrays.fill(aVar.f44837b, f10);
-        Arrays.fill(aVar.f44838c, f10);
+        Arrays.fill(aVar.f44868b, f10);
+        Arrays.fill(aVar.f44869c, f10);
         aVar.a();
         j();
     }
 
     public final void q(float f10, float f11, float f12, float f13) {
         a aVar = this.h;
-        float[] fArr = aVar.f44837b;
+        float[] fArr = aVar.f44868b;
         fArr[1] = f10;
         fArr[0] = f10;
         fArr[3] = f11;
@@ -412,7 +412,7 @@ public abstract class b extends Drawable {
 
     public final void r(float f10, float f11, float f12, float f13) {
         a aVar = this.h;
-        float[] fArr = aVar.f44837b;
+        float[] fArr = aVar.f44868b;
         fArr[1] = f10;
         fArr[0] = f10;
         fArr[3] = f11;
@@ -421,7 +421,7 @@ public abstract class b extends Drawable {
         fArr[4] = 0.0f;
         fArr[7] = 0.0f;
         fArr[6] = 0.0f;
-        float[] fArr2 = aVar.f44838c;
+        float[] fArr2 = aVar.f44869c;
         fArr2[1] = f10;
         fArr2[0] = f10;
         fArr2[3] = f11;
@@ -435,33 +435,33 @@ public abstract class b extends Drawable {
     }
 
     public final void s(float f10, float f11) {
-        if (this.f44849a == f10 && this.f44850b == f11) {
+        if (this.f44880a == f10 && this.f44881b == f11) {
             return;
         }
-        this.f44849a = f10;
-        this.f44850b = f11;
+        this.f44880a = f10;
+        this.f44881b = f11;
         k();
     }
 
     @Override
     public void setAlpha(int i10) {
-        this.f44856j = i10;
+        this.f44887j = i10;
     }
 
     public final void t(int i10) {
-        this.h.f44840f = i10;
+        this.h.f44871f = i10;
         j();
     }
 
     public void u() {
-        rg.a aVar = this.f44851c;
+        rg.a aVar = this.f44882c;
         if (aVar == null) {
             return;
         }
-        this.f44852e = aVar.U();
-        this.d = this.f44851c.I();
-        this.f44853f = this.f44851c.k();
-        this.f44854g = this.f44851c.x();
+        this.f44883e = aVar.U();
+        this.d = this.f44882c.I();
+        this.f44884f = this.f44882c.k();
+        this.f44885g = this.f44882c.x();
     }
 
     public void l() {

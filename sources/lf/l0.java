@@ -1,25 +1,25 @@
 package lf;
 
 import android.graphics.RectF;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 public abstract class l0 {
     public static final e5.f f12489a = new e5.f(16);
 
-    public static int a(ArrayList arrayList, int i10, ArrayList arrayList2) {
+    public static int a(int i10, List list, List list2) {
         boolean z4;
-        if (arrayList == null || i10 <= 0) {
+        if (list == null || i10 <= 0) {
             return 0;
         }
-        if (i10 > arrayList.size()) {
-            i10 = arrayList.size();
+        if (i10 > list.size()) {
+            i10 = list.size();
         }
-        for (int size = arrayList2.size(); size < i10; size++) {
-            arrayList2.add(new RectF());
+        for (int size = list2.size(); size < i10; size++) {
+            list2.add(new RectF());
         }
         for (int i11 = 0; i11 < i10; i11++) {
-            RectF rectF = (RectF) arrayList.get(i11);
-            RectF rectF2 = (RectF) arrayList2.get(i11);
+            RectF rectF = (RectF) list.get(i11);
+            RectF rectF2 = (RectF) list2.get(i11);
             if (rectF != null) {
                 rectF2.set(rectF);
             } else {
@@ -30,10 +30,10 @@ public abstract class l0 {
             int i12 = 0;
             while (true) {
                 if (i12 < i10) {
-                    RectF rectF3 = (RectF) arrayList2.get(i12);
+                    RectF rectF3 = (RectF) list2.get(i12);
                     i12++;
                     for (int i13 = i12; i13 < i10; i13++) {
-                        RectF rectF4 = (RectF) arrayList2.get(i13);
+                        RectF rectF4 = (RectF) list2.get(i13);
                         float f10 = rectF3.left;
                         float f11 = rectF4.right;
                         if (f10 <= f11 + 1.0E-4f) {
@@ -60,7 +60,7 @@ public abstract class l0 {
                                         }
                                         int i14 = i10 - 1;
                                         if (i13 != i14) {
-                                            ((RectF) arrayList2.get(i13)).set((RectF) arrayList2.get(i14));
+                                            ((RectF) list2.get(i13)).set((RectF) list2.get(i14));
                                         }
                                         i10--;
                                         z4 = true;
@@ -77,12 +77,12 @@ public abstract class l0 {
                 }
             }
         } while (z4);
-        for (int i15 = i10; i15 < arrayList2.size(); i15++) {
-            RectF rectF5 = (RectF) arrayList2.get(i15);
+        for (int i15 = i10; i15 < list2.size(); i15++) {
+            RectF rectF5 = (RectF) list2.get(i15);
             rectF5.top = Float.MAX_VALUE;
             rectF5.left = Float.MAX_VALUE;
         }
-        Collections.sort(arrayList2, f12489a);
+        Collections.sort(list2, f12489a);
         return i10;
     }
 

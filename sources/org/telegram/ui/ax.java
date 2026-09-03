@@ -8,17 +8,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class ax extends ChatActivityEnterView {
-    public final py f35258k5;
+    public final py f35268k5;
 
     public ax(py pyVar, Activity activity, iy iyVar) {
         super(activity, iyVar, null, false, null);
-        this.f35258k5 = pyVar;
+        this.f35268k5 = pyVar;
     }
 
     @Override
     public final void A0(float f10) {
-        py pyVar = this.f35258k5;
-        pyVar.f40288v1.setInputBubbleHeight(f10);
+        py pyVar = this.f35268k5;
+        pyVar.f40258v1.setInputBubbleHeight(f10);
         pyVar.s3();
         pyVar.m3();
         pyVar.t3();
@@ -28,7 +28,7 @@ public final class ax extends ChatActivityEnterView {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int i10;
         if (motionEvent.getAction() == 0) {
-            py pyVar = this.f35258k5;
+            py pyVar = this.f35268k5;
             Activity parentActivity = pyVar.getParentActivity();
             i10 = ((org.telegram.ui.ActionBar.p2) pyVar).classGuid;
             AndroidUtilities.requestAdjustResize(parentActivity, i10);
@@ -39,9 +39,9 @@ public final class ax extends ChatActivityEnterView {
     @Override
     public final int getMessagesCount() {
         CharSequence fieldText;
-        py pyVar = this.f35258k5;
+        py pyVar = this.f35268k5;
         int i10 = pyVar.P0;
-        ax axVar = pyVar.f40303y1;
+        ax axVar = pyVar.f40273y1;
         if (axVar == null) {
             fieldText = "";
         } else {
@@ -52,7 +52,7 @@ public final class ax extends ChatActivityEnterView {
 
     @Override
     public final long getStarsPrice() {
-        py pyVar = this.f35258k5;
+        py pyVar = this.f35268k5;
         ArrayList arrayList = pyVar.F2;
         if (arrayList == null) {
             return 0L;

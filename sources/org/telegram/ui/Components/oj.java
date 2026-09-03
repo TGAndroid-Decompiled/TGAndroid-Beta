@@ -7,17 +7,17 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.tgnet.TLRPC;
-public final class oj extends sl0 {
-    public final Context f29780c;
+public final class oj extends rl0 {
+    public final Context f29781c;
     public ArrayList d = new ArrayList();
-    public ArrayList f29781e = new ArrayList();
-    public mj f29782f;
+    public ArrayList f29782e = new ArrayList();
+    public mj f29783f;
     public int h;
-    public final sj f29783n;
+    public final sj f29784n;
 
     public oj(sj sjVar, Context context) {
-        this.f29783n = sjVar;
-        this.f29780c = context;
+        this.f29784n = sjVar;
+        this.f29781c = context;
     }
 
     @Override
@@ -55,7 +55,7 @@ public final class oj extends sl0 {
     @Override
     public final void l() {
         super.l();
-        this.f29783n.N();
+        this.f29784n.N();
     }
 
     @Override
@@ -75,16 +75,16 @@ public final class oj extends sl0 {
                 user = contact.user;
                 if (user == null) {
                     rjVar.setCurrentId(contact.contact_id);
-                    rjVar.a(null, (CharSequence) this.f29781e.get(i10 - 1), new jj(contact, 1), z4);
+                    rjVar.a(null, (CharSequence) this.f29782e.get(i10 - 1), new jj(contact, 1), z4);
                     user = null;
                 }
             } else {
                 user = (TLRPC.User) E;
             }
             if (user != null) {
-                rjVar.a(user, (CharSequence) this.f29781e.get(i10 - 1), new kj(1, user), z4);
+                rjVar.a(user, (CharSequence) this.f29782e.get(i10 - 1), new kj(1, user), z4);
             }
-            boolean containsKey = this.f29783n.f31070w.containsKey(hj.a(E));
+            boolean containsKey = this.f29784n.f31070w.containsKey(hj.a(E));
             np npVar = rjVar.d;
             if (npVar.getVisibility() != 0) {
                 npVar.setVisibility(0);
@@ -96,7 +96,7 @@ public final class oj extends sl0 {
     @Override
     public final f2.m1 x(ViewGroup viewGroup, int i10) {
         View rjVar;
-        Context context = this.f29780c;
+        Context context = this.f29781c;
         if (i10 != 0) {
             if (i10 != 1) {
                 rjVar = new View(context);
@@ -107,7 +107,7 @@ public final class oj extends sl0 {
                 rjVar.setTag(-33024);
             }
         } else {
-            rjVar = new rj(context, this.f29783n.f26545a);
+            rjVar = new rj(context, this.f29784n.f26589a);
         }
         return new f2.m1(rjVar);
     }

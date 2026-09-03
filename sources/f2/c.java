@@ -15,7 +15,7 @@ import org.telegram.ui.ActionBar.p2;
 import org.telegram.ui.Components.mo;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.g11;
+import org.telegram.ui.k11;
 public final class c implements OnFailureListener, mo, r4.h, v4.f, r3.l, r3.m {
     public final int f5738a;
     public long f5739b;
@@ -86,7 +86,7 @@ public final class c implements OnFailureListener, mo, r4.h, v4.f, r3.l, r3.m {
 
     @Override
     public long F(long j10) {
-        return ((r3.f) this.f5740c).f46543a;
+        return ((r3.f) this.f5740c).f46574a;
     }
 
     public boolean G(int i10) {
@@ -126,7 +126,7 @@ public final class c implements OnFailureListener, mo, r4.h, v4.f, r3.l, r3.m {
 
     @Override
     public long I(long j10, long j11) {
-        return ((r3.f) this.f5740c).f46543a;
+        return ((r3.f) this.f5740c).f46574a;
     }
 
     public void J(int i10) {
@@ -157,7 +157,7 @@ public final class c implements OnFailureListener, mo, r4.h, v4.f, r3.l, r3.m {
 
     @Override
     public long a(long j10) {
-        return ((r3.f) this.f5740c).f46546e[(int) j10] - this.f5739b;
+        return ((r3.f) this.f5740c).f46577e[(int) j10] - this.f5739b;
     }
 
     @Override
@@ -229,9 +229,9 @@ public final class c implements OnFailureListener, mo, r4.h, v4.f, r3.l, r3.m {
         bundle.putLong("dialog_id", this.f5739b);
         ?? p2Var = new p2(bundle);
         p2Var.d = new ArrayList();
-        p2Var.f41280e = new HashSet();
+        p2Var.f43618e = new HashSet();
         ProfileActivity profileActivity = (ProfileActivity) this.f5740c;
-        p2Var.f41280e = profileActivity.f34595e5;
+        p2Var.f43618e = profileActivity.f34595e5;
         profileActivity.presentFragment((p2) p2Var);
     }
 
@@ -282,7 +282,7 @@ public final class c implements OnFailureListener, mo, r4.h, v4.f, r3.l, r3.m {
             Bundle bundle = new Bundle();
             bundle.putLong("dialog_id", j10);
             bundle.putLong("topic_id", profileActivity.f34583d1);
-            profileActivity.presentFragment(new g11(bundle, profileActivity.f34714w0));
+            profileActivity.presentFragment(new k11(bundle, profileActivity.f34714w0));
         }
     }
 
@@ -302,7 +302,7 @@ public final class c implements OnFailureListener, mo, r4.h, v4.f, r3.l, r3.m {
                     i10 = 13;
                 }
                 long j10 = this.f5739b;
-                for (u5.p pVar : ((s5.h) ((s5.m) this.f5740c).d).f47047c.d) {
+                for (u5.p pVar : ((s5.h) ((s5.m) this.f5740c).d).f47078c.d) {
                     pVar.b(j10, i10, null);
                 }
                 return;
@@ -319,7 +319,7 @@ public final class c implements OnFailureListener, mo, r4.h, v4.f, r3.l, r3.m {
     public s4.j p(long j10) {
         r3.f fVar = (r3.f) this.f5740c;
         int i10 = (int) j10;
-        return new s4.j(fVar.f46545c[i10], fVar.f46544b[i10], null);
+        return new s4.j(fVar.f46576c[i10], fVar.f46575b[i10], null);
     }
 
     @Override
@@ -327,8 +327,8 @@ public final class c implements OnFailureListener, mo, r4.h, v4.f, r3.l, r3.m {
         if (j10 >= this.f5739b) {
             return (s8.v) this.f5740c;
         }
-        s8.t tVar = s8.v.f47143b;
-        return s8.i0.f47108e;
+        s8.t tVar = s8.v.f47174b;
+        return s8.i0.f47139e;
     }
 
     @Override
@@ -358,7 +358,7 @@ public final class c implements OnFailureListener, mo, r4.h, v4.f, r3.l, r3.m {
 
     @Override
     public long t(long j10, long j11) {
-        return h5.d0.e(((r3.f) this.f5740c).f46546e, j10 + this.f5739b, true);
+        return h5.d0.e(((r3.f) this.f5740c).f46577e, j10 + this.f5739b, true);
     }
 
     public String toString() {

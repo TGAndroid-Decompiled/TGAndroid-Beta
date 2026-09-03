@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.tk0;
+import org.telegram.ui.Components.sk0;
 import org.telegram.ui.Components.z5;
 public abstract class i extends FrameLayout {
     public final Paint f5239a;
@@ -47,11 +47,11 @@ public abstract class i extends FrameLayout {
 
     public final void b() {
         j jVar = this.h;
-        tk0 selectionBounds = jVar.getSelectionBounds();
+        sk0 selectionBounds = jVar.getSelectionBounds();
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) getLayoutParams();
-        layoutParams.leftMargin = (int) selectionBounds.f31355a;
-        layoutParams.topMargin = (int) selectionBounds.f31356b;
-        layoutParams.width = (int) selectionBounds.f31357c;
+        layoutParams.leftMargin = (int) selectionBounds.f31078a;
+        layoutParams.topMargin = (int) selectionBounds.f31079b;
+        layoutParams.width = (int) selectionBounds.f31080c;
         layoutParams.height = (int) selectionBounds.d;
         setLayoutParams(layoutParams);
         setRotation(jVar.getRotation());

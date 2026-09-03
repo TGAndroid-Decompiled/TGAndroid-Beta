@@ -16,6 +16,11 @@ public final class q0 implements f, j4.g, c9.e, h5.j {
     }
 
     @Override
+    public boolean a(int i10, int i11, int i12, int i13, int i14) {
+        return false;
+    }
+
+    @Override
     public g c(Bundle bundle) {
         boolean z4;
         s8.x a2;
@@ -101,7 +106,7 @@ public final class q0 implements f, j4.g, c9.e, h5.j {
                 ?? obj2 = new Object();
                 obj2.f9446a = fromString;
                 obj2.f9448c = n0Var;
-                obj2.f9451g = s8.i0.f47108e;
+                obj2.f9451g = s8.i0.f47139e;
                 obj2.f9447b = uri2;
                 obj2.f9448c = s8.x.a(a2);
                 obj2.d = z11;
@@ -129,16 +134,16 @@ public final class q0 implements f, j4.g, c9.e, h5.j {
                 r0 r0Var2 = r0Var;
                 ArrayList parcelableArrayList = bundle.getParcelableArrayList(y0.f9485x);
                 if (parcelableArrayList == null) {
-                    s8.t tVar = s8.v.f47143b;
-                    s6 = s8.i0.f47108e;
+                    s8.t tVar = s8.v.f47174b;
+                    s6 = s8.i0.f47139e;
                 } else {
                     s6 = h5.a.s(new q0(5), parcelableArrayList);
                 }
                 s8.i0 i0Var = s6;
                 ArrayList parcelableArrayList2 = bundle.getParcelableArrayList(y0.B);
                 if (parcelableArrayList2 == null) {
-                    s8.t tVar2 = s8.v.f47143b;
-                    s9 = s8.i0.f47108e;
+                    s8.t tVar2 = s8.v.f47174b;
+                    s9 = s8.i0.f47139e;
                 } else {
                     s9 = h5.a.s(b1.B, parcelableArrayList2);
                 }
@@ -147,7 +152,7 @@ public final class q0 implements f, j4.g, c9.e, h5.j {
                 uri3.getClass();
                 return new y0(uri3, bundle.getString(y0.f9483s), w0Var, r0Var2, i0Var, bundle.getString(y0.f9486y), i0Var2, null);
             case 5:
-                return new n4.b(bundle.getInt(n4.b.d, 0), bundle.getInt(n4.b.f15237e, 0), bundle.getInt(n4.b.f15238f, 0));
+                return new n4.b(bundle.getInt(n4.b.d, 0), bundle.getInt(n4.b.f15239e, 0), bundle.getInt(n4.b.f15240f, 0));
             case 6:
                 androidx.biometric.e eVar = new androidx.biometric.e(19, false);
                 eVar.f527b = (Uri) bundle.getParcelable(z0.d);
@@ -318,9 +323,9 @@ public final class q0 implements f, j4.g, c9.e, h5.j {
                 boolean z14 = bundle.getBoolean(m2.v, false);
                 Bundle bundle8 = bundle.getBundle(m2.f9282w);
                 if (bundle8 != null) {
-                    bVar = (p4.b) p4.b.f44202w.c(bundle8);
+                    bVar = (p4.b) p4.b.f44233w.c(bundle8);
                 } else {
-                    bVar = p4.b.f44198f;
+                    bVar = p4.b.f44229f;
                 }
                 p4.b bVar2 = bVar;
                 m2 m2Var = new m2();
@@ -354,12 +359,12 @@ public final class q0 implements f, j4.g, c9.e, h5.j {
                 n2Var.f9342w = z17;
                 return n2Var;
             default:
-                c3 c3Var = o4.s0.f16570n;
+                c3 c3Var = o4.s0.f16572n;
                 Bundle bundle11 = bundle.getBundle(p2.f9375f);
                 bundle11.getClass();
                 o4.s0 s0Var2 = (o4.s0) c3Var.c(bundle11);
                 int[] intArray = bundle.getIntArray(p2.h);
-                int i17 = s0Var2.f16571a;
+                int i17 = s0Var2.f16573a;
                 int[] iArr = new int[i17];
                 if (intArray == null) {
                     intArray = iArr;
@@ -371,11 +376,6 @@ public final class q0 implements f, j4.g, c9.e, h5.j {
                 }
                 return new p2(s0Var2, bundle.getBoolean(p2.f9377r, false), intArray, booleanArray);
         }
-    }
-
-    @Override
-    public boolean d(int i10, int i11, int i12, int i13, int i14) {
-        return false;
     }
 
     @Override

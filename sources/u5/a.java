@@ -10,8 +10,8 @@ import java.util.regex.Pattern;
 import org.json.JSONObject;
 import org.telegram.ui.yh;
 public abstract class a {
-    public static final Pattern f48347a = Pattern.compile("urn:x-cast:[-A-Za-z0-9_]+(\\.[-A-Za-z0-9_]+)*");
-    public static final Random f48348b = new Random(SystemClock.elapsedRealtime());
+    public static final Pattern f48383a = Pattern.compile("urn:x-cast:[-A-Za-z0-9_]+(\\.[-A-Za-z0-9_]+)*");
+    public static final Random f48384b = new Random(SystemClock.elapsedRealtime());
 
     public static String a(String str, JSONObject jSONObject) {
         if (jSONObject != null && jSONObject.has(str)) {

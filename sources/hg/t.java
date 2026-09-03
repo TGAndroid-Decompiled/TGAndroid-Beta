@@ -9,8 +9,8 @@ import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.m81;
-public final class t extends m81 {
+import org.telegram.ui.Components.l81;
+public final class t extends l81 {
     public final Path Q;
     public final Paint R;
     public boolean S;
@@ -39,7 +39,7 @@ public final class t extends m81 {
         float f10;
         x xVar = this.f7608b0;
         t tVar = xVar.f7661b;
-        int v02 = k6.v0(k6.f21731h5, this.W);
+        int v02 = k6.v0(k6.f21733h5, this.W);
         Paint paint = this.R;
         paint.setColor(v02);
         if (this.S) {
@@ -54,7 +54,7 @@ public final class t extends m81 {
             int dp = AndroidUtilities.dp(10.0f) + Math.max(i12, i13 - i10);
             f2 f2Var = this.V;
             int i14 = f2Var.f7485q0;
-            if (f2Var.f7479j0.f33725c == 1.0f) {
+            if (f2Var.f7479j0.f33763c == 1.0f) {
                 i11 = AndroidUtilities.statusBarHeight;
             } else {
                 i11 = 0;

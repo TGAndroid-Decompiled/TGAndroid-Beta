@@ -13,23 +13,23 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.np;
 public final class c extends jg.d {
-    public final np f12533r;
-    public TLRPC.TL_help_country f12534s;
+    public final np f12535r;
+    public TLRPC.TL_help_country f12536s;
     public final TextPaint v;
-    public final eh.m f12535w;
+    public final eh.m f12537w;
 
     public c(Context context, g6 g6Var) {
         super(context, g6Var);
         int i10;
         TextPaint textPaint = new TextPaint();
         this.v = textPaint;
-        this.f12535w = new eh.m(this, 24);
+        this.f12537w = new eh.m(this, 24);
         textPaint.setTextSize(AndroidUtilities.dp(20.0f));
         this.f10022f.setVisibility(8);
         this.f10020c.setVisibility(8);
         np npVar = new np(context, 21, g6Var);
-        this.f12533r = npVar;
-        npVar.b(k6.B5, k6.f21768j7, k6.C5);
+        this.f12535r = npVar;
+        npVar.b(k6.B5, k6.f21770j7, k6.C5);
         npVar.setDrawUnchecked(true);
         npVar.setDrawBackgroundAsArc(10);
         addView(npVar);
@@ -54,7 +54,7 @@ public final class c extends jg.d {
 
     @Override
     public final void c(boolean z4, boolean z10) {
-        np npVar = this.f12533r;
+        np npVar = this.f12535r;
         if (npVar.getVisibility() == 0) {
             npVar.a(z4, z10);
         }
@@ -126,9 +126,9 @@ public final class c extends jg.d {
     }
 
     public final void f() {
-        TLRPC.TL_help_country tL_help_country = this.f12534s;
+        TLRPC.TL_help_country tL_help_country = this.f12536s;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        CharSequence replaceWithRestrictedEmoji = Emoji.replaceWithRestrictedEmoji(LocaleController.getLanguageFlag(tL_help_country.iso2), this.v.getFontMetricsInt(), 0, this.f12535w);
+        CharSequence replaceWithRestrictedEmoji = Emoji.replaceWithRestrictedEmoji(LocaleController.getLanguageFlag(tL_help_country.iso2), this.v.getFontMetricsInt(), 0, this.f12537w);
         if (replaceWithRestrictedEmoji != null) {
             spannableStringBuilder.append(replaceWithRestrictedEmoji).append((CharSequence) " ");
             spannableStringBuilder.setSpan(new b(16), replaceWithRestrictedEmoji.length(), replaceWithRestrictedEmoji.length() + 1, 0);
@@ -145,7 +145,7 @@ public final class c extends jg.d {
     }
 
     public TLRPC.TL_help_country getCountry() {
-        return this.f12534s;
+        return this.f12536s;
     }
 
     @Override

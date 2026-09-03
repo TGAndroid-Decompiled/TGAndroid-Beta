@@ -32,10 +32,10 @@ public final class n10 implements View.OnLongClickListener {
                 c1Var2.K = fragmentContextView.h instanceof org.telegram.ui.xn;
                 c1Var2.C.setShader(null);
                 c1Var2.h = null;
-                Bitmap bitmap = c1Var2.f21228f;
+                Bitmap bitmap = c1Var2.f21230f;
                 if (bitmap != null) {
                     bitmap.recycle();
-                    c1Var2.f21228f = null;
+                    c1Var2.f21230f = null;
                 }
                 fragmentContextView.C.B(org.telegram.ui.ActionBar.k6.w0(null, i11, false));
                 fragmentContextView.C.N();
@@ -57,15 +57,15 @@ public final class n10 implements View.OnLongClickListener {
                 return true;
             case 1:
                 xd0 xd0Var = (xd0) obj;
-                xd0Var.f33048r.setText("");
-                td0.a(xd0Var.f33049s, true);
-                Drawable drawable = xd0Var.f33042a;
+                xd0Var.f33042r.setText("");
+                td0.a(xd0Var.f33043s, true);
+                Drawable drawable = xd0Var.f33036a;
                 if (drawable instanceof fc0) {
                     ((fc0) drawable).y();
                 }
                 return true;
             default:
-                return mq0.n((mq0) obj);
+                return lq0.n((lq0) obj);
         }
     }
 }

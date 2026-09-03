@@ -29,7 +29,7 @@ public abstract class b extends r0.b {
         this.f8971i = view;
         this.h = (AccessibilityManager) view.getContext().getSystemService("accessibility");
         view.setFocusable(true);
-        WeakHashMap weakHashMap = j0.f46438a;
+        WeakHashMap weakHashMap = j0.f46469a;
         if (view.getImportantForAccessibility() == 0) {
             view.setImportantForAccessibility(1);
         }
@@ -45,7 +45,7 @@ public abstract class b extends r0.b {
 
     @Override
     public final void c(View view, d dVar) {
-        this.f46401a.onInitializeAccessibilityNodeInfo(view, dVar.f46850a);
+        this.f46432a.onInitializeAccessibilityNodeInfo(view, dVar.f46881a);
     }
 
     public final AccessibilityEvent e(int i10, int i11) {
@@ -54,7 +54,7 @@ public abstract class b extends r0.b {
             AccessibilityEvent obtain = AccessibilityEvent.obtain(i11);
             d j10 = j(i10);
             obtain.getText().add(j10.g());
-            AccessibilityNodeInfo accessibilityNodeInfo = j10.f46850a;
+            AccessibilityNodeInfo accessibilityNodeInfo = j10.f46881a;
             obtain.setContentDescription(accessibilityNodeInfo.getContentDescription());
             obtain.setScrollable(accessibilityNodeInfo.isScrollable());
             obtain.setPassword(accessibilityNodeInfo.isPassword());
@@ -126,7 +126,7 @@ public abstract class b extends r0.b {
         if (i10 == -1) {
             AccessibilityNodeInfo obtain = AccessibilityNodeInfo.obtain(view);
             d dVar = new d(obtain);
-            WeakHashMap weakHashMap = j0.f46438a;
+            WeakHashMap weakHashMap = j0.f46469a;
             view.onInitializeAccessibilityNodeInfo(obtain);
             ArrayList arrayList = new ArrayList();
             h(arrayList);
@@ -135,7 +135,7 @@ public abstract class b extends r0.b {
             }
             int size = arrayList.size();
             for (int i11 = 0; i11 < size; i11++) {
-                dVar.f46850a.addChild(view, ((Integer) arrayList.get(i11)).intValue());
+                dVar.f46881a.addChild(view, ((Integer) arrayList.get(i11)).intValue());
             }
             return dVar;
         }
@@ -159,7 +159,7 @@ public abstract class b extends r0.b {
             if ((actions & 64) == 0) {
                 if ((actions & 128) == 0) {
                     obtain2.setPackageName(view.getContext().getPackageName());
-                    dVar2.f46851b = i10;
+                    dVar2.f46882b = i10;
                     obtain2.setSource(view, i10);
                     if (this.f8973k == i10) {
                         obtain2.setAccessibilityFocused(true);

@@ -4,20 +4,20 @@ import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class db extends au0 {
-    public final sb f36171a;
+public final class db extends fu0 {
+    public final sb f36141a;
 
     public db(sb sbVar) {
-        this.f36171a = sbVar;
+        this.f36141a = sbVar;
     }
 
     @Override
-    public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z4, boolean z10) {
+    public final qu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z4, boolean z10) {
         org.telegram.ui.Cells.v0 v0Var;
         MessageObject messageObject2;
         org.telegram.ui.Cells.t1 t1Var;
         MessageObject messageObject3;
-        sb sbVar = this.f36171a;
+        sb sbVar = this.f36141a;
         int childCount = sbVar.B.getChildCount();
         int i11 = 0;
         while (true) {
@@ -53,15 +53,15 @@ public final class db extends au0 {
             if (imageReceiver != null) {
                 int[] iArr = new int[2];
                 childAt.getLocationInWindow(iArr);
-                lu0 lu0Var = new lu0();
-                lu0Var.f38865b = iArr[0];
-                lu0Var.f38866c = iArr[1];
-                lu0Var.d = sbVar.B;
-                lu0Var.f38864a = imageReceiver;
-                lu0Var.f38867e = imageReceiver.getBitmapSafe();
-                lu0Var.h = imageReceiver.getRoundRadius(true);
-                lu0Var.f38873l = true;
-                return lu0Var;
+                qu0 qu0Var = new qu0();
+                qu0Var.f40679b = iArr[0];
+                qu0Var.f40680c = iArr[1];
+                qu0Var.d = sbVar.B;
+                qu0Var.f40678a = imageReceiver;
+                qu0Var.f40681e = imageReceiver.getBitmapSafe();
+                qu0Var.h = imageReceiver.getRoundRadius(true);
+                qu0Var.f40687l = true;
+                return qu0Var;
             }
             i11++;
         }

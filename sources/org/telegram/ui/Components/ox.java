@@ -15,7 +15,7 @@ public final class ox extends lz {
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         if (i10 == 0) {
-            this.d.f29271c0 = false;
+            this.d.f29273c0 = false;
         }
         super.a(recyclerView, i10);
     }
@@ -27,16 +27,16 @@ public final class ox extends lz {
         ly lyVar = mzVar.P;
         lx lxVar = mzVar.N;
         mzVar.W(lxVar.I0());
-        if (Build.VERSION.SDK_INT >= 31 && (eVar = mzVar.f29287g2) != null) {
+        if (Build.VERSION.SDK_INT >= 31 && (eVar = mzVar.f29289g2) != null) {
             eVar.f(i10, i11);
             mzVar.C();
         }
         super.b(recyclerView, i10, i11);
         if (lyVar != null && mzVar.M.getAdapter() == lyVar) {
-            ly lyVar2 = lyVar.f28849x.f28473a;
+            ly lyVar2 = lyVar.f28901x.f28513a;
             if (!lyVar2.C.S.C && !lyVar2.B) {
                 if (lxVar.N0() + 20 > lyVar.h()) {
-                    ky kyVar = lyVar.f28849x;
+                    ky kyVar = lyVar.f28901x;
                     Objects.requireNonNull(kyVar);
                     AndroidUtilities.runOnUIThread(new qw(kyVar, 1));
                 }

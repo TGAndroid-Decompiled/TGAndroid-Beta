@@ -9,7 +9,7 @@ public abstract class m {
 
     public static boolean a(w wVar) {
         wVar.getClass();
-        String h = wVar.h(r8.d.f46738c);
+        String h = wVar.h(r8.d.f46769c);
         if (h != null && h.startsWith("WEBVTT")) {
             return true;
         }
@@ -43,6 +43,6 @@ public abstract class m {
             return;
         }
         wVar.F(i10);
-        throw r1.a("Expected WEBVTT. Got " + wVar.h(r8.d.f46738c), null);
+        throw r1.a("Expected WEBVTT. Got " + wVar.h(r8.d.f46769c), null);
     }
 }

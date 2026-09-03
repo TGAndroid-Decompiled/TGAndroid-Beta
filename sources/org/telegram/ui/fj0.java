@@ -16,17 +16,17 @@ public final class fj0 extends lg.k {
         super.onLayout(z4, i10, i11, i12, i13);
         int dp = AndroidUtilities.dp(64.0f) + getMeasuredHeight();
         ij0 ij0Var = this.H;
-        ij0Var.f37878i0 = dp;
-        ij0Var.f37877h0.G();
+        ij0Var.f37727i0 = dp;
+        ij0Var.f37726h0.G();
         if (this.G != ij0Var.isKeyboardVisible()) {
             boolean isKeyboardVisible = ij0Var.isKeyboardVisible();
             this.G = isKeyboardVisible;
             if (isKeyboardVisible) {
-                org.telegram.ui.Components.tl0 tl0Var = ij0Var.d;
+                org.telegram.ui.Components.sl0 sl0Var = ij0Var.d;
                 xh.o oVar = new xh.o(ij0Var.getContext(), 2, 0.6f);
                 oVar.f5805a = 1;
-                oVar.f50659p = AndroidUtilities.dp(36.0f);
-                tl0Var.getLayoutManager().w0(oVar);
+                oVar.f50695p = AndroidUtilities.dp(36.0f);
+                sl0Var.getLayoutManager().w0(oVar);
             }
         }
     }

@@ -4,8 +4,8 @@ public final class q2 implements g {
     public final s8.v f9394a;
 
     static {
-        s8.t tVar = s8.v.f47143b;
-        f9393b = new q2(s8.i0.f47108e);
+        s8.t tVar = s8.v.f47174b;
+        f9393b = new q2(s8.i0.f47139e);
         int i10 = h5.d0.f7237a;
         Integer.toString(0, 36);
     }
@@ -29,7 +29,7 @@ public final class q2 implements g {
                 if (i12 >= length) {
                     break;
                 } else if (zArr[i12]) {
-                    if (p2Var.f9379b.f16573c == i10) {
+                    if (p2Var.f9379b.f16575c == i10) {
                         return true;
                     }
                 } else {

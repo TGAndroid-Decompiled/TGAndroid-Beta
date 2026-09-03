@@ -30,15 +30,15 @@ import org.telegram.ui.ActionBar.l5;
 import org.telegram.ui.Cells.g4;
 import org.telegram.ui.Cells.m4;
 import org.telegram.ui.Cells.z6;
-import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.e51;
 import org.telegram.ui.Components.g90;
-import org.telegram.ui.Components.jn;
+import org.telegram.ui.Components.in;
 import org.telegram.ui.Components.n90;
 import org.telegram.ui.Components.oq;
-import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.u00;
 import org.telegram.ui.yh;
-public final class n0 extends sl0 {
+public final class n0 extends rl0 {
     public final v0 f6410c;
 
     public n0(v0 v0Var) {
@@ -132,7 +132,7 @@ public final class n0 extends sl0 {
                         } else if (i12 == 11 || i12 == 34) {
                             TLRPC.User user = (TLRPC.User) v0Var.f6604y0.get(i10 - v0Var.f6592l0);
                             ArrayList arrayList = v0Var.f6605z0;
-                            if (arrayList != null && arrayList.contains(Long.valueOf(user.f20990id))) {
+                            if (arrayList != null && arrayList.contains(Long.valueOf(user.f20992id))) {
                                 z4 = true;
                             } else {
                                 z4 = false;
@@ -228,7 +228,7 @@ public final class n0 extends sl0 {
                         if (indexOf >= 0) {
                             spannableStringBuilder = new SpannableStringBuilder(string);
                             SpannableString spannableString = new SpannableString(android.support.v4.media.a.m(q0Var.f6510e.f6484e, "", new StringBuilder()));
-                            spannableString.setSpan(new g51(AndroidUtilities.bold()), 0, spannableString.length(), 33);
+                            spannableString.setSpan(new e51(AndroidUtilities.bold()), 0, spannableString.length(), 33);
                             spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) spannableString);
                         }
                         l5Var.l(spannableStringBuilder, false);
@@ -243,7 +243,7 @@ public final class n0 extends sl0 {
                             if (indexOf2 >= 0) {
                                 spannableStringBuilder2 = new SpannableStringBuilder(str4);
                                 SpannableString spannableString2 = new SpannableString(q0Var.f6510e.f6483c);
-                                spannableString2.setSpan(new g51(AndroidUtilities.bold()), 0, spannableString2.length(), 33);
+                                spannableString2.setSpan(new e51(AndroidUtilities.bold()), 0, spannableString2.length(), 33);
                                 spannableStringBuilder2.replace(indexOf2, indexOf2 + 2, (CharSequence) spannableString2);
                             }
                             l5Var.l(spannableStringBuilder2, false);
@@ -267,7 +267,7 @@ public final class n0 extends sl0 {
         if (currentChannel == chat2) {
             z10 = true;
         }
-        nVar.f23188r.a(contains, z10);
+        nVar.f23190r.a(contains, z10);
     }
 
     @Override
@@ -301,7 +301,7 @@ public final class n0 extends sl0 {
                 u0Var = new org.telegram.ui.Cells.n(context, new m0(this), true, 9);
                 break;
             case 2:
-                int i19 = k6.f21605a7;
+                int i19 = k6.f21607a7;
                 g6Var = ((h3) v0Var).resourcesProvider;
                 u0Var = new z6(context, k6.v0(i19, g6Var), 0);
                 break;
@@ -332,7 +332,7 @@ public final class n0 extends sl0 {
                 u0Var = u00Var;
                 break;
             case 6:
-                u0Var = new jn(v0Var.getContext(), 1);
+                u0Var = new in(v0Var.getContext(), 1);
                 break;
             case 7:
                 FrameLayout frameLayout = new FrameLayout(v0Var.getContext());
@@ -357,10 +357,10 @@ public final class n0 extends sl0 {
                 textView.setSingleLine(true);
                 frameLayout.addView(textView, c6.d(-1, -2.0f, 0, 11.0f, 0.0f, 11.0f, 0.0f));
                 int dp4 = AndroidUtilities.dp(8.0f);
-                int i20 = k6.f21678e7;
+                int i20 = k6.f21680e7;
                 g6Var3 = ((h3) v0Var).resourcesProvider;
                 int v02 = k6.v0(i20, g6Var3);
-                int i21 = k6.f21750i6;
+                int i21 = k6.f21752i6;
                 g6Var4 = ((h3) v0Var).resourcesProvider;
                 int k10 = i0.a.k(k6.v0(i21, g6Var4), 76);
                 textView.setBackground(k6.i0(dp4, dp4, dp4, dp4, v02, k10, k10));
@@ -404,7 +404,7 @@ public final class n0 extends sl0 {
                 if (v0Var.N0 != null) {
                     ImageView imageView = new ImageView(v0Var.getContext());
                     imageView.setImageResource(R.drawable.msg_stats);
-                    int i23 = k6.f21766j5;
+                    int i23 = k6.f21768j5;
                     g6Var6 = ((h3) v0Var).resourcesProvider;
                     imageView.setColorFilter(k6.v0(i23, g6Var6));
                     imageView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
@@ -471,7 +471,7 @@ public final class n0 extends sl0 {
                 spannableStringBuilder.setSpan(new l0(this, 0), 0, spannableStringBuilder.length(), 33);
                 SpannableString spannableString = new SpannableString(">");
                 Drawable mutate = v0Var.getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();
-                int i24 = k6.f21720gc;
+                int i24 = k6.f21722gc;
                 mutate.setColorFilter(new PorterDuffColorFilter(i24, PorterDuff.Mode.SRC_IN));
                 oq oqVar = new oq(0, mutate);
                 oqVar.setColorKey(i24);
@@ -484,7 +484,7 @@ public final class n0 extends sl0 {
                 g90Var.setLineSpacing(AndroidUtilities.dp(3.0f), 1.0f);
                 g6Var8 = ((h3) v0Var).resourcesProvider;
                 if (g6Var8 instanceof oh.b) {
-                    int i25 = k6.f22036y6;
+                    int i25 = k6.f22038y6;
                     g6Var11 = ((h3) v0Var).resourcesProvider;
                     g90Var.setTextColor(k6.v0(i25, g6Var11));
                 } else {

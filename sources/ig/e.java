@@ -29,10 +29,10 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.p2;
 import org.telegram.ui.Components.p9;
-import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.z8;
 import org.telegram.ui.yh;
-public abstract class e extends sl0 {
+public abstract class e extends rl0 {
     public final g6 f8080c;
     public boolean d;
     public p2 f8081e;
@@ -132,7 +132,7 @@ public abstract class e extends sl0 {
                         } else {
                             string = LocaleController.getString(R.string.BoostingSendLinkToFriends);
                         }
-                        f0Var.setText(AndroidUtilities.replaceSingleTag(string, k6.f21720gc, 0, new c(this, 1), this.f8080c));
+                        f0Var.setText(AndroidUtilities.replaceSingleTag(string, k6.f21722gc, 0, new c(this, 1), this.f8080c));
                         return;
                     } else {
                         Date date = new Date(this.f8082f.used_date * 1000);
@@ -153,9 +153,9 @@ public abstract class e extends sl0 {
                 e0Var.f10031e.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date2), LocaleController.getInstance().getFormatterDay().format(date2)));
                 TextView textView3 = e0Var.d;
                 if (tL_payments_checkedGiftCode3.via_giveaway) {
-                    i11 = k6.f21820m5;
+                    i11 = k6.f21822m5;
                 } else {
-                    i11 = k6.f21766j5;
+                    i11 = k6.f21768j5;
                 }
                 textView3.setTextColor(k6.v0(i11, g6Var));
                 TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_payments_checkedGiftCode3.from_id)));
@@ -165,7 +165,7 @@ public abstract class e extends sl0 {
                     spannableStringBuilder.append((CharSequence) "**");
                     spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.BoostingGiveaway));
                     spannableStringBuilder.append((CharSequence) "**");
-                    textView3.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder.toString(), k6.f21720gc, 0, new Runnable() {
+                    textView3.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder.toString(), k6.f21722gc, 0, new Runnable() {
                         @Override
                         public final void run() {
                             switch (r3) {
@@ -209,7 +209,7 @@ public abstract class e extends sl0 {
                     spannableStringBuilder2.append((CharSequence) "**");
                     spannableStringBuilder2.append((CharSequence) chat.title);
                     spannableStringBuilder2.append((CharSequence) "**");
-                    textView.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder2.toString(), k6.f21720gc, 0, new gf.c(18, h0Var, chat), g6Var), textView.getPaint().getFontMetricsInt(), false));
+                    textView.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder2.toString(), k6.f21722gc, 0, new gf.c(18, h0Var, chat), g6Var), textView.getPaint().getFontMetricsInt(), false));
                     p9Var2.e(chat, new z8(chat));
                     frameLayout.setOnClickListener(new n(10, h0Var, chat));
                 } else {
@@ -235,7 +235,7 @@ public abstract class e extends sl0 {
                     spannableStringBuilder3.append((CharSequence) "**");
                     spannableStringBuilder3.append((CharSequence) LocaleController.getString(R.string.BoostingIncompleteGiveaway));
                     spannableStringBuilder3.append((CharSequence) "**");
-                    textView3.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder3.toString(), k6.f21720gc, 0, new Runnable() {
+                    textView3.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder3.toString(), k6.f21722gc, 0, new Runnable() {
                         @Override
                         public final void run() {
                             switch (r3) {
@@ -249,7 +249,7 @@ public abstract class e extends sl0 {
                         }
                     }, g6Var));
                     textView2.setText(LocaleController.getString(R.string.BoostingNoRecipient));
-                    textView2.setTextColor(k6.v0(k6.f21766j5, g6Var));
+                    textView2.setTextColor(k6.v0(k6.f21768j5, g6Var));
                     ((ViewGroup.MarginLayoutParams) textView2.getLayoutParams()).leftMargin = 0;
                     ((ViewGroup.MarginLayoutParams) textView2.getLayoutParams()).rightMargin = 0;
                     p9Var.setVisibility(8);
@@ -260,7 +260,7 @@ public abstract class e extends sl0 {
                         spannableStringBuilder4.append((CharSequence) "**");
                         spannableStringBuilder4.append((CharSequence) UserObject.getFirstName(user2));
                         spannableStringBuilder4.append((CharSequence) "**");
-                        textView2.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder4.toString(), k6.f21720gc, 0, new Runnable() {
+                        textView2.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder4.toString(), k6.f21722gc, 0, new Runnable() {
                             @Override
                             public final void run() {
                                 switch (r3) {
@@ -322,7 +322,7 @@ public abstract class e extends sl0 {
             sVar.f10064c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
             SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingLinkAllowsToUser));
             final TLRPC.User user3 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j10));
-            sVar.d.setText(AndroidUtilities.replaceCharSequence("%1$s", replaceTags, AndroidUtilities.replaceSingleTag("**" + UserObject.getUserName(user3) + "**", k6.f21720gc, 2, new Runnable() {
+            sVar.d.setText(AndroidUtilities.replaceCharSequence("%1$s", replaceTags, AndroidUtilities.replaceSingleTag("**" + UserObject.getUserName(user3) + "**", k6.f21722gc, 2, new Runnable() {
                 @Override
                 public final void run() {
                     switch (r3) {

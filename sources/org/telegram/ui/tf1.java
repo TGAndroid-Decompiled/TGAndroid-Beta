@@ -1,35 +1,21 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_account;
+import java.util.Iterator;
 public final class tf1 implements org.telegram.ui.ActionBar.c2 {
-    public final int f41609a;
-    public final TwoStepVerificationActivity f41610b;
+    public final vf1 f41533a;
 
-    public tf1(TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f41609a = i10;
-        this.f41610b = twoStepVerificationActivity;
+    public tf1(vf1 vf1Var) {
+        this.f41533a = vf1Var;
     }
 
     @Override
-    public final void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f41609a) {
-            case 0:
-                this.f41610b.finishFragment();
-                return;
-            case 1:
-                TL_account.declinePasswordReset declinepasswordreset = new TL_account.declinePasswordReset();
-                TwoStepVerificationActivity twoStepVerificationActivity = this.f41610b;
-                twoStepVerificationActivity.getConnectionsManager().sendRequest(declinepasswordreset, new uf1(twoStepVerificationActivity, 2));
-                return;
-            case 2:
-                this.f41610b.k0();
-                return;
-            case 3:
-                this.f41610b.u0();
-                return;
-            default:
-                this.f41610b.u0();
-                return;
+    public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        yf1 yf1Var = this.f41533a.f42107a;
+        Iterator it = yf1Var.f43618e.iterator();
+        while (it.hasNext()) {
+            yf1.U(yf1Var, ((Integer) it.next()).intValue());
         }
+        yf1Var.f43618e.clear();
+        yf1Var.V();
     }
 }

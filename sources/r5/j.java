@@ -9,15 +9,15 @@ import com.google.android.gms.cast.CastDevice;
 import java.util.HashSet;
 import java.util.Iterator;
 import l7.w0;
-import n7.qa;
 import org.telegram.ui.Cells.f1;
+import q5.f0;
 public final class j extends a7.c {
-    public final int f46721b = 0;
-    public final Object f46722c;
+    public final int f46752b = 0;
+    public final Object f46753c;
 
     public j(androidx.emoji2.text.w wVar) {
         super("com.google.android.gms.cast.framework.ICastStateListener", 1);
-        this.f46722c = wVar;
+        this.f46753c = wVar;
     }
 
     @Override
@@ -28,8 +28,8 @@ public final class j extends a7.c {
         String str;
         CastDevice castDevice;
         CastDevice castDevice2;
-        int i12 = this.f46721b;
-        Object obj = this.f46722c;
+        int i12 = this.f46752b;
+        Object obj = this.f46753c;
         switch (i12) {
             case 0:
                 androidx.emoji2.text.w wVar = (androidx.emoji2.text.w) obj;
@@ -80,7 +80,7 @@ public final class j extends a7.c {
                         }
                         com.google.android.gms.internal.cast.s.b(parcel);
                         c cVar = (c) fVar;
-                        q qVar = cVar.f46704e;
+                        q qVar = cVar.f46735e;
                         if (qVar != null) {
                             try {
                                 o oVar = (o) qVar;
@@ -89,7 +89,7 @@ public final class j extends a7.c {
                                 M0.writeInt(0);
                                 oVar.Q0(M0, 6);
                             } catch (RemoteException e6) {
-                                c.f46702m.a(e6, "Unable to call %s on %s.", "disconnectFromDevice", q.class.getSimpleName());
+                                c.f46733m.a(e6, "Unable to call %s on %s.", "disconnectFromDevice", q.class.getSimpleName());
                             }
                             cVar.d(0);
                         }
@@ -98,11 +98,11 @@ public final class j extends a7.c {
                     case 5:
                         c cVar2 = (c) fVar;
                         b6.m.e("Must be called from the main thread.");
-                        s5.h hVar = cVar2.f46708j;
+                        s5.h hVar = cVar2.f46739j;
                         if (hVar == null) {
                             g10 = 0;
                         } else {
-                            g10 = hVar.g() - cVar2.f46708j.a();
+                            g10 = hVar.g() - cVar2.f46739j.a();
                         }
                         parcel2.writeNoException();
                         parcel2.writeLong(g10);
@@ -113,12 +113,12 @@ public final class j extends a7.c {
                         return true;
                     case 7:
                         com.google.android.gms.internal.cast.s.b(parcel);
-                        ((c) fVar).f46709k = CastDevice.e((Bundle) com.google.android.gms.internal.cast.s.a(parcel, Bundle.CREATOR));
+                        ((c) fVar).f46740k = CastDevice.e((Bundle) com.google.android.gms.internal.cast.s.a(parcel, Bundle.CREATOR));
                         parcel2.writeNoException();
                         return true;
                     case 8:
                         com.google.android.gms.internal.cast.s.b(parcel);
-                        ((c) fVar).f46709k = CastDevice.e((Bundle) com.google.android.gms.internal.cast.s.a(parcel, Bundle.CREATOR));
+                        ((c) fVar).f46740k = CastDevice.e((Bundle) com.google.android.gms.internal.cast.s.a(parcel, Bundle.CREATOR));
                         parcel2.writeNoException();
                         return true;
                     case 9:
@@ -127,26 +127,26 @@ public final class j extends a7.c {
                         CastDevice e10 = CastDevice.e((Bundle) com.google.android.gms.internal.cast.s.a(parcel, Bundle.CREATOR));
                         if (e10 != null) {
                             String str2 = e10.d;
-                            if (!e10.equals(cVar3.f46709k)) {
-                                if (!TextUtils.isEmpty(str2) && ((castDevice2 = cVar3.f46709k) == null || !TextUtils.equals(castDevice2.d, str2))) {
+                            if (!e10.equals(cVar3.f46740k)) {
+                                if (!TextUtils.isEmpty(str2) && ((castDevice2 = cVar3.f46740k) == null || !TextUtils.equals(castDevice2.d, str2))) {
                                     z4 = true;
                                 } else {
                                     z4 = false;
                                 }
-                                cVar3.f46709k = e10;
-                                u5.b bVar3 = c.f46702m;
+                                cVar3.f46740k = e10;
+                                u5.b bVar3 = c.f46733m;
                                 if (true != z4) {
                                     str = "unchanged";
                                 } else {
                                     str = "changed";
                                 }
                                 bVar3.b("update to device (%s) with name %s", e10, str);
-                                if (z4 && (castDevice = cVar3.f46709k) != null) {
+                                if (z4 && (castDevice = cVar3.f46740k) != null) {
                                     t5.h hVar2 = cVar3.h;
                                     if (hVar2 != null) {
                                         u5.b bVar4 = t5.h.v;
-                                        Log.i(bVar4.f48349a, bVar4.d("update Cast device to %s", castDevice));
-                                        hVar2.f48018o = castDevice;
+                                        Log.i(bVar4.f48385a, bVar4.d("update Cast device to %s", castDevice));
+                                        hVar2.f48054o = castDevice;
                                         hVar2.b();
                                     }
                                     Iterator it = new HashSet(cVar3.d).iterator();
@@ -179,7 +179,7 @@ public final class j extends a7.c {
                         parcel2.writeString(str3);
                         return true;
                     }
-                    boolean z10 = bVar5.f46693e;
+                    boolean z10 = bVar5.f46724e;
                     parcel2.writeNoException();
                     int i14 = com.google.android.gms.internal.cast.s.f3120a;
                     parcel2.writeInt(z10 ? 1 : 0);
@@ -212,12 +212,12 @@ public final class j extends a7.c {
                         }
                         String readString2 = parcel.readString();
                         com.google.android.gms.internal.cast.s.b(parcel);
-                        q5.e0 e0Var = cVar4.f46707i;
-                        if (e0Var != null && e0Var.F == 2) {
+                        f0 f0Var = cVar4.f46738i;
+                        if (f0Var != null && f0Var.F == 2) {
                             com.google.android.gms.common.api.internal.v e11 = com.google.android.gms.common.api.internal.w.e();
-                            e11.f2824c = new qa(29, e0Var, readString2);
+                            e11.f2824c = new q5.c0(0, f0Var, readString2);
                             e11.f2822a = 8409;
-                            e0Var.e(1, e11.e());
+                            f0Var.e(1, e11.e());
                         }
                         parcel2.writeNoException();
                         return true;
@@ -225,12 +225,12 @@ public final class j extends a7.c {
                     String readString3 = parcel.readString();
                     q5.i iVar = (q5.i) com.google.android.gms.internal.cast.s.a(parcel, q5.i.CREATOR);
                     com.google.android.gms.internal.cast.s.b(parcel);
-                    q5.e0 e0Var2 = cVar4.f46707i;
-                    if (e0Var2 != null && e0Var2.F == 2) {
+                    f0 f0Var2 = cVar4.f46738i;
+                    if (f0Var2 != null && f0Var2.F == 2) {
                         com.google.android.gms.common.api.internal.v e12 = com.google.android.gms.common.api.internal.w.e();
-                        e12.f2824c = new w0(e0Var2, readString3, iVar);
+                        e12.f2824c = new w0(f0Var2, readString3, iVar);
                         e12.f2822a = 8406;
-                        e0Var2.e(1, e12.e()).addOnCompleteListener(new org.telegram.ui.web.e0(this, 7));
+                        f0Var2.e(1, e12.e()).addOnCompleteListener(new org.telegram.ui.web.e0(this, 7));
                     }
                     parcel2.writeNoException();
                     return true;
@@ -238,12 +238,12 @@ public final class j extends a7.c {
                 String readString4 = parcel.readString();
                 String readString5 = parcel.readString();
                 com.google.android.gms.internal.cast.s.b(parcel);
-                q5.e0 e0Var3 = cVar4.f46707i;
-                if (e0Var3 != null && e0Var3.F == 2) {
+                f0 f0Var3 = cVar4.f46738i;
+                if (f0Var3 != null && f0Var3.F == 2) {
                     com.google.android.gms.common.api.internal.v e13 = com.google.android.gms.common.api.internal.w.e();
-                    e13.f2824c = new q5.b0(e0Var3, readString4, readString5, 0);
+                    e13.f2824c = new q5.b0(f0Var3, readString4, readString5, 0);
                     e13.f2822a = 8407;
-                    e0Var3.e(1, e13.e()).addOnCompleteListener(new f1(this, 15));
+                    f0Var3.e(1, e13.e()).addOnCompleteListener(new f1(this, 15));
                 }
                 parcel2.writeNoException();
                 return true;
@@ -267,21 +267,21 @@ public final class j extends a7.c {
 
     public j(com.google.android.gms.internal.cast.e eVar) {
         super("com.google.android.gms.cast.framework.ISessionProvider", 1);
-        this.f46722c = eVar;
+        this.f46753c = eVar;
     }
 
     public j(c cVar) {
         super("com.google.android.gms.cast.framework.ICastConnectionController", 1);
-        this.f46722c = cVar;
+        this.f46753c = cVar;
     }
 
     public j(f fVar) {
         super("com.google.android.gms.cast.framework.ISessionProxy", 1);
-        this.f46722c = fVar;
+        this.f46753c = fVar;
     }
 
     public j(t5.b bVar) {
         super("com.google.android.gms.cast.framework.media.internal.IFetchBitmapTaskProgressPublisher", 1);
-        this.f46722c = bVar;
+        this.f46753c = bVar;
     }
 }

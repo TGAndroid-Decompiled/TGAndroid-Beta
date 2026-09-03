@@ -6,17 +6,17 @@ import android.widget.FrameLayout;
 import k7.c6;
 import org.telegram.messenger.AndroidUtilities;
 public final class e extends FrameLayout {
-    public final xg.f f49283a;
+    public final xg.f f49319a;
 
     public e(Context context) {
         super(context);
         ?? view = new View(context);
-        this.f49283a = view;
+        this.f49319a = view;
         addView((View) view, c6.g());
     }
 
     public final void a(og.a aVar, rg.d dVar) {
-        xg.f fVar = this.f49283a;
+        xg.f fVar = this.f49319a;
         fVar.b(aVar, dVar);
         fVar.setIgnoreFastWay(true);
         fVar.setFadeHeightTop(AndroidUtilities.dp(48.0f));
@@ -26,6 +26,6 @@ public final class e extends FrameLayout {
     @Override
     public final void onViewAdded(View view) {
         super.onViewAdded(view);
-        bringChildToFront(this.f49283a);
+        bringChildToFront(this.f49319a);
     }
 }

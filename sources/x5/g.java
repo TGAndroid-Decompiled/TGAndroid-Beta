@@ -9,20 +9,20 @@ import android.util.Log;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import org.telegram.ui.zy;
-import q5.g0;
+import q5.c0;
 public final class g implements Runnable {
-    public final int f50416a;
-    public final i f50417b;
+    public final int f50452a;
+    public final i f50453b;
 
     public g(i iVar, int i10) {
-        this.f50416a = i10;
-        this.f50417b = iVar;
+        this.f50452a = i10;
+        this.f50453b = iVar;
     }
 
     private final void a() {
-        i iVar = this.f50417b;
+        i iVar = this.f50453b;
         synchronized (iVar) {
-            if (iVar.f50419a == 1) {
+            if (iVar.f50455a == 1) {
                 iVar.a("Timed out while binding");
             }
         }
@@ -30,52 +30,52 @@ public final class g implements Runnable {
 
     @Override
     public final void run() {
-        switch (this.f50416a) {
+        switch (this.f50452a) {
             case 0:
                 break;
             case 1:
                 a();
                 return;
             default:
-                this.f50417b.a("Service disconnected");
+                this.f50453b.a("Service disconnected");
                 return;
         }
         while (true) {
-            i iVar = this.f50417b;
+            i iVar = this.f50453b;
             synchronized (iVar) {
                 try {
-                    if (iVar.f50419a == 2) {
+                    if (iVar.f50455a == 2) {
                         if (iVar.d.isEmpty()) {
                             iVar.c();
                             return;
                         }
                         j jVar = (j) iVar.d.poll();
-                        iVar.f50422e.put(jVar.f50424a, jVar);
-                        ((ScheduledExecutorService) iVar.f50423f.f50431c).schedule(new zy(iVar, jVar, false, 12), 30L, TimeUnit.SECONDS);
+                        iVar.f50458e.put(jVar.f50460a, jVar);
+                        ((ScheduledExecutorService) iVar.f50459f.f50467c).schedule(new zy(iVar, jVar, false, 12), 30L, TimeUnit.SECONDS);
                         if (Log.isLoggable("MessengerIpcClient", 3)) {
                             Log.d("MessengerIpcClient", "Sending ".concat(String.valueOf(jVar)));
                         }
-                        k kVar = iVar.f50423f;
-                        Messenger messenger = iVar.f50420b;
-                        int i10 = jVar.f50426c;
+                        k kVar = iVar.f50459f;
+                        Messenger messenger = iVar.f50456b;
+                        int i10 = jVar.f50462c;
                         Message obtain = Message.obtain();
                         obtain.what = i10;
-                        obtain.arg1 = jVar.f50424a;
+                        obtain.arg1 = jVar.f50460a;
                         obtain.replyTo = messenger;
                         Bundle bundle = new Bundle();
                         bundle.putBoolean("oneWay", jVar.a());
-                        bundle.putString("pkg", ((Context) kVar.f50430b).getPackageName());
+                        bundle.putString("pkg", ((Context) kVar.f50466b).getPackageName());
                         bundle.putBundle("data", jVar.d);
                         obtain.setData(bundle);
                         try {
-                            g0 g0Var = iVar.f50421c;
-                            Messenger messenger2 = (Messenger) g0Var.f44557b;
+                            c0 c0Var = iVar.f50457c;
+                            Messenger messenger2 = (Messenger) c0Var.f44559c;
                             if (messenger2 != null) {
                                 messenger2.send(obtain);
                             } else {
-                                f fVar = (f) g0Var.f44558c;
+                                f fVar = (f) c0Var.f44558b;
                                 if (fVar != null) {
-                                    Messenger messenger3 = fVar.f50415a;
+                                    Messenger messenger3 = fVar.f50451a;
                                     messenger3.getClass();
                                     messenger3.send(obtain);
                                 } else {

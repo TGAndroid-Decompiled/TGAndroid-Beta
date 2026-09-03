@@ -25,7 +25,7 @@ public final class qe implements Runnable {
                 xn.h1(this.f40445b, this.f40446c);
                 return;
             case 2:
-                l4.f(this.f40446c, r1.currentAccount, r1.U0, null, this.f40445b.f43136ba);
+                l4.f(this.f40446c, r1.currentAccount, r1.U0, null, this.f40445b.f43114ba);
                 return;
             case 3:
                 xn xnVar = this.f40445b;
@@ -33,7 +33,7 @@ public final class qe implements Runnable {
                 if (str != null) {
                     xnVar.getClass();
                     if (str.length() != 0) {
-                        xnVar.getMessagesController().sendBotStart(xnVar.f43178f, str);
+                        xnVar.getMessagesController().sendBotStart(xnVar.f43156f, str);
                         return;
                     }
                 }

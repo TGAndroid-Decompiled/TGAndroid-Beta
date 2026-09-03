@@ -42,24 +42,24 @@ public final class g extends o4.a {
     public long O;
     public int P;
     public final c1 h;
-    public final boolean f46625i;
-    public final g5.l f46626j;
-    public final f1 f46627k;
-    public final z9.d f46628l;
-    public final o3.o f46629m;
-    public final ab.a f46630n;
-    public final s f46631o;
-    public final long f46632p;
-    public final long f46633q;
-    public final e0 f46634r;
-    public final o0 f46635s;
-    public final ai f46636t;
-    public final Object f46637u;
+    public final boolean f46656i;
+    public final g5.l f46657j;
+    public final f1 f46658k;
+    public final z9.d f46659l;
+    public final o3.o f46660m;
+    public final ab.a f46661n;
+    public final s f46662o;
+    public final long f46663p;
+    public final long f46664q;
+    public final e0 f46665r;
+    public final o0 f46666s;
+    public final ai f46667t;
+    public final Object f46668u;
     public final SparseArray v;
-    public final c f46638w;
-    public final c f46639x;
-    public final f1 f46640y;
-    public final n0 f46641z;
+    public final c f46669w;
+    public final c f46670x;
+    public final f1 f46671y;
+    public final n0 f46672z;
 
     static {
         l0.a("goog.exo.dash");
@@ -74,58 +74,58 @@ public final class g extends o4.a {
         this.G = uri;
         this.H = uri;
         this.I = null;
-        this.f46626j = lVar;
-        this.f46635s = o0Var;
-        this.f46627k = f1Var;
-        this.f46629m = oVar;
-        this.f46630n = aVar;
-        this.f46632p = j10;
-        this.f46633q = j11;
-        this.f46628l = dVar;
-        this.f46631o = new s(13);
-        this.f46625i = false;
-        this.f46634r = a(null);
-        this.f46637u = new Object();
+        this.f46657j = lVar;
+        this.f46666s = o0Var;
+        this.f46658k = f1Var;
+        this.f46660m = oVar;
+        this.f46661n = aVar;
+        this.f46663p = j10;
+        this.f46664q = j11;
+        this.f46659l = dVar;
+        this.f46662o = new s(13);
+        this.f46656i = false;
+        this.f46665r = a(null);
+        this.f46668u = new Object();
         this.v = new SparseArray();
-        this.f46640y = new f1(this, 13);
+        this.f46671y = new f1(this, 13);
         this.O = -9223372036854775807L;
         this.M = -9223372036854775807L;
-        this.f46636t = new ai(this, 10);
-        this.f46641z = new h4(this, 13);
-        this.f46638w = new Runnable(this) {
-            public final g f46615b;
+        this.f46667t = new ai(this, 10);
+        this.f46672z = new h4(this, 13);
+        this.f46669w = new Runnable(this) {
+            public final g f46646b;
 
             {
-                this.f46615b = this;
+                this.f46646b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f46615b.v();
+                        this.f46646b.v();
                         return;
                     default:
-                        this.f46615b.u(false);
+                        this.f46646b.u(false);
                         return;
                 }
             }
         };
-        this.f46639x = new Runnable(this) {
-            public final g f46615b;
+        this.f46670x = new Runnable(this) {
+            public final g f46646b;
 
             {
-                this.f46615b = this;
+                this.f46646b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f46615b.v();
+                        this.f46646b.v();
                         return;
                     default:
-                        this.f46615b.u(false);
+                        this.f46646b.u(false);
                         return;
                 }
             }
@@ -133,9 +133,9 @@ public final class g extends o4.a {
     }
 
     public static boolean s(s4.h hVar) {
-        List list = hVar.f46977c;
+        List list = hVar.f47008c;
         for (int i10 = 0; i10 < list.size(); i10++) {
-            int i11 = ((s4.a) list.get(i10)).f46941b;
+            int i11 = ((s4.a) list.get(i10)).f46972b;
             if (i11 == 1 || i11 == 2) {
                 return true;
             }
@@ -145,16 +145,16 @@ public final class g extends o4.a {
 
     @Override
     public final t b(v vVar, q qVar, long j10) {
-        int intValue = ((Integer) vVar.f16579a).intValue() - this.P;
+        int intValue = ((Integer) vVar.f16581a).intValue() - this.P;
         e0 a2 = a(vVar);
-        o3.l lVar = new o3.l(this.d.f16412c, 0, vVar);
+        o3.l lVar = new o3.l(this.d.f16414c, 0, vVar);
         int i10 = this.P + intValue;
         s4.c cVar = this.I;
         v0 v0Var = this.C;
         long j11 = this.M;
-        k3.k kVar = this.f16433g;
+        k3.k kVar = this.f16435g;
         h5.a.j(kVar);
-        b bVar = new b(i10, cVar, this.f46631o, intValue, this.f46627k, v0Var, this.f46629m, lVar, this.f46630n, a2, j11, this.f46641z, qVar, this.f46628l, this.f46640y, kVar);
+        b bVar = new b(i10, cVar, this.f46662o, intValue, this.f46658k, v0Var, this.f46660m, lVar, this.f46661n, a2, j11, this.f46672z, qVar, this.f46659l, this.f46671y, kVar);
         this.v.put(i10, bVar);
         return bVar;
     }
@@ -166,23 +166,23 @@ public final class g extends o4.a {
 
     @Override
     public final void j() {
-        this.f46641z.a();
+        this.f46672z.a();
     }
 
     @Override
     public final void l(v0 v0Var) {
         this.C = v0Var;
         Looper myLooper = Looper.myLooper();
-        k3.k kVar = this.f16433g;
+        k3.k kVar = this.f16435g;
         h5.a.j(kVar);
-        o3.o oVar = this.f46629m;
+        o3.o oVar = this.f46660m;
         oVar.h(myLooper, kVar);
         oVar.a();
-        if (this.f46625i) {
+        if (this.f46656i) {
             u(false);
             return;
         }
-        this.A = this.f46626j.createDataSource();
+        this.A = this.f46657j.createDataSource();
         this.B = new m0("DashMediaSource");
         this.E = d0.l(null);
         v();
@@ -191,14 +191,14 @@ public final class g extends o4.a {
     @Override
     public final void n(t tVar) {
         b bVar = (b) tVar;
-        o oVar = bVar.f46612x;
-        oVar.f46676r = true;
+        o oVar = bVar.f46643x;
+        oVar.f46707r = true;
         oVar.d.removeCallbacksAndMessages(null);
         for (q4.h hVar : bVar.E) {
             hVar.B(bVar);
         }
         bVar.D = null;
-        this.v.remove(bVar.f46603a);
+        this.v.remove(bVar.f46634a);
     }
 
     @Override
@@ -213,7 +213,7 @@ public final class g extends o4.a {
         }
         this.K = 0L;
         this.L = 0L;
-        if (this.f46625i) {
+        if (this.f46656i) {
             cVar = this.I;
         } else {
             cVar = null;
@@ -230,11 +230,11 @@ public final class g extends o4.a {
         this.N = 0;
         this.O = -9223372036854775807L;
         this.v.clear();
-        s sVar = this.f46631o;
+        s sVar = this.f46662o;
         ((HashMap) sVar.f4080a).clear();
         ((HashMap) sVar.f4081b).clear();
         ((HashMap) sVar.f4082c).clear();
-        this.f46629m.release();
+        this.f46660m.release();
     }
 
     public final void t() {
@@ -260,7 +260,7 @@ public final class g extends o4.a {
 
     public final void v() {
         Uri uri;
-        this.E.removeCallbacks(this.f46638w);
+        this.E.removeCallbacks(this.f46669w);
         if (this.B.c()) {
             return;
         }
@@ -268,14 +268,14 @@ public final class g extends o4.a {
             this.J = true;
             return;
         }
-        synchronized (this.f46637u) {
+        synchronized (this.f46668u) {
             uri = this.G;
         }
         this.J = false;
-        p0 p0Var = new p0(this.A, uri, 4, this.f46635s);
-        ai aiVar = this.f46636t;
-        this.f46630n.getClass();
+        p0 p0Var = new p0(this.A, uri, 4, this.f46666s);
+        ai aiVar = this.f46667t;
+        this.f46661n.getClass();
         this.B.f(p0Var, aiVar, 3);
-        this.f46634r.u(new o4.j(p0Var.f6892b), p0Var.f6893c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        this.f46665r.u(new o4.j(p0Var.f6892b), p0Var.f6893c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
     }
 }

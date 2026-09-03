@@ -4,17 +4,17 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.accessibility.AccessibilityNodeInfo;
 public final class c1 extends d1 {
-    public final b1 f21205b0;
-    public String f21206c0;
+    public final b1 f21207b0;
+    public String f21208c0;
 
     public c1(Context context, g6 g6Var) {
         super(context, g6Var);
-        this.f21206c0 = null;
+        this.f21208c0 = null;
         setFocusable(true);
         setFocusableInTouchMode(true);
         setImportantForAccessibility(1);
         b1 b1Var = new b1(this);
-        this.f21205b0 = b1Var;
+        this.f21207b0 = b1Var;
         setAccessibilityDelegate(b1Var);
     }
 
@@ -29,19 +29,19 @@ public final class c1 extends d1 {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f21205b0.e(this, accessibilityNodeInfo);
+        this.f21207b0.e(this, accessibilityNodeInfo);
     }
 
     @Override
     public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!super.performAccessibilityAction(i10, bundle) && !this.f21205b0.g(this, i10, bundle)) {
+        if (!super.performAccessibilityAction(i10, bundle) && !this.f21207b0.g(this, i10, bundle)) {
             return false;
         }
         return true;
     }
 
     public void setLabel(String str) {
-        this.f21206c0 = str;
+        this.f21208c0 = str;
     }
 
     @Override

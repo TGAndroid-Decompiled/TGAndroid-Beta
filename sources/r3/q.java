@@ -2,9 +2,9 @@ package r3;
 
 import h5.d0;
 public final class q implements s {
-    public final long[] f46579a;
-    public final long[] f46580b;
-    public final long f46581c;
+    public final long[] f46610a;
+    public final long[] f46611b;
+    public final long f46612c;
     public final boolean d;
 
     public q(long j10, long[] jArr, long[] jArr2) {
@@ -26,16 +26,16 @@ public final class q implements s {
         if (z10 && jArr2[0] > 0) {
             int i10 = length + 1;
             long[] jArr3 = new long[i10];
-            this.f46579a = jArr3;
+            this.f46610a = jArr3;
             long[] jArr4 = new long[i10];
-            this.f46580b = jArr4;
+            this.f46611b = jArr4;
             System.arraycopy(jArr, 0, jArr3, 1, length);
             System.arraycopy(jArr2, 0, jArr4, 1, length);
         } else {
-            this.f46579a = jArr;
-            this.f46580b = jArr2;
+            this.f46610a = jArr;
+            this.f46611b = jArr2;
         }
-        this.f46581c = j10;
+        this.f46612c = j10;
     }
 
     @Override
@@ -46,13 +46,13 @@ public final class q implements s {
     @Override
     public final r f(long j10) {
         if (!this.d) {
-            t tVar = t.f46584c;
+            t tVar = t.f46615c;
             return new r(tVar, tVar);
         }
-        long[] jArr = this.f46580b;
+        long[] jArr = this.f46611b;
         int e6 = d0.e(jArr, j10, true);
         long j11 = jArr[e6];
-        long[] jArr2 = this.f46579a;
+        long[] jArr2 = this.f46610a;
         t tVar2 = new t(j11, jArr2[e6]);
         if (j11 != j10 && e6 != jArr.length - 1) {
             int i10 = e6 + 1;
@@ -63,6 +63,6 @@ public final class q implements s {
 
     @Override
     public final long g() {
-        return this.f46581c;
+        return this.f46612c;
     }
 }

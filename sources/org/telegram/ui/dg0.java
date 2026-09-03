@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class dg0 implements Runnable {
-    public final int f36219a;
-    public final ng0 f36220b;
+    public final int f36184a;
+    public final ng0 f36185b;
 
     public dg0(ng0 ng0Var, int i10) {
-        this.f36219a = i10;
-        this.f36220b = ng0Var;
+        this.f36184a = i10;
+        this.f36185b = ng0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f36219a) {
+        switch (this.f36184a) {
             case 0:
-                ng0 ng0Var = this.f36220b;
-                rj0 rj0Var = ng0Var.f39427a;
+                ng0 ng0Var = this.f36185b;
+                rj0 rj0Var = ng0Var.f39343a;
                 og0 og0Var = ng0Var.S;
-                kg0 kg0Var = ng0Var.f39428b;
+                kg0 kg0Var = ng0Var.f39344b;
                 if (kg0Var != null) {
                     if (og0Var.Z) {
                         rj0Var.clearFocus();
@@ -37,18 +37,18 @@ public final class dg0 implements Runnable {
                 }
                 return;
             case 1:
-                ng0 ng0Var2 = this.f36220b;
+                ng0 ng0Var2 = this.f36185b;
                 ng0Var2.postDelayed(new dg0(ng0Var2, 2), 200L);
                 return;
             case 2:
-                this.f36220b.h(null);
+                this.f36185b.h(null);
                 return;
             case 3:
-                this.f36220b.t(true);
+                this.f36185b.t(true);
                 return;
             default:
-                ng0 ng0Var3 = this.f36220b;
-                og0.T0(ng0Var3.S, ng0Var3.f39428b);
+                ng0 ng0Var3 = this.f36185b;
+                og0.T0(ng0Var3.S, ng0Var3.f39344b);
                 return;
         }
     }

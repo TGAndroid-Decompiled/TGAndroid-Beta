@@ -53,7 +53,7 @@ public final class b extends d7 {
                             if (i14 == 3) {
                                 while (vVar.f() < f12) {
                                     int i15 = vVar.i(8);
-                                    Charset charset = d.f46736a;
+                                    Charset charset = d.f46767a;
                                     byte[] bArr = new byte[i15];
                                     vVar.k(i15, bArr);
                                     String str3 = new String(bArr, charset);
@@ -65,7 +65,7 @@ public final class b extends d7 {
                                 }
                             }
                         } else if (i12 == 21) {
-                            Charset charset2 = d.f46736a;
+                            Charset charset2 = d.f46767a;
                             byte[] bArr2 = new byte[i13];
                             vVar.k(i13, bArr2);
                             str2 = new String(bArr2, charset2);

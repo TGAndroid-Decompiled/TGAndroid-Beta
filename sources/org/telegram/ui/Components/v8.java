@@ -16,32 +16,32 @@ import org.telegram.tgnet.TLRPC;
 public abstract class v8 extends FrameLayout {
     public float B;
     public final w8 C;
-    public long f31841a;
-    public TLRPC.Document f31842b;
-    public final oh.a4 f31843c;
+    public long f31818a;
+    public TLRPC.Document f31819b;
+    public final oh.a4 f31820c;
     public final q20 d;
-    public final q20 f31844e;
-    public float f31845f;
+    public final q20 f31821e;
+    public float f31822f;
     public s8 h;
-    public boolean f31846n;
-    public final PorterDuffColorFilter f31847r;
-    public final z5 f31848s;
+    public boolean f31823n;
+    public final PorterDuffColorFilter f31824r;
+    public final z5 f31825s;
     public boolean v;
-    public float f31849w;
-    public float f31850x;
-    public float f31851y;
+    public float f31826w;
+    public float f31827x;
+    public float f31828y;
 
     public v8(w8 w8Var, Context context) {
         super(context);
         this.C = w8Var;
         this.d = new q20();
-        this.f31844e = new q20();
-        this.f31845f = 1.0f;
-        this.f31847r = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
-        this.f31848s = new z5(this, 200L, pr.f30184g);
-        this.f31849w = -1.0f;
+        this.f31821e = new q20();
+        this.f31822f = 1.0f;
+        this.f31824r = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f31825s = new z5(this, 200L, pr.f30169g);
+        this.f31826w = -1.0f;
         oh.a4 a4Var = new oh.a4(this, context, 6);
-        this.f31843c = a4Var;
+        this.f31820c = a4Var;
         a4Var.getImageReceiver().setAutoRepeatCount(1);
         a4Var.getImageReceiver().setAspectFit(true);
         setClipChildren(false);
@@ -49,7 +49,7 @@ public abstract class v8 extends FrameLayout {
     }
 
     public final void a(Canvas canvas, float f10, float f11, float f12, float f13, Paint paint) {
-        float f14 = this.f31848s.f33725c;
+        float f14 = this.f31825s.f33763c;
         if (f14 == 0.0f) {
             canvas.drawCircle(f10, f11, f13, paint);
             return;
@@ -63,12 +63,12 @@ public abstract class v8 extends FrameLayout {
     public final void b(s8 s8Var, boolean z4) {
         s8 s8Var2 = this.h;
         if (s8Var2 != null) {
-            this.f31844e.d(s8Var2.f31006c, s8Var2.d, s8Var2.f31007e, s8Var2.f31008f);
-            this.f31845f = 0.0f;
-            this.C.f32675n = true;
+            this.f31821e.d(s8Var2.f31002c, s8Var2.d, s8Var2.f31003e, s8Var2.f31004f);
+            this.f31822f = 0.0f;
+            this.C.f32680n = true;
         }
         this.h = s8Var;
-        this.f31846n = z4;
+        this.f31823n = z4;
         if (Build.VERSION.SDK_INT >= 23) {
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
         }
@@ -81,11 +81,11 @@ public abstract class v8 extends FrameLayout {
     }
 
     public long getDuration() {
-        oh.a4 a4Var = this.f31843c;
+        oh.a4 a4Var = this.f31820c;
         ImageReceiver imageReceiver = a4Var.getImageReceiver();
-        l5 l5Var = a4Var.f30001e;
+        l5 l5Var = a4Var.f30014e;
         if (l5Var != null) {
-            imageReceiver = l5Var.f28604k;
+            imageReceiver = l5Var.f28637k;
         }
         if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
             return imageReceiver.getLottieAnimation().p();
@@ -94,12 +94,12 @@ public abstract class v8 extends FrameLayout {
     }
 
     public ImageReceiver getImageReceiver() {
-        oh.a4 a4Var = this.f31843c;
+        oh.a4 a4Var = this.f31820c;
         ImageReceiver imageReceiver = a4Var.getImageReceiver();
-        l5 l5Var = a4Var.f30001e;
+        l5 l5Var = a4Var.f30014e;
         if (l5Var != null) {
-            oh.z2 z2Var = l5Var.f28604k;
-            l5Var.setColorFilter(this.f31847r);
+            oh.z2 z2Var = l5Var.f28637k;
+            l5Var.setColorFilter(this.f31824r);
             return z2Var;
         }
         return imageReceiver;
@@ -127,12 +127,12 @@ public abstract class v8 extends FrameLayout {
         }
         this.v = z4;
         if (z4) {
-            oh.a4 a4Var = this.f31843c;
-            l5 l5Var = a4Var.f30001e;
-            if (l5Var != null && (z2Var = l5Var.f28604k) != null) {
+            oh.a4 a4Var = this.f31820c;
+            l5 l5Var = a4Var.f30014e;
+            if (l5Var != null && (z2Var = l5Var.f28637k) != null) {
                 z2Var.startAnimation();
             }
-            a4Var.f29998a.startAnimation();
+            a4Var.f30011a.startAnimation();
         }
         if (Build.VERSION.SDK_INT >= 23) {
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);

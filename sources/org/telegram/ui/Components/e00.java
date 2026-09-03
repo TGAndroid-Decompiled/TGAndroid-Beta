@@ -21,17 +21,17 @@ public final class e00 extends f2.l {
         View view = m1Var.f5875a;
         if (view instanceof j00) {
             j00 j00Var = (j00) view;
-            if (j00Var.f27960w) {
-                ValueAnimator valueAnimator = j00Var.f27942a;
+            if (j00Var.f27946w) {
+                ValueAnimator valueAnimator = j00Var.f27928a;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
-                    j00Var.f27942a.removeAllUpdateListeners();
-                    j00Var.f27942a.cancel();
+                    j00Var.f27928a.removeAllUpdateListeners();
+                    j00Var.f27928a.cancel();
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new d00(j00Var, 0));
                 ofFloat.addListener(new a9(j00Var, 20));
-                j00Var.f27942a = ofFloat;
+                j00Var.f27928a = ofFloat;
                 ofFloat.setDuration(this.f5931e);
                 ofFloat.start();
             }
@@ -104,19 +104,19 @@ public final class e00 extends f2.l {
                 view.setTranslationY(-i25);
             }
             j00 j00Var = (j00) view;
-            l00 l00Var = j00Var.f27956j0;
-            TextPaint textPaint = l00Var.f28488b;
-            TextPaint textPaint2 = l00Var.f28490c;
-            int i26 = j00Var.f27944b.d;
+            l00 l00Var = j00Var.f27942j0;
+            TextPaint textPaint = l00Var.f28537b;
+            TextPaint textPaint2 = l00Var.f28539c;
+            int i26 = j00Var.f27930b.d;
             int i27 = j00Var.F;
             if (i26 != i27) {
                 j00Var.E = true;
                 j00Var.G = i27;
-                j00Var.f27947c0 = j00Var.f27943a0;
-                j00Var.f27948d0 = j00Var.f27945b0;
+                j00Var.f27933c0 = j00Var.f27929a0;
+                j00Var.f27934d0 = j00Var.f27931b0;
                 if (i27 > 0 && i26 > 0) {
                     String valueOf = String.valueOf(i27);
-                    String valueOf2 = String.valueOf(j00Var.f27944b.d);
+                    String valueOf2 = String.valueOf(j00Var.f27930b.d);
                     if (valueOf.length() == valueOf2.length()) {
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(valueOf);
                         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(valueOf2);
@@ -171,7 +171,7 @@ public final class e00 extends f2.l {
                 r32 = 0;
                 z4 = false;
             }
-            int i31 = j00Var.f27944b.d;
+            int i31 = j00Var.f27930b.d;
             if (i31 > 0) {
                 Object[] objArr = new Object[i16];
                 objArr[r32] = Integer.valueOf(i31);
@@ -181,12 +181,12 @@ public final class e00 extends f2.l {
                 str = null;
                 i17 = 0;
             }
-            int i32 = j00Var.f27944b.f27636c;
+            int i32 = j00Var.f27930b.f27678c;
             if (i17 != 0) {
                 if (str != null) {
                     f11 = 1.0f;
                 } else {
-                    f11 = l00Var.f28515w;
+                    f11 = l00Var.f28564w;
                 }
                 i18 = AndroidUtilities.dp(f11 * 6.0f) + i17;
             } else {
@@ -202,13 +202,13 @@ public final class e00 extends f2.l {
                 z10 = z4;
             }
             CharSequence charSequence3 = j00Var.K;
-            if (charSequence3 != null && !j00Var.f27944b.f27635b.equals(charSequence3)) {
-                if (j00Var.K.length() > j00Var.f27944b.f27635b.length()) {
+            if (charSequence3 != null && !j00Var.f27930b.f27677b.equals(charSequence3)) {
+                if (j00Var.K.length() > j00Var.f27930b.f27677b.length()) {
                     charSequence = j00Var.K;
-                    charSequence2 = j00Var.f27944b.f27635b;
+                    charSequence2 = j00Var.f27930b.f27677b;
                     z13 = true;
                 } else {
-                    charSequence = j00Var.f27944b.f27635b;
+                    charSequence = j00Var.f27930b.f27677b;
                     charSequence2 = j00Var.K;
                     z13 = false;
                 }
@@ -230,8 +230,8 @@ public final class e00 extends f2.l {
                     z11 = false;
                     StaticLayout staticLayout = new StaticLayout(spannableStringBuilder4, textPaint, dp, alignment3, 1.0f, 0.0f, false);
                     j00Var.M = staticLayout;
-                    if (j00Var.f27955i0) {
-                        if (j00Var.f27944b.f27639g) {
+                    if (j00Var.f27941i0) {
+                        if (j00Var.f27930b.f27681g) {
                             i22 = 26;
                         } else {
                             i22 = 0;
@@ -240,8 +240,8 @@ public final class e00 extends f2.l {
                     }
                     StaticLayout staticLayout2 = new StaticLayout(spannableStringBuilder5, textPaint, AndroidUtilities.dp(400.0f), alignment3, 1.0f, 0.0f, false);
                     j00Var.Q = staticLayout2;
-                    if (j00Var.f27955i0) {
-                        if (j00Var.f27944b.f27639g) {
+                    if (j00Var.f27941i0) {
+                        if (j00Var.f27930b.f27681g) {
                             i21 = 26;
                         } else {
                             i21 = 0;
@@ -264,13 +264,13 @@ public final class e00 extends f2.l {
                     u5.release(j00Var, j00Var.N);
                 } else {
                     z11 = false;
-                    CharSequence charSequence4 = j00Var.f27944b.f27635b;
+                    CharSequence charSequence4 = j00Var.f27930b.f27677b;
                     int dp2 = AndroidUtilities.dp(400.0f);
                     Layout.Alignment alignment4 = Layout.Alignment.ALIGN_NORMAL;
                     StaticLayout staticLayout3 = new StaticLayout(charSequence4, textPaint, dp2, alignment4, 1.0f, 0.0f, false);
                     j00Var.M = staticLayout3;
-                    if (j00Var.f27955i0) {
-                        if (j00Var.f27944b.f27639g) {
+                    if (j00Var.f27941i0) {
+                        if (j00Var.f27930b.f27681g) {
                             i20 = 26;
                         } else {
                             i20 = 0;
@@ -279,8 +279,8 @@ public final class e00 extends f2.l {
                     }
                     StaticLayout staticLayout4 = new StaticLayout(j00Var.K, textPaint, AndroidUtilities.dp(400.0f), alignment4, 1.0f, 0.0f, false);
                     j00Var.O = staticLayout4;
-                    if (j00Var.f27955i0) {
-                        if (j00Var.f27944b.f27639g) {
+                    if (j00Var.f27941i0) {
+                        if (j00Var.f27930b.f27681g) {
                             i19 = 26;
                         } else {
                             i19 = 0;
@@ -300,17 +300,17 @@ public final class e00 extends f2.l {
             } else {
                 z11 = false;
             }
-            if (i33 != j00Var.f27950e0 || j00Var.getMeasuredWidth() != j00Var.f27953g0) {
+            if (i33 != j00Var.f27936e0 || j00Var.getMeasuredWidth() != j00Var.f27939g0) {
                 z12 = true;
                 j00Var.T = true;
-                j00Var.f27952f0 = j00Var.f27950e0;
+                j00Var.f27938f0 = j00Var.f27936e0;
                 z10 = true;
             } else {
                 z12 = true;
             }
             if (z10) {
-                j00Var.f27961x = 0.0f;
-                j00Var.f27960w = z12;
+                j00Var.f27947x = 0.0f;
+                j00Var.f27946w = z12;
                 l00 l00Var2 = this.F;
                 l00Var2.C.invalidate();
                 l00Var2.invalidate();

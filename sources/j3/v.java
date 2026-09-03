@@ -22,7 +22,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.io;
 import org.telegram.ui.Components.kb0;
 import org.telegram.ui.Components.mo;
-import org.telegram.ui.Components.o71;
+import org.telegram.ui.Components.n71;
 import org.telegram.ui.Components.sb0;
 import org.telegram.ui.du;
 import org.telegram.ui.xn;
@@ -118,7 +118,7 @@ public final class v implements Runnable {
                 }
                 return;
             case 10:
-                org.telegram.ui.Components.voip.h1 h1Var = ((org.telegram.ui.Components.voip.g1) this.d).f32046a;
+                org.telegram.ui.Components.voip.h1 h1Var = ((org.telegram.ui.Components.voip.g1) this.d).f32051a;
                 cf.f fVar = h1Var.L;
                 if (fVar != null) {
                     fVar.d(this.f9444b, this.f9445c);
@@ -155,30 +155,30 @@ public final class v implements Runnable {
                                 if (!arrayList3.contains(Integer.valueOf(encryptedChatId))) {
                                     arrayList3.add(Integer.valueOf(encryptedChatId));
                                     ?? obj = new Object();
-                                    obj.f48741c = longValue;
-                                    obj.f48740b = queryFinalized.intValue(1);
+                                    obj.f48777c = longValue;
+                                    obj.f48776b = queryFinalized.intValue(1);
                                     arrayList4.add(obj);
-                                    hVar.k(obj, obj.f48741c);
+                                    hVar.k(obj, obj.f48777c);
                                 }
                             }
                         } else if (DialogObject.isUserDialog(longValue)) {
                             if (i18 != 2 && !arrayList.contains(Long.valueOf(longValue))) {
                                 arrayList.add(Long.valueOf(longValue));
                                 ?? obj2 = new Object();
-                                obj2.f48741c = longValue;
-                                obj2.f48740b = queryFinalized.intValue(1);
+                                obj2.f48777c = longValue;
+                                obj2.f48776b = queryFinalized.intValue(1);
                                 arrayList4.add(obj2);
-                                hVar.k(obj2, obj2.f48741c);
+                                hVar.k(obj2, obj2.f48777c);
                             }
                         } else {
                             long j10 = -longValue;
                             if (!arrayList2.contains(Long.valueOf(j10))) {
                                 arrayList2.add(Long.valueOf(j10));
                                 ?? obj22 = new Object();
-                                obj22.f48741c = longValue;
-                                obj22.f48740b = queryFinalized.intValue(1);
+                                obj22.f48777c = longValue;
+                                obj22.f48776b = queryFinalized.intValue(1);
                                 arrayList4.add(obj22);
-                                hVar.k(obj22, obj22.f48741c);
+                                hVar.k(obj22, obj22.f48777c);
                             }
                         }
                     }
@@ -188,9 +188,9 @@ public final class v implements Runnable {
                         ArrayList<TLRPC.EncryptedChat> arrayList6 = new ArrayList<>();
                         MessagesStorage.getInstance(i17).getEncryptedChatsInternal(TextUtils.join(",", arrayList3), arrayList6, arrayList);
                         for (int i19 = 0; i19 < arrayList6.size(); i19++) {
-                            uf.y yVar = (uf.y) hVar.f(DialogObject.makeEncryptedDialogId(arrayList6.get(i19).f20851id));
+                            uf.y yVar = (uf.y) hVar.f(DialogObject.makeEncryptedDialogId(arrayList6.get(i19).f20853id));
                             if (yVar != null) {
-                                yVar.f48739a = arrayList6.get(i19);
+                                yVar.f48775a = arrayList6.get(i19);
                             }
                         }
                     }
@@ -199,7 +199,7 @@ public final class v implements Runnable {
                         MessagesStorage.getInstance(i17).getChatsInternal(TextUtils.join(",", arrayList2), arrayList7);
                         for (int i20 = 0; i20 < arrayList7.size(); i20++) {
                             TLRPC.Chat chat = arrayList7.get(i20);
-                            long j11 = -chat.f20843id;
+                            long j11 = -chat.f20845id;
                             if (chat.migrated_to != null) {
                                 uf.y yVar2 = (uf.y) hVar.f(j11);
                                 hVar.l(j11);
@@ -209,7 +209,7 @@ public final class v implements Runnable {
                             } else {
                                 uf.y yVar3 = (uf.y) hVar.f(j11);
                                 if (yVar3 != null) {
-                                    yVar3.f48739a = chat;
+                                    yVar3.f48775a = chat;
                                 }
                             }
                         }
@@ -218,14 +218,14 @@ public final class v implements Runnable {
                         MessagesStorage.getInstance(i17).getUsersInternal(arrayList, arrayList5);
                         for (int i21 = 0; i21 < arrayList5.size(); i21++) {
                             TLRPC.User user = arrayList5.get(i21);
-                            uf.y yVar4 = (uf.y) hVar.f(user.f20990id);
+                            uf.y yVar4 = (uf.y) hVar.f(user.f20992id);
                             if (yVar4 != null) {
-                                yVar4.f48739a = user;
+                                yVar4.f48775a = user;
                             }
                         }
                     }
                     Collections.sort(arrayList4, new du(19));
-                    AndroidUtilities.runOnUIThread(new o71(xVar, arrayList4, hVar, 27));
+                    AndroidUtilities.runOnUIThread(new n71(xVar, arrayList4, hVar, 27));
                     return;
                 } catch (Exception e6) {
                     FileLog.e(e6);

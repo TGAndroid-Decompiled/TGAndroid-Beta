@@ -17,7 +17,7 @@ public final class s2 extends VideoPlayerHolderBase {
     public boolean needRepeat() {
         switch (this.f6549a) {
             case 1:
-                return !((qh.x) this.f6550b).f46257p.f46327k0;
+                return !((qh.x) this.f6550b).f46297p.f46337k0;
             default:
                 return super.needRepeat();
         }
@@ -37,8 +37,8 @@ public final class s2 extends VideoPlayerHolderBase {
                 return;
             default:
                 qh.x xVar = (qh.x) this.f6550b;
-                xVar.f46248f = true;
-                xVar.f46257p.invalidate();
+                xVar.f46288f = true;
+                xVar.f46297p.invalidate();
                 return;
         }
     }

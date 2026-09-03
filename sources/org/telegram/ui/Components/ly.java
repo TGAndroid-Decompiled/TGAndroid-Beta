@@ -14,29 +14,29 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class ly extends sl0 {
+public final class ly extends rl0 {
     public boolean B;
     public final mz C;
-    public final fy f28842c;
+    public final fy f28894c;
     public long d;
-    public TLRPC.StickerSet f28843e;
-    public ArrayList f28844f;
+    public TLRPC.StickerSet f28895e;
+    public ArrayList f28896f;
     public final ArrayList h = new ArrayList();
-    public final ArrayList f28845n = new ArrayList();
-    public final ArrayList f28846r = new ArrayList();
-    public final ArrayList f28847s = new ArrayList();
+    public final ArrayList f28897n = new ArrayList();
+    public final ArrayList f28898r = new ArrayList();
+    public final ArrayList f28899s = new ArrayList();
     public String v;
-    public String f28848w;
-    public ky f28849x;
-    public boolean f28850y;
+    public String f28900w;
+    public ky f28901x;
+    public boolean f28902y;
 
     public ly(mz mzVar, Context context) {
         this.C = mzVar;
         ?? bVar = new bh.b(context, mzVar.Z0, new d(this, 11), new hv(this, 1), mzVar.W1);
-        this.f28842c = bVar;
+        this.f28894c = bVar;
         bVar.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f));
         bVar.setClipToPadding(false);
-        bVar.V2.f32957r = false;
+        bVar.V2.f32651r = false;
         bVar.setNestedScrollingEnabled(false);
         bVar.setDrawSelection(false);
         bVar.setOnTouchListener(new m.c2(this, 1));
@@ -78,24 +78,24 @@ public final class ly extends sl0 {
             tx txVar = mzVar.O;
             if (adapter != txVar) {
                 kxVar.setAdapter(txVar);
-                this.f28850y = false;
+                this.f28902y = false;
             }
             this.d = 0L;
-            mzVar.f29266b.a(false, true);
+            mzVar.f29268b.a(false, true);
             l();
         } else {
             this.v = str.toLowerCase();
         }
-        ky kyVar = this.f28849x;
+        ky kyVar = this.f28901x;
         if (kyVar != null) {
             AndroidUtilities.cancelRunOnUIThread(kyVar);
         }
         if (!TextUtils.isEmpty(this.v)) {
-            this.f28845n.clear();
+            this.f28897n.clear();
             this.B = false;
             mzVar.S.e(true);
             ky kyVar2 = new ky(this);
-            this.f28849x = kyVar2;
+            this.f28901x = kyVar2;
             if (z4) {
                 j10 = 300;
             }
@@ -106,13 +106,13 @@ public final class ly extends sl0 {
     @Override
     public final int h() {
         if (this.d != 0) {
-            return this.f28844f.size() + 4;
+            return this.f28896f.size() + 4;
         }
         ArrayList arrayList = this.h;
         boolean isEmpty = arrayList.isEmpty();
-        ArrayList arrayList2 = this.f28847s;
-        ArrayList arrayList3 = this.f28846r;
-        if (isEmpty && arrayList3.isEmpty() && arrayList2.isEmpty() && !this.f28850y) {
+        ArrayList arrayList2 = this.f28899s;
+        ArrayList arrayList3 = this.f28898r;
+        if (isEmpty && arrayList3.isEmpty() && arrayList2.isEmpty() && !this.f28902y) {
             return this.C.getRecentEmoji().size() + 1;
         }
         int i10 = 2;
@@ -138,7 +138,7 @@ public final class ly extends sl0 {
 
     @Override
     public final void l() {
-        this.f28842c.V2.N(false);
+        this.f28894c.V2.N(false);
         super.l();
     }
 
@@ -178,12 +178,12 @@ public final class ly extends sl0 {
                         }
                     } else {
                         ViewGroup.LayoutParams x0Var = new f2.x0(-1, AndroidUtilities.dp(79.0f));
-                        View view2 = this.f28842c;
+                        View view2 = this.f28894c;
                         view2.setLayoutParams(x0Var);
                         s2Var = view2;
                     }
                 } else {
-                    s2Var = new org.telegram.ui.Cells.m8(mzVar.getContext(), true, false, mzVar.W1, mzVar.f29284f2);
+                    s2Var = new org.telegram.ui.Cells.m8(mzVar.getContext(), true, false, mzVar.W1, mzVar.f29286f2);
                 }
             } else {
                 View view3 = new View(mzVar.getContext());

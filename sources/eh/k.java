@@ -21,7 +21,7 @@ public final class k {
         TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
         tL_inputMediaPoll.poll = tL_poll;
         TLRPC.Poll poll = tL_messageMediaPoll.poll;
-        tL_poll.f20869id = poll.f20869id;
+        tL_poll.f20871id = poll.f20871id;
         tL_poll.flags = poll.flags;
         tL_poll.closed = poll.closed;
         tL_poll.public_voters = poll.public_voters;
@@ -77,10 +77,10 @@ public final class k {
                     TLRPC.TL_inputMediaDocument tL_inputMediaDocument = new TLRPC.TL_inputMediaDocument();
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
                     TLRPC.Document document = ((fh.i) hVar).f6671b;
-                    tL_inputDocument.f20855id = document.f20849id;
+                    tL_inputDocument.f20857id = document.f20851id;
                     tL_inputDocument.access_hash = document.access_hash;
                     tL_inputDocument.file_reference = document.file_reference;
-                    tL_inputMediaDocument.f20904id = tL_inputDocument;
+                    tL_inputMediaDocument.f20906id = tL_inputDocument;
                     i.k(tL_inputMediaPoll, keyAt, tL_inputMediaDocument);
                 }
             }

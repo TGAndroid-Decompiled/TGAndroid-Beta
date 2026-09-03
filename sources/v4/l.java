@@ -40,7 +40,7 @@ public final class l extends j3.e implements Handler.Callback {
             handler = new Handler(looper, this);
         }
         this.B = handler;
-        this.D = i.f48906a;
+        this.D = i.f48942a;
         this.E = new f7.b((char) 0, 16);
         this.P = -9223372036854775807L;
         this.Q = -9223372036854775807L;
@@ -64,7 +64,7 @@ public final class l extends j3.e implements Handler.Callback {
     }
 
     public final void B(c cVar) {
-        v vVar = cVar.f48904a;
+        v vVar = cVar.f48940a;
         c0 c0Var = this.C;
         c0Var.f9000a.f9123l.e(27, new z(vVar));
         c0Var.f9000a.f9123l.e(27, new hg.f(cVar, 11));
@@ -113,7 +113,7 @@ public final class l extends j3.e implements Handler.Callback {
     public final void k() {
         this.J = null;
         this.P = -9223372036854775807L;
-        c cVar = new c(A(this.R), i0.f47108e);
+        c cVar = new c(A(this.R), i0.f47139e);
         Handler handler = this.B;
         if (handler != null) {
             handler.obtainMessage(0, cVar).sendToTarget();

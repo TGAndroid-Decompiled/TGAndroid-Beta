@@ -1,29 +1,35 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class f81 implements RequestDelegate {
-    public final int f36788a;
-    public final p81 f36789b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class f81 implements Runnable {
+    public final int f36708a;
+    public final g81 f36709b;
 
-    public f81(p81 p81Var, int i10) {
-        this.f36788a = i10;
-        this.f36789b = p81Var;
+    public f81(g81 g81Var, int i10) {
+        this.f36708a = i10;
+        this.f36709b = g81Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f36788a) {
+    public final void run() {
+        String sb;
+        switch (this.f36708a) {
             case 0:
-                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
-                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
-                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-                p81 p81Var = this.f36789b;
-                p81Var.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new f81(p81Var, 1));
+                g81 g81Var = this.f36709b;
+                String str = g81Var.f37025b.text;
+                if (str != null && str.equals("AUTH_TOKEN_EXCEPTION")) {
+                    sb = LocaleController.getString(R.string.AccountAlreadyLoggedIn);
+                } else {
+                    StringBuilder sb2 = new StringBuilder();
+                    b.i(R.string.ErrorOccurred, "\n", sb2);
+                    sb2.append(g81Var.f37025b.text);
+                    sb = sb2.toString();
+                }
+                org.telegram.ui.Components.z4.u0(g81Var.f37026c, LocaleController.getString(R.string.AuthAnotherClient), sb, null);
                 return;
             default:
-                this.f36789b.getMessagesController().loadAppConfig();
+                org.telegram.ui.Components.z4.u0(this.f36709b.f37026c, LocaleController.getString(R.string.AuthAnotherClient), LocaleController.getString(R.string.ErrorOccurred), null);
                 return;
         }
     }

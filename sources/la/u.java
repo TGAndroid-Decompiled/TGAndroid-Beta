@@ -31,9 +31,9 @@ public final class u extends wc.i implements dd.p {
         uc.c cVar = (uc.c) obj2;
         switch (this.f12239a) {
             case 0:
-                return ((u) create(c0Var, cVar)).invokeSuspend(sc.i.f47243a);
+                return ((u) create(c0Var, cVar)).invokeSuspend(sc.i.f47274a);
             default:
-                return ((u) create(c0Var, cVar)).invokeSuspend(sc.i.f47243a);
+                return ((u) create(c0Var, cVar)).invokeSuspend(sc.i.f47274a);
         }
     }
 
@@ -41,7 +41,7 @@ public final class u extends wc.i implements dd.p {
     public final Object invokeSuspend(Object obj) {
         switch (this.f12239a) {
             case 0:
-                vc.a aVar = vc.a.f48962a;
+                vc.a aVar = vc.a.f48998a;
                 int i10 = this.f12240b;
                 if (i10 != 0) {
                     if (i10 == 1) {
@@ -59,9 +59,9 @@ public final class u extends wc.i implements dd.p {
                         return aVar;
                     }
                 }
-                return sc.i.f47243a;
+                return sc.i.f47274a;
             default:
-                vc.a aVar2 = vc.a.f48962a;
+                vc.a aVar2 = vc.a.f48998a;
                 int i11 = this.f12240b;
                 if (i11 != 0) {
                     if (i11 == 1) {
@@ -71,7 +71,7 @@ public final class u extends wc.i implements dd.p {
                     }
                 } else {
                     q7.b(obj);
-                    ma.c cVar = ma.c.f13611a;
+                    ma.c cVar = ma.c.f13613a;
                     this.f12240b = 1;
                     obj = cVar.b(this);
                     if (obj == aVar2) {
@@ -93,9 +93,9 @@ public final class u extends wc.i implements dd.p {
                             jVar.f7955c = str;
                         }
                     }
-                    Log.d("SessionLifecycleClient", "Notified " + ma.d.f13613a + " of new session " + str);
+                    Log.d("SessionLifecycleClient", "Notified " + ma.d.f13615a + " of new session " + str);
                 }
-                return sc.i.f47243a;
+                return sc.i.f47274a;
         }
     }
 }

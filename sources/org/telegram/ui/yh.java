@@ -14,7 +14,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 public abstract class yh {
     public static void A(int i10, ArrayList arrayList) {
-        arrayList.add(org.telegram.ui.Components.j51.B(LocaleController.getString(i10)));
+        arrayList.add(org.telegram.ui.Components.h51.B(LocaleController.getString(i10)));
     }
 
     public static String B(int i10) {
@@ -141,7 +141,7 @@ public abstract class yh {
         return kVar;
     }
 
-    public static org.telegram.ui.Components.fl0 o(View view, View view2, int i10, int i11) {
+    public static org.telegram.ui.Components.el0 o(View view, View view2, int i10, int i11) {
         view.setLayoutParams(new f2.x0(i10, i11));
         return new f2.m1(view2);
     }
@@ -157,7 +157,7 @@ public abstract class yh {
     }
 
     public static void r(int i10, ArrayList arrayList) {
-        arrayList.add(org.telegram.ui.Components.j51.t(LocaleController.getString(i10)));
+        arrayList.add(org.telegram.ui.Components.h51.t(LocaleController.getString(i10)));
     }
 
     public static void s(int i10, Object[] objArr, org.telegram.ui.Components.qc qcVar, int i11, int i12) {
@@ -185,9 +185,9 @@ public abstract class yh {
         sb.append(str4);
     }
 
-    public static void x(sf.e eVar) {
+    public static void x(sf.f fVar) {
         com.googlecode.mp4parser.g.a().getClass();
-        com.googlecode.mp4parser.g.b(eVar);
+        com.googlecode.mp4parser.g.b(fVar);
     }
 
     public static void y(uf.k kVar, int i10, ArrayList arrayList) {

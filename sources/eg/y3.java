@@ -39,14 +39,14 @@ public final class y3 implements TextWatcher {
             default:
                 ee0 ee0Var = (ee0) this.f5577c;
                 if (this.f5576b) {
-                    if (ee0Var.f36562f.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
-                        if (ee0Var.f36568y) {
-                            ee0Var.f36562f.callOnClick();
+                    if (ee0Var.f36459f.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
+                        if (ee0Var.f36465y) {
+                            ee0Var.f36459f.callOnClick();
                         }
-                        AndroidUtilities.updateViewVisibilityAnimated(ee0Var.f36562f, true, 0.1f, true);
+                        AndroidUtilities.updateViewVisibilityAnimated(ee0Var.f36459f, true, 0.1f, true);
                         return;
-                    } else if (ee0Var.f36562f.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
-                        AndroidUtilities.updateViewVisibilityAnimated(ee0Var.f36562f, false, 0.1f, true);
+                    } else if (ee0Var.f36459f.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
+                        AndroidUtilities.updateViewVisibilityAnimated(ee0Var.f36459f, false, 0.1f, true);
                         return;
                     } else {
                         return;

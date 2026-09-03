@@ -2,15 +2,15 @@ package eg;
 
 import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.ui.Components.sv0;
-import qh.b5;
+import org.telegram.ui.Components.rv0;
+import qh.a5;
 public final class u implements View.OnTouchListener {
     public final int f5498a;
-    public final sv0 f5499b;
+    public final rv0 f5499b;
 
-    public u(sv0 sv0Var, int i10) {
+    public u(rv0 rv0Var, int i10) {
         this.f5498a = i10;
-        this.f5499b = sv0Var;
+        this.f5499b = rv0Var;
     }
 
     @Override
@@ -31,12 +31,12 @@ public final class u implements View.OnTouchListener {
                 }
                 return false;
             default:
-                b5 b5Var = (b5) this.f5499b;
-                b5Var.getClass();
-                if (motionEvent.getActionMasked() == 0 && (p1Var2 = b5Var.E1) != null && p1Var2.isShowing()) {
-                    view.getHitRect(b5Var.G1);
-                    if (!b5Var.G1.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        b5Var.E1.d(true);
+                a5 a5Var = (a5) this.f5499b;
+                a5Var.getClass();
+                if (motionEvent.getActionMasked() == 0 && (p1Var2 = a5Var.E1) != null && p1Var2.isShowing()) {
+                    view.getHitRect(a5Var.G1);
+                    if (!a5Var.G1.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        a5Var.E1.d(true);
                         return false;
                     }
                     return false;

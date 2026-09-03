@@ -7,10 +7,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 public final class sh implements r0.o, lf.d0, org.telegram.ui.ActionBar.c2 {
-    public final xn f41288a;
+    public final xn f41240a;
 
     public sh(xn xnVar) {
-        this.f41288a = xnVar;
+        this.f41240a = xnVar;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class sh implements r0.o, lf.d0, org.telegram.ui.ActionBar.c2 {
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
         int i10 = defaultWindowInsets.f7757a;
         int i11 = defaultWindowInsets.f7759c;
-        xn xnVar = this.f41288a;
+        xn xnVar = this.f41240a;
         if (xnVar.Ra != i10 || xnVar.Sa != i11) {
             xnVar.Ra = i10;
             xnVar.Sa = i11;
@@ -32,26 +32,26 @@ public final class sh implements r0.o, lf.d0, org.telegram.ui.ActionBar.c2 {
         xnVar.n7();
         xnVar.r7();
         xnVar.p9();
-        boolean p10 = m1Var.f46452a.p(8);
+        boolean p10 = m1Var.f46483a.p(8);
         if (xnVar.Qa != p10) {
             xnVar.Qa = p10;
             xnVar.U0.S();
         }
-        ek ekVar = xnVar.f43278n1;
+        ek ekVar = xnVar.f43256n1;
         if (ekVar != null) {
             r0.j0.b(ekVar, m1Var);
         }
-        return r0.m1.f46451b;
+        return r0.m1.f46482b;
     }
 
     @Override
     public void a(int i10) {
-        xn.S0(this.f41288a, i10);
+        xn.S0(this.f41240a, i10);
     }
 
     @Override
     public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        xn xnVar = this.f41288a;
+        xn xnVar = this.f41240a;
         xnVar.getClass();
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");

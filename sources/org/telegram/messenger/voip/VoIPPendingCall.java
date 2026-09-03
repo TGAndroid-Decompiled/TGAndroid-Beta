@@ -29,7 +29,7 @@ public final class VoIPPendingCall {
             }
         };
         this.observer = notificationCenterDelegate;
-        s0 s0Var = new s0(this, 3);
+        s0 s0Var = new s0(this, 2);
         this.releaseRunnable = s0Var;
         this.activity = activity;
         this.userId = j10;
@@ -77,16 +77,16 @@ public final class VoIPPendingCall {
         MessagesController messagesController = this.accountInstance.getMessagesController();
         TLRPC.User user = messagesController.getUser(Long.valueOf(this.userId));
         if (user != null) {
-            TLRPC.UserFull userFull = messagesController.getUserFull(user.f20990id);
+            TLRPC.UserFull userFull = messagesController.getUserFull(user.f20992id);
             boolean z11 = this.video;
             if (userFull != null && userFull.video_calls_available) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            g2.n(user, z11, z10, this.activity, userFull, this.accountInstance);
+            g2.m(user, z11, z10, this.activity, userFull, this.accountInstance);
         } else if (isAirplaneMode()) {
-            g2.n(null, this.video, false, this.activity, null, this.accountInstance);
+            g2.m(null, this.video, false, this.activity, null, this.accountInstance);
         }
         release();
         return true;

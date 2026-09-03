@@ -57,13 +57,13 @@ public final class p extends t {
     }
 
     public static void c(t0 t0Var, h hVar, HashMap hashMap) {
-        for (int i10 = 0; i10 < t0Var.f16576a; i10++) {
+        for (int i10 = 0; i10 < t0Var.f16578a; i10++) {
             v vVar = (v) hVar.L.get(t0Var.a(i10));
             if (vVar != null) {
                 s0 s0Var = vVar.f6071a;
-                v vVar2 = (v) hashMap.get(Integer.valueOf(s0Var.f16573c));
+                v vVar2 = (v) hashMap.get(Integer.valueOf(s0Var.f16575c));
                 if (vVar2 == null || (vVar2.f6072b.isEmpty() && !vVar.f6072b.isEmpty())) {
-                    hashMap.put(Integer.valueOf(s0Var.f16573c), vVar);
+                    hashMap.put(Integer.valueOf(s0Var.f16575c), vVar);
                 }
             }
         }
@@ -119,10 +119,10 @@ public final class p extends t {
         while (i13 < i12) {
             if (i10 == sVar2.f6062b[i13]) {
                 t0 t0Var = sVar2.f6063c[i13];
-                for (int i14 = 0; i14 < t0Var.f16576a; i14++) {
+                for (int i14 = 0; i14 < t0Var.f16578a; i14++) {
                     s0 a2 = t0Var.a(i14);
                     i0 e6 = mVar.e(i13, a2, iArr[i13][i14]);
-                    int i15 = a2.f16571a;
+                    int i15 = a2.f16573a;
                     boolean[] zArr = new boolean[i15];
                     int i16 = 0;
                     while (i16 < i15) {

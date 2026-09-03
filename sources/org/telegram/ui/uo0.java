@@ -1,70 +1,39 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class uo0 extends Drawable {
-    public final org.telegram.ui.Components.l01 f41981a;
-    public final Drawable f41982b;
-    public final fg.p1 f41983c;
+import android.view.View;
+import org.telegram.tgnet.tl.TL_stars;
+public final class uo0 extends org.telegram.ui.Components.g51 {
+    public static final int f41881a = 0;
 
-    public uo0(int i10, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z4) {
-        String str;
-        if (z4) {
-            str = "BoostLevelPlus";
-        } else {
-            str = "BoostLevel";
+    static {
+        org.telegram.ui.Components.g51.setup(new org.telegram.ui.Components.g51());
+    }
+
+    @Override
+    public final void bindView(View view, org.telegram.ui.Components.h51 h51Var, boolean z4, org.telegram.ui.Components.w51 w51Var, org.telegram.ui.Components.h61 h61Var) {
+        vo0 vo0Var = (vo0) view;
+        TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) h51Var.G;
+        lh.y1 y1Var = vo0Var.h;
+        lh.u1 u1Var = vo0Var.f42189e;
+        vo0Var.f42186a = savedStarGift.gift.f21072id;
+        vo0Var.setPadding(0, 0, 0, 0);
+        vo0Var.c(savedStarGift.gift.getDocument(), savedStarGift.gift);
+        vo0Var.f42187b = (TL_stars.starGiftAttributeBackdrop) mh.t7.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
+        vo0Var.f42188c = (TL_stars.starGiftAttributePattern) mh.t7.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class);
+        u1Var.d(vo0Var.f42187b);
+        u1Var.e(vo0Var.f42188c);
+        if (y1Var != null) {
+            y1Var.setBackdrop(vo0Var.f42187b);
+            String l10 = l.d.l(savedStarGift.gift.num, ',', new StringBuilder("#"));
+            y1Var.f13119b = l10;
+            y1Var.f13118a.e(9, l10, false);
         }
-        this.f41981a = new org.telegram.ui.Components.l01(LocaleController.formatPluralString(str, i10, new Object[0]), 12.0f, AndroidUtilities.bold());
-        Drawable mutate = context.getResources().getDrawable(R.drawable.mini_switch_lock).mutate();
-        this.f41982b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        this.f41983c = new fg.p1(org.telegram.ui.ActionBar.k6.Lj, org.telegram.ui.ActionBar.k6.Mj, -1, -1, g6Var);
+        vo0Var.b(h51Var.f27369e, false);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int i10 = getBounds().left;
-        int centerY = getBounds().centerY();
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f10 = centerY;
-        rectF.set(i10, f10 - (AndroidUtilities.dp(18.33f) / 2.0f), getIntrinsicWidth() + i10, (AndroidUtilities.dp(18.33f) / 2.0f) + f10);
-        fg.p1 p1Var = this.f41983c;
-        p1Var.e(rectF);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), p1Var.f6490f);
-        Drawable drawable = this.f41982b;
-        drawable.setBounds(AndroidUtilities.dp(3.33f) + i10, (int) (f10 - ((drawable.getIntrinsicHeight() * 0.875f) / 2.0f)), (int) ((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.33f) + i10), (int) android.support.v4.media.a.d(drawable.getIntrinsicHeight(), 0.875f, 2.0f, f10));
-        drawable.draw(canvas);
-        this.f41981a.c((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.66f) + i10, f10, 1.0f, -1, canvas);
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.33f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return (int) (this.f41981a.l() + (this.f41982b.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(9.66f));
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final View createView(Context context, org.telegram.ui.Components.sl0 sl0Var, int i10, int i11, org.telegram.ui.ActionBar.g6 g6Var) {
+        return new vo0(context, g6Var, true);
     }
 }

@@ -10,18 +10,18 @@ import androidx.appcompat.view.menu.ListMenuItemView;
 public final class i2 extends r1 {
     public e2 B;
     public l.n C;
-    public final int f13217x;
-    public final int f13218y;
+    public final int f13219x;
+    public final int f13220y;
 
     public i2(Context context, boolean z4) {
         super(context, z4);
         if (1 == h2.a(context.getResources().getConfiguration())) {
-            this.f13217x = 21;
-            this.f13218y = 22;
+            this.f13219x = 21;
+            this.f13220y = 22;
             return;
         }
-        this.f13217x = 22;
-        this.f13218y = 21;
+        this.f13219x = 22;
+        this.f13220y = 21;
     }
 
     @Override
@@ -65,12 +65,12 @@ public final class i2 extends r1 {
     public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
         l.i iVar;
         ListMenuItemView listMenuItemView = (ListMenuItemView) getSelectedView();
-        if (listMenuItemView != null && i10 == this.f13217x) {
+        if (listMenuItemView != null && i10 == this.f13219x) {
             if (listMenuItemView.isEnabled() && listMenuItemView.getItemData().hasSubMenu()) {
                 performItemClick(listMenuItemView, getSelectedItemPosition(), getSelectedItemId());
             }
             return true;
-        } else if (listMenuItemView != null && i10 == this.f13218y) {
+        } else if (listMenuItemView != null && i10 == this.f13220y) {
             setSelection(-1);
             ListAdapter adapter = getAdapter();
             if (adapter instanceof HeaderViewListAdapter) {

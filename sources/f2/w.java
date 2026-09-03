@@ -112,7 +112,7 @@ public class w extends j0 {
     public void U(bf.f fVar, j1 j1Var, View view, s0.d dVar) {
         boolean z4;
         boolean z10;
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f46850a;
+        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f46881a;
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
         if (!(layoutParams instanceof u)) {
             T(view, dVar);
@@ -377,14 +377,14 @@ public class w extends j0 {
         if (this.f5816o == 1) {
             int height = rect.height() + C;
             RecyclerView recyclerView = this.f5941b;
-            WeakHashMap weakHashMap = r0.j0.f46438a;
+            WeakHashMap weakHashMap = r0.j0.f46469a;
             g11 = w0.g(i11, height, recyclerView.getMinimumHeight());
             int[] iArr = this.K;
             g10 = w0.g(i10, iArr[iArr.length - 1] + E, this.f5941b.getMinimumWidth());
         } else {
             int width = rect.width() + E;
             RecyclerView recyclerView2 = this.f5941b;
-            WeakHashMap weakHashMap2 = r0.j0.f46438a;
+            WeakHashMap weakHashMap2 = r0.j0.f46469a;
             g10 = w0.g(i10, width, recyclerView2.getMinimumWidth());
             int[] iArr2 = this.K;
             g11 = w0.g(i11, iArr2[iArr2.length - 1] + C, this.f5941b.getMinimumHeight());

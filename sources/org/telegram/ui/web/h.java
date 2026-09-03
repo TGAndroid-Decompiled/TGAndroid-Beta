@@ -20,40 +20,40 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.p9;
 public final class h extends FrameLayout implements b6 {
-    public final g6 f42561a;
-    public final p9 f42562b;
-    public final LinearLayout f42563c;
+    public final g6 f42524a;
+    public final p9 f42525b;
+    public final LinearLayout f42526c;
     public final FrameLayout.LayoutParams d;
-    public final TextView f42564e;
-    public final TextView f42565f;
+    public final TextView f42527e;
+    public final TextView f42528f;
     public final TextView h;
-    public final ImageView f42566n;
-    public final org.telegram.ui.Cells.k2 f42567r;
-    public int f42568s;
+    public final ImageView f42529n;
+    public final org.telegram.ui.Cells.k2 f42530r;
+    public int f42531s;
     public final Paint v;
-    public boolean f42569w;
+    public boolean f42532w;
 
     public h(Context context, g6 g6Var) {
         super(context);
         this.v = new Paint(1);
-        this.f42561a = g6Var;
+        this.f42524a = g6Var;
         e6.b(this, 0.03f, 1.25f);
         p9 p9Var = new p9(context);
-        this.f42562b = p9Var;
+        this.f42525b = p9Var;
         p9Var.setRoundRadius(AndroidUtilities.dp(6.0f));
         addView(p9Var, c6.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f42563c = linearLayout;
+        this.f42526c = linearLayout;
         linearLayout.setOrientation(1);
         TextView textView = new TextView(context);
-        this.f42564e = textView;
+        this.f42527e = textView;
         textView.setTextSize(1, 16.0f);
         textView.setMaxLines(1);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
         linearLayout.addView(textView, c6.q(-1, -2, 51));
         TextView textView2 = new TextView(context);
-        this.f42565f = textView2;
+        this.f42528f = textView2;
         textView2.setTextSize(1, 13.0f);
         textView2.setMaxLines(1);
         textView2.setEllipsize(truncateAt);
@@ -70,13 +70,13 @@ public final class h extends FrameLayout implements b6 {
         textView3.setTextAlignment(6);
         addView(textView3, c6.d(-2, -2.0f, 21, 64.0f, -10.0f, 12.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f42566n = imageView;
+        this.f42529n = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.attach_arrow_right);
         addView(imageView, c6.d(32, 32.0f, 21, 8.0f, 8.0f, 8.0f, 8.0f));
         org.telegram.ui.Cells.k2 k2Var = new org.telegram.ui.Cells.k2(this, getContext(), g6Var, 1);
-        this.f42567r = k2Var;
-        k2Var.b(-1, k6.f21659d6, k6.f21786k7);
+        this.f42530r = k2Var;
+        k2Var.b(-1, k6.f21661d6, k6.f21788k7);
         k2Var.setDrawUnchecked(false);
         k2Var.setDrawBackgroundAsArc(3);
         addView(k2Var, c6.d(24, 24.0f, 19, 26.0f, 12.0f, 0.0f, 0.0f));
@@ -84,17 +84,17 @@ public final class h extends FrameLayout implements b6 {
 
     @Override
     public final void e() {
-        int i10 = k6.f21659d6;
-        g6 g6Var = this.f42561a;
+        int i10 = k6.f21661d6;
+        g6 g6Var = this.f42524a;
         int v02 = k6.v0(i10, g6Var);
         int v03 = k6.v0(k6.G6, g6Var);
-        this.f42568s = v03;
-        this.f42564e.setTextColor(v03);
-        this.f42565f.setTextColor(k6.v(v02, k6.l1(0.55f, v03)));
+        this.f42531s = v03;
+        this.f42527e.setTextColor(v03);
+        this.f42528f.setTextColor(k6.v(v02, k6.l1(0.55f, v03)));
         this.h.setTextColor(k6.l1(0.55f, v03));
-        this.f42566n.setColorFilter(new PorterDuffColorFilter(k6.l1(0.6f, v03), PorterDuff.Mode.SRC_IN));
+        this.f42529n.setColorFilter(new PorterDuffColorFilter(k6.l1(0.6f, v03), PorterDuff.Mode.SRC_IN));
         this.v.setColor(k6.l1(0.1f, v03));
-        this.f42562b.invalidate();
+        this.f42525b.invalidate();
     }
 
     public int[] getColorKeys() {
@@ -104,7 +104,7 @@ public final class h extends FrameLayout implements b6 {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f42569w) {
+        if (this.f42532w) {
             canvas.drawRect(AndroidUtilities.dp(59.0f), getHeight() - Math.max(AndroidUtilities.dp(0.66f), 1), getWidth(), getHeight(), this.v);
         }
     }
@@ -115,6 +115,6 @@ public final class h extends FrameLayout implements b6 {
     }
 
     public void setChecked(boolean z4) {
-        this.f42567r.a(z4, true);
+        this.f42530r.a(z4, true);
     }
 }

@@ -15,12 +15,12 @@ import org.telegram.ui.Components.og;
 import org.telegram.ui.Components.q70;
 import org.telegram.ui.ti0;
 public final class g1 implements View.OnClickListener {
-    public final int f49753a;
-    public final z1 f49754b;
+    public final int f49789a;
+    public final z1 f49790b;
 
     public g1(z1 z1Var, int i10) {
-        this.f49753a = i10;
-        this.f49754b = z1Var;
+        this.f49789a = i10;
+        this.f49790b = z1Var;
     }
 
     @Override
@@ -30,55 +30,55 @@ public final class g1 implements View.OnClickListener {
         boolean z11;
         boolean z12;
         boolean z13;
-        i5 R2;
+        i5 Q2;
         l5 o10;
         String str;
-        switch (this.f49753a) {
+        switch (this.f49789a) {
             case 0:
-                this.f49754b.r0();
+                this.f49790b.r0();
                 return;
             case 1:
-                z1 z1Var = this.f49754b;
-                if (!z1Var.M.F2()) {
+                z1 z1Var = this.f49790b;
+                if (!z1Var.M.E2()) {
                     z1Var.finishFragment();
                     return;
                 }
                 return;
             case 2:
-                d2 d2Var = this.f49754b.M.G3;
+                d2 d2Var = this.f49790b.M.G3;
                 if (d2Var != null) {
                     d2Var.k();
                     return;
                 }
                 return;
             case 3:
-                d2 d2Var2 = this.f49754b.M.G3;
+                d2 d2Var2 = this.f49790b.M.G3;
                 if (d2Var2 != null) {
                     d2Var2.i();
                     return;
                 }
                 return;
             case 4:
-                z1.U(this.f49754b);
+                z1.U(this.f49790b);
                 return;
             case 5:
-                z1 z1Var2 = this.f49754b;
-                if (z1Var2.f50216y0) {
+                z1 z1Var2 = this.f49790b;
+                if (z1Var2.f50252y0) {
                     z1Var2.k0(true);
-                    e1 P2 = z1Var2.M.P2();
-                    if (P2 != null) {
-                        P2.r();
-                        AndroidUtilities.showKeyboard(P2);
+                    e1 O2 = z1Var2.M.O2();
+                    if (O2 != null) {
+                        O2.r();
+                        AndroidUtilities.showKeyboard(O2);
                         return;
                     }
                     return;
                 }
-                if (z1Var2.f50214x0 == null) {
+                if (z1Var2.f50250x0 == null) {
                     mz mzVar = new mz(z1Var2, true, false, false, z1Var2.getParentActivity(), true, null, z1Var2.L, true, z1Var2.getResourceProvider(), false, false);
-                    z1Var2.f50214x0 = mzVar;
+                    z1Var2.f50250x0 = mzVar;
                     mzVar.setVisibility(8);
-                    mz mzVar2 = z1Var2.f50214x0;
-                    mzVar2.f29330u2 = false;
+                    mz mzVar2 = z1Var2.f50250x0;
+                    mzVar2.f29332u2 = false;
                     mzVar2.setDelegate(new q1(z1Var2));
                     int indexOfChild = z1Var2.L.indexOfChild(z1Var2.X);
                     if (indexOfChild < 0) {
@@ -86,62 +86,62 @@ public final class g1 implements View.OnClickListener {
                     }
                     FrameLayout.LayoutParams e6 = c6.e(-1, z1Var2.j0(), 87);
                     e6.bottomMargin = z1Var2.Q0;
-                    z1Var2.L.addView(z1Var2.f50214x0, indexOfChild, e6);
+                    z1Var2.L.addView(z1Var2.f50250x0, indexOfChild, e6);
                 }
                 int j02 = z1Var2.j0();
-                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) z1Var2.f50214x0.getLayoutParams();
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) z1Var2.f50250x0.getLayoutParams();
                 if (layoutParams == null) {
                     layoutParams = c6.e(-1, j02, 87);
                 } else {
                     layoutParams.height = j02;
                 }
                 layoutParams.bottomMargin = z1Var2.Q0;
-                z1Var2.f50214x0.setLayoutParams(layoutParams);
-                z1Var2.f50214x0.setVisibility(0);
-                z1Var2.f50216y0 = true;
+                z1Var2.f50250x0.setLayoutParams(layoutParams);
+                z1Var2.f50250x0.setVisibility(0);
+                z1Var2.f50252y0 = true;
                 z1Var2.A0 = j02 + z1Var2.Q0;
-                e1 P22 = z1Var2.M.P2();
-                if (P22 != null) {
-                    AndroidUtilities.hideKeyboard(P22);
+                e1 O22 = z1Var2.M.O2();
+                if (O22 != null) {
+                    AndroidUtilities.hideKeyboard(O22);
                 }
                 z1Var2.h0();
                 z1Var2.Y.j(og.d, true);
                 return;
             case 6:
-                final z1 z1Var3 = this.f49754b;
-                q70 q70Var = z1Var3.f50209u0;
+                final z1 z1Var3 = this.f49790b;
+                q70 q70Var = z1Var3.f50245u0;
                 if (q70Var != null) {
                     q70Var.u();
-                    z1Var3.f50209u0 = null;
+                    z1Var3.f50245u0 = null;
                 }
                 final q70 H = q70.H(z1Var3, view);
                 H.Q = true;
-                a Q2 = z1Var3.M.Q2();
-                if (Q2 != null && Q2.b()) {
+                a P2 = z1Var3.M.P2();
+                if (P2 != null && P2.b()) {
                     z4 = false;
                 } else {
                     z4 = true;
                 }
-                H.j(z4, R.drawable.field_carret_empty, null, LocaleController.getString(R.string.ArticleNone), new j1(z1Var3, Q2, 5));
-                if (Q2 != null && Q2.b() && !Q2.a() && !Q2.c()) {
+                H.j(z4, R.drawable.field_carret_empty, null, LocaleController.getString(R.string.ArticleNone), new j1(z1Var3, P2, 5));
+                if (P2 != null && P2.b() && !P2.a() && !P2.c()) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                H.j(z10, R.drawable.iv_list, null, LocaleController.getString(R.string.ArticleListBulletedList), new j1(z1Var3, Q2, 6));
-                if (Q2 != null && Q2.b() && !Q2.a() && Q2.c()) {
+                H.j(z10, R.drawable.iv_list, null, LocaleController.getString(R.string.ArticleListBulletedList), new j1(z1Var3, P2, 6));
+                if (P2 != null && P2.b() && !P2.a() && P2.c()) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                H.j(z11, R.drawable.iv_ordered_list, null, LocaleController.getString(R.string.ArticleListNumberedList), new j1(z1Var3, Q2, 7));
-                if (Q2 != null && Q2.b() && Q2.a() && !Q2.c()) {
+                H.j(z11, R.drawable.iv_ordered_list, null, LocaleController.getString(R.string.ArticleListNumberedList), new j1(z1Var3, P2, 7));
+                if (P2 != null && P2.b() && P2.a() && !P2.c()) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
-                H.j(z12, R.drawable.iv_todo, null, LocaleController.getString(R.string.ArticleListChecklist), new j1(z1Var3, Q2, 8));
-                if (Q2 != null && (Q2.f49617b instanceof TL_iv.pageBlockDetails)) {
+                H.j(z12, R.drawable.iv_todo, null, LocaleController.getString(R.string.ArticleListChecklist), new j1(z1Var3, P2, 8));
+                if (P2 != null && (P2.f49653b instanceof TL_iv.pageBlockDetails)) {
                     z13 = true;
                 } else {
                     z13 = false;
@@ -151,38 +151,38 @@ public final class g1 implements View.OnClickListener {
                 r3 r3Var = z1Var3.M;
                 Objects.requireNonNull(r3Var);
                 H.j(z13, i10, null, string, new b(r3Var, 1));
-                boolean m22 = z1Var3.M.m2();
-                boolean p22 = z1Var3.M.p2();
-                if (m22 || p22) {
+                boolean l22 = z1Var3.M.l2();
+                boolean o22 = z1Var3.M.o2();
+                if (l22 || o22) {
                     H.k();
-                    if (m22) {
+                    if (l22) {
                         H.c(R.drawable.iv_list_tab, LocaleController.getString(R.string.ArticleIndent), new Runnable() {
                             @Override
                             public final void run() {
                                 switch (r3) {
                                     case 0:
-                                        z1Var3.M.r3(false);
+                                        z1Var3.M.q3(false);
                                         H.u();
                                         return;
                                     default:
-                                        z1Var3.M.r3(true);
+                                        z1Var3.M.q3(true);
                                         H.u();
                                         return;
                                 }
                             }
                         }, false);
                     }
-                    if (p22) {
+                    if (o22) {
                         H.c(R.drawable.iv_list_untab, LocaleController.getString(R.string.ArticleOutdent), new Runnable() {
                             @Override
                             public final void run() {
                                 switch (r3) {
                                     case 0:
-                                        z1Var3.M.r3(false);
+                                        z1Var3.M.q3(false);
                                         H.u();
                                         return;
                                     default:
-                                        z1Var3.M.r3(true);
+                                        z1Var3.M.q3(true);
                                         H.u();
                                         return;
                                 }
@@ -192,50 +192,50 @@ public final class g1 implements View.OnClickListener {
                 }
                 H.U = true;
                 H.Z();
-                z1Var3.f50209u0 = H;
+                z1Var3.f50245u0 = H;
                 return;
             case 7:
-                z1 z1Var4 = this.f49754b;
-                q70 q70Var2 = z1Var4.f50209u0;
+                z1 z1Var4 = this.f49790b;
+                q70 q70Var2 = z1Var4.f50245u0;
                 TL_iv.pageTableCell pagetablecell = null;
                 if (q70Var2 != null) {
                     q70Var2.u();
-                    z1Var4.f50209u0 = null;
+                    z1Var4.f50245u0 = null;
                 }
                 r3 r3Var2 = z1Var4.M;
-                i5 i5Var = r3Var2.f49983f4;
-                if (i5Var == null && (R2 = r3Var2.R2()) != null && R2.getModel() != null) {
+                i5 i5Var = r3Var2.f50019f4;
+                if (i5Var == null && (Q2 = r3Var2.Q2()) != null && Q2.getModel() != null) {
                     View findFocus = z1Var4.M.findFocus();
-                    if ((findFocus instanceof e1) && (o10 = R2.o((e1) findFocus)) != null) {
-                        pagetablecell = o10.f49868b;
+                    if ((findFocus instanceof e1) && (o10 = Q2.o((e1) findFocus)) != null) {
+                        pagetablecell = o10.f49904b;
                     }
                     if (pagetablecell != null) {
-                        z1Var4.M.g2(R2);
-                        if (R2.E.add(pagetablecell)) {
-                            R2.v.invalidate();
-                            R2.t();
+                        z1Var4.M.f2(Q2);
+                        if (Q2.E.add(pagetablecell)) {
+                            Q2.v.invalidate();
+                            Q2.t();
                         }
-                        i5Var = R2;
+                        i5Var = Q2;
                     }
                 }
                 if (i5Var != null && i5Var.getModel() != null && !i5Var.E.isEmpty()) {
-                    z1Var4.M.F4(i5Var);
+                    z1Var4.M.E4(i5Var);
                     return;
                 } else {
-                    z1Var4.M.R1(v5.u(2, 2));
+                    z1Var4.M.Q1(v5.u(2, 2));
                     return;
                 }
             case 8:
-                z1 z1Var5 = this.f49754b;
-                q70 q70Var3 = z1Var5.f50209u0;
+                z1 z1Var5 = this.f49790b;
+                q70 q70Var3 = z1Var5.f50245u0;
                 TL_iv.pageBlockMath pageblockmath = null;
                 if (q70Var3 != null) {
                     q70Var3.u();
-                    z1Var5.f50209u0 = null;
+                    z1Var5.f50245u0 = null;
                 }
-                a Q22 = z1Var5.M.Q2();
-                if (Q22 != null) {
-                    TL_iv.PageBlock pageBlock = Q22.f49617b;
+                a P22 = z1Var5.M.P2();
+                if (P22 != null) {
+                    TL_iv.PageBlock pageBlock = P22.f49653b;
                     if (pageBlock instanceof TL_iv.pageBlockMath) {
                         pageblockmath = (TL_iv.pageBlockMath) pageBlock;
                     }
@@ -246,15 +246,15 @@ public final class g1 implements View.OnClickListener {
                 } else {
                     str = "";
                 }
-                q.U(parentActivity, str, new org.telegram.ui.web.v1(22, z1Var5, pageblockmath), z1Var5.getResourceProvider());
+                q.U(parentActivity, str, new org.telegram.ui.web.a2(21, z1Var5, pageblockmath), z1Var5.getResourceProvider());
                 return;
             case 9:
-                z1 z1Var6 = this.f49754b;
+                z1 z1Var6 = this.f49790b;
                 z1Var6.M.Y3 = null;
                 z1Var6.o0(90, 0);
                 return;
             case 10:
-                z1 z1Var7 = this.f49754b;
+                z1 z1Var7 = this.f49790b;
                 z1Var7.r0();
                 ti0 ti0Var = z1Var7.L0;
                 if (ti0Var != null) {
@@ -264,24 +264,24 @@ public final class g1 implements View.OnClickListener {
                 }
                 return;
             case 11:
-                z1 z1Var8 = this.f49754b;
-                z1Var8.M.Q4();
+                z1 z1Var8 = this.f49790b;
+                z1Var8.M.P4();
                 z1Var8.y0();
                 return;
             case 12:
-                this.f49754b.M.Z3(view);
+                this.f49790b.M.Y3(view);
                 return;
             case 13:
-                this.f49754b.M.a4();
+                this.f49790b.M.Z3();
                 return;
             case 14:
-                this.f49754b.M.X3();
+                this.f49790b.M.W3();
                 return;
             case 15:
-                this.f49754b.M.b4();
+                this.f49790b.M.a4();
                 return;
             default:
-                this.f49754b.n0();
+                this.f49790b.n0();
                 return;
         }
     }

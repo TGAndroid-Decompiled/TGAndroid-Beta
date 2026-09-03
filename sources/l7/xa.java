@@ -61,7 +61,7 @@ public class xa extends AbstractMap {
                 }
                 return;
             case 1:
-                n7.d dVar = ((mg) this.f12100e).f15661c;
+                n7.d dVar = ((mg) this.f12100e).f15663c;
                 if (this.f12098b == dVar) {
                     for (Collection collection2 : dVar.values()) {
                         collection2.clear();
@@ -272,16 +272,16 @@ public class xa extends AbstractMap {
                 return aVar;
             case 1:
                 mg mgVar = (mg) this.f12100e;
-                fd fdVar = mgVar.f15645a;
+                fd fdVar = mgVar.f15647a;
                 if (fdVar == null) {
-                    fd fdVar2 = new fd(mgVar, mgVar.f15661c);
-                    mgVar.f15645a = fdVar2;
+                    fd fdVar2 = new fd(mgVar, mgVar.f15663c);
+                    mgVar.f15647a = fdVar2;
                     return fdVar2;
                 }
                 return fdVar;
             default:
                 s8.e0 e0Var = (s8.e0) this.f12100e;
-                s8.c cVar2 = e0Var.f47111a;
+                s8.c cVar2 = e0Var.f47142a;
                 if (cVar2 == null) {
                     Map map = e0Var.d;
                     if (map instanceof NavigableMap) {
@@ -292,7 +292,7 @@ public class xa extends AbstractMap {
                         cVar = new s8.c(e0Var, map);
                     }
                     cVar2 = cVar;
-                    e0Var.f47111a = cVar2;
+                    e0Var.f47142a = cVar2;
                 }
                 return cVar2;
         }
@@ -331,9 +331,9 @@ public class xa extends AbstractMap {
                 if (collection3 == null) {
                     return null;
                 }
-                List list = (List) e0Var.f47102f.get();
+                List list = (List) e0Var.f47133f.get();
                 list.addAll(collection3);
-                e0Var.f47101e -= collection3.size();
+                e0Var.f47132e -= collection3.size();
                 collection3.clear();
                 return list;
         }

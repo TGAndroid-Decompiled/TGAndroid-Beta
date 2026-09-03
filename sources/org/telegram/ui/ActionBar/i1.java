@@ -15,25 +15,25 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.b8;
 import org.telegram.ui.Components.c8;
 import org.telegram.ui.Components.ov;
-import org.telegram.ui.Components.ry0;
-import org.telegram.ui.Components.vm;
+import org.telegram.ui.Components.qy0;
+import org.telegram.ui.Components.um;
 import org.telegram.ui.FiltersSetupActivity;
 import org.telegram.ui.a20;
 import org.telegram.ui.fn0;
 import org.telegram.ui.qt;
+import org.telegram.ui.v10;
 import org.telegram.ui.vl0;
 import org.telegram.ui.vy;
-import org.telegram.ui.w10;
 import org.telegram.ui.yy;
 public final class i1 implements View.OnTouchListener {
-    public final int f21447a;
-    public final Object f21448b;
-    public final Object f21449c;
+    public final int f21449a;
+    public final Object f21450b;
+    public final Object f21451c;
 
     public i1(int i10, Object obj, Object obj2) {
-        this.f21447a = i10;
-        this.f21448b = obj;
-        this.f21449c = obj2;
+        this.f21449a = i10;
+        this.f21450b = obj;
+        this.f21451c = obj2;
     }
 
     @Override
@@ -44,10 +44,10 @@ public final class i1 implements View.OnTouchListener {
         int i12;
         int i13;
         int i14;
-        switch (this.f21447a) {
+        switch (this.f21449a) {
             case 0:
-                p1 p1Var = (p1) this.f21448b;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f21449c;
+                p1 p1Var = (p1) this.f21450b;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f21451c;
                 if (motionEvent.getAction() == 0) {
                     Drawable backgroundDrawable = actionBarPopupWindow$ActionBarPopupWindowLayout.getBackgroundDrawable();
                     RectF rectF = AndroidUtilities.rectTmp;
@@ -60,40 +60,40 @@ public final class i1 implements View.OnTouchListener {
                 }
                 return false;
             case 1:
-                b8 b8Var = (b8) this.f21448b;
-                org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) this.f21449c;
+                b8 b8Var = (b8) this.f21450b;
+                org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) this.f21451c;
                 if (motionEvent.getAction() == 0) {
-                    c8 c8Var = b8Var.f25516n;
-                    c8Var.E.r(c8Var.f25843n.T(xVar));
+                    c8 c8Var = b8Var.f25536n;
+                    c8Var.E.r(c8Var.f25817n.T(xVar));
                     return false;
                 }
                 return false;
             case 2:
-                return ov.m((ov) this.f21448b, (vm) this.f21449c, motionEvent);
+                return ov.m((ov) this.f21450b, (um) this.f21451c, motionEvent);
             case 3:
-                return ry0.a((ry0) this.f21448b, (org.telegram.ui.Components.k) this.f21449c, motionEvent);
+                return qy0.a((qy0) this.f21450b, (org.telegram.ui.Components.k) this.f21451c, motionEvent);
             case 4:
-                vy vyVar = (vy) this.f21448b;
-                org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) this.f21449c;
+                vy vyVar = (vy) this.f21450b;
+                org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) this.f21451c;
                 vyVar.getClass();
                 if (motionEvent.getAction() == 0) {
                     yy yyVar = vyVar.d;
-                    yyVar.f43732c.r(yyVar.f43731b.T(g4Var));
+                    yyVar.f43731c.r(yyVar.f43730b.T(g4Var));
                     return false;
                 }
                 return false;
             case 5:
-                a20 a20Var = (a20) this.f21448b;
-                w10 w10Var = (w10) this.f21449c;
+                a20 a20Var = (a20) this.f21450b;
+                v10 v10Var = (v10) this.f21451c;
                 if (motionEvent.getAction() == 0) {
-                    FiltersSetupActivity filtersSetupActivity = a20Var.f34996e;
-                    filtersSetupActivity.f34119c.r(filtersSetupActivity.f34117a.T(w10Var));
+                    FiltersSetupActivity filtersSetupActivity = a20Var.f35001e;
+                    filtersSetupActivity.f34119c.r(filtersSetupActivity.f34117a.T(v10Var));
                     return false;
                 }
                 return false;
             case 6:
-                fn0 fn0Var = (fn0) this.f21448b;
-                Context context = (Context) this.f21449c;
+                fn0 fn0Var = (fn0) this.f21450b;
+                Context context = (Context) this.f21451c;
                 int i15 = 0;
                 if (fn0Var.getParentActivity() == null) {
                     return false;
@@ -136,15 +136,15 @@ public final class i1 implements View.OnTouchListener {
                         if (intValue == 8) {
                             x10.h(LocaleController.getString(R.string.PassportSelectNotExpire), new vl0(0, fn0Var, editTextBoldCursor));
                         }
-                        fn0Var.showDialog(x10.f21166a);
+                        fn0Var.showDialog(x10.f21168a);
                     } catch (Exception e6) {
                         FileLog.e(e6);
                     }
                 }
                 return true;
             default:
-                qh.i1 i1Var = (qh.i1) this.f21448b;
-                return qt.q().s(motionEvent, i1Var.f45401b, (ag.h) this.f21449c, i1Var.f45404f, qh.y1.H(i1Var.f45406r));
+                qh.h1 h1Var = (qh.h1) this.f21450b;
+                return qt.q().s(motionEvent, h1Var.f45383b, (ag.h) this.f21451c, h1Var.f45386f, qh.x1.H(h1Var.f45388r));
         }
     }
 }

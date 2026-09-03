@@ -4,22 +4,22 @@ import android.os.Bundle;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
-public final class xv implements org.telegram.ui.Components.jl0 {
-    public final int f43483a;
-    public final py f43484b;
+public final class xv implements org.telegram.ui.Components.il0 {
+    public final int f43462a;
+    public final py f43463b;
 
     public xv(py pyVar, int i10) {
-        this.f43483a = i10;
-        this.f43484b = pyVar;
+        this.f43462a = i10;
+        this.f43463b = pyVar;
     }
 
     @Override
     public final void f(int i10, View view) {
         uf.e0 e0Var;
-        switch (this.f43483a) {
+        switch (this.f43462a) {
             case 0:
-                py pyVar = this.f43484b;
-                Object obj = pyVar.f40306z0.f26614s0.G(i10).G;
+                py pyVar = this.f43463b;
+                Object obj = pyVar.f40276z0.f26337s0.G(i10).G;
                 if (obj instanceof MessageObject) {
                     MessageObject messageObject = (MessageObject) obj;
                     Bundle bundle = new Bundle();
@@ -44,7 +44,7 @@ public final class xv implements org.telegram.ui.Components.jl0 {
                     return;
                 }
             default:
-                py pyVar2 = this.f43484b;
+                py pyVar2 = this.f43463b;
                 pyVar2.Y.I0(true);
                 ArrayList arrayList = pyVar2.Y.U2;
                 if (arrayList.isEmpty()) {

@@ -27,35 +27,35 @@ import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.ActionBar.f5;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.er0;
+import org.telegram.ui.Components.dr0;
 import org.telegram.ui.Components.g6;
 import org.telegram.ui.Components.h6;
 import org.telegram.ui.Components.hr;
 import org.telegram.ui.Components.j6;
-import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.kl0;
+import org.telegram.ui.Components.ln0;
 import org.telegram.ui.Components.lr;
 import org.telegram.ui.Components.mn0;
 import org.telegram.ui.Components.nn0;
 import org.telegram.ui.Components.on0;
-import org.telegram.ui.Components.pn0;
 import org.telegram.ui.Components.q70;
 import org.telegram.ui.Components.voip.j3;
 import org.telegram.ui.Components.voip.k3;
 import org.telegram.ui.Components.voip.l3;
 import org.telegram.ui.Components.x40;
 import org.telegram.ui.Components.y40;
-import org.telegram.ui.Components.zu0;
+import org.telegram.ui.Components.yu0;
 import org.telegram.ui.PasskeysActivity;
 import org.telegram.ui.bw;
-import org.telegram.ui.ci1;
 import org.telegram.ui.ea;
-import org.telegram.ui.lu0;
+import org.telegram.ui.ii1;
 import org.telegram.ui.ma;
 import org.telegram.ui.pa;
 import org.telegram.ui.py;
-import org.telegram.ui.sw0;
+import org.telegram.ui.qu0;
+import org.telegram.ui.xw0;
 import org.telegram.ui.zi;
-public final class a0 implements BillingController.ProductDetailsResponseListenerLegacy, x40, org.telegram.ui.ActionBar.c2, h6, ll0, MessagesStorage.BooleanCallback, p2.n, j3 {
+public final class a0 implements BillingController.ProductDetailsResponseListenerLegacy, x40, org.telegram.ui.ActionBar.c2, h6, kl0, MessagesStorage.BooleanCallback, p2.n, j3 {
     public final int f7389a;
     public final int f7390b;
     public final Object f7391c;
@@ -114,28 +114,28 @@ public final class a0 implements BillingController.ProductDetailsResponseListene
         ((ArrayList) this.f7392e).add(g6Var);
         arrayList.add(g6Var2);
         float f10 = j6Var.d;
-        float f11 = g6Var.f27121f;
+        float f11 = g6Var.f27105f;
         j6Var.d = f10 + f11;
         j6Var.h += f11;
-        j6Var.f28031e = Math.max(j6Var.f28031e, h.getHeight());
-        j6Var.f28034i = Math.max(j6Var.f28034i, h.getHeight());
+        j6Var.f28001e = Math.max(j6Var.f28001e, h.getHeight());
+        j6Var.f28004i = Math.max(j6Var.f28004i, h.getHeight());
     }
 
     @Override
     public void b(p2.h hVar, List list) {
-        AndroidUtilities.runOnUIThread(new lf.j0(hVar, (org.telegram.ui.ActionBar.p2) this.f7391c, list, this.f7390b, (p2.e) this.d, (sw0) this.f7392e, 13));
+        AndroidUtilities.runOnUIThread(new lf.j0(hVar, (org.telegram.ui.ActionBar.p2) this.f7391c, list, this.f7390b, (p2.e) this.d, (xw0) this.f7392e, 13));
     }
 
     @Override
     public void d(k3 k3Var) {
-        ci1 ci1Var = (ci1) this.f7391c;
+        ii1 ii1Var = (ii1) this.f7391c;
         l3 l3Var = (l3) this.d;
         VoIPService voIPService = (VoIPService) this.f7392e;
         if (VoIPService.getSharedInstance() != null) {
-            AndroidUtilities.cancelRunOnUIThread(ci1Var.P0);
-            ci1Var.O0 = false;
-            VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(ci1Var.f35821b, false, Integer.valueOf(this.f7390b));
-            ci1Var.u(l3Var, voIPService);
+            AndroidUtilities.cancelRunOnUIThread(ii1Var.P0);
+            ii1Var.O0 = false;
+            VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(ii1Var.f37673b, false, Integer.valueOf(this.f7390b));
+            ii1Var.u(l3Var, voIPService);
         }
     }
 
@@ -147,10 +147,10 @@ public final class a0 implements BillingController.ProductDetailsResponseListene
     @Override
     public boolean f(int i10, View view) {
         int i11;
-        pn0 pn0Var = (pn0) this.f7391c;
+        on0 on0Var = (on0) this.f7391c;
         org.telegram.ui.ActionBar.p2 p2Var = (org.telegram.ui.ActionBar.p2) this.d;
         org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f7392e;
-        ArrayList arrayList = pn0Var.f30134r;
+        ArrayList arrayList = on0Var.f29830r;
         if (i10 >= 0 && i10 < arrayList.size()) {
             int i12 = this.f7390b;
             if (UserConfig.getInstance(i12).isPremium()) {
@@ -158,20 +158,20 @@ public final class a0 implements BillingController.ProductDetailsResponseListene
                     new fg.n1(p2Var, 24, true).show();
                     return true;
                 }
-                nn0 nn0Var = ((on0) view).f29821a;
-                if (nn0Var != null) {
-                    nn0Var.q();
+                mn0 mn0Var = ((nn0) view).f29539a;
+                if (mn0Var != null) {
+                    mn0Var.q();
                 }
-                mn0 mn0Var = (mn0) arrayList.get(i10);
+                ln0 ln0Var = (ln0) arrayList.get(i10);
                 q70 H = q70.H(p2Var, view);
-                H.f30311i = 3;
+                H.f30315i = 3;
                 int i13 = R.drawable.menu_tag_rename;
-                if (TextUtils.isEmpty(mn0Var.f29158c)) {
+                if (TextUtils.isEmpty(ln0Var.f28812c)) {
                     i11 = R.string.SavedTagLabelTag;
                 } else {
                     i11 = R.string.SavedTagRenameTag;
                 }
-                H.c(i13, LocaleController.getString(i11), new dg.u1(pn0Var, i12, mn0Var, g6Var, 20), false);
+                H.c(i13, LocaleController.getString(i11), new dg.u1(on0Var, i12, ln0Var, g6Var, 20), false);
                 H.Z();
                 return true;
             }
@@ -180,7 +180,7 @@ public final class a0 implements BillingController.ProductDetailsResponseListene
     }
 
     @Override
-    public lu0 getCloseIntoObject() {
+    public qu0 getCloseIntoObject() {
         return null;
     }
 
@@ -205,8 +205,8 @@ public final class a0 implements BillingController.ProductDetailsResponseListene
                 final boolean z4 = tL_username.active;
                 final String str = tL_username.username;
                 final boolean z10 = !z4;
-                pa paVar = eaVar.f36453a;
-                long j10 = paVar.f40000x;
+                pa paVar = eaVar.f36419a;
+                long j10 = paVar.f39960x;
                 if (j10 == 0) {
                     TL_account.toggleUsername toggleusername2 = new TL_account.toggleUsername();
                     toggleusername2.username = str;
@@ -227,7 +227,7 @@ public final class a0 implements BillingController.ProductDetailsResponseListene
                         AndroidUtilities.runOnUIThread(new org.telegram.messenger.fj(ea.this, str, tLObject, i13, z10, tL_error, tL_username, z4));
                     }
                 });
-                paVar.f39999w.add(tL_username.username);
+                paVar.f39959w.add(tL_username.username);
                 ((ma) view).setLoading(true);
                 return;
             case 3:
@@ -247,24 +247,24 @@ public final class a0 implements BillingController.ProductDetailsResponseListene
                 }
                 return;
             case 6:
-                zu0 zu0Var = (zu0) obj3;
+                yu0 yu0Var = (yu0) obj3;
                 MessageObject messageObject = (MessageObject) obj;
-                org.telegram.ui.ActionBar.d2[] d2VarArr = {new org.telegram.ui.ActionBar.d2(zu0Var.getContext(), 3, (org.telegram.ui.ActionBar.g6) obj2)};
+                org.telegram.ui.ActionBar.d2[] d2VarArr = {new org.telegram.ui.ActionBar.d2(yu0Var.getContext(), 3, (org.telegram.ui.ActionBar.g6) obj2)};
                 TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
                 TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
                 TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
                 tL_inputMediaPoll.poll = tL_poll;
                 TLRPC.Poll poll = ((TLRPC.TL_messageMediaPoll) messageObject.messageOwner.media).poll;
-                tL_poll.f20869id = poll.f20869id;
+                tL_poll.f20871id = poll.f20871id;
                 tL_poll.question = poll.question;
                 tL_poll.answers = poll.answers;
                 tL_poll.closed = true;
                 tL_messages_editMessage.media = tL_inputMediaPoll;
                 int i14 = this.f7390b;
-                tL_messages_editMessage.peer = MessagesController.getInstance(i14).getInputPeer(zu0Var.f33979g1);
-                tL_messages_editMessage.f20926id = messageObject.getId();
+                tL_messages_editMessage.peer = MessagesController.getInstance(i14).getInputPeer(yu0Var.f33624g1);
+                tL_messages_editMessage.f20928id = messageObject.getId();
                 tL_messages_editMessage.flags |= 16384;
-                AndroidUtilities.runOnUIThread(new er0(d2VarArr, i14, ConnectionsManager.getInstance(i14).sendRequest(tL_messages_editMessage, new b8(zu0Var, d2VarArr, i14, tL_messages_editMessage, 4)), 1), 500L);
+                AndroidUtilities.runOnUIThread(new dr0(d2VarArr, i14, ConnectionsManager.getInstance(i14).sendRequest(tL_messages_editMessage, new b8(yu0Var, d2VarArr, i14, tL_messages_editMessage, 4)), 1), 500L);
                 return;
         }
     }
@@ -286,9 +286,9 @@ public final class a0 implements BillingController.ProductDetailsResponseListene
                     i10++;
                     TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = (TLRPC.TL_premiumGiftCodeOption) obj;
                     String str = tL_premiumGiftCodeOption.store_product;
-                    if (str != null && str.equals(mVar.f44161c)) {
-                        tL_premiumGiftCodeOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_premiumGiftCodeOption.currency)) * (a2.f44149b / Math.pow(10.0d, 6.0d)));
-                        tL_premiumGiftCodeOption.currency = a2.f44150c;
+                    if (str != null && str.equals(mVar.f44192c)) {
+                        tL_premiumGiftCodeOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_premiumGiftCodeOption.currency)) * (a2.f44180b / Math.pow(10.0d, 6.0d)));
+                        tL_premiumGiftCodeOption.currency = a2.f44181c;
                         break;
                     }
                 }

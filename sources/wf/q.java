@@ -19,9 +19,9 @@ public class q extends g {
         this.A1 = new Matrix();
         this.B1 = new float[2];
         this.C1 = new Path();
-        this.f49575t0 = true;
-        this.f49576u0 = true;
-        this.f49553e = false;
+        this.f49611t0 = true;
+        this.f49612u0 = true;
+        this.f49589e = false;
     }
 
     @Override
@@ -66,16 +66,16 @@ public class q extends g {
         F();
         k(canvas);
         i(canvas);
-        ArrayList arrayList = this.f49545b;
-        this.f49563j0 = arrayList.size();
+        ArrayList arrayList = this.f49581b;
+        this.f49599j0 = arrayList.size();
         int i10 = 0;
         while (true) {
-            this.f49564k0 = i10;
-            int i11 = this.f49564k0;
-            if (i11 < this.f49563j0) {
+            this.f49600k0 = i10;
+            int i11 = this.f49600k0;
+            if (i11 < this.f49599j0) {
                 l(canvas, (yf.d) arrayList.get(i11));
-                p(canvas, (yf.d) arrayList.get(this.f49564k0));
-                i10 = this.f49564k0 + 1;
+                p(canvas, (yf.d) arrayList.get(this.f49600k0));
+                i10 = this.f49600k0 + 1;
             } else {
                 j(canvas);
                 m(canvas);

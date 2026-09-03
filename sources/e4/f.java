@@ -157,7 +157,7 @@ public final class f extends j3.e implements Handler.Callback {
                             ArrayList arrayList = new ArrayList(a2.f4938a.length);
                             z(a2, arrayList);
                             if (!arrayList.isEmpty()) {
-                                this.J = new c(A(eVar.f15216f), (b[]) arrayList.toArray(new b[0]));
+                                this.J = new c(A(eVar.f15218f), (b[]) arrayList.toArray(new b[0]));
                             }
                         }
                     }

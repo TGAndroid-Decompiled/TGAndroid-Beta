@@ -6,15 +6,15 @@ import java.io.EOFException;
 import java.io.IOException;
 import ne.p;
 public final class b extends p {
-    public final int f50539g;
+    public final int f50575g;
 
     public b(d dVar, p pVar, String str, int i10) {
         super(dVar, pVar, str);
-        this.f50539g = i10;
+        this.f50575g = i10;
     }
 
     public static void h(StringBuffer stringBuffer, p pVar) {
-        p pVar2 = (p) pVar.f15975c;
+        p pVar2 = (p) pVar.f15977c;
         if (pVar2 != null) {
             h(stringBuffer, pVar2);
             stringBuffer.append("/");
@@ -23,12 +23,12 @@ public final class b extends p {
     }
 
     public long i() {
-        return ((ze.a) ((d) this.f15974b)).e();
+        return ((ze.a) ((d) this.f15976b)).e();
     }
 
     public boolean j() {
         long j10;
-        b bVar = (b) this.f15977f;
+        b bVar = (b) this.f15979f;
         if (bVar != null) {
             j10 = bVar.i();
         } else {
@@ -51,12 +51,12 @@ public final class b extends p {
     }
 
     public short l() {
-        return ((DataInputStream) this.f15976e).readShort();
+        return ((DataInputStream) this.f15978e).readShort();
     }
 
     public String m() {
         byte[] bArr = new byte[(int) i()];
-        ((DataInputStream) this.f15976e).readFully(bArr);
+        ((DataInputStream) this.f15978e).readFully(bArr);
         String str = new String(bArr, "UTF-8");
         int indexOf = str.indexOf(0);
         if (indexOf < 0) {
@@ -68,7 +68,7 @@ public final class b extends p {
     public void n(int i10) {
         int i11 = 0;
         while (i11 < i10) {
-            int skipBytes = ((DataInputStream) this.f15976e).skipBytes(i10 - i11);
+            int skipBytes = ((DataInputStream) this.f15978e).skipBytes(i10 - i11);
             if (skipBytes > 0) {
                 i11 += skipBytes;
             } else {
@@ -79,13 +79,13 @@ public final class b extends p {
 
     @Override
     public final String toString() {
-        switch (this.f50539g) {
+        switch (this.f50575g) {
             case 0:
                 StringBuffer stringBuffer = new StringBuffer();
                 h(stringBuffer, this);
                 stringBuffer.append("[off=");
-                long j10 = ((d) ((p) this.f15975c).f15974b).f4045b;
-                d dVar = (d) this.f15974b;
+                long j10 = ((d) ((p) this.f15977c).f15976b).f4045b;
+                d dVar = (d) this.f15976b;
                 stringBuffer.append(j10 - dVar.f4045b);
                 stringBuffer.append(",pos=");
                 stringBuffer.append(dVar.f4045b);
@@ -95,7 +95,7 @@ public final class b extends p {
                 stringBuffer.append("]");
                 return stringBuffer.toString();
             default:
-                return android.support.v4.media.a.q(new StringBuilder("mp4[pos="), ((d) this.f15974b).f4045b, "]");
+                return android.support.v4.media.a.q(new StringBuilder("mp4[pos="), ((d) this.f15976b).f4045b, "]");
         }
     }
 }

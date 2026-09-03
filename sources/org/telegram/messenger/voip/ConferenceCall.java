@@ -268,7 +268,7 @@ public class ConferenceCall {
         VoIPService sharedInstance;
         ChatObject.Call call;
         TLRPC.GroupCall groupCall;
-        if (this.groupCall != null && (sharedInstance = VoIPService.getSharedInstance()) != null && (call = sharedInstance.groupCall) != null && (groupCall = call.call) != null && groupCall.f20853id == this.groupCall.f20853id) {
+        if (this.groupCall != null && (sharedInstance = VoIPService.getSharedInstance()) != null && (call = sharedInstance.groupCall) != null && (groupCall = call.call) != null && groupCall.f20855id == this.groupCall.f20855id) {
             updateParticipants(call.sortedParticipants, false);
             sharedInstance.groupCall.shadyLeftParticipants.clear();
             ChatObject.Call call2 = sharedInstance.groupCall;
@@ -276,7 +276,7 @@ public class ConferenceCall {
             sharedInstance.groupCall.shadyJoinParticipants.clear();
             ChatObject.Call call3 = sharedInstance.groupCall;
             call3.shadyJoinParticipants.addAll(sharedInstance.conference.getShadyJoiningParticipants(call3.sortedParticipants));
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(this.groupCall.f20853id), Boolean.FALSE);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(this.groupCall.f20855id), Boolean.FALSE);
         }
     }
 
@@ -397,7 +397,7 @@ public class ConferenceCall {
                 z4 = true;
             }
         }
-        Utilities.stageQueue.postRunnable(new z1(29, this, updates));
+        Utilities.stageQueue.postRunnable(new z1(28, this, updates));
         return z4;
     }
 
@@ -475,11 +475,11 @@ public class ConferenceCall {
             if (groupCall == null) {
                 FileLog.d("[tde2e] received updateGroupCallChainBlocks but we dont have groupcall yet!");
                 return false;
-            } else if (tL_updateGroupCallChainBlocks.call.f20860id != groupCall.f20853id) {
+            } else if (tL_updateGroupCallChainBlocks.call.f20862id != groupCall.f20855id) {
                 StringBuilder sb = new StringBuilder("[tde2e] received updateGroupCallChainBlocks for ");
-                sb.append(tL_updateGroupCallChainBlocks.call.f20860id);
+                sb.append(tL_updateGroupCallChainBlocks.call.f20862id);
                 sb.append(" but we have ");
-                l.d.x(sb, this.groupCall.f20853id);
+                l.d.x(sb, this.groupCall.f20855id);
                 return false;
             } else {
                 StringBuilder sb2 = new StringBuilder("[tde2e] received update with ");

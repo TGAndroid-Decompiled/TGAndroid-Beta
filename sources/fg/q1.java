@@ -81,7 +81,7 @@ public final class q1 {
     }
 
     public final void b() {
-        int i10 = k6.f22056z9;
+        int i10 = k6.f22058z9;
         if (k6.w0(null, i10, false) != this.f6519i) {
             this.f6519i = k6.w0(null, i10, false);
             this.f6516e.setColorFilter(new PorterDuffColorFilter(this.f6519i, PorterDuff.Mode.MULTIPLY));

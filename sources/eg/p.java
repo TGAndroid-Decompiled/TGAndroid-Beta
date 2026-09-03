@@ -2,7 +2,7 @@ package eg;
 
 import java.util.List;
 import k7.c6;
-import org.telegram.ui.Components.b11;
+import org.telegram.ui.Components.a11;
 public final class p implements Runnable {
     public final int f5424a;
     public final c1 f5425b;
@@ -18,10 +18,10 @@ public final class p implements Runnable {
         switch (this.f5424a) {
             case 0:
                 c1 c1Var = this.f5425b;
-                b11 b11Var = c1Var.X0;
-                if (b11Var != null) {
+                a11 a11Var = c1Var.X0;
+                if (a11Var != null) {
                     c1Var.X0 = null;
-                    c1Var.removeView(b11Var);
+                    c1Var.removeView(a11Var);
                     return;
                 }
                 return;

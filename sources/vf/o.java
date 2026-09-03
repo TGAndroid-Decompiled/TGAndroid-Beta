@@ -19,12 +19,12 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.l5;
 public final class o extends FrameLayout {
-    public final l5 f49152a;
-    public final jh.s f49153b;
-    public final l5 f49154c;
+    public final l5 f49188a;
+    public final jh.s f49189b;
+    public final l5 f49190c;
     public final g6 d;
-    public boolean f49155e;
-    public TL_account.TL_businessChatLink f49156f;
+    public boolean f49191e;
+    public TL_account.TL_businessChatLink f49192f;
 
     public o(Context context, g6 g6Var) {
         super(context);
@@ -41,7 +41,7 @@ public final class o extends FrameLayout {
         imageView.setOnClickListener(new org.telegram.ui.Components.voip.o(this, 24));
         addView(imageView, c6.i(36.0f, 36.0f, 8388627, 14.0f, 0.0f, 14.0f, 0.0f));
         l5 l5Var = new l5(context);
-        this.f49152a = l5Var;
+        this.f49188a = l5Var;
         l5Var.setTextSize(15);
         l5Var.setTextColor(k6.w0(null, k6.G6, false));
         if (LocaleController.isRTL) {
@@ -52,9 +52,9 @@ public final class o extends FrameLayout {
         l5Var.setGravity(i10);
         addView(l5Var, c6.i(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
         l5 l5Var2 = new l5(context);
-        this.f49154c = l5Var2;
+        this.f49190c = l5Var2;
         l5Var2.setTextSize(14);
-        int i12 = k6.f22053z6;
+        int i12 = k6.f22055z6;
         l5Var2.setTextColor(k6.w0(null, i12, false));
         if (LocaleController.isRTL) {
             i11 = 3;
@@ -64,7 +64,7 @@ public final class o extends FrameLayout {
         l5Var2.setGravity(i11);
         addView(l5Var2, c6.i(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
         jh.s sVar = new jh.s(context);
-        this.f49153b = sVar;
+        this.f49189b = sVar;
         sVar.setTextSize(1, 13.0f);
         sVar.setMaxLines(1);
         sVar.setEllipsize(TextUtils.TruncateAt.END);
@@ -80,10 +80,10 @@ public final class o extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         float f10;
         super.onDraw(canvas);
-        if (this.f49155e) {
+        if (this.f49191e) {
             Paint T0 = k6.T0("paintDivider", this.d);
             if (T0 == null) {
-                T0 = k6.f21779k0;
+                T0 = k6.f21781k0;
             }
             Paint paint = T0;
             float f11 = 64.0f;
@@ -106,8 +106,8 @@ public final class o extends FrameLayout {
     public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
         super.onLayout(z4, i10, i11, i12, i13);
         boolean z10 = LocaleController.isRTL;
-        l5 l5Var = this.f49154c;
-        l5 l5Var2 = this.f49152a;
+        l5 l5Var = this.f49190c;
+        l5 l5Var2 = this.f49188a;
         if (z10) {
             l5Var2.setPadding(l5Var.getTextWidth(), 0, 0, 0);
         } else {
@@ -117,6 +117,6 @@ public final class o extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f) + (this.f49155e ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f) + (this.f49191e ? 1 : 0), 1073741824));
     }
 }

@@ -27,7 +27,7 @@ public final class bu extends org.telegram.ui.Components.sa {
     public final ArrayList X;
     public final HashSet Y;
     public boolean Z;
-    public org.telegram.ui.Components.x51 f35590a0;
+    public org.telegram.ui.Components.w51 f35598a0;
 
     public bu(Activity activity, HashSet hashSet) {
         super(activity, null, false, false, false, 1, new oh.b());
@@ -37,7 +37,7 @@ public final class bu extends org.telegram.ui.Components.sa {
         this.Y = hashSet2;
         arrayList.addAll(hashSet);
         hashSet2.addAll(hashSet);
-        fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.k6.f21731h5));
+        fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.k6.f21733h5));
         this.drawDoubleNavigationBar = false;
         FrameLayout frameLayout = new FrameLayout(activity);
         this.U = frameLayout;
@@ -49,23 +49,23 @@ public final class bu extends org.telegram.ui.Components.sa {
         frameLayout.addView(imageView, k7.c6.d(24, 24.0f, 53, 0.0f, 14.0f, 14.0f, 0.0f));
         k7.e6.a(imageView);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final bu f35244b;
+            public final bu f35251b;
 
             {
-                this.f35244b = this;
+                this.f35251b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f35244b.dismiss();
+                        this.f35251b.dismiss();
                         return;
                     case 1:
-                        this.f35244b.S(false);
+                        this.f35251b.S(false);
                         return;
                     default:
-                        this.f35244b.S(true);
+                        this.f35251b.S(true);
                         return;
                 }
             }
@@ -84,11 +84,11 @@ public final class bu extends org.telegram.ui.Components.sa {
         org.telegram.ui.Components.g90 a10 = k7.g6.a(activity, 14.0f, i10, false, this.resourcesProvider);
         a10.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.GroupCallCreateText)));
         a10.setGravity(17);
-        a10.setMaxWidth(qh.f3.a(a10.getText(), a10.getPaint()));
+        a10.setMaxWidth(qh.e3.a(a10.getText(), a10.getPaint()));
         h.addView(a10, k7.c6.t(-1, -2, 1, 2, 0, 2, 23));
-        org.telegram.ui.Components.x51 x51Var = this.f35590a0;
-        if (x51Var != null) {
-            x51Var.N(false);
+        org.telegram.ui.Components.w51 w51Var = this.f35598a0;
+        if (w51Var != null) {
+            w51Var.N(false);
         }
         f2.l lVar = new f2.l();
         lVar.f5910m = false;
@@ -110,23 +110,23 @@ public final class bu extends org.telegram.ui.Components.sa {
         dVar.g(spannableStringBuilder, false, true);
         h9.addView(dVar, k7.c6.p(-1, 48, 1.0f, 119, 0, 0, 6, 0));
         dVar.setOnClickListener(new View.OnClickListener(this) {
-            public final bu f35244b;
+            public final bu f35251b;
 
             {
-                this.f35244b = this;
+                this.f35251b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f35244b.dismiss();
+                        this.f35251b.dismiss();
                         return;
                     case 1:
-                        this.f35244b.S(false);
+                        this.f35251b.S(false);
                         return;
                     default:
-                        this.f35244b.S(true);
+                        this.f35251b.S(true);
                         return;
                 }
             }
@@ -140,31 +140,31 @@ public final class bu extends org.telegram.ui.Components.sa {
         dVar2.g(spannableStringBuilder2, false, true);
         h9.addView(dVar2, k7.c6.p(-1, 48, 1.0f, 119, 6, 0, 0, 0));
         dVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final bu f35244b;
+            public final bu f35251b;
 
             {
-                this.f35244b = this;
+                this.f35251b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f35244b.dismiss();
+                        this.f35251b.dismiss();
                         return;
                     case 1:
-                        this.f35244b.S(false);
+                        this.f35251b.S(false);
                         return;
                     default:
-                        this.f35244b.S(true);
+                        this.f35251b.S(true);
                         return;
                 }
             }
         });
         this.containerView.addView(frameLayout3, k7.c6.e(-1, -2, 87));
-        org.telegram.ui.Components.tl0 tl0Var = this.d;
+        org.telegram.ui.Components.sl0 sl0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        tl0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(76.0f));
+        sl0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(76.0f));
     }
 
     public static void Q(bu buVar, TLObject tLObject, qh.d dVar, boolean z4, HashSet hashSet, TLRPC.TL_error tL_error) {
@@ -181,13 +181,13 @@ public final class bu extends org.telegram.ui.Components.sa {
                 i10++;
                 groupCall = ((TL_update.TL_updateGroupCall) obj).call;
             }
-            Utilities.stageQueue.postRunnable(new org.telegram.ui.Components.l41(13, buVar, updates));
+            Utilities.stageQueue.postRunnable(new org.telegram.ui.Components.q51(12, buVar, updates));
             if (groupCall != null && LaunchActivity.D1 != null) {
                 TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                tL_inputGroupCall.f20860id = groupCall.f20853id;
+                tL_inputGroupCall.f20862id = groupCall.f20855id;
                 tL_inputGroupCall.access_hash = groupCall.access_hash;
                 buVar.dismiss();
-                org.telegram.ui.Components.voip.g2.h(LaunchActivity.D1, buVar.currentAccount, tL_inputGroupCall, z4, groupCall, hashSet);
+                org.telegram.ui.Components.voip.g2.g(LaunchActivity.D1, buVar.currentAccount, tL_inputGroupCall, z4, groupCall, hashSet);
                 return;
             }
             buVar.Z = false;
@@ -203,18 +203,18 @@ public final class bu extends org.telegram.ui.Components.sa {
             }
             TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
             TLRPC.GroupCall groupCall2 = groupcall.call;
-            tL_inputGroupCall2.f20860id = groupCall2.f20853id;
+            tL_inputGroupCall2.f20862id = groupCall2.f20855id;
             tL_inputGroupCall2.access_hash = groupCall2.access_hash;
             buVar.dismiss();
-            org.telegram.ui.Components.voip.g2.h(LaunchActivity.D1, buVar.currentAccount, tL_inputGroupCall2, z4, groupcall.call, hashSet);
+            org.telegram.ui.Components.voip.g2.g(LaunchActivity.D1, buVar.currentAccount, tL_inputGroupCall2, z4, groupcall.call, hashSet);
         } else if (tL_error != null) {
             yh.u(buVar.topBulletinContainer, buVar.resourcesProvider, tL_error, false);
         }
     }
 
     public static void R(bu buVar, ArrayList arrayList) {
-        arrayList.add(org.telegram.ui.Components.j51.k(buVar.U));
-        arrayList.add(org.telegram.ui.Components.j51.B(null));
+        arrayList.add(org.telegram.ui.Components.h51.k(buVar.U));
+        arrayList.add(org.telegram.ui.Components.h51.B(null));
         ArrayList arrayList2 = buVar.X;
         if (arrayList2 != null && !arrayList2.isEmpty()) {
             yh.r(R.string.GroupCallCreateAddMembers, arrayList);
@@ -223,8 +223,8 @@ public final class bu extends org.telegram.ui.Components.sa {
                 l10.getClass();
                 TLRPC.User user = MessagesController.getInstance(buVar.currentAccount).getUser(l10);
                 if (user != null) {
-                    int i11 = lg.m.f12571a;
-                    org.telegram.ui.Components.j51 J = org.telegram.ui.Components.j51.J(lg.m.class);
+                    int i11 = lg.m.f12573a;
+                    org.telegram.ui.Components.h51 J = org.telegram.ui.Components.h51.J(lg.m.class);
                     J.G = user;
                     J.K(buVar.Y.contains(l10));
                     arrayList.add(J);
@@ -256,10 +256,10 @@ public final class bu extends org.telegram.ui.Components.sa {
     }
 
     @Override
-    public final org.telegram.ui.Components.sl0 v(org.telegram.ui.Components.tl0 tl0Var) {
-        org.telegram.ui.Components.x51 x51Var = new org.telegram.ui.Components.x51(tl0Var, getContext(), this.currentAccount, 0, true, new d5(this, 10), this.resourcesProvider);
-        this.f35590a0 = x51Var;
-        return x51Var;
+    public final org.telegram.ui.Components.rl0 v(org.telegram.ui.Components.sl0 sl0Var) {
+        org.telegram.ui.Components.w51 w51Var = new org.telegram.ui.Components.w51(sl0Var, getContext(), this.currentAccount, 0, true, new d5(this, 10), this.resourcesProvider);
+        this.f35598a0 = w51Var;
+        return w51Var;
     }
 
     @Override

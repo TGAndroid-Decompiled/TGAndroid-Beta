@@ -37,53 +37,53 @@ public abstract class ho extends LinearLayout {
     public float F;
     public int G;
     public boolean H;
-    public TLRPC.Document f27521a;
-    public final TextView f27522b;
-    public final TextView f27523c;
+    public TLRPC.Document f27574a;
+    public final TextView f27575b;
+    public final TextView f27576c;
     public go d;
-    public final int f27524e;
-    public final FrameLayout f27525f;
+    public final int f27577e;
+    public final FrameLayout f27578f;
     public p9 h;
-    public p9 f27526n;
-    public final org.telegram.ui.ActionBar.g6 f27527r;
-    public boolean f27528s;
-    public lj0 v;
-    public TextView f27529w;
-    public fg.s0 f27530x;
-    public boolean f27531y;
+    public p9 f27579n;
+    public final org.telegram.ui.ActionBar.g6 f27580r;
+    public boolean f27581s;
+    public kj0 v;
+    public TextView f27582w;
+    public fg.s0 f27583x;
+    public boolean f27584y;
 
     public ho(Context context, int i10, TLRPC.Document document, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
         setOrientation(1);
-        this.f27524e = i10;
-        this.f27527r = g6Var;
+        this.f27577e = i10;
+        this.f27580r = g6Var;
         setPadding(0, AndroidUtilities.dp(8.0f), 0, 0);
         TextView textView = new TextView(context);
-        this.f27522b = textView;
+        this.f27575b = textView;
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextAlignment(4);
         textView.setGravity(17);
         TextView textView2 = new TextView(context);
-        this.f27523c = textView2;
+        this.f27576c = textView2;
         textView2.setTextAlignment(4);
         textView2.setGravity(17);
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(1);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f27525f = frameLayout;
+        this.f27578f = frameLayout;
         p9 p9Var = new p9(context);
         this.h = p9Var;
         p9Var.getImageReceiver().setAspectFit(true);
         frameLayout.addView(this.h, k7.c6.c(112.0f, 112));
         k7.e6.a(this.h);
         p9 p9Var2 = new p9(context);
-        this.f27526n = p9Var2;
+        this.f27579n = p9Var2;
         p9Var2.getImageReceiver().setAspectFit(true);
-        frameLayout.addView(this.f27526n, k7.c6.c(112.0f, 112));
-        this.f27526n.setVisibility(8);
-        this.f27526n.setAlpha(0.0f);
-        k7.e6.a(this.f27526n);
+        frameLayout.addView(this.f27579n, k7.c6.c(112.0f, 112));
+        this.f27579n.setVisibility(8);
+        this.f27579n.setAlpha(0.0f);
+        k7.e6.a(this.f27579n);
         e();
         int i11 = org.telegram.ui.ActionBar.k6.ic;
         textView.setTextColor(org.telegram.ui.ActionBar.k6.v0(i11, g6Var));
@@ -92,11 +92,11 @@ public abstract class ho extends LinearLayout {
         String string2 = LocaleController.getString(R.string.NoMessagesGreetingsDescription);
         textView.setText(string);
         textView2.setText(string2);
-        textView2.setMaxWidth(qh.f3.a(textView2.getText(), textView2.getPaint()));
+        textView2.setMaxWidth(qh.e3.a(textView2.getText(), textView2.getPaint()));
         this.h.setContentDescription(textView2.getText());
-        this.f27521a = document;
+        this.f27574a = document;
         if (document == null) {
-            this.f27521a = MediaDataController.getInstance(i10).getGreetingsSticker();
+            this.f27574a = MediaDataController.getInstance(i10).getGreetingsSticker();
         }
     }
 
@@ -105,7 +105,7 @@ public abstract class ho extends LinearLayout {
         if (animatorSet != null) {
             animatorSet.cancel();
         }
-        hoVar.f27526n.setVisibility(0);
+        hoVar.f27579n.setVisibility(0);
         hoVar.h.setVisibility(0);
         AnimatorSet animatorSet2 = new AnimatorSet();
         hoVar.C = animatorSet2;
@@ -114,12 +114,12 @@ public abstract class ho extends LinearLayout {
         hoVar.C.addListener(new eg.u2(hoVar));
         AnimatorSet animatorSet3 = hoVar.C;
         Property property = View.ALPHA;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(hoVar.f27526n, property, 0.0f, 1.0f);
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(hoVar.f27579n, property, 0.0f, 1.0f);
         Property property2 = View.SCALE_X;
-        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(hoVar.f27526n, property2, 0.7f, 1.0f);
+        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(hoVar.f27579n, property2, 0.7f, 1.0f);
         Property property3 = View.SCALE_Y;
-        ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(hoVar.f27526n, property3, 0.7f, 1.0f);
-        p9 p9Var = hoVar.f27526n;
+        ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(hoVar.f27579n, property3, 0.7f, 1.0f);
+        p9 p9Var = hoVar.f27579n;
         float[] fArr = {-AndroidUtilities.dp(24.0f), 0.0f};
         Property property4 = View.TRANSLATION_Y;
         animatorSet3.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(p9Var, property4, fArr), ObjectAnimator.ofFloat(hoVar.h, property, 1.0f, 0.0f), ObjectAnimator.ofFloat(hoVar.h, property2, 1.0f, 0.7f), ObjectAnimator.ofFloat(hoVar.h, property3, 1.0f, 0.7f), ObjectAnimator.ofFloat(hoVar.h, property4, 0.0f, AndroidUtilities.dp(24.0f)));
@@ -145,7 +145,7 @@ public abstract class ho extends LinearLayout {
             if (i12 < document.attributes.size()) {
                 TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i12);
                 if (documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) {
-                    i11 = documentAttribute.f20850w;
+                    i11 = documentAttribute.f20852w;
                     i10 = documentAttribute.h;
                     break;
                 }
@@ -177,10 +177,10 @@ public abstract class ho extends LinearLayout {
     }
 
     public final void c(boolean z4, boolean z10, SpannableStringBuilder spannableStringBuilder, String str, View.OnClickListener onClickListener) {
-        if (this.f27531y == z4) {
+        if (this.f27584y == z4) {
             return;
         }
-        this.f27531y = z4;
+        this.f27584y = z4;
         this.B = z10;
         if (z4) {
             if (this.v == null) {
@@ -197,37 +197,37 @@ public abstract class ho extends LinearLayout {
                 }
             }
             this.v.d();
-            if (this.f27529w == null) {
+            if (this.f27582w == null) {
                 TextView textView = new TextView(getContext());
-                this.f27529w = textView;
+                this.f27582w = textView;
                 textView.setTextAlignment(4);
-                this.f27529w.setGravity(17);
-                this.f27529w.setTextSize(1, 13.0f);
+                this.f27582w.setGravity(17);
+                this.f27582w.setTextSize(1, 13.0f);
             }
-            this.f27529w.setText(spannableStringBuilder);
-            TextView textView2 = this.f27529w;
-            textView2.setMaxWidth(qh.f3.a(textView2.getText(), this.f27529w.getPaint()));
-            TextView textView3 = this.f27529w;
+            this.f27582w.setText(spannableStringBuilder);
+            TextView textView2 = this.f27582w;
+            textView2.setMaxWidth(qh.e3.a(textView2.getText(), this.f27582w.getPaint()));
+            TextView textView3 = this.f27582w;
             int i10 = org.telegram.ui.ActionBar.k6.ic;
-            org.telegram.ui.ActionBar.g6 g6Var = this.f27527r;
+            org.telegram.ui.ActionBar.g6 g6Var = this.f27580r;
             textView3.setTextColor(org.telegram.ui.ActionBar.k6.v0(i10, g6Var));
-            this.f27529w.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-            if (this.f27530x == null) {
+            this.f27582w.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+            if (this.f27583x == null) {
                 fg.s0 s0Var = new fg.s0(getContext(), 4);
-                this.f27530x = s0Var;
+                this.f27583x = s0Var;
                 s0Var.setTextAlignment(4);
-                this.f27530x.setGravity(17);
-                this.f27530x.setTypeface(AndroidUtilities.bold());
-                this.f27530x.setTextSize(1, 14.0f);
-                this.f27530x.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
-                fg.s0 s0Var2 = this.f27530x;
+                this.f27583x.setGravity(17);
+                this.f27583x.setTypeface(AndroidUtilities.bold());
+                this.f27583x.setTextSize(1, 14.0f);
+                this.f27583x.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
+                fg.s0 s0Var2 = this.f27583x;
                 int dp = AndroidUtilities.dp(15.0f);
                 s0Var2.setBackground(org.telegram.ui.ActionBar.k6.i0(dp, dp, dp, dp, 503316480, 855638016, 855638016));
-                k7.e6.a(this.f27530x);
+                k7.e6.a(this.f27583x);
             }
-            this.f27530x.setText(str);
-            this.f27530x.setTextColor(org.telegram.ui.ActionBar.k6.v0(i10, g6Var));
-            this.f27530x.setOnClickListener(onClickListener);
+            this.f27583x.setText(str);
+            this.f27583x.setTextColor(org.telegram.ui.ActionBar.k6.v0(i10, g6Var));
+            this.f27583x.setOnClickListener(onClickListener);
         }
         e();
     }
@@ -245,17 +245,17 @@ public abstract class ho extends LinearLayout {
         if (TextUtils.isEmpty(trim)) {
             charSequence = LocaleController.getString(R.string.NoMessages);
         }
-        this.f27522b.setText(charSequence);
+        this.f27575b.setText(charSequence);
         if (charSequence2 != null) {
             str = charSequence2.toString().trim();
         }
         if (TextUtils.isEmpty(str)) {
             charSequence2 = LocaleController.getString(R.string.NoMessagesGreetingsDescription);
         }
-        TextView textView = this.f27523c;
+        TextView textView = this.f27576c;
         textView.setText(charSequence2);
         if (textView.getText().length() > 60) {
-            i10 = Math.min((int) (AndroidUtilities.displaySize.x * 0.5f), qh.f3.a(textView.getText(), textView.getPaint()));
+            i10 = Math.min((int) (AndroidUtilities.displaySize.x * 0.5f), qh.e3.a(textView.getText(), textView.getPaint()));
         } else {
             i10 = (int) (AndroidUtilities.displaySize.x * 0.5f);
         }
@@ -266,7 +266,7 @@ public abstract class ho extends LinearLayout {
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         if (!this.H) {
-            org.telegram.ui.ActionBar.g6 g6Var = this.f27527r;
+            org.telegram.ui.ActionBar.g6 g6Var = this.f27580r;
             if (g6Var != null) {
                 g6Var.l(0.0f, this.F + AndroidUtilities.dp(4.0f), getMeasuredWidth(), this.G);
             } else {
@@ -277,9 +277,9 @@ public abstract class ho extends LinearLayout {
         } else {
             canvas2 = canvas;
         }
-        if (!this.f27528s) {
-            this.f27528s = true;
-            setSticker(this.f27521a);
+        if (!this.f27581s) {
+            this.f27581s = true;
+            setSticker(this.f27574a);
         }
         super.dispatchDraw(canvas2);
     }
@@ -287,10 +287,10 @@ public abstract class ho extends LinearLayout {
     public final void e() {
         int i10;
         removeAllViews();
-        if (this.f27531y) {
+        if (this.f27584y) {
             addView(this.v, k7.c6.t(78, 78, 49, 20, 9, 20, 9));
-            boolean premiumFeaturesBlocked = MessagesController.getInstance(this.f27524e).premiumFeaturesBlocked();
-            TextView textView = this.f27529w;
+            boolean premiumFeaturesBlocked = MessagesController.getInstance(this.f27577e).premiumFeaturesBlocked();
+            TextView textView = this.f27582w;
             if (premiumFeaturesBlocked) {
                 i10 = 13;
             } else {
@@ -298,27 +298,27 @@ public abstract class ho extends LinearLayout {
             }
             addView(textView, k7.c6.t(-2, -2, 49, 20, 0, 20, i10));
             if (!premiumFeaturesBlocked) {
-                fg.s0 s0Var = this.f27530x;
+                fg.s0 s0Var = this.f27583x;
                 if ((s0Var != null && !TextUtils.isEmpty(s0Var.getText())) || !this.B) {
-                    addView(this.f27530x, k7.c6.t(-2, 30, 49, 20, 2, 20, 13));
+                    addView(this.f27583x, k7.c6.t(-2, 30, 49, 20, 2, 20, 13));
                     return;
                 }
                 return;
             }
             return;
         }
-        addView(this.f27522b, k7.c6.t(-2, -2, 1, 20, 6, 20, 6));
-        addView(this.f27523c, k7.c6.t(-2, -2, 1, 20, 6, 20, 6));
-        addView(this.f27525f, k7.c6.t(112, 112, 1, 16, 10, 16, 16));
+        addView(this.f27575b, k7.c6.t(-2, -2, 1, 20, 6, 20, 6));
+        addView(this.f27576c, k7.c6.t(-2, -2, 1, 20, 6, 20, 6));
+        addView(this.f27578f, k7.c6.t(112, 112, 1, 16, 10, 16, 16));
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f27521a == null) {
-            TLRPC.Document greetingsSticker = MediaDataController.getInstance(this.f27524e).getGreetingsSticker();
-            this.f27521a = greetingsSticker;
-            if (this.f27528s) {
+        if (this.f27574a == null) {
+            TLRPC.Document greetingsSticker = MediaDataController.getInstance(this.f27577e).getGreetingsSticker();
+            this.f27574a = greetingsSticker;
+            if (this.f27581s) {
                 setSticker(greetingsSticker);
             }
         }
@@ -333,7 +333,7 @@ public abstract class ho extends LinearLayout {
     public void onMeasure(int i10, int i11) {
         this.D = true;
         boolean z4 = this.E;
-        TextView textView = this.f27523c;
+        TextView textView = this.f27576c;
         if (!z4) {
             textView.setVisibility(0);
         }
@@ -375,9 +375,9 @@ public abstract class ho extends LinearLayout {
         if (document == null) {
             return;
         }
-        this.f27528s = true;
-        this.f27526n.b();
-        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.k6.f21809lc, 1.0f);
+        this.f27581s = true;
+        this.f27579n.b();
+        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.k6.f21811lc, 1.0f);
         if (svgThumb != null) {
             this.h.n(ImageLocation.getForDocument(document), b(document), svgThumb, document);
             document2 = document;
@@ -385,15 +385,15 @@ public abstract class ho extends LinearLayout {
             document2 = document;
             this.h.j(ImageLocation.getForDocument(document), b(document), ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), null, 0, document2);
         }
-        this.h.setOnClickListener(new eo(this, document2, 0));
+        this.h.setOnClickListener(new co(this, document2, 0));
     }
 
     public void setSticker(String str) {
         if (str == null) {
             return;
         }
-        this.f27528s = true;
-        this.f27526n.b();
+        this.f27581s = true;
+        this.f27579n.b();
         this.h.j(ImageLocation.getForPath(str), "256_256", null, null, 0, null);
     }
 }

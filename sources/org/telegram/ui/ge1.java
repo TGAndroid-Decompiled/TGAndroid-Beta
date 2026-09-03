@@ -1,54 +1,46 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.view.animation.OvershootInterpolator;
-import android.widget.FrameLayout;
-import org.telegram.messenger.Utilities;
-public final class ge1 extends FrameLayout {
-    public ValueAnimator f37178a;
-    public boolean f37179b;
-    public float f37180c;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class ge1 extends org.telegram.ui.Components.rl0 {
+    public final ArrayList f37085c = new ArrayList();
+    public final ArrayList d = new ArrayList();
+    public fe1 f37086e;
+    public int f37087f;
+    public final he1 h;
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f10 = ((1.0f - this.f37180c) * 0.2f) + 0.8f;
-        canvas.save();
-        canvas.scale(f10, f10, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-        if (isPressed()) {
-            float f11 = this.f37180c;
-            if (f11 != 1.0f) {
-                this.f37180c = Utilities.clamp(f11 + 0.16f, 1.0f, 0.0f);
-                invalidate();
-            }
-        }
+    public ge1(he1 he1Var) {
+        this.h = he1Var;
     }
 
     @Override
-    public final void setPressed(boolean z4) {
-        ValueAnimator valueAnimator;
-        super.setPressed(z4);
-        if (this.f37179b != z4) {
-            this.f37179b = z4;
-            invalidate();
-            if (z4 && (valueAnimator = this.f37178a) != null) {
-                valueAnimator.removeAllListeners();
-                this.f37178a.cancel();
-            }
-            if (!z4) {
-                float f10 = this.f37180c;
-                if (f10 != 0.0f) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
-                    this.f37178a = ofFloat;
-                    ofFloat.addUpdateListener(new j11(this, 16));
-                    this.f37178a.addListener(new ns0(this, 22));
-                    this.f37178a.setInterpolator(new OvershootInterpolator(5.0f));
-                    this.f37178a.setDuration(350L);
-                    this.f37178a.start();
-                }
-            }
+    public final boolean D(f2.m1 m1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return this.f37085c.size();
+    }
+
+    @Override
+    public final void v(f2.m1 m1Var, int i10) {
+        ArrayList arrayList = this.f37085c;
+        TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(i10);
+        String str = (String) this.d.get(i10);
+        org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) m1Var.f5875a;
+        String str2 = chat.title;
+        boolean z4 = true;
+        if (i10 == arrayList.size() - 1) {
+            z4 = false;
         }
+        g4Var.e(chat, str2, str, z4);
+        g4Var.c(this.h.f37362w.contains(Long.valueOf(chat.f20845id)), false);
+    }
+
+    @Override
+    public final f2.m1 x(ViewGroup viewGroup, int i10) {
+        return new f2.m1(new org.telegram.ui.Cells.g4(viewGroup.getContext(), 1, 0, false));
     }
 }

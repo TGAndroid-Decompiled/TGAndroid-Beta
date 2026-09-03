@@ -10,7 +10,7 @@ public final class a {
     public final String d;
 
     public a(float f10, int i10, String str, String str2) {
-        int i11 = m7.b.f13480a;
+        int i11 = m7.b.f13482a;
         this.f9989a = str == null ? "" : str;
         this.f9990b = f10;
         this.f9991c = i10;

@@ -22,12 +22,12 @@ public final class qh extends fu {
     @Override
     public final void c(float f10) {
         mi miVar = this.W;
-        miVar.f29045d2 = f10;
+        miVar.f29063d2 = f10;
         mh mhVar = miVar.A0;
         mhVar.setTranslationY(f10);
         mhVar.invalidate();
         miVar.g1();
-        miVar.X1(miVar.f29100v0, 0);
+        miVar.X1(miVar.f29118v0, 0);
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class qh extends fu {
             }
             this.V = ofFloat;
             ofFloat.setDuration(200L);
-            ofFloat.setInterpolator(pr.f30183f);
+            ofFloat.setInterpolator(pr.f30168f);
             ofFloat.start();
             this.S = false;
         }
@@ -60,8 +60,8 @@ public final class qh extends fu {
         super.f();
         mz emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f29325t0 = false;
-            emojiView.f29330u2 = false;
+            emojiView.f29327t0 = false;
+            emojiView.f29332u2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
         }
@@ -69,7 +69,7 @@ public final class qh extends fu {
 
     @Override
     public final void i(Menu menu) {
-        org.telegram.ui.ActionBar.p2 p2Var = this.W.f29040c0;
+        org.telegram.ui.ActionBar.p2 p2Var = this.W.f29058c0;
         if (p2Var instanceof org.telegram.ui.xn) {
             org.telegram.ui.xn.k8(menu, ((org.telegram.ui.xn) p2Var).h, true, true, true, true);
         }
@@ -79,7 +79,7 @@ public final class qh extends fu {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         mi miVar = this.W;
         qh qhVar = miVar.B0;
-        if (!miVar.f29088r1) {
+        if (!miVar.f29106r1) {
             if (motionEvent.getX() > qhVar.getEditText().getLeft() && motionEvent.getX() < qhVar.getEditText().getRight() && motionEvent.getY() > qhVar.getEditText().getTop() && motionEvent.getY() < qhVar.getEditText().getBottom()) {
                 miVar.t1(qhVar.getEditText(), true);
             } else {

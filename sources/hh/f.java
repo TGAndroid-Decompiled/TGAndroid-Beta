@@ -42,10 +42,10 @@ import org.telegram.ui.Components.d20;
 import org.telegram.ui.Components.h20;
 import org.telegram.ui.Components.p30;
 import org.telegram.ui.Components.pr;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.sa;
 import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.tl0;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.w51;
 import r0.b0;
 public final class f extends sa implements xd.b {
     public static final int f7698o0 = 0;
@@ -55,7 +55,7 @@ public final class f extends sa implements xd.b {
     public final ArrayList X;
     public final ArrayList Y;
     public String Z;
-    public x51 f7699a0;
+    public w51 f7699a0;
     public final qh.d f7700b0;
     public final s0 f7701c0;
     public final q1 f7702d0;
@@ -87,9 +87,9 @@ public final class f extends sa implements xd.b {
         this.f31020w = false;
         this.f7708j0 = MessagesController.getInstance(this.currentAccount).config.pollCountriesMax.get();
         AndroidUtilities.enableEdgeToEdge(getWindow());
-        tl0 tl0Var = this.d;
+        sl0 sl0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        tl0Var.setPadding(i10, 0, i10, AndroidUtilities.dp(68.0f) + AndroidUtilities.navigationBarHeight);
+        sl0Var.setPadding(i10, 0, i10, AndroidUtilities.dp(68.0f) + AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         this.d.j(new e2(this, 2));
         this.d.setOnItemClickListener(new c(context, this, g6Var));
@@ -113,7 +113,7 @@ public final class f extends sa implements xd.b {
         s0Var.setOnClickListener(new a(this, 1));
         d20 d20Var = new d20(context, g6Var);
         String string = LocaleController.getString(R.string.PollV2SearchHint);
-        lg.f fVar = d20Var.f26172r;
+        lg.f fVar = d20Var.f26132r;
         fVar.setHint(string);
         fVar.addTextChangedListener(new eh.c(this, 1));
         h20 h20Var = new h20(context, this.currentAccount);
@@ -212,7 +212,7 @@ public final class f extends sa implements xd.b {
 
     public final void Q() {
         boolean z4;
-        int dp = AndroidUtilities.dp(56.0f) + k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + ((int) this.U.f50510e);
+        int dp = AndroidUtilities.dp(56.0f) + k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + ((int) this.U.f50546e);
         int measuredHeight = (this.containerView.getMeasuredHeight() - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(34.0f);
         Rect rect = this.m0;
         if (rect.top == dp && rect.bottom == measuredHeight) {
@@ -221,23 +221,23 @@ public final class f extends sa implements xd.b {
             z4 = true;
         }
         rect.set(0, dp, this.containerView.getMeasuredWidth(), measuredHeight);
-        tl0 tl0Var = this.d;
-        tl0Var.setClipBounds(rect);
+        sl0 sl0Var = this.d;
+        sl0Var.setClipBounds(rect);
         if (z4) {
-            tl0Var.invalidate();
+            sl0Var.invalidate();
         }
     }
 
     public final void R() {
-        tl0 tl0Var;
+        sl0 sl0Var;
         float f10 = AndroidUtilities.displaySize.y;
         int i10 = 0;
         while (true) {
-            tl0Var = this.d;
-            if (i10 >= tl0Var.getChildCount()) {
+            sl0Var = this.d;
+            if (i10 >= sl0Var.getChildCount()) {
                 break;
             }
-            View childAt = tl0Var.getChildAt(i10);
+            View childAt = sl0Var.getChildAt(i10);
             if (RecyclerView.R(childAt) >= 1 && childAt.getY() < f10) {
                 f10 = childAt.getY();
             }
@@ -247,13 +247,13 @@ public final class f extends sa implements xd.b {
         q1 q1Var = this.f7702d0;
         if (q1Var.getTranslationY() != max) {
             q1Var.setTranslationY(max);
-            tl0Var.invalidate();
+            sl0Var.invalidate();
         }
     }
 
     public final void S(View view) {
         p30 p30Var = (p30) view;
-        if (p30Var.f29949y) {
+        if (p30Var.f29964y) {
             this.f7711n0 = null;
             this.f7703e0.c(p30Var);
             String countryIso2 = p30Var.getCountryIso2();
@@ -279,11 +279,11 @@ public final class f extends sa implements xd.b {
     }
 
     @Override
-    public final sl0 v(tl0 tl0Var) {
-        x51 x51Var = new x51(tl0Var, getContext(), this.currentAccount, 0, true, new p1(this, 1), this.resourcesProvider);
-        this.f7699a0 = x51Var;
-        x51Var.f32957r = false;
-        return x51Var;
+    public final rl0 v(sl0 sl0Var) {
+        w51 w51Var = new w51(sl0Var, getContext(), this.currentAccount, 0, true, new p1(this, 1), this.resourcesProvider);
+        this.f7699a0 = w51Var;
+        w51Var.f32651r = false;
+        return w51Var;
     }
 
     @Override

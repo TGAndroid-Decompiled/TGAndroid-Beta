@@ -7,8 +7,8 @@ public final class gj extends rz {
     public final int U;
     public final ei V;
 
-    public gj(ei eiVar, int i10, tl0 tl0Var, int i11) {
-        super(i10, 0, tl0Var);
+    public gj(ei eiVar, int i10, sl0 sl0Var, int i11) {
+        super(i10, 0, sl0Var);
         this.U = i11;
         this.V = eiVar;
     }
@@ -49,9 +49,9 @@ public final class gj extends rz {
                 w0(tkVar);
                 return;
             case 3:
-                hn hnVar = new hn(this, recyclerView.getContext());
-                hnVar.f5805a = i10;
-                w0(hnVar);
+                gn gnVar = new gn(this, recyclerView.getContext());
+                gnVar.f5805a = i10;
+                w0(gnVar);
                 return;
             default:
                 vf.y yVar = new vf.y(this, recyclerView.getContext());

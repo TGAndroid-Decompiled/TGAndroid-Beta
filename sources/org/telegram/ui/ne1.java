@@ -1,64 +1,52 @@
 package org.telegram.ui;
 
+import android.app.Activity;
+import android.text.TextUtils;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class ne1 extends f2.j0 {
-    public boolean I;
-    public final mf1 J;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class ne1 extends w61 {
+    public boolean a2;
+    public final oe1 f39334b2;
 
-    public ne1(mf1 mf1Var) {
-        this.J = mf1Var;
+    public ne1(oe1 oe1Var, oe1 oe1Var2, Activity activity) {
+        super(oe1Var2, activity, false, null, 3, null);
+        this.f39334b2 = oe1Var;
+        this.a2 = true;
     }
 
     @Override
-    public final void b0(bf.f fVar, f2.j1 j1Var) {
-        if (BuildVars.DEBUG_PRIVATE_VERSION) {
-            try {
-                super.b0(fVar, j1Var);
-                return;
-            } catch (IndexOutOfBoundsException unused) {
-                throw new RuntimeException("Inconsistency detected. ");
+    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
+        super.onLayout(z4, i10, i11, i12, i13);
+        if (this.a2) {
+            this.a2 = false;
+            this.f39334b2.f39680f.s(null);
+        }
+    }
+
+    @Override
+    public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        int i10;
+        int i11;
+        long j10;
+        oe1 oe1Var = this.f39334b2;
+        i10 = ((org.telegram.ui.ActionBar.p2) oe1Var).currentAccount;
+        boolean z4 = false;
+        if (!TextUtils.isEmpty(UserConfig.getInstance(i10).defaultTopicIcons)) {
+            MediaDataController mediaDataController = oe1Var.getMediaDataController();
+            i11 = ((org.telegram.ui.ActionBar.p2) oe1Var).currentAccount;
+            TLRPC.TL_messages_stickerSet stickerSetByEmojiOrName = mediaDataController.getStickerSetByEmojiOrName(UserConfig.getInstance(i11).defaultTopicIcons);
+            if (stickerSetByEmojiOrName == null) {
+                j10 = 0;
+            } else {
+                j10 = stickerSetByEmojiOrName.set.f20872id;
+            }
+            if (j10 == MediaDataController.getStickerSetId(document)) {
+                z4 = true;
             }
         }
-        try {
-            super.b0(fVar, j1Var);
-        } catch (IndexOutOfBoundsException e6) {
-            FileLog.e(e6);
-            AndroidUtilities.runOnUIThread(new xy0(this, 19));
-        }
-    }
-
-    @Override
-    public final void b1(View view, View view2, int i10, int i11) {
-        this.I = true;
-        super.b1(view, view2, i10, i11);
-        this.I = false;
-    }
-
-    @Override
-    public final void h1(int i10, int i11) {
-        if (this.I) {
-            i11 -= this.J.K.getPaddingTop();
-        }
-        super.h1(i10, i11);
-    }
-
-    @Override
-    public final int o0(int r19, bf.f r20, f2.j1 r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ne1.o0(int, bf.f, f2.j1):int");
-    }
-
-    @Override
-    public final void v0(RecyclerView recyclerView, f2.j1 j1Var, int i10) {
-        if (this.J.f39143x > 0 && i10 == 1) {
-            super.v0(recyclerView, j1Var, i10);
-            return;
-        }
-        xh.o oVar = new xh.o(recyclerView.getContext(), 0);
-        oVar.f5805a = i10;
-        w0(oVar);
+        oe1Var.b0(l10, z4);
     }
 }

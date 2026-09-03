@@ -12,18 +12,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class z implements v {
     public static final c3 d = new c3(3);
-    public final UUID f16425a;
-    public final MediaDrm f16426b;
-    public int f16427c;
+    public final UUID f16427a;
+    public final MediaDrm f16428b;
+    public int f16429c;
 
     public z(UUID uuid) {
         UUID uuid2;
         uuid.getClass();
         h5.a.e("Use C.CLEARKEY_UUID instead", !j3.h.f9163b.equals(uuid));
-        this.f16425a = uuid;
+        this.f16427a = uuid;
         MediaDrm mediaDrm = new MediaDrm((d0.f7237a >= 27 || !j3.h.f9164c.equals(uuid)) ? uuid : uuid2);
-        this.f16426b = mediaDrm;
-        this.f16427c = 1;
+        this.f16428b = mediaDrm;
+        this.f16429c = 1;
         if (j3.h.d.equals(uuid) && "ASUS_Z00AD".equals(d0.d)) {
             mediaDrm.setPropertyString("securityLevel", "L3");
         }
@@ -32,10 +32,10 @@ public final class z implements v {
     @Override
     public final boolean C2(String str, byte[] bArr) {
         if (d0.f7237a >= 31) {
-            return y.a(this.f16426b, str);
+            return y.a(this.f16428b, str);
         }
         try {
-            MediaCrypto mediaCrypto = new MediaCrypto(this.f16425a, bArr);
+            MediaCrypto mediaCrypto = new MediaCrypto(this.f16427a, bArr);
             try {
                 return mediaCrypto.requiresSecureDecoderComponent(str);
             } finally {
@@ -50,8 +50,8 @@ public final class z implements v {
     public final n3.b E0(byte[] bArr) {
         boolean z4;
         int i10 = d0.f7237a;
-        UUID uuid = this.f16425a;
-        if (i10 < 21 && j3.h.d.equals(uuid) && "L3".equals(this.f16426b.getPropertyString("securityLevel"))) {
+        UUID uuid = this.f16427a;
+        if (i10 < 21 && j3.h.d.equals(uuid) && "L3".equals(this.f16428b.getPropertyString("securityLevel"))) {
             z4 = true;
         } else {
             z4 = false;
@@ -64,13 +64,13 @@ public final class z implements v {
 
     @Override
     public final u J() {
-        MediaDrm.ProvisionRequest provisionRequest = this.f16426b.getProvisionRequest();
+        MediaDrm.ProvisionRequest provisionRequest = this.f16428b.getProvisionRequest();
         return new u(provisionRequest.getDefaultUrl(), provisionRequest.getData());
     }
 
     @Override
     public final byte[] K1(byte[] bArr, byte[] bArr2) {
-        if (j3.h.f9164c.equals(this.f16425a) && d0.f7237a < 27) {
+        if (j3.h.f9164c.equals(this.f16427a) && d0.f7237a < 27) {
             try {
                 JSONObject jSONObject = new JSONObject(d0.m(bArr2));
                 StringBuilder sb = new StringBuilder("{\"keys\":[");
@@ -89,17 +89,17 @@ public final class z implements v {
                     sb.append("\"}");
                 }
                 sb.append("]}");
-                bArr2 = sb.toString().getBytes(r8.d.f46738c);
+                bArr2 = sb.toString().getBytes(r8.d.f46769c);
             } catch (JSONException e6) {
                 h5.a.p("ClearKeyUtil", "Failed to adjust response data: ".concat(d0.m(bArr2)), e6);
             }
         }
-        return this.f16426b.provideKeyResponse(bArr, bArr2);
+        return this.f16428b.provideKeyResponse(bArr, bArr2);
     }
 
     @Override
     public final void M0(final ja.c cVar) {
-        this.f16426b.setOnEventListener(new MediaDrm.OnEventListener() {
+        this.f16428b.setOnEventListener(new MediaDrm.OnEventListener() {
             @Override
             public final void onEvent(MediaDrm mediaDrm, byte[] bArr, int i10, int i11, byte[] bArr2) {
                 z zVar = z.this;
@@ -114,14 +114,14 @@ public final class z implements v {
 
     @Override
     public final byte[] O0() {
-        return this.f16426b.openSession();
+        return this.f16428b.openSession();
     }
 
     @Override
     public final void U(byte[] bArr, k3.k kVar) {
         if (d0.f7237a >= 31) {
             try {
-                y.b(this.f16426b, bArr, kVar);
+                y.b(this.f16428b, bArr, kVar);
             } catch (UnsupportedOperationException unused) {
                 h5.a.K("FrameworkMediaDrm", "setLogSessionId failed.");
             }
@@ -130,7 +130,7 @@ public final class z implements v {
 
     @Override
     public final void V1(byte[] bArr) {
-        this.f16426b.provideProvisionResponse(bArr);
+        this.f16428b.provideProvisionResponse(bArr);
     }
 
     @Override
@@ -145,25 +145,25 @@ public final class z implements v {
 
     @Override
     public final void k1(byte[] bArr, byte[] bArr2) {
-        this.f16426b.restoreKeys(bArr, bArr2);
+        this.f16428b.restoreKeys(bArr, bArr2);
     }
 
     @Override
     public final void q1(byte[] bArr) {
-        this.f16426b.closeSession(bArr);
+        this.f16428b.closeSession(bArr);
     }
 
     @Override
     public final synchronized void release() {
-        int i10 = this.f16427c - 1;
-        this.f16427c = i10;
+        int i10 = this.f16429c - 1;
+        this.f16429c = i10;
         if (i10 == 0) {
-            this.f16426b.release();
+            this.f16428b.release();
         }
     }
 
     @Override
     public final Map w(byte[] bArr) {
-        return this.f16426b.queryKeyStatus(bArr);
+        return this.f16428b.queryKeyStatus(bArr);
     }
 }

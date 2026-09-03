@@ -4,38 +4,38 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class ss implements org.telegram.ui.ActionBar.c2, org.telegram.ui.Components.zk0, org.telegram.ui.Components.ll0, r0.o {
-    public final ContactsActivity f41360a;
+public final class ss implements org.telegram.ui.ActionBar.c2, org.telegram.ui.Components.yk0, org.telegram.ui.Components.kl0, r0.o {
+    public final ContactsActivity f41303a;
 
     public ss(ContactsActivity contactsActivity) {
-        this.f41360a = contactsActivity;
+        this.f41303a = contactsActivity;
     }
 
     @Override
     public r0.m1 M0(View view, r0.m1 m1Var) {
         int i10 = AndroidUtilities.getDefaultWindowInsets(m1Var, false).d;
-        ContactsActivity contactsActivity = this.f41360a;
+        ContactsActivity contactsActivity = this.f41303a;
         contactsActivity.f34069n0 = i10;
         contactsActivity.j0();
         contactsActivity.i0();
         contactsActivity.h0();
-        return r0.m1.f46451b;
+        return r0.m1.f46482b;
     }
 
     @Override
     public void d() {
-        this.f41360a.g0();
+        this.f41303a.g0();
     }
 
     @Override
     public boolean f(int i10, View view) {
-        ContactsActivity contactsActivity = this.f41360a;
+        ContactsActivity contactsActivity = this.f41303a;
         f2.p0 adapter = contactsActivity.f34060f.getAdapter();
         xs xsVar = contactsActivity.d;
         if (adapter == xsVar) {
             int S = xsVar.S(i10);
             int Q = contactsActivity.d.Q(i10);
-            org.telegram.ui.Components.ic icVar = org.telegram.ui.Components.ic.f27737w;
+            org.telegram.ui.Components.ic icVar = org.telegram.ui.Components.ic.f27770w;
             if (icVar != null) {
                 icVar.b();
             }
@@ -60,7 +60,7 @@ public final class ss implements org.telegram.ui.ActionBar.c2, org.telegram.ui.C
 
     @Override
     public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        ContactsActivity contactsActivity = this.f41360a;
+        ContactsActivity contactsActivity = this.f41303a;
         contactsActivity.getClass();
         a0.h hVar = contactsActivity.f34052a0;
         ArrayList arrayList = new ArrayList(hVar.m());

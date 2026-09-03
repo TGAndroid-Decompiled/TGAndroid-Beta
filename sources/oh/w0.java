@@ -15,29 +15,29 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.yh;
 public final class w0 implements NativeInstance.PayloadCallback, RequestDelegateTimestamp, NativeInstance.VideoSourcesCallback, NativeInstance.RequestBroadcastPartCallback, NativeInstance.RequestCurrentTimeCallback {
-    public final int f17885a;
-    public final e1 f17886b;
+    public final int f17887a;
+    public final e1 f17888b;
 
     public w0(e1 e1Var, int i10) {
-        this.f17885a = i10;
-        this.f17886b = e1Var;
+        this.f17887a = i10;
+        this.f17888b = e1Var;
     }
 
     @Override
     public void run(int i10, String str) {
-        e1 e1Var = this.f17886b;
+        e1 e1Var = this.f17888b;
         e1Var.H = i10;
         TL_phone.joinGroupCall joingroupcall = new TL_phone.joinGroupCall();
-        boolean z4 = !e1Var.f17007n;
+        boolean z4 = !e1Var.f17009n;
         joingroupcall.muted = z4;
         joingroupcall.video_stopped = z4;
-        joingroupcall.call = e1Var.f17006f;
+        joingroupcall.call = e1Var.f17008f;
         TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
         joingroupcall.params = tL_dataJSON;
         tL_dataJSON.data = str;
         TLRPC.TL_inputPeerUser tL_inputPeerUser = new TLRPC.TL_inputPeerUser();
         joingroupcall.join_as = tL_inputPeerUser;
-        int i11 = e1Var.f17005e;
+        int i11 = e1Var.f17007e;
         tL_inputPeerUser.user_id = AccountInstance.getInstance(i11).getUserConfig().getClientUserId();
         ConnectionsManager.getInstance(i11).sendRequest(joingroupcall, new x0(e1Var, 0));
     }
@@ -45,8 +45,8 @@ public final class w0 implements NativeInstance.PayloadCallback, RequestDelegate
     @Override
     public void run(TLObject tLObject, TLRPC.TL_error tL_error, long j10) {
         if (tL_error == null) {
-            e1 e1Var = this.f17886b;
-            if (e1Var.B == null || e1Var.f17010w) {
+            e1 e1Var = this.f17888b;
+            if (e1Var.B == null || e1Var.f17012w) {
                 return;
             }
             TL_phone.groupCallStreamChannels groupcallstreamchannels = (TL_phone.groupCallStreamChannels) tLObject;
@@ -60,7 +60,7 @@ public final class w0 implements NativeInstance.PayloadCallback, RequestDelegate
             if (e1Var.D == null) {
                 TLRPC.TL_groupCallParticipant tL_groupCallParticipant = new TLRPC.TL_groupCallParticipant();
                 e1Var.D = tL_groupCallParticipant;
-                tL_groupCallParticipant.peer = MessagesController.getInstance(e1Var.f17005e).getPeer(e1Var.f17003b);
+                tL_groupCallParticipant.peer = MessagesController.getInstance(e1Var.f17007e).getPeer(e1Var.f17005b);
                 e1Var.D.video = new TLRPC.TL_groupCallParticipantVideo();
                 TLRPC.TL_groupCallParticipantVideoSourceGroup tL_groupCallParticipantVideoSourceGroup = new TLRPC.TL_groupCallParticipantVideoSourceGroup();
                 tL_groupCallParticipantVideoSourceGroup.semantics = "SIM";
@@ -86,26 +86,26 @@ public final class w0 implements NativeInstance.PayloadCallback, RequestDelegate
 
     @Override
     public void run(long j10, int[] iArr) {
-        e1 e1Var = this.f17886b;
+        e1 e1Var = this.f17888b;
         if (e1Var.B == null) {
             return;
         }
         TL_phone.getGroupParticipants getgroupparticipants = new TL_phone.getGroupParticipants();
-        getgroupparticipants.call = e1Var.f17006f;
+        getgroupparticipants.call = e1Var.f17008f;
         getgroupparticipants.offset = "";
         int i10 = 0;
         while (i10 < iArr.length) {
             i10 = yh.d(iArr[i10], i10, 1, getgroupparticipants.sources);
         }
-        ConnectionsManager.getInstance(e1Var.f17005e).sendRequest(getgroupparticipants, new hg.c0(e1Var, iArr, j10));
+        ConnectionsManager.getInstance(e1Var.f17007e).sendRequest(getgroupparticipants, new hg.c0(e1Var, iArr, j10));
     }
 
     @Override
     public void run(final long j10, final long j11, final int i10, final int i11) {
         String str;
-        switch (this.f17885a) {
+        switch (this.f17887a) {
             case 3:
-                final e1 e1Var = this.f17886b;
+                final e1 e1Var = this.f17888b;
                 if (e1Var.v == null) {
                     return;
                 }
@@ -122,7 +122,7 @@ public final class w0 implements NativeInstance.PayloadCallback, RequestDelegate
                 TLRPC.TL_upload_getFile tL_upload_getFile = new TLRPC.TL_upload_getFile();
                 tL_upload_getFile.limit = 131072;
                 TLRPC.TL_inputGroupCallStream tL_inputGroupCallStream = new TLRPC.TL_inputGroupCallStream();
-                tL_inputGroupCallStream.call = e1Var.f17006f;
+                tL_inputGroupCallStream.call = e1Var.f17008f;
                 tL_inputGroupCallStream.time_ms = j10;
                 if (i12 == 0) {
                     tL_inputGroupCallStream.scale = 1;
@@ -139,13 +139,13 @@ public final class w0 implements NativeInstance.PayloadCallback, RequestDelegate
                     str = i10 + "_" + j10 + "_" + i11;
                 }
                 final String str2 = str;
-                AndroidUtilities.runOnUIThread(new bh.a(e1Var, str2, AccountInstance.getInstance(e1Var.f17005e).getConnectionsManager().sendRequest(tL_upload_getFile, new RequestDelegateTimestamp() {
+                AndroidUtilities.runOnUIThread(new bh.a(e1Var, str2, AccountInstance.getInstance(e1Var.f17007e).getConnectionsManager().sendRequest(tL_upload_getFile, new RequestDelegateTimestamp() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error, long j12) {
                         int i13;
                         String str3;
                         e1 e1Var2 = e1.this;
-                        if (!e1Var2.f17010w && e1Var2.B != null) {
+                        if (!e1Var2.f17012w && e1Var2.B != null) {
                             AndroidUtilities.runOnUIThread(new mh.m2(29, e1Var2, str2));
                             long j13 = currentTimeMillis;
                             long j14 = j10;
@@ -232,19 +232,19 @@ public final class w0 implements NativeInstance.PayloadCallback, RequestDelegate
                 sb2.append(j11 == 500 ? ", scale = 1" : "");
                 sb2.append(i10 != 0 ? android.support.v4.media.a.k(i10, i11, ", video_channel = ", ", video_quality = ") : "");
                 FileLog.d(sb2.toString());
-                AndroidUtilities.runOnUIThread(new b1(i10, i11, 0, j10, this.f17886b));
+                AndroidUtilities.runOnUIThread(new b1(i10, i11, 0, j10, this.f17888b));
                 return;
         }
     }
 
     @Override
     public void run(long j10) {
-        e1 e1Var = this.f17886b;
-        int i10 = e1Var.f17005e;
+        e1 e1Var = this.f17888b;
+        int i10 = e1Var.f17007e;
         TLRPC.GroupCall groupCall = e1Var.v;
         if (groupCall != null && groupCall.rtmp_stream) {
             TL_phone.getGroupCallStreamChannels getgroupcallstreamchannels = new TL_phone.getGroupCallStreamChannels();
-            getgroupcallstreamchannels.call = e1Var.f17006f;
+            getgroupcallstreamchannels.call = e1Var.f17008f;
             if (e1Var.v == null || e1Var.B == null) {
                 return;
             }

@@ -25,7 +25,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ba;
 import org.telegram.ui.Components.ha;
-import org.telegram.ui.Components.kv0;
+import org.telegram.ui.Components.jv0;
 public final class c1 {
     public final Bitmap A;
     public final int B;
@@ -44,7 +44,7 @@ public final class c1 {
     public r1 f4453c;
     public r1 d;
     public o1 f4455f;
-    public final kv0 f4456g;
+    public final jv0 f4456g;
     public RectF h;
     public m f4457i;
     public f2 f4459k;
@@ -67,13 +67,13 @@ public final class c1 {
     public boolean G = false;
     public final h1 f4454e = new Object();
 
-    public c1(kv0 kv0Var, Bitmap bitmap, int i10, ba baVar) {
+    public c1(jv0 jv0Var, Bitmap bitmap, int i10, ba baVar) {
         this.F = baVar;
-        this.f4456g = kv0Var;
+        this.f4456g = jv0Var;
         this.A = bitmap;
         this.B = i10;
-        this.f4469u = ByteBuffer.allocateDirect(((int) kv0Var.f28463a) * ((int) kv0Var.f28464b) * 4);
-        this.f4471x = z6.b(kv0Var.f28463a, kv0Var.f28464b);
+        this.f4469u = ByteBuffer.allocateDirect(((int) jv0Var.f28201a) * ((int) jv0Var.f28202b) * 4);
+        this.f4471x = z6.b(jv0Var.f28201a, jv0Var.f28202b);
         if (this.f4461m == null) {
             ByteBuffer allocateDirect = ByteBuffer.allocateDirect(32);
             this.f4461m = allocateDirect;
@@ -81,12 +81,12 @@ public final class c1 {
         }
         this.f4461m.putFloat(0.0f);
         this.f4461m.putFloat(0.0f);
-        this.f4461m.putFloat(kv0Var.f28463a);
+        this.f4461m.putFloat(jv0Var.f28201a);
         this.f4461m.putFloat(0.0f);
         this.f4461m.putFloat(0.0f);
-        this.f4461m.putFloat(kv0Var.f28464b);
-        this.f4461m.putFloat(kv0Var.f28463a);
-        this.f4461m.putFloat(kv0Var.f28464b);
+        this.f4461m.putFloat(jv0Var.f28202b);
+        this.f4461m.putFloat(jv0Var.f28201a);
+        this.f4461m.putFloat(jv0Var.f28202b);
         this.f4461m.rewind();
         if (this.f4462n == null) {
             ByteBuffer allocateDirect2 = ByteBuffer.allocateDirect(32);
@@ -164,8 +164,8 @@ public final class c1 {
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, g(), 0);
         b7.a();
         if (GLES20.glCheckFramebufferStatus(36160) == 36053) {
-            kv0 kv0Var = this.f4456g;
-            GLES20.glViewport(0, 0, (int) kv0Var.f28463a, (int) kv0Var.f28464b);
+            jv0 jv0Var = this.f4456g;
+            GLES20.glViewport(0, 0, (int) jv0Var.f28201a, (int) jv0Var.f28202b);
             GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
             GLES20.glClear(16384);
         }
@@ -211,8 +211,8 @@ public final class c1 {
         this.f4467s++;
         GLES20.glBindFramebuffer(36160, i());
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, j(), 0);
-        kv0 kv0Var = this.f4456g;
-        GLES20.glViewport(0, 0, (int) kv0Var.f28463a, (int) kv0Var.f28464b);
+        jv0 jv0Var = this.f4456g;
+        GLES20.glViewport(0, 0, (int) jv0Var.f28201a, (int) jv0Var.f28202b);
         p1 p1Var = (p1) this.f4466r.get(mVar.i(1));
         if (p1Var == null) {
             return null;
@@ -234,7 +234,7 @@ public final class c1 {
         }
         if (mVar instanceof l) {
             GLES20.glUniform1i(p1Var.d("type"), r1Var.f4651a.o());
-            GLES20.glUniform2f(p1Var.d("resolution"), kv0Var.f28463a, kv0Var.f28464b);
+            GLES20.glUniform2f(p1Var.d("resolution"), jv0Var.f28201a, jv0Var.f28202b);
             GLES20.glUniform2f(p1Var.d("center"), r1Var.f4652b, r1Var.f4653c);
             GLES20.glUniform2f(p1Var.d("radius"), r1Var.d, r1Var.f4654e);
             GLES20.glUniform1f(p1Var.d("thickness"), r1Var.f4655f);
@@ -277,8 +277,8 @@ public final class c1 {
     }
 
     public final RectF f() {
-        kv0 kv0Var = this.f4456g;
-        return new RectF(0.0f, 0.0f, kv0Var.f28463a, kv0Var.f28464b);
+        jv0 jv0Var = this.f4456g;
+        return new RectF(0.0f, 0.0f, jv0Var.f28201a, jv0Var.f28202b);
     }
 
     public final int g() {
@@ -313,8 +313,8 @@ public final class c1 {
         GLES20.glTexParameteri(3553, 10240, 9728);
         GLES20.glTexImage2D(3553, 0, 6408, width, height, 0, 6408, 5121, null);
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, i14, 0);
-        kv0 kv0Var = this.f4456g;
-        GLES20.glViewport(0, 0, (int) kv0Var.f28463a, (int) kv0Var.f28464b);
+        jv0 jv0Var = this.f4456g;
+        GLES20.glViewport(0, 0, (int) jv0Var.f28201a, (int) jv0Var.f28202b);
         Map map = this.f4466r;
         if (map != null) {
             if (z4) {
@@ -372,9 +372,9 @@ public final class c1 {
                     GLES20.glTexParameteri(3553, 10241, 9729);
                     GLES20.glUniform1i(p1Var.d("blured"), 1);
                     GLES20.glActiveTexture(33985);
-                    ha haVar = this.F.f25550m;
+                    ha haVar = this.F.f25561m;
                     if (haVar != null) {
-                        i10 = haVar.f27443s[2];
+                        i10 = haVar.f27460s[2];
                     } else {
                         i10 = -1;
                     }
@@ -447,9 +447,9 @@ public final class c1 {
         if (rectF == null || !rectF.setIntersect(rectF, f())) {
             return null;
         }
-        Object obj = this.f4451a.f16615b;
+        Object obj = this.f4451a.f16617b;
         b4.e0 e0Var = new b4.e0((ByteBuffer) h(rectF, true, z4, false).f1936c, z4 ? 1 : 0, rectF);
-        ((o1) this.f4451a.f16615b).f4625b.b(UUID.randomUUID(), new z0(this, e0Var, 1));
+        ((o1) this.f4451a.f16617b).f4625b.b(UUID.randomUUID(), new z0(this, e0Var, 1));
         return e0Var;
     }
 
@@ -480,8 +480,8 @@ public final class c1 {
                 if (mVar instanceof l) {
                     GLES20.glUniform1i(p1Var.d("type"), ((l) mVar).o());
                     int d = p1Var.d("resolution");
-                    kv0 kv0Var = this.f4456g;
-                    GLES20.glUniform2f(d, kv0Var.f28463a, kv0Var.f28464b);
+                    jv0 jv0Var = this.f4456g;
+                    GLES20.glUniform2f(d, jv0Var.f28201a, jv0Var.f28202b);
                     GLES20.glUniform2f(p1Var.d("center"), r1Var.f4652b, r1Var.f4653c);
                     GLES20.glUniform2f(p1Var.d("radius"), r1Var.d, r1Var.f4654e);
                     GLES20.glUniform1f(p1Var.d("thickness"), r1Var.f4655f);

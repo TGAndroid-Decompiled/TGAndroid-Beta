@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class mt implements Runnable {
-    public final qt f39219a;
+    public final qt f39067a;
 
     public mt(qt qtVar) {
-        this.f39219a = qtVar;
+        this.f39067a = qtVar;
     }
 
     @Override

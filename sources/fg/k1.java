@@ -47,7 +47,7 @@ public final class k1 extends org.telegram.ui.ActionBar.k {
                 if (!z4 && (imageView2 = profileActivity.V0) != null) {
                     imageView2.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
                 }
-                if (profileActivity.F0 && (imageView = this.f21532e) != null) {
+                if (profileActivity.F0 && (imageView = this.f21534e) != null) {
                     imageView.setColorFilter(i10, PorterDuff.Mode.SRC_IN);
                     return;
                 }
@@ -62,7 +62,7 @@ public final class k1 extends org.telegram.ui.ActionBar.k {
     public boolean N(View view) {
         switch (this.f6372q1) {
             case 4:
-                if (!super.N(view) && view != ((py) this.f6373r1).f40227j0) {
+                if (!super.N(view) && view != ((py) this.f6373r1).f40197j0) {
                     return false;
                 }
                 return true;
@@ -90,7 +90,7 @@ public final class k1 extends org.telegram.ui.ActionBar.k {
             case 4:
                 py pyVar = (py) this.f6373r1;
                 fy fyVar = pyVar.U;
-                if (fyVar != null && fyVar.getAlpha() > 0.0f && pyVar.f40184b.f50506f) {
+                if (fyVar != null && fyVar.getAlpha() > 0.0f && pyVar.f40154b.f50542f) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -104,11 +104,11 @@ public final class k1 extends org.telegram.ui.ActionBar.k {
         switch (this.f6372q1) {
             case 4:
                 py pyVar = (py) this.f6373r1;
-                pyVar.U.f26172r.getText().clear();
-                if (z4 && pyVar.U.f26172r.isFocused()) {
-                    AndroidUtilities.hideKeyboard(pyVar.U.f26172r);
+                pyVar.U.f26132r.getText().clear();
+                if (z4 && pyVar.U.f26132r.isFocused()) {
+                    AndroidUtilities.hideKeyboard(pyVar.U.f26132r);
                 }
-                pyVar.U.f26172r.clearFocus();
+                pyVar.U.f26132r.clearFocus();
                 pyVar.V.b(false);
                 return;
             default:
@@ -183,8 +183,8 @@ public final class k1 extends org.telegram.ui.ActionBar.k {
             case 2:
                 mi miVar = (mi) this.f6373r1;
                 mh mhVar = miVar.A0;
-                TextView textView = miVar.f29055g1;
-                mh mhVar2 = miVar.f29098u1;
+                TextView textView = miVar.f29073g1;
+                mh mhVar2 = miVar.f29116u1;
                 float alpha = getAlpha();
                 super.setAlpha(f10);
                 if (alpha != f10) {
@@ -204,14 +204,14 @@ public final class k1 extends org.telegram.ui.ActionBar.k {
                     viewGroup3.invalidate();
                     if (mhVar != null && mhVar2 != null) {
                         if (mhVar.getTag() == null) {
-                            ei eiVar = miVar.f29100v0;
+                            ei eiVar = miVar.f29118v0;
                             if (eiVar == null || eiVar.I()) {
                                 mhVar2.setAlpha(1.0f - f10);
                                 mhVar2.setTranslationY(AndroidUtilities.dp(44.0f) * f10);
                             }
                             mhVar.setTranslationY(AndroidUtilities.dp(48.0f) * f10);
                             return;
-                        } else if (miVar.f29100v0 == null) {
+                        } else if (miVar.f29118v0 == null) {
                             if (f10 == 0.0f) {
                                 f11 = 1.0f;
                             }
@@ -258,7 +258,7 @@ public final class k1 extends org.telegram.ui.ActionBar.k {
                 n1 n1Var = (n1) this.f6373r1;
                 k1 k1Var = n1Var.K;
                 if (k1Var != null && k1Var.getTag() != null) {
-                    if (i0.a.f(n1Var.getThemedColor(k6.f21731h5)) > 0.699999988079071d) {
+                    if (i0.a.f(n1Var.getThemedColor(k6.f21733h5)) > 0.699999988079071d) {
                         z4 = true;
                     } else {
                         z4 = false;

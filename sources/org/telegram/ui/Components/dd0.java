@@ -16,21 +16,21 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.LaunchActivity;
 public final class dd0 extends Dialog implements org.telegram.ui.ActionBar.c5 {
-    public final ActionBarLayout f26257a;
-    public final FrameLayout f26258b;
-    public final xd0 f26259c;
+    public final ActionBarLayout f26260a;
+    public final FrameLayout f26261b;
+    public final xd0 f26262c;
 
     public dd0(Context context) {
         super(context, R.style.TransparentDialog);
         ActionBarLayout actionBarLayout = new ActionBarLayout(context, false);
-        this.f26257a = actionBarLayout;
+        this.f26260a = actionBarLayout;
         actionBarLayout.setFragmentStack(new ArrayList());
         org.telegram.ui.ActionBar.d5 d5Var = new org.telegram.ui.ActionBar.d5(new fg.x1(this, 9));
-        d5Var.f21278c = true;
+        d5Var.f21280c = true;
         actionBarLayout.R(d5Var);
         actionBarLayout.setDelegate(this);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f26258b = frameLayout;
+        this.f26261b = frameLayout;
         frameLayout.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
         frameLayout.addView(actionBarLayout.getView(), new FrameLayout.LayoutParams(-1, -1, 17));
         if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
@@ -40,7 +40,7 @@ public final class dd0 extends Dialog implements org.telegram.ui.ActionBar.c5 {
             n7.qa.M0(actionBarLayout.getView());
         }
         xd0 xd0Var = new xd0(context);
-        this.f26259c = xd0Var;
+        this.f26262c = xd0Var;
         frameLayout.addView(xd0Var, k7.c6.c(-1.0f, -1));
         setContentView(frameLayout);
     }
@@ -52,7 +52,7 @@ public final class dd0 extends Dialog implements org.telegram.ui.ActionBar.c5 {
         } else {
             z4 = false;
         }
-        this.f26257a.Q(p2Var, z4);
+        this.f26260a.Q(p2Var, z4);
     }
 
     @Override
@@ -83,20 +83,20 @@ public final class dd0 extends Dialog implements org.telegram.ui.ActionBar.c5 {
 
     @Override
     public final boolean l(ActionBarLayout actionBarLayout, org.telegram.ui.ActionBar.d5 d5Var) {
-        org.telegram.ui.ActionBar.p2 p2Var = d5Var.f21276a;
+        org.telegram.ui.ActionBar.p2 p2Var = d5Var.f21278a;
         return true;
     }
 
     @Override
     public final void onBackPressed() {
-        if (this.f26259c.getVisibility() == 0) {
+        if (this.f26262c.getVisibility() == 0) {
             if (getOwnerActivity() != null) {
                 getOwnerActivity().finish();
                 return;
             }
             return;
         }
-        ActionBarLayout actionBarLayout = this.f26257a;
+        ActionBarLayout actionBarLayout = this.f26260a;
         actionBarLayout.G();
         if (actionBarLayout.getFragmentStack().size() <= 1) {
             dismiss();
@@ -129,11 +129,11 @@ public final class dd0 extends Dialog implements org.telegram.ui.ActionBar.c5 {
         if (i10 >= 23) {
             window.setStatusBarColor(0);
         }
-        FrameLayout frameLayout = this.f26258b;
+        FrameLayout frameLayout = this.f26261b;
         frameLayout.setSystemUiVisibility(1280);
         frameLayout.setOnApplyWindowInsetsListener(new org.telegram.ui.ActionBar.i3(2));
         if (i10 >= 26) {
-            if (i0.a.f(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21659d6, true)) < 0.9d) {
+            if (i0.a.f(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21661d6, true)) < 0.9d) {
                 z4 = false;
             }
             AndroidUtilities.setLightNavigationBar(this, z4);
@@ -148,7 +148,7 @@ public final class dd0 extends Dialog implements org.telegram.ui.ActionBar.c5 {
             context = ((ContextWrapper) context).getBaseContext();
         }
         if (context instanceof LaunchActivity) {
-            ((LaunchActivity) context).f34182y0.add(this.f26259c);
+            ((LaunchActivity) context).f34182y0.add(this.f26262c);
         }
     }
 
@@ -160,7 +160,7 @@ public final class dd0 extends Dialog implements org.telegram.ui.ActionBar.c5 {
             context = ((ContextWrapper) context).getBaseContext();
         }
         if (context instanceof LaunchActivity) {
-            ((LaunchActivity) context).f34182y0.remove(this.f26259c);
+            ((LaunchActivity) context).f34182y0.remove(this.f26262c);
         }
     }
 

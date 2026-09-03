@@ -12,10 +12,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class du implements my {
-    public final fu f26320a;
+    public final fu f26364a;
 
     public du(fu fuVar) {
-        this.f26320a = fuVar;
+        this.f26364a = fuVar;
     }
 
     @Override
@@ -51,18 +51,18 @@ public final class du implements my {
     @Override
     public final void i(int i10) {
         boolean z4;
-        fu fuVar = this.f26320a;
+        fu fuVar = this.f26364a;
         if (fuVar.b()) {
             if (i10 != 0) {
                 z4 = true;
             } else {
                 z4 = false;
             }
-            fuVar.f27010x = z4;
+            fuVar.f27006x = z4;
             fuVar.y();
-            qv0 qv0Var = fuVar.f27005f;
-            if (qv0Var != null) {
-                qv0Var.S();
+            pv0 pv0Var = fuVar.f27001f;
+            if (pv0Var != null) {
+                pv0Var.S();
             }
         }
     }
@@ -74,7 +74,7 @@ public final class du implements my {
 
     @Override
     public final boolean k() {
-        au auVar = this.f26320a.f27001a;
+        au auVar = this.f26364a.f26997a;
         if (auVar.length() == 0) {
             return false;
         }
@@ -84,7 +84,7 @@ public final class du implements my {
 
     @Override
     public final void l(String str) {
-        au auVar = this.f26320a.f27001a;
+        au auVar = this.f26364a.f26997a;
         int selectionEnd = auVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -101,15 +101,15 @@ public final class du implements my {
 
     @Override
     public final void n() {
-        fu fuVar = this.f26320a;
+        fu fuVar = this.f26364a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(fuVar.getContext(), 0, fuVar.J);
-        alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.ClearRecentEmojiText);
-        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new v81(this));
+        alertDialog$Builder.f21168a.O = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f21168a.Q = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new u81(this));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
         org.telegram.ui.ActionBar.p2 p2Var = fuVar.h;
         if (p2Var != null) {
-            p2Var.showDialog(alertDialog$Builder.f21166a);
+            p2Var.showDialog(alertDialog$Builder.f21168a);
         } else {
             alertDialog$Builder.o();
         }
@@ -122,7 +122,7 @@ public final class du implements my {
 
     @Override
     public final void q() {
-        org.telegram.ui.ActionBar.p2 p2Var = this.f26320a.h;
+        org.telegram.ui.ActionBar.p2 p2Var = this.f26364a.h;
         if (p2Var == null) {
             new fg.n1((org.telegram.ui.ActionBar.p2) new fg.x1(this, 6), 11, false).show();
         } else {
@@ -133,8 +133,8 @@ public final class du implements my {
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z4) {
         u5 u5Var;
-        fu fuVar = this.f26320a;
-        au auVar = fuVar.f27001a;
+        fu fuVar = this.f26364a;
+        au auVar = fuVar.f26997a;
         int selectionEnd = auVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -146,7 +146,7 @@ public final class du implements my {
             } else {
                 u5Var = new u5(j10, auVar.getPaint().getFontMetricsInt());
             }
-            u5Var.cacheType = fuVar.d.f29270c;
+            u5Var.cacheType = fuVar.d.f29272c;
             spannableString.setSpan(u5Var, 0, spannableString.length(), 33);
             auVar.setText(auVar.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
@@ -160,7 +160,7 @@ public final class du implements my {
 
     @Override
     public final boolean z() {
-        return this.f26320a.f27010x;
+        return this.f26364a.f27006x;
     }
 
     @Override
@@ -168,7 +168,7 @@ public final class du implements my {
     }
 
     @Override
-    public final void o(f51 f51Var) {
+    public final void o(d51 d51Var) {
     }
 
     @Override

@@ -1,112 +1,57 @@
 package org.telegram.ui;
 
-import android.app.Dialog;
-import android.widget.TextView;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class jx0 implements org.telegram.ui.ActionBar.c2 {
-    public final int f38235a;
-    public final PrivacySettingsActivity f38236b;
+import org.telegram.tgnet.tl.TL_account;
+public final class jx0 implements Utilities.Callback {
+    public final int f38138a;
+    public final lx0 f38139b;
 
-    public jx0(PrivacySettingsActivity privacySettingsActivity, int i10) {
-        this.f38235a = i10;
-        this.f38236b = privacySettingsActivity;
-    }
-
-    public void a() {
-        int i10;
-        switch (this.f38235a) {
-            case 2:
-                PrivacySettingsActivity privacySettingsActivity = this.f38236b;
-                kx0 kx0Var = privacySettingsActivity.f34549a;
-                if (kx0Var != null && (i10 = privacySettingsActivity.f34556s) >= 0) {
-                    kx0Var.m(i10);
-                    return;
-                }
-                return;
-            default:
-                PrivacySettingsActivity.U(this.f38236b);
-                return;
-        }
+    public jx0(lx0 lx0Var, int i10) {
+        this.f38138a = i10;
+        this.f38139b = lx0Var;
     }
 
     @Override
-    public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        String string;
-        switch (this.f38235a) {
+    public final void run(Object obj) {
+        TL_account.TL_birthday tL_birthday;
+        int i10;
+        int i11;
+        switch (this.f38138a) {
             case 0:
-                PrivacySettingsActivity privacySettingsActivity = this.f38236b;
-                try {
-                    Dialog dialog = privacySettingsActivity.visibleDialog;
-                    if (dialog != null) {
-                        dialog.dismiss();
-                    }
-                } catch (Exception e6) {
-                    FileLog.e(e6);
-                }
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(privacySettingsActivity.getParentActivity());
-                alertDialog$Builder.f21166a.O = LocaleController.getString("PrivacyPaymentsClearAlertTitle", R.string.PrivacyPaymentsClearAlertTitle);
-                alertDialog$Builder.f21166a.Q = LocaleController.getString("PrivacyPaymentsClearAlert", R.string.PrivacyPaymentsClearAlert);
-                alertDialog$Builder.k(LocaleController.getString("ClearButton", R.string.ClearButton), new jx0(privacySettingsActivity, 1));
-                alertDialog$Builder.h(LocaleController.getString("Cancel", R.string.Cancel), null);
-                privacySettingsActivity.showDialog(alertDialog$Builder.f21166a);
-                org.telegram.ui.ActionBar.d2 d2Var2 = alertDialog$Builder.f21166a;
-                privacySettingsActivity.showDialog(d2Var2);
-                TextView textView = (TextView) d2Var2.d(-1);
-                if (textView != null) {
-                    textView.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21895q7, false));
-                    return;
-                }
+                PrivacyControlActivity privacyControlActivity = this.f38139b.d;
+                privacyControlActivity.I = ((Integer) obj).intValue();
+                AndroidUtilities.updateVisibleRow(privacyControlActivity.d, privacyControlActivity.f34524g0);
+                privacyControlActivity.E0();
                 return;
-            case 1:
-                TLRPC.TL_payments_clearSavedInfo tL_payments_clearSavedInfo = new TLRPC.TL_payments_clearSavedInfo();
-                PrivacySettingsActivity privacySettingsActivity2 = this.f38236b;
-                boolean[] zArr = privacySettingsActivity2.W;
-                tL_payments_clearSavedInfo.credentials = zArr[1];
-                tL_payments_clearSavedInfo.info = zArr[0];
-                privacySettingsActivity2.getUserConfig().tmpPassword = null;
-                privacySettingsActivity2.getUserConfig().saveConfig(false);
-                privacySettingsActivity2.getConnectionsManager().sendRequest(tL_payments_clearSavedInfo, new oh.p5(4));
-                boolean z4 = zArr[0];
-                if (z4 && zArr[1]) {
-                    string = LocaleController.getString("PrivacyPaymentsPaymentShippingCleared", R.string.PrivacyPaymentsPaymentShippingCleared);
-                } else if (z4) {
-                    string = LocaleController.getString("PrivacyPaymentsShippingInfoCleared", R.string.PrivacyPaymentsShippingInfoCleared);
-                } else if (zArr[1]) {
-                    string = LocaleController.getString("PrivacyPaymentsPaymentInfoCleared", R.string.PrivacyPaymentsPaymentInfoCleared);
-                } else {
-                    return;
-                }
-                org.telegram.ui.Components.qc.a0(privacySettingsActivity2).Q(R.raw.chats_infotip, 36, string).j();
-                return;
-            case 2:
-            case 3:
             default:
-                PrivacySettingsActivity privacySettingsActivity3 = this.f38236b;
-                org.telegram.ui.ActionBar.d2 o10 = new AlertDialog$Builder(privacySettingsActivity3.getParentActivity(), 3, null).o();
-                privacySettingsActivity3.f34551c = o10;
-                o10.f21241d0 = false;
-                if (privacySettingsActivity3.P != privacySettingsActivity3.Q) {
-                    UserConfig userConfig = privacySettingsActivity3.getUserConfig();
-                    boolean z10 = privacySettingsActivity3.Q;
-                    userConfig.syncContacts = z10;
-                    privacySettingsActivity3.P = z10;
-                    privacySettingsActivity3.getUserConfig().saveConfig(false);
+                TL_account.TL_birthday tL_birthday2 = (TL_account.TL_birthday) obj;
+                TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
+                updatebirthday.flags |= 1;
+                updatebirthday.birthday = tL_birthday2;
+                lx0 lx0Var = this.f38139b;
+                PrivacyControlActivity privacyControlActivity2 = lx0Var.d;
+                TLRPC.UserFull userFull = privacyControlActivity2.getMessagesController().getUserFull(privacyControlActivity2.getUserConfig().getClientUserId());
+                if (userFull != null) {
+                    tL_birthday = userFull.birthday;
+                } else {
+                    tL_birthday = null;
                 }
-                privacySettingsActivity3.getContactsController().deleteAllContacts(new ix0(privacySettingsActivity3, 1));
-                return;
-            case 4:
-                og0 og0Var = new og0();
-                PrivacySettingsActivity privacySettingsActivity4 = this.f38236b;
-                ix0 ix0Var = new ix0(privacySettingsActivity4, 2);
-                og0Var.C = 3;
-                og0Var.f39750a = 12;
-                og0Var.f39751a0 = ix0Var;
-                privacySettingsActivity4.presentFragment(og0Var);
+                if (userFull != null) {
+                    userFull.flags2 |= 32;
+                    userFull.birthday = tL_birthday2;
+                    privacyControlActivity2.getMessagesStorage().updateUserInfo(userFull, false);
+                }
+                privacyControlActivity2.getMessagesController().invalidateContentSettings();
+                privacyControlActivity2.getConnectionsManager().sendRequest(updatebirthday, new yr0(lx0Var, userFull, tL_birthday, 1), 1024);
+                i10 = ((org.telegram.ui.ActionBar.p2) privacyControlActivity2).currentAccount;
+                MessagesController.getInstance(i10).removeSuggestion(0L, "BIRTHDAY_SETUP");
+                i11 = ((org.telegram.ui.ActionBar.p2) privacyControlActivity2).currentAccount;
+                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
+                privacyControlActivity2.F0(true);
                 return;
         }
     }

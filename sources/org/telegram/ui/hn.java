@@ -6,16 +6,16 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class hn implements ot {
-    public final TLRPC.TL_messageMediaPoll f37547a;
-    public final TLRPC.PollAnswer f37548b;
-    public final org.telegram.ui.Cells.t1 f37549c;
+    public final TLRPC.TL_messageMediaPoll f37427a;
+    public final TLRPC.PollAnswer f37428b;
+    public final org.telegram.ui.Cells.t1 f37429c;
     public final jn d;
 
     public hn(jn jnVar, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, org.telegram.ui.Cells.t1 t1Var) {
         this.d = jnVar;
-        this.f37547a = tL_messageMediaPoll;
-        this.f37548b = pollAnswer;
-        this.f37549c = t1Var;
+        this.f37427a = tL_messageMediaPoll;
+        this.f37428b = pollAnswer;
+        this.f37429c = t1Var;
     }
 
     @Override
@@ -56,24 +56,24 @@ public final class hn implements ot {
     @Override
     public final void K() {
         ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(1);
-        arrayList.add(this.f37548b);
-        SendMessagesHelper sendMessagesHelper = this.d.f38188a.getSendMessagesHelper();
-        org.telegram.ui.Cells.t1 t1Var = this.f37549c;
+        arrayList.add(this.f37428b);
+        SendMessagesHelper sendMessagesHelper = this.d.f38085a.getSendMessagesHelper();
+        org.telegram.ui.Cells.t1 t1Var = this.f37429c;
         sendMessagesHelper.sendVote(t1Var.getMessageObject(), arrayList, null);
         t1Var.S0(true);
     }
 
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z4) {
-        xn xnVar = this.d.f38188a;
+        xn xnVar = this.d.f38085a;
         if (inputStickerSet != null && xnVar.getParentActivity() != null) {
             TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
             tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-            tL_inputStickerSetID.f20863id = inputStickerSet.f20863id;
-            org.telegram.ui.Components.yx0 yx0Var = new org.telegram.ui.Components.yx0(xnVar.getParentActivity(), xnVar, tL_inputStickerSetID, null, xnVar.V, xnVar.f43136ba);
-            yx0Var.setCalcMandatoryInsets(xnVar.x9());
-            yx0Var.f33623f0 = z4;
-            xnVar.showDialog(yx0Var);
+            tL_inputStickerSetID.f20865id = inputStickerSet.f20865id;
+            org.telegram.ui.Components.xx0 xx0Var = new org.telegram.ui.Components.xx0(xnVar.getParentActivity(), xnVar, tL_inputStickerSetID, null, xnVar.V, xnVar.f43114ba);
+            xx0Var.setCalcMandatoryInsets(xnVar.x9());
+            xx0Var.f33229f0 = z4;
+            xnVar.showDialog(xx0Var);
         }
     }
 
@@ -94,7 +94,7 @@ public final class hn implements ot {
 
     @Override
     public final long a() {
-        return this.d.f38188a.Q5;
+        return this.d.f38085a.Q5;
     }
 
     @Override
@@ -104,7 +104,7 @@ public final class hn implements ot {
 
     @Override
     public final boolean c() {
-        if (this.d.f38188a.O3 == 1) {
+        if (this.d.f38085a.O3 == 1) {
             return true;
         }
         return false;
@@ -112,7 +112,7 @@ public final class hn implements ot {
 
     @Override
     public final TLRPC.TL_messageMediaPoll d() {
-        return this.f37547a;
+        return this.f37427a;
     }
 
     @Override
@@ -127,7 +127,7 @@ public final class hn implements ot {
 
     @Override
     public final TLRPC.PollAnswer g() {
-        return this.f37548b;
+        return this.f37428b;
     }
 
     @Override
@@ -152,8 +152,8 @@ public final class hn implements ot {
 
     @Override
     public final void q() {
-        SendMessagesHelper sendMessagesHelper = this.d.f38188a.getSendMessagesHelper();
-        org.telegram.ui.Cells.t1 t1Var = this.f37549c;
+        SendMessagesHelper sendMessagesHelper = this.d.f38085a.getSendMessagesHelper();
+        org.telegram.ui.Cells.t1 t1Var = this.f37429c;
         sendMessagesHelper.sendVote(t1Var.getMessageObject(), null, null);
         t1Var.S0(true);
     }
@@ -165,7 +165,7 @@ public final class hn implements ot {
 
     @Override
     public final MessageObject y() {
-        return this.f37549c.getMessageObject();
+        return this.f37429c.getMessageObject();
     }
 
     @Override

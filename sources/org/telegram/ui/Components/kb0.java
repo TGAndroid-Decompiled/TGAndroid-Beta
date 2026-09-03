@@ -6,7 +6,7 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-public final class kb0 extends tl0 {
+public final class kb0 extends sl0 {
     public final sb0 U2;
 
     public kb0(sb0 sb0Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
@@ -57,7 +57,7 @@ public final class kb0 extends tl0 {
                     View childAt3 = kb0Var.getChildAt(i13);
                     if (childAt3 instanceof org.telegram.ui.Cells.t1) {
                         org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) childAt3;
-                        if (childAt3.getY() <= kb0Var.getHeight() && childAt3.getY() + childAt3.getHeight() >= 0.0f && (currentMessagesGroup = t1Var.getCurrentMessagesGroup()) != null && ((i12 != 0 || currentMessagesGroup.messages.size() != 1) && ((i12 != 1 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i12 != 0 || !t1Var.getMessageObject().deleted) && ((i12 != 1 || t1Var.getMessageObject().deleted) && ((i12 != 2 || t1Var.f23937lc) && (i12 == 2 || !t1Var.f23937lc))))))) {
+                        if (childAt3.getY() <= kb0Var.getHeight() && childAt3.getY() + childAt3.getHeight() >= 0.0f && (currentMessagesGroup = t1Var.getCurrentMessagesGroup()) != null && ((i12 != 0 || currentMessagesGroup.messages.size() != 1) && ((i12 != 1 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i12 != 0 || !t1Var.getMessageObject().deleted) && ((i12 != 1 || t1Var.getMessageObject().deleted) && ((i12 != 2 || t1Var.f23939lc) && (i12 == 2 || !t1Var.f23939lc))))))) {
                             if (!arrayList.contains(currentMessagesGroup)) {
                                 MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
                                 transitionParams.left = r32;
@@ -81,7 +81,7 @@ public final class kb0 extends tl0 {
                             if ((t1Var.getCurrentPosition().flags & 8) == 0) {
                                 backgroundDrawableBottom += AndroidUtilities.dp(10.0f);
                             }
-                            if (t1Var.f23937lc) {
+                            if (t1Var.f23939lc) {
                                 currentMessagesGroup.transitionParams.cell = t1Var;
                             }
                             MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup.transitionParams;
@@ -190,15 +190,15 @@ public final class kb0 extends tl0 {
             t1Var.P1(canvas, true);
             t1Var.u3(true);
             t1Var.V1(canvas);
-            if (t1Var.getCurrentMessagesGroup() == null || ((t1Var.getCurrentPosition() != null && (((t1Var.getCurrentPosition().flags & t1Var.t0()) != 0 && (t1Var.getCurrentPosition().flags & 1) != 0) || (t1Var.getCurrentMessagesGroup() != null && t1Var.getCurrentMessagesGroup().isDocuments))) || t1Var.getTransitionParams().f23706w0)) {
+            if (t1Var.getCurrentMessagesGroup() == null || ((t1Var.getCurrentPosition() != null && (((t1Var.getCurrentPosition().flags & t1Var.t0()) != 0 && (t1Var.getCurrentPosition().flags & 1) != 0) || (t1Var.getCurrentMessagesGroup() != null && t1Var.getCurrentMessagesGroup().isDocuments))) || t1Var.getTransitionParams().f23708w0)) {
                 t1Var.I1(t1Var.getAlpha(), canvas, false);
                 t1Var.d2(canvas, t1Var.getAlpha(), null);
                 t1Var.N1(canvas, t1Var.getAlpha());
             }
-            if (t1Var.getCurrentMessagesGroup() != null || t1Var.getTransitionParams().f23706w0) {
+            if (t1Var.getCurrentMessagesGroup() != null || t1Var.getTransitionParams().f23708w0) {
                 t1Var.W1(canvas, t1Var.getAlpha());
             }
-            if ((t1Var.getCurrentPosition() != null && t1Var.getCurrentPosition().last) || t1Var.getTransitionParams().f23706w0) {
+            if ((t1Var.getCurrentPosition() != null && t1Var.getCurrentPosition().last) || t1Var.getTransitionParams().f23708w0) {
                 t1Var.m2(t1Var.getAlpha(), canvas, true);
             }
             t1Var.Y1(canvas);

@@ -5,10 +5,10 @@ import org.json.JSONObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.v9;
 public final class b0 implements NotificationCenter.NotificationCenterDelegate {
-    public final a1 f42508a;
+    public final a1 f42471a;
 
     public b0(a1 a1Var) {
-        this.f42508a = a1Var;
+        this.f42471a = a1Var;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class b0 implements NotificationCenter.NotificationCenterDelegate {
             if (intValue == 5000) {
                 NotificationCenter.getGlobalInstance().removeObserver(this, i12);
                 int i13 = iArr[0];
-                a1 a1Var = this.f42508a;
+                a1 a1Var = this.f42471a;
                 if (i13 == 0) {
                     Activity activity = a1Var.T;
                     if (activity != null) {
-                        a1Var.f42471d0 = v9.e0(activity, 3, new e0(a1Var, 0));
+                        a1Var.f42435d0 = v9.e0(activity, 3, new e0(a1Var, 0));
                         return;
                     }
                     return;

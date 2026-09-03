@@ -36,7 +36,7 @@ public final class n {
         if (mVar == null) {
             return "";
         }
-        return mVar.a().f44150c;
+        return mVar.a().f44181c;
     }
 
     public final int b() {
@@ -95,7 +95,7 @@ public final class n {
         if (mVar == null) {
             return 0L;
         }
-        return mVar.a().f44149b;
+        return mVar.a().f44180b;
     }
 
     public final long f() {

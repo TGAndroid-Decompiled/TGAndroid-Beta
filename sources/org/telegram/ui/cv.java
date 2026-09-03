@@ -3,14 +3,14 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 public final class cv implements View.OnClickListener {
-    public final Context f35915a;
-    public final org.telegram.ui.ActionBar.p2 f35916b;
-    public final dv f35917c;
+    public final Context f35860a;
+    public final org.telegram.ui.ActionBar.p2 f35861b;
+    public final dv f35862c;
 
     public cv(dv dvVar, Context context, org.telegram.ui.ActionBar.p2 p2Var) {
-        this.f35917c = dvVar;
-        this.f35915a = context;
-        this.f35916b = p2Var;
+        this.f35862c = dvVar;
+        this.f35860a = context;
+        this.f35861b = p2Var;
     }
 
     @Override

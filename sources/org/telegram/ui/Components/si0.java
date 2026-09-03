@@ -20,7 +20,7 @@ public class si0 extends org.telegram.ui.ActionBar.h3 {
     public final TextView d;
     public final TextView f31065e;
     public final int f31066f;
-    public final lj0 h;
+    public final kj0 h;
 
     public si0(Context context, String str, String str2, String str3, boolean z4) {
         super(context, null, false, false);
@@ -37,8 +37,8 @@ public class si0 extends org.telegram.ui.ActionBar.h3 {
         Bitmap bitmap2 = this.f31063b;
         try {
             HashMap hashMap = new HashMap();
-            hashMap.put(ob.b.f16681a, tb.b.M);
-            hashMap.put(ob.b.f16683c, 0);
+            hashMap.put(ob.b.f16683a, tb.b.M);
+            hashMap.put(ob.b.f16685c, 0);
             TelegramQRCodeWriter telegramQRCodeWriter = new TelegramQRCodeWriter();
             Bitmap encode = telegramQRCodeWriter.encode(str2, 768, 768, hashMap, bitmap2);
             this.f31066f = telegramQRCodeWriter.getImageSize();
@@ -88,10 +88,10 @@ public class si0 extends org.telegram.ui.ActionBar.h3 {
     }
 
     public final void m(int i10) {
-        lj0 lj0Var = this.h;
-        lj0Var.setAutoRepeat(true);
-        lj0Var.f(i10, 60, 60, null);
-        lj0Var.d();
+        kj0 kj0Var = this.h;
+        kj0Var.setAutoRepeat(true);
+        kj0Var.f(i10, 60, 60, null);
+        kj0Var.d();
     }
 
     public final void n() {
@@ -106,9 +106,9 @@ public class si0 extends org.telegram.ui.ActionBar.h3 {
         TextView textView2 = this.f31065e;
         if (textView2 != null) {
             textView2.setTextColor(getThemedColor(i10));
-            textView2.setBackground(org.telegram.ui.ActionBar.k6.f0(i0.a.k(getThemedColor(i10), Math.min(255, Color.alpha(getThemedColor(org.telegram.ui.ActionBar.k6.f21750i6)) * 2)), 7, -1));
+            textView2.setBackground(org.telegram.ui.ActionBar.k6.f0(i0.a.k(getThemedColor(i10), Math.min(255, Color.alpha(getThemedColor(org.telegram.ui.ActionBar.k6.f21752i6)) * 2)), 7, -1));
         }
-        int i11 = org.telegram.ui.ActionBar.k6.f22036y6;
+        int i11 = org.telegram.ui.ActionBar.k6.f22038y6;
         int themedColor4 = getThemedColor(i11);
         TextView textView3 = this.f31064c;
         textView3.setTextColor(themedColor4);
@@ -116,6 +116,6 @@ public class si0 extends org.telegram.ui.ActionBar.h3 {
         if (getTitleView() != null) {
             getTitleView().setTextColor(getThemedColor(org.telegram.ui.ActionBar.k6.G6));
         }
-        setBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.k6.f21731h5));
+        setBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.k6.f21733h5));
     }
 }

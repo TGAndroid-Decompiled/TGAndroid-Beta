@@ -26,7 +26,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public class mq extends FrameLayout {
-    public static final int f29183b0 = 0;
+    public static final int f29224b0 = 0;
     public final EditTextBoldCursor[] B;
     public final org.telegram.ui.ActionBar.l0 C;
     public final ImageView D;
@@ -49,26 +49,26 @@ public class mq extends FrameLayout {
     public float U;
     public float V;
     public float W;
-    public final lq f29184a;
-    public org.telegram.ui.ActionBar.g6 f29185a0;
-    public final Paint f29186b;
-    public final Paint f29187c;
+    public final lq f29225a;
+    public org.telegram.ui.ActionBar.g6 f29226a0;
+    public final Paint f29227b;
+    public final Paint f29228c;
     public final Paint d;
-    public final Paint f29188e;
-    public final Drawable f29189f;
+    public final Paint f29229e;
+    public final Drawable f29230f;
     public boolean h;
-    public final RectF f29190n;
-    public boolean f29191r;
-    public Bitmap f29192s;
+    public final RectF f29231n;
+    public boolean f29232r;
+    public Bitmap f29233s;
     public final ColorPicker$RadioButton[] v;
-    public final FrameLayout f29193w;
-    public final dg.u f29194x;
-    public AnimatorSet f29195y;
+    public final FrameLayout f29234w;
+    public final dg.u f29235x;
+    public AnimatorSet f29236y;
 
     public mq(Context context, boolean z4, lq lqVar) {
         super(context);
         boolean z10;
-        this.f29190n = new RectF();
+        this.f29231n = new RectF();
         this.v = new ColorPicker$RadioButton[4];
         this.H = 1;
         this.I = 1;
@@ -79,24 +79,24 @@ public class mq extends FrameLayout {
         this.U = 1.0f;
         this.V = 0.0f;
         this.W = 1.0f;
-        this.f29184a = lqVar;
+        this.f29225a = lqVar;
         this.B = new EditTextBoldCursor[2];
         setWillNotDraw(false);
-        this.f29189f = context.getResources().getDrawable(R.drawable.knob_shadow).mutate();
+        this.f29230f = context.getResources().getDrawable(R.drawable.knob_shadow).mutate();
         this.d = new Paint(1);
-        this.f29186b = new Paint(5);
-        this.f29187c = new Paint(5);
+        this.f29227b = new Paint(5);
+        this.f29228c = new Paint(5);
         Paint paint = new Paint();
-        this.f29188e = paint;
+        this.f29229e = paint;
         paint.setColor(301989888);
         setClipChildren(false);
         dg.u uVar = new dg.u(this, context);
-        this.f29194x = uVar;
+        this.f29235x = uVar;
         uVar.setOrientation(0);
         addView(uVar, k7.c6.d(-1, 54.0f, 51, 27.0f, -6.0f, 17.0f, 0.0f));
         uVar.setWillNotDraw(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f29193w = frameLayout;
+        this.f29234w = frameLayout;
         frameLayout.setClipChildren(false);
         addView(frameLayout, k7.c6.d(174, 30.0f, 49, 72.0f, 1.0f, 0.0f, 0.0f));
         for (int i10 = 0; i10 < 4; i10++) {
@@ -109,12 +109,12 @@ public class mq extends FrameLayout {
             }
             colorPicker$RadioButton.d = z10;
             colorPicker$RadioButton.b(false);
-            this.f29193w.addView(this.v[i10], k7.c6.d(30, 30.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
+            this.f29234w.addView(this.v[i10], k7.c6.d(30, 30.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
             this.v[i10].setOnClickListener(new View.OnClickListener(this) {
-                public final mq f27560b;
+                public final mq f27593b;
 
                 {
-                    this.f27560b = this;
+                    this.f27593b = this;
                 }
 
                 @Override
@@ -123,37 +123,37 @@ public class mq extends FrameLayout {
                     boolean z11;
                     boolean z12;
                     int i12 = r2;
-                    mq mqVar = this.f27560b;
+                    mq mqVar = this.f27593b;
                     switch (i12) {
                         case 0:
                             Property property = View.TRANSLATION_X;
                             Property property2 = View.SCALE_Y;
                             Property property3 = View.SCALE_X;
                             Property property4 = View.ALPHA;
-                            lq lqVar2 = mqVar.f29184a;
+                            lq lqVar2 = mqVar.f29225a;
                             org.telegram.ui.ActionBar.l0 l0Var = mqVar.C;
                             ImageView imageView = mqVar.D;
                             ColorPicker$RadioButton[] colorPicker$RadioButtonArr = mqVar.v;
-                            if (mqVar.f29195y == null) {
+                            if (mqVar.f29236y == null) {
                                 int i13 = mqVar.H;
                                 if (i13 == 1) {
                                     ColorPicker$RadioButton colorPicker$RadioButton2 = colorPicker$RadioButtonArr[1];
-                                    if (colorPicker$RadioButton2.f24842e == 0) {
+                                    if (colorPicker$RadioButton2.f24844e == 0) {
                                         i11 = 0;
-                                        colorPicker$RadioButton2.a(mq.d(colorPicker$RadioButtonArr[0].f24842e));
+                                        colorPicker$RadioButton2.a(mq.d(colorPicker$RadioButtonArr[0].f24844e));
                                     } else {
                                         i11 = 0;
                                     }
                                     if (mqVar.h) {
-                                        lqVar2.v0(colorPicker$RadioButtonArr[i11].f24842e, i11, true);
+                                        lqVar2.v0(colorPicker$RadioButtonArr[i11].f24844e, i11, true);
                                     }
-                                    lqVar2.v0(colorPicker$RadioButtonArr[1].f24842e, 1, true);
+                                    lqVar2.v0(colorPicker$RadioButtonArr[1].f24844e, 1, true);
                                     mqVar.H = 2;
                                 } else if (i13 == 2) {
                                     mqVar.H = 3;
-                                    if (colorPicker$RadioButtonArr[2].f24842e == 0) {
+                                    if (colorPicker$RadioButtonArr[2].f24844e == 0) {
                                         float[] fArr = new float[3];
-                                        Color.colorToHSV(colorPicker$RadioButtonArr[0].f24842e, fArr);
+                                        Color.colorToHSV(colorPicker$RadioButtonArr[0].f24844e, fArr);
                                         float f10 = fArr[0];
                                         if (f10 > 180.0f) {
                                             fArr[0] = f10 - 60.0f;
@@ -162,14 +162,14 @@ public class mq extends FrameLayout {
                                         }
                                         colorPicker$RadioButtonArr[2].a(Color.HSVToColor(255, fArr));
                                     }
-                                    lqVar2.v0(colorPicker$RadioButtonArr[2].f24842e, 2, true);
+                                    lqVar2.v0(colorPicker$RadioButtonArr[2].f24844e, 2, true);
                                 } else if (i13 == 3) {
                                     mqVar.H = 4;
                                     ColorPicker$RadioButton colorPicker$RadioButton3 = colorPicker$RadioButtonArr[3];
-                                    if (colorPicker$RadioButton3.f24842e == 0) {
-                                        colorPicker$RadioButton3.a(mq.d(colorPicker$RadioButtonArr[2].f24842e));
+                                    if (colorPicker$RadioButton3.f24844e == 0) {
+                                        colorPicker$RadioButton3.a(mq.d(colorPicker$RadioButtonArr[2].f24844e));
                                     }
-                                    lqVar2.v0(colorPicker$RadioButtonArr[3].f24842e, 3, true);
+                                    lqVar2.v0(colorPicker$RadioButtonArr[3].f24844e, 3, true);
                                 } else {
                                     return;
                                 }
@@ -196,18 +196,18 @@ public class mq extends FrameLayout {
                                     arrayList.add(ObjectAnimator.ofFloat(l0Var, property2, 1.0f));
                                 }
                                 colorPicker$RadioButtonArr[mqVar.H - 1].callOnClick();
-                                mqVar.f29195y = new AnimatorSet();
+                                mqVar.f29236y = new AnimatorSet();
                                 mqVar.g(mqVar.getMeasuredWidth(), arrayList, false);
-                                mqVar.f29195y.playTogether(arrayList);
-                                mqVar.f29195y.setDuration(180L);
-                                mqVar.f29195y.setInterpolator(pr.f30184g);
-                                mqVar.f29195y.addListener(new a9(mqVar, 13));
-                                mqVar.f29195y.start();
+                                mqVar.f29236y.playTogether(arrayList);
+                                mqVar.f29236y.setDuration(180L);
+                                mqVar.f29236y.setInterpolator(pr.f30169g);
+                                mqVar.f29236y.addListener(new a9(mqVar, 13));
+                                mqVar.f29236y.start();
                                 return;
                             }
                             return;
                         case 1:
-                            lq lqVar3 = mqVar.f29184a;
+                            lq lqVar3 = mqVar.f29225a;
                             Property property5 = View.TRANSLATION_X;
                             Property property6 = View.SCALE_Y;
                             Property property7 = View.SCALE_X;
@@ -215,7 +215,7 @@ public class mq extends FrameLayout {
                             org.telegram.ui.ActionBar.l0 l0Var2 = mqVar.C;
                             ColorPicker$RadioButton[] colorPicker$RadioButtonArr2 = mqVar.v;
                             ImageView imageView2 = mqVar.D;
-                            if (mqVar.f29195y == null) {
+                            if (mqVar.f29236y == null) {
                                 ArrayList arrayList2 = new ArrayList();
                                 int i14 = mqVar.H;
                                 if (i14 == 2) {
@@ -259,7 +259,7 @@ public class mq extends FrameLayout {
                                 }
                                 for (int i18 = 0; i18 < colorPicker$RadioButtonArr2.length; i18++) {
                                     if (i18 < mqVar.H) {
-                                        int i19 = colorPicker$RadioButtonArr2[i18].f24842e;
+                                        int i19 = colorPicker$RadioButtonArr2[i18].f24844e;
                                         if (i18 == colorPicker$RadioButtonArr2.length - 1) {
                                             z12 = true;
                                         } else {
@@ -275,13 +275,13 @@ public class mq extends FrameLayout {
                                         lqVar3.v0(0, i18, z11);
                                     }
                                 }
-                                mqVar.f29195y = new AnimatorSet();
+                                mqVar.f29236y = new AnimatorSet();
                                 mqVar.g(mqVar.getMeasuredWidth(), arrayList2, true);
-                                mqVar.f29195y.playTogether(arrayList2);
-                                mqVar.f29195y.setDuration(180L);
-                                mqVar.f29195y.setInterpolator(pr.f30184g);
-                                mqVar.f29195y.addListener(new kq(mqVar));
-                                mqVar.f29195y.start();
+                                mqVar.f29236y.playTogether(arrayList2);
+                                mqVar.f29236y.setDuration(180L);
+                                mqVar.f29236y.setInterpolator(pr.f30169g);
+                                mqVar.f29236y.addListener(new kq(mqVar));
+                                mqVar.f29236y.start();
                                 return;
                             }
                             return;
@@ -308,28 +308,28 @@ public class mq extends FrameLayout {
                 this.B[i11].setEnabled(false);
                 this.B[i11].setFocusable(false);
                 this.B[i11].setPadding(0, AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(16.0f));
-                this.f29194x.addView(this.B[i11], k7.c6.k(0.0f, 0.0f, 0.0f, 0.0f, -2, -1));
+                this.f29235x.addView(this.B[i11], k7.c6.k(0.0f, 0.0f, 0.0f, 0.0f, -2, -1));
             } else {
                 editTextBoldCursorArr[i11] = new iq(this, context, i11, 1);
                 this.B[i11].setBackgroundDrawable(null);
                 this.B[i11].setFilters(new InputFilter[]{new InputFilter.LengthFilter(6)});
                 this.B[i11].setHint("8BC6ED");
                 this.B[i11].setPadding(0, AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(16.0f));
-                this.f29194x.addView(this.B[i11], k7.c6.k(0.0f, 0.0f, 0.0f, 0.0f, 71, -1));
+                this.f29235x.addView(this.B[i11], k7.c6.k(0.0f, 0.0f, 0.0f, 0.0f, 71, -1));
                 this.B[i11].addTextChangedListener(new jq(this, i11));
                 this.B[i11].setOnEditorActionListener(new dg.a0(3));
             }
             this.B[i11].setTextSize(1, 16.0f);
-            this.B[i11].setHintTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.H6, this.f29185a0));
+            this.B[i11].setHintTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.H6, this.f29226a0));
             EditTextBoldCursor editTextBoldCursor = this.B[i11];
             int i12 = org.telegram.ui.ActionBar.k6.G6;
-            editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.k6.v0(i12, this.f29185a0));
-            this.B[i11].setCursorColor(org.telegram.ui.ActionBar.k6.v0(i12, this.f29185a0));
+            editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.k6.v0(i12, this.f29226a0));
+            this.B[i11].setCursorColor(org.telegram.ui.ActionBar.k6.v0(i12, this.f29226a0));
             this.B[i11].setCursorSize(AndroidUtilities.dp(18.0f));
             this.B[i11].setCursorWidth(1.5f);
             this.B[i11].setSingleLine(true);
             this.B[i11].setGravity(19);
-            this.B[i11].setHeaderHintColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.L6, this.f29185a0));
+            this.B[i11].setHeaderHintColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.L6, this.f29226a0));
             this.B[i11].setTransformHintToHeader(true);
             this.B[i11].setInputType(524416);
             this.B[i11].setImeOptions(268435462);
@@ -343,19 +343,19 @@ public class mq extends FrameLayout {
         ImageView imageView = new ImageView(getContext());
         this.D = imageView;
         int i13 = org.telegram.ui.ActionBar.k6.I5;
-        imageView.setBackground(org.telegram.ui.ActionBar.k6.f0(org.telegram.ui.ActionBar.k6.v0(i13, this.f29185a0), 1, -1));
+        imageView.setBackground(org.telegram.ui.ActionBar.k6.f0(org.telegram.ui.ActionBar.k6.v0(i13, this.f29226a0), 1, -1));
         imageView.setImageResource(R.drawable.msg_add);
         int i14 = org.telegram.ui.ActionBar.k6.G6;
-        int v02 = org.telegram.ui.ActionBar.k6.v0(i14, this.f29185a0);
+        int v02 = org.telegram.ui.ActionBar.k6.v0(i14, this.f29226a0);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         imageView.setColorFilter(new PorterDuffColorFilter(v02, mode));
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final mq f27560b;
+            public final mq f27593b;
 
             {
-                this.f27560b = this;
+                this.f27593b = this;
             }
 
             @Override
@@ -364,37 +364,37 @@ public class mq extends FrameLayout {
                 boolean z11;
                 boolean z12;
                 int i122 = r2;
-                mq mqVar = this.f27560b;
+                mq mqVar = this.f27593b;
                 switch (i122) {
                     case 0:
                         Property property = View.TRANSLATION_X;
                         Property property2 = View.SCALE_Y;
                         Property property3 = View.SCALE_X;
                         Property property4 = View.ALPHA;
-                        lq lqVar2 = mqVar.f29184a;
+                        lq lqVar2 = mqVar.f29225a;
                         org.telegram.ui.ActionBar.l0 l0Var = mqVar.C;
                         ImageView imageView2 = mqVar.D;
                         ColorPicker$RadioButton[] colorPicker$RadioButtonArr = mqVar.v;
-                        if (mqVar.f29195y == null) {
+                        if (mqVar.f29236y == null) {
                             int i132 = mqVar.H;
                             if (i132 == 1) {
                                 ColorPicker$RadioButton colorPicker$RadioButton2 = colorPicker$RadioButtonArr[1];
-                                if (colorPicker$RadioButton2.f24842e == 0) {
+                                if (colorPicker$RadioButton2.f24844e == 0) {
                                     i112 = 0;
-                                    colorPicker$RadioButton2.a(mq.d(colorPicker$RadioButtonArr[0].f24842e));
+                                    colorPicker$RadioButton2.a(mq.d(colorPicker$RadioButtonArr[0].f24844e));
                                 } else {
                                     i112 = 0;
                                 }
                                 if (mqVar.h) {
-                                    lqVar2.v0(colorPicker$RadioButtonArr[i112].f24842e, i112, true);
+                                    lqVar2.v0(colorPicker$RadioButtonArr[i112].f24844e, i112, true);
                                 }
-                                lqVar2.v0(colorPicker$RadioButtonArr[1].f24842e, 1, true);
+                                lqVar2.v0(colorPicker$RadioButtonArr[1].f24844e, 1, true);
                                 mqVar.H = 2;
                             } else if (i132 == 2) {
                                 mqVar.H = 3;
-                                if (colorPicker$RadioButtonArr[2].f24842e == 0) {
+                                if (colorPicker$RadioButtonArr[2].f24844e == 0) {
                                     float[] fArr = new float[3];
-                                    Color.colorToHSV(colorPicker$RadioButtonArr[0].f24842e, fArr);
+                                    Color.colorToHSV(colorPicker$RadioButtonArr[0].f24844e, fArr);
                                     float f10 = fArr[0];
                                     if (f10 > 180.0f) {
                                         fArr[0] = f10 - 60.0f;
@@ -403,14 +403,14 @@ public class mq extends FrameLayout {
                                     }
                                     colorPicker$RadioButtonArr[2].a(Color.HSVToColor(255, fArr));
                                 }
-                                lqVar2.v0(colorPicker$RadioButtonArr[2].f24842e, 2, true);
+                                lqVar2.v0(colorPicker$RadioButtonArr[2].f24844e, 2, true);
                             } else if (i132 == 3) {
                                 mqVar.H = 4;
                                 ColorPicker$RadioButton colorPicker$RadioButton3 = colorPicker$RadioButtonArr[3];
-                                if (colorPicker$RadioButton3.f24842e == 0) {
-                                    colorPicker$RadioButton3.a(mq.d(colorPicker$RadioButtonArr[2].f24842e));
+                                if (colorPicker$RadioButton3.f24844e == 0) {
+                                    colorPicker$RadioButton3.a(mq.d(colorPicker$RadioButtonArr[2].f24844e));
                                 }
-                                lqVar2.v0(colorPicker$RadioButtonArr[3].f24842e, 3, true);
+                                lqVar2.v0(colorPicker$RadioButtonArr[3].f24844e, 3, true);
                             } else {
                                 return;
                             }
@@ -437,18 +437,18 @@ public class mq extends FrameLayout {
                                 arrayList.add(ObjectAnimator.ofFloat(l0Var, property2, 1.0f));
                             }
                             colorPicker$RadioButtonArr[mqVar.H - 1].callOnClick();
-                            mqVar.f29195y = new AnimatorSet();
+                            mqVar.f29236y = new AnimatorSet();
                             mqVar.g(mqVar.getMeasuredWidth(), arrayList, false);
-                            mqVar.f29195y.playTogether(arrayList);
-                            mqVar.f29195y.setDuration(180L);
-                            mqVar.f29195y.setInterpolator(pr.f30184g);
-                            mqVar.f29195y.addListener(new a9(mqVar, 13));
-                            mqVar.f29195y.start();
+                            mqVar.f29236y.playTogether(arrayList);
+                            mqVar.f29236y.setDuration(180L);
+                            mqVar.f29236y.setInterpolator(pr.f30169g);
+                            mqVar.f29236y.addListener(new a9(mqVar, 13));
+                            mqVar.f29236y.start();
                             return;
                         }
                         return;
                     case 1:
-                        lq lqVar3 = mqVar.f29184a;
+                        lq lqVar3 = mqVar.f29225a;
                         Property property5 = View.TRANSLATION_X;
                         Property property6 = View.SCALE_Y;
                         Property property7 = View.SCALE_X;
@@ -456,7 +456,7 @@ public class mq extends FrameLayout {
                         org.telegram.ui.ActionBar.l0 l0Var2 = mqVar.C;
                         ColorPicker$RadioButton[] colorPicker$RadioButtonArr2 = mqVar.v;
                         ImageView imageView22 = mqVar.D;
-                        if (mqVar.f29195y == null) {
+                        if (mqVar.f29236y == null) {
                             ArrayList arrayList2 = new ArrayList();
                             int i142 = mqVar.H;
                             if (i142 == 2) {
@@ -500,7 +500,7 @@ public class mq extends FrameLayout {
                             }
                             for (int i18 = 0; i18 < colorPicker$RadioButtonArr2.length; i18++) {
                                 if (i18 < mqVar.H) {
-                                    int i19 = colorPicker$RadioButtonArr2[i18].f24842e;
+                                    int i19 = colorPicker$RadioButtonArr2[i18].f24844e;
                                     if (i18 == colorPicker$RadioButtonArr2.length - 1) {
                                         z12 = true;
                                     } else {
@@ -516,13 +516,13 @@ public class mq extends FrameLayout {
                                     lqVar3.v0(0, i18, z11);
                                 }
                             }
-                            mqVar.f29195y = new AnimatorSet();
+                            mqVar.f29236y = new AnimatorSet();
                             mqVar.g(mqVar.getMeasuredWidth(), arrayList2, true);
-                            mqVar.f29195y.playTogether(arrayList2);
-                            mqVar.f29195y.setDuration(180L);
-                            mqVar.f29195y.setInterpolator(pr.f30184g);
-                            mqVar.f29195y.addListener(new kq(mqVar));
-                            mqVar.f29195y.start();
+                            mqVar.f29236y.playTogether(arrayList2);
+                            mqVar.f29236y.setDuration(180L);
+                            mqVar.f29236y.setInterpolator(pr.f30169g);
+                            mqVar.f29236y.addListener(new kq(mqVar));
+                            mqVar.f29236y.start();
                             return;
                         }
                         return;
@@ -539,19 +539,19 @@ public class mq extends FrameLayout {
         addView(imageView, k7.c6.d(30, 30.0f, 49, 36.0f, 1.0f, 0.0f, 0.0f));
         org.telegram.ui.ActionBar.l0 l0Var = new org.telegram.ui.ActionBar.l0(this, getContext(), 1);
         this.C = l0Var;
-        l0Var.setBackground(org.telegram.ui.ActionBar.k6.f0(org.telegram.ui.ActionBar.k6.v0(i13, this.f29185a0), 1, -1));
+        l0Var.setBackground(org.telegram.ui.ActionBar.k6.f0(org.telegram.ui.ActionBar.k6.v0(i13, this.f29226a0), 1, -1));
         l0Var.setImageResource(R.drawable.msg_close);
-        l0Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.v0(i14, this.f29185a0), mode));
+        l0Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.v0(i14, this.f29226a0), mode));
         l0Var.setAlpha(0.0f);
         l0Var.setScaleX(0.0f);
         l0Var.setScaleY(0.0f);
         l0Var.setScaleType(scaleType);
         l0Var.setVisibility(4);
         l0Var.setOnClickListener(new View.OnClickListener(this) {
-            public final mq f27560b;
+            public final mq f27593b;
 
             {
-                this.f27560b = this;
+                this.f27593b = this;
             }
 
             @Override
@@ -560,37 +560,37 @@ public class mq extends FrameLayout {
                 boolean z11;
                 boolean z12;
                 int i122 = r2;
-                mq mqVar = this.f27560b;
+                mq mqVar = this.f27593b;
                 switch (i122) {
                     case 0:
                         Property property = View.TRANSLATION_X;
                         Property property2 = View.SCALE_Y;
                         Property property3 = View.SCALE_X;
                         Property property4 = View.ALPHA;
-                        lq lqVar2 = mqVar.f29184a;
+                        lq lqVar2 = mqVar.f29225a;
                         org.telegram.ui.ActionBar.l0 l0Var2 = mqVar.C;
                         ImageView imageView2 = mqVar.D;
                         ColorPicker$RadioButton[] colorPicker$RadioButtonArr = mqVar.v;
-                        if (mqVar.f29195y == null) {
+                        if (mqVar.f29236y == null) {
                             int i132 = mqVar.H;
                             if (i132 == 1) {
                                 ColorPicker$RadioButton colorPicker$RadioButton2 = colorPicker$RadioButtonArr[1];
-                                if (colorPicker$RadioButton2.f24842e == 0) {
+                                if (colorPicker$RadioButton2.f24844e == 0) {
                                     i112 = 0;
-                                    colorPicker$RadioButton2.a(mq.d(colorPicker$RadioButtonArr[0].f24842e));
+                                    colorPicker$RadioButton2.a(mq.d(colorPicker$RadioButtonArr[0].f24844e));
                                 } else {
                                     i112 = 0;
                                 }
                                 if (mqVar.h) {
-                                    lqVar2.v0(colorPicker$RadioButtonArr[i112].f24842e, i112, true);
+                                    lqVar2.v0(colorPicker$RadioButtonArr[i112].f24844e, i112, true);
                                 }
-                                lqVar2.v0(colorPicker$RadioButtonArr[1].f24842e, 1, true);
+                                lqVar2.v0(colorPicker$RadioButtonArr[1].f24844e, 1, true);
                                 mqVar.H = 2;
                             } else if (i132 == 2) {
                                 mqVar.H = 3;
-                                if (colorPicker$RadioButtonArr[2].f24842e == 0) {
+                                if (colorPicker$RadioButtonArr[2].f24844e == 0) {
                                     float[] fArr = new float[3];
-                                    Color.colorToHSV(colorPicker$RadioButtonArr[0].f24842e, fArr);
+                                    Color.colorToHSV(colorPicker$RadioButtonArr[0].f24844e, fArr);
                                     float f10 = fArr[0];
                                     if (f10 > 180.0f) {
                                         fArr[0] = f10 - 60.0f;
@@ -599,14 +599,14 @@ public class mq extends FrameLayout {
                                     }
                                     colorPicker$RadioButtonArr[2].a(Color.HSVToColor(255, fArr));
                                 }
-                                lqVar2.v0(colorPicker$RadioButtonArr[2].f24842e, 2, true);
+                                lqVar2.v0(colorPicker$RadioButtonArr[2].f24844e, 2, true);
                             } else if (i132 == 3) {
                                 mqVar.H = 4;
                                 ColorPicker$RadioButton colorPicker$RadioButton3 = colorPicker$RadioButtonArr[3];
-                                if (colorPicker$RadioButton3.f24842e == 0) {
-                                    colorPicker$RadioButton3.a(mq.d(colorPicker$RadioButtonArr[2].f24842e));
+                                if (colorPicker$RadioButton3.f24844e == 0) {
+                                    colorPicker$RadioButton3.a(mq.d(colorPicker$RadioButtonArr[2].f24844e));
                                 }
-                                lqVar2.v0(colorPicker$RadioButtonArr[3].f24842e, 3, true);
+                                lqVar2.v0(colorPicker$RadioButtonArr[3].f24844e, 3, true);
                             } else {
                                 return;
                             }
@@ -633,18 +633,18 @@ public class mq extends FrameLayout {
                                 arrayList.add(ObjectAnimator.ofFloat(l0Var2, property2, 1.0f));
                             }
                             colorPicker$RadioButtonArr[mqVar.H - 1].callOnClick();
-                            mqVar.f29195y = new AnimatorSet();
+                            mqVar.f29236y = new AnimatorSet();
                             mqVar.g(mqVar.getMeasuredWidth(), arrayList, false);
-                            mqVar.f29195y.playTogether(arrayList);
-                            mqVar.f29195y.setDuration(180L);
-                            mqVar.f29195y.setInterpolator(pr.f30184g);
-                            mqVar.f29195y.addListener(new a9(mqVar, 13));
-                            mqVar.f29195y.start();
+                            mqVar.f29236y.playTogether(arrayList);
+                            mqVar.f29236y.setDuration(180L);
+                            mqVar.f29236y.setInterpolator(pr.f30169g);
+                            mqVar.f29236y.addListener(new a9(mqVar, 13));
+                            mqVar.f29236y.start();
                             return;
                         }
                         return;
                     case 1:
-                        lq lqVar3 = mqVar.f29184a;
+                        lq lqVar3 = mqVar.f29225a;
                         Property property5 = View.TRANSLATION_X;
                         Property property6 = View.SCALE_Y;
                         Property property7 = View.SCALE_X;
@@ -652,7 +652,7 @@ public class mq extends FrameLayout {
                         org.telegram.ui.ActionBar.l0 l0Var22 = mqVar.C;
                         ColorPicker$RadioButton[] colorPicker$RadioButtonArr2 = mqVar.v;
                         ImageView imageView22 = mqVar.D;
-                        if (mqVar.f29195y == null) {
+                        if (mqVar.f29236y == null) {
                             ArrayList arrayList2 = new ArrayList();
                             int i142 = mqVar.H;
                             if (i142 == 2) {
@@ -696,7 +696,7 @@ public class mq extends FrameLayout {
                             }
                             for (int i18 = 0; i18 < colorPicker$RadioButtonArr2.length; i18++) {
                                 if (i18 < mqVar.H) {
-                                    int i19 = colorPicker$RadioButtonArr2[i18].f24842e;
+                                    int i19 = colorPicker$RadioButtonArr2[i18].f24844e;
                                     if (i18 == colorPicker$RadioButtonArr2.length - 1) {
                                         z12 = true;
                                     } else {
@@ -712,13 +712,13 @@ public class mq extends FrameLayout {
                                     lqVar3.v0(0, i18, z11);
                                 }
                             }
-                            mqVar.f29195y = new AnimatorSet();
+                            mqVar.f29236y = new AnimatorSet();
                             mqVar.g(mqVar.getMeasuredWidth(), arrayList2, true);
-                            mqVar.f29195y.playTogether(arrayList2);
-                            mqVar.f29195y.setDuration(180L);
-                            mqVar.f29195y.setInterpolator(pr.f30184g);
-                            mqVar.f29195y.addListener(new kq(mqVar));
-                            mqVar.f29195y.start();
+                            mqVar.f29236y.playTogether(arrayList2);
+                            mqVar.f29236y.setDuration(180L);
+                            mqVar.f29236y.setInterpolator(pr.f30169g);
+                            mqVar.f29236y.addListener(new kq(mqVar));
+                            mqVar.f29236y.start();
                             return;
                         }
                         return;
@@ -739,11 +739,11 @@ public class mq extends FrameLayout {
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
         textView.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        textView.setTextColor(org.telegram.ui.ActionBar.k6.v0(i14, this.f29185a0));
+        textView.setTextColor(org.telegram.ui.ActionBar.k6.v0(i14, this.f29226a0));
         addView(textView, k7.c6.d(-2, 36.0f, 53, 0.0f, 3.0f, 14.0f, 0.0f));
         textView.setOnClickListener(new eg.m(11));
         if (z4) {
-            org.telegram.ui.ActionBar.w0 w0Var = new org.telegram.ui.ActionBar.w0(context, (org.telegram.ui.ActionBar.z) null, 0, org.telegram.ui.ActionBar.k6.v0(i14, this.f29185a0));
+            org.telegram.ui.ActionBar.w0 w0Var = new org.telegram.ui.ActionBar.w0(context, (org.telegram.ui.ActionBar.z) null, 0, org.telegram.ui.ActionBar.k6.v0(i14, this.f29226a0));
             this.F = w0Var;
             w0Var.setLongClickEnabled(false);
             w0Var.setIcon(R.drawable.ic_ab_other);
@@ -756,13 +756,13 @@ public class mq extends FrameLayout {
             w0Var.setDelegate(new t(this, 26));
             w0Var.setAdditionalYOffset(AndroidUtilities.dp(72.0f));
             w0Var.setTranslationX(AndroidUtilities.dp(6.0f));
-            w0Var.setBackgroundDrawable(org.telegram.ui.ActionBar.k6.f0(org.telegram.ui.ActionBar.k6.v0(i13, this.f29185a0), 1, -1));
+            w0Var.setBackgroundDrawable(org.telegram.ui.ActionBar.k6.f0(org.telegram.ui.ActionBar.k6.v0(i13, this.f29226a0), 1, -1));
             addView(w0Var, k7.c6.d(30, 30.0f, 53, 0.0f, 2.0f, 10.0f, 0.0f));
             w0Var.setOnClickListener(new View.OnClickListener(this) {
-                public final mq f27560b;
+                public final mq f27593b;
 
                 {
-                    this.f27560b = this;
+                    this.f27593b = this;
                 }
 
                 @Override
@@ -771,37 +771,37 @@ public class mq extends FrameLayout {
                     boolean z11;
                     boolean z12;
                     int i122 = r2;
-                    mq mqVar = this.f27560b;
+                    mq mqVar = this.f27593b;
                     switch (i122) {
                         case 0:
                             Property property = View.TRANSLATION_X;
                             Property property2 = View.SCALE_Y;
                             Property property3 = View.SCALE_X;
                             Property property4 = View.ALPHA;
-                            lq lqVar2 = mqVar.f29184a;
+                            lq lqVar2 = mqVar.f29225a;
                             org.telegram.ui.ActionBar.l0 l0Var2 = mqVar.C;
                             ImageView imageView2 = mqVar.D;
                             ColorPicker$RadioButton[] colorPicker$RadioButtonArr = mqVar.v;
-                            if (mqVar.f29195y == null) {
+                            if (mqVar.f29236y == null) {
                                 int i132 = mqVar.H;
                                 if (i132 == 1) {
                                     ColorPicker$RadioButton colorPicker$RadioButton2 = colorPicker$RadioButtonArr[1];
-                                    if (colorPicker$RadioButton2.f24842e == 0) {
+                                    if (colorPicker$RadioButton2.f24844e == 0) {
                                         i112 = 0;
-                                        colorPicker$RadioButton2.a(mq.d(colorPicker$RadioButtonArr[0].f24842e));
+                                        colorPicker$RadioButton2.a(mq.d(colorPicker$RadioButtonArr[0].f24844e));
                                     } else {
                                         i112 = 0;
                                     }
                                     if (mqVar.h) {
-                                        lqVar2.v0(colorPicker$RadioButtonArr[i112].f24842e, i112, true);
+                                        lqVar2.v0(colorPicker$RadioButtonArr[i112].f24844e, i112, true);
                                     }
-                                    lqVar2.v0(colorPicker$RadioButtonArr[1].f24842e, 1, true);
+                                    lqVar2.v0(colorPicker$RadioButtonArr[1].f24844e, 1, true);
                                     mqVar.H = 2;
                                 } else if (i132 == 2) {
                                     mqVar.H = 3;
-                                    if (colorPicker$RadioButtonArr[2].f24842e == 0) {
+                                    if (colorPicker$RadioButtonArr[2].f24844e == 0) {
                                         float[] fArr = new float[3];
-                                        Color.colorToHSV(colorPicker$RadioButtonArr[0].f24842e, fArr);
+                                        Color.colorToHSV(colorPicker$RadioButtonArr[0].f24844e, fArr);
                                         float f10 = fArr[0];
                                         if (f10 > 180.0f) {
                                             fArr[0] = f10 - 60.0f;
@@ -810,14 +810,14 @@ public class mq extends FrameLayout {
                                         }
                                         colorPicker$RadioButtonArr[2].a(Color.HSVToColor(255, fArr));
                                     }
-                                    lqVar2.v0(colorPicker$RadioButtonArr[2].f24842e, 2, true);
+                                    lqVar2.v0(colorPicker$RadioButtonArr[2].f24844e, 2, true);
                                 } else if (i132 == 3) {
                                     mqVar.H = 4;
                                     ColorPicker$RadioButton colorPicker$RadioButton3 = colorPicker$RadioButtonArr[3];
-                                    if (colorPicker$RadioButton3.f24842e == 0) {
-                                        colorPicker$RadioButton3.a(mq.d(colorPicker$RadioButtonArr[2].f24842e));
+                                    if (colorPicker$RadioButton3.f24844e == 0) {
+                                        colorPicker$RadioButton3.a(mq.d(colorPicker$RadioButtonArr[2].f24844e));
                                     }
-                                    lqVar2.v0(colorPicker$RadioButtonArr[3].f24842e, 3, true);
+                                    lqVar2.v0(colorPicker$RadioButtonArr[3].f24844e, 3, true);
                                 } else {
                                     return;
                                 }
@@ -844,18 +844,18 @@ public class mq extends FrameLayout {
                                     arrayList.add(ObjectAnimator.ofFloat(l0Var2, property2, 1.0f));
                                 }
                                 colorPicker$RadioButtonArr[mqVar.H - 1].callOnClick();
-                                mqVar.f29195y = new AnimatorSet();
+                                mqVar.f29236y = new AnimatorSet();
                                 mqVar.g(mqVar.getMeasuredWidth(), arrayList, false);
-                                mqVar.f29195y.playTogether(arrayList);
-                                mqVar.f29195y.setDuration(180L);
-                                mqVar.f29195y.setInterpolator(pr.f30184g);
-                                mqVar.f29195y.addListener(new a9(mqVar, 13));
-                                mqVar.f29195y.start();
+                                mqVar.f29236y.playTogether(arrayList);
+                                mqVar.f29236y.setDuration(180L);
+                                mqVar.f29236y.setInterpolator(pr.f30169g);
+                                mqVar.f29236y.addListener(new a9(mqVar, 13));
+                                mqVar.f29236y.start();
                                 return;
                             }
                             return;
                         case 1:
-                            lq lqVar3 = mqVar.f29184a;
+                            lq lqVar3 = mqVar.f29225a;
                             Property property5 = View.TRANSLATION_X;
                             Property property6 = View.SCALE_Y;
                             Property property7 = View.SCALE_X;
@@ -863,7 +863,7 @@ public class mq extends FrameLayout {
                             org.telegram.ui.ActionBar.l0 l0Var22 = mqVar.C;
                             ColorPicker$RadioButton[] colorPicker$RadioButtonArr2 = mqVar.v;
                             ImageView imageView22 = mqVar.D;
-                            if (mqVar.f29195y == null) {
+                            if (mqVar.f29236y == null) {
                                 ArrayList arrayList2 = new ArrayList();
                                 int i142 = mqVar.H;
                                 if (i142 == 2) {
@@ -907,7 +907,7 @@ public class mq extends FrameLayout {
                                 }
                                 for (int i18 = 0; i18 < colorPicker$RadioButtonArr2.length; i18++) {
                                     if (i18 < mqVar.H) {
-                                        int i19 = colorPicker$RadioButtonArr2[i18].f24842e;
+                                        int i19 = colorPicker$RadioButtonArr2[i18].f24844e;
                                         if (i18 == colorPicker$RadioButtonArr2.length - 1) {
                                             z12 = true;
                                         } else {
@@ -923,13 +923,13 @@ public class mq extends FrameLayout {
                                         lqVar3.v0(0, i18, z11);
                                     }
                                 }
-                                mqVar.f29195y = new AnimatorSet();
+                                mqVar.f29236y = new AnimatorSet();
                                 mqVar.g(mqVar.getMeasuredWidth(), arrayList2, true);
-                                mqVar.f29195y.playTogether(arrayList2);
-                                mqVar.f29195y.setDuration(180L);
-                                mqVar.f29195y.setInterpolator(pr.f30184g);
-                                mqVar.f29195y.addListener(new kq(mqVar));
-                                mqVar.f29195y.start();
+                                mqVar.f29236y.playTogether(arrayList2);
+                                mqVar.f29236y.setDuration(180L);
+                                mqVar.f29236y.setInterpolator(pr.f30169g);
+                                mqVar.f29236y.addListener(new kq(mqVar));
+                                mqVar.f29236y.start();
                                 return;
                             }
                             return;
@@ -967,7 +967,7 @@ public class mq extends FrameLayout {
                 }
                 i10++;
             } else {
-                int i11 = colorPicker$RadioButton.f24842e;
+                int i11 = colorPicker$RadioButton.f24844e;
                 mqVar.setColorInner(i11);
                 mqVar.B[1].setText(String.format("%02x%02x%02x", Byte.valueOf((byte) Color.red(i11)), Byte.valueOf((byte) Color.green(i11)), Byte.valueOf((byte) Color.blue(i11))).toUpperCase());
                 return;
@@ -999,7 +999,7 @@ public class mq extends FrameLayout {
 
     public void setColorInner(int i10) {
         Color.colorToHSV(i10, this.K);
-        int H0 = this.f29184a.H0(this.P);
+        int H0 = this.f29225a.H0(this.P);
         if (H0 == 0 || H0 != i10) {
             h();
         }
@@ -1017,7 +1017,7 @@ public class mq extends FrameLayout {
             f10 = 16.0f;
         }
         int dp = AndroidUtilities.dp(f10);
-        Drawable drawable = this.f29189f;
+        Drawable drawable = this.f29230f;
         drawable.setBounds(i10 - dp, i11 - dp, i10 + dp, dp + i11);
         drawable.draw(canvas);
         Paint paint = this.d;
@@ -1040,8 +1040,8 @@ public class mq extends FrameLayout {
     }
 
     public final void e(int i10, int i11) {
-        if (!this.f29191r) {
-            this.f29191r = true;
+        if (!this.f29232r) {
+            this.f29232r = true;
             if (this.P == i11) {
                 String upperCase = String.format("%02x%02x%02x", Byte.valueOf((byte) Color.red(i10)), Byte.valueOf((byte) Color.green(i10)), Byte.valueOf((byte) Color.blue(i10))).toUpperCase();
                 EditTextBoldCursor[] editTextBoldCursorArr = this.B;
@@ -1049,7 +1049,7 @@ public class mq extends FrameLayout {
                 editTextBoldCursorArr[1].setSelection(upperCase.length());
             }
             this.v[i11].a(i10);
-            this.f29191r = false;
+            this.f29232r = false;
         }
         setColorInner(i10);
     }
@@ -1115,7 +1115,7 @@ public class mq extends FrameLayout {
                 l0Var.setVisibility(8);
             }
         }
-        this.f29194x.invalidate();
+        this.f29235x.invalidate();
         g(getMeasuredWidth(), null, false);
     }
 
@@ -1126,7 +1126,7 @@ public class mq extends FrameLayout {
         float f12;
         int i11 = this.H;
         int D = org.telegram.messenger.y3.D(13.0f, i11 - 1, AndroidUtilities.dp(30.0f) * i11);
-        FrameLayout frameLayout = this.f29193w;
+        FrameLayout frameLayout = this.f29234w;
         int left = frameLayout.getLeft() + D;
         if (this.G == 1) {
             f10 = 50.0f;
@@ -1178,7 +1178,7 @@ public class mq extends FrameLayout {
                     } else {
                         f12 = 30.0f;
                         colorPicker$RadioButtonArr[i12].setVisibility(0);
-                        if (this.f29195y == null) {
+                        if (this.f29236y == null) {
                             colorPicker$RadioButtonArr[i12].setAlpha(1.0f);
                             colorPicker$RadioButtonArr[i12].setScaleX(1.0f);
                             colorPicker$RadioButtonArr[i12].setScaleY(1.0f);
@@ -1196,7 +1196,7 @@ public class mq extends FrameLayout {
                         }
                     } else {
                         colorPicker$RadioButtonArr[i12].setVisibility(4);
-                        if (this.f29195y == null) {
+                        if (this.f29236y == null) {
                             colorPicker$RadioButtonArr[i12].setAlpha(0.0f);
                             colorPicker$RadioButtonArr[i12].setScaleX(0.0f);
                             colorPicker$RadioButtonArr[i12].setScaleY(0.0f);
@@ -1261,7 +1261,7 @@ public class mq extends FrameLayout {
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f29194x.invalidate();
+        this.f29235x.invalidate();
     }
 
     @Override
@@ -1270,9 +1270,9 @@ public class mq extends FrameLayout {
         int i10;
         int dp = AndroidUtilities.dp(45.0f);
         float f11 = dp;
-        canvas.drawBitmap(this.f29192s, 0.0f, f11, (Paint) null);
-        int height = this.f29192s.getHeight() + dp;
-        Paint paint = this.f29188e;
+        canvas.drawBitmap(this.f29233s, 0.0f, f11, (Paint) null);
+        int height = this.f29233s.getHeight() + dp;
+        Paint paint = this.f29229e;
         canvas.drawRect(0.0f, f11, getMeasuredWidth(), dp + 1, paint);
         canvas.drawRect(0.0f, height - 1, getMeasuredWidth(), height, paint);
         float[] fArr = this.K;
@@ -1282,10 +1282,10 @@ public class mq extends FrameLayout {
         fArr2[1] = fArr[1];
         fArr2[2] = 1.0f;
         int measuredWidth = (int) ((fArr[0] * getMeasuredWidth()) / 360.0f);
-        int w10 = (int) e2.c.w(1.0f, fArr[1], this.f29192s.getHeight(), f11);
+        int w10 = (int) e2.c.w(1.0f, fArr[1], this.f29233s.getHeight(), f11);
         if (!this.N) {
             int dp2 = AndroidUtilities.dp(16.0f);
-            float interpolation = pr.f30184g.getInterpolation(this.R);
+            float interpolation = pr.f30169g.getInterpolation(this.R);
             if (measuredWidth < dp2) {
                 measuredWidth = (int) (((dp2 - measuredWidth) * interpolation) + measuredWidth);
             } else if (measuredWidth > getMeasuredWidth() - dp2) {
@@ -1293,15 +1293,15 @@ public class mq extends FrameLayout {
             }
             if (w10 < dp + dp2) {
                 w10 = (int) ((interpolation * (i10 - w10)) + w10);
-            } else if (w10 > (this.f29192s.getHeight() + dp) - dp2) {
-                w10 = (int) (w10 - (interpolation * (w10 - ((this.f29192s.getHeight() + dp) - dp2))));
+            } else if (w10 > (this.f29233s.getHeight() + dp) - dp2) {
+                w10 = (int) (w10 - (interpolation * (w10 - ((this.f29233s.getHeight() + dp) - dp2))));
             }
         }
         c(canvas, measuredWidth, w10, Color.HSVToColor(fArr2), false);
-        RectF rectF = this.f29190n;
+        RectF rectF = this.f29231n;
         rectF.set(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(26.0f) + height, getMeasuredWidth() - AndroidUtilities.dp(22.0f), AndroidUtilities.dp(34.0f) + height);
         LinearGradient linearGradient = this.M;
-        Paint paint2 = this.f29187c;
+        Paint paint2 = this.f29228c;
         if (linearGradient == null) {
             fArr2[2] = this.V;
             int HSVToColor = Color.HSVToColor(fArr2);
@@ -1351,10 +1351,10 @@ public class mq extends FrameLayout {
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             float f11 = dp;
             ComposeShader composeShader = new ComposeShader(new LinearGradient(0.0f, dp / 3, 0.0f, f11, new int[]{-1, 0}, (float[]) null, tileMode), new LinearGradient(0.0f, 0.0f, f10, 0.0f, new int[]{-65536, -256, -16711936, -16711681, -16776961, -65281, -65536}, (float[]) null, tileMode), PorterDuff.Mode.MULTIPLY);
-            Paint paint = this.f29186b;
+            Paint paint = this.f29227b;
             paint.setShader(composeShader);
             new Canvas(createBitmap).drawRect(0.0f, 0.0f, f10, f11, paint);
-            this.f29192s = createBitmap;
+            this.f29233s = createBitmap;
             this.M = null;
         }
     }
@@ -1407,6 +1407,6 @@ public class mq extends FrameLayout {
     }
 
     public void setResourcesProvider(org.telegram.ui.ActionBar.g6 g6Var) {
-        this.f29185a0 = g6Var;
+        this.f29226a0 = g6Var;
     }
 }

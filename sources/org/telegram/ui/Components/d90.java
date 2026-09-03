@@ -29,7 +29,7 @@ public final class d90 {
             z80Var.d(layout, spanStart, f10);
             layout.getSelectionPath(spanStart, spanEnd, z80Var);
             k90 k90Var = new k90();
-            k90Var.f28348x = z80Var;
+            k90Var.f28370x = z80Var;
             k90Var.C = true;
             k90Var.j(4.0f);
             k90Var.k();
@@ -132,7 +132,7 @@ public final class d90 {
             ((View) obj).invalidate();
         } else if (obj instanceof org.telegram.ui.d3) {
             org.telegram.ui.d3 d3Var = (org.telegram.ui.d3) obj;
-            if (!d3Var.f35981c && (view2 = d3Var.f35980b) != null) {
+            if (!d3Var.f35959c && (view2 = d3Var.f35958b) != null) {
                 view2.invalidate();
             }
         } else if (z4 && (view = this.f26231a) != null) {
@@ -148,10 +148,10 @@ public final class d90 {
         if (i10 >= 0 && i10 < this.d) {
             Pair pair = (Pair) this.f26233c.get(i10);
             h90 h90Var = (h90) pair.first;
-            if (h90Var.f27424p < 0) {
-                h90Var.f27424p = Math.max(h90Var.f27423o + h90Var.f27425q, SystemClock.elapsedRealtime());
+            if (h90Var.f27430p < 0) {
+                h90Var.f27430p = Math.max(h90Var.f27429o + h90Var.f27431q, SystemClock.elapsedRealtime());
                 h(pair.second, true);
-                AndroidUtilities.runOnUIThread(new c90(this, h90Var, 1), Math.max(0L, (h90Var.f27424p - SystemClock.elapsedRealtime()) + 175));
+                AndroidUtilities.runOnUIThread(new c90(this, h90Var, 1), Math.max(0L, (h90Var.f27430p - SystemClock.elapsedRealtime()) + 175));
             }
         }
     }
@@ -177,10 +177,10 @@ public final class d90 {
             }
             if (pair != null) {
                 if (z4) {
-                    if (h90Var.f27424p < 0) {
-                        h90Var.f27424p = Math.max(h90Var.f27423o + h90Var.f27425q, SystemClock.elapsedRealtime());
+                    if (h90Var.f27430p < 0) {
+                        h90Var.f27430p = Math.max(h90Var.f27429o + h90Var.f27431q, SystemClock.elapsedRealtime());
                         h(pair.second, true);
-                        AndroidUtilities.runOnUIThread(new c90(this, h90Var, 0), Math.max(0L, (h90Var.f27424p - SystemClock.elapsedRealtime()) + 175));
+                        AndroidUtilities.runOnUIThread(new c90(this, h90Var, 0), Math.max(0L, (h90Var.f27430p - SystemClock.elapsedRealtime()) + 175));
                         return;
                     }
                     return;
@@ -215,20 +215,20 @@ public final class d90 {
                         if (!k90Var.c()) {
                             k90Var.a();
                         }
-                        a90 a90Var = new a90(1, this, k90Var);
+                        b90 b90Var = new b90(0, this, k90Var);
                         long j10 = 0;
-                        if (k90Var.f28330c > 0) {
-                            j10 = 320 - (SystemClock.elapsedRealtime() - k90Var.f28330c);
+                        if (k90Var.f28352c > 0) {
+                            j10 = 320 - (SystemClock.elapsedRealtime() - k90Var.f28352c);
                         }
-                        AndroidUtilities.runOnUIThread(a90Var, j10);
+                        AndroidUtilities.runOnUIThread(b90Var, j10);
                         return;
                     }
                     l(k90Var, false);
                     return;
                 }
                 arrayList.remove(pair);
-                k90Var.f28329b = -1L;
-                k90Var.f28330c = -1L;
+                k90Var.f28351b = -1L;
+                k90Var.f28352c = -1L;
                 this.f26235f = arrayList.size();
                 h(pair.second, true);
             }

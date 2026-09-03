@@ -63,19 +63,19 @@ public final class ja implements Runnable {
                 xf xfVar = (xf) this.f11902c;
                 ib ibVar = ib.AGGREGATED_ON_DEVICE_SUBJECT_SEGMENTATION_INFERENCE;
                 n7.i1 i1Var = (n7.i1) this.d;
-                HashMap hashMap2 = xfVar.f15820j;
+                HashMap hashMap2 = xfVar.f15822j;
                 if (!hashMap2.containsKey(ibVar)) {
                     n7.d dVar = new n7.d();
                     ?? obj2 = new Object();
                     if (dVar.isEmpty()) {
-                        obj2.f15661c = dVar;
+                        obj2.f15663c = dVar;
                         hashMap2.put(ibVar, obj2);
                     } else {
                         throw new IllegalArgumentException();
                     }
                 }
                 Long valueOf2 = Long.valueOf(this.f11901b);
-                n7.d dVar2 = ((mg) hashMap2.get(ibVar)).f15661c;
+                n7.d dVar2 = ((mg) hashMap2.get(ibVar)).f15663c;
                 Collection collection2 = (Collection) dVar2.get(i1Var);
                 if (collection2 == null) {
                     ArrayList arrayList2 = new ArrayList(3);
@@ -89,7 +89,7 @@ public final class ja implements Runnable {
                 }
                 long elapsedRealtime2 = SystemClock.elapsedRealtime();
                 if (xfVar.d(ibVar, elapsedRealtime2)) {
-                    xfVar.f15819i.put(ibVar, Long.valueOf(elapsedRealtime2));
+                    xfVar.f15821i.put(ibVar, Long.valueOf(elapsedRealtime2));
                     cb.o.f2429a.execute(new m2.b(xfVar));
                     return;
                 }

@@ -7,7 +7,7 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.fo0;
+import org.telegram.ui.Components.eo0;
 public class s3 extends LinearLayout {
     public static float f5476b = 1.0f;
     public final int f5477a;
@@ -24,12 +24,12 @@ public class s3 extends LinearLayout {
         boolean z10;
         switch (this.f5477a) {
             case 7:
-                if (getParent() instanceof fo0) {
-                    fo0 fo0Var = (fo0) getParent();
+                if (getParent() instanceof eo0) {
+                    eo0 eo0Var = (eo0) getParent();
                     canvas.save();
-                    LinearLayout linearLayout = fo0Var.f26972b;
-                    Path path = fo0Var.f26976n;
-                    if (view != null && fo0.e(view)) {
+                    LinearLayout linearLayout = eo0Var.f26641b;
+                    Path path = eo0Var.f26645n;
+                    if (view != null && eo0.e(view)) {
                         int indexOfChild = linearLayout.indexOfChild(view);
                         int i10 = indexOfChild - 1;
                         View view2 = null;
@@ -43,22 +43,22 @@ public class s3 extends LinearLayout {
                         if (i11 < linearLayout.getChildCount()) {
                             view2 = linearLayout.getChildAt(i11);
                         }
-                        if (childAt != null && fo0.e(childAt)) {
+                        if (childAt != null && eo0.e(childAt)) {
                             z4 = true;
                         } else {
                             z4 = false;
                         }
-                        if (view2 != null && fo0.e(view2)) {
+                        if (view2 != null && eo0.e(view2)) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
                         RectF rectF = AndroidUtilities.rectTmp;
                         float x10 = view.getX();
-                        float max = Math.max(fo0Var.getScrollY() - AndroidUtilities.dp(16.0f), view.getY() + linearLayout.getY());
+                        float max = Math.max(eo0Var.getScrollY() - AndroidUtilities.dp(16.0f), view.getY() + linearLayout.getY());
                         float x11 = view.getX() + view.getWidth();
-                        int height = fo0Var.getHeight();
-                        rectF.set(x10, max, x11, Math.min(AndroidUtilities.dp(16.0f) + fo0Var.getScrollY() + height, view.getY() + linearLayout.getY() + view.getHeight()));
+                        int height = eo0Var.getHeight();
+                        rectF.set(x10, max, x11, Math.min(AndroidUtilities.dp(16.0f) + eo0Var.getScrollY() + height, view.getY() + linearLayout.getY() + view.getHeight()));
                         if (z4 && z10) {
                             if (view.getY() >= rectF.top) {
                                 z4 = true;
@@ -74,16 +74,16 @@ public class s3 extends LinearLayout {
                         }
                         if (!z4 && !z10) {
                             path.rewind();
-                            float f10 = fo0Var.f26973c;
+                            float f10 = eo0Var.f26642c;
                             path.addRoundRect(rectF, f10, f10, Path.Direction.CW);
                             canvas.clipPath(path);
                         } else if (!z4) {
                             path.rewind();
-                            path.addRoundRect(rectF, fo0Var.d, Path.Direction.CW);
+                            path.addRoundRect(rectF, eo0Var.d, Path.Direction.CW);
                             canvas.clipPath(path);
                         } else if (!z10) {
                             path.rewind();
-                            path.addRoundRect(rectF, fo0Var.f26974e, Path.Direction.CW);
+                            path.addRoundRect(rectF, eo0Var.f26643e, Path.Direction.CW);
                             canvas.clipPath(path);
                         }
                     }
@@ -110,8 +110,8 @@ public class s3 extends LinearLayout {
                 return;
             case 7:
                 super.onLayout(z4, i10, i11, i12, i13);
-                if (getParent() instanceof fo0) {
-                    ((fo0) getParent()).invalidate();
+                if (getParent() instanceof eo0) {
+                    ((eo0) getParent()).invalidate();
                     return;
                 }
                 return;

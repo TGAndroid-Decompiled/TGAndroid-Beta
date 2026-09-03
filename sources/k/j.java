@@ -72,13 +72,13 @@ public final class j implements wf {
                 m0Var.c(j10);
             }
             Interpolator interpolator = (Interpolator) this.d;
-            if (interpolator != null && (view = (View) m0Var.f46450a.get()) != null) {
+            if (interpolator != null && (view = (View) m0Var.f46481a.get()) != null) {
                 view.animate().setInterpolator(interpolator);
             }
             if (((n0) this.f10244e) != null) {
                 m0Var.d((i) this.f10245f);
             }
-            View view2 = (View) m0Var.f46450a.get();
+            View view2 = (View) m0Var.f46481a.get();
             if (view2 != null) {
                 view2.animate().start();
             }
@@ -102,7 +102,7 @@ public final class j implements wf {
         w0Var.d = Boolean.valueOf(z4);
         obj.f2315a = new wa(w0Var);
         int i11 = aVar.f7369e;
-        nb.e.f15922l.getClass();
+        nb.e.f15924l.getClass();
         int i12 = aVar.f7369e;
         if (i12 == -1) {
             Bitmap bitmap = aVar.f7366a;
@@ -141,27 +141,27 @@ public final class j implements wf {
         } else {
             raVar = ra.BITMAP;
         }
-        qaVar.f15699b = raVar;
-        qaVar.f15700c = Integer.valueOf(i10 & Integer.MAX_VALUE);
+        qaVar.f15701b = raVar;
+        qaVar.f15702c = Integer.valueOf(i10 & Integer.MAX_VALUE);
         obj.f2316b = new sa(qaVar);
-        obj.f2317c = eVar.f15923e.a();
+        obj.f2317c = eVar.f15925e.a();
         if (jgVar != null) {
             List list = jgVar.d;
-            n7.g gVar = n7.i.f15449b;
+            n7.g gVar = n7.i.f15451b;
             Object[] array = list.toArray();
             int length = array.length;
             c0.a(length, array);
             obj.f2318e = n7.i.r(length, array);
-            List<ig> list2 = jgVar.f15618a;
+            List<ig> list2 = jgVar.f15620a;
             if (!list2.isEmpty()) {
                 Object[] objArr = new Object[4];
                 int i13 = 0;
                 for (ig igVar : list2) {
                     ?? obj2 = new Object();
-                    obj2.f4080a = Integer.valueOf(igVar.f15598c & Integer.MAX_VALUE);
+                    obj2.f4080a = Integer.valueOf(igVar.f15600c & Integer.MAX_VALUE);
                     obj2.f4081b = Integer.valueOf(igVar.d & Integer.MAX_VALUE);
-                    obj2.f4082c = Integer.valueOf(igVar.f15599e & Integer.MAX_VALUE);
-                    obj2.d = Integer.valueOf(igVar.f15600f & Integer.MAX_VALUE);
+                    obj2.f4082c = Integer.valueOf(igVar.f15601e & Integer.MAX_VALUE);
+                    obj2.d = Integer.valueOf(igVar.f15602f & Integer.MAX_VALUE);
                     ue ueVar = new ue(obj2);
                     int i14 = i13 + 1;
                     int length2 = objArr.length;
@@ -183,8 +183,8 @@ public final class j implements wf {
             }
         }
         ?? obj3 = new Object();
-        obj3.f13329c = gb.TYPE_THIN;
-        obj3.f13331f = new fe(obj);
+        obj3.f13331c = gb.TYPE_THIN;
+        obj3.f13333f = new fe(obj);
         return new e0((r3) obj3, 0);
     }
 

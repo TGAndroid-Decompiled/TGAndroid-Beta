@@ -1,16 +1,16 @@
 package k7;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bm0;
+import org.telegram.ui.Components.am0;
 public abstract class l8 {
-    public static void a(bm0 bm0Var, org.telegram.ui.ActionBar.g6 g6Var) {
+    public static void a(am0 am0Var, org.telegram.ui.ActionBar.g6 g6Var) {
         boolean q10;
         if (g6Var != null) {
             q10 = g6Var.a();
         } else {
             q10 = org.telegram.ui.ActionBar.k6.I.q();
         }
-        bm0Var.q(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Oh, g6Var), q10);
+        am0Var.q(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Oh, g6Var), q10);
     }
 
     public static int b(wh.a aVar) {
@@ -19,7 +19,7 @@ public abstract class l8 {
             return 0;
         }
         int c3 = c(aVar);
-        int max = Math.max(0, aVar.f49618c);
+        int max = Math.max(0, aVar.f49654c);
         if (max > 0) {
             i10 = AndroidUtilities.dp(e2.c.e(max, 1, 24, 28));
         }
@@ -31,7 +31,7 @@ public abstract class l8 {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f49624k.size();
+            size = aVar.f49660k.size();
         }
         if (size <= 0) {
             return 0;
@@ -44,7 +44,7 @@ public abstract class l8 {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f49624k.size();
+            size = aVar.f49660k.size();
         }
         if (size <= 0) {
             return 0;

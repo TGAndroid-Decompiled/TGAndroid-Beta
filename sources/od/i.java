@@ -2,14 +2,14 @@ package od;
 
 import k1.q;
 public final class i implements c {
-    public final kotlin.jvm.internal.o f16731a;
-    public final c f16732b;
-    public final q f16733c;
+    public final kotlin.jvm.internal.o f16733a;
+    public final c f16734b;
+    public final q f16735c;
 
     public i(kotlin.jvm.internal.o oVar, c cVar, q qVar) {
-        this.f16731a = oVar;
-        this.f16732b = cVar;
-        this.f16733c = qVar;
+        this.f16733a = oVar;
+        this.f16734b = cVar;
+        this.f16735c = qVar;
     }
 
     @Override

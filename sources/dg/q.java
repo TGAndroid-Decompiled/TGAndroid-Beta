@@ -26,8 +26,8 @@ public final class q extends ScrollView {
         int dp = AndroidUtilities.dp(36.0f);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set((getMeasuredWidth() - dp) / 2.0f, y10, (getMeasuredWidth() + dp) / 2.0f, AndroidUtilities.dp(4.0f) + y10);
-        k6.f21939t0.setColor(-10790053);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), k6.f21939t0);
+        k6.f21941t0.setColor(-10790053);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), k6.f21941t0);
     }
 
     @Override

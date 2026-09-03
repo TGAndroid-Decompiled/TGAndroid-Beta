@@ -5,7 +5,7 @@ import com.googlecode.mp4parser.g;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import org.telegram.ui.yh;
-import sf.e;
+import sf.f;
 import yb.c;
 public final class a extends com.googlecode.mp4parser.a {
     public static final f0 f4397b;
@@ -225,7 +225,7 @@ public final class a extends com.googlecode.mp4parser.a {
     }
 
     public final String toString() {
-        e b10 = de.a.b(f4406y, this, this);
+        f b10 = de.a.b(f4406y, this, this);
         g.a().getClass();
         g.b(b10);
         return "AvcConfigurationBox{avcDecoderConfigurationRecord=" + this.f4407a + '}';

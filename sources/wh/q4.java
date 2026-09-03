@@ -8,18 +8,18 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.VideoEditedInfo;
 public final class q4 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f49950a;
-    public final d3 f49951b;
-    public MessageObject f49952c;
+    public final int f49986a;
+    public final d3 f49987b;
+    public MessageObject f49988c;
     public VideoEditedInfo d;
-    public String f49953e;
-    public boolean f49954f;
+    public String f49989e;
+    public boolean f49990f;
     public boolean h;
-    public boolean f49955n;
+    public boolean f49991n;
 
     public q4(int i10, MediaController.PhotoEntry photoEntry, d3 d3Var) {
-        this.f49950a = i10;
-        this.f49951b = d3Var;
+        this.f49986a = i10;
+        this.f49987b = d3Var;
     }
 
     public static boolean c(MediaController.PhotoEntry photoEntry) {
@@ -54,11 +54,11 @@ public final class q4 implements NotificationCenter.NotificationCenterDelegate {
     }
 
     public final void a() {
-        if (!this.f49955n && !this.h) {
+        if (!this.f49991n && !this.h) {
             this.h = true;
-            if (this.f49952c != null && this.d != null) {
+            if (this.f49988c != null && this.d != null) {
                 try {
-                    MediaController.getInstance().cancelVideoConvert(this.f49952c);
+                    MediaController.getInstance().cancelVideoConvert(this.f49988c);
                 } catch (Throwable unused) {
                 }
             }
@@ -67,23 +67,23 @@ public final class q4 implements NotificationCenter.NotificationCenterDelegate {
     }
 
     public final void b() {
-        if (this.f49955n) {
+        if (this.f49991n) {
             return;
         }
-        this.f49955n = true;
+        this.f49991n = true;
         d();
-        d3 d3Var = this.f49951b;
-        r3 r3Var = d3Var.f49703c;
+        d3 d3Var = this.f49987b;
+        r3 r3Var = d3Var.f49739c;
         IdentityHashMap identityHashMap = r3Var.X3;
-        t tVar = d3Var.f49701a;
+        t tVar = d3Var.f49737a;
         identityHashMap.remove(tVar);
-        tVar.f50030a = 3;
-        r3Var.q4(d3Var.f49702b, tVar);
-        r3Var.f49980e3.onContentChanged();
+        tVar.f50066a = 3;
+        r3Var.p4(d3Var.f49738b, tVar);
+        r3Var.f50016e3.onContentChanged();
     }
 
     public final void d() {
-        NotificationCenter notificationCenter = NotificationCenter.getInstance(this.f49950a);
+        NotificationCenter notificationCenter = NotificationCenter.getInstance(this.f49986a);
         notificationCenter.removeObserver(this, NotificationCenter.filePreparingStarted);
         notificationCenter.removeObserver(this, NotificationCenter.fileNewChunkAvailable);
         notificationCenter.removeObserver(this, NotificationCenter.filePreparingFailed);
@@ -91,41 +91,41 @@ public final class q4 implements NotificationCenter.NotificationCenterDelegate {
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        d3 d3Var = this.f49951b;
-        a aVar = d3Var.f49702b;
-        t tVar = d3Var.f49701a;
-        r3 r3Var = d3Var.f49703c;
-        if (!this.h && !this.f49955n && i11 == this.f49950a && objArr.length != 0 && objArr[0] == this.f49952c) {
+        d3 d3Var = this.f49987b;
+        a aVar = d3Var.f49738b;
+        t tVar = d3Var.f49737a;
+        r3 r3Var = d3Var.f49739c;
+        if (!this.h && !this.f49991n && i11 == this.f49986a && objArr.length != 0 && objArr[0] == this.f49988c) {
             if (i10 == NotificationCenter.fileNewChunkAvailable) {
                 long longValue = ((Long) objArr[3]).longValue();
-                tVar.f50034f = ((Float) objArr[4]).floatValue();
-                View z12 = r3Var.z1(aVar);
-                if (z12 instanceof o4) {
-                    z12.requestLayout();
-                    z12.invalidate();
+                tVar.f50070f = ((Float) objArr[4]).floatValue();
+                View y12 = r3Var.y1(aVar);
+                if (y12 instanceof o4) {
+                    y12.requestLayout();
+                    y12.invalidate();
                 }
                 if (longValue > 0) {
-                    this.f49955n = true;
+                    this.f49991n = true;
                     d();
-                    String str = this.f49953e;
+                    String str = this.f49989e;
                     VideoEditedInfo videoEditedInfo = this.d;
                     int i12 = videoEditedInfo.resultWidth;
                     int i13 = videoEditedInfo.resultHeight;
                     int ceil = (int) Math.ceil(videoEditedInfo.estimatedDuration / 1000.0d);
                     r3Var.X3.remove(tVar);
-                    tVar.f50031b = true;
-                    tVar.f50033e = str;
+                    tVar.f50067b = true;
+                    tVar.f50069e = str;
                     if (i12 > 0) {
-                        tVar.f50037j = i12;
+                        tVar.f50073j = i12;
                     }
                     if (i13 > 0) {
-                        tVar.f50038k = i13;
+                        tVar.f50074k = i13;
                     }
-                    tVar.f50039l = 0;
-                    tVar.f50040m = 0;
-                    tVar.f50034f = 0.0f;
-                    r3Var.n4(aVar);
-                    r3Var.L4(d3Var.f49702b, tVar, str, true, tVar.f50037j, tVar.f50038k, ceil);
+                    tVar.f50075l = 0;
+                    tVar.f50076m = 0;
+                    tVar.f50070f = 0.0f;
+                    r3Var.m4(aVar);
+                    r3Var.K4(d3Var.f49738b, tVar, str, true, tVar.f50073j, tVar.f50074k, ceil);
                 }
             } else if (i10 == NotificationCenter.filePreparingFailed) {
                 b();

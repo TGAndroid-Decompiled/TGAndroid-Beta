@@ -1,107 +1,136 @@
 package q5;
 
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.internal.s1;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import org.telegram.ui.zy;
-public final class d0 extends u5.g {
-    public final e0 f44536b;
+import android.os.Parcel;
+import android.os.RemoteException;
+public final class d0 implements Runnable {
+    public final int f44567a;
+    public final e0 f44568b;
+    public final int f44569c;
 
-    public d0(e0 e0Var) {
-        this.f44536b = e0Var;
+    public d0(e0 e0Var, int i10, int i11) {
+        this.f44567a = i11;
+        this.f44568b = e0Var;
+        this.f44569c = i10;
     }
 
-    @Override
-    public final void I(int i10) {
-        e0.k(this.f44536b).post(new c0(this, i10, 0));
-    }
-
-    @Override
-    public final void L(u5.d dVar) {
-        e0.k(this.f44536b).post(new zy(this, dVar, false, 5));
-    }
-
-    @Override
-    public final void M(String str, String str2) {
-        e0.G.b("Receive (type=text, ns=%s) %s", str, str2);
-        e0.k(this.f44536b).post(new s1(this, str, str2, false, 12));
-    }
-
-    @Override
-    public final void U(int i10) {
-        this.f44536b.i(i10);
-    }
-
-    @Override
-    public final void W(long j10) {
-        e0.f(this.f44536b, j10, 0);
-    }
-
-    @Override
-    public final void c(int i10) {
-        e0.g(this.f44536b, i10);
-    }
-
-    @Override
-    public final void d(int i10) {
-        e0.k(this.f44536b).post(new c0(this, i10, 1));
-    }
-
-    @Override
-    public final void n0(u5.c cVar) {
-        e0.k(this.f44536b).post(new zy(this, cVar, false, 6));
-    }
-
-    @Override
-    public final void t0(d dVar, String str, String str2, boolean z4) {
-        e0 e0Var = this.f44536b;
-        e0Var.f44549t = dVar;
-        e0Var.f44550u = str;
-        u5.u uVar = new u5.u(new Status(0, null, null, null), dVar, str, str2, z4);
-        synchronized (e0Var.f44547r) {
+    private final void a() {
+        e0 e0Var = this.f44568b;
+        f0 f0Var = e0Var.f44573b;
+        f0Var.f44586x = -1;
+        f0Var.f44587y = -1;
+        f0Var.f44583t = null;
+        f0Var.f44584u = null;
+        f0Var.v = 0.0d;
+        f0Var.j();
+        f0Var.f44585w = false;
+        f0Var.f44588z = null;
+        f0 f0Var2 = e0Var.f44573b;
+        f0Var2.F = 1;
+        int i10 = this.f44569c;
+        synchronized (f0Var2.E) {
             try {
-                TaskCompletionSource taskCompletionSource = e0Var.f44544o;
-                if (taskCompletionSource != null) {
-                    taskCompletionSource.setResult(uVar);
+                for (r5.i iVar : e0Var.f44573b.E) {
+                    r5.q qVar = iVar.f46751a.f46735e;
+                    if (qVar != null) {
+                        try {
+                            y5.a aVar = new y5.a(i10);
+                            r5.o oVar = (r5.o) qVar;
+                            Parcel M0 = oVar.M0();
+                            com.google.android.gms.internal.cast.s.c(M0, aVar);
+                            oVar.Q0(M0, 3);
+                        } catch (RemoteException e6) {
+                            r5.c.f46733m.a(e6, "Unable to call %s on %s.", "onDisconnected", r5.q.class.getSimpleName());
+                        }
+                    }
                 }
-                e0Var.f44544o = null;
             } catch (Throwable th2) {
                 throw th2;
             }
         }
+        e0Var.f44573b.h();
+        f0 f0Var3 = e0Var.f44573b;
+        com.google.android.gms.common.api.internal.n nVar = y5.h.h(f0Var3.f2856f, f0Var3.f44574k, "castDeviceControllerListenerKey").f2779c;
+        b6.m.i(nVar, "Key must not be null");
+        f0Var3.c(nVar, 8415);
     }
 
-    @Override
-    public final void u0(int i10) {
-        e0.k(this.f44536b).post(new c0(this, i10, 3));
-    }
-
-    @Override
-    public final void z0(String str, byte[] bArr) {
-        e0.G.b("IGNORING: Receive (type=binary, ns=%s) <%d bytes>", str, Integer.valueOf(bArr.length));
-    }
-
-    @Override
-    public final void zzd(int i10) {
-        e0 e0Var = this.f44536b;
-        e0.g(e0Var, i10);
-        if (e0Var.D != null) {
-            e0.k(e0Var).post(new c0(this, i10, 2));
+    private final void b() {
+        e0 e0Var = this.f44568b;
+        int i10 = this.f44569c;
+        if (i10 == 0) {
+            f0 f0Var = e0Var.f44573b;
+            f0Var.F = 2;
+            f0Var.f44576m = true;
+            f0Var.f44577n = true;
+            synchronized (f0Var.E) {
+                try {
+                    for (r5.i iVar : e0Var.f44573b.E) {
+                        iVar.a();
+                    }
+                } finally {
+                }
+            }
+            return;
         }
+        f0 f0Var2 = e0Var.f44573b;
+        f0Var2.F = 1;
+        synchronized (f0Var2.E) {
+            try {
+            } catch (RemoteException e6) {
+                r5.c.f46733m.a(e6, "Unable to call %s on %s.", "onConnectionFailed", r5.q.class.getSimpleName());
+            } finally {
+            }
+            for (r5.i iVar2 : e0Var.f44573b.E) {
+                r5.q qVar = iVar2.f46751a.f46735e;
+                if (qVar != null) {
+                    y5.a aVar = new y5.a(i10);
+                    r5.o oVar = (r5.o) qVar;
+                    Parcel M0 = oVar.M0();
+                    com.google.android.gms.internal.cast.s.c(M0, aVar);
+                    oVar.Q0(M0, 3);
+                }
+            }
+        }
+        e0Var.f44573b.h();
     }
 
     @Override
-    public final void zzg(int i10) {
-        e0.g(this.f44536b, i10);
-    }
-
-    @Override
-    public final void zzm(int i10, long j10) {
-        e0.f(this.f44536b, j10, i10);
-    }
-
-    @Override
-    public final void zzn() {
-        e0.G.b("Deprecated callback: \"onStatusReceived\"", new Object[0]);
+    public final void run() {
+        switch (this.f44567a) {
+            case 0:
+                a();
+                return;
+            case 1:
+                b();
+                return;
+            case 2:
+                this.f44568b.f44573b.D.b(this.f44569c);
+                return;
+            default:
+                e0 e0Var = this.f44568b;
+                f0 f0Var = e0Var.f44573b;
+                f0Var.F = 3;
+                int i10 = this.f44569c;
+                synchronized (f0Var.E) {
+                    try {
+                        for (r5.i iVar : e0Var.f44573b.E) {
+                            r5.q qVar = iVar.f46751a.f46735e;
+                            if (qVar != null) {
+                                try {
+                                    r5.o oVar = (r5.o) qVar;
+                                    Parcel M0 = oVar.M0();
+                                    M0.writeInt(i10);
+                                    oVar.Q0(M0, 2);
+                                } catch (RemoteException e6) {
+                                    r5.c.f46733m.a(e6, "Unable to call %s on %s.", "onConnectionSuspended", r5.q.class.getSimpleName());
+                                }
+                            }
+                        }
+                    } catch (Throwable th2) {
+                        throw th2;
+                    }
+                }
+                return;
+        }
     }
 }

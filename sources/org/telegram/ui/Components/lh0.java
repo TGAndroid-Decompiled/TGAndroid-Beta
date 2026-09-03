@@ -44,33 +44,33 @@ public final class lh0 extends View {
     public float U;
     public float V;
     public long W;
-    public final ArrayList f28735a;
-    public hh0 f28736a0;
-    public final Paint f28737b;
-    public final Paint f28738c;
+    public final ArrayList f28758a;
+    public hh0 f28759a0;
+    public final Paint f28760b;
+    public final Paint f28761c;
     public float d;
-    public boolean f28739e;
-    public float f28740f;
+    public boolean f28762e;
+    public float f28763f;
     public final Path h;
-    public final Path f28741n;
-    public org.telegram.ui.vz0 f28742r;
-    public float f28743s;
+    public final Path f28764n;
+    public org.telegram.ui.a01 f28765r;
+    public float f28766s;
     public float v;
-    public RenderNode f28744w;
-    public int f28745x;
-    public final int f28746y;
+    public RenderNode f28767w;
+    public int f28768x;
+    public final int f28769y;
 
     public lh0(Context context, int i10) {
         super(context);
-        this.f28735a = new ArrayList();
+        this.f28758a = new ArrayList();
         Paint paint = new Paint();
-        this.f28737b = paint;
-        this.f28738c = new Paint();
-        this.f28739e = true;
-        this.f28740f = -1.0f;
+        this.f28760b = paint;
+        this.f28761c = new Paint();
+        this.f28762e = true;
+        this.f28763f = -1.0f;
         this.h = new Path();
-        this.f28741n = new Path();
-        this.f28745x = 0;
+        this.f28764n = new Path();
+        this.f28768x = 0;
         this.B = 0.0f;
         this.C = null;
         this.D = new HashSet();
@@ -87,7 +87,7 @@ public final class lh0 extends View {
         float dpf22 = AndroidUtilities.dpf2(8.0f);
         this.M = dpf22;
         AndroidUtilities.dpf2(4.0f);
-        this.f28746y = (int) ((i10 - dpf2) - dpf22);
+        this.f28769y = (int) ((i10 - dpf2) - dpf22);
         setBackgroundColor(0);
         setImportantForAccessibility(1);
     }
@@ -95,7 +95,7 @@ public final class lh0 extends View {
     private float getItemWidth() {
         int measuredWidth = getMeasuredWidth();
         float f10 = this.K;
-        int i10 = this.f28745x;
+        int i10 = this.f28768x;
         return ((measuredWidth - ((f10 / 2.0f) * (i10 - 1))) - (f10 * 2.0f)) / i10;
     }
 
@@ -103,7 +103,7 @@ public final class lh0 extends View {
         int size = list.size();
         for (int i11 = 0; i11 < size; i11++) {
             ih0 ih0Var = (ih0) list.get(i11);
-            if (!ih0Var.f27798o && ih0Var.f27786a == i10) {
+            if (!ih0Var.f27831o && ih0Var.f27819a == i10) {
                 return ih0Var;
             }
         }
@@ -112,20 +112,20 @@ public final class lh0 extends View {
 
     public final void a() {
         ih0 ih0Var = new ih0(this, jh0.F);
-        ih0Var.f27786a = 14;
-        this.f28735a.add(ih0Var);
+        ih0Var.f27819a = 14;
+        this.f28758a.add(ih0Var);
     }
 
     public final void b() {
         ih0 ih0Var = new ih0(this, jh0.G);
-        ih0Var.f27786a = 16;
-        this.f28735a.add(ih0Var);
+        ih0Var.f27819a = 16;
+        this.f28758a.add(ih0Var);
     }
 
     public final void c() {
         ih0 ih0Var = new ih0(this, jh0.H);
-        ih0Var.f27786a = 17;
-        this.f28735a.add(ih0Var);
+        ih0Var.f27819a = 17;
+        this.f28758a.add(ih0Var);
     }
 
     public final void d() {
@@ -134,7 +134,7 @@ public final class lh0 extends View {
             return;
         }
         if (this.E == 6) {
-            this.f28745x = this.f28735a.size();
+            this.f28768x = this.f28758a.size();
             invalidate();
             return;
         }
@@ -205,7 +205,7 @@ public final class lh0 extends View {
             m(6, arrayList);
             n(3, 6, arrayList);
         }
-        AndroidUtilities.runOnUIThread(new a90(6, this, arrayList));
+        AndroidUtilities.runOnUIThread(new b90(5, this, arrayList));
     }
 
     public final void e() {
@@ -225,7 +225,7 @@ public final class lh0 extends View {
         int i10 = this.N;
         if (i10 != 0) {
             if (!this.O) {
-                this.f28737b.setColor(i10);
+                this.f28760b.setColor(i10);
                 return;
             }
             int measuredWidth = getMeasuredWidth();
@@ -233,9 +233,9 @@ public final class lh0 extends View {
                 return;
             }
             float f11 = this.K;
-            float max = ((measuredWidth - ((f11 / 2.0f) * Math.max(0, this.f28745x - 1))) - (f11 * 2.0f)) / Math.max(1, this.f28745x);
+            float max = ((measuredWidth - ((f11 / 2.0f) * Math.max(0, this.f28768x - 1))) - (f11 * 2.0f)) / Math.max(1, this.f28768x);
             float f12 = max / 2.0f;
-            float f13 = this.f28746y / 2.0f;
+            float f13 = this.f28769y / 2.0f;
             if (this.O) {
                 f10 = max * 0.65f;
             } else {
@@ -243,16 +243,16 @@ public final class lh0 extends View {
             }
             RadialGradient radialGradient = new RadialGradient(f12, f13, f10, org.telegram.ui.ActionBar.k6.l1(0.8f, this.N), this.N, Shader.TileMode.CLAMP);
             this.P = radialGradient;
-            this.f28738c.setShader(radialGradient);
+            this.f28761c.setShader(radialGradient);
         }
     }
 
     @Override
     public AccessibilityNodeProvider getAccessibilityNodeProvider() {
-        if (this.f28736a0 == null) {
-            this.f28736a0 = new hh0(this);
+        if (this.f28759a0 == null) {
+            this.f28759a0 = new hh0(this);
         }
-        return this.f28736a0;
+        return this.f28759a0;
     }
 
     public float getRoundRadius() {
@@ -269,15 +269,15 @@ public final class lh0 extends View {
     }
 
     public final void i() {
-        if (this.f28744w != null) {
-            this.f28744w = null;
-            this.f28742r = null;
+        if (this.f28767w != null) {
+            this.f28767w = null;
+            this.f28765r = null;
             invalidate();
         }
     }
 
     public final ih0 k(int i10) {
-        ih0 j10 = j(i10, this.f28735a);
+        ih0 j10 = j(i10, this.f28758a);
         if (j10 != null) {
             if (i10 == 1) {
                 p(j10, false);
@@ -296,63 +296,63 @@ public final class lh0 extends View {
                 j10 = new ih0(this, jh0.h);
                 break;
             case 3:
-                j10 = new ih0(this, jh0.f28117n);
-                j10.f27803t = true;
-                j10.f27806x = 200;
+                j10 = new ih0(this, jh0.f28104n);
+                j10.f27836t = true;
+                j10.f27839x = 200;
                 break;
             case 4:
-                j10 = new ih0(this, jh0.f28118r);
+                j10 = new ih0(this, jh0.f28105r);
                 break;
             case 5:
-                j10 = new ih0(this, jh0.f28119s);
+                j10 = new ih0(this, jh0.f28106s);
                 this.H = j10;
-                j10.f27803t = true;
-                j10.f27806x = 500;
+                j10.f27836t = true;
+                j10.f27839x = 500;
                 break;
             case 6:
                 j10 = new ih0(this, jh0.v);
-                j10.f27803t = true;
-                j10.f27806x = 500;
+                j10.f27836t = true;
+                j10.f27839x = 500;
                 break;
             case 7:
-                j10 = new ih0(this, jh0.f28120w);
-                j10.f27803t = true;
+                j10 = new ih0(this, jh0.f28107w);
+                j10.f27836t = true;
                 j10.v = 300;
                 break;
             case 8:
-                j10 = new ih0(this, jh0.f28121x);
-                j10.f27803t = true;
-                j10.f27806x = 500;
+                j10 = new ih0(this, jh0.f28108x);
+                j10.f27836t = true;
+                j10.f27839x = 500;
                 break;
             case 9:
-                j10 = new ih0(this, jh0.f28122y);
-                j10.f27803t = true;
-                j10.f27804u = R.raw.profile_leave;
-                j10.f27806x = 300;
+                j10 = new ih0(this, jh0.f28109y);
+                j10.f27836t = true;
+                j10.f27837u = R.raw.profile_leave;
+                j10.f27839x = 300;
                 break;
             case 10:
                 j10 = new ih0(this, jh0.B);
-                j10.f27803t = true;
-                j10.f27804u = R.raw.profile_voicechat;
-                j10.f27806x = 500;
+                j10.f27836t = true;
+                j10.f27837u = R.raw.profile_voicechat;
+                j10.f27839x = 500;
                 break;
             case 11:
                 j10 = new ih0(this, jh0.C);
-                j10.f27803t = true;
-                j10.f27804u = R.raw.profile_voicechat;
-                j10.f27806x = 500;
+                j10.f27836t = true;
+                j10.f27837u = R.raw.profile_voicechat;
+                j10.f27839x = 500;
                 break;
             case 12:
                 j10 = new ih0(this, jh0.D);
                 break;
             case 13:
                 j10 = new ih0(this, jh0.E);
-                j10.f27803t = true;
-                j10.f27806x = 300;
+                j10.f27836t = true;
+                j10.f27839x = 300;
                 break;
         }
         if (j10 != null) {
-            j10.f27786a = i10;
+            j10.f27819a = i10;
         }
         return j10;
     }
@@ -398,7 +398,7 @@ public final class lh0 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.makeMeasureSpec((int) (this.f28746y + this.M + this.L), 1073741824));
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.makeMeasureSpec((int) (this.f28769y + this.M + this.L), 1073741824));
     }
 
     @Override
@@ -410,7 +410,7 @@ public final class lh0 extends View {
             int action = motionEvent.getAction();
             if (action == 0) {
                 this.T = null;
-                ArrayList arrayList = this.f28735a;
+                ArrayList arrayList = this.f28758a;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (true) {
@@ -418,23 +418,23 @@ public final class lh0 extends View {
                         break;
                     }
                     ih0 ih0Var2 = (ih0) arrayList.get(i10);
-                    if (!ih0Var2.f27798o && ih0Var2.d.contains(x10, y10)) {
+                    if (!ih0Var2.f27831o && ih0Var2.d.contains(x10, y10)) {
                         this.T = ih0Var2;
                         this.U = x10;
                         this.V = y10;
                         this.W = System.currentTimeMillis();
-                        this.T.f27787b.c(true);
+                        this.T.f27820b.c(true);
                         break;
                     }
                     i10++;
                 }
             } else if (action == 2) {
                 if (this.T != null && (Math.abs(x10 - this.U) > 20.0f || Math.abs(y10 - this.V) > 20.0f)) {
-                    this.T.f27787b.c(false);
+                    this.T.f27820b.c(false);
                     this.T = null;
                 }
             } else if ((action == 1 || action == 3) && (ih0Var = this.T) != null) {
-                ih0Var.f27787b.c(false);
+                ih0Var.f27820b.c(false);
                 if (action == 1 && this.T.d.contains(x10, y10)) {
                     if (System.currentTimeMillis() - this.W > 250) {
                         try {
@@ -443,26 +443,26 @@ public final class lh0 extends View {
                         }
                     }
                     ih0 ih0Var3 = this.T;
-                    if (ih0Var3.f27803t && !ih0Var3.f27802s) {
-                        ih0Var3.f27802s = true;
+                    if (ih0Var3.f27836t && !ih0Var3.f27835s) {
+                        ih0Var3.f27835s = true;
                         invalidate();
                     }
                     ih0 ih0Var4 = this.T;
-                    int i11 = ih0Var4.f27804u;
+                    int i11 = ih0Var4.f27837u;
                     if (i11 != 0) {
                         ih0Var4.d(i11, 0, 0);
                     }
-                    this.T.f27805w = System.currentTimeMillis();
+                    this.T.f27838w = System.currentTimeMillis();
                     ih0 ih0Var5 = this.T;
                     kh0 kh0Var = this.C;
                     if (kh0Var != null) {
                         int i12 = ih0Var5.v;
                         if (i12 == 0) {
-                            int i13 = ih0Var5.f27786a;
+                            int i13 = ih0Var5.f27819a;
                             RectF rectF = ih0Var5.d;
-                            ProfileActivity.Y(((org.telegram.ui.rx0) kh0Var).f41061b, i13, rectF.left, rectF.top);
+                            ProfileActivity.Y(((org.telegram.ui.wx0) kh0Var).f42873b, i13, rectF.left, rectF.top);
                         } else {
-                            postDelayed(new a90(7, this, ih0Var5), i12);
+                            postDelayed(new b90(6, this, ih0Var5), i12);
                         }
                     }
                 }
@@ -480,23 +480,23 @@ public final class lh0 extends View {
         jh0 jh0Var;
         if (z4) {
             if (this.G) {
-                jh0 jh0Var2 = jh0.f28115e;
-                ih0Var.c(LocaleController.getString(jh0Var2.f28123a));
-                ih0Var.d(R.raw.profile_unmuting, jh0Var2.f28124b, jh0Var2.f28125c);
+                jh0 jh0Var2 = jh0.f28102e;
+                ih0Var.c(LocaleController.getString(jh0Var2.f28110a));
+                ih0Var.d(R.raw.profile_unmuting, jh0Var2.f28111b, jh0Var2.f28112c);
                 return;
             }
-            jh0 jh0Var3 = jh0.f28116f;
-            ih0Var.c(LocaleController.getString(jh0Var3.f28123a));
-            ih0Var.d(R.raw.profile_muting, jh0Var3.f28124b, jh0Var3.f28125c);
+            jh0 jh0Var3 = jh0.f28103f;
+            ih0Var.c(LocaleController.getString(jh0Var3.f28110a));
+            ih0Var.d(R.raw.profile_muting, jh0Var3.f28111b, jh0Var3.f28112c);
             return;
         }
         if (this.G) {
-            jh0Var = jh0.f28115e;
+            jh0Var = jh0.f28102e;
         } else {
-            jh0Var = jh0.f28116f;
+            jh0Var = jh0.f28103f;
         }
-        ih0Var.d(0, jh0Var.f28124b, jh0Var.f28125c);
-        ih0Var.c(LocaleController.getString(jh0Var.f28123a));
+        ih0Var.d(0, jh0Var.f28111b, jh0Var.f28112c);
+        ih0Var.c(LocaleController.getString(jh0Var.f28110a));
     }
 
     public void setNotifications(boolean z4) {
@@ -507,7 +507,7 @@ public final class lh0 extends View {
             z10 = false;
         }
         this.G = z4;
-        ih0 j10 = j(1, this.f28735a);
+        ih0 j10 = j(1, this.f28758a);
         if (j10 != null) {
             p(j10, z10);
             invalidate();

@@ -9,6 +9,7 @@ import android.os.HandlerThread;
 import android.view.Display;
 import android.view.WindowManager;
 import hg.y1;
+import oh.z1;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
@@ -75,7 +76,7 @@ public class VideoCapturerDevice {
             }
             videoCapturerDevice.currentWidth = i11;
             videoCapturerDevice.currentHeight = screenCaptureSize.y;
-            videoCapturerDevice.handler.post(new h(0, videoCapturerDevice, screenCaptureSize));
+            videoCapturerDevice.handler.post(new z1(29, videoCapturerDevice, screenCaptureSize));
         }
     }
 
@@ -193,7 +194,7 @@ public class VideoCapturerDevice {
                     return;
                 }
                 FileLog.d("VideoCapturerDevice init(" + j10 + "): videoCapturer.switchCamera CAMERA");
-                this.handler.post(new h(1, this, str2));
+                this.handler.post(new h(0, this, str2));
             }
         }
     }

@@ -12,8 +12,8 @@ public abstract class x5 {
             i10++;
             o8.s sVar = (o8.s) obj;
             Bundle bundle = new Bundle();
-            bundle.putInt("event_type", sVar.f16659a);
-            bundle.putLong("event_timestamp", sVar.f16660b);
+            bundle.putInt("event_type", sVar.f16661a);
+            bundle.putLong("event_timestamp", sVar.f16662b);
             arrayList2.add(bundle);
         }
         return arrayList2;

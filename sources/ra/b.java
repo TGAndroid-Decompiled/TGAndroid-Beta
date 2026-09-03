@@ -7,9 +7,9 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 public final class b implements ParameterizedType, Serializable {
-    public final Type f46748a;
-    public final Type f46749b;
-    public final Type[] f46750c;
+    public final Type f46779a;
+    public final Type f46780b;
+    public final Type[] f46781c;
 
     public b(Type type, Type type2, Type... typeArr) {
         Type a2;
@@ -25,15 +25,15 @@ public final class b implements ParameterizedType, Serializable {
         } else {
             a2 = d.a(type);
         }
-        this.f46748a = a2;
-        this.f46749b = d.a(type2);
+        this.f46779a = a2;
+        this.f46780b = d.a(type2);
         Type[] typeArr2 = (Type[]) typeArr.clone();
-        this.f46750c = typeArr2;
+        this.f46781c = typeArr2;
         int length = typeArr2.length;
         for (int i10 = 0; i10 < length; i10++) {
-            Objects.requireNonNull(this.f46750c[i10]);
-            d.c(this.f46750c[i10]);
-            Type[] typeArr3 = this.f46750c;
+            Objects.requireNonNull(this.f46781c[i10]);
+            d.c(this.f46781c[i10]);
+            Type[] typeArr3 = this.f46781c;
             typeArr3[i10] = d.a(typeArr3[i10]);
         }
     }
@@ -47,23 +47,23 @@ public final class b implements ParameterizedType, Serializable {
 
     @Override
     public final Type[] getActualTypeArguments() {
-        return (Type[]) this.f46750c.clone();
+        return (Type[]) this.f46781c.clone();
     }
 
     @Override
     public final Type getOwnerType() {
-        return this.f46748a;
+        return this.f46779a;
     }
 
     @Override
     public final Type getRawType() {
-        return this.f46749b;
+        return this.f46780b;
     }
 
     public final int hashCode() {
         int i10;
-        int hashCode = Arrays.hashCode(this.f46750c) ^ this.f46749b.hashCode();
-        Type type = this.f46748a;
+        int hashCode = Arrays.hashCode(this.f46781c) ^ this.f46780b.hashCode();
+        Type type = this.f46779a;
         if (type != null) {
             i10 = type.hashCode();
         } else {
@@ -73,9 +73,9 @@ public final class b implements ParameterizedType, Serializable {
     }
 
     public final String toString() {
-        Type[] typeArr = this.f46750c;
+        Type[] typeArr = this.f46781c;
         int length = typeArr.length;
-        Type type = this.f46749b;
+        Type type = this.f46780b;
         if (length == 0) {
             return d.k(type);
         }

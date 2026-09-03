@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.sl0;
 public class f0 extends v0 {
     public int B;
     public int D;
@@ -141,9 +141,9 @@ public class f0 extends v0 {
         }
     }
 
-    public final void d(tl0 tl0Var) {
+    public final void d(sl0 sl0Var) {
         RecyclerView recyclerView = this.E;
-        if (recyclerView != tl0Var) {
+        if (recyclerView != sl0Var) {
             y yVar = this.M;
             if (recyclerView != null) {
                 recyclerView.p0(this);
@@ -181,9 +181,9 @@ public class f0 extends v0 {
                     this.K = null;
                 }
             }
-            this.E = tl0Var;
-            if (tl0Var != null) {
-                tl0Var.getResources();
+            this.E = sl0Var;
+            if (sl0Var != null) {
+                sl0Var.getResources();
                 this.f5761f = AndroidUtilities.dp(120.0f);
                 this.h = AndroidUtilities.dp(800.0f);
                 this.D = ViewConfiguration.get(this.E.getContext()).getScaledTouchSlop();
@@ -252,7 +252,7 @@ public class f0 extends v0 {
                 if (m1Var != null) {
                     RecyclerView recyclerView = this.E;
                     int e6 = b0Var.e(recyclerView, m1Var);
-                    WeakHashMap weakHashMap = r0.j0.f46438a;
+                    WeakHashMap weakHashMap = r0.j0.f46469a;
                     int b10 = (b0Var.b(e6, recyclerView.getLayoutDirection()) & 65280) >> 8;
                     if (b10 != 0) {
                         float x10 = motionEvent.getX(i11);
@@ -521,7 +521,7 @@ public class f0 extends v0 {
         RecyclerView recyclerView = this.E;
         b0 b0Var = this.f5766x;
         int e6 = b0Var.e(recyclerView, m1Var);
-        WeakHashMap weakHashMap = r0.j0.f46438a;
+        WeakHashMap weakHashMap = r0.j0.f46469a;
         if ((b0Var.b(e6, recyclerView.getLayoutDirection()) & 16711680) != 0) {
             if (m1Var.f5875a.getParent() != this.E) {
                 Log.e("ItemTouchHelper", "Start drag has been called with a view holder which is not a child of the RecyclerView which is controlled by this ItemTouchHelper.");

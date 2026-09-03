@@ -137,7 +137,7 @@ public final class c {
 
     public final boolean e() {
         LaunchActivity launchActivity = this.d;
-        if (e2.c.s(launchActivity) && ((f) launchActivity.f34154j0.f13330e) != null) {
+        if (e2.c.s(launchActivity) && ((f) launchActivity.f34154j0.f13332e) != null) {
             return true;
         }
         return false;

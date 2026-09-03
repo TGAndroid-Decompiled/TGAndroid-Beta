@@ -31,7 +31,7 @@ public final class sf implements Runnable {
         String restrictionReason;
         ChatActivityEnterView chatActivityEnterView = this.f31052f;
         org.telegram.ui.xn xnVar = chatActivityEnterView.L2;
-        if (chatActivityEnterView.f24621i1.R() <= AndroidUtilities.dp(20.0f) && !chatActivityEnterView.t0()) {
+        if (chatActivityEnterView.f24623i1.R() <= AndroidUtilities.dp(20.0f) && !chatActivityEnterView.t0()) {
             if (xnVar != null) {
                 int i11 = chatActivityEnterView.N;
                 long j10 = this.f31048a.messageOwner.dialog_id;
@@ -41,7 +41,7 @@ public final class sf implements Runnable {
                 boolean c3 = mf.c.c(keyboardButtonProto, TL_keyboard.TL_buttonTypeSimpleWebView.class);
                 MessageObject messageObject = this.d;
                 if (messageObject != null) {
-                    i10 = messageObject.messageOwner.f20864id;
+                    i10 = messageObject.messageOwner.f20866id;
                 } else {
                     i10 = 0;
                 }
@@ -53,7 +53,7 @@ public final class sf implements Runnable {
                 sh.y3 b10 = sh.y3.b(i11, j10, this.f31049b, text, url, c3 ? 1 : 0, i10, N8, null, false, null, null, 0, false, false);
                 LaunchActivity launchActivity = LaunchActivity.D1;
                 if (launchActivity != null && launchActivity.P() != null && LaunchActivity.D1.P().m(b10) != null) {
-                    sh.z zVar = chatActivityEnterView.f24620i0;
+                    sh.z zVar = chatActivityEnterView.f24622i0;
                     if (zVar != null) {
                         zVar.setOpened(false);
                         return;
@@ -72,7 +72,7 @@ public final class sf implements Runnable {
                     return;
                 }
                 sh.p2 p2Var = new sh.p2(chatActivityEnterView.getContext(), chatActivityEnterView.S3);
-                p2Var.f47593h0 = chatActivityEnterView.K2;
+                p2Var.f47629h0 = chatActivityEnterView.K2;
                 p2Var.s(xnVar, b10);
                 p2Var.show();
                 return;

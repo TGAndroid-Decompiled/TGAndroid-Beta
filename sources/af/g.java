@@ -321,11 +321,11 @@ public abstract class g {
                 for (int i10 = 0; i10 < tabs.size(); i10++) {
                     n3Var = tabs.get(i10);
                     l4 l4Var = n3Var.H;
-                    if (l4Var != null && !l4Var.f38603a0.isEmpty()) {
-                        Object i11 = l.d.i(1, n3Var.H.f38603a0);
+                    if (l4Var != null && !l4Var.f38508a0.isEmpty()) {
+                        Object i11 = l.d.i(1, n3Var.H.f38508a0);
                         if (i11 instanceof b3) {
-                            x0 x0Var = ((b3) i11).f22161b;
-                            if (x0Var == null && (p3VarArr = n3Var.H.f38619r0) != null && (p3Var = p3VarArr[0]) != null) {
+                            x0 x0Var = ((b3) i11).f22163b;
+                            if (x0Var == null && (p3VarArr = n3Var.H.f38524r0) != null && (p3Var = p3VarArr[0]) != null) {
                                 x0Var = p3Var.getWebView();
                             }
                             if (x0Var != null) {

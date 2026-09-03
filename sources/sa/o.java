@@ -7,16 +7,16 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 public final class o extends pa.u {
-    public final int f47197a;
-    public final Object f47198b;
-    public final Object f47199c;
+    public final int f47228a;
+    public final Object f47229b;
+    public final Object f47230c;
     public final Object d;
 
     public o(Class cls) {
         Field[] fieldArr;
-        this.f47197a = 2;
-        this.f47198b = new HashMap();
-        this.f47199c = new HashMap();
+        this.f47228a = 2;
+        this.f47229b = new HashMap();
+        this.f47230c = new HashMap();
         this.d = new HashMap();
         try {
             for (Field field : (Field[]) AccessController.doPrivileged(new g1(cls))) {
@@ -27,11 +27,11 @@ public final class o extends pa.u {
                 if (bVar != null) {
                     name = bVar.value();
                     for (String str2 : bVar.alternate()) {
-                        ((HashMap) this.f47198b).put(str2, r42);
+                        ((HashMap) this.f47229b).put(str2, r42);
                     }
                 }
-                ((HashMap) this.f47198b).put(name, r42);
-                ((HashMap) this.f47199c).put(str, r42);
+                ((HashMap) this.f47229b).put(name, r42);
+                ((HashMap) this.f47230c).put(str, r42);
                 ((HashMap) this.d).put(r42, name);
             }
         } catch (IllegalAccessException e6) {
@@ -41,7 +41,7 @@ public final class o extends pa.u {
 
     @Override
     public final Object read(xa.a aVar) {
-        switch (this.f47197a) {
+        switch (this.f47228a) {
             case 0:
                 int x10 = aVar.x();
                 if (x10 == 9) {
@@ -53,8 +53,8 @@ public final class o extends pa.u {
                     aVar.a();
                     while (aVar.k()) {
                         aVar.a();
-                        Object read = ((pa.u) ((o) this.f47198b).f47199c).read(aVar);
-                        if (map.put(read, ((pa.u) ((o) this.f47199c).f47199c).read(aVar)) == null) {
+                        Object read = ((pa.u) ((o) this.f47229b).f47230c).read(aVar);
+                        if (map.put(read, ((pa.u) ((o) this.f47230c).f47230c).read(aVar)) == null) {
                             aVar.e();
                         } else {
                             throw new RuntimeException("duplicate key: " + read);
@@ -86,8 +86,8 @@ public final class o extends pa.u {
                                 throw aVar.E("a name");
                             }
                         }
-                        Object read2 = ((pa.u) ((o) this.f47198b).f47199c).read(aVar);
-                        if (map.put(read2, ((pa.u) ((o) this.f47199c).f47199c).read(aVar)) != null) {
+                        Object read2 = ((pa.u) ((o) this.f47229b).f47230c).read(aVar);
+                        if (map.put(read2, ((pa.u) ((o) this.f47230c).f47230c).read(aVar)) != null) {
                             throw new RuntimeException("duplicate key: " + read2);
                         }
                     }
@@ -95,16 +95,16 @@ public final class o extends pa.u {
                 }
                 return map;
             case 1:
-                return ((pa.u) this.f47199c).read(aVar);
+                return ((pa.u) this.f47230c).read(aVar);
             default:
                 if (aVar.x() == 9) {
                     aVar.t();
                     return null;
                 }
                 String v = aVar.v();
-                Enum r02 = (Enum) ((HashMap) this.f47198b).get(v);
+                Enum r02 = (Enum) ((HashMap) this.f47229b).get(v);
                 if (r02 == null) {
-                    return (Enum) ((HashMap) this.f47199c).get(v);
+                    return (Enum) ((HashMap) this.f47230c).get(v);
                 }
                 return r02;
         }
@@ -116,16 +116,16 @@ public final class o extends pa.u {
     }
 
     public o(pa.g gVar, pa.u uVar, Type type) {
-        this.f47197a = 1;
-        this.f47198b = gVar;
-        this.f47199c = uVar;
+        this.f47228a = 1;
+        this.f47229b = gVar;
+        this.f47230c = uVar;
         this.d = type;
     }
 
     public o(d dVar, pa.g gVar, Type type, pa.u uVar, Type type2, pa.u uVar2, ra.m mVar) {
-        this.f47197a = 0;
-        this.f47198b = new o(gVar, uVar, type);
-        this.f47199c = new o(gVar, uVar2, type2);
+        this.f47228a = 0;
+        this.f47229b = new o(gVar, uVar, type);
+        this.f47230c = new o(gVar, uVar2, type2);
         this.d = mVar;
     }
 }

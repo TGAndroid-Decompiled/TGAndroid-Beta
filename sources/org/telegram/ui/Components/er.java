@@ -14,11 +14,11 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class er extends sl0 {
-    public final gr f26634c;
+public final class er extends rl0 {
+    public final gr f26657c;
 
     public er(gr grVar) {
-        this.f26634c = grVar;
+        this.f26657c = grVar;
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class er extends sl0 {
 
     @Override
     public final int h() {
-        gr grVar = this.f26634c;
+        gr grVar = this.f26657c;
         if (grVar.W) {
             return grVar.V.size() + 3;
         }
@@ -67,7 +67,7 @@ public final class er extends sl0 {
         View view = m1Var.f5875a;
         boolean z10 = true;
         if (i13 == 3) {
-            gr grVar = this.f26634c;
+            gr grVar = this.f26657c;
             TLRPC.Peer peer = (TLRPC.Peer) grVar.V.get(i10 - 3);
             long peerId = MessageObject.getPeerId(peer);
             if (peerId > 0) {
@@ -86,7 +86,7 @@ public final class er extends sl0 {
                 z4 = false;
             }
             g4Var.e(chat, null, str, z4);
-            if (peer != grVar.f27248a0) {
+            if (peer != grVar.f27233a0) {
                 z10 = false;
             }
             g4Var.c(z10, false);
@@ -107,7 +107,7 @@ public final class er extends sl0 {
         String formatString;
         String formatString2;
         Context context = viewGroup.getContext();
-        gr grVar = this.f26634c;
+        gr grVar = this.f26657c;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -133,7 +133,7 @@ public final class er extends sl0 {
                     TextView textView2 = new TextView(context);
                     textView2.setTextSize(1, 14.0f);
                     textView2.setGravity(1);
-                    textView2.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21766j5, false));
+                    textView2.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21768j5, false));
                     if (z4) {
                         formatString2 = LocaleController.formatString(R.string.VoipChannelStart2, new Object[0]);
                     } else {
@@ -151,7 +151,7 @@ public final class er extends sl0 {
             }
         } else {
             org.telegram.ui.Cells.a9 a9Var = new org.telegram.ui.Cells.a9(context);
-            int i11 = org.telegram.ui.ActionBar.k6.f21605a7;
+            int i11 = org.telegram.ui.ActionBar.k6.f21607a7;
             g6Var = ((org.telegram.ui.ActionBar.h3) grVar).resourcesProvider;
             a9Var.setBackgroundColor(org.telegram.ui.ActionBar.k6.v0(i11, g6Var));
             a9Var.setTopPadding(17);

@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.support.LongSparseIntArray;
-public final class k50 extends org.telegram.ui.Components.tl0 {
+public final class k50 extends org.telegram.ui.Components.sl0 {
     public final LongSparseIntArray U2;
     public final d60 V2;
 

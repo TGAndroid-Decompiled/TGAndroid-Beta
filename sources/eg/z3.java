@@ -16,7 +16,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.tk0;
+import org.telegram.ui.Components.sk0;
 import org.telegram.ui.Components.u5;
 public final class z3 extends j {
     public final x3 f5599n0;
@@ -102,7 +102,7 @@ public final class z3 extends j {
     }
 
     @Override
-    public tk0 getSelectionBounds() {
+    public sk0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -113,7 +113,7 @@ public final class z3 extends j {
         float c3 = org.telegram.ui.b.c(dp, 2.0f, getPositionX(), scaleX);
         float positionY = getPositionY();
         x3 x3Var = this.f5599n0;
-        return new tk0(c3, (positionY - (((dp2 - x3Var.getExtendedPaddingTop()) - AndroidUtilities.dpf2(4.0f)) / 2.0f)) * scaleX, ((dp * scaleX) + c3) - c3, (dp2 - x3Var.getExtendedPaddingBottom()) * scaleX);
+        return new sk0(c3, (positionY - (((dp2 - x3Var.getExtendedPaddingTop()) - AndroidUtilities.dpf2(4.0f)) / 2.0f)) * scaleX, ((dp * scaleX) + c3) - c3, (dp2 - x3Var.getExtendedPaddingBottom()) * scaleX);
     }
 
     @Override

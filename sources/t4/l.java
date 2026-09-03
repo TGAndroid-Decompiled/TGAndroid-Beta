@@ -27,38 +27,38 @@ public final class l implements o4.t, u4.q {
     public r[] H;
     public int I;
     public z2.d J;
-    public final j f47910a;
-    public final u4.c f47911b;
-    public final h4 f47912c;
+    public final j f47946a;
+    public final u4.c f47947b;
+    public final h4 f47948c;
     public final v0 d;
-    public final o3.o f47913e;
-    public final o3.l f47914f;
+    public final o3.o f47949e;
+    public final o3.l f47950f;
     public final ab.a h;
-    public final e0 f47915n;
-    public final g5.q f47916r;
-    public final IdentityHashMap f47917s;
+    public final e0 f47951n;
+    public final g5.q f47952r;
+    public final IdentityHashMap f47953s;
     public final ai v;
-    public final z9.d f47918w;
-    public final boolean f47919x;
-    public final int f47920y;
+    public final z9.d f47954w;
+    public final boolean f47955x;
+    public final int f47956y;
 
     public l(j jVar, u4.c cVar, h4 h4Var, v0 v0Var, o3.o oVar, o3.l lVar, ab.a aVar, e0 e0Var, g5.q qVar, z9.d dVar, boolean z4, int i10, k3.k kVar) {
-        this.f47910a = jVar;
-        this.f47911b = cVar;
-        this.f47912c = h4Var;
+        this.f47946a = jVar;
+        this.f47947b = cVar;
+        this.f47948c = h4Var;
         this.d = v0Var;
-        this.f47913e = oVar;
-        this.f47914f = lVar;
+        this.f47949e = oVar;
+        this.f47950f = lVar;
         this.h = aVar;
-        this.f47915n = e0Var;
-        this.f47916r = qVar;
-        this.f47918w = dVar;
-        this.f47919x = z4;
-        this.f47920y = i10;
+        this.f47951n = e0Var;
+        this.f47952r = qVar;
+        this.f47954w = dVar;
+        this.f47955x = z4;
+        this.f47956y = i10;
         this.B = kVar;
         dVar.getClass();
         this.J = new z2.d(new n0[0]);
-        this.f47917s = new IdentityHashMap();
+        this.f47953s = new IdentityHashMap();
         this.v = new ai(15);
         this.G = new r[0];
         this.H = new r[0];
@@ -128,14 +128,14 @@ public final class l implements o4.t, u4.q {
     public final void a() {
         r[] rVarArr;
         for (r rVar : this.G) {
-            g5.m0 m0Var = rVar.f47963s;
-            ArrayList arrayList = rVar.f47966y;
+            g5.m0 m0Var = rVar.f47999s;
+            ArrayList arrayList = rVar.f48002y;
             if (!arrayList.isEmpty()) {
                 k kVar = (k) s8.l.h(arrayList);
                 int b10 = rVar.d.b(kVar);
                 if (b10 == 1) {
                     kVar.X = true;
-                } else if (b10 == 2 && !rVar.f47956g0 && m0Var.d()) {
+                } else if (b10 == 2 && !rVar.f47992g0 && m0Var.d()) {
                     m0Var.b();
                 }
             }
@@ -167,23 +167,23 @@ public final class l implements o4.t, u4.q {
             r rVar = rVarArr[i10];
             if (rVar.N == 2) {
                 i iVar2 = rVar.d;
-                u4.c cVar = iVar2.f47894g;
-                int h = iVar2.f47903q.h();
-                Uri[] uriArr = iVar2.f47892e;
+                u4.c cVar = iVar2.f47930g;
+                int h = iVar2.f47939q.h();
+                Uri[] uriArr = iVar2.f47928e;
                 if (h < uriArr.length && h != -1) {
-                    iVar = cVar.a(uriArr[iVar2.f47903q.i()], true);
+                    iVar = cVar.a(uriArr[iVar2.f47939q.i()], true);
                 } else {
                     iVar = null;
                 }
                 if (iVar != null) {
-                    s8.v vVar = iVar.f48293r;
-                    if (!vVar.isEmpty() && iVar.f48316c) {
-                        long j12 = iVar.h - cVar.f48261y;
+                    s8.v vVar = iVar.f48329r;
+                    if (!vVar.isEmpty() && iVar.f48352c) {
+                        long j12 = iVar.h - cVar.f48297y;
                         long j13 = j10 - j12;
                         int c3 = d0.c(vVar, Long.valueOf(j13), true);
-                        long j14 = ((u4.f) vVar.get(c3)).f48272e;
+                        long j14 = ((u4.f) vVar.get(c3)).f48308e;
                         if (c3 != vVar.size() - 1) {
-                            j11 = ((u4.f) vVar.get(c3 + 1)).f48272e;
+                            j11 = ((u4.f) vVar.get(c3 + 1)).f48308e;
                         } else {
                             j11 = j14;
                         }
@@ -213,7 +213,7 @@ public final class l implements o4.t, u4.q {
     }
 
     public final r h(String str, int i10, Uri[] uriArr, j3.n0[] n0VarArr, j3.n0 n0Var, List list, Map map, long j10) {
-        return new r(str, i10, this.C, new i(this.f47910a, this.f47911b, uriArr, n0VarArr, this.f47912c, this.d, this.v, list, this.B), map, this.f47916r, j10, n0Var, this.f47913e, this.f47914f, this.h, this.f47915n, this.f47920y);
+        return new r(str, i10, this.C, new i(this.f47946a, this.f47947b, uriArr, n0VarArr, this.f47948c, this.d, this.v, list, this.B), map, this.f47952r, j10, n0Var, this.f47949e, this.f47950f, this.h, this.f47951n, this.f47956y);
     }
 
     @Override
@@ -221,7 +221,7 @@ public final class l implements o4.t, u4.q {
         r[] rVarArr;
         for (r rVar : this.G) {
             rVar.B();
-            if (rVar.f47956g0 && !rVar.Q) {
+            if (rVar.f47992g0 && !rVar.Q) {
                 throw r1.a("Loading finished before preparation is complete.", null);
             }
         }
@@ -242,7 +242,7 @@ public final class l implements o4.t, u4.q {
                 i10++;
             }
             if (E) {
-                ((SparseArray) this.v.f25265b).clear();
+                ((SparseArray) this.v.f25257b).clear();
             }
         }
         return j10;
@@ -255,7 +255,7 @@ public final class l implements o4.t, u4.q {
             if (rVar.P && !rVar.z()) {
                 int length = rVar.I.length;
                 for (int i10 = 0; i10 < length; i10++) {
-                    rVar.I[i10].h(j10, rVar.f47946a0[i10]);
+                    rVar.I[i10].h(j10, rVar.f47982a0[i10]);
                 }
             }
         }
@@ -267,7 +267,7 @@ public final class l implements o4.t, u4.q {
         if (this.F == null) {
             for (r rVar : this.G) {
                 if (!rVar.Q) {
-                    rVar.m(rVar.f47950c0);
+                    rVar.m(rVar.f47986c0);
                 }
             }
             return false;

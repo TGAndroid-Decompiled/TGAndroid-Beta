@@ -12,22 +12,22 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class v90 implements jy {
-    public final int f42180a = 1;
-    public final LaunchActivity f42181b;
-    public final String f42182c;
+    public final int f42068a = 1;
+    public final LaunchActivity f42069b;
+    public final String f42070c;
     public final int d;
-    public final TLRPC.User f42183e;
+    public final TLRPC.User f42071e;
 
     public v90(LaunchActivity launchActivity, String str, int i10, TLRPC.User user) {
-        this.f42181b = launchActivity;
-        this.f42182c = str;
+        this.f42069b = launchActivity;
+        this.f42070c = str;
         this.d = i10;
-        this.f42183e = user;
+        this.f42071e = user;
     }
 
     @Override
     public final boolean C() {
-        switch (this.f42180a) {
+        switch (this.f42068a) {
             case 0:
                 return false;
             default:
@@ -37,7 +37,7 @@ public final class v90 implements jy {
 
     @Override
     public final boolean J(py pyVar) {
-        switch (this.f42180a) {
+        switch (this.f42068a) {
             case 0:
                 return false;
             default:
@@ -46,12 +46,12 @@ public final class v90 implements jy {
     }
 
     @Override
-    public final boolean v(py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, mf1 mf1Var) {
-        int i12 = this.f42180a;
-        TLRPC.User user = this.f42183e;
+    public final boolean v(py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, sf1 sf1Var) {
+        int i12 = this.f42068a;
+        TLRPC.User user = this.f42071e;
         int i13 = this.d;
-        String str = this.f42182c;
-        LaunchActivity launchActivity = this.f42181b;
+        String str = this.f42070c;
+        LaunchActivity launchActivity = this.f42069b;
         switch (i12) {
             case 0:
                 Pattern pattern = LaunchActivity.f34134y1;
@@ -78,7 +78,7 @@ public final class v90 implements jy {
                 long j11 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 TLRPC.TL_inputMediaGame tL_inputMediaGame = new TLRPC.TL_inputMediaGame();
                 TLRPC.TL_inputGameShortName tL_inputGameShortName = new TLRPC.TL_inputGameShortName();
-                tL_inputMediaGame.f20905id = tL_inputGameShortName;
+                tL_inputMediaGame.f20907id = tL_inputGameShortName;
                 tL_inputGameShortName.short_name = str;
                 tL_inputGameShortName.bot_id = MessagesController.getInstance(i13).getInputUser(user);
                 SendMessagesHelper.getInstance(i13).sendGame(MessagesController.getInstance(i13).getInputPeer(j11), tL_inputMediaGame, 0L, 0L);
@@ -99,9 +99,9 @@ public final class v90 implements jy {
     }
 
     public v90(LaunchActivity launchActivity, TLRPC.User user, String str, int i10) {
-        this.f42181b = launchActivity;
-        this.f42183e = user;
-        this.f42182c = str;
+        this.f42069b = launchActivity;
+        this.f42071e = user;
+        this.f42070c = str;
         this.d = i10;
     }
 }

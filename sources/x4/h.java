@@ -9,31 +9,31 @@ import h5.d0;
 import h5.v;
 public final class h {
     public static final byte[] h = {0, 7, 8, 15};
-    public static final byte[] f50396i = {0, 119, -120, -1};
-    public static final byte[] f50397j = {0, 17, 34, 51, 68, 85, 102, 119, -120, -103, -86, -69, -52, -35, -18, -1};
-    public final Paint f50398a;
-    public final Paint f50399b;
-    public final Canvas f50400c;
+    public static final byte[] f50432i = {0, 119, -120, -1};
+    public static final byte[] f50433j = {0, 17, 34, 51, 68, 85, 102, 119, -120, -103, -86, -69, -52, -35, -18, -1};
+    public final Paint f50434a;
+    public final Paint f50435b;
+    public final Canvas f50436c;
     public final b d;
-    public final a f50401e;
-    public final g f50402f;
-    public Bitmap f50403g;
+    public final a f50437e;
+    public final g f50438f;
+    public Bitmap f50439g;
 
     public h(int i10, int i11) {
         Paint paint = new Paint();
-        this.f50398a = paint;
+        this.f50434a = paint;
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
         paint.setPathEffect(null);
         Paint paint2 = new Paint();
-        this.f50399b = paint2;
+        this.f50435b = paint2;
         paint2.setStyle(Paint.Style.FILL);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OVER));
         paint2.setPathEffect(null);
-        this.f50400c = new Canvas();
+        this.f50436c = new Canvas();
         this.d = new b(719, 575, 0, 719, 0, 575);
-        this.f50401e = new a(0, new int[]{0, -1, -16777216, -8421505}, b(), c());
-        this.f50402f = new g(i10, i11);
+        this.f50437e = new a(0, new int[]{0, -1, -16777216, -8421505}, b(), c());
+        this.f50438f = new g(i10, i11);
     }
 
     public static byte[] a(int i10, int i11, v vVar) {

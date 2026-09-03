@@ -88,11 +88,11 @@ public final class g extends cg.b {
                             TLRPC.User user = this.f8085c;
                             long j11 = 0;
                             if (user != null) {
-                                j10 = user.f20990id;
+                                j10 = user.f20992id;
                             } else {
                                 TLRPC.Chat chat = this.f8086e;
                                 if (chat != null) {
-                                    j10 = -chat.f20843id;
+                                    j10 = -chat.f20845id;
                                 } else {
                                     TLRPC.InputPeer inputPeer = this.d;
                                     if (inputPeer != null) {
@@ -104,11 +104,11 @@ public final class g extends cg.b {
                             }
                             TLRPC.User user2 = gVar.f8085c;
                             if (user2 != null) {
-                                j11 = user2.f20990id;
+                                j11 = user2.f20992id;
                             } else {
                                 TLRPC.Chat chat2 = gVar.f8086e;
                                 if (chat2 != null) {
-                                    j11 = -chat2.f20843id;
+                                    j11 = -chat2.f20845id;
                                 } else {
                                     TLRPC.InputPeer inputPeer2 = gVar.d;
                                     if (inputPeer2 != null) {

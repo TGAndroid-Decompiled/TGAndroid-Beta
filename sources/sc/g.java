@@ -3,39 +3,39 @@ package sc;
 import java.io.Serializable;
 import kotlin.jvm.internal.j;
 public final class g implements c, Serializable {
-    public dd.a f47239a;
-    public volatile Object f47240b;
-    public final Object f47241c;
+    public dd.a f47270a;
+    public volatile Object f47271b;
+    public final Object f47272c;
 
     public g(dd.a initializer) {
         j.e(initializer, "initializer");
-        this.f47239a = initializer;
-        this.f47240b = h.f47242a;
-        this.f47241c = this;
+        this.f47270a = initializer;
+        this.f47271b = h.f47273a;
+        this.f47272c = this;
     }
 
     public final Object a() {
         Object obj;
-        Object obj2 = this.f47240b;
-        h hVar = h.f47242a;
+        Object obj2 = this.f47271b;
+        h hVar = h.f47273a;
         if (obj2 != hVar) {
             return obj2;
         }
-        synchronized (this.f47241c) {
-            obj = this.f47240b;
+        synchronized (this.f47272c) {
+            obj = this.f47271b;
             if (obj == hVar) {
-                dd.a aVar = this.f47239a;
+                dd.a aVar = this.f47270a;
                 j.b(aVar);
                 obj = aVar.invoke();
-                this.f47240b = obj;
-                this.f47239a = null;
+                this.f47271b = obj;
+                this.f47270a = null;
             }
         }
         return obj;
     }
 
     public final String toString() {
-        if (this.f47240b != h.f47242a) {
+        if (this.f47271b != h.f47273a) {
             return String.valueOf(a());
         }
         return "Lazy value not initialized yet.";

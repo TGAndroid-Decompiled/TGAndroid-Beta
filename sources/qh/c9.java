@@ -1,56 +1,93 @@
 package qh;
+public final class c9 implements fa {
+    public final c4 f45197a;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.Utilities;
-public final class c9 extends a3 {
-    public final ca f45073h0;
-
-    public c9(ca caVar, int i10, Context context, oh.b bVar, MediaController.AlbumEntry albumEntry, boolean z4, boolean z10, boolean z11) {
-        super(i10, context, bVar, albumEntry, z4, 1.39f, z10, z11);
-        this.f45073h0 = caVar;
+    public c9(c4 c4Var) {
+        this.f45197a = c4Var;
     }
 
     @Override
-    public final void a() {
-        ca caVar = this.f45073h0;
-        caVar.J0.setTranslationY(caVar.f45115n.getMeasuredHeight() - caVar.J0.g());
-        p8 p8Var = caVar.f45118n2;
-        if (p8Var != null) {
-            p8Var.run();
-            caVar.f45118n2 = null;
-        }
+    public final void d0(float f10, boolean z4) {
+        this.f45197a.run(Boolean.FALSE, Float.valueOf(f10));
     }
 
     @Override
-    public final void c(boolean z4) {
-        if (this.f45073h0.f45082c0 == 0 && z4) {
-            AndroidUtilities.runOnUIThread(new org.telegram.ui.web.s0(this, 27));
-        }
+    public final void G() {
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0 && motionEvent.getY() < g()) {
-            ca caVar = this.f45073h0;
-            caVar.I0 = true;
-            caVar.f(false);
-            return true;
-        }
-        return super.dispatchTouchEvent(motionEvent);
+    public final void w0() {
     }
 
     @Override
-    public final void setTranslationY(float f10) {
-        super.setTranslationY(f10);
-        ca caVar = this.f45073h0;
-        if (caVar.f45101h2) {
-            float clamp = Utilities.clamp(1.0f - (f10 / (caVar.f45115n.getMeasuredHeight() - caVar.J0.g())), 1.0f, 0.0f);
-            caVar.f45128r.b(AndroidUtilities.dp(-32.0f) * clamp);
-            caVar.f45128r.setAlpha(1.0f - (0.6f * clamp));
-            caVar.f45093f0.setAlpha(1.0f - clamp);
-        }
+    public final void A(float f10) {
+    }
+
+    @Override
+    public final void H0(long j10) {
+    }
+
+    @Override
+    public final void J(float f10) {
+    }
+
+    @Override
+    public final void U(boolean z4) {
+    }
+
+    @Override
+    public final void X(float f10) {
+    }
+
+    @Override
+    public final void f(int i10) {
+    }
+
+    @Override
+    public final void h0(long j10) {
+    }
+
+    @Override
+    public final void j0(boolean z4) {
+    }
+
+    @Override
+    public final void r0(float f10) {
+    }
+
+    @Override
+    public final void t0(float f10) {
+    }
+
+    @Override
+    public final void u(float f10) {
+    }
+
+    @Override
+    public final void v0(float f10) {
+    }
+
+    @Override
+    public final void y0(float f10) {
+    }
+
+    @Override
+    public final void B(long j10, boolean z4) {
+    }
+
+    @Override
+    public final void E0(int i10, long j10) {
+    }
+
+    @Override
+    public final void W(float f10, int i10) {
+    }
+
+    @Override
+    public final void m0(float f10, int i10) {
+    }
+
+    @Override
+    public final void u0(float f10, int i10) {
     }
 }

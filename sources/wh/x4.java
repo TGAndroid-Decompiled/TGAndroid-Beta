@@ -4,33 +4,33 @@ import android.graphics.Rect;
 import android.text.Layout;
 import org.telegram.ui.Cells.x9;
 public final class x4 implements x9 {
-    public final int f50155a;
-    public final Layout f50156b;
-    public final int f50157c;
+    public final int f50191a;
+    public final Layout f50192b;
+    public final int f50193c;
     public final int d;
 
     public x4(Layout layout, int i10, int i11, int i12) {
-        this.f50155a = i12;
-        this.f50156b = layout;
-        this.f50157c = i10;
+        this.f50191a = i12;
+        this.f50192b = layout;
+        this.f50193c = i10;
         this.d = i11;
     }
 
     @Override
     public final Layout getLayout() {
-        switch (this.f50155a) {
+        switch (this.f50191a) {
             case 0:
-                return this.f50156b;
+                return this.f50192b;
             case 1:
-                return this.f50156b;
+                return this.f50192b;
             default:
-                return this.f50156b;
+                return this.f50192b;
         }
     }
 
     @Override
     public final CharSequence getPrefix() {
-        switch (this.f50155a) {
+        switch (this.f50191a) {
             case 0:
                 return null;
             case 1:
@@ -42,7 +42,7 @@ public final class x4 implements x9 {
 
     @Override
     public final int getRow() {
-        switch (this.f50155a) {
+        switch (this.f50191a) {
             case 0:
                 return 0;
             case 1:
@@ -54,7 +54,7 @@ public final class x4 implements x9 {
 
     @Override
     public final Rect getSelectionBounds() {
-        switch (this.f50155a) {
+        switch (this.f50191a) {
             case 0:
                 return null;
             case 1:
@@ -66,31 +66,31 @@ public final class x4 implements x9 {
 
     @Override
     public final CharSequence getText() {
-        switch (this.f50155a) {
+        switch (this.f50191a) {
             case 0:
-                return this.f50156b.getText();
+                return this.f50192b.getText();
             case 1:
-                return this.f50156b.getText();
+                return this.f50192b.getText();
             default:
-                return this.f50156b.getText();
+                return this.f50192b.getText();
         }
     }
 
     @Override
     public final int getX() {
-        switch (this.f50155a) {
+        switch (this.f50191a) {
             case 0:
-                return this.f50157c;
+                return this.f50193c;
             case 1:
-                return this.f50157c;
+                return this.f50193c;
             default:
-                return this.f50157c;
+                return this.f50193c;
         }
     }
 
     @Override
     public final int getY() {
-        switch (this.f50155a) {
+        switch (this.f50191a) {
             case 0:
                 return this.d;
             case 1:

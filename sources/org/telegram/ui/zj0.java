@@ -7,11 +7,11 @@ import java.util.Iterator;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
-public final class zj0 implements jy, org.telegram.ui.ActionBar.c2, f11 {
-    public final NotificationsCustomSettingsActivity f43948a;
+public final class zj0 implements jy, org.telegram.ui.ActionBar.c2, j11 {
+    public final NotificationsCustomSettingsActivity f43976a;
 
     public zj0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity) {
-        this.f43948a = notificationsCustomSettingsActivity;
+        this.f43976a = notificationsCustomSettingsActivity;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class zj0 implements jy, org.telegram.ui.ActionBar.c2, f11 {
 
     @Override
     public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f43948a;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f43976a;
         SharedPreferences.Editor edit = notificationsCustomSettingsActivity.getNotificationsSettings().edit();
         int size = notificationsCustomSettingsActivity.f34192w.size();
         for (int i11 = 0; i11 < size; i11++) {
@@ -56,16 +56,16 @@ public final class zj0 implements jy, org.telegram.ui.ActionBar.c2, f11 {
 
     @Override
     public void u(lk0 lk0Var) {
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f43948a;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f43976a;
         notificationsCustomSettingsActivity.f34192w.add(0, lk0Var);
         notificationsCustomSettingsActivity.l0(true);
     }
 
     @Override
-    public boolean v(py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, mf1 mf1Var) {
+    public boolean v(py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, sf1 sf1Var) {
         int i12 = 0;
         long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f43948a;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f43976a;
         if (notificationsCustomSettingsActivity.f34191s == 3) {
             ArrayList arrayList2 = notificationsCustomSettingsActivity.v;
             if (arrayList2 != null) {
@@ -87,12 +87,12 @@ public final class zj0 implements jy, org.telegram.ui.ActionBar.c2, f11 {
             }
             ?? obj = new Object();
             obj.d = j10;
-            obj.f38777e = true;
+            obj.f38689e = true;
             Boolean bool = notificationsCustomSettingsActivity.f34189n;
             if (bool != null && bool.booleanValue()) {
                 i12 = Integer.MAX_VALUE;
             }
-            obj.f38776c = i12;
+            obj.f38688c = i12;
             if (notificationsCustomSettingsActivity.f34192w == null) {
                 notificationsCustomSettingsActivity.f34192w = new ArrayList();
             }
@@ -103,9 +103,9 @@ public final class zj0 implements jy, org.telegram.ui.ActionBar.c2, f11 {
         Bundle bundle = new Bundle();
         bundle.putLong("dialog_id", j10);
         bundle.putBoolean("exception", true);
-        g11 g11Var = new g11(bundle, notificationsCustomSettingsActivity.getResourceProvider());
-        g11Var.f37062r = new zj0(notificationsCustomSettingsActivity);
-        notificationsCustomSettingsActivity.presentFragment(g11Var, true);
+        k11 k11Var = new k11(bundle, notificationsCustomSettingsActivity.getResourceProvider());
+        k11Var.f38165r = new zj0(notificationsCustomSettingsActivity);
+        notificationsCustomSettingsActivity.presentFragment(k11Var, true);
         return true;
     }
 

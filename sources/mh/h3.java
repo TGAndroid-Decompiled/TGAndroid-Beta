@@ -4,40 +4,40 @@ import android.view.KeyEvent;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 public final class h3 implements Utilities.Callback {
-    public final int f14159a = 1;
-    public final int f14160b;
-    public final int f14161c;
+    public final int f14161a = 1;
+    public final int f14162b;
+    public final int f14163c;
     public final int d;
-    public final KeyEvent.Callback f14162e;
-    public final Object f14163f;
-    public final Object f14164g;
+    public final KeyEvent.Callback f14164e;
+    public final Object f14165f;
+    public final Object f14166g;
 
     public h3(int i10, int i11, org.telegram.ui.Components.m3 m3Var, org.telegram.ui.Components.o3 o3Var, int i12, org.telegram.ui.Components.n3 n3Var) {
-        this.f14160b = i10;
-        this.f14161c = i11;
-        this.f14162e = m3Var;
-        this.f14163f = o3Var;
+        this.f14162b = i10;
+        this.f14163c = i11;
+        this.f14164e = m3Var;
+        this.f14165f = o3Var;
         this.d = i12;
-        this.f14164g = n3Var;
+        this.f14166g = n3Var;
     }
 
     @Override
     public final void run(Object obj) {
         int i10;
         int i11;
-        switch (this.f14159a) {
+        switch (this.f14161a) {
             case 0:
-                g5.E0((g5) this.f14162e, this.f14160b, this.f14161c, this.d, (TL_stars.TL_starGiftUnique) this.f14163f, (hg.v2[]) this.f14164g, (Long) obj);
+                g5.E0((g5) this.f14164e, this.f14162b, this.f14163c, this.d, (TL_stars.TL_starGiftUnique) this.f14165f, (hg.v2[]) this.f14166g, (Long) obj);
                 return;
             default:
-                org.telegram.ui.Components.m3 m3Var = (org.telegram.ui.Components.m3) this.f14162e;
-                org.telegram.ui.Components.o3 o3Var = (org.telegram.ui.Components.o3) this.f14163f;
-                org.telegram.ui.Components.n3 n3Var = (org.telegram.ui.Components.n3) this.f14164g;
+                org.telegram.ui.Components.m3 m3Var = (org.telegram.ui.Components.m3) this.f14164e;
+                org.telegram.ui.Components.o3 o3Var = (org.telegram.ui.Components.o3) this.f14165f;
+                org.telegram.ui.Components.n3 n3Var = (org.telegram.ui.Components.n3) this.f14166g;
                 Boolean bool = (Boolean) obj;
-                int i12 = this.f14160b;
+                int i12 = this.f14162b;
                 int i13 = i12 % 60;
                 int i14 = (i12 - i13) / 60;
-                int i15 = this.f14161c;
+                int i15 = this.f14163c;
                 int i16 = i15 % 60;
                 int i17 = (i15 - i16) / 60;
                 int i18 = 59;
@@ -102,11 +102,11 @@ public final class h3 implements Utilities.Callback {
     }
 
     public h3(g5 g5Var, int i10, int i11, int i12, TL_stars.TL_starGiftUnique tL_starGiftUnique, hg.v2[] v2VarArr) {
-        this.f14162e = g5Var;
-        this.f14160b = i10;
-        this.f14161c = i11;
+        this.f14164e = g5Var;
+        this.f14162b = i10;
+        this.f14163c = i11;
         this.d = i12;
-        this.f14163f = tL_starGiftUnique;
-        this.f14164g = v2VarArr;
+        this.f14165f = tL_starGiftUnique;
+        this.f14166g = v2VarArr;
     }
 }

@@ -1,28 +1,24 @@
 package org.telegram.ui;
-public final class oc1 implements vc1 {
-    public boolean f39723a;
-    public final xn f39724b;
 
-    public oc1(xn xnVar, boolean z4) {
-        this.f39724b = xnVar;
-        this.f39723a = z4;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class oc1 extends AnimatorListenerAdapter {
+    public final jd1 f39656a;
+
+    public oc1(jd1 jd1Var) {
+        this.f39656a = jd1Var;
     }
 
     @Override
-    public final boolean T0() {
-        return true;
-    }
-
-    @Override
-    public final boolean a() {
-        return this.f39723a;
-    }
-
-    @Override
-    public final void l1(boolean z4) {
-        boolean z10 = !this.f39723a;
-        this.f39723a = z10;
-        vn vnVar = this.f39724b.f43136ba;
-        vnVar.i(vnVar.f42262f, vnVar.h, z4, Boolean.valueOf(z10), false);
+    public final void onAnimationEnd(Animator animator) {
+        char c3;
+        jd1 jd1Var = this.f39656a;
+        org.telegram.ui.Components.m81[] m81VarArr = jd1Var.G0;
+        if (jd1Var.T0 != null) {
+            c3 = 0;
+        } else {
+            c3 = 2;
+        }
+        m81VarArr[c3].setVisibility(4);
     }
 }

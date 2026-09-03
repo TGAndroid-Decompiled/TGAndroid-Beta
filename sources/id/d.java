@@ -11,7 +11,7 @@ public abstract class d extends f {
         j.e(bVar, "<this>");
         Iterator it = bVar.iterator();
         if (!it.hasNext()) {
-            return o.f48064a;
+            return o.f48100a;
         }
         Object next = it.next();
         if (!it.hasNext()) {

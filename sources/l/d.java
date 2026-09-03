@@ -16,7 +16,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.Components.qc;
-import q5.g0;
 public abstract class d {
     public static void A(SQLiteDatabase sQLiteDatabase, String str, String str2, String str3) {
         sQLiteDatabase.executeFast(str).stepThis().dispose();
@@ -134,18 +133,18 @@ public abstract class d {
         return new n7.s(i10);
     }
 
-    public static u9.c s(int i10, g0 g0Var) {
+    public static u9.c s(int i10, q5.c0 c0Var) {
         Map unmodifiableMap;
         n7.s sVar = new n7.s(i10);
-        if (((HashMap) g0Var.f44558c) == null) {
-            g0Var.f44558c = new HashMap();
+        if (((HashMap) c0Var.f44559c) == null) {
+            c0Var.f44559c = new HashMap();
         }
-        ((HashMap) g0Var.f44558c).put(n7.w.class, sVar);
-        String str = (String) g0Var.f44557b;
-        if (((HashMap) g0Var.f44558c) == null) {
+        ((HashMap) c0Var.f44559c).put(n7.w.class, sVar);
+        String str = (String) c0Var.f44558b;
+        if (((HashMap) c0Var.f44559c) == null) {
             unmodifiableMap = Collections.EMPTY_MAP;
         } else {
-            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) g0Var.f44558c));
+            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) c0Var.f44559c));
         }
         return new u9.c(str, unmodifiableMap);
     }

@@ -24,7 +24,7 @@ public final class c implements Runnable {
                 sb.append(eVar.h);
                 String sb2 = sb.toString();
                 py pyVar = new py(y3.e(3, "onlySelect", "dialogsType", true));
-                pyVar.f40308z2 = new c1.b(17, eVar, sb2);
+                pyVar.f40278z2 = new c1.b(17, eVar, sb2);
                 eVar.f8081e.presentFragment(pyVar);
                 ((d1) eVar).f7448r.dismiss();
                 return;

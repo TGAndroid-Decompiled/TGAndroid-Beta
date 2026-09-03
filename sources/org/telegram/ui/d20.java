@@ -44,20 +44,20 @@ public final class d20 extends f2.b0 {
         a20 a20Var = this.d.f34118b;
         int b10 = m1Var.b();
         int b11 = m1Var2.b();
-        FiltersSetupActivity filtersSetupActivity = a20Var.f34996e;
+        FiltersSetupActivity filtersSetupActivity = a20Var.f35001e;
         int i10 = filtersSetupActivity.f34123r;
         ArrayList arrayList = filtersSetupActivity.f34122n;
         if (b10 >= i10 && b11 >= i10) {
-            y10 y10Var = (y10) arrayList.get(b10);
-            y10 y10Var2 = (y10) arrayList.get(b11);
-            if (y10Var != null && y10Var2 != null && (dialogFilter = y10Var.d) != null && (dialogFilter2 = y10Var2.d) != null) {
+            x10 x10Var = (x10) arrayList.get(b10);
+            x10 x10Var2 = (x10) arrayList.get(b11);
+            if (x10Var != null && x10Var2 != null && (dialogFilter = x10Var.d) != null && (dialogFilter2 = x10Var2.d) != null) {
                 int i11 = dialogFilter.order;
                 dialogFilter.order = dialogFilter2.order;
                 dialogFilter2.order = i11;
                 ArrayList<MessagesController.DialogFilter> arrayList2 = filtersSetupActivity.getMessagesController().dialogFilters;
                 try {
-                    arrayList2.set(b10 - filtersSetupActivity.f34123r, y10Var2.d);
-                    arrayList2.set(b11 - filtersSetupActivity.f34123r, y10Var.d);
+                    arrayList2.set(b10 - filtersSetupActivity.f34123r, x10Var2.d);
+                    arrayList2.set(b11 - filtersSetupActivity.f34123r, x10Var.d);
                 } catch (Exception unused) {
                 }
                 filtersSetupActivity.f34120e = true;

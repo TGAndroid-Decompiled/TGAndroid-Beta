@@ -13,7 +13,7 @@ public final class n extends pe.a {
     @Override
     public final boolean b(ne.a aVar) {
         if (this.f11177c) {
-            ne.a aVar2 = (ne.a) ((ne.p) this.f11175a.f15974b);
+            ne.a aVar2 = (ne.a) ((ne.p) this.f11175a.f15976b);
             return true;
         }
         return true;
@@ -33,7 +33,7 @@ public final class n extends pe.a {
     public final j4.h h(e eVar) {
         boolean z4 = false;
         if (eVar.h) {
-            if (((ne.p) this.f11175a.f15975c) != null) {
+            if (((ne.p) this.f11175a.f15977c) != null) {
                 ne.a e6 = eVar.h().e();
                 this.f11177c = ((e6 instanceof r) || (e6 instanceof ne.o)) ? true : true;
                 return j4.h.a(eVar.f11122e);

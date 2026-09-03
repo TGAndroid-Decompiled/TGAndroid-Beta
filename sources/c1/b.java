@@ -59,21 +59,21 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.d2;
+import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.j51;
-import org.telegram.ui.Components.kl0;
-import org.telegram.ui.Components.pr0;
+import org.telegram.ui.Components.jl0;
+import org.telegram.ui.Components.or0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.cg1;
+import org.telegram.ui.ig1;
 import org.telegram.ui.jy;
 import org.telegram.ui.ko0;
-import org.telegram.ui.mf1;
 import org.telegram.ui.py;
-import org.telegram.ui.to0;
+import org.telegram.ui.sf1;
+import org.telegram.ui.vo0;
 import y2.i;
-public final class b implements OnFailureListener, ba.a, OnCompleteListener, Continuation, g3.b, f3.f, m, c2, ko0, jy, c9.e, k, j, r3, Utilities.Callback5, kl0, cg1 {
+public final class b implements OnFailureListener, ba.a, OnCompleteListener, Continuation, g3.b, f3.f, m, c2, ko0, jy, c9.e, k, j, r3, Utilities.Callback5, jl0, ig1 {
     public final int f2026a;
     public final Object f2027b;
     public final Object f2028c;
@@ -148,7 +148,7 @@ public final class b implements OnFailureListener, ba.a, OnCompleteListener, Con
         f3.a aVar = hVar.d;
         ArrayList d = hVar.d(sQLiteDatabase, iVar, aVar.f5970b);
         for (v2.d dVar : v2.d.values()) {
-            if (dVar != iVar.f50696c) {
+            if (dVar != iVar.f50732c) {
                 int size = aVar.f5970b - d.size();
                 if (size <= 0) {
                     break;
@@ -199,12 +199,12 @@ public final class b implements OnFailureListener, ba.a, OnCompleteListener, Con
     @Override
     public void b(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, boolean z4) {
         n3 n3Var = (n3) this.f2027b;
-        pr0 pr0Var = n3Var.f12860a;
-        n3Var.f12863e.f14405l.remove((TL_stars.SavedStarGift) this.f2028c);
+        or0 or0Var = n3Var.f12862a;
+        n3Var.f12865e.f14407l.remove((TL_stars.SavedStarGift) this.f2028c);
         n3Var.f(true);
-        int i10 = n3Var.f12861b;
+        int i10 = n3Var.f12863b;
         if (j10 == UserConfig.getInstance(i10).getClientUserId()) {
-            qc a02 = qc.a0(pr0Var.f13098a);
+            qc a02 = qc.a0(or0Var.f13100a);
             TLRPC.Document document = tL_starGiftUnique.getDocument();
             String string = LocaleController.getString(R.string.BoughtResoldGiftTitle);
             int i11 = R.string.BoughtResoldGiftText;
@@ -212,11 +212,11 @@ public final class b implements OnFailureListener, ba.a, OnCompleteListener, Con
             sb.append(tL_starGiftUnique.title);
             sb.append(" #");
             ic O = a02.O(document, string, LocaleController.formatString(i11, l.d.l(tL_starGiftUnique.num, ',', sb)));
-            O.f27753r = false;
+            O.f27786r = false;
             O.j();
         } else {
-            ic O2 = qc.a0(pr0Var.f13098a).O(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(i10, j10)));
-            O2.f27753r = false;
+            ic O2 = qc.a0(or0Var.f13100a).O(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(i10, j10)));
+            O2.f27786r = false;
             O2.j();
         }
         LaunchActivity launchActivity = LaunchActivity.D1;
@@ -245,8 +245,8 @@ public final class b implements OnFailureListener, ba.a, OnCompleteListener, Con
         String valueOf;
         String str = (String) this.f2027b;
         Context context = (Context) jVar.a(Context.class);
-        switch (((sg.a) this.f2028c).f47345a) {
-            case 23:
+        switch (((sg.a) this.f2028c).f47381a) {
+            case 24:
                 ApplicationInfo applicationInfo = context.getApplicationInfo();
                 if (applicationInfo != null) {
                     valueOf = String.valueOf(applicationInfo.targetSdkVersion);
@@ -254,10 +254,10 @@ public final class b implements OnFailureListener, ba.a, OnCompleteListener, Con
                 }
                 valueOf = "";
                 break;
-            case 24:
+            case 25:
                 valueOf = FirebaseCommonRegistrar.a(context);
                 break;
-            case 25:
+            case 26:
                 int i10 = Build.VERSION.SDK_INT;
                 if (context.getPackageManager().hasSystemFeature("android.hardware.type.television")) {
                     valueOf = "tv";
@@ -494,13 +494,13 @@ public final class b implements OnFailureListener, ba.a, OnCompleteListener, Con
         Float f10 = (Float) obj4;
         Float f11 = (Float) obj5;
         w3Var.getClass();
-        long j10 = ((TL_stars.SavedStarGift) ((j51) obj).G).gift.f21070id;
-        if (w3Var.f13060b == j10) {
-            w3Var.f13060b = 0L;
+        long j10 = ((TL_stars.SavedStarGift) ((h51) obj).G).gift.f21072id;
+        if (w3Var.f13062b == j10) {
+            w3Var.f13062b = 0L;
         } else {
-            w3Var.f13060b = j10;
+            w3Var.f13062b = j10;
         }
-        if (w3Var.f13060b != 0) {
+        if (w3Var.f13062b != 0) {
             z4 = true;
         } else {
             z4 = false;
@@ -510,14 +510,14 @@ public final class b implements OnFailureListener, ba.a, OnCompleteListener, Con
             ViewGroup viewGroup = (ViewGroup) view.getParent();
             for (int i10 = 0; i10 < viewGroup.getChildCount(); i10++) {
                 View childAt = viewGroup.getChildAt(i10);
-                if (childAt instanceof to0) {
-                    to0 to0Var = (to0) childAt;
-                    if (w3Var.f13060b == to0Var.getGiftId()) {
+                if (childAt instanceof vo0) {
+                    vo0 vo0Var = (vo0) childAt;
+                    if (w3Var.f13062b == vo0Var.getGiftId()) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    to0Var.b(z10, true);
+                    vo0Var.b(z10, true);
                 }
             }
         }
@@ -534,7 +534,7 @@ public final class b implements OnFailureListener, ba.a, OnCompleteListener, Con
     }
 
     @Override
-    public boolean v(py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, mf1 mf1Var) {
+    public boolean v(py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, sf1 sf1Var) {
         switch (this.f2026a) {
             case 16:
                 i1 i1Var = (i1) this.f2027b;

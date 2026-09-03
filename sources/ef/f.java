@@ -66,15 +66,15 @@ public final class f extends Drawable {
                 int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * 0.8f);
                 int intrinsicHeight = (int) (drawable.getIntrinsicHeight() * 0.8f);
                 int x10 = (int) e2.c.x(imageReceiver.getImageWidth(), intrinsicWidth, 2.0f, imageReceiver.getImageX());
-                int imageHeight = (int) ((((imageReceiver.getImageHeight() / 2.0f) - intrinsicHeight) + imageReceiver.getImageY()) - ((1.0f - pr.f30187k.getInterpolation(imageReceiver.getCurrentAlpha())) * AndroidUtilities.dp(16.0f)));
+                int imageHeight = (int) ((((imageReceiver.getImageHeight() / 2.0f) - intrinsicHeight) + imageReceiver.getImageY()) - ((1.0f - pr.f30172k.getInterpolation(imageReceiver.getCurrentAlpha())) * AndroidUtilities.dp(16.0f)));
                 drawable.setAlpha((int) (imageReceiver.getAlpha() * Math.min(1.0f, imageReceiver.getCurrentAlpha() * 5.0f) * 255.0f));
                 drawable.setBounds(x10, imageHeight, intrinsicWidth + x10, intrinsicHeight + imageHeight);
                 drawable.draw(canvas);
                 return;
             case 2:
                 xc xcVar = (xc) this.f5051c;
-                if (xcVar.f33025c > 1) {
-                    xcVar.c(canvas, xcVar.f33035o);
+                if (xcVar.f33019c > 1) {
+                    xcVar.c(canvas, xcVar.f33029o);
                     return;
                 } else {
                     xcVar.c(canvas, (Paint) this.f5050b);
@@ -84,9 +84,9 @@ public final class f extends Drawable {
                 Paint paint = (Paint) this.f5050b;
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f5051c;
                 if (chatActivityEnterView.R0 != null) {
-                    paint.setAlpha(Math.round(chatActivityEnterView.f24708y3 * 102.0f));
+                    paint.setAlpha(Math.round(chatActivityEnterView.f24710y3 * 102.0f));
                     float width = chatActivityEnterView.getWidth();
-                    float y10 = (chatActivityEnterView.R0.getY() - chatActivityEnterView.getHeight()) + k6.f21747i3.getIntrinsicHeight();
+                    float y10 = (chatActivityEnterView.R0.getY() - chatActivityEnterView.getHeight()) + k6.f21749i3.getIntrinsicHeight();
                     ff ffVar = chatActivityEnterView.B0;
                     if (ffVar == null) {
                         offsetY = 0.0f;
@@ -125,11 +125,11 @@ public final class f extends Drawable {
                 if (paint3 != null) {
                     paint3.setStrokeWidth(AndroidUtilities.dpf2(1.6f));
                     RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(((AndroidUtilities.dp(24.0f) - j6Var.d()) / 2.0f) - AndroidUtilities.dpf2(3.0f), AndroidUtilities.dpf2(0.2f) + ((AndroidUtilities.dp(24.0f) - j6Var.f28031e) / 2.0f), AndroidUtilities.dpf2(3.0f) + ((j6Var.d() + AndroidUtilities.dp(24.0f)) / 2.0f), (AndroidUtilities.dp(24.0f) + j6Var.f28031e) / 2.0f);
+                    rectF.set(((AndroidUtilities.dp(24.0f) - j6Var.d()) / 2.0f) - AndroidUtilities.dpf2(3.0f), AndroidUtilities.dpf2(0.2f) + ((AndroidUtilities.dp(24.0f) - j6Var.f28001e) / 2.0f), AndroidUtilities.dpf2(3.0f) + ((j6Var.d() + AndroidUtilities.dp(24.0f)) / 2.0f), (AndroidUtilities.dp(24.0f) + j6Var.f28001e) / 2.0f);
                     canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(3.0f), AndroidUtilities.dpf2(3.0f), paint3);
                 }
-                j6Var.f28028a.setStrokeWidth(AndroidUtilities.dpf2(0.3f));
-                j6Var.setBounds(0, (int) ((AndroidUtilities.dp(24.0f) - j6Var.f28031e) / 2.0f), AndroidUtilities.dp(24.0f), (int) ((AndroidUtilities.dp(24.0f) + j6Var.f28031e) / 2.0f));
+                j6Var.f27998a.setStrokeWidth(AndroidUtilities.dpf2(0.3f));
+                j6Var.setBounds(0, (int) ((AndroidUtilities.dp(24.0f) - j6Var.f28001e) / 2.0f), AndroidUtilities.dp(24.0f), (int) ((AndroidUtilities.dp(24.0f) + j6Var.f28001e) / 2.0f));
                 j6Var.draw(canvas);
                 return;
         }
@@ -190,7 +190,7 @@ public final class f extends Drawable {
     public void l(float f10, boolean z4) {
         j6 j6Var = (j6) this.f5050b;
         String str = a(f10) + "X";
-        if (z4 && TextUtils.equals(j6Var.f28033g, str)) {
+        if (z4 && TextUtils.equals(j6Var.f28003g, str)) {
             return;
         }
         j6Var.b();
@@ -223,7 +223,7 @@ public final class f extends Drawable {
             case 4:
                 return;
             default:
-                ((j6) this.f5050b).f28047w = i10;
+                ((j6) this.f5050b).f28017w = i10;
                 Paint paint = (Paint) this.f5051c;
                 if (paint != null) {
                     paint.setAlpha(i10);
@@ -271,11 +271,11 @@ public final class f extends Drawable {
         this.f5050b = j6Var;
         j6Var.setCallback(fVar);
         j6Var.k(0.3f, 165L, pr.h);
-        j6Var.f28029b = 1;
+        j6Var.f27999b = 1;
         j6Var.u(AndroidUtilities.bold());
         j6Var.t(AndroidUtilities.dp(10.0f));
         Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = j6Var.f28028a;
+        TextPaint textPaint = j6Var.f27998a;
         textPaint.setStyle(style);
         textPaint.setStrokeWidth(AndroidUtilities.dpf2(0.6f));
         Paint paint = new Paint(1);

@@ -19,7 +19,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.qg1;
+import org.telegram.ui.vg1;
 public final class e implements h5.j, r8.i, c9.e, Vector.TLDeserializer, c2, GenericProvider {
     public final int f10421a;
 
@@ -116,7 +116,7 @@ public final class e implements h5.j, r8.i, c9.e, Vector.TLDeserializer, c2, Gen
                 d2Var.dismiss();
                 return;
             default:
-                g5.d2(new qg1(6, null));
+                g5.d2(new vg1(6, null));
                 return;
         }
     }
@@ -124,7 +124,7 @@ public final class e implements h5.j, r8.i, c9.e, Vector.TLDeserializer, c2, Gen
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        int i10 = q5.f12906h0;
+        int i10 = q5.f12908h0;
         return 0;
     }
 }

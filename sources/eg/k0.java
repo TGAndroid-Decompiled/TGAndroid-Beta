@@ -1,5 +1,5 @@
 package eg;
-public final class k0 extends qh.y1 {
+public final class k0 extends qh.x1 {
     @Override
     public final boolean m0(Integer num) {
         if (num.intValue() == 2) {

@@ -1,29 +1,46 @@
 package qh;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class z1 implements Runnable {
-    public final int f46370a;
-    public final d2 f46371b;
-    public final org.telegram.ui.web.d1 f46372c;
+public final class z1 extends View {
+    public final int f46383a;
+    public final c2 f46384b;
 
-    public z1(d2 d2Var, org.telegram.ui.web.d1 d1Var, int i10) {
-        this.f46370a = i10;
-        this.f46371b = d2Var;
-        this.f46372c = d1Var;
+    public z1(c2 c2Var, Context context, int i10) {
+        super(context);
+        this.f46383a = i10;
+        this.f46384b = c2Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f46370a) {
+    public final void dispatchDraw(Canvas canvas) {
+        switch (this.f46383a) {
             case 0:
-                d2 d2Var = this.f46371b;
-                d2Var.getClass();
-                AndroidUtilities.runOnUIThread(new z1(d2Var, this.f46372c, 1), 320L);
+                c2 c2Var = this.f46384b;
+                c2Var.f45161q.reset();
+                c2Var.b(canvas, true);
                 return;
             default:
-                d2 d2Var2 = this.f46371b;
-                d2Var2.getClass();
-                this.f46372c.run(new org.telegram.ui.web.d1(d2Var2, 6));
+                c2 c2Var2 = this.f46384b;
+                c2Var2.f45161q.reset();
+                c2Var2.f45161q.postTranslate(-getX(), (-getY()) + AndroidUtilities.statusBarHeight);
+                c2Var2.f45161q.postScale(1.0f / getScaleX(), 1.0f / getScaleY(), getPivotX(), getPivotY());
+                c2Var2.b(canvas, false);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f46383a) {
+            case 0:
+                super.onMeasure(i10, i11);
+                this.f46384b.g();
+                return;
+            default:
+                super.onMeasure(i10, i11);
                 return;
         }
     }

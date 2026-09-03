@@ -15,9 +15,9 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.ic;
 import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.sa;
 import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.tl0;
 public final class w1 extends sa {
     public final ArrayList U;
     public final ArrayList V;
@@ -40,7 +40,7 @@ public final class w1 extends sa {
             i10++;
             TL_stories.TL_myBoost tL_myBoost2 = tL_myBoost;
             TLRPC.Peer peer = tL_myBoost2.peer;
-            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f20843id)) {
+            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f20845id)) {
                 this.V.add(tL_myBoost2);
             }
         }
@@ -48,7 +48,7 @@ public final class w1 extends sa {
         aVar.setClickable(true);
         aVar.setOrientation(1);
         aVar.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        aVar.setBackgroundColor(k6.v0(k6.f21731h5, this.resourcesProvider));
+        aVar.setBackgroundColor(k6.v0(k6.f21733h5, this.resourcesProvider));
         f1 f1Var = new f1(getContext(), this.resourcesProvider);
         this.X = f1Var;
         f1Var.k();
@@ -58,9 +58,9 @@ public final class w1 extends sa {
         ViewGroup viewGroup = this.containerView;
         int i11 = this.backgroundPaddingLeft;
         viewGroup.addView(aVar, c6.f(-2.0f, 87, i11, 0, i11, 0));
-        tl0 tl0Var = this.d;
+        sl0 sl0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        tl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f));
+        sl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f));
         this.d.setOnItemClickListener(new v0(1, this, chat));
         fixNavigationBar();
         N();
@@ -122,7 +122,7 @@ public final class w1 extends sa {
     }
 
     @Override
-    public final sl0 v(tl0 tl0Var) {
+    public final rl0 v(sl0 sl0Var) {
         return new q1(this);
     }
 

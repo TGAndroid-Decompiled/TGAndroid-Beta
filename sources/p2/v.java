@@ -19,12 +19,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 public final class v implements d4.w {
-    public final int f44181a;
-    public int f44182b;
-    public Object f44183c;
+    public final int f44212a;
+    public int f44213b;
+    public Object f44214c;
 
     public v(char c3, int i10) {
-        this.f44181a = i10;
+        this.f44212a = i10;
     }
 
     @Override
@@ -34,10 +34,10 @@ public final class v implements d4.w {
 
     @Override
     public int F() {
-        if (((MediaCodecInfo[]) this.f44183c) == null) {
-            this.f44183c = new MediaCodecList(this.f44182b).getCodecInfos();
+        if (((MediaCodecInfo[]) this.f44214c) == null) {
+            this.f44214c = new MediaCodecList(this.f44213b).getCodecInfos();
         }
-        return ((MediaCodecInfo[]) this.f44183c).length;
+        return ((MediaCodecInfo[]) this.f44214c).length;
     }
 
     @Override
@@ -47,15 +47,15 @@ public final class v implements d4.w {
 
     @Override
     public MediaCodecInfo a(int i10) {
-        if (((MediaCodecInfo[]) this.f44183c) == null) {
-            this.f44183c = new MediaCodecList(this.f44182b).getCodecInfos();
+        if (((MediaCodecInfo[]) this.f44214c) == null) {
+            this.f44214c = new MediaCodecList(this.f44213b).getCodecInfos();
         }
-        return ((MediaCodecInfo[]) this.f44183c)[i10];
+        return ((MediaCodecInfo[]) this.f44214c)[i10];
     }
 
     public Object b() {
-        Object[] objArr = (Object[]) this.f44183c;
-        int i10 = this.f44182b;
+        Object[] objArr = (Object[]) this.f44214c;
+        int i10 = this.f44213b;
         if (i10 <= 0) {
             return null;
         }
@@ -63,26 +63,26 @@ public final class v implements d4.w {
         Object obj = objArr[i11];
         kotlin.jvm.internal.j.c(obj, "null cannot be cast to non-null type T of androidx.core.util.Pools.SimplePool");
         objArr[i11] = null;
-        this.f44182b--;
+        this.f44213b--;
         return obj;
     }
 
     public void c(long j10) {
-        int i10 = this.f44182b;
-        long[] jArr = (long[]) this.f44183c;
+        int i10 = this.f44213b;
+        long[] jArr = (long[]) this.f44214c;
         if (i10 == jArr.length) {
-            this.f44183c = Arrays.copyOf(jArr, i10 * 2);
+            this.f44214c = Arrays.copyOf(jArr, i10 * 2);
         }
-        int i11 = this.f44182b;
-        this.f44182b = i11 + 1;
-        ((long[]) this.f44183c)[i11] = j10;
+        int i11 = this.f44213b;
+        this.f44213b = i11 + 1;
+        ((long[]) this.f44214c)[i11] = j10;
     }
 
     public g.f d() {
         int i10;
         Message message;
-        g.c cVar = (g.c) this.f44183c;
-        g.f fVar = new g.f(cVar.f6699a, this.f44182b);
+        g.c cVar = (g.c) this.f44214c;
+        g.f fVar = new g.f(cVar.f6699a, this.f44213b);
         View view = cVar.f6702e;
         g.e eVar = fVar.f6733f;
         if (view != null) {
@@ -157,20 +157,20 @@ public final class v implements d4.w {
     }
 
     public long e(int i10) {
-        if (i10 >= 0 && i10 < this.f44182b) {
-            return ((long[]) this.f44183c)[i10];
+        if (i10 >= 0 && i10 < this.f44213b) {
+            return ((long[]) this.f44214c)[i10];
         }
         StringBuilder m9 = l.d.m(i10, "Invalid index ", ", size is ");
-        m9.append(this.f44182b);
+        m9.append(this.f44213b);
         throw new IndexOutOfBoundsException(m9.toString());
     }
 
     public synchronized List f() {
-        return DesugarCollections.unmodifiableList(new ArrayList((ArrayList) this.f44183c));
+        return DesugarCollections.unmodifiableList(new ArrayList((ArrayList) this.f44214c));
     }
 
     public long g(r3.h hVar) {
-        h5.w wVar = (h5.w) this.f44183c;
+        h5.w wVar = (h5.w) this.f44214c;
         int i10 = 0;
         hVar.f(wVar.f7308a, 0, 1, false);
         int i11 = wVar.f7308a[0] & 255;
@@ -189,30 +189,30 @@ public final class v implements d4.w {
             i10++;
             i14 = (wVar.f7308a[i10] & 255) + (i14 << 8);
         }
-        this.f44182b = i13 + 1 + this.f44182b;
+        this.f44213b = i13 + 1 + this.f44213b;
         return i14;
     }
 
     public void h(Object instance) {
-        Object[] objArr = (Object[]) this.f44183c;
+        Object[] objArr = (Object[]) this.f44214c;
         kotlin.jvm.internal.j.e(instance, "instance");
-        int i10 = this.f44182b;
+        int i10 = this.f44213b;
         for (int i11 = 0; i11 < i10; i11++) {
             if (objArr[i11] == instance) {
                 throw new IllegalStateException("Already in the pool!");
             }
         }
-        int i12 = this.f44182b;
+        int i12 = this.f44213b;
         if (i12 < objArr.length) {
             objArr[i12] = instance;
-            this.f44182b = i12 + 1;
+            this.f44213b = i12 + 1;
         }
     }
 
     public String i(h4 h4Var) {
         String str;
-        x xVar = (x) this.f44183c;
-        int i10 = this.f44182b;
+        x xVar = (x) this.f44214c;
+        int i10 = this.f44213b;
         try {
             if (xVar.E != null) {
                 com.google.android.gms.internal.play_billing.g gVar = xVar.E;
@@ -251,7 +251,7 @@ public final class v implements d4.w {
             }
             throw null;
         } catch (Exception e6) {
-            xVar.F(95, 28, a0.f44102p);
+            xVar.F(95, 28, a0.f44133p);
             com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An error occurred while retrieving billing override.", e6);
             h4Var.a(0);
             return "billingOverrideService.getBillingOverride";
@@ -264,71 +264,71 @@ public final class v implements d4.w {
     }
 
     public String toString() {
-        switch (this.f44181a) {
+        switch (this.f44212a) {
             case 12:
-                return new String((char[]) this.f44183c, 0, this.f44182b);
+                return new String((char[]) this.f44214c, 0, this.f44213b);
             default:
                 return super.toString();
         }
     }
 
     public v(Object obj, int i10, int i11) {
-        this.f44181a = i11;
-        this.f44183c = obj;
-        this.f44182b = i10;
+        this.f44212a = i11;
+        this.f44214c = obj;
+        this.f44213b = i10;
     }
 
     public v(y5.a aVar, int i10) {
-        this.f44181a = 1;
+        this.f44212a = 1;
         b6.m.h(aVar);
-        this.f44183c = aVar;
-        this.f44182b = i10;
+        this.f44214c = aVar;
+        this.f44213b = i10;
     }
 
     public v(int i10, byte b10) {
-        this.f44181a = i10;
+        this.f44212a = i10;
         switch (i10) {
             case 6:
-                this.f44183c = new ArrayList();
-                this.f44182b = 128;
+                this.f44214c = new ArrayList();
+                this.f44213b = 128;
                 return;
             case 8:
-                this.f44182b = 0;
-                this.f44183c = new StringBuilder();
+                this.f44213b = 0;
+                this.f44214c = new StringBuilder();
                 return;
             case 11:
-                this.f44183c = new h5.w(8);
+                this.f44214c = new h5.w(8);
                 return;
             default:
-                this.f44183c = new long[32];
+                this.f44214c = new long[32];
                 return;
         }
     }
 
     public v(int i10) {
-        this.f44181a = 9;
+        this.f44212a = 9;
         if (i10 > 0) {
-            this.f44183c = new Object[i10];
+            this.f44214c = new Object[i10];
             return;
         }
         throw new IllegalArgumentException("The max pool size must be > 0");
     }
 
     public v(int i10, c5.e[] eVarArr) {
-        this.f44181a = 10;
-        this.f44182b = i10;
-        this.f44183c = eVarArr;
+        this.f44212a = 10;
+        this.f44213b = i10;
+        this.f44214c = eVarArr;
     }
 
     public v(Context context) {
-        this.f44181a = 3;
+        this.f44212a = 3;
         int e6 = g.f.e(context, 0);
-        this.f44183c = new g.c(new ContextThemeWrapper(context, g.f.e(context, e6)));
-        this.f44182b = e6;
+        this.f44214c = new g.c(new ContextThemeWrapper(context, g.f.e(context, e6)));
+        this.f44213b = e6;
     }
 
     public v(boolean z4, boolean z10) {
-        this.f44181a = 2;
-        this.f44182b = (z4 || z10) ? 1 : 0;
+        this.f44212a = 2;
+        this.f44213b = (z4 || z10) ? 1 : 0;
     }
 }

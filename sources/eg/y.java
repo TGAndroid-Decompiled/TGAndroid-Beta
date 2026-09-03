@@ -9,8 +9,8 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.mi;
-import org.telegram.ui.mg1;
-import qh.k6;
+import org.telegram.ui.bh1;
+import qh.i6;
 public final class y implements Utilities.CallbackReturn {
     public final int f5547a;
     public final KeyEvent.Callback f5548b;
@@ -34,7 +34,7 @@ public final class y implements Utilities.CallbackReturn {
                     miVar.J1(1, false);
                     miVar.r1();
                     MediaController.forceBroadcastNewPhotos = true;
-                    miVar.f29054g0.f0();
+                    miVar.f29072g0.f0();
                     miVar.show();
                 }
                 return Boolean.TRUE;
@@ -43,16 +43,16 @@ public final class y implements Utilities.CallbackReturn {
                 return paintArr[((Integer) obj).intValue() % paintArr.length];
             case 2:
                 j9 j9Var = (j9) this.f5548b;
-                return j9Var.f14311n[((Integer) obj).intValue() % j9Var.f14311n.length];
+                return j9Var.f14313n[((Integer) obj).intValue() % j9Var.f14313n.length];
             case 3:
-                return new mg1(12, (org.telegram.ui.m0) this.f5548b, (Integer) obj);
+                return new bh1(11, (org.telegram.ui.m0) this.f5548b, (Integer) obj);
             case 4:
                 MessageObject messageObject = (MessageObject) obj;
-                ((k6) this.f5548b).f45580o0 = messageObject;
+                ((i6) this.f5548b).f45479o0 = messageObject;
                 return Boolean.valueOf(MediaController.getInstance().setPlaylist(org.telegram.messenger.y3.m(messageObject), messageObject, 0L));
             default:
                 rh.c cVar = (rh.c) this.f5548b;
-                return cVar.f46820n[((Integer) obj).intValue() % cVar.f46820n.length];
+                return cVar.f46851n[((Integer) obj).intValue() % cVar.f46851n.length];
         }
     }
 }

@@ -27,20 +27,20 @@ public final class a implements qe.a {
         } else {
             gVar = new g(3);
         }
-        for (p pVar = (p) sVar.f15977f; pVar != null && pVar != sVar2; pVar = (p) pVar.f15977f) {
+        for (p pVar = (p) sVar.f15979f; pVar != null && pVar != sVar2; pVar = (p) pVar.f15979f) {
             gVar.b(pVar);
         }
         gVar.g();
-        p pVar2 = (p) sVar.f15977f;
-        gVar.f15977f = pVar2;
+        p pVar2 = (p) sVar.f15979f;
+        gVar.f15979f = pVar2;
         if (pVar2 != null) {
-            pVar2.f15976e = gVar;
+            pVar2.f15978e = gVar;
         }
-        gVar.f15976e = sVar;
-        sVar.f15977f = gVar;
-        p pVar3 = (p) sVar.f15974b;
-        gVar.f15974b = pVar3;
-        if (((p) gVar.f15977f) == null) {
+        gVar.f15978e = sVar;
+        sVar.f15979f = gVar;
+        p pVar3 = (p) sVar.f15976b;
+        gVar.f15976b = pVar3;
+        if (((p) gVar.f15979f) == null) {
             pVar3.d = gVar;
         }
     }

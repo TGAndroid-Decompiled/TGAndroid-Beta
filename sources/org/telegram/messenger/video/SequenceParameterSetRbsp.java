@@ -22,7 +22,7 @@ public class SequenceParameterSetRbsp {
         int i10;
         ?? obj = new Object();
         v vVar = new v((char) 0, 12);
-        vVar.f44183c = new char[50];
+        vVar.f44214c = new char[50];
         obj.f1915e = vVar;
         obj.f1912a = inputStream;
         obj.f1913b = inputStream.read();

@@ -27,7 +27,7 @@ public final class e9 implements ba.b {
             case 5:
                 return this.f9600b.a("FIREBASE_ML_SDK", new v2.c("proto"), l7.oa.d);
             case 6:
-                return this.f9600b.a("FIREBASE_ML_SDK", new v2.c("json"), ag.f15267e);
+                return this.f9600b.a("FIREBASE_ML_SDK", new v2.c("json"), ag.f15269e);
             default:
                 return this.f9600b.a("FIREBASE_ML_SDK", new v2.c("proto"), ag.d);
         }

@@ -35,7 +35,7 @@ public final class b2 implements Utilities.Callback {
                     } else if (TextUtils.isEmpty(str)) {
                         AndroidUtilities.cancelRunOnUIThread(iVar);
                         arrayList.clear();
-                        arrayList.addAll(p0.e(f2Var.f7482n0.f20843id));
+                        arrayList.addAll(p0.e(f2Var.f7482n0.f20845id));
                         f2Var.a0(false, true);
                         f2Var.X(true);
                         return;

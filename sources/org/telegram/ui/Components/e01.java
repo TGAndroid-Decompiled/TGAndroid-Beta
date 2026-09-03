@@ -1,59 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.RectF;
-import android.view.View;
+import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
-public final class e01 extends qv0 {
-    public final org.telegram.ui.h20 f26361t0;
-    public final org.telegram.ui.ActionBar.g6 f26362u0;
-    public final c01 f26363v0;
+public final class e01 extends ReplacementSpan {
+    public final int f26410a;
+    public int f26411b;
+    public final Object f26412c;
 
-    public e01(Context context, org.telegram.ui.ActionBar.g6 g6Var, c01 c01Var) {
-        super(context, null);
-        this.f26362u0 = g6Var;
-        this.f26363v0 = c01Var;
-        this.f26361t0 = new org.telegram.ui.h20();
+    public e01(int i10) {
+        this.f26410a = 0;
+        Paint paint = new Paint(1);
+        this.f26412c = paint;
+        this.f26411b = i10;
+        paint.setColor(org.telegram.ui.ActionBar.k6.l1(0.3f, org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21847nd, false)));
     }
 
-    @Override
-    public final boolean P() {
-        return false;
-    }
-
-    @Override
-    public final boolean Q() {
-        return false;
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f26363v0) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-            boolean drawChild = super.drawChild(canvas, view, j10);
-            canvas.save();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, AndroidUtilities.dp(45.0f), getHeight());
-            this.f26361t0.b(canvas, rectF, 0, 1.0f);
-            canvas.restore();
-            canvas.restore();
-            return drawChild;
+    public void a(int i10) {
+        org.telegram.ui.ip0 ip0Var = (org.telegram.ui.ip0) this.f26412c;
+        if (ip0Var != null) {
+            ip0Var.f37754a = i10 / 2.0f;
+            ip0Var.d();
+            this.f26411b = i10;
         }
-        return super.drawChild(canvas, view, j10);
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.g6 getResourceProvider() {
-        return this.f26362u0;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
+        switch (this.f26410a) {
+            case 0:
+                float dp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(1.33f);
+                RectF rectF = AndroidUtilities.rectTmp;
+                float dp2 = AndroidUtilities.dp(6.66f) / 2.0f;
+                rectF.set(f10, dp - dp2, this.f26411b + f10, dp + dp2);
+                canvas.drawRoundRect(rectF, dp2, dp2, (Paint) this.f26412c);
+                return;
+            default:
+                org.telegram.ui.ip0 ip0Var = (org.telegram.ui.ip0) this.f26412c;
+                if (ip0Var != null) {
+                    int i15 = (i12 + i14) / 2;
+                    float dp3 = f10 + AndroidUtilities.dp(5.0f);
+                    int i16 = this.f26411b;
+                    ip0Var.setBounds((int) (AndroidUtilities.dp(3.0f) + f10), i15 - this.f26411b, (int) (dp3 + i16), i15 + i16);
+                    ip0Var.draw(canvas);
+                    return;
+                }
+                return;
+        }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x, 1073741824);
-        c01 c01Var = this.f26363v0;
-        c01Var.measure(makeMeasureSpec, i11);
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), c01Var.getMeasuredHeight() + AndroidUtilities.dp(24.0f));
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f26410a) {
+            case 0:
+                return this.f26411b;
+            default:
+                return AndroidUtilities.dp(3.0f) + AndroidUtilities.dp(3.0f) + this.f26411b;
+        }
+    }
+
+    public e01(boolean z4, int i10, int i11) {
+        this.f26410a = 1;
+        this.f26411b = AndroidUtilities.dp(21.0f);
+        this.f26412c = z4 ? org.telegram.ui.ip0.c(i10, i11) : org.telegram.ui.ip0.a(i10, i11);
     }
 }

@@ -15,24 +15,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class ve extends ap0 {
+public final class ve extends zo0 {
     public final ChatActivityEnterView H;
 
     public ve(ChatActivityEnterView chatActivityEnterView, final Context context, final org.telegram.ui.xn xnVar, MessagesController messagesController, final boolean z4, TLRPC.Peer peer, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, final androidx.car.app.utils.a aVar, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
         int width;
         this.H = chatActivityEnterView;
-        this.f22216b = true;
-        this.f22217c = 150;
-        this.f22219f = -1L;
-        this.f22222j = new AnimationNotificationsLocker();
+        this.f22218b = true;
+        this.f22219c = 150;
+        this.f22221f = -1L;
+        this.f22224j = new AnimationNotificationsLocker();
         e();
-        this.f25316z = new ArrayList();
+        this.f33991z = new ArrayList();
         this.G = new ArrayList();
-        this.f25309r = peer;
-        this.f25310s = tL_channels_sendAsPeers;
+        this.f33984r = peer;
+        this.f33985s = tL_channels_sendAsPeers;
         eg.s2 s2Var = new eg.s2(this, context, 24);
-        this.f25311t = s2Var;
+        this.f33986t = s2Var;
         s2Var.setLayoutParams(k7.c6.c(-2.0f, -2));
         setContentView(s2Var);
         setWidth(-2);
@@ -51,56 +51,56 @@ public final class ve extends ap0 {
             width = xnVar.U0.getWidth();
         }
         int i10 = (int) (width * 0.75f);
-        uo0 uo0Var = new uo0(context, i10, dp);
-        this.f25306o = uo0Var;
-        uo0Var.setOrientation(1);
+        to0 to0Var = new to0(context, i10, dp);
+        this.f33981o = to0Var;
+        to0Var.setOrientation(1);
         TextView textView = new TextView(context);
-        this.f25307p = textView;
-        org.telegram.ui.b.l(org.telegram.ui.ActionBar.k6.f21820m5, g6Var, textView, 1, 16.0f);
+        this.f33982p = textView;
+        org.telegram.ui.b.l(org.telegram.ui.ActionBar.k6.f21822m5, g6Var, textView, 1, 16.0f);
         textView.setText(LocaleController.getString(R.string.SendMessageAsTitle));
         textView.setTypeface(AndroidUtilities.bold(), 1);
         int dp2 = AndroidUtilities.dp(18.0f);
         textView.setPadding(dp2, AndroidUtilities.dp(12.0f), dp2, AndroidUtilities.dp(12.0f));
-        uo0Var.addView(textView);
+        to0Var.addView(textView);
         FrameLayout frameLayout = new FrameLayout(context);
         final ArrayList<TLRPC.TL_sendAsPeer> arrayList = tL_channels_sendAsPeers.peers;
-        tl0 tl0Var = new tl0(context, null);
-        this.v = tl0Var;
+        sl0 sl0Var = new sl0(context, null);
+        this.v = sl0Var;
         f2.j0 j0Var = new f2.j0();
-        this.f25313w = j0Var;
-        tl0Var.setLayoutManager(j0Var);
-        tl0Var.setAdapter(new vo0(g6Var, arrayList, messagesController, i10, peer));
-        tl0Var.j(new wo0(this));
-        tl0Var.setOnItemClickListener(new jl0() {
+        this.f33988w = j0Var;
+        sl0Var.setLayoutManager(j0Var);
+        sl0Var.setAdapter(new uo0(g6Var, arrayList, messagesController, i10, peer));
+        sl0Var.j(new vo0(this));
+        sl0Var.setOnItemClickListener(new il0() {
             @Override
             public final void f(int i11, View view) {
-                ap0.k(ve.this, arrayList, context, xnVar, z4, aVar, view, i11);
+                zo0.k(ve.this, arrayList, context, xnVar, z4, aVar, view, i11);
             }
         });
-        tl0Var.setOverScrollMode(2);
-        frameLayout.addView(tl0Var);
+        sl0Var.setOverScrollMode(2);
+        frameLayout.addView(sl0Var);
         View view = new View(context);
-        this.f25312u = view;
+        this.f33987u = view;
         Drawable drawable = context.getDrawable(R.drawable.header_shadow);
         drawable.setAlpha(153);
         view.setBackground(drawable);
         view.setAlpha(0.0f);
         frameLayout.addView(view, k7.c6.c(4.0f, -1));
-        uo0Var.addView(frameLayout, k7.c6.c(-2.0f, -1));
-        s2Var.addView(uo0Var);
+        to0Var.addView(frameLayout, k7.c6.c(-2.0f, -1));
+        s2Var.addView(to0Var);
     }
 
     @Override
     public final void dismiss() {
-        ArrayList arrayList = this.f25316z;
+        ArrayList arrayList = this.f33991z;
         ChatActivityEnterView chatActivityEnterView = this.H;
-        if (chatActivityEnterView.f24645n0 != this) {
+        if (chatActivityEnterView.f24647n0 != this) {
             super.dismiss();
             return;
         }
-        chatActivityEnterView.f24645n0 = null;
+        chatActivityEnterView.f24647n0 = null;
         int i10 = 0;
-        if (!this.f25308q) {
+        if (!this.f33983q) {
             l(new o1.j[0]);
             chatActivityEnterView.m0.a(true, true, 0.0f);
             return;

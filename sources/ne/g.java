@@ -2,11 +2,11 @@ package ne;
 
 import k7.h0;
 public final class g extends p {
-    public final int f15961g;
+    public final int f15963g;
 
     @Override
     public final void a(h0 h0Var) {
-        switch (this.f15961g) {
+        switch (this.f15963g) {
             case 0:
                 h0Var.e(this);
                 return;

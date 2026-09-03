@@ -7,21 +7,21 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.pr;
 public final class h implements Runnable {
-    public final int f16073a;
-    public final s f16074b;
+    public final int f16075a;
+    public final s f16076b;
 
     public h(s sVar, int i10) {
-        this.f16073a = i10;
-        this.f16074b = sVar;
+        this.f16075a = i10;
+        this.f16076b = sVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f16073a;
-        s sVar = this.f16074b;
+        int i10 = this.f16075a;
+        s sVar = this.f16076b;
         switch (i10) {
             case 0:
-                sVar.f16212n.requestFocus();
+                sVar.f16214n.requestFocus();
                 return;
             case 1:
                 sVar.finishFragment();
@@ -30,15 +30,15 @@ public final class h implements Runnable {
                 if (!sVar.H) {
                     sVar.H = true;
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
-                    int measuredHeight = sVar.f16209c.getMeasuredHeight();
-                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) sVar.f16217y.getLayoutParams();
+                    int measuredHeight = sVar.f16211c.getMeasuredHeight();
+                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) sVar.f16219y.getLayoutParams();
                     marginLayoutParams.bottomMargin = measuredHeight;
-                    sVar.f16217y.setLayoutParams(marginLayoutParams);
-                    sVar.f16209c.setVisibility(0);
-                    s2 s2Var = sVar.f16209c;
+                    sVar.f16219y.setLayoutParams(marginLayoutParams);
+                    sVar.f16211c.setVisibility(0);
+                    s2 s2Var = sVar.f16211c;
                     s2Var.setTranslationY(s2Var.getMeasuredHeight());
-                    sVar.f16209c.animate().setListener(null).cancel();
-                    sVar.f16209c.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(pr.f30183f).setUpdateListener(new j(sVar, 0)).setListener(new r(0)).start();
+                    sVar.f16211c.animate().setListener(null).cancel();
+                    sVar.f16211c.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(pr.f30168f).setUpdateListener(new j(sVar, 0)).setListener(new r(0)).start();
                     return;
                 }
                 return;

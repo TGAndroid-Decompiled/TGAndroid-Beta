@@ -10,9 +10,9 @@ public final class f extends pe.a {
         ?? pVar = new ne.p();
         this.f11132a = pVar;
         this.f11134c = new StringBuilder();
-        pVar.f15962g = c3;
+        pVar.f15964g = c3;
         pVar.h = i10;
-        pVar.f15963i = i11;
+        pVar.f15965i = i11;
     }
 
     @Override
@@ -30,8 +30,8 @@ public final class f extends pe.a {
     public final void d() {
         String a2 = me.a.a(this.f11133b.trim());
         ne.h hVar = this.f11132a;
-        hVar.f15964j = a2;
-        hVar.f15965k = this.f11134c.toString();
+        hVar.f15966j = a2;
+        hVar.f15967k = this.f11134c.toString();
     }
 
     @Override
@@ -47,7 +47,7 @@ public final class f extends pe.a {
         int i12 = eVar.f11124g;
         ne.h hVar = this.f11132a;
         if (i12 < 4) {
-            char c3 = hVar.f15962g;
+            char c3 = hVar.f15964g;
             int i13 = hVar.h;
             int b10 = v.b(c3, charSequence, i10, charSequence.length()) - i10;
             if (b10 >= i13 && v.c(i10 + b10, charSequence.length(), charSequence) == charSequence.length()) {
@@ -55,7 +55,7 @@ public final class f extends pe.a {
             }
         }
         int length = charSequence.length();
-        for (int i14 = hVar.f15963i; i14 > 0 && i11 < length && charSequence.charAt(i11) == ' '; i14--) {
+        for (int i14 = hVar.f15965i; i14 > 0 && i11 < length && charSequence.charAt(i11) == ' '; i14--) {
             i11++;
         }
         return j4.h.a(i11);

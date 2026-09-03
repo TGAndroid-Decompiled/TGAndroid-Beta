@@ -5,22 +5,22 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class px implements e70 {
-    public final org.telegram.ui.ActionBar.d2 f40170a;
-    public final py f40171b;
+    public final org.telegram.ui.ActionBar.d2 f40142a;
+    public final py f40143b;
 
     public px(py pyVar, org.telegram.ui.ActionBar.d2 d2Var) {
-        this.f40171b = pyVar;
-        this.f40170a = d2Var;
+        this.f40143b = pyVar;
+        this.f40142a = d2Var;
     }
 
     @Override
     public final void a(f70 f70Var, final long j10) {
         final org.telegram.ui.ActionBar.p2[] p2VarArr = {f70Var, null};
         Utilities.Callback callback = new Utilities.Callback(this) {
-            public final px f39539b;
+            public final px f39473b;
 
             {
-                this.f39539b = this;
+                this.f39473b = this;
             }
 
             @Override
@@ -28,7 +28,7 @@ public final class px implements e70 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        py pyVar = this.f39539b.f40171b;
+                        py pyVar = this.f39473b.f40143b;
                         Boolean bool = pyVar.D.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -36,7 +36,7 @@ public final class px implements e70 {
                             bundle.putLong("chat_id", j10);
                             bundle.putBoolean("forcePublic", pyVar.D.has_username.booleanValue());
                             nd ndVar = new nd(bundle);
-                            ndVar.f39404q0 = new d5(runnable, 12);
+                            ndVar.f39318q0 = new d5(runnable, 12);
                             pyVar.presentFragment(ndVar);
                             p2VarArr[1] = ndVar;
                             return;
@@ -44,18 +44,18 @@ public final class px implements e70 {
                         runnable.run();
                         return;
                     default:
-                        px pxVar = this.f39539b;
-                        py pyVar2 = pxVar.f40171b;
-                        pyVar2.Q4(pyVar2.getMessagesController().getChat(Long.valueOf(j10)), runnable, new org.telegram.ui.Components.l41(22, pxVar, p2VarArr));
+                        px pxVar = this.f39473b;
+                        py pyVar2 = pxVar.f40143b;
+                        pyVar2.Q4(pyVar2.getMessagesController().getChat(Long.valueOf(j10)), runnable, new org.telegram.ui.Components.q51(21, pxVar, p2VarArr));
                         return;
                 }
             }
         };
         Utilities.Callback callback2 = new Utilities.Callback(this) {
-            public final px f39539b;
+            public final px f39473b;
 
             {
-                this.f39539b = this;
+                this.f39473b = this;
             }
 
             @Override
@@ -63,7 +63,7 @@ public final class px implements e70 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        py pyVar = this.f39539b.f40171b;
+                        py pyVar = this.f39473b.f40143b;
                         Boolean bool = pyVar.D.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -71,7 +71,7 @@ public final class px implements e70 {
                             bundle.putLong("chat_id", j10);
                             bundle.putBoolean("forcePublic", pyVar.D.has_username.booleanValue());
                             nd ndVar = new nd(bundle);
-                            ndVar.f39404q0 = new d5(runnable, 12);
+                            ndVar.f39318q0 = new d5(runnable, 12);
                             pyVar.presentFragment(ndVar);
                             p2VarArr[1] = ndVar;
                             return;
@@ -79,19 +79,19 @@ public final class px implements e70 {
                         runnable.run();
                         return;
                     default:
-                        px pxVar = this.f39539b;
-                        py pyVar2 = pxVar.f40171b;
-                        pyVar2.Q4(pyVar2.getMessagesController().getChat(Long.valueOf(j10)), runnable, new org.telegram.ui.Components.l41(22, pxVar, p2VarArr));
+                        px pxVar = this.f39473b;
+                        py pyVar2 = pxVar.f40143b;
+                        pyVar2.Q4(pyVar2.getMessagesController().getChat(Long.valueOf(j10)), runnable, new org.telegram.ui.Components.q51(21, pxVar, p2VarArr));
                         return;
                 }
             }
         };
-        org.telegram.ui.ActionBar.d2 d2Var = this.f40170a;
+        org.telegram.ui.ActionBar.d2 d2Var = this.f40142a;
         Utilities.doCallbacks(callback, callback2, new ju(this, d2Var, j10, 1), new Utilities.Callback(this) {
-            public final px f39853b;
+            public final px f39818b;
 
             {
-                this.f39853b = this;
+                this.f39818b = this;
             }
 
             @Override
@@ -100,7 +100,7 @@ public final class px implements e70 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        py pyVar = this.f39853b.f40171b;
+                        py pyVar = this.f39818b.f40143b;
                         if (pyVar.D.bot_admin_rights != null) {
                             TLRPC.User user = pyVar.getMessagesController().getUser(Long.valueOf(pyVar.E));
                             MessagesController messagesController = pyVar.getMessagesController();
@@ -119,7 +119,7 @@ public final class px implements e70 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        py pyVar2 = this.f39853b.f40171b;
+                        py pyVar2 = this.f39818b.f40143b;
                         if (pyVar2.D.user_admin_rights != null) {
                             MessagesController messagesController2 = pyVar2.getMessagesController();
                             long j11 = j10;
@@ -131,10 +131,10 @@ public final class px implements e70 {
                 }
             }
         }, new Utilities.Callback(this) {
-            public final px f39853b;
+            public final px f39818b;
 
             {
-                this.f39853b = this;
+                this.f39818b = this;
             }
 
             @Override
@@ -143,7 +143,7 @@ public final class px implements e70 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        py pyVar = this.f39853b.f40171b;
+                        py pyVar = this.f39818b.f40143b;
                         if (pyVar.D.bot_admin_rights != null) {
                             TLRPC.User user = pyVar.getMessagesController().getUser(Long.valueOf(pyVar.E));
                             MessagesController messagesController = pyVar.getMessagesController();
@@ -162,7 +162,7 @@ public final class px implements e70 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        py pyVar2 = this.f39853b.f40171b;
+                        py pyVar2 = this.f39818b.f40143b;
                         if (pyVar2.D.user_admin_rights != null) {
                             MessagesController messagesController2 = pyVar2.getMessagesController();
                             long j11 = j10;

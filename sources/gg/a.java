@@ -70,7 +70,7 @@ public final class a implements GLSurfaceView.Renderer {
 
     public final void b() {
         boolean z4;
-        int i10 = k6.f21731h5;
+        int i10 = k6.f21733h5;
         boolean z10 = false;
         if (i0.a.f(k6.w0(null, i10, false)) < 0.5d) {
             z4 = true;

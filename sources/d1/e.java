@@ -49,27 +49,27 @@ public final class e extends b1.d {
     public static v0.f e(u uVar) {
         JSONObject jSONObject;
         try {
-            k kVar = uVar.f44728f;
-            w0 w0Var = uVar.f44726c;
+            k kVar = uVar.f44759f;
+            w0 w0Var = uVar.f44757c;
             try {
                 JSONObject jSONObject2 = new JSONObject();
                 if (w0Var != null && w0Var.u().length > 0) {
                     jSONObject2.put("rawId", i6.b.c(w0Var.u()));
                 }
-                String str = uVar.f44729n;
+                String str = uVar.f44760n;
                 if (str != null) {
                     jSONObject2.put("authenticatorAttachment", str);
                 }
-                String str2 = uVar.f44725b;
+                String str2 = uVar.f44756b;
                 if (str2 != null && kVar == null) {
                     jSONObject2.put("type", str2);
                 }
-                String str3 = uVar.f44724a;
+                String str3 = uVar.f44755a;
                 if (str3 != null) {
                     jSONObject2.put("id", str3);
                 }
                 String str4 = "response";
-                q6.i iVar = uVar.f44727e;
+                q6.i iVar = uVar.f44758e;
                 boolean z4 = true;
                 if (iVar != null) {
                     jSONObject = iVar.e();
@@ -82,8 +82,8 @@ public final class e extends b1.d {
                         if (kVar != null) {
                             try {
                                 JSONObject jSONObject3 = new JSONObject();
-                                jSONObject3.put("code", kVar.f44688a.f44719a);
-                                String str5 = kVar.f44689b;
+                                jSONObject3.put("code", kVar.f44719a.f44750a);
+                                String str5 = kVar.f44720b;
                                 if (str5 != null) {
                                     jSONObject3.put("message", str5);
                                 }
@@ -140,7 +140,7 @@ public final class e extends b1.d {
         String str4 = request.d;
         Context context = this.f4154e;
         j.e(context, "context");
-        if (y5.d.d.d(context, y5.e.f50768a) == 0) {
+        if (y5.d.d.d(context, y5.e.f50804a) == 0) {
             PackageManager packageManager = context.getPackageManager();
             j.d(packageManager, "getPackageManager(...)");
             if (Build.VERSION.SDK_INT >= 28) {
@@ -298,12 +298,12 @@ public final class e extends b1.d {
                                 if (cVar == null) {
                                     str = null;
                                 } else {
-                                    str = cVar.f44650a;
+                                    str = cVar.f44681a;
                                 }
                                 if (e0Var == null) {
                                     str2 = null;
                                 } else {
-                                    str2 = e0Var.f44659a;
+                                    str2 = e0Var.f44690a;
                                 }
                                 fVar = null;
                                 mVar = new m(str, valueOf, null, str2);
@@ -334,7 +334,7 @@ public final class e extends b1.d {
                             } else {
                                 fVar2 = fVar;
                             }
-                            return new v(yVar4, b0Var, bArr2, arrayList2, d, arrayList3, mVar, null, null, a10.f44656a, fVar2, null, null);
+                            return new v(yVar4, b0Var, bArr2, arrayList2, d, arrayList3, mVar, null, null, a10.f44687a, fVar2, null, null);
                         }
                         throw new JSONException("PublicKeyCredentialCreationOptions rp ID is missing or unexpectedly empty");
                     }

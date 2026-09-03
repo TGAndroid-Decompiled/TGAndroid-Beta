@@ -23,12 +23,12 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.cb;
 import org.telegram.ui.Components.ic;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.xk;
 import org.telegram.ui.Components.yc0;
 import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ci1;
-import org.telegram.ui.g51;
+import org.telegram.ui.ii1;
+import org.telegram.ui.l51;
+import org.telegram.ui.no0;
 public final class g implements DialogInterface.OnDismissListener {
     public final int f7488a;
     public final Object f7489b;
@@ -82,7 +82,7 @@ public final class g implements DialogInterface.OnDismissListener {
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj;
                 p2Var2.onPause();
                 p2Var2.onFragmentDestroy();
-                if (n2Var != null && (runnable = n2Var.f22157b) != null) {
+                if (n2Var != null && (runnable = n2Var.f22159b) != null) {
                     runnable.run();
                     return;
                 }
@@ -129,7 +129,7 @@ public final class g implements DialogInterface.OnDismissListener {
                                 hashMap2 = launchActivity.G0;
                             }
                             ic Q = a02.Q(i11, 36, LaunchActivity.V(R.string.ChangeLanguageLater, "ChangeLanguageLater", hashMap2));
-                            Q.f27745j = 5000;
+                            Q.f27778j = 5000;
                             Q.j();
                         } else {
                             qc qcVar = new qc(cb.a(launchActivity), null);
@@ -140,7 +140,7 @@ public final class g implements DialogInterface.OnDismissListener {
                                 hashMap = launchActivity.G0;
                             }
                             ic Q2 = qcVar.Q(i12, 36, LaunchActivity.V(R.string.ChangeLanguageLater, "ChangeLanguageLater", hashMap));
-                            Q2.f27745j = 5000;
+                            Q2.f27778j = 5000;
                             Q2.j();
                         }
                     } catch (Exception e6) {
@@ -160,23 +160,23 @@ public final class g implements DialogInterface.OnDismissListener {
                 launchActivity.B0.remove(d2Var);
                 return;
             case 9:
-                xk xkVar = (xk) obj;
+                no0 no0Var = (no0) obj;
                 if (!((boolean[]) obj2)[0]) {
-                    xkVar.run(Boolean.FALSE);
+                    no0Var.run(Boolean.FALSE);
                     return;
                 }
                 return;
             case 10:
-                g51 g51Var = (g51) obj2;
+                l51 l51Var = (l51) obj2;
                 if (!((boolean[]) obj)[0]) {
-                    g51Var.c(true);
+                    l51Var.c(true);
                 }
-                g51Var.f39326w = null;
+                l51Var.f41037w = null;
                 return;
             case 11:
-                ci1 ci1Var = (ci1) obj2;
+                ii1 ii1Var = (ii1) obj2;
                 if (!((boolean[]) obj)[0]) {
-                    ci1Var.f35851r0.b();
+                    ii1Var.f37703r0.b();
                     return;
                 }
                 return;
@@ -187,7 +187,7 @@ public final class g implements DialogInterface.OnDismissListener {
                     a1Var.v("popup_closed", new JSONObject());
                 }
                 a1Var.W = null;
-                a1Var.f42468b0 = System.currentTimeMillis();
+                a1Var.f42432b0 = System.currentTimeMillis();
                 return;
             case 13:
                 org.telegram.ui.web.a1 a1Var2 = (org.telegram.ui.web.a1) obj2;

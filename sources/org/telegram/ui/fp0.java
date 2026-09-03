@@ -1,73 +1,58 @@
 package org.telegram.ui;
 
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.MessagesController;
-public final class fp0 {
-    public boolean f36992f;
-    public boolean f36993g;
-    public boolean h;
-    public Path f36994i;
-    public Paint f36995j;
-    public Drawable f36996k;
-    public final org.telegram.ui.Components.rc f36997l;
-    public boolean f36998m;
-    public final org.telegram.ui.Components.z5 f36999n;
-    public int f37000o;
-    public final gp0 f37003r;
-    public final Paint f36988a = new Paint(1);
-    public final Paint f36989b = new Paint(1);
-    public final Paint f36990c = new Paint(1);
-    public final Path d = new Path();
-    public final Path f36991e = new Path();
-    public final RectF f37001p = new RectF();
-    public final RectF f37002q = new RectF();
+import android.content.Context;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class fp0 extends LinearLayout {
+    public final org.telegram.ui.Components.g90 f36891a;
+    public final org.telegram.ui.Components.g90 f36892b;
+    public final hp0 f36893c;
 
-    public fp0(gp0 gp0Var) {
-        this.f37003r = gp0Var;
-        this.f36997l = new org.telegram.ui.Components.rc(gp0Var);
-        this.f36999n = new org.telegram.ui.Components.z5(gp0Var, 0L, 320L, org.telegram.ui.Components.pr.h);
+    public fp0(hp0 hp0Var, Context context) {
+        super(context);
+        org.telegram.ui.ActionBar.g6 g6Var;
+        int i10;
+        org.telegram.ui.ActionBar.g6 g6Var2;
+        this.f36893c = hp0Var;
+        setOrientation(1);
+        np0 np0Var = hp0Var.m0;
+        setBackgroundColor(np0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21661d6));
+        org.telegram.ui.Components.p9 p9Var = new org.telegram.ui.Components.p9(getContext());
+        p9Var.setImageDrawable(new org.telegram.ui.Components.hj0(R.raw.utyan_draw, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
+        addView(p9Var, k7.c6.t(120, 120, 1, 0, 6, 0, 0));
+        Context context2 = getContext();
+        int i11 = org.telegram.ui.ActionBar.k6.f22038y6;
+        g6Var = ((org.telegram.ui.ActionBar.p2) np0Var).resourceProvider;
+        org.telegram.ui.Components.g90 a2 = k7.g6.a(context2, 14.0f, i11, false, g6Var);
+        this.f36891a = a2;
+        a2.setGravity(17);
+        if (hp0Var.f37455j0 == 0) {
+            i10 = R.string.Gift2PeerColorProfileEmptyTitle;
+        } else {
+            i10 = R.string.Gift2PeerColorReplyEmptyTitle;
+        }
+        a2.setText(LocaleController.getString(i10));
+        addView(a2, k7.c6.t(-1, -2, 1, 64, 8, 64, 8));
+        Context context3 = getContext();
+        int i12 = org.telegram.ui.ActionBar.k6.f21722gc;
+        g6Var2 = ((org.telegram.ui.ActionBar.p2) np0Var).resourceProvider;
+        org.telegram.ui.Components.g90 a10 = k7.g6.a(context3, 14.0f, i12, false, g6Var2);
+        this.f36892b = a10;
+        a10.setGravity(17);
+        a10.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2PeerColorEmptyButton), new gl0(this, 10)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.33f), 1.0f));
+        addView(a10, k7.c6.t(-1, -2, 1, 32, 4, 32, 24));
     }
 
-    public final void a(MessagesController.PeerColor peerColor) {
-        boolean a2;
-        int color;
-        gp0 gp0Var = this.f37003r;
-        org.telegram.ui.ActionBar.g6 g6Var = gp0Var.f37241a;
-        if (peerColor == null) {
-            return;
-        }
-        if (g6Var == null) {
-            a2 = org.telegram.ui.ActionBar.k6.I.q();
-        } else {
-            a2 = g6Var.a();
-        }
-        int i10 = gp0Var.f37243c;
-        Paint paint = this.f36989b;
-        Paint paint2 = this.f36988a;
-        if (i10 == 1) {
-            if (a2 && peerColor.hasColor2() && !peerColor.hasColor3()) {
-                paint2.setColor(peerColor.getColor(1, g6Var));
-                paint.setColor(peerColor.getColor(0, g6Var));
-            } else {
-                paint2.setColor(peerColor.getColor(0, g6Var));
-                paint.setColor(peerColor.getColor(1, g6Var));
-            }
-            this.f36990c.setColor(peerColor.getColor(2, g6Var));
-            this.f36992f = peerColor.hasColor2(a2);
-            this.f36993g = peerColor.hasColor3(a2);
-            return;
-        }
-        paint2.setColor(peerColor.getColor(0, g6Var));
-        if (peerColor.hasColor6(a2)) {
-            color = peerColor.getColor(1, g6Var);
-        } else {
-            color = peerColor.getColor(0, g6Var);
-        }
-        paint.setColor(color);
-        this.f36992f = peerColor.hasColor6(a2);
-        this.f36993g = false;
+    public final void a() {
+        np0 np0Var = this.f36893c.m0;
+        setBackgroundColor(np0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21661d6));
+        this.f36891a.setTextColor(np0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f22038y6));
+        int i10 = org.telegram.ui.ActionBar.k6.f21722gc;
+        int themedColor = np0Var.getThemedColor(i10);
+        org.telegram.ui.Components.g90 g90Var = this.f36892b;
+        g90Var.setTextColor(themedColor);
+        g90Var.setLinkTextColor(np0Var.getThemedColor(i10));
     }
 }

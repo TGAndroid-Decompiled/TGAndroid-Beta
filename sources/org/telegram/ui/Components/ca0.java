@@ -15,22 +15,22 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
-public final class ca0 extends zu0 {
-    public AnimatorSet f25901c2;
-    public final FrameLayout f25902d2;
-    public final z90 f25903e2;
-    public final fa0 f25904f2;
+public final class ca0 extends yu0 {
+    public AnimatorSet f25878c2;
+    public final FrameLayout f25879d2;
+    public final z90 f25880e2;
+    public final fa0 f25881f2;
 
-    public ca0(fa0 fa0Var, Context context, long j10, ru0 ru0Var, TLRPC.ChatFull chatFull, TLRPC.UserFull userFull, int i10, fa0 fa0Var2, ba0 ba0Var, org.telegram.ui.ActionBar.g6 g6Var, FrameLayout frameLayout, z90 z90Var) {
-        super(context, j10, ru0Var, 0, null, chatFull, userFull, i10, 0, fa0Var2, ba0Var, 0, g6Var, null);
-        this.f25904f2 = fa0Var;
-        this.f25902d2 = frameLayout;
-        this.f25903e2 = z90Var;
+    public ca0(fa0 fa0Var, Context context, long j10, qu0 qu0Var, TLRPC.ChatFull chatFull, TLRPC.UserFull userFull, int i10, fa0 fa0Var2, ba0 ba0Var, org.telegram.ui.ActionBar.g6 g6Var, FrameLayout frameLayout, z90 z90Var) {
+        super(context, j10, qu0Var, 0, null, chatFull, userFull, i10, 0, fa0Var2, ba0Var, 0, g6Var, null);
+        this.f25881f2 = fa0Var;
+        this.f25879d2 = frameLayout;
+        this.f25880e2 = z90Var;
     }
 
     @Override
     public final boolean D() {
-        int i10 = this.f25904f2.f26850a;
+        int i10 = this.f25881f2.f26849a;
         if (i10 != 1 && i10 != 2) {
             return true;
         }
@@ -41,9 +41,9 @@ public final class ca0 extends zu0 {
     public final void D0(SparseArray sparseArray) {
         boolean z4;
         int size = sparseArray.size();
-        fa0 fa0Var = this.f25904f2;
+        fa0 fa0Var = this.f25881f2;
         fa0Var.F = sparseArray;
-        int i10 = fa0Var.f26850a;
+        int i10 = fa0Var.f26849a;
         if (i10 == 1 || i10 == 2) {
             fa0Var.C.a();
             fa0Var.C.c(LocaleController.formatPluralString("StoriesSelected", size, new Object[0]), !LocaleController.isRTL, true);
@@ -66,23 +66,23 @@ public final class ca0 extends zu0 {
     @Override
     public final void K0(boolean z4) {
         int i10;
-        fa0 fa0Var = this.f25904f2;
+        fa0 fa0Var = this.f25881f2;
         Activity parentActivity = fa0Var.getParentActivity();
         i10 = ((org.telegram.ui.ActionBar.p2) fa0Var).classGuid;
         AndroidUtilities.removeAdjustResize(parentActivity, i10);
-        AndroidUtilities.updateViewVisibilityAnimated(this.f25902d2, !z4, 0.95f, true);
+        AndroidUtilities.updateViewVisibilityAnimated(this.f25879d2, !z4, 0.95f, true);
     }
 
     @Override
     public final void L0() {
         super.L0();
-        this.f25904f2.a0();
+        this.f25881f2.a0();
     }
 
     @Override
     public final void M0(float f10) {
-        fa0 fa0Var = this.f25904f2;
-        if (fa0Var.f26850a != 1) {
+        fa0 fa0Var = this.f25881f2;
+        if (fa0Var.f26849a != 1) {
             return;
         }
         float f11 = f10 - 8.0f;
@@ -99,7 +99,7 @@ public final class ca0 extends zu0 {
 
     @Override
     public final boolean N() {
-        int i10 = this.f25904f2.f26850a;
+        int i10 = this.f25881f2.f26849a;
         if (i10 == 1 || i10 == 2 || i10 == 3) {
             return true;
         }
@@ -108,7 +108,7 @@ public final class ca0 extends zu0 {
 
     @Override
     public final void N0(boolean z4) {
-        ea0 ea0Var = this.f25904f2.O;
+        ea0 ea0Var = this.f25881f2.O;
         if (ea0Var != null) {
             ea0Var.setScrolling(z4);
         }
@@ -116,7 +116,7 @@ public final class ca0 extends zu0 {
 
     @Override
     public final void P(Canvas canvas, float f10, Rect rect, Paint paint) {
-        this.f25903e2.J(canvas, getY() + f10, rect, paint, true);
+        this.f25880e2.J(canvas, getY() + f10, rect, paint, true);
     }
 
     @Override
@@ -128,17 +128,17 @@ public final class ca0 extends zu0 {
         float f13;
         float f14;
         float measuredHeight;
-        fa0 fa0Var = this.f25904f2;
-        if (fa0Var.f26850a == 0) {
+        fa0 fa0Var = this.f25881f2;
+        if (fa0Var.f26849a == 0) {
             super.b1(z4);
-        } else if (this.f34021z1 == z4) {
+        } else if (this.f33666z1 == z4) {
         } else {
-            this.f34021z1 = z4;
-            AnimatorSet animatorSet = this.f25901c2;
+            this.f33666z1 = z4;
+            AnimatorSet animatorSet = this.f25878c2;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
-            int i10 = fa0Var.f26850a;
+            int i10 = fa0Var.f26849a;
             if (i10 == 1 || i10 == 2) {
                 if (z4) {
                     g1(null);
@@ -152,7 +152,7 @@ public final class ca0 extends zu0 {
                     frameLayout.setVisibility(0);
                 }
             } else {
-                fa0Var.f26857s.setVisibility(0);
+                fa0Var.f26856s.setVisibility(0);
             }
             org.telegram.ui.ActionBar.i2 i2Var = fa0Var.B;
             float f15 = 0.0f;
@@ -163,7 +163,7 @@ public final class ca0 extends zu0 {
                 f10 = 0.0f;
             }
             i2Var.c(f10, true);
-            this.f25901c2 = new AnimatorSet();
+            this.f25878c2 = new AnimatorSet();
             ArrayList arrayList = new ArrayList();
             k6 k6Var = fa0Var.C;
             if (z4) {
@@ -174,7 +174,7 @@ public final class ca0 extends zu0 {
             float[] fArr = {f11};
             Property property = View.ALPHA;
             arrayList.add(ObjectAnimator.ofFloat(k6Var, property, fArr));
-            FrameLayout frameLayout2 = fa0Var.f26857s;
+            FrameLayout frameLayout2 = fa0Var.f26856s;
             if (z4) {
                 f12 = 0.0f;
             } else {
@@ -229,33 +229,33 @@ public final class ca0 extends zu0 {
                 }
                 arrayList.add(ObjectAnimator.ofFloat(ea0Var, property, f16));
             }
-            this.f25901c2.playTogether(arrayList);
-            this.f25901c2.setDuration(300L);
-            this.f25901c2.setInterpolator(pr.h);
-            this.f25901c2.addListener(new org.telegram.ui.ActionBar.g(this, z4, z10, 4));
-            this.f25901c2.start();
+            this.f25878c2.playTogether(arrayList);
+            this.f25878c2.setDuration(300L);
+            this.f25878c2.setInterpolator(pr.h);
+            this.f25878c2.addListener(new org.telegram.ui.ActionBar.g(this, z4, z10, 4));
+            this.f25878c2.start();
         }
     }
 
     @Override
     public final int getInitialTab() {
-        return this.f25904f2.T;
+        return this.f25881f2.T;
     }
 
     @Override
     public final String getStoriesHashtag() {
-        return this.f25904f2.h;
+        return this.f25881f2.h;
     }
 
     @Override
     public final String getStoriesHashtagUsername() {
-        return this.f25904f2.f26855n;
+        return this.f25881f2.f26854n;
     }
 
     @Override
     public final boolean l0() {
-        fa0 fa0Var = this.f25904f2;
-        if (fa0Var.f26850a == 0 && fa0Var.f26853e == fa0Var.getUserConfig().getClientUserId() && fa0Var.f26854f == 0) {
+        fa0 fa0Var = this.f25881f2;
+        if (fa0Var.f26849a == 0 && fa0Var.f26852e == fa0Var.getUserConfig().getClientUserId() && fa0Var.f26853f == 0) {
             return true;
         }
         return false;
@@ -263,7 +263,7 @@ public final class ca0 extends zu0 {
 
     @Override
     public final boolean m0() {
-        int i10 = this.f25904f2.f26850a;
+        int i10 = this.f25881f2.f26849a;
         if (i10 == 1 || i10 == 2) {
             return true;
         }
@@ -272,12 +272,12 @@ public final class ca0 extends zu0 {
 
     @Override
     public final void o0() {
-        this.f25903e2.M();
+        this.f25880e2.M();
     }
 
     @Override
     public final boolean q0() {
-        if (this.f25904f2.f26850a == 2) {
+        if (this.f25881f2.f26849a == 2) {
             return true;
         }
         return false;
@@ -285,7 +285,7 @@ public final class ca0 extends zu0 {
 
     @Override
     public final boolean v0() {
-        int i10 = this.f25904f2.f26850a;
+        int i10 = this.f25881f2.f26849a;
         if (i10 == 1 || i10 == 2) {
             return true;
         }

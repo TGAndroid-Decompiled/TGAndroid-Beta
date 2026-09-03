@@ -9,12 +9,12 @@ public final class e7 {
     public final Integer f10523g;
 
     public e7(m.r3 r3Var) {
-        this.f10518a = (Long) r3Var.f13327a;
-        this.f10519b = (d7) r3Var.f13328b;
-        this.f10520c = (y6) r3Var.f13329c;
+        this.f10518a = (Long) r3Var.f13329a;
+        this.f10519b = (d7) r3Var.f13330b;
+        this.f10520c = (y6) r3Var.f13331c;
         this.d = (Integer) r3Var.d;
-        this.f10521e = (Integer) r3Var.f13330e;
-        this.f10522f = (Integer) r3Var.f13331f;
+        this.f10521e = (Integer) r3Var.f13332e;
+        this.f10522f = (Integer) r3Var.f13333f;
         this.f10523g = (Integer) r3Var.h;
     }
 }

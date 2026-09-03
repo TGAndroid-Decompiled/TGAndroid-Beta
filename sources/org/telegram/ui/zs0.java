@@ -1,61 +1,40 @@
 package org.telegram.ui;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.SurfaceView;
-import android.view.TextureView;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-public final class zs0 extends o4 {
-    public final PhotoViewer h;
+import android.view.OrientationEventListener;
+public final class zs0 extends OrientationEventListener {
+    public final PhotoViewer f44015a;
 
     public zs0(Context context, PhotoViewer photoViewer) {
         super(context);
-        this.h = photoViewer;
+        this.f44015a = photoViewer;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (this.h.P8) {
-            return;
-        }
-        super.draw(canvas);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        PhotoViewer photoViewer = this.h;
-        if (view == photoViewer.B3 && photoViewer.f34252d4) {
-            return true;
-        }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        PhotoViewer photoViewer = this.h;
-        ImageView imageView = photoViewer.f34404u3;
-        if (imageView != null) {
-            ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
-            layoutParams.width = getMeasuredWidth();
-            layoutParams.height = getMeasuredHeight();
-        }
-        TextureView textureView = photoViewer.f34442y2;
-        if (textureView instanceof org.telegram.ui.Components.y61) {
-            textureView.setPivotX(textureView.getMeasuredWidth() / 2);
-            photoViewer.B2.setPivotX(photoViewer.f34442y2.getMeasuredWidth() / 2);
-        } else {
-            if (textureView != null) {
-                textureView.setPivotX(0.0f);
+    public final void onOrientationChanged(int i10) {
+        et0 et0Var;
+        Activity activity;
+        int i11;
+        PhotoViewer photoViewer = this.f44015a;
+        if (photoViewer.T3 != null && (et0Var = photoViewer.f34412v2) != null && et0Var.getVisibility() == 0 && (activity = photoViewer.f34439y) != null && (i11 = photoViewer.V3) != 0) {
+            if (i11 == 1) {
+                if (i10 >= 240 && i10 <= 300) {
+                    photoViewer.W3 = true;
+                } else if (photoViewer.W3 && i10 > 0) {
+                    if (i10 >= 330 || i10 <= 30) {
+                        activity.setRequestedOrientation(photoViewer.U3);
+                        photoViewer.V3 = 0;
+                        photoViewer.W3 = false;
+                    }
+                }
+            } else if (i10 > 0 && (i10 >= 330 || i10 <= 30)) {
+                photoViewer.W3 = true;
+            } else if (photoViewer.W3 && i10 >= 240 && i10 <= 300) {
+                activity.setRequestedOrientation(photoViewer.U3);
+                photoViewer.V3 = 0;
+                photoViewer.W3 = false;
             }
-            SurfaceView surfaceView = photoViewer.f34451z2;
-            if (surfaceView != null) {
-                surfaceView.setPivotX(0.0f);
-            }
-            photoViewer.B2.setPivotX(0.0f);
         }
-        photoViewer.z0();
     }
 }

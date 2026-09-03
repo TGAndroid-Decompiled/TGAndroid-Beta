@@ -1,26 +1,23 @@
 package org.telegram.ui;
-public final class j41 extends org.telegram.ui.Components.k71 {
-    public final SecretMediaViewer f38017j0;
 
-    public j41(SecretMediaViewer secretMediaViewer) {
-        this.f38017j0 = secretMediaViewer;
+import android.view.View;
+import android.view.WindowInsets;
+public final class j41 implements View.OnApplyWindowInsetsListener {
+    public final int f37844a;
+    public final Object f37845b;
+
+    public j41(Object obj, int i10) {
+        this.f37844a = i10;
+        this.f37845b = obj;
     }
 
     @Override
-    public final void B() {
-        super.B();
-        this.f38017j0.T.a(false, true);
-    }
-
-    @Override
-    public final void C() {
-        super.C();
-        this.f38017j0.T.a(true, true);
-    }
-
-    @Override
-    public final void P(boolean z4) {
-        super.P(z4);
-        this.f38017j0.T.a(z4, true);
+    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+        switch (this.f37844a) {
+            case 0:
+                return SecretMediaViewer.a((SecretMediaViewer) this.f37845b, windowInsets);
+            default:
+                return s61.b((l51) this.f37845b, view, windowInsets);
+        }
     }
 }

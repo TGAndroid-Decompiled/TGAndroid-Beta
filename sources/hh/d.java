@@ -20,8 +20,8 @@ public final class d extends v0 {
     @Override
     public final void c(Canvas canvas, RecyclerView recyclerView) {
         f fVar = this.f7696c;
-        int max = Math.max(0, AndroidUtilities.dp(80.0f) + ((int) fVar.f7702d0.getTranslationY()) + ((int) fVar.U.f50510e));
-        int v02 = k6.v0(k6.f21731h5, this.f7695b);
+        int max = Math.max(0, AndroidUtilities.dp(80.0f) + ((int) fVar.f7702d0.getTranslationY()) + ((int) fVar.U.f50546e));
+        int v02 = k6.v0(k6.f21733h5, this.f7695b);
         b0 b0Var = this.f7694a;
         b0Var.b(v02);
         b0Var.setBounds(0, max, recyclerView.getWidth(), AndroidUtilities.dp(8.0f) + max);

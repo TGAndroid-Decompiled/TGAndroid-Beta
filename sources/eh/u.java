@@ -38,7 +38,7 @@ public final class u {
             }
             tL_messages_getPollVotes.limit = i10;
             tL_messages_getPollVotes.peer = this.f5672b;
-            tL_messages_getPollVotes.f20940id = this.f5673c;
+            tL_messages_getPollVotes.f20942id = this.f5673c;
             tL_messages_getPollVotes.option = this.d;
             tL_messages_getPollVotes.offset = str;
             ConnectionsManager.getInstance(this.f5671a).sendRequestTyped(tL_messages_getPollVotes, new Object(), new n(this, 1));

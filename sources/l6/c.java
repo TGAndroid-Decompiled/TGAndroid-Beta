@@ -24,10 +24,10 @@ public final class c implements e {
 
     @Override
     public final void b() {
-        m mVar = this.f11737b.f48927a;
+        m mVar = this.f11737b.f48963a;
         Bundle bundle = this.f11736a;
-        ViewGroup viewGroup = (ViewGroup) mVar.f47062b;
-        g gVar = (g) mVar.f47063c;
+        ViewGroup viewGroup = (ViewGroup) mVar.f47093b;
+        g gVar = (g) mVar.f47094c;
         try {
             Bundle bundle2 = new Bundle();
             w7.d.b(bundle, bundle2);

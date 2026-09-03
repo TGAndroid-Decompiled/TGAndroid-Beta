@@ -8,7 +8,7 @@ import j7.b7;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.kv0;
+import org.telegram.ui.Components.jv0;
 public final class f2 {
     public final Bitmap f4539a;
     public int f4540b;
@@ -17,9 +17,9 @@ public final class f2 {
         this.f4539a = bitmap;
     }
 
-    public static int b(kv0 kv0Var) {
-        int i10 = (int) kv0Var.f28463a;
-        int i11 = (int) kv0Var.f28464b;
+    public static int b(jv0 jv0Var) {
+        int i10 = (int) jv0Var.f28201a;
+        int i11 = (int) jv0Var.f28202b;
         int[] iArr = new int[1];
         GLES20.glGenTextures(1, iArr, 0);
         int i12 = iArr[0];

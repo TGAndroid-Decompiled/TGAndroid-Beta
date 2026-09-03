@@ -3,11 +3,11 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.StatsController;
-public final class qu implements org.telegram.ui.Components.gl0, org.telegram.ui.ActionBar.c2 {
-    public final uu f40700a;
+public final class qu implements org.telegram.ui.Components.fl0, org.telegram.ui.ActionBar.c2 {
+    public final uu f40677a;
 
     public qu(uu uuVar) {
-        this.f40700a = uuVar;
+        this.f40677a = uuVar;
     }
 
     @Override
@@ -15,13 +15,13 @@ public final class qu implements org.telegram.ui.Components.gl0, org.telegram.ui
         int i11;
         int i12;
         int i13;
-        uu uuVar = this.f40700a;
-        yu yuVar = uuVar.f42048l3;
+        uu uuVar = this.f40677a;
+        yu yuVar = uuVar.f41940l3;
         ArrayList arrayList = uuVar.c3;
         arrayList.clear();
         int i14 = 0;
         while (true) {
-            tu[] tuVarArr = uuVar.f42040d3;
+            tu[] tuVarArr = uuVar.f41932d3;
             if (i14 >= tuVarArr.length) {
                 i11 = ((org.telegram.ui.ActionBar.p2) yuVar).currentAccount;
                 StatsController.getInstance(i11).resetStats(0);
@@ -30,12 +30,12 @@ public final class qu implements org.telegram.ui.Components.gl0, org.telegram.ui
                 i13 = ((org.telegram.ui.ActionBar.p2) yuVar).currentAccount;
                 StatsController.getInstance(i13).resetStats(2);
                 uuVar.U2 = true;
-                uuVar.z1();
-                uuVar.A1(true);
+                uuVar.y1();
+                uuVar.z1(true);
                 return;
             }
             tu tuVar = tuVarArr[i14];
-            if (tuVar.f31882c > 0) {
+            if (tuVar.f31860c > 0) {
                 arrayList.add(Integer.valueOf(tuVar.d));
             }
             i14++;
@@ -44,7 +44,7 @@ public final class qu implements org.telegram.ui.Components.gl0, org.telegram.ui
 
     @Override
     public int run() {
-        uu uuVar = this.f40700a;
+        uu uuVar = this.f40677a;
         ArrayList arrayList = uuVar.Z2;
         int i10 = 0;
         while (true) {

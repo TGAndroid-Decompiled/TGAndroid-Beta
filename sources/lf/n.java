@@ -15,7 +15,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bj0;
-import org.telegram.ui.Components.p51;
+import org.telegram.ui.Components.n51;
 import org.telegram.ui.Components.u5;
 public abstract class n {
     public static SpannableStringBuilder a(String str) {
@@ -102,7 +102,7 @@ public abstract class n {
                     if (charSequence.equals(url)) {
                         spannableStringBuilder.setSpan(new URLSpan(url), spanStart2, spanEnd2, 33);
                     } else {
-                        spannableStringBuilder.setSpan(new p51(url, null), spanStart2, spanEnd2, 33);
+                        spannableStringBuilder.setSpan(new n51(url, null), spanStart2, spanEnd2, 33);
                     }
                 }
             }

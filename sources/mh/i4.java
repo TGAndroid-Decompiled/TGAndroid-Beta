@@ -3,14 +3,14 @@ package mh;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class i4 {
-    public final mf.b f14231a;
-    public final TLRPC.TL_payments_paymentFormStarGift f14232b;
-    public final mf.a f14233c;
+    public final mf.b f14233a;
+    public final TLRPC.TL_payments_paymentFormStarGift f14234b;
+    public final mf.a f14235c;
 
     public i4(mf.b bVar, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift) {
         long j10;
-        this.f14231a = bVar;
-        this.f14232b = tL_payments_paymentFormStarGift;
+        this.f14233a = bVar;
+        this.f14234b = tL_payments_paymentFormStarGift;
         t7[][] t7VarArr = t7.S;
         if (tL_payments_paymentFormStarGift != null) {
             ArrayList<TLRPC.TL_labeledPrice> arrayList = tL_payments_paymentFormStarGift.invoice.prices;
@@ -25,16 +25,16 @@ public final class i4 {
         } else {
             j10 = 0;
         }
-        mf.b bVar2 = mf.b.f13651a;
+        mf.b bVar2 = mf.b.f13653a;
         if (bVar == bVar2) {
-            this.f14233c = mf.a.g(j10, bVar2);
+            this.f14235c = mf.a.g(j10, bVar2);
             return;
         }
-        mf.b bVar3 = mf.b.f13652b;
+        mf.b bVar3 = mf.b.f13654b;
         if (bVar == bVar3) {
-            this.f14233c = mf.a.i(j10, bVar3);
+            this.f14235c = mf.a.i(j10, bVar3);
         } else {
-            this.f14233c = mf.a.i(0L, bVar2);
+            this.f14235c = mf.a.i(0L, bVar2);
         }
     }
 }

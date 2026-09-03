@@ -41,7 +41,7 @@ public final class o1 extends r0.b {
 
     @Override
     public final void c(View view, s0.d dVar) {
-        this.f46401a.onInitializeAccessibilityNodeInfo(view, dVar.f46850a);
+        this.f46432a.onInitializeAccessibilityNodeInfo(view, dVar.f46881a);
         RecyclerView recyclerView = this.d;
         if (!recyclerView.Z() && recyclerView.getLayoutManager() != null) {
             w0 layoutManager = recyclerView.getLayoutManager();

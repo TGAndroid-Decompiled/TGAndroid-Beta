@@ -12,10 +12,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class gk0 extends cg.c {
     public final Context d;
-    public final NotificationsCustomSettingsActivity f37214e;
+    public final NotificationsCustomSettingsActivity f37122e;
 
     public gk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, Context context) {
-        this.f37214e = notificationsCustomSettingsActivity;
+        this.f37122e = notificationsCustomSettingsActivity;
         this.d = context;
     }
 
@@ -30,13 +30,13 @@ public final class gk0 extends cg.c {
 
     @Override
     public final int h() {
-        return this.f37214e.F.size();
+        return this.f37122e.F.size();
     }
 
     @Override
     public final int j(int i10) {
         if (i10 >= 0) {
-            NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f37214e;
+            NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f37122e;
             if (i10 < notificationsCustomSettingsActivity.F.size()) {
                 return ((fk0) notificationsCustomSettingsActivity.F.get(i10)).f2505a;
             }
@@ -49,7 +49,7 @@ public final class gk0 extends cg.c {
     public final void v(f2.m1 m1Var, int i10) {
         boolean z4;
         float f10;
-        ArrayList arrayList = this.f37214e.F;
+        ArrayList arrayList = this.f37122e.F;
         if (i10 >= 0 && i10 < arrayList.size()) {
             fk0 fk0Var = (fk0) arrayList.get(i10);
             boolean z10 = true;
@@ -63,50 +63,50 @@ public final class gk0 extends cg.c {
             View view = m1Var.f5875a;
             switch (i12) {
                 case 0:
-                    ((org.telegram.ui.Cells.m4) view).setText(fk0Var.f36906e);
+                    ((org.telegram.ui.Cells.m4) view).setText(fk0Var.f36809e);
                     return;
                 case 1:
-                    ((org.telegram.ui.Cells.s8) view).f("" + ((Object) fk0Var.f36906e), fk0Var.f36909i, z4);
+                    ((org.telegram.ui.Cells.s8) view).f("" + ((Object) fk0Var.f36809e), fk0Var.f36812i, z4);
                     return;
                 case 2:
-                    ((org.telegram.ui.Cells.va) view).g(fk0Var.f36908g, null, z4);
+                    ((org.telegram.ui.Cells.va) view).g(fk0Var.f36811g, null, z4);
                     return;
                 case 3:
-                    ((org.telegram.ui.Cells.u8) view).b(fk0Var.h, "" + ((Object) fk0Var.f36906e), z4);
+                    ((org.telegram.ui.Cells.u8) view).b(fk0Var.h, "" + ((Object) fk0Var.f36809e), z4);
                     return;
                 case 4:
                     org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) view;
-                    if (fk0Var.f36906e == null) {
+                    if (fk0Var.f36809e == null) {
                         a9Var.setFixedSize(12);
                         a9Var.setText(null);
                         return;
                     }
                     a9Var.setFixedSize(0);
-                    a9Var.setText(fk0Var.f36906e);
+                    a9Var.setText(fk0Var.f36809e);
                     return;
                 case 5:
-                    ((org.telegram.ui.Cells.aa) view).c(fk0Var.f36906e, fk0Var.f36907f, false, z4);
+                    ((org.telegram.ui.Cells.aa) view).c(fk0Var.f36809e, fk0Var.f36810f, false, z4);
                     return;
                 case 6:
                     org.telegram.ui.Cells.j5 j5Var = (org.telegram.ui.Cells.j5) view;
                     j5Var.setDrawLine(true);
-                    j5Var.setChecked(fk0Var.f36909i);
-                    j5Var.b(fk0Var.f36906e, fk0Var.f36907f, fk0Var.d, fk0Var.f36909i, 0, false, z4, true);
+                    j5Var.setChecked(fk0Var.f36812i);
+                    j5Var.b(fk0Var.f36809e, fk0Var.f36810f, fk0Var.d, fk0Var.f36812i, 0, false, z4, true);
                     return;
                 case 7:
                     org.telegram.ui.Cells.o8 o8Var = (org.telegram.ui.Cells.o8) view;
                     if (fk0Var.d == 0) {
-                        o8Var.e(-1, org.telegram.ui.ActionBar.k6.f21876p7);
-                        o8Var.i("" + ((Object) fk0Var.f36906e), z4);
+                        o8Var.e(-1, org.telegram.ui.ActionBar.k6.f21878p7);
+                        o8Var.i("" + ((Object) fk0Var.f36809e), z4);
                         return;
                     }
-                    o8Var.e(org.telegram.ui.ActionBar.k6.f21979v6, org.telegram.ui.ActionBar.k6.f21961u6);
-                    o8Var.m(fk0Var.d, "" + ((Object) fk0Var.f36906e), z4);
+                    o8Var.e(org.telegram.ui.ActionBar.k6.f21981v6, org.telegram.ui.ActionBar.k6.f21963u6);
+                    o8Var.m(fk0Var.d, "" + ((Object) fk0Var.f36809e), z4);
                     return;
                 case 8:
                     ek0 ek0Var = (ek0) view;
-                    ek0Var.e(org.telegram.ui.ActionBar.k6.f21979v6, org.telegram.ui.ActionBar.k6.f21961u6);
-                    CharSequence charSequence = fk0Var.f36906e;
+                    ek0Var.e(org.telegram.ui.ActionBar.k6.f21981v6, org.telegram.ui.ActionBar.k6.f21963u6);
+                    CharSequence charSequence = fk0Var.f36809e;
                     if (fk0Var.d != 1) {
                         z10 = false;
                     }
@@ -130,7 +130,7 @@ public final class gk0 extends cg.c {
         View m4Var;
         org.telegram.ui.ActionBar.g6 g6Var;
         int i11;
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f37214e;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f37122e;
         Context context = this.d;
         switch (i10) {
             case 0:
@@ -164,7 +164,7 @@ public final class gk0 extends cg.c {
                 ImageView imageView = new ImageView(context);
                 o8Var.N = imageView;
                 imageView.setScaleType(ImageView.ScaleType.CENTER);
-                imageView.setColorFilter(new PorterDuffColorFilter(notificationsCustomSettingsActivity.getThemedColor(org.telegram.ui.ActionBar.k6.f21979v6), PorterDuff.Mode.SRC_IN));
+                imageView.setColorFilter(new PorterDuffColorFilter(notificationsCustomSettingsActivity.getThemedColor(org.telegram.ui.ActionBar.k6.f21981v6), PorterDuff.Mode.SRC_IN));
                 imageView.setImageResource(R.drawable.msg_expand);
                 if (LocaleController.isRTL) {
                     i11 = 3;
@@ -184,7 +184,7 @@ public final class gk0 extends cg.c {
         fk0 fk0Var;
         ArrayList arrayList;
         ArrayList arrayList2;
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f37214e;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f37122e;
         ArrayList arrayList3 = notificationsCustomSettingsActivity.F;
         int i10 = notificationsCustomSettingsActivity.f34191s;
         if (i10 == 3 || ((arrayList2 = notificationsCustomSettingsActivity.f34192w) != null && arrayList2.isEmpty())) {
@@ -205,7 +205,7 @@ public final class gk0 extends cg.c {
             } else {
                 fk0Var = null;
             }
-            if (fk0Var == null || fk0Var.f36905c != 102) {
+            if (fk0Var == null || fk0Var.f36808c != 102) {
                 int i11 = m1Var.f5879f;
                 if (i11 != 0) {
                     if (i11 != 1) {

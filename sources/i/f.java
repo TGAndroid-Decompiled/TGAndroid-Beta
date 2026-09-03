@@ -4,9 +4,9 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import mh.t4;
 import ng.o0;
-import org.telegram.ui.Components.d31;
+import org.telegram.ui.Components.c31;
 import org.telegram.ui.Components.eq;
-import org.telegram.ui.Components.po0;
+import org.telegram.ui.Components.oo0;
 import wh.r0;
 public final class f implements Drawable.Callback {
     public final int f7743a;
@@ -27,7 +27,7 @@ public final class f implements Drawable.Callback {
                 ((kg.c) this.f7744b).f11212c.invalidate();
                 return;
             case 4:
-                ((t4) this.f7744b).f14800f.invalidate();
+                ((t4) this.f7744b).f14802f.invalidate();
                 return;
             case 5:
                 o0 o0Var = (o0) this.f7744b;
@@ -45,16 +45,16 @@ public final class f implements Drawable.Callback {
                 ((eq) this.f7744b).invalidateSelf();
                 return;
             case 7:
-                ((po0) this.f7744b).f30141b.run();
+                ((oo0) this.f7744b).f29842b.run();
                 return;
             case 8:
                 ((ef.f) this.f7744b).invalidateSelf();
                 return;
             case 9:
-                ((d31) this.f7744b).invalidateSelf();
+                ((c31) this.f7744b).invalidateSelf();
                 return;
             default:
-                ((r0) this.f7744b).f49962b.invalidate();
+                ((r0) this.f7744b).f49998b.invalidate();
                 return;
         }
     }

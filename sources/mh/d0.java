@@ -8,9 +8,9 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.g90;
 public final class d0 extends LinearLayout {
-    public final ImageView f13877a;
-    public final g90 f13878b;
-    public final g90 f13879c;
+    public final ImageView f13879a;
+    public final g90 f13880b;
+    public final g90 f13881c;
 
     public d0(Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
@@ -31,7 +31,7 @@ public final class d0 extends LinearLayout {
         }
         setPadding(dp, 0, dp2, AndroidUtilities.dp(f11));
         ImageView imageView = new ImageView(context);
-        this.f13877a = imageView;
+        this.f13879a = imageView;
         int i11 = org.telegram.ui.ActionBar.k6.G6;
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(null, i11, false), PorterDuff.Mode.SRC_IN));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -39,33 +39,33 @@ public final class d0 extends LinearLayout {
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         g90 g90Var = new g90(context, null);
-        this.f13878b = g90Var;
+        this.f13880b = g90Var;
         g90Var.setTypeface(AndroidUtilities.bold());
         g90Var.setTextSize(1, 14.0f);
         g90Var.setTextColor(org.telegram.ui.ActionBar.k6.v0(i11, g6Var));
-        int i12 = org.telegram.ui.ActionBar.k6.f21720gc;
+        int i12 = org.telegram.ui.ActionBar.k6.f21722gc;
         g90Var.setLinkTextColor(org.telegram.ui.ActionBar.k6.v0(i12, g6Var));
         linearLayout.addView(g90Var, k7.c6.t(-1, -2, 7, 0, 0, 0, 3));
         g90 g90Var2 = new g90(context, null);
-        this.f13879c = g90Var2;
+        this.f13881c = g90Var2;
         g90Var2.setTextSize(1, 14.0f);
-        g90Var2.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f22053z6, g6Var));
+        g90Var2.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f22055z6, g6Var));
         g90Var2.setLinkTextColor(org.telegram.ui.ActionBar.k6.v0(i12, g6Var));
         linearLayout.addView(g90Var2, k7.c6.q(-1, -2, 7));
         addView(linearLayout, k7.c6.p(-1, -2, 1.0f, 55, 0, 0, 0, 0));
     }
 
     public final void a(CharSequence charSequence, CharSequence charSequence2, int i10) {
-        this.f13877a.setImageResource(i10);
-        this.f13878b.setText(charSequence);
-        this.f13879c.setText(charSequence2);
+        this.f13879a.setImageResource(i10);
+        this.f13880b.setText(charSequence);
+        this.f13881c.setText(charSequence2);
     }
 
     public void setSubtitle(CharSequence charSequence) {
-        this.f13879c.setText(charSequence);
+        this.f13881c.setText(charSequence);
     }
 
     public void setTitle(CharSequence charSequence) {
-        this.f13878b.setText(charSequence);
+        this.f13880b.setText(charSequence);
     }
 }

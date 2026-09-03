@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
 public final class z10 extends rg.b {
-    public final int f33691n;
+    public final int f33728n;
 
     public z10(int i10, org.telegram.ui.ActionBar.g6 g6Var) {
         super(i10, g6Var);
-        this.f33691n = 0;
+        this.f33728n = 0;
     }
 
     @Override
     public int I() {
-        switch (this.f33691n) {
+        switch (this.f33728n) {
             case 0:
                 if (a()) {
                     return 83886079;
@@ -22,7 +22,7 @@ public final class z10 extends rg.b {
 
     @Override
     public boolean a() {
-        switch (this.f33691n) {
+        switch (this.f33728n) {
             case 1:
                 return true;
             case 2:
@@ -34,7 +34,7 @@ public final class z10 extends rg.b {
 
     @Override
     public int k() {
-        switch (this.f33691n) {
+        switch (this.f33728n) {
             case 0:
                 if (a()) {
                     return 117440511;
@@ -47,7 +47,7 @@ public final class z10 extends rg.b {
 
     @Override
     public int x() {
-        switch (this.f33691n) {
+        switch (this.f33728n) {
             case 0:
                 if (a()) {
                     return 301989887;
@@ -60,6 +60,6 @@ public final class z10 extends rg.b {
 
     public z10(org.telegram.ui.ActionBar.g6 g6Var, int i10, float f10, int i11) {
         super(g6Var, i10, f10);
-        this.f33691n = i11;
+        this.f33728n = i11;
     }
 }

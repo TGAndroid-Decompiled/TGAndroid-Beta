@@ -17,19 +17,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.d2;
 import org.telegram.ui.Cells.z1;
-import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.x40;
 import org.telegram.ui.Components.y4;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.d60;
-import org.telegram.ui.lu0;
 import org.telegram.ui.py;
-import org.telegram.ui.qz0;
+import org.telegram.ui.qu0;
+import org.telegram.ui.vz0;
 import org.telegram.ui.xn;
-import qh.j5;
-import qh.q6;
-import qh.s6;
-public final class c implements h, g3.b, x40, y4, c2, q6 {
+import qh.i5;
+import qh.p6;
+import qh.r6;
+public final class c implements h, g3.b, x40, y4, c2, p6 {
     public final int f4352a;
     public final Object f4353b;
     public final long f4354c;
@@ -46,7 +46,7 @@ public final class c implements h, g3.b, x40, y4, c2, q6 {
 
     @Override
     public void I(int i10, int i11, boolean z4) {
-        xn.s0((xn) this.f4353b, (ArrayList) this.f4355e, this.f4354c, (jm0) this.d, z4, i10);
+        xn.s0((xn) this.f4353b, (ArrayList) this.f4355e, this.f4354c, (im0) this.d, z4, i10);
     }
 
     @Override
@@ -97,19 +97,19 @@ public final class c implements h, g3.b, x40, y4, c2, q6 {
 
     @Override
     public Bitmap c(BitmapFactory.Options options) {
-        j5 j5Var = (j5) this.f4353b;
-        s6 s6Var = (s6) this.f4355e;
+        i5 i5Var = (i5) this.f4353b;
+        r6 r6Var = (r6) this.f4355e;
         long j10 = this.f4354c;
         String str = (String) this.d;
-        if (s6Var.K) {
-            String str2 = s6Var.N;
+        if (r6Var.K) {
+            String str2 = r6Var.N;
             if (str2 != null) {
                 return BitmapFactory.decodeFile(str2, options);
             }
             try {
-                return MediaStore.Video.Thumbnails.getThumbnail(j5Var.getContext().getContentResolver(), j10, 1, options);
+                return MediaStore.Video.Thumbnails.getThumbnail(i5Var.getContext().getContentResolver(), j10, 1, options);
             } catch (Throwable unused) {
-                j5Var.invalidate();
+                i5Var.invalidate();
                 return null;
             }
         }
@@ -150,7 +150,7 @@ public final class c implements h, g3.b, x40, y4, c2, q6 {
     }
 
     @Override
-    public lu0 getCloseIntoObject() {
+    public qu0 getCloseIntoObject() {
         return null;
     }
 
@@ -174,7 +174,7 @@ public final class c implements h, g3.b, x40, y4, c2, q6 {
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) this.d;
-                ProfileActivity profileActivity = ((qz0) this.f4353b).f40724b;
+                ProfileActivity profileActivity = ((vz0) this.f4353b).f42235b;
                 profileActivity.K1 = true;
                 Bundle i11 = android.support.v4.media.a.i("scrollToTopOnResume", true);
                 long j10 = -this.f4354c;
@@ -214,9 +214,9 @@ public final class c implements h, g3.b, x40, y4, c2, q6 {
         this.f4355e = runnable;
     }
 
-    public c(qz0 qz0Var, long j10, py pyVar, TLRPC.User user) {
+    public c(vz0 vz0Var, long j10, py pyVar, TLRPC.User user) {
         this.f4352a = 6;
-        this.f4353b = qz0Var;
+        this.f4353b = vz0Var;
         this.f4354c = j10;
         this.f4355e = pyVar;
         this.d = user;

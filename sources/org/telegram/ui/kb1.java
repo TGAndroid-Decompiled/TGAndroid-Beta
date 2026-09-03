@@ -1,161 +1,56 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.View;
-import android.view.ViewParent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
 import org.telegram.messenger.AndroidUtilities;
-public final class kb1 extends org.telegram.ui.Components.tl0 {
-    public final int U2;
-
-    public kb1(Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, g6Var);
-        this.U2 = i10;
-    }
-
-    @Override
-    public Integer W0(int i10) {
-        switch (this.U2) {
-            case 1:
-                return 0;
-            case 2:
-                return 0;
-            case 3:
-                return 0;
-            case 4:
-            case 5:
-            case 6:
-            default:
-                return super.W0(i10);
-            case 7:
-                return 0;
-        }
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.U2) {
-            case 0:
-                if (getParent() != null && getParent().getParent() != null) {
-                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            case 5:
-                if (getParent() != null && getParent().getParent() != null) {
-                    ViewParent parent = getParent().getParent();
-                    boolean z4 = true;
-                    if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
-                        z4 = false;
-                    }
-                    parent.requestDisallowInterceptTouchEvent(z4);
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            case 12:
-                if (getParent() != null && getParent().getParent() != null) {
-                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            case 13:
-                if (getParent() != null && getParent().getParent() != null) {
-                    ViewParent parent2 = getParent().getParent();
-                    boolean z10 = true;
-                    if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
-                        z10 = false;
-                    }
-                    parent2.requestDisallowInterceptTouchEvent(z10);
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            default:
-                return super.onInterceptTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.U2) {
-            case 6:
-                int size = View.MeasureSpec.getSize(i11);
-                int h = (getAdapter().h() * AndroidUtilities.dp(50.0f)) + AndroidUtilities.dp(4.0f);
-                if (h <= size) {
-                    size = h;
-                }
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-                return;
-            case 9:
-                int size2 = View.MeasureSpec.getSize(i11);
-                int h9 = (getAdapter().h() * AndroidUtilities.dp(50.0f)) + AndroidUtilities.dp(4.0f);
-                if (h9 <= size2) {
-                    size2 = h9;
-                }
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.U2) {
-            case 11:
-                if (motionEvent.getAction() == 0) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void q0(View view, View view2) {
-        switch (this.U2) {
-            case 4:
-                if (view instanceof org.telegram.ui.Cells.c6) {
-                    super.q0(view, view2);
-                    return;
-                }
-                return;
-            case 10:
-                if (view instanceof org.telegram.ui.Cells.c6) {
-                    super.q0(view, view2);
-                    return;
-                }
-                return;
-            default:
-                super.q0(view, view2);
-                return;
-        }
-    }
-
-    @Override
-    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z4) {
-        switch (this.U2) {
-            case 4:
-                rect.bottom = AndroidUtilities.dp(60.0f) + rect.bottom;
-                return super.requestChildRectangleOnScreen(view, rect, z4);
-            case 10:
-                rect.bottom = AndroidUtilities.dp(60.0f) + rect.bottom;
-                return super.requestChildRectangleOnScreen(view, rect, z4);
-            default:
-                return super.requestChildRectangleOnScreen(view, rect, z4);
-        }
-    }
-
-    @Override
-    public boolean requestFocus(int i10, Rect rect) {
-        switch (this.U2) {
-            case 8:
-                return false;
-            default:
-                return super.requestFocus(i10, rect);
-        }
-    }
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class kb1 extends View {
+    public static final int f38244c = 0;
+    public final Paint f38245a;
+    public int[] f38246b;
 
     public kb1(Context context) {
-        super(context, null);
-        this.U2 = 11;
+        super(context);
+        this.f38245a = new Paint(1);
+        this.f38246b = new int[7];
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float measuredWidth = getMeasuredWidth() * 0.5f;
+        float measuredHeight = getMeasuredHeight() * 0.5f;
+        float dp = AndroidUtilities.dp(5.0f);
+        float dp2 = AndroidUtilities.dp(20.0f) - dp;
+        Paint.Style style = Paint.Style.FILL;
+        Paint paint = this.f38245a;
+        paint.setStyle(style);
+        int i10 = 0;
+        paint.setColor(this.f38246b[0]);
+        canvas.drawCircle(measuredWidth, measuredHeight, dp, paint);
+        double d = 0.0d;
+        while (i10 < 6) {
+            i10++;
+            paint.setColor(this.f38246b[i10]);
+            canvas.drawCircle((((float) Math.sin(d)) * dp2) + measuredWidth, measuredHeight - (((float) Math.cos(d)) * dp2), dp, paint);
+            d += 1.0471975511965976d;
+        }
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", R.string.ColorPickerMainColor));
+        accessibilityNodeInfo.setClassName(Button.class.getName());
+        accessibilityNodeInfo.setEnabled(true);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824));
     }
 }

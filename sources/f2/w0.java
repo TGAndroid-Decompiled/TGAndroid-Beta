@@ -226,7 +226,7 @@ public abstract class w0 {
     public abstract View R(View view, int i10, bf.f fVar, j1 j1Var);
 
     public void S(bf.f fVar, j1 j1Var, s0.d dVar) {
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f46850a;
+        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f46881a;
         if (this.f5941b.canScrollVertically(-1) || this.f5941b.canScrollHorizontally(-1)) {
             dVar.a(8192);
             accessibilityNodeInfo.setScrollable(true);
@@ -262,7 +262,7 @@ public abstract class w0 {
         } else {
             i11 = 0;
         }
-        dVar.f46850a.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(i10, 1, i11, 1, false, false));
+        dVar.f46881a.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(i10, 1, i11, 1, false, false));
     }
 
     public final void a(View view, int i10, boolean z4) {
@@ -531,7 +531,7 @@ public abstract class w0 {
         int E = E() + D() + rect.width();
         int C = C() + F() + rect.height();
         RecyclerView recyclerView = this.f5941b;
-        WeakHashMap weakHashMap = r0.j0.f46438a;
+        WeakHashMap weakHashMap = r0.j0.f46469a;
         this.f5941b.setMeasuredDimension(g(i10, E, recyclerView.getMinimumWidth()), g(i11, C, this.f5941b.getMinimumHeight()));
     }
 
@@ -587,7 +587,7 @@ public abstract class w0 {
         int max = Math.max(0, i12);
         int max2 = Math.max(0, height - C);
         RecyclerView recyclerView = this.f5941b;
-        WeakHashMap weakHashMap = r0.j0.f46438a;
+        WeakHashMap weakHashMap = r0.j0.f46469a;
         if (recyclerView.getLayoutDirection() == 1) {
             if (max == 0) {
                 max = Math.max(min, i12);

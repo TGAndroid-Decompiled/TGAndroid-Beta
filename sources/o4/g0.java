@@ -8,23 +8,23 @@ import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ec0;
 public final class g0 {
-    public final int f16486a;
-    public long f16487b;
-    public final Object f16488c;
+    public final int f16488a;
+    public long f16489b;
+    public final Object f16490c;
     public final Object d;
-    public Object f16489e;
-    public Object f16490f;
-    public Object f16491g;
+    public Object f16491e;
+    public Object f16492f;
+    public Object f16493g;
 
     public g0(g5.q qVar) {
-        this.f16488c = qVar;
+        this.f16490c = qVar;
         int i10 = qVar.f6897b;
-        this.f16486a = i10;
+        this.f16488a = i10;
         this.d = new h5.w(32);
         a4.c cVar = new a4.c(0L, i10);
-        this.f16489e = cVar;
-        this.f16490f = cVar;
-        this.f16491g = cVar;
+        this.f16491e = cVar;
+        this.f16492f = cVar;
+        this.f16493g = cVar;
     }
 
     public static a4.c d(a4.c cVar, long j10, ByteBuffer byteBuffer, int i10) {
@@ -65,7 +65,7 @@ public final class g0 {
     public static a4.c f(a4.c cVar, n3.i iVar, h0 h0Var, h5.w wVar) {
         boolean z4;
         if (iVar.e(1073741824)) {
-            long j10 = h0Var.f16494b;
+            long j10 = h0Var.f16496b;
             int i10 = 1;
             wVar.C(1);
             a4.c e6 = e(cVar, j10, wVar.f7308a, 1);
@@ -77,14 +77,14 @@ public final class g0 {
                 z4 = false;
             }
             int i11 = b10 & Byte.MAX_VALUE;
-            n3.d dVar = iVar.f15214c;
-            byte[] bArr = dVar.f15196a;
+            n3.d dVar = iVar.f15216c;
+            byte[] bArr = dVar.f15198a;
             if (bArr == null) {
-                dVar.f15196a = new byte[16];
+                dVar.f15198a = new byte[16];
             } else {
                 Arrays.fill(bArr, (byte) 0);
             }
-            cVar = e(e6, j11, dVar.f15196a, i11);
+            cVar = e(e6, j11, dVar.f15198a, i11);
             long j12 = j11 + i11;
             if (z4) {
                 wVar.C(2);
@@ -96,7 +96,7 @@ public final class g0 {
             if (iArr == null || iArr.length < i10) {
                 iArr = new int[i10];
             }
-            int[] iArr2 = dVar.f15199e;
+            int[] iArr2 = dVar.f15201e;
             if (iArr2 == null || iArr2.length < i10) {
                 iArr2 = new int[i10];
             }
@@ -112,24 +112,24 @@ public final class g0 {
                 }
             } else {
                 iArr[0] = 0;
-                iArr2[0] = h0Var.f16493a - ((int) (j12 - h0Var.f16494b));
+                iArr2[0] = h0Var.f16495a - ((int) (j12 - h0Var.f16496b));
             }
-            r3.u uVar = (r3.u) h0Var.f16495c;
+            r3.u uVar = (r3.u) h0Var.f16497c;
             int i14 = h5.d0.f7237a;
-            byte[] bArr2 = uVar.f46588b;
-            byte[] bArr3 = dVar.f15196a;
-            int i15 = uVar.f46587a;
-            int i16 = uVar.f46589c;
+            byte[] bArr2 = uVar.f46619b;
+            byte[] bArr3 = dVar.f15198a;
+            int i15 = uVar.f46618a;
+            int i16 = uVar.f46620c;
             int i17 = uVar.d;
-            dVar.f15200f = i10;
+            dVar.f15202f = i10;
             dVar.d = iArr;
-            dVar.f15199e = iArr2;
-            dVar.f15197b = bArr2;
-            dVar.f15196a = bArr3;
-            dVar.f15198c = i15;
-            dVar.f15201g = i16;
+            dVar.f15201e = iArr2;
+            dVar.f15199b = bArr2;
+            dVar.f15198a = bArr3;
+            dVar.f15200c = i15;
+            dVar.f15203g = i16;
             dVar.h = i17;
-            MediaCodec.CryptoInfo cryptoInfo = dVar.f15202i;
+            MediaCodec.CryptoInfo cryptoInfo = dVar.f15204i;
             cryptoInfo.numSubSamples = i10;
             cryptoInfo.numBytesOfClearData = iArr;
             cryptoInfo.numBytesOfEncryptedData = iArr2;
@@ -137,43 +137,43 @@ public final class g0 {
             cryptoInfo.iv = bArr3;
             cryptoInfo.mode = i15;
             if (h5.d0.f7237a >= 24) {
-                n3.c cVar2 = dVar.f15203j;
+                n3.c cVar2 = dVar.f15205j;
                 cVar2.getClass();
                 n3.c.a(cVar2, i16, i17);
             }
-            long j13 = h0Var.f16494b;
+            long j13 = h0Var.f16496b;
             int i18 = (int) (j12 - j13);
-            h0Var.f16494b = j13 + i18;
-            h0Var.f16493a -= i18;
+            h0Var.f16496b = j13 + i18;
+            h0Var.f16495a -= i18;
         }
         if (iVar.e(268435456)) {
             wVar.C(4);
-            a4.c e10 = e(cVar, h0Var.f16494b, wVar.f7308a, 4);
+            a4.c e10 = e(cVar, h0Var.f16496b, wVar.f7308a, 4);
             int x10 = wVar.x();
-            h0Var.f16494b += 4;
-            h0Var.f16493a -= 4;
+            h0Var.f16496b += 4;
+            h0Var.f16495a -= 4;
             iVar.j(x10);
-            a4.c d = d(e10, h0Var.f16494b, iVar.d, x10);
-            h0Var.f16494b += x10;
-            int i19 = h0Var.f16493a - x10;
-            h0Var.f16493a = i19;
+            a4.c d = d(e10, h0Var.f16496b, iVar.d, x10);
+            h0Var.f16496b += x10;
+            int i19 = h0Var.f16495a - x10;
+            h0Var.f16495a = i19;
             ByteBuffer byteBuffer = iVar.h;
             if (byteBuffer != null && byteBuffer.capacity() >= i19) {
                 iVar.h.clear();
             } else {
                 iVar.h = ByteBuffer.allocate(i19);
             }
-            return d(d, h0Var.f16494b, iVar.h, h0Var.f16493a);
+            return d(d, h0Var.f16496b, iVar.h, h0Var.f16495a);
         }
-        iVar.j(h0Var.f16493a);
-        return d(cVar, h0Var.f16494b, iVar.d, h0Var.f16493a);
+        iVar.j(h0Var.f16495a);
+        return d(cVar, h0Var.f16496b, iVar.d, h0Var.f16495a);
     }
 
     public void a(a4.c cVar) {
         if (((g5.a) cVar.f62c) == null) {
             return;
         }
-        g5.q qVar = (g5.q) this.f16488c;
+        g5.q qVar = (g5.q) this.f16490c;
         synchronized (qVar) {
             a4.c cVar2 = cVar;
             while (cVar2 != null) {
@@ -203,11 +203,11 @@ public final class g0 {
         a4.c cVar;
         if (j10 != -1) {
             while (true) {
-                cVar = (a4.c) this.f16489e;
+                cVar = (a4.c) this.f16491e;
                 if (j10 < cVar.f61b) {
                     break;
                 }
-                g5.q qVar = (g5.q) this.f16488c;
+                g5.q qVar = (g5.q) this.f16490c;
                 g5.a aVar = (g5.a) cVar.f62c;
                 synchronized (qVar) {
                     g5.a[] aVarArr = qVar.f6900f;
@@ -217,22 +217,22 @@ public final class g0 {
                     qVar.d--;
                     qVar.notifyAll();
                 }
-                a4.c cVar2 = (a4.c) this.f16489e;
+                a4.c cVar2 = (a4.c) this.f16491e;
                 cVar2.f62c = null;
                 cVar2.d = null;
-                this.f16489e = (a4.c) cVar2.d;
+                this.f16491e = (a4.c) cVar2.d;
             }
-            if (((a4.c) this.f16490f).f60a < cVar.f60a) {
-                this.f16490f = cVar;
+            if (((a4.c) this.f16492f).f60a < cVar.f60a) {
+                this.f16492f = cVar;
             }
         }
     }
 
     public int c(int i10) {
         g5.a aVar;
-        a4.c cVar = (a4.c) this.f16491g;
+        a4.c cVar = (a4.c) this.f16493g;
         if (((g5.a) cVar.f62c) == null) {
-            g5.q qVar = (g5.q) this.f16488c;
+            g5.q qVar = (g5.q) this.f16490c;
             synchronized (qVar) {
                 try {
                     int i11 = qVar.d + 1;
@@ -257,20 +257,20 @@ public final class g0 {
                     throw th2;
                 }
             }
-            a4.c cVar2 = new a4.c(((a4.c) this.f16491g).f61b, this.f16486a);
+            a4.c cVar2 = new a4.c(((a4.c) this.f16493g).f61b, this.f16488a);
             cVar.f62c = aVar;
             cVar.d = cVar2;
         }
-        return Math.min(i10, (int) (((a4.c) this.f16491g).f61b - this.f16487b));
+        return Math.min(i10, (int) (((a4.c) this.f16493g).f61b - this.f16489b));
     }
 
     public g0(ec0 ec0Var) {
         this.d = new ArrayList(50);
-        this.f16489e = new ArrayList(50);
+        this.f16491e = new ArrayList(50);
         Paint paint = new Paint(1);
-        this.f16490f = paint;
-        this.f16486a = 250;
-        this.f16488c = ec0Var;
+        this.f16492f = paint;
+        this.f16488a = 250;
+        this.f16490c = ec0Var;
         paint.setStrokeWidth(AndroidUtilities.dp(1.33f));
     }
 }

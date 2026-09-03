@@ -27,7 +27,7 @@ public final class p extends LinearLayout {
         setWillNotDraw(false);
         textPaint.setTextSize(AndroidUtilities.dp(20.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setColor(x4Var.f32944a);
+        textPaint.setColor(x4Var.f32943a);
     }
 
     @Override

@@ -10,15 +10,15 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Components.g90;
-import org.telegram.ui.Components.n51;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.l51;
+import org.telegram.ui.Components.s01;
 public abstract class y6 extends LinearLayout {
-    public TextView f24445a;
-    public g90 f24446b;
-    public TextView f24447c;
+    public TextView f24447a;
+    public g90 f24448b;
+    public TextView f24449c;
     public TextView d;
-    public int f24448e;
-    public int f24449f;
+    public int f24450e;
+    public int f24451f;
 
     @Override
     public final void onMeasure(int i10, int i11) {
@@ -26,12 +26,12 @@ public abstract class y6 extends LinearLayout {
     }
 
     public void setType(int i10) {
-        int i11 = this.f24449f;
-        TextView textView = this.f24447c;
-        g90 g90Var = this.f24446b;
-        TextView textView2 = this.f24445a;
+        int i11 = this.f24451f;
+        TextView textView = this.f24449c;
+        g90 g90Var = this.f24448b;
+        TextView textView2 = this.f24447a;
         TextView textView3 = this.d;
-        this.f24448e = i10;
+        this.f24450e = i10;
         if (i10 == 0) {
             textView2.setText(LocaleController.formatString(R.string.CheckPhoneNumber, org.telegram.messenger.y3.j(new StringBuilder("+"), MessagesController.getInstance(i11).getUser(Long.valueOf(UserConfig.getInstance(i11).clientUserId)).phone, se.b.c())));
             String string = LocaleController.getString(R.string.CheckPhoneNumberInfo);
@@ -42,7 +42,7 @@ public abstract class y6 extends LinearLayout {
                 spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
                 spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
                 try {
-                    spannableStringBuilder.setSpan(new n51(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl), (t01) null), indexOf, lastIndexOf - 2, 33);
+                    spannableStringBuilder.setSpan(new l51(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl), (s01) null), indexOf, lastIndexOf - 2, 33);
                 } catch (Exception e6) {
                     FileLog.e(e6);
                 }

@@ -22,13 +22,13 @@ public final class f0 implements g6, rg.c {
             return -14145495;
         }
         if (i10 != k6.E8) {
-            if (i10 == k6.f21731h5) {
+            if (i10 == k6.f21733h5) {
                 return -14737633;
             }
-            if (i10 == k6.f21766j5) {
+            if (i10 == k6.f21768j5) {
                 return -592138;
             }
-            if (i10 == k6.f21911r5) {
+            if (i10 == k6.f21913r5) {
                 return -8553091;
             }
             if (i10 != k6.He) {
@@ -43,7 +43,7 @@ public final class f0 implements g6, rg.c {
                     if (i10 == i11) {
                         return -11754001;
                     }
-                    if (i10 == k6.f21750i6) {
+                    if (i10 == k6.f21752i6) {
                         return 536870911;
                     }
                     if (i10 != k6.Fh && i10 != k6.Eh && i10 != k6.Gh) {
@@ -54,22 +54,22 @@ public final class f0 implements g6, rg.c {
                             if (i10 == k6.Ie) {
                                 return 780633991;
                             }
-                            if (i10 == k6.f21605a7) {
+                            if (i10 == k6.f21607a7) {
                                 return -15921907;
                             }
-                            if (i10 == k6.f21822m7) {
+                            if (i10 == k6.f21824m7) {
                                 return -12500671;
                             }
-                            if (i10 == k6.f21804l7) {
+                            if (i10 == k6.f21806l7) {
                                 return -13133079;
                             }
-                            if (i10 == k6.f21840n7) {
+                            if (i10 == k6.f21842n7) {
                                 return -1;
                             }
-                            if (i10 == k6.f21659d6) {
+                            if (i10 == k6.f21661d6) {
                                 return -15198183;
                             }
-                            if (i10 == k6.f21660d7) {
+                            if (i10 == k6.f21662d7) {
                                 return -16777216;
                             }
                             g6 g6Var = this.f5203b;
@@ -130,9 +130,9 @@ public final class f0 implements g6, rg.c {
             case 2:
                 if (!sg.b.c(UserConfig.selectedAccount, this.f5203b)) {
                     if (z4) {
-                        i10 = k6.f21930s8;
+                        i10 = k6.f21932s8;
                     } else {
-                        i10 = k6.f21649ce;
+                        i10 = k6.f21651ce;
                     }
                     return i0.a.k(k6.v0(i10, g6Var), 255);
                 }
@@ -141,13 +141,13 @@ public final class f0 implements g6, rg.c {
                 } else {
                     f11 = 0.76f;
                 }
-                return k6.l1(f11, k6.v0(k6.f21649ce, g6Var));
+                return k6.l1(f11, k6.v0(k6.f21651ce, g6Var));
             default:
                 if (!sg.b.c(UserConfig.selectedAccount, this.f5203b)) {
                     if (z4) {
-                        i11 = k6.f21930s8;
+                        i11 = k6.f21932s8;
                     } else {
-                        i11 = k6.f21649ce;
+                        i11 = k6.f21651ce;
                     }
                     return i0.a.k(k6.v0(i11, g6Var), 255);
                 }
@@ -156,7 +156,7 @@ public final class f0 implements g6, rg.c {
                 } else {
                     f12 = 0.76f;
                 }
-                return k6.l1(f12, k6.v0(k6.f21649ce, g6Var));
+                return k6.l1(f12, k6.v0(k6.f21651ce, g6Var));
         }
     }
 
@@ -177,7 +177,7 @@ public final class f0 implements g6, rg.c {
 
     @Override
     public ColorFilter w() {
-        return k6.f21976v3;
+        return k6.f21978v3;
     }
 
     @Override

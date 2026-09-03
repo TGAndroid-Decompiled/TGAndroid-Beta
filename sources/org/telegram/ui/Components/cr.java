@@ -56,14 +56,14 @@ public abstract class cr {
         org.telegram.messenger.y3.r(R.string.CreateManagedBotTitle, textView, 17);
         TextView i12 = org.telegram.ui.yh.i(linearLayout, textView, k7.c6.t(-1, -2, 55, 16, 0, 16, 8), context);
         org.telegram.ui.b.l(i11, g6Var, i12, 1, 14.0f);
-        i12.setText(AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.CreateManagedBotText, UserObject.getUserName(user)), org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21720gc, g6Var)));
+        i12.setText(AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.CreateManagedBotText, UserObject.getUserName(user)), org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21722gc, g6Var)));
         i12.setGravity(17);
         linearLayout.addView(i12, k7.c6.t(-1, -2, 55, 16, 0, 16, 22));
         org.telegram.ui.Cells.i3 i3Var = new org.telegram.ui.Cells.i3(context, LocaleController.getString(R.string.CreateManagedBotName), false, false, -1, g6Var);
-        org.telegram.ui.Cells.g3 g3Var = i3Var.f22955b;
+        org.telegram.ui.Cells.g3 g3Var = i3Var.f22957b;
         g3Var.setImeOptions(5);
         int dp = AndroidUtilities.dp(16.0f);
-        int i13 = org.telegram.ui.ActionBar.k6.f21659d6;
+        int i13 = org.telegram.ui.ActionBar.k6.f21661d6;
         i3Var.setBackground(org.telegram.ui.ActionBar.k6.b0(dp, org.telegram.ui.ActionBar.k6.v0(i13, g6Var)));
         i3Var.setText(tL_requestPeerTypeCreateBot.suggested_name);
         linearLayout.addView(i3Var, k7.c6.t(-1, -2, 55, 12, 0, 12, 0));
@@ -73,7 +73,7 @@ public abstract class cr {
         org.telegram.ui.Cells.i3 i3Var2 = new org.telegram.ui.Cells.i3(context, LocaleController.getString(R.string.CreateManagedBotUsername), false, false, 29, g6Var);
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
-        org.telegram.ui.Cells.g3 g3Var2 = i3Var2.f22955b;
+        org.telegram.ui.Cells.g3 g3Var2 = i3Var2.f22957b;
         i3Var2.removeView(g3Var2);
         g3Var2.setHintColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.H6, g6Var));
         g3Var2.setRightText("bot");
@@ -117,7 +117,7 @@ public abstract class cr {
         linearLayout3.addView(p10, k7.c6.p(0, 48, 119.0f, 1, 5, 0, 0, 0));
         o10.useBackgroundTopPadding = false;
         o10.smoothKeyboardAnimationEnabled = true;
-        o10.setBackgroundColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21605a7, g6Var));
+        o10.setBackgroundColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21607a7, g6Var));
         o10.fixNavigationBar();
         final boolean[] zArr = new boolean[1];
         String[] strArr = new String[1];

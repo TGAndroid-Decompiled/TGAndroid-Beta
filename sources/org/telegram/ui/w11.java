@@ -1,10 +1,11 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-public final class w11 extends org.telegram.ui.Components.fo0 {
+import android.content.ClipboardManager;
+public final class w11 implements ClipboardManager.OnPrimaryClipChangedListener {
+    public final d21 f42252a;
+
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        invalidate();
+    public final void onPrimaryClipChanged() {
+        this.f42252a.W();
     }
 }

@@ -7,7 +7,7 @@ public final class ma implements ka {
 
     public ma(Context context, ha haVar) {
         this.f11951b = haVar;
-        w2.a aVar = w2.a.f49325e;
+        w2.a aVar = w2.a.f49361e;
         y2.q.b(context);
         y2.o c3 = y2.q.a().c(aVar);
         if (w2.a.d.contains(new v2.c("json"))) {
@@ -22,10 +22,10 @@ public final class ma implements ka {
         this.f11951b.getClass();
         y2.p pVar = (y2.p) this.f11950a.get();
         if (e0Var.f1474b != 0) {
-            aVar = new v2.a(null, e0Var.E(), v2.d.f48850a, null);
+            aVar = new v2.a(null, e0Var.E(), v2.d.f48886a, null);
         } else {
-            aVar = new v2.a(null, e0Var.E(), v2.d.f48851b, null);
+            aVar = new v2.a(null, e0Var.E(), v2.d.f48887b, null);
         }
-        pVar.a(aVar, new sg.a(28));
+        pVar.a(aVar, new sg.a(29));
     }
 }

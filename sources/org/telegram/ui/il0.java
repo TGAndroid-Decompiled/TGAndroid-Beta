@@ -6,12 +6,12 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class il0 extends FrameLayout {
-    public final org.telegram.ui.Components.lj0 f37892a;
+    public final org.telegram.ui.Components.kj0 f37741a;
 
     public il0(Context context) {
         super(context);
         ?? imageView = new ImageView(context);
-        this.f37892a = imageView;
+        this.f37741a = imageView;
         imageView.setOnClickListener(new f60(this, 14));
         int dp = AndroidUtilities.dp(120.0f);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(dp, dp);

@@ -9,12 +9,12 @@ import android.view.ViewGroup;
 import j$.util.Objects;
 import oh.o8;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.kv0;
+import org.telegram.ui.Components.jv0;
 import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.tk0;
+import org.telegram.ui.Components.sk0;
 import org.telegram.ui.Components.z5;
 public final class y2 extends j {
-    public kv0 f5565n0;
+    public jv0 f5565n0;
     public o8 f5566o0;
     public o8 f5567p0;
     public ng.h0 f5568q0;
@@ -35,7 +35,7 @@ public final class y2 extends j {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i10;
-        kv0 kv0Var = this.f5565n0;
+        jv0 jv0Var = this.f5565n0;
         int padding = getPadding();
         float d = this.f5572u0.d(1.0f, false);
         if (d == 1.0f) {
@@ -46,13 +46,13 @@ public final class y2 extends j {
         canvas.scale(f10, f10, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
         o8 o8Var = this.f5567p0;
         if (o8Var != null) {
-            o8Var.f17562e = (int) ((1.0f - d) * 255.0f);
-            o8Var.setBounds(padding, padding, ((int) kv0Var.f28463a) - padding, ((int) kv0Var.f28464b) - padding);
+            o8Var.f17564e = (int) ((1.0f - d) * 255.0f);
+            o8Var.setBounds(padding, padding, ((int) jv0Var.f28201a) - padding, ((int) jv0Var.f28202b) - padding);
             this.f5567p0.draw(canvas);
         }
         o8 o8Var2 = this.f5566o0;
-        o8Var2.f17562e = (int) (d * 255.0f);
-        o8Var2.setBounds(padding, padding, ((int) kv0Var.f28463a) - padding, ((int) kv0Var.f28464b) - padding);
+        o8Var2.f17564e = (int) (d * 255.0f);
+        o8Var2.setBounds(padding, padding, ((int) jv0Var.f28201a) - padding, ((int) jv0Var.f28202b) - padding);
         this.f5566o0.draw(canvas);
         Rect rect = AndroidUtilities.rectTmp2;
         float width = (this.f5566o0.getBounds().width() * 0.61f) / 2.0f;
@@ -61,7 +61,7 @@ public final class y2 extends j {
         this.f5568q0.c(rect);
         this.f5569r0.c(rect);
         ng.h0 h0Var = this.f5568q0;
-        if (this.f5566o0.f17559a == 1) {
+        if (this.f5566o0.f17561a == 1) {
             i10 = -1;
         } else {
             i10 = -16777216;
@@ -102,11 +102,11 @@ public final class y2 extends j {
     }
 
     public int getPadding() {
-        return (int) ((this.f5565n0.f28464b - AndroidUtilities.dp(84.0f)) / 2.0f);
+        return (int) ((this.f5565n0.f28202b - AndroidUtilities.dp(84.0f)) / 2.0f);
     }
 
     @Override
-    public tk0 getSelectionBounds() {
+    public sk0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -115,14 +115,14 @@ public final class y2 extends j {
         float scale = (getScale() + 0.4f) * getMeasuredWidth();
         float f10 = scale / 2.0f;
         float f11 = scale * scaleX;
-        return new tk0((getPositionX() - f10) * scaleX, (getPositionY() - f10) * scaleX, f11, f11);
+        return new sk0((getPositionX() - f10) * scaleX, (getPositionY() - f10) * scaleX, f11, f11);
     }
 
     @Override
     public final void k() {
-        kv0 kv0Var = this.f5565n0;
-        setX(getPositionX() - (kv0Var.f28463a / 2.0f));
-        setY(getPositionY() - (kv0Var.f28464b / 2.0f));
+        jv0 jv0Var = this.f5565n0;
+        setX(getPositionX() - (jv0Var.f28201a / 2.0f));
+        setY(getPositionY() - (jv0Var.f28202b / 2.0f));
         m();
     }
 
@@ -142,8 +142,8 @@ public final class y2 extends j {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        kv0 kv0Var = this.f5565n0;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) kv0Var.f28463a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) kv0Var.f28464b, 1073741824));
+        jv0 jv0Var = this.f5565n0;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) jv0Var.f28201a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) jv0Var.f28202b, 1073741824));
     }
 
     public final void q(boolean z4) {
@@ -153,7 +153,7 @@ public final class y2 extends j {
             this.f5567p0 = this.f5566o0;
             o8 o8Var = new o8(this);
             this.f5566o0 = o8Var;
-            if (this.f5567p0.f17559a != 1) {
+            if (this.f5567p0.f17561a != 1) {
                 o8Var.a();
             }
             this.f5566o0.b(this.f5573v0, false);
@@ -174,7 +174,7 @@ public final class y2 extends j {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new bg.a(1, this, zArr));
         ofFloat.addListener(new w2(0, this, zArr));
-        ofFloat.setInterpolator(pr.f30184g);
+        ofFloat.setInterpolator(pr.f30169g);
         ofFloat.setDuration(350L);
         ofFloat.start();
     }

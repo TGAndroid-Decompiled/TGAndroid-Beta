@@ -16,13 +16,13 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.q70;
+import org.telegram.ui.cr0;
 import org.telegram.ui.py;
-import org.telegram.ui.xq0;
 public abstract class d4 {
     public static EditTextBoldCursor a(Context context, g6 g6Var, String str, String str2) {
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         editTextBoldCursor.setTextSize(1, 18.0f);
-        editTextBoldCursor.setTextColor(k6.v0(k6.f21766j5, g6Var));
+        editTextBoldCursor.setTextColor(k6.v0(k6.f21768j5, g6Var));
         editTextBoldCursor.setHintText(str);
         editTextBoldCursor.setHintColor(k6.v0(k6.H6, g6Var));
         editTextBoldCursor.setHeaderHintColor(k6.v0(k6.L6, g6Var));
@@ -34,12 +34,12 @@ public abstract class d4 {
             str2 = "";
         }
         editTextBoldCursor.setText(str2);
-        editTextBoldCursor.setLineColors(k6.v0(k6.f21785k6, g6Var), k6.v0(k6.f21803l6, g6Var), k6.v0(k6.f21876p7, g6Var));
+        editTextBoldCursor.setLineColors(k6.v0(k6.f21787k6, g6Var), k6.v0(k6.f21805l6, g6Var), k6.v0(k6.f21878p7, g6Var));
         editTextBoldCursor.setImeOptions(5);
         editTextBoldCursor.setBackgroundDrawable(null);
         editTextBoldCursor.setPadding(0, 0, 0, 0);
-        editTextBoldCursor.setHighlightColor(k6.v0(k6.f21970uf, g6Var));
-        editTextBoldCursor.setHandlesColor(k6.v0(k6.f21988vf, g6Var));
+        editTextBoldCursor.setHighlightColor(k6.v0(k6.f21972uf, g6Var));
+        editTextBoldCursor.setHandlesColor(k6.v0(k6.f21990vf, g6Var));
         return editTextBoldCursor;
     }
 
@@ -47,7 +47,7 @@ public abstract class d4 {
         TL_keyboard.InlineButtonType inlineButtonType;
         TL_iv.textButton textbutton;
         e4 e4Var = q3Var.d;
-        if (e4Var != null && (textbutton = e4Var.f49726a) != null) {
+        if (e4Var != null && (textbutton = e4Var.f49762a) != null) {
             inlineButtonType = textbutton.type;
         } else {
             inlineButtonType = null;
@@ -58,7 +58,7 @@ public abstract class d4 {
             } else if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeCopy) {
                 h(q3Var, z4);
             } else if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
-                q3Var.f49949f.o3(true);
+                q3Var.f49985f.n3(true);
                 k(p2Var, z4, new a4(q3Var, 2));
             }
             return null;
@@ -89,7 +89,7 @@ public abstract class d4 {
                 }
             }
         }, false);
-        q70Var.c(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new xq0(p2Var, q3Var, z4, 14), false);
+        q70Var.c(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new cr0(p2Var, q3Var, z4, 14), false);
         q70Var.Z();
         return q70Var;
     }
@@ -97,7 +97,7 @@ public abstract class d4 {
     public static q70 c(q70 q70Var, org.telegram.ui.ActionBar.p2 p2Var, final Context context, final g6 g6Var, final o3 o3Var, final boolean z4) {
         TL_keyboard.PageButton pageButton;
         TL_keyboard.InlineButtonType inlineButtonType;
-        int i10 = o3Var.f49900b;
+        int i10 = o3Var.f49936b;
         TL_iv.pageBlockButtonRow d = o3Var.d();
         if (d != null && i10 >= 0 && i10 < d.buttons.size()) {
             pageButton = d.buttons.get(i10);
@@ -155,7 +155,7 @@ public abstract class d4 {
         String str;
         int i10;
         boolean c3 = o3Var.c();
-        int i11 = o3Var.f49900b;
+        int i11 = o3Var.f49936b;
         TL_iv.pageBlockButtonRow d = o3Var.d();
         TL_keyboard.InlineButtonType inlineButtonType = null;
         if (d != null && i11 >= 0 && i11 < d.buttons.size()) {
@@ -185,7 +185,7 @@ public abstract class d4 {
         String str;
         int i10;
         boolean c3 = o3Var.c();
-        int i11 = o3Var.f49900b;
+        int i11 = o3Var.f49936b;
         TL_iv.pageBlockButtonRow d = o3Var.d();
         TL_keyboard.InlineButtonType inlineButtonType = null;
         if (d != null && i11 >= 0 && i11 < d.buttons.size()) {
@@ -220,7 +220,7 @@ public abstract class d4 {
         int i11 = 0;
         f10.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
         String string = LocaleController.getString(R.string.RichEditorButtonText);
-        int i12 = o3Var.f49900b;
+        int i12 = o3Var.f49936b;
         TL_iv.pageBlockButtonRow d = o3Var.d();
         if (d != null && i12 >= 0 && i12 < d.buttons.size()) {
             pageButton = d.buttons.get(i12);
@@ -246,16 +246,16 @@ public abstract class d4 {
             i10 = R.string.RichEditorCreateProfileButton;
         }
         String string2 = LocaleController.getString(i10);
-        org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+        org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21168a;
         d2Var.O = string2;
         alertDialog$Builder.n(f10);
         alertDialog$Builder.k(LocaleController.getString(R.string.OK), new o9.b(c3, t0Var, a2, o3Var, 6));
         if (c3) {
-            alertDialog$Builder.i(LocaleController.getString(R.string.RichEditorChangeUser), new sf.g(t0Var, 16));
+            alertDialog$Builder.i(LocaleController.getString(R.string.RichEditorChangeUser), new sf.h(t0Var, 16));
             String string3 = LocaleController.getString(R.string.Delete);
             y3 y3Var = new y3(o3Var, 2);
             d2Var.m0 = string3;
-            d2Var.f21253n0 = y3Var;
+            d2Var.f21255n0 = y3Var;
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
             d2Var.G0 = true;
             i11 = -4;
@@ -273,7 +273,7 @@ public abstract class d4 {
         int i10 = 0;
         f10.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
         String string = LocaleController.getString(R.string.RichEditorButtonText);
-        int i11 = o3Var.f49900b;
+        int i11 = o3Var.f49936b;
         TL_iv.pageBlockButtonRow d = o3Var.d();
         if (d != null && i11 >= 0 && i11 < d.buttons.size()) {
             pageButton = d.buttons.get(i11);
@@ -294,9 +294,9 @@ public abstract class d4 {
         } else {
             alertDialog$Builder = new AlertDialog$Builder(context, 0, g6Var);
         }
-        alertDialog$Builder.f21166a.O = str;
+        alertDialog$Builder.f21168a.O = str;
         alertDialog$Builder.n(f10);
-        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new qh.m1(a2, a10, y3Var, 7));
+        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new qh.l1(a2, a10, y3Var, 7));
         if (o3Var.c()) {
             alertDialog$Builder.i(LocaleController.getString(R.string.Delete), new y3(o3Var, 0));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
@@ -318,7 +318,7 @@ public abstract class d4 {
         int i10;
         TL_iv.textButton textbutton;
         e4 e4Var = q3Var.d;
-        if (e4Var != null && (textbutton = e4Var.f49726a) != null) {
+        if (e4Var != null && (textbutton = e4Var.f49762a) != null) {
             inlineButtonType = textbutton.type;
         } else {
             inlineButtonType = null;
@@ -327,16 +327,16 @@ public abstract class d4 {
         if (z10) {
             l10 = ((TL_keyboard.TL_inlineButtonTypeCopy) inlineButtonType).copy_text;
         } else {
-            l10 = x5.l(q3Var.f49948e);
+            l10 = x5.l(q3Var.f49984e);
         }
         String str = l10;
-        q3Var.f49949f.o3(false);
+        q3Var.f49985f.n3(false);
         if (z10) {
             i10 = R.string.RichEditorEditCopyButton;
         } else {
             i10 = R.string.RichEditorCreateCopyButton;
         }
-        q3Var.f49945a.showInputDialog(LocaleController.getString(i10), LocaleController.getString(R.string.RichEditorButtonCopyText), str, false, !z4, new a4(q3Var, 1));
+        q3Var.f49981a.showInputDialog(LocaleController.getString(i10), LocaleController.getString(R.string.RichEditorButtonCopyText), str, false, !z4, new a4(q3Var, 1));
     }
 
     public static void i(q3 q3Var, boolean z4) {
@@ -345,7 +345,7 @@ public abstract class d4 {
         int i10;
         TL_iv.textButton textbutton;
         e4 e4Var = q3Var.d;
-        if (e4Var != null && (textbutton = e4Var.f49726a) != null) {
+        if (e4Var != null && (textbutton = e4Var.f49762a) != null) {
             inlineButtonType = textbutton.type;
         } else {
             inlineButtonType = null;
@@ -357,21 +357,21 @@ public abstract class d4 {
             str = "http://";
         }
         String str2 = str;
-        q3Var.f49949f.o3(false);
+        q3Var.f49985f.n3(false);
         if (z10) {
             i10 = R.string.RichEditorEditLinkButton;
         } else {
             i10 = R.string.RichEditorCreateLinkButton;
         }
-        q3Var.f49945a.showInputDialog(LocaleController.getString(i10), LocaleController.getString(R.string.RichEditorButtonURL), str2, true, !z4, new a4(q3Var, 0));
+        q3Var.f49981a.showInputDialog(LocaleController.getString(i10), LocaleController.getString(R.string.RichEditorButtonURL), str2, true, !z4, new a4(q3Var, 0));
     }
 
     public static void j(AlertDialog$Builder alertDialog$Builder, EditTextBoldCursor editTextBoldCursor, int i10, g6 g6Var) {
-        org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+        org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21168a;
         d2Var.setOnShowListener(new lh.j(3, editTextBoldCursor));
         d2Var.q(250L);
         if (i10 != 0 && (d2Var.d(i10) instanceof TextView)) {
-            ((TextView) d2Var.d(i10)).setTextColor(k6.v0(k6.f21895q7, g6Var));
+            ((TextView) d2Var.d(i10)).setTextColor(k6.v0(k6.f21897q7, g6Var));
         }
     }
 
@@ -384,10 +384,10 @@ public abstract class d4 {
         bundle.putBoolean("checkCanWrite", false);
         bundle.putInt("dialogsType", 4);
         py pyVar = new py(bundle);
-        pyVar.f40308z2 = new sf.g(c4Var, 17);
+        pyVar.f40278z2 = new sf.h(c4Var, 17);
         if (z4) {
             ?? obj = new Object();
-            obj.f22156a = true;
+            obj.f22158a = true;
             p2Var.showAsSheet(pyVar, obj);
             return;
         }

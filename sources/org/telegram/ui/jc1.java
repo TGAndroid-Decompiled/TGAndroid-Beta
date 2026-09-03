@@ -1,24 +1,31 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class jc1 extends AnimatorListenerAdapter {
-    public final ed1 f38106a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.widget.FrameLayout;
+public final class jc1 extends FrameLayout {
+    public final int f37951a;
+    public final Rect f37952b;
+    public final jd1 f37953c;
 
-    public jc1(ed1 ed1Var) {
-        this.f38106a = ed1Var;
+    public jc1(jd1 jd1Var, Context context, int i10, Rect rect) {
+        super(context);
+        this.f37953c = jd1Var;
+        this.f37951a = i10;
+        this.f37952b = rect;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        char c3;
-        ed1 ed1Var = this.f38106a;
-        org.telegram.ui.Components.n81[] n81VarArr = ed1Var.G0;
-        if (ed1Var.T0 != null) {
-            c3 = 0;
+    public final void onDraw(Canvas canvas) {
+        int i10 = this.f37951a;
+        Rect rect = this.f37952b;
+        jd1 jd1Var = this.f37953c;
+        if (i10 == 0) {
+            jd1Var.f38005r.setBounds(jd1Var.S.getLeft() - rect.left, 0, jd1Var.S.getRight() + rect.right, getMeasuredHeight());
         } else {
-            c3 = 2;
+            jd1Var.f38005r.setBounds(-rect.left, 0, getMeasuredWidth() + rect.right, getMeasuredHeight());
         }
-        n81VarArr[c3].setVisibility(4);
+        jd1Var.f38005r.draw(canvas);
     }
 }

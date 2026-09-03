@@ -7,25 +7,25 @@ import android.view.KeyEvent;
 import b6.m;
 import q5.p;
 public final class g extends s {
-    public final h f48005a;
+    public final h f48041a;
 
     public g(h hVar) {
-        this.f48005a = hVar;
+        this.f48041a = hVar;
     }
 
     @Override
     public final void onCustomAction(String str, Bundle bundle) {
         h.v.b("onCustomAction with action = %s", str);
         int hashCode = str.hashCode();
-        h hVar = this.f48005a;
+        h hVar = this.f48041a;
         switch (hashCode) {
             case -1699820260:
                 if (str.equals("com.google.android.gms.cast.framework.action.REWIND")) {
-                    long j10 = -hVar.f48009e.f47035c;
-                    s5.h hVar2 = hVar.f48017n;
+                    long j10 = -hVar.f48045e.f47066c;
+                    s5.h hVar2 = hVar.f48053n;
                     if (hVar2 != null) {
                         long min = Math.min(hVar2.g(), Math.max(0L, hVar2.a() + j10));
-                        s5.h hVar3 = hVar.f48017n;
+                        s5.h hVar3 = hVar.f48053n;
                         if (hVar3 == null) {
                             return;
                         }
@@ -57,11 +57,11 @@ public final class g extends s {
                 break;
             case 1362116196:
                 if (str.equals("com.google.android.gms.cast.framework.action.FORWARD")) {
-                    long j11 = hVar.f48009e.f47035c;
-                    s5.h hVar4 = hVar.f48017n;
+                    long j11 = hVar.f48045e.f47066c;
+                    s5.h hVar4 = hVar.f48053n;
                     if (hVar4 != null) {
                         long min2 = Math.min(hVar4.g(), Math.max(0L, hVar4.a() + j11));
-                        s5.h hVar5 = hVar.f48017n;
+                        s5.h hVar5 = hVar.f48053n;
                         if (hVar5 != null) {
                             hVar5.q(new p(min2));
                             return;
@@ -73,8 +73,8 @@ public final class g extends s {
                 break;
         }
         Intent intent = new Intent(str);
-        intent.setComponent(hVar.f48011g);
-        hVar.f48006a.sendBroadcast(intent);
+        intent.setComponent(hVar.f48047g);
+        hVar.f48042a.sendBroadcast(intent);
     }
 
     @Override
@@ -83,7 +83,7 @@ public final class g extends s {
         h.v.b("onMediaButtonEvent", new Object[0]);
         KeyEvent keyEvent = (KeyEvent) intent.getParcelableExtra("android.intent.extra.KEY_EVENT");
         if (keyEvent != null) {
-            if ((keyEvent.getKeyCode() == 127 || keyEvent.getKeyCode() == 126) && (hVar = this.f48005a.f48017n) != null) {
+            if ((keyEvent.getKeyCode() == 127 || keyEvent.getKeyCode() == 126) && (hVar = this.f48041a.f48053n) != null) {
                 hVar.r();
                 return true;
             }
@@ -95,7 +95,7 @@ public final class g extends s {
     @Override
     public final void onPause() {
         h.v.b("onPause", new Object[0]);
-        s5.h hVar = this.f48005a.f48017n;
+        s5.h hVar = this.f48041a.f48053n;
         if (hVar != null) {
             hVar.r();
         }
@@ -104,7 +104,7 @@ public final class g extends s {
     @Override
     public final void onPlay() {
         h.v.b("onPlay", new Object[0]);
-        s5.h hVar = this.f48005a.f48017n;
+        s5.h hVar = this.f48041a.f48053n;
         if (hVar != null) {
             hVar.r();
         }
@@ -113,7 +113,7 @@ public final class g extends s {
     @Override
     public final void onSeekTo(long j10) {
         h.v.b("onSeekTo %d", Long.valueOf(j10));
-        s5.h hVar = this.f48005a.f48017n;
+        s5.h hVar = this.f48041a.f48053n;
         if (hVar == null) {
             return;
         }
@@ -123,7 +123,7 @@ public final class g extends s {
     @Override
     public final void onSkipToNext() {
         h.v.b("onSkipToNext", new Object[0]);
-        s5.h hVar = this.f48005a.f48017n;
+        s5.h hVar = this.f48041a.f48053n;
         if (hVar != null) {
             m.e("Must be called from the main thread.");
             if (!hVar.w()) {
@@ -137,7 +137,7 @@ public final class g extends s {
     @Override
     public final void onSkipToPrevious() {
         h.v.b("onSkipToPrevious", new Object[0]);
-        s5.h hVar = this.f48005a.f48017n;
+        s5.h hVar = this.f48041a.f48053n;
         if (hVar != null) {
             m.e("Must be called from the main thread.");
             if (!hVar.w()) {

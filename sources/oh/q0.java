@@ -8,31 +8,31 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.h20;
 public final class q0 extends TextView {
-    public int f17641a;
-    public final h20 f17642b;
+    public int f17643a;
+    public final h20 f17644b;
 
     public q0(Context context) {
         super(context);
-        this.f17641a = -1;
-        this.f17642b = new h20();
+        this.f17643a = -1;
+        this.f17644b = new h20();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f17641a < 0) {
+        if (this.f17643a < 0) {
             int i10 = 0;
             if (getLayout() != null) {
                 i10 = (int) getLayout().getLineWidth(0);
             }
-            this.f17641a = i10;
+            this.f17643a = i10;
         }
-        if (this.f17641a > AndroidUtilities.dp(100.0f)) {
+        if (this.f17643a > AndroidUtilities.dp(100.0f)) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             super.onDraw(canvas);
             canvas.save();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(getWidth() - AndroidUtilities.dp(15.0f), 0.0f, getWidth(), getHeight());
-            this.f17642b.b(canvas, rectF, 2, 1.0f);
+            this.f17644b.b(canvas, rectF, 2, 1.0f);
             canvas.restore();
             canvas.restore();
             return;
@@ -48,6 +48,6 @@ public final class q0 extends TextView {
     @Override
     public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
         super.setText(charSequence, bufferType);
-        this.f17641a = -1;
+        this.f17643a = -1;
     }
 }

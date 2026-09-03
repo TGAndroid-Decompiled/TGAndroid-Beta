@@ -14,7 +14,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class a40 extends sa {
     public final LinearLayout U;
-    public x51 V;
+    public w51 V;
 
     public a40(Activity activity, org.telegram.ui.ActionBar.g6 g6Var, TLRPC.User user, TLObject tLObject, org.telegram.ui.aq aqVar) {
         super(activity, null, false, false, false, false, false, 1, g6Var);
@@ -25,11 +25,11 @@ public final class a40 extends sa {
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
         FrameLayout frameLayout = new FrameLayout(activity);
-        org.telegram.ui.vz0 P = P(activity, AndroidUtilities.dp(60.0f), user);
-        org.telegram.ui.vz0 P2 = P(activity, AndroidUtilities.dp(60.0f), tLObject);
+        org.telegram.ui.a01 P = P(activity, AndroidUtilities.dp(60.0f), user);
+        org.telegram.ui.a01 P2 = P(activity, AndroidUtilities.dp(60.0f), tLObject);
         ImageView imageView = new ImageView(activity);
         imageView.setImageResource(R.drawable.msg_arrow_avatar);
-        imageView.setColorFilter(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f22053z6, g6Var));
+        imageView.setColorFilter(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f22055z6, g6Var));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         LinearLayout linearLayout2 = new LinearLayout(activity);
         linearLayout2.setOrientation(0);
@@ -68,28 +68,28 @@ public final class a40 extends sa {
         dVar2.g(LocaleController.formatString(R.string.GuardBotReplaceKeepCurrent, shortName), false, true);
         dVar2.setOnClickListener(new g0(this, 24));
         linearLayout.addView(dVar2, k7.c6.k(14.0f, 0.0f, 14.0f, 14.0f, -1, 48));
-        tl0 tl0Var = this.d;
+        sl0 sl0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        tl0Var.setPadding(i11, 0, i11, 0);
+        sl0Var.setPadding(i11, 0, i11, 0);
         this.V.N(false);
     }
 
-    public static org.telegram.ui.vz0 P(Context context, int i10, TLObject tLObject) {
-        org.telegram.ui.vz0 vz0Var = new org.telegram.ui.vz0(context);
-        vz0Var.setRoundRadius(i10 / 2);
+    public static org.telegram.ui.a01 P(Context context, int i10, TLObject tLObject) {
+        org.telegram.ui.a01 a01Var = new org.telegram.ui.a01(context);
+        a01Var.setRoundRadius(i10 / 2);
         z8 z8Var = new z8((org.telegram.ui.ActionBar.g6) null);
         z8Var.p(tLObject);
-        vz0Var.setImageDrawable(z8Var);
-        vz0Var.setLayoutParams(new FrameLayout.LayoutParams(i10, i10));
-        return vz0Var;
+        a01Var.setImageDrawable(z8Var);
+        a01Var.setLayoutParams(new FrameLayout.LayoutParams(i10, i10));
+        return a01Var;
     }
 
     @Override
-    public final sl0 v(tl0 tl0Var) {
-        x51 x51Var = new x51(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
-        this.V = x51Var;
-        x51Var.f32957r = false;
-        return x51Var;
+    public final rl0 v(sl0 sl0Var) {
+        w51 w51Var = new w51(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
+        this.V = w51Var;
+        w51Var.f32651r = false;
+        return w51Var;
     }
 
     @Override

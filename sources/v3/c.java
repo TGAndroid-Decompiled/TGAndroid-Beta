@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 public final class c extends e {
-    public long f48870b;
-    public long[] f48871c;
+    public long f48906b;
+    public long[] f48907c;
     public long[] d;
 
     public static Serializable L(int i10, w wVar) {

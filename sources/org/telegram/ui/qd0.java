@@ -53,7 +53,7 @@ public final class qd0 implements RequestDelegate {
                                         if (str.contains("TASK_ALREADY_EXISTS")) {
                                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(zd0Var2.getContext());
                                             String string = LocaleController.getString(R.string.LoginEmailResetPremiumRequiredTitle);
-                                            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+                                            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21168a;
                                             d2Var.O = string;
                                             int i13 = R.string.LoginEmailResetPremiumRequiredMessage;
                                             se.b c3 = se.b.c();
@@ -80,8 +80,8 @@ public final class qd0 implements RequestDelegate {
                                     TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject2;
                                     TLRPC.auth_SentCodeType auth_sentcodetype = tL_auth_sentCode.type;
                                     if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeEmailCode) {
-                                        auth_sentcodetype.email_pattern = zd0Var2.f43916y.getString("emailPattern");
-                                        zd0Var2.f43915x = true;
+                                        auth_sentcodetype.email_pattern = zd0Var2.f43922y.getString("emailPattern");
+                                        zd0Var2.f43921x = true;
                                     }
                                     og0Var2.g1(bundle2, tL_auth_sentCode, true);
                                     return;
@@ -130,7 +130,7 @@ public final class qd0 implements RequestDelegate {
                                         if (str.contains("TASK_ALREADY_EXISTS")) {
                                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(zd0Var22.getContext());
                                             String string = LocaleController.getString(R.string.LoginEmailResetPremiumRequiredTitle);
-                                            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+                                            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21168a;
                                             d2Var.O = string;
                                             int i13 = R.string.LoginEmailResetPremiumRequiredMessage;
                                             se.b c3 = se.b.c();
@@ -157,8 +157,8 @@ public final class qd0 implements RequestDelegate {
                                     TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject2;
                                     TLRPC.auth_SentCodeType auth_sentcodetype = tL_auth_sentCode.type;
                                     if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeEmailCode) {
-                                        auth_sentcodetype.email_pattern = zd0Var22.f43916y.getString("emailPattern");
-                                        zd0Var22.f43915x = true;
+                                        auth_sentcodetype.email_pattern = zd0Var22.f43922y.getString("emailPattern");
+                                        zd0Var22.f43921x = true;
                                     }
                                     og0Var2.g1(bundle22, tL_auth_sentCode, true);
                                     return;

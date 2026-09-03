@@ -7,7 +7,7 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.ic;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.x21;
+import org.telegram.ui.Components.w21;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.xn;
 public final class y0 implements Runnable {
@@ -41,12 +41,12 @@ public final class y0 implements Runnable {
                 LongSparseIntArray longSparseIntArray = xnVar.J5;
                 long j10 = this.f7673b;
                 longSparseIntArray.put(j10, 0);
-                x21 x21Var = xnVar.O1;
-                if (x21Var != null) {
-                    x21Var.setAllTopicsHidden(false);
+                w21 w21Var = xnVar.O1;
+                if (w21Var != null) {
+                    w21Var.setAllTopicsHidden(false);
                 }
-                if (j10 == xnVar.f43116a4) {
-                    xnVar.f43403x0.O(false);
+                if (j10 == xnVar.f43094a4) {
+                    xnVar.f43381x0.O(false);
                     return;
                 }
                 return;
@@ -63,7 +63,7 @@ public final class y0 implements Runnable {
             default:
                 xn xnVar4 = this.f7674c;
                 ic v = qc.v(xnVar4.getParentActivity(), xnVar4, null, 1, this.f7673b, 1, xnVar4.getThemedColor(k6.Fi), xnVar4.getThemedColor(k6.Hi), 5000, true, null);
-                v.f27746k = true;
+                v.f27779k = true;
                 v.k(true);
                 return;
         }

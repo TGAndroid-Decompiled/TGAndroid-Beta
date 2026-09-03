@@ -11,9 +11,9 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 public final class i extends LinearLayout {
-    public final TextView f44382a;
-    public final mh.n f44383b;
-    public final s0 f44384c;
+    public final TextView f44413a;
+    public final mh.n f44414b;
+    public final s0 f44415c;
     public final qh.d d;
 
     public i(Context context, g6 g6Var) {
@@ -21,19 +21,19 @@ public final class i extends LinearLayout {
         setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(21.0f));
         setOrientation(1);
         TextView textView = new TextView(context);
-        this.f44382a = textView;
-        int i10 = k6.f22036y6;
+        this.f44413a = textView;
+        int i10 = k6.f22038y6;
         org.telegram.ui.b.l(i10, g6Var, textView, 1, 14.0f);
         textView.setGravity(17);
         textView.setTextAlignment(4);
         addView(textView, c6.k(0.0f, 0.0f, 0.0f, 19.0f, -1, -2));
         mh.n nVar = new mh.n(1, context, g6Var, true);
-        this.f44383b = nVar;
+        this.f44414b = nVar;
         nVar.setMinWidth(AndroidUtilities.dp(200.0f));
         nVar.g(LocaleController.getString(R.string.ProfileBotAddPreview), false, true);
         addView(nVar, c6.q(-2, 44, 17));
         s0 s0Var = new s0(context, g6Var);
-        this.f44384c = s0Var;
+        this.f44415c = s0Var;
         s0Var.setTextColor(k6.v0(i10, g6Var));
         s0Var.setText(LocaleController.getString(R.string.ProfileBotOr));
         s0Var.setTextSize(1, 14.0f);

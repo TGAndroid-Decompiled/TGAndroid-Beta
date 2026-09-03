@@ -76,7 +76,7 @@ public final class h implements y, AdapterView.OnItemClickListener {
         ?? obj = new Object();
         obj.f11416a = e0Var;
         p2.v vVar = new p2.v(context);
-        g.c cVar = (g.c) vVar.f44183c;
+        g.c cVar = (g.c) vVar.f44214c;
         h hVar = new h(cVar.f6699a);
         obj.f11418c = hVar;
         hVar.f11387e = obj;

@@ -9,17 +9,17 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class z30 extends FrameLayout {
-    public final Rect f43802a;
-    public final RectF f43803b;
-    public final Path f43804c;
+    public final Rect f43784a;
+    public final RectF f43785b;
+    public final Path f43786c;
     public final d60 d;
 
     public z30(d60 d60Var, LaunchActivity launchActivity) {
         super(launchActivity);
         this.d = d60Var;
-        this.f43802a = new Rect();
-        this.f43803b = new RectF();
-        this.f43804c = new Path();
+        this.f43784a = new Rect();
+        this.f43785b = new RectF();
+        this.f43786c = new Path();
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class z30 extends FrameLayout {
         View childAt;
         org.telegram.ui.Components.voip.u uVar;
         d60 d60Var = this.d;
-        y30 y30Var = d60Var.f36014b;
+        y30 y30Var = d60Var.f35993b;
         if (d60Var.a2 != 1.0f) {
             if (d60Var.U2 != null && d60Var.Y2) {
                 canvas.save();
@@ -55,14 +55,14 @@ public final class z30 extends FrameLayout {
             }
         }
         y30Var.setAlpha(d60Var.a2);
-        Path path = this.f43804c;
+        Path path = this.f43786c;
         path.reset();
-        RectF rectF = this.f43803b;
+        RectF rectF = this.f43785b;
         rectF.set(0.0f, 0.0f, getMeasuredHeight(), getMeasuredWidth());
         path.addRoundRect(rectF, new float[]{AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CCW);
         canvas.save();
         canvas.clipPath(path);
-        if (y30Var.f33088f1) {
+        if (y30Var.f33082f1) {
             for (int i12 = 0; i12 < y30Var.getChildCount(); i12++) {
                 childAt = y30Var.getChildAt(i12);
                 if (childAt instanceof org.telegram.ui.Components.uh0) {
@@ -73,7 +73,7 @@ public final class z30 extends FrameLayout {
         childAt = null;
         if (childAt != null && (uVar = d60Var.W2) != null && uVar.v && !d60Var.C2) {
             canvas.save();
-            Rect rect = this.f43802a;
+            Rect rect = this.f43784a;
             rect.setEmpty();
             y30Var.getChildVisibleRect(childAt, rect, null);
             int i13 = rect.left;

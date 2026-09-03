@@ -1,7 +1,7 @@
 package mh;
 public abstract class m4 {
-    public String f14447a;
-    public int f14448b;
+    public String f14449a;
+    public int f14450b;
 
     public boolean b() {
         return true;

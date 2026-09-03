@@ -1,69 +1,67 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-public final class ri1 extends org.telegram.ui.Components.sl0 {
-    public final Context f40973c;
-    public final WallpapersListActivity d;
+import android.content.SharedPreferences;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class ri1 implements RequestDelegate {
+    public final int f40861a;
+    public final Object f40862b;
+    public final Object f40863c;
 
-    public ri1(WallpapersListActivity wallpapersListActivity, Context context) {
-        this.d = wallpapersListActivity;
-        this.f40973c = context;
+    public ri1(int i10, Object obj, Object obj2) {
+        this.f40861a = i10;
+        this.f40862b = obj;
+        this.f40863c = obj2;
     }
 
     @Override
-    public final boolean D(f2.m1 m1Var) {
-        if (m1Var.f5879f == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.f34946a;
-    }
-
-    @Override
-    public final int j(int i10) {
-        int i11;
-        WallpapersListActivity wallpapersListActivity = this.d;
-        i11 = wallpapersListActivity.uploadImageRow;
-        if (i10 != i11 && i10 != wallpapersListActivity.f34959r && i10 != wallpapersListActivity.f34948b && i10 != wallpapersListActivity.h) {
-            if (i10 != wallpapersListActivity.f34950c && i10 != wallpapersListActivity.f34955f) {
-                if (i10 != wallpapersListActivity.f34958n && i10 != wallpapersListActivity.f34960s) {
-                    return 2;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f40861a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new bh1(3, (si1) this.f40862b, (int[]) this.f40863c));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.n71((qh.m1) this.f40862b, (String) this.f40863c, tLObject, 12));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.n71((qh.y2) this.f40862b, tLObject, (MessagesController) this.f40863c, 15));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.n71((qh.w7) this.f40862b, tLObject, (MessagesController) this.f40863c, 18));
+                return;
+            case 4:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.n71((boolean[]) this.f40862b, tLObject, (sh.j1) this.f40863c, 22));
+                return;
+            case 5:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.n71((sh.d3) this.f40862b, tLObject, (org.telegram.ui.ActionBar.d2) this.f40863c, 25));
+                return;
+            case 6:
+                AndroidUtilities.runOnUIThread(new dy0(21, (uf.c) this.f40862b, tL_error, tLObject, (String) this.f40863c));
+                return;
+            case 7:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.n71((uf.u0) this.f40862b, (String) this.f40863c, tLObject, 28));
+                return;
+            case 8:
+                uf.l1 l1Var = (uf.l1) this.f40862b;
+                TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets = (TLRPC.TL_messages_searchStickerSets) this.f40863c;
+                if (tLObject instanceof TLRPC.TL_messages_foundStickerSets) {
+                    AndroidUtilities.runOnUIThread(new uf.h1(l1Var, tL_messages_searchStickerSets, (TLRPC.TL_messages_foundStickerSets) tLObject, 1));
+                    return;
                 }
-                return 3;
-            }
-            return 1;
+                return;
+            case 9:
+                AndroidUtilities.runOnUIThread(new uf.h1((vf.t) this.f40862b, tLObject, (TL_account.TL_businessChatLink) this.f40863c, 4));
+                return;
+            case 10:
+                AndroidUtilities.runOnUIThread(new qh.l6(29, (vf.e0) this.f40862b, (org.telegram.ui.Components.im) this.f40863c));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new uf.h1((vf.s1) this.f40862b, tLObject, (SharedPreferences) this.f40863c, 9));
+                return;
         }
-        return 0;
-    }
-
-    @Override
-    public final void v(f2.m1 r17, int r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ri1.v(f2.m1, int):void");
-    }
-
-    @Override
-    public final f2.m1 x(ViewGroup viewGroup, int i10) {
-        View o8Var;
-        Context context = this.f40973c;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 3) {
-                    o8Var = new org.telegram.ui.Components.aj(this, context, 1);
-                } else {
-                    o8Var = new org.telegram.ui.Cells.a9(context);
-                }
-            } else {
-                o8Var = new org.telegram.ui.Cells.z6(context, (b) null);
-            }
-        } else {
-            o8Var = new org.telegram.ui.Cells.o8(context);
-        }
-        return new f2.m1(o8Var);
     }
 }

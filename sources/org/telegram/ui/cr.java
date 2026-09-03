@@ -19,7 +19,7 @@ public final class cr extends f2.j0 {
         switch (this.I) {
             case 5:
                 super.S(fVar, j1Var, dVar);
-                if (((org.telegram.ui.Components.l81) this.J).S) {
+                if (((org.telegram.ui.Components.k81) this.J).S) {
                     dVar.p(false);
                     return;
                 }
@@ -42,7 +42,7 @@ public final class cr extends f2.j0 {
     public int W0(f2.j1 j1Var) {
         switch (this.I) {
             case 4:
-                if (((org.telegram.ui.Components.l21) this.J).X2) {
+                if (((org.telegram.ui.Components.k21) this.J).X2) {
                     return AndroidUtilities.displaySize.y;
                 }
                 return super.W0(j1Var);
@@ -57,7 +57,7 @@ public final class cr extends f2.j0 {
         switch (this.I) {
             case 2:
                 super.k1(z4);
-                org.telegram.ui.Components.qa0 qa0Var = ((org.telegram.ui.Components.ra0) this.J).f30660b;
+                org.telegram.ui.Components.qa0 qa0Var = ((org.telegram.ui.Components.ra0) this.J).f30707b;
                 if (z4) {
                     i10 = -1;
                 } else {
@@ -79,7 +79,7 @@ public final class cr extends f2.j0 {
         boolean z11;
         switch (this.I) {
             case 1:
-                org.telegram.ui.Components.q70 q70Var = ((pw) ((org.telegram.ui.Components.l00) this.J).G).f40168b.I0;
+                org.telegram.ui.Components.q70 q70Var = ((pw) ((org.telegram.ui.Components.l00) this.J).G).f40138b.I0;
                 if (q70Var != null && q70Var.D()) {
                     i10 = 0;
                 }
@@ -88,13 +88,13 @@ public final class cr extends f2.j0 {
             default:
                 return super.m0(i10, fVar, j1Var);
             case 3:
-                org.telegram.ui.Components.rk0 rk0Var = (org.telegram.ui.Components.rk0) this.J;
-                mh.d1 d1Var = rk0Var.f30755b;
+                org.telegram.ui.Components.qk0 qk0Var = (org.telegram.ui.Components.qk0) this.J;
+                mh.d1 d1Var = qk0Var.f30426b;
                 boolean z12 = false;
-                if (i10 < 0 && rk0Var.f30793y0 != 0.0f) {
-                    float pullingLeftProgress = rk0Var.getPullingLeftProgress();
-                    rk0Var.f30793y0 += i10;
-                    float pullingLeftProgress2 = rk0Var.getPullingLeftProgress();
+                if (i10 < 0 && qk0Var.f30464y0 != 0.0f) {
+                    float pullingLeftProgress = qk0Var.getPullingLeftProgress();
+                    qk0Var.f30464y0 += i10;
+                    float pullingLeftProgress2 = qk0Var.getPullingLeftProgress();
                     if (pullingLeftProgress > 1.0f) {
                         z10 = true;
                     } else {
@@ -111,34 +111,34 @@ public final class cr extends f2.j0 {
                         } catch (Exception unused) {
                         }
                     }
-                    float f11 = rk0Var.f30793y0;
+                    float f11 = qk0Var.f30464y0;
                     if (f11 < 0.0f) {
                         i10 = (int) f11;
-                        rk0Var.f30793y0 = 0.0f;
+                        qk0Var.f30464y0 = 0.0f;
                     } else {
                         i10 = 0;
                     }
-                    ag.l lVar = rk0Var.P;
+                    ag.l lVar = qk0Var.P;
                     if (lVar != null) {
                         lVar.invalidate();
                     }
                     d1Var.invalidate();
                 }
                 int m0 = super.m0(i10, fVar, j1Var);
-                if (i10 > 0 && m0 == 0 && d1Var.getScrollState() == 1 && rk0Var.q()) {
-                    ValueAnimator valueAnimator = rk0Var.f30787v0;
+                if (i10 > 0 && m0 == 0 && d1Var.getScrollState() == 1 && qk0Var.q()) {
+                    ValueAnimator valueAnimator = qk0Var.f30458v0;
                     if (valueAnimator != null) {
                         valueAnimator.removeAllListeners();
-                        rk0Var.f30787v0.cancel();
+                        qk0Var.f30458v0.cancel();
                     }
-                    int i11 = (rk0Var.getPullingLeftProgress() > 1.0f ? 1 : (rk0Var.getPullingLeftProgress() == 1.0f ? 0 : -1));
+                    int i11 = (qk0Var.getPullingLeftProgress() > 1.0f ? 1 : (qk0Var.getPullingLeftProgress() == 1.0f ? 0 : -1));
                     if (i11 > 0) {
                         f10 = 0.05f;
                     } else {
                         f10 = 0.6f;
                     }
-                    rk0Var.f30793y0 = (i10 * f10) + rk0Var.f30793y0;
-                    float pullingLeftProgress3 = rk0Var.getPullingLeftProgress();
+                    qk0Var.f30464y0 = (i10 * f10) + qk0Var.f30464y0;
+                    float pullingLeftProgress3 = qk0Var.getPullingLeftProgress();
                     if (i11 > 0) {
                         z4 = true;
                     } else {
@@ -153,7 +153,7 @@ public final class cr extends f2.j0 {
                         } catch (Exception unused2) {
                         }
                     }
-                    ag.l lVar2 = rk0Var.P;
+                    ag.l lVar2 = qk0Var.P;
                     if (lVar2 != null) {
                         lVar2.invalidate();
                     }
@@ -186,9 +186,9 @@ public final class cr extends f2.j0 {
                 w0(f00Var);
                 return;
             case 5:
-                org.telegram.ui.Components.g81 g81Var = new org.telegram.ui.Components.g81(this, recyclerView.getContext());
-                g81Var.f5805a = i10;
-                w0(g81Var);
+                org.telegram.ui.Components.f81 f81Var = new org.telegram.ui.Components.f81(this, recyclerView.getContext());
+                f81Var.f5805a = i10;
+                w0(f81Var);
                 return;
             default:
                 super.v0(recyclerView, j1Var, i10);

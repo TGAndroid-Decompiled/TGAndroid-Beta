@@ -1,120 +1,202 @@
 package qh;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-public final class q4 implements org.telegram.ui.ActionBar.g6 {
-    public PorterDuffColorFilter f45911a;
-    public final org.telegram.ui.ActionBar.g6 f45912b;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.view.KeyEvent;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.d51;
+import org.telegram.ui.Components.my;
+public final class q4 implements my {
+    public final a5 f45924a;
 
-    public q4(org.telegram.ui.ActionBar.g6 g6Var) {
-        this.f45912b = g6Var;
+    public q4(a5 a5Var) {
+        this.f45924a = a5Var;
     }
 
     @Override
-    public final int B0(int i10) {
-        if (i10 == org.telegram.ui.ActionBar.k6.G8) {
-            return -14145495;
-        }
-        if (i10 == org.telegram.ui.ActionBar.k6.E8) {
-            return -1;
-        }
-        if (i10 == org.telegram.ui.ActionBar.k6.f21731h5) {
-            return -14737633;
-        }
-        if (i10 == org.telegram.ui.ActionBar.k6.f21766j5) {
-            return -592138;
-        }
-        if (i10 == org.telegram.ui.ActionBar.k6.f21911r5) {
-            return -8553091;
-        }
-        if (i10 == org.telegram.ui.ActionBar.k6.He) {
-            return -16777216;
-        }
-        if (i10 == org.telegram.ui.ActionBar.k6.Ke) {
-            return -1610612736;
-        }
-        if (i10 == org.telegram.ui.ActionBar.k6.Ne || i10 == org.telegram.ui.ActionBar.k6.Re || i10 == org.telegram.ui.ActionBar.k6.Me) {
-            return -9539985;
-        }
-        if (i10 == org.telegram.ui.ActionBar.k6.G6) {
-            return -1;
-        }
-        int i11 = org.telegram.ui.ActionBar.k6.Mh;
-        if (i10 == i11) {
-            return -11754001;
-        }
-        if (i10 == org.telegram.ui.ActionBar.k6.f21750i6) {
-            return 536870911;
-        }
-        if (i10 == org.telegram.ui.ActionBar.k6.Fh || i10 == org.telegram.ui.ActionBar.k6.Eh || i10 == org.telegram.ui.ActionBar.k6.Gh) {
-            return -1;
-        }
-        if (i10 == org.telegram.ui.ActionBar.k6.Hh) {
-            return 352321535;
-        }
-        if (i10 != org.telegram.ui.ActionBar.k6.Je && i10 != i11) {
-            if (i10 == org.telegram.ui.ActionBar.k6.Ie) {
-                return 780633991;
-            }
-            if (i10 == org.telegram.ui.ActionBar.k6.f21605a7) {
-                return -15921907;
-            }
-            org.telegram.ui.ActionBar.g6 g6Var = this.f45912b;
-            if (g6Var != null) {
-                return g6Var.B0(i10);
-            }
-            return org.telegram.ui.ActionBar.k6.w0(null, i10, false);
-        }
-        return -7895161;
-    }
-
-    @Override
-    public final Paint F(String str) {
-        return this.f45912b.F(str);
-    }
-
-    @Override
-    public final int Z0(int i10) {
-        return B0(i10);
-    }
-
-    @Override
-    public final boolean a() {
-        return org.telegram.ui.ActionBar.k6.I.q();
-    }
-
-    @Override
-    public final int e0(int i10) {
-        return B0(i10);
-    }
-
-    @Override
-    public final Drawable getDrawable(String str) {
-        return null;
-    }
-
-    @Override
-    public final void l(float f10, float f11, int i10, int i11) {
-        org.telegram.ui.ActionBar.k6.q(f10, f11, i10, i11);
-    }
-
-    @Override
-    public final boolean o0() {
+    public final boolean A() {
         return false;
     }
 
     @Override
-    public final ColorFilter w() {
-        if (this.f45911a == null) {
-            this.f45911a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
-        }
-        return this.f45911a;
+    public final long a() {
+        return 0L;
     }
 
     @Override
-    public final void J0(int i10, int i11) {
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k() {
+        eg.b editText = ((eg.z3) this.f45924a.G0).getEditText();
+        if (editText == null || editText.length() == 0) {
+            return false;
+        }
+        editText.dispatchKeyEvent(new KeyEvent(0, 67));
+        return true;
+    }
+
+    @Override
+    public final void l(String str) {
+        eg.z3 z3Var;
+        eg.b editText;
+        Emoji.EmojiSpan[] emojiSpanArr;
+        eg.j jVar = this.f45924a.G0;
+        if ((jVar instanceof eg.z3) && (editText = (z3Var = (eg.z3) jVar).getEditText()) != null) {
+            int selectionEnd = editText.getSelectionEnd();
+            if (selectionEnd < 0) {
+                selectionEnd = 0;
+            }
+            try {
+                CharSequence replaceEmoji = Emoji.replaceEmoji(str, z3Var.getFontMetricsInt(), false);
+                if ((replaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) replaceEmoji).getSpans(0, replaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
+                    for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
+                        emojiSpan.scale = 0.85f;
+                    }
+                }
+                editText.setText(editText.getText().insert(selectionEnd, replaceEmoji));
+                int length = selectionEnd + replaceEmoji.length();
+                editText.setSelection(length, length);
+            } catch (Exception e6) {
+                FileLog.e(e6);
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    @Override
+    public final void n() {
+        a5 a5Var = this.f45924a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(a5Var.getContext(), 0, a5Var.D1);
+        alertDialog$Builder.f21168a.O = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f21168a.Q = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new mh.m5(this, 28));
+        l.d.u(R.string.Cancel, alertDialog$Builder, null);
+    }
+
+    @Override
+    public final float p() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void x(long j10, TLRPC.Document document, String str, boolean z4) {
+        org.telegram.ui.Components.u5 u5Var;
+        eg.b editText = ((eg.z3) this.f45924a.G0).getEditText();
+        if (editText != null) {
+            int selectionEnd = editText.getSelectionEnd();
+            if (selectionEnd < 0) {
+                selectionEnd = 0;
+            }
+            try {
+                SpannableString spannableString = new SpannableString(str);
+                if (document != null) {
+                    u5Var = new org.telegram.ui.Components.u5(document.f20851id, 1.0f, editText.getPaint().getFontMetricsInt());
+                    u5Var.document = document;
+                } else {
+                    u5Var = new org.telegram.ui.Components.u5(j10, 1.0f, editText.getPaint().getFontMetricsInt());
+                }
+                spannableString.setSpan(u5Var, 0, spannableString.length(), 33);
+                editText.setText(editText.getText().insert(selectionEnd, spannableString));
+                int length = selectionEnd + spannableString.length();
+                editText.setSelection(length, length);
+            } catch (Exception e6) {
+                FileLog.e(e6);
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void w() {
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void i(int i10) {
+    }
+
+    @Override
+    public final void o(d51 d51Var) {
+    }
+
+    @Override
+    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void s(int i10) {
+    }
+
+    @Override
+    public final void t(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void y(long j10) {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z4) {
+    }
+
+    @Override
+    public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z4, int i10) {
+    }
+
+    @Override
+    public final void v(View view, Object obj, String str, Object obj2, boolean z4, int i10, int i11) {
     }
 }

@@ -17,20 +17,20 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.ij0;
+import org.telegram.ui.Components.hj0;
 public final class x6 extends FrameLayout {
-    public final ArrayList f17928a;
-    public ValueAnimator f17929b;
-    public int f17930c;
+    public final ArrayList f17930a;
+    public ValueAnimator f17931b;
+    public int f17932c;
     public int d;
-    public final t3 f17931e;
+    public final t3 f17933e;
 
     public x6(Context context, w8 w8Var) {
         super(context);
-        this.f17930c = -1;
+        this.f17932c = -1;
         int i10 = 0;
         this.d = 0;
-        this.f17931e = new t3(this, 6);
+        this.f17933e = new t3(this, 6);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         addView(imageView, -1, -1);
@@ -54,7 +54,7 @@ public final class x6 extends FrameLayout {
         textView2.setGravity(1);
         linearLayout.addView(textView2, k7.c6.k(68.0f, 8.0f, 68.0f, 36.0f, -2, -2));
         ArrayList arrayList = new ArrayList(4);
-        this.f17928a = arrayList;
+        this.f17930a = arrayList;
         arrayList.add(new w6(context, R.raw.stories_intro_go_forward, LocaleController.getString(R.string.StoriesIntroGoForwardHeader), LocaleController.getString(R.string.StoriesIntroGoForwardSubHeader)));
         arrayList.add(new w6(context, R.raw.stories_intro_pause, LocaleController.getString(R.string.StoriesIntroPauseAndSeekHeader), LocaleController.getString(R.string.StoriesIntroPauseAndSeekSubHeader)));
         arrayList.add(new w6(context, R.raw.stories_intro_go_back, LocaleController.getString(R.string.StoriesIntroGoBackHeader), LocaleController.getString(R.string.StoriesIntroGoBackSubHeader)));
@@ -66,14 +66,14 @@ public final class x6 extends FrameLayout {
             Object obj = arrayList.get(i11);
             i11++;
             w6 w6Var = (w6) obj;
-            TextPaint textPaint = w6Var.f17902e;
-            String str = w6Var.f17899a;
+            TextPaint textPaint = w6Var.f17904e;
+            String str = w6Var.f17901a;
             int length = str.length();
-            Rect rect = w6Var.f17905r;
+            Rect rect = w6Var.f17907r;
             textPaint.getTextBounds(str, 0, length, rect);
             int width = rect.width();
-            TextPaint textPaint2 = w6Var.f17903f;
-            String str2 = w6Var.f17900b;
+            TextPaint textPaint2 = w6Var.f17905f;
+            String str2 = w6Var.f17902b;
             textPaint2.getTextBounds(str2, 0, str2.length(), rect);
             int max = Math.max(width, rect.width()) + AndroidUtilities.dp(8.0f) + AndroidUtilities.dp(88.0f);
             if (max > measuredWidth) {
@@ -82,7 +82,7 @@ public final class x6 extends FrameLayout {
         }
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(AndroidUtilities.dp(8.0f) + measuredWidth > w8Var.getMeasuredWidth() ? w8Var.getMeasuredWidth() - AndroidUtilities.dp(8.0f) : measuredWidth, AndroidUtilities.dp(64.0f));
         layoutParams.setMargins(0, AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f));
-        ArrayList arrayList2 = this.f17928a;
+        ArrayList arrayList2 = this.f17930a;
         int size2 = arrayList2.size();
         while (i10 < size2) {
             Object obj2 = arrayList2.get(i10);
@@ -103,46 +103,46 @@ public final class x6 extends FrameLayout {
     }
 
     public final void a(boolean z4) {
-        ValueAnimator valueAnimator = this.f17929b;
+        ValueAnimator valueAnimator = this.f17931b;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f17929b = ofFloat;
+        this.f17931b = ofFloat;
         if (z4) {
             ofFloat.setStartDelay(50L);
         }
-        this.f17929b.setDuration(350L);
-        this.f17929b.setInterpolator(new AccelerateDecelerateInterpolator());
-        this.f17929b.getCurrentPlayTime();
-        this.f17929b.addListener(new dg.l0(this, 24));
-        this.f17929b.addUpdateListener(new f5(this, 1));
-        this.f17929b.start();
-        AndroidUtilities.runOnUIThread(this.f17931e, (((w6) this.f17928a.get(this.d)).f17901c.p() * 2) + 100);
+        this.f17931b.setDuration(350L);
+        this.f17931b.setInterpolator(new AccelerateDecelerateInterpolator());
+        this.f17931b.getCurrentPlayTime();
+        this.f17931b.addListener(new dg.l0(this, 24));
+        this.f17931b.addUpdateListener(new f5(this, 1));
+        this.f17931b.start();
+        AndroidUtilities.runOnUIThread(this.f17933e, (((w6) this.f17930a.get(this.d)).f17903c.p() * 2) + 100);
     }
 
     public final void b() {
-        AndroidUtilities.cancelRunOnUIThread(this.f17931e);
-        ValueAnimator valueAnimator = this.f17929b;
+        AndroidUtilities.cancelRunOnUIThread(this.f17933e);
+        ValueAnimator valueAnimator = this.f17931b;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f17929b = null;
+            this.f17931b = null;
         }
-        int i10 = this.f17930c;
-        ArrayList arrayList = this.f17928a;
+        int i10 = this.f17932c;
+        ArrayList arrayList = this.f17930a;
         if (i10 != -1) {
             w6 w6Var = (w6) arrayList.get(i10);
-            ij0 ij0Var = w6Var.f17901c;
-            ij0Var.K(0);
-            ij0Var.stop();
-            w6Var.f17904n = 0.0f;
+            hj0 hj0Var = w6Var.f17903c;
+            hj0Var.K(0);
+            hj0Var.stop();
+            w6Var.f17906n = 0.0f;
             w6Var.invalidate();
         }
         w6 w6Var2 = (w6) arrayList.get(this.d);
-        ij0 ij0Var2 = w6Var2.f17901c;
-        ij0Var2.K(0);
-        ij0Var2.stop();
-        w6Var2.f17904n = 0.0f;
+        hj0 hj0Var2 = w6Var2.f17903c;
+        hj0Var2.K(0);
+        hj0Var2.stop();
+        w6Var2.f17906n = 0.0f;
         w6Var2.invalidate();
         c();
     }
@@ -150,14 +150,14 @@ public final class x6 extends FrameLayout {
     public final void c() {
         int i10 = this.d + 1;
         this.d = i10;
-        ArrayList arrayList = this.f17928a;
+        ArrayList arrayList = this.f17930a;
         if (i10 >= arrayList.size()) {
             this.d = 0;
         }
-        int i11 = this.f17930c + 1;
-        this.f17930c = i11;
+        int i11 = this.f17932c + 1;
+        this.f17932c = i11;
         if (i11 >= arrayList.size()) {
-            this.f17930c = 0;
+            this.f17932c = 0;
         }
     }
 }

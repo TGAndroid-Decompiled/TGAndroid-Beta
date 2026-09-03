@@ -5,8 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.tl0;
-public final class o2 extends tl0 implements NotificationCenter.NotificationCenterDelegate {
+import org.telegram.ui.Components.sl0;
+public final class o2 extends sl0 implements NotificationCenter.NotificationCenterDelegate {
     public final Path U2;
     public q0.a V2;
 
@@ -21,7 +21,7 @@ public final class o2 extends tl0 implements NotificationCenter.NotificationCent
     }
 
     @Override
-    public final Integer W0(int i10) {
+    public final Integer V0(int i10) {
         return 285212671;
     }
 

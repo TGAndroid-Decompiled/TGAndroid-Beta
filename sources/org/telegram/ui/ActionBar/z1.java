@@ -11,8 +11,8 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class z1 extends FrameLayout {
-    public final TextView f22477a;
-    public final ImageView f22478b;
+    public final TextView f22479a;
+    public final ImageView f22480b;
 
     public z1(Context context, g6 g6Var) {
         super(context);
@@ -20,7 +20,7 @@ public final class z1 extends FrameLayout {
         setBackground(k6.f0(k6.v0(k6.I5, g6Var), 2, -1));
         setPadding(AndroidUtilities.dp(23.0f), 0, AndroidUtilities.dp(23.0f), 0);
         ImageView imageView = new ImageView(context);
-        this.f22478b = imageView;
+        this.f22480b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setColorFilter(new PorterDuffColorFilter(k6.v0(k6.J5, g6Var), PorterDuff.Mode.MULTIPLY));
         if (LocaleController.isRTL) {
@@ -30,21 +30,21 @@ public final class z1 extends FrameLayout {
         }
         addView(imageView, k7.c6.e(-2, 40, i10 | 16));
         TextView textView = new TextView(context);
-        this.f22477a = textView;
+        this.f22479a = textView;
         textView.setLines(1);
         textView.setSingleLine(true);
         textView.setGravity(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        org.telegram.ui.b.l(k6.f21766j5, g6Var, textView, 1, 16.0f);
+        org.telegram.ui.b.l(k6.f21768j5, g6Var, textView, 1, 16.0f);
         addView(textView, k7.c6.e(-2, -2, (LocaleController.isRTL ? 5 : 3) | 16));
     }
 
     public final void a(int i10, CharSequence charSequence) {
         int dp;
         int i11;
-        TextView textView = this.f22477a;
+        TextView textView = this.f22479a;
         textView.setText(charSequence);
-        ImageView imageView = this.f22478b;
+        ImageView imageView = this.f22480b;
         if (i10 != 0) {
             imageView.setImageResource(i10);
             imageView.setVisibility(0);
@@ -71,10 +71,10 @@ public final class z1 extends FrameLayout {
     }
 
     public void setGravity(int i10) {
-        this.f22477a.setGravity(i10);
+        this.f22479a.setGravity(i10);
     }
 
     public void setTextColor(int i10) {
-        this.f22477a.setTextColor(i10);
+        this.f22479a.setTextColor(i10);
     }
 }

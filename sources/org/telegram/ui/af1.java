@@ -1,91 +1,24 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.View;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class af1 extends View {
-    public final HashMap f35161a;
-    public final bf1 f35162b;
+import android.content.Context;
+import org.telegram.messenger.ChatObject;
+import org.telegram.tgnet.TLRPC;
+public final class af1 extends org.telegram.ui.Components.e70 {
+    public final long f35168x0;
+    public final cf1 f35169y0;
 
-    public af1(bf1 bf1Var, Activity activity) {
-        super(activity);
-        this.f35162b = bf1Var;
-        this.f35161a = new HashMap();
+    public af1(cf1 cf1Var, Context context, int i10, a0.h hVar, long j10, org.telegram.ui.ActionBar.p2 p2Var, long j11) {
+        super(context, i10, hVar, j10, p2Var, null);
+        this.f35169y0 = cf1Var;
+        this.f35168x0 = j11;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        int i13;
-        float f10;
-        int i14;
-        int dp;
-        boolean z4;
-        int i15;
-        bf1 bf1Var = this.f35162b;
-        mf1 mf1Var = bf1Var.d;
-        int size = View.MeasureSpec.getSize(i10);
-        int dp2 = AndroidUtilities.dp(64.0f);
-        int i16 = 0;
-        int i17 = 0;
-        for (int i18 = 0; i18 < bf1Var.F().size(); i18++) {
-            if (bf1Var.F().get(i18) != null && ((df1) bf1Var.F().get(i18)).f36216c != null) {
-                String str = ((df1) bf1Var.F().get(i18)).f36216c.title;
-                HashMap hashMap = this.f35161a;
-                Boolean bool = (Boolean) hashMap.get(str);
-                if (bool == null) {
-                    int i19 = 50;
-                    if (!LocaleController.isRTL) {
-                        if (mf1Var.isInPreviewMode()) {
-                            i15 = 11;
-                        } else {
-                            i15 = 50;
-                        }
-                        f10 = i15 + 4;
-                    } else {
-                        f10 = 18.0f;
-                    }
-                    int dp3 = AndroidUtilities.dp(f10);
-                    if (!LocaleController.isRTL) {
-                        i14 = size - dp3;
-                        dp = AndroidUtilities.dp(22.0f);
-                    } else {
-                        i14 = size - dp3;
-                        if (mf1Var.isInPreviewMode()) {
-                            i19 = 11;
-                        }
-                        dp = AndroidUtilities.dp(i19 + 13);
-                    }
-                    if (org.telegram.ui.ActionBar.k6.B0[0].measureText(str) <= (i14 - dp) - ((int) Math.ceil(org.telegram.ui.ActionBar.k6.I0.measureText("00:00")))) {
-                        z4 = true;
-                    } else {
-                        z4 = false;
-                    }
-                    bool = Boolean.valueOf(z4);
-                    hashMap.put(str, bool);
-                }
-                if (!bool.booleanValue()) {
-                    i13 = 20;
-                } else {
-                    i13 = 0;
-                }
-                int dp4 = AndroidUtilities.dp(i13 + 64);
-                if (((df1) bf1Var.F().get(i18)).f36216c.f20895id == 1) {
-                    dp2 = dp4;
-                }
-                if (((df1) bf1Var.F().get(i18)).f36216c.hidden) {
-                    i16++;
-                }
-                i17 += dp4;
-            }
+    public final boolean X() {
+        TLRPC.Chat chat = this.f35169y0.f35788b.getMessagesController().getChat(Long.valueOf(this.f35168x0));
+        if (chat != null && ChatObject.canUserDoAdminAction(chat, 3)) {
+            return true;
         }
-        if (i16 > 0) {
-            i12 = (((mf1Var.K.getMeasuredHeight() - mf1Var.K.getPaddingTop()) - mf1Var.K.getPaddingBottom()) - i17) + dp2;
-        } else {
-            i12 = 0;
-        }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, i12), 1073741824));
+        return false;
     }
 }

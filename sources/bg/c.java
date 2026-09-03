@@ -1,6 +1,6 @@
 package bg;
 
-import org.telegram.ui.mf1;
+import org.telegram.ui.sf1;
 import org.telegram.ui.xn;
 public final class c implements Runnable {
     public final int f1975a;
@@ -17,7 +17,7 @@ public final class c implements Runnable {
             case 0:
                 xn xnVar = this.f1976b;
                 if (xnVar.getParentLayout() != null) {
-                    mf1.I0(xnVar);
+                    sf1.I0(xnVar);
                     return;
                 }
                 return;

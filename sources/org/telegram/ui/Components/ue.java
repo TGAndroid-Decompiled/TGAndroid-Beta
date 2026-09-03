@@ -1,14 +1,14 @@
 package org.telegram.ui.Components;
-public final class ue implements y71, y4 {
-    public final ChatActivityEnterView f31661a;
+public final class ue implements x71, y4 {
+    public final ChatActivityEnterView f31615a;
 
     public ue(ChatActivityEnterView chatActivityEnterView) {
-        this.f31661a = chatActivityEnterView;
+        this.f31615a = chatActivityEnterView;
     }
 
     @Override
     public void I(int i10, int i11, boolean z4) {
-        ChatActivityEnterView chatActivityEnterView = this.f31661a;
+        ChatActivityEnterView chatActivityEnterView = this.f31615a;
         boolean T0 = chatActivityEnterView.T0(i10, z4, i11, true, 0L);
         cf cfVar = chatActivityEnterView.I0;
         if (cfVar != null) {

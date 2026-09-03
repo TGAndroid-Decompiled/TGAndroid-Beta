@@ -59,7 +59,7 @@ public final class u extends LinearLayout {
         switch (this.f4678a) {
             case 2:
                 Path path = (Path) this.f4680c;
-                if (((oh.o0) this.d).f17527a) {
+                if (((oh.o0) this.d).f17529a) {
                     path.rewind();
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getWidth(), getHeight());
@@ -93,7 +93,7 @@ public final class u extends LinearLayout {
                 RectF rectF = (RectF) this.f4679b;
                 Paint paint = (Paint) this.f4680c;
                 mq mqVar = (mq) this.d;
-                paint.setColor(k6.v0(k6.f21749i5, mqVar.f29185a0));
+                paint.setColor(k6.v0(k6.f21751i5, mqVar.f29226a0));
                 int left = mqVar.B[0].getLeft() - AndroidUtilities.dp(13.0f);
                 float dp = AndroidUtilities.dp(91.0f);
                 org.telegram.ui.ActionBar.l0 l0Var = mqVar.C;
@@ -151,7 +151,7 @@ public final class u extends LinearLayout {
                 TextView textView = new TextView(context);
                 this.f4680c = textView;
                 yh.p(20.0f, 1, textView);
-                int i11 = k6.f21766j5;
+                int i11 = k6.f21768j5;
                 textView.setTextColor(k6.v0(i11, g6Var));
                 textView.setGravity(17);
                 addView(textView, c6.t(-2, -2, 1, 0, 2, 0, 0));
@@ -176,13 +176,13 @@ public final class u extends LinearLayout {
                 TextView textView3 = new TextView(context);
                 this.f4680c = textView3;
                 yh.p(20.0f, 1, textView3);
-                int i12 = k6.f21766j5;
+                int i12 = k6.f21768j5;
                 textView3.setTextColor(k6.v0(i12, g6Var));
                 textView3.setGravity(17);
                 addView(textView3, c6.t(-2, -2, 1, 0, 2, 0, 0));
                 g90 g90Var = new g90(context, g6Var);
                 this.d = g90Var;
-                g90Var.setLinkTextColor(k6.v0(k6.f21720gc, g6Var));
+                g90Var.setLinkTextColor(k6.v0(k6.f21722gc, g6Var));
                 g90Var.setTextSize(1, 14.0f);
                 g90Var.setTextColor(k6.v0(i12, g6Var));
                 g90Var.setGravity(17);

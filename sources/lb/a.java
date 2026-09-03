@@ -113,7 +113,7 @@ public final class a implements b {
             return;
         }
         try {
-            IBinder b10 = m6.e.c(context, m6.e.f13466b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
+            IBinder b10 = m6.e.c(context, m6.e.f13468b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
             int i10 = ra.f12008b;
             if (b10 == null) {
                 aVar = null;

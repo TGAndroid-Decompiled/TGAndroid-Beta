@@ -29,17 +29,17 @@ import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.x9;
 import org.telegram.ui.Components.y80;
 import org.telegram.ui.af0;
-import org.telegram.ui.ed1;
 import org.telegram.ui.f70;
+import org.telegram.ui.jd1;
 import org.telegram.ui.ld;
 import org.telegram.ui.nd;
 import org.telegram.ui.os;
-import org.telegram.ui.p81;
 import org.telegram.ui.po;
-import org.telegram.ui.qg1;
-import org.telegram.ui.r61;
 import org.telegram.ui.sz;
+import org.telegram.ui.v81;
+import org.telegram.ui.vg1;
 import org.telegram.ui.vn;
+import org.telegram.ui.w61;
 import org.telegram.ui.xn;
 import org.telegram.ui.xz;
 public final class i0 extends View implements xd.b {
@@ -68,8 +68,8 @@ public final class i0 extends View implements xd.b {
 
     public boolean a() {
         x9 x9Var = (x9) this.f6336b;
-        if (x9Var.f32995t) {
-            if ((x9Var.f32988m == 1.0f || !x9Var.f32991p) && x9Var.f32989n && x9Var.d.getAlpha() == 1.0f && getVisibility() == 0) {
+        if (x9Var.f32989t) {
+            if ((x9Var.f32982m == 1.0f || !x9Var.f32985p) && x9Var.f32983n && x9Var.d.getAlpha() == 1.0f && getVisibility() == 0) {
                 return true;
             }
             return false;
@@ -92,14 +92,14 @@ public final class i0 extends View implements xd.b {
                 int backgroundSizeY = xnVar.U0.getBackgroundSizeY();
                 float x10 = getX();
                 float P8 = xnVar.P8(this);
-                vn vnVar = xnVar.f43136ba;
+                vn vnVar = xnVar.f43114ba;
                 if (vnVar != null) {
                     vnVar.l(x10, P8, measuredWidth, backgroundSizeY);
                 } else {
                     k6.q(x10, P8, measuredWidth, backgroundSizeY);
                 }
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), xnVar.getThemedPaint("paintChatActionBackground"));
-                vn vnVar2 = xnVar.f43136ba;
+                vn vnVar2 = xnVar.f43114ba;
                 if (vnVar2 == null ? k6.a1() : vnVar2.o0()) {
                     canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), xnVar.getThemedPaint("paintChatActionBackgroundDarken"));
                 }
@@ -140,9 +140,9 @@ public final class i0 extends View implements xd.b {
             case 1:
                 Paint paint = (Paint) this.f6336b;
                 nd ndVar = (nd) this.f6337c;
-                a4 a4Var = ndVar.f39390e;
+                a4 a4Var = ndVar.f39304e;
                 if (a4Var != null && a4Var.getImageReceiver().hasNotThumb()) {
-                    paint.setAlpha((int) (ndVar.f39405r.getAlpha() * ndVar.f39390e.getImageReceiver().getCurrentAlpha() * 85.0f));
+                    paint.setAlpha((int) (ndVar.f39319r.getAlpha() * ndVar.f39304e.getImageReceiver().getCurrentAlpha() * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint);
                     return;
                 }
@@ -154,50 +154,50 @@ public final class i0 extends View implements xd.b {
                 return;
             case 3:
                 x9 x9Var = (x9) this.f6336b;
-                Paint paint2 = x9Var.f32998x;
-                g6 g6Var = x9Var.f32999y;
-                Paint paint3 = x9Var.f32997w;
-                int i11 = x9Var.f32979b;
-                View view = x9Var.f32980c;
+                Paint paint2 = x9Var.f32992x;
+                g6 g6Var = x9Var.f32993y;
+                Paint paint3 = x9Var.f32991w;
+                int i11 = x9Var.f32973b;
+                View view = x9Var.f32974c;
                 i0 i0Var = x9Var.d;
                 if (i0Var != null) {
                     if (i0Var.getMeasuredHeight() != 0 || i0Var.getMeasuredWidth() != 0) {
-                        if (i11 == 1 && !x9Var.f32995t && !x9Var.f32991p) {
+                        if (i11 == 1 && !x9Var.f32989t && !x9Var.f32985p) {
                             x9Var.a();
-                            x9Var.f32987l = false;
+                            x9Var.f32981l = false;
                         }
-                        Bitmap[] bitmapArr2 = x9Var.f32983g;
-                        if ((bitmapArr2 != null || x9Var.f32990o) && x9Var.f32991p) {
-                            boolean z4 = x9Var.f32989n;
+                        Bitmap[] bitmapArr2 = x9Var.f32977g;
+                        if ((bitmapArr2 != null || x9Var.f32984o) && x9Var.f32985p) {
+                            boolean z4 = x9Var.f32983n;
                             if (z4) {
-                                float f13 = x9Var.f32988m;
+                                float f13 = x9Var.f32982m;
                                 if (f13 != 1.0f) {
                                     float f14 = f13 + 0.09f;
-                                    x9Var.f32988m = f14;
+                                    x9Var.f32982m = f14;
                                     if (f14 > 1.0f) {
-                                        x9Var.f32988m = 1.0f;
+                                        x9Var.f32982m = 1.0f;
                                     }
                                     i0Var.invalidate();
                                 }
                             }
                             if (!z4) {
-                                float f15 = x9Var.f32988m;
+                                float f15 = x9Var.f32982m;
                                 if (f15 != 0.0f) {
                                     float f16 = f15 - 0.09f;
-                                    x9Var.f32988m = f16;
+                                    x9Var.f32982m = f16;
                                     if (f16 < 0.0f) {
-                                        x9Var.f32988m = 0.0f;
+                                        x9Var.f32982m = 0.0f;
                                     }
                                     i0Var.invalidate();
                                 }
                             }
                         }
-                        if (x9Var.f32991p) {
-                            f10 = x9Var.f32988m;
+                        if (x9Var.f32985p) {
+                            f10 = x9Var.f32982m;
                         } else {
                             f10 = 1.0f;
                         }
-                        if (bitmapArr2 == null && x9Var.f32990o) {
+                        if (bitmapArr2 == null && x9Var.f32984o) {
                             paint2.setAlpha((int) (50.0f * f10));
                             canvas.drawPaint(paint2);
                             return;
@@ -220,7 +220,7 @@ public final class i0 extends View implements xd.b {
                         if (bitmapArr != null) {
                             paint3.setAlpha((int) (f10 * f12));
                             if (i11 == r02) {
-                                canvas.translate(f11, x9Var.f32996u);
+                                canvas.translate(f11, x9Var.f32990u);
                             }
                             canvas.save();
                             canvas.scale(i0Var.getMeasuredWidth() / bitmapArr[r02].getWidth(), i0Var.getMeasuredHeight() / bitmapArr[r02].getHeight());
@@ -228,37 +228,37 @@ public final class i0 extends View implements xd.b {
                             canvas.restore();
                             canvas.save();
                             if (i11 == 0) {
-                                canvas.translate(f11, x9Var.f32996u);
+                                canvas.translate(f11, x9Var.f32990u);
                             }
-                            canvas.scale(i0Var.getMeasuredWidth() / bitmapArr[c3].getWidth(), x9Var.f32994s / bitmapArr[c3].getHeight());
+                            canvas.scale(i0Var.getMeasuredWidth() / bitmapArr[c3].getWidth(), x9Var.f32988s / bitmapArr[c3].getHeight());
                             canvas.drawBitmap(bitmapArr[c3], f11, f11, paint3);
                             canvas.restore();
-                            x9Var.f32995t = r02;
+                            x9Var.f32989t = r02;
                             canvas.drawColor(436207616);
                         }
                         canvas.restore();
-                        if (x9Var.f32989n && !x9Var.f32986k) {
-                            if (x9Var.f32983g == null || x9Var.f32987l) {
-                                x9Var.f32986k = r02;
-                                x9Var.f32987l = false;
-                                if (x9Var.f32981e == null) {
-                                    x9Var.f32981e = new Bitmap[2];
-                                    x9Var.f32985j = new Canvas[2];
+                        if (x9Var.f32983n && !x9Var.f32980k) {
+                            if (x9Var.f32977g == null || x9Var.f32981l) {
+                                x9Var.f32980k = r02;
+                                x9Var.f32981l = false;
+                                if (x9Var.f32975e == null) {
+                                    x9Var.f32975e = new Bitmap[2];
+                                    x9Var.f32979j = new Canvas[2];
                                 }
                                 for (int i12 = 0; i12 < 2; i12++) {
-                                    if (x9Var.f32981e[i12] != null && i0Var.getMeasuredWidth() == x9Var.f32993r && i0Var.getMeasuredHeight() == x9Var.f32992q) {
-                                        x9Var.f32981e[i12].eraseColor(0);
+                                    if (x9Var.f32975e[i12] != null && i0Var.getMeasuredWidth() == x9Var.f32987r && i0Var.getMeasuredHeight() == x9Var.f32986q) {
+                                        x9Var.f32975e[i12].eraseColor(0);
                                     } else {
                                         int measuredHeight2 = i0Var.getMeasuredHeight();
                                         int measuredWidth2 = i0Var.getMeasuredWidth();
                                         int dp2 = AndroidUtilities.dp(200.0f) + AndroidUtilities.statusBarHeight;
-                                        x9Var.f32994s = dp2;
+                                        x9Var.f32988s = dp2;
                                         if (i12 == 0) {
                                             measuredHeight2 = dp2;
                                         }
                                         try {
-                                            x9Var.f32981e[i12] = Bitmap.createBitmap((int) (measuredWidth2 / 15.0f), (int) (measuredHeight2 / 15.0f), Bitmap.Config.ARGB_8888);
-                                            x9Var.f32985j[i12] = new Canvas(x9Var.f32981e[i12]);
+                                            x9Var.f32975e[i12] = Bitmap.createBitmap((int) (measuredWidth2 / 15.0f), (int) (measuredHeight2 / 15.0f), Bitmap.Config.ARGB_8888);
+                                            x9Var.f32979j[i12] = new Canvas(x9Var.f32975e[i12]);
                                         } catch (Exception e6) {
                                             FileLog.e(e6);
                                             AndroidUtilities.runOnUIThread(new fg(x9Var, 11));
@@ -266,10 +266,10 @@ public final class i0 extends View implements xd.b {
                                         }
                                     }
                                     if (i12 == r02) {
-                                        x9Var.f32981e[i12].eraseColor(k6.v0(k6.f21659d6, g6Var));
+                                        x9Var.f32975e[i12].eraseColor(k6.v0(k6.f21661d6, g6Var));
                                     }
-                                    x9Var.f32985j[i12].save();
-                                    x9Var.f32985j[i12].scale(0.06666667f, 0.06666667f, f11, f11);
+                                    x9Var.f32979j[i12].save();
+                                    x9Var.f32979j[i12].scale(0.06666667f, 0.06666667f, f11, f11);
                                     Drawable background = view.getBackground();
                                     if (background == null) {
                                         if (g6Var instanceof vn) {
@@ -280,32 +280,32 @@ public final class i0 extends View implements xd.b {
                                     }
                                     view.setTag(67108867, Integer.valueOf(i12));
                                     if (i12 == 0) {
-                                        x9Var.f32985j[i12].translate(f11, -x9Var.f32996u);
-                                        view.draw(x9Var.f32985j[i12]);
+                                        x9Var.f32979j[i12].translate(f11, -x9Var.f32990u);
+                                        view.draw(x9Var.f32979j[i12]);
                                     }
                                     if (background != null && i12 == r02) {
                                         Rect bounds = background.getBounds();
                                         background.setBounds(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-                                        background.draw(x9Var.f32985j[i12]);
+                                        background.draw(x9Var.f32979j[i12]);
                                         background.setBounds(bounds);
-                                        view.draw(x9Var.f32985j[i12]);
+                                        view.draw(x9Var.f32979j[i12]);
                                     }
                                     view.setTag(67108867, null);
-                                    x9Var.f32985j[i12].restore();
+                                    x9Var.f32979j[i12].restore();
                                 }
-                                x9Var.f32992q = i0Var.getMeasuredHeight();
-                                x9Var.f32993r = i0Var.getMeasuredWidth();
-                                x9Var.v.f32685b = i0Var.getMeasuredWidth();
-                                x9Var.v.f32686c = i0Var.getMeasuredHeight();
+                                x9Var.f32986q = i0Var.getMeasuredHeight();
+                                x9Var.f32987r = i0Var.getMeasuredWidth();
+                                x9Var.v.f32690b = i0Var.getMeasuredWidth();
+                                x9Var.v.f32691c = i0Var.getMeasuredHeight();
                                 w9 w9Var = x9Var.v;
-                                if (w9Var.f32685b != 0 && w9Var.f32686c != 0) {
-                                    if (x9Var.f32978a == null) {
-                                        x9Var.f32978a = new DispatchQueue("blur_thread_" + x9Var);
+                                if (w9Var.f32690b != 0 && w9Var.f32691c != 0) {
+                                    if (x9Var.f32972a == null) {
+                                        x9Var.f32972a = new DispatchQueue("blur_thread_" + x9Var);
                                     }
-                                    x9Var.f32978a.postRunnable(x9Var.v);
+                                    x9Var.f32972a.postRunnable(x9Var.v);
                                     return;
                                 }
-                                x9Var.f32986k = false;
+                                x9Var.f32980k = false;
                                 return;
                             }
                             return;
@@ -318,9 +318,9 @@ public final class i0 extends View implements xd.b {
             case 4:
                 Paint paint4 = (Paint) this.f6336b;
                 po poVar = (po) this.f6337c;
-                a4 a4Var2 = poVar.f40101e;
+                a4 a4Var2 = poVar.f40063e;
                 if (a4Var2 != null && a4Var2.getImageReceiver().hasNotThumb()) {
-                    paint4.setAlpha((int) (poVar.f40101e.getImageReceiver().getCurrentAlpha() * 85.0f));
+                    paint4.setAlpha((int) (poVar.f40063e.getImageReceiver().getCurrentAlpha() * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint4);
                     return;
                 }
@@ -328,7 +328,7 @@ public final class i0 extends View implements xd.b {
             case 5:
                 Paint paint5 = (Paint) this.f6336b;
                 c30 c30Var = (c30) this.f6337c;
-                boolean z10 = c30Var.f25781y;
+                boolean z10 = c30Var.f25759y;
                 if (z10) {
                     float f17 = c30Var.B;
                     if (f17 != 1.0f) {
@@ -360,7 +360,7 @@ public final class i0 extends View implements xd.b {
             case 6:
                 canvas.drawColor(855638016);
                 y80 y80Var = (y80) this.f6337c;
-                FrameLayout frameLayout = y80Var.f33409n;
+                FrameLayout frameLayout = y80Var.f33429n;
                 float[] fArr = y80Var.F;
                 y80.a(frameLayout, (FrameLayout) this.f6336b, fArr);
                 canvas.save();
@@ -375,9 +375,9 @@ public final class i0 extends View implements xd.b {
             case 7:
                 Paint paint6 = (Paint) this.f6336b;
                 os osVar = (os) this.f6337c;
-                p9 p9Var = osVar.f39828e;
+                p9 p9Var = osVar.f39793e;
                 if (p9Var != null && p9Var.getImageReceiver().hasNotThumb()) {
-                    paint6.setAlpha((int) (osVar.f39828e.getImageReceiver().getCurrentAlpha() * 85.0f));
+                    paint6.setAlpha((int) (osVar.f39793e.getImageReceiver().getCurrentAlpha() * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint6);
                     return;
                 }
@@ -385,8 +385,8 @@ public final class i0 extends View implements xd.b {
             case 8:
                 canvas.drawColor(855638016);
                 xz xzVar = (xz) this.f6337c;
-                FrameLayout frameLayout2 = xzVar.f41395a;
-                float[] fArr2 = xzVar.f41405y;
+                FrameLayout frameLayout2 = xzVar.f41332a;
+                float[] fArr2 = xzVar.f41342y;
                 sz.a(frameLayout2, (FrameLayout) this.f6336b, fArr2);
                 canvas.save();
                 float y11 = frameLayout2.getY() + ((View) frameLayout2.getParent()).getY();
@@ -400,8 +400,8 @@ public final class i0 extends View implements xd.b {
             case 9:
                 Paint paint7 = (Paint) this.f6336b;
                 f70 f70Var = (f70) this.f6337c;
-                if (f70Var.d != null && f70Var.f36776n.getVisibility() == 0 && f70Var.d.getImageReceiver().hasNotThumb()) {
-                    paint7.setAlpha((int) (f70Var.f36776n.getAlpha() * f70Var.d.getImageReceiver().getCurrentAlpha() * 85.0f));
+                if (f70Var.d != null && f70Var.f36695n.getVisibility() == 0 && f70Var.d.getImageReceiver().hasNotThumb()) {
+                    paint7.setAlpha((int) (f70Var.f36695n.getAlpha() * f70Var.d.getImageReceiver().getCurrentAlpha() * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint7);
                     return;
                 }
@@ -409,8 +409,8 @@ public final class i0 extends View implements xd.b {
             case 11:
                 Paint paint8 = (Paint) this.f6336b;
                 af0 af0Var = (af0) this.f6337c;
-                ld ldVar = af0Var.f35156r;
-                a4 a4Var3 = af0Var.f35153e;
+                ld ldVar = af0Var.f35163r;
+                a4 a4Var3 = af0Var.f35160e;
                 if (a4Var3 != null && ldVar.getVisibility() == 0) {
                     paint8.setAlpha((int) (ldVar.getAlpha() * a4Var3.getImageReceiver().getCurrentAlpha() * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint8);
@@ -418,7 +418,7 @@ public final class i0 extends View implements xd.b {
                 }
                 return;
             case 12:
-                if (!((r61) this.f6337c).N0) {
+                if (!((w61) this.f6337c).N0) {
                     dispatchDraw(canvas);
                     return;
                 } else {
@@ -426,27 +426,27 @@ public final class i0 extends View implements xd.b {
                     return;
                 }
             case 13:
-                p81 p81Var = (p81) this.f6337c;
-                int height = p81.g0(p81Var).getHeight();
+                v81 v81Var = (v81) this.f6337c;
+                int height = v81.g0(v81Var).getHeight();
                 Rect rect = AndroidUtilities.rectTmp2;
                 rect.set(0, 0, getMeasuredWidth(), height);
                 Paint paint9 = (Paint) this.f6336b;
-                paint9.setColor(k6.v0(k6.f21930s8, p81.h0(p81Var)));
-                p81Var.f39948b.J(canvas, 0.0f, rect, paint9, true);
-                if (p81Var.getParentLayout() != null) {
-                    ((ActionBarLayout) p81Var.getParentLayout()).q(canvas, height);
+                paint9.setColor(k6.v0(k6.f21932s8, v81.h0(v81Var)));
+                v81Var.f42045b.J(canvas, 0.0f, rect, paint9, true);
+                if (v81Var.getParentLayout() != null) {
+                    ((ActionBarLayout) v81Var.getParentLayout()).q(canvas, height);
                     return;
                 }
                 return;
             case 14:
-                ed1 ed1Var = (ed1) this.f6337c;
-                int currentItem = ed1Var.f36508g0.getCurrentItem();
+                jd1 jd1Var = (jd1) this.f6337c;
+                int currentItem = jd1Var.f37983g0.getCurrentItem();
                 Paint paint10 = (Paint) this.f6336b;
                 int i13 = k6.Ae;
-                if (ed1Var.d) {
+                if (jd1Var.d) {
                     themedColor = k6.C0(i13);
                 } else {
-                    themedColor = ed1Var.getThemedColor(i13);
+                    themedColor = jd1Var.getThemedColor(i13);
                 }
                 paint10.setColor(themedColor);
                 for (int i14 = 0; i14 < 2; i14++) {
@@ -461,10 +461,10 @@ public final class i0 extends View implements xd.b {
                 return;
             case 15:
                 Paint paint11 = (Paint) this.f6336b;
-                paint11.setColor(k6.w0(null, k6.f21659d6, false));
+                paint11.setColor(k6.w0(null, k6.f21661d6, false));
                 int measuredHeight3 = getMeasuredHeight() - AndroidUtilities.dp(3.0f);
                 canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), measuredHeight3, paint11);
-                ((ActionBarLayout) qg1.s0((qg1) this.f6337c)).q(canvas, measuredHeight3);
+                ((ActionBarLayout) vg1.s0((vg1) this.f6337c)).q(canvas, measuredHeight3);
                 return;
             case 16:
                 Paint paint12 = (Paint) this.f6336b;
@@ -510,10 +510,10 @@ public final class i0 extends View implements xd.b {
                 super.onSizeChanged(i10, i11, i12, i13);
                 x9 x9Var = (x9) this.f6336b;
                 i0 i0Var = x9Var.d;
-                if (x9Var.f32983g != null && i0Var.getMeasuredHeight() != 0 && i0Var.getMeasuredWidth() != 0) {
+                if (x9Var.f32977g != null && i0Var.getMeasuredHeight() != 0 && i0Var.getMeasuredWidth() != 0) {
                     x9Var.a();
-                    x9Var.f32992q = i0Var.getMeasuredHeight();
-                    x9Var.f32993r = i0Var.getMeasuredWidth();
+                    x9Var.f32986q = i0Var.getMeasuredHeight();
+                    x9Var.f32987r = i0Var.getMeasuredWidth();
                     return;
                 }
                 return;
@@ -649,10 +649,10 @@ public final class i0 extends View implements xd.b {
         this.f6336b = new Paint(1);
     }
 
-    public i0(p81 p81Var, Context context) {
+    public i0(v81 v81Var, Context context) {
         super(context);
         this.f6335a = 13;
-        this.f6337c = p81Var;
+        this.f6337c = v81Var;
         this.f6336b = new Paint(1);
     }
 
@@ -663,17 +663,17 @@ public final class i0 extends View implements xd.b {
         this.f6337c = drawable;
     }
 
-    public i0(qg1 qg1Var, Context context) {
+    public i0(vg1 vg1Var, Context context) {
         super(context);
         this.f6335a = 15;
-        this.f6337c = qg1Var;
+        this.f6337c = vg1Var;
         this.f6336b = new Paint();
     }
 
-    public i0(Context context, ed1 ed1Var) {
+    public i0(Context context, jd1 jd1Var) {
         super(context);
         this.f6335a = 14;
-        this.f6337c = ed1Var;
+        this.f6337c = jd1Var;
         this.f6336b = new Paint(1);
     }
 
@@ -690,8 +690,8 @@ public final class i0 extends View implements xd.b {
         this.f6337c = xnVar;
         x9 x9Var = new x9(view, this, g6Var);
         this.f6336b = x9Var;
-        x9Var.f32991p = false;
-        x9Var.f32989n = true;
+        x9Var.f32985p = false;
+        x9Var.f32983n = true;
     }
 
     @Override

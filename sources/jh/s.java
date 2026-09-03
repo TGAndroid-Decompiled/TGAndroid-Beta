@@ -142,8 +142,8 @@ public class s extends TextView implements v9 {
                 this.B = h90Var;
                 d90Var.a(h90Var, null);
                 SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.B.f27417i);
-                int spanEnd = spannableString.getSpanEnd(this.B.f27417i);
+                int spanStart = spannableString.getSpanStart(this.B.f27423i);
+                int spanEnd = spannableString.getSpanEnd(this.B.f27423i);
                 z80 b10 = this.B.b();
                 if (this.D) {
                     paddingTop = 0.0f;
@@ -158,7 +158,7 @@ public class s extends TextView implements v9 {
             if (motionEvent.getAction() == 1) {
                 d90Var.d(true);
                 h90 h90Var2 = this.B;
-                if (h90Var2 != null && (characterStyle = h90Var2.f27417i) == a2) {
+                if (h90Var2 != null && (characterStyle = h90Var2.f27423i) == a2) {
                     f90 f90Var = this.f10194x;
                     if (f90Var != null) {
                         f90Var.a((ClickableSpan) characterStyle);
@@ -175,7 +175,7 @@ public class s extends TextView implements v9 {
                 this.B = null;
             }
         }
-        if (this.B != null || (this.f10189f && ((GestureDetector) this.f10185a.f10177a.f22788b).onTouchEvent(motionEvent))) {
+        if (this.B != null || (this.f10189f && ((GestureDetector) this.f10185a.f10177a.f22790b).onTouchEvent(motionEvent))) {
             return true;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -371,7 +371,7 @@ public class s extends TextView implements v9 {
             if (i10 != null) {
                 int v02 = k6.v0(k6.Ld, this.v);
                 i10.f(k6.l1(0.8f, v02), k6.l1(1.3f, v02), k6.l1(1.0f, v02), k6.l1(4.0f, v02));
-                i10.f28347w.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
+                i10.f28369w.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
                 d90Var.b(i10, null);
             }
         }

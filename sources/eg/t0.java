@@ -1,11 +1,11 @@
 package eg;
 
-import org.telegram.ui.ht0;
+import org.telegram.ui.mt0;
 public final class t0 implements c {
-    public final ht0 f5481a;
+    public final mt0 f5481a;
 
-    public t0(ht0 ht0Var) {
-        this.f5481a = ht0Var;
+    public t0(mt0 mt0Var) {
+        this.f5481a = mt0Var;
     }
 
     @Override

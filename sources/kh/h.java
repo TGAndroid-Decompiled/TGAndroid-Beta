@@ -17,15 +17,15 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.p2;
 import org.telegram.ui.ActionBar.w0;
 import org.telegram.ui.ActionBar.z;
-import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.e51;
 import org.telegram.ui.Components.ic;
 import org.telegram.ui.Components.p9;
 import org.telegram.ui.Components.ub;
 import org.telegram.ui.Components.z4;
 import org.telegram.ui.Components.z8;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.qg1;
 import org.telegram.ui.qt;
+import org.telegram.ui.vg1;
 import org.telegram.ui.xn;
 import vf.l0;
 public final class h implements Runnable {
@@ -78,7 +78,7 @@ public final class h implements Runnable {
                     if (tL_error == null) {
                         TLRPC.TL_updates tL_updates = (TLRPC.TL_updates) tLObject;
                         if (!tL_updates.chats.isEmpty()) {
-                            MessagesController.getInstance(i12).loadFullChat(tL_updates.chats.get(0).f20843id, 0, true);
+                            MessagesController.getInstance(i12).loadFullChat(tL_updates.chats.get(0).f20845id, 0, true);
                         }
                         int i13 = 0;
                         while (true) {
@@ -117,7 +117,7 @@ public final class h implements Runnable {
                         if (z4) {
                             ub ubVar = new ub(p2Var.getParentActivity(), p2Var.getResourceProvider());
                             int dp = AndroidUtilities.dp(15.0f);
-                            p9 p9Var = ubVar.f31631a;
+                            p9 p9Var = ubVar.f31585a;
                             p9Var.setRoundRadius(dp);
                             TLRPC.User user3 = user;
                             p9Var.e(user3, new z8(0, user3));
@@ -129,8 +129,8 @@ public final class h implements Runnable {
                             }
                             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
                             int indexOf = formatString.indexOf(firstName);
-                            spannableStringBuilder.setSpan(new g51(AndroidUtilities.bold()), indexOf, firstName.length() + indexOf, 18);
-                            ubVar.f31632b.setText(spannableStringBuilder);
+                            spannableStringBuilder.setSpan(new e51(AndroidUtilities.bold()), indexOf, firstName.length() + indexOf, 18);
+                            ubVar.f31586b.setText(spannableStringBuilder);
                             if (arrayList2.isEmpty()) {
                                 ic.g(p2Var, ubVar, 2750).j();
                             } else {
@@ -179,7 +179,7 @@ public final class h implements Runnable {
                 q10.T = tL_messages_stickerSet;
                 return;
             case 3:
-                qg1.d0((qg1) obj6, (TLRPC.TL_error) obj5, this.d, (TLObject) obj4, (byte[]) obj3, (String) obj, (TL_account.passwordInputSettings) obj2);
+                vg1.d0((vg1) obj6, (TLRPC.TL_error) obj5, this.d, (TLObject) obj4, (byte[]) obj3, (String) obj, (TL_account.passwordInputSettings) obj2);
                 return;
             default:
                 l0.U((l0) obj6, (TLRPC.TL_error) obj5, (TLObject) obj4, (int[]) obj3, (ArrayList) obj2, this.d, (TLRPC.User) obj);
@@ -207,8 +207,8 @@ public final class h implements Runnable {
         this.f11260n = tLObject2;
     }
 
-    public h(qg1 qg1Var, TLRPC.TL_error tL_error, boolean z4, TLObject tLObject, byte[] bArr, String str, TL_account.passwordInputSettings passwordinputsettings) {
-        this.f11258e = qg1Var;
+    public h(vg1 vg1Var, TLRPC.TL_error tL_error, boolean z4, TLObject tLObject, byte[] bArr, String str, TL_account.passwordInputSettings passwordinputsettings) {
+        this.f11258e = vg1Var;
         this.f11256b = tL_error;
         this.d = z4;
         this.f11257c = tLObject;

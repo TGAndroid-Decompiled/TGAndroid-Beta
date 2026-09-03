@@ -2,22 +2,22 @@ package lh;
 
 import android.view.View;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.jl0;
-public final class a implements jl0 {
-    public final int f12577a;
+import org.telegram.ui.Components.il0;
+public final class a implements il0 {
+    public final int f12579a;
 
     public a(int i10) {
-        this.f12577a = i10;
+        this.f12579a = i10;
     }
 
     @Override
     public final void f(int i10, View view) {
-        switch (this.f12577a) {
+        switch (this.f12579a) {
             case 0:
                 int i11 = d.X;
                 return;
             case 1:
-                int i12 = s.f12936x0;
+                int i12 = s.f12938x0;
                 return;
             case 2:
                 if (view instanceof org.telegram.ui.Cells.x) {
@@ -26,10 +26,10 @@ public final class a implements jl0 {
                 }
                 return;
             case 3:
-                boolean z4 = ChatAttachAlertPhotoLayout.f24736n1;
+                boolean z4 = ChatAttachAlertPhotoLayout.f24738n1;
                 if (view instanceof org.telegram.ui.Cells.t5) {
                     org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
-                    t5Var.f24157w.b(t5Var);
+                    t5Var.f24159w.b(t5Var);
                     return;
                 }
                 return;

@@ -6,8 +6,8 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.j51;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.w51;
 public final class n implements Utilities.Callback2 {
     public final int f5661a;
     public final u f5662b;
@@ -25,7 +25,7 @@ public final class n implements Utilities.Callback2 {
         switch (i10) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
-                x51 x51Var = (x51) obj2;
+                w51 w51Var = (w51) obj2;
                 arrayList.clear();
                 ArrayList arrayList2 = uVar.f5678j;
                 int size = arrayList2.size();
@@ -39,25 +39,25 @@ public final class n implements Utilities.Callback2 {
                     int i12 = messagePeerVote.date;
                     t tVar = new t(uVar, peerDialogId, 0);
                     int i13 = q.f5665a;
-                    j51 J = j51.J(q.class);
+                    h51 J = h51.J(q.class);
                     J.G = userOrChat;
                     J.B = peerDialogId;
-                    J.f28027z = i12;
+                    J.f27388z = i12;
                     J.D = tVar;
                     arrayList.add(J);
                 }
                 if (!uVar.h) {
                     if (arrayList2.isEmpty()) {
                         int i14 = r.f5666a;
-                        arrayList.add(j51.J(r.class));
-                        arrayList.add(j51.J(r.class));
-                        arrayList.add(j51.J(r.class));
-                        arrayList.add(j51.J(r.class));
-                        arrayList.add(j51.J(r.class));
+                        arrayList.add(h51.J(r.class));
+                        arrayList.add(h51.J(r.class));
+                        arrayList.add(h51.J(r.class));
+                        arrayList.add(h51.J(r.class));
+                        arrayList.add(h51.J(r.class));
                         return;
                     }
                     int i15 = s.f5667a;
-                    arrayList.add(j51.J(s.class));
+                    arrayList.add(h51.J(s.class));
                     return;
                 }
                 return;

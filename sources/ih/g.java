@@ -14,7 +14,7 @@ import org.telegram.ui.Components.PollVotesAlert$UserCell;
 import org.telegram.ui.Components.c6;
 import org.telegram.ui.Components.m6;
 import org.telegram.ui.Components.nb;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.r61;
 import org.telegram.ui.PhotoViewer;
 public final class g extends m6 {
     public final int f8135b;
@@ -162,9 +162,9 @@ public final class g extends m6 {
                 return;
             case 5:
                 c6 c6Var = (c6) obj;
-                if (c6Var.f25806e != f10) {
-                    c6Var.f25806e = f10;
-                    c6Var.f25808g.invalidate();
+                if (c6Var.f25784e != f10) {
+                    c6Var.f25784e = f10;
+                    c6Var.f25786g.invalidate();
                     return;
                 }
                 return;
@@ -187,7 +187,7 @@ public final class g extends m6 {
                 ((PollVotesAlert$UserCell) obj).setPlaceholderAlpha(f10);
                 return;
             default:
-                ((s61) obj).G(f10);
+                ((r61) obj).G(f10);
                 return;
         }
     }
@@ -200,13 +200,13 @@ public final class g extends m6 {
             case 1:
                 return Float.valueOf(((j) obj).E);
             case 2:
-                return Float.valueOf(((s8) obj).f23757s);
+                return Float.valueOf(((s8) obj).f23759s);
             case 3:
                 return Float.valueOf(((t8) obj).h);
             case 4:
-                return Float.valueOf(((c9) obj).f22664f);
+                return Float.valueOf(((c9) obj).f22666f);
             case 5:
-                return Float.valueOf(((c6) obj).f25806e);
+                return Float.valueOf(((c6) obj).f25784e);
             case 6:
                 return Float.valueOf(((ImageReceiver) obj).getCurrentAlpha());
             case 7:
@@ -220,7 +220,7 @@ public final class g extends m6 {
             case 11:
                 return Float.valueOf(((PollVotesAlert$UserCell) obj).getPlaceholderAlpha());
             default:
-                return Float.valueOf(((s61) obj).B);
+                return Float.valueOf(((r61) obj).B);
         }
     }
 }

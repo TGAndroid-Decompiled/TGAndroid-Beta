@@ -6,7 +6,7 @@ public abstract class l0 extends sd.i {
     public int f12326c;
 
     public l0(int i10) {
-        super(0L, sd.k.f47275g);
+        super(0L, sd.k.f47306g);
         this.f12326c = i10;
     }
 

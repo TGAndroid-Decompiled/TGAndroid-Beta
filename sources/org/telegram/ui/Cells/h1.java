@@ -7,13 +7,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SharedConfig;
 public final class h1 extends n1 {
-    public final int f22876e;
-    public final t1 f22877f;
+    public final int f22878e;
+    public final t1 f22879f;
 
     public h1(int i10, t1 t1Var) {
         super(0);
-        this.f22877f = t1Var;
-        this.f22876e = i10;
+        this.f22879f = t1Var;
+        this.f22878e = i10;
     }
 
     @Override
@@ -26,23 +26,23 @@ public final class h1 extends n1 {
         Rect bounds = getBounds();
         RectF rectF = (RectF) this.d;
         rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        Path path = this.f23203b;
+        Path path = this.f23205b;
         path.rewind();
-        t1 t1Var = this.f22877f;
-        int[] iArr = t1Var.f24054u3;
-        int i12 = this.f22876e;
+        t1 t1Var = this.f22879f;
+        int[] iArr = t1Var.f24056u3;
+        int i12 = this.f22878e;
         int i13 = iArr[i12];
         if (i13 != 3 && i13 != 4) {
             float f11 = 0.0f;
             if (i13 == 2) {
-                MessageObject messageObject = t1Var.f24073v7;
+                MessageObject messageObject = t1Var.f24075v7;
                 if (messageObject != null && messageObject.isOutOwner()) {
                     z4 = true;
                 } else {
                     z4 = false;
                 }
                 for (int i14 = 0; i14 < 4; i14++) {
-                    if (!t1Var.f23957n3) {
+                    if (!t1Var.f23959n3) {
                         if (z4) {
                             i10 = 3;
                         } else {
@@ -54,7 +54,7 @@ public final class h1 extends n1 {
                             float dp = AndroidUtilities.dp(SharedConfig.bubbleRadius);
                             fArr[i15 + 1] = dp;
                             fArr[i15] = dp;
-                        } else if (((t1Var.f23877h8 && t1Var.I == null) || t1Var.C) && (i14 == 2 || i14 == 3)) {
+                        } else if (((t1Var.f23879h8 && t1Var.I == null) || t1Var.C) && (i14 == 2 || i14 == 3)) {
                             float[] fArr2 = t1.Be;
                             int i16 = i14 * 2;
                             int i17 = i16 + 1;

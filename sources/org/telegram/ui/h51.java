@@ -1,99 +1,124 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.view.View;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class h51 implements org.telegram.ui.Components.ml0 {
-    public final int f37330a;
-    public final Context f37331b;
-    public final org.telegram.ui.ActionBar.g6 f37332c;
-    public final Integer d;
-    public final r61 f37333e;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class h51 extends FrameLayout {
+    public final int f37226a;
 
-    public h51(r61 r61Var, int i10, Context context, org.telegram.ui.ActionBar.g6 g6Var, Integer num) {
-        this.f37333e = r61Var;
-        this.f37330a = i10;
-        this.f37331b = context;
-        this.f37332c = g6Var;
-        this.d = num;
+    public h51(Context context, int i10) {
+        super(context);
+        this.f37226a = i10;
     }
 
     @Override
-    public final boolean mo17c(float f10, float f11, int i10, View view) {
-        r61 r61Var = this.f37333e;
-        int i11 = r61Var.S;
-        int i12 = this.f37330a;
-        if (i12 != 11 && i12 != 13 && r61Var.f40792e1) {
-            boolean z4 = view instanceof a61;
-            if (z4 && (i12 == 1 || i12 == 8)) {
-                r61Var.l();
-                try {
-                    r61Var.performHapticFeedback(0);
-                } catch (Exception unused) {
-                }
-                a61 a61Var = (a61) view;
-                if (!a61Var.f35044s && !UserConfig.getInstance(i11).isPremium()) {
-                    org.telegram.ui.Components.u5 u5Var = a61Var.f35040e;
-                    TLRPC.Document document = u5Var.document;
-                    if (document == null) {
-                        document = org.telegram.ui.Components.l5.f(i11, u5Var.documentId);
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f37226a) {
+            case 6:
+                org.telegram.ui.ActionBar.k6.f21749i3.setBounds(0, 0, getMeasuredWidth(), org.telegram.ui.ActionBar.k6.f21749i3.getIntrinsicHeight());
+                org.telegram.ui.ActionBar.k6.f21749i3.draw(canvas);
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f37226a) {
+            case 5:
+                super.onDraw(canvas);
+                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, org.telegram.ui.ActionBar.k6.f21781k0);
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
+        switch (this.f37226a) {
+            case 2:
+                int childCount = getChildCount();
+                int i14 = 0;
+                int i15 = 0;
+                for (int i16 = 0; i16 < childCount; i16++) {
+                    if (getChildAt(i16).getMeasuredWidth() + i14 > getMeasuredWidth()) {
+                        i15 += getChildAt(i16).getMeasuredHeight();
+                        i14 = 0;
                     }
-                    r61Var.p(a61Var, Long.valueOf(a61Var.f35040e.documentId), document, a61Var.v, null);
-                    return true;
+                    getChildAt(i16).layout(i14, i15, getChildAt(i16).getMeasuredWidth() + i14, getChildAt(i16).getMeasuredHeight() + i15);
+                    i14 += getChildAt(i16).getMeasuredWidth();
                 }
-                r61Var.P0 = a61Var;
-                r61Var.R0 = 0.0f;
-                r61Var.Q0 = false;
-                if (a61Var.f35044s) {
-                    r61Var.setBigReactionAnimatedEmoji(null);
-                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i11).getReactionsMap().get(r61Var.P0.f35046x.f16178f);
-                    if (tL_availableReaction != null) {
-                        r61Var.S0.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60_pcache", null, null, null, 0L, "tgs", r61Var.P0.f35046x, 0);
-                    }
+                return;
+            default:
+                super.onLayout(z4, i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        int i12;
+        switch (this.f37226a) {
+            case 0:
+                super.onMeasure(i10, b.B(36.0f, View.MeasureSpec.getSize(i11), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(i10, i11);
+                return;
+            case 2:
+                int size = View.MeasureSpec.getSize(i10);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
+                int childCount = getChildCount();
+                int i13 = 0;
+                if (childCount > 0) {
+                    i12 = getChildAt(0).getMeasuredHeight();
                 } else {
-                    r61Var.setBigReactionAnimatedEmoji(new org.telegram.ui.Components.l5(4, i11, r61Var.P0.f35040e.documentId));
+                    i12 = 0;
                 }
-                r61Var.f40791e0.invalidate();
-                r61Var.m();
-                return true;
-            } else if (z4) {
-                a61 a61Var2 = (a61) view;
-                if (a61Var2.f35040e != null && (i12 == 0 || i12 == 12 || i12 == 9 || i12 == 10)) {
-                    TL_stars.TL_starGiftUnique tL_starGiftUnique = a61Var2.v;
-                    g51 g51Var = new g51(this, this.f37331b, r61Var.Q1, r61Var, a61Var2, this.f37332c, view, tL_starGiftUnique);
-                    r61Var.U0 = g51Var;
-                    g51Var.show();
-                    try {
-                        view.performHapticFeedback(0, 1);
-                    } catch (Exception unused2) {
+                int i14 = 0;
+                int i15 = 0;
+                for (int i16 = 0; i16 < childCount; i16++) {
+                    if (getChildAt(i16).getMeasuredWidth() + i14 > size) {
+                        i15 += getChildAt(i16).getMeasuredHeight();
+                        i14 = 0;
                     }
-                    return true;
+                    i14 += getChildAt(i16).getMeasuredWidth();
                 }
-            }
+                int measuredWidth = getMeasuredWidth();
+                if (getChildCount() != 0) {
+                    i13 = AndroidUtilities.dp(16.0f) + i12 + i15;
+                }
+                setMeasuredDimension(measuredWidth, i13);
+                return;
+            case 3:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
+                return;
+            case 4:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
+                return;
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 9:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(12.0f), 1073741824));
+                return;
+            case 10:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
+                return;
+            case 11:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(60.0f)), View.MeasureSpec.getMode(i11)));
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final void h() {
-        r61 r61Var = this.f37333e;
-        if (r61Var.P0 != null) {
-            r61Var.Q0 = true;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(r61Var.R0, 0.0f);
-            ofFloat.addUpdateListener(new j11(this, 8));
-            ofFloat.addListener(new ns0(this, 18));
-            ofFloat.setDuration(150L);
-            ofFloat.setInterpolator(org.telegram.ui.Components.pr.f30183f);
-            ofFloat.start();
-        }
-    }
-
-    @Override
-    public final void p(float f10) {
     }
 }

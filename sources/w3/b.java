@@ -1,14 +1,14 @@
 package w3;
 public final class b {
-    public final String f49343a;
-    public final String f49344b;
-    public final long f49345c;
+    public final String f49379a;
+    public final String f49380b;
+    public final long f49381c;
     public final long d;
 
     public b(String str, long j10, long j11, String str2) {
-        this.f49343a = str;
-        this.f49344b = str2;
-        this.f49345c = j10;
+        this.f49379a = str;
+        this.f49380b = str2;
+        this.f49381c = j10;
         this.d = j11;
     }
 }

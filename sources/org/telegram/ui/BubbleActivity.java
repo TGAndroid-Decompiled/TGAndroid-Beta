@@ -61,17 +61,17 @@ public class BubbleActivity extends j5 implements org.telegram.ui.ActionBar.c5 {
 
     @Override
     public final boolean l(ActionBarLayout actionBarLayout, org.telegram.ui.ActionBar.d5 d5Var) {
-        org.telegram.ui.ActionBar.p2 p2Var = d5Var.f21276a;
+        org.telegram.ui.ActionBar.p2 p2Var = d5Var.f21278a;
         return true;
     }
 
     @Override
     public final void onActivityResult(int i10, int i11, Intent intent) {
-        org.telegram.ui.Components.t81 t81Var;
+        org.telegram.ui.Components.s81 s81Var;
         super.onActivityResult(i10, i11, intent);
-        ThemeEditorView themeEditorView = ThemeEditorView.f25052n;
-        if (themeEditorView != null && (t81Var = themeEditorView.f25061k) != null) {
-            t81Var.a(i10, i11, intent);
+        ThemeEditorView themeEditorView = ThemeEditorView.f25054n;
+        if (themeEditorView != null && (s81Var = themeEditorView.f25063k) != null) {
+            s81Var.a(i10, i11, intent);
         }
         if (!this.P.getFragmentStack().isEmpty()) {
             ((org.telegram.ui.ActionBar.p2) this.P.getFragmentStack().get(this.P.getFragmentStack().size() - 1)).onActivityResultFragment(i10, i11, intent);
@@ -223,7 +223,7 @@ public class BubbleActivity extends j5 implements org.telegram.ui.ActionBar.c5 {
         if (!this.P.getFragmentStack().isEmpty()) {
             ((org.telegram.ui.ActionBar.p2) this.P.getFragmentStack().get(this.P.getFragmentStack().size() - 1)).onRequestPermissionsResultFragment(i10, strArr, iArr);
         }
-        ci1.q(i10, iArr);
+        ii1.q(i10, iArr);
     }
 
     @Override

@@ -1,4 +1,4 @@
 package y5;
 public abstract class n {
-    public static final l[] f50787a = {o.f50788a, o.f50789b};
+    public static final l[] f50823a = {o.f50824a, o.f50825b};
 }

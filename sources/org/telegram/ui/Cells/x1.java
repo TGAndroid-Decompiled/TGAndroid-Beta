@@ -9,7 +9,7 @@ import org.telegram.messenger.Emoji;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.d90;
-import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.e51;
 import org.telegram.ui.Components.g90;
 import org.telegram.ui.nd;
 public final class x1 extends g90 {
@@ -26,7 +26,7 @@ public final class x1 extends g90 {
     public int a() {
         switch (this.I) {
             case 4:
-                return ((UndoView) this.J).f25075a;
+                return ((UndoView) this.J).f25077a;
             default:
                 return super.a();
         }
@@ -82,12 +82,12 @@ public final class x1 extends g90 {
                     int indexOf = charSequence.toString().indexOf(10);
                     if (indexOf >= 0) {
                         charSequence.replace(indexOf, indexOf + 1, " ");
-                        charSequence.setSpan(new ForegroundColorSpan(((org.telegram.ui.oa) this.J).f39695e.getThemedColor(org.telegram.ui.ActionBar.k6.f21876p7)), 0, indexOf, 33);
+                        charSequence.setSpan(new ForegroundColorSpan(((org.telegram.ui.oa) this.J).f39631e.getThemedColor(org.telegram.ui.ActionBar.k6.f21878p7)), 0, indexOf, 33);
                     }
-                    g51[] g51VarArr = (g51[]) charSequence.getSpans(0, charSequence.length(), g51.class);
-                    for (int i10 = 0; i10 < g51VarArr.length; i10++) {
-                        charSequence.setSpan(new fg.l0(this, 2), charSequence.getSpanStart(g51VarArr[i10]), charSequence.getSpanEnd(g51VarArr[i10]), 33);
-                        charSequence.removeSpan(g51VarArr[i10]);
+                    e51[] e51VarArr = (e51[]) charSequence.getSpans(0, charSequence.length(), e51.class);
+                    for (int i10 = 0; i10 < e51VarArr.length; i10++) {
+                        charSequence.setSpan(new fg.l0(this, 2), charSequence.getSpanStart(e51VarArr[i10]), charSequence.getSpanEnd(e51VarArr[i10]), 33);
+                        charSequence.removeSpan(e51VarArr[i10]);
                     }
                 }
                 super.setText(charSequence, bufferType);
@@ -99,18 +99,18 @@ public final class x1 extends g90 {
                     int indexOf2 = charSequence.toString().indexOf(10);
                     if (indexOf2 >= 0) {
                         charSequence.replace(indexOf2, indexOf2 + 1, " ");
-                        charSequence.setSpan(new ForegroundColorSpan(ndVar.getThemedColor(org.telegram.ui.ActionBar.k6.f21876p7)), 0, indexOf2, 33);
+                        charSequence.setSpan(new ForegroundColorSpan(ndVar.getThemedColor(org.telegram.ui.ActionBar.k6.f21878p7)), 0, indexOf2, 33);
                     }
-                    g51[] g51VarArr2 = (g51[]) charSequence.getSpans(0, charSequence.length(), g51.class);
-                    EditTextBoldCursor editTextBoldCursor = ndVar.f39410w;
+                    e51[] e51VarArr2 = (e51[]) charSequence.getSpans(0, charSequence.length(), e51.class);
+                    EditTextBoldCursor editTextBoldCursor = ndVar.f39324w;
                     if (editTextBoldCursor != null && editTextBoldCursor.getText() != null) {
-                        str = ndVar.f39410w.getText().toString();
+                        str = ndVar.f39324w.getText().toString();
                     } else {
                         str = "";
                     }
-                    for (int i11 = 0; i11 < g51VarArr2.length; i11++) {
-                        charSequence.setSpan(new i(4, (Object) this, str), charSequence.getSpanStart(g51VarArr2[i11]), charSequence.getSpanEnd(g51VarArr2[i11]), 33);
-                        charSequence.removeSpan(g51VarArr2[i11]);
+                    for (int i11 = 0; i11 < e51VarArr2.length; i11++) {
+                        charSequence.setSpan(new i(4, (Object) this, str), charSequence.getSpanStart(e51VarArr2[i11]), charSequence.getSpanEnd(e51VarArr2[i11]), 33);
+                        charSequence.removeSpan(e51VarArr2[i11]);
                     }
                 }
                 super.setText(charSequence, bufferType);

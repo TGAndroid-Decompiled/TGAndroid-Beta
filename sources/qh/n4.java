@@ -1,46 +1,13 @@
 package qh;
 
+import android.content.Context;
+import android.graphics.PointF;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ki;
-import org.telegram.ui.Components.wg;
-public final class n4 implements ki {
-    @Override
-    public final void B0(wg wgVar) {
-        wgVar.run();
-    }
+public final class n4 extends eg.y1 {
+    public final a5 J0;
 
-    @Override
-    public final boolean b2() {
-        return false;
-    }
-
-    @Override
-    public final boolean h0() {
-        return false;
-    }
-
-    @Override
-    public final void Q0() {
-    }
-
-    @Override
-    public final void y0() {
-    }
-
-    @Override
-    public final void Z0(Object obj) {
-    }
-
-    @Override
-    public final void o1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void f2(ArrayList arrayList, CharSequence charSequence, boolean z4, int i10, int i11, long j10, boolean z10, long j11) {
-    }
-
-    @Override
-    public final void I1(int i10, boolean z4, boolean z10, int i11, int i12, long j10, boolean z11, boolean z12, long j11) {
+    public n4(a5 a5Var, Context context, PointF pointF, ArrayList arrayList, org.telegram.ui.Components.ba baVar, boolean z4, h5 h5Var) {
+        super(context, pointF, arrayList, baVar, z4, h5Var);
+        this.J0 = a5Var;
     }
 }

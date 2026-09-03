@@ -4,11 +4,11 @@ import android.graphics.Canvas;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public class GroupCreateCheckBox extends View {
-    public static final int f24907b = 0;
-    public float f24908a;
+    public static final int f24909b = 0;
+    public float f24910a;
 
     public float getProgress() {
-        return this.f24908a;
+        return this.f24910a;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class GroupCreateCheckBox extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (getVisibility() != 0 || this.f24908a == 0.0f) {
+        if (getVisibility() != 0 || this.f24910a == 0.0f) {
             return;
         }
         getMeasuredWidth();
@@ -35,10 +35,10 @@ public class GroupCreateCheckBox extends View {
     }
 
     public void setProgress(float f10) {
-        if (this.f24908a == f10) {
+        if (this.f24910a == f10) {
             return;
         }
-        this.f24908a = f10;
+        this.f24910a = f10;
         invalidate();
     }
 

@@ -16,14 +16,14 @@ public final class y0 extends x0 implements j0 {
         ScheduledThreadPoolExecutor scheduledThreadPoolExecutor;
         Method method;
         this.f12378c = executor;
-        Method method2 = qd.c.f44794a;
+        Method method2 = qd.c.f44825a;
         try {
             if (executor instanceof ScheduledThreadPoolExecutor) {
                 scheduledThreadPoolExecutor = (ScheduledThreadPoolExecutor) executor;
             } else {
                 scheduledThreadPoolExecutor = null;
             }
-            if (scheduledThreadPoolExecutor != null && (method = qd.c.f44794a) != null) {
+            if (scheduledThreadPoolExecutor != null && (method = qd.c.f44825a) != null) {
                 method.invoke(scheduledThreadPoolExecutor, Boolean.TRUE);
             }
         } catch (Throwable unused) {

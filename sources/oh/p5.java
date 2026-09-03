@@ -8,27 +8,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.k01;
+import org.telegram.ui.Components.j01;
 import org.telegram.ui.Components.l00;
 import org.telegram.ui.Components.vw;
 import org.telegram.ui.bn0;
 import org.telegram.ui.dp;
 import org.telegram.ui.gl0;
 import org.telegram.ui.lo0;
-import org.telegram.ui.p71;
 import org.telegram.ui.pa;
 import org.telegram.ui.sf0;
 import org.telegram.ui.sj0;
+import org.telegram.ui.u71;
 public final class p5 implements RequestDelegate {
-    public final int f17626a;
+    public final int f17628a;
 
     public p5(int i10) {
-        this.f17626a = i10;
+        this.f17628a = i10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17626a) {
+        switch (this.f17628a) {
             case 0:
                 AndroidUtilities.runOnUIThread(new ag.f(19));
                 return;
@@ -53,22 +53,22 @@ public final class p5 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ag.f(23));
                 return;
             case 8:
-                Pattern pattern = org.telegram.ui.Components.z4.f33718a;
+                Pattern pattern = org.telegram.ui.Components.z4.f33754a;
                 return;
             case 9:
                 int i11 = vw.E0;
                 return;
             case 10:
-                int i12 = l00.f28485x0;
+                int i12 = l00.f28534x0;
                 return;
             case 11:
                 AndroidUtilities.runOnUIThread(new ag.f(23));
                 return;
             case 12:
-                int i13 = k01.f28241e;
+                int i13 = j01.f27949e;
                 return;
             case 13:
-                int i14 = sf0.f41250q0;
+                int i14 = sf0.f41160q0;
                 return;
             case 14:
                 AndroidUtilities.runOnUIThread(new gl0(tLObject, 2));
@@ -77,10 +77,10 @@ public final class p5 implements RequestDelegate {
                 int i15 = bn0.O;
                 return;
             case 16:
-                List list = lo0.f38793d1;
+                List list = lo0.f38705d1;
                 return;
             case 17:
-                int i16 = p71.f39940e;
+                int i16 = u71.f41749e;
                 return;
             case 18:
                 int[] iArr = qh.v0.U;

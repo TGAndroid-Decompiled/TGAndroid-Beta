@@ -14,7 +14,7 @@ import org.telegram.ui.af0;
 import org.telegram.ui.d40;
 import org.telegram.ui.oa;
 import org.telegram.ui.sb;
-import qh.r9;
+import qh.q9;
 public final class l0 extends ClickableSpan {
     public final int f6377a;
     public final Object f6378b;
@@ -37,7 +37,7 @@ public final class l0 extends ClickableSpan {
             case 2:
                 org.telegram.ui.Cells.x1 x1Var = (org.telegram.ui.Cells.x1) this.f6378b;
                 Context context = x1Var.getContext();
-                af.g.s(context, "https://fragment.com/username/" + ((oa) x1Var.J).f39695e.f39997r);
+                af.g.s(context, "https://fragment.com/username/" + ((oa) x1Var.J).f39631e.f39957r);
                 return;
             case 3:
                 ((sb) this.f6378b).finishFragment();
@@ -46,7 +46,7 @@ public final class l0 extends ClickableSpan {
                 ((org.telegram.ui.s1) this.f6378b).run();
                 return;
             case 5:
-                ((qc) this.f6378b).f30362a.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                ((qc) this.f6378b).f30378a.presentFragment(new PremiumPreviewFragment(0, "settings"));
                 return;
             case 6:
                 ((ActionBarLayout) ((LaunchActivity) this.f6378b).O()).P(new PremiumPreviewFragment(0, "gift"));
@@ -55,7 +55,7 @@ public final class l0 extends ClickableSpan {
                 ((af0) this.f6378b).q(false);
                 return;
             case 8:
-                ((r9) this.f6378b).P1.T();
+                ((q9) this.f6378b).P1.T();
                 return;
             default:
                 zg.c cVar = (zg.c) this.f6378b;
@@ -74,7 +74,7 @@ public final class l0 extends ClickableSpan {
             case 0:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                textPaint.setColor(k6.v0(k6.f21720gc, v0.R0(((n0) this.f6378b).f6410c)));
+                textPaint.setColor(k6.v0(k6.f21722gc, v0.R0(((n0) this.f6378b).f6410c)));
                 return;
             case 1:
                 super.updateDrawState(textPaint);

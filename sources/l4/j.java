@@ -312,7 +312,7 @@ public final class j implements Parcelable.Creator {
                 } else {
                     z4 = false;
                 }
-                baseSavedState.f13260a = z4;
+                baseSavedState.f13262a = z4;
                 return baseSavedState;
             case 10:
                 return new m3.a(parcel);

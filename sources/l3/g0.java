@@ -31,7 +31,7 @@ public final class g0 {
         if (z4) {
             return new AudioAttributes.Builder().setContentType(3).setFlags(16).setUsage(1).build();
         }
-        return (AudioAttributes) dVar.a().f16615b;
+        return (AudioAttributes) dVar.a().f16617b;
     }
 
     public final AudioTrack a(boolean z4, d dVar, int i10) {

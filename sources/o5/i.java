@@ -59,20 +59,20 @@ import org.telegram.ui.Cells.ea;
 import org.telegram.ui.Cells.k1;
 import org.telegram.ui.Cells.n9;
 import org.telegram.ui.Cells.t1;
-import org.telegram.ui.Components.bq0;
+import org.telegram.ui.Components.aq0;
 import org.telegram.ui.Components.ic;
 import org.telegram.ui.Components.u5;
-import org.telegram.ui.p61;
-import org.telegram.ui.xu0;
+import org.telegram.ui.cv0;
+import org.telegram.ui.u61;
 import s5.m;
-public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, i1, Continuation, m.k, bq0, p61, WebMessageListenerBoundaryInterface, k1 {
-    public static i f16613c;
-    public final int f16614a;
-    public final Object f16615b;
+public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, i1, Continuation, m.k, aq0, u61, WebMessageListenerBoundaryInterface, k1 {
+    public static i f16615c;
+    public final int f16616a;
+    public final Object f16617b;
 
     public i(Object obj, int i10) {
-        this.f16614a = i10;
-        this.f16615b = obj;
+        this.f16616a = i10;
+        this.f16617b = obj;
     }
 
     public static synchronized i B(Context context) {
@@ -85,12 +85,12 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
 
     public static synchronized i G(Context context) {
         synchronized (i.class) {
-            i iVar = f16613c;
+            i iVar = f16615c;
             if (iVar != null) {
                 return iVar;
             }
             i iVar2 = new i(context);
-            f16613c = iVar2;
+            f16615c = iVar2;
             return iVar2;
         }
     }
@@ -331,7 +331,7 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
         if (fVar.containsKey(str) && ((Integer) fVar.get(str)).intValue() != 1) {
             throw new IllegalArgumentException(android.support.v4.media.a.o("The ", str, " key cannot be used to put a String"));
         }
-        ((Bundle) this.f16615b).putCharSequence(str, str2);
+        ((Bundle) this.f16617b).putCharSequence(str, str2);
     }
 
     @Override
@@ -341,7 +341,7 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
 
     @Override
     public void C(int i10, int i11) {
-        ((p0) this.f16615b).p(i10, i11);
+        ((p0) this.f16617b).p(i10, i11);
     }
 
     @Override
@@ -351,10 +351,10 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
 
     public synchronized void F() {
         synchronized (this) {
-            b bVar = (b) this.f16615b;
-            ReentrantLock reentrantLock = bVar.f16596a;
+            b bVar = (b) this.f16617b;
+            ReentrantLock reentrantLock = bVar.f16598a;
             reentrantLock.lock();
-            bVar.f16597b.edit().clear().apply();
+            bVar.f16599b.edit().clear().apply();
             reentrantLock.unlock();
         }
     }
@@ -370,7 +370,7 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
     }
 
     public void J(int i10, String str) {
-        ByteBuffer byteBuffer = (ByteBuffer) this.f16615b;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f16617b;
         e0(i10, 2);
         try {
             int t02 = t0(str.length());
@@ -398,7 +398,7 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
 
     @Override
     public void L0(int i10, int i11) {
-        ((p0) this.f16615b).t(i10, i11);
+        ((p0) this.f16617b).t(i10, i11);
     }
 
     @Override
@@ -438,15 +438,15 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
 
     @Override
     public void U() {
-        int i10 = this.f16614a;
+        int i10 = this.f16616a;
     }
 
     @Override
     public void U0(int i10, t1 t1Var) {
-        ea eaVar = (ea) this.f16615b;
+        ea eaVar = (ea) this.f16617b;
         org.telegram.ui.Cells.g gVar = eaVar.v;
         if (eaVar.a()) {
-            eaVar.f22782s = 2;
+            eaVar.f22784s = 2;
             t1Var.invalidate();
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
@@ -466,7 +466,7 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
     @Override
     public void W(Object obj) {
         CharSequence charSequence = (CharSequence) obj;
-        r rVar = (r) this.f16615b;
+        r rVar = (r) this.f16617b;
         if (charSequence != null) {
             if (rVar.R()) {
                 rVar.W(charSequence);
@@ -484,7 +484,7 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
         e0(i10, 2);
         b0(bArr.length);
         int length = bArr.length;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f16615b;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f16617b;
         if (byteBuffer.remaining() >= length) {
             byteBuffer.put(bArr, 0, length);
             return;
@@ -494,10 +494,10 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
 
     @Override
     public void X1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
-        ea eaVar = (ea) this.f16615b;
+        ea eaVar = (ea) this.f16617b;
         org.telegram.ui.Cells.g gVar = eaVar.v;
         if (eaVar.a()) {
-            eaVar.f22782s = 2;
+            eaVar.f22784s = 2;
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
         }
@@ -505,7 +505,7 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
 
     public void Y(int i10) {
         byte b10 = (byte) i10;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f16615b;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f16617b;
         if (byteBuffer.hasRemaining()) {
             byteBuffer.put(b10);
             return;
@@ -524,7 +524,7 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
     }
 
     public void a(int i10, boolean z4) {
-        u uVar = (u) this.f16615b;
+        u uVar = (u) this.f16617b;
         if (z4) {
             uVar.b(i10);
         } else {
@@ -539,8 +539,8 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
 
     @Override
     public void accept(Object obj, Object obj2) {
-        int i10 = this.f16614a;
-        Object obj3 = this.f16615b;
+        int i10 = this.f16616a;
+        Object obj3 = this.f16617b;
         switch (i10) {
             case 8:
                 TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
@@ -566,26 +566,26 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
                     Bundle G = bVar.G();
                     Parcel obtain = Parcel.obtain();
                     obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
-                    int i11 = s7.c.f47074a;
+                    int i11 = s7.c.f47105a;
                     obtain.writeInt(1);
                     eVar.writeToParcel(obtain, 0);
                     obtain.writeInt(1);
                     G.writeToParcel(obtain, 0);
                     obtain.writeStrongBinder(aVar2);
-                    iVar.f47082a.transact(14, obtain, null, 1);
+                    iVar.f47113a.transact(14, obtain, null, 1);
                     obtain.recycle();
                     return;
                 } catch (RemoteException e6) {
                     Log.e("WalletClientImpl", "RemoteException during isReadyToPay", e6);
                     Bundle bundle = Bundle.EMPTY;
-                    p5.a(Status.h, Boolean.FALSE, aVar2.f47073b);
+                    p5.a(Status.h, Boolean.FALSE, aVar2.f47104b);
                     return;
                 }
             default:
                 o7.d dVar = new o7.d(1, (TaskCompletionSource) obj2);
                 Parcel obtain2 = Parcel.obtain();
                 obtain2.writeInterfaceToken("com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService");
-                int i12 = o7.a.f16618a;
+                int i12 = o7.a.f16620a;
                 obtain2.writeStrongBinder(dVar);
                 obtain2.writeInt(1);
                 ((z7.c) obj3).writeToParcel(obtain2, 0);
@@ -595,7 +595,7 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
     }
 
     public MediaMetadataCompat b() {
-        return new MediaMetadataCompat((Bundle) this.f16615b);
+        return new MediaMetadataCompat((Bundle) this.f16617b);
     }
 
     public void b0(int i10) {
@@ -612,7 +612,7 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
     }
 
     public void c() {
-        m1 m1Var = ((o1) this.f16615b).d;
+        m1 m1Var = ((o1) this.f16617b).d;
         if (m1Var != null) {
             l1 l1Var = m1Var.f4612s;
             if (l1Var != null) {
@@ -632,7 +632,7 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
 
     @Override
     public boolean d() {
-        return ((ea) this.f16615b).a();
+        return ((ea) this.f16617b).a();
     }
 
     @Override
@@ -651,7 +651,7 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
 
     @Override
     public void f(Object obj) {
-        ((u7.c) obj).onLocationAvailability((LocationAvailability) this.f16615b);
+        ((u7.c) obj).onLocationAvailability((LocationAvailability) this.f16617b);
     }
 
     @Override
@@ -666,20 +666,20 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
 
     @Override
     public boolean g1(int i10, t1 t1Var) {
-        if (i10 == ((ea) this.f16615b).f22782s) {
+        if (i10 == ((ea) this.f16617b).f22784s) {
             return true;
         }
         return false;
     }
 
     @Override
-    public xu0 g2() {
+    public cv0 g2() {
         return null;
     }
 
     @Override
     public Object mo38get() {
-        String packageName = ((Context) ((rc.a) this.f16615b).mo38get()).getPackageName();
+        String packageName = ((Context) ((rc.a) this.f16617b).mo38get()).getPackageName();
         if (packageName != null) {
             return packageName;
         }
@@ -693,12 +693,12 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
 
     @Override
     public void i1(int i10, int i11) {
-        ((p0) this.f16615b).r(i10, i11, null);
+        ((p0) this.f16617b).r(i10, i11, null);
     }
 
     @Override
     public void j0(int i10, int i11) {
-        ((p0) this.f16615b).s(i10, i11);
+        ((p0) this.f16617b).s(i10, i11);
     }
 
     @Override
@@ -709,7 +709,7 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
     @Override
     public void k(Object obj) {
         androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
-        j0 j0Var = (j0) this.f16615b;
+        j0 j0Var = (j0) this.f16617b;
         f0 f0Var = (f0) j0Var.F.pollLast();
         if (f0Var == null) {
             Log.w("FragmentManager", "No Activities were started for result for " + this);
@@ -732,10 +732,10 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
 
     @Override
     public void k2(t1 t1Var, int i10, float f10, float f11, boolean z4) {
-        ea eaVar = (ea) this.f16615b;
+        ea eaVar = (ea) this.f16617b;
         org.telegram.ui.Cells.g gVar = eaVar.v;
         if (eaVar.a()) {
-            eaVar.f22782s = 0;
+            eaVar.f22784s = 0;
             t1Var.invalidate();
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
@@ -771,7 +771,7 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
     }
 
     public void p(b0 b0Var) {
-        ((y2.o) ((v2.f) ((ba.b) this.f16615b).get())).a("FIREBASE_APPQUALITY_SESSION", new v2.c("json"), new hg.f(this, 20)).a(new v2.a(null, b0Var, v2.d.f48850a, null), new sg.a(28));
+        ((y2.o) ((v2.f) ((ba.b) this.f16617b).get())).a("FIREBASE_APPQUALITY_SESSION", new v2.c("json"), new hg.f(this, 20)).a(new v2.a(null, b0Var, v2.d.f48886a, null), new sg.a(29));
     }
 
     @Override
@@ -781,30 +781,30 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
 
     @Override
     public Object then(Task task) {
-        return ((Callable) this.f16615b).call();
+        return ((Callable) this.f16617b).call();
     }
 
     public void u(m mVar) {
-        v7.j jVar = (v7.j) this.f16615b;
-        jVar.f48927a = mVar;
-        Iterator it = jVar.f48929c.iterator();
+        v7.j jVar = (v7.j) this.f16617b;
+        jVar.f48963a = mVar;
+        Iterator it = jVar.f48965c.iterator();
         while (it.hasNext()) {
             ((l6.e) it.next()).b();
         }
-        jVar.f48929c.clear();
-        jVar.f48928b = null;
+        jVar.f48965c.clear();
+        jVar.f48964b = null;
     }
 
     @Override
     public void u0() {
-        switch (this.f16614a) {
+        switch (this.f16616a) {
             case 23:
-                ic k10 = ((g5) this.f16615b).getBulletinFactory().k(false);
-                k10.f27755t = true;
+                ic k10 = ((g5) this.f16617b).getBulletinFactory().k(false);
+                k10.f27788t = true;
                 k10.j();
                 return;
             default:
-                f4.j0((f4) this.f16615b);
+                f4.j0((f4) this.f16617b);
                 return;
         }
     }
@@ -824,7 +824,7 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
         if (fVar.containsKey(str) && ((Integer) fVar.get(str)).intValue() != 2) {
             throw new IllegalArgumentException(android.support.v4.media.a.o("The ", str, " key cannot be used to put a Bitmap"));
         }
-        ((Bundle) this.f16615b).putParcelable(str, bitmap);
+        ((Bundle) this.f16617b).putParcelable(str, bitmap);
     }
 
     public void x(long j10, String str) {
@@ -832,21 +832,21 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
         if (fVar.containsKey(str) && ((Integer) fVar.get(str)).intValue() != 0) {
             throw new IllegalArgumentException(android.support.v4.media.a.o("The ", str, " key cannot be used to put a long"));
         }
-        ((Bundle) this.f16615b).putLong(str, j10);
+        ((Bundle) this.f16617b).putLong(str, j10);
     }
 
     public i(byte[] bArr, int i10) {
-        this.f16614a = 7;
+        this.f16616a = 7;
         ByteBuffer wrap = ByteBuffer.wrap(bArr, 0, i10);
-        this.f16615b = wrap;
+        this.f16617b = wrap;
         wrap.order(ByteOrder.LITTLE_ENDIAN);
     }
 
     public i(Context context) {
         String d;
-        this.f16614a = 0;
+        this.f16616a = 0;
         b a2 = b.a(context);
-        this.f16615b = a2;
+        this.f16617b = a2;
         a2.b();
         String d10 = a2.d("defaultGoogleSignInAccount");
         if (TextUtils.isEmpty(d10) || (d = a2.d(b.f("googleSignInOptions", d10))) == null) {
@@ -859,7 +859,7 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
     }
 
     public i(l3.d dVar) {
-        this.f16614a = 19;
+        this.f16616a = 19;
         AudioAttributes.Builder usage = new AudioAttributes.Builder().setContentType(dVar.f11494a).setFlags(dVar.f11495b).setUsage(dVar.f11496c);
         int i10 = d0.f7237a;
         if (i10 >= 29) {
@@ -868,29 +868,29 @@ public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, 
         if (i10 >= 32) {
             l3.c.a(usage, dVar.f11497e);
         }
-        this.f16615b = usage.build();
+        this.f16617b = usage.build();
     }
 
     public i(int i10) {
-        this.f16614a = i10;
+        this.f16616a = i10;
         switch (i10) {
             case 15:
-                this.f16615b = new CopyOnWriteArrayList();
+                this.f16617b = new CopyOnWriteArrayList();
                 return;
             case 16:
             default:
-                this.f16615b = new Bundle();
+                this.f16617b = new Bundle();
                 return;
             case 17:
-                this.f16615b = new u();
+                this.f16617b = new u();
                 return;
         }
     }
 
     public i(MediaMetadataCompat mediaMetadataCompat) {
-        this.f16614a = 1;
+        this.f16616a = 1;
         Bundle bundle = new Bundle(mediaMetadataCompat.f245a);
-        this.f16615b = bundle;
+        this.f16617b = bundle;
         c0.a(bundle);
     }
 

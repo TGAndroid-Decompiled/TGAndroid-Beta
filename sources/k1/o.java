@@ -22,11 +22,11 @@ public final class o extends kotlin.jvm.internal.k implements dd.l {
                 synchronized (obj2) {
                     d0.f10270r.remove(d0Var.b().getAbsolutePath());
                 }
-                return sc.i.f47243a;
+                return sc.i.f47274a;
             default:
                 Throwable th3 = (Throwable) obj;
                 ((ud.h) this.f10295c).b();
-                return sc.i.f47243a;
+                return sc.i.f47274a;
         }
     }
 }

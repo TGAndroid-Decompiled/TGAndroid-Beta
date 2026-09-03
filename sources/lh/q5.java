@@ -26,34 +26,34 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.i61;
-import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.h61;
 import org.telegram.ui.Components.pr;
 import org.telegram.ui.Components.q70;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.sa;
 import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.tl0;
 import org.telegram.ui.Components.u00;
 import org.telegram.ui.Components.xt;
 public final class q5 extends sa {
-    public static final int f12906h0 = 0;
+    public static final int f12908h0 = 0;
     public final String U;
     public final p5 V;
     public final HorizontalScrollView W;
     public final s4 X;
     public final s4 Y;
     public final s4 Z;
-    public final s4 f12907a0;
-    public final mh.q3 f12908b0;
-    public mh.m1 f12909c0;
-    public final HashSet f12910d0;
-    public boolean f12911e0;
-    public o5 f12912f0;
-    public boolean f12913g0;
+    public final s4 f12909a0;
+    public final mh.q3 f12910b0;
+    public mh.m1 f12911c0;
+    public final HashSet f12912d0;
+    public boolean f12913e0;
+    public o5 f12914f0;
+    public boolean f12915g0;
 
     public q5(final Context context, String str, final p5 p5Var) {
         super(context, null, false, false, false, 2, null);
-        this.f12910d0 = new HashSet();
+        this.f12912d0 = new HashSet();
         this.H = AndroidUtilities.dp(12.0f);
         fixNavigationBar();
         this.U = str;
@@ -72,7 +72,7 @@ public final class q5 extends sa {
         horizontalScrollView.addView(linearLayout);
         s4 s4Var = new s4(context, this.resourcesProvider);
         this.X = s4Var;
-        s4Var.setSorting(p5Var.f12896c.f12631p);
+        s4Var.setSorting(p5Var.f12898c.f12633p);
         linearLayout.addView(s4Var, k7.c6.t(-2, -2, 16, 0, 0, 6, 0));
         s4Var.setOnClickListener(new dg.n(15, this, p5Var));
         s4 s4Var2 = new s4(context, this.resourcesProvider);
@@ -80,23 +80,23 @@ public final class q5 extends sa {
         s4Var2.setValue(LocaleController.getString(R.string.Gift2AttributeModel));
         linearLayout.addView(s4Var2, k7.c6.t(-2, -2, 16, 0, 0, 6, 0));
         s4Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final q5 f12825b;
+            public final q5 f12827b;
 
             {
-                this.f12825b = this;
+                this.f12827b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r4) {
                     case 0:
-                        q5.R(this.f12825b, p5Var, context);
+                        q5.R(this.f12827b, p5Var, context);
                         return;
                     case 1:
-                        q5.W(this.f12825b, p5Var, context);
+                        q5.W(this.f12827b, p5Var, context);
                         return;
                     default:
-                        q5.S(this.f12825b, p5Var, context);
+                        q5.S(this.f12827b, p5Var, context);
                         return;
                 }
             }
@@ -106,49 +106,49 @@ public final class q5 extends sa {
         s4Var3.setValue(LocaleController.getString(R.string.Gift2AttributeBackdrop));
         linearLayout.addView(s4Var3, k7.c6.t(-2, -2, 16, 0, 0, 6, 0));
         s4Var3.setOnClickListener(new View.OnClickListener(this) {
-            public final q5 f12825b;
+            public final q5 f12827b;
 
             {
-                this.f12825b = this;
+                this.f12827b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r4) {
                     case 0:
-                        q5.R(this.f12825b, p5Var, context);
+                        q5.R(this.f12827b, p5Var, context);
                         return;
                     case 1:
-                        q5.W(this.f12825b, p5Var, context);
+                        q5.W(this.f12827b, p5Var, context);
                         return;
                     default:
-                        q5.S(this.f12825b, p5Var, context);
+                        q5.S(this.f12827b, p5Var, context);
                         return;
                 }
             }
         });
         s4 s4Var4 = new s4(context, this.resourcesProvider);
-        this.f12907a0 = s4Var4;
+        this.f12909a0 = s4Var4;
         s4Var4.setValue(LocaleController.getString(R.string.Gift2AttributeSymbol));
         linearLayout.addView(s4Var4, k7.c6.t(-2, -2, 16, 0, 0, 0, 0));
         s4Var4.setOnClickListener(new View.OnClickListener(this) {
-            public final q5 f12825b;
+            public final q5 f12827b;
 
             {
-                this.f12825b = this;
+                this.f12827b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r4) {
                     case 0:
-                        q5.R(this.f12825b, p5Var, context);
+                        q5.R(this.f12827b, p5Var, context);
                         return;
                     case 1:
-                        q5.W(this.f12825b, p5Var, context);
+                        q5.W(this.f12827b, p5Var, context);
                         return;
                     default:
-                        q5.S(this.f12825b, p5Var, context);
+                        q5.S(this.f12827b, p5Var, context);
                         return;
                 }
             }
@@ -168,26 +168,26 @@ public final class q5 extends sa {
         this.d.setItemAnimator(lVar);
         this.d.setItemSelectorColorProvider(new k3.e(26));
         mh.q3 q3Var = new mh.q3(context);
-        this.f12908b0 = q3Var;
+        this.f12910b0 = q3Var;
         int dp = AndroidUtilities.dp(20.0f);
         int dp2 = AndroidUtilities.dp(9.0f);
         q3Var.h = dp;
-        q3Var.f14629n = dp2;
+        q3Var.f14631n = dp2;
         q3Var.setRoundRadius(AndroidUtilities.dp(22.0f));
         q3Var.setFullRect(true);
         AndroidUtilities.makeGlobalBlurBitmap(new dg.h0(q3Var, 20), 12.0f, 12, null, new ArrayList());
         q3Var.setPivotY(0.0f);
         this.container.addView(q3Var, k7.c6.e(-1, -2, 55));
-        this.f12912f0.N(false);
+        this.f12914f0.N(false);
         p5Var.d = new f5(this, 1);
     }
 
     public static void P(q5 q5Var, p5 p5Var) {
         q70 F = q70.F(q5Var.container, q5Var.resourcesProvider, q5Var.X);
-        F.c(R.drawable.menu_sort_value, LocaleController.getString(a5.BY_PRICE.f12598a), new e5(p5Var, 3), false);
-        F.c(R.drawable.menu_sort_date, LocaleController.getString(a5.BY_DATE.f12598a), new e5(p5Var, 4), false);
-        F.c(R.drawable.menu_sort_number, LocaleController.getString(a5.BY_NUMBER.f12598a), new e5(p5Var, 5), false);
-        F.f30330t = false;
+        F.c(R.drawable.menu_sort_value, LocaleController.getString(a5.BY_PRICE.f12600a), new e5(p5Var, 3), false);
+        F.c(R.drawable.menu_sort_date, LocaleController.getString(a5.BY_DATE.f12600a), new e5(p5Var, 4), false);
+        F.c(R.drawable.menu_sort_number, LocaleController.getString(a5.BY_NUMBER.f12600a), new e5(p5Var, 5), false);
+        F.f30334t = false;
         F.Y = true;
         F.a0(0.0f, AndroidUtilities.dp(-8.0f));
         F.Z();
@@ -196,16 +196,16 @@ public final class q5 extends sa {
     public static void Q(q5 q5Var, p5 p5Var, int i10) {
         TL_stars.SavedStarGift savedStarGift;
         mf.b bVar;
-        j51 G = q5Var.f12912f0.G(i10 - 1);
+        h51 G = q5Var.f12914f0.G(i10 - 1);
         if (G != null) {
             Object obj = G.G;
             if (obj instanceof TL_stars.StarGift) {
                 TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-                boolean z4 = G.f28020r;
-                if (!TextUtils.isEmpty(starGift.gift_address) && q5Var.f12911e0) {
+                boolean z4 = G.f27381r;
+                if (!TextUtils.isEmpty(starGift.gift_address) && q5Var.f12913e0) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(q5Var.getContext(), 0, q5Var.resourcesProvider);
                     String string = LocaleController.getString(R.string.GiftCraftCantChooseFirstTitle);
-                    org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+                    org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21168a;
                     d2Var.O = string;
                     d2Var.Q = LocaleController.getString(R.string.GiftCraftCantChooseFirst);
                     l.d.C(R.string.OK, alertDialog$Builder, null);
@@ -215,15 +215,15 @@ public final class q5 extends sa {
                     d2Var2.q(400L);
                     long clientUserId = UserConfig.getInstance(q5Var.currentAccount).getClientUserId();
                     if (tL_starGiftUnique.resale_ton_only) {
-                        bVar = mf.b.f13652b;
+                        bVar = mf.b.f13654b;
                     } else {
-                        bVar = mf.b.f13651a;
+                        bVar = mf.b.f13653a;
                     }
                     mf.b bVar2 = bVar;
                     t7.x(q5Var.currentAccount, bVar2).H(tL_starGiftUnique, clientUserId, null, true, new h5(q5Var, d2Var2, bVar2, tL_starGiftUnique, clientUserId));
                 } else {
                     if (!z4) {
-                        ArrayList arrayList = p5Var.f12895b.f14405l;
+                        ArrayList arrayList = p5Var.f12897b.f14407l;
                         int size = arrayList.size();
                         int i11 = 0;
                         while (true) {
@@ -242,14 +242,14 @@ public final class q5 extends sa {
                         if (savedStarGift != null && savedStarGift.can_craft_at > 0 && savedStarGift.can_craft_at > ConnectionsManager.getInstance(q5Var.currentAccount).getCurrentTime()) {
                             AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(q5Var.getContext());
                             String string2 = LocaleController.getString(R.string.GiftCraftUnavailableTitle);
-                            org.telegram.ui.ActionBar.d2 d2Var3 = alertDialog$Builder2.f21166a;
+                            org.telegram.ui.ActionBar.d2 d2Var3 = alertDialog$Builder2.f21168a;
                             d2Var3.O = string2;
                             d2Var3.Q = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCraftUnavailableTextTime, LocaleController.formatDateTime(savedStarGift.can_craft_at, true)));
                             l.d.C(R.string.OK, alertDialog$Builder2, null);
                             return;
                         }
                     }
-                    q5Var.f12909c0.run(starGift);
+                    q5Var.f12911c0.run(starGift);
                     q5Var.dismiss();
                 }
             }
@@ -257,21 +257,21 @@ public final class q5 extends sa {
     }
 
     public static void R(q5 q5Var, p5 p5Var, Context context) {
-        b5 b5Var = p5Var.f12896c;
-        if (b5Var.f12622f.isEmpty()) {
+        b5 b5Var = p5Var.f12898c;
+        if (b5Var.f12624f.isEmpty()) {
             return;
         }
         q70 q70Var = new q70(q5Var.container, q5Var.resourcesProvider, q5Var.Y, false, true, false);
-        q70Var.f30330t = false;
+        q70Var.f30334t = false;
         q70Var.Y = true;
         q70Var.a0(0.0f, AndroidUtilities.dp(-8.0f));
         q70Var.R = true;
-        q70Var.f30324p = new g3(q70Var, 6);
+        q70Var.f30328p = new g3(q70Var, 6);
         String[] strArr = {""};
-        ArrayList arrayList = new ArrayList(b5Var.f12622f);
+        ArrayList arrayList = new ArrayList(b5Var.f12624f);
         Collections.sort(arrayList, new g5(p5Var, 2));
-        i61 i61Var = new i61(context, q5Var.currentAccount, 0, false, new c5(strArr, p5Var, arrayList, 0), new d5(p5Var, q70Var, 0), null, q5Var.resourcesProvider);
-        i61Var.V2.f32957r = false;
+        h61 h61Var = new h61(context, q5Var.currentAccount, 0, false, new c5(strArr, p5Var, arrayList, 0), new d5(p5Var, q70Var, 0), null, q5Var.resourcesProvider);
+        h61Var.V2.f32651r = false;
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -290,34 +290,34 @@ public final class q5 extends sa {
         xtVar.setTextColor(k6.v0(k6.E8, q5Var.resourcesProvider));
         xtVar.setBackground(null);
         frameLayout.addView(xtVar, k7.c6.d(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
-        xtVar.addTextChangedListener(new dg.b0(4, strArr, i61Var));
+        xtVar.addTextChangedListener(new dg.b0(4, strArr, h61Var));
         if (arrayList.size() > 8) {
             q70Var.r(frameLayout, k7.c6.n(-1, 44));
             q70Var.k();
         }
-        if (!b5Var.f12625j.isEmpty()) {
+        if (!b5Var.f12627j.isEmpty()) {
             q70Var.c(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new e5(p5Var, 0), false);
         }
-        q70Var.q(i61Var);
+        q70Var.q(h61Var);
         q70Var.Z();
     }
 
     public static void S(q5 q5Var, p5 p5Var, Context context) {
-        b5 b5Var = p5Var.f12896c;
+        b5 b5Var = p5Var.f12898c;
         if (b5Var.h.isEmpty()) {
             return;
         }
-        q70 q70Var = new q70(q5Var.container, q5Var.resourcesProvider, q5Var.f12907a0, false, true, false);
-        q70Var.f30330t = false;
+        q70 q70Var = new q70(q5Var.container, q5Var.resourcesProvider, q5Var.f12909a0, false, true, false);
+        q70Var.f30334t = false;
         q70Var.Y = true;
         q70Var.a0(0.0f, AndroidUtilities.dp(-8.0f));
         q70Var.R = true;
-        q70Var.f30324p = new g3(q70Var, 5);
+        q70Var.f30328p = new g3(q70Var, 5);
         String[] strArr = {""};
         ArrayList arrayList = new ArrayList(b5Var.h);
         Collections.sort(arrayList, new g5(p5Var, 1));
-        i61 i61Var = new i61(context, q5Var.currentAccount, 0, false, new c5(strArr, p5Var, arrayList, 2), new d5(p5Var, q70Var, 2), null, q5Var.resourcesProvider);
-        i61Var.V2.f32957r = false;
+        h61 h61Var = new h61(context, q5Var.currentAccount, 0, false, new c5(strArr, p5Var, arrayList, 2), new d5(p5Var, q70Var, 2), null, q5Var.resourcesProvider);
+        h61Var.V2.f32651r = false;
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -336,15 +336,15 @@ public final class q5 extends sa {
         xtVar.setTextColor(k6.v0(k6.E8, q5Var.resourcesProvider));
         xtVar.setBackground(null);
         frameLayout.addView(xtVar, k7.c6.d(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
-        xtVar.addTextChangedListener(new dg.b0(6, strArr, i61Var));
+        xtVar.addTextChangedListener(new dg.b0(6, strArr, h61Var));
         if (arrayList.size() > 8) {
             q70Var.r(frameLayout, k7.c6.n(-1, 44));
             q70Var.k();
         }
-        if (!b5Var.f12627l.isEmpty()) {
+        if (!b5Var.f12629l.isEmpty()) {
             q70Var.c(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new e5(p5Var, 2), false);
         }
-        q70Var.q(i61Var);
+        q70Var.q(h61Var);
         q70Var.Z();
     }
 
@@ -352,12 +352,12 @@ public final class q5 extends sa {
         boolean z4;
         p5 p5Var = q5Var.V;
         if (p5Var != null) {
-            l7 l7Var = p5Var.f12895b;
-            b5 b5Var = p5Var.f12896c;
+            l7 l7Var = p5Var.f12897b;
+            b5 b5Var = p5Var.f12898c;
             if (l7Var != null && b5Var != null) {
                 int currentTime = ConnectionsManager.getInstance(q5Var.currentAccount).getCurrentTime();
-                arrayList.add(j51.s(-1, LocaleController.getString(R.string.GiftCraftSelectYour)));
-                ArrayList arrayList2 = l7Var.f14405l;
+                arrayList.add(h51.s(-1, LocaleController.getString(R.string.GiftCraftSelectYour)));
+                ArrayList arrayList2 = l7Var.f14407l;
                 int size = arrayList2.size();
                 int i10 = 0;
                 boolean z10 = true;
@@ -367,42 +367,42 @@ public final class q5 extends sa {
                     Object obj = arrayList2.get(i12);
                     i12++;
                     TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                    if (!q5Var.f12910d0.contains(Long.valueOf(savedStarGift.gift.f21070id))) {
+                    if (!q5Var.f12912d0.contains(Long.valueOf(savedStarGift.gift.f21072id))) {
                         if (savedStarGift.can_craft_at <= currentTime) {
                             z4 = true;
                         } else {
                             z4 = false;
                         }
-                        j51 a2 = w1.a(0, savedStarGift.gift, false, true, false, false, true);
-                        a2.f28010g = z4;
+                        h51 a2 = w1.a(0, savedStarGift.gift, false, true, false, false, true);
+                        a2.f27371g = z4;
                         arrayList.add(a2);
                         i11++;
                         z10 = false;
                     }
                 }
-                if (!l7Var.f14402i && l7Var.f14403j) {
+                if (!l7Var.f14404i && l7Var.f14405j) {
                     if (z10) {
-                        arrayList.add(j51.g(LocaleController.getString(R.string.GiftCraftSelectYourEmpty)));
+                        arrayList.add(h51.g(LocaleController.getString(R.string.GiftCraftSelectYourEmpty)));
                     }
                 } else {
                     int i13 = i11 % 3;
                     int i14 = 6 - i13;
                     for (int i15 = 0; i15 < i14; i15++) {
-                        j51 o10 = j51.o((i15 - i13) + 1, 35);
-                        o10.f28023u = 1;
+                        h51 o10 = h51.o((i15 - i13) + 1, 35);
+                        o10.f27384u = 1;
                         arrayList.add(o10);
                     }
                 }
-                if (b5Var.f12621e > 0 || q5Var.f12913g0) {
-                    q5Var.f12913g0 = true;
+                if (b5Var.f12623e > 0 || q5Var.f12915g0) {
+                    q5Var.f12915g0 = true;
                     String string = LocaleController.getString(R.string.GiftCraftSelectResale);
-                    j51 j51Var = new j51(42);
-                    j51Var.d = -2;
-                    j51Var.f28017o = string;
-                    arrayList.add(j51Var);
+                    h51 h51Var = new h51(42);
+                    h51Var.d = -2;
+                    h51Var.f27378o = string;
+                    arrayList.add(h51Var);
                     HorizontalScrollView horizontalScrollView = q5Var.W;
                     if (horizontalScrollView != null) {
-                        arrayList.add(j51.j(-3, horizontalScrollView));
+                        arrayList.add(h51.j(-3, horizontalScrollView));
                     }
                     ArrayList arrayList3 = b5Var.d;
                     int size2 = arrayList3.size();
@@ -411,24 +411,24 @@ public final class q5 extends sa {
                         i10++;
                         arrayList.add(w1.a(0, (TL_stars.TL_starGiftUnique) obj2, false, true, false, true, true));
                     }
-                    if (b5Var.f12635t || !b5Var.f12636u) {
-                        j51 o11 = j51.o(10, 35);
-                        o11.f28023u = 1;
+                    if (b5Var.f12637t || !b5Var.f12638u) {
+                        h51 o11 = h51.o(10, 35);
+                        o11.f27384u = 1;
                         arrayList.add(o11);
-                        j51 o12 = j51.o(11, 35);
-                        o12.f28023u = 1;
+                        h51 o12 = h51.o(11, 35);
+                        o12.f27384u = 1;
                         arrayList.add(o12);
-                        j51 o13 = j51.o(12, 35);
-                        o13.f28023u = 1;
+                        h51 o13 = h51.o(12, 35);
+                        o13.f27384u = 1;
                         arrayList.add(o13);
-                        j51 o14 = j51.o(13, 35);
-                        o14.f28023u = 1;
+                        h51 o14 = h51.o(13, 35);
+                        o14.f27384u = 1;
                         arrayList.add(o14);
-                        j51 o15 = j51.o(14, 35);
-                        o15.f28023u = 1;
+                        h51 o15 = h51.o(14, 35);
+                        o15.f27384u = 1;
                         arrayList.add(o15);
-                        j51 o16 = j51.o(15, 35);
-                        o16.f28023u = 1;
+                        h51 o16 = h51.o(15, 35);
+                        o16.f27384u = 1;
                         arrayList.add(o16);
                     }
                 }
@@ -453,25 +453,25 @@ public final class q5 extends sa {
 
     public static void V(q5 q5Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, mh.i4 i4Var, af.f fVar) {
         fVar.d();
-        t7.x(q5Var.currentAccount, i4Var.f14231a).h(i4Var.f14232b, tL_starGiftUnique, j10, null, true, new a0(q5Var, fVar, tL_starGiftUnique, 1));
+        t7.x(q5Var.currentAccount, i4Var.f14233a).h(i4Var.f14234b, tL_starGiftUnique, j10, null, true, new a0(q5Var, fVar, tL_starGiftUnique, 1));
     }
 
     public static void W(q5 q5Var, p5 p5Var, Context context) {
-        b5 b5Var = p5Var.f12896c;
-        if (b5Var.f12623g.isEmpty()) {
+        b5 b5Var = p5Var.f12898c;
+        if (b5Var.f12625g.isEmpty()) {
             return;
         }
         q70 q70Var = new q70(q5Var.container, q5Var.resourcesProvider, q5Var.Z, false, true, false);
-        q70Var.f30330t = false;
+        q70Var.f30334t = false;
         q70Var.Y = true;
         q70Var.a0(0.0f, AndroidUtilities.dp(-8.0f));
         q70Var.R = true;
-        q70Var.f30324p = new g3(q70Var, 4);
+        q70Var.f30328p = new g3(q70Var, 4);
         String[] strArr = {""};
-        ArrayList arrayList = new ArrayList(b5Var.f12623g);
+        ArrayList arrayList = new ArrayList(b5Var.f12625g);
         Collections.sort(arrayList, new g5(p5Var, 0));
-        i61 i61Var = new i61(context, q5Var.currentAccount, 0, false, new c5(strArr, p5Var, arrayList, 1), new d5(p5Var, q70Var, 1), null, q5Var.resourcesProvider);
-        i61Var.V2.f32957r = false;
+        h61 h61Var = new h61(context, q5Var.currentAccount, 0, false, new c5(strArr, p5Var, arrayList, 1), new d5(p5Var, q70Var, 1), null, q5Var.resourcesProvider);
+        h61Var.V2.f32651r = false;
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -490,22 +490,22 @@ public final class q5 extends sa {
         xtVar.setTextColor(k6.v0(k6.E8, q5Var.resourcesProvider));
         xtVar.setBackground(null);
         frameLayout.addView(xtVar, k7.c6.d(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
-        xtVar.addTextChangedListener(new dg.b0(5, strArr, i61Var));
+        xtVar.addTextChangedListener(new dg.b0(5, strArr, h61Var));
         if (arrayList.size() > 8) {
             q70Var.r(frameLayout, k7.c6.n(-1, 44));
             q70Var.k();
         }
-        if (!b5Var.f12626k.isEmpty()) {
+        if (!b5Var.f12628k.isEmpty()) {
             q70Var.c(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new e5(p5Var, 1), false);
         }
-        q70Var.q(i61Var);
+        q70Var.q(h61Var);
         q70Var.Z();
     }
 
     @Override
     public final void E(float f10) {
         float y10 = this.containerView.getY() + f10;
-        mh.q3 q3Var = this.f12908b0;
+        mh.q3 q3Var = this.f12910b0;
         float measuredHeight = y10 - q3Var.getMeasuredHeight();
         float clamp01 = 1.0f - Utilities.clamp01(Math.max(0.0f, (-measuredHeight) + AndroidUtilities.dp(8.0f)) / q3Var.getMeasuredHeight());
         float height = this.container.getHeight() / 2.0f;
@@ -520,17 +520,17 @@ public final class q5 extends sa {
 
     public final void Z() {
         int R;
-        j51 G;
+        h51 G;
         int i10 = 0;
         boolean z4 = false;
         boolean z10 = false;
         while (true) {
-            tl0 tl0Var = this.d;
-            if (i10 >= tl0Var.getChildCount()) {
+            sl0 sl0Var = this.d;
+            if (i10 >= sl0Var.getChildCount()) {
                 break;
             }
-            View childAt = tl0Var.getChildAt(i10);
-            if ((childAt instanceof u00) && (R = RecyclerView.R(childAt) - 1) >= 0 && (G = this.f12912f0.G(R)) != null) {
+            View childAt = sl0Var.getChildAt(i10);
+            if ((childAt instanceof u00) && (R = RecyclerView.R(childAt) - 1) >= 0 && (G = this.f12914f0.G(R)) != null) {
                 if (G.d < 10) {
                     z4 = true;
                 } else {
@@ -541,17 +541,17 @@ public final class q5 extends sa {
         }
         p5 p5Var = this.V;
         if (z4) {
-            p5Var.f12895b.a();
+            p5Var.f12897b.a();
         }
         if (z10) {
-            p5Var.f12896c.g(false);
+            p5Var.f12898c.g(false);
         }
     }
 
     @Override
-    public final sl0 v(tl0 tl0Var) {
-        o5 o5Var = new o5(this, tl0Var, getContext(), this.currentAccount, new eg.p1(this, 13), this.resourcesProvider);
-        this.f12912f0 = o5Var;
+    public final rl0 v(sl0 sl0Var) {
+        o5 o5Var = new o5(this, sl0Var, getContext(), this.currentAccount, new eg.p1(this, 13), this.resourcesProvider);
+        this.f12914f0 = o5Var;
         return o5Var;
     }
 

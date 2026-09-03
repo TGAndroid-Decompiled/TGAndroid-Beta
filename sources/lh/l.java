@@ -10,21 +10,21 @@ import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.LaunchActivity;
 public final class l implements Utilities.Callback2 {
-    public final int f12833a;
-    public final long f12834b;
-    public final Object f12835c;
+    public final int f12835a;
+    public final long f12836b;
+    public final Object f12837c;
 
     public l(Object obj, long j10, int i10) {
-        this.f12833a = i10;
-        this.f12835c = obj;
-        this.f12834b = j10;
+        this.f12835a = i10;
+        this.f12837c = obj;
+        this.f12836b = j10;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f12833a;
-        long j10 = this.f12834b;
-        Object obj3 = this.f12835c;
+        int i10 = this.f12835a;
+        long j10 = this.f12836b;
+        Object obj3 = this.f12837c;
         switch (i10) {
             case 0:
                 s.S((s) obj3, j10, (Boolean) obj, (String) obj2);
@@ -37,7 +37,7 @@ public final class l implements Utilities.Callback2 {
                 Long l10 = (Long) obj2;
                 Pattern pattern = LaunchActivity.f34134y1;
                 if ("paid".equals((String) obj) && l10.longValue() != 0) {
-                    AndroidUtilities.runOnUIThread(new i5.v(launchActivity, l10, this.f12834b, 27));
+                    AndroidUtilities.runOnUIThread(new i5.v(launchActivity, l10, this.f12836b, 27));
                     return;
                 }
                 return;

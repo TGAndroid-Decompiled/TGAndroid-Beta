@@ -17,11 +17,11 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MediaController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.kv0;
+import org.telegram.ui.Components.jv0;
 import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.tk0;
+import org.telegram.ui.Components.sk0;
 import org.telegram.ui.Components.z5;
-import qh.s6;
+import qh.r6;
 public final class t2 extends j {
     public final Rect A0;
     public final Rect B0;
@@ -32,7 +32,7 @@ public final class t2 extends j {
     public final int f5484p0;
     public boolean f5485q0;
     public final z5 f5486r0;
-    public final kv0 f5487s0;
+    public final jv0 f5487s0;
     public final int f5488t0;
     public boolean f5489u0;
     public final z5 f5490v0;
@@ -41,7 +41,7 @@ public final class t2 extends j {
     public boolean f5493y0;
     public boolean f5494z0;
 
-    public t2(Context context, PointF pointF, kv0 kv0Var, String str, int i10) {
+    public t2(Context context, PointF pointF, jv0 jv0Var, String str, int i10) {
         super(context, pointF);
         this.f5484p0 = -1;
         this.f5485q0 = false;
@@ -55,7 +55,7 @@ public final class t2 extends j {
         setRotation(0.0f);
         setScale(1.0f);
         this.f5483o0 = str;
-        this.f5487s0 = kv0Var;
+        this.f5487s0 = jv0Var;
         s2 s2Var = new s2(this, context);
         this.f5491w0 = s2Var;
         addView(s2Var, c6.c(-1.0f, -1));
@@ -63,7 +63,7 @@ public final class t2 extends j {
         this.f5486r0 = new z5(s2Var, 0L, 500L, prVar);
         this.f5490v0 = new z5(s2Var, 0L, 350L, prVar);
         this.f5488t0 = i10;
-        Bitmap q10 = s6.q(new a1.c(str, 20), 1920, 1920, 0, false);
+        Bitmap q10 = r6.q(new a1.c(str, 20), 1920, 1920, 0, false);
         this.f5492x0 = q10;
         if (q10 != null) {
             s(q10);
@@ -86,7 +86,7 @@ public final class t2 extends j {
         return this.f5484p0;
     }
 
-    public kv0 getBaseSize() {
+    public jv0 getBaseSize() {
         return this.f5487s0;
     }
 
@@ -115,7 +115,7 @@ public final class t2 extends j {
     }
 
     @Override
-    public tk0 getSelectionBounds() {
+    public sk0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -129,14 +129,14 @@ public final class t2 extends j {
         getScale();
         AndroidUtilities.dp(64.0f);
         float c3 = org.telegram.ui.b.c(dp, 2.0f, getPositionX(), scaleX);
-        return new tk0(c3, org.telegram.ui.b.c(dp2, 2.0f, getPositionY(), scaleX), ((((AndroidUtilities.dp(64.0f) / scaleX) + scale2) * scaleX) + c3) - c3, dp2 * scaleX);
+        return new sk0(c3, org.telegram.ui.b.c(dp2, 2.0f, getPositionY(), scaleX), ((((AndroidUtilities.dp(64.0f) / scaleX) + scale2) * scaleX) + c3) - c3, dp2 * scaleX);
     }
 
     @Override
     public final void k() {
-        kv0 kv0Var = this.f5487s0;
-        float f10 = kv0Var.f28463a / 2.0f;
-        float f11 = kv0Var.f28464b / 2.0f;
+        jv0 jv0Var = this.f5487s0;
+        float f10 = jv0Var.f28201a / 2.0f;
+        float f11 = jv0Var.f28202b / 2.0f;
         MediaController.CropState cropState = this.D0;
         if (cropState != null) {
             f10 *= cropState.cropPw;
@@ -159,9 +159,9 @@ public final class t2 extends j {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        kv0 kv0Var = this.f5487s0;
-        float f10 = kv0Var.f28463a;
-        float f11 = kv0Var.f28464b;
+        jv0 jv0Var = this.f5487s0;
+        float f10 = jv0Var.f28201a;
+        float f11 = jv0Var.f28202b;
         MediaController.CropState cropState = this.D0;
         if (cropState != null) {
             f10 *= cropState.cropPw;
@@ -196,7 +196,7 @@ public final class t2 extends j {
     public final void s(Bitmap bitmap) {
         if (!this.f5494z0 && !this.f5493y0 && bitmap != null && Build.VERSION.SDK_INT >= 24) {
             mb.d dVar = new mb.d();
-            dVar.f13622a = true;
+            dVar.f13624a = true;
             zzd a2 = k7.r.a(new mb.e(dVar));
             this.f5493y0 = true;
             a2.g(hb.a.a(bitmap, this.f5488t0)).addOnSuccessListener(new a1.c(this, 21)).addOnFailureListener(new c1.b(7, this, bitmap));
@@ -215,7 +215,7 @@ public final class t2 extends j {
         }
     }
 
-    public t2(Context context, PointF pointF, kv0 kv0Var, TLObject tLObject) {
+    public t2(Context context, PointF pointF, jv0 jv0Var, TLObject tLObject) {
         super(context, pointF);
         this.f5484p0 = -1;
         this.f5485q0 = false;
@@ -229,7 +229,7 @@ public final class t2 extends j {
         setRotation(0.0f);
         setScale(1.0f);
         this.f5482n0 = tLObject;
-        this.f5487s0 = kv0Var;
+        this.f5487s0 = jv0Var;
         s2 s2Var = new s2(this, context);
         this.f5491w0 = s2Var;
         addView(s2Var, c6.c(-1.0f, -1));

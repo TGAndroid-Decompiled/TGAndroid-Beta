@@ -139,7 +139,7 @@ public final class z extends k.a implements l.j {
     public final boolean s(l.l lVar, MenuItem menuItem) {
         f7.b bVar = this.f6804e;
         if (bVar != null) {
-            return ((sf.e) bVar.f6120b).A(this, menuItem);
+            return ((sf.f) bVar.f6120b).A(this, menuItem);
         }
         return false;
     }

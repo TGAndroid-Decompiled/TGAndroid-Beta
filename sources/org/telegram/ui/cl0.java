@@ -13,11 +13,11 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-public final class cl0 implements org.telegram.ui.Components.uc0, org.telegram.ui.ActionBar.c2, Utilities.Callback2Return, org.telegram.ui.Components.uv0, j3.f, GenericProvider, androidx.car.app.utils.e {
-    public final int f35873a;
+public final class cl0 implements org.telegram.ui.Components.uc0, org.telegram.ui.ActionBar.c2, Utilities.Callback2Return, org.telegram.ui.Components.tv0, j3.f, GenericProvider, androidx.car.app.utils.e {
+    public final int f35826a;
 
     public cl0(int i10) {
-        this.f35873a = i10;
+        this.f35826a = i10;
     }
 
     public static AudioRecordingConfiguration b(Object obj) {
@@ -29,7 +29,7 @@ public final class cl0 implements org.telegram.ui.Components.uc0, org.telegram.u
     }
 
     public Constructor a() {
-        switch (this.f35873a) {
+        switch (this.f35826a) {
             case 24:
                 if (!Boolean.TRUE.equals(Class.forName("com.google.android.exoplayer2.ext.flac.FlacLibrary").getMethod("isAvailable", null).invoke(null, null))) {
                     return null;
@@ -44,9 +44,9 @@ public final class cl0 implements org.telegram.ui.Components.uc0, org.telegram.u
     public j3.g c(Bundle bundle) {
         p4.a[] aVarArr;
         Uri[] uriArr;
-        switch (this.f35873a) {
+        switch (this.f35826a) {
             case 13:
-                ArrayList parcelableArrayList = bundle.getParcelableArrayList(p4.b.f44199n);
+                ArrayList parcelableArrayList = bundle.getParcelableArrayList(p4.b.f44230n);
                 if (parcelableArrayList == null) {
                     aVarArr = new p4.a[0];
                 } else {
@@ -56,15 +56,15 @@ public final class cl0 implements org.telegram.ui.Components.uc0, org.telegram.u
                     }
                     aVarArr = aVarArr2;
                 }
-                return new p4.b(aVarArr, bundle.getLong(p4.b.f44200r, 0L), bundle.getLong(p4.b.f44201s, -9223372036854775807L), bundle.getInt(p4.b.v, 0));
+                return new p4.b(aVarArr, bundle.getLong(p4.b.f44231r, 0L), bundle.getLong(p4.b.f44232s, -9223372036854775807L), bundle.getInt(p4.b.v, 0));
             default:
-                long j10 = bundle.getLong(p4.a.f44187r);
-                int i11 = bundle.getInt(p4.a.f44188s);
+                long j10 = bundle.getLong(p4.a.f44218r);
+                int i11 = bundle.getInt(p4.a.f44219s);
                 int i12 = bundle.getInt(p4.a.C);
                 ArrayList parcelableArrayList2 = bundle.getParcelableArrayList(p4.a.v);
-                int[] intArray = bundle.getIntArray(p4.a.f44189w);
-                long[] longArray = bundle.getLongArray(p4.a.f44190x);
-                long j11 = bundle.getLong(p4.a.f44191y);
+                int[] intArray = bundle.getIntArray(p4.a.f44220w);
+                long[] longArray = bundle.getLongArray(p4.a.f44221x);
+                long j11 = bundle.getLong(p4.a.f44222y);
                 boolean z4 = bundle.getBoolean(p4.a.B);
                 int[] iArr = intArray;
                 if (iArr == null) {
@@ -116,7 +116,7 @@ public final class cl0 implements org.telegram.ui.Components.uc0, org.telegram.u
 
     @Override
     public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f35873a) {
+        switch (this.f35826a) {
             case 1:
                 Drawable[] drawableArr = PhotoViewer.Q8;
                 return;
@@ -152,7 +152,7 @@ public final class cl0 implements org.telegram.ui.Components.uc0, org.telegram.u
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        MediaController.AlbumEntry albumEntry = qh.a3.f44890g0;
+        MediaController.AlbumEntry albumEntry = qh.z2.f46385g0;
         return 0;
     }
 
@@ -160,7 +160,7 @@ public final class cl0 implements org.telegram.ui.Components.uc0, org.telegram.u
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj;
         Integer num2 = (Integer) obj2;
-        switch (this.f35873a) {
+        switch (this.f35826a) {
             case 4:
                 if (num.intValue() == 0) {
                     return mh.ja.X0(false, LocaleController.formatPluralStringComma("Stars", num2.intValue()), 0.66f, null);

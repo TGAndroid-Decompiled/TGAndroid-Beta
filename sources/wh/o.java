@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.f51;
+import org.telegram.ui.Components.d51;
 import org.telegram.ui.Components.my;
 public final class o implements my {
-    public final q f49894a;
+    public final q f49930a;
 
     public o(q qVar) {
-        this.f49894a = qVar;
+        this.f49930a = qVar;
     }
 
     @Override
@@ -50,15 +50,15 @@ public final class o implements my {
     public final void i(int i10) {
         e1 focusedEditTextOrNull;
         boolean z4 = false;
-        q qVar = this.f49894a;
-        if (i10 != 0 && (focusedEditTextOrNull = qVar.f49930r.getFocusedEditTextOrNull()) != null) {
+        q qVar = this.f49930a;
+        if (i10 != 0 && (focusedEditTextOrNull = qVar.f49966r.getFocusedEditTextOrNull()) != null) {
             qVar.C = focusedEditTextOrNull;
             qVar.D = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
         if (i10 != 0) {
             z4 = true;
         }
-        qVar.f49934y = z4;
+        qVar.f49970y = z4;
         qVar.S();
     }
 
@@ -69,7 +69,7 @@ public final class o implements my {
 
     @Override
     public final boolean k() {
-        e1 M = q.M(this.f49894a);
+        e1 M = q.M(this.f49930a);
         if (M == null || M.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class o implements my {
 
     @Override
     public final void l(String str) {
-        q qVar = this.f49894a;
+        q qVar = this.f49930a;
         e1 M = q.M(qVar);
         if (M != null) {
             int N = q.N(qVar, M);
@@ -104,7 +104,7 @@ public final class o implements my {
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z4) {
         org.telegram.ui.Components.u5 u5Var;
-        q qVar = this.f49894a;
+        q qVar = this.f49930a;
         e1 M = q.M(qVar);
         if (M != null) {
             int N = q.N(qVar, M);
@@ -133,7 +133,7 @@ public final class o implements my {
 
     @Override
     public final boolean z() {
-        return this.f49894a.f49934y;
+        return this.f49930a.f49970y;
     }
 
     @Override
@@ -157,7 +157,7 @@ public final class o implements my {
     }
 
     @Override
-    public final void o(f51 f51Var) {
+    public final void o(d51 d51Var) {
     }
 
     @Override

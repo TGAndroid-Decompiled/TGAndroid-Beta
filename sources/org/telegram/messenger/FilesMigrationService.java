@@ -23,7 +23,7 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.function.Consumer;
-import org.telegram.ui.Components.bx0;
+import org.telegram.ui.Components.ax0;
 public class FilesMigrationService extends Service {
     public static FilesMigrationBottomSheet filesMigrationBottomSheet = null;
     public static boolean hasOldFolder = false;
@@ -123,7 +123,7 @@ public class FilesMigrationService extends Service {
     }
 
     public void lambda$updateProgress$1(int i10) {
-        Notification.Builder contentTitle = v3.a(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(getText(R.string.MigratingFiles));
+        Notification.Builder contentTitle = v3.a(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(LocaleController.getString(R.string.MigratingFiles));
         int i11 = this.totalFilesCount;
         ((NotificationManager) getSystemService("notification")).notify(301, contentTitle.setContentText(i10 + "/" + i11).setSmallIcon(R.drawable.notification).setAutoCancel(false).setProgress(this.totalFilesCount, i10, false).build());
     }
@@ -205,7 +205,7 @@ public class FilesMigrationService extends Service {
     @Override
     public int onStartCommand(Intent intent, int i10, int i11) {
         NotificationsController.checkOtherNotificationsChannel();
-        Notification build = v3.a(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(getText(R.string.MigratingFiles)).setAutoCancel(false).setSmallIcon(R.drawable.notification).build();
+        Notification build = v3.a(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(LocaleController.getString(R.string.MigratingFiles)).setAutoCancel(false).setSmallIcon(R.drawable.notification).build();
         isRunning = true;
         new AnonymousClass1().start();
         startForeground(301, build);
@@ -221,13 +221,13 @@ public class FilesMigrationService extends Service {
             setCanceledOnTouchOutside(false);
             Activity parentActivity = p2Var.getParentActivity();
             LinearLayout h = l.d.h(parentActivity, 1);
-            bx0 bx0Var = new bx0(parentActivity, this.currentAccount);
-            bx0Var.setStickerNum(7);
-            bx0Var.getImageReceiver().setAutoRepeat(1);
-            h.addView(bx0Var, k7.c6.t(144, 144, 1, 0, 16, 0, 0));
+            ax0 ax0Var = new ax0(parentActivity, this.currentAccount);
+            ax0Var.setStickerNum(7);
+            ax0Var.getImageReceiver().setAutoRepeat(1);
+            h.addView(ax0Var, k7.c6.t(144, 144, 1, 0, 16, 0, 0));
             TextView textView = new TextView(parentActivity);
             textView.setGravity(8388611);
-            int i10 = org.telegram.ui.ActionBar.k6.f21766j5;
+            int i10 = org.telegram.ui.ActionBar.k6.f21768j5;
             y3.t(textView, org.telegram.ui.ActionBar.k6.w0(null, i10, false), 1, 20.0f);
             textView.setText(LocaleController.getString(R.string.MigrateOldFolderTitle));
             h.addView(textView, k7.c6.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));

@@ -68,7 +68,7 @@ public final class a extends e {
             b bVar = this.f9053c;
             bVar.l();
             if (s(bVar, iVar, 0) == -4 && !iVar.e(4)) {
-                this.E = iVar.f15216f;
+                this.E = iVar.f15218f;
                 if (this.D != null && !iVar.e(Integer.MIN_VALUE)) {
                     iVar.k();
                     ByteBuffer byteBuffer = iVar.d;

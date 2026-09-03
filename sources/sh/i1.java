@@ -27,16 +27,16 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.UserConfig;
 public final class i1 {
-    public final int f47459a;
-    public final long f47460b;
-    public final long f47461c;
+    public final int f47495a;
+    public final long f47496b;
+    public final long f47497c;
     public final boolean d;
-    public String f47462e;
+    public String f47498e;
 
     public i1(long j10, long j11, int i10, boolean z4) {
-        this.f47459a = i10;
-        this.f47460b = j11;
-        this.f47461c = j10;
+        this.f47495a = i10;
+        this.f47496b = j11;
+        this.f47497c = j10;
         this.d = z4;
     }
 
@@ -86,11 +86,11 @@ public final class i1 {
                     String next = keys.next();
                     JSONObject jSONObject2 = jSONObject.getJSONObject(next);
                     ?? obj = new Object();
-                    obj.f47451a = next;
-                    obj.f47452b = jSONObject2.getLong("user_id");
-                    obj.f47453c = jSONObject2.getString("user_name");
+                    obj.f47487a = next;
+                    obj.f47488b = jSONObject2.getLong("user_id");
+                    obj.f47489c = jSONObject2.getString("user_name");
                     obj.d = jSONObject2.getLong("created_at");
-                    obj.f47454e = jSONObject2.getLong("edited_at");
+                    obj.f47490e = jSONObject2.getLong("edited_at");
                     hashMap.put(next, obj);
                 }
                 return hashMap;
@@ -109,10 +109,10 @@ public final class i1 {
             JSONObject jSONObject = new JSONObject();
             for (Map.Entry entry : hashMap.entrySet()) {
                 JSONObject jSONObject2 = new JSONObject();
-                jSONObject2.put("user_id", ((h1) entry.getValue()).f47452b);
-                jSONObject2.put("user_name", ((h1) entry.getValue()).f47453c);
+                jSONObject2.put("user_id", ((h1) entry.getValue()).f47488b);
+                jSONObject2.put("user_name", ((h1) entry.getValue()).f47489c);
                 jSONObject2.put("created_at", ((h1) entry.getValue()).d);
-                jSONObject2.put("edited_at", ((h1) entry.getValue()).f47454e);
+                jSONObject2.put("edited_at", ((h1) entry.getValue()).f47490e);
                 jSONObject.put((String) entry.getKey(), jSONObject2);
             }
             File file = new File(b(), "secure_config.json");
@@ -162,43 +162,43 @@ public final class i1 {
 
     public final File c() {
         long j10;
-        if (this.d && TextUtils.isEmpty(this.f47462e)) {
+        if (this.d && TextUtils.isEmpty(this.f47498e)) {
             HashMap i10 = i();
             Iterator it = i10.entrySet().iterator();
             while (true) {
                 boolean hasNext = it.hasNext();
-                j10 = this.f47461c;
+                j10 = this.f47497c;
                 if (!hasNext) {
                     break;
                 }
                 Map.Entry entry = (Map.Entry) it.next();
-                if (((h1) entry.getValue()).f47452b == j10) {
-                    this.f47462e = (String) entry.getKey();
+                if (((h1) entry.getValue()).f47488b == j10) {
+                    this.f47498e = (String) entry.getKey();
                     break;
                 }
             }
-            if (TextUtils.isEmpty(this.f47462e)) {
+            if (TextUtils.isEmpty(this.f47498e)) {
                 String uuid = UUID.randomUUID().toString();
-                this.f47462e = uuid;
+                this.f47498e = uuid;
                 ?? obj = new Object();
-                obj.f47451a = uuid;
-                obj.f47452b = j10;
-                obj.f47453c = DialogObject.getName(UserConfig.getInstance(this.f47459a).getCurrentUser());
+                obj.f47487a = uuid;
+                obj.f47488b = j10;
+                obj.f47489c = DialogObject.getName(UserConfig.getInstance(this.f47495a).getCurrentUser());
                 long currentTimeMillis = System.currentTimeMillis();
-                obj.f47454e = currentTimeMillis;
+                obj.f47490e = currentTimeMillis;
                 obj.d = currentTimeMillis;
-                i10.put(this.f47462e, obj);
+                i10.put(this.f47498e, obj);
                 k(i10);
             }
         }
-        return d(this.f47462e);
+        return d(this.f47498e);
     }
 
     public final File d(String str) {
         String str2;
         File b10 = b();
         StringBuilder sb = new StringBuilder();
-        long j10 = this.f47461c;
+        long j10 = this.f47497c;
         boolean z4 = this.d;
         Object obj = str;
         if (!z4) {
@@ -206,7 +206,7 @@ public final class i1 {
         }
         sb.append(obj);
         sb.append("_");
-        long j11 = this.f47460b;
+        long j11 = this.f47496b;
         sb.append(j11);
         String str3 = "";
         if (!z4) {
@@ -272,7 +272,7 @@ public final class i1 {
                     break;
                 }
                 try {
-                    File d = d(((h1) it.next()).f47451a);
+                    File d = d(((h1) it.next()).f47487a);
                     if (d.exists() && e(d).has(str)) {
                         z10 = true;
                         break;
@@ -300,7 +300,7 @@ public final class i1 {
             }
             for (h1 h1Var : (Set) Collection.EL.stream(i().values()).filter(new f1(hashSet, 1)).collect(Collectors.toSet())) {
                 try {
-                    File d = d(h1Var.f47451a);
+                    File d = d(h1Var.f47487a);
                     if (d.exists() && e(d).has(str)) {
                         arrayList.add(h1Var);
                     }
@@ -328,11 +328,11 @@ public final class i1 {
             HashMap i11 = i();
             h1 h1Var = (h1) i11.get(str);
             if (h1Var != null) {
-                h1Var.f47452b = this.f47461c;
-                h1Var.f47453c = DialogObject.getName(UserConfig.getInstance(this.f47459a).getCurrentUser());
-                h1Var.f47454e = System.currentTimeMillis();
+                h1Var.f47488b = this.f47497c;
+                h1Var.f47489c = DialogObject.getName(UserConfig.getInstance(this.f47495a).getCurrentUser());
+                h1Var.f47490e = System.currentTimeMillis();
                 k(i11);
-                this.f47462e = h1Var.f47451a;
+                this.f47498e = h1Var.f47487a;
                 return;
             }
             throw new RuntimeException("STORAGE_NOT_FOUND");
@@ -397,9 +397,9 @@ public final class i1 {
                 if (z4) {
                     try {
                         HashMap i10 = i();
-                        h1 h1Var = (h1) i10.get(this.f47462e);
+                        h1 h1Var = (h1) i10.get(this.f47498e);
                         if (h1Var != null) {
-                            h1Var.f47454e = System.currentTimeMillis();
+                            h1Var.f47490e = System.currentTimeMillis();
                             k(i10);
                             return;
                         }

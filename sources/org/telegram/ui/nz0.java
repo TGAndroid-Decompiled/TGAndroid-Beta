@@ -1,14 +1,23 @@
 package org.telegram.ui;
+public final class nz0 extends fu0 {
+    public final ProfileActivity f39484a;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import org.telegram.messenger.AndroidUtilities;
-public final class nz0 extends z00 {
+    public nz0(ProfileActivity profileActivity) {
+        this.f39484a = profileActivity;
+    }
+
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
-        canvas.save();
-        canvas.translate(AndroidUtilities.dp(2.0f), 0.0f);
-        super.draw(canvas, charSequence, i10, i11, f10, i12, i13, i14, paint);
-        canvas.restore();
+    public final org.telegram.ui.qu0 E(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC.FileLocation r18, int r19, boolean r20, boolean r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.nz0.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.qu0");
+    }
+
+    @Override
+    public final void G() {
+        this.f39484a.f34568b0.getImageReceiver().setVisible(true, true);
+    }
+
+    @Override
+    public final void f(String str, String str2, boolean z4) {
+        this.f39484a.f34652n0.q(str, str2, z4);
     }
 }

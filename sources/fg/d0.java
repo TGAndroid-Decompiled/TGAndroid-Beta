@@ -22,7 +22,7 @@ public final class d0 implements DialogInterface.OnDismissListener {
             case 0:
                 v0 v0Var = (v0) this.f6269b;
                 v0Var.f6583c0 = false;
-                v0Var.f6600u0.f24945a0 = true;
+                v0Var.f6600u0.f24947a0 = true;
                 v0Var.B0.invalidate();
                 v0Var.f6600u0.invalidate();
                 return;
@@ -51,8 +51,8 @@ public final class d0 implements DialogInterface.OnDismissListener {
                 return;
             case 7:
                 i9 i9Var = (i9) this.f6269b;
-                if (dialogInterface == i9Var.f17291r0) {
-                    i9Var.f17291r0 = null;
+                if (dialogInterface == i9Var.f17293r0) {
+                    i9Var.f17293r0 = null;
                     i9Var.P();
                     return;
                 }
@@ -67,14 +67,14 @@ public final class d0 implements DialogInterface.OnDismissListener {
                 }
                 return;
             case 9:
-                org.telegram.ui.web.a1 a1Var = ((org.telegram.ui.web.l0) this.f6269b).f42624e.N;
-                if (a1Var != null && (f0Var = a1Var.f42469c) != null) {
+                org.telegram.ui.web.a1 a1Var = ((org.telegram.ui.web.l0) this.f6269b).f42587e.N;
+                if (a1Var != null && (f0Var = a1Var.f42433c) != null) {
                     f0Var.y();
                     return;
                 }
                 return;
             case 10:
-                org.telegram.ui.web.f0 f0Var2 = ((org.telegram.ui.web.t0) this.f6269b).f42698b.f42738e.N.f42469c;
+                org.telegram.ui.web.f0 f0Var2 = ((org.telegram.ui.web.t0) this.f6269b).f42661b.f42701e.N.f42433c;
                 if (f0Var2 != null) {
                     f0Var2.y();
                     return;

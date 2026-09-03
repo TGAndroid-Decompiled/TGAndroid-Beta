@@ -8,7 +8,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.xu0;
+import org.telegram.ui.cv0;
 public interface k1 {
     boolean A0(MessageObject messageObject);
 
@@ -132,7 +132,7 @@ public interface k1 {
 
     boolean g1(int i10, t1 t1Var);
 
-    xu0 g2();
+    cv0 g2();
 
     void i(t1 t1Var, ArrayList arrayList, int i10, int i11, int i12);
 

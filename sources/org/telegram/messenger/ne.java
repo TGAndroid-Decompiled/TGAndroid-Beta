@@ -3,17 +3,17 @@ package org.telegram.messenger;
 import java.util.function.ToLongFunction;
 import org.telegram.messenger.NotificationsController;
 public final class ne implements ToLongFunction {
-    public final int f19472a;
+    public final int f19474a;
 
     public ne(int i10) {
-        this.f19472a = i10;
+        this.f19474a = i10;
     }
 
     @Override
     public final long applyAsLong(Object obj) {
         long j10;
         long j11;
-        switch (this.f19472a) {
+        switch (this.f19474a) {
             case 0:
                 return Long.parseLong((String) obj);
             case 1:

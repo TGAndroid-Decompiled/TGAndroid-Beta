@@ -6,7 +6,7 @@ import k7.h8;
 import ld.e0;
 import ld.m;
 public final class d extends h implements a {
-    public static final AtomicReferenceFieldUpdater f48485g = AtomicReferenceFieldUpdater.newUpdater(d.class, Object.class, "owner$volatile");
+    public static final AtomicReferenceFieldUpdater f48521g = AtomicReferenceFieldUpdater.newUpdater(d.class, Object.class, "owner$volatile");
     private volatile Object owner$volatile;
 
     public d(boolean z4) {
@@ -15,13 +15,13 @@ public final class d extends h implements a {
         if (z4) {
             eVar = null;
         } else {
-            eVar = e.f48486a;
+            eVar = e.f48522a;
         }
         this.owner$volatile = eVar;
     }
 
     public final boolean c() {
-        if (Math.max(h.f48492f.get(this), 0) != 0) {
+        if (Math.max(h.f48528f.get(this), 0) != 0) {
             return false;
         }
         return true;
@@ -30,7 +30,7 @@ public final class d extends h implements a {
     public final Object d(wc.c cVar) {
         int i10;
         while (true) {
-            AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = h.f48492f;
+            AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = h.f48528f;
             int i11 = atomicIntegerFieldUpdater.get(this);
             if (i11 > 1) {
                 do {
@@ -39,13 +39,13 @@ public final class d extends h implements a {
                     }
                 } while (!atomicIntegerFieldUpdater.compareAndSet(this, i10, 1));
             } else {
-                sc.i iVar = sc.i.f47243a;
+                sc.i iVar = sc.i.f47274a;
                 if (i11 <= 0) {
                     m l10 = e0.l(h8.b(cVar));
                     try {
                         a(new c(this, l10));
                         Object r10 = l10.r();
-                        vc.a aVar = vc.a.f48962a;
+                        vc.a aVar = vc.a.f48998a;
                         if (r10 != aVar) {
                             r10 = iVar;
                         }
@@ -58,7 +58,7 @@ public final class d extends h implements a {
                         throw th2;
                     }
                 } else if (atomicIntegerFieldUpdater.compareAndSet(this, i11, i11 - 1)) {
-                    f48485g.set(this, null);
+                    f48521g.set(this, null);
                     return iVar;
                 }
             }
@@ -67,9 +67,9 @@ public final class d extends h implements a {
 
     public final void e(Object obj) {
         while (c()) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f48485g;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f48521g;
             Object obj2 = atomicReferenceFieldUpdater.get(this);
-            com.google.android.gms.internal.clearcut.e eVar = e.f48486a;
+            com.google.android.gms.internal.clearcut.e eVar = e.f48522a;
             if (obj2 != eVar) {
                 if (obj2 != obj && obj != null) {
                     throw new IllegalStateException(("This mutex is locked by " + obj2 + ", but " + obj + " is expected").toString());
@@ -87,6 +87,6 @@ public final class d extends h implements a {
     }
 
     public final String toString() {
-        return "Mutex@" + e0.k(this) + "[isLocked=" + c() + ",owner=" + f48485g.get(this) + ']';
+        return "Mutex@" + e0.k(this) + "[isLocked=" + c() + ",owner=" + f48521g.get(this) + ']';
     }
 }

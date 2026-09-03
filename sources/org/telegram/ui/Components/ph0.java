@@ -6,16 +6,16 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessagesController;
 public final class ph0 implements m2.f {
-    public final xh0 f30086a;
+    public final xh0 f30099a;
 
     public ph0(xh0 xh0Var) {
-        this.f30086a = xh0Var;
+        this.f30099a = xh0Var;
     }
 
     @Override
     public final void a(int i10) {
         boolean z4;
-        xh0 xh0Var = this.f30086a;
+        xh0 xh0Var = this.f30099a;
         int i11 = xh0Var.l1;
         int i12 = 0;
         if (i10 >= i11) {
@@ -40,11 +40,11 @@ public final class ph0 implements m2.f {
     @Override
     public final void b(float f10, int i10, int i11) {
         ImageLocation imageLocation;
-        xh0 xh0Var = this.f30086a;
+        xh0 xh0Var = this.f30099a;
         xh0Var.B(f10, i10);
         if (i11 == 0) {
             int k10 = xh0Var.A0.k(i10);
-            if (xh0Var.f33088f1) {
+            if (xh0Var.f33082f1) {
                 k10--;
             }
             xh0Var.getCurrentItemView();
@@ -54,7 +54,7 @@ public final class ph0 implements m2.f {
                 if (childAt instanceof p9) {
                     wh0 wh0Var = xh0Var.A0;
                     int k11 = wh0Var.k(wh0Var.d.indexOf(childAt));
-                    if (xh0Var.f33088f1) {
+                    if (xh0Var.f33082f1) {
                         k11--;
                     }
                     ImageReceiver imageReceiver = ((p9) childAt).getImageReceiver();

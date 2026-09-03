@@ -13,15 +13,15 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class f implements o0 {
-    public static final Pattern f46624a = Pattern.compile("(.+?)(Z|((\\+|-|−)(\\d\\d)(:?(\\d\\d))?))");
+    public static final Pattern f46655a = Pattern.compile("(.+?)(Z|((\\+|-|−)(\\d\\d)(:?(\\d\\d))?))");
 
     @Override
     public final Object w(Uri uri, g5.o oVar) {
         long j10;
         long parseLong;
-        String readLine = new BufferedReader(new InputStreamReader(oVar, r8.d.f46738c)).readLine();
+        String readLine = new BufferedReader(new InputStreamReader(oVar, r8.d.f46769c)).readLine();
         try {
-            Matcher matcher = f46624a.matcher(readLine);
+            Matcher matcher = f46655a.matcher(readLine);
             if (matcher.matches()) {
                 String group = matcher.group(1);
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);

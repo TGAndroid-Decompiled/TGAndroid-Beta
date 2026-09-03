@@ -1,33 +1,59 @@
 package qh;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class u6 implements Runnable {
-    public final int f46162a;
-    public final b7 f46163b;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class u6 implements TextWatcher {
+    public final l6 f46171a;
+    public final a7 f46172b;
 
-    public u6(b7 b7Var, int i10) {
-        this.f46162a = i10;
-        this.f46163b = b7Var;
+    public u6(a7 a7Var, l6 l6Var) {
+        this.f46172b = a7Var;
+        this.f46171a = l6Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f46162a) {
-            case 0:
-                b7.Q(this.f46163b);
-                return;
-            case 1:
-                this.f46163b.X();
-                return;
-            default:
-                b7 b7Var = this.f46163b;
-                org.telegram.ui.Cells.i3 i3Var = b7Var.V;
-                if (b7Var.isShowing()) {
-                    i3Var.f22955b.requestFocus();
-                    AndroidUtilities.showKeyboard(i3Var.f22955b);
-                    return;
-                }
-                return;
+    public final void afterTextChanged(Editable editable) {
+        String obj;
+        this.f46171a.run();
+        a7 a7Var = this.f46172b;
+        org.telegram.ui.Cells.i3 i3Var = a7Var.V;
+        if (a7Var.Z) {
+            return;
         }
+        if (a7Var.f44982a0 && editable != null) {
+            String substring = editable.toString().substring(8);
+            a7Var.Z = true;
+            i3Var.f22957b.setText(substring);
+            org.telegram.ui.Cells.g3 g3Var = i3Var.f22957b;
+            g3Var.setSelection(0, g3Var.getText().length());
+            a7Var.Z = false;
+            a7Var.f44982a0 = false;
+            a7.S(a7Var, substring);
+            return;
+        }
+        if (editable == null) {
+            obj = null;
+        } else {
+            obj = editable.toString();
+        }
+        a7.S(a7Var, obj);
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13;
+        a7 a7Var = this.f46172b;
+        if (a7Var.Z) {
+            return;
+        }
+        boolean z4 = false;
+        if (charSequence != null && i10 == 8 && charSequence.subSequence(0, i10).toString().equals("https://") && charSequence.length() >= (i13 = i12 + i10) && charSequence.subSequence(i10, i13).toString().startsWith("https://")) {
+            z4 = true;
+        }
+        a7Var.f44982a0 = z4;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

@@ -6,11 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.rv0;
 import org.telegram.ui.Components.sg;
-import org.telegram.ui.Components.sv0;
-import org.telegram.ui.tt0;
 import org.telegram.ui.xn;
-import qh.b5;
+import org.telegram.ui.yt0;
+import qh.a5;
 public final class j0 extends AnimatorListenerAdapter {
     public final int f5291a;
     public int f5292b;
@@ -18,9 +18,9 @@ public final class j0 extends AnimatorListenerAdapter {
     public final Object d;
     public final Object f5294e;
 
-    public j0(sv0 sv0Var, ViewGroup viewGroup, ViewGroup viewGroup2, int i10, int i11) {
+    public j0(rv0 rv0Var, ViewGroup viewGroup, ViewGroup viewGroup2, int i10, int i11) {
         this.f5291a = i11;
-        this.f5294e = sv0Var;
+        this.f5294e = rv0Var;
         this.f5293c = viewGroup;
         this.d = viewGroup2;
         this.f5292b = i10;
@@ -48,7 +48,7 @@ public final class j0 extends AnimatorListenerAdapter {
                 xnVar.L5 = true;
                 ((org.telegram.ui.ActionBar.p2) xnVar).fragmentBeginToShow = true;
                 xnVar.S9 = null;
-                AndroidUtilities.runOnUIThread(new tt0(this, 29), 32L);
+                AndroidUtilities.runOnUIThread(new yt0(this, 29), 32L);
                 super.onAnimationEnd(animator);
                 xnVar.U0.invalidate();
                 xnVar.U0.setSkipBackgroundDrawing(false);
@@ -56,7 +56,7 @@ public final class j0 extends AnimatorListenerAdapter {
                 xn xnVar2 = (xn) this.f5293c;
                 xnVar2.R9 = 0.0f;
                 xnVar2.fragmentView.invalidate();
-                xnVar2.f43362u0.invalidate();
+                xnVar2.f43340u0.invalidate();
                 xnVar2.Q9 = null;
                 xnVar.fragmentView.setAlpha(1.0f);
                 ((Runnable) this.d).run();
@@ -76,16 +76,16 @@ public final class j0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                b5 b5Var = (b5) this.f5294e;
-                b5Var.V0 = b5Var.W0;
-                b5Var.W0 = -1;
-                b5Var.T0.invalidate();
+                a5 a5Var = (a5) this.f5294e;
+                a5Var.V0 = a5Var.W0;
+                a5Var.W0 = -1;
+                a5Var.T0.invalidate();
                 View view2 = (View) this.f5293c;
                 if (view2 != null && ((View) this.d) != null) {
                     view2.setVisibility(8);
                 }
-                if (animator == b5Var.Y0) {
-                    b5Var.Y0 = null;
+                if (animator == a5Var.Y0) {
+                    a5Var.Y0 = null;
                     return;
                 }
                 return;
@@ -122,8 +122,8 @@ public final class j0 extends AnimatorListenerAdapter {
                 this.f5292b = NotificationCenter.getInstance(i10).setAnimationInProgress(this.f5292b, null);
                 return;
             default:
-                b5 b5Var = (b5) this.f5294e;
-                r2 r2Var2 = b5Var.f44945a1;
+                a5 a5Var = (a5) this.f5294e;
+                r2 r2Var2 = a5Var.f44922a1;
                 if (((View) this.f5293c) != null && (view2 = (View) this.d) != null) {
                     view2.setVisibility(0);
                 }
@@ -131,7 +131,7 @@ public final class j0 extends AnimatorListenerAdapter {
                     r2Var2.b(0.5f, 2.0f);
                     return;
                 }
-                dg.m currentBrush2 = b5Var.L0.getCurrentBrush();
+                dg.m currentBrush2 = a5Var.L0.getCurrentBrush();
                 if (!(currentBrush2 instanceof dg.b) && !(currentBrush2 instanceof dg.d)) {
                     r2Var2.b(0.05f, 1.0f);
                     return;

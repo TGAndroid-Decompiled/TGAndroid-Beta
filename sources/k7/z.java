@@ -17,7 +17,7 @@ public abstract class z {
     public static Task b(Intent intent) {
         n5.b bVar;
         GoogleSignInAccount googleSignInAccount;
-        b4.e0 e0Var = o5.h.f16612a;
+        b4.e0 e0Var = o5.h.f16614a;
         Status status = Status.h;
         if (intent == null) {
             bVar = new n5.b(null, status);
@@ -33,8 +33,8 @@ public abstract class z {
                 bVar = new n5.b(googleSignInAccount2, Status.f2642e);
             }
         }
-        Status status3 = bVar.f15249a;
-        if (status3.e() && (googleSignInAccount = bVar.f15250b) != null) {
+        Status status3 = bVar.f15251a;
+        if (status3.e() && (googleSignInAccount = bVar.f15252b) != null) {
             return Tasks.forResult(googleSignInAccount);
         }
         return Tasks.forException(b6.m.m(status3));

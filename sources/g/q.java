@@ -401,7 +401,7 @@ public final class q extends g implements l.j, LayoutInflater.Factory2 {
                 if (obtainStyledAttributes.hasValue(0) && (resourceId = obtainStyledAttributes.getResourceId(0, 0)) != 0) {
                     m.q a2 = m.q.a();
                     synchronized (a2) {
-                        drawable = a2.f13302a.f(resourceId, context, true);
+                        drawable = a2.f13304a.f(resourceId, context, true);
                     }
                 } else {
                     drawable = null;
@@ -460,7 +460,7 @@ public final class q extends g implements l.j, LayoutInflater.Factory2 {
         this.Q = true;
         ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) this.f6781s;
         actionBarOverlayLayout.f();
-        ActionMenuView actionMenuView = ((n3) actionBarOverlayLayout.f441e).f13264a.f480a;
+        ActionMenuView actionMenuView = ((n3) actionBarOverlayLayout.f441e).f13266a.f480a;
         if (actionMenuView != null && (hVar = actionMenuView.G) != null) {
             hVar.f();
             m.d dVar = hVar.G;
@@ -482,7 +482,7 @@ public final class q extends g implements l.j, LayoutInflater.Factory2 {
         if (z4 && pVar.f6748a == 0 && (j1Var = this.f6781s) != null) {
             ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) j1Var;
             actionBarOverlayLayout.f();
-            ActionMenuView actionMenuView = ((n3) actionBarOverlayLayout.f441e).f13264a.f480a;
+            ActionMenuView actionMenuView = ((n3) actionBarOverlayLayout.f441e).f13266a.f480a;
             if (actionMenuView != null && (hVar = actionMenuView.G) != null && hVar.g()) {
                 g(pVar.h);
                 return;
@@ -595,12 +595,12 @@ public final class q extends g implements l.j, LayoutInflater.Factory2 {
                 }
                 if (viewGroup != null) {
                     ja.c cVar = new ja.c(this);
-                    WeakHashMap weakHashMap = j0.f46438a;
+                    WeakHashMap weakHashMap = j0.f46469a;
                     b0.j(viewGroup, cVar);
                     if (this.f6781s == null) {
                         this.H = (TextView) viewGroup.findViewById(2131296712);
                     }
-                    Method method = u3.f13356a;
+                    Method method = u3.f13358a;
                     try {
                         Method method2 = viewGroup.getClass().getMethod("makeOptionalFitsSystemWindows", null);
                         if (!method2.isAccessible()) {
@@ -640,12 +640,12 @@ public final class q extends g implements l.j, LayoutInflater.Factory2 {
                             a0 a0Var = this.f6779n;
                             if (a0Var != null) {
                                 n3 n3Var = (n3) a0Var.f6680e;
-                                if (!n3Var.f13269g) {
-                                    Toolbar toolbar = n3Var.f13264a;
+                                if (!n3Var.f13271g) {
+                                    Toolbar toolbar = n3Var.f13266a;
                                     n3Var.h = charSequence;
-                                    if ((n3Var.f13265b & 8) != 0) {
+                                    if ((n3Var.f13267b & 8) != 0) {
                                         toolbar.setTitle(charSequence);
-                                        if (n3Var.f13269g) {
+                                        if (n3Var.f13271g) {
                                             j0.l(toolbar.getRootView(), charSequence);
                                         }
                                     }
@@ -661,7 +661,7 @@ public final class q extends g implements l.j, LayoutInflater.Factory2 {
                     ContentFrameLayout contentFrameLayout2 = (ContentFrameLayout) this.G.findViewById(16908290);
                     View decorView = this.f6771f.getDecorView();
                     contentFrameLayout2.h.set(decorView.getPaddingLeft(), decorView.getPaddingTop(), decorView.getPaddingRight(), decorView.getPaddingBottom());
-                    WeakHashMap weakHashMap2 = j0.f46438a;
+                    WeakHashMap weakHashMap2 = j0.f46469a;
                     if (contentFrameLayout2.isLaidOut()) {
                         contentFrameLayout2.requestLayout();
                     }
@@ -784,7 +784,7 @@ public final class q extends g implements l.j, LayoutInflater.Factory2 {
         this.f6772f0 = (1 << i10) | this.f6772f0;
         if (!this.f6770e0) {
             View decorView = this.f6771f.getDecorView();
-            WeakHashMap weakHashMap = j0.f46438a;
+            WeakHashMap weakHashMap = j0.f46469a;
             decorView.postOnAnimation(this.f6773g0);
             this.f6770e0 = true;
         }
@@ -842,14 +842,14 @@ public final class q extends g implements l.j, LayoutInflater.Factory2 {
                 return true;
             }
             a0 q10 = q();
-            if (q10 == null || (k1Var = q10.f6680e) == null || (i3Var = ((n3) k1Var).f13264a.f483b0) == null || i3Var.f13220b == null) {
+            if (q10 == null || (k1Var = q10.f6680e) == null || (i3Var = ((n3) k1Var).f13266a.f483b0) == null || i3Var.f13222b == null) {
                 return false;
             }
-            i3 i3Var2 = ((n3) k1Var).f13264a.f483b0;
+            i3 i3Var2 = ((n3) k1Var).f13266a.f483b0;
             if (i3Var2 == null) {
                 nVar = null;
             } else {
-                nVar = i3Var2.f13220b;
+                nVar = i3Var2.f13222b;
             }
             if (nVar != null) {
                 nVar.collapseActionView();

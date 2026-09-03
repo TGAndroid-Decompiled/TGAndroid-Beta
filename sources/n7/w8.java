@@ -1,6 +1,6 @@
 package n7;
 public final class w8 implements u9.d {
-    public static final w8 f15779a = new Object();
+    public static final w8 f15781a = new Object();
 
     static {
         e2.c.r(l.d.p(w.class, l.d.r(2, l.d.p(w.class, new s(1)))));

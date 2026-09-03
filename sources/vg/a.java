@@ -4,16 +4,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.qj;
 public final class a {
-    public RecyclerView f49255a;
-    public int f49256b;
-    public long f49257c;
+    public RecyclerView f49291a;
+    public int f49292b;
+    public long f49293c;
     public int d;
-    public boolean f49258e;
+    public boolean f49294e;
 
     public final boolean a(MessageObject messageObject) {
         if (messageObject != null) {
-            if (messageObject.getId() != this.f49256b) {
-                if (this.f49257c != 0 && messageObject.getGroupId() == this.f49257c) {
+            if (messageObject.getId() != this.f49292b) {
+                if (this.f49293c != 0 && messageObject.getGroupId() == this.f49293c) {
                     return true;
                 }
                 return false;
@@ -24,17 +24,17 @@ public final class a {
     }
 
     public final boolean b() {
-        return this.f49258e;
+        return this.f49294e;
     }
 
     public final boolean c(int i10, long j10) {
-        if (this.f49256b == i10 && this.f49257c == j10) {
+        if (this.f49292b == i10 && this.f49293c == j10) {
             return false;
         }
-        this.f49256b = i10;
-        this.f49257c = j10;
+        this.f49292b = i10;
+        this.f49293c = j10;
         if (i10 == 0) {
-            this.f49258e = false;
+            this.f49294e = false;
             return true;
         }
         return true;
@@ -45,6 +45,6 @@ public final class a {
     }
 
     public final void e(qj qjVar) {
-        this.f49255a = qjVar;
+        this.f49291a = qjVar;
     }
 }

@@ -8,19 +8,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
-public abstract class ha0 extends s61 {
+public abstract class ha0 extends r61 {
     public final int Q;
     public final ga0 R;
     public final u00 S;
-    public final ax0 T;
-    public final ax0 U;
+    public final zw0 T;
+    public final zw0 U;
     public float V;
     public boolean W;
 
     public ha0(org.telegram.ui.ActionBar.p2 p2Var, long j10) {
         super(p2Var.getParentActivity(), p2Var.getCurrentAccount(), p2Var.getResourceProvider());
         this.Q = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-        int i10 = org.telegram.ui.ActionBar.k6.f21605a7;
+        int i10 = org.telegram.ui.ActionBar.k6.f21607a7;
         setBackgroundColor(getThemedColor(i10));
         this.I = i10;
         this.H = i10;
@@ -32,12 +32,12 @@ public abstract class ha0 extends s61 {
         this.R = ga0Var;
         ga0Var.B = false;
         setDimBehindAlpha(75);
-        this.f30994w.G.setHint(LocaleController.getString(R.string.SearchMemberRequests));
+        this.f30671w.G.setHint(LocaleController.getString(R.string.SearchMemberRequests));
         kh.n nVar = ga0Var.f11308f;
-        this.f30990f = nVar;
-        this.f30989e = nVar;
+        this.f30667f = nVar;
+        this.f30666e = nVar;
         this.d.setAdapter(nVar);
-        this.d.p1();
+        this.d.o1();
         mh.d1 d1Var = this.d;
         ga0Var.f11317p = d1Var;
         d1Var.setOnItemClickListener(new ag.h(ga0Var, 5));
@@ -51,10 +51,10 @@ public abstract class ha0 extends s61 {
         u00 b10 = ga0Var.b();
         this.S = b10;
         this.containerView.addView(b10, indexOfChild, k7.c6.c(-1.0f, -1));
-        ax0 a2 = ga0Var.a();
+        zw0 a2 = ga0Var.a();
         this.T = a2;
         this.containerView.addView(a2, indexOfChild, k7.c6.c(-1.0f, -1));
-        ax0 c3 = ga0Var.c();
+        zw0 c3 = ga0Var.c();
         this.U = c3;
         this.containerView.addView(c3, indexOfChild, k7.c6.c(-1.0f, -1));
         ga0Var.e();
@@ -67,9 +67,9 @@ public abstract class ha0 extends s61 {
         int action = motionEvent.getAction();
         ga0 ga0Var = this.R;
         if (action == 0) {
-            this.V = this.f30996y;
+            this.V = this.f30673y;
             ga0Var.i(false);
-        } else if (motionEvent.getAction() == 1 && Math.abs(this.f30996y - this.V) < this.Q && !this.W) {
+        } else if (motionEvent.getAction() == 1 && Math.abs(this.f30673y - this.V) < this.Q && !this.W) {
             Activity findActivity = AndroidUtilities.findActivity(getContext());
             if (findActivity instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;
@@ -80,13 +80,13 @@ public abstract class ha0 extends s61 {
             if (p2Var instanceof org.telegram.ui.xn) {
                 boolean P9 = ((org.telegram.ui.xn) p2Var).P9();
                 this.W = true;
-                a90 a90Var = new a90(3, this, fVar);
+                b90 b90Var = new b90(2, this, fVar);
                 if (P9) {
                     j10 = 200;
                 } else {
                     j10 = 0;
                 }
-                AndroidUtilities.runOnUIThread(a90Var, j10);
+                AndroidUtilities.runOnUIThread(b90Var, j10);
             } else {
                 this.W = true;
                 setFocusable(true);
@@ -108,7 +108,7 @@ public abstract class ha0 extends s61 {
     @Override
     public final void H(int i10) {
         super.H(i10);
-        this.S.setTranslationY(this.f30988c.getMeasuredHeight() + i10);
+        this.S.setTranslationY(this.f30665c.getMeasuredHeight() + i10);
         float f10 = i10;
         this.T.setTranslationY(f10);
         this.U.setTranslationY(f10);
@@ -124,8 +124,8 @@ public abstract class ha0 extends s61 {
             } else {
                 i10 = 0;
             }
-            if (this.f30996y != i10) {
-                this.f30996y = i10;
+            if (this.f30673y != i10) {
+                this.f30673y = i10;
                 H(i10);
                 return;
             }
@@ -147,8 +147,8 @@ public abstract class ha0 extends s61 {
     @Override
     public final void show() {
         ga0 ga0Var = this.R;
-        if (ga0Var.f11305b && this.f30996y == 0) {
-            this.f30996y = AndroidUtilities.dp(8.0f);
+        if (ga0Var.f11305b && this.f30673y == 0) {
+            this.f30673y = AndroidUtilities.dp(8.0f);
         }
         super.show();
         ga0Var.f11305b = false;

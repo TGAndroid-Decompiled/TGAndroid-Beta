@@ -13,14 +13,14 @@ import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_iv;
 public final class w extends BaseController {
-    public static volatile w[] f12521a = new w[4];
+    public static volatile w[] f12523a = new w[4];
 
     public static TLRPC.TL_message b(TL_ephemeral.EphemeralMessage ephemeralMessage) {
         int i10;
         int i11;
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
         tL_message.out = ephemeralMessage.out;
-        tL_message.f20864id = MessageObject.ephemeralMessageIdPack(ephemeralMessage.f21056id);
+        tL_message.f20866id = MessageObject.ephemeralMessageIdPack(ephemeralMessage.f21058id);
         TLRPC.Peer peer = ephemeralMessage.from_id;
         if (peer != null) {
             tL_message.from_id = peer;
@@ -101,7 +101,7 @@ public final class w extends BaseController {
         tL_ephemeralMessage.out = message.out;
         tL_ephemeralMessage.invert_media = message.invert_media;
         tL_ephemeralMessage.noforwards = message.noforwards;
-        tL_ephemeralMessage.f21056id = MessageObject.ephemeralMessageIdUnpack(message.f20864id);
+        tL_ephemeralMessage.f21058id = MessageObject.ephemeralMessageIdUnpack(message.f20866id);
         tL_ephemeralMessage.from_id = message.from_id;
         tL_ephemeralMessage.peer_id = message.peer_id;
         tL_ephemeralMessage.receiver_id = message.ephemeralReceiverBotId;
@@ -123,13 +123,13 @@ public final class w extends BaseController {
 
     public static w g(int i10) {
         w wVar;
-        w wVar2 = f12521a[i10];
+        w wVar2 = f12523a[i10];
         if (wVar2 == null) {
             synchronized (w.class) {
                 try {
-                    wVar = f12521a[i10];
+                    wVar = f12523a[i10];
                     if (wVar == null) {
-                        ?? r02 = f12521a;
+                        ?? r02 = f12523a;
                         ?? baseController = new BaseController(i10);
                         r02[i10] = baseController;
                         wVar = baseController;
@@ -175,7 +175,7 @@ public final class w extends BaseController {
                     tL_inputReplyToEphemeralMessage = inputReplyTo;
                     if (MessageObject.isEphemeralMessageId(tL_inputReplyToMessage.reply_to_msg_id)) {
                         TLRPC.TL_inputReplyToEphemeralMessage tL_inputReplyToEphemeralMessage2 = new TLRPC.TL_inputReplyToEphemeralMessage();
-                        tL_inputReplyToEphemeralMessage2.f20909id = MessageObject.ephemeralMessageIdUnpack(tL_inputReplyToMessage.reply_to_msg_id);
+                        tL_inputReplyToEphemeralMessage2.f20911id = MessageObject.ephemeralMessageIdUnpack(tL_inputReplyToMessage.reply_to_msg_id);
                         tL_inputReplyToEphemeralMessage = tL_inputReplyToEphemeralMessage2;
                     }
                 }
@@ -220,7 +220,7 @@ public final class w extends BaseController {
                     tL_inputReplyToEphemeralMessage3 = inputReplyTo2;
                     if (MessageObject.isEphemeralMessageId(tL_inputReplyToMessage2.reply_to_msg_id)) {
                         TLRPC.TL_inputReplyToEphemeralMessage tL_inputReplyToEphemeralMessage4 = new TLRPC.TL_inputReplyToEphemeralMessage();
-                        tL_inputReplyToEphemeralMessage4.f20909id = MessageObject.ephemeralMessageIdUnpack(tL_inputReplyToMessage2.reply_to_msg_id);
+                        tL_inputReplyToEphemeralMessage4.f20911id = MessageObject.ephemeralMessageIdUnpack(tL_inputReplyToMessage2.reply_to_msg_id);
                         tL_inputReplyToEphemeralMessage3 = tL_inputReplyToEphemeralMessage4;
                     }
                 }

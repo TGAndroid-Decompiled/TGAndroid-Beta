@@ -20,7 +20,7 @@ public final class q1 extends wc.h implements dd.p {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        return ((q1) create((id.c) obj, (uc.c) obj2)).invokeSuspend(sc.i.f47243a);
+        return ((q1) create((id.c) obj, (uc.c) obj2)).invokeSuspend(sc.i.f47274a);
     }
 
     @Override

@@ -12,10 +12,10 @@ import eg.a;
 import org.telegram.messenger.AndroidUtilities;
 public class ColorPicker extends FrameLayout {
     public static final int[] d = {-1431751, -2409774, -13610525, -11942419, -8337308, -205211, -223667, -16777216, -1};
-    public static final float[] f24917e = {0.0f, 0.14f, 0.24f, 0.39f, 0.49f, 0.62f, 0.73f, 0.85f, 1.0f};
-    public float f24918a;
-    public float f24919b;
-    public float f24920c;
+    public static final float[] f24919e = {0.0f, 0.14f, 0.24f, 0.39f, 0.49f, 0.62f, 0.73f, 0.85f, 1.0f};
+    public float f24920a;
+    public float f24921b;
+    public float f24922c;
 
     public static int a(float f10) {
         float[] fArr;
@@ -30,7 +30,7 @@ public class ColorPicker extends FrameLayout {
         }
         int i11 = 1;
         while (true) {
-            fArr = f24917e;
+            fArr = f24919e;
             if (i11 < 9) {
                 if (fArr[i11] >= f10) {
                     i10 = i11 - 1;
@@ -56,12 +56,12 @@ public class ColorPicker extends FrameLayout {
     }
 
     private void setDraggingFactor(float f10) {
-        this.f24920c = f10;
+        this.f24922c = f10;
         invalidate();
     }
 
     public float getDraggingFactor() {
-        return this.f24920c;
+        return this.f24922c;
     }
 
     public View getSettingsButton() {
@@ -69,7 +69,7 @@ public class ColorPicker extends FrameLayout {
     }
 
     public e2 getSwatch() {
-        return new e2(this.f24918a, this.f24919b, a(this.f24918a));
+        return new e2(this.f24920a, this.f24921b, a(this.f24920a));
     }
 
     @Override
@@ -81,7 +81,7 @@ public class ColorPicker extends FrameLayout {
     @Override
     public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
         Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-        new LinearGradient(AndroidUtilities.dp(56.0f), 0.0f, (i12 - i10) - AndroidUtilities.dp(56.0f), 0.0f, d, f24917e, tileMode);
+        new LinearGradient(AndroidUtilities.dp(56.0f), 0.0f, (i12 - i10) - AndroidUtilities.dp(56.0f), 0.0f, d, f24919e, tileMode);
         throw null;
     }
 
@@ -95,7 +95,7 @@ public class ColorPicker extends FrameLayout {
     }
 
     public void setLocation(float f10) {
-        this.f24918a = f10;
+        this.f24920a = f10;
         a(f10);
         throw null;
     }
@@ -114,7 +114,7 @@ public class ColorPicker extends FrameLayout {
     }
 
     public void setWeight(float f10) {
-        this.f24919b = f10;
+        this.f24921b = f10;
         invalidate();
     }
 

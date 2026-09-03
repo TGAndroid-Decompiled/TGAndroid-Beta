@@ -1,34 +1,28 @@
 package org.telegram.ui;
-public final class tw0 implements Runnable {
-    public final int f41728a;
-    public final PrivacyControlActivity f41729b;
 
-    public tw0(PrivacyControlActivity privacyControlActivity, int i10) {
-        this.f41728a = i10;
-        this.f41729b = privacyControlActivity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class tw0 extends fg.j2 {
+    public final uw0 K;
+
+    public tw0(uw0 uw0Var, Context context) {
+        super(context);
+        this.K = uw0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f41728a) {
-            case 0:
-                PrivacyControlActivity privacyControlActivity = this.f41729b;
-                privacyControlActivity.getClass();
-                privacyControlActivity.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
-                return;
-            case 1:
-                PrivacyControlActivity.U(this.f41729b);
-                return;
-            case 2:
-                PrivacyControlActivity privacyControlActivity2 = this.f41729b;
-                privacyControlActivity2.getClass();
-                privacyControlActivity2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
-                return;
-            default:
-                PrivacyControlActivity privacyControlActivity3 = this.f41729b;
-                privacyControlActivity3.getClass();
-                privacyControlActivity3.presentFragment(new PremiumPreviewFragment(0, "settings"));
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        TextView textView = this.f6361r;
+        if (textView.getVisibility() == 0) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
+            uw0 uw0Var = this.K;
+            uw0Var.d.f42226n.f34495k0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f6360n.h, uw0Var.d.f42226n.L);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), uw0Var.d.f42226n.f34495k0.f6490f);
         }
+        super.dispatchDraw(canvas);
     }
 }

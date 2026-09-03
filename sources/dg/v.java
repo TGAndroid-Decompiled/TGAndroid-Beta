@@ -93,7 +93,7 @@ public final class v extends View {
         float strokeWidth = dp2 - (paint.getStrokeWidth() / 2.0f);
         float max = Math.max(dp + strokeWidth, (((getWidth() - (2.0f * dp)) * f10) + dp) - strokeWidth);
         canvas.drawCircle(max, height, dp2, paint);
-        eg.c2.x1(max, height, strokeWidth, this.d, canvas);
+        eg.c2.w1(max, height, strokeWidth, this.d, canvas);
     }
 
     @Override

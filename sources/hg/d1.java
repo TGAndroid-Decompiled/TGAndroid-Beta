@@ -37,9 +37,9 @@ public final class d1 extends ig.e {
         org.telegram.ui.ActionBar.p2 p2Var = e1Var.f31017n;
         e1Var.dismiss();
         if (tLObject instanceof TLRPC.Chat) {
-            p2Var.presentFragment(xn.R9(-((TLRPC.Chat) tLObject).f20843id));
+            p2Var.presentFragment(xn.R9(-((TLRPC.Chat) tLObject).f20845id));
         } else if (tLObject instanceof TLRPC.User) {
-            p2Var.presentFragment(xn.R9(((TLRPC.User) tLObject).f20990id));
+            p2Var.presentFragment(xn.R9(((TLRPC.User) tLObject).f20992id));
         } else {
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", -DialogObject.getPeerDialogId(tL_payments_checkedGiftCode.from_id));

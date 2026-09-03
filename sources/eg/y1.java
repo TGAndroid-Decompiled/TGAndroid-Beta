@@ -19,10 +19,9 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.ba;
-import org.telegram.ui.Components.tk0;
-import qh.i5;
-import qh.o4;
-import qh.s6;
+import org.telegram.ui.Components.sk0;
+import qh.n4;
+import qh.r6;
 public abstract class y1 extends j {
     public final a9.a A0;
     public h5 B0;
@@ -47,7 +46,7 @@ public abstract class y1 extends j {
     public boolean f5563y0;
     public final SparseIntArray f5564z0;
 
-    public y1(Context context, PointF pointF, ArrayList arrayList, ba baVar, boolean z4, i5 i5Var) {
+    public y1(Context context, PointF pointF, ArrayList arrayList, ba baVar, boolean z4, qh.h5 h5Var) {
         super(context, pointF);
         p1 p1Var;
         TLRPC.Message message;
@@ -61,9 +60,9 @@ public abstract class y1 extends j {
         this.f5562x0 = true;
         this.f5563y0 = k6.I.q();
         this.f5564z0 = new SparseIntArray();
-        o4 o4Var = (o4) this;
+        n4 n4Var = (n4) this;
         ?? obj = new Object();
-        obj.f159f = o4Var;
+        obj.f159f = n4Var;
         TextPaint textPaint = new TextPaint();
         obj.f155a = textPaint;
         TextPaint textPaint2 = new TextPaint();
@@ -92,7 +91,7 @@ public abstract class y1 extends j {
                 tL_messageService = new TLRPC.TL_messageService();
             } else {
                 message = message2;
-                D = s6.D(messageObject);
+                D = r6.D(messageObject);
                 if (D != null && D.booleanValue() && (messageFwdHeader = message.fwd_from) != null && (peer = messageFwdHeader.from_id) != null) {
                     message.from_id = peer;
                     message.peer_id = peer;
@@ -105,7 +104,7 @@ public abstract class y1 extends j {
                 messageObject2.setType();
                 this.f5554p0.add(messageObject2);
             }
-            tL_messageService.f20864id = message2.f20864id;
+            tL_messageService.f20866id = message2.f20866id;
             tL_messageService.from_id = message2.from_id;
             tL_messageService.peer_id = message2.peer_id;
             tL_messageService.date = message2.date;
@@ -172,7 +171,7 @@ public abstract class y1 extends j {
             tL_messageService.translatedText = message2.translatedText;
             tL_messageService.replyStory = message2.replyStory;
             message = tL_messageService;
-            D = s6.D(messageObject);
+            D = r6.D(messageObject);
             if (D != null) {
                 message.from_id = peer;
                 message.peer_id = peer;
@@ -193,28 +192,28 @@ public abstract class y1 extends j {
             groupedMessages.groupId = ((MessageObject) this.f5554p0.get(0)).getGroupId();
             groupedMessages.calculate();
         }
-        q1 q1Var = new q1(o4Var, context);
+        q1 q1Var = new q1(n4Var, context);
         this.f5552n0 = q1Var;
         addView(q1Var, c6.c(-1.0f, -1));
-        r1 r1Var = new r1(o4Var, context, this.A0);
+        r1 r1Var = new r1(n4Var, context, this.A0);
         this.f5553o0 = r1Var;
-        r1Var.setAdapter(new u1(o4Var, context, baVar, i5Var, z4));
-        v1 v1Var = new v1(o4Var);
-        v1Var.O = new w1(o4Var);
+        r1Var.setAdapter(new u1(n4Var, context, baVar, h5Var, z4));
+        v1 v1Var = new v1(n4Var);
+        v1Var.O = new w1(n4Var);
         r1Var.setLayoutManager(v1Var);
         r1Var.i(new Object());
         q1Var.addView(r1Var, c6.c(-1.0f, -1));
-        if (i5Var != null && i5Var.f45427g) {
-            dg.h0 h0Var = new dg.h0(o4Var, 2);
-            p1 p1Var2 = new p1(o4Var, 0);
-            i5Var.f45423b = h0Var;
-            i5Var.f45424c = p1Var2;
-            TextureView textureView = i5Var.f45422a;
+        if (h5Var != null && h5Var.f45409g) {
+            dg.h0 h0Var = new dg.h0(n4Var, 2);
+            p1 p1Var2 = new p1(n4Var, 0);
+            h5Var.f45405b = h0Var;
+            h5Var.f45406c = p1Var2;
+            TextureView textureView = h5Var.f45404a;
             if (textureView != null) {
                 h0Var.run(textureView);
             }
-            if (i5Var.d && (p1Var = i5Var.f45424c) != null) {
-                p1Var.run(Integer.valueOf(i5Var.f45425e), Integer.valueOf(i5Var.f45426f));
+            if (h5Var.d && (p1Var = h5Var.f45406c) != null) {
+                p1Var.run(Integer.valueOf(h5Var.f45407e), Integer.valueOf(h5Var.f45408f));
             }
         }
         k();
@@ -233,8 +232,8 @@ public abstract class y1 extends j {
         return null;
     }
 
-    public static org.telegram.ui.Cells.t1 q(o4 o4Var) {
-        return o4Var.getCell();
+    public static org.telegram.ui.Cells.t1 q(n4 n4Var) {
+        return n4Var.getCell();
     }
 
     @Override
@@ -248,13 +247,13 @@ public abstract class y1 extends j {
     }
 
     @Override
-    public tk0 getSelectionBounds() {
+    public sk0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
         }
         float scaleX = viewGroup.getScaleX();
-        return new tk0(((getPositionX() * scaleX) - (((getScale() * getMeasuredWidth()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), ((getPositionY() * scaleX) - (((getScale() * getMeasuredHeight()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), (getScale() * getMeasuredWidth() * scaleX) + AndroidUtilities.dp(71.0f), (getScale() * getMeasuredHeight() * scaleX) + AndroidUtilities.dp(71.0f));
+        return new sk0(((getPositionX() * scaleX) - (((getScale() * getMeasuredWidth()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), ((getPositionY() * scaleX) - (((getScale() * getMeasuredHeight()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), (getScale() * getMeasuredWidth() * scaleX) + AndroidUtilities.dp(71.0f), (getScale() * getMeasuredHeight() * scaleX) + AndroidUtilities.dp(71.0f));
     }
 
     @Override
@@ -341,7 +340,7 @@ public abstract class y1 extends j {
         }
     }
 
-    public void setupTheme(qh.s6 r8) {
-        throw new UnsupportedOperationException("Method not decompiled: eg.y1.setupTheme(qh.s6):void");
+    public void setupTheme(qh.r6 r8) {
+        throw new UnsupportedOperationException("Method not decompiled: eg.y1.setupTheme(qh.r6):void");
     }
 }

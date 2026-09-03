@@ -15,18 +15,18 @@ public final class a implements m {
     }
 
     public static void a(w0 w0Var, p9.c cVar) {
-        String str = cVar.f44222a;
+        String str = cVar.f44253a;
         if (str != null) {
             w0Var.w("X-CRASHLYTICS-GOOGLE-APP-ID", str);
         }
         w0Var.w("X-CRASHLYTICS-API-CLIENT-TYPE", "android");
         w0Var.w("X-CRASHLYTICS-API-CLIENT-VERSION", "18.6.0");
         w0Var.w("Accept", "application/json");
-        String str2 = cVar.f44223b;
+        String str2 = cVar.f44254b;
         if (str2 != null) {
             w0Var.w("X-CRASHLYTICS-DEVICE-MODEL", str2);
         }
-        String str3 = cVar.f44224c;
+        String str3 = cVar.f44255c;
         if (str3 != null) {
             w0Var.w("X-CRASHLYTICS-OS-BUILD-VERSION", str3);
         }
@@ -34,7 +34,7 @@ public final class a implements m {
         if (str4 != null) {
             w0Var.w("X-CRASHLYTICS-OS-DISPLAY-VERSION", str4);
         }
-        String str5 = cVar.f44225e.b().f7940a;
+        String str5 = cVar.f44256e.b().f7940a;
         if (str5 != null) {
             w0Var.w("X-CRASHLYTICS-INSTALLATION-ID", str5);
         }
@@ -43,9 +43,9 @@ public final class a implements m {
     public static HashMap b(p9.c cVar) {
         HashMap hashMap = new HashMap();
         hashMap.put("build_version", cVar.h);
-        hashMap.put("display_version", cVar.f44227g);
-        hashMap.put("source", Integer.toString(cVar.f44228i));
-        String str = cVar.f44226f;
+        hashMap.put("display_version", cVar.f44258g);
+        hashMap.put("source", Integer.toString(cVar.f44259i));
+        String str = cVar.f44257f;
         if (!TextUtils.isEmpty(str)) {
             hashMap.put("instance", str);
         }

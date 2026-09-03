@@ -39,21 +39,21 @@ import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.b7;
 import org.telegram.ui.d60;
-import org.telegram.ui.ha1;
 import org.telegram.ui.ii;
+import org.telegram.ui.na1;
 import org.telegram.ui.py;
 import org.telegram.ui.wb0;
 import org.telegram.ui.xn;
 import org.telegram.ui.y3;
-import qh.ca;
-import qh.d8;
-import qh.g8;
-import qh.ga;
-import qh.ma;
-import qh.n9;
-import qh.s9;
-import qh.x7;
-import qh.x9;
+import qh.ba;
+import qh.c8;
+import qh.f8;
+import qh.fa;
+import qh.la;
+import qh.m9;
+import qh.r9;
+import qh.w7;
+import qh.w9;
 public final class y1 implements Runnable {
     public final int f7675a;
     public final long f7676b;
@@ -67,7 +67,7 @@ public final class y1 implements Runnable {
 
     @Override
     public final void run() {
-        x9 x9Var;
+        w9 w9Var;
         int i10 = this.f7675a;
         g6 g6Var = null;
         boolean z4 = false;
@@ -93,13 +93,13 @@ public final class y1 implements Runnable {
                 qc.a0((ja) obj).M(LocaleController.getString(R.string.Gift2ConvertedTitle), LocaleController.formatPluralStringComma("Gift2Converted", (int) j10), R.raw.stars_topup).k(true);
                 return;
             case 3:
-                qc.a0((ha1) obj).M(LocaleController.getString(R.string.Gift2ConvertedTitle), LocaleController.formatPluralStringComma("Gift2ConvertedChannel", (int) j10), R.raw.stars_topup).k(true);
+                qc.a0((na1) obj).M(LocaleController.getString(R.string.Gift2ConvertedTitle), LocaleController.formatPluralStringComma("Gift2ConvertedChannel", (int) j10), R.raw.stars_topup).k(true);
                 return;
             case 4:
-                ((oh.p) obj).f17598s.e0(j10, false);
+                ((oh.p) obj).f17600s.e0(j10, false);
                 return;
             case 5:
-                f4 f4Var = ((oh.q2) obj).f17651a;
+                f4 f4Var = ((oh.q2) obj).f17653a;
                 if (j10 <= 0) {
                     z4 = true;
                 }
@@ -109,13 +109,13 @@ public final class y1 implements Runnable {
                 AndroidUtilities.runOnUIThread((r3) obj, Math.max(0L, 500 - (System.currentTimeMillis() - j10)));
                 return;
             case 7:
-                org.telegram.ui.ActionBar.p2 d02 = ha1.d0(MessagesController.getInstance(((t6) obj).f17770a).getChat(Long.valueOf(-j10)), true);
+                org.telegram.ui.ActionBar.p2 d02 = na1.d0(MessagesController.getInstance(((t6) obj).f17772a).getChat(Long.valueOf(-j10)), true);
                 org.telegram.ui.ActionBar.p2 R = LaunchActivity.R();
                 if (R != 0) {
-                    ca caVar = ca.C2;
-                    if (caVar != null && caVar.d) {
+                    ba baVar = ba.C2;
+                    if (baVar != null && baVar.d) {
                         ?? obj2 = new Object();
-                        obj2.f22156a = true;
+                        obj2.f22158a = true;
                         R.showAsSheet(d02, obj2);
                         return;
                     }
@@ -124,7 +124,7 @@ public final class y1 implements Runnable {
                 }
                 return;
             case 8:
-                MessagesStorage messagesStorage = ((g7) obj).f17164b;
+                MessagesStorage messagesStorage = ((g7) obj).f17166b;
                 SQLiteDatabase database = messagesStorage.getDatabase();
                 try {
                     Locale locale = Locale.US;
@@ -162,7 +162,7 @@ public final class y1 implements Runnable {
                 return;
             case 15:
                 ic Q = qc.a0((b7) obj).Q(R.raw.ic_delete, 36, LocaleController.formatString(R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j10)));
-                Q.f27753r = false;
+                Q.f27786r = false;
                 Q.j();
                 return;
             case 16:
@@ -193,7 +193,7 @@ public final class y1 implements Runnable {
                 pyVar.A4(true, true);
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(MessagesStorage.TopicKey.of(j10, 0L));
-                pyVar.f40308z2.v(pyVar, arrayList, null, false, pyVar.G2, pyVar.H2, pyVar.I2, null);
+                pyVar.f40278z2.v(pyVar, arrayList, null, false, pyVar.G2, pyVar.H2, pyVar.I2, null);
                 return;
             case 20:
                 ((d60) obj).m1(j10, false);
@@ -204,7 +204,7 @@ public final class y1 implements Runnable {
                 wb0Var.presentFragment(xn.R9(j10));
                 return;
             case 22:
-                xn xnVar = ((ii) obj).f37863e;
+                xn xnVar = ((ii) obj).f37666e;
                 xnVar.A7(true);
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", j10);
@@ -222,55 +222,55 @@ public final class y1 implements Runnable {
                 c0Var.presentFragment(xn.R9(j10));
                 return;
             case 25:
-                x7 x7Var = (x7) obj;
-                Context context = x7Var.getContext();
-                d8 d8Var = x7Var.T;
-                z4.S(context, d8Var.attachedFragment, d8.Y(d8Var), new f3.e(x7Var, j10, 11));
+                w7 w7Var = (w7) obj;
+                Context context = w7Var.getContext();
+                c8 c8Var = w7Var.T;
+                z4.S(context, c8Var.attachedFragment, c8.Y(c8Var), new f3.e(w7Var, j10, 11));
                 return;
             case 26:
-                ca caVar2 = (ca) obj;
-                x9 x9Var2 = caVar2.C;
-                if (x9Var2 != null) {
-                    x9Var2.f(true);
-                    caVar2.C = null;
+                ba baVar2 = (ba) obj;
+                w9 w9Var2 = baVar2.C;
+                if (w9Var2 != null) {
+                    w9Var2.f(true);
+                    baVar2.C = null;
                 }
-                s9 s9Var = caVar2.f45149x;
-                if (s9Var != null) {
-                    x9Var = s9Var.a(j10);
+                r9 r9Var = baVar2.f45115x;
+                if (r9Var != null) {
+                    w9Var = r9Var.a(j10);
                 } else {
-                    x9Var = null;
+                    w9Var = null;
                 }
-                caVar2.C = x9Var;
-                if (x9Var != null) {
-                    caVar2.G = x9Var.f46303a;
-                    caVar2.f45128r.c();
-                    n9 n9Var = caVar2.f45089e0;
-                    int i13 = caVar2.G;
+                baVar2.C = w9Var;
+                if (w9Var != null) {
+                    baVar2.G = w9Var.f46276a;
+                    baVar2.f45094r.c();
+                    m9 m9Var = baVar2.f45055e0;
+                    int i13 = baVar2.G;
                     if (i13 != 1 && i13 != 0) {
                         i11 = -14737633;
                     }
-                    n9Var.setBackgroundColor(i11);
-                    caVar2.E.set(caVar2.C.f46305c);
-                    x9 x9Var3 = caVar2.C;
-                    caVar2.D = x9Var3.f46304b;
-                    x9Var3.e();
+                    m9Var.setBackgroundColor(i11);
+                    baVar2.E.set(baVar2.C.f46278c);
+                    w9 w9Var3 = baVar2.C;
+                    baVar2.D = w9Var3.f46277b;
+                    w9Var3.e();
                     if (SharedConfig.getDevicePerformanceClass() > 1) {
                         LiteMode.isEnabled(360928);
                     }
                 }
-                caVar2.f45149x = null;
-                Activity activity2 = caVar2.f45077b;
+                baVar2.f45115x = null;
+                Activity activity2 = baVar2.f45043b;
                 if (activity2 instanceof LaunchActivity) {
-                    ((LaunchActivity) activity2).f34178w0.post(new g8(caVar2, 5));
+                    ((LaunchActivity) activity2).f34178w0.post(new f8(baVar2, 5));
                     return;
                 } else {
-                    caVar2.q(true);
+                    baVar2.q(true);
                     return;
                 }
             case 27:
-                ga gaVar = ((ma) obj).f45687a;
-                if (gaVar != null) {
-                    gaVar.B(j10, false);
+                fa faVar = ((la) obj).f45661a;
+                if (faVar != null) {
+                    faVar.B(j10, false);
                     return;
                 }
                 return;
@@ -279,9 +279,9 @@ public final class y1 implements Runnable {
                 return;
             default:
                 th.n0 n0Var = (th.n0) obj;
-                n0Var.f48169i = null;
-                n0Var.f48168g.l(j10);
-                n0Var.f48172l++;
+                n0Var.f48205i = null;
+                n0Var.f48204g.l(j10);
+                n0Var.f48208l++;
                 n0Var.a();
                 th.m0 m0Var = n0Var.h;
                 if (m0Var != null) {

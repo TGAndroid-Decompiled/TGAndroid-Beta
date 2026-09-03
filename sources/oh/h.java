@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.sl0;
 import org.telegram.ui.hx;
-public final class h extends tl0 {
+public final class h extends sl0 {
     public final int U2;
     public final hx V2;
 
@@ -33,22 +33,22 @@ public final class h extends tl0 {
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
                     o oVar = (o) getChildAt(i11);
                     int R = RecyclerView.R(oVar);
-                    oVar.f17517b = R;
+                    oVar.f17519b = R;
                     boolean z10 = true;
-                    oVar.f17516a = true;
+                    oVar.f17518a = true;
                     if (R == 0) {
                         z4 = true;
                     } else {
                         z4 = false;
                     }
                     oVar.d = z4;
-                    if (R != hxVar.f17607y.size() - 1) {
+                    if (R != hxVar.f17609y.size() - 1) {
                         z10 = false;
                     }
-                    oVar.f17518c = z10;
+                    oVar.f17520c = z10;
                     arrayList.add(oVar);
                 }
-                Collections.sort(arrayList, hxVar.f17600t0);
+                Collections.sort(arrayList, hxVar.f17602t0);
                 while (i10 < arrayList.size()) {
                     o oVar2 = (o) arrayList.get(i10);
                     int save = canvas.save();
@@ -105,9 +105,9 @@ public final class h extends tl0 {
     public void k0(int i10, int i11) {
         switch (this.U2) {
             case 1:
-                qh.f3 f3Var = this.V2.G;
-                if (f3Var != null) {
-                    f3Var.e(true);
+                qh.e3 e3Var = this.V2.G;
+                if (e3Var != null) {
+                    e3Var.e(true);
                     return;
                 }
                 return;

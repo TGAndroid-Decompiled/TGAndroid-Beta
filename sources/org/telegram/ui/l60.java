@@ -3,21 +3,21 @@ package org.telegram.ui;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 public final class l60 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final FrameLayout f38653a;
-    public final n60 f38654b;
+    public final FrameLayout f38549a;
+    public final n60 f38550b;
 
     public l60(n60 n60Var, FrameLayout frameLayout) {
-        this.f38654b = n60Var;
-        this.f38653a = frameLayout;
+        this.f38550b = n60Var;
+        this.f38549a = frameLayout;
     }
 
     @Override
     public final void onGlobalLayout() {
-        this.f38653a.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-        n60 n60Var = this.f38654b;
-        if (n60Var.f39315w0 == null) {
-            n60Var.f39315w0 = (uc) n60Var.y0(n60Var.W);
+        this.f38549a.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        n60 n60Var = this.f38550b;
+        if (n60Var.f39201w0 == null) {
+            n60Var.f39201w0 = (tc) n60Var.y0(n60Var.W);
         }
-        n60Var.f39315w0.f41884f.setOnClickListener(new f60(this, 1));
+        n60Var.f39201w0.f41506f.setOnClickListener(new f60(this, 1));
     }
 }

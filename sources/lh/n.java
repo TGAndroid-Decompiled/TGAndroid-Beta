@@ -6,11 +6,11 @@ import mh.bb;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.g6;
 public final class n extends bb {
-    public final s f12854j0;
+    public final s f12856j0;
 
     public n(s sVar, Context context, g6 g6Var) {
         super(context, g6Var);
-        this.f12854j0 = sVar;
+        this.f12856j0 = sVar;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class n extends bb {
         if (getProgress() <= 0.99d && f10 <= getMeasuredWidth() * 0.9f) {
             return false;
         }
-        s.U(this.f12854j0);
+        s.U(this.f12856j0);
         return true;
     }
 
@@ -33,12 +33,12 @@ public final class n extends bb {
 
     @Override
     public final void e(int i10) {
-        s.T(this.f12854j0, i10);
+        s.T(this.f12856j0, i10);
     }
 
     @Override
     public final void setValue(int i10) {
         super.setValue(i10);
-        s.T(this.f12854j0, i10);
+        s.T(this.f12856j0, i10);
     }
 }

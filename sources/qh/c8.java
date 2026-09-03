@@ -1,592 +1,749 @@
 package qh;
 
 import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.Bitmap;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.Emoji;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.RadioButton;
-import org.telegram.ui.Components.np;
-import org.telegram.ui.Components.oq;
-public final class c8 extends FrameLayout {
-    public Path B;
-    public Paint C;
-    public final org.telegram.ui.ActionBar.g6 f45062a;
-    public final org.telegram.ui.Components.z8 f45063b;
-    public final org.telegram.ui.Components.p9 f45064c;
-    public final org.telegram.ui.ActionBar.l5 d;
-    public final org.telegram.ui.ActionBar.l5 f45065e;
-    public final np f45066f;
-    public final RadioButton h;
-    public final Paint f45067n;
-    public boolean f45068r;
-    public boolean f45069s;
-    public boolean v;
-    public final boolean[] f45070w;
-    public long f45071x;
-    public boolean f45072y;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.ic;
+import org.telegram.ui.ek;
+import org.telegram.ui.rz;
+public final class c8 extends org.telegram.ui.ActionBar.h3 implements NotificationCenter.NotificationCenterDelegate {
+    public static final int f45186a0 = 0;
+    public boolean B;
+    public boolean C;
+    public boolean D;
+    public int E;
+    public int F;
+    public final ArrayList G;
+    public boolean H;
+    public boolean I;
+    public int J;
+    public int K;
+    public boolean L;
+    public HashMap M;
+    public int N;
+    public final Paint O;
+    public ArrayList P;
+    public k7 Q;
+    public Utilities.Callback R;
+    public p7 S;
+    public Utilities.Callback T;
+    public g8 U;
+    public final boolean V;
+    public boolean W;
+    public boolean X;
+    public BitmapDrawable Y;
+    public f8 Z;
+    public ek f45187b;
+    public TLRPC.InputPeer f45188c;
+    public final ArrayList d;
+    public final HashMap f45189e;
+    public int f45190f;
+    public final ArrayList h;
+    public final ArrayList f45191n;
+    public final HashMap f45192r;
+    public int f45193s;
+    public final HashSet v;
+    public boolean f45194w;
+    public boolean f45195x;
+    public boolean f45196y;
+
+    public c8(Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, g6Var, true, false);
+        char c3 = 0;
+        ArrayList arrayList = new ArrayList();
+        this.d = arrayList;
+        HashMap hashMap = new HashMap();
+        this.f45189e = hashMap;
+        this.f45190f = 0;
+        ArrayList arrayList2 = new ArrayList();
+        this.h = arrayList2;
+        ArrayList arrayList3 = new ArrayList();
+        this.f45191n = arrayList3;
+        HashMap hashMap2 = new HashMap();
+        this.f45192r = hashMap2;
+        this.f45193s = 0;
+        this.v = new HashSet();
+        this.f45194w = true;
+        this.f45195x = true;
+        this.f45196y = false;
+        this.B = true;
+        this.C = true;
+        this.D = false;
+        this.E = 0;
+        this.F = 1;
+        this.G = new ArrayList();
+        this.J = 1;
+        this.K = 4;
+        this.M = new HashMap();
+        this.N = 86400;
+        this.O = new Paint(1);
+        this.V = true;
+        this.W = false;
+        this.N = i10;
+        String string = MessagesController.getInstance(this.currentAccount).getMainSettings().getString("story_prv_contacts", null);
+        if (string != null) {
+            String[] split = string.split(",");
+            arrayList3.clear();
+            for (String str : split) {
+                try {
+                    arrayList3.add(Long.valueOf(Long.parseLong(str)));
+                } catch (Exception unused) {
+                }
+            }
+        }
+        String string2 = MessagesController.getInstance(this.currentAccount).getMainSettings().getString("story_prv_grpcontacts", null);
+        if (string2 != null) {
+            String[] split2 = string2.split(";");
+            hashMap2.clear();
+            int i11 = 0;
+            while (i11 < split2.length) {
+                String[] split3 = split2[i11].split(",");
+                if (split3.length > 0) {
+                    try {
+                        long parseLong = Long.parseLong(split3[c3]);
+                        ArrayList arrayList4 = new ArrayList();
+                        for (int i12 = 1; i12 < split3.length; i12++) {
+                            arrayList4.add(Long.valueOf(Long.parseLong(split3[i12])));
+                        }
+                        hashMap2.put(Long.valueOf(parseLong), arrayList4);
+                    } catch (Exception unused2) {
+                    }
+                    i11++;
+                    c3 = 0;
+                }
+                i11++;
+                c3 = 0;
+            }
+        }
+        String string3 = MessagesController.getInstance(this.currentAccount).getMainSettings().getString("story_prv_everyoneexcept", null);
+        if (string3 != null) {
+            String[] split4 = string3.split(",");
+            arrayList.clear();
+            for (String str2 : split4) {
+                try {
+                    arrayList.add(Long.valueOf(Long.parseLong(str2)));
+                } catch (Exception unused3) {
+                }
+            }
+        }
+        String string4 = MessagesController.getInstance(this.currentAccount).getMainSettings().getString("story_prv_grpeveryoneexcept", null);
+        if (string4 != null) {
+            String[] split5 = string4.split(";");
+            hashMap.clear();
+            for (String str3 : split5) {
+                String[] split6 = str3.split(",");
+                if (split6.length > 0) {
+                    try {
+                        long parseLong2 = Long.parseLong(split6[0]);
+                        ArrayList arrayList5 = new ArrayList();
+                        for (int i13 = 1; i13 < split6.length; i13++) {
+                            arrayList5.add(Long.valueOf(Long.parseLong(split6[i13])));
+                        }
+                        hashMap.put(Long.valueOf(parseLong2), arrayList5);
+                    } catch (Exception unused4) {
+                    }
+                }
+            }
+        }
+        String string5 = MessagesController.getInstance(this.currentAccount).getMainSettings().getString("story_prv_excluded", null);
+        if (string5 != null) {
+            String[] split7 = string5.split(",");
+            arrayList2.clear();
+            for (String str4 : split7) {
+                try {
+                    arrayList2.add(Long.valueOf(Long.parseLong(str4)));
+                } catch (Exception unused5) {
+                }
+            }
+        }
+        this.f45193s = l1(arrayList3, hashMap2).size();
+        this.f45190f = l1(arrayList, hashMap).size();
+        this.f45195x = !MessagesController.getInstance(this.currentAccount).getMainSettings().getBoolean("story_noforwards", false);
+        this.f45196y = MessagesController.getInstance(this.currentAccount).getMainSettings().getBoolean("story_keep", true);
+        j1(context);
+        this.f45187b.setAdapter(new e7(this, context, 0));
+        MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
+        messagesStorage.getStorageQueue().postRunnable(new l6(3, this, messagesStorage));
+        MessagesController.getInstance(this.currentAccount).getStoriesController().P();
+        MessagesController.getInstance(this.currentAccount).getStoriesController().R();
+    }
+
+    public static void D(c8 c8Var) {
+        super.dismiss();
+    }
+
+    public static int F(c8 c8Var) {
+        return c8Var.currentAccount;
+    }
+
+    public static ArrayList J0(c8 c8Var) {
+        ArrayList h12 = c8Var.h1();
+        int i10 = 0;
+        while (i10 < h12.size()) {
+            TLObject tLObject = (TLObject) h12.get(i10);
+            if ((tLObject instanceof TLRPC.User) && !((TLRPC.User) tLObject).close_friend) {
+                h12.remove(i10);
+                i10--;
+            }
+            i10++;
+        }
+        return h12;
+    }
+
+    public static int W(c8 c8Var) {
+        return c8Var.currentAccount;
+    }
+
+    public static org.telegram.ui.ActionBar.g6 X(c8 c8Var) {
+        return c8Var.resourcesProvider;
+    }
+
+    public static org.telegram.ui.ActionBar.g6 Y(c8 c8Var) {
+        return c8Var.resourcesProvider;
+    }
+
+    public static ArrayList Y0(c8 c8Var) {
+        TLRPC.Chat chat;
+        ArrayList arrayList = new ArrayList();
+        MessagesController messagesController = MessagesController.getInstance(c8Var.currentAccount);
+        ArrayList<TLRPC.Dialog> allDialogs = messagesController.getAllDialogs();
+        for (int i10 = 0; i10 < allDialogs.size(); i10++) {
+            TLRPC.Dialog dialog = allDialogs.get(i10);
+            if (messagesController.canAddToForward(dialog)) {
+                if (DialogObject.isUserDialog(dialog.f20849id)) {
+                    TLRPC.User user = messagesController.getUser(Long.valueOf(dialog.f20849id));
+                    if (user != null && !user.bot && user.f20992id != 777000 && !UserObject.isUserSelf(user)) {
+                        arrayList.add(user);
+                    }
+                } else if (DialogObject.isChatDialog(dialog.f20849id) && (chat = messagesController.getChat(Long.valueOf(-dialog.f20849id))) != null && !ChatObject.isForum(chat)) {
+                    arrayList.add(chat);
+                }
+            }
+        }
+        return arrayList;
+    }
+
+    public static int Z(c8 c8Var) {
+        return c8Var.currentAccount;
+    }
+
+    public static ArrayList Z0(c8 c8Var, boolean z4, boolean z10) {
+        TLRPC.User user;
+        TLRPC.Chat chat;
+        MessagesController messagesController = MessagesController.getInstance(c8Var.currentAccount);
+        HashMap hashMap = new HashMap();
+        ArrayList arrayList = new ArrayList();
+        ArrayList<TLRPC.Dialog> allDialogs = messagesController.getAllDialogs();
+        ConcurrentHashMap<Long, TLRPC.TL_contact> concurrentHashMap = ContactsController.getInstance(c8Var.currentAccount).contactsDict;
+        if (concurrentHashMap == null || concurrentHashMap.isEmpty()) {
+            if (!c8Var.X) {
+                ContactsController.getInstance(c8Var.currentAccount).loadContacts(false, 0L);
+            }
+            c8Var.X = true;
+        }
+        for (int i10 = 0; i10 < allDialogs.size(); i10++) {
+            TLRPC.Dialog dialog = allDialogs.get(i10);
+            if (DialogObject.isUserDialog(dialog.f20849id)) {
+                TLRPC.User user2 = messagesController.getUser(Long.valueOf(dialog.f20849id));
+                if (user2 != null && !user2.bot && user2.f20992id != 777000 && !UserObject.isUserSelf(user2) && !user2.deleted && (!z4 || (concurrentHashMap != null && concurrentHashMap.get(Long.valueOf(user2.f20992id)) != null))) {
+                    hashMap.put(Long.valueOf(user2.f20992id), Boolean.TRUE);
+                    arrayList.add(user2);
+                }
+            } else if (z10 && DialogObject.isChatDialog(dialog.f20849id) && (chat = messagesController.getChat(Long.valueOf(-dialog.f20849id))) != null && !ChatObject.isChannelAndNotMegaGroup(chat)) {
+                hashMap.put(Long.valueOf(-chat.f20845id), Boolean.TRUE);
+                arrayList.add(chat);
+            }
+        }
+        if (concurrentHashMap != null) {
+            for (Map.Entry<Long, TLRPC.TL_contact> entry : concurrentHashMap.entrySet()) {
+                Long key = entry.getKey();
+                key.getClass();
+                if (!hashMap.containsKey(key) && (user = messagesController.getUser(key)) != null && !user.bot && user.f20992id != 777000 && !UserObject.isUserSelf(user)) {
+                    arrayList.add(user);
+                    hashMap.put(Long.valueOf(user.f20992id), Boolean.TRUE);
+                }
+            }
+        }
+        return arrayList;
+    }
+
+    public static int b0(c8 c8Var) {
+        return c8Var.currentAccount;
+    }
+
+    public static ViewGroup c0(c8 c8Var) {
+        return c8Var.containerView;
+    }
+
+    public static boolean d0(c8 c8Var) {
+        return c8Var.keyboardVisible;
+    }
+
+    public static int d1(c8 c8Var, TLRPC.Chat chat) {
+        Integer num;
+        int i10;
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(c8Var.currentAccount).getChatFull(chat.f20845id);
+        if (chatFull != null && (i10 = chatFull.participants_count) > 0) {
+            return i10;
+        }
+        HashMap hashMap = c8Var.M;
+        if (hashMap != null && (num = (Integer) hashMap.get(Long.valueOf(chat.f20845id))) != null) {
+            return num.intValue();
+        }
+        return chat.participants_count;
+    }
+
+    public static HashSet l1(ArrayList arrayList, HashMap hashMap) {
+        HashSet hashSet = new HashSet();
+        if (arrayList != null) {
+            hashSet.addAll(arrayList);
+        }
+        if (hashMap != null) {
+            for (ArrayList arrayList2 : hashMap.values()) {
+                hashSet.addAll(arrayList2);
+            }
+        }
+        return hashSet;
+    }
+
+    public static org.telegram.ui.ActionBar.g6 r0(c8 c8Var) {
+        return c8Var.resourcesProvider;
+    }
+
+    @Override
+    public final boolean canDismissWithSwipe() {
+        View currentView = this.f45187b.getCurrentView();
+        if (currentView instanceof w7) {
+            return ((w7) currentView).P;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean canSwipeToBack(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        ek ekVar = this.f45187b;
+        if (ekVar != null) {
+            int i12 = 0;
+            if (i10 == NotificationCenter.contactsDidLoad) {
+                View[] viewPages = ekVar.getViewPages();
+                View view = viewPages[0];
+                if (view instanceof w7) {
+                    ((w7) view).g(true);
+                }
+                View view2 = viewPages[1];
+                if (view2 instanceof w7) {
+                    ((w7) view2).g(true);
+                }
+            } else if (i10 == NotificationCenter.storiesBlocklistUpdate) {
+                View[] viewPages2 = ekVar.getViewPages();
+                while (i12 < viewPages2.length) {
+                    View view3 = viewPages2[i12];
+                    if (view3 instanceof w7) {
+                        w7 w7Var = (w7) view3;
+                        int i13 = w7Var.f46262a;
+                        if (i13 == 6) {
+                            w7Var.a(true);
+                        } else if (i13 == 0) {
+                            w7Var.g(true);
+                        }
+                    }
+                    i12++;
+                }
+            } else if (i10 == NotificationCenter.storiesSendAsUpdate) {
+                View[] viewPages3 = ekVar.getViewPages();
+                while (i12 < viewPages3.length) {
+                    View view4 = viewPages3[i12];
+                    if (view4 instanceof w7) {
+                        w7 w7Var2 = (w7) view4;
+                        if (w7Var2.f46262a == 0) {
+                            w7Var2.g(true);
+                        }
+                    }
+                    i12++;
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+        a8 a8Var;
+        Utilities.Callback callback = this.R;
+        ArrayList arrayList = this.h;
+        HashMap hashMap = this.f45189e;
+        ArrayList arrayList2 = this.d;
+        HashMap hashMap2 = this.f45192r;
+        ArrayList arrayList3 = this.f45191n;
+        if (callback != null) {
+            int i10 = this.K;
+            if (i10 == 3) {
+                a8Var = new a8(this.K, this.currentAccount, new ArrayList(l1(arrayList3, hashMap2)));
+                ArrayList arrayList4 = a8Var.f44996c;
+                arrayList4.clear();
+                arrayList4.addAll(arrayList3);
+                HashMap hashMap3 = a8Var.d;
+                hashMap3.clear();
+                hashMap3.putAll(hashMap2);
+            } else if (i10 == 4) {
+                a8Var = new a8(this.K, this.currentAccount, new ArrayList(l1(arrayList2, hashMap)));
+                ArrayList arrayList5 = a8Var.f44996c;
+                arrayList5.clear();
+                arrayList5.addAll(arrayList2);
+                HashMap hashMap4 = a8Var.d;
+                hashMap4.clear();
+                hashMap4.putAll(hashMap);
+            } else if (i10 == 2) {
+                a8Var = new a8(i10, this.currentAccount, arrayList);
+            } else {
+                a8Var = new a8(i10, this.currentAccount, (ArrayList) null);
+            }
+            this.R.run(a8Var);
+            this.R = null;
+        }
+        ic.h(this.container);
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry entry : hashMap2.entrySet()) {
+            if (sb.length() > 0) {
+                sb.append(";");
+            }
+            sb.append(entry.getKey());
+            sb.append(",");
+            sb.append(TextUtils.join(",", (Iterable) entry.getValue()));
+        }
+        StringBuilder sb2 = new StringBuilder();
+        for (Map.Entry entry2 : hashMap.entrySet()) {
+            if (sb2.length() > 0) {
+                sb2.append(";");
+            }
+            sb2.append(entry2.getKey());
+            sb2.append(",");
+            sb2.append(TextUtils.join(",", (Iterable) entry2.getValue()));
+        }
+        MessagesController.getInstance(this.currentAccount).getMainSettings().edit().putString("story_prv_everyoneexcept", TextUtils.join(",", arrayList2)).putString("story_prv_grpeveryoneexcept", sb2.toString()).putString("story_prv_contacts", TextUtils.join(",", arrayList3)).putString("story_prv_grpcontacts", sb.toString()).putString("story_prv_excluded", TextUtils.join(",", arrayList)).putBoolean("story_noforwards", !this.f45195x).putBoolean("story_keep", this.f45196y).apply();
+        super.dismiss();
+    }
+
+    @Override
+    public final void dismissInternal() {
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.contactsDidLoad);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesBlocklistUpdate);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesSendAsUpdate);
+        super.dismissInternal();
+    }
+
+    public final void e1(boolean z4) {
+        View[] viewPages;
+        this.B = z4;
+        ek ekVar = this.f45187b;
+        if (ekVar != null) {
+            for (View view : ekVar.getViewPages()) {
+                if (view instanceof w7) {
+                    ((w7) view).e(false);
+                }
+            }
+        }
+    }
+
+    public final void f1() {
+        View[] viewPages;
+        q7 q7Var;
+        for (View view : this.f45187b.getViewPages()) {
+            if ((view instanceof w7) && (q7Var = ((w7) view).f46271x) != null) {
+                AndroidUtilities.hideKeyboard(q7Var.f46412a);
+            }
+        }
+    }
+
+    public final void g1(a8 a8Var, Runnable runnable, boolean z4) {
+        ArrayList arrayList = new ArrayList();
+        if (this.P != null) {
+            MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+            for (int i10 = 0; i10 < this.P.size(); i10++) {
+                String str = (String) this.P.get(i10);
+                TLObject userOrChat = messagesController.getUserOrChat(str);
+                if (userOrChat instanceof TLRPC.User) {
+                    TLRPC.User user = (TLRPC.User) userOrChat;
+                    TLRPC.User user2 = messagesController.getUser(Long.valueOf(user.f20992id));
+                    if (user2 != null) {
+                        user = user2;
+                    }
+                    if (!user.bot && !a8Var.b(user)) {
+                        arrayList.add(str);
+                    }
+                }
+            }
+        }
+        d dVar = null;
+        if (!arrayList.isEmpty() && !z4) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            for (int i11 = 0; i11 < Math.min(2, arrayList.size()); i11++) {
+                if (i11 > 0) {
+                    spannableStringBuilder.append((CharSequence) ", ");
+                }
+                SpannableString spannableString = new SpannableString("@" + ((String) arrayList.get(i11)));
+                spannableString.setSpan(new e51(AndroidUtilities.bold()), 0, spannableString.length(), 33);
+                spannableStringBuilder.append((CharSequence) spannableString);
+            }
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.resourcesProvider);
+            alertDialog$Builder.f21168a.O = LocaleController.getString(R.string.StoryRestrictions);
+            alertDialog$Builder.f21168a.Q = AndroidUtilities.replaceCharSequence("%s", LocaleController.getString(R.string.StoryRestrictionsInfo), spannableStringBuilder);
+            alertDialog$Builder.k(LocaleController.getString(R.string.Proceed), new l1(this, a8Var, runnable, 1));
+            l.d.u(R.string.Cancel, alertDialog$Builder, null);
+            return;
+        }
+        View view = this.f45187b.getViewPages()[0];
+        if (view instanceof w7) {
+            dVar = ((w7) view).v;
+        }
+        if (dVar != null) {
+            dVar.setLoading(true);
+        }
+        k7 k7Var = this.Q;
+        if (k7Var != null) {
+            k7Var.e(a8Var, this.f45194w, this.f45195x, this.f45196y, this.D, this.f45188c, this.E, new l6(5, dVar, runnable), new org.telegram.ui.web.s0(dVar, 24));
+        } else {
+            runnable.run();
+        }
+    }
+
+    public final ArrayList h1() {
+        TLRPC.User user;
+        ArrayList arrayList = new ArrayList();
+        ArrayList<TLRPC.TL_contact> arrayList2 = ContactsController.getInstance(this.currentAccount).contacts;
+        if (arrayList2 == null || arrayList2.isEmpty()) {
+            ContactsController.getInstance(this.currentAccount).loadContacts(false, 0L);
+        }
+        MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+        if (arrayList2 != null) {
+            for (int i10 = 0; i10 < arrayList2.size(); i10++) {
+                TLRPC.TL_contact tL_contact = arrayList2.get(i10);
+                if (tL_contact != null && (user = messagesController.getUser(Long.valueOf(tL_contact.user_id))) != null && !UserObject.isUserSelf(user) && !user.bot && user.f20992id != 777000) {
+                    arrayList.add(user);
+                }
+            }
+        }
+        return arrayList;
+    }
+
+    public final oh.t6 i1() {
+        return MessagesController.getInstance(this.currentAccount).getStoriesController();
+    }
+
+    public final void j1(Context context) {
+        ic.a(this.container, new hg.w(12));
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.contactsDidLoad);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesBlocklistUpdate);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesSendAsUpdate);
+        int i10 = org.telegram.ui.ActionBar.k6.f21733h5;
+        this.O.setColor(org.telegram.ui.ActionBar.k6.v0(i10, this.resourcesProvider));
+        fixNavigationBar(org.telegram.ui.ActionBar.k6.v0(i10, this.resourcesProvider));
+        this.containerView = new rz(this, context);
+        ek ekVar = new ek(this, context, 7);
+        this.f45187b = ekVar;
+        int i11 = this.backgroundPaddingLeft;
+        ekVar.setPadding(i11, 0, i11, 0);
+        this.containerView.addView(this.f45187b, k7.c6.e(-1, -1, 119));
+    }
+
+    public final void k1(boolean z4) {
+        View[] viewPages;
+        this.W = z4;
+        ek ekVar = this.f45187b;
+        if (ekVar != null) {
+            for (View view : ekVar.getViewPages()) {
+                if (view instanceof w7) {
+                    w7 w7Var = (w7) view;
+                    w7Var.g(false);
+                    w7Var.e(false);
+                }
+            }
+        }
+    }
+
+    public final void m1(int i10) {
+        View[] viewPages;
+        this.F = i10;
+        ek ekVar = this.f45187b;
+        if (ekVar != null) {
+            for (View view : ekVar.getViewPages()) {
+                if (view instanceof w7) {
+                    ((w7) view).e(false);
+                }
+            }
+        }
+    }
+
+    public final void n1(Bitmap bitmap) {
+        BitmapDrawable bitmapDrawable;
+        View[] viewPages;
+        if (bitmap == null) {
+            bitmapDrawable = null;
+        } else {
+            bitmapDrawable = new BitmapDrawable(bitmap);
+        }
+        this.Y = bitmapDrawable;
+        ek ekVar = this.f45187b;
+        if (ekVar != null) {
+            for (View view : ekVar.getViewPages()) {
+                if (view instanceof w7) {
+                    w7 w7Var = (w7) view;
+                    w7Var.g(false);
+                    w7Var.e(false);
+                }
+            }
+        }
+    }
+
+    public final void o1() {
+        this.H = true;
+        View[] viewPages = this.f45187b.getViewPages();
+        View view = viewPages[0];
+        if (view instanceof w7) {
+            w7 w7Var = (w7) view;
+            w7Var.b(w7Var.f46262a);
+        }
+        View view2 = viewPages[1];
+        if (view2 instanceof w7) {
+            w7 w7Var2 = (w7) view2;
+            w7Var2.b(w7Var2.f46262a);
+        }
+    }
+
+    @Override
+    public final void onBackPressed() {
+        if (this.f45187b.getCurrentPosition() > 0) {
+            f1();
+            ek ekVar = this.f45187b;
+            ekVar.D(ekVar.getCurrentPosition() - 1);
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    public final void p1(TLRPC.InputPeer inputPeer) {
+        this.f45188c = inputPeer;
+        this.v.clear();
+        View[] viewPages = this.f45187b.getViewPages();
+        View view = viewPages[0];
+        if (view instanceof w7) {
+            w7 w7Var = (w7) view;
+            w7Var.b(w7Var.f46262a);
+        }
+        View view2 = viewPages[1];
+        if (view2 instanceof w7) {
+            w7 w7Var2 = (w7) view2;
+            w7Var2.b(w7Var2.f46262a);
+        }
+    }
+
+    public final void q1(a8 a8Var) {
+        if (a8Var != null) {
+            HashMap hashMap = a8Var.d;
+            int i10 = a8Var.f44994a;
+            ArrayList arrayList = a8Var.f44996c;
+            this.K = i10;
+            if (i10 == 2) {
+                ArrayList arrayList2 = this.h;
+                arrayList2.clear();
+                arrayList2.addAll(arrayList);
+            } else if (i10 == 3) {
+                ArrayList arrayList3 = this.f45191n;
+                arrayList3.clear();
+                arrayList3.addAll(arrayList);
+                HashMap hashMap2 = this.f45192r;
+                hashMap2.clear();
+                hashMap2.putAll(hashMap);
+                this.f45193s = l1(arrayList3, hashMap2).size();
+            } else if (i10 == 4) {
+                ArrayList arrayList4 = this.d;
+                arrayList4.clear();
+                arrayList4.addAll(arrayList);
+                HashMap hashMap3 = this.f45189e;
+                hashMap3.clear();
+                hashMap3.putAll(hashMap);
+                this.f45190f = l1(arrayList4, hashMap3).size();
+            }
+            if (i10 == 5) {
+                this.L = true;
+                this.J = 5;
+                ArrayList arrayList5 = this.G;
+                arrayList5.clear();
+                arrayList5.addAll(a8Var.f44998f);
+                this.f45187b.setPosition(1);
+            }
+            View[] viewPages = this.f45187b.getViewPages();
+            View view = viewPages[0];
+            if (view instanceof w7) {
+                w7 w7Var = (w7) view;
+                w7Var.b(w7Var.f46262a);
+            }
+            View view2 = viewPages[1];
+            if (view2 instanceof w7) {
+                w7 w7Var2 = (w7) view2;
+                w7Var2.b(w7Var2.f46262a);
+            }
+        }
+    }
 
     public c8(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context);
-        int i10;
-        org.telegram.ui.Components.z8 z8Var = new org.telegram.ui.Components.z8((org.telegram.ui.ActionBar.g6) null);
-        this.f45063b = z8Var;
-        this.f45067n = new Paint(1);
-        this.f45068r = false;
-        this.f45069s = true;
-        this.v = true;
-        this.f45070w = new boolean[1];
-        this.f45062a = g6Var;
-        z8Var.f33805r = AndroidUtilities.dp(40.0f);
-        org.telegram.ui.Components.p9 p9Var = new org.telegram.ui.Components.p9(context);
-        this.f45064c = p9Var;
-        p9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
-        addView(p9Var);
-        org.telegram.ui.ActionBar.l5 l5Var = new org.telegram.ui.ActionBar.l5(context);
-        this.d = l5Var;
-        l5Var.setTypeface(AndroidUtilities.bold());
-        l5Var.setTextSize(16);
-        int i11 = org.telegram.ui.ActionBar.k6.f21766j5;
-        l5Var.setTextColor(org.telegram.ui.ActionBar.k6.v0(i11, g6Var));
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        l5Var.setGravity(i10);
-        NotificationCenter.listenEmojiLoading(l5Var);
-        addView(l5Var);
-        org.telegram.ui.ActionBar.l5 l5Var2 = new org.telegram.ui.ActionBar.l5(context);
-        this.f45065e = l5Var2;
-        l5Var2.setTextSize(14);
-        l5Var2.setTextColor(org.telegram.ui.ActionBar.k6.v0(i11, g6Var));
-        l5Var2.setGravity(LocaleController.isRTL ? 5 : 3);
-        NotificationCenter.listenEmojiLoading(l5Var2);
-        addView(l5Var2);
-        np npVar = new np(context, 21, g6Var);
-        this.f45066f = npVar;
-        int i12 = org.telegram.ui.ActionBar.k6.B5;
-        int i13 = org.telegram.ui.ActionBar.k6.f21768j7;
-        npVar.b(i12, i13, org.telegram.ui.ActionBar.k6.C5);
-        npVar.setDrawUnchecked(true);
-        npVar.setDrawBackgroundAsArc(10);
-        addView(npVar);
-        npVar.a(false, false);
-        npVar.setVisibility(8);
-        RadioButton radioButton = new RadioButton(context);
-        this.h = radioButton;
-        radioButton.setSize(AndroidUtilities.dp(20.0f));
-        radioButton.b(org.telegram.ui.ActionBar.k6.v0(i13, g6Var), org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.E5, g6Var));
-        addView(radioButton);
-        radioButton.setVisibility(8);
-        f();
-    }
-
-    private void setSubtitle(CharSequence charSequence) {
-        org.telegram.ui.ActionBar.l5 l5Var = this.d;
-        org.telegram.ui.ActionBar.l5 l5Var2 = this.f45065e;
-        if (charSequence == null) {
-            l5Var.setTranslationY(0.0f);
-            l5Var2.setVisibility(8);
-            return;
-        }
-        l5Var.setTranslationY(AndroidUtilities.dp(-9.0f));
-        l5Var2.setTranslationY(AndroidUtilities.dp(12.0f));
-        l5Var2.l(charSequence, false);
-        l5Var2.setVisibility(0);
-    }
-
-    public final void a(int i10, TLRPC.Chat chat) {
-        long j10;
-        float f10;
-        String lowerCase;
-        int i11;
-        int i12;
-        float f11;
-        int i13;
-        if (chat == null) {
-            j10 = 0;
-        } else {
-            j10 = -chat.f20843id;
-        }
-        this.f45071x = j10;
-        org.telegram.ui.Components.z8 z8Var = this.f45063b;
-        z8Var.q(chat);
-        if (ChatObject.isForum(chat)) {
-            f10 = 12.0f;
-        } else {
-            f10 = 20.0f;
-        }
-        int dp = AndroidUtilities.dp(f10);
-        org.telegram.ui.Components.p9 p9Var = this.f45064c;
-        p9Var.setRoundRadius(dp);
-        p9Var.e(chat, z8Var);
-        String str = chat.title;
-        org.telegram.ui.ActionBar.l5 l5Var = this.d;
-        l5Var.l(Emoji.replaceEmoji(str, l5Var.getPaint().getFontMetricsInt(), false), false);
-        boolean[] zArr = this.f45070w;
-        zArr[0] = false;
-        String str2 = "Members";
-        if (this.f45068r) {
-            if (i10 <= 0) {
-                i10 = chat.participants_count;
-            }
-            boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
-            if (i10 >= 1) {
-                if (isChannelAndNotMegaGroup) {
-                    str2 = "Subscribers";
-                }
-                lowerCase = LocaleController.formatPluralString(str2, i10, new Object[0]);
-            } else {
-                if (isChannelAndNotMegaGroup) {
-                    i13 = R.string.DiscussChannel;
-                } else {
-                    i13 = R.string.AccDescrGroup;
-                }
-                lowerCase = LocaleController.getString(i13);
-            }
-        } else if (ChatObject.isChannel(chat) && !chat.megagroup) {
-            if (i10 >= 1) {
-                lowerCase = LocaleController.formatPluralStringComma("Subscribers", i10 - 1);
-            } else if (!ChatObject.isPublic(chat)) {
-                lowerCase = LocaleController.getString(R.string.ChannelPrivate).toLowerCase();
-            } else {
-                lowerCase = LocaleController.getString(R.string.ChannelPublic).toLowerCase();
-            }
-        } else if (i10 >= 1) {
-            lowerCase = LocaleController.formatPluralStringComma("Members", i10 - 1);
-        } else if (chat.has_geo) {
-            lowerCase = LocaleController.getString(R.string.MegaLocation);
-        } else if (!ChatObject.isPublic(chat)) {
-            lowerCase = LocaleController.getString(R.string.MegaPrivate).toLowerCase();
-        } else {
-            lowerCase = LocaleController.getString(R.string.MegaPublic).toLowerCase();
-        }
-        setSubtitle(lowerCase);
-        if (zArr[0]) {
-            i11 = org.telegram.ui.ActionBar.k6.f21838n5;
-        } else {
-            i11 = org.telegram.ui.ActionBar.k6.f21911r5;
-        }
-        this.f45065e.setTextColor(org.telegram.ui.ActionBar.k6.v0(i11, this.f45062a));
-        if (this.f45069s) {
-            i12 = 0;
-        } else {
-            i12 = 8;
-        }
-        this.f45066f.setVisibility(i12);
-        this.h.setVisibility(8);
-        if (i10 > 200) {
-            f11 = 0.3f;
-        } else {
-            f11 = 1.0f;
-        }
-        b(f11, false);
-    }
-
-    public final void b(float f10, boolean z4) {
-        RadioButton radioButton = this.h;
-        np npVar = this.f45066f;
-        if (z4) {
-            if (Math.abs(npVar.getAlpha() - f10) > 0.1d) {
-                npVar.animate().cancel();
-                npVar.animate().alpha(f10).start();
-            }
-            if (Math.abs(radioButton.getAlpha() - f10) > 0.1d) {
-                radioButton.animate().cancel();
-                radioButton.animate().alpha(f10).start();
-                return;
-            }
-            return;
-        }
-        npVar.animate().cancel();
-        npVar.setAlpha(f10);
-        radioButton.animate().cancel();
-        radioButton.setAlpha(f10);
-    }
-
-    public final void c(boolean z4, boolean z10) {
-        np npVar = this.f45066f;
-        if (npVar.getVisibility() == 0) {
-            npVar.a(z4, z10);
-        }
-        RadioButton radioButton = this.h;
-        if (radioButton.getVisibility() == 0) {
-            radioButton.a(z4, z10);
-        }
-    }
-
-    public final void d(boolean z4, boolean z10) {
-        boolean z11;
-        this.f45068r = z4;
-        if (z10 != this.f45069s) {
-            this.f45069s = z10;
-            f();
-        }
-        if (!this.f45069s) {
-            this.h.setVisibility(8);
-            this.f45066f.setVisibility(8);
-        }
-        if (!this.f45072y && (this.f45069s || !this.f45068r)) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        setWillNotDraw(z11);
-    }
-
-    public final void e(int i10, TLRPC.User user, int i11) {
-        org.telegram.ui.ActionBar.g6 g6Var = this.f45062a;
-        org.telegram.ui.ActionBar.l5 l5Var = this.d;
-        org.telegram.ui.ActionBar.l5 l5Var2 = this.f45065e;
-        org.telegram.ui.Components.z8 z8Var = this.f45063b;
-        int i12 = 0;
-        if (i10 == 4) {
-            l5Var.l(LocaleController.getString(R.string.StoryPrivacyOptionEveryone), false);
-            if (i11 == 1 && user != null) {
-                setSubtitle(g(Emoji.replaceEmoji(LocaleController.formatString(R.string.StoryPrivacyOptionExcludePerson, UserObject.getUserName(user)), l5Var2.getPaint().getFontMetricsInt(), false)));
-            } else if (i11 > 0) {
-                setSubtitle(g(LocaleController.formatPluralString("StoryPrivacyOptionExcludePeople", i11, new Object[0])));
-            } else {
-                setSubtitle(g(LocaleController.getString(R.string.StoryPrivacyOptionContactsDetail)));
-            }
-            l5Var2.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21838n5, g6Var));
-            z8Var.g(7);
-            z8Var.i(-15292942, -15630089);
-        } else if (i10 == 2) {
-            l5Var.l(LocaleController.getString(R.string.StoryPrivacyOptionContacts), false);
-            if (i11 == 1 && user != null) {
-                setSubtitle(g(Emoji.replaceEmoji(LocaleController.formatString(R.string.StoryPrivacyOptionExcludePerson, UserObject.getUserName(user)), l5Var2.getPaint().getFontMetricsInt(), false)));
-            } else if (i11 > 0) {
-                setSubtitle(g(LocaleController.formatPluralString("StoryPrivacyOptionExcludePeople", i11, new Object[0])));
-            } else {
-                setSubtitle(g(LocaleController.getString(R.string.StoryPrivacyOptionContactsDetail)));
-            }
-            l5Var2.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21838n5, g6Var));
-            z8Var.g(4);
-            z8Var.i(-3905294, -6923014);
-        } else if (i10 == 1) {
-            l5Var.l(LocaleController.getString(R.string.StoryPrivacyOptionCloseFriends), false);
-            if (i11 == 1 && user != null) {
-                setSubtitle(g(Emoji.replaceEmoji(UserObject.getUserName(user), l5Var2.getPaint().getFontMetricsInt(), false)));
-            } else if (i11 > 0) {
-                setSubtitle(g(LocaleController.formatPluralString("StoryPrivacyOptionPeople", i11, new Object[0])));
-            } else {
-                setSubtitle(g(LocaleController.getString(R.string.StoryPrivacyOptionCloseFriendsDetail)));
-            }
-            l5Var2.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21838n5, g6Var));
-            z8Var.g(15);
-            z8Var.i(-7808710, -13781445);
-        } else if (i10 == 3) {
-            l5Var.l(LocaleController.getString(R.string.StoryPrivacyOptionSelectedContacts), false);
-            if (i11 == 1 && user != null) {
-                setSubtitle(g(Emoji.replaceEmoji(UserObject.getUserName(user), l5Var2.getPaint().getFontMetricsInt(), false)));
-            } else if (i11 > 0) {
-                setSubtitle(g(LocaleController.formatPluralString("StoryPrivacyOptionPeople", i11, new Object[0])));
-            } else {
-                setSubtitle(g(LocaleController.getString(R.string.StoryPrivacyOptionSelectedContactsDetail)));
-            }
-            l5Var2.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21838n5, g6Var));
-            z8Var.g(6);
-            z8Var.i(-18621, -618956);
-        }
-        this.f45066f.setVisibility(8);
-        if (!this.f45069s) {
-            i12 = 8;
-        }
-        this.h.setVisibility(i12);
-        org.telegram.ui.Components.p9 p9Var = this.f45064c;
-        p9Var.setImageDrawable(z8Var);
-        p9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
-    }
-
-    public final void f() {
-        int i10;
-        float f10;
-        float f11;
-        int i11;
-        int i12;
-        float f12;
-        float f13;
-        int i13;
-        int i14;
-        float f14;
-        float f15;
-        int i15;
-        int i16;
-        int i17 = 3;
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        int i18 = i10 | 16;
-        boolean z4 = this.f45069s;
-        if (z4) {
-            f10 = 53.0f;
-        } else {
-            f10 = 16.0f;
-        }
-        if (z4) {
-            f11 = 53.0f;
-        } else {
-            f11 = 16.0f;
-        }
-        this.f45064c.setLayoutParams(k7.c6.d(40, 40.0f, i18, f10, 0.0f, f11, 0.0f));
-        boolean z10 = LocaleController.isRTL;
-        if (z10) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        int i19 = i11 | 16;
-        int i20 = 68;
-        if (z10) {
-            f12 = 20.0f;
-        } else {
-            if (this.f45069s) {
-                i12 = 105;
-            } else {
-                i12 = 68;
-            }
-            f12 = i12;
-        }
-        if (z10) {
-            if (this.f45069s) {
-                i16 = 105;
-            } else {
-                i16 = 68;
-            }
-            f13 = i16;
-        } else {
-            f13 = 20.0f;
-        }
-        this.d.setLayoutParams(k7.c6.d(-1, -2.0f, i19, f12, 0.0f, f13, 0.0f));
-        boolean z11 = LocaleController.isRTL;
-        if (z11) {
-            i13 = 5;
-        } else {
-            i13 = 3;
-        }
-        int i21 = i13 | 16;
-        if (z11) {
-            f14 = 20.0f;
-        } else {
-            if (this.f45069s) {
-                i14 = 105;
-            } else {
-                i14 = 68;
-            }
-            f14 = i14;
-        }
-        if (z11) {
-            if (this.f45069s) {
-                i20 = 105;
-            }
-            f15 = i20;
-        } else {
-            f15 = 20.0f;
-        }
-        this.f45065e.setLayoutParams(k7.c6.d(-1, -2.0f, i21, f14, 0.0f, f15, 0.0f));
-        if (LocaleController.isRTL) {
-            i15 = 5;
-        } else {
-            i15 = 3;
-        }
-        this.f45066f.setLayoutParams(k7.c6.d(24, 24.0f, i15 | 16, 13.0f, 0.0f, 14.0f, 0.0f));
-        if (LocaleController.isRTL) {
-            i17 = 5;
-        }
-        this.h.setLayoutParams(k7.c6.d(22, 22.0f, i17 | 16, 14.0f, 0.0f, 15.0f, 0.0f));
-    }
-
-    public final SpannableStringBuilder g(CharSequence charSequence) {
-        SpannableString spannableString = new SpannableString(">");
-        Drawable drawable = getContext().getResources().getDrawable(R.drawable.attach_arrow_right);
-        oq oqVar = new oq(2, drawable);
-        drawable.setBounds(0, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(12.0f));
-        spannableString.setSpan(oqVar, 0, spannableString.length(), 33);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append(charSequence).append((CharSequence) " ").append((CharSequence) spannableString);
-        return spannableStringBuilder;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        Paint paint;
-        super.onDraw(canvas);
-        if (this.f45072y) {
-            int v02 = org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21660d7, this.f45062a);
-            Paint paint2 = this.f45067n;
-            paint2.setColor(v02);
-            if (LocaleController.isRTL) {
-                canvas2 = canvas;
-                canvas2.drawRect(0.0f, getHeight() - 1, getWidth() - AndroidUtilities.dp(105.0f), getHeight(), paint2);
-            } else {
-                canvas2 = canvas;
-                canvas2.drawRect(AndroidUtilities.dp(105.0f), getHeight() - 1, getWidth(), getHeight(), paint2);
-            }
-        } else {
-            canvas2 = canvas;
-        }
-        Path path = this.B;
-        if (path != null && (paint = this.C) != null && !this.f45069s && this.f45068r && this.v) {
-            canvas2.drawPath(path, paint);
-        }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(android.view.accessibility.AccessibilityNodeInfo r7) {
-        throw new UnsupportedOperationException("Method not decompiled: qh.c8.onInitializeAccessibilityNodeInfo(android.view.accessibility.AccessibilityNodeInfo):void");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        float f10;
-        int measuredWidth;
-        float f11;
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-        if (this.f45068r && !this.f45069s) {
-            f10 = 62.0f;
-        } else {
-            f10 = 56.0f;
-        }
-        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f10), 1073741824));
-        if (!this.f45069s && this.f45068r) {
-            Path path = this.B;
-            if (path == null) {
-                this.B = new Path();
-            } else {
-                path.rewind();
-            }
-            if (LocaleController.isRTL) {
-                measuredWidth = AndroidUtilities.dp(31.0f);
-            } else {
-                measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(31.0f);
-            }
-            float f12 = measuredWidth;
-            float measuredHeight = getMeasuredHeight() / 2.0f;
-            if (LocaleController.isRTL) {
-                f11 = -1.0f;
-            } else {
-                f11 = 1.0f;
-            }
-            this.B.moveTo(f12, measuredHeight - AndroidUtilities.dp(6.0f));
-            this.B.lineTo((f11 * AndroidUtilities.dp(6.0f)) + f12, measuredHeight);
-            this.B.lineTo(f12, measuredHeight + AndroidUtilities.dp(6.0f));
-            if (this.C == null) {
-                Paint paint = new Paint(1);
-                this.C = paint;
-                paint.setStyle(Paint.Style.STROKE);
-                this.C.setStrokeCap(Paint.Cap.ROUND);
-            }
-            this.C.setStrokeWidth(AndroidUtilities.dpf2(1.86f));
-            this.C.setColor(org.telegram.ui.ActionBar.k6.l1(0.3f, org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.G6, this.f45062a)));
-        }
-    }
-
-    public void set(Object obj) {
-        int i10;
-        boolean z4 = obj instanceof TLRPC.User;
-        org.telegram.ui.ActionBar.l5 l5Var = this.d;
-        if (z4) {
-            l5Var.setTypeface(AndroidUtilities.bold());
-            l5Var.setTranslationX(0.0f);
-            setUser((TLRPC.User) obj);
-        } else if (obj instanceof TLRPC.Chat) {
-            l5Var.setTypeface(AndroidUtilities.bold());
-            l5Var.setTranslationX(0.0f);
-            a(0, (TLRPC.Chat) obj);
-        } else if (obj instanceof String) {
-            l5Var.setTypeface(null);
-            int i11 = -AndroidUtilities.dp(52.0f);
-            if (LocaleController.isRTL) {
-                i10 = -1;
-            } else {
-                i10 = 1;
-            }
-            l5Var.setTranslationX(i11 * i10);
-            l5Var.l((String) obj, false);
-        }
-    }
-
-    public void setDivider(boolean z4) {
-        boolean z10;
-        this.f45072y = z4;
-        if (!z4 && (this.f45069s || !this.f45068r)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        setWillNotDraw(z10);
-    }
-
-    public void setRedCheckbox(boolean z4) {
-        int i10;
-        if (z4) {
-            i10 = org.telegram.ui.ActionBar.k6.wj;
-        } else {
-            i10 = org.telegram.ui.ActionBar.k6.B5;
-        }
-        this.f45066f.b(i10, org.telegram.ui.ActionBar.k6.f21768j7, org.telegram.ui.ActionBar.k6.C5);
-    }
-
-    public void setUser(TLRPC.User user) {
-        long j10;
-        int i10;
-        if (user == null) {
-            j10 = 0;
-        } else {
-            j10 = user.f20990id;
-        }
-        this.f45071x = j10;
-        org.telegram.ui.Components.z8 z8Var = this.f45063b;
-        z8Var.r(user);
-        int dp = AndroidUtilities.dp(20.0f);
-        org.telegram.ui.Components.p9 p9Var = this.f45064c;
-        p9Var.setRoundRadius(dp);
-        p9Var.e(user, z8Var);
-        String userName = UserObject.getUserName(user);
-        org.telegram.ui.ActionBar.l5 l5Var = this.d;
-        int i11 = 0;
-        l5Var.l(Emoji.replaceEmoji(userName, l5Var.getPaint().getFontMetricsInt(), false), false);
-        boolean[] zArr = this.f45070w;
-        zArr[0] = false;
-        boolean z4 = this.f45068r;
-        org.telegram.ui.ActionBar.g6 g6Var = this.f45062a;
-        org.telegram.ui.ActionBar.l5 l5Var2 = this.f45065e;
-        if (z4) {
-            setSubtitle(LocaleController.getString(R.string.VoipGroupPersonalAccount));
-            l5Var2.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21911r5, g6Var));
-        } else {
-            setSubtitle(LocaleController.formatUserStatus(UserConfig.selectedAccount, user, zArr));
-            if (zArr[0]) {
-                i10 = org.telegram.ui.ActionBar.k6.f21838n5;
-            } else {
-                i10 = org.telegram.ui.ActionBar.k6.f21911r5;
-            }
-            l5Var2.setTextColor(org.telegram.ui.ActionBar.k6.v0(i10, g6Var));
-        }
-        if (!this.f45069s) {
-            i11 = 8;
-        }
-        np npVar = this.f45066f;
-        npVar.setVisibility(i11);
-        npVar.setAlpha(1.0f);
-        this.h.setVisibility(8);
+        super(context, g6Var, true, false);
+        this.d = new ArrayList();
+        this.f45189e = new HashMap();
+        this.f45190f = 0;
+        this.h = new ArrayList();
+        this.f45191n = new ArrayList();
+        this.f45192r = new HashMap();
+        this.f45193s = 0;
+        this.v = new HashSet();
+        this.f45194w = true;
+        this.f45195x = true;
+        this.f45196y = false;
+        this.B = true;
+        this.C = true;
+        this.D = false;
+        this.E = 0;
+        this.F = 1;
+        this.G = new ArrayList();
+        this.J = 1;
+        this.K = 4;
+        this.M = new HashMap();
+        this.N = 86400;
+        this.O = new Paint(1);
+        this.V = true;
+        this.W = false;
+        j1(context);
+        this.f45187b.setAdapter(new e7(this, context, 1));
     }
 }

@@ -51,7 +51,7 @@ public final class k extends g {
                     throw new r1(yh.k("Error while parsing Base64 encoded string: ", str), e6, true, 0);
                 }
             } else {
-                this.f6871b = URLDecoder.decode(str, r8.d.f46736a.name()).getBytes(r8.d.f46738c);
+                this.f6871b = URLDecoder.decode(str, r8.d.f46767a.name()).getBytes(r8.d.f46769c);
             }
             long j11 = pVar.f6888e;
             byte[] bArr = this.f6871b;

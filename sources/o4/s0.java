@@ -4,20 +4,20 @@ import java.util.Arrays;
 import mh.c3;
 import org.telegram.ui.yh;
 public final class s0 implements j3.g {
-    public static final String f16569f;
+    public static final String f16571f;
     public static final String h;
-    public static final c3 f16570n;
-    public final int f16571a;
-    public final String f16572b;
-    public final int f16573c;
+    public static final c3 f16572n;
+    public final int f16573a;
+    public final String f16574b;
+    public final int f16575c;
     public final j3.n0[] d;
-    public int f16574e;
+    public int f16576e;
 
     static {
         int i10 = h5.d0.f7237a;
-        f16569f = Integer.toString(0, 36);
+        f16571f = Integer.toString(0, 36);
         h = Integer.toString(1, 36);
-        f16570n = new c3(4);
+        f16572n = new c3(4);
     }
 
     public s0(String str, j3.n0... n0VarArr) {
@@ -28,11 +28,11 @@ public final class s0 implements j3.g {
             z4 = false;
         }
         h5.a.f(z4);
-        this.f16572b = str;
+        this.f16574b = str;
         this.d = n0VarArr;
-        this.f16571a = n0VarArr.length;
+        this.f16573a = n0VarArr.length;
         int g10 = h5.o.g(n0VarArr[0].C);
-        this.f16573c = g10 == -1 ? h5.o.g(n0VarArr[0].B) : g10;
+        this.f16575c = g10 == -1 ? h5.o.g(n0VarArr[0].B) : g10;
         String str2 = n0VarArr[0].f9320c;
         str2 = (str2 == null || str2.equals("und")) ? "" : "";
         int i10 = n0VarArr[0].f9321e | 16384;
@@ -78,7 +78,7 @@ public final class s0 implements j3.g {
         }
         if (obj != null && s0.class == obj.getClass()) {
             s0 s0Var = (s0) obj;
-            if (this.f16572b.equals(s0Var.f16572b) && Arrays.equals(this.d, s0Var.d)) {
+            if (this.f16574b.equals(s0Var.f16574b) && Arrays.equals(this.d, s0Var.d)) {
                 return true;
             }
         }
@@ -86,9 +86,9 @@ public final class s0 implements j3.g {
     }
 
     public final int hashCode() {
-        if (this.f16574e == 0) {
-            this.f16574e = l.d.e(527, 31, this.f16572b) + Arrays.hashCode(this.d);
+        if (this.f16576e == 0) {
+            this.f16576e = l.d.e(527, 31, this.f16574b) + Arrays.hashCode(this.d);
         }
-        return this.f16574e;
+        return this.f16576e;
     }
 }

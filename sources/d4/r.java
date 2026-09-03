@@ -336,7 +336,7 @@ public abstract class r extends j3.e {
                 this.f4271z0 = 2;
             }
             ByteBuffer byteBuffer = iVar.d;
-            n3.d dVar = iVar.f15214c;
+            n3.d dVar = iVar.f15216c;
             int position = byteBuffer.position();
             f7.b bVar = this.f9053c;
             bVar.l();
@@ -393,7 +393,7 @@ public abstract class r extends j3.e {
                                 if (dVar.d == null) {
                                     int[] iArr = new int[1];
                                     dVar.d = iArr;
-                                    dVar.f15202i.numBytesOfClearData = iArr;
+                                    dVar.f15204i.numBytesOfClearData = iArr;
                                 }
                                 int[] iArr2 = dVar.d;
                                 iArr2[0] = iArr2[0] + position;
@@ -433,7 +433,7 @@ public abstract class r extends j3.e {
                                 this.f4251e0 = false;
                             }
                         }
-                        long j10 = iVar.f15216f;
+                        long j10 = iVar.f15218f;
                         h hVar = this.f4260o0;
                         if (hVar != null) {
                             n0 n0Var = this.M;
@@ -451,9 +451,9 @@ public abstract class r extends j3.e {
                                 if (i18 == -1) {
                                     hVar.f4229c = true;
                                     hVar.f4228b = 0L;
-                                    hVar.f4227a = iVar.f15216f;
+                                    hVar.f4227a = iVar.f15218f;
                                     h5.a.K("C2Mp3TimestampTracker", "MPEG audio header is invalid.");
-                                    j10 = iVar.f15216f;
+                                    j10 = iVar.f15218f;
                                 } else {
                                     j10 = Math.max(0L, ((hVar.f4228b - 529) * 1000000) / n0Var.Q) + hVar.f4227a;
                                     hVar.f4228b += i18;
@@ -497,7 +497,7 @@ public abstract class r extends j3.e {
                             iVar.d = null;
                             this.C0 = true;
                             this.f4271z0 = 0;
-                            this.M0.f15206c++;
+                            this.M0.f15208c++;
                             return true;
                         } catch (MediaCodec.CryptoException e11) {
                             throw a(e11, this.M, false, d0.r(e11.getErrorCode()));
@@ -615,9 +615,9 @@ public abstract class r extends j3.e {
                     } else if (h instanceof o3.w) {
                         o3.w wVar = (o3.w) h;
                         try {
-                            MediaCrypto mediaCrypto = new MediaCrypto(wVar.f16420a, wVar.f16421b);
+                            MediaCrypto mediaCrypto = new MediaCrypto(wVar.f16422a, wVar.f16423b);
                             this.Q = mediaCrypto;
-                            if (!wVar.f16422c && mediaCrypto.requiresSecureDecoderComponent(str2)) {
+                            if (!wVar.f16424c && mediaCrypto.requiresSecureDecoderComponent(str2)) {
                                 z4 = true;
                             } else {
                                 z4 = false;
@@ -637,7 +637,7 @@ public abstract class r extends j3.e {
                     } else {
                         o3.h g10 = this.O.g();
                         g10.getClass();
-                        throw a(g10, this.M, false, g10.f16404a);
+                        throw a(g10, this.M, false, g10.f16406a);
                     }
                 }
             }
@@ -727,7 +727,7 @@ public abstract class r extends j3.e {
             k kVar = this.V;
             if (kVar != null) {
                 kVar.release();
-                this.M0.f15205b++;
+                this.M0.f15207b++;
                 T(this.f4249c0.f4235a);
             }
             this.V = null;
@@ -921,7 +921,7 @@ public abstract class r extends j3.e {
         n3.b h = this.P.h();
         if (h instanceof o3.w) {
             try {
-                this.Q.setMediaDrmSession(((o3.w) h).f16421b);
+                this.Q.setMediaDrmSession(((o3.w) h).f16423b);
             } catch (MediaCryptoException e6) {
                 throw a(e6, this.M, false, 6006);
             }
@@ -998,7 +998,7 @@ public abstract class r extends j3.e {
         int i11 = gVar3.v;
         if (i11 > 0) {
             gVar = gVar3;
-            if (c0(j10, j11, null, gVar3.d, this.f4263r0, 0, i11, gVar3.f15216f, gVar3.e(Integer.MIN_VALUE), gVar3.e(4), this.N)) {
+            if (c0(j10, j11, null, gVar3.d, this.f4263r0, 0, i11, gVar3.f15218f, gVar3.e(Integer.MIN_VALUE), gVar3.e(4), this.N)) {
                 X(gVar.f4225s);
                 gVar.b();
             } else {

@@ -6,8 +6,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.m81;
-public final class o3 extends m81 {
+import org.telegram.ui.Components.l81;
+public final class o3 extends l81 {
     public final g5 Q;
 
     public o3(g5 g5Var, Context context) {
@@ -45,14 +45,14 @@ public final class o3 extends m81 {
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
                 m3Var = g5Var.Y;
-                if (m3Var != null && view2 == m3Var.V && (q3Var3 = m3Var.f14083a0) != null) {
+                if (m3Var != null && view2 == m3Var.V && (q3Var3 = m3Var.f14085a0) != null) {
                     q3Var3.invalidate();
                 }
-                if (view2 == g5Var.V && (q3Var2 = g5Var.f14083a0) != null) {
+                if (view2 == g5Var.V && (q3Var2 = g5Var.f14085a0) != null) {
                     q3Var2.invalidate();
                 }
                 m3Var2 = g5Var.Z;
-                if (m3Var2 == null && view2 == m3Var2.V && (q3Var = m3Var2.f14083a0) != null) {
+                if (m3Var2 == null && view2 == m3Var2.V && (q3Var = m3Var2.f14085a0) != null) {
                     q3Var.invalidate();
                     return;
                 }
@@ -75,11 +75,11 @@ public final class o3 extends m81 {
     @Override
     public final void F() {
         super.F();
-        int i10 = this.f28985b;
+        int i10 = this.f28685b;
         g5 g5Var = this.Q;
         boolean z4 = false;
         if (i10 != g5Var.L1(false)) {
-            if (this.f28985b > g5Var.L1(false)) {
+            if (this.f28685b > g5Var.L1(false)) {
                 z4 = true;
             }
             AndroidUtilities.runOnUIThread(new kh.f(4, this, z4));

@@ -11,18 +11,18 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.mf1;
 import org.telegram.ui.py;
+import org.telegram.ui.sf1;
 public final class j1 implements Utilities.Callback {
-    public final mf1 f47471a;
-    public final py f47472b;
-    public final long f47473c;
+    public final sf1 f47507a;
+    public final py f47508b;
+    public final long f47509c;
     public final int d;
 
-    public j1(mf1 mf1Var, py pyVar, long j10, int i10) {
-        this.f47471a = mf1Var;
-        this.f47472b = pyVar;
-        this.f47473c = j10;
+    public j1(sf1 sf1Var, py pyVar, long j10, int i10) {
+        this.f47507a = sf1Var;
+        this.f47508b = pyVar;
+        this.f47509c = j10;
         this.d = i10;
     }
 
@@ -32,10 +32,10 @@ public final class j1 implements Utilities.Callback {
         TLRPC.User user;
         int i10;
         Boolean bool = (Boolean) obj;
-        mf1 mf1Var = this.f47471a;
-        py pyVar = this.f47472b;
-        if (mf1Var != null) {
-            mf1Var.finishFragment();
+        sf1 sf1Var = this.f47507a;
+        py pyVar = this.f47508b;
+        if (sf1Var != null) {
+            sf1Var.finishFragment();
             pyVar.removeSelfFromStack();
         } else {
             pyVar.finishFragment();
@@ -44,7 +44,7 @@ public final class j1 implements Utilities.Callback {
         if (U == null) {
             return;
         }
-        long j10 = this.f47473c;
+        long j10 = this.f47509c;
         int i11 = this.d;
         if (j10 >= 0) {
             TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(j10));

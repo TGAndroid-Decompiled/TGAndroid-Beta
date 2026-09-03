@@ -28,7 +28,7 @@ public final class g2 extends qd.s {
         if (this.threadLocalIsSet) {
             sc.d dVar = (sc.d) this.f12318e.get();
             if (dVar != null) {
-                qd.a.f((uc.h) dVar.f47235a, dVar.f47236b);
+                qd.a.f((uc.h) dVar.f47266a, dVar.f47267b);
             }
             this.f12318e.remove();
         }
@@ -37,7 +37,7 @@ public final class g2 extends qd.s {
         uc.h context = cVar.getContext();
         g2 g2Var = null;
         Object k10 = qd.a.k(context, null);
-        if (k10 != qd.a.f44792f) {
+        if (k10 != qd.a.f44823f) {
             g2Var = e0.v(cVar, context, k10);
         }
         try {

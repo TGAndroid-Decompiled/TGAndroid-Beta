@@ -18,8 +18,8 @@ public final class th extends fu {
         super.f();
         mz emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f29325t0 = false;
-            emojiView.f29330u2 = false;
+            emojiView.f29327t0 = false;
+            emojiView.f29332u2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
         }
@@ -27,7 +27,7 @@ public final class th extends fu {
 
     @Override
     public final void i(Menu menu) {
-        org.telegram.ui.ActionBar.p2 p2Var = this.S.f29040c0;
+        org.telegram.ui.ActionBar.p2 p2Var = this.S.f29058c0;
         if (p2Var instanceof org.telegram.ui.xn) {
             org.telegram.ui.xn.k8(menu, ((org.telegram.ui.xn) p2Var).h, true, true, true, true);
         }
@@ -37,7 +37,7 @@ public final class th extends fu {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         mi miVar = this.S;
         th thVar = miVar.M0;
-        if (!miVar.f29088r1) {
+        if (!miVar.f29106r1) {
             if (motionEvent.getX() > thVar.getEditText().getLeft() && motionEvent.getX() < thVar.getEditText().getRight() && motionEvent.getY() > thVar.getEditText().getTop() && motionEvent.getY() < thVar.getEditText().getBottom()) {
                 miVar.t1(thVar.getEditText(), true);
             } else {

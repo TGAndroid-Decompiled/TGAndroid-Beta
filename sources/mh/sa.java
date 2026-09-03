@@ -4,11 +4,11 @@ import android.os.Bundle;
 import org.telegram.ui.ProfileActivity;
 public final class sa extends ProfileActivity {
     public final boolean t6;
-    public final eb f14770u6;
+    public final eb f14772u6;
 
     public sa(eb ebVar, Bundle bundle, boolean z4) {
         super(bundle, null);
-        this.f14770u6 = ebVar;
+        this.f14772u6 = ebVar;
         this.t6 = z4;
     }
 
@@ -16,7 +16,7 @@ public final class sa extends ProfileActivity {
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
         if (!this.t6) {
-            this.f14770u6.show();
+            this.f14772u6.show();
         }
     }
 }

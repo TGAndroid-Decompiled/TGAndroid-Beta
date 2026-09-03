@@ -11,32 +11,32 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 public final class f50 {
-    public final int f26748a;
-    public final int f26749b;
-    public final FloatBuffer f26753g;
+    public final int f26782a;
+    public final int f26783b;
+    public final FloatBuffer f26787g;
     public final FloatBuffer h;
-    public final int[] f26756k;
-    public final e50 f26750c = new e50(R.raw.round_blur_stage_0_frag);
+    public final int[] f26790k;
+    public final e50 f26784c = new e50(R.raw.round_blur_stage_0_frag);
     public final e50 d = new e50(R.raw.round_blur_stage_3_frag);
-    public final c50 f26751e = new c50();
-    public final d50 f26752f = new d50();
-    public int f26754i = 0;
-    public final int[] f26755j = new int[1];
+    public final c50 f26785e = new c50();
+    public final d50 f26786f = new d50();
+    public int f26788i = 0;
+    public final int[] f26789j = new int[1];
 
     public f50(int i10, int i11) {
         int i12;
         int i13;
         int i14;
         int i15;
-        Canvas canvas;
+        RLottieNative rLottieNative;
         int i16;
         Bitmap bitmap;
         int i17;
         Object obj;
         int[] iArr = new int[5];
-        this.f26756k = iArr;
-        this.f26748a = i10;
-        this.f26749b = i11;
+        this.f26790k = iArr;
+        this.f26782a = i10;
+        this.f26783b = i11;
         float[] fArr = new float[232];
         c(fArr, 0, 0.0f, 1.0f, 1.0f, 0.0f);
         c(fArr, 8, 0.0f, 0.0f, 1.0f, 1.0f);
@@ -45,7 +45,7 @@ public final class f50 {
         GLES20.glGenTextures(5, iArr, 0);
         int i18 = 0;
         for (int i19 = 5; i18 < i19; i19 = 5) {
-            GLES20.glBindTexture(3553, this.f26756k[i18]);
+            GLES20.glBindTexture(3553, this.f26790k[i18]);
             if (i18 < 2) {
                 i12 = 9729;
             } else {
@@ -61,47 +61,47 @@ public final class f50 {
                 int round2 = Math.round((i10 * 28) / 1536.0f);
                 int i21 = (round - round2) - round2;
                 Object obj2 = null;
-                RLottieNative b10 = RLottieNative.b(AndroidUtilities.readRes(R.raw.plane_logo_plain), "logo_plane", null, null, null);
+                RLottieNative b10 = RLottieNative.b(AndroidUtilities.readRes(R.raw.plane_logo_plain), null, null, null);
                 Bitmap createBitmap = Bitmap.createBitmap(round, round, Bitmap.Config.ARGB_8888);
                 Bitmap createBitmap2 = Bitmap.createBitmap(i21 * 8, i21 * 4, Bitmap.Config.ALPHA_8);
-                Canvas canvas2 = new Canvas(createBitmap2);
+                Canvas canvas = new Canvas(createBitmap2);
                 int i22 = 0;
                 while (i22 < 8) {
                     int i23 = 0;
                     while (i23 < i20) {
                         int i24 = (i23 * 8) + i22;
                         if (i24 >= 27) {
-                            canvas = canvas2;
-                            i16 = i21;
-                            i15 = i22;
                             obj = obj2;
-                            i17 = i23;
                             bitmap = createBitmap;
+                            i15 = i21;
+                            i16 = i22;
+                            rLottieNative = b10;
+                            i17 = i23;
                         } else {
                             int i25 = (i24 * 8) + 16;
-                            i15 = i22;
-                            canvas = canvas2;
-                            i16 = i21;
+                            i15 = i21;
+                            rLottieNative = b10;
+                            i16 = i22;
                             bitmap = createBitmap;
                             i17 = i23;
                             c(fArr, i25, i22 / 8.0f, i23 / 4.0f, (i22 + 1) / 8.0f, (i23 + 1) / 4.0f);
-                            b10.c(i24 * 2, bitmap, true);
+                            rLottieNative.c(i24 * 2, bitmap, true);
                             obj = null;
-                            canvas.drawBitmap(bitmap, (i16 * i15) - round2, (i16 * i17) - round2, (Paint) null);
+                            canvas.drawBitmap(bitmap, (i15 * i16) - round2, (i15 * i17) - round2, (Paint) null);
                         }
-                        i21 = i16;
+                        i21 = i15;
+                        b10 = rLottieNative;
                         i23 = i17 + 1;
-                        canvas2 = canvas;
-                        createBitmap = bitmap;
-                        i22 = i15;
                         obj2 = obj;
+                        createBitmap = bitmap;
+                        i22 = i16;
                         i20 = 4;
                     }
                     i22++;
                     obj2 = obj2;
                     i20 = 4;
                 }
-                float c3 = w.c.c(i21, this.f26748a, 2.0f, -1.0f);
+                float c3 = w.c.c(i21, this.f26782a, 2.0f, -1.0f);
                 d(fArr2, 24, -1.0f, c3, c3);
                 GLUtils.texImage2D(3553, 0, createBitmap2, 0);
                 createBitmap2.recycle();
@@ -109,7 +109,7 @@ public final class f50 {
                 b10.d();
             } else if (i18 == 3) {
                 int round3 = Math.round((i10 * 372.0f) / 1536.0f);
-                float f10 = (round3 / this.f26748a) * 2.0f;
+                float f10 = (round3 / this.f26782a) * 2.0f;
                 d(fArr2, 12, 1.0f - f10, f10 - 1.0f, 1.0f);
                 Bitmap bitmapFromRaw = AndroidUtilities.getBitmapFromRaw(R.raw.round_blur_overlay_text);
                 if (bitmapFromRaw != null) {
@@ -122,12 +122,12 @@ public final class f50 {
                 }
             } else {
                 if (i18 == 0) {
-                    i13 = this.f26748a;
+                    i13 = this.f26782a;
                 } else {
                     i13 = 48;
                 }
                 if (i18 == 0) {
-                    i14 = this.f26749b;
+                    i14 = this.f26783b;
                 } else {
                     i14 = 48;
                 }
@@ -136,9 +136,9 @@ public final class f50 {
             i18++;
         }
         GLES20.glBindTexture(3553, 0);
-        GLES20.glGenFramebuffers(1, this.f26755j, 0);
+        GLES20.glGenFramebuffers(1, this.f26789j, 0);
         FloatBuffer k10 = org.telegram.messenger.y3.k(ByteBuffer.allocateDirect(144));
-        this.f26753g = k10;
+        this.f26787g = k10;
         k10.put(fArr2).position(0);
         FloatBuffer k11 = org.telegram.messenger.y3.k(ByteBuffer.allocateDirect(928));
         this.h = k11;
@@ -190,11 +190,11 @@ public final class f50 {
     }
 
     public final void b() {
-        this.f26750c.a();
-        this.f26751e.a();
-        this.f26752f.a();
+        this.f26784c.a();
+        this.f26785e.a();
+        this.f26786f.a();
         this.d.a();
-        GLES20.glDeleteTextures(5, this.f26756k, 0);
-        GLES20.glDeleteFramebuffers(1, this.f26755j, 0);
+        GLES20.glDeleteTextures(5, this.f26790k, 0);
+        GLES20.glDeleteFramebuffers(1, this.f26789j, 0);
     }
 }

@@ -10,28 +10,28 @@ import r3.m;
 import r3.n;
 import r3.v;
 public final class a implements k {
-    public m f49336b;
-    public int f49337c;
+    public m f49372b;
+    public int f49373c;
     public int d;
-    public int f49338e;
-    public k4.b f49340g;
+    public int f49374e;
+    public k4.b f49376g;
     public l h;
-    public f2.c f49341i;
-    public z3.m f49342j;
-    public final w f49335a = new w(6);
-    public long f49339f = -1;
+    public f2.c f49377i;
+    public z3.l f49378j;
+    public final w f49371a = new w(6);
+    public long f49375f = -1;
 
     public final void a() {
         b(new e4.b[0]);
-        m mVar = this.f49336b;
+        m mVar = this.f49372b;
         mVar.getClass();
         mVar.i1();
-        this.f49336b.m2(new n(-9223372036854775807L));
-        this.f49337c = 6;
+        this.f49372b.m2(new n(-9223372036854775807L));
+        this.f49373c = 6;
     }
 
     public final void b(e4.b... bVarArr) {
-        m mVar = this.f49336b;
+        m mVar = this.f49372b;
         mVar.getClass();
         v i22 = mVar.i2(1024, 4);
         m0 m0Var = new m0();
@@ -43,18 +43,18 @@ public final class a implements k {
     @Override
     public final void d(long j10, long j11) {
         if (j10 == 0) {
-            this.f49337c = 0;
-            this.f49342j = null;
-        } else if (this.f49337c == 5) {
-            z3.m mVar = this.f49342j;
-            mVar.getClass();
-            mVar.d(j10, j11);
+            this.f49373c = 0;
+            this.f49378j = null;
+        } else if (this.f49373c == 5) {
+            z3.l lVar = this.f49378j;
+            lVar.getClass();
+            lVar.d(j10, j11);
         }
     }
 
     @Override
     public final void e(m mVar) {
-        this.f49336b = mVar;
+        this.f49372b = mVar;
     }
 
     @Override
@@ -65,7 +65,7 @@ public final class a implements k {
     @Override
     public final boolean i(l lVar) {
         h hVar = (h) lVar;
-        w wVar = this.f49335a;
+        w wVar = this.f49371a;
         wVar.C(2);
         hVar.f(wVar.f7308a, 0, 2, false);
         if (wVar.z() == 65496) {
@@ -95,9 +95,9 @@ public final class a implements k {
 
     @Override
     public final void release() {
-        z3.m mVar = this.f49342j;
-        if (mVar != null) {
-            mVar.getClass();
+        z3.l lVar = this.f49378j;
+        if (lVar != null) {
+            lVar.getClass();
         }
     }
 }

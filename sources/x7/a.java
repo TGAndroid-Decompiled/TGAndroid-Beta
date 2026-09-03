@@ -4,11 +4,11 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import b6.m;
 public final class a {
-    public final g7.h f50437a;
+    public final g7.h f50473a;
 
     public a(g7.h hVar) {
         m.h(hVar);
-        this.f50437a = hVar;
+        this.f50473a = hVar;
     }
 
     public final boolean equals(Object obj) {
@@ -17,8 +17,8 @@ public final class a {
             return false;
         }
         try {
-            g7.h hVar = this.f50437a;
-            g7.h hVar2 = ((a) obj).f50437a;
+            g7.h hVar = this.f50473a;
+            g7.h hVar2 = ((a) obj).f50473a;
             g7.f fVar = (g7.f) hVar;
             Parcel M0 = fVar.M0();
             g7.b.c(M0, hVar2);
@@ -35,7 +35,7 @@ public final class a {
 
     public final int hashCode() {
         try {
-            g7.f fVar = (g7.f) this.f50437a;
+            g7.f fVar = (g7.f) this.f50473a;
             Parcel L0 = fVar.L0(fVar.M0(), 18);
             int readInt = L0.readInt();
             L0.recycle();

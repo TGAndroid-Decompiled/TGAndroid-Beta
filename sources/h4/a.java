@@ -33,8 +33,8 @@ public final class a implements e4.b {
 
     public static a a(w wVar) {
         int g10 = wVar.g();
-        String s6 = wVar.s(wVar.g(), d.f46736a);
-        String s9 = wVar.s(wVar.g(), d.f46738c);
+        String s6 = wVar.s(wVar.g(), d.f46767a);
+        String s9 = wVar.s(wVar.g(), d.f46769c);
         int g11 = wVar.g();
         int g12 = wVar.g();
         int g13 = wVar.g();

@@ -1,11 +1,12 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class ek extends org.telegram.ui.Components.m81 {
+public final class ek extends org.telegram.ui.Components.l81 {
     public final int Q;
     public final Object R;
 
@@ -50,7 +51,7 @@ public final class ek extends org.telegram.ui.Components.m81 {
         switch (this.Q) {
             case 4:
                 super.onLayout(z4, i10, i11, i12, i13);
-                ha1.Y((ha1) this.R);
+                na1.Y((na1) this.R);
                 return;
             default:
                 super.onLayout(z4, i10, i11, i12, i13);
@@ -72,9 +73,9 @@ public final class ek extends org.telegram.ui.Components.m81 {
     public void t(View view, View view2, int i10, int i11) {
         switch (this.Q) {
             case 7:
-                qh.d8 d8Var = (qh.d8) this.R;
-                if (qh.d8.d0(d8Var)) {
-                    d8Var.f1();
+                qh.c8 c8Var = (qh.c8) this.R;
+                if (qh.c8.d0(c8Var)) {
+                    c8Var.f1();
                     return;
                 }
                 return;
@@ -87,10 +88,10 @@ public final class ek extends org.telegram.ui.Components.m81 {
     public void u() {
         switch (this.Q) {
             case 4:
-                ha1 ha1Var = (ha1) this.R;
-                ha1Var.m0(ha1Var.f37426f0.getCurrentPosition(), true);
-                ha1Var.n0(0.0f, false);
-                ha1.W(ha1Var);
+                na1 na1Var = (na1) this.R;
+                na1Var.m0(na1Var.f39258f0.getCurrentPosition(), true);
+                na1Var.n0(0.0f, false);
+                na1.W(na1Var);
                 return;
             case 8:
                 if (getCurrentPosition() == 1) {
@@ -105,11 +106,11 @@ public final class ek extends org.telegram.ui.Components.m81 {
 
     @Override
     public void v() {
-        j31 j31Var;
+        o31 o31Var;
         switch (this.Q) {
             case 3:
-                if ((getCurrentView() instanceof l31) && (j31Var = ((l31) getCurrentView()).f38576n) != null) {
-                    AndroidUtilities.hideKeyboard(j31Var);
+                if ((getCurrentView() instanceof p31) && (o31Var = ((p31) getCurrentView()).f39877n) != null) {
+                    AndroidUtilities.hideKeyboard(o31Var);
                     return;
                 }
                 return;
@@ -130,44 +131,55 @@ public final class ek extends org.telegram.ui.Components.m81 {
                 xnVar.q9(1);
                 return;
             case 1:
-                ip0 ip0Var = (ip0) this.R;
-                ip0Var.E.setSelected(ip0Var.f37914y.getPositionAnimated());
-                ip0Var.f37907e.setProgressToGradient(1.0f - ip0Var.f37914y.getPositionAnimated());
+                np0 np0Var = (np0) this.R;
+                float positionAnimated = np0Var.F.getPositionAnimated();
+                np0Var.J.setSelected(positionAnimated);
+                np0Var.f39429e.setProgressToGradient(1.0f - k7.o.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
+                np0Var.G0();
+                hp0 C0 = np0Var.C0();
+                qh.d dVar = np0Var.N;
+                if (dVar != null && C0 != null && C0 != np0Var.O) {
+                    np0Var.O = C0;
+                    n7.qa qaVar = C0.f37448e;
+                    dVar.g((CharSequence) qaVar.f15701b, true, true);
+                    np0Var.N.f((SpannableStringBuilder) qaVar.f15702c, true);
+                }
+                np0Var.D0(1);
                 return;
             case 2:
-                ((tv0) this.R).e();
+                ((yv0) this.R).e();
                 return;
             case 3:
-                m31.o((m31) this.R).invalidate();
+                q31.o((q31) this.R).invalidate();
                 return;
             case 4:
-                ha1 ha1Var = (ha1) this.R;
-                float positionAnimated = ha1Var.f37426f0.getPositionAnimated();
-                ha1Var.n0(positionAnimated, !z4);
+                na1 na1Var = (na1) this.R;
+                float positionAnimated2 = na1Var.f39258f0.getPositionAnimated();
+                na1Var.n0(positionAnimated2, !z4);
                 if (!z4) {
-                    ha1Var.m0(Math.round(positionAnimated), true);
+                    na1Var.m0(Math.round(positionAnimated2), true);
                 }
-                ha1.W(ha1Var);
-                ha1.Y(ha1Var);
+                na1.W(na1Var);
+                na1.Y(na1Var);
                 return;
             case 5:
-                ((ud1) this.R).e();
+                ((zd1) this.R).e();
                 return;
             case 6:
-                qh.y1 y1Var = (qh.y1) this.R;
-                ek ekVar = y1Var.f46345f;
-                qh.x1 x1Var = y1Var.h;
-                if (x1Var != null) {
-                    x1Var.C = ekVar.getPositionAnimated();
-                    x1Var.invalidate();
+                qh.x1 x1Var = (qh.x1) this.R;
+                ek ekVar = x1Var.f46301f;
+                qh.w1 w1Var = x1Var.h;
+                if (w1Var != null) {
+                    w1Var.C = ekVar.getPositionAnimated();
+                    w1Var.invalidate();
                 }
-                viewGroup = ((org.telegram.ui.ActionBar.h3) y1Var).containerView;
+                viewGroup = ((org.telegram.ui.ActionBar.h3) x1Var).containerView;
                 viewGroup.invalidate();
                 invalidate();
-                qh.y1.D = ekVar.getCurrentPosition();
+                qh.x1.D = ekVar.getCurrentPosition();
                 return;
             case 7:
-                qh.d8.c0((qh.d8) this.R).invalidate();
+                qh.c8.c0((qh.c8) this.R).invalidate();
                 return;
             default:
                 th.i0.s((th.i0) this.R).invalidate();
@@ -181,9 +193,9 @@ public final class ek extends org.telegram.ui.Components.m81 {
             case 0:
                 if (i10 == 0) {
                     xn xnVar = (xn) this.R;
-                    if (xnVar.f43302p1) {
-                        xnVar.f43302p1 = false;
-                        xnVar.f43278n1.h.clear();
+                    if (xnVar.f43280p1) {
+                        xnVar.f43280p1 = false;
+                        xnVar.f43256n1.h.clear();
                         return;
                     }
                     return;

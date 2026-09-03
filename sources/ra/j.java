@@ -3,22 +3,22 @@ package ra;
 import java.util.AbstractSet;
 import java.util.Iterator;
 public final class j extends AbstractSet {
-    public final int f46768a;
-    public final l f46769b;
+    public final int f46799a;
+    public final l f46800b;
 
     public j(l lVar, int i10) {
-        this.f46768a = i10;
-        this.f46769b = lVar;
+        this.f46799a = i10;
+        this.f46800b = lVar;
     }
 
     @Override
     public final void clear() {
-        switch (this.f46768a) {
+        switch (this.f46799a) {
             case 0:
-                this.f46769b.clear();
+                this.f46800b.clear();
                 return;
             default:
-                this.f46769b.clear();
+                this.f46800b.clear();
                 return;
         }
     }
@@ -30,11 +30,11 @@ public final class j extends AbstractSet {
 
     @Override
     public final Iterator iterator() {
-        switch (this.f46768a) {
+        switch (this.f46799a) {
             case 0:
-                return new i(this.f46769b, 0);
+                return new i(this.f46800b, 0);
             default:
-                return new i(this.f46769b, 1);
+                return new i(this.f46800b, 1);
         }
     }
 
@@ -45,11 +45,11 @@ public final class j extends AbstractSet {
 
     @Override
     public final int size() {
-        switch (this.f46768a) {
+        switch (this.f46799a) {
             case 0:
-                return this.f46769b.d;
+                return this.f46800b.d;
             default:
-                return this.f46769b.d;
+                return this.f46800b.d;
         }
     }
 }

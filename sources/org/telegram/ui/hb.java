@@ -27,9 +27,9 @@ public final class hb extends qb {
                 while (true) {
                     ob obVar = sbVar.F;
                     if (i15 < obVar.d) {
-                        if (i15 >= obVar.f39701f && i15 < obVar.h) {
-                            ArrayList arrayList = obVar.f39702n.f41204p0;
-                            messageObject = (MessageObject) arrayList.get((arrayList.size() - (i15 - obVar.f39701f)) - 1);
+                        if (i15 >= obVar.f39637f && i15 < obVar.h) {
+                            ArrayList arrayList = obVar.f39638n.f41108p0;
+                            messageObject = (MessageObject) arrayList.get((arrayList.size() - (i15 - obVar.f39637f)) - 1);
                         } else {
                             messageObject = null;
                         }

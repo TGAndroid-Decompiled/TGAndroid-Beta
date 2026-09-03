@@ -27,7 +27,7 @@ public final class g extends ViewGroup {
         } else {
             z4 = false;
         }
-        canvas.drawColor(i0.a.k(k6.w0(null, k6.f21659d6, false), (int) Math.min(eVar.f5048o * 420.0f, 255.0f)));
+        canvas.drawColor(i0.a.k(k6.w0(null, k6.f21661d6, false), (int) Math.min(eVar.f5048o * 420.0f, 255.0f)));
         eVar.d.a(canvas, 1.0f);
         if (z4) {
             RectF rectF = eVar.f5045l;

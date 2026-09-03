@@ -38,7 +38,7 @@ public final class x30 extends AnimatorListenerAdapter {
             case 1:
                 y30 y30Var = this.f32940b.T;
                 if (y30Var != null) {
-                    ((org.telegram.ui.bs0) y30Var).f35585a.f34230b0.requestLayout();
+                    ((org.telegram.ui.gs0) y30Var).f37159a.f34230b0.requestLayout();
                     return;
                 }
                 return;

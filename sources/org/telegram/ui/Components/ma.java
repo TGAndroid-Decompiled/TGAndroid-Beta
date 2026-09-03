@@ -21,7 +21,7 @@ public abstract class ma extends sa {
     }
 
     @Override
-    public final sl0 v(tl0 tl0Var) {
+    public final rl0 v(sl0 sl0Var) {
         return new fg.g(this, 2);
     }
 

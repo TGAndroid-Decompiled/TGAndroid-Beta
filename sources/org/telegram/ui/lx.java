@@ -7,22 +7,22 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class lx extends r61 {
-    public final i61[] a2;
-    public final py f38901b2;
+public final class lx extends w61 {
+    public final n61[] a2;
+    public final py f38797b2;
 
-    public lx(py pyVar, py pyVar2, Activity activity, Integer num, org.telegram.ui.ActionBar.g6 g6Var, i61[] i61VarArr) {
+    public lx(py pyVar, py pyVar2, Activity activity, Integer num, org.telegram.ui.ActionBar.g6 g6Var, n61[] n61VarArr) {
         super(pyVar2, activity, true, num, 0, g6Var);
-        this.f38901b2 = pyVar;
-        this.a2 = i61VarArr;
+        this.f38797b2 = pyVar;
+        this.a2 = n61VarArr;
     }
 
     @Override
     public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         int i10;
         if (tL_starGiftUnique != null) {
-            i10 = ((org.telegram.ui.ActionBar.p2) this.f38901b2).currentAccount;
-            if (mh.t7.y(i10, false).n(tL_starGiftUnique.f21070id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
+            i10 = ((org.telegram.ui.ActionBar.p2) this.f38797b2).currentAccount;
+            if (mh.t7.y(i10, false).n(tL_starGiftUnique.f21072id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
                 return false;
             }
             return true;
@@ -38,14 +38,14 @@ public final class lx extends r61 {
         int i11;
         int i12;
         org.telegram.ui.ActionBar.g6 g6Var;
-        i61[] i61VarArr = this.a2;
-        py pyVar = this.f38901b2;
+        n61[] n61VarArr = this.a2;
+        py pyVar = this.f38797b2;
         if (l10 == null) {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             if (tL_starGiftUnique != null) {
                 i10 = ((org.telegram.ui.ActionBar.p2) pyVar).currentAccount;
-                TL_stars.SavedStarGift n10 = mh.t7.y(i10, false).n(tL_starGiftUnique.f21070id);
+                TL_stars.SavedStarGift n10 = mh.t7.y(i10, false).n(tL_starGiftUnique.f21072id);
                 if (n10 != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
                     MessagesController.getGlobalMainSettings().edit().putInt("statusgiftpage", MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) + 1).apply();
                     Context context = getContext();
@@ -57,16 +57,16 @@ public final class lx extends r61 {
                     g5Var.j2(n10, null);
                     g5Var.m2();
                     g5Var.show();
-                    i61 i61Var = i61VarArr[0];
-                    if (i61Var != null) {
+                    n61 n61Var = n61VarArr[0];
+                    if (n61Var != null) {
                         pyVar.J0 = null;
-                        i61Var.dismiss();
+                        n61Var.dismiss();
                         return;
                     }
                     return;
                 }
                 TLRPC.TL_inputEmojiStatusCollectible tL_inputEmojiStatusCollectible = new TLRPC.TL_inputEmojiStatusCollectible();
-                tL_inputEmojiStatusCollectible.collectible_id = tL_starGiftUnique.f21070id;
+                tL_inputEmojiStatusCollectible.collectible_id = tL_starGiftUnique.f21072id;
                 tL_emojiStatus = tL_inputEmojiStatusCollectible;
                 if (num != null) {
                     tL_inputEmojiStatusCollectible.flags |= 1;
@@ -90,14 +90,14 @@ public final class lx extends r61 {
             org.telegram.ui.Cells.o oVar = pyVar.B3;
             ?? obj = new Object();
             long longValue = l10.longValue();
-            obj.f16179g = longValue;
+            obj.f16181g = longValue;
             obj.h = longValue;
             oVar.a(obj);
         }
-        i61 i61Var2 = i61VarArr[0];
-        if (i61Var2 != null) {
+        n61 n61Var2 = n61VarArr[0];
+        if (n61Var2 != null) {
             pyVar.J0 = null;
-            i61Var2.dismiss();
+            n61Var2.dismiss();
         }
     }
 }

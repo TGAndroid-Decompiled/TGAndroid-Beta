@@ -8,9 +8,10 @@ import android.graphics.drawable.NinePatchDrawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public abstract class r {
-    public static final Rect f12506a = new Rect();
+    public static final Rect f12508a = new Rect();
 
     static {
+        new Rect();
         new RectF();
     }
 
@@ -71,7 +72,7 @@ public abstract class r {
 
     public static void e(Drawable drawable, float f10, float f11, int i10, int i11, int i12) {
         if (drawable != null) {
-            Rect rect = f12506a;
+            Rect rect = f12508a;
             c(rect, f10, f11, i10, i11, i12);
             drawable.setBounds(rect);
         }
@@ -79,23 +80,23 @@ public abstract class r {
 
     public static void f(ImageReceiver imageReceiver, float f10, float f11, int i10, int i11) {
         if (imageReceiver != null) {
-            Rect rect = f12506a;
+            Rect rect = f12508a;
             c(rect, f10, f11, i10, i11, 17);
             imageReceiver.setImageCoords(rect);
         }
     }
 
-    public static void g(NinePatchDrawable ninePatchDrawable, int i10, int i11, int i12, int i13) {
-        Rect rect = f12506a;
-        if (ninePatchDrawable.getPadding(rect)) {
-            ninePatchDrawable.setBounds(i10 - rect.left, i11 - rect.top, i12 + rect.right, i13 + rect.bottom);
+    public static void g(Drawable drawable, int i10, int i11, int i12, int i13) {
+        Rect rect = f12508a;
+        if (drawable.getPadding(rect)) {
+            drawable.setBounds(i10 - rect.left, i11 - rect.top, i12 + rect.right, i13 + rect.bottom);
         } else {
-            ninePatchDrawable.setBounds(i10, i11, i12, i13);
+            drawable.setBounds(i10, i11, i12, i13);
         }
     }
 
     public static void h(NinePatchDrawable ninePatchDrawable, Rect rect) {
-        Rect rect2 = f12506a;
+        Rect rect2 = f12508a;
         if (ninePatchDrawable.getPadding(rect2)) {
             ninePatchDrawable.setBounds(rect.left - rect2.left, rect.top - rect2.top, rect.right + rect2.right, rect.bottom + rect2.bottom);
         } else {

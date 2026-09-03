@@ -5,25 +5,25 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ys extends f2.a1 {
-    public boolean f43700a;
-    public boolean f43701b;
-    public final ContactsActivity f43702c;
+    public boolean f43691a;
+    public boolean f43692b;
+    public final ContactsActivity f43693c;
 
     public ys(ContactsActivity contactsActivity) {
-        this.f43702c = contactsActivity;
+        this.f43693c = contactsActivity;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         if (i10 == 1) {
-            ContactsActivity contactsActivity = this.f43702c;
-            if ((contactsActivity.C && contactsActivity.B) || contactsActivity.W.f26172r.isFocused()) {
+            ContactsActivity contactsActivity = this.f43693c;
+            if ((contactsActivity.C && contactsActivity.B) || contactsActivity.W.f26132r.isFocused()) {
                 AndroidUtilities.hideKeyboard(contactsActivity.getParentActivity().getCurrentFocus());
             }
-            this.f43701b = true;
+            this.f43692b = true;
             return;
         }
-        this.f43701b = false;
+        this.f43692b = false;
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class ys extends f2.a1 {
         int i12;
         og.e eVar;
         boolean z4;
-        ContactsActivity contactsActivity = this.f43702c;
+        ContactsActivity contactsActivity = this.f43693c;
         int L0 = contactsActivity.f34068n.L0();
         boolean z10 = false;
         View childAt = recyclerView.getChildAt(0);
@@ -46,11 +46,11 @@ public final class ys extends f2.a1 {
             } else {
                 z4 = false;
             }
-            if (i11 != 0 && this.f43700a && (z4 || this.f43701b)) {
+            if (i11 != 0 && this.f43691a && (z4 || this.f43692b)) {
                 contactsActivity.f34082x = !z4;
                 ContactsActivity.e0(contactsActivity);
             }
-            this.f43700a = true;
+            this.f43691a = true;
         }
         contactsActivity.V.b((L0 != 0 || i12 < contactsActivity.f34060f.getPaddingTop()) ? true : true, true);
         if (Build.VERSION.SDK_INT >= 31 && (eVar = contactsActivity.f34072q0) != null) {

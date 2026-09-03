@@ -56,14 +56,14 @@ public final class d implements ValueAnimator.AnimatorUpdateListener {
         t1 t1Var = jVar.f8169y;
         this.f8116b = t1Var;
         this.d = j10;
-        z8Var.f33803p = 1.0f;
+        z8Var.f33847p = 1.0f;
         if (DialogObject.isUserDialog(j10)) {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j10));
             z8Var.m(i10, user);
             if (UserObject.isUserSelf(user)) {
                 str2 = LocaleController.getString(R.string.SavedMessages);
                 z8Var.g(1);
-                z8Var.f33803p = 0.75f;
+                z8Var.f33847p = 0.75f;
                 imageReceiver = imageReceiver2;
                 imageReceiver.setImage(null, null, null, null, z8Var, 0L, null, user, 0);
                 imageReceiver.setRoundRadius(AndroidUtilities.dp(i.f8154a / 2.0f));

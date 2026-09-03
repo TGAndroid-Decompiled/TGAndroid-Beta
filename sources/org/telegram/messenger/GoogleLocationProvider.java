@@ -177,7 +177,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
 
     @Override
     public void init(Context context) {
-        com.google.android.gms.common.api.e eVar = u7.d.f48439a;
+        com.google.android.gms.common.api.e eVar = u7.d.f48475a;
         com.google.android.gms.common.api.i iVar = com.google.android.gms.common.api.i.f2658c;
         com.google.android.gms.common.api.e eVar2 = f7.d.f6123k;
         com.google.android.gms.common.api.a aVar = com.google.android.gms.common.api.b.f2649i;
@@ -199,14 +199,14 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         HashSet hashSet2 = new HashSet();
         ?? kVar = new a0.k(0);
         ?? kVar2 = new a0.k(0);
-        Object obj = y5.d.f50767c;
+        Object obj = y5.d.f50803c;
         a8.j jVar = b8.b.f1892a;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         Looper mainLooper = context2.getMainLooper();
         String packageName = context2.getPackageName();
         String name = context2.getClass().getName();
-        com.google.android.gms.common.api.e eVar = u7.d.f48439a;
+        com.google.android.gms.common.api.e eVar = u7.d.f48475a;
         b6.m.i(eVar, "Api must not be null");
         kVar2.put(eVar, null);
         a8.j jVar2 = eVar.f2650a;
@@ -249,7 +249,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
             aVar = (b8.a) kVar2.get(eVar2);
         }
         m.r3 r3Var = new m.r3(hashSet, kVar, packageName, name, aVar);
-        Map map = (Map) r3Var.f13329c;
+        Map map = (Map) r3Var.f13331c;
         a0.k kVar3 = new a0.k(0);
         a0.k kVar4 = new a0.k(0);
         ArrayList arrayList3 = new ArrayList();

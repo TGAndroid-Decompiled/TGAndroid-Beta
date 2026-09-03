@@ -6,12 +6,12 @@ import android.view.View;
 import oh.j1;
 import org.telegram.messenger.NotificationCenter;
 public final class r extends AnimatorListenerAdapter {
-    public final int f16180a;
+    public final int f16182a;
 
     @Override
     public void onAnimationEnd(Animator animator, boolean z4) {
         View view;
-        switch (this.f16180a) {
+        switch (this.f16182a) {
             case 1:
                 cf.f fVar = j1.W.I;
                 if (fVar == null || (view = fVar.f2498j) == null) {
@@ -27,7 +27,7 @@ public final class r extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationEnd(Animator animator) {
-        switch (this.f16180a) {
+        switch (this.f16182a) {
             case 0:
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                 return;

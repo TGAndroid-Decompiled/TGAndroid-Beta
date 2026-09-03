@@ -170,7 +170,7 @@ public abstract class f {
                 r5.a c10 = r5.a.c(f());
                 if (c10 != null && (c3 = c10.b().c()) != null && c3.b()) {
                     m.e("Must be called from the main thread.");
-                    return c3.f46708j;
+                    return c3.f46739j;
                 }
             } catch (Exception e6) {
                 FileLog.e(e6);

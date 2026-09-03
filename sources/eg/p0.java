@@ -12,7 +12,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.f51;
+import org.telegram.ui.Components.d51;
 import org.telegram.ui.Components.my;
 import org.telegram.ui.Components.u5;
 public final class p0 implements my {
@@ -100,8 +100,8 @@ public final class p0 implements my {
     public final void n() {
         c1 c1Var = this.f5426a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(c1Var.getContext(), 0, c1Var.N1);
-        alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f21168a.O = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f21168a.Q = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new a1.c(this, 19));
         l.d.u(R.string.Cancel, alertDialog$Builder, null);
     }
@@ -153,7 +153,7 @@ public final class p0 implements my {
     }
 
     @Override
-    public final void o(f51 f51Var) {
+    public final void o(d51 d51Var) {
     }
 
     @Override

@@ -23,19 +23,19 @@ import org.telegram.ui.Components.pq;
 import org.telegram.ui.Components.pr;
 import org.telegram.ui.Components.u00;
 public final class u4 extends FrameLayout {
-    public static u00 f24197x;
-    public final org.telegram.ui.Components.k6 f24198a;
-    public final org.telegram.ui.Components.k6 f24199b;
-    public final org.telegram.ui.Components.p9 f24200c;
+    public static u00 f24199x;
+    public final org.telegram.ui.Components.k6 f24200a;
+    public final org.telegram.ui.Components.k6 f24201b;
+    public final org.telegram.ui.Components.p9 f24202c;
     public final ShapeDrawable d;
-    public boolean f24201e;
-    public final org.telegram.ui.ActionBar.g6 f24202f;
+    public boolean f24203e;
+    public final org.telegram.ui.ActionBar.g6 f24204f;
     public boolean h;
-    public CharSequence f24203n;
-    public String f24204r;
-    public String f24205s;
+    public CharSequence f24205n;
+    public String f24206r;
+    public String f24207s;
     public float v;
-    public ValueAnimator f24206w;
+    public ValueAnimator f24208w;
 
     public u4(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
@@ -49,9 +49,9 @@ public final class u4 extends FrameLayout {
         int i15;
         int i16;
         this.v = 0.0f;
-        this.f24202f = g6Var;
+        this.f24204f = g6Var;
         org.telegram.ui.Components.p9 p9Var = new org.telegram.ui.Components.p9(context);
-        this.f24200c = p9Var;
+        this.f24202c = p9Var;
         ShapeDrawable K = org.telegram.ui.ActionBar.k6.K(AndroidUtilities.dp(42.0f), -1);
         this.d = K;
         p9Var.setBackground(K);
@@ -75,7 +75,7 @@ public final class u4 extends FrameLayout {
         }
         addView(p9Var, k7.c6.d(42, 42.0f, i17, f10, 11.0f, f11, 0.0f));
         org.telegram.ui.Components.k6 k6Var = new org.telegram.ui.Components.k6(context, true, true, true);
-        this.f24198a = k6Var;
+        this.f24200a = k6Var;
         pr prVar = pr.h;
         k6Var.b(0.4f, 350L, prVar);
         k6Var.setScaleProperty(0.6f);
@@ -111,7 +111,7 @@ public final class u4 extends FrameLayout {
         }
         addView(k6Var, k7.c6.d(-1, 22.0f, i18, f12, 10.0f, i14, 0.0f));
         org.telegram.ui.Components.k6 k6Var2 = new org.telegram.ui.Components.k6(context, true, true, true);
-        this.f24199b = k6Var2;
+        this.f24201b = k6Var2;
         k6Var2.setScaleProperty(0.6f);
         k6Var2.b(0.4f, 350L, prVar);
         k6Var2.setTextSize(AndroidUtilities.dp(14.0f));
@@ -169,19 +169,19 @@ public final class u4 extends FrameLayout {
         boolean z13;
         CharSequence charSequence;
         boolean z14;
-        this.f24201e = z4;
-        org.telegram.ui.Components.k6 k6Var = this.f24198a;
+        this.f24203e = z4;
+        org.telegram.ui.Components.k6 k6Var = this.f24200a;
         if (tL_messageMediaVenue != null) {
-            if (TextUtils.equals(this.f24204r, tL_messageMediaVenue.emoji) && TextUtils.equals(this.f24205s, tL_messageMediaVenue.title)) {
-                charSequence = this.f24203n;
+            if (TextUtils.equals(this.f24206r, tL_messageMediaVenue.emoji) && TextUtils.equals(this.f24207s, tL_messageMediaVenue.title)) {
+                charSequence = this.f24205n;
             } else {
                 charSequence = tL_messageMediaVenue.title;
                 if (!TextUtils.isEmpty(tL_messageMediaVenue.emoji)) {
                     charSequence = Emoji.replaceEmoji(tL_messageMediaVenue.emoji + " " + ((Object) charSequence), k6Var.getPaint().getFontMetricsInt(), false);
                 }
-                this.f24204r = tL_messageMediaVenue.emoji;
-                this.f24205s = tL_messageMediaVenue.title;
-                this.f24203n = charSequence;
+                this.f24206r = tL_messageMediaVenue.emoji;
+                this.f24207s = tL_messageMediaVenue.title;
+                this.f24205n = charSequence;
             }
             if (this.h && !LocaleController.isRTL && z10) {
                 z14 = true;
@@ -190,7 +190,7 @@ public final class u4 extends FrameLayout {
             }
             k6Var.c(charSequence, z14, true);
         }
-        org.telegram.ui.Components.k6 k6Var2 = this.f24199b;
+        org.telegram.ui.Components.k6 k6Var2 = this.f24201b;
         if (tL_messageMediaVenue != null) {
             String str4 = tL_messageMediaVenue.address;
             if (this.h && !LocaleController.isRTL && z10) {
@@ -201,22 +201,22 @@ public final class u4 extends FrameLayout {
             k6Var2.c(str4, z13, true);
         }
         int a2 = a(i10);
-        org.telegram.ui.Components.p9 p9Var = this.f24200c;
+        org.telegram.ui.Components.p9 p9Var = this.f24202c;
         if (tL_messageMediaVenue != null && (str3 = tL_messageMediaVenue.icon) != null) {
             if (!"pin".equals(str3) && !tL_messageMediaVenue.icon.startsWith("emoji")) {
                 p9Var.f(tL_messageMediaVenue.icon, null, null);
             } else {
                 Drawable mutate = getResources().getDrawable(R.drawable.pin).mutate();
-                mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.ni, this.f24202f), PorterDuff.Mode.MULTIPLY));
+                mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.ni, this.f24204f), PorterDuff.Mode.MULTIPLY));
                 pq pqVar = new pq(org.telegram.ui.ActionBar.k6.K(AndroidUtilities.dp(42.0f), 0), mutate);
                 int dp = AndroidUtilities.dp(42.0f);
                 int dp2 = AndroidUtilities.dp(42.0f);
                 pqVar.h = dp;
-                pqVar.f30170n = dp2;
+                pqVar.f30163n = dp2;
                 int dp3 = AndroidUtilities.dp(24.0f);
                 int dp4 = AndroidUtilities.dp(24.0f);
-                pqVar.f30168e = dp3;
-                pqVar.f30169f = dp4;
+                pqVar.f30161e = dp3;
+                pqVar.f30162f = dp4;
                 p9Var.setImageDrawable(pqVar);
             }
         }
@@ -228,7 +228,7 @@ public final class u4 extends FrameLayout {
             z11 = false;
         }
         setClickable(z11);
-        ValueAnimator valueAnimator = this.f24206w;
+        ValueAnimator valueAnimator = this.f24208w;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
@@ -244,9 +244,9 @@ public final class u4 extends FrameLayout {
             f10 = 1.0f;
         }
         final long abs = Math.abs(f11 - f10) * 150.0f;
-        this.f24206w = ValueAnimator.ofFloat(f11, f10);
+        this.f24208w = ValueAnimator.ofFloat(f11, f10);
         final long elapsedRealtime = SystemClock.elapsedRealtime();
-        this.f24206w.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        this.f24208w.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                 u4 u4Var = u4.this;
@@ -259,18 +259,18 @@ public final class u4 extends FrameLayout {
                 }
                 float lerp = AndroidUtilities.lerp(f11, f10, f12);
                 u4Var.v = lerp;
-                u4Var.f24200c.setAlpha(lerp);
-                u4Var.f24198a.setAlpha(u4Var.v);
-                u4Var.f24199b.setAlpha(u4Var.v);
+                u4Var.f24202c.setAlpha(lerp);
+                u4Var.f24200a.setAlpha(u4Var.v);
+                u4Var.f24201b.setAlpha(u4Var.v);
                 u4Var.invalidate();
             }
         });
-        ValueAnimator valueAnimator2 = this.f24206w;
+        ValueAnimator valueAnimator2 = this.f24208w;
         if (z12) {
             abs = Long.MAX_VALUE;
         }
         valueAnimator2.setDuration(abs);
-        this.f24206w.start();
+        this.f24208w.start();
         p9Var.setAlpha(f11);
         k6Var.setAlpha(f11);
         k6Var2.setAlpha(f11);
@@ -309,7 +309,7 @@ public final class u4 extends FrameLayout {
     }
 
     public org.telegram.ui.Components.p9 getImageView() {
-        return this.f24200c;
+        return this.f24202c;
     }
 
     @Override
@@ -318,11 +318,11 @@ public final class u4 extends FrameLayout {
         Paint F;
         float dp;
         float width;
-        u00 u00Var = f24197x;
-        org.telegram.ui.ActionBar.g6 g6Var = this.f24202f;
+        u00 u00Var = f24199x;
+        org.telegram.ui.ActionBar.g6 g6Var = this.f24204f;
         if (u00Var == null) {
             u00 u00Var2 = new u00(getContext(), g6Var);
-            f24197x = u00Var2;
+            f24199x = u00Var2;
             u00Var2.setIsSingleCell(true);
         }
         if (getParent() instanceof ViewGroup) {
@@ -330,29 +330,29 @@ public final class u4 extends FrameLayout {
         } else {
             i10 = 0;
         }
-        u00 u00Var3 = f24197x;
+        u00 u00Var3 = f24199x;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
         int dp2 = AndroidUtilities.dp(56.0f);
         u00Var3.L = measuredWidth;
         u00Var3.M = measuredHeight;
         u00Var3.N = dp2 * (-i10);
-        f24197x.setViewType(4);
-        f24197x.e();
-        f24197x.h();
+        f24199x.setViewType(4);
+        f24199x.e();
+        f24199x.h();
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - this.v) * 255.0f), 31);
         canvas.translate(AndroidUtilities.dp(2.0f), org.telegram.ui.b.x(56.0f, getMeasuredHeight(), 2));
-        f24197x.draw(canvas);
+        f24199x.draw(canvas);
         canvas.restore();
         super.onDraw(canvas);
-        if (this.f24201e) {
+        if (this.f24203e) {
             if (g6Var == null) {
                 F = null;
             } else {
                 F = g6Var.F("paintDivider");
             }
             if (F == null) {
-                F = org.telegram.ui.ActionBar.k6.f21779k0;
+                F = org.telegram.ui.ActionBar.k6.f21781k0;
             }
             Paint paint = F;
             if (LocaleController.isRTL) {
@@ -372,7 +372,7 @@ public final class u4 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.f24201e ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.f24203e ? 1 : 0), 1073741824));
     }
 
     public void setAllowTextAnimation(boolean z4) {

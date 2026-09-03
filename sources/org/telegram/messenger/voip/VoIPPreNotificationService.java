@@ -24,7 +24,7 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.Components.ie0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.VoIPPermissionActivity;
-import org.telegram.ui.ci1;
+import org.telegram.ui.ii1;
 public class VoIPPreNotificationService {
     public static State currentState;
     public static TL_phone.PhoneCall pendingCall;
@@ -58,9 +58,9 @@ public class VoIPPreNotificationService {
         public void destroy() {
             if (!this.destroyed) {
                 this.destroyed = true;
-                ci1 ci1Var = ci1.f35817k1;
-                if (ci1Var != null) {
-                    ci1Var.onStateChanged(getCallState());
+                ii1 ii1Var = ii1.f37669k1;
+                if (ii1Var != null) {
+                    ii1Var.onStateChanged(getCallState());
                 }
             }
         }
@@ -126,7 +126,7 @@ public class VoIPPreNotificationService {
     private static void acknowledge(Context context, int i10, TL_phone.PhoneCall phoneCall, Runnable runnable) {
         if (phoneCall instanceof TL_phone.TL_phoneCallDiscarded) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.w("Call " + phoneCall.f21069id + " was discarded before the voip pre notification started, stopping");
+                FileLog.w("Call " + phoneCall.f21071id + " was discarded before the voip pre notification started, stopping");
             }
             pendingVoIP = null;
             pendingCall = null;
@@ -148,7 +148,7 @@ public class VoIPPreNotificationService {
             TL_phone.receivedCall receivedcall = new TL_phone.receivedCall();
             TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
             receivedcall.peer = tL_inputPhoneCall;
-            tL_inputPhoneCall.f20908id = phoneCall.f21069id;
+            tL_inputPhoneCall.f20910id = phoneCall.f21071id;
             tL_inputPhoneCall.access_hash = phoneCall.access_hash;
             ConnectionsManager.getInstance(i10).sendRequest(receivedcall, new b3(16, context, runnable), 2);
         }
@@ -200,7 +200,7 @@ public class VoIPPreNotificationService {
             discardcall.peer = tL_inputPhoneCall;
             TL_phone.PhoneCall phoneCall = pendingCall;
             tL_inputPhoneCall.access_hash = phoneCall.access_hash;
-            tL_inputPhoneCall.f20908id = phoneCall.f21069id;
+            tL_inputPhoneCall.f20910id = phoneCall.f21071id;
             discardcall.duration = 0;
             discardcall.connection_id = 0L;
             if (i10 != 2) {
@@ -298,9 +298,9 @@ public class VoIPPreNotificationService {
         LaunchActivity launchActivity = LaunchActivity.D1;
         if (launchActivity != null && launchActivity.f34145e1 && VoIPService.getSharedInstance() == null) {
             launchActivity.f34145e1 = false;
-            ci1 ci1Var = ci1.f35817k1;
-            if (ci1Var != null) {
-                ci1Var.n();
+            ii1 ii1Var = ii1.f37669k1;
+            if (ii1Var != null) {
+                ii1Var.n();
             }
             launchActivity.moveTaskToBack(true);
         }
@@ -309,7 +309,7 @@ public class VoIPPreNotificationService {
     public static void lambda$show$1(Intent intent, TL_phone.PhoneCall phoneCall, Context context, int i10, long j10, boolean z4) {
         pendingVoIP = intent;
         pendingCall = phoneCall;
-        ((NotificationManager) context.getSystemService("notification")).notify(203, makeNotification(context, i10, j10, phoneCall.f21069id, z4));
+        ((NotificationManager) context.getSystemService("notification")).notify(203, makeNotification(context, i10, j10, phoneCall.f21071id, z4));
         startRinging(context, i10, j10);
     }
 
@@ -350,7 +350,7 @@ public class VoIPPreNotificationService {
         FileLog.d("VoIPPreNotification.show()");
         if (phoneCall != null && intent != null) {
             TL_phone.PhoneCall phoneCall2 = pendingCall;
-            if (phoneCall2 != null && phoneCall2.f21069id == phoneCall.f21069id) {
+            if (phoneCall2 != null && phoneCall2.f21071id == phoneCall.f21071id) {
                 return;
             }
             dismiss(context, false);

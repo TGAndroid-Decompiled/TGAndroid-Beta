@@ -14,27 +14,27 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.oq;
 import org.telegram.ui.Components.p9;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.sa;
 import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.tl0;
 import org.telegram.ui.Components.voip.o;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.z8;
+import qh.c4;
 import qh.d;
-import qh.d4;
-import qh.r8;
+import qh.q8;
 public final class b extends sa {
     public final u U;
-    public x51 V;
+    public w51 V;
 
     public b(Context context, TLRPC.Chat chat, Runnable runnable) {
         super(context, null, false, true, false, false, false, 2, null);
         int i10;
         int i11;
         this.H = AndroidUtilities.dp(30.0f);
-        tl0 tl0Var = this.d;
+        sl0 sl0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        tl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
+        sl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         d dVar = new d(context, this.resourcesProvider, true);
         dVar.setText(LocaleController.getString(R.string.Cancel));
@@ -50,7 +50,7 @@ public final class b extends sa {
         }
         dVar2.setText(LocaleController.getString(i10));
         dVar2.e();
-        dVar2.setOnClickListener(new r8(6, this, runnable));
+        dVar2.setOnClickListener(new q8(6, this, runnable));
         u uVar = new u(context, 5);
         TextView textView = (TextView) uVar.d;
         TextView textView2 = (TextView) uVar.f4680c;
@@ -77,11 +77,11 @@ public final class b extends sa {
     }
 
     @Override
-    public final sl0 v(tl0 tl0Var) {
-        x51 x51Var = new x51(this.d, getContext(), this.currentAccount, 0, true, new d4(this, 26), this.resourcesProvider);
-        this.V = x51Var;
-        x51Var.f32957r = false;
-        return x51Var;
+    public final rl0 v(sl0 sl0Var) {
+        w51 w51Var = new w51(this.d, getContext(), this.currentAccount, 0, true, new c4(this, 26), this.resourcesProvider);
+        this.V = w51Var;
+        w51Var.f32651r = false;
+        return w51Var;
     }
 
     @Override

@@ -22,7 +22,7 @@ public abstract class p0 {
 
     public final m1 g(ViewGroup viewGroup, int i10) {
         try {
-            int i11 = n0.g.f15180a;
+            int i11 = n0.g.f15182a;
             Trace.beginSection("RV CreateView");
             m1 x10 = x(viewGroup, i10);
             if (x10.f5875a.getParent() == null) {
@@ -32,7 +32,7 @@ public abstract class p0 {
             }
             throw new IllegalStateException("ViewHolder views must not be attached when created. Ensure that you are not passing 'true' to the attachToRoot parameter of LayoutInflater.inflate(..., boolean attachToRoot)");
         } catch (Throwable th2) {
-            int i12 = n0.g.f15180a;
+            int i12 = n0.g.f15182a;
             Trace.endSection();
             throw th2;
         }

@@ -1,25 +1,25 @@
 package org.telegram.ui;
 public final class df implements Runnable {
-    public final int f36212a;
-    public final xn f36213b;
-    public final long f36214c;
+    public final int f36177a;
+    public final xn f36178b;
+    public final long f36179c;
     public final long d;
 
     public df(xn xnVar, long j10, long j11, int i10) {
-        this.f36212a = i10;
-        this.f36213b = xnVar;
-        this.f36214c = j10;
+        this.f36177a = i10;
+        this.f36178b = xnVar;
+        this.f36179c = j10;
         this.d = j11;
     }
 
     @Override
     public final void run() {
-        switch (this.f36212a) {
+        switch (this.f36177a) {
             case 0:
-                xn.o0(this.f36213b, this.f36214c, this.d);
+                xn.o0(this.f36178b, this.f36179c, this.d);
                 return;
             default:
-                xn.k1(this.f36213b, this.f36214c, this.d);
+                xn.k1(this.f36178b, this.f36179c, this.d);
                 return;
         }
     }

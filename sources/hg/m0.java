@@ -10,7 +10,8 @@ import org.telegram.ui.b5;
 import org.telegram.ui.e5;
 import org.telegram.ui.f5;
 import org.telegram.ui.z4;
-import qh.f9;
+import qh.a5;
+import qh.e9;
 public final class m0 implements q0.a {
     public final int f7566a;
     public final Object f7567b;
@@ -32,7 +33,7 @@ public final class m0 implements q0.a {
             case 0:
                 Utilities.Callback callback = (Utilities.Callback) this.f7568c;
                 p2.h hVar = (p2.h) obj;
-                if (((p2.h) this.f7567b).f44145a == 0) {
+                if (((p2.h) this.f7567b).f44176a == 0) {
                     AndroidUtilities.runOnUIThread(new n0(1, callback));
                     return;
                 }
@@ -40,7 +41,7 @@ public final class m0 implements q0.a {
             case 1:
                 t0 t0Var = (t0) this.f7568c;
                 p2.h hVar2 = (p2.h) obj;
-                if (((p2.h) this.f7567b).f44145a == 0) {
+                if (((p2.h) this.f7567b).f44176a == 0) {
                     AndroidUtilities.runOnUIThread(new eh.m(t0Var, 14));
                     return;
                 }
@@ -48,7 +49,7 @@ public final class m0 implements q0.a {
             case 2:
                 i5 i5Var = (i5) this.f7568c;
                 p2.h hVar3 = (p2.h) obj;
-                int i10 = ((p2.h) this.f7567b).f44145a;
+                int i10 = ((p2.h) this.f7567b).f44176a;
                 if (i10 == 0) {
                     z4 = true;
                 } else {
@@ -64,7 +65,7 @@ public final class m0 implements q0.a {
             case 3:
                 eh.w wVar = (eh.w) this.f7568c;
                 p2.h hVar4 = (p2.h) obj;
-                int i11 = ((p2.h) this.f7567b).f44145a;
+                int i11 = ((p2.h) this.f7567b).f44176a;
                 if (i11 == 0) {
                     z10 = true;
                 } else {
@@ -80,14 +81,14 @@ public final class m0 implements q0.a {
             case 4:
                 e5 e5Var = (e5) this.f7567b;
                 z4 z4Var = (z4) this.f7568c;
-                f5[] f5VarArr = z4Var.f43812i;
-                b5 b5Var = z4Var.f43813j;
+                f5[] f5VarArr = z4Var.f43795i;
+                b5 b5Var = z4Var.f43796j;
                 if (!e5Var.B) {
                     if (obj instanceof TLRPC.UserFull) {
-                        e5Var.a(z4.c((TLRPC.User) b5Var.f35332c, (TLRPC.UserFull) obj, f5VarArr));
+                        e5Var.a(z4.c((TLRPC.User) b5Var.f35353c, (TLRPC.UserFull) obj, f5VarArr));
                         return;
                     } else if (obj instanceof TLRPC.ChatFull) {
-                        e5Var.a(z4.a((TLRPC.Chat) b5Var.f35332c, (TLRPC.ChatFull) obj, f5VarArr));
+                        e5Var.a(z4.a((TLRPC.Chat) b5Var.f35353c, (TLRPC.ChatFull) obj, f5VarArr));
                         return;
                     } else {
                         return;
@@ -95,7 +96,7 @@ public final class m0 implements q0.a {
                 }
                 return;
             default:
-                qh.b5.Z((f9) this.f7567b, (dg.e1) this.f7568c, (Integer) obj);
+                a5.Z((e9) this.f7567b, (dg.e1) this.f7568c, (Integer) obj);
                 return;
         }
     }

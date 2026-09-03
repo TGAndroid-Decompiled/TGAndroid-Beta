@@ -19,7 +19,7 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public class ShareActivity extends Activity {
     public static final int f34828b = 0;
-    public org.telegram.ui.Components.mq0 f34829a;
+    public org.telegram.ui.Components.lq0 f34829a;
 
     @Override
     public final void onCreate(Bundle bundle) {
@@ -55,7 +55,7 @@ public class ShareActivity extends Activity {
                 MessageObject messageObject = new MessageObject(UserConfig.selectedAccount, TLdeserialize, false, true);
                 messageObject.messageOwner.with_my_score = true;
                 try {
-                    org.telegram.ui.Components.mq0 N0 = org.telegram.ui.Components.mq0.N0(this, messageObject, null, false, string2);
+                    org.telegram.ui.Components.lq0 N0 = org.telegram.ui.Components.lq0.N0(this, messageObject, null, false, string2);
                     this.f34829a = N0;
                     N0.setCanceledOnTouchOutside(true);
                     this.f34829a.setOnDismissListener(new v5(this, 16));
@@ -77,8 +77,8 @@ public class ShareActivity extends Activity {
     public final void onPause() {
         super.onPause();
         try {
-            org.telegram.ui.Components.mq0 mq0Var = this.f34829a;
-            if (mq0Var != null && mq0Var.isShowing()) {
+            org.telegram.ui.Components.lq0 lq0Var = this.f34829a;
+            if (lq0Var != null && lq0Var.isShowing()) {
                 this.f34829a.dismiss();
                 this.f34829a = null;
             }

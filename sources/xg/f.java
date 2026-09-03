@@ -7,40 +7,40 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.k6;
 public final class f extends View implements b6 {
-    public og.b f50577a;
-    public og.b f50578b;
-    public int f50579c;
+    public og.b f50613a;
+    public og.b f50614b;
+    public int f50615c;
     public int d;
-    public tg.c f50580e;
-    public int f50581f;
+    public tg.c f50616e;
+    public int f50617f;
 
     public f(Context context) {
         super(context);
     }
 
     public final void a() {
-        this.f50577a.setBounds(0, 0, getMeasuredWidth(), this.f50579c);
-        this.f50578b.setBounds(0, getMeasuredHeight() - this.d, getMeasuredWidth(), getMeasuredHeight());
+        this.f50613a.setBounds(0, 0, getMeasuredWidth(), this.f50615c);
+        this.f50614b.setBounds(0, getMeasuredHeight() - this.d, getMeasuredWidth(), getMeasuredHeight());
     }
 
     public final void b(og.a aVar, rg.d dVar) {
         qg.b c3 = aVar.c(this, null, false);
         c3.n(dVar);
         og.b bVar = new og.b(c3);
-        this.f50577a = bVar;
+        this.f50613a = bVar;
         bVar.b(-AndroidUtilities.dp(30.0f), true);
         qg.b c10 = aVar.c(this, null, false);
         c10.n(dVar);
         og.b bVar2 = new og.b(c10);
-        this.f50578b = bVar2;
+        this.f50614b = bVar2;
         bVar2.b(AndroidUtilities.dp(30.0f), true);
     }
 
     @Override
     public final void e() {
         int i10;
-        tg.c cVar = this.f50580e;
-        if (cVar != null && (i10 = this.f50581f) != -1) {
+        tg.c cVar = this.f50616e;
+        if (cVar != null && (i10 = this.f50617f) != -1) {
             cVar.a(k6.w0(null, i10, false));
             invalidate();
         }
@@ -53,8 +53,8 @@ public final class f extends View implements b6 {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        this.f50577a.draw(canvas);
-        this.f50578b.draw(canvas);
+        this.f50613a.draw(canvas);
+        this.f50614b.draw(canvas);
     }
 
     @Override
@@ -64,17 +64,17 @@ public final class f extends View implements b6 {
     }
 
     public void setFadeHeightBottom(int i10) {
-        this.f50578b.b(i10, true);
+        this.f50614b.b(i10, true);
     }
 
     public void setFadeHeightTop(int i10) {
-        this.f50577a.b(-i10, true);
+        this.f50613a.b(-i10, true);
     }
 
     public void setFadeTopAlpha(int i10) {
-        og.b bVar = this.f50577a;
-        if (bVar.f16770q != i10) {
-            bVar.f16770q = i10;
+        og.b bVar = this.f50613a;
+        if (bVar.f16772q != i10) {
+            bVar.f16772q = i10;
             invalidate();
         }
     }
@@ -88,16 +88,16 @@ public final class f extends View implements b6 {
     }
 
     public void setFadeZoneTop(int i10) {
-        if (this.f50579c != i10) {
-            this.f50579c = i10;
+        if (this.f50615c != i10) {
+            this.f50615c = i10;
             a();
             invalidate();
         }
     }
 
     public void setIgnoreFastWay(boolean z4) {
-        this.f50577a.f16769p = z4;
-        this.f50578b.f16769p = z4;
+        this.f50613a.f16771p = z4;
+        this.f50614b.f16771p = z4;
     }
 
     public void setup(og.a aVar) {
@@ -105,12 +105,12 @@ public final class f extends View implements b6 {
     }
 
     public void setupColorKey(int i10) {
-        this.f50581f = i10;
-        if (this.f50580e == null) {
+        this.f50617f = i10;
+        if (this.f50616e == null) {
             tg.c cVar = new tg.c();
-            this.f50580e = cVar;
+            this.f50616e = cVar;
             cVar.a(k6.w0(null, i10, false));
-            setup(new og.a(this.f50580e));
+            setup(new og.a(this.f50616e));
         }
     }
 }

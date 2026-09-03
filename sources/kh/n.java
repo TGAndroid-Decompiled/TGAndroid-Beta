@@ -14,10 +14,10 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.l5;
 import org.telegram.ui.ActionBar.p2;
 import org.telegram.ui.Cells.g5;
-import org.telegram.ui.Components.jn;
-import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.in;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.z8;
-public final class n extends sl0 {
+public final class n extends rl0 {
     public final v f11277c;
 
     public n(v vVar) {
@@ -99,14 +99,14 @@ public final class n extends sl0 {
                 z4 = true;
             }
             l5 l5Var = g5Var.d;
-            g5Var.f22850e = tL_chatInviteImporter;
-            g5Var.f22851f = z4;
+            g5Var.f22852e = tL_chatInviteImporter;
+            g5Var.f22853f = z4;
             g5Var.setWillNotDraw(!z4);
             TLRPC.User user = (TLRPC.User) longSparseArray.get(tL_chatInviteImporter.user_id);
-            z8 z8Var = g5Var.f22847a;
+            z8 z8Var = g5Var.f22849a;
             z8Var.r(user);
-            g5Var.f22848b.e(user, z8Var);
-            g5Var.f22849c.l(UserObject.getUserName(user), false);
+            g5Var.f22850b.e(user, z8Var);
+            g5Var.f22851c.l(UserObject.getUserName(user), false);
             String formatDateAudio = LocaleController.formatDateAudio(tL_chatInviteImporter.date, false);
             if (tL_chatInviteImporter.via_chatlist) {
                 l5Var.l(LocaleController.getString(R.string.JoinedViaFolder), false);
@@ -142,9 +142,9 @@ public final class n extends sl0 {
                         p2 p2Var = vVar.f11309g;
                         m mVar = new m(p2Var.getParentActivity(), 0, p2Var.getResourceProvider());
                         if (vVar.B) {
-                            mVar.setBackgroundColor(k6.v0(k6.f21659d6, p2Var.getResourceProvider()));
+                            mVar.setBackgroundColor(k6.v0(k6.f21661d6, p2Var.getResourceProvider()));
                         }
-                        mVar.f(k6.f21659d6, k6.f21605a7, -1);
+                        mVar.f(k6.f21661d6, k6.f21607a7, -1);
                         mVar.setViewType(15);
                         mVar.setMemberRequestButton(z4);
                         mVar.setIsSingleCell(true);
@@ -156,9 +156,9 @@ public final class n extends sl0 {
                     g5Var = new View(viewGroup.getContext());
                 }
             } else {
-                jn jnVar = new jn(viewGroup.getContext(), 3);
-                jnVar.setTag(-33024);
-                g5Var = jnVar;
+                in inVar = new in(viewGroup.getContext(), 3);
+                inVar.setTag(-33024);
+                g5Var = inVar;
             }
         } else {
             g5Var = new View(viewGroup.getContext());

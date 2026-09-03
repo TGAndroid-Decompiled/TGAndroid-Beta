@@ -27,7 +27,7 @@ public final class b2 extends View {
         }
         float width = ((getWidth() / 2.0f) + getPaddingLeft()) - getPaddingRight();
         float height = ((getHeight() / 2.0f) + getPaddingTop()) - getPaddingBottom();
-        c2.x1(width, height, min, this.f5094a, canvas);
+        c2.w1(width, height, min, this.f5094a, canvas);
         if (this.f5095b != 0.0f) {
             float min2 = (Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f);
             c2Var.V2.setColor(this.f5094a);

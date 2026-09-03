@@ -15,22 +15,22 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.cb;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.m31;
+import org.telegram.ui.q31;
 import org.telegram.ui.xn;
 public final class q1 implements Runnable {
-    public final int f47627a;
-    public final p2 f47628b;
+    public final int f47663a;
+    public final p2 f47664b;
 
     public q1(p2 p2Var, int i10) {
-        this.f47627a = i10;
-        this.f47628b = p2Var;
+        this.f47663a = i10;
+        this.f47664b = p2Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f47627a;
+        int i10 = this.f47663a;
         int i11 = 1;
-        p2 p2Var = this.f47628b;
+        p2 p2Var = this.f47664b;
         switch (i10) {
             case 0:
                 p2.d(p2Var);
@@ -67,13 +67,13 @@ public final class q1 implements Runnable {
                 p2Var.v.requestLayout();
                 return;
             case 4:
-                if (!p2Var.f47612x.z()) {
+                if (!p2Var.f47648x.z()) {
                     p2Var.q();
                     return;
                 }
                 return;
             case 5:
-                p2Var.f47608u0 = true;
+                p2Var.f47644u0 = true;
                 p2Var.k(true);
                 return;
             case 6:
@@ -87,21 +87,21 @@ public final class q1 implements Runnable {
                 } else {
                     paint.setAlpha(64);
                 }
-                p2Var.f47588e.invalidate();
-                p2Var.f47612x.n(false, false);
-                if (p2Var.f47585c != null) {
+                p2Var.f47624e.invalidate();
+                p2Var.f47648x.n(false, false);
+                if (p2Var.f47621c != null) {
                     if (1.0f - (Math.min(g2Var.getTopActionBarOffsetY(), g2Var.getTranslationY() - g2Var.getTopActionBarOffsetY()) / g2Var.getTopActionBarOffsetY()) <= 0.5f) {
                         i11 = 0;
                     }
                     float f10 = i11 * 100.0f;
-                    o1.j jVar = p2Var.f47585c;
-                    o1.k kVar = jVar.f16336u;
-                    if (((float) kVar.f16343i) != f10) {
-                        kVar.f16343i = f10;
+                    o1.j jVar = p2Var.f47621c;
+                    o1.k kVar = jVar.f16338u;
+                    if (((float) kVar.f16345i) != f10) {
+                        kVar.f16345i = f10;
                         jVar.f();
                     }
                 }
-                if (p2Var.f47582a0) {
+                if (p2Var.f47618a0) {
                     int i12 = p2Var.h.bottom;
                 } else {
                     Math.max(0.0f, g2Var.getSwipeOffsetY());
@@ -109,24 +109,24 @@ public final class q1 implements Runnable {
                 System.currentTimeMillis();
                 return;
             case 8:
-                p2Var.f47612x.n(true, false);
+                p2Var.f47648x.n(true, false);
                 return;
             case 9:
-                Activity activity = p2Var.f47593h0;
+                Activity activity = p2Var.f47629h0;
                 if (activity instanceof LaunchActivity) {
                     ((LaunchActivity) activity).p0(xn.R9(p2Var.E));
                 }
                 p2Var.k(true);
                 return;
             case 10:
-                h2 h2Var = p2Var.f47612x;
+                h2 h2Var = p2Var.f47648x;
                 h2Var.getClass();
                 h2Var.M = System.currentTimeMillis();
                 h2Var.v("settings_button_pressed", null);
                 return;
             case 11:
-                n2 n2Var = p2Var.f47614y;
-                h2 h2Var2 = p2Var.f47612x;
+                n2 n2Var = p2Var.f47650y;
+                h2 h2Var2 = p2Var.f47648x;
                 if (h2Var2.getWebView() != null) {
                     h2Var2.getWebView().animate().cancel();
                     h2Var2.getWebView().animate().alpha(0.0f).start();
@@ -149,8 +149,8 @@ public final class q1 implements Runnable {
                 Context context = p2Var.getContext();
                 qc qcVar = new qc(cb.a(p2Var.getContext()), p2Var.B);
                 long j10 = p2Var.E;
-                int i14 = m31.v;
-                m31.J(i13, context, j10, false, false, new ArrayList(), qcVar, null, new byte[0], null, null);
+                int i14 = q31.v;
+                q31.J(i13, context, j10, false, false, new ArrayList(), qcVar, null, new byte[0], null, null);
                 return;
             case 15:
                 p2.j(p2Var.D, p2Var.E, new q1(p2Var, 16));

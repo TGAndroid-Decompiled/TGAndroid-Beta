@@ -1,25 +1,30 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class ts0 extends org.telegram.ui.Components.r71 {
-    public final PhotoViewer f41702e0;
+import android.animation.ValueAnimator;
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+public final class ts0 extends ViewOutlineProvider {
+    public final int f41628a;
+    public final float f41629b;
+    public final Object f41630c;
 
-    public ts0(PhotoViewer photoViewer, Context context, wq0 wq0Var) {
-        super(context, wq0Var);
-        this.f41702e0 = photoViewer;
+    public ts0(Object obj, float f10, int i10) {
+        this.f41628a = i10;
+        this.f41630c = obj;
+        this.f41629b = f10;
     }
 
     @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        super.onLayout(z4, i10, i11, i12, i13);
-        PhotoViewer.X(this.f41702e0);
-    }
-
-    @Override
-    public final void setVisibility(int i10) {
-        super.setVisibility(i10);
-        if (i10 == 0) {
-            PhotoViewer.X(this.f41702e0);
+    public final void getOutline(View view, Outline outline) {
+        switch (this.f41628a) {
+            case 0:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f41629b) * ((Float) ((ValueAnimator) this.f41630c).getAnimatedValue()).floatValue() * AndroidUtilities.dp(10.0f));
+                return;
+            default:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f41629b) * (1.0f - ((PhotoViewer) this.f41630c).T) * AndroidUtilities.dp(10.0f));
+                return;
         }
     }
 }

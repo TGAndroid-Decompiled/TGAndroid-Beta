@@ -35,9 +35,9 @@ public abstract class e0 {
 
     public static i0 c(c0 c0Var, dd.p pVar) {
         d0 d0Var = d0.f12291a;
-        uc.h i10 = i(c0Var.c(), uc.i.f48480a, true);
+        uc.h i10 = i(c0Var.c(), uc.i.f48516a, true);
         sd.e eVar = m0.f12331a;
-        if (i10 != eVar && i10.get(uc.d.f48479a) == null) {
+        if (i10 != eVar && i10.get(uc.d.f48515a) == null) {
             i10 = i10.plus(eVar);
         }
         d0 d0Var2 = d0.f12291a;
@@ -48,7 +48,7 @@ public abstract class e0 {
 
     public static final Object d(h0[] h0VarArr, wc.i iVar) {
         if (h0VarArr.length == 0) {
-            return tc.o.f48064a;
+            return tc.o.f48100a;
         }
         e eVar = new e(h0VarArr);
         m mVar = new m(1, h8.b(iVar));
@@ -74,7 +74,7 @@ public abstract class e0 {
             mVar.v(dVar);
         }
         Object r10 = mVar.r();
-        vc.a aVar = vc.a.f48962a;
+        vc.a aVar = vc.a.f48998a;
         return r10;
     }
 
@@ -88,7 +88,7 @@ public abstract class e0 {
     public static final Object f(dd.p pVar, uc.c cVar) {
         qd.s sVar = new qd.s(cVar, cVar.getContext());
         Object a2 = h7.a(sVar, sVar, pVar);
-        vc.a aVar = vc.a.f48962a;
+        vc.a aVar = vc.a.f48998a;
         return a2;
     }
 
@@ -100,11 +100,11 @@ public abstract class e0 {
                 j(mVar.f12330e).b(j10, mVar);
             }
             Object r10 = mVar.r();
-            if (r10 == vc.a.f48962a) {
+            if (r10 == vc.a.f48998a) {
                 return r10;
             }
         }
-        return sc.i.f47243a;
+        return sc.i.f47274a;
     }
 
     public static final void h(uc.h hVar) {
@@ -123,7 +123,7 @@ public abstract class e0 {
             return hVar.plus(hVar2);
         }
         x xVar2 = new x(2, 2);
-        uc.i iVar = uc.i.f48480a;
+        uc.i iVar = uc.i.f48516a;
         uc.h hVar3 = (uc.h) hVar.fold(iVar, xVar2);
         uc.h hVar4 = hVar2;
         if (booleanValue2) {
@@ -134,7 +134,7 @@ public abstract class e0 {
 
     public static final j0 j(uc.h hVar) {
         j0 j0Var;
-        uc.f fVar = hVar.get(uc.d.f48479a);
+        uc.f fVar = hVar.get(uc.d.f48515a);
         if (fVar instanceof j0) {
             j0Var = (j0) fVar;
         } else {
@@ -158,7 +158,7 @@ public abstract class e0 {
         }
         qd.h hVar = (qd.h) cVar;
         com.google.android.gms.internal.clearcut.e eVar = qd.a.d;
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = qd.h.f44800n;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = qd.h.f44831n;
         loop0: while (true) {
             Object obj = atomicReferenceFieldUpdater.get(hVar);
             mVar = null;
@@ -237,9 +237,9 @@ public abstract class e0 {
 
     public static z1 q(c0 c0Var, dd.p pVar) {
         d0 d0Var = d0.f12291a;
-        uc.h i10 = i(c0Var.c(), uc.i.f48480a, true);
+        uc.h i10 = i(c0Var.c(), uc.i.f48516a, true);
         sd.e eVar = m0.f12331a;
-        if (i10 != eVar && i10.get(uc.d.f48479a) == null) {
+        if (i10 != eVar && i10.get(uc.d.f48515a) == null) {
             i10 = i10.plus(eVar);
         }
         d0 d0Var2 = d0.f12291a;
@@ -268,11 +268,11 @@ public abstract class e0 {
         if (z4) {
             kotlin.jvm.internal.j.c(cVar, "null cannot be cast to non-null type kotlinx.coroutines.internal.DispatchedContinuation<T of kotlinx.coroutines.DispatchedTaskKt.resume>");
             qd.h hVar = (qd.h) cVar;
-            wc.c cVar2 = hVar.f44801e;
+            wc.c cVar2 = hVar.f44832e;
             Object obj2 = hVar.h;
             uc.h context = cVar2.getContext();
             Object k10 = qd.a.k(context, obj2);
-            if (k10 != qd.a.f44792f) {
+            if (k10 != qd.a.f44823f) {
                 g2Var = v(cVar2, context, k10);
             } else {
                 g2Var = null;
@@ -359,7 +359,7 @@ public abstract class e0 {
             qd.s sVar = new qd.s(cVar, i10);
             u10 = h7.a(sVar, sVar, pVar);
         } else {
-            uc.d dVar = uc.d.f48479a;
+            uc.d dVar = uc.d.f48515a;
             if (kotlin.jvm.internal.j.a(i10.get(dVar), context.get(dVar))) {
                 g2 g2Var = new g2(cVar, i10);
                 uc.h hVar2 = g2Var.f12279c;
@@ -388,13 +388,13 @@ public abstract class e0 {
                             throw new IllegalStateException("Already suspended");
                         }
                     } else if (atomicIntegerFieldUpdater.compareAndSet(sVar2, 0, 1)) {
-                        u10 = vc.a.f48962a;
+                        u10 = vc.a.f48998a;
                         break;
                     }
                 }
             }
         }
-        vc.a aVar = vc.a.f48962a;
+        vc.a aVar = vc.a.f48998a;
         return u10;
     }
 
@@ -410,7 +410,7 @@ public abstract class e0 {
             } catch (Throwable th2) {
                 vVar = new v(th2, false);
             }
-            Object obj = vc.a.f48962a;
+            Object obj = vc.a.f48998a;
             if (vVar != obj && (B = e2Var.B(vVar)) != f12299e) {
                 if (B instanceof v) {
                     Throwable th3 = ((v) B).f12368a;

@@ -20,7 +20,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.BubbleActivity;
-import org.telegram.ui.Components.kv0;
+import org.telegram.ui.Components.jv0;
 import org.telegram.ui.yh;
 public abstract class o1 extends FrameLayout {
     public float B;
@@ -41,7 +41,7 @@ public abstract class o1 extends FrameLayout {
     public final TextView f5395s;
     public final TextView v;
     public final r2 f5396w;
-    public kv0 f5397x;
+    public jv0 f5397x;
     public boolean f5398y;
 
     public o1(Context context, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, MediaController.CropState cropState) {
@@ -98,7 +98,7 @@ public abstract class o1 extends FrameLayout {
         TextView h = yh.h(frameLayout, textView, c6.d(-2, 44.0f, 3, -8.0f, 0.0f, 0.0f, 0.0f), context);
         this.v = h;
         yh.p(15.0f, 1, h);
-        int i12 = k6.f22059zf;
+        int i12 = k6.f22061zf;
         h.setBackground(k6.f0(k6.l1(0.15f, k6.w0(null, i12, false)), 3, -1));
         h.setPadding(AndroidUtilities.dp(28.0f), 0, AndroidUtilities.dp(28.0f), 0);
         h.setText(LocaleController.getString(R.string.Save).toUpperCase());
@@ -107,25 +107,25 @@ public abstract class o1 extends FrameLayout {
         frameLayout.addView(h, c6.d(-2, 44.0f, 5, 0.0f, 0.0f, -8.0f, 0.0f));
     }
 
-    private kv0 getPaintingSize() {
+    private jv0 getPaintingSize() {
         float f10;
         float f11;
-        kv0 kv0Var = this.f5397x;
-        if (kv0Var != null) {
-            return kv0Var;
+        jv0 jv0Var = this.f5397x;
+        if (jv0Var != null) {
+            return jv0Var;
         }
         Bitmap bitmap = this.f5392f;
-        kv0 kv0Var2 = new kv0(bitmap.getWidth(), bitmap.getHeight());
+        jv0 jv0Var2 = new jv0(bitmap.getWidth(), bitmap.getHeight());
         float f12 = 1280;
-        kv0Var2.f28463a = f12;
+        jv0Var2.f28201a = f12;
         float floor = (float) Math.floor((f12 * f11) / f10);
-        kv0Var2.f28464b = floor;
+        jv0Var2.f28202b = floor;
         if (floor > f12) {
-            kv0Var2.f28464b = f12;
-            kv0Var2.f28463a = (float) Math.floor((f12 * f10) / f11);
+            jv0Var2.f28202b = f12;
+            jv0Var2.f28201a = (float) Math.floor((f12 * f10) / f11);
         }
-        this.f5397x = kv0Var2;
-        return kv0Var2;
+        this.f5397x = jv0Var2;
+        return jv0Var2;
     }
 
     public final void a(MotionEvent motionEvent) {

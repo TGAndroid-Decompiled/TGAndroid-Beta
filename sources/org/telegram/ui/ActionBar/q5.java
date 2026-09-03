@@ -21,16 +21,16 @@ public final class q5 implements SensorEventListener {
                 k6.h = ((float) Math.ceil((Math.log(f10) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
             }
             long j10 = 1800;
-            if (k6.h <= k6.f21887q) {
+            if (k6.h <= k6.f21889q) {
                 if (!MediaController.getInstance().isRecordingOrListeningByProximity()) {
-                    if (k6.f21760j) {
-                        k6.f21760j = false;
-                        AndroidUtilities.cancelRunOnUIThread(k6.f21797l);
+                    if (k6.f21762j) {
+                        k6.f21762j = false;
+                        AndroidUtilities.cancelRunOnUIThread(k6.f21799l);
                     }
-                    if (!k6.f21778k) {
-                        k6.f21778k = true;
-                        androidx.emoji2.text.n nVar = k6.f21815m;
-                        if (Math.abs(k6.f21743i - SystemClock.elapsedRealtime()) < 12000) {
+                    if (!k6.f21780k) {
+                        k6.f21780k = true;
+                        androidx.emoji2.text.n nVar = k6.f21817m;
+                        if (Math.abs(k6.f21745i - SystemClock.elapsedRealtime()) < 12000) {
                             j10 = 12000;
                         }
                         AndroidUtilities.runOnUIThread(nVar, j10);
@@ -40,14 +40,14 @@ public final class q5 implements SensorEventListener {
                 }
                 return;
             }
-            if (k6.f21778k) {
-                k6.f21778k = false;
-                AndroidUtilities.cancelRunOnUIThread(k6.f21815m);
+            if (k6.f21780k) {
+                k6.f21780k = false;
+                AndroidUtilities.cancelRunOnUIThread(k6.f21817m);
             }
-            if (!k6.f21760j) {
-                k6.f21760j = true;
-                androidx.emoji2.text.n nVar2 = k6.f21797l;
-                if (Math.abs(k6.f21743i - SystemClock.elapsedRealtime()) < 12000) {
+            if (!k6.f21762j) {
+                k6.f21762j = true;
+                androidx.emoji2.text.n nVar2 = k6.f21799l;
+                if (Math.abs(k6.f21745i - SystemClock.elapsedRealtime()) < 12000) {
                     j10 = 12000;
                 }
                 AndroidUtilities.runOnUIThread(nVar2, j10);

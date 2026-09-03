@@ -1,24 +1,28 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class tm implements wk, org.telegram.ui.ActionBar.c2 {
-    public final Utilities.Callback f31410a;
+import android.animation.ValueAnimator;
+public final class tm implements ValueAnimator.AnimatorUpdateListener {
+    public final int f31373a;
+    public final rn f31374b;
 
-    public tm(Utilities.Callback callback) {
-        this.f31410a = callback;
+    public tm(rn rnVar, int i10) {
+        this.f31373a = i10;
+        this.f31374b = rnVar;
     }
 
     @Override
-    public void d(TLRPC.MessageMedia messageMedia, int i10, boolean z4, int i11, long j10) {
-        this.f31410a.run(new fh.g(messageMedia));
-    }
-
-    @Override
-    public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        Utilities.Callback callback = this.f31410a;
-        if (callback != null) {
-            callback.run(Boolean.FALSE);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f31373a) {
+            case 0:
+                rn rnVar = this.f31374b;
+                rnVar.getClass();
+                rnVar.B.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                rn rnVar2 = this.f31374b;
+                rnVar2.getClass();
+                rnVar2.B.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
     }
 }

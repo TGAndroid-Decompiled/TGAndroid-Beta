@@ -11,33 +11,33 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.fx;
-import org.telegram.ui.Components.tl0;
-import org.telegram.ui.f51;
-public final class d1 extends tl0 {
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.k51;
+public final class d1 extends sl0 {
     public c2.y U2;
     public boolean V2;
     public float W2;
     public float X2;
     public boolean Y2;
     public final SparseArray Z2;
-    public final ArrayList f45177a3;
-    public final ArrayList f45178b3;
+    public final ArrayList f45217a3;
+    public final ArrayList f45218b3;
     public final ArrayList c3;
-    public final ArrayList f45179d3;
-    public final PorterDuffColorFilter f45180e3;
+    public final ArrayList f45219d3;
+    public final PorterDuffColorFilter f45220e3;
 
     public d1(Context context) {
         super(context, null);
         this.Y2 = false;
         this.Z2 = new SparseArray();
-        this.f45177a3 = new ArrayList();
-        this.f45178b3 = new ArrayList();
+        this.f45217a3 = new ArrayList();
+        this.f45218b3 = new ArrayList();
         this.c3 = new ArrayList();
-        this.f45179d3 = new ArrayList();
-        this.f45180e3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f45219d3 = new ArrayList();
+        this.f45220e3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
     }
 
-    public static void w1(d1 d1Var, int i10, int i11) {
+    public static void v1(d1 d1Var, int i10, int i11) {
         int i12;
         if (d1Var.U2 != null && (d1Var.getLayoutManager() instanceof f2.w)) {
             f2.w wVar = (f2.w) d1Var.getLayoutManager();
@@ -56,7 +56,7 @@ public final class d1 extends tl0 {
             }
             fx fxVar = new fx(d1Var, d1Var.getContext(), 5);
             fxVar.f5805a = i10;
-            fxVar.f50659p = i11;
+            fxVar.f50695p = i11;
             wVar.w0(fxVar);
         }
     }
@@ -83,7 +83,7 @@ public final class d1 extends tl0 {
         if (!rect.isEmpty()) {
             this.A1.setBounds(rect);
             canvas.save();
-            q0.a aVar = this.f31381l2;
+            q0.a aVar = this.f31104l2;
             if (aVar != null) {
                 aVar.accept(canvas);
             }
@@ -95,7 +95,7 @@ public final class d1 extends tl0 {
         while (true) {
             sparseArray = this.Z2;
             int size = sparseArray.size();
-            arrayList = this.f45177a3;
+            arrayList = this.f45217a3;
             if (i11 >= size) {
                 break;
             }
@@ -128,7 +128,7 @@ public final class d1 extends tl0 {
                 }
             }
         }
-        ArrayList arrayList5 = this.f45179d3;
+        ArrayList arrayList5 = this.f45219d3;
         arrayList5.clear();
         ArrayList arrayList6 = this.c3;
         arrayList5.addAll(arrayList6);
@@ -139,7 +139,7 @@ public final class d1 extends tl0 {
         int i13 = 0;
         while (true) {
             int size2 = sparseArray.size();
-            arrayList2 = this.f45178b3;
+            arrayList2 = this.f45218b3;
             if (i13 >= size2) {
                 break;
             }
@@ -213,7 +213,7 @@ public final class d1 extends tl0 {
         if (w0Var instanceof f2.j0) {
             c2.y yVar = new c2.y(this, (f2.j0) w0Var);
             this.U2 = yVar;
-            yVar.f2211i = new f51(this, 1);
+            yVar.f2211i = new k51(this, 1);
             yVar.h = new mh.m5(this, 24);
         }
     }

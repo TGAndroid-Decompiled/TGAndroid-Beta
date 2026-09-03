@@ -15,15 +15,15 @@ public final class ga0 extends kh.v {
         switch (this.E) {
             case 0:
                 kh.c cVar = (kh.c) this.F;
-                ax0 ax0Var = cVar.T;
+                zw0 zw0Var = cVar.T;
                 if (this.f11307e.isEmpty()) {
-                    if (ax0Var.getVisibility() != 4) {
-                        ax0Var.setVisibility(4);
+                    if (zw0Var.getVisibility() != 4) {
+                        zw0Var.setVisibility(4);
                         return;
                     }
                     return;
                 } else if (z10) {
-                    cVar.f30994w.G.setText("");
+                    cVar.f30671w.G.setText("");
                     return;
                 } else {
                     super.f(str, z4, z10);

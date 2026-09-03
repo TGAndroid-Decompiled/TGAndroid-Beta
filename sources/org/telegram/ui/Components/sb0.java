@@ -103,7 +103,7 @@ public final class sb0 extends FrameLayout {
                     }
                     org.telegram.ui.nn nnVar = yb0Var.d.quote;
                     if (nnVar != null) {
-                        return nnVar.f39484a;
+                        return nnVar.f39405a;
                     }
                 }
                 return valueAt.captionMessage;
@@ -155,7 +155,7 @@ public final class sb0 extends FrameLayout {
         float f14;
         float f15;
         int i13 = 0;
-        if (this.W.f33433b) {
+        if (this.W.f33454b) {
             z4 = false;
         }
         if (!z10 || this.L != z4) {
@@ -284,7 +284,7 @@ public final class sb0 extends FrameLayout {
         for (int i11 = 0; i11 < this.f31033r.previewMessages.size(); i11++) {
             MessageObject messageObject = this.f31033r.previewMessages.get(i11);
             messageObject.forceUpdate = true;
-            messageObject.sendAsPeer = yb0Var.f33432a;
+            messageObject.sendAsPeer = yb0Var.f33453a;
             if (!messagePreviewParams.hideForwardSendersName) {
                 messageObject.messageOwner.flags |= 4;
                 messageObject.hideSendersName = false;
@@ -396,7 +396,7 @@ public final class sb0 extends FrameLayout {
             yb0Var.h.setDuration(250L);
             yb0Var.h.setInterpolator(xh.n.V);
             yb0Var.h.addListener(new a9(this, 27));
-            AndroidUtilities.runOnUIThread(yb0Var.f33442y, 50L);
+            AndroidUtilities.runOnUIThread(yb0Var.f33463y, 50L);
             this.Q = i10;
             e(f10, i10);
         } else if (z10) {
@@ -414,7 +414,7 @@ public final class sb0 extends FrameLayout {
         MessagePreviewParams messagePreviewParams = yb0Var.d;
         if (this.f31027a == 0) {
             jb0 jb0Var = this.f31030e;
-            if (jb0Var.v - jb0Var.f24537u <= MessagesController.getInstance(yb0Var.f33440w).quoteLengthMax) {
+            if (jb0Var.v - jb0Var.f24539u <= MessagesController.getInstance(yb0Var.f33461w).quoteLengthMax) {
                 org.telegram.ui.Cells.u9 u9Var = jb0Var.W;
                 if (u9Var != null) {
                     messageObject = ((org.telegram.ui.Cells.t1) u9Var).getMessageObject();
@@ -423,9 +423,9 @@ public final class sb0 extends FrameLayout {
                 }
                 MessageObject c3 = c(messageObject);
                 if (messagePreviewParams.quote != null && jb0Var.y()) {
-                    messagePreviewParams.quoteStart = jb0Var.f24537u;
+                    messagePreviewParams.quoteStart = jb0Var.f24539u;
                     messagePreviewParams.quoteEnd = jb0Var.v;
-                    if (c3 != null && ((messageObject2 = messagePreviewParams.quote.f39484a) == null || messageObject2.getId() != c3.getId())) {
+                    if (c3 != null && ((messageObject2 = messagePreviewParams.quote.f39405a) == null || messageObject2.getId() != c3.getId())) {
                         messagePreviewParams.quote = org.telegram.ui.nn.b(messagePreviewParams.quoteStart, messagePreviewParams.quoteEnd, c3);
                         yb0Var.b();
                     }
@@ -440,9 +440,9 @@ public final class sb0 extends FrameLayout {
         int size;
         String string;
         yb0 yb0Var = this.W;
-        TLRPC.User user = yb0Var.f33437n;
+        TLRPC.User user = yb0Var.f33458n;
         MessagePreviewParams messagePreviewParams = yb0Var.d;
-        TLRPC.Chat chat = yb0Var.f33438r;
+        TLRPC.Chat chat = yb0Var.f33459r;
         ag.l lVar = this.f31029c;
         int i10 = this.f31027a;
         if (i10 == 1) {

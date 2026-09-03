@@ -39,9 +39,9 @@ public final class r50 extends f2.l {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.G = ofFloat;
             ofFloat.addUpdateListener(new e3(this, 17));
-            this.G.addListener(new org.telegram.ui.Components.g91(this, 21));
+            this.G.addListener(new org.telegram.ui.Components.f91(this, 21));
             this.G.setDuration(350L);
-            this.G.setInterpolator(org.telegram.ui.Components.pr.f30183f);
+            this.G.setInterpolator(org.telegram.ui.Components.pr.f30168f);
             this.G.start();
             d60 d60Var = this.L;
             d60Var.N.invalidate();

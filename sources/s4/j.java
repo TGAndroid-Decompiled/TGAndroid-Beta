@@ -1,14 +1,14 @@
 package s4;
 public final class j {
-    public final long f46982a;
-    public final long f46983b;
-    public final String f46984c;
+    public final long f47013a;
+    public final long f47014b;
+    public final String f47015c;
     public int d;
 
     public j(long j10, long j11, String str) {
-        this.f46984c = str == null ? "" : str;
-        this.f46982a = j10;
-        this.f46983b = j11;
+        this.f47015c = str == null ? "" : str;
+        this.f47013a = j10;
+        this.f47014b = j11;
     }
 
     public final j a(j jVar, String str) {
@@ -16,16 +16,16 @@ public final class j {
         long j10;
         long j11;
         long j12;
-        String G = h5.a.G(str, this.f46984c);
+        String G = h5.a.G(str, this.f47015c);
         if (jVar != null) {
-            long j13 = jVar.f46983b;
-            if (G.equals(h5.a.G(str, jVar.f46984c))) {
-                long j14 = this.f46983b;
+            long j13 = jVar.f47014b;
+            if (G.equals(h5.a.G(str, jVar.f47015c))) {
+                long j14 = this.f47014b;
                 if (j14 != -1) {
                     j10 = j13;
-                    long j15 = this.f46982a;
+                    long j15 = this.f47013a;
                     jVar2 = null;
-                    if (j15 + j14 == jVar.f46982a) {
+                    if (j15 + j14 == jVar.f47013a) {
                         if (j10 == -1) {
                             j12 = -1;
                         } else {
@@ -38,8 +38,8 @@ public final class j {
                     j10 = j13;
                 }
                 if (j10 != -1) {
-                    long j16 = jVar.f46982a;
-                    if (j16 + j10 == this.f46982a) {
+                    long j16 = jVar.f47013a;
+                    if (j16 + j10 == this.f47013a) {
                         if (j14 == -1) {
                             j11 = -1;
                         } else {
@@ -61,7 +61,7 @@ public final class j {
         }
         if (obj != null && j.class == obj.getClass()) {
             j jVar = (j) obj;
-            if (this.f46982a == jVar.f46982a && this.f46983b == jVar.f46983b && this.f46984c.equals(jVar.f46984c)) {
+            if (this.f47013a == jVar.f47013a && this.f47014b == jVar.f47014b && this.f47015c.equals(jVar.f47015c)) {
                 return true;
             }
         }
@@ -70,17 +70,17 @@ public final class j {
 
     public final int hashCode() {
         if (this.d == 0) {
-            this.d = this.f46984c.hashCode() + ((((527 + ((int) this.f46982a)) * 31) + ((int) this.f46983b)) * 31);
+            this.d = this.f47015c.hashCode() + ((((527 + ((int) this.f47013a)) * 31) + ((int) this.f47014b)) * 31);
         }
         return this.d;
     }
 
     public final String toString() {
         StringBuilder sb = new StringBuilder("RangedUri(referenceUri=");
-        sb.append(this.f46984c);
+        sb.append(this.f47015c);
         sb.append(", start=");
-        sb.append(this.f46982a);
+        sb.append(this.f47013a);
         sb.append(", length=");
-        return android.support.v4.media.a.q(sb, this.f46983b, ")");
+        return android.support.v4.media.a.q(sb, this.f47014b, ")");
     }
 }

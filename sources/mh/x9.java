@@ -9,23 +9,23 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.p00;
 public final class x9 extends org.telegram.ui.Components.k6 {
-    public final int f15063s = 0;
+    public final int f15065s = 0;
     public final Object v;
-    public final ViewGroup f15064w;
+    public final ViewGroup f15066w;
 
     public x9(y9 y9Var, Context context, Drawable drawable) {
         super(context, false, false, false);
-        this.f15064w = y9Var;
+        this.f15066w = y9Var;
         this.v = drawable;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f10;
-        switch (this.f15063s) {
+        switch (this.f15065s) {
             case 0:
                 Drawable drawable = (Drawable) this.v;
-                if (!((y9) this.f15064w).d) {
+                if (!((y9) this.f15066w).d) {
                     int measuredWidth = (int) ((getMeasuredWidth() - getDrawable().d()) - AndroidUtilities.dp(20.0f));
                     drawable.setBounds(measuredWidth, org.telegram.ui.b.x(17.0f, getMeasuredHeight(), 2), AndroidUtilities.dp(17.0f) + measuredWidth, (AndroidUtilities.dp(17.0f) + getMeasuredHeight()) / 2);
                     drawable.draw(canvas);
@@ -33,8 +33,8 @@ public final class x9 extends org.telegram.ui.Components.k6 {
                 super.dispatchDraw(canvas);
                 return;
             default:
-                p00 p00Var = (p00) this.f15064w;
-                int a2 = p00Var.f39889w.a(p00Var.v, false);
+                p00 p00Var = (p00) this.f15066w;
+                int a2 = p00Var.f39846w.a(p00Var.v, false);
                 setTextColor(a2);
                 Paint paint = (Paint) this.v;
                 if (org.telegram.ui.ActionBar.k6.I.q()) {
@@ -53,7 +53,7 @@ public final class x9 extends org.telegram.ui.Components.k6 {
 
     public x9(p00 p00Var, Context context) {
         super(context, false, true, true);
-        this.f15064w = p00Var;
+        this.f15066w = p00Var;
         this.v = new Paint(1);
     }
 }

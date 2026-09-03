@@ -10,8 +10,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public abstract class b {
-    public static final Map f13647a;
-    public static final Pattern f13648b;
+    public static final Map f13649a;
+    public static final Pattern f13650b;
 
     static {
         HashMap hashMap = new HashMap();
@@ -27,8 +27,8 @@ public abstract class b {
                 } else {
                     bufferedReader.close();
                     hashMap.put("NewLine", "\n");
-                    f13647a = hashMap;
-                    f13648b = Pattern.compile("^&#[Xx]?");
+                    f13649a = hashMap;
+                    f13650b = Pattern.compile("^&#[Xx]?");
                     return;
                 }
             }
@@ -39,7 +39,7 @@ public abstract class b {
 
     public static String a(String str) {
         int i10;
-        Matcher matcher = f13648b.matcher(str);
+        Matcher matcher = f13650b.matcher(str);
         if (matcher.find()) {
             if (matcher.end() == 2) {
                 i10 = 10;
@@ -56,7 +56,7 @@ public abstract class b {
                 return "�";
             }
         }
-        String str2 = (String) f13647a.get(c.j(str, 1, 1));
+        String str2 = (String) f13649a.get(c.j(str, 1, 1));
         if (str2 != null) {
             return str2;
         }

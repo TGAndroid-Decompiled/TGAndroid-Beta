@@ -29,9 +29,9 @@ public final class p extends wc.i implements dd.p {
     public final Object invoke(Object obj, Object obj2) {
         switch (this.f10296a) {
             case 0:
-                return ((p) create((m) obj, (uc.c) obj2)).invokeSuspend(sc.i.f47243a);
+                return ((p) create((m) obj, (uc.c) obj2)).invokeSuspend(sc.i.f47274a);
             default:
-                return ((p) create((od.c) obj, (uc.c) obj2)).invokeSuspend(sc.i.f47243a);
+                return ((p) create((od.c) obj, (uc.c) obj2)).invokeSuspend(sc.i.f47274a);
         }
     }
 

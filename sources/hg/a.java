@@ -32,7 +32,7 @@ public final class a extends ReplacementSpan {
         j6Var.t(AndroidUtilities.dp(11.5f));
         j6Var.u(AndroidUtilities.bold());
         j6Var.q("", true, true);
-        j6Var.f28029b = 17;
+        j6Var.f27999b = 17;
         Drawable mutate = t1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge).mutate();
         this.f7384a = mutate;
         Drawable mutate2 = t1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge2).mutate();
@@ -66,15 +66,15 @@ public final class a extends ReplacementSpan {
         TextPaint textPaint = this.f7388f;
         int color = textPaint.getColor();
         j6 j6Var = this.f7387e;
-        int color2 = j6Var.f28028a.getColor();
+        int color2 = j6Var.f27998a.getColor();
         Drawable drawable = this.f7385b;
         Drawable drawable2 = this.f7384a;
         if (color != color2) {
             j6Var.r(textPaint.getColor());
-            int color3 = j6Var.f28028a.getColor();
+            int color3 = j6Var.f27998a.getColor();
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
             drawable2.setColorFilter(new PorterDuffColorFilter(color3, mode));
-            drawable.setColorFilter(new PorterDuffColorFilter(j6Var.f28028a.getColor(), mode));
+            drawable.setColorFilter(new PorterDuffColorFilter(j6Var.f27998a.getColor(), mode));
         }
         canvas.save();
         if (this.d && !this.f7386c) {
@@ -91,7 +91,7 @@ public final class a extends ReplacementSpan {
         }
         canvas.translate(AndroidUtilities.dp(16.0f), 0.0f);
         Rect rect = AndroidUtilities.rectTmp2;
-        rect.set(0, 0, (int) j6Var.d(), (int) j6Var.f28031e);
+        rect.set(0, 0, (int) j6Var.d(), (int) j6Var.f28001e);
         j6Var.setBounds(rect);
         j6Var.draw(canvas);
         canvas.restore();

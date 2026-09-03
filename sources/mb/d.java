@@ -1,18 +1,18 @@
 package mb;
 public final class d {
-    public boolean f13622a;
-    public boolean f13623b;
-    public boolean f13624c;
+    public boolean f13624a;
+    public boolean f13625b;
+    public boolean f13626c;
 
     public d() {
-        this.f13622a = false;
-        this.f13623b = false;
-        this.f13624c = false;
+        this.f13624a = false;
+        this.f13625b = false;
+        this.f13626c = false;
     }
 
     public d(boolean z4, boolean z10, boolean z11) {
-        this.f13622a = z4;
-        this.f13623b = z10;
-        this.f13624c = z11;
+        this.f13624a = z4;
+        this.f13625b = z10;
+        this.f13626c = z11;
     }
 }

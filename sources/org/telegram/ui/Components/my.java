@@ -35,7 +35,7 @@ public interface my {
 
     void n();
 
-    void o(f51 f51Var);
+    void o(d51 d51Var);
 
     float p();
 

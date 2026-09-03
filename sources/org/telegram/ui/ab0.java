@@ -4,18 +4,18 @@ import android.window.OnBackInvokedCallback;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class ab0 implements OnBackInvokedCallback {
-    public final LaunchActivity f35110a;
+    public final LaunchActivity f35123a;
 
     public ab0(LaunchActivity launchActivity) {
-        this.f35110a = launchActivity;
+        this.f35123a = launchActivity;
     }
 
     public final void onBackInvoked() {
         if (AndroidUtilities.isTablet()) {
-            this.f35110a.onBackPressed();
-        } else if (!this.f35110a.c0(true)) {
+            this.f35123a.onBackPressed();
+        } else if (!this.f35123a.c0(true)) {
         } else {
-            LaunchActivity launchActivity = this.f35110a;
+            LaunchActivity launchActivity = this.f35123a;
             ActionBarLayout actionBarLayout = launchActivity.f34160n0;
             if (actionBarLayout != null) {
                 if (!actionBarLayout.Z0) {

@@ -17,25 +17,25 @@ public final class sd0 extends AnimatorListenerAdapter {
         switch (this.f31040a) {
             case 0:
                 td0 td0Var = this.f31041b;
-                AnimatorSet animatorSet = (AnimatorSet) td0Var.f31329e;
+                AnimatorSet animatorSet = (AnimatorSet) td0Var.f31344e;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    td0Var.f31329e = null;
+                    td0Var.f31344e = null;
                     return;
                 }
                 return;
             case 1:
                 td0 td0Var2 = this.f31041b;
-                AnimatorSet animatorSet2 = (AnimatorSet) td0Var2.f31329e;
+                AnimatorSet animatorSet2 = (AnimatorSet) td0Var2.f31344e;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    td0Var2.f31329e = null;
+                    td0Var2.f31344e = null;
                     return;
                 }
                 return;
             default:
                 td0 td0Var3 = this.f31041b;
-                AnimatorSet animatorSet3 = (AnimatorSet) td0Var3.f31329e;
+                AnimatorSet animatorSet3 = (AnimatorSet) td0Var3.f31344e;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    td0Var3.f31329e = null;
+                    td0Var3.f31344e = null;
                     return;
                 }
                 return;

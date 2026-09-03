@@ -7,22 +7,22 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class bx implements org.telegram.ui.Components.eg {
-    public final py f35610a;
+    public final py f35616a;
 
     public bx(py pyVar) {
-        this.f35610a = pyVar;
+        this.f35616a = pyVar;
     }
 
     @Override
     public final void C(CharSequence charSequence, boolean z4, int i10, int i11, long j10) {
-        py pyVar = this.f35610a;
-        if (pyVar.f40308z2 != null && !pyVar.F2.isEmpty()) {
+        py pyVar = this.f35616a;
+        if (pyVar.f40278z2 != null && !pyVar.F2.isEmpty()) {
             ArrayList arrayList = new ArrayList();
             for (int i12 = 0; i12 < pyVar.F2.size(); i12++) {
                 arrayList.add(MessagesStorage.TopicKey.of(((Long) pyVar.F2.get(i12)).longValue(), 0L));
             }
-            py pyVar2 = this.f35610a;
-            pyVar2.f40308z2.v(pyVar2, arrayList, charSequence, false, z4, i10, i11, null);
+            py pyVar2 = this.f35616a;
+            pyVar2.f40278z2.v(pyVar2, arrayList, charSequence, false, z4, i10, i11, null);
         }
     }
 
@@ -83,24 +83,24 @@ public final class bx implements org.telegram.ui.Components.eg {
 
     @Override
     public final void r1(CharSequence charSequence, boolean z4, boolean z10) {
-        py pyVar = this.f35610a;
+        py pyVar = this.f35616a;
         AndroidUtilities.runOnUIThread(new ew(pyVar, 12), 100L);
-        org.telegram.ui.Components.rq0 rq0Var = pyVar.D2;
-        if (rq0Var != null) {
+        org.telegram.ui.Components.qq0 qq0Var = pyVar.D2;
+        if (qq0Var != null) {
             if (z4) {
-                if (rq0Var.h) {
-                    rq0Var.e(charSequence, true);
+                if (qq0Var.h) {
+                    qq0Var.e(charSequence, true);
                     return;
                 }
                 return;
             }
-            org.telegram.ui.Components.l41 l41Var = pyVar.E2;
-            if (l41Var != null) {
-                AndroidUtilities.cancelRunOnUIThread(l41Var);
+            org.telegram.ui.Components.q51 q51Var = pyVar.E2;
+            if (q51Var != null) {
+                AndroidUtilities.cancelRunOnUIThread(q51Var);
             }
-            org.telegram.ui.Components.l41 l41Var2 = new org.telegram.ui.Components.l41(21, this, charSequence);
-            pyVar.E2 = l41Var2;
-            AndroidUtilities.runOnUIThread(l41Var2, 1000L);
+            org.telegram.ui.Components.q51 q51Var2 = new org.telegram.ui.Components.q51(20, this, charSequence);
+            pyVar.E2 = q51Var2;
+            AndroidUtilities.runOnUIThread(q51Var2, 1000L);
         }
     }
 

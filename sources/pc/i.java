@@ -16,7 +16,7 @@ public final class i extends j {
     @Override
     public final String toString() {
         oc.b bVar = this.v;
-        if (bVar != null && bVar.f16708a > 0) {
+        if (bVar != null && bVar.f16710a > 0) {
             return "<" + o() + " " + this.v.toString() + ">";
         }
         return "<" + o() + ">";

@@ -1,6 +1,6 @@
 package n7;
 public final class m2 implements u9.d {
-    public static final m2 f15649a = new Object();
+    public static final m2 f15651a = new Object();
 
     static {
         e2.c.r(l.d.p(w.class, l.d.r(3, l.d.p(w.class, l.d.r(2, l.d.p(w.class, new s(1)))))));

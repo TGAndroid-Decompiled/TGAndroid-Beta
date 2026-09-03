@@ -8,48 +8,48 @@ import android.os.Build;
 import android.view.View;
 import java.util.WeakHashMap;
 public final class m {
-    public final View f13242a;
+    public final View f13244a;
     public e3 d;
-    public e3 f13245e;
-    public e3 f13246f;
-    public int f13244c = -1;
-    public final q f13243b = q.a();
+    public e3 f13247e;
+    public e3 f13248f;
+    public int f13246c = -1;
+    public final q f13245b = q.a();
 
     public m(View view) {
-        this.f13242a = view;
+        this.f13244a = view;
     }
 
     public final void a() {
-        View view = this.f13242a;
+        View view = this.f13244a;
         Drawable background = view.getBackground();
         if (background != null) {
             int i10 = Build.VERSION.SDK_INT;
             if (i10 <= 21 ? i10 == 21 : this.d != null) {
-                if (this.f13246f == null) {
-                    this.f13246f = new Object();
+                if (this.f13248f == null) {
+                    this.f13248f = new Object();
                 }
-                e3 e3Var = this.f13246f;
-                e3Var.f13184c = null;
-                e3Var.f13183b = false;
+                e3 e3Var = this.f13248f;
+                e3Var.f13186c = null;
+                e3Var.f13185b = false;
                 e3Var.d = null;
-                e3Var.f13182a = false;
-                WeakHashMap weakHashMap = r0.j0.f46438a;
+                e3Var.f13184a = false;
+                WeakHashMap weakHashMap = r0.j0.f46469a;
                 ColorStateList c3 = r0.b0.c(view);
                 if (c3 != null) {
-                    e3Var.f13183b = true;
-                    e3Var.f13184c = c3;
+                    e3Var.f13185b = true;
+                    e3Var.f13186c = c3;
                 }
                 PorterDuff.Mode d = r0.b0.d(view);
                 if (d != null) {
-                    e3Var.f13182a = true;
+                    e3Var.f13184a = true;
                     e3Var.d = d;
                 }
-                if (e3Var.f13183b || e3Var.f13182a) {
+                if (e3Var.f13185b || e3Var.f13184a) {
                     q.d(background, e3Var, view.getDrawableState());
                     return;
                 }
             }
-            e3 e3Var2 = this.f13245e;
+            e3 e3Var2 = this.f13247e;
             if (e3Var2 != null) {
                 q.d(background, e3Var2, view.getDrawableState());
                 return;
@@ -62,15 +62,15 @@ public final class m {
     }
 
     public final ColorStateList b() {
-        e3 e3Var = this.f13245e;
+        e3 e3Var = this.f13247e;
         if (e3Var != null) {
-            return (ColorStateList) e3Var.f13184c;
+            return (ColorStateList) e3Var.f13186c;
         }
         return null;
     }
 
     public final PorterDuff.Mode c() {
-        e3 e3Var = this.f13245e;
+        e3 e3Var = this.f13247e;
         if (e3Var != null) {
             return (PorterDuff.Mode) e3Var.d;
         }
@@ -82,19 +82,19 @@ public final class m {
     }
 
     public final void e() {
-        this.f13244c = -1;
+        this.f13246c = -1;
         g(null);
         a();
     }
 
     public final void f(int i10) {
         ColorStateList colorStateList;
-        this.f13244c = i10;
-        q qVar = this.f13243b;
+        this.f13246c = i10;
+        q qVar = this.f13245b;
         if (qVar != null) {
-            Context context = this.f13242a.getContext();
+            Context context = this.f13244a.getContext();
             synchronized (qVar) {
-                colorStateList = qVar.f13302a.i(context, i10);
+                colorStateList = qVar.f13304a.i(context, i10);
             }
         } else {
             colorStateList = null;
@@ -109,8 +109,8 @@ public final class m {
                 this.d = new Object();
             }
             e3 e3Var = this.d;
-            e3Var.f13184c = colorStateList;
-            e3Var.f13183b = true;
+            e3Var.f13186c = colorStateList;
+            e3Var.f13185b = true;
         } else {
             this.d = null;
         }
@@ -118,22 +118,22 @@ public final class m {
     }
 
     public final void h(ColorStateList colorStateList) {
-        if (this.f13245e == null) {
-            this.f13245e = new Object();
+        if (this.f13247e == null) {
+            this.f13247e = new Object();
         }
-        e3 e3Var = this.f13245e;
-        e3Var.f13184c = colorStateList;
-        e3Var.f13183b = true;
+        e3 e3Var = this.f13247e;
+        e3Var.f13186c = colorStateList;
+        e3Var.f13185b = true;
         a();
     }
 
     public final void i(PorterDuff.Mode mode) {
-        if (this.f13245e == null) {
-            this.f13245e = new Object();
+        if (this.f13247e == null) {
+            this.f13247e = new Object();
         }
-        e3 e3Var = this.f13245e;
+        e3 e3Var = this.f13247e;
         e3Var.d = mode;
-        e3Var.f13182a = true;
+        e3Var.f13184a = true;
         a();
     }
 }

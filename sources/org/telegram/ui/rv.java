@@ -8,36 +8,36 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class rv implements DialogInterface.OnClickListener {
-    public final int f41054a;
-    public final NotificationCenter.NotificationCenterDelegate f41055b;
+    public final int f40945a;
+    public final NotificationCenter.NotificationCenterDelegate f40946b;
 
     public rv(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f41054a = i10;
-        this.f41055b = notificationCenterDelegate;
+        this.f40945a = i10;
+        this.f40946b = notificationCenterDelegate;
     }
 
     @Override
     public final void onClick(DialogInterface dialogInterface, int i10) {
         String str;
         int i11 = 0;
-        switch (this.f41054a) {
+        switch (this.f40945a) {
             case 0:
-                py pyVar = (py) this.f41055b;
+                py pyVar = (py) this.f40946b;
                 if (i10 == 0) {
                     pyVar.getMessagesStorage().readAllDialogs(1);
                     return;
-                } else if (i10 != 1 || pyVar.f40185b0 == null) {
+                } else if (i10 != 1 || pyVar.f40155b0 == null) {
                     return;
                 } else {
                     while (true) {
-                        oy[] oyVarArr = pyVar.f40185b0;
+                        oy[] oyVarArr = pyVar.f40155b0;
                         if (i11 < oyVarArr.length) {
                             oy oyVar = oyVarArr[i11];
-                            if (oyVar.f39873s == 0 && oyVar.getVisibility() == 0) {
-                                org.telegram.ui.Cells.r2 Q3 = py.Q3(pyVar.f40185b0[i11]);
-                                ly lyVar = pyVar.f40185b0[i11].f39866a;
-                                int i12 = ly.f38903s3;
-                                lyVar.z1(true, Q3);
+                            if (oyVar.f39829s == 0 && oyVar.getVisibility() == 0) {
+                                org.telegram.ui.Cells.r2 Q3 = py.Q3(pyVar.f40155b0[i11]);
+                                ly lyVar = pyVar.f40155b0[i11].f39822a;
+                                int i12 = ly.f38799s3;
+                                lyVar.y1(true, Q3);
                             }
                             i11++;
                         } else {
@@ -47,7 +47,7 @@ public final class rv implements DialogInterface.OnClickListener {
                 }
                 break;
             case 1:
-                ng0 ng0Var = (ng0) this.f41055b;
+                ng0 ng0Var = (ng0) this.f40946b;
                 if (i10 == 0) {
                     BuildVars.LOGS_ENABLED = !BuildVars.LOGS_ENABLED;
                     ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", BuildVars.LOGS_ENABLED).commit();
@@ -74,13 +74,13 @@ public final class rv implements DialogInterface.OnClickListener {
                 ProfileActivity.H4(ng0Var.S.getParentActivity(), false);
                 return;
             case 2:
-                fn0 fn0Var = (fn0) this.f41055b;
+                fn0 fn0Var = (fn0) this.f40946b;
                 if (i10 == 0) {
-                    fn0Var.f36967w = "male";
+                    fn0Var.f36870w = "male";
                     fn0Var.V[4].setText(LocaleController.getString(R.string.PassportMale));
                     return;
                 } else if (i10 == 1) {
-                    fn0Var.f36967w = "female";
+                    fn0Var.f36870w = "female";
                     fn0Var.V[4].setText(LocaleController.getString(R.string.PassportFemale));
                     return;
                 } else {
@@ -88,7 +88,7 @@ public final class rv implements DialogInterface.OnClickListener {
                     return;
                 }
             default:
-                p81.c0((p81) this.f41055b, i10);
+                v81.c0((v81) this.f40946b, i10);
                 return;
         }
     }

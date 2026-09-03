@@ -8,15 +8,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class dw implements Runnable {
-    public final int f36318a;
-    public final py f36319b;
-    public final long f36320c;
+    public final int f36272a;
+    public final py f36273b;
+    public final long f36274c;
     public final boolean d;
 
     public dw(py pyVar, long j10, boolean z4, int i10) {
-        this.f36318a = i10;
-        this.f36319b = pyVar;
-        this.f36320c = j10;
+        this.f36272a = i10;
+        this.f36273b = pyVar;
+        this.f36274c = j10;
         this.d = z4;
     }
 
@@ -25,20 +25,20 @@ public final class dw implements Runnable {
         String str;
         TLRPC.Chat chat;
         SpannableStringBuilder replaceTags;
-        int i10 = this.f36318a;
+        int i10 = this.f36272a;
         boolean z4 = this.d;
-        long j10 = this.f36320c;
-        py pyVar = this.f36319b;
+        long j10 = this.f36274c;
+        py pyVar = this.f36273b;
         switch (i10) {
             case 0:
-                py pyVar2 = this.f36319b;
+                py pyVar2 = this.f36273b;
                 oh.t6 storiesController = pyVar2.getMessagesController().getStoriesController();
-                long j11 = this.f36320c;
+                long j11 = this.f36274c;
                 boolean z10 = this.d;
                 storiesController.i0(j11, z10, false);
                 n7.qa qaVar = new n7.qa(11);
-                qaVar.f15699b = new dw(pyVar2, j11, z10, 1);
-                qaVar.f15700c = new dw(pyVar2, j11, z10, 2);
+                qaVar.f15701b = new dw(pyVar2, j11, z10, 1);
+                qaVar.f15702c = new dw(pyVar2, j11, z10, 2);
                 if (j11 >= 0) {
                     TLRPC.User user = pyVar2.getMessagesController().getUser(Long.valueOf(j11));
                     str = ContactsController.formatName(user.first_name, null, 15);

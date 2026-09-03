@@ -65,12 +65,12 @@ public abstract class g implements com.google.android.gms.common.api.c {
             }
         }
         k0 k0Var = k0.h;
-        Object obj = y5.d.f50767c;
+        Object obj = y5.d.f50803c;
         m.h(kVar);
         m.h(lVar);
         n nVar = new n(kVar);
         n nVar2 = new n(lVar);
-        Object obj2 = y5.d.f50767c;
+        Object obj2 = y5.d.f50803c;
         this.f1717f = null;
         this.f1721w = new Object();
         this.f1722x = new Object();
@@ -90,8 +90,8 @@ public abstract class g implements com.google.android.gms.common.api.c {
         this.I = i10;
         this.G = nVar;
         this.H = nVar2;
-        this.J = (String) r3Var.f13330e;
-        Set<Scope> set = (Set) r3Var.f13328b;
+        this.J = (String) r3Var.f13332e;
+        Set<Scope> set = (Set) r3Var.f13330b;
         for (Scope scope : set) {
             if (!set.contains(scope)) {
                 throw new IllegalStateException("Expanding scopes is not permitted, use implied scopes instead");
@@ -215,13 +215,13 @@ public abstract class g implements com.google.android.gms.common.api.c {
                         if (!b10.f()) {
                             androidx.activity.o oVar2 = this.h;
                             Log.w("GmsClient", "unable to connect to service: " + ((String) oVar2.f356b) + " on " + ((String) oVar2.f357c));
-                            int i11 = b10.f50759b;
+                            int i11 = b10.f50795b;
                             if (i11 == -1) {
                                 i11 = 16;
                             }
-                            if (b10.f50760c != null) {
+                            if (b10.f50796c != null) {
                                 bundle = new Bundle();
-                                bundle.putParcelable("pendingIntent", b10.f50760c);
+                                bundle.putParcelable("pendingIntent", b10.f50796c);
                             }
                             int i12 = this.O.get();
                             f0 f0Var = new f0(this, i11, bundle);
@@ -269,7 +269,7 @@ public abstract class g implements com.google.android.gms.common.api.c {
 
     @Override
     public final void d(o5.i iVar) {
-        ((p0) iVar.f16615b).f2791o.f2731x.post(new androidx.activity.i(iVar, 11));
+        ((p0) iVar.f16617b).f2791o.f2731x.post(new androidx.activity.i(iVar, 11));
     }
 
     @Override
@@ -421,7 +421,7 @@ public abstract class g implements com.google.android.gms.common.api.c {
         }
         String str2 = str;
         int i10 = this.I;
-        int i11 = y5.e.f50768a;
+        int i11 = y5.e.f50804a;
         Scope[] scopeArr = f.B;
         Bundle bundle = new Bundle();
         y5.c[] cVarArr = f.C;
@@ -565,7 +565,7 @@ public abstract class g implements com.google.android.gms.common.api.c {
     }
 
     public void z(y5.a aVar) {
-        this.d = aVar.f50759b;
+        this.d = aVar.f50795b;
         this.f1716e = System.currentTimeMillis();
     }
 }

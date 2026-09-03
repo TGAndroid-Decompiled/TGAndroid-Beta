@@ -1,14 +1,17 @@
 package qh;
 
-import android.graphics.Rect;
-import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class o2 extends f2.v0 {
+public final class o2 extends f2.a1 {
+    public final z2 f45835a;
+
+    public o2(z2 z2Var) {
+        this.f45835a = z2Var;
+    }
+
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, f2.j1 j1Var) {
-        int dp = AndroidUtilities.dp(5.0f);
-        rect.right = dp;
-        rect.bottom = dp;
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        z2 z2Var = this.f45835a;
+        z2Var.getClass();
+        z2Var.invalidate();
     }
 }

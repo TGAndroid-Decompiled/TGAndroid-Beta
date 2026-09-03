@@ -21,11 +21,11 @@ public final class zh extends ra0 {
         switch (this.S) {
             case 1:
                 qh.k kVar = (qh.k) this.T;
-                Paint paint = kVar.f45515e;
-                RectF rectF = kVar.f45538w0;
+                Paint paint = kVar.f45572e;
+                RectF rectF = kVar.f45595w0;
                 rectF.set(rect);
                 if (kVar.g()) {
-                    kVar.h(kVar.Q, canvas, kVar.f45538w0, f10, false, -kVar.J.getX(), -kVar.J.getY(), false);
+                    kVar.h(kVar.Q, canvas, kVar.f45595w0, f10, false, -kVar.J.getX(), -kVar.J.getY(), false);
                     return;
                 }
                 Paint c3 = kVar.Q.c(1.0f);
@@ -58,7 +58,7 @@ public final class zh extends ra0 {
     public void i() {
         switch (this.S) {
             case 0:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((mi) this.T).f29054g0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((mi) this.T).f29072g0;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.V();
                     return;
@@ -73,7 +73,7 @@ public final class zh extends ra0 {
     public void n(boolean z4) {
         switch (this.S) {
             case 0:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((mi) this.T).f29054g0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((mi) this.T).f29072g0;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.V();
                     return;

@@ -27,7 +27,7 @@ public final class a1 extends LinearLayout {
         super(context);
         this.f5063r = c1Var;
         setOrientation(0);
-        int i10 = k6.f21750i6;
+        int i10 = k6.f21752i6;
         f0 f0Var = c1Var.N1;
         setBackground(k6.f0(k6.v0(i10, f0Var), 2, -1));
         ag.l lVar = new ag.l(this, context);
@@ -56,7 +56,7 @@ public final class a1 extends LinearLayout {
         this.f5062n = imageView4;
         imageView4.setImageResource(R.drawable.msg_text_check);
         imageView4.setScaleType(scaleType);
-        imageView4.setColorFilter(new PorterDuffColorFilter(k6.v0(k6.f21733h7, f0Var), PorterDuff.Mode.MULTIPLY));
+        imageView4.setColorFilter(new PorterDuffColorFilter(k6.v0(k6.f21735h7, f0Var), PorterDuff.Mode.MULTIPLY));
         imageView4.setVisibility(8);
         addView(imageView4, c6.n(50, -1));
     }

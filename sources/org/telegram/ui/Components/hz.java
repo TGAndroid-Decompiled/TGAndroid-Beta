@@ -18,23 +18,23 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class hz extends sl0 {
+public final class hz extends rl0 {
     public int I;
     public int J;
     public String K;
     public final mz N;
-    public final gz f27603c;
+    public final gz f27660c;
     public long d;
-    public TLRPC.StickerSet f27604e;
-    public ArrayList f27605f;
+    public TLRPC.StickerSet f27661e;
+    public ArrayList f27662f;
     public final Context h;
-    public int f27610x;
-    public boolean f27611y;
-    public final SparseArray f27606n = new SparseArray();
-    public final SparseArray f27607r = new SparseArray();
-    public final SparseArray f27608s = new SparseArray();
+    public int f27667x;
+    public boolean f27668y;
+    public final SparseArray f27663n = new SparseArray();
+    public final SparseArray f27664r = new SparseArray();
+    public final SparseArray f27665s = new SparseArray();
     public final SparseIntArray v = new SparseIntArray();
-    public final SparseArray f27609w = new SparseArray();
+    public final SparseArray f27666w = new SparseArray();
     public ArrayList B = new ArrayList();
     public HashMap C = new HashMap();
     public HashMap D = new HashMap();
@@ -49,10 +49,10 @@ public final class hz extends sl0 {
         this.N = mzVar;
         this.h = context;
         ?? bVar = new bh.b(context, mzVar.Z0, new d(this, 12), new hv(this, 3), mzVar.W1);
-        this.f27603c = bVar;
+        this.f27660c = bVar;
         bVar.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f));
         bVar.setClipToPadding(false);
-        bVar.V2.f32957r = false;
+        bVar.V2.f32651r = false;
         bVar.setNestedScrollingEnabled(false);
         bVar.setDrawSelection(false);
         bVar.setOnTouchListener(new m.c2(this, 3));
@@ -68,7 +68,7 @@ public final class hz extends sl0 {
 
     @Override
     public final int h() {
-        int i10 = this.f27610x;
+        int i10 = this.f27667x;
         if (i10 != 1) {
             return i10 + 1;
         }
@@ -86,10 +86,10 @@ public final class hz extends sl0 {
         if (i10 == 0) {
             return 4;
         }
-        if (i10 == 1 && this.f27610x == 1) {
+        if (i10 == 1 && this.f27667x == 1) {
             return 5;
         }
-        Object obj = this.f27607r.get(i10);
+        Object obj = this.f27664r.get(i10);
         if (obj == null) {
             return 1;
         }
@@ -113,48 +113,48 @@ public final class hz extends sl0 {
         int i13;
         mz mzVar = this.N;
         int i14 = mzVar.Z0;
-        dz dzVar = mzVar.f29331v0;
+        dz dzVar = mzVar.f29333v0;
         this.M = -1;
-        SparseArray sparseArray = this.f27606n;
+        SparseArray sparseArray = this.f27663n;
         sparseArray.clear();
         SparseIntArray sparseIntArray = this.v;
         sparseIntArray.clear();
-        SparseArray sparseArray2 = this.f27607r;
+        SparseArray sparseArray2 = this.f27664r;
         sparseArray2.clear();
-        SparseArray sparseArray3 = this.f27609w;
+        SparseArray sparseArray3 = this.f27666w;
         sparseArray3.clear();
-        this.f27610x = 0;
+        this.f27667x = 0;
         int size = this.D.size() + this.B.size();
-        this.f27603c.V2.N(false);
+        this.f27660c.V2.N(false);
         long j10 = this.d;
         String str = "";
-        SparseArray sparseArray4 = this.f27608s;
+        SparseArray sparseArray4 = this.f27665s;
         if (j10 != 0) {
-            ArrayList arrayList = this.f27605f;
-            int i15 = this.f27610x;
-            this.f27610x = i15 + 1;
+            ArrayList arrayList = this.f27662f;
+            int i15 = this.f27667x;
+            this.f27667x = i15 + 1;
             sparseArray2.put(i15, "search");
             if (size > 0) {
-                int i16 = this.f27610x;
-                this.f27610x = i16 + 1;
+                int i16 = this.f27667x;
+                this.f27667x = i16 + 1;
                 this.M = i16;
                 sparseArray2.put(i16, "packs");
-                int i17 = this.f27610x;
-                this.f27610x = i17 + 1;
-                sparseArray2.put(i17, LocaleController.formatPluralString("Stickers", this.f27604e.count, new Object[0]));
+                int i17 = this.f27667x;
+                this.f27667x = i17 + 1;
+                sparseArray2.put(i17, LocaleController.formatPluralString("Stickers", this.f27661e.count, new Object[0]));
                 i13 = 3;
             } else {
                 i13 = 1;
             }
             String str2 = (String) this.E.get(arrayList);
             if (str2 != null && !"".equals(str2)) {
-                sparseArray3.put(this.f27610x, str2);
+                sparseArray3.put(this.f27667x, str2);
             }
             int size2 = arrayList.size();
             int i18 = 0;
             int i19 = 0;
             while (i18 < size2) {
-                int i20 = this.f27610x + i19;
+                int i20 = this.f27667x + i19;
                 int i21 = (i19 / dzVar.d) + i13;
                 TLRPC.Document document = (TLRPC.Document) arrayList.get(i18);
                 sparseArray2.put(i20, document);
@@ -174,7 +174,7 @@ public final class hz extends sl0 {
             for (int i23 = 0; i23 < ceil; i23++) {
                 sparseArray.put(i13 + i23, Integer.valueOf(i19));
             }
-            this.f27610x = (ceil * dzVar.d) + this.f27610x;
+            this.f27667x = (ceil * dzVar.d) + this.f27667x;
         } else {
             boolean isEmpty = this.F.isEmpty();
             ArrayList arrayList2 = this.H;
@@ -183,12 +183,12 @@ public final class hz extends sl0 {
             } else {
                 z4 = false;
             }
-            int i24 = this.f27610x;
-            this.f27610x = i24 + 1;
+            int i24 = this.f27667x;
+            this.f27667x = i24 + 1;
             sparseArray2.put(i24, "search");
             if (size > 0) {
-                int i25 = this.f27610x;
-                this.f27610x = i25 + 1;
+                int i25 = this.f27667x;
+                this.f27667x = i25 + 1;
                 this.M = i25;
                 sparseArray2.put(i25, "packs");
                 i10 = 2;
@@ -196,8 +196,8 @@ public final class hz extends sl0 {
                 i10 = 1;
             }
             if (!isEmpty) {
-                int i26 = this.f27610x;
-                this.f27610x = i26 + 1;
+                int i26 = this.f27667x;
+                this.f27667x = i26 + 1;
                 sparseArray2.put(i26, LocaleController.getString(R.string.StickerOrEmojiSearchResult));
                 int i27 = i10 + 1;
                 int size3 = this.F.size();
@@ -209,7 +209,7 @@ public final class hz extends sl0 {
                     boolean z12 = isEmpty;
                     String str3 = (String) this.E.get(arrayList3);
                     if (str3 != null && !str.equals(str3)) {
-                        sparseArray3.put(this.f27610x + i29, str3);
+                        sparseArray3.put(this.f27667x + i29, str3);
                         str = str3;
                     }
                     int size4 = arrayList3.size();
@@ -217,7 +217,7 @@ public final class hz extends sl0 {
                     int i31 = 0;
                     while (i31 < size4) {
                         int i32 = size4;
-                        int i33 = this.f27610x + i29;
+                        int i33 = this.f27667x + i29;
                         String str4 = str;
                         int i34 = (i29 / dzVar.d) + i27;
                         ArrayList arrayList4 = arrayList3;
@@ -252,7 +252,7 @@ public final class hz extends sl0 {
                 for (int i38 = 0; i38 < ceil2; i38++) {
                     sparseArray.put(i37 + i38, Integer.valueOf(i29));
                 }
-                this.f27610x = (dzVar.d * ceil2) + this.f27610x;
+                this.f27667x = (dzVar.d * ceil2) + this.f27667x;
                 i10 = i37 + ceil2;
             } else {
                 i11 = i14;
@@ -261,18 +261,18 @@ public final class hz extends sl0 {
                 i12 = size;
             }
             if (z11) {
-                int i39 = this.f27610x;
-                this.f27610x = i39 + 1;
+                int i39 = this.f27667x;
+                this.f27667x = i39 + 1;
                 sparseArray2.put(i39, LocaleController.getString(R.string.StickerOrEmojiGlobalSearchResult));
                 int i40 = i10 + 1;
                 String str5 = (String) this.E.get(this.H);
                 if (str5 != null) {
-                    sparseArray3.put(this.f27610x, str5);
+                    sparseArray3.put(this.f27667x, str5);
                 }
                 int size5 = this.H.size();
                 int i41 = 0;
                 for (int i42 = 0; i42 < size5; i42++) {
-                    int i43 = this.f27610x + i41;
+                    int i43 = this.f27667x + i41;
                     int i44 = (i41 / dzVar.d) + i40;
                     TLRPC.Document document3 = (TLRPC.Document) this.H.get(i42);
                     sparseArray2.put(i43, document3);
@@ -287,10 +287,10 @@ public final class hz extends sl0 {
                 for (int i45 = 0; i45 < ceil3; i45++) {
                     sparseArray.put(i40 + i45, Integer.valueOf(i41));
                 }
-                this.f27610x = (ceil3 * dzVar.d) + this.f27610x;
+                this.f27667x = (ceil3 * dzVar.d) + this.f27667x;
             }
             if (z10 && !z11 && i12 == 0) {
-                this.f27610x = 1;
+                this.f27667x = 1;
             }
         }
         super.l();
@@ -302,11 +302,11 @@ public final class hz extends sl0 {
         boolean z4;
         int indexOfIgnoreCase;
         mz mzVar = this.N;
-        LongSparseArray longSparseArray = mzVar.f29336w1;
-        LongSparseArray longSparseArray2 = mzVar.f29332v1;
+        LongSparseArray longSparseArray = mzVar.f29338w1;
+        LongSparseArray longSparseArray2 = mzVar.f29334v1;
         int i12 = m1Var.f5879f;
         View view = m1Var.f5875a;
-        SparseArray sparseArray = this.f27607r;
+        SparseArray sparseArray = this.f27664r;
         boolean z10 = true;
         char c3 = 1;
         int i13 = 1;
@@ -318,20 +318,20 @@ public final class hz extends sl0 {
                     if (i12 == 3) {
                         TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) sparseArray.get(i10);
                         org.telegram.ui.Cells.r3 r3Var = (org.telegram.ui.Cells.r3) view;
-                        if (longSparseArray2.indexOfKey(stickerSetCovered.set.f20870id) >= 0) {
+                        if (longSparseArray2.indexOfKey(stickerSetCovered.set.f20872id) >= 0) {
                             z4 = true;
                         } else {
                             z4 = false;
                         }
-                        if (longSparseArray.indexOfKey(stickerSetCovered.set.f20870id) < 0) {
+                        if (longSparseArray.indexOfKey(stickerSetCovered.set.f20872id) < 0) {
                             c3 = 0;
                         }
                         if (z4 || c3 != 0) {
-                            if (z4 && r3Var.f23549r) {
-                                longSparseArray2.remove(stickerSetCovered.set.f20870id);
+                            if (z4 && r3Var.f23551r) {
+                                longSparseArray2.remove(stickerSetCovered.set.f20872id);
                                 z4 = false;
-                            } else if (c3 != 0 && !r3Var.f23549r) {
-                                longSparseArray.remove(stickerSetCovered.set.f20870id);
+                            } else if (c3 != 0 && !r3Var.f23551r) {
+                                longSparseArray.remove(stickerSetCovered.set.f20872id);
                             }
                         }
                         r3Var.b(z4, false);
@@ -392,13 +392,13 @@ public final class hz extends sl0 {
                 }
             }
             org.telegram.ui.Cells.k3 k3Var = (org.telegram.ui.Cells.k3) view;
-            if (i10 == this.f27610x) {
+            if (i10 == this.f27667x) {
                 int i14 = this.v.get(i10 - 1, Integer.MIN_VALUE);
                 if (i14 == Integer.MIN_VALUE) {
                     k3Var.setHeight(1);
                     return;
                 }
-                Object obj2 = this.f27606n.get(i14);
+                Object obj2 = this.f27663n.get(i14);
                 if (obj2 instanceof TLRPC.TL_messages_stickerSet) {
                     num = Integer.valueOf(((TLRPC.TL_messages_stickerSet) obj2).documents.size());
                 } else if (obj2 instanceof Integer) {
@@ -411,7 +411,7 @@ public final class hz extends sl0 {
                     k3Var.setHeight(AndroidUtilities.dp(8.0f));
                     return;
                 } else {
-                    int z11 = org.telegram.ui.b.z(82.0f, (int) Math.ceil(num.intValue() / mzVar.f29331v0.d), mzVar.h.getHeight());
+                    int z11 = org.telegram.ui.b.z(82.0f, (int) Math.ceil(num.intValue() / mzVar.f29333v0.d), mzVar.h.getHeight());
                     if (z11 > 0) {
                         i13 = z11;
                     }
@@ -424,8 +424,8 @@ public final class hz extends sl0 {
         }
         TLRPC.Document document = (TLRPC.Document) sparseArray.get(i10);
         org.telegram.ui.Cells.d8 d8Var = (org.telegram.ui.Cells.d8) view;
-        d8Var.d(document, null, this.f27608s.get(i10), (String) this.f27609w.get(i10), false, false);
-        if (!mzVar.f29286g1.contains(document) && !mzVar.f29289h1.contains(document)) {
+        d8Var.d(document, null, this.f27665s.get(i10), (String) this.f27666w.get(i10), false, false);
+        if (!mzVar.f29288g1.contains(document) && !mzVar.f29291h1.contains(document)) {
             z10 = false;
         }
         d8Var.setRecent(z10);
@@ -445,7 +445,7 @@ public final class hz extends sl0 {
                 czVar = new org.telegram.ui.Cells.k3(context);
                 break;
             case 2:
-                czVar = new org.telegram.ui.Cells.m8(this.h, false, false, mzVar.W1, mzVar.f29284f2);
+                czVar = new org.telegram.ui.Cells.m8(this.h, false, false, mzVar.W1, mzVar.f29286f2);
                 break;
             case 3:
                 org.telegram.ui.Cells.r3 r3Var = new org.telegram.ui.Cells.r3(17, this.h, mzVar.W1, false, true);
@@ -479,7 +479,7 @@ public final class hz extends sl0 {
                 break;
             case 7:
                 ViewGroup.LayoutParams x0Var = new f2.x0(-1, AndroidUtilities.dp(79.0f));
-                s2Var = this.f27603c;
+                s2Var = this.f27660c;
                 s2Var.setLayoutParams(x0Var);
                 czVar = s2Var;
                 break;

@@ -133,14 +133,14 @@ public final class l extends xa.a {
     @Override
     public final void a() {
         F(1);
-        L(((pa.h) J()).f44245a.iterator());
+        L(((pa.h) J()).f44276a.iterator());
         this.E[this.C - 1] = 0;
     }
 
     @Override
     public final void b() {
         F(3);
-        L(((ra.j) ((pa.l) J()).f44247a.entrySet()).iterator());
+        L(((ra.j) ((pa.l) J()).f44278a.entrySet()).iterator());
     }
 
     @Override
@@ -236,7 +236,7 @@ public final class l extends xa.a {
             throw new IllegalStateException("Expected " + w.c.m(7) + " but was " + w.c.m(x10) + H());
         }
         pa.m mVar = (pa.m) J();
-        if (mVar.f44248a instanceof Number) {
+        if (mVar.f44279a instanceof Number) {
             parseInt = mVar.r().intValue();
         } else {
             parseInt = Integer.parseInt(mVar.n());
@@ -259,7 +259,7 @@ public final class l extends xa.a {
             throw new IllegalStateException("Expected " + w.c.m(7) + " but was " + w.c.m(x10) + H());
         }
         pa.m mVar = (pa.m) J();
-        if (mVar.f44248a instanceof Number) {
+        if (mVar.f44279a instanceof Number) {
             parseLong = mVar.r().longValue();
         } else {
             parseLong = Long.parseLong(mVar.n());
@@ -339,7 +339,7 @@ public final class l extends xa.a {
                 return 1;
             }
             if (J instanceof pa.m) {
-                Serializable serializable = ((pa.m) J).f44248a;
+                Serializable serializable = ((pa.m) J).f44279a;
                 if (serializable instanceof String) {
                     return 6;
                 }

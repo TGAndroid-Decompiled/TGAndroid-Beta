@@ -7,9 +7,9 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.j90;
+import qh.w5;
 import qh.x5;
 import qh.y5;
-import qh.z5;
 public final class f0 implements h5.d {
     public final int f6313a;
     public final Object f6314b;
@@ -53,20 +53,20 @@ public final class f0 implements h5.d {
                 }
                 return;
             case 1:
-                x5 x5Var = (x5) this.f6314b;
+                w5 w5Var = (w5) this.f6314b;
                 MessagesController messagesController = (MessagesController) this.f6315c;
                 String str = (String) this.d;
                 Long l10 = (Long) obj;
                 if (l10 == null) {
-                    x5Var.run(null);
+                    w5Var.run(null);
                     return;
                 }
                 TLObject userOrChat = messagesController.getUserOrChat(l10.longValue());
                 if (userOrChat instanceof TLRPC.User) {
-                    x5Var.run(new y5(str, (TLRPC.User) userOrChat));
+                    w5Var.run(new x5(str, (TLRPC.User) userOrChat));
                     return;
                 } else if (userOrChat instanceof TLRPC.Chat) {
-                    x5Var.run(new z5(str, (TLRPC.Chat) userOrChat));
+                    w5Var.run(new y5(str, (TLRPC.Chat) userOrChat));
                     return;
                 } else {
                     return;

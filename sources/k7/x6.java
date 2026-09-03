@@ -32,11 +32,11 @@ public abstract class x6 {
         if (z4) {
             c(3, wVar, false);
         }
-        wVar.s((int) wVar.l(), r8.d.f46738c);
+        wVar.s((int) wVar.l(), r8.d.f46769c);
         long l10 = wVar.l();
         String[] strArr = new String[(int) l10];
         for (int i10 = 0; i10 < l10; i10++) {
-            strArr[i10] = wVar.s((int) wVar.l(), r8.d.f46738c);
+            strArr[i10] = wVar.s((int) wVar.l(), r8.d.f46769c);
         }
         if (z10 && (wVar.u() & 1) == 0) {
             throw j3.r1.a("framing bit expected to be set", null);

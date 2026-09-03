@@ -6,7 +6,7 @@ import android.view.SurfaceHolder;
 import android.view.TextureView;
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
-import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.j71;
 public final class c0 implements l3.q, SurfaceHolder.Callback, TextureView.SurfaceTextureListener {
     public final f0 f9000a;
 
@@ -37,7 +37,7 @@ public final class c0 implements l3.q, SurfaceHolder.Callback, TextureView.Surfa
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            if (((k71) ((i5.t) obj)).G.onSurfaceDestroyed(surfaceTexture)) {
+            if (((j71) ((i5.t) obj)).G.onSurfaceDestroyed(surfaceTexture)) {
                 return false;
             }
         }
@@ -76,7 +76,7 @@ public final class c0 implements l3.q, SurfaceHolder.Callback, TextureView.Surfa
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            ((k71) ((i5.t) obj)).G.onSurfaceTextureUpdated(surfaceTexture);
+            ((j71) ((i5.t) obj)).G.onSurfaceTextureUpdated(surfaceTexture);
         }
     }
 

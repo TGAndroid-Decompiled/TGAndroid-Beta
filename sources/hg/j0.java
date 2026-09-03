@@ -56,9 +56,9 @@ public final class j0 implements Runnable {
         long[] jArr = {-1};
         androidx.car.app.utils.c cVar = new androidx.car.app.utils.c(jArr, zArr2, imageView, imageView2, 28);
         TLRPC.TL_messages_rateTranscribedAudio tL_messages_rateTranscribedAudio = new TLRPC.TL_messages_rateTranscribedAudio();
-        tL_messages_rateTranscribedAudio.msg_id = xnVar.f43117a5.getId();
-        tL_messages_rateTranscribedAudio.peer = xnVar.getMessagesController().getInputPeer(xnVar.f43117a5.messageOwner.peer_id);
-        tL_messages_rateTranscribedAudio.transcription_id = xnVar.f43117a5.messageOwner.voiceTranscriptionId;
+        tL_messages_rateTranscribedAudio.msg_id = xnVar.f43095a5.getId();
+        tL_messages_rateTranscribedAudio.peer = xnVar.getMessagesController().getInputPeer(xnVar.f43095a5.messageOwner.peer_id);
+        tL_messages_rateTranscribedAudio.transcription_id = xnVar.f43095a5.messageOwner.voiceTranscriptionId;
         tL_messages_rateTranscribedAudio.good = zArr2[0];
         xnVar.getConnectionsManager().sendRequest(tL_messages_rateTranscribedAudio, new ba(xnVar, cVar, jArr, 4));
         AndroidUtilities.runOnUIThread(cVar, 150L);
@@ -69,15 +69,15 @@ public final class j0 implements Runnable {
         org.telegram.ui.ActionBar.d2[] d2VarArr = (org.telegram.ui.ActionBar.d2[]) this.f7528f;
         MessageObject messageObject = (MessageObject) this.f7526c;
         v5 v5Var = (v5) this.d;
-        xn xnVar = jnVar.f38188a;
+        xn xnVar = jnVar.f38085a;
         if (((TLRPC.Message) this.f7527e).suggested_post.schedule_date == 0) {
             d2VarArr[0].setOnDismissListener(null);
-            h3 h3Var = z4.T(xnVar.getParentActivity(), 0L, new ng.w(19, jnVar, messageObject), xnVar.getResourceProvider(), 1).f21207a;
+            h3 h3Var = z4.T(xnVar.getParentActivity(), 0L, new ng.w(19, jnVar, messageObject), xnVar.getResourceProvider(), 1).f21209a;
             h3Var.show();
             h3Var.setOnDismissListener(v5Var);
             return;
         }
-        xnVar.getMessagesController().approveSuggestedMessage(DialogObject.getPeerDialogId(messageObject.messageOwner.peer_id), messageObject.messageOwner.f20864id, 0);
+        xnVar.getMessagesController().approveSuggestedMessage(DialogObject.getPeerDialogId(messageObject.messageOwner.peer_id), messageObject.messageOwner.f20866id, 0);
     }
 
     private final void c() {
@@ -86,33 +86,33 @@ public final class j0 implements Runnable {
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f7525b;
         TLObject tLObject = (TLObject) this.f7526c;
         TLRPC.TL_channels_checkUsername tL_channels_checkUsername = (TLRPC.TL_channels_checkUsername) this.d;
-        epVar.f36637e0 = 0;
-        String str2 = epVar.f36639f0;
+        epVar.f36544e0 = 0;
+        String str2 = epVar.f36546f0;
         if (str2 != null && str2.equals(str)) {
             if (tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                epVar.f36638f.setText(LocaleController.formatString("LinkAvailable", R.string.LinkAvailable, str));
-                epVar.f36638f.setTextColorByKey(k6.f21998w6);
-                epVar.f36641h0 = true;
+                epVar.f36545f.setText(LocaleController.formatString("LinkAvailable", R.string.LinkAvailable, str));
+                epVar.f36545f.setTextColorByKey(k6.f22000w6);
+                epVar.f36548h0 = true;
                 return;
             }
             if (tL_error != null && "USERNAME_INVALID".equals(tL_error.text) && tL_channels_checkUsername.username.length() == 4) {
-                epVar.f36638f.setText(LocaleController.getString(R.string.UsernameInvalidShort));
-                epVar.f36638f.setTextColor(k6.w0(null, k6.f21876p7, false));
+                epVar.f36545f.setText(LocaleController.getString(R.string.UsernameInvalidShort));
+                epVar.f36545f.setTextColor(k6.w0(null, k6.f21878p7, false));
             } else if (tL_error != null && "USERNAME_PURCHASE_AVAILABLE".equals(tL_error.text)) {
                 if (tL_channels_checkUsername.username.length() == 4) {
-                    epVar.f36638f.setText(LocaleController.getString(R.string.UsernameInvalidShortPurchase));
+                    epVar.f36545f.setText(LocaleController.getString(R.string.UsernameInvalidShortPurchase));
                 } else {
-                    epVar.f36638f.setText(LocaleController.getString(R.string.UsernameInUsePurchase));
+                    epVar.f36545f.setText(LocaleController.getString(R.string.UsernameInUsePurchase));
                 }
-                epVar.f36638f.setTextColor(k6.w0(null, k6.F6, false));
+                epVar.f36545f.setTextColor(k6.w0(null, k6.F6, false));
             } else if (tL_error != null && "CHANNELS_ADMIN_PUBLIC_TOO_MUCH".equals(tL_error.text)) {
                 epVar.Z = false;
                 epVar.Z();
             } else {
-                epVar.f36638f.setText(LocaleController.getString(R.string.LinkInUse));
-                epVar.f36638f.setTextColorByKey(k6.f21876p7);
+                epVar.f36545f.setText(LocaleController.getString(R.string.LinkInUse));
+                epVar.f36545f.setTextColorByKey(k6.f21878p7);
             }
-            epVar.f36641h0 = false;
+            epVar.f36548h0 = false;
         }
     }
 
@@ -123,25 +123,25 @@ public final class j0 implements Runnable {
         ArrayList arrayList2 = (ArrayList) this.f7526c;
         ArrayList arrayList3 = (ArrayList) this.d;
         uf.k1 k1Var = prVar.h;
-        qr qrVar = prVar.f40148y;
+        qr qrVar = prVar.f40116y;
         if (qrVar.l1) {
-            prVar.f40145s = false;
+            prVar.f40113s = false;
             prVar.d = arrayList;
-            prVar.f40141e = hVar;
-            prVar.f40142f = arrayList2;
+            prVar.f40109e = hVar;
+            prVar.f40110f = arrayList2;
             k1Var.f(arrayList, null);
-            if (!ChatObject.isChannel(qrVar.f40637r)) {
-                ArrayList arrayList4 = k1Var.f48623g;
+            if (!ChatObject.isChannel(qrVar.f40605r)) {
+                ArrayList arrayList4 = k1Var.f48659g;
                 arrayList4.clear();
                 arrayList4.addAll(arrayList3);
             }
-            int i10 = prVar.f40144r;
+            int i10 = prVar.f40112r;
             prVar.l();
-            if (prVar.f40144r > i10) {
+            if (prVar.f40112r > i10) {
                 qrVar.y0(i10);
             }
-            if (!k1Var.e() && prVar.f40144r == 0) {
-                qrVar.f40602b.e(false, true);
+            if (!k1Var.e() && prVar.f40112r == 0) {
+                qrVar.f40570b.e(false, true);
             }
         }
     }

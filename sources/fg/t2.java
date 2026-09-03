@@ -113,7 +113,7 @@ public final class t2 extends FrameLayout implements x0, NotificationCenter.Noti
                     StringBuilder sb = new StringBuilder("?account=");
                     sb.append(i10);
                     sb.append("&id=");
-                    sb.append(this.O.f20849id);
+                    sb.append(this.O.f20851id);
                     sb.append("&hash=");
                     sb.append(this.O.access_hash);
                     sb.append("&dc=");

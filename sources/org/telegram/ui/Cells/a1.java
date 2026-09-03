@@ -3,22 +3,22 @@ package org.telegram.ui.Cells;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 public final class a1 implements Runnable {
-    public final int f22535a;
-    public final t1 f22536b;
+    public final int f22537a;
+    public final t1 f22538b;
 
     public a1(int i10, t1 t1Var) {
-        this.f22535a = i10;
-        this.f22536b = t1Var;
+        this.f22537a = i10;
+        this.f22538b = t1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f22535a) {
+        switch (this.f22537a) {
             case 0:
-                this.f22536b.b3();
+                this.f22538b.b3();
                 return;
             case 1:
-                t1 t1Var = this.f22536b;
+                t1 t1Var = this.f22538b;
                 k1 k1Var = t1Var.Gc;
                 if (k1Var != null) {
                     k1Var.q(t1Var);
@@ -26,18 +26,18 @@ public final class a1 implements Runnable {
                 }
                 return;
             case 2:
-                this.f22536b.H3();
+                this.f22538b.H3();
                 return;
             case 3:
-                t1 t1Var2 = this.f22536b;
-                oh.h4 h4Var = t1Var2.f24081w;
+                t1 t1Var2 = this.f22538b;
+                oh.h4 h4Var = t1Var2.f24083w;
                 h4Var.Y(t1Var2.Nd);
                 h4Var.Y(t1Var2.Od);
                 t1Var2.H3();
-                MessageObject messageObject = t1Var2.f24073v7;
+                MessageObject messageObject = t1Var2.f24075v7;
                 if (messageObject != null) {
                     messageObject.generateLayout(null);
-                    MessageObject messageObject2 = t1Var2.f24073v7;
+                    MessageObject messageObject2 = t1Var2.f24075v7;
                     if (messageObject2.caption != null) {
                         messageObject2.caption = null;
                         messageObject2.generateCaption();
@@ -51,29 +51,29 @@ public final class a1 implements Runnable {
                 }
                 return;
             case 4:
-                t1 t1Var3 = this.f22536b;
+                t1 t1Var3 = this.f22538b;
                 if (t1Var3.N9 && !t1Var3.O9 && t1Var3.P9) {
                     t1Var3.O9 = true;
-                    t1Var3.f24094wc.setState(new int[]{16842919, 16842910});
+                    t1Var3.f24096wc.setState(new int[]{16842919, 16842910});
                     return;
                 }
                 return;
             case 5:
-                t1 t1Var4 = this.f22536b;
-                t1Var4.f24094wc.setState(new int[0]);
+                t1 t1Var4 = this.f22538b;
+                t1Var4.f24096wc.setState(new int[0]);
                 t1Var4.invalidate();
                 return;
             case 6:
-                t1 t1Var5 = this.f22536b;
-                t1Var5.f24094wc.setState(new int[0]);
+                t1 t1Var5 = this.f22538b;
+                t1Var5.f24096wc.setState(new int[0]);
                 t1Var5.invalidate();
                 return;
             case 7:
-                t1 t1Var6 = this.f22536b;
+                t1 t1Var6 = this.f22538b;
                 int i10 = 0;
-                t1Var6.f24058u7 = false;
+                t1Var6.f24060u7 = false;
                 t1Var6.getMessageObject().isSpoilersRevealed = true;
-                MessageObject.TextLayoutBlocks textLayoutBlocks = t1Var6.f23829e4;
+                MessageObject.TextLayoutBlocks textLayoutBlocks = t1Var6.f23831e4;
                 if (textLayoutBlocks != null) {
                     ArrayList<MessageObject.TextLayoutBlock> arrayList = textLayoutBlocks.textLayoutBlocks;
                     int size = arrayList.size();
@@ -94,7 +94,7 @@ public final class a1 implements Runnable {
                         textLayoutBlock2.spoilers.clear();
                     }
                 } else {
-                    ArrayList<MessageObject.TextLayoutBlock> arrayList3 = t1Var6.f24073v7.textLayoutBlocks;
+                    ArrayList<MessageObject.TextLayoutBlock> arrayList3 = t1Var6.f24075v7.textLayoutBlocks;
                     if (arrayList3 != null) {
                         int size3 = arrayList3.size();
                         while (i10 < size3) {
@@ -107,17 +107,17 @@ public final class a1 implements Runnable {
                 t1Var6.invalidate();
                 return;
             case 8:
-                t1 t1Var7 = this.f22536b;
+                t1 t1Var7 = this.f22538b;
                 t1Var7.getMessageObject().replyMessageObject.isSpoilersRevealed = true;
                 t1Var7.Id.clear();
                 t1Var7.invalidate();
                 return;
             case 9:
-                t1 t1Var8 = this.f22536b;
+                t1 t1Var8 = this.f22538b;
                 t1Var8.post(new a1(7, t1Var8));
                 return;
             default:
-                this.f22536b.a3();
+                this.f22538b.a3();
                 return;
         }
     }

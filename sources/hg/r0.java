@@ -5,9 +5,9 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.k6;
-import org.telegram.ui.Components.uv0;
+import org.telegram.ui.Components.tv0;
 import org.telegram.ui.Components.y4;
-public final class r0 implements y4, uv0, jg.g, jg.l {
+public final class r0 implements y4, tv0, jg.g, jg.l {
     public final b1 f7593a;
 
     public r0(b1 b1Var) {

@@ -1,42 +1,96 @@
 package org.telegram.ui.Components;
-public final class g61 extends f2.l {
-    public final i61 F;
 
-    public g61(i61 i61Var) {
-        this.F = i61Var;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.AndroidUtilities;
+public final class g61 extends pz {
+    public final int X = 1;
+    public final Object Y;
+
+    public g61() {
+        super(100, false);
+        this.Y = new Object();
     }
 
     @Override
-    public final void M() {
-        i61 i61Var = this.F;
-        if (i61Var.b1()) {
-            i61Var.invalidate();
+    public int A() {
+        switch (this.X) {
+            case 1:
+                return 0;
+            default:
+                return super.A();
         }
-        i61Var.C1();
     }
 
     @Override
-    public final void O() {
-        i61 i61Var = this.F;
-        if (i61Var.b1()) {
-            i61Var.invalidate();
+    public jv0 D1(int i10) {
+        switch (this.X) {
+            case 1:
+                jv0 jv0Var = (jv0) this.Y;
+                jv0Var.f28202b = 100.0f;
+                jv0Var.f28201a = 100.0f;
+                return jv0Var;
+            default:
+                return super.D1(i10);
         }
-        i61Var.C1();
     }
 
     @Override
-    public final void P(f2.m1 m1Var) {
-        i61 i61Var = this.F;
-        i61Var.invalidate();
-        i61Var.C1();
-    }
-
-    @Override
-    public final void Q() {
-        i61 i61Var = this.F;
-        if (i61Var.b1()) {
-            i61Var.invalidate();
+    public void U(bf.f fVar, f2.j1 j1Var, View view, s0.d dVar) {
+        a3.c cVar;
+        switch (this.X) {
+            case 1:
+                super.U(fVar, j1Var, view, dVar);
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f46881a;
+                AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
+                if (collectionItemInfo != null) {
+                    cVar = new a3.c(collectionItemInfo);
+                } else {
+                    cVar = null;
+                }
+                if (cVar != null) {
+                    Object obj = cVar.f49a;
+                    if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
+                        accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                super.U(fVar, j1Var, view, dVar);
+                return;
         }
-        i61Var.C1();
+    }
+
+    @Override
+    public int W0(f2.j1 j1Var) {
+        switch (this.X) {
+            case 0:
+                if (((h61) this.Y).X2) {
+                    return AndroidUtilities.displaySize.y;
+                }
+                return super.W0(j1Var);
+            default:
+                return super.W0(j1Var);
+        }
+    }
+
+    @Override
+    public void z0(f2.j1 j1Var, int[] iArr) {
+        switch (this.X) {
+            case 1:
+                super.z0(j1Var, iArr);
+                iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.s7.a(1) * 2);
+                return;
+            default:
+                super.z0(j1Var, iArr);
+                return;
+        }
+    }
+
+    public g61(h61 h61Var, int i10) {
+        super(i10, false);
+        this.Y = h61Var;
     }
 }

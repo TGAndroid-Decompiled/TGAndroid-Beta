@@ -12,7 +12,7 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.p2;
 import org.telegram.ui.Components.f9;
-import org.telegram.ui.Components.i61;
+import org.telegram.ui.Components.h61;
 public final class v extends FrameLayout {
     public final f9 f5679a;
     public final TextView f5680b;
@@ -33,7 +33,7 @@ public final class v extends FrameLayout {
         addView(textView, c6.g());
     }
 
-    public final i61 a(p2 p2Var, long j10, int i10, byte[] bArr, int i11, Utilities.Callback callback) {
+    public final h61 a(p2 p2Var, long j10, int i10, byte[] bArr, int i11, Utilities.Callback callback) {
         o oVar = this.f5681c;
         if (oVar != null) {
             return oVar;
@@ -42,7 +42,7 @@ public final class v extends FrameLayout {
         AndroidUtilities.runOnUIThread(new m(uVar, 1), 1000L);
         o oVar2 = new o(p2Var, new n(uVar, 0), i11);
         this.f5681c = oVar2;
-        oVar2.V2.f32957r = false;
+        oVar2.V2.f32651r = false;
         oVar2.j(new p(this, uVar));
         return this.f5681c;
     }
@@ -52,7 +52,7 @@ public final class v extends FrameLayout {
         super.dispatchDraw(canvas);
         int width = getWidth() - AndroidUtilities.dp(11.0f);
         f9 f9Var = this.f5679a;
-        f9Var.setBounds(width - ((int) f9Var.f26792c.d.f50522f.f50530a), AndroidUtilities.dp(12.0f), getWidth() - AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f) + AndroidUtilities.dp(12.0f));
+        f9Var.setBounds(width - ((int) f9Var.f26823c.d.f50558f.f50566a), AndroidUtilities.dp(12.0f), getWidth() - AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f) + AndroidUtilities.dp(12.0f));
         f9Var.c(canvas);
     }
 

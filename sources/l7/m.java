@@ -281,7 +281,7 @@ public final class m extends AbstractCollection {
             case 3:
                 return ((xa) this.f11938b).f12098b.size();
             case 4:
-                return ((s8.e0) this.f11938b).f47101e;
+                return ((s8.e0) this.f11938b).f47132e;
             default:
                 return ((xa) this.f11938b).f12098b.size();
         }

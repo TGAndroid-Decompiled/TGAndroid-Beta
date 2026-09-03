@@ -1,67 +1,241 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class li1 implements RequestDelegate {
-    public final int f38759a;
-    public final Object f38760b;
-    public final Object f38761c;
+import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.Components.RadialProgress2;
+public final class li1 implements th0 {
+    public final org.telegram.ui.Cells.t1 f38664a;
+    public final org.telegram.ui.Components.sl0 f38665b;
+    public final float f38666c;
+    public float d;
+    public final Paint f38667e = new Paint(1);
+    public final ValueAnimator f38668f;
+    public final ChatActivityEnterView.RecordCircle f38669g;
+    public final int h;
+    public final org.telegram.ui.Components.li f38670i;
+    public final org.telegram.ui.ActionBar.g6 f38671j;
+    public float f38672k;
+    public float f38673l;
 
-    public li1(int i10, Object obj, Object obj2) {
-        this.f38759a = i10;
-        this.f38760b = obj;
-        this.f38761c = obj2;
+    public li1(org.telegram.ui.Cells.t1 t1Var, jk jkVar, org.telegram.ui.Components.sl0 sl0Var, org.telegram.ui.Components.li liVar, org.telegram.ui.ActionBar.g6 g6Var) {
+        this.f38671j = g6Var;
+        this.f38664a = t1Var;
+        this.f38670i = liVar;
+        this.f38665b = sl0Var;
+        t1Var.setEnterTransitionInProgress(true);
+        ChatActivityEnterView.RecordCircle recordCircle = jkVar.getRecordCircle();
+        this.f38669g = recordCircle;
+        if (recordCircle != null) {
+            this.f38666c = recordCircle.I;
+            recordCircle.J = true;
+            recordCircle.K = true;
+        }
+        new Matrix();
+        Paint paint = new Paint(1);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+        paint.setShader(new LinearGradient(0.0f, AndroidUtilities.dp(12.0f), 0.0f, 0.0f, 0, -16777216, Shader.TileMode.CLAMP));
+        this.h = t1Var.getMessageObject().stableId;
+        ((ArrayList) liVar.f28772c).add(this);
+        liVar.a();
+        ((ViewGroup) liVar.d).invalidate();
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.f38668f = ofFloat;
+        ofFloat.addUpdateListener(new bg.a(24, this, liVar));
+        ofFloat.setInterpolator(new LinearInterpolator());
+        ofFloat.setDuration(220L);
+        ofFloat.addListener(new ki1(this, t1Var, liVar));
+        if (t1Var.getSeekBarWaveform() != null) {
+            org.telegram.ui.Components.mo0 seekBarWaveform = t1Var.getSeekBarWaveform();
+            seekBarWaveform.v.d(0.0f, true);
+            org.telegram.ui.Cells.t1 t1Var2 = seekBarWaveform.f29196n;
+            if (t1Var2 != null) {
+                t1Var2.invalidate();
+            }
+        }
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38759a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new mg1(4, (mi1) this.f38760b, (int[]) this.f38761c));
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.o71((qh.n1) this.f38760b, (String) this.f38761c, tLObject, 12));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.o71((qh.z2) this.f38760b, tLObject, (MessagesController) this.f38761c, 15));
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.o71((qh.x7) this.f38760b, tLObject, (MessagesController) this.f38761c, 18));
-                return;
-            case 4:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.o71((boolean[]) this.f38760b, tLObject, (sh.j1) this.f38761c, 22));
-                return;
-            case 5:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.o71((sh.d3) this.f38760b, tLObject, (org.telegram.ui.ActionBar.d2) this.f38761c, 25));
-                return;
-            case 6:
-                AndroidUtilities.runOnUIThread(new yx0(21, (uf.c) this.f38760b, tL_error, tLObject, (String) this.f38761c));
-                return;
-            case 7:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.o71((uf.u0) this.f38760b, (String) this.f38761c, tLObject, 28));
-                return;
-            case 8:
-                uf.l1 l1Var = (uf.l1) this.f38760b;
-                TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets = (TLRPC.TL_messages_searchStickerSets) this.f38761c;
-                if (tLObject instanceof TLRPC.TL_messages_foundStickerSets) {
-                    AndroidUtilities.runOnUIThread(new uf.h1(l1Var, tL_messages_searchStickerSets, (TLRPC.TL_messages_foundStickerSets) tLObject, 1));
-                    return;
-                }
-                return;
-            case 9:
-                AndroidUtilities.runOnUIThread(new uf.h1((vf.t) this.f38760b, tLObject, (TL_account.TL_businessChatLink) this.f38761c, 4));
-                return;
-            case 10:
-                AndroidUtilities.runOnUIThread(new vf.d0(0, (vf.f0) this.f38760b, (org.telegram.ui.Components.jm) this.f38761c));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new uf.h1((vf.s1) this.f38760b, tLObject, (SharedPreferences) this.f38761c, 9));
-                return;
+    public final void a(final Canvas canvas) {
+        float f10;
+        float x10;
+        final float y10;
+        float y11;
+        float x11;
+        float f11;
+        float f12;
+        final float f13 = this.d;
+        if (f13 > 0.6f) {
+            f10 = 1.0f;
+        } else {
+            f10 = f13 / 0.6f;
         }
+        ChatActivityEnterView.RecordCircle recordCircle = this.f38669g;
+        org.telegram.ui.Components.li liVar = this.f38670i;
+        if (recordCircle == null) {
+            x10 = 0.0f;
+        } else {
+            x10 = (recordCircle.getX() + recordCircle.G) - liVar.getX();
+        }
+        if (recordCircle == null) {
+            y10 = 0.0f;
+        } else {
+            y10 = (recordCircle.getY() + recordCircle.H) - liVar.getY();
+        }
+        org.telegram.ui.Cells.t1 t1Var = this.f38664a;
+        int i10 = t1Var.getMessageObject().stableId;
+        int i11 = this.h;
+        org.telegram.ui.Components.sl0 sl0Var = this.f38665b;
+        if (i10 != i11) {
+            x11 = this.f38672k;
+            y11 = this.f38673l;
+        } else {
+            y11 = (sl0Var.getY() + (t1Var.getY() + t1Var.getRadialProgress().f24968a.centerY())) - liVar.getY();
+            x11 = (sl0Var.getX() + (t1Var.getX() + t1Var.getRadialProgress().f24968a.centerX())) - liVar.getX();
+        }
+        this.f38672k = x11;
+        this.f38673l = y11;
+        float interpolation = org.telegram.ui.Components.pr.f30168f.getInterpolation(f13);
+        float interpolation2 = org.telegram.ui.Components.pr.h.getInterpolation(f13);
+        final float f14 = (x11 * interpolation2) + ((1.0f - interpolation2) * x10);
+        float f15 = 1.0f - interpolation;
+        final float f16 = (y11 * interpolation) + (y10 * f15);
+        float height = t1Var.getRadialProgress().f24968a.height() / 2.0f;
+        float f17 = (height * interpolation) + (this.f38666c * f15);
+        sl0Var.getY();
+        liVar.getY();
+        sl0Var.getMeasuredHeight();
+        if (liVar.getMeasuredHeight() > 0) {
+            liVar.getMeasuredHeight();
+        }
+        int i12 = t1Var.getRadialProgress().f24981p;
+        int i13 = org.telegram.ui.ActionBar.k6.f21652cf;
+        org.telegram.ui.ActionBar.g6 g6Var = this.f38671j;
+        float f18 = f10;
+        int v02 = org.telegram.ui.ActionBar.k6.v0(i13, g6Var);
+        if (i12 < 0) {
+            i12 = i13;
+        }
+        int d = i0.a.d(interpolation, v02, org.telegram.ui.ActionBar.k6.v0(i12, g6Var));
+        Paint paint = this.f38667e;
+        paint.setColor(d);
+        if (recordCircle != null) {
+            float f19 = 1.0f - f18;
+            org.telegram.ui.Components.u9 u9Var = recordCircle.h;
+            org.telegram.ui.Components.u9 u9Var2 = recordCircle.f24721n;
+            f11 = x10;
+            float interpolation3 = org.telegram.ui.Components.pr.f30169g.getInterpolation(recordCircle.E);
+            ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
+            float f20 = chatActivityEnterView.f24608f4;
+            if (f20 > 0.7f) {
+                f12 = 1.0f;
+            } else {
+                f12 = f20 / 0.7f;
+            }
+            canvas.save();
+            float f21 = ((u9Var2.f31577t * 1.4f) + 0.878f) * chatActivityEnterView.f24594d4 * f12 * interpolation3 * f19;
+            canvas.scale(f21, f21, f14, f16);
+            u9Var2.a(f14, f16, canvas, u9Var2.d);
+            canvas.restore();
+            float f22 = ((u9Var.f31577t * 1.4f) + 0.926f) * chatActivityEnterView.f24594d4 * f12 * interpolation3 * f19;
+            canvas.save();
+            canvas.scale(f22, f22, f14, f16);
+            u9Var.a(f14, f16, canvas, u9Var.d);
+            canvas.restore();
+        } else {
+            f11 = x10;
+        }
+        canvas.drawCircle(f14, f16, f17, paint);
+        canvas.save();
+        final float f23 = f17 / height;
+        canvas.scale(f23, f23, f14, f16);
+        final float centerX = f14 - t1Var.getRadialProgress().f24968a.centerX();
+        final float centerY = f16 - t1Var.getRadialProgress().f24968a.centerY();
+        canvas.translate(centerX, centerY);
+        t1Var.getRadialProgress().E = interpolation;
+        t1Var.getRadialProgress().B = false;
+        final float f24 = f11;
+        t1Var.q2(canvas, interpolation, new Runnable() {
+            @Override
+            public final void run() {
+                Canvas canvas2;
+                float f25;
+                Drawable drawable;
+                Drawable drawable2;
+                Drawable drawable3;
+                li1 li1Var = li1.this;
+                RadialProgress2 radialProgress = li1Var.f38664a.getRadialProgress();
+                Canvas canvas3 = canvas;
+                radialProgress.draw(canvas3);
+                float f26 = centerX;
+                float f27 = centerY;
+                canvas3.translate(-f26, -f27);
+                float f28 = f23;
+                float f29 = 1.0f / f28;
+                float f30 = f14;
+                float f31 = f16;
+                canvas3.scale(f29, f29, f30, f31);
+                ChatActivityEnterView.RecordCircle recordCircle2 = li1Var.f38669g;
+                if (recordCircle2 != null) {
+                    int i14 = (int) f24;
+                    int i15 = (int) y10;
+                    float f32 = 1.0f - f13;
+                    recordCircle2.a();
+                    ChatActivityEnterView chatActivityEnterView2 = ChatActivityEnterView.this;
+                    boolean z4 = chatActivityEnterView2.f24656o4;
+                    Rect rect = chatActivityEnterView2.P3;
+                    Drawable drawable4 = null;
+                    if (z4) {
+                        if (recordCircle2.f24720f != 1.0f) {
+                            if (chatActivityEnterView2.Z0) {
+                                drawable3 = chatActivityEnterView2.M3;
+                            } else {
+                                drawable3 = chatActivityEnterView2.L3;
+                            }
+                            drawable4 = drawable3;
+                        }
+                        drawable2 = chatActivityEnterView2.N3;
+                        canvas2 = canvas3;
+                        f25 = f32;
+                        rect.set(b.u(2, i14, drawable2), b.f(2, i15, drawable2), b.A(2, i14, drawable2), b.y(2, i15, drawable2));
+                        if (drawable4 != null) {
+                            drawable4.setBounds(b.u(2, i14, drawable4), b.f(2, i15, drawable4), b.A(2, i14, drawable4), b.y(2, i15, drawable4));
+                        }
+                    } else {
+                        canvas2 = canvas3;
+                        f25 = f32;
+                        if (chatActivityEnterView2.Z0) {
+                            drawable = chatActivityEnterView2.M3;
+                        } else {
+                            drawable = chatActivityEnterView2.L3;
+                        }
+                        drawable2 = drawable;
+                        rect.set(i14 - AndroidUtilities.dp(12.0f), i15 - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + i14, AndroidUtilities.dp(12.0f) + i15);
+                    }
+                    Drawable drawable5 = drawable2;
+                    Drawable drawable6 = drawable4;
+                    drawable5.setBounds(rect);
+                    canvas3 = canvas2;
+                    recordCircle2.b(canvas3, drawable5, drawable6, recordCircle2.f24720f, (int) (255.0f * f25));
+                }
+                canvas3.scale(f28, f28, f30, f31);
+                canvas3.translate(f26, f27);
+            }
+        });
+        t1Var.getRadialProgress().B = true;
+        t1Var.getRadialProgress().E = 1.0f;
+        canvas.restore();
     }
 }

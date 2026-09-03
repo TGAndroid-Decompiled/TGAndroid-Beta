@@ -31,33 +31,33 @@ public final class a extends g {
         ArrayList arrayList2;
         float f12;
         int measuredHeight = getMeasuredHeight();
-        int i13 = g.f49529n1;
+        int i13 = g.f49565n1;
         int i14 = measuredHeight - i13;
-        int measuredHeight2 = (getMeasuredHeight() - this.f49583y0) - i13;
+        int measuredHeight2 = (getMeasuredHeight() - this.f49619y0) - i13;
         ArrayList arrayList3 = this.d;
         int size = arrayList3.size();
-        if (this.f49554e0 != null) {
+        if (this.f49590e0 != null) {
             int i15 = 0;
             while (i15 < size) {
                 yf.a aVar = (yf.a) arrayList3.get(i15);
-                boolean z4 = aVar.f50933n;
-                Paint paint = aVar.f50924c;
-                float[] fArr = aVar.f50930k;
-                if (!z4 && aVar.f50934o == 0.0f) {
+                boolean z4 = aVar.f50969n;
+                Paint paint = aVar.f50960c;
+                float[] fArr = aVar.f50966k;
+                if (!z4 && aVar.f50970o == 0.0f) {
                     i10 = i14;
                     arrayList = arrayList3;
                     i11 = i15;
                 } else {
-                    aVar.f50925e.reset();
-                    float[] fArr2 = this.f49554e0.f50548b;
+                    aVar.f50961e.reset();
+                    float[] fArr2 = this.f49590e0.f50584b;
                     int length = fArr2.length;
                     if (fArr2.length < 2) {
                         f10 = 1.0f;
                     } else {
-                        f10 = fArr2[1] * this.f49584z0;
+                        f10 = fArr2[1] * this.f49620z0;
                     }
-                    long[] jArr = aVar.f50922a.f50540a;
-                    float f13 = aVar.f50934o;
+                    long[] jArr = aVar.f50958a.f50576a;
+                    float f13 = aVar.f50970o;
                     int i16 = 0;
                     int i17 = 0;
                     while (i16 < length) {
@@ -67,17 +67,17 @@ public final class a extends g {
                             i12 = i14;
                             arrayList2 = arrayList3;
                         } else {
-                            xf.b bVar = this.f49554e0;
+                            xf.b bVar = this.f49590e0;
                             i12 = i14;
-                            float f14 = this.f49584z0 * bVar.f50548b[i16];
-                            if (g.f49540y1) {
-                                f12 = this.f49559g0;
+                            float f14 = this.f49620z0 * bVar.f50584b[i16];
+                            if (g.f49576y1) {
+                                f12 = this.f49595g0;
                                 f11 = f14;
                                 arrayList2 = arrayList3;
                             } else {
                                 f11 = f14;
                                 arrayList2 = arrayList3;
-                                f12 = (float) bVar.f50550e;
+                                f12 = (float) bVar.f50586e;
                             }
                             float A = y3.A((float) j10, f12, f13, 1.0f) * (i12 - measuredHeight2);
                             fArr[i17] = f11;
@@ -85,7 +85,7 @@ public final class a extends g {
                             int i19 = i17 + 3;
                             fArr[i17 + 2] = f11;
                             i17 += 4;
-                            fArr[i19] = getMeasuredHeight() - this.f49573s;
+                            fArr[i19] = getMeasuredHeight() - this.f49609s;
                         }
                         i16++;
                         i15 = i18;
@@ -110,16 +110,16 @@ public final class a extends g {
         F();
         k(canvas);
         i(canvas);
-        ArrayList arrayList = this.f49545b;
-        this.f49563j0 = arrayList.size();
+        ArrayList arrayList = this.f49581b;
+        this.f49599j0 = arrayList.size();
         int i10 = 0;
         while (true) {
-            this.f49564k0 = i10;
-            int i11 = this.f49564k0;
-            if (i11 < this.f49563j0) {
+            this.f49600k0 = i10;
+            int i11 = this.f49600k0;
+            if (i11 < this.f49599j0) {
                 l(canvas, (yf.d) arrayList.get(i11));
-                p(canvas, (yf.d) arrayList.get(this.f49564k0));
-                i10 = this.f49564k0 + 1;
+                p(canvas, (yf.d) arrayList.get(this.f49600k0));
+                i10 = this.f49600k0 + 1;
             } else {
                 j(canvas);
                 m(canvas);

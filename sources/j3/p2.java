@@ -22,7 +22,7 @@ public final class p2 implements g {
 
     public p2(o4.s0 s0Var, boolean z4, int[] iArr, boolean[] zArr) {
         boolean z10;
-        int i10 = s0Var.f16571a;
+        int i10 = s0Var.f16573a;
         this.f9378a = i10;
         boolean z11 = false;
         if (i10 == iArr.length && i10 == zArr.length) {

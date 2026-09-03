@@ -2,22 +2,22 @@ package u5;
 
 import android.os.Looper;
 import java.util.Locale;
-import org.telegram.ui.Components.ul0;
+import org.telegram.ui.Components.tl0;
 public final class p {
-    public static final Object f48378i = new Object();
-    public final b f48379a;
-    public final long f48380b;
-    public final String f48381c;
-    public o f48384g;
-    public ul0 h;
-    public long f48382e = -1;
-    public long f48383f = 0;
+    public static final Object f48414i = new Object();
+    public final b f48415a;
+    public final long f48416b;
+    public final String f48417c;
+    public o f48420g;
+    public tl0 h;
+    public long f48418e = -1;
+    public long f48419f = 0;
     public final a7.e d = new a7.e(Looper.getMainLooper(), 2);
 
     public p(long j10, String str) {
-        this.f48380b = j10;
-        this.f48381c = str;
-        this.f48379a = new b("RequestTracker", str);
+        this.f48416b = j10;
+        this.f48417c = str;
+        this.f48415a = new b("RequestTracker", str);
     }
 
     public final void a(long j10, o oVar) {
@@ -25,27 +25,27 @@ public final class p {
         long j11;
         long j12;
         long currentTimeMillis = System.currentTimeMillis();
-        Object obj = f48378i;
+        Object obj = f48414i;
         synchronized (obj) {
-            oVar2 = this.f48384g;
-            j11 = this.f48382e;
-            j12 = this.f48383f;
-            this.f48382e = j10;
-            this.f48384g = oVar;
-            this.f48383f = currentTimeMillis;
+            oVar2 = this.f48420g;
+            j11 = this.f48418e;
+            j12 = this.f48419f;
+            this.f48418e = j10;
+            this.f48420g = oVar;
+            this.f48419f = currentTimeMillis;
         }
         if (oVar2 != null) {
-            oVar2.m(this.f48381c, j11, j12, currentTimeMillis);
+            oVar2.m(this.f48417c, j11, j12, currentTimeMillis);
         }
         synchronized (obj) {
             try {
-                ul0 ul0Var = this.h;
-                if (ul0Var != null) {
-                    this.d.removeCallbacks(ul0Var);
+                tl0 tl0Var = this.h;
+                if (tl0Var != null) {
+                    this.d.removeCallbacks(tl0Var);
                 }
-                ul0 ul0Var2 = new ul0(this, 10);
-                this.h = ul0Var2;
-                this.d.postDelayed(ul0Var2, this.f48380b);
+                tl0 tl0Var2 = new tl0(this, 10);
+                this.h = tl0Var2;
+                this.d.postDelayed(tl0Var2, this.f48416b);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -53,7 +53,7 @@ public final class p {
     }
 
     public final void b(long j10, int i10, m mVar) {
-        synchronized (f48378i) {
+        synchronized (f48414i) {
             try {
                 if (c(j10)) {
                     Locale locale = Locale.ROOT;
@@ -67,8 +67,8 @@ public final class p {
 
     public final boolean c(long j10) {
         boolean z4;
-        synchronized (f48378i) {
-            long j11 = this.f48382e;
+        synchronized (f48414i) {
+            long j11 = this.f48418e;
             z4 = false;
             if (j11 != -1 && j11 == j10) {
                 z4 = true;
@@ -79,8 +79,8 @@ public final class p {
 
     public final boolean d() {
         boolean z4;
-        synchronized (f48378i) {
-            if (this.f48382e != -1) {
+        synchronized (f48414i) {
+            if (this.f48418e != -1) {
                 z4 = true;
             } else {
                 z4 = false;
@@ -90,22 +90,22 @@ public final class p {
     }
 
     public final void e(String str, int i10, Object obj) {
-        this.f48379a.b(str, new Object[0]);
-        Object obj2 = f48378i;
+        this.f48415a.b(str, new Object[0]);
+        Object obj2 = f48414i;
         synchronized (obj2) {
             try {
-                if (this.f48384g != null) {
+                if (this.f48420g != null) {
                     long currentTimeMillis = System.currentTimeMillis();
-                    o oVar = this.f48384g;
+                    o oVar = this.f48420g;
                     b6.m.h(oVar);
-                    oVar.n(this.f48381c, this.f48382e, i10, obj, this.f48383f, currentTimeMillis);
+                    oVar.n(this.f48417c, this.f48418e, i10, obj, this.f48419f, currentTimeMillis);
                 }
-                this.f48382e = -1L;
-                this.f48384g = null;
+                this.f48418e = -1L;
+                this.f48420g = null;
                 synchronized (obj2) {
-                    ul0 ul0Var = this.h;
-                    if (ul0Var != null) {
-                        this.d.removeCallbacks(ul0Var);
+                    tl0 tl0Var = this.h;
+                    if (tl0Var != null) {
+                        this.d.removeCallbacks(tl0Var);
                         this.h = null;
                     }
                 }
@@ -115,11 +115,11 @@ public final class p {
     }
 
     public final boolean f(int i10) {
-        synchronized (f48378i) {
+        synchronized (f48414i) {
             try {
                 if (d()) {
                     Locale locale = Locale.ROOT;
-                    long j10 = this.f48382e;
+                    long j10 = this.f48418e;
                     e("clearing request " + j10, i10, null);
                     return true;
                 }

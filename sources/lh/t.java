@@ -21,19 +21,19 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.cb;
 import org.telegram.ui.Components.qc;
 public final class t implements Utilities.Callback2 {
-    public final int f12966a = 1;
-    public final int f12967b;
-    public final long f12968c;
+    public final int f12968a = 1;
+    public final int f12969b;
+    public final long f12970c;
     public final Context d;
-    public final Object f12969e;
-    public final Object f12970f;
+    public final Object f12971e;
+    public final Object f12972f;
 
     public t(int i10, long j10, TLRPC.Photo photo, Context context, oh.b bVar) {
-        this.f12967b = i10;
-        this.f12968c = j10;
-        this.f12969e = photo;
+        this.f12969b = i10;
+        this.f12970c = j10;
+        this.f12971e = photo;
         this.d = context;
-        this.f12970f = bVar;
+        this.f12972f = bVar;
     }
 
     @Override
@@ -46,9 +46,9 @@ public final class t implements Utilities.Callback2 {
         TLObject chat2;
         int i12;
         int i13;
-        int i14 = this.f12966a;
-        Object obj3 = this.f12970f;
-        Object obj4 = this.f12969e;
+        int i14 = this.f12968a;
+        Object obj3 = this.f12972f;
+        Object obj4 = this.f12971e;
         switch (i14) {
             case 0:
                 g6 g6Var = (g6) obj4;
@@ -56,11 +56,11 @@ public final class t implements Utilities.Callback2 {
                 GiftAuctionController.Auction auction = (GiftAuctionController.Auction) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (auction != null) {
-                    int i15 = this.f12967b;
+                    int i15 = this.f12969b;
                     long j11 = UserConfig.getInstance(i15).clientUserId;
                     long peerDialogId = DialogObject.getPeerDialogId(auction.auctionUserState.peer);
                     Context context = this.d;
-                    long j12 = this.f12968c;
+                    long j12 = this.f12970c;
                     if (j12 != peerDialogId && j12 != 0 && peerDialogId != 0) {
                         x xVar2 = new x(context, i15, auction, j12, runnable);
                         if (i11 >= 0) {
@@ -82,7 +82,7 @@ public final class t implements Utilities.Callback2 {
                         TextView textView = new TextView(context);
                         NotificationCenter.listenEmojiLoading(textView);
                         textView.setText(LocaleController.getString(R.string.Gift2AuctionsChangeRecipient));
-                        int i16 = k6.f21766j5;
+                        int i16 = k6.f21768j5;
                         org.telegram.ui.b.w(i16, g6Var, textView, 1, 20.0f);
                         if (LocaleController.isRTL) {
                             i12 = 5;
@@ -104,11 +104,11 @@ public final class t implements Utilities.Callback2 {
                         alertDialog$Builder.n(f10);
                         alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new hg.f(xVar, 23));
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                        alertDialog$Builder.f21166a.show();
+                        alertDialog$Builder.f21168a.show();
                         return;
                     } else if (auction.auctionUserState.bid_date > 0 && !auction.isFinished()) {
                         s sVar = new s(context, g6Var, null, auction);
-                        sVar.f12947k0 = runnable;
+                        sVar.f12949k0 = runnable;
                         sVar.show();
                         return;
                     } else {
@@ -123,10 +123,10 @@ public final class t implements Utilities.Callback2 {
                 Integer num = (Integer) obj;
                 String str = (String) obj2;
                 TL_account.reportProfilePhoto reportprofilephoto = new TL_account.reportProfilePhoto();
-                int i17 = this.f12967b;
-                reportprofilephoto.peer = MessagesController.getInstance(i17).getInputPeer(this.f12968c);
+                int i17 = this.f12969b;
+                reportprofilephoto.peer = MessagesController.getInstance(i17).getInputPeer(this.f12970c);
                 TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                tL_inputPhoto.f20862id = photo.f20867id;
+                tL_inputPhoto.f20864id = photo.f20869id;
                 tL_inputPhoto.file_reference = photo.file_reference;
                 tL_inputPhoto.access_hash = photo.access_hash;
                 reportprofilephoto.photo_id = tL_inputPhoto;
@@ -152,9 +152,9 @@ public final class t implements Utilities.Callback2 {
 
     public t(Context context, g6 g6Var, int i10, long j10, Runnable runnable) {
         this.d = context;
-        this.f12969e = g6Var;
-        this.f12967b = i10;
-        this.f12968c = j10;
-        this.f12970f = runnable;
+        this.f12971e = g6Var;
+        this.f12969b = i10;
+        this.f12970c = j10;
+        this.f12972f = runnable;
     }
 }

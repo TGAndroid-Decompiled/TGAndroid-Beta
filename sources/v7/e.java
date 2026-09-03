@@ -9,8 +9,8 @@ import k7.g8;
 import k7.k8;
 import k7.o8;
 public abstract class e {
-    public static boolean f48921a = false;
-    public static int f48922b = 1;
+    public static boolean f48957a = false;
+    public static int f48958b = 1;
 
     public static synchronized int a(Context context) {
         String str;
@@ -18,7 +18,7 @@ public abstract class e {
             try {
                 m.i(context, "Context is null");
                 Log.d("e", "preferredRenderer: ".concat("null"));
-                if (f48921a) {
+                if (f48957a) {
                     return 0;
                 }
                 try {
@@ -32,13 +32,13 @@ public abstract class e {
                             m.i(W0, "delegate must not be null");
                             o8.f10685a = W0;
                         }
-                        f48921a = true;
+                        f48957a = true;
                         try {
                             Parcel L0 = a2.L0(a2.M0(), 9);
                             int readInt = L0.readInt();
                             L0.recycle();
                             if (readInt == 2) {
-                                f48922b = 2;
+                                f48958b = 2;
                             }
                             l6.b bVar = new l6.b(context);
                             Parcel M0 = a2.M0();
@@ -48,7 +48,7 @@ public abstract class e {
                         } catch (RemoteException e6) {
                             Log.e("e", "Failed to retrieve renderer type or log initialization.", e6);
                         }
-                        int i10 = f48922b;
+                        int i10 = f48958b;
                         if (i10 != 1) {
                             if (i10 != 2) {
                                 str = "null";
@@ -64,7 +64,7 @@ public abstract class e {
                         throw new RuntimeException(e10);
                     }
                 } catch (y5.f e11) {
-                    return e11.f50770a;
+                    return e11.f50806a;
                 }
             } catch (Throwable th2) {
                 throw th2;

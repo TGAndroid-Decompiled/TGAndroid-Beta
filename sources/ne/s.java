@@ -2,10 +2,10 @@ package ne;
 
 import k7.h0;
 public final class s extends p {
-    public String f15979g;
+    public String f15981g;
 
     public s(String str) {
-        this.f15979g = str;
+        this.f15981g = str;
     }
 
     @Override
@@ -15,6 +15,6 @@ public final class s extends p {
 
     @Override
     public final String f() {
-        return "literal=" + this.f15979g;
+        return "literal=" + this.f15981g;
     }
 }

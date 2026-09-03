@@ -5,35 +5,35 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class yq implements hq {
-    public final int f43686a;
-    public final long f43687b;
-    public final int f43688c;
+    public final int f43677a;
+    public final long f43678b;
+    public final int f43679c;
     public final boolean d;
-    public final boolean[] f43689e;
-    public final qr f43690f;
+    public final boolean[] f43680e;
+    public final qr f43681f;
 
     public yq(qr qrVar, int i10, long j10, int i11, boolean z4, boolean[] zArr) {
-        this.f43690f = qrVar;
-        this.f43686a = i10;
-        this.f43687b = j10;
-        this.f43688c = i11;
+        this.f43681f = qrVar;
+        this.f43677a = i10;
+        this.f43678b = j10;
+        this.f43679c = i11;
         this.d = z4;
-        this.f43689e = zArr;
+        this.f43680e = zArr;
     }
 
     @Override
     public final void a(TLRPC.User user) {
-        qr.c0(this.f43690f, user);
+        qr.c0(this.f43681f, user);
     }
 
     @Override
     public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
         TLRPC.ChatParticipant tL_chatParticipant;
         TLRPC.ChannelParticipant tL_channelParticipant;
-        qr qrVar = this.f43690f;
+        qr qrVar = this.f43681f;
         ArrayList arrayList = qrVar.C;
-        long j10 = this.f43687b;
-        int i11 = this.f43686a;
+        long j10 = this.f43678b;
+        int i11 = this.f43677a;
         if (i11 == 0) {
             int i12 = 0;
             while (true) {
@@ -60,7 +60,7 @@ public final class yq implements hq {
                             tL_channelParticipant.peer = tL_peerChannel;
                             tL_peerChannel.channel_id = -j10;
                         }
-                        tL_channelParticipant.date = this.f43688c;
+                        tL_channelParticipant.date = this.f43679c;
                         tL_channelParticipant.flags |= 4;
                         tL_channelParticipant.rank = str;
                         arrayList.set(i12, tL_channelParticipant);
@@ -75,16 +75,16 @@ public final class yq implements hq {
                     tL_chatParticipant.user_id = chatParticipant.user_id;
                     tL_chatParticipant.date = chatParticipant.date;
                     tL_chatParticipant.inviter_id = chatParticipant.inviter_id;
-                    int indexOf = qrVar.f40640s.participants.participants.indexOf(chatParticipant);
+                    int indexOf = qrVar.f40608s.participants.participants.indexOf(chatParticipant);
                     if (indexOf >= 0) {
-                        qrVar.f40640s.participants.participants.set(indexOf, tL_chatParticipant);
+                        qrVar.f40608s.participants.participants.set(indexOf, tL_chatParticipant);
                     }
                     qrVar.r0();
                 }
                 i12++;
             }
             if (i10 == 1 && !this.d) {
-                this.f43689e[0] = true;
+                this.f43680e[0] = true;
             }
         } else if (i11 == 1 && i10 == 0) {
             qrVar.v0(j10);

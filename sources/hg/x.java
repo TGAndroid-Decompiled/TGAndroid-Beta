@@ -24,7 +24,7 @@ public final class x extends h3 {
         this.useBackgroundTopPadding = false;
         setBackgroundColor(0);
         fixNavigationBar();
-        if (i0.a.f(k6.v0(k6.f21731h5, this.resourcesProvider)) > 0.699999988079071d) {
+        if (i0.a.f(k6.v0(k6.f21733h5, this.resourcesProvider)) > 0.699999988079071d) {
             z10 = true;
         } else {
             z10 = false;

@@ -7,22 +7,22 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class hr implements RequestDelegate {
-    public final int f27562a;
-    public final lr f27563b;
-    public final qh.d f27564c;
+    public final int f27603a;
+    public final lr f27604b;
+    public final qh.d f27605c;
 
     public hr(lr lrVar, qh.d dVar, int i10) {
-        this.f27562a = i10;
-        this.f27563b = lrVar;
-        this.f27564c = dVar;
+        this.f27603a = i10;
+        this.f27604b = lrVar;
+        this.f27605c = dVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f27562a) {
+        switch (this.f27603a) {
             case 0:
-                final lr lrVar = this.f27563b;
-                final qh.d dVar = this.f27564c;
+                final lr lrVar = this.f27604b;
+                final qh.d dVar = this.f27605c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -36,8 +36,8 @@ public final class hr implements RequestDelegate {
                                     TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
                                     lrVar2.Y = groupcallstreamrtmpurl.url;
                                     lrVar2.Z = groupcallstreamrtmpurl.key;
-                                    lrVar2.f28808a0 = new SpannableStringBuilder(lrVar2.Z);
-                                    lrVar2.f28809b0.N(true);
+                                    lrVar2.f28860a0 = new SpannableStringBuilder(lrVar2.Z);
+                                    lrVar2.f28861b0.N(true);
                                     return;
                                 }
                                 return;
@@ -50,8 +50,8 @@ public final class hr implements RequestDelegate {
                                     TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
                                     lrVar3.Y = groupcallstreamrtmpurl2.url;
                                     lrVar3.Z = groupcallstreamrtmpurl2.key;
-                                    lrVar3.f28808a0 = new SpannableStringBuilder(lrVar3.Z);
-                                    lrVar3.f28809b0.N(true);
+                                    lrVar3.f28860a0 = new SpannableStringBuilder(lrVar3.Z);
+                                    lrVar3.f28861b0.N(true);
                                     return;
                                 }
                                 return;
@@ -60,8 +60,8 @@ public final class hr implements RequestDelegate {
                 });
                 return;
             default:
-                final lr lrVar2 = this.f27563b;
-                final qh.d dVar2 = this.f27564c;
+                final lr lrVar2 = this.f27604b;
+                final qh.d dVar2 = this.f27605c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -75,8 +75,8 @@ public final class hr implements RequestDelegate {
                                     TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
                                     lrVar22.Y = groupcallstreamrtmpurl.url;
                                     lrVar22.Z = groupcallstreamrtmpurl.key;
-                                    lrVar22.f28808a0 = new SpannableStringBuilder(lrVar22.Z);
-                                    lrVar22.f28809b0.N(true);
+                                    lrVar22.f28860a0 = new SpannableStringBuilder(lrVar22.Z);
+                                    lrVar22.f28861b0.N(true);
                                     return;
                                 }
                                 return;
@@ -89,8 +89,8 @@ public final class hr implements RequestDelegate {
                                     TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
                                     lrVar3.Y = groupcallstreamrtmpurl2.url;
                                     lrVar3.Z = groupcallstreamrtmpurl2.key;
-                                    lrVar3.f28808a0 = new SpannableStringBuilder(lrVar3.Z);
-                                    lrVar3.f28809b0.N(true);
+                                    lrVar3.f28860a0 = new SpannableStringBuilder(lrVar3.Z);
+                                    lrVar3.f28861b0.N(true);
                                     return;
                                 }
                                 return;

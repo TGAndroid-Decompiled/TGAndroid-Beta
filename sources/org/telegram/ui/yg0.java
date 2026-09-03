@@ -26,11 +26,11 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
     public final HashSet M;
     public final xd.a N;
     public final yd.b O;
-    public final org.telegram.ui.ActionBar.g6 f43627s;
+    public final org.telegram.ui.ActionBar.g6 f43622s;
     public int v;
-    public float[] f43628w;
-    public float[] f43629x;
-    public int[] f43630y;
+    public float[] f43623w;
+    public float[] f43624x;
+    public int[] f43625y;
 
     public yg0(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
@@ -38,20 +38,20 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
         this.G = new Paint(1);
         new ArrayList();
         new ArrayList();
-        o1.c cVar = o1.h.f16324s;
-        o1.c cVar2 = o1.h.f16323r;
-        o1.c cVar3 = o1.h.f16320o;
-        o1.c cVar4 = o1.h.f16322q;
+        o1.c cVar = o1.h.f16326s;
+        o1.c cVar2 = o1.h.f16325r;
+        o1.c cVar3 = o1.h.f16322o;
+        o1.c cVar4 = o1.h.f16324q;
         new o1.k(1.0f);
         new ArrayList();
         new ArrayList();
-        o1.c cVar5 = o1.h.f16321p;
+        o1.c cVar5 = o1.h.f16323p;
         new o1.k(1.0f);
         o1.j jVar = new o1.j(this, new org.telegram.ui.Components.hb(1));
         this.H = jVar;
         o1.j jVar2 = new o1.j(this, new org.telegram.ui.Components.hb(2));
         this.I = jVar2;
-        jVar.f16336u = yh.n(1.0f, 1500.0f, 0.75f);
+        jVar.f16338u = yh.n(1.0f, 1500.0f, 0.75f);
         o1.k kVar = new o1.k(1.0f);
         kVar.b(250.0f);
         kVar.a(0.25f);
@@ -61,11 +61,11 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
         o1.k kVar3 = new o1.k(1.0f);
         kVar3.b(1500.0f);
         kVar3.a(0.75f);
-        jVar2.f16336u = kVar3;
+        jVar2.f16338u = kVar3;
         this.M = new HashSet();
         this.N = new xd.a(0, new gu(this, 22), org.telegram.ui.Components.pr.h, 380L, false);
         this.O = new yd.b(new h(this, 25));
-        this.f43627s = g6Var;
+        this.f43622s = g6Var;
     }
 
     public static void k(yg0 yg0Var, View view, float f10, float f11) {
@@ -150,7 +150,7 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
                     break;
                 }
                 View childAt3 = yg0Var.getChildAt(i12);
-                if (childAt3.getVisibility() == 0 && (childAt3 instanceof ch.b) && ((ch.b) childAt3).h.f50506f) {
+                if (childAt3.getVisibility() == 0 && (childAt3 instanceof ch.b) && ((ch.b) childAt3).h.f50542f) {
                     view2 = childAt3;
                     break;
                 }
@@ -161,13 +161,13 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
                 yg0Var.J = width2;
                 yg0Var.K = width2 - f10;
                 o1.j jVar2 = yg0Var.H;
-                if (jVar2.f16330f) {
+                if (jVar2.f16332f) {
                     jVar2.v = 0.0f;
                 } else {
-                    if (jVar2.f16336u == null) {
-                        jVar2.f16336u = new o1.k(0.0f);
+                    if (jVar2.f16338u == null) {
+                        jVar2.f16338u = new o1.k(0.0f);
                     }
-                    jVar2.f16336u.f16343i = 0.0f;
+                    jVar2.f16338u.f16345i = 0.0f;
                     jVar2.f();
                 }
                 if (view2 != view && view != null) {
@@ -199,14 +199,14 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
                 float width3 = view.getWidth();
                 float x10 = (width3 / 2.0f) + view.getX();
                 if (0.0f != width3 || 0.0f != x10) {
-                    if (jVar.f16330f) {
+                    if (jVar.f16332f) {
                         jVar.v = x10;
                         return;
                     }
-                    if (jVar.f16336u == null) {
-                        jVar.f16336u = new o1.k(x10);
+                    if (jVar.f16338u == null) {
+                        jVar.f16338u = new o1.k(x10);
                     }
-                    jVar.f16336u.f16343i = x10;
+                    jVar.f16338u.f16345i = x10;
                     jVar.f();
                 }
             }
@@ -220,7 +220,7 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
     public void setSkipDrawSelector(boolean z4) {
         this.F = z4;
         if (z4) {
-            this.G.setColor(org.telegram.ui.ActionBar.k6.l1(0.09f, org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.al, this.f43627s)));
+            this.G.setColor(org.telegram.ui.ActionBar.k6.l1(0.09f, org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.al, this.f43622s)));
         }
         int childCount = getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
@@ -317,8 +317,8 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
     public final void o() {
         int entriesCount = getEntriesCount();
         for (int i10 = 0; i10 < entriesCount; i10++) {
-            xd.e n10 = this.f25499c.n(i10);
-            ((ch.b) ((org.telegram.ui.Components.a6) n10.f50513a).f25164a).setVisualWidth(n10.b().width());
+            xd.e n10 = this.f25517c.n(i10);
+            ((ch.b) ((org.telegram.ui.Components.a6) n10.f50549a).f25165a).setVisualWidth(n10.b().width());
         }
     }
 
@@ -354,11 +354,11 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
             if (i15 < 3) {
                 if (fArr[i15] != f13) {
                     int childCount = getChildCount();
-                    float[] fArr2 = this.f43628w;
+                    float[] fArr2 = this.f43623w;
                     if (fArr2 == null || fArr2.length < childCount) {
-                        this.f43628w = new float[childCount];
-                        this.f43629x = new float[childCount];
-                        this.f43630y = new int[childCount];
+                        this.f43623w = new float[childCount];
+                        this.f43624x = new float[childCount];
+                        this.f43625y = new int[childCount];
                         this.C = new int[childCount];
                         this.B = new int[childCount];
                     }
@@ -367,7 +367,7 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
                     for (int i17 = 0; i17 < childCount; i17++) {
                         View childAt = getChildAt(i17);
                         if (!d(childAt)) {
-                            this.f43628w[i17] = -1.0f;
+                            this.f43623w[i17] = -1.0f;
                         } else {
                             if (childAt instanceof xg0) {
                                 ch.b bVar = (ch.b) ((xg0) childAt);
@@ -379,7 +379,7 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
                             } else {
                                 f12 = 0.0f;
                             }
-                            this.f43628w[i17] = f12;
+                            this.f43623w[i17] = f12;
                             f14 = Math.max(f14, f12);
                             i16++;
                         }
@@ -398,7 +398,7 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
                 float f15 = 0.0f;
                 for (int i18 = 0; i18 < childCount2; i18++) {
                     if (d(getChildAt(i18))) {
-                        f15 += this.f43628w[i18] + (dp * 2);
+                        f15 += this.f43623w[i18] + (dp * 2);
                     }
                 }
                 if (f15 <= paddingLeft || i15 == 2) {
@@ -427,15 +427,15 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
         float f17 = 0.0f;
         for (int i21 = 0; i21 < childCount4; i21++) {
             if (!d(getChildAt(i21))) {
-                float[] fArr3 = this.f43628w;
-                this.f43629x[i21] = f10;
+                float[] fArr3 = this.f43623w;
+                this.f43624x[i21] = f10;
                 fArr3[i21] = f10;
-                this.f43630y[i21] = i12;
+                this.f43625y[i21] = i12;
             } else {
-                float[] fArr4 = this.f43629x;
-                float f18 = this.f43628w[i21] + dp2;
+                float[] fArr4 = this.f43624x;
+                float f18 = this.f43623w[i21] + dp2;
                 fArr4[i21] = f18;
-                int[] iArr2 = this.f43630y;
+                int[] iArr2 = this.f43625y;
                 if (f18 > max + dp2) {
                     i13 = 0;
                 } else {
@@ -449,7 +449,7 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
         if (i20 == 0) {
             int childCount5 = getChildCount();
             for (int i22 = 0; i22 < childCount5; i22++) {
-                this.f43630y[i22] = d(getChildAt(i22)) ? 1 : 0;
+                this.f43625y[i22] = d(getChildAt(i22)) ? 1 : 0;
             }
             i20 = this.D;
         }
@@ -458,7 +458,7 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
             float f20 = f19 / f17;
             int childCount6 = getChildCount();
             for (int i23 = 0; i23 < childCount6; i23++) {
-                float[] fArr5 = this.f43629x;
+                float[] fArr5 = this.f43624x;
                 fArr5[i23] = fArr5[i23] * f20;
             }
         } else {
@@ -467,8 +467,8 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
                 float f22 = (f21 - f17) / i20;
                 int childCount7 = getChildCount();
                 for (int i24 = 0; i24 < childCount7; i24++) {
-                    float[] fArr6 = this.f43629x;
-                    fArr6[i24] = (this.f43630y[i24] * f22) + fArr6[i24];
+                    float[] fArr6 = this.f43624x;
+                    fArr6[i24] = (this.f43625y[i24] * f22) + fArr6[i24];
                 }
             }
         }
@@ -476,7 +476,7 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
         int i25 = 0;
         for (int i26 = 0; i26 < childCount8; i26++) {
             if (d(getChildAt(i26))) {
-                this.B[i26] = Math.round(this.f43629x[i26]);
+                this.B[i26] = Math.round(this.f43624x[i26]);
                 this.C[i26] = i25;
                 i25 += this.B[i26];
             }

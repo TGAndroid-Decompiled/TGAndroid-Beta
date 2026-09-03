@@ -8,12 +8,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.u5;
 public final class n extends u5 {
-    public final Bitmap f16139a;
+    public final Bitmap f16141a;
 
     public n(s sVar) {
         super(-1L, (Paint.FontMetricsInt) null);
         Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), Bitmap.Config.ARGB_8888);
-        this.f16139a = createBitmap;
+        this.f16141a = createBitmap;
         Drawable mutate = sVar.getParentActivity().getResources().getDrawable(R.drawable.star_small_inner).mutate();
         mutate.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
         mutate.draw(new Canvas(createBitmap));
@@ -26,7 +26,7 @@ public final class n extends u5 {
         canvas.translate(f10, ((i12 + i14) / 2.0f) - AndroidUtilities.dp(12.0f));
         float f11 = this.extraScale;
         canvas.scale(f11, f11, f10 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-        canvas.drawBitmap(this.f16139a, 0.0f, 0.0f, (Paint) null);
+        canvas.drawBitmap(this.f16141a, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
     }
 

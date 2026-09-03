@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagePreviewParams;
 public final class rb0 extends f2.p0 {
-    public final sb0 f30672c;
+    public final sb0 f30719c;
 
     public rb0(sb0 sb0Var) {
-        this.f30672c = sb0Var;
+        this.f30719c = sb0Var;
     }
 
     public static int D(org.telegram.ui.Cells.t1 t1Var, int i10, boolean z4) {
@@ -27,16 +27,16 @@ public final class rb0 extends f2.p0 {
             MessageObject messageObject = t1Var.getMessageObject();
             if (messageObject != null && messageObject.getGroupId() == 0) {
                 if (!TextUtils.isEmpty(messageObject.caption) && (textLayoutBlocks = t1Var.Z3) != null) {
-                    i11 = (int) t1Var.f23958n4;
+                    i11 = (int) t1Var.f23960n4;
                     charSequence = messageObject.caption;
                     arrayList = textLayoutBlocks.textLayoutBlocks;
                 } else {
                     t1Var.u3(true);
-                    int i12 = t1Var.f23968o0;
+                    int i12 = t1Var.f23970o0;
                     CharSequence charSequence2 = messageObject.messageText;
                     ArrayList<MessageObject.TextLayoutBlock> arrayList2 = messageObject.textLayoutBlocks;
-                    if (t1Var.f23998q1) {
-                        i11 = org.telegram.messenger.y3.C(10.0f, t1Var.f23899j2, i12);
+                    if (t1Var.f24000q1) {
+                        i11 = org.telegram.messenger.y3.C(10.0f, t1Var.f23901j2, i12);
                     } else {
                         i11 = i12;
                     }
@@ -72,7 +72,7 @@ public final class rb0 extends f2.p0 {
 
     @Override
     public final int h() {
-        MessagePreviewParams.Messages messages = this.f30672c.f31033r;
+        MessagePreviewParams.Messages messages = this.f30719c.f31033r;
         if (messages == null) {
             return 0;
         }
@@ -88,7 +88,7 @@ public final class rb0 extends f2.p0 {
     public final void v(f2.m1 m1Var, int i10) {
         int i11;
         boolean z4;
-        sb0 sb0Var = this.f30672c;
+        sb0 sb0Var = this.f30719c;
         kb0 kb0Var = sb0Var.f31031f;
         int i12 = sb0Var.f31027a;
         MessagePreviewParams.Messages messages = sb0Var.f31033r;
@@ -131,9 +131,9 @@ public final class rb0 extends f2.p0 {
     @Override
     public final f2.m1 x(ViewGroup viewGroup, int i10) {
         Context context = viewGroup.getContext();
-        sb0 sb0Var = this.f30672c;
+        sb0 sb0Var = this.f30719c;
         yb0 yb0Var = sb0Var.W;
-        pb0 pb0Var = new pb0(this, context, yb0Var.f33440w, sb0Var.G, yb0Var.C);
+        pb0 pb0Var = new pb0(this, context, yb0Var.f33461w, sb0Var.G, yb0Var.C);
         pb0Var.setClipChildren(false);
         pb0Var.setClipToPadding(false);
         pb0Var.setDelegate(new qb0(this));
@@ -146,7 +146,7 @@ public final class rb0 extends f2.p0 {
         boolean z4;
         boolean z10;
         MessageObject c3;
-        sb0 sb0Var = this.f30672c;
+        sb0 sb0Var = this.f30719c;
         jb0 jb0Var = sb0Var.f31030e;
         yb0 yb0Var = sb0Var.W;
         if (sb0Var.f31033r != null && (i10 = sb0Var.f31027a) != 1) {

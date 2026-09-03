@@ -58,8 +58,8 @@ public abstract class e implements b2 {
                 }
                 return -3;
             }
-            long j10 = iVar.f15216f + this.f9058s;
-            iVar.f15216f = j10;
+            long j10 = iVar.f15218f + this.f9058s;
+            iVar.f15218f = j10;
             this.v = Math.max(this.v, j10);
             return p10;
         }

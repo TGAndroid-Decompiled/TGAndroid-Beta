@@ -29,7 +29,7 @@ public final class i implements g, f, d {
 
     public i(Runnable runnable) {
         this.h = runnable;
-        this.f4757a = new xd.c(0, new bf.b(this, runnable, false, 26), r1.f22249w, 250L);
+        this.f4757a = new xd.c(0, new bf.b(this, runnable, false, 26), r1.f22251w, 250L);
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class i implements g, f, d {
     }
 
     public final void a() {
-        boolean z4 = this.f4757a.f50512g;
+        boolean z4 = this.f4757a.f50548g;
         boolean z10 = this.f4762n;
         AnimationNotificationsLocker animationNotificationsLocker = this.f4760e;
         if (!z10 && z4) {
@@ -63,18 +63,18 @@ public final class i implements g, f, d {
         e eVar = this.f4767y;
         l lVar = this.d;
         if (eVar != null && this.D > 0) {
-            return Math.max(this.C, lVar.d.f50530a);
+            return Math.max(this.C, lVar.d.f50566a);
         }
-        return lVar.d.f50530a;
+        return lVar.d.f50566a;
     }
 
     public final float c() {
         e eVar = this.f4767y;
         l lVar = this.f4759c;
         if (eVar != null && this.D > 0) {
-            return Math.max(this.C, lVar.d.f50530a);
+            return Math.max(this.C, lVar.d.f50566a);
         }
-        return lVar.d.f50530a;
+        return lVar.d.f50566a;
     }
 
     public final int d() {
@@ -87,7 +87,7 @@ public final class i implements g, f, d {
     public final i0.b e(int i10) {
         m1 m1Var = this.f4763r;
         if (m1Var != null) {
-            return m1Var.f46452a.f(i10);
+            return m1Var.f46483a.f(i10);
         }
         return i0.b.f7756e;
     }
@@ -150,12 +150,12 @@ public final class i implements g, f, d {
         this.f4763r = m1Var;
         i0.b bVar3 = i0.b.f7756e;
         if (m1Var != null) {
-            bVar = m1Var.f46452a.g(647);
+            bVar = m1Var.f46483a.g(647);
         } else {
             bVar = bVar3;
         }
         if (m1Var != null) {
-            bVar3 = m1Var.f46452a.f(8);
+            bVar3 = m1Var.f46483a.f(8);
         }
         c cVar2 = this.f4761f;
         b bVar4 = cVar2.f4750c;
@@ -227,7 +227,7 @@ public final class i implements g, f, d {
             } else {
                 f11 = 0.0f;
             }
-            kVar.f50532c = f11;
+            kVar.f50568c = f11;
             lVar2.e(i19, i18, i10, i16);
             lVar.e(i14, i13, i12, i15);
             xd.c cVar4 = cVar;
@@ -249,7 +249,7 @@ public final class i implements g, f, d {
 
     @Override
     public final void k(m1 m1Var) {
-        this.C = m1Var.f46452a.f(8).d;
+        this.C = m1Var.f46483a.f(8).d;
         this.h.run();
     }
 

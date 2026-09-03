@@ -29,7 +29,7 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
     public org.telegram.ui.Components.xd0 f34109b;
     public ActionBarLayout f34110c;
     public ActionBarLayout d;
-    public org.telegram.ui.Components.qv0 f34111e;
+    public org.telegram.ui.Components.pv0 f34111e;
     public org.telegram.ui.ActionBar.z3 f34112f;
     public Intent h;
     public boolean f34113n;
@@ -86,8 +86,8 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
                         this.d.c0();
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this);
-                    alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.AppName);
-                    alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.PleaseLoginPassport);
+                    alertDialog$Builder.f21168a.O = LocaleController.getString(R.string.AppName);
+                    alertDialog$Builder.f21168a.Q = LocaleController.getString(R.string.PleaseLoginPassport);
                     l.d.C(R.string.OK, alertDialog$Builder, null);
                     return;
                 } else if (activatedAccountsCount >= 2) {
@@ -245,7 +245,7 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
 
     @Override
     public final boolean l(ActionBarLayout actionBarLayout, org.telegram.ui.ActionBar.d5 d5Var) {
-        org.telegram.ui.ActionBar.p2 p2Var = d5Var.f21276a;
+        org.telegram.ui.ActionBar.p2 p2Var = d5Var.f21278a;
         return true;
     }
 
@@ -313,9 +313,9 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
             layoutParams.width = -1;
             layoutParams.height = -1;
             relativeLayout.setLayoutParams(layoutParams);
-            org.telegram.ui.Components.a61 a61Var = new org.telegram.ui.Components.a61(this, null, 1);
-            this.f34111e = a61Var;
-            a61Var.setOccupyStatusBar(false);
+            org.telegram.ui.Components.z51 z51Var = new org.telegram.ui.Components.z51(this, null, 1);
+            this.f34111e = z51Var;
+            z51Var.setOccupyStatusBar(false);
             this.f34111e.V(org.telegram.ui.ActionBar.k6.r0());
             relativeLayout.addView(this.f34111e, k7.c6.w(-1, -1));
             relativeLayout.addView(this.f34110c.getView(), k7.c6.w(-1, -1));
@@ -343,9 +343,9 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
         } else {
             RelativeLayout relativeLayout2 = new RelativeLayout(this);
             this.f34112f.addView(relativeLayout2, k7.c6.c(-1.0f, -1));
-            org.telegram.ui.Components.a61 a61Var2 = new org.telegram.ui.Components.a61(this, null, 2);
-            this.f34111e = a61Var2;
-            a61Var2.setOccupyStatusBar(false);
+            org.telegram.ui.Components.z51 z51Var2 = new org.telegram.ui.Components.z51(this, null, 2);
+            this.f34111e = z51Var2;
+            z51Var2.setOccupyStatusBar(false);
             this.f34111e.V(org.telegram.ui.ActionBar.k6.r0());
             relativeLayout2.addView(this.f34111e, k7.c6.w(-1, -1));
             relativeLayout2.addView(this.f34110c.getView(), k7.c6.w(-1, -1));

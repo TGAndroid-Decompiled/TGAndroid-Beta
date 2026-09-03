@@ -1,8 +1,20 @@
 package org.telegram.ui;
-public final class zh1 extends org.telegram.ui.Components.voip.w2 {
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class zh1 extends AnimatorListenerAdapter {
+    public final ii1 f43969a;
+
+    public zh1(ii1 ii1Var) {
+        this.f43969a = ii1Var;
+    }
+
     @Override
-    public final void dispatchSetPressed(boolean z4) {
-        super.dispatchSetPressed(z4);
-        setPressedBtn(z4);
+    public final void onAnimationEnd(Animator animator) {
+        ii1 ii1Var = this.f43969a;
+        ii1Var.B.setText(LocaleController.getString(R.string.VoipCallEnded));
+        ii1Var.B.animate().alpha(1.0f).setDuration(70L).setListener(null).start();
     }
 }

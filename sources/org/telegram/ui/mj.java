@@ -9,16 +9,16 @@ import android.view.TextureView;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
-public final class mj implements org.telegram.ui.ActionBar.t0, org.telegram.ui.ActionBar.g6, tu0, km {
-    public final xn f39164a;
+public final class mj implements org.telegram.ui.ActionBar.t0, org.telegram.ui.ActionBar.g6, yu0, km {
+    public final xn f38989a;
 
     public mj(xn xnVar) {
-        this.f39164a = xnVar;
+        this.f38989a = xnVar;
     }
 
     @Override
     public int B0(int i10) {
-        return this.f39164a.getThemedColor(i10);
+        return this.f38989a.getThemedColor(i10);
     }
 
     @Override
@@ -33,9 +33,9 @@ public final class mj implements org.telegram.ui.ActionBar.t0, org.telegram.ui.A
             return;
         }
         if (MediaController.getInstance().isPlayingMessage(messageObject)) {
-            for (int i10 = 0; i10 < this.f39164a.f43362u0.getChildCount(); i10++) {
-                if (this.f39164a.f43362u0.getChildAt(i10) instanceof org.telegram.ui.Cells.t1) {
-                    org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) this.f39164a.f43362u0.getChildAt(i10);
+            for (int i10 = 0; i10 < this.f38989a.f43340u0.getChildCount(); i10++) {
+                if (this.f38989a.f43340u0.getChildAt(i10) instanceof org.telegram.ui.Cells.t1) {
+                    org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) this.f38989a.f43340u0.getChildAt(i10);
                     if (t1Var.getMessageObject() != null && t1Var.getMessageObject().getId() == messageObject.getId()) {
                         org.telegram.ui.Components.y5 animation = t1Var.getPhotoImage().getAnimation();
                         if (animation.Y) {
@@ -44,14 +44,14 @@ public final class mj implements org.telegram.ui.ActionBar.t0, org.telegram.ui.A
                         Bitmap m9 = animation.m();
                         if (m9 != null) {
                             try {
-                                sk skVar = this.f39164a.f43359ta;
+                                sk skVar = this.f38989a.f43337ta;
                                 int width = m9.getWidth();
                                 int height = m9.getHeight();
-                                wu0 wu0Var = skVar.d;
-                                if (wu0Var == null) {
+                                bv0 bv0Var = skVar.d;
+                                if (bv0Var == null) {
                                     bitmap = null;
                                 } else {
-                                    bitmap = wu0Var.f42890b.getBitmap(width, height);
+                                    bitmap = bv0Var.f35607b.getBitmap(width, height);
                                 }
                                 new Canvas(m9).drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
                                 bitmap.recycle();
@@ -62,17 +62,17 @@ public final class mj implements org.telegram.ui.ActionBar.t0, org.telegram.ui.A
                     }
                 }
             }
-            this.f39164a.N7(true);
+            this.f38989a.N7(true);
             MediaController mediaController = MediaController.getInstance();
-            xn xnVar = this.f39164a;
-            mediaController.setTextureView(xnVar.f43358t8, xnVar.f43348s8, xnVar.f43322q8, true);
+            xn xnVar = this.f38989a;
+            mediaController.setTextureView(xnVar.f43336t8, xnVar.f43326s8, xnVar.f43300q8, true);
         }
-        this.f39164a.f43362u0.invalidate();
+        this.f38989a.f43340u0.invalidate();
     }
 
     @Override
     public void O0(int i10) {
-        this.f39164a.j(i10, 0, true, 0, true, 0);
+        this.f38989a.j(i10, 0, true, 0, true, 0);
     }
 
     @Override
@@ -87,7 +87,7 @@ public final class mj implements org.telegram.ui.ActionBar.t0, org.telegram.ui.A
 
     @Override
     public void e() {
-        org.telegram.ui.Components.jm0.d(new we(this.f39164a, 2));
+        org.telegram.ui.Components.im0.d(new we(this.f38989a, 2));
     }
 
     @Override
@@ -102,7 +102,7 @@ public final class mj implements org.telegram.ui.ActionBar.t0, org.telegram.ui.A
 
     @Override
     public TextureView h0() {
-        return this.f39164a.f43358t8;
+        return this.f38989a.f43336t8;
     }
 
     @Override
@@ -117,28 +117,28 @@ public final class mj implements org.telegram.ui.ActionBar.t0, org.telegram.ui.A
 
     @Override
     public void t0(String str) {
-        this.f39164a.da(str, false);
+        this.f38989a.da(str, false);
     }
 
     @Override
     public ColorFilter w() {
-        return org.telegram.ui.ActionBar.k6.f21976v3;
+        return org.telegram.ui.ActionBar.k6.f21978v3;
     }
 
     @Override
     public void y0(MessageObject messageObject) {
-        xn xnVar = this.f39164a;
-        xnVar.f43362u0.I0(true);
-        xnVar.f43362u0.B0();
+        xn xnVar = this.f38989a;
+        xnVar.f43340u0.I0(true);
+        xnVar.f43340u0.B0();
         if (MediaController.getInstance().isPlayingMessage(messageObject)) {
-            xnVar.U0.removeView(xnVar.f43322q8);
-            xnVar.f43322q8 = null;
-            xnVar.f43358t8 = null;
-            xnVar.f43348s8 = null;
+            xnVar.U0.removeView(xnVar.f43300q8);
+            xnVar.f43300q8 = null;
+            xnVar.f43336t8 = null;
+            xnVar.f43326s8 = null;
         }
-        for (int i10 = 0; i10 < xnVar.f43362u0.getChildCount(); i10++) {
-            if (xnVar.f43362u0.getChildAt(i10) instanceof org.telegram.ui.Cells.t1) {
-                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) xnVar.f43362u0.getChildAt(i10);
+        for (int i10 = 0; i10 < xnVar.f43340u0.getChildCount(); i10++) {
+            if (xnVar.f43340u0.getChildAt(i10) instanceof org.telegram.ui.Cells.t1) {
+                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) xnVar.f43340u0.getChildAt(i10);
                 if (t1Var.getMessageObject() != null && t1Var.getMessageObject().getId() == messageObject.getId()) {
                     t1Var.getPhotoImage().setVisible(false, true);
                 }

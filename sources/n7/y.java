@@ -9,27 +9,27 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 public final class y implements u9.e {
-    public static final Charset f15821f = Charset.forName("UTF-8");
-    public static final u9.c f15822g = new u9.c("key", w.c.h(l.d.p(w.class, new s(1))));
+    public static final Charset f15823f = Charset.forName("UTF-8");
+    public static final u9.c f15824g = new u9.c("key", w.c.h(l.d.p(w.class, new s(1))));
     public static final u9.c h = new u9.c("value", w.c.h(l.d.p(w.class, new s(2))));
-    public static final x f15823i = x.f15787b;
-    public OutputStream f15824a;
-    public final HashMap f15825b;
-    public final HashMap f15826c;
+    public static final x f15825i = x.f15789b;
+    public OutputStream f15826a;
+    public final HashMap f15827b;
+    public final HashMap f15828c;
     public final u9.d d;
-    public final j7.l f15827e = new j7.l(this, 3);
+    public final j7.l f15829e = new j7.l(this, 3);
 
     public y(ByteArrayOutputStream byteArrayOutputStream, HashMap hashMap, HashMap hashMap2, u9.d dVar) {
-        this.f15824a = byteArrayOutputStream;
-        this.f15825b = hashMap;
-        this.f15826c = hashMap2;
+        this.f15826a = byteArrayOutputStream;
+        this.f15827b = hashMap;
+        this.f15828c = hashMap2;
         this.d = dVar;
     }
 
     public static int i(u9.c cVar) {
         w wVar = (w) cVar.b(w.class);
         if (wVar != null) {
-            return ((s) wVar).f15719a;
+            return ((s) wVar).f15721a;
         }
         throw new RuntimeException("Field has no @Protobuf config");
     }
@@ -45,7 +45,7 @@ public final class y implements u9.e {
         if (j10 != 0) {
             w wVar = (w) cVar.b(w.class);
             if (wVar != null) {
-                k(((s) wVar).f15719a << 3);
+                k(((s) wVar).f15721a << 3);
                 l(j10);
                 return this;
             }
@@ -77,7 +77,7 @@ public final class y implements u9.e {
             return;
         }
         k((i(cVar) << 3) | 1);
-        this.f15824a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putDouble(d).array());
+        this.f15826a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putDouble(d).array());
     }
 
     public final void g(u9.c cVar, Object obj, boolean z4) {
@@ -86,9 +86,9 @@ public final class y implements u9.e {
                 CharSequence charSequence = (CharSequence) obj;
                 if (!z4 || charSequence.length() != 0) {
                     k((i(cVar) << 3) | 2);
-                    byte[] bytes = charSequence.toString().getBytes(f15821f);
+                    byte[] bytes = charSequence.toString().getBytes(f15823f);
                     k(bytes.length);
-                    this.f15824a.write(bytes);
+                    this.f15826a.write(bytes);
                 }
             } else if (obj instanceof Collection) {
                 for (Object obj2 : (Collection) obj) {
@@ -96,7 +96,7 @@ public final class y implements u9.e {
                 }
             } else if (obj instanceof Map) {
                 for (Map.Entry entry : ((Map) obj).entrySet()) {
-                    j(f15823i, cVar, entry, false);
+                    j(f15825i, cVar, entry, false);
                 }
             } else if (obj instanceof Double) {
                 f(cVar, ((Double) obj).doubleValue(), z4);
@@ -104,14 +104,14 @@ public final class y implements u9.e {
                 float floatValue = ((Float) obj).floatValue();
                 if (!z4 || floatValue != 0.0f) {
                     k((i(cVar) << 3) | 5);
-                    this.f15824a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putFloat(floatValue).array());
+                    this.f15826a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putFloat(floatValue).array());
                 }
             } else if (obj instanceof Number) {
                 long longValue = ((Number) obj).longValue();
                 if (!z4 || longValue != 0) {
                     w wVar = (w) cVar.b(w.class);
                     if (wVar != null) {
-                        k(((s) wVar).f15719a << 3);
+                        k(((s) wVar).f15721a << 3);
                         l(longValue);
                         return;
                     }
@@ -126,16 +126,16 @@ public final class y implements u9.e {
                 }
                 k((i(cVar) << 3) | 2);
                 k(bArr.length);
-                this.f15824a.write(bArr);
+                this.f15826a.write(bArr);
             } else {
-                u9.d dVar = (u9.d) this.f15825b.get(obj.getClass());
+                u9.d dVar = (u9.d) this.f15827b.get(obj.getClass());
                 if (dVar != null) {
                     j(dVar, cVar, obj, z4);
                     return;
                 }
-                u9.f fVar = (u9.f) this.f15826c.get(obj.getClass());
+                u9.f fVar = (u9.f) this.f15828c.get(obj.getClass());
                 if (fVar != null) {
-                    j7.l lVar = this.f15827e;
+                    j7.l lVar = this.f15829e;
                     lVar.f9686b = false;
                     lVar.d = cVar;
                     lVar.f9687c = z4;
@@ -157,7 +157,7 @@ public final class y implements u9.e {
         }
         w wVar = (w) cVar.b(w.class);
         if (wVar != null) {
-            k(((s) wVar).f15719a << 3);
+            k(((s) wVar).f15721a << 3);
             k(i10);
             return;
         }
@@ -168,10 +168,10 @@ public final class y implements u9.e {
         j7.f fVar = new j7.f(3);
         fVar.f9602b = 0L;
         try {
-            OutputStream outputStream = this.f15824a;
-            this.f15824a = fVar;
+            OutputStream outputStream = this.f15826a;
+            this.f15826a = fVar;
             dVar.a(obj, this);
-            this.f15824a = outputStream;
+            this.f15826a = outputStream;
             long j10 = fVar.f9602b;
             fVar.close();
             if (z4 && j10 == 0) {
@@ -197,10 +197,10 @@ public final class y implements u9.e {
         while (true) {
             int i11 = i10 & 127;
             if ((i10 & (-128)) != 0) {
-                this.f15824a.write(i11 | 128);
+                this.f15826a.write(i11 | 128);
                 i10 >>>= 7;
             } else {
-                this.f15824a.write(i11);
+                this.f15826a.write(i11);
                 return;
             }
         }
@@ -210,10 +210,10 @@ public final class y implements u9.e {
         while (true) {
             int i10 = ((int) j10) & 127;
             if (((-128) & j10) != 0) {
-                this.f15824a.write(i10 | 128);
+                this.f15826a.write(i10 | 128);
                 j10 >>>= 7;
             } else {
-                this.f15824a.write(i10);
+                this.f15826a.write(i10);
                 return;
             }
         }

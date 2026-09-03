@@ -7,19 +7,19 @@ import android.widget.DatePicker;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class fq implements DialogInterface.OnShowListener {
-    public final int f37004a;
-    public final View f37005b;
+    public final int f36894a;
+    public final View f36895b;
 
     public fq(int i10, View view) {
-        this.f37004a = i10;
-        this.f37005b = view;
+        this.f36894a = i10;
+        this.f36895b = view;
     }
 
     @Override
     public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f37004a) {
+        switch (this.f36894a) {
             case 0:
-                DatePicker datePicker = (DatePicker) this.f37005b;
+                DatePicker datePicker = (DatePicker) this.f36895b;
                 int childCount = datePicker.getChildCount();
                 for (int i10 = 0; i10 < childCount; i10++) {
                     View childAt = datePicker.getChildAt(i10);
@@ -29,7 +29,7 @@ public final class fq implements DialogInterface.OnShowListener {
                 }
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new ch(1, (EditTextBoldCursor) this.f37005b));
+                AndroidUtilities.runOnUIThread(new ch(1, (EditTextBoldCursor) this.f36895b));
                 return;
         }
     }

@@ -5,44 +5,44 @@ import android.os.Bundle;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationsController;
 public final class nj implements org.telegram.ui.Components.mo {
-    public final xn f39466a;
+    public final xn f39387a;
 
     public nj(xn xnVar) {
-        this.f39466a = xnVar;
+        this.f39387a = xnVar;
     }
 
     @Override
     public final void dismiss() {
-        this.f39466a.f43166e0.M(null, null);
+        this.f39387a.f43144e0.M(null, null);
     }
 
     @Override
     public final void k() {
-        xn xnVar = this.f39466a;
+        xn xnVar = this.f39387a;
         xnVar.bc(true);
-        org.telegram.ui.Components.qc.A(xnVar, xnVar.getMessagesController().isDialogMuted(xnVar.Q5, xnVar.b()), xnVar.f43136ba).j();
+        org.telegram.ui.Components.qc.A(xnVar, xnVar.getMessagesController().isDialogMuted(xnVar.Q5, xnVar.b()), xnVar.f43114ba).j();
     }
 
     @Override
     public final void o() {
-        xn xnVar = this.f39466a;
+        xn xnVar = this.f39387a;
         if (xnVar.Q5 != 0 && xnVar.O3 != 3) {
-            if (xnVar.f43178f != null) {
-                xnVar.getMessagesController().putUser(xnVar.f43178f, true);
+            if (xnVar.f43156f != null) {
+                xnVar.getMessagesController().putUser(xnVar.f43156f, true);
             }
             Bundle bundle = new Bundle();
             bundle.putLong("dialog_id", xnVar.Q5);
             if (xnVar.b() != 0) {
                 bundle.putLong("topic_id", xnVar.b());
             }
-            xnVar.presentFragment(new g11(bundle, xnVar.f43136ba));
+            xnVar.presentFragment(new k11(bundle, xnVar.f43114ba));
         }
     }
 
     @Override
     public final void u() {
         int i10;
-        xn xnVar = this.f39466a;
+        xn xnVar = this.f39387a;
         i10 = ((org.telegram.ui.ActionBar.p2) xnVar).currentAccount;
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i10);
         boolean z4 = notificationsSettings.getBoolean("sound_enabled_" + NotificationsController.getSharedPrefKey(xnVar.Q5, xnVar.b()), true);
@@ -57,7 +57,7 @@ public final class nj implements org.telegram.ui.Components.mo {
 
     @Override
     public final void v(int i10) {
-        xn xnVar = this.f39466a;
+        xn xnVar = this.f39387a;
         if (i10 == 0) {
             if (xnVar.getMessagesController().isDialogMuted(xnVar.Q5, xnVar.b())) {
                 xnVar.bc(true);

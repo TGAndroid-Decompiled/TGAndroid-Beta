@@ -12,23 +12,23 @@ public abstract class at extends f2.p1 {
     public static final DecelerateInterpolator D = new DecelerateInterpolator();
     public int A;
     public int B;
-    public final tl0 C;
-    public final ArrayList f25335o = new ArrayList();
-    public final ArrayList f25336p = new ArrayList();
-    public final ArrayList f25337q = new ArrayList();
-    public final ArrayList f25338r = new ArrayList();
-    public final ArrayList f25339s = new ArrayList();
-    public final ArrayList f25340t = new ArrayList();
-    public final ArrayList f25341u = new ArrayList();
+    public final sl0 C;
+    public final ArrayList f25362o = new ArrayList();
+    public final ArrayList f25363p = new ArrayList();
+    public final ArrayList f25364q = new ArrayList();
+    public final ArrayList f25365r = new ArrayList();
+    public final ArrayList f25366s = new ArrayList();
+    public final ArrayList f25367t = new ArrayList();
+    public final ArrayList f25368u = new ArrayList();
     public final ArrayList v = new ArrayList();
-    public final ArrayList f25342w = new ArrayList();
-    public final ArrayList f25343x = new ArrayList();
-    public final ArrayList f25344y = new ArrayList();
-    public org.telegram.ui.Cells.r2 f25345z;
+    public final ArrayList f25369w = new ArrayList();
+    public final ArrayList f25370x = new ArrayList();
+    public final ArrayList f25371y = new ArrayList();
+    public org.telegram.ui.Cells.r2 f25372z;
 
-    public at(tl0 tl0Var) {
+    public at(sl0 sl0Var) {
         this.f5910m = false;
-        this.C = tl0Var;
+        this.C = sl0Var;
     }
 
     public final void A() {
@@ -40,17 +40,17 @@ public abstract class at extends f2.p1 {
     public final void B(ArrayList arrayList, f2.m1 m1Var) {
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             ys ysVar = (ys) arrayList.get(size);
-            if (C(ysVar, m1Var) && ysVar.f33567a == null && ysVar.f33568b == null) {
+            if (C(ysVar, m1Var) && ysVar.f33594a == null && ysVar.f33595b == null) {
                 arrayList.remove(ysVar);
             }
         }
     }
 
     public final boolean C(ys ysVar, f2.m1 m1Var) {
-        if (ysVar.f33568b == m1Var) {
-            ysVar.f33568b = null;
-        } else if (ysVar.f33567a == m1Var) {
-            ysVar.f33567a = null;
+        if (ysVar.f33595b == m1Var) {
+            ysVar.f33595b = null;
+        } else if (ysVar.f33594a == m1Var) {
+            ysVar.f33594a = null;
         } else {
             return false;
         }
@@ -65,7 +65,7 @@ public abstract class at extends f2.p1 {
     public final void D() {
         this.A = Integer.MAX_VALUE;
         this.B = Integer.MAX_VALUE;
-        this.f25345z = null;
+        this.f25372z = null;
     }
 
     public final void E(f2.m1 m1Var) {
@@ -82,21 +82,21 @@ public abstract class at extends f2.p1 {
     public final void f(f2.m1 m1Var) {
         View view = m1Var.f5875a;
         view.animate().cancel();
-        ArrayList arrayList = this.f25337q;
+        ArrayList arrayList = this.f25364q;
         int size = arrayList.size();
         while (true) {
             size--;
             if (size < 0) {
                 break;
-            } else if (((zs) arrayList.get(size)).f33952a == m1Var) {
+            } else if (((zs) arrayList.get(size)).f34009a == m1Var) {
                 view.setTranslationY(0.0f);
                 view.setTranslationX(0.0f);
                 v(m1Var);
                 arrayList.remove(size);
             }
         }
-        B(this.f25338r, m1Var);
-        if (this.f25335o.remove(m1Var)) {
+        B(this.f25365r, m1Var);
+        if (this.f25362o.remove(m1Var)) {
             if (view instanceof org.telegram.ui.Cells.r2) {
                 ((org.telegram.ui.Cells.r2) view).setClipProgress(0.0f);
             } else {
@@ -104,7 +104,7 @@ public abstract class at extends f2.p1 {
             }
             d(m1Var);
         }
-        if (this.f25336p.remove(m1Var)) {
+        if (this.f25363p.remove(m1Var)) {
             if (view instanceof org.telegram.ui.Cells.r2) {
                 ((org.telegram.ui.Cells.r2) view).setClipProgress(0.0f);
             } else {
@@ -112,7 +112,7 @@ public abstract class at extends f2.p1 {
             }
             u(m1Var);
         }
-        ArrayList arrayList2 = this.f25341u;
+        ArrayList arrayList2 = this.f25368u;
         for (int size2 = arrayList2.size() - 1; size2 >= 0; size2--) {
             ArrayList arrayList3 = (ArrayList) arrayList2.get(size2);
             B(arrayList3, m1Var);
@@ -120,14 +120,14 @@ public abstract class at extends f2.p1 {
                 arrayList2.remove(size2);
             }
         }
-        ArrayList arrayList4 = this.f25340t;
+        ArrayList arrayList4 = this.f25367t;
         for (int size3 = arrayList4.size() - 1; size3 >= 0; size3--) {
             ArrayList arrayList5 = (ArrayList) arrayList4.get(size3);
             int size4 = arrayList5.size() - 1;
             while (true) {
                 if (size4 < 0) {
                     break;
-                } else if (((zs) arrayList5.get(size4)).f33952a == m1Var) {
+                } else if (((zs) arrayList5.get(size4)).f34009a == m1Var) {
                     view.setTranslationY(0.0f);
                     view.setTranslationX(0.0f);
                     v(m1Var);
@@ -140,7 +140,7 @@ public abstract class at extends f2.p1 {
                 }
             }
         }
-        ArrayList arrayList6 = this.f25339s;
+        ArrayList arrayList6 = this.f25366s;
         for (int size5 = arrayList6.size() - 1; size5 >= 0; size5--) {
             ArrayList arrayList7 = (ArrayList) arrayList6.get(size5);
             if (arrayList7.remove(m1Var)) {
@@ -155,16 +155,16 @@ public abstract class at extends f2.p1 {
                 }
             }
         }
-        this.f25343x.remove(m1Var);
+        this.f25370x.remove(m1Var);
         this.v.remove(m1Var);
-        this.f25344y.remove(m1Var);
-        this.f25342w.remove(m1Var);
+        this.f25371y.remove(m1Var);
+        this.f25369w.remove(m1Var);
         A();
     }
 
     @Override
     public final void g() {
-        ArrayList arrayList = this.f25337q;
+        ArrayList arrayList = this.f25364q;
         int size = arrayList.size();
         while (true) {
             size--;
@@ -172,13 +172,13 @@ public abstract class at extends f2.p1 {
                 break;
             }
             zs zsVar = (zs) arrayList.get(size);
-            View view = zsVar.f33952a.f5875a;
+            View view = zsVar.f34009a.f5875a;
             view.setTranslationY(0.0f);
             view.setTranslationX(0.0f);
-            v(zsVar.f33952a);
+            v(zsVar.f34009a);
             arrayList.remove(size);
         }
-        ArrayList arrayList2 = this.f25335o;
+        ArrayList arrayList2 = this.f25362o;
         for (int size2 = arrayList2.size() - 1; size2 >= 0; size2--) {
             f2.m1 m1Var = (f2.m1) arrayList2.get(size2);
             View view2 = m1Var.f5875a;
@@ -187,7 +187,7 @@ public abstract class at extends f2.p1 {
             d(m1Var);
             arrayList2.remove(size2);
         }
-        ArrayList arrayList3 = this.f25336p;
+        ArrayList arrayList3 = this.f25363p;
         int size3 = arrayList3.size();
         while (true) {
             size3--;
@@ -204,14 +204,14 @@ public abstract class at extends f2.p1 {
             u(m1Var2);
             arrayList3.remove(size3);
         }
-        ArrayList arrayList4 = this.f25338r;
+        ArrayList arrayList4 = this.f25365r;
         for (int size4 = arrayList4.size() - 1; size4 >= 0; size4--) {
             ys ysVar = (ys) arrayList4.get(size4);
-            f2.m1 m1Var3 = ysVar.f33567a;
+            f2.m1 m1Var3 = ysVar.f33594a;
             if (m1Var3 != null) {
                 C(ysVar, m1Var3);
             }
-            f2.m1 m1Var4 = ysVar.f33568b;
+            f2.m1 m1Var4 = ysVar.f33595b;
             if (m1Var4 != null) {
                 C(ysVar, m1Var4);
             }
@@ -220,22 +220,22 @@ public abstract class at extends f2.p1 {
         if (!k()) {
             return;
         }
-        ArrayList arrayList5 = this.f25340t;
+        ArrayList arrayList5 = this.f25367t;
         for (int size5 = arrayList5.size() - 1; size5 >= 0; size5--) {
             ArrayList arrayList6 = (ArrayList) arrayList5.get(size5);
             for (int size6 = arrayList6.size() - 1; size6 >= 0; size6--) {
                 zs zsVar2 = (zs) arrayList6.get(size6);
-                View view4 = zsVar2.f33952a.f5875a;
+                View view4 = zsVar2.f34009a.f5875a;
                 view4.setTranslationY(0.0f);
                 view4.setTranslationX(0.0f);
-                v(zsVar2.f33952a);
+                v(zsVar2.f34009a);
                 arrayList6.remove(size6);
                 if (arrayList6.isEmpty()) {
                     arrayList5.remove(arrayList6);
                 }
             }
         }
-        ArrayList arrayList7 = this.f25339s;
+        ArrayList arrayList7 = this.f25366s;
         for (int size7 = arrayList7.size() - 1; size7 >= 0; size7--) {
             ArrayList arrayList8 = (ArrayList) arrayList7.get(size7);
             for (int size8 = arrayList8.size() - 1; size8 >= 0; size8--) {
@@ -253,16 +253,16 @@ public abstract class at extends f2.p1 {
                 }
             }
         }
-        ArrayList arrayList9 = this.f25341u;
+        ArrayList arrayList9 = this.f25368u;
         for (int size9 = arrayList9.size() - 1; size9 >= 0; size9--) {
             ArrayList arrayList10 = (ArrayList) arrayList9.get(size9);
             for (int size10 = arrayList10.size() - 1; size10 >= 0; size10--) {
                 ys ysVar2 = (ys) arrayList10.get(size10);
-                f2.m1 m1Var6 = ysVar2.f33567a;
+                f2.m1 m1Var6 = ysVar2.f33594a;
                 if (m1Var6 != null) {
                     C(ysVar2, m1Var6);
                 }
-                f2.m1 m1Var7 = ysVar2.f33568b;
+                f2.m1 m1Var7 = ysVar2.f33595b;
                 if (m1Var7 != null) {
                     C(ysVar2, m1Var7);
                 }
@@ -271,18 +271,18 @@ public abstract class at extends f2.p1 {
                 }
             }
         }
-        z(this.f25343x);
-        z(this.f25342w);
+        z(this.f25370x);
+        z(this.f25369w);
         z(this.v);
-        z(this.f25344y);
+        z(this.f25371y);
         e();
     }
 
     @Override
     public final boolean k() {
-        if (this.f25336p.isEmpty()) {
-            ArrayList arrayList = this.f25338r;
-            if (arrayList.isEmpty() && this.f25337q.isEmpty() && arrayList.isEmpty() && this.f25342w.isEmpty() && this.f25343x.isEmpty() && this.v.isEmpty() && this.f25344y.isEmpty() && this.f25340t.isEmpty() && this.f25339s.isEmpty() && this.f25341u.isEmpty()) {
+        if (this.f25363p.isEmpty()) {
+            ArrayList arrayList = this.f25365r;
+            if (arrayList.isEmpty() && this.f25364q.isEmpty() && arrayList.isEmpty() && this.f25369w.isEmpty() && this.f25370x.isEmpty() && this.v.isEmpty() && this.f25371y.isEmpty() && this.f25367t.isEmpty() && this.f25366s.isEmpty() && this.f25368u.isEmpty()) {
                 return false;
             }
             return true;
@@ -294,13 +294,13 @@ public abstract class at extends f2.p1 {
     public final void m() {
         int i10;
         ArrayList arrayList;
-        ArrayList arrayList2 = this.f25335o;
+        ArrayList arrayList2 = this.f25362o;
         boolean isEmpty = arrayList2.isEmpty();
-        ArrayList arrayList3 = this.f25337q;
+        ArrayList arrayList3 = this.f25364q;
         boolean isEmpty2 = arrayList3.isEmpty();
-        ArrayList arrayList4 = this.f25338r;
+        ArrayList arrayList4 = this.f25365r;
         boolean isEmpty3 = arrayList4.isEmpty();
-        ArrayList arrayList5 = this.f25336p;
+        ArrayList arrayList5 = this.f25363p;
         boolean isEmpty4 = arrayList5.isEmpty();
         if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
             int size = arrayList2.size();
@@ -310,23 +310,23 @@ public abstract class at extends f2.p1 {
                 i11++;
                 f2.m1 m1Var = (f2.m1) obj;
                 View view = m1Var.f5875a;
-                this.f25343x.add(m1Var);
+                this.f25370x.add(m1Var);
                 if (view instanceof org.telegram.ui.Cells.r2) {
                     org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) view;
-                    org.telegram.ui.Cells.r2 r2Var2 = this.f25345z;
+                    org.telegram.ui.Cells.r2 r2Var2 = this.f25372z;
                     DecelerateInterpolator decelerateInterpolator = D;
                     if (view == r2Var2) {
                         if (this.A != Integer.MAX_VALUE) {
                             int measuredHeight = r2Var2.getMeasuredHeight();
                             int i12 = this.A;
                             this.B = measuredHeight - i12;
-                            this.f25345z.setTopClip(i12);
-                            this.f25345z.setBottomClip(this.B);
+                            this.f25372z.setTopClip(i12);
+                            this.f25372z.setBottomClip(this.B);
                         } else if (this.B != Integer.MAX_VALUE) {
                             int measuredHeight2 = r2Var2.getMeasuredHeight() - this.B;
                             this.A = measuredHeight2;
-                            this.f25345z.setTopClip(measuredHeight2);
-                            this.f25345z.setBottomClip(this.B);
+                            this.f25372z.setTopClip(measuredHeight2);
+                            this.f25372z.setBottomClip(this.B);
                         }
                         r2Var.setElevation(-1.0f);
                         r2Var.setOutlineProvider(null);
@@ -356,13 +356,13 @@ public abstract class at extends f2.p1 {
             arrayList2.clear();
             if (!isEmpty2) {
                 final ArrayList arrayList6 = new ArrayList(arrayList3);
-                this.f25340t.add(arrayList6);
+                this.f25367t.add(arrayList6);
                 arrayList3.clear();
                 new Runnable(this) {
-                    public final at f31722b;
+                    public final at f31683b;
 
                     {
-                        this.f31722b = this;
+                        this.f31683b = this;
                     }
 
                     @Override
@@ -375,16 +375,16 @@ public abstract class at extends f2.p1 {
                                 int size2 = arrayList7.size();
                                 int i14 = 0;
                                 while (true) {
-                                    at atVar = this.f31722b;
+                                    at atVar = this.f31683b;
                                     if (i14 < size2) {
                                         Object obj2 = arrayList7.get(i14);
                                         i14++;
                                         zs zsVar = (zs) obj2;
-                                        f2.m1 m1Var2 = zsVar.f33952a;
-                                        int i15 = zsVar.f33953b;
-                                        int i16 = zsVar.f33954c;
+                                        f2.m1 m1Var2 = zsVar.f34009a;
+                                        int i15 = zsVar.f34010b;
+                                        int i16 = zsVar.f34011c;
                                         int i17 = zsVar.d;
-                                        int i18 = zsVar.f33955e;
+                                        int i18 = zsVar.f34012e;
                                         View view2 = m1Var2.f5875a;
                                         int i19 = i17 - i15;
                                         int i20 = i18 - i16;
@@ -399,27 +399,27 @@ public abstract class at extends f2.p1 {
                                         } else {
                                             atVar.A = i20;
                                         }
-                                        org.telegram.ui.Cells.r2 r2Var3 = atVar.f25345z;
+                                        org.telegram.ui.Cells.r2 r2Var3 = atVar.f25372z;
                                         if (r2Var3 != null) {
                                             if (atVar.A != Integer.MAX_VALUE) {
                                                 int measuredHeight3 = r2Var3.getMeasuredHeight();
                                                 int i21 = atVar.A;
                                                 atVar.B = measuredHeight3 - i21;
-                                                atVar.f25345z.setTopClip(i21);
-                                                atVar.f25345z.setBottomClip(atVar.B);
+                                                atVar.f25372z.setTopClip(i21);
+                                                atVar.f25372z.setBottomClip(atVar.B);
                                             } else if (atVar.B != Integer.MAX_VALUE) {
                                                 int measuredHeight4 = r2Var3.getMeasuredHeight() - atVar.B;
                                                 atVar.A = measuredHeight4;
-                                                atVar.f25345z.setTopClip(measuredHeight4);
-                                                atVar.f25345z.setBottomClip(atVar.B);
+                                                atVar.f25372z.setTopClip(measuredHeight4);
+                                                atVar.f25372z.setBottomClip(atVar.B);
                                             }
                                         }
                                         ViewPropertyAnimator animate2 = view2.animate();
-                                        atVar.f25342w.add(m1Var2);
+                                        atVar.f25369w.add(m1Var2);
                                         animate2.setDuration(180L).setListener(new f2.h(atVar, m1Var2, i19, view2, i20, animate2, 1)).start();
                                     } else {
                                         arrayList7.clear();
-                                        atVar.f25340t.remove(arrayList7);
+                                        atVar.f25367t.remove(arrayList7);
                                         return;
                                     }
                                 }
@@ -427,29 +427,29 @@ public abstract class at extends f2.p1 {
                                 int size3 = arrayList7.size();
                                 int i22 = 0;
                                 while (true) {
-                                    at atVar2 = this.f31722b;
+                                    at atVar2 = this.f31683b;
                                     if (i22 < size3) {
                                         Object obj3 = arrayList7.get(i22);
                                         i22++;
                                         ys ysVar = (ys) obj3;
-                                        ArrayList arrayList8 = atVar2.f25344y;
-                                        f2.m1 m1Var3 = ysVar.f33567a;
-                                        f2.m1 m1Var4 = ysVar.f33568b;
+                                        ArrayList arrayList8 = atVar2.f25371y;
+                                        f2.m1 m1Var3 = ysVar.f33594a;
+                                        f2.m1 m1Var4 = ysVar.f33595b;
                                         if (m1Var3 != null && m1Var4 != null) {
                                             AnimatorSet animatorSet = new AnimatorSet();
                                             animatorSet.setDuration(j10);
                                             View view3 = m1Var3.f5875a;
                                             Property property = View.ALPHA;
                                             animatorSet.playTogether(ObjectAnimator.ofFloat(view3, property, 0.0f), ObjectAnimator.ofFloat(m1Var4.f5875a, property, 1.0f));
-                                            arrayList8.add(ysVar.f33567a);
-                                            arrayList8.add(ysVar.f33568b);
+                                            arrayList8.add(ysVar.f33594a);
+                                            arrayList8.add(ysVar.f33595b);
                                             animatorSet.addListener(new xs(atVar2, ysVar, m1Var3, animatorSet, 0));
                                             animatorSet.start();
                                         }
                                         j10 = 180;
                                     } else {
                                         arrayList7.clear();
-                                        atVar2.f25341u.remove(arrayList7);
+                                        atVar2.f25368u.remove(arrayList7);
                                         return;
                                     }
                                 }
@@ -459,13 +459,13 @@ public abstract class at extends f2.p1 {
             }
             if (!isEmpty3) {
                 final ArrayList arrayList7 = new ArrayList(arrayList4);
-                this.f25341u.add(arrayList7);
+                this.f25368u.add(arrayList7);
                 arrayList4.clear();
                 new Runnable(this) {
-                    public final at f31722b;
+                    public final at f31683b;
 
                     {
-                        this.f31722b = this;
+                        this.f31683b = this;
                     }
 
                     @Override
@@ -478,16 +478,16 @@ public abstract class at extends f2.p1 {
                                 int size2 = arrayList72.size();
                                 int i14 = 0;
                                 while (true) {
-                                    at atVar = this.f31722b;
+                                    at atVar = this.f31683b;
                                     if (i14 < size2) {
                                         Object obj2 = arrayList72.get(i14);
                                         i14++;
                                         zs zsVar = (zs) obj2;
-                                        f2.m1 m1Var2 = zsVar.f33952a;
-                                        int i15 = zsVar.f33953b;
-                                        int i16 = zsVar.f33954c;
+                                        f2.m1 m1Var2 = zsVar.f34009a;
+                                        int i15 = zsVar.f34010b;
+                                        int i16 = zsVar.f34011c;
                                         int i17 = zsVar.d;
-                                        int i18 = zsVar.f33955e;
+                                        int i18 = zsVar.f34012e;
                                         View view2 = m1Var2.f5875a;
                                         int i19 = i17 - i15;
                                         int i20 = i18 - i16;
@@ -502,27 +502,27 @@ public abstract class at extends f2.p1 {
                                         } else {
                                             atVar.A = i20;
                                         }
-                                        org.telegram.ui.Cells.r2 r2Var3 = atVar.f25345z;
+                                        org.telegram.ui.Cells.r2 r2Var3 = atVar.f25372z;
                                         if (r2Var3 != null) {
                                             if (atVar.A != Integer.MAX_VALUE) {
                                                 int measuredHeight3 = r2Var3.getMeasuredHeight();
                                                 int i21 = atVar.A;
                                                 atVar.B = measuredHeight3 - i21;
-                                                atVar.f25345z.setTopClip(i21);
-                                                atVar.f25345z.setBottomClip(atVar.B);
+                                                atVar.f25372z.setTopClip(i21);
+                                                atVar.f25372z.setBottomClip(atVar.B);
                                             } else if (atVar.B != Integer.MAX_VALUE) {
                                                 int measuredHeight4 = r2Var3.getMeasuredHeight() - atVar.B;
                                                 atVar.A = measuredHeight4;
-                                                atVar.f25345z.setTopClip(measuredHeight4);
-                                                atVar.f25345z.setBottomClip(atVar.B);
+                                                atVar.f25372z.setTopClip(measuredHeight4);
+                                                atVar.f25372z.setBottomClip(atVar.B);
                                             }
                                         }
                                         ViewPropertyAnimator animate2 = view2.animate();
-                                        atVar.f25342w.add(m1Var2);
+                                        atVar.f25369w.add(m1Var2);
                                         animate2.setDuration(180L).setListener(new f2.h(atVar, m1Var2, i19, view2, i20, animate2, 1)).start();
                                     } else {
                                         arrayList72.clear();
-                                        atVar.f25340t.remove(arrayList72);
+                                        atVar.f25367t.remove(arrayList72);
                                         return;
                                     }
                                 }
@@ -530,29 +530,29 @@ public abstract class at extends f2.p1 {
                                 int size3 = arrayList72.size();
                                 int i22 = 0;
                                 while (true) {
-                                    at atVar2 = this.f31722b;
+                                    at atVar2 = this.f31683b;
                                     if (i22 < size3) {
                                         Object obj3 = arrayList72.get(i22);
                                         i22++;
                                         ys ysVar = (ys) obj3;
-                                        ArrayList arrayList8 = atVar2.f25344y;
-                                        f2.m1 m1Var3 = ysVar.f33567a;
-                                        f2.m1 m1Var4 = ysVar.f33568b;
+                                        ArrayList arrayList8 = atVar2.f25371y;
+                                        f2.m1 m1Var3 = ysVar.f33594a;
+                                        f2.m1 m1Var4 = ysVar.f33595b;
                                         if (m1Var3 != null && m1Var4 != null) {
                                             AnimatorSet animatorSet = new AnimatorSet();
                                             animatorSet.setDuration(j10);
                                             View view3 = m1Var3.f5875a;
                                             Property property = View.ALPHA;
                                             animatorSet.playTogether(ObjectAnimator.ofFloat(view3, property, 0.0f), ObjectAnimator.ofFloat(m1Var4.f5875a, property, 1.0f));
-                                            arrayList8.add(ysVar.f33567a);
-                                            arrayList8.add(ysVar.f33568b);
+                                            arrayList8.add(ysVar.f33594a);
+                                            arrayList8.add(ysVar.f33595b);
                                             animatorSet.addListener(new xs(atVar2, ysVar, m1Var3, animatorSet, 0));
                                             animatorSet.start();
                                         }
                                         j10 = 180;
                                     } else {
                                         arrayList72.clear();
-                                        atVar2.f25341u.remove(arrayList72);
+                                        atVar2.f25368u.remove(arrayList72);
                                         return;
                                     }
                                 }
@@ -562,7 +562,7 @@ public abstract class at extends f2.p1 {
             }
             if (!isEmpty4) {
                 ArrayList arrayList8 = new ArrayList(arrayList5);
-                ArrayList arrayList9 = this.f25339s;
+                ArrayList arrayList9 = this.f25366s;
                 arrayList9.add(arrayList8);
                 arrayList5.clear();
                 int size2 = arrayList8.size();
@@ -589,7 +589,7 @@ public abstract class at extends f2.p1 {
         if (!(view instanceof org.telegram.ui.Cells.r2)) {
             view.setAlpha(0.0f);
         }
-        ArrayList arrayList = this.f25336p;
+        ArrayList arrayList = this.f25363p;
         arrayList.add(m1Var);
         if (arrayList.size() > 2) {
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
@@ -612,13 +612,13 @@ public abstract class at extends f2.p1 {
             view2.setAlpha(0.0f);
             view2.setTranslationX(0.0f);
             ?? obj = new Object();
-            obj.f33567a = m1Var;
-            obj.f33568b = m1Var2;
-            obj.f33569c = i10;
+            obj.f33594a = m1Var;
+            obj.f33595b = m1Var2;
+            obj.f33596c = i10;
             obj.d = i11;
-            obj.f33570e = i12;
-            obj.f33571f = i13;
-            this.f25338r.add(obj);
+            obj.f33597e = i12;
+            obj.f33598f = i13;
+            this.f25365r.add(obj);
             return true;
         }
         return false;
@@ -646,37 +646,37 @@ public abstract class at extends f2.p1 {
         if (view2 instanceof org.telegram.ui.Cells.r2) {
             ((org.telegram.ui.Cells.r2) view2).setMoving(true);
         } else if (view2 instanceof uf.j) {
-            ((uf.j) view2).f48605a = true;
+            ((uf.j) view2).f48641a = true;
         }
         ?? obj = new Object();
-        obj.f33952a = m1Var;
-        obj.f33953b = translationX;
-        obj.f33954c = translationY;
+        obj.f34009a = m1Var;
+        obj.f34010b = translationX;
+        obj.f34011c = translationY;
         obj.d = i12;
-        obj.f33955e = i13;
-        this.f25337q.add(obj);
+        obj.f34012e = i13;
+        this.f25364q.add(obj);
         return true;
     }
 
     @Override
     public final void s(f2.m1 m1Var, c5.e eVar) {
         E(m1Var);
-        this.f25335o.add(m1Var);
+        this.f25362o.add(m1Var);
         org.telegram.ui.Cells.r2 r2Var = null;
         int i10 = 0;
         while (true) {
-            tl0 tl0Var = this.C;
-            if (i10 >= tl0Var.getChildCount()) {
+            sl0 sl0Var = this.C;
+            if (i10 >= sl0Var.getChildCount()) {
                 break;
             }
-            View childAt = tl0Var.getChildAt(i10);
+            View childAt = sl0Var.getChildAt(i10);
             if (childAt.getTop() > Integer.MIN_VALUE && (childAt instanceof org.telegram.ui.Cells.r2)) {
                 r2Var = (org.telegram.ui.Cells.r2) childAt;
             }
             i10++;
         }
         if (m1Var.f5875a == r2Var) {
-            this.f25345z = r2Var;
+            this.f25372z = r2Var;
         }
     }
 

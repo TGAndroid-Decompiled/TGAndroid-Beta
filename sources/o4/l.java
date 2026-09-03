@@ -2,19 +2,19 @@ package o4;
 
 import j3.o2;
 public final class l extends j3.a {
-    public final o2 f16527e;
-    public final int f16528f;
+    public final o2 f16529e;
+    public final int f16530f;
     public final int h;
-    public final int f16529n;
+    public final int f16531n;
 
     public l(o2 o2Var, int i10) {
         super(new p0(i10));
         boolean z4;
-        this.f16527e = o2Var;
+        this.f16529e = o2Var;
         int h = o2Var.h();
-        this.f16528f = h;
+        this.f16530f = h;
         this.h = o2Var.o();
-        this.f16529n = i10;
+        this.f16531n = i10;
         if (h > 0) {
             if (i10 <= Integer.MAX_VALUE / h) {
                 z4 = true;
@@ -29,12 +29,12 @@ public final class l extends j3.a {
 
     @Override
     public final int h() {
-        return this.f16528f * this.f16529n;
+        return this.f16530f * this.f16531n;
     }
 
     @Override
     public final int o() {
-        return this.h * this.f16529n;
+        return this.h * this.f16531n;
     }
 
     @Override
@@ -47,7 +47,7 @@ public final class l extends j3.a {
 
     @Override
     public final int r(int i10) {
-        return i10 / this.f16528f;
+        return i10 / this.f16530f;
     }
 
     @Override
@@ -62,7 +62,7 @@ public final class l extends j3.a {
 
     @Override
     public final int u(int i10) {
-        return i10 * this.f16528f;
+        return i10 * this.f16530f;
     }
 
     @Override
@@ -72,6 +72,6 @@ public final class l extends j3.a {
 
     @Override
     public final o2 x(int i10) {
-        return this.f16527e;
+        return this.f16529e;
     }
 }

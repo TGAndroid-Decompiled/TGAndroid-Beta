@@ -2985,7 +2985,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             }
         });
         this.flipAnimator.setDuration(500L);
-        this.flipAnimator.setInterpolator(pr.f30183f);
+        this.flipAnimator.setInterpolator(pr.f30168f);
         this.flipAnimator.start();
         invalidate();
     }

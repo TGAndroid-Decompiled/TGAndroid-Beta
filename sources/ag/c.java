@@ -5,7 +5,7 @@ import eg.c1;
 import eg.o2;
 import oh.a8;
 import org.telegram.messenger.AndroidUtilities;
-import qh.b5;
+import qh.a5;
 public final class c implements o1.g {
     public final int f192a;
     public final FrameLayout f193b;
@@ -41,18 +41,18 @@ public final class c implements o1.g {
                 return;
             case 2:
                 a8 a8Var = (a8) this.f193b;
-                a8Var.f16846a0 = f10;
-                a8Var.f16848c0 = f11;
+                a8Var.f16848a0 = f10;
+                a8Var.f16850c0 = f11;
                 return;
             default:
-                b5 b5Var = (b5) this.f193b;
+                a5 a5Var = (a5) this.f193b;
                 float f14 = f10 / 1000.0f;
-                b5Var.f44975q1 = f14;
-                o2 o2Var2 = b5Var.f44962j1;
+                a5Var.f44952q1 = f14;
+                o2 o2Var2 = a5Var.f44939j1;
                 o2Var2.setAlpha(f14);
                 o2Var2.invalidate();
-                b5Var.R0.invalidate();
-                b5Var.f44960i1.getTypefaceCell().setAlpha(1.0f - b5Var.f44975q1);
+                a5Var.R0.invalidate();
+                a5Var.f44937i1.getTypefaceCell().setAlpha(1.0f - a5Var.f44952q1);
                 return;
         }
     }

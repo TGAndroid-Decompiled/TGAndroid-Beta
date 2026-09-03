@@ -10,9 +10,9 @@ public abstract class a {
     static {
         HashMap hashMap = new HashMap();
         f7785b = hashMap;
-        hashMap.put(d.f48850a, 0);
-        hashMap.put(d.f48851b, 1);
-        hashMap.put(d.f48852c, 2);
+        hashMap.put(d.f48886a, 0);
+        hashMap.put(d.f48887b, 1);
+        hashMap.put(d.f48888c, 2);
         for (d dVar : hashMap.keySet()) {
             f7784a.append(((Integer) f7785b.get(dVar)).intValue(), dVar);
         }

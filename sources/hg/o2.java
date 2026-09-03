@@ -26,9 +26,9 @@ public final class o2 extends ReplacementSpan {
             case 0:
                 return (int) ((v2) this.f7581b).f7647q0;
             case 1:
-                return ((xa0) this.f7581b).f33013x;
+                return ((xa0) this.f7581b).f33007x;
             default:
-                return (int) ((ij0) this.f7581b).f37880k0;
+                return (int) ((ij0) this.f7581b).f37729k0;
         }
     }
 

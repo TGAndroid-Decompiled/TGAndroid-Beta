@@ -45,7 +45,7 @@ import org.telegram.ui.Components.ga;
 import org.telegram.ui.Components.ic;
 import org.telegram.ui.Components.k6;
 import org.telegram.ui.Components.mz;
-import org.telegram.ui.Components.o71;
+import org.telegram.ui.Components.n71;
 import org.telegram.ui.Components.pr;
 import org.telegram.ui.Components.qy;
 import org.telegram.ui.Components.ty;
@@ -58,11 +58,11 @@ import org.telegram.ui.fg;
 import org.telegram.ui.ke;
 import org.telegram.ui.lo0;
 import org.telegram.ui.py;
-import org.telegram.ui.qg1;
 import org.telegram.ui.qt;
+import org.telegram.ui.vg1;
 import org.telegram.ui.xn;
-import qh.ca;
-import qh.s6;
+import qh.ba;
+import qh.r6;
 import wh.d4;
 import wh.o3;
 public final class j implements Runnable {
@@ -195,14 +195,14 @@ public final class j implements Runnable {
                 ga gaVar = (ga) obj4;
                 Bitmap bitmap = (Bitmap) obj2;
                 Bitmap bitmap2 = (Bitmap) obj5;
-                if (TextUtils.equals(gaVar.f27155a, (String) obj3)) {
-                    gaVar.f27159f = null;
-                    Bitmap bitmap3 = gaVar.f27156b;
+                if (TextUtils.equals(gaVar.f27133a, (String) obj3)) {
+                    gaVar.f27137f = null;
+                    Bitmap bitmap3 = gaVar.f27134b;
                     if (bitmap3 != null) {
                         bitmap3.recycle();
                     }
-                    gaVar.f27156b = bitmap;
-                    Runnable runnable = gaVar.f27158e;
+                    gaVar.f27134b = bitmap;
+                    Runnable runnable = gaVar.f27136e;
                     if (runnable != null) {
                         runnable.run();
                     }
@@ -245,14 +245,14 @@ public final class j implements Runnable {
                 String str3 = (String) obj3;
                 String str4 = (String) obj2;
                 TLObject tLObject3 = (TLObject) obj5;
-                tyVar.f31479a.remove(str4);
-                mz mzVar = tyVar.f31480b;
-                qy qyVar = mzVar.f29285g0;
-                HashMap hashMap = mzVar.f29291i0;
+                tyVar.f31439a.remove(str4);
+                mz mzVar = tyVar.f31440b;
+                qy qyVar = mzVar.f29287g0;
+                HashMap hashMap = mzVar.f29293i0;
                 boolean z14 = qyVar.v;
                 boolean z15 = this.f7520b;
-                if (z14 && qyVar.f30526w.equals(str3)) {
-                    mzVar.f29285g0.E(str3, "", false, true, z15, str4, tLObject3);
+                if (z14 && qyVar.f30555w.equals(str3)) {
+                    mzVar.f29287g0.E(str3, "", false, true, z15, str4, tLObject3);
                     return;
                 } else if (z15 && (!(tLObject3 instanceof TLRPC.messages_BotResults) || ((TLRPC.messages_BotResults) tLObject3).results.isEmpty())) {
                     tyVar.a(str3, false);
@@ -268,7 +268,7 @@ public final class j implements Runnable {
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) obj4;
                 TLRPC.Document document2 = (TLRPC.Document) obj3;
                 xn xnVar2 = (xn) obj2;
-                File w10 = s6.w(p2Var2.getCurrentAccount(), "webp");
+                File w10 = r6.w(p2Var2.getCurrentAccount(), "webp");
                 int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
                 if (devicePerformanceClass != 0) {
                     if (devicePerformanceClass != 2) {
@@ -300,8 +300,8 @@ public final class j implements Runnable {
                 mediaEntity.type = (byte) 0;
                 mediaEntity.parentObject = tL_messages_stickerSet2;
                 mediaEntity.text = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document2, true).getAbsolutePath();
-                mediaEntity.f18079x = 0.5f - ((Math.min(512, 512) / f13) / 2.0f);
-                mediaEntity.f18080y = 0.5f - ((Math.min(512, 512) / f13) / 2.0f);
+                mediaEntity.f18081x = 0.5f - ((Math.min(512, 512) / f13) / 2.0f);
+                mediaEntity.f18082y = 0.5f - ((Math.min(512, 512) / f13) / 2.0f);
                 mediaEntity.width = Math.min(512, 512) / f13;
                 mediaEntity.height = Math.min(512, 512) / f13;
                 int floor = (int) Math.floor(f15 * 0.5d);
@@ -329,7 +329,7 @@ public final class j implements Runnable {
                         try {
                             RLottieNative a2 = RLottieNative.a(pathToAttach.getAbsolutePath(), null, 0, 0, null, false, null, false, 0, null);
                             if (a2 != null) {
-                                int[] iArr = a2.f24963a;
+                                int[] iArr = a2.f24965a;
                                 int i24 = iArr[0];
                                 int i25 = iArr[1];
                                 a2.d();
@@ -366,7 +366,7 @@ public final class j implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 TLObject tLObject4 = (TLObject) obj5;
                 String str5 = (String) obj3;
-                py pyVar = ((dy) obj4).f36328a;
+                py pyVar = ((dy) obj4).f36284a;
                 if (tL_error == null) {
                     TLRPC.User user = pyVar.getMessagesController().getUser(Long.valueOf(pyVar.getUserConfig().getClientUserId()));
                     if (user == null) {
@@ -390,7 +390,7 @@ public final class j implements Runnable {
                     }
                     TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
                     user.photo = tL_userProfilePhoto;
-                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f20867id;
+                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f20869id;
                     if (closestPhotoSizeWithSize != null) {
                         tL_userProfilePhoto.photo_small = closestPhotoSizeWithSize.location;
                     }
@@ -420,13 +420,13 @@ public final class j implements Runnable {
                     if (closestVideoSizeWithSize != null && str5 != null) {
                         i15 = ((org.telegram.ui.ActionBar.p2) pyVar).currentAccount;
                         new File(str5).renameTo(FileLoader.getInstance(i15).getPathToAttach(closestVideoSizeWithSize, "mp4", true));
-                    } else if (closestPhotoSizeWithSize2 != null && pyVar.f40183a4 != null) {
+                    } else if (closestPhotoSizeWithSize2 != null && pyVar.f40153a4 != null) {
                         i13 = ((org.telegram.ui.ActionBar.p2) pyVar).currentAccount;
                         File pathToAttach3 = FileLoader.getInstance(i13).getPathToAttach(closestPhotoSizeWithSize2, true);
                         i14 = ((org.telegram.ui.ActionBar.p2) pyVar).currentAccount;
-                        FileLoader.getInstance(i14).getPathToAttach(pyVar.f40183a4, true).renameTo(pathToAttach3);
+                        FileLoader.getInstance(i14).getPathToAttach(pyVar.f40153a4, true).renameTo(pathToAttach3);
                     }
-                    pyVar.getMessagesController().getDialogPhotos(user.f20990id).addPhotoAtStart(tL_photos_photo.photo);
+                    pyVar.getMessagesController().getDialogPhotos(user.f20992id).addPhotoAtStart(tL_photos_photo.photo);
                     ArrayList arrayList4 = new ArrayList();
                     arrayList4.add(user);
                     i22 = 0;
@@ -440,7 +440,7 @@ public final class j implements Runnable {
                     z4 = z11;
                 }
                 pyVar.Z3 = null;
-                pyVar.f40183a4 = null;
+                pyVar.f40153a4 = null;
                 NotificationCenter notificationCenter = pyVar.getNotificationCenter();
                 int i26 = NotificationCenter.updateInterfaces;
                 Object[] objArr = new Object[1];
@@ -451,9 +451,9 @@ public final class j implements Runnable {
                 i11 = ((org.telegram.ui.ActionBar.p2) pyVar).currentAccount;
                 MessagesController.getInstance(i11).removeSuggestion(0L, "USERPIC_SETUP");
                 pyVar.U4();
-                ic icVar = pyVar.f40189b4;
+                ic icVar = pyVar.f40159b4;
                 if (icVar != null) {
-                    zb zbVar = (zb) icVar.f27741e;
+                    zb zbVar = (zb) icVar.f27774e;
                     k6 k6Var = zbVar.d;
                     if (z4) {
                         i12 = R.string.YourProfileVideoDone;
@@ -468,10 +468,10 @@ public final class j implements Runnable {
                     button.setAlpha(0.0f);
                     button.setVisibility(0);
                     org.telegram.ui.b.p(button.animate().scaleX(1.0f).scaleY(1.0f).alpha(1.0f), pr.h, 360L);
-                    ic icVar2 = pyVar.f40189b4;
-                    icVar2.f27745j = 5000;
+                    ic icVar2 = pyVar.f40159b4;
+                    icVar2.f27778j = 5000;
                     icVar2.i(false);
-                    pyVar.f40189b4.i(true);
+                    pyVar.f40159b4.i(true);
                     return;
                 }
                 return;
@@ -482,39 +482,39 @@ public final class j implements Runnable {
                 lo0.i0((lo0) obj4, (TLRPC.TL_error) obj2, z11, (TLObject) obj5, (String) obj3);
                 return;
             case 19:
-                qg1.U((qg1) obj4, (TLObject) obj2, z11, (String) obj3, (TL_account.passwordInputSettings) obj5);
+                vg1.U((vg1) obj4, (TLObject) obj2, z11, (String) obj3, (TL_account.passwordInputSettings) obj5);
                 return;
             case 20:
-                qh.g1 g1Var = (qh.g1) obj4;
+                qh.f1 f1Var = (qh.f1) obj4;
                 TLObject tLObject5 = (TLObject) obj2;
                 TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = (TLRPC.TL_messages_getInlineBotResults) obj5;
                 String str6 = (String) obj3;
-                qh.i1 i1Var = g1Var.f45355s;
-                ArrayList arrayList5 = i1Var.f45405n;
-                if (g1Var.f45354r) {
+                qh.h1 h1Var = f1Var.f45336s;
+                ArrayList arrayList5 = h1Var.f45387n;
+                if (f1Var.f45335r) {
                     if (!(tLObject5 instanceof TLRPC.messages_BotResults)) {
-                        i19 = ((h3) i1Var.f45406r).currentAccount;
-                        g1Var.d = ConnectionsManager.getInstance(i19).sendRequest(tL_messages_getInlineBotResults, new k7(g1Var, str6, z11, 7));
+                        i19 = ((h3) h1Var.f45388r).currentAccount;
+                        f1Var.d = ConnectionsManager.getInstance(i19).sendRequest(tL_messages_getInlineBotResults, new k7(f1Var, str6, z11, 7));
                         return;
                     }
                     TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) tLObject5;
-                    g1Var.h = messages_botresults.next_offset;
+                    f1Var.h = messages_botresults.next_offset;
                     if (z11) {
                         arrayList5.clear();
                     }
                     arrayList5.size();
                     arrayList5.addAll(messages_botresults.results);
-                    g1Var.l();
-                    i1Var.d.c(false);
-                    g1Var.f45354r = false;
+                    f1Var.l();
+                    h1Var.d.c(false);
+                    f1Var.f45335r = false;
                     return;
                 }
                 return;
             case 21:
-                ca caVar = (ca) obj4;
+                ba baVar = (ba) obj4;
                 Bitmap bitmap4 = (Bitmap) obj3;
                 File file = (File) obj2;
-                s6 s6Var = (s6) obj5;
+                r6 r6Var = (r6) obj5;
                 try {
                     Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.JPEG;
                     if (z11) {
@@ -526,18 +526,18 @@ public final class j implements Runnable {
                 } catch (Exception e10) {
                     FileLog.e(e10);
                 }
-                AndroidUtilities.runOnUIThread(new o71(caVar, s6Var, file, 19));
+                AndroidUtilities.runOnUIThread(new n71(baVar, r6Var, file, 19));
                 return;
             case 22:
                 vf.t tVar = (vf.t) obj4;
-                ArrayList arrayList6 = tVar.f49203b;
+                ArrayList arrayList6 = tVar.f49239b;
                 arrayList6.clear();
                 arrayList6.addAll((ArrayList) obj3);
-                int i27 = tVar.f49202a;
+                int i27 = tVar.f49238a;
                 MessagesController.getInstance(i27).putUsers((ArrayList) obj2, true);
                 MessagesController.getInstance(i27).putChats((ArrayList) obj5, true);
                 NotificationCenter.getInstance(i27).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
-                tVar.f49204c = false;
+                tVar.f49240c = false;
                 tVar.e(false, z11);
                 return;
             default:
@@ -627,9 +627,9 @@ public final class j implements Runnable {
         this.f7523f = updatepasswordsettings;
     }
 
-    public j(qg1 qg1Var, TLObject tLObject, boolean z4, String str, TL_account.passwordInputSettings passwordinputsettings) {
+    public j(vg1 vg1Var, TLObject tLObject, boolean z4, String str, TL_account.passwordInputSettings passwordinputsettings) {
         this.f7519a = 19;
-        this.f7521c = qg1Var;
+        this.f7521c = vg1Var;
         this.f7522e = tLObject;
         this.f7520b = z4;
         this.d = str;

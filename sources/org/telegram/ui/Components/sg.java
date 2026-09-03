@@ -24,7 +24,7 @@ public final class sg extends b6 {
         if (bVar != null) {
             bVar.u();
         }
-        Color.alpha(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21659d6, false));
+        Color.alpha(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21661d6, false));
         invalidate();
     }
 
@@ -35,7 +35,7 @@ public final class sg extends b6 {
         int currentStyle;
         FragmentContextView fragmentContextView2;
         Canvas canvas2 = canvas;
-        if (getMetadata().f50520c.f50530a == 0.0f) {
+        if (getMetadata().f50556c.f50566a == 0.0f) {
             return;
         }
         qg.b bVar = this.f31055s;
@@ -43,14 +43,14 @@ public final class sg extends b6 {
             bVar.draw(canvas2);
         }
         FragmentContextView fragmentContextView3 = this.f31057x;
-        xd.h hVar = this.f25499c;
+        xd.h hVar = this.f25517c;
         if (fragmentContextView3 != null && ((currentStyle = fragmentContextView3.getCurrentStyle()) == 3 || currentStyle == 1)) {
             int entriesCount = getEntriesCount();
             boolean z10 = false;
             for (int i10 = 0; i10 < entriesCount; i10++) {
                 xd.e n10 = hVar.n(i10);
                 float paddingTop = getPaddingTop() + n10.b().top;
-                View view = ((a6) n10.f50513a).f25164a;
+                View view = ((a6) n10.f50549a).f25165a;
                 float c3 = n10.c();
                 if (c3 > 0.0f && ((fragmentContextView2 = this.f31057x) == view || fragmentContextView2.getParent() == view)) {
                     zc capsuleBlobDrawable = this.f31057x.getCapsuleBlobDrawable();
@@ -76,14 +76,14 @@ public final class sg extends b6 {
         while (i12 < entriesCount2) {
             xd.e n11 = hVar.n(i12);
             float paddingTop2 = getPaddingTop() + n11.b().top;
-            View view2 = ((a6) n11.f50513a).f25164a;
-            float min = Math.min(1.0f, n11.f50515c.f50530a) * n11.c();
+            View view2 = ((a6) n11.f50549a).f25165a;
+            float min = Math.min(1.0f, n11.f50551c.f50566a) * n11.c();
             if (min > 0.0f && (!z4 || (fragmentContextView = this.f31057x) == null || (fragmentContextView != view2 && fragmentContextView.getParent() != view2))) {
-                int alpha = org.telegram.ui.ActionBar.k6.f21779k0.getAlpha();
-                org.telegram.ui.ActionBar.k6.f21779k0.setAlpha((int) (alpha * min));
+                int alpha = org.telegram.ui.ActionBar.k6.f21781k0.getAlpha();
+                org.telegram.ui.ActionBar.k6.f21781k0.setAlpha((int) (alpha * min));
                 float f10 = 1.0f - min;
-                canvas2.drawLine(getPaddingLeft() + (AndroidUtilities.dp(16.0f) * f10), paddingTop2, getWidth() - ((AndroidUtilities.dp(16.0f) * f10) + getPaddingRight()), paddingTop2, org.telegram.ui.ActionBar.k6.f21779k0);
-                org.telegram.ui.ActionBar.k6.f21779k0.setAlpha(alpha);
+                canvas2.drawLine(getPaddingLeft() + (AndroidUtilities.dp(16.0f) * f10), paddingTop2, getWidth() - ((AndroidUtilities.dp(16.0f) * f10) + getPaddingRight()), paddingTop2, org.telegram.ui.ActionBar.k6.f21781k0);
+                org.telegram.ui.ActionBar.k6.f21781k0.setAlpha(alpha);
             }
             i12++;
             canvas2 = canvas;
@@ -111,8 +111,8 @@ public final class sg extends b6 {
     }
 
     public final void j() {
-        float f10 = getMetadata().f50523g.f50530a;
-        float f11 = getMetadata().f50520c.f50530a;
+        float f10 = getMetadata().f50559g.f50566a;
+        float f11 = getMetadata().f50556c.f50566a;
         RectF rectF = this.f31056w;
         rectF.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getPaddingTop() + f10);
         float min = Math.min(AndroidUtilities.dp(18.0f), Math.min(rectF.width(), rectF.height()) / 2.0f);

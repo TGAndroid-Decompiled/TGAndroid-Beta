@@ -31,11 +31,11 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.h3;
-import org.telegram.ui.Components.lj0;
+import org.telegram.ui.Components.kj0;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.xk;
-import org.telegram.ui.ha1;
+import org.telegram.ui.na1;
 public final class m implements Runnable {
     public final int f5659a;
     public final Object f5660b;
@@ -66,12 +66,12 @@ public final class m implements Runnable {
                 return;
             case 4:
                 v0 v0Var = ((n0) this.f5660b).f6410c;
-                v0Var.f31017n.presentFragment(ha1.d0(v0Var.s1(), true));
+                v0Var.f31017n.presentFragment(na1.d0(v0Var.s1(), true));
                 return;
             case 5:
-                lj0 lj0Var = ((b1) this.f5660b).f6254y;
-                lj0Var.getAnimatedDrawable().L(0, true, false);
-                lj0Var.d();
+                kj0 kj0Var = ((b1) this.f5660b).f6254y;
+                kj0Var.getAnimatedDrawable().L(0, true, false);
+                kj0Var.d();
                 return;
             case 6:
                 ((j1) this.f5660b).f6354b.y();
@@ -82,7 +82,7 @@ public final class m implements Runnable {
                 j0 j0Var = i2Var.V2;
                 i2Var.f6346i3 = size;
                 j0Var.h1(size, (i2Var.getMeasuredHeight() - i2Var.getChildAt(0).getMeasuredHeight()) >> 1);
-                i2Var.w1(null, false);
+                i2Var.v1(null, false);
                 return;
             case 8:
                 ((k2) this.f5660b).invalidate();
@@ -177,15 +177,15 @@ public final class m implements Runnable {
                 return;
             case 25:
                 lh.s sVar = (lh.s) this.f5660b;
-                sVar.f12941e0.setTranslationX(sVar.f12940d0.getAnimatedWidth() + AndroidUtilities.dp(28.0f));
+                sVar.f12943e0.setTranslationX(sVar.f12942d0.getAnimatedWidth() + AndroidUtilities.dp(28.0f));
                 return;
             case 26:
                 ((m0) this.f5660b).onBackPressed();
                 return;
             case 27:
-                x51 x51Var = ((g2) this.f5660b).V;
-                if (x51Var != null) {
-                    x51Var.N(false);
+                w51 w51Var = ((g2) this.f5660b).V;
+                if (w51Var != null) {
+                    w51Var.N(false);
                     return;
                 }
                 return;
@@ -194,7 +194,7 @@ public final class m implements Runnable {
                 return;
             default:
                 lh.c2 c2Var = (lh.c2) this.f5660b;
-                wa waVar = c2Var.f12646e;
+                wa waVar = c2Var.f12648e;
                 if (waVar != null) {
                     waVar.d();
                     c2Var.invalidateSelf();

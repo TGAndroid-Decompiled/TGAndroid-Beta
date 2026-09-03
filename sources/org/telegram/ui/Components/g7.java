@@ -1,21 +1,21 @@
 package org.telegram.ui.Components;
 public final class g7 implements Runnable {
-    public final int f27126a;
-    public final c8 f27127b;
+    public final int f27110a;
+    public final c8 f27111b;
 
     public g7(c8 c8Var, int i10) {
-        this.f27126a = i10;
-        this.f27127b = c8Var;
+        this.f27110a = i10;
+        this.f27111b = c8Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f27126a) {
+        switch (this.f27110a) {
             case 0:
-                c8.n(this.f27127b);
+                c8.n(this.f27111b);
                 return;
             default:
-                c8.F(this.f27127b);
+                c8.F(this.f27111b);
                 return;
         }
     }

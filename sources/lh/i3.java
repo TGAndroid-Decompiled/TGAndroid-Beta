@@ -1,11 +1,11 @@
 package lh;
 
-import org.telegram.ui.Components.pr0;
+import org.telegram.ui.Components.or0;
 public final class i3 extends f2.l {
-    public final pr0 F;
+    public final or0 F;
 
-    public i3(pr0 pr0Var) {
-        this.F = pr0Var;
+    public i3(or0 or0Var) {
+        this.F = or0Var;
     }
 
     @Override

@@ -40,9 +40,9 @@ public final class k extends f2.j0 {
                 w0(oVar);
                 return;
             case 13:
-                js0 js0Var = new js0(recyclerView.getContext());
-                js0Var.f5805a = i10;
-                w0(js0Var);
+                os0 os0Var = new os0(recyclerView.getContext());
+                os0Var.f5805a = i10;
+                w0(os0Var);
                 return;
             default:
                 super.v0(recyclerView, j1Var, i10);

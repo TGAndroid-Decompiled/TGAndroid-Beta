@@ -1,34 +1,21 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class yy0 extends vz0 {
-    public yy0(Context context) {
-        super(context);
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class yy0 extends org.telegram.ui.Components.lq0 {
+    public final zy0 Y0;
+
+    public yy0(zy0 zy0Var, Activity activity, String str) {
+        super(activity, null, str, false, null, false, null);
+        this.Y0 = zy0Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        oh.z2 z2Var;
-        super.dispatchDraw(canvas);
-        org.telegram.ui.Components.l5 l5Var = this.f30001e;
-        if (l5Var != null && (z2Var = l5Var.f28604k) != null) {
-            z2Var.startAnimation();
-        }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (getImageReceiver().hasNotThumb()) {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenInPhotoViewer)));
+    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z4) {
+        if (!z4) {
             return;
         }
-        accessibilityNodeInfo.setVisibleToUser(false);
+        AndroidUtilities.runOnUIThread(new pr0(this, hVar, i10, 23), 250L);
     }
 }

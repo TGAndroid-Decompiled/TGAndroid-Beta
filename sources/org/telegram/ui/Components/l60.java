@@ -13,11 +13,11 @@ public final class l60 extends y80 {
     @Override
     public final void e(int i10, SpannableStringBuilder spannableStringBuilder) {
         org.telegram.ui.ActionBar.g6 g6Var;
-        u60 u60Var = this.I.f29975c;
+        u60 u60Var = this.I.f29993c;
         org.telegram.ui.ActionBar.f3 f3Var = u60Var.container;
         g6Var = ((org.telegram.ui.ActionBar.h3) u60Var).resourcesProvider;
         ic Q = new qc(f3Var, g6Var).Q(i10, 36, spannableStringBuilder);
-        Q.f27753r = false;
+        Q.f27786r = false;
         Q.k(true);
     }
 }

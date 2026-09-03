@@ -32,7 +32,7 @@ public class VoipAudioManager {
     }
 
     public void isBluetoothAndSpeakerOnAsync(Utilities.Callback2<Boolean, Boolean> callback2) {
-        Utilities.globalQueue.postRunnable(new h(6, this, callback2));
+        Utilities.globalQueue.postRunnable(new h(5, this, callback2));
     }
 
     public boolean isSpeakerphoneOn() {

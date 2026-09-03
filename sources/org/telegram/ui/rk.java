@@ -1,14 +1,14 @@
 package org.telegram.ui;
 public final class rk extends c2.y {
-    public final xn f40976l;
+    public final xn f40866l;
 
     public rk(xn xnVar, qj qjVar, tj tjVar) {
         super(qjVar, tjVar);
-        this.f40976l = xnVar;
+        this.f40866l = xnVar;
     }
 
     public final void d(int i10) {
-        if (this.f40976l.Ma) {
+        if (this.f40866l.Ma) {
             if (i10 == 0) {
                 i10 = 1;
             } else if (i10 == 1) {

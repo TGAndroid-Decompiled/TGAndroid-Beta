@@ -6,7 +6,7 @@ import k7.c7;
 public final class w {
     public static final char[] d = {'\r', '\n'};
     public static final char[] f7306e = {'\n'};
-    public static final s8.z f7307f = s8.z.t(5, r8.d.f46736a, r8.d.f46738c, r8.d.f46740f, r8.d.d, r8.d.f46739e);
+    public static final s8.z f7307f = s8.z.t(5, r8.d.f46767a, r8.d.f46769c, r8.d.f46771f, r8.d.d, r8.d.f46770e);
     public byte[] f7308a;
     public int f7309b;
     public int f7310c;
@@ -56,7 +56,7 @@ public final class w {
             int i10 = this.f7309b;
             if (bArr[i10] == -17 && bArr[i10 + 1] == -69 && bArr[i10 + 2] == -65) {
                 this.f7309b = i10 + 3;
-                return r8.d.f46738c;
+                return r8.d.f46769c;
             }
         }
         if (a() >= 2) {
@@ -68,7 +68,7 @@ public final class w {
                 return r8.d.d;
             } else if (b10 == -1 && bArr2[i11 + 1] == -2) {
                 this.f7309b = i11 + 2;
-                return r8.d.f46739e;
+                return r8.d.f46770e;
             } else {
                 return null;
             }
@@ -140,7 +140,7 @@ public final class w {
         byte b11;
         byte b12;
         boolean z10 = false;
-        if ((charset.equals(r8.d.f46738c) || charset.equals(r8.d.f46736a)) && a() >= 1) {
+        if ((charset.equals(r8.d.f46769c) || charset.equals(r8.d.f46767a)) && a() >= 1) {
             long j10 = this.f7308a[this.f7309b] & 255;
             char c3 = (char) j10;
             if (c3 == j10) {
@@ -153,12 +153,12 @@ public final class w {
             i10 = 1;
         } else {
             i10 = 2;
-            if ((charset.equals(r8.d.f46740f) || charset.equals(r8.d.d)) && a() >= 2) {
+            if ((charset.equals(r8.d.f46771f) || charset.equals(r8.d.d)) && a() >= 2) {
                 byte[] bArr = this.f7308a;
                 int i11 = this.f7309b;
                 b11 = bArr[i11];
                 b12 = bArr[i11 + 1];
-            } else if (!charset.equals(r8.d.f46739e) || a() < 2) {
+            } else if (!charset.equals(r8.d.f46770e) || a() < 2) {
                 return 0;
             } else {
                 byte[] bArr2 = this.f7308a;
@@ -217,12 +217,12 @@ public final class w {
         if (a() == 0) {
             return null;
         }
-        Charset charset2 = r8.d.f46736a;
+        Charset charset2 = r8.d.f46767a;
         if (!charset.equals(charset2)) {
             B();
         }
-        if (!charset.equals(r8.d.f46738c) && !charset.equals(charset2)) {
-            if (!charset.equals(r8.d.f46740f) && !charset.equals(r8.d.f46739e) && !charset.equals(r8.d.d)) {
+        if (!charset.equals(r8.d.f46769c) && !charset.equals(charset2)) {
+            if (!charset.equals(r8.d.f46771f) && !charset.equals(r8.d.f46770e) && !charset.equals(r8.d.d)) {
                 throw new IllegalArgumentException("Unsupported charset: " + charset);
             }
             i10 = 2;
@@ -233,16 +233,16 @@ public final class w {
         while (true) {
             int i12 = this.f7310c;
             if (i11 < i12 - (i10 - 1)) {
-                if ((charset.equals(r8.d.f46738c) || charset.equals(r8.d.f46736a)) && d0.E(this.f7308a[i11])) {
+                if ((charset.equals(r8.d.f46769c) || charset.equals(r8.d.f46767a)) && d0.E(this.f7308a[i11])) {
                     break;
                 }
-                if (charset.equals(r8.d.f46740f) || charset.equals(r8.d.d)) {
+                if (charset.equals(r8.d.f46771f) || charset.equals(r8.d.d)) {
                     byte[] bArr = this.f7308a;
                     if (bArr[i11] == 0 && d0.E(bArr[i11 + 1])) {
                         break;
                     }
                 }
-                if (charset.equals(r8.d.f46739e)) {
+                if (charset.equals(r8.d.f46770e)) {
                     byte[] bArr2 = this.f7308a;
                     if (bArr2[i11 + 1] == 0 && d0.E(bArr2[i11])) {
                         break;
@@ -372,7 +372,7 @@ public final class w {
         byte[] bArr = this.f7308a;
         int i11 = this.f7309b;
         int i12 = d0.f7237a;
-        String str = new String(bArr, i11, i10 - i11, r8.d.f46738c);
+        String str = new String(bArr, i11, i10 - i11, r8.d.f46769c);
         this.f7309b = i10;
         if (i10 < this.f7310c) {
             this.f7309b = i10 + 1;
@@ -394,7 +394,7 @@ public final class w {
         }
         byte[] bArr = this.f7308a;
         int i14 = d0.f7237a;
-        String str = new String(bArr, i12, i11, r8.d.f46738c);
+        String str = new String(bArr, i12, i11, r8.d.f46769c);
         this.f7309b += i10;
         return str;
     }

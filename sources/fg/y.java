@@ -23,7 +23,7 @@ import org.telegram.ui.Components.rg0;
 import org.telegram.ui.Components.t5;
 import org.telegram.ui.Components.tg0;
 import org.telegram.ui.Components.xg0;
-import org.telegram.ui.i51;
+import org.telegram.ui.n51;
 import org.telegram.ui.py;
 import org.telegram.ui.wg0;
 import org.telegram.ui.y5;
@@ -66,8 +66,8 @@ public final class y extends FrameLayout {
                 super.dispatchDraw(canvas);
                 return;
             case 4:
-                i51 i51Var = (i51) obj;
-                if (!this.f6628b && i51Var.f37100r > 0.0f) {
+                n51 n51Var = (n51) obj;
+                if (!this.f6628b && n51Var.f38557r > 0.0f) {
                     if (((Paint) this.f6629c) == null) {
                         Paint paint3 = new Paint();
                         this.f6629c = paint3;
@@ -76,7 +76,7 @@ public final class y extends FrameLayout {
                     }
                     canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
                     super.dispatchDraw(canvas);
-                    ((Paint) this.f6629c).setAlpha((int) (i51Var.f37100r * 255.0f));
+                    ((Paint) this.f6629c).setAlpha((int) (n51Var.f38557r * 255.0f));
                     canvas.drawRect(0.0f, 0.0f, AndroidUtilities.dp(18.0f), getMeasuredHeight(), (Paint) this.f6629c);
                     canvas.restore();
                     return;
@@ -98,7 +98,7 @@ public final class y extends FrameLayout {
                 LimitPreviewView limitPreviewView = (LimitPreviewView) this.d;
                 if (view instanceof TextView) {
                     boolean drawChild = super.drawChild(canvas, view, j10);
-                    float f10 = limitPreviewView.f24944a;
+                    float f10 = limitPreviewView.f24946a;
                     boolean z11 = false;
                     if (f10 != 0.0f && f10 <= 1.0f && z10) {
                         z4 = true;
@@ -108,12 +108,12 @@ public final class y extends FrameLayout {
                     if (f10 == 1.0f && !z10) {
                         z11 = true;
                     }
-                    if ((z4 || z11) && limitPreviewView.f24947b0 != null) {
+                    if ((z4 || z11) && limitPreviewView.f24949b0 != null) {
                         canvas.saveLayer(view.getLeft(), view.getTop(), view.getRight(), view.getBottom(), (Paint) this.f6629c, 31);
-                        x xVar = limitPreviewView.f24947b0;
+                        x xVar = limitPreviewView.f24949b0;
                         float x10 = getX() + ((ViewGroup) getParent()).getX();
                         float y10 = ((ViewGroup) getParent()).getY();
-                        canvas.drawRect(view.getLeft(), view.getTop(), view.getRight(), view.getBottom(), ((y5) ((org.telegram.ui.a1) xVar).f34974b).t0(x10, getY() + y10));
+                        canvas.drawRect(view.getLeft(), view.getTop(), view.getRight(), view.getBottom(), ((y5) ((org.telegram.ui.a1) xVar).f34976b).t0(x10, getY() + y10));
                         canvas.restore();
                         invalidate();
                         return drawChild;
@@ -138,7 +138,7 @@ public final class y extends FrameLayout {
                 Drawable drawable = xg0Var.d;
                 int u10 = (xg0Var.B - xg0.u(xg0Var)) - dp;
                 if (xg0.v(xg0Var) == 1) {
-                    u10 = (int) (xg0Var.f33072b.getTranslationY() + u10);
+                    u10 = (int) (xg0Var.f33066b.getTranslationY() + u10);
                 }
                 int dp2 = AndroidUtilities.dp(20.0f) + u10;
                 int w10 = xg0.w(xg0Var) + AndroidUtilities.dp(15.0f) + getMeasuredHeight();
@@ -158,22 +158,22 @@ public final class y extends FrameLayout {
                 drawable.setBounds(0, u10 + i11, getMeasuredWidth(), w10);
                 drawable.draw(canvas);
                 if (f10 != 1.0f) {
-                    k6.f21939t0.setColor(k6.w0(null, k6.f21731h5, false));
+                    k6.f21941t0.setColor(k6.w0(null, k6.f21733h5, false));
                     rectF.set(xg0.A(xg0Var), xg0.B(xg0Var) + i10, getMeasuredWidth() - xg0.C(xg0Var), AndroidUtilities.dp(24.0f) + xg0.D(xg0Var) + i10);
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f) * f10, AndroidUtilities.dp(12.0f) * f10, k6.f21939t0);
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f) * f10, AndroidUtilities.dp(12.0f) * f10, k6.f21941t0);
                 }
                 if (f10 != 0.0f) {
                     int dp4 = AndroidUtilities.dp(36.0f);
                     rectF.set((getMeasuredWidth() - dp4) / 2, i12, (getMeasuredWidth() + dp4) / 2, AndroidUtilities.dp(4.0f) + i12);
                     int w02 = k6.w0(null, k6.Ii, false);
                     int alpha = Color.alpha(w02);
-                    k6.f21939t0.setColor(w02);
-                    k6.f21939t0.setAlpha((int) (alpha * 1.0f * f10));
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), k6.f21939t0);
+                    k6.f21941t0.setColor(w02);
+                    k6.f21941t0.setAlpha((int) (alpha * 1.0f * f10));
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), k6.f21941t0);
                 }
-                int w03 = k6.w0(null, k6.f21731h5, false);
-                k6.f21939t0.setColor(Color.argb((int) (xg0Var.f33075f.getAlpha() * 255.0f), Color.red(w03), Color.green(w03), Color.blue(w03)));
-                canvas.drawRect(xg0.E(xg0Var), 0.0f, getMeasuredWidth() - xg0.F(xg0Var), AndroidUtilities.statusBarHeight, k6.f21939t0);
+                int w03 = k6.w0(null, k6.f21733h5, false);
+                k6.f21941t0.setColor(Color.argb((int) (xg0Var.f33069f.getAlpha() * 255.0f), Color.red(w03), Color.green(w03), Color.blue(w03)));
+                canvas.drawRect(xg0.E(xg0Var), 0.0f, getMeasuredWidth() - xg0.F(xg0Var), AndroidUtilities.statusBarHeight, k6.f21941t0);
                 return;
             default:
                 super.onDraw(canvas);
@@ -187,7 +187,7 @@ public final class y extends FrameLayout {
             case 1:
                 xg0 xg0Var = (xg0) this.d;
                 if (motionEvent.getAction() == 0 && xg0Var.B != 0) {
-                    if (motionEvent.getY() < AndroidUtilities.dp(12.0f) + xg0Var.B && xg0Var.f33075f.getAlpha() == 0.0f) {
+                    if (motionEvent.getY() < AndroidUtilities.dp(12.0f) + xg0Var.B && xg0Var.f33069f.getAlpha() == 0.0f) {
                         xg0Var.dismiss();
                         return true;
                     }
@@ -219,9 +219,9 @@ public final class y extends FrameLayout {
             case 1:
                 int size = View.MeasureSpec.getSize(i11);
                 xg0 xg0Var = (xg0) this.d;
-                t5 t5Var = xg0Var.f33081y;
-                tg0 tg0Var = xg0Var.f33073c;
-                rg0 rg0Var = xg0Var.f33072b;
+                t5 t5Var = xg0Var.f33075y;
+                tg0 tg0Var = xg0Var.f33067c;
+                rg0 rg0Var = xg0Var.f33066b;
                 if (!xg0.K(xg0Var)) {
                     this.f6628b = true;
                     setPadding(xg0.M(xg0Var), AndroidUtilities.statusBarHeight, xg0.N(xg0Var), 0);
@@ -229,7 +229,7 @@ public final class y extends FrameLayout {
                 }
                 int paddingTop = size - getPaddingTop();
                 ((FrameLayout.LayoutParams) rg0Var.getLayoutParams()).topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
-                ((FrameLayout.LayoutParams) xg0Var.f33074e.getLayoutParams()).topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+                ((FrameLayout.LayoutParams) xg0Var.f33068e.getLayoutParams()).topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
                 int dp2 = AndroidUtilities.dp(15.0f) + xg0.r(xg0Var) + AndroidUtilities.statusBarHeight;
                 int R = tg0Var.R();
                 for (int i13 = 0; i13 < R; i13++) {
@@ -307,9 +307,9 @@ public final class y extends FrameLayout {
         this.f6628b = z4;
     }
 
-    public y(i51 i51Var, Context context, boolean z4) {
+    public y(n51 n51Var, Context context, boolean z4) {
         super(context);
-        this.d = i51Var;
+        this.d = n51Var;
         this.f6628b = z4;
     }
 

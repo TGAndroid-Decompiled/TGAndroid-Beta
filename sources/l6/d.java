@@ -27,20 +27,20 @@ public final class d implements e {
     public final void b() {
         switch (this.f11738a) {
             case 0:
-                m mVar = this.f11739b.f48927a;
+                m mVar = this.f11739b.f48963a;
                 mVar.getClass();
                 try {
-                    g gVar = (g) mVar.f47063c;
+                    g gVar = (g) mVar.f47094c;
                     gVar.Q0(gVar.M0(), 12);
                     return;
                 } catch (RemoteException e6) {
                     throw new RuntimeException(e6);
                 }
             default:
-                m mVar2 = this.f11739b.f48927a;
+                m mVar2 = this.f11739b.f48963a;
                 mVar2.getClass();
                 try {
-                    g gVar2 = (g) mVar2.f47063c;
+                    g gVar2 = (g) mVar2.f47094c;
                     gVar2.Q0(gVar2.M0(), 3);
                     return;
                 } catch (RemoteException e10) {

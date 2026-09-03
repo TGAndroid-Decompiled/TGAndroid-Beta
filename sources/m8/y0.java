@@ -2,12 +2,12 @@ package m8;
 
 import com.google.android.gms.common.api.Status;
 public final class y0 extends a {
-    public i0 f13596b;
+    public i0 f13598b;
 
     @Override
     public final void A0(u0 u0Var) {
         String str;
-        int i10 = u0Var.f13580a;
+        int i10 = u0Var.f13582a;
         switch (i10) {
             case 4000:
                 str = "TARGET_NODE_NOT_CONNECTED";
@@ -46,11 +46,11 @@ public final class y0 extends a {
                 str = l8.j.a(i10);
                 break;
         }
-        j0 j0Var = new j0(new Status(i10, str, null, null), u0Var.f13581b);
-        i0 i0Var = this.f13596b;
+        j0 j0Var = new j0(new Status(i10, str, null, null), u0Var.f13583b);
+        i0 i0Var = this.f13598b;
         if (i0Var != null) {
             i0Var.a(j0Var);
-            this.f13596b = null;
+            this.f13598b = null;
         }
     }
 }

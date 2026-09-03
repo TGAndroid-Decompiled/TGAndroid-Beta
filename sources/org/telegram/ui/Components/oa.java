@@ -6,21 +6,21 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class oa extends qv0 {
-    public final boolean f29722t0;
-    public final boolean f29723u0;
-    public final sa f29724v0;
+public final class oa extends pv0 {
+    public final boolean f29723t0;
+    public final boolean f29724u0;
+    public final sa f29725v0;
 
     public oa(sa saVar, Context context, boolean z4, boolean z10) {
         super(context, null);
-        this.f29724v0 = saVar;
-        this.f29722t0 = z4;
-        this.f29723u0 = z10;
+        this.f29725v0 = saVar;
+        this.f29723t0 = z4;
+        this.f29724u0 = z10;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        sa saVar = this.f29724v0;
+        sa saVar = this.f29725v0;
         saVar.H(canvas, this);
         super.dispatchDraw(canvas);
         saVar.G(canvas, this);
@@ -31,7 +31,7 @@ public final class oa extends qv0 {
         Drawable drawable;
         if (motionEvent.getAction() == 0) {
             float y10 = motionEvent.getY();
-            sa saVar = this.f29724v0;
+            sa saVar = this.f29725v0;
             drawable = ((org.telegram.ui.ActionBar.h3) saVar).shadowDrawable;
             if (y10 < drawable.getBounds().top) {
                 saVar.dismiss();
@@ -42,8 +42,8 @@ public final class oa extends qv0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (!this.f29723u0) {
-            this.f29724v0.getClass();
+        if (!this.f29724u0) {
+            this.f29725v0.getClass();
         }
         return super.drawChild(canvas, view, j10);
     }
@@ -61,10 +61,10 @@ public final class oa extends qv0 {
         int i13;
         fu fuVar;
         int size = View.MeasureSpec.getSize(i11);
-        sa saVar = this.f29724v0;
+        sa saVar = this.f29725v0;
         saVar.h = size;
         saVar.D(i10, i11);
-        if (this.f29722t0) {
+        if (this.f29723t0) {
             i11 = View.MeasureSpec.makeMeasureSpec(saVar.h, 1073741824);
         }
         if (saVar.M != null) {
@@ -74,7 +74,7 @@ public final class oa extends qv0 {
             fu fuVar2 = saVar.M;
             if (fuVar2 != null && !fuVar2.K && AndroidUtilities.dp(20.0f) >= 0) {
                 fu fuVar3 = saVar.M;
-                if (!fuVar3.f27004e && !fuVar3.L) {
+                if (!fuVar3.f27000e && !fuVar3.L) {
                     fuVar3.j();
                 }
             }

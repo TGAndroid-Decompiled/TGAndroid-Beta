@@ -1,7 +1,7 @@
 package hg;
 
-import org.telegram.ui.Components.jl0;
-public final class v0 implements jl0 {
+import org.telegram.ui.Components.il0;
+public final class v0 implements il0 {
     public final int f7625a;
     public final Object f7626b;
     public final Object f7627c;

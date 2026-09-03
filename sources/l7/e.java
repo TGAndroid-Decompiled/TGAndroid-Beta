@@ -58,7 +58,7 @@ public class e extends AbstractCollection implements List {
                 boolean isEmpty3 = this.f11831c.isEmpty();
                 boolean add3 = this.f11831c.add(obj);
                 if (add3) {
-                    ((s8.e0) this.f11833f).f47101e++;
+                    ((s8.e0) this.f11833f).f47132e++;
                     if (isEmpty3) {
                         i();
                     }
@@ -109,7 +109,7 @@ public class e extends AbstractCollection implements List {
                 boolean addAll3 = this.f11831c.addAll(collection);
                 if (addAll3) {
                     int size5 = this.f11831c.size();
-                    ((s8.e0) this.f11833f).f47101e += size5 - size4;
+                    ((s8.e0) this.f11833f).f47132e += size5 - size4;
                     if (size4 == 0) {
                         i();
                         return addAll3;
@@ -143,7 +143,7 @@ public class e extends AbstractCollection implements List {
                 int size2 = size();
                 if (size2 != 0) {
                     this.f11831c.clear();
-                    ((s8.e0) this.f11833f).f47101e -= size2;
+                    ((s8.e0) this.f11833f).f47132e -= size2;
                     o();
                     return;
                 }
@@ -343,7 +343,7 @@ public class e extends AbstractCollection implements List {
                     eVar2.p();
                     return;
                 }
-                ((mg) this.f11833f).f15661c.put(this.f11830b, this.f11831c);
+                ((mg) this.f11833f).f15663c.put(this.f11830b, this.f11831c);
                 return;
         }
     }
@@ -367,7 +367,7 @@ public class e extends AbstractCollection implements List {
                     eVar2.q();
                     return;
                 } else if (this.f11831c.isEmpty()) {
-                    ((mg) this.f11833f).f15661c.remove(this.f11830b);
+                    ((mg) this.f11833f).f15663c.remove(this.f11830b);
                     return;
                 } else {
                     return;
@@ -399,7 +399,7 @@ public class e extends AbstractCollection implements List {
                 boolean remove3 = this.f11831c.remove(obj);
                 if (remove3) {
                     s8.e0 e0Var = (s8.e0) this.f11833f;
-                    e0Var.f47101e--;
+                    e0Var.f47132e--;
                     o();
                 }
                 return remove3;
@@ -442,7 +442,7 @@ public class e extends AbstractCollection implements List {
                 boolean removeAll3 = this.f11831c.removeAll(collection);
                 if (removeAll3) {
                     int size4 = this.f11831c.size();
-                    ((s8.e0) this.f11833f).f47101e += size4 - size3;
+                    ((s8.e0) this.f11833f).f47132e += size4 - size3;
                     o();
                     return removeAll3;
                 }
@@ -478,7 +478,7 @@ public class e extends AbstractCollection implements List {
                 boolean retainAll3 = this.f11831c.retainAll(collection);
                 if (retainAll3) {
                     int size4 = this.f11831c.size();
-                    ((s8.e0) this.f11833f).f47101e += size4 - size3;
+                    ((s8.e0) this.f11833f).f47132e += size4 - size3;
                     o();
                 }
                 return retainAll3;
@@ -604,7 +604,7 @@ public class e extends AbstractCollection implements List {
                     }
                     return;
                 } else if (this.f11831c.isEmpty()) {
-                    Collection collection2 = (Collection) ((mg) this.f11833f).f15661c.get(this.f11830b);
+                    Collection collection2 = (Collection) ((mg) this.f11833f).f15663c.get(this.f11830b);
                     if (collection2 != null) {
                         this.f11831c = collection2;
                         return;
@@ -668,7 +668,7 @@ public class e extends AbstractCollection implements List {
                 n();
                 Object remove3 = ((List) this.f11831c).remove(i10);
                 s8.e0 e0Var = (s8.e0) this.h;
-                e0Var.f47101e--;
+                e0Var.f47132e--;
                 o();
                 return remove3;
         }
@@ -700,7 +700,7 @@ public class e extends AbstractCollection implements List {
                 n();
                 boolean isEmpty3 = this.f11831c.isEmpty();
                 ((List) this.f11831c).add(i10, obj);
-                ((s8.e0) this.h).f47101e++;
+                ((s8.e0) this.h).f47132e++;
                 if (isEmpty3) {
                     i();
                     return;
@@ -751,7 +751,7 @@ public class e extends AbstractCollection implements List {
                 boolean addAll3 = ((List) this.f11831c).addAll(i10, collection);
                 if (addAll3) {
                     int size5 = this.f11831c.size();
-                    ((s8.e0) this.h).f47101e += size5 - size4;
+                    ((s8.e0) this.h).f47132e += size5 - size4;
                     if (size4 == 0) {
                         i();
                         return addAll3;

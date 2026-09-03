@@ -1,138 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
+import android.content.Intent;
 import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class en implements my {
-    public final Utilities.Callback f26581a;
-    public final bn f26582b;
+public final class en implements zj {
+    public final Utilities.Callback f26629a;
+    public final an f26630b;
+    public final org.telegram.ui.ActionBar.p2 f26631c;
 
-    public en(Utilities.Callback callback, bn bnVar) {
-        this.f26581a = callback;
-        this.f26582b = bnVar;
+    public en(Utilities.Callback callback, org.telegram.ui.ActionBar.p2 p2Var, an anVar) {
+        this.f26629a = callback;
+        this.f26630b = anVar;
+        this.f26631c = p2Var;
     }
 
     @Override
-    public final boolean A() {
-        return false;
+    public final void l(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z4, int i10, long j10, boolean z10, long j11) {
+        if (!arrayList.isEmpty()) {
+            this.f26629a.run(new fh.c((String) arrayList.get(0)));
+        }
+        this.f26630b.dismiss(true);
     }
 
     @Override
-    public final long a() {
-        return 0L;
+    public final void m(long j10, ArrayList arrayList, boolean z4, int i10) {
+        if (!arrayList.isEmpty()) {
+            this.f26629a.run(new fh.d((SendMessagesHelper.SendingMediaInfo) arrayList.get(0)));
+        }
+        this.f26630b.dismiss(true);
     }
 
     @Override
-    public final boolean b() {
-        return false;
+    public final void x() {
+        try {
+            Intent intent = new Intent("android.intent.action.GET_CONTENT");
+            intent.setType("*/*");
+            this.f26631c.getParentActivity().startActivityForResult(intent, 28);
+        } catch (Exception e6) {
+            FileLog.e(e6);
+        }
     }
 
     @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final int f() {
-        return 0;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z4, int i10) {
-        this.f26581a.run(new fh.i(document, obj));
-        this.f26582b.dismiss(true);
-    }
-
-    @Override
-    public final float p() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void x(long j10, TLRPC.Document document, String str, boolean z4) {
-        this.f26581a.run(new fh.i(document, null));
-        this.f26582b.dismiss(true);
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
-    }
-
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void i(int i10) {
-    }
-
-    @Override
-    public final void l(String str) {
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void o(f51 f51Var) {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void s(int i10) {
-    }
-
-    @Override
-    public final void t(ArrayList arrayList) {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w() {
-    }
-
-    @Override
-    public final void y(long j10) {
-    }
-
-    @Override
-    public final void e(Object obj, Object obj2) {
-    }
-
-    @Override
-    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z4) {
-    }
-
-    @Override
-    public final void v(View view, Object obj, String str, Object obj2, boolean z4, int i10, int i11) {
+    public final void O() {
     }
 }

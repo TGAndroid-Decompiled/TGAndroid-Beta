@@ -15,10 +15,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.g90;
-import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.sl0;
 import org.telegram.ui.Components.z8;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ib1;
+import org.telegram.ui.ob1;
 public final class m1 extends fg.d2 {
     public final ArrayList N0;
 
@@ -35,9 +35,9 @@ public final class m1 extends fg.d2 {
         aVar.setOnClickListener(new androidx.mediarouter.app.c(this, 8));
         aVar.setCloseStyle(true);
         this.containerView.addView(aVar, c6.d(-1, 64.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
-        tl0 tl0Var = this.d;
+        sl0 sl0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        tl0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(64.0f));
+        sl0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(64.0f));
         Context context = getContext();
         int i12 = l1.f7555f;
         FrameLayout frameLayout = new FrameLayout(context);
@@ -96,13 +96,13 @@ public final class m1 extends fg.d2 {
         if (i10 == 0) {
             view.setOutlineProvider(new j1(0));
             view.setClipToOutline(true);
-            view.setBackgroundColor(k6.v0(k6.f21605a7, this.resourcesProvider));
+            view.setBackgroundColor(k6.v0(k6.f21607a7, this.resourcesProvider));
             ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = -AndroidUtilities.dp(6.0f);
         }
     }
 
     @Override
-    public final void W(ib1 ib1Var) {
+    public final void W(ob1 ob1Var) {
         int i10;
         float f10;
         float f11;
@@ -123,7 +123,7 @@ public final class m1 extends fg.d2 {
         } else {
             f11 = 14.0f;
         }
-        ib1Var.addView(view, c6.k(0.0f, f10, 0.0f, f11, -1, i10));
+        ob1Var.addView(view, c6.k(0.0f, f10, 0.0f, f11, -1, i10));
     }
 
     @Override

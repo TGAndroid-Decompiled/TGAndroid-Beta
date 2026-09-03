@@ -64,7 +64,7 @@ public final class b extends Drawable implements DownloadController.FileDownload
         this.f7139y = new xd.a(t1Var, pr.h, 380L);
         j6 j6Var = new j6(false, false, false, false);
         this.f7129a = j6Var;
-        j6Var.f28029b = 21;
+        j6Var.f27999b = 21;
         j6Var.t(AndroidUtilities.dp(11.0f));
         j6Var.setCallback(t1Var);
         this.f7130b = new f9(i10, t1Var, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(8.33f), AndroidUtilities.dpf2(1.0f));
@@ -121,20 +121,20 @@ public final class b extends Drawable implements DownloadController.FileDownload
             f10 = 19.0f;
         }
         int dp = AndroidUtilities.dp(f10);
-        if (this.f7139y.f50505e > 0.0f) {
-            g gVar = this.f7130b.f26792c.d;
-            float f11 = gVar.f50520c.f50530a;
-            int i12 = (int) gVar.f50522f.f50530a;
+        if (this.f7139y.f50541e > 0.0f) {
+            g gVar = this.f7130b.f26823c.d;
+            float f11 = gVar.f50556c.f50566a;
+            int i12 = (int) gVar.f50558f.f50566a;
             int lerp = (bounds.right - dp) - AndroidUtilities.lerp(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f) + i12, f11);
             if (f11 > 0.0f) {
                 f9 f9Var = this.f7130b;
-                f9Var.f26796i = (int) (this.f7139y.f50505e * 255.0f);
+                f9Var.f26827i = (int) (this.f7139y.f50541e * 255.0f);
                 f9Var.setBounds((bounds.right - dp) - i12, bounds.bottom - AndroidUtilities.dp(31.33f), bounds.right - dp, bounds.bottom);
                 this.f7130b.c(canvas);
             }
             int dp2 = bounds.bottom - AndroidUtilities.dp(21.33f);
             j6 j6Var = this.f7129a;
-            j6Var.f28047w = (int) (this.f7139y.f50505e * 255.0f);
+            j6Var.f28017w = (int) (this.f7139y.f50541e * 255.0f);
             j6Var.setBounds(bounds.left, AndroidUtilities.dp(15.0f) + dp2, lerp, dp2 - AndroidUtilities.dp(15.0f));
             this.f7129a.draw(canvas);
         }
@@ -145,7 +145,7 @@ public final class b extends Drawable implements DownloadController.FileDownload
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(rect);
             RadialProgress2 radialProgress2 = this.B;
-            radialProgress2.f24966a.set(rectF.left, rectF.top, rectF.right, rectF.bottom);
+            radialProgress2.f24968a.set(rectF.left, rectF.top, rectF.right, rectF.bottom);
             this.f7131c.setImageCoords(rect);
             if (!this.f7134n || this.f7135r) {
                 this.f7131c.draw(canvas);
@@ -154,9 +154,9 @@ public final class b extends Drawable implements DownloadController.FileDownload
                 if (this.f7134n && !this.f7135r) {
                     Paint paint = this.f7138x;
                     if (this.C.isOutOwner()) {
-                        i10 = k6.f21701fc;
+                        i10 = k6.f21703fc;
                     } else {
-                        i10 = k6.f21683ec;
+                        i10 = k6.f21685ec;
                     }
                     paint.setColor(i0.a.k(k6.w0(null, i10, false), 16));
                     canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.f7138x);
@@ -176,7 +176,7 @@ public final class b extends Drawable implements DownloadController.FileDownload
                     if (this.C.isOutOwner()) {
                         i11 = k6.sb;
                     } else {
-                        i11 = k6.f21845nd;
+                        i11 = k6.f21847nd;
                     }
                     w02 = k6.w0(null, i11, false);
                 }
@@ -200,9 +200,9 @@ public final class b extends Drawable implements DownloadController.FileDownload
 
     public final float d(float f10) {
         f9 f9Var = this.f7130b;
-        float d = this.f7129a.d() + f9Var.f26792c.d.f50522f.f50530a;
-        float dp = f9Var.f26792c.d.f50520c.f50530a * AndroidUtilities.dp(4.0f);
-        float f11 = this.f7139y.f50505e;
+        float d = this.f7129a.d() + f9Var.f26823c.d.f50558f.f50566a;
+        float dp = f9Var.f26823c.d.f50556c.f50566a * AndroidUtilities.dp(4.0f);
+        float f11 = this.f7139y.f50541e;
         return (f10 * f11) + (dp * f11) + d;
     }
 

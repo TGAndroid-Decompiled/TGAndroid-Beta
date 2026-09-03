@@ -23,7 +23,7 @@ import org.telegram.ui.ny;
 import org.telegram.ui.oy;
 import org.telegram.ui.py;
 import org.telegram.ui.xn;
-import qh.f3;
+import qh.e3;
 public final class b0 implements Runnable {
     public final int f8983a;
     public final int f8984b;
@@ -64,7 +64,7 @@ public final class b0 implements Runnable {
                 bm bmVar = (bm) this.d;
                 bmVar.getClass();
                 MessageObject messageObject = ((org.telegram.ui.Cells.v0) this.f8986e).getMessageObject();
-                jm jmVar = bmVar.f35554a;
+                jm jmVar = bmVar.f35565a;
                 xn xnVar = jmVar.N;
                 int id2 = messageObject.getId();
                 if (messageObject.getDialogId() == jmVar.N.I6) {
@@ -76,41 +76,41 @@ public final class b0 implements Runnable {
                 return;
             case 4:
                 org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) this.f8986e;
-                xn xnVar2 = ((jn) this.d).f38188a;
-                if (xnVar2.f43404x1 != null) {
+                xn xnVar2 = ((jn) this.d).f38085a;
+                if (xnVar2.f43382x1 != null) {
                     int[] iArr = new int[2];
                     t1Var.getLocationInWindow(iArr);
-                    f3 f3Var = xnVar2.f43404x1;
-                    f3Var.setTranslationY(org.telegram.ui.b.C(520.0f, iArr[1] - f3Var.getTop(), this.f8984b));
-                    xnVar2.f43404x1.n(0.0f, (-AndroidUtilities.dp(16.0f)) + iArr[0] + this.f8985c);
-                    xnVar2.f43404x1.v();
+                    e3 e3Var = xnVar2.f43382x1;
+                    e3Var.setTranslationY(org.telegram.ui.b.C(520.0f, iArr[1] - e3Var.getTop(), this.f8984b));
+                    xnVar2.f43382x1.m(0.0f, (-AndroidUtilities.dp(16.0f)) + iArr[0] + this.f8985c);
+                    xnVar2.f43382x1.u();
                     return;
                 }
                 return;
             default:
                 final ny nyVar = (ny) this.d;
                 TLRPC.Dialog dialog = (TLRPC.Dialog) this.f8986e;
-                oy oyVar = nyVar.f39544g;
+                oy oyVar = nyVar.f39479g;
                 py pyVar = nyVar.h;
                 ArrayList arrayList = pyVar.O1;
                 if (arrayList != null) {
                     arrayList.remove(dialog);
                     int i14 = dialog.pinnedNum;
                     pyVar.T0 = null;
-                    oyVar.f39866a.invalidate();
-                    int N0 = oyVar.f39868c.N0();
+                    oyVar.f39822a.invalidate();
+                    int N0 = oyVar.f39824c.N0();
                     if (N0 == this.f8984b - 1) {
-                        oyVar.f39868c.m(N0).requestLayout();
+                        oyVar.f39824c.m(N0).requestLayout();
                     }
                     boolean z4 = false;
-                    if (pyVar.getMessagesController().isPromoDialog(dialog.f20847id, false)) {
+                    if (pyVar.getMessagesController().isPromoDialog(dialog.f20849id, false)) {
                         pyVar.getMessagesController().hidePromoDialog();
-                        oyVar.f39875x.D();
+                        oyVar.f39831x.D();
                         oyVar.q(true);
                         return;
                     }
                     MessagesController messagesController = pyVar.getMessagesController();
-                    long j10 = dialog.f20847id;
+                    long j10 = dialog.f20849id;
                     if (pyVar.S2 == 0) {
                         i11 = 1;
                     } else {
@@ -119,7 +119,7 @@ public final class b0 implements Runnable {
                     int addDialogToFolder = messagesController.addDialogToFolder(j10, i11, -1, 0L);
                     int i15 = this.f8985c;
                     if (addDialogToFolder != 2 || i15 != 0) {
-                        oyVar.f39875x.D();
+                        oyVar.f39831x.D();
                         oyVar.q(true);
                     }
                     if (pyVar.S2 == 0) {
@@ -127,16 +127,16 @@ public final class b0 implements Runnable {
                             if (SharedConfig.archiveHidden) {
                                 SharedConfig.toggleArchiveHidden();
                             }
-                            oyVar.f39875x.D();
+                            oyVar.f39831x.D();
                             if (i15 == 0) {
                                 pyVar.A4(true, true);
                                 oyVar.q(true);
                                 pyVar.o3();
                             } else {
                                 oyVar.q(true);
-                                if (!SharedConfig.archiveHidden && oyVar.f39868c.L0() == 0) {
-                                    pyVar.f40187b2 = true;
-                                    ly lyVar = oyVar.f39866a;
+                                if (!SharedConfig.archiveHidden && oyVar.f39824c.L0() == 0) {
+                                    pyVar.f40157b2 = true;
+                                    ly lyVar = oyVar.f39822a;
                                     if (SharedConfig.useThreeLinesLayout) {
                                         f10 = 76.0f;
                                     } else {
@@ -146,7 +146,7 @@ public final class b0 implements Runnable {
                                 }
                             }
                             i13 = ((org.telegram.ui.ActionBar.p2) pyVar).currentAccount;
-                            pyVar.O1.add(0, (TLRPC.Dialog) pyVar.R3(i13, oyVar.f39873s, pyVar.S2, false).get(0));
+                            pyVar.O1.add(0, (TLRPC.Dialog) pyVar.R3(i13, oyVar.f39829s, pyVar.S2, false).get(0));
                             oyVar.q(true);
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
@@ -162,16 +162,16 @@ public final class b0 implements Runnable {
                                 }
                             }, 300L);
                         } else if (addDialogToFolder == 1) {
-                            f2.m1 K = oyVar.f39866a.K(0);
+                            f2.m1 K = oyVar.f39822a.K(0);
                             if (K != null) {
                                 View view = K.f5875a;
                                 if (view instanceof r2) {
                                     r2 r2Var = (r2) view;
-                                    if (r2Var.X1.f33801n == 2) {
+                                    if (r2Var.X1.f33845n == 2) {
                                         r2Var.Y1 = true;
                                         r2Var.Z1 = 0.0f;
-                                        k6.f21956u1.Q(0.0f, true);
-                                        k6.f21956u1.start();
+                                        k6.f21958u1.Q(0.0f, true);
+                                        k6.f21958u1.start();
                                         r2Var.invalidate();
                                     }
                                 }
@@ -197,7 +197,7 @@ public final class b0 implements Runnable {
                         }
                         UndoView Y3 = pyVar.Y3();
                         if (Y3 != null) {
-                            long j11 = dialog.f20847id;
+                            long j11 = dialog.f20849id;
                             if (z4) {
                                 i12 = 2;
                             } else {
@@ -207,8 +207,8 @@ public final class b0 implements Runnable {
                         }
                     }
                     if (pyVar.S2 != 0 && pyVar.O1.isEmpty()) {
-                        oyVar.f39866a.setEmptyView(null);
-                        oyVar.f39874w.setVisibility(4);
+                        oyVar.f39822a.setEmptyView(null);
+                        oyVar.f39830w.setVisibility(4);
                         return;
                     }
                     return;

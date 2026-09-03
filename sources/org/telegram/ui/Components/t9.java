@@ -10,33 +10,33 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class t9 extends View {
-    public Bitmap f31290a;
-    public Bitmap f31291b;
-    public Paint f31292c;
+    public Bitmap f31305a;
+    public Bitmap f31306b;
+    public Paint f31307c;
     public int d;
-    public int f31293e;
-    public s9 f31294f;
+    public int f31308e;
+    public s9 f31309f;
 
     public int getRating() {
-        return this.f31293e;
+        return this.f31308e;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i10;
         Bitmap bitmap;
-        Paint paint = this.f31292c;
+        Paint paint = this.f31307c;
         for (int i11 = 0; i11 < this.d; i11++) {
-            if (i11 < this.f31293e) {
-                i10 = org.telegram.ui.ActionBar.k6.f21820m5;
+            if (i11 < this.f31308e) {
+                i10 = org.telegram.ui.ActionBar.k6.f21822m5;
             } else {
-                i10 = org.telegram.ui.ActionBar.k6.f21944t5;
+                i10 = org.telegram.ui.ActionBar.k6.f21946t5;
             }
             paint.setColor(org.telegram.ui.ActionBar.k6.w0(null, i10, false));
-            if (i11 < this.f31293e) {
-                bitmap = this.f31290a;
+            if (i11 < this.f31308e) {
+                bitmap = this.f31305a;
             } else {
-                bitmap = this.f31291b;
+                bitmap = this.f31306b;
             }
             canvas.drawBitmap(bitmap, AndroidUtilities.dp(48.0f) * i11, 0.0f, paint);
         }
@@ -55,11 +55,11 @@ public final class t9 extends View {
         float dp = AndroidUtilities.dp(-8.0f);
         boolean z4 = false;
         for (int i12 = 0; i12 < this.d; i12++) {
-            if (motionEvent.getX() > dp && motionEvent.getX() < AndroidUtilities.dp(48.0f) + dp && this.f31293e != (i10 = i12 + 1)) {
-                this.f31293e = i10;
-                s9 s9Var = this.f31294f;
+            if (motionEvent.getX() > dp && motionEvent.getX() < AndroidUtilities.dp(48.0f) + dp && this.f31308e != (i10 = i12 + 1)) {
+                this.f31308e = i10;
+                s9 s9Var = this.f31309f;
                 if (s9Var != null) {
-                    View view = ((org.telegram.ui.Components.voip.u1) s9Var).f32397a;
+                    View view = ((org.telegram.ui.Components.voip.u1) s9Var).f32402a;
                     if (i10 > 0) {
                         z4 = true;
                     }
@@ -81,6 +81,6 @@ public final class t9 extends View {
     }
 
     public void setOnRatingChangeListener(s9 s9Var) {
-        this.f31294f = s9Var;
+        this.f31309f = s9Var;
     }
 }

@@ -5,17 +5,17 @@ import android.os.SystemClock;
 import android.view.MotionEvent;
 public final class s7 extends x7 {
     public long d;
-    public final c8 f30997e;
+    public final c8 f30994e;
 
     public s7(c8 c8Var, Context context) {
         super(context);
-        this.f30997e = c8Var;
+        this.f30994e = c8Var;
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         int action = motionEvent.getAction();
-        c8 c8Var = this.f30997e;
+        c8 c8Var = this.f30994e;
         if (action == 0) {
             if (this.f32965a[this.f32966b].getImageReceiver().hasBitmapImage()) {
                 c8Var.A0(true, true);

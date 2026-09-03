@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class a70 extends sl0 {
+public final class a70 extends rl0 {
     public ArrayList f25172c = new ArrayList();
     public ArrayList d = new ArrayList();
     public final uf.k1 f25173e;
@@ -23,7 +23,7 @@ public final class a70 extends sl0 {
         this.f25175n = e70Var;
         uf.k1 k1Var = new uf.k1(false);
         this.f25173e = k1Var;
-        k1Var.f48618a = new hv(this, 7);
+        k1Var.f48654a = new hv(this, 7);
     }
 
     @Override
@@ -39,7 +39,7 @@ public final class a70 extends sl0 {
         int size = this.f25172c.size();
         uf.k1 k1Var = this.f25173e;
         int size2 = k1Var.d.size();
-        int size3 = k1Var.f48621e.size();
+        int size3 = k1Var.f48657e.size();
         int i10 = size + size2;
         if (size3 != 0) {
             i10 += size3 + 1;
@@ -77,12 +77,12 @@ public final class a70 extends sl0 {
             if (i10 != 2) {
                 if (i10 != 4) {
                     ?? frameLayout = new FrameLayout(context);
-                    frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21678e7, false));
+                    frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21680e7, false));
                     Drawable drawable = frameLayout.getResources().getDrawable(R.drawable.shadowdown);
-                    frameLayout.f22801a = drawable;
+                    frameLayout.f22803a = drawable;
                     drawable.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.Zh, false), PorterDuff.Mode.MULTIPLY));
                     TextView textView = new TextView(frameLayout.getContext());
-                    frameLayout.f22802b = textView;
+                    frameLayout.f22804b = textView;
                     org.telegram.ui.yh.p(14.0f, 1, textView);
                     textView.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.ai, false));
                     int i12 = 3;

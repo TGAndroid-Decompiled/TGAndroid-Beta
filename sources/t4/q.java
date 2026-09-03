@@ -20,7 +20,7 @@ public final class q extends k0 {
         if (gVar2 == null) {
             gVar2 = n0Var.F;
         }
-        if (gVar2 != null && (gVar = (o3.g) this.H.get(gVar2.f16403c)) != null) {
+        if (gVar2 != null && (gVar = (o3.g) this.H.get(gVar2.f16405c)) != null) {
             gVar2 = gVar;
         }
         e4.c cVar = n0Var.f9325s;

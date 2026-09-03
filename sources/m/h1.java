@@ -9,44 +9,44 @@ import android.util.AttributeSet;
 import android.widget.ToggleButton;
 import k7.l6;
 public final class h1 extends ToggleButton implements u0.k {
-    public final m f13211a;
-    public final w0 f13212b;
-    public t f13213c;
+    public final m f13213a;
+    public final w0 f13214b;
+    public t f13215c;
 
     public h1(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 16842827);
         c3.a(this, getContext());
         m mVar = new m(this);
-        this.f13211a = mVar;
+        this.f13213a = mVar;
         mVar.d(attributeSet, 16842827);
         w0 w0Var = new w0(this);
-        this.f13212b = w0Var;
+        this.f13214b = w0Var;
         w0Var.f(attributeSet, 16842827);
         getEmojiTextViewHelper().a(attributeSet, 16842827);
     }
 
     private t getEmojiTextViewHelper() {
-        if (this.f13213c == null) {
-            this.f13213c = new t(this);
+        if (this.f13215c == null) {
+            this.f13215c = new t(this);
         }
-        return this.f13213c;
+        return this.f13215c;
     }
 
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        m mVar = this.f13211a;
+        m mVar = this.f13213a;
         if (mVar != null) {
             mVar.a();
         }
-        w0 w0Var = this.f13212b;
+        w0 w0Var = this.f13214b;
         if (w0Var != null) {
             w0Var.b();
         }
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        m mVar = this.f13211a;
+        m mVar = this.f13213a;
         if (mVar != null) {
             return mVar.b();
         }
@@ -54,7 +54,7 @@ public final class h1 extends ToggleButton implements u0.k {
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        m mVar = this.f13211a;
+        m mVar = this.f13213a;
         if (mVar != null) {
             return mVar.c();
         }
@@ -62,11 +62,11 @@ public final class h1 extends ToggleButton implements u0.k {
     }
 
     public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.f13212b.d();
+        return this.f13214b.d();
     }
 
     public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.f13212b.e();
+        return this.f13214b.e();
     }
 
     @Override
@@ -78,7 +78,7 @@ public final class h1 extends ToggleButton implements u0.k {
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        m mVar = this.f13211a;
+        m mVar = this.f13213a;
         if (mVar != null) {
             mVar.e();
         }
@@ -87,7 +87,7 @@ public final class h1 extends ToggleButton implements u0.k {
     @Override
     public void setBackgroundResource(int i10) {
         super.setBackgroundResource(i10);
-        m mVar = this.f13211a;
+        m mVar = this.f13213a;
         if (mVar != null) {
             mVar.f(i10);
         }
@@ -96,7 +96,7 @@ public final class h1 extends ToggleButton implements u0.k {
     @Override
     public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f13212b;
+        w0 w0Var = this.f13214b;
         if (w0Var != null) {
             w0Var.b();
         }
@@ -105,7 +105,7 @@ public final class h1 extends ToggleButton implements u0.k {
     @Override
     public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f13212b;
+        w0 w0Var = this.f13214b;
         if (w0Var != null) {
             w0Var.b();
         }
@@ -117,18 +117,18 @@ public final class h1 extends ToggleButton implements u0.k {
 
     @Override
     public void setFilters(InputFilter[] inputFilterArr) {
-        super.setFilters(((l6) getEmojiTextViewHelper().f13341b.f25265b).a(inputFilterArr));
+        super.setFilters(((l6) getEmojiTextViewHelper().f13343b.f25257b).a(inputFilterArr));
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        m mVar = this.f13211a;
+        m mVar = this.f13213a;
         if (mVar != null) {
             mVar.h(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        m mVar = this.f13211a;
+        m mVar = this.f13213a;
         if (mVar != null) {
             mVar.i(mode);
         }
@@ -136,14 +136,14 @@ public final class h1 extends ToggleButton implements u0.k {
 
     @Override
     public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        w0 w0Var = this.f13212b;
+        w0 w0Var = this.f13214b;
         w0Var.l(colorStateList);
         w0Var.b();
     }
 
     @Override
     public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        w0 w0Var = this.f13212b;
+        w0 w0Var = this.f13214b;
         w0Var.m(mode);
         w0Var.b();
     }

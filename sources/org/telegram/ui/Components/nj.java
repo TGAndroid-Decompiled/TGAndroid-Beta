@@ -12,20 +12,20 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PhotoViewer;
 public final class nj implements Runnable {
-    public final int f29522a = 1;
-    public final int f29523b;
-    public final Object f29524c;
+    public final int f29500a = 1;
+    public final int f29501b;
+    public final Object f29502c;
     public final int d;
-    public final Object f29525e;
-    public final Object f29526f;
+    public final Object f29503e;
+    public final Object f29504f;
     public final Object h;
 
     public nj(oj ojVar, String str, ArrayList arrayList, ArrayList arrayList2, int i10, int i11) {
-        this.f29525e = ojVar;
-        this.f29526f = str;
-        this.f29524c = arrayList;
+        this.f29503e = ojVar;
+        this.f29504f = str;
+        this.f29502c = arrayList;
         this.h = arrayList2;
-        this.f29523b = i10;
+        this.f29501b = i10;
         this.d = i11;
     }
 
@@ -43,12 +43,12 @@ public final class nj implements Runnable {
         int i13;
         org.telegram.ui.xn xnVar;
         boolean z4;
-        int i14 = this.f29522a;
+        int i14 = this.f29500a;
         Object obj = this.h;
-        Object obj2 = this.f29524c;
-        int i15 = this.f29523b;
-        Object obj3 = this.f29526f;
-        Object obj4 = this.f29525e;
+        Object obj2 = this.f29502c;
+        int i15 = this.f29501b;
+        Object obj3 = this.f29504f;
+        Object obj4 = this.f29503e;
         switch (i14) {
             case 0:
                 oj ojVar = (oj) obj4;
@@ -131,7 +131,7 @@ public final class nj implements Runnable {
                             }
                             TLRPC.User user4 = contact.user;
                             if (user4 != null) {
-                                longSparseIntArray.put(user4.f20990id, 1);
+                                longSparseIntArray.put(user4.f20992id, 1);
                             }
                             arrayList4.add(contact);
                             i17++;
@@ -200,8 +200,8 @@ public final class nj implements Runnable {
                 org.telegram.ui.ActionBar.p2 p2Var = (org.telegram.ui.ActionBar.p2) obj3;
                 ArrayList arrayList6 = (ArrayList) obj2;
                 org.telegram.ui.xn xnVar2 = (org.telegram.ui.xn) obj;
-                boolean z10 = ChatAttachAlertPhotoLayout.f24736n1;
-                mi miVar = chatAttachAlertPhotoLayout.f26546b;
+                boolean z10 = ChatAttachAlertPhotoLayout.f24738n1;
+                mi miVar = chatAttachAlertPhotoLayout.f26590b;
                 if (miVar.C && !miVar.D) {
                     PhotoViewer.t1().K2(null, p2Var, null);
                     PhotoViewer t12 = PhotoViewer.t1();
@@ -217,7 +217,7 @@ public final class nj implements Runnable {
                     i13 = i12;
                 }
                 PhotoViewer t13 = PhotoViewer.t1();
-                vl vlVar = chatAttachAlertPhotoLayout.f24750e1;
+                vl vlVar = chatAttachAlertPhotoLayout.f24752e1;
                 if (miVar.E) {
                     xnVar = null;
                 } else {
@@ -254,7 +254,7 @@ public final class nj implements Runnable {
                 wh.e1 e1Var = (wh.e1) obj3;
                 org.telegram.ui.Cells.m9 m9Var = (org.telegram.ui.Cells.m9) obj2;
                 wh.h0 h0Var = (wh.h0) obj;
-                wh.i0 i0Var = (wh.i0) ((q5.g0) obj4).f44558c;
+                wh.i0 i0Var = (wh.i0) ((q5.c0) obj4).f44558b;
                 if (e1Var.length() >= i15 && e1Var.getSelectionStart() != e1Var.getSelectionEnd() && m9Var.k0(h0Var.E(), 0, this.d, i15)) {
                     i0Var.d = true;
                     e1Var.setSelection(i15);
@@ -266,19 +266,19 @@ public final class nj implements Runnable {
     }
 
     public nj(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10, org.telegram.ui.ActionBar.p2 p2Var, ArrayList arrayList, int i11, org.telegram.ui.xn xnVar) {
-        this.f29525e = chatAttachAlertPhotoLayout;
-        this.f29523b = i10;
-        this.f29526f = p2Var;
-        this.f29524c = arrayList;
+        this.f29503e = chatAttachAlertPhotoLayout;
+        this.f29501b = i10;
+        this.f29504f = p2Var;
+        this.f29502c = arrayList;
         this.d = i11;
         this.h = xnVar;
     }
 
-    public nj(q5.g0 g0Var, wh.e1 e1Var, int i10, org.telegram.ui.Cells.m9 m9Var, wh.h0 h0Var, int i11) {
-        this.f29525e = g0Var;
-        this.f29526f = e1Var;
-        this.f29523b = i10;
-        this.f29524c = m9Var;
+    public nj(q5.c0 c0Var, wh.e1 e1Var, int i10, org.telegram.ui.Cells.m9 m9Var, wh.h0 h0Var, int i11) {
+        this.f29503e = c0Var;
+        this.f29504f = e1Var;
+        this.f29501b = i10;
+        this.f29502c = m9Var;
         this.h = h0Var;
         this.d = i11;
     }

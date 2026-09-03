@@ -10,12 +10,12 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.s00;
 import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.tl0;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.jk;
 import org.telegram.ui.xn;
@@ -27,22 +27,22 @@ public final class z9 extends org.telegram.ui.Components.sa implements Notificat
     public final s00 X;
     public Runnable Y;
     public final TLRPC.InputPeer Z;
-    public final boolean f15159a0;
-    public x51 f15160b0;
-    public boolean f15161c0;
+    public final boolean f15161a0;
+    public w51 f15162b0;
+    public boolean f15163c0;
 
     public z9(android.content.Context r17, org.telegram.ui.ActionBar.g6 r18, long r19, int r21, java.lang.String r22, java.lang.Runnable r23, long r24) {
         throw new UnsupportedOperationException("Method not decompiled: mh.z9.<init>(android.content.Context, org.telegram.ui.ActionBar.g6, long, int, java.lang.String, java.lang.Runnable, long):void");
     }
 
     public static void P(z9 z9Var, int i10) {
-        j51 G;
-        x51 x51Var = z9Var.f15160b0;
-        if (x51Var != null && (G = x51Var.G(i10 - 1)) != null) {
-            x51 x51Var2 = z9Var.f15160b0;
+        h51 G;
+        w51 w51Var = z9Var.f15162b0;
+        if (w51Var != null && (G = w51Var.G(i10 - 1)) != null) {
+            w51 w51Var2 = z9Var.f15162b0;
             if (G.d == -1) {
-                z9Var.f15161c0 = !z9Var.f15161c0;
-                x51Var2.N(true);
+                z9Var.f15163c0 = !z9Var.f15163c0;
+                w51Var2.N(true);
             } else if (G.G(v9.class) && (G.G instanceof TL_stars.TL_starsTopupOption)) {
                 Activity findActivity = AndroidUtilities.findActivity(z9Var.getContext());
                 if (findActivity == null) {
@@ -55,10 +55,10 @@ public final class z9 extends org.telegram.ui.Components.sa implements Notificat
         }
     }
 
-    public static void Q(z9 z9Var, j51 j51Var, Boolean bool, String str) {
+    public static void Q(z9 z9Var, h51 h51Var, Boolean bool, String str) {
         if (z9Var.getContext() != null) {
             if (bool.booleanValue()) {
-                new qc((FrameLayout) z9Var.containerView, z9Var.resourcesProvider).M(LocaleController.getString(R.string.StarsAcquired), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsAcquiredInfo", (int) j51Var.B, new Object[0])), R.raw.stars_topup).j();
+                new qc((FrameLayout) z9Var.containerView, z9Var.resourcesProvider).M(LocaleController.getString(R.string.StarsAcquired), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsAcquiredInfo", (int) h51Var.B, new Object[0])), R.raw.stars_topup).j();
                 z9Var.X.c(true);
                 t7.y(z9Var.currentAccount, false).T(true);
             } else if (str != null) {
@@ -67,13 +67,13 @@ public final class z9 extends org.telegram.ui.Components.sa implements Notificat
         }
     }
 
-    public final void R(ArrayList arrayList, x51 x51Var) {
+    public final void R(ArrayList arrayList, w51 w51Var) {
         long j10;
         int i10;
         int i11;
         lg.a aVar = this.V;
-        arrayList.add(j51.l(aVar));
-        boolean z4 = this.f15159a0;
+        arrayList.add(h51.l(aVar));
+        boolean z4 = this.f15161a0;
         if (z4) {
             yh.r(R.string.TelegramStarsChoose, arrayList);
         }
@@ -94,7 +94,7 @@ public final class z9 extends org.telegram.ui.Components.sa implements Notificat
                     }
                     TL_stars.TL_starsTopupOption tL_starsTopupOption = (TL_stars.TL_starsTopupOption) z10.get(i13);
                     if (tL_starsTopupOption.stars >= j10) {
-                        if (tL_starsTopupOption.extended && !this.f15161c0 && z11) {
+                        if (tL_starsTopupOption.extended && !this.f15163c0 && z11) {
                             i15++;
                         } else {
                             arrayList.add(v9.a(i13, i16, tL_starsTopupOption));
@@ -107,7 +107,7 @@ public final class z9 extends org.telegram.ui.Components.sa implements Notificat
                 }
                 if (i14 < 3) {
                     arrayList.clear();
-                    arrayList.add(j51.k(aVar));
+                    arrayList.add(h51.k(aVar));
                     yh.r(R.string.TelegramStarsChoose, arrayList);
                     int i17 = 0;
                     for (int i18 = 0; i18 < z10.size(); i18++) {
@@ -124,7 +124,7 @@ public final class z9 extends org.telegram.ui.Components.sa implements Notificat
                             i12++;
                             i16++;
                         }
-                        boolean z12 = this.f15161c0;
+                        boolean z12 = this.f15163c0;
                         if (!z12 && i15 > 0) {
                             if (z12) {
                                 i11 = R.string.NotifyLessOptions;
@@ -132,19 +132,19 @@ public final class z9 extends org.telegram.ui.Components.sa implements Notificat
                                 i11 = R.string.NotifyMoreOptions;
                             }
                             String string = LocaleController.getString(i11);
-                            int i19 = p9.f14609a;
-                            j51 J = j51.J(p9.class);
+                            int i19 = p9.f14611a;
+                            h51 J = h51.J(p9.class);
                             J.d = -1;
-                            J.f28014l = string;
-                            J.f28009f = !this.f15161c0;
-                            J.f28019q = true;
+                            J.f27375l = string;
+                            J.f27370f = !this.f15163c0;
+                            J.f27380q = true;
                             arrayList.add(J);
                         }
                     } else {
-                        this.f15161c0 = true;
+                        this.f15163c0 = true;
                     }
                 } else if (i14 > 0) {
-                    boolean z13 = this.f15161c0;
+                    boolean z13 = this.f15163c0;
                     if (!z13 && i15 > 0) {
                         if (z13) {
                             i10 = R.string.NotifyLessOptions;
@@ -152,12 +152,12 @@ public final class z9 extends org.telegram.ui.Components.sa implements Notificat
                             i10 = R.string.NotifyMoreOptions;
                         }
                         String string2 = LocaleController.getString(i10);
-                        int i20 = p9.f14609a;
-                        j51 J2 = j51.J(p9.class);
+                        int i20 = p9.f14611a;
+                        h51 J2 = h51.J(p9.class);
                         J2.d = -1;
-                        J2.f28014l = string2;
-                        J2.f28009f = !this.f15161c0;
-                        J2.f28019q = true;
+                        J2.f27375l = string2;
+                        J2.f27370f = !this.f15163c0;
+                        J2.f27380q = true;
                         arrayList.add(J2);
                     }
                 } else {
@@ -168,21 +168,21 @@ public final class z9 extends org.telegram.ui.Components.sa implements Notificat
                     }
                 }
             } else {
-                arrayList.add(j51.n(31));
-                arrayList.add(j51.n(31));
-                arrayList.add(j51.n(31));
+                arrayList.add(h51.n(31));
+                arrayList.add(h51.n(31));
+                arrayList.add(h51.n(31));
             }
         }
-        arrayList.add(j51.k(this.W));
+        arrayList.add(h51.k(this.W));
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         Runnable runnable;
         if (i10 == NotificationCenter.starOptionsLoaded || i10 == NotificationCenter.starBalanceUpdated) {
-            x51 x51Var = this.f15160b0;
-            if (x51Var != null) {
-                x51Var.N(true);
+            w51 w51Var = this.f15162b0;
+            if (w51Var != null) {
+                w51Var.N(true);
             }
             long j10 = t7.y(this.currentAccount, false).p().amount;
             long j11 = this.U;
@@ -204,7 +204,7 @@ public final class z9 extends org.telegram.ui.Components.sa implements Notificat
         super.dismiss();
         lg.a aVar = this.V;
         if (aVar != null) {
-            ((gg.i) aVar.f12529b).setPaused(true);
+            ((gg.i) aVar.f12531b).setPaused(true);
         }
     }
 
@@ -218,7 +218,7 @@ public final class z9 extends org.telegram.ui.Components.sa implements Notificat
     @Override
     public final void show() {
         jk jkVar;
-        if (!this.f15159a0) {
+        if (!this.f15161a0) {
             l.d.v(R.string.PaymentInvoiceDisabledStarsText, new qc(org.telegram.ui.Components.cb.a(getContext()), this.resourcesProvider), R.raw.stars_topup, 36);
         } else if (t7.y(this.currentAccount, false).p().amount >= this.U) {
             Runnable runnable = this.Y;
@@ -241,10 +241,10 @@ public final class z9 extends org.telegram.ui.Components.sa implements Notificat
     }
 
     @Override
-    public final sl0 v(tl0 tl0Var) {
-        x51 x51Var = new x51(this.d, getContext(), this.currentAccount, 0, true, new eg.p1(this, 21), this.resourcesProvider);
-        this.f15160b0 = x51Var;
-        return x51Var;
+    public final rl0 v(sl0 sl0Var) {
+        w51 w51Var = new w51(this.d, getContext(), this.currentAccount, 0, true, new eg.p1(this, 21), this.resourcesProvider);
+        this.f15162b0 = w51Var;
+        return w51Var;
     }
 
     @Override

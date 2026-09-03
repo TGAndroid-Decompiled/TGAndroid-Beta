@@ -44,7 +44,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.j90;
 import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.sl0;
 import v0.i;
 import v0.o;
 import w0.h;
@@ -167,7 +167,7 @@ public final class e implements Runnable {
                 return;
             case 14:
                 Callable callable = (Callable) this.f41b;
-                d9.i iVar2 = (d9.i) ((y5.h) this.f42c).f50777b;
+                d9.i iVar2 = (d9.i) ((y5.h) this.f42c).f50813b;
                 try {
                     iVar2.k(callable.call());
                     return;
@@ -179,7 +179,7 @@ public final class e implements Runnable {
                 c1 c1Var = (c1) this.f41b;
                 c1Var.v = true;
                 RectF f10 = c1Var.f();
-                Object obj = c1Var.f4451a.f16615b;
+                Object obj = c1Var.f4451a.f16617b;
                 c1Var.f4470w = new e0((ByteBuffer) c1Var.h(c1Var.f(), true, false, false).f1936c, 0, f10);
                 c1Var.a(false);
                 ((j1) this.f42c).run();
@@ -230,7 +230,7 @@ public final class e implements Runnable {
                     o3Var.V.setScaleX(0.3f);
                     o3Var.V.setScaleY(0.3f);
                     o3Var.V.setAlpha(0.0f);
-                    o3Var.V.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).setInterpolator(pr.f30183f).start();
+                    o3Var.V.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).setInterpolator(pr.f30168f).start();
                     return;
                 }
                 return;
@@ -245,7 +245,7 @@ public final class e implements Runnable {
                 v0 v0Var = (v0) this.f41b;
                 TLObject tLObject = (TLObject) this.f42c;
                 ArrayList arrayList = v0Var.f6586f0;
-                tl0 tl0Var = v0Var.d;
+                sl0 sl0Var = v0Var.d;
                 if (tLObject != null) {
                     arrayList.clear();
                     arrayList.addAll(((TLRPC.TL_messages_chats) tLObject).chats);
@@ -253,9 +253,9 @@ public final class e implements Runnable {
                     v0Var.G0.b(v0Var.f6591k0 + 4);
                     int i12 = 0;
                     while (true) {
-                        if (i12 < tl0Var.getChildCount()) {
-                            if (tl0Var.getChildAt(i12) instanceof u0) {
-                                i10 = tl0Var.getChildAt(i12).getTop();
+                        if (i12 < sl0Var.getChildCount()) {
+                            if (sl0Var.getChildAt(i12) instanceof u0) {
+                                i10 = sl0Var.getChildAt(i12).getTop();
                             } else {
                                 i12++;
                             }
@@ -265,7 +265,7 @@ public final class e implements Runnable {
                     }
                     v0Var.M1();
                     if (v0Var.f6589i0 >= 0 && i10 != 0) {
-                        ((j0) tl0Var.getLayoutManager()).h1(v0Var.f6589i0 + 1, i10);
+                        ((j0) sl0Var.getLayoutManager()).h1(v0Var.f6589i0 + 1, i10);
                     }
                 }
                 int max = Math.max(arrayList.size(), v0Var.J0.f848b);
@@ -309,7 +309,7 @@ public final class e implements Runnable {
                             i13++;
                             gf.d dVar = (gf.d) obj2;
                             if (dVar.f7034b != null && (document = dVar.f7033a) != null) {
-                                hashMap.put(Long.valueOf(document.f20849id), dVar.f7034b);
+                                hashMap.put(Long.valueOf(document.f20851id), dVar.f7034b);
                             }
                         }
                         arrayList3.clear();
@@ -319,7 +319,7 @@ public final class e implements Runnable {
                         edit.putInt("count", arrayList2.size());
                         for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                             TLRPC.Document document2 = arrayList2.get(i14);
-                            String str = (String) hashMap.get(Long.valueOf(document2.f20849id));
+                            String str = (String) hashMap.get(Long.valueOf(document2.f20851id));
                             SerializedData serializedData = new SerializedData(document2.getObjectSize());
                             document2.serializeToStream(serializedData);
                             edit.putString("tone_document" + i14, Utilities.bytesToHex(serializedData.toByteArray()));

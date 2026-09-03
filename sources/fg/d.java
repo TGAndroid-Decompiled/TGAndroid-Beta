@@ -16,9 +16,9 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.s3;
 import org.telegram.ui.Components.Premium.LimitPreviewView;
-import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.yh;
-public final class d extends sl0 {
+public final class d extends rl0 {
     public final g6 f6262c;
     public final int d;
     public final int f6263e;
@@ -85,7 +85,7 @@ public final class d extends sl0 {
             fVar.a((e) arrayList.get(i11));
             LimitPreviewView limitPreviewView = fVar.f6312c;
             limitPreviewView.C = ((e) arrayList.get(i11)).f6302e;
-            limitPreviewView.f24948c = this.f6265n;
+            limitPreviewView.f24950c = this.f6265n;
         }
     }
 

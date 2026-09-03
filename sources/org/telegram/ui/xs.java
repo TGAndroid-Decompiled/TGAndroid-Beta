@@ -19,22 +19,22 @@ public final class xs extends uf.d {
         boolean z4 = false;
         X(false);
         ContactsActivity contactsActivity = this.I;
-        org.telegram.ui.Components.tl0 tl0Var = contactsActivity.f34060f;
-        if (tl0Var != null && tl0Var.getAdapter() == this) {
+        org.telegram.ui.Components.sl0 sl0Var = contactsActivity.f34060f;
+        if (sl0Var != null && sl0Var.getAdapter() == this) {
             int h = h();
             if (contactsActivity.E) {
-                org.telegram.ui.Components.tl0 tl0Var2 = contactsActivity.f34060f;
+                org.telegram.ui.Components.sl0 sl0Var2 = contactsActivity.f34060f;
                 if (h != 2) {
                     z4 = true;
                 }
-                tl0Var2.setFastScrollVisible(z4);
+                sl0Var2.setFastScrollVisible(z4);
                 return;
             }
-            org.telegram.ui.Components.tl0 tl0Var3 = contactsActivity.f34060f;
+            org.telegram.ui.Components.sl0 sl0Var3 = contactsActivity.f34060f;
             if (h != 0) {
                 z4 = true;
             }
-            tl0Var3.setFastScrollVisible(z4);
+            sl0Var3.setFastScrollVisible(z4);
         }
     }
 }

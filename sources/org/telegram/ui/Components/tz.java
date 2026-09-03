@@ -4,25 +4,25 @@ import android.graphics.Point;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class tz implements Runnable {
-    public final int f31487a;
-    public final xz f31488b;
-    public final int f31489c;
+    public final int f31445a;
+    public final xz f31446b;
+    public final int f31447c;
     public final int d;
 
     public tz(xz xzVar, int i10, int i11, int i12) {
-        this.f31487a = i12;
-        this.f31488b = xzVar;
-        this.f31489c = i10;
+        this.f31445a = i12;
+        this.f31446b = xzVar;
+        this.f31447c = i10;
         this.d = i11;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f31487a) {
+        switch (this.f31445a) {
             case 0:
-                xz xzVar = this.f31488b;
-                int i11 = this.f31489c;
+                xz xzVar = this.f31446b;
+                int i11 = this.f31447c;
                 int i12 = this.d;
                 if (xzVar.T != i11 || xzVar.U != i12) {
                     xzVar.T = i11;
@@ -54,24 +54,24 @@ public final class tz implements Runnable {
                     }
                     xzVar.W = false;
                     xzVar.g();
-                    xzVar.f33213a0.run();
+                    xzVar.f33251a0.run();
                     return;
                 }
                 return;
             case 1:
-                xz xzVar2 = this.f31488b;
-                int i16 = this.f31489c;
+                xz xzVar2 = this.f31446b;
+                int i16 = this.f31447c;
                 int i17 = this.d;
-                xzVar2.f33218n = i16;
-                xzVar2.f33219r = i17;
+                xzVar2.f33256n = i16;
+                xzVar2.f33257r = i17;
                 return;
             default:
-                xz xzVar3 = this.f31488b;
-                int i18 = this.f31489c;
+                xz xzVar3 = this.f31446b;
+                int i18 = this.f31447c;
                 int i19 = this.d;
                 ha haVar = xzVar3.F;
-                haVar.f27436l = i18;
-                haVar.f27437m = i19;
+                haVar.f27453l = i18;
+                haVar.f27454m = i19;
                 return;
         }
     }

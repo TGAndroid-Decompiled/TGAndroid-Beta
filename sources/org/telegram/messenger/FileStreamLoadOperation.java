@@ -39,7 +39,7 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
     }
 
     private int getCurrentPriority() {
-        Integer num = (Integer) ConcurrentMap$EL.getOrDefault(priorityMap, Long.valueOf(this.document.f20849id), null);
+        Integer num = (Integer) ConcurrentMap$EL.getOrDefault(priorityMap, Long.valueOf(this.document.f20851id), null);
         if (num != null) {
             return num.intValue();
         }
@@ -48,7 +48,7 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
 
     public static int getStreamPrioriy(TLRPC.Document document) {
         Integer num;
-        if (document == null || (num = priorityMap.get(Long.valueOf(document.f20849id))) == null) {
+        if (document == null || (num = priorityMap.get(Long.valueOf(document.f20851id))) == null) {
             return 3;
         }
         return num.intValue();
@@ -64,7 +64,7 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
             StringBuilder sb = new StringBuilder("?account=");
             sb.append(i10);
             sb.append("&id=");
-            sb.append(document.f20849id);
+            sb.append(document.f20851id);
             sb.append("&hash=");
             sb.append(document.access_hash);
             sb.append("&dc=");
@@ -93,7 +93,7 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
 
     public static void setPriorityForDocument(TLRPC.Document document, int i10) {
         if (document != null) {
-            priorityMap.put(Long.valueOf(document.f20849id), Integer.valueOf(i10));
+            priorityMap.put(Long.valueOf(document.f20851id), Integer.valueOf(i10));
         }
     }
 
@@ -129,7 +129,7 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
 
     @Override
     public void close() {
-        FileLog.e("FileStreamLoadOperation " + this.document.f20849id + " close me=" + this);
+        FileLog.e("FileStreamLoadOperation " + this.document.f20851id + " close me=" + this);
         FileLoadOperation fileLoadOperation = this.loadOperation;
         if (fileLoadOperation != null) {
             fileLoadOperation.removeStreamListener(this);
@@ -144,7 +144,7 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
             this.file = null;
         }
         this.uri = null;
-        allStreams.remove(Long.valueOf(this.document.f20849id));
+        allStreams.remove(Long.valueOf(this.document.f20851id));
         if (this.opened) {
             this.opened = false;
             transferEnded();
@@ -187,7 +187,7 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
         TLRPC.TL_document tL_document = new TLRPC.TL_document();
         this.document = tL_document;
         tL_document.access_hash = Utilities.parseLong(this.uri.getQueryParameter("hash")).longValue();
-        this.document.f20849id = Utilities.parseLong(this.uri.getQueryParameter("id")).longValue();
+        this.document.f20851id = Utilities.parseLong(this.uri.getQueryParameter("id")).longValue();
         this.document.size = Utilities.parseLong(this.uri.getQueryParameter("size")).longValue();
         this.document.dc_id = Utilities.parseInt((CharSequence) this.uri.getQueryParameter("dc")).intValue();
         this.document.mime_type = this.uri.getQueryParameter("mime");
@@ -200,7 +200,7 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
         } else if (this.document.mime_type.startsWith("audio")) {
             this.document.attributes.add(new TLRPC.TL_documentAttributeAudio());
         }
-        allStreams.put(Long.valueOf(this.document.f20849id), this);
+        allStreams.put(Long.valueOf(this.document.f20851id), this);
         this.currentOffset = j10;
         this.requestedLength = pVar.f6889f;
         this.loadOperation = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, null, this.parentObject, this.currentOffset, false, getCurrentPriority());
@@ -235,8 +235,8 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
                 }
             }
         }
-        FileLog.e("FileStreamLoadOperation " + this.document.f20849id + " open operation=" + this.loadOperation + " currentFile=" + this.currentFile + " file=" + this.file + " bytesRemaining=" + this.bytesRemaining + " me=" + this);
-        FileLog.e("FileStreamLoadOperation " + this.document.f20849id + " " + MessageObject.getVideoWidth(this.document) + "x" + MessageObject.getVideoWidth(this.document) + " mime_type=" + this.document.mime_type + " codec=" + MessageObject.getVideoCodec(this.document) + " size=" + this.document.size);
+        FileLog.e("FileStreamLoadOperation " + this.document.f20851id + " open operation=" + this.loadOperation + " currentFile=" + this.currentFile + " file=" + this.file + " bytesRemaining=" + this.bytesRemaining + " me=" + this);
+        FileLog.e("FileStreamLoadOperation " + this.document.f20851id + " " + MessageObject.getVideoWidth(this.document) + "x" + MessageObject.getVideoWidth(this.document) + " mime_type=" + this.document.mime_type + " codec=" + MessageObject.getVideoCodec(this.document) + " size=" + this.document.size);
         return this.bytesRemaining;
     }
 

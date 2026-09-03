@@ -88,7 +88,7 @@ public final class f implements Comparator {
                 } else {
                     h0Var = p.f6053l;
                 }
-                return s8.p.f47127a.b(valueOf, valueOf2, h0Var).b(Integer.valueOf(oVar.f6048s), Integer.valueOf(oVar2.f6048s), a2).b(Integer.valueOf(i12), Integer.valueOf(oVar2.f6047r), a2).e();
+                return s8.p.f47158a.b(valueOf, valueOf2, h0Var).b(Integer.valueOf(oVar.f6048s), Integer.valueOf(oVar2.f6048s), a2).b(Integer.valueOf(i12), Integer.valueOf(oVar2.f6047r), a2).e();
             case 10:
                 return (int) ((((h2) obj).f6327a * 100.0f) - (((h2) obj2).f6327a * 100.0f));
             case 11:
@@ -132,12 +132,12 @@ public final class f implements Comparator {
                 return ((File) obj2).getName().compareTo(((File) obj).getName());
             case 22:
                 String name = ((File) obj).getName();
-                int i13 = n9.a.f15865f;
+                int i13 = n9.a.f15867f;
                 return name.substring(0, i13).compareTo(((File) obj2).getName().substring(0, i13));
             case 23:
                 return (int) (r0.k((TLObject) obj) - r0.k((TLObject) obj2));
             case 24:
-                int i14 = (((nh.a) obj2).f16245c > ((nh.a) obj).f16245c ? 1 : (((nh.a) obj2).f16245c == ((nh.a) obj).f16245c ? 0 : -1));
+                int i14 = (((nh.a) obj2).f16247c > ((nh.a) obj).f16247c ? 1 : (((nh.a) obj2).f16247c == ((nh.a) obj).f16247c ? 0 : -1));
                 if (i14 > 0) {
                     return 1;
                 }
@@ -160,13 +160,13 @@ public final class f implements Comparator {
                 }
                 return 0;
             case 26:
-                i10 = ((oh.o) obj2).f17517b;
-                i11 = ((oh.o) obj).f17517b;
+                i10 = ((oh.o) obj2).f17519b;
+                i11 = ((oh.o) obj).f17519b;
                 break;
             case 27:
             default:
-                i10 = ((u0) obj2).f17800c;
-                i11 = ((u0) obj).f17800c;
+                i10 = ((u0) obj2).f17802c;
+                i11 = ((u0) obj).f17802c;
                 break;
             case 28:
                 return (int) (((TL_phone.groupCallDonor) obj2).stars - ((TL_phone.groupCallDonor) obj).stars);

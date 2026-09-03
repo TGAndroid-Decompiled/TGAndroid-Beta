@@ -24,7 +24,7 @@ import org.telegram.ui.Components.cb;
 import org.telegram.ui.Components.ei;
 import org.telegram.ui.Components.mi;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.m31;
+import org.telegram.ui.q31;
 import org.telegram.ui.xn;
 public final class n3 extends ei implements NotificationCenter.NotificationCenterDelegate {
     public long B;
@@ -46,17 +46,17 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
     public f3 R;
     public boolean S;
     public int T;
-    public i3 f47542n;
-    public ValueAnimator f47543r;
-    public boolean f47544s;
+    public i3 f47578n;
+    public ValueAnimator f47579r;
+    public boolean f47580s;
     public long v;
-    public long f47545w;
-    public long f47546x;
-    public int f47547y;
+    public long f47581w;
+    public long f47582x;
+    public int f47583y;
 
     @Override
     public final void D(ei eiVar) {
-        i3 i3Var = this.f47542n;
+        i3 i3Var = this.f47578n;
         CharSequence userName = UserObject.getUserName(MessagesController.getInstance(this.C).getUser(Long.valueOf(this.v)));
         try {
             TextPaint textPaint = new TextPaint();
@@ -64,13 +64,13 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
             userName = Emoji.replaceEmoji(userName, textPaint.getFontMetricsInt(), false);
         } catch (Exception unused) {
         }
-        mi miVar = this.f26546b;
+        mi miVar = this.f26590b;
         miVar.U0.setTitle(userName);
         this.G.setSwipeOffsetY(0.0f);
         if (i3Var.getWebView() != null) {
             i3Var.getWebView().scrollTo(0, 0);
         }
-        org.telegram.ui.ActionBar.p2 p2Var = miVar.f29040c0;
+        org.telegram.ui.ActionBar.p2 p2Var = miVar.f29058c0;
         if (p2Var != null) {
             i3Var.setParentActivity(p2Var.getParentActivity());
         }
@@ -82,7 +82,7 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
 
     @Override
     public final void E() {
-        if (this.f47542n.K) {
+        if (this.f47578n.K) {
             K();
         }
         this.G.setSwipeOffsetAnimationDisallowed(false);
@@ -105,24 +105,24 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
                 str = null;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
-            alertDialog$Builder.f21166a.O = str;
-            alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved);
+            alertDialog$Builder.f21168a.O = str;
+            alertDialog$Builder.f21168a.Q = LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved);
             alertDialog$Builder.k(LocaleController.getString(R.string.BotWebViewCloseAnyway), new h3(this));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21168a;
             d2Var.show();
-            ((TextView) d2Var.d(-1)).setTextColor(k6.v0(k6.f21895q7, this.f26545a));
+            ((TextView) d2Var.d(-1)).setTextColor(k6.v0(k6.f21897q7, this.f26589a));
             return false;
         }
-        this.f26546b.dismiss();
+        this.f26590b.dismiss();
         return true;
     }
 
     public final void K() {
-        mi miVar = this.f26546b;
-        org.telegram.ui.ActionBar.p2 p2Var = miVar.f29040c0;
+        mi miVar = this.f26590b;
+        org.telegram.ui.ActionBar.p2 p2Var = miVar.f29058c0;
         if ((p2Var instanceof xn) && ((xn) p2Var).U0.R() > AndroidUtilities.dp(20.0f)) {
-            AndroidUtilities.hideKeyboard(miVar.f29040c0.getFragmentView());
+            AndroidUtilities.hideKeyboard(miVar.f29058c0.getFragmentView());
             AndroidUtilities.runOnUIThread(new f3(this, 1), 250L);
             return;
         }
@@ -133,15 +133,15 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        i3 i3Var = this.f47542n;
+        i3 i3Var = this.f47578n;
         if (i10 == NotificationCenter.webViewResultSent) {
-            if (this.f47546x == ((Long) objArr[0]).longValue()) {
+            if (this.f47582x == ((Long) objArr[0]).longValue()) {
                 i3Var.h();
                 this.E = true;
-                this.f26546b.dismiss();
+                this.f26590b.dismiss();
             }
         } else if (i10 == NotificationCenter.didSetNewTheme) {
-            i3Var.f42482n.b(k6.v0(k6.f21731h5, this.f26545a), 153);
+            i3Var.f42446n.b(k6.v0(k6.f21733h5, this.f26589a), 153);
         }
     }
 
@@ -191,7 +191,7 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
     }
 
     public org.telegram.ui.web.a1 getWebViewContainer() {
-        return this.f47542n;
+        return this.f47578n;
     }
 
     @Override
@@ -201,7 +201,7 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
 
     @Override
     public final boolean i() {
-        if (this.f47542n.z()) {
+        if (this.f47578n.z()) {
             return true;
         }
         J();
@@ -212,14 +212,14 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
     public final void m() {
         NotificationCenter.getInstance(this.C).removeObserver(this, NotificationCenter.webViewResultSent);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewTheme);
-        org.telegram.ui.ActionBar.z n10 = this.f26546b.U0.n();
+        org.telegram.ui.ActionBar.z n10 = this.f26590b.U0.n();
         org.telegram.ui.ActionBar.w0 w0Var = this.H;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = w0Var.f22344b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = w0Var.f22346b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.d();
         }
         n10.removeView(w0Var);
-        this.f47542n.h();
+        this.f47578n.h();
         this.Q = true;
         AndroidUtilities.cancelRunOnUIThread(this.R);
     }
@@ -241,7 +241,7 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
 
     @Override
     public final void q() {
-        mi miVar = this.f26546b;
+        mi miVar = this.f26590b;
         miVar.setFocusable(false);
         miVar.getWindow().setSoftInputMode(48);
     }
@@ -250,9 +250,9 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
     public final void r() {
         this.H.setVisibility(8);
         this.M = false;
-        i3 i3Var = this.f47542n;
+        i3 i3Var = this.f47578n;
         boolean z4 = i3Var.O;
-        mi miVar = this.f26546b;
+        mi miVar = this.f26590b;
         if (!z4) {
             AndroidUtilities.updateImageViewImageAnimated(miVar.U0.getBackButton(), R.drawable.ic_ab_back);
         }
@@ -265,7 +265,7 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
 
     @Override
     public final void requestLayout() {
-        if (this.f47544s) {
+        if (this.f47580s) {
             return;
         }
         super.requestLayout();
@@ -286,7 +286,7 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
     }
 
     public void setDelegate(org.telegram.ui.web.f0 f0Var) {
-        this.f47542n.setDelegate(f0Var);
+        this.f47578n.setDelegate(f0Var);
     }
 
     public void setMeasureOffsetY(int i10) {
@@ -301,13 +301,13 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f26546b.getSheetContainer().invalidate();
+        this.f26590b.getSheetContainer().invalidate();
     }
 
     @Override
     public final void t(int i10) {
         j3 j3Var = this.F;
-        i3 i3Var = this.f47542n;
+        i3 i3Var = this.f47578n;
         if (i10 == -1) {
             if (!i3Var.z()) {
                 J();
@@ -316,11 +316,11 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
             return;
         }
         int i11 = R.id.menu_open_bot;
-        mi miVar = this.f26546b;
+        mi miVar = this.f26590b;
         if (i10 == i11) {
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", this.v);
-            miVar.f29040c0.presentFragment(new xn(bundle));
+            miVar.f29058c0.presentFragment(new xn(bundle));
             miVar.dismiss();
             return;
         }
@@ -359,10 +359,10 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
         } else if (i10 == R.id.menu_report_bot) {
             int i13 = this.C;
             Context context = getContext();
-            qc qcVar = new qc(cb.a(getContext()), this.f26545a);
+            qc qcVar = new qc(cb.a(getContext()), this.f26589a);
             long j10 = this.v;
-            int i14 = m31.v;
-            m31.J(i13, context, j10, false, false, new ArrayList(), qcVar, null, new byte[0], null, null);
+            int i14 = q31.v;
+            q31.J(i13, context, j10, false, false, new ArrayList(), qcVar, null, new byte[0], null, null);
         }
     }
 
@@ -370,14 +370,14 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
     public final void v() {
         this.L = false;
         this.G.setSwipeOffsetAnimationDisallowed(false);
-        this.f47542n.setViewPortByMeasureSuppressed(false);
+        this.f47578n.setViewPortByMeasureSuppressed(false);
         requestLayout();
     }
 
     @Override
     public final void w(int i10, boolean z4) {
         boolean z10;
-        i3 i3Var = this.f47542n;
+        i3 i3Var = this.f47578n;
         g2 g2Var = this.G;
         if (z4) {
             i3Var.setViewPortByMeasureSuppressed(true);
@@ -388,25 +388,25 @@ public final class n3 extends ei implements NotificationCenter.NotificationCente
             } else {
                 z10 = false;
             }
-            int R = this.f26546b.f29078o1.R() + i10;
+            int R = this.f26590b.f29096o1.R() + i10;
             setMeasuredDimension(getMeasuredWidth(), i10);
             this.L = true;
             g2Var.setSwipeOffsetAnimationDisallowed(true);
             if (!z10) {
-                ValueAnimator valueAnimator = this.f47543r;
+                ValueAnimator valueAnimator = this.f47579r;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
-                    this.f47543r = null;
+                    this.f47579r = null;
                 }
                 if (i3Var.getWebView() != null) {
                     int scrollY = i3Var.getWebView().getScrollY();
                     int i11 = (R - i10) + scrollY;
                     ValueAnimator duration = ValueAnimator.ofInt(scrollY, i11).setDuration(250L);
-                    this.f47543r = duration;
+                    this.f47579r = duration;
                     duration.setInterpolator(xh.n.V);
-                    this.f47543r.addUpdateListener(new g3(this, 1));
-                    this.f47543r.addListener(new b4(this, i11, 10));
-                    this.f47543r.start();
+                    this.f47579r.addUpdateListener(new g3(this, 1));
+                    this.f47579r.addListener(new b4(this, i11, 10));
+                    this.f47579r.start();
                 }
             }
         }

@@ -14,11 +14,11 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_chatlists;
-public final class yz extends org.telegram.ui.Components.sl0 {
-    public final zz f43741c;
+public final class yz extends org.telegram.ui.Components.rl0 {
+    public final zz f43740c;
 
     public yz(zz zzVar) {
-        this.f43741c = zzVar;
+        this.f43740c = zzVar;
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class yz extends org.telegram.ui.Components.sl0 {
 
     @Override
     public final int h() {
-        return this.f43741c.E;
+        return this.f43740c.E;
     }
 
     @Override
@@ -39,7 +39,7 @@ public final class yz extends org.telegram.ui.Components.sl0 {
         if (i10 == 0) {
             return 0;
         }
-        zz zzVar = this.f43741c;
+        zz zzVar = this.f43740c;
         if (i10 != zzVar.L && i10 != zzVar.H) {
             if (i10 == zzVar.F) {
                 return 3;
@@ -63,8 +63,8 @@ public final class yz extends org.telegram.ui.Components.sl0 {
         String str3;
         float f10;
         int i11;
-        zz zzVar = this.f43741c;
-        ArrayList arrayList = zzVar.f44023f;
+        zz zzVar = this.f43740c;
+        ArrayList arrayList = zzVar.f44052f;
         TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite = zzVar.d;
         int i12 = m1Var.f5879f;
         View view = m1Var.f5875a;
@@ -79,7 +79,7 @@ public final class yz extends org.telegram.ui.Components.sl0 {
             } else {
                 i11 = R.drawable.greydivider;
             }
-            a9Var.setBackground(org.telegram.ui.ActionBar.k6.V0(parentActivity, i11, org.telegram.ui.ActionBar.k6.f21624b7));
+            a9Var.setBackground(org.telegram.ui.ActionBar.k6.V0(parentActivity, i11, org.telegram.ui.ActionBar.k6.f21626b7));
             if (i10 == zzVar.L) {
                 a9Var.setFixedSize(0);
                 if (tL_exportedChatlistInvite != null && !arrayList.isEmpty()) {
@@ -102,11 +102,11 @@ public final class yz extends org.telegram.ui.Components.sl0 {
                     str3 = tL_exportedChatlistInvite.url;
                 }
                 hg.q qVar = szVar.h;
-                org.telegram.ui.ActionBar.l5 l5Var = szVar.f41397c;
-                TextView textView = szVar.f41400n;
+                org.telegram.ui.ActionBar.l5 l5Var = szVar.f41334c;
+                TextView textView = szVar.f41337n;
                 ImageView imageView = szVar.d;
-                hg.q qVar2 = szVar.f41399f;
-                szVar.f41402s = str3;
+                hg.q qVar2 = szVar.f41336f;
+                szVar.f41339s = str3;
                 if (str3 != null) {
                     if (str3.startsWith("http://")) {
                         str3 = str3.substring(7);
@@ -121,10 +121,10 @@ public final class yz extends org.telegram.ui.Components.sl0 {
                     i13 = 0;
                 }
                 if (f11 != i13) {
-                    ValueAnimator valueAnimator = szVar.f41403w;
+                    ValueAnimator valueAnimator = szVar.f41340w;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
-                        szVar.f41403w = null;
+                        szVar.f41340w = null;
                     }
                     if (str3 != null) {
                         f10 = 1.0f;
@@ -132,15 +132,15 @@ public final class yz extends org.telegram.ui.Components.sl0 {
                         f10 = 0.0f;
                     }
                     szVar.v = f10;
-                    rz rzVar = szVar.f41398e;
-                    rzVar.f41076b = f10;
+                    rz rzVar = szVar.f41335e;
+                    rzVar.f40965b = f10;
                     rzVar.invalidate();
                     qVar2.setAlpha(szVar.v);
                     szVar.h.setAlpha(szVar.v);
                     imageView.setAlpha(szVar.v);
                     textView.setAlpha(1.0f - szVar.v);
                     l5Var.setAlpha(szVar.v);
-                    szVar.f41396b.setAlpha(1.0f - szVar.v);
+                    szVar.f41333b.setAlpha(1.0f - szVar.v);
                     if (str3 == null) {
                         textView.setVisibility(0);
                         imageView.setVisibility(8);
@@ -191,7 +191,7 @@ public final class yz extends org.telegram.ui.Components.sl0 {
                 }
                 if (arrayList.contains(l10)) {
                     g4Var.setForbiddenCheck(false);
-                    g4Var.c(zzVar.f44022e.contains(l10), false);
+                    g4Var.c(zzVar.f44051e.contains(l10), false);
                 } else {
                     g4Var.setForbiddenCheck(true);
                     g4Var.c(false, false);
@@ -236,7 +236,7 @@ public final class yz extends org.telegram.ui.Components.sl0 {
     public final f2.m1 x(ViewGroup viewGroup, int i10) {
         View a10Var;
         View view;
-        zz zzVar = this.f43741c;
+        zz zzVar = this.f43740c;
         View view2 = null;
         if (i10 == 0) {
             Activity parentActivity = zzVar.getParentActivity();
@@ -249,7 +249,7 @@ public final class yz extends org.telegram.ui.Components.sl0 {
             imageView.setImportantForAccessibility(2);
             frameLayout.addView(imageView, k7.c6.d(90, 90.0f, 49, 0.0f, 14.0f, 0.0f, 0.0f));
             jh.s sVar = new jh.s(parentActivity);
-            frameLayout.f40310a = sVar;
+            frameLayout.f40281a = sVar;
             sVar.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.B6, false));
             sVar.setTextSize(1, 14.0f);
             sVar.setGravity(17);
@@ -263,14 +263,14 @@ public final class yz extends org.telegram.ui.Components.sl0 {
                 if (i10 == 3) {
                     a10Var = new xz(this, zzVar.getParentActivity(), zzVar);
                     a10Var.setLayoutParams(new f2.x0(-1, -2));
-                    a10Var.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21659d6, false));
+                    a10Var.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21661d6, false));
                 } else if (i10 == 4) {
                     View g4Var = new org.telegram.ui.Cells.g4(zzVar.getParentActivity(), 1, 0, false);
-                    g4Var.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21659d6, false));
+                    g4Var.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21661d6, false));
                     view = g4Var;
                 } else if (i10 == 5) {
                     a10Var = new org.telegram.ui.Components.a10(zzVar.getParentActivity());
-                    a10Var.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21659d6, false));
+                    a10Var.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21661d6, false));
                 }
                 view2 = a10Var;
             }

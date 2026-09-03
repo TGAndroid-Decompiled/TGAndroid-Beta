@@ -14,7 +14,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class j4 extends org.telegram.ui.Components.sl0 {
+public final class j4 extends org.telegram.ui.Components.rl0 {
     public TLRPC.WebPage B;
     public TL_iv.pageBlockChannel C;
     public boolean D;
@@ -22,23 +22,23 @@ public final class j4 extends org.telegram.ui.Components.sl0 {
     public int[] F;
     public int G;
     public final l4 I;
-    public final Context f38008c;
+    public final Context f37835c;
     public final ArrayList d = new ArrayList();
-    public final ArrayList f38009e = new ArrayList();
-    public final ArrayList f38010f = new ArrayList();
+    public final ArrayList f37836e = new ArrayList();
+    public final ArrayList f37837f = new ArrayList();
     public final HashMap h = new HashMap();
-    public final HashMap f38011n = new HashMap();
-    public final HashMap f38012r = new HashMap();
-    public final HashMap f38013s = new HashMap();
+    public final HashMap f37838n = new HashMap();
+    public final HashMap f37839r = new HashMap();
+    public final HashMap f37840s = new HashMap();
     public final ArrayList v = new ArrayList();
-    public final HashMap f38014w = new HashMap();
-    public final ArrayList f38015x = new ArrayList();
-    public final HashMap f38016y = new HashMap();
-    public final tt0 H = new tt0(this, 11);
+    public final HashMap f37841w = new HashMap();
+    public final ArrayList f37842x = new ArrayList();
+    public final HashMap f37843y = new HashMap();
+    public final yt0 H = new yt0(this, 11);
 
     public j4(l4 l4Var, Context context, boolean z4) {
         this.I = l4Var;
-        this.f38008c = context;
+        this.f37835c = context;
         this.E = z4;
     }
 
@@ -129,7 +129,7 @@ public final class j4 extends org.telegram.ui.Components.sl0 {
                 return 92;
             }
             if (pageBlock instanceof z3) {
-                return I(((z3) pageBlock).f43801b);
+                return I(((z3) pageBlock).f43783b);
             }
             if (pageBlock instanceof TL_iv.pageBlockCover) {
                 return I(((TL_iv.pageBlockCover) pageBlock).cover);
@@ -150,7 +150,7 @@ public final class j4 extends org.telegram.ui.Components.sl0 {
 
     public final void E(TL_iv.PageBlock pageBlock, j4 j4Var) {
         boolean z4 = pageBlock instanceof TL_iv.pageBlockPhoto;
-        ArrayList arrayList = this.f38010f;
+        ArrayList arrayList = this.f37837f;
         if (z4) {
             TL_iv.pageBlockPhoto pageblockphoto = (TL_iv.pageBlockPhoto) pageBlock;
             TLRPC.Photo e6 = i4.e(this.B, pageblockphoto.photo_id);
@@ -203,12 +203,12 @@ public final class j4 extends org.telegram.ui.Components.sl0 {
 
     public final void G(Object obj, TL_iv.PageBlock pageBlock) {
         if (!(obj instanceof TL_iv.textEmpty)) {
-            HashMap hashMap = this.f38014w;
+            HashMap hashMap = this.f37841w;
             if (hashMap.containsKey(obj)) {
                 return;
             }
             hashMap.put(obj, pageBlock);
-            this.f38015x.add(obj);
+            this.f37842x.add(obj);
         }
     }
 
@@ -217,13 +217,13 @@ public final class j4 extends org.telegram.ui.Components.sl0 {
     }
 
     public final boolean J(z3 z3Var) {
-        TL_iv.PageBlock z4 = l4.z(z3Var.f43800a);
+        TL_iv.PageBlock z4 = l4.z(z3Var.f43782a);
         if (z4 instanceof TL_iv.pageBlockDetails) {
             return ((TL_iv.pageBlockDetails) z4).open;
         }
         if (z4 instanceof z3) {
             z3 z3Var2 = (z3) z4;
-            TL_iv.PageBlock z10 = l4.z(z3Var2.f43801b);
+            TL_iv.PageBlock z10 = l4.z(z3Var2.f43783b);
             if (!(z10 instanceof TL_iv.pageBlockDetails) || ((TL_iv.pageBlockDetails) z10).open) {
                 return J(z3Var2);
             }
@@ -288,10 +288,10 @@ public final class j4 extends org.telegram.ui.Components.sl0 {
                 G(pageBlock9.caption.credit, pageBlock9);
             } else if (pageBlock instanceof b4) {
                 b4 b4Var = (b4) pageBlock;
-                TL_iv.RichText richText2 = b4Var.f35325e;
+                TL_iv.RichText richText2 = b4Var.f35345e;
                 if (richText2 != null) {
                     L(null, richText2);
-                    G(b4Var.f35325e, b4Var);
+                    G(b4Var.f35345e, b4Var);
                     return;
                 }
                 TL_iv.PageBlock pageBlock10 = b4Var.d;
@@ -300,10 +300,10 @@ public final class j4 extends org.telegram.ui.Components.sl0 {
                 }
             } else if (pageBlock instanceof d4) {
                 d4 d4Var = (d4) pageBlock;
-                TL_iv.RichText richText3 = d4Var.f35997e;
+                TL_iv.RichText richText3 = d4Var.f35974e;
                 if (richText3 != null) {
                     L(null, richText3);
-                    G(d4Var.f35997e, d4Var);
+                    G(d4Var.f35974e, d4Var);
                     return;
                 }
                 TL_iv.PageBlock pageBlock11 = d4Var.d;
@@ -438,10 +438,10 @@ public final class j4 extends org.telegram.ui.Components.sl0 {
                 TL_iv.textAnchor textanchor = (TL_iv.textAnchor) richText2;
                 L(richText2, textanchor.text);
                 String lowerCase = textanchor.name.toLowerCase();
-                this.h.put(lowerCase, Integer.valueOf(this.f38009e.size()));
+                this.h.put(lowerCase, Integer.valueOf(this.f37836e.size()));
                 TL_iv.RichText richText3 = textanchor.text;
                 boolean z4 = richText3 instanceof TL_iv.textPlain;
-                HashMap hashMap = this.f38012r;
+                HashMap hashMap = this.f37839r;
                 if (z4) {
                     if (!TextUtils.isEmpty(((TL_iv.textPlain) richText3).text)) {
                         hashMap.put(lowerCase, textanchor);
@@ -449,7 +449,7 @@ public final class j4 extends org.telegram.ui.Components.sl0 {
                 } else if (!(richText3 instanceof TL_iv.textEmpty)) {
                     hashMap.put(lowerCase, textanchor);
                 }
-                this.f38011n.put(lowerCase, -1);
+                this.f37838n.put(lowerCase, -1);
             }
         }
     }
@@ -457,7 +457,7 @@ public final class j4 extends org.telegram.ui.Components.sl0 {
     public final void M() {
         ArrayList arrayList = this.d;
         arrayList.clear();
-        ArrayList arrayList2 = this.f38009e;
+        ArrayList arrayList2 = this.f37836e;
         int size = arrayList2.size();
         for (int i10 = 0; i10 < size; i10++) {
             TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList2.get(i10);
@@ -570,7 +570,7 @@ public final class j4 extends org.telegram.ui.Components.sl0 {
     public final f2.m1 x(ViewGroup viewGroup, int i10) {
         TextView textView;
         View z2Var;
-        Context context = this.f38008c;
+        Context context = this.f37835c;
         if (i10 != 2147483646) {
             l4 l4Var = this.I;
             switch (i10) {
@@ -689,9 +689,9 @@ public final class j4 extends org.telegram.ui.Components.sl0 {
                     }
             }
         } else {
-            View jnVar = new org.telegram.ui.Components.jn(context, 5);
-            jnVar.setImportantForAccessibility(2);
-            textView = jnVar;
+            View inVar = new org.telegram.ui.Components.in(context, 5);
+            inVar.setImportantForAccessibility(2);
+            textView = inVar;
         }
         textView.setLayoutParams(new f2.x0(-1, -2));
         textView.setFocusable(true);
@@ -712,15 +712,15 @@ public final class j4 extends org.telegram.ui.Components.sl0 {
         } else {
             i10 = 0;
         }
-        l4 l4Var = s3Var.f41124e;
-        TextView textView = s3Var.f41121a;
-        TextView textView2 = s3Var.f41122b;
+        l4 l4Var = s3Var.f41005e;
+        TextView textView = s3Var.f41002a;
+        TextView textView2 = s3Var.f41003b;
         if (i10 == 0) {
-            s3Var.f41123c = false;
+            s3Var.f41004c = false;
             textView2.setVisibility(8);
             textView.setGravity(17);
         } else {
-            s3Var.f41123c = true;
+            s3Var.f41004c = true;
             textView2.setVisibility(0);
             textView.setGravity(21);
             textView2.setText(LocaleController.formatPluralStringComma("Views", i10));

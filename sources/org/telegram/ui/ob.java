@@ -7,42 +7,42 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 public final class ob extends f2.p0 {
-    public final Context f39699c;
+    public final Context f39635c;
     public int d;
-    public int f39700e;
-    public int f39701f;
+    public int f39636e;
+    public int f39637f;
     public int h;
-    public final sb f39702n;
+    public final sb f39638n;
 
     public ob(sb sbVar, Context context) {
-        this.f39702n = sbVar;
+        this.f39638n = sbVar;
         new ArrayList();
         new ArrayList();
-        this.f39699c = context;
+        this.f39635c = context;
         C(true);
     }
 
     public final void D(boolean z4) {
         this.d = 0;
-        sb sbVar = this.f39702n;
-        ArrayList arrayList = sbVar.f41204p0;
+        sb sbVar = this.f39638n;
+        ArrayList arrayList = sbVar.f41108p0;
         if (!arrayList.isEmpty()) {
-            if (!sbVar.f41207r0) {
+            if (!sbVar.f41111r0) {
                 int i10 = this.d;
                 this.d = i10 + 1;
-                this.f39700e = i10;
+                this.f39636e = i10;
             } else {
-                this.f39700e = -1;
+                this.f39636e = -1;
             }
             int i11 = this.d;
-            this.f39701f = i11;
+            this.f39637f = i11;
             int size = arrayList.size() + i11;
             this.d = size;
             this.h = size;
             return;
         }
-        this.f39700e = -1;
-        this.f39701f = -1;
+        this.f39636e = -1;
+        this.f39637f = -1;
         this.h = -1;
     }
 
@@ -53,10 +53,10 @@ public final class ob extends f2.p0 {
 
     @Override
     public final long i(int i10) {
-        if (i10 >= this.f39701f && i10 < this.h) {
-            ArrayList arrayList = this.f39702n.f41204p0;
-            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f39701f)) - 1)).stableId;
-        } else if (i10 == this.f39700e) {
+        if (i10 >= this.f39637f && i10 < this.h) {
+            ArrayList arrayList = this.f39638n.f41108p0;
+            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f39637f)) - 1)).stableId;
+        } else if (i10 == this.f39636e) {
             return 2L;
         } else {
             return 5L;
@@ -65,9 +65,9 @@ public final class ob extends f2.p0 {
 
     @Override
     public final int j(int i10) {
-        if (i10 >= this.f39701f && i10 < this.h) {
-            ArrayList arrayList = this.f39702n.f41204p0;
-            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f39701f)) - 1)).contentType;
+        if (i10 >= this.f39637f && i10 < this.h) {
+            ArrayList arrayList = this.f39638n.f41108p0;
+            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f39637f)) - 1)).contentType;
         }
         return 4;
     }
@@ -143,9 +143,9 @@ public final class ob extends f2.p0 {
         org.telegram.ui.Cells.u1 u1Var;
         int i11;
         View view;
-        sb sbVar = this.f39702n;
+        sb sbVar = this.f39638n;
         ArrayList arrayList = sbVar.v;
-        Context context = this.f39699c;
+        Context context = this.f39635c;
         if (i10 == 0) {
             if (arrayList.isEmpty()) {
                 i11 = ((org.telegram.ui.ActionBar.p2) sbVar).currentAccount;

@@ -69,20 +69,20 @@ public abstract class a implements uc.c, d, Serializable {
             if (i10 >= 0) {
                 i12 = eVar.l()[i10];
             }
-            x2 x2Var = f.f49491b;
-            x2 x2Var2 = f.f49490a;
+            x2 x2Var = f.f49527b;
+            x2 x2Var2 = f.f49526a;
             if (x2Var == null) {
                 try {
                     x2 x2Var3 = new x2(Class.class.getDeclaredMethod("getModule", null), getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", null), getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", null));
-                    f.f49491b = x2Var3;
+                    f.f49527b = x2Var3;
                     x2Var = x2Var3;
                 } catch (Exception unused2) {
-                    f.f49491b = x2Var2;
+                    f.f49527b = x2Var2;
                     x2Var = x2Var2;
                 }
             }
-            if (x2Var != x2Var2 && (method = x2Var.f13388a) != null && (invoke = method.invoke(getClass(), null)) != null && (method2 = x2Var.f13389b) != null && (invoke2 = method2.invoke(invoke, null)) != null) {
-                Method method3 = x2Var.f13390c;
+            if (x2Var != x2Var2 && (method = x2Var.f13390a) != null && (invoke = method.invoke(getClass(), null)) != null && (method2 = x2Var.f13391b) != null && (invoke2 = method2.invoke(invoke, null)) != null) {
+                Method method3 = x2Var.f13392c;
                 if (method3 != null) {
                     obj = method3.invoke(invoke2, null);
                 } else {
@@ -113,7 +113,7 @@ public abstract class a implements uc.c, d, Serializable {
             j.b(cVar2);
             try {
                 obj = aVar.invokeSuspend(obj);
-                if (obj == vc.a.f48962a) {
+                if (obj == vc.a.f48998a) {
                     return;
                 }
             } catch (Throwable th2) {

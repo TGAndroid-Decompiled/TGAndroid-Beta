@@ -20,13 +20,13 @@ public final class yp extends NestedScrollView {
         int i10;
         int i11;
         cq cqVar = this.U;
-        int i12 = cqVar.f26072f;
+        int i12 = cqVar.f26027f;
         i10 = ((org.telegram.ui.ActionBar.h3) cqVar).backgroundPaddingTop;
         int scrollY = (int) ((getScrollY() + (i12 - i10)) - getTranslationY());
-        Drawable drawable = cqVar.f26069b;
+        Drawable drawable = cqVar.f26024b;
         int measuredWidth = getMeasuredWidth();
         i11 = ((org.telegram.ui.ActionBar.h3) cqVar).backgroundPaddingTop;
-        drawable.setBounds(0, scrollY, measuredWidth, AndroidUtilities.dp(19.0f) + i11 + cqVar.f26070c.getMeasuredHeight() + scrollY);
+        drawable.setBounds(0, scrollY, measuredWidth, AndroidUtilities.dp(19.0f) + i11 + cqVar.f26025c.getMeasuredHeight() + scrollY);
         drawable.draw(canvas);
     }
 
@@ -34,7 +34,7 @@ public final class yp extends NestedScrollView {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             cq cqVar = this.U;
-            if (cqVar.f26072f != 0 && motionEvent.getY() < cqVar.f26072f) {
+            if (cqVar.f26027f != 0 && motionEvent.getY() < cqVar.f26027f) {
                 cqVar.dismiss();
                 return true;
             }

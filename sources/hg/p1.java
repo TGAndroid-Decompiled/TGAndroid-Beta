@@ -8,7 +8,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.l5;
-import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.sl0;
 public final class p1 extends CountDownTimer {
     public final w1 f7588a;
 
@@ -20,7 +20,7 @@ public final class p1 extends CountDownTimer {
     @Override
     public final void onTick(long j10) {
         w1 w1Var = this.f7588a;
-        tl0 tl0Var = w1Var.d;
+        sl0 sl0Var = w1Var.d;
         ArrayList arrayList = w1Var.V;
         ArrayList arrayList2 = new ArrayList(arrayList.size());
         int size = arrayList.size();
@@ -37,8 +37,8 @@ public final class p1 extends CountDownTimer {
             }
         }
         if (!arrayList2.isEmpty()) {
-            for (int i11 = 0; i11 < tl0Var.getChildCount(); i11++) {
-                View childAt = tl0Var.getChildAt(i11);
+            for (int i11 = 0; i11 < sl0Var.getChildCount(); i11++) {
+                View childAt = sl0Var.getChildAt(i11);
                 if (childAt instanceof lg.n) {
                     lg.n nVar = (lg.n) childAt;
                     if (arrayList2.contains(nVar.getBoost())) {

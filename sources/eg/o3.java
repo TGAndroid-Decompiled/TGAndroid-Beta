@@ -53,12 +53,12 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.b11;
+import org.telegram.ui.Components.a11;
 import org.telegram.ui.Components.pr;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.z5;
-import org.telegram.ui.uq0;
-import qh.s6;
+import org.telegram.ui.zq0;
+import qh.r6;
 public final class o3 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public static final int f5399o0 = 0;
     public l3 B;
@@ -75,7 +75,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
     public float M;
     public float N;
     public float O;
-    public b11 P;
+    public a11 P;
     public int Q;
     public int R;
     public boolean S;
@@ -253,7 +253,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i12 = i11;
                                                     MediaDataController.getInstance(i12).putStickerSet(tL_messages_stickerSet);
-                                                    if (!MediaDataController.getInstance(i12).isStickerPackInstalled(tL_messages_stickerSet.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i12).isStickerPackInstalled(tL_messages_stickerSet.set.f20872id)) {
                                                         MediaDataController.getInstance(i12).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var = o3Var2.f5401a0;
@@ -376,7 +376,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i11;
                                                     MediaDataController.getInstance(i14).putStickerSet(tL_messages_stickerSet2);
-                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20872id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var3 = o3Var4.f5401a0;
@@ -454,7 +454,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i122 = i12;
                                                     MediaDataController.getInstance(i122).putStickerSet(tL_messages_stickerSet);
-                                                    if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f20872id)) {
                                                         MediaDataController.getInstance(i122).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var = o3Var22.f5401a0;
@@ -577,7 +577,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i12;
                                                     MediaDataController.getInstance(i14).putStickerSet(tL_messages_stickerSet2);
-                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20872id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var3 = o3Var4.f5401a0;
@@ -655,7 +655,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i122 = i13;
                                                     MediaDataController.getInstance(i122).putStickerSet(tL_messages_stickerSet);
-                                                    if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f20872id)) {
                                                         MediaDataController.getInstance(i122).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var = o3Var22.f5401a0;
@@ -778,7 +778,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i13;
                                                     MediaDataController.getInstance(i14).putStickerSet(tL_messages_stickerSet2);
-                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20872id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var3 = o3Var4.f5401a0;
@@ -875,7 +875,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i122 = i11;
                                                     MediaDataController.getInstance(i122).putStickerSet(tL_messages_stickerSet);
-                                                    if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f20872id)) {
                                                         MediaDataController.getInstance(i122).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var = o3Var22.f5401a0;
@@ -998,7 +998,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i11;
                                                     MediaDataController.getInstance(i14).putStickerSet(tL_messages_stickerSet2);
-                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20872id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var3 = o3Var4.f5401a0;
@@ -1076,7 +1076,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i122 = i12;
                                                     MediaDataController.getInstance(i122).putStickerSet(tL_messages_stickerSet);
-                                                    if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f20872id)) {
                                                         MediaDataController.getInstance(i122).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var = o3Var22.f5401a0;
@@ -1199,7 +1199,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i12;
                                                     MediaDataController.getInstance(i14).putStickerSet(tL_messages_stickerSet2);
-                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20872id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var3 = o3Var4.f5401a0;
@@ -1277,7 +1277,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i122 = i13;
                                                     MediaDataController.getInstance(i122).putStickerSet(tL_messages_stickerSet);
-                                                    if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f20872id)) {
                                                         MediaDataController.getInstance(i122).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var = o3Var22.f5401a0;
@@ -1400,7 +1400,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i13;
                                                     MediaDataController.getInstance(i14).putStickerSet(tL_messages_stickerSet2);
-                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20872id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var3 = o3Var4.f5401a0;
@@ -1515,7 +1515,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i122 = i11;
                                                     MediaDataController.getInstance(i122).putStickerSet(tL_messages_stickerSet);
-                                                    if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f20872id)) {
                                                         MediaDataController.getInstance(i122).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var2 = o3Var22.f5401a0;
@@ -1638,7 +1638,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i11;
                                                     MediaDataController.getInstance(i14).putStickerSet(tL_messages_stickerSet2);
-                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20872id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var3 = o3Var4.f5401a0;
@@ -1716,7 +1716,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i122 = i12;
                                                     MediaDataController.getInstance(i122).putStickerSet(tL_messages_stickerSet);
-                                                    if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f20872id)) {
                                                         MediaDataController.getInstance(i122).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var2 = o3Var22.f5401a0;
@@ -1839,7 +1839,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i12;
                                                     MediaDataController.getInstance(i14).putStickerSet(tL_messages_stickerSet2);
-                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20872id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var3 = o3Var4.f5401a0;
@@ -1917,7 +1917,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i122 = i13;
                                                     MediaDataController.getInstance(i122).putStickerSet(tL_messages_stickerSet);
-                                                    if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f20872id)) {
                                                         MediaDataController.getInstance(i122).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var2 = o3Var22.f5401a0;
@@ -2040,7 +2040,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i13;
                                                     MediaDataController.getInstance(i14).putStickerSet(tL_messages_stickerSet2);
-                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20870id)) {
+                                                    if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f20872id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
                                                     qh.m0 m0Var3 = o3Var4.f5401a0;
@@ -2335,9 +2335,9 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
         float f10;
         Paint paint;
         z5 z5Var = this.f5404c;
-        z5Var.f33723a = viewGroup;
+        z5Var.f33761a = viewGroup;
         boolean z12 = this.f5410f0;
-        if (z12 || z5Var.f33725c > 0.0f) {
+        if (z12 || z5Var.f33763c > 0.0f) {
             if (viewGroup == null) {
                 e6 = 1.0f;
             } else {
@@ -2402,14 +2402,14 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
         return this.F;
     }
 
-    public b11 getThanosEffect() {
-        if (!b11.c()) {
+    public a11 getThanosEffect() {
+        if (!a11.c()) {
             return null;
         }
         if (this.P == null) {
-            b11 b11Var = new b11(getContext(), new c3(this, 1));
-            this.P = b11Var;
-            addView(b11Var, c6.c(-1.0f, -1));
+            a11 a11Var = new a11(getContext(), new c3(this, 1));
+            this.P = a11Var;
+            addView(a11Var, c6.c(-1.0f, -1));
         }
         return this.P;
     }
@@ -2482,7 +2482,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
         }
     }
 
-    public final void m(Bitmap bitmap, int i10, int i11, int i12, uq0 uq0Var) {
+    public final void m(Bitmap bitmap, int i10, int i11, int i12, zq0 zq0Var) {
         int i13;
         int i14;
         ib.c cVar;
@@ -2502,11 +2502,11 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
             this.F = bitmap;
             this.G = i10;
             this.W = null;
-            h3 h3Var = new h3(this, i10, uq0Var, 0);
+            h3 h3Var = new h3(this, i10, zq0Var, 0);
             this.f5422x = true;
             mb.d dVar = new mb.d();
-            dVar.f13623b = true;
-            dVar.f13624c = true;
+            dVar.f13625b = true;
+            dVar.f13626c = true;
             zzd a2 = k7.r.a(new mb.e(dVar));
             if (EmuDetector.with(getContext()).detect()) {
                 ArrayList arrayList = new ArrayList();
@@ -2524,7 +2524,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                 return;
             }
             hb.a a10 = hb.a.a(bitmap, i10);
-            a2.g(a10).addOnSuccessListener(new a1.c(h3Var, 22)).addOnFailureListener(new j3(this, bitmap, i10, uq0Var, h3Var, 0));
+            a2.g(a10).addOnSuccessListener(new a1.c(h3Var, 22)).addOnFailureListener(new j3(this, bitmap, i10, zq0Var, h3Var, 0));
             if (this.W == null) {
                 kb.b bVar = kb.b.f11045b;
                 b6.m.i(bVar, "options cannot be null");
@@ -2705,9 +2705,9 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                         o3Var.a();
                     } else if (videoEditedInfo2 != null) {
                         TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                        tL_message.f20864id = 1;
+                        tL_message.f20866id = 1;
                         m3 m3Var5 = o3Var.T;
-                        String absolutePath = s6.w(UserConfig.selectedAccount, "webm").getAbsolutePath();
+                        String absolutePath = r6.w(UserConfig.selectedAccount, "webm").getAbsolutePath();
                         tL_message.attachPath = absolutePath;
                         m3Var5.f5357b = absolutePath;
                         o3Var.T.f5371r = new MessageObject(UserConfig.selectedAccount, (TLRPC.Message) tL_message, (MessageObject) null, false, false);

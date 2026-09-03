@@ -7,14 +7,14 @@ import k7.a8;
 import pa.u;
 import pa.v;
 public final class f implements v, Cloneable {
-    public static final f f46759c = new f();
-    public List f46760a;
-    public final List f46761b;
+    public static final f f46790c = new f();
+    public List f46791a;
+    public final List f46792b;
 
     public f() {
         List list = Collections.EMPTY_LIST;
-        this.f46760a = list;
-        this.f46761b = list;
+        this.f46791a = list;
+        this.f46792b = list;
     }
 
     public final f clone() {
@@ -28,15 +28,15 @@ public final class f implements v, Cloneable {
     public final boolean b(Class cls, boolean z4) {
         List<pa.a> list;
         if (!z4 && !Enum.class.isAssignableFrom(cls)) {
-            a8 a8Var = ua.c.f48463a;
+            a8 a8Var = ua.c.f48499a;
             if (!Modifier.isStatic(cls.getModifiers()) && (cls.isAnonymousClass() || cls.isLocalClass())) {
                 return true;
             }
         }
         if (z4) {
-            list = this.f46760a;
+            list = this.f46791a;
         } else {
-            list = this.f46761b;
+            list = this.f46792b;
         }
         for (pa.a aVar : list) {
             if (aVar.shouldSkipClass(cls)) {
@@ -48,7 +48,7 @@ public final class f implements v, Cloneable {
 
     @Override
     public final u create(pa.g gVar, wa.a aVar) {
-        Class cls = aVar.f49484a;
+        Class cls = aVar.f49520a;
         boolean b10 = b(cls, true);
         boolean b11 = b(cls, false);
         if (!b10 && !b11) {

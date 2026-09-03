@@ -12,11 +12,11 @@ public final class m60 extends fg.v0 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.T0.f39317y0 = false;
+        this.T0.f39203y0 = false;
     }
 
     @Override
     public final void onOpenAnimationEnd() {
-        this.T0.f39317y0 = false;
+        this.T0.f39203y0 = false;
     }
 }

@@ -12,30 +12,30 @@ import org.telegram.ui.kq;
 import org.telegram.ui.pa0;
 import org.telegram.ui.py;
 public final class p8 implements Runnable {
-    public final int f19640a = 0;
-    public final boolean f19641b;
-    public final int f19642c;
+    public final int f19642a = 0;
+    public final boolean f19643b;
+    public final int f19644c;
     public final long d;
-    public final Object f19643e;
-    public final Object f19644f;
+    public final Object f19645e;
+    public final Object f19646f;
     public final Object h;
-    public final Object f19645n;
-    public final Object f19646r;
-    public final Object f19647s;
+    public final Object f19647n;
+    public final Object f19648r;
+    public final Object f19649s;
     public final Object v;
-    public final Object f19648w;
+    public final Object f19650w;
 
     public p8(MediaDataController mediaDataController, Timer.Task task, a0.h hVar, AtomicInteger atomicInteger, Runnable runnable, int i10, Timer timer, a0.h hVar2, a0.h hVar3, boolean z4, long j10) {
-        this.f19643e = mediaDataController;
-        this.f19644f = task;
+        this.f19645e = mediaDataController;
+        this.f19646f = task;
         this.h = hVar;
-        this.f19647s = atomicInteger;
+        this.f19649s = atomicInteger;
         this.v = runnable;
-        this.f19642c = i10;
-        this.f19648w = timer;
-        this.f19645n = hVar2;
-        this.f19646r = hVar3;
-        this.f19641b = z4;
+        this.f19644c = i10;
+        this.f19650w = timer;
+        this.f19647n = hVar2;
+        this.f19648r = hVar3;
+        this.f19643b = z4;
         this.d = j10;
     }
 
@@ -53,18 +53,18 @@ public final class p8 implements Runnable {
         boolean z17;
         boolean z18;
         boolean z19;
-        int i10 = this.f19640a;
-        Object obj = this.f19648w;
+        int i10 = this.f19642a;
+        Object obj = this.f19650w;
         Object obj2 = this.v;
-        Object obj3 = this.f19647s;
-        Object obj4 = this.f19646r;
-        Object obj5 = this.f19645n;
+        Object obj3 = this.f19649s;
+        Object obj4 = this.f19648r;
+        Object obj5 = this.f19647n;
         Object obj6 = this.h;
-        Object obj7 = this.f19644f;
-        Object obj8 = this.f19643e;
+        Object obj7 = this.f19646f;
+        Object obj8 = this.f19645e;
         switch (i10) {
             case 0:
-                ((MediaDataController) obj8).lambda$loadReplyMessagesForMessages$177((Timer.Task) obj7, (a0.h) obj6, (AtomicInteger) obj3, (Runnable) obj2, this.f19642c, (Timer) obj, (a0.h) obj5, (a0.h) obj4, this.f19641b, this.d);
+                ((MediaDataController) obj8).lambda$loadReplyMessagesForMessages$177((Timer.Task) obj7, (a0.h) obj6, (AtomicInteger) obj3, (Runnable) obj2, this.f19644c, (Timer) obj, (a0.h) obj5, (a0.h) obj4, this.f19643b, this.d);
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) obj8;
@@ -307,13 +307,13 @@ public final class p8 implements Runnable {
                         tL_chatAdminRights2.other = z19;
                     }
                 }
-                boolean z20 = this.f19641b;
-                int i11 = this.f19642c;
+                boolean z20 = this.f19643b;
+                int i11 = this.f19644c;
                 if (z20 && tL_chatAdminRights == null && !TextUtils.isEmpty(str2)) {
-                    MessagesController.getInstance(launchActivity.L).addUserToChat(chat.f20843id, user, 0, str2, pyVar, true, new dt(launchActivity, i11, chat, pyVar, 2), null);
+                    MessagesController.getInstance(launchActivity.L).addUserToChat(chat.f20845id, user, 0, str2, pyVar, true, new dt(launchActivity, i11, chat, pyVar, 2), null);
                     return;
                 }
-                kq kqVar = new kq(user.f20990id, -this.d, tL_chatAdminRights2, null, null, str3, 2, true, !z20, str2);
+                kq kqVar = new kq(user.f20992id, -this.d, tL_chatAdminRights2, null, null, str3, 2, true, !z20, str2);
                 kqVar.U0 = new pa0(pyVar, i11);
                 ((ActionBarLayout) launchActivity.O()).Q(kqVar, false);
                 return;
@@ -321,16 +321,16 @@ public final class p8 implements Runnable {
     }
 
     public p8(LaunchActivity launchActivity, String str, TLRPC.TL_chatAdminRights tL_chatAdminRights, boolean z4, String str2, int i10, TLRPC.Chat chat, py pyVar, TLRPC.User user, long j10, String str3) {
-        this.f19643e = launchActivity;
-        this.f19644f = str;
+        this.f19645e = launchActivity;
+        this.f19646f = str;
         this.h = tL_chatAdminRights;
-        this.f19641b = z4;
-        this.f19645n = str2;
-        this.f19642c = i10;
-        this.f19646r = chat;
-        this.f19647s = pyVar;
+        this.f19643b = z4;
+        this.f19647n = str2;
+        this.f19644c = i10;
+        this.f19648r = chat;
+        this.f19649s = pyVar;
         this.v = user;
         this.d = j10;
-        this.f19648w = str3;
+        this.f19650w = str3;
     }
 }

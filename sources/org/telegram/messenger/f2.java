@@ -3,30 +3,30 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class f2 implements Runnable {
-    public final int f18620a;
-    public final Utilities.Callback f18621b;
-    public final ArrayList f18622c;
+    public final int f18622a;
+    public final Utilities.Callback f18623b;
+    public final ArrayList f18624c;
 
     public f2(Utilities.Callback callback, ArrayList arrayList, int i10) {
-        this.f18620a = i10;
-        this.f18621b = callback;
-        this.f18622c = arrayList;
+        this.f18622a = i10;
+        this.f18623b = callback;
+        this.f18624c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f18620a) {
+        switch (this.f18622a) {
             case 0:
-                this.f18621b.run(this.f18622c);
+                this.f18623b.run(this.f18624c);
                 return;
             case 1:
-                this.f18621b.run(this.f18622c);
+                this.f18623b.run(this.f18624c);
                 return;
             case 2:
-                MediaDataController.lambda$loadStickers$92(this.f18621b, this.f18622c);
+                MediaDataController.lambda$loadStickers$92(this.f18623b, this.f18624c);
                 return;
             default:
-                this.f18621b.run(this.f18622c);
+                this.f18623b.run(this.f18624c);
                 return;
         }
     }

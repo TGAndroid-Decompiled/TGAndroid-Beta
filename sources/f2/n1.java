@@ -22,7 +22,7 @@ public final class n1 extends r0.b {
         boolean z4;
         switch (this.d) {
             case 0:
-                this.f46401a.onInitializeAccessibilityNodeInfo(view, dVar.f46850a);
+                this.f46432a.onInitializeAccessibilityNodeInfo(view, dVar.f46881a);
                 o1 o1Var = (o1) this.f5898e;
                 RecyclerView recyclerView = o1Var.d;
                 RecyclerView recyclerView2 = o1Var.d;
@@ -32,11 +32,11 @@ public final class n1 extends r0.b {
                 }
                 return;
             default:
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f46850a;
-                this.f46401a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f46881a;
+                this.f46432a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
                 dVar.i(m2.h.class.getName());
                 m2.h hVar = (m2.h) this.f5898e;
-                m2.a aVar = hVar.f13444e;
+                m2.a aVar = hVar.f13446e;
                 if (aVar != null && aVar.b() > 1) {
                     z4 = true;
                 } else {
@@ -75,11 +75,11 @@ public final class n1 extends r0.b {
                 }
                 if (i10 != 4096) {
                     if (i10 == 8192 && hVar.canScrollHorizontally(-1)) {
-                        hVar.setCurrentItem(hVar.f13446f - 1);
+                        hVar.setCurrentItem(hVar.f13448f - 1);
                         return true;
                     }
                 } else if (hVar.canScrollHorizontally(1)) {
-                    hVar.setCurrentItem(hVar.f13446f + 1);
+                    hVar.setCurrentItem(hVar.f13448f + 1);
                     return true;
                 }
                 return false;

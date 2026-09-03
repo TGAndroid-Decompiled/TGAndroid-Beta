@@ -45,7 +45,7 @@ public final class k {
         if (i11 != -1) {
             channelMask.setSampleRate(i11);
         }
-        return this.f6031a.canBeSpatialized((AudioAttributes) dVar.a().f16615b, channelMask.build());
+        return this.f6031a.canBeSpatialized((AudioAttributes) dVar.a().f16617b, channelMask.build());
     }
 
     public final void b(p pVar, Looper looper) {

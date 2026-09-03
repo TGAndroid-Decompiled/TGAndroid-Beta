@@ -25,12 +25,13 @@ import org.telegram.ui.Components.d10;
 import org.telegram.ui.Components.fz;
 import org.telegram.ui.Components.hy;
 import org.telegram.ui.Components.jp;
+import org.telegram.ui.Components.jy0;
 import org.telegram.ui.Components.ky0;
-import org.telegram.ui.Components.ly0;
-import org.telegram.ui.Components.yx0;
+import org.telegram.ui.Components.xx0;
+import org.telegram.ui.dy0;
 import org.telegram.ui.ih;
-import org.telegram.ui.t61;
-import qh.x7;
+import org.telegram.ui.y61;
+import qh.w7;
 public final class y implements RequestDelegate {
     public final int f7669a;
     public final Object f7670b;
@@ -110,13 +111,13 @@ public final class y implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ih(tL_error, (qh.d) this.f7671c, (h3) this.d, (Runnable) this.f7670b));
                 return;
             case 17:
-                AndroidUtilities.runOnUIThread(new j0((Object) ((yx0) this.f7671c), (Object) ((String) this.d), tL_error, tLObject, (Object) ((TextView) this.f7670b), 29));
+                AndroidUtilities.runOnUIThread(new j0((Object) ((xx0) this.f7671c), (Object) ((String) this.d), tL_error, tLObject, (Object) ((TextView) this.f7670b), 29));
                 return;
             case 18:
-                AndroidUtilities.runOnUIThread(new ky0((Object) ((ly0) this.f7671c), (Object) tLObject, (Object) ((TLRPC.UserFull) this.d), (Object) ((TL_account.TL_birthday) this.f7670b), (Object) tL_error, 0));
+                AndroidUtilities.runOnUIThread(new jy0((Object) ((ky0) this.f7671c), (Object) tLObject, (Object) ((TLRPC.UserFull) this.d), (Object) ((TL_account.TL_birthday) this.f7670b), (Object) tL_error, 0));
                 return;
             case 19:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.yx0((Object) ((org.telegram.ui.web.a1) this.f7671c), tLObject, (Object) ((String) this.d), (Object) ((String) this.f7670b), 12));
+                AndroidUtilities.runOnUIThread(new dy0((Object) ((org.telegram.ui.web.a1) this.f7671c), tLObject, (Object) ((String) this.d), (Object) ((String) this.f7670b), 12));
                 return;
             case 20:
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.web.z((org.telegram.ui.web.a1) this.f7671c, tL_error, (String) this.d, (TLRPC.TL_inputInvoiceSlug) this.f7670b, tLObject));
@@ -125,22 +126,22 @@ public final class y implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.web.z((org.telegram.ui.web.a1) this.f7671c, tLObject, (String[]) this.d, tL_error, (org.telegram.ui.ActionBar.d2) this.f7670b));
                 return;
             case 22:
-                AndroidUtilities.runOnUIThread(new t61((x7) this.f7671c, (org.telegram.ui.ActionBar.d2) this.d, tLObject, (TL_phone.getGroupCallStreamRtmpUrl) this.f7670b, tL_error));
+                AndroidUtilities.runOnUIThread(new y61((w7) this.f7671c, (org.telegram.ui.ActionBar.d2) this.d, tLObject, (TL_phone.getGroupCallStreamRtmpUrl) this.f7670b, tL_error));
                 return;
             case 23:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.yx0((qh.d) this.f7671c, tLObject, (h3) this.d, (sh.j1) this.f7670b, false, 16));
+                AndroidUtilities.runOnUIThread(new dy0((qh.d) this.f7671c, tLObject, (h3) this.d, (sh.j1) this.f7670b, false, 16));
                 return;
             case 24:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.yx0(tLObject, (boolean[]) this.f7671c, (org.telegram.ui.web.s) this.d, (TLRPC.UserFull) this.f7670b));
+                AndroidUtilities.runOnUIThread(new dy0(tLObject, (boolean[]) this.f7671c, (org.telegram.ui.web.s) this.d, (TLRPC.UserFull) this.f7670b));
                 return;
             case 25:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.yx0((vf.t) this.f7671c, tLObject, (TL_account.TL_businessChatLink) this.d, (Runnable) this.f7670b, false, 24));
+                AndroidUtilities.runOnUIThread(new dy0((vf.t) this.f7671c, tLObject, (TL_account.TL_businessChatLink) this.d, (Runnable) this.f7670b, false, 24));
                 return;
             case 26:
-                AndroidUtilities.runOnUIThread(new uf.h1((vf.f0) this.f7671c, (TL_account.TL_connectedBot) this.d, (TL_account.TL_businessBotRecipients) this.f7670b, 6));
+                AndroidUtilities.runOnUIThread(new uf.h1((vf.e0) this.f7671c, (TL_account.TL_connectedBot) this.d, (TL_account.TL_businessBotRecipients) this.f7670b, 6));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new t61((vf.p1) this.f7671c, tLObject, (ArrayList) this.d, (TLRPC.TL_messages_sendQuickReplyMessages) this.f7670b, tL_error));
+                AndroidUtilities.runOnUIThread(new y61((vf.p1) this.f7671c, tLObject, (ArrayList) this.d, (TLRPC.TL_messages_sendQuickReplyMessages) this.f7670b, tL_error));
                 return;
         }
     }

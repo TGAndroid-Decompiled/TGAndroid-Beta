@@ -1,30 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseArray;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class x41 extends f2.v {
-    public final f51 f32950c;
+public final class x41 implements ux0 {
+    public final d51 f32949a;
 
-    public x41(f51 f51Var) {
-        this.f32950c = f51Var;
+    public x41(d51 d51Var) {
+        this.f32949a = d51Var;
     }
 
     @Override
-    public final int i(int i10) {
-        f51 f51Var = this.f32950c;
-        f2.p0 adapter = f51Var.f26762n.getAdapter();
-        e51 e51Var = f51Var.f26764s;
-        if (adapter == e51Var) {
-            if ((e51Var.d.get(i10) instanceof Integer) || i10 >= e51Var.f26442w) {
-                return e51Var.v;
-            }
-            return 1;
-        }
-        uf.m1 m1Var = f51Var.v;
-        SparseArray sparseArray = m1Var.f48651s;
-        if (i10 != m1Var.f48654y && (sparseArray.get(i10) == null || (sparseArray.get(i10) instanceof TLRPC.Document))) {
-            return 1;
-        }
-        return m1Var.f48647e.a();
+    public final boolean b() {
+        return this.f32949a.f26187b.a();
+    }
+
+    @Override
+    public final boolean c() {
+        return this.f32949a.f26187b.c();
+    }
+
+    @Override
+    public final void d(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z4, boolean z10, int i10, int i11) {
+        this.f32949a.f26187b.f(document, obj, z10, i10);
     }
 }

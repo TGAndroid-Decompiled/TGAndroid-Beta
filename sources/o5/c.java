@@ -9,22 +9,22 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 public final class c implements Runnable {
-    public static final e0 f16598c = new e0("RevokeAccessOperation", new String[0]);
-    public final String f16599a;
-    public final u f16600b;
+    public static final e0 f16600c = new e0("RevokeAccessOperation", new String[0]);
+    public final String f16601a;
+    public final u f16602b;
 
     public c(String str) {
         m.f(str);
-        this.f16599a = str;
-        this.f16600b = new u(null, 0);
+        this.f16601a = str;
+        this.f16602b = new u(null, 0);
     }
 
     @Override
     public final void run() {
-        e0 e0Var = f16598c;
+        e0 e0Var = f16600c;
         Status status = Status.h;
         try {
-            String str = this.f16599a;
+            String str = this.f16601a;
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL("https://accounts.google.com/o/oauth2/revoke?token=" + str).openConnection();
             httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             int responseCode = httpURLConnection.getResponseCode();
@@ -39,6 +39,6 @@ public final class c implements Runnable {
         } catch (Exception e10) {
             Log.e((String) e0Var.f1475c, ((String) e0Var.d).concat("Exception when revoking access: ".concat(String.valueOf(e10.toString()))));
         }
-        this.f16600b.a(status);
+        this.f16602b.a(status);
     }
 }

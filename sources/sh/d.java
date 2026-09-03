@@ -7,12 +7,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_payments;
 public final class d implements Runnable {
-    public final int f47378a;
-    public final j f47379b;
+    public final int f47414a;
+    public final j f47415b;
 
     public d(j jVar, int i10) {
-        this.f47378a = i10;
-        this.f47379b = jVar;
+        this.f47414a = i10;
+        this.f47415b = jVar;
     }
 
     @Override
@@ -20,9 +20,9 @@ public final class d implements Runnable {
         int i10;
         String f10;
         int i11;
-        switch (this.f47378a) {
+        switch (this.f47414a) {
             case 0:
-                j jVar = this.f47379b;
+                j jVar = this.f47415b;
                 mh.n nVar = jVar.Q;
                 if (jVar.V.end_date == 0) {
                     f10 = null;
@@ -37,7 +37,7 @@ public final class d implements Runnable {
                 return;
             case 1:
                 TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
-                j jVar2 = this.f47379b;
+                j jVar2 = this.f47415b;
                 updatestarrefprogram.bot = jVar2.getMessagesController().getInputUser(jVar2.M);
                 TL_payments.starRefProgram starrefprogram = jVar2.V;
                 updatestarrefprogram.commission_permille = starrefprogram.commission_permille;
@@ -55,7 +55,7 @@ public final class d implements Runnable {
                 jVar2.getConnectionsManager().sendRequest(updatestarrefprogram, new b(jVar2, d2Var, 1));
                 return;
             default:
-                j jVar3 = this.f47379b;
+                j jVar3 = this.f47415b;
                 Activity parentActivity = jVar3.getParentActivity();
                 if (!jVar3.T && jVar3.V.end_date == 0) {
                     i11 = R.string.AffiliateProgramStartInfoLink;

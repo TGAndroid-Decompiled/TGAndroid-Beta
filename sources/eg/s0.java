@@ -3,13 +3,13 @@ package eg;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
-import org.telegram.ui.ht0;
+import org.telegram.ui.mt0;
 public final class s0 extends View {
-    public final ht0 f5470a;
+    public final mt0 f5470a;
 
-    public s0(ht0 ht0Var, Context context) {
+    public s0(mt0 mt0Var, Context context) {
         super(context);
-        this.f5470a = ht0Var;
+        this.f5470a = mt0Var;
     }
 
     @Override

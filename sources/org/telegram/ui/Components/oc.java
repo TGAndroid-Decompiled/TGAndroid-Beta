@@ -7,13 +7,13 @@ public enum oc {
     SAVED_TO_MUSIC(R.raw.ic_save_to_music, 2, "Box", "Arrow"),
     SAVED_TO_GIFS(R.raw.ic_save_to_gifs, 0, "gif");
     
-    public final int f29729a;
-    public final String[] f29730b;
-    public final int f29731c;
+    public final int f29730a;
+    public final String[] f29731b;
+    public final int f29732c;
 
     oc(int i10, int i11, String... strArr) {
-        this.f29729a = i10;
-        this.f29731c = i11;
-        this.f29730b = strArr;
+        this.f29730a = i10;
+        this.f29732c = i11;
+        this.f29731b = strArr;
     }
 }

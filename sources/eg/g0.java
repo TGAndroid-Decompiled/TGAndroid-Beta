@@ -6,14 +6,14 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.ui.ht0;
+import org.telegram.ui.mt0;
 public final class g0 implements dg.y {
     public boolean f5217a;
     public final Bitmap f5218b;
-    public final ht0 f5219c;
+    public final mt0 f5219c;
 
-    public g0(ht0 ht0Var, Bitmap bitmap) {
-        this.f5219c = ht0Var;
+    public g0(mt0 mt0Var, Bitmap bitmap) {
+        this.f5219c = mt0Var;
         this.f5218b = bitmap;
     }
 
@@ -65,13 +65,13 @@ public final class g0 implements dg.y {
 
     @Override
     public final void h(int i10) {
-        ht0 ht0Var = this.f5219c;
-        ht0Var.w0(false);
-        dg.e1 e1Var = ht0Var.S1;
+        mt0 mt0Var = this.f5219c;
+        mt0Var.w0(false);
+        dg.e1 e1Var = mt0Var.S1;
         e1Var.h(i10, true);
         e1Var.g();
-        ht0Var.setNewColor(i10);
-        x0 x0Var = ht0Var.D1;
+        mt0Var.setNewColor(i10);
+        x0 x0Var = mt0Var.D1;
         x0Var.setSelectedColorIndex(e1Var.d());
         x0Var.getAdapter().l();
     }

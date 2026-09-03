@@ -4,12 +4,12 @@ import android.view.animation.Interpolator;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import q5.g0;
+import q5.c0;
 public final class j implements Iterable {
-    public final h f50529a;
+    public final h f50565a;
 
     public j(i iVar, Interpolator interpolator, long j10) {
-        this.f50529a = new h(new g0(this, iVar, false, 17), interpolator, j10);
+        this.f50565a = new h(new c0(this, iVar, false, 18), interpolator, j10);
     }
 
     public final void i(Object obj, boolean z4) {
@@ -19,11 +19,11 @@ public final class j implements Iterable {
         } else {
             list = null;
         }
-        this.f50529a.r(list, z4);
+        this.f50565a.r(list, z4);
     }
 
     @Override
     public final Iterator iterator() {
-        return this.f50529a.f50525b.iterator();
+        return this.f50565a.f50561b.iterator();
     }
 }

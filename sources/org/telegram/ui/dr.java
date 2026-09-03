@@ -16,12 +16,12 @@ public final class dr extends f2.l {
 
     @Override
     public final void O() {
-        this.G.f40605c.invalidate();
+        this.G.f40573c.invalidate();
     }
 
     @Override
     public final void P(f2.m1 m1Var) {
-        this.G.f40605c.invalidate();
+        this.G.f40573c.invalidate();
     }
 
     @Override

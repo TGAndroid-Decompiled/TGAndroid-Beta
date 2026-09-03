@@ -53,8 +53,8 @@ public final class f implements y1, z, m {
         this.f10424c = new n2();
         ?? obj = new Object();
         obj.f155a = m2Var;
-        t tVar = v.f47143b;
-        obj.f156b = i0.f47108e;
+        t tVar = v.f47174b;
+        obj.f156b = i0.f47139e;
         obj.f157c = n0.h;
         this.d = obj;
         this.f10425e = new SparseArray();
@@ -147,7 +147,7 @@ public final class f implements y1, z, m {
         }
         long j10 = 0;
         if (vVar2 != null && vVar2.a()) {
-            if (z4 && this.h.w() == vVar2.f16580b && this.h.o() == vVar2.f16581c) {
+            if (z4 && this.h.w() == vVar2.f16582b && this.h.o() == vVar2.f16583c) {
                 j10 = this.h.C();
             }
         } else if (z4) {
@@ -167,7 +167,7 @@ public final class f implements y1, z, m {
             o2Var = (o2) ((n0) this.d.f157c).get(vVar);
         }
         if (vVar != null && o2Var != null) {
-            return m(o2Var, o2Var.g(vVar.f16579a, this.f10423b).f9285c, vVar);
+            return m(o2Var, o2Var.g(vVar.f16581a, this.f10423b).f9285c, vVar);
         }
         int x10 = this.h.x();
         o2 z4 = this.h.z();

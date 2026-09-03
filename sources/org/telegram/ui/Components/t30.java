@@ -2,10 +2,10 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 public final class t30 implements uf.j1 {
-    public final u30 f31256a;
+    public final u30 f31262a;
 
     public t30(u30 u30Var) {
-        this.f31256a = u30Var;
+        this.f31262a = u30Var;
     }
 
     @Override
@@ -20,27 +20,27 @@ public final class t30 implements uf.j1 {
 
     @Override
     public final void g(int i10) {
-        u30 u30Var = this.f31256a;
-        v30 v30Var = u30Var.f31542w;
-        if (i10 >= 0 && i10 == u30Var.f31539n && !u30Var.h) {
+        u30 u30Var = this.f31262a;
+        v30 v30Var = u30Var.f31495w;
+        if (i10 >= 0 && i10 == u30Var.f31492n && !u30Var.h) {
             boolean z4 = true;
-            int i11 = u30Var.f31538f - 1;
-            if (v30Var.f30993s.getVisibility() != 0) {
+            int i11 = u30Var.f31491f - 1;
+            if (v30Var.f30670s.getVisibility() != 0) {
                 z4 = false;
             }
             u30Var.l();
-            if (u30Var.f31538f > i11) {
+            if (u30Var.f31491f > i11) {
                 v30Var.I(i11);
             }
-            if (!u30Var.d.e() && v30Var.d.S0()) {
-                v30Var.f30993s.e(false, z4);
+            if (!u30Var.d.e() && v30Var.d.R0()) {
+                v30Var.f30670s.e(false, z4);
             }
         }
     }
 
     @Override
     public final a0.h y() {
-        return this.f31256a.f31542w.f31787b0;
+        return this.f31262a.f31495w.f31765b0;
     }
 
     @Override

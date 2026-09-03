@@ -78,7 +78,7 @@ public final class f extends b1.d {
         long j10 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
         l5.b bVar2 = bVar;
         boolean z10 = false;
-        for (p pVar : request.f48837a) {
+        for (p pVar : request.f48873a) {
             if ((pVar instanceof p) && !z10) {
                 if (j10 >= 231815000) {
                     LinkedHashMap linkedHashMap = d1.g.f4162a;
@@ -98,13 +98,13 @@ public final class f extends b1.d {
             }
         }
         if (j10 > 241217000) {
-            z4 = request.f48838b;
+            z4 = request.f48874b;
         } else {
             z4 = false;
         }
         w6.b a2 = y8.a(context);
         new l5.a(false, null, null, true, null, null, false);
-        l5.e eVar = new l5.e(dVar, aVar, a2.f49438k, false, 0, cVar, bVar2, z4);
+        l5.e eVar = new l5.e(dVar, aVar, a2.f49474k, false, 0, cVar, bVar2, z4);
         v e6 = w.e();
         e6.d = new y5.c[]{new y5.c("auth_api_credentials_begin_sign_in", 8L)};
         e6.f2824c = new f1(a2, eVar);

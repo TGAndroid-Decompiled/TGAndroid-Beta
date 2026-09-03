@@ -15,7 +15,7 @@ public final class uf extends mz {
     public final void setTranslationY(float f10) {
         super.setTranslationY(f10);
         ChatActivityEnterView chatActivityEnterView = this.M2;
-        if (chatActivityEnterView.S0 != null && chatActivityEnterView.f24634k3 == 0) {
+        if (chatActivityEnterView.S0 != null && chatActivityEnterView.f24636k3 == 0) {
             chatActivityEnterView.V2.x(f10);
         }
     }

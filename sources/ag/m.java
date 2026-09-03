@@ -13,15 +13,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.z1;
 import org.telegram.ui.Cells.m4;
+import org.telegram.ui.Components.h81;
 import org.telegram.ui.Components.i81;
 import org.telegram.ui.Components.j81;
 import org.telegram.ui.Components.k81;
-import org.telegram.ui.Components.l81;
-import org.telegram.ui.Components.lo0;
+import org.telegram.ui.Components.ko0;
 import org.telegram.ui.Components.m6;
-import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.LaunchActivity;
-public final class m extends sl0 {
+public final class m extends rl0 {
     public final int f214c = 0;
     public final Context d;
     public final FrameLayout f215e;
@@ -50,7 +50,7 @@ public final class m extends sl0 {
             case 0:
                 return ((o) this.f215e).B.size();
             default:
-                return ((l81) this.f215e).h.size();
+                return ((k81) this.f215e).h.size();
         }
     }
 
@@ -58,7 +58,7 @@ public final class m extends sl0 {
     public long i(int i10) {
         switch (this.f214c) {
             case 1:
-                return ((i81) ((l81) this.f215e).h.get(i10)).f27698a;
+                return ((h81) ((k81) this.f215e).h.get(i10)).f27413a;
             default:
                 return super.i(i10);
         }
@@ -77,7 +77,7 @@ public final class m extends sl0 {
     @Override
     public final void v(m1 m1Var, int i10) {
         boolean z4;
-        k81 k81Var;
+        j81 j81Var;
         switch (this.f214c) {
             case 0:
                 View view = m1Var.f5875a;
@@ -106,23 +106,23 @@ public final class m extends sl0 {
                     return;
                 }
                 z1 z1Var = (z1) view;
-                z1Var.setTextColor(k6.w0(null, k6.f21766j5, false));
+                z1Var.setTextColor(k6.w0(null, k6.f21768j5, false));
                 z1Var.a(0, charSequence);
                 return;
             default:
-                j81 j81Var = (j81) m1Var.f5875a;
-                l81 l81Var = (l81) this.f215e;
-                i81 i81Var = (i81) l81Var.h.get(i10);
-                j81Var.f28074a = i81Var;
-                j81Var.setContentDescription(i81Var.f27699b);
-                j81Var.setAlpha(1.0f);
-                j81Var.requestLayout();
-                if (l81Var.f28661j0 && (k81Var = l81Var.f28671y) != null && ((h4) k81Var).Q(i10)) {
+                i81 i81Var = (i81) m1Var.f5875a;
+                k81 k81Var = (k81) this.f215e;
+                h81 h81Var = (h81) k81Var.h.get(i10);
+                i81Var.f27738a = h81Var;
+                i81Var.setContentDescription(h81Var.f27414b);
+                i81Var.setAlpha(1.0f);
+                i81Var.requestLayout();
+                if (k81Var.f28336j0 && (j81Var = k81Var.f28346y) != null && ((h4) j81Var).Q(i10)) {
                     z4 = true;
                 } else {
                     z4 = false;
                 }
-                j81Var.setReordering(z4);
+                i81Var.setReordering(z4);
                 return;
         }
     }
@@ -143,12 +143,12 @@ public final class m extends sl0 {
                         TextPaint textPaint = new TextPaint(1);
                         frameLayout2.h = textPaint;
                         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-                        lo0 lo0Var = new lo0(context);
-                        frameLayout2.f216a = lo0Var;
-                        lo0Var.setReportChanges(true);
-                        lo0Var.setDelegate(new ja.c((Object) frameLayout2));
-                        lo0Var.setImportantForAccessibility(2);
-                        frameLayout2.addView(lo0Var, c6.d(-1, 38.0f, 83, 5.0f, 29.0f, 47.0f, 0.0f));
+                        ko0 ko0Var = new ko0(context);
+                        frameLayout2.f216a = ko0Var;
+                        ko0Var.setReportChanges(true);
+                        ko0Var.setDelegate(new ja.c((Object) frameLayout2));
+                        ko0Var.setImportantForAccessibility(2);
+                        frameLayout2.addView(ko0Var, c6.d(-1, 38.0f, 83, 5.0f, 29.0f, 47.0f, 0.0f));
                         frameLayout = frameLayout2;
                     }
                 } else {
@@ -157,12 +157,12 @@ public final class m extends sl0 {
                 frameLayout.setLayoutParams(new x0(-1, -2));
                 return new m1(frameLayout);
             default:
-                return new m1(new j81((l81) this.f215e, this.d));
+                return new m1(new i81((k81) this.f215e, this.d));
         }
     }
 
-    public m(l81 l81Var, Context context) {
-        this.f215e = l81Var;
+    public m(k81 k81Var, Context context) {
+        this.f215e = k81Var;
         this.d = context;
     }
 }

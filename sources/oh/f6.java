@@ -31,7 +31,7 @@ public final class f6 extends l6 {
     @Override
     public final MessageObject f(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f17402i;
+            ArrayList arrayList = this.f17404i;
             if (i10 < arrayList.size()) {
                 return (MessageObject) arrayList.get(i10);
             }
@@ -52,7 +52,7 @@ public final class f6 extends l6 {
 
     @Override
     public final int i() {
-        return this.f17402i.size();
+        return this.f17404i.size();
     }
 
     @Override
@@ -87,7 +87,7 @@ public final class f6 extends l6 {
         this.G = true;
         String str2 = this.D;
         boolean isEmpty = TextUtils.isEmpty(str2);
-        int i11 = this.f17398c;
+        int i11 = this.f17400c;
         if (!isEmpty) {
             tLObject = MessagesController.getInstance(i11).getUserOrChat(str2);
             if (tLObject == null) {
@@ -96,8 +96,8 @@ public final class f6 extends l6 {
                     public final void accept(Object obj) {
                         Long l10 = (Long) obj;
                         f6 f6Var = f6.this;
-                        i6 i6Var = f6Var.f17410q;
-                        TLObject userOrChat = MessagesController.getInstance(f6Var.f17398c).getUserOrChat(f6Var.D);
+                        i6 i6Var = f6Var.f17412q;
+                        TLObject userOrChat = MessagesController.getInstance(f6Var.f17400c).getUserOrChat(f6Var.D);
                         f6Var.G = false;
                         if (userOrChat != null) {
                             f6Var.q(i10, list, z4);

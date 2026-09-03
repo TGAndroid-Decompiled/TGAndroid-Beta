@@ -11,7 +11,7 @@ public final class m2 implements g {
     public long d;
     public long f9286e;
     public boolean f9287f;
-    public p4.b h = p4.b.f44198f;
+    public p4.b h = p4.b.f44229f;
 
     static {
         int i10 = h5.d0.f7237a;
@@ -24,8 +24,8 @@ public final class m2 implements g {
 
     public final long a(int i10, int i11) {
         p4.a a2 = this.h.a(i10);
-        if (a2.f44193b != -1) {
-            return a2.f44196f[i11];
+        if (a2.f44224b != -1) {
+            return a2.f44227f[i11];
         }
         return -9223372036854775807L;
     }
@@ -37,13 +37,13 @@ public final class m2 implements g {
     public final int c(long j10) {
         p4.b bVar = this.h;
         long j11 = this.d;
-        int i10 = bVar.f44203a - 1;
+        int i10 = bVar.f44234a - 1;
         int i11 = i10 - (bVar.b(i10) ? 1 : 0);
         while (i11 >= 0 && j10 != Long.MIN_VALUE) {
             p4.a a2 = bVar.a(i11);
-            long j12 = a2.f44192a;
+            long j12 = a2.f44223a;
             if (j12 == Long.MIN_VALUE) {
-                if (j11 != -9223372036854775807L && ((!a2.f44197n || a2.f44193b != -1) && j10 >= j11)) {
+                if (j11 != -9223372036854775807L && ((!a2.f44228n || a2.f44224b != -1) && j10 >= j11)) {
                     break;
                 }
                 i11--;
@@ -55,10 +55,10 @@ public final class m2 implements g {
         }
         if (i11 >= 0) {
             p4.a a10 = bVar.a(i11);
-            int i12 = a10.f44193b;
+            int i12 = a10.f44224b;
             if (i12 != -1) {
                 for (int i13 = 0; i13 < i12; i13++) {
-                    int i14 = a10.f44195e[i13];
+                    int i14 = a10.f44226e[i13];
                     if (i14 != 0 && i14 != 1) {
                     }
                 }
@@ -69,13 +69,13 @@ public final class m2 implements g {
     }
 
     public final long d(int i10) {
-        return this.h.a(i10).f44192a;
+        return this.h.a(i10).f44223a;
     }
 
     public final int e(int i10, int i11) {
         p4.a a2 = this.h.a(i10);
-        if (a2.f44193b != -1) {
-            return a2.f44195e[i11];
+        if (a2.f44224b != -1) {
+            return a2.f44226e[i11];
         }
         return 0;
     }
@@ -99,14 +99,14 @@ public final class m2 implements g {
 
     public final boolean g(int i10) {
         p4.b bVar = this.h;
-        if (i10 == bVar.f44203a - 1 && bVar.b(i10)) {
+        if (i10 == bVar.f44234a - 1 && bVar.b(i10)) {
             return true;
         }
         return false;
     }
 
     public final boolean h(int i10) {
-        return this.h.a(i10).f44197n;
+        return this.h.a(i10).f44228n;
     }
 
     public final int hashCode() {

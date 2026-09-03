@@ -6,7 +6,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.g90;
 public abstract class g6 {
     public static g90 a(Context context, float f10, int i10, boolean z4, org.telegram.ui.ActionBar.g6 g6Var) {
-        int i11 = org.telegram.ui.ActionBar.k6.f21720gc;
+        int i11 = org.telegram.ui.ActionBar.k6.f21722gc;
         g90 g90Var = new g90(context, null);
         g90Var.setTextSize(1, f10);
         g90Var.setTextColor(org.telegram.ui.ActionBar.k6.v0(i10, g6Var));

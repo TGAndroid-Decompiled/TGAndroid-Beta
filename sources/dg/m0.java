@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import k7.o6;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.ui.Components.kv0;
+import org.telegram.ui.Components.jv0;
 import org.telegram.ui.Components.pr;
 public final class m0 {
     public static final pr B = new pr(0.0d, 0.5d, 0.0d, 1.0d);
@@ -101,15 +101,15 @@ public final class m0 {
                 if (z4 && (n1Var = o1Var.f4624a) != null) {
                     n1Var.f();
                 }
-                kv0 kv0Var = o1Var.getPainting().f4456g;
+                jv0 jv0Var = o1Var.getPainting().f4456g;
                 g1 g1Var = this.f4587g;
                 float a2 = o6.a((float) g1Var.f4543a, (float) g1Var.f4544b, 0.0f, 0.0f);
                 g1 g1Var2 = this.f4587g;
-                float max = Math.max(a2, o6.a((float) g1Var2.f4543a, (float) g1Var2.f4544b, kv0Var.f28463a, 0.0f));
+                float max = Math.max(a2, o6.a((float) g1Var2.f4543a, (float) g1Var2.f4544b, jv0Var.f28201a, 0.0f));
                 g1 g1Var3 = this.f4587g;
-                float a10 = o6.a((float) g1Var3.f4543a, (float) g1Var3.f4544b, 0.0f, kv0Var.f28464b);
+                float a10 = o6.a((float) g1Var3.f4543a, (float) g1Var3.f4544b, 0.0f, jv0Var.f28202b);
                 g1 g1Var4 = this.f4587g;
-                final float max2 = Math.max(max, Math.max(a10, o6.a((float) g1Var4.f4543a, (float) g1Var4.f4544b, kv0Var.f28463a, kv0Var.f28464b))) / 0.84f;
+                final float max2 = Math.max(max, Math.max(a10, o6.a((float) g1Var4.f4543a, (float) g1Var4.f4544b, jv0Var.f28201a, jv0Var.f28202b))) / 0.84f;
                 ValueAnimator valueAnimator = this.f4597r;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();

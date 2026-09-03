@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 import org.telegram.messenger.BuildVars;
-import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.sl0;
 public final class e1 extends r0 {
     public final int f5752a;
     public final Object f5753b;
@@ -32,15 +32,15 @@ public final class e1 extends r0 {
                 }
                 return;
             case 1:
-                tl0 tl0Var = (tl0) this.f5753b;
-                tl0Var.J0(true);
-                if (tl0Var.f31389p2) {
-                    tl0Var.f31388p1 = -1;
-                    if (tl0Var.S1 == null) {
-                        tl0Var.D1.setEmpty();
+                sl0 sl0Var = (sl0) this.f5753b;
+                sl0Var.J0(true);
+                if (sl0Var.f31112p2) {
+                    sl0Var.f31111p1 = -1;
+                    if (sl0Var.S1 == null) {
+                        sl0Var.D1.setEmpty();
                     }
                 }
-                tl0Var.invalidate();
+                sl0Var.invalidate();
                 return;
             default:
                 ((uf.z0) this.f5753b).l();
@@ -111,12 +111,12 @@ public final class e1 extends r0 {
                 }
                 return;
             case 1:
-                tl0 tl0Var = (tl0) this.f5753b;
-                tl0Var.J0(true);
-                View view = tl0Var.f31386o1;
+                sl0 sl0Var = (sl0) this.f5753b;
+                sl0Var.J0(true);
+                View view = sl0Var.f31109o1;
                 if (view != null && view.getAlpha() == 0.0f) {
-                    tl0Var.f31388p1 = -1;
-                    tl0Var.f1();
+                    sl0Var.f31111p1 = -1;
+                    sl0Var.e1();
                     return;
                 }
                 return;
@@ -178,7 +178,7 @@ public final class e1 extends r0 {
                 }
                 return;
             case 1:
-                ((tl0) this.f5753b).J0(true);
+                ((sl0) this.f5753b).J0(true);
                 return;
             default:
                 ((uf.z0) this.f5753b).t(i10 + 1, i11);
@@ -190,7 +190,7 @@ public final class e1 extends r0 {
         RecyclerView recyclerView = (RecyclerView) this.f5753b;
         if (RecyclerView.O0 && recyclerView.E && recyclerView.D) {
             n0 n0Var = recyclerView.f1335n;
-            WeakHashMap weakHashMap = r0.j0.f46438a;
+            WeakHashMap weakHashMap = r0.j0.f46469a;
             recyclerView.postOnAnimation(n0Var);
             return;
         }

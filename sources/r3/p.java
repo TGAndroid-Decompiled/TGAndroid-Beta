@@ -4,12 +4,12 @@ import h5.d0;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class p {
-    public static final Pattern f46576c = Pattern.compile("^ [0-9a-fA-F]{8} ([0-9a-fA-F]{8}) ([0-9a-fA-F]{8})");
-    public int f46577a = -1;
-    public int f46578b = -1;
+    public static final Pattern f46607c = Pattern.compile("^ [0-9a-fA-F]{8} ([0-9a-fA-F]{8}) ([0-9a-fA-F]{8})");
+    public int f46608a = -1;
+    public int f46609b = -1;
 
     public final boolean a(String str) {
-        Matcher matcher = f46576c.matcher(str);
+        Matcher matcher = f46607c.matcher(str);
         if (matcher.find()) {
             try {
                 String group = matcher.group(1);
@@ -17,8 +17,8 @@ public final class p {
                 int parseInt = Integer.parseInt(group, 16);
                 int parseInt2 = Integer.parseInt(matcher.group(2), 16);
                 if (parseInt > 0 || parseInt2 > 0) {
-                    this.f46577a = parseInt;
-                    this.f46578b = parseInt2;
+                    this.f46608a = parseInt;
+                    this.f46609b = parseInt2;
                     return true;
                 }
                 return false;

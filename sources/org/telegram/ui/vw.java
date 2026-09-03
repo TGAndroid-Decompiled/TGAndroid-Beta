@@ -7,49 +7,49 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class vw extends f2.a1 {
-    public boolean f42306a;
-    public final oy f42307b;
-    public final iy f42308c;
+    public boolean f42218a;
+    public final oy f42219b;
+    public final iy f42220c;
     public final py d;
 
     public vw(py pyVar, oy oyVar, iy iyVar) {
         this.d = pyVar;
-        this.f42307b = oyVar;
-        this.f42308c = iyVar;
+        this.f42219b = oyVar;
+        this.f42220c = iyVar;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         py pyVar = this.d;
         if (i10 == 1) {
-            this.f42306a = true;
-            pyVar.f40182a3 = true;
-            b4.e0 e0Var = pyVar.f40185b0[0].f39867b;
+            this.f42218a = true;
+            pyVar.f40152a3 = true;
+            b4.e0 e0Var = pyVar.f40155b0[0].f39823b;
             ValueAnimator valueAnimator = (ValueAnimator) e0Var.f1475c;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
                 ((ValueAnimator) e0Var.f1475c).cancel();
                 e0Var.f1475c = null;
             }
-            if (pyVar.U.f26172r.getText().length() == 0 && pyVar.U.f26172r.hasFocus()) {
-                AndroidUtilities.hideKeyboard(pyVar.U.f26172r);
-                pyVar.U.f26172r.clearFocus();
+            if (pyVar.U.f26132r.getText().length() == 0 && pyVar.U.f26132r.hasFocus()) {
+                AndroidUtilities.hideKeyboard(pyVar.U.f26132r);
+                pyVar.U.f26132r.clearFocus();
             }
         } else {
-            pyVar.f40182a3 = false;
+            pyVar.f40152a3 = false;
         }
         if (i10 == 0) {
-            this.f42306a = false;
-            pyVar.f40187b2 = false;
+            this.f42218a = false;
+            pyVar.f40157b2 = false;
             boolean z4 = pyVar.Y0;
-            oy oyVar = this.f42307b;
+            oy oyVar = this.f42219b;
             if (z4) {
                 pyVar.Y0 = false;
-                if (pyVar.f40181a1) {
-                    ly lyVar = oyVar.f39866a;
-                    int i11 = ly.f38903s3;
-                    lyVar.A1();
-                    pyVar.f40181a1 = false;
+                if (pyVar.f40151a1) {
+                    ly lyVar = oyVar.f39822a;
+                    int i11 = ly.f38799s3;
+                    lyVar.z1();
+                    pyVar.f40151a1 = false;
                 }
                 oyVar.d.l();
             }
@@ -68,12 +68,12 @@ public final class vw extends f2.a1 {
         int i13;
         boolean z4;
         boolean z10;
-        this.f42308c.X();
-        oy oyVar = this.f42307b;
-        rw rwVar = oyVar.f39875x;
+        this.f42220c.X();
+        oy oyVar = this.f42219b;
+        rw rwVar = oyVar.f39831x;
         int i14 = -i11;
-        ArrayList arrayList = rwVar.f25343x;
-        ArrayList arrayList2 = rwVar.f25335o;
+        ArrayList arrayList = rwVar.f25370x;
+        ArrayList arrayList2 = rwVar.f25362o;
         boolean z11 = false;
         if (!arrayList2.isEmpty()) {
             int size = arrayList2.size();
@@ -109,7 +109,7 @@ public final class vw extends f2.a1 {
         if (view3 != null) {
             view3.invalidate();
         }
-        if (pyVar.O0 != 10 && this.f42306a && recyclerView.getChildCount() > 0 && i18 != -1) {
+        if (pyVar.O0 != 10 && this.f42218a && recyclerView.getChildCount() > 0 && i18 != -1) {
             f2.m1 K = recyclerView.K(i18);
             if (!pyVar.Z3() || (K != null && K.b() >= 0)) {
                 if (K != null) {
@@ -128,7 +128,7 @@ public final class vw extends f2.a1 {
                     }
                     if (Math.abs(i22) <= 1) {
                         z10 = false;
-                        if (z10 && pyVar.X1 && (z4 || pyVar.f40182a3)) {
+                        if (z10 && pyVar.X1 && (z4 || pyVar.f40152a3)) {
                             pyVar.c4(z4);
                         }
                         pyVar.V1 = i18;
@@ -149,12 +149,12 @@ public final class vw extends f2.a1 {
                 pyVar.X1 = true;
             }
         }
-        if (!pyVar.H && recyclerView == pyVar.f40185b0[0].f39866a && !pyVar.f40214g2) {
+        if (!pyVar.H && recyclerView == pyVar.f40155b0[0].f39822a && !pyVar.f40184g2) {
             kVar = ((org.telegram.ui.ActionBar.p2) pyVar).actionBar;
             if (kVar != null) {
                 kVar2 = ((org.telegram.ui.ActionBar.p2) pyVar).actionBar;
-                if (!kVar2.s() && !pyVar.f40187b2 && !pyVar.C3.c()) {
-                    if (i11 > 0 && pyVar.Z3() && pyVar.f40185b0[0].f39873s == 0 && (childAt = recyclerView.getChildAt(0)) != null && recyclerView.T(childAt).b() == 0) {
+                if (!kVar2.s() && !pyVar.f40157b2 && !pyVar.C3.c()) {
+                    if (i11 > 0 && pyVar.Z3() && pyVar.f40155b0[0].f39829s == 0 && (childAt = recyclerView.getChildAt(0)) != null && recyclerView.T(childAt).b() == 0) {
                         int top = (childAt.getTop() - recyclerView.getPaddingTop()) + childAt.getMeasuredHeight();
                         if (top + i11 > 0) {
                             if (top < 0) {
@@ -176,7 +176,7 @@ public final class vw extends f2.a1 {
             pyVar.m3();
         }
         kx kxVar = pyVar.C3;
-        if (kxVar != null && kxVar.c() && (lyVar = oyVar.f39866a) != null) {
+        if (kxVar != null && kxVar.c() && (lyVar = oyVar.f39822a) != null) {
             lyVar.invalidate();
         }
         hx hxVar = pyVar.B0;
@@ -184,14 +184,14 @@ public final class vw extends f2.a1 {
             pyVar.B0.getPremiumHint().e(true);
         }
         ?? Z3 = pyVar.Z3();
-        View childAt2 = oyVar.f39866a.getChildAt(Z3 == true ? 1 : 0);
+        View childAt2 = oyVar.f39822a.getChildAt(Z3 == true ? 1 : 0);
         if (childAt2 != null) {
             i12 = childAt2.getTop();
         } else {
             i12 = 0;
         }
-        pyVar.f40200e.a((i18 > Z3 || (((float) i12) - pyVar.K) + ((float) AndroidUtilities.dp(5.0f)) < ((float) oyVar.f39866a.getPaddingTop())) ? true : true, true);
-        if (i11 != 0 && (eVar = pyVar.f40226i4) != null && Build.VERSION.SDK_INT >= 31) {
+        pyVar.f40170e.a((i18 > Z3 || (((float) i12) - pyVar.K) + ((float) AndroidUtilities.dp(5.0f)) < ((float) oyVar.f39822a.getPaddingTop())) ? true : true, true);
+        if (i11 != 0 && (eVar = pyVar.f40196i4) != null && Build.VERSION.SDK_INT >= 31) {
             eVar.f(i10, i11);
         }
     }

@@ -28,7 +28,7 @@ public final class c0 extends GestureDetector.SimpleOnGestureListener {
             if (k10 != null && (T = f0Var.E.T(k10)) != null) {
                 RecyclerView recyclerView = f0Var.E;
                 int e6 = b0Var.e(recyclerView, T);
-                WeakHashMap weakHashMap = r0.j0.f46438a;
+                WeakHashMap weakHashMap = r0.j0.f46469a;
                 if ((b0Var.b(e6, recyclerView.getLayoutDirection()) & 16711680) != 0) {
                     int pointerId = motionEvent.getPointerId(0);
                     int i10 = f0Var.f5765w;

@@ -18,10 +18,10 @@ public final class o6 extends eb {
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(Typeface.SANS_SERIF);
         addView(textView, k7.c6.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        qVar.setImageDrawable(launchActivity.getDrawable(bb0Var.f35409b));
+        qVar.setImageDrawable(launchActivity.getDrawable(bb0Var.f35425b));
         qVar.setOuterPadding(AndroidUtilities.dp(8.0f));
         qVar.setBackgroundOuterPadding(AndroidUtilities.dp(24.0f));
-        qVar.setForeground(bb0Var.f35410c);
+        qVar.setForeground(bb0Var.f35426c);
         org.telegram.ui.b.o(R.string.AppIconChangedTo, new Object[]{LocaleController.getString(bb0Var.d)}, textView);
     }
 }

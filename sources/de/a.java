@@ -3,7 +3,7 @@ package de;
 import androidx.biometric.f0;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
-import sf.e;
+import sf.f;
 public final class a {
     public static final Hashtable f4423b;
     public static final Object[] f4424c;
@@ -56,12 +56,12 @@ public final class a {
         }
     }
 
-    public static e b(f0 f0Var, Object obj, Object obj2) {
-        return new e(f0Var, obj, obj2, f4424c);
+    public static f b(f0 f0Var, Object obj, Object obj2) {
+        return new f(f0Var, obj, obj2, f4424c);
     }
 
-    public static e c(f0 f0Var, Object obj, Object obj2, Object obj3) {
-        return new e(f0Var, obj, obj2, new Object[]{obj3});
+    public static f c(f0 f0Var, Object obj, Object obj2, Object obj3) {
+        return new f(f0Var, obj, obj2, new Object[]{obj3});
     }
 
     public final da.a d(String str, String str2, String str3, String str4, String str5) {

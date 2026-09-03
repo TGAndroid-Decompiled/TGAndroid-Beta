@@ -19,15 +19,15 @@ import org.telegram.ui.Components.sc;
 import org.telegram.ui.Components.tc;
 import org.telegram.ui.LaunchActivity;
 public final class a0 implements Utilities.Callback2 {
-    public final int f12578a;
-    public final Object f12579b;
-    public final Object f12580c;
+    public final int f12580a;
+    public final Object f12581b;
+    public final Object f12582c;
     public final Object d;
 
     public a0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f12578a = i10;
-        this.f12579b = obj;
-        this.f12580c = obj2;
+        this.f12580a = i10;
+        this.f12581b = obj;
+        this.f12582c = obj2;
         this.d = obj3;
     }
 
@@ -35,16 +35,16 @@ public final class a0 implements Utilities.Callback2 {
     public final void run(Object obj, Object obj2) {
         tc tcVar;
         tc tcVar2;
-        switch (this.f12578a) {
+        switch (this.f12580a) {
             case 0:
-                f0 f0Var = (f0) this.f12579b;
-                qh.f3[] f3VarArr = (qh.f3[]) this.f12580c;
+                f0 f0Var = (f0) this.f12581b;
+                qh.e3[] e3VarArr = (qh.e3[]) this.f12582c;
                 FrameLayout frameLayout = (FrameLayout) this.d;
                 View view = (View) obj;
                 CharSequence charSequence = (CharSequence) obj2;
-                qh.f3 f3Var = f3VarArr[0];
-                if (f3Var != null) {
-                    f3Var.e(true);
+                qh.e3 e3Var = e3VarArr[0];
+                if (e3Var != null) {
+                    e3Var.e(true);
                 }
                 CharSequence replaceTags = AndroidUtilities.replaceTags(charSequence);
                 float x10 = ((View) ((View) view.getParent()).getParent()).getX() + ((View) view.getParent()).getX() + view.getX();
@@ -62,27 +62,27 @@ public final class a0 implements Utilities.Callback2 {
                         }
                     }
                 }
-                qh.f3 f3Var2 = new qh.f3(f0Var.getContext(), 3);
-                f3VarArr[0] = f3Var2;
-                f3Var2.q(true);
-                f3Var2.l(11.0f, 8.0f, 11.0f, 7.0f);
-                f3Var2.r(10.0f);
-                f3Var2.t(replaceTags);
-                f3Var2.f45298i0 = new w(f3Var2, 0);
-                f3Var2.setTranslationY((-AndroidUtilities.dp(100.0f)) + y10);
-                f3Var2.h = AndroidUtilities.dp(300.0f);
-                f3Var2.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-                f3Var2.n(0.0f, x10 - AndroidUtilities.dp(4.0f));
-                frameLayout.addView(f3Var2, k7.c6.e(-1, 100, 55));
-                f3Var2.v();
+                qh.e3 e3Var2 = new qh.e3(f0Var.getContext(), 3);
+                e3VarArr[0] = e3Var2;
+                e3Var2.p(true);
+                e3Var2.k(11.0f, 8.0f, 11.0f, 7.0f);
+                e3Var2.q(10.0f);
+                e3Var2.s(replaceTags);
+                e3Var2.f45272i0 = new w(e3Var2, 0);
+                e3Var2.setTranslationY((-AndroidUtilities.dp(100.0f)) + y10);
+                e3Var2.h = AndroidUtilities.dp(300.0f);
+                e3Var2.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+                e3Var2.m(0.0f, x10 - AndroidUtilities.dp(4.0f));
+                frameLayout.addView(e3Var2, k7.c6.e(-1, 100, 55));
+                e3Var2.u();
                 return;
             case 1:
-                q5 q5Var = (q5) this.f12579b;
+                q5 q5Var = (q5) this.f12581b;
                 TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.d;
                 String str = (String) obj2;
-                ((af.f) this.f12580c).b();
+                ((af.f) this.f12582c).b();
                 if (((Boolean) obj).booleanValue()) {
-                    mh.m1 m1Var = q5Var.f12909c0;
+                    mh.m1 m1Var = q5Var.f12911c0;
                     if (m1Var != null) {
                         m1Var.run(tL_starGiftUnique);
                     }
@@ -91,17 +91,17 @@ public final class a0 implements Utilities.Callback2 {
                 }
                 return;
             case 2:
-                mh.m0.R((mh.m0) this.f12579b, (af.f) this.f12580c, (org.telegram.ui.ActionBar.d2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                mh.m0.R((mh.m0) this.f12581b, (af.f) this.f12582c, (org.telegram.ui.ActionBar.d2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 3:
-                mh.g5 g5Var = (mh.g5) this.f12579b;
-                qh.f3[] f3VarArr2 = (qh.f3[]) this.f12580c;
+                mh.g5 g5Var = (mh.g5) this.f12581b;
+                qh.e3[] e3VarArr2 = (qh.e3[]) this.f12582c;
                 FrameLayout frameLayout2 = (FrameLayout) this.d;
                 View view2 = (View) obj;
                 CharSequence charSequence2 = (CharSequence) obj2;
-                qh.f3 f3Var3 = f3VarArr2[0];
-                if (f3Var3 != null) {
-                    f3Var3.e(true);
+                qh.e3 e3Var3 = e3VarArr2[0];
+                if (e3Var3 != null) {
+                    e3Var3.e(true);
                 }
                 CharSequence replaceTags2 = AndroidUtilities.replaceTags(charSequence2);
                 float x11 = ((View) ((View) view2.getParent()).getParent()).getX() + ((View) view2.getParent()).getX() + view2.getX();
@@ -119,56 +119,56 @@ public final class a0 implements Utilities.Callback2 {
                         }
                     }
                 }
-                qh.f3 f3Var4 = new qh.f3(g5Var.getContext(), 3);
-                f3VarArr2[0] = f3Var4;
-                f3Var4.q(true);
-                f3Var4.l(11.0f, 8.0f, 11.0f, 7.0f);
-                f3Var4.r(10.0f);
-                f3Var4.t(replaceTags2);
-                f3Var4.f45298i0 = new w(f3Var4, 2);
-                f3Var4.setTranslationY((-AndroidUtilities.dp(100.0f)) + y11);
-                f3Var4.h = AndroidUtilities.dp(300.0f);
-                f3Var4.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-                f3Var4.n(0.0f, x11 - AndroidUtilities.dp(4.0f));
-                frameLayout2.addView(f3Var4, k7.c6.e(-1, 100, 55));
-                f3Var4.v();
+                qh.e3 e3Var4 = new qh.e3(g5Var.getContext(), 3);
+                e3VarArr2[0] = e3Var4;
+                e3Var4.p(true);
+                e3Var4.k(11.0f, 8.0f, 11.0f, 7.0f);
+                e3Var4.q(10.0f);
+                e3Var4.s(replaceTags2);
+                e3Var4.f45272i0 = new w(e3Var4, 2);
+                e3Var4.setTranslationY((-AndroidUtilities.dp(100.0f)) + y11);
+                e3Var4.h = AndroidUtilities.dp(300.0f);
+                e3Var4.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+                e3Var4.m(0.0f, x11 - AndroidUtilities.dp(4.0f));
+                frameLayout2.addView(e3Var4, k7.c6.e(-1, 100, 55));
+                e3Var4.u();
                 return;
             case 4:
-                ((ConnectionsManager) this.f12579b).lambda$sendRequestTypedAndProcessUpdates$5((Executor) this.f12580c, (Utilities.Callback2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                ((ConnectionsManager) this.f12581b).lambda$sendRequestTypedAndProcessUpdates$5((Executor) this.f12582c, (Utilities.Callback2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 5:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                org.telegram.ui.Components.f0.W((org.telegram.ui.Components.f0) this.f12579b, (af.f) this.f12580c, (TL_aicompose.TL_aiComposeTone) this.d);
+                org.telegram.ui.Components.f0.W((org.telegram.ui.Components.f0) this.f12581b, (af.f) this.f12582c, (TL_aicompose.TL_aiComposeTone) this.d);
                 return;
             case 6:
                 TLRPC.Bool bool2 = (TLRPC.Bool) obj;
-                org.telegram.ui.Components.r.S((org.telegram.ui.Components.r) this.f12579b, (g6) this.f12580c, (TL_aicompose.AiComposeTone) this.d, (TLRPC.TL_error) obj2);
+                org.telegram.ui.Components.r.S((org.telegram.ui.Components.r) this.f12581b, (g6) this.f12582c, (TL_aicompose.AiComposeTone) this.d, (TLRPC.TL_error) obj2);
                 return;
             case 7:
                 TLRPC.Bool bool3 = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                org.telegram.ui.Components.z.P((org.telegram.ui.Components.z) this.f12579b, (af.f) this.f12580c, (org.telegram.ui.ActionBar.d2) this.d);
+                org.telegram.ui.Components.z.P((org.telegram.ui.Components.z) this.f12581b, (af.f) this.f12582c, (org.telegram.ui.ActionBar.d2) this.d);
                 return;
             default:
-                org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) this.f12579b;
-                String str2 = (String) this.f12580c;
+                org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) this.f12581b;
+                String str2 = (String) this.f12582c;
                 TLRPC.User user = (TLRPC.User) this.d;
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                g6 g6Var = a1Var.f42472e;
+                g6 g6Var = a1Var.f42436e;
                 if (updates != null) {
                     MessagesController.getInstance(a1Var.J).processUpdates(updates, false);
                     a1Var.v("requested_chat_sent", org.telegram.ui.web.a1.x(str2, "req_id"));
-                    long j10 = a1Var.R.f20990id;
+                    long j10 = a1Var.R.f20992id;
                     Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", user.f20990id);
+                    bundle.putLong("user_id", user.f20992id);
                     org.telegram.ui.web.c0 c0Var = new org.telegram.ui.web.c0(a1Var, bundle, user, j10);
                     org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
                     if (U != null) {
                         U.presentFragment(c0Var);
                     }
-                    org.telegram.ui.web.f0 f0Var2 = a1Var.f42469c;
+                    org.telegram.ui.web.f0 f0Var2 = a1Var.f42433c;
                     if (f0Var2 != null) {
                         f0Var2.b();
                         return;

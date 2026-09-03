@@ -51,10 +51,10 @@ public final class g {
     public static SpannableStringBuilder e(String str, TreeMap treeMap) {
         if (!treeMap.containsKey(str)) {
             v4.a aVar = new v4.a();
-            aVar.f48877a = new SpannableStringBuilder();
+            aVar.f48913a = new SpannableStringBuilder();
             treeMap.put(str, aVar);
         }
-        CharSequence charSequence = ((v4.a) treeMap.get(str)).f48877a;
+        CharSequence charSequence = ((v4.a) treeMap.get(str)).f48913a;
         charSequence.getClass();
         return (SpannableStringBuilder) charSequence;
     }
@@ -164,7 +164,7 @@ public final class g {
                 e(str2, treeMap).append('\n');
             } else if (f(j10)) {
                 for (Map.Entry entry : treeMap.entrySet()) {
-                    CharSequence charSequence = ((v4.a) entry.getValue()).f48877a;
+                    CharSequence charSequence = ((v4.a) entry.getValue()).f48913a;
                     charSequence.getClass();
                     hashMap.put((String) entry.getKey(), Integer.valueOf(charSequence.length()));
                 }
@@ -189,7 +189,7 @@ public final class g {
                     }
                 }
                 for (Map.Entry entry2 : treeMap.entrySet()) {
-                    CharSequence charSequence2 = ((v4.a) entry2.getValue()).f48877a;
+                    CharSequence charSequence2 = ((v4.a) entry2.getValue()).f48913a;
                     charSequence2.getClass();
                     hashMap2.put((String) entry2.getKey(), Integer.valueOf(charSequence2.length()));
                 }

@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class h60 extends tl0 {
+public final class h60 extends sl0 {
     public int U2;
     public final u60 V2;
 

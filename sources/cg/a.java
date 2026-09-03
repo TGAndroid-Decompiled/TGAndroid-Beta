@@ -4,9 +4,9 @@ import f2.q;
 import j$.util.Objects;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.pl0;
+import org.telegram.ui.Components.ol0;
 import org.telegram.ui.Components.tx;
-import org.telegram.ui.r61;
+import org.telegram.ui.w61;
 import uf.i;
 import uf.k;
 public final class a extends q {
@@ -57,19 +57,19 @@ public final class a extends q {
                 }
                 return bVar.equals(bVar2);
             case 1:
-                return ((Integer) this.f2504c.get(i10)).equals(((tx) this.d).f31473n.get(i11));
+                return ((Integer) this.f2504c.get(i10)).equals(((tx) this.d).f31428n.get(i11));
             case 2:
-                return Objects.equals(this.f2504c.get(i10), ((pl0) this.d).f30113n.get(i11));
+                return Objects.equals(this.f2504c.get(i10), ((ol0) this.d).f29809n.get(i11));
             case 3:
-                return ((Long) this.f2504c.get(i10)).equals(((r61) this.d).f40821s0.get(i11));
+                return ((Long) this.f2504c.get(i10)).equals(((w61) this.d).f42344s0.get(i11));
             default:
                 i iVar = (i) ((k) this.d).K.get(i10);
                 i iVar2 = (i) this.f2504c.get(i11);
-                TLRPC.Dialog dialog = iVar.f48593c;
+                TLRPC.Dialog dialog = iVar.f48629c;
                 int i12 = iVar.f2505a;
                 int i13 = iVar2.f2505a;
-                TLRPC.Dialog dialog2 = iVar2.f48593c;
-                if (i12 != i13 || (i12 != 0 ? !(i12 != 14 ? i12 != 4 ? i12 != 6 ? i12 != 5 ? i12 != 10 : iVar.f48598j == iVar2.f48598j : (tL_contact = iVar.f48594e) != null && (tL_contact2 = iVar2.f48594e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = iVar.d) != null && iVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f20847id == dialog2.f20847id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f20847id == dialog2.f20847id && iVar.h == iVar2.h && iVar.f48595f == iVar2.f48595f && iVar.f48596g == iVar2.f48596g))) {
+                TLRPC.Dialog dialog2 = iVar2.f48629c;
+                if (i12 != i13 || (i12 != 0 ? !(i12 != 14 ? i12 != 4 ? i12 != 6 ? i12 != 5 ? i12 != 10 : iVar.f48634j == iVar2.f48634j : (tL_contact = iVar.f48630e) != null && (tL_contact2 = iVar2.f48630e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = iVar.d) != null && iVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f20849id == dialog2.f20849id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f20849id == dialog2.f20849id && iVar.h == iVar2.h && iVar.f48631f == iVar2.f48631f && iVar.f48632g == iVar2.f48632g))) {
                     return false;
                 }
                 return true;
@@ -82,11 +82,11 @@ public final class a extends q {
             case 0:
                 return ((ArrayList) this.d).size();
             case 1:
-                return ((tx) this.d).f31473n.size();
+                return ((tx) this.d).f31428n.size();
             case 2:
-                return ((pl0) this.d).f30113n.size();
+                return ((ol0) this.d).f29809n.size();
             case 3:
-                return ((r61) this.d).f40821s0.size();
+                return ((w61) this.d).f42344s0.size();
             default:
                 return this.f2504c.size();
         }

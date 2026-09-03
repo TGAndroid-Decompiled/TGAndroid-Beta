@@ -17,9 +17,9 @@ import mh.t4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.kl0;
+import org.telegram.ui.Components.jl0;
 import org.telegram.ui.Components.y4;
-public final class f implements org.telegram.ui.ActionBar.c2, kl0, Continuation, ih.a, r8.i, h5.j, v2.e, lf.o, r0.o, BillingController.ProductDetailsResponseListenerLegacy, y4, xd.b {
+public final class f implements org.telegram.ui.ActionBar.c2, jl0, Continuation, ih.a, r8.i, h5.j, v2.e, lf.o, r0.o, BillingController.ProductDetailsResponseListenerLegacy, y4, xd.b {
     public final int f7461a;
     public final Object f7462b;
 
@@ -35,7 +35,7 @@ public final class f implements org.telegram.ui.ActionBar.c2, kl0, Continuation,
             long j10 = i10;
             if (r0Var.F != j10) {
                 r0Var.F = j10;
-                r0Var.f14658r.setText(mh.r0.o(j10));
+                r0Var.f14660r.setText(mh.r0.o(j10));
             }
             r0Var.n(true);
         }
@@ -43,7 +43,7 @@ public final class f implements org.telegram.ui.ActionBar.c2, kl0, Continuation,
 
     @Override
     public void L(int i10, float f10, float f11, xd.c cVar) {
-        View view = ((i5) this.f7462b).f14235b;
+        View view = ((i5) this.f7462b).f14237b;
         if (view instanceof org.telegram.ui.Cells.v0) {
             ((org.telegram.ui.Cells.v0) view).J();
         } else {
@@ -54,7 +54,7 @@ public final class f implements org.telegram.ui.ActionBar.c2, kl0, Continuation,
     @Override
     public r0.m1 M0(View view, r0.m1 m1Var) {
         ((lh.u0) this.f7462b).h.i(m1Var);
-        return r0.m1.f46451b;
+        return r0.m1.f46482b;
     }
 
     @Override
@@ -174,7 +174,7 @@ public final class f implements org.telegram.ui.ActionBar.c2, kl0, Continuation,
     public void onProductDetailsResponse(p2.h hVar, List list) {
         int i10;
         lh.g2 g2Var = (lh.g2) this.f7462b;
-        ArrayList arrayList = g2Var.f12769k0;
+        ArrayList arrayList = g2Var.f12771k0;
         Iterator it = list.iterator();
         long j10 = 0;
         while (true) {
@@ -189,7 +189,7 @@ public final class f implements org.telegram.ui.ActionBar.c2, kl0, Continuation,
                     Object obj = arrayList.get(i10);
                     i10++;
                     fg.n nVar = (fg.n) obj;
-                    if (nVar.h() != null && nVar.h().equals(mVar.f44161c)) {
+                    if (nVar.h() != null && nVar.h().equals(mVar.f44192c)) {
                         nVar.h = mVar;
                         if (nVar.f() > j10) {
                             j10 = nVar.f();

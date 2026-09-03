@@ -30,7 +30,7 @@ public final class p1 extends qd.b {
             kVar = this.f12345c;
         }
         if (kVar != null) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = qd.k.f44807a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = qd.k.f44838a;
             while (!atomicReferenceFieldUpdater.compareAndSet(kVar2, this, kVar)) {
                 if (atomicReferenceFieldUpdater.get(kVar2) != this) {
                     return;
@@ -50,6 +50,6 @@ public final class p1 extends qd.b {
         if (this.d.u() == this.f12346e) {
             return null;
         }
-        return qd.a.f44791e;
+        return qd.a.f44822e;
     }
 }

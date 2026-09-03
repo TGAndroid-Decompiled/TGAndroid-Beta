@@ -46,8 +46,8 @@ import org.telegram.ui.Components.o9;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.xg0;
 import org.telegram.ui.Components.xk;
-import org.telegram.ui.c71;
 import org.telegram.ui.e1;
+import org.telegram.ui.h71;
 import org.telegram.ui.ii0;
 import org.telegram.ui.j3;
 import org.telegram.ui.j4;
@@ -55,10 +55,10 @@ import org.telegram.ui.l9;
 import org.telegram.ui.o70;
 import org.telegram.ui.os;
 import org.telegram.ui.p60;
-import org.telegram.ui.sw0;
 import org.telegram.ui.web.a1;
 import org.telegram.ui.web.x0;
 import org.telegram.ui.xk0;
+import org.telegram.ui.xw0;
 import org.telegram.ui.zi;
 import org.telegram.ui.zk0;
 public final class j0 implements Runnable {
@@ -172,8 +172,8 @@ public final class j0 implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f12485f;
                 TLObject tLObject3 = (TLObject) this.f12482b;
                 e1 e1Var = (e1) this.h;
-                o70Var.f39614r = false;
-                if (!((j4) this.f12484e).f38009e.isEmpty()) {
+                o70Var.f39559r = false;
+                if (!((j4) this.f12484e).f37836e.isEmpty()) {
                     if (tL_error == null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject3;
                         if (!tL_contacts_resolvedPeer.chats.isEmpty()) {
@@ -182,7 +182,7 @@ public final class j0 implements Runnable {
                             MessagesController.getInstance(i13).putChats(tL_contacts_resolvedPeer.chats, false);
                             MessagesStorage.getInstance(i13).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                             TLRPC.Chat chat = tL_contacts_resolvedPeer.chats.get(0);
-                            o70Var.f39613n = chat;
+                            o70Var.f39558n = chat;
                             if (chat.left && !chat.kicked) {
                                 e1Var.a(0, false);
                                 return;
@@ -222,7 +222,7 @@ public final class j0 implements Runnable {
                     d2Var.dismiss();
                     if (groupCall != null) {
                         TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                        tL_inputGroupCall.f20860id = groupCall.f20853id;
+                        tL_inputGroupCall.f20862id = groupCall.f20855id;
                         tL_inputGroupCall.access_hash = groupCall.access_hash;
                         l9.o0(context, i14, tL_inputGroupCall, groupCall.invite_link, g6Var2, true, true);
                         AndroidUtilities.runOnUIThread(p60Var);
@@ -237,7 +237,7 @@ public final class j0 implements Runnable {
                     TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
                     exportgroupcallinvite.call = tL_inputGroupCall2;
                     TLRPC.GroupCall groupCall2 = groupcall.call;
-                    tL_inputGroupCall2.f20860id = groupCall2.f20853id;
+                    tL_inputGroupCall2.f20862id = groupCall2.f20855id;
                     tL_inputGroupCall2.access_hash = groupCall2.access_hash;
                     ConnectionsManager.getInstance(i14).sendRequest(exportgroupcallinvite, new li(d2Var, context, i14, exportgroupcallinvite, g6Var2, p60Var));
                     return;
@@ -247,7 +247,7 @@ public final class j0 implements Runnable {
                     return;
                 }
             case 8:
-                new c71((Context) this.f12482b, (TLRPC.Chat) this.d, (TLRPC.User) this.f12484e, new af.b(this.f12483c, (MessagesStorage.BooleanCallback) this.f12485f, 25), (g6) this.h).show();
+                new h71((Context) this.f12482b, (TLRPC.Chat) this.d, (TLRPC.User) this.f12484e, new af.b(this.f12483c, (MessagesStorage.BooleanCallback) this.f12485f, 25), (g6) this.h).show();
                 return;
             case 9:
                 o9.a((o9) this.f12482b, (Runnable[]) this.d, (Bitmap) this.f12484e, (b60) this.f12485f, this.f12483c, (z5[]) this.h);
@@ -274,8 +274,8 @@ public final class j0 implements Runnable {
                 p2 p2Var2 = (p2) this.d;
                 List<Purchase> list = (List) this.f12484e;
                 p2.e eVar = (p2.e) this.f12485f;
-                sw0 sw0Var = (sw0) this.h;
-                if (((p2.h) this.f12482b).f44145a == 0) {
+                xw0 xw0Var = (xw0) this.h;
+                if (((p2.h) this.f12482b).f44176a == 0) {
                     ii0 ii0Var = new ii0(1, p2Var2);
                     int i16 = this.f12483c;
                     if (list != null && !list.isEmpty() && !UserConfig.getInstance(i16).isPremium()) {
@@ -303,7 +303,7 @@ public final class j0 implements Runnable {
                         tL_inputStorePaymentPremiumSubscription2.upgrade = true;
                     }
                     tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentPremiumSubscription2;
-                    ConnectionsManager.getInstance(i16).sendRequest(tL_payments_canPurchaseStore, new li(p2Var2, tL_inputStorePaymentPremiumSubscription2, sw0Var, eVar, i16, tL_payments_canPurchaseStore, 5));
+                    ConnectionsManager.getInstance(i16).sendRequest(tL_payments_canPurchaseStore, new li(p2Var2, tL_inputStorePaymentPremiumSubscription2, xw0Var, eVar, i16, tL_payments_canPurchaseStore, 5));
                     return;
                 }
                 return;

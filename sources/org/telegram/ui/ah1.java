@@ -1,50 +1,37 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class ah1 extends LinearLayout {
-    public final org.telegram.ui.ActionBar.g6 f35181a;
-    public final ImageView f35182b;
-    public final LinearLayout f35183c;
-    public final TextView d;
-    public final TextView f35184e;
-    public final ImageView f35185f;
-    public boolean h;
-    public boolean f35186n;
+import android.text.Editable;
+public final class ah1 extends org.telegram.ui.Cells.i3 {
+    public final int f35189x;
+    public final UserInfoActivity f35190y;
 
-    public ah1(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context);
-        setOrientation(0);
-        this.f35181a = g6Var;
-        ImageView imageView = new ImageView(context);
-        this.f35182b = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        addView(imageView, k7.c6.t(40, 40, 19, 12, 0, 12, 0));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.f35183c = linearLayout;
-        linearLayout.setOrientation(1);
-        linearLayout.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f));
-        addView(linearLayout, k7.c6.p(0, -2, 1.0f, 23, 0, 0, 32, 0));
-        TextView textView = new TextView(context);
-        this.d = textView;
-        textView.setTextSize(1, 16.0f);
-        TextView i10 = yh.i(linearLayout, textView, k7.c6.t(-1, -2, 7, 0, 0, 0, 0), context);
-        this.f35184e = i10;
-        i10.setTextSize(1, 13.0f);
-        linearLayout.addView(i10, k7.c6.r(-1, -2, 7, 0.0f, 4.33f, 0.0f, 0.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.f35185f = imageView2;
-        imageView2.setScaleType(scaleType);
-        addView(imageView2, k7.c6.t(40, 40, 21, 12, 0, 12, 0));
+    public ah1(UserInfoActivity userInfoActivity, Context context, String str, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
+        super(context, str, false, false, -1, g6Var);
+        this.f35189x = i10;
+        this.f35190y = userInfoActivity;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void b(Editable editable) {
+        switch (this.f35189x) {
+            case 0:
+                this.f35190y.b0(true);
+                return;
+            case 1:
+                this.f35190y.b0(true);
+                return;
+            default:
+                UserInfoActivity userInfoActivity = this.f35190y;
+                userInfoActivity.b0(true);
+                userInfoActivity.e0();
+                return;
+        }
+    }
+
+    public ah1(UserInfoActivity userInfoActivity, Context context, String str, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, str, true, false, i10, g6Var);
+        this.f35189x = 2;
+        this.f35190y = userInfoActivity;
     }
 }

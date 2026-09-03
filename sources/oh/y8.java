@@ -9,26 +9,26 @@ public final class y8 extends u {
         super(context);
         boolean z4;
         this.N0 = i9Var;
-        this.f17697x0 = new ArrayList();
+        this.f17699x0 = new ArrayList();
         this.A0 = true;
         this.J0 = new m2.b(this, 4);
         this.L0 = -1;
-        this.f17695v0 = i10;
+        this.f17697v0 = i10;
         this.E0 = new c4(context);
         this.K0 = i9Var2;
         o7 o7Var = new o7(this, context, i9Var2, bVar);
-        this.f17696w0 = o7Var;
+        this.f17698w0 = o7Var;
         setAdapter(o7Var);
         mh.m5 m5Var = new mh.m5(this, 12);
-        if (this.f13451j0 != null) {
+        if (this.f13453j0 != null) {
             z4 = false;
         } else {
             z4 = true;
         }
-        this.f13451j0 = m5Var;
+        this.f13453j0 = m5Var;
         setChildrenDrawingOrderEnabled(true);
-        this.f13453l0 = 1;
-        this.f13452k0 = 2;
+        this.f13455l0 = 1;
+        this.f13454k0 = 2;
         if (z4) {
             s();
         }

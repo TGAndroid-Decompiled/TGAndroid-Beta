@@ -15,19 +15,19 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class ny extends f2.b0 {
     public f2.m1 d;
-    public boolean f39542e;
-    public boolean f39543f;
-    public final oy f39544g;
+    public boolean f39477e;
+    public boolean f39478f;
+    public final oy f39479g;
     public final py h;
 
     public ny(py pyVar, oy oyVar) {
         this.h = pyVar;
-        this.f39544g = oyVar;
+        this.f39479g = oyVar;
     }
 
     @Override
     public final int b(int i10, int i11) {
-        if (this.f39543f) {
+        if (this.f39478f) {
             return 0;
         }
         return super.b(i10, i11);
@@ -41,7 +41,7 @@ public final class ny extends f2.b0 {
             return 200L;
         }
         if (i10 == 8 && (r2Var = (pyVar = this.h).U0) != null) {
-            AndroidUtilities.runOnUIThread(new bh(1, r2Var), this.f39544g.f39875x.f5931e);
+            AndroidUtilities.runOnUIThread(new bh(1, r2Var), this.f39479g.f39831x.f5931e);
             pyVar.U0 = null;
         }
         return super.d(recyclerView, i10, f10, f11);
@@ -81,14 +81,14 @@ public final class ny extends f2.b0 {
             if (dialog != null && pyVar.g4(dialog) && !DialogObject.isFolderDialogId(dialogId)) {
                 int b10 = m1Var.b();
                 int b11 = m1Var2.b();
-                oy oyVar = this.f39544g;
-                if (oyVar.f39866a.getItemAnimator() == null) {
-                    oyVar.f39866a.setItemAnimator(oyVar.f39875x);
+                oy oyVar = this.f39479g;
+                if (oyVar.f39822a.getItemAnimator() == null) {
+                    oyVar.f39822a.setItemAnimator(oyVar.f39831x);
                 }
                 xw xwVar = oyVar.d;
                 py pyVar2 = xwVar.O;
                 int i11 = xwVar.C;
-                ArrayList R3 = pyVar2.R3(i11, xwVar.h, xwVar.f48612r, false);
+                ArrayList R3 = pyVar2.R3(i11, xwVar.h, xwVar.f48648r, false);
                 int G = xwVar.G(b10);
                 int G2 = xwVar.G(b11);
                 TLRPC.Dialog dialog2 = (TLRPC.Dialog) R3.get(G);
@@ -106,13 +106,13 @@ public final class ny extends f2.b0 {
                         c3 = 0;
                     }
                     MessagesController.DialogFilter dialogFilter = dialogFilterArr[c3];
-                    int i14 = dialogFilter.pinnedDialogs.get(dialog2.f20847id);
-                    dialogFilter.pinnedDialogs.put(dialog2.f20847id, dialogFilter.pinnedDialogs.get(dialog3.f20847id));
-                    dialogFilter.pinnedDialogs.put(dialog3.f20847id, i14);
+                    int i14 = dialogFilter.pinnedDialogs.get(dialog2.f20849id);
+                    dialogFilter.pinnedDialogs.put(dialog2.f20849id, dialogFilter.pinnedDialogs.get(dialog3.f20849id));
+                    dialogFilter.pinnedDialogs.put(dialog3.f20849id, i14);
                 }
                 Collections.swap(R3, G, G2);
                 xwVar.W(null);
-                int i15 = pyVar.f40185b0[0].f39873s;
+                int i15 = pyVar.f40155b0[0].f39829s;
                 if (i15 != 7) {
                     i10 = 8;
                     if (i15 != 8) {
@@ -123,7 +123,7 @@ public final class ny extends f2.b0 {
                     i10 = 8;
                 }
                 MessagesController.DialogFilter[] dialogFilterArr2 = pyVar.getMessagesController().selectedDialogFilter;
-                if (pyVar.f40185b0[0].f39873s == i10) {
+                if (pyVar.f40155b0[0].f39829s == i10) {
                     c10 = 1;
                 }
                 MessagesController.DialogFilter dialogFilter2 = dialogFilterArr2[c10];
@@ -140,13 +140,13 @@ public final class ny extends f2.b0 {
     @Override
     public final void p(f2.m1 m1Var, int i10) {
         if (m1Var != null) {
-            this.f39544g.f39866a.d1(false);
+            this.f39479g.f39822a.c1(false);
         }
         this.d = m1Var;
         if (m1Var != null) {
             View view = m1Var.f5875a;
             if (view instanceof org.telegram.ui.Cells.r2) {
-                ((org.telegram.ui.Cells.r2) view).f23521w = false;
+                ((org.telegram.ui.Cells.r2) view).f23523w = false;
             }
         }
     }
@@ -160,11 +160,11 @@ public final class ny extends f2.b0 {
             long dialogId = r2Var.getDialogId();
             boolean isFolderDialogId = DialogObject.isFolderDialogId(dialogId);
             int i11 = 0;
-            oy oyVar = this.f39544g;
+            oy oyVar = this.f39479g;
             if (isFolderDialogId) {
-                ly lyVar = oyVar.f39866a;
-                int i12 = ly.f38903s3;
-                lyVar.z1(false, r2Var);
+                ly lyVar = oyVar.f39822a;
+                int i12 = ly.f38799s3;
+                lyVar.y1(false, r2Var);
                 return;
             }
             TLRPC.Dialog dialog = (TLRPC.Dialog) pyVar.getMessagesController().dialogs_dict.f(dialogId);
@@ -192,24 +192,24 @@ public final class ny extends f2.b0 {
             pyVar.A4(true, true);
             if (Utilities.random.nextInt(1000) == 1) {
                 if (pyVar.S0 == null) {
-                    ly lyVar2 = oyVar.f39866a;
+                    ly lyVar2 = oyVar.f39822a;
                     ?? obj = new Object();
-                    obj.f26508a = new Paint(1);
+                    obj.f26552a = new Paint(1);
                     Paint paint = new Paint(1);
-                    obj.f26509b = paint;
-                    obj.f26511e = 0L;
-                    obj.f26512f = new RectF();
+                    obj.f26553b = paint;
+                    obj.f26555e = 0L;
+                    obj.f26556f = new RectF();
                     paint.setStyle(Paint.Style.STROKE);
                     paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-                    obj.f26510c = lyVar2;
+                    obj.f26554c = lyVar2;
                     pyVar.S0 = obj;
                 }
                 org.telegram.ui.Components.ed0 ed0Var = pyVar.S0;
                 ed0Var.d = b0Var;
                 ed0Var.h = 0.0f;
-                ed0Var.f26513g = 0.0f;
-                ed0Var.f26511e = System.currentTimeMillis();
-                ed0Var.f26510c.invalidate();
+                ed0Var.f26557g = 0.0f;
+                ed0Var.f26555e = System.currentTimeMillis();
+                ed0Var.f26554c.invalidate();
                 return;
             }
             b0Var.run();

@@ -41,20 +41,20 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.ui.Components.az0;
-import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.g71;
+import org.telegram.ui.Components.j71;
 import org.telegram.ui.Components.jk;
-import org.telegram.ui.Components.k71;
 import org.telegram.ui.Components.mi;
-import org.telegram.ui.Components.oz0;
-import org.telegram.ui.Components.qk0;
+import org.telegram.ui.Components.nz0;
+import org.telegram.ui.Components.pk0;
 import org.telegram.ui.Components.tz;
+import org.telegram.ui.Components.x61;
 import org.telegram.ui.Components.xz;
-import org.telegram.ui.Components.y61;
-import org.telegram.ui.gq0;
-import org.telegram.ui.mg1;
+import org.telegram.ui.Components.zy0;
+import org.telegram.ui.bh1;
+import org.telegram.ui.lq0;
 import org.xmlpull.v1.XmlPullParserException;
-public class w0 implements v9.a, qk0, gq0, com.google.android.gms.common.api.internal.s, h71 {
+public class w0 implements v9.a, pk0, lq0, com.google.android.gms.common.api.internal.s, g71 {
     public final int f12079a;
     public Object f12080b;
     public Object f12081c;
@@ -84,7 +84,7 @@ public class w0 implements v9.a, qk0, gq0, com.google.android.gms.common.api.int
     public static Object[] k(Object[] objArr, int[] iArr) {
         int length = objArr.length;
         Class<?> componentType = objArr.getClass().getComponentType();
-        az0 az0Var = oz0.O;
+        zy0 zy0Var = nz0.O;
         int i10 = -1;
         for (int i11 : iArr) {
             i10 = Math.max(i10, i11);
@@ -153,7 +153,7 @@ public class w0 implements v9.a, qk0, gq0, com.google.android.gms.common.api.int
         if (bArr2 != null) {
             bArr = Arrays.copyOf(bArr2, bArr2.length);
         }
-        h5.a.i(eVar.f16394w.isEmpty());
+        h5.a.i(eVar.f16396w.isEmpty());
         eVar.H = bArr;
         return eVar;
     }
@@ -234,12 +234,12 @@ public class w0 implements v9.a, qk0, gq0, com.google.android.gms.common.api.int
     @Override
     public void accept(Object obj, Object obj2) {
         boolean z4;
-        q5.e0 e0Var = (q5.e0) this.f12080b;
+        q5.f0 f0Var = (q5.f0) this.f12080b;
         String str = (String) this.f12081c;
         q5.i iVar = (q5.i) this.d;
         u5.x xVar = (u5.x) obj;
         TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
-        if (e0Var.F == 2) {
+        if (f0Var.F == 2) {
             z4 = true;
         } else {
             z4 = false;
@@ -250,12 +250,12 @@ public class w0 implements v9.a, qk0, gq0, com.google.android.gms.common.api.int
         M0.writeString(str);
         com.google.android.gms.internal.cast.s.c(M0, iVar);
         fVar.R0(M0, 13);
-        synchronized (e0Var.f44547r) {
+        synchronized (f0Var.f44581r) {
             try {
-                if (e0Var.f44544o != null) {
-                    e0Var.i(2477);
+                if (f0Var.f44578o != null) {
+                    f0Var.i(2477);
                 }
-                e0Var.f44544o = taskCompletionSource;
+                f0Var.f44578o = taskCompletionSource;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -286,7 +286,7 @@ public class w0 implements v9.a, qk0, gq0, com.google.android.gms.common.api.int
             jk jkVar = (jk) this.d;
             HashMap hashMap = (HashMap) this.f12080b;
             ArrayList arrayList = (ArrayList) this.f12081c;
-            mi miVar = jkVar.f26546b;
+            mi miVar = jkVar.f26590b;
             if (!hashMap.isEmpty() && jkVar.N != null && !jkVar.H) {
                 jkVar.H = true;
                 ArrayList arrayList2 = new ArrayList();
@@ -339,10 +339,10 @@ public class w0 implements v9.a, qk0, gq0, com.google.android.gms.common.api.int
     }
 
     @Override
-    public void onError(k71 k71Var, Exception exc) {
-        qh.g8 g8Var = ((qh.j5) this.d).K;
-        if (g8Var != null) {
-            g8Var.run();
+    public void onError(j71 j71Var, Exception exc) {
+        qh.f8 f8Var = ((qh.i5) this.d).K;
+        if (f8Var != null) {
+            f8Var.run();
         }
     }
 
@@ -352,16 +352,16 @@ public class w0 implements v9.a, qk0, gq0, com.google.android.gms.common.api.int
 
     @Override
     public void onStateChanged(boolean z4, int i10) {
-        qh.j5 j5Var = (qh.j5) this.d;
-        qh.h5 h5Var = j5Var.H;
-        k71 k71Var = j5Var.f45469e;
-        if (k71Var == null) {
+        qh.i5 i5Var = (qh.i5) this.d;
+        qh.g5 g5Var = i5Var.H;
+        j71 j71Var = i5Var.f45439e;
+        if (j71Var == null) {
             return;
         }
-        if (k71Var.y()) {
-            AndroidUtilities.runOnUIThread(h5Var);
+        if (j71Var.y()) {
+            AndroidUtilities.runOnUIThread(g5Var);
         } else {
-            AndroidUtilities.cancelRunOnUIThread(h5Var);
+            AndroidUtilities.cancelRunOnUIThread(g5Var);
         }
     }
 
@@ -372,38 +372,38 @@ public class w0 implements v9.a, qk0, gq0, com.google.android.gms.common.api.int
 
     @Override
     public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        ((qh.j5) this.d).i();
+        ((qh.i5) this.d).i();
     }
 
     @Override
     public void onVideoSizeChanged(int i10, int i11, int i12, float f10) {
-        qh.j5 j5Var = (qh.j5) this.d;
-        qh.s6 s6Var = (qh.s6) this.f12080b;
-        if (s6Var != null) {
-            qh.r6 q10 = j5Var.f45469e.q(s6Var.f46051d1);
-            s6Var.f46051d1 = q10;
-            y61 y61Var = j5Var.f45479n;
-            if (y61Var != null) {
-                y61Var.setHDRInfo(q10);
+        qh.i5 i5Var = (qh.i5) this.d;
+        qh.r6 r6Var = (qh.r6) this.f12080b;
+        if (r6Var != null) {
+            qh.q6 q10 = i5Var.f45439e.q(r6Var.f46002d1);
+            r6Var.f46002d1 = q10;
+            x61 x61Var = i5Var.f45449n;
+            if (x61Var != null) {
+                x61Var.setHDRInfo(q10);
             }
         }
         int i13 = (int) (i10 * f10);
-        j5Var.f45471f = i13;
+        i5Var.f45441f = i13;
         int i14 = (int) (i11 * f10);
-        j5Var.h = i14;
-        if (s6Var != null && (s6Var.f46065k0 != i13 || s6Var.f46067l0 != i14)) {
-            s6Var.f46065k0 = i13;
-            s6Var.f46067l0 = i14;
-            s6Var.A();
+        i5Var.h = i14;
+        if (r6Var != null && (r6Var.f46016k0 != i13 || r6Var.f46018l0 != i14)) {
+            r6Var.f46016k0 = i13;
+            r6Var.f46018l0 = i14;
+            r6Var.A();
         }
-        j5Var.b();
-        y61 y61Var2 = j5Var.f45479n;
-        if (y61Var2 != null) {
-            int i15 = j5Var.f45471f;
-            int i16 = j5Var.h;
-            y61Var2.d = i15;
-            y61Var2.f33386e = i16;
-            xz xzVar = y61Var2.f33384b;
+        i5Var.b();
+        x61 x61Var2 = i5Var.f45449n;
+        if (x61Var2 != null) {
+            int i15 = i5Var.f45441f;
+            int i16 = i5Var.h;
+            x61Var2.d = i15;
+            x61Var2.f32960e = i16;
+            xz xzVar = x61Var2.f32958b;
             if (xzVar != null) {
                 xzVar.postRunnable(new tz(xzVar, i15, i16, 0));
             }
@@ -433,7 +433,7 @@ public class w0 implements v9.a, qk0, gq0, com.google.android.gms.common.api.int
             }
             return eVar;
         }
-        return o3.o.f16414k;
+        return o3.o.f16416k;
     }
 
     public ColorStateList r(int i10) {
@@ -501,7 +501,7 @@ public class w0 implements v9.a, qk0, gq0, com.google.android.gms.common.api.int
             m.q a2 = m.q.a();
             Context context = (Context) this.f12080b;
             synchronized (a2) {
-                f10 = a2.f13302a.f(resourceId, context, true);
+                f10 = a2.f13304a.f(resourceId, context, true);
             }
             return f10;
         }
@@ -642,48 +642,48 @@ public class w0 implements v9.a, qk0, gq0, com.google.android.gms.common.api.int
 
     @Override
     public void onRenderedFirstFrame() {
-        qh.s6 s6Var = (qh.s6) this.f12080b;
+        qh.r6 r6Var = (qh.r6) this.f12080b;
         Runnable[] runnableArr = (Runnable[]) this.f12081c;
-        qh.j5 j5Var = (qh.j5) this.d;
-        qh.i5 i5Var = j5Var.E;
-        if (i5Var != null && i5Var.f45427g) {
-            int i10 = j5Var.f45471f;
-            int i11 = j5Var.h;
-            i5Var.d = true;
-            i5Var.f45425e = i10;
-            i5Var.f45426f = i11;
-            eg.p1 p1Var = i5Var.f45424c;
+        qh.i5 i5Var = (qh.i5) this.d;
+        qh.h5 h5Var = i5Var.E;
+        if (h5Var != null && h5Var.f45409g) {
+            int i10 = i5Var.f45441f;
+            int i11 = i5Var.h;
+            h5Var.d = true;
+            h5Var.f45407e = i10;
+            h5Var.f45408f = i11;
+            eg.p1 p1Var = h5Var.f45406c;
             if (p1Var != null) {
-                p1Var.run(Integer.valueOf(i10), Integer.valueOf(i5Var.f45426f));
+                p1Var.run(Integer.valueOf(i10), Integer.valueOf(h5Var.f45408f));
             }
         }
         Runnable runnable = runnableArr[0];
         if (runnable != null) {
-            j5Var.post(runnable);
+            i5Var.post(runnable);
             runnableArr[0] = null;
-            Bitmap bitmap = j5Var.f45462a;
+            Bitmap bitmap = i5Var.f45432a;
             if (bitmap != null) {
                 bitmap.recycle();
-                if (s6Var.M0 == j5Var.f45462a) {
-                    s6Var.M0 = null;
+                if (r6Var.M0 == i5Var.f45432a) {
+                    r6Var.M0 = null;
                 }
-                j5Var.f45462a = null;
-                j5Var.invalidate();
+                i5Var.f45432a = null;
+                i5Var.invalidate();
                 return;
             }
             return;
         }
-        y61 y61Var = j5Var.f45479n;
-        if (y61Var != null) {
-            if (i5Var == null || !i5Var.f45427g) {
-                y61Var.animate().alpha(1.0f).setDuration(180L).withEndAction(new mg1(25, this, s6Var)).start();
+        x61 x61Var = i5Var.f45449n;
+        if (x61Var != null) {
+            if (h5Var == null || !h5Var.f45409g) {
+                x61Var.animate().alpha(1.0f).setDuration(180L).withEndAction(new bh1(24, this, r6Var)).start();
             }
         }
     }
 
-    public w0(q5.e0 e0Var, String str, q5.i iVar) {
+    public w0(q5.f0 f0Var, String str, q5.i iVar) {
         this.f12079a = 26;
-        this.f12080b = e0Var;
+        this.f12080b = f0Var;
         this.f12081c = str;
         this.d = iVar;
     }
@@ -702,7 +702,7 @@ public class w0 implements v9.a, qk0, gq0, com.google.android.gms.common.api.int
             default:
                 this.f12080b = new HashMap();
                 this.f12081c = new HashMap();
-                this.d = n7.x.f15788c;
+                this.d = n7.x.f15790c;
                 return;
         }
     }

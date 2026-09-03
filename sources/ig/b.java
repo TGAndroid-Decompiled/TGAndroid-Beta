@@ -47,12 +47,12 @@ import org.telegram.ui.Cells.s8;
 import org.telegram.ui.Cells.z6;
 import org.telegram.ui.Components.p9;
 import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.sl0;
 import org.telegram.ui.Components.z8;
 import org.telegram.ui.yh;
 public final class b extends cg.c {
     public final g6 d;
-    public tl0 f8070f;
+    public sl0 f8070f;
     public r0 h;
     public r0 f8071n;
     public s f8072r;
@@ -80,12 +80,12 @@ public final class b extends cg.c {
     public final int F(TLRPC.Chat chat) {
         Integer num;
         int i10;
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(UserConfig.selectedAccount).getChatFull(chat.f20843id);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(UserConfig.selectedAccount).getChatFull(chat.f20845id);
         if (chatFull != null && (i10 = chatFull.participants_count) > 0) {
             return i10;
         }
         HashMap hashMap = this.f8074w;
-        if (!hashMap.isEmpty() && (num = (Integer) hashMap.get(Long.valueOf(chat.f20843id))) != null) {
+        if (!hashMap.isEmpty() && (num = (Integer) hashMap.get(Long.valueOf(chat.f20845id))) != null) {
             return num.intValue();
         }
         return chat.participants_count;
@@ -174,7 +174,7 @@ public final class b extends cg.c {
                                     }
                                     wVar.f10022f.a(z11, false);
                                     wVar.setDivider(z12);
-                                    wVar.f10021e.setTextColor(k6.v0(k6.f21838n5, wVar.f10018a));
+                                    wVar.f10021e.setTextColor(k6.v0(k6.f21840n5, wVar.f10018a));
                                     if (list.size() == 0) {
                                         wVar.setSubtitle(wVar.e(LocaleController.getString(R.string.BoostingFromAllCountries)));
                                         return;
@@ -337,11 +337,11 @@ public final class b extends cg.c {
             if (i22 == 0) {
                 cVar3.k(LocaleController.getString(R.string.BoostingCreateGiveaway));
                 eVar.setSubtitle(LocaleController.getString(R.string.BoostingWinnersRandomly));
-                l5Var2.setTextColor(k6.v0(k6.f21911r5, g6Var));
+                l5Var2.setTextColor(k6.v0(k6.f21913r5, g6Var));
                 z8Var.g(16);
                 z8Var.i(-15292942, -15630089);
                 eVar.setDivider(true);
-                eVar.setBackground(k6.V0(eVar.getContext(), R.drawable.greydivider_bottom, k6.f21624b7));
+                eVar.setBackground(k6.V0(eVar.getContext(), R.drawable.greydivider_bottom, k6.f21626b7));
             } else if (i22 == 1) {
                 cVar3.k(LocaleController.getString(R.string.BoostingAwardSpecificUsers));
                 if (i23 == 1 && user != null) {
@@ -351,11 +351,11 @@ public final class b extends cg.c {
                 } else {
                     eVar.setSubtitle(eVar.e(LocaleController.getString(R.string.BoostingSelectRecipients)));
                 }
-                l5Var2.setTextColor(k6.v0(k6.f21838n5, g6Var));
+                l5Var2.setTextColor(k6.v0(k6.f21840n5, g6Var));
                 z8Var.g(6);
                 z8Var.i(-3905294, -6923014);
                 eVar.setDivider(false);
-                eVar.setBackground(k6.V0(eVar.getContext(), R.drawable.greydivider_top, k6.f21624b7));
+                eVar.setBackground(k6.V0(eVar.getContext(), R.drawable.greydivider_top, k6.f21626b7));
             } else if (i22 == 2) {
                 cVar3.k(LocaleController.getString(R.string.BoostingPremium));
                 if (i23 == 1 && user != null) {
@@ -365,19 +365,19 @@ public final class b extends cg.c {
                 } else {
                     eVar.setSubtitle(eVar.e(LocaleController.getString(R.string.BoostingWinnersRandomly)));
                 }
-                l5Var2.setTextColor(k6.v0(k6.f21838n5, g6Var));
+                l5Var2.setTextColor(k6.v0(k6.f21840n5, g6Var));
                 z8Var.g(25);
                 z8Var.i(-3905294, -6923014);
                 eVar.setDivider(true);
-                eVar.setBackground(k6.V0(eVar.getContext(), R.drawable.greydivider_bottom, k6.f21624b7));
+                eVar.setBackground(k6.V0(eVar.getContext(), R.drawable.greydivider_bottom, k6.f21626b7));
             } else if (i22 == 3) {
                 cVar3.k(o8.a(LocaleController.getString(R.string.BoostingStars)));
                 eVar.setSubtitle(LocaleController.getString(R.string.BoostingWinnersRandomly));
-                l5Var2.setTextColor(k6.v0(k6.f21911r5, g6Var));
+                l5Var2.setTextColor(k6.v0(k6.f21913r5, g6Var));
                 z8Var.g(26);
                 z8Var.i(-146917, -625593);
                 eVar.setDivider(false);
-                eVar.setBackground(k6.V0(eVar.getContext(), R.drawable.greydivider_top, k6.f21624b7));
+                eVar.setBackground(k6.V0(eVar.getContext(), R.drawable.greydivider_top, k6.f21626b7));
             }
             eVar.f10022f.a(z18, z4);
             p9Var.setImageDrawable(z8Var);
@@ -404,14 +404,14 @@ public final class b extends cg.c {
                 q9Var = new View(context);
                 break;
             case 4:
-                q9Var = new z6(context, k6.v0(k6.f21605a7, g6Var), 0);
+                q9Var = new z6(context, k6.v0(k6.f21607a7, g6Var), 0);
                 break;
             case 5:
                 q9Var = new x(context, g6Var);
                 break;
             case 6:
                 View m4Var = new m4(context, k6.L6, 21, 15, 3, false, false, this.d);
-                m4Var.setBackgroundColor(k6.v0(k6.f21731h5, g6Var));
+                m4Var.setBackgroundColor(k6.v0(k6.f21733h5, g6Var));
                 q9Var = m4Var;
                 break;
             case 7:
@@ -436,7 +436,7 @@ public final class b extends cg.c {
                 break;
             case 13:
                 View zVar = new z(context, g6Var);
-                zVar.setBackgroundColor(k6.v0(k6.f21731h5, g6Var));
+                zVar.setBackgroundColor(k6.v0(k6.f21733h5, g6Var));
                 q9Var = zVar;
                 break;
             case 14:
@@ -456,18 +456,18 @@ public final class b extends cg.c {
             case 18:
                 q9 q9Var2 = new q9(context);
                 String string = LocaleController.getString(R.string.NotifyMoreOptions);
-                if (q9Var2.f14647c == -1) {
+                if (q9Var2.f14649c == -1) {
                     z4 = true;
                 } else {
                     z4 = false;
                 }
-                q9Var2.f14647c = -1;
-                org.telegram.ui.Components.k6 k6Var = q9Var2.f14645a;
+                q9Var2.f14649c = -1;
+                org.telegram.ui.Components.k6 k6Var = q9Var2.f14647a;
                 k6Var.c(string, z4, true);
-                int w02 = k6.w0(null, k6.f21857o6, false);
+                int w02 = k6.w0(null, k6.f21859o6, false);
                 k6Var.setTextColor(w02);
                 PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN);
-                ImageView imageView = q9Var2.f14646b;
+                ImageView imageView = q9Var2.f14648b;
                 imageView.setColorFilter(porterDuffColorFilter);
                 if (z4) {
                     imageView.animate().rotation(0.0f).setDuration(340L).setInterpolator(pr.h);

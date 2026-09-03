@@ -5,10 +5,10 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ck implements ot {
-    public final xn f35866a;
+    public final xn f35819a;
 
     public ck(xn xnVar) {
-        this.f35866a = xnVar;
+        this.f35819a = xnVar;
     }
 
     @Override
@@ -49,15 +49,15 @@ public final class ck implements ot {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z4) {
         if (inputStickerSet != null) {
-            xn xnVar = this.f35866a;
+            xn xnVar = this.f35819a;
             if (xnVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-                tL_inputStickerSetID.f20863id = inputStickerSet.f20863id;
-                org.telegram.ui.Components.yx0 yx0Var = new org.telegram.ui.Components.yx0(xnVar.getParentActivity(), xnVar, tL_inputStickerSetID, null, xnVar.V, xnVar.f43136ba);
-                yx0Var.setCalcMandatoryInsets(xnVar.x9());
-                yx0Var.f33623f0 = z4;
-                xnVar.showDialog(yx0Var);
+                tL_inputStickerSetID.f20865id = inputStickerSet.f20865id;
+                org.telegram.ui.Components.xx0 xx0Var = new org.telegram.ui.Components.xx0(xnVar.getParentActivity(), xnVar, tL_inputStickerSetID, null, xnVar.V, xnVar.f43114ba);
+                xx0Var.setCalcMandatoryInsets(xnVar.x9());
+                xx0Var.f33229f0 = z4;
+                xnVar.showDialog(xx0Var);
             }
         }
     }
@@ -79,17 +79,17 @@ public final class ck implements ot {
 
     @Override
     public final long a() {
-        return this.f35866a.Q5;
+        return this.f35819a.Q5;
     }
 
     @Override
     public final boolean b() {
-        return this.f35866a.D6();
+        return this.f35819a.D6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f35866a.O3 == 1) {
+        if (this.f35819a.O3 == 1) {
             return true;
         }
         return false;
@@ -132,7 +132,7 @@ public final class ck implements ot {
 
     @Override
     public final void l(TLRPC.Document document, String str, Object obj, boolean z4, int i10, int i11) {
-        this.f35866a.V.d(document, str, obj, null, true, z4, i10, i11);
+        this.f35819a.V.d(document, str, obj, null, true, z4, i10, i11);
     }
 
     @Override

@@ -1,103 +1,108 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
-public final class x21 implements Runnable {
-    public final int f42944a;
-    public final xn f42945b;
-    public final Activity f42946c;
-    public final org.telegram.ui.ActionBar.g6 d;
-    public final MessageObject f42947e;
+import org.telegram.tgnet.TLRPC;
+public final class x21 extends org.telegram.ui.Components.rl0 {
+    public final Context f42910c;
+    public final b31 d;
 
-    public x21(xn xnVar, Activity activity, org.telegram.ui.ActionBar.g6 g6Var, MessageObject messageObject, int i10) {
-        this.f42944a = i10;
-        this.f42945b = xnVar;
-        this.f42946c = activity;
-        this.d = g6Var;
-        this.f42947e = messageObject;
+    public x21(b31 b31Var, Context context) {
+        this.d = b31Var;
+        this.f42910c = context;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42944a) {
-            case 0:
-                xn xnVar = this.f42945b;
-                org.telegram.ui.Components.qc a02 = org.telegram.ui.Components.qc.a0(xnVar);
-                String string = LocaleController.getString(R.string.AdReported);
-                final Activity activity = this.f42946c;
-                a02.c(AndroidUtilities.replaceSingleTag(string, -1, 2, new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r2) {
-                            case 0:
-                                af.g.s(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                            case 1:
-                                af.g.s(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                            default:
-                                af.g.s(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                        }
-                    }
-                }, this.d)).j();
-                MessageObject messageObject = this.f42947e;
-                xnVar.Fa(messageObject);
-                xnVar.Ha(messageObject);
-                return;
-            case 1:
-                xn xnVar2 = this.f42945b;
-                org.telegram.ui.Components.qc a03 = org.telegram.ui.Components.qc.a0(xnVar2);
-                String string2 = LocaleController.getString(R.string.AdReported);
-                final Activity activity2 = this.f42946c;
-                a03.c(AndroidUtilities.replaceSingleTag(string2, -1, 2, new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r2) {
-                            case 0:
-                                af.g.s(activity2, "https://promote.telegram.org/guidelines");
-                                return;
-                            case 1:
-                                af.g.s(activity2, "https://promote.telegram.org/guidelines");
-                                return;
-                            default:
-                                af.g.s(activity2, "https://promote.telegram.org/guidelines");
-                                return;
-                        }
-                    }
-                }, this.d)).j();
-                MessageObject messageObject2 = this.f42947e;
-                xnVar2.Fa(messageObject2);
-                xnVar2.Ha(messageObject2);
-                return;
-            default:
-                xn xnVar3 = this.f42945b;
-                org.telegram.ui.Components.qc a04 = org.telegram.ui.Components.qc.a0(xnVar3);
-                String string3 = LocaleController.getString(R.string.AdReported);
-                final Activity activity3 = this.f42946c;
-                a04.c(AndroidUtilities.replaceSingleTag(string3, -1, 2, new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r2) {
-                            case 0:
-                                af.g.s(activity3, "https://promote.telegram.org/guidelines");
-                                return;
-                            case 1:
-                                af.g.s(activity3, "https://promote.telegram.org/guidelines");
-                                return;
-                            default:
-                                af.g.s(activity3, "https://promote.telegram.org/guidelines");
-                                return;
-                        }
-                    }
-                }, this.d)).j();
-                MessageObject messageObject3 = this.f42947e;
-                xnVar3.Fa(messageObject3);
-                xnVar3.Ha(messageObject3);
-                return;
+    public final boolean D(f2.m1 m1Var) {
+        int i10 = m1Var.f5879f;
+        if (i10 != 3 && i10 != 2) {
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        int i10;
+        b31 b31Var = this.d;
+        int i11 = b31Var.h;
+        if (b31Var.f35340f < 0) {
+            i10 = b31Var.getMediaDataController().getReactionsList().size();
+        } else {
+            i10 = 0;
+        }
+        return i11 + i10 + 1;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        b31 b31Var = this.d;
+        if (i10 == b31Var.d) {
+            return 2;
+        }
+        if (i10 == b31Var.f35340f) {
+            return 3;
+        }
+        if (i10 != h() - 1) {
+            return 1;
+        }
+        return 4;
+    }
+
+    @Override
+    public final void v(f2.m1 m1Var, int i10) {
+        int i11;
+        int i12;
+        if (j(i10) != 1) {
+            return;
+        }
+        b31 b31Var = this.d;
+        TLRPC.TL_availableReaction tL_availableReaction = b31Var.getMediaDataController().getReactionsList().get(i10 - b31Var.f35339e);
+        String str = tL_availableReaction.reaction;
+        i11 = ((org.telegram.ui.ActionBar.p2) b31Var).currentAccount;
+        boolean contains = str.contains(MediaDataController.getInstance(i11).getDoubleTapReaction());
+        i12 = ((org.telegram.ui.ActionBar.p2) b31Var).currentAccount;
+        ((org.telegram.ui.Cells.y) m1Var.f5875a).a(tL_availableReaction, contains, i12);
+    }
+
+    @Override
+    public final f2.m1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.ActionBar.f5 f5Var;
+        a31 a31Var;
+        b31 b31Var = this.d;
+        Context context = this.f42910c;
+        if (i10 == 0) {
+            f5Var = ((org.telegram.ui.ActionBar.p2) b31Var).parentLayout;
+            org.telegram.ui.Cells.ea eaVar = new org.telegram.ui.Cells.ea(context, f5Var, 2);
+            eaVar.setImportantForAccessibility(4);
+            eaVar.f22783r = b31Var;
+            a31Var = eaVar;
+        } else if (i10 != 2) {
+            if (i10 != 3) {
+                if (i10 != 4) {
+                    a31Var = new org.telegram.ui.Cells.y(context, true, true);
+                } else {
+                    View inVar = new org.telegram.ui.Components.in(context, 20);
+                    inVar.setTag(-33024);
+                    a31Var = inVar;
+                }
+            } else {
+                a31 a31Var2 = new a31(b31Var, context);
+                a31Var2.a(false);
+                a31Var = a31Var2;
+            }
+        } else {
+            org.telegram.ui.Cells.a9 a9Var = new org.telegram.ui.Cells.a9(context);
+            a9Var.setText(LocaleController.getString(R.string.DoubleTapPreviewRational));
+            a31Var = a9Var;
+        }
+        return new f2.m1(a31Var);
     }
 }

@@ -1,60 +1,86 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-public final class bc1 extends FrameLayout {
-    public final int f35417a;
-    public final RectF f35418b;
-    public final ed1 f35419c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class bc1 implements RequestDelegate {
+    public final int f35434a;
+    public final jd1 f35435b;
 
-    public bc1(ed1 ed1Var, Context context, int i10) {
-        super(context);
-        this.f35417a = i10;
-        switch (i10) {
-            case 1:
-                this.f35419c = ed1Var;
-                super(context);
-                this.f35418b = new RectF();
-                return;
-            default:
-                this.f35419c = ed1Var;
-                this.f35418b = new RectF();
-                return;
-        }
+    public bc1(jd1 jd1Var, int i10) {
+        this.f35434a = i10;
+        this.f35435b = jd1Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.f35417a) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f35434a) {
             case 0:
-                RectF rectF = this.f35418b;
-                rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                ed1 ed1Var = this.f35419c;
-                bc1 bc1Var = ed1Var.A0;
-                tc1 tc1Var = ed1Var.f36538u0;
-                dc1 dc1Var = ed1Var.f36486a;
-                org.telegram.ui.ActionBar.k6.s(bc1Var, tc1Var, dc1Var);
-                canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, dc1Var.F("paintChatActionBackground"));
-                if (org.telegram.ui.ActionBar.k6.a1()) {
-                    canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, dc1Var.F("paintChatActionBackgroundDarken"));
-                    return;
-                }
+                final jd1 jd1Var = this.f35435b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                jd1.V(jd1Var, tLObject);
+                                return;
+                            default:
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
+                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
+                                    if (tL_wallPaper.pattern) {
+                                        jd1 jd1Var2 = jd1Var;
+                                        jd1Var2.T0 = tL_wallPaper;
+                                        jd1Var2.b1(false);
+                                        jd1Var2.j1();
+                                        jd1Var2.R0.add(0, jd1Var2.T0);
+                                        hd1 hd1Var = jd1Var2.N0;
+                                        if (hd1Var != null) {
+                                            hd1Var.l();
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
             default:
-                RectF rectF2 = this.f35418b;
-                rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                ed1 ed1Var2 = this.f35419c;
-                bc1 bc1Var2 = ed1Var2.B0;
-                tc1 tc1Var2 = ed1Var2.f36538u0;
-                dc1 dc1Var2 = ed1Var2.f36486a;
-                org.telegram.ui.ActionBar.k6.s(bc1Var2, tc1Var2, dc1Var2);
-                canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, dc1Var2.F("paintChatActionBackground"));
-                if (org.telegram.ui.ActionBar.k6.a1()) {
-                    canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, dc1Var2.F("paintChatActionBackgroundDarken"));
-                    return;
-                }
+                final jd1 jd1Var2 = this.f35435b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                jd1.V(jd1Var2, tLObject);
+                                return;
+                            default:
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
+                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
+                                    if (tL_wallPaper.pattern) {
+                                        jd1 jd1Var22 = jd1Var2;
+                                        jd1Var22.T0 = tL_wallPaper;
+                                        jd1Var22.b1(false);
+                                        jd1Var22.j1();
+                                        jd1Var22.R0.add(0, jd1Var22.T0);
+                                        hd1 hd1Var = jd1Var22.N0;
+                                        if (hd1Var != null) {
+                                            hd1Var.l();
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
         }
     }

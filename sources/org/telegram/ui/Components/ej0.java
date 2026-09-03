@@ -7,7 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DispatchQueuePoolBackground;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-public class ej0 extends ij0 {
+public class ej0 extends hj0 {
     public volatile RLottieNative R0;
     public boolean S0;
     public boolean T0;
@@ -33,17 +33,17 @@ public class ej0 extends ij0 {
         if (TextUtils.isEmpty(str2)) {
             return;
         }
-        this.f27825k0 = RLottieNative.b(str2, "dice", this.f27817e, null, null);
+        this.f27532k0 = RLottieNative.b(str2, this.f27524e, null, null);
     }
 
     @Override
     public void A(boolean z4) {
-        this.f27823i0 = false;
-        this.f27824j0 = true;
+        this.f27530i0 = false;
+        this.f27531j0 = true;
         l();
         j();
         if (!this.V0 && !this.S0) {
-            if (this.N == null && !this.f27840w0) {
+            if (this.N == null && !this.f27547w0) {
                 B(z4);
                 lf.g gVar = this.A0;
                 if (gVar != null) {
@@ -70,18 +70,18 @@ public class ej0 extends ij0 {
 
     @Override
     public final void B(boolean z4) {
-        RLottieNative rLottieNative = this.f27825k0;
+        RLottieNative rLottieNative = this.f27532k0;
         RLottieNative rLottieNative2 = this.R0;
-        this.f27825k0 = null;
+        this.f27532k0 = null;
         this.R0 = null;
         if (rLottieNative == null && rLottieNative2 == null) {
             return;
         }
-        a90 a90Var = new a90(9, rLottieNative, rLottieNative2);
+        b90 b90Var = new b90(8, rLottieNative, rLottieNative2);
         if (z4) {
-            DispatchQueuePoolBackground.execute(a90Var);
+            DispatchQueuePoolBackground.execute(b90Var);
         } else {
-            Utilities.globalQueue.postRunnable(a90Var);
+            Utilities.globalQueue.postRunnable(b90Var);
         }
     }
 
@@ -89,11 +89,11 @@ public class ej0 extends ij0 {
     public void n() {
         if (this.T) {
             l();
-            if (this.N == null && this.f27825k0 != null) {
+            if (this.N == null && this.f27532k0 != null) {
                 B(true);
             }
         }
-        if (this.f27825k0 == null && this.R0 == null && this.A0 == null) {
+        if (this.f27532k0 == null && this.R0 == null && this.A0 == null) {
             C();
             return;
         }
@@ -101,7 +101,7 @@ public class ej0 extends ij0 {
         if (!t()) {
             stop();
         }
-        if (this.f27823i0) {
+        if (this.f27530i0) {
             G();
         }
     }

@@ -27,7 +27,7 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.UserInfoActivity;
-import qh.d4;
+import qh.c4;
 public final class k0 implements Runnable {
     public final int f7535a;
     public final Object f7536b;
@@ -69,12 +69,12 @@ public final class k0 implements Runnable {
                     t0Var.run(tL_error);
                     return;
                 } else if (tLObject != null) {
-                    BillingController.getInstance().addResultListener(((p2.m) list.get(0)).f44161c, new m0(1, hVar, t0Var2));
+                    BillingController.getInstance().addResultListener(((p2.m) list.get(0)).f44192c, new m0(1, hVar, t0Var2));
                     BillingController.getInstance().setOnCanceled(new o0(t0Var, 0));
                     BillingController billingController = BillingController.getInstance();
                     Activity parentActivity = p2Var.getParentActivity();
                     AccountInstance accountInstance = AccountInstance.getInstance(UserConfig.selectedAccount);
-                    qa qaVar = new qa(23);
+                    qa qaVar = new qa(24);
                     qaVar.i1((p2.m) list.get(0));
                     billingController.launchBillingFlow(parentActivity, accountInstance, tL_inputStorePaymentPremiumGiveaway, Collections.singletonList(qaVar.O0()));
                     return;
@@ -94,12 +94,12 @@ public final class k0 implements Runnable {
                     callback.run(tL_error2);
                     return;
                 } else if (tLObject2 != null) {
-                    BillingController.getInstance().addResultListener(((p2.m) list2.get(0)).f44161c, new m0(0, hVar2, callback2));
+                    BillingController.getInstance().addResultListener(((p2.m) list2.get(0)).f44192c, new m0(0, hVar2, callback2));
                     BillingController.getInstance().setOnCanceled(new n0(0, callback));
                     BillingController billingController2 = BillingController.getInstance();
                     Activity parentActivity2 = p2Var2.getParentActivity();
                     AccountInstance accountInstance2 = AccountInstance.getInstance(UserConfig.selectedAccount);
-                    qa qaVar2 = new qa(23);
+                    qa qaVar2 = new qa(24);
                     qaVar2.i1((p2.m) list2.get(0));
                     billingController2.launchBillingFlow(parentActivity2, accountInstance2, tL_inputStorePaymentPremiumGiftCode, Collections.singletonList(qaVar2.O0()));
                     return;
@@ -116,11 +116,11 @@ public final class k0 implements Runnable {
                 List list3 = (List) this.d;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f7536b;
                 if (tLObject3 instanceof TLRPC.TL_boolTrue) {
-                    BillingController.getInstance().addResultListener(mVar.f44161c, new m0(3, hVar3, wVar));
+                    BillingController.getInstance().addResultListener(mVar.f44192c, new m0(3, hVar3, wVar));
                     BillingController.getInstance().setOnCanceled(new w5(wVar, 2));
                     BillingController billingController3 = BillingController.getInstance();
                     AccountInstance accountInstance3 = AccountInstance.getInstance(UserConfig.selectedAccount);
-                    qa qaVar3 = new qa(23);
+                    qa qaVar3 = new qa(24);
                     qaVar3.i1((p2.m) list3.get(0));
                     billingController3.launchBillingFlow(activity, accountInstance3, tL_inputStorePaymentStarsGiveaway, Collections.singletonList(qaVar3.O0()));
                     return;
@@ -147,11 +147,11 @@ public final class k0 implements Runnable {
                 List list4 = (List) this.d;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) this.f7536b;
                 if (tLObject4 instanceof TLRPC.TL_boolTrue) {
-                    BillingController.getInstance().addResultListener(mVar2.f44161c, new m0(2, hVar4, i5Var));
+                    BillingController.getInstance().addResultListener(mVar2.f44192c, new m0(2, hVar4, i5Var));
                     BillingController.getInstance().setOnCanceled(new y5(i5Var, 0));
                     BillingController billingController4 = BillingController.getInstance();
                     AccountInstance accountInstance4 = AccountInstance.getInstance(UserConfig.selectedAccount);
-                    qa qaVar4 = new qa(23);
+                    qa qaVar4 = new qa(24);
                     qaVar4.i1((p2.m) list4.get(0));
                     billingController4.launchBillingFlow(activity2, accountInstance4, tL_inputStorePaymentStarsGift, Collections.singletonList(qaVar4.O0()));
                     return;
@@ -179,7 +179,7 @@ public final class k0 implements Runnable {
                 final HorizontalScrollView horizontalScrollView = (HorizontalScrollView) this.h;
                 final qh.d dVar = (qh.d) this.f7537c;
                 final boolean[] zArr = (boolean[]) this.d;
-                d4 d4Var = (d4) this.f7538e;
+                c4 c4Var = (c4) this.f7538e;
                 final ImageView imageView = (ImageView) this.f7540n;
                 final g6 g6Var = (g6) this.f7539f;
                 final int[] iArr = (int[]) this.f7541r;
@@ -190,7 +190,7 @@ public final class k0 implements Runnable {
                 }
                 final boolean z4 = zArr[0];
                 final String str3 = strArr[0];
-                d4Var.run(str3, new Utilities.Callback2() {
+                c4Var.run(str3, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
                         int i10;
@@ -203,7 +203,7 @@ public final class k0 implements Runnable {
                         ImageView imageView2 = imageView;
                         g6 g6Var2 = g6Var;
                         if (booleanValue) {
-                            imageView2.setColorFilter(new PorterDuffColorFilter(k6.v0(k6.f21895q7, g6Var2), PorterDuff.Mode.SRC_IN));
+                            imageView2.setColorFilter(new PorterDuffColorFilter(k6.v0(k6.f21897q7, g6Var2), PorterDuff.Mode.SRC_IN));
                             if (!z4) {
                                 int[] iArr2 = iArr;
                                 int i11 = -iArr2[0];

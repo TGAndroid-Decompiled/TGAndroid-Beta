@@ -1,55 +1,44 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import org.telegram.messenger.video.VideoFramesRewinder;
-import org.telegram.messenger.video.VideoPlayerRewinder;
-public final class rs0 extends VideoPlayerRewinder {
-    public final PhotoViewer f41048a;
+import android.content.Context;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.tgnet.TLRPC;
+public final class rs0 extends org.telegram.ui.Components.lq0 {
+    public final FrameLayout Y0;
+    public final boolean Z0;
+    public final PhotoViewer f40934a1;
 
-    public rs0(PhotoViewer photoViewer, VideoFramesRewinder videoFramesRewinder) {
-        super(videoFramesRewinder);
-        this.f41048a = photoViewer;
+    public rs0(PhotoViewer photoViewer, Context context, xn xnVar, ArrayList arrayList, String str, Integer num, FrameLayout frameLayout, boolean z4) {
+        super(context, xnVar, arrayList, null, null, false, str, null, false, true, false, num, null);
+        this.f40934a1 = photoViewer;
+        this.Y0 = frameLayout;
+        this.Z0 = z4;
     }
 
     @Override
-    public final void onRewindCanceled() {
-        MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-        PhotoViewer photoViewer = this.f41048a;
-        PhotoViewer.k(photoViewer, obtain);
-        photoViewer.f34421w1.f(false);
-        org.telegram.ui.Components.ng0.m0.N.f(false);
-    }
-
-    @Override
-    public final void onRewindStart(boolean z4) {
-        PhotoViewer photoViewer = this.f41048a;
-        photoViewer.f34421w1.e(false);
-        photoViewer.f34421w1.d(!z4);
-        photoViewer.f34421w1.f(true);
-        photoViewer.f34230b0.invalidate();
-        org.telegram.ui.Components.ng0.v(z4);
-    }
-
-    @Override
-    public final void updateRewindProgressUi(long j10, float f10, boolean z4) {
-        PhotoViewer photoViewer = this.f41048a;
-        photoViewer.f34421w1.g(Math.abs(j10));
-        if (z4) {
-            photoViewer.f34341n3.h(f10, false);
-            photoViewer.f34350o3.invalidate();
+    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z4) {
+        if (!z4) {
+            return;
         }
-        org.telegram.ui.Components.ng0 ng0Var = org.telegram.ui.Components.ng0.m0;
-        ng0Var.N.g(0L);
-        if (z4) {
-            ng0Var.W = f10;
-            oh.b3 b3Var = ng0Var.Y;
-            if (b3Var != null) {
-                b3Var.invalidate();
-            }
-            org.telegram.ui.Components.mg0 mg0Var = ng0Var.h;
-            if (mg0Var != null) {
-                mg0Var.invalidate();
-            }
+        AndroidUtilities.runOnUIThread(new dt(this, this.Y0, hVar, i10, 8), 250L);
+    }
+
+    @Override
+    public final void dismissInternal() {
+        super.dismissInternal();
+        if (this.Z0) {
+            AndroidUtilities.runOnUIThread(new gl0(this, 16), 50L);
+        }
+        PhotoViewer photoViewer = this.f40934a1;
+        photoViewer.f34221a0.softInputMode = 272;
+        try {
+            ((WindowManager) photoViewer.f34439y.getSystemService("window")).updateViewLayout(photoViewer.f34248d0, photoViewer.f34221a0);
+        } catch (Exception e6) {
+            FileLog.e(e6);
         }
     }
 }

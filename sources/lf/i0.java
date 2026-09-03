@@ -24,7 +24,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.os;
 import org.telegram.ui.p60;
 import org.telegram.ui.sq;
-import org.telegram.ui.v10;
+import org.telegram.ui.z10;
 import org.telegram.ui.zi;
 public final class i0 implements RequestDelegate {
     public final int f12468a;
@@ -86,11 +86,11 @@ public final class i0 implements RequestDelegate {
                 return;
             case 11:
                 Pattern pattern = LaunchActivity.f34134y1;
-                AndroidUtilities.runOnUIThread(new l2((LaunchActivity) obj4, tL_error, tLObject, (TLRPC.TL_inputInvoiceSlug) obj2, (v10) obj, this.f12469b, (String) obj3, 10));
+                AndroidUtilities.runOnUIThread(new l2((LaunchActivity) obj4, tL_error, tLObject, (TLRPC.TL_inputInvoiceSlug) obj2, (z10) obj, this.f12469b, (String) obj3, 10));
                 return;
             case 12:
                 Pattern pattern2 = LaunchActivity.f34134y1;
-                AndroidUtilities.runOnUIThread(new l2((LaunchActivity) obj4, tL_error, tLObject, this.f12469b, (d2) obj2, (v10) obj, (String) obj3));
+                AndroidUtilities.runOnUIThread(new l2((LaunchActivity) obj4, tL_error, tLObject, this.f12469b, (d2) obj2, (z10) obj, (String) obj3));
                 return;
             default:
                 AndroidUtilities.runOnUIThread(new l2((uf.p0) obj4, this.f12469b, (ArrayList) obj2, (a0.h) obj, tL_error, tLObject, (MessagesController) obj3, 14));

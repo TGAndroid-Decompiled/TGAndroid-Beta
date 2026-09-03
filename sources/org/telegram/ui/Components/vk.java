@@ -21,9 +21,9 @@ public final class vk extends uf.i0 {
         if (w0Var != null) {
             w0Var.setShowSearchProgress(vkVar.G);
         }
-        TextView textView = clVar.f26024y;
+        TextView textView = clVar.f26001y;
         if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, vkVar.f48514x)));
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, vkVar.f48550x)));
         }
         super.l();
     }

@@ -13,16 +13,16 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Components.ai;
 public final class d2 {
-    public final ai f49695a;
-    public boolean f49698e;
-    public boolean f49699f;
-    public final ArrayDeque f49696b = new ArrayDeque();
-    public final ArrayDeque f49697c = new ArrayDeque();
-    public final v1 f49700g = new v1(this, 1);
+    public final ai f49731a;
+    public boolean f49734e;
+    public boolean f49735f;
+    public final ArrayDeque f49732b = new ArrayDeque();
+    public final ArrayDeque f49733c = new ArrayDeque();
+    public final v1 f49736g = new v1(this, 1);
     public c2 d = b();
 
     public d2(ai aiVar) {
-        this.f49695a = aiVar;
+        this.f49731a = aiVar;
     }
 
     public static void e(TL_iv.PageBlock pageBlock) {
@@ -164,28 +164,28 @@ public final class d2 {
         int i10;
         ArrayList arrayList;
         b2[] b2VarArr;
-        ai aiVar = this.f49695a;
-        ArrayList arrayList2 = ((r3) aiVar.f25265b).f49988i3;
+        ai aiVar = this.f49731a;
+        ArrayList arrayList2 = ((r3) aiVar.f25257b).f50024i3;
         HashMap hashMap = new HashMap();
         c2 c2Var = this.d;
         if (c2Var != null) {
-            for (b2 b2Var : c2Var.f49685a) {
-                hashMap.put(Long.valueOf(b2Var.f49653a), b2Var);
+            for (b2 b2Var : c2Var.f49721a) {
+                hashMap.put(Long.valueOf(b2Var.f49689a), b2Var);
             }
         }
         b2[] b2VarArr2 = new b2[arrayList2.size()];
         for (int i11 = 0; i11 < arrayList2.size(); i11++) {
             a aVar = (a) arrayList2.get(i11);
-            TL_iv.PageBlock pageBlock = aVar.f49617b;
-            ArrayList arrayList3 = aVar.f49624k;
+            TL_iv.PageBlock pageBlock = aVar.f49653b;
+            ArrayList arrayList3 = aVar.f49660k;
             e(pageBlock);
             SerializedData serializedData = new SerializedData(pageBlock.getObjectSize());
             pageBlock.serializeToStream(serializedData);
             byte[] byteArray = serializedData.toByteArray();
             serializedData.cleanup();
-            b2 b2Var2 = (b2) hashMap.get(Long.valueOf(aVar.f49616a));
-            if (b2Var2 != null && b2Var2.f49655c == aVar.f49618c && b2Var2.d == aVar.d && b2Var2.f49656e == aVar.f49619e && b2Var2.f49657f == aVar.f49620f && b2Var2.f49658g == aVar.f49622i && b2Var2.h == aVar.f49621g) {
-                ArrayList arrayList4 = b2Var2.f49659i;
+            b2 b2Var2 = (b2) hashMap.get(Long.valueOf(aVar.f49652a));
+            if (b2Var2 != null && b2Var2.f49691c == aVar.f49654c && b2Var2.d == aVar.d && b2Var2.f49692e == aVar.f49655e && b2Var2.f49693f == aVar.f49656f && b2Var2.f49694g == aVar.f49658i && b2Var2.h == aVar.f49657g) {
+                ArrayList arrayList4 = b2Var2.f49695i;
                 ArrayList arrayList5 = aVar.h;
                 if (arrayList4 != arrayList5) {
                     if (arrayList4 != null && arrayList5 != null && arrayList4.size() == arrayList5.size()) {
@@ -196,17 +196,17 @@ public final class d2 {
                         }
                     }
                 }
-                if (b2Var2.f49660j.equals(arrayList3) && Arrays.equals(b2Var2.f49654b, byteArray)) {
+                if (b2Var2.f49696j.equals(arrayList3) && Arrays.equals(b2Var2.f49690b, byteArray)) {
                     b2VarArr2[i11] = b2Var2;
                 }
             }
-            long j10 = aVar.f49616a;
-            int i13 = aVar.f49618c;
+            long j10 = aVar.f49652a;
+            int i13 = aVar.f49654c;
             int i14 = aVar.d;
-            boolean z4 = aVar.f49619e;
-            boolean z10 = aVar.f49620f;
-            boolean z11 = aVar.f49622i;
-            t tVar = aVar.f49621g;
+            boolean z4 = aVar.f49655e;
+            boolean z10 = aVar.f49656f;
+            boolean z11 = aVar.f49658i;
+            t tVar = aVar.f49657g;
             if (aVar.h != null) {
                 arrayList = new ArrayList(aVar.h);
             } else {
@@ -214,23 +214,23 @@ public final class d2 {
             }
             b2VarArr2[i11] = new b2(j10, byteArray, i13, i14, z4, z10, z11, tVar, arrayList, new ArrayList(arrayList3));
         }
-        View findFocus = ((r3) aiVar.f25265b).findFocus();
+        View findFocus = ((r3) aiVar.f25257b).findFocus();
         if (findFocus instanceof e1) {
             e1 e1Var = (e1) findFocus;
             int selectionStart = e1Var.getSelectionStart();
             int selectionEnd = e1Var.getSelectionEnd();
-            i5 U2 = r3.U2(e1Var);
-            if (U2 != null && U2.getRow() != null) {
-                if (e1Var == U2.getTitleEditText()) {
-                    a2Var = new a2(U2.getRow().f49616a, 0, selectionStart, selectionEnd);
+            i5 T2 = r3.T2(e1Var);
+            if (T2 != null && T2.getRow() != null) {
+                if (e1Var == T2.getTitleEditText()) {
+                    a2Var = new a2(T2.getRow().f49652a, 0, selectionStart, selectionEnd);
                 } else {
-                    l5 o10 = U2.o(e1Var);
+                    l5 o10 = T2.o(e1Var);
                     if (o10 != null) {
-                        i10 = U2.k(o10.f49868b);
+                        i10 = T2.k(o10.f49904b);
                     } else {
                         i10 = -1;
                     }
-                    a2Var = new a2(U2.getRow().f49616a, i10, selectionStart, selectionEnd);
+                    a2Var = new a2(T2.getRow().f49652a, i10, selectionStart, selectionEnd);
                 }
             } else {
                 if (e1Var instanceof j0) {
@@ -251,7 +251,7 @@ public final class d2 {
                     }
                 }
                 if (j0Var != null && j0Var.getRow() != null) {
-                    a2Var = new a2(j0Var.getRow().f49616a, -1, selectionStart, selectionEnd);
+                    a2Var = new a2(j0Var.getRow().f49652a, -1, selectionStart, selectionEnd);
                 } else {
                     while (e1Var != 0 && !(e1Var instanceof v5)) {
                         ViewParent parent2 = e1Var.getParent();
@@ -264,26 +264,26 @@ public final class d2 {
                     if (e1Var instanceof v5) {
                         v5 v5Var = (v5) e1Var;
                         if (v5Var.getRow() != null) {
-                            a2Var = new a2(v5Var.getRow().f49616a, -1, selectionStart, selectionEnd);
+                            a2Var = new a2(v5Var.getRow().f49652a, -1, selectionStart, selectionEnd);
                         }
                     }
                 }
             }
             return new c2(b2VarArr2, a2Var);
         }
-        a2Var = a2.f49637e;
+        a2Var = a2.f49673e;
         return new c2(b2VarArr2, a2Var);
     }
 
     public final void c() {
-        AndroidUtilities.cancelRunOnUIThread(this.f49700g);
-        if (this.f49698e && !this.f49699f) {
+        AndroidUtilities.cancelRunOnUIThread(this.f49736g);
+        if (this.f49734e && !this.f49735f) {
             c2 b10 = b();
-            this.f49698e = false;
+            this.f49734e = false;
             c2 c2Var = this.d;
             if (c2Var != null) {
-                b2[] b2VarArr = c2Var.f49685a;
-                b2[] b2VarArr2 = b10.f49685a;
+                b2[] b2VarArr = c2Var.f49721a;
+                b2[] b2VarArr2 = b10.f49721a;
                 if (b2VarArr.length == b2VarArr2.length) {
                     for (int i10 = 0; i10 < b2VarArr.length; i10++) {
                         if (b2VarArr[i10] == b2VarArr2[i10]) {
@@ -293,24 +293,24 @@ public final class d2 {
                 }
             }
             c2 c2Var2 = this.d;
-            ArrayDeque arrayDeque = this.f49696b;
+            ArrayDeque arrayDeque = this.f49732b;
             arrayDeque.addLast(c2Var2);
             while (arrayDeque.size() > 150) {
                 arrayDeque.removeFirst();
             }
-            this.f49697c.clear();
+            this.f49733c.clear();
             this.d = b10;
-            ((r3) this.f49695a.f25265b).f49980e3.S();
+            ((r3) this.f49731a.f25257b).f50016e3.S();
         }
     }
 
     public final void d() {
-        AndroidUtilities.cancelRunOnUIThread(this.f49700g);
+        AndroidUtilities.cancelRunOnUIThread(this.f49736g);
         c();
     }
 
     public final void f(int i10, int i11) {
-        if (!this.f49699f) {
+        if (!this.f49735f) {
             if (i10 <= 16 && i11 <= 16) {
                 return;
             }
@@ -319,53 +319,53 @@ public final class d2 {
     }
 
     public final void g() {
-        if (this.f49699f) {
+        if (this.f49735f) {
             return;
         }
-        this.f49698e = true;
-        v1 v1Var = this.f49700g;
+        this.f49734e = true;
+        v1 v1Var = this.f49736g;
         AndroidUtilities.cancelRunOnUIThread(v1Var);
         AndroidUtilities.runOnUIThread(v1Var, 800L);
-        ((r3) this.f49695a.f25265b).f49980e3.S();
+        ((r3) this.f49731a.f25257b).f50016e3.S();
     }
 
     public final void h() {
-        if (this.f49699f) {
+        if (this.f49735f) {
             return;
         }
-        AndroidUtilities.cancelRunOnUIThread(this.f49700g);
-        this.f49698e = true;
+        AndroidUtilities.cancelRunOnUIThread(this.f49736g);
+        this.f49734e = true;
         c();
     }
 
     public final void i() {
         d();
-        ArrayDeque arrayDeque = this.f49697c;
+        ArrayDeque arrayDeque = this.f49733c;
         if (arrayDeque.isEmpty()) {
             return;
         }
-        this.f49696b.addLast(this.d);
+        this.f49732b.addLast(this.d);
         c2 c2Var = (c2) arrayDeque.removeLast();
         this.d = c2Var;
         a(c2Var);
     }
 
     public final void j() {
-        AndroidUtilities.cancelRunOnUIThread(this.f49700g);
-        this.f49696b.clear();
-        this.f49697c.clear();
+        AndroidUtilities.cancelRunOnUIThread(this.f49736g);
+        this.f49732b.clear();
+        this.f49733c.clear();
         this.d = b();
-        this.f49698e = false;
-        ((r3) this.f49695a.f25265b).f49980e3.S();
+        this.f49734e = false;
+        ((r3) this.f49731a.f25257b).f50016e3.S();
     }
 
     public final void k() {
         d();
-        ArrayDeque arrayDeque = this.f49696b;
+        ArrayDeque arrayDeque = this.f49732b;
         if (arrayDeque.isEmpty()) {
             return;
         }
-        this.f49697c.addLast(this.d);
+        this.f49733c.addLast(this.d);
         c2 c2Var = (c2) arrayDeque.removeLast();
         this.d = c2Var;
         a(c2Var);

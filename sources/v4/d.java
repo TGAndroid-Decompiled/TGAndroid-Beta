@@ -4,11 +4,11 @@ import com.google.android.gms.common.api.internal.v;
 import java.util.ArrayDeque;
 public final class d extends k {
     public final int h;
-    public final g f48905n;
+    public final g f48941n;
 
     public d(g gVar, int i10) {
         this.h = i10;
-        this.f48905n = gVar;
+        this.f48941n = gVar;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class d extends k {
         boolean z4;
         switch (this.h) {
             case 0:
-                ArrayDeque arrayDeque = (ArrayDeque) ((v) this.f48905n).d;
+                ArrayDeque arrayDeque = (ArrayDeque) ((v) this.f48941n).d;
                 if (arrayDeque.size() < 2) {
                     z4 = true;
                 } else {
@@ -28,7 +28,7 @@ public final class d extends k {
                 arrayDeque.addFirst(this);
                 return;
             default:
-                ((e) this.f48905n).j(this);
+                ((e) this.f48941n).j(this);
                 return;
         }
     }

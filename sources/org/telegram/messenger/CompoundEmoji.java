@@ -260,7 +260,7 @@ public class CompoundEmoji {
             if (!canvas.quickReject(bounds.left, bounds.top, bounds.right, bounds.bottom, Canvas.EdgeType.AA)) {
                 if (this.newLeft != null) {
                     if (this.leftUpdateT == null) {
-                        this.leftUpdateT = new org.telegram.ui.Components.z5(0.0f, new e1(this, 16), 0L, 320L, pr.f30184g);
+                        this.leftUpdateT = new org.telegram.ui.Components.z5(0.0f, new e1(this, 16), 0L, 320L, pr.f30169g);
                     }
                     float d = this.leftUpdateT.d(1.0f, false);
                     drawDrawableInfo(canvas, this.newLeft, bounds, Math.min(1.0f, d * 1.5f));
@@ -274,7 +274,7 @@ public class CompoundEmoji {
                 }
                 if (this.newRight != null) {
                     if (this.rightUpdateT == null) {
-                        this.rightUpdateT = new org.telegram.ui.Components.z5(0.0f, new e1(this, 16), 0L, 320L, pr.f30184g);
+                        this.rightUpdateT = new org.telegram.ui.Components.z5(0.0f, new e1(this, 16), 0L, 320L, pr.f30169g);
                     }
                     float d10 = this.rightUpdateT.d(1.0f, false);
                     drawDrawableInfo(canvas, this.newRight, bounds, Math.min(1.0f, 1.5f * d10));

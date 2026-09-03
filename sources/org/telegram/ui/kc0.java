@@ -3,19 +3,19 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.IMapsProvider;
 public final class kc0 implements Runnable {
-    public final int f38347a;
-    public final bd0 f38348b;
+    public final int f38250a;
+    public final bd0 f38251b;
 
     public kc0(bd0 bd0Var, int i10) {
-        this.f38347a = i10;
-        this.f38348b = bd0Var;
+        this.f38250a = i10;
+        this.f38251b = bd0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f38347a) {
+        switch (this.f38250a) {
             case 0:
-                bd0 bd0Var = this.f38348b;
+                bd0 bd0Var = this.f38251b;
                 IMapsProvider.ICameraUpdate iCameraUpdate = bd0Var.G;
                 if (iCameraUpdate != null) {
                     bd0Var.F.moveCamera(iCameraUpdate);
@@ -24,12 +24,12 @@ public final class kc0 implements Runnable {
                 }
                 return;
             case 1:
-                bd0 bd0Var2 = this.f38348b;
-                bd0Var2.getLocationController().setProximityLocation(bd0Var2.f35455b0, 0, true);
+                bd0 bd0Var2 = this.f38251b;
+                bd0Var2.getLocationController().setProximityLocation(bd0Var2.f35471b0, 0, true);
                 bd0Var2.D = false;
                 return;
             case 2:
-                bd0 bd0Var3 = this.f38348b;
+                bd0 bd0Var3 = this.f38251b;
                 IMapsProvider.IMap iMap = bd0Var3.F;
                 if (iMap != null) {
                     iMap.setPadding(AndroidUtilities.dp(70.0f), 0, AndroidUtilities.dp(70.0f), AndroidUtilities.dp(10.0f));
@@ -49,17 +49,17 @@ public final class kc0 implements Runnable {
                 bd0Var3.O = null;
                 return;
             case 3:
-                yc0 yc0Var = this.f38348b.f35483x;
+                yc0 yc0Var = this.f38251b.f35499x;
                 if (yc0Var != null) {
                     yc0Var.a();
                     return;
                 }
                 return;
             case 4:
-                bd0.W(this.f38348b);
+                bd0.W(this.f38251b);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new kc0(this.f38348b, 0));
+                AndroidUtilities.runOnUIThread(new kc0(this.f38251b, 0));
                 return;
         }
     }

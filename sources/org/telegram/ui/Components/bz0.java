@@ -1,26 +1,11 @@
 package org.telegram.ui.Components;
-public final class bz0 extends fz0 {
-    public int d;
+public final class bz0 {
+    public final hz0 f25716a;
+    public final jz0 f25717b;
+    public boolean f25718c = true;
 
-    @Override
-    public final int a(oz0 oz0Var, hz0 hz0Var, az0 az0Var, int i10, boolean z4) {
-        return Math.max(0, this.f27049a - az0Var.a(hz0Var, i10));
-    }
-
-    @Override
-    public final void b(int i10, int i11) {
-        super.b(i10, i11);
-        this.d = Math.max(this.d, i10 + i11);
-    }
-
-    @Override
-    public final void c() {
-        super.c();
-        this.d = Integer.MIN_VALUE;
-    }
-
-    @Override
-    public final int d(boolean z4) {
-        return Math.max(super.d(z4), this.d);
+    public bz0(hz0 hz0Var, jz0 jz0Var) {
+        this.f25716a = hz0Var;
+        this.f25717b = jz0Var;
     }
 }

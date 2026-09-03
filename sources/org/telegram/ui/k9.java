@@ -7,9 +7,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class k9 extends FrameLayout {
-    public final org.telegram.ui.Cells.h6 f38306a;
-    public final org.telegram.ui.Components.gi0 f38307b;
-    public TLRPC.Chat f38308c;
+    public final org.telegram.ui.Cells.h6 f38209a;
+    public final org.telegram.ui.Components.gi0 f38210b;
+    public TLRPC.Chat f38211c;
 
     public k9(Context context) {
         super(context);
@@ -17,10 +17,10 @@ public final class k9 extends FrameLayout {
         int dp;
         String string = LocaleController.getString(R.string.VoipChatJoin);
         org.telegram.ui.Components.gi0 gi0Var = new org.telegram.ui.Components.gi0(context);
-        this.f38307b = gi0Var;
+        this.f38210b = gi0Var;
         int ceil = (int) Math.ceil(gi0Var.getPaint().measureText(string));
         org.telegram.ui.Cells.h6 h6Var = new org.telegram.ui.Cells.h6(context, null);
-        this.f38306a = h6Var;
+        this.f38209a = h6Var;
         h6Var.J0 = true;
         h6Var.B0 = true;
         if (LocaleController.isRTL) {

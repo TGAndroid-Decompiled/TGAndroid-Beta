@@ -5,9 +5,9 @@ import androidx.lifecycle.p0;
 import c2.u;
 import o5.d;
 public class b extends p0 {
-    public static final cb.b f49322f = new cb.b(24);
+    public static final cb.b f49358f = new cb.b(24);
     public final l d = new l();
-    public boolean f49323e = false;
+    public boolean f49359e = false;
 
     @Override
     public final void b() {
@@ -15,24 +15,24 @@ public class b extends p0 {
         int i10 = lVar.f31c;
         for (int i11 = 0; i11 < i10; i11++) {
             a aVar = (a) lVar.f30b[i11];
-            d dVar = aVar.f49319l;
+            d dVar = aVar.f49355l;
             dVar.a();
-            dVar.f16603c = true;
-            u uVar = aVar.f49321n;
+            dVar.f16605c = true;
+            u uVar = aVar.f49357n;
             if (uVar != null) {
                 aVar.i(uVar);
             }
-            a aVar2 = dVar.f16601a;
+            a aVar2 = dVar.f16603a;
             if (aVar2 != null) {
                 if (aVar2 == aVar) {
-                    dVar.f16601a = null;
+                    dVar.f16603a = null;
                     if (uVar != null) {
                         boolean z4 = uVar.f2179b;
                     }
                     dVar.d = true;
-                    dVar.f16602b = false;
-                    dVar.f16603c = false;
-                    dVar.f16604e = false;
+                    dVar.f16604b = false;
+                    dVar.f16605c = false;
+                    dVar.f16606e = false;
                 } else {
                     throw new IllegalArgumentException("Attempting to unregister the wrong listener");
                 }

@@ -3,7 +3,7 @@ public abstract class vp extends m2.a {
     public abstract int j();
 
     public final int k(int i10) {
-        int size = ((wh0) this).f32750c.size();
+        int size = ((wh0) this).f32755c.size();
         int j10 = j();
         if (i10 < j10) {
             return ((size - (j10 * 2)) - ((j10 - i10) - 1)) - 1;

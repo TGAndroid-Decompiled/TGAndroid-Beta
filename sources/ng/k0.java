@@ -62,13 +62,13 @@ public final class k0 extends p9 {
             this.D = true;
             return;
         }
-        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f27823i0) {
+        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f27530i0) {
             this.D = true;
         }
-        if (!this.D && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f27823i0) {
+        if (!this.D && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f27530i0) {
             m0 m0Var = this.H;
-            if (m0Var.f16116a == 2 && !m0Var.f16138z) {
-                getImageReceiver().getLottieAnimation().L(getImageReceiver().getLottieAnimation().f27817e[0] - 1, false, false);
+            if (m0Var.f16118a == 2 && !m0Var.f16140z) {
+                getImageReceiver().getLottieAnimation().L(getImageReceiver().getLottieAnimation().f27524e[0] - 1, false, false);
             } else {
                 getImageReceiver().getLottieAnimation().L(0, false, false);
                 getImageReceiver().getLottieAnimation().start();

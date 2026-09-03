@@ -14,21 +14,21 @@ import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 public final class k0 extends LinearLayout implements b6 {
-    public final g6 f49819a;
-    public final ImageView f49820b;
-    public final TextView f49821c;
+    public final g6 f49855a;
+    public final ImageView f49856b;
+    public final TextView f49857c;
     public final TextView d;
 
     public k0(Context context, l0 l0Var, g6 g6Var) {
         super(context);
-        this.f49819a = g6Var;
+        this.f49855a = g6Var;
         setOrientation(0);
         ImageView imageView = new ImageView(context);
-        this.f49820b = imageView;
+        this.f49856b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView, c6.t(42, 42, 19, 0, 0, 0, 0));
         TextView textView = new TextView(context);
-        this.f49821c = textView;
+        this.f49857c = textView;
         textView.setTextSize(1, 16.0f);
         TextView textView2 = new TextView(context);
         this.d = textView2;
@@ -37,18 +37,18 @@ public final class k0 extends LinearLayout implements b6 {
         addView(textView, c6.t(-2, -2, 19, 8, 0, 0, 0));
         addView(new Space(context), c6.o(0, -2, 1.0f, 119));
         addView(textView2, c6.t(-2, -2, 21, 8, 0, 0, 0));
-        imageView.setImageResource(l0Var.f49847a);
-        textView.setText(l0Var.f49848b);
-        textView2.setText((CharSequence) l0Var.f49849c.get(0));
+        imageView.setImageResource(l0Var.f49883a);
+        textView.setText(l0Var.f49884b);
+        textView2.setText((CharSequence) l0Var.f49885c.get(0));
         e();
     }
 
     @Override
     public final void e() {
         int i10 = k6.G6;
-        g6 g6Var = this.f49819a;
-        this.f49820b.setColorFilter(new PorterDuffColorFilter(k6.v0(i10, g6Var), PorterDuff.Mode.SRC_IN));
-        this.f49821c.setTextColor(k6.v0(i10, g6Var));
+        g6 g6Var = this.f49855a;
+        this.f49856b.setColorFilter(new PorterDuffColorFilter(k6.v0(i10, g6Var), PorterDuff.Mode.SRC_IN));
+        this.f49857c.setTextColor(k6.v0(i10, g6Var));
         this.d.setTextColor(k6.l1(0.75f, k6.v0(i10, g6Var)));
     }
 

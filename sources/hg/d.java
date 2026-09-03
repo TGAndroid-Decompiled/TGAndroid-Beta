@@ -9,11 +9,11 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.ak0;
 import org.telegram.ui.Components.wc0;
+import org.telegram.ui.Components.xj0;
 import org.telegram.ui.Components.yc0;
-import org.telegram.ui.Components.yj0;
-public final class d implements wc0, yj0, org.telegram.ui.ActionBar.c2 {
+import org.telegram.ui.Components.zj0;
+public final class d implements wc0, xj0, org.telegram.ui.ActionBar.c2 {
     public final int f7438a;
     public final int f7439b;
     public final Object f7440c;
@@ -31,7 +31,7 @@ public final class d implements wc0, yj0, org.telegram.ui.ActionBar.c2 {
     }
 
     @Override
-    public void a(ak0 ak0Var, int i10) {
+    public void a(zj0 zj0Var, int i10) {
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f7441e;
         int[] iArr = (int[]) this.f7442f;
         int i11 = this.f7439b + i10;
@@ -56,7 +56,7 @@ public final class d implements wc0, yj0, org.telegram.ui.ActionBar.c2 {
         zArr[0] = true;
         TL_account.updateEmojiStatus updateemojistatus = new TL_account.updateEmojiStatus();
         TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-        tL_emojiStatus.document_id = document.f20849id;
+        tL_emojiStatus.document_id = document.f20851id;
         int i12 = this.f7439b;
         if (i12 > 0) {
             tL_emojiStatus.flags = 1 | tL_emojiStatus.flags;

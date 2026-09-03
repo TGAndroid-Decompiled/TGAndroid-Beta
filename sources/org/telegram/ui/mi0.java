@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class mi0 extends org.telegram.ui.Components.tl0 {
+public final class mi0 extends org.telegram.ui.Components.sl0 {
     public final ArrayList U2;
     public final org.telegram.ui.Components.z5 V2;
     public final org.telegram.ui.Components.z5 W2;
@@ -32,7 +32,7 @@ public final class mi0 extends org.telegram.ui.Components.tl0 {
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         org.telegram.ui.Cells.t1 t1Var;
         ti0 ti0Var = this.Y2;
-        if (ti0Var.f41653w && ((view == (t1Var = ti0Var.N) && t1Var != null && t1Var.getCurrentPosition() == null) || view == ti0Var.U)) {
+        if (ti0Var.f41576w && ((view == (t1Var = ti0Var.N) && t1Var != null && t1Var.getCurrentPosition() == null) || view == ti0Var.U)) {
             return false;
         }
         if (!(view instanceof org.telegram.ui.Cells.t1)) {
@@ -108,13 +108,13 @@ public final class mi0 extends org.telegram.ui.Components.tl0 {
         } else {
             measuredHeight = viewGroup.getMeasuredHeight();
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (dp + measuredHeight)) - AndroidUtilities.dp(8.0f)) - ti0Var.f41631e.f7758b), Integer.MIN_VALUE));
-        if (ti0Var.f41638j0) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (dp + measuredHeight)) - AndroidUtilities.dp(8.0f)) - ti0Var.f41554e.f7758b), Integer.MIN_VALUE));
+        if (ti0Var.f41561j0) {
             l10 = ti0Var.V;
         } else {
             l10 = ti0Var.T.l();
         }
-        int max = Math.max(AndroidUtilities.dp(12.0f) + l10, -((AndroidUtilities.dp(7.0f) + ti0Var.f41640l0[0]) - getMeasuredWidth()));
+        int max = Math.max(AndroidUtilities.dp(12.0f) + l10, -((AndroidUtilities.dp(7.0f) + ti0Var.f41563l0[0]) - getMeasuredWidth()));
         int i13 = ti0Var.L;
         int measuredWidth = getMeasuredWidth() - max;
         if (ti0Var.M.i()) {

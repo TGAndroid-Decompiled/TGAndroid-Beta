@@ -1,35 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-public final class ek0 extends AnimatorListenerAdapter {
-    public final int f26569a;
-    public final rk0 f26570b;
+import android.animation.ValueAnimator;
+public final class ek0 implements ValueAnimator.AnimatorUpdateListener {
+    public final float f26613a;
+    public final qk0 f26614b;
 
-    public ek0(rk0 rk0Var, int i10) {
-        this.f26569a = i10;
-        this.f26570b = rk0Var;
+    public ek0(qk0 qk0Var, float f10) {
+        this.f26614b = qk0Var;
+        this.f26613a = f10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f26569a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                this.f26570b.I0.unlock();
-                return;
-            case 1:
-                super.onAnimationEnd(animator);
-                rk0 rk0Var = this.f26570b;
-                rk0Var.N = null;
-                rk0Var.f30774k0 = 0.0f;
-                rk0Var.f30772i0 = null;
-                rk0Var.invalidate();
-                return;
-            default:
-                AndroidUtilities.removeFromParent(this.f26570b);
-                return;
-        }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        qk0 qk0Var = this.f26614b;
+        qk0Var.f30446l0 = floatValue;
+        qk0Var.f30445k0 = (1.0f - qk0Var.f30446l0) * this.f26613a;
+        qk0Var.invalidate();
     }
 }

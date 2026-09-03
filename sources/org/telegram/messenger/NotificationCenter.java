@@ -390,10 +390,10 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int f18058id;
+        private int f18060id;
 
         private DelayedPost(int i10, Object[] objArr) {
-            this.f18058id = i10;
+            this.f18060id = i10;
             this.args = objArr;
         }
     }
@@ -408,12 +408,12 @@ public class NotificationCenter {
         private final ArrayList<Observer> observers;
 
         public static class Observer {
-            private final int f18059id;
+            private final int f18061id;
             private final NotificationCenterDelegate observer;
 
             private Observer(NotificationCenterDelegate notificationCenterDelegate, int i10) {
                 this.observer = notificationCenterDelegate;
-                this.f18059id = i10;
+                this.f18061id = i10;
             }
         }
 
@@ -431,7 +431,7 @@ public class NotificationCenter {
                 Observer observer = arrayList.get(i10);
                 i10++;
                 Observer observer2 = observer;
-                this.notificationCenter.removeObserver(observer2.observer, observer2.f18059id);
+                this.notificationCenter.removeObserver(observer2.observer, observer2.f18061id);
             }
             this.observers.clear();
             this.notificationCenter = null;
@@ -1245,7 +1245,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i10 = 0; i10 < this.delayedPostsTmp.size(); i10++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i10);
-                postNotificationNameInternal(delayedPost.f18058id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.f18060id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }

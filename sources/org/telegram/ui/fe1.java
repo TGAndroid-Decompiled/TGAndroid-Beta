@@ -1,21 +1,19 @@
 package org.telegram.ui;
+public final class fe1 implements Runnable {
+    public final int f36785a;
+    public final ge1 f36786b;
+    public final String f36787c;
+    public final int d;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public final class fe1 extends org.telegram.ui.Components.qv0 {
-    public boolean f36866t0;
+    public fe1(ge1 ge1Var, String str, int i10, int i11) {
+        this.f36785a = i11;
+        this.f36786b = ge1Var;
+        this.f36787c = str;
+        this.d = i10;
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        R();
-        if (getKeyboardHeight() == 0 && !this.f36866t0) {
-            int i12 = MessagesController.getGlobalEmojiSettings().getInt("kbd_height", AndroidUtilities.dp(200.0f));
-            this.f30496f = i12;
-            setPadding(0, 0, 0, i12);
-        } else {
-            this.f36866t0 = true;
-            setPadding(0, 0, 0, 0);
-        }
-        super.onMeasure(i10, i11);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fe1.run():void");
     }
 }

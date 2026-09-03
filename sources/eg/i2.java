@@ -16,13 +16,13 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.ij0;
-import org.telegram.ui.Components.lj0;
+import org.telegram.ui.Components.hj0;
+import org.telegram.ui.Components.kj0;
 import org.telegram.ui.Components.qg;
 public final class i2 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public static final List f5249w = Arrays.asList(new f2(0, 1, 20, 0), new f2(0, 2, 20, 40), new f2(1, 0, 0, 20), new f2(1, 2, 60, 40), new f2(2, 0, 40, 20), new f2(2, 1, 40, 60));
     public int f5250a;
-    public final lj0 f5251b;
+    public final kj0 f5251b;
     public final ImageView f5252c;
     public final ImageView d;
     public final View f5253e;
@@ -72,7 +72,7 @@ public final class i2 extends FrameLayout implements NotificationCenter.Notifica
         ?? imageView = new ImageView(context);
         this.f5251b = imageView;
         imageView.f(R.raw.photo_text_allign, 24, 24, null);
-        ij0 animatedDrawable = imageView.getAnimatedDrawable();
+        hj0 animatedDrawable = imageView.getAnimatedDrawable();
         animatedDrawable.h = true;
         animatedDrawable.N(20);
         animatedDrawable.K(20);
@@ -243,9 +243,9 @@ public final class i2 extends FrameLayout implements NotificationCenter.Notifica
         int i11 = this.f5250a;
         this.f5250a = i10;
         List list = f5249w;
-        lj0 lj0Var = this.f5251b;
+        kj0 kj0Var = this.f5251b;
         if (i11 == i10) {
-            ij0 animatedDrawable = lj0Var.getAnimatedDrawable();
+            hj0 animatedDrawable = kj0Var.getAnimatedDrawable();
             f2 f2Var = (f2) list.get(0);
             Iterator it = list.iterator();
             while (true) {
@@ -278,7 +278,7 @@ public final class i2 extends FrameLayout implements NotificationCenter.Notifica
                 break;
             }
         }
-        ij0 animatedDrawable2 = lj0Var.getAnimatedDrawable();
+        hj0 animatedDrawable2 = kj0Var.getAnimatedDrawable();
         animatedDrawable2.K(f2Var3.f5209c);
         animatedDrawable2.N(f2Var3.d);
         animatedDrawable2.start();

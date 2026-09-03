@@ -78,7 +78,7 @@ public final class u implements j3.f, ba.a, c2, uc0, Continuation, r8.i, r8.e, h
             case 0:
                 Bundle bundle2 = bundle.getBundle(v.f6070c);
                 bundle2.getClass();
-                s0 s0Var = (s0) s0.f16570n.c(bundle2);
+                s0 s0Var = (s0) s0.f16572n.c(bundle2);
                 int[] intArray = bundle.getIntArray(v.d);
                 intArray.getClass();
                 if (intArray.length == 0) {

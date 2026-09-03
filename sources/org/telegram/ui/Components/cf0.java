@@ -6,15 +6,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class cf0 extends View {
-    public Paint f25940a;
-    public Paint f25941b;
-    public int f25942c;
+    public Paint f25917a;
+    public Paint f25918b;
+    public int f25919c;
     public int d;
-    public float f25943e;
-    public boolean f25944f;
+    public float f25920e;
+    public boolean f25921f;
     public int h;
-    public int f25945n;
-    public bf0 f25946r;
+    public int f25922n;
+    public bf0 f25923r;
 
     public final void a(int i10, boolean z4) {
         bf0 bf0Var;
@@ -22,36 +22,36 @@ public final class cf0 extends View {
         if (i10 < i11) {
             i10 = i11;
         } else {
-            int i12 = this.f25945n;
+            int i12 = this.f25922n;
             if (i10 > i12) {
                 i10 = i12;
             }
         }
-        this.f25943e = (i10 - i11) / (this.f25945n - i11);
+        this.f25920e = (i10 - i11) / (this.f25922n - i11);
         invalidate();
-        if (z4 && (bf0Var = this.f25946r) != null) {
+        if (z4 && (bf0Var = this.f25923r) != null) {
             bf0Var.l(((Integer) getTag()).intValue(), getProgress());
         }
     }
 
     public int getProgress() {
         int i10 = this.h;
-        return (int) ((this.f25943e * (this.f25945n - i10)) + i10);
+        return (int) ((this.f25920e * (this.f25922n - i10)) + i10);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i10;
-        Paint paint = this.f25941b;
+        Paint paint = this.f25918b;
         int measuredHeight = getMeasuredHeight();
-        int i11 = this.f25942c;
+        int i11 = this.f25919c;
         int i12 = (measuredHeight - i11) / 2;
-        int measuredWidth = (int) ((getMeasuredWidth() - i11) * this.f25943e);
+        int measuredWidth = (int) ((getMeasuredWidth() - i11) * this.f25920e);
         float f10 = i11 / 2;
-        canvas.drawRect(f10, (getMeasuredHeight() / 2) - AndroidUtilities.dp(1.0f), getMeasuredWidth() - i10, AndroidUtilities.dp(1.0f) + (getMeasuredHeight() / 2), this.f25940a);
+        canvas.drawRect(f10, (getMeasuredHeight() / 2) - AndroidUtilities.dp(1.0f), getMeasuredWidth() - i10, AndroidUtilities.dp(1.0f) + (getMeasuredHeight() / 2), this.f25917a);
         if (this.h == 0) {
             canvas.drawRect(f10, (getMeasuredHeight() / 2) - AndroidUtilities.dp(1.0f), measuredWidth, AndroidUtilities.dp(1.0f) + (getMeasuredHeight() / 2), paint);
-        } else if (this.f25943e > 0.5f) {
+        } else if (this.f25920e > 0.5f) {
             canvas.drawRect((getMeasuredWidth() / 2) - AndroidUtilities.dp(1.0f), (getMeasuredHeight() - i11) / 2, getMeasuredWidth() / 2, (getMeasuredHeight() + i11) / 2, paint);
             canvas.drawRect(getMeasuredWidth() / 2, (getMeasuredHeight() / 2) - AndroidUtilities.dp(1.0f), measuredWidth, AndroidUtilities.dp(1.0f) + (getMeasuredHeight() / 2), paint);
         } else {
@@ -63,23 +63,23 @@ public final class cf0 extends View {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int i10 = this.f25942c;
+        int i10 = this.f25919c;
         if (motionEvent != null) {
             float x10 = motionEvent.getX();
             float y10 = motionEvent.getY();
-            float measuredWidth = (int) ((getMeasuredWidth() - i10) * this.f25943e);
+            float measuredWidth = (int) ((getMeasuredWidth() - i10) * this.f25920e);
             float f10 = 0.0f;
             if (motionEvent.getAction() == 0) {
                 float measuredHeight = (getMeasuredHeight() - i10) / 2;
                 if (measuredWidth - measuredHeight <= x10 && x10 <= i10 + measuredWidth + measuredHeight && y10 >= 0.0f && y10 <= getMeasuredHeight()) {
-                    this.f25944f = true;
+                    this.f25921f = true;
                     this.d = (int) (x10 - measuredWidth);
                     getParent().requestDisallowInterceptTouchEvent(true);
                     invalidate();
                     return true;
                 }
             } else if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
-                if (motionEvent.getAction() == 2 && this.f25944f) {
+                if (motionEvent.getAction() == 2 && this.f25921f) {
                     float f11 = (int) (x10 - this.d);
                     if (f11 >= 0.0f) {
                         if (f11 > getMeasuredWidth() - i10) {
@@ -88,16 +88,16 @@ public final class cf0 extends View {
                             f10 = f11;
                         }
                     }
-                    this.f25943e = f10 / (getMeasuredWidth() - i10);
-                    bf0 bf0Var = this.f25946r;
+                    this.f25920e = f10 / (getMeasuredWidth() - i10);
+                    bf0 bf0Var = this.f25923r;
                     if (bf0Var != null) {
                         bf0Var.l(((Integer) getTag()).intValue(), getProgress());
                     }
                     invalidate();
                     return true;
                 }
-            } else if (this.f25944f) {
-                this.f25944f = false;
+            } else if (this.f25921f) {
+                this.f25921f = false;
                 invalidate();
                 return true;
             }
@@ -106,7 +106,7 @@ public final class cf0 extends View {
     }
 
     public void setDelegate(bf0 bf0Var) {
-        this.f25946r = bf0Var;
+        this.f25923r = bf0Var;
     }
 
     public void setProgress(int i10) {

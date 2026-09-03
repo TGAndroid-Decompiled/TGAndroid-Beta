@@ -37,7 +37,7 @@ public final class a extends v4.e {
             b b10 = b.b(m9);
             b10.getClass();
             this.f103o = b10;
-            m(new w((byte[]) list.get(1)), r8.d.f46738c);
+            m(new w((byte[]) list.get(1)), r8.d.f46769c);
             return;
         }
         this.f102n = false;
@@ -119,7 +119,7 @@ public final class a extends v4.e {
         w wVar2 = new w(bArr, i10);
         Charset B = wVar2.B();
         if (B == null) {
-            B = r8.d.f46738c;
+            B = r8.d.f46769c;
         }
         boolean z11 = aVar.f102n;
         if (!z11) {

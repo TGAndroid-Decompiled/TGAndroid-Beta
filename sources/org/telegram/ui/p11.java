@@ -1,123 +1,144 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.content.Intent;
-import android.text.TextUtils;
-import android.widget.TextView;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import android.text.SpannableStringBuilder;
+import android.view.View;
 import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class p11 extends org.telegram.ui.ActionBar.j {
-    public final Context f39896a;
-    public final ProxyListActivity f39897b;
+public final class p11 extends org.telegram.ui.Components.d81 {
+    public boolean f39853a;
+    public final org.telegram.ui.Components.sr0 f39854b;
 
-    public p11(ProxyListActivity proxyListActivity, Context context) {
-        this.f39897b = proxyListActivity;
-        this.f39896a = context;
+    public p11(org.telegram.ui.Components.sr0 sr0Var) {
+        this.f39854b = sr0Var;
     }
 
     @Override
-    public final void b(int i10) {
-        int i11;
-        int i12;
-        StringBuilder sb;
-        ProxyListActivity proxyListActivity = this.f39897b;
-        ArrayList arrayList = proxyListActivity.E;
-        if (i10 != -1) {
-            int i13 = 0;
-            if (i10 != 0) {
-                if (i10 == 1) {
-                    StringBuilder sb2 = new StringBuilder();
-                    int size = arrayList.size();
-                    while (i13 < size) {
-                        Object obj = arrayList.get(i13);
-                        i13++;
-                        SharedConfig.ProxyInfo proxyInfo = (SharedConfig.ProxyInfo) obj;
-                        if (sb2.length() > 0) {
-                            sb2.append("\n\n");
-                        }
-                        sf.a aVar = proxyInfo.settings;
-                        String str = aVar.f47304f;
-                        String str2 = aVar.f47303e;
-                        String str3 = aVar.d;
-                        int i14 = aVar.f47300a;
-                        int c3 = m1.j.c(i14);
-                        if (c3 != 1) {
-                            if (c3 != 2) {
-                                sb = new StringBuilder("https://t.me/socks?");
-                            } else {
-                                sb = new StringBuilder("https://t.me/webproxy?");
-                            }
-                        } else {
-                            sb = new StringBuilder("https://t.me/proxy?");
-                        }
-                        try {
-                            sb.append("server=");
-                            sb.append(URLEncoder.encode(aVar.f47301b, "UTF-8"));
-                            if (i14 != 3) {
-                                sb.append("&port=");
-                                sb.append(aVar.f47302c);
-                            }
-                            if (!TextUtils.isEmpty(str3)) {
-                                sb.append("&user=");
-                                sb.append(URLEncoder.encode(str3, "UTF-8"));
-                            }
-                            if (!TextUtils.isEmpty(str2)) {
-                                sb.append("&pass=");
-                                sb.append(URLEncoder.encode(str2, "UTF-8"));
-                            }
-                            if (!TextUtils.isEmpty(str)) {
-                                sb.append("&secret=");
-                                sb.append(URLEncoder.encode(str, "UTF-8"));
-                            }
-                        } catch (UnsupportedEncodingException unused) {
-                        }
-                        sb2.append(sb.toString());
-                    }
-                    Intent intent = new Intent("android.intent.action.SEND");
-                    intent.setType("text/plain");
-                    intent.putExtra("android.intent.extra.TEXT", sb2.toString());
-                    if (arrayList.size() > 1) {
-                        i12 = R.string.ShareLinks;
-                    } else {
-                        i12 = R.string.ShareLink;
-                    }
-                    Intent createChooser = Intent.createChooser(intent, LocaleController.getString(i12));
-                    createChooser.setFlags(268435456);
-                    this.f39896a.startActivity(createChooser);
-                    q11 q11Var = proxyListActivity.f34739a;
-                    if (q11Var != null) {
-                        q11Var.F();
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void a(ArrayList arrayList) {
+        org.telegram.ui.Components.sr0 sr0Var = this.f39854b;
+        sz0 sz0Var = sr0Var.D;
+        org.telegram.ui.Components.k81 k81Var = sr0Var.f40297n;
+        ArrayList arrayList2 = new ArrayList();
+        int size = arrayList.size();
+        int i10 = 0;
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = arrayList.get(i11);
+            i11++;
+            Integer num = (Integer) obj;
+            int intValue = num.intValue();
+            if (intValue != -1 && intValue != -2 && intValue != 0) {
+                arrayList2.add(num);
             }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(proxyListActivity.getParentActivity());
-            if (arrayList.size() > 1) {
-                i11 = R.string.DeleteProxyMultiConfirm;
-            } else {
-                i11 = R.string.DeleteProxyConfirm;
-            }
-            alertDialog$Builder.f21166a.Q = LocaleController.getString(i11);
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.DeleteProxyTitle);
-            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new kl0(this, 14));
-            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
-            proxyListActivity.showDialog(d2Var);
-            TextView textView = (TextView) d2Var.d(-1);
-            if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21895q7, false));
-            }
-        } else if (arrayList.isEmpty()) {
-            proxyListActivity.finishFragment();
-        } else {
-            proxyListActivity.f34739a.F();
         }
+        int f10 = f(k81Var.getCurrentPosition());
+        oh.h6 h6Var = sr0Var.f40298r;
+        h6Var.getClass();
+        HashMap hashMap = new HashMap();
+        ArrayList arrayList3 = h6Var.h;
+        int size2 = arrayList3.size();
+        int i12 = 0;
+        while (i12 < size2) {
+            Object obj2 = arrayList3.get(i12);
+            i12++;
+            oh.m6 m6Var = (oh.m6) obj2;
+            hashMap.put(Integer.valueOf(m6Var.f17441a), m6Var);
+        }
+        ArrayList arrayList4 = new ArrayList();
+        int size3 = arrayList2.size();
+        while (i10 < size3) {
+            Object obj3 = arrayList2.get(i10);
+            i10++;
+            Integer num2 = (Integer) obj3;
+            num2.getClass();
+            oh.m6 m6Var2 = (oh.m6) hashMap.get(num2);
+            if (m6Var2 != null) {
+                arrayList4.add(m6Var2);
+            }
+        }
+        arrayList3.clear();
+        arrayList3.addAll(arrayList4);
+        if (f10 >= 0) {
+            int i13 = i(f10);
+            k81Var.e(0.0f, i13, i13);
+        }
+        AndroidUtilities.cancelRunOnUIThread(sz0Var);
+        AndroidUtilities.runOnUIThread(sz0Var, 1000L);
+    }
+
+    @Override
+    public final boolean c(int i10) {
+        if (i10 == 0) {
+            return false;
+        }
+        if (this.f39853a && i10 == e() - 1) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final View d(int i10) {
+        if (i10 == -1) {
+            return null;
+        }
+        return new View(this.f39854b.getContext());
+    }
+
+    @Override
+    public final int e() {
+        return this.f39854b.f40298r.h.size() + 1 + (this.f39853a ? 1 : 0);
+    }
+
+    @Override
+    public final int f(int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        if (this.f39853a && i10 == e() - 1) {
+            return -1;
+        }
+        return ((oh.m6) this.f39854b.f40298r.h.get(i10 - 1)).f17441a;
+    }
+
+    @Override
+    public final CharSequence g(int i10) {
+        if (i10 == 0) {
+            return LocaleController.getString(R.string.StoriesAlbumNameAllStories);
+        }
+        if (this.f39853a && i10 == e() - 1) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("+ ");
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoriesAlbumAddAlbum));
+            org.telegram.ui.Components.oq oqVar = new org.telegram.ui.Components.oq(R.drawable.poll_add_plus, 0);
+            oqVar.spaceScaleX = 0.8f;
+            spannableStringBuilder.setSpan(oqVar, 0, 1, 33);
+            return spannableStringBuilder;
+        }
+        return ((oh.m6) this.f39854b.f40298r.h.get(i10 - 1)).f17442b;
+    }
+
+    @Override
+    public final int h(int i10) {
+        if (this.f39853a && i10 == e() - 1) {
+            return -1;
+        }
+        return i10;
+    }
+
+    public final int i(int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        int c3 = this.f39854b.f40298r.c(i10);
+        if (c3 == -1) {
+            return -1;
+        }
+        return c3 + 1;
+    }
+
+    @Override
+    public final void b(View view, int i10, int i11) {
     }
 }

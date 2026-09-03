@@ -5,35 +5,35 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.Utilities;
 public final class m2 {
-    public static m2 f42641e;
-    public HashMap f42642a;
-    public boolean f42643b;
-    public boolean f42644c;
+    public static m2 f42604e;
+    public HashMap f42605a;
+    public boolean f42606b;
+    public boolean f42607c;
     public boolean d;
 
     public static m2 b() {
-        if (f42641e == null) {
-            f42641e = new Object();
+        if (f42604e == null) {
+            f42604e = new Object();
         }
-        return f42641e;
+        return f42604e;
     }
 
     public final l2 a(String str) {
         c();
-        l2 l2Var = (l2) this.f42642a.get(str);
+        l2 l2Var = (l2) this.f42605a.get(str);
         if (l2Var == null) {
             return null;
         }
-        l2Var.f42625a = Math.max(l2Var.f42625a, System.currentTimeMillis());
+        l2Var.f42588a = Math.max(l2Var.f42588a, System.currentTimeMillis());
         d();
         return l2Var;
     }
 
     public final void c() {
-        if (!this.f42643b && !this.f42644c) {
-            this.f42644c = true;
-            if (this.f42642a == null) {
-                this.f42642a = new HashMap();
+        if (!this.f42606b && !this.f42607c) {
+            this.f42607c = true;
+            if (this.f42605a == null) {
+                this.f42605a = new HashMap();
             }
             Utilities.globalQueue.postRunnable(new i2(this, 1));
         }

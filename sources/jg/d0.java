@@ -27,7 +27,7 @@ public final class d0 extends TableLayout {
         e0Var.f10035s.rewind();
         e0Var.f10035s.addRoundRect(e0Var.v, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
         super.dispatchDraw(canvas);
-        e0Var.f10034r.setColor(i0.a.d(0.1f, k6.v0(k6.f21660d7, this.f10024a), -1));
+        e0Var.f10034r.setColor(i0.a.d(0.1f, k6.v0(k6.f21662d7, this.f10024a), -1));
         e0Var.f10034r.setStrokeWidth(AndroidUtilities.dp(1.0f));
         float height = getHeight();
         if (e0Var.f10038y.getVisibility() == 0) {

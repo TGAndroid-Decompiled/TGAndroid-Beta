@@ -18,20 +18,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.WeakHashMap;
 public abstract class j0 {
-    public static WeakHashMap f46438a = null;
-    public static Field f46439b = null;
-    public static boolean f46440c = false;
+    public static WeakHashMap f46469a = null;
+    public static Field f46470b = null;
+    public static boolean f46471c = false;
     public static final w d = new Object();
-    public static final y f46441e = new y();
+    public static final y f46472e = new y();
 
     public static m0 a(View view) {
-        if (f46438a == null) {
-            f46438a = new WeakHashMap();
+        if (f46469a == null) {
+            f46469a = new WeakHashMap();
         }
-        m0 m0Var = (m0) f46438a.get(view);
+        m0 m0Var = (m0) f46469a.get(view);
         if (m0Var == null) {
             m0 m0Var2 = new m0(view);
-            f46438a.put(view, m0Var2);
+            f46469a.put(view, m0Var2);
             return m0Var2;
         }
         return m0Var;
@@ -61,14 +61,14 @@ public abstract class j0 {
             i0 i0Var2 = i0Var;
             if (i0Var == null) {
                 ?? obj = new Object();
-                obj.f46433a = null;
-                obj.f46434b = null;
-                obj.f46435c = null;
+                obj.f46464a = null;
+                obj.f46465b = null;
+                obj.f46466c = null;
                 view.setTag(2131296694, obj);
                 i0Var2 = obj;
             }
             if (keyEvent.getAction() == 0) {
-                WeakHashMap weakHashMap = i0Var2.f46433a;
+                WeakHashMap weakHashMap = i0Var2.f46464a;
                 if (weakHashMap != null) {
                     weakHashMap.clear();
                 }
@@ -76,8 +76,8 @@ public abstract class j0 {
                 if (!arrayList2.isEmpty()) {
                     synchronized (arrayList2) {
                         try {
-                            if (i0Var2.f46433a == null) {
-                                i0Var2.f46433a = new WeakHashMap();
+                            if (i0Var2.f46464a == null) {
+                                i0Var2.f46464a = new WeakHashMap();
                             }
                             for (int size = arrayList2.size() - 1; size >= 0; size--) {
                                 ArrayList arrayList3 = i0.d;
@@ -85,9 +85,9 @@ public abstract class j0 {
                                 if (view2 == null) {
                                     arrayList3.remove(size);
                                 } else {
-                                    i0Var2.f46433a.put(view2, Boolean.TRUE);
+                                    i0Var2.f46464a.put(view2, Boolean.TRUE);
                                     for (ViewParent parent = view2.getParent(); parent instanceof View; parent = parent.getParent()) {
-                                        i0Var2.f46433a.put((View) parent, Boolean.TRUE);
+                                        i0Var2.f46464a.put((View) parent, Boolean.TRUE);
                                     }
                                 }
                             }
@@ -100,10 +100,10 @@ public abstract class j0 {
             if (keyEvent.getAction() == 0) {
                 int keyCode = keyEvent.getKeyCode();
                 if (a2 != null && !KeyEvent.isModifierKey(keyCode)) {
-                    if (i0Var2.f46434b == null) {
-                        i0Var2.f46434b = new SparseArray();
+                    if (i0Var2.f46465b == null) {
+                        i0Var2.f46465b = new SparseArray();
                     }
-                    i0Var2.f46434b.put(keyCode, new WeakReference(a2));
+                    i0Var2.f46465b.put(keyCode, new WeakReference(a2));
                 }
             }
             if (a2 != null) {
@@ -118,25 +118,25 @@ public abstract class j0 {
         if (Build.VERSION.SDK_INT >= 29) {
             return f0.a(view);
         }
-        if (!f46440c) {
-            if (f46439b == null) {
+        if (!f46471c) {
+            if (f46470b == null) {
                 try {
                     Field declaredField = View.class.getDeclaredField("mAccessibilityDelegate");
-                    f46439b = declaredField;
+                    f46470b = declaredField;
                     declaredField.setAccessible(true);
                 } catch (Throwable unused) {
-                    f46440c = true;
+                    f46471c = true;
                     return null;
                 }
             }
             try {
-                Object obj = f46439b.get(view);
+                Object obj = f46470b.get(view);
                 if (obj instanceof View.AccessibilityDelegate) {
                     return (View.AccessibilityDelegate) obj;
                 }
                 return null;
             } catch (Throwable unused2) {
-                f46440c = true;
+                f46471c = true;
                 return null;
             }
         }
@@ -288,7 +288,7 @@ public abstract class j0 {
         if (bVar == null) {
             aVar = null;
         } else {
-            aVar = bVar.f46402b;
+            aVar = bVar.f46433b;
         }
         view.setAccessibilityDelegate(aVar);
     }
@@ -296,9 +296,9 @@ public abstract class j0 {
     public static void l(View view, CharSequence charSequence) {
         boolean z4;
         new x(2131296685, CharSequence.class, 8, 28, 1).d(view, charSequence);
-        y yVar = f46441e;
+        y yVar = f46472e;
         if (charSequence != null) {
-            WeakHashMap weakHashMap = yVar.f46484a;
+            WeakHashMap weakHashMap = yVar.f46515a;
             if (view.isShown() && view.getWindowVisibility() == 0) {
                 z4 = true;
             } else {
@@ -312,7 +312,7 @@ public abstract class j0 {
             }
             return;
         }
-        yVar.f46484a.remove(view);
+        yVar.f46515a.remove(view);
         view.removeOnAttachStateChangeListener(yVar);
         view.getViewTreeObserver().removeOnGlobalLayoutListener(yVar);
     }

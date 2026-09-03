@@ -9,23 +9,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.RichMessageLayout;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import qh.e8;
-import qh.v9;
+import qh.d8;
+import qh.u9;
 public final class c0 extends View {
-    public final RichMessageLayout.RichButton f49680a;
-    public final int f49681b;
-    public boolean f49682c;
+    public final RichMessageLayout.RichButton f49716a;
+    public final int f49717b;
+    public boolean f49718c;
     public boolean d;
-    public final e8 f49683e;
-    public final f0 f49684f;
+    public final d8 f49719e;
+    public final f0 f49720f;
 
     public c0(f0 f0Var, Context context, TL_keyboard.PageButton pageButton, int i10) {
         super(context);
-        this.f49684f = f0Var;
-        this.f49681b = i10;
-        RichMessageLayout.RichButton createEditorPageButton = RichMessageLayout.createEditorPageButton(f0Var.f49736n, l.d.c(32.0f, AndroidUtilities.displaySize.x, AndroidUtilities.dp(240.0f)), f0Var.f49737r, pageButton, new v9(this, 28));
-        this.f49680a = createEditorPageButton;
-        this.f49683e = new e8(this, i10, 5);
+        this.f49720f = f0Var;
+        this.f49717b = i10;
+        RichMessageLayout.RichButton createEditorPageButton = RichMessageLayout.createEditorPageButton(f0Var.f49772n, l.d.c(32.0f, AndroidUtilities.displaySize.x, AndroidUtilities.dp(240.0f)), f0Var.f49773r, pageButton, new u9(this, 28));
+        this.f49716a = createEditorPageButton;
+        this.f49719e = new d8(this, i10, 5);
         createEditorPageButton.width = createEditorPageButton.getPreferredWidth();
         setContentDescription(x5.l(pageButton.text));
         setClickable(true);
@@ -35,13 +35,13 @@ public final class c0 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f49680a.attach(this);
+        this.f49716a.attach(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        AndroidUtilities.cancelRunOnUIThread(this.f49683e);
-        this.f49680a.detach(this);
+        AndroidUtilities.cancelRunOnUIThread(this.f49719e);
+        this.f49716a.detach(this);
         super.onDetachedFromWindow();
     }
 
@@ -50,7 +50,7 @@ public final class c0 extends View {
         super.onDraw(canvas);
         canvas.save();
         int height = getHeight();
-        RichMessageLayout.RichButton richButton = this.f49680a;
+        RichMessageLayout.RichButton richButton = this.f49716a;
         canvas.translate(0.0f, (height - richButton.getHeight()) / 2.0f);
         richButton.draw(canvas);
         canvas.restore();
@@ -58,7 +58,7 @@ public final class c0 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        RichMessageLayout.RichButton richButton = this.f49680a;
+        RichMessageLayout.RichButton richButton = this.f49716a;
         setMeasuredDimension(richButton.width, AndroidUtilities.dp(8.0f) + richButton.getHeight());
     }
 
@@ -73,39 +73,39 @@ public final class c0 extends View {
         boolean z11;
         boolean z12;
         int actionMasked = motionEvent.getActionMasked();
-        e8 e8Var = this.f49683e;
-        RichMessageLayout.RichButton richButton = this.f49680a;
+        d8 d8Var = this.f49719e;
+        RichMessageLayout.RichButton richButton = this.f49716a;
         if (actionMasked != 0) {
             if (actionMasked != 1) {
                 if (actionMasked != 2) {
                     if (actionMasked != 3) {
                         return super.onTouchEvent(motionEvent);
                     }
-                    this.f49682c = false;
+                    this.f49718c = false;
                     richButton.setPressed(false);
-                    AndroidUtilities.cancelRunOnUIThread(e8Var);
+                    AndroidUtilities.cancelRunOnUIThread(d8Var);
                     return true;
                 } else if (motionEvent.getX() < 0.0f || motionEvent.getY() < 0.0f || motionEvent.getX() > getWidth() || motionEvent.getY() > getHeight()) {
-                    this.f49682c = false;
+                    this.f49718c = false;
                     richButton.setPressed(false);
-                    AndroidUtilities.cancelRunOnUIThread(e8Var);
+                    AndroidUtilities.cancelRunOnUIThread(d8Var);
                     return true;
                 }
             } else {
-                if (this.f49682c && !this.d) {
+                if (this.f49718c && !this.d) {
                     z4 = true;
                 } else {
                     z4 = false;
                 }
-                this.f49682c = false;
+                this.f49718c = false;
                 richButton.setPressed(false);
-                AndroidUtilities.cancelRunOnUIThread(e8Var);
-                if (z4 && (d0Var = (f0Var = this.f49684f).B) != null && (aVar = f0Var.f50175a) != null) {
-                    r3 r3Var = ((j3) d0Var).f49812a;
-                    TL_iv.PageBlock pageBlock = aVar.f49617b;
+                AndroidUtilities.cancelRunOnUIThread(d8Var);
+                if (z4 && (d0Var = (f0Var = this.f49720f).B) != null && (aVar = f0Var.f50211a) != null) {
+                    r3 r3Var = ((j3) d0Var).f49848a;
+                    TL_iv.PageBlock pageBlock = aVar.f49653b;
                     if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
                         TL_iv.pageBlockButtonRow pageblockbuttonrow = (TL_iv.pageBlockButtonRow) pageBlock;
-                        int i10 = this.f49681b;
+                        int i10 = this.f49717b;
                         if (i10 >= 0 && i10 < pageblockbuttonrow.buttons.size()) {
                             d2 d2Var = r3Var.G3;
                             if (d2Var != null) {
@@ -153,17 +153,17 @@ public final class c0 extends View {
                             if (d2Var2 != null) {
                                 d2Var2.h();
                             }
-                            r3Var.f49980e3.onContentChanged();
+                            r3Var.f50016e3.onContentChanged();
                         }
                     }
                 }
             }
             return true;
         }
-        this.f49682c = true;
+        this.f49718c = true;
         this.d = false;
         richButton.setPressed(true);
-        AndroidUtilities.runOnUIThread(e8Var, ViewConfiguration.getLongPressTimeout());
+        AndroidUtilities.runOnUIThread(d8Var, ViewConfiguration.getLongPressTimeout());
         return true;
     }
 }

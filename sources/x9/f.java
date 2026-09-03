@@ -1,4 +1,4 @@
 package x9;
 public abstract class f implements v9.a {
-    public static final w9.a f50474a = new w9.a(2);
+    public static final w9.a f50510a = new w9.a(2);
 }

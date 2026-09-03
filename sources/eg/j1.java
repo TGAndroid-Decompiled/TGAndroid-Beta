@@ -313,7 +313,7 @@ public class j1 extends View {
         if (min < 0.4f) {
             f11 = 1.0f;
             String str2 = this.f5296b;
-            this.C = new StaticLayout(str2, textPaint, qh.f3.a(str2, textPaint), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.C = new StaticLayout(str2, textPaint, qh.e3.a(str2, textPaint), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         } else {
             f11 = 1.0f;
             this.C = new StaticLayout(this.f5296b, textPaint, (int) Math.ceil(measureText), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);

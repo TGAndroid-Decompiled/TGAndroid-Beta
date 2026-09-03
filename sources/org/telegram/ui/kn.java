@@ -4,13 +4,13 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class kn extends k7.d6 {
-    public MessageObject f38440a;
-    public int f38441b = 0;
-    public boolean f38442c = true;
+    public MessageObject f38344a;
+    public int f38345b = 0;
+    public boolean f38346c = true;
     public int d = 0;
-    public int f38443e;
-    public boolean f38444f;
-    public int f38445g;
+    public int f38347e;
+    public boolean f38348f;
+    public int f38349g;
     public final xn h;
 
     public kn(xn xnVar) {
@@ -19,20 +19,20 @@ public final class kn extends k7.d6 {
 
     @Override
     public final void a() {
-        MessageObject messageObject = this.f38440a;
+        MessageObject messageObject = this.f38344a;
         xn xnVar = this.h;
         if (messageObject != null) {
-            xnVar.f43403x0.T();
-            int indexOf = xnVar.f43333r6.indexOf(this.f38440a) + xnVar.f43403x0.G;
+            xnVar.f43381x0.T();
+            int indexOf = xnVar.f43311r6.indexOf(this.f38344a) + xnVar.f43381x0.G;
             if (indexOf >= 0) {
-                xnVar.f43389w0.i1(indexOf, (int) ((this.f38443e + this.f38445g) - xnVar.f43310p9), this.f38444f);
+                xnVar.f43367w0.i1(indexOf, (int) ((this.f38347e + this.f38349g) - xnVar.f43288p9), this.f38348f);
             }
         } else {
-            xnVar.f43403x0.T();
-            xnVar.f43389w0.i1(this.f38441b, this.d, this.f38442c);
+            xnVar.f43381x0.T();
+            xnVar.f43367w0.i1(this.f38345b, this.d, this.f38346c);
         }
-        this.f38440a = null;
-        xnVar.f43231j3 = true;
+        this.f38344a = null;
+        xnVar.f43209j3 = true;
         xnVar.Wc(false);
         AndroidUtilities.runOnUIThread(new zi(this, 8));
     }
@@ -41,8 +41,8 @@ public final class kn extends k7.d6 {
     public final void c() {
         xn xnVar = this.h;
         xnVar.F9 = xnVar.getNotificationCenter().setAnimationInProgress(xnVar.F9, xn.Kc);
-        sk skVar = xnVar.f43359ta;
-        if (skVar.f43471n) {
+        sk skVar = xnVar.f43337ta;
+        if (skVar.f35874n) {
             skVar.d();
         }
     }

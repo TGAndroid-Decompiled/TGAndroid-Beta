@@ -24,11 +24,11 @@ import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Cells.k1;
 import org.telegram.ui.Cells.n9;
 import org.telegram.ui.Cells.t1;
-import org.telegram.ui.Components.ko0;
+import org.telegram.ui.Components.jo0;
 import org.telegram.ui.Components.u5;
-import org.telegram.ui.q61;
-import org.telegram.ui.xu0;
-public final class b implements c9.e, e2.d, g5.l, SuccessContinuation, j9.c, m6.d, q61, c9.f, of.a, ko0, k1, pf.a, r3.c, ra.m, s0 {
+import org.telegram.ui.cv0;
+import org.telegram.ui.v61;
+public final class b implements c9.e, e2.d, g5.l, SuccessContinuation, j9.c, m6.d, v61, c9.f, of.a, jo0, k1, pf.a, r3.c, ra.m, s0 {
     public static volatile b f2402b;
     public final int f2403a;
 
@@ -243,7 +243,7 @@ public final class b implements c9.e, e2.d, g5.l, SuccessContinuation, j9.c, m6.
     }
 
     @Override
-    public xu0 g2() {
+    public cv0 g2() {
         return null;
     }
 
@@ -324,9 +324,9 @@ public final class b implements c9.e, e2.d, g5.l, SuccessContinuation, j9.c, m6.
     @Override
     public void u0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12) {
         if (i10 < i11) {
-            pf.a.f44370u.u0(shortBuffer, i10, shortBuffer2, i11, i12);
+            pf.a.f44401u.u0(shortBuffer, i10, shortBuffer2, i11, i12);
         } else if (i10 > i11) {
-            pf.a.f44369t.u0(shortBuffer, i10, shortBuffer2, i11, i12);
+            pf.a.f44400t.u0(shortBuffer, i10, shortBuffer2, i11, i12);
         } else if (i10 == i11) {
             shortBuffer2.put(shortBuffer);
         } else {

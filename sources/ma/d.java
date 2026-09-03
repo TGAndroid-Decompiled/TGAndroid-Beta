@@ -1,15 +1,15 @@
 package ma;
 public final class d {
-    public static final d f13613a;
-    public static final d f13614b;
-    public static final d[] f13615c;
+    public static final d f13615a;
+    public static final d f13616b;
+    public static final d[] f13617c;
 
     static {
         ?? r02 = new Enum("CRASHLYTICS", 0);
-        f13613a = r02;
+        f13615a = r02;
         ?? r12 = new Enum("PERFORMANCE", 1);
-        f13614b = r12;
-        f13615c = new d[]{r02, r12, new Enum("MATT_SAYS_HI", 2)};
+        f13616b = r12;
+        f13617c = new d[]{r02, r12, new Enum("MATT_SAYS_HI", 2)};
     }
 
     public static d valueOf(String str) {
@@ -17,6 +17,6 @@ public final class d {
     }
 
     public static d[] values() {
-        return (d[]) f13615c.clone();
+        return (d[]) f13617c.clone();
     }
 }

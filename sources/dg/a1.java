@@ -19,7 +19,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.rs;
 import org.telegram.ui.Components.ts;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.w51;
 public final class a1 implements Runnable {
     public final int f4431a;
     public final boolean f4432b;
@@ -95,7 +95,7 @@ public final class a1 implements Runnable {
                                 long longValue = tL_stickerPack.documents.get(0).longValue();
                                 for (int i12 = 0; i12 < tL_messages_stickerSet.documents.size(); i12++) {
                                     document = tL_messages_stickerSet.documents.get(i12);
-                                    if (document == null || document.f20849id != longValue) {
+                                    if (document == null || document.f20851id != longValue) {
                                     }
                                 }
                             } else {
@@ -114,7 +114,7 @@ public final class a1 implements Runnable {
                 if (document != null) {
                     imageReceiver.setAllowStartLottieAnimation(true);
                     imageReceiver.setDelegate(new m9(zArr));
-                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, k6.f21605a7, 0.3f);
+                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, k6.f21607a7, 0.3f);
                     TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 160, true, null, true);
                     imageReceiver.setAutoRepeat(0);
                     imageReceiver.setImage(ImageLocation.getForDocument(document), "160_160_nr", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "160_160", svgThumb, document.size, "tgs", tL_messages_stickerSet, 1);
@@ -135,7 +135,7 @@ public final class a1 implements Runnable {
                 TLObject tLObject = (TLObject) this.f4435f;
                 ArrayList arrayList = rsVar.Q;
                 int i13 = rsVar.K;
-                if (this.f4433c == rsVar.f30835a0 && TextUtils.equals(tL_messages_searchGlobal.f20954q, rsVar.f30836b0)) {
+                if (this.f4433c == rsVar.f30882a0 && TextUtils.equals(tL_messages_searchGlobal.f20956q, rsVar.f30883b0)) {
                     rsVar.W = false;
                     if (!this.f4432b) {
                         arrayList.clear();
@@ -152,7 +152,7 @@ public final class a1 implements Runnable {
                             TLRPC.Message message = arrayList2.get(i14);
                             i14++;
                             MessageObject messageObject = new MessageObject(i13, message, false, true);
-                            messageObject.setQuery(rsVar.f30836b0);
+                            messageObject.setQuery(rsVar.f30883b0);
                             arrayList.add(messageObject);
                         }
                         rsVar.Y = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
@@ -169,7 +169,7 @@ public final class a1 implements Runnable {
                 TLObject tLObject2 = (TLObject) this.f4435f;
                 ArrayList arrayList3 = tsVar.M;
                 int i15 = tsVar.K;
-                if (this.f4433c == tsVar.X && TextUtils.equals(tL_messages_searchGlobal2.f20954q, tsVar.Y)) {
+                if (this.f4433c == tsVar.X && TextUtils.equals(tL_messages_searchGlobal2.f20956q, tsVar.Y)) {
                     tsVar.T = false;
                     if (!this.f4432b) {
                         arrayList3.clear();
@@ -209,9 +209,9 @@ public final class a1 implements Runnable {
         this.f4435f = aVar;
     }
 
-    public a1(x51 x51Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z4, TLObject tLObject, int i11) {
+    public a1(w51 w51Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z4, TLObject tLObject, int i11) {
         this.f4431a = i11;
-        this.d = x51Var;
+        this.d = w51Var;
         this.f4433c = i10;
         this.f4434e = tL_messages_searchGlobal;
         this.f4432b = z4;

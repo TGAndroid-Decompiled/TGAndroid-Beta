@@ -1,12 +1,12 @@
 package qd;
 public final class q {
-    public final k f44819a;
+    public final k f44850a;
 
     public q(k kVar) {
-        this.f44819a = kVar;
+        this.f44850a = kVar;
     }
 
     public final String toString() {
-        return "Removed[" + this.f44819a + ']';
+        return "Removed[" + this.f44850a + ']';
     }
 }

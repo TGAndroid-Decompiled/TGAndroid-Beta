@@ -1,10 +1,10 @@
 package m;
 public final class y0 extends ja.c {
-    public final z0 f13394c;
+    public final z0 f13396c;
 
     public y0(z0 z0Var) {
         super(z0Var);
-        this.f13394c = z0Var;
+        this.f13396c = z0Var;
     }
 
     @Override

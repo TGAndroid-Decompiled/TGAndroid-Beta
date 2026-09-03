@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.MessagesController;
 public final class ax implements m2.f {
-    public final boolean f25359a;
-    public final mz f25360b;
+    public final boolean f25388a;
+    public final mz f25389b;
 
     public ax(mz mzVar, boolean z4) {
-        this.f25360b = mzVar;
-        this.f25359a = z4;
+        this.f25389b = mzVar;
+        this.f25388a = z4;
     }
 
     @Override
     public final void a(int i10) {
         boolean z4;
         int i11;
-        mz mzVar = this.f25360b;
+        mz mzVar = this.f25389b;
         xw xwVar = mzVar.h;
         boolean z10 = false;
         if (xwVar != null) {
@@ -26,8 +26,8 @@ public final class ax implements m2.f {
             } else {
                 i11 = 0;
             }
-            if (mzVar.f29340x1 != i11) {
-                mzVar.f29340x1 = i11;
+            if (mzVar.f29342x1 != i11) {
+                mzVar.f29342x1 = i11;
                 MessagesController.getGlobalEmojiSettings().edit().putInt("selected_page", i11).commit();
             }
         }
@@ -37,18 +37,18 @@ public final class ax implements m2.f {
             z4 = false;
         }
         mzVar.N(z4, true);
-        if (i10 == 2 && (this.f25359a || mzVar.f29322s0)) {
+        if (i10 == 2 && (this.f25388a || mzVar.f29324s0)) {
             z10 = true;
         }
         mzVar.S(z10, true);
-        if (mzVar.f29315q1.z()) {
+        if (mzVar.f29317q1.z()) {
             if (i10 == 0) {
                 iw iwVar = mzVar.S;
                 if (iwVar != null) {
                     iwVar.d.requestFocus();
                 }
             } else if (i10 == 1) {
-                ow owVar = mzVar.f29300l0;
+                ow owVar = mzVar.f29302l0;
                 if (owVar != null) {
                     owVar.d.requestFocus();
                 }
@@ -69,18 +69,18 @@ public final class ax implements m2.f {
         int i12;
         int i13;
         int i14;
-        mz mzVar = this.f25360b;
+        mz mzVar = this.f25389b;
         yy yyVar3 = mzVar.D0;
-        yy yyVar4 = mzVar.f29300l0;
+        yy yyVar4 = mzVar.f29302l0;
         yy yyVar5 = mzVar.S;
-        ww wwVar = mzVar.f29346z0;
+        ww wwVar = mzVar.f29348z0;
         rw rwVar = mzVar.A0;
         rx rxVar = mzVar.m0;
-        lw lwVar = mzVar.f29278e0;
+        lw lwVar = mzVar.f29280e0;
         kx kxVar = mzVar.M;
         int i15 = 2;
         boolean z4 = true;
-        if (mzVar.f29328u0 == null || mzVar.f29274d0 == null) {
+        if (mzVar.f29330u0 == null || mzVar.f29276d0 == null) {
             f11 = 0.0f;
         } else {
             int i16 = 8;
@@ -137,7 +137,7 @@ public final class ax implements m2.f {
         mzVar.getMeasuredWidth();
         mzVar.getPaddingLeft();
         mzVar.getPaddingRight();
-        my myVar = mzVar.f29315q1;
+        my myVar = mzVar.f29317q1;
         if (myVar != null) {
             if (i10 == 1) {
                 if (i11 == 0) {

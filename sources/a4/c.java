@@ -1,7 +1,7 @@
 package a4;
 
 import h5.d0;
-import q5.g0;
+import q5.c0;
 import r3.n;
 import r3.o;
 import r3.s;
@@ -42,7 +42,7 @@ public final class c implements h {
 
     @Override
     public void u(long j10) {
-        long[] jArr = (long[]) ((g0) this.d).f44557b;
+        long[] jArr = (long[]) ((c0) this.d).f44559c;
         this.f61b = jArr[d0.e(jArr, j10, true)];
     }
 

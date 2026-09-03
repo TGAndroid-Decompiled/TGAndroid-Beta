@@ -3,7 +3,7 @@ package eg;
 import android.graphics.drawable.Drawable;
 import org.telegram.ui.Components.pr;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.gt0;
+import org.telegram.ui.lt0;
 public final class n1 implements dg.n1 {
     public final o1 f5378a;
 
@@ -27,7 +27,7 @@ public final class n1 implements dg.n1 {
         o1 o1Var = this.f5378a;
         o1Var.f5389b.f4556a.e();
         o1Var.f5396w.setViewHidden(false);
-        PhotoViewer photoViewer = ((gt0) o1Var).H;
+        PhotoViewer photoViewer = ((lt0) o1Var).H;
         Drawable[] drawableArr = PhotoViewer.Q8;
         photoViewer.X2(true, true);
     }

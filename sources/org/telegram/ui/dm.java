@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class dm extends org.telegram.ui.Cells.b0 {
-    public final jm f36260f;
+    public final jm f36225f;
 
     public dm(jm jmVar, Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context, i10, g6Var);
-        this.f36260f = jmVar;
+        this.f36225f = jmVar;
     }
 
     @Override
     public final int getSideMenuWidth() {
-        xn xnVar = this.f36260f.N;
+        xn xnVar = this.f36225f.N;
         int i10 = xn.Ec;
         return xnVar.R8();
     }

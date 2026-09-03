@@ -8,20 +8,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.mi;
 import org.telegram.ui.Components.zj;
 public final class n implements zj {
-    public final mi f49884a;
-    public final q f49885b;
+    public final mi f49920a;
+    public final q f49921b;
 
     public n(q qVar, mi miVar) {
-        this.f49885b = qVar;
-        this.f49884a = miVar;
+        this.f49921b = qVar;
+        this.f49920a = miVar;
     }
 
     @Override
     public final void l(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z4, int i10, long j10, boolean z10, long j11) {
         String str2;
-        r3 r3Var = this.f49885b.f49930r;
+        r3 r3Var = this.f49921b.f49966r;
         if (!arrayList.isEmpty()) {
-            r3Var.c2((String) arrayList.get(0));
+            r3Var.b2((String) arrayList.get(0));
         } else if (!arrayList3.isEmpty()) {
             MessageObject messageObject = (MessageObject) arrayList3.get(0);
             r3Var.getClass();
@@ -33,10 +33,10 @@ public final class n implements zj {
                 } else {
                     str2 = null;
                 }
-                r3Var.d2(document, str2);
+                r3Var.c2(document, str2);
             }
         }
-        this.f49884a.dismiss(true);
+        this.f49920a.dismiss(true);
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class n implements zj {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f49885b.f26546b.f29040c0.startActivityForResult(intent, 21);
+            this.f49921b.f26590b.f29058c0.startActivityForResult(intent, 21);
         } catch (Exception e6) {
             FileLog.e(e6);
         }

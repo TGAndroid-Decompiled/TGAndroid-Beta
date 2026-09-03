@@ -18,17 +18,17 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 public final class sj0 implements Runnable {
-    public final int f41310a;
+    public final int f41255a;
 
     public sj0(int i10) {
-        this.f41310a = i10;
+        this.f41255a = i10;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.Components.qc a02;
         int i10 = 0;
-        switch (this.f41310a) {
+        switch (this.f41255a) {
             case 0:
                 org.telegram.ui.Components.qc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
                 return;
@@ -45,13 +45,13 @@ public final class sj0 implements Runnable {
                 org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
                 if (U != null && (a02 = org.telegram.ui.Components.qc.a0(U)) != null) {
                     org.telegram.ui.Components.ic M = a02.M(LocaleController.getString(R.string.ReportChatSent), LocaleController.getString(R.string.Reported2), R.raw.msg_antispam);
-                    M.f27745j = 5000;
+                    M.f27778j = 5000;
                     M.j();
                     return;
                 }
                 return;
             case 5:
-                int i11 = z81.f43867a0;
+                int i11 = f91.f36722a0;
                 return;
             case 6:
                 org.telegram.ui.ActionBar.k6.N = false;
@@ -82,13 +82,13 @@ public final class sj0 implements Runnable {
                             ?? tLObject = new TLObject();
                             tLObject.readParams(serializedData, true);
                             arrayList.add(tLObject);
-                            longSparseArray.put(tLObject.f42509a, tLObject);
+                            longSparseArray.put(tLObject.f42472a, tLObject);
                         }
                     }
                 } catch (Exception e6) {
                     FileLog.e(e6);
                 }
-                AndroidUtilities.runOnUIThread(new mg1(9, arrayList, longSparseArray));
+                AndroidUtilities.runOnUIThread(new bh1(8, arrayList, longSparseArray));
                 return;
             case 11:
                 try {
@@ -96,10 +96,10 @@ public final class sj0 implements Runnable {
                     if (!file2.exists()) {
                         file2.createNewFile();
                     }
-                    long size = org.telegram.ui.web.c1.f42514c.size();
+                    long size = org.telegram.ui.web.c1.f42477c.size();
                     SerializedData serializedData2 = new SerializedData(true);
                     serializedData2.writeInt64(size);
-                    ArrayList arrayList2 = org.telegram.ui.web.c1.f42514c;
+                    ArrayList arrayList2 = org.telegram.ui.web.c1.f42477c;
                     int size2 = arrayList2.size();
                     int i12 = 0;
                     while (i12 < size2) {
@@ -109,7 +109,7 @@ public final class sj0 implements Runnable {
                     }
                     SerializedData serializedData3 = new SerializedData(serializedData2.length());
                     serializedData3.writeInt64(size);
-                    ArrayList arrayList3 = org.telegram.ui.web.c1.f42514c;
+                    ArrayList arrayList3 = org.telegram.ui.web.c1.f42477c;
                     int size3 = arrayList3.size();
                     while (i10 < size3) {
                         Object obj2 = arrayList3.get(i10);
@@ -132,7 +132,7 @@ public final class sj0 implements Runnable {
             case 12:
                 return;
             case 13:
-                int i13 = qh.y.f46311u0;
+                int i13 = qh.y.f46321u0;
                 return;
             case 14:
                 Looper myLooper = Looper.myLooper();
@@ -155,7 +155,7 @@ public final class sj0 implements Runnable {
                 int i14 = uh.g.C;
                 return;
             default:
-                vf.p1[] p1VarArr = vf.p1.f49170g;
+                vf.p1[] p1VarArr = vf.p1.f49206g;
                 return;
         }
     }

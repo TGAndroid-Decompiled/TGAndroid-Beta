@@ -29,7 +29,7 @@ import org.telegram.ui.ActionBar.p2;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.jn0;
+import org.telegram.ui.Components.in0;
 import org.telegram.ui.Components.nb;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.yc0;
@@ -81,10 +81,10 @@ public final class d implements g3.b, j, NativeInstance.PayloadCallback, c2, Uti
             case 3:
                 xn xnVar = (xn) this.f4924c;
                 boolean[] zArr = (boolean[]) this.d;
-                xnVar.getMessagesController().pinMessage(xnVar.f43165e, xnVar.f43178f, this.f4923b, false, !zArr[1], zArr[0]);
-                ic B = qc.B(xnVar, true, null, null, xnVar.f43136ba);
+                xnVar.getMessagesController().pinMessage(xnVar.f43143e, xnVar.f43156f, this.f4923b, false, !zArr[1], zArr[0]);
+                ic B = qc.B(xnVar, true, null, null, xnVar.f43114ba);
                 B.j();
-                nb nbVar = B.f27741e;
+                nb nbVar = B.f27774e;
                 nbVar.postDelayed(new bh(0, nbVar), 550L);
                 return;
             case 4:
@@ -102,11 +102,11 @@ public final class d implements g3.b, j, NativeInstance.PayloadCallback, c2, Uti
                 AndroidUtilities.shakeView(editTextBoldCursor);
                 return;
             case 6:
-                jn0 jn0Var = (jn0) this.f4924c;
+                in0 in0Var = (in0) this.f4924c;
                 TLRPC.Reaction reaction = (TLRPC.Reaction) this.d;
-                String obj = jn0Var.getText().toString();
+                String obj = in0Var.getText().toString();
                 if (obj.length() > 12) {
-                    AndroidUtilities.shakeView(jn0Var);
+                    AndroidUtilities.shakeView(in0Var);
                     return;
                 }
                 MessagesController.getInstance(this.f4923b).renameSavedReactionTag(q0.d(reaction), obj);
@@ -135,13 +135,13 @@ public final class d implements g3.b, j, NativeInstance.PayloadCallback, c2, Uti
                 return;
             case 8:
                 EditTextBoldCursor editTextBoldCursor2 = (EditTextBoldCursor) this.d;
-                h50 h50Var = ((d50) this.f4924c).f36006n;
-                ChatObject.Call call = h50Var.f37329b.X0;
+                h50 h50Var = ((d50) this.f4924c).f35981n;
+                ChatObject.Call call = h50Var.f37225b.X0;
                 String obj3 = editTextBoldCursor2.getText().toString();
                 int i12 = this.f4923b;
                 call.toggleRecord(obj3, i12);
                 AndroidUtilities.hideKeyboard(editTextBoldCursor2);
-                UndoView k12 = h50Var.f37329b.k1();
+                UndoView k12 = h50Var.f37225b.k1();
                 if (i12 == 0) {
                     i11 = 39;
                 } else {
@@ -195,7 +195,7 @@ public final class d implements g3.b, j, NativeInstance.PayloadCallback, c2, Uti
     public void run(ArrayList arrayList, String str) {
         l1 l1Var = (l1) this.f4924c;
         HashMap hashMap = (HashMap) this.d;
-        m1 m1Var = l1Var.f48638a;
+        m1 m1Var = l1Var.f48674a;
         int i10 = m1Var.M;
         HashMap hashMap2 = m1Var.F;
         if (this.f4923b != i10) {

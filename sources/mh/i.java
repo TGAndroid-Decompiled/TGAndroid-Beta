@@ -26,37 +26,37 @@ import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.d60;
 import org.telegram.ui.kq;
 import org.telegram.ui.py;
-import org.telegram.ui.pz0;
-import org.telegram.ui.qz0;
+import org.telegram.ui.uz0;
+import org.telegram.ui.vz0;
 public final class i implements Runnable {
-    public final int f14193a = 0;
-    public final long f14194b;
-    public final boolean f14195c;
+    public final int f14195a = 0;
+    public final long f14196b;
+    public final boolean f14197c;
     public final Object d;
-    public final Object f14196e;
-    public final Object f14197f;
+    public final Object f14198e;
+    public final Object f14199f;
     public final Object h;
 
     public i(p pVar, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z4, long j10) {
-        this.f14196e = pVar;
-        this.f14197f = tL_error;
+        this.f14198e = pVar;
+        this.f14199f = tL_error;
         this.d = tLObject;
         this.h = twoStepVerificationActivity;
-        this.f14195c = z4;
-        this.f14194b = j10;
+        this.f14197c = z4;
+        this.f14196b = j10;
     }
 
     @Override
     public final void run() {
         SpannableStringBuilder replaceTags;
         org.telegram.ui.Components.u5 u5Var;
-        int i10 = this.f14193a;
-        long j10 = this.f14194b;
-        boolean z4 = this.f14195c;
+        int i10 = this.f14195a;
+        long j10 = this.f14196b;
+        boolean z4 = this.f14197c;
         Object obj = this.h;
         Object obj2 = this.d;
-        Object obj3 = this.f14197f;
-        Object obj4 = this.f14196e;
+        Object obj3 = this.f14199f;
+        Object obj4 = this.f14198e;
         switch (i10) {
             case 0:
                 p pVar = (p) obj4;
@@ -66,7 +66,7 @@ public final class i implements Runnable {
                     TL_account.Password password = (TL_account.Password) tLObject;
                     twoStepVerificationActivity.F = password;
                     TwoStepVerificationActivity.m0(password);
-                    pVar.h0(this.f14195c, this.f14194b, twoStepVerificationActivity.l0(), twoStepVerificationActivity);
+                    pVar.h0(this.f14197c, this.f14196b, twoStepVerificationActivity.l0(), twoStepVerificationActivity);
                     return;
                 }
                 return;
@@ -76,11 +76,11 @@ public final class i implements Runnable {
                 String str = (String) obj;
                 TLObject tLObject2 = (TLObject) obj2;
                 oh.t6 storiesController = messagesController.getStoriesController();
-                final long j11 = this.f14194b;
-                final boolean z10 = this.f14195c;
+                final long j11 = this.f14196b;
+                final boolean z10 = this.f14197c;
                 storiesController.i0(j11, z10, false);
                 n7.qa qaVar = new n7.qa(11);
-                qaVar.f15699b = new Runnable() {
+                qaVar.f15701b = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -93,7 +93,7 @@ public final class i implements Runnable {
                         }
                     }
                 };
-                qaVar.f15700c = new Runnable() {
+                qaVar.f15702c = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -111,8 +111,8 @@ public final class i implements Runnable {
                 } else {
                     replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 10)));
                 }
-                ic V = new qc(f4Var.f17052a1, f4Var.f17127y0).V(Arrays.asList(tLObject2), replaceTags, null, qaVar);
-                V.f27738a = 2;
+                ic V = new qc(f4Var.f17054a1, f4Var.f17129y0).V(Arrays.asList(tLObject2), replaceTags, null, qaVar);
+                V.f27771a = 2;
                 V.k(true);
                 return;
             case 2:
@@ -123,9 +123,9 @@ public final class i implements Runnable {
                 if (tL_error != null) {
                     if (tL_error.text.contains("BOOSTS_REQUIRED")) {
                         if (z4) {
-                            MessagesController messagesController2 = MessagesController.getInstance(t6Var.f17770a);
+                            MessagesController messagesController2 = MessagesController.getInstance(t6Var.f17772a);
                             ChannelBoostsController boostsController = messagesController2.getBoostsController();
-                            long j12 = this.f14194b;
+                            long j12 = this.f14196b;
                             boostsController.getBoostsStats(j12, new v1(t6Var, dVar, messagesController2, j12));
                             return;
                         }
@@ -136,7 +136,7 @@ public final class i implements Runnable {
                         if (z4 && R != null) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, g6Var);
                             String string = LocaleController.getString(R.string.LiveStoryAlreadyStreamingTitle);
-                            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+                            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21168a;
                             d2Var.O = string;
                             d2Var.Q = LocaleController.getString(R.string.LiveStoryAlreadyStreaming);
                             l.d.C(R.string.OK, alertDialog$Builder, null);
@@ -165,7 +165,7 @@ public final class i implements Runnable {
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj3;
                 String str2 = (String) obj2;
                 TLRPC.Document document = (TLRPC.Document) obj;
-                ChatActivityEnterView chatActivityEnterView = ((xf) obj4).f33058a;
+                ChatActivityEnterView chatActivityEnterView = ((xf) obj4).f33052a;
                 if (editTextBoldCursor != null) {
                     int selectionEnd = editTextBoldCursor.getSelectionEnd();
                     if (selectionEnd < 0) {
@@ -202,60 +202,60 @@ public final class i implements Runnable {
                 }
                 return;
             case 4:
-                d60.y((d60) obj4, (org.telegram.ui.ActionBar.d2[]) obj2, this.f14195c, (TLRPC.TL_error) obj3, this.f14194b, (TL_phone.inviteToGroupCall) obj);
+                d60.y((d60) obj4, (org.telegram.ui.ActionBar.d2[]) obj2, this.f14197c, (TLRPC.TL_error) obj3, this.f14196b, (TL_phone.inviteToGroupCall) obj);
                 return;
             default:
-                qz0 qz0Var = (qz0) obj4;
-                ProfileActivity profileActivity = qz0Var.f40724b;
+                vz0 vz0Var = (vz0) obj4;
+                ProfileActivity profileActivity = vz0Var.f42235b;
                 kq kqVar = new kq(profileActivity.f34569b1, -j10, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj2, 2, true, !z4, null);
-                kqVar.U0 = new pz0(qz0Var, (py) obj);
+                kqVar.U0 = new uz0(vz0Var, (py) obj);
                 profileActivity.presentFragment(kqVar);
                 return;
         }
     }
 
     public i(oh.f4 f4Var, MessagesController messagesController, long j10, boolean z4, String str, TLObject tLObject) {
-        this.f14196e = f4Var;
-        this.f14197f = messagesController;
-        this.f14194b = j10;
-        this.f14195c = z4;
+        this.f14198e = f4Var;
+        this.f14199f = messagesController;
+        this.f14196b = j10;
+        this.f14197c = z4;
         this.h = str;
         this.d = tLObject;
     }
 
     public i(oh.t6 t6Var, TLRPC.TL_error tL_error, boolean z4, long j10, h5.d dVar, org.telegram.ui.ActionBar.g6 g6Var) {
-        this.f14196e = t6Var;
-        this.f14197f = tL_error;
-        this.f14195c = z4;
-        this.f14194b = j10;
+        this.f14198e = t6Var;
+        this.f14199f = tL_error;
+        this.f14197c = z4;
+        this.f14196b = j10;
         this.d = dVar;
         this.h = g6Var;
     }
 
     public i(xf xfVar, EditTextBoldCursor editTextBoldCursor, String str, TLRPC.Document document, long j10, boolean z4) {
-        this.f14196e = xfVar;
-        this.f14197f = editTextBoldCursor;
+        this.f14198e = xfVar;
+        this.f14199f = editTextBoldCursor;
         this.d = str;
         this.h = document;
-        this.f14194b = j10;
-        this.f14195c = z4;
+        this.f14196b = j10;
+        this.f14197c = z4;
     }
 
     public i(d60 d60Var, org.telegram.ui.ActionBar.d2[] d2VarArr, boolean z4, TLRPC.TL_error tL_error, long j10, TL_phone.inviteToGroupCall invitetogroupcall) {
-        this.f14196e = d60Var;
+        this.f14198e = d60Var;
         this.d = d2VarArr;
-        this.f14195c = z4;
-        this.f14197f = tL_error;
-        this.f14194b = j10;
+        this.f14197c = z4;
+        this.f14199f = tL_error;
+        this.f14196b = j10;
         this.h = invitetogroupcall;
     }
 
-    public i(qz0 qz0Var, long j10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str, boolean z4, py pyVar) {
-        this.f14196e = qz0Var;
-        this.f14194b = j10;
-        this.f14197f = tL_chatAdminRights;
+    public i(vz0 vz0Var, long j10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str, boolean z4, py pyVar) {
+        this.f14198e = vz0Var;
+        this.f14196b = j10;
+        this.f14199f = tL_chatAdminRights;
         this.d = str;
-        this.f14195c = z4;
+        this.f14197c = z4;
         this.h = pyVar;
     }
 }

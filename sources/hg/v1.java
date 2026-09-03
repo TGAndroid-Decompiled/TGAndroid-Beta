@@ -59,7 +59,7 @@ public final class v1 extends LinearLayout {
         this.f7631e = g90Var;
         g90Var.setTextSize(1, 14.0f);
         g90Var.setGravity(1);
-        g90Var.setTextColor(k6.w0(null, k6.f21766j5, false));
+        g90Var.setTextColor(k6.w0(null, k6.f21768j5, false));
         g90Var.setLineSpacing(g90Var.getLineSpacingExtra(), g90Var.getLineSpacingMultiplier() * 1.1f);
         addView(g90Var, c6.t(-2, -2, 1, 28, 0, 28, 18));
     }
@@ -81,7 +81,7 @@ public final class v1 extends LinearLayout {
         }
         ArrayList arrayList4 = new ArrayList();
         ArrayList arrayList5 = new ArrayList();
-        pr prVar = pr.f30183f;
+        pr prVar = pr.f30168f;
         int size2 = arrayList3.size();
         int i14 = 0;
         while (true) {

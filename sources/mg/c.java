@@ -44,7 +44,7 @@ public final class c extends va {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, k6.f21779k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, k6.f21781k0);
         }
     }
 
@@ -56,8 +56,8 @@ public final class c extends va {
             z8Var.g(26);
             String valueOf = String.valueOf(((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars / 500);
             a aVar = this.U;
-            aVar.f13658f = valueOf;
-            aVar.f13657e = aVar.f13654a.measureText(valueOf);
+            aVar.f13660f = valueOf;
+            aVar.f13659e = aVar.f13656a.measureText(valueOf);
             aVar.invalidateSelf();
         } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
             z8Var.g(16);
@@ -71,10 +71,10 @@ public final class c extends va {
             }
             String valueOf2 = String.valueOf(p0.g() * prepaidGiveaway.quantity);
             a aVar2 = this.U;
-            aVar2.f13658f = valueOf2;
-            aVar2.f13657e = aVar2.f13654a.measureText(valueOf2);
+            aVar2.f13660f = valueOf2;
+            aVar2.f13659e = aVar2.f13656a.measureText(valueOf2);
             aVar2.invalidateSelf();
         }
-        this.f24324b.i(this.U);
+        this.f24326b.i(this.U);
     }
 }

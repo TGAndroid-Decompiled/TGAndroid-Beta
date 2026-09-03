@@ -24,26 +24,26 @@ public abstract class xf0 extends FrameLayout {
     public float G;
     public boolean H;
     public ec0 I;
-    public int f33059a;
-    public PhotoViewer f33060b;
-    public LinearLayout f33061c;
+    public int f33053a;
+    public PhotoViewer f33054b;
+    public LinearLayout f33055c;
     public TextView d;
-    public TextView f33062e;
-    public lu f33063f;
+    public TextView f33056e;
+    public lu f33057f;
     public fg.h0 h;
-    public RadialProgressView f33064n;
-    public View f33065r;
-    public String f33066s;
+    public RadialProgressView f33058n;
+    public View f33059r;
+    public String f33060s;
     public ArrayList v;
-    public String f33067w;
-    public boolean f33068x;
-    public TLRPC.WebPage f33069y;
+    public String f33061w;
+    public boolean f33062x;
+    public TLRPC.WebPage f33063y;
 
-    public static void a(org.telegram.ui.pt0 pt0Var, String str) {
+    public static void a(org.telegram.ui.ut0 ut0Var, String str) {
         String str2;
         double ceil;
-        int videoDuration = pt0Var.getVideoDuration() / 1000;
-        ArrayList arrayList = pt0Var.v;
+        int videoDuration = ut0Var.getVideoDuration() / 1000;
+        ArrayList arrayList = ut0Var.v;
         arrayList.clear();
         if (videoDuration > 15) {
             String[] split = str.split("\\|");
@@ -89,7 +89,7 @@ public abstract class xf0 extends FrameLayout {
     }
 
     public final boolean d() {
-        return this.f33068x;
+        return this.f33062x;
     }
 
     @Override
@@ -102,7 +102,7 @@ public abstract class xf0 extends FrameLayout {
 
     public final boolean e() {
         boolean z4;
-        if (this.f33068x && "inapp".equals(MessagesController.getInstance(this.f33059a).youtubePipType)) {
+        if (this.f33062x && "inapp".equals(MessagesController.getInstance(this.f33053a).youtubePipType)) {
             z4 = true;
         } else {
             z4 = false;
@@ -110,7 +110,7 @@ public abstract class xf0 extends FrameLayout {
         if (!z4 && Build.VERSION.SDK_INT >= 23 && !Settings.canDrawOverlays(getContext())) {
             z4.B((Activity) getContext(), null, false);
             return false;
-        } else if (this.f33064n.getVisibility() == 0) {
+        } else if (this.f33058n.getVisibility() == 0) {
             return false;
         } else {
             if (ng0.m0.M) {
@@ -120,8 +120,8 @@ public abstract class xf0 extends FrameLayout {
             }
             this.h.setVisibility(0);
             Activity activity = (Activity) getContext();
-            lu luVar = this.f33063f;
-            TLRPC.WebPage webPage = this.f33069y;
+            lu luVar = this.f33057f;
+            TLRPC.WebPage webPage = this.f33063y;
             if (ng0.x(z4, activity, this, luVar, webPage.embed_width, webPage.embed_height, false)) {
                 ng0.w(PhotoViewer.t1());
             }
@@ -130,7 +130,7 @@ public abstract class xf0 extends FrameLayout {
     }
 
     public final void f() {
-        if (this.D && this.f33068x) {
+        if (this.D && this.f33062x) {
             h("pauseVideo();");
             this.D = false;
             b(true);
@@ -138,7 +138,7 @@ public abstract class xf0 extends FrameLayout {
     }
 
     public final void g() {
-        if (!this.D && this.f33068x) {
+        if (!this.D && this.f33062x) {
             h("playVideo();");
             this.D = true;
             b(false);
@@ -158,11 +158,11 @@ public abstract class xf0 extends FrameLayout {
     }
 
     public WebView getWebView() {
-        return this.f33063f;
+        return this.f33057f;
     }
 
     public final void h(String str) {
-        this.f33063f.evaluateJavascript(str, null);
+        this.f33057f.evaluateJavascript(str, null);
     }
 
     public final void i(long j10) {
@@ -180,9 +180,9 @@ public abstract class xf0 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        lu luVar = this.f33063f;
+        lu luVar = this.f33057f;
         if (luVar.getParent() == this) {
-            TLRPC.WebPage webPage = this.f33069y;
+            TLRPC.WebPage webPage = this.f33063y;
             int i12 = webPage.embed_width;
             int i13 = 100;
             if (i12 == 0) {
@@ -210,8 +210,8 @@ public abstract class xf0 extends FrameLayout {
 
     public void setPlaybackSpeed(float f10) {
         this.B = f10;
-        if (this.f33064n.getVisibility() != 0) {
-            if (this.f33068x) {
+        if (this.f33058n.getVisibility() != 0) {
+            if (this.f33062x) {
                 h("setPlaybackSpeed(" + f10 + ");");
                 return;
             }

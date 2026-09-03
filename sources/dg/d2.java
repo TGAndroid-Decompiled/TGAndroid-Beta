@@ -5,7 +5,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.kv0;
+import org.telegram.ui.Components.jv0;
 public final class d2 {
     public o1 f4487a;
     public i1 f4488b;
@@ -33,11 +33,11 @@ public final class d2 {
         return (float) Math.sqrt((f19 * f19) + (f18 * f18));
     }
 
-    public final void b(Canvas canvas, kv0 kv0Var, c2 c2Var) {
+    public final void b(Canvas canvas, jv0 jv0Var, c2 c2Var) {
         Paint paint;
         Paint paint2;
-        float width = (c2Var.d / kv0Var.f28463a) * canvas.getWidth();
-        float height = (c2Var.f4477e / kv0Var.f28464b) * canvas.getHeight();
+        float width = (c2Var.d / jv0Var.f28201a) * canvas.getWidth();
+        float height = (c2Var.f4477e / jv0Var.f28202b) * canvas.getHeight();
         float dp = AndroidUtilities.dp(5.0f);
         boolean z4 = c2Var.f4474a;
         if (z4) {
@@ -46,8 +46,8 @@ public final class d2 {
             paint = this.f4491f;
         }
         canvas.drawCircle(width, height, dp, paint);
-        float width2 = (c2Var.d / kv0Var.f28463a) * canvas.getWidth();
-        float height2 = (c2Var.f4477e / kv0Var.f28464b) * canvas.getHeight();
+        float width2 = (c2Var.d / jv0Var.f28201a) * canvas.getWidth();
+        float height2 = (c2Var.f4477e / jv0Var.f28202b) * canvas.getHeight();
         float dp2 = AndroidUtilities.dp(5.0f);
         if (z4) {
             paint2 = this.f4490e;

@@ -1,3 +1,3 @@
 package qh;
-public final class v extends na {
+public final class v extends ma {
 }

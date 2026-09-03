@@ -6,7 +6,7 @@ import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Shader;
-public final class e3 extends qh.f3 {
+public final class e3 extends qh.e3 {
     public final Paint I0;
     public final o1 J0;
 
@@ -29,9 +29,9 @@ public final class e3 extends qh.f3 {
         Paint paint = this.I0;
         paint.setShader(shader);
         canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (Math.min(this.C.getAlpha(), o1Var.b().getAlpha()) * f10), 31);
-        Path path = this.f45306q0;
+        Path path = this.f45280q0;
         canvas.drawPath(path, paint);
-        if (o1Var.f32230e) {
+        if (o1Var.f32235e) {
             paint.setShader(((Paint) o1Var.d.f155a).getShader());
             canvas.drawPath(path, paint);
         }

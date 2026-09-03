@@ -6,10 +6,10 @@ import j7.g5;
 import r5.c0;
 public final class d extends c6.a {
     public static final Parcelable.Creator<d> CREATOR = new c0(18);
-    public final boolean f48414a;
+    public final boolean f48450a;
 
     public d(boolean z4) {
-        this.f48414a = z4;
+        this.f48450a = z4;
     }
 
     @Override
@@ -17,7 +17,7 @@ public final class d extends c6.a {
         kotlin.jvm.internal.j.e(dest, "dest");
         int q10 = g5.q(dest, 20293);
         g5.s(dest, 1, 4);
-        dest.writeInt(this.f48414a ? 1 : 0);
+        dest.writeInt(this.f48450a ? 1 : 0);
         g5.r(dest, q10);
     }
 }

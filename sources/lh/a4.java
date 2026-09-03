@@ -7,18 +7,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.j51;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.w51;
 public final class a4 implements Utilities.Callback2 {
-    public final int f12592a;
-    public final r5 f12593b;
-    public final String[] f12594c;
+    public final int f12594a;
+    public final r5 f12595b;
+    public final String[] f12596c;
     public final ArrayList d;
 
     public a4(r5 r5Var, String[] strArr, ArrayList arrayList, int i10) {
-        this.f12592a = i10;
-        this.f12593b = r5Var;
-        this.f12594c = strArr;
+        this.f12594a = i10;
+        this.f12595b = r5Var;
+        this.f12596c = strArr;
         this.d = arrayList;
     }
 
@@ -29,39 +29,39 @@ public final class a4 implements Utilities.Callback2 {
         int intValue2;
         String str2;
         int intValue3;
-        int i10 = this.f12592a;
+        int i10 = this.f12594a;
         String str3 = " ";
         ArrayList arrayList = this.d;
-        String[] strArr = this.f12594c;
-        r5 r5Var = this.f12593b;
+        String[] strArr = this.f12596c;
+        r5 r5Var = this.f12595b;
         switch (i10) {
             case 0:
                 ArrayList arrayList2 = (ArrayList) obj;
-                x51 x51Var = (x51) obj2;
+                w51 w51Var = (w51) obj2;
                 String lowerCase = strArr[0].toLowerCase();
                 String translitSafe = AndroidUtilities.translitSafe(lowerCase);
                 b5 b5Var = r5Var.d;
-                boolean isEmpty = b5Var.f12627l.isEmpty();
+                boolean isEmpty = b5Var.f12629l.isEmpty();
                 int size = arrayList.size();
                 int i11 = 0;
                 while (i11 < size) {
                     Object obj3 = arrayList.get(i11);
                     i11++;
                     TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj3;
-                    boolean contains = b5Var.f12627l.contains(Long.valueOf(stargiftattributepattern.document.f20849id));
+                    boolean contains = b5Var.f12629l.contains(Long.valueOf(stargiftattributepattern.document.f20851id));
                     boolean z4 = !contains;
                     if (TextUtils.isEmpty(lowerCase) || stargiftattributepattern.name.toLowerCase().startsWith(lowerCase) || stargiftattributepattern.name.toLowerCase().startsWith(translitSafe) || org.telegram.messenger.y3.w(" ", lowerCase, stargiftattributepattern.name.toLowerCase()) || org.telegram.messenger.y3.w(" ", translitSafe, stargiftattributepattern.name.toLowerCase())) {
-                        Integer num = (Integer) b5Var.f12630o.get(Long.valueOf(stargiftattributepattern.document.f20849id));
+                        Integer num = (Integer) b5Var.f12632o.get(Long.valueOf(stargiftattributepattern.document.f20851id));
                         if (num == null) {
                             intValue = 0;
                         } else {
                             intValue = num.intValue();
                         }
-                        int i12 = y4.f13124a;
-                        j51 J = j51.J(y4.class);
+                        int i12 = y4.f13126a;
+                        h51 J = h51.J(y4.class);
                         J.G = stargiftattributepattern;
-                        J.f28014l = lowerCase;
-                        J.f28027z = intValue;
+                        J.f27375l = lowerCase;
+                        J.f27388z = intValue;
                         if (!TextUtils.isEmpty(lowerCase)) {
                             if (!isEmpty && !contains) {
                                 z4 = true;
@@ -81,18 +81,18 @@ public final class a4 implements Utilities.Callback2 {
             case 1:
                 String str4 = " ";
                 ArrayList arrayList3 = (ArrayList) obj;
-                x51 x51Var2 = (x51) obj2;
+                w51 w51Var2 = (w51) obj2;
                 String lowerCase2 = strArr[0].toLowerCase();
                 String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
                 b5 b5Var2 = r5Var.d;
-                boolean isEmpty2 = b5Var2.f12626k.isEmpty();
+                boolean isEmpty2 = b5Var2.f12628k.isEmpty();
                 int size2 = arrayList.size();
                 int i13 = 0;
                 while (i13 < size2) {
                     Object obj4 = arrayList.get(i13);
                     i13++;
                     TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj4;
-                    boolean contains2 = b5Var2.f12626k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                    boolean contains2 = b5Var2.f12628k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                     boolean z10 = !contains2;
                     if (!TextUtils.isEmpty(lowerCase2) && !stargiftattributebackdrop.name.toLowerCase().startsWith(lowerCase2) && !stargiftattributebackdrop.name.toLowerCase().startsWith(translitSafe2)) {
                         str = str4;
@@ -102,17 +102,17 @@ public final class a4 implements Utilities.Callback2 {
                     } else {
                         str = str4;
                     }
-                    Integer num2 = (Integer) b5Var2.f12629n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                    Integer num2 = (Integer) b5Var2.f12631n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                     if (num2 == null) {
                         intValue2 = 0;
                     } else {
                         intValue2 = num2.intValue();
                     }
-                    int i14 = o4.f12884a;
-                    j51 J2 = j51.J(o4.class);
+                    int i14 = o4.f12886a;
+                    h51 J2 = h51.J(o4.class);
                     J2.G = stargiftattributebackdrop;
-                    J2.f28014l = lowerCase2;
-                    J2.f28027z = intValue2;
+                    J2.f27375l = lowerCase2;
+                    J2.f27388z = intValue2;
                     if (!TextUtils.isEmpty(lowerCase2)) {
                         if (!isEmpty2 && !contains2) {
                             z10 = true;
@@ -131,34 +131,34 @@ public final class a4 implements Utilities.Callback2 {
                 return;
             default:
                 ArrayList arrayList4 = (ArrayList) obj;
-                x51 x51Var3 = (x51) obj2;
+                w51 w51Var3 = (w51) obj2;
                 String lowerCase3 = strArr[0].toLowerCase();
                 String translitSafe3 = AndroidUtilities.translitSafe(lowerCase3);
                 b5 b5Var3 = r5Var.d;
-                boolean isEmpty3 = b5Var3.f12625j.isEmpty();
+                boolean isEmpty3 = b5Var3.f12627j.isEmpty();
                 int size3 = arrayList.size();
                 int i15 = 0;
                 while (i15 < size3) {
                     Object obj5 = arrayList.get(i15);
                     i15++;
                     TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj5;
-                    boolean contains3 = b5Var3.f12625j.contains(Long.valueOf(stargiftattributemodel.document.f20849id));
+                    boolean contains3 = b5Var3.f12627j.contains(Long.valueOf(stargiftattributemodel.document.f20851id));
                     boolean z11 = !contains3;
                     if (!TextUtils.isEmpty(lowerCase3) && !stargiftattributemodel.name.toLowerCase().startsWith(lowerCase3) && !stargiftattributemodel.name.toLowerCase().startsWith(translitSafe3) && !org.telegram.messenger.y3.w(str3, lowerCase3, stargiftattributemodel.name.toLowerCase()) && !org.telegram.messenger.y3.w(str3, translitSafe3, stargiftattributemodel.name.toLowerCase())) {
                         str2 = str3;
                     } else {
                         str2 = str3;
-                        Integer num3 = (Integer) b5Var3.f12628m.get(Long.valueOf(stargiftattributemodel.document.f20849id));
+                        Integer num3 = (Integer) b5Var3.f12630m.get(Long.valueOf(stargiftattributemodel.document.f20851id));
                         if (num3 == null) {
                             intValue3 = 0;
                         } else {
                             intValue3 = num3.intValue();
                         }
-                        int i16 = v4.f13051a;
-                        j51 J3 = j51.J(v4.class);
+                        int i16 = v4.f13053a;
+                        h51 J3 = h51.J(v4.class);
                         J3.G = stargiftattributemodel;
-                        J3.f28014l = lowerCase3;
-                        J3.f28027z = intValue3;
+                        J3.f27375l = lowerCase3;
+                        J3.f27388z = intValue3;
                         if (!TextUtils.isEmpty(lowerCase3)) {
                             if (!isEmpty3 && !contains3) {
                                 z11 = true;

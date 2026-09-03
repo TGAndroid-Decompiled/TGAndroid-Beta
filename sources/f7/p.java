@@ -23,7 +23,7 @@ public final class p extends c6.a {
         this.f6147b = oVar;
         z zVar = null;
         if (iBinder != null) {
-            int i11 = u7.o.f48454b;
+            int i11 = u7.o.f48490b;
             IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.location.ILocationListener");
             if (queryLocalInterface instanceof u7.p) {
                 pVar = (u7.p) queryLocalInterface;

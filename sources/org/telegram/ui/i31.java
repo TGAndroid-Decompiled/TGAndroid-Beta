@@ -1,31 +1,34 @@
 package org.telegram.ui;
 
+import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
-public final class i31 implements Runnable {
-    public final int f37735a;
-    public final l31 f37736b;
+import org.telegram.messenger.MessageObject;
+public final class i31 implements m31 {
+    public final xn f37536a;
+    public final Activity f37537b;
+    public final org.telegram.ui.ActionBar.g6 f37538c;
+    public final MessageObject d;
 
-    public i31(l31 l31Var, int i10) {
-        this.f37735a = i10;
-        this.f37736b = l31Var;
+    public i31(xn xnVar, Activity activity, org.telegram.ui.ActionBar.g6 g6Var, MessageObject messageObject) {
+        this.f37536a = xnVar;
+        this.f37537b = activity;
+        this.f37538c = g6Var;
+        this.d = messageObject;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37735a) {
-            case 0:
-                l31 l31Var = this.f37736b;
-                m31 m31Var = l31Var.v;
-                if (l31Var.f38571a == 0) {
-                    m31Var.dismiss();
-                    return;
-                } else {
-                    m31Var.onBackPressed();
-                    return;
-                }
-            default:
-                AndroidUtilities.showKeyboard(this.f37736b.f38576n.f22955b);
-                return;
-        }
+    public final void a() {
+        AndroidUtilities.runOnUIThread(new c31(this.f37536a, this.f37537b, this.f37538c, this.d, 2), 200L);
+    }
+
+    @Override
+    public final void b() {
+        AndroidUtilities.runOnUIThread(new re(this.f37536a, this.d, 8), 200L);
+    }
+
+    @Override
+    public final void c() {
+        xn xnVar = this.f37536a;
+        xnVar.showDialog(new fg.n1((org.telegram.ui.ActionBar.p2) xnVar, 3, true));
     }
 }

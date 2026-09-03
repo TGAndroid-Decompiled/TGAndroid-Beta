@@ -16,21 +16,21 @@ public final class dx extends ov {
     @Override
     public final void X(boolean z4) {
         mz mzVar = this.U;
-        ArrayList arrayList = mzVar.f29302m1;
+        ArrayList arrayList = mzVar.f29304m1;
         TLRPC.StickerSet stickerSet = this.T;
         if (z4) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f20870id))) {
-                arrayList.add(Long.valueOf(stickerSet.f20870id));
+            if (!arrayList.contains(Long.valueOf(stickerSet.f20872id))) {
+                arrayList.add(Long.valueOf(stickerSet.f20872id));
             }
         } else {
-            arrayList.remove(Long.valueOf(stickerSet.f20870id));
+            arrayList.remove(Long.valueOf(stickerSet.f20872id));
         }
         mzVar.V();
     }
 
     @Override
     public final void dismiss() {
-        this.U.f29327t2 = false;
+        this.U.f29329t2 = false;
         super.dismiss();
     }
 }

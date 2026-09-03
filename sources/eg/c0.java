@@ -3,7 +3,7 @@ package eg;
 import android.content.DialogInterface;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.c11;
+import org.telegram.ui.Components.b11;
 import org.telegram.ui.d60;
 public final class c0 implements DialogInterface.OnDismissListener {
     public final int f5100a;
@@ -19,7 +19,7 @@ public final class c0 implements DialogInterface.OnDismissListener {
                 MediaController.forceBroadcastNewPhotos = false;
                 return;
             case 1:
-                org.telegram.ui.c.f35632a = false;
+                org.telegram.ui.c.f35643a = false;
                 return;
             case 2:
                 return;
@@ -27,7 +27,7 @@ public final class c0 implements DialogInterface.OnDismissListener {
                 SharedConfig.BackgroundActivityPrefs.increaseDismissedCount();
                 return;
             case 4:
-                int i10 = c11.f25752e;
+                int i10 = b11.f25467e;
                 return;
             case 5:
                 d60 d60Var = d60.A3;
@@ -35,7 +35,7 @@ public final class c0 implements DialogInterface.OnDismissListener {
             case 6:
                 return;
             default:
-                int i11 = qh.y1.D;
+                int i11 = qh.x1.D;
                 return;
         }
     }

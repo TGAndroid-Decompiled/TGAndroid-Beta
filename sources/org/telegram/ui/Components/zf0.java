@@ -7,9 +7,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class zf0 extends FrameLayout {
-    public final TextView f33890a;
-    public final TextView f33891b;
-    public final TextView f33892c;
+    public final TextView f33933a;
+    public final TextView f33934b;
+    public final TextView f33935c;
     public final boolean d;
 
     public zf0(Context context) {
@@ -17,7 +17,7 @@ public final class zf0 extends FrameLayout {
         this.d = true;
         setBackgroundColor(-15066598);
         TextView textView = new TextView(context);
-        this.f33890a = textView;
+        this.f33933a = textView;
         textView.setTextSize(1, 14.0f);
         textView.setTextColor(-1);
         textView.setGravity(17);
@@ -27,7 +27,7 @@ public final class zf0 extends FrameLayout {
         textView.setTypeface(AndroidUtilities.bold());
         addView(textView, k7.c6.e(-2, -1, 51));
         TextView textView2 = new TextView(context);
-        this.f33891b = textView2;
+        this.f33934b = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setTextColor(-1);
         textView2.setGravity(17);
@@ -37,7 +37,7 @@ public final class zf0 extends FrameLayout {
         textView2.setTypeface(AndroidUtilities.bold());
         addView(textView2, k7.c6.e(-2, -1, 53));
         TextView textView3 = new TextView(context);
-        this.f33892c = textView3;
+        this.f33935c = textView3;
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setTextSize(1, 13.0f);
         textView3.setTextColor(-1);
@@ -50,12 +50,12 @@ public final class zf0 extends FrameLayout {
 
     public final void a() {
         int i10;
-        this.f33892c.setVisibility(8);
+        this.f33935c.setVisibility(8);
         if (this.d) {
             i10 = -1;
         } else {
             i10 = -15095832;
         }
-        this.f33891b.setTextColor(i10);
+        this.f33934b.setTextColor(i10);
     }
 }

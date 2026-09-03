@@ -4,7 +4,7 @@ import android.content.Context;
 import b6.m;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.MediaController;
-import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.j71;
 import org.telegram.ui.PhotoViewer;
 public final class c implements m6.c, r5.h {
     public int f2264a;
@@ -28,7 +28,7 @@ public final class c implements m6.c, r5.h {
         r5.c cVar = (r5.c) fVar;
         if (cVar != null) {
             m.e("Must be called from the main thread.");
-            s5.h hVar = cVar.f46708j;
+            s5.h hVar = cVar.f46739j;
             if (hVar == 0) {
                 return;
             }
@@ -46,9 +46,9 @@ public final class c implements m6.c, r5.h {
             int i10 = this.f2264a;
             long j10 = -1;
             if (i10 == 0) {
-                k71 k71Var = PhotoViewer.t1().C2;
-                if (k71Var != null) {
-                    j10 = k71Var.n();
+                j71 j71Var = PhotoViewer.t1().C2;
+                if (j71Var != null) {
+                    j10 = j71Var.n();
                 }
             } else if (i10 == 1) {
                 j10 = MediaController.getInstance().getCurrentPosition();

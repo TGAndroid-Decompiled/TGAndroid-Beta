@@ -1,12 +1,12 @@
 package uf;
 public final class c0 {
-    public final String f48516a;
-    public final long f48517b;
-    public final long f48518c;
+    public final String f48552a;
+    public final long f48553b;
+    public final long f48554c;
 
     public c0(long j10, long j11, String str) {
-        this.f48516a = str;
-        this.f48517b = j10;
-        this.f48518c = j11;
+        this.f48552a = str;
+        this.f48553b = j10;
+        this.f48554c = j11;
     }
 }

@@ -1,21 +1,27 @@
 package qh;
-public final class d6 implements Runnable {
-    public final int f45214a;
-    public final Object f45215b;
-    public final Object f45216c;
 
-    public d6(int i10, Object obj, Object obj2) {
-        this.f45214a = i10;
-        this.f45216c = obj;
-        this.f45215b = obj2;
-    }
+import android.graphics.Canvas;
+import org.telegram.messenger.SharedConfig;
+public final class d6 implements og.g {
+    public final i6 f45234a;
 
-    private final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: qh.d6.a():void");
+    public d6(i6 i6Var) {
+        this.f45234a = i6Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: qh.d6.run():void");
+    public final void P(g.x xVar) {
+        xVar.a(this.f45234a.getThemedColor(org.telegram.ui.ActionBar.k6.f21661d6));
+        xVar.b(SharedConfig.chatBlurEnabled());
+    }
+
+    @Override
+    public final void i(Canvas canvas) {
+        int i10 = org.telegram.ui.ActionBar.k6.f21661d6;
+        i6 i6Var = this.f45234a;
+        canvas.drawColor(i6Var.getThemedColor(i10));
+        if (SharedConfig.chatBlurEnabled()) {
+            i6Var.f45474i0.b(canvas, -2);
+        }
     }
 }

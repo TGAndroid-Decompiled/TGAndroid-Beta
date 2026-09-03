@@ -27,7 +27,7 @@ public class u1 implements f1, r, y1 {
 
     public static q D(qd.k kVar) {
         while (kVar.h()) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = qd.k.f44808b;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = qd.k.f44839b;
             qd.k d = kVar.d();
             if (d == null) {
                 Object obj = atomicReferenceFieldUpdater.get(kVar);
@@ -149,8 +149,8 @@ public class u1 implements f1, r, y1 {
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater;
         qd.k kVar = new qd.k();
         k1Var.getClass();
-        qd.k.f44808b.set(kVar, k1Var);
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = qd.k.f44807a;
+        qd.k.f44839b.set(kVar, k1Var);
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = qd.k.f44838a;
         atomicReferenceFieldUpdater2.set(kVar, k1Var);
         loop0: while (true) {
             if (k1Var.f() == k1Var) {
@@ -298,7 +298,7 @@ public class u1 implements f1, r, y1 {
         qd.k d;
         p1 p1Var = new p1(k1Var, this, a1Var);
         loop0: while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = qd.k.f44808b;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = qd.k.f44839b;
             d = v1Var.d();
             if (d == null) {
                 Object obj = atomicReferenceFieldUpdater.get(v1Var);
@@ -310,8 +310,8 @@ public class u1 implements f1, r, y1 {
                     obj = atomicReferenceFieldUpdater.get(d);
                 }
             }
-            qd.k.f44808b.set(k1Var, d);
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = qd.k.f44807a;
+            qd.k.f44839b.set(k1Var, d);
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = qd.k.f44838a;
             atomicReferenceFieldUpdater2.set(k1Var, v1Var);
             p1Var.f12345c = v1Var;
             while (!atomicReferenceFieldUpdater2.compareAndSet(d, v1Var, p1Var)) {
@@ -447,7 +447,7 @@ public class u1 implements f1, r, y1 {
         l1Var.s();
         l1Var.v(new j(e0.n(this, false, new p0(l1Var, 3), 3), 2));
         Object r10 = l1Var.r();
-        vc.a aVar = vc.a.f48962a;
+        vc.a aVar = vc.a.f48998a;
         return r10;
     }
 
@@ -503,7 +503,7 @@ public class u1 implements f1, r, y1 {
         do {
             u10 = u();
             boolean z4 = u10 instanceof a1;
-            iVar = sc.i.f47243a;
+            iVar = sc.i.f47274a;
             if (!z4) {
                 e0.h(cVar.getContext());
                 return iVar;
@@ -513,7 +513,7 @@ public class u1 implements f1, r, y1 {
         mVar.s();
         mVar.v(new j(e0.n(this, false, new p0(mVar, 4), 3), 2));
         Object r10 = mVar.r();
-        vc.a aVar = vc.a.f48962a;
+        vc.a aVar = vc.a.f48998a;
         if (r10 != aVar) {
             r10 = iVar;
         }

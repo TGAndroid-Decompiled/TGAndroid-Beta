@@ -1,3 +1,3 @@
 package org.telegram.ui;
-public final class rx extends mf1 {
+public final class rx extends sf1 {
 }

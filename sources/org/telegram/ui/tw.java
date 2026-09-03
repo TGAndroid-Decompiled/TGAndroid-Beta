@@ -21,7 +21,7 @@ public final class tw extends f2.j0 {
     @Override
     public final int R0() {
         oy oyVar = this.L;
-        if (oyVar.f39873s == 0 && this.M.Z3() && oyVar.v == 2) {
+        if (oyVar.f39829s == 0 && this.M.Z3() && oyVar.v == 2) {
             return 1;
         }
         return 0;
@@ -38,7 +38,7 @@ public final class tw extends f2.j0 {
                 py pyVar = this.M;
                 sb.append(pyVar.P1);
                 sb.append(" lastUpdateAction=");
-                sb.append(pyVar.f40290v3);
+                sb.append(pyVar.f40260v3);
                 throw new RuntimeException(sb.toString());
             }
         }
@@ -65,13 +65,13 @@ public final class tw extends f2.j0 {
             this.K.cancel();
         }
         oy oyVar = this.L;
-        if (oyVar.f39866a.getScrollState() != 1) {
+        if (oyVar.f39822a.getScrollState() != 1) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.M.Q, 0.0f);
             this.K = ofFloat;
             ofFloat.addUpdateListener(new bg.a(20, this, oyVar));
-            this.K.addListener(new org.telegram.ui.Components.g91(this, 15));
+            this.K.addListener(new org.telegram.ui.Components.f91(this, 15));
             this.K.setDuration(200L);
-            this.K.setInterpolator(org.telegram.ui.Components.pr.f30183f);
+            this.K.setInterpolator(org.telegram.ui.Components.pr.f30168f);
             this.K.start();
         }
     }
@@ -79,7 +79,7 @@ public final class tw extends f2.j0 {
     @Override
     public final void h1(int i10, int i11) {
         if (this.I) {
-            i11 -= this.L.f39866a.getPaddingTop();
+            i11 -= this.L.f39822a.getPaddingTop();
         }
         super.h1(i10, i11);
     }

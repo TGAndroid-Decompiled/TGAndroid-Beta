@@ -11,15 +11,15 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ki;
 import org.telegram.ui.Components.wg;
 public final class v2 implements ki {
-    public final f4 f17844a;
+    public final f4 f17846a;
 
     public v2(f4 f4Var) {
-        this.f17844a = f4Var;
+        this.f17846a = f4Var;
     }
 
     @Override
     public final void B0(wg wgVar) {
-        NotificationCenter.getInstance(this.f17844a.f17133z2).doOnIdle(wgVar);
+        NotificationCenter.getInstance(this.f17846a.f17135z2).doOnIdle(wgVar);
     }
 
     @Override
@@ -31,9 +31,9 @@ public final class v2 implements ki {
         boolean z15;
         String str;
         String str2;
-        f4 f4Var = this.f17844a;
-        if (f4Var.G0.f17275j0 && (storyItem = f4Var.L1.f16961a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || f4Var.F2.f29054g0.getSelectedPhotos().isEmpty())) {
+        f4 f4Var = this.f17846a;
+        if (f4Var.G0.f17277j0 && (storyItem = f4Var.L1.f16963a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || f4Var.F2.f29072g0.getSelectedPhotos().isEmpty())) {
                 u2 u2Var = f4Var.F2;
                 if (u2Var != null) {
                     u2Var.dismissWithButtonClick(i10);
@@ -44,8 +44,8 @@ public final class v2 implements ki {
             if (i10 != 8) {
                 f4Var.F2.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = f4Var.F2.f29054g0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = f4Var.F2.f29054g0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = f4Var.F2.f29072g0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = f4Var.F2.f29072g0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i13 = 0;
                 int i14 = 0;
@@ -96,7 +96,7 @@ public final class v2 implements ki {
                     HashMap<Object, Object> hashMap = selectedPhotos;
                     accountInstance = f4Var.getAccountInstance();
                     ArrayList<Object> arrayList2 = selectedPhotosOrder;
-                    long j12 = f4Var.f17128y1;
+                    long j12 = f4Var.f17130y1;
                     if (i10 != 4 && !z12) {
                         z15 = false;
                     } else {
@@ -121,7 +121,7 @@ public final class v2 implements ki {
 
     @Override
     public final void Q0() {
-        this.f17844a.Y1.P();
+        this.f17846a.Y1.P();
     }
 
     @Override
@@ -134,8 +134,8 @@ public final class v2 implements ki {
         AccountInstance accountInstance;
         CharSequence charSequence2;
         boolean z11;
-        f4 f4Var = this.f17844a;
-        TL_stories.StoryItem storyItem = f4Var.L1.f16961a;
+        f4 f4Var = this.f17846a;
+        TL_stories.StoryItem storyItem = f4Var.L1.f16963a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             accountInstance = f4Var.getAccountInstance();
             if (charSequence != null) {
@@ -143,7 +143,7 @@ public final class v2 implements ki {
             } else {
                 charSequence2 = null;
             }
-            SendMessagesHelper.prepareSendingAudioDocuments(accountInstance, arrayList, charSequence2, f4Var.f17128y1, null, null, storyItem, z4, i10, i11, null, null, j10, z10, j11);
+            SendMessagesHelper.prepareSendingAudioDocuments(accountInstance, arrayList, charSequence2, f4Var.f17130y1, null, null, storyItem, z4, i10, i11, null, null, j10, z10, j11);
             if (j11 <= 0) {
                 z11 = true;
             } else {
@@ -155,7 +155,7 @@ public final class v2 implements ki {
 
     @Override
     public final boolean h0() {
-        return this.f17844a.N0();
+        return this.f17846a.N0();
     }
 
     @Override

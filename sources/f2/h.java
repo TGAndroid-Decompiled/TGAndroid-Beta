@@ -53,7 +53,7 @@ public final class h extends AnimatorListenerAdapter {
                     ((r2) view3).setMoving(false);
                     return;
                 } else if (view3 instanceof uf.j) {
-                    ((uf.j) view3).f48605a = false;
+                    ((uf.j) view3).f48641a = false;
                     return;
                 } else {
                     return;
@@ -79,13 +79,13 @@ public final class h extends AnimatorListenerAdapter {
                 at atVar = (at) this.h;
                 m1 m1Var2 = this.f5778b;
                 atVar.v(m1Var2);
-                atVar.f25342w.remove(m1Var2);
+                atVar.f25369w.remove(m1Var2);
                 atVar.A();
                 View view = m1Var2.f5875a;
                 if (view instanceof r2) {
                     ((r2) view).setMoving(false);
                 } else if (view instanceof uf.j) {
-                    ((uf.j) view).f48605a = false;
+                    ((uf.j) view).f48641a = false;
                 }
                 View view2 = this.d;
                 view2.setTranslationX(0.0f);

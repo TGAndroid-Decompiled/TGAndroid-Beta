@@ -3,7 +3,7 @@ package eg;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ht0;
+import org.telegram.ui.mt0;
 public final class k implements View.OnClickListener {
     public final int f5313a;
     public final c1 f5314b;
@@ -30,12 +30,12 @@ public final class k implements View.OnClickListener {
                 int i10 = c1Var2.f5106d1;
                 c1Var2.B0(1);
                 c1Var2.postDelayed(new p(c1Var2, 1), 350L);
-                qh.y1 y1Var = new qh.y1(c1Var2.getContext(), c1Var2.N1, false, false);
-                y1Var.f46351y = new v(c1Var2);
-                y1Var.q0(new y(c1Var2, 0));
-                y1Var.setOnDismissListener(new z(c1Var2, i10));
-                y1Var.show();
-                PhotoViewer photoViewer = ((ht0) c1Var2).f37617l2;
+                qh.x1 x1Var = new qh.x1(c1Var2.getContext(), c1Var2.N1, false, false);
+                x1Var.f46307y = new v(c1Var2);
+                x1Var.q0(new y(c1Var2, 0));
+                x1Var.setOnDismissListener(new z(c1Var2, i10));
+                x1Var.show();
+                PhotoViewer photoViewer = ((mt0) c1Var2).f39068l2;
                 if (photoViewer.C2 != null) {
                     photoViewer.E2 = false;
                     photoViewer.u0();

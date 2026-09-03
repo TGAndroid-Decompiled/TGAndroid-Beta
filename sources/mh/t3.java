@@ -2,16 +2,16 @@ package mh;
 
 import org.telegram.messenger.Utilities;
 public final class t3 implements Utilities.Callback {
-    public final int f14794a;
-    public final long f14795b;
-    public final long f14796c;
+    public final int f14796a;
+    public final long f14797b;
+    public final long f14798c;
     public final Object d;
 
     public t3(Object obj, long j10, long j11, int i10) {
-        this.f14794a = i10;
+        this.f14796a = i10;
         this.d = obj;
-        this.f14795b = j10;
-        this.f14796c = j11;
+        this.f14797b = j10;
+        this.f14798c = j11;
     }
 
     @Override

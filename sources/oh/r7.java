@@ -19,13 +19,13 @@ public abstract class r7 extends m2.h {
     public i9 K0;
     public int L0;
     public float M0;
-    public long f17693t0;
-    public ArrayList f17694u0;
-    public int f17695v0;
-    public o7 f17696w0;
-    public ArrayList f17697x0;
-    public z3 f17698y0;
-    public boolean f17699z0;
+    public long f17695t0;
+    public ArrayList f17696u0;
+    public int f17697v0;
+    public o7 f17698w0;
+    public ArrayList f17699x0;
+    public z3 f17700y0;
+    public boolean f17701z0;
 
     public static boolean C(ArrayList arrayList, ArrayList arrayList2) {
         if (arrayList == null && arrayList2 == null) {
@@ -48,7 +48,7 @@ public abstract class r7 extends m2.h {
         while (true) {
             if (i10 < getChildCount()) {
                 q7 q7Var = (q7) getChildAt(i10);
-                if (q7Var.d && !q7Var.f17662a.L1.d()) {
+                if (q7Var.d && !q7Var.f17664a.L1.d()) {
                     break;
                 }
                 i10++;
@@ -68,15 +68,15 @@ public abstract class r7 extends m2.h {
                     if (!q7Var.d) {
                         this.L0 = -1;
                         q7Var.a(true);
-                        if (this.f17694u0 != null) {
-                            f4 f4Var = q7Var.f17662a;
-                            long j10 = q7Var.f17663b;
-                            ArrayList arrayList = q7Var.f17664c;
-                            f4Var.f17128y1 = j10;
-                            f4Var.f17120w1 = arrayList;
+                        if (this.f17696u0 != null) {
+                            f4 f4Var = q7Var.f17664a;
+                            long j10 = q7Var.f17665b;
+                            ArrayList arrayList = q7Var.f17666c;
+                            f4Var.f17130y1 = j10;
+                            f4Var.f17122w1 = arrayList;
                             f4Var.o0(0);
                         } else {
-                            q7Var.f17662a.U0(0, q7Var.f17663b);
+                            q7Var.f17664a.U0(0, q7Var.f17665b);
                         }
                     }
                 }
@@ -93,13 +93,13 @@ public abstract class r7 extends m2.h {
         boolean z10 = false;
         if (z4) {
             int currentItem = getCurrentItem();
-            ArrayList arrayList = this.f17694u0;
+            ArrayList arrayList = this.f17696u0;
             if (arrayList == null) {
-                arrayList = this.f17697x0;
+                arrayList = this.f17699x0;
             }
             if (currentItem < arrayList.size() - 1) {
                 int currentItem2 = getCurrentItem() + 1;
-                if (i9Var.f17252a && Build.VERSION.SDK_INT < 33) {
+                if (i9Var.f17254a && Build.VERSION.SDK_INT < 33) {
                     z10 = true;
                 }
                 x(currentItem2, !z10);
@@ -110,7 +110,7 @@ public abstract class r7 extends m2.h {
             return false;
         }
         int currentItem3 = getCurrentItem() - 1;
-        if (i9Var.f17252a && Build.VERSION.SDK_INT < 33) {
+        if (i9Var.f17254a && Build.VERSION.SDK_INT < 33) {
             z10 = true;
         }
         x(currentItem3, !z10);
@@ -131,11 +131,11 @@ public abstract class r7 extends m2.h {
     }
 
     public long getCurrentDialogId() {
-        if (this.f17694u0 != null) {
-            return this.f17693t0;
+        if (this.f17696u0 != null) {
+            return this.f17695t0;
         }
-        if (getCurrentItem() < this.f17697x0.size()) {
-            return ((Long) this.f17697x0.get(getCurrentItem())).longValue();
+        if (getCurrentItem() < this.f17699x0.size()) {
+            return ((Long) this.f17699x0.get(getCurrentItem())).longValue();
         }
         return 0L;
     }
@@ -150,7 +150,7 @@ public abstract class r7 extends m2.h {
     }
 
     public ArrayList<Long> getDialogIds() {
-        return this.f17697x0;
+        return this.f17699x0;
     }
 
     @Override
@@ -168,11 +168,11 @@ public abstract class r7 extends m2.h {
     @Override
     public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
         super.onLayout(z4, i10, i11, i12, i13);
-        if (this.f17699z0) {
-            this.f17699z0 = false;
+        if (this.f17701z0) {
+            this.f17701z0 = false;
             f4 currentPeerView = getCurrentPeerView();
             if (currentPeerView != null) {
-                z3 z3Var = this.f17698y0;
+                z3 z3Var = this.f17700y0;
                 z8 z8Var = (z8) z3Var;
                 z8Var.a(currentPeerView.getSelectedPosition(), currentPeerView.getCurrentPeer());
             }
@@ -196,7 +196,7 @@ public abstract class r7 extends m2.h {
     }
 
     public void setDelegate(z3 z3Var) {
-        this.f17698y0 = z3Var;
+        this.f17700y0 = z3Var;
     }
 
     public void setHorizontalProgressToDismiss(float f10) {

@@ -102,14 +102,14 @@ public abstract class t {
                 return obj;
             }
             try {
-                eVar = m6.e.c(this.f2172a, m6.e.f13467c, (String) this.f2176f);
+                eVar = m6.e.c(this.f2172a, m6.e.f13469c, (String) this.f2176f);
             } catch (m6.b unused) {
                 String str = "com.google.android.gms.vision." + ((String) this.h);
                 if (Log.isLoggable("Vision", 3)) {
                     Log.d("Vision", "Cannot load thick client module, fall back to load optional module " + str);
                 }
                 try {
-                    eVar = m6.e.c(this.f2172a, m6.e.f13466b, str);
+                    eVar = m6.e.c(this.f2172a, m6.e.f13468b, str);
                 } catch (m6.b e6) {
                     e7.a(e6, "Error loading optional module %s", str);
                     if (!this.f2173b) {

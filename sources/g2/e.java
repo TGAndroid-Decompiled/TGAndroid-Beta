@@ -144,18 +144,18 @@ public final class e {
         o.f fVar = (o.f) this.d;
         o.c i10 = fVar.i(str);
         if (i10 != null) {
-            obj = i10.f16273b;
+            obj = i10.f16275b;
         } else {
             o.c cVar = new o.c(str, provider);
             fVar.d++;
-            o.c cVar2 = fVar.f16279b;
+            o.c cVar2 = fVar.f16281b;
             if (cVar2 == null) {
-                fVar.f16278a = cVar;
-                fVar.f16279b = cVar;
+                fVar.f16280a = cVar;
+                fVar.f16281b = cVar;
             } else {
-                cVar2.f16274c = cVar;
+                cVar2.f16276c = cVar;
                 cVar.d = cVar2;
-                fVar.f16279b = cVar;
+                fVar.f16281b = cVar;
             }
             obj = null;
         }

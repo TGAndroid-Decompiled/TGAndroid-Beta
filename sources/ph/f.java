@@ -7,12 +7,12 @@ import f2.j1;
 import f2.v0;
 import org.telegram.ui.Cells.r7;
 public final class f extends v0 {
-    public final int f44380a;
-    public final l f44381b;
+    public final int f44411a;
+    public final l f44412b;
 
     public f(l lVar, int i10) {
-        this.f44380a = i10;
-        this.f44381b = lVar;
+        this.f44411a = i10;
+        this.f44412b = lVar;
     }
 
     @Override
@@ -21,12 +21,12 @@ public final class f extends v0 {
         boolean z10;
         boolean z11;
         boolean z12;
-        switch (this.f44380a) {
+        switch (this.f44411a) {
             case 0:
                 if (view instanceof r7) {
                     r7 r7Var = (r7) view;
-                    l lVar = this.f44381b;
-                    lVar.f44395f.getClass();
+                    l lVar = this.f44412b;
+                    lVar.f44426f.getClass();
                     int R = RecyclerView.R(r7Var);
                     int i10 = lVar.h.J;
                     boolean z13 = true;
@@ -61,10 +61,10 @@ public final class f extends v0 {
             default:
                 if (view instanceof r7) {
                     r7 r7Var2 = (r7) view;
-                    l lVar2 = this.f44381b;
-                    lVar2.f44397r.getClass();
+                    l lVar2 = this.f44412b;
+                    lVar2.f44428r.getClass();
                     int R2 = RecyclerView.R(r7Var2);
-                    int i12 = lVar2.f44398s.J;
+                    int i12 = lVar2.f44429s.J;
                     boolean z14 = true;
                     if (R2 < i12) {
                         z11 = true;

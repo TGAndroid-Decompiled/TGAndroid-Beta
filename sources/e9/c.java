@@ -6,14 +6,13 @@ import android.util.Log;
 import cb.m;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.firebase.messaging.u;
-import h2.f;
 import i9.n;
 import i9.p;
 import i9.s;
 import j9.o;
 import java.util.concurrent.atomic.AtomicMarkableReference;
 import m.r3;
-import sf.e;
+import sf.f;
 public final class c {
     public final p f5005a;
 
@@ -30,10 +29,10 @@ public final class c {
         Thread currentThread = Thread.currentThread();
         nVar.getClass();
         long currentTimeMillis = System.currentTimeMillis();
-        e eVar = nVar.f7968e;
+        f fVar = nVar.f7968e;
         u uVar = new u(nVar, currentTimeMillis, th2, currentThread);
-        eVar.getClass();
-        eVar.H(new f(uVar, 3));
+        fVar.getClass();
+        fVar.H(new h2.f(uVar, 3));
     }
 
     public final void b() {
@@ -95,7 +94,7 @@ public final class c {
                     return;
                 }
                 ((AtomicMarkableReference) r3Var.h).set(b10, true);
-                ((e) r3Var.f13328b).H(new o(r3Var, 0));
+                ((f) r3Var.f13330b).H(new o(r3Var, 0));
             } finally {
             }
         }

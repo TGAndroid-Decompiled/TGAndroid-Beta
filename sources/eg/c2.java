@@ -8,8 +8,8 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.tl0;
-public abstract class c2 extends tl0 {
+import org.telegram.ui.Components.sl0;
+public abstract class c2 extends sl0 {
     public static final Paint Z2;
     public static final Paint f5139a3;
     public static final Path f5140b3;
@@ -46,7 +46,7 @@ public abstract class c2 extends tl0 {
         setOnItemClickListener(new ag.h(this, 2));
     }
 
-    public static void w1(Canvas canvas, RectF rectF, int i10) {
+    public static void v1(Canvas canvas, RectF rectF, int i10) {
         float f10 = rectF.left;
         while (f10 <= rectF.right) {
             float f11 = rectF.top;
@@ -73,7 +73,7 @@ public abstract class c2 extends tl0 {
         }
     }
 
-    public static void x1(float f10, float f11, float f12, int i10, Canvas canvas) {
+    public static void w1(float f10, float f11, float f12, int i10, Canvas canvas) {
         Paint paint = c3;
         paint.setColor(i10);
         if (paint.getAlpha() != 255) {
@@ -90,7 +90,7 @@ public abstract class c2 extends tl0 {
             path.addArc(rectF, -45.0f, 180.0f);
             canvas.save();
             canvas.clipPath(path);
-            w1(canvas, rectF, AndroidUtilities.dp(4.0f));
+            v1(canvas, rectF, AndroidUtilities.dp(4.0f));
             canvas.restore();
             paint.setColor(i10);
             canvas.drawArc(rectF, -45.0f, 180.0f, true, paint);
@@ -117,13 +117,13 @@ public abstract class c2 extends tl0 {
         getAdapter().l();
     }
 
-    public final void y1(float f10, boolean z4) {
+    public final void x1(float f10, boolean z4) {
         float interpolation;
         float f11;
         if (z4) {
-            interpolation = pr.f30184g.getInterpolation(f10);
+            interpolation = pr.f30169g.getInterpolation(f10);
         } else {
-            interpolation = pr.f30185i.getInterpolation(f10);
+            interpolation = pr.f30170i.getInterpolation(f10);
         }
         float childCount = 1.0f / (getChildCount() - 1);
         for (int i10 = 0; i10 < getChildCount(); i10++) {

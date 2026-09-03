@@ -7,24 +7,24 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraView;
 public final class m9 implements Runnable {
-    public final int f39003a;
-    public final v9 f39004b;
+    public final int f38882a;
+    public final v9 f38883b;
 
     public m9(v9 v9Var, int i10) {
-        this.f39003a = i10;
-        this.f39004b = v9Var;
+        this.f38882a = i10;
+        this.f38883b = v9Var;
     }
 
     @Override
     public final void run() {
         float f10;
         float f11 = 0.0f;
-        switch (this.f39003a) {
+        switch (this.f38882a) {
             case 0:
-                this.f39004b.Y();
+                this.f38883b.Y();
                 return;
             case 1:
-                v9 v9Var = this.f39004b;
+                v9 v9Var = this.f38883b;
                 if (!v9Var.isFinishing()) {
                     v9Var.N = null;
                     v9Var.J = false;
@@ -37,18 +37,18 @@ public final class m9 implements Runnable {
                 }
                 return;
             case 2:
-                v9 v9Var2 = this.f39004b;
-                CameraView cameraView = v9Var2.f42171c;
+                v9 v9Var2 = this.f38883b;
+                CameraView cameraView = v9Var2.f42059c;
                 if (cameraView != null) {
                     v9Var2.c0(cameraView.getTextureView().getBitmap());
                     return;
                 }
                 return;
             case 3:
-                this.f39004b.finishFragment();
+                this.f38883b.finishFragment();
                 return;
             case 4:
-                v9 v9Var3 = this.f39004b;
+                v9 v9Var3 = this.f38883b;
                 u9 u9Var = v9Var3.I;
                 if (u9Var != null) {
                     u9Var.J(v9Var3.N);
@@ -56,7 +56,7 @@ public final class m9 implements Runnable {
                 v9Var3.finishFragment();
                 return;
             case 5:
-                v9 v9Var4 = this.f39004b;
+                v9 v9Var4 = this.f38883b;
                 v9Var4.Q = new org.telegram.ui.Components.ai(14);
                 Context context = ApplicationLoader.applicationContext;
                 ?? obj = new Object();
@@ -64,23 +64,23 @@ public final class m9 implements Runnable {
                 v9Var4.R = new f8.n(new com.google.android.gms.internal.vision.t2(context, (com.google.android.gms.internal.vision.x1) obj));
                 return;
             case 6:
-                v9 v9Var5 = this.f39004b;
-                if (v9Var5.f42173f.getTag() != null) {
-                    v9Var5.f42173f.setTag(null);
-                    v9Var5.f42173f.animate().setDuration(200L).alpha(0.0f).setInterpolator(org.telegram.ui.Components.pr.f30183f).start();
+                v9 v9Var5 = this.f38883b;
+                if (v9Var5.f42061f.getTag() != null) {
+                    v9Var5.f42061f.setTag(null);
+                    v9Var5.f42061f.animate().setDuration(200L).alpha(0.0f).setInterpolator(org.telegram.ui.Components.pr.f30168f).start();
                     return;
                 }
                 return;
             case 7:
-                v9 v9Var6 = this.f39004b;
-                CameraView cameraView2 = v9Var6.f42171c;
+                v9 v9Var6 = this.f38883b;
+                CameraView cameraView2 = v9Var6.f42059c;
                 if (cameraView2 != null && cameraView2.getCameraSession() != null) {
-                    CameraController.getInstance().stopPreview(v9Var6.f42171c.getCameraSession());
+                    CameraController.getInstance().stopPreview(v9Var6.f42059c.getCameraSession());
                 }
                 AndroidUtilities.runOnUIThread(new m9(v9Var6, 4));
                 return;
             default:
-                v9 v9Var7 = this.f39004b;
+                v9 v9Var7 = this.f38883b;
                 float f12 = v9Var7.U;
                 if (v9Var7.J) {
                     f11 = 1.0f;
@@ -95,7 +95,7 @@ public final class m9 implements Runnable {
                     v9Var7.T = ofFloat;
                     ofFloat.addUpdateListener(new p9(v9Var7, 0));
                     v9Var7.T.setDuration(Math.abs(v9Var7.U - v9Var7.V) * 300.0f);
-                    v9Var7.T.setInterpolator(org.telegram.ui.Components.pr.f30183f);
+                    v9Var7.T.setInterpolator(org.telegram.ui.Components.pr.f30168f);
                     v9Var7.T.start();
                     o1.j jVar = v9Var7.W;
                     if (jVar != null) {
@@ -109,9 +109,9 @@ public final class m9 implements Runnable {
                     o1.j jVar2 = new o1.j(new kb.a(f10 * 500.0f));
                     v9Var7.W = jVar2;
                     jVar2.b(new n9(v9Var7, 1));
-                    v9Var7.W.f16336u = new o1.k(500.0f);
-                    v9Var7.W.f16336u.a(1.0f);
-                    v9Var7.W.f16336u.b(500.0f);
+                    v9Var7.W.f16338u = new o1.k(500.0f);
+                    v9Var7.W.f16338u.a(1.0f);
+                    v9Var7.W.f16338u.b(500.0f);
                     v9Var7.W.f();
                     return;
                 }

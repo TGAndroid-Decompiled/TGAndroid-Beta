@@ -14,28 +14,28 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.Utilities;
 public final class wa {
-    public final int f15005a;
-    public final ArrayList f15006b;
+    public final int f15007a;
+    public final ArrayList f15008b;
     public final Bitmap d;
-    public int f15008e;
-    public int f15012j;
-    public a4.k f15014l;
-    public final Paint f15015m;
-    public long f15016n;
-    public long f15017o;
-    public final RectF f15007c = new RectF();
-    public final Paint f15009f = new Paint(3);
-    public final Rect f15010g = new Rect();
+    public int f15010e;
+    public int f15014j;
+    public a4.k f15016l;
+    public final Paint f15017m;
+    public long f15018n;
+    public long f15019o;
+    public final RectF f15009c = new RectF();
+    public final Paint f15011f = new Paint(3);
+    public final Rect f15012g = new Rect();
     public float h = 1.0f;
-    public final float f15011i = 1.0f;
-    public boolean f15013k = true;
+    public final float f15013i = 1.0f;
+    public boolean f15015k = true;
 
     public wa(int i10, int i11) {
-        this.f15005a = i10;
-        this.f15012j = i11;
-        this.f15006b = new ArrayList(i11);
+        this.f15007a = i10;
+        this.f15014j = i11;
+        this.f15008b = new ArrayList(i11);
         for (int i12 = 0; i12 < i11; i12++) {
-            this.f15006b.add(new va(this));
+            this.f15008b.add(new va(this));
         }
         int dp = AndroidUtilities.dp(10.0f);
         Bitmap createBitmap = Bitmap.createBitmap(dp, dp, Bitmap.Config.ARGB_8888);
@@ -62,17 +62,17 @@ public final class wa {
         canvas.drawPath(path, paint);
         if (Build.VERSION.SDK_INT >= 29) {
             a4.k kVar = new a4.k(i11);
-            this.f15014l = kVar;
+            this.f15016l = kVar;
             float width = createBitmap.getWidth();
             float height = createBitmap.getHeight();
             for (int i14 = 0; i14 < kVar.f92a; i14++) {
                 a4.k.b((float[]) kVar.f94c, i14, 0.0f, 0.0f, width, height);
             }
-            this.f15015m = g0.a.a(createBitmap);
+            this.f15017m = g0.a.a(createBitmap);
             return;
         }
-        this.f15014l = null;
-        this.f15015m = null;
+        this.f15016l = null;
+        this.f15017m = null;
     }
 
     public final void a(Canvas canvas, int i10) {
@@ -83,108 +83,108 @@ public final class wa {
         if (!LiteMode.isEnabled(131072)) {
             return;
         }
-        int i11 = this.f15012j;
-        ArrayList arrayList = this.f15006b;
+        int i11 = this.f15014j;
+        ArrayList arrayList = this.f15008b;
         int min = Math.min(i11, arrayList.size());
         float f11 = 2.0f;
-        if (this.f15014l != null) {
+        if (this.f15016l != null) {
             Bitmap bitmap = this.d;
             float width = bitmap.getWidth();
             float height = bitmap.getHeight();
             for (int i12 = 0; i12 < min; i12++) {
                 va vaVar = (va) arrayList.get(i12);
-                float f12 = vaVar.f14956i * vaVar.f14953e * f10;
+                float f12 = vaVar.f14958i * vaVar.f14955e * f10;
                 float f13 = (width / 2.0f) * f12;
                 float f14 = (height / 2.0f) * f12;
-                a4.k kVar = this.f15014l;
-                float f15 = vaVar.f14950a;
-                float f16 = vaVar.f14951b;
+                a4.k kVar = this.f15016l;
+                float f15 = vaVar.f14952a;
+                float f16 = vaVar.f14953b;
                 a4.k.b((float[]) kVar.f93b, i12, f15 - f13, f16 - f14, f15 + f13, f16 + f14);
-                this.f15014l.e(i12, i0.a.k(i10, (int) (Utilities.clamp01(vaVar.h * f10) * 255.0f)));
+                this.f15016l.e(i12, i0.a.k(i10, (int) (Utilities.clamp01(vaVar.h * f10) * 255.0f)));
             }
-            g0.a.b(canvas, this.f15014l, min, this.f15015m);
+            g0.a.b(canvas, this.f15016l, min, this.f15017m);
         } else {
-            if (this.f15008e != i10) {
-                this.f15008e = i10;
-                this.f15009f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
+            if (this.f15010e != i10) {
+                this.f15010e = i10;
+                this.f15011f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
             }
             int i13 = 0;
             while (i13 < min) {
                 va vaVar2 = (va) arrayList.get(i13);
                 float f17 = vaVar2.h * f10;
-                wa waVar = vaVar2.f14957j;
-                Paint paint = waVar.f15009f;
-                Rect rect = waVar.f15010g;
+                wa waVar = vaVar2.f14959j;
+                Paint paint = waVar.f15011f;
+                Rect rect = waVar.f15012g;
                 Bitmap bitmap2 = waVar.d;
                 paint.setAlpha((int) (f17 * 255.0f));
-                rect.set((int) (vaVar2.f14950a - ((((bitmap2.getWidth() / f11) * vaVar2.f14956i) * vaVar2.f14953e) * f17)), (int) (vaVar2.f14951b - ((((bitmap2.getHeight() / f11) * vaVar2.f14956i) * vaVar2.f14953e) * f17)), (int) e2.c.u((bitmap2.getWidth() / f11) * vaVar2.f14956i, vaVar2.f14953e, f17, vaVar2.f14950a), (int) e2.c.u((bitmap2.getHeight() / 2.0f) * vaVar2.f14956i, vaVar2.f14953e, f17, vaVar2.f14951b));
+                rect.set((int) (vaVar2.f14952a - ((((bitmap2.getWidth() / f11) * vaVar2.f14958i) * vaVar2.f14955e) * f17)), (int) (vaVar2.f14953b - ((((bitmap2.getHeight() / f11) * vaVar2.f14958i) * vaVar2.f14955e) * f17)), (int) e2.c.u((bitmap2.getWidth() / f11) * vaVar2.f14958i, vaVar2.f14955e, f17, vaVar2.f14952a), (int) e2.c.u((bitmap2.getHeight() / 2.0f) * vaVar2.f14958i, vaVar2.f14955e, f17, vaVar2.f14953b));
                 canvas.drawBitmap(bitmap2, (Rect) null, rect, paint);
                 i13++;
                 f11 = 2.0f;
             }
         }
-        this.f15013k = false;
+        this.f15015k = false;
     }
 
     public final void c(va vaVar, long j10, boolean z4) {
         long j11;
-        vaVar.f14954f = j10;
-        vaVar.f14955g = AndroidUtilities.lerp(500, 2500, Utilities.fastRandom.nextFloat()) * this.f15011i;
+        vaVar.f14956f = j10;
+        vaVar.f14957g = AndroidUtilities.lerp(500, 2500, Utilities.fastRandom.nextFloat()) * this.f15013i;
         if (z4) {
-            vaVar.f14954f -= Utilities.clamp01(Utilities.fastRandom.nextFloat()) * ((float) j11);
+            vaVar.f14956f -= Utilities.clamp01(Utilities.fastRandom.nextFloat()) * ((float) j11);
         }
-        RectF rectF = this.f15007c;
-        vaVar.f14950a = AndroidUtilities.lerp(rectF.left, rectF.right, Utilities.fastRandom.nextFloat());
-        vaVar.f14951b = AndroidUtilities.lerp(rectF.top, rectF.bottom, Utilities.fastRandom.nextFloat());
-        if (this.f15005a == 0) {
-            vaVar.f14952c = AndroidUtilities.dp(AndroidUtilities.lerp(-7.0f, -18.0f, Utilities.fastRandom.nextFloat()));
+        RectF rectF = this.f15009c;
+        vaVar.f14952a = AndroidUtilities.lerp(rectF.left, rectF.right, Utilities.fastRandom.nextFloat());
+        vaVar.f14953b = AndroidUtilities.lerp(rectF.top, rectF.bottom, Utilities.fastRandom.nextFloat());
+        if (this.f15007a == 0) {
+            vaVar.f14954c = AndroidUtilities.dp(AndroidUtilities.lerp(-7.0f, -18.0f, Utilities.fastRandom.nextFloat()));
             vaVar.d = AndroidUtilities.dp(AndroidUtilities.lerp(-2.0f, 2.0f, Utilities.fastRandom.nextFloat()));
         } else {
-            vaVar.f14952c = rectF.centerX() - vaVar.f14950a;
-            vaVar.d = rectF.centerY() - vaVar.f14951b;
-            float f10 = vaVar.f14952c;
+            vaVar.f14954c = rectF.centerX() - vaVar.f14952a;
+            vaVar.d = rectF.centerY() - vaVar.f14953b;
+            float f10 = vaVar.f14954c;
             float f11 = vaVar.d;
             float dp = AndroidUtilities.dp(AndroidUtilities.lerp(1.0f, 4.0f, Utilities.fastRandom.nextFloat())) / ((float) Math.sqrt((f11 * f11) + (f10 * f10)));
-            vaVar.f14952c *= dp;
+            vaVar.f14954c *= dp;
             vaVar.d *= dp;
         }
-        vaVar.f14956i = AndroidUtilities.lerp(0.4f, 1.0f, Utilities.fastRandom.nextFloat());
-        vaVar.f14953e = AndroidUtilities.lerp(0.8f, 1.2f, Utilities.fastRandom.nextFloat()) * 0.7f;
+        vaVar.f14958i = AndroidUtilities.lerp(0.4f, 1.0f, Utilities.fastRandom.nextFloat());
+        vaVar.f14955e = AndroidUtilities.lerp(0.8f, 1.2f, Utilities.fastRandom.nextFloat()) * 0.7f;
     }
 
     public final boolean d() {
         float f10;
         if (LiteMode.isEnabled(131072)) {
             long currentTimeMillis = System.currentTimeMillis();
-            float min = (((float) Math.min(this.f15017o - currentTimeMillis, 16L)) / 1000.0f) * this.h;
+            float min = (((float) Math.min(this.f15019o - currentTimeMillis, 16L)) / 1000.0f) * this.h;
             int i10 = 0;
             while (true) {
-                int i11 = this.f15012j;
-                ArrayList arrayList = this.f15006b;
+                int i11 = this.f15014j;
+                ArrayList arrayList = this.f15008b;
                 if (i10 >= Math.min(i11, arrayList.size())) {
                     break;
                 }
                 va vaVar = (va) arrayList.get(i10);
-                long j10 = vaVar.f14955g;
+                long j10 = vaVar.f14957g;
                 if (j10 <= 0) {
                     f10 = 2.0f;
                 } else {
-                    f10 = ((float) (currentTimeMillis - vaVar.f14954f)) / ((float) j10);
+                    f10 = ((float) (currentTimeMillis - vaVar.f14956f)) / ((float) j10);
                 }
                 if (f10 > 1.0f) {
-                    c(vaVar, currentTimeMillis, this.f15013k);
+                    c(vaVar, currentTimeMillis, this.f15015k);
                     f10 = 0.0f;
                 }
-                vaVar.f14950a = (vaVar.f14952c * min) + vaVar.f14950a;
-                vaVar.f14951b = (vaVar.d * min) + vaVar.f14951b;
+                vaVar.f14952a = (vaVar.f14954c * min) + vaVar.f14952a;
+                vaVar.f14953b = (vaVar.d * min) + vaVar.f14953b;
                 float f11 = 4.0f * f10;
                 vaVar.h = f11 - (f10 * f11);
                 i10++;
             }
-            this.f15017o = currentTimeMillis;
-            long j11 = this.f15016n;
+            this.f15019o = currentTimeMillis;
+            long j11 = this.f15018n;
             if (j11 == 0 || j11 - currentTimeMillis >= 66) {
-                this.f15016n = currentTimeMillis;
+                this.f15018n = currentTimeMillis;
                 return true;
             }
         }
@@ -192,15 +192,15 @@ public final class wa {
     }
 
     public final void e() {
-        if (this.f15005a == 2) {
+        if (this.f15007a == 2) {
             long currentTimeMillis = System.currentTimeMillis();
             int i10 = 0;
             while (true) {
-                ArrayList arrayList = this.f15006b;
+                ArrayList arrayList = this.f15008b;
                 if (i10 < arrayList.size()) {
                     va vaVar = (va) arrayList.get(i10);
-                    if (!this.f15007c.contains((int) vaVar.f14950a, (int) vaVar.f14951b)) {
-                        c(vaVar, currentTimeMillis, this.f15013k);
+                    if (!this.f15009c.contains((int) vaVar.f14952a, (int) vaVar.f14953b)) {
+                        c(vaVar, currentTimeMillis, this.f15015k);
                     }
                     i10++;
                 } else {
@@ -211,12 +211,12 @@ public final class wa {
     }
 
     public final void f(int i10, int i11, int i12, int i13) {
-        this.f15007c.set(i10, i11, i12, i13);
+        this.f15009c.set(i10, i11, i12, i13);
         e();
     }
 
     public final void g(RectF rectF) {
-        this.f15007c.set(rectF);
+        this.f15009c.set(rectF);
         e();
     }
 }

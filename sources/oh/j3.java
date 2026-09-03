@@ -10,31 +10,31 @@ import org.telegram.ui.Components.ic;
 import org.telegram.ui.Components.pr;
 public final class j3 extends t {
     public final org.telegram.ui.Components.z5 d;
-    public final org.telegram.ui.Components.z5 f17323e;
-    public final org.telegram.ui.Components.voip.h f17324f;
+    public final org.telegram.ui.Components.z5 f17325e;
+    public final org.telegram.ui.Components.voip.h f17326f;
     public final org.telegram.ui.Components.z5 h;
-    public final org.telegram.ui.Components.z5 f17325n;
-    public boolean f17326r;
-    public boolean f17327s;
+    public final org.telegram.ui.Components.z5 f17327n;
+    public boolean f17328r;
+    public boolean f17329s;
     public final c4 v;
-    public final i9 f17328w;
-    public final f4 f17329x;
+    public final i9 f17330w;
+    public final f4 f17331x;
 
     public j3(f4 f4Var, Context context, c4 c4Var, i9 i9Var) {
         super(context);
-        this.f17329x = f4Var;
+        this.f17331x = f4Var;
         this.v = c4Var;
-        this.f17328w = i9Var;
-        pr prVar = pr.f30183f;
+        this.f17330w = i9Var;
+        pr prVar = pr.f30168f;
         this.d = new org.telegram.ui.Components.z5(this, 150L, prVar);
-        this.f17323e = new org.telegram.ui.Components.z5(this, 150L, prVar);
-        this.f17324f = new org.telegram.ui.Components.voip.h(32, 102, 240);
+        this.f17325e = new org.telegram.ui.Components.z5(this, 150L, prVar);
+        this.f17326f = new org.telegram.ui.Components.voip.h(32, 102, 240);
         org.telegram.ui.Components.z5 z5Var = new org.telegram.ui.Components.z5(this);
         this.h = z5Var;
         org.telegram.ui.Components.z5 z5Var2 = new org.telegram.ui.Components.z5(this);
-        this.f17325n = z5Var2;
-        z5Var.f33728g = 500L;
-        z5Var2.f33728g = 100L;
+        this.f17327n = z5Var2;
+        z5Var.f33766g = 500L;
+        z5Var2.f33766g = 100L;
     }
 
     public final void b(android.graphics.Canvas r34) {
@@ -49,9 +49,9 @@ public final class j3 extends t {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         e1 e1Var;
-        f4 f4Var = this.f17329x;
+        f4 f4Var = this.f17331x;
         e4 e4Var = f4Var.J2;
-        if (f4Var.H1 && !f4Var.Z2 && e4Var.d != null && (e1Var = e4Var.f17019a) != null && e1Var.n() && e4Var.d.dispatchTouchEvent(motionEvent)) {
+        if (f4Var.H1 && !f4Var.Z2 && e4Var.d != null && (e1Var = e4Var.f17021a) != null && e1Var.n() && e4Var.d.dispatchTouchEvent(motionEvent)) {
             return true;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -59,11 +59,11 @@ public final class j3 extends t {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view != this.f17329x.f17069g1) {
-            if (this.f17326r) {
-                ic icVar = ic.f27737w;
-                if (icVar != null && view == icVar.f27741e) {
-                    if (this.f17327s) {
+        if (view != this.f17331x.f17071g1) {
+            if (this.f17328r) {
+                ic icVar = ic.f27770w;
+                if (icVar != null && view == icVar.f27774e) {
+                    if (this.f17329s) {
                         return super.drawChild(canvas, view, j10);
                     }
                     return true;
@@ -78,15 +78,15 @@ public final class j3 extends t {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f17329x.f17072h1.j();
+        this.f17331x.f17074h1.j();
         ic.a(this, new lh.t0(this, 2));
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        f4 f4Var = this.f17329x;
-        f4Var.f17072h1.k();
+        f4 f4Var = this.f17331x;
+        f4Var.f17074h1.k();
         ic.h(this);
         z3 z3Var = f4Var.N1;
         if (z3Var != null) {
@@ -98,7 +98,7 @@ public final class j3 extends t {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f17329x.f17115v0.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f17331x.f17117v0.getLayoutParams();
         layoutParams.rightMargin = AndroidUtilities.dp(42.0f);
         layoutParams.topMargin = AndroidUtilities.dp(15.0f);
         super.onMeasure(i10, i11);

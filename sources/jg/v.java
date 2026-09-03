@@ -11,7 +11,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.u01;
+import org.telegram.ui.Components.t01;
 import org.telegram.ui.yh;
 public final class v extends FrameLayout {
     public final jh.s f10072a;
@@ -34,8 +34,8 @@ public final class v extends FrameLayout {
         sVar.f10189f = false;
         frameLayout.addView(sVar, c6.e(-2, -2, 17));
         int dp = AndroidUtilities.dp(8.0f);
-        int v02 = k6.v0(k6.f21678e7, g6Var);
-        int i10 = k6.f21750i6;
+        int v02 = k6.v0(k6.f21680e7, g6Var);
+        int i10 = k6.f21752i6;
         int k10 = i0.a.k(k6.v0(i10, g6Var), 76);
         frameLayout.setBackground(k6.i0(dp, dp, dp, dp, v02, k10, k10));
         addView(frameLayout, c6.d(-1, -2.0f, 0, 14.0f, 0.0f, 14.0f, 0.0f));
@@ -61,7 +61,7 @@ public final class v extends FrameLayout {
         ImageView imageView = new ImageView(getContext());
         this.f10075e = imageView;
         imageView.setImageResource(R.drawable.menu_copy_s);
-        imageView.setColorFilter(k6.v0(k6.f21766j5, g6Var));
+        imageView.setColorFilter(k6.v0(k6.f21768j5, g6Var));
         imageView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         int dp2 = AndroidUtilities.dp(20.0f);
         int k11 = i0.a.k(k6.v0(i10, g6Var), 76);
@@ -97,12 +97,12 @@ public final class v extends FrameLayout {
         jh.s sVar = this.f10072a;
         sVar.setPadding(dp, dp2, dp3, dp4);
         ?? obj = new Object();
-        obj.f31225a |= 256;
+        obj.f30949a |= 256;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("t.me/giftcode/" + this.f10074c);
         if (this.f10074c == null) {
             spannableStringBuilder.append((CharSequence) "1234567891011123654897566536223");
         }
-        spannableStringBuilder.setSpan(new u01(obj, 0), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new t01(obj, 0), 0, spannableStringBuilder.length(), 33);
         sVar.setText(spannableStringBuilder);
         this.f10073b.setOnClickListener(new u(0, runnable));
     }

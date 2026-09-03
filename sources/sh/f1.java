@@ -6,21 +6,21 @@ import java.util.function.Predicate;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class f1 implements Predicate {
-    public final int f47415a;
-    public final Object f47416b;
+    public final int f47451a;
+    public final Object f47452b;
 
     public f1(Object obj, int i10) {
-        this.f47415a = i10;
-        this.f47416b = obj;
+        this.f47451a = i10;
+        this.f47452b = obj;
     }
 
     public Predicate and(Predicate predicate) {
-        int i10 = this.f47415a;
+        int i10 = this.f47451a;
         return Predicate$CC.$default$and(this, predicate);
     }
 
     public Predicate negate() {
-        switch (this.f47415a) {
+        switch (this.f47451a) {
             case 0:
                 return Predicate$CC.$default$negate(this);
             case 1:
@@ -31,7 +31,7 @@ public final class f1 implements Predicate {
     }
 
     public Predicate or(Predicate predicate) {
-        int i10 = this.f47415a;
+        int i10 = this.f47451a;
         return Predicate$CC.$default$or(this, predicate);
     }
 
@@ -39,15 +39,15 @@ public final class f1 implements Predicate {
     public final boolean test(Object obj) {
         boolean contains;
         boolean z4;
-        switch (this.f47415a) {
+        switch (this.f47451a) {
             case 0:
-                contains = ((HashSet) this.f47416b).contains(Long.valueOf(((h1) obj).f47452b));
+                contains = ((HashSet) this.f47452b).contains(Long.valueOf(((h1) obj).f47488b));
                 break;
             case 1:
-                contains = ((HashSet) this.f47416b).contains(Long.valueOf(((h1) obj).f47452b));
+                contains = ((HashSet) this.f47452b).contains(Long.valueOf(((h1) obj).f47488b));
                 break;
             default:
-                lh.g2 g2Var = (lh.g2) this.f47416b;
+                lh.g2 g2Var = (lh.g2) this.f47452b;
                 TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
                 if (starGift instanceof TL_stars.TL_starGiftUnique) {
                     z4 = g2Var.Y.disallow_unique_stargifts;

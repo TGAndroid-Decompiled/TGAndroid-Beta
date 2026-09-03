@@ -16,8 +16,8 @@ public final class b extends d9 {
     public void invalidate() {
         switch (this.f11235e) {
             case 1:
-                if (oh.t.f17753c) {
-                    oh.t.f17752b.add(this);
+                if (oh.t.f17755c) {
+                    oh.t.f17754b.add(this);
                     return;
                 } else {
                     super.invalidate();
@@ -34,7 +34,7 @@ public final class b extends d9 {
         int e6;
         switch (this.f11235e) {
             case 0:
-                int i12 = this.f26228a.f25875n;
+                int i12 = this.f26228a.f25851n;
                 if (i12 == 0) {
                     e6 = 0;
                 } else {
@@ -52,8 +52,8 @@ public final class b extends d9 {
     public void invalidate(int i10, int i11, int i12, int i13) {
         switch (this.f11235e) {
             case 1:
-                if (oh.t.f17753c) {
-                    oh.t.f17752b.add(this);
+                if (oh.t.f17755c) {
+                    oh.t.f17754b.add(this);
                     return;
                 } else {
                     super.invalidate(i10, i11, i12, i13);

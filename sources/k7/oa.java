@@ -1,6 +1,6 @@
 package k7;
 
-import org.telegram.ui.Components.az0;
+import org.telegram.ui.Components.zy0;
 public final class oa implements v2.e {
     public static oa f10686b;
     public static final oa f10687c = new oa(1);
@@ -74,7 +74,7 @@ public final class oa implements v2.e {
         aVar.b(c6.class, v1.f10741a);
         aVar.b(e6.class, x1.f10758a);
         aVar.b(f6.class, y1.f10765a);
-        aVar.b(az0.class, z1.f10774a);
+        aVar.b(zy0.class, z1.f10774a);
         aVar.b(g6.class, a2.f10480a);
         aVar.b(h6.class, b2.f10486a);
         aVar.b(h0.class, l1.f10644a);

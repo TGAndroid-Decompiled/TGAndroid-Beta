@@ -29,13 +29,13 @@ public final class m extends LinearLayout {
         xtVar.setFilters(inputFilterArr);
         xtVar.setTextSize(1, 16.0f);
         xtVar.setTextColor(k6.v0(k6.Ud, g6Var));
-        xtVar.setLinkTextColor(k6.v0(k6.f21737hc, g6Var));
-        xtVar.setHighlightColor(k6.v0(k6.f21970uf, g6Var));
+        xtVar.setLinkTextColor(k6.v0(k6.f21739hc, g6Var));
+        xtVar.setHighlightColor(k6.v0(k6.f21972uf, g6Var));
         int i10 = k6.Vd;
         xtVar.setHintColor(k6.v0(i10, g6Var));
         xtVar.setHintTextColor(k6.v0(i10, g6Var));
         xtVar.setCursorColor(k6.v0(k6.Wd, g6Var));
-        xtVar.setHandlesColor(k6.v0(k6.f21988vf, g6Var));
+        xtVar.setHandlesColor(k6.v0(k6.f21990vf, g6Var));
         xtVar.setBackground(null);
         xtVar.setHint(LocaleController.getString(R.string.BoostingGiveawayEnterYourPrize));
         xtVar.addTextChangedListener(new eh.c(this, 2));
@@ -43,7 +43,7 @@ public final class m extends LinearLayout {
         TextView textView = new TextView(context);
         this.f10048b = textView;
         textView.setTextSize(1, 16.0f);
-        textView.setTextColor(k6.v0(k6.f21766j5, g6Var));
+        textView.setTextColor(k6.v0(k6.f21768j5, g6Var));
         if (LocaleController.isRTL) {
             LinearLayout.LayoutParams t6 = c6.t(-1, -2, 16, 20, 0, 36, 0);
             t6.weight = 1.0f;

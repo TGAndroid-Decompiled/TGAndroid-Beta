@@ -5,21 +5,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.tgnet.TLRPC;
 public final class l50 implements org.telegram.ui.Components.x40 {
-    public float f38640a;
-    public TLRPC.FileLocation f38641b;
-    public TLRPC.FileLocation f38642c;
+    public float f38541a;
+    public TLRPC.FileLocation f38542b;
+    public TLRPC.FileLocation f38543c;
     public ImageLocation d;
-    public final long f38643e;
-    public final d60 f38644f;
+    public final long f38544e;
+    public final d60 f38545f;
 
     public l50(d60 d60Var, long j10) {
-        this.f38644f = d60Var;
-        this.f38643e = j10;
+        this.f38545f = d60Var;
+        this.f38544e = j10;
     }
 
     @Override
     public final void D(float f10) {
-        this.f38644f.f36014b.O(this.d, f10);
+        this.f38545f.f35993b.O(this.d, f10);
         a(f10);
     }
 
@@ -29,15 +29,15 @@ public final class l50 implements org.telegram.ui.Components.x40 {
     }
 
     public final void a(float f10) {
-        this.f38640a = f10;
-        k50 k50Var = this.f38644f.N;
+        this.f38541a = f10;
+        k50 k50Var = this.f38545f.N;
         if (k50Var != null) {
             for (int i10 = 0; i10 < k50Var.getChildCount(); i10++) {
                 View childAt = k50Var.getChildAt(i10);
                 if (childAt instanceof org.telegram.ui.Cells.e4) {
                     org.telegram.ui.Cells.e4 e4Var = (org.telegram.ui.Cells.e4) childAt;
                     if (e4Var.c()) {
-                        org.telegram.ui.Cells.y3 y3Var = e4Var.f22751x;
+                        org.telegram.ui.Cells.y3 y3Var = e4Var.f22753x;
                         y3Var.setProgress(f10);
                         if (f10 < 1.0f) {
                             AndroidUtilities.updateViewVisibilityAnimated(y3Var, true, 1.0f, true);
@@ -56,7 +56,7 @@ public final class l50 implements org.telegram.ui.Components.x40 {
     }
 
     @Override
-    public final lu0 getCloseIntoObject() {
+    public final qu0 getCloseIntoObject() {
         return null;
     }
 

@@ -22,7 +22,7 @@ public final class g extends View {
         this.f5636c = i10;
         Drawable mutate = context.getResources().getDrawable(R.drawable.outline_poll_attach_24).mutate();
         this.f5634a = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(k6.w0(null, k6.f21858o7, false), PorterDuff.Mode.SRC_IN));
+        mutate.setColorFilter(new PorterDuffColorFilter(k6.w0(null, k6.f21860o7, false), PorterDuff.Mode.SRC_IN));
     }
 
     public final void a(h hVar, boolean z4) {
@@ -67,7 +67,7 @@ public final class g extends View {
         super.onDraw(canvas);
         float width = getWidth() / 2.0f;
         float height = getHeight() / 2.0f;
-        float f10 = this.f5635b.f50505e;
+        float f10 = this.f5635b.f50541e;
         if (f10 < 1.0f) {
             canvas.save();
             float f11 = 1.0f - f10;

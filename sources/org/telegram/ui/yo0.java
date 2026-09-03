@@ -1,33 +1,58 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class yo0 extends f2.a1 {
-    public final int f43672a;
-    public final dp0 f43673b;
+import android.content.Context;
+import android.graphics.Canvas;
+public final class yo0 extends org.telegram.ui.Components.sl0 {
+    public final int U2;
+    public final hp0 V2;
 
-    public yo0(dp0 dp0Var, int i10) {
-        this.f43673b = dp0Var;
-        this.f43672a = i10;
+    public yo0(hp0 hp0Var, Context context, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
+        super(context, g6Var);
+        this.V2 = hp0Var;
+        this.U2 = i10;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
+    public final Integer V0(int i10) {
+        hp0 hp0Var = this.V2;
+        if ((i10 >= hp0Var.V && i10 < hp0Var.W) || (i10 >= hp0Var.f37442a0 && i10 < hp0Var.f37444b0)) {
+            return 0;
+        }
+        return super.V0(i10);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        hp0 hp0Var = this.V2;
+        if (hp0Var.D && hp0Var.B != null && hp0Var.C != null) {
+            int save = canvas.save();
+            canvas.translate(hp0Var.B.getLeft() + hp0Var.C.getLeft(), hp0Var.C.getTop());
+            hp0Var.B.draw(canvas);
+            canvas.restoreToCount(save);
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
         mh.l7 l7Var;
-        dp0 dp0Var = this.f43673b;
-        ip0 ip0Var = dp0Var.f36282g0;
-        if (dp0Var.C != null) {
-            if (dp0Var.B != null && dp0Var.c()) {
-                dp0Var.B.g(false);
+        super.onLayout(z4, i10, i11, i12, i13);
+        hp0 hp0Var = this.V2;
+        np0 np0Var = hp0Var.m0;
+        hp0Var.h();
+        if (hp0Var.H != null) {
+            if (hp0Var.G != null && hp0Var.c()) {
+                hp0Var.G.g(false);
                 return;
             }
             return;
         }
-        if (this.f43672a == 1) {
-            l7Var = ip0Var.f37906c;
+        if (this.U2 == 1) {
+            l7Var = np0Var.f39426c;
         } else {
-            l7Var = ip0Var.f37905b;
+            l7Var = np0Var.f39424b;
         }
-        if (l7Var != null && dp0Var.c()) {
+        if (l7Var != null && hp0Var.c()) {
             l7Var.a();
         }
     }

@@ -7,36 +7,36 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class y6 implements Runnable {
-    public final int f15098a = 0;
-    public final long f15099b;
-    public final boolean f15100c;
+    public final int f15100a = 0;
+    public final long f15101b;
+    public final boolean f15102c;
     public final long d;
-    public final Object f15101e;
-    public final TLObject f15102f;
+    public final Object f15103e;
+    public final TLObject f15104f;
 
     public y6(t7 t7Var, TLObject tLObject, long j10, long j11, boolean z4) {
-        this.f15101e = t7Var;
-        this.f15102f = tLObject;
-        this.f15099b = j10;
+        this.f15103e = t7Var;
+        this.f15104f = tLObject;
+        this.f15101b = j10;
         this.d = j11;
-        this.f15100c = z4;
+        this.f15102c = z4;
     }
 
     @Override
     public final void run() {
         TLRPC.PeerSettings peerSettings;
-        int i10 = this.f15098a;
-        TLObject tLObject = this.f15102f;
-        Object obj = this.f15101e;
+        int i10 = this.f15100a;
+        TLObject tLObject = this.f15104f;
+        Object obj = this.f15103e;
         switch (i10) {
             case 0:
                 t7 t7Var = (t7) obj;
-                int i11 = t7Var.f14828a;
+                int i11 = t7Var.f14830a;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    long j10 = this.f15099b;
+                    long j10 = this.f15101b;
                     long j11 = this.d;
                     if (j10 != 0) {
-                        t7Var.b0(-j10, j11, this.f15100c);
+                        t7Var.b0(-j10, j11, this.f15102c);
                         return;
                     }
                     TLRPC.UserFull userFull = MessagesController.getInstance(i11).getUserFull(j11);
@@ -52,16 +52,16 @@ public final class y6 implements Runnable {
                 }
                 return;
             default:
-                ((MessagesStorage) obj).lambda$loadPendingTasks$15(this.f15099b, this.f15100c, (TLRPC.InputPeer) tLObject, this.d);
+                ((MessagesStorage) obj).lambda$loadPendingTasks$15(this.f15101b, this.f15102c, (TLRPC.InputPeer) tLObject, this.d);
                 return;
         }
     }
 
     public y6(MessagesStorage messagesStorage, long j10, boolean z4, TLRPC.InputPeer inputPeer, long j11) {
-        this.f15101e = messagesStorage;
-        this.f15099b = j10;
-        this.f15100c = z4;
-        this.f15102f = inputPeer;
+        this.f15103e = messagesStorage;
+        this.f15101b = j10;
+        this.f15102c = z4;
+        this.f15104f = inputPeer;
         this.d = j11;
     }
 }

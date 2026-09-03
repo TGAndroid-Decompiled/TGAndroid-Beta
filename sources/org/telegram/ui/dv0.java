@@ -1,33 +1,28 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.ActionMode;
-import android.view.Menu;
-public final class dv0 extends org.telegram.ui.Cells.c6 {
-    public final fv0 C;
+import android.animation.ValueAnimator;
+public final class dv0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f36270a;
+    public final mv0 f36271b;
 
-    public dv0(fv0 fv0Var, Context context, int i10) {
-        super(context, i10, null, null);
-        this.C = fv0Var;
+    public dv0(mv0 mv0Var, int i10) {
+        this.f36270a = i10;
+        this.f36271b = mv0Var;
     }
 
     @Override
-    public final void g(eh.b bVar, ActionMode actionMode) {
-        if (bVar.isFocused() && bVar.hasSelection()) {
-            Menu menu = actionMode.getMenu();
-            if (menu.findItem(16908321) != null) {
-                xn.k8(menu, this.C.d.f37649f.h, false, true, true, true);
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f36270a) {
+            case 0:
+                mv0 mv0Var = this.f36271b;
+                mv0Var.getClass();
+                mv0Var.O.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                mv0 mv0Var2 = this.f36271b;
+                mv0Var2.getClass();
+                mv0Var2.O.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
-    }
-
-    @Override
-    public final void i(boolean z4) {
-        hv0.d0(this.C.d, this, z4);
-    }
-
-    @Override
-    public final void j(org.telegram.ui.Cells.c6 c6Var) {
-        hv0.e0(this.C.d, c6Var);
     }
 }

@@ -3,10 +3,10 @@ package org.telegram.ui;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class pz extends FrameLayout {
-    public jh.s f40310a;
+    public jh.s f40281a;
 
     public jh.s getSubtitleTextView() {
-        return this.f40310a;
+        return this.f40281a;
     }
 
     @Override

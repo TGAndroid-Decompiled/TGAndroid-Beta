@@ -64,7 +64,7 @@ public final class g extends pe.a {
                     sb.append((CharSequence) arrayList.get(i10));
                     sb.append('\n');
                 }
-                ((ne.l) this.f11136b).f15970g = sb.toString();
+                ((ne.l) this.f11136b).f15972g = sb.toString();
                 return;
             default:
                 return;
@@ -112,7 +112,7 @@ public final class g extends pe.a {
         this.f11135a = 0;
         ?? pVar = new ne.p();
         this.f11136b = pVar;
-        pVar.f15966g = i10;
+        pVar.f15968g = i10;
         this.f11137c = str;
     }
 }

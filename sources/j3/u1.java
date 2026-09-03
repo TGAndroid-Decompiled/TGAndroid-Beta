@@ -49,7 +49,7 @@ public final class u1 {
     public static u1 i(f5.y yVar) {
         l2 l2Var = o2.f9353a;
         o4.t0 t0Var = o4.t0.d;
-        s8.i0 i0Var = s8.i0.f47108e;
+        s8.i0 i0Var = s8.i0.f47139e;
         v1 v1Var = v1.d;
         o4.v vVar = f9425t;
         return new u1(l2Var, vVar, -9223372036854775807L, 0L, 1, null, false, t0Var, yVar, i0Var, vVar, false, 0, v1Var, 0L, 0L, 0L, 0L, false);

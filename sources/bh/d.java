@@ -53,7 +53,7 @@ public final class d extends FrameLayout implements xd.b, b6 {
             this.f1986a = k6.b0(AndroidUtilities.dp(10.0f), i0.a.k(k6.v0(k6.Wk, this.f1987b), 25));
         }
         xd.a aVar = this.f1989e;
-        if (aVar.f50506f == z4 && !z10) {
+        if (aVar.f50542f == z4 && !z10) {
             return;
         }
         aVar.a(z4, z10);
@@ -64,9 +64,9 @@ public final class d extends FrameLayout implements xd.b, b6 {
         ShapeDrawable shapeDrawable = this.f1986a;
         if (shapeDrawable != null) {
             xd.a aVar = this.f1989e;
-            if (aVar.f50505e > 0.0f) {
+            if (aVar.f50541e > 0.0f) {
                 shapeDrawable.setBounds(0, 0, getWidth(), getHeight());
-                r.b(canvas, this.f1986a, AndroidUtilities.lerp(0.9f, 1.0f, aVar.f50505e));
+                r.b(canvas, this.f1986a, AndroidUtilities.lerp(0.9f, 1.0f, aVar.f50541e));
             }
         }
         super.dispatchDraw(canvas);
@@ -79,7 +79,7 @@ public final class d extends FrameLayout implements xd.b, b6 {
         if (shapeDrawable != null) {
             ShapeDrawable b02 = k6.b0(AndroidUtilities.dp(10.0f), i0.a.k(k6.v0(k6.Wk, g6Var), 25));
             this.f1986a = b02;
-            b02.setAlpha((int) (this.f1989e.f50505e * 255.0f));
+            b02.setAlpha((int) (this.f1989e.f50541e * 255.0f));
         }
         this.d.setTextColor(i0.a.k(k6.v0(k6.Wk, g6Var), 229));
     }
@@ -90,7 +90,7 @@ public final class d extends FrameLayout implements xd.b, b6 {
 
     @Override
     public final boolean isSelected() {
-        return this.f1989e.f50506f;
+        return this.f1989e.f50542f;
     }
 
     public void setPack(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {

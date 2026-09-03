@@ -18,18 +18,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class b {
-    public static final ReentrantLock f16595c = new ReentrantLock();
+    public static final ReentrantLock f16597c = new ReentrantLock();
     public static b d;
-    public final ReentrantLock f16596a = new ReentrantLock();
-    public final SharedPreferences f16597b;
+    public final ReentrantLock f16598a = new ReentrantLock();
+    public final SharedPreferences f16599b;
 
     public b(Context context) {
-        this.f16597b = context.getSharedPreferences("com.google.android.gms.signin", 0);
+        this.f16599b = context.getSharedPreferences("com.google.android.gms.signin", 0);
     }
 
     public static b a(Context context) {
         m.h(context);
-        ReentrantLock reentrantLock = f16595c;
+        ReentrantLock reentrantLock = f16597c;
         reentrantLock.lock();
         try {
             if (d == null) {
@@ -105,7 +105,7 @@ public final class b {
             JSONArray jSONArray = new JSONArray();
             List list = googleSignInAccount.f2576s;
             Scope[] scopeArr = (Scope[]) list.toArray(new Scope[list.size()]);
-            Arrays.sort(scopeArr, n5.c.f15251b);
+            Arrays.sort(scopeArr, n5.c.f15253b);
             int i10 = 0;
             for (Scope scope : scopeArr) {
                 jSONArray.put(scope.f2641b);
@@ -151,20 +151,20 @@ public final class b {
     }
 
     public final String d(String str) {
-        ReentrantLock reentrantLock = this.f16596a;
+        ReentrantLock reentrantLock = this.f16598a;
         reentrantLock.lock();
         try {
-            return this.f16597b.getString(str, null);
+            return this.f16599b.getString(str, null);
         } finally {
             reentrantLock.unlock();
         }
     }
 
     public final void e(String str, String str2) {
-        ReentrantLock reentrantLock = this.f16596a;
+        ReentrantLock reentrantLock = this.f16598a;
         reentrantLock.lock();
         try {
-            this.f16597b.edit().putString(str, str2).apply();
+            this.f16599b.edit().putString(str, str2).apply();
         } finally {
             reentrantLock.unlock();
         }

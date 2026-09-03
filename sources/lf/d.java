@@ -47,16 +47,16 @@ public final class d implements ToIntFunction {
             case 11:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 12:
-                return ((TLRPC.Message) obj).f20864id;
+                return ((TLRPC.Message) obj).f20866id;
             case 13:
-                return ((TLRPC.Message) obj).f20864id;
+                return ((TLRPC.Message) obj).f20866id;
             case 14:
                 return ((a6) obj).d;
             case 15:
-                return ((a6) obj).f25167e;
+                return ((a6) obj).f25168e;
             case 16:
                 mc.c cVar = (mc.c) obj;
-                return cVar.d - cVar.f13631b;
+                return cVar.d - cVar.f13633b;
             case 17:
                 TLRPC.MessagePeerReaction messagePeerReaction = (TLRPC.MessagePeerReaction) obj;
                 int i10 = messagePeerReaction.date;

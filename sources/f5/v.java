@@ -38,7 +38,7 @@ public final class v implements j3.g {
     }
 
     public v(s0 s0Var, List list) {
-        if (!list.isEmpty() && (((Integer) Collections.min(list)).intValue() < 0 || ((Integer) Collections.max(list)).intValue() >= s0Var.f16571a)) {
+        if (!list.isEmpty() && (((Integer) Collections.min(list)).intValue() < 0 || ((Integer) Collections.max(list)).intValue() >= s0Var.f16573a)) {
             throw new IndexOutOfBoundsException();
         }
         this.f6071a = s0Var;

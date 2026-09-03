@@ -4,27 +4,27 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
-public final class li0 extends org.telegram.ui.Components.qv0 {
+public final class li0 extends org.telegram.ui.Components.pv0 {
     public final ti0 A0;
-    public final int[] f38752t0;
-    public final int[] f38753u0;
-    public int f38754v0;
-    public final int[] f38755w0;
-    public final h20 f38756x0;
-    public final Paint f38757y0;
-    public final org.telegram.ui.ActionBar.g6 f38758z0;
+    public final int[] f38657t0;
+    public final int[] f38658u0;
+    public int f38659v0;
+    public final int[] f38660w0;
+    public final h20 f38661x0;
+    public final Paint f38662y0;
+    public final org.telegram.ui.ActionBar.g6 f38663z0;
 
     public li0(ti0 ti0Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context, null);
         this.A0 = ti0Var;
-        this.f38758z0 = g6Var;
-        this.f38752t0 = new int[2];
-        this.f38753u0 = new int[2];
-        this.f38754v0 = 0;
-        this.f38755w0 = new int[2];
-        this.f38756x0 = new h20();
-        org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.f30183f;
-        this.f38757y0 = new Paint(1);
+        this.f38663z0 = g6Var;
+        this.f38657t0 = new int[2];
+        this.f38658u0 = new int[2];
+        this.f38659v0 = 0;
+        this.f38660w0 = new int[2];
+        this.f38661x0 = new h20();
+        org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.f30168f;
+        this.f38662y0 = new Paint(1);
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class li0 extends org.telegram.ui.Components.qv0 {
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         ti0 ti0Var = this.A0;
-        if (ti0Var.f41653w) {
+        if (ti0Var.f41576w) {
             if (view != ti0Var.U) {
                 org.telegram.ui.Cells.t1 t1Var = ti0Var.N;
                 if (view == t1Var && t1Var != null && t1Var.getCurrentPosition() == null) {

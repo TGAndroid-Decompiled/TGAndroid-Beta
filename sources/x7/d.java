@@ -1,7 +1,7 @@
 package x7;
 public final class d {
-    public double f50446a;
-    public double f50447b;
-    public double f50448c;
+    public double f50482a;
+    public double f50483b;
+    public double f50484c;
     public double d;
 }

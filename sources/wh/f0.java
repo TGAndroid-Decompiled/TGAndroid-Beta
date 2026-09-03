@@ -21,22 +21,22 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 public final class f0 extends z implements b6 {
     public d0 B;
-    public final int f49736n;
-    public final g6 f49737r;
-    public final HorizontalScrollView f49738s;
+    public final int f49772n;
+    public final g6 f49773r;
+    public final HorizontalScrollView f49774s;
     public final LinearLayout v;
-    public final u1 f49739w;
-    public final TextView f49740x;
-    public final ArrayList f49741y;
+    public final u1 f49775w;
+    public final TextView f49776x;
+    public final ArrayList f49777y;
 
     public f0(Context context, int i10, g6 g6Var) {
         super(context);
-        this.f49741y = new ArrayList();
-        this.f49736n = i10;
-        this.f49737r = g6Var;
+        this.f49777y = new ArrayList();
+        this.f49772n = i10;
+        this.f49773r = g6Var;
         g(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(4.0f));
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
-        this.f49738s = horizontalScrollView;
+        this.f49774s = horizontalScrollView;
         horizontalScrollView.setHorizontalScrollBarEnabled(false);
         LinearLayout linearLayout = new LinearLayout(context);
         this.v = linearLayout;
@@ -44,16 +44,16 @@ public final class f0 extends z implements b6 {
         horizontalScrollView.addView(linearLayout, new FrameLayout.LayoutParams(-2, -1));
         addView(horizontalScrollView, c6.e(-1, -1, 23));
         u1 u1Var = new u1(context, R.drawable.msg_add, g6Var);
-        u1Var.f50063e = 19;
+        u1Var.f50099e = 19;
         u1Var.e();
-        this.f49739w = u1Var;
+        this.f49775w = u1Var;
         u1Var.setSelected(true);
         u1Var.setContentDescription(LocaleController.getString(R.string.Add));
         u1Var.setOnClickListener(new View.OnClickListener(this) {
-            public final f0 f49651b;
+            public final f0 f49687b;
 
             {
-                this.f49651b = this;
+                this.f49687b = this;
             }
 
             @Override
@@ -62,22 +62,22 @@ public final class f0 extends z implements b6 {
                 a aVar2;
                 switch (r2) {
                     case 0:
-                        f0 f0Var = this.f49651b;
+                        f0 f0Var = this.f49687b;
                         d0 d0Var = f0Var.B;
-                        if (d0Var != null && (aVar = f0Var.f50175a) != null) {
-                            r3 r3Var = ((j3) d0Var).f49812a;
-                            r3Var.o3(false);
-                            r3Var.f49980e3.d(new o3(r3Var, aVar, -1), view);
+                        if (d0Var != null && (aVar = f0Var.f50211a) != null) {
+                            r3 r3Var = ((j3) d0Var).f49848a;
+                            r3Var.n3(false);
+                            r3Var.f50016e3.d(new o3(r3Var, aVar, -1), view);
                             return;
                         }
                         return;
                     default:
-                        f0 f0Var2 = this.f49651b;
+                        f0 f0Var2 = this.f49687b;
                         d0 d0Var2 = f0Var2.B;
-                        if (d0Var2 != null && (aVar2 = f0Var2.f50175a) != null) {
-                            r3 r3Var2 = ((j3) d0Var2).f49812a;
-                            r3Var2.o3(false);
-                            r3Var2.f49980e3.d(new o3(r3Var2, aVar2, -1), view);
+                        if (d0Var2 != null && (aVar2 = f0Var2.f50211a) != null) {
+                            r3 r3Var2 = ((j3) d0Var2).f49848a;
+                            r3Var2.n3(false);
+                            r3Var2.f50016e3.d(new o3(r3Var2, aVar2, -1), view);
                             return;
                         }
                         return;
@@ -86,7 +86,7 @@ public final class f0 extends z implements b6 {
         });
         addView(u1Var, c6.e(38, 38, 21));
         TextView textView = new TextView(context);
-        this.f49740x = textView;
+        this.f49776x = textView;
         textView.setText(LocaleController.getString(R.string.RichEditorAddButton));
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -94,10 +94,10 @@ public final class f0 extends z implements b6 {
         textView.setCompoundDrawablePadding(AndroidUtilities.dp(7.0f));
         textView.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final f0 f49651b;
+            public final f0 f49687b;
 
             {
-                this.f49651b = this;
+                this.f49687b = this;
             }
 
             @Override
@@ -106,22 +106,22 @@ public final class f0 extends z implements b6 {
                 a aVar2;
                 switch (r2) {
                     case 0:
-                        f0 f0Var = this.f49651b;
+                        f0 f0Var = this.f49687b;
                         d0 d0Var = f0Var.B;
-                        if (d0Var != null && (aVar = f0Var.f50175a) != null) {
-                            r3 r3Var = ((j3) d0Var).f49812a;
-                            r3Var.o3(false);
-                            r3Var.f49980e3.d(new o3(r3Var, aVar, -1), view);
+                        if (d0Var != null && (aVar = f0Var.f50211a) != null) {
+                            r3 r3Var = ((j3) d0Var).f49848a;
+                            r3Var.n3(false);
+                            r3Var.f50016e3.d(new o3(r3Var, aVar, -1), view);
                             return;
                         }
                         return;
                     default:
-                        f0 f0Var2 = this.f49651b;
+                        f0 f0Var2 = this.f49687b;
                         d0 d0Var2 = f0Var2.B;
-                        if (d0Var2 != null && (aVar2 = f0Var2.f50175a) != null) {
-                            r3 r3Var2 = ((j3) d0Var2).f49812a;
-                            r3Var2.o3(false);
-                            r3Var2.f49980e3.d(new o3(r3Var2, aVar2, -1), view);
+                        if (d0Var2 != null && (aVar2 = f0Var2.f50211a) != null) {
+                            r3 r3Var2 = ((j3) d0Var2).f49848a;
+                            r3Var2.n3(false);
+                            r3Var2.f50016e3.d(new o3(r3Var2, aVar2, -1), view);
                             return;
                         }
                         return;
@@ -150,7 +150,7 @@ public final class f0 extends z implements b6 {
 
     @Override
     public final void e() {
-        this.f49739w.e();
+        this.f49775w.e();
         j();
         i();
     }
@@ -165,10 +165,10 @@ public final class f0 extends z implements b6 {
 
     public final void j() {
         int i10 = k6.Oh;
-        g6 g6Var = this.f49737r;
+        g6 g6Var = this.f49773r;
         int v02 = k6.v0(i10, g6Var);
-        int v = k6.v(k6.v0(k6.f21659d6, g6Var), k6.l1(0.1f, v02));
-        TextView textView = this.f49740x;
+        int v = k6.v(k6.v0(k6.f21661d6, g6Var), k6.l1(0.1f, v02));
+        TextView textView = this.f49776x;
         textView.setTextColor(v02);
         textView.setBackground(k6.Z(v, k6.l1(0.16f, v02), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(19.0f)));
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_add).mutate();
@@ -186,14 +186,14 @@ public final class f0 extends z implements b6 {
         int i15;
         int i16;
         int size = View.MeasureSpec.getSize(i10);
-        ArrayList arrayList = this.f49741y;
+        ArrayList arrayList = this.f49777y;
         int size2 = arrayList.size();
         if (size2 > 0 && size2 < 8) {
             i12 = AndroidUtilities.dp(45.0f);
         } else {
             i12 = 0;
         }
-        HorizontalScrollView horizontalScrollView = this.f49738s;
+        HorizontalScrollView horizontalScrollView = this.f49774s;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) horizontalScrollView.getLayoutParams();
         if (layoutParams.rightMargin != i12) {
             layoutParams.rightMargin = i12;
@@ -210,7 +210,7 @@ public final class f0 extends z implements b6 {
                 for (int i19 = 0; i19 < size3; i19++) {
                     c0 c0Var = (c0) arrayList.get(i19);
                     c0Var.getClass();
-                    int max3 = Math.max(AndroidUtilities.dp(34.0f), c0Var.f49680a.getPreferredWidth());
+                    int max3 = Math.max(AndroidUtilities.dp(34.0f), c0Var.f49716a.getPreferredWidth());
                     iArr[i19] = max3;
                     i18 += max3;
                 }
@@ -255,13 +255,13 @@ public final class f0 extends z implements b6 {
                         int i30 = iArr[i29];
                         c0 c0Var2 = (c0) arrayList.get(i29);
                         c0Var2.getClass();
-                        i28 += i30 - Math.max(AndroidUtilities.dp(34.0f), c0Var2.f49680a.getMinWidth());
+                        i28 += i30 - Math.max(AndroidUtilities.dp(34.0f), c0Var2.f49716a.getMinWidth());
                     }
                     if (i28 <= 0) {
                         for (int i31 = 0; i31 < size3; i31++) {
                             c0 c0Var3 = (c0) arrayList.get(i31);
                             c0Var3.getClass();
-                            iArr[i31] = Math.max(AndroidUtilities.dp(34.0f), c0Var3.f49680a.getMinWidth());
+                            iArr[i31] = Math.max(AndroidUtilities.dp(34.0f), c0Var3.f49716a.getMinWidth());
                         }
                     } else {
                         int min = Math.min(i18 - max2, i28);
@@ -271,7 +271,7 @@ public final class f0 extends z implements b6 {
                             int i34 = iArr[i32];
                             c0 c0Var4 = (c0) arrayList.get(i32);
                             c0Var4.getClass();
-                            int max4 = i34 - Math.max(AndroidUtilities.dp(34.0f), c0Var4.f49680a.getMinWidth());
+                            int max4 = i34 - Math.max(AndroidUtilities.dp(34.0f), c0Var4.f49716a.getMinWidth());
                             if (i32 == i17) {
                                 i14 = min - i33;
                                 i13 = min;
@@ -290,7 +290,7 @@ public final class f0 extends z implements b6 {
                 for (int i35 = 0; i35 < size3; i35++) {
                     c0 c0Var5 = (c0) arrayList.get(i35);
                     int i36 = iArr[i35];
-                    RichMessageLayout.RichButton richButton = c0Var5.f49680a;
+                    RichMessageLayout.RichButton richButton = c0Var5.f49716a;
                     richButton.width = Math.max(AndroidUtilities.dp(34.0f), i36);
                     LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) c0Var5.getLayoutParams();
                     if (layoutParams2 != null) {
@@ -305,7 +305,7 @@ public final class f0 extends z implements b6 {
             }
         }
         if (size2 > 0) {
-            dp = ((c0) arrayList.get(0)).f49680a.getHeight();
+            dp = ((c0) arrayList.get(0)).f49716a.getHeight();
             dp2 = AndroidUtilities.dp(8.0f);
         } else {
             dp = AndroidUtilities.dp(SharedConfig.fontSize + 18);

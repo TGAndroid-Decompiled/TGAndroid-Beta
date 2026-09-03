@@ -49,8 +49,8 @@ public final class m {
             v[] vVarArr = this.f10161b;
             if (i10 < vVarArr.length) {
                 v vVar = new v((char) 0, 7);
-                vVar.f44183c = new float[Math.max(64, 2)];
-                vVar.f44182b = 0;
+                vVar.f44214c = new float[Math.max(64, 2)];
+                vVar.f44213b = 0;
                 vVarArr[i10] = vVar;
                 i10++;
             } else {
@@ -73,7 +73,7 @@ public final class m {
         Rect rect2 = rect;
         v[] vVarArr = this.f10161b;
         for (v vVar : vVarArr) {
-            vVar.f44182b = 0;
+            vVar.f44213b = 0;
         }
         int i14 = 0;
         while (i14 < 100) {
@@ -282,13 +282,13 @@ public final class m {
                             v vVar2 = vVarArr[i36];
                             float[] fArr5 = fArr[i36];
                             int i37 = iArr5[i36];
-                            int i38 = vVar2.f44182b + i37;
-                            float[] fArr6 = (float[]) vVar2.f44183c;
+                            int i38 = vVar2.f44213b + i37;
+                            float[] fArr6 = (float[]) vVar2.f44214c;
                             if (i38 > fArr6.length) {
-                                vVar2.f44183c = Arrays.copyOf((float[]) vVar2.f44183c, Math.max(i38, fArr6.length * 2));
+                                vVar2.f44214c = Arrays.copyOf((float[]) vVar2.f44214c, Math.max(i38, fArr6.length * 2));
                             }
-                            System.arraycopy(fArr5, 0, (float[]) vVar2.f44183c, vVar2.f44182b, i37);
-                            vVar2.f44182b += i37;
+                            System.arraycopy(fArr5, 0, (float[]) vVar2.f44214c, vVar2.f44213b, i37);
+                            vVar2.f44213b += i37;
                         }
                         i14 = i10 + 1;
                         rect2 = rect;
@@ -306,9 +306,9 @@ public final class m {
             for (int i39 = 0; i39 < fArr7.length; i39++) {
                 v vVar3 = vVarArr[i39];
                 Paint paint = kVar2.f10133a[i39];
-                int i40 = vVar3.f44182b;
+                int i40 = vVar3.f44213b;
                 if (i40 > 0) {
-                    canvas.drawPoints((float[]) vVar3.f44183c, 0, i40, paint);
+                    canvas.drawPoints((float[]) vVar3.f44214c, 0, i40, paint);
                 }
             }
         }

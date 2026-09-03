@@ -1,39 +1,39 @@
 package r3;
 public final class w {
-    public final byte[] f46590a = new byte[10];
-    public boolean f46591b;
-    public int f46592c;
+    public final byte[] f46621a = new byte[10];
+    public boolean f46622b;
+    public int f46623c;
     public long d;
-    public int f46593e;
-    public int f46594f;
-    public int f46595g;
+    public int f46624e;
+    public int f46625f;
+    public int f46626g;
 
     public final void a(v vVar, u uVar) {
-        if (this.f46592c > 0) {
-            vVar.c(this.d, this.f46593e, this.f46594f, this.f46595g, uVar);
-            this.f46592c = 0;
+        if (this.f46623c > 0) {
+            vVar.c(this.d, this.f46624e, this.f46625f, this.f46626g, uVar);
+            this.f46623c = 0;
         }
     }
 
     public final void b(v vVar, long j10, int i10, int i11, int i12, u uVar) {
         boolean z4;
-        if (this.f46595g <= i11 + i12) {
+        if (this.f46626g <= i11 + i12) {
             z4 = true;
         } else {
             z4 = false;
         }
         if (z4) {
-            if (this.f46591b) {
-                int i13 = this.f46592c;
+            if (this.f46622b) {
+                int i13 = this.f46623c;
                 int i14 = i13 + 1;
-                this.f46592c = i14;
+                this.f46623c = i14;
                 if (i13 == 0) {
                     this.d = j10;
-                    this.f46593e = i10;
-                    this.f46594f = 0;
+                    this.f46624e = i10;
+                    this.f46625f = 0;
                 }
-                this.f46594f += i11;
-                this.f46595g = i12;
+                this.f46625f += i11;
+                this.f46626g = i12;
                 if (i14 >= 16) {
                     a(vVar, uVar);
                     return;
@@ -47,9 +47,9 @@ public final class w {
 
     public final void c(l lVar) {
         char c3;
-        if (!this.f46591b) {
+        if (!this.f46622b) {
             int i10 = 0;
-            byte[] bArr = this.f46590a;
+            byte[] bArr = this.f46621a;
             lVar.b(0, 10, bArr);
             lVar.r();
             if (bArr[4] == -8 && bArr[5] == 114 && bArr[6] == 111) {
@@ -69,7 +69,7 @@ public final class w {
             if (i10 == 0) {
                 return;
             }
-            this.f46591b = true;
+            this.f46622b = true;
         }
     }
 }

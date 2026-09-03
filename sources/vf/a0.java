@@ -5,16 +5,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.sl0;
-public final class a0 extends sl0 {
-    public final Context f48976c;
+import org.telegram.ui.Components.rl0;
+public final class a0 extends rl0 {
+    public final Context f49012c;
     public final ArrayList d = new ArrayList();
-    public String f48977e;
-    public final c0 f48978f;
+    public String f49013e;
+    public final c0 f49014f;
 
     public a0(c0 c0Var, Context context) {
-        this.f48978f = c0Var;
-        this.f48976c = context;
+        this.f49014f = c0Var;
+        this.f49012c = context;
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class a0 extends sl0 {
     @Override
     public final void l() {
         super.l();
-        this.f48978f.K();
+        this.f49014f.K();
     }
 
     @Override
@@ -55,7 +55,7 @@ public final class a0 extends sl0 {
     @Override
     public final f2.m1 x(ViewGroup viewGroup, int i10) {
         View l1Var;
-        Context context = this.f48976c;
+        Context context = this.f49012c;
         if (i10 != 0) {
             if (i10 != 1) {
                 l1Var = new View(context);
@@ -66,7 +66,7 @@ public final class a0 extends sl0 {
                 l1Var.setTag(-33024);
             }
         } else {
-            l1Var = new l1(context, this.f48978f.f26545a, false);
+            l1Var = new l1(context, this.f49014f.f26589a, false);
         }
         return new f2.m1(l1Var);
     }

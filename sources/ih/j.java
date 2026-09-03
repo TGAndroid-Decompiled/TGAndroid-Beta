@@ -364,10 +364,10 @@ public final class j extends Drawable implements Animator.AnimatorListener {
                                         M2.setAlpha(alpha2);
                                     }
                                     if (R2 || paint != null) {
-                                        int alpha3 = k6.f21728h2.getAlpha();
-                                        k6.f21728h2.setAlpha((int) (alpha3 * f26));
-                                        canvas3.drawRoundRect(rectF3, dp4, dp4, k6.f21728h2);
-                                        k6.f21728h2.setAlpha(alpha3);
+                                        int alpha3 = k6.f21730h2.getAlpha();
+                                        k6.f21730h2.setAlpha((int) (alpha3 * f26));
+                                        canvas3.drawRoundRect(rectF3, dp4, dp4, k6.f21730h2);
+                                        k6.f21730h2.setAlpha(alpha3);
                                     }
                                     canvas3.save();
                                     canvas3.translate(f24 + AndroidUtilities.dp(f27), ((AndroidUtilities.dp(f22) - dVar2.h.getHeight()) / 2.0f) + f25);
@@ -552,10 +552,10 @@ public final class j extends Drawable implements Animator.AnimatorListener {
                                                     M2.setAlpha(alpha2);
                                                 }
                                                 if (R2 || paint2 != null) {
-                                                    int alpha3 = k6.f21728h2.getAlpha();
-                                                    k6.f21728h2.setAlpha((int) (alpha3 * f262));
-                                                    canvas3.drawRoundRect(rectF32, dp42, dp42, k6.f21728h2);
-                                                    k6.f21728h2.setAlpha(alpha3);
+                                                    int alpha3 = k6.f21730h2.getAlpha();
+                                                    k6.f21730h2.setAlpha((int) (alpha3 * f262));
+                                                    canvas3.drawRoundRect(rectF32, dp42, dp42, k6.f21730h2);
+                                                    k6.f21730h2.setAlpha(alpha3);
                                                 }
                                                 canvas3.save();
                                                 canvas3.translate(f242 + AndroidUtilities.dp(f272), ((AndroidUtilities.dp(f222) - dVar22.h.getHeight()) / 2.0f) + f252);
@@ -633,7 +633,7 @@ public final class j extends Drawable implements Animator.AnimatorListener {
             invalidateSelf();
             qb qbVar = this.T;
             if (qbVar != null) {
-                qbVar.f30358a.setVisibility(0);
+                qbVar.f30374a.setVisibility(0);
             }
             if (this.J) {
                 cVar.run();

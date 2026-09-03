@@ -2,20 +2,20 @@ package r5;
 
 import android.os.Parcel;
 public final class z extends a7.c {
-    public final h f46729b;
-    public final Class f46730c;
+    public final h f46760b;
+    public final Class f46761c;
 
     public z(h hVar) {
         super("com.google.android.gms.cast.framework.ISessionManagerListener", 1);
-        this.f46729b = hVar;
-        this.f46730c = c.class;
+        this.f46760b = hVar;
+        this.f46761c = c.class;
     }
 
     @Override
     public final boolean H0(int i10, Parcel parcel, Parcel parcel2) {
         boolean z4 = false;
-        Class cls = this.f46730c;
-        h hVar = this.f46729b;
+        Class cls = this.f46761c;
+        h hVar = this.f46760b;
         switch (i10) {
             case 1:
                 l6.b bVar = new l6.b(hVar);

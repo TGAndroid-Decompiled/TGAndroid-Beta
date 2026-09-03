@@ -8,21 +8,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.bf0;
 import org.telegram.ui.Components.cf0;
 public final class v5 extends FrameLayout {
-    public TextView f24313a;
-    public TextView f24314b;
-    public cf0 f24315c;
+    public TextView f24315a;
+    public TextView f24316b;
+    public cf0 f24317c;
     public AnimatorSet d;
-    public m2.b f24316e;
+    public m2.b f24318e;
 
     public final void a(String str, int i10, float f10) {
-        TextView textView = this.f24313a;
-        TextView textView2 = this.f24314b;
+        TextView textView = this.f24315a;
+        TextView textView2 = this.f24316b;
         AnimatorSet animatorSet = this.d;
         if (animatorSet != null) {
             animatorSet.cancel();
             this.d = null;
         }
-        AndroidUtilities.cancelRunOnUIThread(this.f24316e);
+        AndroidUtilities.cancelRunOnUIThread(this.f24318e);
         textView2.setTag(null);
         textView.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
         if (f10 > 0.0f) {
@@ -32,9 +32,9 @@ public final class v5 extends FrameLayout {
         }
         textView2.setAlpha(0.0f);
         textView.setAlpha(1.0f);
-        cf0 cf0Var = this.f24315c;
+        cf0 cf0Var = this.f24317c;
         cf0Var.h = i10;
-        cf0Var.f25945n = 100;
+        cf0Var.f25922n = 100;
         cf0Var.a((int) f10, false);
     }
 
@@ -44,12 +44,12 @@ public final class v5 extends FrameLayout {
     }
 
     public void setSeekBarDelegate(bf0 bf0Var) {
-        this.f24315c.setDelegate(new i9(this, bf0Var));
+        this.f24317c.setDelegate(new i9(this, bf0Var));
     }
 
     @Override
     public void setTag(Object obj) {
         super.setTag(obj);
-        this.f24315c.setTag(obj);
+        this.f24317c.setTag(obj);
     }
 }

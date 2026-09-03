@@ -6,38 +6,38 @@ import android.view.View;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.AnimatedArrowDrawable;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.i61;
-import org.telegram.ui.Components.j51;
-import org.telegram.ui.Components.tl0;
-import org.telegram.ui.Components.x51;
-public final class q0 extends i51 {
-    public static final int f49935a = 0;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.w51;
+public final class q0 extends g51 {
+    public static final int f49971a = 0;
 
     static {
-        i51.setup(new i51());
+        g51.setup(new g51());
     }
 
     @Override
-    public final void bindView(View view, j51 j51Var, boolean z4, x51 x51Var, i61 i61Var) {
+    public final void bindView(View view, h51 h51Var, boolean z4, w51 w51Var, h61 h61Var) {
         boolean z10;
         float f10;
         r0 r0Var = (r0) view;
-        a aVar = (a) j51Var.G;
-        z2 z2Var = (z2) j51Var.H;
+        a aVar = (a) h51Var.G;
+        z2 z2Var = (z2) h51Var.H;
         e1 e1Var = r0Var.d;
         boolean z11 = false;
-        if (r0Var.f49965f != aVar) {
+        if (r0Var.f50001f != aVar) {
             z10 = true;
         } else {
             z10 = false;
         }
-        r0Var.f49965f = aVar;
+        r0Var.f50001f = aVar;
         r0Var.h = z2Var;
-        TL_iv.PageBlock pageBlock = aVar.f49617b;
+        TL_iv.PageBlock pageBlock = aVar.f49653b;
         if (pageBlock instanceof TL_iv.pageBlockDetails) {
             TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) pageBlock;
-            AnimatedArrowDrawable animatedArrowDrawable = r0Var.f49963c;
+            AnimatedArrowDrawable animatedArrowDrawable = r0Var.f49999c;
             if (pageblockdetails.open) {
                 f10 = 0.0f;
             } else {
@@ -45,11 +45,11 @@ public final class q0 extends i51 {
             }
             animatedArrowDrawable.a(f10);
             SpannableStringBuilder r10 = x5.r(pageblockdetails.title, null, true);
-            if (!aVar.f49632s) {
-                aVar.f49632s = true;
-                aVar.f49631r = (r10.length() == 0 || (x5.q(0, r10.length(), r10) & 1) != 0) ? true : true;
+            if (!aVar.f49668s) {
+                aVar.f49668s = true;
+                aVar.f49667r = (r10.length() == 0 || (x5.q(0, r10.length(), r10) & 1) != 0) ? true : true;
             }
-            e1Var.setAutoBold(aVar.f49631r);
+            e1Var.setAutoBold(aVar.f49667r);
             if (!z10 && String.valueOf(e1Var.getText()).equals(x5.l(pageblockdetails.title))) {
                 return;
             }
@@ -59,7 +59,7 @@ public final class q0 extends i51 {
     }
 
     @Override
-    public final View createView(Context context, tl0 tl0Var, int i10, int i11, g6 g6Var) {
+    public final View createView(Context context, sl0 sl0Var, int i10, int i11, g6 g6Var) {
         return new r0(context, g6Var);
     }
 

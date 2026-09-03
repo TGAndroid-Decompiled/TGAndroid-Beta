@@ -16,20 +16,20 @@ public final class u4 extends View {
     public final Camera C;
     public final h20 D;
     public final RectF E;
-    public p4 f14872a;
-    public p4 f14873b;
-    public p4 f14874c;
+    public p4 f14874a;
+    public p4 f14875b;
+    public p4 f14876c;
     public float d;
-    public float f14875e;
-    public float f14876f;
+    public float f14877e;
+    public float f14878f;
     public boolean h;
-    public boolean f14877n;
-    public boolean f14878r;
-    public o4 f14879s;
+    public boolean f14879n;
+    public boolean f14880r;
+    public o4 f14881s;
     public o4 v;
-    public o4 f14880w;
-    public float f14881x;
-    public float f14882y;
+    public o4 f14882w;
+    public float f14883x;
+    public float f14884y;
 
     public u4(Context context) {
         super(context);
@@ -44,7 +44,7 @@ public final class u4 extends View {
         float f15;
         if (o4Var != null) {
             Matrix matrix = o4Var.d;
-            Paint paint = o4Var.f14520c;
+            Paint paint = o4Var.f14522c;
             if (paint != null) {
                 float f16 = (f10 - 0.5f) / 1.5f;
                 float clamp01 = Utilities.clamp01(1.0f - Math.abs(f16));
@@ -55,7 +55,7 @@ public final class u4 extends View {
                 canvas.saveLayerAlpha(f18, 0.0f, f19, f12, 255, 31);
                 matrix.reset();
                 matrix.postTranslate(f17, Math.min(AndroidUtilities.dp(176.0f), f12) / 2.0f);
-                o4Var.f14521e.setLocalMatrix(matrix);
+                o4Var.f14523e.setLocalMatrix(matrix);
                 paint.setAlpha((int) (clamp01 * 255.0f));
                 canvas.drawRect(f18, 0.0f, f19, f12, paint);
                 canvas.save();
@@ -75,7 +75,7 @@ public final class u4 extends View {
                     } else {
                         f15 = 0.0f;
                     }
-                    iArr[i10] = org.telegram.ui.ActionBar.k6.v(iArr[i10], org.telegram.ui.ActionBar.k6.l1(clamp01 * f15, o4Var.f14523g));
+                    iArr[i10] = org.telegram.ui.ActionBar.k6.v(iArr[i10], org.telegram.ui.ActionBar.k6.l1(clamp01 * f15, o4Var.f14525g));
                 }
                 for (int i11 = 0; i11 < iArr2.length; i11++) {
                     float width2 = (getWidth() / (iArr2.length - 1)) * i11;
@@ -84,7 +84,7 @@ public final class u4 extends View {
                     } else {
                         f14 = 0.0f;
                     }
-                    iArr2[i11] = org.telegram.ui.ActionBar.k6.v(iArr2[i11], org.telegram.ui.ActionBar.k6.l1(clamp01 * f14, o4Var.f14522f));
+                    iArr2[i11] = org.telegram.ui.ActionBar.k6.v(iArr2[i11], org.telegram.ui.ActionBar.k6.l1(clamp01 * f14, o4Var.f14524f));
                 }
                 for (int i12 = 0; i12 < iArr3.length; i12++) {
                     float width3 = (getWidth() / (iArr2.length - 1)) * i12;
@@ -140,26 +140,26 @@ public final class u4 extends View {
 
     public final void c() {
         boolean z4;
-        if (this.f14872a == null && this.f14873b == null && this.f14874c == null && this.f14879s == null && this.v == null && this.f14880w == null) {
+        if (this.f14874a == null && this.f14875b == null && this.f14876c == null && this.f14881s == null && this.v == null && this.f14882w == null) {
             z4 = false;
         } else {
             z4 = true;
         }
-        this.f14874c = null;
-        this.f14873b = null;
-        this.f14872a = null;
-        this.f14876f = 0.0f;
-        this.f14875e = 0.0f;
+        this.f14876c = null;
+        this.f14875b = null;
+        this.f14874a = null;
+        this.f14878f = 0.0f;
+        this.f14877e = 0.0f;
         this.d = 0.0f;
-        this.f14878r = false;
-        this.f14877n = false;
+        this.f14880r = false;
+        this.f14879n = false;
         this.h = false;
-        this.f14880w = null;
+        this.f14882w = null;
         this.v = null;
-        this.f14879s = null;
+        this.f14881s = null;
         this.B = 0.0f;
-        this.f14882y = 0.0f;
-        this.f14881x = 0.0f;
+        this.f14884y = 0.0f;
+        this.f14883x = 0.0f;
         if (z4) {
             invalidate();
         }
@@ -167,8 +167,8 @@ public final class u4 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        b(canvas, this.f14872a, this.d, this.h);
-        b(canvas, this.f14873b, this.f14875e, this.f14877n);
-        b(canvas, this.f14874c, this.f14876f, this.f14878r);
+        b(canvas, this.f14874a, this.d, this.h);
+        b(canvas, this.f14875b, this.f14877e, this.f14879n);
+        b(canvas, this.f14876c, this.f14878f, this.f14880r);
     }
 }

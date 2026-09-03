@@ -31,7 +31,7 @@ public final class l1 implements Runnable {
         }
         RecyclerView recyclerView = this.h;
         recyclerView.removeCallbacks(this);
-        WeakHashMap weakHashMap = r0.j0.f46438a;
+        WeakHashMap weakHashMap = r0.j0.f46469a;
         recyclerView.postOnAnimation(this);
     }
 
@@ -225,7 +225,7 @@ public final class l1 implements Runnable {
                         }
                     }
                     if (i14 != 0 || currVelocity != 0) {
-                        WeakHashMap weakHashMap = r0.j0.f46438a;
+                        WeakHashMap weakHashMap = r0.j0.f46469a;
                         recyclerView.postInvalidateOnAnimation();
                     }
                 }
@@ -253,7 +253,7 @@ public final class l1 implements Runnable {
         this.f5866e = false;
         if (this.f5867f) {
             recyclerView.removeCallbacks(this);
-            WeakHashMap weakHashMap2 = r0.j0.f46438a;
+            WeakHashMap weakHashMap2 = r0.j0.f46469a;
             recyclerView.postOnAnimation(this);
             return;
         }

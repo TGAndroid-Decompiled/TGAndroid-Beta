@@ -58,7 +58,7 @@ public final class f {
             e(view);
         }
         b(false);
-        ((HashMap) r3Var.f13327a).put(sb2, this);
+        ((HashMap) r3Var.f13329a).put(sb2, this);
         r3Var.g();
     }
 
@@ -90,7 +90,7 @@ public final class f {
             if (z4) {
                 r3 r3Var = this.f2491a;
                 r3Var.g();
-                ((a) r3Var.f13329c).invalidate();
+                ((a) r3Var.f13331c).invalidate();
             }
         }
     }
@@ -98,7 +98,7 @@ public final class f {
     public final void c() {
         this.f2497i.o(null);
         r3 r3Var = this.f2491a;
-        if (((HashMap) r3Var.f13327a).remove(this.f2493c) != null) {
+        if (((HashMap) r3Var.f13329a).remove(this.f2493c) != null) {
             r3Var.g();
         }
     }

@@ -1,83 +1,56 @@
 package org.telegram.ui;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class pc implements h5.d {
-    public final int f40010a;
-    public final boolean f40011b;
-    public final Object f40012c;
+import android.content.Context;
+import android.view.ViewGroup;
+import org.telegram.messenger.MessagesController;
+public final class pc extends org.telegram.ui.Components.rl0 {
+    public final Context f39971c;
+    public final org.telegram.ui.ActionBar.g6 d;
+    public final int f39972e;
+    public final rc f39973f;
 
-    public pc(int i10, Object obj, boolean z4) {
-        this.f40010a = i10;
-        this.f40012c = obj;
-        this.f40011b = z4;
+    public pc(rc rcVar, Context context, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
+        this.f39973f = rcVar;
+        this.f39971c = context;
+        this.d = g6Var;
+        this.f39972e = i10;
     }
 
     @Override
-    public final void accept(Object obj) {
-        boolean z4;
-        boolean z10;
-        boolean z11;
-        org.telegram.ui.Components.k81 k81Var;
-        switch (this.f40010a) {
-            case 0:
-                sc scVar = (sc) this.f40012c;
-                View view = (View) obj;
-                rc rcVar = (rc) view;
-                scVar.f41225b.getClass();
-                if (RecyclerView.R(view) == scVar.f41227e) {
-                    z4 = true;
-                } else {
-                    z4 = false;
-                }
-                rcVar.f40926s = z4;
-                if (!this.f40011b) {
-                    rcVar.v.f(z4, true);
-                }
-                rcVar.invalidate();
-                return;
-            case 1:
-                xn xnVar = (xn) this.f40012c;
-                View view2 = (View) obj;
-                boolean z12 = view2 instanceof org.telegram.ui.Cells.t1;
-                boolean z13 = this.f40011b;
-                if (z12) {
-                    org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) view2;
-                    if (t1Var.B8 && t1Var.D8) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (z10 != z13 && xnVar.B9()) {
-                        t1Var.B8 = z13;
-                        t1Var.D8 = xnVar.B9();
-                        t1Var.f23919k8 = true;
-                        t1Var.forceLayout();
-                        return;
-                    }
-                    return;
-                } else if (view2 instanceof org.telegram.ui.Cells.v0) {
-                    ((org.telegram.ui.Cells.v0) view2).f24240b0 = z13;
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                org.telegram.ui.Components.l81 l81Var = (org.telegram.ui.Components.l81) this.f40012c;
-                View view3 = (View) obj;
-                l81Var.v.getClass();
-                int R = RecyclerView.R(view3);
-                if (view3 instanceof org.telegram.ui.Components.j81) {
-                    org.telegram.ui.Components.j81 j81Var = (org.telegram.ui.Components.j81) view3;
-                    if (this.f40011b && (k81Var = l81Var.f28671y) != null && ((oh.h4) k81Var).Q(R)) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    j81Var.setReordering(z11);
-                    return;
-                }
-                return;
+    public final boolean D(f2.m1 m1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f39972e).peerColors;
+        if (peerColors == null) {
+            return 0;
         }
+        return peerColors.colors.size();
+    }
+
+    @Override
+    public final void v(f2.m1 m1Var, int i10) {
+        boolean z4;
+        qc qcVar = (qc) m1Var.f5875a;
+        qcVar.setBackgroundColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21661d6, this.d));
+        if (i10 == this.f39973f.f40812e) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        qcVar.f40429s = z4;
+        qcVar.v.f(z4, true);
+        qcVar.invalidate();
+        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f39972e).peerColors;
+        if (peerColors != null && i10 >= 0 && i10 < peerColors.colors.size()) {
+            qcVar.a(peerColors.colors.get(i10));
+        }
+    }
+
+    @Override
+    public final f2.m1 x(ViewGroup viewGroup, int i10) {
+        return new f2.m1(new qc(this.f39973f, this.f39971c));
     }
 }

@@ -24,14 +24,14 @@ public final class e extends com.google.android.gms.common.api.j {
             Context context = this.f2852a;
             if (i10 != 2) {
                 if (i10 != 3) {
-                    o5.h.f16612a.g("getNoImplementationSignInIntent()", new Object[0]);
+                    o5.h.f16614a.g("getNoImplementationSignInIntent()", new Object[0]);
                     Intent a2 = o5.h.a(context, (GoogleSignInOptions) bVar);
                     a2.setAction("com.google.android.gms.auth.NO_IMPL");
                     return a2;
                 }
                 return o5.h.a(context, (GoogleSignInOptions) bVar);
             }
-            o5.h.f16612a.g("getFallbackSignInIntent()", new Object[0]);
+            o5.h.f16614a.g("getFallbackSignInIntent()", new Object[0]);
             Intent a10 = o5.h.a(context, (GoogleSignInOptions) bVar);
             a10.setAction("com.google.android.gms.auth.APPAUTH_SIGN_IN");
             return a10;
@@ -47,7 +47,7 @@ public final class e extends com.google.android.gms.common.api.j {
         } else {
             z4 = false;
         }
-        o5.h.f16612a.g("Signing out", new Object[0]);
+        o5.h.f16614a.g("Signing out", new Object[0]);
         o5.h.b(this.f2852a);
         t0 t0Var = this.h;
         if (z4) {

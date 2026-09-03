@@ -10,25 +10,25 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.ui.ProfileActivity;
 public final class xs extends AnimatorListenerAdapter {
-    public final int f33173a;
-    public final Object f33174b;
-    public final Object f33175c;
+    public final int f33166a;
+    public final Object f33167b;
+    public final Object f33168c;
     public final Object d;
-    public final Object f33176e;
+    public final Object f33169e;
 
     public xs(f2.l lVar, f2.m1 m1Var, Object obj, Object obj2, int i10) {
-        this.f33173a = i10;
-        this.f33176e = lVar;
-        this.f33175c = m1Var;
-        this.f33174b = obj;
+        this.f33166a = i10;
+        this.f33169e = lVar;
+        this.f33168c = m1Var;
+        this.f33167b = obj;
         this.d = obj2;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f33173a) {
+        switch (this.f33166a) {
             case 5:
-                View view = (View) this.f33174b;
+                View view = (View) this.f33167b;
                 view.setTranslationY(0.0f);
                 if (view instanceof org.telegram.ui.Cells.t1) {
                     ((org.telegram.ui.Cells.t1) view).getTransitionParams().h = false;
@@ -44,38 +44,38 @@ public final class xs extends AnimatorListenerAdapter {
     @Override
     public final void onAnimationEnd(Animator animator) {
         org.telegram.ui.ActionBar.k kVar;
-        switch (this.f33173a) {
+        switch (this.f33166a) {
             case 0:
-                ((f2.m1) this.f33175c).f5875a.setAlpha(1.0f);
+                ((f2.m1) this.f33168c).f5875a.setAlpha(1.0f);
                 ((AnimatorSet) this.d).removeAllListeners();
-                at atVar = (at) this.f33176e;
-                ys ysVar = (ys) this.f33174b;
-                atVar.d(ysVar.f33567a);
-                atVar.f25344y.remove(ysVar.f33567a);
+                at atVar = (at) this.f33169e;
+                ys ysVar = (ys) this.f33167b;
+                atVar.d(ysVar.f33594a);
+                atVar.f25371y.remove(ysVar.f33594a);
                 atVar.A();
-                atVar.d(ysVar.f33568b);
-                atVar.f25344y.remove(ysVar.f33568b);
+                atVar.d(ysVar.f33595b);
+                atVar.f25371y.remove(ysVar.f33595b);
                 atVar.A();
                 return;
             case 1:
-                ((zu0) this.f33176e).E1 = false;
-                View view = (View) this.f33174b;
+                ((yu0) this.f33169e).E1 = false;
+                View view = (View) this.f33167b;
                 if (view.getParent() != null) {
-                    ((rt0) this.f33175c).removeView(view);
+                    ((qt0) this.f33168c).removeView(view);
                     ((Bitmap) this.d).recycle();
                     return;
                 }
                 return;
             case 2:
-                org.telegram.ui.Components.voip.q2 q2Var = (org.telegram.ui.Components.voip.q2) this.f33176e;
-                TextView[] textViewArr = q2Var.f32291a;
-                View view2 = (View) this.f33174b;
+                org.telegram.ui.Components.voip.q2 q2Var = (org.telegram.ui.Components.voip.q2) this.f33169e;
+                TextView[] textViewArr = q2Var.f32296a;
+                View view2 = (View) this.f33167b;
                 view2.setVisibility(8);
                 view2.setAlpha(1.0f);
                 view2.setTranslationY(0.0f);
                 view2.setScaleY(1.0f);
                 view2.setScaleX(1.0f);
-                View view3 = (View) this.f33175c;
+                View view3 = (View) this.f33168c;
                 view3.setAlpha(1.0f);
                 view3.setTranslationY(0.0f);
                 view3.setVisibility(0);
@@ -85,27 +85,27 @@ public final class xs extends AnimatorListenerAdapter {
                 if (runnable != null) {
                     runnable.run();
                 }
-                q2Var.f32295f = false;
-                CharSequence charSequence = q2Var.f32294e;
+                q2Var.f32300f = false;
+                CharSequence charSequence = q2Var.f32299e;
                 if (charSequence != null) {
                     if (charSequence.equals("timer")) {
                         q2Var.e(true);
                     } else {
-                        textViewArr[1].setText(q2Var.f32294e);
+                        textViewArr[1].setText(q2Var.f32299e);
                         q2Var.a(textViewArr[0], textViewArr[1], new oh.t3(this, 24));
                     }
-                    q2Var.f32294e = null;
+                    q2Var.f32299e = null;
                     return;
                 }
                 return;
             case 3:
                 Runnable runnable2 = (Runnable) this.d;
-                ProfileActivity profileActivity = (ProfileActivity) this.f33176e;
-                org.telegram.ui.ActionBar.k kVar2 = (org.telegram.ui.ActionBar.k) this.f33174b;
+                ProfileActivity profileActivity = (ProfileActivity) this.f33169e;
+                org.telegram.ui.ActionBar.k kVar2 = (org.telegram.ui.ActionBar.k) this.f33167b;
                 if (kVar2 != null) {
                     kVar2.setSkipDrawChild(false);
                 }
-                org.telegram.ui.ActionBar.w0 w0Var = (org.telegram.ui.ActionBar.w0) this.f33175c;
+                org.telegram.ui.ActionBar.w0 w0Var = (org.telegram.ui.ActionBar.w0) this.f33168c;
                 if (w0Var != null) {
                     w0Var.setAlpha(1.0f);
                 }
@@ -118,7 +118,7 @@ public final class xs extends AnimatorListenerAdapter {
                 if (profileActivity.M0 != null) {
                     kVar = ((org.telegram.ui.ActionBar.p2) profileActivity).actionBar;
                     org.telegram.ui.ActionBar.z n10 = kVar.n();
-                    ArrayList arrayList = n10.f22475e;
+                    ArrayList arrayList = n10.f22477e;
                     if (arrayList != null) {
                         arrayList.clear();
                     }
@@ -140,23 +140,23 @@ public final class xs extends AnimatorListenerAdapter {
                 profileActivity.fragmentView.invalidate();
                 return;
             case 4:
-                ((ViewPropertyAnimator) this.f33174b).setListener(null);
+                ((ViewPropertyAnimator) this.f33167b).setListener(null);
                 View view4 = (View) this.d;
                 view4.setAlpha(1.0f);
                 view4.setTranslationX(0.0f);
                 view4.setTranslationY(0.0f);
                 view4.setScaleX(1.0f);
                 view4.setScaleY(1.0f);
-                uf.a0 a0Var = (uf.a0) this.f33176e;
-                f2.m1 m1Var = (f2.m1) this.f33175c;
+                uf.a0 a0Var = (uf.a0) this.f33169e;
+                f2.m1 m1Var = (f2.m1) this.f33168c;
                 a0Var.d(m1Var);
                 a0Var.A.remove(m1Var);
                 a0Var.G();
                 return;
             default:
-                f2.m1 m1Var2 = (f2.m1) this.f33175c;
-                xh.n nVar = (xh.n) this.f33176e;
-                View view5 = (View) this.f33174b;
+                f2.m1 m1Var2 = (f2.m1) this.f33168c;
+                xh.n nVar = (xh.n) this.f33169e;
+                View view5 = (View) this.f33167b;
                 if (view5 instanceof org.telegram.ui.Cells.t1) {
                     ((org.telegram.ui.Cells.t1) view5).getTransitionParams().h = false;
                 }
@@ -172,19 +172,19 @@ public final class xs extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f33173a) {
+        switch (this.f33166a) {
             case 0:
-                at atVar = (at) this.f33176e;
-                ys ysVar = (ys) this.f33174b;
-                f2.m1 m1Var = ysVar.f33567a;
+                at atVar = (at) this.f33169e;
+                ys ysVar = (ys) this.f33167b;
+                f2.m1 m1Var = ysVar.f33594a;
                 atVar.getClass();
-                f2.m1 m1Var2 = ysVar.f33568b;
+                f2.m1 m1Var2 = ysVar.f33595b;
                 atVar.getClass();
                 return;
             case 4:
                 return;
             case 5:
-                ((xh.n) this.f33176e).getClass();
+                ((xh.n) this.f33169e).getClass();
                 return;
             default:
                 super.onAnimationStart(animator);
@@ -193,10 +193,10 @@ public final class xs extends AnimatorListenerAdapter {
     }
 
     public xs(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f33173a = i10;
-        this.f33176e = obj;
-        this.f33174b = obj2;
-        this.f33175c = obj3;
+        this.f33166a = i10;
+        this.f33169e = obj;
+        this.f33167b = obj2;
+        this.f33168c = obj3;
         this.d = obj4;
     }
 

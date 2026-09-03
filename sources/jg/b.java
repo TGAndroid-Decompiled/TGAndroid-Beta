@@ -44,9 +44,9 @@ public final class b extends FrameLayout {
         int v02 = k6.v0(k6.N6, g6Var);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         drawable.setColorFilter(new PorterDuffColorFilter(v02, mode));
-        drawable2.setColorFilter(new PorterDuffColorFilter(k6.v0(k6.f21786k7, g6Var), mode));
+        drawable2.setColorFilter(new PorterDuffColorFilter(k6.v0(k6.f21788k7, g6Var), mode));
         imageView.setImageDrawable(new pq(drawable, drawable2));
-        setBackgroundColor(k6.v0(k6.f21731h5, g6Var));
+        setBackgroundColor(k6.v0(k6.f21733h5, g6Var));
     }
 
     @Override

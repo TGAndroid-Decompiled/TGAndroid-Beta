@@ -5,15 +5,15 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stories;
 public final class ka0 implements h5.d {
-    public final int f38332a;
-    public final LaunchActivity f38333b;
-    public final v10 f38334c;
+    public final int f38238a;
+    public final LaunchActivity f38239b;
+    public final z10 f38240c;
     public final Long d;
 
-    public ka0(LaunchActivity launchActivity, v10 v10Var, Long l10, int i10) {
-        this.f38332a = i10;
-        this.f38333b = launchActivity;
-        this.f38334c = v10Var;
+    public ka0(LaunchActivity launchActivity, z10 z10Var, Long l10, int i10) {
+        this.f38238a = i10;
+        this.f38239b = launchActivity;
+        this.f38240c = z10Var;
         this.d = l10;
     }
 
@@ -25,16 +25,16 @@ public final class ka0 implements h5.d {
         org.telegram.ui.Components.qc X2;
         int i12;
         int i13;
-        int i14 = this.f38332a;
+        int i14 = this.f38238a;
         Long l10 = this.d;
-        v10 v10Var = this.f38334c;
-        LaunchActivity launchActivity = this.f38333b;
+        z10 z10Var = this.f38240c;
+        LaunchActivity launchActivity = this.f38239b;
         TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
         switch (i14) {
             case 0:
                 Pattern pattern = LaunchActivity.f34134y1;
                 try {
-                    v10Var.run();
+                    z10Var.run();
                 } catch (Exception e6) {
                     FileLog.e(e6);
                 }
@@ -69,7 +69,7 @@ public final class ka0 implements h5.d {
             default:
                 Pattern pattern2 = LaunchActivity.f34134y1;
                 try {
-                    v10Var.run();
+                    z10Var.run();
                 } catch (Exception e10) {
                     FileLog.e(e10);
                 }

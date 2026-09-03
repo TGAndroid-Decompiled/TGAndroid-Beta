@@ -10,9 +10,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.k6;
 public final class n extends LinearLayout {
-    public final TextView f44403a;
-    public final TextView f44404b;
-    public boolean f44405c;
+    public final TextView f44434a;
+    public final TextView f44435b;
+    public boolean f44436c;
 
     public n(Context context) {
         super(context);
@@ -20,9 +20,9 @@ public final class n extends LinearLayout {
         setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
         setOrientation(1);
         TextView textView = new TextView(context);
-        this.f44403a = textView;
+        this.f44434a = textView;
         textView.setTextSize(1, 16.0f);
-        textView.setTextColor(k6.w0(null, k6.f21766j5, false));
+        textView.setTextColor(k6.w0(null, k6.f21768j5, false));
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
@@ -31,9 +31,9 @@ public final class n extends LinearLayout {
         textView.setGravity(i10);
         addView(textView, c6.t(-1, -2, 51, 0, 7, 0, 0));
         TextView textView2 = new TextView(context);
-        this.f44404b = textView2;
+        this.f44435b = textView2;
         textView2.setTextSize(1, 13.0f);
-        textView2.setTextColor(k6.w0(null, k6.f21893q5, false));
+        textView2.setTextColor(k6.w0(null, k6.f21895q5, false));
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
         addView(textView2, c6.t(-1, -2, 51, 0, 4, 0, 0));
     }
@@ -41,8 +41,8 @@ public final class n extends LinearLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f44405c) {
-            canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), k6.f21779k0);
+        if (this.f44436c) {
+            canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), k6.f21781k0);
         }
     }
 

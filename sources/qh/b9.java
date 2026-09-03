@@ -1,52 +1,56 @@
 package qh;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-import org.telegram.ui.Components.wo;
-public final class b9 extends AnimatorListenerAdapter {
-    public final int f45022a;
-    public final ca f45023b;
+import android.content.Context;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+public final class b9 extends z2 {
+    public final ba f45039h0;
 
-    public b9(ca caVar, int i10) {
-        this.f45022a = i10;
-        this.f45023b = caVar;
+    public b9(ba baVar, int i10, Context context, oh.b bVar, MediaController.AlbumEntry albumEntry, boolean z4, boolean z10, boolean z11) {
+        super(i10, context, bVar, albumEntry, z4, 1.39f, z10, z11);
+        this.f45039h0 = baVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f45022a) {
-            case 0:
-                ca caVar = this.f45023b;
-                caVar.f45098g2 = null;
-                caVar.f45128r.setTranslationY(0.0f);
-                caVar.f45128r.b(0.0f);
-                return;
-            case 1:
-                ca caVar2 = this.f45023b;
-                caVar2.f45115n.removeView(caVar2.J0);
-                caVar2.J0 = null;
-                caVar2.f45110k2 = null;
-                caVar2.f45114m2 = null;
-                i3 i3Var = caVar2.Z0.I;
-                boolean z4 = true;
-                if (caVar2.f45082c0 == 1) {
-                    z4 = false;
-                }
-                i3Var.b(z4);
-                return;
-            default:
-                ca caVar3 = this.f45023b;
-                wo woVar = caVar3.f45159z2;
-                if (woVar != null) {
-                    if (woVar.getParent() != null) {
-                        ((ViewGroup) caVar3.f45159z2.getParent()).removeView(caVar3.f45159z2);
-                    }
-                    caVar3.f45159z2 = null;
-                }
-                caVar3.B2 = null;
-                super.onAnimationEnd(animator);
-                return;
+    public final void a() {
+        ba baVar = this.f45039h0;
+        baVar.J0.setTranslationY(baVar.f45081n.getMeasuredHeight() - baVar.J0.g());
+        o8 o8Var = baVar.f45084n2;
+        if (o8Var != null) {
+            o8Var.run();
+            baVar.f45084n2 = null;
+        }
+    }
+
+    @Override
+    public final void c(boolean z4) {
+        if (this.f45039h0.f45048c0 == 0 && z4) {
+            AndroidUtilities.runOnUIThread(new org.telegram.ui.web.s0(this, 27));
+        }
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() < g()) {
+            ba baVar = this.f45039h0;
+            baVar.I0 = true;
+            baVar.f(false);
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void setTranslationY(float f10) {
+        super.setTranslationY(f10);
+        ba baVar = this.f45039h0;
+        if (baVar.f45067h2) {
+            float clamp = Utilities.clamp(1.0f - (f10 / (baVar.f45081n.getMeasuredHeight() - baVar.J0.g())), 1.0f, 0.0f);
+            baVar.f45094r.b(AndroidUtilities.dp(-32.0f) * clamp);
+            baVar.f45094r.setAlpha(1.0f - (0.6f * clamp));
+            baVar.f45059f0.setAlpha(1.0f - clamp);
         }
     }
 }

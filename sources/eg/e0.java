@@ -8,10 +8,10 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.e4;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 import org.telegram.ui.Components.j6;
-import org.telegram.ui.Components.lj0;
-import org.telegram.ui.Components.nm0;
-import org.telegram.ui.Components.yx0;
-import qh.b5;
+import org.telegram.ui.Components.kj0;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.xx0;
+import qh.a5;
 public final class e0 implements ValueAnimator.AnimatorUpdateListener {
     public final int f5166a;
     public final int f5167b;
@@ -42,9 +42,9 @@ public final class e0 implements ValueAnimator.AnimatorUpdateListener {
                 e4 e4Var = (e4) obj;
                 e4Var.getClass();
                 int offsetColor = AndroidUtilities.getOffsetColor(i12, i11, valueAnimator.getAnimatedFraction(), 1.0f);
-                lj0 lj0Var = e4Var.f22746f;
-                lj0Var.setColorFilter(new PorterDuffColorFilter(offsetColor, PorterDuff.Mode.SRC_IN));
-                k6.B1(lj0Var.getDrawable(), offsetColor & 620756991, true);
+                kj0 kj0Var = e4Var.f22748f;
+                kj0Var.setColorFilter(new PorterDuffColorFilter(offsetColor, PorterDuff.Mode.SRC_IN));
+                k6.B1(kj0Var.getDrawable(), offsetColor & 620756991, true);
                 return;
             case 2:
                 j6 j6Var = (j6) obj;
@@ -54,30 +54,30 @@ public final class e0 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 3:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) obj;
-                int i13 = ScrollSlidingTextTabStrip.f25009l0;
+                int i13 = ScrollSlidingTextTabStrip.f25011l0;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 scrollSlidingTextTabStrip.T = i12 * floatValue2;
                 scrollSlidingTextTabStrip.U = i11 * floatValue2;
-                scrollSlidingTextTabStrip.f25010a.invalidate();
+                scrollSlidingTextTabStrip.f25012a.invalidate();
                 scrollSlidingTextTabStrip.invalidate();
                 return;
             case 4:
                 float animatedFraction = valueAnimator.getAnimatedFraction();
-                yx0 yx0Var = (yx0) ((nm0) obj).f29565b;
-                yx0Var.f33617c.setAlpha(animatedFraction);
-                yx0Var.h.setAlpha(animatedFraction);
+                xx0 xx0Var = (xx0) ((mm0) obj).f29180b;
+                xx0Var.f33223c.setAlpha(animatedFraction);
+                xx0Var.h.setAlpha(animatedFraction);
                 if (i12 != 0) {
                     int i14 = (int) ((1.0f - animatedFraction) * i12);
-                    yx0Var.y0(i11 + i14);
-                    yx0Var.f33617c.setTranslationY(i14);
+                    xx0Var.y0(i11 + i14);
+                    xx0Var.f33223c.setTranslationY(i14);
                     return;
                 }
                 return;
             default:
-                b5 b5Var = (b5) obj;
+                a5 a5Var = (a5) obj;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                b5Var.f44989x1.f4524a = i0.a.d(floatValue3, i12, i11);
-                b5Var.Q0.invalidate();
+                a5Var.f44966x1.f4524a = i0.a.d(floatValue3, i12, i11);
+                a5Var.Q0.invalidate();
                 return;
         }
     }

@@ -1,33 +1,32 @@
 package org.telegram.ui.Components;
-public final class mk0 implements Runnable {
-    public final int f29148a;
-    public final pk0 f29149b;
 
-    public mk0(pk0 pk0Var, int i10) {
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+public final class mk0 extends ImageReceiver {
+    public final int f29148a;
+
+    public mk0(int i10, View view) {
+        super(view);
         this.f29148a = i10;
-        this.f29149b = pk0Var;
     }
 
     @Override
-    public final void run() {
+    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z4, int i11) {
         switch (this.f29148a) {
             case 0:
-                if (this.f29149b.f30098a.getImageReceiver().getLottieAnimation() != null && !this.f29149b.f30098a.getImageReceiver().getLottieAnimation().f27823i0 && !this.f29149b.f30098a.getImageReceiver().getLottieAnimation().w()) {
-                    this.f29149b.f30098a.getImageReceiver().getLottieAnimation().start();
+                if (drawable instanceof hj0) {
+                    ((hj0) drawable).L(0, false, true);
                 }
-                this.f29149b.B = false;
-                return;
+                return super.setImageBitmapByKey(drawable, str, i10, z4, i11);
             default:
-                pk0 pk0Var = this.f29149b;
-                rk0 rk0Var = pk0Var.M;
-                try {
-                    pk0Var.performHapticFeedback(0);
-                } catch (Exception unused) {
+                boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i10, z4, i11);
+                if (imageBitmapByKey && (drawable instanceof hj0)) {
+                    hj0 hj0Var = (hj0) drawable;
+                    hj0Var.L(0, false, true);
+                    hj0Var.stop();
                 }
-                rk0Var.f30773j0 = rk0Var.Q.indexOf(pk0Var.f30101e);
-                rk0Var.f30772i0 = pk0Var.f30101e;
-                rk0Var.invalidate();
-                return;
+                return imageBitmapByKey;
         }
     }
 }

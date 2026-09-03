@@ -3,19 +3,19 @@ package wh;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ti0;
 public final class e implements Runnable {
-    public final int f49707a;
-    public final q f49708b;
+    public final int f49743a;
+    public final q f49744b;
 
     public e(q qVar, int i10) {
-        this.f49707a = i10;
-        this.f49708b = qVar;
+        this.f49743a = i10;
+        this.f49744b = qVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f49707a) {
+        switch (this.f49743a) {
             case 0:
-                q qVar = this.f49708b;
+                q qVar = this.f49744b;
                 qVar.H(2147483646, true, 0, false, 0L);
                 ti0 ti0Var = qVar.L;
                 if (ti0Var != null) {
@@ -25,7 +25,7 @@ public final class e implements Runnable {
                 }
                 return;
             case 1:
-                q qVar2 = this.f49708b;
+                q qVar2 = this.f49744b;
                 qVar2.H(0, false, 0, false, 0L);
                 ti0 ti0Var2 = qVar2.L;
                 if (ti0Var2 != null) {
@@ -35,22 +35,22 @@ public final class e implements Runnable {
                 }
                 return;
             case 2:
-                q qVar3 = this.f49708b;
-                if (!UserConfig.getInstance(qVar3.f49929n).isPremium()) {
-                    new fg.n1(qVar3.f26546b.f29040c0, qVar3.getContext(), qVar3.f49929n, 43, true).show();
+                q qVar3 = this.f49744b;
+                if (!UserConfig.getInstance(qVar3.f49965n).isPremium()) {
+                    new fg.n1(qVar3.f26590b.f29058c0, qVar3.getContext(), qVar3.f49965n, 43, true).show();
                     return;
                 }
                 return;
             case 3:
-                q qVar4 = this.f49708b;
-                v3 v3Var = qVar4.f49931s;
+                q qVar4 = this.f49744b;
+                v3 v3Var = qVar4.f49967s;
                 if (v3Var != null) {
-                    v3Var.setSendEnabled(qVar4.f49930r.M3());
+                    v3Var.setSendEnabled(qVar4.f49966r.L3());
                     return;
                 }
                 return;
             default:
-                this.f49708b.a0();
+                this.f49744b.a0();
                 return;
         }
     }

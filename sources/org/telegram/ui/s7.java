@@ -8,11 +8,11 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class s7 extends i7 {
-    public final u7 f41148n;
+    public final u7 f41040n;
 
     public s7(u7 u7Var) {
         super(u7Var, 3);
-        this.f41148n = u7Var;
+        this.f41040n = u7Var;
     }
 
     @Override
@@ -21,24 +21,24 @@ public final class s7 extends i7 {
         boolean z10;
         float f10;
         m7 m7Var = (m7) m1Var.f5875a;
-        org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) m7Var.f38981b.getChildAt(0);
-        nh.a aVar = ((o7) this.f37339e.get(i10)).d;
+        org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) m7Var.f38866b.getChildAt(0);
+        nh.a aVar = ((o7) this.f37232e.get(i10)).d;
         if (aVar == m7Var.getTag()) {
             z4 = true;
         } else {
             z4 = false;
         }
-        if (i10 != this.f37339e.size() - 1) {
+        if (i10 != this.f37232e.size() - 1) {
             z10 = true;
         } else {
             z10 = false;
         }
         m7Var.setTag(aVar);
-        u7 u7Var = this.f41148n;
-        if (aVar.f16247f == null) {
+        u7 u7Var = this.f41040n;
+        if (aVar.f16249f == null) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
             tL_message.out = true;
-            tL_message.f20864id = i10;
+            tL_message.f20866id = i10;
             tL_message.peer_id = new TLRPC.TL_peerUser();
             TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
             tL_message.from_id = tL_peerUser;
@@ -48,16 +48,16 @@ public final class s7 extends i7 {
             peer.user_id = clientUserId;
             tL_message.date = (int) (System.currentTimeMillis() / 1000);
             tL_message.message = "";
-            tL_message.attachPath = aVar.f16243a.getPath();
+            tL_message.attachPath = aVar.f16245a.getPath();
             TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
             tL_message.media = tL_messageMediaDocument;
             tL_messageMediaDocument.flags |= 3;
             tL_messageMediaDocument.document = new TLRPC.TL_document();
             tL_message.flags |= 768;
-            tL_message.dialog_id = aVar.f16244b;
-            String fileExtension = FileLoader.getFileExtension(aVar.f16243a);
+            tL_message.dialog_id = aVar.f16246b;
+            String fileExtension = FileLoader.getFileExtension(aVar.f16245a);
             TLRPC.Document document = tL_message.media.document;
-            document.f20849id = 0L;
+            document.f20851id = 0L;
             document.access_hash = 0L;
             document.file_reference = new byte[0];
             document.date = tL_message.date;
@@ -66,26 +66,26 @@ public final class s7 extends i7 {
             }
             document.mime_type = "audio/".concat(fileExtension);
             TLRPC.Document document2 = tL_message.media.document;
-            document2.size = aVar.f16245c;
+            document2.size = aVar.f16247c;
             document2.dc_id = 0;
             TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
-            if (aVar.f16246e == null) {
+            if (aVar.f16248e == null) {
                 ?? obj = new Object();
-                aVar.f16246e = obj;
+                aVar.f16248e = obj;
                 obj.f7233a = true;
                 Utilities.globalQueue.postRunnable(new s1(u7Var, aVar, tL_documentAttributeAudio, 4));
             }
             tL_documentAttributeAudio.flags |= 3;
             tL_message.media.document.attributes.add(tL_documentAttributeAudio);
             TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
-            tL_documentAttributeFilename.file_name = aVar.f16243a.getName();
+            tL_documentAttributeFilename.file_name = aVar.f16245a.getName();
             tL_message.media.document.attributes.add(tL_documentAttributeFilename);
             MessageObject messageObject = new MessageObject(u7Var.d.getCurrentAccount(), tL_message, false, false);
-            aVar.f16247f = messageObject;
+            aVar.f16249f = messageObject;
             messageObject.mediaExists = true;
         }
-        h7Var.f(aVar.f16247f, z10);
-        boolean z11 = aVar.f16246e.f7233a;
+        h7Var.f(aVar.f16249f, z10);
+        boolean z11 = aVar.f16248e.f7233a;
         boolean z12 = !z11;
         if (!z4) {
             if (!z11) {
@@ -93,24 +93,24 @@ public final class s7 extends i7 {
             } else {
                 f10 = 0.0f;
             }
-            h7Var.f22929d0 = f10;
+            h7Var.f22931d0 = f10;
         }
-        if (h7Var.f22928c0 != z12) {
-            h7Var.f22928c0 = z12;
+        if (h7Var.f22930c0 != z12) {
+            h7Var.f22930c0 = z12;
             h7Var.invalidate();
         }
         m7Var.d = z10;
-        m7Var.f38982c.setText(AndroidUtilities.formatFileSize(aVar.f16245c));
-        m7Var.f38980a.a(this.f41148n.f41804f.f16256j.contains(aVar), z4);
+        m7Var.f38867c.setText(AndroidUtilities.formatFileSize(aVar.f16247c));
+        m7Var.f38865a.a(this.f41040n.f41734f.f16258j.contains(aVar), z4);
     }
 
     @Override
     public final f2.m1 x(ViewGroup viewGroup, int i10) {
         m7 m7Var = new m7(this, viewGroup.getContext(), 1);
-        m7Var.f38983e = 3;
+        m7Var.f38868e = 3;
         r7 r7Var = new r7(this, viewGroup.getContext(), m7Var);
         r7Var.setCheckForButtonPress(true);
-        m7Var.f38981b.addView(r7Var);
+        m7Var.f38866b.addView(r7Var);
         return new f2.m1(m7Var);
     }
 }

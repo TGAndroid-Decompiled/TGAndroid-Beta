@@ -11,14 +11,14 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.pr;
 public final class d4 extends FrameLayout {
-    public final lh.u1 f13888a;
-    public final FrameLayout f13889b;
-    public final org.telegram.ui.Components.p9 f13890c;
+    public final lh.u1 f13890a;
+    public final FrameLayout f13891b;
+    public final org.telegram.ui.Components.p9 f13892c;
     public final TextView d;
-    public final FrameLayout f13891e;
-    public final ImageView f13892f;
+    public final FrameLayout f13893e;
+    public final ImageView f13894f;
     public TL_stars.StarGift h;
-    public boolean f13893n;
+    public boolean f13895n;
 
     public d4(Context context) {
         super(context);
@@ -32,18 +32,18 @@ public final class d4 extends FrameLayout {
         imageView.setScaleY(1.25f);
         frameLayout.addView(imageView, k7.c6.e(24, 24, 17));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f13889b = frameLayout2;
+        this.f13891b = frameLayout2;
         lh.u1 u1Var = new lh.u1(frameLayout2, null, false);
-        this.f13888a = u1Var;
+        this.f13890a = u1Var;
         frameLayout2.setBackground(u1Var);
-        u1Var.f13008s = AndroidUtilities.dp(18.0f);
-        u1Var.f13010u = false;
+        u1Var.f13010s = AndroidUtilities.dp(18.0f);
+        u1Var.f13012u = false;
         frameLayout.addView(frameLayout2, k7.c6.e(-1, -1, 119));
         frameLayout2.setAlpha(0.0f);
         frameLayout2.setScaleX(0.6f);
         frameLayout2.setScaleY(0.6f);
         org.telegram.ui.Components.p9 p9Var = new org.telegram.ui.Components.p9(context);
-        this.f13890c = p9Var;
+        this.f13892c = p9Var;
         frameLayout2.addView(p9Var, k7.c6.e(52, 52, 17));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -55,11 +55,11 @@ public final class d4 extends FrameLayout {
         textView.setAlpha(0.0f);
         addView(textView, k7.c6.d(-2, 15.33f, 51, 2.0f, 0.0f, 2.0f, 0.0f));
         FrameLayout frameLayout3 = new FrameLayout(context);
-        this.f13891e = frameLayout3;
+        this.f13893e = frameLayout3;
         frameLayout3.setAlpha(0.0f);
         addView(frameLayout3, k7.c6.d(20, 20.0f, 53, 2.0f, 0.0f, 2.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f13892f = imageView2;
+        this.f13894f = imageView2;
         imageView2.setImageResource(R.drawable.msg_close);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         frameLayout3.addView(imageView2, k7.c6.e(12, 12, 17));
@@ -71,16 +71,16 @@ public final class d4 extends FrameLayout {
         this.h = starGift;
         if (starGift != null) {
             TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) t7.l(starGift.attributes, TL_stars.starGiftAttributeBackdrop.class);
-            lh.u1 u1Var = this.f13888a;
+            lh.u1 u1Var = this.f13890a;
             u1Var.d(stargiftattributebackdrop);
             u1Var.e((TL_stars.starGiftAttributePattern) t7.l(starGift.attributes, TL_stars.starGiftAttributePattern.class));
-            ja.Z0(this.f13890c.getImageReceiver(), ((TL_stars.starGiftAttributeModel) t7.l(starGift.attributes, TL_stars.starGiftAttributeModel.class)).document, 52);
+            ja.Z0(this.f13892c.getImageReceiver(), ((TL_stars.starGiftAttributeModel) t7.l(starGift.attributes, TL_stars.starGiftAttributeModel.class)).document, 52);
             int b10 = org.telegram.ui.ActionBar.k6.b(-0.05f, -0.15f, org.telegram.ui.ActionBar.k6.l1(0.88f, stargiftattributebackdrop.edge_color | (-16777216)));
             String G0 = sh.j.G0(starGift.craft_chance_permille);
             TextView textView = this.d;
             textView.setText(G0);
             textView.setBackground(new s4(AndroidUtilities.dp(10.0f), b10));
-            this.f13891e.setBackground(new s4(AndroidUtilities.dp(10.0f), b10));
+            this.f13893e.setBackground(new s4(AndroidUtilities.dp(10.0f), b10));
         }
         if (starGift != null) {
             z10 = true;
@@ -99,11 +99,11 @@ public final class d4 extends FrameLayout {
         float f14;
         int i11;
         float f15;
-        FrameLayout frameLayout = this.f13889b;
+        FrameLayout frameLayout = this.f13891b;
         frameLayout.animate().cancel();
         TextView textView = this.d;
         textView.animate().cancel();
-        FrameLayout frameLayout2 = this.f13891e;
+        FrameLayout frameLayout2 = this.f13893e;
         frameLayout2.animate().cancel();
         float f16 = 0.6f;
         float f17 = 0.0f;
@@ -173,10 +173,10 @@ public final class d4 extends FrameLayout {
         ViewPropertyAnimator alpha = scaleY.alpha(f11);
         pr prVar = pr.h;
         alpha.setInterpolator(prVar).setDuration(420L).withEndAction(new Runnable(this) {
-            public final d4 f13793b;
+            public final d4 f13795b;
 
             {
-                this.f13793b = this;
+                this.f13795b = this;
             }
 
             @Override
@@ -184,9 +184,9 @@ public final class d4 extends FrameLayout {
                 switch (r3) {
                     case 0:
                         boolean z11 = z4;
-                        d4 d4Var = this.f13793b;
+                        d4 d4Var = this.f13795b;
                         if (!z11) {
-                            d4Var.f13891e.setVisibility(8);
+                            d4Var.f13893e.setVisibility(8);
                             return;
                         } else {
                             d4Var.getClass();
@@ -194,9 +194,9 @@ public final class d4 extends FrameLayout {
                         }
                     case 1:
                         boolean z12 = z4;
-                        d4 d4Var2 = this.f13793b;
+                        d4 d4Var2 = this.f13795b;
                         if (!z12) {
-                            d4Var2.f13891e.setVisibility(8);
+                            d4Var2.f13893e.setVisibility(8);
                             return;
                         } else {
                             d4Var2.getClass();
@@ -204,9 +204,9 @@ public final class d4 extends FrameLayout {
                         }
                     default:
                         boolean z13 = z4;
-                        d4 d4Var3 = this.f13793b;
+                        d4 d4Var3 = this.f13795b;
                         if (!z13) {
-                            d4Var3.f13891e.setVisibility(8);
+                            d4Var3.f13893e.setVisibility(8);
                             return;
                         } else {
                             d4Var3.getClass();
@@ -223,10 +223,10 @@ public final class d4 extends FrameLayout {
             f12 = 0.0f;
         }
         animate2.alpha(f12).setInterpolator(prVar).setDuration(420L).withEndAction(new Runnable(this) {
-            public final d4 f13793b;
+            public final d4 f13795b;
 
             {
-                this.f13793b = this;
+                this.f13795b = this;
             }
 
             @Override
@@ -234,9 +234,9 @@ public final class d4 extends FrameLayout {
                 switch (r3) {
                     case 0:
                         boolean z11 = z4;
-                        d4 d4Var = this.f13793b;
+                        d4 d4Var = this.f13795b;
                         if (!z11) {
-                            d4Var.f13891e.setVisibility(8);
+                            d4Var.f13893e.setVisibility(8);
                             return;
                         } else {
                             d4Var.getClass();
@@ -244,9 +244,9 @@ public final class d4 extends FrameLayout {
                         }
                     case 1:
                         boolean z12 = z4;
-                        d4 d4Var2 = this.f13793b;
+                        d4 d4Var2 = this.f13795b;
                         if (!z12) {
-                            d4Var2.f13891e.setVisibility(8);
+                            d4Var2.f13893e.setVisibility(8);
                             return;
                         } else {
                             d4Var2.getClass();
@@ -254,9 +254,9 @@ public final class d4 extends FrameLayout {
                         }
                     default:
                         boolean z13 = z4;
-                        d4 d4Var3 = this.f13793b;
+                        d4 d4Var3 = this.f13795b;
                         if (!z13) {
-                            d4Var3.f13891e.setVisibility(8);
+                            d4Var3.f13893e.setVisibility(8);
                             return;
                         } else {
                             d4Var3.getClass();
@@ -271,10 +271,10 @@ public final class d4 extends FrameLayout {
             f17 = 1.0f;
         }
         animate3.alpha(f17).setInterpolator(prVar).setDuration(420L).withEndAction(new Runnable(this) {
-            public final d4 f13793b;
+            public final d4 f13795b;
 
             {
-                this.f13793b = this;
+                this.f13795b = this;
             }
 
             @Override
@@ -282,9 +282,9 @@ public final class d4 extends FrameLayout {
                 switch (r3) {
                     case 0:
                         boolean z11 = z4;
-                        d4 d4Var = this.f13793b;
+                        d4 d4Var = this.f13795b;
                         if (!z11) {
-                            d4Var.f13891e.setVisibility(8);
+                            d4Var.f13893e.setVisibility(8);
                             return;
                         } else {
                             d4Var.getClass();
@@ -292,9 +292,9 @@ public final class d4 extends FrameLayout {
                         }
                     case 1:
                         boolean z12 = z4;
-                        d4 d4Var2 = this.f13793b;
+                        d4 d4Var2 = this.f13795b;
                         if (!z12) {
-                            d4Var2.f13891e.setVisibility(8);
+                            d4Var2.f13893e.setVisibility(8);
                             return;
                         } else {
                             d4Var2.getClass();
@@ -302,9 +302,9 @@ public final class d4 extends FrameLayout {
                         }
                     default:
                         boolean z13 = z4;
-                        d4 d4Var3 = this.f13793b;
+                        d4 d4Var3 = this.f13795b;
                         if (!z13) {
-                            d4Var3.f13891e.setVisibility(8);
+                            d4Var3.f13893e.setVisibility(8);
                             return;
                         } else {
                             d4Var3.getClass();

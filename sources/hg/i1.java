@@ -14,7 +14,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.sl0;
 import org.telegram.ui.py;
 public final class i1 extends fg.d2 {
     public static i1 P0;
@@ -26,9 +26,9 @@ public final class i1 extends fg.d2 {
         this.O0 = str;
         ic.a((FrameLayout) this.containerView, new w(2));
         if (!z4) {
-            tl0 tl0Var = this.d;
+            sl0 sl0Var = this.d;
             int i11 = this.backgroundPaddingLeft;
-            tl0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(68.0f));
+            sl0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(68.0f));
             jg.a aVar = new jg.a(getContext(), this.resourcesProvider);
             this.N0 = aVar;
             aVar.setOnClickListener(new androidx.mediarouter.app.c(this, 7));
@@ -37,7 +37,7 @@ public final class i1 extends fg.d2 {
             qh.d dVar = aVar2.f10006a;
             dVar.setEnabled(true);
             dVar.g(LocaleController.getString(R.string.GiftPremiumActivateForFree), false, true);
-            aVar2.f10007b.setBackgroundColor(k6.v0(k6.f21731h5, aVar2.f10008c));
+            aVar2.f10007b.setBackgroundColor(k6.v0(k6.f21733h5, aVar2.f10008c));
             this.containerView.addView(this.N0, c6.d(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         fixNavigationBar();
@@ -58,7 +58,7 @@ public final class i1 extends fg.d2 {
 
     public static void e0(i1 i1Var) {
         py pyVar = new py(y3.e(3, "onlySelect", "dialogsType", true));
-        pyVar.f40308z2 = new c1.b(16, i1Var, "https://t.me/giftcode/" + i1Var.O0);
+        pyVar.f40278z2 = new c1.b(16, i1Var, "https://t.me/giftcode/" + i1Var.O0);
         i1Var.f31017n.presentFragment(pyVar);
         i1Var.dismiss();
     }
@@ -89,7 +89,7 @@ public final class i1 extends fg.d2 {
         this.M0.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         ((ViewGroup.MarginLayoutParams) this.M0.getLayoutParams()).bottomMargin = AndroidUtilities.dp(14.0f);
         ((ViewGroup.MarginLayoutParams) this.M0.getLayoutParams()).topMargin = AndroidUtilities.dp(12.0f);
-        this.M0.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumAboutThisLink", R.string.GiftPremiumAboutThisLink), k6.f21720gc, 0, new g1(this, 0)), AndroidUtilities.replaceTags(LocaleController.getString("GiftPremiumAboutThisLinkEnd", R.string.GiftPremiumAboutThisLinkEnd))));
+        this.M0.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumAboutThisLink", R.string.GiftPremiumAboutThisLink), k6.f21722gc, 0, new g1(this, 0)), AndroidUtilities.replaceTags(LocaleController.getString("GiftPremiumAboutThisLinkEnd", R.string.GiftPremiumAboutThisLinkEnd))));
     }
 
     @Override

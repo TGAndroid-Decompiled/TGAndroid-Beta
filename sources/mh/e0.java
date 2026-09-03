@@ -6,9 +6,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.tl0;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.yh;
 public final class e0 extends org.telegram.ui.Components.sa {
     public b0 U;
@@ -18,9 +18,9 @@ public final class e0 extends org.telegram.ui.Components.sa {
         super(context, null, false, false, false, 1, null);
         this.v = 0.1f;
         fixNavigationBar();
-        tl0 tl0Var = this.d;
+        sl0 sl0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        tl0Var.setPadding(i10, 0, i10, 0);
+        sl0Var.setPadding(i10, 0, i10, 0);
         LinearLayout linearLayout = new LinearLayout(context);
         this.V = linearLayout;
         linearLayout.setOrientation(1);
@@ -40,7 +40,7 @@ public final class e0 extends org.telegram.ui.Components.sa {
         linearLayout.addView(frameLayout, k7.c6.c(150.0f, -1));
         TextView textView = new TextView(context);
         yh.p(20.0f, 1, textView);
-        int i11 = org.telegram.ui.ActionBar.k6.f21766j5;
+        int i11 = org.telegram.ui.ActionBar.k6.f21768j5;
         textView.setTextColor(org.telegram.ui.ActionBar.k6.v0(i11, this.resourcesProvider));
         textView.setGravity(17);
         textView.setText(LocaleController.getString(R.string.ExplainStarsTitle));
@@ -57,16 +57,16 @@ public final class e0 extends org.telegram.ui.Components.sa {
         frameLayout2.addView(dVar, k7.c6.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
         int i13 = this.backgroundPaddingLeft;
         frameLayout2.setPadding(i13, 0, i13, 0);
-        frameLayout2.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21731h5, false));
+        frameLayout2.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21733h5, false));
         this.containerView.addView(frameLayout2, k7.c6.e(-1, -2, 87));
         this.U.N(false);
     }
 
     @Override
-    public final sl0 v(tl0 tl0Var) {
-        ?? x51Var = new x51(tl0Var, getContext(), this.currentAccount, 0, true, new eg.p1(this, 15), this.resourcesProvider);
-        this.U = x51Var;
-        return x51Var;
+    public final rl0 v(sl0 sl0Var) {
+        ?? w51Var = new w51(sl0Var, getContext(), this.currentAccount, 0, true, new eg.p1(this, 15), this.resourcesProvider);
+        this.U = w51Var;
+        return w51Var;
     }
 
     @Override

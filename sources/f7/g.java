@@ -37,7 +37,7 @@ public final class g extends a7.c {
                 if (i10 == 1) {
                     u7.g gVar = (u7.g) e.a(parcel, u7.g.CREATOR);
                     e.b(parcel);
-                    Status status = gVar.f48443a;
+                    Status status = gVar.f48479a;
                     ?? obj = new Object();
                     obj.f2406a = gVar;
                     p5.a(status, obj, this.f6127c);

@@ -11,17 +11,17 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class ea0 implements org.telegram.ui.Components.wd0, org.telegram.ui.ActionBar.c2 {
-    public final LaunchActivity f36454a;
+    public final LaunchActivity f36420a;
 
     public ea0(LaunchActivity launchActivity) {
-        this.f36454a = launchActivity;
+        this.f36420a = launchActivity;
     }
 
     @Override
     public void h(org.telegram.ui.Components.xd0 xd0Var) {
         Pattern pattern = LaunchActivity.f34134y1;
         SharedConfig.isWaitingForPasscodeEnter = false;
-        LaunchActivity launchActivity = this.f36454a;
+        LaunchActivity launchActivity = this.f36420a;
         Intent intent = launchActivity.I0;
         if (intent != null) {
             launchActivity.X(intent, launchActivity.J0, launchActivity.K0, true, null, false, true);
@@ -53,6 +53,6 @@ public final class ea0 implements org.telegram.ui.Components.wd0, org.telegram.u
     @Override
     public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
         Pattern pattern = LaunchActivity.f34134y1;
-        MessagesController.getInstance(this.f36454a.L).performLogout(2);
+        MessagesController.getInstance(this.f36420a.L).performLogout(2);
     }
 }

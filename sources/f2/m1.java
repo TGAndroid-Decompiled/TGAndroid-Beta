@@ -99,7 +99,7 @@ public abstract class m1 {
 
     public final boolean i() {
         if ((this.f5884l & 16) == 0) {
-            WeakHashMap weakHashMap = r0.j0.f46438a;
+            WeakHashMap weakHashMap = r0.j0.f46469a;
             if (!this.f5875a.hasTransientState()) {
                 return true;
             }

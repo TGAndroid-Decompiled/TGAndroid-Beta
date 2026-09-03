@@ -4,13 +4,13 @@ import oh.c7;
 import org.telegram.messenger.MessagesController;
 import org.telegram.ui.Cells.n2;
 import org.telegram.ui.Cells.r2;
-import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.sl0;
 import org.telegram.ui.xn;
 public final class v0 implements n2 {
-    public final y0 f48728a;
+    public final y0 f48764a;
 
     public v0(y0 y0Var) {
-        this.f48728a = y0Var;
+        this.f48764a = y0Var;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class v0 implements n2 {
 
     @Override
     public final void e(r2 r2Var) {
-        y0 y0Var = this.f48728a;
-        xn xnVar = y0Var.f48744f;
-        if (MessagesController.getInstance(y0Var.f48746r).getStoriesController().I(r2Var.getDialogId())) {
+        y0 y0Var = this.f48764a;
+        xn xnVar = y0Var.f48780f;
+        if (MessagesController.getInstance(y0Var.f48782r).getStoriesController().I(r2Var.getDialogId())) {
             xnVar.getOrCreateStoryViewer().getClass();
-            xnVar.getOrCreateStoryViewer().D(y0Var.f48742c, r2Var.getDialogId(), c7.a((tl0) r2Var.getParent()));
+            xnVar.getOrCreateStoryViewer().D(y0Var.f48778c, r2Var.getDialogId(), c7.a((sl0) r2Var.getParent()));
         }
     }
 

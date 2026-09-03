@@ -39,9 +39,9 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.h3;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.pr;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.sa;
 import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.tl0;
 import org.telegram.ui.Components.wc0;
 import org.telegram.ui.Components.x4;
 import org.telegram.ui.Components.yc0;
@@ -139,22 +139,22 @@ public final class b1 extends sa implements NotificationCenter.NotificationCente
         lVar.C = false;
         lVar.f5910m = false;
         this.d.setItemAnimator(lVar);
-        tl0 tl0Var = this.d;
+        sl0 sl0Var = this.d;
         int i14 = this.backgroundPaddingLeft;
-        tl0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(68.0f));
+        sl0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(68.0f));
         this.d.setOnScrollListener(new Object());
         this.d.setOnItemClickListener(new v0(0, this, p2Var));
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
         this.Y = chat;
         ig.b bVar = this.f7405d0;
         ArrayList arrayList = this.U;
-        tl0 tl0Var2 = this.d;
+        sl0 sl0Var2 = this.d;
         r0 r0Var = new r0(this);
         r0 r0Var2 = new r0(this);
         r0 r0Var3 = new r0(this);
         bVar.f8069e = arrayList;
         bVar.v = chat;
-        bVar.f8070f = tl0Var2;
+        bVar.f8070f = sl0Var2;
         bVar.h = r0Var;
         bVar.f8071n = r0Var2;
         bVar.f8073s = r0Var3;
@@ -197,7 +197,7 @@ public final class b1 extends sa implements NotificationCenter.NotificationCente
                 if (R != null) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, R.getResourceProvider());
                     String string = LocaleController.getString(R.string.BoostingStartGiveawayConfirmTitle);
-                    org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+                    org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21168a;
                     d2Var.O = string;
                     d2Var.Q = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingStartGiveawayConfirmText));
                     alertDialog$Builder.k(LocaleController.getString(R.string.Start), new f(s0Var, 0));
@@ -232,7 +232,7 @@ public final class b1 extends sa implements NotificationCenter.NotificationCente
                         boolean z12 = b1Var.f7420t0;
                         String str2 = b1Var.f7419s0;
                         eh.w wVar = new eh.w(1, b1Var, W);
-                        int i15 = y10.f14828a;
+                        int i15 = y10.f14830a;
                         if (!MessagesController.getInstance(i15).starsPurchaseAvailable()) {
                             org.telegram.ui.ActionBar.p2 R2 = LaunchActivity.R();
                             if (R2 != null && R2.getContext() != null) {
@@ -325,7 +325,7 @@ public final class b1 extends sa implements NotificationCenter.NotificationCente
                                 int i20 = tL_premiumGiftCodeOption.users;
                                 AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(context, 0, g6Var);
                                 String string2 = LocaleController.getString("BoostingReduceQuantity", R.string.BoostingReduceQuantity);
-                                org.telegram.ui.ActionBar.d2 d2Var2 = alertDialog$Builder2.f21166a;
+                                org.telegram.ui.ActionBar.d2 d2Var2 = alertDialog$Builder2.f21168a;
                                 d2Var2.O = string2;
                                 d2Var2.Q = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReduceUsersTextPlural", i20, join));
                                 alertDialog$Builder2.k(LocaleController.getString("OK", R.string.OK), new f5.u(9));
@@ -378,7 +378,7 @@ public final class b1 extends sa implements NotificationCenter.NotificationCente
                                 int i27 = tL_premiumGiftCodeOption5.users;
                                 AlertDialog$Builder alertDialog$Builder3 = new AlertDialog$Builder(context2, 0, g6Var2);
                                 String string3 = LocaleController.getString("BoostingReduceQuantity", R.string.BoostingReduceQuantity);
-                                org.telegram.ui.ActionBar.d2 d2Var3 = alertDialog$Builder3.f21166a;
+                                org.telegram.ui.ActionBar.d2 d2Var3 = alertDialog$Builder3.f21168a;
                                 d2Var3.O = string3;
                                 d2Var3.Q = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReduceQuantityTextPlural", i26, formatPluralString, Integer.valueOf(i27)));
                                 alertDialog$Builder3.k(LocaleController.getString("Reduce", R.string.Reduce), new c1.b(13, t0Var, tL_premiumGiftCodeOption5));
@@ -426,14 +426,14 @@ public final class b1 extends sa implements NotificationCenter.NotificationCente
                                 TLObject tLObject = (TLObject) obj6;
                                 if (tLObject instanceof TLRPC.Chat) {
                                     i10 = i32;
-                                    tL_inputStorePaymentPremiumGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC.Chat) tLObject).f20843id));
+                                    tL_inputStorePaymentPremiumGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC.Chat) tLObject).f20845id));
                                 } else {
                                     i10 = i32;
                                 }
                                 i31 = i10;
                             }
-                            tL_inputStorePaymentPremiumGiveaway.boost_peer = messagesController.getInputPeer(-chat.f20843id);
-                            tL_inputStorePaymentPremiumGiveaway.boost_peer = messagesController.getInputPeer(-chat.f20843id);
+                            tL_inputStorePaymentPremiumGiveaway.boost_peer = messagesController.getInputPeer(-chat.f20845id);
+                            tL_inputStorePaymentPremiumGiveaway.boost_peer = messagesController.getInputPeer(-chat.f20845id);
                             tL_inputStorePaymentPremiumGiveaway.currency = tL_premiumGiftCodeOption3.currency;
                             tL_inputStorePaymentPremiumGiveaway.amount = tL_premiumGiftCodeOption3.amount;
                             int size7 = arrayList.size();
@@ -477,10 +477,10 @@ public final class b1 extends sa implements NotificationCenter.NotificationCente
                             i35++;
                             TLObject tLObject2 = (TLObject) obj8;
                             if (tLObject2 instanceof TLRPC.Chat) {
-                                tL_inputStorePaymentPremiumGiveaway2.additional_peers.add(messagesController2.getInputPeer(-((TLRPC.Chat) tLObject2).f20843id));
+                                tL_inputStorePaymentPremiumGiveaway2.additional_peers.add(messagesController2.getInputPeer(-((TLRPC.Chat) tLObject2).f20845id));
                             }
                         }
-                        tL_inputStorePaymentPremiumGiveaway2.boost_peer = messagesController2.getInputPeer(-chat.f20843id);
+                        tL_inputStorePaymentPremiumGiveaway2.boost_peer = messagesController2.getInputPeer(-chat.f20845id);
                         int size9 = arrayList.size();
                         int i36 = 0;
                         while (i36 < size9) {
@@ -508,7 +508,7 @@ public final class b1 extends sa implements NotificationCenter.NotificationCente
         if (view instanceof jg.a0) {
             jg.a0 a0Var = (jg.a0) view;
             int type = a0Var.getType();
-            boolean z11 = a0Var.f23753e.h;
+            boolean z11 = a0Var.f23755e.h;
             boolean z12 = !z11;
             a0Var.setChecked(z12);
             int i10 = jg.a0.I;
@@ -580,10 +580,10 @@ public final class b1 extends sa implements NotificationCenter.NotificationCente
                 }
             } else {
                 jg.d dVar = (jg.d) view;
-                tl0 tl0Var = b1Var.d;
+                sl0 sl0Var = b1Var.d;
                 if (dVar.b()) {
-                    for (int i15 = 0; i15 < tl0Var.getChildCount(); i15++) {
-                        View childAt = tl0Var.getChildAt(i15);
+                    for (int i15 = 0; i15 < sl0Var.getChildCount(); i15++) {
+                        View childAt = sl0Var.getChildAt(i15);
                         if (childAt.getClass().isInstance(dVar)) {
                             jg.d dVar2 = (jg.d) childAt;
                             if (childAt == dVar) {
@@ -618,7 +618,7 @@ public final class b1 extends sa implements NotificationCenter.NotificationCente
             c3 c3Var = new c3(context, g6Var);
             c3Var.a();
             yc0 yc0Var = new yc0(context, g6Var);
-            int i16 = x4Var.f32944a;
+            int i16 = x4Var.f32943a;
             yc0Var.setTextColor(i16);
             yc0Var.setTextOffset(AndroidUtilities.dp(10.0f));
             yc0Var.setItemCount(5);
@@ -698,7 +698,7 @@ public final class b1 extends sa implements NotificationCenter.NotificationCente
             }
             qVar.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             qVar.setGravity(17);
-            qVar.setTextColor(x4Var.f32949g);
+            qVar.setTextColor(x4Var.f32948g);
             qVar.setTextSize(1, 14.0f);
             qVar.setTypeface(AndroidUtilities.bold());
             qVar.setBackground(a6.e(new float[]{8.0f}, x4Var.h));
@@ -706,9 +706,9 @@ public final class b1 extends sa implements NotificationCenter.NotificationCente
             pVar.addView(qVar, c6.t(-1, 48, 83, 16, 15, 16, 16));
             qVar.setOnClickListener(new e(calendar, yc0Var, (Object) yc0Var2, (Object) yc0Var3, r0Var, c3Var, 0));
             c3Var.b(pVar);
-            h3 h3Var = c3Var.f21207a;
+            h3 h3Var = c3Var.f21209a;
             h3Var.show();
-            int i21 = x4Var.f32945b;
+            int i21 = x4Var.f32944b;
             h3Var.setBackgroundColor(i21);
             h3Var.fixNavigationBar(i21);
             if (i0.a.f(i21) > 0.699999988079071d) {
@@ -881,7 +881,7 @@ public final class b1 extends sa implements NotificationCenter.NotificationCente
         dVar.setEnabled(z10);
         dVar.c(g10, z4);
         dVar.g(LocaleController.getString(R.string.GiftPremium), z4, true);
-        aVar.f10007b.setBackgroundColor(k6.v0(k6.f21731h5, aVar.f10008c));
+        aVar.f10007b.setBackgroundColor(k6.v0(k6.f21733h5, aVar.f10008c));
     }
 
     public final void a0(boolean r26, boolean r27) {
@@ -890,8 +890,8 @@ public final class b1 extends sa implements NotificationCenter.NotificationCente
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        tl0 tl0Var;
-        if (i10 == NotificationCenter.starGiveawayOptionsLoaded && (tl0Var = this.d) != null && tl0Var.D) {
+        sl0 sl0Var;
+        if (i10 == NotificationCenter.starGiveawayOptionsLoaded && (sl0Var = this.d) != null && sl0Var.D) {
             a0(true, true);
         }
     }
@@ -906,7 +906,7 @@ public final class b1 extends sa implements NotificationCenter.NotificationCente
     }
 
     @Override
-    public final sl0 v(tl0 tl0Var) {
+    public final rl0 v(sl0 sl0Var) {
         ig.b bVar = new ig.b(this.resourcesProvider);
         this.f7405d0 = bVar;
         return bVar;

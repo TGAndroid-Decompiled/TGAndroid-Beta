@@ -5,18 +5,18 @@ import java.util.ArrayDeque;
 import java.util.TimerTask;
 import org.telegram.messenger.AndroidUtilities;
 public final class i50 extends TimerTask {
-    public final int f27673a;
-    public final Object f27674b;
+    public final int f27717a;
+    public final Object f27718b;
 
     public i50(Object obj, int i10) {
-        this.f27673a = i10;
-        this.f27674b = obj;
+        this.f27717a = i10;
+        this.f27718b = obj;
     }
 
     @Override
     public final void run() {
         BasePendingResult basePendingResult;
-        switch (this.f27673a) {
+        switch (this.f27717a) {
             case 0:
                 AndroidUtilities.runOnUIThread(new xp(this, 24));
                 return;
@@ -30,10 +30,10 @@ public final class i50 extends TimerTask {
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.web.s0(this, 17));
                 return;
             default:
-                s5.c cVar = (s5.c) this.f27674b;
+                s5.c cVar = (s5.c) this.f27718b;
                 ArrayDeque arrayDeque = cVar.h;
-                if (!arrayDeque.isEmpty() && cVar.f47027k == null && cVar.f47020b != 0) {
-                    s5.h hVar = cVar.f47021c;
+                if (!arrayDeque.isEmpty() && cVar.f47058k == null && cVar.f47051b != 0) {
+                    s5.h hVar = cVar.f47052c;
                     int[] e6 = u5.a.e(arrayDeque);
                     hVar.getClass();
                     b6.m.e("Must be called from the main thread.");
@@ -44,7 +44,7 @@ public final class i50 extends TimerTask {
                         s5.h.x(jVar);
                         basePendingResult = jVar;
                     }
-                    cVar.f47027k = basePendingResult;
+                    cVar.f47058k = basePendingResult;
                     basePendingResult.i(new s5.q(cVar, 1));
                     arrayDeque.clear();
                     return;

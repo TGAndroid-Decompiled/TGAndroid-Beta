@@ -37,52 +37,52 @@ public class h5 extends Drawable {
     public m.e3 N;
     public int O;
     public float P;
-    public Shader f21419a;
-    public int f21420b;
-    public int f21422e;
-    public int f21423f;
-    public int f21424g;
+    public Shader f21421a;
+    public int f21422b;
+    public int f21424e;
+    public int f21425f;
+    public int f21426g;
     public int h;
-    public boolean f21425i;
-    public final int f21428l;
-    public final boolean f21429m;
-    public g6 f21432p;
-    public final boolean f21433q;
-    public int f21434r;
-    public boolean f21435s;
-    public boolean f21436t;
-    public boolean f21437u;
+    public boolean f21427i;
+    public final int f21430l;
+    public final boolean f21431m;
+    public g6 f21434p;
+    public final boolean f21435q;
+    public int f21436r;
+    public boolean f21437s;
+    public boolean f21438t;
+    public boolean f21439u;
     public boolean v;
-    public final Paint f21421c = new Paint(1);
-    public final RectF f21426j = new RectF();
-    public final Matrix f21427k = new Matrix();
-    public final Rect f21431o = new Rect();
-    public final int[] f21438w = {-1, -1, -1, -1};
-    public final Bitmap[] f21439x = new Bitmap[4];
-    public final Drawable[] f21440y = new Drawable[4];
-    public final int[] f21441z = {-1, -1, -1, -1};
+    public final Paint f21423c = new Paint(1);
+    public final RectF f21428j = new RectF();
+    public final Matrix f21429k = new Matrix();
+    public final Rect f21433o = new Rect();
+    public final int[] f21440w = {-1, -1, -1, -1};
+    public final Bitmap[] f21441x = new Bitmap[4];
+    public final Drawable[] f21442y = new Drawable[4];
+    public final int[] f21443z = {-1, -1, -1, -1};
     public final int[][] A = {new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}};
     public final Drawable[][] B = (Drawable[][]) Array.newInstance(Drawable.class, 4, 4);
     public final int[][] C = {new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}};
-    public final Path f21430n = new Path();
+    public final Path f21432n = new Path();
     public final Paint d = new Paint(1);
     public int F = 255;
 
     public h5(int i10, boolean z4, boolean z10, g6 g6Var) {
-        this.f21432p = g6Var;
-        this.f21433q = z4;
-        this.f21428l = i10;
-        this.f21429m = z10;
+        this.f21434p = g6Var;
+        this.f21435q = z4;
+        this.f21430l = i10;
+        this.f21431m = z10;
     }
 
     public final void a() {
         Bitmap bitmap;
-        if (this.f21419a instanceof BitmapShader) {
+        if (this.f21421a instanceof BitmapShader) {
             boolean z4 = this.J;
-            Matrix matrix = this.f21427k;
+            Matrix matrix = this.f21429k;
             fc0[] fc0VarArr = Q;
             char c3 = 0;
-            int i10 = this.f21428l;
+            int i10 = this.f21430l;
             char c10 = 2;
             if (z4 && (bitmap = this.L) != null) {
                 if (i10 == 2) {
@@ -98,14 +98,14 @@ public class h5 extends Drawable {
                 }
                 c10 = c3;
             }
-            Bitmap bitmap2 = fc0VarArr[c10].f26879k;
+            Bitmap bitmap2 = fc0VarArr[c10].f26878k;
             float min2 = 1.0f / Math.min(bitmap2.getWidth() / fc0VarArr[c10].getBounds().width(), bitmap2.getHeight() / fc0VarArr[c10].getBounds().height());
             matrix.postScale(min2, min2);
         }
     }
 
     public final int b(float f10) {
-        if (this.f21428l == 2) {
+        if (this.f21430l == 2) {
             return (int) Math.ceil(f10 * 3.0f);
         }
         return AndroidUtilities.dp(f10);
@@ -121,7 +121,7 @@ public class h5 extends Drawable {
         Path path2;
         Drawable f10;
         Rect bounds = getBounds();
-        if (paint == null && this.f21419a == null && this.O == 0 && this.P <= 0.0f && (f10 = f()) != null) {
+        if (paint == null && this.f21421a == null && this.O == 0 && this.P <= 0.0f && (f10 = f()) != null) {
             f10.setBounds(bounds);
             f10.draw(canvas);
             return;
@@ -134,7 +134,7 @@ public class h5 extends Drawable {
             if (this.P > 0.0f) {
                 i11 = AndroidUtilities.lerp(b(SharedConfig.bubbleRadius), Math.min(bounds.width(), bounds.height()) / 2, this.P);
                 b10 = AndroidUtilities.lerp(b(Math.min(6, SharedConfig.bubbleRadius)), Math.min(bounds.width(), bounds.height()) / 2, this.P);
-            } else if (this.f21428l == 2) {
+            } else if (this.f21430l == 2) {
                 i11 = b(6.0f);
                 b10 = b(6.0f);
             } else {
@@ -145,29 +145,29 @@ public class h5 extends Drawable {
         }
         int b12 = b(6.0f);
         if (paint == null) {
-            paint2 = this.f21421c;
+            paint2 = this.f21423c;
         } else {
             paint2 = paint;
         }
-        if (paint == null && this.f21419a != null) {
-            Matrix matrix = this.f21427k;
+        if (paint == null && this.f21421a != null) {
+            Matrix matrix = this.f21429k;
             matrix.reset();
             a();
-            matrix.postTranslate(0.0f, -this.f21434r);
-            this.f21419a.setLocalMatrix(matrix);
+            matrix.postTranslate(0.0f, -this.f21436r);
+            this.f21421a.setLocalMatrix(matrix);
         }
         int max = Math.max(bounds.top, 0);
         if (this.N != null) {
             bounds.height();
-            int i12 = this.f21420b;
+            int i12 = this.f21422b;
         }
         m.e3 e3Var = this.N;
         boolean z10 = true;
         if (e3Var != null) {
-            path = (Path) e3Var.f13184c;
+            path = (Path) e3Var.f13186c;
             z4 = e3Var.a(bounds, true, true);
         } else {
-            path = this.f21430n;
+            path = this.f21432n;
             z4 = true;
         }
         if (!z4 && this.O == 0) {
@@ -183,8 +183,8 @@ public class h5 extends Drawable {
             h5Var.e(path2, bounds, b11, i13, b12, i10, max, true, true, z10);
         }
         canvas.drawPath(path2, paint2);
-        if (h5Var.f21419a != null && h5Var.f21429m && paint == null) {
-            int g10 = g(k6.f21629bc);
+        if (h5Var.f21421a != null && h5Var.f21431m && paint == null) {
+            int g10 = g(k6.f21631bc);
             int k10 = i0.a.k(g10, (int) ((Color.alpha(g10) * h5Var.F) / 255.0f));
             Paint paint3 = h5Var.d;
             paint3.setColor(k10);
@@ -230,15 +230,15 @@ public class h5 extends Drawable {
         if (i19 > height) {
             i19 = height;
         }
-        boolean z12 = this.f21433q;
-        int i20 = this.f21428l;
-        RectF rectF = this.f21426j;
+        boolean z12 = this.f21435q;
+        int i20 = this.f21430l;
+        RectF rectF = this.f21428j;
         if (z12) {
             if (!this.G && i20 != 2 && !z11 && !z4) {
-                path.moveTo(rect.right - b(8.0f), (i14 - this.f21434r) + this.f21420b);
-                path.lineTo(rect.left + i10, (i14 - this.f21434r) + this.f21420b);
+                path.moveTo(rect.right - b(8.0f), (i14 - this.f21436r) + this.f21422b);
+                path.lineTo(rect.left + i10, (i14 - this.f21436r) + this.f21422b);
             } else {
-                if (this.f21437u) {
+                if (this.f21439u) {
                     i17 = i13;
                 } else {
                     i17 = i19;
@@ -256,11 +256,11 @@ public class h5 extends Drawable {
                 path.arcTo(rectF, 90.0f, 90.0f, false);
             }
             if (!this.G && i20 != 2 && !z11 && !z10) {
-                path.lineTo(rect.left + i10, (i14 - this.f21434r) - b(2.0f));
+                path.lineTo(rect.left + i10, (i14 - this.f21436r) - b(2.0f));
                 if (i20 == 1) {
-                    path.lineTo(rect.right - i10, (i14 - this.f21434r) - b(2.0f));
+                    path.lineTo(rect.right - i10, (i14 - this.f21436r) - b(2.0f));
                 } else {
-                    path.lineTo(rect.right - b(8.0f), (i14 - this.f21434r) - b(2.0f));
+                    path.lineTo(rect.right - b(8.0f), (i14 - this.f21436r) - b(2.0f));
                 }
             } else {
                 path.lineTo(rect.left + i10, rect.top + i10 + i19);
@@ -269,7 +269,7 @@ public class h5 extends Drawable {
                 int i26 = i19 * 2;
                 rectF.set(i24, i25, i24 + i26, i25 + i26);
                 path.arcTo(rectF, 180.0f, 90.0f, false);
-                if (this.f21435s) {
+                if (this.f21437s) {
                     i18 = i13;
                 } else {
                     i18 = i19;
@@ -289,9 +289,9 @@ public class h5 extends Drawable {
             }
             if (i20 == 1) {
                 if (!z11 && !z4) {
-                    path.lineTo(rect.right - i10, (i14 - this.f21434r) + this.f21420b);
+                    path.lineTo(rect.right - i10, (i14 - this.f21436r) + this.f21422b);
                 } else {
-                    if (this.f21436t) {
+                    if (this.f21438t) {
                         i19 = i13;
                     }
                     path.lineTo(rect.right - i10, (rect.bottom - i10) - i19);
@@ -302,7 +302,7 @@ public class h5 extends Drawable {
                     path.arcTo(rectF, 0.0f, 90.0f, false);
                 }
             } else if (!this.G && i20 != 2 && !z11 && !z4) {
-                path.lineTo(rect.right - b(8.0f), (i14 - this.f21434r) + this.f21420b);
+                path.lineTo(rect.right - b(8.0f), (i14 - this.f21436r) + this.f21422b);
             } else {
                 path.lineTo(rect.right - b(8.0f), ((rect.bottom - i10) - i12) - b(3.0f));
                 int i34 = i12 * 2;
@@ -311,10 +311,10 @@ public class h5 extends Drawable {
             }
         } else {
             if (!this.G && i20 != 2 && !z11 && !z4) {
-                path.moveTo(b(8.0f) + rect.left, (i14 - this.f21434r) + this.f21420b);
-                path.lineTo(rect.right - i10, (i14 - this.f21434r) + this.f21420b);
+                path.moveTo(b(8.0f) + rect.left, (i14 - this.f21436r) + this.f21422b);
+                path.lineTo(rect.right - i10, (i14 - this.f21436r) + this.f21422b);
             } else {
-                if (this.f21437u) {
+                if (this.f21439u) {
                     i15 = i13;
                 } else {
                     i15 = i19;
@@ -332,11 +332,11 @@ public class h5 extends Drawable {
                 path.arcTo(rectF, 90.0f, -90.0f, false);
             }
             if (!this.G && i20 != 2 && !z11 && !z10) {
-                path.lineTo(rect.right - i10, (i14 - this.f21434r) - b(2.0f));
+                path.lineTo(rect.right - i10, (i14 - this.f21436r) - b(2.0f));
                 if (i20 == 1) {
-                    path.lineTo(rect.left + i10, (i14 - this.f21434r) - b(2.0f));
+                    path.lineTo(rect.left + i10, (i14 - this.f21436r) - b(2.0f));
                 } else {
-                    path.lineTo(b(8.0f) + rect.left, (i14 - this.f21434r) - b(2.0f));
+                    path.lineTo(b(8.0f) + rect.left, (i14 - this.f21436r) - b(2.0f));
                 }
             } else {
                 path.lineTo(rect.right - i10, rect.top + i10 + i19);
@@ -345,7 +345,7 @@ public class h5 extends Drawable {
                 int i40 = rect.top + i10;
                 rectF.set(i38 - i39, i40, i38, i40 + i39);
                 path.arcTo(rectF, 0.0f, -90.0f, false);
-                if (this.f21435s) {
+                if (this.f21437s) {
                     i16 = i13;
                 } else {
                     i16 = i19;
@@ -365,9 +365,9 @@ public class h5 extends Drawable {
             }
             if (i20 == 1) {
                 if (!z11 && !z4) {
-                    path.lineTo(rect.left + i10, (i14 - this.f21434r) + this.f21420b);
+                    path.lineTo(rect.left + i10, (i14 - this.f21436r) + this.f21422b);
                 } else {
-                    if (this.f21436t || this.f21437u) {
+                    if (this.f21438t || this.f21439u) {
                         i19 = i13;
                     }
                     path.lineTo(rect.left + i10, (rect.bottom - i10) - i19);
@@ -378,7 +378,7 @@ public class h5 extends Drawable {
                     path.arcTo(rectF, 180.0f, -90.0f, false);
                 }
             } else if (!this.G && i20 != 2 && !z11 && !z4) {
-                path.lineTo(b(8.0f) + rect.left, (i14 - this.f21434r) + this.f21420b);
+                path.lineTo(b(8.0f) + rect.left, (i14 - this.f21436r) + this.f21422b);
             } else {
                 path.lineTo(b(8.0f) + rect.left, ((rect.bottom - i10) - i12) - b(3.0f));
                 int b10 = b(7.0f) + rect.left;
@@ -401,7 +401,7 @@ public class h5 extends Drawable {
         int i12;
         int i13;
         int i14;
-        Rect rect = this.f21431o;
+        Rect rect = this.f21433o;
         int i15 = this.O;
         if (i15 == 0) {
             if (this.P > 0.0f) {
@@ -410,44 +410,44 @@ public class h5 extends Drawable {
                 i15 = b(SharedConfig.bubbleRadius);
             }
         }
-        boolean z10 = this.f21435s;
+        boolean z10 = this.f21437s;
         char c10 = 3;
-        if (z10 && this.f21436t) {
+        if (z10 && this.f21438t) {
             c3 = 3;
         } else if (z10) {
             c3 = 2;
-        } else if (this.f21436t) {
+        } else if (this.f21438t) {
             c3 = 1;
         } else {
             c3 = 0;
         }
-        boolean z11 = this.f21429m;
-        if (!z11 || !this.f21437u) {
+        boolean z11 = this.f21431m;
+        if (!z11 || !this.f21439u) {
             if (z11) {
                 c10 = 1;
-            } else if (this.f21437u) {
+            } else if (this.f21439u) {
                 c10 = 2;
             } else {
                 c10 = 0;
             }
         }
-        boolean z12 = this.f21433q;
+        boolean z12 = this.f21435q;
         if (z11) {
             if (z12) {
                 i14 = k6.Ba;
             } else {
-                i14 = k6.f21665dc;
+                i14 = k6.f21667dc;
             }
             g10 = g(i14);
         } else {
             if (z12) {
                 i10 = k6.Aa;
             } else {
-                i10 = k6.f21916ra;
+                i10 = k6.f21918ra;
             }
             g10 = g(i10);
         }
-        if (this.f21419a == null && !z11 && !this.J) {
+        if (this.f21421a == null && !z11 && !this.J) {
             z4 = true;
         } else {
             z4 = false;
@@ -455,13 +455,13 @@ public class h5 extends Drawable {
         if (z12) {
             i11 = k6.Ca;
         } else {
-            i11 = k6.f21947ta;
+            i11 = k6.f21949ta;
         }
         int g11 = g(i11);
         boolean z13 = this.K;
         Drawable[][] drawableArr2 = this.B;
         int[][] iArr2 = this.C;
-        int[] iArr3 = this.f21441z;
+        int[] iArr3 = this.f21443z;
         int[][] iArr4 = this.A;
         if (z13 != z4 || iArr4[c10][c3] != i15 || ((z4 && iArr3[c3] != g11) || iArr2[c10][c3] != g10)) {
             iArr4[c10][c3] = i15;
@@ -519,22 +519,22 @@ public class h5 extends Drawable {
 
     public final void finalize() {
         super.finalize();
-        Bitmap[] bitmapArr = this.f21439x;
+        Bitmap[] bitmapArr = this.f21441x;
         for (Bitmap bitmap : bitmapArr) {
             if (bitmap != null) {
                 bitmap.recycle();
             }
         }
         Arrays.fill(bitmapArr, (Object) null);
-        Arrays.fill(this.f21440y, (Object) null);
-        Arrays.fill(this.f21438w, -1);
+        Arrays.fill(this.f21442y, (Object) null);
+        Arrays.fill(this.f21440w, -1);
     }
 
     public int g(int i10) {
-        if (this.f21428l == 2) {
+        if (this.f21430l == 2) {
             return k6.w0(null, i10, false);
         }
-        g6 g6Var = this.f21432p;
+        g6 g6Var = this.f21434p;
         if (g6Var != null) {
             return g6Var.B0(i10);
         }
@@ -547,10 +547,10 @@ public class h5 extends Drawable {
     }
 
     public int h(int i10) {
-        if (this.f21428l == 2) {
+        if (this.f21430l == 2) {
             return k6.w0(null, i10, false);
         }
-        g6 g6Var = this.f21432p;
+        g6 g6Var = this.f21434p;
         if (g6Var != null) {
             return g6Var.Z0(i10);
         }
@@ -564,7 +564,7 @@ public class h5 extends Drawable {
         if (z4) {
             return fc0VarArr[2];
         }
-        if (this.f21428l == 2) {
+        if (this.f21430l == 2) {
             c3 = 1;
         } else {
             c3 = 0;
@@ -576,27 +576,27 @@ public class h5 extends Drawable {
         char c3;
         int i10;
         int i11;
-        if (this.J || (this.f21419a == null && !this.f21429m && this.H == null)) {
+        if (this.J || (this.f21421a == null && !this.f21431m && this.H == null)) {
             return null;
         }
         int b10 = b(SharedConfig.bubbleRadius);
-        boolean z4 = this.f21435s;
+        boolean z4 = this.f21437s;
         boolean z10 = false;
-        if (z4 && this.f21436t) {
+        if (z4 && this.f21438t) {
             c3 = 3;
         } else if (z4) {
             c3 = 2;
-        } else if (this.f21436t) {
+        } else if (this.f21438t) {
             c3 = 1;
         } else {
             c3 = 0;
         }
-        int[] iArr = this.f21438w;
+        int[] iArr = this.f21440w;
         int i12 = iArr[c3];
-        Drawable[] drawableArr = this.f21440y;
+        Drawable[] drawableArr = this.f21442y;
         if (i12 != b10) {
             iArr[c3] = b10;
-            Bitmap[] bitmapArr = this.f21439x;
+            Bitmap[] bitmapArr = this.f21441x;
             Bitmap bitmap = bitmapArr[c3];
             if (bitmap != null) {
                 bitmap.recycle();
@@ -629,15 +629,15 @@ public class h5 extends Drawable {
             } catch (Throwable unused) {
             }
         }
-        if (this.f21433q) {
+        if (this.f21435q) {
             i10 = k6.Ca;
         } else {
-            i10 = k6.f21947ta;
+            i10 = k6.f21949ta;
         }
         int g10 = g(i10);
         Drawable drawable = drawableArr[c3];
         if (drawable != null) {
-            int[] iArr2 = this.f21441z;
+            int[] iArr2 = this.f21443z;
             if (iArr2[c3] != g10 || z10) {
                 drawable.setColorFilter(new PorterDuffColorFilter(g10, PorterDuff.Mode.MULTIPLY));
                 iArr2[c3] = g10;
@@ -647,11 +647,11 @@ public class h5 extends Drawable {
     }
 
     public final Drawable[] k() {
-        return this.f21440y;
+        return this.f21442y;
     }
 
     public final boolean l() {
-        if (this.f21419a != null && k6.tl) {
+        if (this.f21421a != null && k6.tl) {
             return true;
         }
         return false;
@@ -667,7 +667,7 @@ public class h5 extends Drawable {
         Rect bounds = getBounds();
         int b11 = b(2.0f);
         int i11 = this.O;
-        int i12 = this.f21428l;
+        int i12 = this.f21430l;
         if (i11 != 0) {
             i10 = i11;
         } else {
@@ -687,25 +687,25 @@ public class h5 extends Drawable {
         boolean z11 = false;
         int max = Math.max(bounds.top, 0);
         boolean z12 = true;
-        if (e3Var != null && bounds.height() < this.f21420b) {
+        if (e3Var != null && bounds.height() < this.f21422b) {
             z4 = true;
             z10 = true;
         } else {
-            if (i12 != 1 ? (this.f21434r + bounds.bottom) - i11 < this.f21420b : (this.f21434r + bounds.bottom) - (b12 * 2) < this.f21420b) {
+            if (i12 != 1 ? (this.f21436r + bounds.bottom) - i11 < this.f21422b : (this.f21436r + bounds.bottom) - (b12 * 2) < this.f21422b) {
                 z4 = true;
             } else {
                 z4 = false;
             }
-            if ((i11 * 2) + this.f21434r >= 0) {
+            if ((i11 * 2) + this.f21436r >= 0) {
                 z11 = true;
             }
             z10 = z11;
         }
         if (e3Var != null) {
-            path = (Path) e3Var.f13184c;
+            path = (Path) e3Var.f13186c;
             z12 = e3Var.a(bounds, z4, z10);
         } else {
-            path = this.f21430n;
+            path = this.f21432n;
         }
         if (!z12 && this.O == 0) {
             return path;
@@ -727,15 +727,15 @@ public class h5 extends Drawable {
     @Override
     public final void setAlpha(int i10) {
         int i11 = this.F;
-        Paint paint = this.f21421c;
+        Paint paint = this.f21423c;
         if (i11 != i10 || paint.getAlpha() != i10) {
             this.F = i10;
             paint.setAlpha(i10);
-            if (this.f21433q) {
-                this.d.setAlpha((int) ((i10 / 255.0f) * Color.alpha(g(k6.f21629bc))));
+            if (this.f21435q) {
+                this.d.setAlpha((int) ((i10 / 255.0f) * Color.alpha(g(k6.f21631bc))));
             }
         }
-        if (this.f21419a == null) {
+        if (this.f21421a == null) {
             Drawable f10 = f();
             if (f10.getAlpha() != i10) {
                 f10.setAlpha(i10);

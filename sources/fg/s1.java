@@ -20,7 +20,7 @@ public final class s1 extends h3 {
         LinearLayout h = l.d.h(parentActivity, 1);
         TextView textView = new TextView(parentActivity);
         textView.setGravity(8388611);
-        int i10 = k6.f21766j5;
+        int i10 = k6.f21768j5;
         y3.t(textView, k6.w0(null, i10, false), 1, 20.0f);
         h.addView(textView, c6.d(-1, -2.0f, 0, 21.0f, 16.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(parentActivity);
@@ -37,7 +37,7 @@ public final class s1 extends h3 {
         textView3.setOnClickListener(new eg.m(1));
         FrameLayout frameLayout = new FrameLayout(parentActivity);
         frameLayout.addView(textView3, c6.d(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        frameLayout.setBackgroundColor(getThemedColor(k6.f21731h5));
+        frameLayout.setBackgroundColor(getThemedColor(k6.f21733h5));
         h.addView(frameLayout, c6.q(-1, 68, 80));
         y3.q(R.string.SubscribeToPremiumOfficialAppNeeded, textView);
         textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.SubscribeToPremiumOfficialAppNeededDescription)));

@@ -2,30 +2,30 @@ package org.telegram.ui.Components;
 
 import android.content.DialogInterface;
 public final class m2 implements DialogInterface.OnDismissListener {
-    public final int f28892a = 0;
-    public final boolean[] f28893b;
-    public final Runnable f28894c;
+    public final int f28937a = 0;
+    public final boolean[] f28938b;
+    public final Runnable f28939c;
 
     public m2(Runnable runnable, boolean[] zArr) {
-        this.f28894c = runnable;
-        this.f28893b = zArr;
+        this.f28939c = runnable;
+        this.f28938b = zArr;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f28892a) {
+        switch (this.f28937a) {
             case 0:
-                Runnable runnable = this.f28894c;
-                if (runnable != null && this.f28893b[0]) {
+                Runnable runnable = this.f28939c;
+                if (runnable != null && this.f28938b[0]) {
                     runnable.run();
                     return;
                 }
                 return;
             default:
-                boolean[] zArr = this.f28893b;
+                boolean[] zArr = this.f28938b;
                 if (!zArr[0]) {
                     zArr[0] = true;
-                    Runnable runnable2 = this.f28894c;
+                    Runnable runnable2 = this.f28939c;
                     if (runnable2 != null) {
                         runnable2.run();
                         return;
@@ -37,7 +37,7 @@ public final class m2 implements DialogInterface.OnDismissListener {
     }
 
     public m2(boolean[] zArr, Runnable runnable) {
-        this.f28893b = zArr;
-        this.f28894c = runnable;
+        this.f28938b = zArr;
+        this.f28939c = runnable;
     }
 }

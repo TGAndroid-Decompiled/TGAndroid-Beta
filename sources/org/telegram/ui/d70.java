@@ -6,21 +6,21 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class d70 extends org.telegram.ui.Components.sl0 {
-    public final Context f36126c;
+public final class d70 extends org.telegram.ui.Components.rl0 {
+    public final Context f36105c;
     public int d;
-    public final ArrayList f36127e = new ArrayList();
-    public final f70 f36128f;
+    public final ArrayList f36106e = new ArrayList();
+    public final f70 f36107f;
 
     public d70(f70 f70Var, Context context) {
-        this.f36128f = f70Var;
-        this.f36126c = context;
+        this.f36107f = f70Var;
+        this.f36105c = context;
     }
 
     @Override
     public final void A(f2.m1 m1Var) {
         if (m1Var.f5879f == 2) {
-            ((org.telegram.ui.Cells.g4) m1Var.f5875a).f22836a.getImageReceiver().cancelLoadImage();
+            ((org.telegram.ui.Cells.g4) m1Var.f5875a).f22838a.getImageReceiver().cancelLoadImage();
         }
     }
 
@@ -28,7 +28,7 @@ public final class d70 extends org.telegram.ui.Components.sl0 {
     public final boolean D(f2.m1 m1Var) {
         int i10 = m1Var.f5879f;
         if (i10 != 3 && i10 != 4) {
-            if (i10 != 6 || !this.f36128f.N) {
+            if (i10 != 6 || !this.f36107f.N) {
                 return false;
             }
             return true;
@@ -38,20 +38,20 @@ public final class d70 extends org.telegram.ui.Components.sl0 {
 
     @Override
     public final int h() {
-        return this.f36127e.size();
+        return this.f36106e.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((c70) this.f36127e.get(i10)).f2505a;
+        return ((c70) this.f36106e.get(i10)).f2505a;
     }
 
     @Override
     public final void l() {
-        ArrayList arrayList = this.f36127e;
+        ArrayList arrayList = this.f36106e;
         arrayList.clear();
         arrayList.add(new cg.b(0, true));
-        f70 f70Var = this.f36128f;
+        f70 f70Var = this.f36107f;
         if (f70Var.M == 5) {
             arrayList.add(new cg.b(6, true));
             arrayList.add(new c70(LocaleController.getString(R.string.ForumToggleDescription)));
@@ -81,9 +81,9 @@ public final class d70 extends org.telegram.ui.Components.sl0 {
         boolean z4;
         int i11 = m1Var.f5879f;
         View view = m1Var.f5875a;
-        ArrayList arrayList = this.f36127e;
+        ArrayList arrayList = this.f36106e;
         boolean z10 = false;
-        f70 f70Var = this.f36128f;
+        f70 f70Var = this.f36107f;
         switch (i11) {
             case 1:
                 org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
@@ -119,7 +119,7 @@ public final class d70 extends org.telegram.ui.Components.sl0 {
                 o8Var.s(string, str, z4, R.drawable.msg_autodelete, false);
                 return;
             case 5:
-                ((org.telegram.ui.Cells.a9) view).setText(((c70) arrayList.get(i10)).f35695c);
+                ((org.telegram.ui.Cells.a9) view).setText(((c70) arrayList.get(i10)).f35709c);
                 return;
             case 6:
                 org.telegram.ui.Cells.o8 o8Var2 = (org.telegram.ui.Cells.o8) view;
@@ -134,7 +134,7 @@ public final class d70 extends org.telegram.ui.Components.sl0 {
     @Override
     public final f2.m1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.m4 m4Var;
-        Context context = this.f36126c;
+        Context context = this.f36105c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -149,7 +149,7 @@ public final class d70 extends org.telegram.ui.Components.sl0 {
                                     m4Var = view;
                                 }
                             } else {
-                                m4Var = new org.telegram.ui.Cells.o8(23, this.f36126c, this.f36128f.getResourceProvider(), false, true);
+                                m4Var = new org.telegram.ui.Cells.o8(23, this.f36105c, this.f36107f.getResourceProvider(), false, true);
                             }
                         } else {
                             m4Var = new org.telegram.ui.Cells.a9(context);

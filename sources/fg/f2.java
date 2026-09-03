@@ -3,8 +3,8 @@ package fg;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.sl0;
-public final class f2 extends sl0 {
+import org.telegram.ui.Components.rl0;
+public final class f2 extends rl0 {
     public final f1 f6316c;
 
     public f2(f1 f1Var) {

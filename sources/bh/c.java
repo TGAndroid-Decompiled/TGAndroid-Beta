@@ -28,10 +28,10 @@ public final class c extends qh.d implements xd.b {
         } else {
             q10 = k6.I.q();
         }
-        float f12 = this.f1984e0.f50505e;
+        float f12 = this.f1984e0.f50541e;
         setElevation((1.0f - f12) * AndroidUtilities.dp(1.0f));
-        setColor(i0.a.d(f12, m(k6.f21659d6), m(k6.Oh)));
-        setTextColor(i0.a.d(f12, m(k6.f21895q7), m(k6.Sh)));
+        setColor(i0.a.d(f12, m(k6.f21661d6), m(k6.Oh)));
+        setTextColor(i0.a.d(f12, m(k6.f21897q7), m(k6.Sh)));
         if (Build.VERSION.SDK_INT >= 28) {
             if (q10) {
                 setOutlineAmbientShadowColor(553648127);

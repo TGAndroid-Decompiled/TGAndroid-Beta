@@ -389,7 +389,7 @@ public final class l extends j {
         ArrayList arrayList = new ArrayList();
         arrayList.add((byte[]) o0Var2.f11576g);
         arrayList.add((byte[]) kVar.d);
-        e4.c a2 = x6.a(s8.v.u(((x) kVar.f94c).f46596a));
+        e4.c a2 = x6.a(s8.v.u(((x) kVar.f94c).f46627a));
         m0 m0Var = new m0();
         m0Var.f9265o = "audio/vorbis";
         m0Var.f9257f = o0Var2.d;

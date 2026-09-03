@@ -4,9 +4,9 @@ import h5.d0;
 import java.util.UUID;
 public final class w implements n3.b {
     public static final boolean d;
-    public final UUID f16420a;
-    public final byte[] f16421b;
-    public final boolean f16422c;
+    public final UUID f16422a;
+    public final byte[] f16423b;
+    public final boolean f16424c;
 
     static {
         boolean z4;
@@ -22,8 +22,8 @@ public final class w implements n3.b {
     }
 
     public w(UUID uuid, byte[] bArr, boolean z4) {
-        this.f16420a = uuid;
-        this.f16421b = bArr;
-        this.f16422c = z4;
+        this.f16422a = uuid;
+        this.f16423b = bArr;
+        this.f16424c = z4;
     }
 }

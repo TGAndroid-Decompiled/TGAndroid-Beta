@@ -91,7 +91,7 @@ public final class d {
                                 z10 = false;
                             }
                             dVar.getClass();
-                            this.h = builder.setAudioAttributes((AudioAttributes) dVar.a().f16615b).setWillPauseWhenDucked(z10).setOnAudioFocusChangeListener(cVar).build();
+                            this.h = builder.setAudioAttributes((AudioAttributes) dVar.a().f16617b).setWillPauseWhenDucked(z10).setOnAudioFocusChangeListener(cVar).build();
                         }
                         requestAudioFocus = audioManager.requestAudioFocus(this.h);
                     } else {

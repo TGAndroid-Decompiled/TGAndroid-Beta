@@ -11,10 +11,10 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class du implements Comparator {
-    public final int f36305a;
+    public final int f36257a;
 
     public du(int i10) {
-        this.f36305a = i10;
+        this.f36257a = i10;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class du implements Comparator {
         int i11;
         int i12;
         int i13 = 0;
-        switch (this.f36305a) {
+        switch (this.f36257a) {
             case 0:
                 DownloadController.Preset preset = (DownloadController.Preset) obj;
                 DownloadController.Preset preset2 = (DownloadController.Preset) obj2;
@@ -97,7 +97,7 @@ public final class du implements Comparator {
                 }
                 return 0;
             case 1:
-                return Long.compare(((tu) obj2).f31882c, ((tu) obj).f31882c);
+                return Long.compare(((tu) obj2).f31860c, ((tu) obj).f31860c);
             case 2:
                 int i19 = (UserConfig.getInstance(((Integer) obj).intValue()).loginTime > UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 1 : (UserConfig.getInstance(((Integer) obj).intValue()).loginTime == UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 0 : -1));
                 if (i19 > 0) {
@@ -143,15 +143,15 @@ public final class du implements Comparator {
             case 8:
                 return (int) (((View) obj).getY() - ((View) obj2).getY());
             case 9:
-                if (obj instanceof r01) {
-                    i10 = ((r01) obj).f40742g;
+                if (obj instanceof w01) {
+                    i10 = ((w01) obj).f42245g;
                 } else if (obj instanceof MessagesController.FaqSearchResult) {
                     i10 = ((MessagesController.FaqSearchResult) obj).num;
                 } else {
                     i10 = 0;
                 }
-                if (obj2 instanceof r01) {
-                    i11 = ((r01) obj2).f40742g;
+                if (obj2 instanceof w01) {
+                    i11 = ((w01) obj2).f42245g;
                 } else if (obj2 instanceof MessagesController.FaqSearchResult) {
                     i11 = ((MessagesController.FaqSearchResult) obj2).num;
                 } else {
@@ -194,35 +194,35 @@ public final class du implements Comparator {
                 }
                 return 0;
             case 14:
-                return (int) (((org.telegram.ui.web.j) obj2).f42595c - ((org.telegram.ui.web.j) obj).f42595c);
+                return (int) (((org.telegram.ui.web.j) obj2).f42558c - ((org.telegram.ui.web.j) obj).f42558c);
             case 15:
-                return (int) (((org.telegram.ui.web.j) obj2).f42595c - ((org.telegram.ui.web.j) obj).f42595c);
+                return (int) (((org.telegram.ui.web.j) obj2).f42558c - ((org.telegram.ui.web.j) obj).f42558c);
             case 16:
                 ng.q0 q0Var = (ng.q0) obj2;
-                String str = ((ng.q0) obj).f16178f;
+                String str = ((ng.q0) obj).f16180f;
                 if (str != null && str.equals("❤")) {
                     i12 = -1;
                 } else {
                     i12 = 0;
                 }
-                String str2 = q0Var.f16178f;
+                String str2 = q0Var.f16180f;
                 if (str2 != null && str2.equals("❤")) {
                     i13 = -1;
                 }
                 return i12 - i13;
             case 17:
-                return (int) (((qh.ha) obj2).f45391e - ((qh.ha) obj).f45391e);
+                return (int) (((qh.ga) obj2).f45372e - ((qh.ga) obj).f45372e);
             case 18:
                 s4.b bVar = (s4.b) obj;
                 s4.b bVar2 = (s4.b) obj2;
-                int compare = Integer.compare(bVar.f46947c, bVar2.f46947c);
+                int compare = Integer.compare(bVar.f46978c, bVar2.f46978c);
                 if (compare == 0) {
-                    return bVar.f46946b.compareTo(bVar2.f46946b);
+                    return bVar.f46977b.compareTo(bVar2.f46977b);
                 }
                 return compare;
             case 19:
-                int i27 = ((uf.y) obj).f48740b;
-                int i28 = ((uf.y) obj2).f48740b;
+                int i27 = ((uf.y) obj).f48776b;
+                int i28 = ((uf.y) obj2).f48776b;
                 if (i27 < i28) {
                     return 1;
                 }
@@ -233,8 +233,8 @@ public final class du implements Comparator {
             case 20:
                 return Double.compare(((TLRPC.TL_topPeer) obj2).rating, ((TLRPC.TL_topPeer) obj).rating);
             case 21:
-                int i29 = ((uf.i1) obj).f48604b;
-                int i30 = ((uf.i1) obj2).f48604b;
+                int i29 = ((uf.i1) obj).f48640b;
+                int i30 = ((uf.i1) obj2).f48640b;
                 if (i29 < i30) {
                     return 1;
                 }
@@ -245,9 +245,9 @@ public final class du implements Comparator {
             case 22:
                 return ((TL_account.TL_businessWeeklyOpen) obj).start_minute - ((TL_account.TL_businessWeeklyOpen) obj2).start_minute;
             case 23:
-                return ((vf.o1) obj).f49162c - ((vf.o1) obj2).f49162c;
+                return ((vf.o1) obj).f49198c - ((vf.o1) obj2).f49198c;
             case 24:
-                return Integer.compare(((w4.d) obj2).f49380b, ((w4.d) obj).f49380b);
+                return Integer.compare(((w4.d) obj2).f49416b, ((w4.d) obj).f49416b);
             default:
                 return ((f2.m1) obj2).f5875a.getTop() - ((f2.m1) obj).f5875a.getTop();
         }

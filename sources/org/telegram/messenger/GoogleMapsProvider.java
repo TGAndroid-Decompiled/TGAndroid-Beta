@@ -44,19 +44,19 @@ public class GoogleMapsProvider implements IMapsProvider {
             x7.b bVar = this.circleOptions;
             LatLng latLng2 = new LatLng(latLng.latitude, latLng.longitude);
             bVar.getClass();
-            bVar.f50438a = latLng2;
+            bVar.f50474a = latLng2;
             return this;
         }
 
         @Override
         public IMapsProvider.ICircleOptions fillColor(int i10) {
-            this.circleOptions.f50441e = i10;
+            this.circleOptions.f50477e = i10;
             return this;
         }
 
         @Override
         public IMapsProvider.ICircleOptions radius(double d) {
-            this.circleOptions.f50439b = d;
+            this.circleOptions.f50475b = d;
             return this;
         }
 
@@ -76,27 +76,27 @@ public class GoogleMapsProvider implements IMapsProvider {
                     arrayList.add(new x7.c(((IMapsProvider.PatternItem.Dash) patternItem).length, 0));
                 }
             }
-            this.circleOptions.f50444r = arrayList;
+            this.circleOptions.f50480r = arrayList;
             return this;
         }
 
         @Override
         public IMapsProvider.ICircleOptions strokeWidth(int i10) {
-            this.circleOptions.f50440c = i10;
+            this.circleOptions.f50476c = i10;
             return this;
         }
 
         private GoogleCircleOptions() {
             ?? obj = new Object();
-            obj.f50438a = null;
-            obj.f50439b = 0.0d;
-            obj.f50440c = 10.0f;
+            obj.f50474a = null;
+            obj.f50475b = 0.0d;
+            obj.f50476c = 10.0f;
             obj.d = -16777216;
-            obj.f50441e = 0;
-            obj.f50442f = 0.0f;
+            obj.f50477e = 0;
+            obj.f50478f = 0.0f;
             obj.h = true;
-            obj.f50443n = false;
-            obj.f50444r = null;
+            obj.f50479n = false;
+            obj.f50480r = null;
             this.circleOptions = obj;
         }
     }
@@ -131,8 +131,8 @@ public class GoogleMapsProvider implements IMapsProvider {
         @Override
         public IMapsProvider.ILatLngBounds build() {
             x7.d dVar = this.builder;
-            b6.m.j("no included points", !Double.isNaN(dVar.f50448c));
-            return new GoogleLatLngBounds(new LatLngBounds(new LatLng(dVar.f50446a, dVar.f50448c), new LatLng(dVar.f50447b, dVar.d)));
+            b6.m.j("no included points", !Double.isNaN(dVar.f50484c));
+            return new GoogleLatLngBounds(new LatLngBounds(new LatLng(dVar.f50482a, dVar.f50484c), new LatLng(dVar.f50483b, dVar.d)));
         }
 
         @Override
@@ -140,22 +140,22 @@ public class GoogleMapsProvider implements IMapsProvider {
             x7.d dVar = this.builder;
             LatLng latLng2 = new LatLng(latLng.latitude, latLng.longitude);
             dVar.getClass();
-            double d = dVar.f50446a;
+            double d = dVar.f50482a;
             double d10 = latLng2.f3822a;
-            dVar.f50446a = Math.min(d, d10);
-            dVar.f50447b = Math.max(dVar.f50447b, d10);
-            boolean isNaN = Double.isNaN(dVar.f50448c);
+            dVar.f50482a = Math.min(d, d10);
+            dVar.f50483b = Math.max(dVar.f50483b, d10);
+            boolean isNaN = Double.isNaN(dVar.f50484c);
             double d11 = latLng2.f3823b;
             if (isNaN) {
-                dVar.f50448c = d11;
+                dVar.f50484c = d11;
                 dVar.d = d11;
                 return this;
             }
-            double d12 = dVar.f50448c;
+            double d12 = dVar.f50484c;
             double d13 = dVar.d;
             if (d12 > d13 ? !(d12 <= d11 || d11 <= d13) : !(d12 <= d11 && d11 <= d13)) {
                 if (((d12 - d11) + 360.0d) % 360.0d < ((d11 - d13) + 360.0d) % 360.0d) {
-                    dVar.f50448c = d11;
+                    dVar.f50484c = d11;
                     return this;
                 }
                 dVar.d = d11;
@@ -165,9 +165,9 @@ public class GoogleMapsProvider implements IMapsProvider {
 
         private GoogleLatLngBoundsBuilder() {
             ?? obj = new Object();
-            obj.f50446a = Double.POSITIVE_INFINITY;
-            obj.f50447b = Double.NEGATIVE_INFINITY;
-            obj.f50448c = Double.NaN;
+            obj.f50482a = Double.POSITIVE_INFINITY;
+            obj.f50483b = Double.NEGATIVE_INFINITY;
+            obj.f50484c = Double.NaN;
             obj.d = Double.NaN;
             this.builder = obj;
         }
@@ -186,7 +186,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                 x7.a aVar = this.circle;
                 aVar.getClass();
                 try {
-                    g7.f fVar = (g7.f) aVar.f50437a;
+                    g7.f fVar = (g7.f) aVar.f50473a;
                     Parcel L0 = fVar.L0(fVar.M0(), 6);
                     double readDouble = L0.readDouble();
                     L0.recycle();
@@ -201,7 +201,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                 x7.a aVar = this.circle;
                 aVar.getClass();
                 try {
-                    g7.f fVar = (g7.f) aVar.f50437a;
+                    g7.f fVar = (g7.f) aVar.f50473a;
                     fVar.Q0(fVar.M0(), 1);
                     GoogleMapImpl.this.implToAbsCircleMap.remove(this.circle);
                 } catch (RemoteException e6) {
@@ -215,7 +215,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                 LatLng latLng2 = new LatLng(latLng.latitude, latLng.longitude);
                 aVar.getClass();
                 try {
-                    g7.f fVar = (g7.f) aVar.f50437a;
+                    g7.f fVar = (g7.f) aVar.f50473a;
                     Parcel M0 = fVar.M0();
                     g7.b.b(M0, latLng2);
                     fVar.Q0(M0, 3);
@@ -229,7 +229,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                 x7.a aVar = this.circle;
                 aVar.getClass();
                 try {
-                    g7.f fVar = (g7.f) aVar.f50437a;
+                    g7.f fVar = (g7.f) aVar.f50473a;
                     Parcel M0 = fVar.M0();
                     M0.writeInt(i10);
                     fVar.Q0(M0, 11);
@@ -243,7 +243,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                 x7.a aVar = this.circle;
                 aVar.getClass();
                 try {
-                    g7.f fVar = (g7.f) aVar.f50437a;
+                    g7.f fVar = (g7.f) aVar.f50473a;
                     Parcel M0 = fVar.M0();
                     M0.writeDouble(d);
                     fVar.Q0(M0, 5);
@@ -257,7 +257,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                 x7.a aVar = this.circle;
                 aVar.getClass();
                 try {
-                    g7.f fVar = (g7.f) aVar.f50437a;
+                    g7.f fVar = (g7.f) aVar.f50473a;
                     Parcel M0 = fVar.M0();
                     M0.writeInt(i10);
                     fVar.Q0(M0, 9);
@@ -281,7 +281,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                 x7.f fVar = this.marker;
                 fVar.getClass();
                 try {
-                    g7.i iVar = (g7.i) fVar.f50450a;
+                    g7.i iVar = (g7.i) fVar.f50486a;
                     Parcel L0 = iVar.L0(iVar.M0(), 4);
                     Parcelable.Creator<LatLng> creator = LatLng.CREATOR;
                     int i10 = g7.b.f6976a;
@@ -303,7 +303,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                 x7.f fVar = this.marker;
                 fVar.getClass();
                 try {
-                    g7.i iVar = (g7.i) fVar.f50450a;
+                    g7.i iVar = (g7.i) fVar.f50486a;
                     Parcel L0 = iVar.L0(iVar.M0(), 30);
                     l6.a J0 = l6.b.J0(L0.readStrongBinder());
                     L0.recycle();
@@ -318,7 +318,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                 x7.f fVar = this.marker;
                 fVar.getClass();
                 try {
-                    g7.i iVar = (g7.i) fVar.f50450a;
+                    g7.i iVar = (g7.i) fVar.f50486a;
                     iVar.Q0(iVar.M0(), 1);
                     GoogleMapImpl.this.implToAbsMarkerMap.remove(this.marker);
                 } catch (RemoteException e6) {
@@ -337,7 +337,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                 LatLng latLng2 = new LatLng(latLng.latitude, latLng.longitude);
                 fVar.getClass();
                 try {
-                    g7.i iVar = (g7.i) fVar.f50450a;
+                    g7.i iVar = (g7.i) fVar.f50486a;
                     Parcel M0 = iVar.M0();
                     g7.b.b(M0, latLng2);
                     iVar.Q0(M0, 3);
@@ -352,7 +352,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                 float f10 = i10;
                 fVar.getClass();
                 try {
-                    g7.i iVar = (g7.i) fVar.f50450a;
+                    g7.i iVar = (g7.i) fVar.f50486a;
                     Parcel M0 = iVar.M0();
                     M0.writeFloat(f10);
                     iVar.Q0(M0, 22);
@@ -366,7 +366,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                 x7.f fVar = this.marker;
                 fVar.getClass();
                 try {
-                    g7.a aVar = fVar.f50450a;
+                    g7.a aVar = fVar.f50486a;
                     l6.b bVar = new l6.b(obj);
                     g7.i iVar = (g7.i) aVar;
                     Parcel M0 = iVar.M0();
@@ -416,7 +416,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             cVar.getClass();
             try {
                 b6.m.i(bVar, "CircleOptions must not be null.");
-                w7.f fVar = cVar.f48919a;
+                w7.f fVar = cVar.f48955a;
                 Parcel M0 = fVar.M0();
                 g7.b.b(M0, bVar);
                 Parcel L0 = fVar.L0(M0, 35);
@@ -451,7 +451,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             cVar.getClass();
             try {
                 b6.m.i(gVar, "MarkerOptions must not be null.");
-                w7.f fVar2 = cVar.f48919a;
+                w7.f fVar2 = cVar.f48955a;
                 Parcel M0 = fVar2.M0();
                 g7.b.b(M0, gVar);
                 Parcel L0 = fVar2.L0(M0, 11);
@@ -488,8 +488,8 @@ public class GoogleMapsProvider implements IMapsProvider {
             cVar.getClass();
             try {
                 b6.m.i(aVar, "CameraUpdate must not be null.");
-                w7.f fVar = cVar.f48919a;
-                l6.a aVar2 = aVar.f48918a;
+                w7.f fVar = cVar.f48955a;
+                l6.a aVar2 = aVar.f48954a;
                 Parcel M0 = fVar.M0();
                 g7.b.c(M0, aVar2);
                 fVar.Q0(M0, 5);
@@ -504,7 +504,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             v7.c cVar = this.googleMap;
             cVar.getClass();
             try {
-                w7.f fVar = cVar.f48919a;
+                w7.f fVar = cVar.f48955a;
                 Parcel L0 = fVar.L0(fVar.M0(), 1);
                 Parcelable.Creator<CameraPosition> creator = CameraPosition.CREATOR;
                 int i10 = g7.b.f6976a;
@@ -527,7 +527,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             v7.c cVar = this.googleMap;
             cVar.getClass();
             try {
-                w7.f fVar = cVar.f48919a;
+                w7.f fVar = cVar.f48955a;
                 Parcel L0 = fVar.L0(fVar.M0(), 2);
                 float readFloat = L0.readFloat();
                 L0.recycle();
@@ -542,7 +542,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             v7.c cVar = this.googleMap;
             cVar.getClass();
             try {
-                w7.f fVar = cVar.f48919a;
+                w7.f fVar = cVar.f48955a;
                 Parcel L0 = fVar.L0(fVar.M0(), 3);
                 float readFloat = L0.readFloat();
                 L0.recycle();
@@ -558,7 +558,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             v7.c cVar = this.googleMap;
             cVar.getClass();
             try {
-                w7.f fVar = cVar.f48919a;
+                w7.f fVar = cVar.f48955a;
                 Parcel L0 = fVar.L0(fVar.M0(), 26);
                 IBinder readStrongBinder = L0.readStrongBinder();
                 if (readStrongBinder == null) {
@@ -584,8 +584,8 @@ public class GoogleMapsProvider implements IMapsProvider {
             v7.c cVar2 = this.googleMap;
             cVar2.getClass();
             try {
-                if (cVar2.f48920b == null) {
-                    w7.f fVar = cVar2.f48919a;
+                if (cVar2.f48956b == null) {
+                    w7.f fVar = cVar2.f48955a;
                     Parcel L0 = fVar.L0(fVar.M0(), 25);
                     IBinder readStrongBinder = L0.readStrongBinder();
                     if (readStrongBinder == null) {
@@ -599,9 +599,9 @@ public class GoogleMapsProvider implements IMapsProvider {
                         }
                     }
                     L0.recycle();
-                    cVar2.f48920b = new v7.h(cVar);
+                    cVar2.f48956b = new v7.h(cVar);
                 }
-                return new GoogleUISettings(cVar2.f48920b);
+                return new GoogleUISettings(cVar2.f48956b);
             } catch (RemoteException e6) {
                 throw new RuntimeException(e6);
             }
@@ -614,8 +614,8 @@ public class GoogleMapsProvider implements IMapsProvider {
             cVar.getClass();
             try {
                 b6.m.i(aVar, "CameraUpdate must not be null.");
-                w7.f fVar = cVar.f48919a;
-                l6.a aVar2 = aVar.f48918a;
+                w7.f fVar = cVar.f48955a;
+                l6.a aVar2 = aVar.f48954a;
                 Parcel M0 = fVar.M0();
                 g7.b.c(M0, aVar2);
                 fVar.Q0(M0, 4);
@@ -635,7 +635,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             }
             cVar.getClass();
             try {
-                w7.f fVar = cVar.f48919a;
+                w7.f fVar = cVar.f48955a;
                 Parcel M0 = fVar.M0();
                 g7.b.b(M0, eVar);
                 Parcel L0 = fVar.L0(M0, 91);
@@ -667,7 +667,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             v7.c cVar = this.googleMap;
             cVar.getClass();
             try {
-                w7.f fVar = cVar.f48919a;
+                w7.f fVar = cVar.f48955a;
                 Parcel M0 = fVar.M0();
                 int i10 = g7.b.f6976a;
                 M0.writeInt(z4 ? 1 : 0);
@@ -682,7 +682,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             v7.c cVar = this.googleMap;
             Objects.requireNonNull(runnable);
             j4 j4Var = new j4(runnable);
-            w7.f fVar = cVar.f48919a;
+            w7.f fVar = cVar.f48955a;
             try {
                 v7.i iVar = new v7.i(j4Var, (char) 0);
                 Parcel M0 = fVar.M0();
@@ -698,7 +698,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             v7.c cVar = this.googleMap;
             Objects.requireNonNull(runnable);
             j4 j4Var = new j4(runnable);
-            w7.f fVar = cVar.f48919a;
+            w7.f fVar = cVar.f48955a;
             try {
                 v7.i iVar = new v7.i(j4Var);
                 Parcel M0 = fVar.M0();
@@ -713,7 +713,7 @@ public class GoogleMapsProvider implements IMapsProvider {
         public void setOnCameraMoveStartedListener(IMapsProvider.OnCameraMoveStartedListener onCameraMoveStartedListener) {
             v7.c cVar = this.googleMap;
             d0 d0Var = new d0(onCameraMoveStartedListener, 4);
-            w7.f fVar = cVar.f48919a;
+            w7.f fVar = cVar.f48955a;
             try {
                 v7.i iVar = new v7.i(d0Var);
                 Parcel M0 = fVar.M0();
@@ -729,7 +729,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             v7.c cVar = this.googleMap;
             Objects.requireNonNull(runnable);
             j4 j4Var = new j4(runnable);
-            w7.f fVar = cVar.f48919a;
+            w7.f fVar = cVar.f48955a;
             try {
                 v7.i iVar = new v7.i(j4Var, (byte) 0);
                 Parcel M0 = fVar.M0();
@@ -744,7 +744,7 @@ public class GoogleMapsProvider implements IMapsProvider {
         public void setOnMarkerClickListener(IMapsProvider.OnMarkerClickListener onMarkerClickListener) {
             v7.c cVar = this.googleMap;
             c cVar2 = new c(3, this, onMarkerClickListener);
-            w7.f fVar = cVar.f48919a;
+            w7.f fVar = cVar.f48955a;
             try {
                 v7.i iVar = new v7.i(cVar2);
                 Parcel M0 = fVar.M0();
@@ -760,7 +760,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             v7.c cVar = this.googleMap;
             Objects.requireNonNull(aVar);
             i4 i4Var = new i4(aVar, 2);
-            w7.f fVar = cVar.f48919a;
+            w7.f fVar = cVar.f48955a;
             try {
                 v7.i iVar = new v7.i(i4Var);
                 Parcel M0 = fVar.M0();
@@ -776,7 +776,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             v7.c cVar = this.googleMap;
             cVar.getClass();
             try {
-                w7.f fVar = cVar.f48919a;
+                w7.f fVar = cVar.f48955a;
                 Parcel M0 = fVar.M0();
                 M0.writeInt(i10);
                 M0.writeInt(i11);
@@ -817,8 +817,8 @@ public class GoogleMapsProvider implements IMapsProvider {
             cVar.getClass();
             try {
                 b6.m.i(aVar, "CameraUpdate must not be null.");
-                w7.f fVar = cVar.f48919a;
-                l6.a aVar2 = aVar.f48918a;
+                w7.f fVar = cVar.f48955a;
+                l6.a aVar2 = aVar.f48954a;
                 if (bVar != null) {
                     iVar = new v7.i(bVar);
                 }
@@ -854,8 +854,8 @@ public class GoogleMapsProvider implements IMapsProvider {
             cVar.getClass();
             try {
                 b6.m.i(aVar, "CameraUpdate must not be null.");
-                w7.f fVar = cVar.f48919a;
-                l6.a aVar2 = aVar.f48918a;
+                w7.f fVar = cVar.f48955a;
+                l6.a aVar2 = aVar.f48954a;
                 if (bVar != null) {
                     iVar = new v7.i(bVar);
                 }
@@ -1007,14 +1007,14 @@ public class GoogleMapsProvider implements IMapsProvider {
         @Override
         public IMapsProvider.IMarkerOptions anchor(float f10, float f11) {
             x7.g gVar = this.markerOptions;
-            gVar.f50454e = f10;
-            gVar.f50455f = f11;
+            gVar.f50490e = f10;
+            gVar.f50491f = f11;
             return this;
         }
 
         @Override
         public IMapsProvider.IMarkerOptions flat(boolean z4) {
-            this.markerOptions.f50457r = z4;
+            this.markerOptions.f50493r = z4;
             return this;
         }
 
@@ -1026,32 +1026,32 @@ public class GoogleMapsProvider implements IMapsProvider {
 
         @Override
         public IMapsProvider.IMarkerOptions position(IMapsProvider.LatLng latLng) {
-            this.markerOptions.f50451a = new LatLng(latLng.latitude, latLng.longitude);
+            this.markerOptions.f50487a = new LatLng(latLng.latitude, latLng.longitude);
             return this;
         }
 
         @Override
         public IMapsProvider.IMarkerOptions snippet(String str) {
-            this.markerOptions.f50453c = str;
+            this.markerOptions.f50489c = str;
             return this;
         }
 
         @Override
         public IMapsProvider.IMarkerOptions title(String str) {
-            this.markerOptions.f50452b = str;
+            this.markerOptions.f50488b = str;
             return this;
         }
 
         private GoogleMarkerOptions() {
             ?? obj = new Object();
-            obj.f50454e = 0.5f;
-            obj.f50455f = 1.0f;
-            obj.f50456n = true;
-            obj.f50457r = false;
-            obj.f50458s = 0.0f;
+            obj.f50490e = 0.5f;
+            obj.f50491f = 1.0f;
+            obj.f50492n = true;
+            obj.f50493r = false;
+            obj.f50494s = 0.0f;
             obj.v = 0.5f;
-            obj.f50459w = 0.0f;
-            obj.f50460x = 1.0f;
+            obj.f50495w = 0.0f;
+            obj.f50496x = 1.0f;
             this.markerOptions = obj;
         }
 
@@ -1071,7 +1071,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             LatLng latLng2 = new LatLng(latLng.latitude, latLng.longitude);
             gVar.getClass();
             try {
-                w7.b bVar = gVar.f48923a;
+                w7.b bVar = gVar.f48959a;
                 Parcel M0 = bVar.M0();
                 g7.b.b(M0, latLng2);
                 Parcel L0 = bVar.L0(M0, 2);
@@ -1096,7 +1096,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             v7.h hVar = this.uiSettings;
             hVar.getClass();
             try {
-                w7.c cVar = hVar.f48924a;
+                w7.c cVar = hVar.f48960a;
                 Parcel M0 = cVar.M0();
                 int i10 = g7.b.f6976a;
                 M0.writeInt(z4 ? 1 : 0);
@@ -1111,7 +1111,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             v7.h hVar = this.uiSettings;
             hVar.getClass();
             try {
-                w7.c cVar = hVar.f48924a;
+                w7.c cVar = hVar.f48960a;
                 Parcel M0 = cVar.M0();
                 int i10 = g7.b.f6976a;
                 M0.writeInt(z4 ? 1 : 0);
@@ -1126,7 +1126,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             v7.h hVar = this.uiSettings;
             hVar.getClass();
             try {
-                w7.c cVar = hVar.f48924a;
+                w7.c cVar = hVar.f48960a;
                 Parcel M0 = cVar.M0();
                 int i10 = g7.b.f6976a;
                 M0.writeInt(z4 ? 1 : 0);

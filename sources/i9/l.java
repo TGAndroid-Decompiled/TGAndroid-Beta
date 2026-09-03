@@ -50,7 +50,7 @@ public final class l implements Callable {
         } catch (IOException e10) {
             Log.w("FirebaseCrashlytics", "Could not create app exception marker file.", e10);
         }
-        if (!new File(bVar.f15872b, str).createNewFile()) {
+        if (!new File(bVar.f15874b, str).createNewFile()) {
             throw new IOException("Create new file failed.");
         }
         e3.g gVar = this.d;
@@ -60,7 +60,7 @@ public final class l implements Callable {
         if (!nVar.f7966b.a()) {
             return Tasks.forResult(null);
         }
-        Executor executor = (Executor) nVar.f7968e.f47315b;
+        Executor executor = (Executor) nVar.f7968e.f47351b;
         return ((TaskCompletionSource) ((AtomicReference) gVar.f4937i).get()).getTask().onSuccessTask(executor, new f7.b(this, executor, e6));
     }
 }

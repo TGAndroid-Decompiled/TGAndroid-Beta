@@ -25,12 +25,12 @@ public final class lr extends sa {
     public final boolean X;
     public String Y;
     public String Z;
-    public SpannableStringBuilder f28808a0;
-    public x51 f28809b0;
-    public final boolean f28810c0;
-    public kr f28811d0;
+    public SpannableStringBuilder f28860a0;
+    public w51 f28861b0;
+    public final boolean f28862c0;
+    public kr f28863d0;
 
-    public lr(Context context, int i10, TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl, TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl, org.telegram.ui.web.v1 v1Var, oh.b bVar) {
+    public lr(Context context, int i10, TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl, TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl, org.telegram.ui.web.a2 a2Var, oh.b bVar) {
         int i11;
         lr saVar = new sa(context, null, false, false, false, 1, bVar);
         saVar.U = true;
@@ -38,16 +38,16 @@ public final class lr extends sa {
         saVar.V = null;
         saVar.X = false;
         long peerDialogId = DialogObject.getPeerDialogId(getgroupcallstreamrtmpurl.peer);
-        boolean z4 = v1Var != null && (peerDialogId >= 0 || ChatObject.isCreator(MessagesController.getInstance(i10).getChat(Long.valueOf(-peerDialogId))));
-        if (v1Var != null) {
-            saVar.f28810c0 = true;
+        boolean z4 = a2Var != null && (peerDialogId >= 0 || ChatObject.isCreator(MessagesController.getInstance(i10).getChat(Long.valueOf(-peerDialogId))));
+        if (a2Var != null) {
+            saVar.f28862c0 = true;
             qh.d dVar = new qh.d(context, bVar, true);
             dVar.g(LocaleController.getString(R.string.LiveStoryRTMPEnable), false, true);
             saVar.containerView.addView(dVar, k7.c6.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, (z4 ? 52 : 0) + 12));
-            dVar.setOnClickListener(new eg.o(saVar, v1Var, dVar, 21));
+            dVar.setOnClickListener(new eg.o(saVar, a2Var, dVar, 21));
             if (z4) {
                 qh.d dVar2 = new qh.d(context, bVar, false);
-                dVar2.setColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21913r7, false));
+                dVar2.setColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21915r7, false));
                 dVar2.d.u(AndroidUtilities.bold());
                 dVar2.g(LocaleController.getString(R.string.LiveStoryRTMPRevoke), false, true);
                 saVar = this;
@@ -61,26 +61,26 @@ public final class lr extends sa {
         lVar.o(pr.h);
         lVar.n(350L);
         saVar.d.setItemAnimator(lVar);
-        tl0 tl0Var = saVar.d;
+        sl0 sl0Var = saVar.d;
         int i12 = saVar.backgroundPaddingLeft;
-        if (saVar.f28810c0) {
+        if (saVar.f28862c0) {
             i11 = AndroidUtilities.dp(z4 ? 124.0f : 72.0f);
         } else {
             i11 = 0;
         }
-        tl0Var.setPadding(i12, 0, i12, i11);
+        sl0Var.setPadding(i12, 0, i12, i11);
         saVar.fixNavigationBar();
         saVar.N();
         saVar.Y = groupcallstreamrtmpurl.url;
         saVar.Z = groupcallstreamrtmpurl.key;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(saVar.Z);
-        saVar.f28808a0 = spannableStringBuilder;
+        saVar.f28860a0 = spannableStringBuilder;
         ?? obj = new Object();
-        obj.f31225a |= 256;
-        obj.f31226b = 0;
-        obj.f31227c = spannableStringBuilder.length();
-        saVar.f28808a0.setSpan(new u01(obj, 0), 0, saVar.f28808a0.length(), 0);
-        saVar.f28809b0.N(false);
+        obj.f30949a |= 256;
+        obj.f30950b = 0;
+        obj.f30951c = spannableStringBuilder.length();
+        saVar.f28860a0.setSpan(new t01(obj, 0), 0, saVar.f28860a0.length(), 0);
+        saVar.f28861b0.N(false);
     }
 
     public static void P(lr lrVar, TLRPC.Peer peer) {
@@ -102,7 +102,7 @@ public final class lr extends sa {
     public static void R(lr lrVar, ArrayList arrayList) {
         int i10;
         String str = null;
-        if (lrVar.f28811d0 == null) {
+        if (lrVar.f28863d0 == null) {
             Context context = lrVar.getContext();
             org.telegram.ui.ActionBar.g6 g6Var = lrVar.resourcesProvider;
             ?? linearLayout = new LinearLayout(context);
@@ -121,33 +121,33 @@ public final class lr extends sa {
             TextView textView2 = new TextView(context);
             textView2.setTextSize(1, 14.0f);
             textView2.setGravity(1);
-            textView2.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21766j5, g6Var));
+            textView2.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21768j5, g6Var));
             textView2.setText(LocaleController.formatString(R.string.VoipStreamStart, new Object[0]));
             textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
             linearLayout.addView(textView2, k7.c6.t(-2, -2, 1, 28, 0, 28, 17));
-            lrVar.f28811d0 = linearLayout;
+            lrVar.f28863d0 = linearLayout;
         }
-        arrayList.add(j51.k(lrVar.f28811d0));
-        arrayList.add(j51.B(null));
+        arrayList.add(h51.k(lrVar.f28863d0));
+        arrayList.add(h51.B(null));
         org.telegram.ui.yh.r(R.string.VoipChatStreamSettings, arrayList);
         String str2 = lrVar.Y;
         String string = LocaleController.getString(R.string.VoipChatStreamServerUrl);
-        int i11 = jr.f28187a;
-        j51 J = j51.J(jr.class);
-        J.f28014l = str2;
-        J.f28016n = string;
-        J.f28012j = false;
-        J.f28010g = false;
+        int i11 = jr.f28167a;
+        h51 J = h51.J(jr.class);
+        J.f27375l = str2;
+        J.f27377n = string;
+        J.f27373j = false;
+        J.f27371g = false;
         arrayList.add(J);
-        SpannableStringBuilder spannableStringBuilder = lrVar.f28808a0;
+        SpannableStringBuilder spannableStringBuilder = lrVar.f28860a0;
         String string2 = LocaleController.getString(R.string.VoipChatStreamKey);
-        j51 J2 = j51.J(jr.class);
-        J2.f28014l = spannableStringBuilder;
-        J2.f28016n = string2;
-        J2.f28012j = true;
-        J2.f28010g = false;
+        h51 J2 = h51.J(jr.class);
+        J2.f27375l = spannableStringBuilder;
+        J2.f27377n = string2;
+        J2.f27373j = true;
+        J2.f27371g = false;
         arrayList.add(J2);
-        if (lrVar.f28810c0) {
+        if (lrVar.f28862c0) {
             if (lrVar.U) {
                 i10 = R.string.VoipChatStreamWithAnotherAppDescriptionStory;
             } else {
@@ -155,13 +155,13 @@ public final class lr extends sa {
             }
             str = LocaleController.getString(i10);
         }
-        arrayList.add(j51.B(str));
+        arrayList.add(h51.B(str));
     }
 
     public static void S(lr lrVar, Context context, qh.d dVar, long j10) {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, lrVar.resourcesProvider);
-        alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.LiveStoryRTMPRevokeTitle);
-        alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.LiveStoryRTMPRevokeText);
+        alertDialog$Builder.f21168a.O = LocaleController.getString(R.string.LiveStoryRTMPRevokeTitle);
+        alertDialog$Builder.f21168a.Q = LocaleController.getString(R.string.LiveStoryRTMPRevokeText);
         alertDialog$Builder.k(LocaleController.getString(R.string.RevokeButton), new e3.f(lrVar, dVar, j10, 6));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
         alertDialog$Builder.d(-1);
@@ -179,10 +179,10 @@ public final class lr extends sa {
     }
 
     @Override
-    public final sl0 v(tl0 tl0Var) {
-        x51 x51Var = new x51(tl0Var, getContext(), this.currentAccount, 0, true, new d(this, 7), this.resourcesProvider);
-        this.f28809b0 = x51Var;
-        return x51Var;
+    public final rl0 v(sl0 sl0Var) {
+        w51 w51Var = new w51(sl0Var, getContext(), this.currentAccount, 0, true, new d(this, 7), this.resourcesProvider);
+        this.f28861b0 = w51Var;
+        return w51Var;
     }
 
     @Override
@@ -198,7 +198,7 @@ public final class lr extends sa {
         this.X = z4;
         Context context = this.containerView.getContext();
         boolean isCreator = ChatObject.isCreator(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10)));
-        this.f28810c0 = true;
+        this.f28862c0 = true;
         TextView textView = new TextView(context);
         textView.setGravity(17);
         textView.setEllipsize(TextUtils.TruncateAt.END);
@@ -209,21 +209,21 @@ public final class lr extends sa {
         textView.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Sh, this.resourcesProvider));
         int dp = AndroidUtilities.dp(8.0f);
         int v02 = org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Oh, this.resourcesProvider);
-        int k10 = i0.a.k(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21659d6, false), 120);
+        int k10 = i0.a.k(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21661d6, false), 120);
         textView.setBackground(org.telegram.ui.ActionBar.k6.i0(dp, dp, dp, dp, v02, k10, k10));
         this.containerView.addView(textView, k7.c6.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, (isCreator ? 52 : 0) + 12));
         textView.setOnClickListener(new w2(11, this, peer));
         if (isCreator) {
             qh.d dVar = new qh.d(context, this.resourcesProvider, false);
-            dVar.setColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21913r7, false));
+            dVar.setColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21915r7, false));
             dVar.d.u(AndroidUtilities.bold());
             dVar.g(LocaleController.getString(R.string.LiveStoryRTMPRevoke), false, true);
             dVar.setOnClickListener(new hg.z0(this, context, dVar, j10, 1));
             this.containerView.addView(dVar, k7.c6.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
         }
-        tl0 tl0Var = this.d;
+        sl0 sl0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        tl0Var.setPadding(i10, 0, i10, AndroidUtilities.dp((isCreator ? 52 : 0) + 72));
+        sl0Var.setPadding(i10, 0, i10, AndroidUtilities.dp((isCreator ? 52 : 0) + 72));
         f2.l lVar = new f2.l();
         lVar.f5910m = false;
         lVar.C = false;

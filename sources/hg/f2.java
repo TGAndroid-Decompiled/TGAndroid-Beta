@@ -42,9 +42,9 @@ import org.telegram.ui.Cells.t3;
 import org.telegram.ui.Cells.u3;
 import org.telegram.ui.Components.pr;
 import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.sa;
 import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.tl0;
 import org.telegram.ui.Components.z5;
 public final class f2 extends sa {
     public final qh.d U;
@@ -100,10 +100,10 @@ public final class f2 extends sa {
         dVar.setOnCloseClickListener(new x1(this, 7));
         dVar.setText(y());
         dVar.setCloseImageVisible(true);
-        dVar.f12539e.c(0.0f, false);
+        dVar.f12541e.c(0.0f, false);
         d2 d2Var = new d2(this, getContext(), this.resourcesProvider);
         this.V = d2Var;
-        int i10 = k6.f21731h5;
+        int i10 = k6.f21733h5;
         d2Var.setBackgroundColor(getThemedColor(i10));
         d2Var.setOnSearchTextChange(new b2(this, 0));
         this.W = new u3(getContext(), this.resourcesProvider);
@@ -114,7 +114,7 @@ public final class f2 extends sa {
         ViewGroup viewGroup3 = this.containerView;
         int i12 = this.backgroundPaddingLeft;
         viewGroup3.addView(d2Var, c6.f(-2.0f, 55, i12, 0, i12, 0));
-        lg.a aVar = new lg.a(getContext(), this.resourcesProvider, (tl0) null);
+        lg.a aVar = new lg.a(getContext(), this.resourcesProvider, (sl0) null);
         aVar.setClickable(true);
         aVar.setOrientation(1);
         aVar.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
@@ -127,11 +127,11 @@ public final class f2 extends sa {
         int i13 = this.backgroundPaddingLeft;
         viewGroup4.addView(aVar, c6.f(-2.0f, 87, i13, 0, i13, 0));
         ig.h hVar = this.f7481l0;
-        tl0 tl0Var = this.d;
+        sl0 sl0Var = this.d;
         hVar.h = arrayList;
-        hVar.f8100f = tl0Var;
+        hVar.f8100f = sl0Var;
         int i14 = this.backgroundPaddingLeft;
-        tl0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(60.0f));
+        sl0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(60.0f));
         this.d.j(new fg.e2(this, 1));
         this.d.setOnItemClickListener(new f(this, 2));
         f2.l lVar = new f2.l();
@@ -174,9 +174,9 @@ public final class f2 extends sa {
             TLRPC.User user = nVar.getUser();
             TLRPC.Chat chat = nVar.getChat();
             if (user != null) {
-                j10 = user.f20990id;
+                j10 = user.f20992id;
             } else {
-                j10 = -chat.f20843id;
+                j10 = -chat.f20845id;
             }
             if (hashSet.contains(Long.valueOf(j10))) {
                 hashSet.remove(Long.valueOf(j10));
@@ -208,13 +208,13 @@ public final class f2 extends sa {
                 } else {
                     i10 = R.string.BoostingGiveawayPrivateGroup;
                 }
-                alertDialog$Builder.f21166a.O = LocaleController.getString(i10);
+                alertDialog$Builder.f21168a.O = LocaleController.getString(i10);
                 if (isChannelAndNotMegaGroup) {
                     i11 = R.string.BoostingGiveawayPrivateChannelWarning;
                 } else {
                     i11 = R.string.BoostingGiveawayPrivateGroupWarning;
                 }
-                alertDialog$Builder.f21166a.Q = LocaleController.getString(i11);
+                alertDialog$Builder.f21168a.Q = LocaleController.getString(i11);
                 alertDialog$Builder.k(LocaleController.getString("Add", R.string.Add), new c1.b(12, atomicBoolean, x1Var));
                 alertDialog$Builder.h(LocaleController.getString("Cancel", R.string.Cancel), new f5.u(9));
                 alertDialog$Builder.j(new g(0, atomicBoolean, y1Var));
@@ -275,7 +275,7 @@ public final class f2 extends sa {
         d2 d2Var = this.V;
         d2Var.setTranslationY(translationY);
         this.d.setTranslationY((d2Var.getMeasuredHeight() + dVar.getMeasuredHeight()) - AndroidUtilities.dp(16.0f));
-        int v02 = k6.v0(k6.f21731h5, this.resourcesProvider);
+        int v02 = k6.v0(k6.f21733h5, this.resourcesProvider);
         Paint paint = this.Y;
         paint.setColor(v02);
         int max = Math.max(0, i10);
@@ -288,7 +288,7 @@ public final class f2 extends sa {
         int lerp = AndroidUtilities.lerp(max, 0, z5Var.e(z4));
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(this.backgroundPaddingLeft, lerp, this.containerView.getWidth() - this.backgroundPaddingLeft, AndroidUtilities.dp(14.0f) + this.containerView.getHeight());
-        float dp = (1.0f - z5Var.f33725c) * AndroidUtilities.dp(14.0f);
+        float dp = (1.0f - z5Var.f33763c) * AndroidUtilities.dp(14.0f);
         canvas.drawRoundRect(rectF, dp, dp, paint);
     }
 
@@ -299,7 +299,7 @@ public final class f2 extends sa {
             AndroidUtilities.cancelRunOnUIThread(this.f7487s0);
             ArrayList arrayList = this.f7473d0;
             arrayList.clear();
-            arrayList.addAll(p0.e(this.f7482n0.f20843id));
+            arrayList.addAll(p0.e(this.f7482n0.f20845id));
             b0(false, false);
             b0(true, true);
         }
@@ -319,7 +319,7 @@ public final class f2 extends sa {
         x1 x1Var = new x1(this, 0);
         x1 x1Var2 = new x1(this, 6);
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, g6Var);
-        alertDialog$Builder.f21166a.O = LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges);
+        alertDialog$Builder.f21168a.O = LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges);
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -333,7 +333,7 @@ public final class f2 extends sa {
         } else {
             string = LocaleController.getString("BoostingApplyChangesUsers", R.string.BoostingApplyChangesUsers);
         }
-        alertDialog$Builder.f21166a.Q = string;
+        alertDialog$Builder.f21168a.Q = string;
         alertDialog$Builder.k(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new f(x1Var, 1));
         alertDialog$Builder.h(LocaleController.getString("Discard", R.string.Discard), new a1.c(x1Var2, 28));
         alertDialog$Builder.o();
@@ -361,17 +361,17 @@ public final class f2 extends sa {
                 connectionsManager.sendRequest(tL_help_getCountriesList, new gf.a(c2Var, 2));
                 return;
             }
-            long j10 = chat.f20843id;
+            long j10 = chat.f20845id;
             b2 b2Var = new b2(this, 1);
             MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
             ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(UserConfig.selectedAccount);
             TLRPC.TL_contacts_search tL_contacts_search = new TLRPC.TL_contacts_search();
-            tL_contacts_search.f20889q = str;
+            tL_contacts_search.f20891q = str;
             tL_contacts_search.limit = 50;
             connectionsManager2.sendRequest(tL_contacts_search, new c0(messagesController, j10, b2Var, 0));
             return;
         }
-        long j11 = chat.f20843id;
+        long j11 = chat.f20845id;
         c2 c2Var2 = new c2(this, z4, 0);
         MessagesController messagesController2 = MessagesController.getInstance(UserConfig.selectedAccount);
         ConnectionsManager connectionsManager3 = ConnectionsManager.getInstance(UserConfig.selectedAccount);
@@ -386,7 +386,7 @@ public final class f2 extends sa {
         if (str == null) {
             str = "";
         }
-        tL_channelParticipantsSearch.f20842q = str;
+        tL_channelParticipantsSearch.f20844q = str;
         tL_channels_getParticipants.offset = 0;
         tL_channels_getParticipants.limit = 50;
         connectionsManager3.sendRequest(tL_channels_getParticipants, new b3(1, messagesController2, c2Var2));
@@ -406,7 +406,7 @@ public final class f2 extends sa {
         linkedHashMap.clear();
         if (i10 != 1) {
             if (i10 == 2) {
-                arrayList.addAll(p0.e(this.f7482n0.f20843id));
+                arrayList.addAll(p0.e(this.f7482n0.f20845id));
             }
         } else {
             arrayList.addAll(this.f7474e0);
@@ -424,10 +424,10 @@ public final class f2 extends sa {
                     j10 = -((TLRPC.TL_inputPeerChannel) tLObject).channel_id;
                 }
                 if (tLObject instanceof TLRPC.Chat) {
-                    j10 = -((TLRPC.Chat) tLObject).f20843id;
+                    j10 = -((TLRPC.Chat) tLObject).f20845id;
                 }
                 if (tLObject instanceof TLRPC.User) {
-                    j10 = ((TLRPC.User) tLObject).f20990id;
+                    j10 = ((TLRPC.User) tLObject).f20992id;
                 }
                 if (tLObject instanceof TLRPC.TL_help_country) {
                     j10 = ((TLRPC.TL_help_country) tLObject).default_name.hashCode();
@@ -486,7 +486,7 @@ public final class f2 extends sa {
                 for (TLObject tLObject : linkedHashMap.values()) {
                     if (tLObject instanceof TLRPC.Chat) {
                         TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                        if (hashSet.contains(Long.valueOf(-chat.f20843id))) {
+                        if (hashSet.contains(Long.valueOf(-chat.f20845id))) {
                             arrayList4.add(chat);
                         }
                     }
@@ -508,7 +508,7 @@ public final class f2 extends sa {
             for (TLObject tLObject2 : linkedHashMap.values()) {
                 if (tLObject2 instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) tLObject2;
-                    if (hashSet.contains(Long.valueOf(user.f20990id))) {
+                    if (hashSet.contains(Long.valueOf(user.f20992id))) {
                         arrayList6.add(user);
                     }
                 }
@@ -536,15 +536,15 @@ public final class f2 extends sa {
     }
 
     public final void X(boolean z4) {
-        tl0 tl0Var = this.d;
+        sl0 sl0Var = this.d;
         if (z4) {
             xh.o oVar = new xh.o(getContext(), 2, 0.6f);
             oVar.f5805a = 1;
-            oVar.f50659p = AndroidUtilities.dp(38.0f);
-            tl0Var.getLayoutManager().w0(oVar);
+            oVar.f50695p = AndroidUtilities.dp(38.0f);
+            sl0Var.getLayoutManager().w0(oVar);
             return;
         }
-        tl0Var.u0(0);
+        sl0Var.u0(0);
     }
 
     public final void Y() {
@@ -680,7 +680,7 @@ public final class f2 extends sa {
         } else if (z4) {
             u3Var.setRightText(null);
         } else {
-            t3 t3Var = u3Var.f24193b;
+            t3 t3Var = u3Var.f24195b;
             t3Var.c(null, false, true);
             t3Var.setOnClickListener(null);
             t3Var.setVisibility(0);
@@ -698,9 +698,9 @@ public final class f2 extends sa {
         a0(z4, z10);
         int i10 = 0;
         while (true) {
-            tl0 tl0Var = this.d;
-            if (i10 < tl0Var.getChildCount()) {
-                View childAt = tl0Var.getChildAt(i10);
+            sl0 sl0Var = this.d;
+            if (i10 < sl0Var.getChildCount()) {
+                View childAt = sl0Var.getChildAt(i10);
                 if (childAt instanceof lg.n) {
                     int R = RecyclerView.R(childAt) - 1;
                     if (R >= 0) {
@@ -786,7 +786,7 @@ public final class f2 extends sa {
     }
 
     @Override
-    public final sl0 v(tl0 tl0Var) {
+    public final rl0 v(sl0 sl0Var) {
         ig.h hVar = new ig.h(getContext(), this.resourcesProvider, true);
         this.f7481l0 = hVar;
         return hVar;

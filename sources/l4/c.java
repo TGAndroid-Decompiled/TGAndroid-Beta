@@ -54,9 +54,9 @@ public final class c extends d7 {
         long j18;
         c0 c0Var = this.f11681c;
         if (c0Var == null || eVar.f4941s != c0Var.d()) {
-            c0 c0Var2 = new c0(eVar.f15216f);
+            c0 c0Var2 = new c0(eVar.f15218f);
             this.f11681c = c0Var2;
-            c0Var2.a(eVar.f15216f - eVar.f4941s);
+            c0Var2.a(eVar.f15218f - eVar.f4941s);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();

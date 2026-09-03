@@ -44,13 +44,13 @@ public final class g implements Callable {
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", "Deleting cached crash reports...", null);
                     }
-                    for (File file : n9.b.e(nVar.f7970g.f15872b.listFiles(n.f7964r))) {
+                    for (File file : n9.b.e(nVar.f7970g.f15874b.listFiles(n.f7964r))) {
                         file.delete();
                     }
-                    n9.b bVar2 = ((n9.a) nVar.f7975m.f156b).f15869b;
+                    n9.b bVar2 = ((n9.a) nVar.f7975m.f156b).f15871b;
                     n9.a.a(n9.b.e(bVar2.d.listFiles()));
-                    n9.a.a(n9.b.e(bVar2.f15874e.listFiles()));
-                    n9.a.a(n9.b.e(bVar2.f15875f.listFiles()));
+                    n9.a.a(n9.b.e(bVar2.f15876e.listFiles()));
+                    n9.a.a(n9.b.e(bVar2.f15877f.listFiles()));
                     nVar.f7979q.trySetResult(null);
                     return Tasks.forResult(null);
                 }
@@ -61,7 +61,7 @@ public final class g implements Callable {
                 s sVar = nVar.f7966b;
                 if (booleanValue) {
                     sVar.h.trySetResult(null);
-                    Executor executor = (Executor) nVar.f7968e.f47315b;
+                    Executor executor = (Executor) nVar.f7968e.f47351b;
                     return ((Task) bVar.f6120b).onSuccessTask(executor, new f7.b(this, executor, false, 12));
                 }
                 sVar.getClass();

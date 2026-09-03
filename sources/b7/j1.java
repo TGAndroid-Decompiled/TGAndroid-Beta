@@ -22,7 +22,7 @@ public final class j1 implements Closeable {
         int i10 = (f10 > 0L ? 1 : (f10 == 0L ? 0 : -1));
         if (i10 >= 0) {
             if (i10 > 0) {
-                ((ArrayDeque) this.d.f50777b).push(Long.valueOf(f10));
+                ((ArrayDeque) this.d.f50813b).push(Long.valueOf(f10));
             }
             return f10;
         }
@@ -57,7 +57,7 @@ public final class j1 implements Closeable {
         int i10 = (f10 > 0L ? 1 : (f10 == 0L ? 0 : -1));
         if (i10 >= 0 && f10 <= 4611686018427387903L) {
             if (i10 > 0) {
-                ((ArrayDeque) this.d.f50777b).push(Long.valueOf(f10 + f10));
+                ((ArrayDeque) this.d.f50813b).push(Long.valueOf(f10 + f10));
             }
             return f10;
         }

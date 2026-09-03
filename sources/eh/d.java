@@ -18,8 +18,8 @@ import org.telegram.messenger.y3;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.g90;
-import org.telegram.ui.b41;
-import org.telegram.ui.r31;
+import org.telegram.ui.g41;
+import org.telegram.ui.w31;
 import org.telegram.ui.yh;
 public final class d extends FrameLayout {
     public final int f5619a;
@@ -78,22 +78,22 @@ public final class d extends FrameLayout {
     public void onDraw(Canvas canvas) {
         switch (this.f5619a) {
             case 6:
-                int intrinsicHeight = k6.f21747i3.getIntrinsicHeight();
-                k6.f21747i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
-                k6.f21747i3.draw(canvas);
-                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), k6.f21763j2);
+                int intrinsicHeight = k6.f21749i3.getIntrinsicHeight();
+                k6.f21749i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                k6.f21749i3.draw(canvas);
+                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), k6.f21765j2);
                 return;
             case 8:
-                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.getShadowHeight(), k6.f21779k0);
+                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.getShadowHeight(), k6.f21781k0);
                 return;
             case 18:
-                canvas.drawLine(0.0f, AndroidUtilities.dp(40.0f), getMeasuredWidth(), AndroidUtilities.dp(40.0f), k6.f21779k0);
+                canvas.drawLine(0.0f, AndroidUtilities.dp(40.0f), getMeasuredWidth(), AndroidUtilities.dp(40.0f), k6.f21781k0);
                 return;
             case 26:
-                int intrinsicHeight2 = k6.f21747i3.getIntrinsicHeight();
-                k6.f21747i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight2);
-                k6.f21747i3.draw(canvas);
-                canvas.drawRect(0.0f, intrinsicHeight2, getMeasuredWidth(), getMeasuredHeight(), k6.f21763j2);
+                int intrinsicHeight2 = k6.f21749i3.getIntrinsicHeight();
+                k6.f21749i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight2);
+                k6.f21749i3.draw(canvas);
+                canvas.drawRect(0.0f, intrinsicHeight2, getMeasuredWidth(), getMeasuredHeight(), k6.f21765j2);
                 return;
             default:
                 super.onDraw(canvas);
@@ -249,51 +249,51 @@ public final class d extends FrameLayout {
         }
     }
 
-    public d(b41 b41Var, Context context, int i10, String str, CharSequence charSequence) {
+    public d(g41 g41Var, Context context, int i10, String str, CharSequence charSequence) {
         super(context);
         this.f5619a = 29;
         boolean z4 = LocaleController.isRTL;
         ImageView imageView = new ImageView(getContext());
         Drawable mutate = getContext().getResources().getDrawable(i10).mutate();
         int i11 = k6.G6;
-        mutate.setColorFilter(new PorterDuffColorFilter(k6.v0(i11, b41.Q(b41Var)), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(k6.v0(i11, g41.Q(g41Var)), PorterDuff.Mode.MULTIPLY));
         imageView.setImageDrawable(mutate);
         addView(imageView, c6.d(24, 24.0f, z4 ? 5 : 3, z4 ? 0.0f : 27.0f, 6.0f, z4 ? 27.0f : 0.0f, 0.0f));
         TextView textView = new TextView(getContext());
         textView.setText(str);
-        textView.setTextColor(k6.v0(i11, b41.R(b41Var)));
+        textView.setTextColor(k6.v0(i11, g41.R(g41Var)));
         yh.p(14.0f, 1, textView);
         addView(textView, c6.d(-2, -2.0f, z4 ? 5 : 3, z4 ? 27.0f : 68.0f, 0.0f, z4 ? 68.0f : 27.0f, 0.0f));
         g90 g90Var = new g90(getContext(), null);
         g90Var.setText(charSequence);
         g90Var.setTextSize(1, 14.0f);
-        g90Var.setTextColor(k6.v0(k6.Pi, b41.S(b41Var)));
-        g90Var.setLinkTextColor(k6.v0(k6.f21720gc, b41.T(b41Var)));
+        g90Var.setTextColor(k6.v0(k6.Pi, g41.S(g41Var)));
+        g90Var.setLinkTextColor(k6.v0(k6.f21722gc, g41.T(g41Var)));
         g90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         g90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         addView(g90Var, c6.d(-2, -2.0f, z4 ? 5 : 3, (z4 ? 27 : 68) - 4, 18.0f, (z4 ? 68 : 27) - 4, 0.0f));
     }
 
-    public d(r31 r31Var, Context context, int i10, String str, CharSequence charSequence) {
+    public d(w31 w31Var, Context context, int i10, String str, CharSequence charSequence) {
         super(context);
         this.f5619a = 28;
         boolean z4 = LocaleController.isRTL;
         ImageView imageView = new ImageView(getContext());
         Drawable mutate = getContext().getResources().getDrawable(i10).mutate();
         int i11 = k6.G6;
-        mutate.setColorFilter(new PorterDuffColorFilter(k6.v0(i11, r31.P(r31Var)), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(k6.v0(i11, w31.P(w31Var)), PorterDuff.Mode.MULTIPLY));
         imageView.setImageDrawable(mutate);
         addView(imageView, c6.d(24, 24.0f, z4 ? 5 : 3, z4 ? 0.0f : 27.0f, 6.0f, z4 ? 27.0f : 0.0f, 0.0f));
         TextView textView = new TextView(getContext());
         textView.setText(str);
-        textView.setTextColor(k6.v0(i11, r31.Q(r31Var)));
+        textView.setTextColor(k6.v0(i11, w31.Q(w31Var)));
         yh.p(14.0f, 1, textView);
         addView(textView, c6.d(-2, -2.0f, z4 ? 5 : 3, z4 ? 27.0f : 68.0f, 0.0f, z4 ? 68.0f : 27.0f, 0.0f));
         g90 g90Var = new g90(getContext(), null);
         g90Var.setText(charSequence);
         g90Var.setTextSize(1, 14.0f);
-        g90Var.setTextColor(k6.v0(k6.Pi, r31.R(r31Var)));
-        g90Var.setLinkTextColor(k6.v0(k6.f21720gc, r31.S(r31Var)));
+        g90Var.setTextColor(k6.v0(k6.Pi, w31.R(w31Var)));
+        g90Var.setLinkTextColor(k6.v0(k6.f21722gc, w31.S(w31Var)));
         g90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         addView(g90Var, c6.d(-2, -2.0f, z4 ? 5 : 3, z4 ? 27.0f : 68.0f, 18.0f, z4 ? 68.0f : 27.0f, 0.0f));
     }
@@ -305,7 +305,7 @@ public final class d extends FrameLayout {
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(i10);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        int i11 = k6.f21766j5;
+        int i11 = k6.f21768j5;
         imageView.setColorFilter(new PorterDuffColorFilter(k6.w0(null, i11, false), PorterDuff.Mode.MULTIPLY));
         boolean z4 = LocaleController.isRTL;
         addView(imageView, c6.d(24, 24.0f, (z4 ? 5 : 3) | 16, z4 ? 0.0f : 22.0f, 0.0f, z4 ? 22.0f : 0.0f, 0.0f));
@@ -334,13 +334,13 @@ public final class d extends FrameLayout {
         g90Var.setTypeface(AndroidUtilities.bold());
         g90Var.setTextSize(1, 14.0f);
         g90Var.setTextColor(k6.v0(i11, g6Var));
-        int i12 = k6.f21720gc;
+        int i12 = k6.f21722gc;
         g90Var.setLinkTextColor(k6.v0(i12, g6Var));
         g90Var.setText(str);
         linearLayout.addView(g90Var, c6.t(-1, -2, 55, 0, 0, 0, 2));
         g90 g90Var2 = new g90(context, null);
         g90Var2.setTextSize(1, 14.0f);
-        g90Var2.setTextColor(k6.v0(k6.f22036y6, g6Var));
+        g90Var2.setTextColor(k6.v0(k6.f22038y6, g6Var));
         g90Var2.setLinkTextColor(k6.v0(i12, g6Var));
         g90Var2.setText(charSequence);
         linearLayout.addView(g90Var2, c6.t(-1, -2, 55, 0, 0, 0, 0));

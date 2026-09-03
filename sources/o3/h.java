@@ -2,10 +2,10 @@ package o3;
 
 import java.io.IOException;
 public final class h extends IOException {
-    public final int f16404a;
+    public final int f16406a;
 
     public h(Exception exc, int i10) {
         super(exc);
-        this.f16404a = i10;
+        this.f16406a = i10;
     }
 }

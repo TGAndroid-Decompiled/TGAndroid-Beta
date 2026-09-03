@@ -41,8 +41,8 @@ import org.telegram.ui.Cells.t1;
 import org.telegram.ui.Cells.z;
 import org.telegram.ui.Components.d90;
 import org.telegram.ui.Components.h90;
-import org.telegram.ui.Components.ij0;
-import org.telegram.ui.Components.lw0;
+import org.telegram.ui.Components.hj0;
+import org.telegram.ui.Components.kw0;
 import org.telegram.ui.Components.z8;
 import org.telegram.ui.Components.z80;
 public final class c {
@@ -68,7 +68,7 @@ public final class c {
     public z8[] f11211b;
     public final t1 f11212c;
     public ImageReceiver d;
-    public ij0 f11213e;
+    public hj0 f11213e;
     public CharSequence[] f11214f;
     public TLRPC.User[] f11215g;
     public float[] h;
@@ -196,21 +196,21 @@ public final class c {
             z zVar = this.L;
             t1 t1Var = this.f11212c;
             if (zVar == null) {
-                int w02 = k6.w0(null, k6.f21750i6, false);
+                int w02 = k6.w0(null, k6.f21752i6, false);
                 this.K = w02;
                 z Y = k6.Y(w02, 12, 12);
                 this.L = Y;
                 Y.setCallback(t1Var);
             }
-            this.f11231y.setColor(k6.f21853o2.getColor());
-            this.f11232z.setColor(k6.w0(null, k6.f21893q5, false));
-            this.A.setColor(k6.f21853o2.getColor());
+            this.f11231y.setColor(k6.f21855o2.getColor());
+            this.f11232z.setColor(k6.w0(null, k6.f21895q5, false));
+            this.A.setColor(k6.f21855o2.getColor());
             if (this.M.isOutOwner()) {
                 TextPaint textPaint2 = this.f11230x;
                 int i13 = k6.Xa;
                 textPaint2.setColor(k6.v0(i13, g6Var));
                 this.B.setColor(k6.v0(i13, g6Var));
-                this.C.setColor(k6.v0(k6.f21609ab, g6Var));
+                this.C.setColor(k6.v0(k6.f21611ab, g6Var));
             } else {
                 TextPaint textPaint3 = this.f11230x;
                 int i14 = k6.Kc;
@@ -300,7 +300,7 @@ public final class c {
                         } else {
                             int colorId = UserObject.getColorId(user);
                             if (colorId < 7) {
-                                v02 = k6.v0(k6.f21914r8[colorId], g6Var);
+                                v02 = k6.v0(k6.f21916r8[colorId], g6Var);
                             } else {
                                 MessagesController.PeerColors peerColors = MessagesController.getInstance(UserConfig.selectedAccount).peerColors;
                                 if (peerColors == null) {
@@ -311,7 +311,7 @@ public final class c {
                                 if (color != null) {
                                     v02 = color.getColor1();
                                 } else {
-                                    v02 = k6.v0(k6.f21914r8[0], g6Var);
+                                    v02 = k6.v0(k6.f21916r8[0], g6Var);
                                 }
                             }
                         }
@@ -476,7 +476,7 @@ public final class c {
             }
             this.d.setAllowStartLottieAnimation(false);
             if (this.f11213e == null) {
-                this.f11213e = new ij0(R.raw.giveaway_results, AndroidUtilities.dp(120.0f), "" + R.raw.giveaway_results, AndroidUtilities.dp(120.0f));
+                this.f11213e = new hj0(R.raw.giveaway_results, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f));
             }
             this.d.setImageBitmap(this.f11213e);
             TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = (TLRPC.TL_messageMediaGiveawayResults) messageObject.messageOwner.media;
@@ -507,7 +507,7 @@ public final class c {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(replaceTags);
             spannableStringBuilder.setSpan(new RelativeSizeSpan(1.05f), 0, replaceTags.length(), 33);
             this.R = new SpannableStringBuilder();
-            SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getPluralString("BoostingGiveawayResultsMsgWinnersTitle", tL_messageMediaGiveawayResults.winners_count), k6.f21720gc, 0, new b(this, messageObject, tL_messageMediaGiveawayResults, 0));
+            SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getPluralString("BoostingGiveawayResultsMsgWinnersTitle", tL_messageMediaGiveawayResults.winners_count), k6.f21722gc, 0, new b(this, messageObject, tL_messageMediaGiveawayResults, 0));
             this.R.append((CharSequence) AndroidUtilities.replaceCharSequence("%1$d", replaceSingleTag, AndroidUtilities.replaceTags("**" + tL_messageMediaGiveawayResults.winners_count + "**")));
             this.R.append((CharSequence) "\n\n");
             this.R.setSpan(new RelativeSizeSpan(0.4f), this.R.length() - 1, this.R.length(), 33);
@@ -534,9 +534,9 @@ public final class c {
             TextPaint textPaint2 = this.f11231y;
             Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
             TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-            this.f11226s = lw0.c(spannableStringBuilder, textPaint2, dp2, alignment, AndroidUtilities.dp(2.0f), false, truncateAt, dp2, 10, true);
-            this.f11227t = lw0.c(this.R, this.f11231y, dp2, alignment, AndroidUtilities.dp(2.0f), false, truncateAt, dp2, 10, true);
-            this.f11228u = lw0.c(spannableStringBuilder2, this.f11231y, dp2, alignment, AndroidUtilities.dp(3.0f), false, truncateAt, dp2, 10, true);
+            this.f11226s = kw0.c(spannableStringBuilder, textPaint2, dp2, alignment, AndroidUtilities.dp(2.0f), false, truncateAt, dp2, 10, true);
+            this.f11227t = kw0.c(this.R, this.f11231y, dp2, alignment, AndroidUtilities.dp(2.0f), false, truncateAt, dp2, 10, true);
+            this.f11228u = kw0.c(spannableStringBuilder2, this.f11231y, dp2, alignment, AndroidUtilities.dp(3.0f), false, truncateAt, dp2, 10, true);
             int max = Math.max(i10, dp2);
             this.f11225r = max - dp2;
             float f10 = max;
@@ -593,7 +593,7 @@ public final class c {
                     this.f11218k[i14] = true;
                     this.f11215g[i14] = user3;
                     user = user2;
-                    this.f11214f[i14] = TextUtils.ellipsize(Emoji.replaceEmoji(UserObject.getUserName(user3), this.f11230x.getFontMetricsInt(), false), this.f11230x, f10 * 0.8f, TextUtils.TruncateAt.END);
+                    this.f11214f[i14] = TextUtils.ellipsize(Emoji.replaceEmoji(UserObject.getUserName(user3), this.f11230x.getFontMetricsInt(), false), this.f11230x, 0.8f * f10, TextUtils.TruncateAt.END);
                     float[] fArr = this.h;
                     TextPaint textPaint4 = this.f11230x;
                     CharSequence charSequence = this.f11214f[i14];

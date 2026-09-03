@@ -2,18 +2,18 @@ package o4;
 
 import java.io.IOException;
 public final class c0 implements l0 {
-    public final int f16449a;
-    public final e0 f16450b;
+    public final int f16451a;
+    public final e0 f16452b;
 
     public c0(e0 e0Var, int i10) {
-        this.f16450b = e0Var;
-        this.f16449a = i10;
+        this.f16452b = e0Var;
+        this.f16451a = i10;
     }
 
     @Override
     public final void a() {
-        int i10 = this.f16449a;
-        e0 e0Var = this.f16450b;
+        int i10 = this.f16451a;
+        e0 e0Var = this.f16452b;
         e0Var.F[i10].w();
         g5.m0 m0Var = e0Var.v;
         int n32 = e0Var.d.n3(e0Var.O);
@@ -37,8 +37,8 @@ public final class c0 implements l0 {
 
     @Override
     public final boolean h() {
-        e0 e0Var = this.f16450b;
-        if (!e0Var.B() && e0Var.F[this.f16449a].u(e0Var.X)) {
+        e0 e0Var = this.f16452b;
+        if (!e0Var.B() && e0Var.F[this.f16451a].u(e0Var.X)) {
             return true;
         }
         return false;
@@ -46,11 +46,11 @@ public final class c0 implements l0 {
 
     @Override
     public final int l(long j10) {
-        e0 e0Var = this.f16450b;
+        e0 e0Var = this.f16452b;
         if (e0Var.B()) {
             return 0;
         }
-        int i10 = this.f16449a;
+        int i10 = this.f16451a;
         e0Var.w(i10);
         k0 k0Var = e0Var.F[i10];
         int s6 = k0Var.s(j10, e0Var.X);
@@ -63,11 +63,11 @@ public final class c0 implements l0 {
 
     @Override
     public final int p(f7.b bVar, n3.i iVar, int i10) {
-        e0 e0Var = this.f16450b;
+        e0 e0Var = this.f16452b;
         if (e0Var.B()) {
             return -3;
         }
-        int i11 = this.f16449a;
+        int i11 = this.f16451a;
         e0Var.w(i11);
         int z4 = e0Var.F[i11].z(bVar, iVar, i10, e0Var.X);
         if (z4 == -3) {

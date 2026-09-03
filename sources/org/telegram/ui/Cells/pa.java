@@ -19,27 +19,27 @@ import org.telegram.ui.Components.qc;
 import org.telegram.ui.py;
 import org.telegram.ui.xn;
 public final class pa implements View.OnClickListener {
-    public final int f23342a = 0;
-    public final boolean f23343b;
-    public final int f23344c;
+    public final int f23344a = 0;
+    public final boolean f23345b;
+    public final int f23346c;
     public final org.telegram.ui.ActionBar.p2 d;
-    public final Serializable f23345e;
+    public final Serializable f23347e;
 
     public pa(xn xnVar, TLRPC.User user, String str, boolean z4, int i10) {
         this.d = xnVar;
-        this.f23345e = str;
-        this.f23343b = z4;
-        this.f23344c = i10;
+        this.f23347e = str;
+        this.f23345b = z4;
+        this.f23346c = i10;
     }
 
     @Override
     public final void onClick(View view) {
         int i10;
         int i11;
-        int i12 = this.f23342a;
-        int i13 = this.f23344c;
-        boolean z4 = this.f23343b;
-        Serializable serializable = this.f23345e;
+        int i12 = this.f23344a;
+        int i13 = this.f23346c;
+        boolean z4 = this.f23345b;
+        Serializable serializable = this.f23347e;
         org.telegram.ui.ActionBar.p2 p2Var = this.d;
         switch (i12) {
             case 0:
@@ -69,7 +69,7 @@ public final class pa implements View.OnClickListener {
             default:
                 xn xnVar = (xn) p2Var;
                 String str = (String) serializable;
-                Pattern pattern = org.telegram.ui.Components.z4.f33718a;
+                Pattern pattern = org.telegram.ui.Components.z4.f33754a;
                 if (xnVar.getParentActivity() != null) {
                     org.telegram.ui.ActionBar.h3 h3Var = new org.telegram.ui.ActionBar.h3(xnVar.getParentActivity(), null, false, false);
                     h3Var.fixNavigationBar();
@@ -110,8 +110,8 @@ public final class pa implements View.OnClickListener {
 
     public pa(py pyVar, boolean z4, int i10, ArrayList arrayList) {
         this.d = pyVar;
-        this.f23343b = z4;
-        this.f23344c = i10;
-        this.f23345e = arrayList;
+        this.f23345b = z4;
+        this.f23346c = i10;
+        this.f23347e = arrayList;
     }
 }

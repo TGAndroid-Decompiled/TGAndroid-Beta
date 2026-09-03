@@ -7,19 +7,19 @@ import org.telegram.ui.Components.hz;
 import org.telegram.ui.Components.ly;
 import org.telegram.ui.Components.yy;
 public final class c2 implements View.OnTouchListener {
-    public final int f13153a;
-    public final Object f13154b;
+    public final int f13155a;
+    public final Object f13156b;
 
     public c2(Object obj, int i10) {
-        this.f13153a = i10;
-        this.f13154b = obj;
+        this.f13155a = i10;
+        this.f13156b = obj;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (this.f13153a) {
+        switch (this.f13155a) {
             case 0:
-                d2 d2Var = (d2) this.f13154b;
+                d2 d2Var = (d2) this.f13156b;
                 a2 a2Var = d2Var.D;
                 Handler handler = d2Var.H;
                 x xVar = d2Var.L;
@@ -36,27 +36,27 @@ public final class c2 implements View.OnTouchListener {
                     return false;
                 }
             case 1:
-                ly lyVar = (ly) this.f13154b;
+                ly lyVar = (ly) this.f13156b;
                 if (motionEvent.getAction() == 0) {
-                    lyVar.C.f29281f = true;
+                    lyVar.C.f29283f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    lyVar.C.f29281f = false;
+                    lyVar.C.f29283f = false;
                 }
                 return false;
             case 2:
-                yy yyVar = (yy) this.f13154b;
+                yy yyVar = (yy) this.f13156b;
                 if (motionEvent.getAction() == 0) {
-                    yyVar.D.f29281f = true;
+                    yyVar.D.f29283f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    yyVar.D.f29281f = false;
+                    yyVar.D.f29283f = false;
                 }
                 return false;
             default:
-                hz hzVar = (hz) this.f13154b;
+                hz hzVar = (hz) this.f13156b;
                 if (motionEvent.getAction() == 0) {
-                    hzVar.N.f29281f = true;
+                    hzVar.N.f29283f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    hzVar.N.f29281f = false;
+                    hzVar.N.f29283f = false;
                 }
                 return false;
         }

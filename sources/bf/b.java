@@ -386,7 +386,7 @@ public final class b implements r5.h, v4.f, r3.e, b0, OnCompleteListener, com.go
                     if (((File) this.f1935b) == null) {
                         w8.g gVar = (w8.g) this.f1936c;
                         gVar.a();
-                        File filesDir = gVar.f49452a.getFilesDir();
+                        File filesDir = gVar.f49488a.getFilesDir();
                         this.f1935b = new File(filesDir, "PersistedInstallation." + ((w8.g) this.f1936c).d() + ".json");
                     }
                 } finally {
@@ -453,7 +453,7 @@ public final class b implements r5.h, v4.f, r3.e, b0, OnCompleteListener, com.go
             jSONObject.put("FisError", bVar.f4392g);
             w8.g gVar = (w8.g) this.f1936c;
             gVar.a();
-            File createTempFile = File.createTempFile("PersistedInstallation", "tmp", gVar.f49452a.getFilesDir());
+            File createTempFile = File.createTempFile("PersistedInstallation", "tmp", gVar.f49488a.getFilesDir());
             FileOutputStream fileOutputStream = new FileOutputStream(createTempFile);
             fileOutputStream.write(jSONObject.toString().getBytes("UTF-8"));
             fileOutputStream.close();
@@ -826,14 +826,14 @@ public final class b implements r5.h, v4.f, r3.e, b0, OnCompleteListener, com.go
         androidx.biometric.e eVar = (androidx.biometric.e) this.f1935b;
         if (cVar != null) {
             m.e("Must be called from the main thread.");
-            s5.h hVar = cVar.f46708j;
+            s5.h hVar = cVar.f46739j;
             String a2 = cVar.a();
             if (!TextUtils.isEmpty(a2) && hVar != null) {
                 a aVar = (a) eVar.d;
                 if (aVar == null || !TextUtils.equals(aVar.f1930c.a(), a2)) {
                     eVar.B(new a(cVar, (r5.g) this.f1936c, hVar));
                     m.e("Must be called from the main thread.");
-                    CastDevice castDevice = cVar.f46709k;
+                    CastDevice castDevice = cVar.f46740k;
                     if (castDevice != null) {
                         str = castDevice.d;
                     } else {
@@ -1034,15 +1034,15 @@ public final class b implements r5.h, v4.f, r3.e, b0, OnCompleteListener, com.go
             bVar3.b("The module-to-client output switcher flag %s", str);
             if (z11) {
                 z4 = bundle.getBoolean("com.google.android.gms.cast.FLAG_OUTPUT_SWITCHER_ENABLED");
-                Log.i(bVar3.f48349a, bVar3.d("Set up output switcher flags: %b (from module), %b (from CastOptions)", Boolean.valueOf(z4), Boolean.valueOf(bVar2.f46699x)));
-                if (!z4 && bVar2.f46699x) {
+                Log.i(bVar3.f48385a, bVar3.d("Set up output switcher flags: %b (from module), %b (from CastOptions)", Boolean.valueOf(z4), Boolean.valueOf(bVar2.f46730x)));
+                if (!z4 && bVar2.f46730x) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (c0Var == null && (bVar = oVar.d) != null) {
                     boolean z12 = bVar.v;
-                    boolean z13 = bVar.f46697s;
+                    boolean z13 = bVar.f46728s;
                     e0 e0Var = new e0();
                     int i10 = Build.VERSION.SDK_INT;
                     if (i10 >= 30) {
@@ -1055,7 +1055,7 @@ public final class b implements r5.h, v4.f, r3.e, b0, OnCompleteListener, com.go
                         e0Var.f2101c = z13;
                     }
                     c2.c0.i(new c2.f0(e0Var));
-                    Log.i(bVar3.f48349a, bVar3.d("media transfer = %b, session transfer = %b, transfer to local = %b, in-app output switcher = %b", Boolean.valueOf(oVar.f3076i), Boolean.valueOf(z10), Boolean.valueOf(z12), Boolean.valueOf(z13)));
+                    Log.i(bVar3.f48385a, bVar3.d("media transfer = %b, session transfer = %b, transfer to local = %b, in-app output switcher = %b", Boolean.valueOf(oVar.f3076i), Boolean.valueOf(z10), Boolean.valueOf(z12), Boolean.valueOf(z13)));
                     if (z12) {
                         r rVar = oVar.f3075f;
                         m.h(rVar);
@@ -1070,7 +1070,7 @@ public final class b implements r5.h, v4.f, r3.e, b0, OnCompleteListener, com.go
             }
         }
         z4 = true;
-        Log.i(bVar3.f48349a, bVar3.d("Set up output switcher flags: %b (from module), %b (from CastOptions)", Boolean.valueOf(z4), Boolean.valueOf(bVar2.f46699x)));
+        Log.i(bVar3.f48385a, bVar3.d("Set up output switcher flags: %b (from module), %b (from CastOptions)", Boolean.valueOf(z4), Boolean.valueOf(bVar2.f46730x)));
         if (!z4) {
         }
         z10 = false;
@@ -1172,7 +1172,7 @@ public final class b implements r5.h, v4.f, r3.e, b0, OnCompleteListener, com.go
         ?? arrayList;
         ArrayList arrayList2 = new ArrayList();
         Context context = (Context) this.f1935b;
-        Class cls = (Class) ((o5.i) this.f1936c).f16615b;
+        Class cls = (Class) ((o5.i) this.f1936c).f16617b;
         Bundle bundle = null;
         try {
             PackageManager packageManager = context.getPackageManager();
@@ -1318,7 +1318,7 @@ public final class b implements r5.h, v4.f, r3.e, b0, OnCompleteListener, com.go
         m.h(context);
         Resources resources = context.getResources();
         this.f1935b = resources;
-        this.f1936c = resources.getResourcePackageName(2131689568);
+        this.f1936c = resources.getResourcePackageName(2131689566);
     }
 
     public b(Object obj) {
@@ -1356,16 +1356,16 @@ public final class b implements r5.h, v4.f, r3.e, b0, OnCompleteListener, com.go
                 androidx.emoji2.text.w wVar = new androidx.emoji2.text.w(3);
                 c3.getClass();
                 m.e("Must be called from the main thread.");
-                r5.g gVar = c3.f46682c;
+                r5.g gVar = c3.f46713c;
                 gVar.getClass();
                 try {
-                    r5.y yVar = gVar.f46718a;
+                    r5.y yVar = gVar.f46749a;
                     r5.j jVar = new r5.j(wVar);
                     Parcel M0 = yVar.M0();
                     com.google.android.gms.internal.cast.s.d(M0, jVar);
                     yVar.Q0(M0, 4);
                 } catch (RemoteException e6) {
-                    r5.g.f46717c.a(e6, "Unable to call %s on %s.", "addCastStateListener", r5.y.class.getSimpleName());
+                    r5.g.f46748c.a(e6, "Unable to call %s on %s.", "addCastStateListener", r5.y.class.getSimpleName());
                 }
                 this.f1935b = new androidx.biometric.e(8, false);
                 r5.g b11 = c3.b();

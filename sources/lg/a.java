@@ -15,36 +15,36 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.g90;
-import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.sl0;
 import org.telegram.ui.Components.z5;
 import org.telegram.ui.yh;
 public final class a extends LinearLayout {
-    public final int f12528a = 2;
-    public final Object f12529b;
-    public final View f12530c;
+    public final int f12530a = 2;
+    public final Object f12531b;
+    public final View f12532c;
     public final Object d;
-    public final Object f12531e;
+    public final Object f12533e;
 
-    public a(Context context, g6 g6Var, tl0 tl0Var) {
+    public a(Context context, g6 g6Var, sl0 sl0Var) {
         super(context);
         this.d = new Paint(1);
-        this.f12531e = new z5(this);
-        this.f12529b = g6Var;
-        this.f12530c = tl0Var;
+        this.f12533e = new z5(this);
+        this.f12531b = g6Var;
+        this.f12532c = sl0Var;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f12528a) {
+        switch (this.f12530a) {
             case 0:
-                z5 z5Var = (z5) this.f12531e;
+                z5 z5Var = (z5) this.f12533e;
                 super.dispatchDraw(canvas);
                 Paint paint = (Paint) this.d;
-                paint.setColor(k6.v0(k6.f21605a7, (g6) this.f12529b));
-                tl0 tl0Var = (tl0) this.f12530c;
+                paint.setColor(k6.v0(k6.f21607a7, (g6) this.f12531b));
+                sl0 sl0Var = (sl0) this.f12532c;
                 float f10 = 1.0f;
-                if (tl0Var != null) {
-                    if (!tl0Var.canScrollVertically(1)) {
+                if (sl0Var != null) {
+                    if (!sl0Var.canScrollVertically(1)) {
                         f10 = 0.0f;
                     }
                     paint.setAlpha((int) (z5Var.d(f10, false) * 255.0f));
@@ -68,19 +68,19 @@ public final class a extends LinearLayout {
         frameLayout.setClipChildren(false);
         setClipChildren(false);
         TextView textView = new TextView(context);
-        this.f12529b = textView;
+        this.f12531b = textView;
         textView.setTextSize(1, 22.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(1);
         addView(textView, c6.p(-2, -2, 0.0f, 1, 16, 20, 16, 0));
         g90 g90Var = new g90(context, null);
-        this.f12530c = g90Var;
+        this.f12532c = g90Var;
         g90Var.setTextSize(1, 14.0f);
         g90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         g90Var.setGravity(1);
         addView(g90Var, c6.p(-1, -2, 0.0f, 1, 24, 7, 24, 0));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f12531e = frameLayout2;
+        this.f12533e = frameLayout2;
         addView(frameLayout2, c6.q(-1, -2, 1));
         frameLayout2.setClipChildren(false);
     }
@@ -94,7 +94,7 @@ public final class a extends LinearLayout {
         j9 j9Var = new j9(context, 70, 0);
         frameLayout.addView(j9Var, c6.c(-1.0f, -1));
         gg.i iVar = new gg.i(context, 1, 2);
-        this.f12529b = iVar;
+        this.f12531b = iVar;
         gg.a aVar = iVar.f7087b;
         aVar.f7065w = k6.fk;
         aVar.f7066x = k6.gk;
@@ -103,7 +103,7 @@ public final class a extends LinearLayout {
         frameLayout.addView(iVar, c6.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
         iVar.setPaused(false);
         y9 y9Var = new y9(context, i10, g6Var);
-        this.f12530c = y9Var;
+        this.f12532c = y9Var;
         e6.a(y9Var);
         y9Var.setOnClickListener(new androidx.mediarouter.app.c(this, 23));
         frameLayout.addView(y9Var, c6.d(-2, -2.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -111,12 +111,12 @@ public final class a extends LinearLayout {
         TextView textView = new TextView(context);
         this.d = textView;
         yh.p(20.0f, 1, textView);
-        int i11 = k6.f21766j5;
+        int i11 = k6.f21768j5;
         textView.setTextColor(k6.v0(i11, g6Var));
         textView.setGravity(17);
         addView(textView, c6.t(-2, -2, 1, 0, 2, 0, 0));
         TextView textView2 = new TextView(context);
-        this.f12531e = textView2;
+        this.f12533e = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setTextColor(k6.v0(i11, g6Var));
         textView2.setGravity(17);

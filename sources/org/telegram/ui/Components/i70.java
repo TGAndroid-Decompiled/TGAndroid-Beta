@@ -4,38 +4,38 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 public final class i70 implements View.OnClickListener {
-    public final int f27682a;
-    public final q70 f27683b;
-    public final Runnable f27684c;
+    public final int f27728a;
+    public final q70 f27729b;
+    public final Runnable f27730c;
 
     public i70(q70 q70Var, Runnable runnable, int i10) {
-        this.f27682a = i10;
-        this.f27683b = q70Var;
-        this.f27684c = runnable;
+        this.f27728a = i10;
+        this.f27729b = q70Var;
+        this.f27730c = runnable;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f27682a) {
+        switch (this.f27728a) {
             case 0:
-                this.f27683b.u();
-                Runnable runnable = this.f27684c;
+                this.f27729b.u();
+                Runnable runnable = this.f27730c;
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             case 1:
-                this.f27684c.run();
-                q70 q70Var = this.f27683b;
+                this.f27730c.run();
+                q70 q70Var = this.f27729b;
                 if (q70Var.J) {
                     q70Var.u();
                     return;
                 }
                 return;
             case 2:
-                q70 q70Var2 = this.f27683b;
-                Runnable runnable2 = this.f27684c;
+                q70 q70Var2 = this.f27729b;
+                Runnable runnable2 = this.f27730c;
                 if (runnable2 != null) {
                     int i10 = -q70Var2.K;
                     q70Var2.K = i10;
@@ -47,30 +47,30 @@ public final class i70 implements View.OnClickListener {
                 q70Var2.getClass();
                 return;
             case 3:
-                Runnable runnable3 = this.f27684c;
+                Runnable runnable3 = this.f27730c;
                 if (runnable3 != null) {
                     runnable3.run();
                 }
-                q70 q70Var3 = this.f27683b;
+                q70 q70Var3 = this.f27729b;
                 if (q70Var3.J) {
                     q70Var3.u();
                     return;
                 }
                 return;
             case 4:
-                this.f27684c.run();
-                q70 q70Var4 = this.f27683b;
+                this.f27730c.run();
+                q70 q70Var4 = this.f27729b;
                 if (q70Var4.J) {
                     q70Var4.u();
                     return;
                 }
                 return;
             default:
-                Runnable runnable4 = this.f27684c;
+                Runnable runnable4 = this.f27730c;
                 if (runnable4 != null) {
                     runnable4.run();
                 }
-                q70 q70Var5 = this.f27683b;
+                q70 q70Var5 = this.f27729b;
                 if (q70Var5.J) {
                     q70Var5.u();
                     return;

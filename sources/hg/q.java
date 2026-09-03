@@ -47,7 +47,7 @@ public final class q extends TextView {
     public void onDraw(Canvas canvas) {
         switch (this.f7589a) {
             case 3:
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, l4.f38592o1);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, l4.f38497o1);
                 super.onDraw(canvas);
                 return;
             default:

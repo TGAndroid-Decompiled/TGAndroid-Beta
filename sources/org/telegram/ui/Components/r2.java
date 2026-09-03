@@ -7,44 +7,44 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 public final class r2 implements Runnable {
-    public final int f30574a;
-    public final int f30575b;
-    public final long f30576c;
+    public final int f30618a;
+    public final int f30619b;
+    public final long f30620c;
     public final long d;
-    public final Utilities.Callback f30577e;
-    public final long f30578f;
+    public final Utilities.Callback f30621e;
+    public final long f30622f;
 
     public r2(int i10, long j10, long j11, Utilities.Callback callback, long j12, int i11) {
-        this.f30574a = i11;
-        this.f30575b = i10;
-        this.f30576c = j10;
+        this.f30618a = i11;
+        this.f30619b = i10;
+        this.f30620c = j10;
         this.d = j11;
-        this.f30577e = callback;
-        this.f30578f = j12;
+        this.f30621e = callback;
+        this.f30622f = j12;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.ActionBar.g6 bVar;
-        switch (this.f30574a) {
+        switch (this.f30618a) {
             case 0:
-                int i10 = this.f30575b;
-                r2 r2Var = new r2(i10, this.f30576c, this.d, this.f30577e, this.f30578f, 1);
-                if (!mh.t7.y(i10, false).f14831e) {
+                int i10 = this.f30619b;
+                r2 r2Var = new r2(i10, this.f30620c, this.d, this.f30621e, this.f30622f, 1);
+                if (!mh.t7.y(i10, false).f14833e) {
                     mh.t7 y10 = mh.t7.y(i10, false);
-                    y10.f14831e = false;
+                    y10.f14833e = false;
                     y10.q(false, true, r2Var);
-                    y10.f14831e = true;
+                    y10.f14833e = true;
                     return;
                 }
                 r2Var.run();
                 return;
             default:
-                int i11 = this.f30575b;
+                int i11 = this.f30619b;
                 long j10 = mh.t7.y(i11, false).p().amount;
-                long j11 = this.f30576c;
-                Utilities.Callback callback = this.f30577e;
-                long j12 = this.f30578f;
+                long j11 = this.f30620c;
+                Utilities.Callback callback = this.f30621e;
+                long j12 = this.f30622f;
                 if (j10 < j11) {
                     Activity activity = AndroidUtilities.getActivity();
                     org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();

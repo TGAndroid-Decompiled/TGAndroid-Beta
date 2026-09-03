@@ -32,12 +32,12 @@ public final class e extends cb.e {
 
     public e(ViewGroup viewGroup) {
         this.f4753b = viewGroup;
-        WeakHashMap weakHashMap = j0.f46438a;
+        WeakHashMap weakHashMap = j0.f46469a;
         if (Build.VERSION.SDK_INT >= 30) {
             u0.g(viewGroup, this);
             return;
         }
-        PathInterpolator pathInterpolator = r0.f46463e;
+        PathInterpolator pathInterpolator = r0.f46494e;
         View.OnApplyWindowInsetsListener q0Var = new q0(viewGroup, this);
         viewGroup.setTag(2131296698, q0Var);
         if (viewGroup.getTag(2131296686) == null && viewGroup.getTag(2131296687) == null) {
@@ -58,7 +58,7 @@ public final class e extends cb.e {
                 if (i10 == 0 && i11 == 0 && width == 0 && height == 0) {
                     return m1Var;
                 }
-                return m1Var.f46452a.m(Math.max(0, i10), Math.max(0, i11), Math.max(0, width), Math.max(0, height));
+                return m1Var.f46483a.m(Math.max(0, i10), Math.max(0, i11), Math.max(0, width), Math.max(0, height));
             }
             return null;
         }
@@ -82,7 +82,7 @@ public final class e extends cb.e {
         Iterator it = list.iterator();
         int i10 = 0;
         while (it.hasNext()) {
-            i10 |= ((w0) it.next()).f46479a.c();
+            i10 |= ((w0) it.next()).f46510a.c();
         }
         if (x8.a(i10, 8)) {
             Iterator it2 = this.d.iterator();

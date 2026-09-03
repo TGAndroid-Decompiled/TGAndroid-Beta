@@ -2,18 +2,18 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 public final class kt {
-    public final int f28449a;
-    public final Object f28450b;
+    public final int f28493a;
+    public final Object f28494b;
 
     public kt(Object obj, int i10) {
-        this.f28449a = i10;
-        this.f28450b = obj;
+        this.f28493a = i10;
+        this.f28494b = obj;
     }
 
     public final void a(int i10, boolean z4) {
-        switch (this.f28449a) {
+        switch (this.f28493a) {
             case 0:
-                ArrayList arrayList = ((mt) this.f28450b).f29246b;
+                ArrayList arrayList = ((mt) this.f28494b).f29257b;
                 int size = arrayList.size();
                 int i11 = 0;
                 while (i11 < size) {
@@ -23,7 +23,7 @@ public final class kt {
                 }
                 return;
             default:
-                ((Runnable) this.f28450b).run();
+                ((Runnable) this.f28494b).run();
                 return;
         }
     }

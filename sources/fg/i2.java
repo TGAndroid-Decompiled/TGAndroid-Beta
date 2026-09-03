@@ -10,8 +10,8 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.tl0;
-public abstract class i2 extends tl0 implements NotificationCenter.NotificationCenterDelegate, x0 {
+import org.telegram.ui.Components.sl0;
+public abstract class i2 extends sl0 implements NotificationCenter.NotificationCenterDelegate, x0 {
     public final ArrayList U2;
     public final f2.j0 V2;
     public boolean W2;
@@ -88,7 +88,7 @@ public abstract class i2 extends tl0 implements NotificationCenter.NotificationC
             if ((this.X2 || this.f6344g3) && arrayList.size() > 0 && !this.U2.isEmpty()) {
                 View view = (View) l.d.i(1, arrayList);
                 this.f6343f3 = view;
-                w1(view, !this.X2);
+                v1(view, !this.X2);
                 this.X2 = false;
                 this.f6344g3 = false;
             } else if (this.f6343f3 != l.d.i(1, arrayList)) {
@@ -118,7 +118,7 @@ public abstract class i2 extends tl0 implements NotificationCenter.NotificationC
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         NotificationCenter.getInstance(this.Y2).addObserver(this, NotificationCenter.premiumStickersPreviewLoaded);
-        x1();
+        w1();
     }
 
     @Override
@@ -138,7 +138,7 @@ public abstract class i2 extends tl0 implements NotificationCenter.NotificationC
         if (i14 > 0) {
             f2.m1 K = K(i14);
             if (K != null) {
-                w1(K.f5875a, false);
+                v1(K.f5875a, false);
             }
             this.f6346i3 = -1;
         }
@@ -158,13 +158,13 @@ public abstract class i2 extends tl0 implements NotificationCenter.NotificationC
         if (this.f6348k3 != z4) {
             this.f6348k3 = z4;
             if (z4) {
-                x1();
+                w1();
                 this.f6344g3 = true;
                 invalidate();
                 return;
             }
             AndroidUtilities.cancelRunOnUIThread(this.f6340b3);
-            w1(null, true);
+            v1(null, true);
         }
     }
 
@@ -181,7 +181,7 @@ public abstract class i2 extends tl0 implements NotificationCenter.NotificationC
         }
     }
 
-    public final void w1(View view, boolean z4) {
+    public final void v1(View view, boolean z4) {
         boolean z10;
         if (view != null) {
             z10 = true;
@@ -199,7 +199,7 @@ public abstract class i2 extends tl0 implements NotificationCenter.NotificationC
         }
     }
 
-    public final void x1() {
+    public final void w1() {
         if (!this.f6348k3) {
             return;
         }

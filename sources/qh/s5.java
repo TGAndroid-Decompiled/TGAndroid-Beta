@@ -1,33 +1,42 @@
 package qh;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.pr;
-public final class s5 implements Runnable {
-    public final int f46039a;
-    public final w5 f46040b;
+import org.telegram.messenger.camera.CameraController;
+import org.telegram.messenger.camera.CameraView;
+public final class s5 implements CameraView.CameraViewDelegate, CameraController.VideoTakeCallback {
+    public final v5 f46098a;
 
-    public s5(w5 w5Var, int i10) {
-        this.f46039a = i10;
-        this.f46040b = w5Var;
+    public s5(v5 v5Var) {
+        this.f46098a = v5Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f46039a) {
-            case 0:
-                this.f46040b.c();
-                return;
-            default:
-                w5 w5Var = this.f46040b;
-                w5Var.f46227a.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(pr.h).setDuration(280L).start();
-                w5Var.f46229c = System.currentTimeMillis();
-                w5Var.invalidate();
-                try {
-                    w5Var.performHapticFeedback(3);
-                } catch (Exception unused) {
+    public void onCameraInit() {
+        v5 v5Var = this.f46098a;
+        u5 u5Var = v5Var.f46210a;
+        if (v5Var.f46212c > 0) {
+            return;
+        }
+        CameraController.getInstance().recordVideo(u5Var.getCameraSessionObject(), v5Var.f46211b, false, new s5(v5Var), new r5(v5Var, 1), u5Var, true);
+    }
+
+    @Override
+    public void onFinishVideoRecording(String str, long j10) {
+        long currentTimeMillis = System.currentTimeMillis();
+        v5 v5Var = this.f46098a;
+        v5Var.d = currentTimeMillis;
+        AndroidUtilities.cancelRunOnUIThread(v5Var.h);
+        if (!v5Var.f46219x) {
+            if (j10 > 1000) {
+                v5Var.f46210a.destroy(true, null);
+                oh.z zVar = v5Var.f46215n;
+                if (zVar != null) {
+                    zVar.run(v5Var.f46211b, str, Long.valueOf(j10));
+                    return;
                 }
-                AndroidUtilities.runOnUIThread(w5Var.h, 59500L);
                 return;
+            }
+            v5Var.a(false);
         }
     }
 }

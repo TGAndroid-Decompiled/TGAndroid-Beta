@@ -227,7 +227,7 @@ public class TelegramMediaSession {
                         byteBufferValue.reuse();
                         if (MessageObject.isMusicMessage(TLdeserialize)) {
                             long longValue2 = queryFinalized2.longValue(0);
-                            TLdeserialize.f20864id = queryFinalized2.intValue(2);
+                            TLdeserialize.f20866id = queryFinalized2.intValue(2);
                             TLdeserialize.dialog_id = longValue2;
                             ArrayList arrayList3 = (ArrayList) this.musicObjects.f(longValue2);
                             ArrayList arrayList4 = (ArrayList) this.musicQueues.f(longValue2);
@@ -253,7 +253,7 @@ public class TelegramMediaSession {
                         TLRPC.User user = arrayList5.get(i11);
                         i11++;
                         TLRPC.User user2 = user;
-                        this.users.k(user2, user2.f20990id);
+                        this.users.k(user2, user2.f20992id);
                     }
                 }
                 if (!arrayList2.isEmpty()) {
@@ -264,7 +264,7 @@ public class TelegramMediaSession {
                         TLRPC.Chat chat = arrayList6.get(i10);
                         i10++;
                         TLRPC.Chat chat2 = chat;
-                        this.chats.k(chat2, chat2.f20843id);
+                        this.chats.k(chat2, chat2.f20845id);
                     }
                 }
             }
@@ -361,7 +361,7 @@ public class TelegramMediaSession {
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
             if (dialog != null) {
-                hashMap.put(Long.valueOf(dialog.f20847id), Integer.valueOf(i10));
+                hashMap.put(Long.valueOf(dialog.f20849id), Integer.valueOf(i10));
             }
         }
         Collections.sort(arrayList, new tk(hashMap, 0));
@@ -428,7 +428,7 @@ public class TelegramMediaSession {
         iVar.x((long) (messageObject.getDuration() * 1000.0d), "android.media.metadata.DURATION");
         iVar.A("android.media.metadata.TITLE", messageObject.getMusicTitle());
         if (aVar != null && messageObject.isMusic()) {
-            str = aVar.f49498f;
+            str = aVar.f49534f;
         } else {
             str = null;
         }

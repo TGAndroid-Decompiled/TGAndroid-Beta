@@ -28,7 +28,7 @@ public final class a extends e {
             byte[] bArr = (byte[]) list.get(0);
             this.f4287p = bArr[24];
             this.f4288q = ((bArr[26] & 255) << 24) | ((bArr[27] & 255) << 16) | ((bArr[28] & 255) << 8) | (bArr[29] & 255);
-            this.f4289r = "Serif".equals(new String(bArr, 43, bArr.length - 43, d.f46738c)) ? "serif" : "sans-serif";
+            this.f4289r = "Serif".equals(new String(bArr, 43, bArr.length - 43, d.f46769c)) ? "serif" : "sans-serif";
             int i10 = bArr[25] * 20;
             this.f4291t = i10;
             boolean z4 = (bArr[0] & 32) != 0;
@@ -107,7 +107,7 @@ public final class a extends e {
                 Charset B = wVar.B();
                 int i13 = z10 - (wVar.f7309b - i12);
                 if (B == null) {
-                    B = d.f46738c;
+                    B = d.f46769c;
                 }
                 s6 = wVar.s(i13, B);
             }

@@ -1,9 +1,9 @@
 package org.telegram.ui;
-public final class gi implements org.telegram.ui.Components.ml0 {
-    public final xn f37204a;
+public final class gi implements org.telegram.ui.Components.ll0 {
+    public final xn f37112a;
 
     public gi(xn xnVar) {
-        this.f37204a = xnVar;
+        this.f37112a = xnVar;
     }
 
     @Override

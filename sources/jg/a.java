@@ -37,7 +37,7 @@ public final class a extends FrameLayout {
         dVar.setEnabled(true);
         dVar.c(i10, z4);
         dVar.g(LocaleController.getString(R.string.BoostingStartGiveaway), z4, true);
-        this.f10007b.setBackgroundColor(k6.v0(k6.f21731h5, this.f10008c));
+        this.f10007b.setBackgroundColor(k6.v0(k6.f21733h5, this.f10008c));
     }
 
     public final void b(boolean z4) {
@@ -48,7 +48,7 @@ public final class a extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (this.f10009e) {
-            int v02 = k6.v0(k6.f21605a7, this.f10008c);
+            int v02 = k6.v0(k6.f21607a7, this.f10008c);
             Paint paint = this.d;
             paint.setColor(v02);
             paint.setAlpha(255);

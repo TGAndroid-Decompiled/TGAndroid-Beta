@@ -5,11 +5,11 @@ import h5.d0;
 import h5.w;
 import k7.u6;
 public abstract class e {
-    public static final byte[] f50977a;
+    public static final byte[] f51013a;
 
     static {
         int i10 = d0.f7237a;
-        f50977a = "OpusHead".getBytes(r8.d.f46738c);
+        f51013a = "OpusHead".getBytes(r8.d.f46769c);
     }
 
     public static a4.c a(int i10, w wVar) {
@@ -80,7 +80,7 @@ public abstract class e {
         boolean z10;
         boolean z11;
         Integer num;
-        q qVar;
+        p pVar;
         Pair create;
         int i12;
         int i13;
@@ -111,7 +111,7 @@ public abstract class e {
                         num3 = Integer.valueOf(wVar.g());
                     } else if (g12 == 1935894637) {
                         wVar.G(4);
-                        str = wVar.s(4, r8.d.f46738c);
+                        str = wVar.s(4, r8.d.f46769c);
                     } else if (g12 == 1935894633) {
                         i16 = i15;
                         i17 = g11;
@@ -168,22 +168,22 @@ public abstract class e {
                                     bArr = bArr3;
                                 }
                                 num = num2;
-                                qVar = new q(z12, str, u11, bArr2, i13, i12, bArr);
+                                pVar = new p(z12, str, u11, bArr2, i13, i12, bArr);
                             } else {
                                 i18 += g13;
                             }
                         } else {
                             num = num3;
-                            qVar = null;
+                            pVar = null;
                             break;
                         }
                     }
-                    if (qVar != null) {
+                    if (pVar != null) {
                         z13 = true;
                     }
                     u6.a("tenc atom is mandatory", z13);
                     int i19 = d0.f7237a;
-                    create = Pair.create(num, qVar);
+                    create = Pair.create(num, pVar);
                 }
                 if (create != null) {
                     return create;
@@ -194,8 +194,8 @@ public abstract class e {
         return null;
     }
 
-    public static z3.s e(z3.p r40, z3.a r41, r3.p r42) {
-        throw new UnsupportedOperationException("Method not decompiled: z3.e.e(z3.p, z3.a, r3.p):z3.s");
+    public static z3.r e(z3.o r40, z3.a r41, r3.p r42) {
+        throw new UnsupportedOperationException("Method not decompiled: z3.e.e(z3.o, z3.a, r3.p):z3.r");
     }
 
     public static java.util.ArrayList f(z3.a r73, r3.p r74, long r75, o3.g r77, boolean r78, boolean r79, r8.e r80) {

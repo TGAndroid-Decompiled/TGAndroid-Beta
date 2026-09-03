@@ -20,54 +20,54 @@ import org.telegram.ui.Components.qc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.fn0;
 import org.telegram.ui.og0;
-import org.telegram.ui.v10;
 import org.telegram.ui.xf0;
+import org.telegram.ui.z10;
 public final class s6 implements Runnable {
-    public final int f14740a;
-    public final int f14741b;
-    public final Object f14742c;
+    public final int f14742a;
+    public final int f14743b;
+    public final Object f14744c;
     public final Object d;
-    public final Object f14743e;
-    public final Object f14744f;
+    public final Object f14745e;
+    public final Object f14746f;
     public final Object h;
-    public final Object f14745n;
-    public final Object f14746r;
-    public final Object f14747s;
+    public final Object f14747n;
+    public final Object f14748r;
+    public final Object f14749s;
 
     public s6(Object obj, TLObject tLObject, Object obj2, Object obj3, int i10, Object obj4, Object obj5, Serializable serializable, Object obj6, int i11) {
-        this.f14740a = i11;
-        this.f14742c = obj;
+        this.f14742a = i11;
+        this.f14744c = obj;
         this.d = tLObject;
-        this.f14743e = obj2;
-        this.f14744f = obj3;
-        this.f14741b = i10;
+        this.f14745e = obj2;
+        this.f14746f = obj3;
+        this.f14743b = i10;
         this.h = obj4;
-        this.f14745n = obj5;
-        this.f14746r = serializable;
-        this.f14747s = obj6;
+        this.f14747n = obj5;
+        this.f14748r = serializable;
+        this.f14749s = obj6;
     }
 
     @Override
     public final void run() {
         String formatPluralStringComma;
-        int i10 = this.f14740a;
-        int i11 = this.f14741b;
-        Object obj = this.f14747s;
-        Object obj2 = this.f14746r;
-        Object obj3 = this.f14745n;
+        int i10 = this.f14742a;
+        int i11 = this.f14743b;
+        Object obj = this.f14749s;
+        Object obj2 = this.f14748r;
+        Object obj3 = this.f14747n;
         Object obj4 = this.h;
-        Object obj5 = this.f14744f;
-        Object obj6 = this.f14743e;
+        Object obj5 = this.f14746f;
+        Object obj6 = this.f14745e;
         Object obj7 = this.d;
-        Object obj8 = this.f14742c;
+        Object obj8 = this.f14744c;
         switch (i10) {
             case 0:
                 t7 t7Var = (t7) obj8;
                 ((boolean[]) obj7)[0] = true;
-                t7Var.a0((MessageObject) obj5, (TLRPC.InputInvoice) obj4, (TLRPC.TL_payments_paymentFormStars) obj3, new t6(t7Var, (boolean[]) obj6, this.f14741b, (Utilities.Callback) obj2, (Utilities.Callback) obj));
+                t7Var.a0((MessageObject) obj5, (TLRPC.InputInvoice) obj4, (TLRPC.TL_payments_paymentFormStars) obj3, new t6(t7Var, (boolean[]) obj6, this.f14743b, (Utilities.Callback) obj2, (Utilities.Callback) obj));
                 return;
             case 1:
-                ((MessagesController) obj8).lambda$processLoadedDialogFilters$23((TLRPC.messages_Dialogs) obj7, (ArrayList) obj6, (TLRPC.messages_Dialogs) obj5, this.f14741b, (ArrayList) obj4, (ArrayList) obj3, (ArrayList) obj2, (Runnable) obj);
+                ((MessagesController) obj8).lambda$processLoadedDialogFilters$23((TLRPC.messages_Dialogs) obj7, (ArrayList) obj6, (TLRPC.messages_Dialogs) obj5, this.f14743b, (ArrayList) obj4, (ArrayList) obj3, (ArrayList) obj2, (Runnable) obj);
                 return;
             case 2:
                 int[] iArr = (int[]) obj7;
@@ -88,7 +88,7 @@ public final class s6 implements Runnable {
                     dVar.setLoading(false);
                     dVar.setEnabled(false);
                     a9Var.setText(LocaleController.getString(R.string.UsernameInvalidShort));
-                    a9Var.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21895q7, g6Var));
+                    a9Var.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21897q7, g6Var));
                     int i12 = -iArr2[0];
                     iArr2[0] = i12;
                     AndroidUtilities.shakeViewSpring(a9Var, i12);
@@ -103,7 +103,7 @@ public final class s6 implements Runnable {
                     dVar.setLoading(false);
                     dVar.setEnabled(false);
                     a9Var.setText(LocaleController.getString(R.string.UsernameInvalidLong));
-                    a9Var.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21895q7, g6Var));
+                    a9Var.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21897q7, g6Var));
                     int i13 = -iArr2[0];
                     iArr2[0] = i13;
                     AndroidUtilities.shakeViewSpring(a9Var, i13);
@@ -132,13 +132,13 @@ public final class s6 implements Runnable {
                                 strArr3[0] = str2;
                                 dVar2.setEnabled(true);
                                 a9Var2.setText(LocaleController.formatString(R.string.UsernameAvailable, org.telegram.ui.yh.k("@", str2)));
-                                a9Var2.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21998w6, g6Var2));
+                                a9Var2.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f22000w6, g6Var2));
                                 return;
                             }
                             strArr3[0] = null;
                             dVar2.setEnabled(false);
                             a9Var2.setText(LocaleController.getString(R.string.UsernameInUse));
-                            a9Var2.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21895q7, g6Var2));
+                            a9Var2.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21897q7, g6Var2));
                             int[] iArr3 = iArr2;
                             int i14 = -iArr3[0];
                             iArr3[0] = i14;
@@ -151,7 +151,7 @@ public final class s6 implements Runnable {
                 }
             case 3:
                 LaunchActivity launchActivity = (LaunchActivity) obj8;
-                v10 v10Var = (v10) obj7;
+                z10 z10Var = (z10) obj7;
                 TLObject tLObject = (TLObject) obj6;
                 TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) obj5;
                 TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj4;
@@ -160,7 +160,7 @@ public final class s6 implements Runnable {
                 String str4 = (String) obj;
                 Pattern pattern = LaunchActivity.f34134y1;
                 try {
-                    v10Var.run();
+                    z10Var.run();
                 } catch (Exception e6) {
                     FileLog.e(e6);
                 }
@@ -174,7 +174,7 @@ public final class s6 implements Runnable {
                 LaunchActivity launchActivity2 = (LaunchActivity) obj8;
                 TLObject tLObject2 = (TLObject) obj7;
                 int[] iArr3 = (int[]) obj6;
-                v10 v10Var2 = (v10) obj5;
+                z10 z10Var2 = (z10) obj5;
                 Integer num = (Integer) obj4;
                 Integer num2 = (Integer) obj3;
                 Long l10 = (Long) obj2;
@@ -184,12 +184,12 @@ public final class s6 implements Runnable {
                     TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject2;
                     if (!tL_messages_chats.chats.isEmpty()) {
                         MessagesController.getInstance(launchActivity2.L).putChats(tL_messages_chats.chats, false);
-                        iArr3[0] = launchActivity2.v0(this.f14741b, v10Var2, num, num2, l10, num3, null, tL_messages_chats.chats.get(0), null, null, 0, -1);
+                        iArr3[0] = launchActivity2.v0(this.f14743b, z10Var2, num, num2, l10, num3, null, tL_messages_chats.chats.get(0), null, null, 0, -1);
                         return;
                     }
                 }
                 try {
-                    v10Var2.run();
+                    z10Var2.run();
                 } catch (Exception e10) {
                     FileLog.e(e10);
                 }
@@ -205,10 +205,10 @@ public final class s6 implements Runnable {
                 String str5 = (String) obj2;
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj;
                 og0 og0Var = xf0Var.v;
-                qh.d dVar2 = xf0Var.f43044b;
+                qh.d dVar2 = xf0Var.f43026b;
                 FileLog.d("LoginBilling canPurchaseStore returned " + tLObject3 + " " + tL_error);
                 if (tLObject3 instanceof TLRPC.TL_boolTrue) {
-                    dVar2.g(LocaleController.formatString(R.string.SMSFeePurchaseTitle, jVar.f44148a), false, true);
+                    dVar2.g(LocaleController.formatString(R.string.SMSFeePurchaseTitle, jVar.f44179a), false, true);
                     if (i11 == 7) {
                         formatPluralStringComma = LocaleController.getString(R.string.SMSFeePurchaseText);
                     } else {
@@ -219,11 +219,11 @@ public final class s6 implements Runnable {
                     dVar2.setOnClickListener(new oh.b0(xf0Var, mVar, tL_inputStorePaymentAuthCode, str5, tL_payments_canPurchaseStore, 13));
                     return;
                 } else if (tLObject3 instanceof TLRPC.TL_boolFalse) {
-                    xf0Var.f43046e = "RESPONSE_FALSE";
+                    xf0Var.f43028e = "RESPONSE_FALSE";
                     new qc(og0Var.W, null).H(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, "RESPONSE_FALSE"));
                     return;
                 } else if (tL_error != null) {
-                    xf0Var.f43046e = tL_error.text;
+                    xf0Var.f43028e = tL_error.text;
                     new qc(og0Var.W, null).d0(tL_error, false);
                     return;
                 } else {
@@ -233,41 +233,41 @@ public final class s6 implements Runnable {
     }
 
     public s6(t7 t7Var, boolean[] zArr, MessageObject messageObject, TLRPC.InputInvoice inputInvoice, TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars, boolean[] zArr2, int i10, Utilities.Callback callback, Utilities.Callback callback2) {
-        this.f14740a = 0;
-        this.f14742c = t7Var;
+        this.f14742a = 0;
+        this.f14744c = t7Var;
         this.d = zArr;
-        this.f14744f = messageObject;
+        this.f14746f = messageObject;
         this.h = inputInvoice;
-        this.f14745n = tL_payments_paymentFormStars;
-        this.f14743e = zArr2;
-        this.f14741b = i10;
-        this.f14746r = callback;
-        this.f14747s = callback2;
+        this.f14747n = tL_payments_paymentFormStars;
+        this.f14745e = zArr2;
+        this.f14743b = i10;
+        this.f14748r = callback;
+        this.f14749s = callback2;
     }
 
     public s6(org.telegram.ui.Cells.i3 i3Var, int[] iArr, int i10, String[] strArr, String[] strArr2, qh.d dVar, org.telegram.ui.Cells.a9 a9Var, org.telegram.ui.ActionBar.g6 g6Var, int[] iArr2) {
-        this.f14740a = 2;
-        this.f14742c = i3Var;
+        this.f14742a = 2;
+        this.f14744c = i3Var;
         this.d = iArr;
-        this.f14741b = i10;
-        this.f14743e = strArr;
-        this.f14744f = strArr2;
+        this.f14743b = i10;
+        this.f14745e = strArr;
+        this.f14746f = strArr2;
         this.h = dVar;
-        this.f14745n = a9Var;
-        this.f14746r = g6Var;
-        this.f14747s = iArr2;
+        this.f14747n = a9Var;
+        this.f14748r = g6Var;
+        this.f14749s = iArr2;
     }
 
     public s6(LaunchActivity launchActivity, Object obj, Object obj2, int i10, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i11) {
-        this.f14740a = i11;
-        this.f14742c = launchActivity;
+        this.f14742a = i11;
+        this.f14744c = launchActivity;
         this.d = obj;
-        this.f14743e = obj2;
-        this.f14741b = i10;
-        this.f14744f = obj3;
+        this.f14745e = obj2;
+        this.f14743b = i10;
+        this.f14746f = obj3;
         this.h = obj4;
-        this.f14745n = obj5;
-        this.f14746r = obj6;
-        this.f14747s = obj7;
+        this.f14747n = obj5;
+        this.f14748r = obj6;
+        this.f14749s = obj7;
     }
 }

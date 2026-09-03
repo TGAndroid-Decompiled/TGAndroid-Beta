@@ -8,19 +8,19 @@ import android.graphics.Path;
 import android.text.TextPaint;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-public final class ol extends org.telegram.ui.Components.s01 {
+public final class ol extends org.telegram.ui.Components.r01 {
     public final xn H;
 
     public ol(Activity activity, org.telegram.ui.ActionBar.g6 g6Var, xn xnVar) {
         super(activity);
         this.H = xnVar;
         TextPaint textPaint = new TextPaint(1);
-        this.f30928b = textPaint;
+        this.f30594b = textPaint;
         Paint paint = new Paint(1);
-        this.f30929c = paint;
+        this.f30595c = paint;
         this.d = AndroidUtilities.dp(24.0f);
-        this.f30930e = new OvershootInterpolator();
-        this.E = new org.telegram.ui.Components.oq0(this, 14);
+        this.f30596e = new OvershootInterpolator();
+        this.E = new org.telegram.ui.Components.nq0(this, 14);
         this.G = new Path();
         int v02 = org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Hi, g6Var);
         int alpha = Color.alpha(v02);

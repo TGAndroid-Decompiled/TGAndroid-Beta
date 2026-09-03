@@ -43,7 +43,7 @@ public abstract class w6 {
         return cVar;
     }
 
-    public static q5.g0 b(h5.w wVar) {
+    public static q5.c0 b(h5.w wVar) {
         wVar.G(1);
         int w10 = wVar.w();
         long j10 = wVar.f7309b + w10;
@@ -67,6 +67,6 @@ public abstract class w6 {
             i11++;
         }
         wVar.G((int) (j10 - wVar.f7309b));
-        return new q5.g0(5, jArr, jArr2);
+        return new q5.c0(6, jArr, jArr2);
     }
 }

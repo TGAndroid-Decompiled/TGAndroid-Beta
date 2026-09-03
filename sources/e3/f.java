@@ -28,17 +28,17 @@ import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.d2;
 import org.telegram.ui.ActionBar.d4;
 import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Components.kl0;
+import org.telegram.ui.Components.jl0;
 import org.telegram.ui.Components.lr;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.cg1;
 import org.telegram.ui.d60;
+import org.telegram.ui.ig1;
 import org.telegram.ui.py;
-import org.telegram.ui.qz0;
-import qh.x7;
+import org.telegram.ui.vz0;
+import qh.w7;
 import y2.i;
-public final class f implements g3.b, f3.f, ba.a, cg1, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, c2, kl0, MessagesController.IsInChatCheckedCallback {
+public final class f implements g3.b, f3.f, ba.a, ig1, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, c2, jl0, MessagesController.IsInChatCheckedCallback {
     public final int f4928a;
     public final long f4929b;
     public final Object f4930c;
@@ -150,24 +150,24 @@ public final class f implements g3.b, f3.f, ba.a, cg1, ChatObject.Call.OnPartici
                 return;
             case 7:
                 d60 d60Var = (d60) this.f4930c;
-                d60Var.d.getMessagesController().addUserToChat(d60Var.i1(), (TLRPC.User) this.d, 0, null, (p2) d60Var.f36033f0.O().getFragmentStack().get(d60Var.f36033f0.O().getFragmentStack().size() - 1), new y1(d60Var, this.f4929b, 20));
+                d60Var.d.getMessagesController().addUserToChat(d60Var.i1(), (TLRPC.User) this.d, 0, null, (p2) d60Var.f36012f0.O().getFragmentStack().get(d60Var.f36012f0.O().getFragmentStack().size() - 1), new y1(d60Var, this.f4929b, 20));
                 return;
             default:
-                x7 x7Var = (x7) this.f4930c;
+                w7 w7Var = (w7) this.f4930c;
                 ArrayList arrayList = (ArrayList) this.d;
-                x7Var.d.put(Long.valueOf(this.f4929b), arrayList);
+                w7Var.d.put(Long.valueOf(this.f4929b), arrayList);
                 int size = arrayList.size();
                 int i11 = 0;
                 while (i11 < size) {
                     Object obj = arrayList.get(i11);
                     i11++;
-                    x7Var.f46290b.k(Boolean.TRUE, ((Long) obj).longValue());
+                    w7Var.f46263b.k(Boolean.TRUE, ((Long) obj).longValue());
                 }
-                x7Var.i(true);
-                x7Var.e(true);
-                x7Var.f(true);
+                w7Var.i(true);
+                w7Var.e(true);
+                w7Var.f(true);
                 d2Var.dismiss();
-                x7Var.f46298x.H = true;
+                w7Var.f46271x.H = true;
                 return;
         }
     }
@@ -184,7 +184,7 @@ public final class f implements g3.b, f3.f, ba.a, cg1, ChatObject.Call.OnPartici
 
     @Override
     public void run(boolean z4, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        AndroidUtilities.runOnUIThread(new mh.i((qz0) this.f4930c, this.f4929b, tL_chatAdminRights, str, z4, (py) this.d));
+        AndroidUtilities.runOnUIThread(new mh.i((vz0) this.f4930c, this.f4929b, tL_chatAdminRights, str, z4, (py) this.d));
     }
 
     public f(Object obj, Object obj2, long j10, int i10) {

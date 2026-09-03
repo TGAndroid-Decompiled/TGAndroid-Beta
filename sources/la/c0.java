@@ -24,7 +24,7 @@ public final class c0 {
         String valueOf;
         String str;
         gVar.a();
-        Context context = gVar.f49452a;
+        Context context = gVar.f49488a;
         kotlin.jvm.internal.j.d(context, "firebaseApp.applicationContext");
         String packageName = context.getPackageName();
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
@@ -35,7 +35,7 @@ public final class c0 {
         }
         String str2 = valueOf;
         gVar.a();
-        String str3 = gVar.f49454c.f49465b;
+        String str3 = gVar.f49490c.f49501b;
         kotlin.jvm.internal.j.d(str3, "firebaseApp.options.applicationId");
         String MODEL = Build.MODEL;
         kotlin.jvm.internal.j.d(MODEL, "MODEL");

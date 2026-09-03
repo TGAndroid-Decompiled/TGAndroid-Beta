@@ -9,7 +9,7 @@ public abstract class h7 {
         } catch (Throwable th2) {
             vVar = new ld.v(th2, false);
         }
-        vc.a aVar = vc.a.f48962a;
+        vc.a aVar = vc.a.f48998a;
         if (vVar != aVar && (B = sVar.B(vVar)) != ld.e0.f12299e) {
             if (!(B instanceof ld.v)) {
                 return ld.e0.u(B);

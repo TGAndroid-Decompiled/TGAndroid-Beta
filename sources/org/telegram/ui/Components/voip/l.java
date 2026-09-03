@@ -8,21 +8,21 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.ui.d60;
 import org.telegram.ui.j60;
 public abstract class l extends FrameLayout {
-    public int f32133a;
-    public j60 f32134b;
-    public u f32135c;
+    public int f32138a;
+    public j60 f32139b;
+    public u f32140c;
     public ChatObject.VideoParticipant d;
-    public boolean f32136e;
-    public final boolean f32137f;
+    public boolean f32141e;
+    public final boolean f32142f;
 
     public l(Context context, boolean z4) {
         super(context);
-        this.f32137f = z4;
+        this.f32142f = z4;
     }
 
     public float getItemHeight() {
         int measuredHeight;
-        j60 j60Var = this.f32134b;
+        j60 j60Var = this.f32139b;
         if (j60Var != null) {
             measuredHeight = j60Var.F();
         } else {
@@ -36,19 +36,19 @@ public abstract class l extends FrameLayout {
     }
 
     public u getRenderer() {
-        return this.f32135c;
+        return this.f32140c;
     }
 
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f32136e = true;
+        this.f32141e = true;
     }
 
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f32136e = false;
+        this.f32141e = false;
     }
 
     @Override
@@ -56,9 +56,9 @@ public abstract class l extends FrameLayout {
         float f10;
         int i12;
         float f11;
-        if (this.f32137f) {
+        if (this.f32142f) {
             ((View) getParent()).getMeasuredWidth();
-            super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f32134b.F(), 1073741824));
+            super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f32139b.F(), 1073741824));
             return;
         }
         if (d60.C3) {
@@ -82,6 +82,6 @@ public abstract class l extends FrameLayout {
     }
 
     public void setRenderer(u uVar) {
-        this.f32135c = uVar;
+        this.f32140c = uVar;
     }
 }

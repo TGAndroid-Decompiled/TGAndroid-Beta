@@ -5,9 +5,9 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.KeyEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.gx0;
-import org.telegram.ui.Components.qm0;
-import org.telegram.ui.ib1;
+import org.telegram.ui.Components.fx0;
+import org.telegram.ui.Components.pm0;
+import org.telegram.ui.ob1;
 public final class r extends AnimatorListenerAdapter {
     public final int f11285a;
     public final boolean f11286b;
@@ -33,26 +33,26 @@ public final class r extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                qm0 qm0Var = (qm0) this.d;
-                ib1 ib1Var = qm0Var.f30429e;
-                qm0Var.f30430e0 = null;
+                pm0 pm0Var = (pm0) this.d;
+                ob1 ob1Var = pm0Var.f30135e;
+                pm0Var.f30136e0 = null;
                 boolean z4 = this.f11286b;
                 if (z4) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.0f;
                 }
-                qm0Var.f30432f0 = f10;
-                for (int i10 = 0; i10 < ib1Var.getChildCount(); i10++) {
-                    ib1Var.getChildAt(i10).invalidate();
+                pm0Var.f30138f0 = f10;
+                for (int i10 = 0; i10 < ob1Var.getChildCount(); i10++) {
+                    ob1Var.getChildAt(i10).invalidate();
                 }
-                ib1Var.invalidate();
-                qm0Var.p();
+                ob1Var.invalidate();
+                pm0Var.p();
                 if (!z4) {
-                    float childCount = qm0Var.f30434h0 * ib1Var.getChildCount();
+                    float childCount = pm0Var.f30140h0 * ob1Var.getChildCount();
                     float f11 = this.f11287c;
-                    float scrollX = (qm0Var.getScrollX() + f11) / (qm0Var.f30433g0 * ib1Var.getChildCount());
-                    float measuredWidth = (childCount - qm0Var.getMeasuredWidth()) / childCount;
+                    float scrollX = (pm0Var.getScrollX() + f11) / (pm0Var.f30139g0 * ob1Var.getChildCount());
+                    float measuredWidth = (childCount - pm0Var.getMeasuredWidth()) / childCount;
                     if (scrollX > measuredWidth) {
                         scrollX = measuredWidth;
                         f11 = 0.0f;
@@ -61,22 +61,22 @@ public final class r extends AnimatorListenerAdapter {
                     if (f12 - f11 < 0.0f) {
                         f12 = f11;
                     }
-                    qm0Var.f30435i0 = (qm0Var.getScrollX() + f11) - f12;
+                    pm0Var.f30141i0 = (pm0Var.getScrollX() + f11) - f12;
                     int i11 = (int) (f12 - f11);
-                    qm0Var.f30436j0 = i11;
+                    pm0Var.f30142j0 = i11;
                     if (i11 < 0) {
-                        qm0Var.f30436j0 = 0;
+                        pm0Var.f30142j0 = 0;
                     }
-                    for (int i12 = 0; i12 < ib1Var.getChildCount(); i12++) {
-                        View childAt = ib1Var.getChildAt(i12);
-                        if (childAt instanceof gx0) {
-                            ((gx0) childAt).setExpanded(false);
+                    for (int i12 = 0; i12 < ob1Var.getChildCount(); i12++) {
+                        View childAt = ob1Var.getChildAt(i12);
+                        if (childAt instanceof fx0) {
+                            ((fx0) childAt).setExpanded(false);
                         }
                         childAt.getLayoutParams().width = AndroidUtilities.dp(33.0f);
                     }
-                    qm0Var.f30428d0 = false;
-                    qm0Var.getLayoutParams().height = AndroidUtilities.dp(36.0f);
-                    ib1Var.requestLayout();
+                    pm0Var.f30134d0 = false;
+                    pm0Var.getLayoutParams().height = AndroidUtilities.dp(36.0f);
+                    ob1Var.requestLayout();
                     return;
                 }
                 return;

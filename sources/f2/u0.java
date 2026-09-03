@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.ui.Components.vk0;
+import org.telegram.ui.Components.uk0;
 public abstract class u0 {
     public y5.h f5928a;
     public ArrayList f5929b;
@@ -43,7 +43,7 @@ public abstract class u0 {
     public final void d(m1 m1Var) {
         y5.h hVar = this.f5928a;
         if (hVar != null) {
-            RecyclerView recyclerView = (RecyclerView) hVar.f50777b;
+            RecyclerView recyclerView = (RecyclerView) hVar.f50813b;
             boolean z4 = true;
             m1Var.q(true);
             View view = m1Var.f5875a;
@@ -84,8 +84,8 @@ public abstract class u0 {
         ArrayList arrayList = this.f5929b;
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
-            vk0 vk0Var = (vk0) arrayList.get(i10);
-            vk0Var.f31920a.c(vk0Var.f31921b, vk0Var.f31922c, vk0Var.d, false);
+            uk0 uk0Var = (uk0) arrayList.get(i10);
+            uk0Var.f31640a.c(uk0Var.f31641b, uk0Var.f31642c, uk0Var.d, false);
         }
         arrayList.clear();
     }

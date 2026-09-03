@@ -5,14 +5,14 @@ import android.view.ViewGroup;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.m4;
-import org.telegram.ui.Components.tl0;
-import org.telegram.ui.Components.x51;
-import qh.d4;
-public final class v2 extends x51 {
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.w51;
+import qh.c4;
+public final class v2 extends w51 {
     public final d3 K;
 
-    public v2(d3 d3Var, tl0 tl0Var, Activity activity, int i10, int i11, d4 d4Var, g6 g6Var) {
-        super(tl0Var, activity, i10, i11, true, d4Var, g6Var);
+    public v2(d3 d3Var, sl0 sl0Var, Activity activity, int i10, int i11, c4 c4Var, g6 g6Var) {
+        super(sl0Var, activity, i10, i11, true, c4Var, g6Var);
         this.K = d3Var;
     }
 

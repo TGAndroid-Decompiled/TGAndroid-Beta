@@ -17,7 +17,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public abstract class c {
-    public static boolean f35632a;
+    public static boolean f35643a;
 
     public static boolean a(int i10, TLRPC.User user) {
         String publicUsername;
@@ -40,7 +40,7 @@ public abstract class c {
 
     public static void b(int i10) {
         org.telegram.ui.ActionBar.g6 g6Var;
-        if (!f35632a && UserConfig.selectedAccount == i10) {
+        if (!f35643a && UserConfig.selectedAccount == i10) {
             Context context = LaunchActivity.D1;
             if (context == null) {
                 context = ApplicationLoader.applicationContext;
@@ -59,7 +59,7 @@ public abstract class c {
     }
 
     public static void c(Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
-        if (f35632a) {
+        if (f35643a) {
             return;
         }
         org.telegram.ui.ActionBar.h3 o10 = org.telegram.messenger.y3.o(context, g6Var, false, false);
@@ -84,7 +84,7 @@ public abstract class c {
         d0Var2.a(LocaleController.getString(R.string.AccountFrozen2Title), LocaleController.getString(R.string.AccountFrozen2Text), R.drawable.menu_privacy);
         f10.addView(d0Var2, k7.c6.t(-1, -2, 17, 0, 0, 0, 0));
         mh.d0 d0Var3 = new mh.d0(context, 1, g6Var);
-        d0Var3.a(LocaleController.getString(R.string.AccountFrozen3Title), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.AccountFrozen3Text, LocaleController.formatYearMonthDay(MessagesController.getInstance(i10).freezeUntilDate, true)), new tt0(aVar, 2)), R.drawable.menu_feature_hourglass);
+        d0Var3.a(LocaleController.getString(R.string.AccountFrozen3Title), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.AccountFrozen3Text, LocaleController.formatYearMonthDay(MessagesController.getInstance(i10).freezeUntilDate, true)), new yt0(aVar, 2)), R.drawable.menu_feature_hourglass);
         f10.addView(d0Var3, k7.c6.t(-1, -2, 17, 0, 0, 0, 0));
         qh.d dVar = new qh.d(context, g6Var, true);
         dVar.g(LocaleController.getString(R.string.AccountFrozenButtonAppeal), false, true);
@@ -98,7 +98,7 @@ public abstract class c {
         org.telegram.ui.ActionBar.h3[] h3VarArr = {o10};
         o10.useBackgroundTopPadding = false;
         o10.fixNavigationBar();
-        f35632a = true;
+        f35643a = true;
         h3VarArr[0].show();
         h3VarArr[0].setOnDismissListener(new eg.c0(1));
     }

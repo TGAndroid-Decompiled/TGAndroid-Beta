@@ -1,14 +1,11 @@
 package qh;
 
 import android.app.Activity;
-import android.graphics.Path;
-public final class u8 extends r3 {
-    public final Path K;
-    public final ca L;
+public final class u8 extends d7 {
+    public final ba f46178y;
 
-    public u8(ca caVar, Activity activity, oh.b bVar, org.telegram.ui.Components.ba baVar) {
-        super(activity, bVar, baVar);
-        this.L = caVar;
-        this.K = new Path();
+    public u8(ba baVar, Activity activity) {
+        super(activity);
+        this.f46178y = baVar;
     }
 }

@@ -1,8 +1,8 @@
 package org.telegram.ui.Components;
 public final class zs {
-    public f2.m1 f33952a;
-    public int f33953b;
-    public int f33954c;
+    public f2.m1 f34009a;
+    public int f34010b;
+    public int f34011c;
     public int d;
-    public int f33955e;
+    public int f34012e;
 }

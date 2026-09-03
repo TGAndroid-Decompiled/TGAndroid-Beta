@@ -1,10 +1,10 @@
 package na;
 public final class a extends wc.c {
-    public Object f15876a;
-    public ud.a f15877b;
-    public Object f15878c;
+    public Object f15878a;
+    public ud.a f15879b;
+    public Object f15880c;
     public final d d;
-    public int f15879e;
+    public int f15881e;
 
     public a(d dVar, wc.c cVar) {
         super(cVar);
@@ -13,8 +13,8 @@ public final class a extends wc.c {
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f15878c = obj;
-        this.f15879e |= Integer.MIN_VALUE;
+        this.f15880c = obj;
+        this.f15881e |= Integer.MIN_VALUE;
         return this.d.c(this);
     }
 }

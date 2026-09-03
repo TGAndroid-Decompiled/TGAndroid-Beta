@@ -7,20 +7,20 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.tp;
 public final class n1 extends View {
-    public final int f17477a = 1;
-    public final tp f17478b;
+    public final int f17479a = 1;
+    public final tp f17480b;
 
     public n1(Context context) {
         super(context);
-        this.f17478b = new tp(AndroidUtilities.dp(36.0f), AndroidUtilities.dp(2.0f), -13522392);
+        this.f17480b = new tp(AndroidUtilities.dp(36.0f), AndroidUtilities.dp(2.0f), -13522392);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        switch (this.f17477a) {
+        switch (this.f17479a) {
             case 0:
                 int dp = AndroidUtilities.dp(1.0f);
-                tp tpVar = this.f17478b;
+                tp tpVar = this.f17480b;
                 tpVar.setBounds(dp, dp, (getWidth() - dp) - dp, (getHeight() - dp) - dp);
                 tpVar.draw(canvas);
                 invalidate();
@@ -28,7 +28,7 @@ public final class n1 extends View {
             default:
                 int width = getWidth();
                 int height = getHeight();
-                tp tpVar2 = this.f17478b;
+                tp tpVar2 = this.f17480b;
                 tpVar2.setBounds(0, 0, width, height);
                 tpVar2.setAlpha(255);
                 tpVar2.draw(canvas);
@@ -40,6 +40,6 @@ public final class n1 extends View {
 
     public n1(Activity activity) {
         super(activity);
-        this.f17478b = new tp(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21820m5, false));
+        this.f17480b = new tp(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21822m5, false));
     }
 }

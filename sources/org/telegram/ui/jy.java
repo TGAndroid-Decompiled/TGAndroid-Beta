@@ -6,5 +6,5 @@ public interface jy {
 
     boolean J(py pyVar);
 
-    boolean v(py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, mf1 mf1Var);
+    boolean v(py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, sf1 sf1Var);
 }

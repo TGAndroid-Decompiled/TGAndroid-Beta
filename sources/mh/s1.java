@@ -7,18 +7,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.hj0;
 import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.ij0;
 import org.telegram.ui.Components.s00;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.py;
 public final class s1 implements Runnable {
-    public final int f14726a;
-    public final g5 f14727b;
+    public final int f14728a;
+    public final g5 f14729b;
 
     public s1(g5 g5Var, int i10) {
-        this.f14726a = i10;
-        this.f14727b = g5Var;
+        this.f14728a = i10;
+        this.f14729b = g5Var;
     }
 
     @Override
@@ -28,8 +28,8 @@ public final class s1 implements Runnable {
         TL_stars.StarGift starGift;
         TLRPC.Document document;
         m4 m4Var;
-        int i10 = this.f14726a;
-        g5 g5Var = this.f14727b;
+        int i10 = this.f14728a;
+        g5 g5Var = this.f14729b;
         switch (i10) {
             case 0:
                 g5.p0(g5Var);
@@ -47,7 +47,7 @@ public final class s1 implements Runnable {
                 g5.Y(g5Var);
                 return;
             case 5:
-                g5Var.f14095g0.setLoading(false);
+                g5Var.f14097g0.setLoading(false);
                 g5Var.q2(0, true, null);
                 return;
             case 6:
@@ -83,7 +83,7 @@ public final class s1 implements Runnable {
                 TL_stars.TL_starGiftUnique K1 = g5Var.K1();
                 if (U != null && K1 != null) {
                     py pyVar = new py(org.telegram.messenger.y3.e(4, "onlySelect", "dialogsType", true));
-                    pyVar.f40308z2 = new androidx.car.app.utils.a(g5Var, K1, pyVar, 8);
+                    pyVar.f40278z2 = new androidx.car.app.utils.a(g5Var, K1, pyVar, 8);
                     U.presentFragment(pyVar);
                     return;
                 }
@@ -114,8 +114,8 @@ public final class s1 implements Runnable {
                     str = "";
                 }
                 ic M = g5Var.getBulletinFactory().M(LocaleController.getString(R.string.Gift2UpgradedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2UpgradedText, str)), R.raw.gift_upgrade);
-                M.f27745j = 5000;
-                M.f27755t = true;
+                M.f27778j = 5000;
+                M.f27788t = true;
                 M.j();
                 s00 s00Var = g5Var.X;
                 if (s00Var != null) {
@@ -130,18 +130,18 @@ public final class s1 implements Runnable {
                 g5Var.getBulletinFactory().Q(R.raw.copy, 36, LocaleController.getString(R.string.WalletAddressCopied)).k(false);
                 return;
             case 23:
-                c5 c5Var = g5Var.f14085b0;
-                qh.d dVar = g5Var.f14095g0;
+                c5 c5Var = g5Var.f14087b0;
+                qh.d dVar = g5Var.f14097g0;
                 n4 n4Var = g5Var.J0.h;
-                if (n4Var != null && (m4Var = n4Var.f14475c) != null) {
+                if (n4Var != null && (m4Var = n4Var.f14477c) != null) {
                     imageReceiver = ((p4) m4Var).d;
                 } else {
                     imageReceiver = null;
                 }
                 org.telegram.ui.Components.p9 p9Var = c5Var.d[0];
                 if (imageReceiver != null && p9Var != null && p9Var.getImageReceiver() != null) {
-                    ij0 lottieAnimation = imageReceiver.getLottieAnimation();
-                    ij0 lottieAnimation2 = p9Var.getImageReceiver().getLottieAnimation();
+                    hj0 lottieAnimation = imageReceiver.getLottieAnimation();
+                    hj0 lottieAnimation2 = p9Var.getImageReceiver().getLottieAnimation();
                     if (lottieAnimation2 != null && lottieAnimation != null) {
                         lottieAnimation2.Q(lottieAnimation.r(), false);
                     } else if (lottieAnimation2 == null && lottieAnimation != null) {
@@ -149,9 +149,9 @@ public final class s1 implements Runnable {
                         p9Var.setImageDrawable(lottieAnimation);
                     }
                 }
-                c5Var.f13797b.setAlpha(1.0f);
-                c5Var.f13799c.setAlpha(0.0f);
-                if (g5Var.f14107n0 && g5Var.W != null && g5Var.A0 != null && g5Var.G1() >= 0 && g5Var.A0.b(g5Var.G1()) >= 0) {
+                c5Var.f13799b.setAlpha(1.0f);
+                c5Var.f13801c.setAlpha(0.0f);
+                if (g5Var.f14109n0 && g5Var.W != null && g5Var.A0 != null && g5Var.G1() >= 0 && g5Var.A0.b(g5Var.G1()) >= 0) {
                     dVar.setFilled(false);
                     int b10 = g5Var.A0.b(g5Var.G1());
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();

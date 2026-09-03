@@ -9,23 +9,23 @@ import f2.i1;
 import f2.j0;
 import f2.w0;
 public class o extends i1 {
-    public final LinearInterpolator f50652i;
-    public final DecelerateInterpolator f50653j;
-    public final float f50654k;
-    public int f50655l;
-    public int f50656m;
-    public final int f50657n;
-    public final float f50658o;
-    public int f50659p;
+    public final LinearInterpolator f50688i;
+    public final DecelerateInterpolator f50689j;
+    public final float f50690k;
+    public int f50691l;
+    public int f50692m;
+    public final int f50693n;
+    public final float f50694o;
+    public int f50695p;
 
     public o(Context context, int i10) {
-        this.f50652i = new LinearInterpolator();
-        this.f50653j = new DecelerateInterpolator(1.5f);
-        this.f50655l = 0;
-        this.f50656m = 0;
-        this.f50658o = 1.0f;
-        this.f50654k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
-        this.f50657n = i10;
+        this.f50688i = new LinearInterpolator();
+        this.f50689j = new DecelerateInterpolator(1.5f);
+        this.f50691l = 0;
+        this.f50692m = 0;
+        this.f50694o = 1.0f;
+        this.f50690k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
+        this.f50693n = i10;
     }
 
     @Override
@@ -43,26 +43,26 @@ public class o extends i1 {
             h();
             return;
         }
-        int i12 = this.f50655l;
+        int i12 = this.f50691l;
         int i13 = i12 - i10;
         int i14 = 0;
         if (i12 * i13 <= 0) {
             i13 = 0;
         }
-        this.f50655l = i13;
-        int i15 = this.f50656m;
+        this.f50691l = i13;
+        int i15 = this.f50692m;
         int i16 = i15 - i11;
         if (i15 * i16 > 0) {
             i14 = i16;
         }
-        this.f50656m = i14;
+        this.f50692m = i14;
         if (i13 == 0 && i14 == 0) {
             PointF a2 = a(this.f5805a);
             if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
                 i1.b(a2);
-                this.f50655l = (int) (a2.x * 10000.0f);
-                this.f50656m = (int) (a2.y * 10000.0f);
-                h1Var.b((int) (this.f50655l * 1.2f), (int) (this.f50656m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f50654k)) * 1.2f), this.f50652i);
+                this.f50691l = (int) (a2.x * 10000.0f);
+                this.f50692m = (int) (a2.y * 10000.0f);
+                h1Var.b((int) (this.f50691l * 1.2f), (int) (this.f50692m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f50690k)) * 1.2f), this.f50688i);
                 return;
             }
             h1Var.d = this.f5805a;
@@ -72,8 +72,8 @@ public class o extends i1 {
 
     @Override
     public final void f() {
-        this.f50656m = 0;
-        this.f50655l = 0;
+        this.f50692m = 0;
+        this.f50691l = 0;
     }
 
     @Override
@@ -82,13 +82,13 @@ public class o extends i1 {
     }
 
     public o(Context context, int i10, float f10) {
-        this.f50652i = new LinearInterpolator();
-        this.f50653j = new DecelerateInterpolator(1.5f);
-        this.f50655l = 0;
-        this.f50656m = 0;
-        this.f50658o = f10;
-        this.f50654k = (25.0f / context.getResources().getDisplayMetrics().densityDpi) * f10;
-        this.f50657n = i10;
+        this.f50688i = new LinearInterpolator();
+        this.f50689j = new DecelerateInterpolator(1.5f);
+        this.f50691l = 0;
+        this.f50692m = 0;
+        this.f50694o = f10;
+        this.f50690k = (25.0f / context.getResources().getDisplayMetrics().densityDpi) * f10;
+        this.f50693n = i10;
     }
 
     @Override

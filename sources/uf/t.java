@@ -11,19 +11,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Cells.i2;
 import org.telegram.ui.Cells.n4;
-import org.telegram.ui.Components.sl0;
-public class t extends sl0 {
-    public final Context f48685c;
+import org.telegram.ui.Components.rl0;
+public class t extends rl0 {
+    public final Context f48721c;
     public final int d;
-    public final boolean f48686e;
-    public final boolean f48687f;
+    public final boolean f48722e;
+    public final boolean f48723f;
     public final g6 h;
 
     public t(int i10, Context context, g6 g6Var, boolean z4, boolean z10) {
-        this.f48686e = z4;
-        this.f48685c = context;
+        this.f48722e = z4;
+        this.f48721c = context;
         this.d = i10;
-        this.f48687f = z10;
+        this.f48723f = z10;
         this.h = g6Var;
     }
 
@@ -84,10 +84,10 @@ public class t extends sl0 {
 
     @Override
     public final f2.m1 x(ViewGroup viewGroup, int i10) {
-        boolean z4 = this.f48686e;
-        n4 n4Var = new n4(this.f48685c, this.h, z4);
-        if (this.f48687f && !n4Var.f23215x) {
-            n4Var.f23215x = true;
+        boolean z4 = this.f48722e;
+        n4 n4Var = new n4(this.f48721c, this.h, z4);
+        if (this.f48723f && !n4Var.f23217x) {
+            n4Var.f23217x = true;
             NotificationCenter.getInstance(n4Var.h).listen(n4Var, NotificationCenter.userIsPremiumBlockedUpadted, new i2(n4Var, 1));
         }
         n4Var.setLayoutParams(new f2.x0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(86.0f)));

@@ -1,33 +1,33 @@
 package m;
 public final class o2 {
-    public int f13280a;
-    public int f13281b;
-    public int f13282c;
+    public int f13282a;
+    public int f13283b;
+    public int f13284c;
     public int d;
-    public int f13283e;
-    public int f13284f;
-    public boolean f13285g;
+    public int f13285e;
+    public int f13286f;
+    public boolean f13287g;
     public boolean h;
 
     public final void a(int i10, int i11) {
-        this.f13282c = i10;
+        this.f13284c = i10;
         this.d = i11;
         this.h = true;
-        if (this.f13285g) {
+        if (this.f13287g) {
             if (i11 != Integer.MIN_VALUE) {
-                this.f13280a = i11;
+                this.f13282a = i11;
             }
             if (i10 != Integer.MIN_VALUE) {
-                this.f13281b = i10;
+                this.f13283b = i10;
                 return;
             }
             return;
         }
         if (i10 != Integer.MIN_VALUE) {
-            this.f13280a = i10;
+            this.f13282a = i10;
         }
         if (i11 != Integer.MIN_VALUE) {
-            this.f13281b = i11;
+            this.f13283b = i11;
         }
     }
 }

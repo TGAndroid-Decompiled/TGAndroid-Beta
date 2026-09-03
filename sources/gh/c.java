@@ -12,7 +12,7 @@ public abstract class c extends Drawable {
     public int f7142c = 255;
 
     public c(g6 g6Var) {
-        int v02 = k6.v0(k6.f21750i6, g6Var);
+        int v02 = k6.v0(k6.f21752i6, g6Var);
         this.f7141b = v02;
         this.f7140a = k6.Y(v02, 0, 0);
     }

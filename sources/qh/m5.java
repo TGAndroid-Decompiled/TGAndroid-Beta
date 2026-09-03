@@ -1,63 +1,66 @@
 package qh;
 
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PointF;
+import android.content.Context;
+import android.graphics.Bitmap;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.pr;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.camera.CameraView;
+import org.telegram.ui.bh1;
 public final class m5 {
-    public final w f45660a;
-    public boolean f45661b;
-    public l5 f45662c;
-    public final org.telegram.ui.Components.z5 d;
-    public final org.telegram.ui.Components.z5 f45663e;
-    public final org.telegram.ui.Components.z5 f45664f;
-    public final org.telegram.ui.Components.z5[] f45665g;
-    public final org.telegram.ui.Components.z5[] h;
-    public final Paint f45666i;
-    public final Path f45667j;
+    public final g8 f45747c;
+    public k5 d;
+    public CameraView f45749f;
+    public Bitmap f45750g;
+    public final AtomicReference f45745a = new AtomicReference();
+    public final AtomicBoolean f45746b = new AtomicBoolean(false);
+    public final j5 h = new j5(this, 0);
+    public final String f45748e = MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix;
 
-    public m5(w wVar) {
-        Paint paint = new Paint(1);
-        this.f45666i = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(-8697);
-        paint.setStrokeWidth(AndroidUtilities.dp(6.0f));
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setShadowLayer(1.0804527E9f, 0.0f, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(6.0f));
-        this.f45667j = new Path();
-        this.f45660a = wVar;
-        pr prVar = pr.f30184g;
-        this.d = new org.telegram.ui.Components.z5(0.0f, wVar, 0L, 320L, prVar);
-        this.f45663e = new org.telegram.ui.Components.z5(0.0f, wVar, 0L, 160L, prVar);
-        this.f45664f = new org.telegram.ui.Components.z5(0.0f, wVar, 0L, 160L, prVar);
-        this.f45665g = new org.telegram.ui.Components.z5[]{new org.telegram.ui.Components.z5(0.0f, wVar, 0L, 160L, prVar), new org.telegram.ui.Components.z5(0.0f, wVar, 0L, 160L, prVar), new org.telegram.ui.Components.z5(0.0f, wVar, 0L, 160L, prVar), new org.telegram.ui.Components.z5(0.0f, wVar, 0L, 160L, prVar)};
-        this.h = new org.telegram.ui.Components.z5[]{new org.telegram.ui.Components.z5(0.0f, wVar, 0L, 160L, prVar), new org.telegram.ui.Components.z5(0.0f, wVar, 0L, 160L, prVar), new org.telegram.ui.Components.z5(0.0f, wVar, 0L, 160L, prVar), new org.telegram.ui.Components.z5(0.0f, wVar, 0L, 160L, prVar)};
+    public m5(Context context, g8 g8Var) {
+        this.f45747c = g8Var;
+        Utilities.globalQueue.postRunnable(new bh1(25, this, context));
     }
 
-    public final void a(l5 l5Var) {
-        if (l5Var != null) {
-            this.f45662c = l5Var;
+    public final void a(CameraView cameraView) {
+        this.f45749f = cameraView;
+        if (this.f45745a.get() != null && !this.f45746b.get()) {
+            Utilities.globalQueue.cancelRunnable(this.h);
+            Utilities.globalQueue.postRunnable(this.h, b());
         }
-        boolean z4 = false;
-        if (l5Var != null) {
-            float f10 = l5Var.d;
-            float f11 = l5Var.f45627c;
-            PointF[] pointFArr = l5Var.f45626b;
-            if (!this.f45661b) {
-                this.f45663e.d(f11, true);
-                this.f45664f.d(f10, true);
-                for (int i10 = 0; i10 < Math.min(4, pointFArr.length); i10++) {
-                    this.f45665g[i10].d(pointFArr[i10].x - f11, true);
-                    this.h[i10].d(pointFArr[i10].y - f10, true);
-                }
+    }
+
+    public final long b() {
+        if (this.d == null) {
+            return 750L;
+        }
+        int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+        if (devicePerformanceClass != 1) {
+            if (devicePerformanceClass != 2) {
+                return 800L;
             }
+            return 80L;
         }
-        if (l5Var != null) {
-            z4 = true;
+        return 400L;
+    }
+
+    public final void c(boolean z4) {
+        if (this.f45746b.getAndSet(z4) != z4) {
+            if (z4) {
+                Utilities.globalQueue.cancelRunnable(this.h);
+                if (this.d != null) {
+                    this.d = null;
+                    AndroidUtilities.runOnUIThread(new j5(this, 1));
+                    return;
+                }
+                return;
+            }
+            Utilities.globalQueue.cancelRunnable(this.h);
+            Utilities.globalQueue.postRunnable(this.h, b());
         }
-        this.f45661b = z4;
-        this.f45660a.run();
     }
 }

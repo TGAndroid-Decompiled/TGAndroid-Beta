@@ -64,16 +64,16 @@ public final class a0 extends View {
     public static void a(FrameMetrics frameMetrics) {
         z[] values;
         for (z zVar : z.values()) {
-            if (Build.VERSION.SDK_INT >= zVar.f12526c) {
-                long metric = frameMetrics.getMetric(zVar.f12524a);
+            if (Build.VERSION.SDK_INT >= zVar.f12528c) {
+                long metric = frameMetrics.getMetric(zVar.f12526a);
                 zVar.d = metric;
                 if (metric >= 0) {
                     double d = metric / 1000000.0d;
-                    double d10 = zVar.f12527e;
+                    double d10 = zVar.f12529e;
                     if (d10 != 0.0d) {
                         d = ((d - d10) * 0.05d) + d10;
                     }
-                    zVar.f12527e = d;
+                    zVar.f12529e = d;
                 }
             } else {
                 zVar.d = Long.MIN_VALUE;
@@ -192,22 +192,22 @@ public final class a0 extends View {
                 int i11 = length2;
                 z zVar = values[i10];
                 int i12 = i10;
-                if (Build.VERSION.SDK_INT >= zVar.f12526c) {
+                if (Build.VERSION.SDK_INT >= zVar.f12528c) {
                     z4 = true;
                 } else {
                     z4 = false;
                 }
-                String str2 = zVar.f12525b;
+                String str2 = zVar.f12527b;
                 long j14 = j13;
                 if (z4) {
                     long j15 = zVar.d;
                     if (j15 >= 0) {
-                        format = String.format(Locale.US, "%-16s : %5.2f / %5.2f ms", str2, Double.valueOf(j15 / 1000000.0d), Double.valueOf(zVar.f12527e));
+                        format = String.format(Locale.US, "%-16s : %5.2f / %5.2f ms", str2, Double.valueOf(j15 / 1000000.0d), Double.valueOf(zVar.f12529e));
                         switch (zVar.ordinal()) {
                             case 0:
                             case 7:
                                 j13 = j14 + zVar.d;
-                                d10 += zVar.f12527e;
+                                d10 += zVar.f12529e;
                                 continue;
                                 canvas.drawText(format, dp2, f10, paint);
                                 f10 += f12;
@@ -220,24 +220,24 @@ public final class a0 extends View {
                             case 3:
                             case 4:
                                 j10 += zVar.d;
-                                d11 += zVar.f12527e;
+                                d11 += zVar.f12529e;
                                 break;
                             case 5:
                                 long j16 = zVar.d;
                                 j10 += j16;
-                                d = zVar.f12527e;
+                                d = zVar.f12529e;
                                 d11 += d;
                                 j11 += j16;
                                 d13 += d;
                                 break;
                             case 6:
                                 j11 += zVar.d;
-                                d = zVar.f12527e;
+                                d = zVar.f12529e;
                                 d13 += d;
                                 break;
                             case 8:
                                 j12 += zVar.d;
-                                d12 += zVar.f12527e;
+                                d12 += zVar.f12529e;
                                 break;
                         }
                         j13 = j14;

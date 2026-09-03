@@ -94,7 +94,7 @@ public final class w extends View {
         drawable.setBounds((int) ((a2 - dp) - rect.left), (int) ((a10 - dp) - rect.top), (int) (a2 + dp + i10), (int) (a10 + dp + i10));
         drawable.draw(canvas);
         canvas.drawCircle(a2, a10, dp, paint);
-        eg.c2.x1(a2, a10, dp - (paint.getStrokeWidth() / 2.0f), i0.a.k(this.f4701n.f4505f, 255), canvas);
+        eg.c2.w1(a2, a10, dp - (paint.getStrokeWidth() / 2.0f), i0.a.k(this.f4701n.f4505f, 255), canvas);
     }
 
     @Override

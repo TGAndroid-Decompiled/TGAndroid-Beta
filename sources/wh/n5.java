@@ -15,31 +15,31 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.q70;
 public final class n5 implements View.OnClickListener {
-    public final int f49892a;
-    public final v5 f49893b;
+    public final int f49928a;
+    public final v5 f49929b;
 
     public n5(v5 v5Var, int i10) {
-        this.f49892a = i10;
-        this.f49893b = v5Var;
+        this.f49928a = i10;
+        this.f49929b = v5Var;
     }
 
     @Override
     public final void onClick(View view) {
         Set<String> languages;
-        switch (this.f49892a) {
+        switch (this.f49928a) {
             case 0:
-                v5 v5Var = this.f49893b;
-                a aVar = v5Var.f50119x;
-                if (aVar != null && aVar.f49619e) {
-                    boolean z4 = !aVar.f49620f;
-                    aVar.f49620f = z4;
-                    ((CheckBoxBase) v5Var.f50113e.f37946b).f(-1, z4, true);
-                    s5 s5Var = v5Var.f50120y;
+                v5 v5Var = this.f49929b;
+                a aVar = v5Var.f50155x;
+                if (aVar != null && aVar.f49655e) {
+                    boolean z4 = !aVar.f49656f;
+                    aVar.f49656f = z4;
+                    ((CheckBoxBase) v5Var.f50149e.f39471b).f(-1, z4, true);
+                    s5 s5Var = v5Var.f50156y;
                     if (s5Var != null) {
-                        a aVar2 = v5Var.f50119x;
-                        boolean z10 = aVar2.f49620f;
-                        r3 r3Var = ((a3) s5Var).f49641a;
-                        aVar2.f49620f = z10;
+                        a aVar2 = v5Var.f50155x;
+                        boolean z10 = aVar2.f49656f;
+                        r3 r3Var = ((a3) s5Var).f49677a;
+                        aVar2.f49656f = z10;
                         d2 d2Var = r3Var.G3;
                         if (d2Var != null) {
                             d2Var.d();
@@ -52,17 +52,17 @@ public final class n5 implements View.OnClickListener {
                 }
                 return;
             default:
-                v5 v5Var2 = this.f49893b;
-                s5 s5Var2 = v5Var2.f50120y;
+                v5 v5Var2 = this.f49929b;
+                s5 s5Var2 = v5Var2.f50156y;
                 if (s5Var2 != null) {
-                    a aVar3 = v5Var2.f50119x;
-                    r3 r3Var2 = ((a3) s5Var2).f49641a;
-                    if (aVar3 != null && (aVar3.f49617b instanceof TL_iv.pageBlockPreformatted) && (languages = CodeHighlighting.getLanguages()) != null) {
+                    a aVar3 = v5Var2.f50155x;
+                    r3 r3Var2 = ((a3) s5Var2).f49677a;
+                    if (aVar3 != null && (aVar3.f49653b instanceof TL_iv.pageBlockPreformatted) && (languages = CodeHighlighting.getLanguages()) != null) {
                         ArrayList arrayList = new ArrayList(languages);
                         Collections.sort(arrayList);
-                        TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f49617b;
-                        q70 P = r3Var2.f49980e3.P(view);
-                        P.W(k6.b0(AndroidUtilities.dp(3.0f), k6.v0(k6.f21659d6, r3Var2.f49978d3)));
+                        TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f49653b;
+                        q70 P = r3Var2.f50016e3.P(view);
+                        P.W(k6.b0(AndroidUtilities.dp(3.0f), k6.v0(k6.f21661d6, r3Var2.f50014d3)));
                         P.Z = true;
                         P.X = AndroidUtilities.dp(350.0f);
                         P.i(new k2(r3Var2, aVar3, 25), LocaleController.getString(R.string.ArticleNone), TextUtils.isEmpty(pageblockpreformatted.language));

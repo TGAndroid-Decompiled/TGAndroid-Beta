@@ -4,22 +4,22 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class xm implements Runnable {
-    public final int f43107a;
-    public final jn f43108b;
-    public final TLRPC.Chat f43109c;
+    public final int f43085a;
+    public final jn f43086b;
+    public final TLRPC.Chat f43087c;
 
     public xm(jn jnVar, TLRPC.Chat chat, int i10) {
-        this.f43107a = i10;
-        this.f43108b = jnVar;
-        this.f43109c = chat;
+        this.f43085a = i10;
+        this.f43086b = jnVar;
+        this.f43087c = chat;
     }
 
     @Override
     public final void run() {
         String str;
-        int i10 = this.f43107a;
-        TLRPC.Chat chat = this.f43109c;
-        jn jnVar = this.f43108b;
+        int i10 = this.f43085a;
+        TLRPC.Chat chat = this.f43087c;
+        jn jnVar = this.f43086b;
         switch (i10) {
             case 0:
                 jnVar.w(chat);
@@ -28,10 +28,10 @@ public final class xm implements Runnable {
                 jnVar.b(chat);
                 return;
             case 2:
-                jnVar.f38188a.ka(chat);
+                jnVar.f38085a.ka(chat);
                 return;
             default:
-                org.telegram.ui.Components.qc a02 = org.telegram.ui.Components.qc.a0(jnVar.f38188a);
+                org.telegram.ui.Components.qc a02 = org.telegram.ui.Components.qc.a0(jnVar.f38085a);
                 int i11 = R.raw.contact_check;
                 int i12 = R.string.YouJoinedChannel;
                 if (chat == null) {

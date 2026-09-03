@@ -3,30 +3,30 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class av extends f2.v {
-    public final ov f25351c;
+    public final ov f25375c;
 
     public av(ov ovVar) {
-        this.f25351c = ovVar;
+        this.f25375c = ovVar;
     }
 
     @Override
     public final int i(int i10) {
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
         TLRPC.StickerSet stickerSet;
-        ov ovVar = this.f25351c;
-        f2.w wVar = ovVar.f29881y;
-        yu yuVar = ovVar.f29874e;
+        ov ovVar = this.f25375c;
+        f2.w wVar = ovVar.f29907y;
+        yu yuVar = ovVar.f29900e;
         org.telegram.ui.k3 k3Var = ovVar.h;
         if (k3Var.getAdapter() != null && k3Var.getAdapter().j(i10) == 1) {
             int i11 = 0;
             int i12 = 0;
             while (true) {
-                ArrayList[] arrayListArr = yuVar.f28832c;
+                ArrayList[] arrayListArr = yuVar.f28884c;
                 if (i11 >= arrayListArr.length) {
                     break;
                 }
                 int size = arrayListArr[i11].size();
-                if (yuVar.f28832c.length > 1) {
+                if (yuVar.f28884c.length > 1) {
                     size = Math.min(wVar.J * 2, size);
                 }
                 i12 += size + 2;
@@ -35,9 +35,9 @@ public final class av extends f2.v {
                 }
                 i11++;
             }
-            ArrayList arrayList = yuVar.f28831b;
+            ArrayList arrayList = yuVar.f28883b;
             if (arrayList != null && i11 < arrayList.size()) {
-                tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) yuVar.f28831b.get(i11);
+                tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) yuVar.f28883b.get(i11);
             } else {
                 tL_messages_stickerSet = null;
             }

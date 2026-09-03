@@ -56,7 +56,7 @@ public final class x implements o1.f {
                     ra0Var.setVisibility(i10);
                     if (ra0Var.K && z10) {
                         ra0Var.K = false;
-                        ra0Var.f30660b.setLayoutManager(ra0Var.getNeededLayoutManager());
+                        ra0Var.f30707b.setLayoutManager(ra0Var.getNeededLayoutManager());
                         ra0Var.F = true;
                         ra0Var.o(true);
                         return;

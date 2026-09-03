@@ -5,10 +5,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.h3;
 import org.telegram.ui.ActionBar.l5;
 import org.telegram.ui.Cells.t1;
-import org.telegram.ui.Components.al0;
 import org.telegram.ui.Components.fa0;
 import org.telegram.ui.Components.fu;
 import org.telegram.ui.Components.mz;
+import org.telegram.ui.Components.zk0;
 import org.telegram.ui.wq;
 public final class b implements ValueAnimator.AnimatorUpdateListener {
     public final int f10089a;
@@ -70,19 +70,19 @@ public final class b implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 int i12 = this.f10090b;
                 fArr[i12] = floatValue4;
-                l5[] l5VarArr = fa0Var.f26858w;
+                l5[] l5VarArr = fa0Var.f26857w;
                 l5VarArr[i12].setScaleX(AndroidUtilities.lerp(1.111f, 1.0f, floatValue4));
                 l5VarArr[i12].setScaleY(AndroidUtilities.lerp(1.111f, 1.0f, fArr[i12]));
                 l5VarArr[i12].setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), 0, fArr[i12]));
-                fa0Var.f26859x[i12].setAlpha(fArr[i12]);
+                fa0Var.f26858x[i12].setAlpha(fArr[i12]);
                 return;
             default:
                 wq wqVar = (wq) this.f10091c;
                 wqVar.getClass();
-                al0 al0Var = (al0) wqVar.d;
-                al0Var.f25286b.put(this.f10090b, (Float) valueAnimator.getAnimatedValue());
-                al0Var.d = true;
-                al0Var.f25285a.invalidate();
+                zk0 zk0Var = (zk0) wqVar.d;
+                zk0Var.f33963b.put(this.f10090b, (Float) valueAnimator.getAnimatedValue());
+                zk0Var.d = true;
+                zk0Var.f33962a.invalidate();
                 return;
         }
     }

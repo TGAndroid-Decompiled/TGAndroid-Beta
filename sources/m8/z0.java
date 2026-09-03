@@ -25,9 +25,9 @@ public final class z0 extends b6.g {
     public final bb.c X;
     public final bb.c Y;
     public final bb.c Z;
-    public final bb.c f13599a0;
-    public final bb.c f13600b0;
-    public final a1 f13601c0;
+    public final bb.c f13601a0;
+    public final bb.c f13602b0;
+    public final a1 f13603c0;
 
     public z0(Context context, Looper looper, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar, r3 r3Var) {
         super(context, looper, 14, r3Var, kVar, lVar, 0);
@@ -41,11 +41,11 @@ public final class z0 extends b6.g {
         this.X = new bb.c();
         this.Y = new bb.c();
         this.Z = new bb.c();
-        this.f13599a0 = new bb.c();
-        this.f13600b0 = new bb.c();
+        this.f13601a0 = new bb.c();
+        this.f13602b0 = new bb.c();
         b6.m.h(unconfigurableExecutorService);
         this.R = unconfigurableExecutorService;
-        this.f13601c0 = a2;
+        this.f13603c0 = a2;
         File file = new File(new File(context.getFilesDir(), "wearos_assets"), "streamtmp");
         file.mkdirs();
         File[] listFiles = file.listFiles();
@@ -69,8 +69,8 @@ public final class z0 extends b6.g {
             this.X.a(iBinder);
             this.Y.a(iBinder);
             this.Z.a(iBinder);
-            this.f13599a0.a(iBinder);
-            this.f13600b0.a(iBinder);
+            this.f13601a0.a(iBinder);
+            this.f13602b0.a(iBinder);
             this.V.a(iBinder);
             i10 = 0;
         }
@@ -84,7 +84,7 @@ public final class z0 extends b6.g {
 
     @Override
     public final boolean j() {
-        if (!this.f13601c0.b()) {
+        if (!this.f13603c0.b()) {
             return true;
         }
         return false;
@@ -115,7 +115,7 @@ public final class z0 extends b6.g {
                     if (context.getPackageManager().resolveActivity(intent, 65536) == null) {
                         intent = new Intent("android.intent.action.VIEW", Uri.parse("market://details").buildUpon().appendQueryParameter("id", "com.google.android.wearable.app.cn").build());
                     }
-                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, t7.b.f48027a);
+                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, t7.b.f48063a);
                     b6.m.i(bVar, "Connection progress callbacks cannot be null.");
                     this.B = bVar;
                     b0Var.sendMessage(b0Var.obtainMessage(3, atomicInteger.get(), 6, activity));
@@ -160,7 +160,7 @@ public final class z0 extends b6.g {
 
     @Override
     public final String x() {
-        if (this.f13601c0.b()) {
+        if (this.f13603c0.b()) {
             return "com.google.android.wearable.app.cn";
         }
         return "com.google.android.gms";

@@ -18,21 +18,21 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 public final class e {
     public static Boolean d = null;
-    public static String f13468e = null;
-    public static boolean f13469f = false;
-    public static int f13470g = -1;
+    public static String f13470e = null;
+    public static boolean f13471f = false;
+    public static int f13472g = -1;
     public static Boolean h;
-    public static j f13474l;
-    public static k f13475m;
-    public final Context f13476a;
-    public static final ThreadLocal f13471i = new ThreadLocal();
-    public static final o1 f13472j = new o1(2);
-    public static final z9.d f13473k = new z9.d(11);
-    public static final ab.a f13466b = new ab.a(12);
-    public static final cb.b f13467c = new cb.b(12);
+    public static j f13476l;
+    public static k f13477m;
+    public final Context f13478a;
+    public static final ThreadLocal f13473i = new ThreadLocal();
+    public static final o1 f13474j = new o1(2);
+    public static final z9.d f13475k = new z9.d(11);
+    public static final ab.a f13468b = new ab.a(12);
+    public static final cb.b f13469c = new cb.b(12);
 
     public e(Context context) {
-        this.f13476a = context;
+        this.f13478a = context;
     }
 
     public static int a(Context context, String str) {
@@ -67,16 +67,16 @@ public final class e {
         l6.a U02;
         Context applicationContext = context.getApplicationContext();
         if (applicationContext != null) {
-            ThreadLocal threadLocal = f13471i;
+            ThreadLocal threadLocal = f13473i;
             i iVar = (i) threadLocal.get();
             ?? obj = new Object();
             threadLocal.set(obj);
-            o1 o1Var = f13472j;
+            o1 o1Var = f13474j;
             Long l10 = (Long) o1Var.get();
             long longValue = l10.longValue();
             try {
                 o1Var.set(Long.valueOf(SystemClock.uptimeMillis()));
-                e8.a k10 = dVar.k(context, str, f13473k);
+                e8.a k10 = dVar.k(context, str, f13475k);
                 j10 = longValue;
                 try {
                     int i10 = k10.f4995a;
@@ -108,16 +108,16 @@ public final class e {
                                             if (bool.booleanValue()) {
                                                 Log.i("DynamiteModule", "Selected remote version of " + str + ", version >= " + i13);
                                                 synchronized (e.class) {
-                                                    kVar = f13475m;
+                                                    kVar = f13477m;
                                                 }
                                                 if (kVar != null) {
                                                     i iVar2 = (i) threadLocal.get();
-                                                    if (iVar2 != null && iVar2.f13479a != null) {
+                                                    if (iVar2 != null && iVar2.f13481a != null) {
                                                         Context applicationContext2 = context.getApplicationContext();
-                                                        Cursor cursor = iVar2.f13479a;
+                                                        Cursor cursor = iVar2.f13481a;
                                                         new l6.b(null);
                                                         synchronized (e.class) {
-                                                            if (f13470g >= 2) {
+                                                            if (f13472g >= 2) {
                                                                 z4 = true;
                                                             } else {
                                                                 z4 = false;
@@ -152,7 +152,7 @@ public final class e {
                                                     if (readInt >= 3) {
                                                         i iVar3 = (i) threadLocal.get();
                                                         if (iVar3 != null) {
-                                                            U0 = h9.V0(new l6.b(context), str, i13, new l6.b(iVar3.f13479a));
+                                                            U0 = h9.V0(new l6.b(context), str, i13, new l6.b(iVar3.f13481a));
                                                         } else {
                                                             throw new Exception("No cached result cursor holder");
                                                         }
@@ -199,15 +199,15 @@ public final class e {
                                 throw new Exception("VersionPolicy returned invalid code:" + i12);
                             }
                             if (j10 == 0) {
-                                f13472j.remove();
+                                f13474j.remove();
                             } else {
-                                f13472j.set(l10);
+                                f13474j.set(l10);
                             }
-                            Cursor cursor2 = obj.f13479a;
+                            Cursor cursor2 = obj.f13481a;
                             if (cursor2 != null) {
                                 cursor2.close();
                             }
-                            f13471i.set(iVar);
+                            f13473i.set(iVar);
                             return eVar;
                         }
                     }
@@ -217,15 +217,15 @@ public final class e {
                 } catch (Throwable th3) {
                     th = th3;
                     if (j10 == 0) {
-                        f13472j.remove();
+                        f13474j.remove();
                     } else {
-                        f13472j.set(l10);
+                        f13474j.set(l10);
                     }
-                    Cursor cursor3 = obj.f13479a;
+                    Cursor cursor3 = obj.f13481a;
                     if (cursor3 != null) {
                         cursor3.close();
                     }
-                    f13471i.set(iVar);
+                    f13473i.set(iVar);
                     throw th;
                 }
             } catch (Throwable th4) {
@@ -257,7 +257,7 @@ public final class e {
                     kVar = new a7.a(iBinder, "com.google.android.gms.dynamite.IDynamiteLoaderV2", 0);
                 }
             }
-            f13475m = kVar;
+            f13477m = kVar;
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e6) {
             throw new Exception("Failed to instantiate dynamite loader", e6);
         }
@@ -279,13 +279,13 @@ public final class e {
                 i10 = 0;
             }
             ProviderInfo resolveContentProvider = packageManager.resolveContentProvider("com.google.android.gms.chimera", i10);
-            if (y5.e.f50769b.d(context, 10000000) == 0 && resolveContentProvider != null && "com.google.android.gms".equals(resolveContentProvider.packageName)) {
+            if (y5.e.f50805b.d(context, 10000000) == 0 && resolveContentProvider != null && "com.google.android.gms".equals(resolveContentProvider.packageName)) {
                 z4 = true;
             }
             h = Boolean.valueOf(z4);
             if (z4 && (applicationInfo = resolveContentProvider.applicationInfo) != null && (applicationInfo.flags & 129) == 0) {
                 Log.i("DynamiteModule", "Non-system-image GmsCore APK, forcing V1");
-                f13469f = true;
+                f13471f = true;
             }
         }
         if (!z4) {
@@ -297,7 +297,7 @@ public final class e {
     public static j h(Context context) {
         j jVar;
         synchronized (e.class) {
-            j jVar2 = f13474l;
+            j jVar2 = f13476l;
             if (jVar2 != null) {
                 return jVar2;
             }
@@ -314,7 +314,7 @@ public final class e {
                     }
                 }
                 if (jVar != 0) {
-                    f13474l = jVar;
+                    f13476l = jVar;
                     return jVar;
                 }
             } catch (Exception e6) {
@@ -326,7 +326,7 @@ public final class e {
 
     public final IBinder b(String str) {
         try {
-            return (IBinder) this.f13476a.getClassLoader().loadClass(str).newInstance();
+            return (IBinder) this.f13478a.getClassLoader().loadClass(str).newInstance();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e6) {
             throw new Exception("Failed to instantiate module class: ".concat(str), e6);
         }

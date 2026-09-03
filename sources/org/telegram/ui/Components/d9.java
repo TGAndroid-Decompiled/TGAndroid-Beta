@@ -10,7 +10,7 @@ import org.telegram.tgnet.TLObject;
 public class d9 extends View {
     public final c9 f26228a;
     public fg.p1 f26229b;
-    public l01 f26230c;
+    public k01 f26230c;
     public Paint d;
 
     public d9(Context context, boolean z4) {
@@ -48,7 +48,7 @@ public class d9 extends View {
             this.f26229b.e(rectF);
             canvas.drawCircle(rectF.centerX(), rectF.centerY(), (rectF.width() / 2.0f) + AndroidUtilities.dp(1.33f), this.d);
             canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, this.f26229b.f6490f);
-            this.f26230c.c(rectF.centerX() - (this.f26230c.f28521c / 2.0f), rectF.centerY(), 1.0f, -1, canvas);
+            this.f26230c.c(rectF.centerX() - (this.f26230c.f28227c / 2.0f), rectF.centerY(), 1.0f, -1, canvas);
         }
     }
 
@@ -57,8 +57,8 @@ public class d9 extends View {
         super.onMeasure(i10, i11);
         int measuredWidth = getMeasuredWidth();
         c9 c9Var = this.f26228a;
-        c9Var.f25877p = measuredWidth;
-        c9Var.f25876o = getMeasuredHeight();
+        c9Var.f25853p = measuredWidth;
+        c9Var.f25852o = getMeasuredHeight();
     }
 
     public void setAvatarsTextSize(int i10) {
@@ -66,7 +66,7 @@ public class d9 extends View {
     }
 
     public void setCentered(boolean z4) {
-        this.f26228a.f25873l = z4;
+        this.f26228a.f25849l = z4;
     }
 
     public void setCount(int i10) {
@@ -74,20 +74,20 @@ public class d9 extends View {
     }
 
     public void setDelegate(Runnable runnable) {
-        this.f26228a.f25871j = runnable;
+        this.f26228a.f25847j = runnable;
     }
 
     public void setSize(int i10) {
-        this.f26228a.f25880s = i10;
+        this.f26228a.f25856s = i10;
     }
 
     public void setStepFactor(float f10) {
-        this.f26228a.f25881t = f10;
+        this.f26228a.f25857t = f10;
     }
 
     public void setStyle(int i10) {
         c9 c9Var = this.f26228a;
-        c9Var.f25872k = i10;
+        c9Var.f25848k = i10;
         c9Var.f();
     }
 }

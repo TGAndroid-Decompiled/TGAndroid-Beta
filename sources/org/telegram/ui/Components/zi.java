@@ -17,7 +17,7 @@ public final class zi extends f2.w {
     public boolean Y0() {
         switch (this.Q) {
             case 2:
-                if (((yx0) this.R).T != null && LocaleController.isRTL) {
+                if (((xx0) this.R).T != null && LocaleController.isRTL) {
                     return true;
                 }
                 return false;
@@ -30,7 +30,7 @@ public final class zi extends f2.w {
     public int o0(int i10, bf.f fVar, f2.j1 j1Var) {
         switch (this.Q) {
             case 3:
-                if (((ph.l) this.R).f44392b) {
+                if (((ph.l) this.R).f44423b) {
                     i10 = 0;
                 }
                 return super.o0(i10, fVar, j1Var);
@@ -73,10 +73,10 @@ public final class zi extends f2.w {
         }
     }
 
-    public zi(yx0 yx0Var) {
+    public zi(xx0 xx0Var) {
         super(5);
         this.Q = 2;
-        this.R = yx0Var;
+        this.R = xx0Var;
     }
 
     public zi(ph.l lVar) {

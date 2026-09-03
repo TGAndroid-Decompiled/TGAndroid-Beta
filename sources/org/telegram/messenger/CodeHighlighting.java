@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.s01;
 public class CodeHighlighting {
     public static final int MATCH_COMMENT = 6;
     public static final int MATCH_CONSTANT = 3;
@@ -325,9 +325,9 @@ public class CodeHighlighting {
         public final float decrementSize;
         public final String lng;
         public final boolean smallerSize;
-        public final t01 style;
+        public final s01 style;
 
-        public Span(boolean z4, int i10, t01 t01Var, String str, String str2) {
+        public Span(boolean z4, int i10, s01 s01Var, String str, String str2) {
             int length;
             this.smallerSize = z4;
             this.lng = str;
@@ -339,7 +339,7 @@ public class CodeHighlighting {
             }
             this.decrementSize = CodeHighlighting.getTextSizeDecrement(length);
             this.currentType = i10;
-            this.style = t01Var;
+            this.style = s01Var;
         }
 
         @Override
@@ -351,13 +351,13 @@ public class CodeHighlighting {
             if (i10 == 2) {
                 textPaint.setColor(-1);
             } else if (i10 == 1) {
-                textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21701fc, false));
+                textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21703fc, false));
             } else {
-                textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21683ec, false));
+                textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21685ec, false));
             }
-            t01 t01Var = this.style;
-            if (t01Var != null) {
-                t01Var.a(textPaint);
+            s01 s01Var = this.style;
+            if (s01Var != null) {
+                s01Var.a(textPaint);
                 return;
             }
             textPaint.setTypeface(Typeface.MONOSPACE);
@@ -517,7 +517,7 @@ public class CodeHighlighting {
         return 2;
     }
 
-    public static void highlight(Spannable spannable, int i10, int i11, String str, int i12, t01 t01Var, boolean z4) {
+    public static void highlight(Spannable spannable, int i10, int i11, String str, int i12, s01 s01Var, boolean z4) {
         if (spannable == null) {
             return;
         }

@@ -26,12 +26,12 @@ public final class c implements Iterator, uc.c {
         this.f8052b = obj;
         this.f8051a = 3;
         this.f8053c = hVar;
-        vc.a aVar = vc.a.f48962a;
+        vc.a aVar = vc.a.f48998a;
     }
 
     @Override
     public final uc.h getContext() {
-        return i.f48480a;
+        return i.f48516a;
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class c implements Iterator, uc.c {
             uc.c cVar = this.f8053c;
             j.b(cVar);
             this.f8053c = null;
-            cVar.resumeWith(sc.i.f47243a);
+            cVar.resumeWith(sc.i.f47274a);
         }
         if (i10 != 1) {
             if (i10 == 2 || i10 == 3) {

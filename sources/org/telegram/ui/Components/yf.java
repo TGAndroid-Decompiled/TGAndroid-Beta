@@ -3,24 +3,24 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class yf extends AnimatorListenerAdapter {
-    public final int f33501a;
-    public final int f33502b;
-    public final ChatActivityEnterView f33503c;
+    public final int f33522a;
+    public final int f33523b;
+    public final ChatActivityEnterView f33524c;
 
     public yf(ChatActivityEnterView chatActivityEnterView, int i10, int i11) {
-        this.f33501a = i11;
-        this.f33503c = chatActivityEnterView;
-        this.f33502b = i10;
+        this.f33522a = i11;
+        this.f33524c = chatActivityEnterView;
+        this.f33523b = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f33501a) {
+        switch (this.f33522a) {
             case 0:
-                int i10 = this.f33502b;
-                ChatActivityEnterView chatActivityEnterView = this.f33503c;
+                int i10 = this.f33523b;
+                ChatActivityEnterView chatActivityEnterView = this.f33524c;
                 if (i10 == 0) {
-                    chatActivityEnterView.f24695w2 = 0;
+                    chatActivityEnterView.f24697w2 = 0;
                 }
                 chatActivityEnterView.S0 = null;
                 chatActivityEnterView.D1.setTranslationY(0.0f);
@@ -33,29 +33,29 @@ public final class yf extends AnimatorListenerAdapter {
                 chatActivityEnterView.requestLayout();
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f33503c;
-                qv0 qv0Var = chatActivityEnterView2.f24621i1;
-                chatActivityEnterView2.f24696w3 = false;
-                chatActivityEnterView2.f24702x3 = null;
+                ChatActivityEnterView chatActivityEnterView2 = this.f33524c;
+                pv0 pv0Var = chatActivityEnterView2.f24623i1;
+                chatActivityEnterView2.f24698w3 = false;
+                chatActivityEnterView2.f24704x3 = null;
                 uf ufVar = chatActivityEnterView2.R0;
                 if (ufVar != null) {
                     if (chatActivityEnterView2.Z4 == null) {
-                        ufVar.getLayoutParams().height = this.f33502b;
+                        ufVar.getLayoutParams().height = this.f33523b;
                     }
                     chatActivityEnterView2.R0.setLayerType(0, null);
                 }
-                if (qv0Var != null) {
-                    qv0Var.requestLayout();
-                    qv0Var.setForeground(null);
-                    qv0Var.setWillNotDraw(false);
+                if (pv0Var != null) {
+                    pv0Var.requestLayout();
+                    pv0Var.setForeground(null);
+                    pv0Var.setWillNotDraw(false);
                 }
-                if (chatActivityEnterView2.f24689v2 && chatActivityEnterView2.t0()) {
-                    chatActivityEnterView2.t1(0, chatActivityEnterView2.f24578b2, true, true);
+                if (chatActivityEnterView2.f24691v2 && chatActivityEnterView2.t0()) {
+                    chatActivityEnterView2.t1(0, chatActivityEnterView2.f24580b2, true, true);
                 }
-                yd ydVar = chatActivityEnterView2.f24650o0;
+                yd ydVar = chatActivityEnterView2.f24652o0;
                 if (ydVar != null) {
                     ydVar.run();
-                    chatActivityEnterView2.f24650o0 = null;
+                    chatActivityEnterView2.f24652o0 = null;
                 }
                 chatActivityEnterView2.H3.unlock();
                 return;

@@ -15,7 +15,7 @@ public final class p extends f0 {
     @Override
     public final void onLineCountChanged(int i10, int i11) {
         if (i11 > i10) {
-            this.h.f16217y.smoothScrollBy(0, AndroidUtilities.dp(30.0f));
+            this.h.f16219y.smoothScrollBy(0, AndroidUtilities.dp(30.0f));
         }
     }
 

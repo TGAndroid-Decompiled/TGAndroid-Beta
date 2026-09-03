@@ -1,5 +1,5 @@
 package p2;
 public final class e {
-    public String f44135a;
-    public int f44136b;
+    public String f44166a;
+    public int f44167b;
 }

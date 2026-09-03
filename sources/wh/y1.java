@@ -10,21 +10,21 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.k6;
 public final class y1 extends Drawable implements Drawable.Callback {
-    public final Drawable f50166a;
-    public final Paint f50167b;
-    public final Path f50168c;
+    public final Drawable f50202a;
+    public final Paint f50203b;
+    public final Path f50204c;
     public final RectF d;
-    public final Outline f50169e;
-    public boolean f50170f;
+    public final Outline f50205e;
+    public boolean f50206f;
 
     public y1(Drawable drawable) {
         Paint paint = new Paint(1);
-        this.f50167b = paint;
-        this.f50168c = new Path();
+        this.f50203b = paint;
+        this.f50204c = new Path();
         this.d = new RectF();
-        this.f50169e = new Outline();
-        this.f50170f = true;
-        this.f50166a = drawable;
+        this.f50205e = new Outline();
+        this.f50206f = true;
+        this.f50202a = drawable;
         drawable.setCallback(this);
         paint.setColor(0);
         if (k6.I.q()) {
@@ -51,23 +51,23 @@ public final class y1 extends Drawable implements Drawable.Callback {
 
     @Override
     public final boolean isStateful() {
-        return this.f50166a.isStateful();
+        return this.f50202a.isStateful();
     }
 
     @Override
     public final void jumpToCurrentState() {
-        this.f50166a.jumpToCurrentState();
+        this.f50202a.jumpToCurrentState();
     }
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        this.f50166a.setBounds(rect);
-        this.f50170f = true;
+        this.f50202a.setBounds(rect);
+        this.f50206f = true;
     }
 
     @Override
     public final boolean onStateChange(int[] iArr) {
-        return this.f50166a.setState(iArr);
+        return this.f50202a.setState(iArr);
     }
 
     @Override
@@ -77,22 +77,22 @@ public final class y1 extends Drawable implements Drawable.Callback {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f50166a.setAlpha(i10);
+        this.f50202a.setAlpha(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f50166a.setColorFilter(colorFilter);
+        this.f50202a.setColorFilter(colorFilter);
     }
 
     @Override
     public final void setHotspot(float f10, float f11) {
-        this.f50166a.setHotspot(f10, f11);
+        this.f50202a.setHotspot(f10, f11);
     }
 
     @Override
     public final void setHotspotBounds(int i10, int i11, int i12, int i13) {
-        this.f50166a.setHotspotBounds(i10, i11, i12, i13);
+        this.f50202a.setHotspotBounds(i10, i11, i12, i13);
     }
 
     @Override

@@ -66,10 +66,10 @@ import org.telegram.ui.Cells.v0;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.bv;
-import org.telegram.ui.Components.l81;
+import org.telegram.ui.Components.k81;
+import org.telegram.ui.Components.or0;
 import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.pr0;
-import org.telegram.ui.Components.sn;
+import org.telegram.ui.Components.rn;
 import org.telegram.ui.Components.u5;
 import org.telegram.ui.Components.voip.g2;
 import org.telegram.ui.LaunchActivity;
@@ -148,29 +148,29 @@ public final class a implements Runnable {
                 ((q1) ((f7.b) this.f1983c).f6121c).h.c(((Integer) pair.first).intValue(), (v) pair.second, this.f1982b);
                 return;
             case 6:
-                pr0 pr0Var = (pr0) this.f1983c;
+                or0 or0Var = (or0) this.f1983c;
                 int i15 = this.f1982b;
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.d;
-                j7 j7Var = pr0Var.f13101e;
+                j7 j7Var = or0Var.f13103e;
                 if (i15 != -1) {
                     int i16 = tL_starGiftCollection.collection_id;
-                    int i17 = j7Var.f14300a;
+                    int i17 = j7Var.f14302a;
                     int f10 = j7Var.f(i16);
                     if (f10 != -1) {
-                        TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) j7Var.f14303e.remove(f10);
+                        TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) j7Var.f14305e.remove(f10);
                         j7Var.h.remove(Integer.valueOf(tL_starGiftCollection2.collection_id));
                         TL_stars.deleteStarGiftCollection deletestargiftcollection = new TL_stars.deleteStarGiftCollection();
-                        deletestargiftcollection.peer = MessagesController.getInstance(i17).getInputPeer(j7Var.f14301b);
+                        deletestargiftcollection.peer = MessagesController.getInstance(i17).getInputPeer(j7Var.f14303b);
                         deletestargiftcollection.collection_id = tL_starGiftCollection2.collection_id;
                         ConnectionsManager.getInstance(i17).sendRequest(deletestargiftcollection, null);
                     }
-                    pr0Var.f(true);
-                    l81 l81Var = pr0Var.f13103n;
+                    or0Var.f(true);
+                    k81 k81Var = or0Var.f13105n;
                     if (i15 < j7Var.d().size()) {
                         i15++;
                     }
-                    l81Var.d(-1, i15);
-                    pr0Var.n();
+                    k81Var.d(-1, i15);
+                    or0Var.n();
                     return;
                 }
                 return;
@@ -179,7 +179,7 @@ public final class a implements Runnable {
                 int i18 = this.f1982b;
                 TL_stars.StarGift starGift = (TL_stars.StarGift) this.d;
                 int[] iArr = f4Var.S;
-                b4 b4Var = f4Var.f14023f;
+                b4 b4Var = f4Var.f14025f;
                 y3 y3Var = f4Var.h;
                 if (starGift != null) {
                     d4 d4Var = new d4(f4Var.getContext());
@@ -194,7 +194,7 @@ public final class a implements Runnable {
                     ViewPropertyAnimator interpolator = duration.setInterpolator(prVar);
                     interpolator.setUpdateListener(new m1(f4Var, 12));
                     interpolator.start();
-                    y3Var.f15083a[i18].setVisibility(8);
+                    y3Var.f15085a[i18].setVisibility(8);
                     b4Var.setVisibility(0);
                     b4Var.setAlpha(0.0f);
                     b4Var.animate().alpha(0.5f).setDuration(820L).setInterpolator(prVar).start();
@@ -208,13 +208,13 @@ public final class a implements Runnable {
                 imageView.setScaleY(0.5f);
                 imageView.setAlpha(0.0f);
                 imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).start();
-                f4Var.f14027i0 = imageView;
+                f4Var.f14029i0 = imageView;
                 frameLayout.setBackground(new s4(AndroidUtilities.dp(12.0f), k6.l1(0.075f, -1)));
-                y3Var.f15083a[i18].setVisibility(8);
+                y3Var.f15085a[i18].setVisibility(8);
                 frameLayout.setRotation(180.0f);
                 y3Var.f(i18, frameLayout);
                 f4Var.C.a(iArr[2], iArr[3]);
-                e4 e4Var = f4Var.f14016b;
+                e4 e4Var = f4Var.f14018b;
                 int[] iArr2 = f4Var.R;
                 e4Var.a(iArr2[2], iArr2[3]);
                 b4Var.a(iArr[3], iArr[2]);
@@ -226,10 +226,10 @@ public final class a implements Runnable {
                 t7 t7Var = (t7) this.f1983c;
                 int i19 = this.f1982b;
                 TLObject tLObject = (TLObject) this.d;
-                boolean[] zArr = t7Var.f14843r;
-                ArrayList[] arrayListArr = t7Var.f14842q;
-                int i20 = t7Var.f14828a;
-                t7Var.f14845t[i19] = false;
+                boolean[] zArr = t7Var.f14845r;
+                ArrayList[] arrayListArr = t7Var.f14844q;
+                int i20 = t7Var.f14830a;
+                t7Var.f14847t[i19] = false;
                 if (tLObject instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
                     MessagesController.getInstance(i20).putUsers(starsStatus.users, false);
@@ -241,12 +241,12 @@ public final class a implements Runnable {
                         z4 = true;
                     }
                     zArr[i19] = z4;
-                    boolean[] zArr2 = t7Var.f14846u;
+                    boolean[] zArr2 = t7Var.f14848u;
                     if ((starsStatus.flags & 1) != 0) {
                         z10 = false;
                     }
                     zArr2[i19] = z10;
-                    String[] strArr = t7Var.f14844s;
+                    String[] strArr = t7Var.f14846s;
                     if (!z10) {
                         str = starsStatus.next_offset;
                     }
@@ -264,20 +264,20 @@ public final class a implements Runnable {
                 s sVar = (s) this.f1983c;
                 u5 u5Var = (u5) this.d;
                 int i22 = this.f1982b;
-                Editable text = sVar.f16212n.getText();
+                Editable text = sVar.f16214n.getText();
                 int spanStart = text.getSpanStart(u5Var);
                 int spanEnd = text.getSpanEnd(u5Var);
                 int i23 = spanEnd - spanStart;
                 if (spanStart != -1 && spanEnd != -1) {
-                    sVar.f16212n.getText().delete(spanStart, spanEnd);
-                    p pVar = sVar.f16212n;
+                    sVar.f16214n.getText().delete(spanStart, spanEnd);
+                    p pVar = sVar.f16214n;
                     pVar.setSelection(Math.min(i22 - i23, pVar.getText().length()));
                     return;
                 }
                 return;
             case 12:
                 o3.l lVar3 = (o3.l) this.f1983c;
-                this.d.c(lVar3.f16410a, lVar3.f16411b, this.f1982b);
+                this.d.c(lVar3.f16412a, lVar3.f16413b, this.f1982b);
                 return;
             case 13:
                 ((e1) this.f1983c).C.put((String) this.d, Integer.valueOf(this.f1982b));
@@ -304,14 +304,14 @@ public final class a implements Runnable {
             case 15:
                 int i25 = this.f1982b;
                 i9 i9Var = ((z8) this.f1983c).d;
-                y8 y8Var = i9Var.f17277k0;
+                y8 y8Var = i9Var.f17279k0;
                 int i26 = i9Var.h;
-                y8Var.f17697x0 = (ArrayList) this.d;
-                y8Var.f17695v0 = i26;
+                y8Var.f17699x0 = (ArrayList) this.d;
+                y8Var.f17697v0 = i26;
                 y8Var.setAdapter(null);
-                y8Var.setAdapter(y8Var.f17696w0);
+                y8Var.setAdapter(y8Var.f17698w0);
                 y8Var.setCurrentItem(i25);
-                y8Var.f17699z0 = true;
+                y8Var.f17701z0 = true;
                 return;
             case 16:
                 ((CameraView) this.f1983c).lambda$createCamera$13(this.f1982b, (SurfaceTexture) this.d);
@@ -337,8 +337,8 @@ public final class a implements Runnable {
                 l4 l4Var = (l4) this.f1983c;
                 String str3 = (String) this.d;
                 int i28 = this.f1982b;
-                HashMap hashMap = new HashMap(l4Var.f38619r0[0].f39905c.f38014w);
-                ArrayList arrayList2 = new ArrayList(l4Var.f38619r0[0].f39905c.f38015x);
+                HashMap hashMap = new HashMap(l4Var.f38524r0[0].f39863c.f37841w);
+                ArrayList arrayList2 = new ArrayList(l4Var.f38524r0[0].f39863c.f37842x);
                 l4Var.S0 = null;
                 Utilities.searchQueue.postRunnable(new d3(l4Var, arrayList2, hashMap, str3, i28));
                 return;
@@ -359,7 +359,7 @@ public final class a implements Runnable {
                 int i30 = this.f1982b;
                 TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) this.f1983c;
                 MessagesController.getInstance(i30).putUsers(tL_chatInviteJoinResultWebView.users, false);
-                BotGuardHelper.getInstance(i30).openGuardBotWebApp(-((TLRPC.Chat) this.d).f20843id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
+                BotGuardHelper.getInstance(i30).openGuardBotWebApp(-((TLRPC.Chat) this.d).f20845id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
                 return;
             case 23:
                 j4 j4Var = (j4) this.f1983c;
@@ -372,7 +372,7 @@ public final class a implements Runnable {
                 TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug = new TLRPC.TL_inputGroupCallSlug();
                 Uri parse = Uri.parse((String) this.f1983c);
                 tL_inputGroupCallSlug.slug = parse.getPathSegments().get(parse.getPathSegments().size() - 1);
-                g2.h(LaunchActivity.D1, i31, tL_inputGroupCallSlug, false, null, null);
+                g2.g(LaunchActivity.D1, i31, tL_inputGroupCallSlug, false, null, null);
                 ((h3[]) this.d)[0].dismiss();
                 return;
             case 25:
@@ -381,7 +381,7 @@ public final class a implements Runnable {
             case 26:
                 int i32 = this.f1982b;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
-                ((xn) this.f1983c).f43362u0.v0(0, i32, null);
+                ((xn) this.f1983c).f43340u0.v0(0, i32, null);
                 if (!AndroidUtilities.showKeyboard(editTextBoldCursor)) {
                     editTextBoldCursor.clearFocus();
                     editTextBoldCursor.requestFocus();
@@ -393,7 +393,7 @@ public final class a implements Runnable {
                 int i33 = this.f1982b;
                 bmVar.getClass();
                 MessageObject messageObject = ((v0) this.d).getMessageObject();
-                jm jmVar = bmVar.f35554a;
+                jm jmVar = bmVar.f35565a;
                 xn xnVar = jmVar.N;
                 int id2 = messageObject.getId();
                 if (messageObject.getDialogId() == jmVar.N.I6) {
@@ -404,33 +404,33 @@ public final class a implements Runnable {
                 xnVar.j(i33, id2, true, i10, true, 0);
                 return;
             case 28:
-                sn snVar = (sn) this.f1983c;
+                rn rnVar = (rn) this.f1983c;
                 int i34 = this.f1982b;
                 View view = (View) this.d;
-                snVar.S = 0;
-                snVar.R = i34;
+                rnVar.S = 0;
+                rnVar.R = i34;
                 if (view instanceof o8) {
-                    snVar.U((o8) view, true);
+                    rnVar.U((o8) view, true);
                     return;
                 } else {
-                    snVar.f31120r.m(snVar.F0);
+                    rnVar.f30840r.m(rnVar.F0);
                     return;
                 }
             default:
                 h hVar = (h) this.d;
                 int i35 = this.f1982b;
-                p2 p2Var = ((bv) this.f1983c).Y0.f29873c;
+                p2 p2Var = ((bv) this.f1983c).Y0.f29899c;
                 if (p2Var instanceof xn) {
                     xn xnVar2 = (xn) p2Var;
                     xnVar2.Q7();
-                    undoView = xnVar2.f43378v3;
+                    undoView = xnVar2.f43356v3;
                 } else if (p2Var instanceof ProfileActivity) {
                     undoView = ((ProfileActivity) p2Var).J;
                 }
                 UndoView undoView2 = undoView;
                 if (undoView2 != null) {
                     if (hVar.m() == 1) {
-                        undoView2.m(((TLRPC.Dialog) hVar.n(0)).f20847id, Integer.valueOf(i35), 53);
+                        undoView2.m(((TLRPC.Dialog) hVar.n(0)).f20849id, Integer.valueOf(i35), 53);
                         return;
                     } else {
                         undoView2.k(0L, 53, Integer.valueOf(i35), Integer.valueOf(hVar.m()), null, null);

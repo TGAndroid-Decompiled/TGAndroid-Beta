@@ -1,38 +1,38 @@
 package qh;
 public final class l implements Runnable {
-    public final int f45618a;
-    public final r9 f45619b;
+    public final int f45635a;
+    public final q9 f45636b;
 
-    public l(r9 r9Var, int i10) {
-        this.f45618a = i10;
-        this.f45619b = r9Var;
+    public l(q9 q9Var, int i10) {
+        this.f45635a = i10;
+        this.f45636b = q9Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f45618a) {
+        switch (this.f45635a) {
             case 0:
-                this.f45619b.n();
+                this.f45636b.n();
                 return;
             case 1:
-                r9 r9Var = this.f45619b;
-                r9Var.H0 = false;
-                r9Var.I0 = Integer.MIN_VALUE;
-                r9Var.invalidate();
-                r9Var.P0.setVisibility(0);
-                r9Var.Q0.setVisibility(0);
+                q9 q9Var = this.f45636b;
+                q9Var.H0 = false;
+                q9Var.I0 = Integer.MIN_VALUE;
+                q9Var.invalidate();
+                q9Var.P0.setVisibility(0);
+                q9Var.Q0.setVisibility(0);
                 return;
             default:
-                ca caVar = this.f45619b.P1;
-                q9 q9Var = caVar.U0;
-                if (q9Var != null) {
-                    q9Var.L = false;
-                    q9Var.c();
-                    q9 q9Var2 = caVar.U0;
-                    q9Var2.m(0L);
-                    ma maVar = q9Var2.C;
-                    if (maVar != null) {
-                        maVar.setProgress(0L);
+                ba baVar = this.f45636b.P1;
+                p9 p9Var = baVar.U0;
+                if (p9Var != null) {
+                    p9Var.L = false;
+                    p9Var.c();
+                    p9 p9Var2 = baVar.U0;
+                    p9Var2.m(0L);
+                    la laVar = p9Var2.C;
+                    if (laVar != null) {
+                        laVar.setProgress(0L);
                         return;
                     }
                     return;

@@ -15,7 +15,7 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Components.ba;
-import org.telegram.ui.Components.kv0;
+import org.telegram.ui.Components.jv0;
 public class o1 extends TextureView {
     public n1 f4624a;
     public h2 f4625b;
@@ -79,7 +79,7 @@ public class o1 extends TextureView {
     public final void a() {
         i1 i1Var = new i1(this, 2);
         m0 m0Var = this.f4627e;
-        m0Var.f4587g = new g1(m0Var.f4582a.getPainting().f4456g.f28463a, 0.0d, 1.0d);
+        m0Var.f4587g = new g1(m0Var.f4582a.getPainting().f4456g.f28201a, 0.0d, 1.0d);
         m0Var.f4591l = true;
         m0Var.a(new Object(), false, i1Var);
     }
@@ -123,35 +123,35 @@ public class o1 extends TextureView {
             ArrayList arrayList = d2Var.f4497m;
             o1 o1Var = d2Var.f4487a;
             if (o1Var != null && o1Var.getPainting() != null) {
-                kv0 kv0Var = o1Var.getPainting().f4456g;
+                jv0 jv0Var = o1Var.getPainting().f4456g;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     c2 c2Var = (c2) arrayList.get(i10);
                     if (c2Var.f4476c && !c2Var.f4475b) {
-                        d2Var.b(canvas, kv0Var, c2Var);
+                        d2Var.b(canvas, jv0Var, c2Var);
                     }
                 }
                 r1 r1Var = d2Var.h;
                 if (r1Var != null && r1Var.h != 0.0f) {
                     canvas.save();
                     r1 r1Var2 = d2Var.h;
-                    canvas.rotate((float) (((-r1Var2.h) / 3.141592653589793d) * 180.0d), (r1Var2.f4652b / kv0Var.f28463a) * canvas.getWidth(), (d2Var.h.f4653c / kv0Var.f28464b) * canvas.getHeight());
+                    canvas.rotate((float) (((-r1Var2.h) / 3.141592653589793d) * 180.0d), (r1Var2.f4652b / jv0Var.f28201a) * canvas.getWidth(), (d2Var.h.f4653c / jv0Var.f28202b) * canvas.getHeight());
                 }
                 r1 r1Var3 = d2Var.h;
                 if (r1Var3 != null && r1Var3.f4651a.o() == 4) {
-                    float width = canvas.getWidth() * (d2Var.h.f4652b / kv0Var.f28463a);
-                    float height = canvas.getHeight() * (d2Var.h.f4653c / kv0Var.f28464b);
-                    float width2 = canvas.getWidth() * (d2Var.h.f4657i / kv0Var.f28463a);
-                    float height2 = canvas.getHeight() * (d2Var.h.f4658j / kv0Var.f28464b);
+                    float width = canvas.getWidth() * (d2Var.h.f4652b / jv0Var.f28201a);
+                    float height = canvas.getHeight() * (d2Var.h.f4653c / jv0Var.f28202b);
+                    float width2 = canvas.getWidth() * (d2Var.h.f4657i / jv0Var.f28201a);
+                    float height2 = canvas.getHeight() * (d2Var.h.f4658j / jv0Var.f28202b);
                     canvas2 = canvas;
                     canvas2.drawLine(width, height, width2, height2, paint);
-                    canvas2.drawLine(canvas2.getWidth() * (d2Var.h.d / kv0Var.f28463a), canvas2.getHeight() * (d2Var.h.f4654e / kv0Var.f28464b), canvas2.getWidth() * (d2Var.h.f4657i / kv0Var.f28463a), canvas2.getHeight() * (d2Var.h.f4658j / kv0Var.f28464b), paint);
+                    canvas2.drawLine(canvas2.getWidth() * (d2Var.h.d / jv0Var.f28201a), canvas2.getHeight() * (d2Var.h.f4654e / jv0Var.f28202b), canvas2.getWidth() * (d2Var.h.f4657i / jv0Var.f28201a), canvas2.getHeight() * (d2Var.h.f4658j / jv0Var.f28202b), paint);
                 } else {
                     canvas2 = canvas;
                 }
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     c2 c2Var2 = (c2) arrayList.get(i11);
                     if (c2Var2.f4476c && c2Var2.f4475b) {
-                        d2Var.b(canvas2, kv0Var, c2Var2);
+                        d2Var.b(canvas2, jv0Var, c2Var2);
                     }
                 }
                 r1 r1Var4 = d2Var.h;
@@ -211,17 +211,17 @@ public class o1 extends TextureView {
         float f11 = 1.0f;
         c1 c1Var = this.f4626c;
         if (c1Var != null) {
-            f10 = getWidth() / c1Var.f4456g.f28463a;
+            f10 = getWidth() / c1Var.f4456g.f28201a;
         } else {
             f10 = 1.0f;
         }
         if (f10 > 0.0f) {
             f11 = f10;
         }
-        kv0 kv0Var = getPainting().f4456g;
+        jv0 jv0Var = getPainting().f4456g;
         matrix.preTranslate(getWidth() / 2.0f, getHeight() / 2.0f);
         matrix.preScale(f11, -f11);
-        matrix.preTranslate((-kv0Var.f28463a) / 2.0f, (-kv0Var.f28464b) / 2.0f);
+        matrix.preTranslate((-jv0Var.f28201a) / 2.0f, (-jv0Var.f28202b) / 2.0f);
         if (this.f4633x instanceof l) {
             d2 d2Var = this.f4628f;
             d2Var.getClass();
@@ -258,11 +258,11 @@ public class o1 extends TextureView {
                 arrayList2.clear();
                 arrayList.clear();
                 d2Var.h = new r1(l.p(o10));
-                kv0 kv0Var = o1Var.getPainting().f4456g;
+                jv0 jv0Var = o1Var.getPainting().f4456g;
                 r1 r1Var = d2Var.h;
-                float f10 = kv0Var.f28463a;
+                float f10 = jv0Var.f28201a;
                 r1Var.f4652b = f10 / 2.0f;
-                float f11 = kv0Var.f28464b;
+                float f11 = jv0Var.f28202b;
                 r1Var.f4653c = f11 / 2.0f;
                 float min = Math.min(f10, f11) / 5.0f;
                 r1Var.f4654e = min;
@@ -272,11 +272,11 @@ public class o1 extends TextureView {
                 d2Var.h.f4660l = e1.e(UserConfig.selectedAccount).f4522k;
                 if (d2Var.h.f4651a.o() == 4) {
                     r1 r1Var2 = d2Var.h;
-                    float f12 = kv0Var.f28463a / 2.0f;
+                    float f12 = jv0Var.f28201a / 2.0f;
                     r1Var2.d = f12;
                     r1Var2.f4652b = f12;
                     r1Var2.f4657i = f12 + 1.0f;
-                    float f13 = kv0Var.f28464b;
+                    float f13 = jv0Var.f28202b;
                     float f14 = f13 / 3.0f;
                     float f15 = 1.0f * f14;
                     r1Var2.f4653c = f15;
@@ -329,7 +329,7 @@ public class o1 extends TextureView {
     }
 
     public void setBrushSize(float f10) {
-        float f11 = this.f4626c.f4456g.f28463a;
+        float f11 = this.f4626c.f4456g.f28201a;
         this.v = e2.c.u(f11, 0.043945312f, f10, 0.00390625f * f11);
         if (this.f4633x instanceof l) {
             d2 d2Var = this.f4628f;

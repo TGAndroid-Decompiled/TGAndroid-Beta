@@ -19,13 +19,13 @@ public final class rw extends cg.e {
         int i12;
         og.e eVar;
         mz mzVar = this.W2;
-        hz hzVar = mzVar.f29335w0;
-        if (Build.VERSION.SDK_INT >= 31 && (eVar = mzVar.f29287g2) != null) {
+        hz hzVar = mzVar.f29337w0;
+        if (Build.VERSION.SDK_INT >= 31 && (eVar = mzVar.f29289g2) != null) {
             eVar.f(i10, i11);
             mzVar.C();
         }
-        if (mzVar.f29346z0 != null) {
-            vw vwVar = mzVar.f29343y0;
+        if (mzVar.f29348z0 != null) {
+            vw vwVar = mzVar.f29345y0;
             if (mzVar.A0.canScrollVertically(-1)) {
                 i12 = AndroidUtilities.getShadowHeight();
             } else {
@@ -34,8 +34,8 @@ public final class rw extends cg.e {
             vwVar.setUnderlineHeight(i12);
         }
         if (hzVar != null && getAdapter() == hzVar && hzVar.d == 0) {
-            hz hzVar2 = hzVar.L.f27048w;
-            if (!hzVar2.N.D0.C && !hzVar2.f27611y) {
+            hz hzVar2 = hzVar.L.f27051w;
+            if (!hzVar2.N.D0.C && !hzVar2.f27668y) {
                 if (mzVar.B0.N0() + 50 > hzVar.h()) {
                     fz fzVar = hzVar.L;
                     Objects.requireNonNull(fzVar);
@@ -48,11 +48,11 @@ public final class rw extends cg.e {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         mz mzVar = this.W2;
-        if (!mzVar.f29281f) {
+        if (!mzVar.f29283f) {
             org.telegram.ui.qt q10 = org.telegram.ui.qt.q();
             rw rwVar = mzVar.A0;
             mzVar.getMeasuredHeight();
-            boolean r10 = q10.r(motionEvent, rwVar, mzVar.f29276d2, this.f31383m2);
+            boolean r10 = q10.r(motionEvent, rwVar, mzVar.f29278d2, this.f31106m2);
             if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
                 return false;
             }
@@ -64,7 +64,7 @@ public final class rw extends cg.e {
     @Override
     public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
         mz mzVar = this.W2;
-        if (mzVar.F0 && mzVar.f29331v0.h() > 0) {
+        if (mzVar.F0 && mzVar.f29333v0.h() > 0) {
             this.V2 = true;
             mzVar.B0.h1(0, 0);
             mzVar.F0 = false;

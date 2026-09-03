@@ -18,7 +18,7 @@ import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_forum;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.f51;
 import org.telegram.ui.Components.oq;
 import org.telegram.ui.lj0;
 public class BotForumHelper extends BaseController {
@@ -128,8 +128,8 @@ public class BotForumHelper extends BaseController {
     }
 
     public static class TypingBotSpan extends oq {
-        public TypingBotSpan(h51 h51Var, int i10) {
-            super(i10, h51Var);
+        public TypingBotSpan(f51 f51Var, int i10) {
+            super(i10, f51Var);
         }
     }
 
@@ -153,11 +153,11 @@ public class BotForumHelper extends BaseController {
         } else {
             spannableStringBuilder = new SpannableStringBuilder(charSequence);
         }
-        h51 h51Var = new h51(true);
-        h51Var.b(-1);
-        h51Var.d();
-        TypingBotSpan typingBotSpan = new TypingBotSpan(h51Var, 1);
-        typingBotSpan.setColorKey(org.telegram.ui.ActionBar.k6.f21683ec);
+        f51 f51Var = new f51(true);
+        f51Var.b(-1);
+        f51Var.d();
+        TypingBotSpan typingBotSpan = new TypingBotSpan(f51Var, 1);
+        typingBotSpan.setColorKey(org.telegram.ui.ActionBar.k6.f21685ec);
         typingBotSpan.setTopOffset(-AndroidUtilities.dp(10.0f));
         spannableStringBuilder.append((CharSequence) " _");
         spannableStringBuilder.setSpan(typingBotSpan, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
@@ -170,7 +170,7 @@ public class BotForumHelper extends BaseController {
         tL_message.peer_id = getMessagesController().getPeer(j10);
         tL_message.from_id = getMessagesController().getPeer(j10);
         tL_message.local_id = i11;
-        tL_message.f20864id = i11;
+        tL_message.f20866id = i11;
         tL_message.random_id = j11;
         tL_message.message = tL_textWithEntities.text;
         tL_message.entities = tL_textWithEntities.entities;
@@ -300,10 +300,10 @@ public class BotForumHelper extends BaseController {
         tL_messageService.action = tL_messageActionTopicCreate;
         tL_messageService.peer_id = getMessagesController().getPeer(j10);
         tL_messageService.dialog_id = j10;
-        tL_messageService.f20864id = tL_updateMessageID.f21098id;
+        tL_messageService.f20866id = tL_updateMessageID.f21100id;
         tL_messageService.date = (int) (System.currentTimeMillis() / 1000);
-        int i11 = tL_updateMessageID.f21098id;
-        tL_forumTopic.f20895id = i11;
+        int i11 = tL_updateMessageID.f21100id;
+        tL_forumTopic.f20897id = i11;
         tL_forumTopic.my = true;
         tL_forumTopic.flags |= 2;
         tL_forumTopic.topicStartMessage = tL_messageService;
@@ -315,8 +315,8 @@ public class BotForumHelper extends BaseController {
         tL_forumTopic.icon_color = 0;
         tL_forumTopic.title_missing = true;
         getMessagesController().getTopicsController().onTopicCreated(j10, tL_forumTopic, true);
-        performSendBotTopicCreateComplete(j10, tL_updateMessageID.f21098id);
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumTopicDidCreate, new BotForumTopicCreateNotification(j10, tL_updateMessageID.f21098id));
+        performSendBotTopicCreateComplete(j10, tL_updateMessageID.f21100id);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumTopicDidCreate, new BotForumTopicCreateNotification(j10, tL_updateMessageID.f21100id));
     }
 
     public void lambda$onBotForumDraftUpdate$1(long j10, int i10, long j11) {
@@ -645,7 +645,7 @@ public class BotForumHelper extends BaseController {
         tL_message.peer_id = getMessagesController().getPeer(j10);
         tL_message.from_id = getMessagesController().getPeer(j10);
         tL_message.local_id = i11;
-        tL_message.f20864id = i11;
+        tL_message.f20866id = i11;
         tL_message.random_id = j11;
         tL_message.message = "";
         tL_message.flags |= 8192;

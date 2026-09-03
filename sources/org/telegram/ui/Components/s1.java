@@ -32,19 +32,19 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.cd0;
-import org.telegram.ui.mf1;
+import org.telegram.ui.sf1;
 public final class s1 implements org.telegram.ui.ActionBar.c2, ResultCallback, org.telegram.ui.jy {
-    public final int f30938a = 3;
-    public final long f30939b;
-    public final int f30940c;
+    public final int f30953a = 3;
+    public final long f30954b;
+    public final int f30955c;
     public final Object d;
-    public final Object f30941e;
+    public final Object f30956e;
 
     public s1(int i10, long j10, TLRPC.TL_attachMenuBot tL_attachMenuBot, Runnable runnable) {
-        this.f30940c = i10;
-        this.f30939b = j10;
+        this.f30955c = i10;
+        this.f30954b = j10;
         this.d = tL_attachMenuBot;
-        this.f30941e = runnable;
+        this.f30956e = runnable;
     }
 
     @Override
@@ -59,11 +59,11 @@ public final class s1 implements org.telegram.ui.ActionBar.c2, ResultCallback, o
 
     @Override
     public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        int i11 = this.f30938a;
-        Object obj = this.f30941e;
+        int i11 = this.f30953a;
+        Object obj = this.f30956e;
         Object obj2 = this.d;
-        long j10 = this.f30939b;
-        int i12 = this.f30940c;
+        long j10 = this.f30954b;
+        int i12 = this.f30955c;
         switch (i11) {
             case 0:
                 EditText editText = (EditText) obj2;
@@ -139,22 +139,22 @@ public final class s1 implements org.telegram.ui.ActionBar.c2, ResultCallback, o
     @Override
     public void onComplete(Object obj) {
         int i10;
-        x11 x11Var = (x11) this.d;
-        lp lpVar = (lp) this.f30941e;
+        w11 w11Var = (w11) this.d;
+        lp lpVar = (lp) this.f30956e;
         Pair pair = (Pair) obj;
-        if (pair != null && ((Long) pair.first).longValue() == this.f30939b) {
-            Drawable drawable = lpVar.f28797b;
+        if (pair != null && ((Long) pair.first).longValue() == this.f30954b) {
+            Drawable drawable = lpVar.f28820b;
             if (drawable instanceof fc0) {
                 fc0 fc0Var = (fc0) drawable;
-                if (this.f30940c >= 0) {
+                if (this.f30955c >= 0) {
                     i10 = 100;
                 } else {
                     i10 = -100;
                 }
-                fc0Var.t(x11.e((Bitmap) pair.second), i10);
-                fc0Var.u(x11Var.I);
+                fc0Var.t(w11.e((Bitmap) pair.second), i10);
+                fc0Var.u(w11Var.I);
             }
-            x11Var.invalidate();
+            w11Var.invalidate();
         }
     }
 
@@ -164,7 +164,7 @@ public final class s1 implements org.telegram.ui.ActionBar.c2, ResultCallback, o
     }
 
     @Override
-    public boolean v(org.telegram.ui.py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, mf1 mf1Var) {
+    public boolean v(org.telegram.ui.py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, sf1 sf1Var) {
         Activity activity;
         String str;
         String str2;
@@ -175,19 +175,19 @@ public final class s1 implements org.telegram.ui.ActionBar.c2, ResultCallback, o
         int i13;
         int i14;
         org.telegram.ui.py pyVar2 = (org.telegram.ui.py) this.d;
-        final TL_bots.botVerifierSettings botverifiersettings = (TL_bots.botVerifierSettings) this.f30941e;
+        final TL_bots.botVerifierSettings botverifiersettings = (TL_bots.botVerifierSettings) this.f30956e;
         if (arrayList.isEmpty()) {
             return false;
         }
         final long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         Activity parentActivity = pyVar2.getParentActivity();
-        final int i15 = this.f30940c;
-        sh.j1 j1Var = new sh.j1(mf1Var, pyVar2, j10, i15);
+        final int i15 = this.f30955c;
+        sh.j1 j1Var = new sh.j1(sf1Var, pyVar2, j10, i15);
         if (parentActivity == null) {
             return true;
         }
         MessagesController messagesController = MessagesController.getInstance(i15);
-        final long j11 = this.f30939b;
+        final long j11 = this.f30954b;
         messagesController.getUser(Long.valueOf(j11));
         int i16 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
         if (i16 >= 0) {
@@ -236,12 +236,12 @@ public final class s1 implements org.telegram.ui.ActionBar.c2, ResultCallback, o
         p9Var.e(user2, z8Var);
         frameLayout.addView(p9Var, k7.c6.e(28, 28, 51));
         p9 p9Var2 = new p9(activity);
-        p9Var2.setEmojiColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f22056z9, false), PorterDuff.Mode.SRC_IN));
+        p9Var2.setEmojiColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f22058z9, false), PorterDuff.Mode.SRC_IN));
         final sh.j1 j1Var2 = j1Var;
         p9Var2.setAnimatedEmojiDrawable(l5.n(i15, botverifiersettings.icon, null, 3));
         frameLayout.addView(p9Var2, k7.c6.d(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
         org.telegram.ui.ActionBar.l5 l5Var = new org.telegram.ui.ActionBar.l5(activity);
-        l5Var.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21766j5, false));
+        l5Var.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21768j5, false));
         l5Var.setTextSize(13);
         l5Var.setEllipsizeByGradient(true);
         l5Var.l(str2, false);
@@ -286,8 +286,8 @@ public final class s1 implements org.telegram.ui.ActionBar.c2, ResultCallback, o
         editTextBoldCursor.setInputType(180225);
         editTextBoldCursor.setTypeface(Typeface.DEFAULT);
         editTextBoldCursor.setSelectAllOnFocus(true);
-        editTextBoldCursor.setHighlightColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21970uf, false));
-        editTextBoldCursor.setHandlesColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21988vf, false));
+        editTextBoldCursor.setHighlightColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21972uf, false));
+        editTextBoldCursor.setHandlesColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21990vf, false));
         if (LocaleController.isRTL) {
             i12 = 5;
         } else {
@@ -372,9 +372,9 @@ public final class s1 implements org.telegram.ui.ActionBar.c2, ResultCallback, o
 
     public s1(EditText editText, long j10, int i10, EditText editText2) {
         this.d = editText;
-        this.f30939b = j10;
-        this.f30940c = i10;
-        this.f30941e = editText2;
+        this.f30954b = j10;
+        this.f30955c = i10;
+        this.f30956e = editText2;
     }
 
     @Override
@@ -382,17 +382,17 @@ public final class s1 implements org.telegram.ui.ActionBar.c2, ResultCallback, o
         org.telegram.tgnet.k.b(this, tL_error);
     }
 
-    public s1(x11 x11Var, long j10, lp lpVar, int i10) {
-        this.d = x11Var;
-        this.f30939b = j10;
-        this.f30941e = lpVar;
-        this.f30940c = i10;
+    public s1(w11 w11Var, long j10, lp lpVar, int i10) {
+        this.d = w11Var;
+        this.f30954b = j10;
+        this.f30956e = lpVar;
+        this.f30955c = i10;
     }
 
     public s1(org.telegram.ui.py pyVar, int i10, long j10, TL_bots.botVerifierSettings botverifiersettings) {
         this.d = pyVar;
-        this.f30940c = i10;
-        this.f30939b = j10;
-        this.f30941e = botverifiersettings;
+        this.f30955c = i10;
+        this.f30954b = j10;
+        this.f30956e = botverifiersettings;
     }
 }

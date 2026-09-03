@@ -10,7 +10,7 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-public final class k3 extends org.telegram.ui.Components.tl0 {
+public final class k3 extends org.telegram.ui.Components.sl0 {
     public final int U2 = 1;
     public final Object V2;
     public final KeyEvent.Callback W2;
@@ -36,7 +36,7 @@ public final class k3 extends org.telegram.ui.Components.tl0 {
                 Paint paint = (Paint) obj;
                 org.telegram.ui.Components.ov ovVar = (org.telegram.ui.Components.ov) callback;
                 org.telegram.ui.Components.z5 z5Var = ovVar.J;
-                if (z5Var != null && ovVar.H >= 0 && ovVar.I >= 0 && ovVar.f29876n != null && this.D) {
+                if (z5Var != null && ovVar.H >= 0 && ovVar.I >= 0 && ovVar.f29902n != null && this.D) {
                     float d = z5Var.d(0.0f, false);
                     if (d > 0.0f) {
                         int i11 = Integer.MAX_VALUE;
@@ -50,7 +50,7 @@ public final class k3 extends org.telegram.ui.Components.tl0 {
                             }
                         }
                         if (i11 < i12) {
-                            paint.setColor(org.telegram.ui.ActionBar.k6.l1(d, org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Ld, this.f31383m2)));
+                            paint.setColor(org.telegram.ui.ActionBar.k6.l1(d, org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Ld, this.f31106m2)));
                             canvas.drawRect(0.0f, i11, getMeasuredWidth(), i12, paint);
                         }
                         invalidate();
@@ -110,14 +110,14 @@ public final class k3 extends org.telegram.ui.Components.tl0 {
         switch (this.U2) {
             case 0:
                 y3 y3Var = ((l4) this.V2).H;
-                if (y3Var != null && (x3Var = y3Var.f43532c) != null) {
+                if (y3Var != null && (x3Var = y3Var.f43523c) != null) {
                     x3Var.invalidate();
                     return;
                 }
                 return;
             case 1:
                 org.telegram.ui.Components.ov ovVar = (org.telegram.ui.Components.ov) this.W2;
-                ovVar.f29875f.a();
+                ovVar.f29901f.a();
                 org.telegram.ui.Components.ov.r(ovVar).invalidate();
                 return;
             default:
@@ -131,7 +131,7 @@ public final class k3 extends org.telegram.ui.Components.tl0 {
             case 1:
                 super.onDetachedFromWindow();
                 org.telegram.ui.Components.ov ovVar = (org.telegram.ui.Components.ov) this.W2;
-                org.telegram.ui.Components.u5.release(org.telegram.ui.Components.ov.s(ovVar), ovVar.f29872b);
+                org.telegram.ui.Components.u5.release(org.telegram.ui.Components.ov.s(ovVar), ovVar.f29898b);
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -146,13 +146,13 @@ public final class k3 extends org.telegram.ui.Components.tl0 {
         switch (this.U2) {
             case 0:
                 l4 l4Var = (l4) this.V2;
-                if (l4Var.d != null && l4Var.f39609b == null && (((p1Var = l4Var.E) == null || !p1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    l4Var.f39609b = null;
+                if (l4Var.d != null && l4Var.f39554b == null && (((p1Var = l4Var.E) == null || !p1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    l4Var.f39554b = null;
                     l4Var.d = null;
-                    l4Var.f39612f = null;
-                } else if (l4Var.d != null && l4Var.f39609b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof j4)) {
+                    l4Var.f39557f = null;
+                } else if (l4Var.d != null && l4Var.f39554b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof j4)) {
                     motionEvent2 = motionEvent;
-                    l4.l(l4Var, (j4) getAdapter(), motionEvent2, l4Var.f39612f, l4Var.d, 0, 0);
+                    l4.l(l4Var, (j4) getAdapter(), motionEvent2, l4Var.f39557f, l4Var.d, 0, 0);
                     return super.onInterceptTouchEvent(motionEvent2);
                 }
                 motionEvent2 = motionEvent;
@@ -160,7 +160,7 @@ public final class k3 extends org.telegram.ui.Components.tl0 {
             case 1:
                 qt q10 = qt.q();
                 org.telegram.ui.Components.ov ovVar = (org.telegram.ui.Components.ov) this.W2;
-                boolean r10 = q10.r(motionEvent, ovVar.h, ovVar.K, this.f31383m2);
+                boolean r10 = q10.r(motionEvent, ovVar.h, ovVar.K, this.f31106m2);
                 if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
                     return false;
                 }
@@ -178,12 +178,12 @@ public final class k3 extends org.telegram.ui.Components.tl0 {
     public void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
         switch (this.U2) {
             case 0:
-                w1(z4, i10, i11, i12, i13);
+                v1(z4, i10, i11, i12, i13);
                 ((p3) this.W2).F = -1.0f;
                 return;
             case 1:
                 super.onLayout(z4, i10, i11, i12, i13);
-                ((org.telegram.ui.Components.ov) this.W2).f29875f.a();
+                ((org.telegram.ui.Components.ov) this.W2).f29901f.a();
                 return;
             default:
                 super.onLayout(z4, i10, i11, i12, i13);
@@ -196,7 +196,7 @@ public final class k3 extends org.telegram.ui.Components.tl0 {
         switch (this.U2) {
             case 1:
                 View.MeasureSpec.getSize(i10);
-                ((org.telegram.ui.Components.ov) this.W2).f29881y.y1(40);
+                ((org.telegram.ui.Components.ov) this.W2).f29907y.y1(40);
                 super.onMeasure(i10, i11);
                 return;
             default:
@@ -211,10 +211,10 @@ public final class k3 extends org.telegram.ui.Components.tl0 {
         switch (this.U2) {
             case 0:
                 l4 l4Var = (l4) this.V2;
-                if (l4Var.d != null && l4Var.f39609b == null && (((p1Var = l4Var.E) == null || !p1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    l4Var.f39609b = null;
+                if (l4Var.d != null && l4Var.f39554b == null && (((p1Var = l4Var.E) == null || !p1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    l4Var.f39554b = null;
                     l4Var.d = null;
-                    l4Var.f39612f = null;
+                    l4Var.f39557f = null;
                 }
                 return super.onTouchEvent(motionEvent);
             default:
@@ -222,7 +222,7 @@ public final class k3 extends org.telegram.ui.Components.tl0 {
         }
     }
 
-    public void w1(boolean z4, int i10, int i11, int i12, int i13) {
+    public void v1(boolean z4, int i10, int i11, int i12, int i13) {
         super.onLayout(z4, i10, i11, i12, i13);
         int childCount = getChildCount();
         for (int i14 = 0; i14 < childCount; i14++) {

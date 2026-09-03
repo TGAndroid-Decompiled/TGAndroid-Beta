@@ -80,12 +80,12 @@ public final class a {
         }
         hashMap.put(j7Var, Long.valueOf(elapsedRealtime3));
         ?? obj = new Object();
-        obj.f13329c = y6.BITMAP;
-        obj.f13328b = d7.BITMAP;
+        obj.f13331c = y6.BITMAP;
+        obj.f13330b = d7.BITMAP;
         obj.d = Integer.valueOf(allocationByteCount & Integer.MAX_VALUE);
-        obj.f13331f = Integer.valueOf(height & Integer.MAX_VALUE);
-        obj.f13330e = Integer.valueOf(width & Integer.MAX_VALUE);
-        obj.f13327a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
+        obj.f13333f = Integer.valueOf(height & Integer.MAX_VALUE);
+        obj.f13332e = Integer.valueOf(width & Integer.MAX_VALUE);
+        obj.f13329a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
         obj.h = Integer.valueOf(i10 & Integer.MAX_VALUE);
         e7 e7Var = new e7(obj);
         e eVar = new e(27, false);

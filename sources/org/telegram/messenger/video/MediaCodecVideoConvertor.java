@@ -15,7 +15,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.yh;
-import qh.r6;
+import qh.q6;
 public class MediaCodecVideoConvertor {
     private static final int MEDIACODEC_TIMEOUT_DEFAULT = 2500;
     private static final int MEDIACODEC_TIMEOUT_INCREASED = 22000;
@@ -53,7 +53,7 @@ public class MediaCodecVideoConvertor {
         int framerate;
         Integer gradientBottomColor;
         Integer gradientTopColor;
-        r6 hdrInfo;
+        q6 hdrInfo;
         boolean isDark;
         boolean isPhoto;
         boolean isRound;
@@ -147,8 +147,8 @@ public class MediaCodecVideoConvertor {
                 MixedSoundInfo mixedSoundInfo = arrayList.get(i10);
                 try {
                     nf.c cVar = new nf.c(mixedSoundInfo.audioFile);
-                    AudioDecoder audioDecoder = cVar.f15983b;
-                    cVar.f15980a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
+                    AudioDecoder audioDecoder = cVar.f15985b;
+                    cVar.f15982a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
                     long j10 = mixedSoundInfo.startTime;
                     int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
                     if (i11 > 0) {
@@ -369,7 +369,7 @@ public class MediaCodecVideoConvertor {
         return sb.toString();
     }
 
-    private static String hdrFragmentShader(int i10, int i11, int i12, int i13, boolean z4, r6 r6Var, int i14, boolean z10) {
+    private static String hdrFragmentShader(int i10, int i11, int i12, int i13, boolean z4, q6 q6Var, int i14, boolean z10) {
         int i15;
         int i16;
         String readRes;
@@ -431,7 +431,7 @@ public class MediaCodecVideoConvertor {
         String glslFloat5 = glslFloat(min * min2);
         String glslFloat6 = glslFloat(1.0f / f10);
         String glslFloat7 = glslFloat(1.0f / f12);
-        if (r6Var.a() == 1) {
+        if (q6Var.a() == 1) {
             readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_hlg);
         } else {
             readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_pq);

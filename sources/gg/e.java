@@ -49,7 +49,7 @@ public final class e implements GestureDetector.OnGestureListener {
                     g5Var.J = null;
                 }
                 g5Var.I = false;
-                g5Var.L.f17495w = false;
+                g5Var.L.f17497w = false;
                 return true;
         }
     }
@@ -61,7 +61,7 @@ public final class e implements GestureDetector.OnGestureListener {
                 return false;
             default:
                 g5 g5Var = (g5) this.f7079b;
-                g5Var.d.fling((int) g5Var.f17353e, 0, (int) (-f10), 0, (int) g5Var.f17354f, (int) g5Var.h, 0, 0);
+                g5Var.d.fling((int) g5Var.f17355e, 0, (int) (-f10), 0, (int) g5Var.f17356f, (int) g5Var.h, 0, 0);
                 g5Var.invalidate();
                 return false;
         }
@@ -88,16 +88,16 @@ public final class e implements GestureDetector.OnGestureListener {
                 return true;
             default:
                 g5 g5Var = (g5) this.f7079b;
-                float f12 = g5Var.f17353e + f10;
-                g5Var.f17353e = f12;
-                float f13 = g5Var.f17354f;
+                float f12 = g5Var.f17355e + f10;
+                g5Var.f17355e = f12;
+                float f13 = g5Var.f17356f;
                 if (f12 < f13) {
-                    g5Var.f17353e = f13;
+                    g5Var.f17355e = f13;
                 }
-                float f14 = g5Var.f17353e;
+                float f14 = g5Var.f17355e;
                 float f15 = g5Var.h;
                 if (f14 > f15) {
-                    g5Var.f17353e = f15;
+                    g5Var.f17355e = f15;
                 }
                 g5Var.invalidate();
                 return false;
@@ -121,9 +121,9 @@ public final class e implements GestureDetector.OnGestureListener {
                 ArrayList arrayList = g5Var.D;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     j4 j4Var = (j4) arrayList.get(i10);
-                    if (((j4) arrayList.get(i10)).f17330a.getDrawRegion().contains(motionEvent.getX(), motionEvent.getY())) {
+                    if (((j4) arrayList.get(i10)).f17332a.getDrawRegion().contains(motionEvent.getX(), motionEvent.getY())) {
                         int i11 = g5Var.H;
-                        int i12 = j4Var.f17331b;
+                        int i12 = j4Var.f17333b;
                         if (i11 != i12) {
                             g5Var.c(i12, true, false);
                         } else {

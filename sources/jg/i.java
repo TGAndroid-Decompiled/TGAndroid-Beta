@@ -26,7 +26,7 @@ public final class i extends FrameLayout {
         float f13;
         l5 l5Var = new l5(context);
         l5Var.setTextSize(16);
-        l5Var.setTextColor(k6.v0(k6.f21766j5, g6Var));
+        l5Var.setTextColor(k6.v0(k6.f21768j5, g6Var));
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
@@ -77,7 +77,7 @@ public final class i extends FrameLayout {
             f13 = 21.0f;
         }
         l5Var2.setLayoutParams(c6.d(-1, -2.0f, i14, f12, 0.0f, f13, 0.0f));
-        setBackgroundColor(k6.v0(k6.f21731h5, g6Var));
+        setBackgroundColor(k6.v0(k6.f21733h5, g6Var));
     }
 
     public long getSelectedTime() {

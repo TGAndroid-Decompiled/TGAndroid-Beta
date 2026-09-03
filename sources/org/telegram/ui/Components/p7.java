@@ -31,27 +31,27 @@ public final class p7 extends f2.b0 {
         int b10 = m1Var.b();
         int b11 = m1Var2.b();
         c8 c8Var = this.d;
-        if (c8Var.f25851s0) {
+        if (c8Var.f25825s0) {
             if (b10 > 0 && b11 > 0) {
-                c8Var.f25852t0.move(b10 - 1, b11 - 1);
+                c8Var.f25826t0.move(b10 - 1, b11 - 1);
             } else {
                 return false;
             }
         } else {
-            c8Var.f25852t0.move(b10, b11);
+            c8Var.f25826t0.move(b10, b11);
         }
-        c8Var.f25853u0.clear();
-        c8Var.f25853u0.addAll(c8Var.f25852t0.list);
-        c8Var.f25850s.p(b10, b11);
+        c8Var.f25827u0.clear();
+        c8Var.f25827u0.addAll(c8Var.f25826t0.list);
+        c8Var.f25824s.p(b10, b11);
         return true;
     }
 
     @Override
     public final void p(f2.m1 m1Var, int i10) {
         Boolean bool;
-        o7 o7Var = this.d.f25843n;
+        o7 o7Var = this.d.f25817n;
         if (m1Var != null) {
-            o7Var.d1(false);
+            o7Var.c1(false);
         }
         if (i10 != 0) {
             o7Var.I0(false);

@@ -6,28 +6,28 @@ import android.text.TextWatcher;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class jq implements TextWatcher {
-    public final int f28181a = 1;
-    public final int f28182b;
-    public final View f28183c;
+    public final int f28162a = 1;
+    public final int f28163b;
+    public final View f28164c;
 
     public jq(mq mqVar, int i10) {
-        this.f28183c = mqVar;
-        this.f28182b = i10;
+        this.f28164c = mqVar;
+        this.f28163b = i10;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i10;
-        int i11 = this.f28181a;
-        int i12 = this.f28182b;
-        View view = this.f28183c;
+        int i11 = this.f28162a;
+        int i12 = this.f28163b;
+        View view = this.f28164c;
         boolean z4 = false;
         switch (i11) {
             case 0:
                 mq mqVar = (mq) view;
                 EditTextBoldCursor[] editTextBoldCursorArr = mqVar.B;
-                if (!mqVar.f29191r) {
-                    mqVar.f29191r = true;
+                if (!mqVar.f29232r) {
+                    mqVar.f29232r = true;
                     int i13 = 0;
                     while (i13 < editable.length()) {
                         char charAt = editable.charAt(i13);
@@ -38,7 +38,7 @@ public final class jq implements TextWatcher {
                         i13++;
                     }
                     if (editable.length() == 0) {
-                        mqVar.f29191r = false;
+                        mqVar.f29232r = false;
                         return;
                     }
                     try {
@@ -53,8 +53,8 @@ public final class jq implements TextWatcher {
                         editTextBoldCursorArr[i12].setSelection(editable.length());
                     }
                     mqVar.v[mqVar.P].a(color);
-                    mqVar.f29184a.v0(color, mqVar.P, true);
-                    mqVar.f29191r = false;
+                    mqVar.f29225a.v0(color, mqVar.P, true);
+                    mqVar.f29232r = false;
                     return;
                 }
                 return;
@@ -76,17 +76,17 @@ public final class jq implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f28181a;
+        int i13 = this.f28162a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f28181a;
+        int i13 = this.f28162a;
     }
 
     public jq(int i10, NumberTextView numberTextView) {
-        this.f28182b = i10;
-        this.f28183c = numberTextView;
+        this.f28163b = i10;
+        this.f28164c = numberTextView;
     }
 
     private final void a(int i10, int i11, int i12, CharSequence charSequence) {

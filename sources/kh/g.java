@@ -11,7 +11,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.qg1;
+import org.telegram.ui.vg1;
 import org.telegram.ui.xn;
 import vf.l0;
 public final class g implements RequestDelegate {
@@ -54,7 +54,7 @@ public final class g implements RequestDelegate {
                 ((SendMessagesHelper) this.f11252c).lambda$sendEditRichMessageRequest$26(this.f11251b, (MessageObject) this.d, (TLRPC.TL_messages_editMessage) this.f11253e, (p2) this.f11254f, tLObject, tL_error);
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new h((qg1) this.f11252c, tL_error, this.f11251b, tLObject, (byte[]) this.d, (String) this.f11253e, (TL_account.passwordInputSettings) this.f11254f));
+                AndroidUtilities.runOnUIThread(new h((vg1) this.f11252c, tL_error, this.f11251b, tLObject, (byte[]) this.d, (String) this.f11253e, (TL_account.passwordInputSettings) this.f11254f));
                 return;
             default:
                 AndroidUtilities.runOnUIThread(new h((l0) this.f11252c, tL_error, tLObject, (int[]) this.d, (ArrayList) this.f11254f, this.f11251b, (TLRPC.User) this.f11253e));

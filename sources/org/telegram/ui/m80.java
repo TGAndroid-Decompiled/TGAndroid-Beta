@@ -10,22 +10,22 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 public final class m80 implements Runnable {
-    public final int f38994a;
-    public final LaunchActivity f38995b;
-    public final int f38996c;
+    public final int f38878a;
+    public final LaunchActivity f38879b;
+    public final int f38880c;
 
     public m80(LaunchActivity launchActivity, int i10, int i11) {
-        this.f38994a = i11;
-        this.f38995b = launchActivity;
-        this.f38996c = i10;
+        this.f38878a = i11;
+        this.f38879b = launchActivity;
+        this.f38880c = i10;
     }
 
     @Override
     public final void run() {
         File directory;
-        int i10 = this.f38994a;
-        int i11 = this.f38996c;
-        LaunchActivity launchActivity = this.f38995b;
+        int i10 = this.f38878a;
+        int i11 = this.f38880c;
+        LaunchActivity launchActivity = this.f38879b;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.f34134y1;

@@ -2,8 +2,8 @@ package eg;
 
 import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.sl0;
-public final class n2 extends sl0 {
+import org.telegram.ui.Components.rl0;
+public final class n2 extends rl0 {
     @Override
     public final boolean D(f2.m1 m1Var) {
         return true;

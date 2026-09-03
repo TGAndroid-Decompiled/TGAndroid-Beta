@@ -52,7 +52,7 @@ public final class n1 implements h5.d {
                 if (storyItem != null) {
                     org.telegram.ui.ActionBar.p2 R = LaunchActivity.R();
                     if (R != null) {
-                        storyItem.dialogId = v7Var.f17858b.longValue();
+                        storyItem.dialogId = v7Var.f17860b.longValue();
                         i9 createOverlayStoryViewer = R.createOverlayStoryViewer();
                         createOverlayStoryViewer.G(n3Var.getContext(), storyItem, null);
                         createOverlayStoryViewer.l1 = new l3(i9Var, 0);
@@ -61,8 +61,8 @@ public final class n1 implements h5.d {
                     }
                     return;
                 }
-                ic Q = new qc(n3Var.f17481w0.Z0, g6Var).Q(R.raw.story_bomb2, 36, LocaleController.getString(R.string.StoryNotFound));
-                Q.f27738a = 3;
+                ic Q = new qc(n3Var.f17483w0.Z0, g6Var).Q(R.raw.story_bomb2, 36, LocaleController.getString(R.string.StoryNotFound));
+                Q.f27771a = 3;
                 Q.k(true);
                 return;
         }

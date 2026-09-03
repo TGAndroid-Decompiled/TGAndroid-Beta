@@ -28,7 +28,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-public final class wg0 extends jh1 implements NotificationCenter.NotificationCenterDelegate, xd.b {
+public final class wg0 extends ph1 implements NotificationCenter.NotificationCenterDelegate, xd.b {
     public FrameLayout B;
     public yg0 C;
     public qg.b D;
@@ -41,13 +41,13 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
     public int K;
     public NotificationCenter.ObserversGroup L;
     public NotificationCenter.ObserversGroup M;
-    public qh.f3 N;
+    public qh.e3 N;
     public boolean O;
     public final tg.c P;
     public final tg.d Q;
-    public IUpdateLayout f42806w;
-    public boolean f42807x;
-    public sg1 f42808y;
+    public IUpdateLayout f42767w;
+    public boolean f42768x;
+    public xg1 f42769y;
     public final xd.a v = new xd.a(0, this, org.telegram.ui.Components.pr.h, 380, true);
     public final RectF R = new RectF();
 
@@ -62,7 +62,7 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
         this.P = new tg.c();
         a9 a9Var = new a9(this, 5);
         setBulletinDelegate(a9Var);
-        org.telegram.ui.Components.ic.a(this.f38157b, a9Var);
+        org.telegram.ui.Components.ic.a(this.f40021b, a9Var);
     }
 
     public static void Y(wg0 wg0Var, int i10, org.telegram.ui.Components.q70 q70Var) {
@@ -136,7 +136,7 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
                 bundle2.putBoolean("hasMainTabs", true);
                 return new l9(bundle2);
             }
-            return new p81(android.support.v4.media.a.i("hasMainTabs", true));
+            return new v81(android.support.v4.media.a.i("hasMainTabs", true));
         } else if (i10 == 0) {
             py pyVar = new py(android.support.v4.media.a.i("hasMainTabs", true));
             this.G = pyVar;
@@ -197,36 +197,36 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
         bVar.f();
         bVarArr2[4] = bVar;
         this.H[0].setOnLongClickListener(new View.OnLongClickListener(this) {
-            public final wg0 f40960b;
+            public final wg0 f40844b;
 
             {
-                this.f40960b = this;
+                this.f40844b = this;
             }
 
             @Override
             public final boolean onLongClick(View view) {
                 switch (r2) {
                     case 0:
-                        return wg0.Z(this.f40960b, view);
+                        return wg0.Z(this.f40844b, view);
                     case 1:
-                        wg0 wg0Var = this.f40960b;
+                        wg0 wg0Var = this.f40844b;
                         if (wg0Var.getParentActivity() == null || wg0Var.getParentActivity() == null) {
                             return false;
                         }
                         org.telegram.ui.Components.q70 H = org.telegram.ui.Components.q70.H(wg0Var, view);
                         H.c(R.drawable.msg_contact_add, LocaleController.getString(R.string.NewContact), new sg0(wg0Var, 5), false);
                         H.c(R.drawable.msg_calls, LocaleController.getString(R.string.VoipChatRecentCalls), new sg0(wg0Var, 6), false);
-                        H.f30331u = true;
+                        H.f30335u = true;
                         H.v = true;
                         H.a0(0.0f, -AndroidUtilities.dp(4.0f));
-                        H.f30311i = 3;
-                        ShapeDrawable b02 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), wg0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21659d6));
+                        H.f30315i = 3;
+                        ShapeDrawable b02 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), wg0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21661d6));
                         b02.getPaint().setShadowLayer(AndroidUtilities.dp(6.0f), 0.0f, AndroidUtilities.dp(1.0f), org.telegram.ui.ActionBar.k6.l1(0.15f, -16777216));
                         H.W(b02);
                         H.Z();
                         return true;
                     case 2:
-                        wg0 wg0Var2 = this.f40960b;
+                        wg0 wg0Var2 = this.f40844b;
                         if (wg0Var2.getParentActivity() == null || wg0Var2.getParentActivity() == null) {
                             return false;
                         }
@@ -237,51 +237,51 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
                         } else {
                             H2.c(R.drawable.menu_add_tab_24, LocaleController.getString(R.string.GroupCallShowInMainTabs), new sg0(wg0Var2, 3), false);
                         }
-                        H2.f30331u = true;
+                        H2.f30335u = true;
                         H2.v = true;
                         H2.a0(0.0f, -AndroidUtilities.dp(4.0f));
-                        ShapeDrawable b03 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), wg0Var2.getThemedColor(org.telegram.ui.ActionBar.k6.f21659d6));
+                        ShapeDrawable b03 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), wg0Var2.getThemedColor(org.telegram.ui.ActionBar.k6.f21661d6));
                         b03.getPaint().setShadowLayer(AndroidUtilities.dp(6.0f), 0.0f, AndroidUtilities.dp(1.0f), org.telegram.ui.ActionBar.k6.l1(0.15f, -16777216));
                         H2.W(b03);
                         H2.Z();
                         return true;
                     default:
-                        this.f40960b.k0(view);
+                        this.f40844b.k0(view);
                         return true;
                 }
             }
         });
         this.H[1].setOnLongClickListener(new View.OnLongClickListener(this) {
-            public final wg0 f40960b;
+            public final wg0 f40844b;
 
             {
-                this.f40960b = this;
+                this.f40844b = this;
             }
 
             @Override
             public final boolean onLongClick(View view) {
                 switch (r2) {
                     case 0:
-                        return wg0.Z(this.f40960b, view);
+                        return wg0.Z(this.f40844b, view);
                     case 1:
-                        wg0 wg0Var = this.f40960b;
+                        wg0 wg0Var = this.f40844b;
                         if (wg0Var.getParentActivity() == null || wg0Var.getParentActivity() == null) {
                             return false;
                         }
                         org.telegram.ui.Components.q70 H = org.telegram.ui.Components.q70.H(wg0Var, view);
                         H.c(R.drawable.msg_contact_add, LocaleController.getString(R.string.NewContact), new sg0(wg0Var, 5), false);
                         H.c(R.drawable.msg_calls, LocaleController.getString(R.string.VoipChatRecentCalls), new sg0(wg0Var, 6), false);
-                        H.f30331u = true;
+                        H.f30335u = true;
                         H.v = true;
                         H.a0(0.0f, -AndroidUtilities.dp(4.0f));
-                        H.f30311i = 3;
-                        ShapeDrawable b02 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), wg0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21659d6));
+                        H.f30315i = 3;
+                        ShapeDrawable b02 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), wg0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21661d6));
                         b02.getPaint().setShadowLayer(AndroidUtilities.dp(6.0f), 0.0f, AndroidUtilities.dp(1.0f), org.telegram.ui.ActionBar.k6.l1(0.15f, -16777216));
                         H.W(b02);
                         H.Z();
                         return true;
                     case 2:
-                        wg0 wg0Var2 = this.f40960b;
+                        wg0 wg0Var2 = this.f40844b;
                         if (wg0Var2.getParentActivity() == null || wg0Var2.getParentActivity() == null) {
                             return false;
                         }
@@ -292,51 +292,51 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
                         } else {
                             H2.c(R.drawable.menu_add_tab_24, LocaleController.getString(R.string.GroupCallShowInMainTabs), new sg0(wg0Var2, 3), false);
                         }
-                        H2.f30331u = true;
+                        H2.f30335u = true;
                         H2.v = true;
                         H2.a0(0.0f, -AndroidUtilities.dp(4.0f));
-                        ShapeDrawable b03 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), wg0Var2.getThemedColor(org.telegram.ui.ActionBar.k6.f21659d6));
+                        ShapeDrawable b03 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), wg0Var2.getThemedColor(org.telegram.ui.ActionBar.k6.f21661d6));
                         b03.getPaint().setShadowLayer(AndroidUtilities.dp(6.0f), 0.0f, AndroidUtilities.dp(1.0f), org.telegram.ui.ActionBar.k6.l1(0.15f, -16777216));
                         H2.W(b03);
                         H2.Z();
                         return true;
                     default:
-                        this.f40960b.k0(view);
+                        this.f40844b.k0(view);
                         return true;
                 }
             }
         });
         this.H[3].setOnLongClickListener(new View.OnLongClickListener(this) {
-            public final wg0 f40960b;
+            public final wg0 f40844b;
 
             {
-                this.f40960b = this;
+                this.f40844b = this;
             }
 
             @Override
             public final boolean onLongClick(View view) {
                 switch (r2) {
                     case 0:
-                        return wg0.Z(this.f40960b, view);
+                        return wg0.Z(this.f40844b, view);
                     case 1:
-                        wg0 wg0Var = this.f40960b;
+                        wg0 wg0Var = this.f40844b;
                         if (wg0Var.getParentActivity() == null || wg0Var.getParentActivity() == null) {
                             return false;
                         }
                         org.telegram.ui.Components.q70 H = org.telegram.ui.Components.q70.H(wg0Var, view);
                         H.c(R.drawable.msg_contact_add, LocaleController.getString(R.string.NewContact), new sg0(wg0Var, 5), false);
                         H.c(R.drawable.msg_calls, LocaleController.getString(R.string.VoipChatRecentCalls), new sg0(wg0Var, 6), false);
-                        H.f30331u = true;
+                        H.f30335u = true;
                         H.v = true;
                         H.a0(0.0f, -AndroidUtilities.dp(4.0f));
-                        H.f30311i = 3;
-                        ShapeDrawable b02 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), wg0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21659d6));
+                        H.f30315i = 3;
+                        ShapeDrawable b02 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), wg0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21661d6));
                         b02.getPaint().setShadowLayer(AndroidUtilities.dp(6.0f), 0.0f, AndroidUtilities.dp(1.0f), org.telegram.ui.ActionBar.k6.l1(0.15f, -16777216));
                         H.W(b02);
                         H.Z();
                         return true;
                     case 2:
-                        wg0 wg0Var2 = this.f40960b;
+                        wg0 wg0Var2 = this.f40844b;
                         if (wg0Var2.getParentActivity() == null || wg0Var2.getParentActivity() == null) {
                             return false;
                         }
@@ -347,51 +347,51 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
                         } else {
                             H2.c(R.drawable.menu_add_tab_24, LocaleController.getString(R.string.GroupCallShowInMainTabs), new sg0(wg0Var2, 3), false);
                         }
-                        H2.f30331u = true;
+                        H2.f30335u = true;
                         H2.v = true;
                         H2.a0(0.0f, -AndroidUtilities.dp(4.0f));
-                        ShapeDrawable b03 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), wg0Var2.getThemedColor(org.telegram.ui.ActionBar.k6.f21659d6));
+                        ShapeDrawable b03 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), wg0Var2.getThemedColor(org.telegram.ui.ActionBar.k6.f21661d6));
                         b03.getPaint().setShadowLayer(AndroidUtilities.dp(6.0f), 0.0f, AndroidUtilities.dp(1.0f), org.telegram.ui.ActionBar.k6.l1(0.15f, -16777216));
                         H2.W(b03);
                         H2.Z();
                         return true;
                     default:
-                        this.f40960b.k0(view);
+                        this.f40844b.k0(view);
                         return true;
                 }
             }
         });
         this.H[4].setOnLongClickListener(new View.OnLongClickListener(this) {
-            public final wg0 f40960b;
+            public final wg0 f40844b;
 
             {
-                this.f40960b = this;
+                this.f40844b = this;
             }
 
             @Override
             public final boolean onLongClick(View view) {
                 switch (r2) {
                     case 0:
-                        return wg0.Z(this.f40960b, view);
+                        return wg0.Z(this.f40844b, view);
                     case 1:
-                        wg0 wg0Var = this.f40960b;
+                        wg0 wg0Var = this.f40844b;
                         if (wg0Var.getParentActivity() == null || wg0Var.getParentActivity() == null) {
                             return false;
                         }
                         org.telegram.ui.Components.q70 H = org.telegram.ui.Components.q70.H(wg0Var, view);
                         H.c(R.drawable.msg_contact_add, LocaleController.getString(R.string.NewContact), new sg0(wg0Var, 5), false);
                         H.c(R.drawable.msg_calls, LocaleController.getString(R.string.VoipChatRecentCalls), new sg0(wg0Var, 6), false);
-                        H.f30331u = true;
+                        H.f30335u = true;
                         H.v = true;
                         H.a0(0.0f, -AndroidUtilities.dp(4.0f));
-                        H.f30311i = 3;
-                        ShapeDrawable b02 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), wg0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21659d6));
+                        H.f30315i = 3;
+                        ShapeDrawable b02 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), wg0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21661d6));
                         b02.getPaint().setShadowLayer(AndroidUtilities.dp(6.0f), 0.0f, AndroidUtilities.dp(1.0f), org.telegram.ui.ActionBar.k6.l1(0.15f, -16777216));
                         H.W(b02);
                         H.Z();
                         return true;
                     case 2:
-                        wg0 wg0Var2 = this.f40960b;
+                        wg0 wg0Var2 = this.f40844b;
                         if (wg0Var2.getParentActivity() == null || wg0Var2.getParentActivity() == null) {
                             return false;
                         }
@@ -402,16 +402,16 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
                         } else {
                             H2.c(R.drawable.menu_add_tab_24, LocaleController.getString(R.string.GroupCallShowInMainTabs), new sg0(wg0Var2, 3), false);
                         }
-                        H2.f30331u = true;
+                        H2.f30335u = true;
                         H2.v = true;
                         H2.a0(0.0f, -AndroidUtilities.dp(4.0f));
-                        ShapeDrawable b03 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), wg0Var2.getThemedColor(org.telegram.ui.ActionBar.k6.f21659d6));
+                        ShapeDrawable b03 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), wg0Var2.getThemedColor(org.telegram.ui.ActionBar.k6.f21661d6));
                         b03.getPaint().setShadowLayer(AndroidUtilities.dp(6.0f), 0.0f, AndroidUtilities.dp(1.0f), org.telegram.ui.ActionBar.k6.l1(0.15f, -16777216));
                         H2.W(b03);
                         H2.Z();
                         return true;
                     default:
-                        this.f40960b.k0(view);
+                        this.f40844b.k0(view);
                         return true;
                 }
             }
@@ -438,16 +438,16 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
             i13++;
         }
         g0(getUserConfig().showCallsTab, false);
-        m0(this.f38158c.getCurrentPosition(), false);
-        int themedColor = getThemedColor(org.telegram.ui.ActionBar.k6.f21659d6);
+        m0(this.f40022c.getCurrentPosition(), false);
+        int themedColor = getThemedColor(org.telegram.ui.ActionBar.k6.f21661d6);
         tg.c cVar = this.P;
         cVar.a(themedColor);
-        vg.i iVar = new vg.i(this.f38157b);
+        vg.i iVar = new vg.i(this.f40021b);
         tg.a aVar = this.Q;
         if (aVar == null) {
             aVar = cVar;
         }
-        l0 l0Var = this.f38157b;
+        l0 l0Var = this.f40021b;
         boolean isEnabled = LiteMode.isEnabled(262144);
         yg0 yg0Var2 = this.C;
         rg.d f10 = sg.b.f(this.resourceProvider);
@@ -464,7 +464,7 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
         k10.p(AndroidUtilities.dp(28.0f));
         this.D.o(AndroidUtilities.dp(7.666f));
         this.C.setBackground(this.D);
-        l0 l0Var2 = this.f38157b;
+        l0 l0Var2 = this.f40021b;
         this.E = new View(context);
         View view = this.E;
         qg.d dVar = new qg.d(cVar);
@@ -475,23 +475,23 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
         og.b bVar3 = new og.b(dVar);
         bVar3.b(AndroidUtilities.dp(60.0f), true);
         this.E.setBackground(bVar3);
-        this.f38157b.addView(this.E, k7.c6.e(-1, 0, 80));
+        this.f40021b.addView(this.E, k7.c6.e(-1, 0, 80));
         FrameLayout frameLayout = new FrameLayout(context);
         this.B = frameLayout;
         frameLayout.setOnClickListener(new eg.m(22));
         this.B.addView(this.C, k7.c6.e(-1, 72, 81));
         this.B.setClipToPadding(false);
-        this.f38157b.addView(this.B, k7.c6.e(-1, -2, 80));
-        sg1 sg1Var = new sg1(context);
-        this.f42808y = sg1Var;
-        this.f38157b.addView(sg1Var, k7.c6.e(-1, -2, 80));
-        IUpdateLayout takeUpdateLayout = ApplicationLoader.applicationLoaderInstance.takeUpdateLayout(getParentActivity(), this.f42808y);
-        this.f42806w = takeUpdateLayout;
+        this.f40021b.addView(this.B, k7.c6.e(-1, -2, 80));
+        xg1 xg1Var = new xg1(context);
+        this.f42769y = xg1Var;
+        this.f40021b.addView(xg1Var, k7.c6.e(-1, -2, 80));
+        IUpdateLayout takeUpdateLayout = ApplicationLoader.applicationLoaderInstance.takeUpdateLayout(getParentActivity(), this.f42769y);
+        this.f42767w = takeUpdateLayout;
         if (takeUpdateLayout != null) {
             takeUpdateLayout.updateAppUpdateViews(this.currentAccount, false);
         }
         j0(false);
-        return this.f38157b;
+        return this.f40021b;
     }
 
     public final void d0() {
@@ -514,36 +514,36 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
         z4 = false;
         if (i10 != NotificationCenter.notificationsCountUpdated && i10 != NotificationCenter.updateInterfaces) {
             if (i10 == NotificationCenter.appUpdateLoading) {
-                IUpdateLayout iUpdateLayout3 = this.f42806w;
+                IUpdateLayout iUpdateLayout3 = this.f42767w;
                 if (iUpdateLayout3 != null) {
                     iUpdateLayout3.updateFileProgress(null);
-                    this.f42806w.updateAppUpdateViews(this.currentAccount, true);
+                    this.f42767w.updateAppUpdateViews(this.currentAccount, true);
                     return;
                 }
                 return;
             } else if (i10 == NotificationCenter.fileLoaded) {
                 String str = (String) objArr[0];
-                if (SharedConfig.isAppUpdateAvailable() && FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document).equals(str) && (iUpdateLayout2 = this.f42806w) != null) {
+                if (SharedConfig.isAppUpdateAvailable() && FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document).equals(str) && (iUpdateLayout2 = this.f42767w) != null) {
                     iUpdateLayout2.updateAppUpdateViews(this.currentAccount, true);
                     return;
                 }
                 return;
             } else if (i10 == NotificationCenter.fileLoadFailed) {
                 String str2 = (String) objArr[0];
-                if (SharedConfig.isAppUpdateAvailable() && FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document).equals(str2) && (iUpdateLayout = this.f42806w) != null) {
+                if (SharedConfig.isAppUpdateAvailable() && FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document).equals(str2) && (iUpdateLayout = this.f42767w) != null) {
                     iUpdateLayout.updateAppUpdateViews(this.currentAccount, true);
                     return;
                 }
                 return;
             } else if (i10 == NotificationCenter.fileLoadProgressChanged) {
-                IUpdateLayout iUpdateLayout4 = this.f42806w;
+                IUpdateLayout iUpdateLayout4 = this.f42767w;
                 if (iUpdateLayout4 != null) {
                     iUpdateLayout4.updateFileProgress(objArr);
                     return;
                 }
                 return;
             } else if (i10 == NotificationCenter.appUpdateAvailable) {
-                IUpdateLayout iUpdateLayout5 = this.f42806w;
+                IUpdateLayout iUpdateLayout5 = this.f42767w;
                 if (iUpdateLayout5 != null && (launchActivity = LaunchActivity.D1) != null) {
                     int i12 = this.currentAccount;
                     if (launchActivity.f34136a0.size() == 1) {
@@ -554,23 +554,23 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
                 }
                 return;
             } else if (i10 == NotificationCenter.needSetDayNightTheme) {
-                int currentPosition = this.f38158c.getCurrentPosition();
-                SparseArray sparseArray = this.f38156a;
+                int currentPosition = this.f40022c.getCurrentPosition();
+                SparseArray sparseArray = this.f40020a;
                 int size = sparseArray.size();
                 for (int i13 = 0; i13 < size; i13++) {
-                    hh1 hh1Var = (hh1) sparseArray.valueAt(i13);
-                    if (sparseArray.keyAt(i13) != currentPosition && hh1Var != null) {
-                        hh1Var.f37508a.clearViews();
+                    nh1 nh1Var = (nh1) sparseArray.valueAt(i13);
+                    if (sparseArray.keyAt(i13) != currentPosition && nh1Var != null) {
+                        nh1Var.f39375a.clearViews();
                     }
                 }
                 return;
             } else if (i10 == NotificationCenter.callTabsVisibleToggled) {
                 g0(getUserConfig().showCallsTab, true);
-                ih1 ih1Var = this.f38158c;
-                if (ih1Var != null && ih1Var.getCurrentPosition() == 2) {
-                    this.f38158c.D(0);
+                oh1 oh1Var = this.f40022c;
+                if (oh1Var != null && oh1Var.getCurrentPosition() == 2) {
+                    this.f40022c.D(0);
                     m0(0, true);
-                    this.f42807x = true;
+                    this.f42768x = true;
                     return;
                 }
                 W(2);
@@ -600,11 +600,11 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
 
     public final void e0() {
         float f10;
-        int themedColor = getThemedColor(org.telegram.ui.ActionBar.k6.f21605a7);
-        int themedColor2 = getThemedColor(org.telegram.ui.ActionBar.k6.f21659d6);
-        ih1 ih1Var = this.f38158c;
-        if (ih1Var != null) {
-            f10 = ih1Var.r(0);
+        int themedColor = getThemedColor(org.telegram.ui.ActionBar.k6.f21607a7);
+        int themedColor2 = getThemedColor(org.telegram.ui.ActionBar.k6.f21661d6);
+        oh1 oh1Var = this.f40022c;
+        if (oh1Var != null) {
+            f10 = oh1Var.r(0);
         } else {
             f10 = 1.0f;
         }
@@ -678,24 +678,24 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
 
     @Override
     public final org.telegram.ui.ActionBar.a4 getEdgeToEdgeSupportMode() {
-        return org.telegram.ui.ActionBar.a4.f21182c;
+        return org.telegram.ui.ActionBar.a4.f21184c;
     }
 
     @Override
     public final ArrayList getThemeDescriptions() {
         ArrayList themeDescriptions = super.getThemeDescriptions();
         f fVar = new f(this, 23);
-        themeDescriptions.add(new org.telegram.ui.ActionBar.m6(null, 0, null, null, null, fVar, org.telegram.ui.ActionBar.k6.f21659d6));
-        themeDescriptions.add(new org.telegram.ui.ActionBar.m6(null, 0, null, null, null, fVar, org.telegram.ui.ActionBar.k6.f21731h5));
+        themeDescriptions.add(new org.telegram.ui.ActionBar.m6(null, 0, null, null, null, fVar, org.telegram.ui.ActionBar.k6.f21661d6));
+        themeDescriptions.add(new org.telegram.ui.ActionBar.m6(null, 0, null, null, null, fVar, org.telegram.ui.ActionBar.k6.f21733h5));
         return themeDescriptions;
     }
 
     public final void h0() {
         int i10;
-        ih1 ih1Var = this.f38158c;
-        if (ih1Var != null && this.E != null) {
-            float a2 = 1.0f - k7.o.a(Math.abs(3.0f - ih1Var.getPositionAnimated()), 0.0f, 1.0f);
-            float navigationBarThirdButtonsFactor = (1.0f - ((1.0f - AndroidUtilities.getNavigationBarThirdButtonsFactor(0.0f, 1.0f, this.I)) * a2)) * this.v.f50505e;
+        oh1 oh1Var = this.f40022c;
+        if (oh1Var != null && this.E != null) {
+            float a2 = 1.0f - k7.o.a(Math.abs(3.0f - oh1Var.getPositionAnimated()), 0.0f, 1.0f);
+            float navigationBarThirdButtonsFactor = (1.0f - ((1.0f - AndroidUtilities.getNavigationBarThirdButtonsFactor(0.0f, 1.0f, this.I)) * a2)) * this.v.f50541e;
             this.E.setAlpha(navigationBarThirdButtonsFactor);
             this.E.setTranslationY(a2 * AndroidUtilities.dp(48.0f));
             View view = this.E;
@@ -711,7 +711,7 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
     public final void i0() {
         int i10;
         boolean z4;
-        View view = this.f42808y.f41286b;
+        View view = this.f42769y.f43042b;
         int i11 = 0;
         if (view != null && view.getVisibility() == 0) {
             i10 = AndroidUtilities.dp(44.0f);
@@ -719,7 +719,7 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
             i10 = 0;
         }
         int i12 = -i10;
-        float f10 = this.v.f50505e;
+        float f10 = this.v.f50541e;
         AndroidUtilities.lerp(0.85f, 1.0f, f10);
         this.B.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dp(40.0f) + i12, i12, f10));
         yg0 yg0Var = this.C;
@@ -787,7 +787,7 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
                 }
                 LinearLayout linearLayout = new LinearLayout(getParentActivity());
                 linearLayout.setOrientation(0);
-                linearLayout.setBackground(org.telegram.ui.ActionBar.k6.Y(getThemedColor(org.telegram.ui.ActionBar.k6.f21750i6), 0, 0));
+                linearLayout.setBackground(org.telegram.ui.ActionBar.k6.Y(getThemedColor(org.telegram.ui.ActionBar.k6.f21752i6), 0, 0));
                 TLRPC.User currentUser = UserConfig.getInstance(intValue).getCurrentUser();
                 org.telegram.ui.Components.z8 z8Var = new org.telegram.ui.Components.z8((org.telegram.ui.ActionBar.g6) null);
                 z8Var.r(currentUser);
@@ -804,7 +804,7 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
                 yVar.addView(p9Var, k7.c6.t(32, 32, 17, 1, 1, 1, 1));
                 TextView textView = new TextView(getParentActivity());
                 textView.setTextSize(1, 16.0f);
-                textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.k6.f21766j5));
+                textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.k6.f21768j5));
                 textView.setText(UserObject.getUserName(currentUser));
                 textView.setMaxLines(2);
                 textView.setEllipsize(TextUtils.TruncateAt.END);
@@ -813,14 +813,14 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
                 H.r(linearLayout, k7.c6.n(230, 48));
             }
         }
-        H.f30331u = true;
+        H.f30335u = true;
         H.v = true;
         H.a0(0.0f, -AndroidUtilities.dp(4.0f));
-        ShapeDrawable b02 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), getThemedColor(org.telegram.ui.ActionBar.k6.f21659d6));
+        ShapeDrawable b02 = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(28.0f), getThemedColor(org.telegram.ui.ActionBar.k6.f21661d6));
         b02.getPaint().setShadowLayer(AndroidUtilities.dp(6.0f), 0.0f, AndroidUtilities.dp(1.0f), org.telegram.ui.ActionBar.k6.l1(0.15f, -16777216));
         H.W(b02);
         H.Z();
-        org.telegram.ui.Components.n40.f29390r.a();
+        org.telegram.ui.Components.n40.f29378r.a();
     }
 
     public final py l0(Bundle bundle) {
@@ -831,7 +831,7 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
         py pyVar = new py(bundle);
         this.G = pyVar;
         pyVar.F3 = new tg0(this);
-        this.f38156a.put(0, new hh1(pyVar));
+        this.f40020a.put(0, new nh1(pyVar));
         return this.G;
     }
 
@@ -875,10 +875,10 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
     @Override
     public final boolean onBackPressed(boolean z4) {
         boolean onBackPressed = super.onBackPressed(z4);
-        if (onBackPressed && this.f38158c.getCurrentPosition() != 0) {
+        if (onBackPressed && this.f40022c.getCurrentPosition() != 0) {
             onBackPressed = false;
             if (z4) {
-                this.f38158c.D(0);
+                this.f40022c.D(0);
             }
         }
         return onBackPressed;
@@ -903,7 +903,7 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
     @Override
     public final void onFragmentDestroy() {
         setBulletinDelegate(null);
-        org.telegram.ui.Components.ic.h(this.f38157b);
+        org.telegram.ui.Components.ic.h(this.f40021b);
         NotificationCenter.ObserversGroup observersGroup = this.L;
         if (observersGroup != null) {
             observersGroup.removeAllObservers();
@@ -920,9 +920,9 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
     @Override
     public final void onPause() {
         super.onPause();
-        qh.f3 f3Var = this.N;
-        if (f3Var != null) {
-            f3Var.e(true);
+        qh.e3 e3Var = this.N;
+        if (e3Var != null) {
+            e3Var.e(true);
         }
     }
 
@@ -935,7 +935,7 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
         if (this.O) {
             return;
         }
-        if (this.N == null && org.telegram.ui.Components.n40.f29390r.c()) {
+        if (this.N == null && org.telegram.ui.Components.n40.f29378r.c()) {
             AndroidUtilities.runOnUIThread(new sg0(this, 7), 1500L);
         }
         this.O = true;

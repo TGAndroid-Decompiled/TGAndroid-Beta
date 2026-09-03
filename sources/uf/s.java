@@ -1,17 +1,17 @@
 package uf;
 
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.Components.xn0;
+import org.telegram.ui.Components.wn0;
 public final class s extends k1 {
-    public final xn0 f48680t;
+    public final wn0 f48716t;
 
-    public s(xn0 xn0Var) {
+    public s(wn0 wn0Var) {
         super(false);
-        this.f48680t = xn0Var;
+        this.f48716t = wn0Var;
     }
 
     @Override
     public final boolean d(TLObject tLObject) {
-        return this.f48680t.F(tLObject);
+        return this.f48716t.F(tLObject);
     }
 }

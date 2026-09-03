@@ -63,7 +63,7 @@ public final class b extends c {
             q4.k kVar = (q4.k) s8.l.h(list);
             long j10 = kVar.h;
             if (j10 != -9223372036854775807L) {
-                long j11 = kVar.f44478n;
+                long j11 = kVar.f44509n;
                 if (j11 != -9223372036854775807L) {
                     return j11 - j10;
                 }
@@ -182,7 +182,7 @@ public final class b extends c {
             n10 = n(((q4.k) s8.l.h(list)).d);
         }
         if (n10 != -1) {
-            i12 = ((q4.k) s8.l.h(list)).f44476e;
+            i12 = ((q4.k) s8.l.h(list)).f44507e;
             i13 = n10;
         }
         int x10 = x(1, elapsedRealtime);

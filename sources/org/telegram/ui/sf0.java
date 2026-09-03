@@ -34,20 +34,20 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class sf0 extends org.telegram.ui.Components.wv0 implements NotificationCenter.NotificationCenterDelegate {
-    public static final int f41250q0 = 0;
+public final class sf0 extends org.telegram.ui.Components.vv0 implements NotificationCenter.NotificationCenterDelegate {
+    public static final int f41160q0 = 0;
     public final TextView B;
     public final LinearLayout C;
-    public final org.telegram.ui.Components.lj0 D;
+    public final org.telegram.ui.Components.kj0 D;
     public Bundle E;
     public final TextView F;
     public final TextView G;
     public final TextView H;
     public final ImageView I;
     public final ImageView J;
-    public final org.telegram.ui.Components.ij0 K;
-    public final org.telegram.ui.Components.ij0 L;
-    public final org.telegram.ui.Components.ij0 M;
+    public final org.telegram.ui.Components.hj0 K;
+    public final org.telegram.ui.Components.hj0 L;
+    public final org.telegram.ui.Components.hj0 M;
     public boolean N;
     public Timer O;
     public Timer P;
@@ -58,38 +58,38 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
     public double U;
     public double V;
     public boolean W;
-    public final org.telegram.ui.Components.ij0 f41251a;
-    public boolean f41252a0;
-    public String f41253b;
-    public String f41254b0;
-    public String f41255c;
-    public final int f41256c0;
+    public final org.telegram.ui.Components.hj0 f41161a;
+    public boolean f41162a0;
+    public String f41163b;
+    public String f41164b0;
+    public String f41165c;
+    public final int f41166c0;
     public String d;
-    public int f41257d0;
-    public String f41258e;
-    public int f41259e0;
-    public final zr f41260f;
-    public boolean f41261f0;
-    public String f41262g0;
+    public int f41167d0;
+    public String f41168e;
+    public int f41169e0;
+    public final zr f41170f;
+    public boolean f41171f0;
+    public String f41172g0;
     public final org.telegram.ui.Components.voip.o2 h;
-    public String f41263h0;
-    public String f41264i0;
-    public int f41265j0;
-    public String f41266k0;
-    public Bundle f41267l0;
+    public String f41173h0;
+    public String f41174i0;
+    public int f41175j0;
+    public String f41176k0;
+    public Bundle f41177l0;
     public TLRPC.TL_auth_sentCode m0;
-    public final TextView f41268n;
-    public boolean f41269n0;
-    public final ff0 f41270o0;
-    public final og0 f41271p0;
-    public final TextView f41272r;
-    public final org.telegram.ui.Components.lj0 f41273s;
+    public final TextView f41178n;
+    public boolean f41179n0;
+    public final ff0 f41180o0;
+    public final og0 f41181p0;
+    public final TextView f41182r;
+    public final org.telegram.ui.Components.kj0 f41183s;
     public final qf0 v;
-    public final yd0 f41274w;
-    public final qf0 f41275x;
-    public final FrameLayout f41276y;
+    public final yd0 f41184w;
+    public final qf0 f41185x;
+    public final FrameLayout f41186y;
 
-    public sf0(org.telegram.ui.og0 r39, android.content.Context r40, int r41) {
+    public sf0(org.telegram.ui.og0 r38, android.content.Context r39, int r40) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.sf0.<init>(org.telegram.ui.og0, android.content.Context, int):void");
     }
 
@@ -107,10 +107,10 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
             intent.setData(Uri.parse("mailto:"));
             intent.putExtra("android.intent.extra.EMAIL", new String[]{"sms@telegram.org"});
             StringBuilder sb = new StringBuilder();
-            sb.append(sf0Var.f41258e);
+            sb.append(sf0Var.f41168e);
             sb.append(" Android Registration/Login Issue ");
             sb.append(str4);
-            if (sf0Var.f41271p0.f39757e) {
+            if (sf0Var.f41181p0.f39717e) {
                 str = " #paidauth";
             } else {
                 str = "";
@@ -245,16 +245,16 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
             sb2.append("\n");
             sb2.append("\n");
             sb2.append("Issue: ");
-            if (sf0Var.f41271p0.f39757e) {
+            if (sf0Var.f41181p0.f39717e) {
                 str3 = "no_otp";
             } else {
                 str3 = "no_otp_paid";
             }
             sb2.append(str3);
             sb2.append("\n");
-            if (!TextUtils.isEmpty(sf0Var.f41254b0)) {
+            if (!TextUtils.isEmpty(sf0Var.f41164b0)) {
                 sb2.append("Error: ");
-                sb2.append(sf0Var.f41254b0);
+                sb2.append(sf0Var.f41164b0);
                 sb2.append("\n");
             }
             sb2.append("\n\n================================================\n");
@@ -264,22 +264,22 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
             intent.putExtra("android.intent.extra.TEXT", sb2.toString());
             sf0Var.getContext().startActivity(Intent.createChooser(intent, "Send email..."));
         } catch (Exception unused) {
-            sf0Var.f41271p0.l1(LocaleController.getString(R.string.AppName), LocaleController.getString("NoMailInstalled", R.string.NoMailInstalled));
+            sf0Var.f41181p0.l1(LocaleController.getString(R.string.AppName), LocaleController.getString("NoMailInstalled", R.string.NoMailInstalled));
         }
     }
 
-    public static void r(org.telegram.ui.Components.ij0 ij0Var) {
-        if (ij0Var != null) {
-            ij0Var.O(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.P9, false), "Bubble");
+    public static void r(org.telegram.ui.Components.hj0 hj0Var) {
+        if (hj0Var != null) {
+            hj0Var.O(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.P9, false), "Bubble");
             int i10 = org.telegram.ui.ActionBar.k6.G6;
-            ij0Var.O(org.telegram.ui.ActionBar.k6.w0(null, i10, false), "Phone");
-            ij0Var.O(org.telegram.ui.ActionBar.k6.w0(null, i10, false), "Note");
+            hj0Var.O(org.telegram.ui.ActionBar.k6.w0(null, i10, false), "Phone");
+            hj0Var.O(org.telegram.ui.ActionBar.k6.w0(null, i10, false), "Note");
         }
     }
 
     public void setProblemTextVisible(boolean z4) {
         float f10;
-        qf0 qf0Var = this.f41275x;
+        qf0 qf0Var = this.f41185x;
         if (qf0Var != null) {
             if (z4) {
                 f10 = 1.0f;
@@ -294,31 +294,31 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
     }
 
     public final void A(int i10) {
-        org.telegram.ui.Components.ij0 ij0Var = this.K;
-        if (ij0Var != null) {
+        org.telegram.ui.Components.hj0 hj0Var = this.K;
+        if (hj0Var != null) {
             if (this.N) {
                 return;
             }
             this.N = true;
-            org.telegram.ui.Components.ij0 ij0Var2 = this.f41251a;
-            if (ij0Var2.Y != ij0Var2.f27817e[0] - 1) {
-                ij0Var2.f27833r0 = new lf0(this, i10, 0);
+            org.telegram.ui.Components.hj0 hj0Var2 = this.f41161a;
+            if (hj0Var2.Y != hj0Var2.f27524e[0] - 1) {
+                hj0Var2.f27540r0 = new lf0(this, i10, 0);
                 return;
             }
-            ij0Var.f27833r0 = new ff0(this, 3);
-            org.telegram.ui.Components.lj0 lj0Var = this.f41273s;
-            lj0Var.setAutoRepeat(false);
-            ij0Var.L(0, false, false);
-            lj0Var.setAnimation(ij0Var);
-            lj0Var.d();
+            hj0Var.f27540r0 = new ff0(this, 3);
+            org.telegram.ui.Components.kj0 kj0Var = this.f41183s;
+            kj0Var.setAutoRepeat(false);
+            hj0Var.L(0, false, false);
+            kj0Var.setAnimation(hj0Var);
+            kj0Var.d();
             return;
         }
-        this.f41271p0.n1(i10, true);
+        this.f41181p0.n1(i10, true);
     }
 
     @Override
     public final boolean a() {
-        if (this.f41256c0 != 3) {
+        if (this.f41166c0 != 3) {
             return true;
         }
         return false;
@@ -332,37 +332,37 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
     @Override
     public final boolean c(boolean z4) {
         int i10;
-        og0 og0Var = this.f41271p0;
+        og0 og0Var = this.f41181p0;
         if (og0Var.C != 0) {
             og0Var.finishFragment();
             return false;
         }
-        int i11 = this.f41259e0;
+        int i11 = this.f41169e0;
         if (i11 != 0) {
             og0Var.u1(i11, true, null, true);
             return false;
         } else if (!z4) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(og0Var.getParentActivity());
             String string = LocaleController.getString(R.string.EditNumber);
-            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21168a;
             d2Var.O = string;
-            d2Var.Q = AndroidUtilities.replaceTags(LocaleController.formatString("EditNumberInfo", R.string.EditNumberInfo, this.f41253b));
+            d2Var.Q = AndroidUtilities.replaceTags(LocaleController.formatString("EditNumberInfo", R.string.EditNumberInfo, this.f41163b));
             alertDialog$Builder.k(LocaleController.getString(R.string.Close), null);
             alertDialog$Builder.h(LocaleController.getString(R.string.Edit), new hf0(this, 0));
             og0Var.showDialog(d2Var);
             return false;
         } else {
-            this.f41252a0 = false;
+            this.f41162a0 = false;
             z(true);
             TLRPC.TL_auth_cancelCode tL_auth_cancelCode = new TLRPC.TL_auth_cancelCode();
             tL_auth_cancelCode.phone_number = this.d;
-            tL_auth_cancelCode.phone_code_hash = this.f41255c;
+            tL_auth_cancelCode.phone_code_hash = this.f41165c;
             i10 = ((org.telegram.ui.ActionBar.p2) og0Var).currentAccount;
             ConnectionsManager.getInstance(i10).sendRequest(tL_auth_cancelCode, new oh.p5(13), 10);
             w();
             v();
             this.E = null;
-            int i12 = this.f41256c0;
+            int i12 = this.f41166c0;
             if (i12 == 15) {
                 NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didReceiveSmsCode);
             } else if (i12 == 2) {
@@ -379,22 +379,22 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
 
     @Override
     public final void d() {
-        this.f41252a0 = false;
+        this.f41162a0 = false;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (this.W) {
-            zr zrVar = this.f41260f;
-            if (zrVar.f43982f != null) {
+            zr zrVar = this.f41170f;
+            if (zrVar.f44011f != null) {
                 if (i10 == NotificationCenter.didReceiveSmsCode) {
                     zrVar.setText("" + objArr[0]);
                     h(null);
                 } else if (i10 == NotificationCenter.didReceiveCall) {
                     String str = "" + objArr[0];
-                    if (AndroidUtilities.checkPhonePattern(this.f41262g0, str)) {
-                        if (!this.f41262g0.equals("*")) {
-                            this.f41264i0 = str;
+                    if (AndroidUtilities.checkPhonePattern(this.f41172g0, str)) {
+                        if (!this.f41172g0.equals("*")) {
+                            this.f41174i0 = str;
                             AndroidUtilities.endIncomingCall();
                         }
                         h(str);
@@ -407,7 +407,7 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
 
     @Override
     public final void f() {
-        int i10 = this.f41256c0;
+        int i10 = this.f41166c0;
         if (i10 == 15) {
             NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didReceiveSmsCode);
         } else if (i10 == 2) {
@@ -425,20 +425,20 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
     @Override
     public final void g() {
         Bundle bundle;
-        this.f41261f0 = false;
-        this.f41252a0 = false;
-        if (this.f41259e0 != 0 && (bundle = this.E) != null) {
+        this.f41171f0 = false;
+        this.f41162a0 = false;
+        if (this.f41169e0 != 0 && (bundle = this.E) != null) {
             bundle.putInt("timeout", this.S);
         }
     }
 
     @Override
     public String getHeaderName() {
-        int i10 = this.f41256c0;
+        int i10 = this.f41166c0;
         if (i10 != 3 && i10 != 11) {
             return LocaleController.getString("YourCode", R.string.YourCode);
         }
-        return this.f41253b;
+        return this.f41163b;
     }
 
     @Override
@@ -446,20 +446,20 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
         int i10;
         int i11;
         int i12;
-        og0 og0Var = this.f41271p0;
-        int i13 = og0Var.f39750a;
+        og0 og0Var = this.f41181p0;
+        int i13 = og0Var.f39710a;
         if (i13 == 11) {
-            if (this.f41252a0) {
+            if (this.f41162a0) {
                 return;
             }
-        } else if (!this.f41252a0) {
+        } else if (!this.f41162a0) {
             if ((i13 < 1 || i13 > 4) && i13 != 15) {
                 return;
             }
         } else {
             return;
         }
-        zr zrVar = this.f41260f;
+        zr zrVar = this.f41170f;
         if (str == null) {
             str = zrVar.getCode();
         }
@@ -468,10 +468,10 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
             og0.U0(og0Var, zrVar, false);
             return;
         }
-        int i15 = og0Var.f39750a;
-        if (i15 < 1 || i15 > 4 || !zrVar.f43981e) {
-            this.f41252a0 = true;
-            int i16 = this.f41256c0;
+        int i15 = og0Var.f39710a;
+        if (i15 < 1 || i15 > 4 || !zrVar.f44010e) {
+            this.f41162a0 = true;
+            int i16 = this.f41166c0;
             if (i16 == 15) {
                 NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didReceiveSmsCode);
             } else if (i16 == 2) {
@@ -487,11 +487,11 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
                     TLRPC.TL_auth_signIn tL_auth_signIn = new TLRPC.TL_auth_signIn();
                     tL_auth_signIn.phone_number = this.d;
                     tL_auth_signIn.phone_code = str;
-                    tL_auth_signIn.phone_code_hash = this.f41255c;
+                    tL_auth_signIn.phone_code_hash = this.f41165c;
                     tL_auth_signIn.flags |= 1;
                     w();
-                    zrVar.f43981e = true;
-                    cs[] csVarArr = zrVar.f43982f;
+                    zrVar.f44010e = true;
+                    cs[] csVarArr = zrVar.f44011f;
                     int length = csVarArr.length;
                     while (i14 < length) {
                         csVarArr[i14].j(0.0f);
@@ -505,10 +505,10 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
                 TL_account.changePhone changephone = new TL_account.changePhone();
                 changephone.phone_number = this.d;
                 changephone.phone_code = str;
-                changephone.phone_code_hash = this.f41255c;
+                changephone.phone_code_hash = this.f41165c;
                 w();
-                zrVar.f43981e = true;
-                cs[] csVarArr2 = zrVar.f43982f;
+                zrVar.f44010e = true;
+                cs[] csVarArr2 = zrVar.f44011f;
                 int length2 = csVarArr2.length;
                 while (i14 < length2) {
                     csVarArr2[i14].j(0.0f);
@@ -522,10 +522,10 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
             this.d = og0Var.D;
             TL_account.confirmPhone confirmphone = new TL_account.confirmPhone();
             confirmphone.phone_code = str;
-            confirmphone.phone_code_hash = this.f41255c;
+            confirmphone.phone_code_hash = this.f41165c;
             w();
-            zrVar.f43981e = true;
-            cs[] csVarArr3 = zrVar.f43982f;
+            zrVar.f44010e = true;
+            cs[] csVarArr3 = zrVar.f44011f;
             int length3 = csVarArr3.length;
             while (i14 < length3) {
                 csVarArr3[i14].j(0.0f);
@@ -538,17 +538,17 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
 
     @Override
     public final void j() {
-        org.telegram.ui.Components.ij0 ij0Var = this.f41251a;
-        if (ij0Var != null) {
-            ij0Var.K(0);
+        org.telegram.ui.Components.hj0 hj0Var = this.f41161a;
+        if (hj0Var != null) {
+            hj0Var.K(0);
         }
-        AndroidUtilities.runOnUIThread(new ff0(this, 0), og0.f39749q0);
+        AndroidUtilities.runOnUIThread(new ff0(this, 0), og0.f39709q0);
     }
 
     @Override
     public final void k(Bundle bundle) {
         StringBuilder sb = new StringBuilder("smsview_params_");
-        int i10 = this.f41256c0;
+        int i10 = this.f41166c0;
         sb.append(i10);
         Bundle bundle2 = bundle.getBundle(sb.toString());
         this.E = bundle2;
@@ -557,12 +557,12 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
         }
         String string = bundle.getString("catchedPhone");
         if (string != null) {
-            this.f41264i0 = string;
+            this.f41174i0 = string;
         }
         String string2 = bundle.getString("smsview_code_" + i10);
         if (string2 != null) {
-            zr zrVar = this.f41260f;
-            if (zrVar.f43982f != null) {
+            zr zrVar = this.f41170f;
+            if (zrVar.f44011f != null) {
                 zrVar.setText(string2);
             }
         }
@@ -578,13 +578,13 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
 
     @Override
     public final void l(Bundle bundle) {
-        String code = this.f41260f.getCode();
+        String code = this.f41170f.getCode();
         int length = code.length();
-        int i10 = this.f41256c0;
+        int i10 = this.f41166c0;
         if (length != 0) {
             bundle.putString("smsview_code_" + i10, code);
         }
-        String str = this.f41264i0;
+        String str = this.f41174i0;
         if (str != null) {
             bundle.putString("catchedPhone", str);
         }
@@ -609,33 +609,33 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
     @Override
     public final void n() {
         int i10;
-        if (this.f41271p0.i1()) {
+        if (this.f41181p0.i1()) {
             i10 = org.telegram.ui.ActionBar.k6.G6;
         } else {
             i10 = org.telegram.ui.ActionBar.k6.D6;
         }
         int w02 = org.telegram.ui.ActionBar.k6.w0(null, i10, false);
-        TextView textView = this.f41268n;
+        TextView textView = this.f41178n;
         textView.setTextColor(w02);
         textView.setLinkTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.P9, false));
         int i11 = org.telegram.ui.ActionBar.k6.G6;
-        this.f41272r.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, i11, false));
-        int i12 = this.f41256c0;
+        this.f41182r.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, i11, false));
+        int i12 = this.f41166c0;
         if (i12 == 11) {
-            int i13 = org.telegram.ui.ActionBar.k6.f22036y6;
+            int i13 = org.telegram.ui.ActionBar.k6.f22038y6;
             this.G.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, i13, false));
             this.H.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, i13, false));
-            int w03 = org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21803l6, false);
+            int w03 = org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21805l6, false);
             PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
             this.I.setColorFilter(new PorterDuffColorFilter(w03, mode));
             this.J.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(null, i11, false), mode));
             this.F.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, i11, false));
         }
-        r(this.f41251a);
+        r(this.f41161a);
         r(this.K);
         r(this.L);
         r(this.M);
-        zr zrVar = this.f41260f;
+        zr zrVar = this.f41170f;
         if (zrVar != null) {
             zrVar.invalidate();
         }
@@ -646,9 +646,9 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
         }
         qf0Var.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, num.intValue(), false));
         if (i12 != 15) {
-            this.f41275x.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21894q6, false));
+            this.f41185x.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21896q6, false));
         }
-        this.B.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21895q7, false));
+        this.B.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21897q7, false));
     }
 
     @Override
@@ -656,8 +656,8 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
         cs[] csVarArr;
         boolean z4;
         super.onConfigurationChanged(configuration);
-        zr zrVar = this.f41260f;
-        if (zrVar != null && (csVarArr = zrVar.f43982f) != null) {
+        zr zrVar = this.f41170f;
+        if (zrVar != null && (csVarArr = zrVar.f44011f) != null) {
             for (cs csVar : csVarArr) {
                 if (a() && !AndroidUtilities.isAccessibilityTouchExplorationEnabled()) {
                     z4 = false;
@@ -672,23 +672,23 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        removeCallbacks(this.f41270o0);
+        removeCallbacks(this.f41180o0);
     }
 
     public final void q(Runnable runnable) {
-        if (this.f41256c0 == 3) {
+        if (this.f41166c0 == 3) {
             runnable.run();
             return;
         }
         int i10 = 0;
         while (true) {
-            zr zrVar = this.f41260f;
-            cs[] csVarArr = zrVar.f43982f;
+            zr zrVar = this.f41170f;
+            cs[] csVarArr = zrVar.f44011f;
             if (i10 < csVarArr.length) {
                 zrVar.postDelayed(new lf0(this, i10, 2), i10 * 75);
                 i10++;
             } else {
-                zrVar.postDelayed(new he0(7, this, runnable), (csVarArr.length * 75) + 400);
+                zrVar.postDelayed(new ue0(6, this, runnable), (csVarArr.length * 75) + 400);
                 return;
             }
         }
@@ -756,21 +756,21 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
 
     public final void x() {
         int i10;
-        if (!this.f41252a0 && !this.f41261f0) {
-            og0 og0Var = this.f41271p0;
-            if (!og0Var.f39766l0) {
-                this.f41261f0 = true;
+        if (!this.f41162a0 && !this.f41171f0) {
+            og0 og0Var = this.f41181p0;
+            if (!og0Var.f39726l0) {
+                this.f41171f0 = true;
                 this.v.invalidate();
-                this.f41275x.invalidate();
+                this.f41185x.invalidate();
                 Bundle bundle = new Bundle();
-                bundle.putString("phone", this.f41253b);
-                bundle.putString("ephone", this.f41258e);
+                bundle.putString("phone", this.f41163b);
+                bundle.putString("ephone", this.f41168e);
                 bundle.putString("phoneFormated", this.d);
-                bundle.putInt("prevType", this.f41256c0);
-                this.f41252a0 = true;
+                bundle.putInt("prevType", this.f41166c0);
+                this.f41162a0 = true;
                 TLRPC.TL_auth_resendCode tL_auth_resendCode = new TLRPC.TL_auth_resendCode();
                 tL_auth_resendCode.phone_number = this.d;
-                tL_auth_resendCode.phone_code_hash = this.f41255c;
+                tL_auth_resendCode.phone_code_hash = this.f41165c;
                 i10 = ((org.telegram.ui.ActionBar.p2) og0Var).currentAccount;
                 A(ConnectionsManager.getInstance(i10).sendRequest(tL_auth_resendCode, new kf0(this, bundle, 1), 10));
             }
@@ -779,36 +779,36 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
 
     public final void y() {
         float f10;
-        zr zrVar = this.f41260f;
+        zr zrVar = this.f41170f;
         try {
             zrVar.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
         int i10 = 0;
         while (true) {
-            cs[] csVarArr = zrVar.f43982f;
+            cs[] csVarArr = zrVar.f44011f;
             if (i10 >= csVarArr.length) {
                 break;
             }
             csVarArr[i10].setText("");
-            zrVar.f43982f[i10].i(1.0f);
+            zrVar.f44011f[i10].i(1.0f);
             i10++;
         }
-        yd0 yd0Var = this.f41274w;
+        yd0 yd0Var = this.f41184w;
         if (yd0Var.getCurrentView() != this.B) {
             yd0Var.showNext();
         }
-        zrVar.f43982f[0].requestFocus();
-        if (this.f41256c0 == 11) {
+        zrVar.f44011f[0].requestFocus();
+        if (this.f41166c0 == 11) {
             f10 = 3.5f;
         } else {
             f10 = 10.0f;
         }
         AndroidUtilities.shakeViewSpring(zrVar, f10, new ff0(this, 7));
-        ff0 ff0Var = this.f41270o0;
+        ff0 ff0Var = this.f41180o0;
         removeCallbacks(ff0Var);
         postDelayed(ff0Var, 5000L);
-        this.f41269n0 = true;
+        this.f41179n0 = true;
     }
 
     public final void z(boolean z4) {
@@ -817,12 +817,12 @@ public final class sf0 extends org.telegram.ui.Components.wv0 implements Notific
                 return;
             }
             this.N = false;
-            this.f41273s.setAutoRepeat(false);
-            org.telegram.ui.Components.ij0 ij0Var = this.L;
-            ij0Var.I(0);
-            ij0Var.P(ij0Var.f27817e[0] - 1, new ff0(this, 1));
+            this.f41183s.setAutoRepeat(false);
+            org.telegram.ui.Components.hj0 hj0Var = this.L;
+            hj0Var.I(0);
+            hj0Var.P(hj0Var.f27524e[0] - 1, new ff0(this, 1));
             return;
         }
-        this.f41271p0.k1(z4, true);
+        this.f41181p0.k1(z4, true);
     }
 }

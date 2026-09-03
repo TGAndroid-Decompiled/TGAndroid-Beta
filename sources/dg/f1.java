@@ -2,7 +2,7 @@ package dg;
 
 import android.graphics.Bitmap;
 import android.graphics.PointF;
-import org.telegram.ui.Components.kv0;
+import org.telegram.ui.Components.jv0;
 public final class f1 {
     public final float f4533a;
     public final float f4534b;
@@ -12,7 +12,7 @@ public final class f1 {
     public final PointF f4537f;
     public final PointF f4538g;
 
-    public f1(h8.a aVar, Bitmap bitmap, kv0 kv0Var, boolean z4) {
+    public f1(h8.a aVar, Bitmap bitmap, jv0 jv0Var, boolean z4) {
         float degrees;
         PointF pointF = null;
         PointF pointF2 = null;
@@ -25,16 +25,16 @@ public final class f1 {
                 if (i10 != 5) {
                     if (i10 != 10) {
                         if (i10 == 11) {
-                            pointF4 = b(pointF5, bitmap, kv0Var, z4);
+                            pointF4 = b(pointF5, bitmap, jv0Var, z4);
                         }
                     } else {
-                        pointF2 = b(pointF5, bitmap, kv0Var, z4);
+                        pointF2 = b(pointF5, bitmap, jv0Var, z4);
                     }
                 } else {
-                    pointF3 = b(pointF5, bitmap, kv0Var, z4);
+                    pointF3 = b(pointF5, bitmap, jv0Var, z4);
                 }
             } else {
-                pointF = b(pointF5, bitmap, kv0Var, z4);
+                pointF = b(pointF5, bitmap, jv0Var, z4);
             }
         }
         if (pointF != null && pointF2 != null) {
@@ -69,7 +69,7 @@ public final class f1 {
         }
     }
 
-    public static PointF b(PointF pointF, Bitmap bitmap, kv0 kv0Var, boolean z4) {
+    public static PointF b(PointF pointF, Bitmap bitmap, jv0 jv0Var, boolean z4) {
         int width;
         int height;
         if (z4) {
@@ -83,7 +83,7 @@ public final class f1 {
         } else {
             height = bitmap.getHeight();
         }
-        return new PointF((kv0Var.f28463a * pointF.x) / f10, (kv0Var.f28464b * pointF.y) / height);
+        return new PointF((jv0Var.f28201a * pointF.x) / f10, (jv0Var.f28202b * pointF.y) / height);
     }
 
     public final PointF a(int i10) {

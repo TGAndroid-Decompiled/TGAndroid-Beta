@@ -25,20 +25,20 @@ import org.telegram.ui.Cells.l9;
 import org.telegram.ui.Cells.m9;
 public final class k4 extends z implements b6, l9 {
     public final int[] B;
-    public final g6 f49829n;
-    public final Paint f49830r;
-    public final HorizontalScrollView f49831s;
+    public final g6 f49865n;
+    public final Paint f49866r;
+    public final HorizontalScrollView f49867s;
     public final ImageView v;
-    public Bitmap f49832w;
-    public int f49833x;
-    public w2 f49834y;
+    public Bitmap f49868w;
+    public int f49869x;
+    public w2 f49870y;
 
     public k4(Context context, g6 g6Var) {
         super(context);
-        this.f49830r = new Paint(1);
-        this.f49833x = 0;
+        this.f49866r = new Paint(1);
+        this.f49869x = 0;
         this.B = new int[4];
-        this.f49829n = g6Var;
+        this.f49865n = g6Var;
         setWillNotDraw(false);
         g(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(6.0f));
         ImageView imageView = new ImageView(context);
@@ -46,7 +46,7 @@ public final class k4 extends z implements b6, l9 {
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.addView(imageView, new FrameLayout.LayoutParams(-2, -2, 17));
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
-        this.f49831s = horizontalScrollView;
+        this.f49867s = horizontalScrollView;
         horizontalScrollView.setHorizontalScrollBarEnabled(false);
         horizontalScrollView.setClipToPadding(false);
         horizontalScrollView.setPadding(0, 0, 0, 0);
@@ -57,9 +57,9 @@ public final class k4 extends z implements b6, l9 {
     }
 
     private String getSource() {
-        a aVar = this.f50175a;
+        a aVar = this.f50211a;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f49617b;
+            TL_iv.PageBlock pageBlock = aVar.f49653b;
             if (pageBlock instanceof TL_iv.pageBlockMath) {
                 return ((TL_iv.pageBlockMath) pageBlock).source;
             }
@@ -70,11 +70,11 @@ public final class k4 extends z implements b6, l9 {
 
     @Override
     public final void e() {
-        int i10 = k6.f21970uf;
-        g6 g6Var = this.f49829n;
-        this.f49830r.setColor(k6.v0(i10, g6Var));
-        this.f49833x = k6.v0(k6.G6, g6Var);
-        this.v.setColorFilter(new PorterDuffColorFilter(this.f49833x, PorterDuff.Mode.SRC_IN));
+        int i10 = k6.f21972uf;
+        g6 g6Var = this.f49865n;
+        this.f49866r.setColor(k6.v0(i10, g6Var));
+        this.f49869x = k6.v0(k6.G6, g6Var);
+        this.v.setColorFilter(new PorterDuffColorFilter(this.f49869x, PorterDuff.Mode.SRC_IN));
         invalidate();
     }
 
@@ -90,21 +90,21 @@ public final class k4 extends z implements b6, l9 {
     }
 
     public a getRow() {
-        return this.f50175a;
+        return this.f50211a;
     }
 
     public final void h(a aVar, w2 w2Var) {
         r a2;
-        this.f50175a = aVar;
-        this.f49834y = w2Var;
+        this.f50211a = aVar;
+        this.f49870y = w2Var;
         c(aVar);
-        this.f49832w = null;
-        this.f49831s.scrollTo(0, 0);
+        this.f49868w = null;
+        this.f49867s.scrollTo(0, 0);
         String source = getSource();
         if (!TextUtils.isEmpty(source) && (a2 = r.a(source, AndroidUtilities.dp(SharedConfig.fontSize + 4), false)) != null) {
-            this.f49832w = a2.f49958a;
+            this.f49868w = a2.f49994a;
         }
-        this.v.setImageBitmap(this.f49832w);
+        this.v.setImageBitmap(this.f49868w);
         invalidate();
     }
 
@@ -112,14 +112,14 @@ public final class k4 extends z implements b6, l9 {
         int max;
         int paddingTop = getPaddingTop();
         int height = getHeight() - getPaddingBottom();
-        if (this.f49832w != null && this.v.getWidth() > this.f49831s.getWidth()) {
+        if (this.f49868w != null && this.v.getWidth() > this.f49867s.getWidth()) {
             iArr[0] = getPaddingLeft();
             iArr[1] = paddingTop;
             iArr[2] = getWidth() - getPaddingRight();
             iArr[3] = height;
             return;
         }
-        Bitmap bitmap = this.f49832w;
+        Bitmap bitmap = this.f49868w;
         if (bitmap != null) {
             max = bitmap.getWidth();
         } else {
@@ -136,16 +136,16 @@ public final class k4 extends z implements b6, l9 {
     public final void onDraw(Canvas canvas) {
         w2 w2Var;
         m9 textSelectionHelper;
-        if (this.f49833x != k6.v0(k6.G6, this.f49829n)) {
+        if (this.f49869x != k6.v0(k6.G6, this.f49865n)) {
             e();
         }
-        if (this.f49832w != null && (w2Var = this.f49834y) != null && (textSelectionHelper = w2Var.f50131a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
+        if (this.f49868w != null && (w2Var = this.f49870y) != null && (textSelectionHelper = w2Var.f50167a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R >= textSelectionHelper.f23175u0 && R <= textSelectionHelper.f23178x0) {
+            if (R >= 0 && R >= textSelectionHelper.f23177u0 && R <= textSelectionHelper.f23180x0) {
                 int[] iArr = this.B;
                 i(iArr);
-                canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.f49830r);
+                canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.f49866r);
             }
         }
     }

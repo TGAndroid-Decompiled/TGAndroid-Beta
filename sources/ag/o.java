@@ -27,7 +27,7 @@ import org.telegram.ui.ActionBar.f5;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.z;
 import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.sl0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.yh;
 public final class o extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -46,7 +46,7 @@ public final class o extends FrameLayout implements NotificationCenter.Notificat
     public int v;
     public LinearLayout f230w;
     public TextView f231x;
-    public tl0 f232y;
+    public sl0 f232y;
 
     public static float a(DisplayMetrics displayMetrics, float f10) {
         return k7.o.a(f10, AndroidUtilities.dp(16.0f), displayMetrics.widthPixels - AndroidUtilities.dp(72.0f));
@@ -125,8 +125,8 @@ public final class o extends FrameLayout implements NotificationCenter.Notificat
         if (z4) {
             f11 = 1000.0f;
         }
-        n10.f16343i = f11;
-        jVar.f16336u = n10;
+        n10.f16345i = f11;
+        jVar.f16338u = n10;
         jVar.b(new o1.g() {
             @Override
             public final void a(o1.h hVar, float f12, float f13) {
@@ -177,13 +177,13 @@ public final class o extends FrameLayout implements NotificationCenter.Notificat
         pq pqVar = new pq(mutate, h02, 0, 0);
         int dp = AndroidUtilities.dp(56.0f);
         int dp2 = AndroidUtilities.dp(56.0f);
-        pqVar.f30168e = dp;
-        pqVar.f30169f = dp2;
+        pqVar.f30161e = dp;
+        pqVar.f30162f = dp2;
         this.f223b = pqVar;
         Drawable drawable = getResources().getDrawable(R.drawable.popup_fixed_alert3);
-        drawable.setColorFilter(new PorterDuffColorFilter(k6.w0(null, k6.f21731h5, false), mode));
+        drawable.setColorFilter(new PorterDuffColorFilter(k6.w0(null, k6.f21733h5, false), mode));
         this.f230w.setBackground(drawable);
-        this.f231x.setTextColor(k6.w0(null, k6.f21766j5, false));
+        this.f231x.setTextColor(k6.w0(null, k6.f21768j5, false));
         invalidate();
     }
 
@@ -226,17 +226,17 @@ public final class o extends FrameLayout implements NotificationCenter.Notificat
             b10 = b(displayMetrics, f11);
         }
         lVar.setTranslationY(b10);
-        o1.j jVar = new o1.j(lVar, o1.h.f16318m, lVar.getTranslationX());
+        o1.j jVar = new o1.j(lVar, o1.h.f16320m, lVar.getTranslationX());
         o1.k kVar = new o1.k(lVar.getTranslationX());
         kVar.b(650.0f);
         kVar.a(0.75f);
-        jVar.f16336u = kVar;
+        jVar.f16338u = kVar;
         this.f224c = jVar;
-        o1.j jVar2 = new o1.j(lVar, o1.h.f16319n, lVar.getTranslationY());
+        o1.j jVar2 = new o1.j(lVar, o1.h.f16321n, lVar.getTranslationY());
         o1.k kVar2 = new o1.k(lVar.getTranslationY());
         kVar2.b(650.0f);
         kVar2.a(0.75f);
-        jVar2.f16336u = kVar2;
+        jVar2.f16338u = kVar2;
         this.d = jVar2;
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetNewTheme);
     }
@@ -256,8 +256,8 @@ public final class o extends FrameLayout implements NotificationCenter.Notificat
         }
         lVar.setTranslationX(a(displayMetrics, f10));
         lVar.setTranslationY(b(displayMetrics, lVar.getTranslationY()));
-        this.f224c.f16336u.f16343i = lVar.getTranslationX();
-        this.d.f16336u.f16343i = lVar.getTranslationY();
+        this.f224c.f16338u.f16345i = lVar.getTranslationX();
+        this.d.f16338u.f16345i = lVar.getTranslationY();
     }
 
     @Override

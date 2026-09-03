@@ -3,26 +3,26 @@ package n3;
 import j3.l0;
 import java.nio.ByteBuffer;
 public class i extends a {
-    public final d f15214c = new d();
+    public final d f15216c = new d();
     public ByteBuffer d;
-    public boolean f15215e;
-    public long f15216f;
+    public boolean f15217e;
+    public long f15218f;
     public ByteBuffer h;
-    public final int f15217n;
-    public final int f15218r;
+    public final int f15219n;
+    public final int f15220r;
 
     static {
         l0.a("goog.exo.decoder");
     }
 
     public i(int i10, int i11) {
-        this.f15217n = i10;
-        this.f15218r = i11;
+        this.f15219n = i10;
+        this.f15220r = i11;
     }
 
     @Override
     public void b() {
-        this.f15193b = 0;
+        this.f15195b = 0;
         ByteBuffer byteBuffer = this.d;
         if (byteBuffer != null) {
             byteBuffer.clear();
@@ -31,12 +31,12 @@ public class i extends a {
         if (byteBuffer2 != null) {
             byteBuffer2.clear();
         }
-        this.f15215e = false;
+        this.f15217e = false;
     }
 
     public final ByteBuffer i(int i10) {
         int capacity;
-        int i11 = this.f15217n;
+        int i11 = this.f15219n;
         if (i11 == 1) {
             return ByteBuffer.allocate(i10);
         }
@@ -53,7 +53,7 @@ public class i extends a {
     }
 
     public final void j(int i10) {
-        int i11 = i10 + this.f15218r;
+        int i11 = i10 + this.f15220r;
         ByteBuffer byteBuffer = this.d;
         if (byteBuffer == null) {
             this.d = i(i11);

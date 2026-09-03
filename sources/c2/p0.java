@@ -45,7 +45,7 @@ public class p0 extends q0 implements h0 {
         this.f2151s = mediaRouter;
         this.v = new g0(this);
         this.f2152w = j0.a(this);
-        this.f2153x = mediaRouter.createRouteCategory((CharSequence) context.getResources().getString(2131689647), false);
+        this.f2153x = mediaRouter.createRouteCategory((CharSequence) context.getResources().getString(2131689645), false);
         B();
     }
 

@@ -18,15 +18,15 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class q6 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final int f30287a;
-    public final g90 f30288b;
-    public final Runnable f30289c;
+    public final int f30295a;
+    public final g90 f30296b;
+    public final Runnable f30297c;
 
     public q6(Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var, Runnable runnable, org.telegram.ui.zi ziVar) {
         super(context);
         int i11;
-        this.f30287a = i10;
-        this.f30289c = runnable;
+        this.f30295a = i10;
+        this.f30297c = runnable;
         ContactsController.getInstance(i10).loadGlobalPrivacySetting();
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -43,15 +43,15 @@ public final class q6 extends FrameLayout implements NotificationCenter.Notifica
         linearLayout.addView(imageView, k7.c6.t(80, 80, 49, 0, i11, 0, 14));
         TextView textView = new TextView(context);
         textView.setTextSize(1, 20.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21766j5, g6Var));
+        textView.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21768j5, g6Var));
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(1);
         textView.setText(LocaleController.getString(R.string.ArchiveHintHeader1));
         linearLayout.addView(textView, k7.c6.t(-1, -2, 1, 32, 0, 32, 9));
         g90 g90Var = new g90(context, null);
-        this.f30288b = g90Var;
+        this.f30296b = g90Var;
         g90Var.setTextSize(1, 14.0f);
-        g90Var.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f22053z6, g6Var));
+        g90Var.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f22055z6, g6Var));
         g90Var.setGravity(1);
         b();
         linearLayout.addView(g90Var, k7.c6.t(-1, -2, 1, 32, 0, 32, 25));
@@ -69,7 +69,7 @@ public final class q6 extends FrameLayout implements NotificationCenter.Notifica
     public final FrameLayout a(int i10, String str, String str2, org.telegram.ui.ActionBar.g6 g6Var) {
         FrameLayout frameLayout = new FrameLayout(getContext());
         ImageView imageView = new ImageView(getContext());
-        int i11 = org.telegram.ui.ActionBar.k6.f21766j5;
+        int i11 = org.telegram.ui.ActionBar.k6.f21768j5;
         imageView.setColorFilter(org.telegram.ui.ActionBar.k6.v0(i11, g6Var));
         imageView.setImageResource(i10);
         frameLayout.addView(imageView, k7.c6.d(24, 24.0f, 51, 0.0f, 8.0f, 0.0f, 0.0f));
@@ -82,7 +82,7 @@ public final class q6 extends FrameLayout implements NotificationCenter.Notifica
         textView.setText(str);
         linearLayout.addView(textView, k7.c6.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
         TextView textView2 = new TextView(getContext());
-        textView2.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f22053z6, g6Var));
+        textView2.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f22055z6, g6Var));
         textView2.setTextSize(0, AndroidUtilities.dp(14.0f));
         textView2.setText(str2);
         linearLayout.addView(textView2, k7.c6.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
@@ -93,7 +93,7 @@ public final class q6 extends FrameLayout implements NotificationCenter.Notifica
     public final void b() {
         boolean z4;
         String str;
-        TLRPC.GlobalPrivacySettings globalPrivacySettings = ContactsController.getInstance(this.f30287a).getGlobalPrivacySettings();
+        TLRPC.GlobalPrivacySettings globalPrivacySettings = ContactsController.getInstance(this.f30295a).getGlobalPrivacySettings();
         if (globalPrivacySettings != null) {
             z4 = globalPrivacySettings.keep_archived_unmuted;
         } else {
@@ -105,8 +105,8 @@ public final class q6 extends FrameLayout implements NotificationCenter.Notifica
             str = "ArchiveHintSubtitleUnmutedMove";
         }
         String string = LocaleController.getString(str);
-        int i10 = org.telegram.ui.ActionBar.k6.f21720gc;
-        SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(string, i10, 0, this.f30289c);
+        int i10 = org.telegram.ui.ActionBar.k6.f21722gc;
+        SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(string, i10, 0, this.f30297c);
         SpannableString spannableString = new SpannableString(">");
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
@@ -116,7 +116,7 @@ public final class q6 extends FrameLayout implements NotificationCenter.Notifica
         oqVar.setWidth(AndroidUtilities.dp(11.0f));
         oqVar.setTranslateX(-AndroidUtilities.dp(5.0f));
         spannableString.setSpan(oqVar, 0, spannableString.length(), 33);
-        this.f30288b.setText(AndroidUtilities.replaceCharSequence(">", replaceSingleTag, spannableString));
+        this.f30296b.setText(AndroidUtilities.replaceCharSequence(">", replaceSingleTag, spannableString));
     }
 
     @Override
@@ -129,14 +129,14 @@ public final class q6 extends FrameLayout implements NotificationCenter.Notifica
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f30287a).addObserver(this, NotificationCenter.privacyRulesUpdated);
+        NotificationCenter.getInstance(this.f30295a).addObserver(this, NotificationCenter.privacyRulesUpdated);
         b();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f30287a).removeObserver(this, NotificationCenter.privacyRulesUpdated);
+        NotificationCenter.getInstance(this.f30295a).removeObserver(this, NotificationCenter.privacyRulesUpdated);
     }
 
     @Override

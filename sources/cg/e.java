@@ -2,8 +2,8 @@ package cg;
 
 import android.graphics.Canvas;
 import org.telegram.ui.Cells.d8;
-import org.telegram.ui.Components.tl0;
-public abstract class e extends tl0 {
+import org.telegram.ui.Components.sl0;
+public abstract class e extends sl0 {
     public boolean U2;
 
     @Override

@@ -11,19 +11,19 @@ import ld.v;
 import ld.w0;
 import ld.x;
 public final class k {
-    public static final n1.d f15906c = new n1.d("firebase_sessions_enabled");
+    public static final n1.d f15908c = new n1.d("firebase_sessions_enabled");
     public static final n1.d d = new n1.d("firebase_sessions_sampling_rate");
-    public static final n1.d f15907e = new n1.d("firebase_sessions_restart_timeout");
-    public static final n1.d f15908f = new n1.d("firebase_sessions_cache_duration");
-    public static final n1.d f15909g = new n1.d("firebase_sessions_cache_updated_time");
-    public final k1.g f15910a;
-    public e f15911b;
+    public static final n1.d f15909e = new n1.d("firebase_sessions_restart_timeout");
+    public static final n1.d f15910f = new n1.d("firebase_sessions_cache_duration");
+    public static final n1.d f15911g = new n1.d("firebase_sessions_cache_updated_time");
+    public final k1.g f15912a;
+    public e f15913b;
 
     public k(k1.g gVar) {
         Object obj;
         uc.h hVar;
         long j10;
-        this.f15910a = gVar;
+        this.f15912a = gVar;
         p cVar = new k1.c(this, (uc.c) null, 6);
         Thread currentThread = Thread.currentThread();
         w0 a2 = c2.a();
@@ -31,7 +31,7 @@ public final class k {
         if (!booleanValue) {
             hVar = a2;
         } else {
-            uc.i iVar = uc.i.f48480a;
+            uc.i iVar = uc.i.f48516a;
             if (booleanValue) {
                 obj = a2.fold(iVar, x.f12375c);
             } else {
@@ -41,7 +41,7 @@ public final class k {
             iVar.plus(hVar);
         }
         sd.e eVar = m0.f12331a;
-        if (hVar != eVar && hVar.get(uc.d.f48479a) == null) {
+        if (hVar != eVar && hVar.get(uc.d.f48515a) == null) {
             hVar = hVar.plus(eVar);
         }
         ld.h hVar2 = new ld.h(hVar, currentThread, a2);
@@ -87,13 +87,13 @@ public final class k {
 
     public static final void a(k kVar, n1.b bVar) {
         kVar.getClass();
-        kVar.f15911b = new e((Boolean) bVar.a(f15906c), (Double) bVar.a(d), (Integer) bVar.a(f15907e), (Integer) bVar.a(f15908f), (Long) bVar.a(f15909g));
+        kVar.f15913b = new e((Boolean) bVar.a(f15908c), (Double) bVar.a(d), (Integer) bVar.a(f15909e), (Integer) bVar.a(f15910f), (Long) bVar.a(f15911g));
     }
 
     public final boolean b() {
-        e eVar = this.f15911b;
+        e eVar = this.f15913b;
         if (eVar != null) {
-            Long l10 = eVar.f15892e;
+            Long l10 = eVar.f15894e;
             if (eVar != null) {
                 Integer num = eVar.d;
                 if (l10 != null && num != null && (System.currentTimeMillis() - l10.longValue()) / 1000 < num.intValue()) {

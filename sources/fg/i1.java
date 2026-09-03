@@ -14,10 +14,10 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.h3;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.g90;
-import org.telegram.ui.ed1;
-import org.telegram.ui.rw0;
+import org.telegram.ui.jd1;
 import org.telegram.ui.v70;
-import qh.f3;
+import org.telegram.ui.ww0;
+import qh.e3;
 public final class i1 extends m2.a {
     public final int f6338c;
     public final NotificationCenter.NotificationCenterDelegate d;
@@ -50,7 +50,7 @@ public final class i1 extends m2.a {
             case 1:
                 return ((v70) this.d).C.length;
             default:
-                if (((ed1) this.d).f36489b != 0) {
+                if (((jd1) this.d).f37964b != 0) {
                     return 1;
                 }
                 return 2;
@@ -82,10 +82,10 @@ public final class i1 extends m2.a {
                 m1 m1Var = new m1(n1Var, n1Var.getContext(), i10);
                 hVar.addView(m1Var);
                 m1Var.f6390a = i10;
-                rw0 rw0Var = (rw0) n1Var.d.get(i10);
-                int i12 = rw0Var.f41056a;
-                String str = rw0Var.d;
-                CharSequence charSequence = rw0Var.f41058c;
+                ww0 ww0Var = (ww0) n1Var.d.get(i10);
+                int i12 = ww0Var.f42867a;
+                String str = ww0Var.d;
+                CharSequence charSequence = ww0Var.f42869c;
                 int i13 = 8;
                 TextView textView = m1Var.f6391b;
                 g90 g90Var = m1Var.f6392c;
@@ -145,9 +145,9 @@ public final class i1 extends m2.a {
                     g90Var.setText("");
                     m1Var.h = true;
                 }
-                g90Var.setMaxWidth(f3.a(g90Var.getText(), g90Var.getPaint()));
+                g90Var.setMaxWidth(e3.a(g90Var.getText(), g90Var.getPaint()));
                 m1Var.requestLayout();
-                if (rw0Var.f41056a == 40) {
+                if (ww0Var.f42867a == 40) {
                     z4 = true;
                 } else {
                     z4 = false;
@@ -192,9 +192,9 @@ public final class i1 extends m2.a {
             case 1:
                 TextView textView2 = new TextView(hVar.getContext());
                 v70 v70Var = (v70) this.d;
-                textView2.setTag(v70Var.f42139a);
+                textView2.setTag(v70Var.f42018a);
                 TextView textView3 = new TextView(hVar.getContext());
-                textView3.setTag(v70Var.f42140b);
+                textView3.setTag(v70Var.f42019b);
                 ag.l lVar = new ag.l(hVar.getContext(), textView2, textView3);
                 int i15 = k6.G6;
                 textView2.setTextColor(k6.w0(null, i15, false));
@@ -212,11 +212,11 @@ public final class i1 extends m2.a {
                 textView3.setText(AndroidUtilities.replaceTags(v70Var.D[i10]));
                 return lVar;
             default:
-                ed1 ed1Var = (ed1) this.d;
+                jd1 jd1Var = (jd1) this.d;
                 if (i10 == 0) {
-                    view = ed1Var.f36528q0;
+                    view = jd1Var.f38003q0;
                 } else {
-                    view = ed1Var.f36515j0;
+                    view = jd1Var.f37990j0;
                 }
                 hVar.addView(view);
                 return view;
@@ -246,7 +246,7 @@ public final class i1 extends m2.a {
         switch (this.f6338c) {
             case 1:
                 v70 v70Var = (v70) this.d;
-                v70Var.f42142e.setCurrentPage(i10);
+                v70Var.f42021e.setCurrentPage(i10);
                 v70Var.E = i10;
                 return;
             default:

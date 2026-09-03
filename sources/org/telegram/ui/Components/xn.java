@@ -1,75 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.mf1;
-public final class xn extends p9 {
-    public final org.telegram.ui.Cells.l6 D;
-    public final org.telegram.ui.ActionBar.p2 E;
-    public final boolean F;
-    public final org.telegram.ui.ActionBar.g6 G;
-    public final bo H;
+import org.telegram.tgnet.TLRPC;
+public final class xn implements g8 {
+    public final org.telegram.ui.ActionBar.p1[] f33140a;
+    public final ao f33141b;
 
-    public xn(bo boVar, Context context, org.telegram.ui.ActionBar.p2 p2Var, boolean z4, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context);
-        this.H = boVar;
-        this.E = p2Var;
-        this.F = z4;
-        this.G = g6Var;
-        this.D = new org.telegram.ui.Cells.l6(this);
+    public xn(ao aoVar, org.telegram.ui.ActionBar.p1[] p1VarArr) {
+        this.f33141b = aoVar;
+        this.f33140a = p1VarArr;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        long j10;
-        bo boVar = this.H;
-        if (boVar.f25663b && this.f30001e == null) {
-            org.telegram.ui.Cells.l6 l6Var = this.D;
-            l6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            l6Var.f17223a = true;
-            l6Var.v = true;
-            l6Var.J = this.G;
-            Integer num = boVar.f25665c;
-            if (num != null) {
-                l6Var.f17245z = num.intValue();
-            }
-            org.telegram.ui.xn xnVar = boVar.D;
-            if (xnVar != null) {
-                j10 = xnVar.a();
-            } else {
-                org.telegram.ui.ActionBar.p2 p2Var = this.E;
-                if (p2Var instanceof mf1) {
-                    j10 = -((mf1) p2Var).f39102a;
-                } else {
-                    j10 = 0;
+    public final void Q0(int i10, int i11) {
+        int i12;
+        org.telegram.ui.xn xnVar = this.f33141b.D;
+        if (xnVar != null) {
+            xnVar.getMessagesController().setDialogHistoryTTL(xnVar.a(), i10);
+            TLRPC.ChatFull chatFull = xnVar.W7;
+            TLRPC.UserFull userFull = xnVar.X7;
+            if (userFull != null || chatFull != null) {
+                xnVar.Q7();
+                UndoView undoView = xnVar.f43356v3;
+                if (undoView != null) {
+                    long a2 = xnVar.a();
+                    TLRPC.User i13 = xnVar.i();
+                    if (userFull != null) {
+                        i12 = userFull.ttl_period;
+                    } else {
+                        i12 = chatFull.ttl_period;
+                    }
+                    undoView.k(a2, i11, i13, Integer.valueOf(i12), null, null);
                 }
             }
-            oh.m7.h(j10, canvas, this.f29998a, l6Var);
-            return;
         }
-        super.onDraw(canvas);
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.F && getImageReceiver().hasNotThumb()) {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
-            return;
+    public final void dismiss() {
+        org.telegram.ui.ActionBar.p1 p1Var = this.f33140a[0];
+        if (p1Var != null) {
+            p1Var.dismiss();
         }
-        accessibilityNodeInfo.setVisibleToUser(false);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.H.f25663b && this.D.a(motionEvent, this)) {
-            return true;
-        }
-        return super.onTouchEvent(motionEvent);
+    public final void h1() {
     }
 }

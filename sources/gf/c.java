@@ -61,11 +61,11 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.p2;
 import org.telegram.ui.Cells.g5;
 import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.or0;
 import org.telegram.ui.Components.p9;
-import org.telegram.ui.Components.pr0;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.sl0;
 import org.telegram.ui.Components.xh0;
 import org.telegram.ui.Components.xk;
 import org.telegram.ui.ProfileActivity;
@@ -148,7 +148,7 @@ public final class c implements Runnable {
                 return;
             case 9:
                 ic M = qc.a0((xn) this.f7031b).M(LocaleController.getString(R.string.StarsGiveawaySentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsGiveawaySentPopupInfo", (int) ((TL_stars.TL_starsGiveawayOption) this.f7032c).stars)), R.raw.stars_send);
-                M.f27745j = 5000;
+                M.f27778j = 5000;
                 M.k(true);
                 return;
             case 10:
@@ -186,14 +186,14 @@ public final class c implements Runnable {
             case 16:
                 f0 f0Var2 = (f0) this.f7031b;
                 ye.f fVar3 = (ye.f) this.f7032c;
-                int i16 = f0Var2.F - fVar3.f50868c;
+                int i16 = f0Var2.F - fVar3.f50904c;
                 f0Var2.F = i16;
                 if (fVar3.d) {
-                    f0Var2.G = fVar3.f50869e;
+                    f0Var2.G = fVar3.f50905e;
                     f0Var2.H = true;
                 }
-                if (fVar3.f50870f) {
-                    f0Var2.I = fVar3.f50871g;
+                if (fVar3.f50906f) {
+                    f0Var2.I = fVar3.f50907g;
                 }
                 if (i16 == 0) {
                     o2 o2Var = ((u1) fVar3.h).f9426a;
@@ -225,7 +225,7 @@ public final class c implements Runnable {
                                 u1 u1Var = (u1) fVar3.h;
                                 v vVar = u1Var.f9427b;
                                 long j12 = u1Var.d;
-                                Object obj = vVar.f16579a;
+                                Object obj = vVar.f16581a;
                                 m2 m2Var = f0Var2.f9125n;
                                 o2Var.g(obj, m2Var);
                                 j11 = j12 + m2Var.f9286e;
@@ -251,7 +251,7 @@ public final class c implements Runnable {
                 while (i11 < size) {
                     Object obj2 = arrayList2.get(i11);
                     i11++;
-                    ((k71) ((t) obj2)).G.onSurfaceTextureUpdated(surfaceTexture);
+                    ((j71) ((t) obj2)).G.onSurfaceTextureUpdated(surfaceTexture);
                 }
                 return;
             case 18:
@@ -276,7 +276,7 @@ public final class c implements Runnable {
                     }
                     if (user.photo != null && !z12) {
                         if (vVar2.f11320s == null) {
-                            kh.u uVar = new kh.u(vVar2, p2Var.getParentActivity(), (tl0) g5Var.getParent(), p2Var.getResourceProvider(), vVar2.f11304a);
+                            kh.u uVar = new kh.u(vVar2, p2Var.getParentActivity(), (sl0) g5Var.getParent(), p2Var.getResourceProvider(), vVar2.f11304a);
                             vVar2.f11320s = uVar;
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = vVar2.f11319r;
                             p9 avatarImageView = g5Var.getAvatarImageView();
@@ -312,7 +312,7 @@ public final class c implements Runnable {
                     p2Var.dismissCurrentDialog();
                     Bundle bundle = new Bundle();
                     ProfileActivity profileActivity = new ProfileActivity(bundle, null);
-                    bundle.putLong("user_id", user.f20990id);
+                    bundle.putLong("user_id", user.f20992id);
                     bundle.putBoolean("removeFragmentOnChatOpen", false);
                     p2Var.presentFragment(profileActivity);
                     return;
@@ -375,29 +375,29 @@ public final class c implements Runnable {
                 }
                 return;
             case 25:
-                pr0 pr0Var = (pr0) this.f7031b;
+                or0 or0Var = (or0) this.f7031b;
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f7032c;
-                pr0Var.h(tL_starGiftCollection.title, new a1(2, pr0Var, tL_starGiftCollection));
+                or0Var.h(tL_starGiftCollection.title, new a1(2, or0Var, tL_starGiftCollection));
                 return;
             case 26:
                 AndroidUtilities.addToClipboard((String) this.f7032c);
-                qc.a0(((n3) this.f7031b).f12860a.f13098a).k(false).j();
+                qc.a0(((n3) this.f7031b).f12862a.f13100a).k(false).j();
                 return;
             case 27:
                 x xVar = (x) this.f7031b;
                 TLObject tLObject = (TLObject) this.f7032c;
-                int i22 = xVar.f15018a;
-                ArrayList arrayList3 = xVar.f15021e;
-                xVar.f15024i = 0;
+                int i22 = xVar.f15020a;
+                ArrayList arrayList3 = xVar.f15023e;
+                xVar.f15026i = 0;
                 if (tLObject instanceof TL_payments.connectedStarRefBots) {
                     TL_payments.connectedStarRefBots connectedstarrefbots = (TL_payments.connectedStarRefBots) tLObject;
                     MessagesController.getInstance(i22).putUsers(connectedstarrefbots.users, false);
-                    if (xVar.f15020c <= 0) {
+                    if (xVar.f15022c <= 0) {
                         arrayList3.clear();
                     }
-                    xVar.f15020c = connectedstarrefbots.count;
+                    xVar.f15022c = connectedstarrefbots.count;
                     arrayList3.addAll(connectedstarrefbots.connected_bots);
-                    if (!connectedstarrefbots.connected_bots.isEmpty() && arrayList3.size() < xVar.f15020c) {
+                    if (!connectedstarrefbots.connected_bots.isEmpty() && arrayList3.size() < xVar.f15022c) {
                         z13 = false;
                     } else {
                         z13 = true;
@@ -407,35 +407,35 @@ public final class c implements Runnable {
                     xVar.h = true;
                     xVar.d = true;
                 }
-                xVar.f15023g = false;
-                NotificationCenter.getInstance(i22).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(xVar.f15019b));
+                xVar.f15025g = false;
+                NotificationCenter.getInstance(i22).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(xVar.f15021b));
                 return;
             case 28:
                 mh.y yVar2 = (mh.y) this.f7031b;
                 TLObject tLObject2 = (TLObject) this.f7032c;
-                int i23 = yVar2.f15068a;
-                ArrayList arrayList4 = yVar2.f15071e;
+                int i23 = yVar2.f15070a;
+                ArrayList arrayList4 = yVar2.f15073e;
                 if (tLObject2 instanceof TL_payments.suggestedStarRefBots) {
                     TL_payments.suggestedStarRefBots suggestedstarrefbots = (TL_payments.suggestedStarRefBots) tLObject2;
                     MessagesController.getInstance(i23).putUsers(suggestedstarrefbots.users, false);
-                    if (yVar2.f15070c <= 0) {
+                    if (yVar2.f15072c <= 0) {
                         arrayList4.clear();
                     }
-                    yVar2.f15070c = suggestedstarrefbots.count;
+                    yVar2.f15072c = suggestedstarrefbots.count;
                     arrayList4.addAll(suggestedstarrefbots.suggested_bots);
-                    yVar2.f15075j = suggestedstarrefbots.next_offset;
-                    if (!suggestedstarrefbots.suggested_bots.isEmpty() && arrayList4.size() < yVar2.f15070c) {
+                    yVar2.f15077j = suggestedstarrefbots.next_offset;
+                    if (!suggestedstarrefbots.suggested_bots.isEmpty() && arrayList4.size() < yVar2.f15072c) {
                         z14 = false;
                     } else {
                         z14 = true;
                     }
                     yVar2.d = z14;
                 } else {
-                    yVar2.f15074i = true;
+                    yVar2.f15076i = true;
                     yVar2.d = true;
                 }
                 yVar2.h = false;
-                NotificationCenter.getInstance(i23).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelSuggestedBotsUpdate, Long.valueOf(yVar2.f15069b));
+                NotificationCenter.getInstance(i23).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelSuggestedBotsUpdate, Long.valueOf(yVar2.f15071b));
                 return;
             default:
                 mh.g5.U0((mh.g5) this.f7031b, (Long) this.f7032c);

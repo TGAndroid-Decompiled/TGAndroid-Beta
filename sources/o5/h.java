@@ -10,10 +10,10 @@ import com.google.android.gms.auth.api.signin.internal.SignInHubActivity;
 import com.google.android.gms.common.api.m;
 import java.util.Set;
 public abstract class h {
-    public static final e0 f16612a = new e0("GoogleSignInCommon", new String[0]);
+    public static final e0 f16614a = new e0("GoogleSignInCommon", new String[0]);
 
     public static Intent a(Context context, GoogleSignInOptions googleSignInOptions) {
-        f16612a.g("getSignInIntent()", new Object[0]);
+        f16614a.g("getSignInIntent()", new Object[0]);
         SignInConfiguration signInConfiguration = new SignInConfiguration(context.getPackageName(), googleSignInOptions);
         Intent intent = new Intent("com.google.android.gms.auth.GOOGLE_SIGN_IN");
         intent.setPackage(context.getPackageName());

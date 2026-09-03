@@ -13,12 +13,12 @@ public abstract class r {
     public static zzd a(mb.e eVar) {
         nb.b bVar = (nb.b) cb.h.c().a(nb.b.class);
         xf b10 = zf.b();
-        ?? mobileVisionBase = new MobileVisionBase((nb.e) bVar.f15915a.F(eVar), (Executor) bVar.f15916b.f2405a.get());
+        ?? mobileVisionBase = new MobileVisionBase((nb.e) bVar.f15917a.F(eVar), (Executor) bVar.f15918b.f2405a.get());
         ?? obj = new Object();
-        obj.f13329c = gb.TYPE_THIN;
+        obj.f13331c = gb.TYPE_THIN;
         n7.qa qaVar = new n7.qa(1);
-        qaVar.f15700c = eVar.a();
-        qaVar.f15699b = hb.NO_ERROR;
+        qaVar.f15702c = eVar.a();
+        qaVar.f15701b = hb.NO_ERROR;
         obj.d = new de(qaVar);
         cb.o.f2429a.execute(new c2.p(b10, new b4.e0((m.r3) obj, 1), ib.ON_DEVICE_SUBJECT_SEGMENTATION_CREATE, b10.c(), false, 7));
         return mobileVisionBase;

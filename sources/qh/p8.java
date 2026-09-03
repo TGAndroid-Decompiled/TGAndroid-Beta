@@ -1,35 +1,40 @@
 package qh;
-public final class p8 implements Runnable {
-    public final int f45883a;
-    public final ca f45884b;
-    public final boolean f45885c;
 
-    public p8(ca caVar, boolean z4, int i10) {
-        this.f45883a = i10;
-        this.f45884b = caVar;
-        this.f45885c = z4;
+import android.animation.ValueAnimator;
+public final class p8 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f45899a;
+    public final ba f45900b;
+
+    public p8(ba baVar, int i10) {
+        this.f45899a = i10;
+        this.f45900b = baVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f45883a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f45899a) {
             case 0:
-                this.f45884b.f(this.f45885c);
+                this.f45900b.J0.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
-                ca caVar = this.f45884b;
-                if (!this.f45885c) {
-                    caVar.G0.b(false, false);
-                    return;
-                } else {
-                    caVar.getClass();
-                    return;
-                }
+                this.f45900b.f45086o1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 2:
+                this.f45900b.f45086o1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 3:
+                this.f45900b.f45089p1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 4:
+                this.f45900b.f45089p1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
             default:
-                ca caVar2 = this.f45884b;
-                caVar2.O = null;
-                caVar2.f45088e = false;
-                caVar2.q(this.f45885c);
+                ba baVar = this.f45900b;
+                baVar.getClass();
+                baVar.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                baVar.o();
+                baVar.f45094r.invalidate();
+                baVar.f45081n.invalidate();
                 return;
         }
     }

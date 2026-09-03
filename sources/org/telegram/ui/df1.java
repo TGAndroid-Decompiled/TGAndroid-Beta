@@ -1,25 +1,27 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class df1 extends cg.b {
-    public final TLRPC.TL_forumTopic f36216c;
+import android.content.Context;
+import java.util.ArrayList;
+public final class df1 extends qf1 {
+    public final sf1 f36181f3;
 
-    public df1(int i10, TLRPC.TL_forumTopic tL_forumTopic) {
-        super(i10, true);
-        this.f36216c = tL_forumTopic;
+    public df1(sf1 sf1Var, Context context) {
+        super(sf1Var, context);
+        this.f36181f3 = sf1Var;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final boolean R0() {
+        ArrayList arrayList = this.f36181f3.f41191b;
+        if (getAdapter() == null || this.U1 || (arrayList == null || arrayList.size() != 1 || arrayList.get(0) == null || ((jf1) arrayList.get(0)).f38044c == null || ((jf1) arrayList.get(0)).f38044c.f20897id != 1 ? getAdapter().h() > 1 : getAdapter().h() > 2)) {
+            return false;
         }
-        if (obj != null && df1.class == obj.getClass()) {
-            df1 df1Var = (df1) obj;
-            int i10 = this.f2505a;
-            if (i10 == df1Var.f2505a && i10 == 0 && this.f36216c.f20895id == df1Var.f36216c.f20895id) {
-                return true;
-            }
-        }
-        return false;
+        return true;
+    }
+
+    @Override
+    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
+        super.onLayout(z4, i10, i11, i12, i13);
+        this.f36181f3.y0();
     }
 }

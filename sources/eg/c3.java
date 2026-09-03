@@ -2,7 +2,7 @@ package eg;
 
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MediaController;
-import org.telegram.ui.Components.b11;
+import org.telegram.ui.Components.a11;
 public final class c3 implements Runnable {
     public final int f5141a;
     public final o3 f5142b;
@@ -32,10 +32,10 @@ public final class c3 implements Runnable {
                 return;
             default:
                 o3 o3Var2 = this.f5142b;
-                b11 b11Var = o3Var2.P;
-                if (b11Var != null) {
+                a11 a11Var = o3Var2.P;
+                if (a11Var != null) {
                     o3Var2.P = null;
-                    o3Var2.removeView(b11Var);
+                    o3Var2.removeView(a11Var);
                     return;
                 }
                 return;

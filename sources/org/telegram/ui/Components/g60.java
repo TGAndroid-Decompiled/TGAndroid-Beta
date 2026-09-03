@@ -7,15 +7,15 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class g60 extends FrameLayout {
-    public final RectF f27123a;
-    public boolean f27124b;
-    public Boolean f27125c;
+    public final RectF f27107a;
+    public boolean f27108b;
+    public Boolean f27109c;
     public final u60 d;
 
     public g60(u60 u60Var, Context context) {
         super(context);
         this.d = u60Var;
-        this.f27123a = new RectF();
+        this.f27107a = new RectF();
     }
 
     @Override
@@ -54,7 +54,7 @@ public final class g60 extends FrameLayout {
         setPadding(i12, i14, i13, 0);
         u60Var.X = false;
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-        this.f27124b = true;
+        this.f27108b = true;
     }
 
     @Override

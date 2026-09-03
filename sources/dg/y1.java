@@ -131,7 +131,7 @@ public final class y1 {
         this.d = false;
         if (this.h && (arrayList = this.f4733i) != null) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f4731f);
-            alertDialog$Builder.f21166a.O = "Shape?";
+            alertDialog$Builder.f21168a.O = "Shape?";
             alertDialog$Builder.f(new String[]{"Log all", "Circle", "Rectangle", "Star", "Bubble", "Arrow", "None"}, new t1(0, this, arrayList));
             alertDialog$Builder.o();
             this.f4733i = null;

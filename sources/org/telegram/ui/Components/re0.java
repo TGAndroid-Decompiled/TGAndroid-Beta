@@ -16,10 +16,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class re0 {
-    public final ue0 f30692a;
+    public final ue0 f30739a;
 
     public re0(ue0 ue0Var) {
-        this.f30692a = ue0Var;
+        this.f30739a = ue0Var;
     }
 
     public final ViewGroup a(Context context, int i10) {
@@ -50,7 +50,7 @@ public final class re0 {
         int i23;
         int i24;
         int i25;
-        ue0 ue0Var = this.f30692a;
+        ue0 ue0Var = this.f30739a;
         ArrayList arrayList = ue0Var.I;
         ArrayList arrayList2 = ue0Var.J;
         if (i10 == 0) {
@@ -106,7 +106,7 @@ public final class re0 {
             frameLayout.addView(textView, k7.c6.d(-1, -1.0f, i28, f10, 10.0f, f11, 0.0f));
             TextView textView2 = new TextView(context);
             frameLayout.f31045b = textView2;
-            textView2.setTextColor(ue0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f22053z6));
+            textView2.setTextColor(ue0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f22055z6));
             textView2.setTextSize(1, 13.0f);
             textView2.setLines(1);
             textView2.setMaxLines(1);
@@ -147,7 +147,7 @@ public final class re0 {
             ImageView imageView = new ImageView(context);
             frameLayout.f31046c = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            imageView.setColorFilter(new PorterDuffColorFilter(ue0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21821m6), PorterDuff.Mode.MULTIPLY));
+            imageView.setColorFilter(new PorterDuffColorFilter(ue0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21823m6), PorterDuff.Mode.MULTIPLY));
             boolean z15 = LocaleController.isRTL;
             if (z15) {
                 i22 = 5;
@@ -172,7 +172,7 @@ public final class re0 {
                 frameLayout.d = r92;
                 int i30 = org.telegram.ui.ActionBar.k6.M6;
                 int i31 = org.telegram.ui.ActionBar.k6.N6;
-                int i32 = org.telegram.ui.ActionBar.k6.f21659d6;
+                int i32 = org.telegram.ui.ActionBar.k6.f21661d6;
                 r92.d(i30, i31, i32, i32);
                 if (LocaleController.isRTL) {
                     i23 = 3;
@@ -209,7 +209,7 @@ public final class re0 {
             linearLayout2.addView(p9Var, k7.c6.t(80, 80, 49, 0, 32, 0, 0));
             TextView textView3 = new TextView(context);
             org.telegram.ui.b.g(17.0f, 1, textView3);
-            textView3.setTextColor(ue0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21766j5));
+            textView3.setTextColor(ue0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21768j5));
             textView3.setSingleLine(true);
             TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
             textView3.setEllipsize(truncateAt);
@@ -223,7 +223,7 @@ public final class re0 {
             linearLayout = linearLayout2;
             if (str != null) {
                 TextView g10 = org.telegram.messenger.y3.g(context, 1, 14.0f);
-                g10.setTextColor(ue0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21911r5));
+                g10.setTextColor(ue0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21913r5));
                 g10.setSingleLine(true);
                 g10.setEllipsize(truncateAt);
                 g10.setText(str);

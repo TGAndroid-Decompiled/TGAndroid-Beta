@@ -38,7 +38,7 @@ public final class y extends FrameLayout {
         this.v = new z5(this, 0L, 500L, pr.h);
         Drawable mutate = context.getResources().getDrawable(R.drawable.star_small_outline).mutate();
         this.f10080b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21731h5, g6Var), PorterDuff.Mode.SRC_IN));
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21733h5, g6Var), PorterDuff.Mode.SRC_IN));
         this.f10081c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
         setWillNotDraw(false);
         k6 k6Var = new k6(context, false, false, false);
@@ -52,7 +52,7 @@ public final class y extends FrameLayout {
         spannableString.setSpan(new l90(AndroidUtilities.dp(90.0f), k6Var), 0, 1, 33);
         k6 k6Var2 = new k6(context, false, true, true);
         this.f10082e = k6Var2;
-        int i10 = org.telegram.ui.ActionBar.k6.f22053z6;
+        int i10 = org.telegram.ui.ActionBar.k6.f22055z6;
         k6Var2.setTextColor(org.telegram.ui.ActionBar.k6.v0(i10, g6Var));
         k6Var2.setTextSize(AndroidUtilities.dp(13.0f));
         addView(k6Var2, c6.d(-1, 14.0f, 51, 64.0f, 31.0f, 80.0f, 0.0f));
@@ -67,7 +67,7 @@ public final class y extends FrameLayout {
         RadioButton radioButton = new RadioButton(context);
         this.f10079a = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        radioButton.b(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21768j7, g6Var), org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.E5, g6Var));
+        radioButton.b(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21770j7, g6Var), org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.E5, g6Var));
         addView(radioButton, c6.d(20, 20.0f, 19, 22.0f, 0.0f, 0.0f, 0.0f));
     }
 

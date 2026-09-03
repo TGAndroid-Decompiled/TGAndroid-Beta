@@ -44,8 +44,8 @@ public final class qd implements View.OnFocusChangeListener {
             case 2:
                 og0 og0Var = ((zd0) this.f40437b).T;
                 if (z4) {
-                    og0Var.f39754c.setEditText((EditText) view);
-                    og0Var.f39754c.setDispatchBackWhenEmpty(true);
+                    og0Var.f39714c.setEditText((EditText) view);
+                    og0Var.f39714c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
@@ -59,7 +59,7 @@ public final class qd implements View.OnFocusChangeListener {
                 cd0Var.b(f11, f11, true);
                 return;
             case 4:
-                org.telegram.ui.Components.cd0 cd0Var2 = ((ie0) this.f40437b).f37818x;
+                org.telegram.ui.Components.cd0 cd0Var2 = ((he0) this.f40437b).f37352x;
                 if (z4) {
                     f12 = 1.0f;
                 } else {
@@ -68,7 +68,7 @@ public final class qd implements View.OnFocusChangeListener {
                 cd0Var2.b(f12, f12, true);
                 return;
             case 5:
-                org.telegram.ui.Components.cd0 cd0Var3 = ((qe0) this.f40437b).f40448b;
+                org.telegram.ui.Components.cd0 cd0Var3 = ((pe0) this.f40437b).f39987b;
                 if (z4) {
                     f13 = 1.0f;
                 } else {
@@ -77,15 +77,15 @@ public final class qd implements View.OnFocusChangeListener {
                 cd0Var3.b(f13, f13, true);
                 return;
             case 6:
-                og0 og0Var2 = ((te0) this.f40437b).f41596y;
+                og0 og0Var2 = ((se0) this.f40437b).f41149y;
                 if (z4) {
-                    og0Var2.f39754c.setEditText((EditText) view);
-                    og0Var2.f39754c.setDispatchBackWhenEmpty(true);
+                    og0Var2.f39714c.setEditText((EditText) view);
+                    og0Var2.f39714c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
             case 7:
-                org.telegram.ui.Components.cd0 cd0Var4 = ((ef0) this.f40437b).f36573a;
+                org.telegram.ui.Components.cd0 cd0Var4 = ((ef0) this.f40437b).f36474a;
                 if (z4) {
                     f14 = 1.0f;
                 } else {
@@ -94,15 +94,15 @@ public final class qd implements View.OnFocusChangeListener {
                 cd0Var4.b(f14, f14, true);
                 return;
             case 8:
-                og0 og0Var3 = ((sf0) this.f40437b).f41271p0;
+                og0 og0Var3 = ((sf0) this.f40437b).f41181p0;
                 if (z4) {
-                    og0Var3.f39754c.setEditText((EditText) view);
-                    og0Var3.f39754c.setDispatchBackWhenEmpty(true);
+                    og0Var3.f39714c.setEditText((EditText) view);
+                    og0Var3.f39714c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
             case 9:
-                org.telegram.ui.Components.cd0 cd0Var5 = ((ng0) this.f40437b).f39430e;
+                org.telegram.ui.Components.cd0 cd0Var5 = ((ng0) this.f40437b).f39346e;
                 if (z4) {
                     f15 = 1.0f;
                 } else {
@@ -120,12 +120,12 @@ public final class qd implements View.OnFocusChangeListener {
                 cd0Var6.b(f16, f16, true);
                 return;
             case 11:
-                jd1 jd1Var = (jd1) this.f40437b;
+                od1 od1Var = (od1) this.f40437b;
                 if (z4) {
-                    jd1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp2)));
+                    od1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp2)));
                     return;
                 } else {
-                    jd1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp)));
+                    od1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp)));
                     return;
                 }
             default:

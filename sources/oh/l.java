@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import org.telegram.ui.hx;
 public final class l extends cg.c {
     public final boolean d;
-    public final hx f17386e;
+    public final hx f17388e;
 
     public l(hx hxVar, boolean z4) {
-        this.f17386e = hxVar;
+        this.f17388e = hxVar;
         this.d = z4;
     }
 
@@ -21,11 +21,11 @@ public final class l extends cg.c {
     public final int h() {
         ArrayList arrayList;
         boolean z4 = this.d;
-        hx hxVar = this.f17386e;
+        hx hxVar = this.f17388e;
         if (z4) {
-            arrayList = hxVar.f17607y;
+            arrayList = hxVar.f17609y;
         } else {
-            arrayList = hxVar.f17605x;
+            arrayList = hxVar.f17607x;
         }
         return arrayList.size();
     }
@@ -33,19 +33,19 @@ public final class l extends cg.c {
     @Override
     public final void v(f2.m1 m1Var, int i10) {
         o oVar = (o) m1Var.f5875a;
-        oVar.f17517b = i10;
+        oVar.f17519b = i10;
         boolean z4 = this.d;
-        hx hxVar = this.f17386e;
+        hx hxVar = this.f17388e;
         if (z4) {
-            oVar.setDialogId(((m) hxVar.f17607y.get(i10)).f17422c);
+            oVar.setDialogId(((m) hxVar.f17609y.get(i10)).f17424c);
         } else {
-            oVar.setDialogId(((m) hxVar.f17605x.get(i10)).f17422c);
+            oVar.setDialogId(((m) hxVar.f17607x.get(i10)).f17424c);
         }
     }
 
     @Override
     public final f2.m1 x(ViewGroup viewGroup, int i10) {
-        o oVar = new o(this.f17386e, viewGroup.getContext());
+        o oVar = new o(this.f17388e, viewGroup.getContext());
         boolean z4 = this.d;
         oVar.K = z4;
         if (z4) {

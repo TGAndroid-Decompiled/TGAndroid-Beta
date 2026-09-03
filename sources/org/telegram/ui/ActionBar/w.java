@@ -22,27 +22,27 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.yh;
 public final class w extends FrameLayout {
     public final ActionBarLayout B;
-    public final Rect f22331a;
-    public boolean f22332b;
-    public int f22333c;
+    public final Rect f22333a;
+    public boolean f22334b;
+    public int f22335c;
     public final Paint d;
-    public int f22334e;
-    public boolean f22335f;
+    public int f22336e;
+    public boolean f22337f;
     public int h;
-    public int f22336n;
-    public LinearGradient f22337r;
-    public final Matrix f22338s;
+    public int f22338n;
+    public LinearGradient f22339r;
+    public final Matrix f22340s;
     public Paint v;
-    public a4 f22339w;
-    public boolean f22340x;
-    public boolean f22341y;
+    public a4 f22341w;
+    public boolean f22342x;
+    public boolean f22343y;
 
     public w(Context context, ActionBarLayout actionBarLayout) {
         super(context);
         this.B = actionBarLayout;
-        this.f22331a = new Rect();
+        this.f22333a = new Rect();
         this.d = new Paint();
-        this.f22338s = new Matrix();
+        this.f22340s = new Matrix();
         setWillNotDraw(false);
     }
 
@@ -52,18 +52,18 @@ public final class w extends FrameLayout {
         int paddingRight = getPaddingRight();
         int paddingBottom = getPaddingBottom();
         Paint l02 = k6.l0(i10);
-        a4 a4Var = a4.f21182c;
-        if (paddingLeft > 0 && this.f22339w != a4Var) {
+        a4 a4Var = a4.f21184c;
+        if (paddingLeft > 0 && this.f22341w != a4Var) {
             canvas2 = canvas;
             canvas2.drawRect(0.0f, 0.0f, paddingLeft + 1, getHeight(), l02);
         } else {
             canvas2 = canvas;
         }
-        if (paddingRight > 0 && this.f22339w != a4Var) {
+        if (paddingRight > 0 && this.f22341w != a4Var) {
             canvas2.drawRect(getWidth() - (paddingRight + 1), 0.0f, getWidth(), getHeight(), l02);
         }
         if (paddingBottom > 0) {
-            if (this.f22339w == a4.f21180a || z4) {
+            if (this.f22341w == a4.f21182a || z4) {
                 canvas2.drawRect(0.0f, getHeight() - (paddingBottom + 1), getWidth(), getHeight(), l02);
             }
         }
@@ -72,7 +72,7 @@ public final class w extends FrameLayout {
     @Override
     public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
         super.addView(view, i10, layoutParams);
-        WeakHashMap weakHashMap = r0.j0.f46438a;
+        WeakHashMap weakHashMap = r0.j0.f46469a;
         r0.z.c(this);
     }
 
@@ -88,14 +88,14 @@ public final class w extends FrameLayout {
             super.dispatchDraw(canvas);
             return;
         }
-        z3 z3Var = actionBarLayout.f21150x;
+        z3 z3Var = actionBarLayout.f21152x;
         boolean z4 = false;
         if (z3Var != null) {
             w02 = z3Var.getInternalNavbarPaint().getColor();
         } else {
-            w02 = k6.w0(null, k6.f21605a7, false);
+            w02 = k6.w0(null, k6.f21607a7, false);
         }
-        if (this == actionBarLayout.f21148w) {
+        if (this == actionBarLayout.f21150w) {
             org.telegram.ui.Components.z5 z5Var = actionBarLayout.Y0;
             r rVar = actionBarLayout.D;
             if (rVar != null && rVar.hasSheet()) {
@@ -103,12 +103,12 @@ public final class w extends FrameLayout {
             }
             float e6 = z5Var.e(z4);
             if (e6 > 0.0f) {
-                a(canvas, this.f22341y, k6.l1(e6, w02));
+                a(canvas, this.f22343y, k6.l1(e6, w02));
             }
         } else {
             p2 lastFragment = actionBarLayout.getLastFragment();
             if (lastFragment != null && !lastFragment.inPreviewMode) {
-                if (this == actionBarLayout.f21143s && this.f22339w != a4.f21180a) {
+                if (this == actionBarLayout.f21145s && this.f22341w != a4.f21182a) {
                     int childCount = getChildCount();
                     int i10 = 0;
                     while (true) {
@@ -141,7 +141,7 @@ public final class w extends FrameLayout {
         if ((!z4 && !actionBarLayout.U) || (motionEvent.getActionMasked() != 0 && motionEvent.getActionMasked() != 5)) {
             if (z4) {
                 try {
-                    if (this != actionBarLayout.f21143s) {
+                    if (this != actionBarLayout.f21145s) {
                     }
                 } catch (Throwable th2) {
                     FileLog.e(th2);
@@ -205,31 +205,31 @@ public final class w extends FrameLayout {
         i11 = 0;
         i12 = 0;
         boolean drawChild = super.drawChild(canvas, view, j10);
-        if (i11 != 0 && (drawable = ActionBarLayout.f21105m1) != null) {
+        if (i11 != 0 && (drawable = ActionBarLayout.f21107m1) != null) {
             int alpha = drawable.getAlpha();
             int i15 = i12 + i11;
-            ActionBarLayout.f21105m1.setBounds(0, i15, getMeasuredWidth(), ActionBarLayout.f21105m1.getIntrinsicHeight() + i15);
-            ActionBarLayout.f21105m1.setAlpha(i10);
-            ActionBarLayout.f21105m1.draw(canvas);
-            ActionBarLayout.f21105m1.setAlpha(alpha);
+            ActionBarLayout.f21107m1.setBounds(0, i15, getMeasuredWidth(), ActionBarLayout.f21107m1.getIntrinsicHeight() + i15);
+            ActionBarLayout.f21107m1.setAlpha(i10);
+            ActionBarLayout.f21107m1.draw(canvas);
+            ActionBarLayout.f21107m1.setAlpha(alpha);
         }
-        if (this.f22341y && this.f22340x && p2Var != null && (i13 = AndroidUtilities.navigationBarHeight) >= AndroidUtilities.dp(32.0f)) {
+        if (this.f22343y && this.f22342x && p2Var != null && (i13 = AndroidUtilities.navigationBarHeight) >= AndroidUtilities.dp(32.0f)) {
             int i16 = (int) (i13 * 1.33f);
             int navigationBarColor = p2Var.getNavigationBarColor();
-            if (i16 != this.h || this.f22336n != navigationBarColor || this.v == null) {
+            if (i16 != this.h || this.f22338n != navigationBarColor || this.v == null) {
                 if (this.v == null) {
                     this.v = new Paint(1);
                 }
-                this.f22336n = navigationBarColor;
+                this.f22338n = navigationBarColor;
                 this.h = i16;
                 LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, i16, new int[]{k6.l1(0.1f, navigationBarColor), k6.l1(1.0f, navigationBarColor)}, new float[]{0.0f, 0.88f}, Shader.TileMode.CLAMP);
-                this.f22337r = linearGradient;
+                this.f22339r = linearGradient;
                 this.v.setShader(linearGradient);
             }
-            Matrix matrix = this.f22338s;
+            Matrix matrix = this.f22340s;
             matrix.reset();
             matrix.postTranslate(0.0f, getHeight() - i16);
-            this.f22337r.setLocalMatrix(matrix);
+            this.f22339r.setLocalMatrix(matrix);
             canvas.drawRect(0.0f, getHeight() - i16, getWidth(), getHeight(), this.v);
         }
         return drawChild;
@@ -246,18 +246,18 @@ public final class w extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        if (this.f22333c != 0) {
-            int i10 = k6.f21659d6;
+        if (this.f22335c != 0) {
+            int i10 = k6.f21661d6;
             int w02 = k6.w0(null, i10, false);
-            int i11 = this.f22334e;
+            int i11 = this.f22336e;
             Paint paint = this.d;
             if (i11 != w02) {
                 int w03 = k6.w0(null, i10, false);
-                this.f22334e = w03;
+                this.f22336e = w03;
                 paint.setColor(w03);
             }
             canvas2 = canvas;
-            canvas2.drawRect(0.0f, (getMeasuredHeight() - this.f22333c) - 3, getMeasuredWidth(), getMeasuredHeight(), paint);
+            canvas2.drawRect(0.0f, (getMeasuredHeight() - this.f22335c) - 3, getMeasuredWidth(), getMeasuredHeight(), paint);
         } else {
             canvas2 = canvas;
         }
@@ -300,7 +300,7 @@ public final class w extends FrameLayout {
             }
         }
         View rootView = getRootView();
-        Rect rect = this.f22331a;
+        Rect rect = this.f22333a;
         getWindowVisibleDisplayFrame(rect);
         int height = rootView.getHeight();
         if (rect.top != 0) {
@@ -311,10 +311,10 @@ public final class w extends FrameLayout {
         if (((height - i15) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top) > 0) {
             z10 = true;
         }
-        this.f22332b = z10;
+        this.f22334b = z10;
         ActionBarLayout actionBarLayout = this.B;
         Runnable runnable = actionBarLayout.d;
-        if (runnable != null && !actionBarLayout.f21143s.f22332b && !actionBarLayout.v.f22332b) {
+        if (runnable != null && !actionBarLayout.f21145s.f22334b && !actionBarLayout.v.f22334b) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
             actionBarLayout.d.run();
             actionBarLayout.d = null;
@@ -334,19 +334,19 @@ public final class w extends FrameLayout {
         } else {
             z4 = false;
         }
-        boolean z10 = this.f22335f;
+        boolean z10 = this.f22337f;
         ActionBarLayout actionBarLayout = this.B;
         if (z10 != z4 && actionBarLayout.y() && (actionBarLayout.h || actionBarLayout.U)) {
-            Runnable runnable = actionBarLayout.f21119e;
+            Runnable runnable = actionBarLayout.f21121e;
             if (runnable != null) {
                 AndroidUtilities.cancelRunOnUIThread(runnable);
-                actionBarLayout.f21119e = null;
+                actionBarLayout.f21121e = null;
             }
             actionBarLayout.l(true, false);
         }
-        this.f22335f = z4;
+        this.f22337f = z4;
         int childCount = getChildCount();
-        getWindowVisibleDisplayFrame(this.f22331a);
+        getWindowVisibleDisplayFrame(this.f22333a);
         o3 o3Var = actionBarLayout.B;
         if (o3Var != null) {
             o3Var.setCurrentAccount(UserConfig.selectedAccount);
@@ -370,8 +370,8 @@ public final class w extends FrameLayout {
             View childAt2 = getChildAt(i16);
             if (!(childAt2 instanceof k)) {
                 if (childAt2 instanceof m2) {
-                    if (actionBarLayout.v(false) <= 0 && this.f22340x) {
-                        i14 = actionBarLayout.f21134k1.d;
+                    if (actionBarLayout.v(false) <= 0 && this.f22342x) {
+                        i14 = actionBarLayout.f21136k1.d;
                     } else {
                         i14 = 0;
                     }
@@ -379,8 +379,8 @@ public final class w extends FrameLayout {
                 } else if (childAt2.getTag(R.id.sheet_attached_to_fragment_tag) == null && !childAt2.getFitsSystemWindows()) {
                     measureChildWithMargins(childAt2, i10, 0, i11, i12);
                 } else {
-                    if (this.f22340x) {
-                        i13 = actionBarLayout.f21134k1.d;
+                    if (this.f22342x) {
+                        i13 = actionBarLayout.f21136k1.d;
                     } else {
                         i13 = 0;
                     }
@@ -404,28 +404,28 @@ public final class w extends FrameLayout {
     }
 
     public void setDrawNavigationBar(boolean z4) {
-        if (this.f22341y != z4) {
-            this.f22341y = z4;
+        if (this.f22343y != z4) {
+            this.f22343y = z4;
             invalidate();
         }
     }
 
     public void setFragmentPanTranslationOffset(int i10) {
-        this.f22333c = i10;
+        this.f22335c = i10;
         invalidate();
     }
 
     public void setShouldHandleBottomInsets(a4 a4Var) {
         boolean z4;
-        if (this.f22339w != a4Var) {
-            this.f22339w = a4Var;
-            if (a4Var != a4.f21180a) {
+        if (this.f22341w != a4Var) {
+            this.f22341w = a4Var;
+            if (a4Var != a4.f21182a) {
                 z4 = true;
             } else {
                 z4 = false;
             }
-            this.f22340x = z4;
-            WeakHashMap weakHashMap = r0.j0.f46438a;
+            this.f22342x = z4;
+            WeakHashMap weakHashMap = r0.j0.f46469a;
             r0.z.c((View) getParent());
         }
     }

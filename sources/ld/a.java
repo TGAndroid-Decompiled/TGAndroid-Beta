@@ -33,7 +33,7 @@ public abstract class a extends u1 implements uc.c, c0 {
                             if (!(pVar instanceof wc.a)) {
                                 kotlin.jvm.internal.j.e(pVar, "<this>");
                                 uc.h hVar2 = this.f12279c;
-                                if (hVar2 == uc.i.f48480a) {
+                                if (hVar2 == uc.i.f48516a) {
                                     cVar = new wc.g(this);
                                 } else {
                                     cVar = new wc.c(this, hVar2);
@@ -45,7 +45,7 @@ public abstract class a extends u1 implements uc.c, c0 {
                                 invoke = pVar.invoke(aVar, this);
                             }
                             qd.a.f(hVar, k10);
-                            if (invoke != vc.a.f48962a) {
+                            if (invoke != vc.a.f48998a) {
                                 resumeWith(invoke);
                                 return;
                             }
@@ -58,7 +58,7 @@ public abstract class a extends u1 implements uc.c, c0 {
                     throw new RuntimeException();
                 }
                 kotlin.jvm.internal.j.e(pVar, "<this>");
-                h8.b(h8.a(pVar, aVar, this)).resumeWith(sc.i.f47243a);
+                h8.b(h8.a(pVar, aVar, this)).resumeWith(sc.i.f47274a);
                 return;
             }
             return;

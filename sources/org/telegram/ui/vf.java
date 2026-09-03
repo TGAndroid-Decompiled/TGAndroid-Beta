@@ -6,26 +6,26 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class vf implements org.telegram.ui.Components.zj0 {
-    public final int f42220a;
-    public final xn f42221b;
-    public final boolean f42222c;
+public final class vf implements org.telegram.ui.Components.yj0 {
+    public final int f42101a;
+    public final xn f42102b;
+    public final boolean f42103c;
     public final MessageObject d;
 
     public vf(xn xnVar, boolean z4, MessageObject messageObject, int i10) {
-        this.f42220a = i10;
-        this.f42221b = xnVar;
-        this.f42222c = z4;
+        this.f42101a = i10;
+        this.f42102b = xnVar;
+        this.f42103c = z4;
         this.d = messageObject;
     }
 
     @Override
     public final void a(long j10, TLRPC.MessagePeerReaction messagePeerReaction) {
-        switch (this.f42220a) {
+        switch (this.f42101a) {
             case 0:
                 if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    final xn xnVar = this.f42221b;
-                    if (j10 != xnVar.getUserConfig().getClientUserId() && this.f42222c) {
+                    final xn xnVar = this.f42102b;
+                    if (j10 != xnVar.getUserConfig().getClientUserId() && this.f42103c) {
                         final ArrayList arrayList = new ArrayList(1);
                         arrayList.add(this.d);
                         TLObject userOrChat = xnVar.getMessagesController().getUserOrChat(j10);
@@ -33,7 +33,7 @@ public final class vf implements org.telegram.ui.Components.zj0 {
                         arrayList2.add(userOrChat);
                         final TLRPC.ChannelParticipant[] channelParticipantArr = new TLRPC.ChannelParticipant[1];
                         TLRPC.TL_channels_getParticipant tL_channels_getParticipant = new TLRPC.TL_channels_getParticipant();
-                        tL_channels_getParticipant.channel = MessagesController.getInputChannel(xnVar.f43165e);
+                        tL_channels_getParticipant.channel = MessagesController.getInputChannel(xnVar.f43143e);
                         tL_channels_getParticipant.participant = MessagesController.getInputPeer(userOrChat);
                         xnVar.getConnectionsManager().sendRequestTyped(tL_channels_getParticipant, new Object(), new Utilities.Callback2() {
                             @Override
@@ -53,7 +53,7 @@ public final class vf implements org.telegram.ui.Components.zj0 {
                                         }
                                         int i10 = xnVar2.O3;
                                         ag.f fVar = new ag.f(22);
-                                        new org.telegram.ui.Components.gs(xnVar2, xnVar2.f43165e, arrayList, arrayList2, channelParticipantArr2, xnVar2.I6, (int) xnVar2.b(), i10, true, fVar).show();
+                                        new org.telegram.ui.Components.gs(xnVar2, xnVar2.f43143e, arrayList, arrayList2, channelParticipantArr2, xnVar2.I6, (int) xnVar2.b(), i10, true, fVar).show();
                                         return;
                                     default:
                                         xn xnVar3 = xnVar;
@@ -67,7 +67,7 @@ public final class vf implements org.telegram.ui.Components.zj0 {
                                         }
                                         int i11 = xnVar3.O3;
                                         ag.f fVar2 = new ag.f(22);
-                                        new org.telegram.ui.Components.gs(xnVar3, xnVar3.f43165e, arrayList, arrayList2, channelParticipantArr3, xnVar3.I6, (int) xnVar3.b(), i11, true, fVar2).show();
+                                        new org.telegram.ui.Components.gs(xnVar3, xnVar3.f43143e, arrayList, arrayList2, channelParticipantArr3, xnVar3.I6, (int) xnVar3.b(), i11, true, fVar2).show();
                                         return;
                                 }
                             }
@@ -79,9 +79,9 @@ public final class vf implements org.telegram.ui.Components.zj0 {
                 }
                 return;
             default:
-                final xn xnVar2 = this.f42221b;
+                final xn xnVar2 = this.f42102b;
                 xnVar2.getClass();
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j10 != xnVar2.getUserConfig().getClientUserId() && this.f42222c) {
+                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j10 != xnVar2.getUserConfig().getClientUserId() && this.f42103c) {
                     final ArrayList arrayList3 = new ArrayList(1);
                     arrayList3.add(this.d);
                     TLObject userOrChat2 = xnVar2.getMessagesController().getUserOrChat(j10);
@@ -89,7 +89,7 @@ public final class vf implements org.telegram.ui.Components.zj0 {
                     arrayList4.add(userOrChat2);
                     final TLRPC.ChannelParticipant[] channelParticipantArr2 = new TLRPC.ChannelParticipant[1];
                     TLRPC.TL_channels_getParticipant tL_channels_getParticipant2 = new TLRPC.TL_channels_getParticipant();
-                    tL_channels_getParticipant2.channel = MessagesController.getInputChannel(xnVar2.f43165e);
+                    tL_channels_getParticipant2.channel = MessagesController.getInputChannel(xnVar2.f43143e);
                     tL_channels_getParticipant2.participant = MessagesController.getInputPeer(userOrChat2);
                     xnVar2.getConnectionsManager().sendRequestTyped(tL_channels_getParticipant2, new Object(), new Utilities.Callback2() {
                         @Override
@@ -109,7 +109,7 @@ public final class vf implements org.telegram.ui.Components.zj0 {
                                     }
                                     int i10 = xnVar22.O3;
                                     ag.f fVar = new ag.f(22);
-                                    new org.telegram.ui.Components.gs(xnVar22, xnVar22.f43165e, arrayList3, arrayList4, channelParticipantArr22, xnVar22.I6, (int) xnVar22.b(), i10, true, fVar).show();
+                                    new org.telegram.ui.Components.gs(xnVar22, xnVar22.f43143e, arrayList3, arrayList4, channelParticipantArr22, xnVar22.I6, (int) xnVar22.b(), i10, true, fVar).show();
                                     return;
                                 default:
                                     xn xnVar3 = xnVar2;
@@ -123,7 +123,7 @@ public final class vf implements org.telegram.ui.Components.zj0 {
                                     }
                                     int i11 = xnVar3.O3;
                                     ag.f fVar2 = new ag.f(22);
-                                    new org.telegram.ui.Components.gs(xnVar3, xnVar3.f43165e, arrayList3, arrayList4, channelParticipantArr3, xnVar3.I6, (int) xnVar3.b(), i11, true, fVar2).show();
+                                    new org.telegram.ui.Components.gs(xnVar3, xnVar3.f43143e, arrayList3, arrayList4, channelParticipantArr3, xnVar3.I6, (int) xnVar3.b(), i11, true, fVar2).show();
                                     return;
                             }
                         }

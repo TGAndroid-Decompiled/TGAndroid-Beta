@@ -3,20 +3,20 @@ package me;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public abstract class a {
-    public static final Pattern f13644a = Pattern.compile("[\\\\&]");
-    public static final Pattern f13645b = Pattern.compile("\\\\[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]|&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
-    public static final Pattern f13646c;
+    public static final Pattern f13646a = Pattern.compile("[\\\\&]");
+    public static final Pattern f13647b = Pattern.compile("\\\\[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]|&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
+    public static final Pattern f13648c;
     public static final ab.a d;
 
     static {
         Pattern.compile("(%[a-fA-F0-9]{0,2}|[^:/?#@!$&'()*+,;=a-zA-Z0-9\\-._~])");
-        f13646c = Pattern.compile("[ \t\r\n]+");
+        f13648c = Pattern.compile("[ \t\r\n]+");
         d = new ab.a(13);
     }
 
     public static String a(String str) {
-        if (f13644a.matcher(str).find()) {
-            Matcher matcher = f13645b.matcher(str);
+        if (f13646a.matcher(str).find()) {
+            Matcher matcher = f13647b.matcher(str);
             if (matcher.find()) {
                 StringBuilder sb = new StringBuilder(str.length() + 16);
                 int i10 = 0;

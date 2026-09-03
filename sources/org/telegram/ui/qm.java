@@ -24,7 +24,7 @@ public final class qm extends org.telegram.ui.Cells.n9 {
             }
             if (messageObject != null) {
                 nn b10 = nn.b(i10, min, messageObject);
-                if (b10.f39490i != null) {
+                if (b10.f39411i != null) {
                     jk jkVar = this.B0.V;
                     boolean z4 = false;
                     if (jkVar != null && jkVar.getVisibility() == 0) {
@@ -44,21 +44,21 @@ public final class qm extends org.telegram.ui.Cells.n9 {
                         return;
                     }
                     xn xnVar2 = this.B0;
-                    xnVar2.f43221i5 = b10;
-                    xnVar2.f43245k5 = messageObject;
+                    xnVar2.f43199i5 = b10;
+                    xnVar2.f43223k5 = messageObject;
                     if (xnVar2.h != null) {
                         z4 = true;
                     }
-                    xnVar2.f43144c5 = new MessagePreviewParams(z4, xnVar2.y9(), ChatObject.isMonoForum(this.B0.f43165e));
+                    xnVar2.f43122c5 = new MessagePreviewParams(z4, xnVar2.y9(), ChatObject.isMonoForum(this.B0.f43143e));
                     xn xnVar3 = this.B0;
-                    xnVar3.f43144c5.updateReply(xnVar3.f43245k5, xnVar3.y8(messageObject.getGroupId()), this.B0.a(), this.B0.f43221i5);
+                    xnVar3.f43122c5.updateReply(xnVar3.f43223k5, xnVar3.y8(messageObject.getGroupId()), this.B0.a(), this.B0.f43199i5);
                     Bundle e6 = org.telegram.messenger.y3.e(3, "onlySelect", "dialogsType", true);
                     e6.putBoolean("quote", true);
                     e6.putInt("messagesCount", 1);
                     e6.putBoolean("canSelectTopics", true);
                     py pyVar = new py(e6);
                     xn xnVar4 = this.B0;
-                    pyVar.f40308z2 = xnVar4;
+                    pyVar.f40278z2 = xnVar4;
                     xnVar4.presentFragment(pyVar);
                 }
             }
@@ -85,7 +85,7 @@ public final class qm extends org.telegram.ui.Cells.n9 {
     public final void d0(xn xnVar) {
         int i10 = 0;
         while (true) {
-            SparseArray sparseArray = this.f23233u0;
+            SparseArray sparseArray = this.f23235u0;
             if (i10 < sparseArray.size()) {
                 ((Animator) sparseArray.get(sparseArray.keyAt(i10))).cancel();
                 i10++;
@@ -114,7 +114,7 @@ public final class qm extends org.telegram.ui.Cells.n9 {
             } else {
                 z4 = false;
             }
-            if (!this.f23236x0 && (xnVar = this.B0) != null && xnVar.h == null && (((u9Var2 = this.W) == null || (((org.telegram.ui.Cells.t1) u9Var2).getMessageObject() != null && ((org.telegram.ui.Cells.t1) this.W).getMessageObject().type != 23 && !((org.telegram.ui.Cells.t1) this.W).getMessageObject().isVoiceTranscriptionOpen() && !((org.telegram.ui.Cells.t1) this.W).getMessageObject().isInvoice() && ((org.telegram.ui.Cells.t1) this.W).getMessageObject().richLayout == null && !this.B0.Z8.f23234v0)) && !this.B0.getMessagesController().getTranslateController().isTranslatingDialog(this.B0.Q5) && !UserObject.isService(this.B0.Q5) && (!z4 || (chat = this.B0.f43165e) == null || ChatObject.canWriteToChat(chat)))) {
+            if (!this.f23238x0 && (xnVar = this.B0) != null && xnVar.h == null && (((u9Var2 = this.W) == null || (((org.telegram.ui.Cells.t1) u9Var2).getMessageObject() != null && ((org.telegram.ui.Cells.t1) this.W).getMessageObject().type != 23 && !((org.telegram.ui.Cells.t1) this.W).getMessageObject().isVoiceTranscriptionOpen() && !((org.telegram.ui.Cells.t1) this.W).getMessageObject().isInvoice() && ((org.telegram.ui.Cells.t1) this.W).getMessageObject().richLayout == null && !this.B0.Z8.f23236v0)) && !this.B0.getMessagesController().getTranslateController().isTranslatingDialog(this.B0.Q5) && !UserObject.isService(this.B0.Q5) && (!z4 || (chat = this.B0.f43143e) == null || ChatObject.canWriteToChat(chat)))) {
                 return true;
             }
         }
@@ -127,7 +127,7 @@ public final class qm extends org.telegram.ui.Cells.n9 {
         if (xnVar == null) {
             return 0;
         }
-        return xnVar.f43413xa;
+        return xnVar.f43391xa;
     }
 
     @Override
@@ -136,20 +136,20 @@ public final class qm extends org.telegram.ui.Cells.n9 {
         if (xnVar == null) {
             return 0;
         }
-        return (int) xnVar.f43310p9;
+        return (int) xnVar.f43288p9;
     }
 
     @Override
     public final org.telegram.ui.ActionBar.g6 r() {
         xn xnVar = this.B0;
         if (xnVar != null) {
-            return xnVar.f43136ba;
+            return xnVar.f43114ba;
         }
         return null;
     }
 
     @Override
     public final int u(int i10) {
-        return org.telegram.ui.ActionBar.k6.v0(i10, this.B0.f43136ba);
+        return org.telegram.ui.ActionBar.k6.v0(i10, this.B0.f43114ba);
     }
 }

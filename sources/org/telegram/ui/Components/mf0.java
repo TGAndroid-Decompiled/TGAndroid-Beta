@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 public final class mf0 {
-    public float f29019a = 0.0f;
-    public float f29020b = 25.0f;
-    public float f29021c = 50.0f;
+    public float f29037a = 0.0f;
+    public float f29038b = 25.0f;
+    public float f29039c = 50.0f;
     public float d = 75.0f;
-    public float f29022e = 100.0f;
-    public float[] f29023f;
+    public float f29040e = 100.0f;
+    public float[] f29041f;
 
     public final float[] a() {
-        float f10 = this.f29019a;
-        float f11 = this.f29022e;
+        float f10 = this.f29037a;
+        float f11 = this.f29040e;
         int i10 = 5;
-        float[] fArr = {-0.001f, f10 / 100.0f, 0.0f, f10 / 100.0f, 0.25f, this.f29020b / 100.0f, 0.5f, this.f29021c / 100.0f, 0.75f, this.d / 100.0f, 1.0f, f11 / 100.0f, 1.001f, f11 / 100.0f};
+        float[] fArr = {-0.001f, f10 / 100.0f, 0.0f, f10 / 100.0f, 0.25f, this.f29038b / 100.0f, 0.5f, this.f29039c / 100.0f, 0.75f, this.d / 100.0f, 1.0f, f11 / 100.0f, 1.001f, f11 / 100.0f};
         int i11 = 100;
         ArrayList arrayList = new ArrayList(100);
         ArrayList arrayList2 = new ArrayList(100);
@@ -61,10 +61,10 @@ public final class mf0 {
         }
         arrayList2.add(Float.valueOf(fArr[12]));
         arrayList2.add(Float.valueOf(fArr[13]));
-        this.f29023f = new float[arrayList.size()];
+        this.f29041f = new float[arrayList.size()];
         int i19 = 0;
         while (true) {
-            float[] fArr2 = this.f29023f;
+            float[] fArr2 = this.f29041f;
             if (i19 >= fArr2.length) {
                 break;
             }
@@ -80,25 +80,25 @@ public final class mf0 {
     }
 
     public final boolean b() {
-        if (Math.abs(this.f29019a - 0.0f) < 1.0E-5d && Math.abs(this.f29020b - 25.0f) < 1.0E-5d && Math.abs(this.f29021c - 50.0f) < 1.0E-5d && Math.abs(this.d - 75.0f) < 1.0E-5d && Math.abs(this.f29022e - 100.0f) < 1.0E-5d) {
+        if (Math.abs(this.f29037a - 0.0f) < 1.0E-5d && Math.abs(this.f29038b - 25.0f) < 1.0E-5d && Math.abs(this.f29039c - 50.0f) < 1.0E-5d && Math.abs(this.d - 75.0f) < 1.0E-5d && Math.abs(this.f29040e - 100.0f) < 1.0E-5d) {
             return true;
         }
         return false;
     }
 
     public final void c(InputSerializedData inputSerializedData, boolean z4) {
-        this.f29019a = inputSerializedData.readFloat(z4);
-        this.f29020b = inputSerializedData.readFloat(z4);
-        this.f29021c = inputSerializedData.readFloat(z4);
+        this.f29037a = inputSerializedData.readFloat(z4);
+        this.f29038b = inputSerializedData.readFloat(z4);
+        this.f29039c = inputSerializedData.readFloat(z4);
         this.d = inputSerializedData.readFloat(z4);
-        this.f29022e = inputSerializedData.readFloat(z4);
+        this.f29040e = inputSerializedData.readFloat(z4);
     }
 
     public final void d(OutputSerializedData outputSerializedData) {
-        outputSerializedData.writeFloat(this.f29019a);
-        outputSerializedData.writeFloat(this.f29020b);
-        outputSerializedData.writeFloat(this.f29021c);
+        outputSerializedData.writeFloat(this.f29037a);
+        outputSerializedData.writeFloat(this.f29038b);
+        outputSerializedData.writeFloat(this.f29039c);
         outputSerializedData.writeFloat(this.d);
-        outputSerializedData.writeFloat(this.f29022e);
+        outputSerializedData.writeFloat(this.f29040e);
     }
 }

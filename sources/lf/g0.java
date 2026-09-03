@@ -24,8 +24,8 @@ import org.telegram.ui.ActionBar.d2;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.u60;
-import org.telegram.ui.d31;
-import org.telegram.ui.m31;
+import org.telegram.ui.i31;
+import org.telegram.ui.q31;
 import org.telegram.ui.xn;
 public final class g0 implements Runnable {
     public final int f12449a = 1;
@@ -72,7 +72,7 @@ public final class g0 implements Runnable {
                     }
                     TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
                     user.photo = tL_userProfilePhoto;
-                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f20867id;
+                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f20869id;
                     if (closestPhotoSizeWithSize != null) {
                         tL_userProfilePhoto.photo_small = closestPhotoSizeWithSize.location;
                     }
@@ -98,7 +98,7 @@ public final class g0 implements Runnable {
                     } else if (closestPhotoSizeWithSize2 != null && fileLocationArr2[0] != null) {
                         FileLoader.getInstance(xnVar.getCurrentAccount()).getPathToAttach(fileLocationArr2[0], true).renameTo(FileLoader.getInstance(xnVar.getCurrentAccount()).getPathToAttach(closestPhotoSizeWithSize2, true));
                     }
-                    xnVar.getMessagesController().getDialogPhotos(user.f20990id).addPhotoAtStart(tL_photos_photo.photo);
+                    xnVar.getMessagesController().getDialogPhotos(user.f20992id).addPhotoAtStart(tL_photos_photo.photo);
                     ArrayList arrayList2 = new ArrayList();
                     arrayList2.add(user);
                     xnVar.getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
@@ -122,10 +122,10 @@ public final class g0 implements Runnable {
                 g6 g6Var = (g6) this.f12453f;
                 byte[] bArr = (byte[]) this.h;
                 MessageObject messageObject = (MessageObject) this.f12454n;
-                m31 m31Var = new m31(activity, g6Var, this.f12450b, bArr);
-                m31Var.O((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.f12451c));
-                m31Var.f38961s = new d31((xn) this.f12452e, activity, g6Var, messageObject);
-                m31Var.show();
+                q31 q31Var = new q31(activity, g6Var, this.f12450b, bArr);
+                q31Var.O((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.f12451c));
+                q31Var.f40316s = new i31((xn) this.f12452e, activity, g6Var, messageObject);
+                q31Var.show();
                 return;
         }
     }

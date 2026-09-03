@@ -1,102 +1,72 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.Crop.CropAreaView;
-public final class nq0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39504a;
-    public final PhotoViewer f39505b;
+import android.view.View;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class nq0 implements org.telegram.ui.Components.tm0 {
+    public final rq0 f39443a;
 
-    public nq0(PhotoViewer photoViewer, int i10) {
-        this.f39504a = i10;
-        this.f39505b = photoViewer;
+    public nq0(rq0 rq0Var) {
+        this.f39443a = rq0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f39504a;
-        PhotoViewer photoViewer = this.f39505b;
-        switch (i10) {
-            case 0:
-                Drawable[] drawableArr = PhotoViewer.Q8;
-                photoViewer.getClass();
-                photoViewer.f34270f3.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 1:
-                CropAreaView cropAreaView = photoViewer.f34450z1.f25248b.f51166a;
-                float lerp = AndroidUtilities.lerp(photoViewer.X5, photoViewer.f34236b6, photoViewer.f34300i6);
-                float lerp2 = AndroidUtilities.lerp(photoViewer.U5, photoViewer.Z5, photoViewer.f34300i6);
-                float lerp3 = AndroidUtilities.lerp(photoViewer.V5, photoViewer.f34226a6, photoViewer.f34300i6);
-                cropAreaView.f24858k0 = 0.0f;
-                cropAreaView.f24859l0 = lerp;
-                cropAreaView.m0 = lerp2;
-                cropAreaView.f24861n0 = lerp3;
-                cropAreaView.invalidate();
-                return;
-            case 2:
-                photoViewer.I1.t0(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 3:
-                photoViewer.I1.setOffsetTranslationX(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 4:
-                Drawable[] drawableArr2 = PhotoViewer.Q8;
-                photoViewer.getClass();
-                photoViewer.f34309j6 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
-            case 5:
-                Drawable[] drawableArr3 = PhotoViewer.Q8;
-                photoViewer.s3();
-                return;
-            case 6:
-                photoViewer.I1.t0(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 7:
-                photoViewer.I1.setOffsetTranslationX(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 8:
-                ht0 ht0Var = photoViewer.I1;
-                if (ht0Var != null) {
-                    ht0Var.f5101a1.invalidate();
-                    return;
-                }
-                return;
-            case 9:
-                Drawable[] drawableArr4 = PhotoViewer.Q8;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                photoViewer.W5 = floatValue;
-                ht0 ht0Var2 = photoViewer.I1;
-                if (ht0Var2 != null && Math.abs(floatValue - ht0Var2.U1) > 0.1f) {
-                    ht0Var2.U1 = floatValue;
-                    ht0Var2.v0(ht0Var2.F0, ht0Var2.G0, ht0Var2.H0, ht0Var2.K0, ht0Var2.L0);
-                }
-                photoViewer.f34230b0.invalidate();
-                return;
-            case 10:
-                Drawable[] drawableArr5 = PhotoViewer.Q8;
-                photoViewer.getClass();
-                photoViewer.f34309j6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                photoViewer.F1();
-                return;
-            case 11:
-                Drawable[] drawableArr6 = PhotoViewer.Q8;
-                photoViewer.getClass();
-                photoViewer.f34309j6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
-            case 12:
-                Drawable[] drawableArr7 = PhotoViewer.Q8;
-                photoViewer.getClass();
-                photoViewer.f34309j6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
-            case 13:
-                photoViewer.T0[0].e(1, ((Float) valueAnimator.getAnimatedValue()).floatValue(), false);
-                return;
-            default:
-                Drawable[] drawableArr8 = PhotoViewer.Q8;
-                photoViewer.getClass();
-                photoViewer.f34309j6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
+    public final void f(int i10, boolean z4) {
+        boolean z10;
+        rq0 rq0Var = this.f39443a;
+        if (rq0Var.f40916n[0].f40106e == i10) {
+            return;
         }
+        if (i10 == rq0Var.h.getFirstTabId()) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        rq0Var.f40914e = z10;
+        pq0 pq0Var = rq0Var.f40916n[1];
+        pq0Var.f40106e = i10;
+        pq0Var.setVisibility(0);
+        rq0Var.j0(true);
+        rq0Var.v = z4;
+        if (i10 == 0) {
+            rq0Var.f40913c.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));
+        } else {
+            rq0Var.f40913c.setSearchFieldHint(LocaleController.getString(R.string.SearchGifsTitle));
+        }
+    }
+
+    @Override
+    public final boolean j1(int i10, View view) {
+        return false;
+    }
+
+    @Override
+    public final void w0(float f10) {
+        rq0 rq0Var = this.f39443a;
+        int i10 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
+        if (i10 != 0 || rq0Var.f40916n[1].getVisibility() == 0) {
+            if (rq0Var.v) {
+                pq0 pq0Var = rq0Var.f40916n[0];
+                pq0Var.setTranslationX((-f10) * pq0Var.getMeasuredWidth());
+                pq0[] pq0VarArr = rq0Var.f40916n;
+                pq0VarArr[1].setTranslationX(pq0VarArr[0].getMeasuredWidth() - (f10 * rq0Var.f40916n[0].getMeasuredWidth()));
+            } else {
+                pq0 pq0Var2 = rq0Var.f40916n[0];
+                pq0Var2.setTranslationX(pq0Var2.getMeasuredWidth() * f10);
+                pq0[] pq0VarArr2 = rq0Var.f40916n;
+                pq0VarArr2[1].setTranslationX((f10 * pq0VarArr2[0].getMeasuredWidth()) - rq0Var.f40916n[0].getMeasuredWidth());
+            }
+            if (i10 == 0) {
+                pq0[] pq0VarArr3 = rq0Var.f40916n;
+                pq0 pq0Var3 = pq0VarArr3[0];
+                pq0VarArr3[0] = pq0VarArr3[1];
+                pq0VarArr3[1] = pq0Var3;
+                pq0Var3.setVisibility(8);
+            }
+        }
+    }
+
+    @Override
+    public final void B() {
     }
 }

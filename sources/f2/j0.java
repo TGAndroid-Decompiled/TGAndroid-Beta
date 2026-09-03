@@ -448,7 +448,7 @@ public class j0 extends w0 {
 
     public boolean Y0() {
         RecyclerView recyclerView = this.f5941b;
-        WeakHashMap weakHashMap = r0.j0.f46438a;
+        WeakHashMap weakHashMap = r0.j0.f46469a;
         if (recyclerView.getLayoutDirection() == 1) {
             return true;
         }

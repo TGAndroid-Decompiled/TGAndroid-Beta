@@ -12,11 +12,11 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.ui.Components.i40;
-import org.telegram.ui.Components.rq0;
+import org.telegram.ui.Components.qq0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.dt;
 import org.telegram.ui.e9;
-import org.telegram.ui.tx0;
+import org.telegram.ui.yx0;
 public final class l0 implements RequestDelegate {
     public final int f7552a;
     public final int f7553b;
@@ -81,10 +81,10 @@ public final class l0 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new dg.u1((i40) this.f7554c, this.f7553b, tLObject, (String) this.d, 19));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new dg.u1((rq0) this.f7554c, this.f7553b, tLObject, (String) this.d, 21));
+                AndroidUtilities.runOnUIThread(new dg.u1((qq0) this.f7554c, this.f7553b, tLObject, (String) this.d, 21));
                 return;
             case 8:
-                AndroidUtilities.runOnUIThread(new tx0((ProfileActivity) this.f7554c, tL_error, tLObject, (TLRPC.TL_channels_getParticipants) this.d, 0), this.f7553b);
+                AndroidUtilities.runOnUIThread(new yx0((ProfileActivity) this.f7554c, tL_error, tLObject, (TLRPC.TL_channels_getParticipants) this.d, 0), this.f7553b);
                 return;
             case 9:
                 AndroidUtilities.runOnUIThread(new d3((org.telegram.ui.web.a1) this.f7554c, tLObject, this.f7553b, (org.telegram.ui.web.x0) this.d, tL_error, 25));

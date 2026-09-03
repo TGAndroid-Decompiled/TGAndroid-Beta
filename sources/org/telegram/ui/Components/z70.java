@@ -10,13 +10,13 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class z70 extends sl0 {
-    public final Context f33778c;
+public final class z70 extends rl0 {
+    public final Context f33831c;
     public final a80 d;
 
     public z70(a80 a80Var, Context context) {
         this.d = a80Var;
-        this.f33778c = context;
+        this.f33831c = context;
     }
 
     @Override
@@ -53,7 +53,7 @@ public final class z70 extends sl0 {
             str = null;
         }
         boolean z4 = false;
-        if (a80Var.f25201s == 0) {
+        if (a80Var.f25187s == 0) {
             org.telegram.ui.Cells.e7 e7Var = (org.telegram.ui.Cells.e7) view;
             if (peerId == MessageObject.getPeerId(a80Var.v)) {
                 z4 = true;
@@ -73,16 +73,16 @@ public final class z70 extends sl0 {
         boolean z4;
         View g4Var;
         a80 a80Var = this.d;
-        if (a80Var.f25201s == 0) {
-            g4Var = new org.telegram.ui.Cells.e7(this.f33778c, 2, null);
+        if (a80Var.f25187s == 0) {
+            g4Var = new org.telegram.ui.Cells.e7(this.f33831c, 2, null);
             g4Var.setLayoutParams(new f2.x0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(100.0f)));
         } else {
-            if (a80Var.f25201s == 2) {
+            if (a80Var.f25187s == 2) {
                 z4 = true;
             } else {
                 z4 = false;
             }
-            g4Var = new org.telegram.ui.Cells.g4(2, 0, this.f33778c, null, false, z4);
+            g4Var = new org.telegram.ui.Cells.g4(2, 0, this.f33831c, null, false, z4);
         }
         return new f2.m1(g4Var);
     }
@@ -99,9 +99,9 @@ public final class z70 extends sl0 {
             Object object = g4Var.getObject();
             if (object != null) {
                 if (object instanceof TLRPC.Chat) {
-                    j10 = -((TLRPC.Chat) object).f20843id;
+                    j10 = -((TLRPC.Chat) object).f20845id;
                 } else {
-                    j10 = ((TLRPC.User) object).f20990id;
+                    j10 = ((TLRPC.User) object).f20992id;
                 }
             } else {
                 j10 = 0;

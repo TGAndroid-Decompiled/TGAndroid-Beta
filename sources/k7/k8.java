@@ -20,7 +20,7 @@ public abstract class k8 {
         Log.d("k8", "preferredRenderer: ".concat("null"));
         w7.e eVar = f10624b;
         if (eVar == null) {
-            AtomicBoolean atomicBoolean = y5.g.f50771a;
+            AtomicBoolean atomicBoolean = y5.g.f50807a;
             int b10 = y5.g.b(context, 13400000);
             if (b10 == 0) {
                 Log.i("k8", "Making Creator dynamically");
@@ -74,21 +74,21 @@ public abstract class k8 {
         if (context3 == null) {
             context.getApplicationContext();
             try {
-                context2 = m6.e.c(context, m6.e.f13466b, "com.google.android.gms.maps_dynamite").f13476a;
+                context2 = m6.e.c(context, m6.e.f13468b, "com.google.android.gms.maps_dynamite").f13478a;
             } catch (Exception e6) {
                 try {
                     if (!"com.google.android.gms.maps_dynamite".equals("com.google.android.gms.maps_dynamite")) {
                         try {
                             Log.d("k8", "Attempting to load maps_dynamite again.");
-                            context2 = m6.e.c(context, m6.e.f13466b, "com.google.android.gms.maps_dynamite").f13476a;
+                            context2 = m6.e.c(context, m6.e.f13468b, "com.google.android.gms.maps_dynamite").f13478a;
                         } catch (Exception e10) {
                             Log.e("k8", "Failed to load maps module, use pre-Chimera", e10);
-                            AtomicBoolean atomicBoolean = y5.g.f50771a;
+                            AtomicBoolean atomicBoolean = y5.g.f50807a;
                             context2 = context.createPackageContext("com.google.android.gms", 3);
                         }
                     } else {
                         Log.e("k8", "Failed to load maps module, use pre-Chimera", e6);
-                        AtomicBoolean atomicBoolean2 = y5.g.f50771a;
+                        AtomicBoolean atomicBoolean2 = y5.g.f50807a;
                         context2 = context.createPackageContext("com.google.android.gms", 3);
                     }
                 } catch (PackageManager.NameNotFoundException unused) {

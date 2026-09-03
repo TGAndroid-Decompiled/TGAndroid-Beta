@@ -2,20 +2,20 @@ package s8;
 
 import java.io.Serializable;
 public final class p0 extends h0 implements Serializable {
-    public final h0 f47130a;
+    public final h0 f47161a;
 
     public p0(h0 h0Var) {
-        this.f47130a = h0Var;
+        this.f47161a = h0Var;
     }
 
     @Override
     public final h0 a() {
-        return this.f47130a;
+        return this.f47161a;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        return this.f47130a.compare(obj2, obj);
+        return this.f47161a.compare(obj2, obj);
     }
 
     @Override
@@ -24,17 +24,17 @@ public final class p0 extends h0 implements Serializable {
             return true;
         }
         if (obj instanceof p0) {
-            return this.f47130a.equals(((p0) obj).f47130a);
+            return this.f47161a.equals(((p0) obj).f47161a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return -this.f47130a.hashCode();
+        return -this.f47161a.hashCode();
     }
 
     public final String toString() {
-        String valueOf = String.valueOf(this.f47130a);
+        String valueOf = String.valueOf(this.f47161a);
         StringBuilder sb = new StringBuilder(valueOf.length() + 10);
         sb.append(valueOf);
         sb.append(".reverse()");

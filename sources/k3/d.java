@@ -16,7 +16,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.Components.zu0;
+import org.telegram.ui.Components.yu0;
 public final class d implements h5.j, RequestDelegateTimestamp, c2, MessagesStorage.StringCallback {
     public final int f10418a;
     public final int f10419b;
@@ -119,7 +119,7 @@ public final class d implements h5.j, RequestDelegateTimestamp, c2, MessagesStor
 
     @Override
     public void run(String str) {
-        zu0.i((zu0) this.d, this.f10420c, this.f10419b, str);
+        yu0.i((yu0) this.d, this.f10420c, this.f10419b, str);
     }
 
     public d(a aVar, int i10, long j10, long j11) {
@@ -141,9 +141,9 @@ public final class d implements h5.j, RequestDelegateTimestamp, c2, MessagesStor
         this.f10420c = j10;
     }
 
-    public d(zu0 zu0Var, long j10, int i10) {
+    public d(yu0 yu0Var, long j10, int i10) {
         this.f10418a = 4;
-        this.d = zu0Var;
+        this.d = yu0Var;
         this.f10420c = j10;
         this.f10419b = i10;
     }

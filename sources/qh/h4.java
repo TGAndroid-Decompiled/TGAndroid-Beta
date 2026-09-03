@@ -1,34 +1,70 @@
 package qh;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-public final class h4 extends eg.c2 {
-    public final Path f45376d3;
-    public final f9 f45377e3;
+import android.graphics.Matrix;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class h4 implements dg.y {
+    public boolean f45401a;
+    public final dg.e1 f45402b;
+    public final e9 f45403c;
 
-    public h4(f9 f9Var, Context context) {
-        super(context);
-        this.f45377e3 = f9Var;
-        this.f45376d3 = new Path();
+    public h4(e9 e9Var, dg.e1 e1Var) {
+        this.f45403c = e9Var;
+        this.f45402b = e1Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        ViewGroup barView;
-        f9 f9Var = this.f45377e3;
-        barView = f9Var.getBarView();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(AndroidUtilities.lerp(barView.getLeft() - getLeft(), 0, f9Var.A1), AndroidUtilities.lerp(barView.getTop() - getTop(), 0, f9Var.A1), AndroidUtilities.lerp(barView.getRight() - getLeft(), getWidth(), f9Var.A1), AndroidUtilities.lerp(barView.getBottom() - getTop(), getHeight(), f9Var.A1));
-        Path path = this.f45376d3;
-        path.rewind();
-        path.addRoundRect(rectF, AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f), Path.Direction.CW);
+    public final void a() {
+        this.f45401a = true;
+    }
+
+    @Override
+    public final void b(Canvas canvas) {
+        r4 r4Var = this.f45403c.L0;
+        Matrix matrix = r4Var.getMatrix();
         canvas.save();
-        canvas.clipPath(path);
-        super.draw(canvas);
-        canvas.restore();
+        canvas.translate(r4Var.getX(), r4Var.getY());
+        canvas.concat(matrix);
+        r4Var.getWidth();
+        throw null;
+    }
+
+    @Override
+    public final boolean c() {
+        return this.f45401a;
+    }
+
+    @Override
+    public final void d() {
+        this.f45401a = false;
+    }
+
+    @Override
+    public final View e() {
+        return this.f45403c;
+    }
+
+    @Override
+    public final FrameLayout f() {
+        return this.f45403c.S0;
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final void h(int i10) {
+        e9 e9Var = this.f45403c;
+        e9Var.I0(false);
+        dg.e1 e1Var = this.f45402b;
+        e1Var.h(i10, true);
+        e1Var.g();
+        e9Var.setNewColor(i10);
+        g4 g4Var = e9Var.f44958t1;
+        g4Var.setSelectedColorIndex(e1Var.d());
+        g4Var.getAdapter().l();
     }
 }

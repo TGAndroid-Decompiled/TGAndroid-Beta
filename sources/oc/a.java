@@ -2,9 +2,9 @@ package oc;
 
 import java.util.Map;
 public final class a implements Map.Entry, Cloneable {
-    public String f16705a;
-    public String f16706b;
-    public b f16707c;
+    public String f16707a;
+    public String f16708b;
+    public b f16709c;
 
     public final Object clone() {
         try {
@@ -21,13 +21,13 @@ public final class a implements Map.Entry, Cloneable {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            String str = aVar.f16705a;
-            String str2 = this.f16705a;
+            String str = aVar.f16707a;
+            String str2 = this.f16707a;
             if (str2 == null ? str != null : !str2.equals(str)) {
                 return false;
             }
-            String str3 = this.f16706b;
-            String str4 = aVar.f16706b;
+            String str3 = this.f16708b;
+            String str4 = aVar.f16708b;
             if (str3 != null) {
                 return str3.equals(str4);
             }
@@ -40,18 +40,18 @@ public final class a implements Map.Entry, Cloneable {
 
     @Override
     public final Object getKey() {
-        return this.f16705a;
+        return this.f16707a;
     }
 
     @Override
     public final Object getValue() {
-        return this.f16706b;
+        return this.f16708b;
     }
 
     @Override
     public final int hashCode() {
         int i10;
-        String str = this.f16705a;
+        String str = this.f16707a;
         int i11 = 0;
         if (str != null) {
             i10 = str.hashCode();
@@ -59,7 +59,7 @@ public final class a implements Map.Entry, Cloneable {
             i10 = 0;
         }
         int i12 = i10 * 31;
-        String str2 = this.f16706b;
+        String str2 = this.f16708b;
         if (str2 != null) {
             i11 = str2.hashCode();
         }
@@ -70,18 +70,18 @@ public final class a implements Map.Entry, Cloneable {
     public final Object setValue(Object obj) {
         String str;
         String str2 = (String) obj;
-        b bVar = this.f16707c;
-        String str3 = this.f16705a;
+        b bVar = this.f16709c;
+        String str3 = this.f16707a;
         int i10 = bVar.i(str3);
         String str4 = "";
-        if (i10 != -1 && (str = bVar.f16710c[i10]) != null) {
+        if (i10 != -1 && (str = bVar.f16712c[i10]) != null) {
             str4 = str;
         }
         int i11 = bVar.i(str3);
         if (i11 != -1) {
-            bVar.f16710c[i11] = str2;
+            bVar.f16712c[i11] = str2;
         }
-        this.f16706b = str2;
+        this.f16708b = str2;
         return str4;
     }
 }

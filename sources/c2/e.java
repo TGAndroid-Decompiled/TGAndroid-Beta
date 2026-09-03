@@ -74,7 +74,7 @@ public final class e {
 
     public final String b(z zVar, String str) {
         String z4;
-        String flattenToShortString = ((ComponentName) zVar.d.f50777b).flattenToShortString();
+        String flattenToShortString = ((ComponentName) zVar.d.f50813b).flattenToShortString();
         boolean z10 = zVar.f2221c;
         if (z10) {
             z4 = str;

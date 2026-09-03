@@ -12,24 +12,24 @@ import k7.p6;
 import ne.p;
 import ne.s;
 public final class i implements oe.a {
-    public static final Pattern f44772j = Pattern.compile("^[!\"#\\$%&'\\(\\)\\*\\+,\\-\\./:;<=>\\?@\\[\\\\\\]\\^_`\\{\\|\\}~\\p{Pc}\\p{Pd}\\p{Pe}\\p{Pf}\\p{Pi}\\p{Po}\\p{Ps}]");
-    public static final Pattern f44773k = Pattern.compile("^ *(?:\n *)?");
-    public static final Pattern f44774l = Pattern.compile("^[\\p{Zs}\t\r\n\f]");
-    public static final Pattern f44775m = Pattern.compile("^[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]");
-    public static final Pattern f44776n = Pattern.compile("\\s+");
-    public final f7.b f44777a;
-    public final BitSet f44778b;
-    public final HashMap f44779c;
+    public static final Pattern f44803j = Pattern.compile("^[!\"#\\$%&'\\(\\)\\*\\+,\\-\\./:;<=>\\?@\\[\\\\\\]\\^_`\\{\\|\\}~\\p{Pc}\\p{Pd}\\p{Pe}\\p{Pf}\\p{Pi}\\p{Po}\\p{Ps}]");
+    public static final Pattern f44804k = Pattern.compile("^ *(?:\n *)?");
+    public static final Pattern f44805l = Pattern.compile("^[\\p{Zs}\t\r\n\f]");
+    public static final Pattern f44806m = Pattern.compile("^[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]");
+    public static final Pattern f44807n = Pattern.compile("\\s+");
+    public final f7.b f44808a;
+    public final BitSet f44809b;
+    public final HashMap f44810c;
     public final HashMap d;
-    public p f44780e;
-    public String f44781f;
-    public int f44782g;
+    public p f44811e;
+    public String f44812f;
+    public int f44813g;
     public ke.c h;
-    public ke.b f44783i;
+    public ke.b f44814i;
 
     public i(f7.b bVar, List list, List list2) {
         k kVar;
-        this.f44777a = bVar;
+        this.f44808a = bVar;
         HashMap hashMap = new HashMap(list.size());
         Iterator it = list.iterator();
         while (it.hasNext()) {
@@ -42,7 +42,7 @@ public final class i implements oe.a {
             }
             list3.add(hVar);
         }
-        this.f44779c = hashMap;
+        this.f44810c = hashMap;
         HashMap hashMap2 = new HashMap();
         Iterator it2 = list2.iterator();
         while (it2.hasNext()) {
@@ -70,7 +70,7 @@ public final class i implements oe.a {
             }
         }
         this.d = hashMap2;
-        Set<Character> keySet = this.f44779c.keySet();
+        Set<Character> keySet = this.f44810c.keySet();
         Set<Character> keySet2 = hashMap2.keySet();
         BitSet bitSet = new BitSet();
         for (Character ch2 : keySet) {
@@ -79,7 +79,7 @@ public final class i implements oe.a {
         for (Character ch3 : keySet2) {
             bitSet.set(ch3.charValue());
         }
-        this.f44778b = bitSet;
+        this.f44809b = bitSet;
     }
 
     public static void b(char c3, qe.a aVar, HashMap hashMap) {
@@ -95,21 +95,21 @@ public final class i implements oe.a {
     }
 
     public final String c(Pattern pattern) {
-        if (this.f44782g >= this.f44781f.length()) {
+        if (this.f44813g >= this.f44812f.length()) {
             return null;
         }
-        Matcher matcher = pattern.matcher(this.f44781f);
-        matcher.region(this.f44782g, this.f44781f.length());
+        Matcher matcher = pattern.matcher(this.f44812f);
+        matcher.region(this.f44813g, this.f44812f.length());
         if (!matcher.find()) {
             return null;
         }
-        this.f44782g = matcher.end();
+        this.f44813g = matcher.end();
         return matcher.group();
     }
 
     public final char d() {
-        if (this.f44782g < this.f44781f.length()) {
-            return this.f44781f.charAt(this.f44782g);
+        if (this.f44813g < this.f44812f.length()) {
+            return this.f44812f.charAt(this.f44813g);
         }
         return (char) 0;
     }
@@ -160,16 +160,16 @@ public final class i implements oe.a {
                     s sVar2 = cVar4.f11109a;
                     cVar4.f11114g -= i10;
                     cVar2.f11114g -= i10;
-                    sVar2.f15979g = e2.c.j(sVar2.f15979g, i10, 0);
-                    sVar.f15979g = e2.c.j(sVar.f15979g, i10, 0);
+                    sVar2.f15981g = e2.c.j(sVar2.f15981g, i10, 0);
+                    sVar.f15981g = e2.c.j(sVar.f15981g, i10, 0);
                     ke.c cVar5 = cVar2.f11112e;
                     while (cVar5 != null && cVar5 != cVar4) {
                         ke.c cVar6 = cVar5.f11112e;
                         f(cVar5);
                         cVar5 = cVar6;
                     }
-                    if (sVar2 != sVar && (pVar = (p) sVar2.f15977f) != sVar) {
-                        p6.b(pVar, (p) sVar.f15976e);
+                    if (sVar2 != sVar && (pVar = (p) sVar2.f15979f) != sVar) {
+                        p6.b(pVar, (p) sVar.f15978e);
                     }
                     aVar.a(sVar2, sVar, i10);
                     if (cVar4.f11114g == 0) {

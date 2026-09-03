@@ -18,26 +18,26 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class xh0 extends FrameLayout {
-    public final ArrayList f43067a;
-    public final ArrayList f43068b;
-    public final ArrayList f43069c;
+    public final ArrayList f43048a;
+    public final ArrayList f43049b;
+    public final ArrayList f43050c;
     public final org.telegram.ui.Components.d9 d;
-    public final org.telegram.ui.ActionBar.l5 f43070e;
-    public final int f43071f;
+    public final org.telegram.ui.ActionBar.l5 f43051e;
+    public final int f43052f;
     public final boolean h;
-    public final org.telegram.ui.Components.u00 f43072n;
-    public boolean f43073r;
-    public kb1 f43074s;
+    public final org.telegram.ui.Components.u00 f43053n;
+    public boolean f43054r;
+    public qb1 f43055s;
 
     public xh0(Context context, int i10, MessageObject messageObject, TLRPC.Chat chat) {
         super(context);
         boolean z4;
         int i11;
         long j10;
-        this.f43067a = new ArrayList();
-        this.f43068b = new ArrayList();
-        this.f43069c = new ArrayList();
-        this.f43071f = i10;
+        this.f43048a = new ArrayList();
+        this.f43049b = new ArrayList();
+        this.f43050c = new ArrayList();
+        this.f43052f = i10;
         if (!messageObject.isRoundVideo() && !messageObject.isVoice()) {
             z4 = false;
         } else {
@@ -45,13 +45,13 @@ public final class xh0 extends FrameLayout {
         }
         this.h = z4;
         org.telegram.ui.Components.u00 u00Var = new org.telegram.ui.Components.u00(context, null);
-        this.f43072n = u00Var;
-        u00Var.f(org.telegram.ui.ActionBar.k6.G8, org.telegram.ui.ActionBar.k6.f21750i6, -1);
+        this.f43053n = u00Var;
+        u00Var.f(org.telegram.ui.ActionBar.k6.G8, org.telegram.ui.ActionBar.k6.f21752i6, -1);
         u00Var.setViewType(13);
         u00Var.setIsSingleCell(false);
         addView(u00Var, k7.c6.c(-1.0f, -2));
         org.telegram.ui.ActionBar.l5 l5Var = new org.telegram.ui.ActionBar.l5(context);
-        this.f43070e = l5Var;
+        this.f43051e = l5Var;
         l5Var.setTextSize(16);
         l5Var.setEllipsizeByGradient(true);
         l5Var.setRightPadding(AndroidUtilities.dp(62.0f));
@@ -88,25 +88,25 @@ public final class xh0 extends FrameLayout {
         setEnabled(false);
     }
 
-    public final org.telegram.ui.Components.tl0 a() {
-        kb1 kb1Var = this.f43074s;
-        if (kb1Var != null) {
-            return kb1Var;
+    public final org.telegram.ui.Components.sl0 a() {
+        qb1 qb1Var = this.f43055s;
+        if (qb1Var != null) {
+            return qb1Var;
         }
-        kb1 kb1Var2 = new kb1(getContext(), 9, null);
-        this.f43074s = kb1Var2;
+        qb1 qb1Var2 = new qb1(getContext(), 9, null);
+        this.f43055s = qb1Var2;
         getContext();
-        kb1Var2.setLayoutManager(new f2.j0());
-        this.f43074s.i(new hg.e2(this, 5));
-        this.f43074s.setAdapter(new fg.g(this, 4));
-        return this.f43074s;
+        qb1Var2.setLayoutManager(new f2.j0());
+        this.f43055s.i(new hg.e2(this, 5));
+        this.f43055s.setAdapter(new fg.g(this, 4));
+        return this.f43055s;
     }
 
     public final void b() {
         boolean z4;
         org.telegram.ui.Components.d9 d9Var;
         String str;
-        ArrayList arrayList = this.f43069c;
+        ArrayList arrayList = this.f43050c;
         if (arrayList.size() > 0) {
             z4 = true;
         } else {
@@ -120,7 +120,7 @@ public final class xh0 extends FrameLayout {
                 break;
             }
             int size = arrayList.size();
-            int i11 = this.f43071f;
+            int i11 = this.f43052f;
             if (i10 < size) {
                 d9Var.b(i10, (TLObject) arrayList.get(i10), i11);
             } else {
@@ -136,10 +136,10 @@ public final class xh0 extends FrameLayout {
             d9Var.setTranslationX(0.0f);
         }
         int dp = AndroidUtilities.dp((Math.min(2, arrayList.size() - 1) * 12) + 38);
-        org.telegram.ui.ActionBar.l5 l5Var = this.f43070e;
+        org.telegram.ui.ActionBar.l5 l5Var = this.f43051e;
         l5Var.setRightPadding(dp);
         d9Var.a(false);
-        ArrayList arrayList2 = this.f43067a;
+        ArrayList arrayList2 = this.f43048a;
         if (arrayList2.size() == 1 && arrayList.get(0) != null) {
             l5Var.l(ContactsController.formatName((TLObject) arrayList.get(0)), false);
         } else if (arrayList2.size() == 0) {
@@ -154,11 +154,11 @@ public final class xh0 extends FrameLayout {
         }
         l5Var.animate().alpha(1.0f).setDuration(220L).start();
         d9Var.animate().alpha(1.0f).setDuration(220L).start();
-        org.telegram.ui.Components.u00 u00Var = this.f43072n;
+        org.telegram.ui.Components.u00 u00Var = this.f43053n;
         u00Var.animate().alpha(0.0f).setDuration(220L).setListener(new org.telegram.ui.Components.x20(u00Var)).start();
-        kb1 kb1Var = this.f43074s;
-        if (kb1Var != null) {
-            kb1Var.getAdapter();
+        qb1 qb1Var = this.f43055s;
+        if (qb1Var != null) {
+            qb1Var.getAdapter();
         }
     }
 
@@ -169,12 +169,12 @@ public final class xh0 extends FrameLayout {
             i10 = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);
         }
         boolean z4 = true;
-        this.f43073r = true;
-        org.telegram.ui.Components.u00 u00Var = this.f43072n;
+        this.f43054r = true;
+        org.telegram.ui.Components.u00 u00Var = this.f43053n;
         if (u00Var.getVisibility() != 0) {
             z4 = false;
         }
-        org.telegram.ui.ActionBar.l5 l5Var = this.f43070e;
+        org.telegram.ui.ActionBar.l5 l5Var = this.f43051e;
         l5Var.setVisibility(8);
         if (z4) {
             u00Var.setVisibility(8);
@@ -186,13 +186,13 @@ public final class xh0 extends FrameLayout {
         }
         l5Var.setVisibility(0);
         l5Var.getLayoutParams().width = getMeasuredWidth() - AndroidUtilities.dp(40.0f);
-        this.f43073r = false;
+        this.f43054r = false;
         super.onMeasure(i10, i11);
     }
 
     @Override
     public final void requestLayout() {
-        if (this.f43073r) {
+        if (this.f43054r) {
             return;
         }
         super.requestLayout();

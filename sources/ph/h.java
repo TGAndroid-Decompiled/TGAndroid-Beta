@@ -28,7 +28,7 @@ public final class h extends u00 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        int v02 = k6.v0(k6.f21659d6, this.S.T.f44408c);
+        int v02 = k6.v0(k6.f21661d6, this.S.T.f44439c);
         Paint paint = this.R;
         paint.setColor(v02);
         canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint);

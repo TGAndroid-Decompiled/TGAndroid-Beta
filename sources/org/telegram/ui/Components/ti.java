@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-public final class ti extends i61 {
+public final class ti extends h61 {
     public final xi c3;
 
     public ti(xi xiVar, Context context, int i10, d dVar, qi qiVar, qi qiVar2, org.telegram.ui.ActionBar.g6 g6Var) {
@@ -11,17 +11,17 @@ public final class ti extends i61 {
     }
 
     @Override
-    public final void C1() {
+    public final void B1() {
         xi xiVar = this.c3;
-        xiVar.f26546b.X1(xiVar, 0);
+        xiVar.f26590b.X1(xiVar, 0);
     }
 
     @Override
     public final boolean E0(float f10) {
         int i10;
-        mi miVar = this.c3.f26546b;
+        mi miVar = this.c3.f26590b;
         int dp = AndroidUtilities.dp(30.0f) + miVar.Y1[0];
-        if (!miVar.f29043d0) {
+        if (!miVar.f29061d0) {
             i10 = AndroidUtilities.statusBarHeight;
         } else {
             i10 = 0;
@@ -36,6 +36,6 @@ public final class ti extends i61 {
     public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
         super.onLayout(z4, i10, i11, i12, i13);
         xi xiVar = this.c3;
-        xiVar.f26546b.X1(xiVar, 0);
+        xiVar.f26590b.X1(xiVar, 0);
     }
 }

@@ -44,7 +44,7 @@ public final class b implements h {
             b10.onCreateCredential(context, eVar, cancellationSignal, sb0Var, e0Var);
         }
         Object r10 = mVar.r();
-        vc.a aVar = vc.a.f48962a;
+        vc.a aVar = vc.a.f48998a;
         return r10;
     }
 

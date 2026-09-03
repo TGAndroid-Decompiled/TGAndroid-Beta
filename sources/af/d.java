@@ -94,7 +94,7 @@ public final class d implements Runnable {
                 if (webPage3 instanceof TLRPC.TL_webPage) {
                     TLRPC.TL_webPage tL_webPage = (TLRPC.TL_webPage) webPage3;
                     if (tL_webPage.cached_page != null) {
-                        if (!l4Var.f38603a0.isEmpty() && l4Var.f38603a0.get(0) == webPage2) {
+                        if (!l4Var.f38508a0.isEmpty() && l4Var.f38508a0.get(0) == webPage2) {
                             if (messageObject != null) {
                                 messageObject.messageOwner.media.webpage = tL_webPage;
                                 TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
@@ -102,12 +102,12 @@ public final class d implements Runnable {
                                 MessagesStorage.getInstance(i12).putMessages((TLRPC.messages_Messages) tL_messages_messages, messageObject.getDialogId(), -2, 0, false, messageObject.scheduled ? 1 : 0, 0L);
                             }
                             if (z10) {
-                                l4Var.f38603a0.add(tL_webPage);
+                                l4Var.f38508a0.add(tL_webPage);
                             } else {
-                                l4Var.f38603a0.set(0, tL_webPage);
+                                l4Var.f38508a0.set(0, tL_webPage);
                             }
-                            if (l4Var.f38603a0.size() == 1) {
-                                ApplicationLoader.applicationContext.getSharedPreferences("articles", 0).edit().remove("article" + tL_webPage.f20996id).commit();
+                            if (l4Var.f38508a0.size() == 1) {
+                                ApplicationLoader.applicationContext.getSharedPreferences("articles", 0).edit().remove("article" + tL_webPage.f20998id).commit();
                                 l4Var.e0(z10 ? 1 : 0, tL_webPage, false);
                                 if (str != null) {
                                     l4Var.V(str, false);
@@ -115,7 +115,7 @@ public final class d implements Runnable {
                             }
                         }
                         h hVar = new h(1);
-                        hVar.k(tL_webPage, tL_webPage.f20996id);
+                        hVar.k(tL_webPage, tL_webPage.f20998id);
                         MessagesStorage.getInstance(i12).putWebPages(hVar);
                         return;
                     }
@@ -130,11 +130,11 @@ public final class d implements Runnable {
                             page.views = i14;
                             page.flags |= 8;
                             while (true) {
-                                p3[] p3VarArr = l4Var.f38619r0;
+                                p3[] p3VarArr = l4Var.f38524r0;
                                 if (i10 < p3VarArr.length) {
-                                    j4 j4Var = p3VarArr[i10].f39905c;
-                                    if (j4Var.B == webPage2 && (K = l4Var.f38619r0[i10].f39904b.K(j4Var.h() - 1)) != null) {
-                                        l4Var.f38619r0[i10].f39905c.y(K);
+                                    j4 j4Var = p3VarArr[i10].f39863c;
+                                    if (j4Var.B == webPage2 && (K = l4Var.f38524r0[i10].f39862b.K(j4Var.h() - 1)) != null) {
+                                        l4Var.f38524r0[i10].f39863c.y(K);
                                     }
                                     i10++;
                                 } else if (messageObject != null) {

@@ -306,13 +306,13 @@ public abstract class k {
             e(group3, jVar);
             StringBuilder sb = new StringBuilder();
             wVar.getClass();
-            String h = wVar.h(r8.d.f46738c);
+            String h = wVar.h(r8.d.f46769c);
             while (!TextUtils.isEmpty(h)) {
                 if (sb.length() > 0) {
                     sb.append("\n");
                 }
                 sb.append(h.trim());
-                h = wVar.h(r8.d.f46738c);
+                h = wVar.h(r8.d.f46769c);
             }
             jVar.f4978c = f(str, sb.toString(), arrayList);
             return new e(jVar.a().a(), jVar.f4976a, jVar.f4977b);

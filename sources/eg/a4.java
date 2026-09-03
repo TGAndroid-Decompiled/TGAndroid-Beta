@@ -5,24 +5,24 @@ import android.graphics.PointF;
 import android.view.ViewGroup;
 import k7.c6;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.tk0;
-import qh.xa;
+import org.telegram.ui.Components.sk0;
+import qh.wa;
 public final class a4 extends j {
     public final j1 f5072n0;
     public boolean f5073o0;
     public int f5074p0;
     public int f5075q0;
-    public final xa f5076r0;
+    public final wa f5076r0;
 
-    public a4(Context context, PointF pointF, int i10, xa xaVar, float f10, int i11) {
+    public a4(Context context, PointF pointF, int i10, wa waVar, float f10, int i11) {
         super(context, pointF);
         j1 j1Var = new j1(context, f10);
         this.f5072n0 = j1Var;
         j1Var.setMaxWidth(i11);
         j1Var.e(0, this.f5074p0);
-        this.f5076r0 = xaVar;
-        String str = xaVar.f46310c;
-        String a2 = xaVar.a();
+        this.f5076r0 = waVar;
+        String str = waVar.f46283c;
+        String a2 = waVar.a();
         j1Var.d(i10, str);
         j1Var.setText(a2);
         m();
@@ -47,7 +47,7 @@ public final class a4 extends j {
     }
 
     @Override
-    public tk0 getSelectionBounds() {
+    public sk0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -58,7 +58,7 @@ public final class a4 extends j {
         float scale2 = getScale();
         float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
         float c3 = org.telegram.ui.b.c(dp, 2.0f, getPositionX(), scaleX);
-        return new tk0(c3, org.telegram.ui.b.c(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + c3) - c3, dp2 * scaleX);
+        return new sk0(c3, org.telegram.ui.b.c(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + c3) - c3, dp2 * scaleX);
     }
 
     @Override

@@ -1,794 +1,354 @@
 package qh;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.graphics.Canvas;
+import android.graphics.CornerPathEffect;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.os.Build;
-import android.provider.MediaStore;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-import androidx.recyclerview.widget.RecyclerView;
-import java.io.File;
-import java.util.ArrayList;
+import android.view.ViewConfiguration;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.d20;
-import org.telegram.ui.Components.j51;
-import org.telegram.ui.Components.li;
 import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.tl0;
-import org.telegram.ui.Components.x51;
-import org.telegram.ui.mg1;
-public final class k6 extends org.telegram.ui.Components.sa implements NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener, xd.b {
-    public boolean A0;
-    public TLRPC.User B0;
-    public boolean C0;
-    public boolean D0;
-    public int E0;
-    public String F0;
-    public int G0;
-    public final e6 H0;
-    public boolean I0;
-    public final ArrayList J0;
-    public final RectF K0;
-    public final ArrayList L0;
-    public final xd.a U;
-    public final int V;
-    public boolean W;
-    public final k6 X;
-    public final ArrayList Y;
-    public final ArrayList Z;
-    public final ArrayList f45567a0;
-    public final MessagesController.SavedMusicList f45568b0;
-    public final Utilities.Callback f45569c0;
-    public MessageObject f45570d0;
-    public boolean f45571e0;
-    public boolean f45572f0;
-    public final FrameLayout f45573g0;
-    public final li f45574h0;
-    public final og.e f45575i0;
-    public final tg.d f45576j0;
-    public final tg.d f45577k0;
-    public final og.a f45578l0;
-    public final lh.n2 m0;
-    public x51 f45579n0;
-    public MessageObject f45580o0;
-    public String f45581p0;
-    public int f45582q0;
-    public boolean f45583r0;
-    public boolean f45584s0;
-    public boolean f45585t0;
-    public String f45586u0;
-    public int f45587v0;
-    public final e6 f45588w0;
-    public String f45589x0;
-    public boolean f45590y0;
-    public boolean f45591z0;
+public class k6 extends View {
+    public final Path B;
+    public final Path C;
+    public final Path D;
+    public final Path E;
+    public final Path F;
+    public final org.telegram.ui.Components.z5 G;
+    public final org.telegram.ui.Components.z5 H;
+    public float I;
+    public long J;
+    public float K;
+    public int L;
+    public int M;
+    public final TextPaint N;
+    public int O;
+    public final int f45612a;
+    public float f45613b;
+    public float f45614c;
+    public float d;
+    public boolean f45615e;
+    public final org.telegram.ui.Components.z5 f45616f;
+    public Utilities.Callback h;
+    public final Paint f45617n;
+    public final Paint f45618r;
+    public final Paint f45619s;
+    public final Paint v;
+    public final Paint f45620w;
+    public final org.telegram.ui.Components.j6 f45621x;
+    public final org.telegram.ui.Components.j6 f45622y;
 
-    public k6(Context context, boolean z4, k6 k6Var, Utilities.Callback callback, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, null, true, false, false, 2, g6Var);
+    public k6(Context context, int i10) {
+        super(context);
+        this.f45613b = 0.0f;
+        this.f45614c = 1.0f;
         pr prVar = pr.h;
-        this.U = new xd.a(0, this, prVar, 380L, false);
-        this.Y = new ArrayList();
-        this.Z = new ArrayList();
-        this.f45567a0 = new ArrayList();
-        this.f45587v0 = -1;
-        this.f45588w0 = new Runnable(this) {
-            public final k6 f45254b;
-
-            {
-                this.f45254b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        this.f45254b.b0();
-                        return;
-                    case 1:
-                        this.f45254b.a0();
-                        return;
-                    default:
-                        k6.S(this.f45254b);
-                        return;
-                }
-            }
-        };
-        this.E0 = -1;
-        this.G0 = -2000000000;
-        this.H0 = new Runnable(this) {
-            public final k6 f45254b;
-
-            {
-                this.f45254b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        this.f45254b.b0();
-                        return;
-                    case 1:
-                        this.f45254b.a0();
-                        return;
-                    default:
-                        k6.S(this.f45254b);
-                        return;
-                }
-            }
-        };
-        ArrayList arrayList = new ArrayList();
-        this.J0 = arrayList;
-        RectF rectF = new RectF();
-        this.K0 = rectF;
-        arrayList.add(rectF);
-        this.L0 = new ArrayList();
-        this.v = 0.35f;
-        fixNavigationBar();
-        J();
-        this.F = AndroidUtilities.dp(4.0f);
-        this.G = AndroidUtilities.dp(-20.0f);
-        this.W = z4;
-        this.V = DownloadController.getInstance(this.currentAccount).generateObserverTag();
-        this.X = k6Var;
-        this.f45569c0 = callback;
-        tg.c cVar = new tg.c();
-        cVar.a(getThemedColor(org.telegram.ui.ActionBar.k6.f21659d6));
-        if (Build.VERSION.SDK_INT >= 31) {
-            this.f45575i0 = new og.e(false);
-            tg.d dVar = new tg.d(null);
-            this.f45577k0 = dVar;
-            dVar.j(new f6(this));
-            tg.d dVar2 = new tg.d(null);
-            this.f45576j0 = dVar2;
-            dVar2.j(new g6(this));
-            og.a aVar = new og.a(dVar);
-            this.f45578l0 = aVar;
-            aVar.f16755f = LiteMode.isEnabled(262144);
-            LiteMode.isEnabled(262144);
-        } else {
-            this.f45575i0 = null;
-            this.f45576j0 = null;
-            this.f45577k0 = null;
-            this.f45578l0 = new og.a(cVar);
-        }
-        this.m0 = new lh.n2(this, 1);
-        int i10 = org.telegram.ui.ActionBar.k6.f21605a7;
-        li liVar = new li(context, i10, g6Var);
-        this.f45574h0 = liVar;
-        liVar.setVisibility(4);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f45573g0 = frameLayout;
-        d20 d20Var = new d20(context, g6Var);
-        d20Var.f26172r.setOnFocusChangeListener(new h6(this));
-        d20Var.f26174w = true;
-        d20Var.setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        d20Var.e();
-        d20Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-        d20Var.f26172r.addTextChangedListener(new i6(this));
-        d20Var.f26172r.setHint(LocaleController.getString(R.string.Search));
-        frameLayout.addView(liVar, k7.c6.g());
-        frameLayout.addView(d20Var, k7.c6.d(-1, 48.0f, 51, 0.0f, 8.0f, 0.0f, 4.0f));
-        d20Var.setupBlurredBackground(this.f45578l0.c(d20Var, sg.b.m(g6Var), false));
-        frameLayout.setPadding(AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0);
-        this.containerView.addView(frameLayout, k7.c6.e(-1, -2, 55));
-        setBackgroundColor(getThemedColor(i10));
-        tl0 tl0Var = this.d;
-        int i11 = this.backgroundPaddingLeft;
-        tl0Var.setPadding(i11, 0, i11, 0);
-        this.d.p1();
-        f2.l lVar = new f2.l();
-        lVar.f5910m = false;
-        lVar.C = false;
-        lVar.o(prVar);
-        lVar.n(350L);
-        this.d.setItemAnimator(lVar);
-        if (!z4) {
-            int i12 = this.currentAccount;
-            MessagesController.SavedMusicList savedMusicList = new MessagesController.SavedMusicList(i12, UserConfig.getInstance(i12).getClientUserId());
-            this.f45568b0 = savedMusicList;
-            savedMusicList.load();
-            b0();
-            a0();
-        } else {
-            this.f45568b0 = null;
-            if (this.W && !this.I0) {
-                this.I0 = true;
-                Utilities.globalQueue.postRunnable(new Runnable(this) {
-                    public final k6 f45254b;
-
-                    {
-                        this.f45254b = this;
-                    }
-
-                    @Override
-                    public final void run() {
-                        switch (r2) {
-                            case 0:
-                                this.f45254b.b0();
-                                return;
-                            case 1:
-                                this.f45254b.a0();
-                                return;
-                            default:
-                                k6.S(this.f45254b);
-                                return;
-                        }
-                    }
-                });
-            }
-        }
-        this.d.setOnScrollListener(new j6(this));
-        this.d.setOnItemClickListener(new oh.d0(this, callback, g6Var, 2));
-    }
-
-    public static void P(k6 k6Var, TLRPC.messages_BotResults messages_botresults) {
-        ArrayList arrayList = k6Var.f45567a0;
-        boolean z4 = false;
-        k6Var.f45591z0 = false;
-        k6Var.A0 = false;
-        if (messages_botresults != null) {
-            MessagesController.getInstance(k6Var.currentAccount).putUsers(messages_botresults.users, false);
-            ArrayList<TLRPC.BotInlineResult> arrayList2 = messages_botresults.results;
-            int size = arrayList2.size();
-            int i10 = 0;
-            while (i10 < size) {
-                TLRPC.BotInlineResult botInlineResult = arrayList2.get(i10);
-                i10++;
-                TLRPC.BotInlineResult botInlineResult2 = botInlineResult;
-                if (botInlineResult2 instanceof TLRPC.TL_botInlineMediaResult) {
-                    TLRPC.TL_botInlineMediaResult tL_botInlineMediaResult = (TLRPC.TL_botInlineMediaResult) botInlineResult2;
-                    if (tL_botInlineMediaResult.document != null) {
-                        TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                        tL_message.out = true;
-                        int i11 = k6Var.G0;
-                        k6Var.G0 = i11 - 1;
-                        tL_message.f20864id = i11;
-                        tL_message.peer_id = new TLRPC.TL_peerUser();
-                        TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                        tL_message.from_id = tL_peerUser;
-                        TLRPC.Peer peer = tL_message.peer_id;
-                        long clientUserId = UserConfig.getInstance(k6Var.currentAccount).getClientUserId();
-                        tL_peerUser.user_id = clientUserId;
-                        peer.user_id = clientUserId;
-                        tL_message.date = (int) (System.currentTimeMillis() / 1000);
-                        tL_message.message = "";
-                        TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-                        tL_message.media = tL_messageMediaDocument;
-                        tL_messageMediaDocument.flags |= 3;
-                        tL_messageMediaDocument.document = tL_botInlineMediaResult.document;
-                        tL_message.flags |= 768;
-                        arrayList.add(new MessageObject(k6Var.currentAccount, tL_message, false, true));
-                    }
-                }
-            }
-            k6Var.f45589x0 = messages_botresults.next_offset;
-            if (!arrayList.isEmpty() && !TextUtils.isEmpty(k6Var.f45589x0)) {
-                z4 = true;
-            }
-            k6Var.f45590y0 = z4;
-            k6Var.f45579n0.N(true);
-            return;
-        }
-        k6Var.f45579n0.N(true);
-    }
-
-    public static void Q(k6 k6Var, Utilities.Callback callback, org.telegram.ui.ActionBar.g6 g6Var, View view, int i10) {
-        if (view instanceof org.telegram.ui.Cells.h7) {
-            MessageObject message = ((org.telegram.ui.Cells.h7) view).getMessage();
-            if (message != null) {
-                DownloadController.getInstance(k6Var.currentAccount).removeLoadingFileObserver(k6Var);
-                if (k6Var.f45570d0 != null) {
-                    FileLoader.getInstance(k6Var.currentAccount).cancelLoadFile(k6Var.f45570d0.getDocument());
-                    k6Var.f45570d0 = null;
-                }
-                if (!message.attachPathExists && !message.mediaExists) {
-                    String fileName = message.getFileName();
-                    if (!TextUtils.isEmpty(fileName)) {
-                        k6Var.f45570d0 = message;
-                        DownloadController.getInstance(k6Var.currentAccount).addLoadingFileObserver(fileName, message, k6Var);
-                        FileLoader.getInstance(k6Var.currentAccount).loadFile(message.getDocument(), message, 1, 0);
-                        return;
-                    }
-                    return;
-                }
-                k6Var.f45569c0.run(message);
-                k6 k6Var2 = k6Var.X;
-                if (k6Var2 != null) {
-                    k6Var2.dismiss();
-                }
-                k6Var.dismiss();
-                return;
-            }
-            return;
-        }
-        j51 G = k6Var.f45579n0.G(i10 - 1);
-        if (G != null && G.d == 1) {
-            new k6(k6Var.getContext(), true, k6Var, callback, g6Var).show();
-        } else if (G != null && G.d == 2) {
-            k6Var.f45568b0.load();
-        } else if (G != null && G.d == 3) {
-            k6Var.b0();
-        } else if (G != null && G.d == 4) {
-            k6Var.a0();
-        }
-    }
-
-    public static void R(k6 k6Var, TLObject tLObject) {
-        ArrayList arrayList = k6Var.Z;
-        boolean z4 = false;
-        k6Var.f45585t0 = false;
-        k6Var.f45584s0 = false;
-        if (tLObject instanceof TLRPC.messages_Messages) {
-            TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-            MessagesController.getInstance(k6Var.currentAccount).putUsers(messages_messages.users, false);
-            MessagesController.getInstance(k6Var.currentAccount).putChats(messages_messages.chats, false);
-            ArrayList<TLRPC.Message> arrayList2 = messages_messages.messages;
-            int size = arrayList2.size();
-            int i10 = 0;
-            while (i10 < size) {
-                TLRPC.Message message = arrayList2.get(i10);
-                i10++;
-                arrayList.add(new MessageObject(k6Var.currentAccount, message, false, true));
-            }
-            if ((messages_messages instanceof TLRPC.TL_messages_messagesSlice) && arrayList.size() < messages_messages.count) {
-                z4 = true;
-            }
-            k6Var.f45583r0 = z4;
-            k6Var.f45582q0 = messages_messages.next_rate;
-        } else {
-            k6Var.f45583r0 = false;
-            k6Var.f45582q0 = 0;
-        }
-        k6Var.f45579n0.N(true);
-    }
-
-    public static void S(k6 k6Var) {
-        String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
-        ArrayList arrayList = new ArrayList();
-        try {
-            Cursor query = ApplicationLoader.applicationContext.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strArr, "is_music != 0", null, "title");
-            int i10 = -2000000000;
-            while (query.moveToNext()) {
-                MediaController.AudioEntry audioEntry = new MediaController.AudioEntry();
-                audioEntry.f18048id = query.getInt(0);
-                audioEntry.author = query.getString(1);
-                audioEntry.title = query.getString(2);
-                audioEntry.path = query.getString(3);
-                audioEntry.duration = (int) (query.getLong(4) / 1000);
-                audioEntry.genre = query.getString(5);
-                File file = new File(audioEntry.path);
-                TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                tL_message.out = true;
-                tL_message.f20864id = i10;
-                tL_message.peer_id = new TLRPC.TL_peerUser();
-                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                tL_message.from_id = tL_peerUser;
-                TLRPC.Peer peer = tL_message.peer_id;
-                long clientUserId = UserConfig.getInstance(k6Var.currentAccount).getClientUserId();
-                tL_peerUser.user_id = clientUserId;
-                peer.user_id = clientUserId;
-                tL_message.date = (int) (System.currentTimeMillis() / 1000);
-                tL_message.message = "";
-                tL_message.attachPath = audioEntry.path;
-                TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-                tL_message.media = tL_messageMediaDocument;
-                tL_messageMediaDocument.flags |= 3;
-                tL_messageMediaDocument.document = new TLRPC.TL_document();
-                tL_message.flags |= 768;
-                String fileExtension = FileLoader.getFileExtension(file);
-                TLRPC.Document document = tL_message.media.document;
-                document.f20849id = 0L;
-                document.access_hash = 0L;
-                document.file_reference = new byte[0];
-                document.date = tL_message.date;
-                StringBuilder sb = new StringBuilder();
-                sb.append("audio/");
-                if (fileExtension.length() <= 0) {
-                    fileExtension = "mp3";
-                }
-                sb.append(fileExtension);
-                document.mime_type = sb.toString();
-                tL_message.media.document.size = (int) file.length();
-                tL_message.media.document.dc_id = 0;
-                TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
-                tL_documentAttributeAudio.duration = audioEntry.duration;
-                tL_documentAttributeAudio.title = audioEntry.title;
-                tL_documentAttributeAudio.performer = audioEntry.author;
-                tL_documentAttributeAudio.flags = 3 | tL_documentAttributeAudio.flags;
-                tL_message.media.document.attributes.add(tL_documentAttributeAudio);
-                TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
-                tL_documentAttributeFilename.file_name = file.getName();
-                tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-                MessageObject messageObject = new MessageObject(k6Var.currentAccount, tL_message, false, true);
-                audioEntry.messageObject = messageObject;
-                arrayList.add(messageObject);
-                i10--;
-            }
-            query.close();
-        } catch (Exception e6) {
-            FileLog.e(e6);
-        }
-        AndroidUtilities.runOnUIThread(new mg1(29, k6Var, arrayList));
-    }
-
-    public static void T(k6 k6Var, Long l10) {
-        TLRPC.User user;
-        boolean z4 = false;
-        k6Var.C0 = false;
-        if (l10 == null) {
-            user = null;
-        } else {
-            user = MessagesController.getInstance(k6Var.currentAccount).getUser(l10);
-        }
-        k6Var.B0 = user;
-        if (user == null) {
-            z4 = true;
-        }
-        k6Var.D0 = z4;
-        if (user != null) {
-            k6Var.a0();
-        }
-    }
-
-    public static boolean c0(String str, String str2, String str3) {
-        if (str3 != null) {
-            String lowerCase = str3.toLowerCase();
-            if (!lowerCase.startsWith(str) && !org.telegram.messenger.y3.w(" ", str, lowerCase)) {
-                String translitSafe = AndroidUtilities.translitSafe(lowerCase);
-                if (!translitSafe.startsWith(str2) && !org.telegram.messenger.y3.w(" ", str2, translitSafe)) {
-                    return false;
-                }
-                return true;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void H(Canvas canvas, View view) {
-        if (Build.VERSION.SDK_INT >= 31 && this.f45575i0 != null) {
-            X();
-            tg.d dVar = this.f45576j0;
-            if (dVar != null) {
-                dVar.i(this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
-                dVar.l();
-            }
-            tg.d dVar2 = this.f45577k0;
-            if (dVar2 != null) {
-                dVar2.i(this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
-                dVar2.l();
-            }
-        }
-        d0();
-        super.H(canvas, view);
-    }
-
-    @Override
-    public final void L(int i10, float f10, float f11, xd.c cVar) {
-        int i11;
+        this.f45616f = new org.telegram.ui.Components.z5(this, 0L, 320L, prVar);
+        Paint paint = new Paint(1);
+        this.f45617n = paint;
+        Paint paint2 = new Paint(1);
+        this.f45618r = paint2;
+        Paint paint3 = new Paint(1);
+        this.f45619s = paint3;
+        Paint paint4 = new Paint(1);
+        this.v = paint4;
+        Paint paint5 = new Paint(1);
+        this.f45620w = paint5;
+        org.telegram.ui.Components.j6 j6Var = new org.telegram.ui.Components.j6(false, true, true, false);
+        this.f45621x = j6Var;
+        this.B = new Path();
+        this.C = new Path();
+        this.D = new Path();
+        this.E = new Path();
+        this.F = new Path();
+        this.G = new org.telegram.ui.Components.z5(this, 0L, 350L, prVar);
+        this.H = new org.telegram.ui.Components.z5(this, 0L, 350L, prVar);
+        this.N = new TextPaint(1);
+        this.f45612a = i10;
+        j6Var.u(AndroidUtilities.bold());
+        j6Var.k(0.3f, 40L, prVar);
+        j6Var.setCallback(this);
+        j6Var.r(-1);
+        j6Var.G = AndroidUtilities.displaySize.x;
         if (i10 == 0) {
-            li liVar = this.f45574h0;
-            liVar.setAlpha(f10);
-            if (f10 > 0.0f) {
-                i11 = 0;
+            j6Var.t(AndroidUtilities.dp(15.0f));
+            this.f45622y = null;
+            paint2.setColor(-1);
+            paint3.setColor(-1);
+            paint4.setColor(-1);
+            paint5.setColor(-1);
+            paint5.setStyle(Paint.Style.STROKE);
+            paint5.setStrokeCap(Paint.Cap.ROUND);
+        } else {
+            j6Var.t(AndroidUtilities.dp(14.0f));
+            j6Var.f27999b = 5;
+            org.telegram.ui.Components.j6 j6Var2 = new org.telegram.ui.Components.j6(false, true, true, false);
+            this.f45622y = j6Var2;
+            j6Var2.G = AndroidUtilities.displaySize.x;
+            j6Var2.t(AndroidUtilities.dp(14.0f));
+            j6Var2.u(AndroidUtilities.bold());
+            j6Var2.k(0.3f, 40L, prVar);
+            j6Var2.setCallback(this);
+            j6Var2.r(-1);
+            if (i10 == 1) {
+                j6Var2.q(LocaleController.getString(R.string.FlashWarmth), true, true);
+            } else if (i10 == 2) {
+                j6Var2.q(LocaleController.getString(R.string.FlashIntensity), true, true);
+            } else if (i10 == 3) {
+                j6Var2.q(LocaleController.getString(R.string.WallpaperDimming), true, true);
+            }
+        }
+        j6Var.q("", true, true);
+        paint.setColor(-1);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.XOR));
+    }
+
+    public final void a(float f10) {
+        this.f45615e = true;
+        float f11 = this.f45613b;
+        this.d = (f10 - f11) / (this.f45614c - f11);
+        e(f10);
+    }
+
+    public final void b() {
+        this.f45613b = 0.0f;
+        this.f45614c = 0.9f;
+    }
+
+    public final void c(org.telegram.ui.w3 w3Var) {
+        this.h = w3Var;
+    }
+
+    public final void d(float f10) {
+        float f11 = this.f45613b;
+        float f12 = (f10 - f11) / (this.f45614c - f11);
+        this.d = f12;
+        this.f45616f.d(f12, true);
+        e(f10);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f10;
+        float f11;
+        boolean z4;
+        super.dispatchDraw(canvas);
+        canvas.save();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, this.L, this.M);
+        Path path = this.B;
+        path.rewind();
+        float f12 = this.K;
+        path.addRoundRect(rectF, f12, f12, Path.Direction.CW);
+        canvas.clipPath(path);
+        boolean z10 = false;
+        if (this.f45615e) {
+            f10 = this.f45616f.d(this.d, false);
+        } else {
+            f10 = this.d;
+        }
+        float f13 = f10;
+        canvas.saveLayerAlpha(0.0f, 0.0f, this.L, this.M, 255, 31);
+        int i10 = this.f45612a;
+        org.telegram.ui.Components.j6 j6Var = this.f45621x;
+        if (i10 == 0) {
+            j6Var.setBounds(AndroidUtilities.dp(42.0f), -AndroidUtilities.dp(1.0f), this.L, this.M - AndroidUtilities.dp(1.0f));
+            j6Var.draw(canvas);
+        } else {
+            int d = (this.L - ((int) j6Var.d())) - AndroidUtilities.dp(6.0f);
+            int dp = this.M - AndroidUtilities.dp(1.0f);
+            org.telegram.ui.Components.j6 j6Var2 = this.f45622y;
+            j6Var2.setBounds(AndroidUtilities.dp(12.33f), -AndroidUtilities.dp(1.0f), d, dp);
+            j6Var2.draw(canvas);
+            j6Var.setBounds(this.L - AndroidUtilities.dp(111.0f), -AndroidUtilities.dp(1.0f), this.L - AndroidUtilities.dp(11.0f), this.M - AndroidUtilities.dp(1.0f));
+            j6Var.draw(canvas);
+        }
+        if (i10 == 0) {
+            canvas.drawPath(this.C, this.f45618r);
+            canvas.drawPath(this.D, this.f45619s);
+            float f14 = this.f45614c;
+            float f15 = this.f45613b;
+            float f16 = f14 - f15;
+            if (f16 != 0.0f) {
+                f11 = (f16 * this.d) + f15;
             } else {
-                i11 = 4;
+                f11 = 0.0f;
             }
-            liVar.setVisibility(i11);
-        }
-    }
-
-    public final int W(boolean z4, ArrayList arrayList, String str, ArrayList arrayList2, boolean z10, boolean z11, int i10) {
-        String lowerCase;
-        int i11;
-        int i12 = 0;
-        if (arrayList2 != null && (!arrayList2.isEmpty() || z10)) {
-            ArrayList arrayList3 = new ArrayList();
-            String str2 = this.f45581p0;
-            if (str2 == null) {
-                lowerCase = null;
+            double d10 = f11;
+            if (d10 > 0.25d) {
+                z4 = true;
             } else {
-                lowerCase = str2.toLowerCase();
+                z4 = false;
             }
-            String translitSafe = AndroidUtilities.translitSafe(lowerCase);
-            int size = arrayList2.size();
-            int i13 = 0;
-            while (i13 < size) {
-                Object obj = arrayList2.get(i13);
-                i13++;
-                MessageObject messageObject = (MessageObject) obj;
-                if (!z4) {
-                    messageObject.setQuery(this.f45581p0);
-                    arrayList3.add(messageObject);
-                } else if (!TextUtils.isEmpty(lowerCase) && arrayList2 != this.Z) {
-                    String musicTitle = messageObject.getMusicTitle();
-                    String musicAuthor = messageObject.getMusicAuthor();
-                    if (c0(lowerCase, translitSafe, musicTitle) || c0(lowerCase, translitSafe, musicAuthor)) {
-                        messageObject.setQuery(this.f45581p0);
-                        arrayList3.add(messageObject);
-                    }
-                } else {
-                    messageObject.setQuery(null);
-                    arrayList3.add(messageObject);
-                }
+            float e6 = this.G.e(z4);
+            canvas.save();
+            canvas.translate((1.0f - e6) * (-AndroidUtilities.dpf2(0.33f)), 0.0f);
+            Paint paint = this.v;
+            paint.setAlpha((int) (e6 * 255.0f));
+            canvas.drawPath(this.E, paint);
+            canvas.restore();
+            if (d10 > 0.5d) {
+                z10 = true;
             }
-            if (!arrayList3.isEmpty() || z10) {
-                if (!arrayList.isEmpty() && arrayList.size() > 1) {
-                    arrayList.add(j51.B(null));
-                    i11 = AndroidUtilities.dp(12.0f);
-                } else {
-                    i11 = 0;
-                }
-                this.f45579n0.U();
-                arrayList.add(j51.t(str));
-                int size2 = arrayList3.size();
-                while (i12 < size2) {
-                    Object obj2 = arrayList3.get(i12);
-                    i12++;
-                    eg.y yVar = new eg.y(this, 4);
-                    int i14 = org.telegram.ui.Cells.g7.f22858a;
-                    j51 J = j51.J(org.telegram.ui.Cells.g7.class);
-                    J.G = (MessageObject) obj2;
-                    J.H = yVar;
-                    arrayList.add(J);
-                    i11 += AndroidUtilities.dp(56.0f);
-                }
-                if (z10) {
-                    arrayList.add(j51.n(4));
-                    arrayList.add(j51.n(4));
-                    arrayList.add(j51.n(4));
-                    i11 += AndroidUtilities.dp(56.0f) * 3;
-                }
-                if (z11 && !z10) {
-                    j51 c3 = j51.c(i10, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore));
-                    c3.f28019q = true;
-                    arrayList.add(c3);
-                    i11 += AndroidUtilities.dp(50.0f);
-                }
-                this.f45579n0.T();
-                return i11;
-            }
+            float e10 = this.H.e(z10);
+            canvas.save();
+            canvas.translate((1.0f - e10) * (-AndroidUtilities.dpf2(0.66f)), 0.0f);
+            Paint paint2 = this.f45620w;
+            paint2.setAlpha((int) (e10 * 255.0f));
+            canvas.drawPath(this.F, paint2);
+            canvas.restore();
         }
-        return 0;
+        canvas.save();
+        canvas.drawRect(0.0f, 0.0f, this.L * f13, this.M, this.f45617n);
+        canvas.restore();
+        canvas.restore();
+        canvas.restore();
     }
 
-    public final void X() {
-        og.e eVar;
-        if (Build.VERSION.SDK_INT >= 31 && (eVar = this.f45575i0) != null) {
-            this.K0.set(0.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, this.containerView.getMeasuredWidth(), AndroidUtilities.dp(64.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight);
-            ArrayList arrayList = this.J0;
-            ArrayList arrayList2 = this.L0;
-            eVar.g(lf.l0.a(arrayList, 1, arrayList2), arrayList2);
-            eVar.e(this.m0, this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
-        }
-    }
-
-    public final void Y() {
-        if (this.E0 >= 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.E0, true);
-        }
-        this.E0 = -1;
-        this.f45589x0 = "";
-        this.f45590y0 = false;
-        this.f45567a0.clear();
-        this.f45591z0 = false;
-        this.A0 = false;
-    }
-
-    public final void Z() {
-        if (this.f45587v0 >= 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.f45587v0, true);
-        }
-        this.f45587v0 = -1;
-        this.f45582q0 = 0;
-        this.Z.clear();
-        this.f45584s0 = false;
-        this.f45585t0 = false;
-    }
-
-    public final void a0() {
-        String str = MessagesController.getInstance(this.currentAccount).config.musicSearchUsername.get();
-        if (!TextUtils.isEmpty(str)) {
-            String str2 = this.F0;
-            String str3 = this.f45581p0;
-            String str4 = "";
-            if (str3 == null) {
-                str3 = "";
-            }
-            if (!TextUtils.equals(str2, str3)) {
-                Y();
-            }
-            if (!this.f45591z0 && !TextUtils.isEmpty(this.f45581p0) && this.f45581p0.length() >= 3) {
-                ArrayList arrayList = this.f45567a0;
-                if (arrayList.isEmpty() || this.f45590y0) {
-                    if (this.B0 == null) {
-                        this.B0 = MessagesController.getInstance(this.currentAccount).getUser(str);
-                    }
-                    if (this.B0 == null) {
-                        if (!this.C0 && !this.D0) {
-                            this.C0 = true;
-                            MessagesController.getInstance(this.currentAccount).getUserNameResolver().resolve(str, new ng.i(this, 6));
-                            return;
-                        }
-                        return;
-                    }
-                    this.f45591z0 = true;
-                    TLRPC.User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
-                    TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
-                    tL_messages_getInlineBotResults.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.B0);
-                    tL_messages_getInlineBotResults.peer = MessagesController.getInputPeer(currentUser);
-                    tL_messages_getInlineBotResults.offset = (arrayList.isEmpty() || (r0 = this.f45589x0) == null) ? "" : "";
-                    String str5 = this.f45581p0;
-                    if (str5 != null) {
-                        str4 = str5;
-                    }
-                    this.F0 = str4;
-                    tL_messages_getInlineBotResults.query = str4;
-                    this.E0 = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_getInlineBotResults, new Object(), new c6(this, 1));
-                    this.f45579n0.N(true);
-                }
-            }
-        }
-    }
-
-    public final void b0() {
-        if (!this.W) {
-            String str = this.f45586u0;
-            String str2 = this.f45581p0;
-            String str3 = "";
-            if (str2 == null) {
-                str2 = "";
-            }
-            if (!TextUtils.equals(str, str2)) {
-                Z();
-            }
-            if (!this.f45584s0) {
-                ArrayList arrayList = this.Z;
-                if (!arrayList.isEmpty() && !this.f45583r0) {
-                    return;
-                }
-                this.f45584s0 = true;
-                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
-                tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterMusic();
-                String str4 = this.f45581p0;
-                if (str4 != null) {
-                    str3 = str4;
-                }
-                this.f45586u0 = str3;
-                tL_messages_searchGlobal.f20954q = str3;
-                tL_messages_searchGlobal.limit = 20;
-                if (arrayList.size() > 0) {
-                    MessageObject messageObject = (MessageObject) l.d.i(1, arrayList);
-                    tL_messages_searchGlobal.offset_id = messageObject.getId();
-                    tL_messages_searchGlobal.offset_rate = this.f45582q0;
-                    tL_messages_searchGlobal.offset_peer = MessagesController.getInstance(this.currentAccount).getInputPeer(MessageObject.getPeerId(messageObject.messageOwner.peer_id));
-                } else {
-                    tL_messages_searchGlobal.offset_rate = 0;
-                    tL_messages_searchGlobal.offset_id = 0;
-                    tL_messages_searchGlobal.offset_peer = new TLRPC.TL_inputPeerEmpty();
-                }
-                this.f45587v0 = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_searchGlobal, new gf.a(this, 16));
-                this.f45579n0.N(true);
-            }
-        }
-    }
-
-    public final void d0() {
-        float f10 = AndroidUtilities.displaySize.y;
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        float f10;
         boolean z4 = false;
-        int i10 = 0;
-        while (true) {
-            tl0 tl0Var = this.d;
-            if (i10 >= tl0Var.getChildCount()) {
-                break;
+        if (this.L <= 0) {
+            return false;
+        }
+        float x10 = motionEvent.getX();
+        if (motionEvent.getAction() == 0) {
+            this.J = System.currentTimeMillis();
+            this.f45615e = false;
+        } else if (motionEvent.getAction() == 2 || motionEvent.getAction() == 1) {
+            float f11 = this.f45614c;
+            float f12 = this.f45613b;
+            float f13 = 0.0f;
+            if (f11 - f12 != 0.0f) {
+                f10 = e2.c.w(f11, f12, this.d, f12);
+            } else {
+                f10 = 0.0f;
             }
-            View childAt = tl0Var.getChildAt(i10);
-            if (RecyclerView.R(childAt) >= 1 && childAt.getY() < f10) {
-                f10 = childAt.getY();
+            if (motionEvent.getAction() == 1 && System.currentTimeMillis() - this.J < ViewConfiguration.getTapTimeout()) {
+                this.f45616f.d(this.d, true);
+                this.d = x10 / this.L;
+                this.f45615e = true;
+            } else {
+                this.d = Utilities.clamp(((x10 - this.I) / this.L) + this.d, 1.0f, 0.0f);
+                this.f45615e = false;
+                z4 = true;
             }
-            i10++;
-        }
-        this.f45573g0.setTranslationY(Math.max(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, f10));
-        if (f10 <= org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight) {
-            z4 = true;
-        }
-        this.U.a(z4, true);
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.musicListLoaded) {
-            this.f45579n0.N(true);
-        }
-    }
-
-    @Override
-    public final void dismiss() {
-        super.dismiss();
-        if (this.f45580o0 != null && MediaController.getInstance().isPlayingMessage(this.f45580o0)) {
-            MediaController.getInstance().cleanupPlayer(true, true);
-        }
-        this.f45580o0 = null;
-    }
-
-    @Override
-    public final int getObserverTag() {
-        return this.V;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.musicListLoaded);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.musicListLoaded);
-    }
-
-    @Override
-    public final void onSuccessDownload(String str) {
-        MessageObject messageObject = this.f45570d0;
-        if (messageObject != null && TextUtils.equals(messageObject.getFileName(), str)) {
-            this.f45569c0.run(this.f45570d0);
-            k6 k6Var = this.X;
-            if (k6Var != null) {
-                k6Var.dismiss();
+            float f14 = this.f45614c;
+            float f15 = this.f45613b;
+            if (f14 - f15 != 0.0f) {
+                f13 = e2.c.w(f14, f15, this.d, f15);
             }
-            dismiss();
+            if (z4) {
+                if ((f13 <= f15 && f10 > f13) || (f13 >= f14 && f10 < f13)) {
+                    try {
+                        performHapticFeedback(3, 1);
+                    } catch (Exception unused) {
+                    }
+                } else if (Math.floor(f10 * 5.0f) != Math.floor(5.0f * f13)) {
+                    AndroidUtilities.vibrateCursor(this);
+                }
+            }
+            e(f13);
+            Utilities.Callback callback = this.h;
+            if (callback != null) {
+                callback.run(Float.valueOf(f13));
+            }
+        }
+        this.I = x10;
+        return true;
+    }
+
+    public final void e(float f10) {
+        long j10;
+        String str = Math.round(100.0f * f10) + "%";
+        org.telegram.ui.Components.j6 j6Var = this.f45621x;
+        if (!TextUtils.equals(j6Var.f28003g, str)) {
+            j6Var.b();
+            if (this.f45615e) {
+                j10 = 320;
+            } else {
+                j10 = 40;
+            }
+            j6Var.k(0.3f, j10, pr.h);
+            j6Var.q(str, true, true);
+        }
+        if (this.f45612a == 1) {
+            this.f45617n.setColor(c2.f(f10));
+        }
+        invalidate();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        this.K = AndroidUtilities.dp(12.0f);
+        TextPaint textPaint = this.N;
+        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
+        this.f45621x.t(AndroidUtilities.dp(15.0f));
+        int i12 = this.O;
+        int i13 = this.f45612a;
+        if (i12 > 0) {
+            this.L = i12;
+            this.M = AndroidUtilities.dp(48.0f);
+        } else if (i13 == 0) {
+            this.L = (int) Math.min(textPaint.measureText(LocaleController.getString(R.string.StoryAudioRemove)) + AndroidUtilities.dp(88.0f), View.MeasureSpec.getSize(i10));
+            this.M = AndroidUtilities.dp(48.0f);
+        } else {
+            this.L = AndroidUtilities.dp(190.0f);
+            this.M = AndroidUtilities.dp(44.0f);
+        }
+        setMeasuredDimension(this.L, this.M);
+        if (i13 == 0) {
+            float dp = AndroidUtilities.dp(25.0f);
+            float f10 = this.M / 2.0f;
+            this.f45618r.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(1.33f)));
+            Path path = this.C;
+            path.rewind();
+            path.moveTo(dp - AndroidUtilities.dpf2(8.66f), f10 - AndroidUtilities.dpf2(2.9f));
+            path.lineTo(dp - AndroidUtilities.dpf2(3.0f), f10 - AndroidUtilities.dpf2(2.9f));
+            path.lineTo(dp - AndroidUtilities.dpf2(3.0f), AndroidUtilities.dpf2(2.9f) + f10);
+            path.lineTo(dp - AndroidUtilities.dpf2(8.66f), AndroidUtilities.dpf2(2.9f) + f10);
+            path.close();
+            this.f45619s.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(2.66f)));
+            Path path2 = this.D;
+            path2.rewind();
+            path2.moveTo(dp - AndroidUtilities.dpf2(7.5f), f10);
+            path2.lineTo(dp, f10 - AndroidUtilities.dpf2(7.33f));
+            path2.lineTo(dp, AndroidUtilities.dpf2(7.33f) + f10);
+            path2.close();
+            Path path3 = this.E;
+            path3.rewind();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set((dp - AndroidUtilities.dpf2(0.33f)) - AndroidUtilities.dp(4.33f), f10 - AndroidUtilities.dp(4.33f), (dp - AndroidUtilities.dpf2(0.33f)) + AndroidUtilities.dp(4.33f), AndroidUtilities.dp(4.33f) + f10);
+            path3.arcTo(rectF, -60.0f, 120.0f);
+            path3.close();
+            Paint.Style style = Paint.Style.STROKE;
+            Paint paint = this.f45620w;
+            paint.setStyle(style);
+            paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            Path path4 = this.F;
+            path4.rewind();
+            rectF.set((dp - AndroidUtilities.dpf2(0.33f)) - AndroidUtilities.dp(8.0f), f10 - AndroidUtilities.dp(8.0f), (dp - AndroidUtilities.dpf2(0.33f)) + AndroidUtilities.dp(8.0f), f10 + AndroidUtilities.dp(8.0f));
+            path4.arcTo(rectF, -70.0f, 140.0f);
         }
     }
 
     @Override
-    public final sl0 v(tl0 tl0Var) {
-        x51 x51Var = new x51(tl0Var, getContext(), this.currentAccount, 0, false, new c6(this, 0), this.resourcesProvider);
-        this.f45579n0 = x51Var;
-        x51Var.f32957r = false;
-        return x51Var;
-    }
-
-    @Override
-    public final CharSequence y() {
-        return LocaleController.getString(R.string.StoryMusicTitle2);
-    }
-
-    @Override
-    public final void onFailedDownload(String str, boolean z4) {
-    }
-
-    @Override
-    public final void z(float f10, int i10) {
-    }
-
-    @Override
-    public final void onProgressDownload(String str, long j10, long j11) {
-    }
-
-    @Override
-    public final void onProgressUpload(String str, long j10, long j11, boolean z4) {
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.f45621x && drawable != this.f45622y && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

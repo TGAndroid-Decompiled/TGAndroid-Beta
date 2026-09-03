@@ -10,12 +10,12 @@ public final class j extends q4.b {
     @Override
     public final long k() {
         a();
-        return this.d.d(this.f44459c);
+        return this.d.d(this.f44490c);
     }
 
     @Override
     public final long l() {
         a();
-        return this.d.c(this.f44459c);
+        return this.d.c(this.f44490c);
     }
 }

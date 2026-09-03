@@ -17,13 +17,13 @@ import org.telegram.ui.ActionBar.h3;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.z6;
 import org.telegram.ui.Components.g90;
-import org.telegram.ui.Components.jn;
-import org.telegram.ui.Components.sl0;
-import org.telegram.ui.bw0;
-import org.telegram.ui.ib1;
-import org.telegram.ui.rw0;
+import org.telegram.ui.Components.in;
+import org.telegram.ui.Components.rl0;
+import org.telegram.ui.gw0;
+import org.telegram.ui.ob1;
+import org.telegram.ui.ww0;
 import org.telegram.ui.yh;
-public final class c2 extends sl0 {
+public final class c2 extends rl0 {
     public final d2 f6261c;
 
     public c2(d2 d2Var) {
@@ -76,13 +76,13 @@ public final class c2 extends sl0 {
         d2 d2Var = this.f6261c;
         int i11 = d2Var.f6280g0;
         if (i10 >= i11 && i10 < d2Var.f6281h0) {
-            bw0 bw0Var = (bw0) view;
-            rw0 rw0Var = (rw0) d2Var.U.get(i10 - i11);
+            gw0 gw0Var = (gw0) view;
+            ww0 ww0Var = (ww0) d2Var.U.get(i10 - i11);
             boolean z4 = true;
             if (i10 == d2Var.f6281h0 - 1) {
                 z4 = false;
             }
-            bw0Var.a(rw0Var, z4);
+            gw0Var.a(ww0Var, z4);
         } else if (i10 >= d2Var.f6278e0 && i10 < d2Var.f6279f0) {
             d2Var.Y(view);
         }
@@ -115,7 +115,7 @@ public final class c2 extends sl0 {
                             jg.f0 f0Var = new jg.f0(context, g6Var3);
                             f0Var.setBackground(true);
                             String string = LocaleController.getString("GiftPremiumPrivacyPolicyAndTerms", R.string.GiftPremiumPrivacyPolicyAndTerms);
-                            int i12 = k6.f21720gc;
+                            int i12 = k6.f21722gc;
                             f0Var.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(string, i12, 0, new Runnable(this) {
                                 public final c2 f6640b;
 
@@ -159,33 +159,33 @@ public final class c2 extends sl0 {
                         b2Var = new a(context);
                     }
                 } else {
-                    b2Var = new jn(context, 2);
+                    b2Var = new in(context, 2);
                 }
             } else {
-                b2Var = new z6(context, d2Var.getThemedColor(k6.f21605a7), 0);
+                b2Var = new z6(context, d2Var.getThemedColor(k6.f21607a7), 0);
             }
         } else {
-            ib1 ib1Var = new ib1(this, context, 1);
-            d2Var.f6288p0 = ib1Var;
-            ib1Var.setOrientation(1);
+            ob1 ob1Var = new ob1(this, context, 1);
+            d2Var.f6288p0 = ob1Var;
+            ob1Var.setOrientation(1);
             View view = d2Var.f6297y0;
             if (view == null) {
                 d2Var.f6287o0 = new i(context, 1, 0, 1);
                 Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 int i13 = k6.Mj;
-                canvas.drawColor(i0.a.d(0.5f, d2Var.getThemedColor(i13), d2Var.getThemedColor(k6.f21731h5)));
+                canvas.drawColor(i0.a.d(0.5f, d2Var.getThemedColor(i13), d2Var.getThemedColor(k6.f21733h5)));
                 d2Var.f6287o0.setBackgroundBitmap(createBitmap);
                 gg.a aVar = d2Var.f6287o0.f7087b;
                 aVar.f7065w = i13;
                 aVar.f7066x = k6.Lj;
                 aVar.b();
-                ib1Var.addView(d2Var.f6287o0, c6.q(160, 160, 1));
+                ob1Var.addView(d2Var.f6287o0, c6.q(160, 160, 1));
             } else {
                 if (view.getParent() != null) {
                     ((ViewGroup) d2Var.f6297y0.getParent()).removeView(d2Var.f6297y0);
                 }
-                d2Var.W(ib1Var);
+                d2Var.W(ob1Var);
             }
             if (d2Var.K0 == null) {
                 FrameLayout frameLayout = new FrameLayout(context);
@@ -193,7 +193,7 @@ public final class c2 extends sl0 {
                 frameLayout.setClipChildren(false);
                 Integer num = d2Var.f6290r0;
                 if (num == null) {
-                    intValue = d2Var.getThemedColor(k6.f21979v6);
+                    intValue = d2Var.getThemedColor(k6.f21981v6);
                 } else {
                     intValue = num.intValue();
                 }
@@ -221,7 +221,7 @@ public final class c2 extends sl0 {
             if (d2Var.K0.getParent() != null) {
                 ((ViewGroup) d2Var.K0.getParent()).removeView(d2Var.K0);
             }
-            ib1Var.addView(d2Var.K0, c6.p(-2, -2, 0.0f, 1, 40, 0, 40, 0));
+            ob1Var.addView(d2Var.K0, c6.p(-2, -2, 0.0f, 1, 40, 0, 40, 0));
             if (d2Var.M0 == null) {
                 Context context2 = d2Var.getContext();
                 g6Var = ((h3) d2Var).resourcesProvider;
@@ -235,13 +235,13 @@ public final class c2 extends sl0 {
             if (d2Var.M0.getParent() != null) {
                 ((ViewGroup) d2Var.M0.getParent()).removeView(d2Var.M0);
             }
-            ib1Var.addView(d2Var.M0, c6.p(-1, -2, 0.0f, 0, 24, 9, 24, 20));
+            ob1Var.addView(d2Var.M0, c6.p(-1, -2, 0.0f, 0, 24, 9, 24, 20));
             d2Var.a0(false);
             d2Var.f6286n0 = new h(context, 1);
             eg.s2 s2Var = new eg.s2(this, context, 5);
             s2Var.setClipChildren(false);
             s2Var.addView(d2Var.f6286n0);
-            s2Var.addView(ib1Var);
+            s2Var.addView(ob1Var);
             i iVar = d2Var.f6287o0;
             b2Var = s2Var;
             if (iVar != null) {

@@ -14,12 +14,12 @@ import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_update;
 public final class p6 implements RequestDelegate {
-    public final int f17627a;
-    public final s6 f17628b;
+    public final int f17629a;
+    public final s6 f17630b;
 
     public p6(s6 s6Var, int i10) {
-        this.f17627a = i10;
-        this.f17628b = s6Var;
+        this.f17629a = i10;
+        this.f17630b = s6Var;
     }
 
     @Override
@@ -34,18 +34,18 @@ public final class p6 implements RequestDelegate {
         ArrayList arrayList;
         int i12;
         int i13;
-        switch (this.f17627a) {
+        switch (this.f17629a) {
             case 0:
-                s6 s6Var = this.f17628b;
+                s6 s6Var = this.f17630b;
                 long j10 = s6Var.G;
-                String str = s6Var.f17739f;
-                boolean z11 = s6Var.f17736b;
-                qh.s6 s6Var2 = s6Var.f17737c;
-                int i14 = s6Var.J.f17770a;
+                String str = s6Var.f17741f;
+                boolean z11 = s6Var.f17738b;
+                qh.r6 r6Var = s6Var.f17739c;
+                int i14 = s6Var.J.f17772a;
                 if (tLObject instanceof TLRPC.Updates) {
                     s6Var.F = false;
                     TLRPC.Updates updates3 = (TLRPC.Updates) tLObject;
-                    if (s6Var2.f46045b0) {
+                    if (r6Var.f45996b0) {
                         MessagesController.getInstance(i14).processUpdates(updates3, false);
                         AndroidUtilities.runOnUIThread(new q6(s6Var, 1));
                         return;
@@ -56,10 +56,10 @@ public final class p6 implements RequestDelegate {
                     while (i15 < updates3.updates.size()) {
                         if (updates3.updates.get(i15) instanceof TL_stories.TL_updateStory) {
                             TL_stories.StoryItem storyItem2 = ((TL_stories.TL_updateStory) updates3.updates.get(i15)).story;
-                            storyItem2.attachPath = s6Var.f17738e;
+                            storyItem2.attachPath = s6Var.f17740e;
                             storyItem2.firstFramePath = str;
                             storyItem2.justUploaded = !z11;
-                            int i17 = storyItem2.f21080id;
+                            int i17 = storyItem2.f21082id;
                             if (storyItem == null) {
                                 storyItem = storyItem2;
                             } else {
@@ -73,13 +73,13 @@ public final class p6 implements RequestDelegate {
                                 storyItem = new TL_stories.TL_storyItem();
                                 int currentTime = ConnectionsManager.getInstance(i14).getCurrentTime();
                                 storyItem.date = currentTime;
-                                int i18 = s6Var2.I0;
+                                int i18 = r6Var.I0;
                                 if (i18 == Integer.MAX_VALUE) {
                                     i18 = 86400;
                                 }
                                 storyItem.expire_date = currentTime + i18;
                                 storyItem.parsedPrivacy = null;
-                                ArrayList arrayList2 = s6Var2.F0;
+                                ArrayList arrayList2 = r6Var.F0;
                                 ArrayList<TLRPC.PrivacyRule> arrayList3 = new ArrayList<>();
                                 int i19 = 0;
                                 while (true) {
@@ -144,16 +144,16 @@ public final class p6 implements RequestDelegate {
                                         i10 = i15;
                                         i11 = i14;
                                         storyItem.privacy = arrayList3;
-                                        if (s6Var2.I0 == Integer.MAX_VALUE) {
+                                        if (r6Var.I0 == Integer.MAX_VALUE) {
                                             z10 = true;
                                         } else {
                                             z10 = false;
                                         }
                                         storyItem.pinned = z10;
                                         storyItem.dialogId = UserConfig.getInstance(i11).clientUserId;
-                                        storyItem.attachPath = s6Var.f17738e;
+                                        storyItem.attachPath = s6Var.f17740e;
                                         storyItem.firstFramePath = str;
-                                        storyItem.f21080id = tL_updateStoryID.f21099id;
+                                        storyItem.f21082id = tL_updateStoryID.f21101id;
                                         storyItem.justUploaded = !z4;
                                         i15 = i10 + 1;
                                         z11 = z4;
@@ -180,7 +180,7 @@ public final class p6 implements RequestDelegate {
                         TLRPC.InputPeer inputPeer = MessagesController.getInstance(i22).getInputPeer(j10);
                         tL_stories_deleteStories.peer = inputPeer;
                         if (inputPeer != null) {
-                            tL_stories_deleteStories.f21083id.add(Integer.valueOf(i16));
+                            tL_stories_deleteStories.f21085id.add(Integer.valueOf(i16));
                             ConnectionsManager.getInstance(i22).sendRequest(tL_stories_deleteStories, new p6(s6Var, 1));
                         }
                     } else {
@@ -206,9 +206,9 @@ public final class p6 implements RequestDelegate {
                     }
                 } else if (tLObject instanceof TL_bots.botPreviewMedia) {
                     s6Var.I = (TL_bots.botPreviewMedia) tLObject;
-                } else if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && s6Var2.f46048c0 != null && (hVar = s6Var2.f46050d0) != null) {
+                } else if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && r6Var.f45999c0 != null && (hVar = r6Var.f46001d0) != null) {
                     hVar.run(new r6(s6Var, 0));
-                    s6Var2.f46050d0 = null;
+                    r6Var.f46001d0 = null;
                     return;
                 } else if (tL_error != null && !z11) {
                     AndroidUtilities.runOnUIThread(new z1(10, s6Var, tL_error));
@@ -216,7 +216,7 @@ public final class p6 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new q6(s6Var, 1));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new x5(this.f17628b.J, 2));
+                AndroidUtilities.runOnUIThread(new x5(this.f17630b.J, 2));
                 return;
         }
     }

@@ -24,7 +24,7 @@ public abstract class c extends a {
         uc.c cVar;
         uc.c cVar2 = this.intercepted;
         if (cVar2 == null) {
-            uc.e eVar = (uc.e) getContext().get(uc.d.f48479a);
+            uc.e eVar = (uc.e) getContext().get(uc.d.f48515a);
             if (eVar != null) {
                 cVar = new qd.h((a0) eVar, this);
             } else {
@@ -41,11 +41,11 @@ public abstract class c extends a {
         m mVar;
         uc.c cVar = this.intercepted;
         if (cVar != null && cVar != this) {
-            uc.f fVar = getContext().get(uc.d.f48479a);
+            uc.f fVar = getContext().get(uc.d.f48515a);
             j.b(fVar);
             uc.e eVar = (uc.e) fVar;
             qd.h hVar = (qd.h) cVar;
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = qd.h.f44800n;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = qd.h.f44831n;
             do {
             } while (atomicReferenceFieldUpdater.get(hVar) == qd.a.d);
             Object obj = atomicReferenceFieldUpdater.get(hVar);
@@ -58,7 +58,7 @@ public abstract class c extends a {
                 mVar.o();
             }
         }
-        this.intercepted = b.f49489a;
+        this.intercepted = b.f49525a;
     }
 
     public c(uc.c cVar) {

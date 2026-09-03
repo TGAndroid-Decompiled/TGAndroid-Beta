@@ -40,11 +40,11 @@ public final class t implements Comparator {
             case 2:
                 return ((Collator) this.f4275b).compare((String) obj, (String) obj2);
             case 3:
-                float[] fArr = ((y3) this.f4275b).f15089r;
+                float[] fArr = ((y3) this.f4275b).f15091r;
                 return Float.compare(fArr[((Integer) obj).intValue()], fArr[((Integer) obj2).intValue()]);
             case 4:
                 t6 t6Var = (t6) this.f4275b;
-                int i11 = t6Var.f17770a;
+                int i11 = t6Var.f17772a;
                 TL_stories.PeerStories peerStories = (TL_stories.PeerStories) obj;
                 TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) obj2;
                 long peerDialogId = DialogObject.getPeerDialogId(peerStories.peer);

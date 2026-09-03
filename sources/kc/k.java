@@ -47,8 +47,8 @@ public final class k implements Runnable {
                 }
             case 1:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;
-                if (actionBarLayout.f21119e == this) {
-                    actionBarLayout.f21119e = null;
+                if (actionBarLayout.f21121e == this) {
+                    actionBarLayout.f21121e = null;
                     ((p2) this.f11088c).onTransitionAnimationStart(true, false);
                     actionBarLayout.d0(true, true, this.f11087b);
                     return;

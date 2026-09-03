@@ -33,20 +33,20 @@ public final class g extends n3.i {
         int i11 = this.v;
         this.v = i11 + 1;
         if (i11 == 0) {
-            this.f15216f = iVar.f15216f;
+            this.f15218f = iVar.f15218f;
             if (iVar.e(1)) {
-                this.f15193b = 1;
+                this.f15195b = 1;
             }
         }
         if (iVar.e(Integer.MIN_VALUE)) {
-            this.f15193b = Integer.MIN_VALUE;
+            this.f15195b = Integer.MIN_VALUE;
         }
         ByteBuffer byteBuffer3 = iVar.d;
         if (byteBuffer3 != null) {
             j(byteBuffer3.remaining());
             this.d.put(byteBuffer3);
         }
-        this.f4225s = iVar.f15216f;
+        this.f4225s = iVar.f15218f;
         return true;
     }
 }

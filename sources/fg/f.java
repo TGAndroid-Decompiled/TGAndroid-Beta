@@ -25,7 +25,7 @@ public final class f extends LinearLayout {
         addView(textView, c6.p(-1, -2, 0.0f, 0, 16, 0, 16, 0));
         TextView textView2 = new TextView(context);
         this.f6311b = textView2;
-        org.telegram.ui.b.l(k6.f22036y6, g6Var, textView2, 1, 14.0f);
+        org.telegram.ui.b.l(k6.f22038y6, g6Var, textView2, 1, 14.0f);
         addView(textView2, c6.p(-1, -2, 0.0f, 0, 16, 1, 16, 0));
         LimitPreviewView limitPreviewView = new LimitPreviewView(context, 0, 10, g6Var, 20);
         this.f6312c = limitPreviewView;
@@ -37,6 +37,6 @@ public final class f extends LinearLayout {
         this.f6311b.setText(eVar.f6300b);
         LimitPreviewView limitPreviewView = this.f6312c;
         limitPreviewView.v.setText(String.format("%d", Integer.valueOf(eVar.d)));
-        limitPreviewView.f24960w.setText(String.format("%d", Integer.valueOf(eVar.f6301c)));
+        limitPreviewView.f24962w.setText(String.format("%d", Integer.valueOf(eVar.f6301c)));
     }
 }

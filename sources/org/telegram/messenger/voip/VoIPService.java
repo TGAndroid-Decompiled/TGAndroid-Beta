@@ -110,7 +110,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.XiaomiUtilities;
 import org.telegram.messenger.voip.Instance;
 import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.messenger.voip.VoIPController;
 import org.telegram.messenger.voip.VoIPGroupNotification;
 import org.telegram.messenger.y3;
 import org.telegram.messenger.zd;
@@ -128,7 +127,7 @@ import org.telegram.ui.ActionBar.h3;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.p2;
 import org.telegram.ui.Components.a80;
-import org.telegram.ui.Components.cn;
+import org.telegram.ui.Components.bn;
 import org.telegram.ui.Components.ie0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.voip.g2;
@@ -136,13 +135,13 @@ import org.telegram.ui.Components.z8;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.VoIPFeedbackActivity;
 import org.telegram.ui.VoIPPermissionActivity;
-import org.telegram.ui.ci1;
+import org.telegram.ui.bi1;
 import org.telegram.ui.d60;
-import org.telegram.ui.vh1;
+import org.telegram.ui.ii1;
 import org.webrtc.VideoFrame;
 import org.webrtc.VideoSink;
 import org.webrtc.voiceengine.WebRtcAudioTrack;
-public class VoIPService extends Service implements SensorEventListener, AudioManager.OnAudioFocusChangeListener, VoIPController.ConnectionStateListener, NotificationCenter.NotificationCenterDelegate, VoIPServiceState {
+public class VoIPService extends Service implements SensorEventListener, AudioManager.OnAudioFocusChangeListener, NotificationCenter.NotificationCenterDelegate, VoIPServiceState {
     public static final String ACTION_HEADSET_PLUG = "android.intent.action.HEADSET_PLUG";
     public static final int AUDIO_ROUTE_BLUETOOTH = 2;
     public static final int AUDIO_ROUTE_EARPIECE = 0;
@@ -816,7 +815,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             stopSelf();
         } else if (phoneCall instanceof TL_phone.TL_phoneCallDiscarded) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.w("Call " + this.privateCall.f21069id + " was discarded before the service started, stopping");
+                FileLog.w("Call " + this.privateCall.f21071id + " was discarded before the service started, stopping");
             }
             stopSelf();
         } else if (XiaomiUtilities.isMIUI() && !XiaomiUtilities.isCustomPermissionGranted(10020) && ((KeyguardManager) getSystemService("keyguard")).inKeyguardRestrictedInputMode()) {
@@ -829,7 +828,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
             receivedcall.peer = tL_inputPhoneCall;
             TL_phone.PhoneCall phoneCall2 = this.privateCall;
-            tL_inputPhoneCall.f20908id = phoneCall2.f21069id;
+            tL_inputPhoneCall.f20910id = phoneCall2.f21071id;
             tL_inputPhoneCall.access_hash = phoneCall2.access_hash;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(receivedcall, new zd(1, this, z4), 65536);
         }
@@ -838,7 +837,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     private PhoneAccountHandle addAccountToTelecomManager() {
         TLRPC.User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
         ComponentName componentName = new ComponentName(this, TelegramConnectionService.class);
-        PhoneAccountHandle phoneAccountHandle = new PhoneAccountHandle(componentName, "" + currentUser.f20990id);
+        PhoneAccountHandle phoneAccountHandle = new PhoneAccountHandle(componentName, "" + currentUser.f20992id);
         ((TelecomManager) getSystemService("telecom")).registerPhoneAccount(new PhoneAccount.Builder(phoneAccountHandle, ContactsController.formatName(currentUser.first_name, currentUser.last_name)).setCapabilities(2048).setIcon(Icon.createWithResource(this, R.drawable.ic_launcher_dr)).setHighlightColor(-13851168).addSupportedUriScheme("sip").build());
         return phoneAccountHandle;
     }
@@ -1068,13 +1067,13 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
         if (this.tgVoip[i10] == null) {
             if (this.groupCall != null) {
-                str = "" + this.groupCall.call.f20853id;
+                str = "" + this.groupCall.call.f20855id;
             } else {
                 TLRPC.InputGroupCall inputGroupCall = this.joinConference;
                 if (inputGroupCall instanceof TLRPC.TL_inputGroupCallSlug) {
                     str = inputGroupCall.slug;
                 } else if (inputGroupCall instanceof TLRPC.TL_inputGroupCall) {
-                    str = "" + this.joinConference.f20860id;
+                    str = "" + this.joinConference.f20862id;
                 } else {
                     str = "0";
                 }
@@ -1445,15 +1444,15 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         if (tL_error == null) {
             TLRPC.messages_DhConfig messages_dhconfig = (TLRPC.messages_DhConfig) tLObject;
             if (tLObject instanceof TLRPC.TL_messages_dhConfig) {
-                if (!Utilities.isGoodPrime(messages_dhconfig.f20998p, messages_dhconfig.f20997g)) {
+                if (!Utilities.isGoodPrime(messages_dhconfig.f21000p, messages_dhconfig.f20999g)) {
                     if (BuildVars.LOGS_ENABLED) {
                         FileLog.e("stopping VoIP service, bad prime");
                     }
                     callFailed();
                     return;
                 }
-                messagesStorage.setSecretPBytes(messages_dhconfig.f20998p);
-                messagesStorage.setSecretG(messages_dhconfig.f20997g);
+                messagesStorage.setSecretPBytes(messages_dhconfig.f21000p);
+                messagesStorage.setSecretG(messages_dhconfig.f20999g);
                 messagesStorage.setLastSecretVersion(messages_dhconfig.version);
                 MessagesStorage.getInstance(this.currentAccount).saveSecretParams(messagesStorage.getLastSecretVersion(), messagesStorage.getSecretG(), messagesStorage.getSecretPBytes());
             }
@@ -1482,7 +1481,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
             acceptcall.peer = tL_inputPhoneCall;
             TL_phone.PhoneCall phoneCall = this.privateCall;
-            tL_inputPhoneCall.f20908id = phoneCall.f21069id;
+            tL_inputPhoneCall.f20910id = phoneCall.f21071id;
             tL_inputPhoneCall.access_hash = phoneCall.access_hash;
             TL_phone.TL_phoneCallProtocol tL_phoneCallProtocol = new TL_phone.TL_phoneCallProtocol();
             acceptcall.protocol = tL_phoneCallProtocol;
@@ -1512,7 +1511,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             if (USE_CONNECTION_SERVICE) {
                 ContactsController contactsController = ContactsController.getInstance(this.currentAccount);
                 TLRPC.User user = this.user;
-                contactsController.createOrUpdateConnectionServiceContact(user.f20990id, user.first_name, user.last_name);
+                contactsController.createOrUpdateConnectionServiceContact(user.f20992id, user.first_name, user.last_name);
                 ((TelecomManager) getSystemService("telecom")).addNewIncomingCall(addAccountToTelecomManager(), android.support.v4.media.a.h(1, "call_type"));
             }
             if (z4) {
@@ -1707,7 +1706,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 
     public void lambda$createGroupInstance$73(String str, int i10, long j10, int i11, int i12, TLObject tLObject, TLRPC.TL_error tL_error, long j11) {
         int i13;
-        AndroidUtilities.runOnUIThread(new h(3, this, str));
+        AndroidUtilities.runOnUIThread(new h(2, this, str));
         NativeInstance nativeInstance = this.tgVoip[i10];
         if (nativeInstance == null) {
             return;
@@ -2160,7 +2159,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 this.conference.inputGroupCall = new TLRPC.TL_inputGroupCall();
                 ConferenceCall conferenceCall = this.conference;
                 TLRPC.InputGroupCall inputGroupCall = conferenceCall.inputGroupCall;
-                inputGroupCall.f20860id = groupCall.f20853id;
+                inputGroupCall.f20862id = groupCall.f20855id;
                 inputGroupCall.access_hash = groupCall.access_hash;
                 mf.d.a(conferenceCall.groupCall, groupCall);
                 conferenceCall.groupCall = groupCall;
@@ -2176,9 +2175,9 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                         }
                     }
                 }
-                ci1 ci1Var = ci1.f35817k1;
-                if (ci1Var != null) {
-                    ci1Var.n();
+                ii1 ii1Var = ii1.f37669k1;
+                if (ii1Var != null) {
+                    ii1Var.n();
                 }
                 d60.c1(LaunchActivity.D1, AccountInstance.getInstance(this.currentAccount), null, null, false, null);
             }
@@ -2196,7 +2195,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             ConferenceCall conferenceCall2 = this.conference;
             TLRPC.InputGroupCall inputGroupCall2 = conferenceCall2.inputGroupCall;
             TLRPC.GroupCall groupCall2 = groupcall.call;
-            inputGroupCall2.f20860id = groupCall2.f20853id;
+            inputGroupCall2.f20862id = groupCall2.f20855id;
             inputGroupCall2.access_hash = groupCall2.access_hash;
             conferenceCall2.groupCall = groupCall2;
             startConferenceGroupCall(false, 0, null, false);
@@ -2211,9 +2210,9 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     }
                 }
             }
-            ci1 ci1Var2 = ci1.f35817k1;
-            if (ci1Var2 != null) {
-                ci1Var2.n();
+            ii1 ii1Var2 = ii1.f37669k1;
+            if (ii1Var2 != null) {
+                ii1Var2.n();
             }
             d60.c1(LaunchActivity.D1, AccountInstance.getInstance(this.currentAccount), null, null, false, null);
         } else {
@@ -2264,11 +2263,11 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         if (update instanceof TL_update.TL_updateNewMessage) {
             TLRPC.Message message = ((TL_update.TL_updateNewMessage) update).message;
             if (message != null && (message.action instanceof TLRPC.TL_messageActionConferenceCall)) {
-                i10 = message.f20864id;
+                i10 = message.f20866id;
             }
             i10 = 0;
         } else if (update instanceof TL_update.TL_updateMessageID) {
-            i10 = ((TL_update.TL_updateMessageID) update).f21098id;
+            i10 = ((TL_update.TL_updateMessageID) update).f21100id;
         } else {
             if (updates.updates != null) {
                 for (int i11 = 0; i11 < updates.updates.size(); i11++) {
@@ -2276,11 +2275,11 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     if (update2 instanceof TL_update.TL_updateNewMessage) {
                         TLRPC.Message message2 = ((TL_update.TL_updateNewMessage) update2).message;
                         if (message2 != null && (message2.action instanceof TLRPC.TL_messageActionConferenceCall)) {
-                            i10 = message2.f20864id;
+                            i10 = message2.f20866id;
                             break;
                         }
                     } else if (update2 instanceof TL_update.TL_updateMessageID) {
-                        i10 = ((TL_update.TL_updateMessageID) update2).f21098id;
+                        i10 = ((TL_update.TL_updateMessageID) update2).f21100id;
                         break;
                     }
                 }
@@ -2290,7 +2289,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         ChatObject.Call call = this.groupCall;
         if (call != null && i10 != 0) {
             call.invitedUsersMessageIds.put(Long.valueOf(j10), ChatObject.Call.InvitedUser.make(i10));
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(this.groupCall.call.f20853id), Boolean.FALSE);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(this.groupCall.call.f20855id), Boolean.FALSE);
         }
     }
 
@@ -2309,7 +2308,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             Vector vector = (Vector) tLObject;
             for (int i10 = 0; i10 < Math.min(arrayList.size(), vector.objects.size()); i10++) {
                 if (vector.objects.get(i10) instanceof TL_account.requirementToContactPremium) {
-                    arrayList2.add(Long.valueOf(((TLRPC.User) arrayList.get(i10)).f20990id));
+                    arrayList2.add(Long.valueOf(((TLRPC.User) arrayList.get(i10)).f20992id));
                 }
             }
         }
@@ -2334,7 +2333,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 call.removeInvitedUser(longValue);
             }
             arrayList.add(MessagesController.getInstance(this.currentAccount).getUser(l10));
-            getrequirementstocontact.f21050id.add(MessagesController.getInstance(this.currentAccount).getInputUser(longValue));
+            getrequirementstocontact.f21052id.add(MessagesController.getInstance(this.currentAccount).getInputUser(longValue));
         }
         y yVar = new y(this, arrayList, arrayList2, arrayList3, str, 1);
         if (UserConfig.getInstance(this.currentAccount).isPremium()) {
@@ -2365,7 +2364,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
             discardcall.peer = tL_inputPhoneCall;
             tL_inputPhoneCall.access_hash = phoneCall.access_hash;
-            tL_inputPhoneCall.f20908id = phoneCall.f21069id;
+            tL_inputPhoneCall.f20910id = phoneCall.f21071id;
             TLRPC.TL_phoneCallDiscardReasonMigrateConferenceCall tL_phoneCallDiscardReasonMigrateConferenceCall = new TLRPC.TL_phoneCallDiscardReasonMigrateConferenceCall();
             discardcall.reason = tL_phoneCallDiscardReasonMigrateConferenceCall;
             tL_phoneCallDiscardReasonMigrateConferenceCall.slug = parse.getPathSegments().get(parse.getPathSegments().size() - 1);
@@ -2386,7 +2385,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(inviteconferencecallparticipant, new a0(this, longValue, hashSet, atomicInteger, size, str, 1));
             }
             this.privateCall = null;
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(this.groupCall.call.f20853id), Boolean.FALSE);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(this.groupCall.call.f20855id), Boolean.FALSE);
         }
     }
 
@@ -2400,11 +2399,11 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         if (update instanceof TL_update.TL_updateNewMessage) {
             TLRPC.Message message = ((TL_update.TL_updateNewMessage) update).message;
             if (message != null && (message.action instanceof TLRPC.TL_messageActionConferenceCall)) {
-                i10 = message.f20864id;
+                i10 = message.f20866id;
             }
             i10 = 0;
         } else if (update instanceof TL_update.TL_updateMessageID) {
-            i10 = ((TL_update.TL_updateMessageID) update).f21098id;
+            i10 = ((TL_update.TL_updateMessageID) update).f21100id;
         } else {
             if (updates.updates != null) {
                 for (int i11 = 0; i11 < updates.updates.size(); i11++) {
@@ -2412,11 +2411,11 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     if (update2 instanceof TL_update.TL_updateNewMessage) {
                         TLRPC.Message message2 = ((TL_update.TL_updateNewMessage) update2).message;
                         if (message2 != null && (message2.action instanceof TLRPC.TL_messageActionConferenceCall)) {
-                            i10 = message2.f20864id;
+                            i10 = message2.f20866id;
                             break;
                         }
                     } else if (update2 instanceof TL_update.TL_updateMessageID) {
-                        i10 = ((TL_update.TL_updateMessageID) update2).f21098id;
+                        i10 = ((TL_update.TL_updateMessageID) update2).f21100id;
                         break;
                     }
                 }
@@ -2426,7 +2425,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         ChatObject.Call call = this.groupCall;
         if (call != null && i10 != 0) {
             call.invitedUsersMessageIds.put(Long.valueOf(j10), ChatObject.Call.InvitedUser.make(i10));
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(this.groupCall.call.f20853id), Boolean.FALSE);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(this.groupCall.call.f20855id), Boolean.FALSE);
         }
     }
 
@@ -2445,7 +2444,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             Vector vector = (Vector) tLObject;
             for (int i10 = 0; i10 < Math.min(arrayList.size(), vector.objects.size()); i10++) {
                 if (vector.objects.get(i10) instanceof TL_account.requirementToContactPremium) {
-                    arrayList2.add(Long.valueOf(((TLRPC.User) arrayList.get(i10)).f20990id));
+                    arrayList2.add(Long.valueOf(((TLRPC.User) arrayList.get(i10)).f20992id));
                 }
             }
         }
@@ -2470,7 +2469,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 call.removeInvitedUser(longValue);
             }
             arrayList.add(MessagesController.getInstance(this.currentAccount).getUser(l10));
-            getrequirementstocontact.f21050id.add(MessagesController.getInstance(this.currentAccount).getInputUser(longValue));
+            getrequirementstocontact.f21052id.add(MessagesController.getInstance(this.currentAccount).getInputUser(longValue));
         }
         y yVar = new y(this, arrayList, arrayList2, arrayList3, str, 0);
         if (UserConfig.getInstance(this.currentAccount).isPremium()) {
@@ -2524,7 +2523,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
                 exportgroupcallinvite.call = tL_inputGroupCall;
                 TLRPC.GroupCall groupCall = this.groupCall.call;
-                tL_inputGroupCall.f20860id = groupCall.f20853id;
+                tL_inputGroupCall.f20862id = groupCall.f20855id;
                 tL_inputGroupCall.access_hash = groupCall.access_hash;
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(exportgroupcallinvite, new n(this, phoneCall, exportgroupcallinvite, 3));
             }
@@ -2551,7 +2550,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     jArr2 = jArr2;
                 }
                 this.inviteUsers = null;
-                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, Long.valueOf(j10), Long.valueOf(this.groupCall.call.f20853id), Boolean.FALSE);
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, Long.valueOf(j10), Long.valueOf(this.groupCall.call.f20855id), Boolean.FALSE);
             }
         }
     }
@@ -2566,7 +2565,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         } else if ("GROUPCALL_INVALID".equals(tL_error.text)) {
             p2 U = LaunchActivity.U();
             if (U != null) {
-                qc.a0(U).Q(R.raw.linkbroken, 36, LocaleController.getString(R.string.ConferenceClosed)).j().f27753r = false;
+                qc.a0(U).Q(R.raw.linkbroken, 36, LocaleController.getString(R.string.ConferenceClosed)).j().f27786r = false;
             }
             hangUp(0);
         } else {
@@ -2712,7 +2711,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         TLRPC.GroupCall groupCall = this.groupCall.call;
         TLRPC.GroupCall groupCall2 = tL_updateGroupCall.call;
         groupCall.access_hash = groupCall2.access_hash;
-        groupCall.f20853id = groupCall2.f20853id;
+        groupCall.f20855id = groupCall2.f20855id;
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         ChatObject.Call call = this.groupCall;
         messagesController.putGroupCall(call.chatId, call);
@@ -2739,7 +2738,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 }
                 TLRPC.Update update = updates.updates.get(i10);
                 if (update instanceof TL_update.TL_updateGroupCall) {
-                    AndroidUtilities.runOnUIThread(new h(2, this, (TL_update.TL_updateGroupCall) update));
+                    AndroidUtilities.runOnUIThread(new h(1, this, (TL_update.TL_updateGroupCall) update));
                     break;
                 }
                 i10++;
@@ -2769,7 +2768,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     public void lambda$startGroupCall$28(TLRPC.TL_error tL_error) {
         TLRPC.ChatFull chatFull;
         if ("JOIN_AS_PEER_INVALID".equals(tL_error.text)) {
-            if (this.chat != null && (chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.chat.f20843id)) != null) {
+            if (this.chat != null && (chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.chat.f20845id)) != null) {
                 if (chatFull instanceof TLRPC.TL_chatFull) {
                     chatFull.flags &= -32769;
                 } else {
@@ -2783,7 +2782,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             createGroupInstance(0, false, false);
         } else {
             if ("GROUPCALL_INVALID".equals(tL_error.text) && this.chat != null) {
-                MessagesController.getInstance(this.currentAccount).loadFullChat(this.chat.f20843id, 0, true);
+                MessagesController.getInstance(this.currentAccount).loadFullChat(this.chat.f20845id, 0, true);
             }
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShowAlert, 6, tL_error.text);
             hangUp(0);
@@ -2948,12 +2947,12 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         } else if (tL_error == null) {
             TLRPC.messages_DhConfig messages_dhconfig = (TLRPC.messages_DhConfig) tLObject;
             if (tLObject instanceof TLRPC.TL_messages_dhConfig) {
-                if (!Utilities.isGoodPrime(messages_dhconfig.f20998p, messages_dhconfig.f20997g)) {
+                if (!Utilities.isGoodPrime(messages_dhconfig.f21000p, messages_dhconfig.f20999g)) {
                     callFailed();
                     return;
                 }
-                messagesStorage.setSecretPBytes(messages_dhconfig.f20998p);
-                messagesStorage.setSecretG(messages_dhconfig.f20997g);
+                messagesStorage.setSecretPBytes(messages_dhconfig.f21000p);
+                messagesStorage.setSecretG(messages_dhconfig.f20999g);
                 messagesStorage.setLastSecretVersion(messages_dhconfig.version);
                 messagesStorage.saveSecretParams(messagesStorage.getLastSecretVersion(), messagesStorage.getSecretG(), messagesStorage.getSecretPBytes());
             }
@@ -3011,7 +3010,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         discardcall.peer = tL_inputPhoneCall;
         TL_phone.PhoneCall phoneCall = this.privateCall;
         tL_inputPhoneCall.access_hash = phoneCall.access_hash;
-        tL_inputPhoneCall.f20908id = phoneCall.f21069id;
+        tL_inputPhoneCall.f20910id = phoneCall.f21071id;
         discardcall.reason = new TLRPC.TL_phoneCallDiscardReasonMissed();
         FileLog.e("discardCall " + discardcall.reason);
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(discardcall, new v(this, 2), 65536);
@@ -3117,7 +3116,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         if ("GROUPCALL_VIDEO_TOO_MUCH".equals(tL_error.text)) {
             this.groupCall.reloadGroupCall();
         } else if ("JOIN_AS_PEER_INVALID".equals(tL_error.text)) {
-            if (this.chat != null && (chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.chat.f20843id)) != null) {
+            if (this.chat != null && (chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.chat.f20845id)) != null) {
                 if (chatFull instanceof TLRPC.TL_chatFull) {
                     chatFull.flags &= -32769;
                 } else {
@@ -3130,7 +3129,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         } else if ("GROUPCALL_SSRC_DUPLICATE_MUCH".equals(tL_error.text)) {
             createGroupInstance(1, false, false);
         } else if ("GROUPCALL_INVALID".equals(tL_error.text) && this.chat != null) {
-            MessagesController.getInstance(this.currentAccount).loadFullChat(this.chat.f20843id, 0, true);
+            MessagesController.getInstance(this.currentAccount).loadFullChat(this.chat.f20845id, 0, true);
         }
     }
 
@@ -3138,7 +3137,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new b0(this, i10, 5));
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-            AndroidUtilities.runOnUIThread(new h(5, this, updates));
+            AndroidUtilities.runOnUIThread(new h(4, this, updates));
             MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
             startGroupCheckShortpoll();
             return;
@@ -3181,11 +3180,11 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 
     public static void lambda$toggleSpeakerphoneOrShowRouteSheet$94(h3 h3Var, Integer num, DialogInterface dialogInterface) {
         for (int i10 = 0; i10 < h3Var.getItemViews().size(); i10++) {
-            int i11 = k6.f21766j5;
+            int i11 = k6.f21768j5;
             h3Var.setItemColor(i10, k6.w0(null, i11, false), k6.w0(null, i11, false));
         }
         if (num != null) {
-            int w02 = k6.w0(null, k6.f21784k5, false);
+            int w02 = k6.w0(null, k6.f21786k5, false);
             h3Var.setItemColor(num.intValue(), w02, w02);
         }
     }
@@ -3251,7 +3250,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         if (this.user != null && this.privateCall != null && finalState != null) {
             if (TextUtils.isEmpty(finalState.debugLog)) {
                 try {
-                    finalState.debugLog = getStringFromFile(g2.e("" + this.privateCall.f21069id, true));
+                    finalState.debugLog = getStringFromFile(g2.e("" + this.privateCall.f21071id, true));
                 } catch (Exception e6) {
                     e6.printStackTrace();
                 }
@@ -3262,11 +3261,11 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             }
             VoIPDebugToSend voIPDebugToSend = messagesController.voipDebug;
             TL_phone.PhoneCall phoneCall = this.privateCall;
-            voIPDebugToSend.push(phoneCall.f21069id, phoneCall.access_hash, finalState, this.lastLogFilePath);
+            voIPDebugToSend.push(phoneCall.f21071id, phoneCall.access_hash, finalState, this.lastLogFilePath);
             this.lastLogFilePath = null;
             boolean z4 = this.needSendDebugLog;
             if (z4) {
-                messagesController.voipDebug.done(this.privateCall.f21069id, z4);
+                messagesController.voipDebug.done(this.privateCall.f21071id, z4);
                 this.needSendDebugLog = false;
             }
         }
@@ -3308,7 +3307,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
             confirmcall.peer = tL_inputPhoneCall;
             TL_phone.PhoneCall phoneCall = this.privateCall;
-            tL_inputPhoneCall.f20908id = phoneCall.f21069id;
+            tL_inputPhoneCall.f20910id = phoneCall.f21071id;
             tL_inputPhoneCall.access_hash = phoneCall.access_hash;
             TL_phone.TL_phoneCallProtocol tL_phoneCallProtocol = new TL_phone.TL_phoneCallProtocol();
             confirmcall.protocol = tL_phoneCallProtocol;
@@ -3333,7 +3332,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         TLRPC.TL_inputPhoneCall tL_inputPhoneCall2 = new TLRPC.TL_inputPhoneCall();
         confirmcall2.peer = tL_inputPhoneCall2;
         TL_phone.PhoneCall phoneCall2 = this.privateCall;
-        tL_inputPhoneCall2.f20908id = phoneCall2.f21069id;
+        tL_inputPhoneCall2.f20910id = phoneCall2.f21071id;
         tL_inputPhoneCall2.access_hash = phoneCall2.access_hash;
         TL_phone.TL_phoneCallProtocol tL_phoneCallProtocol3 = new TL_phone.TL_phoneCallProtocol();
         confirmcall2.protocol = tL_phoneCallProtocol3;
@@ -3537,9 +3536,9 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                         this.groupCall.addInvitedUser(j10);
                     }
                 }
-                ci1 ci1Var = ci1.f35817k1;
-                if (ci1Var != null) {
-                    ci1Var.n();
+                ii1 ii1Var = ii1.f37669k1;
+                if (ii1Var != null) {
+                    ii1Var.n();
                 }
                 d60.c1(LaunchActivity.D1, AccountInstance.getInstance(UserConfig.selectedAccount), null, null, false, null);
             } else if (getSharedInstance() != null && (this.groupCall != null || this.conference != null)) {
@@ -3551,7 +3550,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 if (z10) {
                     this.conference.reset();
                 }
-                this.conference.requestLastBlock(new h(4, this, l0Var));
+                this.conference.requestLastBlock(new h(3, this, l0Var));
             }
         }
     }
@@ -3574,7 +3573,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 groupCall.can_start_video = true;
                 groupCall.can_change_join_muted = true;
                 groupCall.rtmp_stream = this.isRtmpStream;
-                call2.chatId = this.chat.f20843id;
+                call2.chatId = this.chat.f20845id;
                 call2.currentAccount = AccountInstance.getInstance(this.currentAccount);
                 this.groupCall.setSelfPeer(this.groupCallPeer);
                 this.groupCall.createNoVideoParticipant();
@@ -3595,7 +3594,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 this.createGroupCall = false;
             } else if (str == null) {
                 if (this.groupCall == null && this.chat != null) {
-                    ChatObject.Call groupCall2 = MessagesController.getInstance(this.currentAccount).getGroupCall(this.chat.f20843id, false);
+                    ChatObject.Call groupCall2 = MessagesController.getInstance(this.currentAccount).getGroupCall(this.chat.f20845id, false);
                     this.groupCall = groupCall2;
                     if (groupCall2 != null) {
                         groupCall2.setSelfPeer(this.groupCallPeer);
@@ -3670,7 +3669,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 
     private void startRatingActivity() {
         try {
-            PendingIntent.getActivity(this, 0, new Intent(this, VoIPFeedbackActivity.class).putExtra("call_id", this.privateCall.f21069id).putExtra("call_access_hash", this.privateCall.access_hash).putExtra("call_video", this.privateCall.video).putExtra("account", this.currentAccount).addFlags(805306368), 33554432).send();
+            PendingIntent.getActivity(this, 0, new Intent(this, VoIPFeedbackActivity.class).putExtra("call_id", this.privateCall.f21071id).putExtra("call_access_hash", this.privateCall.access_hash).putExtra("call_video", this.privateCall.video).putExtra("account", this.currentAccount).addFlags(805306368), 33554432).send();
         } catch (Exception e6) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("Error starting incall activity", e6);
@@ -3685,7 +3684,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 callConnection.setRinging();
             }
             if (BuildVars.LOGS_ENABLED) {
-                l.d.x(new StringBuilder("starting ringing for call "), this.privateCall.f21069id);
+                l.d.x(new StringBuilder("starting ringing for call "), this.privateCall.f21071id);
             }
             dispatchStateChanged(15);
             if (!this.notificationsDisabled) {
@@ -3697,7 +3696,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 }
                 return;
             }
-            startRingtoneAndVibration(this.user.f20990id);
+            startRingtoneAndVibration(this.user.f20992id);
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("Starting incall activity for incoming call");
             }
@@ -4037,7 +4036,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         long j10;
         TLRPC.User user = this.user;
         if (user != null) {
-            j10 = user.f20990id;
+            j10 = user.f20992id;
         } else {
             j10 = 0;
         }
@@ -4057,7 +4056,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 
     public void createCaptureDevice(boolean z4) {
         ?? r22;
-        vh1 vh1Var;
+        bi1 bi1Var;
         if (z4) {
             this.gotMediaProjection = true;
             updateCurrentForegroundType();
@@ -4096,9 +4095,9 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             }
             requestVideoCall(true);
             setVideoState(true, 2);
-            ci1 ci1Var = ci1.f35817k1;
-            if (ci1Var != null && (vh1Var = ci1Var.f35844l0) != null) {
-                vh1Var.a(true, true);
+            ii1 ii1Var = ii1.f37669k1;
+            if (ii1Var != null && (bi1Var = ii1Var.f37696l0) != null) {
+                bi1Var.a(true, true);
                 return;
             }
             return;
@@ -4152,7 +4151,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             discardcall.peer = tL_inputPhoneCall;
             TL_phone.PhoneCall phoneCall = this.privateCall;
             tL_inputPhoneCall.access_hash = phoneCall.access_hash;
-            tL_inputPhoneCall.f20908id = phoneCall.f21069id;
+            tL_inputPhoneCall.f20910id = phoneCall.f21071id;
             discardcall.duration = (int) (getCallDuration() / 1000);
             NativeInstance nativeInstance = this.tgVoip[0];
             discardcall.connection_id = nativeInstance != null ? nativeInstance.getPreferredRelayId() : 0L;
@@ -4258,7 +4257,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     public long getCallID() {
         TL_phone.PhoneCall phoneCall = this.privateCall;
         if (phoneCall != null) {
-            return phoneCall.f21069id;
+            return phoneCall.f21071id;
         }
         return 0L;
     }
@@ -4271,11 +4270,11 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     public long getCallerId() {
         TLRPC.User user = this.user;
         if (user != null) {
-            return user.f20990id;
+            return user.f20992id;
         }
         TLRPC.Chat chat = this.chat;
         if (chat != null) {
-            return -chat.f20843id;
+            return -chat.f20845id;
         }
         return 0L;
     }
@@ -4298,7 +4297,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 AndroidUtilities.runOnUIThread(uVar, 2000L);
             }
             CallConnection callConnection2 = this.systemCallConnection;
-            callConnection2.setAddress(Uri.fromParts("tel", "+99084" + this.user.f20990id, null), 1);
+            callConnection2.setAddress(Uri.fromParts("tel", "+99084" + this.user.f20992id, null), 1);
             CallConnection callConnection3 = this.systemCallConnection;
             TLRPC.User user = this.user;
             callConnection3.setCallerDisplayName(ContactsController.formatName(user.first_name, user.last_name), 1);
@@ -4371,7 +4370,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         TLRPC.GroupCall groupCall;
         ChatObject.Call call = this.groupCall;
         if (call != null && (groupCall = call.call) != null) {
-            return groupCall.f20853id;
+            return groupCall.f20855id;
         }
         return 0L;
     }
@@ -4465,10 +4464,10 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             return;
         }
         if (i10 == 1) {
-            if (this.chat != null && (chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.chat.f20843id)) != null) {
+            if (this.chat != null && (chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.chat.f20845id)) != null) {
                 chatFull.flags &= -2097153;
                 chatFull.call = null;
-                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, Long.valueOf(this.chat.f20843id), Long.valueOf(this.groupCall.call.f20853id), Boolean.FALSE);
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, Long.valueOf(this.chat.f20845id), Long.valueOf(this.groupCall.call.f20855id), Boolean.FALSE);
             }
             TL_phone.discardGroupCall discardgroupcall = new TL_phone.discardGroupCall();
             discardgroupcall.call = this.groupCall.getInputGroupCall();
@@ -4702,7 +4701,6 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    @Override
     public void onConnectionStateChanged(int i10, boolean z4) {
         AndroidUtilities.runOnUIThread(new b0(this, i10, 2));
     }
@@ -4878,7 +4876,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 NativeInstance nativeInstance = this.tgVoip[0];
                 DispatchQueue dispatchQueue = Utilities.globalQueue;
                 Objects.requireNonNull(nativeInstance);
-                dispatchQueue.postRunnable(new s0(nativeInstance, 4));
+                dispatchQueue.postRunnable(new s0(nativeInstance, 3));
                 for (Map.Entry<String, Integer> entry : this.currentStreamRequestTimestamp.entrySet()) {
                     AccountInstance.getInstance(this.currentAccount).getConnectionsManager().cancelRequest(entry.getValue().intValue(), true);
                 }
@@ -4896,7 +4894,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         destroyConverting();
         NativeInstance nativeInstance2 = this.tgVoip[1];
         if (nativeInstance2 != null) {
-            Utilities.globalQueue.postRunnable(new s0(nativeInstance2, 4));
+            Utilities.globalQueue.postRunnable(new s0(nativeInstance2, 3));
             this.tgVoip[1] = null;
         }
         int i10 = 0;
@@ -4957,7 +4955,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 callConnection.destroy();
             }
         }
-        g2.f32047a = SystemClock.elapsedRealtime();
+        g2.f32052a = SystemClock.elapsedRealtime();
         setSinks(null, null);
         Runnable runnable3 = this.onDestroyRunnable;
         if (runnable3 != null) {
@@ -4974,7 +4972,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 
     public void onGroupCallParticipantsUpdate(TL_update.TL_updateGroupCallParticipants tL_updateGroupCallParticipants) {
         ChatObject.Call call = this.groupCall;
-        if (call != null && call.call.f20853id == tL_updateGroupCallParticipants.call.f20860id) {
+        if (call != null && call.call.f20855id == tL_updateGroupCallParticipants.call.f20862id) {
             call.shadyLeftParticipants.clear();
             this.groupCall.shadyJoinParticipants.clear();
             if (this.conference != null) {
@@ -4987,7 +4985,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 call2.shadyLeftParticipants.addAll(this.conference.getShadyLeftParticipants(call2.sortedParticipants));
                 ChatObject.Call call3 = this.groupCall;
                 call3.shadyJoinParticipants.addAll(this.conference.getShadyJoiningParticipants(call3.sortedParticipants));
-                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(this.groupCall.call.f20853id), Boolean.FALSE);
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(this.groupCall.call.f20855id), Boolean.FALSE);
             }
             long selfId = getSelfId();
             int size = tL_updateGroupCallParticipants.participants.size();
@@ -5072,7 +5070,6 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    @Override
     public void onSignalBarCountChanged(int i10) {
         AndroidUtilities.runOnUIThread(new b0(this, i10, 0));
     }
@@ -5176,8 +5173,8 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 }
             }
             this.isHeadsetPlugged = ((AudioManager) getSystemService("audio")).isWiredHeadsetOn();
-            if (this.chat != null && !this.createGroupCall && MessagesController.getInstance(this.currentAccount).getGroupCall(this.chat.f20843id, false) == null) {
-                FileLog.w("VoIPService: trying to open group call without call " + this.chat.f20843id);
+            if (this.chat != null && !this.createGroupCall && MessagesController.getInstance(this.currentAccount).getGroupCall(this.chat.f20845id, false) == null) {
+                FileLog.w("VoIPService: trying to open group call without call " + this.chat.f20845id);
                 stopSelf();
                 return 2;
             }
@@ -5223,7 +5220,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     this.micMute = true;
                 } else if (!ie0.f("android.permission.RECORD_AUDIO")) {
                     this.micMute = true;
-                    ie0.g(new String[]{"android.permission.RECORD_AUDIO"}, new cn(1, new Utilities.Callback() {
+                    ie0.g(new String[]{"android.permission.RECORD_AUDIO"}, new bn(1, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
                             VoIPService.this.lambda$onStartCommand$1((Boolean) obj);
@@ -5245,8 +5242,8 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                         bundle.putBundle("android.telecom.extra.OUTGOING_CALL_EXTRAS", bundle2);
                         ContactsController contactsController = ContactsController.getInstance(this.currentAccount);
                         TLRPC.User user = this.user;
-                        contactsController.createOrUpdateConnectionServiceContact(user.f20990id, user.first_name, user.last_name);
-                        ((TelecomManager) getSystemService("telecom")).placeCall(Uri.fromParts("tel", "+99084" + this.user.f20990id, null), bundle);
+                        contactsController.createOrUpdateConnectionServiceContact(user.f20992id, user.first_name, user.last_name);
+                        ((TelecomManager) getSystemService("telecom")).placeCall(Uri.fromParts("tel", "+99084" + this.user.f20992id, null), bundle);
                     } else {
                         u uVar = new u(this, 23);
                         this.delayedStartOutgoingCall = uVar;
@@ -5313,7 +5310,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                         findActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
                     }
                     if (findActivity != null) {
-                        ci1.w(findActivity, this.currentAccount);
+                        ii1.w(findActivity, this.currentAccount);
                     }
                 }
             }
@@ -5355,7 +5352,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 if (invitedUser.isCalling() != z4) {
                     invitedUser.calling = z4;
                     this.groupCall.invitedUsersMessageIds.put(Long.valueOf(dialogId), invitedUser);
-                    NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(this.groupCall.call.f20853id), Boolean.FALSE);
+                    NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(this.groupCall.call.f20855id), Boolean.FALSE);
                 }
             }
         }
@@ -5433,7 +5430,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 
     public void sendCallRating(int i10) {
         TL_phone.PhoneCall phoneCall = this.privateCall;
-        long j10 = phoneCall.f21069id;
+        long j10 = phoneCall.f21071id;
         long j11 = phoneCall.access_hash;
         int i11 = this.currentAccount;
         int i12 = UserConfig.selectedAccount;
@@ -5443,7 +5440,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
         setcallrating.peer = tL_inputPhoneCall;
         tL_inputPhoneCall.access_hash = j11;
-        tL_inputPhoneCall.f20908id = j10;
+        tL_inputPhoneCall.f20910id = j10;
         setcallrating.user_initiative = false;
         ConnectionsManager.getInstance(i11).sendRequest(setcallrating, new o(i12, 3));
     }
@@ -5750,7 +5747,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(leavegroupcallpresentation, new v(this, 7));
             NativeInstance nativeInstance = this.tgVoip[1];
             if (nativeInstance != null) {
-                Utilities.globalQueue.postRunnable(new s0(nativeInstance, 4));
+                Utilities.globalQueue.postRunnable(new s0(nativeInstance, 3));
             }
             this.mySource[1] = 0;
             this.tgVoip[1] = null;
@@ -5821,7 +5818,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             discardcall.peer = tL_inputPhoneCall;
             TL_phone.PhoneCall phoneCall = this.privateCall;
             tL_inputPhoneCall.access_hash = phoneCall.access_hash;
-            tL_inputPhoneCall.f20908id = phoneCall.f21069id;
+            tL_inputPhoneCall.f20910id = phoneCall.f21071id;
             discardcall.duration = (int) (getCallDuration() / 1000);
             NativeInstance nativeInstance = this.tgVoip[0];
             discardcall.connection_id = nativeInstance != null ? nativeInstance.getPreferredRelayId() : 0L;
@@ -5969,7 +5966,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         sendsignalingdata.peer = tL_inputPhoneCall;
         TL_phone.PhoneCall phoneCall = this.privateCall;
         tL_inputPhoneCall.access_hash = phoneCall.access_hash;
-        tL_inputPhoneCall.f20908id = phoneCall.f21069id;
+        tL_inputPhoneCall.f20910id = phoneCall.f21071id;
         sendsignalingdata.data = bArr;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(sendsignalingdata, null);
     }
@@ -6005,7 +6002,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         if (this.startedRinging) {
             return;
         }
-        startRingtoneAndVibration(this.user.f20990id);
+        startRingtoneAndVibration(this.user.f20992id);
         this.startedRinging = true;
     }
 

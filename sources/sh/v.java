@@ -9,50 +9,51 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.df;
 import org.telegram.ui.Components.pr;
+import org.telegram.ui.Components.sl0;
 import org.telegram.ui.Components.tl;
-import org.telegram.ui.Components.tl0;
+import org.telegram.ui.c81;
 public abstract class v extends FrameLayout {
-    public ObjectAnimator f47735a;
-    public c5.e f47736b;
-    public qh.e1 f47737c;
+    public ObjectAnimator f47771a;
+    public c5.e f47772b;
+    public c81 f47773c;
     public Paint d;
-    public float f47738e;
-    public boolean f47739f;
+    public float f47774e;
+    public boolean f47775f;
     public float h;
-    public boolean f47740n;
-    public qg.b f47741r;
+    public boolean f47776n;
+    public qg.b f47777r;
 
     public final void a() {
-        ObjectAnimator objectAnimator = this.f47735a;
+        ObjectAnimator objectAnimator = this.f47771a;
         if (objectAnimator != null) {
             objectAnimator.removeAllListeners();
-            this.f47735a.cancel();
-            this.f47735a = null;
+            this.f47771a.cancel();
+            this.f47771a = null;
         }
     }
 
     public final void b() {
-        qh.e1 e1Var = this.f47737c;
-        qg.b bVar = this.f47741r;
+        c81 c81Var = this.f47773c;
+        qg.b bVar = this.f47777r;
         if (bVar != null) {
             bVar.setBounds(0, ((int) this.h) - AndroidUtilities.dp(25.0f), getMeasuredWidth(), AndroidUtilities.dp(5.0f) + getMeasuredHeight());
-            e1Var.invalidateOutline();
-            e1Var.invalidate();
+            c81Var.invalidateOutline();
+            c81Var.invalidate();
         }
     }
 
     public final void c() {
-        if (!this.f47739f) {
-            this.f47739f = true;
+        if (!this.f47775f) {
+            this.f47775f = true;
             a();
-            qh.e1 e1Var = this.f47737c;
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(e1Var, FrameLayout.TRANSLATION_Y, e1Var.getTranslationY(), (getMeasuredHeight() - this.h) + AndroidUtilities.dp(40.0f));
-            this.f47735a = ofFloat;
-            ofFloat.addListener(new qh.j2(this, 8));
-            this.f47735a.setDuration(150L);
-            this.f47735a.setInterpolator(pr.f30183f);
-            this.f47735a.start();
-            z zVar = ((df) this).v.f24620i0;
+            c81 c81Var = this.f47773c;
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(c81Var, FrameLayout.TRANSLATION_Y, c81Var.getTranslationY(), (getMeasuredHeight() - this.h) + AndroidUtilities.dp(40.0f));
+            this.f47771a = ofFloat;
+            ofFloat.addListener(new qh.i2(this, 8));
+            this.f47771a.setDuration(150L);
+            this.f47771a.setInterpolator(pr.f30168f);
+            this.f47771a.start();
+            z zVar = ((df) this).v.f24622i0;
             if (zVar != null) {
                 zVar.setOpened(false);
             }
@@ -60,20 +61,20 @@ public abstract class v extends FrameLayout {
     }
 
     public final void d(boolean z4) {
-        if (this.f47739f) {
+        if (this.f47775f) {
             return;
         }
-        qh.e1 e1Var = this.f47737c;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(e1Var, FrameLayout.TRANSLATION_Y, e1Var.getTranslationY(), 0.0f);
-        this.f47735a = ofFloat;
+        c81 c81Var = this.f47773c;
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(c81Var, FrameLayout.TRANSLATION_Y, c81Var.getTranslationY(), 0.0f);
+        this.f47771a = ofFloat;
         if (z4) {
             ofFloat.setDuration(320L);
-            this.f47735a.setInterpolator(new OvershootInterpolator(0.8f));
+            this.f47771a.setInterpolator(new OvershootInterpolator(0.8f));
         } else {
             ofFloat.setDuration(150L);
-            this.f47735a.setInterpolator(pr.f30183f);
+            this.f47771a.setInterpolator(pr.f30168f);
         }
-        this.f47735a.start();
+        this.f47771a.start();
     }
 
     @Override
@@ -84,24 +85,24 @@ public abstract class v extends FrameLayout {
         return super.dispatchTouchEvent(motionEvent);
     }
 
-    public tl0 getListView() {
-        return this.f47737c;
+    public sl0 getListView() {
+        return this.f47773c;
     }
 
     @Override
     public int getNestedScrollAxes() {
-        c5.e eVar = this.f47736b;
+        c5.e eVar = this.f47772b;
         return eVar.f2269b | eVar.f2268a;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        qh.e1 e1Var = this.f47737c;
+        c81 c81Var = this.f47773c;
         super.onMeasure(i10, i11);
-        if (this.f47740n && !this.f47739f) {
-            e1Var.setTranslationY(AndroidUtilities.dp(16.0f) + (e1Var.getMeasuredHeight() - e1Var.getPaddingTop()));
+        if (this.f47776n && !this.f47775f) {
+            c81Var.setTranslationY(AndroidUtilities.dp(16.0f) + (c81Var.getMeasuredHeight() - c81Var.getPaddingTop()));
             d(true);
-            this.f47740n = false;
+            this.f47776n = false;
         }
         b();
     }
@@ -118,10 +119,10 @@ public abstract class v extends FrameLayout {
 
     @Override
     public final void onNestedPreScroll(View view, int i10, int i11, int[] iArr) {
-        qh.e1 e1Var = this.f47737c;
-        if (!this.f47739f) {
+        c81 c81Var = this.f47773c;
+        if (!this.f47775f) {
             a();
-            float translationY = e1Var.getTranslationY();
+            float translationY = c81Var.getTranslationY();
             float f10 = 0.0f;
             if (translationY > 0.0f && i11 > 0) {
                 float f11 = translationY - i11;
@@ -129,7 +130,7 @@ public abstract class v extends FrameLayout {
                 if (f11 >= 0.0f) {
                     f10 = f11;
                 }
-                e1Var.setTranslationY(f10);
+                c81Var.setTranslationY(f10);
                 invalidate();
             }
         }
@@ -137,15 +138,15 @@ public abstract class v extends FrameLayout {
 
     @Override
     public final void onNestedScroll(View view, int i10, int i11, int i12, int i13) {
-        qh.e1 e1Var = this.f47737c;
-        if (!this.f47739f) {
+        c81 c81Var = this.f47773c;
+        if (!this.f47775f) {
             a();
             if (i13 != 0) {
-                float translationY = e1Var.getTranslationY() - i13;
+                float translationY = c81Var.getTranslationY() - i13;
                 if (translationY < 0.0f) {
                     translationY = 0.0f;
                 }
-                e1Var.setTranslationY(translationY);
+                c81Var.setTranslationY(translationY);
                 invalidate();
             }
         }
@@ -153,8 +154,8 @@ public abstract class v extends FrameLayout {
 
     @Override
     public final void onNestedScrollAccepted(View view, View view2, int i10) {
-        this.f47736b.f2268a = i10;
-        if (this.f47739f) {
+        this.f47772b.f2268a = i10;
+        if (this.f47775f) {
             return;
         }
         a();
@@ -162,7 +163,7 @@ public abstract class v extends FrameLayout {
 
     @Override
     public final boolean onStartNestedScroll(View view, View view2, int i10) {
-        if (!this.f47739f && i10 == 2) {
+        if (!this.f47775f && i10 == 2) {
             return true;
         }
         return false;
@@ -170,12 +171,12 @@ public abstract class v extends FrameLayout {
 
     @Override
     public final void onStopNestedScroll(View view) {
-        this.f47736b.f2268a = 0;
-        boolean z4 = this.f47739f;
+        this.f47772b.f2268a = 0;
+        boolean z4 = this.f47775f;
         if (z4 || z4) {
             return;
         }
-        if (this.f47737c.getTranslationY() > AndroidUtilities.dp(16.0f)) {
+        if (this.f47773c.getTranslationY() > AndroidUtilities.dp(16.0f)) {
             c();
         } else {
             d(false);
@@ -183,13 +184,13 @@ public abstract class v extends FrameLayout {
     }
 
     public void setBackgroundDrawable(qg.b bVar) {
-        this.f47741r = bVar;
+        this.f47777r = bVar;
         bVar.p(AndroidUtilities.dp(22.0f));
-        this.f47741r.o(AndroidUtilities.dp(5.0f));
-        qh.e1 e1Var = this.f47737c;
-        if (bVar.f44855i == null) {
-            bVar.f44855i = new tl(bVar, 6);
+        this.f47777r.o(AndroidUtilities.dp(5.0f));
+        c81 c81Var = this.f47773c;
+        if (bVar.f44886i == null) {
+            bVar.f44886i = new tl(bVar, 6);
         }
-        e1Var.setOutlineProvider(bVar.f44855i);
+        c81Var.setOutlineProvider(bVar.f44886i);
     }
 }

@@ -1,10 +1,11 @@
 package z3;
-public final class n {
-    public final long f51043a;
-    public final int f51044b;
 
-    public n(long j10, int i10) {
-        this.f51043a = j10;
-        this.f51044b = i10;
-    }
+import b4.e0;
+import java.util.ArrayList;
+public final class n {
+    public static final e0 d = new e0(new org.telegram.ui.web.e0(new r8.b(':'), 8));
+    public static final e0 f51080e = new e0(new org.telegram.ui.web.e0(new r8.b('*'), 8));
+    public final ArrayList f51081a = new ArrayList();
+    public int f51082b = 0;
+    public int f51083c;
 }

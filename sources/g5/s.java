@@ -93,7 +93,7 @@ public final class s implements f, v0 {
         long j13;
         if (i10 != 0 || j10 != 0 || j11 != this.f6924m) {
             this.f6924m = j11;
-            Iterator it = ((CopyOnWriteArrayList) this.f6915b.f16615b).iterator();
+            Iterator it = ((CopyOnWriteArrayList) this.f6915b.f16617b).iterator();
             while (it.hasNext()) {
                 e eVar = (e) it.next();
                 if (!eVar.f6850c) {

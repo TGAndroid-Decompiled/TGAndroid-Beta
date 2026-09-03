@@ -11,19 +11,19 @@ import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.SvgHelper;
 public final class g1 extends AsyncTask {
-    public final HashMap f42554a = new HashMap();
-    public final v1 f42555b;
-    public Exception f42556c;
+    public final HashMap f42517a = new HashMap();
+    public final a2 f42518b;
+    public Exception f42519c;
 
-    public g1(v1 v1Var) {
-        this.f42555b = v1Var;
+    public g1(a2 a2Var) {
+        this.f42518b = a2Var;
     }
 
     @Override
     public final Object doInBackground(Object[] objArr) {
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-            for (Map.Entry entry : this.f42554a.entrySet()) {
+            for (Map.Entry entry : this.f42517a.entrySet()) {
                 if (entry.getKey() != null && entry.getValue() != null) {
                     httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
                 }
@@ -40,7 +40,7 @@ public final class g1 extends AsyncTask {
             httpURLConnection.disconnect();
             return null;
         } catch (Exception e6) {
-            this.f42556c = e6;
+            this.f42519c = e6;
             return null;
         }
     }
@@ -48,12 +48,12 @@ public final class g1 extends AsyncTask {
     @Override
     public final void onPostExecute(Object obj) {
         Bitmap bitmap = (Bitmap) obj;
-        v1 v1Var = this.f42555b;
-        if (v1Var != null) {
-            if (this.f42556c == null) {
-                v1Var.run(bitmap);
+        a2 a2Var = this.f42518b;
+        if (a2Var != null) {
+            if (this.f42519c == null) {
+                a2Var.run(bitmap);
             } else {
-                v1Var.run(null);
+                a2Var.run(null);
             }
         }
     }

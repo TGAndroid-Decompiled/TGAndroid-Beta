@@ -34,7 +34,7 @@ import org.telegram.ui.Components.d10;
 import org.telegram.ui.Components.fa0;
 import org.telegram.ui.Components.fc0;
 import org.telegram.ui.Components.gh0;
-import org.telegram.ui.Components.i61;
+import org.telegram.ui.Components.h61;
 import org.telegram.ui.Components.ic;
 import org.telegram.ui.Components.mi;
 import org.telegram.ui.Components.ov;
@@ -42,7 +42,7 @@ import org.telegram.ui.Components.qb;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.u00;
 import org.telegram.ui.Components.xd0;
-import org.telegram.ui.Components.yx0;
+import org.telegram.ui.Components.xx0;
 import org.telegram.ui.FiltersSetupActivity;
 import org.telegram.ui.LanguageSelectActivity;
 import org.telegram.ui.LaunchActivity;
@@ -51,11 +51,11 @@ import org.telegram.ui.ap;
 import org.telegram.ui.b10;
 import org.telegram.ui.dp;
 import org.telegram.ui.fn0;
-import org.telegram.ui.hq0;
 import org.telegram.ui.i80;
 import org.telegram.ui.jn;
 import org.telegram.ui.lp;
 import org.telegram.ui.mp;
+import org.telegram.ui.mq0;
 import org.telegram.ui.np;
 import org.telegram.ui.pw;
 import org.telegram.ui.py;
@@ -64,16 +64,16 @@ import org.telegram.ui.rp;
 import org.telegram.ui.xn;
 import org.telegram.ui.zz;
 public final class r5 implements Runnable {
-    public final int f14688a;
-    public final boolean f14689b;
-    public final Object f14690c;
+    public final int f14690a;
+    public final boolean f14691b;
+    public final Object f14692c;
     public final Object d;
 
     public r5(Object obj, Object obj2, boolean z4, int i10) {
-        this.f14688a = i10;
+        this.f14690a = i10;
         this.d = obj;
-        this.f14690c = obj2;
-        this.f14689b = z4;
+        this.f14692c = obj2;
+        this.f14691b = z4;
     }
 
     @Override
@@ -85,9 +85,9 @@ public final class r5 implements Runnable {
         String formatPluralString;
         int i12;
         String formatPluralString2;
-        int i13 = this.f14688a;
-        boolean z4 = this.f14689b;
-        Object obj = this.f14690c;
+        int i13 = this.f14690a;
+        boolean z4 = this.f14691b;
+        Object obj = this.f14692c;
         Object obj2 = this.d;
         switch (i13) {
             case 0:
@@ -110,8 +110,8 @@ public final class r5 implements Runnable {
                 View view = (View) obj;
                 if (view instanceof org.telegram.ui.ActionBar.m5) {
                     org.telegram.ui.ActionBar.m5 m5Var = (org.telegram.ui.ActionBar.m5) view;
-                    if (m5Var.f22136a) {
-                        m5Var.f22136a = false;
+                    if (m5Var.f22138a) {
+                        m5Var.f22138a = false;
                         m5Var.invalidate();
                     }
                 }
@@ -123,22 +123,22 @@ public final class r5 implements Runnable {
             case 6:
                 org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) obj2;
                 ArrayList arrayList2 = (ArrayList) obj;
-                int i14 = f6Var.f21365a;
+                int i14 = f6Var.f21367a;
                 if (arrayList2 != null && (arrayList = org.telegram.ui.ActionBar.k6.I.Y) != null && !arrayList.isEmpty() && arrayList2.contains(org.telegram.ui.ActionBar.k6.I.k(false))) {
                     org.telegram.ui.ActionBar.k6.o1(true);
                 }
                 if (z4) {
-                    if (f6Var.f21366b != null) {
+                    if (f6Var.f21368b != null) {
                         NotificationCenter.getInstance(i14).addObserver(f6Var, NotificationCenter.fileLoaded);
                         NotificationCenter.getInstance(i14).addObserver(f6Var, NotificationCenter.fileLoadFailed);
-                        for (Map.Entry entry : f6Var.f21366b.entrySet()) {
-                            FileLoader.getInstance(i14).loadFile(ImageLocation.getForDocument(((org.telegram.ui.ActionBar.e6) entry.getValue()).f21334a.document), "wallpaper", null, 0, 1);
+                        for (Map.Entry entry : f6Var.f21368b.entrySet()) {
+                            FileLoader.getInstance(i14).loadFile(ImageLocation.getForDocument(((org.telegram.ui.ActionBar.e6) entry.getValue()).f21336a.document), "wallpaper", null, 0, 1);
                         }
                         return;
                     }
                     return;
                 }
-                HashMap hashMap = f6Var.f21366b;
+                HashMap hashMap = f6Var.f21368b;
                 if (hashMap == null || hashMap.isEmpty()) {
                     NotificationCenter.getInstance(i14).removeObserver(f6Var, NotificationCenter.fileLoaded);
                     NotificationCenter.getInstance(i14).removeObserver(f6Var, NotificationCenter.fileLoadFailed);
@@ -153,7 +153,7 @@ public final class r5 implements Runnable {
                 org.telegram.ui.ActionBar.j6 j6Var = (org.telegram.ui.ActionBar.j6) obj;
                 if (i6Var != null) {
                     org.telegram.ui.ActionBar.i6 k10 = j6Var.k(false);
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, j6Var, Boolean.FALSE, null, Integer.valueOf(i6Var.f21467a));
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, j6Var, Boolean.FALSE, null, Integer.valueOf(i6Var.f21469a));
                     if (z4) {
                         org.telegram.ui.ActionBar.k6.j0(j6Var, k10, true);
                         return;
@@ -164,8 +164,8 @@ public final class r5 implements Runnable {
                 return;
             case 9:
                 TLObject tLObject = (TLObject) obj;
-                xn xnVar = ((jn) obj2).f38188a;
-                xnVar.f43414xb.b();
+                xn xnVar = ((jn) obj2).f38085a;
+                xnVar.f43392xb.b();
                 if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
                     i11 = ((org.telegram.ui.ActionBar.p2) xnVar).currentAccount;
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
@@ -174,18 +174,18 @@ public final class r5 implements Runnable {
                         TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                         TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
                         tL_inputStickerSetID.access_hash = stickerSet.access_hash;
-                        tL_inputStickerSetID.f20863id = stickerSet.f20870id;
+                        tL_inputStickerSetID.f20865id = stickerSet.f20872id;
                         if (z4) {
                             ArrayList arrayList3 = new ArrayList(1);
                             arrayList3.add(tL_inputStickerSetID);
-                            ov ovVar = new ov(xnVar, xnVar.getParentActivity(), xnVar.f43136ba, arrayList3);
+                            ov ovVar = new ov(xnVar, xnVar.getParentActivity(), xnVar.f43114ba, arrayList3);
                             ovVar.setCalcMandatoryInsets(xnVar.x9());
                             xnVar.showDialog(ovVar);
                             return;
                         }
-                        yx0 yx0Var = new yx0(xnVar.getParentActivity(), xnVar, tL_inputStickerSetID, null, xnVar.V, xnVar.f43136ba);
-                        yx0Var.setCalcMandatoryInsets(xnVar.x9());
-                        xnVar.showDialog(yx0Var);
+                        xx0 xx0Var = new xx0(xnVar.getParentActivity(), xnVar, tL_inputStickerSetID, null, xnVar.V, xnVar.f43114ba);
+                        xx0Var.setCalcMandatoryInsets(xnVar.x9());
+                        xnVar.showDialog(xx0Var);
                         return;
                     }
                     return;
@@ -201,10 +201,10 @@ public final class r5 implements Runnable {
                 return;
             case 10:
                 ap apVar = (ap) obj2;
-                dp dpVar = apVar.f35224a;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(dpVar.getContext(), 0, dpVar.f31383m2);
+                dp dpVar = apVar.f35232a;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(dpVar.getContext(), 0, dpVar.f31106m2);
                 String string = LocaleController.getString(R.string.UsernameActivateErrorTitle);
-                org.telegram.ui.ActionBar.d2 d2Var2 = alertDialog$Builder.f21166a;
+                org.telegram.ui.ActionBar.d2 d2Var2 = alertDialog$Builder.f21168a;
                 d2Var2.O = string;
                 d2Var2.Q = LocaleController.getString(R.string.UsernameActivateErrorMessage);
                 alertDialog$Builder.k(LocaleController.getString(R.string.OK), new com.google.firebase.messaging.i(apVar, (TLRPC.TL_username) obj, z4, 4));
@@ -213,12 +213,12 @@ public final class r5 implements Runnable {
             case 11:
                 np npVar = (np) obj2;
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
-                rp rpVar = npVar.f39500x.d;
+                rp rpVar = npVar.f39421x.d;
                 rpVar.L = false;
                 if (!z4 && chat.join_request) {
                     chat.join_request = false;
                     rpVar.M = true;
-                    rpVar.getMessagesController().toggleChatJoinRequest(chat.f20843id, false, new lp(npVar, 1), new mp(3, npVar, chat));
+                    rpVar.getMessagesController().toggleChatJoinRequest(chat.f20845id, false, new lp(npVar, 1), new mp(2, npVar, chat));
                     return;
                 }
                 return;
@@ -239,7 +239,7 @@ public final class r5 implements Runnable {
                 return;
             case 15:
                 fa0 fa0Var = (fa0) obj2;
-                fa0Var.getMessagesController().getStoriesController().o0(fa0Var.f26853e, (ArrayList) obj, this.f14689b, null);
+                fa0Var.getMessagesController().getStoriesController().o0(fa0Var.f26852e, (ArrayList) obj, this.f14691b, null);
                 return;
             case 16:
                 xd0 xd0Var = (xd0) obj2;
@@ -263,15 +263,15 @@ public final class r5 implements Runnable {
                 return;
             case 18:
                 gh0 gh0Var = (gh0) obj2;
-                i61 i61Var = gh0Var.f27194c;
+                h61 h61Var = gh0Var.f27172c;
                 ArrayList arrayList4 = (ArrayList) obj;
                 if (z4) {
-                    arrayList4 = gh0Var.f27195e;
+                    arrayList4 = gh0Var.f27173e;
                 }
                 if (!arrayList4.isEmpty()) {
-                    if (i61Var.canScrollVertically(1)) {
-                        for (int i16 = 0; i16 < i61Var.getChildCount(); i16++) {
-                            if (!(i61Var.getChildAt(i16) instanceof u00)) {
+                    if (h61Var.canScrollVertically(1)) {
+                        for (int i16 = 0; i16 < h61Var.getChildCount(); i16++) {
+                            if (!(h61Var.getChildAt(i16) instanceof u00)) {
                             }
                         }
                         return;
@@ -284,14 +284,14 @@ public final class r5 implements Runnable {
                 org.telegram.ui.Components.voip.u uVar = (org.telegram.ui.Components.voip.u) obj2;
                 org.telegram.ui.Components.voip.u uVar2 = (org.telegram.ui.Components.voip.u) obj;
                 if (z4) {
-                    uVar.f32391x.removeView(uVar2);
+                    uVar.f32396x.removeView(uVar2);
                 }
                 uVar2.setVisibility(8);
-                uVar.f32395z0 = null;
+                uVar.f32400z0 = null;
                 return;
             case 20:
                 MessagesController.DialogFilter dialogFilter = (MessagesController.DialogFilter) obj;
-                py pyVar = ((pw) obj2).f40168b;
+                py pyVar = ((pw) obj2).f40138b;
                 if (z4) {
                     b10Var = new FiltersSetupActivity();
                 } else {
@@ -301,13 +301,13 @@ public final class r5 implements Runnable {
                 return;
             case 21:
                 ArrayList arrayList5 = (ArrayList) obj;
-                py pyVar2 = ((pw) obj2).f40168b;
+                py pyVar2 = ((pw) obj2).f40138b;
                 int i17 = 0;
                 for (int i18 = 0; i18 < arrayList5.size(); i18++) {
                     TLRPC.Dialog dialog = (TLRPC.Dialog) arrayList5.get(i18);
                     if (dialog != null) {
                         NotificationsController notificationsController = pyVar2.getNotificationsController();
-                        long j10 = dialog.f20847id;
+                        long j10 = dialog.f20849id;
                         if (z4) {
                             i12 = 3;
                         } else {
@@ -318,7 +318,7 @@ public final class r5 implements Runnable {
                     }
                 }
                 qb qbVar = new qb(pyVar2.getParentActivity(), null);
-                TextView textView = qbVar.f30359b;
+                TextView textView = qbVar.f30375b;
                 if (z4) {
                     formatPluralString = LocaleController.formatPluralString("NotificationsMutedHintChats", i17, new Object[0]);
                 } else {
@@ -365,7 +365,7 @@ public final class r5 implements Runnable {
                 return;
             case 27:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                fn0 fn0Var = ((rm0) obj2).f40996e;
+                fn0 fn0Var = ((rm0) obj2).f40886e;
                 if (z4) {
                     UserConfig.getInstance(fn0.r0(fn0Var)).resetSavedPassword();
                     fn0Var.K0 = 0;
@@ -396,7 +396,7 @@ public final class r5 implements Runnable {
                     return;
                 }
             case 28:
-                hq0.U((hq0) obj2, (TLObject) obj, z4);
+                mq0.U((mq0) obj2, (TLObject) obj, z4);
                 return;
             default:
                 PhotoViewer photoViewer = (PhotoViewer) obj2;
@@ -412,9 +412,9 @@ public final class r5 implements Runnable {
     }
 
     public r5(Object obj, boolean z4, Object obj2, int i10) {
-        this.f14688a = i10;
+        this.f14690a = i10;
         this.d = obj;
-        this.f14689b = z4;
-        this.f14690c = obj2;
+        this.f14691b = z4;
+        this.f14692c = obj2;
     }
 }

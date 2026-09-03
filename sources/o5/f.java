@@ -4,13 +4,13 @@ import android.os.Parcel;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.Status;
 public final class f extends a7.c implements j {
-    public final int f16609b;
-    public final g f16610c;
+    public final int f16611b;
+    public final g f16612c;
 
     public f(g gVar, int i10) {
         super("com.google.android.gms.auth.api.signin.internal.ISignInCallbacks", 10);
-        this.f16609b = i10;
-        this.f16610c = gVar;
+        this.f16611b = i10;
+        this.f16612c = gVar;
     }
 
     @Override
@@ -38,9 +38,9 @@ public final class f extends a7.c implements j {
 
     @Override
     public void X(Status status) {
-        switch (this.f16609b) {
+        switch (this.f16611b) {
             case 1:
-                this.f16610c.a(status);
+                this.f16612c.a(status);
                 return;
             default:
                 throw new UnsupportedOperationException();
@@ -49,9 +49,9 @@ public final class f extends a7.c implements j {
 
     @Override
     public void f0(Status status) {
-        switch (this.f16609b) {
+        switch (this.f16611b) {
             case 0:
-                this.f16610c.a(status);
+                this.f16612c.a(status);
                 return;
             default:
                 throw new UnsupportedOperationException();

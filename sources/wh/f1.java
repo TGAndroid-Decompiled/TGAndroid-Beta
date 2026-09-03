@@ -2,46 +2,46 @@ package wh;
 
 import org.telegram.ui.ti0;
 public final class f1 implements Runnable {
-    public final int f49742a;
-    public final z1 f49743b;
+    public final int f49778a;
+    public final z1 f49779b;
 
     public f1(z1 z1Var, int i10) {
-        this.f49742a = i10;
-        this.f49743b = z1Var;
+        this.f49778a = i10;
+        this.f49779b = z1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f49742a) {
+        switch (this.f49778a) {
             case 0:
-                this.f49743b.B0();
+                this.f49779b.B0();
                 return;
             case 1:
-                z1 z1Var = this.f49743b;
+                z1 z1Var = this.f49779b;
                 if (z1Var.H0 != 0) {
                     z1Var.X.setVisibility(8);
                     return;
                 }
                 return;
             case 2:
-                z1 z1Var2 = this.f49743b;
+                z1 z1Var2 = this.f49779b;
                 if (z1Var2.H0 != 1) {
-                    z1Var2.f50190e0.setVisibility(8);
+                    z1Var2.f50226e0.setVisibility(8);
                     return;
                 }
                 return;
             case 3:
-                z1 z1Var3 = this.f49743b;
+                z1 z1Var3 = this.f49779b;
                 if (z1Var3.H0 != 2) {
-                    z1Var3.f50207s0.setVisibility(8);
+                    z1Var3.f50243s0.setVisibility(8);
                     return;
                 }
                 return;
             case 4:
-                z1.V(this.f49743b);
+                z1.V(this.f49779b);
                 return;
             case 5:
-                z1 z1Var4 = this.f49743b;
+                z1 z1Var4 = this.f49779b;
                 z1Var4.s0(2147483646, 0, true);
                 ti0 ti0Var = z1Var4.L0;
                 if (ti0Var != null) {
@@ -51,7 +51,7 @@ public final class f1 implements Runnable {
                 }
                 return;
             default:
-                z1 z1Var5 = this.f49743b;
+                z1 z1Var5 = this.f49779b;
                 z1Var5.s0(0, 0, false);
                 ti0 ti0Var2 = z1Var5.L0;
                 if (ti0Var2 != null) {

@@ -8,27 +8,27 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class hl extends FrameLayout {
-    public float f37528a;
-    public float f37529b;
-    public final xn f37530c;
+    public float f37408a;
+    public float f37409b;
+    public final xn f37410c;
 
     public hl(xn xnVar, Activity activity) {
         super(activity);
-        this.f37530c = xnVar;
+        this.f37410c = xnVar;
         setOnLongClickListener(new w(this, 2));
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        xn xnVar = this.f37530c;
-        if (view == xnVar.f43391w2) {
+        xn xnVar = this.f37410c;
+        if (view == xnVar.f43369w2) {
             canvas.save();
             canvas.clipRect(0, 0, getMeasuredWidth(), AndroidUtilities.dp(48.0f));
         }
         org.telegram.ui.ActionBar.l5[] l5VarArr = xnVar.A2;
         if (view != l5VarArr[0] && view != l5VarArr[1]) {
             boolean drawChild = super.drawChild(canvas, view, j10);
-            if (view == xnVar.f43391w2) {
+            if (view == xnVar.f43369w2) {
                 canvas.restore();
             }
             return drawChild;
@@ -43,8 +43,8 @@ public final class hl extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        xn xnVar = this.f37530c;
-        if (xnVar.f43405x2) {
+        xn xnVar = this.f37410c;
+        if (xnVar.f43383x2) {
             int i12 = 0;
             while (true) {
                 AnimatorSet[] animatorSetArr = xnVar.E2;
@@ -55,7 +55,7 @@ public final class hl extends FrameLayout {
                     }
                     i12++;
                 } else {
-                    xnVar.f43405x2 = false;
+                    xnVar.f43383x2 = false;
                     return;
                 }
             }
@@ -64,16 +64,16 @@ public final class hl extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.f37528a = motionEvent.getY();
+        this.f37408a = motionEvent.getY();
         int action = motionEvent.getAction();
-        xn xnVar = this.f37530c;
+        xn xnVar = this.f37410c;
         if (action == 1) {
             xnVar.finishPreviewFragment();
         } else if (motionEvent.getAction() == 2) {
-            float f10 = this.f37529b - this.f37528a;
+            float f10 = this.f37409b - this.f37408a;
             xnVar.movePreviewFragment(f10);
             if (f10 < 0.0f) {
-                this.f37529b = this.f37528a;
+                this.f37409b = this.f37408a;
             }
         }
         return super.onTouchEvent(motionEvent);

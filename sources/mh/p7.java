@@ -12,47 +12,47 @@ import org.telegram.ui.Components.gc;
 import org.telegram.ui.Components.ic;
 import org.telegram.ui.Components.qc;
 public final class p7 {
-    public final org.telegram.ui.ActionBar.p2 f14590a;
-    public final long f14591b;
-    public final ic f14592c;
+    public final org.telegram.ui.ActionBar.p2 f14592a;
+    public final long f14593b;
+    public final ic f14594c;
     public final cc d;
-    public final gc f14593e;
-    public final bc f14594f;
-    public int f14595g;
+    public final gc f14595e;
+    public final bc f14596f;
+    public int f14597g;
     public long h;
-    public m6 f14596i;
-    public final ArrayList f14597j = new ArrayList();
-    public final HashSet f14598k = new HashSet();
-    public final long f14599l = System.currentTimeMillis();
-    public boolean f14600m = true;
-    public boolean f14601n;
-    public boolean f14602o;
-    public final o7 f14603p;
+    public m6 f14598i;
+    public final ArrayList f14599j = new ArrayList();
+    public final HashSet f14600k = new HashSet();
+    public final long f14601l = System.currentTimeMillis();
+    public boolean f14602m = true;
+    public boolean f14603n;
+    public boolean f14604o;
+    public final o7 f14605p;
 
     public p7(org.telegram.ui.ActionBar.p2 p2Var, long j10) {
         ?? r22 = new Runnable(this) {
-            public final p7 f14540b;
+            public final p7 f14542b;
 
             {
-                this.f14540b = this;
+                this.f14542b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f14540b.a();
+                        this.f14542b.a();
                         return;
                     default:
-                        p7 p7Var = this.f14540b;
-                        if (!p7Var.f14601n && !p7Var.f14602o && p7Var.f14600m) {
-                            p7Var.f14601n = true;
-                            m6 m6Var = p7Var.f14596i;
+                        p7 p7Var = this.f14542b;
+                        if (!p7Var.f14603n && !p7Var.f14604o && p7Var.f14602m) {
+                            p7Var.f14603n = true;
+                            m6 m6Var = p7Var.f14598i;
                             if (m6Var != null) {
-                                m6Var.run(p7Var.f14598k);
+                                m6Var.run(p7Var.f14600k);
                             }
-                            if (p7Var.f14593e != null) {
-                                p7Var.f14592c.b();
+                            if (p7Var.f14595e != null) {
+                                p7Var.f14594c.b();
                                 return;
                             }
                             return;
@@ -61,43 +61,43 @@ public final class p7 {
                 }
             }
         };
-        this.f14603p = r22;
-        this.f14590a = p2Var;
-        this.f14591b = j10;
+        this.f14605p = r22;
+        this.f14592a = p2Var;
+        this.f14593b = j10;
         Context t6 = t7.t(p2Var);
         cc ccVar = new cc(t6, p2Var.getResourceProvider());
         this.d = ccVar;
         ccVar.c(R.raw.stars_topup, new String[0]);
         bc bcVar = new bc(t6, p2Var.getResourceProvider());
-        this.f14594f = bcVar;
-        bcVar.f25559b = 3000L;
+        this.f14596f = bcVar;
+        bcVar.f25570b = 3000L;
         bcVar.setColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Gi, p2Var.getResourceProvider()));
         gc gcVar = new gc(t6, p2Var.getResourceProvider(), true, false);
-        this.f14593e = gcVar;
+        this.f14595e = gcVar;
         gcVar.e(LocaleController.getString(R.string.StarsSentUndo));
-        gcVar.f27161a = new Runnable(this) {
-            public final p7 f14540b;
+        gcVar.f27139a = new Runnable(this) {
+            public final p7 f14542b;
 
             {
-                this.f14540b = this;
+                this.f14542b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f14540b.a();
+                        this.f14542b.a();
                         return;
                     default:
-                        p7 p7Var = this.f14540b;
-                        if (!p7Var.f14601n && !p7Var.f14602o && p7Var.f14600m) {
-                            p7Var.f14601n = true;
-                            m6 m6Var = p7Var.f14596i;
+                        p7 p7Var = this.f14542b;
+                        if (!p7Var.f14603n && !p7Var.f14604o && p7Var.f14602m) {
+                            p7Var.f14603n = true;
+                            m6 m6Var = p7Var.f14598i;
                             if (m6Var != null) {
-                                m6Var.run(p7Var.f14598k);
+                                m6Var.run(p7Var.f14600k);
                             }
-                            if (p7Var.f14593e != null) {
-                                p7Var.f14592c.b();
+                            if (p7Var.f14595e != null) {
+                                p7Var.f14594c.b();
                                 return;
                             }
                             return;
@@ -110,32 +110,32 @@ public final class p7 {
         gcVar.d.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(8.0f));
         ccVar.setButton(gcVar);
         ic b10 = qc.a0(p2Var).b(ccVar, -1);
-        this.f14592c = b10;
-        b10.f27753r = false;
+        this.f14594c = b10;
+        b10.f27786r = false;
         b10.k(true);
         b10.v = new Runnable(this) {
-            public final p7 f14540b;
+            public final p7 f14542b;
 
             {
-                this.f14540b = this;
+                this.f14542b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f14540b.a();
+                        this.f14542b.a();
                         return;
                     default:
-                        p7 p7Var = this.f14540b;
-                        if (!p7Var.f14601n && !p7Var.f14602o && p7Var.f14600m) {
-                            p7Var.f14601n = true;
-                            m6 m6Var = p7Var.f14596i;
+                        p7 p7Var = this.f14542b;
+                        if (!p7Var.f14603n && !p7Var.f14604o && p7Var.f14602m) {
+                            p7Var.f14603n = true;
+                            m6 m6Var = p7Var.f14598i;
                             if (m6Var != null) {
-                                m6Var.run(p7Var.f14598k);
+                                m6Var.run(p7Var.f14600k);
                             }
-                            if (p7Var.f14593e != null) {
-                                p7Var.f14592c.b();
+                            if (p7Var.f14595e != null) {
+                                p7Var.f14594c.b();
                                 return;
                             }
                             return;
@@ -149,9 +149,9 @@ public final class p7 {
     }
 
     public final void a() {
-        if (!this.f14601n && !this.f14602o) {
-            this.f14602o = true;
-            ArrayList arrayList = this.f14597j;
+        if (!this.f14603n && !this.f14604o) {
+            this.f14604o = true;
+            ArrayList arrayList = this.f14599j;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
@@ -159,8 +159,8 @@ public final class p7 {
                 i10++;
                 ((Runnable) obj).run();
             }
-            if (this.f14593e != null) {
-                this.f14592c.b();
+            if (this.f14595e != null) {
+                this.f14594c.b();
             }
         }
     }

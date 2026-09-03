@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.emoji2.text.w;
 import c2.y0;
 import c2.z0;
 import c5.j;
@@ -53,15 +54,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.d2;
 import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Components.ij0;
+import org.telegram.ui.Components.hj0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ht0;
-import org.telegram.ui.oq0;
+import org.telegram.ui.mt0;
+import org.telegram.ui.tq0;
 import org.telegram.ui.yh;
-import qh.q6;
+import qh.p6;
 import y2.i;
-import z3.k;
-public final class c implements OnSuccessListener, c9.e, Continuation, OnCompleteListener, x, q0, g3.b, g2, c2, q6, ImageReceiver.ImageReceiverDelegate, xd.b, ba.a {
+public final class c implements OnSuccessListener, c9.e, Continuation, OnCompleteListener, x, q0, g3.b, g2, c2, p6, ImageReceiver.ImageReceiverDelegate, xd.b, ba.a {
     public final int f34a;
     public final Object f35b;
 
@@ -98,7 +98,7 @@ public final class c implements OnSuccessListener, c9.e, Continuation, OnComplet
 
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z4, boolean z10, boolean z11) {
-        ij0 lottieAnimation;
+        hj0 lottieAnimation;
         p3 p3Var = (p3) this.f35b;
         if (z4 && !z10 && (lottieAnimation = imageReceiver.getLottieAnimation()) != null) {
             p3Var.q(lottieAnimation);
@@ -113,10 +113,10 @@ public final class c implements OnSuccessListener, c9.e, Continuation, OnComplet
     @Override
     public void e() {
         float f10;
-        ht0 ht0Var = (ht0) this.f35b;
-        TextView textView = ht0Var.f5131v1;
-        boolean a2 = ht0Var.C0.a();
-        ImageView imageView = ht0Var.f5129t1;
+        mt0 mt0Var = (mt0) this.f35b;
+        TextView textView = mt0Var.f5131v1;
+        boolean a2 = mt0Var.C0.a();
+        ImageView imageView = mt0Var.f5129t1;
         imageView.animate().cancel();
         ViewPropertyAnimator animate = imageView.animate();
         float f11 = 0.6f;
@@ -206,7 +206,7 @@ public final class c implements OnSuccessListener, c9.e, Continuation, OnComplet
                 }
             default:
                 s sVar = (s) obj;
-                for (i iVar : (Iterable) ((h) ((f3.d) sVar.f4081b)).c(new k(1))) {
+                for (i iVar : (Iterable) ((h) ((f3.d) sVar.f4081b)).c(new w(29))) {
                     ((androidx.biometric.e) sVar.f4082c).A(iVar, 1, false);
                 }
                 return null;
@@ -217,7 +217,7 @@ public final class c implements OnSuccessListener, c9.e, Continuation, OnComplet
     public void j(d2 d2Var, int i10) {
         switch (this.f34a) {
             case 18:
-                ((oq0) this.f35b).run();
+                ((tq0) this.f35b).run();
                 return;
             case 19:
                 ((p0) this.f35b).f5426a.f5105c2.r();
@@ -295,14 +295,14 @@ public final class c implements OnSuccessListener, c9.e, Continuation, OnComplet
                 h3 h3Var = (h3) this.f35b;
                 mb.b bVar2 = (mb.b) obj;
                 ArrayList arrayList = new ArrayList();
-                for (int i10 = 0; i10 < bVar2.f13621a.size(); i10++) {
-                    mb.a aVar = (mb.a) bVar2.f13621a.get(i10);
+                for (int i10 = 0; i10 < bVar2.f13623a.size(); i10++) {
+                    mb.a aVar = (mb.a) bVar2.f13623a.get(i10);
                     ?? obj2 = new Object();
-                    obj2.f5379a = aVar.f13617a;
+                    obj2.f5379a = aVar.f13619a;
                     obj2.f5380b = aVar.d;
-                    obj2.f5381c = aVar.f13620e;
-                    obj2.d = aVar.f13618b;
-                    obj2.f5382e = aVar.f13619c;
+                    obj2.f5381c = aVar.f13622e;
+                    obj2.d = aVar.f13620b;
+                    obj2.f5382e = aVar.f13621c;
                     arrayList.add(obj2);
                 }
                 h3Var.run(arrayList);

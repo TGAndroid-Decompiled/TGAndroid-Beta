@@ -27,9 +27,9 @@ public final class i4 extends xn {
         if (!this.Nc) {
             this.Nc = true;
             ic O = qc.a0(this).O(this.Oc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Pc)));
-            O.f27753r = false;
+            O.f27786r = false;
             O.j();
-            s00 s00Var = this.f43237j9;
+            s00 s00Var = this.f43215j9;
             if (s00Var != null) {
                 s00Var.c(true);
             }

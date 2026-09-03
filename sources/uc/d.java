@@ -1,4 +1,4 @@
 package uc;
 public final class d implements g {
-    public static final d f48479a = new Object();
+    public static final d f48515a = new Object();
 }

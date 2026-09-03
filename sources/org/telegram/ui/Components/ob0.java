@@ -1,16 +1,16 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-public final class ob0 implements jl0 {
-    public final sb0 f29725a;
+public final class ob0 implements il0 {
+    public final sb0 f29726a;
 
     public ob0(sb0 sb0Var) {
-        this.f29725a = sb0Var;
+        this.f29726a = sb0Var;
     }
 
     @Override
     public final void f(int i10, View view) {
-        sb0 sb0Var = this.f29725a;
+        sb0 sb0Var = this.f29726a;
         if (sb0Var.f31027a == 1 && sb0Var.f31033r.previewMessages.size() > 1) {
             int id2 = sb0Var.f31033r.previewMessages.get(i10).getId();
             boolean z4 = sb0Var.f31033r.selectedIds.get(id2, false);

@@ -45,66 +45,66 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.f90;
 import org.telegram.ui.Components.g90;
 import org.telegram.ui.Components.gu;
-import org.telegram.ui.Components.j51;
-import org.telegram.ui.Components.jl0;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.il0;
 import org.telegram.ui.Components.p9;
 import org.telegram.ui.Components.pr;
 import org.telegram.ui.Components.pz;
 import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.sa;
 import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.tl0;
-import org.telegram.ui.Components.tz0;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.sz0;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.z8;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.yh;
 public final class g2 extends sa implements NotificationCenter.NotificationCenterDelegate {
-    public static final int f12758s0 = 0;
+    public static final int f12760s0 = 0;
     public final int U;
-    public x51 V;
+    public w51 V;
     public List W;
     public final Utilities.Callback X;
     public TLRPC.DisallowedGiftsSettings Y;
     public final long Z;
-    public final boolean f12759a0;
-    public final String f12760b0;
-    public final y9 f12761c0;
-    public final k1 f12762d0;
-    public final FrameLayout f12763e0;
-    public final LinearLayout f12764f0;
-    public final pz f12765g0;
-    public final p1 f12766h0;
-    public final l1 f12767i0;
-    public final m1 f12768j0;
-    public final ArrayList f12769k0;
-    public final l7 f12770l0;
+    public final boolean f12761a0;
+    public final String f12762b0;
+    public final y9 f12763c0;
+    public final k1 f12764d0;
+    public final FrameLayout f12765e0;
+    public final LinearLayout f12766f0;
+    public final pz f12767g0;
+    public final p1 f12768h0;
+    public final l1 f12769i0;
+    public final m1 f12770j0;
+    public final ArrayList f12771k0;
+    public final l7 f12772l0;
     public int m0;
-    public int f12771n0;
-    public int f12772o0;
-    public int f12773p0;
-    public boolean f12774q0;
-    public boolean f12775r0;
+    public int f12773n0;
+    public int f12774o0;
+    public int f12775p0;
+    public boolean f12776q0;
+    public boolean f12777r0;
 
     public g2(final Context context, final int i10, final long j10, List list, final Utilities.Callback callback) {
         super(context, null, false, false, false, 1, null);
         int i11;
-        this.f12769k0 = new ArrayList();
+        this.f12771k0 = new ArrayList();
         this.m0 = -1;
-        this.f12771n0 = -1;
-        this.f12772o0 = -1;
+        this.f12773n0 = -1;
+        this.f12774o0 = -1;
         new ArrayList();
         this.U = i10;
         this.Z = j10;
         boolean z4 = UserConfig.getInstance(i10).getClientUserId() == j10;
-        this.f12759a0 = z4;
+        this.f12761a0 = z4;
         this.W = list;
         this.X = callback;
-        int i12 = k6.f21623b6;
+        int i12 = k6.f21625b6;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = null;
         setBackgroundColor(k6.w0(null, i12, false));
         fixNavigationBar(k6.w0(null, i12, false));
-        this.f12770l0 = t7.y(i10, false).G(UserConfig.getInstance(i10).getClientUserId(), true);
+        this.f12772l0 = t7.y(i10, false).G(UserConfig.getInstance(i10).getClientUserId(), true);
         t7.y(i10, false).V();
         p9 p9Var = new p9(context);
         p9Var.setImportantForAccessibility(2);
@@ -112,7 +112,7 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
         int i13 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
         if (i13 > 0) {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j10));
-            this.f12760b0 = UserObject.getForcedFirstName(user);
+            this.f12762b0 = UserObject.getForcedFirstName(user);
             z8Var.r(user);
             p9Var.e(user, z8Var);
             TLRPC.UserFull userFull = MessagesController.getInstance(i10).getUserFull(j10);
@@ -125,19 +125,19 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
             }
         } else {
             TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j10));
-            this.f12760b0 = chat == null ? "" : chat.title;
+            this.f12762b0 = chat == null ? "" : chat.title;
             z8Var.q(chat);
             p9Var.e(chat, z8Var);
         }
         this.v = 0.1f;
         y9 y9Var = new y9(context, i10, this.resourcesProvider);
-        this.f12761c0 = y9Var;
+        this.f12763c0 = y9Var;
         k7.e6.a(y9Var);
         y9Var.setOnClickListener(new androidx.mediarouter.app.c(this, 13));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f12763e0 = frameLayout;
+        this.f12765e0 = frameLayout;
         ?? frameLayout2 = new FrameLayout(context);
-        this.f12762d0 = frameLayout2;
+        this.f12764d0 = frameLayout2;
         frameLayout2.setClipChildren(false);
         frameLayout2.setClipToPadding(false);
         frameLayout2.addView(new j9(context, 70, 0), k7.c6.c(-1.0f, -1));
@@ -151,13 +151,13 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
         frameLayout.addView(linearLayout, k7.c6.e(-1, -2, 55));
         TextView g10 = org.telegram.messenger.y3.g(context, 1, 20.0f);
         g10.setTypeface(AndroidUtilities.bold());
-        int i14 = k6.f21766j5;
+        int i14 = k6.f21768j5;
         g10.setTextColor(k6.v0(i14, this.resourcesProvider));
         g10.setGravity(17);
         linearLayout.addView(g10, k7.c6.t(-1, -2, 1, 4, 0, 4, 0));
-        g10.setMaxWidth(qh.f3.a(g10.getText(), g10.getPaint()));
+        g10.setMaxWidth(qh.e3.a(g10.getText(), g10.getPaint()));
         g90 g90Var = new g90(context, this.resourcesProvider);
-        int i15 = k6.f21720gc;
+        int i15 = k6.f21722gc;
         g90Var.setLinkTextColor(k6.v0(i15, this.resourcesProvider));
         g90Var.setTextSize(1, 14.0f);
         g90Var.setTextColor(k6.v0(i14, this.resourcesProvider));
@@ -165,10 +165,10 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
         g90Var.setLineSpacing(AndroidUtilities.dp(2.33f), 1.0f);
         linearLayout.addView(g90Var, k7.c6.t(-1, -2, 1, 4, 4, 4, 12));
         g10.setText(LocaleController.getString(R.string.Gift2Premium));
-        g90Var.setText(TextUtils.concat(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2PremiumInfo, this.f12760b0)), " ", AndroidUtilities.replaceArrows(AndroidUtilities.makeClickable(LocaleController.getString(R.string.Gift2PremiumInfoLink), new ag.f(10)), true)));
-        g90Var.setMaxWidth(qh.f3.a(g90Var.getText(), g90Var.getPaint()));
+        g90Var.setText(TextUtils.concat(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2PremiumInfo, this.f12762b0)), " ", AndroidUtilities.replaceArrows(AndroidUtilities.makeClickable(LocaleController.getString(R.string.Gift2PremiumInfoLink), new ag.f(10)), true)));
+        g90Var.setMaxWidth(qh.e3.a(g90Var.getText(), g90Var.getPaint()));
         LinearLayout linearLayout2 = new LinearLayout(context);
-        this.f12764f0 = linearLayout2;
+        this.f12766f0 = linearLayout2;
         linearLayout2.setOrientation(1);
         TextView textView = new TextView(context);
         textView.setTextSize(1, 20.0f);
@@ -177,13 +177,13 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
         textView.setGravity(17);
         linearLayout2.addView(textView, k7.c6.t(-1, -2, 1, 4, 0, 4, 0));
         ?? g90Var2 = new g90(context, this.resourcesProvider);
-        this.f12767i0 = g90Var2;
+        this.f12769i0 = g90Var2;
         g90Var2.setLinkTextColor(k6.v0(i15, this.resourcesProvider));
         g90Var2.setTextSize(1, 14.0f);
         g90Var2.setTextColor(k6.v0(i14, this.resourcesProvider));
         g90Var2.setGravity(17);
         ?? g90Var3 = new g90(context, this.resourcesProvider);
-        this.f12768j0 = g90Var3;
+        this.f12770j0 = g90Var3;
         g90Var3.setLinkTextColor(k6.v0(i15, this.resourcesProvider));
         g90Var3.setTextSize(1, 14.0f);
         g90Var3.setTextColor(k6.v0(i14, this.resourcesProvider));
@@ -213,20 +213,20 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
         } else if (i13 < 0) {
             linearLayout2.addView(frameLayout3, k7.c6.t(-2, -2, 1, 0, 9, 0, 4));
             NotificationCenter.listenEmojiLoading(g90Var2);
-            g90Var2.setText(Emoji.replaceEmoji(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2StarsChannelInfo, this.f12760b0)), g90Var2.getPaint().getFontMetricsInt(), false));
+            g90Var2.setText(Emoji.replaceEmoji(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2StarsChannelInfo, this.f12762b0)), g90Var2.getPaint().getFontMetricsInt(), false));
         } else {
             linearLayout2.addView(frameLayout3, k7.c6.t(-1, -2, 1, 0, 9, 0, 6));
             l7 G = t7.y(i10, false).G(j10, true);
             g1 g1Var = new g1(this, G, j10, callback, context, 0);
             g1Var.run();
             g90Var2.addOnAttachStateChangeListener(new n1(g1Var));
-            if (G.f14405l.size() < 3) {
+            if (G.f14407l.size() < 3) {
                 G.a();
             }
             NotificationCenter.getInstance(i10).listen(g90Var2, NotificationCenter.starUserGiftsLoaded, new a1(1, G, g1Var));
         }
         pz pzVar = new pz(3, false);
-        this.f12765g0 = pzVar;
+        this.f12767g0 = pzVar;
         pzVar.O = new o1(this);
         this.d.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
         this.d.setClipToPadding(false);
@@ -235,14 +235,14 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
         this.d.setSelectorType(9);
         this.d.setSelectorDrawableColor(0);
         ?? lVar = new f2.l();
-        this.f12766h0 = lVar;
+        this.f12768h0 = lVar;
         lVar.C = false;
         lVar.f5910m = false;
         lVar.n(350L);
         lVar.o(pr.h);
         lVar.D = 40L;
         this.d.setItemAnimator(lVar);
-        this.d.setOnItemClickListener(new jl0() {
+        this.d.setOnItemClickListener(new il0() {
             @Override
             public final void f(int i16, View view) {
                 g2.Q(g2.this, context, i10, callback, j10, i16);
@@ -269,11 +269,11 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
             d3Var.run();
         } else if (tLObject instanceof TL_stars.checkCanSendGiftResultFail) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(g2Var.getContext(), 0, g2Var.resourcesProvider);
-            alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.GiftLocked);
-            alertDialog$Builder.f21166a.Q = MessageObject.formatTextWithEntities(((TL_stars.checkCanSendGiftResultFail) tLObject).reason, false);
+            alertDialog$Builder.f21168a.O = LocaleController.getString(R.string.GiftLocked);
+            alertDialog$Builder.f21168a.Q = MessageObject.formatTextWithEntities(((TL_stars.checkCanSendGiftResultFail) tLObject).reason, false);
             alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
             final org.telegram.ui.ActionBar.d2 o10 = alertDialog$Builder.o();
-            final gu guVar = o10.f21252n;
+            final gu guVar = o10.f21254n;
             if (guVar != null) {
                 guVar.setOnLinkPressListener(new f90() {
                     @Override
@@ -297,7 +297,7 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
 
     public static void Q(g2 g2Var, Context context, int i10, Utilities.Callback callback, long j10, int i11) {
         TL_stars.SavedStarGift savedStarGift;
-        j51 G = g2Var.V.G(i11 - 1);
+        h51 G = g2Var.V.G(i11 - 1);
         if (G != null && G.G(w1.class)) {
             Object obj = G.G;
             int i12 = 0;
@@ -305,16 +305,16 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
                 new q1(g2Var, context, i10, (fg.n) obj, g2Var.Z, new x0(g2Var, callback, 0)).show();
             } else if (obj instanceof TL_stars.StarGift) {
                 TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-                l7 l7Var = g2Var.f12770l0;
-                if (l7Var != null && g2Var.f12773p0 == g2Var.f12771n0) {
-                    ArrayList arrayList = l7Var.f14405l;
+                l7 l7Var = g2Var.f12772l0;
+                if (l7Var != null && g2Var.f12775p0 == g2Var.f12773n0) {
+                    ArrayList arrayList = l7Var.f14407l;
                     int size = arrayList.size();
                     while (true) {
                         if (i12 < size) {
                             Object obj2 = arrayList.get(i12);
                             i12++;
                             TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj2;
-                            if (savedStarGift2.gift.f21070id == starGift.f21070id) {
+                            if (savedStarGift2.gift.f21072id == starGift.f21072id) {
                                 savedStarGift = savedStarGift2;
                                 break;
                             }
@@ -328,18 +328,18 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
                         r1Var.j2(savedStarGift, null);
                         r1Var.Z1(j10, new y0(g2Var, r1Var, j10, callback, 0));
                     }
-                } else if (G.f28019q && starGift.availability_resale > 0) {
+                } else if (G.f27380q && starGift.availability_resale > 0) {
                     org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
                     if (U != 0) {
                         ?? obj3 = new Object();
-                        obj3.f22156a = true;
-                        obj3.f22159e = true;
-                        s1 s1Var = new s1(j10, starGift.title, starGift.f21070id, g2Var.resourcesProvider, g2Var.container.getViewTreeObserver(), new Object());
-                        s1Var.f12928e = new a1(0, g2Var, callback);
+                        obj3.f22158a = true;
+                        obj3.f22161e = true;
+                        s1 s1Var = new s1(j10, starGift.title, starGift.f21072id, g2Var.resourcesProvider, g2Var.container.getViewTreeObserver(), new Object());
+                        s1Var.f12930e = new a1(0, g2Var, callback);
                         U.showAsSheet(s1Var, obj3);
                     }
                 } else if (starGift.auction) {
-                    GiftAuctionController.getInstance(i10).getOrRequestAuction(starGift.f21070id, new t(context, g2Var.resourcesProvider, i10, j10, new x0(g2Var, callback, 1)));
+                    GiftAuctionController.getInstance(i10).getOrRequestAuction(starGift.f21072id, new t(context, g2Var.resourcesProvider, i10, j10, new x0(g2Var, callback, 1)));
                 } else if (starGift.sold_out) {
                     g6 g6Var = g2Var.resourcesProvider;
                     if (context != null) {
@@ -352,28 +352,28 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
                         ja.a1(p9Var.getImageReceiver(), starGift, 160);
                         f10.addView(p9Var, k7.c6.t(160, 160, 17, 0, -8, 0, 10));
                         TextView textView = new TextView(context);
-                        org.telegram.ui.b.w(k6.f21766j5, g6Var, textView, 1, 20.0f);
+                        org.telegram.ui.b.w(k6.f21768j5, g6Var, textView, 1, 20.0f);
                         textView.setGravity(17);
                         textView.setText(LocaleController.getString(R.string.Gift2SoldOutSheetTitle));
                         TextView i13 = yh.i(f10, textView, k7.c6.t(-1, -2, 17, 20, 0, 20, 4), context);
                         i13.setTextSize(1, 14.0f);
                         i13.setTypeface(AndroidUtilities.bold());
                         i13.setGravity(17);
-                        i13.setTextColor(k6.v0(k6.f21895q7, g6Var));
+                        i13.setTextColor(k6.v0(k6.f21897q7, g6Var));
                         i13.setText(LocaleController.getString(R.string.Gift2SoldOutSheetSubtitle));
                         f10.addView(i13, k7.c6.t(-1, -2, 17, 20, 0, 20, 4));
-                        tz0 tz0Var = new tz0(context, g6Var);
+                        sz0 sz0Var = new sz0(context, g6Var);
                         if (starGift.first_sale_date != 0) {
-                            tz0Var.f(starGift.first_sale_date, LocaleController.getString(R.string.Gift2SoldOutSheetFirstSale));
+                            sz0Var.f(starGift.first_sale_date, LocaleController.getString(R.string.Gift2SoldOutSheetFirstSale));
                         }
                         if (starGift.last_sale_date != 0) {
-                            tz0Var.f(starGift.last_sale_date, LocaleController.getString(R.string.Gift2SoldOutSheetLastSale));
+                            sz0Var.f(starGift.last_sale_date, LocaleController.getString(R.string.Gift2SoldOutSheetLastSale));
                         }
-                        tz0Var.c(LocaleController.getString(R.string.Gift2SoldOutSheetValue), ja.X0(false, l.d.l(starGift.stars, ',', new StringBuilder("⭐️ ")), 0.8f, null), null, null);
+                        sz0Var.c(LocaleController.getString(R.string.Gift2SoldOutSheetValue), ja.X0(false, l.d.l(starGift.stars, ',', new StringBuilder("⭐️ ")), 0.8f, null), null, null);
                         if (starGift.limited) {
-                            ja.F0(tz0Var, i10, starGift, g6Var);
+                            ja.F0(sz0Var, i10, starGift, g6Var);
                         }
-                        f10.addView(tz0Var, k7.c6.k(0.0f, 17.0f, 0.0f, 12.0f, -1, -2));
+                        f10.addView(sz0Var, k7.c6.k(0.0f, 17.0f, 0.0f, 12.0f, -1, -2));
                         qh.d dVar = new qh.d(context, g6Var, true);
                         dVar.g(LocaleController.getString(R.string.OK), false, true);
                         f10.addView(dVar, k7.c6.n(-1, 48));
@@ -396,7 +396,7 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
                         org.telegram.ui.ActionBar.d2 d2Var = new org.telegram.ui.ActionBar.d2(g2Var.getContext(), 3, null);
                         d2Var.q(500L);
                         TL_stars.checkCanSendGift checkcansendgift = new TL_stars.checkCanSendGift();
-                        checkcansendgift.gift_id = starGift.f21070id;
+                        checkcansendgift.gift_id = starGift.f21072id;
                         ConnectionsManager.getInstance(i10).sendRequest(checkcansendgift, new b1(g2Var, d2Var, d3Var, callback, 0));
                     } else if (starGift.require_premium && !UserConfig.getInstance(i10).isPremium()) {
                         org.telegram.ui.ActionBar.p2 U3 = LaunchActivity.U();
@@ -419,7 +419,7 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
         }
     }
 
-    public final void U(ArrayList arrayList, x51 x51Var) {
+    public final void U(ArrayList arrayList, w51 w51Var) {
         long j10;
         boolean z4;
         ArrayList arrayList2;
@@ -438,27 +438,27 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
         float f13;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings3;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings4;
-        k1 k1Var = this.f12762d0;
+        k1 k1Var = this.f12764d0;
         long j11 = this.Z;
         long j12 = 0;
-        boolean z16 = this.f12759a0;
+        boolean z16 = this.f12761a0;
         if (z16 || j11 < 0 || ((disallowedGiftsSettings4 = this.Y) != null && disallowedGiftsSettings4.disallow_premium_gifts)) {
             j10 = 0;
             z4 = false;
         } else {
-            arrayList.add(j51.k(k1Var));
-            arrayList.add(j51.k(this.f12763e0));
-            ArrayList arrayList3 = this.f12769k0;
+            arrayList.add(h51.k(k1Var));
+            arrayList.add(h51.k(this.f12765e0));
+            ArrayList arrayList3 = this.f12771k0;
             if (arrayList3 != null && !arrayList3.isEmpty()) {
                 int size = arrayList3.size();
                 int i10 = 0;
                 while (i10 < size) {
                     Object obj = arrayList3.get(i10);
                     i10++;
-                    int i11 = w1.f13057a;
+                    int i11 = w1.f13059a;
                     long j13 = j12;
-                    j51 J = j51.J(w1.class);
-                    J.f28023u = 1;
+                    h51 J = h51.J(w1.class);
+                    J.f27384u = 1;
                     J.G = (fg.n) obj;
                     arrayList.add(J);
                     j12 = j13;
@@ -466,21 +466,21 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
                 j10 = j12;
             } else {
                 j10 = 0;
-                j51 o10 = j51.o(1, 34);
-                o10.f28023u = 1;
+                h51 o10 = h51.o(1, 34);
+                o10.f27384u = 1;
                 arrayList.add(o10);
-                j51 o11 = j51.o(2, 34);
-                o11.f28023u = 1;
+                h51 o11 = h51.o(2, 34);
+                o11.f27384u = 1;
                 arrayList.add(o11);
-                j51 o12 = j51.o(3, 34);
-                o12.f28023u = 1;
+                h51 o12 = h51.o(3, 34);
+                o12.f27384u = 1;
                 arrayList.add(o12);
             }
             z4 = true;
         }
         int i12 = this.U;
         t7 y10 = t7.y(i12, false);
-        if (this.f12774q0) {
+        if (this.f12776q0) {
             arrayList2 = y10.J;
         } else {
             arrayList2 = y10.I;
@@ -493,9 +493,9 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
             arrayList2 = (ArrayList) Collection.EL.stream(arrayList2).filter(new c1(0)).collect(Collectors.toCollection(new Object()));
         }
         long clientUserId = UserConfig.getInstance(i12).getClientUserId();
-        l7 l7Var = this.f12770l0;
+        l7 l7Var = this.f12772l0;
         if (j11 != clientUserId && l7Var != null) {
-            ArrayList arrayList4 = l7Var.f14405l;
+            ArrayList arrayList4 = l7Var.f14407l;
             int size2 = arrayList4.size();
             int i14 = 0;
             while (i14 < size2) {
@@ -510,13 +510,13 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
         z10 = false;
         boolean z17 = MessagesController.getInstance(i12).stargiftsBlocked;
         float f14 = 300.0f;
-        if (!z17 && (!arrayList2.isEmpty() || ((disallowedGiftsSettings3 = this.Y) != null && !disallowedGiftsSettings3.disallow_unique_stargifts && l7Var != null && !l7Var.f14405l.isEmpty()))) {
+        if (!z17 && (!arrayList2.isEmpty() || ((disallowedGiftsSettings3 = this.Y) != null && !disallowedGiftsSettings3.disallow_unique_stargifts && l7Var != null && !l7Var.f14407l.isEmpty()))) {
             if (!z4) {
-                arrayList.add(j51.k(k1Var));
+                arrayList.add(h51.k(k1Var));
             } else {
-                arrayList.add(j51.C(AndroidUtilities.dp(16.0f)));
+                arrayList.add(h51.C(AndroidUtilities.dp(16.0f)));
             }
-            arrayList.add(j51.k(this.f12764f0));
+            arrayList.add(h51.k(this.f12766f0));
             TreeSet treeSet = new TreeSet();
             TLRPC.DisallowedGiftsSettings disallowedGiftsSettings5 = this.Y;
             if (disallowedGiftsSettings5 == null || !disallowedGiftsSettings5.disallow_unique_stargifts) {
@@ -525,7 +525,7 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
                 }
             }
             ArrayList arrayList5 = new ArrayList();
-            this.f12771n0 = -1;
+            this.f12773n0 = -1;
             this.m0 = -1;
             if (!arrayList2.isEmpty()) {
                 this.m0 = arrayList5.size();
@@ -533,28 +533,28 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
             }
             TLRPC.DisallowedGiftsSettings disallowedGiftsSettings6 = this.Y;
             if ((disallowedGiftsSettings6 == null || !disallowedGiftsSettings6.disallow_unique_stargifts) && z10) {
-                this.f12771n0 = arrayList5.size();
+                this.f12773n0 = arrayList5.size();
                 arrayList5.add(LocaleController.getString(R.string.Gift2TabMine));
             }
-            this.f12772o0 = arrayList5.size();
+            this.f12774o0 = arrayList5.size();
             arrayList5.add(LocaleController.getString(R.string.Gift2TabCollectibles));
-            int i16 = this.f12773p0;
+            int i16 = this.f12775p0;
             d1 d1Var = new d1(this, 0);
-            int i17 = e2.f12691a;
-            j51 J2 = j51.J(e2.class);
+            int i17 = e2.f12693a;
+            h51 J2 = h51.J(e2.class);
             J2.d = 1;
             J2.G = arrayList5;
-            J2.f28027z = i16;
+            J2.f27388z = i16;
             J2.H = d1Var;
             arrayList.add(J2);
-            if (this.f12773p0 == this.f12772o0 && !z16 && i13 >= 0) {
+            if (this.f12775p0 == this.f12774o0 && !z16 && i13 >= 0) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            if (z11 != this.f12775r0) {
-                this.f12775r0 = z11;
-                ViewPropertyAnimator animate = this.f12767i0.animate();
+            if (z11 != this.f12777r0) {
+                this.f12777r0 = z11;
+                ViewPropertyAnimator animate = this.f12769i0.animate();
                 float f15 = 0.0f;
                 float f16 = 1.0f;
                 if (!z11) {
@@ -577,7 +577,7 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
                 ViewPropertyAnimator duration = scaleX.scaleY(f12).setDuration(380L);
                 pr prVar = pr.h;
                 duration.setInterpolator(prVar).start();
-                ViewPropertyAnimator animate2 = this.f12768j0.animate();
+                ViewPropertyAnimator animate2 = this.f12770j0.animate();
                 if (z11) {
                     f15 = 1.0f;
                 }
@@ -593,9 +593,9 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
                 }
                 scaleX2.scaleY(f16).setDuration(380L).setInterpolator(prVar).start();
             }
-            if (l7Var != null && this.f12773p0 == this.f12771n0) {
+            if (l7Var != null && this.f12775p0 == this.f12773n0) {
                 arrayList2 = new ArrayList();
-                ArrayList arrayList6 = l7Var.f14405l;
+                ArrayList arrayList6 = l7Var.f14407l;
                 int size3 = arrayList6.size();
                 int i18 = 0;
                 while (i18 < size3) {
@@ -610,10 +610,10 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
             int i19 = 0;
             for (int i20 = 0; i20 < arrayList2.size(); i20++) {
                 TL_stars.StarGift starGift3 = (TL_stars.StarGift) arrayList2.get(i20);
-                int i21 = this.f12773p0;
-                if (i21 == this.m0 || i21 == this.f12771n0 || (i21 == this.f12772o0 && (starGift3.availability_resale > j10 || starGift3.require_premium || starGift3.locked_until_date != 0))) {
-                    if (!starGift3.sold_out && starGift3.availability_resale > j10 && i21 != this.f12772o0) {
-                        if (i21 == this.f12771n0) {
+                int i21 = this.f12775p0;
+                if (i21 == this.m0 || i21 == this.f12773n0 || (i21 == this.f12774o0 && (starGift3.availability_resale > j10 || starGift3.require_premium || starGift3.locked_until_date != 0))) {
+                    if (!starGift3.sold_out && starGift3.availability_resale > j10 && i21 != this.f12774o0) {
+                        if (i21 == this.f12773n0) {
                             z14 = true;
                         } else {
                             z14 = false;
@@ -623,15 +623,15 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
                         } else {
                             z15 = false;
                         }
-                        j51 a2 = w1.a(i21, starGift3, z14, z15, false, false, false);
+                        h51 a2 = w1.a(i21, starGift3, z14, z15, false, false, false);
                         starGift = starGift3;
                         arrayList.add(a2);
                         i19++;
                     } else {
                         starGift = starGift3;
                     }
-                    int i22 = this.f12773p0;
-                    if (i22 == this.f12771n0) {
+                    int i22 = this.f12775p0;
+                    if (i22 == this.f12773n0) {
                         z12 = true;
                     } else {
                         z12 = false;
@@ -645,51 +645,51 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
                     i19++;
                 }
             }
-            int i23 = this.f12773p0;
-            int i24 = this.f12771n0;
-            if (i23 == i24 && l7Var != null && !l7Var.f14403j) {
+            int i23 = this.f12775p0;
+            int i24 = this.f12773n0;
+            if (i23 == i24 && l7Var != null && !l7Var.f14405j) {
                 l7Var.a();
-                j51 o13 = j51.o(4, 34);
-                o13.f28023u = 1;
+                h51 o13 = h51.o(4, 34);
+                o13.f27384u = 1;
                 arrayList.add(o13);
-                j51 o14 = j51.o(5, 34);
-                o14.f28023u = 1;
+                h51 o14 = h51.o(5, 34);
+                o14.f27384u = 1;
                 arrayList.add(o14);
-                j51 o15 = j51.o(6, 34);
-                o15.f28023u = 1;
+                h51 o15 = h51.o(6, 34);
+                o15.f27384u = 1;
                 arrayList.add(o15);
             } else if (i23 != i24 && y10.C) {
-                j51 o16 = j51.o(4, 34);
-                o16.f28023u = 1;
+                h51 o16 = h51.o(4, 34);
+                o16.f27384u = 1;
                 arrayList.add(o16);
-                j51 o17 = j51.o(5, 34);
-                o17.f28023u = 1;
+                h51 o17 = h51.o(5, 34);
+                o17.f27384u = 1;
                 arrayList.add(o17);
-                j51 o18 = j51.o(6, 34);
-                o18.f28023u = 1;
+                h51 o18 = h51.o(6, 34);
+                o18.f27384u = 1;
                 arrayList.add(o18);
             }
             if (i19 >= 9) {
                 f14 = 40.0f;
             }
-            arrayList.add(j51.C(AndroidUtilities.dp(f14)));
+            arrayList.add(h51.C(AndroidUtilities.dp(f14)));
             return;
         }
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings7 = this.Y;
         if (disallowedGiftsSettings7 != null && !disallowedGiftsSettings7.disallow_unique_stargifts && arrayList2.isEmpty()) {
-            arrayList.add(j51.C(AndroidUtilities.dp(300.0f)));
+            arrayList.add(h51.C(AndroidUtilities.dp(300.0f)));
         }
     }
 
     public final void V(boolean z4) {
-        this.f12774q0 = z4;
+        this.f12776q0 = z4;
         this.V.N(false);
     }
 
     public final void W() {
         List list;
         TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption;
-        ArrayList arrayList = this.f12769k0;
+        ArrayList arrayList = this.f12771k0;
         arrayList.clear();
         if (arrayList.isEmpty() && (list = this.W) != null && !list.isEmpty()) {
             ArrayList arrayList2 = new ArrayList();
@@ -743,14 +743,14 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        x51 x51Var;
+        w51 w51Var;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
         if (i10 == NotificationCenter.billingProductDetailsUpdated) {
             W();
         } else if (i10 == NotificationCenter.starGiftsLoaded) {
-            x51 x51Var2 = this.V;
-            if (x51Var2 != null) {
-                x51Var2.N(true);
+            w51 w51Var2 = this.V;
+            if (w51Var2 != null) {
+                w51Var2.N(true);
             }
         } else if (i10 == NotificationCenter.userInfoDidLoad) {
             if (isShown()) {
@@ -774,17 +774,17 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
                         }
                         return;
                     }
-                    x51 x51Var3 = this.V;
-                    if (x51Var3 != null) {
-                        x51Var3.N(true);
+                    w51 w51Var3 = this.V;
+                    if (w51Var3 != null) {
+                        w51Var3.N(true);
                     }
                 }
-                ArrayList arrayList = this.f12769k0;
+                ArrayList arrayList = this.f12771k0;
                 if (arrayList == null || arrayList.isEmpty()) {
                     W();
-                    x51 x51Var4 = this.V;
-                    if (x51Var4 != null) {
-                        x51Var4.N(true);
+                    w51 w51Var4 = this.V;
+                    if (w51Var4 != null) {
+                        w51Var4.N(true);
                     }
                 }
             }
@@ -792,13 +792,13 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
             if (isShown()) {
                 TL_stars.StarGift starGift = (TL_stars.StarGift) objArr[0];
                 new qc(this.container, this.resourcesProvider).s(starGift.sticker, LocaleController.getString(R.string.Gift2SoldOutTitle), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2SoldOutCount", starGift.availability_total))).j();
-                x51 x51Var5 = this.V;
-                if (x51Var5 != null) {
-                    x51Var5.N(true);
+                w51 w51Var5 = this.V;
+                if (w51Var5 != null) {
+                    w51Var5.N(true);
                 }
             }
-        } else if (i10 == NotificationCenter.starUserGiftsLoaded && objArr[1] == this.f12770l0 && (x51Var = this.V) != null) {
-            x51Var.N(true);
+        } else if (i10 == NotificationCenter.starUserGiftsLoaded && objArr[1] == this.f12772l0 && (w51Var = this.V) != null) {
+            w51Var.N(true);
         }
     }
 
@@ -833,19 +833,19 @@ public final class g2 extends sa implements NotificationCenter.NotificationCente
     }
 
     @Override
-    public final sl0 v(tl0 tl0Var) {
-        x51 x51Var = new x51(this.d, getContext(), this.U, 0, true, new eg.p1(this, 9), this.resourcesProvider);
-        this.V = x51Var;
-        x51Var.f32957r = false;
-        return x51Var;
+    public final rl0 v(sl0 sl0Var) {
+        w51 w51Var = new w51(this.d, getContext(), this.U, 0, true, new eg.p1(this, 9), this.resourcesProvider);
+        this.V = w51Var;
+        w51Var.f32651r = false;
+        return w51Var;
     }
 
     @Override
     public final CharSequence y() {
-        if (this.f12759a0) {
+        if (this.f12761a0) {
             return LocaleController.getString(R.string.Gift2TitleSelf1);
         }
-        return Emoji.replaceEmoji(LocaleController.formatString(R.string.Gift2User, this.f12760b0), null, false);
+        return Emoji.replaceEmoji(LocaleController.formatString(R.string.Gift2User, this.f12762b0), null, false);
     }
 
     public g2(LaunchActivity launchActivity, int i10, long j10) {

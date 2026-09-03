@@ -8,31 +8,31 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 import java.util.ArrayList;
 import org.telegram.ui.Components.p30;
-import qh.a8;
+import qh.y7;
 import qh.z7;
 public final class j extends ViewGroup {
-    public final int f12552a = 0;
-    public AnimatorSet f12553b;
-    public boolean f12554c;
+    public final int f12554a = 0;
+    public AnimatorSet f12555b;
+    public boolean f12556c;
     public final ArrayList d;
-    public final ArrayList f12555e;
-    public final ArrayList f12556f;
+    public final ArrayList f12557e;
+    public final ArrayList f12558f;
     public final ArrayList h;
-    public final ScrollView f12557n;
+    public final ScrollView f12559n;
 
     public j(k kVar, Context context) {
         super(context);
-        this.f12557n = kVar;
+        this.f12559n = kVar;
         this.d = new ArrayList();
-        this.f12555e = new ArrayList();
-        this.f12556f = new ArrayList();
+        this.f12557e = new ArrayList();
+        this.f12558f = new ArrayList();
         this.h = new ArrayList();
     }
 
     public void a() {
-        a8 a8Var = (a8) this.f12557n;
-        a8Var.D = true;
-        ArrayList arrayList = a8Var.d;
+        z7 z7Var = (z7) this.f12559n;
+        z7Var.D = true;
+        ArrayList arrayList = z7Var.d;
         ArrayList arrayList2 = new ArrayList(arrayList);
         ArrayList arrayList3 = this.h;
         arrayList3.clear();
@@ -42,15 +42,15 @@ public final class j extends ViewGroup {
             ((p30) arrayList2.get(i10)).setOnClickListener(null);
         }
         c();
-        this.f12554c = false;
+        this.f12556c = false;
         AnimatorSet animatorSet = new AnimatorSet();
-        this.f12553b = animatorSet;
-        animatorSet.addListener(new z7(this, arrayList2, 1));
-        ArrayList arrayList4 = this.f12556f;
+        this.f12555b = animatorSet;
+        animatorSet.addListener(new y7(this, arrayList2, 1));
+        ArrayList arrayList4 = this.f12558f;
         arrayList4.clear();
         ArrayList arrayList5 = this.d;
         arrayList5.clear();
-        this.f12555e.clear();
+        this.f12557e.clear();
         for (int i11 = 0; i11 < arrayList2.size(); i11++) {
             p30 p30Var = (p30) arrayList2.get(i11);
             arrayList5.add(p30Var);
@@ -62,9 +62,9 @@ public final class j extends ViewGroup {
     }
 
     public void b(boolean z4) {
-        k kVar = (k) this.f12557n;
+        k kVar = (k) this.f12559n;
         kVar.D = true;
-        ArrayList arrayList = kVar.f12561e;
+        ArrayList arrayList = kVar.f12563e;
         ArrayList arrayList2 = new ArrayList(arrayList);
         ArrayList arrayList3 = this.h;
         arrayList3.clear();
@@ -75,15 +75,15 @@ public final class j extends ViewGroup {
         }
         c();
         if (z4) {
-            this.f12554c = false;
+            this.f12556c = false;
             AnimatorSet animatorSet = new AnimatorSet();
-            this.f12553b = animatorSet;
+            this.f12555b = animatorSet;
             animatorSet.addListener(new i(this, arrayList2, 1));
-            ArrayList arrayList4 = this.f12556f;
+            ArrayList arrayList4 = this.f12558f;
             arrayList4.clear();
             ArrayList arrayList5 = this.d;
             arrayList5.clear();
-            this.f12555e.clear();
+            this.f12557e.clear();
             for (int i11 = 0; i11 < arrayList2.size(); i11++) {
                 p30 p30Var = (p30) arrayList2.get(i11);
                 arrayList5.add(p30Var);
@@ -96,17 +96,17 @@ public final class j extends ViewGroup {
                 removeView((View) arrayList2.get(i12));
             }
             arrayList3.clear();
-            this.f12553b = null;
-            this.f12554c = false;
-            kVar.f12559b.setAllowDrawCursor(true);
+            this.f12555b = null;
+            this.f12556c = false;
+            kVar.f12561b.setAllowDrawCursor(true);
         }
         requestLayout();
     }
 
     public final void c() {
-        switch (this.f12552a) {
+        switch (this.f12554a) {
             case 0:
-                AnimatorSet animatorSet = this.f12553b;
+                AnimatorSet animatorSet = this.f12555b;
                 if (animatorSet != null) {
                     animatorSet.cancel();
                 }
@@ -121,7 +121,7 @@ public final class j extends ViewGroup {
                         i11++;
                     } else {
                         while (true) {
-                            ArrayList arrayList2 = this.f12555e;
+                            ArrayList arrayList2 = this.f12557e;
                             if (i10 < arrayList2.size()) {
                                 ((View) arrayList2.get(i10)).setScaleX(0.0f);
                                 ((View) arrayList2.get(i10)).setScaleY(0.0f);
@@ -136,7 +136,7 @@ public final class j extends ViewGroup {
                     }
                 }
             default:
-                AnimatorSet animatorSet2 = this.f12553b;
+                AnimatorSet animatorSet2 = this.f12555b;
                 if (animatorSet2 != null) {
                     animatorSet2.cancel();
                 }
@@ -151,7 +151,7 @@ public final class j extends ViewGroup {
                         i13++;
                     } else {
                         while (true) {
-                            ArrayList arrayList4 = this.f12555e;
+                            ArrayList arrayList4 = this.f12557e;
                             if (i12 < arrayList4.size()) {
                                 ((View) arrayList4.get(i12)).setScaleX(0.0f);
                                 ((View) arrayList4.get(i12)).setScaleY(0.0f);
@@ -170,7 +170,7 @@ public final class j extends ViewGroup {
 
     @Override
     public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        switch (this.f12552a) {
+        switch (this.f12554a) {
             case 0:
                 int childCount = getChildCount();
                 for (int i14 = 0; i14 < childCount; i14++) {
@@ -193,12 +193,12 @@ public final class j extends ViewGroup {
         throw new UnsupportedOperationException("Method not decompiled: lg.j.onMeasure(int, int):void");
     }
 
-    public j(a8 a8Var, Context context) {
+    public j(z7 z7Var, Context context) {
         super(context);
-        this.f12557n = a8Var;
+        this.f12559n = z7Var;
         this.d = new ArrayList();
-        this.f12555e = new ArrayList();
-        this.f12556f = new ArrayList();
+        this.f12557e = new ArrayList();
+        this.f12558f = new ArrayList();
         this.h = new ArrayList();
     }
 }

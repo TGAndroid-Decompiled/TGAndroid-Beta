@@ -13,7 +13,7 @@ public final class ci extends org.telegram.ui.Components.ov {
     @Override
     public final void dismiss() {
         super.dismiss();
-        xn xnVar = this.T.f36243p;
+        xn xnVar = this.T.f36211p;
         xnVar.getClass();
         xnVar.g8(false, true, 0.0f);
     }

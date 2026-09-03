@@ -42,22 +42,22 @@ public final class h2 extends org.telegram.ui.web.a1 {
     public final void G(org.telegram.ui.web.x0 x0Var) {
         p2 p2Var = this.M0;
         p2Var.v.setWebView(x0Var);
-        u0 u0Var = p2Var.f47615y0;
+        u0 u0Var = p2Var.f47651y0;
         if (u0Var != null) {
-            u0Var.f47714k = x0Var;
+            u0Var.f47750k = x0Var;
         }
-        p2Var.f47595j0.setWebView(x0Var);
+        p2Var.f47631j0.setWebView(x0Var);
         p2Var.F();
     }
 
     @Override
     public final void H(org.telegram.ui.web.x0 x0Var) {
         p2 p2Var = this.M0;
-        u0 u0Var = p2Var.f47615y0;
-        if (u0Var != null && u0Var.f47714k == x0Var) {
-            u0Var.f47714k = null;
+        u0 u0Var = p2Var.f47651y0;
+        if (u0Var != null && u0Var.f47750k == x0Var) {
+            u0Var.f47750k = null;
             u0Var.b();
         }
-        p2Var.f47595j0.setWebView(null);
+        p2Var.f47631j0.setWebView(null);
     }
 }

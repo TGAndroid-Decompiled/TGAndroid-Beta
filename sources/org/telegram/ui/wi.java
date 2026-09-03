@@ -3,15 +3,15 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 public final class wi extends af.f {
     public final int d;
-    public final int f42823e;
-    public final org.telegram.ui.Cells.t1 f42824f;
-    public final xn f42825g;
+    public final int f42781e;
+    public final org.telegram.ui.Cells.t1 f42782f;
+    public final xn f42783g;
 
     public wi(xn xnVar, int i10, org.telegram.ui.Cells.t1 t1Var, int i11) {
         this.d = i11;
-        this.f42825g = xnVar;
-        this.f42823e = i10;
-        this.f42824f = t1Var;
+        this.f42783g = xnVar;
+        this.f42781e = i10;
+        this.f42782f = t1Var;
     }
 
     @Override
@@ -19,19 +19,19 @@ public final class wi extends af.f {
         switch (this.d) {
             case 0:
                 if (!z4) {
-                    AndroidUtilities.runOnUIThread(new af.b(this, this.f42823e, 19), 240L);
+                    AndroidUtilities.runOnUIThread(new af.b(this, this.f42781e, 19), 240L);
                     return;
                 }
                 return;
             case 1:
                 if (!z4) {
-                    AndroidUtilities.runOnUIThread(new af.b(this, this.f42823e, 21), 240L);
+                    AndroidUtilities.runOnUIThread(new af.b(this, this.f42781e, 21), 240L);
                     return;
                 }
                 return;
             default:
                 if (!z4) {
-                    AndroidUtilities.runOnUIThread(new af.b(this, this.f42823e, 22), 240L);
+                    AndroidUtilities.runOnUIThread(new af.b(this, this.f42781e, 22), 240L);
                     return;
                 }
                 return;
@@ -42,26 +42,26 @@ public final class wi extends af.f {
     public final void d() {
         switch (this.d) {
             case 0:
-                int i10 = this.f42823e;
-                xn xnVar = this.f42825g;
-                xnVar.f43360tb = i10;
-                xnVar.f43373ub = 6;
-                this.f42824f.invalidate();
+                int i10 = this.f42781e;
+                xn xnVar = this.f42783g;
+                xnVar.f43338tb = i10;
+                xnVar.f43351ub = 6;
+                this.f42782f.invalidate();
                 return;
             case 1:
-                int i11 = this.f42823e;
-                xn xnVar2 = this.f42825g;
-                xnVar2.f43360tb = i11;
-                xnVar2.f43373ub = 5;
-                xnVar2.f43400wb = null;
-                this.f42824f.invalidate();
+                int i11 = this.f42781e;
+                xn xnVar2 = this.f42783g;
+                xnVar2.f43338tb = i11;
+                xnVar2.f43351ub = 5;
+                xnVar2.f43378wb = null;
+                this.f42782f.invalidate();
                 return;
             default:
-                int i12 = this.f42823e;
-                xn xnVar3 = this.f42825g;
-                xnVar3.f43360tb = i12;
-                xnVar3.f43373ub = 7;
-                this.f42824f.invalidate();
+                int i12 = this.f42781e;
+                xn xnVar3 = this.f42783g;
+                xnVar3.f43338tb = i12;
+                xnVar3.f43351ub = 7;
+                this.f42782f.invalidate();
                 return;
         }
     }

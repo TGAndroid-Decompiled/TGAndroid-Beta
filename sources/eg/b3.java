@@ -36,17 +36,17 @@ import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.pr0;
+import org.telegram.ui.Components.or0;
 import org.telegram.ui.Components.xk;
 import org.telegram.ui.af;
 import org.telegram.ui.am;
-import org.telegram.ui.fc;
 import org.telegram.ui.ih;
 import org.telegram.ui.j8;
 import org.telegram.ui.ke;
+import org.telegram.ui.xc;
 import org.telegram.ui.xn;
 import org.telegram.ui.zc;
-import qh.d8;
+import qh.c8;
 public final class b3 implements RequestDelegate {
     public final int f5097a;
     public final Object f5098b;
@@ -80,7 +80,7 @@ public final class b3 implements RequestDelegate {
                     ArrayList arrayList3 = new ArrayList();
                     for (int i11 = 0; i11 < tL_contacts_found.users.size(); i11++) {
                         TLRPC.User user = tL_contacts_found.users.get(i11);
-                        if (!user.self && !UserObject.isDeleted(user) && !UserObject.isService(user.f20990id)) {
+                        if (!user.self && !UserObject.isDeleted(user) && !UserObject.isService(user.f20992id)) {
                             arrayList3.add(user);
                         }
                     }
@@ -89,7 +89,7 @@ public final class b3 implements RequestDelegate {
                 }
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new androidx.car.app.utils.b((pr0) this.f5098b, tL_error, (org.telegram.ui.ActionBar.p2) this.f5099c, 15));
+                AndroidUtilities.runOnUIThread(new androidx.car.app.utils.b((or0) this.f5098b, tL_error, (org.telegram.ui.ActionBar.p2) this.f5099c, 15));
                 return;
             case 4:
                 AndroidUtilities.runOnUIThread(new androidx.car.app.utils.b((b5) this.f5098b, tLObject, (TL_stars.getResaleStarGifts) this.f5099c, 18));
@@ -116,17 +116,17 @@ public final class b3 implements RequestDelegate {
                 oh.e1 e1Var = (oh.e1) this.f5098b;
                 TLRPC.Updates updates = (TLRPC.Updates) this.f5099c;
                 if (tLObject instanceof TLRPC.Updates) {
-                    MessagesController.getInstance(e1Var.f17005e).processUpdates(updates, false);
+                    MessagesController.getInstance(e1Var.f17007e).processUpdates(updates, false);
                     return;
                 }
                 return;
             case 12:
                 oh.y3 y3Var = (oh.y3) this.f5098b;
-                d8 d8Var = (d8) this.f5099c;
+                c8 c8Var = (c8) this.f5099c;
                 if (tLObject instanceof TLRPC.Updates) {
-                    MessagesController.getInstance(y3Var.f17950l.f17133z2).processUpdates((TLRPC.Updates) tLObject, false);
+                    MessagesController.getInstance(y3Var.f17952l.f17135z2).processUpdates((TLRPC.Updates) tLObject, false);
                 }
-                AndroidUtilities.runOnUIThread(new oh.v3(d8Var, 0));
+                AndroidUtilities.runOnUIThread(new oh.v3(c8Var, 0));
                 return;
             case 13:
                 AndroidUtilities.runOnUIThread(new p6((d6) this.f5098b, tLObject, (Runnable) this.f5099c, 9));
@@ -169,7 +169,7 @@ public final class b3 implements RequestDelegate {
                                 Boolean bool = null;
                                 while (i13 < size2) {
                                     i6 i6Var = (i6) arrayList4.get(i13);
-                                    if (i6Var.f21479o.equals(tL_wallPaper.slug)) {
+                                    if (i6Var.f21481o.equals(tL_wallPaper.slug)) {
                                         if (bool == null) {
                                             bool = Boolean.valueOf(pathToAttach.exists());
                                         }
@@ -182,22 +182,22 @@ public final class b3 implements RequestDelegate {
                                             arrayList5.add(i6Var);
                                         } else {
                                             String attachFileName = FileLoader.getAttachFileName(tL_wallPaper.document);
-                                            if (f6Var.f21366b == null) {
-                                                f6Var.f21366b = new HashMap();
+                                            if (f6Var.f21368b == null) {
+                                                f6Var.f21368b = new HashMap();
                                             }
-                                            e6 e6Var2 = (e6) f6Var.f21366b.get(attachFileName);
+                                            e6 e6Var2 = (e6) f6Var.f21368b.get(attachFileName);
                                             if (e6Var2 == null) {
                                                 ?? obj = new Object();
                                                 arrayList2 = arrayList4;
-                                                obj.f21335b = new ArrayList();
-                                                obj.f21334a = tL_wallPaper;
-                                                f6Var.f21366b.put(attachFileName, obj);
+                                                obj.f21337b = new ArrayList();
+                                                obj.f21336a = tL_wallPaper;
+                                                f6Var.f21368b.put(attachFileName, obj);
                                                 e6Var = obj;
                                             } else {
                                                 arrayList2 = arrayList4;
                                                 e6Var = e6Var2;
                                             }
-                                            e6Var.f21335b.add(i6Var);
+                                            e6Var.f21337b.add(i6Var);
                                         }
                                     } else {
                                         arrayList2 = arrayList4;
@@ -255,10 +255,10 @@ public final class b3 implements RequestDelegate {
                 TLRPC.TL_messages_sendScheduledMessages tL_messages_sendScheduledMessages = (TLRPC.TL_messages_sendScheduledMessages) this.f5099c;
                 if (tL_error == null) {
                     xnVar2.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
-                    AndroidUtilities.runOnUIThread(new fc(15, xnVar2, tL_messages_sendScheduledMessages));
+                    AndroidUtilities.runOnUIThread(new xc(14, xnVar2, tL_messages_sendScheduledMessages));
                     return;
                 } else if (tL_error.text != null) {
-                    AndroidUtilities.runOnUIThread(new fc(16, xnVar2, tL_error));
+                    AndroidUtilities.runOnUIThread(new xc(15, xnVar2, tL_error));
                     return;
                 } else {
                     return;

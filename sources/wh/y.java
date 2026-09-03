@@ -30,8 +30,8 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.l9;
 import org.telegram.ui.Cells.m9;
 import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.Components.ho0;
+import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.go0;
 public final class y extends z implements b6, l9, j0, NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener {
     public int B;
     public final int C;
@@ -50,51 +50,51 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
     public boolean P;
     public boolean Q;
     public final i0 R;
-    public final int f50159n;
-    public final g6 f50160r;
-    public final Paint f50161s;
+    public final int f50195n;
+    public final g6 f50196r;
+    public final Paint f50197s;
     public final TextPaint v;
-    public final RadialProgress2 f50162w;
-    public final ho0 f50163x;
-    public final int f50164y;
+    public final RadialProgress2 f50198w;
+    public final go0 f50199x;
+    public final int f50200y;
 
     public y(Context context, int i10, g6 g6Var) {
         super(context);
-        this.f50161s = new Paint(1);
+        this.f50197s = new Paint(1);
         this.v = new TextPaint(1);
         this.B = AndroidUtilities.dp(16.0f);
         int dp = AndroidUtilities.dp(10.0f);
         this.C = dp;
         int dp2 = AndroidUtilities.dp(44.0f);
         this.D = dp2;
-        this.f50159n = i10;
-        this.f50160r = g6Var;
+        this.f50195n = i10;
+        this.f50196r = g6Var;
         setWillNotDraw(false);
-        this.f50164y = DownloadController.getInstance(i10).generateObserverTag();
+        this.f50200y = DownloadController.getInstance(i10).generateObserverTag();
         RadialProgress2 radialProgress2 = new RadialProgress2(this, g6Var);
-        this.f50162w = radialProgress2;
+        this.f50198w = radialProgress2;
         radialProgress2.setCircleRadius(AndroidUtilities.dp(24.0f));
         int i11 = this.B;
         radialProgress2.q(i11, dp, i11 + dp2, dp2 + dp);
-        ho0 ho0Var = new ho0(this);
-        this.f50163x = ho0Var;
-        ho0Var.h = new org.telegram.ui.web.e0(this, 19);
+        go0 go0Var = new go0(this);
+        this.f50199x = go0Var;
+        go0Var.h = new org.telegram.ui.web.e0(this, 19);
         setMinimumHeight(AndroidUtilities.dp(66.0f));
         i0 i0Var = new i0(context, g6Var, new org.telegram.ui.Cells.f1(this, 26));
         this.R = i0Var;
-        addView(i0Var.f49778a, c6.e(-2, -2, 51));
+        addView(i0Var.f49814a, c6.e(-2, -2, 51));
         e();
     }
 
     private TLRPC.Document getDisplayDocument() {
         t tVar;
-        a aVar = this.f50175a;
-        if (aVar != null && (tVar = aVar.f49621g) != null) {
+        a aVar = this.f50211a;
+        if (aVar != null && (tVar = aVar.f49657g) != null) {
             TLRPC.Document document = tVar.h;
             if (document != null) {
                 return document;
             }
-            return tVar.f50036i;
+            return tVar.f50072i;
         }
         return null;
     }
@@ -130,7 +130,7 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         MessageObject playingMessageObject;
         MessageObject messageObject = this.M;
-        if (messageObject != null && i11 == this.f50159n) {
+        if (messageObject != null && i11 == this.f50195n) {
             if (i10 != NotificationCenter.messagePlayingDidStart && i10 != NotificationCenter.messagePlayingDidReset && i10 != NotificationCenter.messagePlayingPlayStateChanged) {
                 if (i10 == NotificationCenter.messagePlayingProgressDidChanged && messageObject.getId() == ((Integer) objArr[0]).intValue() && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
                     MessageObject messageObject2 = this.M;
@@ -154,7 +154,7 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
 
     @Override
     public final void e() {
-        this.f50161s.setColor(k6.v0(k6.f21970uf, this.f50160r));
+        this.f50197s.setColor(k6.v0(k6.f21972uf, this.f50196r));
         i0 i0Var = this.R;
         if (i0Var != null) {
             i0Var.a();
@@ -171,7 +171,7 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
         this.B = i11;
         int i12 = this.D;
         int i13 = this.C;
-        this.f50162w.q(i11, i13, i11 + i12, i12 + i13);
+        this.f50198w.q(i11, i13, i11 + i12, i12 + i13);
         requestLayout();
         invalidate();
     }
@@ -183,7 +183,7 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
 
     @Override
     public e1 getCaptionEditText() {
-        return this.R.f49778a;
+        return this.R.f49814a;
     }
 
     public int[] getColorKeys() {
@@ -192,12 +192,12 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
 
     @Override
     public int getObserverTag() {
-        return this.f50164y;
+        return this.f50200y;
     }
 
     @Override
     public a getRow() {
-        return this.f50175a;
+        return this.f50211a;
     }
 
     public final TLRPC.TL_documentAttributeAudio h() {
@@ -215,10 +215,10 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
 
     public final void i(a aVar, l3 l3Var) {
         t tVar;
-        this.f50175a = aVar;
+        this.f50211a = aVar;
         this.L = l3Var;
-        if (aVar != null && aVar.f49621g == null) {
-            aVar.f49621g = new t();
+        if (aVar != null && aVar.f49657g == null) {
+            aVar.f49657g = new t();
         }
         this.E = LocaleController.isRTL;
         c(aVar);
@@ -233,12 +233,12 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
         if (j() && this.M == null && displayDocument != null) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
             tL_message.out = true;
-            tL_message.f20864id = -Long.valueOf(displayDocument.f20849id).hashCode();
+            tL_message.f20866id = -Long.valueOf(displayDocument.f20851id).hashCode();
             tL_message.peer_id = new TLRPC.TL_peerUser();
             TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
             tL_message.from_id = tL_peerUser;
             TLRPC.Peer peer = tL_message.peer_id;
-            int i10 = this.f50159n;
+            int i10 = this.f50195n;
             long clientUserId = UserConfig.getInstance(i10).getClientUserId();
             peer.user_id = clientUserId;
             tL_peerUser.user_id = clientUserId;
@@ -249,9 +249,9 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
             tL_messageMediaDocument.flags |= 3;
             tL_messageMediaDocument.document = displayDocument;
             tL_message.flags |= 768;
-            a aVar2 = this.f50175a;
-            if (aVar2 != null && (tVar = aVar2.f49621g) != null && !TextUtils.isEmpty(tVar.f50033e)) {
-                tL_message.attachPath = this.f50175a.f49621g.f50033e;
+            a aVar2 = this.f50211a;
+            if (aVar2 != null && (tVar = aVar2.f49657g) != null && !TextUtils.isEmpty(tVar.f50069e)) {
+                tL_message.attachPath = this.f50211a.f49657g.f50069e;
             }
             this.M = new MessageObject(i10, tL_message, false, true);
         }
@@ -265,8 +265,8 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
 
     public final boolean j() {
         t tVar;
-        a aVar = this.f50175a;
-        if (aVar != null && (tVar = aVar.f49621g) != null && tVar.b()) {
+        a aVar = this.f50211a;
+        if (aVar != null && (tVar = aVar.f49657g) != null && tVar.b()) {
             return true;
         }
         return false;
@@ -274,8 +274,8 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
 
     public final boolean k() {
         t tVar;
-        a aVar = this.f50175a;
-        if (aVar != null && (tVar = aVar.f49621g) != null && tVar.a()) {
+        a aVar = this.f50211a;
+        if (aVar != null && (tVar = aVar.f49657g) != null && tVar.a()) {
             return true;
         }
         return false;
@@ -296,7 +296,7 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
             i10 = AndroidUtilities.displaySize.x;
         }
         if (this.E) {
-            i11 = this.f50177c;
+            i11 = this.f50213c;
         } else {
             i11 = 0;
         }
@@ -331,14 +331,14 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
                 spannableStringBuilder = new SpannableStringBuilder(str);
             }
             if (!TextUtils.isEmpty(str)) {
-                spannableStringBuilder.setSpan(new g51(AndroidUtilities.bold()), 0, str.length(), 18);
+                spannableStringBuilder.setSpan(new e51(AndroidUtilities.bold()), 0, str.length(), 18);
             }
             TextPaint textPaint = this.v;
             textPaint.setTextSize(AndroidUtilities.dp(16.0f));
             this.I = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, textPaint, this.H, TextUtils.TruncateAt.END), textPaint, AndroidUtilities.dp(50.0f) + this.H, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.G = AndroidUtilities.dp(11.0f) + ((i12 - AndroidUtilities.dp(30.0f)) / 2) + i13;
         }
-        this.f50163x.j(this.H, AndroidUtilities.dp(30.0f));
+        this.f50199x.j(this.H, AndroidUtilities.dp(30.0f));
     }
 
     public final void m(boolean z4) {
@@ -347,31 +347,31 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
         File pathToAttach;
         boolean z11;
         t tVar;
-        int i10 = k6.f21757ie;
-        int i11 = k6.f21774je;
-        int i12 = k6.f21967uc;
-        int i13 = k6.f21985vc;
-        RadialProgress2 radialProgress2 = this.f50162w;
+        int i10 = k6.f21759ie;
+        int i11 = k6.f21776je;
+        int i12 = k6.f21969uc;
+        int i13 = k6.f21987vc;
+        RadialProgress2 radialProgress2 = this.f50198w;
         radialProgress2.g(i10, i11, i12, i13);
-        radialProgress2.d = k6.v0(k6.Bd, this.f50160r);
+        radialProgress2.d = k6.v0(k6.Bd, this.f50196r);
         boolean k10 = k();
-        int i14 = this.f50159n;
+        int i14 = this.f50195n;
         if (k10) {
             DownloadController.getInstance(i14).removeLoadingFileObserver(this);
-            radialProgress2.o(this.f50175a.f49621g.f50034f, z4);
+            radialProgress2.o(this.f50211a.f49657g.f50070f, z4);
             radialProgress2.setIcon(3, false, z4);
             n();
             return;
         }
         if (j()) {
-            document = this.f50175a.f49621g.h;
+            document = this.f50211a.f49657g.h;
         } else {
             document = null;
         }
         String attachFileName = FileLoader.getAttachFileName(document);
-        a aVar = this.f50175a;
+        a aVar = this.f50211a;
         int i15 = 1;
-        if (aVar != null && (tVar = aVar.f49621g) != null && !TextUtils.isEmpty(tVar.f50033e) && new File(this.f50175a.f49621g.f50033e).exists()) {
+        if (aVar != null && (tVar = aVar.f49657g) != null && !TextUtils.isEmpty(tVar.f50069e) && new File(this.f50211a.f49657g.f50069e).exists()) {
             z10 = true;
         } else {
             z10 = false;
@@ -419,9 +419,9 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
         double d;
         MessageObject messageObject;
         if (!k() && (messageObject = this.M) != null) {
-            ho0 ho0Var = this.f50163x;
-            if (!ho0Var.f27535e) {
-                ho0Var.i(messageObject.audioProgress);
+            go0 go0Var = this.f50199x;
+            if (!go0Var.f27207e) {
+                go0Var.i(messageObject.audioProgress);
             }
         }
         int i10 = 0;
@@ -454,10 +454,10 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.Q = true;
-        this.f50162w.m(this);
-        this.f50163x.f27548s = this;
+        this.f50198w.m(this);
+        this.f50199x.f27220s = this;
         m(false);
-        int i10 = this.f50159n;
+        int i10 = this.f50195n;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.messagePlayingDidStart);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.messagePlayingDidReset);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
@@ -468,7 +468,7 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.Q = false;
-        int i10 = this.f50159n;
+        int i10 = this.f50195n;
         DownloadController.getInstance(i10).removeLoadingFileObserver(this);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.messagePlayingDidStart);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.messagePlayingDidReset);
@@ -481,24 +481,24 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
         m9 textSelectionHelper;
         int i10;
         if (getDisplayDocument() != null) {
-            this.f50162w.draw(canvas);
-            int i11 = k6.f21968ud;
-            g6 g6Var = this.f50160r;
+            this.f50198w.draw(canvas);
+            int i11 = k6.f21970ud;
+            g6 g6Var = this.f50196r;
             int v02 = k6.v0(i11, g6Var);
-            int v03 = k6.v0(k6.f21986vd, g6Var);
-            int i12 = k6.f22024xd;
+            int v03 = k6.v0(k6.f21988vd, g6Var);
+            int i12 = k6.f22026xd;
             int v04 = k6.v0(i12, g6Var);
             int v05 = k6.v0(i12, g6Var);
-            int v06 = k6.v0(k6.f22005wd, g6Var);
-            ho0 ho0Var = this.f50163x;
-            ho0Var.h(v02, v03, v04, v05, v06);
+            int v06 = k6.v0(k6.f22007wd, g6Var);
+            go0 go0Var = this.f50199x;
+            go0Var.h(v02, v03, v04, v05, v06);
             if (!k()) {
                 canvas.save();
                 canvas.translate(this.F, this.G);
-                ho0Var.b(canvas);
+                go0Var.b(canvas);
                 canvas.restore();
             }
-            int v07 = k6.v0(k6.f21845nd, g6Var);
+            int v07 = k6.v0(k6.f21847nd, g6Var);
             TextPaint textPaint = this.v;
             textPaint.setColor(v07);
             if (this.J != null) {
@@ -515,23 +515,23 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
                 canvas.restore();
             }
             l3 l3Var = this.L;
-            if (l3Var != null && (textSelectionHelper = l3Var.f49864a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
+            if (l3Var != null && (textSelectionHelper = l3Var.f49900a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
                 ((RecyclerView) getParent()).getClass();
                 int R = RecyclerView.R(this);
-                if (R >= 0 && R > textSelectionHelper.f23175u0 && R <= textSelectionHelper.f23178x0) {
+                if (R >= 0 && R > textSelectionHelper.f23177u0 && R <= textSelectionHelper.f23180x0) {
                     int i13 = 0;
                     if (this.E) {
                         i10 = 0;
                     } else {
-                        i10 = this.f50177c;
+                        i10 = this.f50213c;
                     }
                     float dp = AndroidUtilities.dp(8.0f) + i10;
                     float dp2 = AndroidUtilities.dp(2.0f);
                     int width = getWidth();
                     if (this.E) {
-                        i13 = this.f50177c;
+                        i13 = this.f50213c;
                     }
-                    canvas.drawRoundRect(dp, dp2, (width - i13) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(64.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f50161s);
+                    canvas.drawRoundRect(dp, dp2, (width - i13) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(64.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f50197s);
                 }
             }
         }
@@ -550,10 +550,10 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
         if (z10) {
             i14 = 0;
         } else {
-            i14 = this.f50177c;
+            i14 = this.f50213c;
         }
         if (z10) {
-            i15 = this.f50177c;
+            i15 = this.f50213c;
         }
         this.R.g(i14, i15, i12 - i10, AndroidUtilities.dp(66.0f));
         l();
@@ -568,10 +568,10 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
         if (z4) {
             i12 = 0;
         } else {
-            i12 = this.f50177c;
+            i12 = this.f50213c;
         }
         if (z4) {
-            i13 = this.f50177c;
+            i13 = this.f50213c;
         }
         setMeasuredDimension(size, AndroidUtilities.dp(66.0f) + this.R.h(i12, i13, size));
     }
@@ -584,7 +584,7 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
         } else {
             f10 = ((float) j10) / ((float) j11);
         }
-        this.f50162w.o(Math.min(1.0f, f10), true);
+        this.f50198w.o(Math.min(1.0f, f10), true);
         if (this.O != 3) {
             m(true);
         }
@@ -592,7 +592,7 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
 
     @Override
     public final void onSuccessDownload(String str) {
-        this.f50162w.o(1.0f, true);
+        this.f50198w.o(1.0f, true);
         m(true);
     }
 
@@ -603,7 +603,7 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
         float x10 = motionEvent.getX();
         float y10 = motionEvent.getY();
         if (!k()) {
-            if (this.f50163x.f(x10 - this.F, y10 - this.G, actionMasked)) {
+            if (this.f50199x.f(x10 - this.F, y10 - this.G, actionMasked)) {
                 if (actionMasked == 0) {
                     getParent().requestDisallowInterceptTouchEvent(true);
                 }
@@ -631,10 +631,10 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
                 if (k()) {
                     l3 l3Var = this.L;
                     if (l3Var != null) {
-                        a aVar = this.f50175a;
-                        r3 r3Var = l3Var.f49864a;
-                        ArrayList arrayList = r3Var.f49988i3;
-                        u4 u4Var = (u4) r3Var.W3.remove(aVar.f49621g);
+                        a aVar = this.f50211a;
+                        r3 r3Var = l3Var.f49900a;
+                        ArrayList arrayList = r3Var.f50024i3;
+                        u4 u4Var = (u4) r3Var.W3.remove(aVar.f49657g);
                         if (u4Var != null) {
                             u4Var.b();
                         }
@@ -651,16 +651,16 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
                                 d2Var2.h();
                             }
                         }
-                        r3Var.f49980e3.onContentChanged();
+                        r3Var.f50016e3.onContentChanged();
                     }
                 } else if (this.M != null) {
                     if (j()) {
-                        document = this.f50175a.f49621g.h;
+                        document = this.f50211a.f49657g.h;
                     } else {
                         document = null;
                     }
                     int i13 = this.O;
-                    RadialProgress2 radialProgress2 = this.f50162w;
+                    RadialProgress2 radialProgress2 = this.f50198w;
                     if (i13 == 0) {
                         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
                         arrayList2.add(this.M);
@@ -676,7 +676,7 @@ public final class y extends z implements b6, l9, j0, NotificationCenter.Notific
                             invalidate();
                         }
                     } else {
-                        int i14 = this.f50159n;
+                        int i14 = this.f50195n;
                         if (i13 == 2) {
                             radialProgress2.o(0.0f, false);
                             FileLoader.getInstance(i14).loadFile(document, this.M, 1, 1);

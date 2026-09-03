@@ -38,8 +38,8 @@ public final class n0 extends d4.r implements h5.n {
         Iterable e6;
         d4.n nVar;
         if (n0Var.C == null) {
-            s8.t tVar = s8.v.f47143b;
-            return s8.i0.f47108e;
+            s8.t tVar = s8.v.f47174b;
+            return s8.i0.f47139e;
         }
         if (((k0) vVar).i(n0Var) != 0) {
             List e10 = d4.y.e("audio/raw", false, false);
@@ -58,12 +58,12 @@ public final class n0 extends d4.r implements h5.n {
         List e11 = d4.y.e(str, z4, false);
         String b10 = d4.y.b(n0Var);
         if (b10 == null) {
-            s8.t tVar2 = s8.v.f47143b;
-            e6 = s8.i0.f47108e;
+            s8.t tVar2 = s8.v.f47174b;
+            e6 = s8.i0.f47139e;
         } else {
             e6 = d4.y.e(b10, z4, false);
         }
-        s8.t tVar3 = s8.v.f47143b;
+        s8.t tVar3 = s8.v.f47174b;
         ?? wVar = new com.google.android.gms.common.api.internal.w();
         wVar.d(e11);
         wVar.d(e6);
@@ -74,7 +74,7 @@ public final class n0 extends d4.r implements h5.n {
     public final n3.k A(d4.n nVar, j3.n0 n0Var, j3.n0 n0Var2) {
         int i10;
         n3.k b10 = nVar.b(n0Var, n0Var2);
-        int i11 = b10.f15223e;
+        int i11 = b10.f15225e;
         if (this.P == null && l0(n0Var2)) {
             i11 |= 32768;
         }
@@ -217,8 +217,8 @@ public final class n0 extends d4.r implements h5.n {
     @Override
     public final void Z(n3.i iVar) {
         if (this.Z0 && !iVar.e(Integer.MIN_VALUE)) {
-            if (Math.abs(iVar.f15216f - this.Y0) > 500000) {
-                this.Y0 = iVar.f15216f;
+            if (Math.abs(iVar.f15218f - this.Y0) > 500000) {
+                this.Y0 = iVar.f15218f;
             }
             this.Z0 = false;
         }
@@ -326,7 +326,7 @@ public final class n0 extends d4.r implements h5.n {
             if (kVar != null) {
                 kVar.releaseOutputBuffer(i10, false);
             }
-            this.M0.f15208f += i12;
+            this.M0.f15210f += i12;
             ((k0) vVar).K = true;
             return true;
         }
@@ -337,7 +337,7 @@ public final class n0 extends d4.r implements h5.n {
             if (kVar != null) {
                 kVar.releaseOutputBuffer(i10, false);
             }
-            this.M0.f15207e += i12;
+            this.M0.f15209e += i12;
             return true;
         } catch (s e6) {
             throw a(e6, this.W0, e6.f11617b, 5001);

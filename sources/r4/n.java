@@ -12,45 +12,45 @@ import org.telegram.ui.yh;
 import r3.u;
 import r3.v;
 public final class n implements v {
-    public final k0 f46666a;
-    public final f7.b f46667b = new f7.b((char) 0, 16);
-    public final e4.e f46668c = new e4.e();
+    public final k0 f46697a;
+    public final f7.b f46698b = new f7.b((char) 0, 16);
+    public final e4.e f46699c = new e4.e();
     public long d = -9223372036854775807L;
-    public final o f46669e;
+    public final o f46700e;
 
     public n(o oVar, q qVar) {
-        this.f46669e = oVar;
-        this.f46666a = new k0(qVar, null, null);
+        this.f46700e = oVar;
+        this.f46697a = new k0(qVar, null, null);
     }
 
     @Override
     public final void a(int i10, w wVar) {
-        k0 k0Var = this.f46666a;
+        k0 k0Var = this.f46697a;
         k0Var.getClass();
         k0Var.a(i10, wVar);
     }
 
     @Override
     public final void b(n0 n0Var) {
-        this.f46666a.b(n0Var);
+        this.f46697a.b(n0Var);
     }
 
     @Override
     public final void c(long j10, int i10, int i11, int i12, u uVar) {
         long g10;
         long j11;
-        this.f46666a.c(j10, i10, i11, i12, uVar);
-        while (this.f46666a.u(false)) {
-            e4.e eVar = this.f46668c;
+        this.f46697a.c(j10, i10, i11, i12, uVar);
+        while (this.f46697a.u(false)) {
+            e4.e eVar = this.f46699c;
             eVar.b();
-            if (this.f46666a.z(this.f46667b, eVar, 0, false) == -4) {
+            if (this.f46697a.z(this.f46698b, eVar, 0, false) == -4) {
                 eVar.k();
             } else {
                 eVar = null;
             }
             if (eVar != null) {
-                long j12 = eVar.f15216f;
-                e4.c a2 = this.f46669e.f46672c.a(eVar);
+                long j12 = eVar.f15218f;
+                e4.c a2 = this.f46700e.f46703c.a(eVar);
                 if (a2 != null) {
                     g4.a aVar = (g4.a) a2.f4938a[0];
                     String str = aVar.f6829a;
@@ -63,17 +63,17 @@ public final class n implements v {
                         }
                         if (j11 != -9223372036854775807L) {
                             m mVar = new m(j12, j11);
-                            Handler handler = this.f46669e.d;
+                            Handler handler = this.f46700e.d;
                             handler.sendMessage(handler.obtainMessage(1, mVar));
                         }
                     }
                 }
             }
         }
-        k0 k0Var = this.f46666a;
-        g0 g0Var = k0Var.f16504a;
+        k0 k0Var = this.f46697a;
+        g0 g0Var = k0Var.f16506a;
         synchronized (k0Var) {
-            int i13 = k0Var.f16520s;
+            int i13 = k0Var.f16522s;
             if (i13 == 0) {
                 g10 = -1;
             } else {
@@ -90,7 +90,7 @@ public final class n implements v {
 
     @Override
     public final int e(g5.j jVar, int i10, boolean z4) {
-        k0 k0Var = this.f46666a;
+        k0 k0Var = this.f46697a;
         k0Var.getClass();
         return k0Var.C(jVar, i10, z4);
     }

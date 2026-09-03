@@ -1,22 +1,16 @@
 package qh;
-public final class b3 implements Runnable {
-    public final int f44942a;
-    public final d3 f44943b;
 
-    public b3(d3 d3Var, int i10) {
-        this.f44942a = i10;
-        this.f44943b = d3Var;
+import android.content.Context;
+public final class b3 extends z2 {
+    public final String f45018h0;
+
+    public b3(int i10, Context context, oh.b bVar, float f10, String str) {
+        super(i10, context, bVar, null, true, f10, false, false);
+        this.f45018h0 = str;
     }
 
     @Override
-    public final void run() {
-        switch (this.f44942a) {
-            case 0:
-                this.f44943b.dismiss();
-                return;
-            default:
-                d3.m(this.f44943b);
-                return;
-        }
+    public final String getTitle() {
+        return this.f45018h0;
     }
 }

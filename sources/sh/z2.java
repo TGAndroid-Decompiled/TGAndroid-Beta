@@ -15,48 +15,48 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.i61;
-import org.telegram.ui.Components.j51;
-import org.telegram.ui.Components.tl0;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.z8;
 import org.telegram.ui.z00;
-public final class z2 extends i51 {
-    public static final int f47818a = 0;
+public final class z2 extends g51 {
+    public static final int f47854a = 0;
 
     static {
-        i51.setup(new i51());
+        g51.setup(new g51());
     }
 
     @Override
-    public final void bindView(View view, j51 j51Var, boolean z4, x51 x51Var, i61 i61Var) {
+    public final void bindView(View view, h51 h51Var, boolean z4, w51 w51Var, h61 h61Var) {
         int i10;
         int i11;
         int i12;
         float f10;
-        Object obj = j51Var.G;
+        Object obj = h51Var.G;
         int i13 = 0;
         if (obj instanceof TL_payments.connectedBotStarRef) {
             a3 a3Var = (a3) view;
             TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
-            boolean z10 = j51Var.f28020r;
-            View view2 = a3Var.f47356e;
-            ImageView imageView = a3Var.f47357f;
-            TLRPC.User user = MessagesController.getInstance(a3Var.f47353a).getUser(Long.valueOf(connectedbotstarref.bot_id));
+            boolean z10 = h51Var.f27381r;
+            View view2 = a3Var.f47392e;
+            ImageView imageView = a3Var.f47393f;
+            TLRPC.User user = MessagesController.getInstance(a3Var.f47389a).getUser(Long.valueOf(connectedbotstarref.bot_id));
             z8 z8Var = new z8((g6) null);
             z8Var.r(user);
-            a3Var.f47355c.e(user, z8Var);
+            a3Var.f47391c.e(user, z8Var);
             TextView textView = a3Var.h;
             textView.setText(Emoji.replaceEmoji(UserObject.getUserName(user), textView.getPaint().getFontMetricsInt(), false));
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             if (connectedbotstarref.commission_permille > 0) {
                 spannableStringBuilder.append((CharSequence) " d");
                 z00 z00Var = new z00();
-                z00Var.f43756f = k6.w0(null, k6.uj, false);
-                z00Var.f43757n = j.G0(connectedbotstarref.commission_permille);
-                if (z00Var.f43754c != null) {
-                    z00Var.f43754c = null;
+                z00Var.f43751f = k6.w0(null, k6.uj, false);
+                z00Var.f43752n = j.G0(connectedbotstarref.commission_permille);
+                if (z00Var.f43749c != null) {
+                    z00Var.f43749c = null;
                     z00Var.a();
                 }
                 spannableStringBuilder.setSpan(z00Var, 1, 2, 33);
@@ -69,8 +69,8 @@ public final class z2 extends i51 {
             } else {
                 spannableStringBuilder.append((CharSequence) LocaleController.formatPluralString("Months", i14, new Object[0]));
             }
-            a3Var.f47358n.setText(spannableStringBuilder);
-            ImageView imageView2 = a3Var.f47359r;
+            a3Var.f47394n.setText(spannableStringBuilder);
+            ImageView imageView2 = a3Var.f47395r;
             if (z10) {
                 i10 = 0;
             } else {
@@ -86,7 +86,7 @@ public final class z2 extends i51 {
             } else {
                 i11 = k6.uj;
             }
-            view2.setBackground(k6.K(dp, k6.v0(i11, a3Var.f47354b)));
+            view2.setBackground(k6.K(dp, k6.v0(i11, a3Var.f47390b)));
             if (connectedbotstarref.revoked) {
                 i12 = R.drawable.msg_link_2;
             } else {
@@ -104,25 +104,25 @@ public final class z2 extends i51 {
                 f11 = 0.8f;
             }
             imageView.setScaleY(f11);
-            a3Var.f47360s = z4;
+            a3Var.f47396s = z4;
             a3Var.setWillNotDraw(!z4);
         } else if (obj instanceof TL_payments.starRefProgram) {
             a3 a3Var2 = (a3) view;
             TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) obj;
-            boolean z11 = j51Var.f28020r;
-            TLRPC.User user2 = MessagesController.getInstance(a3Var2.f47353a).getUser(Long.valueOf(starrefprogram.bot_id));
+            boolean z11 = h51Var.f27381r;
+            TLRPC.User user2 = MessagesController.getInstance(a3Var2.f47389a).getUser(Long.valueOf(starrefprogram.bot_id));
             z8 z8Var2 = new z8((g6) null);
             z8Var2.r(user2);
-            a3Var2.f47355c.e(user2, z8Var2);
+            a3Var2.f47391c.e(user2, z8Var2);
             a3Var2.h.setText(UserObject.getUserName(user2));
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             if (starrefprogram.commission_permille > 0) {
                 spannableStringBuilder2.append((CharSequence) " d");
                 z00 z00Var2 = new z00();
-                z00Var2.f43756f = k6.w0(null, k6.uj, false);
-                z00Var2.f43757n = j.G0(starrefprogram.commission_permille);
-                if (z00Var2.f43754c != null) {
-                    z00Var2.f43754c = null;
+                z00Var2.f43751f = k6.w0(null, k6.uj, false);
+                z00Var2.f43752n = j.G0(starrefprogram.commission_permille);
+                if (z00Var2.f43749c != null) {
+                    z00Var2.f43749c = null;
                     z00Var2.a();
                 }
                 spannableStringBuilder2.setSpan(z00Var2, 1, 2, 33);
@@ -135,22 +135,22 @@ public final class z2 extends i51 {
             } else {
                 spannableStringBuilder2.append((CharSequence) LocaleController.formatPluralString("Months", i15, new Object[0]));
             }
-            a3Var2.f47358n.setText(spannableStringBuilder2);
-            ImageView imageView3 = a3Var2.f47359r;
+            a3Var2.f47394n.setText(spannableStringBuilder2);
+            ImageView imageView3 = a3Var2.f47395r;
             if (!z11) {
                 i13 = 8;
             }
             imageView3.setVisibility(i13);
             a3Var2.d.setVisibility(8);
-            a3Var2.f47357f.setVisibility(8);
-            a3Var2.f47356e.setVisibility(8);
-            a3Var2.f47360s = z4;
+            a3Var2.f47393f.setVisibility(8);
+            a3Var2.f47392e.setVisibility(8);
+            a3Var2.f47396s = z4;
             a3Var2.setWillNotDraw(!z4);
         }
     }
 
     @Override
-    public final View createView(Context context, tl0 tl0Var, int i10, int i11, g6 g6Var) {
+    public final View createView(Context context, sl0 sl0Var, int i10, int i11, g6 g6Var) {
         return new a3(context, i10, g6Var);
     }
 }

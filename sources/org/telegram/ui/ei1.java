@@ -1,32 +1,40 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class ei1 extends AnimatorListenerAdapter {
-    public final org.telegram.ui.Cells.t1 f36610a;
-    public final org.telegram.ui.Components.li f36611b;
-    public final fi1 f36612c;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.LinearLayout;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.messenger.voip.VoIPServiceState;
+public final class ei1 extends LinearLayout {
+    public final ii1 f36511a;
 
-    public ei1(fi1 fi1Var, org.telegram.ui.Cells.t1 t1Var, org.telegram.ui.Components.li liVar) {
-        this.f36612c = fi1Var;
-        this.f36610a = t1Var;
-        this.f36611b = liVar;
+    public ei1(ii1 ii1Var, Activity activity) {
+        super(activity);
+        this.f36511a = ii1Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.f36610a.setEnterTransitionInProgress(false);
-        org.telegram.ui.Components.li liVar = this.f36611b;
-        fi1 fi1Var = this.f36612c;
-        ((ArrayList) liVar.f28749c).remove(fi1Var);
-        liVar.a();
-        ((ViewGroup) liVar.d).invalidate();
-        ChatActivityEnterView.RecordCircle recordCircle = fi1Var.f36897g;
-        if (recordCircle != null) {
-            recordCircle.K = false;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        VoIPServiceState sharedState = VoIPService.getSharedState();
+        CharSequence text = this.f36511a.B.getText();
+        if (sharedState != null && !TextUtils.isEmpty(text)) {
+            StringBuilder sb = new StringBuilder(text);
+            sb.append(", ");
+            if (sharedState.getPrivateCall() != null && sharedState.getPrivateCall().video) {
+                sb.append(LocaleController.getString(R.string.VoipInVideoCallBranding));
+            } else {
+                sb.append(LocaleController.getString(R.string.VoipInCallBranding));
+            }
+            long callDuration = sharedState.getCallDuration();
+            if (callDuration > 0) {
+                sb.append(", ");
+                sb.append(LocaleController.formatDuration((int) (callDuration / 1000)));
+            }
+            accessibilityNodeInfo.setText(sb);
         }
     }
 }

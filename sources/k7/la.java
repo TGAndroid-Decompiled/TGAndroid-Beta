@@ -11,7 +11,7 @@ public final class la implements ia {
 
     public la(Context context, ha haVar) {
         this.f10650b = haVar;
-        w2.a aVar = w2.a.f49325e;
+        w2.a aVar = w2.a.f49361e;
         y2.q.b(context);
         y2.o c3 = y2.q.a().c(aVar);
         if (w2.a.d.contains(new v2.c("json"))) {
@@ -50,7 +50,7 @@ public final class la implements ia {
             }
             if (dVar != null) {
                 dVar.a(k7Var, fVar);
-                pVar.a(new v2.a(null, byteArrayOutputStream.toByteArray(), v2.d.f48851b, null), new sg.a(28));
+                pVar.a(new v2.a(null, byteArrayOutputStream.toByteArray(), v2.d.f48887b, null), new sg.a(29));
                 return;
             }
             throw new RuntimeException("No encoder for ".concat(String.valueOf(k7.class)));
