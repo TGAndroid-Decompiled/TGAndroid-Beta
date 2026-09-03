@@ -10,12 +10,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.RadioButton;
 public final class u implements View.OnClickListener {
-    public final int f41667a;
-    public final l4 f41668b;
+    public final int f38626a;
+    public final n4 f38627b;
 
-    public u(l4 l4Var, int i10) {
-        this.f41667a = i10;
-        this.f41668b = l4Var;
+    public u(n4 n4Var, int i10) {
+        this.f38626a = i10;
+        this.f38627b = n4Var;
     }
 
     @Override
@@ -25,86 +25,86 @@ public final class u implements View.OnClickListener {
         Typeface create2;
         Typeface create3;
         boolean z4;
-        switch (this.f41667a) {
+        switch (this.f38626a) {
             case 0:
-                l4 l4Var = this.f41668b;
-                if (l4Var.f38524r0[0].f()) {
-                    if (l4Var.f38524r0[0].getWebView() != null) {
-                        l4Var.f38524r0[0].getWebView().findNext(false);
+                n4 n4Var = this.f38627b;
+                if (n4Var.f36375r0[0].f()) {
+                    if (n4Var.f36375r0[0].getWebView() != null) {
+                        n4Var.f36375r0[0].getWebView().findNext(false);
                         return;
                     }
                     return;
                 }
-                l4Var.W(l4Var.D - 1);
+                n4Var.W(n4Var.D - 1);
                 return;
             case 1:
-                l4 l4Var2 = this.f41668b;
-                if (l4Var2.f38524r0[0].f()) {
-                    if (l4Var2.f38524r0[0].getWebView() != null) {
-                        l4Var2.f38524r0[0].getWebView().findNext(true);
+                n4 n4Var2 = this.f38627b;
+                if (n4Var2.f36375r0[0].f()) {
+                    if (n4Var2.f36375r0[0].getWebView() != null) {
+                        n4Var2.f36375r0[0].getWebView().findNext(true);
                         return;
                     }
                     return;
                 }
-                l4Var2.W(l4Var2.D + 1);
+                n4Var2.W(n4Var2.D + 1);
                 return;
             case 2:
-                l4 l4Var3 = this.f41668b;
-                m0 m0Var = l4Var3.f38512e0;
-                if (m0Var.Q) {
-                    m0Var.h(false);
+                n4 n4Var3 = this.f38627b;
+                o0 o0Var = n4Var3.f36363e0;
+                if (o0Var.Q) {
+                    o0Var.h(false);
                     return;
-                } else if (m0Var.T) {
-                    m0Var.k(false);
+                } else if (o0Var.T) {
+                    o0Var.k(false);
                     return;
                 } else {
-                    if (l4Var3.J()) {
-                        p3 p3Var = l4Var3.f38524r0[0];
-                        if (p3Var.f39868s) {
-                            if (p3Var.f() && p3Var.getWebView() != null) {
-                                p3Var.getWebView().goBack();
+                    if (n4Var3.J()) {
+                        r3 r3Var = n4Var3.f36375r0[0];
+                        if (r3Var.f37689s) {
+                            if (r3Var.f() && r3Var.getWebView() != null) {
+                                r3Var.getWebView().goBack();
                                 return;
                             }
                             return;
                         }
                     }
-                    if (l4Var3.f38508a0.size() > 1) {
-                        l4Var3.G();
+                    if (n4Var3.f36359a0.size() > 1) {
+                        n4Var3.G();
                         return;
                     }
-                    y3 y3Var = l4Var3.H;
-                    if (y3Var != null) {
-                        y3Var.dismiss(false);
+                    a4 a4Var = n4Var3.H;
+                    if (a4Var != null) {
+                        a4Var.dismiss(false);
                         return;
                     } else {
-                        l4Var3.o(true, true);
+                        n4Var3.o(true, true);
                         return;
                     }
                 }
             case 3:
-                y3 y3Var2 = this.f41668b.H;
-                if (y3Var2 != null) {
-                    y3Var2.dismiss(true);
+                a4 a4Var2 = this.f38627b.H;
+                if (a4Var2 != null) {
+                    a4Var2.dismiss(true);
                     return;
                 }
                 return;
             case 4:
-                l4 l4Var4 = this.f41668b;
+                n4 n4Var4 = this.f38627b;
                 int intValue = ((Integer) view.getTag()).intValue();
-                l4Var4.f39553a = intValue;
+                n4Var4.f36980a = intValue;
                 int i10 = 0;
                 for (int i11 = 0; i11 < 2; i11++) {
-                    l0 l0Var = l4Var4.P0[i11];
+                    n0 n0Var = n4Var4.P0[i11];
                     if (i11 == intValue) {
                         z4 = true;
                     } else {
                         z4 = false;
                     }
-                    ((RadioButton) l0Var.f38453b).a(z4, true);
+                    ((RadioButton) n0Var.f36297b).a(z4, true);
                 }
-                t3 t3Var = l4.f38486c1;
-                int i12 = l4Var4.f39553a;
-                t3Var.getClass();
+                v3 v3Var = n4.f36337c1;
+                int i12 = n4Var4.f36980a;
+                v3Var.getClass();
                 ApplicationLoader.applicationContext.getSharedPreferences("articles", 0).edit().putInt("font_type", i12).commit();
                 if (i12 == 0) {
                     typeface = Typeface.DEFAULT;
@@ -130,72 +130,72 @@ public final class u implements View.OnClickListener {
                     create3 = Typeface.create("serif", 3);
                 }
                 Typeface typeface5 = create3;
-                for (int i13 = 0; i13 < t3Var.f41417t.size(); i13++) {
-                    t3.b(t3Var.f41417t.keyAt(i13), (TextPaint) t3Var.f41417t.valueAt(i13), typeface2, typeface5, typeface4, typeface3);
+                for (int i13 = 0; i13 < v3Var.f38983t.size(); i13++) {
+                    v3.b(v3Var.f38983t.keyAt(i13), (TextPaint) v3Var.f38983t.valueAt(i13), typeface2, typeface5, typeface4, typeface3);
                 }
-                for (int i14 = 0; i14 < t3Var.f41416s.size(); i14++) {
-                    t3.b(t3Var.f41416s.keyAt(i14), (TextPaint) t3Var.f41416s.valueAt(i14), typeface2, typeface5, typeface4, typeface3);
+                for (int i14 = 0; i14 < v3Var.f38982s.size(); i14++) {
+                    v3.b(v3Var.f38982s.keyAt(i14), (TextPaint) v3Var.f38982s.valueAt(i14), typeface2, typeface5, typeface4, typeface3);
                 }
-                for (int i15 = 0; i15 < t3Var.f41414q.size(); i15++) {
-                    t3.b(t3Var.f41414q.keyAt(i15), (TextPaint) t3Var.f41414q.valueAt(i15), typeface2, typeface5, typeface4, typeface3);
+                for (int i15 = 0; i15 < v3Var.f38980q.size(); i15++) {
+                    v3.b(v3Var.f38980q.keyAt(i15), (TextPaint) v3Var.f38980q.valueAt(i15), typeface2, typeface5, typeface4, typeface3);
                 }
-                for (int i16 = 0; i16 < t3Var.f41415r.size(); i16++) {
-                    t3.b(t3Var.f41415r.keyAt(i16), (TextPaint) t3Var.f41415r.valueAt(i16), typeface2, typeface5, typeface4, typeface3);
+                for (int i16 = 0; i16 < v3Var.f38981r.size(); i16++) {
+                    v3.b(v3Var.f38981r.keyAt(i16), (TextPaint) v3Var.f38981r.valueAt(i16), typeface2, typeface5, typeface4, typeface3);
                 }
-                for (int i17 = 0; i17 < t3Var.f41418u.size(); i17++) {
-                    t3.b(t3Var.f41418u.keyAt(i17), (TextPaint) t3Var.f41418u.valueAt(i17), typeface2, typeface5, typeface4, typeface3);
+                for (int i17 = 0; i17 < v3Var.f38984u.size(); i17++) {
+                    v3.b(v3Var.f38984u.keyAt(i17), (TextPaint) v3Var.f38984u.valueAt(i17), typeface2, typeface5, typeface4, typeface3);
                 }
-                for (int i18 = 0; i18 < t3Var.f41419w.size(); i18++) {
-                    t3.b(t3Var.f41419w.keyAt(i18), (TextPaint) t3Var.f41419w.valueAt(i18), typeface2, typeface5, typeface4, typeface3);
+                for (int i18 = 0; i18 < v3Var.f38985w.size(); i18++) {
+                    v3.b(v3Var.f38985w.keyAt(i18), (TextPaint) v3Var.f38985w.valueAt(i18), typeface2, typeface5, typeface4, typeface3);
                 }
-                for (int i19 = 0; i19 < t3Var.f41420x.size(); i19++) {
-                    t3.b(t3Var.f41420x.keyAt(i19), (TextPaint) t3Var.f41420x.valueAt(i19), typeface2, typeface5, typeface4, typeface3);
+                for (int i19 = 0; i19 < v3Var.f38986x.size(); i19++) {
+                    v3.b(v3Var.f38986x.keyAt(i19), (TextPaint) v3Var.f38986x.valueAt(i19), typeface2, typeface5, typeface4, typeface3);
                 }
-                for (int i20 = 0; i20 < t3Var.f41401b.size(); i20++) {
-                    t3.b(t3Var.f41401b.keyAt(i20), (TextPaint) t3Var.f41401b.valueAt(i20), typeface2, typeface5, typeface4, typeface3);
+                for (int i20 = 0; i20 < v3Var.f38968b.size(); i20++) {
+                    v3.b(v3Var.f38968b.keyAt(i20), (TextPaint) v3Var.f38968b.valueAt(i20), typeface2, typeface5, typeface4, typeface3);
                 }
-                for (int i21 = 0; i21 < t3Var.f41402c.size(); i21++) {
-                    t3.b(t3Var.f41402c.keyAt(i21), (TextPaint) t3Var.f41402c.valueAt(i21), typeface2, typeface5, typeface4, typeface3);
+                for (int i21 = 0; i21 < v3Var.f38969c.size(); i21++) {
+                    v3.b(v3Var.f38969c.keyAt(i21), (TextPaint) v3Var.f38969c.valueAt(i21), typeface2, typeface5, typeface4, typeface3);
                 }
-                for (int i22 = 0; i22 < t3Var.f41412o.size(); i22++) {
-                    t3.b(t3Var.f41412o.keyAt(i22), (TextPaint) t3Var.f41412o.valueAt(i22), typeface2, typeface5, typeface4, typeface3);
+                for (int i22 = 0; i22 < v3Var.f38978o.size(); i22++) {
+                    v3.b(v3Var.f38978o.keyAt(i22), (TextPaint) v3Var.f38978o.valueAt(i22), typeface2, typeface5, typeface4, typeface3);
                 }
-                for (int i23 = 0; i23 < t3Var.f41413p.size(); i23++) {
-                    t3.b(t3Var.f41413p.keyAt(i23), (TextPaint) t3Var.f41413p.valueAt(i23), typeface2, typeface5, typeface4, typeface3);
+                for (int i23 = 0; i23 < v3Var.f38979p.size(); i23++) {
+                    v3.b(v3Var.f38979p.keyAt(i23), (TextPaint) v3Var.f38979p.valueAt(i23), typeface2, typeface5, typeface4, typeface3);
                 }
-                for (int i24 = 0; i24 < t3Var.v.size(); i24++) {
-                    t3.b(t3Var.v.keyAt(i24), (TextPaint) t3Var.v.valueAt(i24), typeface2, typeface5, typeface4, typeface3);
+                for (int i24 = 0; i24 < v3Var.v.size(); i24++) {
+                    v3.b(v3Var.v.keyAt(i24), (TextPaint) v3Var.v.valueAt(i24), typeface2, typeface5, typeface4, typeface3);
                 }
-                for (int i25 = 0; i25 < t3Var.f41421y.size(); i25++) {
-                    t3.b(t3Var.f41421y.keyAt(i25), (TextPaint) t3Var.f41421y.valueAt(i25), typeface2, typeface5, typeface4, typeface3);
+                for (int i25 = 0; i25 < v3Var.f38987y.size(); i25++) {
+                    v3.b(v3Var.f38987y.keyAt(i25), (TextPaint) v3Var.f38987y.valueAt(i25), typeface2, typeface5, typeface4, typeface3);
                 }
-                for (int i26 = 0; i26 < t3Var.f41422z.size(); i26++) {
-                    t3.b(t3Var.f41422z.keyAt(i26), (TextPaint) t3Var.f41422z.valueAt(i26), typeface2, typeface5, typeface4, typeface3);
+                for (int i26 = 0; i26 < v3Var.f38988z.size(); i26++) {
+                    v3.b(v3Var.f38988z.keyAt(i26), (TextPaint) v3Var.f38988z.valueAt(i26), typeface2, typeface5, typeface4, typeface3);
                 }
-                for (int i27 = 0; i27 < t3Var.A.size(); i27++) {
-                    t3.b(t3Var.A.keyAt(i27), (TextPaint) t3Var.A.valueAt(i27), typeface2, typeface5, typeface4, typeface3);
+                for (int i27 = 0; i27 < v3Var.A.size(); i27++) {
+                    v3.b(v3Var.A.keyAt(i27), (TextPaint) v3Var.A.valueAt(i27), typeface2, typeface5, typeface4, typeface3);
                 }
                 while (true) {
-                    p3[] p3VarArr = l4Var4.f38524r0;
-                    if (i10 < p3VarArr.length) {
-                        p3VarArr[i10].f39863c.l();
+                    r3[] r3VarArr = n4Var4.f36375r0;
+                    if (i10 < r3VarArr.length) {
+                        r3VarArr[i10].f37685c.l();
                         i10++;
                     } else {
                         return;
                     }
                 }
             default:
-                l4 l4Var5 = this.f41668b;
-                d3 d3Var = l4Var5.d;
-                if (d3Var != null) {
-                    AndroidUtilities.addToClipboard(d3Var.d.getText());
+                n4 n4Var5 = this.f38627b;
+                f3 f3Var = n4Var5.d;
+                if (f3Var != null) {
+                    AndroidUtilities.addToClipboard(f3Var.d.getText());
                     if (AndroidUtilities.shouldShowClipboardToast()) {
-                        Toast.makeText(l4Var5.I, LocaleController.getString(R.string.TextCopied), 0).show();
+                        Toast.makeText(n4Var5.I, LocaleController.getString(R.string.TextCopied), 0).show();
                     }
                 }
-                org.telegram.ui.ActionBar.p1 p1Var = l4Var5.E;
+                org.telegram.ui.ActionBar.p1 p1Var = n4Var5.E;
                 if (p1Var != null && p1Var.isShowing()) {
-                    l4Var5.E.d(true);
+                    n4Var5.E.d(true);
                     return;
                 }
                 return;

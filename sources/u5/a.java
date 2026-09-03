@@ -8,10 +8,10 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.regex.Pattern;
 import org.json.JSONObject;
-import org.telegram.ui.yh;
+import org.telegram.ui.ai;
 public abstract class a {
-    public static final Pattern f48383a = Pattern.compile("urn:x-cast:[-A-Za-z0-9_]+(\\.[-A-Za-z0-9_]+)*");
-    public static final Random f48384b = new Random(SystemClock.elapsedRealtime());
+    public static final Pattern f45158a = Pattern.compile("urn:x-cast:[-A-Za-z0-9_]+(\\.[-A-Za-z0-9_]+)*");
+    public static final Random f45159b = new Random(SystemClock.elapsedRealtime());
 
     public static String a(String str, JSONObject jSONObject) {
         if (jSONObject != null && jSONObject.has(str)) {
@@ -41,7 +41,7 @@ public abstract class a {
         int length = iArr.length;
         int i10 = 0;
         while (i10 < length) {
-            i10 = yh.d(iArr[i10], i10, 1, arrayList);
+            i10 = ai.d(iArr[i10], i10, 1, arrayList);
         }
         return arrayList;
     }

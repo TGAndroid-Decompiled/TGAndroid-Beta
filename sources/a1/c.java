@@ -13,34 +13,32 @@ import android.util.Log;
 import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.emoji2.text.w;
-import c2.y0;
+import c2.a1;
 import c2.z0;
 import c5.j;
+import cg.h2;
+import cg.r0;
+import cg.t0;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.b0;
-import com.google.firebase.messaging.d0;
-import com.google.firebase.messaging.s;
+import com.google.firebase.messaging.a0;
+import com.google.firebase.messaging.c0;
+import com.google.firebase.messaging.r;
 import d4.n;
 import d4.x;
 import d4.y;
-import dg.g2;
-import dg.q0;
-import dg.s0;
-import eg.h3;
-import eg.o3;
-import eg.p0;
-import eg.p3;
-import eg.t2;
+import dg.j3;
+import dg.q3;
+import dg.r3;
+import dg.v2;
 import f3.h;
-import hg.e1;
-import hg.x1;
+import gg.e1;
+import gg.x1;
 import j3.n0;
-import j7.a7;
+import j7.o5;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,37 +52,37 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.d2;
 import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Components.hj0;
+import org.telegram.ui.Components.gj0;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ai;
 import org.telegram.ui.mt0;
 import org.telegram.ui.tq0;
-import org.telegram.ui.yh;
-import qh.p6;
+import ph.r6;
 import y2.i;
-public final class c implements OnSuccessListener, c9.e, Continuation, OnCompleteListener, x, q0, g3.b, g2, c2, p6, ImageReceiver.ImageReceiverDelegate, xd.b, ba.a {
-    public final int f34a;
-    public final Object f35b;
+public final class c implements OnSuccessListener, c9.f, r0, Continuation, OnCompleteListener, x, h2, c2, r6, ImageReceiver.ImageReceiverDelegate, xd.b, g3.b, ba.a {
+    public final int f31a;
+    public final Object f32b;
 
-    public c(z0 z0Var, y0 y0Var) {
-        this.f34a = 2;
-        this.f35b = z0Var;
+    public c(a1 a1Var, z0 z0Var) {
+        this.f31a = 2;
+        this.f32b = a1Var;
     }
 
     @Override
     public void L(int i10, float f10, float f11, xd.c cVar) {
-        eh.f.a((eh.f) this.f35b);
+        dh.f.a((dh.f) this.f32b);
     }
 
     @Override
     public Typeface a() {
-        return s0.a((Font) this.f35b);
+        return t0.a((Font) this.f32b);
     }
 
     @Override
     public int b(Object obj) {
-        n0 n0Var = (n0) this.f35b;
+        n0 n0Var = (n0) this.f32b;
         n nVar = (n) obj;
-        String str = nVar.f4236b;
+        String str = nVar.f4146b;
         if ((!str.equals(n0Var.C) && !str.equals(y.b(n0Var))) || !nVar.c(n0Var, false)) {
             return 0;
         }
@@ -93,15 +91,20 @@ public final class c implements OnSuccessListener, c9.e, Continuation, OnComplet
 
     @Override
     public Bitmap c(BitmapFactory.Options options) {
-        return BitmapFactory.decodeFile((String) this.f35b, options);
+        return BitmapFactory.decodeFile((String) this.f32b, options);
+    }
+
+    @Override
+    public Object d0(j jVar) {
+        return this.f32b;
     }
 
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z4, boolean z10, boolean z11) {
-        hj0 lottieAnimation;
-        p3 p3Var = (p3) this.f35b;
+        gj0 lottieAnimation;
+        r3 r3Var = (r3) this.f32b;
         if (z4 && !z10 && (lottieAnimation = imageReceiver.getLottieAnimation()) != null) {
-            p3Var.q(lottieAnimation);
+            r3Var.q(lottieAnimation);
         }
     }
 
@@ -111,12 +114,21 @@ public final class c implements OnSuccessListener, c9.e, Continuation, OnComplet
     }
 
     @Override
-    public void e() {
+    public void f(ba.b bVar) {
+        f9.a aVar = (f9.a) this.f32b;
+        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+            Log.d("FirebaseCrashlytics", "Crashlytics native component now available.", null);
+        }
+        aVar.f6094b.set((f9.a) bVar.get());
+    }
+
+    @Override
+    public void g() {
         float f10;
-        mt0 mt0Var = (mt0) this.f35b;
-        TextView textView = mt0Var.f5131v1;
+        mt0 mt0Var = (mt0) this.f32b;
+        TextView textView = mt0Var.f4494v1;
         boolean a2 = mt0Var.C0.a();
-        ImageView imageView = mt0Var.f5129t1;
+        ImageView imageView = mt0Var.f4492t1;
         imageView.animate().cancel();
         ViewPropertyAnimator animate = imageView.animate();
         float f11 = 0.6f;
@@ -137,50 +149,36 @@ public final class c implements OnSuccessListener, c9.e, Continuation, OnComplet
     }
 
     @Override
-    public Object e0(j jVar) {
-        return this.f35b;
-    }
-
-    @Override
-    public void f(ba.b bVar) {
-        f9.a aVar = (f9.a) this.f35b;
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", "Crashlytics native component now available.", null);
-        }
-        aVar.f6224b.set((f9.a) bVar.get());
-    }
-
-    @Override
-    public Object g() {
+    public Object h() {
         SQLiteDatabase a2;
-        int i10 = this.f34a;
-        Object obj = this.f35b;
+        int i10 = this.f31a;
+        Object obj = this.f32b;
         switch (i10) {
-            case 13:
+            case 22:
                 h hVar = (h) ((f3.c) obj);
                 hVar.getClass();
-                int i11 = b3.a.f1389e;
+                int i11 = b3.a.e;
                 ?? obj2 = new Object();
-                obj2.f4081b = null;
-                obj2.f4082c = new ArrayList();
+                obj2.f4005b = null;
+                obj2.f4006c = new ArrayList();
                 obj2.d = null;
-                obj2.f4080a = "";
+                obj2.f4004a = "";
                 HashMap hashMap = new HashMap();
                 a2 = hVar.a();
                 a2.beginTransaction();
                 try {
-                    b3.a aVar = (b3.a) h.h(a2.rawQuery("SELECT log_source, reason, events_dropped_count FROM log_event_dropped", new String[0]), new androidx.car.app.utils.a(hVar, hashMap, (Object) obj2, 6));
+                    b3.a aVar = (b3.a) h.h(a2.rawQuery("SELECT log_source, reason, events_dropped_count FROM log_event_dropped", new String[0]), new androidx.car.app.utils.a(hVar, hashMap, (Object) obj2, 7));
                     a2.setTransactionSuccessful();
                     return aVar;
                 } finally {
                 }
-            case 14:
+            case 23:
                 h hVar2 = (h) ((f3.d) obj);
-                long W = hVar2.f5983b.W() - hVar2.d.d;
+                long l10 = hVar2.f5876b.l() - hVar2.d.d;
                 a2 = hVar2.a();
                 a2.beginTransaction();
                 try {
-                    String[] strArr = {String.valueOf(W)};
+                    String[] strArr = {String.valueOf(l10)};
                     Cursor rawQuery = a2.rawQuery("SELECT COUNT(*), transport_name FROM events WHERE timestamp_ms < ? GROUP BY transport_name", strArr);
                     while (rawQuery.moveToNext()) {
                         int i12 = rawQuery.getInt(0);
@@ -193,40 +191,40 @@ public final class c implements OnSuccessListener, c9.e, Continuation, OnComplet
                     return Integer.valueOf(delete);
                 } finally {
                 }
-            case 15:
-                h hVar3 = (h) ((f3.c) ((e3.g) obj).f4937i);
+            case 24:
+                h hVar3 = (h) ((f3.c) ((e3.g) obj).f5106i);
                 a2 = hVar3.a();
                 a2.beginTransaction();
                 try {
                     a2.compileStatement("DELETE FROM log_event_dropped").execute();
-                    a2.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + hVar3.f5983b.W()).execute();
+                    a2.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + hVar3.f5876b.l()).execute();
                     a2.setTransactionSuccessful();
                     return null;
                 } finally {
                 }
             default:
-                s sVar = (s) obj;
-                for (i iVar : (Iterable) ((h) ((f3.d) sVar.f4081b)).c(new w(29))) {
-                    ((androidx.biometric.e) sVar.f4082c).A(iVar, 1, false);
+                r rVar = (r) obj;
+                for (i iVar : (Iterable) ((h) ((f3.d) rVar.f4005b)).c(new f0.d(1))) {
+                    ((af.d) rVar.f4006c).A(iVar, 1, false);
                 }
                 return null;
         }
     }
 
     @Override
-    public void j(d2 d2Var, int i10) {
-        switch (this.f34a) {
-            case 18:
-                ((tq0) this.f35b).run();
+    public void l(d2 d2Var, int i10) {
+        switch (this.f31a) {
+            case 13:
+                ((tq0) this.f32b).run();
                 return;
-            case 19:
-                ((p0) this.f35b).f5426a.f5105c2.r();
+            case 14:
+                ((dg.r0) this.f32b).f4770a.f4468c2.r();
                 return;
             case 28:
-                ((x1) this.f35b).run();
+                ((x1) this.f32b).run();
                 return;
             default:
-                TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f35b;
+                TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f32b;
                 p2 R = LaunchActivity.R();
                 if (R != null) {
                     e1.T(R, tL_payments_giveawayInfoResults.gift_code_slug, null);
@@ -243,15 +241,15 @@ public final class c implements OnSuccessListener, c9.e, Continuation, OnComplet
 
     @Override
     public void onComplete(Task task) {
-        switch (this.f34a) {
-            case 6:
-                b0.b((Intent) this.f35b);
-                return;
+        switch (this.f31a) {
             case 7:
-                ((d0) this.f35b).f4048b.trySetResult(null);
+                a0.b((Intent) this.f32b);
+                return;
+            case 8:
+                ((c0) this.f32b).f3973b.trySetResult(null);
                 return;
             default:
-                ((ScheduledFuture) this.f35b).cancel(false);
+                ((ScheduledFuture) this.f32b).cancel(false);
                 return;
         }
     }
@@ -259,91 +257,91 @@ public final class c implements OnSuccessListener, c9.e, Continuation, OnComplet
     @Override
     public void onSuccess(Object obj) {
         boolean z4;
-        switch (this.f34a) {
+        switch (this.f31a) {
             case 0:
-                ((f) this.f35b).invoke(obj);
+                ((f) this.f32b).invoke(obj);
                 return;
             case 1:
-                ((b1.f) this.f35b).invoke(obj);
+                ((b1.f) this.f32b).invoke(obj);
                 return;
-            case 4:
-                com.google.firebase.messaging.y yVar = (com.google.firebase.messaging.y) obj;
-                if (((FirebaseMessaging) this.f35b).f4012e.o() && yVar.h.a() != null) {
-                    synchronized (yVar) {
-                        z4 = yVar.f4107g;
+            case 5:
+                com.google.firebase.messaging.x xVar = (com.google.firebase.messaging.x) obj;
+                if (((FirebaseMessaging) this.f32b).e.o() && xVar.h.a() != null) {
+                    synchronized (xVar) {
+                        z4 = xVar.f4028g;
                     }
                     if (!z4) {
-                        yVar.h(0L);
+                        xVar.h(0L);
                         return;
                     }
                     return;
                 }
                 return;
-            case 9:
-                ((b1.f) this.f35b).invoke(obj);
+            case 10:
+                ((b1.f) this.f32b).invoke(obj);
                 return;
-            case 12:
-                ((e1.b) this.f35b).invoke(obj);
-                return;
-            case 21:
-                t2 t2Var = (t2) this.f35b;
+            case 16:
+                v2 v2Var = (v2) this.f32b;
                 mb.b bVar = (mb.b) obj;
-                t2Var.f5494z0 = true;
-                t2Var.f5493y0 = false;
+                v2Var.f4835z0 = true;
+                v2Var.f4834y0 = false;
                 return;
-            case 22:
-                h3 h3Var = (h3) this.f35b;
+            case 17:
+                j3 j3Var = (j3) this.f32b;
                 mb.b bVar2 = (mb.b) obj;
                 ArrayList arrayList = new ArrayList();
-                for (int i10 = 0; i10 < bVar2.f13623a.size(); i10++) {
-                    mb.a aVar = (mb.a) bVar2.f13623a.get(i10);
+                for (int i10 = 0; i10 < bVar2.f13887a.size(); i10++) {
+                    mb.a aVar = (mb.a) bVar2.f13887a.get(i10);
                     ?? obj2 = new Object();
-                    obj2.f5379a = aVar.f13619a;
-                    obj2.f5380b = aVar.d;
-                    obj2.f5381c = aVar.f13622e;
-                    obj2.d = aVar.f13620b;
-                    obj2.f5382e = aVar.f13621c;
+                    obj2.f4726a = aVar.f13884a;
+                    obj2.f4727b = aVar.d;
+                    obj2.f4728c = aVar.e;
+                    obj2.d = aVar.f13885b;
+                    obj2.e = aVar.f13886c;
                     arrayList.add(obj2);
                 }
-                h3Var.run(arrayList);
+                j3Var.run(arrayList);
                 return;
-            case 23:
-                o3 o3Var = (o3) this.f35b;
+            case 18:
+                q3 q3Var = (q3) this.f32b;
                 List list = (List) obj;
-                o3Var.getClass();
+                q3Var.getClass();
                 if (list.size() <= 0) {
                     FileLog.d("objimg: no objects");
                     return;
                 }
-                int i11 = ((jb.a) list.get(0)).f9991c;
+                int i11 = ((jb.a) list.get(0)).f9339c;
                 String str = null;
-                if (a7.f9554a == null) {
-                    a7.f9554a = new String[]{"👥", "🔥", "📚", "🏔", "🧊", "🍱", null, "🚰", "🧸", "🗿", "🍔", "🚜", "🛷", "🐠", "🎪", null, "🪑", "🧔", "🌉", "🩰", "🐦", "🚣", "🏞", null, "🏭", "🎓", "🍶", "🌿", "🌸", "🛋", "😎", "🏗", "🎡", "🐠", "🤿", "🐶", "⛵", "🎨", "🏆", "🧗", "🏸", "🦁", "🚲", "🏟", null, "⛵", "🙂", "🏄", "🍟", "🌇", "🌭", "🩳", "🚌", "🐂", "🌌", "🐹", "🪨", "👥", "👗", "👣", null, "🐻", "🍽", "🗼", "🧱", "🗑", "👤", "🏄", "👙", "🎢", "🏕", "🎠", "🚽", "😆", "🎈", "🎤", "👗", "🚧", "📦", "🐠", "🧺", "🌼", "🛒", "🥊", "💍", "💎", "🎰", "🚗", "🪜", "💻", "🍳", "📽️", "🪑", "🖼", "🍷", "🚢", "🛳", "👥", "🧗", "🕳", "👔", "🛠", "🌊", "🤡", "🎉", "🚴", "☄️", "🎓", "🏟", "🎄", "⛪", "🕰", "👨", "🐄", "🌴", "🖥", "🥌", "🍲", "🐱", "🧃", "🍚", null, "👥", "🏙", null, "🧸", "🍪", "🟩", "🕎", "🧶", "🛹", "✂️", "💅", "🥤", "🍴", "📜", null, "👘", "🧸", "📱", "🚦", "❄️", "🇵🇷", "⛓", "💃", "🏜", "🎅", "🦃", "🤵", "👄", "🏜", "🦕", "👳\u200d♂️", "🔥", "🛏", "🥽", "🐉", "🛋", "🛷", "🧢", "📋", "🎩", "🍨", "🐎", "🧶", "👕", "🧣", "🏖", "⚽", "🖤", "🎧", "🏛", "🚘", "🛹", "🦢", "🍖", "🥅", "🧁", "🐕", "🚤", "🌳", "☕", "⚽", "🧸", "🍲", "🧍", "📖", "🍉", "🍜", "✨", "💼", "🌳", "🐕", "🌲", "🚩", "⛵", "🦶", "🧥", null, "🛏", null, "🛁", "🗻", "🤸\u200d♀️", "👂", "🌸", "🐚", "👵", "🏛", "👁️", "🛏", "⚖️", "🎒", "🐎", "✨", "🛸", "💇", "🧸", "👥", "🪟", "🌟", "🐱", "🐄", "🐞", "❄️", "💍", "🚪", "💎", "🧶", "🏺", "🧥", "❤️", "💪", "🏍", "💰", "🕌", "🍽", "💃", "🛶", "🏖", "🧾", "🏞", "🚨", "🐴", "🧥", "📯", "⌚", "🧱", "🤿", "👖", "🏊", "🎸", "🎭", "🤘", "🌕", "🧥", "💍", "📱", "🪖", "🍽", "🎉", "🌌", "📰", "🗞", null, "🎹", "🪴", "🛂", "🐧", "🐕", "🏰", "🏵", "🏇", "📝", "🎶", "⛵", "🍕", "🐾", "🧵", "🐦", "🛹", "🏄", "🏉", "💄", "🏞", "🏁", "🚣", "🛣", "🏃", "🛋", "🏠", "⭐", "🏅", "👟", "🚤", "🪐", "😴", "🤲", "🏊", "🏫", "🍣", "🛋", "🦸", "😎", "⛷", "🚢", "🎵", "📚", "🏙", "🌋", "📺", "🐎", "💉", "🚆", "🚪", "🥤", "🚗", "👜", "💡", "🎫", "🍷", "🍗", "🎡", "🏄", "💻", null, null, "🏡", "🎣", "❤️", "🌱", "☕", "🍞", "🏖", null, "🏛", "🚁", "⛰", "🦆", "🌱", "🐢", "🐊", "🎶", "👟", "🧶", "💍", "🎤", "🎡", "🏂", "🚤", "🧱", "🚀", "🏠", "🏖", "🌈", "🌿", "👨", "🌷", "👗", "🏞", "🐶", "🦸", "🌸", "🍽", "🔊", "⛪", "🏢", "✈️", "🐾", "🐂", "🪑", "🛕", "🦋", "👠", "🏃", "🪡", "🍳", "🏰", "🌌", "🐛", "🏎", null, "✈️", "🚣", "🧵", "🤵", "🎢", "🍲", "🥦", "🚲", "👖", "🪴", "🗄", "🎂", "💺", "✈️", null, "🌫", "🎆", "🚜", "🦭", "📚", "💇", "⚡", "🚐", "🐱", "🚗", "👖", "🌾", "🤿", "☔", "🛣", "⛵", "🐶", "🔳", "🍽", "👰", "💧", null, "🍴", "🚙", "👶", "👓", "🚗", "✈️", "✋", "🐎", "🏞", "🍽", "⚾", "🍷", "👰", "🌿", "🥧", "🎒", "🃏", "🦹", "🪖", "🛶", "🤳", "🛺", "🏚", "🏹", "🚀", null, "⛈", "⛑"};
+                if (o5.f9084a == null) {
+                    o5.f9084a = new String[]{"👥", "🔥", "📚", "🏔", "🧊", "🍱", null, "🚰", "🧸", "🗿", "🍔", "🚜", "🛷", "🐠", "🎪", null, "🪑", "🧔", "🌉", "🩰", "🐦", "🚣", "🏞", null, "🏭", "🎓", "🍶", "🌿", "🌸", "🛋", "😎", "🏗", "🎡", "🐠", "🤿", "🐶", "⛵", "🎨", "🏆", "🧗", "🏸", "🦁", "🚲", "🏟", null, "⛵", "🙂", "🏄", "🍟", "🌇", "🌭", "🩳", "🚌", "🐂", "🌌", "🐹", "🪨", "👥", "👗", "👣", null, "🐻", "🍽", "🗼", "🧱", "🗑", "👤", "🏄", "👙", "🎢", "🏕", "🎠", "🚽", "😆", "🎈", "🎤", "👗", "🚧", "📦", "🐠", "🧺", "🌼", "🛒", "🥊", "💍", "💎", "🎰", "🚗", "🪜", "💻", "🍳", "📽️", "🪑", "🖼", "🍷", "🚢", "🛳", "👥", "🧗", "🕳", "👔", "🛠", "🌊", "🤡", "🎉", "🚴", "☄️", "🎓", "🏟", "🎄", "⛪", "🕰", "👨", "🐄", "🌴", "🖥", "🥌", "🍲", "🐱", "🧃", "🍚", null, "👥", "🏙", null, "🧸", "🍪", "🟩", "🕎", "🧶", "🛹", "✂️", "💅", "🥤", "🍴", "📜", null, "👘", "🧸", "📱", "🚦", "❄️", "🇵🇷", "⛓", "💃", "🏜", "🎅", "🦃", "🤵", "👄", "🏜", "🦕", "👳\u200d♂️", "🔥", "🛏", "🥽", "🐉", "🛋", "🛷", "🧢", "📋", "🎩", "🍨", "🐎", "🧶", "👕", "🧣", "🏖", "⚽", "🖤", "🎧", "🏛", "🚘", "🛹", "🦢", "🍖", "🥅", "🧁", "🐕", "🚤", "🌳", "☕", "⚽", "🧸", "🍲", "🧍", "📖", "🍉", "🍜", "✨", "💼", "🌳", "🐕", "🌲", "🚩", "⛵", "🦶", "🧥", null, "🛏", null, "🛁", "🗻", "🤸\u200d♀️", "👂", "🌸", "🐚", "👵", "🏛", "👁️", "🛏", "⚖️", "🎒", "🐎", "✨", "🛸", "💇", "🧸", "👥", "🪟", "🌟", "🐱", "🐄", "🐞", "❄️", "💍", "🚪", "💎", "🧶", "🏺", "🧥", "❤️", "💪", "🏍", "💰", "🕌", "🍽", "💃", "🛶", "🏖", "🧾", "🏞", "🚨", "🐴", "🧥", "📯", "⌚", "🧱", "🤿", "👖", "🏊", "🎸", "🎭", "🤘", "🌕", "🧥", "💍", "📱", "🪖", "🍽", "🎉", "🌌", "📰", "🗞", null, "🎹", "🪴", "🛂", "🐧", "🐕", "🏰", "🏵", "🏇", "📝", "🎶", "⛵", "🍕", "🐾", "🧵", "🐦", "🛹", "🏄", "🏉", "💄", "🏞", "🏁", "🚣", "🛣", "🏃", "🛋", "🏠", "⭐", "🏅", "👟", "🚤", "🪐", "😴", "🤲", "🏊", "🏫", "🍣", "🛋", "🦸", "😎", "⛷", "🚢", "🎵", "📚", "🏙", "🌋", "📺", "🐎", "💉", "🚆", "🚪", "🥤", "🚗", "👜", "💡", "🎫", "🍷", "🍗", "🎡", "🏄", "💻", null, null, "🏡", "🎣", "❤️", "🌱", "☕", "🍞", "🏖", null, "🏛", "🚁", "⛰", "🦆", "🌱", "🐢", "🐊", "🎶", "👟", "🧶", "💍", "🎤", "🎡", "🏂", "🚤", "🧱", "🚀", "🏠", "🏖", "🌈", "🌿", "👨", "🌷", "👗", "🏞", "🐶", "🦸", "🌸", "🍽", "🔊", "⛪", "🏢", "✈️", "🐾", "🐂", "🪑", "🛕", "🦋", "👠", "🏃", "🪡", "🍳", "🏰", "🌌", "🐛", "🏎", null, "✈️", "🚣", "🧵", "🤵", "🎢", "🍲", "🥦", "🚲", "👖", "🪴", "🗄", "🎂", "💺", "✈️", null, "🌫", "🎆", "🚜", "🦭", "📚", "💇", "⚡", "🚐", "🐱", "🚗", "👖", "🌾", "🤿", "☔", "🛣", "⛵", "🐶", "🔳", "🍽", "👰", "💧", null, "🍴", "🚙", "👶", "👓", "🚗", "✈️", "✋", "🐎", "🏞", "🍽", "⚾", "🍷", "👰", "🌿", "🥧", "🎒", "🃏", "🦹", "🪖", "🛶", "🤳", "🛺", "🏚", "🏹", "🚀", null, "⛈", "⛑"};
                 }
                 if (i11 >= 0) {
-                    String[] strArr = a7.f9554a;
+                    String[] strArr = o5.f9084a;
                     if (i11 < strArr.length) {
                         str = strArr[i11];
                     }
                 }
-                o3Var.W = str;
+                q3Var.W = str;
                 StringBuilder sb = new StringBuilder("objimg: detected #");
-                sb.append(((jb.a) list.get(0)).f9991c);
+                sb.append(((jb.a) list.get(0)).f9339c);
                 sb.append(" ");
-                sb.append(o3Var.W);
+                sb.append(q3Var.W);
                 sb.append(" ");
-                yh.v(((jb.a) list.get(0)).f9989a, sb);
-                Emoji.getEmojiDrawable(o3Var.W);
+                ai.v(((jb.a) list.get(0)).f9337a, sb);
+                Emoji.getEmojiDrawable(q3Var.W);
+                return;
+            case 21:
+                ((e1.b) this.f32b).invoke(obj);
                 return;
             default:
-                ((e1.b) this.f35b).invoke(obj);
+                ((e1.b) this.f32b).invoke(obj);
                 return;
         }
     }
 
     @Override
     public Object then(Task task) {
-        ((a9.a) this.f35b).getClass();
+        ((a9.a) this.f32b).getClass();
         Bundle bundle = (Bundle) task.getResult(IOException.class);
         if (bundle != null) {
             String string = bundle.getString("registration_id");
@@ -368,8 +366,8 @@ public final class c implements OnSuccessListener, c9.e, Continuation, OnComplet
     }
 
     public c(Object obj, int i10) {
-        this.f34a = i10;
-        this.f35b = obj;
+        this.f31a = i10;
+        this.f32b = obj;
     }
 
     @Override

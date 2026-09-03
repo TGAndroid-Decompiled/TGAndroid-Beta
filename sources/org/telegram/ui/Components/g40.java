@@ -1,58 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.HashtagSearchController;
-import org.telegram.messenger.LocaleController;
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class g40 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final h40 f27086a;
+public final class g40 extends FrameLayout {
+    public final int f25038a;
+    public final org.telegram.ui.ActionBar.f6 f25039b;
+    public ArrayList f25040c;
+    public final FrameLayout d;
+    public final g61 e;
+    public final w51 f25041f;
+    public Utilities.Callback h;
 
-    public g40(h40 h40Var) {
-        this.f27086a = h40Var;
+    public g40(int i10, Activity activity, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(activity);
+        this.f25038a = i10;
+        this.f25039b = f6Var;
+        g61 g61Var = new g61(activity, i10, 0, false, new d(this, 15), new f40(this), new f40(this), f6Var);
+        this.e = g61Var;
+        g61Var.setClipToPadding(false);
+        w51 w51Var = (w51) g61Var.getAdapter();
+        this.f25041f = w51Var;
+        w51Var.f30148r = false;
+        addView(g61Var, -1, -1);
+        FrameLayout frameLayout = new FrameLayout(activity);
+        this.d = frameLayout;
+        ImageView imageView = new ImageView(activity);
+        int i11 = org.telegram.ui.ActionBar.j6.f20042m6;
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i11, f6Var), PorterDuff.Mode.MULTIPLY));
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.large_hashtags);
+        frameLayout.addView(imageView, k7.b6.e(56, 56, 49));
+        TextView textView = new TextView(activity);
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
+        org.telegram.messenger.y3.r(R.string.HashtagSearchPlaceholder, textView, 17);
+        frameLayout.addView(textView, k7.b6.d(-2, -2.0f, 81, 0.0f, 56.0f, 0.0f, 0.0f));
+        addView(frameLayout, k7.b6.e(210, -2, 17));
+        g61Var.setEmptyView(frameLayout);
     }
 
-    @Override
-    public void mo27run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        int i10 = ((h51) obj).d;
-        h40 h40Var = this.f27086a;
-        if (i10 == 0) {
-            HashtagSearchController.getInstance(h40Var.f27353a).clearHistory();
-            h40Var.f27357f.N(true);
-            return;
-        }
-        Utilities.Callback callback = h40Var.h;
-        if (callback != null) {
-            callback.run((String) h40Var.f27355c.get(i10 - 1));
-        }
+    public void setOnHashtagClickListener(Utilities.Callback<String> callback) {
+        this.h = callback;
     }
 
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        int i10 = ((h51) obj).d;
-        boolean z4 = false;
-        if (i10 != 0) {
-            h40 h40Var = this.f27086a;
-            String str = (String) h40Var.f27355c.get(i10 - 1);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(h40Var.getContext(), 0, h40Var.f27354b);
-            String string = LocaleController.getString(R.string.ClearSearchSingleAlertTitle);
-            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21168a;
-            d2Var.O = string;
-            d2Var.Q = LocaleController.formatString(R.string.ClearSearchSingleHashtagAlertText, str);
-            alertDialog$Builder.k(LocaleController.getString(R.string.ClearSearchRemove), new o1(20, h40Var, str));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            d2Var.show();
-            z4 = true;
-        }
-        return Boolean.valueOf(z4);
+    public void setOnScrollListener(f2.z0 z0Var) {
+        this.e.j(z0Var);
     }
 }

@@ -3,9 +3,9 @@ package org.telegram.ui;
 import android.view.TextureView;
 import org.telegram.messenger.MessageObject;
 public interface yu0 {
-    void G(MessageObject messageObject);
+    void H(MessageObject messageObject);
 
-    TextureView h0();
+    TextureView e0();
 
-    void y0(MessageObject messageObject);
+    void w0(MessageObject messageObject);
 }

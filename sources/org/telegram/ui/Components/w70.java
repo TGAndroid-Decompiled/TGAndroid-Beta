@@ -1,19 +1,15 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class w70 extends sl0 {
-    public final a80 U2;
+import androidx.recyclerview.widget.RecyclerView;
+public final class w70 extends f2.z0 {
+    public final z70 f30171a;
 
-    public w70(a80 a80Var, Context context) {
-        super(context, null);
-        this.U2 = a80Var;
+    public w70(z70 z70Var) {
+        this.f30171a = z70Var;
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.U2.f25185n) {
-            return;
-        }
-        super.requestLayout();
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        z70.o(this.f30171a);
     }
 }

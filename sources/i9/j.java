@@ -4,13 +4,13 @@ import android.util.Log;
 import java.io.IOException;
 public final class j {
     public static final i d = new i(0);
-    public static final e5.f f7952e = new e5.f(14);
-    public final n9.b f7953a;
-    public String f7954b = null;
-    public String f7955c = null;
+    public static final e5.e e = new e5.e(14);
+    public final n9.b f7371a;
+    public String f7372b = null;
+    public String f7373c = null;
 
     public j(n9.b bVar) {
-        this.f7953a = bVar;
+        this.f7371a = bVar;
     }
 
     public static void a(n9.b bVar, String str, String str2) {

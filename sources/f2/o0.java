@@ -1,147 +1,111 @@
 package f2;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-public final class o0 {
-    public final RecyclerView f5902a;
+import android.database.Observable;
+import android.os.Trace;
+import android.view.ViewGroup;
+import java.util.List;
+public abstract class o0 {
+    public final p0 f5805a = new Observable();
+    public boolean f5806b = false;
 
-    public o0(RecyclerView recyclerView) {
-        this.f5902a = recyclerView;
+    public void B(q0 q0Var) {
+        this.f5805a.registerObserver(q0Var);
     }
 
-    public void a(a aVar) {
-        int i10 = aVar.f5725a;
-        RecyclerView recyclerView = this.f5902a;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 4) {
-                    if (i10 != 8) {
-                        return;
-                    }
-                    recyclerView.f1349x.X(recyclerView, aVar.f5726b, aVar.d);
-                    return;
-                }
-                recyclerView.f1349x.a0(recyclerView, aVar.f5726b, aVar.d, aVar.f5727c);
-                return;
-            }
-            recyclerView.f1349x.Y(recyclerView, aVar.f5726b, aVar.d);
+    public final void C(boolean z4) {
+        if (!this.f5805a.a()) {
+            this.f5806b = z4;
             return;
         }
-        recyclerView.f1349x.V(recyclerView, aVar.f5726b, aVar.d);
+        throw new IllegalStateException("Cannot change whether this adapter has stable IDs while the adapter has registered observers.");
     }
 
-    public void b(int i10, int i11, Object obj) {
-        int i12;
-        int i13;
-        RecyclerView recyclerView = this.f5902a;
-        int u10 = recyclerView.f1325e.u();
-        int i14 = i11 + i10;
-        for (int i15 = 0; i15 < u10; i15++) {
-            View t6 = recyclerView.f1325e.t(i15);
-            m1 U = RecyclerView.U(t6);
-            if (U != null && !U.r() && (i13 = U.f5877c) >= i10 && i13 < i14) {
-                U.a(2);
-                if (obj == null) {
-                    U.a(1024);
-                } else if ((1024 & U.f5884l) == 0) {
-                    if (U.f5885m == null) {
-                        ArrayList arrayList = new ArrayList();
-                        U.f5885m = arrayList;
-                        U.f5886n = DesugarCollections.unmodifiableList(arrayList);
-                    }
-                    U.f5885m.add(obj);
-                }
-                ((x0) t6.getLayoutParams()).f5954c = true;
+    public final l1 g(ViewGroup viewGroup, int i10) {
+        try {
+            int i11 = n0.g.f14194a;
+            Trace.beginSection("RV CreateView");
+            l1 x10 = x(viewGroup, i10);
+            if (x10.f5774a.getParent() == null) {
+                x10.f5777f = i10;
+                Trace.endSection();
+                return x10;
             }
+            throw new IllegalStateException("ViewHolder views must not be attached when created. Ensure that you are not passing 'true' to the attachToRoot parameter of LayoutInflater.inflate(..., boolean attachToRoot)");
+        } catch (Throwable th2) {
+            int i12 = n0.g.f14194a;
+            Trace.endSection();
+            throw th2;
         }
-        bf.f fVar = recyclerView.f1320b;
-        ArrayList arrayList2 = (ArrayList) fVar.f1953e;
-        for (int size = arrayList2.size() - 1; size >= 0; size--) {
-            m1 m1Var = (m1) arrayList2.get(size);
-            if (m1Var != null && (i12 = m1Var.f5877c) >= i10 && i12 < i14) {
-                m1Var.a(2);
-                fVar.f(size);
-            }
-        }
-        recyclerView.f1345u0 = true;
     }
 
-    public void c(int i10, int i11) {
-        RecyclerView recyclerView = this.f5902a;
-        int u10 = recyclerView.f1325e.u();
-        for (int i12 = 0; i12 < u10; i12++) {
-            m1 U = RecyclerView.U(recyclerView.f1325e.t(i12));
-            if (U != null && !U.r() && U.f5877c >= i10) {
-                U.n(i11, false);
-                recyclerView.f1339q0.f5831f = true;
-            }
-        }
-        ArrayList arrayList = (ArrayList) recyclerView.f1320b.f1953e;
-        int size = arrayList.size();
-        for (int i13 = 0; i13 < size; i13++) {
-            m1 m1Var = (m1) arrayList.get(i13);
-            if (m1Var != null && m1Var.f5877c >= i10) {
-                m1Var.n(i11, true);
-            }
-        }
-        recyclerView.requestLayout();
-        recyclerView.f1344t0 = true;
+    public abstract int h();
+
+    public long i(int i10) {
+        return -1L;
     }
 
-    public void d(int i10, int i11) {
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        int i17;
-        int i18;
-        RecyclerView recyclerView = this.f5902a;
-        int u10 = recyclerView.f1325e.u();
-        int i19 = -1;
-        if (i10 < i11) {
-            i13 = i10;
-            i12 = i11;
-            i14 = -1;
-        } else {
-            i12 = i10;
-            i13 = i11;
-            i14 = 1;
-        }
-        for (int i20 = 0; i20 < u10; i20++) {
-            m1 U = RecyclerView.U(recyclerView.f1325e.t(i20));
-            if (U != null && (i18 = U.f5877c) >= i13 && i18 <= i12) {
-                if (i18 == i10) {
-                    U.n(i11 - i10, false);
-                } else {
-                    U.n(i14, false);
-                }
-                recyclerView.f1339q0.f5831f = true;
-            }
-        }
-        ArrayList arrayList = (ArrayList) recyclerView.f1320b.f1953e;
-        if (i10 < i11) {
-            i16 = i10;
-            i15 = i11;
-        } else {
-            i15 = i10;
-            i16 = i11;
-            i19 = 1;
-        }
-        int size = arrayList.size();
-        for (int i21 = 0; i21 < size; i21++) {
-            m1 m1Var = (m1) arrayList.get(i21);
-            if (m1Var != null && (i17 = m1Var.f5877c) >= i16 && i17 <= i15) {
-                if (i17 == i10) {
-                    m1Var.n(i11 - i10, false);
-                } else {
-                    m1Var.n(i19, false);
-                }
-            }
-        }
-        recyclerView.requestLayout();
-        recyclerView.f1344t0 = true;
+    public int j(int i10) {
+        return 0;
+    }
+
+    public int k() {
+        return h();
+    }
+
+    public void l() {
+        this.f5805a.b();
+    }
+
+    public void m(int i10) {
+        this.f5805a.d(i10, 1, null);
+    }
+
+    public final void n(int i10, Object obj) {
+        this.f5805a.d(i10, 1, obj);
+    }
+
+    public void o(int i10) {
+        this.f5805a.e(i10, 1);
+    }
+
+    public void p(int i10, int i11) {
+        this.f5805a.c(i10, i11);
+    }
+
+    public void q(int i10, int i11) {
+        this.f5805a.d(i10, i11, null);
+    }
+
+    public void r(int i10, int i11, Object obj) {
+        this.f5805a.d(i10, i11, obj);
+    }
+
+    public void s(int i10, int i11) {
+        this.f5805a.e(i10, i11);
+    }
+
+    public void t(int i10, int i11) {
+        this.f5805a.f(i10, i11);
+    }
+
+    public void u(int i10) {
+        this.f5805a.f(i10, 1);
+    }
+
+    public abstract void v(l1 l1Var, int i10);
+
+    public void w(l1 l1Var, int i10, List list) {
+        v(l1Var, i10);
+    }
+
+    public abstract l1 x(ViewGroup viewGroup, int i10);
+
+    public void A(l1 l1Var) {
+    }
+
+    public void y(l1 l1Var) {
+    }
+
+    public void z(l1 l1Var) {
     }
 }

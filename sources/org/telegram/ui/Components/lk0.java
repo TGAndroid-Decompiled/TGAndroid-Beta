@@ -1,33 +1,32 @@
 package org.telegram.ui.Components;
-public final class lk0 implements Runnable {
-    public final int f28801a;
-    public final ok0 f28802b;
 
-    public lk0(ok0 ok0Var, int i10) {
-        this.f28801a = i10;
-        this.f28802b = ok0Var;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+public final class lk0 extends ImageReceiver {
+    public final int f26774a;
+
+    public lk0(int i10, View view) {
+        super(view);
+        this.f26774a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28801a) {
+    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z4, int i11) {
+        switch (this.f26774a) {
             case 0:
-                if (this.f28802b.f29791a.getImageReceiver().getLottieAnimation() != null && !this.f28802b.f29791a.getImageReceiver().getLottieAnimation().f27530i0 && !this.f28802b.f29791a.getImageReceiver().getLottieAnimation().w()) {
-                    this.f28802b.f29791a.getImageReceiver().getLottieAnimation().start();
+                if (drawable instanceof gj0) {
+                    ((gj0) drawable).L(0, false, true);
                 }
-                this.f28802b.B = false;
-                return;
+                return super.setImageBitmapByKey(drawable, str, i10, z4, i11);
             default:
-                ok0 ok0Var = this.f28802b;
-                qk0 qk0Var = ok0Var.M;
-                try {
-                    ok0Var.performHapticFeedback(0);
-                } catch (Exception unused) {
+                boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i10, z4, i11);
+                if (imageBitmapByKey && (drawable instanceof gj0)) {
+                    gj0 gj0Var = (gj0) drawable;
+                    gj0Var.L(0, false, true);
+                    gj0Var.stop();
                 }
-                qk0Var.f30444j0 = qk0Var.Q.indexOf(ok0Var.f29794e);
-                qk0Var.f30443i0 = ok0Var.f29794e;
-                qk0Var.invalidate();
-                return;
+                return imageBitmapByKey;
         }
     }
 }

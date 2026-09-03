@@ -1,38 +1,40 @@
 package lh;
 
-import android.os.Bundle;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.s00;
-import org.telegram.ui.xn;
-public final class i4 extends xn {
-    public boolean Nc;
-    public final TL_stars.TL_starGiftUnique Oc;
-    public final long Pc;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class i4 {
+    public final lf.b f12569a;
+    public final TLRPC.TL_payments_paymentFormStarGift f12570b;
+    public final lf.a f12571c;
 
-    public i4(Bundle bundle, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10) {
-        super(bundle);
-        this.Oc = tL_starGiftUnique;
-        this.Pc = j10;
-        this.Nc = false;
-    }
-
-    @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.Nc) {
-            this.Nc = true;
-            ic O = qc.a0(this).O(this.Oc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Pc)));
-            O.f27786r = false;
-            O.j();
-            s00 s00Var = this.f43215j9;
-            if (s00Var != null) {
-                s00Var.c(true);
+    public i4(lf.b bVar, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift) {
+        long j10;
+        this.f12569a = bVar;
+        this.f12570b = tL_payments_paymentFormStarGift;
+        t7[][] t7VarArr = t7.S;
+        if (tL_payments_paymentFormStarGift != null) {
+            ArrayList<TLRPC.TL_labeledPrice> arrayList = tL_payments_paymentFormStarGift.invoice.prices;
+            int size = arrayList.size();
+            int i10 = 0;
+            j10 = 0;
+            while (i10 < size) {
+                TLRPC.TL_labeledPrice tL_labeledPrice = arrayList.get(i10);
+                i10++;
+                j10 += tL_labeledPrice.amount;
             }
+        } else {
+            j10 = 0;
+        }
+        lf.b bVar2 = lf.b.f12056a;
+        if (bVar == bVar2) {
+            this.f12571c = lf.a.g(j10, bVar2);
+            return;
+        }
+        lf.b bVar3 = lf.b.f12057b;
+        if (bVar == bVar3) {
+            this.f12571c = lf.a.i(j10, bVar3);
+        } else {
+            this.f12571c = lf.a.i(0L, bVar2);
         }
     }
 }

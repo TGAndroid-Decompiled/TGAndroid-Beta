@@ -1,61 +1,74 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-public final class rd implements View.OnClickListener {
-    public final int f40816a = 1;
-    public final int f40817b;
-    public final long f40818c;
-    public final FrameLayout d;
-    public final Object f40819e;
+public final class rd implements Runnable {
+    public final int f37800a;
+    public final me f37801b;
 
-    public rd(int i10, qh.d dVar, org.telegram.ui.ActionBar.h3 h3Var, long j10) {
-        this.f40817b = i10;
-        this.d = dVar;
-        this.f40819e = h3Var;
-        this.f40818c = j10;
+    public rd(me meVar, int i10) {
+        this.f37800a = i10;
+        this.f37801b = meVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f40816a) {
+    public final void run() {
+        switch (this.f37800a) {
             case 0:
-                ke keVar = (ke) this.d;
-                Context context = (Context) this.f40819e;
-                if (view.isEnabled()) {
-                    qh.d dVar = keVar.Q0;
-                    if (!dVar.K) {
-                        dVar.setLoading(true);
-                        TLRPC.TL_payments_getStarsRevenueAdsAccountUrl tL_payments_getStarsRevenueAdsAccountUrl = new TLRPC.TL_payments_getStarsRevenueAdsAccountUrl();
-                        int i10 = this.f40817b;
-                        tL_payments_getStarsRevenueAdsAccountUrl.peer = MessagesController.getInstance(i10).getInputPeer(this.f40818c);
-                        ConnectionsManager.getInstance(i10).sendRequest(tL_payments_getStarsRevenueAdsAccountUrl, new eg.b3(24, keVar, context));
-                        return;
-                    }
+                ze.d.s(this.f37801b.getContext(), LocaleController.getString(R.string.MonetizationStarsInfoLink));
+                return;
+            case 1:
+                org.telegram.ui.Components.g61 g61Var = this.f37801b.X0;
+                if (g61Var != null) {
+                    g61Var.V2.N(true);
                     return;
                 }
                 return;
+            case 2:
+                me meVar = this.f37801b;
+                meVar.getClass();
+                try {
+                    org.telegram.ui.Components.rl0 currentListView = meVar.f36038b1.getCurrentListView();
+                    if (currentListView != null && currentListView.getAdapter() != null) {
+                        currentListView.getAdapter().l();
+                        return;
+                    }
+                    return;
+                } catch (Throwable unused) {
+                    return;
+                }
+            case 3:
+                me meVar2 = this.f37801b;
+                int i10 = meVar2.f36058v0;
+                AndroidUtilities.cancelRunOnUIThread(meVar2.f36054s1);
+                if (meVar2.f36046j1 != meVar2.f36047k1) {
+                    TLRPC.TL_channels_restrictSponsoredMessages tL_channels_restrictSponsoredMessages = new TLRPC.TL_channels_restrictSponsoredMessages();
+                    tL_channels_restrictSponsoredMessages.channel = MessagesController.getInstance(i10).getInputChannel(-meVar2.f36059w0);
+                    tL_channels_restrictSponsoredMessages.restricted = meVar2.f36046j1;
+                    ConnectionsManager.getInstance(i10).sendRequest(tL_channels_restrictSponsoredMessages, new xd(meVar2, 0));
+                    return;
+                }
+                return;
+            case 4:
+                me meVar3 = this.f37801b;
+                meVar3.f36047k1 = meVar3.f36046j1;
+                return;
+            case 5:
+                this.f37801b.Q0.setLoading(false);
+                return;
+            case 6:
+                this.f37801b.Z0.setVisibility(8);
+                return;
+            case 7:
+                this.f37801b.Z0.setVisibility(8);
+                return;
             default:
-                qh.d dVar2 = (qh.d) this.d;
-                org.telegram.ui.ActionBar.h3 h3Var = (org.telegram.ui.ActionBar.h3) this.f40819e;
-                TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
-                createconferencecall.random_id = Utilities.random.nextInt();
-                int i11 = this.f40817b;
-                ConnectionsManager.getInstance(i11).sendRequest(createconferencecall, new mh.t(i11, dVar2, h3Var, this.f40818c));
+                ze.d.s(this.f37801b.getContext(), LocaleController.getString(R.string.MonetizationBalanceInfoLink));
                 return;
         }
-    }
-
-    public rd(ke keVar, int i10, long j10, Context context) {
-        this.d = keVar;
-        this.f40817b = i10;
-        this.f40818c = j10;
-        this.f40819e = context;
     }
 }

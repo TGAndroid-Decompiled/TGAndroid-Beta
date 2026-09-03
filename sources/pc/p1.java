@@ -6,12 +6,12 @@ public enum p1 extends a2 {
 
     @Override
     public final void d(k kVar, a aVar) {
-        f fVar = kVar.f44379m;
+        f fVar = kVar.f41204m;
         char d = aVar.d();
         if (d != '\t' && d != '\n' && d != '\f' && d != '\r' && d != ' ') {
             if (d != '\"') {
                 if (d != '\'') {
-                    v vVar = a2.f44321a;
+                    v vVar = a2.f41150a;
                     if (d != '>') {
                         if (d != 65535) {
                             kVar.m(this);
@@ -22,23 +22,23 @@ public enum p1 extends a2 {
                         kVar.l(this);
                         fVar.getClass();
                         kVar.j();
-                        kVar.f44371c = vVar;
+                        kVar.f41197c = vVar;
                         return;
                     }
                     kVar.m(this);
                     fVar.getClass();
                     kVar.j();
-                    kVar.f44371c = vVar;
+                    kVar.f41197c = vVar;
                     return;
                 }
                 kVar.m(this);
-                kVar.f44371c = a2.f44353x0;
+                kVar.f41197c = a2.f41181x0;
                 return;
             }
             kVar.m(this);
-            kVar.f44371c = a2.f44351w0;
+            kVar.f41197c = a2.f41179w0;
             return;
         }
-        kVar.f44371c = a2.f44349v0;
+        kVar.f41197c = a2.f41177v0;
     }
 }

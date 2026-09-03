@@ -4,18 +4,18 @@ import android.text.TextPaint;
 import android.text.style.URLSpan;
 import android.view.View;
 public final class f01 extends URLSpan {
-    public final String f36619a;
-    public final n01 f36620b;
+    public final String f33900a;
+    public final n01 f33901b;
 
     public f01(n01 n01Var, String str, String str2) {
         super(str);
-        this.f36620b = n01Var;
-        this.f36619a = str2;
+        this.f33901b = n01Var;
+        this.f33900a = str2;
     }
 
     @Override
     public final void onClick(View view) {
-        af.g.s(this.f36620b.f39152e.getParentActivity(), this.f36619a);
+        ze.d.s(this.f33901b.e.getParentActivity(), this.f33900a);
     }
 
     @Override

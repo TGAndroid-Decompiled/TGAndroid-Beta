@@ -3,6 +3,7 @@ package org.webrtc;
 import android.graphics.SurfaceTexture;
 import android.view.Surface;
 import java.util.ArrayList;
+import kf.k0;
 public interface EglBase {
     public static final int EGL_OPENGL_ES2_BIT = 4;
     public static final int EGL_OPENGL_ES3_BIT = 64;
@@ -74,7 +75,7 @@ public interface EglBase {
                 this.openGlesVersion = i10;
                 return this;
             }
-            throw new IllegalArgumentException(l.d.k(i10, "OpenGL ES version ", " not supported"));
+            throw new IllegalArgumentException(k0.k(i10, "OpenGL ES version ", " not supported"));
         }
 
         public ConfigBuilder setSupportsPixelBuffer(boolean z4) {

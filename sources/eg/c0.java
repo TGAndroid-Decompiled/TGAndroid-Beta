@@ -1,52 +1,48 @@
 package eg;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.b11;
-import org.telegram.ui.d60;
-public final class c0 implements DialogInterface.OnDismissListener {
-    public final int f5100a;
+import android.view.View;
+import gg.v2;
+import org.telegram.ui.Components.jl0;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class c0 implements org.telegram.ui.ActionBar.c2, jl0 {
+    public final int f5214a;
+    public final v0 f5215b;
 
-    public c0(int i10) {
-        this.f5100a = i10;
+    public c0(v0 v0Var, int i10) {
+        this.f5214a = i10;
+        this.f5215b = v0Var;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f5100a) {
+    public boolean d(int i10, View view) {
+        v0 v0Var = this.f5215b;
+        v0Var.d.getOnItemClickListener().d(i10, view);
+        if (v0Var.f5527e0 != 19) {
+            try {
+                view.performHapticFeedback(0);
+            } catch (Exception unused) {
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void l(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f5214a) {
             case 0:
-                MediaController.forceBroadcastNewPhotos = false;
+                v0 v0Var = this.f5215b;
+                v0Var.H0.presentFragment(new PremiumPreviewFragment(0, null));
+                v0Var.dismiss();
+                d2Var.dismiss();
                 return;
             case 1:
-                org.telegram.ui.c.f35643a = false;
-                return;
-            case 2:
-                return;
-            case 3:
-                SharedConfig.BackgroundActivityPrefs.increaseDismissedCount();
-                return;
-            case 4:
-                int i10 = b11.f25467e;
-                return;
-            case 5:
-                d60 d60Var = d60.A3;
-                return;
-            case 6:
+                d2Var.dismiss();
+                this.f5215b.n1();
                 return;
             default:
-                int i11 = qh.x1.D;
+                this.f5215b.dismiss();
+                v2.e0(0, null);
                 return;
         }
-    }
-
-    public c0(boolean[] zArr) {
-        this.f5100a = 2;
-    }
-
-    private final void a(DialogInterface dialogInterface) {
-    }
-
-    private final void b(DialogInterface dialogInterface) {
     }
 }

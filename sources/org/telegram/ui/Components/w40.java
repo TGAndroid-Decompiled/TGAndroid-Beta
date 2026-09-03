@@ -1,23 +1,20 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class w40 {
-    public final TLObject f32639a;
-    public TLRPC.User f32640b;
-    public final int f32641c;
-    public final boolean d;
-    public boolean f32642e;
+public interface w40 {
+    void D(float f10);
 
-    public w40(int i10, TLObject tLObject) {
-        boolean z4;
-        this.f32639a = tLObject;
-        this.f32641c = i10;
-        if ((tLObject instanceof TLRPC.User) && ((TLRPC.User) tLObject).self) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        this.d = z4;
-    }
+    void K(boolean z4, boolean z10);
+
+    void P();
+
+    void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z4, TLRPC.VideoSize videoSize);
+
+    boolean e();
+
+    org.telegram.ui.qu0 getCloseIntoObject();
+
+    String getInitialSearchString();
+
+    boolean u();
 }

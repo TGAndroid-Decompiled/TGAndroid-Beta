@@ -1,10 +1,10 @@
 package h5;
 public final class c {
-    public boolean f7233a;
+    public boolean f6920a;
 
     public synchronized void a() {
         boolean z4 = false;
-        while (!this.f7233a) {
+        while (!this.f6920a) {
             try {
                 wait();
             } catch (InterruptedException unused) {
@@ -17,14 +17,14 @@ public final class c {
     }
 
     public synchronized void b() {
-        this.f7233a = false;
+        this.f6920a = false;
     }
 
     public synchronized boolean c() {
-        if (this.f7233a) {
+        if (this.f6920a) {
             return false;
         }
-        this.f7233a = true;
+        this.f6920a = true;
         notifyAll();
         return true;
     }

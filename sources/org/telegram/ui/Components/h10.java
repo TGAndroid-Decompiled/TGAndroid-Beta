@@ -64,8 +64,8 @@ public abstract class h10 implements Application.ActivityLifecycleCallbacks {
             while (it.hasNext()) {
                 try {
                     it.next().onBecameForeground();
-                } catch (Exception e6) {
-                    FileLog.e(e6);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
             }
         }
@@ -85,8 +85,8 @@ public abstract class h10 implements Application.ActivityLifecycleCallbacks {
             while (it.hasNext()) {
                 try {
                     it.next().onBecameBackground();
-                } catch (Exception e6) {
-                    FileLog.e(e6);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
             }
         }

@@ -6,28 +6,28 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class qt0 extends FrameLayout {
-    public c2.y B;
+    public c2.z B;
     public int C;
     public sq0 D;
-    public b90 E;
+    public z80 E;
     public boolean F;
     public int G;
     public boolean H;
     public float I;
-    public long f30516a;
-    public boolean f30517b;
-    public ObjectAnimator f30518c;
+    public long f28256a;
+    public boolean f28257b;
+    public ObjectAnimator f28258c;
     public f2.l d;
-    public f2.c1 f30519e;
-    public f2.c1 f30520f;
+    public f2.b1 e;
+    public f2.b1 f28259f;
     public wr0 h;
-    public og.k f30521n;
-    public pt0 f30522r;
-    public yr0 f30523s;
+    public ng.k f28260n;
+    public pt0 f28261r;
+    public yr0 f28262s;
     public fs0 v;
-    public hs0 f30524w;
-    public ur0 f30525x;
-    public es0 f30526y;
+    public hs0 f28263w;
+    public ur0 f28264x;
+    public es0 f28265y;
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
@@ -35,7 +35,7 @@ public abstract class qt0 extends FrameLayout {
         super.dispatchDraw(canvas);
         sq0 sq0Var2 = this.D;
         if (sq0Var2 != null && sq0Var2.getVisibility() == 0) {
-            bl0 fastScroll = this.h.getFastScroll();
+            al0 fastScroll = this.h.getFastScroll();
             if (fastScroll != null) {
                 float dp = AndroidUtilities.dp(36.0f) + fastScroll.getScrollBarY();
                 if (this.C == 9) {
@@ -58,7 +58,7 @@ public abstract class qt0 extends FrameLayout {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f30522r) {
+        if (view == this.f28261r) {
             return true;
         }
         return super.drawChild(canvas, view, j10);

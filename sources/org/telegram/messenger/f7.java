@@ -1,26 +1,26 @@
 package org.telegram.messenger;
 public final class f7 implements Runnable {
-    public final int f18634a;
-    public final MediaDataController f18635b;
-    public final long f18636c;
+    public final int f17170a;
+    public final MediaDataController f17171b;
+    public final long f17172c;
 
     public f7(MediaDataController mediaDataController, long j10, int i10) {
-        this.f18634a = i10;
-        this.f18635b = mediaDataController;
-        this.f18636c = j10;
+        this.f17170a = i10;
+        this.f17171b = mediaDataController;
+        this.f17172c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18634a) {
+        switch (this.f17170a) {
             case 0:
-                this.f18635b.lambda$loadPinnedMessages$161(this.f18636c);
+                this.f17171b.lambda$loadPinnedMessages$161(this.f17172c);
                 return;
             case 1:
-                this.f18635b.lambda$increasePeerRaiting$157(this.f18636c);
+                this.f17171b.lambda$increasePeerRaiting$157(this.f17172c);
                 return;
             default:
-                this.f18635b.lambda$clearBotKeyboard$194(this.f18636c);
+                this.f17171b.lambda$clearBotKeyboard$194(this.f17172c);
                 return;
         }
     }

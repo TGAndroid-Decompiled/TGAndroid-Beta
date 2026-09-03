@@ -1,132 +1,75 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.text.style.ForegroundColorSpan;
-import android.widget.TextView;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.d90;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.g90;
-import org.telegram.ui.nd;
-public final class x1 extends g90 {
-    public final int I;
-    public final Object J;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class x1 extends LinearLayout {
+    public final ImageView f22536a;
+    public final org.telegram.ui.Components.k6 f22537b;
+    public final View f22538c;
 
-    public x1(Object obj, Context context, int i10) {
-        super(context, null);
-        this.I = i10;
-        this.J = obj;
+    public x1(y1 y1Var, Context context, int i10) {
+        super(context);
+        int i11;
+        int i12;
+        int i13 = org.telegram.ui.ActionBar.j6.G6;
+        org.telegram.ui.ActionBar.f6 f6Var = y1Var.f22576b;
+        int v02 = org.telegram.ui.ActionBar.j6.v0(i13, f6Var);
+        if (i10 != 0) {
+            ImageView imageView = new ImageView(context);
+            this.f22536a = imageView;
+            imageView.setColorFilter(new PorterDuffColorFilter(v02, PorterDuff.Mode.MULTIPLY));
+            imageView.setImageResource(i10);
+        }
+        org.telegram.ui.Components.k6 k6Var = new org.telegram.ui.Components.k6(context, false, true, false);
+        this.f22537b = k6Var;
+        k6Var.setTextSize(AndroidUtilities.dp(13.0f));
+        k6Var.setTextColor(v02);
+        k6Var.setIncludeFontPadding(false);
+        k6Var.setTypeface(AndroidUtilities.bold());
+        View view = new View(context);
+        this.f22538c = view;
+        Drawable mutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
+        mutate.setColorFilter(new PorterDuffColorFilter(v02, PorterDuff.Mode.MULTIPLY));
+        view.setBackground(mutate);
+        if (LocaleController.isRTL) {
+            addView(view, k7.b6.t(16, 16, 16, 11, 0, 3, 0));
+            if (this.f22536a == null) {
+                i12 = 11;
+            } else {
+                i12 = 3;
+            }
+            addView(k6Var, k7.b6.t(-2, 16, 16, 0, 0, i12, 0));
+            View view2 = this.f22536a;
+            if (view2 != null) {
+                addView(view2, k7.b6.t(16, 16, 16, 0, 0, 11, 0));
+            }
+        } else {
+            View view3 = this.f22536a;
+            if (view3 != null) {
+                addView(view3, k7.b6.t(16, 16, 16, 11, 0, 3, 0));
+            }
+            if (this.f22536a == null) {
+                i11 = 11;
+            } else {
+                i11 = 0;
+            }
+            addView(k6Var, k7.b6.t(-2, 16, 16, i11, 0, 3, 0));
+            addView(view, k7.b6.t(16, 16, 16, 0, 0, 11, 0));
+        }
+        setBackground(org.telegram.ui.ActionBar.j6.Y(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19971i6, f6Var), 16, 16));
+        setClickable(true);
     }
 
     @Override
-    public int a() {
-        switch (this.I) {
-            case 4:
-                return ((UndoView) this.J).f25077a;
-            default:
-                return super.a();
-        }
-    }
-
-    @Override
-    public int c() {
-        switch (this.I) {
-            case 1:
-                Integer num = ((a9) this.J).d;
-                if (num != null) {
-                    return num.intValue();
-                }
-                return super.c();
-            default:
-                return super.c();
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.I) {
-            case 0:
-                super.onDraw(canvas);
-                ((z1) this.J).f();
-                return;
-            case 1:
-                a9 a9Var = (a9) this.J;
-                a9Var.b();
-                super.onDraw(canvas);
-                a9Var.a();
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        String str;
-        switch (this.I) {
-            case 0:
-                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
-                return;
-            case 1:
-            default:
-                super.setText(charSequence, bufferType);
-                return;
-            case 2:
-                if (charSequence != 0) {
-                    charSequence = AndroidUtilities.replaceTags(charSequence.toString());
-                    int indexOf = charSequence.toString().indexOf(10);
-                    if (indexOf >= 0) {
-                        charSequence.replace(indexOf, indexOf + 1, " ");
-                        charSequence.setSpan(new ForegroundColorSpan(((org.telegram.ui.oa) this.J).f39631e.getThemedColor(org.telegram.ui.ActionBar.k6.f21878p7)), 0, indexOf, 33);
-                    }
-                    e51[] e51VarArr = (e51[]) charSequence.getSpans(0, charSequence.length(), e51.class);
-                    for (int i10 = 0; i10 < e51VarArr.length; i10++) {
-                        charSequence.setSpan(new fg.l0(this, 2), charSequence.getSpanStart(e51VarArr[i10]), charSequence.getSpanEnd(e51VarArr[i10]), 33);
-                        charSequence.removeSpan(e51VarArr[i10]);
-                    }
-                }
-                super.setText(charSequence, bufferType);
-                return;
-            case 3:
-                nd ndVar = (nd) this.J;
-                if (charSequence != 0) {
-                    charSequence = AndroidUtilities.replaceTags(charSequence.toString());
-                    int indexOf2 = charSequence.toString().indexOf(10);
-                    if (indexOf2 >= 0) {
-                        charSequence.replace(indexOf2, indexOf2 + 1, " ");
-                        charSequence.setSpan(new ForegroundColorSpan(ndVar.getThemedColor(org.telegram.ui.ActionBar.k6.f21878p7)), 0, indexOf2, 33);
-                    }
-                    e51[] e51VarArr2 = (e51[]) charSequence.getSpans(0, charSequence.length(), e51.class);
-                    EditTextBoldCursor editTextBoldCursor = ndVar.f39324w;
-                    if (editTextBoldCursor != null && editTextBoldCursor.getText() != null) {
-                        str = ndVar.f39324w.getText().toString();
-                    } else {
-                        str = "";
-                    }
-                    for (int i11 = 0; i11 < e51VarArr2.length; i11++) {
-                        charSequence.setSpan(new i(4, (Object) this, str), charSequence.getSpanStart(e51VarArr2[i11]), charSequence.getSpanEnd(e51VarArr2[i11]), 33);
-                        charSequence.removeSpan(e51VarArr2[i11]);
-                    }
-                }
-                super.setText(charSequence, bufferType);
-                return;
-        }
-    }
-
-    public x1(a9 a9Var, Context context, d90 d90Var, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, d90Var, g6Var);
-        this.I = 1;
-        this.J = a9Var;
-    }
-
-    public x1(UndoView undoView, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, g6Var);
-        this.I = 4;
-        this.J = undoView;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
     }
 }

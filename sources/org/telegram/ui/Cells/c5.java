@@ -1,88 +1,155 @@
 package org.telegram.ui.Cells;
 
-import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.f91;
-import org.telegram.ui.Components.jo0;
-import org.telegram.ui.fu;
-public final class c5 implements jo0 {
-    public final fu f22648a;
+public abstract class c5 extends FrameLayout {
+    public TextView f20874a;
+    public TextView f20875b;
+    public j0 f20876c;
+    public long d;
 
-    public c5(fu fuVar) {
-        this.f22648a = fuVar;
-    }
-
-    @Override
-    public final void X(float f10, boolean z4) {
-        float c3;
-        int i10;
-        if (f10 <= 0.25f) {
-            c3 = w.c.c(f10, 0.25f, 536576.0f, 512000);
-        } else {
-            float f11 = f10 - 0.25f;
-            if (f11 < 0.25f) {
-                c3 = w.c.c(f11, 0.25f, 9437184.0f, 1048576);
+    public final void a(ArrayList arrayList, boolean z4) {
+        float f10;
+        float f11;
+        float f12;
+        float f13;
+        TextView textView = this.f20875b;
+        j0 j0Var = this.f20876c;
+        TextView textView2 = this.f20874a;
+        super.setEnabled(z4);
+        float f14 = 0.5f;
+        if (arrayList != null) {
+            if (z4) {
+                f12 = 1.0f;
             } else {
-                float f12 = f11 - 0.25f;
-                if (f12 <= 0.25f) {
-                    c3 = w.c.c(f12, 0.25f, 9.437184E7f, 10485760);
+                f12 = 0.5f;
+            }
+            arrayList.add(ObjectAnimator.ofFloat(textView2, "alpha", f12));
+            if (z4) {
+                f13 = 1.0f;
+            } else {
+                f13 = 0.5f;
+            }
+            arrayList.add(ObjectAnimator.ofFloat(j0Var, "alpha", f13));
+            if (z4) {
+                f14 = 1.0f;
+            }
+            arrayList.add(ObjectAnimator.ofFloat(textView, "alpha", f14));
+            return;
+        }
+        if (z4) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.5f;
+        }
+        textView2.setAlpha(f10);
+        if (z4) {
+            f11 = 1.0f;
+        } else {
+            f11 = 0.5f;
+        }
+        j0Var.setAlpha(f11);
+        if (z4) {
+            f14 = 1.0f;
+        }
+        textView.setAlpha(f14);
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (!isEnabled()) {
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public long getSize() {
+        return this.d;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        if (LocaleController.isRTL) {
+            dp = 0.0f;
+        } else {
+            dp = AndroidUtilities.dp(20.0f);
+        }
+        float measuredHeight = getMeasuredHeight() - 1;
+        int measuredWidth = getMeasuredWidth();
+        if (LocaleController.isRTL) {
+            i10 = AndroidUtilities.dp(20.0f);
+        } else {
+            i10 = 0;
+        }
+        canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f20000k0);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (!isEnabled()) {
+            return true;
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(80.0f));
+        int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(42.0f);
+        TextView textView = this.f20875b;
+        textView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+        this.f20874a.measure(View.MeasureSpec.makeMeasureSpec(kf.k0.c(8.0f, measuredWidth - textView.getMeasuredWidth(), AndroidUtilities.dp(10.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+        this.f20876c.measure(org.telegram.ui.b.d(20.0f, getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!isEnabled()) {
+            return true;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    public void setSize(long j10) {
+        float max;
+        float f10;
+        float f11;
+        this.d = j10;
+        this.f20875b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
+        long j11 = j10 - 512000;
+        if (j11 < 536576) {
+            f11 = Math.max(0.0f, ((float) j11) / 536576.0f) * 0.25f;
+        } else {
+            long j12 = j10 - 1048576;
+            if (j12 < 9437184) {
+                f11 = (Math.max(0.0f, ((float) j12) / 9437184.0f) * 0.25f) + 0.25f;
+            } else {
+                long j13 = j10 - 10485760;
+                if (j13 < 94371840) {
+                    max = Math.max(0.0f, ((float) j13) / 9.437184E7f) * 0.25f;
+                    f10 = 0.5f;
                 } else {
-                    c3 = w.c.c(f12 - 0.25f, 0.25f, (float) (2097152000 - 104857600), 104857600);
+                    max = Math.max(0.0f, ((float) (j10 - 104857600)) / 1.9922944E9f) * 0.25f;
+                    f10 = 0.75f;
                 }
+                f11 = max + f10;
             }
         }
-        int i11 = (int) c3;
-        fu fuVar = this.f22648a;
-        long j10 = i11;
-        boolean z10 = true;
-        fuVar.f22677b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
-        fuVar.d = j10;
-        s8[] s8VarArr = fuVar.h;
-        AnimatorSet[] animatorSetArr = fuVar.f36915n;
-        int i12 = fuVar.f36913e;
-        i10 = fuVar.f36916r.videosRow;
-        if (i12 == i10) {
-            fuVar.f36914f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j10)));
-            if (i11 <= 2097152) {
-                z10 = false;
-            }
-            if (z10 != s8VarArr[0].isEnabled()) {
-                ArrayList arrayList = new ArrayList();
-                s8VarArr[0].e(arrayList, z10);
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null) {
-                    animatorSet.cancel();
-                    animatorSetArr[0] = null;
-                }
-                AnimatorSet animatorSet2 = new AnimatorSet();
-                animatorSetArr[0] = animatorSet2;
-                animatorSet2.playTogether(arrayList);
-                animatorSetArr[0].addListener(new f91(fuVar, 13));
-                animatorSetArr[0].setDuration(150L);
-                animatorSetArr[0].start();
-            }
-        }
+        this.f20876c.setProgress(Math.min(1.0f, f11));
     }
 
-    @Override
-    public final CharSequence getContentDescription() {
-        StringBuilder sb = new StringBuilder();
-        fu fuVar = this.f22648a;
-        sb.append((Object) fuVar.f22676a.getText());
-        sb.append(" ");
-        sb.append((Object) fuVar.f22677b.getText());
-        return sb.toString();
-    }
-
-    @Override
-    public final int m0() {
-        return 0;
-    }
-
-    @Override
-    public final void A() {
+    public void setText(String str) {
+        this.f20874a.setText(str);
     }
 }

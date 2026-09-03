@@ -1,16 +1,15 @@
 package e5;
+public final class h implements Comparable {
+    public final int f5142a;
+    public final c f5143b;
 
-import java.util.Set;
-public final class h {
-    public final String f4971a;
-    public final int f4972b;
-    public final String f4973c;
-    public final Set d;
+    public h(int i10, c cVar) {
+        this.f5142a = i10;
+        this.f5143b = cVar;
+    }
 
-    public h(String str, int i10, String str2, Set set) {
-        this.f4972b = i10;
-        this.f4971a = str;
-        this.f4973c = str2;
-        this.d = set;
+    @Override
+    public final int compareTo(Object obj) {
+        return Integer.compare(this.f5142a, ((h) obj).f5142a);
     }
 }

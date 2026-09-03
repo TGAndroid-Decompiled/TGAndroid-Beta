@@ -1,29 +1,18 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public abstract class wp extends m2.h {
-    public vp f32807t0;
+import android.widget.LinearLayout;
+public final class wp extends LinearLayout {
+    public final zp f30324a;
 
-    public wp(Context context) {
+    public wp(zp zpVar, Context context) {
         super(context);
-        b(new up((xh0) this));
+        this.f30324a = zpVar;
     }
 
     @Override
-    @Deprecated
-    public void setAdapter(m2.a aVar) {
-        if (aVar instanceof vp) {
-            setAdapter((vp) aVar);
-            return;
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public void setAdapter(vp vpVar) {
-        this.f32807t0 = vpVar;
-        super.setAdapter((m2.a) vpVar);
-        if (vpVar != null) {
-            x(vpVar.j(), false);
-        }
+    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
+        super.onLayout(z4, i10, i11, i12, i13);
+        zp.m(this.f30324a);
     }
 }

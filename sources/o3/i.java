@@ -1,20 +1,11 @@
 package o3;
 
-import java.util.UUID;
-public interface i {
-    UUID a();
+import java.io.IOException;
+public final class i extends IOException {
+    public final int f16248a;
 
-    boolean b();
-
-    void c(l lVar);
-
-    void d(l lVar);
-
-    int e();
-
-    boolean f(String str);
-
-    h g();
-
-    n3.b h();
+    public i(Exception exc, int i10) {
+        super(exc);
+        this.f16248a = i10;
+    }
 }

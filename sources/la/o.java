@@ -5,14 +5,14 @@ public enum o implements w9.f {
     LOG_ENVIRONMENT_STAGING(2),
     LOG_ENVIRONMENT_PROD(3);
     
-    public final int f12226a;
+    public final int f11919a;
 
     o(int i10) {
-        this.f12226a = i10;
+        this.f11919a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f12226a;
+        return this.f11919a;
     }
 }

@@ -6,17 +6,17 @@ import b7.n1;
 import b7.o1;
 import b7.p1;
 import java.util.Arrays;
-import org.telegram.ui.yh;
+import org.telegram.ui.ai;
 public final class u extends c6.a {
     public static final Parcelable.Creator<u> CREATOR = new l4.j(28);
-    public final String f44755a;
-    public final String f44756b;
-    public final b7.w0 f44757c;
+    public final String f42990a;
+    public final String f42991b;
+    public final b7.w0 f42992c;
     public final j d;
-    public final i f44758e;
-    public final k f44759f;
+    public final i e;
+    public final k f42993f;
     public final g h;
-    public final String f44760n;
+    public final String f42994n;
 
     public u(String str, String str2, byte[] bArr, j jVar, i iVar, k kVar, g gVar, String str3) {
         b7.w0 t6;
@@ -37,20 +37,20 @@ public final class u extends c6.a {
             z10 = true;
         }
         b6.m.a("Must provide id and rawId if not an error response.", z10);
-        this.f44755a = str;
-        this.f44756b = str2;
-        this.f44757c = t6;
+        this.f42990a = str;
+        this.f42991b = str2;
+        this.f42992c = t6;
         this.d = jVar;
-        this.f44758e = iVar;
-        this.f44759f = kVar;
+        this.e = iVar;
+        this.f42993f = kVar;
         this.h = gVar;
-        this.f44760n = str3;
+        this.f42994n = str3;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof u) {
             u uVar = (u) obj;
-            if (b6.m.l(this.f44755a, uVar.f44755a) && b6.m.l(this.f44756b, uVar.f44756b) && b6.m.l(this.f44757c, uVar.f44757c) && b6.m.l(this.d, uVar.d) && b6.m.l(this.f44758e, uVar.f44758e) && b6.m.l(this.f44759f, uVar.f44759f) && b6.m.l(this.h, uVar.h) && b6.m.l(this.f44760n, uVar.f44760n)) {
+            if (b6.m.l(this.f42990a, uVar.f42990a) && b6.m.l(this.f42991b, uVar.f42991b) && b6.m.l(this.f42992c, uVar.f42992c) && b6.m.l(this.d, uVar.d) && b6.m.l(this.e, uVar.e) && b6.m.l(this.f42993f, uVar.f42993f) && b6.m.l(this.h, uVar.h) && b6.m.l(this.f42994n, uVar.f42994n)) {
                 return true;
             }
             return false;
@@ -59,12 +59,12 @@ public final class u extends c6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f44755a, this.f44756b, this.f44757c, this.f44758e, this.d, this.f44759f, this.h, this.f44760n});
+        return Arrays.hashCode(new Object[]{this.f42990a, this.f42991b, this.f42992c, this.e, this.d, this.f42993f, this.h, this.f42994n});
     }
 
     public final String toString() {
         byte[] u10;
-        b7.w0 w0Var = this.f44757c;
+        b7.w0 w0Var = this.f42992c;
         if (w0Var == null) {
             u10 = null;
         } else {
@@ -72,23 +72,23 @@ public final class u extends c6.a {
         }
         String c3 = i6.b.c(u10);
         String valueOf = String.valueOf(this.d);
-        String valueOf2 = String.valueOf(this.f44758e);
-        String valueOf3 = String.valueOf(this.f44759f);
+        String valueOf2 = String.valueOf(this.e);
+        String valueOf3 = String.valueOf(this.f42993f);
         String valueOf4 = String.valueOf(this.h);
-        StringBuilder m9 = yh.m("PublicKeyCredential{\n id='", this.f44755a, "', \n type='", this.f44756b, "', \n rawId=");
-        yh.w(m9, c3, ", \n registerResponse=", valueOf, ", \n signResponse=");
-        yh.w(m9, valueOf2, ", \n errorResponse=", valueOf3, ", \n extensionsClientOutputs=");
-        m9.append(valueOf4);
-        m9.append(", \n authenticatorAttachment='");
-        m9.append(this.f44760n);
-        m9.append("'}");
-        return m9.toString();
+        StringBuilder l10 = ai.l("PublicKeyCredential{\n id='", this.f42990a, "', \n type='", this.f42991b, "', \n rawId=");
+        ai.w(l10, c3, ", \n registerResponse=", valueOf, ", \n signResponse=");
+        ai.w(l10, valueOf2, ", \n errorResponse=", valueOf3, ", \n extensionsClientOutputs=");
+        l10.append(valueOf4);
+        l10.append(", \n authenticatorAttachment='");
+        l10.append(this.f42994n);
+        l10.append("'}");
+        return l10.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        o1 o1Var = (o1) n1.f1854b.f1855a.f1820a;
-        p1.f1860a.a();
+        o1 o1Var = (o1) n1.f1723b.f1724a.f1692a;
+        p1.f1728a.a();
         throw null;
     }
 }

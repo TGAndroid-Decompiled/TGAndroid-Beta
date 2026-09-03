@@ -6,26 +6,26 @@ import d9.j;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 public final class a implements Executor {
-    public final int f9542a = 0;
-    public final Object f9543b;
+    public final int f8918a = 0;
+    public final Object f8919b;
 
     public a(Looper looper) {
-        this.f9543b = new e(looper, 0);
+        this.f8919b = new e(looper, 0);
     }
 
     @Override
     public final void execute(Runnable runnable) {
-        switch (this.f9542a) {
+        switch (this.f8918a) {
             case 0:
-                ((e) this.f9543b).post(runnable);
+                ((e) this.f8919b).post(runnable);
                 return;
             default:
-                ((Executor) this.f9543b).execute(new j(2, runnable));
+                ((Executor) this.f8919b).execute(new j(2, runnable));
                 return;
         }
     }
 
     public a(ExecutorService executorService) {
-        this.f9543b = executorService;
+        this.f8919b = executorService;
     }
 }

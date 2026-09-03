@@ -38,7 +38,7 @@ public abstract class y7 {
     public static int[] d(Collection collection) {
         if (collection instanceof u8.a) {
             u8.a aVar = (u8.a) collection;
-            return Arrays.copyOfRange(aVar.f48491a, aVar.f48492b, aVar.f48493c);
+            return Arrays.copyOfRange(aVar.f45258a, aVar.f45259b, aVar.f45260c);
         }
         Object[] array = collection.toArray();
         int length = array.length;

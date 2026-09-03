@@ -1,178 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public class pq extends Drawable implements Drawable.Callback {
-    public Drawable f30158a;
-    public final Drawable f30159b;
-    public final int f30160c;
-    public final int d;
-    public int f30161e;
-    public int f30162f;
-    public int h;
-    public int f30163n;
-    public boolean f30164r;
-    public int f30165s;
-    public int v;
-    public boolean f30166w;
-    public float f30167x;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class pq extends LinearLayout {
+    public final p9 f27986a;
 
-    public pq(Drawable drawable, Drawable drawable2, int i10, int i11) {
-        this.f30158a = drawable;
-        this.f30159b = drawable2;
-        this.f30160c = i10;
-        this.d = i11;
-        if (drawable2 != null) {
-            drawable2.setCallback(this);
+    public pq(Context context) {
+        super(context);
+        setOrientation(1);
+        p9 p9Var = new p9(context);
+        this.f27986a = p9Var;
+        p9Var.setImageDrawable(new l90(p9Var, "m418 282.6c13.4-21.1 20.2-44.9 20.2-70.8 0-88.3-79.8-175.3-178.9-175.3-100.1 0-178.9 88-178.9 175.3 0 46.6 16.9 73.1 29.1 86.1-19.3 23.4-30.9 52.3-34.6 86.1-2.5 22.7 3.2 41.4 17.4 57.3 14.3 16 51.7 35 148.1 35 41.2 0 119.9-5.3 156.7-18.3 49.5-17.4 59.2-41.1 59.2-76.2 0-41.5-12.9-74.8-38.3-99.2z", AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
+        if (!AndroidUtilities.isTablet()) {
+            addView(p9Var, k7.b6.q(110, 110, 49));
         }
+        TextView g10 = org.telegram.messenger.y3.g(context, 1, 20.0f);
+        org.telegram.ui.ai.s(org.telegram.ui.ActionBar.j6.G6, null, false, g10, 1);
+        g10.setText(LocaleController.getString(R.string.NoContactsYet3));
+        g10.setTypeface(AndroidUtilities.bold());
+        addView(g10, k7.b6.t(-2, -2, 49, 0, 15, 0, 7));
+        TextView textView = new TextView(context);
+        textView.setTextSize(1, 14.0f);
+        org.telegram.ui.ai.s(org.telegram.ui.ActionBar.j6.f19864c7, null, false, textView, 1);
+        textView.setText(LocaleController.getString(R.string.NoContactsYet3Sub));
+        textView.setMaxWidth(AndroidUtilities.dp(260.0f));
+        textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        addView(textView, k7.b6.t(-2, -2, 49, 0, 0, 0, 19));
+        ph.d dVar = new ph.d(context, null, true);
+        dVar.setUseWrapContent(true);
+        dVar.e();
+        dVar.setPadding(AndroidUtilities.dp(28.0f), 0, AndroidUtilities.dp(28.0f), 0);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
+        spannableStringBuilder.setSpan(new lq(R.drawable.filled_new_contact_24, 0), 0, 1, 33);
+        spannableStringBuilder.append((CharSequence) "  ").append((CharSequence) LocaleController.getString(R.string.NewContact));
+        dVar.g(spannableStringBuilder, false, true);
+        addView(dVar, k7.b6.q(-2, 44, 49));
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        canvas.save();
-        canvas.translate(this.f30167x, 0.0f);
-        if (this.f30164r) {
-            Rect bounds = getBounds();
-            setBounds(bounds.centerX() - (getIntrinsicWidth() / 2), bounds.centerY() - (getIntrinsicHeight() / 2), (getIntrinsicWidth() / 2) + bounds.centerX(), (getIntrinsicHeight() / 2) + bounds.centerY());
-        }
-        Drawable drawable = this.f30158a;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-            this.f30158a.draw(canvas);
-        }
-        Drawable drawable2 = this.f30159b;
-        if (drawable2 != null) {
-            boolean z4 = this.f30166w;
-            int i10 = this.d;
-            int i11 = this.f30160c;
-            if (z4) {
-                Rect bounds2 = getBounds();
-                if (i11 != 0) {
-                    drawable2.setBounds(bounds2.left + i11, bounds2.top + i10, bounds2.right - i11, bounds2.bottom - i10);
-                } else {
-                    drawable2.setBounds(bounds2);
-                }
-            } else if (this.f30161e != 0) {
-                int centerX = (getBounds().centerX() - (this.f30161e / 2)) + i11 + this.f30165s;
-                int centerY = getBounds().centerY();
-                int i12 = this.f30162f;
-                int i13 = (centerY - (i12 / 2)) + i10 + this.v;
-                drawable2.setBounds(centerX, i13, this.f30161e + centerX, i12 + i13);
-            } else {
-                int centerX2 = (getBounds().centerX() - (drawable2.getIntrinsicWidth() / 2)) + i11;
-                int centerY2 = (getBounds().centerY() - (drawable2.getIntrinsicHeight() / 2)) + i10;
-                drawable2.setBounds(centerX2, centerY2, drawable2.getIntrinsicWidth() + centerX2, drawable2.getIntrinsicHeight() + centerY2);
-            }
-            drawable2.draw(canvas);
-        }
-        canvas.restore();
-    }
-
-    @Override
-    public final Drawable.ConstantState getConstantState() {
-        return this.f30159b.getConstantState();
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        int i10 = this.f30163n;
-        if (i10 != 0) {
-            return i10;
-        }
-        return this.f30158a.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        int i10 = this.h;
-        if (i10 != 0) {
-            return i10;
-        }
-        return this.f30158a.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getMinimumHeight() {
-        int i10 = this.f30163n;
-        if (i10 != 0) {
-            return i10;
-        }
-        return this.f30158a.getMinimumHeight();
-    }
-
-    @Override
-    public final int getMinimumWidth() {
-        int i10 = this.h;
-        if (i10 != 0) {
-            return i10;
-        }
-        return this.f30158a.getMinimumWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return this.f30159b.getOpacity();
-    }
-
-    @Override
-    public final int[] getState() {
-        return this.f30159b.getState();
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        invalidateSelf();
-    }
-
-    @Override
-    public final boolean isStateful() {
-        return this.f30159b.isStateful();
-    }
-
-    @Override
-    public final void jumpToCurrentState() {
-        this.f30159b.jumpToCurrentState();
-    }
-
-    @Override
-    public final boolean onStateChange(int[] iArr) {
-        return true;
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
-        scheduleSelf(runnable, j10);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f30159b.setAlpha(i10);
-        this.f30158a.setAlpha(i10);
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.f30159b.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final boolean setState(int[] iArr) {
-        this.f30159b.setState(iArr);
-        return true;
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        unscheduleSelf(runnable);
-    }
-
-    public pq(Drawable drawable, Drawable drawable2) {
-        this.f30158a = drawable;
-        this.f30159b = drawable2;
-        if (drawable2 != null) {
-            drawable2.setCallback(this);
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f27986a.setImageDrawable(new gj0(R.raw.utyan_empty, AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
     }
 }

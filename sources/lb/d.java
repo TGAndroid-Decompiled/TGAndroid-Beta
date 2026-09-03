@@ -3,14 +3,14 @@ package lb;
 import l7.la;
 import l7.na;
 public final class d {
-    public final e f12263a;
-    public final cb.d f12264b;
-    public final la f12265c;
+    public final e f11953a;
+    public final cb.d f11954b;
+    public final la f11955c;
 
     public d(e eVar, cb.d dVar) {
         la b10 = na.b();
-        this.f12263a = eVar;
-        this.f12264b = dVar;
-        this.f12265c = b10;
+        this.f11953a = eVar;
+        this.f11954b = dVar;
+        this.f11955c = b10;
     }
 }

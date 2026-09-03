@@ -1,61 +1,61 @@
 package uf;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import org.telegram.tgnet.TLObject;
+import android.location.Address;
+import android.location.Geocoder;
+import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
-public final class o0 implements Comparator {
-    public final a0.h f48700a;
-    public final ArrayList f48701b;
+import org.telegram.ui.ActionBar.d2;
+import org.telegram.ui.cd0;
+public final class o0 implements Runnable {
+    public final int f45468a = 0;
+    public final v0 f45469b;
+    public final cd0 f45470c;
+    public final d2 d;
 
-    public o0(a0.h hVar, ArrayList arrayList) {
-        this.f48700a = hVar;
-        this.f48701b = arrayList;
+    public o0(v0 v0Var, d2 d2Var, cd0 cd0Var) {
+        this.f45469b = v0Var;
+        this.d = d2Var;
+        this.f45470c = cd0Var;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        long j10;
-        long j11;
-        TLObject tLObject = (TLObject) obj;
-        TLObject tLObject2 = (TLObject) obj2;
-        if (tLObject instanceof TLRPC.User) {
-            j10 = ((TLRPC.User) tLObject).f20992id;
-        } else {
-            j10 = -((TLRPC.Chat) tLObject).f20845id;
-        }
-        if (tLObject2 instanceof TLRPC.User) {
-            j11 = ((TLRPC.User) tLObject2).f20992id;
-        } else {
-            j11 = -((TLRPC.Chat) tLObject2).f20845id;
-        }
-        a0.h hVar = this.f48700a;
-        if (hVar.h(j10) < 0 || hVar.h(j11) < 0) {
-            if (hVar.h(j10) < 0) {
-                if (hVar.h(j11) < 0) {
-                    Long valueOf = Long.valueOf(j10);
-                    ArrayList arrayList = this.f48701b;
-                    int indexOf = arrayList.indexOf(valueOf);
-                    int indexOf2 = arrayList.indexOf(Long.valueOf(j11));
-                    if (indexOf != -1 && indexOf2 != -1) {
-                        if (indexOf >= indexOf2) {
-                            if (indexOf != indexOf2) {
-                                return 1;
-                            }
-                            return 0;
-                        }
-                    } else if (indexOf == -1 || indexOf2 != -1) {
-                        if (indexOf == -1 && indexOf2 != -1) {
-                            return 1;
-                        }
-                        return 0;
+    public final void run() {
+        switch (this.f45468a) {
+            case 0:
+                v0 v0Var = this.f45469b;
+                v0Var.getClass();
+                this.d.dismiss();
+                v0Var.presentFragment(this.f45470c);
+                return;
+            default:
+                v0 v0Var2 = this.f45469b;
+                cd0 cd0Var = this.f45470c;
+                try {
+                    List<Address> fromLocationName = new Geocoder(v0Var2.getParentActivity(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(v0Var2.f45532y, 1);
+                    if (!fromLocationName.isEmpty()) {
+                        Address address = fromLocationName.get(0);
+                        TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
+                        tL_channelLocation.address = v0Var2.f45532y;
+                        TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
+                        tL_channelLocation.geo_point = tL_geoPoint;
+                        tL_geoPoint.lat = address.getLatitude();
+                        tL_channelLocation.geo_point._long = address.getLongitude();
+                        cd0Var.f33114x0 = tL_channelLocation;
                     }
-                } else {
-                    return 1;
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
-            }
-            return -1;
+                AndroidUtilities.runOnUIThread(new o0(v0Var2, this.d, cd0Var));
+                return;
         }
-        return 0;
+    }
+
+    public o0(v0 v0Var, cd0 cd0Var, d2 d2Var) {
+        this.f45469b = v0Var;
+        this.f45470c = cd0Var;
+        this.d = d2Var;
     }
 }

@@ -23,12 +23,12 @@ public class MacroInfo {
     public Object invoke(TeXParser teXParser, String[] strArr) {
         try {
             return this.macro.invoke(this.pack, teXParser, strArr);
-        } catch (IllegalAccessException e6) {
+        } catch (IllegalAccessException e) {
+            throw new ParseException("Problem with command " + strArr[0] + " at position " + teXParser.getLine() + ":" + teXParser.getCol() + "\n", e);
+        } catch (IllegalArgumentException e6) {
             throw new ParseException("Problem with command " + strArr[0] + " at position " + teXParser.getLine() + ":" + teXParser.getCol() + "\n", e6);
-        } catch (IllegalArgumentException e10) {
-            throw new ParseException("Problem with command " + strArr[0] + " at position " + teXParser.getLine() + ":" + teXParser.getCol() + "\n", e10);
-        } catch (InvocationTargetException e11) {
-            Throwable cause = e11.getCause();
+        } catch (InvocationTargetException e10) {
+            Throwable cause = e10.getCause();
             throw new ParseException("Problem with command " + strArr[0] + " at position " + teXParser.getLine() + ":" + teXParser.getCol() + "\n" + cause.getMessage());
         }
     }
@@ -62,10 +62,10 @@ public class MacroInfo {
             this.pack = obj;
             this.macro = obj.getClass().getDeclaredMethod(str2, clsArr);
             this.nbArgs = i10;
-        } catch (Exception e6) {
+        } catch (Exception e) {
             PrintStream printStream = System.err;
             printStream.println("Cannot load package " + str + ":");
-            System.err.println(e6.toString());
+            System.err.println(e.toString());
         }
     }
 
@@ -84,10 +84,10 @@ public class MacroInfo {
             this.nbArgs = i10;
             this.hasOptions = true;
             this.posOpts = (int) f11;
-        } catch (Exception e6) {
+        } catch (Exception e) {
             PrintStream printStream = System.err;
             printStream.println("Cannot load package " + str + ":");
-            System.err.println(e6.toString());
+            System.err.println(e.toString());
         }
     }
 }

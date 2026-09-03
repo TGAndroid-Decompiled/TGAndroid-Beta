@@ -11,13 +11,13 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.video.MediaCodecVideoConvertor;
 public class AudioRecoder {
     private static final int BYTES_PER_SHORT = 2;
-    ArrayList<nf.a> audioInputs;
+    ArrayList<mf.a> audioInputs;
     private final MediaCodec encoder;
     private boolean encoderDone;
     private ByteBuffer[] encoderInputBuffers;
     private ByteBuffer[] encoderOutputBuffers;
     public final MediaFormat format;
-    nf.a mainInput;
+    mf.a mainInput;
     private int sampleRate;
     private long totalDurationUs;
     private final int TIMEOUT_USEC = 2500;
@@ -32,7 +32,7 @@ public class AudioRecoder {
     private int channelCount = 2;
     private long encoderInputPresentationTimeUs = 0;
 
-    public AudioRecoder(ArrayList<nf.a> arrayList, long j10) {
+    public AudioRecoder(ArrayList<mf.a> arrayList, long j10) {
         this.sampleRate = 44100;
         this.audioInputs = arrayList;
         this.totalDurationUs = j10;
@@ -69,9 +69,9 @@ public class AudioRecoder {
             boolean z4 = false;
             short s6 = 0;
             for (int i11 = 0; i11 < this.audioInputs.size() && isInputAvailable(); i11++) {
-                nf.a aVar = this.audioInputs.get(i11);
+                mf.a aVar = this.audioInputs.get(i11);
                 if (aVar.c()) {
-                    s6 = (short) ((((short) (aVar.a() * aVar.f15982a)) / this.audioInputs.size()) + s6);
+                    s6 = (short) ((((short) (aVar.a() * aVar.f13912a)) / this.audioInputs.size()) + s6);
                     z4 = true;
                 }
             }
@@ -87,8 +87,8 @@ public class AudioRecoder {
             for (int i10 = 0; i10 < this.audioInputs.size(); i10++) {
                 this.audioInputs.get(i10).d();
             }
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 

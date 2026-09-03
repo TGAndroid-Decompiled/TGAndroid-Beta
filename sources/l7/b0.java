@@ -1,10 +1,10 @@
 package l7;
-public final class b0 extends com.google.android.gms.internal.cast.h0 {
-    public final transient Object[] f11795e;
+public final class b0 extends com.google.android.gms.internal.cast.i0 {
+    public final transient Object[] e;
 
     public b0(Object[] objArr) {
         super(5);
-        this.f11795e = objArr;
+        this.e = objArr;
     }
 
     @Override

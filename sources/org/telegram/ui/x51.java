@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
-public final class x51 extends org.telegram.ui.Components.gt {
+public final class x51 extends org.telegram.ui.Components.dt {
     public int J;
     public int K;
     public ArrayList L;
@@ -44,14 +44,14 @@ public final class x51 extends org.telegram.ui.Components.gt {
             ArrayList arrayList = this.M;
             if (i10 < arrayList.size()) {
                 f61 f61Var = (f61) arrayList.get(i10);
-                if (!f61Var.f36678b) {
-                    if (f61Var.f36677a) {
+                if (!f61Var.f33964b) {
+                    if (f61Var.f33963a) {
                         f61Var.B.setBounds(f61Var.C);
                         f61Var.B.draw(canvas);
                     } else {
-                        ImageReceiver imageReceiver = f61Var.f36683r;
+                        ImageReceiver imageReceiver = f61Var.f33968r;
                         if (imageReceiver != null) {
-                            imageReceiver.draw(canvas, f61Var.f36681f[this.H]);
+                            imageReceiver.draw(canvas, f61Var.f33966f[this.H]);
                         }
                     }
                 }
@@ -68,7 +68,7 @@ public final class x51 extends org.telegram.ui.Components.gt {
         boolean z4;
         Drawable drawable;
         int i10;
-        w61 w61Var = this.Q.f43557b3;
+        x61 x61Var = this.Q.f40151b3;
         if (this.L != null) {
             canvas.save();
             float f12 = 0.0f;
@@ -77,9 +77,9 @@ public final class x51 extends org.telegram.ui.Components.gt {
             int i11 = 0;
             while (i11 < this.L.size()) {
                 f61 f61Var = (f61) this.L.get(i11);
-                if (!f61Var.f36678b) {
+                if (!f61Var.f33964b) {
                     float scaleX = f61Var.getScaleX();
-                    int i12 = w61Var.T;
+                    int i12 = x61Var.T;
                     if (i12 == 13) {
                         scaleX *= 0.87f;
                     }
@@ -92,18 +92,18 @@ public final class x51 extends org.telegram.ui.Components.gt {
                         }
                         scaleX *= ((1.0f - Math.max(f11, f14)) * 0.2f) + 0.8f;
                     }
-                    if (w61Var.M1 > 0 && SystemClock.elapsedRealtime() - w61Var.M1 < w61Var.g()) {
+                    if (x61Var.M1 > 0 && SystemClock.elapsedRealtime() - x61Var.M1 < x61Var.g()) {
                         z4 = true;
                     } else {
                         z4 = false;
                     }
-                    if (z4 && w61Var.K1 >= 0 && w61Var.L1 >= 0 && w61Var.M1 > 0) {
+                    if (z4 && x61Var.K1 >= 0 && x61Var.L1 >= 0 && x61Var.M1 > 0) {
                         int R = RecyclerView.R(f61Var);
-                        int i13 = w61Var.K1;
+                        int i13 = x61Var.K1;
                         int i14 = R - i13;
-                        int i15 = w61Var.L1 - i13;
+                        int i15 = x61Var.L1 - i13;
                         if (i14 >= 0 && i14 < i15) {
-                            float a2 = k7.o.a(((float) (SystemClock.elapsedRealtime() - w61Var.M1)) / ((float) w61Var.f()), 0.0f, 1.0f);
+                            float a2 = k7.n.a(((float) (SystemClock.elapsedRealtime() - x61Var.M1)) / ((float) x61Var.f()), 0.0f, 1.0f);
                             float f15 = i14;
                             float f16 = i15;
                             float f17 = f16 / 4.0f;
@@ -116,19 +116,19 @@ public final class x51 extends org.telegram.ui.Components.gt {
                     }
                     Rect rect = AndroidUtilities.rectTmp2;
                     rect.set(f61Var.getPaddingLeft() + ((int) f61Var.getX()), f61Var.getPaddingTop(), (f61Var.getWidth() + ((int) f61Var.getX())) - f61Var.getPaddingRight(), f61Var.getHeight() - f61Var.getPaddingBottom());
-                    if (!w61Var.f42347t1 && !z4) {
+                    if (!x61Var.f39895t1 && !z4) {
                         rect.offset(0, (int) f61Var.getTranslationY());
                     }
-                    if (f61Var.f36677a) {
-                        drawable = w61Var.getPremiumStar();
-                        int i16 = w61Var.T;
+                    if (f61Var.f33963a) {
+                        drawable = x61Var.getPremiumStar();
+                        int i16 = x61Var.T;
                         if (i16 == 5 || i16 == 10 || i16 == 9 || i16 == 7) {
                             rect.inset((int) ((-rect.width()) * 0.15f), (int) ((-rect.height()) * 0.15f));
                         }
                         drawable.setBounds(rect);
                         drawable.setAlpha(255);
-                    } else if (!f61Var.f36684s && !f61Var.N) {
-                        if ((f61Var.f36680e != null || w61Var.T == 13) && !f61Var.f36678b && (drawable = f61Var.B) != null) {
+                    } else if (!f61Var.f33969s && !f61Var.N) {
+                        if ((f61Var.e != null || x61Var.T == 13) && !f61Var.f33964b && (drawable = f61Var.B) != null) {
                             drawable.setAlpha(255);
                             drawable.setBounds(rect);
                         }
@@ -139,7 +139,7 @@ public final class x51 extends org.telegram.ui.Components.gt {
                         }
                         drawable = null;
                     }
-                    PorterDuffColorFilter porterDuffColorFilter = w61Var.f42322h1;
+                    PorterDuffColorFilter porterDuffColorFilter = x61Var.f39870h1;
                     if (porterDuffColorFilter != null) {
                         Drawable drawable2 = f61Var.B;
                         if (drawable2 instanceof org.telegram.ui.Components.l5) {
@@ -154,11 +154,11 @@ public final class x51 extends org.telegram.ui.Components.gt {
                     } else {
                         canvas.save();
                         float f19 = f61Var.P;
-                        if (f19 > 1.0f && (i10 = w61Var.T) != 3 && i10 != 4 && i10 != 6) {
+                        if (f19 > 1.0f && (i10 = x61Var.T) != 3 && i10 != 4 && i10 != 6) {
                             float lerp = AndroidUtilities.lerp(1.0f, 0.85f, f19);
                             canvas.scale(lerp, lerp, rect.centerX(), rect.centerY());
                         }
-                        int i17 = w61Var.T;
+                        int i17 = x61Var.T;
                         if (i17 != 6 && i17 != 13 && i17 != 14) {
                             f61Var.getHeight();
                             float f20 = this.N;
@@ -186,13 +186,13 @@ public final class x51 extends org.telegram.ui.Components.gt {
         while (true) {
             ArrayList arrayList = this.M;
             if (i10 < arrayList.size()) {
-                ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = ((f61) arrayList.get(i10)).f36681f[this.H];
+                ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = ((f61) arrayList.get(i10)).f33966f[this.H];
                 if (backgroundThreadDrawHolder != null) {
                     backgroundThreadDrawHolder.release();
                 }
                 i10++;
             } else {
-                this.Q.f43557b3.f42314e0.invalidate();
+                this.Q.f40151b3.f39862e0.invalidate();
                 return;
             }
         }
@@ -207,8 +207,8 @@ public final class x51 extends org.telegram.ui.Components.gt {
         if (drawable != null) {
             drawable.setAlpha((int) (f10 * 255.0f));
             drawable.draw(canvas);
-            drawable.setColorFilter(this.Q.f43557b3.f42322h1);
-        } else if ((f61Var.f36684s || f61Var.N) && f61Var.h != null) {
+            drawable.setColorFilter(this.Q.f40151b3.f39870h1);
+        } else if ((f61Var.f33969s || f61Var.N) && f61Var.h != null) {
             canvas.save();
             canvas.clipRect(f61Var.h.getImageX(), f61Var.h.getImageY(), f61Var.h.getImageX2(), f61Var.h.getImageY2());
             f61Var.h.setAlpha(f10);

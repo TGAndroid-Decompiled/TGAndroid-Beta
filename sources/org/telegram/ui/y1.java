@@ -10,58 +10,58 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
-public final class y1 extends View implements org.telegram.ui.Cells.l9, g3 {
-    public final o70 f43503a;
-    public final j4 f43504b;
-    public d3 f43505c;
-    public TL_iv.pageBlockKicker d;
-    public int f43506e;
-    public int f43507f;
+public final class y1 extends View implements org.telegram.ui.Cells.k9, i3 {
+    public final p70 f40112a;
+    public final l4 f40113b;
+    public f3 f40114c;
+    public int d;
+    public int e;
+    public TL_iv.pageBlockFooter f40115f;
 
-    public y1(Context context, o70 o70Var, j4 j4Var) {
+    public y1(Context context, p70 p70Var, l4 l4Var) {
         super(context);
-        this.f43503a = o70Var;
-        this.f43504b = j4Var;
+        this.f40112a = p70Var;
+        this.f40113b = l4Var;
     }
 
     @Override
     public final void fillTextLayoutBlocks(ArrayList arrayList) {
-        d3 d3Var = this.f43505c;
-        if (d3Var != null) {
-            arrayList.add(d3Var);
+        f3 f3Var = this.f40114c;
+        if (f3Var != null) {
+            arrayList.add(f3Var);
         }
     }
 
     @Override
     public int getBoundLeft() {
-        d3 d3Var = this.f43505c;
-        if (d3Var == null) {
+        f3 f3Var = this.f40114c;
+        if (f3Var == null) {
             return -1;
         }
-        int a2 = d3Var.a() + d3Var.f35964s;
-        this.f43503a.getClass();
+        int a2 = f3Var.a() + f3Var.f33933s;
+        this.f40112a.getClass();
         return a2 - AndroidUtilities.dp(18);
     }
 
     @Override
     public int getBoundRight() {
-        d3 d3Var = this.f43505c;
-        if (d3Var == null) {
+        f3 f3Var = this.f40114c;
+        if (f3Var == null) {
             return -1;
         }
-        int b10 = d3Var.b() + d3Var.f35964s;
-        this.f43503a.getClass();
+        int b10 = f3Var.b() + f3Var.f33933s;
+        this.f40112a.getClass();
         return AndroidUtilities.dp(18) + b10;
     }
 
     @Override
     public int getLastLineBoundRight() {
-        d3 d3Var = this.f43505c;
-        if (d3Var == null) {
+        f3 f3Var = this.f40114c;
+        if (f3Var == null) {
             return -1;
         }
-        int c3 = d3Var.c() + d3Var.f35964s;
-        this.f43503a.getClass();
+        int c3 = f3Var.c() + f3Var.f33933s;
+        this.f40112a.getClass();
         return AndroidUtilities.dp(18) + c3;
     }
 
@@ -72,30 +72,36 @@ public final class y1 extends View implements org.telegram.ui.Cells.l9, g3 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        d3 d3Var = this.f43505c;
-        if (d3Var != null) {
-            d3Var.attach(this);
+        f3 f3Var = this.f40114c;
+        if (f3Var != null) {
+            f3Var.attach(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        d3 d3Var = this.f43505c;
-        if (d3Var != null) {
-            d3Var.detach(this);
+        f3 f3Var = this.f40114c;
+        if (f3Var != null) {
+            f3Var.detach(this);
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.d != null && this.f43505c != null) {
+        if (this.f40115f == null) {
+            return;
+        }
+        f3 f3Var = this.f40114c;
+        p70 p70Var = this.f40112a;
+        if (f3Var != null) {
             canvas.save();
-            canvas.translate(this.f43506e, this.f43507f);
-            l4.v(this.f43503a, canvas, this, 0);
-            this.f43505c.draw(canvas, this);
+            canvas.translate(this.d, this.e);
+            n4.v(p70Var, canvas, this, 0);
+            this.f40114c.draw(canvas, this);
             canvas.restore();
         }
+        n4.u(canvas, p70Var, this.f40115f, getMeasuredHeight());
     }
 
     @Override
@@ -105,50 +111,60 @@ public final class y1 extends View implements org.telegram.ui.Cells.l9, g3 {
         accessibilityNodeInfo.setEnabled(true);
         accessibilityNodeInfo.setClickable(false);
         accessibilityNodeInfo.setLongClickable(false);
-        d3 d3Var = this.f43505c;
-        if (d3Var == null) {
+        f3 f3Var = this.f40114c;
+        if (f3Var == null) {
             return;
         }
-        accessibilityNodeInfo.setText(l4.i(R.string.AccDescrIVKicker, l4.j(this.f43503a, this.f43504b, d3Var)));
+        accessibilityNodeInfo.setText(n4.i(R.string.AccDescrIVFooter, n4.j(this.f40112a, this.f40113b, f3Var)));
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12;
         Layout.Alignment alignment;
+        int dp;
         int size = View.MeasureSpec.getSize(i10);
-        o70 o70Var = this.f43503a;
-        o70Var.getClass();
-        this.f43506e = AndroidUtilities.dp(18);
-        TL_iv.pageBlockKicker pageblockkicker = this.d;
-        if (pageblockkicker != null) {
-            if (pageblockkicker.first) {
-                this.f43507f = AndroidUtilities.dp(16.0f);
-                i12 = AndroidUtilities.dp(8.0f);
+        TL_iv.pageBlockFooter pageblockfooter = this.f40115f;
+        if (pageblockfooter != null) {
+            int i13 = pageblockfooter.level;
+            p70 p70Var = this.f40112a;
+            i12 = 0;
+            if (i13 == 0) {
+                p70Var.getClass();
+                this.e = AndroidUtilities.dp(8);
+                p70Var.getClass();
+                this.d = AndroidUtilities.dp(18);
             } else {
-                this.f43507f = AndroidUtilities.dp(8.0f);
-                i12 = 0;
+                this.e = 0;
+                p70Var.getClass();
+                this.d = AndroidUtilities.dp((this.f40115f.level * 14) + 18);
             }
-            TL_iv.RichText richText = this.d.text;
-            o70 o70Var2 = this.f43503a;
-            o70Var2.getClass();
-            int dp = size - AndroidUtilities.dp(36);
-            int i13 = this.f43507f;
-            TL_iv.pageBlockKicker pageblockkicker2 = this.d;
-            j4 j4Var = this.f43504b;
-            if (j4Var != null && j4Var.D) {
+            TL_iv.RichText richText = this.f40115f.text;
+            p70 p70Var2 = this.f40112a;
+            p70Var2.getClass();
+            int dp2 = (size - AndroidUtilities.dp(36)) - this.d;
+            TL_iv.pageBlockFooter pageblockfooter2 = this.f40115f;
+            l4 l4Var = this.f40113b;
+            if (l4Var != null && l4Var.D) {
                 alignment = org.telegram.ui.Components.kw0.a();
             } else {
                 alignment = Layout.Alignment.ALIGN_NORMAL;
             }
-            d3 p10 = l4.p(o70Var2, this, null, richText, dp, i13, pageblockkicker2, alignment, 0, this.f43504b);
-            this.f43505c = p10;
+            f3 p10 = n4.p(p70Var2, this, null, richText, dp2, 0, pageblockfooter2, alignment, 0, this.f40113b);
+            this.f40114c = p10;
             if (p10 != null) {
-                o70Var.getClass();
-                i12 += this.f43505c.d.getHeight() + AndroidUtilities.dp(16);
-                d3 d3Var = this.f43505c;
-                d3Var.f35964s = this.f43506e;
-                d3Var.v = this.f43507f;
+                int height = p10.d.getHeight();
+                if (this.f40115f.level > 0) {
+                    p70Var.getClass();
+                    dp = AndroidUtilities.dp(8);
+                } else {
+                    p70Var.getClass();
+                    dp = AndroidUtilities.dp(16);
+                }
+                i12 = dp + height;
+                f3 f3Var = this.f40114c;
+                f3Var.f33933s = this.d;
+                f3Var.v = this.e;
             }
         } else {
             i12 = 1;
@@ -158,14 +174,14 @@ public final class y1 extends View implements org.telegram.ui.Cells.l9, g3 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!l4.l(this.f43503a, this.f43504b, motionEvent, this, this.f43505c, this.f43506e, this.f43507f) && !super.onTouchEvent(motionEvent)) {
+        if (!n4.l(this.f40112a, this.f40113b, motionEvent, this, this.f40114c, this.d, this.e) && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;
     }
 
-    public void setBlock(TL_iv.pageBlockKicker pageblockkicker) {
-        this.d = pageblockkicker;
+    public void setBlock(TL_iv.pageBlockFooter pageblockfooter) {
+        this.f40115f = pageblockfooter;
         requestLayout();
     }
 }

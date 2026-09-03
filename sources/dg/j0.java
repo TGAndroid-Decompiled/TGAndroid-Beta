@@ -1,28 +1,45 @@
 package dg;
+public final class j0 implements s2 {
+    public final int f4606a;
+    public final b4 f4607b;
+    public final float f4608c;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class j0 implements Runnable {
-    public final int f4564a;
-    public final m0 f4565b;
-    public final d1 f4566c;
-
-    public j0(m0 m0Var, d1 d1Var, int i10) {
-        this.f4564a = i10;
-        this.f4565b = m0Var;
-        this.f4566c = d1Var;
+    public j0(b4 b4Var, float f10, int i10) {
+        this.f4606a = i10;
+        this.f4607b = b4Var;
+        this.f4608c = f10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f4564a) {
+    public final void A(float f10) {
+        switch (this.f4606a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new j0(this.f4565b, this.f4566c, 1));
+                b4 b4Var = this.f4607b;
+                b4Var.f4421w0 = true;
+                b4Var.setBaseFontSize((int) (this.f4608c * f10));
                 return;
             default:
-                m0 m0Var = this.f4565b;
-                m0Var.getClass();
-                m0Var.f4588i = this.f4566c.f4483a;
+                b4 b4Var2 = this.f4607b;
+                b4Var2.f4421w0 = true;
+                b4Var2.setBaseFontSize((int) (this.f4608c * f10));
                 return;
         }
+    }
+
+    @Override
+    public final float get() {
+        float baseFontSize;
+        float f10;
+        switch (this.f4606a) {
+            case 0:
+                baseFontSize = this.f4607b.getBaseFontSize();
+                f10 = this.f4608c;
+                break;
+            default:
+                baseFontSize = this.f4607b.getBaseFontSize();
+                f10 = this.f4608c;
+                break;
+        }
+        return baseFontSize / f10;
     }
 }

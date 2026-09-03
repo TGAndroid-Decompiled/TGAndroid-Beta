@@ -3,7 +3,7 @@ package q4;
 import g5.p;
 import g5.u0;
 import j3.n0;
-import j7.q7;
+import j7.p7;
 import n7.qa;
 import o4.k0;
 public final class i extends a {
@@ -28,13 +28,13 @@ public final class i extends a {
         k0[] k0VarArr;
         long j10;
         if (this.E == 0) {
-            qa qaVar = this.f44486x;
+            qa qaVar = this.f42743x;
             h5.a.j(qaVar);
             long j11 = this.C;
-            for (k0 k0Var : (k0[]) qaVar.f15702c) {
+            for (k0 k0Var : (k0[]) qaVar.f14688c) {
                 if (k0Var.F != j11) {
                     k0Var.F = j11;
-                    k0Var.f16528z = true;
+                    k0Var.f16360z = true;
                 }
             }
             d dVar = this.D;
@@ -45,18 +45,18 @@ public final class i extends a {
             } else {
                 j10 = j12 - this.C;
             }
-            long j14 = this.f44485w;
+            long j14 = this.f42742w;
             if (j14 != -9223372036854775807L) {
                 j13 = j14 - this.C;
             }
             dVar.a(qaVar, j10, j13);
         }
         try {
-            p b10 = this.f44505b.b(this.E);
-            u0 u0Var = this.f44510r;
-            r3.h hVar = new r3.h(u0Var, b10.f6888e, u0Var.open(b10));
+            p b10 = this.f42760b.b(this.E);
+            u0 u0Var = this.f42764r;
+            r3.h hVar = new r3.h(u0Var, b10.e, u0Var.open(b10));
             while (!this.F) {
-                int h = this.D.f44497a.h(hVar, d.f44496s);
+                int h = this.D.f42753a.h(hVar, d.f42752s);
                 if (h != 1) {
                     z4 = true;
                 } else {
@@ -74,27 +74,27 @@ public final class i extends a {
                     break;
                 }
             }
-            this.E = hVar.d - this.f44505b.f6888e;
-            q7.a(this.f44510r);
+            this.E = hVar.d - this.f42760b.e;
+            p7.a(this.f42764r);
             this.G = !this.F;
         } catch (Throwable th2) {
-            q7.a(this.f44510r);
+            p7.a(this.f42764r);
             throw th2;
         }
     }
 
     @Override
-    public final long b() {
-        return this.f44529s + this.B;
-    }
-
-    @Override
-    public final boolean c() {
-        return this.G;
-    }
-
-    @Override
-    public final void l() {
+    public final void b() {
         this.F = true;
+    }
+
+    @Override
+    public final long c() {
+        return this.f42781s + this.B;
+    }
+
+    @Override
+    public final boolean d() {
+        return this.G;
     }
 }

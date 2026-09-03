@@ -4,24 +4,24 @@ import android.os.Bundle;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class ov0 implements Runnable {
-    public final int f39812a;
-    public final long f39813b;
-    public final Object f39814c;
+    public final int f36888a;
+    public final long f36889b;
+    public final Object f36890c;
     public final Object d;
 
     public ov0(Object obj, long j10, Object obj2, int i10) {
-        this.f39812a = i10;
-        this.f39814c = obj;
-        this.f39813b = j10;
+        this.f36888a = i10;
+        this.f36890c = obj;
+        this.f36889b = j10;
         this.d = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f39812a) {
+        switch (this.f36888a) {
             case 0:
-                yv0 yv0Var = (yv0) this.f39814c;
-                long j10 = this.f39813b;
+                yv0 yv0Var = (yv0) this.f36890c;
+                long j10 = this.f36889b;
                 org.telegram.ui.ActionBar.p2 p2Var = (org.telegram.ui.ActionBar.p2) this.d;
                 yv0Var.getClass();
                 Bundle bundle = new Bundle();
@@ -34,49 +34,49 @@ public final class ov0 implements Runnable {
                 yv0Var.c(false);
                 return;
             case 1:
-                qh.w7 w7Var = (qh.w7) this.f39814c;
-                long j11 = this.f39813b;
-                w7Var.getClass();
-                w7Var.d(j11, ((TLRPC.ChatFull) this.d).participants);
+                ph.y7 y7Var = (ph.y7) this.f36890c;
+                long j11 = this.f36889b;
+                y7Var.getClass();
+                y7Var.d(j11, ((TLRPC.ChatFull) this.d).participants);
                 return;
             case 2:
-                sf.f fVar = (sf.f) this.f39814c;
-                sf.e eVar = (sf.e) this.d;
-                long j12 = this.f39813b;
-                if (((sf.e) fVar.f47352c) == eVar) {
-                    sf.c cVar = (sf.c) fVar.f47353e;
+                rf.f fVar = (rf.f) this.f36890c;
+                rf.e eVar = (rf.e) this.d;
+                long j12 = this.f36889b;
+                if (((rf.e) fVar.f43491c) == eVar) {
+                    rf.c cVar = (rf.c) fVar.e;
                     if (cVar != null) {
                         AndroidUtilities.cancelRunOnUIThread(cVar);
-                        fVar.f47353e = null;
+                        fVar.e = null;
                     }
-                    synchronized (sf.k.f47362t) {
+                    synchronized (rf.j.f43497t) {
                         try {
-                            sf.k kVar = sf.k.v;
-                            if (kVar != null) {
-                                kVar.m();
-                                sf.k.v = null;
+                            rf.j jVar = rf.j.v;
+                            if (jVar != null) {
+                                jVar.m();
+                                rf.j.v = null;
                             }
                         } catch (Throwable th2) {
                             throw th2;
                         }
                     }
-                    fVar.f47352c = null;
-                    eVar.f47348c.run(j12);
+                    fVar.f43491c = null;
+                    eVar.f43487c.run(j12);
                     fVar.D();
                     return;
                 }
                 return;
             default:
-                ((long[]) this.f39814c)[0] = this.f39813b;
-                ((eg.d3) this.d).run();
+                ((long[]) this.f36890c)[0] = this.f36889b;
+                ((dg.f3) this.d).run();
                 return;
         }
     }
 
-    public ov0(sf.f fVar, sf.e eVar, long j10) {
-        this.f39812a = 2;
-        this.f39814c = fVar;
+    public ov0(rf.f fVar, rf.e eVar, long j10) {
+        this.f36888a = 2;
+        this.f36890c = fVar;
         this.d = eVar;
-        this.f39813b = j10;
+        this.f36889b = j10;
     }
 }

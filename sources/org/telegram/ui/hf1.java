@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
-public final class hf1 extends cg.c {
+public final class hf1 extends bg.c {
     public final sf1 d;
 
     public hf1(sf1 sf1Var) {
@@ -13,8 +13,8 @@ public final class hf1 extends cg.c {
     }
 
     @Override
-    public final boolean D(f2.m1 m1Var) {
-        int i10 = m1Var.f5879f;
+    public final boolean D(f2.l1 l1Var) {
+        int i10 = l1Var.f5777f;
         if (i10 != 0 && i10 != 3) {
             return false;
         }
@@ -24,7 +24,7 @@ public final class hf1 extends cg.c {
     public final ArrayList F() {
         sf1 sf1Var = this.d;
         sf1Var.getClass();
-        return sf1Var.f41191b;
+        return sf1Var.f38178b;
     }
 
     @Override
@@ -37,22 +37,22 @@ public final class hf1 extends cg.c {
         if (i10 == h() - 1) {
             return 2;
         }
-        return ((jf1) this.d.f41191b.get(i10)).f2505a;
+        return ((jf1) this.d.f38178b.get(i10)).f1830a;
     }
 
     @Override
     public final void l() {
-        this.d.f41194c = h();
+        this.d.f38181c = h();
         super.l();
     }
 
     @Override
-    public final void v(f2.m1 r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hf1.v(f2.m1, int):void");
+    public final void v(f2.l1 r21, int r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hf1.v(f2.l1, int):void");
     }
 
     @Override
-    public final f2.m1 x(ViewGroup viewGroup, int i10) {
+    public final f2.l1 x(ViewGroup viewGroup, int i10) {
         boolean z4;
         int i11;
         int i12;
@@ -62,19 +62,19 @@ public final class hf1 extends cg.c {
             if (i10 == 2) {
                 gf1 gf1Var = new gf1(this, sf1Var.getParentActivity());
                 sf1Var.B0 = gf1Var;
-                return new f2.m1(gf1Var);
+                return new f2.l1(gf1Var);
             }
             org.telegram.ui.Components.u00 u00Var = new org.telegram.ui.Components.u00(viewGroup.getContext(), null);
             u00Var.setViewType(24);
             u00Var.setIsSingleCell(true);
-            u00Var.f31465w = true;
-            return new f2.m1(u00Var);
+            u00Var.f29071w = true;
+            return new f2.l1(u00Var);
         }
         pf1 pf1Var = new pf1(sf1Var, viewGroup.getContext(), false);
         if (i10 == 3) {
             i11 = ((org.telegram.ui.ActionBar.p2) sf1Var).currentAccount;
-            boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i11, -sf1Var.f41188a);
-            pf1Var.setForumIcon(bg.e.d(bg.b.f1966k[0], ""));
+            boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i11, -sf1Var.f38175a);
+            pf1Var.setForumIcon(ag.f.d(ag.b.f187k[0], ""));
             if (!isBotForumWithEditableTopics) {
                 i12 = R.string.BotForumAskForStartOffNewChatTitle;
             } else {
@@ -89,8 +89,8 @@ public final class hf1 extends cg.c {
             pf1Var.setCustomMessage(LocaleController.getString(i13));
         }
         z4 = ((org.telegram.ui.ActionBar.p2) sf1Var).inPreviewMode;
-        pf1Var.f23447h0 = z4;
-        pf1Var.setArchivedPullAnimation(sf1Var.f41227w);
-        return new f2.m1(pf1Var);
+        pf1Var.f21587h0 = z4;
+        pf1Var.setArchivedPullAnimation(sf1Var.f38213w);
+        return new f2.l1(pf1Var);
     }
 }

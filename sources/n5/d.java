@@ -8,20 +8,20 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.SignInAccount;
 import com.google.android.gms.common.api.Scope;
-import j7.f5;
+import j7.l0;
 import java.util.ArrayList;
 public final class d implements Parcelable.Creator {
-    public final int f15255a;
+    public final int f14259a;
 
     public d(int i10) {
-        this.f15255a = i10;
+        this.f14259a = i10;
     }
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f15255a) {
+        switch (this.f14259a) {
             case 0:
-                int z4 = f5.z(parcel);
+                int z4 = l0.z(parcel);
                 String str = null;
                 String str2 = null;
                 String str3 = null;
@@ -38,50 +38,50 @@ public final class d implements Parcelable.Creator {
                     int readInt = parcel.readInt();
                     switch ((char) readInt) {
                         case 1:
-                            i10 = f5.u(parcel, readInt);
+                            i10 = l0.u(parcel, readInt);
                             break;
                         case 2:
-                            str = f5.h(parcel, readInt);
+                            str = l0.h(parcel, readInt);
                             break;
                         case 3:
-                            str2 = f5.h(parcel, readInt);
+                            str2 = l0.h(parcel, readInt);
                             break;
                         case 4:
-                            str3 = f5.h(parcel, readInt);
+                            str3 = l0.h(parcel, readInt);
                             break;
                         case 5:
-                            str4 = f5.h(parcel, readInt);
+                            str4 = l0.h(parcel, readInt);
                             break;
                         case 6:
-                            uri = (Uri) f5.g(parcel, readInt, Uri.CREATOR);
+                            uri = (Uri) l0.g(parcel, readInt, Uri.CREATOR);
                             break;
                         case 7:
-                            str5 = f5.h(parcel, readInt);
+                            str5 = l0.h(parcel, readInt);
                             break;
                         case '\b':
-                            j10 = f5.w(parcel, readInt);
+                            j10 = l0.w(parcel, readInt);
                             break;
                         case '\t':
-                            str6 = f5.h(parcel, readInt);
+                            str6 = l0.h(parcel, readInt);
                             break;
                         case '\n':
-                            arrayList = f5.l(parcel, readInt, Scope.CREATOR);
+                            arrayList = l0.l(parcel, readInt, Scope.CREATOR);
                             break;
                         case 11:
-                            str7 = f5.h(parcel, readInt);
+                            str7 = l0.h(parcel, readInt);
                             break;
                         case '\f':
-                            str8 = f5.h(parcel, readInt);
+                            str8 = l0.h(parcel, readInt);
                             break;
                         default:
-                            f5.y(parcel, readInt);
+                            l0.y(parcel, readInt);
                             break;
                     }
                 }
-                f5.m(parcel, z4);
+                l0.m(parcel, z4);
                 return new GoogleSignInAccount(i10, str, str2, str3, str4, uri, str5, j10, str6, arrayList, str7, str8);
             case 1:
-                int z10 = f5.z(parcel);
+                int z10 = l0.z(parcel);
                 ArrayList arrayList2 = null;
                 ArrayList arrayList3 = null;
                 Account account = null;
@@ -96,44 +96,44 @@ public final class d implements Parcelable.Creator {
                     int readInt2 = parcel.readInt();
                     switch ((char) readInt2) {
                         case 1:
-                            i11 = f5.u(parcel, readInt2);
+                            i11 = l0.u(parcel, readInt2);
                             break;
                         case 2:
-                            arrayList3 = f5.l(parcel, readInt2, Scope.CREATOR);
+                            arrayList3 = l0.l(parcel, readInt2, Scope.CREATOR);
                             break;
                         case 3:
-                            account = (Account) f5.g(parcel, readInt2, Account.CREATOR);
+                            account = (Account) l0.g(parcel, readInt2, Account.CREATOR);
                             break;
                         case 4:
-                            z11 = f5.n(parcel, readInt2);
+                            z11 = l0.n(parcel, readInt2);
                             break;
                         case 5:
-                            z12 = f5.n(parcel, readInt2);
+                            z12 = l0.n(parcel, readInt2);
                             break;
                         case 6:
-                            z13 = f5.n(parcel, readInt2);
+                            z13 = l0.n(parcel, readInt2);
                             break;
                         case 7:
-                            str9 = f5.h(parcel, readInt2);
+                            str9 = l0.h(parcel, readInt2);
                             break;
                         case '\b':
-                            str10 = f5.h(parcel, readInt2);
+                            str10 = l0.h(parcel, readInt2);
                             break;
                         case '\t':
-                            arrayList2 = f5.l(parcel, readInt2, o5.a.CREATOR);
+                            arrayList2 = l0.l(parcel, readInt2, o5.a.CREATOR);
                             break;
                         case '\n':
-                            str11 = f5.h(parcel, readInt2);
+                            str11 = l0.h(parcel, readInt2);
                             break;
                         default:
-                            f5.y(parcel, readInt2);
+                            l0.y(parcel, readInt2);
                             break;
                     }
                 }
-                f5.m(parcel, z10);
+                l0.m(parcel, z10);
                 return new GoogleSignInOptions(i11, arrayList3, account, z11, z12, z13, str9, str10, GoogleSignInOptions.f(arrayList2), str11);
             default:
-                int z14 = f5.z(parcel);
+                int z14 = l0.z(parcel);
                 String str12 = "";
                 GoogleSignInAccount googleSignInAccount = null;
                 String str13 = "";
@@ -143,25 +143,25 @@ public final class d implements Parcelable.Creator {
                     if (c3 != 4) {
                         if (c3 != 7) {
                             if (c3 != '\b') {
-                                f5.y(parcel, readInt3);
+                                l0.y(parcel, readInt3);
                             } else {
-                                str13 = f5.h(parcel, readInt3);
+                                str13 = l0.h(parcel, readInt3);
                             }
                         } else {
-                            googleSignInAccount = (GoogleSignInAccount) f5.g(parcel, readInt3, GoogleSignInAccount.CREATOR);
+                            googleSignInAccount = (GoogleSignInAccount) l0.g(parcel, readInt3, GoogleSignInAccount.CREATOR);
                         }
                     } else {
-                        str12 = f5.h(parcel, readInt3);
+                        str12 = l0.h(parcel, readInt3);
                     }
                 }
-                f5.m(parcel, z14);
+                l0.m(parcel, z14);
                 return new SignInAccount(str12, googleSignInAccount, str13);
         }
     }
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f15255a) {
+        switch (this.f14259a) {
             case 0:
                 return new GoogleSignInAccount[i10];
             case 1:

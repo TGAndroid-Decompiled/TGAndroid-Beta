@@ -3,15 +3,15 @@ package i9;
 import android.content.SharedPreferences;
 import android.util.Log;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import org.telegram.ui.yh;
+import org.telegram.ui.ai;
 public final class s {
-    public final SharedPreferences f8005a;
-    public final w8.g f8006b;
-    public final Object f8007c;
+    public final SharedPreferences f7418a;
+    public final w8.g f7419b;
+    public final Object f7420c;
     public TaskCompletionSource d;
-    public boolean f8008e;
-    public boolean f8009f;
-    public Boolean f8010g;
+    public boolean e;
+    public boolean f7421f;
+    public Boolean f7422g;
     public final TaskCompletionSource h;
 
     public s(w8.g r8) {
@@ -22,12 +22,12 @@ public final class s {
         boolean z4;
         String str;
         String str2;
-        Boolean bool = this.f8010g;
+        Boolean bool = this.f7422g;
         if (bool != null) {
             z4 = bool.booleanValue();
         } else {
             try {
-                z4 = this.f8006b.h();
+                z4 = this.f7419b.h();
             } catch (IllegalStateException unused) {
                 z4 = false;
             }
@@ -37,16 +37,16 @@ public final class s {
         } else {
             str = "DISABLED";
         }
-        if (this.f8010g == null) {
+        if (this.f7422g == null) {
             str2 = "global Firebase setting";
-        } else if (this.f8009f) {
+        } else if (this.f7421f) {
             str2 = "firebase_crashlytics_collection_enabled manifest flag";
         } else {
             str2 = "API";
         }
-        String l10 = yh.l("Crashlytics automatic data collection ", str, " by ", str2, ".");
+        String k10 = ai.k("Crashlytics automatic data collection ", str, " by ", str2, ".");
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", l10, null);
+            Log.d("FirebaseCrashlytics", k10, null);
         }
         return z4;
     }

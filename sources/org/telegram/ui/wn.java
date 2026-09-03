@@ -1,29 +1,17 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.NumberTextView;
-public final class wn extends org.telegram.ui.ActionBar.l5 {
-    public boolean J0;
-    public final xn K0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class wn extends AnimatorListenerAdapter {
+    public final org.telegram.ui.Components.ec0 f39737a;
 
-    public wn(xn xnVar, Activity activity) {
-        super(activity);
-        this.K0 = xnVar;
-        this.J0 = true;
+    public wn(org.telegram.ui.Components.ec0 ec0Var) {
+        this.f39737a = ec0Var;
     }
 
     @Override
-    public final void d(int i10) {
-        super.d(i10);
-        if (this.J0 && getVisibility() == 0) {
-            int dp = AndroidUtilities.dp(4.0f) + getTextWidth();
-            xn xnVar = this.K0;
-            xnVar.D2 = dp;
-            NumberTextView numberTextView = xnVar.C2;
-            if (numberTextView != null) {
-                numberTextView.setTranslationX(dp);
-            }
-        }
+    public final void onAnimationEnd(Animator animator) {
+        super.onAnimationEnd(animator);
+        this.f39737a.s(1.0f);
     }
 }

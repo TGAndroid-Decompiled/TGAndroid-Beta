@@ -1,19 +1,19 @@
 package j9;
 public final class e implements j {
-    public static final cb.b f9959c = new cb.b(10);
-    public final Object f9960a;
-    public Object f9961b;
+    public static final ab.a f9307c = new ab.a(10);
+    public final Object f9308a;
+    public Object f9309b;
 
     public e(n9.b bVar) {
-        this.f9960a = bVar;
-        this.f9961b = f9959c;
+        this.f9308a = bVar;
+        this.f9309b = f9307c;
     }
 
     @Override
     public void a(i iVar, int i10) {
-        int[] iArr = (int[]) this.f9961b;
+        int[] iArr = (int[]) this.f9309b;
         try {
-            iVar.read((byte[]) this.f9960a, iArr[0], i10);
+            iVar.read((byte[]) this.f9308a, iArr[0], i10);
             iArr[0] = iArr[0] + i10;
         } finally {
             iVar.close();
@@ -21,7 +21,7 @@ public final class e implements j {
     }
 
     public e(byte[] bArr, int[] iArr) {
-        this.f9960a = bArr;
-        this.f9961b = iArr;
+        this.f9308a = bArr;
+        this.f9309b = iArr;
     }
 }

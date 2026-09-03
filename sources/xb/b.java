@@ -1,26 +1,25 @@
 package xb;
 
-import androidx.biometric.f0;
 import java.nio.ByteBuffer;
-import org.telegram.ui.yh;
+import org.telegram.ui.ai;
 public final class b extends a {
-    public static final f0 f50535n;
-    public static final f0 f50536r;
+    public static final bb.b f46955n;
+    public static final bb.b f46956r;
 
     static {
         de.a aVar = new de.a(b.class, "ESDescriptorBox.java");
         aVar.e(aVar.d("getEsDescriptor", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.ESDescriptor"));
         aVar.e(aVar.d("setEsDescriptor", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.ESDescriptor", "esDescriptor", "void"));
-        f50535n = aVar.e(aVar.d("equals", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "java.lang.Object", "o", "boolean"));
-        f50536r = aVar.e(aVar.d("hashCode", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "int"));
+        f46955n = aVar.e(aVar.d("equals", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "java.lang.Object", "o", "boolean"));
+        f46956r = aVar.e(aVar.d("hashCode", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "int"));
     }
 
     public final boolean equals(Object obj) {
-        yh.x(de.a.c(f50535n, this, this, obj));
+        ai.x(de.a.c(f46955n, this, this, obj));
         if (this != obj) {
             if (obj != null && b.class == obj.getClass()) {
-                ByteBuffer byteBuffer = this.f50534e;
-                ByteBuffer byteBuffer2 = ((b) obj).f50534e;
+                ByteBuffer byteBuffer = this.e;
+                ByteBuffer byteBuffer2 = ((b) obj).e;
                 if (byteBuffer != null) {
                     if (byteBuffer.equals(byteBuffer2)) {
                         return true;
@@ -38,8 +37,8 @@ public final class b extends a {
     }
 
     public final int hashCode() {
-        yh.x(de.a.b(f50536r, this, this));
-        ByteBuffer byteBuffer = this.f50534e;
+        ai.x(de.a.b(f46956r, this, this));
+        ByteBuffer byteBuffer = this.e;
         if (byteBuffer != null) {
             return byteBuffer.hashCode();
         }

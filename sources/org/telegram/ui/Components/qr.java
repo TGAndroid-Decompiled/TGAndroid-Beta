@@ -1,54 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.text.TextPaint;
 import android.view.View;
-import android.widget.EditText;
-public final class qr implements Runnable {
-    public final int f30503a;
-    public final ur f30504b;
+import org.telegram.messenger.AndroidUtilities;
+public final class qr extends View {
+    public final TextPaint f28247a;
+    public final TextPaint f28248b;
+    public final String f28249c;
+    public final String d;
+    public final Rect e;
 
-    public qr(ur urVar, int i10) {
-        this.f30503a = i10;
-        this.f30504b = urVar;
+    public qr(Context context, String str, String str2) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.f28247a = textPaint;
+        TextPaint textPaint2 = new TextPaint(1);
+        this.f28248b = textPaint2;
+        this.e = new Rect();
+        this.f28249c = str;
+        this.d = str2;
+        textPaint.setTextSize(AndroidUtilities.dp(24.0f));
+        textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
+        textPaint2.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.H6, false));
     }
 
     @Override
-    public final void run() {
-        View view;
-        switch (this.f30503a) {
-            case 0:
-                ur urVar = this.f30504b;
-                if (urVar.f31676b == null && (view = urVar.d) != null) {
-                    View findFocus = view.findFocus();
-                    if (findFocus instanceof EditText) {
-                        urVar.f31676b = (EditText) findFocus;
-                    }
-                }
-                EditText editText = urVar.f31676b;
-                if (editText != null) {
-                    if (editText.length() != 0 || urVar.f31678e) {
-                        try {
-                            urVar.performHapticFeedback(3, 2);
-                            urVar.playSoundEffect(0);
-                        } catch (Exception unused) {
-                        }
-                        urVar.f31676b.dispatchKeyEvent(new KeyEvent(0, 67));
-                        urVar.f31676b.dispatchKeyEvent(new KeyEvent(1, 67));
-                        if (urVar.f31679f) {
-                            urVar.postDelayed(urVar.h, 50L);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                ur urVar2 = this.f30504b;
-                urVar2.f31680n = false;
-                urVar2.f31679f = true;
-                urVar2.h.run();
-                return;
-        }
+    public final void onDraw(Canvas canvas) {
+        TextPaint textPaint = this.f28248b;
+        String str = this.d;
+        float measureText = textPaint.measureText(str);
+        TextPaint textPaint2 = this.f28247a;
+        String str2 = this.f28249c;
+        float measureText2 = textPaint2.measureText(str2);
+        int length = str2.length();
+        Rect rect = this.e;
+        textPaint2.getTextBounds(str2, 0, length, rect);
+        textPaint.getTextBounds(str, 0, str.length(), rect);
+        canvas.drawText(str2, (getWidth() * 0.25f) - (measureText2 / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint2);
+        canvas.drawText(str, (getWidth() * 0.7f) - (measureText / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint);
     }
 }

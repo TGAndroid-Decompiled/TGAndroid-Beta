@@ -3,15 +3,15 @@ package na;
 import java.util.regex.Pattern;
 import l7.w0;
 public final class d {
-    public final ca.d f15888a;
-    public final w0 f15889b;
-    public final k f15890c;
+    public final ca.d f14858a;
+    public final w0 f14859b;
+    public final k f14860c;
     public final ud.d d = ud.e.a();
 
     public d(uc.h hVar, ca.d dVar, la.b bVar, w0 w0Var, k1.g gVar) {
-        this.f15888a = dVar;
-        this.f15889b = w0Var;
-        this.f15890c = new k(gVar);
+        this.f14858a = dVar;
+        this.f14859b = w0Var;
+        this.f14860c = new k(gVar);
     }
 
     public static String b(String str) {
@@ -23,9 +23,9 @@ public final class d {
     }
 
     public final Boolean a() {
-        e eVar = this.f15890c.f15913b;
+        e eVar = this.f14860c.f14881b;
         if (eVar != null) {
-            return eVar.f15891a;
+            return eVar.f14861a;
         }
         kotlin.jvm.internal.j.h("sessionConfigs");
         throw null;

@@ -1,32 +1,44 @@
 package org.telegram.ui;
-public final class p60 implements Runnable {
-    public final int f39902a;
-    public final z60 f39903b;
 
-    public p60(z60 z60Var, int i10) {
-        this.f39902a = i10;
-        this.f39903b = z60Var;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class p60 implements org.telegram.ui.Components.e20, org.telegram.ui.ActionBar.c2, r0.o {
+    public final int f36974a;
+    public final a70 f36975b;
+
+    public p60(a70 a70Var, int i10) {
+        this.f36974a = i10;
+        this.f36975b = a70Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f39902a) {
-            case 0:
-                this.f39903b.finishFragment();
-                return;
+    public r0.m1 M0(View view, r0.m1 m1Var) {
+        int i10 = AndroidUtilities.getDefaultWindowInsets(m1Var, false).d;
+        a70 a70Var = this.f36975b;
+        a70Var.f32496j0 = i10;
+        dg.v3 v3Var = a70Var.C;
+        if (v3Var != null) {
+            v3Var.setPadding(0, 0, 0, i10);
+        }
+        a70Var.j0();
+        a70Var.h0();
+        return r0.m1.f43153b;
+    }
+
+    @Override
+    public void a(int i10) {
+        a70 a70Var = this.f36975b;
+        a70Var.f32485b.a(Math.min(i10, a70Var.Z));
+    }
+
+    @Override
+    public void l(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f36974a) {
             case 1:
-                z60 z60Var = this.f39903b;
-                z60Var.i0();
-                z60Var.e0();
-                return;
-            case 2:
-                z60 z60Var2 = this.f39903b;
-                z60Var2.getClass();
-                z60Var2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
+                this.f36975b.o0();
                 return;
             default:
-                z60 z60Var3 = this.f39903b;
-                z60Var3.f43828n.postOnAnimation(new p60(z60Var3, 1));
+                this.f36975b.finishFragment();
                 return;
         }
     }

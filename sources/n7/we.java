@@ -2,18 +2,18 @@ package n7;
 
 import java.util.Arrays;
 public final class we {
-    public final Boolean f15785a;
-    public final Boolean f15786b;
-    public final Boolean f15787c;
+    public final Boolean f14766a;
+    public final Boolean f14767b;
+    public final Boolean f14768c;
     public final Boolean d;
-    public final Boolean f15788e;
+    public final Boolean e;
 
     public we(c5.j jVar) {
-        this.f15785a = (Boolean) jVar.f2315a;
-        this.f15786b = (Boolean) jVar.f2316b;
-        this.f15787c = (Boolean) jVar.f2317c;
+        this.f14766a = (Boolean) jVar.f2152a;
+        this.f14767b = (Boolean) jVar.f2153b;
+        this.f14768c = (Boolean) jVar.f2154c;
         this.d = (Boolean) jVar.d;
-        this.f15788e = (Boolean) jVar.f2318e;
+        this.e = (Boolean) jVar.e;
     }
 
     public final boolean equals(Object obj) {
@@ -24,13 +24,13 @@ public final class we {
             return false;
         }
         we weVar = (we) obj;
-        if (b6.m.l(this.f15785a, weVar.f15785a) && b6.m.l(this.f15786b, weVar.f15786b) && b6.m.l(this.f15787c, weVar.f15787c) && b6.m.l(this.d, weVar.d) && b6.m.l(this.f15788e, weVar.f15788e)) {
+        if (b6.m.l(this.f14766a, weVar.f14766a) && b6.m.l(this.f14767b, weVar.f14767b) && b6.m.l(this.f14768c, weVar.f14768c) && b6.m.l(this.d, weVar.d) && b6.m.l(this.e, weVar.e)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f15785a, this.f15786b, this.f15787c, this.d, this.f15788e});
+        return Arrays.hashCode(new Object[]{this.f14766a, this.f14767b, this.f14768c, this.d, this.e});
     }
 }

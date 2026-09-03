@@ -5,8 +5,8 @@ import android.util.SparseBooleanArray;
 import h5.d0;
 import java.util.Map;
 import o4.t0;
-public final class h extends x {
-    public static final int f6026d0 = 0;
+public final class h extends w {
+    public static final int f5915d0 = 0;
     public final boolean N;
     public final boolean O;
     public final boolean P;
@@ -20,13 +20,13 @@ public final class h extends x {
     public final boolean X;
     public final boolean Y;
     public final boolean Z;
-    public final boolean f6027a0;
-    public final SparseArray f6028b0;
-    public final SparseBooleanArray f6029c0;
+    public final boolean f5916a0;
+    public final SparseArray f5917b0;
+    public final SparseBooleanArray f5918c0;
 
     static {
         new h(new g());
-        int i10 = d0.f7237a;
+        int i10 = d0.f6924a;
         Integer.toString(1000, 36);
         Integer.toString(1001, 36);
         Integer.toString(1002, 36);
@@ -62,9 +62,9 @@ public final class h extends x {
         this.X = gVar.K;
         this.Y = gVar.L;
         this.Z = gVar.M;
-        this.f6027a0 = gVar.N;
-        this.f6028b0 = gVar.O;
-        this.f6029c0 = gVar.P;
+        this.f5916a0 = gVar.N;
+        this.f5917b0 = gVar.O;
+        this.f5918c0 = gVar.P;
     }
 
     @Override
@@ -74,9 +74,9 @@ public final class h extends x {
         }
         if (obj != null && h.class == obj.getClass()) {
             h hVar = (h) obj;
-            if (super.equals(hVar) && this.N == hVar.N && this.O == hVar.O && this.P == hVar.P && this.Q == hVar.Q && this.R == hVar.R && this.S == hVar.S && this.T == hVar.T && this.U == hVar.U && this.V == hVar.V && this.W == hVar.W && this.X == hVar.X && this.Y == hVar.Y && this.Z == hVar.Z && this.f6027a0 == hVar.f6027a0) {
-                SparseBooleanArray sparseBooleanArray = hVar.f6029c0;
-                SparseBooleanArray sparseBooleanArray2 = this.f6029c0;
+            if (super.equals(hVar) && this.N == hVar.N && this.O == hVar.O && this.P == hVar.P && this.Q == hVar.Q && this.R == hVar.R && this.S == hVar.S && this.T == hVar.T && this.U == hVar.U && this.V == hVar.V && this.W == hVar.W && this.X == hVar.X && this.Y == hVar.Y && this.Z == hVar.Z && this.f5916a0 == hVar.f5916a0) {
+                SparseBooleanArray sparseBooleanArray = hVar.f5918c0;
+                SparseBooleanArray sparseBooleanArray2 = this.f5918c0;
                 int size = sparseBooleanArray2.size();
                 if (sparseBooleanArray.size() == size) {
                     int i10 = 0;
@@ -87,8 +87,8 @@ public final class h extends x {
                             }
                             i10++;
                         } else {
-                            SparseArray sparseArray = hVar.f6028b0;
-                            SparseArray sparseArray2 = this.f6028b0;
+                            SparseArray sparseArray = hVar.f5917b0;
+                            SparseArray sparseArray2 = this.f5917b0;
                             int size2 = sparseArray2.size();
                             if (sparseArray.size() == size2) {
                                 for (int i11 = 0; i11 < size2; i11++) {
@@ -119,6 +119,6 @@ public final class h extends x {
 
     @Override
     public final int hashCode() {
-        return ((((((((((((((((((((((((((((super.hashCode() + 31) * 31) + (this.N ? 1 : 0)) * 31) + (this.O ? 1 : 0)) * 31) + (this.P ? 1 : 0)) * 31) + (this.Q ? 1 : 0)) * 31) + (this.R ? 1 : 0)) * 31) + (this.S ? 1 : 0)) * 31) + (this.T ? 1 : 0)) * 31) + (this.U ? 1 : 0)) * 31) + (this.V ? 1 : 0)) * 31) + (this.W ? 1 : 0)) * 31) + (this.X ? 1 : 0)) * 31) + (this.Y ? 1 : 0)) * 31) + (this.Z ? 1 : 0)) * 31) + (this.f6027a0 ? 1 : 0);
+        return ((((((((((((((((((((((((((((super.hashCode() + 31) * 31) + (this.N ? 1 : 0)) * 31) + (this.O ? 1 : 0)) * 31) + (this.P ? 1 : 0)) * 31) + (this.Q ? 1 : 0)) * 31) + (this.R ? 1 : 0)) * 31) + (this.S ? 1 : 0)) * 31) + (this.T ? 1 : 0)) * 31) + (this.U ? 1 : 0)) * 31) + (this.V ? 1 : 0)) * 31) + (this.W ? 1 : 0)) * 31) + (this.X ? 1 : 0)) * 31) + (this.Y ? 1 : 0)) * 31) + (this.Z ? 1 : 0)) * 31) + (this.f5916a0 ? 1 : 0);
     }
 }

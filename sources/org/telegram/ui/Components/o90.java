@@ -1,12 +1,13 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.tl.TL_iv;
+import java.util.ArrayList;
 public final class o90 {
-    public final TL_iv.PageBlock f29721a;
-    public final int f29722b;
+    public final mc.a f27501a;
+    public final int f27502b;
+    public final ArrayList f27503c = new ArrayList();
 
-    public o90(int i10, TL_iv.PageBlock pageBlock) {
-        this.f29721a = pageBlock;
-        this.f29722b = i10;
+    public o90(mc.a aVar, int i10) {
+        this.f27501a = aVar;
+        this.f27502b = i10;
     }
 }

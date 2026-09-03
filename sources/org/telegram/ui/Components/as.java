@@ -1,39 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.graphics.RectF;
-import java.util.HashSet;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.voip.VoIPService;
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class as implements Utilities.Callback2 {
-    public final int f25359a;
+public final class as implements Predicate {
+    public final int f23478a;
+    public final TLObject f23479b;
 
-    public as(int i10) {
-        this.f25359a = i10;
+    public as(int i10, TLObject tLObject) {
+        this.f23478a = i10;
+        this.f23479b = tLObject;
+    }
+
+    public Predicate and(Predicate predicate) {
+        int i10 = this.f23478a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public Predicate negate() {
+        switch (this.f23478a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
+        }
+    }
+
+    public Predicate or(Predicate predicate) {
+        int i10 = this.f23478a;
+        return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f25359a) {
+    public final boolean test(Object obj) {
+        switch (this.f23478a) {
             case 0:
-                TLRPC.Bool bool = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                int i10 = gs.D0;
-                return;
-            case 1:
-                Boolean bool2 = (Boolean) obj;
-                HashSet<Long> hashSet = (HashSet) obj2;
-                VoIPService sharedInstance = VoIPService.getSharedInstance();
-                if (sharedInstance != null) {
-                    sharedInstance.convertToConferenceCall(bool2.booleanValue(), hashSet);
-                    return;
-                }
-                return;
+                return MessageObject.peersEqual((TLRPC.InputPeer) this.f23479b, ((MessageObject) obj).messageOwner.from_id);
             default:
-                TLRPC.Bool bool3 = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                RectF rectF = vg.d.E;
-                return;
+                MessageObject messageObject = (MessageObject) obj;
+                TLObject tLObject = this.f23479b;
+                if (!(tLObject instanceof TLRPC.User) ? !(!(tLObject instanceof TLRPC.Chat) || messageObject.messageOwner.from_id.user_id != ((TLRPC.Chat) tLObject).f19159id) : messageObject.messageOwner.from_id.user_id == ((TLRPC.User) tLObject).f19306id) {
+                    return true;
+                }
+                return false;
         }
     }
 }

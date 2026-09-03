@@ -1,28 +1,33 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class gj0 extends qh.d {
-    public final ij0 f37119e0;
+import org.telegram.messenger.AndroidUtilities;
+public final class gj0 extends kg.k {
+    public boolean G;
+    public final jj0 H;
 
-    public gj0(ij0 ij0Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, g6Var, true);
-        this.f37119e0 = ij0Var;
+    public gj0(jj0 jj0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+        this.H = jj0Var;
     }
 
     @Override
-    public final float a(float f10, float f11) {
-        boolean z4;
-        ij0 ij0Var = this.f37119e0;
-        if (ij0Var.f37729k0 == 0.0f) {
-            z4 = true;
-        } else {
-            z4 = false;
+    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
+        super.onLayout(z4, i10, i11, i12, i13);
+        int dp = AndroidUtilities.dp(64.0f) + getMeasuredHeight();
+        jj0 jj0Var = this.H;
+        jj0Var.f35306i0 = dp;
+        jj0Var.f35305h0.G();
+        if (this.G != jj0Var.isKeyboardVisible()) {
+            boolean isKeyboardVisible = jj0Var.isKeyboardVisible();
+            this.G = isKeyboardVisible;
+            if (isKeyboardVisible) {
+                org.telegram.ui.Components.rl0 rl0Var = jj0Var.d;
+                wh.o oVar = new wh.o(jj0Var.getContext(), 2, 0.6f);
+                oVar.f5712a = 1;
+                oVar.f46707p = AndroidUtilities.dp(36.0f);
+                rl0Var.getLayoutManager().w0(oVar);
+            }
         }
-        ij0Var.f37729k0 = f10;
-        if (z4) {
-            ij0Var.f37730l0 = new hg.o2(ij0Var, 2);
-            ij0Var.S(false);
-        }
-        return f10;
     }
 }

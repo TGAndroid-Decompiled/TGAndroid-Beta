@@ -1,82 +1,31 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import android.widget.Scroller;
-import org.telegram.messenger.Utilities;
-public final class kc1 implements org.telegram.ui.Components.jo0, org.telegram.ui.Components.k20 {
-    public final jd1 f38252a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.widget.FrameLayout;
+public final class kc1 extends FrameLayout {
+    public final int f35505a;
+    public final Rect f35506b;
+    public final jd1 f35507c;
 
-    public kc1(jd1 jd1Var) {
-        this.f38252a = jd1Var;
+    public kc1(jd1 jd1Var, Context context, int i10, Rect rect) {
+        super(context);
+        this.f35507c = jd1Var;
+        this.f35505a = i10;
+        this.f35506b = rect;
     }
 
     @Override
-    public void X(float f10, boolean z4) {
-        jd1 jd1Var = this.f38252a;
-        jd1Var.f37989i1 = f10;
-        jd1Var.k1();
-    }
-
-    @Override
-    public CharSequence getContentDescription() {
-        return null;
-    }
-
-    @Override
-    public int m0() {
-        return 0;
-    }
-
-    @Override
-    public boolean onDown(MotionEvent motionEvent) {
-        Scroller scroller = this.f38252a.f37968c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-            return true;
+    public final void onDraw(Canvas canvas) {
+        int i10 = this.f35505a;
+        Rect rect = this.f35506b;
+        jd1 jd1Var = this.f35507c;
+        if (i10 == 0) {
+            jd1Var.f35222r.setBounds(jd1Var.S.getLeft() - rect.left, 0, jd1Var.S.getRight() + rect.right, getMeasuredHeight());
+        } else {
+            jd1Var.f35222r.setBounds(-rect.left, 0, getMeasuredWidth() + rect.right, getMeasuredHeight());
         }
-        return true;
-    }
-
-    @Override
-    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        jd1 jd1Var = this.f38252a;
-        Scroller scroller = jd1Var.f37968c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-            jd1Var.f37968c.fling((int) jd1Var.U1, 0, Math.round(-f10), Math.round(f11), 0, (int) jd1Var.T1, 0, Integer.MAX_VALUE);
-            jd1Var.f38013u0.postInvalidate();
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        jd1 jd1Var = this.f38252a;
-        Scroller scroller = jd1Var.f37968c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-        }
-        jd1Var.U1 = Utilities.clamp(jd1Var.U1 + f10, jd1Var.T1, 0.0f);
-        jd1Var.V0();
-        jd1Var.f38013u0.invalidate();
-        return true;
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public void A() {
-    }
-
-    @Override
-    public void X0() {
-    }
-
-    @Override
-    public void onLongPress(MotionEvent motionEvent) {
+        jd1Var.f35222r.draw(canvas);
     }
 }

@@ -8,73 +8,73 @@ import android.content.pm.ResolveInfo;
 import android.util.Log;
 import java.util.List;
 public final class g implements z3.d {
-    public int f44173a;
-    public int f44174b;
-    public Object f44175c;
+    public int f41012a;
+    public int f41013b;
+    public Object f41014c;
 
     @Override
     public int a() {
-        return this.f44173a;
+        return this.f41012a;
     }
 
     @Override
     public int b() {
-        return this.f44174b;
+        return this.f41013b;
     }
 
     @Override
     public int c() {
-        int i10 = this.f44173a;
+        int i10 = this.f41012a;
         if (i10 == -1) {
-            return ((h5.w) this.f44175c).x();
+            return ((h5.w) this.f41014c).x();
         }
         return i10;
     }
 
     public int d() {
-        return ((((byte[]) this.f44175c).length - this.f44173a) * 8) - this.f44174b;
+        return ((((byte[]) this.f41014c).length - this.f41012a) * 8) - this.f41013b;
     }
 
     public h e() {
         ?? obj = new Object();
-        obj.f44176a = this.f44173a;
-        obj.f44177b = this.f44174b;
-        obj.f44178c = (String) this.f44175c;
+        obj.f41015a = this.f41012a;
+        obj.f41016b = this.f41013b;
+        obj.f41017c = (String) this.f41014c;
         return obj;
     }
 
     public int f(int i10) {
-        byte[] bArr = (byte[]) this.f44175c;
+        byte[] bArr = (byte[]) this.f41014c;
         if (i10 >= 1 && i10 <= 32 && i10 <= d()) {
-            int i11 = this.f44174b;
+            int i11 = this.f41013b;
             int i12 = 0;
             if (i11 > 0) {
                 int i13 = 8 - i11;
                 int min = Math.min(i10, i13);
                 int i14 = i13 - min;
-                int i15 = this.f44173a;
+                int i15 = this.f41012a;
                 int i16 = (((255 >> (8 - min)) << i14) & bArr[i15]) >> i14;
                 i10 -= min;
-                int i17 = this.f44174b + min;
-                this.f44174b = i17;
+                int i17 = this.f41013b + min;
+                this.f41013b = i17;
                 if (i17 == 8) {
-                    this.f44174b = 0;
-                    this.f44173a = i15 + 1;
+                    this.f41013b = 0;
+                    this.f41012a = i15 + 1;
                 }
                 i12 = i16;
             }
             if (i10 > 0) {
                 while (i10 >= 8) {
                     int i18 = i12 << 8;
-                    int i19 = this.f44173a;
-                    this.f44173a = i19 + 1;
+                    int i19 = this.f41012a;
+                    this.f41012a = i19 + 1;
                     i10 -= 8;
                     i12 = i18 | (bArr[i19] & 255);
                 }
                 if (i10 > 0) {
                     int i20 = 8 - i10;
-                    int i21 = ((bArr[this.f44173a] & ((255 >> i20) << i20)) >> i20) | (i12 << i10);
-                    this.f44174b += i10;
+                    int i21 = ((bArr[this.f41012a] & ((255 >> i20) << i20)) >> i20) | (i12 << i10);
+                    this.f41013b += i10;
                     return i21;
                 }
             }
@@ -85,28 +85,28 @@ public final class g implements z3.d {
 
     public synchronized int g() {
         PackageInfo packageInfo;
-        if (this.f44173a == 0) {
+        if (this.f41012a == 0) {
             try {
-                packageInfo = k6.c.a((Context) this.f44175c).b(0, "com.google.android.gms");
-            } catch (PackageManager.NameNotFoundException e6) {
-                Log.w("Metadata", "Failed to find package ".concat(e6.toString()));
+                packageInfo = k6.b.a((Context) this.f41014c).L(0, "com.google.android.gms");
+            } catch (PackageManager.NameNotFoundException e) {
+                Log.w("Metadata", "Failed to find package ".concat(e.toString()));
                 packageInfo = null;
             }
             if (packageInfo != null) {
-                this.f44173a = packageInfo.versionCode;
+                this.f41012a = packageInfo.versionCode;
             }
         }
-        return this.f44173a;
+        return this.f41012a;
     }
 
     public synchronized int h() {
-        int i10 = this.f44174b;
+        int i10 = this.f41013b;
         if (i10 != 0) {
             return i10;
         }
-        Context context = (Context) this.f44175c;
+        Context context = (Context) this.f41014c;
         PackageManager packageManager = context.getPackageManager();
-        if (k6.c.a(context).f10475a.getPackageManager().checkPermission("com.google.android.c2dm.permission.SEND", "com.google.android.gms") == -1) {
+        if (((Context) k6.b.a(context).f1772b).getPackageManager().checkPermission("com.google.android.c2dm.permission.SEND", "com.google.android.gms") == -1) {
             Log.e("Metadata", "Google Play services missing or without correct permission.");
             return 0;
         }
@@ -116,7 +116,7 @@ public final class g implements z3.d {
             intent.setPackage("com.google.android.gms");
             List<ResolveInfo> queryIntentServices = packageManager.queryIntentServices(intent, 0);
             if (queryIntentServices != null && !queryIntentServices.isEmpty()) {
-                this.f44174b = i11;
+                this.f41013b = i11;
                 return i11;
             }
         }
@@ -125,14 +125,14 @@ public final class g implements z3.d {
         List<ResolveInfo> queryBroadcastReceivers = packageManager.queryBroadcastReceivers(intent2, 0);
         if (queryBroadcastReceivers != null && !queryBroadcastReceivers.isEmpty()) {
             i11 = 2;
-            this.f44174b = i11;
+            this.f41013b = i11;
             return i11;
         }
         Log.w("Metadata", "Failed to resolve IID implementation package, falling back");
         if (true == i6.b.d()) {
             i11 = 2;
         }
-        this.f44174b = i11;
+        this.f41013b = i11;
         return i11;
     }
 }

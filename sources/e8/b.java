@@ -2,22 +2,22 @@ package e8;
 
 import android.util.SparseIntArray;
 public final class b {
-    public static final Object f4998c = new Object();
+    public static final Object f5165c = new Object();
     public static int d;
-    public final SparseIntArray f4999a = new SparseIntArray();
-    public final SparseIntArray f5000b = new SparseIntArray();
+    public final SparseIntArray f5166a = new SparseIntArray();
+    public final SparseIntArray f5167b = new SparseIntArray();
 
     public final int a(int i10) {
-        synchronized (f4998c) {
+        synchronized (f5165c) {
             try {
-                int i11 = this.f4999a.get(i10, -1);
+                int i11 = this.f5166a.get(i10, -1);
                 if (i11 != -1) {
                     return i11;
                 }
                 int i12 = d;
                 d = i12 + 1;
-                this.f4999a.append(i10, i12);
-                this.f5000b.append(i12, i10);
+                this.f5166a.append(i10, i12);
+                this.f5167b.append(i12, i10);
                 return i12;
             } catch (Throwable th2) {
                 throw th2;

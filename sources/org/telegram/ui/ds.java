@@ -1,90 +1,212 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.content.ClipboardManager;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import java.util.ArrayList;
+import android.graphics.Rect;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class ds extends Drawable {
-    public final Drawable f36244a;
-    public final Drawable f36245b;
-    public int d;
-    public int f36247e;
-    public final ArrayList f36246c = new ArrayList();
-    public boolean f36248f = false;
-    public final org.telegram.ui.Components.z5 f36249g = new org.telegram.ui.Components.z5(new zi(this, 13), 420, org.telegram.ui.Components.pr.h);
-    public int h = 255;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public abstract class ds extends EditTextBoldCursor {
+    public static final org.telegram.ui.Components.iv0 F;
+    public static final org.telegram.ui.Components.iv0 G;
+    public static final org.telegram.ui.Components.iv0 H;
+    public static final org.telegram.ui.Components.iv0 I;
+    public Canvas B;
+    public ValueAnimator C;
+    public ValueAnimator D;
+    public boolean E;
+    public float f33518b;
+    public float f33519c;
+    public float d;
+    public float e;
+    public o1.j f33520f;
+    public o1.j h;
+    public o1.j f33521n;
+    public o1.j f33522r;
+    public boolean f33523s;
+    public float v;
+    public float f33524w;
+    public boolean f33525x;
+    public Bitmap f33526y;
 
-    public ds(Drawable drawable, Drawable drawable2) {
-        this.f36244a = drawable;
-        this.f36245b = drawable2;
+    static {
+        org.telegram.ui.Components.iv0 iv0Var = new org.telegram.ui.Components.iv0(new m.j0(25), new m.j0(26));
+        iv0Var.f25780c = 100.0f;
+        F = iv0Var;
+        org.telegram.ui.Components.iv0 iv0Var2 = new org.telegram.ui.Components.iv0(new m.j0(27), new m.j0(28));
+        iv0Var2.f25780c = 100.0f;
+        G = iv0Var2;
+        org.telegram.ui.Components.iv0 iv0Var3 = new org.telegram.ui.Components.iv0(new m.j0(29), new bs(0));
+        iv0Var3.f25780c = 100.0f;
+        H = iv0Var3;
+        org.telegram.ui.Components.iv0 iv0Var4 = new org.telegram.ui.Components.iv0(new bs(1), new bs(2));
+        iv0Var4.f25780c = 100.0f;
+        I = iv0Var4;
     }
 
-    public final void a(int i10, int i11) {
-        this.d = i10;
-        this.f36247e = i11;
-    }
-
-    public final void b(boolean z4) {
-        if (this.f36248f == z4) {
+    public static void k(o1.j jVar, float f10) {
+        o1.k kVar = jVar.f16178u;
+        if (kVar != null && f10 == ((float) kVar.f16184i)) {
             return;
         }
-        this.f36248f = z4;
-        ArrayList arrayList = this.f36246c;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((View) obj).invalidate();
+        jVar.c();
+        o1.k kVar2 = new o1.k(f10);
+        kVar2.b(400.0f);
+        kVar2.a(1.0f);
+        kVar2.f16184i = f10;
+        jVar.f16178u = kVar2;
+        jVar.f();
+    }
+
+    public float getErrorProgress() {
+        return this.f33519c;
+    }
+
+    public float getFocusedProgress() {
+        return this.f33518b;
+    }
+
+    public float getSuccessProgress() {
+        return this.d;
+    }
+
+    public float getSuccessScaleProgress() {
+        return this.e;
+    }
+
+    public final void i(float f10) {
+        k(this.h, f10 * 100.0f);
+    }
+
+    public final void j(float f10) {
+        k(this.f33520f, f10 * 100.0f);
+    }
+
+    public final void l(float f10) {
+        k(this.f33521n, f10 * 100.0f);
+        o1.j jVar = this.f33522r;
+        jVar.c();
+        if (f10 != 0.0f) {
+            o1.k m9 = ai.m(1.0f, 500.0f, 0.75f);
+            m9.f16184i = 100.0f;
+            jVar.f16178u = m9;
+            jVar.f16170b = 100.0f;
+            jVar.f16171c = true;
+            jVar.f16169a = 4000.0f;
+            jVar.f();
+            return;
         }
-        invalidateSelf();
+        this.e = 1.0f;
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        float e6 = this.f36249g.e(this.f36248f);
-        int i10 = this.h;
-        Drawable drawable = this.f36244a;
-        drawable.setAlpha(i10);
-        drawable.setBounds(getBounds());
-        drawable.draw(canvas);
-        if (e6 > 0.0f) {
-            Drawable drawable2 = this.f36245b;
-            drawable2.setAlpha((int) (this.h * e6));
-            drawable2.setBounds(getBounds().left + this.d, getBounds().top + this.f36247e, drawable2.getIntrinsicWidth() + getBounds().left + this.d, drawable2.getIntrinsicHeight() + getBounds().top + this.f36247e);
-            float lerp = AndroidUtilities.lerp(0.5f, 1.0f, e6);
-            canvas.save();
-            canvas.scale(lerp, lerp, drawable2.getBounds().centerX(), drawable2.getBounds().centerY());
-            drawable2.draw(canvas);
-            canvas.restore();
+    public final void m() {
+        if (getMeasuredHeight() != 0 && getMeasuredWidth() != 0 && getLayout() != null) {
+            Bitmap bitmap = this.f33526y;
+            if (bitmap == null || bitmap.getHeight() != getMeasuredHeight() || this.f33526y.getWidth() != getMeasuredWidth()) {
+                Bitmap bitmap2 = this.f33526y;
+                if (bitmap2 != null) {
+                    bitmap2.recycle();
+                }
+                this.f33526y = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                this.B = new Canvas(this.f33526y);
+            }
+            this.f33526y.eraseColor(0);
+            CharSequence transformation = getTransformationMethod().getTransformation(getText(), this);
+            StaticLayout staticLayout = new StaticLayout(transformation, getLayout().getPaint(), (int) Math.ceil(getLayout().getPaint().measureText(transformation, 0, transformation.length())), Layout.Alignment.ALIGN_NORMAL, getLineSpacingMultiplier(), getLineSpacingExtra(), getIncludeFontPadding());
+            this.B.save();
+            this.B.translate((getMeasuredWidth() - staticLayout.getWidth()) / 2.0f, (getMeasuredHeight() - staticLayout.getHeight()) / 2.0f);
+            staticLayout.draw(this.B);
+            this.B.restore();
+            this.f33524w = 0.0f;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.D = ofFloat;
+            ofFloat.addUpdateListener(new g3(this, 8));
+            this.D.setDuration(220L);
+            this.D.start();
         }
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return this.f36244a.getIntrinsicHeight();
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f33520f.c();
+        this.h.c();
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return this.f36244a.getIntrinsicWidth();
+    public final void onFocusChanged(boolean z4, int i10, Rect rect) {
+        super.onFocusChanged(z4, i10, rect);
+        if (!isFocused()) {
+            hideActionMode();
+        }
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        as asVar;
+        ClipDescription primaryClipDescription;
+        String str;
+        int i10;
+        if (motionEvent.getAction() == 0) {
+            this.E = true;
+            motionEvent.getX();
+            motionEvent.getY();
+        }
+        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (getParent() instanceof as) {
+                asVar = (as) getParent();
+            } else {
+                asVar = null;
+            }
+            if (motionEvent.getAction() == 1 && this.E) {
+                if (isFocused() && asVar != null) {
+                    ClipboardManager clipboardManager = (ClipboardManager) f0.f.f(getContext(), ClipboardManager.class);
+                    if (clipboardManager == null || clipboardManager.getPrimaryClipDescription() == null || (primaryClipDescription = clipboardManager.getPrimaryClipDescription()) == null) {
+                        return false;
+                    }
+                    primaryClipDescription.hasMimeType("text/plain");
+                    ClipData.Item itemAt = clipboardManager.getPrimaryClip().getItemAt(0);
+                    if (itemAt != null && itemAt.getText() != null) {
+                        str = itemAt.getText().toString();
+                    } else {
+                        str = "";
+                    }
+                    try {
+                        i10 = Integer.parseInt(str);
+                    } catch (Exception unused) {
+                        i10 = -1;
+                    }
+                    if (i10 > 0) {
+                        startActionMode(new cs(this));
+                    }
+                } else {
+                    requestFocus();
+                }
+                setSelection(0);
+                if (this.f33523s) {
+                    AndroidUtilities.showKeyboard(this);
+                }
+            }
+            this.E = false;
+        }
+        return this.E;
     }
 
     @Override
-    public final void setAlpha(int i10) {
-        this.h = i10;
+    public final boolean requestFocus(int i10, Rect rect) {
+        ((ViewGroup) getParent()).invalidate();
+        return super.requestFocus(i10, rect);
     }
 
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f36244a.setColorFilter(colorFilter);
-        this.f36245b.setColorFilter(colorFilter);
+    public void setShowSoftInputOnFocusCompat(boolean z4) {
+        this.f33523s = z4;
+        setShowSoftInputOnFocus(z4);
     }
 }

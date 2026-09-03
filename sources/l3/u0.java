@@ -2,7 +2,7 @@ package l3;
 
 import java.nio.ByteBuffer;
 public final class u0 extends a0 {
-    public static final int f11636i = Float.floatToIntBits(Float.NaN);
+    public static final int f11376i = Float.floatToIntBits(Float.NaN);
 
     @Override
     public final void b(ByteBuffer byteBuffer) {
@@ -10,8 +10,8 @@ public final class u0 extends a0 {
         int position = byteBuffer.position();
         int limit = byteBuffer.limit();
         int i10 = limit - position;
-        int i11 = this.f11487b.f11562c;
-        int i12 = f11636i;
+        int i11 = this.f11237b.f11306c;
+        int i12 = f11376i;
         if (i11 != 536870912) {
             if (i11 == 805306368) {
                 j10 = j(i10);
@@ -43,13 +43,13 @@ public final class u0 extends a0 {
 
     @Override
     public final l f(l lVar) {
-        int i10 = lVar.f11562c;
+        int i10 = lVar.f11306c;
         if (i10 != 536870912 && i10 != 805306368 && i10 != 4) {
             throw new m(lVar);
         }
         if (i10 != 4) {
-            return new l(lVar.f11560a, lVar.f11561b, 4);
+            return new l(lVar.f11304a, lVar.f11305b, 4);
         }
-        return l.f11559e;
+        return l.e;
     }
 }

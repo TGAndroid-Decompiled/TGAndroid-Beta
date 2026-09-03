@@ -1,51 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.PopupWindow;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public abstract class xr {
-    public final org.telegram.ui.ActionBar.p1 f33163a;
-    public boolean f33164b;
+import android.graphics.RectF;
+import java.util.HashSet;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.TLRPC;
+public final class xr implements Utilities.Callback2 {
+    public final int f30697a;
 
-    public xr(Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z4) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert2, z4 ? 1 : 0, context, g6Var);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setAnimationEnabled(false);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new vr(this, 0));
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new t(this, 27));
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(false);
-        b(actionBarPopupWindow$ActionBarPopupWindowLayout);
-        org.telegram.ui.ActionBar.p1 p1Var = new org.telegram.ui.ActionBar.p1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f33163a = p1Var;
-        p1Var.f22218b = false;
-        p1Var.setAnimationStyle(R.style.PopupContextAnimation2);
-        p1Var.setOutsideTouchable(true);
-        p1Var.setClippingEnabled(true);
-        p1Var.setInputMethodMode(2);
-        p1Var.setSoftInputMode(0);
-        p1Var.getContentView().setFocusableInTouchMode(true);
-        if (AndroidUtilities.isAccessibilityTouchExplorationEnabled()) {
-            p1Var.setFocusable(true);
-        }
-        p1Var.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public final void onDismiss() {
-                xr xrVar = xr.this;
-                xrVar.c();
-                xrVar.f33164b = false;
-            }
-        });
+    public xr(int i10) {
+        this.f30697a = i10;
     }
 
-    public final void a() {
-        org.telegram.ui.ActionBar.p1 p1Var = this.f33163a;
-        if (p1Var != null) {
-            p1Var.dismiss();
+    @Override
+    public final void run(Object obj, Object obj2) {
+        switch (this.f30697a) {
+            case 0:
+                TLRPC.Bool bool = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                int i10 = ds.D0;
+                return;
+            case 1:
+                Boolean bool2 = (Boolean) obj;
+                HashSet<Long> hashSet = (HashSet) obj2;
+                VoIPService sharedInstance = VoIPService.getSharedInstance();
+                if (sharedInstance != null) {
+                    sharedInstance.convertToConferenceCall(bool2.booleanValue(), hashSet);
+                    return;
+                }
+                return;
+            default:
+                TLRPC.Bool bool3 = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                RectF rectF = ug.d.E;
+                return;
         }
     }
-
-    public abstract void b(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout);
-
-    public abstract void c();
 }

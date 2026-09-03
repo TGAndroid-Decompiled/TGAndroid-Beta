@@ -4,7 +4,7 @@ import android.support.v4.media.a;
 import java.lang.Character;
 import java.util.HashSet;
 import java.util.Set;
-import l.d;
+import kf.k0;
 import org.scilab.forge.jlatexmath.TeXFormula;
 import ru.noties.jlatexmath.awt.Color;
 public class TeXParser {
@@ -350,7 +350,7 @@ public class TeXParser {
                 }
                 return new JavaFontRenderingAtom(this.parseString.substring(i13, i14 + 1), fontInfos);
             } else if (this.isPartial) {
-                return new ColorAtom(new RomanAtom(new TeXFormula(d.k(convertToRomanNumber, "\\text{(Unknown char ", ")}")).root), (Color) null, Color.RED);
+                return new ColorAtom(new RomanAtom(new TeXFormula(k0.k(convertToRomanNumber, "\\text{(Unknown char ", ")}")).root), (Color) null, Color.RED);
             } else {
                 throw new ParseException("Unknown character : '" + Character.toString(convertToRomanNumber) + "' (or " + ((int) convertToRomanNumber) + ")");
             }
@@ -363,8 +363,8 @@ public class TeXParser {
             }
             try {
                 return SymbolAtom.get(str2);
-            } catch (SymbolNotFoundException e6) {
-                throw new ParseException("The character '" + Character.toString(convertToRomanNumber) + "' was mapped to an unknown symbol with the name '" + str2 + "'!", e6);
+            } catch (SymbolNotFoundException e) {
+                throw new ParseException("The character '" + Character.toString(convertToRomanNumber) + "' was mapped to an unknown symbol with the name '" + str2 + "'!", e);
             }
         }
     }

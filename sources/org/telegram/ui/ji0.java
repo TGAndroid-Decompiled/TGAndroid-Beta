@@ -1,194 +1,138 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class ji0 implements org.telegram.ui.Components.pk0 {
-    public final org.telegram.ui.ActionBar.p2 f38057a;
-    public final ti0 f38058b;
+import java.util.ArrayList;
+public final class ji0 implements Runnable {
+    public final int f35285a;
+    public final org.telegram.ui.ActionBar.p2 f35286b;
 
-    public ji0(ti0 ti0Var, org.telegram.ui.ActionBar.p2 p2Var) {
-        this.f38058b = ti0Var;
-        this.f38057a = p2Var;
+    public ji0(int i10, org.telegram.ui.ActionBar.p2 p2Var) {
+        this.f35285a = i10;
+        this.f35286b = p2Var;
     }
 
     @Override
-    public final boolean g() {
-        return true;
-    }
-
-    @Override
-    public final boolean h() {
-        return false;
-    }
-
-    @Override
-    public final void o(View view, ng.q0 q0Var, boolean z4, boolean z10) {
-        boolean z11;
-        boolean z12;
-        TLRPC.TL_availableEffect effect;
-        ng.q0 q0Var2;
-        org.telegram.ui.ActionBar.p2 p2Var;
-        boolean z13;
-        long j10;
-        boolean z14;
-        ng.q0 q0Var3;
-        ng.q0 q0Var4 = q0Var;
-        if (q0Var4 != null) {
-            ti0 ti0Var = this.f38058b;
-            hi0 hi0Var = ti0Var.f41550b0;
-            fi0 fi0Var = ti0Var.X;
-            int i10 = ti0Var.f41551c;
-            if (hi0Var != null) {
-                if (!UserConfig.getInstance(i10).isPremium() && q0Var4.d) {
-                    z11 = true;
+    public final void run() {
+        switch (this.f35285a) {
+            case 0:
+                ?? obj = new Object();
+                obj.f20453a = true;
+                this.f35286b.showAsSheet(new PremiumPreviewFragment(0, "effect"), obj);
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.p2 p2Var = this.f35286b;
+                if (p2Var instanceof PremiumPreviewFragment) {
+                    PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) p2Var;
+                    premiumPreviewFragment.m0 = true;
+                    premiumPreviewFragment.getMediaDataController().loadPremiumPromo(false);
+                    premiumPreviewFragment.f31925a.x0(0);
                 } else {
-                    z11 = false;
-                }
-                org.telegram.ui.Cells.t1 t1Var = ti0Var.N;
-                if (t1Var != null) {
-                    MessageObject messageObject = t1Var.getMessageObject();
-                    if (messageObject != null) {
-                        TLRPC.Message message = messageObject.messageOwner;
-                        long j11 = message.effect;
-                        long j12 = q0Var4.f16178c;
-                        if (j12 == j11) {
-                            message.flags2 &= -5;
-                            message.effect = 0L;
-                            z13 = true;
-                        } else {
-                            message.flags2 |= 4;
-                            message.effect = j12;
-                            z13 = false;
-                        }
-                        if (!z11) {
-                            org.telegram.ui.Cells.t1 t1Var2 = ti0Var.N;
-                            j10 = j11;
-                            MessageObject.GroupedMessages l10 = ti0Var.l(messageObject);
-                            if (ti0Var.K.size() > 1) {
-                                z14 = true;
-                            } else {
-                                z14 = false;
-                            }
-                            t1Var2.X3(messageObject, l10, z14, false, false, false);
-                            hi0 hi0Var2 = ti0Var.f41550b0;
-                            if (z13) {
-                                q0Var3 = null;
-                            } else {
-                                q0Var3 = q0Var4;
-                            }
-                            hi0Var2.setSelectedReactionAnimated(q0Var3);
-                            if (ti0Var.f41550b0.getReactionsWindow() != null && ti0Var.f41550b0.getReactionsWindow().f16045m != null) {
-                                ng.z zVar = ti0Var.f41550b0.getReactionsWindow().f16045m;
-                                if (z13) {
-                                    q0Var4 = null;
-                                }
-                                zVar.setSelectedReaction(q0Var4);
-                                ti0Var.f41550b0.getReactionsWindow().f16035a.invalidate();
-                            }
-                        } else {
-                            j10 = j11;
-                        }
-                        fi0Var.c();
-                        if (!z13) {
-                            fi0Var.o(ti0Var.N, 0, false, false);
-                        }
-                        if (z11) {
-                            TLRPC.Message message2 = messageObject.messageOwner;
-                            message2.effect = j10;
-                            if (j10 == 0) {
-                                message2.flags2 &= -5;
-                            }
-                        }
-                        gi0 gi0Var = ti0Var.U;
-                        if (gi0Var != null) {
-                            gi0Var.setEffect(messageObject.messageOwner.effect);
-                        }
-                        ti0Var.m(messageObject.messageOwner.effect);
+                    PremiumPreviewFragment premiumPreviewFragment2 = new PremiumPreviewFragment(0, null);
+                    premiumPreviewFragment2.m0 = true;
+                    if (p2Var != null) {
+                        p2Var.presentFragment(premiumPreviewFragment2);
                     } else {
-                        return;
-                    }
-                } else if (ti0Var.f41560i0 != null) {
-                    long j13 = q0Var4.f16178c;
-                    if (j13 == ti0Var.F) {
-                        ti0Var.F = 0L;
-                        z12 = true;
-                    } else {
-                        ti0Var.F = j13;
-                        z12 = false;
-                    }
-                    gi0 gi0Var2 = ti0Var.U;
-                    if (gi0Var2 != null) {
-                        gi0Var2.setEffect(ti0Var.F);
-                    }
-                    ti0Var.m(ti0Var.F);
-                    if (!z11) {
-                        if (ti0Var.F == 0) {
-                            effect = null;
-                        } else {
-                            effect = MessagesController.getInstance(i10).getEffect(ti0Var.F);
+                        org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
+                        if (U != null) {
+                            U.presentFragment(premiumPreviewFragment2);
                         }
-                        org.telegram.ui.Components.j5 j5Var = ti0Var.G;
-                        if (j5Var != null) {
-                            if (ti0Var.F != 0 && effect != null) {
-                                j5Var.g(Emoji.getEmojiDrawable(effect.emoticon), true);
-                            } else {
-                                j5Var.g(null, true);
-                            }
-                        }
-                        hi0 hi0Var3 = ti0Var.f41550b0;
-                        if (z12) {
-                            q0Var2 = null;
-                        } else {
-                            q0Var2 = q0Var4;
-                        }
-                        hi0Var3.setSelectedReactionAnimated(q0Var2);
-                        if (ti0Var.f41550b0.getReactionsWindow() != null && ti0Var.f41550b0.getReactionsWindow().f16045m != null) {
-                            ng.z zVar2 = ti0Var.f41550b0.getReactionsWindow().f16045m;
-                            if (z12) {
-                                q0Var4 = null;
-                            }
-                            zVar2.setSelectedReaction(q0Var4);
-                            ti0Var.f41550b0.getReactionsWindow().f16035a.invalidate();
-                        }
-                    }
-                    fi0Var.c();
-                    if (!z12) {
-                        TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                        long j14 = ti0Var.F;
-                        tL_message.effect = j14;
-                        if (j14 != 0) {
-                            tL_message.flags2 |= 4;
-                        }
-                        ti0Var.X.d(null, 0, null, new MessageObject(i10, tL_message, false, false), 0, false, false, 0.0f, 0.0f, true);
                     }
                 }
-                if (z11 && (p2Var = this.f38057a) != null) {
-                    new org.telegram.ui.Components.qc(ti0Var.D, ti0Var.f41549b).Q(R.raw.star_premium_2, 36, AndroidUtilities.premiumText(LocaleController.getString(R.string.AnimatedEffectPremium), new ii0(0, p2Var))).j();
+                if (p2Var != null && (p2Var.getParentActivity() instanceof LaunchActivity)) {
+                    try {
+                        p2Var.getFragmentView().performHapticFeedback(3, 2);
+                    } catch (Exception unused) {
+                    }
+                    ((LaunchActivity) p2Var.getParentActivity()).f31626u0.c(false);
+                    return;
                 }
-                ti0Var.E.invalidate();
-            }
+                return;
+            case 2:
+                this.f35286b.presentFragment(new DataSettingsActivity());
+                return;
+            case 3:
+                this.f35286b.presentFragment(new DataSettingsActivity());
+                return;
+            case 4:
+                this.f35286b.presentFragment(new DataSettingsActivity());
+                return;
+            case 5:
+                b.k(0, this.f35286b);
+                return;
+            case 6:
+                b.k(0, this.f35286b);
+                return;
+            case 7:
+                this.f35286b.presentFragment(new WallpapersListActivity(0));
+                return;
+            case 8:
+                this.f35286b.presentFragment(new NotificationsCustomSettingsActivity(2, new ArrayList(), null, true));
+                return;
+            case 9:
+                this.f35286b.presentFragment(new WallpapersListActivity(1));
+                return;
+            case 10:
+                this.f35286b.presentFragment(new WallpapersListActivity(0));
+                return;
+            case 11:
+                b.k(0, this.f35286b);
+                return;
+            case 12:
+                org.telegram.ui.ActionBar.p2 p2Var2 = this.f35286b;
+                eg.o1 o1Var = new eg.o1(p2Var2, 4, false);
+                o1Var.C();
+                p2Var2.showDialog(o1Var);
+                return;
+            case 13:
+                b.k(3, this.f35286b);
+                return;
+            case 14:
+                b.k(3, this.f35286b);
+                return;
+            case 15:
+                b.k(0, this.f35286b);
+                return;
+            case 16:
+                b.k(0, this.f35286b);
+                return;
+            case 17:
+                b.k(0, this.f35286b);
+                return;
+            case 18:
+                b.k(0, this.f35286b);
+                return;
+            case 19:
+                b.k(1, this.f35286b);
+                return;
+            case 20:
+                this.f35286b.presentFragment(new NotificationsSettingsActivity());
+                return;
+            case 21:
+                b.k(0, this.f35286b);
+                return;
+            case 22:
+                b.k(0, this.f35286b);
+                return;
+            case 23:
+                this.f35286b.presentFragment(new NotificationsSettingsActivity());
+                return;
+            case 24:
+                b.k(0, this.f35286b);
+                return;
+            case 25:
+                b.k(0, this.f35286b);
+                return;
+            case 26:
+                b.k(0, this.f35286b);
+                return;
+            case 27:
+                b.k(0, this.f35286b);
+                return;
+            case 28:
+                b.k(0, this.f35286b);
+                return;
+            default:
+                b.k(0, this.f35286b);
+                return;
         }
-    }
-
-    @Override
-    public final boolean t() {
-        return false;
-    }
-
-    @Override
-    public final void m() {
-    }
-
-    @Override
-    public final void j(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i10, boolean z4) {
     }
 }

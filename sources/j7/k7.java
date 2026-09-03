@@ -1,16 +1,12 @@
 package j7;
-
-import android.os.SystemClock;
 public abstract class k7 {
-    public static g5.g0 a(f5.c cVar) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        int p10 = cVar.p();
-        int i10 = 0;
-        for (int i11 = 0; i11 < p10; i11++) {
-            if (cVar.o(i11, elapsedRealtime)) {
-                i10++;
-            }
+    public static boolean a(Object obj, Object obj2) {
+        if (obj == obj2) {
+            return true;
         }
-        return new g5.g0(1, 0, p10, i10);
+        if (obj != null && obj.equals(obj2)) {
+            return true;
+        }
+        return false;
     }
 }

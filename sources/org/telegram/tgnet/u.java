@@ -2,28 +2,28 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.Utilities;
 public final class u implements Utilities.Callback {
-    public final int f21105a;
-    public final OutputSerializedData f21106b;
+    public final int f19417a;
+    public final OutputSerializedData f19418b;
 
     public u(OutputSerializedData outputSerializedData, int i10) {
-        this.f21105a = i10;
-        this.f21106b = outputSerializedData;
+        this.f19417a = i10;
+        this.f19418b = outputSerializedData;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f21105a) {
+        switch (this.f19417a) {
             case 0:
-                this.f21106b.writeInt64(((Long) obj).longValue());
+                this.f19418b.writeInt64(((Long) obj).longValue());
                 return;
             case 1:
-                this.f21106b.writeInt32(((Integer) obj).intValue());
+                this.f19418b.writeInt32(((Integer) obj).intValue());
                 return;
             case 2:
-                this.f21106b.writeByteArray((byte[]) obj);
+                this.f19418b.writeByteArray((byte[]) obj);
                 return;
             default:
-                this.f21106b.writeString((String) obj);
+                this.f19418b.writeString((String) obj);
                 return;
         }
     }

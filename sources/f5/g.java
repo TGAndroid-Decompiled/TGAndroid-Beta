@@ -10,7 +10,7 @@ import h5.d0;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-public final class g extends w {
+public final class g extends v {
     public boolean A;
     public boolean B;
     public boolean C;
@@ -31,9 +31,9 @@ public final class g extends w {
     public g(Context context) {
         CaptioningManager captioningManager;
         String locale;
-        int i10 = d0.f7237a;
+        int i10 = d0.f6924a;
         if (i10 >= 19 && ((i10 >= 23 || Looper.myLooper() != null) && (captioningManager = (CaptioningManager) context.getSystemService("captioning")) != null && captioningManager.isEnabled())) {
-            this.f6090t = 1088;
+            this.f5973t = 1088;
             Locale locale2 = captioningManager.getLocale();
             if (locale2 != null) {
                 if (i10 >= 21) {
@@ -41,7 +41,7 @@ public final class g extends w {
                 } else {
                     locale = locale2.toString();
                 }
-                this.f6089s = s8.v.x(locale);
+                this.f5972s = s8.v.x(locale);
             }
         }
         Point q10 = d0.q(context);
@@ -52,13 +52,13 @@ public final class g extends w {
     }
 
     @Override
-    public final w b(int i10, int i11) {
+    public final v b(int i10, int i11) {
         super.b(i10, i11);
         return this;
     }
 
     public final void c() {
-        this.f6094y.clear();
+        this.f5977y.clear();
     }
 
     public final void d() {
@@ -93,14 +93,14 @@ public final class g extends w {
         this.K = hVar.X;
         this.L = hVar.Y;
         this.M = hVar.Z;
-        this.N = hVar.f6027a0;
-        SparseArray sparseArray = hVar.f6028b0;
+        this.N = hVar.f5916a0;
+        SparseArray sparseArray = hVar.f5917b0;
         SparseArray sparseArray2 = new SparseArray();
         for (int i10 = 0; i10 < sparseArray.size(); i10++) {
             sparseArray2.put(sparseArray.keyAt(i10), new HashMap((Map) sparseArray.valueAt(i10)));
         }
         this.O = sparseArray2;
-        this.P = hVar.f6029c0.clone();
+        this.P = hVar.f5918c0.clone();
     }
 
     public g() {

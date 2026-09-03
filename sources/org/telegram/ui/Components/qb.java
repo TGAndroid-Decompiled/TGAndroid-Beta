@@ -10,36 +10,36 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public class qb extends eb {
-    public final kj0 f30374a;
-    public TextView f30375b;
-    public int f30376c;
+    public final jj0 f28136a;
+    public TextView f28137b;
+    public int f28138c;
 
-    public qb(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, g6Var);
+    public qb(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
         ?? imageView = new ImageView(context);
-        this.f30374a = imageView;
+        this.f28136a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView((View) imageView, k7.c6.h(56.0f, 48.0f, 8388627));
-        fg.a2 a2Var = new fg.a2(context, 2, null);
-        a2Var.setDisablePaddingsOffset(true);
-        this.f30375b = a2Var;
-        NotificationCenter.listenEmojiLoading(a2Var);
-        this.f30375b.setSingleLine();
-        this.f30375b.setTypeface(Typeface.SANS_SERIF);
-        this.f30375b.setTextSize(1, 15.0f);
-        this.f30375b.setEllipsize(TextUtils.TruncateAt.END);
-        this.f30375b.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-        addView(this.f30375b, k7.c6.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        this.f30375b.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.k6.Gi));
-        setTextColor(getThemedColor(org.telegram.ui.ActionBar.k6.Hi));
-        setBackground(getThemedColor(org.telegram.ui.ActionBar.k6.Fi));
+        addView((View) imageView, k7.b6.h(56.0f, 48.0f, 8388627));
+        eg.b2 b2Var = new eg.b2(context, 2, null);
+        b2Var.setDisablePaddingsOffset(true);
+        this.f28137b = b2Var;
+        NotificationCenter.listenEmojiLoading(b2Var);
+        this.f28137b.setSingleLine();
+        this.f28137b.setTypeface(Typeface.SANS_SERIF);
+        this.f28137b.setTextSize(1, 15.0f);
+        this.f28137b.setEllipsize(TextUtils.TruncateAt.END);
+        this.f28137b.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+        addView(this.f28137b, k7.b6.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+        this.f28137b.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Gi));
+        setTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Hi));
+        setBackground(getThemedColor(org.telegram.ui.ActionBar.j6.Fi));
     }
 
     public final void c(int i10, int i11, int i12, String... strArr) {
-        kj0 kj0Var = this.f30374a;
-        kj0Var.f(i10, i11, i12, null);
+        jj0 jj0Var = this.f28136a;
+        jj0Var.f(i10, i11, i12, null);
         for (String str : strArr) {
-            kj0Var.h(this.f30376c, str);
+            jj0Var.h(this.f28138c, str);
         }
     }
 
@@ -48,36 +48,36 @@ public class qb extends eb {
     }
 
     public final void e(TLRPC.Document document, String... strArr) {
-        kj0 kj0Var = this.f30374a;
-        kj0Var.setAutoRepeat(true);
-        kj0Var.g(36, 36, document);
+        jj0 jj0Var = this.f28136a;
+        jj0Var.setAutoRepeat(true);
+        jj0Var.g(36, 36, document);
         for (String str : strArr) {
-            kj0Var.h(this.f30376c, str);
+            jj0Var.h(this.f28138c, str);
         }
     }
 
     @Override
     public CharSequence getAccessibilityText() {
-        return this.f30375b.getText();
+        return this.f28137b.getText();
     }
 
     @Override
     public final void onShow() {
         super.onShow();
-        this.f30374a.d();
+        this.f28136a.d();
     }
 
     public void setIconPaddingBottom(int i10) {
-        this.f30374a.setLayoutParams(k7.c6.i(56.0f, 48 - i10, 8388627, 0.0f, 0.0f, 0.0f, i10));
+        this.f28136a.setLayoutParams(k7.b6.i(56.0f, 48 - i10, 8388627, 0.0f, 0.0f, 0.0f, i10));
     }
 
     public void setTextColor(int i10) {
-        this.f30376c = i10;
-        this.f30375b.setTextColor(i10);
+        this.f28138c = i10;
+        this.f28137b.setTextColor(i10);
     }
 
-    public qb(int i10, int i11, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        this(context, g6Var);
+    public qb(int i10, int i11, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        this(context, f6Var);
         setBackground(i10);
         setTextColor(i11);
     }

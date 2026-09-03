@@ -22,37 +22,37 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-public abstract class bd extends qh.k {
+public abstract class bd extends ph.k {
     public boolean P0;
     public final ImageView Q0;
     public boolean R0;
     public final ImageView S0;
-    public final qh.j T0;
-    public q70 U0;
+    public final ph.j T0;
+    public p70 U0;
     public final j0 V0;
     public final ImageView W0;
-    public qh.e3 X0;
+    public ph.f3 X0;
     public int Y0;
     public final int[] Z0;
-    public final qh.e3 f25578a1;
-    public final Runnable f25579b1;
-    public final RectF f25580c1;
-    public final Drawable f25581d1;
-    public final j6 f25582e1;
-    public final rc f25583f1;
-    public qg.b f25584g1;
-    public final z5 f25585h1;
-    public final z5 f25586i1;
-    public final z5 f25587j1;
-    public boolean f25588k1;
+    public final ph.f3 f23631a1;
+    public final Runnable f23632b1;
+    public final RectF f23633c1;
+    public final Drawable f23634d1;
+    public final j6 f23635e1;
+    public final rc f23636f1;
+    public pg.b f23637g1;
+    public final z5 f23638h1;
+    public final z5 f23639i1;
+    public final z5 f23640j1;
+    public boolean f23641k1;
     public boolean l1;
-    public final fg f25589m1;
-    public boolean f25590n1;
-    public Utilities.Callback f25591o1;
-    public boolean f25592p1;
+    public final fg f23642m1;
+    public boolean f23643n1;
+    public Utilities.Callback f23644o1;
+    public boolean f23645p1;
 
-    public bd(Context context, FrameLayout frameLayout, pv0 pv0Var, FrameLayout frameLayout2, org.telegram.ui.ActionBar.g6 g6Var, ba baVar, Runnable runnable) {
-        super(context, frameLayout, pv0Var, frameLayout2, g6Var, baVar);
+    public bd(Context context, FrameLayout frameLayout, qv0 qv0Var, FrameLayout frameLayout2, org.telegram.ui.ActionBar.f6 f6Var, ba baVar, Runnable runnable) {
+        super(context, frameLayout, qv0Var, frameLayout2, f6Var, baVar);
         int i10;
         float f10;
         float f11;
@@ -63,26 +63,26 @@ public abstract class bd extends qh.k {
         int i12;
         this.Y0 = 0;
         this.Z0 = new int[]{Integer.MAX_VALUE, 3, 10, 30, 0};
-        this.f25580c1 = new RectF();
+        this.f23633c1 = new RectF();
         j6 j6Var = new j6(false, false, false, false);
-        this.f25582e1 = j6Var;
-        this.f25583f1 = new rc(this);
-        pr prVar = pr.h;
-        this.f25585h1 = new z5(this, 0L, 350L, prVar);
-        this.f25586i1 = new z5(this, 0L, 350L, prVar);
-        this.f25587j1 = new z5(this, 0L, 350L, prVar);
-        this.f25589m1 = new fg(this, 17);
-        this.f25579b1 = runnable;
+        this.f23635e1 = j6Var;
+        this.f23636f1 = new rc(this);
+        mr mrVar = mr.h;
+        this.f23638h1 = new z5(this, 0L, 350L, mrVar);
+        this.f23639i1 = new z5(this, 0L, 350L, mrVar);
+        this.f23640j1 = new z5(this, 0L, 350L, mrVar);
+        this.f23642m1 = new fg(this, 17);
+        this.f23632b1 = runnable;
         j6Var.t(AndroidUtilities.dp(14.0f));
         j6Var.G = AndroidUtilities.displaySize.x;
         j6Var.r(-1);
         boolean z4 = this instanceof org.telegram.ui.ns0;
         if (z4) {
             j6Var.q(LocaleController.getString(R.string.MoveCaptionDown), true, true);
-            this.f25581d1 = context.getResources().getDrawable(R.drawable.menu_link_below);
+            this.f23634d1 = context.getResources().getDrawable(R.drawable.menu_link_below);
         } else {
             j6Var.q(LocaleController.getString(R.string.MoveCaptionUp), true, true);
-            this.f25581d1 = context.getResources().getDrawable(R.drawable.menu_link_above);
+            this.f23634d1 = context.getResources().getDrawable(R.drawable.menu_link_above);
         }
         ImageView imageView = new ImageView(context);
         this.Q0 = imageView;
@@ -90,7 +90,7 @@ public abstract class bd extends qh.k {
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        imageView.setBackground(org.telegram.ui.ActionBar.k6.f0(1090519039, 1, AndroidUtilities.dp(18.0f)));
+        imageView.setBackground(org.telegram.ui.ActionBar.j6.f0(1090519039, 1, AndroidUtilities.dp(18.0f)));
         C(false);
         if (z4) {
             i10 = 48;
@@ -108,13 +108,13 @@ public abstract class bd extends qh.k {
         } else {
             f11 = 6.0f;
         }
-        addView(imageView, k7.c6.d(44, 44.0f, i13, 14.0f, f10, 0.0f, f11));
+        addView(imageView, k7.b6.d(44, 44.0f, i13, 14.0f, f10, 0.0f, f11));
         ImageView imageView2 = new ImageView(context);
         this.S0 = imageView2;
-        qh.j jVar = new qh.j(5);
+        ph.j jVar = new ph.j(5);
         this.T0 = jVar;
         imageView2.setImageDrawable(jVar);
-        imageView2.setBackground(org.telegram.ui.ActionBar.k6.f0(1090519039, 1, AndroidUtilities.dp(18.0f)));
+        imageView2.setBackground(org.telegram.ui.ActionBar.j6.f0(1090519039, 1, AndroidUtilities.dp(18.0f)));
         imageView2.setScaleType(scaleType);
         E(false, false);
         if (z4) {
@@ -133,25 +133,25 @@ public abstract class bd extends qh.k {
         } else {
             f13 = 6.0f;
         }
-        addView(imageView2, k7.c6.d(44, 44.0f, i14, 0.0f, f12, 10.0f, f13));
-        qh.e3 e3Var = new qh.e3(context, z4 ? 1 : 3);
-        this.f25578a1 = e3Var;
-        e3Var.q(12.0f);
+        addView(imageView2, k7.b6.d(44, 44.0f, i14, 0.0f, f12, 10.0f, f13));
+        ph.f3 f3Var = new ph.f3(context, z4 ? 1 : 3);
+        this.f23631a1 = f3Var;
+        f3Var.q(12.0f);
         int dp = AndroidUtilities.dp(12.0f);
         if (z4) {
             f14 = 8.0f;
         } else {
             f14 = 0.0f;
         }
-        e3Var.setPadding(dp, AndroidUtilities.dp(f14), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(z4 ? 0.0f : 8.0f));
-        e3Var.l(1.0f, -21.0f);
-        e3Var.p(true);
+        f3Var.setPadding(dp, AndroidUtilities.dp(f14), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(z4 ? 0.0f : 8.0f));
+        f3Var.l(1.0f, -21.0f);
+        f3Var.p(true);
         if (z4) {
             i12 = 48;
         } else {
             i12 = 80;
         }
-        addView(e3Var, k7.c6.e(-1, 80, i12 | 5));
+        addView(f3Var, k7.b6.e(-1, 80, i12 | 5));
         ImageView imageView3 = new ImageView(context);
         this.W0 = imageView3;
         j0 j0Var = new j0(context);
@@ -159,11 +159,11 @@ public abstract class bd extends qh.k {
         imageView3.setImageDrawable(j0Var);
         imageView3.setScaleType(scaleType);
         imageView3.setColorFilter(new PorterDuffColorFilter(-1140850689, PorterDuff.Mode.MULTIPLY));
-        imageView3.setBackground(org.telegram.ui.ActionBar.k6.f0(1090519039, 1, AndroidUtilities.dp(16.0f)));
-        addView(imageView3, k7.c6.d(44, 44.0f, 53, 8.0f, 0.0f, 8.0f, 0.0f));
+        imageView3.setBackground(org.telegram.ui.ActionBar.j6.f0(1090519039, 1, AndroidUtilities.dp(16.0f)));
+        addView(imageView3, k7.b6.d(44, 44.0f, 53, 8.0f, 0.0f, 8.0f, 0.0f));
         imageView3.setContentDescription(LocaleController.getString(R.string.AIEditor));
-        k7.e6.a(imageView3);
-        this.f45574f.getEditText().addTextChangedListener(new eh.c(this, 5));
+        k7.d6.a(imageView3);
+        this.f41842f.getEditText().addTextChangedListener(new dh.c(this, 5));
         imageView3.setVisibility(8);
         imageView3.setAlpha(0.0f);
         imageView3.setScaleX(0.6f);
@@ -200,8 +200,8 @@ public abstract class bd extends qh.k {
             f11 = AndroidUtilities.dp(-8.0f);
         }
         imageView.setTranslationX(f11);
-        qh.f fVar = this.f45574f;
-        fVar.getEditText().setTranslationX(AndroidUtilities.lerp(getEditTextLeft() + AndroidUtilities.dp(-26.0f), AndroidUtilities.dp(2.0f), this.f45581l0));
+        ph.f fVar = this.f41842f;
+        fVar.getEditText().setTranslationX(AndroidUtilities.lerp(getEditTextLeft() + AndroidUtilities.dp(-26.0f), AndroidUtilities.dp(2.0f), this.f41849l0));
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) fVar.getLayoutParams();
         if (this.P0 && this.R0) {
             i11 = 33;
@@ -211,12 +211,12 @@ public abstract class bd extends qh.k {
     }
 
     public final void D(boolean z4, boolean z10) {
-        if (this.f25588k1 == z4 && z10) {
+        if (this.f23641k1 == z4 && z10) {
             return;
         }
-        this.f25588k1 = z4;
+        this.f23641k1 = z4;
         if (!z10) {
-            this.f25586i1.f(z4, true);
+            this.f23639i1.f(z4, true);
         }
         invalidate();
     }
@@ -256,7 +256,7 @@ public abstract class bd extends qh.k {
             }
             imageView.setTranslationX(f11);
         }
-        qh.f fVar = this.f45574f;
+        ph.f fVar = this.f41842f;
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) fVar.getLayoutParams();
         if (this.P0 && this.R0) {
             i11 = 33;
@@ -268,11 +268,11 @@ public abstract class bd extends qh.k {
     public final void F(boolean z4) {
         float f10;
         float f11;
-        if (this.f25592p1 != z4) {
+        if (this.f23645p1 != z4) {
             if (z4) {
                 MessagesController.getInstance(this.R).getTonesController().load();
             }
-            this.f25592p1 = z4;
+            this.f23645p1 = z4;
             ImageView imageView = this.W0;
             imageView.setVisibility(0);
             ViewPropertyAnimator animate = imageView.animate();
@@ -292,35 +292,35 @@ public abstract class bd extends qh.k {
             if (z4) {
                 f12 = 1.0f;
             }
-            scaleX.scaleY(f12).setInterpolator(pr.h).setDuration(420L).withEndAction(new ad(this, z4, 0)).start();
+            scaleX.scaleY(f12).setInterpolator(mr.h).setDuration(420L).withEndAction(new ad(this, z4, 0)).start();
             if (z4) {
                 j0 j0Var = this.V0;
                 Objects.requireNonNull(j0Var);
                 imageView.postDelayed(new i0(j0Var, 1), 220L);
-                qh.e3 e3Var = this.X0;
-                if (e3Var != null) {
-                    e3Var.e(true);
+                ph.f3 f3Var = this.X0;
+                if (f3Var != null) {
+                    f3Var.e(true);
                     this.X0 = null;
                 }
                 if (MessagesController.getGlobalMainSettings().getInt("aihintshown", 0) < 3) {
-                    qh.e3 e3Var2 = new qh.e3(getContext(), 3);
-                    this.X0 = e3Var2;
-                    e3Var2.p(true);
+                    ph.f3 f3Var2 = new ph.f3(getContext(), 3);
+                    this.X0 = f3Var2;
+                    f3Var2.p(true);
                     this.X0.s(LocaleController.getString(R.string.AIEditorHint));
                     this.X0.m(1.0f, ((-imageView.getWidth()) / 2.0f) + AndroidUtilities.dp(4.0f));
-                    addView(this.X0, k7.c6.d(-1, 200.0f, 48, 0.0f, -196.0f, 0.0f, 0.0f));
-                    qh.e3 e3Var3 = this.X0;
-                    e3Var3.f45272i0 = new org.telegram.ui.mp(11, this, e3Var2);
-                    e3Var3.d = 4000L;
-                    e3Var3.u();
+                    addView(this.X0, k7.b6.d(-1, 200.0f, 48, 0.0f, -196.0f, 0.0f, 0.0f));
+                    ph.f3 f3Var3 = this.X0;
+                    f3Var3.f41662i0 = new org.telegram.ui.np(12, this, f3Var2);
+                    f3Var3.d = 4000L;
+                    f3Var3.u();
                     MessagesController.getGlobalMainSettings().edit().putInt("aihintshown", MessagesController.getGlobalMainSettings().getInt("aihintshown", 0) + 1).apply();
                     return;
                 }
                 return;
             }
-            qh.e3 e3Var4 = this.X0;
-            if (e3Var4 != null) {
-                e3Var4.e(true);
+            ph.f3 f3Var4 = this.X0;
+            if (f3Var4 != null) {
+                f3Var4.e(true);
                 this.X0 = null;
             }
         }
@@ -328,16 +328,16 @@ public abstract class bd extends qh.k {
 
     public abstract boolean G();
 
-    public final void H(org.telegram.ui.ActionBar.g6 g6Var) {
-        this.f45565a = g6Var;
-        this.h.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.U5, false), PorterDuff.Mode.SRC_IN));
+    public final void H(org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f41834a = f6Var;
+        this.h.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.U5, false), PorterDuff.Mode.SRC_IN));
         int dp = AndroidUtilities.dp(16.0f);
-        int i10 = org.telegram.ui.ActionBar.k6.f22061zf;
-        ShapeDrawable K = org.telegram.ui.ActionBar.k6.K(dp, org.telegram.ui.ActionBar.k6.v0(i10, g6Var));
-        pq pqVar = this.f45582n;
-        pqVar.f30158a = K;
-        pqVar.invalidateSelf();
-        this.T0.e(-1, org.telegram.ui.ActionBar.k6.v0(i10, g6Var), -1);
+        int i10 = org.telegram.ui.ActionBar.j6.f20279zf;
+        ShapeDrawable K = org.telegram.ui.ActionBar.j6.K(dp, org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
+        mq mqVar = this.f41850n;
+        mqVar.f27109a = K;
+        mqVar.invalidateSelf();
+        this.T0.e(-1, org.telegram.ui.ActionBar.j6.v0(i10, f6Var), -1);
     }
 
     @Override
@@ -381,9 +381,9 @@ public abstract class bd extends qh.k {
             }
             this.Q0.setVisibility(i11);
         }
-        qh.e3 e3Var = this.f25578a1;
-        if (e3Var != null) {
-            e3Var.e(true);
+        ph.f3 f3Var = this.f23631a1;
+        if (f3Var != null) {
+            f3Var.e(true);
         }
     }
 
@@ -393,10 +393,10 @@ public abstract class bd extends qh.k {
         float f11;
         int i10;
         super.dispatchDraw(canvas);
-        RectF rectF = this.f45597x0;
+        RectF rectF = this.f41865x0;
         ImageView imageView = this.W0;
         if (imageView != null) {
-            imageView.setTranslationX(-AndroidUtilities.dp((1.0f - this.f45581l0) * 4.0f));
+            imageView.setTranslationX(-AndroidUtilities.dp((1.0f - this.f41849l0) * 4.0f));
             boolean z4 = this instanceof org.telegram.ui.ns0;
             if (z4) {
                 f11 = rectF.bottom - AndroidUtilities.dp(44.0f);
@@ -408,22 +408,22 @@ public abstract class bd extends qh.k {
             } else {
                 i10 = -1;
             }
-            imageView.setTranslationY((Utilities.clamp01((-this.f25585h1.d(this.f45574f.getEditText().getLineCount(), false)) + 4.0f) * AndroidUtilities.dp(3.0f) * i10) + f11);
+            imageView.setTranslationY((Utilities.clamp01((-this.f23638h1.d(this.f41842f.getEditText().getLineCount(), false)) + 4.0f) * AndroidUtilities.dp(3.0f) * i10) + f11);
         }
-        float f12 = this.f25586i1.f(this.f25588k1, true ^ G());
-        float e6 = this.f25587j1.e(this.l1);
+        float f12 = this.f23639i1.f(this.f23641k1, true ^ G());
+        float e = this.f23640j1.e(this.l1);
         if (f12 > 0.0f) {
-            float a2 = this.f25583f1.a(0.03f);
-            int dp = AndroidUtilities.dp((1.0f - this.f45581l0) * 4.0f);
+            float a2 = this.f23636f1.a(0.03f);
+            int dp = AndroidUtilities.dp((1.0f - this.f41849l0) * 4.0f);
             boolean z10 = this instanceof org.telegram.ui.ns0;
-            j6 j6Var = this.f25582e1;
-            RectF rectF2 = this.f25580c1;
+            j6 j6Var = this.f23635e1;
+            RectF rectF2 = this.f23633c1;
             if (z10) {
                 f10 = 1.0f;
-                rectF2.set(AndroidUtilities.dp(7.0f) + dp, rectF.bottom + AndroidUtilities.dp(10.0f), ((j6Var.d() + AndroidUtilities.dp(11.0f)) * e6) + AndroidUtilities.dp(44.0f) + dp, rectF.bottom + AndroidUtilities.dp(42.0f));
+                rectF2.set(AndroidUtilities.dp(7.0f) + dp, rectF.bottom + AndroidUtilities.dp(10.0f), ((j6Var.d() + AndroidUtilities.dp(11.0f)) * e) + AndroidUtilities.dp(44.0f) + dp, rectF.bottom + AndroidUtilities.dp(42.0f));
             } else {
                 f10 = 1.0f;
-                rectF2.set(AndroidUtilities.dp(7.0f) + dp, rectF.top - AndroidUtilities.dp(42.0f), ((j6Var.d() + AndroidUtilities.dp(11.0f)) * e6) + AndroidUtilities.dp(44.0f) + dp, rectF.top - AndroidUtilities.dp(10.0f));
+                rectF2.set(AndroidUtilities.dp(7.0f) + dp, rectF.top - AndroidUtilities.dp(42.0f), ((j6Var.d() + AndroidUtilities.dp(11.0f)) * e) + AndroidUtilities.dp(44.0f) + dp, rectF.top - AndroidUtilities.dp(10.0f));
             }
             if (f12 < f10) {
                 canvas.saveLayerAlpha(rectF2, (int) (f12 * 255.0f), 31);
@@ -433,26 +433,26 @@ public abstract class bd extends qh.k {
             canvas.scale(a2, a2, rectF2.centerX(), rectF2.centerY());
             canvas.clipRect(rectF2);
             AndroidUtilities.dpf2(16.0f);
-            og.a aVar = this.f45573e0;
+            ng.a aVar = this.f41841e0;
             if (aVar != null) {
-                if (this.f25584g1 == null) {
-                    qg.b c3 = aVar.c(this, null, false);
-                    c3.n(sg.b.i(this.f45565a));
+                if (this.f23637g1 == null) {
+                    pg.b c3 = aVar.c(this, null, false);
+                    c3.n(rg.b.i(this.f41834a));
                     c3.o(AndroidUtilities.dp(5.0f));
                     c3.p(AndroidUtilities.dp(16.0f));
-                    this.f25584g1 = c3;
+                    this.f23637g1 = c3;
                 }
                 Rect rect = AndroidUtilities.rectTmp2;
                 rectF2.round(rect);
                 rect.inset(-AndroidUtilities.dp(5.0f), -AndroidUtilities.dp(5.0f));
-                this.f25584g1.setBounds(rect);
-                this.f25584g1.draw(canvas);
+                this.f23637g1.setBounds(rect);
+                this.f23637g1.draw(canvas);
             }
-            Drawable drawable = this.f25581d1;
+            Drawable drawable = this.f23634d1;
             drawable.setBounds((int) (rectF2.left + AndroidUtilities.dp(9.0f)), (int) (rectF2.centerY() - AndroidUtilities.dp(10.0f)), (int) (rectF2.left + AndroidUtilities.dp(29.0f)), (int) (rectF2.centerY() + AndroidUtilities.dp(10.0f)));
             drawable.draw(canvas);
             j6Var.l(rectF2.left + AndroidUtilities.dp(37.0f), rectF2.top, rectF2.right, rectF2.bottom);
-            j6Var.f28017w = (int) (e6 * 255.0f);
+            j6Var.f25864w = (int) (e * 255.0f);
             j6Var.draw(canvas);
             canvas.restore();
         }
@@ -463,18 +463,18 @@ public abstract class bd extends qh.k {
         int i10;
         boolean z4;
         int action = motionEvent.getAction();
-        RectF rectF = this.f25580c1;
-        z5 z5Var = this.f25586i1;
-        rc rcVar = this.f25583f1;
+        RectF rectF = this.f23633c1;
+        z5 z5Var = this.f23639i1;
+        rc rcVar = this.f23636f1;
         if (action == 0) {
-            if (z5Var.f33763c > 0.0f && rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+            if (z5Var.f31253c > 0.0f && rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                 z4 = true;
             } else {
                 z4 = false;
             }
             rcVar.c(z4);
         } else if (motionEvent.getAction() == 2) {
-            if (rcVar.h && (z5Var.f33763c <= 0.0f || !rectF.contains(motionEvent.getX(), motionEvent.getY()))) {
+            if (rcVar.h && (z5Var.f31253c <= 0.0f || !rectF.contains(motionEvent.getX(), motionEvent.getY()))) {
                 rcVar.c(false);
             }
         } else if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && rcVar.h) {
@@ -485,7 +485,7 @@ public abstract class bd extends qh.k {
                 } else {
                     i10 = R.string.MoveCaptionUp;
                 }
-                this.f25582e1.q(LocaleController.getString(i10), true, true);
+                this.f23635e1.q(LocaleController.getString(i10), true, true);
             }
             rcVar.c(false);
             return true;
@@ -498,7 +498,7 @@ public abstract class bd extends qh.k {
 
     @Override
     public final boolean f(View view) {
-        if (view != this.f25578a1) {
+        if (view != this.f23631a1) {
             return true;
         }
         return false;
@@ -549,7 +549,7 @@ public abstract class bd extends qh.k {
         } else {
             f10 = 1.0f;
         }
-        this.f25578a1.setTranslationY(dp * f10);
+        this.f23631a1.setTranslationY(dp * f10);
     }
 
     @Override
@@ -564,7 +564,7 @@ public abstract class bd extends qh.k {
             z4 = false;
         }
         F(z4);
-        if (this.f25592p1) {
+        if (this.f23645p1) {
             if (i10 < 3) {
                 z10 = true;
             } else {
@@ -580,7 +580,7 @@ public abstract class bd extends qh.k {
     }
 
     public void setIsVideo(boolean z4) {
-        this.f25590n1 = z4;
+        this.f23643n1 = z4;
     }
 
     public void setOnAddPhotoClick(View.OnClickListener onClickListener) {
@@ -588,7 +588,7 @@ public abstract class bd extends qh.k {
     }
 
     public void setOnTimerChange(Utilities.Callback<Integer> callback) {
-        this.f25591o1 = callback;
+        this.f23644o1 = callback;
     }
 
     @Override
@@ -611,15 +611,15 @@ public abstract class bd extends qh.k {
             z4 = false;
         }
         this.T0.d(max, z4, true);
-        qh.e3 e3Var = this.f25578a1;
-        if (e3Var != null) {
-            e3Var.e(true);
+        ph.f3 f3Var = this.f23631a1;
+        if (f3Var != null) {
+            f3Var.e(true);
         }
     }
 
     @Override
     public final void t() {
-        Runnable runnable = this.f25579b1;
+        Runnable runnable = this.f23632b1;
         if (runnable != null) {
             runnable.run();
         }
@@ -634,7 +634,7 @@ public abstract class bd extends qh.k {
 
     @Override
     public void x(int i10) {
-        boolean z4 = this.f45579j0;
+        boolean z4 = this.f41847j0;
         super.x(i10);
         if (!z4 && this.I.c()) {
             B();
@@ -642,7 +642,7 @@ public abstract class bd extends qh.k {
     }
 
     public final void z() {
-        fg fgVar = this.f25589m1;
+        fg fgVar = this.f23642m1;
         AndroidUtilities.cancelRunOnUIThread(fgVar);
         boolean shouldShowMoveCaptionHint = MessagesController.getInstance(this.R).shouldShowMoveCaptionHint();
         this.l1 = shouldShowMoveCaptionHint;

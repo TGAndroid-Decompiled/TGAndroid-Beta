@@ -1,23 +1,49 @@
 package org.telegram.ui;
 
-import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
-public final class l60 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final FrameLayout f38549a;
-    public final n60 f38550b;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.ChannelBoostsController;
+public final class l60 implements h5.d {
+    public final int f35652a;
+    public final int f35653b;
+    public final Object f35654c;
 
-    public l60(n60 n60Var, FrameLayout frameLayout) {
-        this.f38550b = n60Var;
-        this.f38549a = frameLayout;
+    public l60(Object obj, int i10, int i11) {
+        this.f35652a = i11;
+        this.f35654c = obj;
+        this.f35653b = i10;
     }
 
     @Override
-    public final void onGlobalLayout() {
-        this.f38549a.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-        n60 n60Var = this.f38550b;
-        if (n60Var.f39201w0 == null) {
-            n60Var.f39201w0 = (tc) n60Var.y0(n60Var.W);
+    public final void accept(Object obj) {
+        boolean z4;
+        switch (this.f35652a) {
+            case 0:
+                o60.e1((o60) this.f35654c, this.f35653b, (ChannelBoostsController.CanApplyBoost) obj);
+                return;
+            default:
+                ph.r3 r3Var = (ph.r3) this.f35654c;
+                View view = (View) obj;
+                ph.m3 m3Var = r3Var.f42276b;
+                if (view instanceof ph.q3) {
+                    m3Var.getClass();
+                    int R = RecyclerView.R(view);
+                    org.telegram.ui.Components.i51 G = m3Var.V2.G(R);
+                    if (G != null) {
+                        ph.q3 q3Var = (ph.q3) view;
+                        q3Var.setPosition(r3Var.b(R));
+                        if (this.f35653b == G.d) {
+                            z4 = true;
+                        } else {
+                            z4 = false;
+                        }
+                        q3Var.b(z4, true);
+                        view.setPressed(false);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        n60Var.f39201w0.f41506f.setOnClickListener(new f60(this, 1));
     }
 }

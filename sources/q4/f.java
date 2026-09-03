@@ -4,51 +4,51 @@ import b4.e0;
 import o4.k0;
 import o4.l0;
 public final class f implements l0 {
-    public final h f44511a;
-    public final k0 f44512b;
-    public final int f44513c;
+    public final h f42765a;
+    public final k0 f42766b;
+    public final int f42767c;
     public boolean d;
-    public final h f44514e;
+    public final h e;
 
     public f(h hVar, h hVar2, k0 k0Var, int i10) {
-        this.f44514e = hVar;
-        this.f44511a = hVar2;
-        this.f44512b = k0Var;
-        this.f44513c = i10;
+        this.e = hVar;
+        this.f42765a = hVar2;
+        this.f42766b = k0Var;
+        this.f42767c = i10;
     }
 
     public final void b() {
         if (!this.d) {
-            h hVar = this.f44514e;
+            h hVar = this.e;
             e0 e0Var = hVar.h;
-            int[] iArr = hVar.f44516b;
-            int i10 = this.f44513c;
-            e0Var.h(iArr[i10], hVar.f44517c[i10], 0, null, hVar.G);
+            int[] iArr = hVar.f42769b;
+            int i10 = this.f42767c;
+            e0Var.h(iArr[i10], hVar.f42770c[i10], 0, null, hVar.G);
             this.d = true;
         }
     }
 
     @Override
-    public final boolean h() {
-        h hVar = this.f44514e;
-        if (!hVar.y() && this.f44512b.u(hVar.J)) {
+    public final boolean d() {
+        h hVar = this.e;
+        if (!hVar.j() && this.f42766b.u(hVar.J)) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final int l(long j10) {
-        h hVar = this.f44514e;
-        if (hVar.y()) {
+    public final int e(long j10) {
+        h hVar = this.e;
+        if (hVar.j()) {
             return 0;
         }
         boolean z4 = hVar.J;
-        k0 k0Var = this.f44512b;
+        k0 k0Var = this.f42766b;
         int s6 = k0Var.s(j10, z4);
         a aVar = hVar.I;
         if (aVar != null) {
-            s6 = Math.min(s6, aVar.d(this.f44513c + 1) - k0Var.q());
+            s6 = Math.min(s6, aVar.e(this.f42767c + 1) - k0Var.q());
         }
         k0Var.E(s6);
         if (s6 > 0) {
@@ -58,12 +58,12 @@ public final class f implements l0 {
     }
 
     @Override
-    public final int p(f7.b bVar, n3.i iVar, int i10) {
-        h hVar = this.f44514e;
-        if (!hVar.y()) {
+    public final int f(f7.b bVar, n3.i iVar, int i10) {
+        h hVar = this.e;
+        if (!hVar.j()) {
             a aVar = hVar.I;
-            k0 k0Var = this.f44512b;
-            if (aVar != null && aVar.d(this.f44513c + 1) <= k0Var.q()) {
+            k0 k0Var = this.f42766b;
+            if (aVar != null && aVar.e(this.f42767c + 1) <= k0Var.q()) {
                 return -3;
             }
             b();

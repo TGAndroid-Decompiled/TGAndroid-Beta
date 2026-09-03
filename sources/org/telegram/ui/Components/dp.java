@@ -1,46 +1,38 @@
 package org.telegram.ui.Components;
 
+import android.widget.Toast;
+import java.util.List;
+import org.telegram.messenger.ChatThemeController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ad1;
-public final class dp implements ad1 {
-    public final mp f26345a;
+public final class dp implements ResultCallback {
+    public final ChatThemeController f24334a;
+    public final jp f24335b;
 
-    public dp(mp mpVar) {
-        this.f26345a = mpVar;
+    public dp(jp jpVar, ChatThemeController chatThemeController) {
+        this.f24335b = jpVar;
+        this.f24334a = chatThemeController;
     }
 
     @Override
-    public final boolean T0() {
-        return true;
+    public final void onComplete(Object obj) {
+        int i10;
+        List list = (List) obj;
+        List<org.telegram.ui.ActionBar.e4> emojiThemes = this.f24334a.getEmojiThemes(7);
+        jp jpVar = this.f24335b;
+        i10 = ((org.telegram.ui.ActionBar.g3) jpVar).currentAccount;
+        NotificationCenter.getInstance(i10).doOnIdle(new em(2, this, emojiThemes));
+        jpVar.Y = false;
     }
 
     @Override
-    public final boolean a() {
-        return this.f26345a.K;
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.k.a(this, th2);
     }
 
     @Override
-    public final void l1(boolean z4) {
-        TLRPC.WallPaper wallPaper;
-        mp mpVar = this.f26345a;
-        org.telegram.ui.xn xnVar = mpVar.v;
-        mpVar.K = !mpVar.K;
-        if (mpVar.J != null) {
-            mpVar.M = true;
-            xnVar.f43111b7 = true;
-            if (mpVar.v()) {
-                wallPaper = null;
-            } else {
-                wallPaper = mpVar.f29218n.h;
-            }
-            TLRPC.WallPaper wallPaper2 = wallPaper;
-            org.telegram.ui.ActionBar.f4 f4Var = mpVar.J.f28819a;
-            if (f4Var.f21360a) {
-                mpVar.f29218n.i(null, wallPaper2, z4, Boolean.valueOf(mpVar.K), false);
-            } else {
-                mpVar.f29218n.i(f4Var, wallPaper2, z4, Boolean.valueOf(mpVar.K), false);
-            }
-            xnVar.f43111b7 = false;
-        }
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.f24335b.getContext(), tL_error.text, 0).show();
     }
 }

@@ -40,7 +40,7 @@ public abstract class a extends Binder implements IInterface {
                 return true;
             }
             String readString = parcel.readString();
-            int i12 = b.f2319a;
+            int i12 = b.f2155a;
             if (parcel.readInt() != 0) {
                 z4 = true;
             }

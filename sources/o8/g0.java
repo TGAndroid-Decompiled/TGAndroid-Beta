@@ -2,14 +2,14 @@ package o8;
 
 import com.google.android.gms.tasks.TaskCompletionSource;
 public abstract class g0 implements Runnable {
-    private final TaskCompletionSource f16645a;
+    private final TaskCompletionSource f16466a;
 
     public g0() {
-        this.f16645a = null;
+        this.f16466a = null;
     }
 
     public void a(Exception exc) {
-        TaskCompletionSource taskCompletionSource = this.f16645a;
+        TaskCompletionSource taskCompletionSource = this.f16466a;
         if (taskCompletionSource != null) {
             taskCompletionSource.trySetException(exc);
         }
@@ -18,19 +18,19 @@ public abstract class g0 implements Runnable {
     public abstract void b();
 
     public final TaskCompletionSource c() {
-        return this.f16645a;
+        return this.f16466a;
     }
 
     @Override
     public final void run() {
         try {
             b();
-        } catch (Exception e6) {
-            a(e6);
+        } catch (Exception e) {
+            a(e);
         }
     }
 
     public g0(TaskCompletionSource taskCompletionSource) {
-        this.f16645a = taskCompletionSource;
+        this.f16466a = taskCompletionSource;
     }
 }

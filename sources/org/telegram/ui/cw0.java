@@ -6,15 +6,20 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class cw0 implements org.telegram.ui.Components.eg {
-    public final PopupNotificationActivity f35888a;
+    public final PopupNotificationActivity f33251a;
 
     public cw0(PopupNotificationActivity popupNotificationActivity) {
-        this.f35888a = popupNotificationActivity;
+        this.f33251a = popupNotificationActivity;
     }
 
     @Override
-    public final void C(CharSequence charSequence, boolean z4, int i10, int i11, long j10) {
-        PopupNotificationActivity popupNotificationActivity = this.f35888a;
+    public final boolean B1() {
+        return false;
+    }
+
+    @Override
+    public final void G(CharSequence charSequence, boolean z4, int i10, int i11, long j10) {
+        PopupNotificationActivity popupNotificationActivity = this.f33251a;
         if (popupNotificationActivity.N == null) {
             return;
         }
@@ -28,12 +33,7 @@ public final class cw0 implements org.telegram.ui.Components.eg {
     }
 
     @Override
-    public final boolean D1() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.TL_channels_sendAsPeers F() {
+    public final TLRPC.TL_channels_sendAsPeers H() {
         return null;
     }
 
@@ -43,8 +43,8 @@ public final class cw0 implements org.telegram.ui.Components.eg {
     }
 
     @Override
-    public final void M1() {
-        PopupNotificationActivity popupNotificationActivity = this.f35888a;
+    public final void J1() {
+        PopupNotificationActivity popupNotificationActivity = this.f33251a;
         MessageObject messageObject = popupNotificationActivity.N;
         if (messageObject != null) {
             MessagesController.getInstance(messageObject.currentAccount).sendTyping(popupNotificationActivity.N.getDialogId(), 0L, 0, popupNotificationActivity.H);
@@ -52,28 +52,23 @@ public final class cw0 implements org.telegram.ui.Components.eg {
     }
 
     @Override
-    public final int f1() {
+    public final int g1() {
         return 0;
     }
 
     @Override
-    public final TL_stories.StoryItem h1() {
+    public final TL_stories.StoryItem i1() {
         return null;
     }
 
     @Override
-    public final boolean j1(long j10) {
+    public final boolean k1(long j10) {
         return false;
     }
 
     @Override
-    public final boolean k() {
+    public final boolean l() {
         return false;
-    }
-
-    @Override
-    public final int l() {
-        return 0;
     }
 
     @Override
@@ -82,42 +77,47 @@ public final class cw0 implements org.telegram.ui.Components.eg {
     }
 
     @Override
-    public final TLRPC.Peer p() {
+    public final int p() {
+        return 0;
+    }
+
+    @Override
+    public final TLRPC.Peer r() {
         return null;
     }
 
     @Override
-    public final nn r0() {
-        return null;
-    }
-
-    @Override
-    public final boolean u1() {
+    public final boolean t1() {
         return false;
     }
 
     @Override
-    public final void A(boolean z4) {
+    public final pn u0() {
+        return null;
     }
 
     @Override
-    public final void B() {
+    public final void A1(CharSequence charSequence) {
     }
 
     @Override
-    public final void C1(CharSequence charSequence) {
+    public final void A2() {
     }
 
     @Override
-    public final void F2() {
+    public final void B(boolean z4) {
     }
 
     @Override
-    public final void G1() {
+    public final void D() {
     }
 
     @Override
-    public final void J2() {
+    public final void E1() {
+    }
+
+    @Override
+    public final void E2() {
     }
 
     @Override
@@ -125,7 +125,7 @@ public final class cw0 implements org.telegram.ui.Components.eg {
     }
 
     @Override
-    public final void P0() {
+    public final void O0() {
     }
 
     @Override
@@ -141,15 +141,23 @@ public final class cw0 implements org.telegram.ui.Components.eg {
     }
 
     @Override
-    public final void e1(int i10) {
+    public final void c() {
     }
 
     @Override
-    public final void f() {
+    public final void f1(int i10) {
     }
 
     @Override
-    public final void h() {
+    public final void i2() {
+    }
+
+    @Override
+    public final void k() {
+    }
+
+    @Override
+    public final void k2(int i10) {
     }
 
     @Override
@@ -157,31 +165,27 @@ public final class cw0 implements org.telegram.ui.Components.eg {
     }
 
     @Override
-    public final void o0() {
+    public final void o2(boolean z4) {
     }
 
     @Override
-    public final void p2(int i10) {
+    public final void q0() {
     }
 
     @Override
-    public final void s2() {
+    public final void s1() {
     }
 
     @Override
-    public final void t1() {
+    public final void t2() {
     }
 
     @Override
-    public final void t2(boolean z4) {
+    public final void v() {
     }
 
     @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w0() {
+    public final void v1() {
     }
 
     @Override
@@ -193,19 +197,11 @@ public final class cw0 implements org.telegram.ui.Components.eg {
     }
 
     @Override
+    public final void x0() {
+    }
+
+    @Override
     public final void x1() {
-    }
-
-    @Override
-    public final void x2() {
-    }
-
-    @Override
-    public final void y1() {
-    }
-
-    @Override
-    public final void G(float f10, int i10) {
     }
 
     @Override
@@ -213,14 +209,18 @@ public final class cw0 implements org.telegram.ui.Components.eg {
     }
 
     @Override
-    public final void r1(CharSequence charSequence, boolean z4, boolean z10) {
+    public final void K(float f10, int i10) {
     }
 
     @Override
-    public final void z1(View view, CharSequence charSequence, boolean z4) {
+    public final void q1(CharSequence charSequence, boolean z4, boolean z10) {
     }
 
     @Override
-    public final void u2(int i10, int i11, int i12, long j10, long j11, boolean z4) {
+    public final void y1(View view, CharSequence charSequence, boolean z4) {
+    }
+
+    @Override
+    public final void p2(int i10, int i11, int i12, long j10, long j11, boolean z4) {
     }
 }

@@ -5,12 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class n11 extends rl0 {
-    public Context f29365c;
+public final class n11 extends ql0 {
+    public Context f27170c;
     public ArrayList d;
 
     @Override
-    public final boolean D(f2.m1 m1Var) {
+    public final boolean D(f2.l1 l1Var) {
         return true;
     }
 
@@ -32,38 +32,38 @@ public final class n11 extends rl0 {
     }
 
     @Override
-    public final void v(f2.m1 m1Var, int i10) {
+    public final void v(f2.l1 l1Var, int i10) {
         int b10;
-        if (m1Var.f5879f == 0) {
+        if (l1Var.f5777f == 0) {
             boolean z4 = true;
-            org.telegram.ui.ActionBar.m6 m6Var = (org.telegram.ui.ActionBar.m6) ((ArrayList) this.d.get(i10 - 1)).get(0);
-            if (m6Var.f22145f == org.telegram.ui.ActionBar.k6.Nd) {
+            org.telegram.ui.ActionBar.l6 l6Var = (org.telegram.ui.ActionBar.l6) ((ArrayList) this.d.get(i10 - 1)).get(0);
+            if (l6Var.f20409f == org.telegram.ui.ActionBar.j6.Nd) {
                 b10 = 0;
             } else {
-                b10 = m6Var.b();
+                b10 = l6Var.b();
             }
-            org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) m1Var.f5875a;
-            v8Var.f24322a.setText(org.telegram.ui.ActionBar.i5.i(m6Var.f22145f));
-            v8Var.f24323b = b10;
+            org.telegram.ui.Cells.u8 u8Var = (org.telegram.ui.Cells.u8) l1Var.f5774a;
+            u8Var.f22380a.setText(org.telegram.ui.ActionBar.h5.i(l6Var.f20409f));
+            u8Var.f22381b = b10;
             if (b10 != 0) {
                 z4 = false;
             }
-            v8Var.setWillNotDraw(z4);
-            v8Var.invalidate();
+            u8Var.setWillNotDraw(z4);
+            u8Var.invalidate();
         }
     }
 
     @Override
-    public final f2.m1 x(ViewGroup viewGroup, int i10) {
-        View v8Var;
-        Context context = this.f29365c;
+    public final f2.l1 x(ViewGroup viewGroup, int i10) {
+        View u8Var;
+        Context context = this.f27170c;
         if (i10 != 0) {
-            v8Var = new View(context);
-            v8Var.setLayoutParams(new f2.x0(-1, AndroidUtilities.dp(56.0f)));
+            u8Var = new View(context);
+            u8Var.setLayoutParams(new f2.w0(-1, AndroidUtilities.dp(56.0f)));
         } else {
-            v8Var = new org.telegram.ui.Cells.v8(context);
-            v8Var.setLayoutParams(new f2.x0(-1, -2));
+            u8Var = new org.telegram.ui.Cells.u8(context);
+            u8Var.setLayoutParams(new f2.w0(-1, -2));
         }
-        return new f2.m1(v8Var);
+        return new f2.l1(u8Var);
     }
 }

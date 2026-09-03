@@ -2,36 +2,30 @@ package ph;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.u00;
-public final class h extends u00 {
-    public final Paint R;
-    public final l S;
+import android.widget.ImageView;
+import org.telegram.ui.Components.rc;
+public final class h extends ImageView {
+    public final float f41731a;
+    public final rc f41732b;
 
-    public h(l lVar, Context context) {
-        super(context, null);
-        this.S = lVar;
-        this.R = new Paint();
+    public h(Context context) {
+        super(context);
+        this.f41732b = new rc(this);
+        this.f41731a = 0.2f;
     }
 
     @Override
-    public final int getColumnsCount() {
-        return this.S.d;
+    public final void draw(Canvas canvas) {
+        canvas.save();
+        float a2 = this.f41732b.a(this.f41731a);
+        canvas.scale(a2, a2, getWidth() / 2.0f, getHeight() / 2.0f);
+        super.draw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final int getViewType() {
-        setIsSingleCell(false);
-        return 27;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int v02 = k6.v0(k6.f21661d6, this.S.T.f44439c);
-        Paint paint = this.R;
-        paint.setColor(v02);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint);
-        super.onDraw(canvas);
+    public void setPressed(boolean z4) {
+        super.setPressed(z4);
+        this.f41732b.c(z4);
     }
 }

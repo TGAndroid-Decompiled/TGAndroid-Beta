@@ -99,40 +99,40 @@ public class UserConfig extends BaseController {
     private void checkPremiumSelf(TLRPC.User user, final TLRPC.User user2) {
         if (user != null && user2 != null && user.premium != user2.premium) {
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final UserConfig f20578b;
+                public final UserConfig f18915b;
 
                 {
-                    this.f20578b = this;
+                    this.f18915b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            this.f20578b.lambda$checkPremiumSelf$1(user2);
+                            this.f18915b.lambda$checkPremiumSelf$1(user2);
                             return;
                         default:
-                            this.f20578b.lambda$checkPremiumSelf$2(user2);
+                            this.f18915b.lambda$checkPremiumSelf$2(user2);
                             return;
                     }
                 }
             });
         } else if (user == null) {
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final UserConfig f20578b;
+                public final UserConfig f18915b;
 
                 {
-                    this.f20578b = this;
+                    this.f18915b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            this.f20578b.lambda$checkPremiumSelf$1(user2);
+                            this.f18915b.lambda$checkPremiumSelf$1(user2);
                             return;
                         default:
-                            this.f20578b.lambda$checkPremiumSelf$2(user2);
+                            this.f18915b.lambda$checkPremiumSelf$2(user2);
                             return;
                     }
                 }
@@ -216,7 +216,7 @@ public class UserConfig extends BaseController {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumStatusChangedGlobal, new Object[0]);
         getMediaDataController().loadPremiumPromo(false);
         getMediaDataController().loadReactions(false, null);
-        oh.t6 storiesController = getMessagesController().getStoriesController();
+        nh.t6 storiesController = getMessagesController().getStoriesController();
         storiesController.R = false;
         storiesController.S = null;
     }
@@ -318,8 +318,8 @@ public class UserConfig extends BaseController {
                             edit.remove("user");
                         }
                         edit.apply();
-                    } catch (Exception e6) {
-                        FileLog.e(e6);
+                    } catch (Exception e) {
+                        FileLog.e(e);
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -421,7 +421,7 @@ public class UserConfig extends BaseController {
             try {
                 TLRPC.User user = this.currentUser;
                 if (user != null) {
-                    j10 = user.f20992id;
+                    j10 = user.f19306id;
                 } else {
                     j10 = 0;
                 }
@@ -651,7 +651,7 @@ public class UserConfig extends BaseController {
     }
 
     public void saveConfig(boolean z4) {
-        NotificationCenter.getInstance(this.currentAccount).doOnIdle(new kh.f(10, this, z4));
+        NotificationCenter.getInstance(this.currentAccount).doOnIdle(new jh.f(11, this, z4));
     }
 
     public void savePassword(byte[] bArr, byte[] bArr2) {
@@ -664,7 +664,7 @@ public class UserConfig extends BaseController {
         synchronized (this.sync) {
             TLRPC.User user2 = this.currentUser;
             this.currentUser = user;
-            this.clientUserId = user.f20992id;
+            this.clientUserId = user.f19306id;
             checkPremiumSelf(user2, user);
         }
     }

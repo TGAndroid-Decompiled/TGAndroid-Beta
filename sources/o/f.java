@@ -4,9 +4,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.WeakHashMap;
 public class f implements Iterable {
-    public c f16280a;
-    public c f16281b;
-    public final WeakHashMap f16282c = new WeakHashMap();
+    public c f16125a;
+    public c f16126b;
+    public final WeakHashMap f16127c = new WeakHashMap();
     public int d = 0;
 
     public final boolean equals(java.lang.Object r7) {
@@ -27,17 +27,17 @@ public class f implements Iterable {
     }
 
     public c i(Object obj) {
-        c cVar = this.f16280a;
-        while (cVar != null && !cVar.f16274a.equals(obj)) {
-            cVar = cVar.f16276c;
+        c cVar = this.f16125a;
+        while (cVar != null && !cVar.f16119a.equals(obj)) {
+            cVar = cVar.f16121c;
         }
         return cVar;
     }
 
     @Override
     public final Iterator iterator() {
-        b bVar = new b(this.f16280a, this.f16281b, 0);
-        this.f16282c.put(bVar, Boolean.FALSE);
+        b bVar = new b(this.f16125a, this.f16126b, 0);
+        this.f16127c.put(bVar, Boolean.FALSE);
         return bVar;
     }
 
@@ -47,7 +47,7 @@ public class f implements Iterable {
             return null;
         }
         this.d--;
-        WeakHashMap weakHashMap = this.f16282c;
+        WeakHashMap weakHashMap = this.f16127c;
         if (!weakHashMap.isEmpty()) {
             for (e eVar : weakHashMap.keySet()) {
                 eVar.a(i10);
@@ -55,19 +55,19 @@ public class f implements Iterable {
         }
         c cVar = i10.d;
         if (cVar != null) {
-            cVar.f16276c = i10.f16276c;
+            cVar.f16121c = i10.f16121c;
         } else {
-            this.f16280a = i10.f16276c;
+            this.f16125a = i10.f16121c;
         }
-        c cVar2 = i10.f16276c;
+        c cVar2 = i10.f16121c;
         if (cVar2 != null) {
             cVar2.d = cVar;
         } else {
-            this.f16281b = cVar;
+            this.f16126b = cVar;
         }
-        i10.f16276c = null;
+        i10.f16121c = null;
         i10.d = null;
-        return i10.f16275b;
+        return i10.f16120b;
     }
 
     public final String toString() {

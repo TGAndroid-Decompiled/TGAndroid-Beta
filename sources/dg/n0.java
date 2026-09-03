@@ -1,35 +1,46 @@
 package dg;
 
-import android.graphics.Bitmap;
-import java.util.ArrayList;
-import org.telegram.messenger.NotificationCenter;
-public final class n0 implements Runnable {
-    public final int f4619a;
-    public final ArrayList f4620b;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.zn;
+public final class n0 extends zn {
+    public final e1 Nc;
 
-    public n0(ArrayList arrayList, int i10) {
-        this.f4619a = i10;
-        this.f4620b = arrayList;
+    public n0(e1 e1Var) {
+        super(null);
+        this.Nc = e1Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f4619a) {
-            case 0:
-                s0.h = this.f4620b;
-                s0.f4664i = false;
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.customTypefacesLoaded, new Object[0]);
-                return;
-            default:
-                ArrayList arrayList = this.f4620b;
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((Bitmap) obj).recycle();
-                }
-                return;
-        }
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final Activity getParentActivity() {
+        return AndroidUtilities.findActivity(this.Nc.getContext());
+    }
+
+    @Override
+    public final f6 getResourceProvider() {
+        return this.Nc.N1;
+    }
+
+    @Override
+    public final TLRPC.User i() {
+        return UserConfig.getInstance(this.currentAccount).getCurrentUser();
+    }
+
+    @Override
+    public final boolean isLightStatusBar() {
+        return false;
+    }
+
+    @Override
+    public final boolean x9() {
+        return false;
     }
 }

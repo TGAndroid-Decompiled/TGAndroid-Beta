@@ -1,63 +1,44 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageSuggestionParams;
-import org.telegram.messenger.Utilities;
-public final class xe implements Utilities.Callback {
-    public final int f43019a;
-    public final xn f43020b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class xe implements Runnable {
+    public final int f39964a;
+    public final zn f39965b;
+    public final org.telegram.ui.Components.hm0 f39966c;
+    public final String d;
 
-    public xe(xn xnVar, int i10) {
-        this.f43019a = i10;
-        this.f43020b = xnVar;
+    public xe(zn znVar, org.telegram.ui.Components.hm0 hm0Var, String str, int i10) {
+        this.f39964a = i10;
+        this.f39965b = znVar;
+        this.f39966c = hm0Var;
+        this.d = str;
     }
 
     @Override
-    public final void run(Object obj) {
-        int i10 = this.f43019a;
-        xn xnVar = this.f43020b;
-        switch (i10) {
+    public final void run() {
+        org.telegram.ui.Components.qc a02;
+        int i10;
+        switch (this.f39964a) {
             case 0:
-                MessageSuggestionParams messageSuggestionParams = (MessageSuggestionParams) obj;
-                xn xnVar2 = this.f43020b;
-                xnVar2.f43135d5 = messageSuggestionParams;
-                xnVar2.f43247m5.messageOwner.suggested_post = messageSuggestionParams.toTl();
-                xnVar2.yb(true, null, xnVar2.f43247m5, null, null, null, false, true);
-                return;
+                this.f39966c.dismiss();
+                AndroidUtilities.addToClipboard(this.d);
+                a02 = org.telegram.ui.Components.qc.a0(this.f39965b);
+                i10 = R.string.RelativeDateCopied;
+                break;
             case 1:
-                xnVar.vb(true, false);
-                if (((Boolean) obj).booleanValue()) {
-                    xnVar.finishFragment();
-                    return;
-                }
-                return;
-            case 2:
-                xnVar.da((String) obj, false);
-                return;
-            case 3:
-                xnVar.Db((MessageSuggestionParams) obj);
-                return;
-            case 4:
-                Long l10 = (Long) obj;
-                org.telegram.ui.Components.w21 w21Var = xnVar.O1;
-                if (w21Var != null) {
-                    w21Var.m(l10.longValue(), true);
-                    return;
-                }
-                return;
-            case 5:
-                ds dsVar = xnVar.f43091a0;
-                dsVar.f36246c.add(((org.telegram.ui.ActionBar.w0) obj).getIconView());
-                return;
-            case 6:
-                int intValue = ((Integer) obj).intValue();
-                int i11 = xn.Ec;
-                xnVar.Ba(intValue);
-                return;
+                this.f39966c.dismiss();
+                AndroidUtilities.addToClipboard("@" + this.d);
+                a02 = org.telegram.ui.Components.qc.a0(this.f39965b);
+                i10 = R.string.UsernameCopied;
+                break;
             default:
-                int intValue2 = ((Integer) obj).intValue();
-                int i12 = xn.Ec;
-                xnVar.Ba(intValue2);
-                return;
+                this.f39966c.dismiss();
+                AndroidUtilities.addToClipboard(this.d);
+                a02 = org.telegram.ui.Components.qc.a0(this.f39965b);
+                i10 = R.string.CardNumberCopied;
+                break;
         }
+        b.m(i10, a02);
     }
 }

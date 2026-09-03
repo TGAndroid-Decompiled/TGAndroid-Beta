@@ -1,87 +1,32 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.ColorDrawable;
-import android.view.ViewGroup;
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-public final class q7 extends i7 {
-    public org.telegram.ui.Cells.q7 f40351n;
-    public final ArrayList f40352r;
-    public org.telegram.ui.Components.pq f40353s;
-    public final u7 v;
+import j$.util.Objects;
+public final class q7 extends bg.b {
+    public w6 f37321c;
+    public mh.a d;
 
-    public q7(u7 u7Var) {
-        super(u7Var, 1);
-        this.v = u7Var;
-        this.f40352r = new ArrayList();
-    }
-
-    @Override
-    public final void F() {
-        boolean z4;
-        super.F();
-        ArrayList arrayList = this.f40352r;
-        arrayList.clear();
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList2 = this.f37232e;
-            if (i10 < arrayList2.size()) {
-                String path = ((o7) arrayList2.get(i10)).d.f16245a.getPath();
-                if (((o7) arrayList2.get(i10)).d.d == 1) {
-                    z4 = true;
-                } else {
-                    z4 = false;
+    public final boolean equals(Object obj) {
+        mh.a aVar;
+        mh.a aVar2;
+        w6 w6Var;
+        w6 w6Var2;
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && q7.class == obj.getClass()) {
+            q7 q7Var = (q7) obj;
+            int i10 = this.f1830a;
+            if (i10 == q7Var.f1830a) {
+                if (i10 == 1 && (w6Var = this.f37321c) != null && (w6Var2 = q7Var.f37321c) != null) {
+                    if (w6Var.f39277a == w6Var2.f39277a) {
+                        return true;
+                    }
+                    return false;
+                } else if (i10 == 2 && (aVar = this.d) != null && (aVar2 = q7Var.d) != null) {
+                    return Objects.equals(aVar.f14157a, aVar2.f14157a);
                 }
-                arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, path, 0, z4, 0, 0, 0L));
-                i10++;
-            } else {
-                return;
             }
         }
-    }
-
-    @Override
-    public final void v(f2.m1 m1Var, int i10) {
-        boolean z4;
-        if (this.f40353s == null) {
-            org.telegram.ui.Components.pq pqVar = new org.telegram.ui.Components.pq(new ColorDrawable(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.X9, false)), org.telegram.ui.ActionBar.k6.R4);
-            this.f40353s = pqVar;
-            pqVar.f30166w = true;
-        }
-        org.telegram.ui.Cells.r7 r7Var = (org.telegram.ui.Cells.r7) m1Var.f5875a;
-        nh.a aVar = ((o7) this.f37232e.get(i10)).d;
-        Object tag = r7Var.getTag();
-        ImageReceiver imageReceiver = r7Var.f23563c;
-        if (aVar == tag) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        r7Var.setTag(aVar);
-        int max = (int) Math.max(100.0f, AndroidUtilities.getRealScreenSize().x / AndroidUtilities.density);
-        int i11 = aVar.d;
-        File file = aVar.f16245a;
-        if (i11 == 1) {
-            imageReceiver.setImage(ImageLocation.getForPath("vthumb://0:" + file.getAbsolutePath()), e2.c.h(max, "_", max), this.f40353s, null, null, 0);
-            r7Var.m(AndroidUtilities.formatFileSize(aVar.f16247c), true);
-        } else {
-            imageReceiver.setImage(ImageLocation.getForPath("thumb://0:" + file.getAbsolutePath()), e2.c.h(max, "_", max), this.f40353s, null, null, 0);
-            r7Var.m(AndroidUtilities.formatFileSize(aVar.f16247c), false);
-        }
-        r7Var.i(this.v.f41734f.f16258j.contains(aVar), z4);
-    }
-
-    @Override
-    public final f2.m1 x(ViewGroup viewGroup, int i10) {
-        if (this.f40351n == null) {
-            this.f40351n = new org.telegram.ui.Cells.q7(viewGroup.getContext(), null);
-        }
-        p7 p7Var = new p7(this, viewGroup.getContext(), this.f40351n, this.v.d.getCurrentAccount());
-        p7Var.setStyle(1);
-        return new f2.m1(p7Var);
+        return false;
     }
 }

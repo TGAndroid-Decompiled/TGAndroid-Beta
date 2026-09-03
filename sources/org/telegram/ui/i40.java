@@ -1,29 +1,17 @@
 package org.telegram.ui;
 
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.voip.VoIPService;
-public final class i40 implements org.telegram.ui.ActionBar.b3 {
-    public final d60 f37539a;
-
-    public i40(d60 d60Var) {
-        this.f37539a = d60Var;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class i40 extends FrameLayout {
+    public i40(LaunchActivity launchActivity) {
+        super(launchActivity);
     }
 
     @Override
-    public final boolean g() {
-        return true;
-    }
-
-    @Override
-    public final void onOpenAnimationEnd() {
-        CountDownLatch groupCallBottomSheetLatch;
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance != null && (groupCallBottomSheetLatch = sharedInstance.getGroupCallBottomSheetLatch()) != null) {
-            groupCallBottomSheetLatch.countDown();
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (getAlpha() <= 0.95f) {
+            return false;
         }
-        d60 d60Var = this.f37539a;
-        if (d60Var.C1 == 6) {
-            d60.B0(d60Var);
-        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

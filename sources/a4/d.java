@@ -8,12 +8,12 @@ import k7.w6;
 import q5.c0;
 import r3.o;
 public final class d extends j {
-    public o f63n;
-    public c f64o;
+    public o f58n;
+    public c f59o;
 
     @Override
     public final long b(w wVar) {
-        byte[] bArr = wVar.f7308a;
+        byte[] bArr = wVar.f6987a;
         if (bArr[0] == -1) {
             int i10 = (bArr[2] & 255) >> 4;
             if (i10 == 6 || i10 == 7) {
@@ -28,36 +28,36 @@ public final class d extends j {
     }
 
     @Override
-    public final boolean c(w wVar, long j10, bf.b bVar) {
-        byte[] bArr = wVar.f7308a;
-        o oVar = this.f63n;
+    public final boolean c(w wVar, long j10, af.c cVar) {
+        byte[] bArr = wVar.f6987a;
+        o oVar = this.f58n;
         if (oVar == null) {
             o oVar2 = new o(bArr, 17);
-            this.f63n = oVar2;
-            bVar.f1935b = oVar2.c(Arrays.copyOfRange(bArr, 9, wVar.f7310c), null);
+            this.f58n = oVar2;
+            cVar.f156b = oVar2.c(Arrays.copyOfRange(bArr, 9, wVar.f6989c), null);
             return true;
         }
         byte b10 = bArr[0];
         if ((b10 & Byte.MAX_VALUE) == 3) {
             c0 b11 = w6.b(wVar);
-            o oVar3 = new o(oVar.f46597a, oVar.f46598b, oVar.f46599c, oVar.d, oVar.f46600e, oVar.f46602g, oVar.h, oVar.f46604j, b11, oVar.f46606l);
-            this.f63n = oVar3;
+            o oVar3 = new o(oVar.f43255a, oVar.f43256b, oVar.f43257c, oVar.d, oVar.e, oVar.f43259g, oVar.h, oVar.f43261j, b11, oVar.f43263l);
+            this.f58n = oVar3;
             ?? obj = new Object();
-            obj.f62c = oVar3;
+            obj.f57c = oVar3;
             obj.d = b11;
-            obj.f60a = -1L;
-            obj.f61b = -1L;
-            this.f64o = obj;
+            obj.f55a = -1L;
+            obj.f56b = -1L;
+            this.f59o = obj;
             return true;
         } else if (b10 != -1) {
             return true;
         } else {
-            c cVar = this.f64o;
-            if (cVar != null) {
-                cVar.f60a = j10;
-                bVar.f1936c = cVar;
+            c cVar2 = this.f59o;
+            if (cVar2 != null) {
+                cVar2.f55a = j10;
+                cVar.f157c = cVar2;
             }
-            ((n0) bVar.f1935b).getClass();
+            ((n0) cVar.f156b).getClass();
             return false;
         }
     }
@@ -66,8 +66,8 @@ public final class d extends j {
     public final void d(boolean z4) {
         super.d(z4);
         if (z4) {
-            this.f63n = null;
-            this.f64o = null;
+            this.f58n = null;
+            this.f59o = null;
         }
     }
 }

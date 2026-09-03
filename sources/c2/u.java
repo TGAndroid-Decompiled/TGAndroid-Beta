@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-public final class u implements j9.j, f2.l0, androidx.lifecycle.a0 {
-    public final int f2178a;
-    public boolean f2179b;
-    public Object f2180c;
+public final class u implements j9.j, f2.k0, androidx.lifecycle.a0 {
+    public final int f2035a;
+    public boolean f2036b;
+    public Object f2037c;
 
     public u(int i10) {
-        this.f2178a = i10;
+        this.f2035a = i10;
     }
 
     public static u f(Bundle bundle) {
@@ -41,33 +41,33 @@ public final class u implements j9.j, f2.l0, androidx.lifecycle.a0 {
     }
 
     @Override
-    public void C(int i10, int i11) {
-        this.f2179b = true;
-        ((f2.p0) this.f2180c).p(i10, i11);
+    public void D(int i10, int i11) {
+        this.f2036b = true;
+        ((f2.o0) this.f2037c).p(i10, i11);
     }
 
     @Override
-    public void L0(int i10, int i11) {
-        this.f2179b = true;
-        ((f2.p0) this.f2180c).t(i10, i11);
-    }
-
-    @Override
-    public void W(Object obj) {
-        this.f2179b = true;
-        androidx.biometric.f0 f0Var = (androidx.biometric.f0) this.f2180c;
-        f0Var.getClass();
+    public void G(Object obj) {
+        this.f2036b = true;
+        androidx.biometric.e0 e0Var = (androidx.biometric.e0) this.f2037c;
+        e0Var.getClass();
         Void r32 = (Void) obj;
-        SignInHubActivity signInHubActivity = (SignInHubActivity) f0Var.f532b;
+        SignInHubActivity signInHubActivity = (SignInHubActivity) e0Var.f476b;
         signInHubActivity.setResult(signInHubActivity.O, signInHubActivity.P);
         signInHubActivity.finish();
     }
 
     @Override
+    public void L0(int i10, int i11) {
+        this.f2036b = true;
+        ((f2.o0) this.f2037c).t(i10, i11);
+    }
+
+    @Override
     public void a(j9.i iVar, int i10) {
-        StringBuilder sb = (StringBuilder) this.f2180c;
-        if (this.f2179b) {
-            this.f2179b = false;
+        StringBuilder sb = (StringBuilder) this.f2037c;
+        if (this.f2036b) {
+            this.f2036b = false;
         } else {
             sb.append(", ");
         }
@@ -75,24 +75,24 @@ public final class u implements j9.j, f2.l0, androidx.lifecycle.a0 {
     }
 
     public void b(int i10) {
-        h5.a.i(!this.f2179b);
-        ((SparseBooleanArray) this.f2180c).append(i10, true);
+        h5.a.i(!this.f2036b);
+        ((SparseBooleanArray) this.f2037c).append(i10, true);
     }
 
     public h5.g c() {
-        h5.a.i(!this.f2179b);
-        this.f2179b = true;
-        return new h5.g((SparseBooleanArray) this.f2180c);
+        h5.a.i(!this.f2036b);
+        this.f2036b = true;
+        return new h5.g((SparseBooleanArray) this.f2037c);
     }
 
     public void d() {
         synchronized (this) {
             try {
-                if (this.f2179b) {
+                if (this.f2036b) {
                     return;
                 }
-                this.f2179b = true;
-                CancellationSignal cancellationSignal = (CancellationSignal) this.f2180c;
+                this.f2036b = true;
+                CancellationSignal cancellationSignal = (CancellationSignal) this.f2037c;
                 if (cancellationSignal != null) {
                     try {
                         cancellationSignal.cancel();
@@ -113,12 +113,12 @@ public final class u implements j9.j, f2.l0, androidx.lifecycle.a0 {
     }
 
     public boolean e() {
-        return this.f2179b;
+        return this.f2036b;
     }
 
     public boolean g(int i10, CharSequence charSequence) {
         if (charSequence != null && i10 >= 0 && charSequence.length() - i10 >= 0) {
-            p0.e eVar = (p0.e) this.f2180c;
+            p0.e eVar = (p0.e) this.f2037c;
             if (eVar == null) {
                 return e();
             }
@@ -126,7 +126,7 @@ public final class u implements j9.j, f2.l0, androidx.lifecycle.a0 {
             char c3 = 2;
             for (int i11 = 0; i11 < i10 && c3 == 2; i11++) {
                 byte directionality = Character.getDirectionality(charSequence.charAt(i11));
-                u uVar = p0.f.f44114a;
+                u uVar = p0.f.f40956a;
                 if (directionality != 0) {
                     if (directionality != 1 && directionality != 2) {
                         switch (directionality) {
@@ -157,33 +157,33 @@ public final class u implements j9.j, f2.l0, androidx.lifecycle.a0 {
     }
 
     public void h(x3 x3Var) {
-        if (this.f2179b) {
+        if (this.f2036b) {
             com.google.android.gms.internal.play_billing.u.h("BillingLogger", "Skipping logging since initialization failed.");
             return;
         }
         try {
-            ((y2.p) this.f2180c).a(new v2.a(null, x3Var, v2.d.f48886a, null), new sg.a(29));
+            ((y2.p) this.f2037c).a(new v2.a(null, x3Var, v2.d.f45624a, null), new s0.b(29));
         } catch (Throwable unused) {
             com.google.android.gms.internal.play_billing.u.h("BillingLogger", "logging failed.");
         }
     }
 
     @Override
-    public void i1(int i10, int i11) {
-        ((f2.p0) this.f2180c).r(i10, i11, null);
+    public void h0(int i10, int i11) {
+        this.f2036b = true;
+        ((f2.o0) this.f2037c).s(i10, i11);
     }
 
     @Override
-    public void j0(int i10, int i11) {
-        this.f2179b = true;
-        ((f2.p0) this.f2180c).s(i10, i11);
+    public void j1(int i10, int i11) {
+        ((f2.o0) this.f2037c).r(i10, i11, null);
     }
 
     public String toString() {
-        switch (this.f2178a) {
+        switch (this.f2035a) {
             case 0:
                 StringBuilder sb = new StringBuilder("MediaRouteProviderDescriptor{ routes=");
-                List list = (List) this.f2180c;
+                List list = (List) this.f2037c;
                 sb.append(Arrays.toString(list.toArray()));
                 sb.append(", isValid=");
                 int size = list.size();
@@ -203,47 +203,47 @@ public final class u implements j9.j, f2.l0, androidx.lifecycle.a0 {
                 sb.append(" }");
                 return sb.toString();
             case 8:
-                return ((androidx.biometric.f0) this.f2180c).toString();
+                return ((androidx.biometric.e0) this.f2037c).toString();
             default:
                 return super.toString();
         }
     }
 
     public u(Object obj, int i10) {
-        this.f2178a = i10;
-        this.f2180c = obj;
+        this.f2035a = i10;
+        this.f2037c = obj;
     }
 
     public u(ArrayList arrayList, boolean z4) {
-        this.f2178a = 0;
+        this.f2035a = 0;
         if (arrayList.isEmpty()) {
-            this.f2180c = Collections.EMPTY_LIST;
+            this.f2037c = Collections.EMPTY_LIST;
         } else {
-            this.f2180c = DesugarCollections.unmodifiableList(new ArrayList(arrayList));
+            this.f2037c = DesugarCollections.unmodifiableList(new ArrayList(arrayList));
         }
-        this.f2179b = z4;
+        this.f2036b = z4;
     }
 
     public u() {
-        this.f2178a = 1;
-        this.f2180c = new SparseBooleanArray();
+        this.f2035a = 1;
+        this.f2037c = new SparseBooleanArray();
     }
 
     public u(p0.e eVar, boolean z4) {
         this(eVar, 4);
-        this.f2178a = 4;
-        this.f2179b = z4;
+        this.f2035a = 4;
+        this.f2036b = z4;
     }
 
-    public u(o5.d dVar, androidx.biometric.f0 f0Var) {
-        this.f2178a = 8;
-        this.f2179b = false;
-        this.f2180c = f0Var;
+    public u(o5.d dVar, androidx.biometric.e0 e0Var) {
+        this.f2035a = 8;
+        this.f2036b = false;
+        this.f2037c = e0Var;
     }
 
     public u(StringBuilder sb) {
-        this.f2178a = 2;
-        this.f2180c = sb;
-        this.f2179b = true;
+        this.f2035a = 2;
+        this.f2037c = sb;
+        this.f2036b = true;
     }
 }

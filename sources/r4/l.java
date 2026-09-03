@@ -4,19 +4,19 @@ import h5.d0;
 import j3.n0;
 import o4.l0;
 public final class l implements l0 {
-    public final n0 f46689a;
-    public long[] f46691c;
+    public final n0 f43339a;
+    public long[] f43341c;
     public boolean d;
-    public s4.g f46692e;
-    public boolean f46693f;
+    public s4.g e;
+    public boolean f43342f;
     public int h;
-    public final f7.b f46690b = new f7.b(3, (byte) 0);
-    public long f46694n = -9223372036854775807L;
+    public final f7.b f43340b = new f7.b(3, (byte) 0);
+    public long f43343n = -9223372036854775807L;
 
     public l(s4.g gVar, n0 n0Var, boolean z4) {
-        this.f46689a = n0Var;
-        this.f46692e = gVar;
-        this.f46691c = gVar.f47004b;
+        this.f43339a = n0Var;
+        this.e = gVar;
+        this.f43341c = gVar.f44073b;
         b(gVar, z4);
     }
 
@@ -27,51 +27,51 @@ public final class l implements l0 {
         if (i10 == 0) {
             j10 = -9223372036854775807L;
         } else {
-            j10 = this.f46691c[i10 - 1];
+            j10 = this.f43341c[i10 - 1];
         }
         this.d = z4;
-        this.f46692e = gVar;
-        long[] jArr = gVar.f47004b;
-        this.f46691c = jArr;
-        long j12 = this.f46694n;
+        this.e = gVar;
+        long[] jArr = gVar.f44073b;
+        this.f43341c = jArr;
+        long j12 = this.f43343n;
         if (j12 != -9223372036854775807L) {
             int b10 = d0.b(jArr, j12, true);
             this.h = b10;
-            if (this.d && b10 == this.f46691c.length) {
+            if (this.d && b10 == this.f43341c.length) {
                 j11 = j12;
             }
-            this.f46694n = j11;
+            this.f43343n = j11;
         } else if (j10 != -9223372036854775807L) {
             this.h = d0.b(jArr, j10, false);
         }
     }
 
     @Override
-    public final boolean h() {
+    public final boolean d() {
         return true;
     }
 
     @Override
-    public final int l(long j10) {
-        int max = Math.max(this.h, d0.b(this.f46691c, j10, true));
+    public final int e(long j10) {
+        int max = Math.max(this.h, d0.b(this.f43341c, j10, true));
         int i10 = max - this.h;
         this.h = max;
         return i10;
     }
 
     @Override
-    public final int p(f7.b bVar, n3.i iVar, int i10) {
+    public final int f(f7.b bVar, n3.i iVar, int i10) {
         boolean z4;
         int i11 = this.h;
-        if (i11 == this.f46691c.length) {
+        if (i11 == this.f43341c.length) {
             z4 = true;
         } else {
             z4 = false;
         }
         if (z4 && !this.d) {
-            iVar.f15195b = 4;
+            iVar.f14207b = 4;
             return -4;
-        } else if ((i10 & 2) == 0 && this.f46693f) {
+        } else if ((i10 & 2) == 0 && this.f43342f) {
             if (z4) {
                 return -3;
             }
@@ -79,16 +79,16 @@ public final class l implements l0 {
                 this.h = i11 + 1;
             }
             if ((i10 & 4) == 0) {
-                byte[] q10 = this.f46690b.q(this.f46692e.f47003a[i11]);
-                iVar.j(q10.length);
-                iVar.d.put(q10);
+                byte[] r10 = this.f43340b.r(this.e.f44072a[i11]);
+                iVar.k(r10.length);
+                iVar.d.put(r10);
             }
-            iVar.f15218f = this.f46691c[i11];
-            iVar.f15195b = 1;
+            iVar.f14227f = this.f43341c[i11];
+            iVar.f14207b = 1;
             return -4;
         } else {
-            bVar.f6121c = this.f46689a;
-            this.f46693f = true;
+            bVar.f6002c = this.f43339a;
+            this.f43342f = true;
             return -5;
         }
     }

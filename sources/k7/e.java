@@ -2,21 +2,21 @@ package k7;
 
 import java.util.Map;
 public final class e implements u9.d {
-    public static final e f10510b = new e(0);
-    public static final e f10511c = new e(1);
-    public final int f10512a;
+    public static final e f9767b = new e(0);
+    public static final e f9768c = new e(1);
+    public final int f9769a;
 
     public e(int i10) {
-        this.f10512a = i10;
+        this.f9769a = i10;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        switch (this.f10512a) {
+        switch (this.f9769a) {
             case 0:
                 Map.Entry entry = (Map.Entry) obj;
                 u9.e eVar = (u9.e) obj2;
-                eVar.e(f.f10525g, entry.getKey());
+                eVar.e(f.f9781g, entry.getKey());
                 eVar.e(f.h, entry.getValue());
                 return;
             default:

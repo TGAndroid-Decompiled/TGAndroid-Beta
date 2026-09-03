@@ -1,32 +1,41 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class kj implements qj {
-    public final int f28422a;
-    public final TLRPC.User f28423b;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+public final class kj implements Runnable {
+    public final int f26298a;
+    public final mj f26299b;
+    public final String f26300c;
+    public final int d;
 
-    public kj(int i10, TLRPC.User user) {
-        this.f28422a = i10;
-        this.f28423b = user;
+    public kj(mj mjVar, String str, int i10, int i11) {
+        this.f26298a = i11;
+        this.f26299b = mjVar;
+        this.f26300c = str;
+        this.d = i10;
     }
 
     @Override
-    public final String run() {
-        se.b c3;
-        StringBuilder sb;
-        String str;
-        switch (this.f28422a) {
+    public final void run() {
+        switch (this.f26298a) {
             case 0:
-                c3 = se.b.c();
-                sb = new StringBuilder("+");
-                str = this.f28423b.phone;
-                break;
+                mj mjVar = this.f26299b;
+                String str = this.f26300c;
+                int i10 = this.d;
+                mjVar.getClass();
+                AndroidUtilities.runOnUIThread(new kj(mjVar, str, i10, 1));
+                return;
             default:
-                c3 = se.b.c();
-                sb = new StringBuilder("+");
-                str = this.f28423b.phone;
-                break;
+                mj mjVar2 = this.f26299b;
+                String str2 = this.f26300c;
+                int i11 = this.d;
+                mjVar2.getClass();
+                int i12 = UserConfig.selectedAccount;
+                Utilities.searchQueue.postRunnable(new lj(mjVar2, str2, new ArrayList(ContactsController.getInstance(i12).contactsBook.values()), new ArrayList(ContactsController.getInstance(i12).contacts), i12, i11));
+                return;
         }
-        return org.telegram.messenger.y3.j(sb, str, c3);
     }
 }

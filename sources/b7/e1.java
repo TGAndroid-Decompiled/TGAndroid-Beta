@@ -5,12 +5,12 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 public final class e1 extends h1 {
-    public final int f1816a;
-    public final u f1817b;
+    public final int f1688a;
+    public final u f1689b;
 
     public e1(u uVar) {
         uVar.getClass();
-        this.f1817b = uVar;
+        this.f1689b = uVar;
         g0 p10 = uVar.entrySet().p();
         int i10 = 0;
         while (p10.hasNext()) {
@@ -23,7 +23,7 @@ public final class e1 extends h1 {
             }
         }
         int i11 = i10 + 1;
-        this.f1816a = i11;
+        this.f1688a = i11;
         if (i11 <= 8) {
             return;
         }
@@ -32,7 +32,7 @@ public final class e1 extends h1 {
 
     @Override
     public final int a() {
-        return this.f1816a;
+        return this.f1688a;
     }
 
     @Override
@@ -44,8 +44,8 @@ public final class e1 extends h1 {
         if (c3 != zza) {
             return c3 - h1Var.zza();
         }
-        u uVar = ((e1) h1Var).f1817b;
-        u uVar2 = this.f1817b;
+        u uVar = ((e1) h1Var).f1689b;
+        u uVar2 = this.f1689b;
         if (uVar2.d.size() != uVar.d.size()) {
             return uVar2.d.size() - uVar.d.size();
         }
@@ -73,15 +73,15 @@ public final class e1 extends h1 {
         if (obj == null || e1.class != obj.getClass()) {
             return false;
         }
-        return this.f1817b.equals(((e1) obj).f1817b);
+        return this.f1689b.equals(((e1) obj).f1689b);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(h1.c((byte) -96)), this.f1817b});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(h1.c((byte) -96)), this.f1689b});
     }
 
     public final String toString() {
-        u uVar = this.f1817b;
+        u uVar = this.f1689b;
         if (uVar.isEmpty()) {
             return "{}";
         }
@@ -91,14 +91,14 @@ public final class e1 extends h1 {
             Map.Entry entry = (Map.Entry) p10.next();
             linkedHashMap.put(((h1) entry.getKey()).toString().replace("\n", "\n  "), ((h1) entry.getValue()).toString().replace("\n", "\n  "));
         }
-        h7.u uVar2 = new h7.u(3);
+        db.a aVar = new db.a(3);
         StringBuilder sb = new StringBuilder("{\n  ");
         try {
-            b.g(sb, linkedHashMap.entrySet().iterator(), uVar2);
+            b.g(sb, linkedHashMap.entrySet().iterator(), aVar);
             sb.append("\n}");
             return sb.toString();
-        } catch (IOException e6) {
-            throw new AssertionError(e6);
+        } catch (IOException e) {
+            throw new AssertionError(e);
         }
     }
 

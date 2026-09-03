@@ -1,38 +1,29 @@
 package sh;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.h61;
-import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.w51;
-public final class h extends g51 {
-    static {
-        g51.setup(new g51());
-    }
+import org.telegram.messenger.MessagesController;
+import org.telegram.ui.zn;
+public final class h implements Runnable {
+    public final int f44411a;
+    public final n f44412b;
+    public final long f44413c;
 
-    public static h51 a(int i10, String str, String str2) {
-        h51 J = h51.J(h.class);
-        J.f27374k = i10;
-        J.f27375l = str;
-        J.f27376m = str2;
-        return J;
+    public h(n nVar, long j10, int i10) {
+        this.f44411a = i10;
+        this.f44412b = nVar;
+        this.f44413c = j10;
     }
 
     @Override
-    public final void bindView(View view, h51 h51Var, boolean z4, w51 w51Var, h61 h61Var) {
-        ((i) view).a(h51Var.f27375l, h51Var.f27376m, h51Var.f27374k);
-    }
-
-    @Override
-    public final View createView(Context context, sl0 sl0Var, int i10, int i11, g6 g6Var) {
-        return new i(context, g6Var, false);
-    }
-
-    @Override
-    public final boolean isClickable() {
-        return false;
+    public final void run() {
+        switch (this.f44411a) {
+            case 0:
+                MessagesController.getInstance(r0.currentAccount).unlinkCommunity(this.f44413c, r0.f44436b, new j(this.f44412b, 0));
+                return;
+            default:
+                n nVar = this.f44412b;
+                nVar.getClass();
+                nVar.presentFragment(zn.R9(this.f44413c));
+                return;
+        }
     }
 }

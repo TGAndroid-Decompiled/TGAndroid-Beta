@@ -48,10 +48,10 @@ public final class ff1 extends f2.l {
     }
 
     @Override
-    public final void z(f2.m1 m1Var) {
+    public final void z(f2.l1 l1Var) {
         sf1 sf1Var = this.H;
         View view = sf1Var.Y0;
-        if (view == m1Var.f5875a) {
+        if (view == l1Var.f5774a) {
             view.setTranslationX(0.0f);
             ve1 ve1Var = sf1Var.L;
             if (ve1Var != null) {

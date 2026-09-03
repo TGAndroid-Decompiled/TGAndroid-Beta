@@ -9,8 +9,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-import lh.g1;
-import oh.z1;
+import kh.g1;
+import nh.n4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -23,7 +23,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.yh;
+import org.telegram.ui.ai;
 public class ConferenceCall {
     public static final int PERMISSION_ADD = 1;
     public static final int PERMISSION_REMOVE = 2;
@@ -222,8 +222,8 @@ public class ConferenceCall {
         }
         try {
             bArr = call_get_verification_state(j10).emoji_hash;
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             bArr = null;
         }
         if (bArr == null) {
@@ -268,7 +268,7 @@ public class ConferenceCall {
         VoIPService sharedInstance;
         ChatObject.Call call;
         TLRPC.GroupCall groupCall;
-        if (this.groupCall != null && (sharedInstance = VoIPService.getSharedInstance()) != null && (call = sharedInstance.groupCall) != null && (groupCall = call.call) != null && groupCall.f20855id == this.groupCall.f20855id) {
+        if (this.groupCall != null && (sharedInstance = VoIPService.getSharedInstance()) != null && (call = sharedInstance.groupCall) != null && (groupCall = call.call) != null && groupCall.f19169id == this.groupCall.f19169id) {
             updateParticipants(call.sortedParticipants, false);
             sharedInstance.groupCall.shadyLeftParticipants.clear();
             ChatObject.Call call2 = sharedInstance.groupCall;
@@ -276,7 +276,7 @@ public class ConferenceCall {
             sharedInstance.groupCall.shadyJoinParticipants.clear();
             ChatObject.Call call3 = sharedInstance.groupCall;
             call3.shadyJoinParticipants.addAll(sharedInstance.conference.getShadyJoiningParticipants(call3.sortedParticipants));
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(this.groupCall.f20855id), Boolean.FALSE);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(this.groupCall.f19169id), Boolean.FALSE);
         }
     }
 
@@ -304,7 +304,7 @@ public class ConferenceCall {
     }
 
     public void lambda$poll$8(TL_phone.getGroupCallChainBlocks getgroupcallchainblocks, long j10, AtomicBoolean atomicBoolean, AtomicInteger atomicInteger, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new lf.g0(j10, atomicBoolean, atomicInteger, this, tLObject, tL_error, getgroupcallchainblocks));
+        AndroidUtilities.runOnUIThread(new kf.g0(j10, atomicBoolean, atomicInteger, this, tLObject, tL_error, getgroupcallchainblocks));
     }
 
     public static String lambda$poll$9(CallParticipant callParticipant) {
@@ -358,13 +358,13 @@ public class ConferenceCall {
                 getgroupcallchainblocks.offset = Math.max(0, this.last_offset[i10]);
                 getgroupcallchainblocks.limit = 10;
                 FileLog.d("[tde2e] requesting getGroupCallChainBlocks sub_chain_id=" + getgroupcallchainblocks.sub_chain_id + " offset=" + getgroupcallchainblocks.offset + " limit=10");
-                this.pollRequestId[i10] = ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallchainblocks, new lf.f0(this, getgroupcallchainblocks, System.currentTimeMillis(), atomicBoolean, atomicInteger));
+                this.pollRequestId[i10] = ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallchainblocks, new kf.f0(this, getgroupcallchainblocks, System.currentTimeMillis(), atomicBoolean, atomicInteger));
             }
             if (this.call_id >= 0) {
                 try {
                     FileLog.d("[tde2e] state = " + call_get_verification_state(this.call_id));
-                } catch (Exception e6) {
-                    FileLog.e(e6);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
                 try {
                     FileLog.d("[tde2e] call_describe(" + this.call_id + "): " + call_describe(this.call_id));
@@ -372,8 +372,8 @@ public class ConferenceCall {
                     sb.append("[tde2e] call users:\n ");
                     sb.append(TextUtils.join("\n ", (Iterable) DesugarArrays.stream(call_get_state(this.call_id).participants).map(new Object()).collect(Collectors.toSet())));
                     FileLog.d(sb.toString());
-                } catch (Exception e10) {
-                    FileLog.e(e10);
+                } catch (Exception e6) {
+                    FileLog.e(e6);
                 }
             }
             checkEmojiHash();
@@ -397,7 +397,7 @@ public class ConferenceCall {
                 z4 = true;
             }
         }
-        Utilities.stageQueue.postRunnable(new z1(28, this, updates));
+        Utilities.stageQueue.postRunnable(new n4(29, this, updates));
         return z4;
     }
 
@@ -423,8 +423,8 @@ public class ConferenceCall {
                 byte[] bArr = this.blocksQueue[i10].get(j10);
                 if (bArr == null) {
                     StringBuilder m9 = e2.c.m("[tde2e] {subchain: ", i10, "} got into hole (might be the end) in ", i10, " subchain at #");
-                    l.d.w(m9, max, ", when our last_offset[", i10, "] = ");
-                    l.d.t(this.last_offset[i10], m9);
+                    kf.k0.w(m9, max, ", when our last_offset[", i10, "] = ");
+                    kf.k0.t(this.last_offset[i10], m9);
                     this.last_offset[i10] = max;
                     return;
                 }
@@ -453,8 +453,8 @@ public class ConferenceCall {
                     }
                     max++;
                     this.last_offset[i10] = max;
-                } catch (Exception e6) {
-                    FileLog.e("[tde2e] {subchain: " + i10 + "} #" + max + " block got into error: ", e6);
+                } catch (Exception e) {
+                    FileLog.e("[tde2e] {subchain: " + i10 + "} #" + max + " block got into error: ", e);
                     return;
                 }
             }
@@ -475,11 +475,11 @@ public class ConferenceCall {
             if (groupCall == null) {
                 FileLog.d("[tde2e] received updateGroupCallChainBlocks but we dont have groupcall yet!");
                 return false;
-            } else if (tL_updateGroupCallChainBlocks.call.f20862id != groupCall.f20855id) {
+            } else if (tL_updateGroupCallChainBlocks.call.f19176id != groupCall.f19169id) {
                 StringBuilder sb = new StringBuilder("[tde2e] received updateGroupCallChainBlocks for ");
-                sb.append(tL_updateGroupCallChainBlocks.call.f20862id);
+                sb.append(tL_updateGroupCallChainBlocks.call.f19176id);
                 sb.append(" but we have ");
-                l.d.x(sb, this.groupCall.f20855id);
+                kf.k0.x(sb, this.groupCall.f19169id);
                 return false;
             } else {
                 StringBuilder sb2 = new StringBuilder("[tde2e] received update with ");
@@ -495,7 +495,7 @@ public class ConferenceCall {
                 } else {
                     str = "";
                 }
-                yh.v(str, sb2);
+                ai.v(str, sb2);
                 int i10 = tL_updateGroupCallChainBlocks.sub_chain_id;
                 int i11 = tL_updateGroupCallChainBlocks.next_offset;
                 if (i10 == 0 || i10 == 1) {
@@ -598,8 +598,8 @@ public class ConferenceCall {
                 sb.append(call_describe_block(call_create_self_add_block));
                 FileLog.d(sb.toString());
                 this.last_block = call_create_self_add_block;
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
         return this.last_block;
@@ -616,8 +616,8 @@ public class ConferenceCall {
         if (j10 >= 0) {
             try {
                 callState = call_get_state(j10);
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e) {
+                FileLog.e(e);
                 callState = null;
             }
             if (callState != null) {
@@ -664,8 +664,8 @@ public class ConferenceCall {
         if (j10 >= 0) {
             try {
                 callState = call_get_state(j10);
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e) {
+                FileLog.e(e);
                 callState = null;
             }
             if (callState != null) {
@@ -717,8 +717,8 @@ public class ConferenceCall {
         if (j10 >= 0) {
             try {
                 callState = call_get_state(j10);
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e) {
+                FileLog.e(e);
                 callState = null;
             }
             if (callState != null) {
@@ -818,7 +818,7 @@ public class ConferenceCall {
         getgroupcallchainblocks.sub_chain_id = 0;
         getgroupcallchainblocks.offset = -1;
         getgroupcallchainblocks.limit = 1;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallchainblocks, new hg.c0(this, currentTimeMillis, runnable, 4));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallchainblocks, new gg.c0(this, currentTimeMillis, runnable, 4));
     }
 
     public void reset() {
@@ -891,8 +891,8 @@ public class ConferenceCall {
                 deleteconferencecallparticipants.block = call_create_change_state_block;
                 deleteconferencecallparticipants.ids.addAll(shadyLeftParticipants);
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(deleteconferencecallparticipants, new d(this, System.currentTimeMillis(), 0));
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
         if (z4) {

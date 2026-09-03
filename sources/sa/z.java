@@ -1,8 +1,8 @@
 package sa;
 public final class z implements pa.v {
-    public final wa.a f47261a;
-    public final boolean f47262b;
-    public final Class f47263c;
+    public final wa.a f44305a;
+    public final boolean f44306b;
+    public final Class f44307c;
     public final pa.o d;
 
     public z(Object obj, wa.a aVar, boolean z4, Class cls) {
@@ -20,23 +20,23 @@ public final class z implements pa.v {
             z10 = true;
         }
         ra.d.b(z10);
-        this.f47261a = aVar;
-        this.f47262b = z4;
-        this.f47263c = cls;
+        this.f44305a = aVar;
+        this.f44306b = z4;
+        this.f44307c = cls;
     }
 
     @Override
     public final pa.u create(pa.g gVar, wa.a aVar) {
         boolean isAssignableFrom;
-        wa.a aVar2 = this.f47261a;
+        wa.a aVar2 = this.f44305a;
         if (aVar2 != null) {
-            if (!aVar2.equals(aVar) && (!this.f47262b || aVar2.f49521b != aVar.f49520a)) {
+            if (!aVar2.equals(aVar) && (!this.f44306b || aVar2.f46588b != aVar.f46587a)) {
                 isAssignableFrom = false;
             } else {
                 isAssignableFrom = true;
             }
         } else {
-            isAssignableFrom = this.f47263c.isAssignableFrom(aVar.f49520a);
+            isAssignableFrom = this.f44307c.isAssignableFrom(aVar.f46587a);
         }
         if (isAssignableFrom) {
             return new a0(this.d, gVar, aVar, this, true);

@@ -1,11 +1,16 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class wk extends org.telegram.ui.Components.l41 {
-    public final xn f42798s;
+import android.widget.FrameLayout;
+public final class wk extends dz {
+    public final zn K;
 
-    public wk(xn xnVar, Activity activity, xn xnVar2, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(activity, g6Var, xnVar2);
-        this.f42798s = xnVar;
+    public wk(zn znVar, zn znVar2, FrameLayout frameLayout, sj sjVar, int i10, long j10, long j11) {
+        super(znVar2, frameLayout, sjVar, i10, j10, j11);
+        this.K = znVar;
+    }
+
+    @Override
+    public final void i() {
+        this.K.uc();
     }
 }

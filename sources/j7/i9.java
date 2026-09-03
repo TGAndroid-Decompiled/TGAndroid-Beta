@@ -6,7 +6,7 @@ import java.util.AbstractCollection;
 import java.util.Arrays;
 import java.util.Collection;
 public abstract class i9 extends AbstractCollection implements Serializable {
-    public static final Object[] f9654a = new Object[0];
+    public static final Object[] f9020a = new Object[0];
 
     @Override
     public final boolean add(Object obj) {
@@ -54,7 +54,7 @@ public abstract class i9 extends AbstractCollection implements Serializable {
 
     @Override
     public final Object[] toArray() {
-        return toArray(f9654a);
+        return toArray(f9020a);
     }
 
     @Override

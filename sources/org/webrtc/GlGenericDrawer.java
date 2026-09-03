@@ -143,8 +143,8 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
                 this.texMatrixLocation[i10][i17] = glShader.getUniformLocation("tex_mat");
                 this.inPosLocation[i10][i17] = glShader.getAttribLocation("in_pos");
                 this.inTcLocation[i10][i17] = glShader.getAttribLocation("in_tc");
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e) {
+                FileLog.e(e);
                 return;
             }
         }

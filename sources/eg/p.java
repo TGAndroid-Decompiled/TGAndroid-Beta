@@ -1,74 +1,80 @@
 package eg;
 
-import java.util.List;
-import k7.c6;
-import org.telegram.ui.Components.a11;
-public final class p implements Runnable {
-    public final int f5424a;
-    public final c1 f5425b;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicReference;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.Components.q5;
+import org.telegram.ui.Components.u5;
+public final class p {
+    public float f5404a;
+    public float f5405b;
+    public int f5406c;
+    public TextPaint d;
+    public final ArrayList e;
+    public Object f5407f;
+    public final Object f5408g;
+    public Object h;
+    public final Object f5409i;
 
-    public p(c1 c1Var, int i10) {
-        this.f5424a = i10;
-        this.f5425b = c1Var;
+    public p() {
+        TextPaint textPaint = new TextPaint(1);
+        this.d = textPaint;
+        this.f5404a = 1.0f;
+        this.f5407f = new HashMap();
+        this.f5408g = new RectF();
+        this.h = new RectF();
+        Paint paint = new Paint();
+        this.f5409i = paint;
+        this.e = new ArrayList();
+        this.f5405b = 1000.0f / AndroidUtilities.screenRefreshRate;
+        this.f5406c = 25;
+        textPaint.setTypeface(AndroidUtilities.bold());
+        textPaint.setColor(-1);
+        int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+        if (devicePerformanceClass == 0) {
+            this.f5404a = 0.25f;
+        } else if (devicePerformanceClass != 1) {
+            this.f5404a = 0.75f;
+        } else {
+            this.f5404a = 0.5f;
+        }
+        textPaint.setTextSize(AndroidUtilities.dp(this.f5404a * 24.0f));
+        paint.setColor(-1);
     }
 
-    @Override
-    public final void run() {
-        int e6;
-        switch (this.f5424a) {
-            case 0:
-                c1 c1Var = this.f5425b;
-                a11 a11Var = c1Var.X0;
-                if (a11Var != null) {
-                    c1Var.X0 = null;
-                    c1Var.removeView(a11Var);
-                    return;
-                }
-                return;
-            case 1:
-                c1 c1Var2 = this.f5425b;
-                if (c1Var2.B0 != null) {
-                    c1Var2.D0.postRunnable(new p(c1Var2, 3), 200L);
-                    return;
-                }
-                return;
-            case 2:
-                r2 r2Var = this.f5425b.f5116i1;
-                if (r2Var != null) {
-                    r2Var.invalidate();
-                    return;
-                }
-                return;
-            case 3:
-                c1.a0(this.f5425b);
-                return;
-            default:
-                c1 c1Var3 = this.f5425b;
-                boolean z4 = dg.e1.e(c1Var3.M1).f4522k;
-                int i10 = 0;
-                while (true) {
-                    List list = dg.l.f4576b;
-                    if (i10 < list.size()) {
-                        dg.l lVar = (dg.l) list.get(i10);
-                        if (z4) {
-                            e6 = lVar.m();
-                        } else {
-                            e6 = lVar.e();
-                        }
-                        String n10 = lVar.n();
-                        bh.a aVar = new bh.a(c1Var3, lVar, e6, 3);
-                        a1 a1Var = new a1(c1Var3, c1Var3.getContext());
-                        a1Var.setIcon(e6);
-                        a1Var.setText(n10);
-                        a1Var.setSelected(false);
-                        a1Var.setOnClickListener(new androidx.mediarouter.app.c(aVar, 2));
-                        a1Var.setOnLongClickListener(new d0(c1Var3, 0));
-                        c1Var3.P1.a(a1Var, c6.n(-1, 48));
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
+    public void a(CharSequence charSequence, TextPaint textPaint, int i10) {
+        org.telegram.ui.Cells.v0 v0Var;
+        this.d = textPaint;
+        this.f5406c = i10;
+        StaticLayout staticLayout = new StaticLayout(charSequence, textPaint, i10, Layout.Alignment.ALIGN_CENTER, 1.1f, 0.0f, false);
+        this.f5407f = staticLayout;
+        org.telegram.ui.Cells.v0 v0Var2 = (org.telegram.ui.Cells.v0) this.f5409i;
+        MessageObject messageObject = v0Var2.E0;
+        ArrayList arrayList = this.e;
+        if (messageObject != null && messageObject.isSpoilersRevealed) {
+            if (arrayList != null) {
+                arrayList.clear();
+            }
+            v0Var = v0Var2;
+        } else {
+            v0Var = v0Var2;
+            ih.k.b(v0Var, staticLayout, -1, i10, null, arrayList);
         }
+        this.h = u5.update(0, (View) v0Var, false, (q5) this.h, (StaticLayout) this.f5407f);
+    }
+
+    public p(org.telegram.ui.Cells.v0 v0Var) {
+        this.f5409i = v0Var;
+        this.e = new ArrayList();
+        this.f5408g = new AtomicReference();
     }
 }

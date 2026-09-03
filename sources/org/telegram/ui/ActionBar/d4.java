@@ -1,100 +1,52 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Bitmap;
-import java.io.File;
-import java.io.FileOutputStream;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class d4 implements Runnable {
-    public final int f21275a;
-    public final Bitmap f21276b;
-    public final File f21277c;
+import android.util.SparseIntArray;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class d4 implements sf.a {
+    public i6 f19596a;
+    public TLRPC.TL_theme f19597b;
+    public TLRPC.TL_chatThemeUniqueGift f19598c;
+    public int d;
+    public int e = -1;
+    public SparseIntArray f19599f;
+    public String f19600g;
+    public int h;
+    public int f19601i;
+    public int f19602j;
+    public int f19603k;
+    public int f19604l;
+    public int f19605m;
+    public int f19606n;
+    public int f19607o;
 
-    public d4(Bitmap bitmap, File file, int i10) {
-        this.f21275a = i10;
-        this.f21276b = bitmap;
-        this.f21277c = file;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f21275a) {
-            case 0:
-                File file = this.f21277c;
-                Bitmap bitmap = this.f21276b;
-                try {
-                    FileOutputStream fileOutputStream = new FileOutputStream(file);
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
-                    fileOutputStream.close();
-                    return;
-                } catch (Exception e6) {
-                    FileLog.e(e6);
-                    return;
-                }
-            case 1:
-                try {
-                    this.f21276b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f21277c));
-                    return;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                    return;
-                }
-            case 2:
-                Bitmap bitmap2 = this.f21276b;
-                try {
-                    try {
-                        bitmap2.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(this.f21277c));
-                        if (bitmap2.isRecycled()) {
-                            return;
-                        }
-                    } catch (Exception e11) {
-                        FileLog.e(e11);
-                        if (bitmap2 == null || bitmap2.isRecycled()) {
-                            return;
-                        }
-                    }
-                    bitmap2.recycle();
-                    return;
-                } catch (Throwable th2) {
-                    if (bitmap2 != null && !bitmap2.isRecycled()) {
-                        bitmap2.recycle();
-                    }
-                    throw th2;
-                }
-            case 3:
-                Bitmap bitmap3 = this.f21276b;
-                try {
-                    try {
-                        bitmap3.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(this.f21277c));
-                    } finally {
-                        AndroidUtilities.recycleBitmap(bitmap3);
-                    }
-                } catch (Exception e12) {
-                    FileLog.e(e12);
-                }
-                return;
-            case 4:
-                try {
-                    this.f21276b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f21277c));
-                    return;
-                } catch (Exception e13) {
-                    FileLog.e(e13);
-                    return;
-                }
-            default:
-                try {
-                    this.f21276b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f21277c));
-                    return;
-                } catch (Exception e14) {
-                    FileLog.e(e14);
-                    return;
-                }
+    public final long a() {
+        TLRPC.TL_theme tL_theme = this.f19597b;
+        if (tL_theme != null) {
+            return tL_theme.f19296id;
         }
+        TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f19598c;
+        if (tL_chatThemeUniqueGift != null) {
+            return tL_chatThemeUniqueGift.gift.gift_id;
+        }
+        return 0L;
     }
 
-    public d4(File file, Bitmap bitmap) {
-        this.f21275a = 0;
-        this.f21277c = file;
-        this.f21276b = bitmap;
+    public final TLRPC.ThemeSettings b(int i10) {
+        ArrayList<TLRPC.ThemeSettings> arrayList;
+        TLRPC.TL_theme tL_theme = this.f19597b;
+        if (tL_theme != null) {
+            arrayList = tL_theme.settings;
+        } else {
+            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f19598c;
+            if (tL_chatThemeUniqueGift != null) {
+                arrayList = tL_chatThemeUniqueGift.theme_settings;
+            }
+            return null;
+        }
+        if (arrayList != null && i10 >= 0 && arrayList.size() > i10) {
+            return arrayList.get(i10);
+        }
+        return null;
     }
 }

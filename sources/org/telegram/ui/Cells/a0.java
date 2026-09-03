@@ -4,19 +4,19 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.mv0;
-public abstract class a0 extends ViewGroup implements mv0 {
-    public boolean f22533a;
-    public androidx.emoji2.text.j f22534b;
-    public int f22535c;
+import org.telegram.ui.Components.nv0;
+public abstract class a0 extends ViewGroup implements nv0 {
+    public boolean f20786a;
+    public androidx.emoji2.text.j f20787b;
+    public int f20788c;
     public m2.b d;
-    public Runnable f22536e;
+    public Runnable e;
 
     public a0(Context context) {
         super(context);
-        this.f22533a = false;
-        this.f22534b = null;
-        this.f22535c = 0;
+        this.f20786a = false;
+        this.f20787b = null;
+        this.f20788c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
@@ -43,7 +43,7 @@ public abstract class a0 extends ViewGroup implements mv0 {
 
     @Override
     public final void g(Runnable runnable) {
-        this.f22536e = runnable;
+        this.e = runnable;
     }
 
     public int getBoundsLeft() {
@@ -61,7 +61,7 @@ public abstract class a0 extends ViewGroup implements mv0 {
 
     @Override
     public void invalidate() {
-        Runnable runnable = this.f22536e;
+        Runnable runnable = this.e;
         if (runnable != null) {
             runnable.run();
         }
@@ -69,8 +69,8 @@ public abstract class a0 extends ViewGroup implements mv0 {
     }
 
     public final void k() {
-        this.f22533a = false;
-        androidx.emoji2.text.j jVar = this.f22534b;
+        this.f20786a = false;
+        androidx.emoji2.text.j jVar = this.f20787b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
@@ -89,10 +89,10 @@ public abstract class a0 extends ViewGroup implements mv0 {
     }
 
     public final void q() {
-        if (this.f22533a) {
+        if (this.f20786a) {
             return;
         }
-        this.f22533a = true;
+        this.f20786a = true;
         if (this.d == null) {
             this.d = new m2.b(this, 6);
         }

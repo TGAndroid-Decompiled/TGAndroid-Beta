@@ -13,7 +13,7 @@ import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.List;
 import n7.qa;
-import o3.o;
+import o3.p;
 import o4.l0;
 import o4.n0;
 import o4.r;
@@ -29,102 +29,83 @@ public final class h implements l0, n0, h0, k0 {
     public int H;
     public a I;
     public boolean J;
-    public final int f44515a;
-    public final int[] f44516b;
-    public final j3.n0[] f44517c;
+    public final int f42768a;
+    public final int[] f42769b;
+    public final j3.n0[] f42770c;
     public final boolean[] d;
-    public final r4.k f44518e;
-    public final r4.b f44519f;
+    public final r4.k e;
+    public final r4.b f42771f;
     public final e0 h;
-    public final ab.a f44520n;
-    public final m0 f44521r = new m0("ChunkSampleStream");
-    public final u f44522s = new u(6);
+    public final z9.d f42772n;
+    public final m0 f42773r = new m0("ChunkSampleStream");
+    public final u f42774s = new u(6);
     public final ArrayList v;
-    public final List f44523w;
-    public final o4.k0 f44524x;
-    public final o4.k0[] f44525y;
+    public final List f42775w;
+    public final o4.k0 f42776x;
+    public final o4.k0[] f42777y;
 
-    public h(int i10, int[] iArr, j3.n0[] n0VarArr, r4.k kVar, r4.b bVar, q qVar, long j10, o oVar, o3.l lVar, ab.a aVar, e0 e0Var) {
-        this.f44515a = i10;
-        this.f44516b = iArr;
-        this.f44517c = n0VarArr;
-        this.f44518e = kVar;
-        this.f44519f = bVar;
+    public h(int i10, int[] iArr, j3.n0[] n0VarArr, r4.k kVar, r4.b bVar, q qVar, long j10, p pVar, o3.m mVar, z9.d dVar, e0 e0Var) {
+        this.f42768a = i10;
+        this.f42769b = iArr;
+        this.f42770c = n0VarArr;
+        this.e = kVar;
+        this.f42771f = bVar;
         this.h = e0Var;
-        this.f44520n = aVar;
+        this.f42772n = dVar;
         ArrayList arrayList = new ArrayList();
         this.v = arrayList;
-        this.f44523w = DesugarCollections.unmodifiableList(arrayList);
+        this.f42775w = DesugarCollections.unmodifiableList(arrayList);
         int length = iArr.length;
-        this.f44525y = new o4.k0[length];
+        this.f42777y = new o4.k0[length];
         this.d = new boolean[length];
         int i11 = length + 1;
         int[] iArr2 = new int[i11];
         o4.k0[] k0VarArr = new o4.k0[i11];
-        oVar.getClass();
-        o4.k0 k0Var = new o4.k0(qVar, oVar, lVar);
-        this.f44524x = k0Var;
+        pVar.getClass();
+        o4.k0 k0Var = new o4.k0(qVar, pVar, mVar);
+        this.f42776x = k0Var;
         int i12 = 0;
         iArr2[0] = i10;
         k0VarArr[0] = k0Var;
         while (i12 < length) {
             o4.k0 k0Var2 = new o4.k0(qVar, null, null);
-            this.f44525y[i12] = k0Var2;
+            this.f42777y[i12] = k0Var2;
             int i13 = i12 + 1;
             k0VarArr[i13] = k0Var2;
-            iArr2[i13] = this.f44516b[i12];
+            iArr2[i13] = this.f42769b[i12];
             i12 = i13;
         }
-        this.B = new qa(29, iArr2, k0VarArr);
+        this.B = new qa(iArr2, k0VarArr, false, 29);
         this.F = j10;
         this.G = j10;
     }
 
-    public final int A(int i10, int i11) {
-        ArrayList arrayList;
-        do {
-            i11++;
-            arrayList = this.v;
-            if (i11 >= arrayList.size()) {
-                return arrayList.size() - 1;
-            }
-        } while (((a) arrayList.get(i11)).d(0) <= i10);
-        return i11 - 1;
+    @Override
+    public final long H() {
+        if (j()) {
+            return this.F;
+        }
+        if (this.J) {
+            return Long.MIN_VALUE;
+        }
+        return h().f42763n;
     }
 
-    public final void B(r4.b bVar) {
-        o4.k0[] k0VarArr;
-        this.E = bVar;
-        o4.k0 k0Var = this.f44524x;
-        k0Var.i();
-        o3.i iVar = k0Var.h;
-        if (iVar != null) {
-            iVar.c(k0Var.f16509e);
-            k0Var.h = null;
-            k0Var.f16511g = null;
-        }
-        for (o4.k0 k0Var2 : this.f44525y) {
-            k0Var2.i();
-            o3.i iVar2 = k0Var2.h;
-            if (iVar2 != null) {
-                iVar2.c(k0Var2.f16509e);
-                k0Var2.h = null;
-                k0Var2.f16511g = null;
-            }
-        }
-        this.f44521r.e(this);
+    @Override
+    public final c4.e X(g5.j0 r26, java.io.IOException r27, int r28) {
+        throw new UnsupportedOperationException("Method not decompiled: q4.h.X(g5.j0, java.io.IOException, int):c4.e");
     }
 
     @Override
     public final void a() {
-        m0 m0Var = this.f44521r;
+        m0 m0Var = this.f42773r;
         m0Var.a();
-        this.f44524x.w();
+        this.f42776x.w();
         if (!m0Var.d()) {
-            r4.k kVar = this.f44518e;
-            o4.b bVar = kVar.f46687l;
+            r4.k kVar = this.e;
+            o4.b bVar = kVar.f43337l;
             if (bVar == null) {
-                kVar.f46678a.a();
+                kVar.f43329a.a();
                 return;
             }
             throw bVar;
@@ -133,48 +114,48 @@ public final class h implements l0, n0, h0, k0 {
 
     @Override
     public final boolean b() {
-        return this.f44521r.d();
+        return this.f42773r.d();
     }
 
     @Override
     public final void c() {
         o4.k0[] k0VarArr;
-        o4.k0 k0Var = this.f44524x;
+        o4.k0 k0Var = this.f42776x;
         k0Var.A(true);
-        o3.i iVar = k0Var.h;
-        if (iVar != null) {
-            iVar.c(k0Var.f16509e);
+        o3.j jVar = k0Var.h;
+        if (jVar != null) {
+            jVar.c(k0Var.e);
             k0Var.h = null;
-            k0Var.f16511g = null;
+            k0Var.f16343g = null;
         }
-        for (o4.k0 k0Var2 : this.f44525y) {
+        for (o4.k0 k0Var2 : this.f42777y) {
             k0Var2.A(true);
-            o3.i iVar2 = k0Var2.h;
-            if (iVar2 != null) {
-                iVar2.c(k0Var2.f16509e);
+            o3.j jVar2 = k0Var2.h;
+            if (jVar2 != null) {
+                jVar2.c(k0Var2.e);
                 k0Var2.h = null;
-                k0Var2.f16511g = null;
+                k0Var2.f16343g = null;
             }
         }
-        for (r4.i iVar3 : this.f44518e.h) {
-            d dVar = iVar3.f46673a;
+        for (r4.i iVar : this.e.h) {
+            d dVar = iVar.f43325a;
             if (dVar != null) {
-                dVar.f44497a.release();
+                dVar.f42753a.release();
             }
         }
         g gVar = this.E;
         if (gVar != null) {
             r4.b bVar = (r4.b) gVar;
             synchronized (bVar) {
-                n nVar = (n) bVar.f46644y.remove(this);
+                n nVar = (n) bVar.f43297y.remove(this);
                 if (nVar != null) {
-                    o4.k0 k0Var3 = nVar.f46697a;
+                    o4.k0 k0Var3 = nVar.f43346a;
                     k0Var3.A(true);
-                    o3.i iVar4 = k0Var3.h;
-                    if (iVar4 != null) {
-                        iVar4.c(k0Var3.f16509e);
+                    o3.j jVar3 = k0Var3.h;
+                    if (jVar3 != null) {
+                        jVar3.c(k0Var3.e);
                         k0Var3.h = null;
-                        k0Var3.f16511g = null;
+                        k0Var3.f16343g = null;
                     }
                 }
             }
@@ -182,125 +163,166 @@ public final class h implements l0, n0, h0, k0 {
     }
 
     @Override
-    public final long e() {
-        if (y()) {
-            return this.F;
-        }
-        if (this.J) {
-            return Long.MIN_VALUE;
-        }
-        return v().f44509n;
-    }
-
-    @Override
-    public final boolean h() {
-        if (!y() && this.f44524x.u(this.J)) {
+    public final boolean d() {
+        if (!j() && this.f42776x.u(this.J)) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final int l(long j10) {
-        if (y()) {
+    public final int e(long j10) {
+        if (j()) {
             return 0;
         }
         boolean z4 = this.J;
-        o4.k0 k0Var = this.f44524x;
+        o4.k0 k0Var = this.f42776x;
         int s6 = k0Var.s(j10, z4);
         a aVar = this.I;
         if (aVar != null) {
-            s6 = Math.min(s6, aVar.d(0) - k0Var.q());
+            s6 = Math.min(s6, aVar.e(0) - k0Var.q());
         }
         k0Var.E(s6);
-        z();
+        k();
         return s6;
     }
 
     @Override
-    public final boolean m(long r56) {
-        throw new UnsupportedOperationException("Method not decompiled: q4.h.m(long):boolean");
-    }
-
-    @Override
-    public final int p(f7.b bVar, n3.i iVar, int i10) {
-        if (!y()) {
+    public final int f(f7.b bVar, n3.i iVar, int i10) {
+        if (!j()) {
             a aVar = this.I;
-            o4.k0 k0Var = this.f44524x;
-            if (aVar != null && aVar.d(0) <= k0Var.q()) {
+            o4.k0 k0Var = this.f42776x;
+            if (aVar != null && aVar.e(0) <= k0Var.q()) {
                 return -3;
             }
-            z();
+            k();
             return k0Var.z(bVar, iVar, i10, this.J);
         }
         return -3;
     }
 
-    @Override
-    public final c4.e q(g5.j0 r26, java.io.IOException r27, int r28) {
-        throw new UnsupportedOperationException("Method not decompiled: q4.h.q(g5.j0, java.io.IOException, int):c4.e");
-    }
-
-    @Override
-    public final long r() {
-        if (this.J) {
-            return Long.MIN_VALUE;
-        }
-        if (y()) {
-            return this.F;
-        }
-        long j10 = this.G;
-        a v = v();
-        if (!v.c()) {
-            ArrayList arrayList = this.v;
-            if (arrayList.size() > 1) {
-                v = (a) l.d.i(2, arrayList);
-            } else {
-                v = null;
-            }
-        }
-        if (v != null) {
-            j10 = Math.max(j10, v.f44509n);
-        }
-        return Math.max(j10, this.f44524x.n());
-    }
-
-    public final a s(int i10) {
+    public final a g(int i10) {
         ArrayList arrayList = this.v;
         a aVar = (a) arrayList.get(i10);
         d0.L(i10, arrayList.size(), arrayList);
         this.H = Math.max(this.H, arrayList.size());
         int i11 = 0;
-        this.f44524x.k(aVar.d(0));
+        this.f42776x.k(aVar.e(0));
         while (true) {
-            o4.k0[] k0VarArr = this.f44525y;
+            o4.k0[] k0VarArr = this.f42777y;
             if (i11 < k0VarArr.length) {
                 o4.k0 k0Var = k0VarArr[i11];
                 i11++;
-                k0Var.k(aVar.d(i11));
+                k0Var.k(aVar.e(i11));
             } else {
                 return aVar;
             }
         }
     }
 
+    public final a h() {
+        return (a) kf.k0.i(1, this.v);
+    }
+
+    public final boolean i(int i10) {
+        int q10;
+        a aVar = (a) this.v.get(i10);
+        if (this.f42776x.q() > aVar.e(0)) {
+            return true;
+        }
+        int i11 = 0;
+        do {
+            o4.k0[] k0VarArr = this.f42777y;
+            if (i11 >= k0VarArr.length) {
+                return false;
+            }
+            q10 = k0VarArr[i11].q();
+            i11++;
+        } while (q10 <= aVar.e(i11));
+        return true;
+    }
+
+    public final boolean j() {
+        if (this.F != -9223372036854775807L) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void k() {
+        int l10 = l(this.f42776x.q(), this.H - 1);
+        while (true) {
+            int i10 = this.H;
+            if (i10 <= l10) {
+                this.H = i10 + 1;
+                a aVar = (a) this.v.get(i10);
+                j3.n0 n0Var = aVar.d;
+                if (!n0Var.equals(this.D)) {
+                    this.h.h(this.f42768a, n0Var, aVar.e, aVar.f42762f, aVar.h);
+                }
+                this.D = n0Var;
+            } else {
+                return;
+            }
+        }
+    }
+
     @Override
-    public final void t(long j10) {
+    public final void k1(j0 j0Var, long j10, long j11) {
+        e eVar = (e) j0Var;
+        r3.f fVar = null;
+        this.C = null;
+        boolean z4 = eVar instanceof j;
+        r4.k kVar = this.e;
+        if (z4) {
+            int n10 = kVar.f43334i.n(((j) eVar).d);
+            r4.i[] iVarArr = kVar.h;
+            r4.i iVar = iVarArr[n10];
+            if (iVar.d == null) {
+                d dVar = iVar.f43325a;
+                s sVar = dVar.f42757n;
+                if (sVar instanceof r3.f) {
+                    fVar = (r3.f) sVar;
+                }
+                if (fVar != null) {
+                    s4.m mVar = iVar.f43326b;
+                    iVarArr[n10] = new r4.i(iVar.e, mVar, iVar.f43327c, dVar, iVar.f43328f, new f2.c(fVar, mVar.f44089c, 7));
+                }
+            }
+        }
+        n nVar = kVar.f43333g;
+        if (nVar != null) {
+            long j12 = nVar.d;
+            if (j12 == -9223372036854775807L || eVar.f42763n > j12) {
+                nVar.d = eVar.f42763n;
+            }
+            nVar.e.h = true;
+        }
+        long j13 = eVar.f42759a;
+        Uri uri = eVar.f42764r.f6458c;
+        ?? obj = new Object();
+        this.f42772n.getClass();
+        this.h.p(obj, eVar.f42761c, this.f42768a, eVar.d, eVar.e, eVar.f42762f, eVar.h, eVar.f42763n);
+        this.f42771f.X1(this);
+    }
+
+    @Override
+    public final void k2(long j10) {
         int size;
-        m0 m0Var = this.f44521r;
-        if (!m0Var.c() && !y()) {
+        m0 m0Var = this.f42773r;
+        if (!m0Var.c() && !j()) {
             boolean d = m0Var.d();
             boolean z4 = false;
-            List list = this.f44523w;
-            r4.k kVar = this.f44518e;
+            List list = this.f42775w;
+            r4.k kVar = this.e;
             ArrayList arrayList = this.v;
             if (d) {
                 e eVar = this.C;
                 eVar.getClass();
                 boolean z10 = eVar instanceof a;
-                if (!z10 || !w(arrayList.size() - 1)) {
-                    if (kVar.f46687l == null) {
-                        z4 = kVar.f46684i.u(j10, eVar, list);
+                if (!z10 || !i(arrayList.size() - 1)) {
+                    if (kVar.f43337l == null) {
+                        z4 = kVar.f43334i.u(j10, eVar, list);
                     }
                     if (z4) {
                         m0Var.b();
@@ -314,8 +336,8 @@ public final class h implements l0, n0, h0, k0 {
                 }
                 return;
             }
-            if (kVar.f46687l == null && kVar.f46684i.p() >= 2) {
-                size = kVar.f46684i.c(j10, list);
+            if (kVar.f43337l == null && kVar.f43334i.p() >= 2) {
+                size = kVar.f43334i.c(j10, list);
             } else {
                 size = list.size();
             }
@@ -324,7 +346,7 @@ public final class h implements l0, n0, h0, k0 {
                 int size2 = arrayList.size();
                 while (true) {
                     if (size < size2) {
-                        if (!w(size)) {
+                        if (!i(size)) {
                             break;
                         }
                         size++;
@@ -334,128 +356,106 @@ public final class h implements l0, n0, h0, k0 {
                     }
                 }
                 if (size != -1) {
-                    long j11 = v().f44509n;
-                    a s6 = s(size);
+                    long j11 = h().f42763n;
+                    a g10 = g(size);
                     if (arrayList.isEmpty()) {
                         this.F = this.G;
                     }
                     this.J = false;
-                    this.h.B(new r(1, this.f44515a, null, 3, null, d0.S(s6.h), d0.S(j11)));
+                    this.h.B(new r(1, this.f42768a, null, 3, null, d0.S(g10.h), d0.S(j11)));
                 }
             }
         }
     }
 
+    public final int l(int i10, int i11) {
+        ArrayList arrayList;
+        do {
+            i11++;
+            arrayList = this.v;
+            if (i11 >= arrayList.size()) {
+                return arrayList.size() - 1;
+            }
+        } while (((a) arrayList.get(i11)).e(0) <= i10);
+        return i11 - 1;
+    }
+
+    public final void m(r4.b bVar) {
+        o4.k0[] k0VarArr;
+        this.E = bVar;
+        o4.k0 k0Var = this.f42776x;
+        k0Var.i();
+        o3.j jVar = k0Var.h;
+        if (jVar != null) {
+            jVar.c(k0Var.e);
+            k0Var.h = null;
+            k0Var.f16343g = null;
+        }
+        for (o4.k0 k0Var2 : this.f42777y) {
+            k0Var2.i();
+            o3.j jVar2 = k0Var2.h;
+            if (jVar2 != null) {
+                jVar2.c(k0Var2.e);
+                k0Var2.h = null;
+                k0Var2.f16343g = null;
+            }
+        }
+        this.f42773r.e(this);
+    }
+
     @Override
-    public final void u(j0 j0Var, long j10, long j11, boolean z4) {
+    public final boolean n0(long r56) {
+        throw new UnsupportedOperationException("Method not decompiled: q4.h.n0(long):boolean");
+    }
+
+    @Override
+    public final void x0(j0 j0Var, long j10, long j11, boolean z4) {
         e eVar = (e) j0Var;
         this.C = null;
         this.I = null;
-        long j12 = eVar.f44504a;
-        Uri uri = eVar.f44510r.f6950c;
+        long j12 = eVar.f42759a;
+        Uri uri = eVar.f42764r.f6458c;
         ?? obj = new Object();
-        this.f44520n.getClass();
-        this.h.m(obj, eVar.f44506c, this.f44515a, eVar.d, eVar.f44507e, eVar.f44508f, eVar.h, eVar.f44509n);
+        this.f42772n.getClass();
+        this.h.m(obj, eVar.f42761c, this.f42768a, eVar.d, eVar.e, eVar.f42762f, eVar.h, eVar.f42763n);
         if (!z4) {
-            if (y()) {
-                this.f44524x.A(false);
-                for (o4.k0 k0Var : this.f44525y) {
+            if (j()) {
+                this.f42776x.A(false);
+                for (o4.k0 k0Var : this.f42777y) {
                     k0Var.A(false);
                 }
             } else if (eVar instanceof a) {
                 ArrayList arrayList = this.v;
-                s(arrayList.size() - 1);
+                g(arrayList.size() - 1);
                 if (arrayList.isEmpty()) {
                     this.F = this.G;
                 }
             }
-            this.f44519f.s(this);
+            this.f42771f.X1(this);
         }
-    }
-
-    public final a v() {
-        return (a) l.d.i(1, this.v);
-    }
-
-    public final boolean w(int i10) {
-        int q10;
-        a aVar = (a) this.v.get(i10);
-        if (this.f44524x.q() > aVar.d(0)) {
-            return true;
-        }
-        int i11 = 0;
-        do {
-            o4.k0[] k0VarArr = this.f44525y;
-            if (i11 >= k0VarArr.length) {
-                return false;
-            }
-            q10 = k0VarArr[i11].q();
-            i11++;
-        } while (q10 <= aVar.d(i11));
-        return true;
     }
 
     @Override
-    public final void x(j0 j0Var, long j10, long j11) {
-        e eVar = (e) j0Var;
-        r3.f fVar = null;
-        this.C = null;
-        boolean z4 = eVar instanceof j;
-        r4.k kVar = this.f44518e;
-        if (z4) {
-            int n10 = kVar.f46684i.n(((j) eVar).d);
-            r4.i[] iVarArr = kVar.h;
-            r4.i iVar = iVarArr[n10];
-            if (iVar.d == null) {
-                d dVar = iVar.f46673a;
-                s sVar = dVar.f44502n;
-                if (sVar instanceof r3.f) {
-                    fVar = (r3.f) sVar;
-                }
-                if (fVar != null) {
-                    s4.m mVar = iVar.f46674b;
-                    iVarArr[n10] = new r4.i(iVar.f46676e, mVar, iVar.f46675c, dVar, iVar.f46677f, new f2.c(fVar, mVar.f47021c, 7));
-                }
-            }
+    public final long y1() {
+        if (this.J) {
+            return Long.MIN_VALUE;
         }
-        n nVar = kVar.f46683g;
-        if (nVar != null) {
-            long j12 = nVar.d;
-            if (j12 == -9223372036854775807L || eVar.f44509n > j12) {
-                nVar.d = eVar.f44509n;
-            }
-            nVar.f46700e.h = true;
+        if (j()) {
+            return this.F;
         }
-        long j13 = eVar.f44504a;
-        Uri uri = eVar.f44510r.f6950c;
-        ?? obj = new Object();
-        this.f44520n.getClass();
-        this.h.p(obj, eVar.f44506c, this.f44515a, eVar.d, eVar.f44507e, eVar.f44508f, eVar.h, eVar.f44509n);
-        this.f44519f.s(this);
-    }
-
-    public final boolean y() {
-        if (this.F != -9223372036854775807L) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void z() {
-        int A = A(this.f44524x.q(), this.H - 1);
-        while (true) {
-            int i10 = this.H;
-            if (i10 <= A) {
-                this.H = i10 + 1;
-                a aVar = (a) this.v.get(i10);
-                j3.n0 n0Var = aVar.d;
-                if (!n0Var.equals(this.D)) {
-                    this.h.h(this.f44515a, n0Var, aVar.f44507e, aVar.f44508f, aVar.h);
-                }
-                this.D = n0Var;
+        long j10 = this.G;
+        a h = h();
+        if (!h.d()) {
+            ArrayList arrayList = this.v;
+            if (arrayList.size() > 1) {
+                h = (a) kf.k0.i(2, arrayList);
             } else {
-                return;
+                h = null;
             }
         }
+        if (h != null) {
+            j10 = Math.max(j10, h.f42763n);
+        }
+        return Math.max(j10, this.f42776x.n());
     }
 }

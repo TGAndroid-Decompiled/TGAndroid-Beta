@@ -7,13 +7,13 @@ public final class g extends j implements Comparable {
     @Override
     public final int compareTo(Object obj) {
         g gVar = (g) obj;
-        if (e(4) != gVar.e(4)) {
-            if (e(4)) {
+        if (d(4) != gVar.d(4)) {
+            if (d(4)) {
                 return 1;
             }
             return -1;
         }
-        long j10 = this.f15218f - gVar.f15218f;
+        long j10 = this.f14227f - gVar.f14227f;
         if (j10 == 0) {
             j10 = this.v - gVar.v;
             if (j10 == 0) {

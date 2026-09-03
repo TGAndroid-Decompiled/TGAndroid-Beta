@@ -1,52 +1,74 @@
 package uf;
 
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.ui.Components.wn0;
-public final class n implements Runnable {
-    public final int f48691a;
-    public final z f48692b;
-    public final long f48693c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.c5;
+import org.telegram.ui.Components.j6;
+import org.telegram.ui.Components.mr;
+public final class n extends EditTextBoldCursor {
+    public final c5 f45451b;
+    public int f45452c;
+    public final j6 d;
+    public final f6 e;
 
-    public n(wn0 wn0Var, long j10, int i10) {
-        this.f48691a = i10;
-        this.f48692b = wn0Var;
-        this.f48693c = j10;
+    public n(Context context, f6 f6Var) {
+        super(context);
+        this.e = f6Var;
+        this.f45451b = new c5(this);
+        j6 j6Var = new j6(false, true, true, false);
+        this.d = j6Var;
+        j6Var.k(0.2f, 160L, mr.h);
+        j6Var.t(AndroidUtilities.dp(15.33f));
+        j6Var.setCallback(this);
+        j6Var.f25847b = 5;
     }
 
     @Override
-    public final void run() {
-        switch (this.f48691a) {
-            case 0:
-                long j10 = this.f48693c;
-                z zVar = this.f48692b;
-                zVar.getClass();
-                try {
-                    SQLiteDatabase database = MessagesStorage.getInstance(zVar.f48805p0).getDatabase();
-                    database.executeFast("DELETE FROM search_recent WHERE did = " + j10).stepThis().dispose();
-                    return;
-                } catch (Exception e6) {
-                    FileLog.e(e6);
-                    return;
-                }
-            default:
-                long j11 = this.f48693c;
-                z zVar2 = this.f48692b;
-                zVar2.getClass();
-                try {
-                    SQLitePreparedStatement executeFast = MessagesStorage.getInstance(zVar2.f48805p0).getDatabase().executeFast("REPLACE INTO search_recent VALUES(?, ?)");
-                    executeFast.requery();
-                    executeFast.bindLong(1, j11);
-                    executeFast.bindInteger(2, (int) (System.currentTimeMillis() / 1000));
-                    executeFast.step();
-                    executeFast.dispose();
-                    return;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                    return;
-                }
+    public final void dispatchDraw(Canvas canvas) {
+        int i10;
+        super.dispatchDraw(canvas);
+        if (this.f45452c < 0) {
+            i10 = org.telegram.ui.ActionBar.j6.f20097p7;
+        } else {
+            i10 = org.telegram.ui.ActionBar.j6.P5;
         }
+        int a2 = this.f45451b.a(org.telegram.ui.ActionBar.j6.v0(i10, this.e), false);
+        j6 j6Var = this.d;
+        j6Var.r(a2);
+        j6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
+        j6Var.draw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        super.onTextChanged(charSequence, i10, i11, i12);
+        j6 j6Var = this.d;
+        if (j6Var != null) {
+            this.f45452c = 32 - charSequence.length();
+            j6Var.b();
+            String str = "";
+            if (this.f45452c <= 4) {
+                str = "" + this.f45452c;
+            }
+            j6Var.q(str, true, true);
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.d && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

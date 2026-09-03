@@ -1,12 +1,10 @@
 package p2;
-
-import java.util.List;
 public final class q {
-    public final List f44199a;
-    public final List f44200b;
+    public final String f41035a;
+    public final String f41036b;
 
-    public q(List list, List list2) {
-        this.f44199a = list;
-        this.f44200b = list2;
+    public q(b6.h hVar) {
+        this.f41035a = hVar.f1609b;
+        this.f41036b = hVar.f1610c;
     }
 }

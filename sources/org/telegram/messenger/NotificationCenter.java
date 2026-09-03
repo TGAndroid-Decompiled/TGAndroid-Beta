@@ -390,10 +390,10 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int f18060id;
+        private int f16652id;
 
         private DelayedPost(int i10, Object[] objArr) {
-            this.f18060id = i10;
+            this.f16652id = i10;
             this.args = objArr;
         }
     }
@@ -408,12 +408,12 @@ public class NotificationCenter {
         private final ArrayList<Observer> observers;
 
         public static class Observer {
-            private final int f18061id;
+            private final int f16653id;
             private final NotificationCenterDelegate observer;
 
             private Observer(NotificationCenterDelegate notificationCenterDelegate, int i10) {
                 this.observer = notificationCenterDelegate;
-                this.f18061id = i10;
+                this.f16653id = i10;
             }
         }
 
@@ -431,7 +431,7 @@ public class NotificationCenter {
                 Observer observer = arrayList.get(i10);
                 i10++;
                 Observer observer2 = observer;
-                this.notificationCenter.removeObserver(observer2.observer, observer2.f18061id);
+                this.notificationCenter.removeObserver(observer2.observer, observer2.f16653id);
             }
             this.observers.clear();
             this.notificationCenter = null;
@@ -854,7 +854,7 @@ public class NotificationCenter {
         for (int i11 = 0; i11 < sparseArray2.size(); i11++) {
             int keyAt2 = sparseArray2.keyAt(i11);
             if (sparseArray.get(keyAt2, -1).intValue() == -1) {
-                StringBuilder m10 = l.d.m(keyAt2, "key=", " ADDED (size=");
+                StringBuilder m10 = kf.k0.m(keyAt2, "key=", " ADDED (size=");
                 m10.append(sparseArray2.valueAt(i11));
                 m10.append(")");
                 Log.i("ObserverDiff", m10.toString());
@@ -969,7 +969,7 @@ public class NotificationCenter {
             arrayList2.add(notificationCenterDelegate);
             if (BuildVars.DEBUG_VERSION && !alreadyLogged && arrayList2.size() > 1000) {
                 alreadyLogged = true;
-                FileLog.e((Throwable) new RuntimeException(l.d.j(i10, "Total observers more than 1000, need check for memory leak. ")), true);
+                FileLog.e((Throwable) new RuntimeException(kf.k0.j(i10, "Total observers more than 1000, need check for memory leak. ")), true);
             }
         }
     }
@@ -1068,7 +1068,7 @@ public class NotificationCenter {
                 }
             };
             view.addOnAttachStateChangeListener(onAttachStateChangeListener);
-            return new eg.d3(this, view, onAttachStateChangeListener, notificationCenterDelegate, i10, 8);
+            return new dg.f3(this, view, onAttachStateChangeListener, notificationCenterDelegate, i10, 8);
         }
         return new x1(16);
     }
@@ -1245,7 +1245,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i10 = 0; i10 < this.delayedPostsTmp.size(); i10++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i10);
-                postNotificationNameInternal(delayedPost.f18060id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.f16652id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }

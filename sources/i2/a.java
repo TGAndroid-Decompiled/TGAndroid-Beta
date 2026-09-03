@@ -10,18 +10,18 @@ import java.util.Iterator;
 import java.util.List;
 public final class a {
     public static volatile a d;
-    public static final Object f7780e = new Object();
-    public final Context f7783c;
-    public final HashSet f7782b = new HashSet();
-    public final HashMap f7781a = new HashMap();
+    public static final Object e = new Object();
+    public final Context f7220c;
+    public final HashSet f7219b = new HashSet();
+    public final HashMap f7218a = new HashMap();
 
     public a(Context context) {
-        this.f7783c = context.getApplicationContext();
+        this.f7220c = context.getApplicationContext();
     }
 
     public static a c(Context context) {
         if (d == null) {
-            synchronized (f7780e) {
+            synchronized (e) {
                 try {
                     if (d == null) {
                         d = new a(context);
@@ -35,14 +35,14 @@ public final class a {
 
     public final void a(Bundle bundle) {
         HashSet hashSet;
-        String string = this.f7783c.getString(2131689503);
+        String string = this.f7220c.getString(2131689503);
         if (bundle != null) {
             try {
                 HashSet hashSet2 = new HashSet();
                 Iterator<String> it = bundle.keySet().iterator();
                 while (true) {
                     boolean hasNext = it.hasNext();
-                    hashSet = this.f7782b;
+                    hashSet = this.f7219b;
                     if (!hasNext) {
                         break;
                     }
@@ -66,7 +66,7 @@ public final class a {
 
     public final Object b(Class cls, HashSet hashSet) {
         Object obj;
-        HashMap hashMap = this.f7781a;
+        HashMap hashMap = this.f7218a;
         if (j8.b()) {
             try {
                 j8.a(cls.getSimpleName());
@@ -87,7 +87,7 @@ public final class a {
                         }
                     }
                 }
-                obj = bVar.b(this.f7783c);
+                obj = bVar.b(this.f7220c);
                 hashSet.remove(cls);
                 hashMap.put(cls, obj);
             } else {

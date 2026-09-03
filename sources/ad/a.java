@@ -1,6 +1,6 @@
 package ad;
 public abstract class a {
-    public static final Integer f162a;
+    public static final Integer f148a;
 
     static {
         Integer num;
@@ -15,12 +15,12 @@ public abstract class a {
             if (num != null && num.intValue() > 0) {
                 num2 = num;
             }
-            f162a = num2;
+            f148a = num2;
         }
         num = null;
         if (num != null) {
             num2 = num;
         }
-        f162a = num2;
+        f148a = num2;
     }
 }

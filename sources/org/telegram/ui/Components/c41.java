@@ -4,14 +4,14 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-public final class c41 extends jh.s {
-    public final org.telegram.ui.h20 O;
+public final class c41 extends ih.s {
+    public final org.telegram.ui.i20 O;
     public final f41 P;
 
     public c41(f41 f41Var, Context context) {
         super(context);
         this.P = f41Var;
-        this.O = new org.telegram.ui.h20();
+        this.O = new org.telegram.ui.i20();
     }
 
     @Override

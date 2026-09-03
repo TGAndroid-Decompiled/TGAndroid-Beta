@@ -58,16 +58,16 @@ public class BotGuardHelper extends BaseController {
 
     public void closeGuardBotWebApp(long j10, long j11, TLRPC.JoinChatBotResult joinChatBotResult) {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.guardBotDecisionResult, new GuardBotDecisionResultNotification(j10, this.queryIdToBotId.get(j11, 0L), j11, joinChatBotResult));
-        HashSet hashSet = sh.p2.T0;
+        HashSet hashSet = rh.p2.T0;
         if (hashSet != null) {
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {
-                sh.p2 p2Var = (sh.p2) it.next();
-                sh.y3 y3Var = p2Var.f47642s0;
-                if (y3Var != null && y3Var.f47829g == 5) {
-                    long j12 = y3Var.f47825b;
+                rh.p2 p2Var = (rh.p2) it.next();
+                rh.y3 y3Var = p2Var.f43754s0;
+                if (y3Var != null && y3Var.f43923g == 5) {
+                    long j12 = y3Var.f43920b;
                     if (j12 == j10 || j12 == 0) {
-                        TLObject tLObject = y3Var.f47838q;
+                        TLObject tLObject = y3Var.f43932q;
                         if ((tLObject instanceof TLRPC.TL_webViewResultUrl) && ((TLRPC.TL_webViewResultUrl) tLObject).query_id == j11) {
                             p2Var.k(false);
                             return;
@@ -99,12 +99,12 @@ public class BotGuardHelper extends BaseController {
         }
         this.queryIdToBotId.put(j12, j11);
         org.telegram.ui.ActionBar.p2 R2 = LaunchActivity.R();
-        sh.y3 b10 = sh.y3.b(this.currentAccount, j10, j11, null, null, 5, 0, 0L, null, false, null, null, 0, false, false);
+        rh.y3 b10 = rh.y3.b(this.currentAccount, j10, j11, null, null, 5, 0, 0L, null, false, null, null, 0, false, false);
         b10.d = j12;
-        sh.p2 p2Var = new sh.p2(LaunchActivity.D1, null);
+        rh.p2 p2Var = new rh.p2(LaunchActivity.D1, null);
         p2Var.w(false);
-        p2Var.f47649x0 = true;
-        p2Var.f47629h0 = LaunchActivity.D1;
+        p2Var.f43761x0 = true;
+        p2Var.f43741h0 = LaunchActivity.D1;
         p2Var.s(R2, b10);
         p2Var.show();
     }

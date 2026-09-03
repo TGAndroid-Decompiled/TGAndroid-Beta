@@ -1,26 +1,26 @@
 package org.telegram.messenger.video;
 
-import org.telegram.ui.Components.q70;
+import org.telegram.ui.Components.p70;
 public final class a implements Runnable {
-    public final int f20313a;
-    public final Object f20314b;
+    public final int f18671a;
+    public final Object f18672b;
 
     public a(Object obj, int i10) {
-        this.f20313a = i10;
-        this.f20314b = obj;
+        this.f18671a = i10;
+        this.f18672b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f20313a) {
+        switch (this.f18671a) {
             case 0:
-                OldVideoPlayerRewinder.a((OldVideoPlayerRewinder) this.f20314b);
+                OldVideoPlayerRewinder.a((OldVideoPlayerRewinder) this.f18672b);
                 return;
             case 1:
-                ((q70) this.f20314b).u();
+                ((p70) this.f18672b).u();
                 return;
             default:
-                ((VideoFramesRewinder) this.f20314b).lambda$new$2();
+                ((VideoFramesRewinder) this.f18672b).lambda$new$2();
                 return;
         }
     }

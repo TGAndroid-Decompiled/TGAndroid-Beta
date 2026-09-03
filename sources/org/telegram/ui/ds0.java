@@ -5,19 +5,19 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.tgnet.TLRPC;
 public final class ds0 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.g6 f36250a;
-    public final PhotoViewer f36251b;
+    public final org.telegram.ui.ActionBar.f6 f33527a;
+    public final PhotoViewer f33528b;
 
-    public ds0(PhotoViewer photoViewer, org.telegram.ui.ActionBar.g6 g6Var) {
-        this.f36251b = photoViewer;
-        this.f36250a = g6Var;
+    public ds0(PhotoViewer photoViewer, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f33528b = photoViewer;
+        this.f33527a = f6Var;
     }
 
     @Override
     public final boolean a() {
         TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated;
         boolean z4;
-        PhotoViewer photoViewer = this.f36251b;
+        PhotoViewer photoViewer = this.f33528b;
         if (photoViewer.Q4 != null || photoViewer.Y4 != null) {
             return true;
         }
@@ -31,7 +31,7 @@ public final class ds0 extends org.telegram.ui.ActionBar.j {
                 tL_fileLocationToBeDeprecated = imageLocation.location;
             }
             String q12 = PhotoViewer.q1(imageLocation);
-            if (photoViewer.f34425w5 == 0 && !photoViewer.f34445y5) {
+            if (photoViewer.f31873w5 == 0 && !photoViewer.f31893y5) {
                 z4 = false;
             } else {
                 z4 = true;
@@ -48,7 +48,7 @@ public final class ds0 extends org.telegram.ui.ActionBar.j {
                 return true;
             }
             return false;
-        } else if (photoViewer.f34283g7 != null) {
+        } else if (photoViewer.f31731g7 != null) {
             return true;
         } else {
             return false;

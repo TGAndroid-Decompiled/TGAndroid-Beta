@@ -7,19 +7,19 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class a9 extends AnimatorListenerAdapter {
-    public final int f25193a;
-    public final Object f25194b;
+    public final int f23341a;
+    public final Object f23342b;
 
     public a9(Object obj, int i10) {
-        this.f25193a = i10;
-        this.f25194b = obj;
+        this.f23341a = i10;
+        this.f23342b = obj;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f25193a) {
+        switch (this.f23341a) {
             case 8:
-                ((ul) this.f25194b).f31643a.L = null;
+                ((sl) this.f23342b).f28759a.L = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -29,46 +29,46 @@ public final class a9 extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f25193a) {
+        switch (this.f23341a) {
             case 0:
-                c9 c9Var = (c9) this.f25194b;
-                if (c9Var.f25844f != null) {
-                    c9Var.f25843e = 1.0f;
+                c9 c9Var = (c9) this.f23342b;
+                if (c9Var.f23878f != null) {
+                    c9Var.e = 1.0f;
                     c9Var.n();
-                    if (c9Var.f25845g) {
-                        c9Var.f25845g = false;
-                        Runnable runnable = c9Var.f25847j;
+                    if (c9Var.f23879g) {
+                        c9Var.f23879g = false;
+                        Runnable runnable = c9Var.f23881j;
                         if (runnable != null) {
                             runnable.run();
                         }
                     }
                     c9Var.f();
                 }
-                c9Var.f25844f = null;
+                c9Var.f23878f = null;
                 return;
             case 1:
-                ((hf) this.f25194b).f27498f.V.setVisibility(8);
+                ((hf) this.f23342b).f25396f.V.setVisibility(8);
                 return;
             case 2:
-                ((lg) this.f25194b).f28735a0 = 1.0f;
+                ((lg) this.f23342b).f26656a0 = 1.0f;
                 return;
             case 3:
-                ((sh) this.f25194b).f31061c.f29108s.setVisibility(8);
+                ((sh) this.f23342b).f28744c.f26734s.setVisibility(8);
                 return;
             case 4:
-                ((uh) this.f25194b).d.v.setVisibility(8);
+                ((uh) this.f23342b).d.v.setVisibility(8);
                 return;
             case 5:
-                mi miVar = (mi) this.f25194b;
-                miVar.W0 = null;
-                if (!miVar.f29093n1) {
-                    if (miVar.U0.getTag() == null && miVar.N0 == 0 && !miVar.Q0) {
-                        miVar.X0.setVisibility(4);
+                li liVar = (li) this.f23342b;
+                liVar.W0 = null;
+                if (!liVar.f26719n1) {
+                    if (liVar.U0.getTag() == null && liVar.N0 == 0 && !liVar.Q0) {
+                        liVar.X0.setVisibility(4);
                     }
-                    miVar.f29070f1.setVisibility(4);
+                    liVar.f26696f1.setVisibility(4);
                     return;
                 }
-                org.telegram.ui.ActionBar.w0 w0Var = miVar.f29055b1;
+                org.telegram.ui.ActionBar.w0 w0Var = liVar.f26682b1;
                 if (w0Var != null) {
                     w0Var.setVisibility(4);
                     return;
@@ -76,185 +76,185 @@ public final class a9 extends AnimatorListenerAdapter {
                 return;
             case 6:
                 super.onAnimationEnd(animator);
-                jk jkVar = (jk) this.f25194b;
-                jkVar.f28133s.setVisibility(8);
-                jkVar.f28131n = 0;
-                xj xjVar = jkVar.f28132r;
-                xjVar.setAlpha(1.0f);
-                xjVar.setScaleX(1.0f);
-                xjVar.setScaleY(1.0f);
-                xjVar.setTranslationX(0.0f);
-                xjVar.invalidate();
+                hk hkVar = (hk) this.f23342b;
+                hkVar.f25437s.setVisibility(8);
+                hkVar.f25435n = 0;
+                vj vjVar = hkVar.f25436r;
+                vjVar.setAlpha(1.0f);
+                vjVar.setScaleX(1.0f);
+                vjVar.setScaleY(1.0f);
+                vjVar.setTranslationX(0.0f);
+                vjVar.invalidate();
                 return;
             case 7:
-                ik ikVar = (ik) this.f25194b;
-                if (ikVar.U.E.getTag() == null) {
-                    ikVar.U.E.setVisibility(4);
+                gk gkVar = (gk) this.f23342b;
+                if (gkVar.U.E.getTag() == null) {
+                    gkVar.U.E.setVisibility(4);
                 }
-                ikVar.U.F = null;
+                gkVar.U.F = null;
                 return;
             case 8:
-                ul ulVar = (ul) this.f25194b;
-                if (animator.equals(ulVar.f31643a.L)) {
-                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ulVar.f31643a;
+                sl slVar = (sl) this.f23342b;
+                if (animator.equals(slVar.f28759a.L)) {
+                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = slVar.f28759a;
                     chatAttachAlertPhotoLayout.W = true;
                     chatAttachAlertPhotoLayout.L = null;
                     return;
                 }
                 return;
             case 9:
-                om omVar = (om) this.f25194b;
-                pm pmVar = omVar.M;
-                pmVar.G = null;
-                pmVar.H = false;
-                omVar.invalidate();
+                mm mmVar = (mm) this.f23342b;
+                nm nmVar = mmVar.M;
+                nmVar.G = null;
+                nmVar.H = false;
+                mmVar.invalidate();
                 return;
             case 10:
-                mp mpVar = (mp) this.f25194b;
-                wo woVar = mpVar.O;
-                if (woVar != null) {
-                    if (woVar.getParent() != null) {
-                        ((ViewGroup) mpVar.O.getParent()).removeView(mpVar.O);
+                jp jpVar = (jp) this.f23342b;
+                to toVar = jpVar.O;
+                if (toVar != null) {
+                    if (toVar.getParent() != null) {
+                        ((ViewGroup) jpVar.O.getParent()).removeView(jpVar.O);
                     }
-                    mpVar.O = null;
+                    jpVar.O = null;
                 }
-                mpVar.Q = null;
+                jpVar.Q = null;
                 super.onAnimationEnd(animator);
                 return;
             case 11:
-                CheckBox checkBox = (CheckBox) this.f25194b;
-                if (animator.equals(checkBox.f24793s)) {
-                    checkBox.f24793s = null;
+                CheckBox checkBox = (CheckBox) this.f23342b;
+                if (animator.equals(checkBox.f22921s)) {
+                    checkBox.f22921s = null;
                 }
-                if (!checkBox.f24795x) {
+                if (!checkBox.f22923x) {
                     checkBox.D = null;
                     return;
                 }
                 return;
             case 12:
-                CheckBoxBase checkBoxBase = (CheckBoxBase) this.f25194b;
-                if (animator.equals(checkBoxBase.f24810p)) {
-                    checkBoxBase.f24810p = null;
+                CheckBoxBase checkBoxBase = (CheckBoxBase) this.f23342b;
+                if (animator.equals(checkBoxBase.f22937p)) {
+                    checkBoxBase.f22937p = null;
                 }
-                if (!checkBoxBase.f24811q) {
+                if (!checkBoxBase.f22938q) {
                     checkBoxBase.C = null;
                     return;
                 }
                 return;
             case 13:
-                mq mqVar = (mq) this.f25194b;
-                if (mqVar.H == mqVar.I) {
-                    mqVar.D.setVisibility(4);
+                jq jqVar = (jq) this.f23342b;
+                if (jqVar.H == jqVar.I) {
+                    jqVar.D.setVisibility(4);
                 }
-                mqVar.f29236y = null;
+                jqVar.f26034y = null;
                 return;
             case 14:
-                vq vqVar = (vq) this.f25194b;
-                vqVar.f32516l = 1.0f;
-                vqVar.f32519o = null;
-                vqVar.f32520p = null;
-                vqVar.f32521q = null;
-                View view = vqVar.H;
+                sq sqVar = (sq) this.f23342b;
+                sqVar.f28783l = 1.0f;
+                sqVar.f28786o = null;
+                sqVar.f28787p = null;
+                sqVar.f28788q = null;
+                View view = sqVar.H;
                 if (view != null) {
-                    if (vqVar.h == 0 && vqVar.G) {
+                    if (sqVar.h == 0 && sqVar.G) {
                         view.setVisibility(8);
                     }
-                    vqVar.H.invalidate();
+                    sqVar.H.invalidate();
                 }
-                vqVar.f32509c = -1;
+                sqVar.f28777c = -1;
                 return;
             case 15:
-                fu fuVar = (fu) this.f25194b;
-                fuVar.L = false;
-                fuVar.d.setTranslationY(0.0f);
-                fuVar.d.setAlpha(0.0f);
-                fuVar.c(0.0f);
-                fuVar.O = 0.0f;
-                fuVar.j();
+                cu cuVar = (cu) this.f23342b;
+                cuVar.L = false;
+                cuVar.d.setTranslationY(0.0f);
+                cuVar.d.setAlpha(0.0f);
+                cuVar.c(0.0f);
+                cuVar.O = 0.0f;
+                cuVar.j();
                 return;
             case 16:
-                ((nu) this.f25194b).f29579a.L = false;
+                ((ku) this.f23342b).f26398a.L = false;
                 return;
             case 17:
                 super.onAnimationEnd(animator);
-                ((fv) this.f25194b).d = null;
+                ((cv) this.f23342b).d = null;
                 return;
             case 18:
-                ((mz) this.f25194b).T = null;
+                ((kz) this.f23342b).T = null;
                 return;
             case 19:
                 super.onAnimationEnd(animator);
-                ((uy) this.f25194b).f31710n = null;
+                ((sy) this.f23342b).f28835n = null;
                 return;
             case 20:
-                ((j00) this.f25194b).a();
+                ((i00) this.f23342b).a();
                 return;
             case 21:
-                l00 l00Var = (l00) this.f25194b;
-                l00Var.R = l00Var.W;
-                l00Var.V = l00Var.f28540c0;
-                l00Var.S = l00Var.f28536a0;
-                l00Var.T = l00Var.f28538b0;
-                l00Var.W = -1;
-                l00Var.f28536a0 = -1;
-                l00Var.f28538b0 = -1;
-                l00Var.f28540c0 = -1;
+                k00 k00Var = (k00) this.f23342b;
+                k00Var.R = k00Var.W;
+                k00Var.V = k00Var.f26095c0;
+                k00Var.S = k00Var.f26091a0;
+                k00Var.T = k00Var.f26093b0;
+                k00Var.W = -1;
+                k00Var.f26091a0 = -1;
+                k00Var.f26093b0 = -1;
+                k00Var.f26095c0 = -1;
                 return;
             case 22:
-                z00 z00Var = (z00) this.f25194b;
-                z00Var.f33715s = 1.0f;
+                z00 z00Var = (z00) this.f23342b;
+                z00Var.f31212s = 1.0f;
                 z00Var.invalidate();
                 return;
             case 23:
-                q70 q70Var = (q70) this.f25194b;
-                o70 o70Var = q70Var.f30337x;
-                if (o70Var != null) {
-                    o70Var.setProgress(1.0f);
-                    q70Var.f30337x.invalidate();
+                p70 p70Var = (p70) this.f23342b;
+                n70 n70Var = p70Var.f27781x;
+                if (n70Var != null) {
+                    n70Var.setProgress(1.0f);
+                    p70Var.f27781x.invalidate();
                 }
-                q70Var.m0 = null;
+                p70Var.m0 = null;
                 return;
             case 24:
-                m00 m00Var = (m00) this.f25194b;
-                ((a80) m00Var.f28915e).B = false;
-                TextView[] textViewArr = (TextView[]) m00Var.d;
+                l00 l00Var = (l00) this.f23342b;
+                ((z70) l00Var.e).B = false;
+                TextView[] textViewArr = (TextView[]) l00Var.d;
                 TextView textView = textViewArr[0];
                 textViewArr[0] = textViewArr[1];
                 textViewArr[1] = textView;
                 return;
             case 25:
-                n80 n80Var = (n80) this.f25194b;
-                if (!n80Var.f29417f) {
-                    n80Var.f29415c.setVisibility(8);
+                m80 m80Var = (m80) this.f23342b;
+                if (!m80Var.f26987f) {
+                    m80Var.f26986c.setVisibility(8);
                     return;
                 }
                 return;
             case 26:
-                u80 u80Var = (u80) this.f25194b;
-                FrameLayout frameLayout = u80Var.f31556b;
-                fg.i0 i0Var = (fg.i0) u80Var.f31557c;
+                t80 t80Var = (t80) this.f23342b;
+                FrameLayout frameLayout = t80Var.f28944b;
+                eg.i0 i0Var = (eg.i0) t80Var.f28945c;
                 if (i0Var.getParent() != null) {
                     frameLayout.removeView(i0Var);
                 }
-                frameLayout.getViewTreeObserver().removeOnPreDrawListener((org.telegram.ui.Cells.ba) u80Var.d);
+                frameLayout.getViewTreeObserver().removeOnPreDrawListener((org.telegram.ui.Cells.aa) t80Var.d);
                 return;
             case 27:
-                sb0 sb0Var = (sb0) this.f25194b;
-                sb0Var.W.h = null;
-                sb0Var.e(sb0Var.P, sb0Var.O);
+                rb0 rb0Var = (rb0) this.f23342b;
+                rb0Var.W.h = null;
+                rb0Var.e(rb0Var.P, rb0Var.O);
                 return;
             case 28:
-                NumberTextView numberTextView = (NumberTextView) this.f25194b;
+                NumberTextView numberTextView = (NumberTextView) this.f23342b;
                 numberTextView.d = null;
-                numberTextView.f24912b.clear();
+                numberTextView.f23034b.clear();
                 return;
             default:
-                xd0 xd0Var = (xd0) this.f25194b;
-                xd0Var.setVisibility(8);
-                xd0Var.h();
-                xd0Var.M = 0.0f;
-                xd0Var.f(0.0f);
-                xd0Var.setAlpha(0.0f);
+                wd0 wd0Var = (wd0) this.f23342b;
+                wd0Var.setVisibility(8);
+                wd0Var.h();
+                wd0Var.M = 0.0f;
+                wd0Var.f(0.0f);
+                wd0Var.setAlpha(0.0f);
                 return;
         }
     }

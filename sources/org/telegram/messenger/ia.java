@@ -2,42 +2,42 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class ia implements Runnable {
-    public final int f18947a;
-    public final MessagesController f18948b;
-    public final ArrayList f18949c;
+    public final int f17452a;
+    public final MessagesController f17453b;
+    public final ArrayList f17454c;
 
     public ia(MessagesController messagesController, ArrayList arrayList, int i10) {
-        this.f18947a = i10;
-        this.f18948b = messagesController;
-        this.f18949c = arrayList;
+        this.f17452a = i10;
+        this.f17453b = messagesController;
+        this.f17454c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f18947a) {
+        switch (this.f17452a) {
             case 0:
-                this.f18948b.lambda$processUpdateArray$397(this.f18949c);
+                this.f17453b.lambda$processUpdateArray$397(this.f17454c);
                 return;
             case 1:
-                this.f18948b.lambda$processUpdates$379(this.f18949c);
+                this.f17453b.lambda$processUpdates$379(this.f17454c);
                 return;
             case 2:
-                this.f18948b.lambda$processUpdates$378(this.f18949c);
+                this.f17453b.lambda$processUpdates$378(this.f17454c);
                 return;
             case 3:
-                this.f18948b.lambda$getChannelDifference$341(this.f18949c);
+                this.f17453b.lambda$getChannelDifference$341(this.f17454c);
                 return;
             case 4:
-                this.f18948b.lambda$processUpdateArray$398(this.f18949c);
+                this.f17453b.lambda$processUpdateArray$398(this.f17454c);
                 return;
             case 5:
-                this.f18948b.lambda$checkChatInviter$372(this.f18949c);
+                this.f17453b.lambda$checkChatInviter$372(this.f17454c);
                 return;
             case 6:
-                this.f18948b.lambda$reloadMentionsCountForChannels$222(this.f18949c);
+                this.f17453b.lambda$reloadMentionsCountForChannels$222(this.f17454c);
                 return;
             default:
-                this.f18948b.lambda$checkChatInviter$373(this.f18949c);
+                this.f17453b.lambda$checkChatInviter$373(this.f17454c);
                 return;
         }
     }

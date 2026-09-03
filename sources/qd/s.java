@@ -1,6 +1,6 @@
 package qd;
 
-import k7.h8;
+import k7.g8;
 import ld.e0;
 public class s extends ld.a implements wc.d {
     public final uc.c d;
@@ -12,7 +12,7 @@ public class s extends ld.a implements wc.d {
 
     @Override
     public void f(Object obj) {
-        a.g(e0.r(obj), h8.b(this.d));
+        a.g(e0.r(obj), g8.b(this.d));
     }
 
     @Override

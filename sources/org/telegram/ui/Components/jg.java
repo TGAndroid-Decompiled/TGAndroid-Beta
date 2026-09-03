@@ -8,32 +8,32 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class jg extends j1.b {
-    public final int[] f28095o;
-    public final ChatActivityEnterView.RecordCircle f28096p;
+    public final int[] f25957o;
+    public final ChatActivityEnterView.RecordCircle f25958p;
 
     public jg(ChatActivityEnterView.RecordCircle recordCircle, ChatActivityEnterView.RecordCircle recordCircle2) {
         super(recordCircle2);
-        this.f28096p = recordCircle;
-        this.f28095o = new int[2];
+        this.f25958p = recordCircle;
+        this.f25957o = new int[2];
     }
 
     @Override
     public final int g(float f10, float f11) {
         Rect rect;
         ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
-        if (chatActivityEnterView.f24656o4 && chatActivityEnterView.J1 != null) {
+        if (chatActivityEnterView.f22787o4 && chatActivityEnterView.J1 != null) {
             if (chatActivityEnterView.P3.contains((int) f10, (int) f11)) {
                 return 1;
             }
             if (chatActivityEnterView.O3.contains(f10, f11)) {
                 return 2;
             }
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f24611g1;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f22742g1;
             if (slideTextView != null && (rect = slideTextView.G) != null) {
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(rect);
-                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f24611g1;
-                int[] iArr = this.f28095o;
+                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f22742g1;
+                int[] iArr = this.f25957o;
                 slideTextView2.getLocationOnScreen(iArr);
                 rectF.offset(iArr[0], iArr[1]);
                 chatActivityEnterView.J1.getLocationOnScreen(iArr);
@@ -50,7 +50,7 @@ public final class jg extends j1.b {
 
     @Override
     public final void h(ArrayList arrayList) {
-        if (ChatActivityEnterView.this.f24656o4) {
+        if (ChatActivityEnterView.this.f22787o4) {
             arrayList.add(1);
             arrayList.add(3);
         }
@@ -75,12 +75,12 @@ public final class jg extends j1.b {
             dVar.h(chatActivityEnterView.Q3);
             dVar.o(LocaleController.getString(R.string.Stop));
         } else if (i10 == 3 && chatActivityEnterView.J1 != null) {
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f24611g1;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f22742g1;
             if (slideTextView != null && (rect = slideTextView.G) != null) {
                 Rect rect3 = AndroidUtilities.rectTmp2;
                 rect3.set(rect);
-                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f24611g1;
-                int[] iArr = this.f28095o;
+                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f22742g1;
+                int[] iArr = this.f25957o;
                 slideTextView2.getLocationOnScreen(iArr);
                 rect3.offset(iArr[0], iArr[1]);
                 chatActivityEnterView.J1.getLocationOnScreen(iArr);

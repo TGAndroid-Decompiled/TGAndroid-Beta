@@ -9,14 +9,14 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.ActionMode;
 import android.widget.TextView;
 public abstract class x7 {
-    public static p0.c a(m.z0 z0Var) {
+    public static p0.c a(m.a1 a1Var) {
         int i10;
         int i11;
         int i12 = Build.VERSION.SDK_INT;
         if (i12 >= 28) {
-            return new p0.c(d1.f.p(z0Var));
+            return new p0.c(d1.f.p(a1Var));
         }
-        TextPaint textPaint = new TextPaint(z0Var.getPaint());
+        TextPaint textPaint = new TextPaint(a1Var.getPaint());
         boolean z4 = false;
         if (i12 >= 23) {
             i10 = 1;
@@ -27,19 +27,19 @@ public abstract class x7 {
         }
         TextDirectionHeuristic textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_LTR;
         if (i12 >= 23) {
-            i10 = e0.b.c(z0Var);
-            i11 = e0.b.g(z0Var);
+            i10 = e0.b.c(a1Var);
+            i11 = e0.b.g(a1Var);
         }
-        if (z0Var.getTransformationMethod() instanceof PasswordTransformationMethod) {
+        if (a1Var.getTransformationMethod() instanceof PasswordTransformationMethod) {
             textDirectionHeuristic = TextDirectionHeuristics.LTR;
-        } else if (i12 >= 28 && (z0Var.getInputType() & 15) == 3) {
-            byte directionality = Character.getDirectionality(d1.f.h(androidx.emoji2.text.x.e(z0Var.getTextLocale()))[0].codePointAt(0));
+        } else if (i12 >= 28 && (a1Var.getInputType() & 15) == 3) {
+            byte directionality = Character.getDirectionality(d1.f.h(androidx.emoji2.text.w.e(a1Var.getTextLocale()))[0].codePointAt(0));
             textDirectionHeuristic = (directionality == 1 || directionality == 2) ? TextDirectionHeuristics.RTL : TextDirectionHeuristics.LTR;
         } else {
-            if (z0Var.getLayoutDirection() == 1) {
+            if (a1Var.getLayoutDirection() == 1) {
                 z4 = true;
             }
-            switch (z0Var.getTextDirection()) {
+            switch (a1Var.getTextDirection()) {
                 case 2:
                     textDirectionHeuristic = TextDirectionHeuristics.ANYRTL_LTR;
                     break;
@@ -110,7 +110,7 @@ public abstract class x7 {
 
     public static ActionMode.Callback d(ActionMode.Callback callback) {
         if ((callback instanceof u0.i) && Build.VERSION.SDK_INT >= 26) {
-            return ((u0.i) callback).f48257a;
+            return ((u0.i) callback).f45042a;
         }
         return callback;
     }

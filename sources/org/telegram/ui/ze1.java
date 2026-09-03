@@ -13,31 +13,31 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 public final class ze1 implements Utilities.Callback {
-    public final int f43942a = 1;
-    public final int f43943b;
-    public final long f43944c;
+    public final int f40461a = 1;
+    public final int f40462b;
+    public final long f40463c;
     public final Object d;
-    public final Object f43945e;
-    public final Object f43946f;
-    public final Object f43947g;
+    public final Object e;
+    public final Object f40464f;
+    public final Object f40465g;
 
-    public ze1(int i10, long j10, Context context, TL_payments.connectedBotStarRef connectedbotstarref, org.telegram.ui.ActionBar.h3 h3Var, org.telegram.ui.ActionBar.g6 g6Var) {
-        this.f43943b = i10;
+    public ze1(int i10, long j10, Context context, TL_payments.connectedBotStarRef connectedbotstarref, org.telegram.ui.ActionBar.g3 g3Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f40462b = i10;
         this.d = connectedbotstarref;
-        this.f43945e = h3Var;
-        this.f43946f = context;
-        this.f43944c = j10;
-        this.f43947g = g6Var;
+        this.e = g3Var;
+        this.f40464f = context;
+        this.f40463c = j10;
+        this.f40465g = f6Var;
     }
 
     @Override
     public final void run(Object obj) {
         int i10;
         SpannableStringBuilder replaceTags;
-        int i11 = this.f43942a;
-        Object obj2 = this.f43947g;
-        Object obj3 = this.f43946f;
-        Object obj4 = this.f43945e;
+        int i11 = this.f40461a;
+        Object obj2 = this.f40465g;
+        Object obj3 = this.f40464f;
+        Object obj4 = this.e;
         Object obj5 = this.d;
         switch (i11) {
             case 0:
@@ -45,15 +45,15 @@ public final class ze1 implements Utilities.Callback {
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
                 TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers2 = (TLRPC.TL_messages_invitedUsers) obj;
-                sf1 sf1Var = ((cf1) obj5).f35788b;
+                sf1 sf1Var = ((cf1) obj5).f33137b;
                 if (tL_messages_invitedUsers2 != null) {
                     tL_messages_invitedUsers.missing_invitees.addAll(tL_messages_invitedUsers2.missing_invitees);
                 }
                 int i12 = iArr[0] + 1;
                 iArr[0] = i12;
-                if (i12 == this.f43943b) {
+                if (i12 == this.f40462b) {
                     boolean isEmpty = tL_messages_invitedUsers.missing_invitees.isEmpty();
-                    long j10 = this.f43944c;
+                    long j10 = this.f40463c;
                     if (isEmpty) {
                         org.telegram.ui.Components.qc a02 = org.telegram.ui.Components.qc.a0(sf1Var);
                         TLRPC.Chat chat = sf1Var.getMessagesController().getChat(Long.valueOf(j10));
@@ -82,32 +82,32 @@ public final class ze1 implements Utilities.Callback {
                 return;
             default:
                 TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj5;
-                org.telegram.ui.ActionBar.h3 h3Var = (org.telegram.ui.ActionBar.h3) obj4;
+                org.telegram.ui.ActionBar.g3 g3Var = (org.telegram.ui.ActionBar.g3) obj4;
                 Context context = (Context) obj3;
-                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) obj2;
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) obj2;
                 TL_payments.connectedBotStarRef connectedbotstarref2 = (TL_payments.connectedBotStarRef) obj;
-                int i13 = this.f43943b;
-                long j11 = this.f43944c;
+                int i13 = this.f40462b;
+                long j11 = this.f40463c;
                 if (connectedbotstarref2 == null) {
                     TLRPC.User user = MessagesController.getInstance(i13).getUser(Long.valueOf(connectedbotstarref.bot_id));
                     if (user != null) {
-                        MessagesController.getInstance(i13).loadFullUser(user, 0, true, new sh.s2(h3Var, context, i13, j11, g6Var, 1));
+                        MessagesController.getInstance(i13).loadFullUser(user, 0, true, new rh.s2(g3Var, context, i13, j11, f6Var, 1));
                         return;
                     }
                     return;
                 }
-                h3Var.dismiss();
-                sh.d3.H0(context, i13, connectedbotstarref2, j11, g6Var);
+                g3Var.dismiss();
+                rh.d3.H0(context, i13, connectedbotstarref2, j11, f6Var);
                 return;
         }
     }
 
     public ze1(cf1 cf1Var, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i10, ArrayList arrayList, long j10) {
         this.d = cf1Var;
-        this.f43945e = tL_messages_invitedUsers;
-        this.f43946f = iArr;
-        this.f43943b = i10;
-        this.f43947g = arrayList;
-        this.f43944c = j10;
+        this.e = tL_messages_invitedUsers;
+        this.f40464f = iArr;
+        this.f40462b = i10;
+        this.f40465g = arrayList;
+        this.f40463c = j10;
     }
 }

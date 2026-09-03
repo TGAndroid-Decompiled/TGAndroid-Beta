@@ -4,31 +4,31 @@ import android.os.Handler;
 import android.os.Message;
 import h5.d0;
 public final class i implements Handler.Callback {
-    public final Handler f7829a;
-    public final j f7830b;
+    public final Handler f7260a;
+    public final j f7261b;
 
     public i(j jVar, d4.k kVar) {
-        this.f7830b = jVar;
+        this.f7261b = jVar;
         Handler l10 = d0.l(this);
-        this.f7829a = l10;
+        this.f7260a = l10;
         kVar.e(this, l10);
     }
 
     public final void a(long j10) {
-        j jVar = this.f7830b;
-        if (this == jVar.f7854x1 && jVar.V != null) {
+        j jVar = this.f7261b;
+        if (this == jVar.f7285x1 && jVar.V != null) {
             if (j10 == Long.MAX_VALUE) {
                 jVar.K0 = true;
                 return;
             }
             try {
                 jVar.p0(j10);
-                jVar.x0(jVar.f7850t1);
-                jVar.M0.f15209e++;
+                jVar.x0(jVar.f7281t1);
+                jVar.M0.e++;
                 jVar.w0();
                 jVar.X(j10);
-            } catch (j3.n e6) {
-                jVar.L0 = e6;
+            } catch (j3.n e) {
+                jVar.L0 = e;
             }
         }
     }
@@ -40,7 +40,7 @@ public final class i implements Handler.Callback {
         }
         int i10 = message.arg1;
         int i11 = message.arg2;
-        int i12 = d0.f7237a;
+        int i12 = d0.f6924a;
         a(((i10 & 4294967295L) << 32) | (4294967295L & i11));
         return true;
     }

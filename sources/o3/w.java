@@ -1,29 +1,34 @@
 package o3;
 
-import h5.d0;
-import java.util.UUID;
-public final class w implements n3.b {
-    public static final boolean d;
-    public final UUID f16422a;
-    public final byte[] f16423b;
-    public final boolean f16424c;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+public interface w {
+    byte[] B();
 
-    static {
-        boolean z4;
-        if ("Amazon".equals(d0.f7239c)) {
-            String str = d0.d;
-            if ("AFTM".equals(str) || "AFTB".equals(str)) {
-                z4 = true;
-                d = z4;
-            }
-        }
-        z4 = false;
-        d = z4;
-    }
+    void C(c cVar);
 
-    public w(UUID uuid, byte[] bArr, boolean z4) {
-        this.f16422a = uuid;
-        this.f16423b = bArr;
-        this.f16424c = z4;
-    }
+    void G(byte[] bArr, byte[] bArr2);
+
+    void H(byte[] bArr);
+
+    byte[] X(byte[] bArr, byte[] bArr2);
+
+    void Y(byte[] bArr);
+
+    Map a(byte[] bArr);
+
+    u b0(byte[] bArr, List list, int i10, HashMap hashMap);
+
+    v d();
+
+    int h0();
+
+    boolean j0(String str, byte[] bArr);
+
+    void k(byte[] bArr, k3.k kVar);
+
+    void release();
+
+    n3.b z(byte[] bArr);
 }

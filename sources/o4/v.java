@@ -6,11 +6,11 @@ public final class v extends u {
 
     public final v b(Object obj) {
         u uVar;
-        if (this.f16581a.equals(obj)) {
+        if (this.f16406a.equals(obj)) {
             uVar = this;
         } else {
             long j10 = this.d;
-            uVar = new u(this.f16582b, this.f16583c, this.f16584e, j10, obj);
+            uVar = new u(this.f16407b, this.f16408c, this.e, j10, obj);
         }
         return new u(uVar);
     }

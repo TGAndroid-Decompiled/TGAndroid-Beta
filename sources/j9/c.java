@@ -2,5 +2,5 @@ package j9;
 public interface c {
     void a();
 
-    String c();
+    String d();
 }

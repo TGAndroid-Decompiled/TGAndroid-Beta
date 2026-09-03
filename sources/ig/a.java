@@ -1,147 +1,86 @@
 package ig;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class a extends cg.b {
-    public CharSequence f8060c;
-    public TLRPC.InputPeer d;
-    public TLRPC.Chat f8061e;
-    public Object f8062f;
-    public boolean f8063g;
-    public long h;
-    public int f8064i;
-    public int f8065j;
-    public List f8066k;
-    public int f8067l;
-    public TLObject f8068m;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import android.widget.FrameLayout;
+import k7.b6;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+public final class a extends FrameLayout {
+    public final ph.d f7470a;
+    public final View f7471b;
+    public final f6 f7472c;
+    public final Paint d;
+    public boolean e;
 
-    public static a b(TLRPC.Chat chat, int i10, boolean z4) {
-        ?? bVar = new cg.b(9, false);
-        bVar.f8061e = chat;
-        bVar.d = null;
-        bVar.f8063g = z4;
-        bVar.f8064i = i10;
-        return bVar;
+    public a(Context context, f6 f6Var) {
+        super(context);
+        this.d = new Paint(1);
+        this.f7472c = f6Var;
+        View view = new View(context);
+        this.f7471b = view;
+        addView(view, b6.n(-1, -1));
+        ph.d dVar = new ph.d(context, f6Var, true);
+        this.f7470a = dVar;
+        addView(dVar, b6.d(-1, 48.0f, 17, 14.0f, 0.0f, 14.0f, 0.0f));
     }
 
-    public static a c(CharSequence charSequence, boolean z4) {
-        ?? bVar = new cg.b(7, false);
-        bVar.f8060c = charSequence;
-        bVar.f8063g = z4;
-        return bVar;
+    public final void a(int i10, boolean z4) {
+        this.e = true;
+        ph.d dVar = this.f7470a;
+        dVar.k();
+        dVar.setShowZero(true);
+        dVar.setEnabled(true);
+        dVar.c(i10, z4);
+        dVar.g(LocaleController.getString(R.string.BoostingStartGiveaway), z4, true);
+        this.f7471b.setBackgroundColor(j6.v0(j6.f19952h5, this.f7472c));
     }
 
-    public static a d(TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption, int i10, long j10, boolean z4, boolean z10) {
-        ?? bVar = new cg.b(17, z4);
-        bVar.f8064i = i10;
-        bVar.h = j10;
-        bVar.f8068m = tL_starsGiveawayOption;
-        bVar.f8063g = z10;
-        return bVar;
-    }
-
-    public static a e(int i10, int i11, boolean z4, ArrayList arrayList) {
-        boolean z10;
-        if (i11 == i10) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        ?? bVar = new cg.b(11, z10);
-        bVar.f8067l = i10;
-        bVar.f8063g = z4;
-        bVar.f8062f = arrayList;
-        return bVar;
-    }
-
-    public static a f(String str) {
-        ?? bVar = new cg.b(6, false);
-        bVar.f8060c = str;
-        return bVar;
-    }
-
-    public static boolean g(List list, List list2) {
-        if (list == null && list2 == null) {
-            return true;
-        }
-        if (list == null || list2 == null || list.size() != list2.size()) {
-            return false;
-        }
-        for (int i10 = 0; i10 < list.size(); i10++) {
-            if (((Integer) list.get(i10)).intValue() != ((Integer) list2.get(i10)).intValue()) {
-                return false;
-            }
-        }
-        return true;
+    public final void b(boolean z4) {
+        this.f7470a.setLoading(z4);
     }
 
     @Override
-    public final boolean a(cg.b bVar) {
-        a aVar;
-        int i10;
-        int i11;
-        if (this != bVar) {
-            if (a.class == bVar.getClass() && (i10 = (aVar = (a) bVar).f2505a) == (i11 = this.f2505a)) {
-                if (i11 == 0) {
-                    if (this.f8063g == aVar.f8063g) {
-                        return true;
-                    }
-                    return false;
-                } else if (i10 == 17) {
-                    if (this.f8064i == aVar.f8064i && this.h == aVar.h && this.f8068m == aVar.f8068m && this.f8063g == aVar.f8063g && this.f2506b == aVar.f2506b) {
-                        return true;
-                    }
-                    return false;
-                } else if (i11 == 5) {
-                    if (this.f8064i == aVar.f8064i && g(this.f8066k, aVar.f8066k)) {
-                        return true;
-                    }
-                    return false;
-                } else if (i11 == 13 && this.f8064i == aVar.f8064i && TextUtils.equals(this.f8060c, aVar.f8060c)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-            return false;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.e) {
+            int v02 = j6.v0(j6.f19827a7, this.f7472c);
+            Paint paint = this.d;
+            paint.setColor(v02);
+            paint.setAlpha(255);
+            canvas.drawRect(0.0f, 0.0f, getWidth(), 1.0f, paint);
         }
-        return true;
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && a.class == obj.getClass()) {
-                a aVar = (a) obj;
-                int i10 = this.f2505a;
-                if (i10 == aVar.f2505a) {
-                    if (i10 != 0) {
-                        if (i10 == 17) {
-                            if (this.f8064i == aVar.f8064i && this.f8068m == aVar.f8068m) {
-                                return true;
-                            }
-                            return false;
-                        } else if (i10 == 5) {
-                            return g(this.f8066k, aVar.f8066k);
-                        } else {
-                            if (i10 == 13) {
-                                return TextUtils.equals(this.f8060c, aVar.f8060c);
-                            }
-                            if (this.f8061e == aVar.f8061e && this.f8062f == aVar.f8062f && this.d == aVar.d && this.f8068m == aVar.f8068m && this.f8063g == aVar.f8063g && this.f8064i == aVar.f8064i && this.f8065j == aVar.f8065j && this.h == aVar.h && this.f8067l == aVar.f8067l && TextUtils.equals(this.f8060c, aVar.f8060c)) {
-                                return true;
-                            }
-                            return false;
-                        }
-                    }
-                    return true;
-                }
-                return false;
-            }
-            return false;
+    public void setCloseStyle(boolean z4) {
+        this.e = false;
+        ph.d dVar = this.f7470a;
+        dVar.setShowZero(false);
+        dVar.setEnabled(true);
+        dVar.g(LocaleController.formatString("Close", R.string.Close, new Object[0]), false, true);
+        this.e = z4;
+    }
+
+    public void setOkStyle(boolean z4) {
+        String formatString;
+        this.e = false;
+        ph.d dVar = this.f7470a;
+        dVar.setShowZero(false);
+        dVar.setEnabled(true);
+        if (z4) {
+            formatString = LocaleController.formatString("BoostingUseLink", R.string.BoostingUseLink, new Object[0]);
+        } else {
+            formatString = LocaleController.formatString("OK", R.string.OK, new Object[0]);
         }
-        return true;
+        dVar.g(formatString, false, true);
+    }
+
+    @Override
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.f7470a.setOnClickListener(onClickListener);
     }
 }

@@ -3,10 +3,10 @@ package h5;
 import android.telephony.TelephonyCallback;
 import android.telephony.TelephonyDisplayInfo;
 public final class s extends TelephonyCallback implements TelephonyCallback.DisplayInfoListener {
-    public final u f7297a;
+    public final u f6979a;
 
     public s(u uVar) {
-        this.f7297a = uVar;
+        this.f6979a = uVar;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class s extends TelephonyCallback implements TelephonyCallback.Disp
         } else {
             z4 = true;
         }
-        u uVar = this.f7297a;
+        u uVar = this.f6979a;
         if (z4) {
             i10 = 10;
         }

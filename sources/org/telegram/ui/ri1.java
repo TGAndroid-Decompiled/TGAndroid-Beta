@@ -1,67 +1,51 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class ri1 implements RequestDelegate {
-    public final int f40861a;
-    public final Object f40862b;
-    public final Object f40863c;
+import android.util.LongSparseArray;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ri1 extends org.telegram.ui.ActionBar.j {
+    public final WallpapersListActivity f37872a;
 
-    public ri1(int i10, Object obj, Object obj2) {
-        this.f40861a = i10;
-        this.f40862b = obj;
-        this.f40863c = obj2;
+    public ri1(WallpapersListActivity wallpapersListActivity) {
+        this.f37872a = wallpapersListActivity;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f40861a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new bh1(3, (si1) this.f40862b, (int[]) this.f40863c));
+    public final void b(int i10) {
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        WallpapersListActivity wallpapersListActivity = this.f37872a;
+        LongSparseArray longSparseArray = wallpapersListActivity.f32385f0;
+        if (i10 == -1) {
+            kVar = ((org.telegram.ui.ActionBar.p2) wallpapersListActivity).actionBar;
+            if (kVar.s()) {
+                longSparseArray.clear();
+                kVar2 = ((org.telegram.ui.ActionBar.p2) wallpapersListActivity).actionBar;
+                kVar2.r();
+                wallpapersListActivity.D0();
                 return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.n71((qh.m1) this.f40862b, (String) this.f40863c, tLObject, 12));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.n71((qh.y2) this.f40862b, tLObject, (MessagesController) this.f40863c, 15));
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.n71((qh.w7) this.f40862b, tLObject, (MessagesController) this.f40863c, 18));
-                return;
-            case 4:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.n71((boolean[]) this.f40862b, tLObject, (sh.j1) this.f40863c, 22));
-                return;
-            case 5:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.n71((sh.d3) this.f40862b, tLObject, (org.telegram.ui.ActionBar.d2) this.f40863c, 25));
-                return;
-            case 6:
-                AndroidUtilities.runOnUIThread(new dy0(21, (uf.c) this.f40862b, tL_error, tLObject, (String) this.f40863c));
-                return;
-            case 7:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.n71((uf.u0) this.f40862b, (String) this.f40863c, tLObject, 28));
-                return;
-            case 8:
-                uf.l1 l1Var = (uf.l1) this.f40862b;
-                TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets = (TLRPC.TL_messages_searchStickerSets) this.f40863c;
-                if (tLObject instanceof TLRPC.TL_messages_foundStickerSets) {
-                    AndroidUtilities.runOnUIThread(new uf.h1(l1Var, tL_messages_searchStickerSets, (TLRPC.TL_messages_foundStickerSets) tLObject, 1));
-                    return;
+            }
+            wallpapersListActivity.finishFragment();
+        } else if (i10 == 4) {
+            if (wallpapersListActivity.getParentActivity() != null) {
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wallpapersListActivity.getParentActivity());
+                alertDialog$Builder.f19478a.O = LocaleController.formatPluralString("DeleteBackground", longSparseArray.size(), new Object[0]);
+                alertDialog$Builder.f19478a.Q = LocaleController.formatString("DeleteChatBackgroundsAlert", R.string.DeleteChatBackgroundsAlert, new Object[0]);
+                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new pi1(this));
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f19478a;
+                wallpapersListActivity.showDialog(d2Var);
+                TextView textView = (TextView) d2Var.d(-1);
+                if (textView != null) {
+                    textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20116q7, false));
                 }
-                return;
-            case 9:
-                AndroidUtilities.runOnUIThread(new uf.h1((vf.t) this.f40862b, tLObject, (TL_account.TL_businessChatLink) this.f40863c, 4));
-                return;
-            case 10:
-                AndroidUtilities.runOnUIThread(new qh.l6(29, (vf.e0) this.f40862b, (org.telegram.ui.Components.im) this.f40863c));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new uf.h1((vf.s1) this.f40862b, tLObject, (SharedPreferences) this.f40863c, 9));
-                return;
+            }
+        } else if (i10 == 3) {
+            qy qyVar = new qy(org.telegram.messenger.y3.e(3, "onlySelect", "dialogsType", true));
+            qyVar.f37649z2 = new pi1(this);
+            wallpapersListActivity.presentFragment(qyVar);
         }
     }
 }

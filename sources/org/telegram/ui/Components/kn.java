@@ -1,39 +1,61 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.ImageView;
-public final class kn implements View.OnKeyListener {
-    public final int f28445a;
-    public final Object f28446b;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.style.ImageSpan;
+import org.telegram.messenger.Emoji;
+public final class kn implements TextWatcher {
+    public final jn f26354a;
+    public final int f26355b;
+    public final nn f26356c;
 
-    public kn(Object obj, int i10) {
-        this.f28445a = i10;
-        this.f28446b = obj;
+    public kn(nn nnVar, jn jnVar, int i10) {
+        this.f26356c = nnVar;
+        this.f26354a = jnVar;
+        this.f26355b = i10;
     }
 
     @Override
-    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
-        switch (this.f28445a) {
-            case 0:
-                on onVar = (on) this.f28446b;
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
-                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
-                    ImageView imageView = onVar.f22653f;
-                    if (imageView != null) {
-                        imageView.callOnClick();
-                    }
-                    return true;
-                }
-                return false;
-            default:
-                tu tuVar = (tu) this.f28446b;
-                tuVar.getClass();
-                if (i10 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && tuVar.isShowing()) {
-                    tuVar.dismiss();
-                    return true;
-                }
-                return false;
+    public final void afterTextChanged(Editable editable) {
+        int i10;
+        pn pnVar = this.f26356c.d;
+        jn jnVar = this.f26354a;
+        if (jnVar.getTag() != null) {
+            return;
         }
+        int i11 = this.f26355b;
+        if (i11 == 11) {
+            i10 = pnVar.f27951k0;
+        } else {
+            i10 = pnVar.f27950j0;
+        }
+        f2.l1 K = pnVar.f27960s.K(i10);
+        if (K != null && pnVar.f27967x != null) {
+            for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
+                editable.removeSpan(imageSpan);
+            }
+            Emoji.replaceEmoji(editable, jnVar.getEditField().getPaint().getFontMetricsInt(), false);
+            pnVar.f27967x.setDirection(1);
+            pnVar.f27967x.setDelegate(jnVar);
+            pnVar.f27967x.setTranslationY(K.f5774a.getY());
+            pnVar.f27967x.e();
+        }
+        if (i11 == 11) {
+            pnVar.L = editable;
+        } else {
+            pnVar.K = editable;
+        }
+        if (K != null) {
+            pn.K(pnVar, K.f5774a, i10);
+        }
+        pnVar.T();
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

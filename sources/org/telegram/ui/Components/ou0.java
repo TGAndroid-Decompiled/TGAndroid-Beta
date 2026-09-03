@@ -10,24 +10,24 @@ import java.util.ArrayList;
 import java.util.HashSet;
 public abstract class ou0 extends pt0 {
     public final HashSet c3;
-    public final ArrayList f29888d3;
-    public final ArrayList f29889e3;
-    public final ArrayList f29890f3;
-    public TextPaint f29891g3;
-    public StaticLayout f29892h3;
-    public float f29893i3;
-    public float f29894j3;
-    public oh.q9 f29895k3;
-    public int f29896l3;
-    public final ArrayList f29897m3;
+    public final ArrayList f27660d3;
+    public final ArrayList f27661e3;
+    public final ArrayList f27662f3;
+    public TextPaint f27663g3;
+    public StaticLayout f27664h3;
+    public float f27665i3;
+    public float f27666j3;
+    public nh.q9 f27667k3;
+    public int f27668l3;
+    public final ArrayList f27669m3;
 
     public ou0(Context context) {
         super(context, null);
         this.c3 = new HashSet();
-        this.f29888d3 = new ArrayList();
-        this.f29889e3 = new ArrayList();
-        this.f29890f3 = new ArrayList();
-        this.f29897m3 = new ArrayList();
+        this.f27660d3 = new ArrayList();
+        this.f27661e3 = new ArrayList();
+        this.f27662f3 = new ArrayList();
+        this.f27669m3 = new ArrayList();
     }
 
     public boolean A1() {
@@ -41,8 +41,8 @@ public abstract class ou0 extends pt0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        cl0 movingAdapter = getMovingAdapter();
-        if (A1() && getAdapter() == movingAdapter && y1() && (view instanceof org.telegram.ui.Cells.r7)) {
+        bl0 movingAdapter = getMovingAdapter();
+        if (A1() && getAdapter() == movingAdapter && y1() && (view instanceof org.telegram.ui.Cells.q7)) {
             return true;
         }
         return super.drawChild(canvas, view, j10);
@@ -64,7 +64,7 @@ public abstract class ou0 extends pt0 {
         return null;
     }
 
-    public cl0 getMovingAdapter() {
+    public bl0 getMovingAdapter() {
         return null;
     }
 
@@ -72,7 +72,7 @@ public abstract class ou0 extends pt0 {
         return 0;
     }
 
-    public cl0 getSupportingAdapter() {
+    public bl0 getSupportingAdapter() {
         return null;
     }
 
@@ -84,6 +84,6 @@ public abstract class ou0 extends pt0 {
 
     public abstract boolean z1();
 
-    public void x1(org.telegram.ui.Cells.r7 r7Var) {
+    public void x1(org.telegram.ui.Cells.q7 q7Var) {
     }
 }

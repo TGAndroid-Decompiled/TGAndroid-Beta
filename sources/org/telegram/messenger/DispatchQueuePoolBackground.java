@@ -83,7 +83,7 @@ public class DispatchQueuePoolBackground {
                 this.totalTasksCount++;
                 this.busyQueues.add(remove);
                 this.busyQueuesMap.put(remove.index, this.busyQueuesMap.get(remove.index, 0) + 1);
-                if (ng.g0.f16070b) {
+                if (mg.g0.f13992b) {
                     remove.setPriority(1);
                 } else if (remove.getPriority() != 10) {
                     remove.setPriority(10);

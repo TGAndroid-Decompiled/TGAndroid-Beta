@@ -3,23 +3,23 @@ package org.telegram.ui.ActionBar;
 import android.view.KeyEvent;
 import android.view.View;
 public final class x implements View.OnClickListener {
-    public final int f22399a;
-    public final KeyEvent.Callback f22400b;
+    public final int f20696a;
+    public final KeyEvent.Callback f20697b;
 
     public x(KeyEvent.Callback callback, int i10) {
-        this.f22399a = i10;
-        this.f22400b = callback;
+        this.f20696a = i10;
+        this.f20697b = callback;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f22399a) {
+        switch (this.f20696a) {
             case 0:
-                z zVar = (z) this.f22400b;
-                k kVar = zVar.f22475b;
+                z zVar = (z) this.f20697b;
+                k kVar = zVar.f20748b;
                 w0 w0Var = (w0) view;
                 if (w0Var.q()) {
-                    if (kVar.f21561r0.a()) {
+                    if (kVar.f20318r0.a()) {
                         w0Var.M(null, null);
                         return;
                     }
@@ -32,12 +32,12 @@ public final class x implements View.OnClickListener {
                     return;
                 }
             case 1:
-                ((h2) this.f22400b).dismiss();
+                ((h2) this.f20697b).dismiss();
                 return;
             default:
-                h3 h3Var = (h3) this.f22400b;
-                h3Var.getClass();
-                h3Var.dismissWithButtonClick(((Integer) view.getTag()).intValue());
+                g3 g3Var = (g3) this.f20697b;
+                g3Var.getClass();
+                g3Var.dismissWithButtonClick(((Integer) view.getTag()).intValue());
                 return;
         }
     }

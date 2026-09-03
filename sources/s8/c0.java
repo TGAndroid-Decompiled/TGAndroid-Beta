@@ -3,13 +3,13 @@ package s8;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 public final class c0 implements Iterator {
-    public static final c0 f47127a;
-    public static final c0[] f47128b;
+    public static final c0 f44185a;
+    public static final c0[] f44186b;
 
     static {
         ?? r02 = new Enum("INSTANCE", 0);
-        f47127a = r02;
-        f47128b = new c0[]{r02};
+        f44185a = r02;
+        f44186b = new c0[]{r02};
     }
 
     public static c0 valueOf(String str) {
@@ -17,7 +17,7 @@ public final class c0 implements Iterator {
     }
 
     public static c0[] values() {
-        return (c0[]) f47128b.clone();
+        return (c0[]) f44186b.clone();
     }
 
     @Override

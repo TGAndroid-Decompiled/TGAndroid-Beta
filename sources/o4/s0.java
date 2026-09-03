@@ -1,23 +1,22 @@
 package o4;
 
 import java.util.Arrays;
-import mh.c3;
-import org.telegram.ui.yh;
+import org.telegram.ui.ai;
 public final class s0 implements j3.g {
-    public static final String f16571f;
+    public static final String f16398f;
     public static final String h;
-    public static final c3 f16572n;
-    public final int f16573a;
-    public final String f16574b;
-    public final int f16575c;
+    public static final m.j0 f16399n;
+    public final int f16400a;
+    public final String f16401b;
+    public final int f16402c;
     public final j3.n0[] d;
-    public int f16576e;
+    public int e;
 
     static {
-        int i10 = h5.d0.f7237a;
-        f16571f = Integer.toString(0, 36);
+        int i10 = h5.d0.f6924a;
+        f16398f = Integer.toString(0, 36);
         h = Integer.toString(1, 36);
-        f16572n = new c3(4);
+        f16399n = new m.j0(11);
     }
 
     public s0(String str, j3.n0... n0VarArr) {
@@ -28,33 +27,33 @@ public final class s0 implements j3.g {
             z4 = false;
         }
         h5.a.f(z4);
-        this.f16574b = str;
+        this.f16401b = str;
         this.d = n0VarArr;
-        this.f16573a = n0VarArr.length;
+        this.f16400a = n0VarArr.length;
         int g10 = h5.o.g(n0VarArr[0].C);
-        this.f16575c = g10 == -1 ? h5.o.g(n0VarArr[0].B) : g10;
-        String str2 = n0VarArr[0].f9320c;
+        this.f16402c = g10 == -1 ? h5.o.g(n0VarArr[0].B) : g10;
+        String str2 = n0VarArr[0].f8719c;
         str2 = (str2 == null || str2.equals("und")) ? "" : "";
-        int i10 = n0VarArr[0].f9321e | 16384;
+        int i10 = n0VarArr[0].e | 16384;
         for (int i11 = 1; i11 < n0VarArr.length; i11++) {
-            String str3 = n0VarArr[i11].f9320c;
+            String str3 = n0VarArr[i11].f8719c;
             if (!str2.equals((str3 == null || str3.equals("und")) ? "" : "")) {
-                b("languages", i11, n0VarArr[0].f9320c, n0VarArr[i11].f9320c);
+                b("languages", i11, n0VarArr[0].f8719c, n0VarArr[i11].f8719c);
                 return;
-            } else if (i10 != (n0VarArr[i11].f9321e | 16384)) {
-                b("role flags", i11, Integer.toBinaryString(n0VarArr[0].f9321e), Integer.toBinaryString(n0VarArr[i11].f9321e));
+            } else if (i10 != (n0VarArr[i11].e | 16384)) {
+                b("role flags", i11, Integer.toBinaryString(n0VarArr[0].e), Integer.toBinaryString(n0VarArr[i11].e));
                 return;
             }
         }
     }
 
     public static void b(String str, int i10, String str2, String str3) {
-        StringBuilder m9 = yh.m("Different ", str, " combined in one TrackGroup: '", str2, "' (track 0) and '");
-        m9.append(str3);
-        m9.append("' (track ");
-        m9.append(i10);
-        m9.append(")");
-        h5.a.p("TrackGroup", "", new IllegalStateException(m9.toString()));
+        StringBuilder l10 = ai.l("Different ", str, " combined in one TrackGroup: '", str2, "' (track 0) and '");
+        l10.append(str3);
+        l10.append("' (track ");
+        l10.append(i10);
+        l10.append(")");
+        h5.a.p("TrackGroup", "", new IllegalStateException(l10.toString()));
     }
 
     public final int a(j3.n0 n0Var) {
@@ -78,7 +77,7 @@ public final class s0 implements j3.g {
         }
         if (obj != null && s0.class == obj.getClass()) {
             s0 s0Var = (s0) obj;
-            if (this.f16574b.equals(s0Var.f16574b) && Arrays.equals(this.d, s0Var.d)) {
+            if (this.f16401b.equals(s0Var.f16401b) && Arrays.equals(this.d, s0Var.d)) {
                 return true;
             }
         }
@@ -86,9 +85,9 @@ public final class s0 implements j3.g {
     }
 
     public final int hashCode() {
-        if (this.f16576e == 0) {
-            this.f16576e = l.d.e(527, 31, this.f16574b) + Arrays.hashCode(this.d);
+        if (this.e == 0) {
+            this.e = kf.k0.e(527, 31, this.f16401b) + Arrays.hashCode(this.d);
         }
-        return this.f16576e;
+        return this.e;
     }
 }

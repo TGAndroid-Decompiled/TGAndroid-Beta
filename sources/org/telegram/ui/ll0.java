@@ -6,19 +6,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Bitmaps;
 import org.telegram.messenger.FileLog;
 public final class ll0 extends org.telegram.ui.ActionBar.j {
-    public final int f38692a;
-    public final Object f38693b;
+    public final int f35799a;
+    public final Object f35800b;
 
     public ll0(Object obj, int i10) {
-        this.f38692a = i10;
-        this.f38693b = obj;
+        this.f35799a = i10;
+        this.f35800b = obj;
     }
 
     @Override
     public final void b(int i10) {
         Bitmap bitmap;
-        int i11 = this.f38692a;
-        Object obj = this.f38693b;
+        int i11 = this.f35799a;
+        Object obj = this.f35800b;
         switch (i11) {
             case 0:
                 if (i10 == -1) {
@@ -32,47 +32,47 @@ public final class ll0 extends org.telegram.ui.ActionBar.j {
                     zp0Var.finishFragment();
                     return;
                 } else if (i10 == 1) {
-                    if (zp0Var.f43999c != null && !zp0Var.f44001f) {
+                    if (zp0Var.f40854c != null && !zp0Var.f40855f) {
                         xp0 xp0Var = zp0Var.d;
-                        float f10 = xp0Var.f43428f - xp0Var.f43433x;
+                        float f10 = xp0Var.f40044f - xp0Var.f40049x;
                         float f11 = xp0Var.v;
-                        float f12 = (xp0Var.h - xp0Var.f43434y) / xp0Var.f43432w;
+                        float f12 = (xp0Var.h - xp0Var.f40050y) / xp0Var.f40048w;
                         float f13 = xp0Var.d / f11;
-                        float f14 = xp0Var.f43427e / f11;
+                        float f14 = xp0Var.e / f11;
                         zp0 zp0Var2 = xp0Var.E;
-                        int width = (int) ((f10 / f11) * zp0Var2.f43997a.getWidth());
-                        int height = (int) (f12 * zp0Var2.f43997a.getHeight());
-                        int width2 = (int) (f13 * zp0Var2.f43997a.getWidth());
-                        int width3 = (int) (f14 * zp0Var2.f43997a.getWidth());
+                        int width = (int) ((f10 / f11) * zp0Var2.f40852a.getWidth());
+                        int height = (int) (f12 * zp0Var2.f40852a.getHeight());
+                        int width2 = (int) (f13 * zp0Var2.f40852a.getWidth());
+                        int width3 = (int) (f14 * zp0Var2.f40852a.getWidth());
                         if (width < 0) {
                             width = 0;
                         }
                         if (height < 0) {
                             height = 0;
                         }
-                        if (width + width2 > zp0Var2.f43997a.getWidth()) {
-                            width2 = zp0Var2.f43997a.getWidth() - width;
+                        if (width + width2 > zp0Var2.f40852a.getWidth()) {
+                            width2 = zp0Var2.f40852a.getWidth() - width;
                         }
-                        if (height + width3 > zp0Var2.f43997a.getHeight()) {
-                            width3 = zp0Var2.f43997a.getHeight() - height;
+                        if (height + width3 > zp0Var2.f40852a.getHeight()) {
+                            width3 = zp0Var2.f40852a.getHeight() - height;
                         }
                         try {
-                            bitmap = Bitmaps.createBitmap(zp0Var2.f43997a, width, height, width2, width3);
+                            bitmap = Bitmaps.createBitmap(zp0Var2.f40852a, width, height, width2, width3);
                         } catch (Throwable th2) {
                             FileLog.e(th2);
                             System.gc();
                             try {
-                                bitmap = Bitmaps.createBitmap(zp0Var2.f43997a, width, height, width2, width3);
+                                bitmap = Bitmaps.createBitmap(zp0Var2.f40852a, width, height, width2, width3);
                             } catch (Throwable th3) {
                                 FileLog.e(th3);
                                 bitmap = null;
                             }
                         }
-                        if (bitmap == zp0Var.f43997a) {
-                            zp0Var.f44000e = true;
+                        if (bitmap == zp0Var.f40852a) {
+                            zp0Var.e = true;
                         }
-                        ((org.telegram.ui.Components.y40) zp0Var.f43999c).s(false, bitmap, null);
-                        zp0Var.f44001f = true;
+                        ((org.telegram.ui.Components.x40) zp0Var.f40854c).s(false, bitmap, null);
+                        zp0Var.f40855f = true;
                     }
                     zp0Var.finishFragment();
                     return;
@@ -97,7 +97,7 @@ public final class ll0 extends org.telegram.ui.ActionBar.j {
                     mq0Var.I.l();
                     return;
                 } else if (i10 == 2) {
-                    lq0 lq0Var = mq0Var.f39051p0;
+                    lq0 lq0Var = mq0Var.f36180p0;
                     if (lq0Var != null) {
                         lq0Var.d();
                     }
@@ -218,19 +218,19 @@ public final class ll0 extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             case 17:
-                v81 v81Var = (v81) obj;
+                w81 w81Var = (w81) obj;
                 if (i10 == -1) {
-                    v81Var.finishFragment();
+                    w81Var.finishFragment();
                     return;
                 } else if (i10 == 2) {
-                    v81Var.l0(new org.telegram.ui.ActionBar.p2(null));
+                    w81Var.l0(new org.telegram.ui.ActionBar.p2(null));
                     return;
                 } else {
                     return;
                 }
             case 18:
                 if (i10 == -1) {
-                    ((na1) obj).finishFragment();
+                    ((oa1) obj).finishFragment();
                     return;
                 }
                 return;
@@ -258,7 +258,7 @@ public final class ll0 extends org.telegram.ui.ActionBar.j {
                 }
             case 21:
                 if (i10 == -1) {
-                    ((he1) obj).finishFragment();
+                    ((ge1) obj).finishFragment();
                     return;
                 }
                 return;
@@ -306,33 +306,33 @@ public final class ll0 extends org.telegram.ui.ActionBar.j {
                     return;
                 }
             case 26:
-                org.telegram.ui.web.f1 f1Var = (org.telegram.ui.web.f1) obj;
+                org.telegram.ui.web.g1 g1Var = (org.telegram.ui.web.g1) obj;
                 if (i10 == -1) {
-                    if (org.telegram.ui.web.f1.Y(f1Var).s()) {
-                        org.telegram.ui.web.f1.Z(f1Var).r();
-                        f1Var.f42502s.clear();
-                        AndroidUtilities.forEachViews((RecyclerView) f1Var.f25523a, (h5.d) new ag.d(17));
+                    if (org.telegram.ui.web.g1.Y(g1Var).s()) {
+                        org.telegram.ui.web.g1.Z(g1Var).r();
+                        g1Var.f39452s.clear();
+                        AndroidUtilities.forEachViews((RecyclerView) g1Var.f23568a, (h5.d) new nh.e(16));
                         return;
                     }
-                    f1Var.finishFragment();
+                    g1Var.finishFragment();
                     return;
                 }
                 return;
             case 27:
                 if (i10 == -1) {
-                    ((sh.r) obj).finishFragment();
+                    ((rh.r) obj).finishFragment();
                     return;
                 }
                 return;
             case 28:
                 if (i10 == -1) {
-                    ((sh.p2) obj).q();
+                    ((rh.p2) obj).q();
                     return;
                 }
                 return;
             default:
                 if (i10 == -1) {
-                    ((sh.x3) obj).finishFragment();
+                    ((rh.x3) obj).finishFragment();
                     return;
                 }
                 return;

@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class k extends f2.j0 {
+public final class k extends f2.i0 {
     public final int I;
 
     public k(int i10) {
@@ -10,14 +10,14 @@ public final class k extends f2.j0 {
     }
 
     @Override
-    public int W0(f2.j1 j1Var) {
+    public int W0(f2.i1 i1Var) {
         switch (this.I) {
             case 3:
                 return 5000;
             case 7:
                 return AndroidUtilities.dp(4000.0f);
             default:
-                return super.W0(j1Var);
+                return super.W0(i1Var);
         }
     }
 
@@ -32,20 +32,20 @@ public final class k extends f2.j0 {
     }
 
     @Override
-    public void v0(RecyclerView recyclerView, f2.j1 j1Var, int i10) {
+    public void v0(RecyclerView recyclerView, f2.i1 i1Var, int i10) {
         switch (this.I) {
             case 2:
-                xh.o oVar = new xh.o(recyclerView.getContext(), 0);
-                oVar.f5805a = i10;
+                wh.o oVar = new wh.o(recyclerView.getContext(), 0);
+                oVar.f5712a = i10;
                 w0(oVar);
                 return;
             case 13:
                 os0 os0Var = new os0(recyclerView.getContext());
-                os0Var.f5805a = i10;
+                os0Var.f5712a = i10;
                 w0(os0Var);
                 return;
             default:
-                super.v0(recyclerView, j1Var, i10);
+                super.v0(recyclerView, i1Var, i10);
                 return;
         }
     }
@@ -99,7 +99,7 @@ public final class k extends f2.j0 {
         this.I = i11;
     }
 
-    public k(sb sbVar) {
+    public k(ub ubVar) {
         this.I = 2;
     }
 

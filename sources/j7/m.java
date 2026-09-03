@@ -1,30 +1,28 @@
 package j7;
 
+import android.app.KeyguardManager;
 import android.content.Context;
-import android.util.Log;
+import android.os.Build;
 public abstract class m {
-    public static String a(Context context, int i10) {
-        if (context == null) {
-            return "";
+    public static KeyguardManager a(Context context) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            return androidx.biometric.j0.a(context);
         }
-        if (i10 != 1) {
-            if (i10 != 7) {
-                switch (i10) {
-                    case 9:
-                        break;
-                    case 10:
-                        return context.getString(2131689597);
-                    case 11:
-                        return context.getString(2131689596);
-                    case 12:
-                        return context.getString(2131689594);
-                    default:
-                        Log.e("BiometricUtils", "Unknown error code: " + i10);
-                        return context.getString(2131689577);
-                }
-            }
-            return context.getString(2131689595);
+        Object systemService = context.getSystemService("keyguard");
+        if (systemService instanceof KeyguardManager) {
+            return (KeyguardManager) systemService;
         }
-        return context.getString(2131689593);
+        return null;
+    }
+
+    public static boolean b(Context context) {
+        KeyguardManager a2 = a(context);
+        if (a2 == null) {
+            return false;
+        }
+        if (Build.VERSION.SDK_INT >= 23) {
+            return androidx.biometric.j0.b(a2);
+        }
+        return androidx.biometric.i0.a(a2);
     }
 }

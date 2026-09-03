@@ -1,39 +1,39 @@
 package org.telegram.ui.Components;
 public final class gg implements Runnable {
-    public final int f27160a;
-    public final ig f27161b;
-    public final qh.e3 f27162c;
+    public final int f25136a;
+    public final ig f25137b;
+    public final ph.f3 f25138c;
 
-    public gg(ig igVar, qh.e3 e3Var, int i10) {
-        this.f27160a = i10;
-        this.f27161b = igVar;
-        this.f27162c = e3Var;
+    public gg(ig igVar, ph.f3 f3Var, int i10) {
+        this.f25136a = i10;
+        this.f25137b = igVar;
+        this.f25138c = f3Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f27160a) {
+        switch (this.f25136a) {
             case 0:
-                ig igVar = this.f27161b;
-                qh.e3 e3Var = this.f27162c;
-                igVar.removeView(e3Var);
-                if (igVar.f27804b == e3Var) {
-                    igVar.f27804b = null;
+                ig igVar = this.f25137b;
+                ph.f3 f3Var = this.f25138c;
+                igVar.removeView(f3Var);
+                if (igVar.f25695b == f3Var) {
+                    igVar.f25695b = null;
                     return;
                 }
                 return;
             case 1:
-                this.f27161b.removeView(this.f27162c);
+                this.f25137b.removeView(this.f25138c);
                 return;
             case 2:
-                this.f27161b.removeView(this.f27162c);
+                this.f25137b.removeView(this.f25138c);
                 return;
             default:
-                ig igVar2 = this.f27161b;
-                qh.e3 e3Var2 = this.f27162c;
-                igVar2.removeView(e3Var2);
-                if (igVar2.f27803a == e3Var2) {
-                    igVar2.f27803a = null;
+                ig igVar2 = this.f25137b;
+                ph.f3 f3Var2 = this.f25138c;
+                igVar2.removeView(f3Var2);
+                if (igVar2.f25694a == f3Var2) {
+                    igVar2.f25694a = null;
                     return;
                 }
                 return;

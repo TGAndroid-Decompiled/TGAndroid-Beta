@@ -1,4 +1,4 @@
 package g3;
 public interface b {
-    Object g();
+    Object h();
 }

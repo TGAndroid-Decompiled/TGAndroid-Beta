@@ -7,33 +7,33 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class lx0 implements org.telegram.ui.ot {
-    public final xx0 f28893a;
+public final class lx0 implements org.telegram.ui.pt {
+    public final xx0 f26892a;
 
     public lx0(xx0 xx0Var) {
-        this.f28893a = xx0Var;
+        this.f26892a = xx0Var;
     }
 
     @Override
-    public final boolean A() {
+    public final boolean B() {
         return false;
     }
 
     @Override
-    public final boolean C() {
+    public final boolean D() {
         return true;
     }
 
     @Override
-    public final boolean D(TLRPC.Document document) {
+    public final boolean E(TLRPC.Document document) {
         return false;
     }
 
     @Override
-    public final void E(TLRPC.Document document) {
-        org.telegram.ui.ActionBar.g6 g6Var;
+    public final void F(TLRPC.Document document) {
+        org.telegram.ui.ActionBar.f6 f6Var;
         int i10;
-        xx0 xx0Var = this.f28893a;
+        xx0 xx0Var = this.f26892a;
         xx0Var.P.documents.remove(document);
         boolean isEmpty = xx0Var.P.documents.isEmpty();
         if (isEmpty) {
@@ -41,28 +41,23 @@ public final class lx0 implements org.telegram.ui.ot {
         }
         xx0Var.d.l();
         Context context = xx0Var.getContext();
-        g6Var = ((org.telegram.ui.ActionBar.h3) xx0Var).resourcesProvider;
-        org.telegram.ui.ActionBar.d2 d2Var = new org.telegram.ui.ActionBar.d2(context, 3, g6Var);
+        f6Var = ((org.telegram.ui.ActionBar.g3) xx0Var).resourcesProvider;
+        org.telegram.ui.ActionBar.d2 d2Var = new org.telegram.ui.ActionBar.d2(context, 3, f6Var);
         d2Var.q(350L);
         TLRPC.TL_stickers_removeStickerFromSet tL_stickers_removeStickerFromSet = new TLRPC.TL_stickers_removeStickerFromSet();
         tL_stickers_removeStickerFromSet.sticker = MediaDataController.getInputStickerSetItem(document, "").document;
-        i10 = ((org.telegram.ui.ActionBar.h3) xx0Var).currentAccount;
-        ConnectionsManager.getInstance(i10).sendRequest(tL_stickers_removeStickerFromSet, new mh.k7(this, isEmpty, d2Var, 2));
+        i10 = ((org.telegram.ui.ActionBar.g3) xx0Var).currentAccount;
+        ConnectionsManager.getInstance(i10).sendRequest(tL_stickers_removeStickerFromSet, new lh.k7(this, isEmpty, d2Var, 2));
     }
 
     @Override
-    public final String F(boolean z4) {
+    public final String G(boolean z4) {
         return null;
     }
 
     @Override
-    public final boolean H() {
+    public final boolean I() {
         return true;
-    }
-
-    @Override
-    public final q70 I(ag.l lVar) {
-        return null;
     }
 
     @Override
@@ -87,16 +82,16 @@ public final class lx0 implements org.telegram.ui.ot {
 
     @Override
     public final long a() {
-        org.telegram.ui.ActionBar.p2 p2Var = this.f28893a.I;
-        if (p2Var instanceof org.telegram.ui.xn) {
-            return ((org.telegram.ui.xn) p2Var).a();
+        org.telegram.ui.ActionBar.p2 p2Var = this.f26892a.I;
+        if (p2Var instanceof org.telegram.ui.zn) {
+            return ((org.telegram.ui.zn) p2Var).a();
         }
         return 0L;
     }
 
     @Override
     public final boolean b() {
-        ux0 ux0Var = this.f28893a.Y;
+        ux0 ux0Var = this.f26892a.Y;
         if (ux0Var != null && ux0Var.b()) {
             return true;
         }
@@ -105,7 +100,7 @@ public final class lx0 implements org.telegram.ui.ot {
 
     @Override
     public final boolean c() {
-        ux0 ux0Var = this.f28893a.Y;
+        ux0 ux0Var = this.f26892a.Y;
         if (ux0Var != null && ux0Var.c()) {
             return true;
         }
@@ -113,32 +108,37 @@ public final class lx0 implements org.telegram.ui.ot {
     }
 
     @Override
-    public final TLRPC.TL_messageMediaPoll d() {
+    public final p70 d(ah.e eVar) {
         return null;
     }
 
     @Override
-    public final boolean e(TLRPC.Document document) {
+    public final TLRPC.TL_messageMediaPoll e() {
+        return null;
+    }
+
+    @Override
+    public final boolean f(TLRPC.Document document) {
         return false;
     }
 
     @Override
-    public final boolean f() {
-        if (this.f28893a.U != null) {
+    public final boolean g() {
+        if (this.f26892a.U != null) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final TLRPC.PollAnswer g() {
+    public final TLRPC.PollAnswer h() {
         return null;
     }
 
     @Override
-    public final boolean h() {
+    public final boolean i() {
         TLRPC.StickerSet stickerSet;
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.f28893a.P;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.f26892a.P;
         if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null && stickerSet.emojis) {
             return false;
         }
@@ -146,61 +146,61 @@ public final class lx0 implements org.telegram.ui.ot {
     }
 
     @Override
-    public final void i(SendMessagesHelper.ImportingSticker importingSticker) {
-        this.f28893a.u0(importingSticker);
+    public final void j(SendMessagesHelper.ImportingSticker importingSticker) {
+        this.f26892a.u0(importingSticker);
     }
 
     @Override
-    public final boolean j() {
+    public final boolean k() {
         return false;
     }
 
     @Override
-    public final boolean k(int i10) {
-        if (this.f28893a.Y != null) {
+    public final boolean l(int i10) {
+        if (this.f26892a.Y != null) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final void l(TLRPC.Document document, String str, Object obj, boolean z4, int i10, int i11) {
-        xx0 xx0Var = this.f28893a;
+    public final void m(TLRPC.Document document, String str, Object obj, boolean z4, int i10, int i11) {
+        xx0 xx0Var = this.f26892a;
         ux0 ux0Var = xx0Var.Y;
         if (ux0Var == null) {
             return;
         }
-        ux0Var.d(document, str, obj, null, xx0Var.f33229f0, z4, i10, 0);
+        ux0Var.d(document, str, obj, null, xx0Var.f30757f0, z4, i10, 0);
         xx0Var.dismiss();
     }
 
     @Override
-    public final void n(TLRPC.Document document) {
-        xx0 xx0Var = this.f28893a;
+    public final void o(TLRPC.Document document) {
+        xx0 xx0Var = this.f26892a;
         xx0.o0(xx0Var.I, xx0Var.P, document);
     }
 
     @Override
-    public final boolean o() {
+    public final boolean p() {
         return false;
     }
 
     @Override
-    public final boolean w() {
+    public final boolean x() {
         return true;
     }
 
     @Override
-    public final MessageObject y() {
+    public final MessageObject z() {
         return null;
     }
 
     @Override
-    public final void B(TLRPC.Document document) {
+    public final void C(TLRPC.Document document) {
     }
 
     @Override
-    public final void G(TLRPC.Document document) {
+    public final void H(TLRPC.Document document) {
     }
 
     @Override
@@ -216,27 +216,27 @@ public final class lx0 implements org.telegram.ui.ot {
     }
 
     @Override
-    public final void m(String str) {
+    public final void n(String str) {
     }
 
     @Override
-    public final void p(TLRPC.Document document) {
+    public final void q(TLRPC.Document document) {
     }
 
     @Override
-    public final void q() {
+    public final void r() {
     }
 
     @Override
-    public final void s() {
+    public final void t() {
     }
 
     @Override
-    public final void t(TLRPC.Document document) {
+    public final void u(TLRPC.Document document) {
     }
 
     @Override
-    public final void x(String str) {
+    public final void y(String str) {
     }
 
     @Override
@@ -244,18 +244,18 @@ public final class lx0 implements org.telegram.ui.ot {
     }
 
     @Override
-    public final void u(TLRPC.StickerSet stickerSet, String str) {
+    public final void v(TLRPC.StickerSet stickerSet, String str) {
     }
 
     @Override
-    public final void v(TLObject tLObject, Object obj) {
+    public final void w(TLObject tLObject, Object obj) {
     }
 
     @Override
-    public final void z(CharSequence charSequence, String str, xk xkVar) {
+    public final void A(CharSequence charSequence, String str, vk vkVar) {
     }
 
     @Override
-    public final void r(int i10, int i11, Object obj, TLObject tLObject, boolean z4) {
+    public final void s(int i10, int i11, Object obj, TLObject tLObject, boolean z4) {
     }
 }

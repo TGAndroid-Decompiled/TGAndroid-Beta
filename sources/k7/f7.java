@@ -15,7 +15,7 @@ public abstract class f7 {
             } else {
                 try {
                     sb = obj.toString();
-                } catch (Exception e6) {
+                } catch (Exception e) {
                     String name = obj.getClass().getName();
                     String hexString = Integer.toHexString(System.identityHashCode(obj));
                     StringBuilder sb2 = new StringBuilder(String.valueOf(hexString).length() + name.length() + 1);
@@ -31,8 +31,8 @@ public abstract class f7 {
                     } else {
                         str2 = new String("Exception during lenientFormat for ");
                     }
-                    logger.log(level, str2, (Throwable) e6);
-                    String name2 = e6.getClass().getName();
+                    logger.log(level, str2, (Throwable) e);
+                    String name2 = e.getClass().getName();
                     StringBuilder sb4 = new StringBuilder(name2.length() + String.valueOf(sb3).length() + 9);
                     sb4.append("<");
                     sb4.append(sb3);

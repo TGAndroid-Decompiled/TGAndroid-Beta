@@ -1,46 +1,42 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class o40 extends cv0 {
-    public final d60 T;
+public final class o40 extends LinearLayout {
+    public boolean f36643a;
+    public final org.telegram.ui.Components.xc0 f36644b;
+    public final k40 f36645c;
+    public final l40 d;
 
-    public o40(d60 d60Var, ViewGroup viewGroup, ViewGroup viewGroup2) {
-        super(viewGroup, viewGroup2);
-        this.T = d60Var;
+    public o40(LaunchActivity launchActivity, org.telegram.ui.Components.xc0 xc0Var, k40 k40Var, l40 l40Var) {
+        super(launchActivity);
+        this.f36644b = xc0Var;
+        this.f36645c = k40Var;
+        this.d = l40Var;
+        this.f36643a = false;
     }
 
     @Override
-    public final void c(Canvas canvas, float f10, float f11, float f12, float f13, float f14) {
-        ViewGroup viewGroup;
-        ViewGroup viewGroup2;
-        d60 d60Var = this.T;
-        y30 y30Var = d60Var.f35993b;
-        z30 z30Var = d60Var.f36098z2;
-        if (f10 > 0.0f) {
-            float x10 = z30Var.getX();
-            viewGroup = ((org.telegram.ui.ActionBar.h3) d60Var).containerView;
-            float x11 = viewGroup.getX() + x10;
-            float y10 = z30Var.getY();
-            viewGroup2 = ((org.telegram.ui.ActionBar.h3) d60Var).containerView;
-            float y11 = viewGroup2.getY() + y10;
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(x11, y11, y30Var.getMeasuredWidth() + x11, y30Var.getMeasuredHeight() + y11);
-            canvas.saveLayerAlpha(rectF, (int) (f10 * 255.0f), 31);
-            canvas.translate(x11, y11);
-            z30Var.draw(canvas);
-            canvas.restore();
-        }
+    public final void onMeasure(int i10, int i11) {
+        this.f36643a = true;
+        org.telegram.ui.Components.xc0 xc0Var = this.f36644b;
+        xc0Var.setItemCount(5);
+        k40 k40Var = this.f36645c;
+        k40Var.setItemCount(5);
+        l40 l40Var = this.d;
+        l40Var.setItemCount(5);
+        xc0Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
+        k40Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
+        l40Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
+        this.f36643a = false;
+        super.onMeasure(i10, i11);
     }
 
     @Override
-    public final void e() {
-        y30 y30Var = this.T.f35993b;
-        super.e();
-        for (int i10 = 0; i10 < y30Var.getChildCount(); i10++) {
-            y30Var.getChildAt(i10).invalidate();
+    public final void requestLayout() {
+        if (this.f36643a) {
+            return;
         }
+        super.requestLayout();
     }
 }

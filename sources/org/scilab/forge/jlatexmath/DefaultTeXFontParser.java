@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import javax.xml.parsers.DocumentBuilderFactory;
-import org.telegram.ui.yh;
+import org.telegram.ui.ai;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -215,7 +215,7 @@ public class DefaultTeXFontParser {
                         if (this.parsedTextStyles.get(attrValueAndCheckIfNotNull2)[intValue] != null) {
                             strArr[intValue] = attrValueAndCheckIfNotNull2;
                         } else {
-                            throw new XMLResourceParseException(yh.l("DefaultTeXFont.xml: the default text style mapping '", attrValueAndCheckIfNotNull2, "' for the range '", attrValueAndCheckIfNotNull, "' contains no mapping for that range!"));
+                            throw new XMLResourceParseException(ai.k("DefaultTeXFont.xml: the default text style mapping '", attrValueAndCheckIfNotNull2, "' for the range '", attrValueAndCheckIfNotNull, "' contains no mapping for that range!"));
                         }
                     } else {
                         throw new XMLResourceParseException("DefaultTeXFont.xml", "MapStyle", "textStyle", a.o("contains an unknown text style '", attrValueAndCheckIfNotNull2, "'!"));
@@ -307,9 +307,9 @@ public class DefaultTeXFontParser {
                 return (FontInfo[]) arrayList.toArray(fontInfoArr);
             }
             throw new FontAlreadyLoadedException(a.o("Font ", attrValueAndCheckIfNotNull2, " is already loaded !"));
-        } catch (Exception e6) {
+        } catch (Exception e) {
             StringBuilder t6 = a.t("Cannot find the file ", str, "!");
-            t6.append(e6.toString());
+            t6.append(e.toString());
             throw new XMLResourceParseException(t6.toString());
         }
     }
@@ -392,8 +392,8 @@ public class DefaultTeXFontParser {
         factory.setIgnoringComments(true);
         try {
             this.root = factory.newDocumentBuilder().parse(inputStream).getDocumentElement();
-        } catch (Exception e6) {
-            throw new XMLResourceParseException(str, e6);
+        } catch (Exception e) {
+            throw new XMLResourceParseException(str, e);
         }
     }
 
@@ -403,8 +403,8 @@ public class DefaultTeXFontParser {
         factory.setIgnoringComments(true);
         try {
             this.root = factory.newDocumentBuilder().parse(inputStream).getDocumentElement();
-        } catch (Exception e6) {
-            throw new XMLResourceParseException(str, e6);
+        } catch (Exception e) {
+            throw new XMLResourceParseException(str, e);
         }
     }
 

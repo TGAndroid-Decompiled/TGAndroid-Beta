@@ -1,26 +1,47 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class yl extends fu0 {
-    public final xn f43649a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.ImageView;
+import org.telegram.ui.Components.RadialProgressView;
+public final class yl extends AnimatorListenerAdapter {
+    public final boolean f40297a;
+    public final boolean f40298b;
+    public final boolean f40299c;
+    public final zn d;
 
-    public yl(xn xnVar) {
-        this.f43649a = xnVar;
+    public yl(zn znVar, boolean z4, boolean z10, boolean z11) {
+        this.d = znVar;
+        this.f40297a = z4;
+        this.f40298b = z10;
+        this.f40299c = z11;
     }
 
     @Override
-    public final org.telegram.ui.qu0 E(org.telegram.messenger.MessageObject r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yl.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.qu0");
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z4, int i11, int i12, boolean z10) {
-        if (i10 >= 0) {
-            xn xnVar = this.f43649a;
-            if (i10 < xnVar.Ea.size()) {
-                xnVar.cb((TLRPC.BotInlineResult) xnVar.Ea.get(i10), z4, i11, 0L);
-            }
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        int i11;
+        zn znVar = this.d;
+        znVar.J2 = null;
+        ImageView imageView = znVar.G2;
+        int i12 = 4;
+        if (this.f40297a) {
+            i10 = 0;
+        } else {
+            i10 = 4;
         }
+        imageView.setVisibility(i10);
+        ImageView imageView2 = znVar.I2;
+        if (this.f40298b) {
+            i11 = 0;
+        } else {
+            i11 = 4;
+        }
+        imageView2.setVisibility(i11);
+        RadialProgressView radialProgressView = znVar.H2;
+        if (this.f40299c) {
+            i12 = 0;
+        }
+        radialProgressView.setVisibility(i12);
     }
 }

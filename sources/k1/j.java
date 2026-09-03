@@ -5,14 +5,14 @@ import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import ld.i2;
 public final class j extends kotlin.jvm.internal.k implements dd.l {
-    public final int f10287b;
-    public final Object f10288c;
+    public final int f9563b;
+    public final Object f9564c;
     public final Object d;
 
     public j(int i10, Object obj, Object obj2) {
         super(1);
-        this.f10287b = i10;
-        this.f10288c = obj;
+        this.f9563b = i10;
+        this.f9564c = obj;
         this.d = obj2;
     }
 
@@ -26,21 +26,21 @@ public final class j extends kotlin.jvm.internal.k implements dd.l {
         i2 i2Var;
         sc.i iVar;
         Throwable th2;
-        com.google.android.gms.internal.clearcut.e eVar2;
-        switch (this.f10287b) {
+        o3.c cVar;
+        switch (this.f9563b) {
             case 0:
                 Throwable th3 = (Throwable) obj;
-                ((o) this.f10288c).invoke(th3);
-                nd.b bVar = (nd.b) ((com.google.firebase.messaging.s) this.d).f4082c;
+                ((o) this.f9564c).invoke(th3);
+                nd.b bVar = (nd.b) ((com.google.firebase.messaging.r) this.d).f4006c;
                 bVar.getClass();
-                AtomicLongFieldUpdater atomicLongFieldUpdater = nd.b.f15931b;
-                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = nd.b.f15936i;
-                com.google.android.gms.internal.clearcut.e eVar3 = nd.d.f15955r;
+                AtomicLongFieldUpdater atomicLongFieldUpdater = nd.b.f14898b;
+                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = nd.b.f14902i;
+                o3.c cVar2 = nd.d.f14920r;
                 while (true) {
                     z4 = true;
-                    if (atomicReferenceFieldUpdater.compareAndSet(bVar, eVar3, th3)) {
+                    if (atomicReferenceFieldUpdater.compareAndSet(bVar, cVar2, th3)) {
                         z10 = true;
-                    } else if (atomicReferenceFieldUpdater.get(bVar) != eVar3) {
+                    } else if (atomicReferenceFieldUpdater.get(bVar) != cVar2) {
                         z10 = false;
                     }
                 }
@@ -66,58 +66,58 @@ public final class j extends kotlin.jvm.internal.k implements dd.l {
                 }
                 bVar.c();
                 if (z10) {
-                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = nd.b.f15937j;
+                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = nd.b.f14903j;
                     while (true) {
                         Object obj2 = atomicReferenceFieldUpdater2.get(bVar);
                         if (obj2 == null) {
-                            eVar2 = nd.d.f15953p;
+                            cVar = nd.d.f14918p;
                         } else {
-                            eVar2 = nd.d.f15954q;
+                            cVar = nd.d.f14919q;
                         }
-                        while (!atomicReferenceFieldUpdater2.compareAndSet(bVar, obj2, eVar2)) {
+                        while (!atomicReferenceFieldUpdater2.compareAndSet(bVar, obj2, cVar)) {
                             if (atomicReferenceFieldUpdater2.get(bVar) != obj2) {
                                 break;
                             }
                         }
                         if (obj2 != null) {
                             kotlin.jvm.internal.t.a(1, obj2);
-                            ((dd.l) obj2).invoke((Throwable) nd.b.f15936i.get(bVar));
+                            ((dd.l) obj2).invoke((Throwable) nd.b.f14902i.get(bVar));
                         }
                     }
                 }
                 while (true) {
                     bVar.getClass();
-                    AtomicLongFieldUpdater atomicLongFieldUpdater3 = nd.b.f15932c;
+                    AtomicLongFieldUpdater atomicLongFieldUpdater3 = nd.b.f14899c;
                     long j12 = atomicLongFieldUpdater3.get(bVar);
-                    long j13 = nd.b.f15931b.get(bVar);
+                    long j13 = nd.b.f14898b.get(bVar);
                     if (bVar.i(j13, z4)) {
-                        eVar = new nd.e((Throwable) nd.b.f15936i.get(bVar));
+                        eVar = new nd.e((Throwable) nd.b.f14902i.get(bVar));
                     } else {
-                        nd.f fVar = nd.g.f15957a;
+                        nd.f fVar = nd.g.f14922a;
                         if (j12 < (j13 & 1152921504606846975L)) {
-                            com.google.android.gms.internal.clearcut.e eVar4 = nd.d.f15948k;
-                            nd.h hVar = (nd.h) nd.b.f15935g.get(bVar);
+                            o3.c cVar3 = nd.d.f14913k;
+                            nd.h hVar = (nd.h) nd.b.f14901g.get(bVar);
                             while (true) {
-                                if (bVar.i(nd.b.f15931b.get(bVar), z4)) {
-                                    eVar = new nd.e((Throwable) nd.b.f15936i.get(bVar));
+                                if (bVar.i(nd.b.f14898b.get(bVar), z4)) {
+                                    eVar = new nd.e((Throwable) nd.b.f14902i.get(bVar));
                                 } else {
                                     long andIncrement = atomicLongFieldUpdater3.getAndIncrement(bVar);
-                                    long j14 = nd.d.f15941b;
+                                    long j14 = nd.d.f14907b;
                                     long j15 = andIncrement / j14;
                                     int i12 = (int) (andIncrement % j14);
-                                    if (hVar.f44851c != j15) {
-                                        nd.h e6 = bVar.e(j15, hVar);
-                                        if (e6 == null) {
+                                    if (hVar.f43071c != j15) {
+                                        nd.h e = bVar.e(j15, hVar);
+                                        if (e == null) {
                                             continue;
                                             z4 = true;
                                         } else {
-                                            hVar = e6;
+                                            hVar = e;
                                         }
                                     }
-                                    Object o10 = bVar.o(hVar, i12, andIncrement, eVar4);
-                                    if (o10 == nd.d.f15950m) {
-                                        if (eVar4 instanceof i2) {
-                                            i2Var = (i2) eVar4;
+                                    Object o10 = bVar.o(hVar, i12, andIncrement, cVar3);
+                                    if (o10 == nd.d.f14915m) {
+                                        if (cVar3 instanceof i2) {
+                                            i2Var = (i2) cVar3;
                                         } else {
                                             i2Var = null;
                                         }
@@ -126,12 +126,12 @@ public final class j extends kotlin.jvm.internal.k implements dd.l {
                                         }
                                         bVar.q(andIncrement);
                                         hVar.i();
-                                    } else if (o10 == nd.d.f15952o) {
+                                    } else if (o10 == nd.d.f14917o) {
                                         if (andIncrement < bVar.g()) {
                                             hVar.b();
                                         }
                                         z4 = true;
-                                    } else if (o10 != nd.d.f15951n) {
+                                    } else if (o10 != nd.d.f14916n) {
                                         hVar.b();
                                         eVar = o10;
                                     } else {
@@ -145,13 +145,13 @@ public final class j extends kotlin.jvm.internal.k implements dd.l {
                     if (eVar instanceof nd.f) {
                         eVar = null;
                     }
-                    sc.i iVar2 = sc.i.f47274a;
+                    sc.i iVar2 = sc.i.f44318a;
                     if (eVar == null) {
                         iVar = null;
                     } else {
                         m mVar = (m) eVar;
                         if (mVar instanceof l) {
-                            ld.t tVar = ((l) mVar).f10291b;
+                            ld.t tVar = ((l) mVar).f9567b;
                             if (th3 == null) {
                                 th2 = new CancellationException("DataStore scope was cancelled before updateData could complete");
                             } else {
@@ -168,8 +168,8 @@ public final class j extends kotlin.jvm.internal.k implements dd.l {
                 }
             default:
                 Throwable th4 = (Throwable) obj;
-                ((md.d) this.f10288c).f13644c.removeCallbacks((androidx.biometric.k) this.d);
-                return sc.i.f47274a;
+                ((md.d) this.f9564c).f13906c.removeCallbacks((androidx.biometric.j) this.d);
+                return sc.i.f44318a;
         }
     }
 }

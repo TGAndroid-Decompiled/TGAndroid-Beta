@@ -4,17 +4,17 @@ import android.util.SparseIntArray;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class b01 extends f2.q {
-    public int f35287b;
-    public final SparseIntArray f35288c = new SparseIntArray();
+    public int f32684b;
+    public final SparseIntArray f32685c = new SparseIntArray();
     public final SparseIntArray d = new SparseIntArray();
-    public final ArrayList f35289e = new ArrayList();
-    public final ArrayList f35290f = new ArrayList();
-    public int f35291g;
+    public final ArrayList e = new ArrayList();
+    public final ArrayList f32686f = new ArrayList();
+    public int f32687g;
     public int h;
-    public final ProfileActivity f35292i;
+    public final ProfileActivity f32688i;
 
     public b01(ProfileActivity profileActivity) {
-        this.f35292i = profileActivity;
+        this.f32688i = profileActivity;
     }
 
     public static void g(int i10, int i11, SparseIntArray sparseIntArray) {
@@ -32,27 +32,27 @@ public final class b01 extends f2.q {
     public final boolean b(int i10, int i11) {
         TLRPC.ChatParticipant chatParticipant;
         TLRPC.ChatParticipant chatParticipant2;
-        ProfileActivity profileActivity = this.f35292i;
-        if (i11 >= profileActivity.f34685r4 && i11 < profileActivity.f34693s4 && i10 >= this.f35291g && i10 < this.h) {
-            ArrayList arrayList = this.f35290f;
+        ProfileActivity profileActivity = this.f32688i;
+        if (i11 >= profileActivity.f32126r4 && i11 < profileActivity.f32134s4 && i10 >= this.f32687g && i10 < this.h) {
+            ArrayList arrayList = this.f32686f;
             boolean isEmpty = arrayList.isEmpty();
-            ArrayList arrayList2 = this.f35289e;
+            ArrayList arrayList2 = this.e;
             if (!isEmpty) {
-                chatParticipant = (TLRPC.ChatParticipant) arrayList2.get(((Integer) arrayList.get(i10 - this.f35291g)).intValue());
+                chatParticipant = (TLRPC.ChatParticipant) arrayList2.get(((Integer) arrayList.get(i10 - this.f32687g)).intValue());
             } else {
-                chatParticipant = (TLRPC.ChatParticipant) arrayList2.get(i10 - this.f35291g);
+                chatParticipant = (TLRPC.ChatParticipant) arrayList2.get(i10 - this.f32687g);
             }
-            if (!profileActivity.f34736z2.isEmpty()) {
-                chatParticipant2 = (TLRPC.ChatParticipant) profileActivity.N4.get(((Integer) profileActivity.O4.get(i11 - profileActivity.f34685r4)).intValue());
+            if (!profileActivity.f32177z2.isEmpty()) {
+                chatParticipant2 = (TLRPC.ChatParticipant) profileActivity.N4.get(((Integer) profileActivity.O4.get(i11 - profileActivity.f32126r4)).intValue());
             } else {
-                chatParticipant2 = (TLRPC.ChatParticipant) profileActivity.N4.get(i11 - profileActivity.f34685r4);
+                chatParticipant2 = (TLRPC.ChatParticipant) profileActivity.N4.get(i11 - profileActivity.f32126r4);
             }
             if (chatParticipant.user_id != chatParticipant2.user_id) {
                 return false;
             }
             return true;
         }
-        int i12 = this.f35288c.get(i10, -1);
+        int i12 = this.f32685c.get(i10, -1);
         if (i12 != this.d.get(i11, -1) || i12 < 0) {
             return false;
         }
@@ -61,12 +61,12 @@ public final class b01 extends f2.q {
 
     @Override
     public final int d() {
-        return this.f35292i.K2;
+        return this.f32688i.K2;
     }
 
     @Override
     public final int e() {
-        return this.f35287b;
+        return this.f32684b;
     }
 
     public final void f(SparseIntArray sparseIntArray) {
@@ -74,7 +74,7 @@ public final class b01 extends f2.q {
         int i11;
         int i12;
         sparseIntArray.clear();
-        ProfileActivity profileActivity = this.f35292i;
+        ProfileActivity profileActivity = this.f32688i;
         g(1, profileActivity.L2, sparseIntArray);
         g(2, profileActivity.M2, sparseIntArray);
         g(3, profileActivity.P2, sparseIntArray);
@@ -87,37 +87,37 @@ public final class b01 extends f2.q {
         g(10, profileActivity.Y2, sparseIntArray);
         g(11, profileActivity.V2, sparseIntArray);
         g(12, profileActivity.W2, sparseIntArray);
-        g(13, profileActivity.f34563a3, sparseIntArray);
-        g(14, profileActivity.f34571b3, sparseIntArray);
+        g(13, profileActivity.f32005a3, sparseIntArray);
+        g(14, profileActivity.f32013b3, sparseIntArray);
         g(15, profileActivity.c3, sparseIntArray);
-        g(16, profileActivity.f34585d3, sparseIntArray);
+        g(16, profileActivity.f32027d3, sparseIntArray);
         g(17, profileActivity.Z3, sparseIntArray);
-        g(18, profileActivity.f34564a4, sparseIntArray);
-        g(19, profileActivity.f34579c4, sparseIntArray);
-        g(20, profileActivity.f34594e4, sparseIntArray);
-        g(21, profileActivity.f34586d4, sparseIntArray);
-        g(22, profileActivity.f34593e3, sparseIntArray);
-        g(23, profileActivity.f34600f3, sparseIntArray);
-        g(24, profileActivity.f34621i3, sparseIntArray);
-        g(25, profileActivity.f34607g3, sparseIntArray);
-        g(26, profileActivity.f34614h3, sparseIntArray);
-        g(27, profileActivity.f34628j3, sparseIntArray);
-        g(28, profileActivity.f34635k3, sparseIntArray);
-        g(29, profileActivity.f34641l3, sparseIntArray);
-        g(30, profileActivity.f34647m3, sparseIntArray);
-        g(31, profileActivity.f34655n3, sparseIntArray);
-        g(32, profileActivity.f34662o3, sparseIntArray);
-        g(33, profileActivity.f34669p3, sparseIntArray);
-        g(34, profileActivity.f34676q3, sparseIntArray);
-        g(35, profileActivity.f34684r3, sparseIntArray);
-        g(36, profileActivity.f34692s3, sparseIntArray);
-        g(37, profileActivity.f34698t3, sparseIntArray);
-        g(38, profileActivity.f34704u3, sparseIntArray);
-        g(39, profileActivity.f34710v3, sparseIntArray);
-        g(40, profileActivity.f34717w3, sparseIntArray);
-        g(41, profileActivity.f34724x3, sparseIntArray);
-        g(42, profileActivity.f34731y3, sparseIntArray);
-        g(43, profileActivity.f34737z3, sparseIntArray);
+        g(18, profileActivity.f32006a4, sparseIntArray);
+        g(19, profileActivity.f32021c4, sparseIntArray);
+        g(20, profileActivity.f32035e4, sparseIntArray);
+        g(21, profileActivity.f32028d4, sparseIntArray);
+        g(22, profileActivity.f32034e3, sparseIntArray);
+        g(23, profileActivity.f32041f3, sparseIntArray);
+        g(24, profileActivity.f32062i3, sparseIntArray);
+        g(25, profileActivity.f32048g3, sparseIntArray);
+        g(26, profileActivity.f32055h3, sparseIntArray);
+        g(27, profileActivity.f32069j3, sparseIntArray);
+        g(28, profileActivity.f32076k3, sparseIntArray);
+        g(29, profileActivity.f32082l3, sparseIntArray);
+        g(30, profileActivity.f32088m3, sparseIntArray);
+        g(31, profileActivity.f32096n3, sparseIntArray);
+        g(32, profileActivity.f32103o3, sparseIntArray);
+        g(33, profileActivity.f32110p3, sparseIntArray);
+        g(34, profileActivity.f32117q3, sparseIntArray);
+        g(35, profileActivity.f32125r3, sparseIntArray);
+        g(36, profileActivity.f32133s3, sparseIntArray);
+        g(37, profileActivity.f32139t3, sparseIntArray);
+        g(38, profileActivity.f32145u3, sparseIntArray);
+        g(39, profileActivity.f32151v3, sparseIntArray);
+        g(40, profileActivity.f32158w3, sparseIntArray);
+        g(41, profileActivity.f32165x3, sparseIntArray);
+        g(42, profileActivity.f32172y3, sparseIntArray);
+        g(43, profileActivity.f32178z3, sparseIntArray);
         g(44, profileActivity.A3, sparseIntArray);
         g(45, profileActivity.B3, sparseIntArray);
         g(46, profileActivity.C3, sparseIntArray);
@@ -133,21 +133,21 @@ public final class b01 extends f2.q {
         g(56, profileActivity.O3, sparseIntArray);
         g(57, profileActivity.P3, sparseIntArray);
         g(58, profileActivity.Q3, sparseIntArray);
-        g(59, profileActivity.f34608g4, sparseIntArray);
+        g(59, profileActivity.f32049g4, sparseIntArray);
         g(60, profileActivity.R3, sparseIntArray);
         g(61, profileActivity.S3, sparseIntArray);
         g(62, profileActivity.T3, sparseIntArray);
         g(63, profileActivity.U3, sparseIntArray);
         g(64, profileActivity.W3, sparseIntArray);
-        g(65, profileActivity.f34656n4, sparseIntArray);
-        g(66, profileActivity.f34663o4, sparseIntArray);
-        g(67, profileActivity.f34670p4, sparseIntArray);
-        g(68, profileActivity.f34677q4, sparseIntArray);
-        g(69, profileActivity.f34699t4, sparseIntArray);
-        g(70, profileActivity.f34705u4, sparseIntArray);
-        g(71, profileActivity.f34711v4, sparseIntArray);
-        g(72, profileActivity.f34718w4, sparseIntArray);
-        g(73, profileActivity.f34725x4, sparseIntArray);
+        g(65, profileActivity.f32097n4, sparseIntArray);
+        g(66, profileActivity.f32104o4, sparseIntArray);
+        g(67, profileActivity.f32111p4, sparseIntArray);
+        g(68, profileActivity.f32118q4, sparseIntArray);
+        g(69, profileActivity.f32140t4, sparseIntArray);
+        g(70, profileActivity.f32146u4, sparseIntArray);
+        g(71, profileActivity.f32152v4, sparseIntArray);
+        g(72, profileActivity.f32159w4, sparseIntArray);
+        g(73, profileActivity.f32166x4, sparseIntArray);
         g(74, profileActivity.D4, sparseIntArray);
         g(75, profileActivity.E4, sparseIntArray);
         g(76, profileActivity.B4, sparseIntArray);
@@ -162,22 +162,22 @@ public final class b01 extends f2.q {
         g(85, profileActivity.M3, sparseIntArray);
         g(86, profileActivity.R2, sparseIntArray);
         g(87, profileActivity.N2, sparseIntArray);
-        g(88, profileActivity.f34732y4, sparseIntArray);
+        g(88, profileActivity.f32173y4, sparseIntArray);
         g(89, profileActivity.z4, sparseIntArray);
         g(90, profileActivity.A4, sparseIntArray);
         g(91, profileActivity.C4, sparseIntArray);
-        g(92, profileActivity.f34601f4, sparseIntArray);
-        g(93, profileActivity.f34636k4, sparseIntArray);
+        g(92, profileActivity.f32042f4, sparseIntArray);
+        g(93, profileActivity.f32077k4, sparseIntArray);
         i10 = profileActivity.botPermissionLocation;
         g(94, i10, sparseIntArray);
         i11 = profileActivity.botPermissionEmojiStatus;
         g(95, i11, sparseIntArray);
         i12 = profileActivity.botPermissionBiometry;
         g(96, i12, sparseIntArray);
-        g(97, profileActivity.f34648m4, sparseIntArray);
+        g(97, profileActivity.f32089m4, sparseIntArray);
         g(98, profileActivity.O2, sparseIntArray);
-        g(99, profileActivity.f34615h4, sparseIntArray);
-        g(100, profileActivity.f34622i4, sparseIntArray);
-        g(101, profileActivity.f34629j4, sparseIntArray);
+        g(99, profileActivity.f32056h4, sparseIntArray);
+        g(100, profileActivity.f32063i4, sparseIntArray);
+        g(101, profileActivity.f32070j4, sparseIntArray);
     }
 }

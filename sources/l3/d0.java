@@ -8,7 +8,7 @@ public abstract class d0 {
         if (f0Var == null) {
             audioDeviceInfo = null;
         } else {
-            audioDeviceInfo = f0Var.f11500a;
+            audioDeviceInfo = f0Var.f11248a;
         }
         audioTrack.setPreferredDevice(audioDeviceInfo);
     }

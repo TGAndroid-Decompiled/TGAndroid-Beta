@@ -1,38 +1,18 @@
 package f2;
+public abstract class q0 {
+    public abstract void a();
 
-import android.database.Observable;
-public final class q0 extends Observable {
-    public final boolean a() {
-        return !((Observable) this).mObservers.isEmpty();
+    public void c(int i10, int i11, Object obj) {
+        b(i10, i11);
     }
 
-    public final void b() {
-        for (int size = ((Observable) this).mObservers.size() - 1; size >= 0; size--) {
-            ((r0) ((Observable) this).mObservers.get(size)).a();
-        }
+    public abstract void d(int i10, int i11);
+
+    public abstract void f(int i10, int i11);
+
+    public void b(int i10, int i11) {
     }
 
-    public final void c(int i10, int i11) {
-        for (int size = ((Observable) this).mObservers.size() - 1; size >= 0; size--) {
-            ((r0) ((Observable) this).mObservers.get(size)).e(i10, i11);
-        }
-    }
-
-    public final void d(int i10, int i11, Object obj) {
-        for (int size = ((Observable) this).mObservers.size() - 1; size >= 0; size--) {
-            ((r0) ((Observable) this).mObservers.get(size)).c(i10, i11, obj);
-        }
-    }
-
-    public final void e(int i10, int i11) {
-        for (int size = ((Observable) this).mObservers.size() - 1; size >= 0; size--) {
-            ((r0) ((Observable) this).mObservers.get(size)).d(i10, i11);
-        }
-    }
-
-    public final void f(int i10, int i11) {
-        for (int size = ((Observable) this).mObservers.size() - 1; size >= 0; size--) {
-            ((r0) ((Observable) this).mObservers.get(size)).f(i10, i11);
-        }
+    public void e(int i10, int i11) {
     }
 }

@@ -1,14 +1,18 @@
 package j7;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
+import java.io.Closeable;
 public abstract class f0 {
-    public static void a(InputStream inputStream, ByteArrayOutputStream byteArrayOutputStream) {
-        byte[] bArr = new byte[8192];
-        int read = inputStream.read(bArr);
-        while (read >= 0) {
-            byteArrayOutputStream.write(bArr, 0, read);
-            read = inputStream.read(bArr);
+    public static final void a(Closeable closeable, Throwable th2) {
+        if (closeable != null) {
+            if (th2 == null) {
+                closeable.close();
+                return;
+            }
+            try {
+                closeable.close();
+            } catch (Throwable th3) {
+                k7.n7.a(th2, th3);
+            }
         }
     }
 }

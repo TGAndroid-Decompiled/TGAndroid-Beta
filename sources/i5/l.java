@@ -9,22 +9,22 @@ import android.view.Surface;
 import h5.d0;
 public final class l extends Surface {
     public static int d;
-    public static boolean f7860e;
-    public final boolean f7861a;
-    public final k f7862b;
-    public boolean f7863c;
+    public static boolean e;
+    public final boolean f7290a;
+    public final k f7291b;
+    public boolean f7292c;
 
     public l(k kVar, SurfaceTexture surfaceTexture, boolean z4) {
         super(surfaceTexture);
-        this.f7862b = kVar;
-        this.f7861a = z4;
+        this.f7291b = kVar;
+        this.f7290a = z4;
     }
 
     public static int a(Context context) {
         String eglQueryString;
         String eglQueryString2;
-        int i10 = d0.f7237a;
-        if (i10 < 24 || ((i10 < 26 && ("samsung".equals(d0.f7239c) || "XT1650".equals(d0.d))) || ((i10 < 26 && !context.getPackageManager().hasSystemFeature("android.hardware.vr.high_performance")) || (eglQueryString = EGL14.eglQueryString(EGL14.eglGetDisplay(0), 12373)) == null || !eglQueryString.contains("EGL_EXT_protected_content")))) {
+        int i10 = d0.f6924a;
+        if (i10 < 24 || ((i10 < 26 && ("samsung".equals(d0.f6926c) || "XT1650".equals(d0.d))) || ((i10 < 26 && !context.getPackageManager().hasSystemFeature("android.hardware.vr.high_performance")) || (eglQueryString = EGL14.eglQueryString(EGL14.eglGetDisplay(0), 12373)) == null || !eglQueryString.contains("EGL_EXT_protected_content")))) {
             return 0;
         }
         if (i10 >= 17 && (eglQueryString2 = EGL14.eglQueryString(EGL14.eglGetDisplay(0), 12373)) != null && eglQueryString2.contains("EGL_KHR_surfaceless_context")) {
@@ -38,9 +38,9 @@ public final class l extends Surface {
         synchronized (l.class) {
             try {
                 z4 = true;
-                if (!f7860e) {
+                if (!e) {
                     d = a(context);
-                    f7860e = true;
+                    e = true;
                 }
                 if (d == 0) {
                     z4 = false;
@@ -70,11 +70,11 @@ public final class l extends Surface {
         }
         handlerThread.start();
         Handler handler = new Handler(handlerThread.getLooper(), handlerThread);
-        handlerThread.f7857b = handler;
-        handlerThread.f7856a = new h5.f(handler);
+        handlerThread.f7288b = handler;
+        handlerThread.f7287a = new h5.f(handler);
         synchronized (handlerThread) {
-            handlerThread.f7857b.obtainMessage(1, i10, 0).sendToTarget();
-            while (handlerThread.f7859e == null && handlerThread.d == null && handlerThread.f7858c == null) {
+            handlerThread.f7288b.obtainMessage(1, i10, 0).sendToTarget();
+            while (handlerThread.e == null && handlerThread.d == null && handlerThread.f7289c == null) {
                 try {
                     handlerThread.wait();
                 } catch (InterruptedException unused) {
@@ -87,9 +87,9 @@ public final class l extends Surface {
         }
         RuntimeException runtimeException = handlerThread.d;
         if (runtimeException == null) {
-            Error error = handlerThread.f7858c;
+            Error error = handlerThread.f7289c;
             if (error == null) {
-                l lVar = handlerThread.f7859e;
+                l lVar = handlerThread.e;
                 lVar.getClass();
                 return lVar;
             }
@@ -101,13 +101,13 @@ public final class l extends Surface {
     @Override
     public final void release() {
         super.release();
-        synchronized (this.f7862b) {
+        synchronized (this.f7291b) {
             try {
-                if (!this.f7863c) {
-                    k kVar = this.f7862b;
-                    kVar.f7857b.getClass();
-                    kVar.f7857b.sendEmptyMessage(2);
-                    this.f7863c = true;
+                if (!this.f7292c) {
+                    k kVar = this.f7291b;
+                    kVar.f7288b.getClass();
+                    kVar.f7288b.sendEmptyMessage(2);
+                    this.f7292c = true;
                 }
             } catch (Throwable th2) {
                 throw th2;

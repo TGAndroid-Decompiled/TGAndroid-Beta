@@ -1,13 +1,13 @@
 package ec;
 
-import androidx.biometric.e;
+import af.d;
 import fc.g;
 public final class b {
-    public final e f5025a;
-    public final Exception f5026b;
+    public final d f5189a;
+    public final Exception f5190b;
 
-    public b(e eVar, g gVar) {
-        this.f5026b = gVar;
-        this.f5025a = eVar;
+    public b(d dVar, g gVar) {
+        this.f5190b = gVar;
+        this.f5189a = dVar;
     }
 }

@@ -1,10 +1,10 @@
 package r3;
 public interface m {
-    public static final h7.u A = new h7.u(21);
+    public static final db.a A = new db.a(21);
 
-    void i1();
+    v d2(int i10, int i11);
 
-    v i2(int i10, int i11);
+    void h2(s sVar);
 
-    void m2(s sVar);
+    void j1();
 }

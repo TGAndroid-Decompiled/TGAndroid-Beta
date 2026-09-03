@@ -16,6 +16,6 @@ public final class mz0 extends org.telegram.ui.Components.lq0 {
         if (!z4) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new pr0(this, hVar, i10, 24), 250L);
+        AndroidUtilities.runOnUIThread(new gr0(this, hVar, i10, 25), 250L);
     }
 }

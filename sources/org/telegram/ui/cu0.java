@@ -10,73 +10,73 @@ import android.text.style.ClickableSpan;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-public final class cu0 extends jh.s {
-    public final org.telegram.ui.Cells.w9 O;
+public final class cu0 extends ih.s {
+    public final org.telegram.ui.Cells.v9 O;
     public ArrayList P;
     public boolean Q;
     public Layout R;
     public org.telegram.ui.Components.q5 S;
     public boolean T;
-    public org.telegram.ui.Components.k90 U;
+    public org.telegram.ui.Components.j90 U;
     public Layout V;
     public Path W;
 
-    public cu0(Context context, au0 au0Var, org.telegram.ui.Cells.w9 w9Var, final Utilities.Callback2 callback2, final Utilities.Callback3 callback3) {
+    public cu0(Context context, au0 au0Var, org.telegram.ui.Cells.v9 v9Var, final Utilities.Callback2 callback2, final Utilities.Callback3 callback3) {
         super(context);
         setClearLinkOnLongPress(false);
         setDisablePaddingsOffsetY(false);
-        this.f10194x = new org.telegram.ui.Components.f90(this) {
-            public final cu0 f35600b;
+        this.f7643x = new org.telegram.ui.Components.e90(this) {
+            public final cu0 f32946b;
 
             {
-                this.f35600b = this;
+                this.f32946b = this;
             }
 
             @Override
             public final void a(ClickableSpan clickableSpan) {
                 switch (r3) {
                     case 0:
-                        cu0 cu0Var = this.f35600b;
+                        cu0 cu0Var = this.f32946b;
                         cu0Var.getClass();
                         ((Utilities.Callback2) callback2).run(clickableSpan, cu0Var);
                         return;
                     default:
-                        cu0 cu0Var2 = this.f35600b;
+                        cu0 cu0Var2 = this.f32946b;
                         ((Utilities.Callback3) callback2).run(clickableSpan, cu0Var2, new gl0(cu0Var2, 21));
                         return;
                 }
             }
         };
-        this.f10195y = new org.telegram.ui.Components.f90(this) {
-            public final cu0 f35600b;
+        this.f7644y = new org.telegram.ui.Components.e90(this) {
+            public final cu0 f32946b;
 
             {
-                this.f35600b = this;
+                this.f32946b = this;
             }
 
             @Override
             public final void a(ClickableSpan clickableSpan) {
                 switch (r3) {
                     case 0:
-                        cu0 cu0Var = this.f35600b;
+                        cu0 cu0Var = this.f32946b;
                         cu0Var.getClass();
                         ((Utilities.Callback2) callback3).run(clickableSpan, cu0Var);
                         return;
                     default:
-                        cu0 cu0Var2 = this.f35600b;
+                        cu0 cu0Var2 = this.f32946b;
                         ((Utilities.Callback3) callback3).run(clickableSpan, cu0Var2, new gl0(cu0Var2, 21));
                         return;
                 }
             }
         };
-        this.O = w9Var;
-        k7.i6.a(this, 16.0f, 8.0f, 16.0f, 8.0f);
+        this.O = v9Var;
+        k7.h6.a(this, 16.0f, 8.0f, 16.0f, 8.0f);
         setLinkTextColor(-8796932);
         setTextColor(-1);
         setHighlightColor(872415231);
-        setGravity(k7.c6.y() | 16);
+        setGravity(k7.b6.y() | 16);
         setTextSize(1, 16.0f);
-        setOnClickListener(new f60(au0Var, 19));
+        setOnClickListener(new g60(au0Var, 19));
     }
 
     @Override
@@ -118,11 +118,11 @@ public final class cu0 extends jh.s {
                 this.V = layout;
             }
             if (this.U == null) {
-                org.telegram.ui.Components.k90 k90Var = new org.telegram.ui.Components.k90();
-                this.U = k90Var;
-                k90Var.f28370x = this.W;
-                k90Var.j(4.0f);
-                this.U.f(org.telegram.ui.ActionBar.k6.l1(0.3f, -1), org.telegram.ui.ActionBar.k6.l1(0.1f, -1), org.telegram.ui.ActionBar.k6.l1(0.2f, -1), org.telegram.ui.ActionBar.k6.l1(0.7f, -1));
+                org.telegram.ui.Components.j90 j90Var = new org.telegram.ui.Components.j90();
+                this.U = j90Var;
+                j90Var.f25923x = this.W;
+                j90Var.j(4.0f);
+                this.U.f(org.telegram.ui.ActionBar.j6.l1(0.3f, -1), org.telegram.ui.ActionBar.j6.l1(0.1f, -1), org.telegram.ui.ActionBar.j6.l1(0.2f, -1), org.telegram.ui.ActionBar.j6.l1(0.7f, -1));
                 this.U.setCallback(this);
             }
             this.U.setBounds(0, 0, getWidth(), getHeight());
@@ -135,7 +135,7 @@ public final class cu0 extends jh.s {
             canvas.save();
             canvas.translate(getPaddingLeft(), getPaddingTop());
             for (int i12 = 0; i12 < this.P.size(); i12++) {
-                org.telegram.ui.Components.xi0 xi0Var = (org.telegram.ui.Components.xi0) this.P.get(i12);
+                org.telegram.ui.Components.wi0 wi0Var = (org.telegram.ui.Components.wi0) this.P.get(i12);
                 int width = (getWidth() - getPaddingLeft()) - getPaddingRight();
                 if (this.Q) {
                     i10 = AndroidUtilities.dp(32.0f);
@@ -143,7 +143,7 @@ public final class cu0 extends jh.s {
                     i10 = 0;
                 }
                 getPaint();
-                xi0Var.a(canvas, width + i10, -1);
+                wi0Var.a(canvas, width + i10, -1);
             }
             canvas.restore();
         }
@@ -162,17 +162,17 @@ public final class cu0 extends jh.s {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         org.telegram.ui.Components.u5.release(this, this.S);
-        this.P = org.telegram.ui.Components.bj0.e(null, this.P);
+        this.P = org.telegram.ui.Components.aj0.e(null, this.P);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        org.telegram.ui.Cells.w9 w9Var = this.O;
-        if (w9Var != null && w9Var.y()) {
+        org.telegram.ui.Cells.v9 v9Var = this.O;
+        if (v9Var != null && v9Var.y()) {
             canvas.save();
             canvas.translate(getPaddingLeft(), getPaddingTop());
-            if (w9Var != null && getStaticTextLayout() != null && w9Var.f24373u0 == this) {
-                w9Var.X(canvas);
+            if (v9Var != null && getStaticTextLayout() != null && v9Var.f22479u0 == this) {
+                v9Var.X(canvas);
             }
             canvas.restore();
         }
@@ -181,13 +181,13 @@ public final class cu0 extends jh.s {
             boolean z4 = true;
             int i10 = 0;
             this.S = org.telegram.ui.Components.u5.update(0, this, this.S, getLayout());
-            this.P = org.telegram.ui.Components.bj0.e(getLayout(), this.P);
-            z4 = (getLayout() == null || !(getLayout().getText() instanceof Spanned) || ((org.telegram.ui.Components.aj0[]) ((Spanned) getLayout().getText()).getSpans(0, getLayout().getText().length(), org.telegram.ui.Components.aj0.class)).length <= 0) ? false : false;
+            this.P = org.telegram.ui.Components.aj0.e(getLayout(), this.P);
+            z4 = (getLayout() == null || !(getLayout().getText() instanceof Spanned) || ((org.telegram.ui.Components.zi0[]) ((Spanned) getLayout().getText()).getSpans(0, getLayout().getText().length(), org.telegram.ui.Components.zi0.class)).length <= 0) ? false : false;
             this.Q = z4;
             if (z4) {
                 i10 = 32;
             }
-            k7.i6.a(this, 16.0f, 8.0f, i10 + 16, 8.0f);
+            k7.h6.a(this, 16.0f, 8.0f, i10 + 16, 8.0f);
             this.R = getLayout();
         }
     }
@@ -196,7 +196,7 @@ public final class cu0 extends jh.s {
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         super.onTextChanged(charSequence, i10, i11, i12);
         this.S = org.telegram.ui.Components.u5.update(0, this, this.S, getLayout());
-        this.P = org.telegram.ui.Components.bj0.e(getLayout(), this.P);
+        this.P = org.telegram.ui.Components.aj0.e(getLayout(), this.P);
     }
 
     public void setLoading(boolean z4) {

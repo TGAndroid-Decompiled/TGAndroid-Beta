@@ -1,115 +1,180 @@
 package sh;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import k7.c6;
-import org.telegram.messenger.AndroidUtilities;
+import java.util.ArrayList;
+import k7.b6;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.yh;
-public final class g extends FrameLayout {
-    public final ImageView f47458a;
-    public final FrameLayout.LayoutParams f47459b;
-    public final FrameLayout.LayoutParams f47460c;
-    public final TextView d;
-    public final TextView f47461e;
-    public final TextView f47462f;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_communities;
+import org.telegram.ui.ActionBar.d2;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.p2;
+import org.telegram.ui.Cells.g6;
+import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.z4;
+import org.telegram.ui.Components.z8;
+import org.telegram.ui.ai;
+import org.telegram.ui.web.a1;
+import ph.s1;
+public final class g extends p2 implements NotificationCenter.NotificationCenterDelegate {
+    public long f44404a;
+    public TLRPC.Chat f44405b;
+    public TLRPC.User f44406c;
+    public FrameLayout d;
+    public g61 e;
+    public f f44407f;
+    public ArrayList h;
+    public NotificationCenter.ObserversGroup f44408n;
 
-    public g(Context context, g6 g6Var) {
-        super(context);
-        ImageView imageView = new ImageView(context);
-        this.f47458a = imageView;
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        FrameLayout.LayoutParams d = c6.d(28, 28.0f, 51, 17.0f, 14.33f, 0.0f, 0.0f);
-        this.f47459b = d;
-        addView(imageView, d);
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        FrameLayout.LayoutParams d10 = c6.d(-1, -2.0f, 55, 62.0f, 10.0f, 40.0f, 8.66f);
-        this.f47460c = d10;
-        addView(linearLayout, d10);
-        TextView textView = new TextView(context);
-        this.d = textView;
-        org.telegram.ui.b.g(15.0f, 1, textView);
-        textView.setTextColor(k6.v0(k6.G6, g6Var));
-        TextView i10 = yh.i(linearLayout, textView, c6.t(-1, -2, 55, 0, 0, 0, 0), context);
-        this.f47461e = i10;
-        i10.setTextSize(1, 14.0f);
-        i10.setTextColor(k6.v0(k6.f22055z6, g6Var));
-        linearLayout.addView(i10, c6.t(-1, -2, 55, 0, 3, 0, 0));
-        ImageView imageView2 = new ImageView(context);
-        imageView2.setColorFilter(new PorterDuffColorFilter(k6.v0(k6.M6, g6Var), mode));
-        imageView2.setImageResource(R.drawable.msg_arrowright);
-        imageView2.setScaleType(scaleType);
-        addView(imageView2, c6.d(24, 24.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.f47462f = textView2;
-        textView2.setTextColor(-1);
-        textView2.setBackground(k6.b0(AndroidUtilities.dp(4.0f), k6.v0(k6.uj, g6Var)));
-        textView2.setTextSize(1, 13.0f);
-        textView2.setTypeface(AndroidUtilities.bold());
-        textView2.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        textView2.setGravity(17);
-        textView2.setVisibility(8);
-        addView(textView2, c6.d(-2, 18.0f, 21, 0.0f, 0.0f, 35.33f, 0.0f));
+    public static void U(g gVar, i51 i51Var) {
+        g gVar2;
+        if (i51Var.d == 1) {
+            gVar2 = gVar;
+            z4.R(gVar.getParentActivity(), gVar2, LocaleController.getString(R.string.CommunityNewCommunityTitle), null, LocaleController.getString(R.string.CommunityNewCommunityNameHint), null, Integer.MAX_VALUE, LocaleController.getString(R.string.Create), gVar.resourceProvider, new c(gVar));
+        } else {
+            gVar2 = gVar;
+        }
+        Object obj = i51Var.G;
+        if (obj instanceof TLRPC.Chat) {
+            TLRPC.Chat chat = (TLRPC.Chat) obj;
+            gVar2.getMessagesController().getChat(Long.valueOf(-gVar2.f44404a));
+            gVar2.showDialog(new uh.a(gVar2.getParentActivity(), chat, gVar2.f44404a, new s1(12, gVar2, chat)));
+        }
     }
 
-    public final void a(int i10, int i11, CharSequence charSequence, CharSequence charSequence2) {
-        ImageView imageView = this.f47458a;
-        imageView.setImageResource(i11);
-        imageView.setBackground(k6.b0(AndroidUtilities.dp(9.0f), i10));
-        TextView textView = this.d;
-        textView.setText(charSequence);
-        boolean isEmpty = TextUtils.isEmpty(charSequence2);
-        TextView textView2 = this.f47461e;
-        FrameLayout.LayoutParams layoutParams = this.f47460c;
-        FrameLayout.LayoutParams layoutParams2 = this.f47459b;
-        if (isEmpty) {
-            layoutParams2.topMargin = AndroidUtilities.dp(10.0f);
-            layoutParams2.bottomMargin = AndroidUtilities.dp(10.0f);
-            textView.setTypeface(null);
-            textView.setTextSize(1, 16.0f);
-            layoutParams.topMargin = 0;
-            layoutParams.bottomMargin = 0;
-            layoutParams.gravity = 23;
-            textView2.setVisibility(8);
+    public final void V(String str, boolean z4) {
+        if (!ChatObject.isChannel(this.f44405b) && this.f44406c == null) {
+            d2 d2Var = new d2(getParentActivity(), 3, null);
+            d2Var.q(250L);
+            getMessagesController().convertToMegaGroup(getParentActivity(), -this.f44404a, this, new o9.b(this, d2Var, str, z4, 5));
             return;
         }
-        layoutParams2.topMargin = AndroidUtilities.dp(14.33f);
-        layoutParams2.bottomMargin = AndroidUtilities.dp(10.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(1, 15.0f);
-        layoutParams.topMargin = AndroidUtilities.dp(10.0f);
-        layoutParams.bottomMargin = AndroidUtilities.dp(8.66f);
-        layoutParams.gravity = 55;
-        textView2.setText(charSequence2);
-        textView2.setVisibility(0);
+        getMessagesController().createCommunity(str, this.f44404a, z4, new b(this, 1));
+    }
+
+    public final void W(long j10, boolean z4) {
+        if (!ChatObject.isChannel(this.f44405b) && this.f44406c == null) {
+            d2 d2Var = new d2(getParentActivity(), 3, null);
+            d2Var.q(250L);
+            getMessagesController().convertToMegaGroup(getParentActivity(), -this.f44404a, this, new d(this, d2Var, j10, z4, 0));
+            return;
+        }
+        int i10 = this.currentAccount;
+        long j11 = -this.f44404a;
+        MessagesController.getInstance(i10).linkCommunity(-j11, j10, z4, new kh.l(this, j11, 3));
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final View createView(Context context) {
+        int i10;
+        setHasOwnBackground(true);
+        this.actionBar.setAddToContainer(false);
+        this.actionBar.setAllowOverlayTitle(false);
+        ai.z(false, this.actionBar);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setActionBarMenuOnItemClick(new e(this, 0));
+        sg.c cVar = new sg.c();
+        cVar.a(getThemedColor(j6.f19881d6));
+        ng.a aVar = new ng.a(cVar);
+        this.actionBar.setBackground(null);
+        this.actionBar.M(aVar, rg.b.o(this.resourceProvider), false);
+        this.actionBar.M0 = true;
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.d = frameLayout;
+        frameLayout.setBackgroundColor(j6.w0(null, j6.f19827a7, false));
+        f fVar = new f(context, this.resourceProvider);
+        this.f44407f = fVar;
+        fVar.setTitle(LocaleController.getString(R.string.CommunityTitle));
+        f fVar2 = this.f44407f;
+        if (this.f44406c != null) {
+            i10 = R.string.CommunityDescriptionBot;
+        } else if (ChatObject.isChannelAndNotMegaGroup(this.f44405b)) {
+            i10 = R.string.CommunityDescriptionChannel;
+        } else {
+            i10 = R.string.CommunityDescriptionGroup;
+        }
+        fVar2.setSubtitle(LocaleController.getString(i10));
+        this.f44407f.setTag(-33024);
+        TLRPC.User user = this.f44406c;
+        if (user != null) {
+            this.f44407f.f44397a.e(user, new z8(0, this.f44406c));
+        } else {
+            TLRPC.Chat chat = this.f44405b;
+            if (chat != null) {
+                this.f44407f.f44397a.e(chat, new z8(this.f44405b));
+            }
+        }
+        g61 g61Var = new g61(this, new b(this, 0), new c(this), new c(this));
+        this.e = g61Var;
+        g61Var.setClipToPadding(false);
+        g61 g61Var2 = this.e;
+        g61Var2.V2.f30148r = false;
+        g61Var2.o1();
+        this.d.addView(this.e, b6.c(-1.0f, -1));
+        this.d.addView(this.actionBar, b6.e(-1, -2, 48));
+        FrameLayout frameLayout2 = this.d;
+        this.fragmentView = frameLayout2;
+        return frameLayout2;
     }
 
-    public void setPercent(CharSequence charSequence) {
-        boolean isEmpty = TextUtils.isEmpty(charSequence);
-        TextView textView = this.f47462f;
-        if (isEmpty) {
-            textView.setVisibility(8);
-            return;
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12;
+        if (i10 == NotificationCenter.chatInfoDidLoad) {
+            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
+            long j10 = chatFull.f19160id;
+            View x12 = this.e.x1((int) (j10 ^ (j10 >>> 32)));
+            if (x12 instanceof g6) {
+                g6 g6Var = (g6) x12;
+                ArrayList<TL_communities.CommunityPeer> arrayList = chatFull.linked_peers;
+                if (arrayList != null) {
+                    i12 = arrayList.size();
+                } else {
+                    i12 = 0;
+                }
+                g6Var.setSubLabel(LocaleController.formatPluralString("Chats", i12, new Object[0]));
+                return;
+            }
+            this.e.V2.N(false);
         }
-        textView.setVisibility(0);
-        textView.setText(charSequence);
+    }
+
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        this.f44404a = this.arguments.getLong("dialog_id", 0L);
+        this.f44405b = getMessagesController().getChat(Long.valueOf(-this.f44404a));
+        this.f44406c = getMessagesController().getUser(Long.valueOf(this.f44404a));
+        this.h = getMessagesController().getJoinedCommunities();
+        getMessagesController().fetchJoinedCommunities(new a1(this, 14), this.classGuid);
+        this.f44408n = getNotificationCenter().createObserversGroup(this).add(NotificationCenter.chatInfoDidLoad);
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        NotificationCenter.ObserversGroup observersGroup = this.f44408n;
+        if (observersGroup != null) {
+            observersGroup.removeAllObservers();
+            this.f44408n = null;
+        }
+        super.onFragmentDestroy();
+    }
+
+    @Override
+    public final void onInsets(int i10, int i11, int i12, int i13) {
+        super.onInsets(i10, i11, i12, i13);
+        this.e.setPadding(0, i11, 0, i13);
     }
 }

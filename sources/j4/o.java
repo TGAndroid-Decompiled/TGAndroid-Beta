@@ -3,15 +3,16 @@ package j4;
 import android.os.Parcel;
 import android.os.Parcelable;
 import h5.d0;
+import kf.k0;
 public final class o extends j {
     public static final Parcelable.Creator<o> CREATOR = new f8.o(22);
-    public final String f9540b;
-    public final String f9541c;
+    public final String f8916b;
+    public final String f8917c;
 
     public o(String str, String str2, String str3) {
         super(str);
-        this.f9540b = str2;
-        this.f9541c = str3;
+        this.f8916b = str2;
+        this.f8917c = str3;
     }
 
     public final boolean equals(Object obj) {
@@ -20,7 +21,7 @@ public final class o extends j {
         }
         if (obj != null && o.class == obj.getClass()) {
             o oVar = (o) obj;
-            if (this.f9529a.equals(oVar.f9529a) && d0.a(this.f9540b, oVar.f9540b) && d0.a(this.f9541c, oVar.f9541c)) {
+            if (this.f8906a.equals(oVar.f8906a) && d0.a(this.f8916b, oVar.f8916b) && d0.a(this.f8917c, oVar.f8917c)) {
                 return true;
             }
         }
@@ -29,16 +30,16 @@ public final class o extends j {
 
     public final int hashCode() {
         int i10;
-        int e6 = l.d.e(527, 31, this.f9529a);
+        int e = k0.e(527, 31, this.f8906a);
         int i11 = 0;
-        String str = this.f9540b;
+        String str = this.f8916b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
-        int i12 = (e6 + i10) * 31;
-        String str2 = this.f9541c;
+        int i12 = (e + i10) * 31;
+        String str2 = this.f8917c;
         if (str2 != null) {
             i11 = str2.hashCode();
         }
@@ -47,14 +48,14 @@ public final class o extends j {
 
     @Override
     public final String toString() {
-        return this.f9529a + ": url=" + this.f9541c;
+        return this.f8906a + ": url=" + this.f8917c;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f9529a);
-        parcel.writeString(this.f9540b);
-        parcel.writeString(this.f9541c);
+        parcel.writeString(this.f8906a);
+        parcel.writeString(this.f8916b);
+        parcel.writeString(this.f8917c);
     }
 
     public o(android.os.Parcel r3) {

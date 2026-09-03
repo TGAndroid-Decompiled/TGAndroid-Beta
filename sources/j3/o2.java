@@ -2,10 +2,10 @@ package j3;
 
 import android.util.Pair;
 public abstract class o2 implements g {
-    public static final l2 f9353a = new Object();
+    public static final l2 f8748a = new Object();
 
     static {
-        int i10 = h5.d0.f7237a;
+        int i10 = h5.d0.f6924a;
         Integer.toString(0, 36);
         Integer.toString(1, 36);
         Integer.toString(2, 36);
@@ -28,13 +28,13 @@ public abstract class o2 implements g {
     }
 
     public final int d(int i10, m2 m2Var, n2 n2Var, int i11, boolean z4) {
-        int i12 = f(i10, m2Var, false).f9285c;
+        int i12 = f(i10, m2Var, false).f8686c;
         if (m(i12, n2Var, 0L).C == i10) {
-            int e6 = e(i12, i11, z4);
-            if (e6 == -1) {
+            int e = e(i12, i11, z4);
+            if (e == -1) {
                 return -1;
             }
-            return m(e6, n2Var, 0L).B;
+            return m(e, n2Var, 0L).B;
         }
         return i10 + 1;
     }
@@ -87,9 +87,9 @@ public abstract class o2 implements g {
                                     int a2 = a(true);
                                     if (a2 == o2Var.a(true) && (c3 = c(true)) == o2Var.c(true)) {
                                         while (a2 != c3) {
-                                            int e6 = e(a2, 0, true);
-                                            if (e6 == o2Var.e(a2, 0, true)) {
-                                                a2 = e6;
+                                            int e = e(a2, 0, true);
+                                            if (e == o2Var.e(a2, 0, true)) {
+                                                a2 = e;
                                             }
                                         }
                                     }
@@ -141,28 +141,28 @@ public abstract class o2 implements g {
         h5.a.h(i10, o());
         m(i10, n2Var, j11);
         if (j10 == -9223372036854775807L) {
-            j10 = n2Var.f9343x;
+            j10 = n2Var.f8739x;
             if (j10 == -9223372036854775807L) {
                 return null;
             }
         }
         int i11 = n2Var.B;
         f(i11, m2Var, false);
-        while (i11 < n2Var.C && m2Var.f9286e != j10) {
+        while (i11 < n2Var.C && m2Var.e != j10) {
             int i12 = i11 + 1;
-            if (f(i12, m2Var, false).f9286e > j10) {
+            if (f(i12, m2Var, false).e > j10) {
                 break;
             }
             i11 = i12;
         }
         f(i11, m2Var, true);
-        long j12 = j10 - m2Var.f9286e;
+        long j12 = j10 - m2Var.e;
         long j13 = m2Var.d;
         if (j13 != -9223372036854775807L) {
             j12 = Math.min(j12, j13 - 1);
         }
         long max = Math.max(0L, j12);
-        Object obj = m2Var.f9284b;
+        Object obj = m2Var.f8685b;
         obj.getClass();
         return Pair.create(obj, Long.valueOf(max));
     }

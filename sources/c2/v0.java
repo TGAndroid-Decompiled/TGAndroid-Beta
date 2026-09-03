@@ -1,22 +1,22 @@
 package c2;
 
-import android.os.Bundle;
-import android.util.Log;
-public final class v0 {
-    public final w0 f2186a;
+import android.os.Handler;
+import java.lang.ref.WeakReference;
+public final class v0 extends Handler {
+    public final int f2039a;
+    public WeakReference f2040b;
 
-    public v0(w0 w0Var) {
-        this.f2186a = w0Var;
+    public v0(int i10) {
+        this.f2039a = i10;
     }
 
-    public static void a(String str, Bundle bundle) {
-        Log.d("MediaRouteProviderProxy", "Error: " + str + ", data: " + bundle);
+    @Override
+    public final void handleMessage(android.os.Message r39) {
+        throw new UnsupportedOperationException("Method not decompiled: c2.v0.handleMessage(android.os.Message):void");
     }
 
-    public final void b(Bundle bundle) {
-        String string = bundle.getString("groupableTitle");
-        w0 w0Var = this.f2186a;
-        w0Var.f2188g = string;
-        w0Var.h = bundle.getString("transferableTitle");
+    public v0(t0 t0Var) {
+        this.f2039a = 0;
+        this.f2040b = new WeakReference(t0Var);
     }
 }

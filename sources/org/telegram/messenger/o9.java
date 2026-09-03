@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class o9 implements Utilities.Callback {
-    public final int f19548a;
-    public final MediaDataController f19549b;
-    public final TLRPC.StickerSet f19550c;
+    public final int f17982a;
+    public final MediaDataController f17983b;
+    public final TLRPC.StickerSet f17984c;
 
     public o9(MediaDataController mediaDataController, TLRPC.StickerSet stickerSet, int i10) {
-        this.f19548a = i10;
-        this.f19549b = mediaDataController;
-        this.f19550c = stickerSet;
+        this.f17982a = i10;
+        this.f17983b = mediaDataController;
+        this.f17984c = stickerSet;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f19548a) {
+        switch (this.f17982a) {
             case 0:
-                this.f19549b.lambda$toggleStickerSetInternal$115(this.f19550c, (ArrayList) obj);
+                this.f17983b.lambda$toggleStickerSetInternal$115(this.f17984c, (ArrayList) obj);
                 return;
             default:
-                this.f19549b.lambda$toggleStickerSetInternal$112(this.f19550c, (ArrayList) obj);
+                this.f17983b.lambda$toggleStickerSetInternal$112(this.f17984c, (ArrayList) obj);
                 return;
         }
     }

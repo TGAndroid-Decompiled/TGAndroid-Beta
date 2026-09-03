@@ -1,14 +1,14 @@
 package org.telegram.ui.Cells;
-public final class m2 {
-    public String f23152a;
-    public String f23153b;
-    public int f23154c;
-    public int d;
-    public boolean f23155e;
-    public boolean f23156f;
-    public int f23157g;
-    public int h;
-    public boolean f23158i;
-    public boolean f23159j;
-    public int f23160k = -1;
+public interface m2 {
+    void a(q2 q2Var);
+
+    boolean b();
+
+    void c();
+
+    void d(q2 q2Var);
+
+    void e(q2 q2Var);
+
+    void f(q2 q2Var);
 }

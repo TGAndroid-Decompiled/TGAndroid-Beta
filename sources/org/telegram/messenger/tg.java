@@ -6,33 +6,33 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.bh1;
+import org.telegram.ui.sg1;
 public final class tg implements Runnable {
-    public final int f20120a = 1;
-    public final int f20121b;
-    public final int f20122c;
+    public final int f18499a = 1;
+    public final int f18500b;
+    public final int f18501c;
     public final int d;
-    public final Object f20123e;
-    public final Object f20124f;
+    public final Object e;
+    public final Object f18502f;
 
     public tg(int i10, int i11, int i12, Bitmap[] bitmapArr, Utilities.Callback callback) {
-        this.f20121b = i10;
-        this.f20122c = i11;
+        this.f18500b = i10;
+        this.f18501c = i11;
         this.d = i12;
-        this.f20123e = bitmapArr;
-        this.f20124f = callback;
+        this.e = bitmapArr;
+        this.f18502f = callback;
     }
 
     @Override
     public final void run() {
-        switch (this.f20120a) {
+        switch (this.f18499a) {
             case 0:
-                ((MessagesStorage) this.f20123e).lambda$getDialogs$240(this.f20121b, this.f20122c, this.d, (long[]) this.f20124f);
+                ((MessagesStorage) this.e).lambda$getDialogs$240(this.f18500b, this.f18501c, this.d, (long[]) this.f18502f);
                 return;
             default:
-                Bitmap[] bitmapArr = (Bitmap[]) this.f20123e;
-                Utilities.Callback callback = (Utilities.Callback) this.f20124f;
-                Bitmap createBitmap = Bitmap.createBitmap(this.f20121b, this.f20122c, Bitmap.Config.ARGB_8888);
+                Bitmap[] bitmapArr = (Bitmap[]) this.e;
+                Utilities.Callback callback = (Utilities.Callback) this.f18502f;
+                Bitmap createBitmap = Bitmap.createBitmap(this.f18500b, this.f18501c, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 Path path = new Path();
                 RectF rectF = new RectF();
@@ -53,16 +53,16 @@ public final class tg implements Runnable {
                     }
                 }
                 Utilities.stackBlurBitmap(createBitmap, 1);
-                AndroidUtilities.runOnUIThread(new bh1(22, callback, createBitmap));
+                AndroidUtilities.runOnUIThread(new sg1(23, callback, createBitmap));
                 return;
         }
     }
 
     public tg(MessagesStorage messagesStorage, int i10, int i11, int i12, long[] jArr) {
-        this.f20123e = messagesStorage;
-        this.f20121b = i10;
-        this.f20122c = i11;
+        this.e = messagesStorage;
+        this.f18500b = i10;
+        this.f18501c = i11;
         this.d = i12;
-        this.f20124f = jArr;
+        this.f18502f = jArr;
     }
 }

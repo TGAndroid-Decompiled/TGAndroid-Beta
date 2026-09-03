@@ -9,15 +9,15 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.util.Log;
 public final class b implements ServiceConnection {
-    public p8.c f44789a;
-    public final c f44790b;
+    public p8.c f43022a;
+    public final c f43023b;
 
     public b(c cVar) {
-        this.f44790b = cVar;
+        this.f43023b = cVar;
     }
 
     public static boolean a(b bVar) {
-        if (bVar.f44789a != null) {
+        if (bVar.f43022a != null) {
             return true;
         }
         return false;
@@ -25,12 +25,12 @@ public final class b implements ServiceConnection {
 
     public final boolean b(Intent intent, Bundle bundle) {
         boolean z4;
-        p8.c cVar = this.f44789a;
+        p8.c cVar = this.f43022a;
         if (cVar != null) {
             p8.a aVar = (p8.a) cVar;
             Parcel obtain = Parcel.obtain();
             obtain.writeInterfaceToken("com.google.android.search.verification.api.ISearchActionVerificationService");
-            int i10 = u2.a.f48265a;
+            int i10 = u2.a.f45049a;
             if (intent == null) {
                 obtain.writeInt(0);
             } else {
@@ -57,11 +57,11 @@ public final class b implements ServiceConnection {
     public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         boolean z4;
         p8.c aVar;
-        z4 = this.f44790b.dbg;
+        z4 = this.f43023b.dbg;
         if (z4) {
             Log.d("SAVerificationClientS", "onServiceConnected");
         }
-        int i10 = p8.b.f44247a;
+        int i10 = p8.b.f41082a;
         if (iBinder == null) {
             aVar = null;
         } else {
@@ -72,14 +72,14 @@ public final class b implements ServiceConnection {
                 aVar = new p8.a(iBinder);
             }
         }
-        this.f44789a = aVar;
+        this.f43022a = aVar;
     }
 
     @Override
     public final void onServiceDisconnected(ComponentName componentName) {
         boolean z4;
-        this.f44789a = null;
-        z4 = this.f44790b.dbg;
+        this.f43022a = null;
+        z4 = this.f43023b.dbg;
         if (z4) {
             Log.d("SAVerificationClientS", "onServiceDisconnected");
         }

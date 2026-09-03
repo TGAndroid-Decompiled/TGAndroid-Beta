@@ -10,19 +10,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-public final class ht0 extends rl0 {
-    public final Context f27624c;
+public final class ht0 extends ql0 {
+    public final Context f25494c;
     public TLRPC.ChatFull d;
-    public ArrayList f27625e;
-    public final yu0 f27626f;
+    public ArrayList e;
+    public final yu0 f25495f;
 
     public ht0(yu0 yu0Var, Context context) {
-        this.f27626f = yu0Var;
-        this.f27624c = context;
+        this.f25495f = yu0Var;
+        this.f25494c = context;
     }
 
     @Override
-    public final boolean D(f2.m1 m1Var) {
+    public final boolean D(f2.l1 l1Var) {
         return true;
     }
 
@@ -49,7 +49,7 @@ public final class ht0 extends rl0 {
     }
 
     @Override
-    public final void v(f2.m1 m1Var, int i10) {
+    public final void v(f2.l1 l1Var, int i10) {
         TLRPC.ChatParticipant chatParticipant;
         String str;
         boolean z4;
@@ -60,13 +60,13 @@ public final class ht0 extends rl0 {
         boolean z14;
         boolean z15;
         boolean z16;
-        yu0 yu0Var = this.f27626f;
-        org.telegram.ui.ActionBar.p2 p2Var = yu0Var.f33649s1;
-        View view = m1Var.f5875a;
-        if (view instanceof org.telegram.ui.Cells.va) {
-            org.telegram.ui.Cells.va vaVar = (org.telegram.ui.Cells.va) view;
-            if (!this.f27625e.isEmpty()) {
-                chatParticipant = this.d.participants.participants.get(((Integer) this.f27625e.get(i10)).intValue());
+        yu0 yu0Var = this.f25495f;
+        org.telegram.ui.ActionBar.p2 p2Var = yu0Var.f31155s1;
+        View view = l1Var.f5774a;
+        if (view instanceof org.telegram.ui.Cells.ua) {
+            org.telegram.ui.Cells.ua uaVar = (org.telegram.ui.Cells.ua) view;
+            if (!this.e.isEmpty()) {
+                chatParticipant = this.d.participants.participants.get(((Integer) this.e.get(i10)).intValue());
             } else {
                 chatParticipant = this.d.participants.participants.get(i10);
             }
@@ -134,30 +134,30 @@ public final class ht0 extends rl0 {
                     z12 = false;
                 }
                 TLRPC.User user = p2Var.getMessagesController().getUser(Long.valueOf(chatParticipant.user_id));
-                if (UserObject.isUserSelf(user) && ChatObject.canManageMyTag(p2Var.getMessagesController().getChat(Long.valueOf(-yu0Var.f33624g1)))) {
+                if (UserObject.isUserSelf(user) && ChatObject.canManageMyTag(p2Var.getMessagesController().getChat(Long.valueOf(-yu0Var.f31130g1)))) {
                     z13 = true;
                 } else {
                     z13 = false;
                 }
-                vaVar.a(str, z4, z10, z13, new k60(this, user, str, z4, z10, z12, 1));
+                uaVar.a(str, z4, z10, z13, new j60(this, user, str, z4, z10, z12, 1));
                 if (i10 == this.d.participants.participants.size() - 1) {
                     z17 = false;
                 }
-                vaVar.d(user, null, null, z17);
+                uaVar.d(user, null, null, z17);
             }
         }
     }
 
     @Override
-    public final f2.m1 x(ViewGroup viewGroup, int i10) {
-        yu0 yu0Var = this.f27626f;
+    public final f2.l1 x(ViewGroup viewGroup, int i10) {
+        yu0 yu0Var = this.f25495f;
         if (i10 == 20) {
-            kt0 M = yu0.M(7, yu0Var.f33624g1, this.f27624c, yu0Var.C1);
-            M.setLayoutParams(new f2.x0(-1, -1));
-            return new f2.m1(M);
+            kt0 M = yu0.M(7, yu0Var.f31130g1, this.f25494c, yu0Var.C1);
+            M.setLayoutParams(new f2.w0(-1, -1));
+            return new f2.l1(M);
         }
-        org.telegram.ui.Cells.va vaVar = new org.telegram.ui.Cells.va(9, 0, this.f27624c, yu0Var.C1, true, false);
-        vaVar.setLayoutParams(new f2.x0(-1, -2));
-        return new f2.m1(vaVar);
+        org.telegram.ui.Cells.ua uaVar = new org.telegram.ui.Cells.ua(9, 0, this.f25494c, yu0Var.C1, true, false);
+        uaVar.setLayoutParams(new f2.w0(-1, -2));
+        return new f2.l1(uaVar);
     }
 }

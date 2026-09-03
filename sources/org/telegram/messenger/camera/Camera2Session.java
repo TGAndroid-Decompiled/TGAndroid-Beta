@@ -124,8 +124,8 @@ public class Camera2Session {
             try {
                 Camera2Session.this.updateCaptureRequest();
                 AndroidUtilities.runOnUIThread(new d(this, 0));
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
     }
@@ -188,8 +188,8 @@ public class Camera2Session {
             }
             this.maxZoom = f10;
             cameraManager.openCamera(str, anonymousClass1, this.handler);
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             AndroidUtilities.runOnUIThread(new a(this, 0));
         }
     }
@@ -203,8 +203,8 @@ public class Camera2Session {
                 arrayList.add(this.surface);
                 arrayList.add(this.imageReader.getSurface());
                 this.cameraDevice.createCaptureSession(arrayList, this.captureStateCallback, null);
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e) {
+                FileLog.e(e);
                 AndroidUtilities.runOnUIThread(new a(this, 1));
             }
         }
@@ -287,8 +287,8 @@ public class Camera2Session {
                                         f10 = width;
                                     }
                                 }
-                            } catch (Exception e6) {
-                                e = e6;
+                            } catch (Exception e) {
+                                e = e;
                                 FileLog.e(e);
                                 if (str == null) {
                                 }
@@ -296,14 +296,14 @@ public class Camera2Session {
                             }
                         }
                     }
-                } catch (Exception e10) {
-                    e = e10;
+                } catch (Exception e6) {
+                    e = e6;
                     camera2Session = null;
                 }
             }
             camera2Session = null;
-        } catch (Exception e11) {
-            e = e11;
+        } catch (Exception e10) {
+            e = e10;
             camera2Session = null;
             size = null;
             str = null;
@@ -325,8 +325,8 @@ public class Camera2Session {
     public void lambda$destroy$3(Runnable runnable) {
         try {
             this.thread.join();
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
         if (runnable != null) {
             runnable.run();
@@ -416,8 +416,8 @@ public class Camera2Session {
                 }
                 this.captureRequestBuilder.addTarget(this.surface);
                 this.captureSession.setRepeatingRequest(this.captureRequestBuilder.build(), null, this.handler);
-            } catch (Exception e6) {
-                FileLog.e("Camera2Sessions setRepeatingRequest error in updateCaptureRequest", e6);
+            } catch (Exception e) {
+                FileLog.e("Camera2Sessions setRepeatingRequest error in updateCaptureRequest", e);
             }
         }
     }
@@ -511,8 +511,8 @@ public class Camera2Session {
             updateCaptureRequest();
             try {
                 this.captureSession.setRepeatingRequest(this.captureRequestBuilder.build(), null, this.handler);
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
     }
@@ -535,8 +535,8 @@ public class Camera2Session {
                     }
                 }, null);
                 return true;
-            } catch (Exception e6) {
-                FileLog.e("Camera2Sessions takePicture error", e6);
+            } catch (Exception e) {
+                FileLog.e("Camera2Sessions takePicture error", e);
             }
         }
         return false;
@@ -575,8 +575,8 @@ public class Camera2Session {
         this.thread.quitSafely();
         try {
             this.thread.join();
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
         if (runnable != null) {
             AndroidUtilities.runOnUIThread(runnable);

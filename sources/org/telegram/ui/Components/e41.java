@@ -8,26 +8,26 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
 import android.widget.TextView;
-public final class e41 extends g51 {
+public final class e41 extends h51 {
     static {
-        g51.setup(new g51());
+        h51.setup(new h51());
     }
 
-    public static h51 a(int i10, CharSequence charSequence, boolean z4, View.OnClickListener onClickListener, f90 f90Var, View.OnClickListener onClickListener2) {
-        h51 J = h51.J(e41.class);
+    public static i51 a(int i10, CharSequence charSequence, boolean z4, View.OnClickListener onClickListener, e90 e90Var, View.OnClickListener onClickListener2) {
+        i51 J = i51.J(e41.class);
         J.d = i10;
-        J.f27375l = charSequence;
-        J.f27370f = z4;
-        J.f27383t = false;
+        J.f25585l = charSequence;
+        J.f25580f = z4;
+        J.f25593t = false;
         J.D = onClickListener;
-        J.G = f90Var;
+        J.G = e90Var;
         J.E = onClickListener2;
         return J;
     }
 
     @Override
-    public final void bindView(View view, h51 h51Var, boolean z4, w51 w51Var, h61 h61Var) {
-        f90 f90Var;
+    public final void bindView(View view, i51 i51Var, boolean z4, w51 w51Var, g61 g61Var) {
+        e90 e90Var;
         CharSequence cloneSpans;
         int i10;
         int i11;
@@ -35,43 +35,43 @@ public final class e41 extends g51 {
         boolean z10;
         int i13;
         f41 f41Var = (f41) view;
-        CharSequence charSequence = h51Var.f27375l;
-        boolean z11 = h51Var.f27370f;
-        View.OnClickListener onClickListener = h51Var.D;
-        Object obj = h51Var.G;
+        CharSequence charSequence = i51Var.f25585l;
+        boolean z11 = i51Var.f25580f;
+        View.OnClickListener onClickListener = i51Var.D;
+        Object obj = i51Var.G;
         if (obj != null) {
-            f90Var = (f90) obj;
+            e90Var = (e90) obj;
         } else {
-            f90Var = null;
+            e90Var = null;
         }
-        boolean z12 = h51Var.f27383t;
-        View.OnClickListener onClickListener2 = h51Var.E;
-        ImageView imageView = f41Var.f26776n;
+        boolean z12 = i51Var.f25593t;
+        View.OnClickListener onClickListener2 = i51Var.E;
+        ImageView imageView = f41Var.f24796n;
         TextView textView = f41Var.d;
-        c41 c41Var = f41Var.f26773c;
-        d41 d41Var = f41Var.f26775f;
+        c41 c41Var = f41Var.f24794c;
+        d41 d41Var = f41Var.f24795f;
         if (charSequence == null) {
             cloneSpans = "";
         } else {
             cloneSpans = u5.cloneSpans(charSequence);
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(cloneSpans);
-        l90[] l90VarArr = (l90[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), l90.class);
-        if (l90VarArr != null) {
+        k90[] k90VarArr = (k90[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), k90.class);
+        if (k90VarArr != null) {
             int i14 = 0;
-            while (i14 < l90VarArr.length) {
-                int spanStart = spannableStringBuilder.getSpanStart(l90VarArr[i14]);
-                int spanEnd = spannableStringBuilder.getSpanEnd(l90VarArr[i14]);
+            while (i14 < k90VarArr.length) {
+                int spanStart = spannableStringBuilder.getSpanStart(k90VarArr[i14]);
+                int spanEnd = spannableStringBuilder.getSpanEnd(k90VarArr[i14]);
                 boolean z13 = z12;
-                spannableStringBuilder.removeSpan(l90VarArr[i14]);
+                spannableStringBuilder.removeSpan(k90VarArr[i14]);
                 int i15 = i14;
-                l90 l90Var = l90VarArr[i15];
-                l90 l90Var2 = new l90(d41Var, l90Var.f28697a, l90Var.d, null);
-                l90 l90Var3 = l90VarArr[i15];
-                l90Var2.f28701f = l90Var3.f28701f;
-                l90Var2.h = l90Var3.h;
-                l90Var2.f28702n = l90Var3.f28702n;
-                spannableStringBuilder.setSpan(l90Var2, spanStart, spanEnd, 33);
+                k90 k90Var = k90VarArr[i15];
+                k90 k90Var2 = new k90(d41Var, k90Var.f26235a, k90Var.d, null);
+                k90 k90Var3 = k90VarArr[i15];
+                k90Var2.f26238f = k90Var3.f26238f;
+                k90Var2.h = k90Var3.h;
+                k90Var2.f26239n = k90Var3.f26239n;
+                spannableStringBuilder.setSpan(k90Var2, spanStart, spanEnd, 33);
                 i14 = i15 + 1;
                 z12 = z13;
                 onClickListener2 = onClickListener2;
@@ -83,7 +83,7 @@ public final class e41 extends g51 {
             c41Var.setVisibility(0);
             d41Var.setVisibility(0);
             ViewPropertyAnimator withEndAction = c41Var.animate().alpha(0.0f).withEndAction(new nq0(f41Var, 23));
-            TimeInterpolator timeInterpolator = pr.h;
+            TimeInterpolator timeInterpolator = mr.h;
             withEndAction.setInterpolator(timeInterpolator).setDuration(320L).start();
             d41Var.animate().alpha(1.0f).setInterpolator(timeInterpolator).setDuration(320L).start();
         } else {
@@ -111,13 +111,13 @@ public final class e41 extends g51 {
         f41Var.setClipChildren(z11);
         c41Var.setText(spannableStringBuilder);
         d41Var.setText(spannableStringBuilder);
-        if (!z14 && (l90VarArr == null || l90VarArr.length == 0)) {
+        if (!z14 && (k90VarArr == null || k90VarArr.length == 0)) {
             z10 = true;
         } else {
             z10 = false;
         }
         d41Var.setTextIsSelectable(z10);
-        d41Var.setOnLinkPressListener(f90Var);
+        d41Var.setOnLinkPressListener(e90Var);
         if (onClickListener3 != null) {
             i13 = 0;
         } else {
@@ -125,26 +125,26 @@ public final class e41 extends g51 {
         }
         imageView.setVisibility(i13);
         imageView.setOnClickListener(onClickListener3);
-        f41Var.f26772b = z4;
+        f41Var.f24793b = z4;
         f41Var.setWillNotDraw(true ^ z4);
     }
 
     @Override
-    public final boolean contentsEquals(h51 h51Var, h51 h51Var2) {
-        if (TextUtils.equals(h51Var.f27375l, h51Var2.f27375l) && h51Var.f27370f == h51Var2.f27370f) {
+    public final boolean contentsEquals(i51 i51Var, i51 i51Var2) {
+        if (TextUtils.equals(i51Var.f25585l, i51Var2.f25585l) && i51Var.f25580f == i51Var2.f25580f) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final View createView(Context context, sl0 sl0Var, int i10, int i11, org.telegram.ui.ActionBar.g6 g6Var) {
-        return new f41(context, g6Var);
+    public final View createView(Context context, rl0 rl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+        return new f41(context, f6Var);
     }
 
     @Override
-    public final boolean equals(h51 h51Var, h51 h51Var2) {
-        if (h51Var.d == h51Var2.d) {
+    public final boolean equals(i51 i51Var, i51 i51Var2) {
+        if (i51Var.d == i51Var2.d) {
             return true;
         }
         return false;

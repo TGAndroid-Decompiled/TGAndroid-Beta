@@ -1,42 +1,24 @@
 package org.telegram.ui;
+public final class dj0 implements Runnable {
+    public final int f33487a;
+    public final jj0 f33488b;
 
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.tgnet.TLRPC;
-public final class dj0 implements View.OnClickListener {
-    public final int f36219a;
-    public final ij0 f36220b;
-
-    public dj0(ij0 ij0Var, int i10) {
-        this.f36219a = i10;
-        this.f36220b = ij0Var;
+    public dj0(jj0 jj0Var, int i10) {
+        this.f33487a = i10;
+        this.f33488b = jj0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f36219a) {
+    public final void run() {
+        switch (this.f33487a) {
             case 0:
-                ij0 ij0Var = this.f36220b;
-                hj0 hj0Var = ij0Var.f37731n0;
-                HashSet hashSet = ij0Var.f37719a0;
-                if (hashSet.size() != 0 && hj0Var != null) {
-                    ArrayList arrayList = new ArrayList();
-                    for (TLRPC.User user : ij0Var.f37724f0.values()) {
-                        if (hashSet.contains(Long.valueOf(user.f20992id))) {
-                            arrayList.add(Long.valueOf(user.f20992id));
-                        }
-                    }
-                    hj0Var.a(arrayList);
-                    ij0Var.dismiss();
-                    return;
-                }
+                this.f33488b.dismiss();
+                return;
+            case 1:
+                this.f33488b.U(true, false);
                 return;
             default:
-                ij0 ij0Var2 = this.f36220b;
-                ij0Var2.f37719a0.clear();
-                ij0Var2.V.d.b(true);
-                ij0Var2.U(true, false);
+                this.f33488b.U(true, false);
                 return;
         }
     }

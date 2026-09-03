@@ -145,8 +145,8 @@ public class NotificationBadge {
         public static void lambda$executeBadge$0(Bundle bundle) {
             try {
                 ApplicationLoader.applicationContext.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", (String) null, bundle);
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
 
@@ -460,8 +460,8 @@ public class NotificationBadge {
         public void lambda$executeBadge$0(Bundle bundle) {
             try {
                 ApplicationLoader.applicationContext.getContentResolver().call(this.CONTENT_URI, "setAppBadgeCount", (String) null, bundle);
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
 

@@ -3,50 +3,50 @@ package org.telegram.ui;
 import android.widget.EditText;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class bk0 extends org.telegram.ui.ActionBar.i5 {
-    public final NotificationsCustomSettingsActivity f35560f;
+public final class bk0 extends org.telegram.ui.ActionBar.h5 {
+    public final NotificationsCustomSettingsActivity f32904f;
 
     public bk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity) {
-        this.f35560f = notificationsCustomSettingsActivity;
+        this.f32904f = notificationsCustomSettingsActivity;
     }
 
     @Override
     public final void m() {
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f35560f;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f32904f;
         notificationsCustomSettingsActivity.d.F(null);
-        notificationsCustomSettingsActivity.f34188f = false;
+        notificationsCustomSettingsActivity.f31639f = false;
         notificationsCustomSettingsActivity.getClass();
-        notificationsCustomSettingsActivity.f34186c.setText(LocaleController.getString("NoExceptions", R.string.NoExceptions));
-        notificationsCustomSettingsActivity.f34184a.setAdapter(notificationsCustomSettingsActivity.f34185b);
-        notificationsCustomSettingsActivity.f34185b.l();
-        notificationsCustomSettingsActivity.f34184a.setFastScrollVisible(true);
-        notificationsCustomSettingsActivity.f34184a.setVerticalScrollBarEnabled(false);
-        notificationsCustomSettingsActivity.f34186c.setShowAtCenter(false);
+        notificationsCustomSettingsActivity.f31638c.setText(LocaleController.getString("NoExceptions", R.string.NoExceptions));
+        notificationsCustomSettingsActivity.f31636a.setAdapter(notificationsCustomSettingsActivity.f31637b);
+        notificationsCustomSettingsActivity.f31637b.l();
+        notificationsCustomSettingsActivity.f31636a.setFastScrollVisible(true);
+        notificationsCustomSettingsActivity.f31636a.setVerticalScrollBarEnabled(false);
+        notificationsCustomSettingsActivity.f31638c.setShowAtCenter(false);
     }
 
     @Override
     public final void n() {
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f35560f;
-        notificationsCustomSettingsActivity.f34188f = true;
-        notificationsCustomSettingsActivity.f34186c.setShowAtCenter(true);
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f32904f;
+        notificationsCustomSettingsActivity.f31639f = true;
+        notificationsCustomSettingsActivity.f31638c.setShowAtCenter(true);
     }
 
     @Override
     public final void q(EditText editText) {
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f35560f;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f32904f;
         if (notificationsCustomSettingsActivity.d == null) {
             return;
         }
         String obj = editText.getText().toString();
         if (obj.length() != 0) {
             notificationsCustomSettingsActivity.getClass();
-            if (notificationsCustomSettingsActivity.f34184a != null) {
-                notificationsCustomSettingsActivity.f34186c.setText(LocaleController.getString("NoResult", R.string.NoResult));
-                notificationsCustomSettingsActivity.f34186c.b();
-                notificationsCustomSettingsActivity.f34184a.setAdapter(notificationsCustomSettingsActivity.d);
+            if (notificationsCustomSettingsActivity.f31636a != null) {
+                notificationsCustomSettingsActivity.f31638c.setText(LocaleController.getString("NoResult", R.string.NoResult));
+                notificationsCustomSettingsActivity.f31638c.b();
+                notificationsCustomSettingsActivity.f31636a.setAdapter(notificationsCustomSettingsActivity.d);
                 notificationsCustomSettingsActivity.d.l();
-                notificationsCustomSettingsActivity.f34184a.setFastScrollVisible(false);
-                notificationsCustomSettingsActivity.f34184a.setVerticalScrollBarEnabled(true);
+                notificationsCustomSettingsActivity.f31636a.setFastScrollVisible(false);
+                notificationsCustomSettingsActivity.f31636a.setVerticalScrollBarEnabled(true);
             }
         }
         notificationsCustomSettingsActivity.d.F(obj);

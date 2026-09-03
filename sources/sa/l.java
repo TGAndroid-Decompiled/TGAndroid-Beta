@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
+import vh.w2;
 public final class l extends xa.a {
     public static final k F = new k();
     public static final Object G = new Object();
@@ -45,7 +46,7 @@ public final class l extends xa.a {
         if (x() == i10) {
             return;
         }
-        throw new IllegalStateException("Expected " + w.c.m(i10) + " but was " + w.c.m(x()) + H());
+        throw new IllegalStateException("Expected " + w2.m(i10) + " but was " + w2.m(x()) + H());
     }
 
     public final String G(boolean z4) {
@@ -133,14 +134,14 @@ public final class l extends xa.a {
     @Override
     public final void a() {
         F(1);
-        L(((pa.h) J()).f44276a.iterator());
+        L(((pa.h) J()).f41109a.iterator());
         this.E[this.C - 1] = 0;
     }
 
     @Override
     public final void b() {
         F(3);
-        L(((ra.j) ((pa.l) J()).f44278a.entrySet()).iterator());
+        L(((ra.j) ((pa.l) J()).f41111a.entrySet()).iterator());
     }
 
     @Override
@@ -212,7 +213,7 @@ public final class l extends xa.a {
     public final double o() {
         int x10 = x();
         if (x10 != 7 && x10 != 6) {
-            throw new IllegalStateException("Expected " + w.c.m(7) + " but was " + w.c.m(x10) + H());
+            throw new IllegalStateException("Expected " + w2.m(7) + " but was " + w2.m(x10) + H());
         }
         double q10 = ((pa.m) J()).q();
         if (!Double.isNaN(q10) && !Double.isInfinite(q10)) {
@@ -233,10 +234,10 @@ public final class l extends xa.a {
         int parseInt;
         int x10 = x();
         if (x10 != 7 && x10 != 6) {
-            throw new IllegalStateException("Expected " + w.c.m(7) + " but was " + w.c.m(x10) + H());
+            throw new IllegalStateException("Expected " + w2.m(7) + " but was " + w2.m(x10) + H());
         }
         pa.m mVar = (pa.m) J();
-        if (mVar.f44279a instanceof Number) {
+        if (mVar.f41112a instanceof Number) {
             parseInt = mVar.r().intValue();
         } else {
             parseInt = Integer.parseInt(mVar.n());
@@ -256,10 +257,10 @@ public final class l extends xa.a {
         long parseLong;
         int x10 = x();
         if (x10 != 7 && x10 != 6) {
-            throw new IllegalStateException("Expected " + w.c.m(7) + " but was " + w.c.m(x10) + H());
+            throw new IllegalStateException("Expected " + w2.m(7) + " but was " + w2.m(x10) + H());
         }
         pa.m mVar = (pa.m) J();
-        if (mVar.f44279a instanceof Number) {
+        if (mVar.f41112a instanceof Number) {
             parseLong = mVar.r().longValue();
         } else {
             parseLong = Long.parseLong(mVar.n());
@@ -300,7 +301,7 @@ public final class l extends xa.a {
     public final String v() {
         int x10 = x();
         if (x10 != 6 && x10 != 7) {
-            throw new IllegalStateException("Expected " + w.c.m(6) + " but was " + w.c.m(x10) + H());
+            throw new IllegalStateException("Expected " + w2.m(6) + " but was " + w2.m(x10) + H());
         }
         String n10 = ((pa.m) K()).n();
         int i10 = this.C;
@@ -339,7 +340,7 @@ public final class l extends xa.a {
                 return 1;
             }
             if (J instanceof pa.m) {
-                Serializable serializable = ((pa.m) J).f44279a;
+                Serializable serializable = ((pa.m) J).f41112a;
                 if (serializable instanceof String) {
                     return 6;
                 }

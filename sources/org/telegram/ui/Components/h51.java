@@ -1,387 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
+import android.content.Context;
 import android.util.LongSparseArray;
 import android.view.View;
-import j$.util.Objects;
+import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.ui.z91;
-public final class h51 extends cg.b {
-    public static int J = 10000;
-    public static LongSparseArray K;
-    public static HashMap L;
-    public float A;
-    public long B;
-    public Utilities.Callback C;
-    public View.OnClickListener D;
-    public View.OnClickListener E;
-    public org.telegram.ui.w3 F;
-    public Object G;
-    public Object H;
-    public boolean I;
-    public View f27368c;
-    public int d;
-    public boolean f27369e;
-    public boolean f27370f;
-    public boolean f27371g;
-    public boolean h;
-    public int f27372i;
-    public boolean f27373j;
-    public int f27374k;
-    public CharSequence f27375l;
-    public CharSequence f27376m;
-    public CharSequence f27377n;
-    public CharSequence f27378o;
-    public String[] f27379p;
-    public boolean f27380q;
-    public boolean f27381r;
-    public boolean f27382s;
-    public boolean f27383t;
-    public int f27384u;
-    public int v;
-    public boolean f27385w;
-    public long f27386x;
-    public int f27387y;
-    public int f27388z;
+public abstract class h51 {
+    private ArrayList<View> cache;
+    public final int viewType;
 
-    public h51(int i10) {
-        super(i10, false);
-        this.f27371g = true;
-        this.f27384u = -1;
-        this.I = true;
+    public h51() {
+        int i10 = i51.J;
+        i51.J = i10 + 1;
+        this.viewType = i10;
     }
 
-    public static h51 A(int i10, CharSequence charSequence) {
-        h51 h51Var = new h51(7);
-        h51Var.d = i10;
-        h51Var.f27375l = charSequence;
-        return h51Var;
-    }
-
-    public static h51 B(CharSequence charSequence) {
-        h51 h51Var = new h51(7);
-        h51Var.f27375l = charSequence;
-        return h51Var;
-    }
-
-    public static h51 C(int i10) {
-        h51 h51Var = new h51(28);
-        h51Var.f27388z = i10;
-        return h51Var;
-    }
-
-    public static h51 D(int i10, int i11) {
-        h51 h51Var = new h51(28);
-        h51Var.d = i10;
-        h51Var.f27388z = i11;
-        return h51Var;
-    }
-
-    public static h51 E(int i10, String str) {
-        h51 h51Var = new h51(39);
-        h51Var.d = i10;
-        h51Var.f27375l = str;
-        h51Var.f27388z = 1;
-        return h51Var;
-    }
-
-    public static g51 F(int i10) {
-        LongSparseArray longSparseArray = K;
-        if (longSparseArray == null) {
-            return null;
+    public static void setup(h51 h51Var) {
+        if (i51.L == null) {
+            i51.L = new HashMap();
         }
-        return (g51) longSparseArray.get(i10);
-    }
-
-    public static h51 J(Class cls) {
-        if (L == null) {
-            L = new HashMap();
+        if (i51.K == null) {
+            i51.K = new LongSparseArray();
         }
-        if (K == null) {
-            K = new LongSparseArray();
+        Class<?> cls = h51Var.getClass();
+        if (!i51.L.containsKey(cls)) {
+            i51.L.put(cls, h51Var);
+            i51.K.put(h51Var.viewType, h51Var);
         }
-        g51 g51Var = (g51) L.get(cls);
-        if (g51Var != null) {
-            return new h51(g51Var.viewType);
+    }
+
+    public boolean contentsEquals(i51 i51Var, i51 i51Var2) {
+        return i51Var.H(i51Var2);
+    }
+
+    public abstract View createView(Context context, rl0 rl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var);
+
+    public boolean equals(i51 i51Var, i51 i51Var2) {
+        return i51Var.I(i51Var2);
+    }
+
+    public View getCached() {
+        ArrayList<View> arrayList = this.cache;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            return this.cache.remove(0);
         }
-        throw new RuntimeException("UItemFactory was not setuped: " + cls);
+        return null;
     }
 
-    public static h51 b(String str) {
-        h51 h51Var = new h51(1);
-        h51Var.f27375l = str;
-        return h51Var;
+    public boolean isClickable() {
+        return !(this instanceof ui);
     }
 
-    public static h51 c(int i10, int i11, String str) {
-        h51 h51Var = new h51(3);
-        h51Var.d = i10;
-        h51Var.f27374k = i11;
-        h51Var.f27375l = str;
-        return h51Var;
-    }
-
-    public static h51 d(int i10, int i11, String str, String str2) {
-        h51 h51Var = new h51(3);
-        h51Var.d = i10;
-        h51Var.f27374k = i11;
-        h51Var.f27375l = str;
-        h51Var.f27377n = str2;
-        return h51Var;
-    }
-
-    public static h51 e(int i10, String str) {
-        h51 h51Var = new h51(3);
-        h51Var.d = i10;
-        h51Var.f27375l = str;
-        return h51Var;
-    }
-
-    public static h51 f(String str, CharSequence charSequence, int i10) {
-        h51 h51Var = new h51(3);
-        h51Var.d = i10;
-        h51Var.f27375l = str;
-        h51Var.f27377n = charSequence;
-        return h51Var;
-    }
-
-    public static h51 g(CharSequence charSequence) {
-        h51 h51Var = new h51(7);
-        h51Var.f27375l = charSequence;
-        h51Var.f27380q = true;
-        return h51Var;
-    }
-
-    public static h51 h(int i10, int i11, z91 z91Var) {
-        h51 h51Var = new h51(i10 + 18);
-        h51Var.f27388z = i11;
-        h51Var.G = z91Var;
-        return h51Var;
-    }
-
-    public static h51 i(int i10, CharSequence charSequence) {
-        h51 h51Var = new h51(4);
-        h51Var.d = i10;
-        h51Var.f27375l = charSequence;
-        return h51Var;
-    }
-
-    public static h51 j(int i10, View view) {
-        h51 h51Var = new h51(-1);
-        h51Var.d = i10;
-        h51Var.f27368c = view;
-        h51Var.f27388z = -1;
-        return h51Var;
-    }
-
-    public static h51 k(View view) {
-        h51 h51Var = new h51(-1);
-        h51Var.f27368c = view;
-        h51Var.f27388z = -1;
-        return h51Var;
-    }
-
-    public static h51 l(View view) {
-        h51 h51Var = new h51(-4);
-        h51Var.f27368c = view;
-        h51Var.f27388z = -1;
-        return h51Var;
-    }
-
-    public static h51 m(int i10, String str, String str2) {
-        h51 h51Var = new h51(40);
-        h51Var.d = i10;
-        h51Var.f27375l = str;
-        h51Var.f27378o = str2;
-        return h51Var;
-    }
-
-    public static h51 n(int i10) {
-        h51 h51Var = new h51(34);
-        h51Var.f27388z = i10;
-        return h51Var;
-    }
-
-    public static h51 o(int i10, int i11) {
-        h51 h51Var = new h51(34);
-        h51Var.d = i10;
-        h51Var.f27388z = i11;
-        return h51Var;
-    }
-
-    public static h51 p(View view, int i10, boolean z4) {
-        h51 h51Var = new h51(-3);
-        h51Var.f27368c = view;
-        h51Var.f27388z = i10;
-        h51Var.f27387y = z4 ? 1 : 0;
-        return h51Var;
-    }
-
-    public static h51 q(String str) {
-        h51 h51Var = new h51(31);
-        h51Var.f27375l = str;
-        return h51Var;
-    }
-
-    public static h51 r(String str, String str2, View.OnClickListener onClickListener) {
-        h51 h51Var = new h51(31);
-        h51Var.f27375l = str;
-        h51Var.f27376m = str2;
-        h51Var.D = onClickListener;
-        return h51Var;
-    }
-
-    public static h51 s(int i10, String str) {
-        h51 h51Var = new h51(0);
-        h51Var.d = i10;
-        h51Var.f27375l = str;
-        return h51Var;
-    }
-
-    public static h51 t(String str) {
-        h51 h51Var = new h51(0);
-        h51Var.f27375l = str;
-        return h51Var;
-    }
-
-    public static h51 u(org.telegram.ui.he heVar) {
-        h51 h51Var = new h51(24);
-        h51Var.G = heVar;
-        return h51Var;
-    }
-
-    public static h51 v(TLObject tLObject) {
-        h51 h51Var = new h51(32);
-        h51Var.G = tLObject;
-        return h51Var;
-    }
-
-    public static h51 w(int i10, String str) {
-        h51 h51Var = new h51(10);
-        h51Var.d = i10;
-        h51Var.f27375l = str;
-        return h51Var;
-    }
-
-    public static h51 x(int i10, String str, String str2) {
-        h51 h51Var = new h51(44);
-        h51Var.d = i10;
-        h51Var.f27375l = str;
-        h51Var.f27377n = str2;
-        return h51Var;
-    }
-
-    public static h51 y(int i10, CharSequence charSequence) {
-        h51 h51Var = new h51(35);
-        h51Var.d = i10;
-        h51Var.f27375l = charSequence;
-        return h51Var;
-    }
-
-    public static h51 z(String str, CharSequence charSequence, int i10) {
-        h51 h51Var = new h51(41);
-        h51Var.d = i10;
-        h51Var.f27375l = charSequence;
-        h51Var.f27378o = str;
-        return h51Var;
-    }
-
-    public final boolean G(Class cls) {
-        HashMap hashMap;
-        g51 g51Var;
-        if (this.f2505a >= 10000 && (hashMap = L) != null && (g51Var = (g51) hashMap.get(cls)) != null && g51Var.viewType == this.f2505a) {
-            return true;
-        }
+    public boolean isShadow() {
         return false;
     }
 
-    public final boolean H(org.telegram.ui.Components.h51 r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.h51.H(org.telegram.ui.Components.h51):boolean");
+    public void precache(org.telegram.ui.ActionBar.p2 p2Var, int i10) {
+        precache(p2Var.getContext(), p2Var.getCurrentAccount(), p2Var.getClassGuid(), p2Var.getResourceProvider(), i10);
     }
 
-    public final boolean I(h51 h51Var) {
-        if (this.d == h51Var.d && this.f27372i == h51Var.f27372i && this.f27386x == h51Var.f27386x && this.f27374k == h51Var.f27374k && this.f27373j == h51Var.f27373j && this.f27382s == h51Var.f27382s && this.f27381r == h51Var.f27381r && this.f27383t == h51Var.f27383t && this.f27380q == h51Var.f27380q && this.f27368c == h51Var.f27368c && TextUtils.equals(this.f27375l, h51Var.f27375l) && TextUtils.equals(this.f27376m, h51Var.f27376m) && TextUtils.equals(this.f27377n, h51Var.f27377n) && this.f27368c == h51Var.f27368c && this.f27388z == h51Var.f27388z && Math.abs(this.A - h51Var.A) < 0.01f && this.B == h51Var.B && Objects.equals(this.G, h51Var.G) && Objects.equals(this.H, h51Var.H)) {
-            return true;
+    public void precache(Context context, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var, int i12) {
+        if (context == null) {
+            return;
         }
-        return false;
+        if (this.cache == null) {
+            this.cache = new ArrayList<>();
+        }
+        int i13 = 0;
+        while (i13 < this.cache.size() - i12) {
+            Context context2 = context;
+            this.cache.add(createView(context2, null, i10, i11, f6Var));
+            i13++;
+            context = context2;
+        }
     }
 
-    public final void K(boolean z4) {
-        this.f27369e = z4;
-        if (this.f2505a == 11) {
-            this.f2505a = 12;
-        }
+    public void attachedView(rl0 rl0Var, View view, i51 i51Var) {
     }
 
-    @Override
-    public final boolean a(cg.b bVar) {
-        g51 F;
-        if (this != bVar) {
-            if (h51.class == bVar.getClass()) {
-                h51 h51Var = (h51) bVar;
-                int i10 = this.f2505a;
-                if (i10 == h51Var.f2505a) {
-                    if (i10 == 31) {
-                        if (TextUtils.equals(this.f27375l, h51Var.f27375l) && TextUtils.equals(this.f27376m, h51Var.f27376m)) {
-                            return true;
-                        }
-                        return false;
-                    } else if (i10 == 28) {
-                        if (this.f27388z == h51Var.f27388z) {
-                            return true;
-                        }
-                        return false;
-                    } else if (i10 != 35 && i10 != 37) {
-                        if (i10 >= 10000 && (F = F(i10)) != null) {
-                            return F.contentsEquals(this, h51Var);
-                        }
-                        return H(h51Var);
-                    } else if (this.d == h51Var.d && TextUtils.equals(this.f27375l, h51Var.f27375l) && this.f27369e == h51Var.f27369e) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final boolean equals(Object obj) {
-        g51 F;
-        if (this != obj) {
-            if (obj != null && h51.class == obj.getClass()) {
-                h51 h51Var = (h51) obj;
-                int i10 = this.f2505a;
-                if (i10 == h51Var.f2505a) {
-                    if (i10 != 36 && i10 != 35) {
-                        if (i10 == 28) {
-                            if (this.d == h51Var.d) {
-                                return true;
-                            }
-                            return false;
-                        } else if (i10 == 31) {
-                            return TextUtils.equals(this.f27375l, h51Var.f27375l);
-                        } else {
-                            if (i10 >= 10000 && (F = F(i10)) != null) {
-                                return F.equals(this, h51Var);
-                            }
-                            return I(h51Var);
-                        }
-                    } else if (this.d == h51Var.d) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
+    public void bindView(View view, i51 i51Var, boolean z4, w51 w51Var, g61 g61Var) {
     }
 }

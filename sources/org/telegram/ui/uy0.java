@@ -21,20 +21,20 @@ public final class uy0 extends f2.l {
     }
 
     @Override
-    public final void P(f2.m1 m1Var) {
+    public final void P(f2.l1 l1Var) {
         this.G.U4();
     }
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f5853p.isEmpty();
-        boolean isEmpty2 = this.f5855r.isEmpty();
-        boolean isEmpty3 = this.f5856s.isEmpty();
-        boolean isEmpty4 = this.f5854q.isEmpty();
+        boolean isEmpty = this.f5763p.isEmpty();
+        boolean isEmpty2 = this.f5765r.isEmpty();
+        boolean isEmpty3 = this.f5766s.isEmpty();
+        boolean isEmpty4 = this.f5764q.isEmpty();
         if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new e3(this, 26));
-            ofFloat.setDuration(this.f5931e);
+            ofFloat.addUpdateListener(new g3(this, 26));
+            ofFloat.setDuration(this.e);
             ofFloat.start();
             this.F = this.G.getNotificationCenter().setAnimationInProgress(this.F, null);
         }

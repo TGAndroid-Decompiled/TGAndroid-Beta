@@ -1,193 +1,138 @@
 package eg;
 
-import android.content.Context;
-import android.graphics.PointF;
-import android.view.ViewGroup;
-import k7.c6;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.sk0;
-public final class k1 extends j {
-    public final j1 f5315n0;
-    public boolean f5316o0;
-    public int f5317p0;
-    public int f5318q0;
-    public TLRPC.MessageMedia f5319r0;
-    public TL_stories.MediaArea f5320s0;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.ka;
+import org.telegram.ui.ww0;
+public final class k1 implements m2.f {
+    public final ka f5323a;
+    public final o1 f5324b;
 
-    public k1(Context context, PointF pointF, int i10, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, float f10, int i11) {
-        super(context, pointF);
-        j1 j1Var = new j1(context, f10);
-        this.f5315n0 = j1Var;
-        j1Var.setMaxWidth(i11);
-        r(i10, messageMedia, mediaArea);
-        j1Var.e(0, this.f5317p0);
-        addView(j1Var, c6.e(-2, -2, 51));
-        setClipChildren(false);
-        setClipToPadding(false);
-        k();
+    public k1(o1 o1Var, ka kaVar) {
+        this.f5324b = o1Var;
+        this.f5323a = kaVar;
     }
 
-    public static String q(double d) {
-        String str;
-        String str2;
-        String str3;
-        double abs = Math.abs(d);
-        double floor = Math.floor(abs);
-        String str4 = "";
-        String m9 = android.support.v4.media.a.m((int) floor, "°", new StringBuilder(""));
-        double floor2 = Math.floor((abs - floor) * 60.0d);
-        StringBuilder l10 = e2.c.l(m9);
-        if (floor2 > 0.0d) {
-            str = "";
+    @Override
+    public final void a(int i10) {
+        o1 o1Var = this.f5324b;
+        ArrayList arrayList = o1Var.d;
+        if (((ww0) arrayList.get(i10)).f39779a == 0) {
+            o1Var.K.setTitle(LocaleController.getString(R.string.DoubledLimits));
+            o1Var.K.requestLayout();
+        } else if (((ww0) arrayList.get(i10)).f39779a == 14) {
+            o1Var.K.setTitle(LocaleController.getString(R.string.UpgradedStories));
+            o1Var.K.requestLayout();
+        } else if (((ww0) arrayList.get(i10)).f39779a == 40) {
+            o1Var.K.setTitle(LocaleController.getString(R.string.FeaturePreviewGifts));
+            o1Var.K.requestLayout();
+        } else if (((ww0) arrayList.get(i10)).f39779a == 28) {
+            o1Var.K.setTitle(LocaleController.getString(R.string.TelegramBusiness));
+            o1Var.K.requestLayout();
+        }
+        d();
+    }
+
+    @Override
+    public final void b(float f10, int i10, int i11) {
+        int i12;
+        ka kaVar = this.f5323a;
+        kaVar.f26241b = f10;
+        kaVar.f26242c = i10;
+        kaVar.invalidate();
+        o1 o1Var = this.f5324b;
+        o1Var.D = i10;
+        if (i11 > 0) {
+            i12 = i10 + 1;
         } else {
-            str = "0";
+            i12 = i10 - 1;
         }
-        l10.append(str);
-        if (floor2 >= 10.0d) {
-            str2 = "";
-        } else {
-            str2 = "0";
-        }
-        l10.append(str2);
-        String m10 = android.support.v4.media.a.m((int) floor2, "'", l10);
-        double floor3 = Math.floor(Math.floor(floor2) * 60.0d);
-        StringBuilder l11 = e2.c.l(m10);
-        if (floor3 > 0.0d) {
-            str3 = "";
-        } else {
-            str3 = "0";
-        }
-        l11.append(str3);
-        if (floor3 < 10.0d) {
-            str4 = "0";
-        }
-        l11.append(str4);
-        return android.support.v4.media.a.m((int) floor3, "\"", l11);
+        o1Var.E = i12;
+        o1Var.F = f10;
+        d();
     }
 
-    @Override
-    public final i a() {
-        return new f1(this, getContext());
-    }
-
-    public int getColor() {
-        return this.f5317p0;
-    }
-
-    @Override
-    public float getMaxScale() {
-        return 1.5f;
-    }
-
-    @Override
-    public sk0 getSelectionBounds() {
-        ViewGroup viewGroup = (ViewGroup) getParent();
-        if (viewGroup == null) {
-            return new Object();
-        }
-        float scaleX = viewGroup.getScaleX();
-        float scale = getScale();
-        float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
-        float scale2 = getScale();
-        float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
-        float c3 = org.telegram.ui.b.c(dp, 2.0f, getPositionX(), scaleX);
-        return new sk0(c3, org.telegram.ui.b.c(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + c3) - c3, dp2 * scaleX);
-    }
-
-    @Override
-    public float getStickyPaddingBottom() {
-        return this.f5315n0.G;
-    }
-
-    @Override
-    public float getStickyPaddingLeft() {
-        return this.f5315n0.F;
-    }
-
-    @Override
-    public float getStickyPaddingRight() {
-        return this.f5315n0.F;
-    }
-
-    @Override
-    public float getStickyPaddingTop() {
-        return this.f5315n0.G;
-    }
-
-    public int getType() {
-        return this.f5318q0;
-    }
-
-    public int getTypesCount() {
-        return this.f5315n0.getTypesCount() - (!this.f5316o0 ? 1 : 0);
-    }
-
-    @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        super.onLayout(z4, i10, i11, i12, i13);
-        k();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        k();
-    }
-
-    public final void r(int i10, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea) {
-        String str;
-        String str2;
-        String str3;
-        this.f5319r0 = messageMedia;
-        this.f5320s0 = mediaArea;
-        String str4 = null;
-        if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
-            TLRPC.GeoPoint geoPoint = messageMedia.geo;
-            double d = geoPoint.lat;
-            double d10 = geoPoint._long;
-            StringBuilder sb = new StringBuilder();
-            sb.append(q(d));
-            if (d > 0.0d) {
-                str2 = "N";
-            } else {
-                str2 = "S";
+    public final void d() {
+        boolean z4;
+        boolean z10;
+        int i10;
+        int i11;
+        o1 o1Var = this.f5324b;
+        i1 i1Var = o1Var.f5383n;
+        ArrayList arrayList = o1Var.d;
+        int i12 = 0;
+        while (true) {
+            float f10 = 0.0f;
+            if (i12 >= i1Var.getChildCount()) {
+                break;
             }
-            sb.append(str2);
-            sb.append(" ");
-            sb.append(q(d10));
-            if (d10 > 0.0d) {
-                str3 = "E";
-            } else {
-                str3 = "W";
+            n1 n1Var = (n1) i1Var.getChildAt(i12);
+            if (!o1Var.f5386w || !(n1Var.f5360f instanceof z0)) {
+                int i13 = n1Var.f5357a;
+                x0 x0Var = n1Var.e;
+                if (i13 == o1Var.D) {
+                    f10 = (-n1Var.getMeasuredWidth()) * o1Var.F;
+                    x0Var.setOffset(f10);
+                } else if (i13 == o1Var.E) {
+                    f10 = ((-n1Var.getMeasuredWidth()) * o1Var.F) + n1Var.getMeasuredWidth();
+                    x0Var.setOffset(f10);
+                } else {
+                    x0Var.setOffset(n1Var.getMeasuredWidth());
+                }
             }
-            sb.append(str3);
-            str = sb.toString();
-        } else if (messageMedia instanceof TLRPC.TL_messageMediaVenue) {
-            String upperCase = messageMedia.title.toUpperCase();
-            str4 = ((TLRPC.TL_messageMediaVenue) messageMedia).emoji;
-            str = upperCase;
-        } else {
-            str = "";
+            if (n1Var.f5360f instanceof z0) {
+                n1Var.setTranslationX(-f10);
+                n1Var.f5358b.setTranslationX(f10);
+                n1Var.f5359c.setTranslationX(f10);
+            }
+            i12++;
         }
-        j1 j1Var = this.f5315n0;
-        j1Var.d(i10, str4);
-        j1Var.setText(str);
-        m();
+        int i14 = o1Var.D;
+        if (i14 >= 0 && i14 < arrayList.size() && ((i11 = ((ww0) arrayList.get(o1Var.D)).f39779a) == 0 || i11 == 14 || i11 == 28)) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        int i15 = o1Var.E;
+        if (i15 >= 0 && i15 < arrayList.size() && ((i10 = ((ww0) arrayList.get(o1Var.E)).f39779a) == 0 || i10 == 14 || i10 == 28)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z4 && z10) {
+            o1Var.f5382f = 1.0f;
+            float f11 = o1Var.F;
+            if (f11 == 0.0f) {
+                f11 = 1.0f;
+            }
+            o1Var.e = f11;
+            o1Var.h = true;
+        } else if (z4) {
+            float f12 = 1.0f - o1Var.F;
+            o1Var.e = f12;
+            o1Var.f5382f = f12;
+            o1Var.h = true;
+        } else if (z10) {
+            float f13 = o1Var.F;
+            o1Var.e = f13;
+            o1Var.f5382f = f13;
+            o1Var.h = false;
+        } else {
+            o1Var.e = 0.0f;
+            o1Var.f5382f = 0.0f;
+            o1Var.h = true;
+        }
+        int i16 = (int) ((1.0f - o1Var.e) * 255.0f);
+        if (i16 != o1Var.H) {
+            o1Var.H = i16;
+            o1Var.f5384r.invalidate();
+            AndroidUtilities.runOnUIThread(new e3.h(this, 4));
+        }
     }
 
-    public void setColor(int i10) {
-        this.f5316o0 = true;
-        this.f5317p0 = i10;
-    }
-
-    public void setMaxWidth(int i10) {
-        this.f5315n0.setMaxWidth(i10);
-    }
-
-    public void setType(int i10) {
-        this.f5318q0 = i10;
-        this.f5315n0.e(i10, this.f5317p0);
+    @Override
+    public final void c(int i10) {
     }
 }

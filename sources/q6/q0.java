@@ -3,7 +3,7 @@ package q6;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Base64;
-import j7.g5;
+import j7.f5;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,8 +12,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class q0 extends c6.a {
     public static final Parcelable.Creator<q0> CREATOR = new l4.j(26);
-    public static final byte[] f44738b = "WebAuthn PRF\u0000".getBytes(StandardCharsets.UTF_8);
-    public final byte[][] f44739a;
+    public static final byte[] f42974b = "WebAuthn PRF\u0000".getBytes(StandardCharsets.UTF_8);
+    public final byte[][] f42975a;
 
     public q0(byte[][] bArr) {
         boolean z4;
@@ -55,7 +55,7 @@ public final class q0 extends c6.a {
             }
             b6.m.b(z13);
         }
-        this.f44739a = bArr;
+        this.f42975a = bArr;
     }
 
     public static q0 e(JSONObject jSONObject, boolean z4) {
@@ -130,13 +130,13 @@ public final class q0 extends c6.a {
         if (!(obj instanceof q0)) {
             return false;
         }
-        return Arrays.deepEquals(this.f44739a, ((q0) obj).f44739a);
+        return Arrays.deepEquals(this.f42975a, ((q0) obj).f42975a);
     }
 
     public final int hashCode() {
         byte[][] bArr;
         int i10 = 0;
-        for (byte[] bArr2 : this.f44739a) {
+        for (byte[] bArr2 : this.f42975a) {
             if (bArr2 != null) {
                 i10 ^= Arrays.hashCode(new Object[]{bArr2});
             }
@@ -145,7 +145,7 @@ public final class q0 extends c6.a {
     }
 
     public final String toString() {
-        byte[][] bArr = this.f44739a;
+        byte[][] bArr = this.f42975a;
         try {
             JSONObject jSONObject = new JSONObject();
             JSONObject jSONObject2 = null;
@@ -162,15 +162,15 @@ public final class q0 extends c6.a {
             }
             String obj = jSONObject.toString();
             return "PrfExtension{" + obj + "}";
-        } catch (JSONException e6) {
-            return android.support.v4.media.a.o("PrfExtension{Exception:", e6.getMessage(), "}");
+        } catch (JSONException e) {
+            return android.support.v4.media.a.o("PrfExtension{Exception:", e.getMessage(), "}");
         }
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q10 = g5.q(parcel, 20293);
-        g5.d(parcel, 1, this.f44739a);
-        g5.r(parcel, q10);
+        int q10 = f5.q(parcel, 20293);
+        f5.d(parcel, 1, this.f42975a);
+        f5.r(parcel, q10);
     }
 }

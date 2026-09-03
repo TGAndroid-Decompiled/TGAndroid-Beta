@@ -1,22 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class un0 extends i40 {
-    public final org.telegram.ui.yx Z;
+import androidx.recyclerview.widget.RecyclerView;
+public final class un0 extends f2.z0 {
+    public final int f29267a;
+    public final org.telegram.ui.zx f29268b;
 
-    public un0(org.telegram.ui.yx yxVar, sl0 sl0Var, Context context, int i10) {
-        super(sl0Var, context, i10);
-        this.Z = yxVar;
+    public un0(org.telegram.ui.zx zxVar, int i10) {
+        this.f29267a = i10;
+        this.f29268b = zxVar;
     }
 
     @Override
-    public final void N(boolean z4) {
-        super.N(z4);
-        qn0 qn0Var = this.Z.f26334p0;
-        qn0Var.e(false, z4);
-        qn0Var.d.setText(LocaleController.getString(R.string.NoResult));
-        qn0Var.f34033e.setVisibility(8);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        switch (this.f29267a) {
+            case 0:
+                this.f29268b.S(i10, i11);
+                return;
+            default:
+                this.f29268b.S(i10, i11);
+                return;
+        }
     }
 }

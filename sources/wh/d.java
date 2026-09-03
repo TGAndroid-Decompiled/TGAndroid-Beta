@@ -1,27 +1,34 @@
 package wh;
 
-import org.telegram.messenger.NotificationCenter;
-public final class d implements Runnable {
-    public final int f49728a;
-    public final long f49729b;
-    public final NotificationCenter.NotificationCenterDelegate f49730c;
+import android.animation.ValueAnimator;
+import o4.h0;
+import org.telegram.ui.Cells.u0;
+import org.telegram.ui.Cells.v0;
+import ph.z8;
+public final class d implements ValueAnimator.AnimatorUpdateListener {
+    public final int f46656a;
+    public final Object f46657b;
+    public final Object f46658c;
 
-    public d(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, long j10, int i10) {
-        this.f49728a = i10;
-        this.f49730c = notificationCenterDelegate;
-        this.f49729b = j10;
+    public d(int i10, Object obj, Object obj2) {
+        this.f46656a = i10;
+        this.f46657b = obj;
+        this.f46658c = obj2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f49728a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f46656a) {
             case 0:
-                q qVar = (q) this.f49730c;
-                org.telegram.ui.Components.z4.M(qVar.f26590b.f29058c0.getParentActivity(), this.f49729b, new oh.h4(qVar, 25), qVar.f26589a);
+                ((u0) this.f46657b).f22361c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((v0) this.f46658c).invalidate();
                 return;
             default:
-                z1 z1Var = (z1) this.f49730c;
-                org.telegram.ui.Components.z4.M(z1Var.getParentActivity(), this.f49729b, new org.telegram.ui.web.e0(z1Var, 20), z1Var.getResourceProvider());
+                h0 h0Var = (h0) this.f46657b;
+                h0Var.getClass();
+                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                h0Var.f16330b = intValue;
+                ((z8) this.f46658c).c(intValue);
                 return;
         }
     }

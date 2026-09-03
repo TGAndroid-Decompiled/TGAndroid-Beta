@@ -7,51 +7,52 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
 import java.util.ArrayList;
+import vh.w2;
 public final class b {
-    public final ArrayList f49390a;
-    public final ArrayList f49391b;
-    public final StringBuilder f49392c;
+    public final ArrayList f46467a;
+    public final ArrayList f46468b;
+    public final StringBuilder f46469c;
     public int d;
-    public int f49393e;
-    public int f49394f;
-    public int f49395g;
+    public int e;
+    public int f46470f;
+    public int f46471g;
     public int h;
 
     public b(int i10, int i11) {
         ArrayList arrayList = new ArrayList();
-        this.f49390a = arrayList;
+        this.f46467a = arrayList;
         ArrayList arrayList2 = new ArrayList();
-        this.f49391b = arrayList2;
+        this.f46468b = arrayList2;
         StringBuilder sb = new StringBuilder();
-        this.f49392c = sb;
-        this.f49395g = i10;
+        this.f46469c = sb;
+        this.f46471g = i10;
         arrayList.clear();
         arrayList2.clear();
         sb.setLength(0);
         this.d = 15;
-        this.f49393e = 0;
-        this.f49394f = 0;
+        this.e = 0;
+        this.f46470f = 0;
         this.h = i11;
     }
 
     public final void a(char c3) {
-        StringBuilder sb = this.f49392c;
+        StringBuilder sb = this.f46469c;
         if (sb.length() < 32) {
             sb.append(c3);
         }
     }
 
     public final void b() {
-        StringBuilder sb = this.f49392c;
+        StringBuilder sb = this.f46469c;
         int length = sb.length();
         if (length > 0) {
             sb.delete(length - 1, length);
-            ArrayList arrayList = this.f49390a;
+            ArrayList arrayList = this.f46467a;
             for (int size = arrayList.size() - 1; size >= 0; size--) {
                 a aVar = (a) arrayList.get(size);
-                int i10 = aVar.f49389c;
+                int i10 = aVar.f46466c;
                 if (i10 == length) {
-                    aVar.f49389c = i10 - 1;
+                    aVar.f46466c = i10 - 1;
                 } else {
                     return;
                 }
@@ -66,7 +67,7 @@ public final class b {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         int i12 = 0;
         while (true) {
-            ArrayList arrayList = this.f49391b;
+            ArrayList arrayList = this.f46468b;
             if (i12 >= arrayList.size()) {
                 break;
             }
@@ -78,23 +79,23 @@ public final class b {
         if (spannableStringBuilder.length() == 0) {
             return null;
         }
-        int i13 = this.f49393e + this.f49394f;
+        int i13 = this.e + this.f46470f;
         int length = (32 - i13) - spannableStringBuilder.length();
         int i14 = i13 - length;
         if (i10 != Integer.MIN_VALUE) {
             i11 = i10;
-        } else if (this.f49395g == 2 && (Math.abs(i14) < 3 || length < 0)) {
+        } else if (this.f46471g == 2 && (Math.abs(i14) < 3 || length < 0)) {
             i11 = 1;
-        } else if (this.f49395g == 2 && i14 > 0) {
+        } else if (this.f46471g == 2 && i14 > 0) {
             i11 = 2;
         } else {
             i11 = 0;
         }
         if (i11 != 1) {
             if (i11 != 2) {
-                c3 = w.c.c(i13, 32.0f, 0.8f, 0.1f);
+                c3 = w2.c(i13, 32.0f, 0.8f, 0.1f);
             } else {
-                c3 = w.c.c(32 - length, 32.0f, 0.8f, 0.1f);
+                c3 = w2.c(32 - length, 32.0f, 0.8f, 0.1f);
             }
             f10 = c3;
         } else {
@@ -103,7 +104,7 @@ public final class b {
         int i15 = this.d;
         if (i15 > 7) {
             i15 -= 17;
-        } else if (this.f49395g == 1) {
+        } else if (this.f46471g == 1) {
             i15 -= this.h - 1;
         }
         return new v4.b(spannableStringBuilder, Layout.Alignment.ALIGN_NORMAL, null, null, i15, 1, Integer.MIN_VALUE, f10, i11, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, false, -16777216, Integer.MIN_VALUE, 0.0f);
@@ -112,7 +113,7 @@ public final class b {
     public final SpannableString d() {
         int i10;
         boolean z4;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f49392c);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f46469c);
         int length = spannableStringBuilder.length();
         int i11 = 0;
         int i12 = -1;
@@ -122,13 +123,13 @@ public final class b {
         int i16 = -1;
         boolean z10 = false;
         while (true) {
-            ArrayList arrayList = this.f49390a;
+            ArrayList arrayList = this.f46467a;
             if (i11 >= arrayList.size()) {
                 break;
             }
             a aVar = (a) arrayList.get(i11);
-            boolean z11 = aVar.f49388b;
-            int i17 = aVar.f49387a;
+            boolean z11 = aVar.f46465b;
+            int i17 = aVar.f46464a;
             if (i17 != 8) {
                 if (i17 == 7) {
                     z4 = true;
@@ -140,10 +141,10 @@ public final class b {
                 }
                 z10 = z4;
             }
-            int i18 = aVar.f49389c;
+            int i18 = aVar.f46466c;
             i11++;
             if (i11 < arrayList.size()) {
-                i10 = ((a) arrayList.get(i11)).f49389c;
+                i10 = ((a) arrayList.get(i11)).f46466c;
             } else {
                 i10 = length;
             }
@@ -182,7 +183,7 @@ public final class b {
     }
 
     public final boolean e() {
-        if (this.f49390a.isEmpty() && this.f49391b.isEmpty() && this.f49392c.length() == 0) {
+        if (this.f46467a.isEmpty() && this.f46468b.isEmpty() && this.f46469c.length() == 0) {
             return true;
         }
         return false;

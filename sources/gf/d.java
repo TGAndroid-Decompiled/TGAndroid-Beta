@@ -1,9 +1,6 @@
 package gf;
 
-import org.telegram.tgnet.TLRPC;
-public final class d {
-    public TLRPC.Document f7033a;
-    public String f7034b;
-    public int f7035c;
-    public boolean d;
+import android.os.Binder;
+public abstract class d extends Binder implements e {
+    public static final int f6534a = 0;
 }

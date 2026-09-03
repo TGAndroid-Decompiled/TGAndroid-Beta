@@ -1,32 +1,120 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-public final class z80 implements DialogInterface.OnDismissListener {
-    public final int f43852a;
-    public final LaunchActivity f43853b;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class z80 implements Runnable {
+    public final int f40424a;
+    public final LaunchActivity f40425b;
 
     public z80(LaunchActivity launchActivity, int i10) {
-        this.f43852a = i10;
-        this.f43853b = launchActivity;
+        this.f40424a = i10;
+        this.f40425b = launchActivity;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        int i10 = this.f43852a;
-        LaunchActivity launchActivity = this.f43853b;
+    public final void run() {
+        int i10 = this.f40424a;
+        org.telegram.ui.ActionBar.p2 p2Var = null;
+        LaunchActivity launchActivity = this.f40425b;
         switch (i10) {
             case 0:
-                launchActivity.f34171s1 = false;
+                Pattern pattern = LaunchActivity.f31586y1;
+                org.telegram.ui.Components.qb qbVar = new org.telegram.ui.Components.qb(launchActivity, null);
+                qbVar.d(R.raw.email_check_inbox, new String[0]);
+                qbVar.f28137b.setText(LocaleController.getString(R.string.YourLoginEmailChangedSuccess));
+                org.telegram.ui.ActionBar.p2 R = LaunchActivity.R();
+                if (R != null) {
+                    org.telegram.ui.Components.ic.g(R, qbVar, 1500).j();
+                    try {
+                        R.fragmentView.performHapticFeedback(3, 2);
+                        return;
+                    } catch (Exception unused) {
+                        return;
+                    }
+                }
                 return;
             case 1:
-                Pattern pattern = LaunchActivity.f34134y1;
-                AndroidUtilities.runOnUIThread(new y80(launchActivity, 9), 30000L);
+                if (launchActivity.T0) {
+                    launchActivity.T0 = false;
+                    launchActivity.H(false, false, true);
+                    return;
+                }
+                return;
+            case 2:
+                Pattern pattern2 = LaunchActivity.f31586y1;
+                launchActivity.H(false, true, false);
+                if (LaunchActivity.R() != null && LaunchActivity.R().getLastStoryViewer() != null) {
+                    LaunchActivity.R().getLastStoryViewer().P();
+                    return;
+                }
+                return;
+            case 3:
+                if (!launchActivity.f31612n0.getFragmentStack().isEmpty()) {
+                    launchActivity.f31612n0.getFragmentStack().get(0).showDialog(new org.telegram.ui.Components.xx0(launchActivity, launchActivity.f31600g0, launchActivity.f31596e0, launchActivity.f31598f0));
+                    return;
+                }
+                return;
+            case 4:
+                Pattern pattern3 = LaunchActivity.f31586y1;
+                launchActivity.getClass();
+                org.telegram.ui.Components.b30.f23531b0 = false;
+                org.telegram.ui.Components.b30.j(launchActivity);
+                return;
+            case 5:
+                ArrayList arrayList = launchActivity.f31588a0;
+                ArrayList arrayList2 = launchActivity.f31590b0;
+                if (AndroidUtilities.isTablet()) {
+                    if (!arrayList2.isEmpty()) {
+                        p2Var = (org.telegram.ui.ActionBar.p2) kf.k0.i(1, arrayList2);
+                    }
+                } else if (!arrayList.isEmpty()) {
+                    p2Var = (org.telegram.ui.ActionBar.p2) kf.k0.i(1, arrayList);
+                }
+                if (!(p2Var instanceof ProxyListActivity) && !(p2Var instanceof d21)) {
+                    launchActivity.p0(new ProxyListActivity());
+                    return;
+                }
+                return;
+            case 6:
+                if (!launchActivity.f31623s1) {
+                    try {
+                        org.telegram.ui.ActionBar.d2 C = org.telegram.ui.Components.z4.C(launchActivity);
+                        C.setOnDismissListener(new a90(launchActivity, 0));
+                        launchActivity.f31623s1 = true;
+                        C.show();
+                    } catch (Throwable unused2) {
+                        return;
+                    }
+                }
+                return;
+            case 7:
+                if (launchActivity.Q0 != null) {
+                    File file = new File(ApplicationLoader.getFilesDirFixed(), android.support.v4.media.a.q(new StringBuilder("remote"), launchActivity.Q0.f19296id, ".attheme"));
+                    TLRPC.TL_theme tL_theme = launchActivity.Q0;
+                    org.telegram.ui.ActionBar.i6 u10 = org.telegram.ui.ActionBar.j6.u(file, tL_theme.title, tL_theme, true);
+                    if (u10 != null) {
+                        launchActivity.p0(new jd1(u10, true, 0, false, false));
+                    }
+                    launchActivity.h0();
+                    return;
+                }
+                return;
+            case 8:
+                Pattern pattern4 = LaunchActivity.f31586y1;
+                launchActivity.getClass();
+                launchActivity.p0(new gc0());
+                return;
+            case 9:
+                launchActivity.f31619q1 = null;
                 return;
             default:
-                Pattern pattern2 = LaunchActivity.f34134y1;
-                AndroidUtilities.runOnUIThread(new y80(launchActivity, 10), 30000L);
+                launchActivity.f31621r1 = null;
                 return;
         }
     }

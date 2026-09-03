@@ -2,9 +2,9 @@ package org.telegram.ui.Components;
 
 import android.graphics.Paint;
 public final class ey0 {
-    public int f26694a;
-    public Paint f26695b;
-    public boolean f26696c;
+    public int f24720a;
+    public Paint f24721b;
+    public boolean f24722c;
     public boolean d;
-    public long f26697e;
+    public long e;
 }

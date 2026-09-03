@@ -1,106 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.ViewGroup;
-public final class h00 extends rl0 {
-    public final Context f27324c;
-    public final l00 d;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.MessageObject;
+public final class h00 {
+    public int f25280a;
+    public CharSequence f25281b;
+    public int f25282c;
+    public int d;
+    public boolean e;
+    public boolean f25283f;
+    public boolean f25284g;
+    public final k00 h;
 
-    public h00(l00 l00Var, Context context) {
-        this.d = l00Var;
-        this.f27324c = context;
+    public h00(k00 k00Var, int i10, Spannable spannable, boolean z4) {
+        this.h = k00Var;
+        this.f25280a = i10;
+        this.f25281b = spannable;
+        this.f25284g = z4;
     }
 
-    @Override
-    public final boolean D(f2.m1 m1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.h.size();
-    }
-
-    @Override
-    public final long i(int i10) {
-        return this.d.f28547h0.get(i10);
-    }
-
-    @Override
-    public final int j(int i10) {
-        return 0;
-    }
-
-    @Override
-    public final void v(f2.m1 m1Var, int i10) {
+    public final int a(boolean z4) {
+        int i10;
         int i11;
-        boolean z4;
-        float f10;
-        int i12;
-        int i13;
-        int i14;
-        j00 j00Var = (j00) m1Var.f5875a;
-        if (j00Var.f27930b != null) {
-            i11 = j00Var.getId();
-        } else {
-            i11 = -1;
-        }
-        i00 i00Var = (i00) this.d.h.get(i10);
-        j00Var.f27930b = i00Var;
-        j00Var.f27935e = i10;
-        j00Var.setContentDescription(i00Var.f27677b);
-        j00Var.requestLayout();
-        boolean z10 = j00Var.f27943n;
-        i00 i00Var2 = j00Var.f27930b;
-        if (i00Var2 != null && i00Var2.f27681g) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        if (z10 != z4) {
-            u5.release(j00Var, j00Var.f27944r);
-            u5.release(j00Var, j00Var.L);
-            u5.release(j00Var, j00Var.N);
-            u5.release(j00Var, j00Var.P);
-            if (j00Var.f27941i0) {
-                int i15 = 26;
-                if (j00Var.f27930b.f27681g) {
-                    i12 = 26;
-                } else {
-                    i12 = 0;
-                }
-                j00Var.f27944r = u5.update(i12, j00Var, j00Var.f27944r, j00Var.f27945s);
-                if (j00Var.f27930b.f27681g) {
-                    i13 = 26;
-                } else {
-                    i13 = 0;
-                }
-                j00Var.L = u5.update(i13, j00Var, j00Var.L, j00Var.M);
-                if (j00Var.f27930b.f27681g) {
-                    i14 = 26;
-                } else {
-                    i14 = 0;
-                }
-                j00Var.N = u5.update(i14, j00Var, j00Var.N, j00Var.O);
-                if (!j00Var.f27930b.f27681g) {
-                    i15 = 0;
-                }
-                j00Var.P = u5.update(i15, j00Var, j00Var.P, j00Var.Q);
+        CharSequence charSequence = this.f25281b;
+        k00 k00Var = this.h;
+        int ceil = (int) Math.ceil(ph.f3.g(charSequence, k00Var.f26092b));
+        this.f25282c = ceil;
+        int i12 = 0;
+        if (z4) {
+            i10 = ((org.telegram.ui.qw) k00Var.G).a(this.f25280a);
+            if (i10 < 0) {
+                i10 = 0;
             }
-            j00Var.f27943n = j00Var.f27930b.f27681g;
-        }
-        if (i11 != j00Var.getId()) {
-            if (j00Var.f27930b.f27680f) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.0f;
+            if (z4) {
+                this.d = i10;
             }
-            j00Var.f27940h0 = f10;
+        } else {
+            i10 = this.d;
         }
+        if (i10 > 0) {
+            i11 = AndroidUtilities.dp(-2.0f) + AndroidUtilities.dp(10.0f) + Math.max(AndroidUtilities.dp(7.333f), (int) Math.ceil(k00Var.f26094c.measureText(String.format("%d", Integer.valueOf(i10)))));
+        } else {
+            if (!this.e && k00Var.f26106n) {
+                i12 = AndroidUtilities.dp(12.333f);
+            }
+            i11 = i12;
+        }
+        return Math.max(AndroidUtilities.dp(16.0f), ceil + i11);
     }
 
-    @Override
-    public final f2.m1 x(ViewGroup viewGroup, int i10) {
-        return new f2.m1(new j00(this.d, this.f27324c));
+    public final void b(String str) {
+        TextPaint textPaint = this.h.f26092b;
+        if (TextUtils.equals(this.f25281b, str)) {
+            return;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+        this.f25281b = spannableStringBuilder;
+        CharSequence replaceEmoji = Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false);
+        this.f25281b = replaceEmoji;
+        this.f25281b = MessageObject.replaceAnimatedEmoji(replaceEmoji, null, textPaint.getFontMetricsInt());
+        this.f25284g = false;
     }
 }

@@ -7,31 +7,31 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class mq0 extends Drawable {
-    public long f29237a = 0;
-    public final float[] f29238b = {0.0f, -0.5f};
-    public final Drawable f29239c;
+    public long f27118a = 0;
+    public final float[] f27119b = {0.0f, -0.5f};
+    public final Drawable f27120c;
     public final Drawable d;
-    public final Drawable f29240e;
-    public final int f29241f;
+    public final Drawable e;
+    public final int f27121f;
 
     public mq0(Context context, int i10) {
-        this.f29241f = i10;
+        this.f27121f = i10;
         if (i10 == 4) {
-            this.f29239c = context.getResources().getDrawable(R.drawable.filled_extend_location).mutate();
+            this.f27120c = context.getResources().getDrawable(R.drawable.filled_extend_location).mutate();
             this.d = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
-            this.f29240e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
+            this.e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
         } else if (i10 == 5) {
-            this.f29239c = context.getResources().getDrawable(R.drawable.filled_stop_location).mutate();
+            this.f27120c = context.getResources().getDrawable(R.drawable.filled_stop_location).mutate();
             this.d = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
-            this.f29240e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
+            this.e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
         } else if (i10 == 1) {
-            this.f29239c = context.getResources().getDrawable(R.drawable.smallanimationpin).mutate();
+            this.f27120c = context.getResources().getDrawable(R.drawable.smallanimationpin).mutate();
             this.d = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
-            this.f29240e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
+            this.e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
         } else {
-            this.f29239c = context.getResources().getDrawable(R.drawable.animationpin).mutate();
+            this.f27120c = context.getResources().getDrawable(R.drawable.animationpin).mutate();
             this.d = context.getResources().getDrawable(R.drawable.animationpinleft).mutate();
-            this.f29240e = context.getResources().getDrawable(R.drawable.animationpinright).mutate();
+            this.e = context.getResources().getDrawable(R.drawable.animationpinright).mutate();
         }
     }
 
@@ -45,13 +45,13 @@ public final class mq0 extends Drawable {
         int C;
         int i10;
         float a2;
-        Drawable drawable = this.f29239c;
+        Drawable drawable = this.f27120c;
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();
         int i11 = 3;
         int i12 = 5;
         int i13 = 1;
-        int i14 = this.f29241f;
+        int i14 = this.f27121f;
         int i15 = 4;
         if (i14 != 4 && i14 != 5) {
             if (i14 == 3) {
@@ -73,7 +73,7 @@ public final class mq0 extends Drawable {
         drawable.draw(canvas);
         int i17 = 0;
         while (true) {
-            fArr = this.f29238b;
+            fArr = this.f27119b;
             if (i17 >= 2) {
                 break;
             }
@@ -133,7 +133,7 @@ public final class mq0 extends Drawable {
                 int i20 = dp4 + dp2;
                 drawable2.setBounds(dp3 - i10, i19, dp3 + i10, i20);
                 drawable2.draw(canvas);
-                Drawable drawable3 = this.f29240e;
+                Drawable drawable3 = this.e;
                 drawable3.setAlpha(i18);
                 drawable3.setBounds(C - i10, i19, C + i10, i20);
                 drawable3.draw(canvas);
@@ -145,8 +145,8 @@ public final class mq0 extends Drawable {
             i15 = 4;
         }
         long currentTimeMillis = System.currentTimeMillis();
-        long j10 = currentTimeMillis - this.f29237a;
-        this.f29237a = currentTimeMillis;
+        long j10 = currentTimeMillis - this.f27118a;
+        this.f27118a = currentTimeMillis;
         if (j10 > 16) {
             j10 = 16;
         }
@@ -165,7 +165,7 @@ public final class mq0 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        int i10 = this.f29241f;
+        int i10 = this.f27121f;
         if (i10 != 4 && i10 != 5) {
             if (i10 == 3) {
                 return AndroidUtilities.dp(100.0f);
@@ -183,7 +183,7 @@ public final class mq0 extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        int i10 = this.f29241f;
+        int i10 = this.f27121f;
         if (i10 != 4 && i10 != 5) {
             if (i10 == 3) {
                 return AndroidUtilities.dp(100.0f);
@@ -206,9 +206,9 @@ public final class mq0 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f29239c.setColorFilter(colorFilter);
+        this.f27120c.setColorFilter(colorFilter);
         this.d.setColorFilter(colorFilter);
-        this.f29240e.setColorFilter(colorFilter);
+        this.e.setColorFilter(colorFilter);
     }
 
     @Override

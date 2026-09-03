@@ -8,11 +8,11 @@ public final class yr0 extends f2.w {
     }
 
     @Override
-    public final int o0(int i10, bf.f fVar, f2.j1 j1Var) {
+    public final int o0(int i10, af.h hVar, f2.i1 i1Var) {
         if (this.Q.l1) {
             i10 = 0;
         }
-        return super.o0(i10, fVar, j1Var);
+        return super.o0(i10, hVar, i1Var);
     }
 
     @Override

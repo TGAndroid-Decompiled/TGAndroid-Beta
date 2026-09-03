@@ -4,15 +4,15 @@ import java.util.Collections;
 import java.util.List;
 import v4.f;
 public final class b implements f {
-    public static final b f4292b = new b();
-    public final List f4293a;
+    public static final b f4201b = new b();
+    public final List f4202a;
 
     public b(v4.b bVar) {
-        this.f4293a = Collections.singletonList(bVar);
+        this.f4202a = Collections.singletonList(bVar);
     }
 
     @Override
-    public final int d(long j10) {
+    public final int e(long j10) {
         if (j10 < 0) {
             return 0;
         }
@@ -20,7 +20,7 @@ public final class b implements f {
     }
 
     @Override
-    public final long l(int i10) {
+    public final long h(int i10) {
         boolean z4;
         if (i10 == 0) {
             z4 = true;
@@ -34,17 +34,17 @@ public final class b implements f {
     @Override
     public final List q(long j10) {
         if (j10 >= 0) {
-            return this.f4293a;
+            return this.f4202a;
         }
         return Collections.EMPTY_LIST;
     }
 
     @Override
-    public final int x() {
+    public final int r() {
         return 1;
     }
 
     public b() {
-        this.f4293a = Collections.EMPTY_LIST;
+        this.f4202a = Collections.EMPTY_LIST;
     }
 }

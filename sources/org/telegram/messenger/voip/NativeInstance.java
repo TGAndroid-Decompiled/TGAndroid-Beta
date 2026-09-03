@@ -125,9 +125,9 @@ public class NativeInstance {
 
     private void onEmitJoinPayload(String str, int i10) {
         try {
-            AndroidUtilities.runOnUIThread(new bh.a(this, i10, str, 17));
-        } catch (Exception e6) {
-            FileLog.e(e6);
+            AndroidUtilities.runOnUIThread(new ah.a(this, i10, str, 17));
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
@@ -285,8 +285,8 @@ public class NativeInstance {
         stopNative();
         try {
             this.stopBarrier.await();
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
         return this.finalState;
     }

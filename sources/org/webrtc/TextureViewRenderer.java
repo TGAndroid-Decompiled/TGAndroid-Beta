@@ -8,6 +8,7 @@ import android.os.Looper;
 import android.view.TextureView;
 import android.view.View;
 import java.util.concurrent.CountDownLatch;
+import kf.k0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.voip.VoIPService;
@@ -142,7 +143,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
             sb.append(", frame size: ");
             sb.append(this.rotatedFrameWidth);
             sb.append("x");
-            l.d.w(sb, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
+            k0.w(sb, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
             sb.append(min2);
             sb.append(", old surface size: ");
             sb.append(this.surfaceWidth);

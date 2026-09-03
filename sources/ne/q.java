@@ -1,12 +1,12 @@
 package ne;
 
-import k7.h0;
+import k7.g0;
 public final class q extends n {
-    public int f15980g;
+    public int f14943g;
     public char h;
 
     @Override
-    public final void a(h0 h0Var) {
-        h0Var.m(this);
+    public final void a(g0 g0Var) {
+        g0Var.m(this);
     }
 }

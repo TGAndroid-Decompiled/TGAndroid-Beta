@@ -1,20 +1,20 @@
 package b4;
 public final class r {
-    public final r3.v f1598a;
-    public long f1599b;
-    public boolean f1600c;
+    public final r3.v f1490a;
+    public long f1491b;
+    public boolean f1492c;
     public int d;
-    public long f1601e;
-    public boolean f1602f;
-    public boolean f1603g;
+    public long e;
+    public boolean f1493f;
+    public boolean f1494g;
     public boolean h;
-    public boolean f1604i;
-    public boolean f1605j;
-    public long f1606k;
-    public long f1607l;
-    public boolean f1608m;
+    public boolean f1495i;
+    public boolean f1496j;
+    public long f1497k;
+    public long f1498l;
+    public boolean f1499m;
 
     public r(r3.v vVar) {
-        this.f1598a = vVar;
+        this.f1490a = vVar;
     }
 }

@@ -1,40 +1,24 @@
 package org.telegram.ui;
 
-import android.view.ContextThemeWrapper;
 import android.view.View;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class sr {
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f41297a;
-    public final LinearLayout f41298b;
-    public final br0 f41299c;
+public final class sr implements View.OnClickListener {
+    public final int f38297a;
+    public final org.telegram.ui.Components.bh0 f38298b;
 
-    public sr(ContextThemeWrapper contextThemeWrapper, org.telegram.ui.Components.ch0 ch0Var, br0 br0Var) {
-        this.f41299c = br0Var;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, contextThemeWrapper, null);
-        this.f41297a = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setFitItems(true);
-        org.telegram.ui.ActionBar.g1 c3 = org.telegram.ui.ActionBar.w0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
-        c3.setOnClickListener(new rr(ch0Var, 0));
-        c3.c(-328966, -328966);
-        c3.setSelectorColor(268435455);
-        View dVar = new eh.d(contextThemeWrapper, 11);
-        dVar.setMinimumWidth(AndroidUtilities.dp(196.0f));
-        dVar.setBackgroundColor(-15198184);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.addView(dVar);
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) dVar.getLayoutParams();
-        if (LocaleController.isRTL) {
-            layoutParams.gravity = 5;
+    public sr(org.telegram.ui.Components.bh0 bh0Var, int i10) {
+        this.f38297a = i10;
+        this.f38298b = bh0Var;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        switch (this.f38297a) {
+            case 0:
+                this.f38298b.b(true);
+                return;
+            default:
+                this.f38298b.b(true);
+                return;
         }
-        layoutParams.width = -1;
-        layoutParams.height = AndroidUtilities.dp(8.0f);
-        dVar.setLayoutParams(layoutParams);
-        LinearLayout linearLayout = new LinearLayout(contextThemeWrapper);
-        this.f41298b = linearLayout;
-        linearLayout.setOrientation(1);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.addView(linearLayout);
     }
 }

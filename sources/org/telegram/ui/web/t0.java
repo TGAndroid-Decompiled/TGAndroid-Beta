@@ -1,81 +1,32 @@
 package org.telegram.ui.web;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.Build;
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.g6;
-public final class t0 extends WebViewClient {
-    public final WebView f42660a;
-    public final u0 f42661b;
+import android.view.KeyEvent;
+import android.webkit.JsPromptResult;
+import android.widget.TextView;
+import org.telegram.ui.Components.ut;
+public final class t0 implements TextView.OnEditorActionListener {
+    public final boolean[] f39580a;
+    public final JsPromptResult f39581b;
+    public final ut f39582c;
+    public final org.telegram.ui.ActionBar.d2 d;
 
-    public t0(u0 u0Var, WebView webView) {
-        this.f42661b = u0Var;
-        this.f42660a = webView;
+    public t0(boolean[] zArr, JsPromptResult jsPromptResult, ut utVar, org.telegram.ui.ActionBar.d2 d2Var) {
+        this.f39580a = zArr;
+        this.f39581b = jsPromptResult;
+        this.f39582c = utVar;
+        this.d = d2Var;
     }
 
     @Override
-    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        g6 g6Var;
-        Integer valueOf;
-        Boolean valueOf2;
-        x0 x0Var = this.f42661b.f42701e;
-        if (Build.VERSION.SDK_INT >= 26) {
-            StringBuilder sb = new StringBuilder("newWebView.onRenderProcessGone priority=");
-            if (renderProcessGoneDetail == null) {
-                valueOf = null;
-            } else {
-                valueOf = Integer.valueOf(renderProcessGoneDetail.rendererPriorityAtExit());
-            }
-            sb.append(valueOf);
-            sb.append(" didCrash=");
-            if (renderProcessGoneDetail == null) {
-                valueOf2 = null;
-            } else {
-                valueOf2 = Boolean.valueOf(renderProcessGoneDetail.didCrash());
-            }
-            sb.append(valueOf2);
-            x0Var.c(sb.toString());
-        } else {
-            x0Var.c("newWebView.onRenderProcessGone");
-        }
-        try {
-            if (!AndroidUtilities.isSafeToShow(x0Var.getContext())) {
-                return true;
-            }
-            Context context = x0Var.getContext();
-            a1 a1Var = x0Var.N;
-            if (a1Var == null) {
-                g6Var = null;
-            } else {
-                g6Var = a1Var.f42436e;
-            }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, g6Var);
-            alertDialog$Builder.f21168a.O = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f21168a.Q = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new s0(this, 0));
-            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.f21168a.setOnDismissListener(new fg.d0(this, 10));
-            alertDialog$Builder.o();
-            return true;
-        } catch (Exception e6) {
-            FileLog.e(e6);
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        if (i10 != 6) {
             return false;
         }
-    }
-
-    @Override
-    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        a1 a1Var = this.f42661b.f42701e.N;
-        if (a1Var != null) {
-            a1Var.D(Uri.parse(str), null, !a1Var.f42445l0, false, false);
-            this.f42660a.destroy();
+        boolean[] zArr = this.f39580a;
+        if (!zArr[0]) {
+            zArr[0] = true;
+            this.f39581b.confirm(this.f39582c.getText().toString());
+            this.d.dismiss();
         }
         return true;
     }

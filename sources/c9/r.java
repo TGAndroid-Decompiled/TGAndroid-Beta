@@ -1,42 +1,37 @@
 package c9;
 
-import androidx.emoji2.text.w;
+import j$.util.DesugarCollections;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.util.Collections;
+import java.util.Set;
 public final class r implements ba.b {
-    public static final w f2371c = new w(7);
-    public static final g d = new g(1);
-    public ba.a f2372a;
-    public volatile ba.b f2373b;
+    public volatile Set f2203a;
+    public volatile Set f2204b;
 
-    public r(w wVar, ba.b bVar) {
-        this.f2372a = wVar;
-        this.f2373b = bVar;
-    }
-
-    public final void a(ba.a aVar) {
-        ba.b bVar;
-        ba.b bVar2;
-        ba.b bVar3 = this.f2373b;
-        g gVar = d;
-        if (bVar3 != gVar) {
-            aVar.f(bVar3);
-            return;
-        }
-        synchronized (this) {
-            bVar = this.f2373b;
-            if (bVar != gVar) {
-                bVar2 = bVar;
-            } else {
-                this.f2372a = new c1.b(1, this.f2372a, aVar);
-                bVar2 = null;
+    public final synchronized void a() {
+        try {
+            for (ba.b bVar : this.f2203a) {
+                this.f2204b.add(bVar.get());
             }
-        }
-        if (bVar2 != null) {
-            aVar.f(bVar);
+            this.f2203a = null;
+        } catch (Throwable th2) {
+            throw th2;
         }
     }
 
     @Override
     public final Object get() {
-        return this.f2373b.get();
+        if (this.f2204b == null) {
+            synchronized (this) {
+                try {
+                    if (this.f2204b == null) {
+                        this.f2204b = Collections.newSetFromMap(new ConcurrentHashMap());
+                        a();
+                    }
+                } finally {
+                }
+            }
+        }
+        return DesugarCollections.unmodifiableSet(this.f2204b);
     }
 }

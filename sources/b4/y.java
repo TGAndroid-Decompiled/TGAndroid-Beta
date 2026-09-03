@@ -1,31 +1,31 @@
 package b4;
 public final class y {
-    public final int f1668a;
-    public final h5.c0 f1669b;
-    public final h5.w f1670c;
+    public final int f1554a;
+    public final h5.c0 f1555b;
+    public final h5.w f1556c;
     public boolean d;
-    public boolean f1671e;
-    public boolean f1672f;
-    public long f1673g;
+    public boolean e;
+    public boolean f1557f;
+    public long f1558g;
     public long h;
-    public long f1674i;
+    public long f1559i;
 
     public y(int i10) {
-        this.f1668a = i10;
+        this.f1554a = i10;
         switch (i10) {
             case 1:
-                this.f1669b = new h5.c0(0L);
-                this.f1673g = -9223372036854775807L;
+                this.f1555b = new h5.c0(0L);
+                this.f1558g = -9223372036854775807L;
                 this.h = -9223372036854775807L;
-                this.f1674i = -9223372036854775807L;
-                this.f1670c = new h5.w();
+                this.f1559i = -9223372036854775807L;
+                this.f1556c = new h5.w();
                 return;
             default:
-                this.f1669b = new h5.c0(0L);
-                this.f1673g = -9223372036854775807L;
+                this.f1555b = new h5.c0(0L);
+                this.f1558g = -9223372036854775807L;
                 this.h = -9223372036854775807L;
-                this.f1674i = -9223372036854775807L;
-                this.f1670c = new h5.w();
+                this.f1559i = -9223372036854775807L;
+                this.f1556c = new h5.w();
                 return;
         }
     }
@@ -35,7 +35,7 @@ public final class y {
     }
 
     public static long c(h5.w wVar) {
-        int i10 = wVar.f7309b;
+        int i10 = wVar.f6988b;
         if (wVar.a() < 9) {
             return -9223372036854775807L;
         }
@@ -58,22 +58,22 @@ public final class y {
     }
 
     public final void a(r3.l lVar) {
-        switch (this.f1668a) {
+        switch (this.f1554a) {
             case 0:
-                byte[] bArr = h5.d0.f7241f;
-                h5.w wVar = this.f1670c;
+                byte[] bArr = h5.d0.f6927f;
+                h5.w wVar = this.f1556c;
                 wVar.getClass();
                 wVar.D(bArr.length, bArr);
                 this.d = true;
-                lVar.r();
+                lVar.m();
                 return;
             default:
-                byte[] bArr2 = h5.d0.f7241f;
-                h5.w wVar2 = this.f1670c;
+                byte[] bArr2 = h5.d0.f6927f;
+                h5.w wVar2 = this.f1556c;
                 wVar2.getClass();
                 wVar2.D(bArr2.length, bArr2);
                 this.d = true;
-                lVar.r();
+                lVar.m();
                 return;
         }
     }

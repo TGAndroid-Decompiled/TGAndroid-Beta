@@ -2,7 +2,7 @@ package ld;
 
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 public final class n extends v {
-    public static final AtomicIntegerFieldUpdater f12336c = AtomicIntegerFieldUpdater.newUpdater(n.class, "_resumed$volatile");
+    public static final AtomicIntegerFieldUpdater f12014c = AtomicIntegerFieldUpdater.newUpdater(n.class, "_resumed$volatile");
     private volatile int _resumed$volatile;
 
     public n(ld.m r3, java.lang.Throwable r4, boolean r5) {

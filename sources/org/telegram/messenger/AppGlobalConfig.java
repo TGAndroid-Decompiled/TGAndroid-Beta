@@ -422,8 +422,8 @@ public class AppGlobalConfig {
         for (ConfigInternal configInternal : this.map.values()) {
             try {
                 configInternal.load(sharedPreferences);
-            } catch (ClassCastException e6) {
-                FileLog.e(e6);
+            } catch (ClassCastException e) {
+                FileLog.e(e);
             }
         }
     }

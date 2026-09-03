@@ -1,50 +1,62 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.RadialProgressView;
-public final class lg0 implements Runnable {
-    public final int f38635a;
-    public final mg0 f38636b;
-    public final cg0 f38637c;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
+public final class lg0 extends AnimatedPhoneNumberEditText {
+    public final og0 D;
 
-    public lg0(int i10, cg0 cg0Var, mg0 mg0Var) {
-        this.f38635a = i10;
-        this.f38636b = mg0Var;
-        this.f38637c = cg0Var;
+    public lg0(og0 og0Var, Context context) {
+        super(context);
+        this.D = og0Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f38635a;
-        cg0 cg0Var = this.f38637c;
-        mg0 mg0Var = this.f38636b;
-        switch (i10) {
-            case 0:
-                int i11 = cg0.B;
-                cg0Var.a();
-                AndroidUtilities.runOnUIThread(new lg0(1, cg0Var, mg0Var), 150L);
-                return;
-            default:
-                ng0 ng0Var = mg0Var.f38974a;
-                ng0Var.h(null);
-                RadialProgressView radialProgressView = ng0Var.S.K.d;
-                RadialProgressView radialProgressView2 = cg0Var.h.d;
-                radialProgressView.getClass();
-                radialProgressView.f24991a = radialProgressView2.f24991a;
-                radialProgressView.f24992b = radialProgressView2.f24992b;
-                radialProgressView.E = radialProgressView2.E;
-                radialProgressView.F = radialProgressView2.F;
-                radialProgressView.G = radialProgressView2.G;
-                radialProgressView.f24993c = radialProgressView2.f24993c;
-                radialProgressView.f24996n = radialProgressView2.f24996n;
-                radialProgressView.f24994e = radialProgressView2.f24994e;
-                radialProgressView.f25001y = radialProgressView2.f25001y;
-                radialProgressView.C = radialProgressView2.C;
-                radialProgressView.D = radialProgressView2.D;
-                radialProgressView.d = radialProgressView2.d;
-                radialProgressView.B = radialProgressView2.B;
-                radialProgressView.b(85L);
-                return;
+    public final void onFocusChanged(boolean z4, int i10, Rect rect) {
+        float f10;
+        super.onFocusChanged(z4, i10, rect);
+        og0 og0Var = this.D;
+        pg0 pg0Var = og0Var.S;
+        org.telegram.ui.Components.bd0 bd0Var = og0Var.f36799f;
+        if (!z4 && !og0Var.f36796a.isFocused()) {
+            f10 = 0.0f;
+        } else {
+            f10 = 1.0f;
         }
+        bd0Var.b(f10, f10, true);
+        if (z4) {
+            pg0Var.f37130c.setEditText(this);
+            pg0Var.f37130c.setDispatchBackWhenEmpty(true);
+            if (og0Var.f36804x == 2) {
+                og0Var.setCountryButtonText(LocaleController.getString(R.string.WrongCountry));
+            }
+        } else if (og0Var.f36804x == 2) {
+            og0Var.setCountryButtonText(null);
+        }
+    }
+
+    @Override
+    public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
+        og0 og0Var = this.D;
+        sj0 sj0Var = og0Var.f36796a;
+        if (i10 == 67 && og0Var.f36797b.length() == 0) {
+            sj0Var.requestFocus();
+            sj0Var.setSelection(sj0Var.length());
+            sj0Var.dispatchKeyEvent(keyEvent);
+        }
+        return super.onKeyDown(i10, keyEvent);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && !pg0.T0(this.D.S, this)) {
+            clearFocus();
+            requestFocus();
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

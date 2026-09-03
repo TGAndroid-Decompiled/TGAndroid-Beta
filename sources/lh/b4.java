@@ -1,112 +1,126 @@
 package lh;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RadialGradient;
+import android.graphics.Shader;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.q70;
-public final class b4 implements Utilities.Callback5 {
-    public final int f12617a;
-    public final r5 f12618b;
-    public final q70 f12619c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.mr;
+public final class b4 extends View {
+    public final Paint f12131a;
+    public final Paint f12132b;
+    public final Paint f12133c;
+    public final RadialGradient[] d;
+    public final Matrix e;
+    public final org.telegram.ui.Components.z5 f12134f;
+    public final RadialGradient h;
+    public final Path f12135n;
+    public int f12136r;
+    public int f12137s;
 
-    public b4(r5 r5Var, q70 q70Var, int i10) {
-        this.f12617a = i10;
-        this.f12618b = r5Var;
-        this.f12619c = q70Var;
+    public b4(Context context) {
+        super(context);
+        this.f12131a = new Paint(1);
+        this.f12132b = new Paint(1);
+        Paint paint = new Paint(1);
+        this.f12133c = paint;
+        this.d = new RadialGradient[2];
+        this.e = new Matrix();
+        this.f12134f = new org.telegram.ui.Components.z5(1.0f, this, 0L, 420L, mr.h);
+        this.h = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{0, -1, -1, 0}, new float[]{0.15f, 0.35f, 0.65f, 0.88f}, Shader.TileMode.CLAMP);
+        this.f12135n = new Path();
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+    }
+
+    public final void a(int i10, int i11) {
+        if (this.f12136r == i10 && this.f12137s == i11) {
+            return;
+        }
+        RadialGradient[] radialGradientArr = this.d;
+        radialGradientArr[0] = radialGradientArr[1];
+        this.f12136r = i10;
+        this.f12137s = i11;
+        radialGradientArr[1] = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        this.f12134f.d(0.0f, true);
+        invalidate();
     }
 
     @Override
-    public final void mo27run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        int i10 = this.f12617a;
-        h51 h51Var = (h51) obj;
-        View view = (View) obj2;
-        Integer num = (Integer) obj3;
-        Float f10 = (Float) obj4;
-        Float f11 = (Float) obj5;
-        r5 r5Var = this.f12618b;
-        r5Var.getClass();
-        switch (i10) {
-            case 0:
-                long j10 = ((TL_stars.starGiftAttributePattern) h51Var.G).document.f20851id;
-                b5 b5Var = r5Var.d;
-                HashSet hashSet = b5Var.f12629l;
-                if (!hashSet.contains(Long.valueOf(j10))) {
-                    if (hashSet.isEmpty()) {
-                        ArrayList arrayList = b5Var.h;
-                        int size = arrayList.size();
-                        int i11 = 0;
-                        while (i11 < size) {
-                            Object obj6 = arrayList.get(i11);
-                            i11++;
-                            long j11 = ((TL_stars.starGiftAttributePattern) obj6).document.f20851id;
-                            if (j11 != j10) {
-                                hashSet.add(Long.valueOf(j11));
-                            }
-                        }
-                    } else {
-                        hashSet.add(Long.valueOf(j10));
-                    }
+    public final void onDraw(Canvas canvas) {
+        Paint paint;
+        int i10 = 0;
+        float d = this.f12134f.d(1.0f, false);
+        float currentTimeMillis = (((float) (System.currentTimeMillis() % 15000)) / 15000.0f) * 360.0f;
+        if (getAlpha() > 0.0f) {
+            invalidate();
+        }
+        Paint.Style style = Paint.Style.STROKE;
+        Paint paint2 = this.f12132b;
+        paint2.setStyle(style);
+        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        Path path = this.f12135n;
+        path.rewind();
+        float width = getWidth() / 2.0f;
+        float height = getHeight() / 2.0f;
+        float min = Math.min(getWidth(), getHeight()) / 2.0f;
+        for (int i11 = 0; i11 < 6; i11++) {
+            float A = e2.c.A(i11, 60.0f, 12.5f, currentTimeMillis);
+            path.moveTo(width, height);
+            double d10 = ((A - 12.5f) / 180.0f) * 3.141592653589793d;
+            path.lineTo((((float) Math.cos(d10)) * min) + width, (((float) Math.sin(d10)) * min) + height);
+            double d11 = ((A + 12.5f) / 180.0f) * 3.141592653589793d;
+            path.lineTo((((float) Math.cos(d11)) * min) + width, (((float) Math.sin(d11)) * min) + height);
+            path.lineTo(width, height);
+        }
+        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+        while (true) {
+            RadialGradient[] radialGradientArr = this.d;
+            int length = radialGradientArr.length;
+            Matrix matrix = this.e;
+            if (i10 < length) {
+                if (radialGradientArr[i10] == null) {
+                    paint = paint2;
                 } else {
-                    hashSet.remove(Long.valueOf(j10));
-                }
-                b5Var.h();
-                this.f12619c.u();
-                return;
-            case 1:
-                int i12 = ((TL_stars.starGiftAttributeBackdrop) h51Var.G).backdrop_id;
-                b5 b5Var2 = r5Var.d;
-                HashSet hashSet2 = b5Var2.f12628k;
-                if (!hashSet2.contains(Integer.valueOf(i12))) {
-                    if (hashSet2.isEmpty()) {
-                        ArrayList arrayList2 = b5Var2.f12625g;
-                        int size2 = arrayList2.size();
-                        int i13 = 0;
-                        while (i13 < size2) {
-                            Object obj7 = arrayList2.get(i13);
-                            i13++;
-                            int i14 = ((TL_stars.starGiftAttributeBackdrop) obj7).backdrop_id;
-                            if (i14 != i12) {
-                                hashSet2.add(Integer.valueOf(i14));
-                            }
-                        }
-                    } else {
-                        hashSet2.add(Integer.valueOf(i12));
+                    paint = paint2;
+                    float pow = (float) Math.pow(1.0f - Math.abs(i10 - d), 0.5d);
+                    if (pow > 0.0f) {
+                        matrix.reset();
+                        float f10 = min / 100.0f;
+                        matrix.postScale(f10, f10);
+                        matrix.postTranslate(width, height);
+                        radialGradientArr[i10].setLocalMatrix(matrix);
+                        RadialGradient radialGradient = radialGradientArr[i10];
+                        Paint paint3 = this.f12131a;
+                        paint3.setShader(radialGradient);
+                        float f11 = pow * 255.0f;
+                        paint3.setAlpha((int) (0.3f * f11));
+                        paint.setShader(radialGradientArr[i10]);
+                        paint.setAlpha((int) f11);
+                        canvas.drawPath(path, paint3);
+                        canvas.drawPath(path, paint);
                     }
-                } else {
-                    hashSet2.remove(Integer.valueOf(i12));
                 }
-                b5Var2.h();
-                this.f12619c.u();
+                i10++;
+                paint2 = paint;
+            } else {
+                matrix.reset();
+                float f12 = min / 100.0f;
+                matrix.postScale(f12, f12);
+                matrix.postTranslate(width, height);
+                RadialGradient radialGradient2 = this.h;
+                radialGradient2.setLocalMatrix(matrix);
+                Paint paint4 = this.f12133c;
+                paint4.setShader(radialGradient2);
+                canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint4);
+                canvas.restore();
                 return;
-            default:
-                long j12 = ((TL_stars.starGiftAttributeModel) h51Var.G).document.f20851id;
-                b5 b5Var3 = r5Var.d;
-                HashSet hashSet3 = b5Var3.f12627j;
-                if (!hashSet3.contains(Long.valueOf(j12))) {
-                    if (hashSet3.isEmpty()) {
-                        ArrayList arrayList3 = b5Var3.f12624f;
-                        int size3 = arrayList3.size();
-                        int i15 = 0;
-                        while (i15 < size3) {
-                            Object obj8 = arrayList3.get(i15);
-                            i15++;
-                            long j13 = ((TL_stars.starGiftAttributeModel) obj8).document.f20851id;
-                            if (j13 != j12) {
-                                hashSet3.add(Long.valueOf(j13));
-                            }
-                        }
-                    } else {
-                        hashSet3.add(Long.valueOf(j12));
-                    }
-                } else {
-                    hashSet3.remove(Long.valueOf(j12));
-                }
-                b5Var3.h();
-                this.f12619c.u();
-                return;
+            }
         }
     }
 }

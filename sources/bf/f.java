@@ -1,203 +1,116 @@
 package bf;
 
-import android.net.Uri;
+import android.app.PictureInPictureParams;
+import android.graphics.Rect;
+import android.os.Build;
 import android.view.View;
-import androidx.datastore.preferences.protobuf.i;
-import androidx.recyclerview.widget.RecyclerView;
-import f2.b1;
-import f2.c1;
-import f2.m1;
-import f2.p0;
-import f2.u0;
-import f2.w0;
-import j$.util.DesugarCollections;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import r0.j0;
+import com.google.firebase.messaging.r;
+import j3.f0;
+import java.util.HashMap;
+import m.s3;
 public final class f {
-    public int f1950a;
-    public int f1951b;
-    public final Serializable f1952c;
-    public Serializable d;
-    public Serializable f1953e;
-    public Object f1954f;
-    public Object f1955g;
-    public Object h;
+    public static int f1815n;
+    public static final Rect f1816o = new Rect();
+    public final s3 f1817a;
+    public final df.e f1818b;
+    public final String f1819c;
+    public final int d;
+    public final int e;
+    public final boolean f1820f;
+    public final df.a f1821g;
+    public final ef.c h;
+    public final r f1822i;
+    public View f1823j;
+    public View f1824k;
+    public f0 f1825l;
+    public boolean f1826m;
 
-    public f(Uri uri, String str, String str2) {
-        this.f1952c = str;
-        this.f1955g = uri;
-        this.d = str2;
+    public f(s3 s3Var, e eVar) {
+        int i10 = f1815n;
+        f1815n = i10 + 1;
+        ef.c cVar = new ef.c();
+        this.h = cVar;
+        d dVar = new d(this, 0);
+        ?? obj = new Object();
+        obj.d = new ef.b(obj, 0);
+        obj.f4004a = dVar;
+        this.f1822i = obj;
+        StringBuilder sb = new StringBuilder();
+        String str = eVar.f1809c;
+        sb.append(str == null ? "pip-source" : str);
+        sb.append("-");
+        sb.append(i10);
+        String sb2 = sb.toString();
+        this.f1819c = sb2;
+        this.f1821g = eVar.f1808b;
+        this.d = eVar.e;
+        this.e = eVar.d;
+        this.f1820f = eVar.f1810f;
+        this.f1817a = s3Var;
+        cVar.c(eVar.h, eVar.f1812i);
+        this.f1825l = eVar.f1811g;
+        this.f1824k = eVar.f1814k;
+        this.f1818b = new df.e(this);
+        View view = eVar.f1813j;
+        obj.o(view);
+        this.f1823j = view;
+        if (view != null) {
+            e(view);
+        }
+        b(false);
+        ((HashMap) s3Var.f13625a).put(sb2, this);
+        s3Var.g();
     }
 
-    public void a(m1 m1Var, boolean z4) {
-        RecyclerView.m(m1Var);
-        if (m1Var.e(16384)) {
-            m1Var.p(0, 16384);
-            j0.k(m1Var.f5875a, null);
-        }
-        if (z4) {
-            RecyclerView recyclerView = (RecyclerView) this.h;
-            p0 p0Var = recyclerView.f1347w;
-            if (p0Var != null) {
-                p0Var.A(m1Var);
+    public final PictureInPictureParams a() {
+        boolean z4;
+        PictureInPictureParams.Builder a2 = this.h.a();
+        a2.setActions(null);
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 31) {
+            if (i10 >= 31) {
+                z4 = true;
+            } else {
+                z4 = false;
             }
-            if (recyclerView.f1339q0 != null) {
-                recyclerView.f1327f.b0(m1Var);
-            }
+            a2.setAutoEnterEnabled(z4);
         }
-        m1Var.f5892t = null;
-        c1 c3 = c();
-        c3.getClass();
-        int i10 = m1Var.f5879f;
-        ArrayList arrayList = c3.b(i10).f5735a;
-        if (((b1) c3.f5743a.get(i10)).f5736b <= arrayList.size()) {
-            return;
-        }
-        m1Var.o();
-        arrayList.add(m1Var);
+        return a2.build();
     }
 
-    public int b(int i10) {
-        RecyclerView recyclerView = (RecyclerView) this.h;
-        if (i10 >= 0 && i10 < recyclerView.f1339q0.b()) {
-            if (!recyclerView.f1339q0.f5832g) {
-                return i10;
-            }
-            return recyclerView.d.g(i10, 0);
-        }
-        StringBuilder m9 = l.d.m(i10, "invalid position ", ". State item count is ");
-        m9.append(recyclerView.f1339q0.b());
-        m9.append(recyclerView.C());
-        throw new IndexOutOfBoundsException(m9.toString());
-    }
-
-    public c1 c() {
-        if (((c1) this.f1955g) == null) {
-            this.f1955g = new c1();
-        }
-        return (c1) this.f1955g;
-    }
-
-    public void d(p0 p0Var, p0 p0Var2) {
-        ((ArrayList) this.f1952c).clear();
-        e();
-        c1 c3 = c();
-        if (p0Var != null) {
-            c3.f5744b--;
-        }
-        if (c3.f5744b == 0) {
-            c3.a();
-        }
-        if (p0Var2 != null) {
-            c3.f5744b++;
+    public final void b(boolean z4) {
+        boolean z10;
+        if (this.h.b() && this.f1821g.g()) {
+            z10 = true;
         } else {
-            c3.getClass();
+            z10 = false;
         }
-    }
-
-    public void e() {
-        ArrayList arrayList = (ArrayList) this.f1953e;
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            f(size);
-        }
-        arrayList.clear();
-        if (RecyclerView.P0) {
-            i iVar = ((RecyclerView) this.h).f1338p0;
-            int[] iArr = (int[]) iVar.d;
-            if (iArr != null) {
-                Arrays.fill(iArr, -1);
+        if (this.f1826m != z10) {
+            this.f1826m = z10;
+            if (z4) {
+                s3 s3Var = this.f1817a;
+                s3Var.g();
+                ((a) s3Var.f13627c).invalidate();
             }
-            iVar.f735c = 0;
         }
     }
 
-    public void f(int i10) {
-        ArrayList arrayList = (ArrayList) this.f1953e;
-        a((m1) arrayList.get(i10), true);
-        arrayList.remove(i10);
-    }
-
-    public void g(View view) {
-        RecyclerView recyclerView = (RecyclerView) this.h;
-        m1 U = RecyclerView.U(view);
-        if (U.l()) {
-            recyclerView.removeDetachedView(view, false);
-        }
-        if (U.k()) {
-            U.f5888p.k(U);
-        } else if (U.s()) {
-            U.f5884l &= -33;
-        }
-        h(U);
-        if (recyclerView.W != null && !U.i()) {
-            recyclerView.W.f(U);
+    public final void c() {
+        this.f1822i.o(null);
+        s3 s3Var = this.f1817a;
+        if (((HashMap) s3Var.f13625a).remove(this.f1819c) != null) {
+            s3Var.g();
         }
     }
 
-    public void h(f2.m1 r12) {
-        throw new UnsupportedOperationException("Method not decompiled: bf.f.h(f2.m1):void");
-    }
-
-    public void i(View view) {
-        u0 u0Var;
-        RecyclerView recyclerView = (RecyclerView) this.h;
-        m1 U = RecyclerView.U(view);
-        if (!U.e(12) && U.m() && (u0Var = recyclerView.W) != null && !u0Var.c(U, U.d())) {
-            if (((ArrayList) this.d) == null) {
-                this.d = new ArrayList();
-            }
-            U.f5888p = this;
-            U.f5889q = true;
-            ((ArrayList) this.d).add(U);
-        } else if (U.h() && !U.j() && !recyclerView.f1347w.f5909b) {
-            throw new IllegalArgumentException("Called scrap view with an invalid view. Invalid views cannot be reused from scrap, they should rebound from recycler pool." + recyclerView.C());
-        } else {
-            U.f5888p = this;
-            U.f5889q = false;
-            ((ArrayList) this.f1952c).add(U);
+    public final void d(int i10, int i11) {
+        if (this.h.c(i10, i11)) {
+            b(true);
+            this.f1817a.a(this);
         }
     }
 
-    public f2.m1 j(int r30, long r31) {
-        throw new UnsupportedOperationException("Method not decompiled: bf.f.j(int, long):f2.m1");
-    }
-
-    public void k(m1 m1Var) {
-        if (m1Var.f5889q) {
-            ((ArrayList) this.d).remove(m1Var);
-        } else {
-            ((ArrayList) this.f1952c).remove(m1Var);
-        }
-        m1Var.f5888p = null;
-        m1Var.f5889q = false;
-        m1Var.f5884l &= -33;
-    }
-
-    public void l() {
-        int i10;
-        ArrayList arrayList = (ArrayList) this.f1953e;
-        w0 w0Var = ((RecyclerView) this.h).f1349x;
-        if (w0Var != null) {
-            i10 = w0Var.f5946i;
-        } else {
-            i10 = 0;
-        }
-        this.f1951b = this.f1950a + i10;
-        for (int size = arrayList.size() - 1; size >= 0 && arrayList.size() > this.f1951b; size--) {
-            f(size);
-        }
-    }
-
-    public f(RecyclerView recyclerView) {
-        this.h = recyclerView;
-        ArrayList arrayList = new ArrayList();
-        this.f1952c = arrayList;
-        this.d = null;
-        this.f1953e = new ArrayList();
-        this.f1954f = DesugarCollections.unmodifiableList(arrayList);
-        this.f1950a = 2;
-        this.f1951b = 2;
+    public final void e(android.view.View r12) {
+        throw new UnsupportedOperationException("Method not decompiled: bf.f.e(android.view.View):void");
     }
 }

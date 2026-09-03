@@ -8,16 +8,16 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class f11 extends FrameLayout {
-    public boolean f26748a;
-    public final RectF f26749b;
-    public Boolean f26750c;
+    public boolean f24769a;
+    public final RectF f24770b;
+    public Boolean f24771c;
     public final ThemeEditorView.EditorAlert d;
 
     public f11(ThemeEditorView.EditorAlert editorAlert, Context context) {
         super(context);
         this.d = editorAlert;
-        this.f26748a = false;
-        this.f26749b = new RectF();
+        this.f24769a = false;
+        this.f24770b = new RectF();
     }
 
     @Override
@@ -51,26 +51,26 @@ public final class f11 extends FrameLayout {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
         ThemeEditorView.EditorAlert editorAlert = this.d;
-        g11 g11Var = editorAlert.f25067c;
-        z4 = ((org.telegram.ui.ActionBar.h3) editorAlert).isFullscreen;
+        g11 g11Var = editorAlert.f23177c;
+        z4 = ((org.telegram.ui.ActionBar.g3) editorAlert).isFullscreen;
         if (!z4) {
-            this.f26748a = true;
-            i12 = ((org.telegram.ui.ActionBar.h3) editorAlert).backgroundPaddingLeft;
+            this.f24769a = true;
+            i12 = ((org.telegram.ui.ActionBar.g3) editorAlert).backgroundPaddingLeft;
             int i14 = AndroidUtilities.statusBarHeight;
-            i13 = ((org.telegram.ui.ActionBar.h3) editorAlert).backgroundPaddingLeft;
+            i13 = ((org.telegram.ui.ActionBar.g3) editorAlert).backgroundPaddingLeft;
             setPadding(i12, i14, i13, 0);
-            this.f26748a = false;
+            this.f24769a = false;
         }
         int dp = (AndroidUtilities.dp(8.0f) + (size2 - AndroidUtilities.statusBarHeight)) - Math.min(size, size2 - AndroidUtilities.statusBarHeight);
         if (g11Var.getPaddingTop() != dp) {
-            this.f26748a = true;
+            this.f24769a = true;
             g11Var.getPaddingTop();
             g11Var.setPadding(0, dp, 0, AndroidUtilities.dp(48.0f));
-            if (editorAlert.f25066b.getVisibility() == 0) {
+            if (editorAlert.f23176b.getVisibility() == 0) {
                 editorAlert.setScrollOffsetY(g11Var.getPaddingTop());
                 editorAlert.D = 0;
             }
-            this.f26748a = false;
+            this.f24769a = false;
         }
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
     }
@@ -85,7 +85,7 @@ public final class f11 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f26748a) {
+        if (this.f24769a) {
             return;
         }
         super.requestLayout();

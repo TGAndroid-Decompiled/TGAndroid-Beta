@@ -75,7 +75,7 @@ public class UserObject {
         if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
             return peerColor.color;
         }
-        return (int) (user.f20992id % 7);
+        return (int) (user.f19306id % 7);
     }
 
     public static long getEmojiId(TLRPC.User user) {
@@ -254,7 +254,7 @@ public class UserObject {
     }
 
     public static boolean isAnonymous(TLRPC.User user) {
-        if (user != null && user.f20992id == 2666000) {
+        if (user != null && user.f19306id == 2666000) {
             return true;
         }
         return false;
@@ -315,7 +315,7 @@ public class UserObject {
 
     public static boolean areGiftsDisabled(TLRPC.UserFull userFull) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        return (userFull == null || userFull.f20993id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
+        return (userFull == null || userFull.f19307id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
     }
 
     public static Long getEmojiStatusDocumentId(TLRPC.EmojiStatus emojiStatus) {
@@ -354,7 +354,7 @@ public class UserObject {
 
     public static boolean isReplyUser(TLRPC.User user) {
         if (user != null) {
-            long j10 = user.f20992id;
+            long j10 = user.f19306id;
             return j10 == 708513 || j10 == 1271266957;
         }
         return false;

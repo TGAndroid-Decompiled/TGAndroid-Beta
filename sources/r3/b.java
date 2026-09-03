@@ -2,22 +2,22 @@ package r3;
 
 import h5.d0;
 public final class b {
-    public final long f46565a;
-    public final long f46566b;
-    public final long f46567c;
+    public final long f43227a;
+    public final long f43228b;
+    public final long f43229c;
     public long d = 0;
-    public long f46568e;
-    public long f46569f;
-    public long f46570g;
+    public long e;
+    public long f43230f;
+    public long f43231g;
     public long h;
 
     public b(long j10, long j11, long j12, long j13, long j14, long j15) {
-        this.f46565a = j10;
-        this.f46566b = j11;
-        this.f46568e = j12;
-        this.f46569f = j13;
-        this.f46570g = j14;
-        this.f46567c = j15;
+        this.f43227a = j10;
+        this.f43228b = j11;
+        this.e = j12;
+        this.f43230f = j13;
+        this.f43231g = j14;
+        this.f43229c = j15;
         this.h = a(j11, 0L, j12, j13, j14, j15);
     }
 

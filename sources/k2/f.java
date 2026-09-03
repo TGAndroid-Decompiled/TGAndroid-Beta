@@ -2,7 +2,7 @@ package k2;
 
 import android.animation.TypeEvaluator;
 public final class f implements TypeEvaluator {
-    public static final f f10354a = new Object();
+    public static final f f9625a = new Object();
 
     @Override
     public final Object evaluate(float f10, Object obj, Object obj2) {

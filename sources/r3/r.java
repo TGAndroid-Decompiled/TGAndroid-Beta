@@ -1,11 +1,11 @@
 package r3;
 public final class r {
-    public final t f46613a;
-    public final t f46614b;
+    public final t f43270a;
+    public final t f43271b;
 
     public r(t tVar, t tVar2) {
-        this.f46613a = tVar;
-        this.f46614b = tVar2;
+        this.f43270a = tVar;
+        this.f43271b = tVar2;
     }
 
     public final boolean equals(Object obj) {
@@ -14,7 +14,7 @@ public final class r {
         }
         if (obj != null && r.class == obj.getClass()) {
             r rVar = (r) obj;
-            if (this.f46613a.equals(rVar.f46613a) && this.f46614b.equals(rVar.f46614b)) {
+            if (this.f43270a.equals(rVar.f43270a) && this.f43271b.equals(rVar.f43271b)) {
                 return true;
             }
         }
@@ -22,15 +22,15 @@ public final class r {
     }
 
     public final int hashCode() {
-        return this.f46614b.hashCode() + (this.f46613a.hashCode() * 31);
+        return this.f43271b.hashCode() + (this.f43270a.hashCode() * 31);
     }
 
     public final String toString() {
         String str;
         StringBuilder sb = new StringBuilder("[");
-        t tVar = this.f46613a;
+        t tVar = this.f43270a;
         sb.append(tVar);
-        t tVar2 = this.f46614b;
+        t tVar2 = this.f43271b;
         if (tVar.equals(tVar2)) {
             str = "";
         } else {

@@ -1,14 +1,16 @@
 package k7;
-
-import android.text.SpannableStringBuilder;
 public abstract class w8 {
-    public static void a(Object obj, SpannableStringBuilder spannableStringBuilder, int i10, int i11) {
-        Object[] spans;
-        for (Object obj2 : spannableStringBuilder.getSpans(i10, i11, obj.getClass())) {
-            if (spannableStringBuilder.getSpanStart(obj2) == i10 && spannableStringBuilder.getSpanEnd(obj2) == i11 && spannableStringBuilder.getSpanFlags(obj2) == 33) {
-                spannableStringBuilder.removeSpan(obj2);
-            }
+    public static boolean a(int i10, int i11) {
+        if ((i10 & i11) != 0) {
+            return true;
         }
-        spannableStringBuilder.setSpan(obj, i10, i11, 33);
+        return false;
+    }
+
+    public static int b(int i10, int i11, boolean z4) {
+        if (z4) {
+            return i10 | i11;
+        }
+        return i10 & (~i11);
     }
 }

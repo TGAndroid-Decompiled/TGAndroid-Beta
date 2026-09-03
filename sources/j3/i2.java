@@ -2,18 +2,18 @@ package j3;
 
 import android.os.Looper;
 public final class i2 extends cb.e implements q {
-    public final f0 f9201b;
-    public final h5.c f9202c;
+    public final f0 f8609b;
+    public final h5.c f8610c;
 
     public i2(p pVar) {
         super(3);
         ?? obj = new Object();
-        this.f9202c = obj;
+        this.f8610c = obj;
         try {
-            this.f9201b = new f0(pVar, this);
+            this.f8609b = new f0(pVar, this);
             obj.c();
         } catch (Throwable th2) {
-            this.f9202c.c();
+            this.f8610c.c();
             throw th2;
         }
     }
@@ -21,13 +21,13 @@ public final class i2 extends cb.e implements q {
     @Override
     public final Looper A() {
         L();
-        return this.f9201b.f9129r;
+        return this.f8609b.f8544r;
     }
 
     @Override
     public final boolean B() {
         L();
-        f0 f0Var = this.f9201b;
+        f0 f0Var = this.f8609b;
         f0Var.j0();
         return f0Var.E;
     }
@@ -35,78 +35,78 @@ public final class i2 extends cb.e implements q {
     @Override
     public final long C() {
         L();
-        return this.f9201b.C();
+        return this.f8609b.C();
     }
 
     @Override
     public final long D() {
         L();
-        f0 f0Var = this.f9201b;
+        f0 f0Var = this.f8609b;
         f0Var.j0();
-        return f0Var.f9131t;
+        return f0Var.f8546t;
     }
 
     @Override
     public final void J() {
         L();
-        this.f9201b.J();
+        this.f8609b.J();
     }
 
     @Override
     public final void K(int i10, int i11, long j10) {
         L();
-        this.f9201b.K(i10, i11, j10);
+        this.f8609b.K(i10, i11, j10);
     }
 
     public final void L() {
-        this.f9202c.a();
+        this.f8610c.a();
     }
 
     public final void M(float f10) {
         L();
-        this.f9201b.d0(f10);
+        this.f8609b.d0(f10);
     }
 
     @Override
-    public final void a() {
+    public final void a(v1 v1Var) {
         L();
-        this.f9201b.a();
+        this.f8609b.a(v1Var);
     }
 
     @Override
-    public final int b() {
+    public final void b() {
         L();
-        return this.f9201b.b();
+        this.f8609b.b();
     }
 
     @Override
-    public final void c(v1 v1Var) {
+    public final int c() {
         L();
-        this.f9201b.c(v1Var);
+        return this.f8609b.c();
     }
 
     @Override
     public final v1 d() {
         L();
-        return this.f9201b.d();
+        return this.f8609b.d();
     }
 
     @Override
     public final void e(int i10) {
         L();
-        this.f9201b.e(i10);
+        this.f8609b.e(i10);
     }
 
     @Override
     public final boolean f() {
         L();
-        return this.f9201b.f();
+        return this.f8609b.f();
     }
 
     @Override
     public final int g() {
         L();
-        f0 f0Var = this.f9201b;
+        f0 f0Var = this.f8609b;
         f0Var.j0();
         return f0Var.D;
     }
@@ -114,19 +114,19 @@ public final class i2 extends cb.e implements q {
     @Override
     public final long getDuration() {
         L();
-        return this.f9201b.getDuration();
+        return this.f8609b.getDuration();
     }
 
     @Override
     public final long h() {
         L();
-        return this.f9201b.h();
+        return this.f8609b.h();
     }
 
     @Override
     public final w1 i() {
         L();
-        f0 f0Var = this.f9201b;
+        f0 f0Var = this.f8609b;
         f0Var.j0();
         return f0Var.L;
     }
@@ -134,112 +134,112 @@ public final class i2 extends cb.e implements q {
     @Override
     public final boolean j() {
         L();
-        return this.f9201b.j();
+        return this.f8609b.j();
     }
 
     @Override
     public final void k(boolean z4) {
         L();
-        this.f9201b.k(z4);
+        this.f8609b.k(z4);
     }
 
     @Override
     public final void l() {
         L();
-        this.f9201b.l();
+        this.f8609b.l();
     }
 
     @Override
     public final int m() {
         L();
-        return this.f9201b.m();
+        return this.f8609b.m();
     }
 
     @Override
     public final void n(y1 y1Var) {
         L();
-        this.f9201b.n(y1Var);
+        this.f8609b.n(y1Var);
     }
 
     @Override
     public final int o() {
         L();
-        return this.f9201b.o();
+        return this.f8609b.o();
     }
 
     @Override
     public final void p(boolean z4) {
         L();
-        this.f9201b.p(z4);
+        this.f8609b.p(z4);
     }
 
     @Override
     public final long q() {
         L();
-        f0 f0Var = this.f9201b;
+        f0 f0Var = this.f8609b;
         f0Var.j0();
-        return f0Var.f9132u;
+        return f0Var.f8547u;
     }
 
     @Override
     public final long r() {
         L();
-        return this.f9201b.r();
+        return this.f8609b.r();
     }
 
     @Override
     public final long s() {
         L();
-        return this.f9201b.s();
+        return this.f8609b.s();
     }
 
     @Override
     public final void stop() {
         L();
-        this.f9201b.stop();
+        this.f8609b.stop();
     }
 
     @Override
     public final q2 t() {
         L();
-        return this.f9201b.t();
+        return this.f8609b.t();
     }
 
     @Override
     public final void u(y1 y1Var) {
         L();
-        this.f9201b.u(y1Var);
+        this.f8609b.u(y1Var);
     }
 
     @Override
     public final n v() {
         L();
-        f0 f0Var = this.f9201b;
+        f0 f0Var = this.f8609b;
         f0Var.j0();
-        return f0Var.f9114f0.f9430f;
+        return f0Var.f8529f0.f8817f;
     }
 
     @Override
     public final int w() {
         L();
-        return this.f9201b.w();
+        return this.f8609b.w();
     }
 
     @Override
     public final int x() {
         L();
-        return this.f9201b.x();
+        return this.f8609b.x();
     }
 
     @Override
     public final int y() {
         L();
-        return this.f9201b.y();
+        return this.f8609b.y();
     }
 
     @Override
     public final o2 z() {
         L();
-        return this.f9201b.z();
+        return this.f8609b.z();
     }
 }

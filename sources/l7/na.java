@@ -1,15 +1,15 @@
 package l7;
 public abstract class na {
-    public static h7.r f11966a;
+    public static h7.r f11683a;
 
     public static synchronized la a(ha haVar) {
         la laVar;
         synchronized (na.class) {
             try {
-                if (f11966a == null) {
-                    f11966a = new h7.r(3);
+                if (f11683a == null) {
+                    f11683a = new h7.r(3);
                 }
-                laVar = (la) f11966a.F(haVar);
+                laVar = (la) f11683a.F(haVar);
             } catch (Throwable th2) {
                 throw th2;
             }

@@ -1,52 +1,36 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserObject;
-public final class pc0 extends uf.h0 {
-    public boolean f39974j0;
-    public final bd0 f39975k0;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.FileLog;
+import org.telegram.tgnet.TLRPC;
+public final class pc0 extends org.telegram.ui.ActionBar.j {
+    public final cd0 f37073a;
 
-    public pc0(bd0 bd0Var, Context context, int i10, long j10, org.telegram.ui.ActionBar.g6 g6Var, boolean z4, boolean z10) {
-        super(context, i10, j10, false, g6Var, false, z4, z10);
-        this.f39975k0 = bd0Var;
-        this.f39974j0 = true;
+    public pc0(cd0 cd0Var) {
+        this.f37073a = cd0Var;
     }
 
     @Override
-    public final void K() {
-        this.f39975k0.r0(null);
-    }
-
-    @Override
-    public final void N(ArrayList arrayList) {
-        int i10;
-        bd0 bd0Var = this.f39975k0;
-        MessageObject messageObject = bd0Var.f35502y0;
-        if (messageObject != null && messageObject.isLiveLocation()) {
-            int i11 = 0;
-            if (arrayList != null) {
-                i10 = 0;
-                for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                    vc0 vc0Var = (vc0) arrayList.get(i12);
-                    if (vc0Var != null && !UserObject.isUserSelf(vc0Var.f42085c)) {
-                        i10++;
-                    }
-                }
-            } else {
-                i10 = 0;
+    public final void b(int i10) {
+        cd0 cd0Var = this.f37073a;
+        if (i10 == -1) {
+            cd0Var.finishFragment();
+        } else if (i10 == 1) {
+            try {
+                TLRPC.GeoPoint geoPoint = cd0Var.f33116y0.messageOwner.media.geo;
+                double d = geoPoint.lat;
+                double d10 = geoPoint._long;
+                Activity parentActivity = cd0Var.getParentActivity();
+                parentActivity.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d10 + "?q=" + d + "," + d10)));
+            } catch (Exception e) {
+                FileLog.e(e);
             }
-            if (this.f39974j0 && i10 == 1) {
-                bd0Var.f35478f0 = ((vc0) arrayList.get(0)).f42083a;
-            }
-            this.f39974j0 = false;
-            org.telegram.ui.ActionBar.w0 w0Var = bd0Var.W;
-            if (i10 != 1) {
-                i11 = 8;
-            }
-            w0Var.setVisibility(i11);
+        } else if (i10 == 5) {
+            cd0Var.s0(false);
+        } else if (i10 == 6) {
+            cd0Var.r0(null);
         }
-        super.N(arrayList);
     }
 }

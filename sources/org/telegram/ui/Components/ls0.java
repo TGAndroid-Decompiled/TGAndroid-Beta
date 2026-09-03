@@ -2,30 +2,30 @@ package org.telegram.ui.Components;
 
 import android.view.ViewGroup;
 public final class ls0 extends f2.v {
-    public final int f28869c;
+    public final int f26871c;
     public final Object d;
-    public final ViewGroup f28870e;
+    public final ViewGroup e;
 
     public ls0(ViewGroup viewGroup, Object obj, int i10) {
-        this.f28869c = i10;
-        this.f28870e = viewGroup;
+        this.f26871c = i10;
+        this.e = viewGroup;
         this.d = obj;
     }
 
     @Override
     public final int i(int i10) {
         int i11;
-        switch (this.f28869c) {
+        switch (this.f26871c) {
             case 0:
                 qt0 qt0Var = (qt0) this.d;
-                f2.p0 adapter = qt0Var.f30522r.getAdapter();
-                yu0 yu0Var = (yu0) this.f28870e;
+                f2.o0 adapter = qt0Var.f28261r.getAdapter();
+                yu0 yu0Var = (yu0) this.e;
                 su0 su0Var = yu0Var.F;
                 if (adapter == su0Var) {
                     if (su0Var.j(i10) != 2) {
                         return 1;
                     }
-                    return qt0Var.f30523s.J;
+                    return qt0Var.f28262s.J;
                 } else if (yu0.v(yu0Var, adapter) == -1) {
                     return 1;
                 } else {
@@ -33,14 +33,14 @@ public final class ls0 extends f2.v {
                     return 1;
                 }
             default:
-                g61 g61Var = (g61) this.d;
-                w51 w51Var = ((h61) this.f28870e).V2;
+                oh.h hVar = (oh.h) this.d;
+                w51 w51Var = ((g61) this.e).V2;
                 if (w51Var == null) {
-                    return g61Var.J;
+                    return hVar.J;
                 }
-                h51 G = w51Var.G(i10);
-                if (G == null || (i11 = G.f27384u) == -1) {
-                    return g61Var.J;
+                i51 G = w51Var.G(i10);
+                if (G == null || (i11 = G.f25594u) == -1) {
+                    return hVar.J;
                 }
                 return i11;
         }

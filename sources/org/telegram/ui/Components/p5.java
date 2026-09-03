@@ -5,28 +5,28 @@ import android.text.Layout;
 import android.view.View;
 import org.telegram.messenger.Emoji;
 public final class p5 implements r5 {
-    public final View f29979a;
-    public final boolean f29980b;
-    public Layout f29981c;
+    public final View f27733a;
+    public final boolean f27734b;
+    public Layout f27735c;
     public u5 d;
-    public Rect f29982e;
-    public l5 f29983f;
+    public Rect e;
+    public l5 f27736f;
     public Emoji.EmojiDrawable h;
-    public boolean f29984n;
-    public float f29985r;
-    public float f29986s;
+    public boolean f27737n;
+    public float f27738r;
+    public float f27739s;
     public boolean v;
 
     public p5(View view, boolean z4) {
-        this.f29979a = view;
-        this.f29980b = z4;
+        this.f27733a = view;
+        this.f27734b = z4;
     }
 
     @Override
     public final void invalidate() {
-        View view = this.f29979a;
+        View view = this.f27733a;
         if (view != null) {
-            if (this.f29980b && view.getParent() != null) {
+            if (this.f27734b && view.getParent() != null) {
                 ((View) view.getParent()).invalidate();
             } else {
                 view.invalidate();

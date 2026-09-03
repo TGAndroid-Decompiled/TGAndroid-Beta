@@ -2,21 +2,21 @@ package k7;
 
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
-public final class pa extends com.google.android.gms.internal.cast.t0 implements ListIterator {
-    public final int f10696b;
-    public int f10697c;
+public final class pa extends com.google.android.gms.internal.cast.u0 implements ListIterator {
+    public final int f9945b;
+    public int f9946c;
     public final ra d;
 
     public pa(ra raVar, int i10) {
         super(6);
         int size = raVar.size();
         if (i10 >= 0 && i10 <= size) {
-            this.f10696b = size;
-            this.f10697c = i10;
+            this.f9945b = size;
+            this.f9946c = i10;
             this.d = raVar;
             return;
         }
-        throw new IndexOutOfBoundsException(j7.u8.c(i10, size, "index"));
+        throw new IndexOutOfBoundsException(j7.t8.c(i10, size, "index"));
     }
 
     public final Object a(int i10) {
@@ -30,7 +30,7 @@ public final class pa extends com.google.android.gms.internal.cast.t0 implements
 
     @Override
     public final boolean hasNext() {
-        if (this.f10697c < this.f10696b) {
+        if (this.f9946c < this.f9945b) {
             return true;
         }
         return false;
@@ -38,7 +38,7 @@ public final class pa extends com.google.android.gms.internal.cast.t0 implements
 
     @Override
     public final boolean hasPrevious() {
-        if (this.f10697c > 0) {
+        if (this.f9946c > 0) {
             return true;
         }
         return false;
@@ -47,8 +47,8 @@ public final class pa extends com.google.android.gms.internal.cast.t0 implements
     @Override
     public final Object next() {
         if (hasNext()) {
-            int i10 = this.f10697c;
-            this.f10697c = i10 + 1;
+            int i10 = this.f9946c;
+            this.f9946c = i10 + 1;
             return a(i10);
         }
         throw new NoSuchElementException();
@@ -56,14 +56,14 @@ public final class pa extends com.google.android.gms.internal.cast.t0 implements
 
     @Override
     public final int nextIndex() {
-        return this.f10697c;
+        return this.f9946c;
     }
 
     @Override
     public final Object previous() {
         if (hasPrevious()) {
-            int i10 = this.f10697c - 1;
-            this.f10697c = i10;
+            int i10 = this.f9946c - 1;
+            this.f9946c = i10;
             return a(i10);
         }
         throw new NoSuchElementException();
@@ -71,7 +71,7 @@ public final class pa extends com.google.android.gms.internal.cast.t0 implements
 
     @Override
     public final int previousIndex() {
-        return this.f10697c - 1;
+        return this.f9946c - 1;
     }
 
     @Override

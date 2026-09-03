@@ -1,49 +1,57 @@
 package lh;
 
-import android.graphics.Canvas;
-import android.graphics.PointF;
-import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.sl0;
-public final class d6 extends f2.v0 {
-    public final PointF f12677a = new PointF();
-    public final e6 f12678b;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class d6 implements RequestDelegate {
+    public final int f12288a = 1;
+    public final t7 f12289b;
+    public final Utilities.Callback2 f12290c;
+    public final Context d;
+    public final org.telegram.ui.ActionBar.f6 e;
+    public final long f12291f;
+    public final String f12292g;
+    public final long h;
+    public final TLObject f12293i;
+    public final TLObject f12294j;
 
-    public d6(e6 e6Var) {
-        this.f12678b = e6Var;
+    public d6(t7 t7Var, Utilities.Callback2 callback2, Context context, org.telegram.ui.ActionBar.f6 f6Var, long j10, String str, long j11, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities) {
+        this.f12289b = t7Var;
+        this.f12290c = callback2;
+        this.d = context;
+        this.e = f6Var;
+        this.f12291f = j10;
+        this.f12292g = str;
+        this.h = j11;
+        this.f12293i = tLObject;
+        this.f12294j = tL_textWithEntities;
     }
 
     @Override
-    public final void b(Canvas canvas, RecyclerView recyclerView) {
-        float f10;
-        float f11;
-        fg.h0 h0Var;
-        float height = recyclerView.getHeight();
-        e6 e6Var = this.f12678b;
-        z5 z5Var = e6Var.f12714p0;
-        y5 y5Var = e6Var.f12704e0;
-        sl0 sl0Var = e6Var.d;
-        PointF pointF = this.f12677a;
-        if (vg.i.b(y5Var, sl0Var, pointF)) {
-            f10 = pointF.x;
-            height = Math.min(height, pointF.y);
-            f11 = Math.max(0.0f, pointF.y + y5Var.getMeasuredHeight());
-        } else {
-            f10 = 0.0f;
-            f11 = 0.0f;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f12288a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new e6(this.f12289b, tLObject, tL_error, this.f12290c, this.d, this.e, this.f12291f, this.f12292g, (TLRPC.TL_payments_paymentFormStarGift) this.f12293i, (TL_stars.StarGift) this.f12294j, this.h));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new e6(this.f12289b, tLObject, tL_error, this.f12290c, this.d, this.e, this.f12291f, this.f12292g, this.h, this.f12293i, (TLRPC.TL_textWithEntities) this.f12294j));
+                return;
         }
-        if (vg.i.b(z5Var, sl0Var, pointF)) {
-            height = Math.min(height, pointF.y);
-            f11 = Math.max(f11, pointF.y + z5Var.getMeasuredHeight() + AndroidUtilities.dp(12.0f));
-        }
-        if (height < f11 && (h0Var = y5Var.I) != null) {
-            float height2 = (f11 - height) / h0Var.getHeight();
-            canvas.save();
-            canvas.clipRect(0.0f, height, recyclerView.getWidth(), f11);
-            canvas.translate(f10, height);
-            canvas.scale(height2, height2);
-            y5Var.I.draw(canvas);
-            canvas.restore();
-        }
+    }
+
+    public d6(t7 t7Var, Utilities.Callback2 callback2, Context context, org.telegram.ui.ActionBar.f6 f6Var, long j10, String str, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j11) {
+        this.f12289b = t7Var;
+        this.f12290c = callback2;
+        this.d = context;
+        this.e = f6Var;
+        this.f12291f = j10;
+        this.f12292g = str;
+        this.f12293i = tL_payments_paymentFormStarGift;
+        this.f12294j = starGift;
+        this.h = j11;
     }
 }

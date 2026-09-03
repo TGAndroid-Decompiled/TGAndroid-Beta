@@ -1,15 +1,18 @@
 package e5;
-public final class i implements Comparable {
-    public final int f4974a;
-    public final d f4975b;
+public final class i {
+    public CharSequence f5146c;
+    public long f5144a = 0;
+    public long f5145b = 0;
+    public int d = 2;
+    public float e = -3.4028235E38f;
+    public int f5147f = 1;
+    public int f5148g = 0;
+    public float h = -3.4028235E38f;
+    public int f5149i = Integer.MIN_VALUE;
+    public float f5150j = 1.0f;
+    public int f5151k = Integer.MIN_VALUE;
 
-    public i(int i10, d dVar) {
-        this.f4974a = i10;
-        this.f4975b = dVar;
-    }
-
-    @Override
-    public final int compareTo(Object obj) {
-        return Integer.compare(this.f4974a, ((i) obj).f4974a);
+    public final v4.a a() {
+        throw new UnsupportedOperationException("Method not decompiled: e5.i.a():v4.a");
     }
 }

@@ -1,29 +1,15 @@
 package eg;
 
-import android.content.Context;
-import android.graphics.Paint;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.mt0;
-public final class u0 extends d {
-    public final Paint h;
-    public long f5500n;
-    public float f5501r;
-    public float f5502s;
-    public final mt0 v;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class u0 extends LinearLayout {
+    public TextView f5504a;
+    public TextView f5505b;
+    public final gg.b f5506c;
+    public LinearLayout d;
+    public final v0 e;
 
-    public u0(mt0 mt0Var, Context context, t0 t0Var) {
-        super(context, t0Var);
-        this.v = mt0Var;
-        Paint paint = new Paint();
-        this.h = paint;
-        setWillNotDraw(false);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(-1);
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r14) {
-        throw new UnsupportedOperationException("Method not decompiled: eg.u0.onDraw(android.graphics.Canvas):void");
+    public u0(eg.v0 r50, android.content.Context r51) {
+        throw new UnsupportedOperationException("Method not decompiled: eg.u0.<init>(eg.v0, android.content.Context):void");
     }
 }

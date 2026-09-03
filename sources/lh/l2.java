@@ -1,168 +1,51 @@
 package lh;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.g90;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.p60;
-import org.telegram.ui.py;
-import org.telegram.ui.xf0;
-import org.telegram.ui.z10;
 public final class l2 implements Runnable {
-    public final int f12839a;
-    public final int f12840b;
-    public final Object f12841c;
-    public final Object d;
-    public final Object f12842e;
-    public final Object f12843f;
-    public final Object h;
-    public final Object f12844n;
+    public final int f12727a = 1;
+    public final g5 f12728b;
+    public final TLObject f12729c;
+    public final long d;
+    public final long e;
+    public final TLRPC.TL_error f12730f;
+    public final long h;
+    public final Object f12731n;
 
-    public l2(int i10, FrameLayout frameLayout, TLRPC.InputGroupCall inputGroupCall, org.telegram.ui.ActionBar.h3 h3Var, g6 g6Var, g90 g90Var, String[] strArr) {
-        this.f12839a = 4;
-        this.f12841c = inputGroupCall;
-        this.f12840b = i10;
-        this.d = strArr;
-        this.f12842e = frameLayout;
-        this.f12843f = g90Var;
-        this.f12844n = h3Var;
-        this.h = g6Var;
+    public l2(g5 g5Var, TLObject tLObject, long j10, long j11, Utilities.Callback callback, TLRPC.TL_error tL_error, long j12) {
+        this.f12728b = g5Var;
+        this.f12729c = tLObject;
+        this.d = j10;
+        this.e = j11;
+        this.f12731n = callback;
+        this.f12730f = tL_error;
+        this.h = j12;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: lh.l2.run():void");
+        switch (this.f12727a) {
+            case 0:
+                long j10 = this.h;
+                TLRPC.TL_error tL_error = this.f12730f;
+                g5.H0(this.f12728b, (org.telegram.ui.ActionBar.d2) this.f12731n, this.f12729c, this.d, this.e, j10, tL_error);
+                return;
+            default:
+                TLRPC.TL_error tL_error2 = this.f12730f;
+                long j11 = this.h;
+                g5.f0(this.f12728b, this.f12729c, this.d, this.e, (Utilities.Callback) this.f12731n, tL_error2, j11);
+                return;
+        }
     }
 
-    public l2(int i10, ArrayList arrayList, ArrayList arrayList2, Integer num, MediaController.AlbumEntry albumEntry, MediaController.AlbumEntry albumEntry2, MediaController.AlbumEntry albumEntry3) {
-        this.f12839a = 1;
-        this.f12840b = i10;
-        this.f12841c = arrayList;
-        this.d = arrayList2;
-        this.f12842e = num;
-        this.f12843f = albumEntry;
-        this.h = albumEntry2;
-        this.f12844n = albumEntry3;
-    }
-
-    public l2(Object obj, int i10, Serializable serializable, Object obj2, Object obj3, Object obj4, Object obj5, int i11) {
-        this.f12839a = i11;
-        this.f12841c = obj;
-        this.f12840b = i10;
-        this.d = serializable;
-        this.f12842e = obj2;
-        this.f12843f = obj3;
-        this.h = obj4;
-        this.f12844n = obj5;
-    }
-
-    public l2(Object obj, Object obj2, Object obj3, int i10, Object obj4, Object obj5, Object obj6, int i11) {
-        this.f12839a = i11;
-        this.f12841c = obj;
-        this.d = obj2;
-        this.f12842e = obj3;
-        this.f12840b = i10;
-        this.f12843f = obj4;
-        this.h = obj5;
-        this.f12844n = obj6;
-    }
-
-    public l2(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, TLObject tLObject, TLObject tLObject2, TLObject tLObject3, Object obj, int i10, String str, int i11) {
-        this.f12839a = i11;
-        this.f12841c = notificationCenterDelegate;
-        this.f12842e = tLObject;
-        this.f12843f = tLObject2;
-        this.h = tLObject3;
-        this.f12844n = obj;
-        this.f12840b = i10;
-        this.d = str;
-    }
-
-    public l2(TLObject tLObject, org.telegram.ui.ActionBar.d2 d2Var, Context context, int i10, TL_phone.exportGroupCallInvite exportgroupcallinvite, g6 g6Var, p60 p60Var) {
-        this.f12839a = 5;
-        this.f12841c = tLObject;
-        this.d = d2Var;
-        this.f12843f = context;
-        this.f12840b = i10;
-        this.f12842e = exportgroupcallinvite;
-        this.h = g6Var;
-        this.f12844n = p60Var;
-    }
-
-    public l2(org.telegram.ui.ActionBar.d2 d2Var, TLObject tLObject, int i10, TLRPC.Document document, TLRPC.TL_error tL_error, Object obj, TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet) {
-        this.f12839a = 7;
-        this.f12841c = d2Var;
-        this.d = tLObject;
-        this.f12840b = i10;
-        this.f12842e = document;
-        this.f12843f = tL_error;
-        this.h = obj;
-        this.f12844n = tL_stickers_addStickerToSet;
-    }
-
-    public l2(org.telegram.ui.l4 l4Var, int i10, af.f fVar, TLObject tLObject, String str, org.telegram.ui.h0 h0Var, TLRPC.TL_messages_getWebPage tL_messages_getWebPage) {
-        this.f12839a = 3;
-        this.f12841c = l4Var;
-        this.f12840b = i10;
-        this.f12842e = fVar;
-        this.f12843f = tLObject;
-        this.d = str;
-        this.h = h0Var;
-        this.f12844n = tL_messages_getWebPage;
-    }
-
-    public l2(LaunchActivity launchActivity, TLObject tLObject, int i10, py pyVar, org.telegram.ui.ActionBar.p2 p2Var, TLRPC.User user, String str) {
-        this.f12839a = 11;
-        this.f12841c = launchActivity;
-        this.f12842e = tLObject;
-        this.f12840b = i10;
-        this.f12843f = pyVar;
-        this.f12844n = p2Var;
-        this.h = user;
-        this.d = str;
-    }
-
-    public l2(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i10, org.telegram.ui.ActionBar.d2 d2Var, z10 z10Var, String str) {
-        this.f12839a = 9;
-        this.f12841c = launchActivity;
-        this.f12842e = tL_error;
-        this.f12843f = tLObject;
-        this.f12840b = i10;
-        this.h = d2Var;
-        this.f12844n = z10Var;
-        this.d = str;
-    }
-
-    public l2(xf0 xf0Var, String str, p2.h hVar, List list, String str2, String str3, int i10) {
-        this.f12839a = 12;
-        this.f12841c = xf0Var;
-        this.d = str;
-        this.f12842e = hVar;
-        this.f12843f = list;
-        this.h = str2;
-        this.f12844n = str3;
-        this.f12840b = i10;
-    }
-
-    public l2(ProfileActivity profileActivity, View view, String str, int i10, boolean[] zArr, String[] strArr, String str2) {
-        this.f12839a = 13;
-        this.f12841c = profileActivity;
-        this.f12842e = view;
-        this.d = str;
-        this.f12840b = i10;
-        this.f12843f = zArr;
-        this.h = strArr;
-        this.f12844n = str2;
+    public l2(g5 g5Var, org.telegram.ui.ActionBar.d2 d2Var, TLObject tLObject, long j10, long j11, long j12, TLRPC.TL_error tL_error) {
+        this.f12728b = g5Var;
+        this.f12731n = d2Var;
+        this.f12729c = tLObject;
+        this.d = j10;
+        this.e = j11;
+        this.h = j12;
+        this.f12730f = tL_error;
     }
 }

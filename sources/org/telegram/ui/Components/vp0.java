@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class vp0 extends org.telegram.ui.ActionBar.r1 {
-    public final wp0 f32506x;
+    public final wp0 f30035x;
 
     public vp0(wp0 wp0Var, wp0 wp0Var2) {
         super(wp0Var2);
-        this.f32506x = wp0Var;
+        this.f30035x = wp0Var;
     }
 
     @Override
     public final boolean b() {
-        lq0 lq0Var = this.f32506x.E0;
+        lq0 lq0Var = this.f30035x.E0;
         if (!lq0Var.isDismissed() && lq0Var.V) {
             return !lq0Var.d.m();
         }
@@ -25,17 +25,17 @@ public final class vp0 extends org.telegram.ui.ActionBar.r1 {
 
     @Override
     public final void f() {
-        lq0 lq0Var = this.f32506x.E0;
-        pp0 pp0Var = lq0Var.d;
-        if (pp0Var == null || !pp0Var.m()) {
+        lq0 lq0Var = this.f30035x.E0;
+        op0 op0Var = lq0Var.d;
+        if (op0Var == null || !op0Var.m()) {
             int i10 = lq0Var.K0;
             AndroidUtilities.dp(20.0f);
         }
-        lq0Var.f28843o0 = false;
+        lq0Var.f26849o0 = false;
         int i11 = lq0Var.m0;
-        lq0Var.f28842n0 = i11;
+        lq0Var.f26848n0 = i11;
         lq0Var.C.setTopGlowOffset(i11);
-        lq0Var.f28826b.setTranslationY(lq0Var.m0);
+        lq0Var.f26833b.setTranslationY(lq0Var.m0);
         lq0Var.N.setTranslationY(lq0Var.m0);
         lq0Var.C.setTranslationY(0.0f);
         lq0Var.D.setTranslationY(0.0f);
@@ -45,41 +45,41 @@ public final class vp0 extends org.telegram.ui.ActionBar.r1 {
     @Override
     public final void g(int i10, boolean z4) {
         int i11;
-        wp0 wp0Var = this.f32506x;
+        wp0 wp0Var = this.f30035x;
         lq0 lq0Var = wp0Var.E0;
-        int i12 = lq0Var.f28842n0;
+        int i12 = lq0Var.f26848n0;
         int i13 = lq0Var.m0;
         if (i12 != i13) {
-            wp0Var.f32813y0 = i12;
-            wp0Var.f32814z0 = i13;
-            lq0Var.f28843o0 = true;
+            wp0Var.f30330y0 = i12;
+            wp0Var.f30331z0 = i13;
+            lq0Var.f26849o0 = true;
             lq0Var.m0 = i12;
         } else {
-            wp0Var.f32813y0 = -1;
+            wp0Var.f30330y0 = -1;
         }
-        int i14 = wp0Var.f32811w0;
-        int i15 = wp0Var.f32812x0;
+        int i14 = wp0Var.f30328w0;
+        int i15 = wp0Var.f30329x0;
         if (i14 != i15) {
             wp0Var.A0 = 0;
             wp0Var.B0 = 0;
-            lq0Var.f28843o0 = true;
+            lq0Var.f26849o0 = true;
             if (!z4) {
                 wp0Var.B0 = 0 - (i14 - i15);
             } else {
                 wp0Var.B0 = i14 - i15;
             }
             if (z4) {
-                i11 = wp0Var.f32813y0;
+                i11 = wp0Var.f30330y0;
             } else {
-                i11 = wp0Var.f32814z0;
+                i11 = wp0Var.f30331z0;
             }
             lq0Var.m0 = i11;
         } else {
             wp0Var.A0 = -1;
         }
-        lq0Var.C.setTopGlowOffset((int) (lq0Var.f28845q0 + lq0Var.m0));
-        lq0Var.f28826b.setTranslationY(lq0Var.f28845q0 + lq0Var.m0);
-        lq0Var.N.setTranslationY(lq0Var.f28845q0 + lq0Var.m0);
+        lq0Var.C.setTopGlowOffset((int) (lq0Var.f26851q0 + lq0Var.m0));
+        lq0Var.f26833b.setTranslationY(lq0Var.f26851q0 + lq0Var.m0);
+        lq0Var.N.setTranslationY(lq0Var.f26851q0 + lq0Var.m0);
         wp0Var.invalidate();
     }
 }

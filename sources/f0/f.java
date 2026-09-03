@@ -1,43 +1,66 @@
 package f0;
 
-import android.net.Uri;
-import androidx.core.content.FileProvider;
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-public final class f {
-    public final String f5713a;
-    public final HashMap f5714b = new HashMap();
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Process;
+import android.text.TextUtils;
+import androidx.biometric.o;
+import e0.m0;
+import java.util.concurrent.Executor;
+public abstract class f {
+    public static final Object f5632a = null;
 
-    public f(String str) {
-        this.f5713a = str;
+    public static int a(android.content.Context r5, java.lang.String r6, int r7, int r8, java.lang.String r9) {
+        throw new UnsupportedOperationException("Method not decompiled: f0.f.a(android.content.Context, java.lang.String, int, int, java.lang.String):int");
     }
 
-    public final File a(Uri uri) {
-        String encodedPath = uri.getEncodedPath();
-        int indexOf = encodedPath.indexOf(47, 1);
-        if (indexOf != -1) {
-            String decode = Uri.decode(encodedPath.substring(1, indexOf));
-            String decode2 = Uri.decode(encodedPath.substring(indexOf + 1));
-            File file = (File) this.f5714b.get(decode);
-            if (file != null) {
-                File file2 = new File(file, decode2);
-                try {
-                    File canonicalFile = file2.getCanonicalFile();
-                    String path = canonicalFile.getPath();
-                    String path2 = file.getPath();
-                    String a2 = FileProvider.a(path);
-                    String a10 = FileProvider.a(path2);
-                    if (a2.startsWith(a10 + '/')) {
-                        return canonicalFile;
-                    }
-                    throw new SecurityException("Resolved path jumped beyond configured root");
-                } catch (IOException unused) {
-                    throw new IllegalArgumentException("Failed to resolve canonical path for " + file2);
+    public static int b(Context context, String str) {
+        if (str != null) {
+            if (Build.VERSION.SDK_INT < 33 && TextUtils.equals("android.permission.POST_NOTIFICATIONS", str)) {
+                if (new m0(context).a()) {
+                    return 0;
                 }
+                return -1;
             }
-            throw new IllegalArgumentException("Unable to find configured root for " + uri);
+            return context.checkPermission(str, Process.myPid(), Process.myUid());
         }
-        throw new IllegalArgumentException("Unable to find path from root: " + uri);
+        throw new NullPointerException("permission must be non-null");
+    }
+
+    public static int c(Context context, int i10) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            return a.a(context, i10);
+        }
+        return context.getResources().getColor(i10);
+    }
+
+    public static Drawable d(Context context, int i10) {
+        return context.getDrawable(i10);
+    }
+
+    public static Executor e(Context context) {
+        if (Build.VERSION.SDK_INT >= 28) {
+            return c.a(context);
+        }
+        return new o(new Handler(context.getMainLooper()), 3);
+    }
+
+    public static Object f(Context context, Class cls) {
+        String str;
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 23) {
+            return a.b(context, cls);
+        }
+        if (i10 >= 23) {
+            str = a.c(context, cls);
+        } else {
+            str = (String) e.f5631a.get(cls);
+        }
+        if (str != null) {
+            return context.getSystemService(str);
+        }
+        return null;
     }
 }

@@ -6,53 +6,54 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import androidx.biometric.e0;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-import lf.f0;
+import kf.f0;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.Cells.z1;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.x40;
+import org.telegram.ui.Cells.y1;
+import org.telegram.ui.Components.hm0;
+import org.telegram.ui.Components.w40;
 import org.telegram.ui.Components.y4;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.d60;
-import org.telegram.ui.py;
+import org.telegram.ui.e60;
 import org.telegram.ui.qu0;
+import org.telegram.ui.qy;
 import org.telegram.ui.vz0;
-import org.telegram.ui.xn;
-import qh.i5;
-import qh.p6;
-import qh.r6;
-public final class c implements h, g3.b, x40, y4, c2, p6 {
-    public final int f4352a;
-    public final Object f4353b;
-    public final long f4354c;
+import org.telegram.ui.zn;
+import ph.k5;
+import ph.r6;
+import ph.t6;
+public final class c implements h, g3.b, w40, y4, c2, r6 {
+    public final int f4256a;
+    public final Object f4257b;
+    public final long f4258c;
     public final Object d;
-    public final Object f4355e;
+    public final Object e;
 
     public c(Object obj, Object obj2, long j10, Object obj3, int i10) {
-        this.f4352a = i10;
-        this.f4353b = obj;
-        this.f4355e = obj2;
-        this.f4354c = j10;
+        this.f4256a = i10;
+        this.f4257b = obj;
+        this.e = obj2;
+        this.f4258c = j10;
         this.d = obj3;
     }
 
     @Override
-    public void I(int i10, int i11, boolean z4) {
-        xn.s0((xn) this.f4353b, (ArrayList) this.f4355e, this.f4354c, (im0) this.d, z4, i10);
+    public void J(int i10, int i11, boolean z4) {
+        zn.s0((zn) this.f4257b, (ArrayList) this.e, this.f4258c, (hm0) this.d, z4, i10);
     }
 
     @Override
     public void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z4, TLRPC.VideoSize videoSize) {
-        xn xnVar = (xn) this.f4353b;
-        TLRPC.FileLocation[] fileLocationArr = (TLRPC.FileLocation[]) this.f4355e;
+        zn znVar = (zn) this.f4257b;
+        TLRPC.FileLocation[] fileLocationArr = (TLRPC.FileLocation[]) this.e;
         TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.d;
         if (inputFile == null && inputFile2 == null && videoSize == null) {
             fileLocationArr[0] = photoSize2.location;
@@ -74,42 +75,42 @@ public final class c implements h, g3.b, x40, y4, c2, p6 {
             tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
             tL_photos_uploadProfilePhoto.flags |= 16;
         }
-        xnVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new f0(xnVar, fileLocationArr, str, fileLocationArr2, this.f4354c));
+        znVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new f0(znVar, fileLocationArr, str, fileLocationArr2, this.f4258c));
     }
 
     @Override
-    public ScheduledFuture a(final y5.h hVar) {
-        switch (this.f4352a) {
+    public ScheduledFuture a(final e0 e0Var) {
+        switch (this.f4256a) {
             case 0:
-                g gVar = (g) this.f4353b;
-                return gVar.f4368b.schedule(new e(gVar, (Runnable) this.f4355e, hVar, 1), this.f4354c, (TimeUnit) this.d);
+                g gVar = (g) this.f4257b;
+                return gVar.f4270b.schedule(new e(gVar, (Runnable) this.e, e0Var, 1), this.f4258c, (TimeUnit) this.d);
             default:
-                final g gVar2 = (g) this.f4353b;
-                final Callable callable = (Callable) this.f4355e;
-                return gVar2.f4368b.schedule(new Callable() {
+                final g gVar2 = (g) this.f4257b;
+                final Callable callable = (Callable) this.e;
+                return gVar2.f4270b.schedule(new Callable() {
                     @Override
                     public final Object call() {
-                        return g.this.f4367a.submit(new a1.e(14, callable, hVar));
+                        return g.this.f4269a.submit(new a1.e(16, callable, e0Var));
                     }
-                }, this.f4354c, (TimeUnit) this.d);
+                }, this.f4258c, (TimeUnit) this.d);
         }
     }
 
     @Override
     public Bitmap c(BitmapFactory.Options options) {
-        i5 i5Var = (i5) this.f4353b;
-        r6 r6Var = (r6) this.f4355e;
-        long j10 = this.f4354c;
+        k5 k5Var = (k5) this.f4257b;
+        t6 t6Var = (t6) this.e;
+        long j10 = this.f4258c;
         String str = (String) this.d;
-        if (r6Var.K) {
-            String str2 = r6Var.N;
+        if (t6Var.K) {
+            String str2 = t6Var.N;
             if (str2 != null) {
                 return BitmapFactory.decodeFile(str2, options);
             }
             try {
-                return MediaStore.Video.Thumbnails.getThumbnail(i5Var.getContext().getContentResolver(), j10, 1, options);
+                return MediaStore.Video.Thumbnails.getThumbnail(k5Var.getContext().getContentResolver(), j10, 1, options);
             } catch (Throwable unused) {
-                i5Var.invalidate();
+                k5Var.invalidate();
                 return null;
             }
         }
@@ -122,11 +123,21 @@ public final class c implements h, g3.b, x40, y4, c2, p6 {
     }
 
     @Override
-    public Object g() {
-        e3.g gVar = (e3.g) this.f4353b;
-        Iterable iterable = (Iterable) this.f4355e;
+    public qu0 getCloseIntoObject() {
+        return null;
+    }
+
+    @Override
+    public String getInitialSearchString() {
+        return null;
+    }
+
+    @Override
+    public Object h() {
+        e3.g gVar = (e3.g) this.f4257b;
+        Iterable iterable = (Iterable) this.e;
         y2.i iVar = (y2.i) this.d;
-        f3.h hVar = (f3.h) ((f3.d) gVar.f4933c);
+        f3.h hVar = (f3.h) ((f3.d) gVar.f5103c);
         hVar.getClass();
         if (iterable.iterator().hasNext()) {
             String str = "UPDATE events SET num_attempts = num_attempts + 1 WHERE _id in " + f3.h.g(iterable);
@@ -145,48 +156,38 @@ public final class c implements h, g3.b, x40, y4, c2, p6 {
                 a2.endTransaction();
             }
         }
-        hVar.c(new f3.e(((h3.a) gVar.f4936g).W() + this.f4354c, iVar));
+        hVar.c(new f3.e(((h3.a) gVar.f5105g).l() + this.f4258c, iVar));
         return null;
     }
 
     @Override
-    public qu0 getCloseIntoObject() {
-        return null;
-    }
-
-    @Override
-    public String getInitialSearchString() {
-        return null;
-    }
-
-    @Override
-    public void j(d2 d2Var, int i10) {
-        switch (this.f4352a) {
+    public void l(d2 d2Var, int i10) {
+        switch (this.f4256a) {
             case 5:
-                ChatObject.Call call = (ChatObject.Call) this.f4353b;
-                Runnable runnable = (Runnable) this.f4355e;
+                ChatObject.Call call = (ChatObject.Call) this.f4257b;
+                Runnable runnable = (Runnable) this.e;
                 boolean z4 = false;
-                z1 z1Var = ((z1[]) this.d)[0];
-                if (z1Var != null && z1Var.b()) {
+                y1 y1Var = ((y1[]) this.d)[0];
+                if (y1Var != null && y1Var.b()) {
                     z4 = true;
                 }
-                d60.w1(call, z4, this.f4354c, runnable);
+                e60.w1(call, z4, this.f4258c, runnable);
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) this.d;
-                ProfileActivity profileActivity = ((vz0) this.f4353b).f42235b;
+                ProfileActivity profileActivity = ((vz0) this.f4257b).f39224b;
                 profileActivity.K1 = true;
                 Bundle i11 = android.support.v4.media.a.i("scrollToTopOnResume", true);
-                long j10 = -this.f4354c;
+                long j10 = -this.f4258c;
                 i11.putLong("chat_id", j10);
-                if (profileActivity.getMessagesController().checkCanOpenChat(i11, (py) this.f4355e)) {
-                    xn xnVar = new xn(i11);
+                if (profileActivity.getMessagesController().checkCanOpenChat(i11, (qy) this.e)) {
+                    zn znVar = new zn(i11);
                     NotificationCenter notificationCenter = profileActivity.getNotificationCenter();
                     int i12 = NotificationCenter.closeChats;
                     notificationCenter.removeObserver(profileActivity, i12);
                     profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i12, new Object[0]);
-                    profileActivity.getMessagesController().addUserToChat(j10, user, 0, null, xnVar, true, null, null);
-                    profileActivity.presentFragment(xnVar, true);
+                    profileActivity.getMessagesController().addUserToChat(j10, user, 0, null, znVar, true, null, null);
+                    profileActivity.presentFragment(znVar, true);
                     return;
                 }
                 return;
@@ -199,26 +200,26 @@ public final class c implements h, g3.b, x40, y4, c2, p6 {
     }
 
     public c(Object obj, Object obj2, Object obj3, long j10, int i10) {
-        this.f4352a = i10;
-        this.f4353b = obj;
-        this.f4355e = obj2;
+        this.f4256a = i10;
+        this.f4257b = obj;
+        this.e = obj2;
         this.d = obj3;
-        this.f4354c = j10;
+        this.f4258c = j10;
     }
 
-    public c(ChatObject.Call call, z1[] z1VarArr, long j10, Runnable runnable) {
-        this.f4352a = 5;
-        this.f4353b = call;
-        this.d = z1VarArr;
-        this.f4354c = j10;
-        this.f4355e = runnable;
+    public c(ChatObject.Call call, y1[] y1VarArr, long j10, Runnable runnable) {
+        this.f4256a = 5;
+        this.f4257b = call;
+        this.d = y1VarArr;
+        this.f4258c = j10;
+        this.e = runnable;
     }
 
-    public c(vz0 vz0Var, long j10, py pyVar, TLRPC.User user) {
-        this.f4352a = 6;
-        this.f4353b = vz0Var;
-        this.f4354c = j10;
-        this.f4355e = pyVar;
+    public c(vz0 vz0Var, long j10, qy qyVar, TLRPC.User user) {
+        this.f4256a = 6;
+        this.f4257b = vz0Var;
+        this.f4258c = j10;
+        this.e = qyVar;
         this.d = user;
     }
 

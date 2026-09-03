@@ -1,21 +1,7 @@
 package k7;
-
-import java.lang.reflect.Method;
 public abstract class o7 {
-    public static void a(Throwable th2, Throwable exception) {
-        kotlin.jvm.internal.j.e(th2, "<this>");
-        kotlin.jvm.internal.j.e(exception, "exception");
-        if (th2 != exception) {
-            Integer num = zc.a.f51138a;
-            if (num != null && num.intValue() < 19) {
-                Method method = yc.a.f50885a;
-                if (method != null) {
-                    method.invoke(th2, exception);
-                    return;
-                }
-                return;
-            }
-            th2.addSuppressed(exception);
-        }
+    public static sc.g a(dd.a initializer) {
+        kotlin.jvm.internal.j.e(initializer, "initializer");
+        return new sc.g(initializer);
     }
 }

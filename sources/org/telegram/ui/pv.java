@@ -1,30 +1,35 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class pv implements ValueAnimator.AnimatorUpdateListener {
-    public final int f40133a;
-    public final py f40134b;
+import android.content.DialogInterface;
+public final class pv implements DialogInterface.OnDismissListener {
+    public final int f37234a;
+    public final qy f37235b;
 
-    public pv(py pyVar, int i10) {
-        this.f40133a = i10;
-        this.f40134b = pyVar;
+    public pv(qy qyVar, int i10) {
+        this.f37234a = i10;
+        this.f37235b = qyVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f40133a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f37234a) {
             case 0:
-                py pyVar = this.f40134b;
-                pyVar.getClass();
-                pyVar.z4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                qy.i0(this.f37235b);
                 return;
             case 1:
-                this.f40134b.D4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                qy qyVar = this.f37235b;
+                if (qyVar.P3 != null) {
+                    qyVar.getMessagesController().removeSuggestion(0L, qyVar.P3);
+                    qyVar.P3 = null;
+                    qyVar.L4();
+                    return;
+                }
+                return;
+            case 2:
+                this.f37235b.b4(true);
                 return;
             default:
-                py pyVar2 = this.f40134b;
-                pyVar2.getClass();
-                pyVar2.F4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f37235b.b4(true);
                 return;
         }
     }

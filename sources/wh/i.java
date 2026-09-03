@@ -1,48 +1,19 @@
 package wh;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
-public final class i implements ViewTreeObserver.OnGlobalFocusChangeListener {
-    public final int f49812a;
-    public final Object f49813b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.MessageObject;
+public final class i extends AnimatorListenerAdapter {
+    public final MessageObject.GroupedMessages.TransitionParams f46675a;
 
-    public i(Object obj, int i10) {
-        this.f49812a = i10;
-        this.f49813b = obj;
+    public i(MessageObject.GroupedMessages.TransitionParams transitionParams) {
+        this.f46675a = transitionParams;
     }
 
     @Override
-    public final void onGlobalFocusChanged(View view, View view2) {
-        boolean z4;
-        switch (this.f49812a) {
-            case 0:
-                ((q) this.f49813b).Z();
-                return;
-            case 1:
-                ((z1) this.f49813b).w0();
-                return;
-            case 2:
-                r3 r3Var = (r3) this.f49813b;
-                if (view2 != null && r3Var.F(view2) != null) {
-                    z4 = true;
-                } else {
-                    z4 = false;
-                }
-                r3Var.X2 = z4;
-                if (view2 instanceof e1) {
-                    r3Var.I3 = (e1) view2;
-                    return;
-                }
-                return;
-            default:
-                i5 i5Var = (i5) this.f49813b;
-                i5Var.x();
-                k5 k5Var = i5Var.v;
-                if (k5Var != null) {
-                    k5Var.invalidate();
-                    return;
-                }
-                return;
-        }
+    public final void onAnimationEnd(Animator animator) {
+        MessageObject.GroupedMessages.TransitionParams transitionParams = this.f46675a;
+        transitionParams.backgroundChangeBounds = false;
+        transitionParams.drawBackgroundForDeletedItems = false;
     }
 }

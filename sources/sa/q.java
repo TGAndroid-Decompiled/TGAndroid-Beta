@@ -1,10 +1,12 @@
 package sa;
+
+import vh.w2;
 public final class q extends pa.u {
-    public static final p f47233b = new p(new q(pa.t.f44281b), 0);
-    public final pa.t f47234a;
+    public static final p f44279b = new p(new q(pa.t.f41114b), 0);
+    public final pa.t f44280a;
 
     public q(pa.t tVar) {
-        this.f47234a = tVar;
+        this.f44280a = tVar;
     }
 
     @Override
@@ -16,9 +18,9 @@ public final class q extends pa.u {
                 aVar.t();
                 return null;
             }
-            throw new RuntimeException("Expecting number, got: " + w.c.m(x10) + "; at path " + aVar.h());
+            throw new RuntimeException("Expecting number, got: " + w2.m(x10) + "; at path " + aVar.h());
         }
-        return this.f47234a.a(aVar);
+        return this.f44280a.a(aVar);
     }
 
     @Override

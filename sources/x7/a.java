@@ -1,47 +1,36 @@
 package x7;
 
-import android.os.Parcel;
-import android.os.RemoteException;
 import b6.m;
-public final class a {
-    public final g7.h f50473a;
+import java.util.List;
+public final class a implements v4.f {
+    public final Object f46898a;
 
-    public a(g7.h hVar) {
-        m.h(hVar);
-        this.f50473a = hVar;
+    public a(l6.a aVar) {
+        m.h(aVar);
+        this.f46898a = aVar;
     }
 
-    public final boolean equals(Object obj) {
-        boolean z4 = false;
-        if (!(obj instanceof a)) {
-            return false;
-        }
-        try {
-            g7.h hVar = this.f50473a;
-            g7.h hVar2 = ((a) obj).f50473a;
-            g7.f fVar = (g7.f) hVar;
-            Parcel M0 = fVar.M0();
-            g7.b.c(M0, hVar2);
-            Parcel L0 = fVar.L0(M0, 17);
-            if (L0.readInt() != 0) {
-                z4 = true;
-            }
-            L0.recycle();
-            return z4;
-        } catch (RemoteException e6) {
-            throw new RuntimeException(e6);
-        }
+    @Override
+    public int e(long j10) {
+        return -1;
     }
 
-    public final int hashCode() {
-        try {
-            g7.f fVar = (g7.f) this.f50473a;
-            Parcel L0 = fVar.L0(fVar.M0(), 18);
-            int readInt = L0.readInt();
-            L0.recycle();
-            return readInt;
-        } catch (RemoteException e6) {
-            throw new RuntimeException(e6);
-        }
+    @Override
+    public long h(int i10) {
+        return 0L;
+    }
+
+    @Override
+    public List q(long j10) {
+        return (List) this.f46898a;
+    }
+
+    @Override
+    public int r() {
+        return 1;
+    }
+
+    public a(List list) {
+        this.f46898a = list;
     }
 }

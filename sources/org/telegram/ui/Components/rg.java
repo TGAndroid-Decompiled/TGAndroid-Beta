@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import org.telegram.messenger.ChatObject;
 import org.telegram.tgnet.TLRPC;
 public interface rg {
-    pv0 A();
+    qv0 A();
 
     boolean F();
 
@@ -11,7 +11,7 @@ public interface rg {
 
     long a();
 
-    long b();
+    long d();
 
     TLRPC.Chat g();
 
@@ -23,7 +23,7 @@ public interface rg {
 
     boolean n();
 
-    ao o();
+    yn o();
 
     void p();
 }

@@ -1,22 +1,42 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class hx extends oh.p {
-    public final py L0;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class hx {
+    public final int f34764a;
+    public final ix f34765b;
+    public final View f34766c;
 
-    public hx(py pyVar, Context context, py pyVar2, int i10, int i11) {
-        super(context, pyVar2, i10, i11);
-        this.L0 = pyVar;
+    public hx(ix ixVar, View view, int i10) {
+        this.f34764a = i10;
+        this.f34765b = ixVar;
+        this.f34766c = view;
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.k kVar;
-        kVar = ((org.telegram.ui.ActionBar.p2) this.L0).actionBar;
-        if (!kVar.s() && super.dispatchTouchEvent(motionEvent)) {
-            return true;
+    public final void a(boolean z4) {
+        switch (this.f34764a) {
+            case 0:
+                View view = this.f34766c;
+                if (view instanceof nh.p) {
+                    this.f34765b.L0.B0.i((nh.p) view, false);
+                    if (z4) {
+                        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.mc(18), 500L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                View view2 = this.f34766c;
+                if (view2 instanceof nh.p) {
+                    this.f34765b.L0.B0.i((nh.p) view2, false);
+                    if (z4) {
+                        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.mc(18), 500L);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        return false;
     }
 }

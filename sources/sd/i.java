@@ -1,10 +1,10 @@
 package sd;
 public abstract class i implements Runnable {
-    public long f47298a;
-    public c5.c f47299b;
+    public long f44339a;
+    public c5.c f44340b;
 
     public i(long j10, c5.c cVar) {
-        this.f47298a = j10;
-        this.f47299b = cVar;
+        this.f44339a = j10;
+        this.f44340b = cVar;
     }
 }

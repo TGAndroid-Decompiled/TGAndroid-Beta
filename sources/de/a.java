@@ -1,18 +1,17 @@
 package de;
 
-import androidx.biometric.f0;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
-import sf.f;
+import rf.f;
 public final class a {
-    public static final Hashtable f4423b;
-    public static final Object[] f4424c;
+    public static final Hashtable f4322b;
+    public static final Object[] f4323c;
     public static Class d;
-    public final ClassLoader f4425a;
+    public final ClassLoader f4324a;
 
     static {
         Hashtable hashtable = new Hashtable();
-        f4423b = hashtable;
+        f4322b = hashtable;
         hashtable.put("void", Void.TYPE);
         hashtable.put("boolean", Boolean.TYPE);
         hashtable.put("byte", Byte.TYPE);
@@ -22,18 +21,18 @@ public final class a {
         hashtable.put("long", Long.TYPE);
         hashtable.put("float", Float.TYPE);
         hashtable.put("double", Double.TYPE);
-        f4424c = new Object[0];
+        f4323c = new Object[0];
     }
 
     public a(Class cls, String str) {
-        this.f4425a = cls.getClassLoader();
+        this.f4324a = cls.getClassLoader();
     }
 
     public static Class a(ClassLoader classLoader, String str) {
         if (str.equals("*")) {
             return null;
         }
-        Class cls = (Class) f4423b.get(str);
+        Class cls = (Class) f4322b.get(str);
         if (cls != null) {
             return cls;
         }
@@ -48,25 +47,25 @@ public final class a {
                 try {
                     cls2 = Class.forName("java.lang.ClassNotFoundException");
                     d = cls2;
-                } catch (ClassNotFoundException e6) {
-                    throw new NoClassDefFoundError(e6.getMessage());
+                } catch (ClassNotFoundException e) {
+                    throw new NoClassDefFoundError(e.getMessage());
                 }
             }
             return cls2;
         }
     }
 
-    public static f b(f0 f0Var, Object obj, Object obj2) {
-        return new f(f0Var, obj, obj2, f4424c);
+    public static f b(bb.b bVar, Object obj, Object obj2) {
+        return new f(bVar, obj, obj2, f4323c);
     }
 
-    public static f c(f0 f0Var, Object obj, Object obj2, Object obj3) {
-        return new f(f0Var, obj, obj2, new Object[]{obj3});
+    public static f c(bb.b bVar, Object obj, Object obj2, Object obj3) {
+        return new f(bVar, obj, obj2, new Object[]{obj3});
     }
 
     public final da.a d(String str, String str2, String str3, String str4, String str5) {
         int parseInt = Integer.parseInt("1", 16);
-        ClassLoader classLoader = this.f4425a;
+        ClassLoader classLoader = this.f4324a;
         Class a2 = a(classLoader, str2);
         StringTokenizer stringTokenizer = new StringTokenizer(str3, ":");
         int countTokens = stringTokenizer.countTokens();
@@ -88,17 +87,17 @@ public final class a {
         }
         Class a10 = a(classLoader, str5);
         da.a aVar = new da.a(1);
-        aVar.f4382b = parseInt;
-        aVar.f4383c = str;
-        aVar.f4384e = a2;
-        aVar.f4386g = clsArr;
+        aVar.f4283b = parseInt;
+        aVar.f4284c = str;
+        aVar.e = a2;
+        aVar.f4286g = clsArr;
         aVar.h = a10;
         return aVar;
     }
 
-    public final f0 e(da.a aVar) {
-        f0 f0Var = new f0(7);
-        f0Var.f532b = aVar;
-        return f0Var;
+    public final bb.b e(da.a aVar) {
+        bb.b bVar = new bb.b(9);
+        bVar.f1772b = aVar;
+        return bVar;
     }
 }

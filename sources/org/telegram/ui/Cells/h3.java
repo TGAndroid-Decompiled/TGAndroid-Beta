@@ -1,195 +1,172 @@
 package org.telegram.ui.Cells;
 
+import android.content.Context;
+import android.graphics.Canvas;
 import android.text.Editable;
-import android.text.Spannable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.text.style.CharacterStyle;
-import android.text.style.ParagraphStyle;
-import android.text.style.SuggestionSpan;
-import android.util.Pair;
-import java.util.HashMap;
-import java.util.Map;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.pe0;
-public final class h3 implements TextWatcher {
-    public final int f22882a = 1;
-    public boolean f22883b;
-    public int f22884c;
-    public Object d;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.mr;
+public class h3 extends FrameLayout {
+    public boolean f21131a;
+    public final f3 f21132b;
+    public final int f21133c;
+    public boolean d;
+    public int e;
+    public boolean f21134f;
+    public boolean h;
+    public boolean f21135n;
+    public final org.telegram.ui.Components.c5 f21136r;
+    public int f21137s;
+    public final org.telegram.ui.Components.j6 v;
+    public boolean f21138w;
 
-    public h3() {
+    public h3(Context context, String str, boolean z4, boolean z10, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        int i11;
+        int i12;
+        this.e = -1;
+        this.f21136r = new org.telegram.ui.Components.c5(this);
+        org.telegram.ui.Components.j6 j6Var = new org.telegram.ui.Components.j6(false, true, true, false);
+        this.v = j6Var;
+        j6Var.k(0.2f, 160L, mr.h);
+        j6Var.t(AndroidUtilities.dp(15.33f));
+        j6Var.f25847b = 5;
+        this.f21133c = i10;
+        f3 f3Var = new f3(this, context, f6Var, i10, f6Var, z10);
+        this.f21132b = f3Var;
+        j6Var.setCallback(f3Var);
+        f3Var.setTextSize(1, 17.0f);
+        f3Var.setHintTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.H6, f6Var));
+        int i13 = org.telegram.ui.ActionBar.j6.G6;
+        f3Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(i13, f6Var));
+        f3Var.setBackground(null);
+        if (z4) {
+            f3Var.setMaxLines(5);
+            f3Var.setSingleLine(false);
+        } else {
+            f3Var.setMaxLines(1);
+            f3Var.setSingleLine(true);
+        }
+        int dp = AndroidUtilities.dp(21.0f);
+        int dp2 = AndroidUtilities.dp(15.0f);
+        if (i10 > 0) {
+            i11 = 42;
+        } else {
+            i11 = 0;
+        }
+        f3Var.setPadding(dp, dp2, AndroidUtilities.dp(i11 + 21), AndroidUtilities.dp(15.0f));
+        f3Var.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+        if (z4) {
+            i12 = 131072;
+        } else {
+            i12 = 0;
+        }
+        f3Var.setInputType(i12 | 573441);
+        f3Var.setRawInputType((z4 ? 131072 : 0) | 573441);
+        f3Var.setHint(str);
+        f3Var.setCursorColor(org.telegram.ui.ActionBar.j6.v0(i13, f6Var));
+        f3Var.setCursorSize(AndroidUtilities.dp(19.0f));
+        f3Var.setCursorWidth(1.5f);
+        f3Var.addTextChangedListener(new g3(this, i10, z4));
+        f3Var.setOnFocusChangeListener(new m.s2(this, 2));
+        addView(f3Var, k7.b6.e(-1, -1, 48));
+        c();
+    }
+
+    public final void c() {
+        int i10;
+        if (this.f21132b == null) {
+            return;
+        }
+        this.f21137s = this.f21133c - getText().length();
+        String str = "";
+        if ((!TextUtils.isEmpty(getText()) || this.d) && ((!this.f21134f || (this.f21135n && !this.h)) && ((i10 = this.e) == -1 || this.f21137s <= i10))) {
+            str = "" + this.f21137s;
+        }
+        this.v.q(str, true, true);
+    }
+
+    public CharSequence getText() {
+        return this.f21132b.getText();
+    }
+
+    public TLRPC.TL_textWithEntities getTextWithEntities() {
+        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
+        CharSequence[] charSequenceArr = {getText()};
+        tL_textWithEntities.entities = MediaDataController.getInstance(UserConfig.selectedAccount).getEntities(charSequenceArr, true);
+        tL_textWithEntities.text = charSequenceArr[0].toString();
+        return tL_textWithEntities;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f22882a) {
-            case 0:
-                int i10 = this.f22884c;
-                i3 i3Var = (i3) this.d;
-                g3 g3Var = i3Var.f22957b;
-                if (!i3Var.f22956a) {
-                    if (i10 > 0 && editable != null && editable.length() > i10) {
-                        i3Var.f22956a = true;
-                        g3Var.setText(editable.subSequence(0, i10));
-                        g3Var.setSelection(g3Var.length());
-                        i3Var.f22956a = false;
-                    }
-                    i3Var.b(editable);
-                }
-                if (this.f22883b) {
-                    return;
-                }
-                while (true) {
-                    int indexOf = editable.toString().indexOf("\n");
-                    if (indexOf >= 0) {
-                        editable.delete(indexOf, indexOf + 1);
-                    } else {
-                        return;
-                    }
-                }
-            case 1:
-                return;
-            default:
-                pe0 pe0Var = (pe0) this.d;
-                lg.f fVar = pe0Var.f39988c;
-                if (!this.f22883b) {
-                    boolean z4 = true;
-                    pe0Var.q(true);
-                    AndroidUtilities.cancelRunOnUIThread(pe0Var.S);
-                    pe0Var.o(false);
-                    if (TextUtils.isEmpty(editable)) {
-                        pe0Var.f39996y = false;
-                    }
-                    if (!pe0Var.p(editable.toString())) {
-                        pe0Var.s(true);
-                        this.f22883b = true;
-                        if (fVar.getSelectionEnd() < fVar.getText().length()) {
-                            z4 = false;
-                        }
-                        if (!pe0Var.f39996y) {
-                            String str = pe0Var.H;
-                            fVar.setText(str.substring(0, Utilities.clamp(this.f22884c, str.length(), 0)));
-                            if (z4) {
-                                fVar.setSelection(fVar.getText().length());
-                            }
-                        }
-                        this.f22883b = false;
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        super.onDraw(canvas);
+        if (this.f21138w) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
+            } else {
+                dp = AndroidUtilities.dp(22.0f);
+            }
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(22.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f20000k0);
         }
     }
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f22882a) {
-            case 0:
-                i3 i3Var = (i3) this.d;
-                if (!i3Var.f22956a) {
-                    i3Var.h = false;
-                    return;
-                }
-                return;
-            case 1:
-                if (!this.f22883b) {
-                    HashMap hashMap = new HashMap();
-                    boolean z4 = charSequence instanceof Spannable;
-                    int i13 = 0;
-                    if (z4) {
-                        Spannable spannable = (Spannable) charSequence;
-                        CharacterStyle[] characterStyleArr = (CharacterStyle[]) spannable.getSpans(0, spannable.length(), CharacterStyle.class);
-                        ParagraphStyle[] paragraphStyleArr = (ParagraphStyle[]) spannable.getSpans(0, spannable.length(), ParagraphStyle.class);
-                        if (characterStyleArr != null && characterStyleArr.length > 0) {
-                            for (CharacterStyle characterStyle : characterStyleArr) {
-                                if (characterStyle != null && !(characterStyle instanceof SuggestionSpan)) {
-                                    hashMap.put(characterStyle, new Pair(Integer.valueOf(spannable.getSpanStart(characterStyle)), Integer.valueOf(spannable.getSpanEnd(characterStyle))));
-                                }
-                            }
-                        }
-                        if (paragraphStyleArr != null && paragraphStyleArr.length > 0) {
-                            for (ParagraphStyle paragraphStyle : paragraphStyleArr) {
-                                if (paragraphStyle != null && !(paragraphStyle instanceof SuggestionSpan)) {
-                                    hashMap.put(paragraphStyle, new Pair(Integer.valueOf(spannable.getSpanStart(paragraphStyle)), Integer.valueOf(spannable.getSpanEnd(paragraphStyle))));
-                                }
-                            }
-                        }
-                    }
-                    this.d = hashMap;
-                    if (z4) {
-                        i13 = ((SuggestionSpan[]) ((Spannable) charSequence).getSpans(0, charSequence.length(), SuggestionSpan.class)).length;
-                    }
-                    this.f22884c = i13;
-                    return;
-                }
-                return;
-            default:
-                if (!this.f22883b && charSequence != null && ((pe0) this.d).H != null) {
-                    this.f22884c = pe0.t(charSequence.toString()).length();
-                    return;
-                }
-                return;
+    public void setDivider(boolean z4) {
+        this.f21138w = z4;
+        setWillNotDraw(!z4);
+    }
+
+    public void setShowLimitOnFocus(boolean z4) {
+        this.f21134f = z4;
+    }
+
+    public void setShowLimitWhenEmpty(boolean z4) {
+        this.d = z4;
+        if (z4) {
+            c();
         }
     }
 
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13;
-        switch (this.f22882a) {
-            case 0:
-                return;
-            case 1:
-                if (!this.f22883b) {
-                    boolean z4 = charSequence instanceof Spannable;
-                    if (z4) {
-                        i13 = ((SuggestionSpan[]) ((Spannable) charSequence).getSpans(0, charSequence.length(), SuggestionSpan.class)).length;
-                    } else {
-                        i13 = 0;
-                    }
-                    HashMap hashMap = (HashMap) this.d;
-                    if (hashMap != null) {
-                        if ((i13 > 0 || this.f22884c > 0) && i10 == 0 && i11 == i12) {
-                            this.f22883b = true;
-                            if (z4) {
-                                Spannable spannable = (Spannable) charSequence;
-                                for (Map.Entry entry : hashMap.entrySet()) {
-                                    if (spannable.getSpanStart(entry.getKey()) == -1) {
-                                        spannable.setSpan(entry.getKey(), ((Integer) ((Pair) entry.getValue()).first).intValue(), ((Integer) ((Pair) entry.getValue()).second).intValue(), 33);
-                                    }
-                                }
-                            }
-                            this.f22883b = false;
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
+    public void setShowLimitWhenNear(int i10) {
+        this.e = i10;
+        c();
     }
 
-    public h3(i3 i3Var, int i10, boolean z4) {
-        this.d = i3Var;
-        this.f22884c = i10;
-        this.f22883b = z4;
+    public void setText(CharSequence charSequence) {
+        this.f21131a = true;
+        f3 f3Var = this.f21132b;
+        f3Var.setText(charSequence);
+        f3Var.setSelection(f3Var.getText().length());
+        this.f21131a = false;
     }
 
-    public h3(pe0 pe0Var) {
-        this.d = pe0Var;
+    public void setText(TLRPC.TL_textWithEntities tL_textWithEntities) {
+        this.f21131a = true;
+        CharSequence formatTextWithEntities = MessageObject.formatTextWithEntities(tL_textWithEntities, false);
+        f3 f3Var = this.f21132b;
+        f3Var.setText(formatTextWithEntities);
+        f3Var.setSelection(f3Var.getText().length());
+        this.f21131a = false;
     }
 
-    private final void a(Editable editable) {
+    public void a(boolean z4) {
     }
 
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    public void b(Editable editable) {
     }
 }

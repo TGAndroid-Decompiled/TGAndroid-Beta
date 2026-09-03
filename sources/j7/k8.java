@@ -7,7 +7,7 @@ public abstract class k8 {
         }
         if (i10 >= 0) {
             if (i11 < 0) {
-                throw new IllegalArgumentException(l.d.j(i11, "negative size: "));
+                throw new IllegalArgumentException(kf.k0.j(i11, "negative size: "));
             }
             a2 = l8.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
         } else {
@@ -40,6 +40,6 @@ public abstract class k8 {
         if (i11 >= 0) {
             return l8.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
         }
-        throw new IllegalArgumentException(l.d.j(i11, "negative size: "));
+        throw new IllegalArgumentException(kf.k0.j(i11, "negative size: "));
     }
 }

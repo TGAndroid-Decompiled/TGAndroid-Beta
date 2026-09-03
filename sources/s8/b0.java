@@ -2,23 +2,23 @@ package s8;
 
 import java.util.NoSuchElementException;
 public final class b0 extends u0 {
-    public boolean f47123a;
-    public final Object f47124b;
+    public boolean f44181a;
+    public final Object f44182b;
 
     public b0(Object obj) {
-        this.f47124b = obj;
+        this.f44182b = obj;
     }
 
     @Override
     public final boolean hasNext() {
-        return !this.f47123a;
+        return !this.f44181a;
     }
 
     @Override
     public final Object next() {
-        if (!this.f47123a) {
-            this.f47123a = true;
-            return this.f47124b;
+        if (!this.f44181a) {
+            this.f44181a = true;
+            return this.f44182b;
         }
         throw new NoSuchElementException();
     }

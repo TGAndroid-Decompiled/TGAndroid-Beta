@@ -26,8 +26,8 @@ public class GlueSettingsParser {
             newInstance.setIgnoringComments(true);
             this.root = newInstance.newDocumentBuilder().parse(JLatexMathAndroid.getResourceAsStream("GlueSettings.xml")).getDocumentElement();
             parseGlueTypes();
-        } catch (Exception e6) {
-            throw new XMLResourceParseException("GlueSettings.xml", e6);
+        } catch (Exception e) {
+            throw new XMLResourceParseException("GlueSettings.xml", e);
         }
     }
 

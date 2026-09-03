@@ -1,63 +1,172 @@
 package dg;
 
-import java.util.Arrays;
-import java.util.List;
-import org.telegram.messenger.R;
-public abstract class m {
-    public static final List f4581a = Arrays.asList(new Object(), new Object(), new Object(), new Object(), new Object(), new Object());
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.ui.Components.FragmentContextView;
+import org.telegram.ui.Components.jq;
+import org.telegram.ui.Components.mg0;
+import org.telegram.ui.Components.ou;
+import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sc;
+import org.telegram.ui.ExternalActionActivity;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class m implements View.OnClickListener {
+    public final int f4662a;
 
-    public float a() {
-        return 0.85f;
+    public m(int i10) {
+        this.f4662a = i10;
     }
 
-    public float b() {
-        return 0.0f;
-    }
-
-    public int c() {
-        return -16777216;
-    }
-
-    public float d() {
-        return 0.25f;
-    }
-
-    public abstract int e();
-
-    public float f() {
-        return 1.0f;
-    }
-
-    public float g() {
-        return 0.4f;
-    }
-
-    public float h() {
-        return 1.0f;
-    }
-
-    public String i(int i10) {
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    return null;
+    @Override
+    public final void onClick(View view) {
+        switch (this.f4662a) {
+            case 0:
+                PhotoViewer.t1().j0(1.0f, 0.0f, 0.0f, false);
+                return;
+            case 1:
+                try {
+                    view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps/details?id=org.telegram.messenger")));
+                    return;
+                } catch (ActivityNotFoundException e) {
+                    FileLog.e(e);
+                    return;
                 }
-                return "brush";
-            }
-            return "compositeWithMask";
+            case 2:
+                int i10 = kh.s.f10898x0;
+                return;
+            case 3:
+                sc[] scVarArr = kh.f0.m0;
+                return;
+            case 4:
+                int i11 = kh.m0.f10811c0;
+                return;
+            case 5:
+                int i12 = lh.j1.A0;
+                return;
+            case 6:
+                int i13 = mg.f.e;
+                return;
+            case 7:
+                nh.j1.j();
+                return;
+            case 8:
+                int i14 = org.telegram.ui.Cells.x.I;
+                return;
+            case 9:
+                org.telegram.ui.ActionBar.p2 R = LaunchActivity.R();
+                if (R != null) {
+                    R.presentFragment(new PremiumPreviewFragment(0, "contact"));
+                    return;
+                }
+                return;
+            case 10:
+                if (!MediaController.getInstance().isDownloadingCurrentMessage()) {
+                    if (MediaController.getInstance().isMessagePaused()) {
+                        MediaController.getInstance().playMessage(MediaController.getInstance().getPlayingMessageObject());
+                        return;
+                    } else {
+                        MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
+                        return;
+                    }
+                }
+                return;
+            case 11:
+                int i15 = jq.f26023b0;
+                return;
+            case 12:
+                int i16 = rr.f28567s;
+                return;
+            case 13:
+                float[] fArr = FragmentContextView.J0;
+                MediaController.getInstance().updateSilent(false);
+                return;
+            case 14:
+                mg0 mg0Var = mg0.m0;
+                ou ouVar = mg0Var.R;
+                if (ouVar != null) {
+                    ouVar.G();
+                } else {
+                    PhotoViewer photoViewer = mg0Var.S;
+                    if (photoViewer != null) {
+                        photoViewer.P0();
+                        MediaController.getInstance().tryResumePausedAudio();
+                    }
+                }
+                mg0.j(false);
+                return;
+            case 15:
+                org.telegram.ui.Components.voip.g1.j();
+                return;
+            case 16:
+                org.telegram.ui.Cells.y1 y1Var = (org.telegram.ui.Cells.y1) view;
+                y1Var.c(!y1Var.b(), true);
+                return;
+            case 17:
+                VoIPService sharedInstance = VoIPService.getSharedInstance();
+                if (sharedInstance != null) {
+                    sharedInstance.hangUp();
+                    return;
+                } else {
+                    org.telegram.ui.Components.voip.m2.i();
+                    return;
+                }
+            case 18:
+                gg.v2.e0(0, null);
+                return;
+            case 19:
+                ArrayList arrayList = ExternalActionActivity.f31561x;
+                return;
+            case 20:
+                return;
+            case 21:
+                Pattern pattern = LaunchActivity.f31586y1;
+                return;
+            case 22:
+                return;
+            case 23:
+                try {
+                    view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://fragment.com")));
+                    return;
+                } catch (ActivityNotFoundException e6) {
+                    FileLog.e(e6);
+                    return;
+                }
+            case 24:
+                int i17 = ph.j3.d;
+                return;
+            case 25:
+                PhotoViewer.t1().j0(1.0f, 0.0f, 0.0f, false);
+                return;
+            case 26:
+                int i18 = rh.l.f43652n;
+                return;
+            case 27:
+                return;
+            default:
+                int i19 = wg.c.e;
+                return;
         }
-        return "blitWithMask";
     }
 
-    public float j() {
-        return 1.0f;
+    public m(Object obj, int i10) {
+        this.f4662a = i10;
     }
 
-    public float k() {
-        return 0.15f;
+    private final void a(View view) {
     }
 
-    public int l() {
-        return R.drawable.paint_radial_brush;
+    private final void b(View view) {
+    }
+
+    private final void c(View view) {
     }
 }

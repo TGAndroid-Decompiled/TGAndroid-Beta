@@ -7,7 +7,7 @@ public final class vu0 extends f2.l {
     }
 
     @Override
-    public final void P(f2.m1 m1Var) {
+    public final void P(f2.l1 l1Var) {
         this.F.invalidate();
     }
 }

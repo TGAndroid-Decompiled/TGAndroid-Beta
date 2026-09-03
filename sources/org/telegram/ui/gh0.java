@@ -1,47 +1,29 @@
 package org.telegram.ui;
 
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class gh0 implements nb0 {
-    public final qh0 f37105a;
+public final class gh0 implements Runnable {
+    public final rh0 f34452a;
 
-    public gh0(qh0 qh0Var) {
-        this.f37105a = qh0Var;
+    public gh0(rh0 rh0Var) {
+        this.f34452a = rh0Var;
     }
 
     @Override
-    public final void a(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
-        this.f37105a.e0(tL_chatInviteExported);
-    }
-
-    @Override
-    public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
-        if (tLObject instanceof TLRPC.TL_messages_exportedChatInvite) {
-            TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject).invite;
-            qh0 qh0Var = this.f37105a;
-            qh0Var.c0(tL_chatInviteExported2);
-            for (int i10 = 0; i10 < qh0Var.f40491f0.size(); i10++) {
-                if (((TLRPC.TL_chatInviteExported) qh0Var.f40491f0.get(i10)).link.equals(tL_chatInviteExported.link)) {
-                    if (tL_chatInviteExported2.revoked) {
-                        hh0 f02 = qh0Var.f0();
-                        qh0Var.f40491f0.remove(i10);
-                        qh0Var.f40492g0.add(0, tL_chatInviteExported2);
-                        qh0Var.h0(f02);
-                        return;
-                    }
-                    qh0Var.f40491f0.set(i10, tL_chatInviteExported2);
-                    qh0Var.i0(true);
-                    return;
+    public final void run() {
+        rh0 rh0Var = this.f34452a;
+        if (rh0Var.f37844b == null) {
+            return;
+        }
+        for (int i10 = 0; i10 < rh0Var.f37844b.getChildCount(); i10++) {
+            View childAt = rh0Var.f37844b.getChildAt(i10);
+            if (childAt instanceof oh0) {
+                oh0 oh0Var = (oh0) childAt;
+                if (oh0Var.F) {
+                    oh0Var.b(oh0Var.f36815n, oh0Var.f36816r);
                 }
             }
         }
-    }
-
-    @Override
-    public final void c(TLObject tLObject) {
-        if (tLObject instanceof TLRPC.TL_chatInviteExported) {
-            AndroidUtilities.runOnUIThread(new ue0(9, this, tLObject), 200L);
-        }
+        AndroidUtilities.runOnUIThread(this, 500L);
     }
 }

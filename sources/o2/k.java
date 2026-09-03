@@ -1,83 +1,31 @@
 package o2;
-public abstract class k {
-    public static final b f16356a;
-    public static final b f16357b;
-    public static final b f16358c;
-    public static final b d;
 
-    static {
-        new b(0, "VISUAL_STATE_CALLBACK", "VISUAL_STATE_CALLBACK");
-        new b(0, "OFF_SCREEN_PRERASTER", "OFF_SCREEN_PRERASTER");
-        new b(3, "SAFE_BROWSING_ENABLE", "SAFE_BROWSING_ENABLE");
-        new b(1, "DISABLED_ACTION_MODE_MENU_ITEMS", "DISABLED_ACTION_MODE_MENU_ITEMS");
-        new b(4, "START_SAFE_BROWSING", "START_SAFE_BROWSING");
-        new b(4, "SAFE_BROWSING_WHITELIST", "SAFE_BROWSING_WHITELIST");
-        new b(4, "SAFE_BROWSING_WHITELIST", "SAFE_BROWSING_ALLOWLIST");
-        new b(4, "SAFE_BROWSING_ALLOWLIST", "SAFE_BROWSING_WHITELIST");
-        new b(4, "SAFE_BROWSING_ALLOWLIST", "SAFE_BROWSING_ALLOWLIST");
-        new b(4, "SAFE_BROWSING_PRIVACY_POLICY_URL", "SAFE_BROWSING_PRIVACY_POLICY_URL");
-        new b(1, "SERVICE_WORKER_BASIC_USAGE", "SERVICE_WORKER_BASIC_USAGE");
-        new b(1, "SERVICE_WORKER_CACHE_MODE", "SERVICE_WORKER_CACHE_MODE");
-        new b(1, "SERVICE_WORKER_CONTENT_ACCESS", "SERVICE_WORKER_CONTENT_ACCESS");
-        new b(1, "SERVICE_WORKER_FILE_ACCESS", "SERVICE_WORKER_FILE_ACCESS");
-        new b(1, "SERVICE_WORKER_BLOCK_NETWORK_LOADS", "SERVICE_WORKER_BLOCK_NETWORK_LOADS");
-        new b(1, "SERVICE_WORKER_SHOULD_INTERCEPT_REQUEST", "SERVICE_WORKER_SHOULD_INTERCEPT_REQUEST");
-        new b(0, "RECEIVE_WEB_RESOURCE_ERROR", "RECEIVE_WEB_RESOURCE_ERROR");
-        new b(0, "RECEIVE_HTTP_ERROR", "RECEIVE_HTTP_ERROR");
-        new b(1, "SHOULD_OVERRIDE_WITH_REDIRECTS", "SHOULD_OVERRIDE_WITH_REDIRECTS");
-        new b(4, "SAFE_BROWSING_HIT", "SAFE_BROWSING_HIT");
-        new b(1, "WEB_RESOURCE_REQUEST_IS_REDIRECT", "WEB_RESOURCE_REQUEST_IS_REDIRECT");
-        new b(0, "WEB_RESOURCE_ERROR_GET_DESCRIPTION", "WEB_RESOURCE_ERROR_GET_DESCRIPTION");
-        new b(0, "WEB_RESOURCE_ERROR_GET_CODE", "WEB_RESOURCE_ERROR_GET_CODE");
-        new b(4, "SAFE_BROWSING_RESPONSE_BACK_TO_SAFETY", "SAFE_BROWSING_RESPONSE_BACK_TO_SAFETY");
-        new b(4, "SAFE_BROWSING_RESPONSE_PROCEED", "SAFE_BROWSING_RESPONSE_PROCEED");
-        new b(4, "SAFE_BROWSING_RESPONSE_SHOW_INTERSTITIAL", "SAFE_BROWSING_RESPONSE_SHOW_INTERSTITIAL");
-        new b(0, "WEB_MESSAGE_PORT_POST_MESSAGE", "WEB_MESSAGE_PORT_POST_MESSAGE");
-        new b(0, "WEB_MESSAGE_PORT_CLOSE", "WEB_MESSAGE_PORT_CLOSE");
-        f16356a = new b(2, "WEB_MESSAGE_ARRAY_BUFFER", "WEB_MESSAGE_ARRAY_BUFFER");
-        new b(0, "WEB_MESSAGE_PORT_SET_MESSAGE_CALLBACK", "WEB_MESSAGE_PORT_SET_MESSAGE_CALLBACK");
-        new b(0, "CREATE_WEB_MESSAGE_CHANNEL", "CREATE_WEB_MESSAGE_CHANNEL");
-        new b(0, "POST_WEB_MESSAGE", "POST_WEB_MESSAGE");
-        new b(0, "WEB_MESSAGE_CALLBACK_ON_MESSAGE", "WEB_MESSAGE_CALLBACK_ON_MESSAGE");
-        new b(3, "GET_WEB_VIEW_CLIENT", "GET_WEB_VIEW_CLIENT");
-        new b(3, "GET_WEB_CHROME_CLIENT", "GET_WEB_CHROME_CLIENT");
-        new b(6, "GET_WEB_VIEW_RENDERER", "GET_WEB_VIEW_RENDERER");
-        new b(6, "WEB_VIEW_RENDERER_TERMINATE", "WEB_VIEW_RENDERER_TERMINATE");
-        new b(5, "TRACING_CONTROLLER_BASIC_USAGE", "TRACING_CONTROLLER_BASIC_USAGE");
-        new g();
-        new g();
-        new g();
-        new b(6, "WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE", "WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE");
-        new i();
-        new b(2, "PROXY_OVERRIDE", "PROXY_OVERRIDE:3");
-        f16357b = new b(2, "MULTI_PROCESS", "MULTI_PROCESS_QUERY");
-        new b(6, "FORCE_DARK", "FORCE_DARK");
-        new b(2, "FORCE_DARK_STRATEGY", "FORCE_DARK_BEHAVIOR");
-        f16358c = new b(2, "WEB_MESSAGE_LISTENER", "WEB_MESSAGE_LISTENER");
-        new b(2, "DOCUMENT_START_SCRIPT", "DOCUMENT_START_SCRIPT:1");
-        new b(2, "PROXY_OVERRIDE_REVERSE_BYPASS", "PROXY_OVERRIDE_REVERSE_BYPASS");
-        new b(2, "GET_VARIATIONS_HEADER", "GET_VARIATIONS_HEADER");
-        new b(2, "ENTERPRISE_AUTHENTICATION_APP_LINK_POLICY", "ENTERPRISE_AUTHENTICATION_APP_LINK_POLICY");
-        new b(2, "GET_COOKIE_INFO", "GET_COOKIE_INFO");
-        new b(2, "REQUESTED_WITH_HEADER_ALLOW_LIST", "REQUESTED_WITH_HEADER_ALLOW_LIST");
-        new b(2, "USER_AGENT_METADATA", "USER_AGENT_METADATA");
-        new j(0, "MULTI_PROFILE", "MULTI_PROFILE");
-        new b(2, "ATTRIBUTION_REGISTRATION_BEHAVIOR", "ATTRIBUTION_BEHAVIOR");
-        new b(2, "WEBVIEW_MEDIA_INTEGRITY_API_STATUS", "WEBVIEW_INTEGRITY_API_STATUS");
-        new b(2, "MUTE_AUDIO", "MUTE_AUDIO");
-        new b(2, "WEB_AUTHENTICATION", "WEB_AUTHENTICATION");
-        new b(2, "SPECULATIVE_LOADING_STATUS", "SPECULATIVE_LOADING");
-        new b(2, "BACK_FORWARD_CACHE", "BACK_FORWARD_CACHE");
-        new b(2, "DELETE_BROWSING_DATA", "WEB_STORAGE_DELETE_BROWSING_DATA");
-        new j(1, "PREFETCH_URL_V4", "PREFETCH_URL_V4");
-        new b(2, "IMPLEMENTATION_ONLY_FEATURE", "ASYNC_WEBVIEW_STARTUP");
-        new b(2, "DEFAULT_TRAFFICSTATS_TAGGING", "DEFAULT_TRAFFICSTATS_TAGGING");
-        new b(2, "PRERENDER_URL_V2", "PRERENDER_URL_V2");
-        new b(2, "SPECULATIVE_LOADING_CONFIG_V2", "SPECULATIVE_LOADING_CONFIG_V2");
-        new b(2, "SAVE_STATE", "SAVE_STATE");
-        new b(2, "WEB_VIEW_NAVIGATION_CLIENT_BASIC_USAGE", "WEB_VIEW_NAVIGATION_CLIENT_BASIC_USAGE");
-        d = new b(2, "CACHE_PROVIDER", "PROVIDER_WEAKLY_REF_WEBVIEW");
-        new b(2, "PAYMENT_REQUEST", "PAYMENT_REQUEST");
-        new b(2, "WEBVIEW_BUILDER", "WEBVIEW_BUILDER");
+import k7.x;
+public final class k extends b {
+    public final int e;
+
+    public k(int i10, String str, String str2) {
+        super(2, str, str2);
+        this.e = i10;
+    }
+
+    @Override
+    public final boolean b() {
+        switch (this.e) {
+            case 0:
+                if (!super.b() || !x.a("MULTI_PROCESS")) {
+                    return false;
+                }
+                boolean z4 = n2.b.f14204a;
+                if (l.f16197b.b()) {
+                    return m.f16199a.getStatics().isMultiProcessEnabled();
+                }
+                throw new UnsupportedOperationException("This method is not supported by the current version of the framework and the current WebView APK");
+            default:
+                if (!x.a("MULTI_PROFILE")) {
+                    return false;
+                }
+                return super.b();
+        }
     }
 }

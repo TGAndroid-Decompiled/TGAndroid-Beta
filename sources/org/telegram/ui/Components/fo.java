@@ -1,42 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.ImageReceiver;
-public final class fo implements ImageReceiver.ImageReceiverDelegate {
-    public boolean f26969a;
-    public final vf.g f26970b;
-    public final ho f26971c;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationsController;
+import org.telegram.messenger.Utilities;
+public final class fo implements Utilities.Callback {
+    public final p70 f24920a;
+    public final int f24921b;
+    public final long f24922c;
+    public final long d;
+    public final org.telegram.ui.ActionBar.p2 e;
+    public final org.telegram.ui.ActionBar.f6 f24923f;
 
-    public fo(vf.i iVar, vf.g gVar) {
-        this.f26971c = iVar;
-        this.f26970b = gVar;
+    public fo(p70 p70Var, int i10, long j10, long j11, org.telegram.ui.zn znVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f24920a = p70Var;
+        this.f24921b = i10;
+        this.f24922c = j10;
+        this.d = j11;
+        this.e = znVar;
+        this.f24923f = f6Var;
     }
 
     @Override
-    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        hj0 hj0Var;
-        lf.g gVar;
-        if (!this.f26969a) {
-            if ((i10 == 0 || i10 == 3) && drawable != null) {
-                this.f26969a = true;
-                boolean z4 = drawable instanceof hj0;
-                vf.g gVar2 = this.f26970b;
-                if (z4 && (gVar = (hj0Var = (hj0) drawable).A0) != null && gVar.g()) {
-                    hj0Var.f27552z0 = new eo(0, this, gVar2);
-                    return;
-                }
-                ho.a(this.f26971c);
-                gVar2.run();
+    public final void run(Object obj) {
+        Integer num = (Integer) obj;
+        this.f24920a.u();
+        int intValue = num.intValue();
+        int i10 = this.f24921b;
+        long j10 = this.f24922c;
+        long j11 = this.d;
+        org.telegram.ui.ActionBar.p2 p2Var = this.e;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f24923f;
+        if (intValue == 0) {
+            if (MessagesController.getInstance(i10).isDialogMuted(j10, j11)) {
+                NotificationsController.getInstance(i10).muteDialog(j10, j11, false);
             }
+            if (qc.a(p2Var)) {
+                qc.z(p2Var, 4, num.intValue(), f6Var).j();
+                return;
+            }
+            return;
         }
-    }
-
-    @Override
-    public final void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.j5.b(this, imageReceiver);
-    }
-
-    @Override
-    public final void didSetImage(ImageReceiver imageReceiver, boolean z4, boolean z10, boolean z11) {
+        NotificationsController.getInstance(i10).muteUntil(j10, j11, num.intValue());
+        if (qc.a(p2Var)) {
+            qc.z(p2Var, 5, num.intValue(), f6Var).j();
+        }
     }
 }

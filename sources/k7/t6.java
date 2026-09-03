@@ -32,7 +32,7 @@ public abstract class t6 {
                         break;
                     }
                 }
-                int i14 = wVar.f7309b + i13;
+                int i14 = wVar.f6988b + i13;
                 if (i13 != -1 && i13 <= wVar.a()) {
                     if (i10 == 4 && i13 >= 8) {
                         int u12 = wVar.u();
@@ -63,7 +63,7 @@ public abstract class t6 {
                     }
                 } else {
                     h5.a.K("CeaUtil", "Skipping remainder of malformed SEI NAL unit.");
-                    i14 = wVar.f7310c;
+                    i14 = wVar.f6989c;
                 }
                 wVar.F(i14);
             } else {
@@ -78,7 +78,7 @@ public abstract class t6 {
         if ((u10 & 64) != 0) {
             wVar.G(1);
             int i10 = (u10 & 31) * 3;
-            int i11 = wVar.f7309b;
+            int i11 = wVar.f6988b;
             int length = vVarArr.length;
             int i12 = 0;
             while (i12 < length) {

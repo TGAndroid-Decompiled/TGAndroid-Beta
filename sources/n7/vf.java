@@ -3,18 +3,18 @@ package n7;
 import android.content.Context;
 import java.util.ArrayList;
 public final class vf implements uf {
-    public final ArrayList f15773a;
+    public final ArrayList f14754a;
 
     public vf(Context context, tf tfVar) {
         ArrayList arrayList = new ArrayList();
-        this.f15773a = arrayList;
+        this.f14754a = arrayList;
         tfVar.getClass();
         arrayList.add(new yf(context, tfVar));
     }
 
     @Override
     public final void a(b4.e0 e0Var) {
-        ArrayList arrayList = this.f15773a;
+        ArrayList arrayList = this.f14754a;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {

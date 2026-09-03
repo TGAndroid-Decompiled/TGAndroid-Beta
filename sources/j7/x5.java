@@ -1,17 +1,13 @@
 package j7;
 public abstract class x5 {
-    public static int a(int i10, int i11) {
-        if (i11 >= 0) {
-            int i12 = i10 + (i10 >> 1) + 1;
-            if (i12 < i11) {
-                int highestOneBit = Integer.highestOneBit(i11 - 1);
-                i12 = highestOneBit + highestOneBit;
-            }
-            if (i12 < 0) {
-                return Integer.MAX_VALUE;
-            }
-            return i12;
+    public final int f9165a = 1;
+
+    public String toString() {
+        switch (this.f9165a) {
+            case 1:
+                return ((com.google.android.gms.internal.cast.n4) this).f3092b.toString();
+            default:
+                return super.toString();
         }
-        throw new AssertionError("cannot store more than MAX_VALUE elements");
     }
 }

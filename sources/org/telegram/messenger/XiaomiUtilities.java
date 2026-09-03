@@ -56,8 +56,8 @@ public class XiaomiUtilities {
                 return true;
             }
             return false;
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return true;
         }
     }

@@ -1,39 +1,63 @@
 package c2;
-public abstract class w {
-    public abstract void e(a0 a0Var);
 
-    public void h(c0 c0Var, a0 a0Var, int i10) {
-        g(a0Var);
+import android.os.Bundle;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+public final class w {
+    public static final w f2041c = new w(new Bundle(), null);
+    public final Bundle f2042a;
+    public List f2043b;
+
+    public w(Bundle bundle, ArrayList arrayList) {
+        this.f2042a = bundle;
+        this.f2043b = arrayList;
     }
 
-    public void j(c0 c0Var, a0 a0Var, int i10) {
-        i();
+    public static w b(Bundle bundle) {
+        if (bundle == null) {
+            return null;
+        }
+        return new w(bundle, null);
     }
 
-    public void a() {
+    public final void a() {
+        if (this.f2043b == null) {
+            ArrayList<String> stringArrayList = this.f2042a.getStringArrayList("controlCategories");
+            this.f2043b = stringArrayList;
+            if (stringArrayList == null || stringArrayList.isEmpty()) {
+                this.f2043b = Collections.EMPTY_LIST;
+            }
+        }
     }
 
-    public void b() {
+    public final ArrayList c() {
+        a();
+        return new ArrayList(this.f2043b);
     }
 
-    public void c() {
+    public final boolean d() {
+        a();
+        return this.f2043b.isEmpty();
     }
 
-    public void i() {
+    public final boolean equals(Object obj) {
+        if (obj instanceof w) {
+            w wVar = (w) obj;
+            a();
+            wVar.a();
+            return this.f2043b.equals(wVar.f2043b);
+        }
+        return false;
     }
 
-    public void d(a0 a0Var) {
+    public final int hashCode() {
+        a();
+        return this.f2043b.hashCode();
     }
 
-    public void f(a0 a0Var) {
-    }
-
-    public void g(a0 a0Var) {
-    }
-
-    public void k(a0 a0Var) {
-    }
-
-    public void l(f0 f0Var) {
+    public final String toString() {
+        return "MediaRouteSelector{ controlCategories=" + Arrays.toString(c().toArray()) + " }";
     }
 }

@@ -1,20 +1,8 @@
 package c2;
-
-import android.media.MediaRouter;
-public final class m0 extends s {
-    public final MediaRouter.RouteInfo f2137a;
-
-    public m0(MediaRouter.RouteInfo routeInfo) {
-        this.f2137a = routeInfo;
-    }
-
+public final class m0 extends q0 {
     @Override
-    public final void f(int i10) {
-        this.f2137a.requestSetVolume(i10);
-    }
-
-    @Override
-    public final void i(int i10) {
-        this.f2137a.requestUpdateVolume(i10);
+    public void u(o0 o0Var, m mVar) {
+        super.u(o0Var, mVar);
+        mVar.f1996a.putInt("deviceType", o0Var.f2003a.getDeviceType());
     }
 }

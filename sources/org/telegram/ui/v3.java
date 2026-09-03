@@ -1,44 +1,62 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class v3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f42002a;
-    public final y3 f42003b;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.util.SparseArray;
+public final class v3 {
+    public TextPaint f38967a;
+    public final SparseArray f38968b = new SparseArray();
+    public final SparseArray f38969c = new SparseArray();
+    public final SparseArray d = new SparseArray();
+    public final SparseArray e = new SparseArray();
+    public final SparseArray f38970f = new SparseArray();
+    public final SparseArray f38971g = new SparseArray();
+    public final SparseArray h = new SparseArray();
+    public final SparseArray f38972i = new SparseArray();
+    public final SparseArray f38973j = new SparseArray();
+    public final SparseArray f38974k = new SparseArray();
+    public final SparseArray f38975l = new SparseArray();
+    public final SparseArray f38976m = new SparseArray();
+    public final SparseArray f38977n = new SparseArray();
+    public final SparseArray f38978o = new SparseArray();
+    public final SparseArray f38979p = new SparseArray();
+    public final SparseArray f38980q = new SparseArray();
+    public final SparseArray f38981r = new SparseArray();
+    public final SparseArray f38982s = new SparseArray();
+    public final SparseArray f38983t = new SparseArray();
+    public final SparseArray f38984u = new SparseArray();
+    public final SparseArray v = new SparseArray();
+    public final SparseArray f38985w = new SparseArray();
+    public final SparseArray f38986x = new SparseArray();
+    public final SparseArray f38987y = new SparseArray();
+    public final SparseArray f38988z = new SparseArray();
+    public final SparseArray A = new SparseArray();
 
-    public v3(y3 y3Var, int i10) {
-        this.f42002a = i10;
-        this.f42003b = y3Var;
+    public static void a(n4 n4Var, SparseArray sparseArray) {
+        for (int i10 = 0; i10 < sparseArray.size(); i10++) {
+            int keyAt = sparseArray.keyAt(i10);
+            TextPaint textPaint = (TextPaint) sparseArray.valueAt(i10);
+            if (textPaint != null) {
+                if ((keyAt & 8) == 0 && (keyAt & 512) == 0) {
+                    textPaint.setColor(n4Var.b());
+                } else {
+                    textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.J6, false));
+                }
+            }
+        }
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f42002a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                y3 y3Var = this.f42003b;
-                y3Var.F = floatValue;
-                y3Var.f43523c.invalidate();
-                y3Var.i();
-                y3Var.h();
-                return;
-            case 1:
-                y3 y3Var2 = this.f42003b;
-                y3Var2.getClass();
-                y3Var2.f43529w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                y3Var2.n();
-                y3Var2.i();
-                y3Var2.h();
-                return;
-            default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                y3 y3Var3 = this.f42003b;
-                y3Var3.f43530x = floatValue2;
-                if (!y3Var3.f43526n) {
-                    y3Var3.n();
-                }
-                y3Var3.i();
-                y3Var3.h();
-                return;
+    public static void b(int i10, TextPaint textPaint, Typeface typeface, Typeface typeface2, Typeface typeface3, Typeface typeface4) {
+        int i11 = i10 & 1;
+        if (i11 != 0 && (i10 & 2) != 0) {
+            textPaint.setTypeface(typeface2);
+        } else if (i11 != 0) {
+            textPaint.setTypeface(typeface3);
+        } else if ((i10 & 2) != 0) {
+            textPaint.setTypeface(typeface4);
+        } else if ((i10 & 4) != 0) {
+        } else {
+            textPaint.setTypeface(typeface);
         }
     }
 }

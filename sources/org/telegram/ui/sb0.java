@@ -1,22 +1,50 @@
 package org.telegram.ui;
+public final class sb0 implements Runnable {
+    public final int f38145a;
+    public final yb0 f38146b;
+    public final String f38147c;
 
-import java.util.concurrent.Executor;
-import org.telegram.messenger.AndroidUtilities;
-public final class sb0 implements Executor {
-    public final int f41124a;
-
-    public sb0(int i10) {
-        this.f41124a = i10;
+    public sb0(yb0 yb0Var, String str, int i10) {
+        this.f38145a = i10;
+        this.f38146b = yb0Var;
+        this.f38147c = str;
     }
 
     @Override
-    public final void execute(Runnable runnable) {
-        switch (this.f41124a) {
+    public final void run() {
+        switch (this.f38145a) {
             case 0:
-                AndroidUtilities.runOnUIThread(runnable);
+                yb0 yb0Var = this.f38146b;
+                yb0Var.getClass();
+                String str = this.f38147c;
+                if ("disable".equalsIgnoreCase(str)) {
+                    yb0Var.o("turnPasswordOffRow");
+                }
+                if ("change".equalsIgnoreCase(str)) {
+                    yb0Var.o("changePasswordRow");
+                }
+                if ("change-email".equalsIgnoreCase(str)) {
+                    yb0Var.o("emailRow");
+                    return;
+                }
                 return;
             default:
-                runnable.run();
+                yb0 yb0Var2 = this.f38146b;
+                yb0Var2.getClass();
+                String str2 = this.f38147c;
+                if ("disable".equalsIgnoreCase(str2)) {
+                    yb0Var2.o("disablePasscodeRow");
+                }
+                if ("change".equalsIgnoreCase(str2)) {
+                    yb0Var2.o("changePasscodeRow");
+                }
+                if ("auto-lock".equalsIgnoreCase(str2)) {
+                    yb0Var2.o("autoLockRow");
+                }
+                if ("fingerprint".equalsIgnoreCase(str2)) {
+                    yb0Var2.o("fingerprintRow");
+                    return;
+                }
                 return;
         }
     }

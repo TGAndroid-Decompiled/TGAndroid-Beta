@@ -1,106 +1,162 @@
 package ng;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.yh;
+import android.graphics.RecordingCanvas;
+import android.graphics.RenderEffect;
+import android.graphics.RenderNode;
+import android.graphics.Shader;
+import android.support.v4.media.session.y;
+import org.telegram.messenger.MediaDataController;
 public final class c {
-    public float f16005a;
-    public float f16006b;
-    public float f16007c;
-    public float d;
-    public float f16008e;
-    public float f16009f;
-    public float f16010g;
+    public final RenderNode f14967a = y.c();
+    public final RenderNode[] f14968b;
+    public final RenderNode[] f14969c;
+    public final boolean d;
+    public int e;
+    public int f14970f;
+    public float f14971g;
     public float h;
-    public long f16011i;
-    public boolean f16012j;
-    public float f16013k;
-    public final d f16014l;
+    public long f14972i;
+    public final e f14973j;
 
-    public c(d dVar) {
-        this.f16014l = dVar;
+    public c(e eVar, String str, int i10, boolean z4) {
+        this.f14973j = eVar;
+        int i11 = i10 + 1;
+        this.f14968b = new RenderNode[i11];
+        for (int i12 = 0; i12 < i11; i12++) {
+            RenderNode[] renderNodeArr = this.f14968b;
+            y.i();
+            renderNodeArr[i12] = y.d(str + "_down_" + i10);
+        }
+        if (i10 <= 0 && !z4) {
+            this.f14969c = this.f14968b;
+        } else {
+            this.f14969c = new RenderNode[i11];
+            for (int i13 = 0; i13 < i11; i13++) {
+                this.f14969c[i13] = y.c();
+            }
+        }
+        this.d = this.f14969c == this.f14968b;
+        this.f14970f = 1;
+        this.e = 1;
     }
 
-    public final void a() {
-        d dVar;
-        float f10;
-        float f11 = 0.0f;
-        this.h = 0.0f;
-        float b10 = b();
-        float c3 = c();
-        int i10 = 0;
+    public final void a(RenderNode renderNode) {
+        boolean z4;
+        RenderNode[] renderNodeArr;
+        boolean z10;
+        int width = renderNode.getWidth();
+        int height = renderNode.getHeight();
+        float f10 = width;
+        e eVar = this.f14973j;
+        int round = Math.round((eVar.d * f10) / this.e);
+        float f11 = height;
+        int round2 = Math.round((eVar.d * f11) / this.f14970f);
+        float f12 = round;
+        float f13 = f12 / f10;
+        float f14 = round2;
+        float f15 = f14 / f11;
+        int i10 = eVar.d;
+        float f16 = (f10 * i10) / f12;
+        float f17 = (f11 * i10) / f14;
+        long calcHash = MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(0L, renderNode.getUniqueId()), round), round2), width), height);
+        if (this.f14967a.hasDisplayList() && this.f14968b[0].hasDisplayList()) {
+            z4 = false;
+        } else {
+            z4 = true;
+        }
+        int i11 = 0;
         while (true) {
-            dVar = this.f16014l;
-            if (i10 >= 20) {
+            int length = this.f14968b.length;
+            z10 = this.d;
+            if (i11 >= length) {
                 break;
             }
-            float b11 = b();
-            float c10 = c();
-            float f12 = 2.1474836E9f;
-            for (int i11 = 0; i11 < dVar.f16027c.size(); i11++) {
-                float f13 = ((c) dVar.f16027c.get(i11)).f16007c - b11;
-                float f14 = ((c) dVar.f16027c.get(i11)).d - c10;
-                float f15 = (f14 * f14) + (f13 * f13);
-                if (f15 < f12) {
-                    f12 = f15;
+            z4 |= !renderNodeArr[i11].hasDisplayList();
+            if (!z10) {
+                z4 |= !this.f14969c[i11].hasDisplayList();
+            }
+            i11++;
+        }
+        if (this.f14972i != calcHash || z4) {
+            this.f14972i = calcHash;
+            int i12 = 0;
+            this.f14967a.setPosition(0, 0, width, height);
+            this.f14967a.beginRecording(width, height).drawRenderNode(renderNode);
+            this.f14967a.endRecording();
+            this.f14968b[0].setPosition(0, 0, round, round2);
+            RecordingCanvas beginRecording = this.f14968b[0].beginRecording(round, round2);
+            beginRecording.scale(f13, f15);
+            beginRecording.drawRenderNode(this.f14967a);
+            this.f14968b[0].endRecording();
+            int i13 = 0;
+            while (true) {
+                RenderNode[] renderNodeArr2 = this.f14968b;
+                if (i13 < renderNodeArr2.length) {
+                    renderNodeArr2[i13].setPosition(i12, i12, round, round2);
+                    RecordingCanvas beginRecording2 = this.f14968b[i13].beginRecording(round, round2);
+                    if (i13 > 0) {
+                        beginRecording2.drawRenderNode(this.f14968b[i12]);
+                    } else {
+                        beginRecording2.scale(f13, f15);
+                        beginRecording2.drawRenderNode(this.f14967a);
+                    }
+                    this.f14968b[i13].endRecording();
+                    if (z10) {
+                        this.f14968b[i13].setScaleX(f16);
+                        this.f14968b[i13].setScaleY(f17);
+                        this.f14968b[i13].setPivotX(0.0f);
+                        this.f14968b[i13].setPivotY(0.0f);
+                    } else {
+                        this.f14969c[i13].setPosition(0, 0, width, height);
+                        RecordingCanvas beginRecording3 = this.f14969c[i13].beginRecording(width, height);
+                        beginRecording3.scale(f16, f17);
+                        beginRecording3.drawRenderNode(this.f14968b[i13]);
+                        this.f14969c[i13].endRecording();
+                    }
+                    i13++;
+                    i12 = 0;
+                } else {
+                    return;
                 }
             }
-            if (f12 > f11) {
-                b10 = b11;
-                c3 = c10;
-                f11 = f12;
-            }
-            i10++;
         }
-        if (dVar.f16029f) {
-            f10 = 0.8f;
-        } else {
-            f10 = 0.5f;
-        }
-        this.f16007c = b10;
-        if (b10 > dVar.f16026b.width() * f10) {
-            this.f16005a = dVar.f16026b.width() * f10;
-        } else {
-            float width = dVar.f16026b.width() * f10;
-            this.f16005a = width;
-            if (this.f16007c > width) {
-                this.f16007c = width - 0.1f;
-            }
-        }
-        float height = dVar.f16026b.height() * 0.1f;
-        this.f16006b = w.c.c(yh.f(Utilities.fastRandom, 100), 100.0f, height, dVar.f16026b.height() * 0.45f);
-        if (dVar.f16029f) {
-            float width2 = dVar.f16026b.width() * 0.1f;
-            float c11 = w.c.c(yh.f(Utilities.fastRandom, 100), 100.0f, width2, dVar.f16026b.width() * 0.05f);
-            this.f16009f = c11;
-            this.f16010g = (((yh.f(Utilities.fastRandom, 100) / 100.0f) * 1.5f) + 1.5f) * c11;
-            float height2 = dVar.f16026b.height() * 0.1f;
-            this.d = w.c.c(yh.f(Utilities.fastRandom, 100), 100.0f, height2, this.f16009f / 2.0f);
-            this.f16008e = dVar.f16026b.height() + this.f16009f;
-            this.f16011i = Math.abs(Utilities.fastRandom.nextInt() % 600) + 1000;
-        } else {
-            float width3 = dVar.f16026b.width() * 0.1f;
-            float c12 = w.c.c(yh.f(Utilities.fastRandom, 100), 100.0f, width3, dVar.f16026b.width() * 0.05f);
-            this.f16009f = c12;
-            this.f16010g = (((yh.f(Utilities.fastRandom, 100) / 100.0f) * 0.5f) + 1.5f) * c12;
-            this.d = c3;
-            this.f16008e = c3 + dVar.f16026b.height();
-            this.f16011i = 1800L;
-        }
-        this.f16011i = ((float) this.f16011i) / 1.75f;
-        this.f16012j = Utilities.fastRandom.nextBoolean();
-        this.f16013k = ((Utilities.fastRandom.nextInt() % 100) / 100.0f) * 20.0f;
     }
 
-    public final float b() {
-        d dVar = this.f16014l;
-        if (dVar.f16029f) {
-            float width = dVar.f16026b.width() * 1.5f;
-            return w.c.c(yh.f(Utilities.fastRandom, 100), 100.0f, width, dVar.f16026b.width() * (-0.25f));
+    public final void b(float f10, float f11) {
+        float f12;
+        RenderNode[] renderNodeArr;
+        int i10 = this.e;
+        float f13 = 0.0f;
+        if (i10 >= 2) {
+            f12 = (this.f14971g + f10) % i10;
+        } else {
+            f12 = 0.0f;
         }
-        return (yh.f(Utilities.fastRandom, 100) / 100.0f) * dVar.f16026b.width();
+        this.f14971g = f12;
+        int i11 = this.f14970f;
+        if (i11 >= 2) {
+            f13 = (this.h + f11) % i11;
+        }
+        this.h = f13;
+        if (this.f14973j.f14978b) {
+            this.f14967a.setTranslationX(f12);
+            this.f14967a.setTranslationY(this.h);
+            for (RenderNode renderNode : this.f14969c) {
+                renderNode.setTranslationX(-this.f14971g);
+                renderNode.setTranslationY(-this.h);
+            }
+        }
     }
 
-    public final float c() {
-        return (yh.f(Utilities.fastRandom, 100) / 100.0f) * this.f16014l.f16026b.height() * 0.5f;
+    public final void c(float f10) {
+        this.f14968b[0].setRenderEffect(RenderEffect.createBlurEffect(e.a(f10, this.e), e.a(f10, this.f14970f), Shader.TileMode.CLAMP));
+    }
+
+    public final void d(float f10, RenderEffect renderEffect) {
+        this.f14968b[0].setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(e.a(f10, this.e), e.a(f10, this.f14970f), Shader.TileMode.CLAMP), renderEffect));
+    }
+
+    public final void e(RenderEffect renderEffect) {
+        this.f14968b[1].setRenderEffect(renderEffect);
     }
 }

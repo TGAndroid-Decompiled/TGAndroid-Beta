@@ -1,11 +1,11 @@
 package pb;
 public final class f {
     public static final byte[] d = new byte[0];
-    public final ob.d f44302a;
-    public byte[] f44303b = d;
-    public final int[] f44304c = new int[32];
+    public final ob.d f41133a;
+    public byte[] f41134b = d;
+    public final int[] f41135c = new int[32];
 
     public f(ob.d dVar) {
-        this.f44302a = dVar;
+        this.f41133a = dVar;
     }
 }

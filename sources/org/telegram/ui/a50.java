@@ -1,39 +1,26 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-public final class a50 extends org.telegram.ui.ActionBar.k {
-    public final org.telegram.ui.Components.rp f35024q1;
-    public final d60 f35025r1;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class a50 extends org.telegram.ui.Components.lq0 {
+    public final e60 Y0;
 
-    public a50(d60 d60Var, LaunchActivity launchActivity, org.telegram.ui.Components.rp rpVar) {
-        super(launchActivity, null);
-        this.f35025r1 = d60Var;
-        this.f35024q1 = rpVar;
+    public a50(e60 e60Var, Context context, String str, String str2, String str3, String str4) {
+        super(context, null, str, str2, false, str3, str4, true);
+        this.Y0 = e60Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
-            canvas.save();
-            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - AndroidUtilities.dp(1.0f));
-            org.telegram.ui.Components.rp rpVar = this.f35024q1;
-            rpVar.f30866f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
-            rpVar.draw(canvas);
-            canvas.restore();
-            invalidate();
+    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z4) {
+        if (!z4) {
+            return;
         }
-    }
-
-    @Override
-    public final void setAlpha(float f10) {
-        ViewGroup viewGroup;
-        if (getAlpha() != f10) {
-            super.setAlpha(f10);
-            viewGroup = ((org.telegram.ui.ActionBar.h3) this.f35025r1).containerView;
-            viewGroup.invalidate();
+        int m9 = hVar.m();
+        e60 e60Var = this.Y0;
+        if (m9 == 1) {
+            e60Var.k1().m(((TLRPC.Dialog) hVar.n(0)).f19163id, Integer.valueOf(i10), 41);
+        } else {
+            e60Var.k1().k(0L, 41, Integer.valueOf(i10), Integer.valueOf(hVar.m()), null, null);
         }
     }
 }

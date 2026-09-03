@@ -1,44 +1,32 @@
 package lh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class g0 extends FrameLayout {
-    public final RectF f12752a;
-    public final RectF f12753b;
-    public final m0 f12754c;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.ui.Components.ut;
+public final class g0 implements org.telegram.ui.ActionBar.c2 {
+    public final int f12437a;
+    public final int f12438b;
+    public final Object f12439c;
 
-    public g0(m0 m0Var, Context context) {
-        super(context);
-        this.f12754c = m0Var;
-        this.f12752a = new RectF();
-        this.f12753b = new RectF();
+    public g0(int i10, int i11, org.telegram.ui.ActionBar.p2 p2Var) {
+        this.f12437a = i10;
+        this.f12438b = i11;
+        this.f12439c = p2Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        m0 m0Var = this.f12754c;
-        h0 h0Var = m0Var.X;
-        FrameLayout frameLayout = h0Var.f13799b;
-        RectF rectF = this.f12752a;
-        if (vg.i.c(frameLayout, this, rectF)) {
-            TextView textView = m0Var.Y;
-            RectF rectF2 = this.f12753b;
-            if (vg.i.c(textView, this, rectF2)) {
-                float dp = rectF2.right - AndroidUtilities.dp(32.0f);
-                float centerY = rectF2.centerY() - AndroidUtilities.dp(16.0f);
-                if (!rectF.isEmpty()) {
-                    canvas.save();
-                    canvas.translate(dp, centerY);
-                    canvas.scale(AndroidUtilities.dp(32.0f) / rectF.width(), AndroidUtilities.dp(32.0f) / rectF.height());
-                    h0Var.f13799b.draw(canvas);
-                    canvas.restore();
-                }
-            }
-        }
+    public void l(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        ze.c g10 = d2Var.g(-1, true, true);
+        g10.d();
+        TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
+        tL_resolveStarGiftOffer.offer_msg_id = this.f12437a;
+        int i11 = this.f12438b;
+        ConnectionsManager.getInstance(i11).sendRequestTyped(tL_resolveStarGiftOffer, new i0(i11, (org.telegram.ui.ActionBar.p2) this.f12439c, g10, d2Var));
+    }
+
+    public g0(ut utVar, int i10, int i11) {
+        this.f12439c = utVar;
+        this.f12437a = i10;
+        this.f12438b = i11;
     }
 }

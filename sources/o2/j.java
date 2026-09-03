@@ -1,31 +1,51 @@
 package o2;
 
-import k7.y;
-public final class j extends b {
-    public final int f16355e;
+import android.content.pm.PackageInfo;
+import android.os.Build;
+import java.lang.reflect.InvocationTargetException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public final class j extends c {
+    public final Pattern d;
 
-    public j(int i10, String str, String str2) {
-        super(2, str, str2);
-        this.f16355e = i10;
+    public j() {
+        super("ALGORITHMIC_DARKENING", "ALGORITHMIC_DARKENING");
+        this.d = Pattern.compile("\\A\\d+");
+    }
+
+    @Override
+    public final boolean a() {
+        if (Build.VERSION.SDK_INT >= 33) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public final boolean b() {
-        switch (this.f16355e) {
-            case 0:
-                if (!super.b() || !y.a("MULTI_PROCESS")) {
-                    return false;
+        int i10;
+        PackageInfo packageInfo;
+        boolean b10 = super.b();
+        if (b10 && (i10 = Build.VERSION.SDK_INT) < 29) {
+            boolean z4 = n2.b.f14204a;
+            if (i10 >= 26) {
+                packageInfo = k6.a.c();
+            } else {
+                try {
+                    packageInfo = n2.b.b();
+                } catch (ClassNotFoundException | IllegalAccessException | NoSuchMethodException | InvocationTargetException unused) {
+                    packageInfo = null;
                 }
-                boolean z4 = n2.a.f15192a;
-                if (k.f16357b.b()) {
-                    return l.f16359a.getStatics().isMultiProcessEnabled();
-                }
-                throw new UnsupportedOperationException("This method is not supported by the current version of the framework and the current WebView APK");
-            default:
-                if (!y.a("MULTI_PROFILE")) {
-                    return false;
-                }
-                return super.b();
+            }
+            if (packageInfo == null) {
+                return false;
+            }
+            Matcher matcher = this.d.matcher(packageInfo.versionName);
+            if (!matcher.find() || Integer.parseInt(packageInfo.versionName.substring(matcher.start(), matcher.end())) < 105) {
+                return false;
+            }
+            return true;
         }
+        return b10;
     }
 }

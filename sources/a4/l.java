@@ -9,84 +9,84 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import k7.x6;
 import l3.o0;
-import r3.x;
+import org.telegram.ui.Components.tp0;
 public final class l extends j {
-    public k f96n;
-    public int f97o;
-    public boolean f98p;
-    public o0 f99q;
-    public x f100r;
+    public k f87n;
+    public int f88o;
+    public boolean f89p;
+    public o0 f90q;
+    public tp0 f91r;
 
     @Override
     public final void a(long j10) {
         boolean z4;
-        this.f86g = j10;
+        this.f78g = j10;
         int i10 = 0;
         if (j10 != 0) {
             z4 = true;
         } else {
             z4 = false;
         }
-        this.f98p = z4;
-        o0 o0Var = this.f99q;
+        this.f89p = z4;
+        o0 o0Var = this.f90q;
         if (o0Var != null) {
-            i10 = o0Var.f11574e;
+            i10 = o0Var.e;
         }
-        this.f97o = i10;
+        this.f88o = i10;
     }
 
     @Override
     public final long b(w wVar) {
         int i10;
         int i11 = 0;
-        byte b10 = wVar.f7308a[0];
+        byte b10 = wVar.f6987a[0];
         if ((b10 & 1) == 1) {
             return -1L;
         }
-        k kVar = this.f96n;
+        k kVar = this.f87n;
         h5.a.j(kVar);
-        int i12 = kVar.f92a;
-        o0 o0Var = (o0) kVar.f93b;
-        if (!((h5.c[]) kVar.f95e)[(b10 >> 1) & (255 >>> (8 - i12))].f7233a) {
-            i10 = o0Var.f11574e;
+        int i12 = kVar.f84a;
+        o0 o0Var = (o0) kVar.f85b;
+        if (!((h5.c[]) kVar.e)[(b10 >> 1) & (255 >>> (8 - i12))].f6920a) {
+            i10 = o0Var.e;
         } else {
-            i10 = o0Var.f11575f;
+            i10 = o0Var.f11318f;
         }
-        if (this.f98p) {
-            i11 = (this.f97o + i10) / 4;
+        if (this.f89p) {
+            i11 = (this.f88o + i10) / 4;
         }
         long j10 = i11;
-        byte[] bArr = wVar.f7308a;
+        byte[] bArr = wVar.f6987a;
         int length = bArr.length;
-        int i13 = wVar.f7310c + 4;
+        int i13 = wVar.f6989c + 4;
         if (length < i13) {
             byte[] copyOf = Arrays.copyOf(bArr, i13);
             wVar.D(copyOf.length, copyOf);
         } else {
             wVar.E(i13);
         }
-        byte[] bArr2 = wVar.f7308a;
-        int i14 = wVar.f7310c;
+        byte[] bArr2 = wVar.f6987a;
+        int i14 = wVar.f6989c;
         bArr2[i14 - 4] = (byte) (j10 & 255);
         bArr2[i14 - 3] = (byte) ((j10 >>> 8) & 255);
         bArr2[i14 - 2] = (byte) ((j10 >>> 16) & 255);
         bArr2[i14 - 1] = (byte) ((j10 >>> 24) & 255);
-        this.f98p = true;
-        this.f97o = i10;
+        this.f89p = true;
+        this.f88o = i10;
         return j10;
     }
 
     @Override
-    public final boolean c(w wVar, long j10, bf.b bVar) {
+    public final boolean c(w wVar, long j10, af.c cVar) {
         k kVar;
         int i10;
         int i11;
         long j11;
-        if (this.f96n != null) {
-            ((n0) bVar.f1935b).getClass();
+        if (this.f87n != null) {
+            ((n0) cVar.f156b).getClass();
             return false;
         }
-        o0 o0Var = this.f99q;
+        o0 o0Var = this.f90q;
         int i12 = 4;
         int i13 = -1;
         if (o0Var == null) {
@@ -106,30 +106,30 @@ public final class l extends j {
             int u11 = wVar.u();
             int pow = (int) Math.pow(2.0d, (u11 & 240) >> 4);
             wVar.u();
-            ?? copyOf = Arrays.copyOf(wVar.f7308a, wVar.f7310c);
+            ?? copyOf = Arrays.copyOf(wVar.f6987a, wVar.f6989c);
             ?? obj = new Object();
-            obj.f11571a = u10;
-            obj.f11572b = m9;
-            obj.f11573c = i14;
+            obj.f11315a = u10;
+            obj.f11316b = m9;
+            obj.f11317c = i14;
             obj.d = i13;
-            obj.f11574e = (int) Math.pow(2.0d, u11 & 15);
-            obj.f11575f = pow;
-            obj.f11576g = copyOf;
-            this.f99q = obj;
+            obj.e = (int) Math.pow(2.0d, u11 & 15);
+            obj.f11318f = pow;
+            obj.f11319g = copyOf;
+            this.f90q = obj;
         } else {
-            x xVar = this.f100r;
-            if (xVar == null) {
-                this.f100r = x6.b(wVar, true, true);
+            tp0 tp0Var = this.f91r;
+            if (tp0Var == null) {
+                this.f91r = x6.b(wVar, true, true);
             } else {
-                int i16 = wVar.f7310c;
+                int i16 = wVar.f6989c;
                 byte[] bArr = new byte[i16];
-                System.arraycopy(wVar.f7308a, 0, bArr, 0, i16);
-                int i17 = o0Var.f11571a;
+                System.arraycopy(wVar.f6987a, 0, bArr, 0, i16);
+                int i17 = o0Var.f11315a;
                 int i18 = 5;
                 x6.c(5, wVar, false);
                 int u12 = wVar.u() + 1;
-                v vVar = new v(wVar.f7308a);
-                vVar.s(wVar.f7309b * 8);
+                v vVar = new v(wVar.f6987a);
+                vVar.s(wVar.f6988b * 8);
                 int i19 = 0;
                 while (true) {
                     int i20 = 16;
@@ -183,7 +183,7 @@ public final class l extends j {
                                 throw r1.a("lookup type greater than 2 not decodable: " + i27, null);
                             }
                         } else {
-                            throw r1.a("expected code book to start with [0x56, 0x43, 0x42] at " + ((vVar.d * 8) + vVar.f7305e), null);
+                            throw r1.a("expected code book to start with [0x56, 0x43, 0x42] at " + ((vVar.d * 8) + vVar.e), null);
                         }
                     } else {
                         int i29 = 6;
@@ -361,7 +361,7 @@ public final class l extends j {
                                     vVar.i(16);
                                     vVar.i(8);
                                     ?? obj2 = new Object();
-                                    obj2.f7233a = h9;
+                                    obj2.f6920a = h9;
                                     cVarArr[i75] = obj2;
                                 }
                                 if (vVar.h()) {
@@ -370,7 +370,7 @@ public final class l extends j {
                                         i76++;
                                         i73 >>>= 1;
                                     }
-                                    kVar = new k(o0Var, xVar, bArr, cVarArr, i76);
+                                    kVar = new k(o0Var, tp0Var, bArr, cVarArr, i76);
                                 } else {
                                     throw r1.a("framing bit after modes not set as expected", null);
                                 }
@@ -381,24 +381,24 @@ public final class l extends j {
             }
         }
         kVar = null;
-        this.f96n = kVar;
+        this.f87n = kVar;
         if (kVar == null) {
             return true;
         }
-        o0 o0Var2 = (o0) kVar.f93b;
+        o0 o0Var2 = (o0) kVar.f85b;
         ArrayList arrayList = new ArrayList();
-        arrayList.add((byte[]) o0Var2.f11576g);
+        arrayList.add((byte[]) o0Var2.f11319g);
         arrayList.add((byte[]) kVar.d);
-        e4.c a2 = x6.a(s8.v.u(((x) kVar.f94c).f46627a));
+        e4.c a2 = x6.a(s8.v.u((String[]) ((tp0) kVar.f86c).f29015b));
         m0 m0Var = new m0();
-        m0Var.f9265o = "audio/vorbis";
-        m0Var.f9257f = o0Var2.d;
-        m0Var.f9258g = o0Var2.f11573c;
-        m0Var.B = o0Var2.f11571a;
-        m0Var.C = o0Var2.f11572b;
-        m0Var.f9267q = arrayList;
-        m0Var.f9259i = a2;
-        bVar.f1935b = new n0(m0Var);
+        m0Var.f8666o = "audio/vorbis";
+        m0Var.f8658f = o0Var2.d;
+        m0Var.f8659g = o0Var2.f11317c;
+        m0Var.B = o0Var2.f11315a;
+        m0Var.C = o0Var2.f11316b;
+        m0Var.f8668q = arrayList;
+        m0Var.f8660i = a2;
+        cVar.f156b = new n0(m0Var);
         return true;
     }
 
@@ -406,11 +406,11 @@ public final class l extends j {
     public final void d(boolean z4) {
         super.d(z4);
         if (z4) {
-            this.f96n = null;
-            this.f99q = null;
-            this.f100r = null;
+            this.f87n = null;
+            this.f90q = null;
+            this.f91r = null;
         }
-        this.f97o = 0;
-        this.f98p = false;
+        this.f88o = 0;
+        this.f89p = false;
     }
 }

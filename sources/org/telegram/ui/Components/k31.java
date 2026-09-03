@@ -12,15 +12,15 @@ import org.json.JSONTokener;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class k31 extends Thread {
-    public final String f28263a;
-    public final String f28264b;
-    public final String f28265c;
+    public final String f26159a;
+    public final String f26160b;
+    public final String f26161c;
     public final Utilities.Callback2 d;
 
     public k31(String str, String str2, String str3, Utilities.Callback2 callback2) {
-        this.f28263a = str;
-        this.f28264b = str2;
-        this.f28265c = str3;
+        this.f26159a = str;
+        this.f26160b = str2;
+        this.f26161c = str3;
         this.d = callback2;
     }
 
@@ -30,13 +30,13 @@ public final class k31 extends Thread {
         Integer num;
         String str;
         Utilities.Callback2 callback2 = this.d;
-        String str2 = this.f28265c;
+        String str2 = this.f26161c;
         boolean z4 = false;
         String str3 = null;
         try {
-            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f28263a) + "&tl=" + Uri.encode(this.f28264b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
-        } catch (Exception e6) {
-            e = e6;
+            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f26159a) + "&tl=" + Uri.encode(this.f26160b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
+        } catch (Exception e) {
+            e = e;
             httpURLConnection = null;
         }
         try {
@@ -44,7 +44,7 @@ public final class k31 extends Thread {
             httpURLConnection.setRequestProperty("User-Agent", v31.O[(int) Math.round(Math.random() * 5)]);
             httpURLConnection.setRequestProperty("Content-Type", "application/json");
             StringBuilder sb = new StringBuilder();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), r8.d.f46769c));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), r8.d.f43413c));
             while (true) {
                 int read = bufferedReader.read();
                 if (read == -1) {
@@ -73,9 +73,9 @@ public final class k31 extends Thread {
             if (str2.length() > 0 && str2.charAt(0) == '\n') {
                 str4 = "\n" + str4;
             }
-            AndroidUtilities.runOnUIThread(new b90(27, callback2, str4));
-        } catch (Exception e10) {
-            e = e10;
+            AndroidUtilities.runOnUIThread(new z80(28, callback2, str4));
+        } catch (Exception e6) {
+            e = e6;
             try {
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append("failed to translate a text ");
@@ -91,8 +91,8 @@ public final class k31 extends Thread {
                 }
                 sb2.append(str3);
                 Log.e("translate", sb2.toString());
-            } catch (IOException e11) {
-                e11.printStackTrace();
+            } catch (IOException e10) {
+                e10.printStackTrace();
             }
             e.printStackTrace();
             if (httpURLConnection != null) {
@@ -105,7 +105,7 @@ public final class k31 extends Thread {
                     return;
                 }
             }
-            AndroidUtilities.runOnUIThread(new qv0(1, callback2, z4));
+            AndroidUtilities.runOnUIThread(new kv0(2, callback2, z4));
         }
     }
 }

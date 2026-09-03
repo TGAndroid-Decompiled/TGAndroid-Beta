@@ -1,20 +1,20 @@
 package org.telegram.ui.Components;
 public final class o10 implements Runnable {
-    public final int f29634a;
-    public final FragmentContextView f29635b;
+    public final int f27428a;
+    public final FragmentContextView f27429b;
 
     public o10(FragmentContextView fragmentContextView, int i10) {
-        this.f29634a = i10;
-        this.f29635b = fragmentContextView;
+        this.f27428a = i10;
+        this.f27429b = fragmentContextView;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f29634a;
-        FragmentContextView fragmentContextView = this.f29635b;
+        int i10 = this.f27428a;
+        FragmentContextView fragmentContextView = this.f27429b;
         switch (i10) {
             case 0:
-                fragmentContextView.K.f32061g = 0.0f;
+                fragmentContextView.K.f29629g = 0.0f;
                 fragmentContextView.I.invalidate();
                 return;
             default:

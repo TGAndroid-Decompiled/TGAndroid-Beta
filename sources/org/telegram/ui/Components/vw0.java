@@ -8,7 +8,7 @@ import org.telegram.tgnet.TLRPC;
 public final class vw0 extends CacheFetcher {
     @Override
     public final void getLocal(int i10, Object obj, Utilities.Callback2 callback2) {
-        MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new gy(i10, (Integer) obj, callback2, 17));
+        MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new ey(i10, (Integer) obj, callback2, 17));
     }
 
     @Override
@@ -37,6 +37,6 @@ public final class vw0 extends CacheFetcher {
 
     @Override
     public final void setLocal(int i10, Object obj, Object obj2, long j10) {
-        MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new gy(i10, (TLRPC.TL_messages_emojiGroups) obj2, (Integer) obj, 16));
+        MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new ey(i10, (TLRPC.TL_messages_emojiGroups) obj2, (Integer) obj, 16));
     }
 }

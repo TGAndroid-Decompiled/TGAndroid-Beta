@@ -10,21 +10,21 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 public final class h extends pa.u {
-    public static final e f47199c = new e();
-    public final g f47200a;
-    public final ArrayList f47201b;
+    public static final e f44246c = new e();
+    public final g f44247a;
+    public final ArrayList f44248b;
 
     public h(g gVar) {
         ArrayList arrayList = new ArrayList();
-        this.f47201b = arrayList;
+        this.f44248b = arrayList;
         Objects.requireNonNull(gVar);
-        this.f47200a = gVar;
+        this.f44247a = gVar;
         Locale locale = Locale.US;
         arrayList.add(DateFormat.getDateTimeInstance(2, 2, locale));
         if (!Locale.getDefault().equals(locale)) {
             arrayList.add(DateFormat.getDateTimeInstance(2, 2));
         }
-        if (ra.g.f46793a >= 9) {
+        if (ra.g.f43434a >= 9) {
             arrayList.add(new SimpleDateFormat(android.support.v4.media.a.z("MMM d, yyyy", " ", "h:mm:ss a"), locale));
         }
     }
@@ -39,9 +39,9 @@ public final class h extends pa.u {
             return null;
         }
         String v = aVar.v();
-        synchronized (this.f47201b) {
+        synchronized (this.f44248b) {
             try {
-                ArrayList arrayList = this.f47201b;
+                ArrayList arrayList = this.f44248b;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (true) {
@@ -56,10 +56,10 @@ public final class h extends pa.u {
                         try {
                             b10 = ta.a.b(v, new ParsePosition(0));
                             break;
-                        } catch (ParseException e6) {
+                        } catch (ParseException e) {
                             StringBuilder t6 = android.support.v4.media.a.t("Failed parsing '", v, "' as Date; at path ");
                             t6.append(aVar.j());
-                            throw new RuntimeException(t6.toString(), e6);
+                            throw new RuntimeException(t6.toString(), e);
                         }
                     }
                 }
@@ -68,11 +68,11 @@ public final class h extends pa.u {
             } finally {
             }
         }
-        return this.f47200a.a(b10);
+        return this.f44247a.a(b10);
     }
 
     public final String toString() {
-        DateFormat dateFormat = (DateFormat) this.f47201b.get(0);
+        DateFormat dateFormat = (DateFormat) this.f44248b.get(0);
         if (dateFormat instanceof SimpleDateFormat) {
             return "DefaultDateTypeAdapter(" + ((SimpleDateFormat) dateFormat).toPattern() + ')';
         }
@@ -87,8 +87,8 @@ public final class h extends pa.u {
             bVar.i();
             return;
         }
-        DateFormat dateFormat = (DateFormat) this.f47201b.get(0);
-        synchronized (this.f47201b) {
+        DateFormat dateFormat = (DateFormat) this.f44248b.get(0);
+        synchronized (this.f44248b) {
             format = dateFormat.format(date);
         }
         bVar.r(format);

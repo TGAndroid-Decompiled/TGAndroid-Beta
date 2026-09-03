@@ -2,8 +2,8 @@ package k3;
 
 import android.media.metrics.LogSessionId;
 public final class j {
-    public static final int f10453b = 0;
-    public final LogSessionId f10454a;
+    public static final int f9714b = 0;
+    public final LogSessionId f9715a;
 
     static {
         LogSessionId unused;
@@ -11,6 +11,6 @@ public final class j {
     }
 
     public j(LogSessionId logSessionId) {
-        this.f10454a = logSessionId;
+        this.f9715a = logSessionId;
     }
 }

@@ -118,8 +118,8 @@ public class SQLiteCursor {
                     }
                     Thread.sleep(500L);
                     step = this.preparedStatement.step();
-                } catch (Exception e6) {
-                    FileLog.e(e6);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
                 if (step == 0) {
                     break;

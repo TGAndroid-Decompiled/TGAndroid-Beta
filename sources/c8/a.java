@@ -14,19 +14,19 @@ import b6.v;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.k;
 import com.google.android.gms.common.api.l;
-import m.r3;
+import m.s3;
 public final class a extends b6.g implements com.google.android.gms.common.api.c {
     public final boolean R;
-    public final r3 S;
+    public final s3 S;
     public final Bundle T;
     public final Integer U;
 
-    public a(Context context, Looper looper, r3 r3Var, Bundle bundle, k kVar, l lVar) {
-        super(context, looper, 44, r3Var, kVar, lVar, 0);
+    public a(Context context, Looper looper, s3 s3Var, Bundle bundle, k kVar, l lVar) {
+        super(context, looper, 44, s3Var, kVar, lVar, 0);
         this.R = true;
-        this.S = r3Var;
+        this.S = s3Var;
         this.T = bundle;
-        this.U = (Integer) r3Var.h;
+        this.U = (Integer) s3Var.h;
     }
 
     public final void G() {
@@ -39,7 +39,7 @@ public final class a extends b6.g implements com.google.android.gms.common.api.c
             this.S.getClass();
             Account account = new Account("<<default account>>", "com.google");
             if ("<<default account>>".equals(account.name)) {
-                googleSignInAccount = o5.b.a(this.f1718n).b();
+                googleSignInAccount = o5.b.a(this.f1599n).b();
             } else {
                 googleSignInAccount = null;
             }
@@ -52,12 +52,12 @@ public final class a extends b6.g implements com.google.android.gms.common.api.c
             y6.a.c(G0, gVar);
             y6.a.d(G0, cVar);
             eVar.H0(G0, 12);
-        } catch (RemoteException e6) {
+        } catch (RemoteException e) {
             Log.w("SignInClientImpl", "Remote service probably died when signIn is called");
             try {
                 cVar.h(new h(1, new y5.a(8, null), null));
             } catch (RemoteException unused) {
-                Log.wtf("SignInClientImpl", "ISignInCallbacks#onSignInComplete should be executed from the same process, unexpected RemoteException.", e6);
+                Log.wtf("SignInClientImpl", "ISignInCallbacks#onSignInComplete should be executed from the same process, unexpected RemoteException.", e);
             }
         }
     }
@@ -86,11 +86,11 @@ public final class a extends b6.g implements com.google.android.gms.common.api.c
 
     @Override
     public final Bundle t() {
-        r3 r3Var = this.S;
-        boolean equals = this.f1718n.getPackageName().equals((String) r3Var.d);
+        s3 s3Var = this.S;
+        boolean equals = this.f1599n.getPackageName().equals((String) s3Var.d);
         Bundle bundle = this.T;
         if (!equals) {
-            bundle.putString("com.google.android.gms.signin.internal.realClientPackageName", (String) r3Var.d);
+            bundle.putString("com.google.android.gms.signin.internal.realClientPackageName", (String) s3Var.d);
         }
         return bundle;
     }

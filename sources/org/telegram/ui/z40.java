@@ -1,26 +1,42 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class z40 extends org.telegram.ui.Components.lq0 {
-    public final d60 Y0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.Paint;
+public final class z40 extends AnimatorListenerAdapter {
+    public final int f40394a;
+    public final e60 f40395b;
 
-    public z40(d60 d60Var, Context context, String str, String str2, String str3, String str4) {
-        super(context, null, str, str2, false, str3, str4, true);
-        this.Y0 = d60Var;
+    public z40(e60 e60Var, int i10) {
+        this.f40394a = i10;
+        this.f40395b = e60Var;
     }
 
     @Override
-    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z4) {
-        if (!z4) {
-            return;
-        }
-        int m9 = hVar.m();
-        d60 d60Var = this.Y0;
-        if (m9 == 1) {
-            d60Var.k1().m(((TLRPC.Dialog) hVar.n(0)).f20849id, Integer.valueOf(i10), 41);
-        } else {
-            d60Var.k1().k(0L, 41, Integer.valueOf(i10), Integer.valueOf(hVar.m()), null, null);
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        switch (this.f40394a) {
+            case 0:
+                e60 e60Var = this.f40395b;
+                e60Var.S.setVisibility(4);
+                e60Var.T.setVisibility(4);
+                e60Var.R.setVisibility(4);
+                return;
+            case 1:
+                this.f40395b.f33633e0 = null;
+                return;
+            default:
+                e60 e60Var2 = this.f40395b;
+                e60Var2.f33634e1 = null;
+                Paint paint = e60Var2.f33630d1;
+                if (e60Var2.Q1 == 3) {
+                    i10 = -1163700;
+                } else {
+                    i10 = -12761513;
+                }
+                paint.setColor(i10);
+                e60Var2.f33627c1.invalidate();
+                return;
         }
     }
 }

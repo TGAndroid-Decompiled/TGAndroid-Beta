@@ -1,80 +1,22 @@
 package org.telegram.ui;
-
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.Utilities;
 public final class x70 implements Runnable {
-    public final int f42949a;
-    public final y70 f42950b;
-    public final String f42951c;
+    public final int f39913a;
+    public final e80 f39914b;
 
-    public x70(y70 y70Var, String str, int i10) {
-        this.f42949a = i10;
-        this.f42950b = y70Var;
-        this.f42951c = str;
+    public x70(e80 e80Var, int i10) {
+        this.f39913a = i10;
+        this.f39914b = e80Var;
     }
 
     @Override
     public final void run() {
-        int i10;
-        switch (this.f42949a) {
+        switch (this.f39913a) {
             case 0:
-                Utilities.searchQueue.postRunnable(new x70(this.f42950b, this.f42951c, 1));
+                e80 e80Var = this.f39914b;
+                e80Var.h.postOnAnimation(new x70(e80Var, 1));
                 return;
             default:
-                y70 y70Var = this.f42950b;
-                String str = this.f42951c;
-                z70 z70Var = y70Var.f43568b;
-                String lowerCase = str.trim().toLowerCase();
-                if (lowerCase.isEmpty()) {
-                    ArrayList arrayList = new ArrayList();
-                    ArrayList arrayList2 = new ArrayList();
-                    z70Var.getClass();
-                    AndroidUtilities.runOnUIThread(new sq(z70Var, arrayList, arrayList2, 12));
-                    return;
-                }
-                String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
-                translitString = (lowerCase.equals(translitString) || translitString.isEmpty()) ? null : null;
-                if (translitString != null) {
-                    i10 = 1;
-                } else {
-                    i10 = 0;
-                }
-                int i11 = i10 + 1;
-                String[] strArr = new String[i11];
-                strArr[0] = lowerCase;
-                if (translitString != null) {
-                    strArr[1] = translitString;
-                }
-                ArrayList arrayList3 = new ArrayList();
-                ArrayList arrayList4 = new ArrayList();
-                for (int i12 = 0; i12 < z70Var.f43848n.f36119w.size(); i12++) {
-                    ContactsController.Contact contact = (ContactsController.Contact) z70Var.f43848n.f36119w.get(i12);
-                    String lowerCase2 = ContactsController.formatName(contact.first_name, contact.last_name).toLowerCase();
-                    String translitString2 = LocaleController.getInstance().getTranslitString(lowerCase2);
-                    if (lowerCase2.equals(translitString2)) {
-                        translitString2 = null;
-                    }
-                    int i13 = 0;
-                    boolean z4 = false;
-                    while (true) {
-                        if (i13 < i11) {
-                            String str2 = strArr[i13];
-                            if (lowerCase2.startsWith(str2) || org.telegram.messenger.y3.w(" ", str2, lowerCase2) || (translitString2 != null && (translitString2.startsWith(str2) || org.telegram.messenger.y3.w(" ", str2, translitString2)))) {
-                                z4 = true;
-                            }
-                            if (z4) {
-                                arrayList4.add(AndroidUtilities.generateSearchName(contact.first_name, contact.last_name, str2));
-                                arrayList3.add(contact);
-                            } else {
-                                i13++;
-                            }
-                        }
-                    }
-                }
-                AndroidUtilities.runOnUIThread(new sq(z70Var, arrayList3, arrayList4, 12));
+                this.f39914b.Y();
                 return;
         }
     }

@@ -8,48 +8,43 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class sb implements pk0 {
-    public final tb f31026a;
+public final class sb implements ok0 {
+    public final tb f28717a;
 
     public sb(tb tbVar) {
-        this.f31026a = tbVar;
+        this.f28717a = tbVar;
     }
 
     @Override
-    public final boolean g() {
+    public final boolean i() {
         return true;
     }
 
     @Override
-    public final boolean h() {
-        return false;
-    }
-
-    @Override
-    public final void o(View view, ng.q0 q0Var, boolean z4, boolean z10) {
+    public final void j(View view, mg.q0 q0Var, boolean z4, boolean z10) {
         boolean z11;
-        tb tbVar = this.f31026a;
-        org.telegram.ui.ActionBar.p2 p2Var = tbVar.f31325f;
-        if (tbVar.f31324e == null) {
+        tb tbVar = this.f28717a;
+        org.telegram.ui.ActionBar.p2 p2Var = tbVar.f28960f;
+        if (tbVar.e == null) {
             return;
         }
         long clientUserId = UserConfig.getInstance(p2Var.getCurrentAccount()).getClientUserId();
-        if ((p2Var instanceof org.telegram.ui.xn) && ((org.telegram.ui.xn) p2Var).a() == clientUserId) {
+        if ((p2Var instanceof org.telegram.ui.zn) && ((org.telegram.ui.zn) p2Var).a() == clientUserId) {
             z11 = true;
         } else {
             z11 = false;
         }
         int i10 = 0;
-        for (int i11 = 0; i11 < tbVar.f31324e.size(); i11++) {
-            int keyAt = tbVar.f31324e.keyAt(i11);
+        for (int i11 = 0; i11 < tbVar.e.size(); i11++) {
+            int keyAt = tbVar.e.keyAt(i11);
             TLRPC.Message message = new TLRPC.Message();
             message.dialog_id = p2Var.getUserConfig().getClientUserId();
-            message.f20866id = keyAt;
+            message.f19180id = keyAt;
             MessageObject messageObject = new MessageObject(p2Var.getCurrentAccount(), message, false, false);
-            ArrayList<ng.q0> arrayList = new ArrayList<>();
+            ArrayList<mg.q0> arrayList = new ArrayList<>();
             arrayList.add(q0Var);
-            p2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, q0Var, false, false, tbVar.f31325f, null);
-            i10 = message.f20866id;
+            p2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, q0Var, false, false, tbVar.f28960f, null);
+            i10 = message.f19180id;
         }
         tbVar.f();
         ic.e();
@@ -57,7 +52,12 @@ public final class sb implements pk0 {
     }
 
     @Override
-    public final boolean t() {
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final boolean o() {
         return false;
     }
 
@@ -66,6 +66,6 @@ public final class sb implements pk0 {
     }
 
     @Override
-    public final void j(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i10, boolean z4) {
+    public final void l(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i10, boolean z4) {
     }
 }

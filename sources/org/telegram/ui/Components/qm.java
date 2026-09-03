@@ -1,28 +1,24 @@
 package org.telegram.ui.Components;
 
 import org.telegram.messenger.Utilities;
-public final class qm implements Utilities.Callback {
-    public final int f30467a;
-    public final rn f30468b;
-    public final int f30469c;
+import org.telegram.tgnet.TLRPC;
+public final class qm implements uk, org.telegram.ui.ActionBar.c2 {
+    public final Utilities.Callback f28212a;
 
-    public qm(rn rnVar, int i10, int i11) {
-        this.f30467a = i11;
-        this.f30468b = rnVar;
-        this.f30469c = i10;
+    public qm(Utilities.Callback callback) {
+        this.f28212a = callback;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f30467a) {
-            case 0:
-                this.f30468b.e0(this.f30469c, (eh.h) obj);
-                return;
-            default:
-                rn rnVar = this.f30468b;
-                rnVar.getClass();
-                rnVar.e0(this.f30469c, new fh.e((String) obj));
-                return;
+    public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z4, int i11, long j10) {
+        this.f28212a.run(new eh.g(messageMedia));
+    }
+
+    @Override
+    public void l(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        Utilities.Callback callback = this.f28212a;
+        if (callback != null) {
+            callback.run(Boolean.FALSE);
         }
     }
 }

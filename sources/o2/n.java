@@ -1,12 +1,10 @@
 package o2;
 
-import android.webkit.WebView;
-import org.chromium.support_lib_boundary.StaticsBoundaryInterface;
 import org.chromium.support_lib_boundary.WebViewProviderBoundaryInterface;
-public interface n {
-    WebViewProviderBoundaryInterface createWebView(WebView webView);
+public final class n {
+    public final WebViewProviderBoundaryInterface f16200a;
 
-    StaticsBoundaryInterface getStatics();
-
-    String[] t();
+    public n(WebViewProviderBoundaryInterface webViewProviderBoundaryInterface) {
+        this.f16200a = webViewProviderBoundaryInterface;
+    }
 }

@@ -155,7 +155,7 @@ public class UnconfirmedAuthController {
                 }
             };
         }
-        Utilities.raceCallbacks(new hg.j(this, zArr, arrayList2, z4, callback, 8), callbackArr);
+        Utilities.raceCallbacks(new gg.j(this, zArr, arrayList2, z4, callback, 8), callbackArr);
         if (z4) {
             HashSet hashSet = new HashSet();
             for (int i11 = 0; i11 < arrayList2.size(); i11++) {
@@ -317,7 +317,7 @@ public class UnconfirmedAuthController {
             if (z10) {
                 MessagesController.getInstance(UnconfirmedAuthController.this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
             }
-            vf.f.a(UnconfirmedAuthController.this.currentAccount).b();
+            uf.f.a(UnconfirmedAuthController.this.currentAccount).b();
             if (callback != null) {
                 if ((z10 && tL_error == null) || UnconfirmedAuthController.this.debug) {
                     z4 = true;

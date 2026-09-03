@@ -1,37 +1,34 @@
 package org.telegram.ui.Components;
-public abstract class a60 extends ho0 {
-    @Override
-    public final boolean a() {
-        if (j() > 0) {
+public final class a60 {
+    public final int f23326a;
+    public final int f23327b;
+
+    public a60(int i10, int i11) {
+        this.f23326a = i10;
+        this.f23327b = i11;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
             return true;
+        }
+        if (obj != null && a60.class == obj.getClass()) {
+            a60 a60Var = (a60) obj;
+            if (this.f23326a == a60Var.f23326a && this.f23327b == a60Var.f23327b) {
+                return true;
+            }
         }
         return false;
     }
 
-    @Override
-    public final boolean b() {
-        if (j() < i()) {
-            return true;
-        }
-        return false;
+    public final int hashCode() {
+        return (this.f23326a * 31) + this.f23327b;
     }
 
-    @Override
-    public final void c(boolean z4) {
-        int h = h();
-        if (z4) {
-            h *= -1;
-        }
-        k(Math.min(i(), Math.max(0, j() + h)));
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("IntSize(");
+        sb.append(this.f23326a);
+        sb.append(", ");
+        return android.support.v4.media.a.m(this.f23327b, ")", sb);
     }
-
-    public int h() {
-        return 1;
-    }
-
-    public abstract int i();
-
-    public abstract int j();
-
-    public abstract void k(int i10);
 }

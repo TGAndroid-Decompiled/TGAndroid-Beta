@@ -1,22 +1,33 @@
 package org.telegram.ui.Components;
-public final class qt extends j6 {
-    public final int W;
-    public final EditTextBoldCursor X;
+
+import android.content.DialogInterface;
+import org.telegram.messenger.AndroidUtilities;
+public final class qt implements DialogInterface.OnShowListener {
+    public final int f28254a;
+    public final EditTextBoldCursor f28255b;
 
     public qt(int i10, EditTextBoldCursor editTextBoldCursor) {
-        super(false, false, false, false);
-        this.W = i10;
-        this.X = editTextBoldCursor;
+        this.f28254a = i10;
+        this.f28255b = editTextBoldCursor;
     }
 
     @Override
-    public final void invalidateSelf() {
-        switch (this.W) {
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f28254a) {
             case 0:
-                this.X.invalidate();
+                lh.n nVar = (lh.n) this.f28255b;
+                nVar.requestFocus();
+                AndroidUtilities.showKeyboard(nVar);
+                return;
+            case 1:
+                lh.n nVar2 = (lh.n) this.f28255b;
+                nVar2.requestFocus();
+                AndroidUtilities.showKeyboard(nVar2);
                 return;
             default:
-                this.X.invalidate();
+                a4 a4Var = (a4) this.f28255b;
+                a4Var.requestFocus();
+                AndroidUtilities.showKeyboard(a4Var);
                 return;
         }
     }

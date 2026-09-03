@@ -11,10 +11,10 @@ public class q0 extends pa.u {
         String v = aVar.v();
         try {
             return UUID.fromString(v);
-        } catch (IllegalArgumentException e6) {
+        } catch (IllegalArgumentException e) {
             StringBuilder t6 = android.support.v4.media.a.t("Failed parsing '", v, "' as UUID; at path ");
             t6.append(aVar.j());
-            throw new RuntimeException(t6.toString(), e6);
+            throw new RuntimeException(t6.toString(), e);
         }
     }
 

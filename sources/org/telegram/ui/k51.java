@@ -1,35 +1,35 @@
 package org.telegram.ui;
 
 import android.view.ViewGroup;
-public final class k51 extends k7.d6 {
-    public final int f38192a;
-    public final ViewGroup f38193b;
+public final class k51 extends k7.c6 {
+    public final int f35426a;
+    public final ViewGroup f35427b;
 
     public k51(ViewGroup viewGroup, int i10) {
-        this.f38192a = i10;
-        this.f38193b = viewGroup;
+        this.f35426a = i10;
+        this.f35427b = viewGroup;
     }
 
     @Override
     public final void a() {
-        switch (this.f38192a) {
+        switch (this.f35426a) {
             case 0:
-                ((w61) this.f38193b).f42347t1 = false;
+                ((x61) this.f35427b).f39895t1 = false;
                 return;
             default:
-                ((qh.d1) this.f38193b).Y2 = false;
+                ((ph.d1) this.f35427b).Y2 = false;
                 return;
         }
     }
 
     @Override
     public final void b() {
-        switch (this.f38192a) {
+        switch (this.f35426a) {
             case 0:
-                ((w61) this.f38193b).f42347t1 = true;
+                ((x61) this.f35427b).f39895t1 = true;
                 return;
             default:
-                ((qh.d1) this.f38193b).Y2 = true;
+                ((ph.d1) this.f35427b).Y2 = true;
                 return;
         }
     }

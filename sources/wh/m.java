@@ -1,86 +1,21 @@
 package wh;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.ki;
-import org.telegram.ui.Components.mi;
-import org.telegram.ui.Components.wg;
-public final class m implements ki {
-    public final mi f49905a;
-    public final q f49906b;
-
-    public m(q qVar, mi miVar) {
-        this.f49906b = qVar;
-        this.f49905a = miVar;
-    }
-
-    @Override
-    public final void B0(wg wgVar) {
-        NotificationCenter.getInstance(this.f49906b.f49965n).doOnIdle(wgVar);
-    }
-
-    @Override
-    public final void I1(int i10, boolean z4, boolean z10, int i11, int i12, long j10, boolean z11, boolean z12, long j11) {
-        mi miVar = this.f49905a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = miVar.f29072g0;
-        r3 r3Var = this.f49906b.f49966r;
-        if (i10 == 7 || i10 == 8) {
-            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            a aVar = r3Var.Y3;
-            r3Var.Y3 = null;
-            int i13 = 0;
-            while (true) {
-                if (i13 >= selectedPhotosOrder.size()) {
-                    break;
-                }
-                Object obj = selectedPhotos.get(selectedPhotosOrder.get(i13));
-                if (obj instanceof MediaController.PhotoEntry) {
-                    if (aVar != null) {
-                        r3Var.S1(aVar, (MediaController.PhotoEntry) obj);
-                    } else {
-                        r3Var.e2((MediaController.PhotoEntry) obj);
-                    }
-                } else {
-                    i13++;
-                }
-            }
-        }
-        r3Var.Y3 = null;
-        miVar.dismiss(true);
-    }
-
-    @Override
-    public final boolean b2() {
-        return false;
-    }
-
-    @Override
-    public final boolean h0() {
-        return false;
-    }
-
-    @Override
-    public final void Q0() {
-    }
-
-    @Override
-    public final void y0() {
-    }
-
-    @Override
-    public final void Z0(Object obj) {
-    }
-
-    @Override
-    public final void o1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void f2(ArrayList arrayList, CharSequence charSequence, boolean z4, int i10, int i11, long j10, boolean z10, long j11) {
-    }
+public final class m extends f2.k {
+    public int f46684f;
+    public int f46685g;
+    public int h;
+    public int f46686i;
+    public boolean f46687j;
+    public boolean f46688k;
+    public boolean f46689l;
+    public boolean f46690m;
+    public boolean f46691n;
+    public float f46692o;
+    public float f46693p;
+    public float f46694q;
+    public float f46695r;
+    public int f46696s;
+    public int f46697t;
+    public int f46698u;
+    public int v;
+    public boolean f46699w;
 }

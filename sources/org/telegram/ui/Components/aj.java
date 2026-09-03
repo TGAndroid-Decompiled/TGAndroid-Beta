@@ -1,52 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.ui.WallpapersListActivity;
-import org.telegram.ui.jd1;
-import org.telegram.ui.xi1;
-import org.telegram.ui.yi1;
-public final class aj extends org.telegram.ui.Cells.za {
-    public final int f25258w;
-    public final rl0 f25259x;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class aj implements jl0, gj {
+    public final qj f23382a;
 
-    public aj(rl0 rl0Var, Context context, int i10) {
-        super(context, 5);
-        this.f25258w = i10;
-        this.f25259x = rl0Var;
+    public aj(qj qjVar) {
+        this.f23382a = qjVar;
     }
 
     @Override
-    public final void a(int i10, Object obj) {
-        switch (this.f25258w) {
-            case 0:
-                q0.a aVar = ((bj) ((ra) this.f25259x).f30705f).f25616x;
-                if (aVar != null) {
-                    aVar.accept(obj);
-                    return;
-                }
-                return;
-            case 1:
-                WallpapersListActivity.r0(((xi1) this.f25259x).d, this, obj, i10);
-                return;
-            default:
-                ((yi1) this.f25259x).B.presentFragment(new jd1(obj, null, true));
-                return;
-        }
+    public void a(TLRPC.User user, boolean z4, int i10, long j10) {
+        qj qjVar = this.f23382a;
+        qjVar.f24282b.dismiss(true);
+        qjVar.G.a(user, z4, i10, j10);
     }
 
     @Override
-    public boolean b(Object obj, int i10) {
-        switch (this.f25258w) {
-            case 1:
-                return WallpapersListActivity.s0(((xi1) this.f25259x).d, this, obj, i10);
-            default:
-                return super.b(obj, i10);
+    public boolean d(int i10, View view) {
+        Object O;
+        qj qjVar = this.f23382a;
+        f2.o0 adapter = qjVar.f28194s.getAdapter();
+        mj mjVar = qjVar.C;
+        if (adapter == mjVar) {
+            O = mjVar.E(i10);
+        } else {
+            jj jjVar = qjVar.B;
+            O = jjVar.O(jjVar.S(i10), jjVar.Q(i10));
         }
+        if (O != null) {
+            qjVar.K((pj) view, O);
+            return true;
+        }
+        return false;
     }
 
-    public aj(ra raVar, Context context) {
-        super(context, 1);
-        this.f25258w = 0;
-        this.f25259x = raVar;
+    @Override
+    public void b(ArrayList arrayList, String str, boolean z4, int i10, long j10, boolean z10) {
     }
 }

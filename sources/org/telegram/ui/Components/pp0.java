@@ -1,87 +1,108 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.text.TextUtils;
-import android.widget.FrameLayout;
-public final class pp0 extends fu {
-    public boolean S;
-    public int T;
-    public int U;
-    public ValueAnimator V;
-    public final lq0 W;
+import android.graphics.drawable.Drawable;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.PhotoViewer;
+public final class pp0 extends lg {
+    public final int f27984i0;
+    public final Object f27985j0;
 
-    public pp0(lq0 lq0Var, Context context, wp0 wp0Var, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, wp0Var, null, 1, true, g6Var);
-        this.W = lq0Var;
+    public pp0(Object obj, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
+        super(i10, context, f6Var, true);
+        this.f27984i0 = i11;
+        this.f27985j0 = obj;
     }
 
     @Override
-    public final void c(float f10) {
-        this.W.Y0();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (this.S) {
-            xt editText = this.W.d.getEditText();
-            editText.setOffsetY(editText.getOffsetY() - ((this.U - editText.getScrollY()) + (this.T - editText.getMeasuredHeight())));
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
-            ofFloat.addUpdateListener(new k70(editText, 18));
-            ValueAnimator valueAnimator = this.V;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            this.V = ofFloat;
-            ofFloat.setDuration(200L);
-            ofFloat.setInterpolator(pr.f30168f);
-            ofFloat.start();
-            this.S = false;
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void f() {
-        super.f();
-        mz emojiView = getEmojiView();
-        lq0 lq0Var = this.W;
-        if (emojiView != null) {
-            emojiView.f29327t0 = false;
-            emojiView.f29332u2 = false;
-            emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(lq0Var.D0.d);
-        }
-        FrameLayout frameLayout = lq0Var.Z;
-        if (frameLayout != null) {
-            frameLayout.bringToFront();
-        }
-        op0 op0Var = lq0Var.f28828c;
-        if (op0Var != null) {
-            op0Var.bringToFront();
-        }
-        op0 op0Var2 = lq0Var.f28833f;
-        if (op0Var2 != null) {
-            op0Var2.bringToFront();
+    public boolean d() {
+        switch (this.f27984i0) {
+            case 1:
+                return false;
+            case 2:
+                return false;
+            case 3:
+                return ((vh.y1) this.f27985j0).l0();
+            default:
+                return super.d();
         }
     }
 
     @Override
-    public final void q(int i10, int i11) {
-        lq0 lq0Var = this.W;
-        op0 op0Var = lq0Var.f28828c;
-        if (!TextUtils.isEmpty(getEditText().getText())) {
-            this.S = true;
-            this.T = getEditText().getMeasuredHeight();
-            this.U = getEditText().getScrollY();
-            invalidate();
-        } else {
-            getEditText().animate().cancel();
-            getEditText().setOffsetY(0.0f);
-            this.S = false;
+    public final boolean f() {
+        switch (this.f27984i0) {
+            case 0:
+                return true;
+            case 1:
+                return true;
+            case 2:
+                return true;
+            case 3:
+                if (!((vh.y1) this.f27985j0).I0 && this.f26668r <= 0) {
+                    return false;
+                }
+                return true;
+            default:
+                if (!((vh.w3) this.f27985j0).T && this.f26668r <= 0) {
+                    return false;
+                }
+                return true;
         }
-        lq0Var.f28849s0 = op0Var.getTop() + lq0Var.f28847r0;
-        op0Var.invalidate();
+    }
+
+    @Override
+    public int getFillColor() {
+        int i10 = this.f27984i0;
+        Object obj = this.f27985j0;
+        switch (i10) {
+            case 0:
+                return ((lq0) obj).getThemedColor(org.telegram.ui.ActionBar.j6.S5);
+            case 1:
+            default:
+                return super.getFillColor();
+            case 2:
+                int i11 = org.telegram.ui.ActionBar.j6.f20279zf;
+                Drawable[] drawableArr = PhotoViewer.Q8;
+                return ((PhotoViewer) obj).z1(i11);
+        }
+    }
+
+    @Override
+    public boolean j() {
+        switch (this.f27984i0) {
+            case 0:
+                return true;
+            case 1:
+                return true;
+            case 2:
+                return true;
+            default:
+                return super.j();
+        }
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f27984i0) {
+            case 1:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", ((org.telegram.ui.qy) this.f27985j0).F2.size(), new Object[0]));
+                accessibilityNodeInfo.setClassName(Button.class.getName());
+                accessibilityNodeInfo.setLongClickable(true);
+                accessibilityNodeInfo.setClickable(true);
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
+    }
+
+    public pp0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
+        super(i10, context, f6Var, false);
+        this.f27984i0 = i11;
+        this.f27985j0 = notificationCenterDelegate;
     }
 }

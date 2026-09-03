@@ -1,28 +1,45 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class pd0 implements RequestDelegate {
-    public final int f39979a;
-    public final zd0 f39980b;
-    public final String f39981c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class pd0 extends AnimatorListenerAdapter {
+    public final int f37104a;
+    public final pg0 f37105b;
 
-    public pd0(zd0 zd0Var, String str, int i10) {
-        this.f39979a = i10;
-        this.f39980b = zd0Var;
-        this.f39981c = str;
+    public pd0(pg0 pg0Var, int i10) {
+        this.f37104a = i10;
+        this.f37105b = pg0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f39979a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f37104a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new rd0(this.f39980b, tL_error, this.f39981c, tLObject));
+                pg0 pg0Var = this.f37105b;
+                if (pg0Var.d == animator) {
+                    pg0Var.d = null;
+                    return;
+                }
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new rd0(this.f39980b, tL_error, tLObject, this.f39981c));
+                pg0 pg0Var2 = this.f37105b;
+                pg0Var2.f37130c.setVisibility(8);
+                if (pg0Var2.d == animator) {
+                    pg0Var2.d = null;
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f37104a) {
+            case 0:
+                this.f37105b.f37130c.setVisibility(0);
+                return;
+            default:
+                super.onAnimationStart(animator);
                 return;
         }
     }

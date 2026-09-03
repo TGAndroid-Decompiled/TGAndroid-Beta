@@ -3,17 +3,17 @@ package r8;
 import java.io.Serializable;
 import java.util.List;
 public final class g implements f, Serializable {
-    public final List f46772a;
+    public final List f43415a;
 
     public g(List list) {
-        this.f46772a = list;
+        this.f43415a = list;
     }
 
     @Override
     public final boolean apply(Object obj) {
         int i10 = 0;
         while (true) {
-            List list = this.f46772a;
+            List list = this.f43415a;
             if (i10 < list.size()) {
                 if (!((f) list.get(i10)).apply(obj)) {
                     return false;
@@ -27,19 +27,19 @@ public final class g implements f, Serializable {
 
     public final boolean equals(Object obj) {
         if (obj instanceof g) {
-            return this.f46772a.equals(((g) obj).f46772a);
+            return this.f43415a.equals(((g) obj).f43415a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f46772a.hashCode() + 306654252;
+        return this.f43415a.hashCode() + 306654252;
     }
 
     public final String toString() {
         StringBuilder sb = new StringBuilder("Predicates.and(");
         boolean z4 = true;
-        for (Object obj : this.f46772a) {
+        for (Object obj : this.f43415a) {
             if (!z4) {
                 sb.append(',');
             }

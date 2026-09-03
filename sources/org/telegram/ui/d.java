@@ -5,35 +5,35 @@ import android.net.Uri;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 public final class d implements org.telegram.ui.ActionBar.c2 {
-    public final int f35914a;
-    public final i f35915b;
+    public final int f33275a;
+    public final i f33276b;
 
     public d(i iVar, int i10) {
-        this.f35914a = i10;
-        this.f35915b = iVar;
+        this.f33275a = i10;
+        this.f33276b = iVar;
     }
 
     @Override
-    public final void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f35914a) {
+    public final void l(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f33275a) {
             case 0:
-                i iVar = this.f35915b;
+                i iVar = this.f33276b;
                 iVar.getClass();
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                     intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
                     iVar.getParentActivity().startActivity(intent);
                     return;
-                } catch (Exception e6) {
-                    FileLog.e(e6);
+                } catch (Exception e) {
+                    FileLog.e(e);
                     return;
                 }
             default:
-                i iVar2 = this.f35915b;
+                i iVar2 = this.f33276b;
                 iVar2.getClass();
-                og0 og0Var = new og0();
-                og0Var.C = 2;
-                iVar2.presentFragment(og0Var, true);
+                pg0 pg0Var = new pg0();
+                pg0Var.C = 2;
+                iVar2.presentFragment(pg0Var, true);
                 return;
         }
     }

@@ -8,14 +8,14 @@ public final class j extends q4.b {
     }
 
     @Override
-    public final long k() {
+    public final long a1() {
         a();
-        return this.d.d(this.f44490c);
+        return this.d.c(this.f42747c);
     }
 
     @Override
-    public final long l() {
+    public final long n0() {
         a();
-        return this.d.c(this.f44490c);
+        return this.d.d(this.f42747c);
     }
 }

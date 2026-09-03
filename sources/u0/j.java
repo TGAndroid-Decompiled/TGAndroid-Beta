@@ -14,7 +14,7 @@ public final class j {
         if (Log.isLoggable("ReceiveContent", 3)) {
             Log.d("ReceiveContent", "onReceive: " + hVar);
         }
-        r0.g gVar = hVar.f46456a;
+        r0.g gVar = hVar.f43130a;
         if (gVar.e() == 2) {
             return hVar;
         }

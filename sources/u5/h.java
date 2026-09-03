@@ -12,7 +12,7 @@ public interface h extends IInterface {
 
     void W(long j10);
 
-    void c(int i10);
+    void a(int i10);
 
     void d(int i10);
 

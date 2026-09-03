@@ -3,26 +3,26 @@ package n3;
 import j3.l0;
 import java.nio.ByteBuffer;
 public class i extends a {
-    public final d f15216c = new d();
+    public final d f14226c = new d();
     public ByteBuffer d;
-    public boolean f15217e;
-    public long f15218f;
+    public boolean e;
+    public long f14227f;
     public ByteBuffer h;
-    public final int f15219n;
-    public final int f15220r;
+    public final int f14228n;
+    public final int f14229r;
 
     static {
         l0.a("goog.exo.decoder");
     }
 
     public i(int i10, int i11) {
-        this.f15219n = i10;
-        this.f15220r = i11;
+        this.f14228n = i10;
+        this.f14229r = i11;
     }
 
     @Override
     public void b() {
-        this.f15195b = 0;
+        this.f14207b = 0;
         ByteBuffer byteBuffer = this.d;
         if (byteBuffer != null) {
             byteBuffer.clear();
@@ -31,12 +31,12 @@ public class i extends a {
         if (byteBuffer2 != null) {
             byteBuffer2.clear();
         }
-        this.f15217e = false;
+        this.e = false;
     }
 
-    public final ByteBuffer i(int i10) {
+    public final ByteBuffer j(int i10) {
         int capacity;
-        int i11 = this.f15219n;
+        int i11 = this.f14228n;
         if (i11 == 1) {
             return ByteBuffer.allocate(i10);
         }
@@ -52,11 +52,11 @@ public class i extends a {
         throw new IllegalStateException("Buffer too small (" + capacity + " < " + i10 + ")");
     }
 
-    public final void j(int i10) {
-        int i11 = i10 + this.f15220r;
+    public final void k(int i10) {
+        int i11 = i10 + this.f14229r;
         ByteBuffer byteBuffer = this.d;
         if (byteBuffer == null) {
-            this.d = i(i11);
+            this.d = j(i11);
             return;
         }
         int capacity = byteBuffer.capacity();
@@ -66,16 +66,16 @@ public class i extends a {
             this.d = byteBuffer;
             return;
         }
-        ByteBuffer i13 = i(i12);
-        i13.order(byteBuffer.order());
+        ByteBuffer j10 = j(i12);
+        j10.order(byteBuffer.order());
         if (position > 0) {
             byteBuffer.flip();
-            i13.put(byteBuffer);
+            j10.put(byteBuffer);
         }
-        this.d = i13;
+        this.d = j10;
     }
 
-    public final void k() {
+    public final void l() {
         ByteBuffer byteBuffer = this.d;
         if (byteBuffer != null) {
             byteBuffer.flip();

@@ -2,124 +2,72 @@ package lg;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import k7.c6;
-import k7.e6;
-import mh.j9;
-import mh.y9;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.g90;
-import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.z5;
-import org.telegram.ui.yh;
-public final class a extends LinearLayout {
-    public final int f12530a = 2;
-    public final Object f12531b;
-    public final View f12532c;
-    public final Object d;
-    public final Object f12533e;
+import org.telegram.messenger.R;
+public final class a extends Drawable {
+    public final TextPaint f12059a;
+    public final TextPaint f12060b;
+    public final RectF f12061c;
+    public final Drawable d;
+    public float e;
+    public String f12062f;
 
-    public a(Context context, g6 g6Var, sl0 sl0Var) {
-        super(context);
-        this.d = new Paint(1);
-        this.f12533e = new z5(this);
-        this.f12531b = g6Var;
-        this.f12532c = sl0Var;
+    public a(Context context) {
+        TextPaint textPaint = new TextPaint(1);
+        this.f12059a = textPaint;
+        TextPaint textPaint2 = new TextPaint(1);
+        this.f12060b = textPaint2;
+        this.f12061c = new RectF();
+        textPaint.setColor(-1);
+        textPaint.setTypeface(AndroidUtilities.bold());
+        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        textPaint2.setColor(-6915073);
+        this.d = context.getDrawable(R.drawable.mini_boost_badge);
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f12530a) {
-            case 0:
-                z5 z5Var = (z5) this.f12533e;
-                super.dispatchDraw(canvas);
-                Paint paint = (Paint) this.d;
-                paint.setColor(k6.v0(k6.f21607a7, (g6) this.f12531b));
-                sl0 sl0Var = (sl0) this.f12532c;
-                float f10 = 1.0f;
-                if (sl0Var != null) {
-                    if (!sl0Var.canScrollVertically(1)) {
-                        f10 = 0.0f;
-                    }
-                    paint.setAlpha((int) (z5Var.d(f10, false) * 255.0f));
-                } else {
-                    paint.setAlpha((int) (z5Var.d(1.0f, false) * 255.0f));
-                }
-                canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.getShadowHeight(), paint);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.f12061c;
+        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f12060b);
+        int dp = AndroidUtilities.dp(2.0f) + bounds.left;
+        int dp2 = AndroidUtilities.dp(1.0f) + bounds.top;
+        int dp3 = AndroidUtilities.dp(2.0f) + bounds.left;
+        Drawable drawable = this.d;
+        drawable.setBounds(dp, dp2, drawable.getIntrinsicWidth() + dp3, drawable.getIntrinsicHeight() + AndroidUtilities.dp(1.0f) + getBounds().top);
+        drawable.draw(canvas);
+        String str = this.f12062f;
+        if (str != null) {
+            canvas.drawText(str, AndroidUtilities.dp(16.5f) + bounds.left, AndroidUtilities.dp(13.0f) + bounds.top, this.f12059a);
         }
     }
 
-    public a(Context context) {
-        super(context);
-        setOrientation(1);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.d = frameLayout;
-        addView(frameLayout, c6.q(-1, -2, 1));
-        frameLayout.setClipChildren(false);
-        setClipChildren(false);
-        TextView textView = new TextView(context);
-        this.f12531b = textView;
-        textView.setTextSize(1, 22.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(1);
-        addView(textView, c6.p(-2, -2, 0.0f, 1, 16, 20, 16, 0));
-        g90 g90Var = new g90(context, null);
-        this.f12532c = g90Var;
-        g90Var.setTextSize(1, 14.0f);
-        g90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        g90Var.setGravity(1);
-        addView(g90Var, c6.p(-1, -2, 0.0f, 1, 24, 7, 24, 0));
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f12533e = frameLayout2;
-        addView(frameLayout2, c6.q(-1, -2, 1));
-        frameLayout2.setClipChildren(false);
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
     }
 
-    public a(Context context, int i10, g6 g6Var) {
-        super(context);
-        setOrientation(1);
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setClipChildren(false);
-        frameLayout.setClipToPadding(false);
-        j9 j9Var = new j9(context, 70, 0);
-        frameLayout.addView(j9Var, c6.c(-1.0f, -1));
-        gg.i iVar = new gg.i(context, 1, 2);
-        this.f12531b = iVar;
-        gg.a aVar = iVar.f7087b;
-        aVar.f7065w = k6.fk;
-        aVar.f7066x = k6.gk;
-        aVar.b();
-        iVar.setStarParticlesView(j9Var);
-        frameLayout.addView(iVar, c6.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
-        iVar.setPaused(false);
-        y9 y9Var = new y9(context, i10, g6Var);
-        this.f12532c = y9Var;
-        e6.a(y9Var);
-        y9Var.setOnClickListener(new androidx.mediarouter.app.c(this, 23));
-        frameLayout.addView(y9Var, c6.d(-2, -2.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
-        addView(frameLayout, c6.c(150.0f, -1));
-        TextView textView = new TextView(context);
-        this.d = textView;
-        yh.p(20.0f, 1, textView);
-        int i11 = k6.f21768j5;
-        textView.setTextColor(k6.v0(i11, g6Var));
-        textView.setGravity(17);
-        addView(textView, c6.t(-2, -2, 1, 0, 2, 0, 0));
-        TextView textView2 = new TextView(context);
-        this.f12533e = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(k6.v0(i11, g6Var));
-        textView2.setGravity(17);
-        addView(textView2, c6.t(-2, -2, 1, 0, 9, 0, 18));
+    @Override
+    public final int getIntrinsicWidth() {
+        return (int) (AndroidUtilities.dp(23.0f) + this.e);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -1;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

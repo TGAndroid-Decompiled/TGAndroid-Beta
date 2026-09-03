@@ -3,61 +3,61 @@ package org.telegram.ui.Components;
 import android.view.ViewGroup;
 import java.util.LinkedList;
 public final class lb implements o1.f {
-    public final int f28705a;
-    public final Object f28706b;
-    public final Object f28707c;
+    public final int f26638a;
+    public final Object f26639b;
+    public final Object f26640c;
 
     public lb(int i10, Object obj, Object obj2) {
-        this.f28705a = i10;
-        this.f28706b = obj;
-        this.f28707c = obj2;
+        this.f26638a = i10;
+        this.f26639b = obj;
+        this.f26640c = obj2;
     }
 
     @Override
     public final void a(o1.h hVar, boolean z4, float f10, float f11) {
         ViewGroup viewGroup;
-        switch (this.f28705a) {
+        switch (this.f26638a) {
             case 0:
-                fg fgVar = (fg) this.f28707c;
-                ((nb) this.f28706b).setInOutOffset(0.0f);
+                fg fgVar = (fg) this.f26640c;
+                ((nb) this.f26639b).setInOutOffset(0.0f);
                 if (!z4) {
                     fgVar.run();
                     return;
                 }
                 return;
             case 1:
-                mi.r((mi) this.f28706b, (mh.p6) this.f28707c);
+                li.r((li) this.f26639b, (lh.p6) this.f26640c);
                 return;
             case 2:
-                mi miVar = (mi) ((mh.k3) this.f28706b).d;
-                miVar.f29122w0.setTranslationY(0.0f);
-                miVar.f29122w0.k(miVar.f29080i2);
-                viewGroup = ((org.telegram.ui.ActionBar.h3) miVar).containerView;
+                li liVar = (li) ((lh.k3) this.f26639b).d;
+                liVar.f26748w0.setTranslationY(0.0f);
+                liVar.f26748w0.k(liVar.f26706i2);
+                viewGroup = ((org.telegram.ui.ActionBar.g3) liVar).containerView;
                 viewGroup.invalidate();
-                ((wg) this.f28707c).run();
-                miVar.a2(0);
+                ((wg) this.f26640c).run();
+                liVar.a2(0);
                 return;
             case 3:
-                xd0 xd0Var = (xd0) this.f28706b;
-                fc0 fc0Var = (fc0) this.f28707c;
-                LinkedList linkedList = xd0Var.J;
-                xd0Var.I = null;
-                fc0Var.D = null;
-                fc0Var.z();
+                wd0 wd0Var = (wd0) this.f26639b;
+                ec0 ec0Var = (ec0) this.f26640c;
+                LinkedList linkedList = wd0Var.J;
+                wd0Var.I = null;
+                ec0Var.D = null;
+                ec0Var.z();
                 if (!z4) {
-                    fc0Var.h = 1.0f;
-                    fc0Var.z();
+                    ec0Var.h = 1.0f;
+                    ec0Var.z();
                     if (!linkedList.isEmpty()) {
                         ((Runnable) linkedList.poll()).run();
-                        xd0Var.K.poll();
+                        wd0Var.K.poll();
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                sh.m3 m3Var = (sh.m3) this.f28706b;
-                Runnable runnable = (Runnable) this.f28707c;
+                rh.m3 m3Var = (rh.m3) this.f26639b;
+                Runnable runnable = (Runnable) this.f26640c;
                 if (hVar == m3Var.D) {
                     m3Var.D = null;
                     if (runnable != null) {
@@ -69,13 +69,13 @@ public final class lb implements o1.f {
                     }
                     float f12 = m3Var.h;
                     if (f12 != -1.0f) {
-                        boolean z10 = m3Var.f47570s;
-                        m3Var.f47570s = true;
+                        boolean z10 = m3Var.f43685s;
+                        m3Var.f43685s = true;
                         m3Var.setOffsetY(f12);
                         m3Var.h = -1.0f;
-                        m3Var.f47570s = z10;
+                        m3Var.f43685s = z10;
                     }
-                    m3Var.f47568n = -2.1474836E9f;
+                    m3Var.f43683n = -2.1474836E9f;
                     return;
                 }
                 return;

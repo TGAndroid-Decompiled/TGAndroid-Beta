@@ -1,16 +1,16 @@
 package j9;
 
 import org.json.JSONObject;
-import org.telegram.ui.Components.ai;
+import org.telegram.ui.Components.tp0;
 public abstract class n {
-    public static final ai f9980a;
+    public static final tp0 f9327a;
 
     static {
         w9.d dVar = new w9.d();
-        a aVar = a.f9947a;
+        a aVar = a.f9297a;
         dVar.b(n.class, aVar);
         dVar.b(b.class, aVar);
-        f9980a = new ai(dVar, 19);
+        f9327a = new tp0(dVar, 23);
     }
 
     public static b a(String str) {

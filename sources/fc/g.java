@@ -1,21 +1,21 @@
 package fc;
 
 import java.io.IOException;
-import org.telegram.ui.yh;
+import vh.w2;
 public abstract class g extends Exception {
-    public final String f6227a;
+    public final String f6097a;
 
     public g(String str, String str2) {
         super(str, null);
-        this.f6227a = str2;
+        this.f6097a = str2;
     }
 
     @Override
     public final String toString() {
         String str;
-        String str2 = this.f6227a;
+        String str2 = this.f6097a;
         if (str2 != null) {
-            str = yh.k("; request-id: ", str2);
+            str = w2.e("; request-id: ", str2);
         } else {
             str = "";
         }
@@ -24,6 +24,6 @@ public abstract class g extends Exception {
 
     public g(String str, String str2, IOException iOException) {
         super(str, iOException);
-        this.f6227a = str2;
+        this.f6097a = str2;
     }
 }

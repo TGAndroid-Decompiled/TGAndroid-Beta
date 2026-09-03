@@ -1,34 +1,44 @@
 package ye;
 
-import java.io.FilterInputStream;
-public abstract class a extends we.a {
-    public static String b(int i10, int i11, byte[] bArr) {
-        try {
-            String str = new String(bArr, i10, i11, "ISO-8859-1");
-            int indexOf = str.indexOf(0);
-            if (indexOf < 0) {
-                return str;
-            }
-            return str.substring(0, indexOf);
-        } catch (Exception unused) {
-            return "";
-        }
+import com.google.firebase.messaging.d;
+import java.io.InputStream;
+public final class a extends d {
+    public final long d;
+
+    public a(InputStream inputStream, long j10, long j11) {
+        super(inputStream, j10);
+        this.d = j10 + j11;
     }
 
-    public static boolean c(FilterInputStream filterInputStream) {
-        boolean z4;
-        filterInputStream.mark(3);
-        try {
-            if (filterInputStream.read() == 84 && filterInputStream.read() == 65) {
-                if (filterInputStream.read() == 71) {
-                    z4 = true;
-                    return z4;
-                }
-            }
-            z4 = false;
-            return z4;
-        } finally {
-            filterInputStream.reset();
+    public final long e() {
+        return this.d - this.f3975b;
+    }
+
+    @Override
+    public final int read() {
+        if (this.f3975b == this.d) {
+            return -1;
         }
+        return super.read();
+    }
+
+    @Override
+    public final long skip(long j10) {
+        long j11 = this.f3975b;
+        long j12 = this.d;
+        if (j11 + j10 > j12) {
+            j10 = (int) (j12 - j11);
+        }
+        return super.skip(j10);
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        long j10 = this.f3975b;
+        long j11 = this.d;
+        if (i11 + j10 <= j11 || (i11 = (int) (j11 - j10)) != 0) {
+            return super.read(bArr, i10, i11);
+        }
+        return -1;
     }
 }

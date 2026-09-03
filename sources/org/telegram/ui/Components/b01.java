@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
-public final class b01 extends org.telegram.ui.Cells.t1 {
+public final class b01 extends org.telegram.ui.Cells.s1 {
     @Override
     public final int getParentWidth() {
         return org.telegram.ui.b.x(128.0f, AndroidUtilities.displaySize.x, 2);

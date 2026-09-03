@@ -13,88 +13,88 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.video.VideoAds;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.yc0;
+import org.telegram.ui.Components.xc0;
 import org.telegram.ui.Components.z4;
-import org.telegram.ui.ba;
-import org.telegram.ui.d60;
-import org.telegram.ui.e3;
-import org.telegram.ui.j40;
+import org.telegram.ui.da;
+import org.telegram.ui.e60;
+import org.telegram.ui.g3;
 import org.telegram.ui.k40;
-import org.telegram.ui.m40;
-import org.telegram.ui.o30;
+import org.telegram.ui.l40;
+import org.telegram.ui.n40;
+import org.telegram.ui.p30;
 public final class f implements View.OnClickListener {
-    public final int f20328a;
-    public final Object f20329b;
-    public final Object f20330c;
+    public final int f18685a;
+    public final Object f18686b;
+    public final Object f18687c;
     public final Object d;
-    public final Object f20331e;
-    public final Object f20332f;
+    public final Object e;
+    public final Object f18688f;
     public final Object h;
-    public final Object f20333n;
+    public final Object f18689n;
 
     public f(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i10) {
-        this.f20328a = i10;
-        this.f20329b = obj;
-        this.f20330c = obj2;
+        this.f18685a = i10;
+        this.f18686b = obj;
+        this.f18687c = obj2;
         this.d = obj3;
-        this.f20331e = obj4;
-        this.f20332f = obj5;
+        this.e = obj4;
+        this.f18688f = obj5;
         this.h = obj6;
-        this.f20333n = obj7;
+        this.f18689n = obj7;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f20328a;
-        Object obj = this.f20333n;
+        int i10 = this.f18685a;
+        Object obj = this.f18689n;
         Object obj2 = this.h;
-        Object obj3 = this.f20332f;
-        Object obj4 = this.f20331e;
+        Object obj3 = this.f18688f;
+        Object obj4 = this.e;
         Object obj5 = this.d;
-        Object obj6 = this.f20330c;
-        Object obj7 = this.f20329b;
+        Object obj6 = this.f18687c;
+        Object obj7 = this.f18686b;
         switch (i10) {
             case 0:
-                ((VideoAds) obj7).lambda$show$17((ic) obj6, (TLRPC.TL_sponsoredMessage) obj5, (Context) obj4, (g6) obj3, (VideoAds.AdLayout) obj2, (e) obj, view);
+                ((VideoAds) obj7).lambda$show$17((ic) obj6, (TLRPC.TL_sponsoredMessage) obj5, (Context) obj4, (f6) obj3, (VideoAds.AdLayout) obj2, (e) obj, view);
                 return;
             default:
-                d60 d60Var = (d60) obj7;
-                yc0 yc0Var = (yc0) obj6;
-                j40 j40Var = (j40) obj5;
-                k40 k40Var = (k40) obj4;
+                e60 e60Var = (e60) obj7;
+                xc0 xc0Var = (xc0) obj6;
+                k40 k40Var = (k40) obj5;
+                l40 l40Var = (l40) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
                 AccountInstance accountInstance = (AccountInstance) obj2;
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj;
-                o30 o30Var = d60Var.f35995b1;
+                p30 p30Var = e60Var.f33622b1;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                d60Var.U0 = ofFloat;
+                e60Var.U0 = ofFloat;
                 ofFloat.setDuration(600L);
-                d60Var.U0.addUpdateListener(new e3(d60Var, 15));
-                d60Var.U0.addListener(new m40(d60Var));
-                d60Var.U0.start();
-                if (ChatObject.isChannelOrGiga(d60Var.W0)) {
-                    o30Var.b(LocaleController.getString(R.string.VoipChannelVoiceChat), true);
+                e60Var.U0.addUpdateListener(new g3(e60Var, 15));
+                e60Var.U0.addListener(new n40(e60Var));
+                e60Var.U0.start();
+                if (ChatObject.isChannelOrGiga(e60Var.W0)) {
+                    p30Var.b(LocaleController.getString(R.string.VoipChannelVoiceChat), true);
                 } else {
-                    o30Var.b(LocaleController.getString(R.string.VoipGroupVoiceChat), true);
+                    p30Var.b(LocaleController.getString(R.string.VoipGroupVoiceChat), true);
                 }
                 Calendar calendar = Calendar.getInstance();
-                boolean g10 = z4.g(null, null, 0L, 604800L, 3, yc0Var, j40Var, k40Var);
-                calendar.setTimeInMillis((yc0Var.getValue() * 86400000) + System.currentTimeMillis());
-                calendar.set(11, j40Var.getValue());
-                calendar.set(12, k40Var.getValue());
+                boolean g10 = z4.g(null, null, 0L, 604800L, 3, xc0Var, k40Var, l40Var);
+                calendar.setTimeInMillis((xc0Var.getValue() * 86400000) + System.currentTimeMillis());
+                calendar.set(11, k40Var.getValue());
+                calendar.set(12, l40Var.getValue());
                 if (g10) {
                     calendar.set(13, 0);
                 }
-                d60Var.f36022h2 = (int) (calendar.getTimeInMillis() / 1000);
-                d60Var.L1(false);
+                e60Var.f33648h2 = (int) (calendar.getTimeInMillis() / 1000);
+                e60Var.L1(false);
                 TL_phone.createGroupCall creategroupcall = new TL_phone.createGroupCall();
                 creategroupcall.peer = MessagesController.getInputPeer(chat);
                 creategroupcall.random_id = Utilities.random.nextInt();
-                creategroupcall.schedule_date = d60Var.f36022h2;
+                creategroupcall.schedule_date = e60Var.f33648h2;
                 creategroupcall.flags |= 2;
-                accountInstance.getConnectionsManager().sendRequest(creategroupcall, new ba(d60Var, chat, inputPeer, 11), 2);
+                accountInstance.getConnectionsManager().sendRequest(creategroupcall, new da(e60Var, chat, inputPeer, 11), 2);
                 return;
         }
     }

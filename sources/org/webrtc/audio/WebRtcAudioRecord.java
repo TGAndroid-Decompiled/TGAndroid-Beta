@@ -20,7 +20,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-import l.d;
+import kf.k0;
 import org.telegram.ui.cl0;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
@@ -120,8 +120,8 @@ public class WebRtcAudioRecord {
                     WebRtcAudioRecord.this.audioRecord.stop();
                     WebRtcAudioRecord.this.doAudioRecordStateCallback(1);
                 }
-            } catch (IllegalStateException e6) {
-                Logging.e("WebRtcAudioRecordExternal", "AudioRecord.stop failed: " + e6.getMessage());
+            } catch (IllegalStateException e) {
+                Logging.e("WebRtcAudioRecordExternal", "AudioRecord.stop failed: " + e.getMessage());
             }
         }
 
@@ -207,7 +207,7 @@ public class WebRtcAudioRecord {
                 i11 = 4;
                 if (i10 != 4) {
                     if (i10 != 13) {
-                        throw new IllegalArgumentException(d.j(i10, "Bad audio format "));
+                        throw new IllegalArgumentException(k0.j(i10, "Bad audio format "));
                     }
                 }
             }
@@ -264,19 +264,19 @@ public class WebRtcAudioRecord {
                 reportWebRtcAudioRecordInitError("Creation or initialization of audio recorder failed.");
                 releaseAudioResources();
                 return -1;
-            } catch (IllegalArgumentException e6) {
-                e = e6;
+            } catch (IllegalArgumentException e) {
+                e = e;
                 reportWebRtcAudioRecordInitError(e.getMessage());
                 releaseAudioResources();
                 return -1;
-            } catch (UnsupportedOperationException e10) {
-                e = e10;
+            } catch (UnsupportedOperationException e6) {
+                e = e6;
                 reportWebRtcAudioRecordInitError(e.getMessage());
                 releaseAudioResources();
                 return -1;
             }
         }
-        reportWebRtcAudioRecordInitError(d.j(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
+        reportWebRtcAudioRecordInitError(k0.j(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
         return -1;
     }
 
@@ -464,9 +464,9 @@ public class WebRtcAudioRecord {
             audioRecordThread.start();
             scheduleLogRecordingConfigurationsTask(this.audioRecord);
             return true;
-        } catch (IllegalStateException e6) {
+        } catch (IllegalStateException e) {
             JavaAudioDeviceModule.AudioRecordStartErrorCode audioRecordStartErrorCode2 = JavaAudioDeviceModule.AudioRecordStartErrorCode.AUDIO_RECORD_START_EXCEPTION;
-            reportWebRtcAudioRecordStartError(audioRecordStartErrorCode2, "AudioRecord.startRecording failed: " + e6.getMessage());
+            reportWebRtcAudioRecordStartError(audioRecordStartErrorCode2, "AudioRecord.startRecording failed: " + e.getMessage());
             return false;
         }
     }

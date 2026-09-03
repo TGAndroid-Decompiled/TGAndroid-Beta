@@ -9,8 +9,8 @@ public final class qo0 extends to0 {
     public int D;
     public final np0 E;
 
-    public qo0(np0 np0Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, g6Var);
+    public qo0(np0 np0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
         this.E = np0Var;
         this.D = 0;
     }

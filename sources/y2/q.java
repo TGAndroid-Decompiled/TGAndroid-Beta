@@ -1,44 +1,44 @@
 package y2;
 
 import android.content.Context;
-import com.google.firebase.messaging.s;
+import com.google.firebase.messaging.r;
 import j$.util.DesugarCollections;
 import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.Executor;
 public final class q {
-    public static volatile j f50749e;
-    public final h3.a f50750a;
-    public final h3.a f50751b;
-    public final d3.b f50752c;
+    public static volatile j e;
+    public final h3.a f47125a;
+    public final h3.a f47126b;
+    public final d3.b f47127c;
     public final e3.g d;
 
-    public q(h3.a aVar, h3.a aVar2, d3.b bVar, e3.g gVar, s sVar) {
-        this.f50750a = aVar;
-        this.f50751b = aVar2;
-        this.f50752c = bVar;
+    public q(h3.a aVar, h3.a aVar2, d3.b bVar, e3.g gVar, r rVar) {
+        this.f47125a = aVar;
+        this.f47126b = aVar2;
+        this.f47127c = bVar;
         this.d = gVar;
-        ((Executor) sVar.f4080a).execute(new ag.e(sVar, 22));
+        ((Executor) rVar.f4004a).execute(new e3.h(rVar, 0));
     }
 
     public static q a() {
-        j jVar = f50749e;
+        j jVar = e;
         if (jVar != null) {
-            return (q) jVar.f50737f.mo38get();
+            return (q) jVar.f47114f.mo28get();
         }
         throw new IllegalStateException("Not initialized!");
     }
 
     public static void b(Context context) {
-        if (f50749e == null) {
+        if (e == null) {
             synchronized (q.class) {
                 try {
-                    if (f50749e == null) {
+                    if (e == null) {
                         ?? obj = new Object();
                         context.getClass();
-                        obj.f10247a = context;
-                        f50749e = obj.b();
+                        obj.f498a = context;
+                        e = obj.b();
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -57,10 +57,10 @@ public final class q {
         }
         s5.m a2 = i.a();
         kVar.getClass();
-        a2.f47093b = "cct";
+        a2.f44153b = "cct";
         w2.a aVar = (w2.a) kVar;
-        String str = aVar.f49363a;
-        String str2 = aVar.f49364b;
+        String str = aVar.f46442a;
+        String str2 = aVar.f46443b;
         if (str2 == null && str == null) {
             bytes = null;
         } else {
@@ -69,7 +69,7 @@ public final class q {
             }
             bytes = e2.c.k("1$", str, "\\", str2).getBytes(Charset.forName("UTF-8"));
         }
-        a2.f47094c = bytes;
+        a2.f44154c = bytes;
         return new o(singleton, a2.f(), this);
     }
 }

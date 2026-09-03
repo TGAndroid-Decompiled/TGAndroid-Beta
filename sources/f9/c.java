@@ -10,12 +10,12 @@ import java.util.List;
 import k9.t0;
 import k9.t1;
 import kotlin.jvm.internal.j;
-import sf.f;
+import rf.f;
 import tc.g;
 import tc.i;
 import tc.o;
 public final class c {
-    public static final c f6226a = new Object();
+    public static final c f6096a = new Object();
 
     public static ArrayList a(Context context) {
         ActivityManager activityManager;
@@ -33,7 +33,7 @@ public final class c {
             list = activityManager.getRunningAppProcesses();
         }
         if (list == null) {
-            list = o.f48100a;
+            list = o.f44712a;
         }
         ArrayList f10 = g.f(list);
         ArrayList arrayList = new ArrayList();
@@ -56,10 +56,10 @@ public final class c {
             f fVar = new f(6, false);
             String str2 = runningAppProcessInfo.processName;
             if (str2 != null) {
-                fVar.f47351b = str2;
-                fVar.f47352c = Integer.valueOf(runningAppProcessInfo.pid);
+                fVar.f43490b = str2;
+                fVar.f43491c = Integer.valueOf(runningAppProcessInfo.pid);
                 fVar.d = Integer.valueOf(runningAppProcessInfo.importance);
-                fVar.f47353e = Boolean.valueOf(j.a(runningAppProcessInfo.processName, str));
+                fVar.e = Boolean.valueOf(j.a(runningAppProcessInfo.processName, str));
                 arrayList2.add(fVar.n());
             } else {
                 throw new NullPointerException("Null processName");
@@ -80,7 +80,7 @@ public final class c {
             if (i10 < size) {
                 obj = a2.get(i10);
                 i10++;
-                if (((t0) ((t1) obj)).f11010b == myPid) {
+                if (((t0) ((t1) obj)).f10228b == myPid) {
                     break;
                 }
             } else {
@@ -99,10 +99,10 @@ public final class c {
             }
             j.e(processName, "processName");
             f fVar = new f(6, false);
-            fVar.f47351b = processName;
-            fVar.f47352c = Integer.valueOf(myPid);
+            fVar.f43490b = processName;
+            fVar.f43491c = Integer.valueOf(myPid);
             fVar.d = 0;
-            fVar.f47353e = false;
+            fVar.e = false;
             return fVar.n();
         }
         return t1Var;

@@ -2,45 +2,45 @@ package k9;
 
 import j7.g8;
 public final class a0 extends e2 {
-    public final String f10804b;
-    public final String f10805c;
+    public final String f10048b;
+    public final String f10049c;
     public final int d;
-    public final String f10806e;
-    public final String f10807f;
-    public final String f10808g;
+    public final String e;
+    public final String f10050f;
+    public final String f10051g;
     public final String h;
-    public final String f10809i;
-    public final d2 f10810j;
-    public final j1 f10811k;
-    public final g1 f10812l;
+    public final String f10052i;
+    public final d2 f10053j;
+    public final j1 f10054k;
+    public final g1 f10055l;
 
     public a0(String str, String str2, int i10, String str3, String str4, String str5, String str6, String str7, d2 d2Var, j1 j1Var, g1 g1Var) {
-        this.f10804b = str;
-        this.f10805c = str2;
+        this.f10048b = str;
+        this.f10049c = str2;
         this.d = i10;
-        this.f10806e = str3;
-        this.f10807f = str4;
-        this.f10808g = str5;
+        this.e = str3;
+        this.f10050f = str4;
+        this.f10051g = str5;
         this.h = str6;
-        this.f10809i = str7;
-        this.f10810j = d2Var;
-        this.f10811k = j1Var;
-        this.f10812l = g1Var;
+        this.f10052i = str7;
+        this.f10053j = d2Var;
+        this.f10054k = j1Var;
+        this.f10055l = g1Var;
     }
 
     public final g8 a() {
         ?? obj = new Object();
-        obj.f9615a = this.f10804b;
-        obj.f9616b = this.f10805c;
-        obj.f9621i = Integer.valueOf(this.d);
-        obj.f9617c = this.f10806e;
-        obj.d = this.f10807f;
-        obj.f9618e = this.f10808g;
-        obj.f9623k = this.h;
-        obj.f9619f = this.f10809i;
-        obj.f9620g = this.f10810j;
-        obj.h = this.f10811k;
-        obj.f9622j = this.f10812l;
+        obj.f8985a = this.f10048b;
+        obj.f8986b = this.f10049c;
+        obj.f8990i = Integer.valueOf(this.d);
+        obj.f8987c = this.e;
+        obj.d = this.f10050f;
+        obj.e = this.f10051g;
+        obj.f8992k = this.h;
+        obj.f8988f = this.f10052i;
+        obj.f8989g = this.f10053j;
+        obj.h = this.f10054k;
+        obj.f8991j = this.f10055l;
         return obj;
     }
 
@@ -55,12 +55,12 @@ public final class a0 extends e2 {
         }
         if (obj instanceof e2) {
             a0 a0Var = (a0) ((e2) obj);
-            g1 g1Var2 = a0Var.f10812l;
-            j1 j1Var2 = a0Var.f10811k;
-            d2 d2Var2 = a0Var.f10810j;
-            String str3 = a0Var.f10808g;
-            String str4 = a0Var.f10807f;
-            if (this.f10804b.equals(a0Var.f10804b) && this.f10805c.equals(a0Var.f10805c) && this.d == a0Var.d && this.f10806e.equals(a0Var.f10806e) && ((str = this.f10807f) != null ? str.equals(str4) : str4 == null) && ((str2 = this.f10808g) != null ? str2.equals(str3) : str3 == null) && this.h.equals(a0Var.h) && this.f10809i.equals(a0Var.f10809i) && ((d2Var = this.f10810j) != null ? d2Var.equals(d2Var2) : d2Var2 == null) && ((j1Var = this.f10811k) != null ? j1Var.equals(j1Var2) : j1Var2 == null) && ((g1Var = this.f10812l) != null ? g1Var.equals(g1Var2) : g1Var2 == null)) {
+            g1 g1Var2 = a0Var.f10055l;
+            j1 j1Var2 = a0Var.f10054k;
+            d2 d2Var2 = a0Var.f10053j;
+            String str3 = a0Var.f10051g;
+            String str4 = a0Var.f10050f;
+            if (this.f10048b.equals(a0Var.f10048b) && this.f10049c.equals(a0Var.f10049c) && this.d == a0Var.d && this.e.equals(a0Var.e) && ((str = this.f10050f) != null ? str.equals(str4) : str4 == null) && ((str2 = this.f10051g) != null ? str2.equals(str3) : str3 == null) && this.h.equals(a0Var.h) && this.f10052i.equals(a0Var.f10052i) && ((d2Var = this.f10053j) != null ? d2Var.equals(d2Var2) : d2Var2 == null) && ((j1Var = this.f10054k) != null ? j1Var.equals(j1Var2) : j1Var2 == null) && ((g1Var = this.f10055l) != null ? g1Var.equals(g1Var2) : g1Var2 == null)) {
                 return true;
             }
         }
@@ -72,37 +72,37 @@ public final class a0 extends e2 {
         int hashCode2;
         int hashCode3;
         int hashCode4;
-        int hashCode5 = (((((((this.f10804b.hashCode() ^ 1000003) * 1000003) ^ this.f10805c.hashCode()) * 1000003) ^ this.d) * 1000003) ^ this.f10806e.hashCode()) * 1000003;
+        int hashCode5 = (((((((this.f10048b.hashCode() ^ 1000003) * 1000003) ^ this.f10049c.hashCode()) * 1000003) ^ this.d) * 1000003) ^ this.e.hashCode()) * 1000003;
         int i10 = 0;
-        String str = this.f10807f;
+        String str = this.f10050f;
         if (str == null) {
             hashCode = 0;
         } else {
             hashCode = str.hashCode();
         }
         int i11 = (hashCode5 ^ hashCode) * 1000003;
-        String str2 = this.f10808g;
+        String str2 = this.f10051g;
         if (str2 == null) {
             hashCode2 = 0;
         } else {
             hashCode2 = str2.hashCode();
         }
-        int hashCode6 = (((((i11 ^ hashCode2) * 1000003) ^ this.h.hashCode()) * 1000003) ^ this.f10809i.hashCode()) * 1000003;
-        d2 d2Var = this.f10810j;
+        int hashCode6 = (((((i11 ^ hashCode2) * 1000003) ^ this.h.hashCode()) * 1000003) ^ this.f10052i.hashCode()) * 1000003;
+        d2 d2Var = this.f10053j;
         if (d2Var == null) {
             hashCode3 = 0;
         } else {
             hashCode3 = d2Var.hashCode();
         }
         int i12 = (hashCode6 ^ hashCode3) * 1000003;
-        j1 j1Var = this.f10811k;
+        j1 j1Var = this.f10054k;
         if (j1Var == null) {
             hashCode4 = 0;
         } else {
             hashCode4 = j1Var.hashCode();
         }
         int i13 = (i12 ^ hashCode4) * 1000003;
-        g1 g1Var = this.f10812l;
+        g1 g1Var = this.f10055l;
         if (g1Var != null) {
             i10 = g1Var.hashCode();
         }
@@ -110,6 +110,6 @@ public final class a0 extends e2 {
     }
 
     public final String toString() {
-        return "CrashlyticsReport{sdkVersion=" + this.f10804b + ", gmpAppId=" + this.f10805c + ", platform=" + this.d + ", installationUuid=" + this.f10806e + ", firebaseInstallationId=" + this.f10807f + ", appQualitySessionId=" + this.f10808g + ", buildVersion=" + this.h + ", displayVersion=" + this.f10809i + ", session=" + this.f10810j + ", ndkPayload=" + this.f10811k + ", appExitInfo=" + this.f10812l + "}";
+        return "CrashlyticsReport{sdkVersion=" + this.f10048b + ", gmpAppId=" + this.f10049c + ", platform=" + this.d + ", installationUuid=" + this.e + ", firebaseInstallationId=" + this.f10050f + ", appQualitySessionId=" + this.f10051g + ", buildVersion=" + this.h + ", displayVersion=" + this.f10052i + ", session=" + this.f10053j + ", ndkPayload=" + this.f10054k + ", appExitInfo=" + this.f10055l + "}";
     }
 }

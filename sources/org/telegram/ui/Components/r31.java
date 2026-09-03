@@ -8,15 +8,15 @@ import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class r31 extends k6 {
-    public final Paint f30637s;
-    public final d90 v;
-    public final t31 f30638w;
+    public final Paint f28398s;
+    public final c90 v;
+    public final t31 f28399w;
 
     public r31(t31 t31Var, Context context) {
         super(context, false, false, false);
-        this.f30638w = t31Var;
-        this.f30637s = new Paint(1);
-        this.v = new d90();
+        this.f28399w = t31Var;
+        this.f28398s = new Paint(1);
+        this.v = new c90();
     }
 
     @Override
@@ -26,11 +26,11 @@ public final class r31 extends k6 {
         } else {
             AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, d(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
         }
-        v31 v31Var = this.f30638w.h;
-        int i10 = org.telegram.ui.ActionBar.k6.Pi;
+        v31 v31Var = this.f28399w.h;
+        int i10 = org.telegram.ui.ActionBar.j6.Pi;
         String[] strArr = v31.O;
-        int l1 = org.telegram.ui.ActionBar.k6.l1(0.1175f, v31Var.getThemedColor(i10));
-        Paint paint = this.f30637s;
+        int l1 = org.telegram.ui.ActionBar.j6.l1(0.1175f, v31Var.getThemedColor(i10));
+        Paint paint = this.f28398s;
         paint.setColor(l1);
         canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
         if (this.v.f(canvas)) {
@@ -41,22 +41,22 @@ public final class r31 extends k6 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.g6 g6Var;
-        v31 v31Var = this.f30638w.h;
+        org.telegram.ui.ActionBar.f6 f6Var;
+        v31 v31Var = this.f28399w.h;
         int action = motionEvent.getAction();
-        d90 d90Var = this.v;
+        c90 c90Var = this.v;
         if (action == 0) {
-            g6Var = ((org.telegram.ui.ActionBar.h3) v31Var).resourcesProvider;
-            h90 h90Var = new h90(null, g6Var, motionEvent.getX(), motionEvent.getY(), 0);
-            h90Var.d(org.telegram.ui.ActionBar.k6.l1(0.1175f, v31Var.getThemedColor(org.telegram.ui.ActionBar.k6.Pi)));
-            z80 b10 = h90Var.b();
+            f6Var = ((org.telegram.ui.ActionBar.g3) v31Var).resourcesProvider;
+            g90 g90Var = new g90(null, f6Var, motionEvent.getX(), motionEvent.getY(), 0);
+            g90Var.d(org.telegram.ui.ActionBar.j6.l1(0.1175f, v31Var.getThemedColor(org.telegram.ui.ActionBar.j6.Pi)));
+            y80 b10 = g90Var.b();
             if (LocaleController.isRTL) {
                 AndroidUtilities.rectTmp.set(getWidth() - d(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
             } else {
                 AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, d(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
             }
             b10.addRect(AndroidUtilities.rectTmp, Path.Direction.CW);
-            d90Var.a(h90Var, null);
+            c90Var.a(g90Var, null);
             invalidate();
             return true;
         }
@@ -64,7 +64,7 @@ public final class r31 extends k6 {
             if (motionEvent.getAction() == 1) {
                 performClick();
             }
-            d90Var.d(true);
+            c90Var.d(true);
             invalidate();
         }
         return super.onTouchEvent(motionEvent);

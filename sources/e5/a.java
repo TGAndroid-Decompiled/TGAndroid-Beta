@@ -3,13 +3,13 @@ package e5;
 import h5.w;
 import java.util.List;
 public final class a extends v4.e {
-    public final int f4942n = 0;
-    public final Object f4943o;
+    public final int f5113n = 0;
+    public final Object f5114o;
 
     public a(List list) {
         super("DvbDecoder");
         w wVar = new w((byte[]) list.get(0));
-        this.f4943o = new x4.h(wVar.z(), wVar.z());
+        this.f5114o = new x4.h(wVar.z(), wVar.z());
     }
 
     @Override
@@ -19,6 +19,6 @@ public final class a extends v4.e {
 
     public a() {
         super("Mp4WebvttDecoder");
-        this.f4943o = new w();
+        this.f5114o = new w();
     }
 }

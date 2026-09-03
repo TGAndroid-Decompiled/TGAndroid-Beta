@@ -6,7 +6,7 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.yh;
+import org.telegram.ui.ai;
 public class SQLitePreparedStatement {
     private boolean isFinalized = false;
     private String query;
@@ -89,15 +89,15 @@ public class SQLitePreparedStatement {
                     sb.append(this.query);
                     sb.append(" took ");
                     sb.append(elapsedRealtime);
-                    yh.v("ms", sb);
+                    ai.v("ms", sb);
                 }
             }
             try {
                 this.isFinalized = true;
                 finalize(this.sqliteStatementHandle);
-            } catch (SQLiteException e6) {
+            } catch (SQLiteException e) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e(e6.getMessage(), e6);
+                    FileLog.e(e.getMessage(), e);
                 }
             }
         }

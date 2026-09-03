@@ -1,88 +1,80 @@
 package org.telegram.ui;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
+import android.text.Editable;
+import android.text.SpannableStringBuilder;
+import android.text.TextWatcher;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class ka extends f2.b0 {
-    public final pa d;
+public final class ka implements TextWatcher {
+    public final la f35454a;
 
-    public ka(pa paVar) {
-        this.d = paVar;
+    public ka(la laVar) {
+        this.f35454a = laVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, f2.m1 m1Var) {
-        super.a(recyclerView, m1Var);
-        View view = m1Var.f5875a;
-        view.setPressed(false);
-        view.setTag(R.id.dragging, null);
-    }
-
-    @Override
-    public final int e(RecyclerView recyclerView, f2.m1 m1Var) {
-        if (m1Var.f5879f == 4 && ((ma) m1Var.f5875a).D) {
-            return f2.b0.l(3, 0);
+    public final void afterTextChanged(Editable editable) {
+        int i10;
+        ra raVar = this.f35454a.f35722c;
+        if (raVar.f37780r.startsWith("@")) {
+            raVar.f37780r = raVar.f37780r.substring(1);
         }
-        return f2.b0.l(0, 0);
-    }
-
-    @Override
-    public final boolean n(RecyclerView recyclerView, f2.m1 m1Var, f2.m1 m1Var2) {
-        if (m1Var.f5879f == m1Var2.f5879f) {
-            View view = m1Var2.f5875a;
-            if (!(view instanceof ma) || ((ma) view).D) {
-                ga gaVar = this.d.f39953c;
-                int b10 = m1Var.b();
-                int b11 = m1Var2.b();
-                int i10 = b10 - 4;
-                int i11 = b11 - 4;
-                pa paVar = gaVar.f37045c;
-                ArrayList arrayList = paVar.v;
-                if (i10 < arrayList.size() && i11 < arrayList.size()) {
-                    if (b10 != b11) {
-                        paVar.d = true;
-                    }
-                    arrayList.set(i10, (TLRPC.TL_username) arrayList.get(i11));
-                    arrayList.set(i11, (TLRPC.TL_username) arrayList.get(i10));
-                    gaVar.p(b10, b11);
-                    int size = arrayList.size() + 3;
-                    if (b10 == size || b11 == size) {
-                        gaVar.n(b10, 3);
-                        gaVar.n(b11, 3);
-                    }
-                }
-                return true;
+        if (raVar.f37780r.length() > 0) {
+            StringBuilder sb = new StringBuilder("https://");
+            i10 = ((org.telegram.ui.ActionBar.p2) raVar).currentAccount;
+            sb.append(MessagesController.getInstance(i10).linkPrefix);
+            sb.append("/");
+            sb.append(raVar.f37780r);
+            String sb2 = sb.toString();
+            String formatString = LocaleController.formatString("UsernameHelpLink", R.string.UsernameHelpLink, sb2);
+            int indexOf = formatString.indexOf(sb2);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
+            if (indexOf >= 0) {
+                spannableStringBuilder.setSpan(new org.telegram.ui.Cells.i(sb2, raVar, 3), indexOf, sb2.length() + indexOf, 33);
             }
-            return false;
         }
-        return false;
     }
 
     @Override
-    public final void p(f2.m1 m1Var, int i10) {
-        Boolean bool;
-        pa paVar = this.d;
-        if (i10 == 0) {
-            pa.Y(paVar);
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        String charSequence2;
+        la laVar = this.f35454a;
+        ra raVar = laVar.f35722c;
+        String str = raVar.f37780r;
+        if (charSequence == null) {
+            charSequence2 = "";
         } else {
-            paVar.f39952b.I0(false);
-            m1Var.f5875a.setPressed(true);
+            charSequence2 = charSequence.toString();
         }
-        if (m1Var != null) {
-            View view = m1Var.f5875a;
-            int i11 = R.id.dragging;
-            if (i10 == 2) {
-                bool = Boolean.TRUE;
-            } else {
-                bool = null;
-            }
-            view.setTag(i11, bool);
+        raVar.f37780r = charSequence2;
+        ra raVar2 = laVar.f35722c;
+        oa oaVar = raVar2.B;
+        if (oaVar != null && str != null) {
+            oaVar.b(raVar2.f37780r);
         }
     }
 
     @Override
-    public final void q(f2.m1 m1Var) {
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        String charSequence2;
+        la laVar = this.f35454a;
+        ra raVar = laVar.f35722c;
+        String str = raVar.f37780r;
+        if (charSequence == null) {
+            charSequence2 = "";
+        } else {
+            charSequence2 = charSequence.toString();
+        }
+        raVar.f37780r = charSequence2;
+        ra raVar2 = laVar.f35722c;
+        oa oaVar = raVar2.B;
+        if (oaVar != null && str != null) {
+            oaVar.b(raVar2.f37780r);
+        }
+        if (raVar.f37779n) {
+            return;
+        }
+        raVar.d0(raVar.f37780r);
     }
 }

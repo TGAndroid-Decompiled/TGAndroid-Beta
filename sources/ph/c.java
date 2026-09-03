@@ -1,35 +1,28 @@
 package ph;
 
-import android.view.View;
-import oh.d6;
-import org.telegram.ui.Components.nr0;
-public final class c implements View.OnClickListener {
-    public final int f44407a;
-    public final l f44408b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class c extends AnimatorListenerAdapter {
+    public final int f41343a;
+    public final d f41344b;
 
-    public c(l lVar, int i10) {
-        this.f44407a = i10;
-        this.f44408b = lVar;
+    public c(d dVar, int i10) {
+        this.f41343a = i10;
+        this.f41344b = dVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        String str;
-        switch (this.f44407a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f41343a) {
             case 0:
-                l lVar = this.f44408b;
-                nr0 nr0Var = lVar.T;
-                d6 d6Var = lVar.f44422a;
-                if (d6Var == null) {
-                    str = "";
-                } else {
-                    str = d6Var.E;
-                }
-                nr0Var.a(str);
+                d dVar = this.f41344b;
+                dVar.G = false;
+                dVar.e.q(null, false, true);
                 return;
             default:
-                l lVar2 = this.f44408b;
-                lVar2.T.b(lVar2.f44422a.E);
+                d dVar2 = this.f41344b;
+                dVar2.M = 1.0f;
+                dVar2.invalidate();
                 return;
         }
     }

@@ -1,14 +1,40 @@
 package lh;
 
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class p4 extends org.telegram.ui.ActionBar.g1 {
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.tl.TL_stars;
+public final class p4 extends m4 {
+    public final boolean f12901c;
+    public final ImageReceiver d;
+
+    public p4(View view, TL_stars.starGiftAttributeModel stargiftattributemodel) {
+        this.f12780a = stargiftattributemodel.name;
+        this.f12781b = stargiftattributemodel.getRarityPermille();
+        this.f12901c = true;
+        ImageReceiver imageReceiver = new ImageReceiver(view);
+        this.d = imageReceiver;
+        ja.Z0(imageReceiver, stargiftattributemodel.document, 160);
+    }
+
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
-            size = AndroidUtilities.dp(250.0f);
+    public final void a() {
+        if (this.f12901c) {
+            this.d.onDetachedFromWindow();
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
+    }
+
+    @Override
+    public final boolean b() {
+        if (this.d.getLottieAnimation() != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public p4(org.telegram.ui.Components.p9 p9Var, TL_stars.starGiftAttributeModel stargiftattributemodel) {
+        this.f12780a = stargiftattributemodel.name;
+        this.f12781b = stargiftattributemodel.getRarityPermille();
+        this.f12901c = false;
+        this.d = p9Var.getImageReceiver();
     }
 }

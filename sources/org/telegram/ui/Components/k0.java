@@ -11,42 +11,42 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.LaunchActivity;
 public final class k0 implements org.telegram.ui.ActionBar.c2 {
-    public final int f28222a;
-    public final Context f28223b;
+    public final int f26087a;
+    public final Context f26088b;
 
     public k0(Context context, int i10) {
-        this.f28222a = i10;
-        this.f28223b = context;
+        this.f26087a = i10;
+        this.f26088b = context;
     }
 
     @Override
-    public final void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f28222a) {
+    public final void l(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f26087a) {
             case 0:
-                Context context = this.f28223b;
+                Context context = this.f26088b;
                 try {
                     context.startActivity(new Intent("android.settings.MANAGE_UNKNOWN_APP_SOURCES", Uri.parse("package:" + context.getPackageName())));
                     return;
-                } catch (Exception e6) {
-                    FileLog.e(e6);
+                } catch (Exception e) {
+                    FileLog.e(e);
                     return;
                 }
             case 1:
-                Context context2 = this.f28223b;
+                Context context2 = this.f26088b;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                     intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
                     context2.startActivity(intent);
                     return;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
+                } catch (Exception e6) {
+                    FileLog.e(e6);
                     return;
                 }
             case 2:
-                af.g.s(this.f28223b, BuildVars.PLAYSTORE_APP_URL);
+                ze.d.s(this.f26088b, BuildVars.PLAYSTORE_APP_URL);
                 return;
             default:
-                Context context3 = this.f28223b;
+                Context context3 = this.f26088b;
                 if (context3 != null) {
                     try {
                         if (Build.VERSION.SDK_INT >= 23) {
@@ -59,8 +59,8 @@ public final class k0 implements org.telegram.ui.ActionBar.c2 {
                             }
                         }
                         return;
-                    } catch (Exception e11) {
-                        FileLog.e(e11);
+                    } catch (Exception e10) {
+                        FileLog.e(e10);
                         return;
                     }
                 }

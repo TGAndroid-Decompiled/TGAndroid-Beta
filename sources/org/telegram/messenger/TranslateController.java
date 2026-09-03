@@ -78,16 +78,16 @@ public class TranslateController extends BaseController {
         public String code;
         public String displayName;
         public String ownDisplayName;
-        public String f18079q;
+        public String f16671q;
     }
 
     public static class MessageKey {
         public long dialogId;
-        public int f18080id;
+        public int f16672id;
 
         public MessageKey(MessageObject messageObject) {
             this.dialogId = messageObject.getDialogId();
-            this.f18080id = messageObject.getId();
+            this.f16672id = messageObject.getId();
         }
     }
 
@@ -299,7 +299,7 @@ public class TranslateController extends BaseController {
 
         public StoryKey(TL_stories.StoryItem storyItem) {
             this.dialogId = storyItem.dialogId;
-            this.storyId = storyItem.f21082id;
+            this.storyId = storyItem.f19394id;
         }
     }
 
@@ -338,18 +338,18 @@ public class TranslateController extends BaseController {
         LinkedHashSet<String> linkedHashSet = new LinkedHashSet<>();
         try {
             linkedHashSet.add(LocaleController.getInstance().getCurrentLocaleInfo().pluralLangCode);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        try {
+            linkedHashSet.add(Resources.getSystem().getConfiguration().locale.getLanguage());
         } catch (Exception e6) {
             FileLog.e(e6);
         }
         try {
-            linkedHashSet.add(Resources.getSystem().getConfiguration().locale.getLanguage());
+            linkedHashSet.addAll(t31.Y());
         } catch (Exception e10) {
             FileLog.e(e10);
-        }
-        try {
-            linkedHashSet.addAll(t31.Y());
-        } catch (Exception e11) {
-            FileLog.e(e11);
         }
         try {
             InputMethodManager inputMethodManager = (InputMethodManager) ApplicationLoader.applicationContext.getSystemService("input_method");
@@ -366,8 +366,8 @@ public class TranslateController extends BaseController {
                     }
                 }
             }
-        } catch (Exception e12) {
-            FileLog.e(e12);
+        } catch (Exception e11) {
+            FileLog.e(e11);
         }
         suggestedLanguageCodes = linkedHashSet;
     }
@@ -512,7 +512,7 @@ public class TranslateController extends BaseController {
                     str2 = "";
                 }
                 sb.append(str2);
-                language.f18079q = sb.toString().toLowerCase();
+                language.f16671q = sb.toString().toLowerCase();
                 arrayList.add(language);
             }
             i10++;
@@ -681,7 +681,7 @@ public class TranslateController extends BaseController {
     }
 
     public void lambda$checkLanguage$15(MessageObject messageObject, long j10, int i10, Exception exc) {
-        AndroidUtilities.runOnUIThread(new mh.y8(this, messageObject, j10, i10, 11));
+        AndroidUtilities.runOnUIThread(new lh.y8(this, messageObject, j10, i10, 11));
     }
 
     public void lambda$checkLanguage$16(String str, MessageObject messageObject, long j10, int i10) {
@@ -845,7 +845,7 @@ public class TranslateController extends BaseController {
 
     public void lambda$detectStoryLanguage$31(TL_stories.StoryItem storyItem, String str, StoryKey storyKey) {
         storyItem.detectedLng = str;
-        getMessagesController().getStoriesController().f17780k.h(storyItem.dialogId, storyItem);
+        getMessagesController().getStoriesController().f15904k.h(storyItem.dialogId, storyItem);
         this.detectingStories.remove(storyKey);
     }
 
@@ -855,7 +855,7 @@ public class TranslateController extends BaseController {
 
     public void lambda$detectStoryLanguage$33(TL_stories.StoryItem storyItem, StoryKey storyKey) {
         storyItem.detectedLng = "und";
-        getMessagesController().getStoriesController().f17780k.h(storyItem.dialogId, storyItem);
+        getMessagesController().getStoriesController().f15904k.h(storyItem.dialogId, storyItem);
         this.detectingStories.remove(storyKey);
     }
 
@@ -1048,7 +1048,7 @@ public class TranslateController extends BaseController {
                 TLRPC.TL_messages_translateRichMessage tL_messages_translateRichMessage = new TLRPC.TL_messages_translateRichMessage();
                 tL_messages_translateRichMessage.flags |= 1;
                 tL_messages_translateRichMessage.peer = getMessagesController().getInputPeer(j10);
-                tL_messages_translateRichMessage.f20966id = pendingRichTranslation.messageIds;
+                tL_messages_translateRichMessage.f19280id = pendingRichTranslation.messageIds;
                 tL_messages_translateRichMessage.to_lang = normalizeLanguage(pendingRichTranslation.language);
                 int sendRequest = getConnectionsManager().sendRequest(tL_messages_translateRichMessage, new bl(this, pendingRichTranslation, j10, 1));
                 synchronized (this) {
@@ -1074,7 +1074,7 @@ public class TranslateController extends BaseController {
         } else if (tL_error != null) {
             if ("SUMMARY_FLOOD_PREMIUM".equalsIgnoreCase(tL_error.text) && (U = LaunchActivity.U()) != null) {
                 org.telegram.ui.Components.ic J = org.telegram.ui.Components.qc.a0(U).J(R.raw.star_premium_2, LocaleController.getString(R.string.SummaryLimit), LocaleController.getString(R.string.SummaryLimitUpgrade), new xd(3, U));
-                J.f27778j = 5000;
+                J.f25671j = 5000;
                 J.k(true);
             }
             this.loadingSummarizations.remove(Integer.valueOf(i10));
@@ -1154,7 +1154,7 @@ public class TranslateController extends BaseController {
                 tL_messages_translateText.flags |= 1;
                 j11 = j10;
                 tL_messages_translateText.peer = getMessagesController().getInputPeer(j11);
-                tL_messages_translateText.f20967id = pendingTranslation.messageIds;
+                tL_messages_translateText.f19281id = pendingTranslation.messageIds;
             }
             tL_messages_translateText.to_lang = normalizeLanguage(pendingTranslation.language);
             int sendRequest = getConnectionsManager().sendRequest(tL_messages_translateText, new ra(this, pendingTranslation, z4, j11, set, 1));
@@ -1236,7 +1236,7 @@ public class TranslateController extends BaseController {
     public void lambda$translateStory$35(TL_stories.StoryItem storyItem, String str, StoryKey storyKey, Runnable runnable) {
         storyItem.translatedLng = str;
         storyItem.translatedText = null;
-        getMessagesController().getStoriesController().f17780k.h(storyItem.dialogId, storyItem);
+        getMessagesController().getStoriesController().f15904k.h(storyItem.dialogId, storyItem);
         this.translatingStories.remove(storyKey);
         if (runnable != null) {
             runnable.run();
@@ -1246,7 +1246,7 @@ public class TranslateController extends BaseController {
     public void lambda$translateStory$36(TL_stories.StoryItem storyItem, String str, TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_textWithEntities tL_textWithEntities2, StoryKey storyKey, Runnable runnable) {
         storyItem.translatedLng = str;
         storyItem.translatedText = v31.E(tL_textWithEntities, tL_textWithEntities2);
-        getMessagesController().getStoriesController().f17780k.h(storyItem.dialogId, storyItem);
+        getMessagesController().getStoriesController().f15904k.h(storyItem.dialogId, storyItem);
         this.translatingStories.remove(storyKey);
         if (runnable != null) {
             runnable.run();
@@ -1256,7 +1256,7 @@ public class TranslateController extends BaseController {
     public void lambda$translateStory$37(TL_stories.StoryItem storyItem, String str, StoryKey storyKey, Runnable runnable) {
         storyItem.translatedLng = str;
         storyItem.translatedText = null;
-        getMessagesController().getStoriesController().f17780k.h(storyItem.dialogId, storyItem);
+        getMessagesController().getStoriesController().f15904k.h(storyItem.dialogId, storyItem);
         this.translatingStories.remove(storyKey);
         if (runnable != null) {
             runnable.run();
@@ -1268,20 +1268,20 @@ public class TranslateController extends BaseController {
             ArrayList<TLRPC.TL_textWithEntities> arrayList = ((TLRPC.TL_messages_translateResult) tLObject).result;
             if (arrayList.size() <= 0) {
                 AndroidUtilities.runOnUIThread(new Runnable(this) {
-                    public final TranslateController f19313b;
+                    public final TranslateController f17777b;
 
                     {
-                        this.f19313b = this;
+                        this.f17777b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r6) {
                             case 0:
-                                this.f19313b.lambda$translateStory$35(storyItem, str, storyKey, runnable);
+                                this.f17777b.lambda$translateStory$35(storyItem, str, storyKey, runnable);
                                 return;
                             default:
-                                this.f19313b.lambda$translateStory$37(storyItem, str, storyKey, runnable);
+                                this.f17777b.lambda$translateStory$37(storyItem, str, storyKey, runnable);
                                 return;
                         }
                     }
@@ -1293,20 +1293,20 @@ public class TranslateController extends BaseController {
             }
         }
         AndroidUtilities.runOnUIThread(new Runnable(this) {
-            public final TranslateController f19313b;
+            public final TranslateController f17777b;
 
             {
-                this.f19313b = this;
+                this.f17777b = this;
             }
 
             @Override
             public final void run() {
                 switch (r6) {
                     case 0:
-                        this.f19313b.lambda$translateStory$35(storyItem, str, storyKey, runnable);
+                        this.f17777b.lambda$translateStory$35(storyItem, str, storyKey, runnable);
                         return;
                     default:
-                        this.f19313b.lambda$translateStory$37(storyItem, str, storyKey, runnable);
+                        this.f17777b.lambda$translateStory$37(storyItem, str, storyKey, runnable);
                         return;
                 }
             }
@@ -1355,8 +1355,8 @@ public class TranslateController extends BaseController {
                 for (String str4 : stringSet) {
                     try {
                         this.hideTranslateDialogs.add(Long.valueOf(Long.parseLong(str4)));
-                    } catch (Exception e6) {
-                        FileLog.e(e6);
+                    } catch (Exception e) {
+                        FileLog.e(e);
                     }
                 }
             }
@@ -1531,7 +1531,7 @@ public class TranslateController extends BaseController {
         this.loadingSummarizations.add(Integer.valueOf(hash));
         TLRPC.TL_messages_summarizeText tL_messages_summarizeText = new TLRPC.TL_messages_summarizeText();
         tL_messages_summarizeText.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(messageObject.getDialogId());
-        tL_messages_summarizeText.f20965id = messageObject.getId();
+        tL_messages_summarizeText.f19279id = messageObject.getId();
         if (str != null) {
             tL_messages_summarizeText.flags |= 1;
             tL_messages_summarizeText.to_lang = normalizeLanguage(str);
@@ -1689,8 +1689,8 @@ public class TranslateController extends BaseController {
         while (it.hasNext()) {
             try {
                 hashSet.add("" + it.next());
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
         MessagesController.getMainSettings(this.currentAccount).edit().putString("translating_dialog_languages2", sb.toString()).putStringSet("hidden_translation_at", hashSet).apply();

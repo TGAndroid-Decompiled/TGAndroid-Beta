@@ -3,18 +3,18 @@ package j3;
 import java.util.Arrays;
 import k7.b7;
 public final class z1 implements g {
-    public final Object f9500a;
-    public final int f9501b;
-    public final c1 f9502c;
+    public final Object f8882a;
+    public final int f8883b;
+    public final c1 f8884c;
     public final Object d;
-    public final int f9503e;
-    public final long f9504f;
+    public final int e;
+    public final long f8885f;
     public final long h;
-    public final int f9505n;
-    public final int f9506r;
+    public final int f8886n;
+    public final int f8887r;
 
     static {
-        int i10 = h5.d0.f7237a;
+        int i10 = h5.d0.f6924a;
         Integer.toString(0, 36);
         Integer.toString(1, 36);
         Integer.toString(2, 36);
@@ -25,15 +25,15 @@ public final class z1 implements g {
     }
 
     public z1(Object obj, int i10, c1 c1Var, Object obj2, int i11, long j10, long j11, int i12, int i13) {
-        this.f9500a = obj;
-        this.f9501b = i10;
-        this.f9502c = c1Var;
+        this.f8882a = obj;
+        this.f8883b = i10;
+        this.f8884c = c1Var;
         this.d = obj2;
-        this.f9503e = i11;
-        this.f9504f = j10;
+        this.e = i11;
+        this.f8885f = j10;
         this.h = j11;
-        this.f9505n = i12;
-        this.f9506r = i13;
+        this.f8886n = i12;
+        this.f8887r = i13;
     }
 
     public final boolean equals(Object obj) {
@@ -42,7 +42,7 @@ public final class z1 implements g {
         }
         if (obj != null && z1.class == obj.getClass()) {
             z1 z1Var = (z1) obj;
-            if (this.f9501b == z1Var.f9501b && this.f9503e == z1Var.f9503e && this.f9504f == z1Var.f9504f && this.h == z1Var.h && this.f9505n == z1Var.f9505n && this.f9506r == z1Var.f9506r && b7.a(this.f9500a, z1Var.f9500a) && b7.a(this.d, z1Var.d) && b7.a(this.f9502c, z1Var.f9502c)) {
+            if (this.f8883b == z1Var.f8883b && this.e == z1Var.e && this.f8885f == z1Var.f8885f && this.h == z1Var.h && this.f8886n == z1Var.f8886n && this.f8887r == z1Var.f8887r && b7.a(this.f8882a, z1Var.f8882a) && b7.a(this.d, z1Var.d) && b7.a(this.f8884c, z1Var.f8884c)) {
                 return true;
             }
         }
@@ -50,6 +50,6 @@ public final class z1 implements g {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f9500a, Integer.valueOf(this.f9501b), this.f9502c, this.d, Integer.valueOf(this.f9503e), Long.valueOf(this.f9504f), Long.valueOf(this.h), Integer.valueOf(this.f9505n), Integer.valueOf(this.f9506r)});
+        return Arrays.hashCode(new Object[]{this.f8882a, Integer.valueOf(this.f8883b), this.f8884c, this.d, Integer.valueOf(this.e), Long.valueOf(this.f8885f), Long.valueOf(this.h), Integer.valueOf(this.f8886n), Integer.valueOf(this.f8887r)});
     }
 }

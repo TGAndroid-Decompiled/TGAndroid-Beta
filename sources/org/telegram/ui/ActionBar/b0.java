@@ -6,46 +6,46 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class b0 implements View.OnClickListener {
-    public final int f21190a;
-    public final w0 f21191b;
+    public final int f19495a;
+    public final w0 f19496b;
 
     public b0(w0 w0Var, int i10) {
-        this.f21190a = i10;
-        this.f21191b = w0Var;
+        this.f19495a = i10;
+        this.f19496b = w0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        i5 i5Var;
-        switch (this.f21190a) {
+        h5 h5Var;
+        switch (this.f19495a) {
             case 0:
-                w0 w0Var = this.f21191b;
-                ArrayList arrayList = w0Var.f22350d0;
-                if (w0Var.f22351e.length() != 0) {
-                    w0Var.f22351e.setText("");
+                w0 w0Var = this.f19496b;
+                ArrayList arrayList = w0Var.f20628d0;
+                if (w0Var.e.length() != 0) {
+                    w0Var.e.setText("");
                 } else if (w0Var.p()) {
-                    w0Var.f22351e.hideActionMode();
+                    w0Var.e.hideActionMode();
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                        if (w0Var.E != null && ((uf.e0) arrayList.get(i10)).h) {
-                            w0Var.E.o((uf.e0) arrayList.get(i10));
+                        if (w0Var.E != null && ((tf.e0) arrayList.get(i10)).h) {
+                            w0Var.E.o((tf.e0) arrayList.get(i10));
                         }
                     }
                     w0Var.m();
                 } else {
                     TextView textView = w0Var.h;
-                    if (textView != null && textView.getVisibility() == 0 && ((i5Var = w0Var.E) == null || i5Var.a())) {
+                    if (textView != null && textView.getVisibility() == 0 && ((h5Var = w0Var.E) == null || h5Var.a())) {
                         w0Var.h.setVisibility(8);
-                        i5 i5Var2 = w0Var.E;
-                        if (i5Var2 != null) {
-                            i5Var2.k();
+                        h5 h5Var2 = w0Var.E;
+                        if (h5Var2 != null) {
+                            h5Var2.k();
                         }
                     }
                 }
-                w0Var.f22351e.requestFocus();
-                AndroidUtilities.showKeyboard(w0Var.f22351e);
+                w0Var.e.requestFocus();
+                AndroidUtilities.showKeyboard(w0Var.e);
                 return;
             case 1:
-                w0 w0Var2 = this.f21191b;
+                w0 w0Var2 = this.f19496b;
                 p1 p1Var = w0Var2.d;
                 if (p1Var != null && p1Var.isShowing()) {
                     if (!w0Var2.Q) {
@@ -55,32 +55,32 @@ public final class b0 implements View.OnClickListener {
                         return;
                     }
                 }
-                z zVar = w0Var2.f22348c;
+                z zVar = w0Var2.f20626c;
                 if (zVar != null) {
                     zVar.o(((Integer) view.getTag()).intValue());
                     return;
                 }
                 s0 s0Var = w0Var2.M;
                 if (s0Var != null) {
-                    s0Var.h(((Integer) view.getTag()).intValue());
+                    s0Var.m(((Integer) view.getTag()).intValue());
                     return;
                 }
                 return;
             case 2:
-                w0 w0Var3 = this.f21191b;
-                z zVar2 = w0Var3.f22348c;
+                w0 w0Var3 = this.f19496b;
+                z zVar2 = w0Var3.f20626c;
                 if (zVar2 != null) {
                     zVar2.o(((Integer) view.getTag()).intValue());
                     return;
                 }
                 s0 s0Var2 = w0Var3.M;
                 if (s0Var2 != null) {
-                    s0Var2.h(((Integer) view.getTag()).intValue());
+                    s0Var2.m(((Integer) view.getTag()).intValue());
                     return;
                 }
                 return;
             default:
-                w0 w0Var4 = this.f21191b;
+                w0 w0Var4 = this.f19496b;
                 p1 p1Var2 = w0Var4.d;
                 if (p1Var2 != null && p1Var2.isShowing()) {
                     if (!w0Var4.Q) {
@@ -93,14 +93,14 @@ public final class b0 implements View.OnClickListener {
                         return;
                     }
                 }
-                z zVar3 = w0Var4.f22348c;
+                z zVar3 = w0Var4.f20626c;
                 if (zVar3 != null) {
                     zVar3.o(((Integer) view.getTag()).intValue());
                     return;
                 }
                 s0 s0Var3 = w0Var4.M;
                 if (s0Var3 != null) {
-                    s0Var3.h(((Integer) view.getTag()).intValue());
+                    s0Var3.m(((Integer) view.getTag()).intValue());
                     return;
                 }
                 return;

@@ -5,11 +5,11 @@ import h5.d0;
 import h5.w;
 import k7.u6;
 public abstract class e {
-    public static final byte[] f51013a;
+    public static final byte[] f47350a;
 
     static {
-        int i10 = d0.f7237a;
-        f51013a = "OpusHead".getBytes(r8.d.f46769c);
+        int i10 = d0.f6924a;
+        f47350a = "OpusHead".getBytes(r8.d.f43413c);
     }
 
     public static a4.c a(int i10, w wVar) {
@@ -86,7 +86,7 @@ public abstract class e {
         int i13;
         Integer num2;
         boolean z12;
-        int i14 = wVar.f7309b;
+        int i14 = wVar.f6988b;
         while (i14 - i10 < i11) {
             wVar.F(i14);
             int g10 = wVar.g();
@@ -111,7 +111,7 @@ public abstract class e {
                         num3 = Integer.valueOf(wVar.g());
                     } else if (g12 == 1935894637) {
                         wVar.G(4);
-                        str = wVar.s(4, r8.d.f46769c);
+                        str = wVar.s(4, r8.d.f43413c);
                     } else if (g12 == 1935894633) {
                         i16 = i15;
                         i17 = g11;
@@ -182,7 +182,7 @@ public abstract class e {
                         z13 = true;
                     }
                     u6.a("tenc atom is mandatory", z13);
-                    int i19 = d0.f7237a;
+                    int i19 = d0.f6924a;
                     create = Pair.create(num, pVar);
                 }
                 if (create != null) {
@@ -198,7 +198,7 @@ public abstract class e {
         throw new UnsupportedOperationException("Method not decompiled: z3.e.e(z3.o, z3.a, r3.p):z3.r");
     }
 
-    public static java.util.ArrayList f(z3.a r73, r3.p r74, long r75, o3.g r77, boolean r78, boolean r79, r8.e r80) {
-        throw new UnsupportedOperationException("Method not decompiled: z3.e.f(z3.a, r3.p, long, o3.g, boolean, boolean, r8.e):java.util.ArrayList");
+    public static java.util.ArrayList f(z3.a r73, r3.p r74, long r75, o3.h r77, boolean r78, boolean r79, r8.e r80) {
+        throw new UnsupportedOperationException("Method not decompiled: z3.e.f(z3.a, r3.p, long, o3.h, boolean, boolean, r8.e):java.util.ArrayList");
     }
 }

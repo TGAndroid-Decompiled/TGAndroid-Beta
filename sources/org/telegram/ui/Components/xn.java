@@ -1,49 +1,42 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class xn implements g8 {
-    public final org.telegram.ui.ActionBar.p1[] f33140a;
-    public final ao f33141b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class xn extends AnimatorListenerAdapter {
+    public final int f30674a;
+    public final yn f30675b;
 
-    public xn(ao aoVar, org.telegram.ui.ActionBar.p1[] p1VarArr) {
-        this.f33141b = aoVar;
-        this.f33140a = p1VarArr;
+    public xn(yn ynVar, int i10) {
+        this.f30674a = i10;
+        this.f30675b = ynVar;
     }
 
     @Override
-    public final void Q0(int i10, int i11) {
-        int i12;
-        org.telegram.ui.xn xnVar = this.f33141b.D;
-        if (xnVar != null) {
-            xnVar.getMessagesController().setDialogHistoryTTL(xnVar.a(), i10);
-            TLRPC.ChatFull chatFull = xnVar.W7;
-            TLRPC.UserFull userFull = xnVar.X7;
-            if (userFull != null || chatFull != null) {
-                xnVar.Q7();
-                UndoView undoView = xnVar.f43356v3;
-                if (undoView != null) {
-                    long a2 = xnVar.a();
-                    TLRPC.User i13 = xnVar.i();
-                    if (userFull != null) {
-                        i12 = userFull.ttl_period;
-                    } else {
-                        i12 = chatFull.ttl_period;
-                    }
-                    undoView.k(a2, i11, i13, Integer.valueOf(i12), null, null);
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f30674a) {
+            case 0:
+                this.f30675b.N = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f30674a) {
+            case 0:
+                yn ynVar = this.f30675b;
+                if (ynVar.N == animator) {
+                    ynVar.getSubtitleTextView().setVisibility(4);
+                    ynVar.N = null;
+                    return;
                 }
-            }
+                return;
+            default:
+                this.f30675b.N = null;
+                return;
         }
-    }
-
-    @Override
-    public final void dismiss() {
-        org.telegram.ui.ActionBar.p1 p1Var = this.f33140a[0];
-        if (p1Var != null) {
-            p1Var.dismiss();
-        }
-    }
-
-    @Override
-    public final void h1() {
     }
 }

@@ -1,10 +1,10 @@
 package n7;
 public final class de {
-    public final hb f15320a;
-    public final we f15321b;
+    public final hb f14319a;
+    public final we f14320b;
 
     public de(qa qaVar) {
-        this.f15320a = (hb) qaVar.f15701b;
-        this.f15321b = (we) qaVar.f15702c;
+        this.f14319a = (hb) qaVar.f14687b;
+        this.f14320b = (we) qaVar.f14688c;
     }
 }

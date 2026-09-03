@@ -2,12 +2,12 @@ package e4;
 
 import j3.n0;
 import j4.i;
-import j7.d7;
-import org.telegram.ui.yh;
+import j7.c7;
+import vh.w2;
 public final class d {
-    public static final d f4940a = new Object();
+    public static final d f5111a = new Object();
 
-    public final d7 a(n0 n0Var) {
+    public final c7 a(n0 n0Var) {
         String str = n0Var.C;
         if (str != null) {
             char c3 = 65535;
@@ -56,7 +56,7 @@ public final class d {
                     return new l4.c();
             }
         }
-        throw new IllegalArgumentException(yh.k("Attempted to create decoder for unsupported MIME type: ", str));
+        throw new IllegalArgumentException(w2.e("Attempted to create decoder for unsupported MIME type: ", str));
     }
 
     public final boolean b(n0 n0Var) {

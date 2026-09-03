@@ -7,14 +7,14 @@ public enum i implements w9.f {
     COLLECTION_DISABLED_REMOTE(4),
     COLLECTION_SAMPLED(5);
     
-    public final int f12201a;
+    public final int f11896a;
 
     i(int i10) {
-        this.f12201a = i10;
+        this.f11896a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f12201a;
+        return this.f11896a;
     }
 }

@@ -4,9 +4,9 @@ import j7.r8;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import k7.r7;
 import k7.s7;
-import k7.t7;
-public abstract class f extends s7 {
+public abstract class f extends r7 {
     public static boolean a(Object[] objArr, Object obj) {
         int i10;
         kotlin.jvm.internal.j.e(objArr, "<this>");
@@ -89,9 +89,9 @@ public abstract class f extends s7 {
                 }
                 return arrayList;
             }
-            return t7.a(Long.valueOf(jArr[0]));
+            return s7.a(Long.valueOf(jArr[0]));
         }
-        return o.f48100a;
+        return o.f44712a;
     }
 
     public static List h(Object[] objArr) {
@@ -101,8 +101,8 @@ public abstract class f extends s7 {
             if (length != 1) {
                 return new ArrayList(new d(objArr, false));
             }
-            return t7.a(objArr[0]);
+            return s7.a(objArr[0]);
         }
-        return o.f48100a;
+        return o.f44712a;
     }
 }

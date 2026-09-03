@@ -7,12 +7,12 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class jx0 implements Utilities.Callback {
-    public final int f38138a;
-    public final lx0 f38139b;
+    public final int f35379a;
+    public final lx0 f35380b;
 
     public jx0(lx0 lx0Var, int i10) {
-        this.f38138a = i10;
-        this.f38139b = lx0Var;
+        this.f35379a = i10;
+        this.f35380b = lx0Var;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class jx0 implements Utilities.Callback {
         TL_account.TL_birthday tL_birthday;
         int i10;
         int i11;
-        switch (this.f38138a) {
+        switch (this.f35379a) {
             case 0:
-                PrivacyControlActivity privacyControlActivity = this.f38139b.d;
+                PrivacyControlActivity privacyControlActivity = this.f35380b.d;
                 privacyControlActivity.I = ((Integer) obj).intValue();
-                AndroidUtilities.updateVisibleRow(privacyControlActivity.d, privacyControlActivity.f34524g0);
+                AndroidUtilities.updateVisibleRow(privacyControlActivity.d, privacyControlActivity.f31967g0);
                 privacyControlActivity.E0();
                 return;
             default:
@@ -32,7 +32,7 @@ public final class jx0 implements Utilities.Callback {
                 TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
                 updatebirthday.flags |= 1;
                 updatebirthday.birthday = tL_birthday2;
-                lx0 lx0Var = this.f38139b;
+                lx0 lx0Var = this.f35380b;
                 PrivacyControlActivity privacyControlActivity2 = lx0Var.d;
                 TLRPC.UserFull userFull = privacyControlActivity2.getMessagesController().getUserFull(privacyControlActivity2.getUserConfig().getClientUserId());
                 if (userFull != null) {

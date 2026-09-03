@@ -1,38 +1,20 @@
 package dh;
 
-import android.graphics.RectF;
+import android.graphics.Canvas;
 import android.view.View;
-import r0.j0;
-public final class h implements Runnable {
-    public final int f4755a;
-    public final i f4756b;
+import org.telegram.messenger.ImageReceiver;
+public abstract class h {
+    public final ImageReceiver f4910a = new ImageReceiver();
 
-    public h(i iVar, int i10) {
-        this.f4755a = i10;
-        this.f4756b = iVar;
+    public void a(View view) {
+        ImageReceiver imageReceiver = this.f4910a;
+        imageReceiver.setParentView(view);
+        imageReceiver.onAttachedToWindow();
     }
 
-    @Override
-    public final void run() {
-        int i10 = this.f4755a;
-        i iVar = this.f4756b;
-        switch (i10) {
-            case 0:
-                if (iVar.v != 0) {
-                    iVar.h(false);
-                    return;
-                }
-                return;
-            default:
-                int i11 = iVar.D - 1;
-                iVar.D = i11;
-                if (i11 == 0) {
-                    View view = iVar.B;
-                    RectF rectF = e.f4751e;
-                    iVar.j(e.L(j0.f(view), view, view.getRootView()), false);
-                    return;
-                }
-                return;
-        }
+    public void b() {
+        this.f4910a.onDetachedFromWindow();
     }
+
+    public abstract void c(Canvas canvas, int i10, int i11);
 }

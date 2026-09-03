@@ -5,15 +5,15 @@ import j3.m2;
 import j3.n2;
 import j3.o2;
 public final class p extends o2 {
-    public final c1 f16545b;
+    public final c1 f16374b;
 
     public p(c1 c1Var) {
-        this.f16545b = c1Var;
+        this.f16374b = c1Var;
     }
 
     @Override
     public final int b(Object obj) {
-        if (obj == o.f16540e) {
+        if (obj == o.e) {
             return 0;
         }
         return -1;
@@ -29,9 +29,9 @@ public final class p extends o2 {
             num = null;
         }
         if (z4) {
-            obj = o.f16540e;
+            obj = o.e;
         }
-        m2Var.i(num, obj, 0, -9223372036854775807L, 0L, p4.b.f44229f, true);
+        m2Var.i(num, obj, 0, -9223372036854775807L, 0L, p4.b.f41065f, true);
         return m2Var;
     }
 
@@ -42,13 +42,13 @@ public final class p extends o2 {
 
     @Override
     public final Object l(int i10) {
-        return o.f16540e;
+        return o.e;
     }
 
     @Override
     public final n2 m(int i10, n2 n2Var, long j10) {
-        n2Var.b(n2.E, this.f16545b, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
-        n2Var.f9342w = true;
+        n2Var.b(n2.E, this.f16374b, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
+        n2Var.f8738w = true;
         return n2Var;
     }
 

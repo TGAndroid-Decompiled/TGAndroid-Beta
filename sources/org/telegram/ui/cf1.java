@@ -14,12 +14,12 @@ import org.telegram.messenger.TopicsController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class cf1 extends org.telegram.ui.ActionBar.j {
-    public final Context f35787a;
-    public final sf1 f35788b;
+    public final Context f33136a;
+    public final sf1 f33137b;
 
     public cf1(sf1 sf1Var, Context context) {
-        this.f35788b = sf1Var;
-        this.f35787a = context;
+        this.f33137b = sf1Var;
+        this.f33136a = context;
     }
 
     @Override
@@ -31,11 +31,11 @@ public final class cf1 extends org.telegram.ui.ActionBar.j {
         boolean z10;
         pf1 pf1Var;
         TLRPC.TL_forumTopic tL_forumTopic;
-        sf1 sf1Var = this.f35788b;
-        TopicsController topicsController = sf1Var.f41222s;
-        ArrayList arrayList = sf1Var.f41191b;
+        sf1 sf1Var = this.f33137b;
+        TopicsController topicsController = sf1Var.f38208s;
+        ArrayList arrayList = sf1Var.f38178b;
         HashSet hashSet = sf1Var.X;
-        long j10 = sf1Var.f41188a;
+        long j10 = sf1Var.f38175a;
         if (i10 == -1) {
             if (hashSet.size() > 0) {
                 sf1Var.C0();
@@ -53,9 +53,9 @@ public final class cf1 extends org.telegram.ui.ActionBar.j {
                 sf1Var.F = true;
                 Bundle bundle = new Bundle();
                 bundle.putLong("chat_id", j10);
-                xn xnVar = new xn(bundle);
-                xnVar.f43179ga = true;
-                sf1Var.presentFragment(xnVar);
+                zn znVar = new zn(bundle);
+                znVar.f40598ga = true;
+                sf1Var.presentFragment(znVar);
                 return;
             case 2:
                 TLRPC.ChatFull chatFull = sf1Var.getMessagesController().getChatFull(j10);
@@ -71,26 +71,26 @@ public final class cf1 extends org.telegram.ui.ActionBar.j {
                             i13++;
                         }
                     }
-                    long j11 = chatFull.f20846id;
+                    long j11 = chatFull.f19160id;
                     i11 = ((org.telegram.ui.ActionBar.p2) sf1Var).currentAccount;
-                    af1 af1Var = new af1(this, this.f35787a, i11, hVar, chatFull.f20846id, sf1Var, j11);
-                    af1Var.f26475i0 = new f3.e(this, j11, 10);
+                    af1 af1Var = new af1(this, this.f33136a, i11, hVar, chatFull.f19160id, sf1Var, j11);
+                    af1Var.f24196i0 = new f3.e(this, j11, 10);
                     af1Var.show();
                     return;
                 }
                 return;
             case 3:
-                oe1 a02 = oe1.a0(j10, 0L);
+                ne1 a02 = ne1.a0(j10, 0L);
                 sf1Var.presentFragment(a02);
-                AndroidUtilities.runOnUIThread(new je1(a02, 1), 200L);
+                AndroidUtilities.runOnUIThread(new ie1(a02, 1), 200L);
                 return;
             case 4:
             case 5:
                 if (hashSet.size() > 0) {
-                    sf1Var.f41233z0 = true;
+                    sf1Var.f38219z0 = true;
                     sf1Var.K0 = true;
-                    TopicsController topicsController2 = sf1Var.f41222s;
-                    long j12 = sf1Var.f41188a;
+                    TopicsController topicsController2 = sf1Var.f38208s;
+                    long j12 = sf1Var.f38175a;
                     int intValue = ((Integer) hashSet.iterator().next()).intValue();
                     if (i10 == 4) {
                         z4 = true;
@@ -104,7 +104,7 @@ public final class cf1 extends org.telegram.ui.ActionBar.j {
             case 6:
                 Iterator it = hashSet.iterator();
                 while (it.hasNext()) {
-                    sf1Var.getNotificationsController().muteDialog(-j10, ((Integer) it.next()).intValue(), sf1Var.f41232y0);
+                    sf1Var.getNotificationsController().muteDialog(-j10, ((Integer) it.next()).intValue(), sf1Var.f38218y0);
                 }
                 sf1Var.C0();
                 return;
@@ -116,7 +116,7 @@ public final class cf1 extends org.telegram.ui.ActionBar.j {
                 for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                     TLRPC.TL_forumTopic findTopic = topicsController.findTopic(j10, ((Integer) arrayList2.get(i14)).intValue());
                     if (findTopic != null) {
-                        sf1Var.getMessagesController().markMentionsAsRead(-j10, findTopic.f20897id);
+                        sf1Var.getMessagesController().markMentionsAsRead(-j10, findTopic.f19211id);
                         MessagesController messagesController = sf1Var.getMessagesController();
                         long j13 = -j10;
                         int i15 = findTopic.top_message;
@@ -126,8 +126,8 @@ public final class cf1 extends org.telegram.ui.ActionBar.j {
                         } else {
                             i12 = 0;
                         }
-                        messagesController.markDialogAsRead(j13, i15, 0, i12, false, findTopic.f20897id, 0, true, 0);
-                        sf1Var.getMessagesStorage().updateRepliesMaxReadId(sf1Var.f41188a, findTopic.f20897id, findTopic.top_message, 0, true);
+                        messagesController.markDialogAsRead(j13, i15, 0, i12, false, findTopic.f19211id, 0, true, 0);
+                        sf1Var.getMessagesStorage().updateRepliesMaxReadId(sf1Var.f38175a, findTopic.f19211id, findTopic.top_message, 0, true);
                     }
                 }
                 sf1Var.C0();
@@ -157,7 +157,7 @@ public final class cf1 extends org.telegram.ui.ActionBar.j {
                 while (true) {
                     if (i17 < sf1Var.K.getChildCount()) {
                         View childAt = sf1Var.K.getChildAt(i17);
-                        if ((childAt instanceof pf1) && (tL_forumTopic = (pf1Var = (pf1) childAt).K) != null && tL_forumTopic.f20897id == 1) {
+                        if ((childAt instanceof pf1) && (tL_forumTopic = (pf1Var = (pf1) childAt).K) != null && tL_forumTopic.f19211id == 1) {
                             tL_forumTopic2 = tL_forumTopic;
                         } else {
                             i17++;
@@ -169,8 +169,8 @@ public final class cf1 extends org.telegram.ui.ActionBar.j {
                 if (tL_forumTopic2 == null) {
                     while (true) {
                         if (i13 < arrayList.size()) {
-                            if (arrayList.get(i13) != null && ((jf1) arrayList.get(i13)).f38044c != null && ((jf1) arrayList.get(i13)).f38044c.f20897id == 1) {
-                                tL_forumTopic2 = ((jf1) arrayList.get(i13)).f38044c;
+                            if (arrayList.get(i13) != null && ((jf1) arrayList.get(i13)).f35268c != null && ((jf1) arrayList.get(i13)).f35268c.f19211id == 1) {
+                                tL_forumTopic2 = ((jf1) arrayList.get(i13)).f35268c;
                             } else {
                                 i13++;
                             }
@@ -178,9 +178,9 @@ public final class cf1 extends org.telegram.ui.ActionBar.j {
                     }
                 }
                 if (tL_forumTopic2 != null) {
-                    if (sf1Var.f41229x <= 0) {
+                    if (sf1Var.f38215x <= 0) {
                         sf1Var.B = true;
-                        sf1Var.f41231y = 2;
+                        sf1Var.f38217y = 2;
                     }
                     sf1Var.getMessagesController().getTopicsController().toggleShowTopic(j10, 1, tL_forumTopic2.hidden);
                     if (pf1Var != null) {
@@ -196,13 +196,13 @@ public final class cf1 extends org.telegram.ui.ActionBar.j {
                 return;
             case 14:
                 if (ChatObject.hasAdminRights(sf1Var.getMessagesController().getChat(Long.valueOf(j10)))) {
-                    y5 y5Var = new y5(-j10);
+                    a6 a6Var = new a6(-j10);
                     TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = sf1Var.U;
-                    y5Var.O = tL_premium_boostsStatus;
+                    a6Var.O = tL_premium_boostsStatus;
                     if (tL_premium_boostsStatus != null) {
-                        y5Var.getMessagesController().getBoostsController().userCanBoostChannel(y5Var.M, y5Var.O, new p5(y5Var, 0));
+                        a6Var.getMessagesController().getBoostsController().userCanBoostChannel(a6Var.M, a6Var.O, new r5(a6Var, 0));
                     }
-                    sf1Var.presentFragment(y5Var);
+                    sf1Var.presentFragment(a6Var);
                     return;
                 }
                 sf1Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.openBoostForUsersDialog, Long.valueOf(-j10));

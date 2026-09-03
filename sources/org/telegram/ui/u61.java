@@ -1,3 +1,10 @@
 package org.telegram.ui;
-public interface u61 {
+
+import org.telegram.tgnet.TLRPC;
+public final class u61 extends TLRPC.Document {
+    public final CharSequence f38697a;
+
+    public u61(CharSequence charSequence) {
+        this.f38697a = charSequence;
+    }
 }

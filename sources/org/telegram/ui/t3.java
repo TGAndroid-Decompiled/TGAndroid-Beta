@@ -1,62 +1,156 @@
 package org.telegram.ui;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.util.SparseArray;
-public final class t3 {
-    public TextPaint f41400a;
-    public final SparseArray f41401b = new SparseArray();
-    public final SparseArray f41402c = new SparseArray();
-    public final SparseArray d = new SparseArray();
-    public final SparseArray f41403e = new SparseArray();
-    public final SparseArray f41404f = new SparseArray();
-    public final SparseArray f41405g = new SparseArray();
-    public final SparseArray h = new SparseArray();
-    public final SparseArray f41406i = new SparseArray();
-    public final SparseArray f41407j = new SparseArray();
-    public final SparseArray f41408k = new SparseArray();
-    public final SparseArray f41409l = new SparseArray();
-    public final SparseArray f41410m = new SparseArray();
-    public final SparseArray f41411n = new SparseArray();
-    public final SparseArray f41412o = new SparseArray();
-    public final SparseArray f41413p = new SparseArray();
-    public final SparseArray f41414q = new SparseArray();
-    public final SparseArray f41415r = new SparseArray();
-    public final SparseArray f41416s = new SparseArray();
-    public final SparseArray f41417t = new SparseArray();
-    public final SparseArray f41418u = new SparseArray();
-    public final SparseArray v = new SparseArray();
-    public final SparseArray f41419w = new SparseArray();
-    public final SparseArray f41420x = new SparseArray();
-    public final SparseArray f41421y = new SparseArray();
-    public final SparseArray f41422z = new SparseArray();
-    public final SparseArray A = new SparseArray();
+import android.view.View;
+import java.io.File;
+import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class t3 implements ku0 {
+    public final TLRPC.WebPage f38371a;
+    public final List f38372b;
+    public final n4 f38373c;
 
-    public static void a(l4 l4Var, SparseArray sparseArray) {
-        for (int i10 = 0; i10 < sparseArray.size(); i10++) {
-            int keyAt = sparseArray.keyAt(i10);
-            TextPaint textPaint = (TextPaint) sparseArray.valueAt(i10);
-            if (textPaint != null) {
-                if ((keyAt & 8) == 0 && (keyAt & 512) == 0) {
-                    textPaint.setColor(l4Var.b());
-                } else {
-                    textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.J6, false));
+    public t3(n4 n4Var, TLRPC.WebPage webPage, List list) {
+        this.f38373c = n4Var;
+        this.f38371a = webPage;
+        this.f38372b = list;
+    }
+
+    @Override
+    public final boolean a(int i10) {
+        if (i10 < this.f38372b.size() && i10 >= 0 && k4.g(this.f38371a, get(i10))) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final File b(int i10) {
+        TLRPC.Document a2;
+        TLRPC.PhotoSize closestPhotoSizeWithSize;
+        if (i10 < this.f38372b.size() && i10 >= 0) {
+            TL_iv.PageBlock pageBlock = get(i10);
+            boolean z4 = pageBlock instanceof TL_iv.pageBlockPhoto;
+            TLRPC.WebPage webPage = this.f38371a;
+            if (z4) {
+                TLRPC.Photo e = k4.e(webPage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
+                if (e != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(e.sizes, AndroidUtilities.getPhotoSize())) != null) {
+                    return k4.c(closestPhotoSizeWithSize);
+                }
+            } else if ((pageBlock instanceof TL_iv.pageBlockVideo) && (a2 = k4.a(webPage, ((TL_iv.pageBlockVideo) pageBlock).video_id)) != null) {
+                return k4.c(a2);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public final String c(int i10) {
+        TLObject d = d(i10);
+        if (d instanceof TLRPC.Photo) {
+            d = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) d).sizes, AndroidUtilities.getPhotoSize());
+        }
+        return FileLoader.getAttachFileName(d);
+    }
+
+    @Override
+    public final TLObject d(int i10) {
+        if (i10 < this.f38372b.size() && i10 >= 0) {
+            TL_iv.PageBlock pageBlock = get(i10);
+            boolean z4 = pageBlock instanceof TL_iv.pageBlockPhoto;
+            TLRPC.WebPage webPage = this.f38371a;
+            if (z4) {
+                return k4.e(webPage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
+            }
+            if (pageBlock instanceof TL_iv.pageBlockVideo) {
+                return k4.a(webPage, ((TL_iv.pageBlockVideo) pageBlock).video_id);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public final boolean e(int i10) {
+        if (i10 < this.f38372b.size() && i10 >= 0 && !k4.g(this.f38371a, get(i10))) {
+            l4 l4Var = this.f38373c.f36375r0[0].f37685c;
+            TL_iv.PageBlock pageBlock = get(i10);
+            l4Var.getClass();
+            if (l4.I(pageBlock) == 5) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final TLRPC.PhotoSize f(TLObject tLObject, int[] iArr) {
+        TLRPC.PhotoSize closestPhotoSizeWithSize;
+        if (tLObject instanceof TLRPC.Photo) {
+            TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, AndroidUtilities.getPhotoSize());
+            if (closestPhotoSizeWithSize2 != null) {
+                int i10 = closestPhotoSizeWithSize2.size;
+                iArr[0] = i10;
+                if (i10 == 0) {
+                    iArr[0] = -1;
+                }
+                return closestPhotoSizeWithSize2;
+            }
+            iArr[0] = -1;
+            return null;
+        } else if ((tLObject instanceof TLRPC.Document) && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Document) tLObject).thumbs, 90)) != null) {
+            int i11 = closestPhotoSizeWithSize.size;
+            iArr[0] = i11;
+            if (i11 == 0) {
+                iArr[0] = -1;
+            }
+            return closestPhotoSizeWithSize;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public final Object g() {
+        return this.f38371a;
+    }
+
+    @Override
+    public final TL_iv.PageBlock get(int i10) {
+        return (TL_iv.PageBlock) this.f38372b.get(i10);
+    }
+
+    @Override
+    public final List getAll() {
+        return this.f38372b;
+    }
+
+    @Override
+    public final void h(TL_iv.PageBlock pageBlock) {
+        n4 n4Var = this.f38373c;
+        int childCount = n4Var.f36375r0[0].f37684b.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            View childAt = n4Var.f36375r0[0].f37684b.getChildAt(i10);
+            if (childAt instanceof u2) {
+                u2 u2Var = (u2) childAt;
+                int indexOf = u2Var.d.items.indexOf(pageBlock);
+                if (indexOf != -1) {
+                    u2Var.f38663a.x(indexOf, false);
+                    return;
                 }
             }
         }
     }
 
-    public static void b(int i10, TextPaint textPaint, Typeface typeface, Typeface typeface2, Typeface typeface3, Typeface typeface4) {
-        int i11 = i10 & 1;
-        if (i11 != 0 && (i10 & 2) != 0) {
-            textPaint.setTypeface(typeface2);
-        } else if (i11 != 0) {
-            textPaint.setTypeface(typeface3);
-        } else if ((i10 & 2) != 0) {
-            textPaint.setTypeface(typeface4);
-        } else if ((i10 & 4) != 0) {
-        } else {
-            textPaint.setTypeface(typeface);
-        }
+    @Override
+    public final java.lang.CharSequence i(int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.t3.i(int):java.lang.CharSequence");
+    }
+
+    @Override
+    public final int j() {
+        return this.f38372b.size();
     }
 }

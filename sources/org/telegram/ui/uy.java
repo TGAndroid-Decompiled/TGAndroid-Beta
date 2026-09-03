@@ -1,40 +1,50 @@
 package org.telegram.ui;
 
-import android.graphics.Rect;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class uy implements org.telegram.ui.Components.ll0 {
-    public final Rect f41954a = new Rect();
-    public final yy f41955b;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import org.telegram.messenger.MessagesController;
+public final class uy implements DialogInterface.OnClickListener {
+    public final int f38928a;
+    public final int f38929b;
+    public final Object f38930c;
 
-    public uy(yy yyVar) {
-        this.f41955b = yyVar;
+    public uy(Object obj, int i10, int i11) {
+        this.f38928a = i11;
+        this.f38930c = obj;
+        this.f38929b = i10;
     }
 
     @Override
-    public final boolean mo17c(float f10, float f11, int i10, View view) {
-        yy yyVar = this.f41955b;
-        if (yyVar.getParentActivity() != null && (view instanceof org.telegram.ui.Cells.g4)) {
-            Rect rect = this.f41954a;
-            ((ImageView) view.getTag(R.id.object_tag)).getHitRect(rect);
-            if (!rect.contains((int) f10, (int) f11)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(yyVar.getParentActivity());
-                alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.Delete)}, new ty(this, i10, 0));
-                yyVar.showDialog(alertDialog$Builder.f21168a);
-                return true;
-            }
+    public final void onClick(DialogInterface dialogInterface, int i10) {
+        switch (this.f38928a) {
+            case 0:
+                zy zyVar = ((vy) this.f38930c).f39220b;
+                if (i10 == 0) {
+                    zyVar.e.remove(this.f38929b - zyVar.f40896n);
+                    zyVar.Z();
+                    yy yyVar = zyVar.f40895f;
+                    if (yyVar != null) {
+                        yyVar.a();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                NotificationsSettingsActivity.X((NotificationsSettingsActivity) this.f38930c, this.f38929b, i10);
+                return;
+            default:
+                ThemeActivity themeActivity = (ThemeActivity) this.f38930c;
+                themeActivity.getClass();
+                SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+                edit.putInt("sortContactsBy", i10);
+                edit.commit();
+                tb1 tb1Var = themeActivity.f32305a;
+                if (tb1Var != null) {
+                    tb1Var.m(this.f38929b);
+                    return;
+                }
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final void h() {
-    }
-
-    @Override
-    public final void p(float f10) {
     }
 }

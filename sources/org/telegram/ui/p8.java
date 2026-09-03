@@ -1,55 +1,50 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import j$.util.function.Function$CC;
+import java.util.function.Function;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class p8 implements View.OnClickListener {
-    public final int f39915a;
-    public final l9 f39916b;
+public final class p8 implements Function {
+    public final int f36992a;
 
-    public p8(l9 l9Var, int i10) {
-        this.f39915a = i10;
-        this.f39916b = l9Var;
+    public p8(int i10) {
+        this.f36992a = i10;
+    }
+
+    public Function andThen(Function function) {
+        int i10 = this.f36992a;
+        return Function$CC.$default$andThen(this, function);
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f39915a) {
+    public final Object apply(Object obj) {
+        switch (this.f36992a) {
             case 0:
-                Long l10 = (Long) view.getTag();
-                l9 l9Var = this.f39916b;
-                ChatObject.Call groupCall = l9Var.getMessagesController().getGroupCall(l10.longValue(), false);
-                TLRPC.Chat chat = l9Var.getMessagesController().getChat(l10);
-                l9Var.N = chat;
-                if (groupCall != null) {
-                    org.telegram.ui.Components.voip.g2.l(chat, null, false, null, l9Var.getParentActivity(), l9Var, l9Var.getAccountInstance());
-                    return;
-                }
-                l9Var.O = l10;
-                l9Var.getMessagesController().loadFullChat(l10.longValue(), 0, true);
-                return;
+                return Long.valueOf(DialogObject.getPeerDialogId((TLRPC.Peer) obj));
             case 1:
-                this.f39916b.k0(true);
-                return;
+                return Long.valueOf(((MessageObject) obj).getFromChatId());
             case 2:
-                l9 l9Var2 = this.f39916b;
-                org.telegram.ui.Components.q70 H = org.telegram.ui.Components.q70.H(l9Var2, l9Var2.C);
-                H.f30333s = 8;
-                if (l9Var2.getUserConfig().showCallsTab) {
-                    H.c(R.drawable.msg_archive_hide, LocaleController.getString(R.string.HideCallTab), new l8(l9Var2, 1), false);
+                return Integer.valueOf(((MessageObject) obj).getId());
+            case 3:
+                TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) obj;
+                if (channelParticipant == null) {
+                    return null;
                 }
-                H.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteAllCalls), new l8(l9Var2, 2), true);
-                H.Z();
-                H.X(-AndroidUtilities.dp(64.0f));
-                return;
+                return channelParticipant.banned_rights;
+            case 4:
+                return Long.valueOf(DialogObject.getPeerDialogId(((TLRPC.GroupCallParticipant) obj).peer));
+            case 5:
+                return Long.valueOf(DialogObject.getPeerDialogId(((TLRPC.GroupCallParticipant) obj).peer));
+            case 6:
+                return ((ut) obj).f38913a;
             default:
-                l9 l9Var3 = this.f39916b;
-                l9Var3.getClass();
-                l9.m0(l9Var3);
-                return;
+                return ((ut) obj).f38913a;
         }
+    }
+
+    public Function compose(Function function) {
+        int i10 = this.f36992a;
+        return Function$CC.$default$compose(this, function);
     }
 }

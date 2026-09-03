@@ -11,15 +11,15 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stats;
 public final class a implements Vector.TLDeserializer {
-    public final int f21102a;
+    public final int f19414a;
 
     public a(int i10) {
-        this.f21102a = i10;
+        this.f19414a = i10;
     }
 
     @Override
     public final TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z4) {
-        switch (this.f21102a) {
+        switch (this.f19414a) {
             case 0:
                 return TL_iv.pageTableCell.TLdeserialize(inputSerializedData, i10, z4);
             case 1:

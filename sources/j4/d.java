@@ -6,19 +6,19 @@ import h5.d0;
 import java.util.Arrays;
 public final class d extends j {
     public static final Parcelable.Creator<d> CREATOR = new f8.o(15);
-    public final String f9515b;
-    public final boolean f9516c;
+    public final String f8894b;
+    public final boolean f8895c;
     public final boolean d;
-    public final String[] f9517e;
-    public final j[] f9518f;
+    public final String[] e;
+    public final j[] f8896f;
 
     public d(String str, boolean z4, boolean z10, String[] strArr, j[] jVarArr) {
         super("CTOC");
-        this.f9515b = str;
-        this.f9516c = z4;
+        this.f8894b = str;
+        this.f8895c = z4;
         this.d = z10;
-        this.f9517e = strArr;
-        this.f9518f = jVarArr;
+        this.e = strArr;
+        this.f8896f = jVarArr;
     }
 
     public final boolean equals(Object obj) {
@@ -27,7 +27,7 @@ public final class d extends j {
         }
         if (obj != null && d.class == obj.getClass()) {
             d dVar = (d) obj;
-            if (this.f9516c == dVar.f9516c && this.d == dVar.d && d0.a(this.f9515b, dVar.f9515b) && Arrays.equals(this.f9517e, dVar.f9517e) && Arrays.equals(this.f9518f, dVar.f9518f)) {
+            if (this.f8895c == dVar.f8895c && this.d == dVar.d && d0.a(this.f8894b, dVar.f8894b) && Arrays.equals(this.e, dVar.e) && Arrays.equals(this.f8896f, dVar.f8896f)) {
                 return true;
             }
         }
@@ -36,8 +36,8 @@ public final class d extends j {
 
     public final int hashCode() {
         int i10;
-        int i11 = (((527 + (this.f9516c ? 1 : 0)) * 31) + (this.d ? 1 : 0)) * 31;
-        String str = this.f9515b;
+        int i11 = (((527 + (this.f8895c ? 1 : 0)) * 31) + (this.d ? 1 : 0)) * 31;
+        String str = this.f8894b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
@@ -48,11 +48,11 @@ public final class d extends j {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f9515b);
-        parcel.writeByte(this.f9516c ? (byte) 1 : (byte) 0);
+        parcel.writeString(this.f8894b);
+        parcel.writeByte(this.f8895c ? (byte) 1 : (byte) 0);
         parcel.writeByte(this.d ? (byte) 1 : (byte) 0);
-        parcel.writeStringArray(this.f9517e);
-        j[] jVarArr = this.f9518f;
+        parcel.writeStringArray(this.e);
+        j[] jVarArr = this.f8896f;
         parcel.writeInt(jVarArr.length);
         for (j jVar : jVarArr) {
             parcel.writeParcelable(jVar, 0);
@@ -62,15 +62,15 @@ public final class d extends j {
     public d(Parcel parcel) {
         super("CTOC");
         String readString = parcel.readString();
-        int i10 = d0.f7237a;
-        this.f9515b = readString;
-        this.f9516c = parcel.readByte() != 0;
+        int i10 = d0.f6924a;
+        this.f8894b = readString;
+        this.f8895c = parcel.readByte() != 0;
         this.d = parcel.readByte() != 0;
-        this.f9517e = parcel.createStringArray();
+        this.e = parcel.createStringArray();
         int readInt = parcel.readInt();
-        this.f9518f = new j[readInt];
+        this.f8896f = new j[readInt];
         for (int i11 = 0; i11 < readInt; i11++) {
-            this.f9518f[i11] = (j) parcel.readParcelable(j.class.getClassLoader());
+            this.f8896f[i11] = (j) parcel.readParcelable(j.class.getClassLoader());
         }
     }
 }

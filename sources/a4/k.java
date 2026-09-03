@@ -11,25 +11,25 @@ import h5.v;
 import java.util.Arrays;
 import l3.o0;
 import l7.w0;
-import mh.m5;
+import lh.m5;
 import org.telegram.ui.Components.bz0;
 import org.telegram.ui.Components.dz0;
+import org.telegram.ui.Components.tp0;
 import r3.m;
-import r3.x;
 public final class k implements b0 {
-    public int f92a;
-    public final Object f93b;
-    public final Object f94c;
+    public int f84a;
+    public final Object f85b;
+    public final Object f86c;
     public final Object d;
-    public final Object f95e;
+    public final Object e;
 
     public k(int i10) {
-        this.f92a = i10;
+        this.f84a = i10;
         int i11 = i10 * 8;
-        this.f93b = new float[i11];
-        this.f94c = new float[i11];
+        this.f85b = new float[i11];
+        this.f86c = new float[i11];
         this.d = new short[i10 * 6];
-        this.f95e = new int[i10 * 4];
+        this.e = new int[i10 * 4];
         for (short s6 = 0; s6 < i10; s6 = (short) (s6 + 1)) {
             int i12 = s6 * 6;
             int i13 = s6 * 4;
@@ -69,7 +69,7 @@ public final class k implements b0 {
     }
 
     public void e(int i10, int i11) {
-        int[] iArr = (int[]) this.f95e;
+        int[] iArr = (int[]) this.e;
         int i12 = i10 * 4;
         iArr[i12] = i11;
         iArr[i12 + 1] = i11;
@@ -84,11 +84,11 @@ public final class k implements b0 {
             return;
         }
         iArr[i10] = 1;
-        for (bz0 bz0Var : ((bz0[][]) this.f94c)[i10]) {
-            f(bz0Var.f25716a.f27670b);
-            int i11 = this.f92a;
-            this.f92a = i11 - 1;
-            ((bz0[]) this.f93b)[i11] = bz0Var;
+        for (bz0 bz0Var : ((bz0[][]) this.f86c)[i10]) {
+            f(bz0Var.f23776a.f25526b);
+            int i11 = this.f84a;
+            this.f84a = i11 - 1;
+            ((bz0[]) this.f85b)[i11] = bz0Var;
         }
         iArr[i10] = 2;
     }
@@ -102,56 +102,56 @@ public final class k implements b0 {
     }
 
     public k(g5.l lVar, r3.i iVar) {
-        m5 m5Var = new m5(iVar, 5);
+        m5 m5Var = new m5(iVar, 14);
         w0 w0Var = new w0(14);
-        ab.a aVar = new ab.a(7);
-        this.f93b = lVar;
-        this.f94c = m5Var;
+        z9.d dVar = new z9.d(6);
+        this.f85b = lVar;
+        this.f86c = m5Var;
         this.d = w0Var;
-        this.f95e = aVar;
-        this.f92a = 1048576;
+        this.e = dVar;
+        this.f84a = 1048576;
     }
 
-    public k(o0 o0Var, x xVar, byte[] bArr, h5.c[] cVarArr, int i10) {
-        this.f93b = o0Var;
-        this.f94c = xVar;
+    public k(o0 o0Var, tp0 tp0Var, byte[] bArr, h5.c[] cVarArr, int i10) {
+        this.f85b = o0Var;
+        this.f86c = tp0Var;
         this.d = bArr;
-        this.f95e = cVarArr;
-        this.f92a = i10;
+        this.e = cVarArr;
+        this.f84a = i10;
     }
 
     public k(f0 f0Var, int i10) {
-        this.f95e = f0Var;
-        this.f93b = new v(new byte[5], 5);
-        this.f94c = new SparseArray();
+        this.e = f0Var;
+        this.f85b = new v(new byte[5], 5);
+        this.f86c = new SparseArray();
         this.d = new SparseIntArray();
-        this.f92a = i10;
+        this.f84a = i10;
     }
 
     public k(dz0 dz0Var, bz0[] bz0VarArr) {
-        this.f95e = dz0Var;
+        this.e = dz0Var;
         int length = bz0VarArr.length;
-        this.f93b = new bz0[length];
-        this.f92a = length - 1;
-        int e6 = dz0Var.e() + 1;
-        bz0[][] bz0VarArr2 = new bz0[e6];
-        int[] iArr = new int[e6];
+        this.f85b = new bz0[length];
+        this.f84a = length - 1;
+        int e = dz0Var.e() + 1;
+        bz0[][] bz0VarArr2 = new bz0[e];
+        int[] iArr = new int[e];
         for (bz0 bz0Var : bz0VarArr) {
-            int i10 = bz0Var.f25716a.f27669a;
+            int i10 = bz0Var.f23776a.f25525a;
             iArr[i10] = iArr[i10] + 1;
         }
-        for (int i11 = 0; i11 < e6; i11++) {
+        for (int i11 = 0; i11 < e; i11++) {
             bz0VarArr2[i11] = new bz0[iArr[i11]];
         }
         Arrays.fill(iArr, 0);
         for (bz0 bz0Var2 : bz0VarArr) {
-            int i12 = bz0Var2.f25716a.f27669a;
+            int i12 = bz0Var2.f23776a.f25525a;
             bz0[] bz0VarArr3 = bz0VarArr2[i12];
             int i13 = iArr[i12];
             iArr[i12] = i13 + 1;
             bz0VarArr3[i13] = bz0Var2;
         }
-        this.f94c = bz0VarArr2;
-        this.d = new int[((dz0) this.f95e).e() + 1];
+        this.f86c = bz0VarArr2;
+        this.d = new int[((dz0) this.e).e() + 1];
     }
 }

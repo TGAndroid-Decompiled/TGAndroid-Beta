@@ -1,141 +1,379 @@
 package yf;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.os.Build;
+import android.text.TextPaint;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import k7.c6;
+import dg.f0;
+import k7.b6;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Cells.z;
-import org.telegram.ui.Components.RadialProgressView;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.tl0;
-import qh.i2;
-public class e extends FrameLayout {
-    public boolean B;
-    public boolean C;
-    public boolean D;
-    public Drawable E;
-    public z F;
-    public final g6 G;
-    public final tl0 H;
-    public DecimalFormat I;
-    public boolean f50947a;
-    public final LinearLayout f50948b;
-    public sf.f[] f50949c;
-    public final TextView d;
-    public final TextView f50950e;
-    public final ImageView f50951f;
-    public final RadialProgressView h;
-    public final SimpleDateFormat f50952n;
-    public final SimpleDateFormat f50953r;
-    public final SimpleDateFormat f50954s;
-    public final SimpleDateFormat v;
-    public final SimpleDateFormat f50955w;
-    public boolean f50956x;
-    public boolean f50957y;
+import org.telegram.ui.ActionBar.j6;
+public final class e extends FrameLayout {
+    public final Paint f47266a;
+    public final Paint f47267b;
+    public final ImageView f47268c;
+    public final ImageView d;
+    public final ImageView e;
+    public String f47269f;
+    public final TextPaint h;
+    public float f47270n;
+    public final RectF f47271r;
+    public float f47272s;
+    public d v;
 
-    public e(Context context, g6 g6Var) {
+    public e(Context context) {
         super(context);
-        this.f50952n = new SimpleDateFormat("E, ");
-        this.f50953r = new SimpleDateFormat("MMM dd");
-        this.f50954s = new SimpleDateFormat("d MMM yyyy");
-        this.v = new SimpleDateFormat("d MMM");
-        this.f50955w = new SimpleDateFormat(" HH:mm");
-        this.D = true;
-        this.H = new tl0(this, 12);
-        this.G = g6Var;
-        setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        LinearLayout linearLayout = new LinearLayout(getContext());
-        this.f50948b = linearLayout;
-        linearLayout.setOrientation(1);
-        TextView textView = new TextView(context);
-        this.d = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        TextView textView2 = new TextView(context);
-        this.f50950e = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(AndroidUtilities.bold());
+        this.f47271r = new RectF(0.0f, 0.0f, 0.0f, 0.0f);
+        Paint paint = new Paint();
+        this.f47266a = paint;
+        Paint.Style style = Paint.Style.FILL;
+        paint.setStyle(style);
+        paint.setColor(-1);
+        paint.setAlpha(255);
+        paint.setAntiAlias(true);
+        Paint paint2 = new Paint();
+        this.f47267b = paint2;
+        paint2.setStyle(style);
+        paint2.setColor(-11420173);
+        paint2.setAlpha(255);
+        paint2.setAntiAlias(true);
         ImageView imageView = new ImageView(context);
-        this.f50951f = imageView;
-        imageView.setImageResource(R.drawable.ic_chevron_right_black_18dp);
-        RadialProgressView radialProgressView = new RadialProgressView(context, null);
-        this.h = radialProgressView;
-        radialProgressView.setSize(AndroidUtilities.dp(12.0f));
-        radialProgressView.setStrokeWidth(AndroidUtilities.dp(0.5f));
-        radialProgressView.setVisibility(8);
-        addView(linearLayout, c6.d(-2, -2.0f, 0, 0.0f, 22.0f, 0.0f, 0.0f));
-        addView(textView, c6.d(-2, -2.0f, 8388611, 4.0f, 0.0f, 4.0f, 0.0f));
-        addView(textView2, c6.d(-2, -2.0f, 8388613, 4.0f, 0.0f, 4.0f, 0.0f));
-        addView(imageView, c6.d(18, 18.0f, 8388661, 0.0f, 2.0f, 0.0f, 0.0f));
-        addView(radialProgressView, c6.d(18, 18.0f, 8388661, 0.0f, 2.0f, 0.0f, 0.0f));
-        b();
+        this.e = imageView;
+        imageView.setImageResource(R.drawable.msg_photo_flip);
+        imageView.setBackgroundDrawable(j6.f0(1090519039, 1, -1));
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setOnClickListener(new View.OnClickListener(this) {
+            public final e f47265b;
+
+            {
+                this.f47265b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        e eVar = this.f47265b;
+                        d dVar = eVar.v;
+                        if (dVar != null) {
+                            eVar.setMirrored(dVar.a());
+                            return;
+                        }
+                        return;
+                    case 1:
+                        d dVar2 = this.f47265b.v;
+                        if (dVar2 != null) {
+                            dVar2.b();
+                            return;
+                        }
+                        return;
+                    default:
+                        e eVar2 = this.f47265b;
+                        d dVar3 = eVar2.v;
+                        if (dVar3 != null) {
+                            eVar2.setRotated(dVar3.d());
+                            return;
+                        }
+                        return;
+                }
+            }
+        });
+        imageView.setOnLongClickListener(new f0(this, 6));
+        imageView.setContentDescription(LocaleController.getString(R.string.AccDescrMirror));
+        addView(imageView, b6.e(70, 64, 19));
+        ImageView imageView2 = new ImageView(context);
+        this.f47268c = imageView2;
+        imageView2.setImageResource(R.drawable.msg_photo_cropfix);
+        imageView2.setBackgroundDrawable(j6.f0(1090519039, 1, -1));
+        imageView2.setScaleType(scaleType);
+        imageView2.setOnClickListener(new View.OnClickListener(this) {
+            public final e f47265b;
+
+            {
+                this.f47265b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        e eVar = this.f47265b;
+                        d dVar = eVar.v;
+                        if (dVar != null) {
+                            eVar.setMirrored(dVar.a());
+                            return;
+                        }
+                        return;
+                    case 1:
+                        d dVar2 = this.f47265b.v;
+                        if (dVar2 != null) {
+                            dVar2.b();
+                            return;
+                        }
+                        return;
+                    default:
+                        e eVar2 = this.f47265b;
+                        d dVar3 = eVar2.v;
+                        if (dVar3 != null) {
+                            eVar2.setRotated(dVar3.d());
+                            return;
+                        }
+                        return;
+                }
+            }
+        });
+        imageView2.setVisibility(8);
+        imageView2.setContentDescription(LocaleController.getString(R.string.AccDescrAspectRatio));
+        addView(imageView2, b6.e(70, 64, 19));
+        ImageView imageView3 = new ImageView(context);
+        this.d = imageView3;
+        imageView3.setImageResource(R.drawable.msg_photo_rotate);
+        imageView3.setBackgroundDrawable(j6.f0(1090519039, 1, -1));
+        imageView3.setScaleType(scaleType);
+        imageView3.setOnClickListener(new View.OnClickListener(this) {
+            public final e f47265b;
+
+            {
+                this.f47265b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        e eVar = this.f47265b;
+                        d dVar = eVar.v;
+                        if (dVar != null) {
+                            eVar.setMirrored(dVar.a());
+                            return;
+                        }
+                        return;
+                    case 1:
+                        d dVar2 = this.f47265b.v;
+                        if (dVar2 != null) {
+                            dVar2.b();
+                            return;
+                        }
+                        return;
+                    default:
+                        e eVar2 = this.f47265b;
+                        d dVar3 = eVar2.v;
+                        if (dVar3 != null) {
+                            eVar2.setRotated(dVar3.d());
+                            return;
+                        }
+                        return;
+                }
+            }
+        });
+        imageView3.setContentDescription(LocaleController.getString(R.string.AccDescrRotate));
+        addView(imageView3, b6.e(70, 64, 21));
+        TextPaint textPaint = new TextPaint(1);
+        this.h = textPaint;
+        textPaint.setColor(-1);
+        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        setWillNotDraw(false);
+        b(0.0f);
     }
 
-    public static String a(String str) {
-        if (str.length() > 0) {
-            return Character.toUpperCase(str.charAt(0)) + str.substring(1);
-        }
-        return str;
-    }
-
-    public void b() {
-        int i10 = k6.f21768j5;
-        g6 g6Var = this.G;
-        this.d.setTextColor(k6.v0(i10, g6Var));
-        this.f50950e.setTextColor(k6.v0(i10, g6Var));
-        int i11 = k6.gj;
-        this.f50951f.setColorFilter(k6.v0(i11, g6Var));
-        this.h.setProgressColor(k6.v0(i11, g6Var));
-        this.E = getContext().getResources().getDrawable(R.drawable.stats_tooltip).mutate();
-        int dp = AndroidUtilities.dp(4.0f);
-        this.F = k6.i0(dp, dp, dp, dp, k6.v0(k6.f21733h5, g6Var), k6.v0(k6.f21752i6, g6Var), -16777216);
-        pq pqVar = new pq(this.E, this.F, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        pqVar.f30166w = true;
-        setBackground(pqVar);
-    }
-
-    public final void c(int r22, long r23, java.util.ArrayList r25, boolean r26, int r27, float r28) {
-        throw new UnsupportedOperationException("Method not decompiled: yf.e.c(int, long, java.util.ArrayList, boolean, int, float):void");
-    }
-
-    public final void d(boolean z4, boolean z10) {
-        tl0 tl0Var = this.H;
+    public final void a(Canvas canvas, int i10, float f10, int i11, int i12, boolean z4, Paint paint) {
+        int i13;
+        float f11;
+        int dp = (int) ((i11 / 2.0f) - AndroidUtilities.dp(70.0f));
+        int cos = (int) (Math.cos(Math.toRadians(90.0f - ((i10 * 5) + f10))) * dp);
+        int i14 = (i11 / 2) + cos;
+        float abs = Math.abs(cos) / dp;
+        int min = Math.min(255, Math.max(0, (int) ((1.0f - (abs * abs)) * 255.0f)));
         if (z4) {
-            AndroidUtilities.runOnUIThread(tl0Var, 300L);
-            return;
+            paint = this.f47267b;
         }
-        AndroidUtilities.cancelRunOnUIThread(tl0Var);
-        RadialProgressView radialProgressView = this.h;
-        if (z10) {
-            radialProgressView.setVisibility(8);
-            return;
+        Paint paint2 = paint;
+        paint2.setAlpha(min);
+        if (z4) {
+            i13 = 4;
+        } else {
+            i13 = 2;
         }
-        this.f50951f.animate().setDuration(80L).alpha(1.0f).start();
-        if (radialProgressView.getVisibility() == 0) {
-            radialProgressView.animate().setDuration(80L).alpha(0.0f).setListener(new i2(this, 12)).start();
+        if (z4) {
+            f11 = 16.0f;
+        } else {
+            f11 = 12.0f;
+        }
+        int dp2 = AndroidUtilities.dp(f11);
+        int i15 = i13 / 2;
+        canvas.drawRect(i14 - i15, (i12 - dp2) / 2, i14 + i15, (i12 + dp2) / 2, paint2);
+    }
+
+    public final void b(float f10) {
+        this.f47270n = f10;
+        if (Math.abs(f10) < 0.099d) {
+            f10 = Math.abs(f10);
+        }
+        this.f47269f = String.format("%.1fº", Float.valueOf(f10));
+        invalidate();
+    }
+
+    @Override
+    public float getRotation() {
+        return this.f47270n;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Paint paint;
+        boolean z4;
+        Paint paint2;
+        boolean z10;
+        super.onDraw(canvas);
+        int width = getWidth();
+        int height = getHeight();
+        float f10 = (-this.f47270n) * 2.0f;
+        float f11 = f10 % 5.0f;
+        int floor = (int) Math.floor(f10 / 5.0f);
+        int i10 = 0;
+        while (true) {
+            Paint paint3 = this.f47267b;
+            if (i10 < 16) {
+                Paint paint4 = this.f47266a;
+                if (i10 >= floor && (i10 != 0 || f11 >= 0.0f)) {
+                    paint = paint4;
+                } else {
+                    paint = paint3;
+                }
+                if (i10 != floor && (i10 != 0 || floor != -1)) {
+                    z4 = false;
+                } else {
+                    z4 = true;
+                }
+                Canvas canvas2 = canvas;
+                a(canvas2, i10, f11, width, height, z4, paint);
+                int i11 = i10;
+                if (i11 != 0) {
+                    int i12 = -i11;
+                    if (i12 > floor) {
+                        paint2 = paint3;
+                    } else {
+                        paint2 = paint4;
+                    }
+                    if (i12 == floor + 1) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    a(canvas2, i12, f11, width, height, z10, paint2);
+                }
+                i10 = i11 + 1;
+                canvas = canvas2;
+            } else {
+                Canvas canvas3 = canvas;
+                paint3.setAlpha(255);
+                RectF rectF = this.f47271r;
+                rectF.left = (width - AndroidUtilities.dp(2.5f)) / 2;
+                rectF.top = org.telegram.ui.b.x(22.0f, height, 2);
+                rectF.right = (AndroidUtilities.dp(2.5f) + width) / 2;
+                rectF.bottom = (AndroidUtilities.dp(22.0f) + height) / 2;
+                canvas3.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paint3);
+                String str = this.f47269f;
+                TextPaint textPaint = this.h;
+                canvas3.drawText(this.f47269f, (width - textPaint.measureText(str)) / 2.0f, AndroidUtilities.dp(14.0f), textPaint);
+                return;
+            }
         }
     }
 
-    public void setSize(int i10) {
-        LinearLayout linearLayout = this.f50948b;
-        linearLayout.removeAllViews();
-        this.f50949c = new sf.f[i10];
-        for (int i11 = 0; i11 < i10; i11++) {
-            this.f50949c[i11] = new sf.f(this);
-            linearLayout.addView((LinearLayout) this.f50949c[i11].f47353e);
-        }
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(400.0f)), 1073741824), i11);
     }
 
-    public void setUseWeek(boolean z4) {
-        this.f50956x = z4;
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int actionMasked = motionEvent.getActionMasked();
+        float x10 = motionEvent.getX();
+        if (actionMasked == 0) {
+            this.f47272s = x10;
+            d dVar = this.v;
+            if (dVar != null) {
+                dVar.e();
+                return true;
+            }
+        } else if (actionMasked != 1 && actionMasked != 3) {
+            if (actionMasked == 2) {
+                float max = Math.max(-45.0f, Math.min(45.0f, this.f47270n + ((float) ((((this.f47272s - x10) / AndroidUtilities.density) / 3.141592653589793d) / 1.649999976158142d))));
+                if (Build.VERSION.SDK_INT >= 27) {
+                    try {
+                        if ((Math.abs(max - 45.0f) < 0.001f && Math.abs(this.f47270n - 45.0f) >= 0.001f) || (Math.abs(max - (-45.0f)) < 0.001f && Math.abs(this.f47270n - (-45.0f)) >= 0.001f)) {
+                            performHapticFeedback(3, 1);
+                        } else if (Math.floor(this.f47270n / 2.5f) != Math.floor(max / 2.5f)) {
+                            AndroidUtilities.vibrateCursor(this);
+                        }
+                    } catch (Exception unused) {
+                    }
+                }
+                if (Math.abs(max - this.f47270n) > 0.001d) {
+                    if (Math.abs(max) < 0.05d) {
+                        max = 0.0f;
+                    }
+                    b(max);
+                    d dVar2 = this.v;
+                    if (dVar2 != null) {
+                        dVar2.f(this.f47270n);
+                    }
+                    this.f47272s = x10;
+                }
+            }
+        } else {
+            d dVar3 = this.v;
+            if (dVar3 != null) {
+                dVar3.c();
+            }
+            AndroidUtilities.makeAccessibilityAnnouncement(String.format("%.1f°", Float.valueOf(this.f47270n)));
+            return true;
+        }
+        return true;
+    }
+
+    public void setAspectLock(boolean z4) {
+        PorterDuffColorFilter porterDuffColorFilter;
+        if (z4) {
+            porterDuffColorFilter = new PorterDuffColorFilter(-11420173, PorterDuff.Mode.MULTIPLY);
+        } else {
+            porterDuffColorFilter = null;
+        }
+        this.f47268c.setColorFilter(porterDuffColorFilter);
+    }
+
+    public void setListener(d dVar) {
+        this.v = dVar;
+    }
+
+    public void setMirrored(boolean z4) {
+        PorterDuffColorFilter porterDuffColorFilter = null;
+        if (z4) {
+            porterDuffColorFilter = new PorterDuffColorFilter(j6.w0(null, j6.f20279zf, false), PorterDuff.Mode.MULTIPLY);
+        }
+        this.e.setColorFilter(porterDuffColorFilter);
+    }
+
+    public void setRotated(boolean z4) {
+        PorterDuffColorFilter porterDuffColorFilter = null;
+        if (z4) {
+            porterDuffColorFilter = new PorterDuffColorFilter(j6.w0(null, j6.f20279zf, false), PorterDuff.Mode.MULTIPLY);
+        }
+        this.d.setColorFilter(porterDuffColorFilter);
+    }
+
+    public void setFreeform(boolean z4) {
     }
 }

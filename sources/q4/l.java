@@ -1,10 +1,10 @@
 package q4;
 public interface l {
-    public static final db.a f44530z = new db.a(20);
+    public static final cb.b f42782z = new cb.b(20);
 
-    long k();
+    long a1();
 
-    long l();
+    long n0();
 
     boolean next();
 }

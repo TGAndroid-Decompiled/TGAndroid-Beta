@@ -1,56 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public final class ck0 extends f2.v0 {
-    public final int f25971a;
-    public final qk0 f25972b;
+public final class ck0 extends AnimatorListenerAdapter {
+    public final int f23959a;
+    public final pk0 f23960b;
 
-    public ck0(qk0 qk0Var, int i10) {
-        this.f25971a = i10;
-        this.f25972b = qk0Var;
+    public ck0(pk0 pk0Var, int i10) {
+        this.f23959a = i10;
+        this.f23960b = pk0Var;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, f2.j1 j1Var) {
-        switch (this.f25971a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f23959a) {
             case 0:
-                super.a(rect, view, recyclerView, j1Var);
-                qk0 qk0Var = this.f25972b;
-                if (!qk0Var.q()) {
-                    recyclerView.getClass();
-                    int R = RecyclerView.R(view);
-                    if (R == 0) {
-                        rect.left = AndroidUtilities.dp(6.0f);
-                    }
-                    rect.right = AndroidUtilities.dp(4.0f);
-                    if (R == qk0Var.U.h() - 1) {
-                        if ((!qk0Var.R.isEmpty() && !MessagesController.getInstance(qk0Var.G).premiumFeaturesBlocked()) || qk0Var.q()) {
-                            rect.right = AndroidUtilities.dp(2.0f);
-                            return;
-                        } else {
-                            rect.right = AndroidUtilities.dp(6.0f);
-                            return;
-                        }
-                    }
-                    return;
-                }
-                rect.left = 0;
-                rect.right = 0;
+                super.onAnimationEnd(animator);
+                this.f23960b.I0.unlock();
+                return;
+            case 1:
+                super.onAnimationEnd(animator);
+                pk0 pk0Var = this.f23960b;
+                pk0Var.N = null;
+                pk0Var.f27901k0 = 0.0f;
+                pk0Var.f27899i0 = null;
+                pk0Var.invalidate();
                 return;
             default:
-                recyclerView.getClass();
-                int R2 = RecyclerView.R(view);
-                if (R2 == 0) {
-                    rect.left = AndroidUtilities.dp(8.0f);
-                }
-                if (R2 == this.f25972b.U.h() - 1) {
-                    rect.right = AndroidUtilities.dp(8.0f);
-                    return;
-                }
+                AndroidUtilities.removeFromParent(this.f23960b);
                 return;
         }
     }

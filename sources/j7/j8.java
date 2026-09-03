@@ -6,8 +6,8 @@ import android.util.Log;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 public abstract class j8 {
-    public static long f9665a;
-    public static Method f9666b;
+    public static long f9032a;
+    public static Method f9033b;
 
     public static void a(String str) {
         if (str.length() > 127) {
@@ -21,20 +21,20 @@ public abstract class j8 {
             return j2.a.a();
         }
         try {
-            if (f9666b == null) {
-                f9665a = Trace.class.getField("TRACE_TAG_APP").getLong(null);
-                f9666b = Trace.class.getMethod("isTagEnabled", Long.TYPE);
+            if (f9033b == null) {
+                f9032a = Trace.class.getField("TRACE_TAG_APP").getLong(null);
+                f9033b = Trace.class.getMethod("isTagEnabled", Long.TYPE);
             }
-            return ((Boolean) f9666b.invoke(null, Long.valueOf(f9665a))).booleanValue();
-        } catch (Exception e6) {
-            if (e6 instanceof InvocationTargetException) {
-                Throwable cause = e6.getCause();
+            return ((Boolean) f9033b.invoke(null, Long.valueOf(f9032a))).booleanValue();
+        } catch (Exception e) {
+            if (e instanceof InvocationTargetException) {
+                Throwable cause = e.getCause();
                 if (cause instanceof RuntimeException) {
                     throw ((RuntimeException) cause);
                 }
                 throw new RuntimeException(cause);
             }
-            Log.v("Trace", "Unable to call isTagEnabled via reflection", e6);
+            Log.v("Trace", "Unable to call isTagEnabled via reflection", e);
             return false;
         }
     }

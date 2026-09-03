@@ -1,8 +1,10 @@
 package ob;
+
+import kf.k0;
 public final class g extends d {
-    public final byte[] f16696c;
+    public final byte[] f16510c;
     public final int d;
-    public final int f16697e;
+    public final int e;
 
     public g(int i10, int i11, int[] iArr) {
         super(i10, i11);
@@ -13,9 +15,9 @@ public final class g extends d {
                 int i14 = iArr[i13];
                 bArr[i13] = (byte) (((((i14 >> 16) & 255) + ((i14 >> 7) & 510)) + (i14 & 255)) / 4);
             }
-            this.f16696c = bArr;
+            this.f16510c = bArr;
             this.d = i10;
-            this.f16697e = i11;
+            this.e = i11;
             return;
         }
         throw new IllegalArgumentException("Pixel array length is less than width * height");
@@ -23,11 +25,11 @@ public final class g extends d {
 
     @Override
     public final byte[] a() {
-        byte[] bArr = this.f16696c;
-        int i10 = this.f16690a;
-        int i11 = this.f16691b;
+        byte[] bArr = this.f16510c;
+        int i10 = this.f16505a;
+        int i11 = this.f16506b;
         int i12 = this.d;
-        if (i10 == i12 && i11 == this.f16697e) {
+        if (i10 == i12 && i11 == this.e) {
             return bArr;
         }
         int i13 = i10 * i11;
@@ -46,14 +48,14 @@ public final class g extends d {
 
     @Override
     public final byte[] b(int i10, byte[] bArr) {
-        if (i10 >= 0 && i10 < this.f16691b) {
-            int i11 = this.f16690a;
+        if (i10 >= 0 && i10 < this.f16506b) {
+            int i11 = this.f16505a;
             if (bArr == null || bArr.length < i11) {
                 bArr = new byte[i11];
             }
-            System.arraycopy(this.f16696c, i10 * this.d, bArr, 0, i11);
+            System.arraycopy(this.f16510c, i10 * this.d, bArr, 0, i11);
             return bArr;
         }
-        throw new IllegalArgumentException(l.d.j(i10, "Requested row is outside the image: "));
+        throw new IllegalArgumentException(k0.j(i10, "Requested row is outside the image: "));
     }
 }

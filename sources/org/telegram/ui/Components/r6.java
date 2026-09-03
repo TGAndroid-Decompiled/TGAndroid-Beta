@@ -16,21 +16,21 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class r6 extends View {
-    public final ImageReceiver f30658a;
-    public final Drawable f30659b;
-    public final Paint f30660c;
+    public final ImageReceiver f28409a;
+    public final Drawable f28410b;
+    public final Paint f28411c;
     public final Paint d;
 
     public r6(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f30660c = paint;
+        this.f28411c = paint;
         this.d = new Paint(1);
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f30658a = imageReceiver;
+        this.f28409a = imageReceiver;
         imageReceiver.setAlpha(0.0f);
         imageReceiver.setDelegate(new t(this, 12));
-        this.f30659b = context.getDrawable(R.drawable.input_attach).mutate().getConstantState().newDrawable();
+        this.f28410b = context.getDrawable(R.drawable.input_attach).mutate().getConstantState().newDrawable();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -39,13 +39,13 @@ public final class r6 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f30658a.onAttachedToWindow();
+        this.f28409a.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f30658a.onDetachedFromWindow();
+        this.f28409a.onDetachedFromWindow();
     }
 
     @Override
@@ -54,17 +54,17 @@ public final class r6 extends View {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(10.0f) + getHeight());
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.d);
-        ImageReceiver imageReceiver = this.f30658a;
+        ImageReceiver imageReceiver = this.f28409a;
         imageReceiver.setImageCoords((getWidth() / 2.0f) - AndroidUtilities.dp(66.0f), (getHeight() / 2.0f) - (AndroidUtilities.dp(42.0f) / 2.0f), AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
         imageReceiver.draw(canvas);
-        Paint paint = this.f30660c;
+        Paint paint = this.f28411c;
         canvas.drawLine((getWidth() / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, (getWidth() / 2.0f) + AndroidUtilities.dp(8.0f), getHeight() / 2.0f, paint);
         canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - AndroidUtilities.dp(8.0f), getWidth() / 2.0f, AndroidUtilities.dp(8.0f) + (getHeight() / 2.0f), paint);
         int dp = AndroidUtilities.dp(24.0f) + (getWidth() / 2);
         int height = (getHeight() / 2) - (AndroidUtilities.dp(42.0f) / 2);
         int dp2 = AndroidUtilities.dp(66.0f) + (getWidth() / 2);
         int dp3 = (AndroidUtilities.dp(42.0f) / 2) + (getHeight() / 2);
-        Drawable drawable = this.f30659b;
+        Drawable drawable = this.f28410b;
         drawable.setBounds(dp, height, dp2, dp3);
         drawable.draw(canvas);
     }
@@ -72,7 +72,7 @@ public final class r6 extends View {
     public void setAttachBot(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
         TLRPC.TL_attachMenuBotIcon staticAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tL_attachMenuBot);
         if (staticAttachMenuBotIcon != null) {
-            this.f30658a.setImage(ImageLocation.getForDocument(staticAttachMenuBotIcon.icon), "42_42", DocumentObject.getSvgThumb(staticAttachMenuBotIcon.icon, org.telegram.ui.ActionBar.k6.f21895q5, 1.0f), "svg", tL_attachMenuBot, 0);
+            this.f28409a.setImage(ImageLocation.getForDocument(staticAttachMenuBotIcon.icon), "42_42", DocumentObject.getSvgThumb(staticAttachMenuBotIcon.icon, org.telegram.ui.ActionBar.j6.f20114q5, 1.0f), "svg", tL_attachMenuBot, 0);
         }
     }
 
@@ -83,8 +83,8 @@ public final class r6 extends View {
 
     public void setColor(int i10) {
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        this.f30659b.setColorFilter(i10, mode);
-        this.f30660c.setColor(i10);
-        this.f30658a.setColorFilter(new PorterDuffColorFilter(i10, mode));
+        this.f28410b.setColorFilter(i10, mode);
+        this.f28411c.setColor(i10);
+        this.f28409a.setColorFilter(new PorterDuffColorFilter(i10, mode));
     }
 }

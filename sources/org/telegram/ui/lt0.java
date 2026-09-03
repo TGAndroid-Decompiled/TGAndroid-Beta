@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.content.Context;
 import android.graphics.Bitmap;
 import org.telegram.messenger.MediaController;
-public final class lt0 extends eg.o1 {
+public final class lt0 extends dg.q1 {
     public final PhotoViewer H;
 
     public lt0(PhotoViewer photoViewer, Context context, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, MediaController.CropState cropState) {

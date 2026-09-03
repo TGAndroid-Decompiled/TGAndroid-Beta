@@ -1,45 +1,58 @@
 package k7;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.telegram.ui.ai;
 public abstract class f0 {
-    public static void a(int i10, int i11) {
-        String a2;
-        if (i10 >= 0 && i10 < i11) {
-            return;
-        }
-        if (i10 >= 0) {
-            if (i11 < 0) {
-                throw new IllegalArgumentException(l.d.j(i11, "negative size: "));
+    public static String a(String str, Object... objArr) {
+        int length;
+        int length2;
+        int indexOf;
+        String k10;
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            length = objArr.length;
+            if (i11 >= length) {
+                break;
             }
-            a2 = g0.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
-        } else {
-            a2 = g0.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
-        }
-        throw new IndexOutOfBoundsException(a2);
-    }
-
-    public static void b(int i10, int i11, int i12) {
-        String c3;
-        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
-            return;
-        }
-        if (i10 >= 0 && i10 <= i12) {
-            if (i11 >= 0 && i11 <= i12) {
-                c3 = g0.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
+            Object obj = objArr[i11];
+            if (obj == null) {
+                k10 = "null";
             } else {
-                c3 = c(i11, i12, "end index");
+                try {
+                    k10 = obj.toString();
+                } catch (Exception e) {
+                    String z4 = android.support.v4.media.a.z(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(z4), (Throwable) e);
+                    k10 = ai.k("<", z4, " threw ", e.getClass().getName(), ">");
+                }
             }
-        } else {
-            c3 = c(i10, i12, "start index");
+            objArr[i11] = k10;
+            i11++;
         }
-        throw new IndexOutOfBoundsException(c3);
-    }
-
-    public static String c(int i10, int i11, String str) {
-        if (i10 < 0) {
-            return g0.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
+        StringBuilder sb = new StringBuilder(str.length() + (length * 16));
+        int i12 = 0;
+        while (true) {
+            length2 = objArr.length;
+            if (i10 >= length2 || (indexOf = str.indexOf("%s", i12)) == -1) {
+                break;
+            }
+            sb.append((CharSequence) str, i12, indexOf);
+            sb.append(objArr[i10]);
+            i10++;
+            i12 = indexOf + 2;
         }
-        if (i11 >= 0) {
-            return g0.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
+        sb.append((CharSequence) str, i12, str.length());
+        if (i10 < length2) {
+            sb.append(" [");
+            sb.append(objArr[i10]);
+            for (int i13 = i10 + 1; i13 < objArr.length; i13++) {
+                sb.append(", ");
+                sb.append(objArr[i13]);
+            }
+            sb.append(']');
         }
-        throw new IllegalArgumentException(l.d.j(i11, "negative size: "));
+        return sb.toString();
     }
 }

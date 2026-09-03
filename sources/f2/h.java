@@ -4,56 +4,56 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
-import org.telegram.ui.Cells.r2;
-import org.telegram.ui.Components.at;
+import org.telegram.ui.Cells.q2;
+import org.telegram.ui.Components.xs;
 public final class h extends AnimatorListenerAdapter {
-    public final int f5777a;
-    public final m1 f5778b;
-    public final int f5779c;
+    public final int f5705a;
+    public final l1 f5706b;
+    public final int f5707c;
     public final View d;
-    public final int f5780e;
-    public final ViewPropertyAnimator f5781f;
-    public final p1 h;
+    public final int e;
+    public final ViewPropertyAnimator f5708f;
+    public final o1 h;
 
-    public h(p1 p1Var, m1 m1Var, int i10, View view, int i11, ViewPropertyAnimator viewPropertyAnimator, int i12) {
-        this.f5777a = i12;
-        this.h = p1Var;
-        this.f5778b = m1Var;
-        this.f5779c = i10;
+    public h(o1 o1Var, l1 l1Var, int i10, View view, int i11, ViewPropertyAnimator viewPropertyAnimator, int i12) {
+        this.f5705a = i12;
+        this.h = o1Var;
+        this.f5706b = l1Var;
+        this.f5707c = i10;
         this.d = view;
-        this.f5780e = i11;
-        this.f5781f = viewPropertyAnimator;
+        this.e = i11;
+        this.f5708f = viewPropertyAnimator;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
-        switch (this.f5777a) {
+        switch (this.f5705a) {
             case 0:
-                int i10 = this.f5779c;
+                int i10 = this.f5707c;
                 View view = this.d;
                 if (i10 != 0) {
                     view.setTranslationX(0.0f);
                 }
-                if (this.f5780e != 0) {
+                if (this.e != 0) {
                     view.setTranslationY(0.0f);
                     return;
                 }
                 return;
             default:
-                int i11 = this.f5779c;
+                int i11 = this.f5707c;
                 View view2 = this.d;
                 if (i11 != 0) {
                     view2.setTranslationX(0.0f);
                 }
-                if (this.f5780e != 0) {
+                if (this.e != 0) {
                     view2.setTranslationY(0.0f);
                 }
-                View view3 = this.f5778b.f5875a;
-                if (view3 instanceof r2) {
-                    ((r2) view3).setMoving(false);
+                View view3 = this.f5706b.f5774a;
+                if (view3 instanceof q2) {
+                    ((q2) view3).setMoving(false);
                     return;
-                } else if (view3 instanceof uf.j) {
-                    ((uf.j) view3).f48641a = false;
+                } else if (view3 instanceof tf.j) {
+                    ((tf.j) view3).f44816a = false;
                     return;
                 } else {
                     return;
@@ -63,29 +63,29 @@ public final class h extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f5777a) {
+        switch (this.f5705a) {
             case 0:
-                this.f5781f.setListener(null);
+                this.f5708f.setListener(null);
                 l lVar = (l) this.h;
-                m1 m1Var = this.f5778b;
-                lVar.P(m1Var);
-                lVar.v(m1Var);
-                lVar.f5862z.remove(m1Var);
+                l1 l1Var = this.f5706b;
+                lVar.P(l1Var);
+                lVar.v(l1Var);
+                lVar.f5772z.remove(l1Var);
                 lVar.G();
-                lVar.z(m1Var);
+                lVar.z(l1Var);
                 return;
             default:
-                this.f5781f.setListener(null);
-                at atVar = (at) this.h;
-                m1 m1Var2 = this.f5778b;
-                atVar.v(m1Var2);
-                atVar.f25369w.remove(m1Var2);
-                atVar.A();
-                View view = m1Var2.f5875a;
-                if (view instanceof r2) {
-                    ((r2) view).setMoving(false);
-                } else if (view instanceof uf.j) {
-                    ((uf.j) view).f48641a = false;
+                this.f5708f.setListener(null);
+                xs xsVar = (xs) this.h;
+                l1 l1Var2 = this.f5706b;
+                xsVar.v(l1Var2);
+                xsVar.f30706w.remove(l1Var2);
+                xsVar.A();
+                View view = l1Var2.f5774a;
+                if (view instanceof q2) {
+                    ((q2) view).setMoving(false);
+                } else if (view instanceof tf.j) {
+                    ((tf.j) view).f44816a = false;
                 }
                 View view2 = this.d;
                 view2.setTranslationX(0.0f);
@@ -96,12 +96,12 @@ public final class h extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationStart(Animator animator) {
-        switch (this.f5777a) {
+        switch (this.f5705a) {
             case 0:
                 ((l) this.h).getClass();
                 return;
             default:
-                ((at) this.h).getClass();
+                ((xs) this.h).getClass();
                 return;
         }
     }

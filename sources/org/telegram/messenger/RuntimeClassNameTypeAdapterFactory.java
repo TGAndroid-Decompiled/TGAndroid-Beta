@@ -27,8 +27,8 @@ public final class RuntimeClassNameTypeAdapterFactory<T> implements pa.v {
     @Override
     public <R> pa.u create(final pa.g gVar, final wa.a<R> aVar) {
         pa.a aVar2 = this.exclusionStrategy;
-        Class cls = aVar.f49520a;
-        Class cls2 = aVar.f49520a;
+        Class cls = aVar.f46587a;
+        Class cls2 = aVar.f46587a;
         if (aVar2.shouldSkipClass(cls.getClass())) {
             return null;
         }
@@ -70,7 +70,7 @@ public final class RuntimeClassNameTypeAdapterFactory<T> implements pa.v {
                         ra.d.l(jsonTree, bVar);
                         return;
                     }
-                    ra.l lVar = jsonTree.i().f44278a;
+                    ra.l lVar = jsonTree.i().f41111a;
                     if (!lVar.containsKey(RuntimeClassNameTypeAdapterFactory.this.typeFieldName)) {
                         pa.l lVar2 = new pa.l();
                         lVar2.o(RuntimeClassNameTypeAdapterFactory.this.typeFieldName, new pa.m(simpleName));

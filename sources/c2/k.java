@@ -7,19 +7,19 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 public final class k extends MediaRouter2.TransferCallback {
-    public final l f2126a;
+    public final l f1988a;
 
     public k(l lVar) {
-        this.f2126a = lVar;
+        this.f1988a = lVar;
     }
 
     @Override
     public final void onStop(MediaRouter2.RoutingController routingController) {
-        s sVar = (s) this.f2126a.v.remove(routingController);
+        s sVar = (s) this.f1988a.v.remove(routingController);
         if (sVar != null) {
-            e eVar = (e) this.f2126a.f2130s.f9988a;
-            if (sVar == eVar.f2079e) {
-                a0 c3 = eVar.c();
+            e eVar = (e) this.f1988a.f1990s.f1772b;
+            if (sVar == eVar.e) {
+                b0 c3 = eVar.c();
                 if (eVar.e() != c3) {
                     eVar.j(c3, 2);
                     return;
@@ -34,11 +34,11 @@ public final class k extends MediaRouter2.TransferCallback {
 
     @Override
     public final void onTransfer(MediaRouter2.RoutingController routingController, MediaRouter2.RoutingController routingController2) {
-        a0 a0Var;
-        this.f2126a.v.remove(routingController);
-        if (routingController2 == this.f2126a.f2129r.getSystemController()) {
-            e eVar = (e) this.f2126a.f2130s.f9988a;
-            a0 c3 = eVar.c();
+        b0 b0Var;
+        this.f1988a.v.remove(routingController);
+        if (routingController2 == this.f1988a.f1989r.getSystemController()) {
+            e eVar = (e) this.f1988a.f1990s.f1772b;
+            b0 c3 = eVar.c();
             if (eVar.e() != c3) {
                 eVar.j(c3, 3);
                 return;
@@ -51,30 +51,30 @@ public final class k extends MediaRouter2.TransferCallback {
             return;
         }
         int i10 = 0;
-        String id2 = androidx.emoji2.text.w.d(selectedRoutes.get(0)).getId();
-        this.f2126a.v.put(routingController2, new h(this.f2126a, routingController2, id2));
-        e eVar2 = (e) this.f2126a.f2130s.f9988a;
-        ArrayList arrayList = eVar2.f2083j;
+        String id2 = af.a.d(selectedRoutes.get(0)).getId();
+        this.f1988a.v.put(routingController2, new h(this.f1988a, routingController2, id2));
+        e eVar2 = (e) this.f1988a.f1990s.f1772b;
+        ArrayList arrayList = eVar2.f1944j;
         int size = arrayList.size();
         while (true) {
             if (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                a0Var = (a0) obj;
-                if (a0Var.c() == eVar2.f2091r && TextUtils.equals(id2, a0Var.f2039b)) {
+                b0Var = (b0) obj;
+                if (b0Var.c() == eVar2.f1952r && TextUtils.equals(id2, b0Var.f1910b)) {
                     break;
                 }
             } else {
-                a0Var = null;
+                b0Var = null;
                 break;
             }
         }
-        if (a0Var == null) {
+        if (b0Var == null) {
             Log.w("GlobalMediaRouter", "onSelectRoute: The target RouteInfo is not found for descriptorId=" + id2);
         } else {
-            eVar2.j(a0Var, 3);
+            eVar2.j(b0Var, 3);
         }
-        this.f2126a.r(routingController2);
+        this.f1988a.r(routingController2);
     }
 
     @Override

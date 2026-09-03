@@ -1,31 +1,31 @@
 package org.telegram.messenger;
 public final class ca implements Runnable {
-    public final int f18348a;
-    public final MessagesController f18349b;
-    public final long f18350c;
+    public final int f16910a;
+    public final MessagesController f16911b;
+    public final long f16912c;
     public final int d;
-    public final boolean f18351e;
-    public final int f18352f;
+    public final boolean e;
+    public final int f16913f;
     public final int h;
 
     public ca(MessagesController messagesController, long j10, int i10, boolean z4, int i11, int i12, int i13) {
-        this.f18348a = i13;
-        this.f18349b = messagesController;
-        this.f18350c = j10;
+        this.f16910a = i13;
+        this.f16911b = messagesController;
+        this.f16912c = j10;
         this.d = i10;
-        this.f18351e = z4;
-        this.f18352f = i11;
+        this.e = z4;
+        this.f16913f = i11;
         this.h = i12;
     }
 
     @Override
     public final void run() {
-        switch (this.f18348a) {
+        switch (this.f16910a) {
             case 0:
-                MessagesController.J(this.d, this.f18352f, this.h, this.f18350c, this.f18349b, this.f18351e);
+                MessagesController.J(this.d, this.f16913f, this.h, this.f16912c, this.f16911b, this.e);
                 return;
             default:
-                MessagesController.q1(this.d, this.f18352f, this.h, this.f18350c, this.f18349b, this.f18351e);
+                MessagesController.q1(this.d, this.f16913f, this.h, this.f16912c, this.f16911b, this.e);
                 return;
         }
     }

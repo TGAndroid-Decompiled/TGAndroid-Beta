@@ -4,24 +4,24 @@ import b6.m;
 import java.util.Arrays;
 import n7.we;
 public final class e {
-    public final boolean f13627a;
-    public final boolean f13628b;
-    public final boolean f13629c;
+    public final boolean f13891a;
+    public final boolean f13892b;
+    public final boolean f13893c;
 
     public e(d dVar) {
-        this.f13627a = dVar.f13624a;
-        this.f13628b = dVar.f13625b;
-        this.f13629c = dVar.f13626c;
+        this.f13891a = dVar.f13888a;
+        this.f13892b = dVar.f13889b;
+        this.f13893c = dVar.f13890c;
     }
 
     public final we a() {
         ?? obj = new Object();
         Boolean bool = Boolean.FALSE;
-        obj.f2315a = bool;
-        obj.f2316b = Boolean.valueOf(this.f13627a);
-        obj.f2317c = Boolean.valueOf(this.f13628b);
+        obj.f2152a = bool;
+        obj.f2153b = Boolean.valueOf(this.f13891a);
+        obj.f2154c = Boolean.valueOf(this.f13892b);
         obj.d = bool;
-        obj.f2318e = Boolean.valueOf(this.f13629c);
+        obj.e = Boolean.valueOf(this.f13893c);
         return new we(obj);
     }
 
@@ -29,7 +29,7 @@ public final class e {
         if (obj != this) {
             if (obj instanceof e) {
                 e eVar = (e) obj;
-                if (this.f13627a == eVar.f13627a && this.f13628b == eVar.f13628b && this.f13629c == eVar.f13629c && m.l(null, null)) {
+                if (this.f13891a == eVar.f13891a && this.f13892b == eVar.f13892b && this.f13893c == eVar.f13893c && m.l(null, null)) {
                     return true;
                 }
                 return false;
@@ -40,9 +40,9 @@ public final class e {
     }
 
     public final int hashCode() {
-        Boolean valueOf = Boolean.valueOf(this.f13627a);
-        Boolean valueOf2 = Boolean.valueOf(this.f13628b);
-        Boolean valueOf3 = Boolean.valueOf(this.f13629c);
+        Boolean valueOf = Boolean.valueOf(this.f13891a);
+        Boolean valueOf2 = Boolean.valueOf(this.f13892b);
+        Boolean valueOf3 = Boolean.valueOf(this.f13893c);
         Boolean bool = Boolean.FALSE;
         return Arrays.hashCode(new Object[]{bool, valueOf, valueOf2, bool, valueOf3, null});
     }

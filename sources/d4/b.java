@@ -9,21 +9,21 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.Components.fl0;
-import org.telegram.ui.Components.uc0;
-public final class b implements r8.i, h5.j, fl0, uc0, c2 {
-    public final int f4198a;
-    public final int f4199b;
+import org.telegram.ui.Components.el0;
+import org.telegram.ui.Components.tc0;
+public final class b implements r8.i, h5.j, el0, tc0, c2 {
+    public final int f4113a;
+    public final int f4114b;
 
     public b(int i10, int i11) {
-        this.f4198a = i11;
-        this.f4199b = i10;
+        this.f4113a = i11;
+        this.f4114b = i10;
     }
 
     @Override
     public String e(int i10) {
-        int i11 = this.f4198a;
-        int i12 = this.f4199b;
+        int i11 = this.f4113a;
+        int i12 = this.f4114b;
         switch (i11) {
             case 4:
                 if (i10 == 0) {
@@ -46,26 +46,26 @@ public final class b implements r8.i, h5.j, fl0, uc0, c2 {
 
     @Override
     public Object get() {
-        switch (this.f4198a) {
+        switch (this.f4113a) {
             case 0:
-                return new HandlerThread(c.j(this.f4199b, "ExoPlayer:MediaCodecAsyncAdapter:"));
+                return new HandlerThread(c.j(this.f4114b, "ExoPlayer:MediaCodecAsyncAdapter:"));
             default:
-                return new HandlerThread(c.j(this.f4199b, "ExoPlayer:MediaCodecQueueingThread:"));
+                return new HandlerThread(c.j(this.f4114b, "ExoPlayer:MediaCodecQueueingThread:"));
         }
     }
 
     @Override
     public void invoke(Object obj) {
-        ((y1) obj).onRepeatModeChanged(this.f4199b);
+        ((y1) obj).onRepeatModeChanged(this.f4114b);
     }
 
     @Override
-    public void j(d2 d2Var, int i10) {
-        MessagesController.getInstance(this.f4199b).performLogout(1);
+    public void l(d2 d2Var, int i10) {
+        MessagesController.getInstance(this.f4114b).performLogout(1);
     }
 
     @Override
     public int run() {
-        return this.f4199b;
+        return this.f4114b;
     }
 }

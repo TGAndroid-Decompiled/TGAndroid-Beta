@@ -3,7 +3,7 @@ package o0;
 import android.database.Cursor;
 import android.net.Uri;
 public interface a {
-    void close();
+    Cursor b(Uri uri, String[] strArr, String[] strArr2);
 
-    Cursor r(Uri uri, String[] strArr, String[] strArr2);
+    void close();
 }

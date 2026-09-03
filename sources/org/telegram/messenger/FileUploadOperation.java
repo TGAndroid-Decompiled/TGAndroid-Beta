@@ -126,8 +126,8 @@ public class FileUploadOperation {
                 randomAccessFile.close();
                 this.stream = null;
             }
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
         AutoDeleteMediaTask.unlockFile(this.uploadingFilePath);
     }
@@ -220,7 +220,7 @@ public class FileUploadOperation {
                 StringBuilder sb = new StringBuilder("debug_uploading:  response reqId ");
                 sb.append(iArr[0]);
                 sb.append(" time");
-                org.telegram.ui.yh.v(this.uploadingFilePath, sb);
+                org.telegram.ui.ai.v(this.uploadingFilePath, sb);
             }
             if (tLObject != null) {
                 currentNetworkType = tLObject.networkType;
@@ -269,7 +269,7 @@ public class FileUploadOperation {
                                 tL_inputFile.md5_checksum = "";
                             }
                             tL_inputFile.parts = this.currentPartNum;
-                            tL_inputFile.f20859id = this.currentFileId;
+                            tL_inputFile.f19173id = this.currentFileId;
                             String str2 = this.uploadingFilePath;
                             tL_inputFile.name = str2.substring(str2.lastIndexOf("/") + 1);
                             this.delegate.didFinishUploadingFile(this, tL_inputFile, null, null, null);
@@ -282,7 +282,7 @@ public class FileUploadOperation {
                                 tL_inputEncryptedFileUploaded.md5_checksum = "";
                             }
                             tL_inputEncryptedFileUploaded.parts = this.currentPartNum;
-                            tL_inputEncryptedFileUploaded.f20858id = this.currentFileId;
+                            tL_inputEncryptedFileUploaded.f19172id = this.currentFileId;
                             tL_inputEncryptedFileUploaded.key_fingerprint = this.fingerprint;
                             this.delegate.didFinishUploadingFile(this, null, tL_inputEncryptedFileUploaded, this.key, this.iv);
                             cleanup();
@@ -417,7 +417,7 @@ public class FileUploadOperation {
         if (this.state != 1) {
             return;
         }
-        Utilities.stageQueue.postRunnable(new kh.f(7, this, z4));
+        Utilities.stageQueue.postRunnable(new jh.f(8, this, z4));
         AndroidUtilities.runOnUIThread(new s3(this, 3));
     }
 

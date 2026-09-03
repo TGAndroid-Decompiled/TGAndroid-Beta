@@ -1,100 +1,89 @@
 package uf;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.view.View;
-import android.widget.TextView;
-import k7.c6;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Cells.b3;
-import org.telegram.ui.Components.p9;
-public final class f extends b3 {
-    public final k f48594f;
+import java.util.ArrayList;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
+public final class f {
+    public static volatile f[] f45360g = new f[4];
+    public static final Object[] h = new Object[4];
+    public final int f45361a;
+    public long f45362b;
+    public TL_account.connectedBots f45363c;
+    public final ArrayList d = new ArrayList();
+    public boolean e;
+    public boolean f45364f;
 
-    public f(k kVar, Context context) {
-        super(context);
-        this.f48594f = kVar;
-        this.f22591a = UserConfig.selectedAccount;
-        setOrientation(1);
-        setBackgroundColor(k6.w0(null, k6.f21607a7, false));
-        eg.i0 i0Var = new eg.i0(context, 3);
-        i0Var.f5246c = new Path();
-        Paint paint = new Paint(1);
-        i0Var.f5245b = paint;
-        paint.setColor(k6.w0(null, k6.f21661d6, false));
-        paint.setShadowLayer(AndroidUtilities.dp(1.33f), 0.0f, AndroidUtilities.dp(0.33f), 503316480);
-        i0Var.setWillNotDraw(false);
-        i0Var.setOrientation(1);
-        i0Var.setPadding(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
-        p9 p9Var = new p9(context);
-        this.f22592b = p9Var;
-        p9Var.setOnClickListener(new View.OnClickListener(this) {
-            public final uf.f f22543b;
+    static {
+        for (int i10 = 0; i10 < 4; i10++) {
+            h[i10] = new Object();
+        }
+    }
 
-            {
-                this.f22543b = this;
-            }
+    public f(int i10) {
+        this.f45361a = i10;
+    }
 
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f22543b.f22592b.getImageReceiver().startAnimation();
-                        return;
-                    default:
-                        this.f22543b.f48594f.K();
-                        return;
+    public static f a(int i10) {
+        f fVar;
+        f fVar2 = f45360g[i10];
+        if (fVar2 == null) {
+            synchronized (h[i10]) {
+                try {
+                    fVar = f45360g[i10];
+                    if (fVar == null) {
+                        f[] fVarArr = f45360g;
+                        f fVar3 = new f(i10);
+                        fVarArr[i10] = fVar3;
+                        fVar = fVar3;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
-        });
-        a();
-        i0Var.addView(p9Var, c6.q(130, 130, 49));
-        TextView textView = new TextView(context);
-        this.f22593c = textView;
-        textView.setGravity(17);
-        textView.setTextSize(1, 18.0f);
-        textView.setTextColor(k6.w0(null, k6.G6, false));
-        textView.setTypeface(AndroidUtilities.bold());
-        i0Var.addView(textView, c6.t(-1, -2, 49, 0, 6, 0, 0));
-        TextView textView2 = new TextView(context);
-        this.d = textView2;
-        textView2.setGravity(17);
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(k6.w0(null, k6.f22038y6, false));
-        i0Var.addView(textView2, c6.t(-1, -2, 49, 0, 7, 0, 0));
-        TextView textView3 = new TextView(context);
-        this.f22594e = textView3;
-        textView3.setGravity(17);
-        textView3.setBackground(a6.f(new float[]{8.0f}, k6.Oh));
-        textView3.setTextSize(1, 14.0f);
-        textView3.setTextColor(k6.w0(null, k6.Sh, false));
-        textView3.setTypeface(AndroidUtilities.bold());
-        textView3.setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f));
-        textView3.setOnClickListener(new View.OnClickListener(this) {
-            public final uf.f f22543b;
+            return fVar;
+        }
+        return fVar2;
+    }
 
-            {
-                this.f22543b = this;
-            }
+    public final void b() {
+        this.f45364f = false;
+        c(null);
+    }
 
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f22543b.f22592b.getImageReceiver().startAnimation();
-                        return;
-                    default:
-                        this.f22543b.f48594f.K();
-                        return;
+    public final void c(Utilities.Callback callback) {
+        boolean z4;
+        if (callback != null) {
+            this.d.add(callback);
+        }
+        if (!this.e) {
+            if (System.currentTimeMillis() - this.f45362b <= 60000 && (z4 = this.f45364f)) {
+                if (z4) {
+                    d();
+                    return;
                 }
+                return;
             }
-        });
-        i0Var.addView(textView3, c6.t(-1, -2, 49, 0, 18, 0, 0));
-        addView(i0Var, c6.n(-1, -2));
-        set(null);
+            this.e = true;
+            ConnectionsManager.getInstance(this.f45361a).sendRequest(new TL_account.getConnectedBots(), new ff.a(this, 23));
+        }
+    }
+
+    public final void d() {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.d;
+            if (i10 < arrayList.size()) {
+                if (arrayList.get(i10) != null) {
+                    ((Utilities.Callback) arrayList.get(i10)).run(this.f45363c);
+                }
+                i10++;
+            } else {
+                arrayList.clear();
+                NotificationCenter.getInstance(this.f45361a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updatedChatbot, new Object[0]);
+                return;
+            }
+        }
     }
 }

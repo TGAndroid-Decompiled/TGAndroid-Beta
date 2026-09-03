@@ -25,7 +25,7 @@ public abstract class a {
     }
 
     public static void b(Canvas canvas, k kVar, int i10, Paint paint) {
-        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) kVar.f93b, 0, (float[]) kVar.f94c, 0, (int[]) kVar.f95e, 0, (short[]) kVar.d, 0, i10 * 6, paint);
+        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) kVar.f85b, 0, (float[]) kVar.f86c, 0, (int[]) kVar.e, 0, (short[]) kVar.d, 0, i10 * 6, paint);
     }
 
     public static Object c(Bundle bundle) {

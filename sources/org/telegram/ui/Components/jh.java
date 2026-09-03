@@ -7,15 +7,15 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public final class jh implements org.telegram.ui.lq0 {
-    public boolean f28099a;
-    public final HashMap f28100b;
-    public final ArrayList f28101c;
-    public final mi d;
+    public boolean f25962a;
+    public final HashMap f25963b;
+    public final ArrayList f25964c;
+    public final li d;
 
-    public jh(mi miVar, HashMap hashMap, ArrayList arrayList) {
-        this.d = miVar;
-        this.f28100b = hashMap;
-        this.f28101c = arrayList;
+    public jh(li liVar, HashMap hashMap, ArrayList arrayList) {
+        this.d = liVar;
+        this.f25963b = hashMap;
+        this.f25964c = arrayList;
     }
 
     @Override
@@ -27,13 +27,13 @@ public final class jh implements org.telegram.ui.lq0 {
     public final void f(int i10, boolean z4, boolean z10) {
         String str;
         if (!z4) {
-            HashMap hashMap = this.f28100b;
-            if (!hashMap.isEmpty() && !this.f28099a) {
-                this.f28099a = true;
+            HashMap hashMap = this.f25963b;
+            if (!hashMap.isEmpty() && !this.f25962a) {
+                this.f25962a = true;
                 ArrayList arrayList = new ArrayList();
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f28101c;
+                    ArrayList arrayList2 = this.f25964c;
                     if (i11 < arrayList2.size()) {
                         Object obj = hashMap.get(arrayList2.get(i11));
                         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
@@ -65,7 +65,7 @@ public final class jh implements org.telegram.ui.lq0 {
                         searchImage.date = (int) (System.currentTimeMillis() / 1000);
                         i11++;
                     } else {
-                        ((org.telegram.ui.xn) this.d.f29058c0).d8(i10, arrayList, z10);
+                        ((org.telegram.ui.zn) this.d.f26685c0).d8(i10, arrayList, z10);
                         return;
                     }
                 }

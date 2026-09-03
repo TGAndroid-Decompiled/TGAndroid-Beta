@@ -1,58 +1,69 @@
 package org.telegram.ui;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.tgnet.TLRPC;
-public final class or implements org.telegram.ui.Cells.a5, uf.j1 {
-    public final pr f39786a;
+public final class or implements Runnable {
+    public final int f36871a;
+    public final qr f36872b;
+    public final String f36873c;
 
-    public or(pr prVar) {
-        this.f39786a = prVar;
+    public or(qr qrVar, String str, int i10) {
+        this.f36871a = i10;
+        this.f36872b = qrVar;
+        this.f36873c = str;
     }
 
     @Override
-    public a0.h K() {
-        return null;
-    }
-
-    @Override
-    public boolean R(int i10) {
-        return true;
-    }
-
-    @Override
-    public boolean c(org.telegram.ui.Cells.b5 b5Var, boolean z4) {
-        int intValue = ((Integer) b5Var.getTag()).intValue();
-        pr prVar = this.f39786a;
-        TLObject E = prVar.E(intValue);
-        if (E instanceof TLRPC.ChannelParticipant) {
-            return prVar.f40116y.h0((TLRPC.ChannelParticipant) E, !z4, b5Var);
+    public final void run() {
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        kh khVar;
+        boolean z4;
+        long j10;
+        switch (this.f36871a) {
+            case 0:
+                qr qrVar = this.f36872b;
+                qrVar.getClass();
+                AndroidUtilities.runOnUIThread(new or(qrVar, this.f36873c, 1));
+                return;
+            default:
+                qr qrVar2 = this.f36872b;
+                qrVar2.f37459n = null;
+                rr rrVar = qrVar2.f37464y;
+                TLRPC.Chat chat = rrVar.f37992r;
+                int i10 = rrVar.f37960b1;
+                if (!ChatObject.isChannel(chat) && rrVar.f37995s != null) {
+                    arrayList = new ArrayList(rrVar.f37995s.participants.participants);
+                } else {
+                    arrayList = null;
+                }
+                if (i10 == 1) {
+                    arrayList2 = new ArrayList(rrVar.getContactsController().contacts);
+                } else {
+                    arrayList2 = null;
+                }
+                String str = this.f36873c;
+                if (arrayList == null && arrayList2 == null) {
+                    qrVar2.f37461s = false;
+                    khVar = null;
+                } else {
+                    khVar = new kh(qrVar2, str, arrayList, arrayList2, 5);
+                }
+                tf.j1 j1Var = qrVar2.h;
+                if (i10 != 0) {
+                    z4 = true;
+                } else {
+                    z4 = false;
+                }
+                if (ChatObject.isChannel(rrVar.f37992r)) {
+                    j10 = rrVar.K;
+                } else {
+                    j10 = 0;
+                }
+                j1Var.h(str, z4, false, true, false, false, j10, false, rrVar.L, 1, 0L, khVar);
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public void g(int i10) {
-        pr prVar = this.f39786a;
-        qr qrVar = prVar.f40116y;
-        if (!prVar.h.e()) {
-            int i11 = prVar.f40112r;
-            prVar.l();
-            if (prVar.f40112r > i11) {
-                qrVar.y0(i11);
-            }
-            if (!prVar.f40113s && prVar.f40112r == 0 && i10 != 0) {
-                qrVar.f40570b.e(false, true);
-            }
-        }
-    }
-
-    @Override
-    public a0.h y() {
-        return null;
-    }
-
-    @Override
-    public void V(ArrayList arrayList) {
     }
 }

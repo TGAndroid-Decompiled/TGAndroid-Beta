@@ -14,7 +14,7 @@ import java.util.Iterator;
 import sa.h1;
 import sa.u0;
 public abstract class d {
-    public static final Type[] f46784a = new Type[0];
+    public static final Type[] f43426a = new Type[0];
 
     public static Type a(Type type) {
         if (type instanceof Class) {
@@ -194,7 +194,7 @@ public abstract class d {
     }
 
     public static void l(pa.i iVar, xa.b bVar) {
-        h1.f47224z.getClass();
+        h1.f44270z.getClass();
         u0.b(iVar, bVar);
     }
 }

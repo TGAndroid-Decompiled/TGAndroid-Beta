@@ -10,22 +10,22 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PhotoViewer;
 public final class vf implements org.telegram.ui.ou0 {
-    public boolean f31875a;
-    public final Object f31876b;
-    public final Object f31877c;
+    public boolean f29466a;
+    public final Object f29467b;
+    public final Object f29468c;
     public final MediaController.PhotoEntry d;
-    public final xf f31878e;
+    public final xf e;
 
     public vf(xf xfVar, Object obj, Object obj2, MediaController.PhotoEntry photoEntry) {
-        this.f31878e = xfVar;
-        this.f31876b = obj;
-        this.f31877c = obj2;
+        this.e = xfVar;
+        this.f29467b = obj;
+        this.f29468c = obj2;
         this.d = photoEntry;
     }
 
     @Override
     public final boolean A() {
-        return this.f31875a;
+        return this.f29466a;
     }
 
     @Override
@@ -40,7 +40,7 @@ public final class vf implements org.telegram.ui.ou0 {
 
     @Override
     public final void F(boolean z4) {
-        this.f31875a = z4;
+        this.f29466a = z4;
     }
 
     @Override
@@ -135,12 +135,12 @@ public final class vf implements org.telegram.ui.ou0 {
 
     @Override
     public final void d() {
-        qh.f fVar;
+        ph.f fVar;
         bd f12 = PhotoViewer.t1().f1();
-        if (f12 != null && (fVar = f12.f45574f) != null) {
-            au auVar = fVar.f26997a;
-            auVar.requestFocus();
-            AndroidUtilities.showKeyboard(auVar);
+        if (f12 != null && (fVar = f12.f41842f) != null) {
+            xt xtVar = fVar.f24030a;
+            xtVar.requestFocus();
+            AndroidUtilities.showKeyboard(xtVar);
         }
     }
 
@@ -171,7 +171,7 @@ public final class vf implements org.telegram.ui.ou0 {
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z4, int i11, int i12, boolean z10) {
-        this.f31878e.B(null, this.f31876b, null, this.f31877c, z4, i11, i12, this.d, this.f31875a);
+        this.e.B(null, this.f29467b, null, this.f29468c, z4, i11, i12, this.d, this.f29466a);
     }
 
     @Override

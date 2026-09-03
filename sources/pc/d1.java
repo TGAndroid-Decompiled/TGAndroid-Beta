@@ -6,37 +6,37 @@ public enum d1 extends a2 {
 
     @Override
     public final void d(k kVar, a aVar) {
-        e eVar = kVar.f44380n;
+        e eVar = kVar.f41205n;
         char d = aVar.d();
-        z0 z0Var = a2.f44332g0;
+        z0 z0Var = a2.f41160g0;
         if (d != 0) {
             if (d != '-') {
-                v vVar = a2.f44321a;
+                v vVar = a2.f41150a;
                 if (d != '>') {
                     if (d != 65535) {
-                        StringBuilder sb = eVar.f44358c;
+                        StringBuilder sb = eVar.f41186c;
                         sb.append("--!");
                         sb.append(d);
-                        kVar.f44371c = z0Var;
+                        kVar.f41197c = z0Var;
                         return;
                     }
                     kVar.l(this);
                     kVar.i();
-                    kVar.f44371c = vVar;
+                    kVar.f41197c = vVar;
                     return;
                 }
                 kVar.i();
-                kVar.f44371c = vVar;
+                kVar.f41197c = vVar;
                 return;
             }
-            eVar.f44358c.append("--!");
-            kVar.f44371c = a2.f44333h0;
+            eVar.f41186c.append("--!");
+            kVar.f41197c = a2.f41161h0;
             return;
         }
         kVar.m(this);
-        StringBuilder sb2 = eVar.f44358c;
+        StringBuilder sb2 = eVar.f41186c;
         sb2.append("--!");
         sb2.append((char) 65533);
-        kVar.f44371c = z0Var;
+        kVar.f41197c = z0Var;
     }
 }

@@ -8,13 +8,13 @@ import pa.g;
 import pa.u;
 import pa.v;
 public final class a extends u {
-    public static final C0000a f48969b = new C0000a();
-    public final SimpleDateFormat f48970a;
+    public static final C0000a f45700b = new C0000a();
+    public final SimpleDateFormat f45701a;
 
     public class C0000a implements v {
         @Override
         public final u create(g gVar, wa.a aVar) {
-            if (aVar.f49520a == Date.class) {
+            if (aVar.f46587a == Date.class) {
                 return new a(0);
             }
             return null;
@@ -34,12 +34,12 @@ public final class a extends u {
         }
         String v = aVar.v();
         synchronized (this) {
-            TimeZone timeZone = this.f48970a.getTimeZone();
+            TimeZone timeZone = this.f45701a.getTimeZone();
             try {
-                date = new Date(this.f48970a.parse(v).getTime());
-                this.f48970a.setTimeZone(timeZone);
-            } catch (ParseException e6) {
-                throw new RuntimeException("Failed parsing '" + v + "' as SQL Date; at path " + aVar.j(), e6);
+                date = new Date(this.f45701a.parse(v).getTime());
+                this.f45701a.setTimeZone(timeZone);
+            } catch (ParseException e) {
+                throw new RuntimeException("Failed parsing '" + v + "' as SQL Date; at path " + aVar.j(), e);
             }
         }
         return date;
@@ -54,12 +54,12 @@ public final class a extends u {
             return;
         }
         synchronized (this) {
-            format = this.f48970a.format((java.util.Date) date);
+            format = this.f45701a.format((java.util.Date) date);
         }
         bVar.r(format);
     }
 
     private a() {
-        this.f48970a = new SimpleDateFormat("MMM d, yyyy");
+        this.f45701a = new SimpleDateFormat("MMM d, yyyy");
     }
 }

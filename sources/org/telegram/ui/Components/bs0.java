@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.os.Bundle;
-public final class bs0 extends org.telegram.ui.xn {
+public final class bs0 extends org.telegram.ui.zn {
     public boolean Nc;
     public final int Oc;
     public final yu0 Pc;
@@ -18,15 +18,15 @@ public final class bs0 extends org.telegram.ui.xn {
         yu0 yu0Var = this.Pc;
         ju0 ju0Var = yu0Var.P;
         if (this.Nc) {
-            if (this.f43169g0 != null) {
+            if (this.f40588g0 != null) {
                 la("");
-                this.f43169g0.H(ju0Var.f28188w, false);
+                this.f40588g0.H(ju0Var.f26058w, false);
             }
-            org.telegram.ui.vk vkVar = this.l1;
-            if (vkVar != null) {
-                vkVar.e(ju0Var.f28189x, false);
+            org.telegram.ui.xk xkVar = this.l1;
+            if (xkVar != null) {
+                xkVar.e(ju0Var.f26059x, false);
             }
-            yu0Var.f33649s1.getMediaDataController().portSavedSearchResults(getClassGuid(), ju0Var.f28189x, ju0Var.f28188w, ju0Var.f28185n, ju0Var.h, this.Oc, ju0Var.v, ju0Var.f28187s);
+            yu0Var.f31155s1.getMediaDataController().portSavedSearchResults(getClassGuid(), ju0Var.f26059x, ju0Var.f26058w, ju0Var.f26055n, ju0Var.h, this.Oc, ju0Var.v, ju0Var.f26057s);
             this.Nc = false;
         }
         super.onTransitionAnimationStart(z4, z10);

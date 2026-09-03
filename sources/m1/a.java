@@ -4,12 +4,12 @@ import android.content.Context;
 import dd.l;
 import tc.o;
 public final class a extends kotlin.jvm.internal.k implements l {
-    public static final a f13411b = new kotlin.jvm.internal.k(1);
+    public static final a f13687b = new kotlin.jvm.internal.k(1);
 
     @Override
     public final Object invoke(Object obj) {
         Context it = (Context) obj;
         kotlin.jvm.internal.j.e(it, "it");
-        return o.f48100a;
+        return o.f44712a;
     }
 }

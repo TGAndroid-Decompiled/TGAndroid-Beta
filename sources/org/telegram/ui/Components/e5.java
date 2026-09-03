@@ -2,14 +2,14 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 public final class e5 implements Runnable {
-    public final int f26443a;
-    public final h5 f26444b;
-    public final ArrayList f26445c;
+    public final int f24468a;
+    public final h5 f24469b;
+    public final ArrayList f24470c;
 
     public e5(h5 h5Var, ArrayList arrayList, int i10) {
-        this.f26443a = i10;
-        this.f26444b = h5Var;
-        this.f26445c = arrayList;
+        this.f24468a = i10;
+        this.f24469b = h5Var;
+        this.f24470c = arrayList;
     }
 
     @Override

@@ -1,49 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class yk implements ValueAnimator.AnimatorUpdateListener {
-    public boolean f33551a;
-    public final float[] f33552b = {0.0f, 1.0f};
-    public final FrameLayout f33553c;
-    public final zk d;
+import android.content.Context;
+import android.widget.TextView;
+public final class yk extends TextView {
+    public final int f31042a;
+    public float f31043b;
+    public float f31044c;
 
-    public yk(zk zkVar, FrameLayout frameLayout) {
-        this.d = zkVar;
-        this.f33553c = frameLayout;
+    public yk(Context context, int i10) {
+        super(context);
+        this.f31042a = i10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float interpolation;
-        float lerp = AndroidUtilities.lerp(this.f33552b, valueAnimator.getAnimatedFraction());
-        if (lerp >= 0.7f && !this.f33551a) {
-            zk zkVar = this.d;
-            cl clVar = zkVar.f33961b;
-            cl clVar2 = zkVar.f33961b;
-            if (clVar.f25978f0 != null) {
-                AnimatorSet animatorSet = new AnimatorSet();
-                animatorSet.playTogether(ObjectAnimator.ofFloat(clVar2.f25978f0, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(clVar2.f25978f0, View.SCALE_Y, 0.0f, 1.0f), ObjectAnimator.ofFloat(clVar2.f25978f0, View.ALPHA, 0.0f, 1.0f));
-                animatorSet.setInterpolator(new OvershootInterpolator(1.02f));
-                animatorSet.setDuration(250L);
-                animatorSet.start();
-                this.f33551a = true;
-            }
+    public final float getTranslationX() {
+        switch (this.f31042a) {
+            case 0:
+                return this.f31043b;
+            default:
+                return this.f31043b;
         }
-        if (lerp <= 0.5f) {
-            interpolation = pr.f30169g.getInterpolation(lerp / 0.5f) * 1.1f;
-        } else if (lerp <= 0.75f) {
-            interpolation = 1.1f - (pr.f30169g.getInterpolation((lerp - 0.5f) / 0.25f) * 0.2f);
-        } else {
-            interpolation = (pr.f30169g.getInterpolation((lerp - 0.75f) / 0.25f) * 0.1f) + 0.9f;
+    }
+
+    @Override
+    public final void setTranslationX(float f10) {
+        switch (this.f31042a) {
+            case 0:
+                this.f31043b = f10;
+                setTranslationY(this.f31044c + f10);
+                return;
+            default:
+                this.f31043b = f10;
+                setTranslationY(this.f31044c + f10);
+                return;
         }
-        FrameLayout frameLayout = this.f33553c;
-        frameLayout.setScaleX(interpolation);
-        frameLayout.setScaleY(interpolation);
     }
 }

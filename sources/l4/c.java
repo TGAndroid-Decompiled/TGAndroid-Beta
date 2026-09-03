@@ -3,15 +3,15 @@ package l4;
 import h5.c0;
 import h5.v;
 import h5.w;
-import j7.d7;
+import j7.c7;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-public final class c extends d7 {
-    public final w f11679a = new w();
-    public final v f11680b = new v();
-    public c0 f11681c;
+public final class c extends c7 {
+    public final w f11416a = new w();
+    public final v f11417b = new v();
+    public c0 f11418c;
 
     @Override
     public final e4.c b(e4.e eVar, ByteBuffer byteBuffer) {
@@ -52,17 +52,17 @@ public final class c extends d7 {
         long j17;
         boolean z26;
         long j18;
-        c0 c0Var = this.f11681c;
-        if (c0Var == null || eVar.f4941s != c0Var.d()) {
-            c0 c0Var2 = new c0(eVar.f15218f);
-            this.f11681c = c0Var2;
-            c0Var2.a(eVar.f15218f - eVar.f4941s);
+        c0 c0Var = this.f11418c;
+        if (c0Var == null || eVar.f5112s != c0Var.d()) {
+            c0 c0Var2 = new c0(eVar.f14227f);
+            this.f11418c = c0Var2;
+            c0Var2.a(eVar.f14227f - eVar.f5112s);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
-        w wVar = this.f11679a;
+        w wVar = this.f11416a;
         wVar.D(limit, array);
-        v vVar = this.f11680b;
+        v vVar = this.f11417b;
         vVar.n(limit, array);
         vVar.s(39);
         long i18 = (vVar.i(1) << 32) | vVar.i(32);
@@ -78,12 +78,12 @@ public final class c extends d7 {
                         if (i20 != 6) {
                             obj = null;
                         } else {
-                            c0 c0Var3 = this.f11681c;
+                            c0 c0Var3 = this.f11418c;
                             long a2 = k.a(i18, wVar);
                             obj = new k(a2, c0Var3.b(a2));
                         }
                     } else {
-                        c0 c0Var4 = this.f11681c;
+                        c0 c0Var4 = this.f11418c;
                         long v = wVar.v();
                         if ((wVar.u() & 128) != 0) {
                             z17 = true;

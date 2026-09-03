@@ -1,6 +1,6 @@
 package ld;
 public final class y extends kotlin.jvm.internal.k implements dd.l {
-    public static final y f12377b = new kotlin.jvm.internal.k(1);
+    public static final y f12048b = new kotlin.jvm.internal.k(1);
 
     @Override
     public final Object invoke(Object obj) {

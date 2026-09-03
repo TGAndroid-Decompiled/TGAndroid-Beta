@@ -1,41 +1,91 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-public final class q80 implements org.telegram.ui.ActionBar.c2, org.telegram.ui.ActionBar.n1 {
-    public final int f30356a;
-    public final y80 f30357b;
+import android.content.Context;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class q80 implements View.OnClickListener {
+    public final int f28111a;
+    public final x80 f28112b;
 
-    public q80(y80 y80Var, int i10) {
-        this.f30356a = i10;
-        this.f30357b = y80Var;
+    public q80(x80 x80Var, int i10) {
+        this.f28111a = i10;
+        this.f28112b = x80Var;
     }
 
     @Override
-    public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f30356a) {
+    public final void onClick(View view) {
+        boolean z4;
+        int i10;
+        switch (this.f28111a) {
             case 0:
-                x80 x80Var = this.f30357b.f33430r;
-                if (x80Var != null) {
-                    x80Var.k();
+                this.f28112b.f30538r.f();
+                return;
+            case 1:
+                x80 x80Var = this.f28112b;
+                org.telegram.ui.ActionBar.p1 p1Var = x80Var.f30539s;
+                if (p1Var != null) {
+                    p1Var.d(true);
+                }
+                x80Var.f30538r.a();
+                return;
+            case 2:
+                x80 x80Var2 = this.f28112b;
+                String str = x80Var2.f30534b;
+                if (str != null && str.endsWith("?direct")) {
+                    z4 = true;
+                } else {
+                    z4 = false;
+                }
+                Context context = x80Var2.getContext();
+                String string = LocaleController.getString(R.string.InviteByQRCode);
+                String str2 = x80Var2.f30534b;
+                String str3 = x80Var2.G;
+                if (str3 == null) {
+                    if (x80Var2.E) {
+                        if (z4) {
+                            i10 = R.string.QRCodeLinkHelpChannelDirect;
+                        } else {
+                            i10 = R.string.QRCodeLinkHelpChannel;
+                        }
+                    } else {
+                        i10 = R.string.QRCodeLinkHelpGroup;
+                    }
+                    str3 = LocaleController.getString(i10);
+                }
+                u80 u80Var = new u80(x80Var2, context, string, str2, str3);
+                x80Var2.B = u80Var;
+                u80Var.m(R.raw.qr_code_logo);
+                x80Var2.B.show();
+                org.telegram.ui.ActionBar.p1 p1Var2 = x80Var2.f30539s;
+                if (p1Var2 != null) {
+                    p1Var2.d(true);
                     return;
                 }
                 return;
             default:
-                x80 x80Var2 = this.f30357b.f33430r;
-                if (x80Var2 != null) {
-                    x80Var2.c();
+                x80 x80Var3 = this.f28112b;
+                org.telegram.ui.ActionBar.p1 p1Var3 = x80Var3.f30539s;
+                if (p1Var3 != null) {
+                    p1Var3.d(true);
+                }
+                org.telegram.ui.ActionBar.p2 p2Var = x80Var3.f30535c;
+                if (p2Var.getParentActivity() != null) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(p2Var.getParentActivity());
+                    alertDialog$Builder.f19478a.O = LocaleController.getString(R.string.RevokeLink);
+                    alertDialog$Builder.f19478a.Q = LocaleController.getString(R.string.RevokeAlert);
+                    alertDialog$Builder.k(LocaleController.getString(R.string.RevokeButton), new p80(x80Var3, 1));
+                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                    TextView textView = (TextView) alertDialog$Builder.f19478a.d(-1);
+                    if (textView != null) {
+                        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20116q7, false));
+                    }
+                    alertDialog$Builder.o();
                     return;
                 }
                 return;
-        }
-    }
-
-    @Override
-    public void n(KeyEvent keyEvent) {
-        y80 y80Var = this.f30357b;
-        y80Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && y80Var.f33431s.isShowing()) {
-            y80Var.f33431s.d(true);
         }
     }
 }

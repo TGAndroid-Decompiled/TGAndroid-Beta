@@ -12,33 +12,33 @@ public final class fu0 extends f2.b0 {
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, f2.m1 m1Var) {
-        super.a(recyclerView, m1Var);
-        m1Var.f5875a.setPressed(false);
+    public final void a(RecyclerView recyclerView, f2.l1 l1Var) {
+        super.a(recyclerView, l1Var);
+        l1Var.f5774a.setPressed(false);
     }
 
     @Override
-    public final int e(RecyclerView recyclerView, f2.m1 m1Var) {
+    public final int e(RecyclerView recyclerView, f2.l1 l1Var) {
         SavedMessagesController.SavedDialog r10;
         int l10 = f2.b0.l(0, 0);
-        yu0 yu0Var = this.d.f27636x;
-        if (yu0Var.f33666z1 && recyclerView.getAdapter() != yu0Var.P && (r10 = r(m1Var)) != null && r10.pinned) {
+        yu0 yu0Var = this.d.f25503x;
+        if (yu0Var.f31172z1 && recyclerView.getAdapter() != yu0Var.P && (r10 = r(l1Var)) != null && r10.pinned) {
             return f2.b0.l(3, 0);
         }
         return l10;
     }
 
     @Override
-    public final boolean n(RecyclerView recyclerView, f2.m1 m1Var, f2.m1 m1Var2) {
+    public final boolean n(RecyclerView recyclerView, f2.l1 l1Var, f2.l1 l1Var2) {
         hu0 hu0Var = this.d;
-        ArrayList arrayList = hu0Var.f27631f;
-        yu0 yu0Var = hu0Var.f27636x;
-        if (yu0Var.f33666z1 && recyclerView.getAdapter() != yu0Var.P) {
-            SavedMessagesController.SavedDialog r10 = r(m1Var);
-            SavedMessagesController.SavedDialog r11 = r(m1Var2);
+        ArrayList arrayList = hu0Var.f25498f;
+        yu0 yu0Var = hu0Var.f25503x;
+        if (yu0Var.f31172z1 && recyclerView.getAdapter() != yu0Var.P) {
+            SavedMessagesController.SavedDialog r10 = r(l1Var);
+            SavedMessagesController.SavedDialog r11 = r(l1Var2);
             if (r10 != null && r11 != null && r10.pinned && r11.pinned) {
-                int b10 = m1Var.b();
-                int b11 = m1Var2.b();
+                int b10 = l1Var.b();
+                int b11 = l1Var2.b();
                 arrayList.remove(b10);
                 arrayList.add(b11, r10);
                 hu0Var.p(b10, b11);
@@ -51,11 +51,11 @@ public final class fu0 extends f2.b0 {
     }
 
     @Override
-    public final void p(f2.m1 m1Var, int i10) {
+    public final void p(f2.l1 l1Var, int i10) {
         pt0 pt0Var;
         hu0 hu0Var = this.d;
-        nq0 nq0Var = hu0Var.f27632n;
-        if (m1Var != null && (pt0Var = hu0Var.f27634s) != null) {
+        nq0 nq0Var = hu0Var.f25499n;
+        if (l1Var != null && (pt0Var = hu0Var.f25501s) != null) {
             pt0Var.c1(false);
         }
         if (i10 == 0) {
@@ -64,18 +64,18 @@ public final class fu0 extends f2.b0 {
         }
     }
 
-    public final SavedMessagesController.SavedDialog r(f2.m1 m1Var) {
+    public final SavedMessagesController.SavedDialog r(f2.l1 l1Var) {
         int b10;
-        if (m1Var != null && (b10 = m1Var.b()) >= 0) {
+        if (l1Var != null && (b10 = l1Var.b()) >= 0) {
             hu0 hu0Var = this.d;
-            if (b10 < hu0Var.f27631f.size()) {
-                return (SavedMessagesController.SavedDialog) hu0Var.f27631f.get(b10);
+            if (b10 < hu0Var.f25498f.size()) {
+                return (SavedMessagesController.SavedDialog) hu0Var.f25498f.get(b10);
             }
         }
         return null;
     }
 
     @Override
-    public final void q(f2.m1 m1Var) {
+    public final void q(f2.l1 l1Var) {
     }
 }

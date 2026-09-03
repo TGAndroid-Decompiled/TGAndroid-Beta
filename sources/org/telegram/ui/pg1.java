@@ -1,30 +1,30 @@
 package org.telegram.ui;
 public final class pg1 implements Runnable {
-    public final int f40012a;
-    public final vg1 f40013b;
-    public final byte[] f40014c;
+    public final int f37151a;
+    public final wg1 f37152b;
+    public final byte[] f37153c;
 
-    public pg1(vg1 vg1Var, byte[] bArr, int i10) {
-        this.f40012a = i10;
-        this.f40013b = vg1Var;
-        this.f40014c = bArr;
+    public pg1(wg1 wg1Var, byte[] bArr, int i10) {
+        this.f37151a = i10;
+        this.f37152b = wg1Var;
+        this.f37153c = bArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f40012a) {
+        switch (this.f37151a) {
             case 0:
-                vg1.Y(this.f40013b, this.f40014c);
+                wg1.Y(this.f37152b, this.f37153c);
                 return;
             default:
-                vg1 vg1Var = this.f40013b;
-                vg1Var.w0();
-                vg1Var.S = this.f40014c;
-                vg1Var.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
-                vg1 vg1Var2 = new vg1(9, vg1Var.R);
-                vg1Var2.E = vg1Var.E;
-                vg1Var2.D = vg1Var.D;
-                vg1Var.presentFragment(vg1Var2, true);
+                wg1 wg1Var = this.f37152b;
+                wg1Var.w0();
+                wg1Var.S = this.f37153c;
+                wg1Var.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
+                wg1 wg1Var2 = new wg1(9, wg1Var.R);
+                wg1Var2.E = wg1Var.E;
+                wg1Var2.D = wg1Var.D;
+                wg1Var.presentFragment(wg1Var2, true);
                 return;
         }
     }

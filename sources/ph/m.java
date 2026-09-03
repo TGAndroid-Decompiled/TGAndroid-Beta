@@ -1,36 +1,36 @@
 package ph;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.TranslateController;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.h61;
-import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.w51;
-public final class m extends g51 {
-    public static final int f44433a = 0;
+import org.telegram.messenger.Utilities;
+public final class m implements Utilities.Callback {
+    public final int f41985a;
+    public final t9 f41986b;
 
-    static {
-        g51.setup(new g51());
+    public m(t9 t9Var, int i10) {
+        this.f41985a = i10;
+        this.f41986b = t9Var;
     }
 
     @Override
-    public final void bindView(View view, h51 h51Var, boolean z4, w51 w51Var, h61 h61Var) {
-        n nVar = (n) view;
-        TranslateController.Language language = (TranslateController.Language) h51Var.G;
-        nVar.f44434a.setText(language.displayName);
-        nVar.f44435b.setText(language.ownDisplayName);
-        if (nVar.f44436c != z4) {
-            nVar.invalidate();
+    public final void run(Object obj) {
+        Integer num = (Integer) obj;
+        switch (this.f41985a) {
+            case 0:
+                int intValue = num.intValue();
+                t9 t9Var = this.f41986b;
+                t9Var.setPeriod(intValue);
+                Utilities.Callback callback = t9Var.f42199y1;
+                if (callback != null) {
+                    callback.run(num);
+                    return;
+                }
+                return;
+            default:
+                Utilities.Callback callback2 = this.f41986b.f42200z1;
+                if (callback2 != null) {
+                    callback2.run(num);
+                    return;
+                }
+                return;
         }
-        nVar.f44436c = z4;
-        nVar.setWillNotDraw(!z4);
-    }
-
-    @Override
-    public final View createView(Context context, sl0 sl0Var, int i10, int i11, g6 g6Var) {
-        return new n(context);
     }
 }

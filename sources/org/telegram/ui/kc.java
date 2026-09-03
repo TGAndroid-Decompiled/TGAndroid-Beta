@@ -1,59 +1,44 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.NotificationCenter;
-public final class kc implements ValueAnimator.AnimatorUpdateListener {
-    public final int f38247a;
-    public boolean f38248b = false;
-    public final NotificationCenter.NotificationCenterDelegate f38249c;
+import android.app.Activity;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class kc extends x61 {
+    public final ec a2;
+    public final n61[] f35500b2;
+    public final dd f35501c2;
 
-    public kc(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f38247a = i10;
-        this.f38249c = notificationCenterDelegate;
+    public kc(dd ddVar, dd ddVar2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11, int i12, ec ecVar, n61[] n61VarArr) {
+        super(ddVar2, activity, true, num, i10, true, f6Var, i11, i12);
+        this.f35501c2 = ddVar;
+        this.a2 = ecVar;
+        this.f35500b2 = n61VarArr;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f38247a) {
-            case 0:
-                bd bdVar = (bd) this.f38249c;
-                bdVar.f35451k0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                bdVar.f35450j0.invalidate();
-                if (!this.f38248b && bdVar.f35451k0 > 0.5f) {
-                    this.f38248b = true;
-                    return;
-                }
-                return;
-            case 1:
-                np0 np0Var = (np0) this.f38249c;
-                np0Var.V = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                np0Var.U.invalidate();
-                if (!this.f38248b && np0Var.V > 0.5f) {
-                    this.f38248b = true;
-                    return;
-                }
-                return;
-            case 2:
-                jd1 jd1Var = (jd1) this.f38249c;
-                jd1Var.f37982f2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                jd1Var.f37978e2.invalidate();
-                if (!this.f38248b && jd1Var.f37982f2 > 0.5f) {
-                    this.f38248b = true;
-                    return;
-                }
-                return;
-            default:
-                qh.ba baVar = (qh.ba) this.f38249c;
-                baVar.A2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                org.telegram.ui.Components.wo woVar = baVar.f45125z2;
-                if (woVar != null) {
-                    woVar.invalidate();
-                }
-                if (!this.f38248b && baVar.A2 > 0.5f) {
-                    this.f38248b = true;
-                    return;
-                }
-                return;
+    public final long getDialogId() {
+        return this.f35501c2.f33416a;
+    }
+
+    @Override
+    public final float getScrimDrawableTranslationY() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        long longValue;
+        if (l10 == null) {
+            longValue = 0;
+        } else {
+            longValue = l10.longValue();
+        }
+        this.a2.run(Long.valueOf(longValue), num, tL_starGiftUnique);
+        n61 n61Var = this.f35500b2[0];
+        if (n61Var != null) {
+            this.f35501c2.N = null;
+            n61Var.dismiss();
         }
     }
 }

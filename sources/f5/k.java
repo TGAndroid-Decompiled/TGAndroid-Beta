@@ -10,20 +10,20 @@ import android.os.Looper;
 import h5.d0;
 import j3.n0;
 public final class k {
-    public final Spatializer f6031a;
-    public final boolean f6032b;
-    public Handler f6033c;
+    public final Spatializer f5920a;
+    public final boolean f5921b;
+    public Handler f5922c;
     public j d;
 
     public k(Spatializer spatializer) {
         boolean z4;
-        this.f6031a = spatializer;
+        this.f5920a = spatializer;
         if (spatializer.getImmersiveAudioLevel() != 0) {
             z4 = true;
         } else {
             z4 = false;
         }
-        this.f6032b = z4;
+        this.f5921b = z4;
     }
 
     public static k f(Context context) {
@@ -45,34 +45,34 @@ public final class k {
         if (i11 != -1) {
             channelMask.setSampleRate(i11);
         }
-        return this.f6031a.canBeSpatialized((AudioAttributes) dVar.a().f16617b, channelMask.build());
+        return this.f5920a.canBeSpatialized((AudioAttributes) dVar.a().f9336b, channelMask.build());
     }
 
     public final void b(p pVar, Looper looper) {
-        if (this.d == null && this.f6033c == null) {
+        if (this.d == null && this.f5922c == null) {
             this.d = new j(pVar);
             Handler handler = new Handler(looper);
-            this.f6033c = handler;
-            this.f6031a.addOnSpatializerStateChangedListener(new c2.f(handler, 0), this.d);
+            this.f5922c = handler;
+            this.f5920a.addOnSpatializerStateChangedListener(new c2.f(handler, 0), this.d);
         }
     }
 
     public final boolean c() {
-        return this.f6031a.isAvailable();
+        return this.f5920a.isAvailable();
     }
 
     public final boolean d() {
-        return this.f6031a.isEnabled();
+        return this.f5920a.isEnabled();
     }
 
     public final void e() {
         j jVar = this.d;
-        if (jVar != null && this.f6033c != null) {
-            this.f6031a.removeOnSpatializerStateChangedListener(jVar);
-            Handler handler = this.f6033c;
-            int i10 = d0.f7237a;
+        if (jVar != null && this.f5922c != null) {
+            this.f5920a.removeOnSpatializerStateChangedListener(jVar);
+            Handler handler = this.f5922c;
+            int i10 = d0.f6924a;
             handler.removeCallbacksAndMessages(null);
-            this.f6033c = null;
+            this.f5922c = null;
             this.d = null;
         }
     }

@@ -9,12 +9,12 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Pair;
 import android.view.View;
-import f3.h;
-import hg.y1;
+import gg.y1;
 import java.io.File;
 import java.util.ArrayList;
 import k9.b1;
-import mh.p;
+import lh.j;
+import lh.q;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ImageReceiver;
@@ -25,43 +25,43 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.ActionBar.c4;
 import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.ActionBar.d4;
 import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Components.jl0;
-import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.il0;
+import org.telegram.ui.Components.ir;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.d60;
+import org.telegram.ui.e60;
 import org.telegram.ui.ig1;
-import org.telegram.ui.py;
+import org.telegram.ui.qy;
 import org.telegram.ui.vz0;
-import qh.w7;
+import ph.y7;
 import y2.i;
-public final class f implements g3.b, f3.f, ba.a, ig1, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, c2, jl0, MessagesController.IsInChatCheckedCallback {
-    public final int f4928a;
-    public final long f4929b;
-    public final Object f4930c;
+public final class f implements g3.b, f3.f, ba.a, ig1, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, c2, il0, MessagesController.IsInChatCheckedCallback {
+    public final int f5098a;
+    public final long f5099b;
+    public final Object f5100c;
     public final Object d;
 
     public f(Object obj, long j10, Object obj2, int i10) {
-        this.f4928a = i10;
-        this.f4930c = obj;
-        this.f4929b = j10;
+        this.f5098a = i10;
+        this.f5100c = obj;
+        this.f5099b = j10;
         this.d = obj2;
     }
 
     @Override
-    public boolean Y0(View view) {
+    public boolean Z0(View view) {
         return false;
     }
 
     @Override
     public Object apply(Object obj) {
         boolean z4;
-        String str = (String) this.f4930c;
+        String str = (String) this.f5100c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
-        int i10 = ((b3.c) this.d).f1400a;
+        int i10 = ((b3.c) this.d).f1309a;
         Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT 1 FROM log_event_dropped WHERE log_source = ? AND reason = ?", new String[]{str, Integer.toString(i10)});
         try {
             if (rawQuery.getCount() > 0) {
@@ -70,7 +70,7 @@ public final class f implements g3.b, f3.f, ba.a, ig1, ChatObject.Call.OnPartici
                 z4 = false;
             }
             rawQuery.close();
-            long j10 = this.f4929b;
+            long j10 = this.f5099b;
             if (!z4) {
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("log_source", str);
@@ -89,13 +89,13 @@ public final class f implements g3.b, f3.f, ba.a, ig1, ChatObject.Call.OnPartici
 
     @Override
     public void c(float f10, float f11, int i10, View view) {
-        ProfileActivity.b0((ProfileActivity) this.f4930c, (Context) this.d, this.f4929b, view, i10, f10, f11);
+        ProfileActivity.b0((ProfileActivity) this.f5100c, (Context) this.d, this.f5099b, view, i10, f10, f11);
     }
 
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z4, boolean z10, boolean z11) {
-        ResultCallback resultCallback = (ResultCallback) this.f4930c;
-        long j10 = this.f4929b;
+        ResultCallback resultCallback = (ResultCallback) this.f5100c;
+        long j10 = this.f5099b;
         File file = (File) this.d;
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (z4 && bitmapSafe != null && !bitmapSafe.bitmap.isRecycled()) {
@@ -110,7 +110,7 @@ public final class f implements g3.b, f3.f, ba.a, ig1, ChatObject.Call.OnPartici
                 if (resultCallback != null) {
                     resultCallback.onComplete(new Pair(Long.valueOf(j10), bitmap));
                 }
-                Utilities.globalQueue.postRunnable(new d4(file, bitmap));
+                Utilities.globalQueue.postRunnable(new c4(file, bitmap));
             } else if (resultCallback != null) {
                 resultCallback.onComplete(null);
             }
@@ -124,50 +124,50 @@ public final class f implements g3.b, f3.f, ba.a, ig1, ChatObject.Call.OnPartici
 
     @Override
     public void f(ba.b bVar) {
-        ((f9.a) bVar.get()).d((String) this.f4930c, this.f4929b, (b1) this.d);
+        ((f9.a) bVar.get()).d((String) this.f5100c, this.f5099b, (b1) this.d);
     }
 
     @Override
-    public Object g() {
-        g gVar = (g) this.f4930c;
-        long W = ((h3.a) gVar.f4936g).W() + this.f4929b;
-        h hVar = (h) ((f3.d) gVar.f4933c);
+    public void g(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
+        ((q) this.f5100c).h0(true, this.f5099b, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.d);
+    }
+
+    @Override
+    public Object h() {
+        g gVar = (g) this.f5100c;
+        long l10 = ((h3.a) gVar.f5105g).l() + this.f5099b;
+        f3.h hVar = (f3.h) ((f3.d) gVar.f5103c);
         hVar.getClass();
-        hVar.c(new f3.e(W, (i) this.d));
+        hVar.c(new f3.e(l10, (i) this.d));
         return null;
     }
 
     @Override
-    public void i(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        ((p) this.f4930c).h0(true, this.f4929b, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.d);
-    }
-
-    @Override
-    public void j(d2 d2Var, int i10) {
-        switch (this.f4928a) {
+    public void l(d2 d2Var, int i10) {
+        switch (this.f5098a) {
             case 6:
-                lr.Q((lr) this.f4930c, (qh.d) this.d, this.f4929b);
+                ir.Q((ir) this.f5100c, (ph.d) this.d, this.f5099b);
                 return;
             case 7:
-                d60 d60Var = (d60) this.f4930c;
-                d60Var.d.getMessagesController().addUserToChat(d60Var.i1(), (TLRPC.User) this.d, 0, null, (p2) d60Var.f36012f0.O().getFragmentStack().get(d60Var.f36012f0.O().getFragmentStack().size() - 1), new y1(d60Var, this.f4929b, 20));
+                e60 e60Var = (e60) this.f5100c;
+                e60Var.d.getMessagesController().addUserToChat(e60Var.i1(), (TLRPC.User) this.d, 0, null, (p2) e60Var.f33638f0.O().getFragmentStack().get(e60Var.f33638f0.O().getFragmentStack().size() - 1), new y1(e60Var, this.f5099b, 20));
                 return;
             default:
-                w7 w7Var = (w7) this.f4930c;
+                y7 y7Var = (y7) this.f5100c;
                 ArrayList arrayList = (ArrayList) this.d;
-                w7Var.d.put(Long.valueOf(this.f4929b), arrayList);
+                y7Var.d.put(Long.valueOf(this.f5099b), arrayList);
                 int size = arrayList.size();
                 int i11 = 0;
                 while (i11 < size) {
                     Object obj = arrayList.get(i11);
                     i11++;
-                    w7Var.f46263b.k(Boolean.TRUE, ((Long) obj).longValue());
+                    y7Var.f42659b.k(Boolean.TRUE, ((Long) obj).longValue());
                 }
-                w7Var.i(true);
-                w7Var.e(true);
-                w7Var.f(true);
+                y7Var.i(true);
+                y7Var.e(true);
+                y7Var.f(true);
                 d2Var.dismiss();
-                w7Var.f46271x.H = true;
+                y7Var.f42666x.H = true;
                 return;
         }
     }
@@ -179,22 +179,22 @@ public final class f implements g3.b, f3.f, ba.a, ig1, ChatObject.Call.OnPartici
 
     @Override
     public void onLoad(ArrayList arrayList) {
-        ((VoIPService) this.f4930c).lambda$createGroupInstance$69(this.f4929b, (int[]) this.d, arrayList);
+        ((VoIPService) this.f5100c).lambda$createGroupInstance$69(this.f5099b, (int[]) this.d, arrayList);
     }
 
     @Override
     public void run(boolean z4, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        AndroidUtilities.runOnUIThread(new mh.i((vz0) this.f4930c, this.f4929b, tL_chatAdminRights, str, z4, (py) this.d));
+        AndroidUtilities.runOnUIThread(new j((vz0) this.f5100c, this.f5099b, tL_chatAdminRights, str, z4, (qy) this.d));
     }
 
     public f(Object obj, Object obj2, long j10, int i10) {
-        this.f4928a = i10;
-        this.f4930c = obj;
+        this.f5098a = i10;
+        this.f5100c = obj;
         this.d = obj2;
-        this.f4929b = j10;
+        this.f5099b = j10;
     }
 
     @Override
-    public void r0(View view, float f10, float f11) {
+    public void n0(View view, float f10, float f11) {
     }
 }

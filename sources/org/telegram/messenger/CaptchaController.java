@@ -94,7 +94,7 @@ public class CaptchaController {
     }
 
     public static void lambda$request$0(String str, String str2, Request request, String str3) {
-        org.telegram.ui.yh.v(str3, org.telegram.ui.yh.m("CaptchaController: got token for {action=", str, ", key_id=", str2, "}: "));
+        org.telegram.ui.ai.v(str3, org.telegram.ui.ai.l("CaptchaController: got token for {action=", str, ", key_id=", str2, "}: "));
         if (str3 == null) {
             request.done("RECAPTCHA_FAILED_TOKEN_NULL");
         } else {

@@ -1,78 +1,39 @@
 package org.telegram.ui;
 
-import java.util.regex.Pattern;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class gf implements org.telegram.ui.ActionBar.c2, MessagesController.ErrorDelegate, ko0 {
-    public final int f37088a;
-    public final Runnable f37089b;
+import android.animation.ValueAnimator;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class gf implements ValueAnimator.AnimatorUpdateListener {
+    public final int f34437a;
+    public final zn f34438b;
+    public final View f34439c;
 
-    public gf(int i10, Runnable runnable) {
-        this.f37088a = i10;
-        this.f37089b = runnable;
+    public gf(zn znVar, org.telegram.ui.Cells.v0 v0Var, int i10) {
+        this.f34437a = i10;
+        this.f34438b = znVar;
+        this.f34439c = v0Var;
     }
 
     @Override
-    public void a(int i10) {
-        int i11 = this.f37088a;
-        Runnable runnable = this.f37089b;
-        switch (i11) {
-            case 9:
-                Pattern pattern = LaunchActivity.f34134y1;
-                if (i10 == 1) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                if (i10 == 1) {
-                    runnable.run();
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f37088a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f34437a) {
             case 0:
-                this.f37089b.run();
-                return;
-            case 1:
-                this.f37089b.run();
+                zn znVar = this.f34438b;
+                znVar.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                znVar.f40809x9 = AndroidUtilities.dp(30.0f) * floatValue;
+                znVar.o9();
+                this.f34439c.setAlpha(floatValue);
                 return;
             default:
-                Runnable runnable = this.f37089b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                zn znVar2 = this.f34438b;
+                znVar2.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                znVar2.f40809x9 = AndroidUtilities.dp(30.0f) * floatValue2;
+                znVar2.o9();
+                znVar2.r9();
+                this.f34439c.setAlpha(floatValue2);
                 return;
-        }
-    }
-
-    @Override
-    public boolean run(TLRPC.TL_error tL_error) {
-        switch (this.f37088a) {
-            case 3:
-                this.f37089b.run();
-                return true;
-            case 4:
-                this.f37089b.run();
-                return true;
-            case 5:
-                this.f37089b.run();
-                return true;
-            case 6:
-                this.f37089b.run();
-                return true;
-            case 7:
-                this.f37089b.run();
-                return true;
-            default:
-                this.f37089b.run();
-                return true;
         }
     }
 }

@@ -1,158 +1,97 @@
 package lh;
 
-import java.util.HashMap;
-import mh.l7;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLMethod;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class o3 implements Runnable {
-    public final int f12878a;
-    public final boolean f12879b;
-    public final Object f12880c;
-    public final Object d;
-    public final Object f12881e;
-    public final Object f12882f;
-    public final Object h;
-    public final Object f12883n;
-    public final Object f12884r;
-    public final Object f12885s;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.l81;
+public final class o3 extends l81 {
+    public final g5 Q;
 
-    public o3(p3 p3Var, org.telegram.ui.ActionBar.g1 g1Var, org.telegram.ui.ActionBar.g1 g1Var2, org.telegram.ui.ActionBar.g1 g1Var3, org.telegram.ui.ActionBar.g1 g1Var4, org.telegram.ui.ActionBar.g1 g1Var5, boolean z4, org.telegram.ui.ActionBar.g1 g1Var6, org.telegram.ui.ActionBar.g1 g1Var7) {
-        this.f12878a = 0;
-        this.f12880c = p3Var;
-        this.d = g1Var;
-        this.f12881e = g1Var2;
-        this.f12882f = g1Var3;
-        this.h = g1Var4;
-        this.f12883n = g1Var5;
-        this.f12879b = z4;
-        this.f12884r = g1Var6;
-        this.f12885s = g1Var7;
+    public o3(g5 g5Var, Context context) {
+        super(context, null);
+        this.Q = g5Var;
     }
 
     @Override
-    public final void run() {
+    public final void E(View view, float f10) {
         int i10;
-        int i11;
-        int i12;
-        int i13;
-        switch (this.f12878a) {
-            case 0:
-                org.telegram.ui.ActionBar.g1 g1Var = (org.telegram.ui.ActionBar.g1) this.d;
-                org.telegram.ui.ActionBar.g1 g1Var2 = (org.telegram.ui.ActionBar.g1) this.f12881e;
-                org.telegram.ui.ActionBar.g1 g1Var3 = (org.telegram.ui.ActionBar.g1) this.f12882f;
-                org.telegram.ui.ActionBar.g1 g1Var4 = (org.telegram.ui.ActionBar.g1) this.h;
-                org.telegram.ui.ActionBar.g1 g1Var5 = (org.telegram.ui.ActionBar.g1) this.f12883n;
-                org.telegram.ui.ActionBar.g1 g1Var6 = (org.telegram.ui.ActionBar.g1) this.f12884r;
-                org.telegram.ui.ActionBar.g1 g1Var7 = (org.telegram.ui.ActionBar.g1) this.f12885s;
-                l7 l7Var = ((p3) this.f12880c).f12895c.V;
-                if (l7Var.f14401e) {
-                    i10 = R.string.Gift2FilterSortByValue;
-                } else {
-                    i10 = R.string.Gift2FilterSortByDate;
+        View view2;
+        kh.l3 l3Var;
+        kh.l3 l3Var2;
+        q3 q3Var;
+        q3 q3Var2;
+        q3 q3Var3;
+        if (getMeasuredWidth() <= 0) {
+            view.setTranslationX(f10);
+            return;
+        }
+        float clamp = Utilities.clamp(f10 / getMeasuredWidth(), 1.0f, -1.0f);
+        g5 g5Var = this.Q;
+        i10 = ((org.telegram.ui.ActionBar.g3) g5Var).backgroundPaddingLeft;
+        view.setTranslationX(((-clamp) * 2.0f * i10) + f10);
+        float f11 = 0.0f;
+        if (clamp <= 0.0f) {
+            f11 = view.getMeasuredWidth();
+        }
+        view.setPivotX(f11);
+        view.setCameraDistance(view.getMeasuredHeight() * 3.4f);
+        view.setScaleX(1.0f - Math.abs(0.25f * clamp));
+        view.setRotationY(clamp * 10.0f);
+        if (view instanceof FrameLayout) {
+            FrameLayout frameLayout = (FrameLayout) view;
+            if (frameLayout.getChildCount() > 0) {
+                view2 = frameLayout.getChildAt(0);
+                l3Var = g5Var.Y;
+                if (l3Var != null && view2 == l3Var.V && (q3Var3 = l3Var.f12450a0) != null) {
+                    q3Var3.invalidate();
                 }
-                String string = LocaleController.getString(i10);
-                if (l7Var.f14401e) {
-                    i11 = R.drawable.menu_sort_value;
-                } else {
-                    i11 = R.drawable.menu_sort_date;
+                if (view2 == g5Var.V && (q3Var2 = g5Var.f12450a0) != null) {
+                    q3Var2.invalidate();
                 }
-                g1Var.g(string, i11, null);
-                g1Var2.setChecked(TLObject.hasFlag(l7Var.f14403g, 1));
-                g1Var3.setChecked(TLObject.hasFlag(l7Var.f14403g, 2));
-                g1Var4.setChecked(TLObject.hasFlag(l7Var.f14403g, 4));
-                g1Var5.setChecked(TLObject.hasFlag(l7Var.f14403g, 8));
-                if (this.f12879b) {
-                    g1Var6.setChecked(TLObject.hasFlag(l7Var.f14403g, 256));
-                    g1Var7.setChecked(TLObject.hasFlag(l7Var.f14403g, 512));
+                l3Var2 = g5Var.Z;
+                if (l3Var2 == null && view2 == l3Var2.V && (q3Var = l3Var2.f12450a0) != null) {
+                    q3Var.invalidate();
                     return;
                 }
                 return;
-            case 1:
-                ((SendMessagesHelper) this.f12880c).lambda$performSendMessageRequest$86((TLRPC.TL_error) this.d, (TLRPC.Message) this.f12881e, (TLObject) this.f12882f, (MessageObject) this.h, (String) this.f12883n, (HashMap) this.f12884r, this.f12879b, (TLRPC.TL_messages_addPollAnswer) this.f12885s);
-                return;
-            case 2:
-                ((SendMessagesHelper) this.f12880c).lambda$performSendMessageRequest$89((TLRPC.TL_error) this.d, (TLRPC.Message) this.f12881e, (TLObject) this.f12882f, (MessageObject) this.h, (String) this.f12883n, (HashMap) this.f12884r, this.f12879b, (TLRPC.TL_messages_editMessage) this.f12885s);
-                return;
-            case 3:
-                ((SendMessagesHelper) this.f12880c).lambda$performSendMessageRequest$100(this.f12879b, (TLRPC.TL_error) this.d, (TLRPC.Message) this.f12881e, (TLObject) this.f12882f, (MessageObject) this.h, (HashMap) this.f12883n, (String) this.f12884r, (TLObject) this.f12885s);
-                return;
-            default:
-                org.telegram.ui.ActionBar.g1 g1Var8 = (org.telegram.ui.ActionBar.g1) this.d;
-                l7 l7Var2 = (l7) this.f12880c;
-                org.telegram.ui.ActionBar.g1 g1Var9 = (org.telegram.ui.ActionBar.g1) this.f12881e;
-                org.telegram.ui.ActionBar.g1 g1Var10 = (org.telegram.ui.ActionBar.g1) this.f12882f;
-                org.telegram.ui.ActionBar.g1 g1Var11 = (org.telegram.ui.ActionBar.g1) this.h;
-                org.telegram.ui.ActionBar.g1 g1Var12 = (org.telegram.ui.ActionBar.g1) this.f12883n;
-                org.telegram.ui.ActionBar.g1 g1Var13 = (org.telegram.ui.ActionBar.g1) this.f12884r;
-                org.telegram.ui.ActionBar.g1 g1Var14 = (org.telegram.ui.ActionBar.g1) this.f12885s;
-                if (g1Var8 != null) {
-                    if (l7Var2.f14401e) {
-                        i12 = R.string.Gift2FilterSortByValue;
-                    } else {
-                        i12 = R.string.Gift2FilterSortByDate;
-                    }
-                    String string2 = LocaleController.getString(i12);
-                    if (l7Var2.f14401e) {
-                        i13 = R.drawable.menu_sort_value;
-                    } else {
-                        i13 = R.drawable.menu_sort_date;
-                    }
-                    g1Var8.g(string2, i13, null);
-                }
-                g1Var9.setChecked(TLObject.hasFlag(l7Var2.f14403g, 1));
-                g1Var10.setChecked(TLObject.hasFlag(l7Var2.f14403g, 2));
-                g1Var11.setChecked(TLObject.hasFlag(l7Var2.f14403g, 4));
-                g1Var12.setChecked(TLObject.hasFlag(l7Var2.f14403g, 8));
-                if (this.f12879b) {
-                    g1Var13.setChecked(TLObject.hasFlag(l7Var2.f14403g, 256));
-                    g1Var14.setChecked(TLObject.hasFlag(l7Var2.f14403g, 512));
-                    return;
-                }
-                return;
+            }
+        }
+        view2 = null;
+        l3Var = g5Var.Y;
+        if (l3Var != null) {
+            q3Var3.invalidate();
+        }
+        if (view2 == g5Var.V) {
+            q3Var2.invalidate();
+        }
+        l3Var2 = g5Var.Z;
+        if (l3Var2 == null) {
         }
     }
 
-    public o3(SendMessagesHelper sendMessagesHelper, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, MessageObject messageObject, String str, HashMap hashMap, boolean z4, TLMethod tLMethod, int i10) {
-        this.f12878a = i10;
-        this.f12880c = sendMessagesHelper;
-        this.d = tL_error;
-        this.f12881e = message;
-        this.f12882f = tLObject;
-        this.h = messageObject;
-        this.f12883n = str;
-        this.f12884r = hashMap;
-        this.f12879b = z4;
-        this.f12885s = tLMethod;
+    @Override
+    public final void F() {
+        super.F();
+        int i10 = this.f26617b;
+        g5 g5Var = this.Q;
+        boolean z4 = false;
+        if (i10 != g5Var.L1(false)) {
+            if (this.f26617b > g5Var.L1(false)) {
+                z4 = true;
+            }
+            AndroidUtilities.runOnUIThread(new jh.f(4, this, z4));
+        }
     }
 
-    public o3(SendMessagesHelper sendMessagesHelper, boolean z4, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, MessageObject messageObject, HashMap hashMap, String str, TLObject tLObject2) {
-        this.f12878a = 3;
-        this.f12880c = sendMessagesHelper;
-        this.f12879b = z4;
-        this.d = tL_error;
-        this.f12881e = message;
-        this.f12882f = tLObject;
-        this.h = messageObject;
-        this.f12883n = hashMap;
-        this.f12884r = str;
-        this.f12885s = tLObject2;
-    }
-
-    public o3(org.telegram.ui.ActionBar.g1 g1Var, l7 l7Var, org.telegram.ui.ActionBar.g1 g1Var2, org.telegram.ui.ActionBar.g1 g1Var3, org.telegram.ui.ActionBar.g1 g1Var4, org.telegram.ui.ActionBar.g1 g1Var5, boolean z4, org.telegram.ui.ActionBar.g1 g1Var6, org.telegram.ui.ActionBar.g1 g1Var7) {
-        this.f12878a = 4;
-        this.d = g1Var;
-        this.f12880c = l7Var;
-        this.f12881e = g1Var2;
-        this.f12882f = g1Var3;
-        this.h = g1Var4;
-        this.f12883n = g1Var5;
-        this.f12879b = z4;
-        this.f12884r = g1Var6;
-        this.f12885s = g1Var7;
+    @Override
+    public final boolean i(MotionEvent motionEvent) {
+        c5.d dVar = this.Q.V0;
+        if (dVar != null && !dVar.c(0)) {
+            return false;
+        }
+        return true;
     }
 }

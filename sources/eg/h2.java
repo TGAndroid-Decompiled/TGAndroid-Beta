@@ -1,72 +1,17 @@
 package eg;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.a6;
-public final class h2 extends TextView {
-    public boolean f5234a;
-    public Drawable f5235b;
+import android.view.View;
+public final class h2 extends View {
+    public final i2 f5288a;
 
-    public h2(Context context) {
+    public h2(i2 i2Var, Context context) {
         super(context);
-        setTextColor(-1);
-        setTextSize(1, 14.0f);
-        setCurrent(false);
-        setEllipsize(TextUtils.TruncateAt.END);
-        setSingleLine();
+        this.f5288a = i2Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.save();
-        canvas.translate(0.0f, AndroidUtilities.dp(-1.0f));
-        super.onDraw(canvas);
-        canvas.restore();
-        if (this.f5234a) {
-            int x10 = org.telegram.ui.b.x(16.0f, getHeight(), 2);
-            if (LocaleController.isRTL) {
-                this.f5235b.setBounds(AndroidUtilities.dp(7.0f), x10, AndroidUtilities.dp(23.0f), AndroidUtilities.dp(16.0f) + x10);
-            } else {
-                this.f5235b.setBounds(getWidth() - AndroidUtilities.dp(23.0f), x10, getWidth() - AndroidUtilities.dp(7.0f), AndroidUtilities.dp(16.0f) + x10);
-            }
-            this.f5235b.draw(canvas);
-        }
-    }
-
-    public void setCurrent(boolean z4) {
-        float f10;
-        this.f5234a = z4;
-        if (z4) {
-            float f11 = 12.0f;
-            if (LocaleController.isRTL) {
-                f10 = 27.0f;
-            } else {
-                f10 = 12.0f;
-            }
-            int dp = AndroidUtilities.dp(f10);
-            int dp2 = AndroidUtilities.dp(6.0f);
-            if (!LocaleController.isRTL) {
-                f11 = 27.0f;
-            }
-            setPadding(dp, dp2, AndroidUtilities.dp(f11), AndroidUtilities.dp(6.0f));
-            setBackground(a6.d(new float[]{AndroidUtilities.dp(32.0f)}, 0, a6.b(1090519039)));
-        } else {
-            setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f));
-            setBackground(a6.d(new float[]{0.0f}, 0, a6.b(-14145495)));
-        }
-        if (this.f5234a && this.f5235b == null) {
-            Drawable drawable = getContext().getDrawable(R.drawable.photo_expand);
-            this.f5235b = drawable;
-            drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        }
-        invalidate();
+    public final void draw(android.graphics.Canvas r12) {
+        throw new UnsupportedOperationException("Method not decompiled: eg.h2.draw(android.graphics.Canvas):void");
     }
 }

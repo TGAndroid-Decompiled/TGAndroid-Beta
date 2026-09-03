@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatMessageSharedResources;
-public final class du0 extends org.telegram.ui.Cells.t1 {
+public final class du0 extends org.telegram.ui.Cells.s1 {
     public final int Ce = 1;
 
     public du0(Context context, int i10) {
@@ -39,7 +39,7 @@ public final class du0 extends org.telegram.ui.Cells.t1 {
         }
     }
 
-    public du0(Context context, int i10, boolean z4, ChatMessageSharedResources chatMessageSharedResources, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, i10, z4, chatMessageSharedResources, g6Var);
+    public du0(Context context, int i10, boolean z4, ChatMessageSharedResources chatMessageSharedResources, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, i10, z4, chatMessageSharedResources, f6Var);
     }
 }

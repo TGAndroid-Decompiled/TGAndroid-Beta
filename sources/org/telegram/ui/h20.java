@@ -1,63 +1,57 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.Shader;
-public final class h20 {
-    public LinearGradient f37204b;
-    public final Paint[] f37203a = new Paint[4];
-    public final Matrix f37205c = new Matrix();
+import android.content.Context;
+import android.view.View;
+public final class h20 implements View.OnClickListener {
+    public final int f34551a;
+    public final Context f34552b;
+    public final fg.a f34553c;
 
-    public final void a(Canvas canvas, RectF rectF, float f10) {
-        Paint[] paintArr = this.f37203a;
-        if (paintArr[0] == null) {
-            Paint paint = new Paint(1);
-            paintArr[0] = paint;
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        }
-        paintArr[0].setShader(this.f37204b);
-        paintArr[0].setAlpha((int) (f10 * 255.0f));
-        canvas.drawRect(rectF, paintArr[0]);
+    public h20(Context context, fg.a aVar, int i10) {
+        this.f34551a = i10;
+        this.f34552b = context;
+        this.f34553c = aVar;
     }
 
-    public final void b(Canvas canvas, RectF rectF, int i10, float f10) {
-        if (f10 <= 0.0f) {
-            return;
+    @Override
+    public final void onClick(View view) {
+        int i10;
+        int i11;
+        switch (this.f34551a) {
+            case 0:
+                h hVar = new h(this, 18);
+                Context context = this.f34552b;
+                org.telegram.ui.Components.m8 m8Var = new org.telegram.ui.Components.m8(context, false, hVar, 1);
+                fg.j jVar = this.f34553c.f6119c;
+                if (jVar != null) {
+                    i10 = jVar.C;
+                } else {
+                    i10 = 0;
+                }
+                m8Var.e(i10, 0);
+                m8Var.f(-1, 1, 1, false);
+                org.telegram.ui.ActionBar.g3 g3Var = new org.telegram.ui.ActionBar.g3(context, false);
+                g3Var.setCustomView(m8Var);
+                g3Var.setDimBehind(false);
+                g3Var.show();
+                return;
+            default:
+                h hVar2 = new h(this, 19);
+                Context context2 = this.f34552b;
+                org.telegram.ui.Components.m8 m8Var2 = new org.telegram.ui.Components.m8(context2, false, hVar2, 2);
+                fg.j jVar2 = this.f34553c.f6119c;
+                if (jVar2 == null) {
+                    i11 = 0;
+                } else {
+                    i11 = jVar2.B;
+                }
+                m8Var2.e(i11, 0);
+                m8Var2.f(-1, 1, 1, false);
+                org.telegram.ui.ActionBar.g3 g3Var2 = new org.telegram.ui.ActionBar.g3(context2, false);
+                g3Var2.setCustomView(m8Var2);
+                g3Var2.setDimBehind(false);
+                g3Var2.show();
+                return;
         }
-        if (this.f37204b == null) {
-            this.f37204b = new LinearGradient(0.0f, 0.0f, 0.0f, 16.0f, new int[]{-65536, 16711680}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        }
-        Paint[] paintArr = this.f37203a;
-        if (paintArr[i10] == null) {
-            paintArr[i10] = new Paint(1);
-            paintArr[i10].setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        }
-        paintArr[i10].setShader(this.f37204b);
-        Matrix matrix = this.f37205c;
-        matrix.reset();
-        if (i10 == 0) {
-            matrix.postScale(1.0f, rectF.width() / 16.0f);
-            matrix.postRotate(-90.0f);
-            matrix.postTranslate(rectF.left, rectF.top);
-        } else if (i10 == 1) {
-            matrix.postScale(1.0f, rectF.height() / 16.0f);
-            matrix.postTranslate(rectF.left, rectF.top);
-        } else if (i10 == 2) {
-            matrix.postScale(1.0f, rectF.width() / 16.0f);
-            matrix.postRotate(90.0f);
-            matrix.postTranslate(rectF.right, rectF.top);
-        } else if (i10 == 3) {
-            matrix.postScale(1.0f, rectF.height() / 16.0f);
-            matrix.postScale(1.0f, -1.0f);
-            matrix.postTranslate(rectF.left, rectF.bottom);
-        }
-        this.f37204b.setLocalMatrix(matrix);
-        paintArr[i10].setAlpha((int) (f10 * 255.0f));
-        canvas.drawRect(rectF, paintArr[i10]);
     }
 }

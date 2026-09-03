@@ -3,28 +3,28 @@ package q6;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Base64;
-import j7.g5;
+import j7.f5;
 import java.util.Arrays;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class v0 extends c6.a {
     public static final Parcelable.Creator<v0> CREATOR = new r0(17);
-    public final boolean f44773a;
-    public final b7.w0 f44774b;
+    public final boolean f43006a;
+    public final b7.w0 f43007b;
 
     public v0(boolean z4, b7.w0 w0Var) {
-        this.f44773a = z4;
-        this.f44774b = w0Var;
+        this.f43006a = z4;
+        this.f43007b = w0Var;
     }
 
     public final JSONObject e() {
         byte[] u10;
         try {
             JSONObject jSONObject = new JSONObject();
-            if (this.f44773a) {
+            if (this.f43006a) {
                 jSONObject.put("enabled", true);
             }
-            b7.w0 w0Var = this.f44774b;
+            b7.w0 w0Var = this.f43007b;
             if (w0Var == null) {
                 u10 = null;
             } else {
@@ -39,8 +39,8 @@ public final class v0 extends c6.a {
                 jSONObject.put("results", jSONObject2);
             }
             return jSONObject;
-        } catch (JSONException e6) {
-            throw new RuntimeException("Error encoding AuthenticationExtensionsPrfOutputs to JSON object", e6);
+        } catch (JSONException e) {
+            throw new RuntimeException("Error encoding AuthenticationExtensionsPrfOutputs to JSON object", e);
         }
     }
 
@@ -49,14 +49,14 @@ public final class v0 extends c6.a {
             return false;
         }
         v0 v0Var = (v0) obj;
-        if (this.f44773a != v0Var.f44773a || !b6.m.l(this.f44774b, v0Var.f44774b)) {
+        if (this.f43006a != v0Var.f43006a || !b6.m.l(this.f43007b, v0Var.f43007b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f44773a), this.f44774b});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f43006a), this.f43007b});
     }
 
     public final String toString() {
@@ -66,16 +66,16 @@ public final class v0 extends c6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         byte[] u10;
-        int q10 = g5.q(parcel, 20293);
-        g5.s(parcel, 1, 4);
-        parcel.writeInt(this.f44773a ? 1 : 0);
-        b7.w0 w0Var = this.f44774b;
+        int q10 = f5.q(parcel, 20293);
+        f5.s(parcel, 1, 4);
+        parcel.writeInt(this.f43006a ? 1 : 0);
+        b7.w0 w0Var = this.f43007b;
         if (w0Var == null) {
             u10 = null;
         } else {
             u10 = w0Var.u();
         }
-        g5.c(parcel, 2, u10);
-        g5.r(parcel, q10);
+        f5.c(parcel, 2, u10);
+        f5.r(parcel, q10);
     }
 }

@@ -9,28 +9,28 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class cq0 extends fu0 {
-    public final mq0 f35842a;
+    public final mq0 f33209a;
 
     public cq0(mq0 mq0Var) {
-        this.f35842a = mq0Var;
+        this.f33209a = mq0Var;
     }
 
     @Override
     public final qu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z4, boolean z10) {
-        mq0 mq0Var = this.f35842a;
-        org.telegram.ui.Cells.t5 V = mq0.V(mq0Var, i10);
+        mq0 mq0Var = this.f33209a;
+        org.telegram.ui.Cells.s5 V = mq0.V(mq0Var, i10);
         if (V != null) {
             org.telegram.ui.Components.p9 imageView = V.getImageView();
             int[] iArr = new int[2];
             imageView.getLocationInWindow(iArr);
             qu0 qu0Var = new qu0();
-            qu0Var.f40679b = iArr[0];
-            qu0Var.f40680c = iArr[1];
+            qu0Var.f37488b = iArr[0];
+            qu0Var.f37489c = iArr[1];
             qu0Var.d = mq0Var.H;
             ImageReceiver imageReceiver = imageView.getImageReceiver();
-            qu0Var.f40678a = imageReceiver;
-            qu0Var.f40681e = imageReceiver.getBitmapSafe();
-            qu0Var.f40686k = V.getScale();
+            qu0Var.f37487a = imageReceiver;
+            qu0Var.e = imageReceiver.getBitmapSafe();
+            qu0Var.f37494k = V.getScale();
             V.g(false);
             return qu0Var;
         }
@@ -39,19 +39,19 @@ public final class cq0 extends fu0 {
 
     @Override
     public final void G() {
-        mq0 mq0Var = this.f35842a;
+        mq0 mq0Var = this.f33209a;
         int childCount = mq0Var.H.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
             View childAt = mq0Var.H.getChildAt(i10);
-            if (childAt instanceof org.telegram.ui.Cells.t5) {
-                ((org.telegram.ui.Cells.t5) childAt).g(true);
+            if (childAt instanceof org.telegram.ui.Cells.s5) {
+                ((org.telegram.ui.Cells.s5) childAt).g(true);
             }
         }
     }
 
     @Override
     public final int H() {
-        return this.f35842a.f39033b.size();
+        return this.f33209a.f36163b.size();
     }
 
     @Override
@@ -60,23 +60,23 @@ public final class cq0 extends fu0 {
         if (obj instanceof MediaController.PhotoEntry) {
             obj2 = Integer.valueOf(((MediaController.PhotoEntry) obj).imageId);
         } else if (obj instanceof MediaController.SearchImage) {
-            obj2 = ((MediaController.SearchImage) obj).f18051id;
+            obj2 = ((MediaController.SearchImage) obj).f16643id;
         } else {
             obj2 = null;
         }
         if (obj2 == null) {
             return -1;
         }
-        mq0 mq0Var = this.f35842a;
-        if (!mq0Var.f39033b.containsKey(obj2)) {
+        mq0 mq0Var = this.f33209a;
+        if (!mq0Var.f36163b.containsKey(obj2)) {
             return -1;
         }
-        mq0Var.f39033b.remove(obj2);
-        int indexOf = mq0Var.f39035c.indexOf(obj2);
+        mq0Var.f36163b.remove(obj2);
+        int indexOf = mq0Var.f36165c.indexOf(obj2);
         if (indexOf >= 0) {
-            mq0Var.f39035c.remove(indexOf);
+            mq0Var.f36165c.remove(indexOf);
         }
-        if (mq0Var.f39038e) {
+        if (mq0Var.e) {
             mq0Var.h0();
         }
         return indexOf;
@@ -84,9 +84,9 @@ public final class cq0 extends fu0 {
 
     @Override
     public final void W(int i10) {
-        mq0 mq0Var = this.f35842a;
+        mq0 mq0Var = this.f33209a;
         MediaController.AlbumEntry albumEntry = mq0Var.G;
-        org.telegram.ui.Cells.t5 V = mq0.V(mq0Var, i10);
+        org.telegram.ui.Cells.s5 V = mq0.V(mq0Var, i10);
         if (V != null) {
             if (albumEntry != null) {
                 org.telegram.ui.Components.p9 imageView = V.getImageView();
@@ -94,38 +94,38 @@ public final class cq0 extends fu0 {
                 MediaController.PhotoEntry photoEntry = albumEntry.photos.get(i10);
                 String str = photoEntry.thumbPath;
                 if (str != null) {
-                    imageView.f(str, null, org.telegram.ui.ActionBar.k6.R4);
+                    imageView.f(str, null, org.telegram.ui.ActionBar.j6.R4);
                     return;
                 } else if (photoEntry.path != null) {
                     imageView.p(photoEntry.orientation, photoEntry.invert, true);
                     if (photoEntry.isVideo && !photoEntry.isLivePhoto()) {
-                        imageView.f("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, org.telegram.ui.ActionBar.k6.R4);
+                        imageView.f("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, org.telegram.ui.ActionBar.j6.R4);
                         return;
                     }
-                    imageView.f("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, org.telegram.ui.ActionBar.k6.R4);
+                    imageView.f("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, org.telegram.ui.ActionBar.j6.R4);
                     return;
                 } else {
-                    imageView.setImageDrawable(org.telegram.ui.ActionBar.k6.R4);
+                    imageView.setImageDrawable(org.telegram.ui.ActionBar.j6.R4);
                     return;
                 }
             }
-            V.e((MediaController.SearchImage) mq0Var.f39040f.get(i10));
+            V.e((MediaController.SearchImage) mq0Var.f36169f.get(i10));
         }
     }
 
     @Override
     public final void Z(int i10) {
-        mq0 mq0Var = this.f35842a;
+        mq0 mq0Var = this.f33209a;
         int childCount = mq0Var.H.getChildCount();
         for (int i11 = 0; i11 < childCount; i11++) {
             View childAt = mq0Var.H.getChildAt(i11);
             if (childAt.getTag() != null) {
-                org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) childAt;
+                org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) childAt;
                 int intValue = ((Integer) childAt.getTag()).intValue();
                 MediaController.AlbumEntry albumEntry = mq0Var.G;
-                if (albumEntry == null ? !(intValue < 0 || intValue >= mq0Var.f39040f.size()) : !(intValue < 0 || intValue >= albumEntry.photos.size())) {
+                if (albumEntry == null ? !(intValue < 0 || intValue >= mq0Var.f36169f.size()) : !(intValue < 0 || intValue >= albumEntry.photos.size())) {
                     if (intValue == i10) {
-                        t5Var.g(true);
+                        s5Var.g(true);
                         return;
                     }
                 }
@@ -135,12 +135,12 @@ public final class cq0 extends fu0 {
 
     @Override
     public final ArrayList c() {
-        return this.f35842a.f39035c;
+        return this.f33209a.f36165c;
     }
 
     @Override
     public final ImageReceiver.BitmapHolder j(int i10) {
-        org.telegram.ui.Cells.t5 V = mq0.V(this.f35842a, i10);
+        org.telegram.ui.Cells.s5 V = mq0.V(this.f33209a, i10);
         if (V != null) {
             return V.getImageView().getImageReceiver().getBitmapSafe();
         }
@@ -151,7 +151,7 @@ public final class cq0 extends fu0 {
     public final int k(int i10, VideoEditedInfo videoEditedInfo) {
         int Y;
         boolean z4;
-        mq0 mq0Var = this.f35842a;
+        mq0 mq0Var = this.f33209a;
         MediaController.AlbumEntry albumEntry = mq0Var.G;
         int i11 = -1;
         int i12 = 1;
@@ -163,20 +163,20 @@ public final class cq0 extends fu0 {
             Y = mq0Var.Y(-1, photoEntry);
             if (Y == -1) {
                 photoEntry.editedInfo = videoEditedInfo;
-                Y = mq0Var.f39035c.indexOf(Integer.valueOf(photoEntry.imageId));
+                Y = mq0Var.f36165c.indexOf(Integer.valueOf(photoEntry.imageId));
                 z4 = true;
             } else {
                 photoEntry.editedInfo = null;
                 z4 = false;
             }
-        } else if (i10 < 0 || i10 >= mq0Var.f39040f.size()) {
+        } else if (i10 < 0 || i10 >= mq0Var.f36169f.size()) {
             return -1;
         } else {
-            MediaController.SearchImage searchImage = (MediaController.SearchImage) mq0Var.f39040f.get(i10);
+            MediaController.SearchImage searchImage = (MediaController.SearchImage) mq0Var.f36169f.get(i10);
             Y = mq0Var.Y(-1, searchImage);
             if (Y == -1) {
                 searchImage.editedInfo = videoEditedInfo;
-                Y = mq0Var.f39035c.indexOf(searchImage.f18051id);
+                Y = mq0Var.f36165c.indexOf(searchImage.f16643id);
                 z4 = true;
             } else {
                 searchImage.editedInfo = null;
@@ -191,11 +191,11 @@ public final class cq0 extends fu0 {
             }
             View childAt = mq0Var.H.getChildAt(i13);
             if (((Integer) childAt.getTag()).intValue() == i10) {
-                org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) childAt;
-                if (mq0Var.f39038e) {
+                org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) childAt;
+                if (mq0Var.e) {
                     i11 = Y;
                 }
-                t5Var.b(i11, z4, false);
+                s5Var.b(i11, z4, false);
             } else {
                 i13++;
             }
@@ -204,16 +204,16 @@ public final class cq0 extends fu0 {
             i12 = 2;
         }
         mq0Var.i0(i12);
-        mq0Var.f39051p0.a();
+        mq0Var.f36180p0.a();
         return Y;
     }
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z4, int i11, int i12, boolean z10) {
-        mq0 mq0Var = this.f35842a;
-        ArrayList arrayList = mq0Var.f39040f;
+        mq0 mq0Var = this.f33209a;
+        ArrayList arrayList = mq0Var.f36169f;
         MediaController.AlbumEntry albumEntry = mq0Var.G;
-        if (mq0Var.f39033b.isEmpty()) {
+        if (mq0Var.f36163b.isEmpty()) {
             if (albumEntry != null) {
                 if (i10 >= 0 && i10 < albumEntry.photos.size()) {
                     MediaController.PhotoEntry photoEntry = albumEntry.photos.get(i10);
@@ -235,27 +235,27 @@ public final class cq0 extends fu0 {
 
     @Override
     public final boolean u() {
-        mq0 mq0Var = this.f35842a;
-        mq0Var.f39051p0.f(0, true, true);
+        mq0 mq0Var = this.f33209a;
+        mq0Var.f36180p0.f(0, true, true);
         mq0Var.finishFragment();
         return true;
     }
 
     @Override
     public final HashMap v() {
-        return this.f35842a.f39033b;
+        return this.f33209a.f36163b;
     }
 
     @Override
     public final boolean x(int i10) {
-        mq0 mq0Var = this.f35842a;
+        mq0 mq0Var = this.f33209a;
         MediaController.AlbumEntry albumEntry = mq0Var.G;
         if (albumEntry != null) {
-            if (i10 < 0 || i10 >= albumEntry.photos.size() || !mq0Var.f39033b.containsKey(Integer.valueOf(mq0Var.G.photos.get(i10).imageId))) {
+            if (i10 < 0 || i10 >= albumEntry.photos.size() || !mq0Var.f36163b.containsKey(Integer.valueOf(mq0Var.G.photos.get(i10).imageId))) {
                 return false;
             }
             return true;
-        } else if (i10 < 0 || i10 >= mq0Var.f39040f.size() || !mq0Var.f39033b.containsKey(((MediaController.SearchImage) mq0Var.f39040f.get(i10)).f18051id)) {
+        } else if (i10 < 0 || i10 >= mq0Var.f36169f.size() || !mq0Var.f36163b.containsKey(((MediaController.SearchImage) mq0Var.f36169f.get(i10)).f16643id)) {
             return false;
         } else {
             return true;
@@ -264,6 +264,6 @@ public final class cq0 extends fu0 {
 
     @Override
     public final boolean z() {
-        return this.f35842a.B;
+        return this.f33209a.B;
     }
 }

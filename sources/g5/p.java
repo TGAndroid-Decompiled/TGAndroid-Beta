@@ -5,14 +5,14 @@ import j$.util.DesugarCollections;
 import java.util.HashMap;
 import java.util.Map;
 public final class p {
-    public static final int f6884i = 0;
-    public final Uri f6885a;
-    public final int f6886b;
-    public final byte[] f6887c;
+    public static final int f6400i = 0;
+    public final Uri f6401a;
+    public final int f6402b;
+    public final byte[] f6403c;
     public final Map d;
-    public final long f6888e;
-    public final long f6889f;
-    public final String f6890g;
+    public final long e;
+    public final long f6404f;
+    public final String f6405g;
     public final int h;
 
     static {
@@ -36,31 +36,31 @@ public final class p {
         }
         h5.a.f(z10);
         h5.a.f((j11 > 0 || j11 == -1) ? true : true);
-        this.f6885a = uri;
-        this.f6886b = i10;
-        this.f6887c = (bArr == null || bArr.length == 0) ? null : null;
+        this.f6401a = uri;
+        this.f6402b = i10;
+        this.f6403c = (bArr == null || bArr.length == 0) ? null : null;
         this.d = DesugarCollections.unmodifiableMap(new HashMap(map));
-        this.f6888e = j10;
-        this.f6889f = j11;
-        this.f6890g = str;
+        this.e = j10;
+        this.f6404f = j11;
+        this.f6405g = str;
         this.h = i11;
     }
 
     public final c4.c a() {
         ?? obj = new Object();
-        obj.f2244e = this.f6885a;
-        obj.f2241a = this.f6886b;
-        obj.f2245f = this.f6887c;
-        obj.f2246g = this.d;
-        obj.f2242b = this.f6888e;
-        obj.f2243c = this.f6889f;
-        obj.h = this.f6890g;
+        obj.e = this.f6401a;
+        obj.f2085a = this.f6402b;
+        obj.f2088f = this.f6403c;
+        obj.f2089g = this.d;
+        obj.f2086b = this.e;
+        obj.f2087c = this.f6404f;
+        obj.h = this.f6405g;
         obj.d = this.h;
         return obj;
     }
 
     public final p b(long j10) {
-        long j11 = this.f6889f;
+        long j11 = this.f6404f;
         long j12 = -1;
         if (j11 != -1) {
             j12 = j11 - j10;
@@ -69,15 +69,15 @@ public final class p {
         if (j10 == 0 && j11 == j13) {
             return this;
         }
-        String str = this.f6890g;
+        String str = this.f6405g;
         int i10 = this.h;
-        return new p(this.f6885a, this.f6886b, this.f6887c, this.d, this.f6888e + j10, j13, str, i10);
+        return new p(this.f6401a, this.f6402b, this.f6403c, this.d, this.e + j10, j13, str, i10);
     }
 
     public final String toString() {
         String str;
         StringBuilder sb = new StringBuilder("DataSpec[");
-        int i10 = this.f6886b;
+        int i10 = this.f6402b;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 == 3) {
@@ -93,13 +93,13 @@ public final class p {
         }
         sb.append(str);
         sb.append(" ");
-        sb.append(this.f6885a);
+        sb.append(this.f6401a);
         sb.append(", ");
-        sb.append(this.f6888e);
+        sb.append(this.e);
         sb.append(", ");
-        sb.append(this.f6889f);
+        sb.append(this.f6404f);
         sb.append(", ");
-        sb.append(this.f6890g);
+        sb.append(this.f6405g);
         sb.append(", ");
         return android.support.v4.media.a.m(this.h, "]", sb);
     }

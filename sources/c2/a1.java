@@ -1,84 +1,230 @@
 package c2;
 
-import java.util.NoSuchElementException;
-public final class a1 implements z3.d {
-    public int f2058a = 0;
-    public int f2059b = -1;
-    public int f2060c = 0;
-    public int d;
-    public Object f2061e;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.content.pm.ServiceInfo;
+import android.content.res.AssetManager;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.concurrent.Executor;
+public final class a1 {
+    public boolean f1901a;
+    public final Object f1902b;
+    public final Object f1903c;
+    public final Object d;
+    public final Object e;
+    public final Object f1904f;
+    public Object f1905g;
+    public Object h;
 
-    public a1() {
-        int[] iArr = new int[16];
-        this.f2061e = iArr;
-        this.d = iArr.length - 1;
+    public a1(Context context, e eVar) {
+        this.f1904f = new ArrayList();
+        this.f1905g = new androidx.mediarouter.app.h(this, 2);
+        this.h = new androidx.activity.i(this, 8);
+        this.f1902b = context;
+        this.f1903c = eVar;
+        this.d = new Handler();
+        this.e = context.getPackageManager();
     }
 
-    @Override
-    public int a() {
-        return -1;
-    }
-
-    @Override
-    public int b() {
-        return this.f2058a;
-    }
-
-    @Override
-    public int c() {
-        h5.w wVar = (h5.w) this.f2061e;
-        int i10 = this.f2059b;
-        if (i10 == 8) {
-            return wVar.u();
-        }
-        if (i10 == 16) {
-            return wVar.z();
-        }
-        int i11 = this.f2060c;
-        this.f2060c = i11 + 1;
-        if (i11 % 2 == 0) {
-            int u10 = wVar.u();
-            this.d = u10;
-            return (u10 & 240) >> 4;
-        }
-        return this.d & 15;
-    }
-
-    public void d(int i10) {
-        int i11 = this.f2060c;
-        int[] iArr = (int[]) this.f2061e;
-        if (i11 == iArr.length) {
-            int length = iArr.length << 1;
-            if (length >= 0) {
-                int[] iArr2 = new int[length];
-                int length2 = iArr.length;
-                int i12 = this.f2058a;
-                int i13 = length2 - i12;
-                System.arraycopy(iArr, i12, iArr2, 0, i13);
-                System.arraycopy((int[]) this.f2061e, 0, iArr2, i13, i12);
-                this.f2058a = 0;
-                this.f2059b = this.f2060c - 1;
-                this.f2061e = iArr2;
-                this.d = length - 1;
+    public static void a(a1 a1Var, l3.g gVar) {
+        boolean z4;
+        if (a1Var.f1901a && !gVar.equals((l3.g) a1Var.h)) {
+            a1Var.h = gVar;
+            l3.k0 k0Var = (l3.k0) ((gg.f) a1Var.f1903c).f6605b;
+            if (k0Var.f11285f0 == Looper.myLooper()) {
+                z4 = true;
             } else {
-                throw new IllegalStateException();
+                z4 = false;
+            }
+            h5.a.i(z4);
+            if (!gVar.equals(k0Var.f())) {
+                k0Var.f11300w = gVar;
+                l3.t tVar = k0Var.f11296r;
+                if (tVar != null) {
+                    tVar.r();
+                }
             }
         }
-        int i14 = (this.f2059b + 1) & this.d;
-        this.f2059b = i14;
-        ((int[]) this.f2061e)[i14] = i10;
-        this.f2060c++;
     }
 
-    public int e() {
-        int i10 = this.f2060c;
-        if (i10 != 0) {
-            int i11 = this.f2058a;
-            int i12 = ((int[]) this.f2061e)[i11];
-            this.f2058a = (i11 + 1) & this.d;
-            this.f2060c = i10 - 1;
-            return i12;
+    public FileInputStream b(AssetManager assetManager, String str) {
+        try {
+            return assetManager.openFd(str).createInputStream();
+        } catch (FileNotFoundException e) {
+            String message = e.getMessage();
+            if (message != null && message.contains("compressed")) {
+                ((e2.d) this.f1903c).m0();
+                return null;
+            }
+            return null;
         }
-        throw new NoSuchElementException();
+    }
+
+    public void c(int i10, Serializable serializable) {
+        ((Executor) this.f1902b).execute(new ah.a(this, i10, serializable, 3));
+    }
+
+    public void d() {
+        boolean f10;
+        int i10;
+        e eVar = (e) this.f1903c;
+        PackageManager packageManager = (PackageManager) this.e;
+        ArrayList arrayList = (ArrayList) this.f1904f;
+        if (this.f1901a) {
+            ArrayList arrayList2 = new ArrayList();
+            if (Build.VERSION.SDK_INT >= 30) {
+                Intent intent = new Intent("android.media.MediaRoute2ProviderService");
+                ArrayList arrayList3 = new ArrayList();
+                for (ResolveInfo resolveInfo : packageManager.queryIntentServices(intent, 0)) {
+                    arrayList3.add(resolveInfo.serviceInfo);
+                }
+                arrayList2 = arrayList3;
+            }
+            Iterator<ResolveInfo> it = packageManager.queryIntentServices(new Intent("android.media.MediaRouteProviderService"), 0).iterator();
+            int i11 = 0;
+            while (true) {
+                boolean z4 = true;
+                if (!it.hasNext()) {
+                    break;
+                }
+                ServiceInfo serviceInfo = it.next().serviceInfo;
+                if (serviceInfo != null) {
+                    if (d0.f1935c == null) {
+                        f10 = false;
+                    } else {
+                        f10 = d0.c().f();
+                    }
+                    if (f10 && !arrayList2.isEmpty()) {
+                        int size = arrayList2.size();
+                        int i12 = 0;
+                        while (i12 < size) {
+                            Object obj = arrayList2.get(i12);
+                            i12++;
+                            ServiceInfo serviceInfo2 = (ServiceInfo) obj;
+                            if (!serviceInfo.packageName.equals(serviceInfo2.packageName) || !serviceInfo.name.equals(serviceInfo2.name)) {
+                            }
+                        }
+                    }
+                    String str = serviceInfo.packageName;
+                    String str2 = serviceInfo.name;
+                    int size2 = arrayList.size();
+                    int i13 = 0;
+                    while (true) {
+                        if (i13 < size2) {
+                            ComponentName componentName = ((z0) arrayList.get(i13)).f2069r;
+                            if (componentName.getPackageName().equals(str) && componentName.getClassName().equals(str2)) {
+                                break;
+                            }
+                            i13++;
+                        } else {
+                            i13 = -1;
+                            break;
+                        }
+                    }
+                    if (i13 < 0) {
+                        z0 z0Var = new z0((Context) this.f1902b, new ComponentName(serviceInfo.packageName, serviceInfo.name));
+                        z0Var.C = new a1.c(this, z0Var);
+                        if (!z0Var.f2071w) {
+                            z0Var.f2071w = true;
+                            z0Var.r();
+                        }
+                        i10 = i11 + 1;
+                        arrayList.add(i11, z0Var);
+                        eVar.a(z0Var, false);
+                    } else if (i13 >= i11) {
+                        z0 z0Var2 = (z0) arrayList.get(i13);
+                        if (!z0Var2.f2071w) {
+                            z0Var2.f2071w = true;
+                            z0Var2.r();
+                        }
+                        if (z0Var2.f2073y == null) {
+                            if (!z0Var2.f2071w || (((o) z0Var2.h) == null && z0Var2.v.isEmpty())) {
+                                z4 = false;
+                            }
+                            if (z4) {
+                                z0Var2.q();
+                                z0Var2.n();
+                            }
+                        }
+                        i10 = i11 + 1;
+                        Collections.swap(arrayList, i13, i11);
+                    }
+                    i11 = i10;
+                }
+            }
+            if (i11 < arrayList.size()) {
+                for (int size3 = arrayList.size() - 1; size3 >= i11; size3--) {
+                    z0 z0Var3 = (z0) arrayList.get(size3);
+                    a0 d = eVar.d(z0Var3);
+                    if (d != null) {
+                        z0Var3.getClass();
+                        d0.b();
+                        z0Var3.f2027f = null;
+                        z0Var3.h(null);
+                        eVar.m(d, null);
+                        eVar.f1938a.b(514, d);
+                        eVar.f1946l.remove(d);
+                    }
+                    arrayList.remove(z0Var3);
+                    z0Var3.C = null;
+                    if (z0Var3.f2071w) {
+                        z0Var3.f2071w = false;
+                        z0Var3.r();
+                    }
+                }
+            }
+        }
+    }
+
+    public a1(android.content.Context r5, gg.f r6) {
+        throw new UnsupportedOperationException("Method not decompiled: c2.a1.<init>(android.content.Context, gg.f):void");
+    }
+
+    public a1(AssetManager assetManager, Executor executor, e2.d dVar, String str, File file) {
+        this.f1901a = false;
+        this.f1902b = executor;
+        this.f1903c = dVar;
+        this.f1904f = str;
+        this.e = file;
+        int i10 = Build.VERSION.SDK_INT;
+        byte[] bArr = null;
+        if (i10 >= 24 && i10 <= 34) {
+            switch (i10) {
+                case 24:
+                case 25:
+                    bArr = e2.e.h;
+                    break;
+                case 26:
+                    bArr = e2.e.f5070g;
+                    break;
+                case 27:
+                    bArr = e2.e.f5069f;
+                    break;
+                case 28:
+                case 29:
+                case 30:
+                    bArr = e2.e.e;
+                    break;
+                case 31:
+                case 32:
+                case 33:
+                case 34:
+                    bArr = e2.e.d;
+                    break;
+            }
+        }
+        this.d = bArr;
     }
 }

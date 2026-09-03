@@ -5,10 +5,10 @@ import android.text.method.TransformationMethod;
 import android.view.View;
 import androidx.emoji2.text.l;
 public final class j implements TransformationMethod {
-    public final TransformationMethod f44469a;
+    public final TransformationMethod f42727a;
 
     public j(TransformationMethod transformationMethod) {
-        this.f44469a = transformationMethod;
+        this.f42727a = transformationMethod;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class j implements TransformationMethod {
         if (view.isInEditMode()) {
             return charSequence;
         }
-        TransformationMethod transformationMethod = this.f44469a;
+        TransformationMethod transformationMethod = this.f42727a;
         if (transformationMethod != null) {
             charSequence = transformationMethod.getTransformation(charSequence, view);
         }
@@ -30,7 +30,7 @@ public final class j implements TransformationMethod {
 
     @Override
     public final void onFocusChanged(View view, CharSequence charSequence, boolean z4, int i10, Rect rect) {
-        TransformationMethod transformationMethod = this.f44469a;
+        TransformationMethod transformationMethod = this.f42727a;
         if (transformationMethod != null) {
             transformationMethod.onFocusChanged(view, charSequence, z4, i10, rect);
         }

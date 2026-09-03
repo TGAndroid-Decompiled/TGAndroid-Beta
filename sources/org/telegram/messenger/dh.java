@@ -1,57 +1,57 @@
 package org.telegram.messenger;
 public final class dh implements Runnable {
-    public final int f18512a;
-    public final NotificationsController f18513b;
+    public final int f17059a;
+    public final NotificationsController f17060b;
 
     public dh(NotificationsController notificationsController, int i10) {
-        this.f18512a = i10;
-        this.f18513b = notificationsController;
+        this.f17059a = i10;
+        this.f17060b = notificationsController;
     }
 
     @Override
     public final void run() {
-        switch (this.f18512a) {
+        switch (this.f17059a) {
             case 0:
-                NotificationsController.Q(this.f18513b);
+                NotificationsController.Q(this.f17060b);
                 return;
             case 1:
-                NotificationsController.f(this.f18513b);
+                NotificationsController.f(this.f17060b);
                 return;
             case 2:
-                NotificationsController.D(this.f18513b);
+                NotificationsController.D(this.f17060b);
                 return;
             case 3:
-                NotificationsController.U(this.f18513b);
+                NotificationsController.U(this.f17060b);
                 return;
             case 4:
-                NotificationsController.m(this.f18513b);
+                NotificationsController.m(this.f17060b);
                 return;
             case 5:
-                NotificationsController.p(this.f18513b);
+                NotificationsController.p(this.f17060b);
                 return;
             case 6:
-                NotificationsController.o(this.f18513b);
+                NotificationsController.o(this.f17060b);
                 return;
             case 7:
-                NotificationsController.Z(this.f18513b);
+                NotificationsController.Z(this.f17060b);
                 return;
             case 8:
-                NotificationsController.z(this.f18513b);
+                NotificationsController.z(this.f17060b);
                 return;
             case 9:
-                NotificationsController.c(this.f18513b);
+                NotificationsController.c(this.f17060b);
                 return;
             case 10:
-                NotificationsController.A(this.f18513b);
+                NotificationsController.A(this.f17060b);
                 return;
             case 11:
-                NotificationsController.d(this.f18513b);
+                NotificationsController.d(this.f17060b);
                 return;
             case 12:
-                NotificationsController.s(this.f18513b);
+                NotificationsController.s(this.f17060b);
                 return;
             default:
-                NotificationsController.O(this.f18513b);
+                NotificationsController.O(this.f17060b);
                 return;
         }
     }

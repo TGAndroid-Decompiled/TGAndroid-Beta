@@ -16,21 +16,21 @@ public final class tr0 extends qt0 {
         int i10;
         super.setTranslationX(f10);
         yu0 yu0Var = this.J;
-        qt0[] qt0VarArr = yu0Var.f33625h0;
-        if (yu0Var.f33616d1 && (qt0Var = qt0VarArr[0]) == this) {
+        qt0[] qt0VarArr = yu0Var.f31131h0;
+        if (yu0Var.f31123d1 && (qt0Var = qt0VarArr[0]) == this) {
             float abs = Math.abs(qt0Var.getTranslationX()) / qt0VarArr[0].getMeasuredWidth();
             yu0Var.Z0(abs, qt0VarArr[1].C);
             if (yu0Var.D()) {
-                int i11 = yu0Var.f33652u0;
+                int i11 = yu0Var.f31158u0;
                 if (i11 == 2) {
-                    yu0Var.f33633l0 = 1.0f - abs;
+                    yu0Var.f31139l0 = 1.0f - abs;
                 } else if (i11 == 1) {
-                    yu0Var.f33633l0 = abs;
+                    yu0Var.f31139l0 = abs;
                 }
                 yu0Var.s1(abs);
                 float a02 = yu0Var.a0(abs);
                 yu0Var.m0 = a02;
-                ImageView imageView = yu0Var.f33638o0;
+                ImageView imageView = yu0Var.f31144o0;
                 if (a02 != 0.0f && yu0Var.D() && !yu0Var.q0()) {
                     i10 = 0;
                 } else {
@@ -38,7 +38,7 @@ public final class tr0 extends qt0 {
                 }
                 imageView.setVisibility(i10);
             } else {
-                yu0Var.f33633l0 = 0.0f;
+                yu0Var.f31139l0 = 0.0f;
             }
             yu0Var.q1(false);
         }

@@ -8,30 +8,29 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import com.google.android.gms.internal.play_billing.s1;
 import com.google.android.gms.tasks.OnSuccessListener;
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeoutException;
-import k7.x8;
+import k7.w8;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Cells.p2;
+import org.telegram.ui.Cells.o2;
 import org.telegram.ui.Components.j6;
-import org.telegram.ui.ng;
+import org.telegram.ui.pg;
 public final class u implements OnSuccessListener, xd.i {
-    public static u f7298e;
-    public int f7299a;
-    public Object f7300b;
-    public Object f7301c;
+    public static u e;
+    public int f6980a;
+    public Object f6981b;
+    public Object f6982c;
     public Object d;
 
     public u(Context context) {
-        this.f7300b = new Handler(Looper.getMainLooper());
-        this.f7301c = new CopyOnWriteArrayList();
+        this.f6981b = new Handler(Looper.getMainLooper());
+        this.f6982c = new CopyOnWriteArrayList();
         this.d = new Object();
-        this.f7299a = 0;
+        this.f6980a = 0;
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
         context.registerReceiver(new androidx.mediarouter.app.h(this, 6), intentFilter);
@@ -40,18 +39,18 @@ public final class u implements OnSuccessListener, xd.i {
     public static void b(u uVar, int i10) {
         synchronized (uVar.d) {
             try {
-                if (uVar.f7299a == i10) {
+                if (uVar.f6980a == i10) {
                     return;
                 }
-                uVar.f7299a = i10;
-                Iterator it = ((CopyOnWriteArrayList) uVar.f7301c).iterator();
+                uVar.f6980a = i10;
+                Iterator it = ((CopyOnWriteArrayList) uVar.f6982c).iterator();
                 while (it.hasNext()) {
                     WeakReference weakReference = (WeakReference) it.next();
                     g5.r rVar = (g5.r) weakReference.get();
                     if (rVar != null) {
                         rVar.a(i10);
                     } else {
-                        ((CopyOnWriteArrayList) uVar.f7301c).remove(weakReference);
+                        ((CopyOnWriteArrayList) uVar.f6982c).remove(weakReference);
                     }
                 }
             } catch (Throwable th2) {
@@ -64,10 +63,10 @@ public final class u implements OnSuccessListener, xd.i {
         u uVar;
         synchronized (u.class) {
             try {
-                if (f7298e == null) {
-                    f7298e = new u(context);
+                if (e == null) {
+                    e = new u(context);
                 }
-                uVar = f7298e;
+                uVar = e;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -83,12 +82,12 @@ public final class u implements OnSuccessListener, xd.i {
     public x5.k c() {
         boolean z4;
         String str;
-        if (!TextUtils.isEmpty((String) this.f7300b)) {
-            if (!s1.b(this.f7299a)) {
+        if (!TextUtils.isEmpty((String) this.f6981b)) {
+            if (!com.google.android.gms.internal.cast.n.b(this.f6980a)) {
                 StringBuilder sb = new StringBuilder("Authenticator combination is unsupported on API ");
                 sb.append(Build.VERSION.SDK_INT);
                 sb.append(": ");
-                int i10 = this.f7299a;
+                int i10 = this.f6980a;
                 if (i10 != 15) {
                     if (i10 != 255) {
                         if (i10 != 32768) {
@@ -113,9 +112,9 @@ public final class u implements OnSuccessListener, xd.i {
                 sb.append(str);
                 throw new IllegalArgumentException(sb.toString());
             }
-            int i11 = this.f7299a;
+            int i11 = this.f6980a;
             if (i11 != 0) {
-                z4 = s1.a(i11);
+                z4 = com.google.android.gms.internal.cast.n.a(i11);
             } else {
                 z4 = false;
             }
@@ -125,7 +124,7 @@ public final class u implements OnSuccessListener, xd.i {
             if (!TextUtils.isEmpty((String) this.d) && z4) {
                 throw new IllegalArgumentException("Negative text must not be set if device credential authentication is allowed.");
             }
-            return new x5.k((String) this.f7300b, (String) this.f7301c, (String) this.d, this.f7299a);
+            return new x5.k((String) this.f6981b, (String) this.f6982c, (String) this.d, this.f6980a);
         }
         throw new IllegalArgumentException("Title must be set and non-empty.");
     }
@@ -138,26 +137,26 @@ public final class u implements OnSuccessListener, xd.i {
     public int f() {
         int i10;
         synchronized (this.d) {
-            i10 = this.f7299a;
+            i10 = this.f6980a;
         }
         return i10;
     }
 
     public void g() {
-        float[] fArr = (float[]) this.f7300b;
+        float[] fArr = (float[]) this.f6981b;
         Arrays.fill(fArr, 0.0f);
         Iterator it = ((xd.j) this.d).iterator();
         while (it.hasNext()) {
             xd.e eVar = (xd.e) it.next();
-            fArr[((Integer) eVar.f50549a).intValue()] = eVar.c();
+            fArr[((Integer) eVar.f46967a).intValue()] = eVar.c();
         }
-        ((ng) this.f7301c).run();
+        ((pg) this.f6982c).run();
     }
 
     public void h(int i10, boolean z4, boolean z10) {
-        int numberOfLeadingZeros = 31 - Integer.numberOfLeadingZeros(this.f7299a);
-        int b10 = x8.b(this.f7299a, 1 << i10, z4);
-        this.f7299a = b10;
+        int numberOfLeadingZeros = 31 - Integer.numberOfLeadingZeros(this.f6980a);
+        int b10 = w8.b(this.f6980a, 1 << i10, z4);
+        this.f6980a = b10;
         int numberOfLeadingZeros2 = 31 - Integer.numberOfLeadingZeros(b10);
         if (numberOfLeadingZeros != numberOfLeadingZeros2) {
             ((xd.j) this.d).i(Integer.valueOf(numberOfLeadingZeros2), z10);
@@ -165,15 +164,15 @@ public final class u implements OnSuccessListener, xd.i {
     }
 
     public void i(Throwable th2) {
-        p2.x xVar = (p2.x) this.d;
+        p2.y yVar = (p2.y) this.d;
         if (th2 instanceof TimeoutException) {
-            xVar.F(102, 28, p2.a0.f44133p);
+            yVar.F(102, 28, p2.b0.f40997p);
             com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "Asynchronous call to Billing Override Service timed out.", th2);
         } else {
-            xVar.F(95, 28, p2.a0.f44133p);
+            yVar.F(95, 28, p2.b0.f40997p);
             com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An error occurred while retrieving billing override.", th2);
         }
-        ((Runnable) this.f7301c).run();
+        ((Runnable) this.f6982c).run();
     }
 
     @Override
@@ -192,17 +191,17 @@ public final class u implements OnSuccessListener, xd.i {
                 j6Var.u(AndroidUtilities.bold());
                 paint.setColor(i0.a.k(-16777216, 58));
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                this.f7300b = spannableStringBuilder;
-                spannableStringBuilder.append((CharSequence) " ").setSpan(new p2(AndroidUtilities.dp(1.0f)), 0, 1, 0);
+                this.f6981b = spannableStringBuilder;
+                spannableStringBuilder.append((CharSequence) " ").setSpan(new o2(AndroidUtilities.dp(1.0f)), 0, 1, 0);
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-                this.f7301c = spannableStringBuilder2;
-                spannableStringBuilder2.append((CharSequence) " ").setSpan(new p2(AndroidUtilities.dp(1.0f)), 0, 1, 0);
+                this.f6982c = spannableStringBuilder2;
+                spannableStringBuilder2.append((CharSequence) " ").setSpan(new o2(AndroidUtilities.dp(1.0f)), 0, 1, 0);
                 return;
             default:
-                this.f7300b = null;
-                this.f7301c = null;
+                this.f6981b = null;
+                this.f6982c = null;
                 this.d = null;
-                this.f7299a = 0;
+                this.f6980a = 0;
                 return;
         }
     }

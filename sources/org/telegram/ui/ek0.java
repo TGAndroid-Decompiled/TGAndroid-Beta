@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-public final class ek0 extends org.telegram.ui.Cells.o8 {
+public final class ek0 extends org.telegram.ui.Cells.n8 {
     public ImageView N;
 
     @Override

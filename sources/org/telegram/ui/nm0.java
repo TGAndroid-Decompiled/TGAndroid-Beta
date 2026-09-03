@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class nm0 extends org.telegram.ui.ActionBar.j {
-    public final fn0 f39404a;
+    public final fn0 f36539a;
 
     public nm0(fn0 fn0Var) {
-        this.f39404a = fn0Var;
+        this.f36539a = fn0Var;
     }
 
     @Override

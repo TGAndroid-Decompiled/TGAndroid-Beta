@@ -1,69 +1,42 @@
 package lh;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.h61;
-import org.telegram.ui.Components.kj0;
-import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.w51;
-public final class y4 extends g51 {
-    public static final int f13126a = 0;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+public final class y4 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f13376a;
+    public final c5 f13377b;
 
-    static {
-        g51.setup(new g51());
+    public y4(c5 c5Var, int i10) {
+        this.f13376a = i10;
+        this.f13377b = c5Var;
     }
 
     @Override
-    public final void bindView(View view, h51 h51Var, boolean z4, w51 w51Var, h61 h61Var) {
-        z4 z4Var = (z4) view;
-        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) h51Var.G;
-        int i10 = h51Var.f27388z;
-        String str = (String) h51Var.f27375l;
-        boolean z10 = h51Var.f27369e;
-        g6 g6Var = z4Var.C;
-        kj0 kj0Var = z4Var.f21377c;
-        x4 x4Var = z4Var.K;
-        if (x4Var == null || z4Var.J != stargiftattributepattern.document.f20851id) {
-            z4Var.J = stargiftattributepattern.document.f20851id;
-            if (x4Var != null) {
-                x4Var.o(kj0Var);
-            }
-            ?? l5Var = new org.telegram.ui.Components.l5(3, z4Var.I, stargiftattributepattern.document);
-            z4Var.K = l5Var;
-            l5Var.setColorFilter(new PorterDuffColorFilter(k6.v0(k6.E8, g6Var), PorterDuff.Mode.SRC_IN));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f13376a) {
+            case 0:
+                c5 c5Var = this.f13377b;
+                c5Var.getClass();
+                c5Var.f12216p0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c5Var.d(c5Var.R);
+                return;
+            case 1:
+                c5 c5Var2 = this.f13377b;
+                c5Var2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float u10 = e2.c.u((float) Math.pow((floatValue * 2.0f) - 2.0f, 2.0d), 0.075f, floatValue, 1.0f);
+                c5Var2.f12217q0 = u10;
+                FrameLayout frameLayout = c5Var2.f12199b;
+                frameLayout.setScaleX(u10);
+                frameLayout.setScaleY(c5Var2.f12217q0);
+                c5Var2.invalidate();
+                return;
+            default:
+                c5 c5Var3 = this.f13377b;
+                c5Var3.getClass();
+                c5Var3.f12216p0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c5Var3.d(c5Var3.R);
+                return;
         }
-        if (kj0Var.isAttachedToWindow()) {
-            z4Var.K.a(kj0Var);
-        }
-        SpannableStringBuilder spannableStringBuilder = stargiftattributepattern.name;
-        if (!TextUtils.isEmpty(str)) {
-            spannableStringBuilder = AndroidUtilities.highlightText(spannableStringBuilder, str, g6Var);
-        }
-        if (i10 > 0) {
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
-            spannableStringBuilder2.append((CharSequence) "  ");
-            int length = spannableStringBuilder2.length();
-            spannableStringBuilder2.append((CharSequence) Integer.toString(i10));
-            spannableStringBuilder2.setSpan(new e51(AndroidUtilities.bold()), length, spannableStringBuilder2.length(), 33);
-            spannableStringBuilder = spannableStringBuilder2;
-        }
-        z4Var.g(spannableStringBuilder, 0, z4Var.K);
-        z4Var.setChecked(z10);
-    }
-
-    @Override
-    public final View createView(Context context, sl0 sl0Var, int i10, int i11, g6 g6Var) {
-        return new z4(context, i10, g6Var);
     }
 }

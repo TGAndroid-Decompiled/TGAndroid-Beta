@@ -1,54 +1,36 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.FrameLayout;
+import android.view.MotionEvent;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-public final class ww extends FrameLayout {
-    public final Paint f32839a;
-    public final mz f32840b;
+public final class ww extends ImageView {
+    public final kz f30363a;
 
-    public ww(mz mzVar, Context context) {
+    public ww(kz kzVar, Context context) {
         super(context);
-        this.f32840b = mzVar;
-        this.f32839a = new Paint();
+        this.f30363a = kzVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        mz mzVar = this.f32840b;
-        vw vwVar = mzVar.f29345y0;
-        float dp = AndroidUtilities.dp(50.0f) * mzVar.f29317q1.p();
-        if (dp > getMeasuredHeight()) {
-            return;
-        }
-        canvas.save();
-        if (dp != 0.0f) {
-            canvas.clipRect(0.0f, dp, getMeasuredWidth(), getMeasuredHeight());
-        }
-        int A = mzVar.A(org.telegram.ui.ActionBar.k6.He);
-        Paint paint = this.f32839a;
-        paint.setColor(A);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), vwVar.getExpandedOffset() + AndroidUtilities.dp(36.0f), paint);
-        super.dispatchDraw(canvas);
-        if (vwVar.f30150s != null) {
-            canvas.save();
-            float f10 = vwVar.W - vwVar.f30129a0;
-            float f11 = vwVar.v;
-            if (f11 > 0.0f) {
-                f10 = ((vwVar.f30150s.getX() - vwVar.getScrollX()) * vwVar.v) + ((1.0f - f11) * f10);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        ky kyVar;
+        int action = motionEvent.getAction();
+        kz kzVar = this.f30363a;
+        if (action == 0) {
+            kzVar.M1 = true;
+            kzVar.N1 = false;
+            AndroidUtilities.runOnUIThread(new dw(kzVar, 350, 0), 350);
+        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
+            kzVar.M1 = false;
+            if (!kzVar.N1 && (kyVar = kzVar.f26472q1) != null && kyVar.k()) {
+                try {
+                    kzVar.f26495x.performHapticFeedback(3);
+                } catch (Exception unused) {
+                }
             }
-            canvas.translate(f10, 0.0f);
-            vwVar.f30150s.draw(canvas);
-            canvas.restore();
         }
-        canvas.restore();
-    }
-
-    @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        super.onLayout(z4, i10, i11, i12, i13);
-        this.f32840b.a0();
+        super.onTouchEvent(motionEvent);
+        return true;
     }
 }

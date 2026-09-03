@@ -8,9 +8,9 @@ import s8.l;
 import s8.t;
 import s8.v;
 public abstract class d {
-    public static final String[] f49384a = {"Camera:MotionPhoto", "GCamera:MotionPhoto", "Camera:MicroVideo", "GCamera:MicroVideo"};
-    public static final String[] f49385b = {"Camera:MotionPhotoPresentationTimestampUs", "GCamera:MotionPhotoPresentationTimestampUs", "Camera:MicroVideoPresentationTimestampUs", "GCamera:MicroVideoPresentationTimestampUs"};
-    public static final String[] f49386c = {"Camera:MicroVideoOffset", "GCamera:MicroVideoOffset"};
+    public static final String[] f46461a = {"Camera:MotionPhoto", "GCamera:MotionPhoto", "Camera:MicroVideo", "GCamera:MicroVideo"};
+    public static final String[] f46462b = {"Camera:MotionPhotoPresentationTimestampUs", "GCamera:MotionPhotoPresentationTimestampUs", "Camera:MicroVideoPresentationTimestampUs", "GCamera:MicroVideoPresentationTimestampUs"};
+    public static final String[] f46463c = {"Camera:MicroVideoOffset", "GCamera:MicroVideoOffset"};
 
     public static f2.c a(java.lang.String r23) {
         throw new UnsupportedOperationException("Method not decompiled: w3.d.a(java.lang.String):f2.c");
@@ -18,7 +18,7 @@ public abstract class d {
 
     public static i0 b(XmlPullParser xmlPullParser, String str, String str2) {
         long j10;
-        t tVar = v.f47174b;
+        t tVar = v.f44222b;
         l.c(4, "initialCapacity");
         Object[] objArr = new Object[4];
         String concat = str.concat(":Item");
@@ -61,7 +61,7 @@ public abstract class d {
                     objArr[i10] = bVar;
                     i10++;
                 } else {
-                    return i0.f47139e;
+                    return i0.e;
                 }
             }
         } while (!h5.a.y(xmlPullParser, concat2));

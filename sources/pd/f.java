@@ -3,7 +3,7 @@ package pd;
 import dd.p;
 import kotlin.jvm.internal.k;
 public final class f extends k implements p {
-    public static final f f44392b = new k(2);
+    public static final f f41217b = new k(2);
 
     @Override
     public final Object invoke(Object obj, Object obj2) {

@@ -1,33 +1,33 @@
 package org.telegram.messenger;
 public final class cl implements Runnable {
-    public final int f18437a;
-    public final TranslateController f18438b;
-    public final String f18439c;
+    public final int f16991a;
+    public final TranslateController f16992b;
+    public final String f16993c;
     public final MessageObject d;
-    public final long f18440e;
-    public final int f18441f;
+    public final long e;
+    public final int f16994f;
 
     public cl(TranslateController translateController, String str, MessageObject messageObject, long j10, int i10, int i11) {
-        this.f18437a = i11;
-        this.f18438b = translateController;
-        this.f18439c = str;
+        this.f16991a = i11;
+        this.f16992b = translateController;
+        this.f16993c = str;
         this.d = messageObject;
-        this.f18440e = j10;
-        this.f18441f = i10;
+        this.e = j10;
+        this.f16994f = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18437a) {
+        switch (this.f16991a) {
             case 0:
-                long j10 = this.f18440e;
-                int i10 = this.f18441f;
-                this.f18438b.lambda$checkLanguage$16(this.f18439c, this.d, j10, i10);
+                long j10 = this.e;
+                int i10 = this.f16994f;
+                this.f16992b.lambda$checkLanguage$16(this.f16993c, this.d, j10, i10);
                 return;
             default:
-                long j11 = this.f18440e;
-                int i11 = this.f18441f;
-                this.f18438b.lambda$checkLanguage$12(this.f18439c, this.d, j11, i11);
+                long j11 = this.e;
+                int i11 = this.f16994f;
+                this.f16992b.lambda$checkLanguage$12(this.f16993c, this.d, j11, i11);
                 return;
         }
     }

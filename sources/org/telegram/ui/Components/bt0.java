@@ -3,16 +3,16 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.View;
 public final class bt0 implements View.OnClickListener {
-    public final long f25689a;
-    public final org.telegram.ui.ActionBar.g6 f25690b;
-    public final Context f25691c;
+    public final long f23744a;
+    public final org.telegram.ui.ActionBar.f6 f23745b;
+    public final Context f23746c;
     public final yu0 d;
 
-    public bt0(yu0 yu0Var, long j10, org.telegram.ui.ActionBar.g6 g6Var, Context context) {
+    public bt0(yu0 yu0Var, long j10, org.telegram.ui.ActionBar.f6 f6Var, Context context) {
         this.d = yu0Var;
-        this.f25689a = j10;
-        this.f25690b = g6Var;
-        this.f25691c = context;
+        this.f23744a = j10;
+        this.f23745b = f6Var;
+        this.f23746c = context;
     }
 
     @Override

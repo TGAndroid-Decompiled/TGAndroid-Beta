@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.View;
-public final class h31 extends sl0 {
+public final class h31 extends rl0 {
     public final v31 U2;
 
     public h31(v31 v31Var, Context context) {

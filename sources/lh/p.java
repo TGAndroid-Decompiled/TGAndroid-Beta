@@ -1,49 +1,147 @@
 package lh;
 
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.content.Context;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-public final class p implements TextWatcher {
-    public final View[] f12887a;
-    public final s f12888b;
+import org.telegram.ui.Components.qv0;
+import org.telegram.ui.Components.rl0;
+public final class p extends qv0 implements r0.n {
+    public final c5.e f12884t0;
+    public final q f12885u0;
 
-    public p(s sVar, View[] viewArr) {
-        this.f12888b = sVar;
-        this.f12887a = viewArr;
+    public p(q qVar, Context context) {
+        super(context, null);
+        this.f12885u0 = qVar;
+        this.f12884t0 = new Object();
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
+    public final void E(ViewGroup viewGroup, int i10, int i11, int[] iArr, int i12) {
+        org.telegram.ui.ActionBar.k kVar;
+        int i13;
+        org.telegram.ui.ActionBar.k kVar2;
         boolean z4;
-        float f10;
-        View[] viewArr = this.f12887a;
-        try {
-            if (Integer.parseInt(editable.toString()) >= this.f12888b.f12947i0.getMinimumBid()) {
-                z4 = true;
-            } else {
-                z4 = false;
+        int max;
+        q qVar = this.f12885u0;
+        if (viewGroup == qVar.e && qVar.C.isAttachedToWindow()) {
+            kVar = ((org.telegram.ui.ActionBar.p2) qVar).actionBar;
+            boolean z10 = kVar.f20305k0;
+            int top = (((View) qVar.C.getParent()).getTop() - AndroidUtilities.statusBarHeight) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+            int bottom = ((View) qVar.C.getParent()).getBottom();
+            boolean z11 = false;
+            if (i11 < 0) {
+                kVar2 = ((org.telegram.ui.ActionBar.p2) qVar).actionBar;
+                if (qVar.e.getHeight() - bottom < 0) {
+                    z4 = true;
+                } else {
+                    z4 = false;
+                }
+                kVar2.setCastShadows(z4);
+                if (qVar.e.getHeight() - bottom >= 0) {
+                    rl0 currentListView = qVar.C.getCurrentListView();
+                    int L0 = ((f2.i0) currentListView.getLayoutManager()).L0();
+                    int i14 = -1;
+                    if (L0 != -1) {
+                        f2.l1 K = currentListView.K(L0);
+                        if (K != null) {
+                            i14 = K.f5774a.getTop();
+                        }
+                        int paddingTop = currentListView.getPaddingTop();
+                        if (i14 != paddingTop || L0 != 0) {
+                            if (L0 != 0) {
+                                max = i11;
+                            } else {
+                                max = Math.max(i11, i14 - paddingTop);
+                            }
+                            iArr[1] = max;
+                            currentListView.scrollBy(0, i11);
+                            z11 = true;
+                        }
+                    }
+                }
+                if (z10) {
+                    if (!z11 && top < 0) {
+                        iArr[1] = i11 - Math.max(top, i11);
+                    } else {
+                        iArr[1] = i11;
+                    }
+                }
+            } else if (z10) {
+                rl0 currentListView2 = qVar.C.getCurrentListView();
+                iArr[1] = i11;
+                if (top > 0) {
+                    iArr[1] = 0;
+                }
+                if (currentListView2 != null && (i13 = iArr[1]) > 0) {
+                    currentListView2.scrollBy(0, i13);
+                }
+            } else if (i11 > 0) {
+                rl0 currentListView3 = qVar.C.getCurrentListView();
+                if (qVar.e.getHeight() - bottom >= 0 && currentListView3 != null && !currentListView3.canScrollVertically(1)) {
+                    iArr[1] = i11;
+                    qVar.e.B0();
+                }
             }
-            ViewPropertyAnimator animate = viewArr[0].animate();
-            if (z4) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.6f;
-            }
-            animate.alpha(f10).setDuration(180L).start();
-            viewArr[0].setEnabled(z4);
-            viewArr[0].setClickable(z4);
-        } catch (Throwable th2) {
-            FileLog.e(th2);
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void i(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
+        org.telegram.ui.ActionBar.k kVar;
+        boolean z4;
+        q qVar = this.f12885u0;
+        try {
+            if (viewGroup == qVar.e && qVar.C.isAttachedToWindow()) {
+                rl0 currentListView = qVar.C.getCurrentListView();
+                int bottom = ((View) qVar.C.getParent()).getBottom();
+                kVar = ((org.telegram.ui.ActionBar.p2) qVar).actionBar;
+                if (qVar.e.getHeight() - bottom < 0) {
+                    z4 = true;
+                } else {
+                    z4 = false;
+                }
+                kVar.setCastShadows(z4);
+                if (qVar.e.getHeight() - bottom >= 0) {
+                    iArr[1] = i13;
+                    currentListView.scrollBy(0, i13);
+                }
+            }
+        } catch (Throwable th2) {
+            FileLog.e(th2);
+            AndroidUtilities.runOnUIThread(new b(this, 1));
+        }
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void n(int i10, View view) {
+        this.f12884t0.f2108a = 0;
+    }
+
+    @Override
+    public final boolean o(View view, View view2, int i10, int i11) {
+        if (i10 == 2) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void s(View view, View view2, int i10, int i11) {
+        this.f12884t0.f2108a = i10;
+    }
+
+    @Override
+    public final void onStopNestedScroll(View view) {
+    }
+
+    @Override
+    public final void c(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14) {
     }
 }

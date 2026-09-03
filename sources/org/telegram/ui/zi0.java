@@ -2,117 +2,82 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLObject;
-public final class zi0 extends org.telegram.ui.Components.rl0 {
-    public final Context f43972c;
-    public final bj0 d;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stats;
+public final class zi0 extends y91 {
+    public final aj0 v;
 
-    public zi0(bj0 bj0Var, Context context) {
-        this.d = bj0Var;
-        this.f43972c = context;
+    public zi0(aj0 aj0Var, Context context, int i10, vf.f fVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, i10, fVar, f6Var);
+        this.v = aj0Var;
     }
 
     @Override
-    public final void A(f2.m1 m1Var) {
-        View view = m1Var.f5875a;
-        if (view instanceof org.telegram.ui.Cells.b5) {
-            ((org.telegram.ui.Cells.b5) view).a();
-        }
-    }
-
-    @Override
-    public final boolean D(f2.m1 m1Var) {
-        if (m1Var.f5879f == 0) {
-            return ((org.telegram.ui.Cells.b5) m1Var.f5875a).getCurrentObject() instanceof TLObject;
-        }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.N;
-    }
-
-    @Override
-    public final int j(int i10) {
-        bj0 bj0Var = this.d;
-        if (bj0Var.O.contains(Integer.valueOf(i10))) {
-            return 1;
-        }
-        if (i10 != bj0Var.E && i10 != bj0Var.L) {
-            if (i10 == bj0Var.H) {
-                return 3;
-            }
-            if (i10 == bj0Var.I) {
-                return 4;
-            }
-            if (i10 == bj0Var.K) {
-                return 5;
-            }
-            if (i10 == bj0Var.M) {
-                return 6;
-            }
-            if (i10 == bj0Var.J) {
-                return 7;
-            }
-            return 0;
-        }
-        return 2;
-    }
-
-    @Override
-    public final void v(f2.m1 r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zi0.v(f2.m1, int):void");
-    }
-
-    @Override
-    public final f2.m1 x(ViewGroup viewGroup, int i10) {
-        View view;
-        org.telegram.ui.Cells.z6 z6Var;
-        bj0 bj0Var = this.d;
-        if (i10 != 0) {
-            int i11 = 1;
-            Context context = this.f43972c;
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 4) {
-                        if (i10 != 5) {
-                            if (i10 != 6) {
-                                if (i10 != 7) {
-                                    view = new org.telegram.ui.Cells.s4(context, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(120.0f));
-                                }
-                            } else {
-                                view = new org.telegram.ui.Cells.k3(context, 16);
-                                view.setLayoutParams(new f2.x0(-1, 16));
-                            }
-                        } else {
-                            view = new aj0(bj0Var, context);
-                            view.setLayoutParams(new f2.x0(-1, -2));
-                        }
-                    }
-                    if (i10 != 4) {
-                        i11 = 2;
-                    }
-                    wf.f fVar = new wf.f(bj0Var.getResourceProvider());
-                    bj0Var.Z = fVar;
-                    view = new yi0(this, this.f43972c, i11, fVar, bj0Var.getResourceProvider());
+    public final void c() {
+        int i10;
+        int i11;
+        int i12;
+        cj0 cj0Var = this.v.d;
+        if (this.f40194r.f32528c <= 0) {
+            performClick();
+            vf.g gVar = this.f40190b;
+            if (gVar.f45809q0.D) {
+                long selectedDate = gVar.getSelectedDate();
+                if (this.f40195s == 4) {
+                    aa1 aa1Var = this.f40194r;
+                    aa1Var.e = new wf.e(aa1Var.d, selectedDate);
+                    g(false);
+                } else if (this.f40194r.f32530g == null) {
                 } else {
-                    org.telegram.ui.Cells.m4 m4Var = new org.telegram.ui.Cells.m4(this.f43972c, org.telegram.ui.ActionBar.k6.G6, 16, 11, false, bj0Var.getResourceProvider());
-                    m4Var.setHeight(43);
-                    z6Var = m4Var;
+                    f();
+                    String str = this.f40194r.f32530g + "_" + selectedDate;
+                    wf.b bVar = (wf.b) cj0Var.v.get(str);
+                    if (bVar != null) {
+                        this.f40194r.e = bVar;
+                        g(false);
+                        return;
+                    }
+                    TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
+                    tL_loadAsyncGraph.token = this.f40194r.f32530g;
+                    if (selectedDate != 0) {
+                        tL_loadAsyncGraph.f19388x = selectedDate;
+                        tL_loadAsyncGraph.flags |= 1;
+                    }
+                    ?? obj = new Object();
+                    cj0Var.f33176w = obj;
+                    cj0Var.f33172f.getClass();
+                    obj.f36467a = RecyclerView.R(this);
+                    gVar.f45809q0.d(true, false);
+                    i10 = ((org.telegram.ui.ActionBar.p2) cj0Var).currentAccount;
+                    int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new da(this, str, (Object) obj, 25), null, null, 0, cj0Var.f33167a.stats_dc, 1, true);
+                    i11 = ((org.telegram.ui.ActionBar.p2) cj0Var).currentAccount;
+                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i11);
+                    i12 = ((org.telegram.ui.ActionBar.p2) cj0Var).classGuid;
+                    connectionsManager.bindRequestToGuid(sendRequest, i12);
                 }
-            } else {
-                bj0Var.getResourceProvider();
-                z6Var = new org.telegram.ui.Cells.z6(context, (b) null);
             }
-            view = z6Var;
-        } else {
-            org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(6, 2, this.f43972c, bj0Var.getResourceProvider(), false);
-            b5Var.setDividerColor(org.telegram.ui.ActionBar.k6.f21662d7);
-            view = b5Var;
         }
-        return new f2.m1(view);
+    }
+
+    @Override
+    public final void f() {
+        aj0 aj0Var = this.v;
+        cj0 cj0Var = aj0Var.d;
+        na1 na1Var = cj0Var.f33176w;
+        if (na1Var != null) {
+            na1Var.f36468b = true;
+        }
+        int childCount = cj0Var.f33172f.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            View childAt = aj0Var.d.f33172f.getChildAt(i10);
+            if (childAt instanceof y91) {
+                ((y91) childAt).f40190b.f45809q0.d(false, true);
+            }
+        }
+    }
+
+    @Override
+    public final void b(aa1 aa1Var) {
     }
 }

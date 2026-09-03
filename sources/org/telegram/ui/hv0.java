@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.ActionMode;
 import java.util.ArrayList;
-public final class hv0 extends org.telegram.ui.Cells.c6 {
+public final class hv0 extends org.telegram.ui.Cells.b6 {
     public final kv0 C;
 
     public hv0(kv0 kv0Var, Context context, int i10) {
@@ -17,8 +17,8 @@ public final class hv0 extends org.telegram.ui.Cells.c6 {
     }
 
     @Override
-    public final void j(org.telegram.ui.Cells.c6 c6Var) {
-        mv0.e0(this.C.d, c6Var);
+    public final void j(org.telegram.ui.Cells.b6 b6Var) {
+        mv0.e0(this.C.d, b6Var);
     }
 
     @Override
@@ -27,25 +27,25 @@ public final class hv0 extends org.telegram.ui.Cells.c6 {
         if (arrayList.isEmpty()) {
             return false;
         }
-        eh.b bVar = this.d;
+        dh.b bVar = this.d;
         bVar.getText().replace(bVar.getSelectionStart(), bVar.getSelectionEnd(), (CharSequence) arrayList.remove(0));
         int i10 = 0;
-        while (!arrayList.isEmpty() && i10 < mv0Var.f39106n) {
+        while (!arrayList.isEmpty() && i10 < mv0Var.f36245n) {
             for (int length = mv0Var.v.length - 1; length > i10; length--) {
                 CharSequence[] charSequenceArr = mv0Var.v;
                 charSequenceArr[length] = charSequenceArr[length - 1];
             }
             mv0Var.v[i10] = (CharSequence) arrayList.remove(0);
-            mv0Var.f39122y++;
+            mv0Var.f36261y++;
             i10++;
         }
         mv0Var.r0();
-        mv0Var.f39095d0 = (mv0Var.f39104k0 + i10) - 1;
-        mv0Var.f39091b.l();
+        mv0Var.f36235d0 = (mv0Var.f36243k0 + i10) - 1;
+        mv0Var.f36231b.l();
         return true;
     }
 
     @Override
-    public final void g(eh.b bVar, ActionMode actionMode) {
+    public final void g(dh.b bVar, ActionMode actionMode) {
     }
 }

@@ -2,13 +2,13 @@ package q6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import j7.g5;
+import j7.f5;
 import java.util.Arrays;
 public final class m extends c6.a {
     public static final Parcelable.Creator<m> CREATOR = new r0(21);
-    public final c f44726a;
-    public final Boolean f44727b;
-    public final j0 f44728c;
+    public final c f42962a;
+    public final Boolean f42963b;
+    public final j0 f42964c;
     public final e0 d;
 
     public m(String str, Boolean bool, String str2, String str3) {
@@ -20,18 +20,18 @@ public final class m extends c6.a {
         } else {
             try {
                 a2 = c.a(str);
-            } catch (b | d0 | t0 e6) {
-                throw new IllegalArgumentException(e6);
+            } catch (b | d0 | t0 e) {
+                throw new IllegalArgumentException(e);
             }
         }
-        this.f44726a = a2;
-        this.f44727b = bool;
+        this.f42962a = a2;
+        this.f42963b = bool;
         if (str2 == null) {
             a10 = null;
         } else {
             a10 = j0.a(str2);
         }
-        this.f44728c = a10;
+        this.f42964c = a10;
         if (str3 != null) {
             e0Var = e0.a(str3);
         }
@@ -41,7 +41,7 @@ public final class m extends c6.a {
     public final e0 e() {
         e0 e0Var = this.d;
         if (e0Var == null) {
-            Boolean bool = this.f44727b;
+            Boolean bool = this.f42963b;
             if (bool == null || !bool.booleanValue()) {
                 return null;
             }
@@ -55,22 +55,22 @@ public final class m extends c6.a {
             return false;
         }
         m mVar = (m) obj;
-        if (!b6.m.l(this.f44726a, mVar.f44726a) || !b6.m.l(this.f44727b, mVar.f44727b) || !b6.m.l(this.f44728c, mVar.f44728c) || !b6.m.l(e(), mVar.e())) {
+        if (!b6.m.l(this.f42962a, mVar.f42962a) || !b6.m.l(this.f42963b, mVar.f42963b) || !b6.m.l(this.f42964c, mVar.f42964c) || !b6.m.l(e(), mVar.e())) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f44726a, this.f44727b, this.f44728c, e()});
+        return Arrays.hashCode(new Object[]{this.f42962a, this.f42963b, this.f42964c, e()});
     }
 
     public final String toString() {
-        String valueOf = String.valueOf(this.f44726a);
-        String valueOf2 = String.valueOf(this.f44728c);
+        String valueOf = String.valueOf(this.f42962a);
+        String valueOf2 = String.valueOf(this.f42964c);
         String valueOf3 = String.valueOf(this.d);
         StringBuilder t6 = android.support.v4.media.a.t("AuthenticatorSelectionCriteria{\n attachment=", valueOf, ", \n requireResidentKey=");
-        t6.append(this.f44727b);
+        t6.append(this.f42963b);
         t6.append(", \n requireUserVerification=");
         t6.append(valueOf2);
         t6.append(", \n residentKeyRequirement=");
@@ -81,28 +81,28 @@ public final class m extends c6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         String str;
         String str2;
-        int q10 = g5.q(parcel, 20293);
+        int q10 = f5.q(parcel, 20293);
         String str3 = null;
-        c cVar = this.f44726a;
+        c cVar = this.f42962a;
         if (cVar == null) {
             str = null;
         } else {
-            str = cVar.f44681a;
+            str = cVar.f42920a;
         }
-        g5.l(parcel, 2, str);
-        g5.a(parcel, 3, this.f44727b);
-        j0 j0Var = this.f44728c;
+        f5.l(parcel, 2, str);
+        f5.a(parcel, 3, this.f42963b);
+        j0 j0Var = this.f42964c;
         if (j0Var == null) {
             str2 = null;
         } else {
-            str2 = j0Var.f44718a;
+            str2 = j0Var.f42954a;
         }
-        g5.l(parcel, 4, str2);
-        e0 e6 = e();
-        if (e6 != null) {
-            str3 = e6.f44690a;
+        f5.l(parcel, 4, str2);
+        e0 e = e();
+        if (e != null) {
+            str3 = e.f42929a;
         }
-        g5.l(parcel, 5, str3);
-        g5.r(parcel, q10);
+        f5.l(parcel, 5, str3);
+        f5.r(parcel, q10);
     }
 }

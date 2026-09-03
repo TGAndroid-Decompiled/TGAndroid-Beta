@@ -4,32 +4,32 @@ import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MrzRecognizer;
-public final class k21 implements u9 {
-    public final int f38179a;
-    public final org.telegram.ui.ActionBar.p2 f38180b;
+public final class k21 implements w9 {
+    public final int f35409a;
+    public final org.telegram.ui.ActionBar.p2 f35410b;
 
     public k21(int i10, org.telegram.ui.ActionBar.p2 p2Var) {
-        this.f38179a = i10;
-        this.f38180b = p2Var;
+        this.f35409a = i10;
+        this.f35410b = p2Var;
     }
 
     @Override
-    public final String E0() {
+    public final String C0() {
         return null;
     }
 
     @Override
-    public final void J(String str) {
-        String b10 = af.g.b(str);
+    public final void K(String str) {
+        String b10 = ze.d.b(str);
         if (!TextUtils.isEmpty(b10)) {
-            MessagesController.getInstance(this.f38179a).getUserNameResolver().resolve(b10, new vb(this.f38180b, 4));
+            MessagesController.getInstance(this.f35409a).getUserNameResolver().resolve(b10, new xb(this.f35410b, 4));
         } else {
-            AndroidUtilities.runOnUIThread(new sj0(2));
+            AndroidUtilities.runOnUIThread(new j21(0));
         }
     }
 
     @Override
-    public final boolean e1(String str, m9 m9Var) {
+    public final boolean a1(String str, o9 o9Var) {
         return false;
     }
 

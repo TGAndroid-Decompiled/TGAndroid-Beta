@@ -9,39 +9,39 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class lh1 extends org.telegram.ui.Components.cl0 {
-    public final Context f38651c;
-    public final uf.k1 f38653f;
+public final class lh1 extends org.telegram.ui.Components.bl0 {
+    public final Context f35769c;
+    public final tf.j1 f35770f;
     public Runnable h;
-    public boolean f38654n;
-    public final int f38656s;
+    public boolean f35771n;
+    public final int f35773s;
     public final UsersSelectActivity v;
     public ArrayList d = new ArrayList();
-    public ArrayList f38652e = new ArrayList();
-    public final ArrayList f38655r = new ArrayList();
+    public ArrayList e = new ArrayList();
+    public final ArrayList f35772r = new ArrayList();
 
     public lh1(UsersSelectActivity usersSelectActivity, Context context) {
         boolean z4;
         boolean z10;
         this.v = usersSelectActivity;
-        this.f38651c = context;
+        this.f35769c = context;
         if (usersSelectActivity.C) {
-            this.f38656s = 0;
+            this.f35773s = 0;
         } else {
-            int i10 = usersSelectActivity.f34939x;
+            int i10 = usersSelectActivity.f32369x;
             if (i10 == 2) {
-                this.f38656s = (!usersSelectActivity.E ? 1 : 0) + 5;
+                this.f35773s = (!usersSelectActivity.E ? 1 : 0) + 5;
             } else if (i10 == 0) {
                 if (usersSelectActivity.F) {
-                    this.f38656s = 7;
+                    this.f35773s = 7;
                 } else {
-                    this.f38656s = 5;
+                    this.f35773s = 5;
                 }
             } else {
-                this.f38656s = 0;
+                this.f35773s = 0;
             }
         }
-        int i11 = usersSelectActivity.f34939x;
+        int i11 = usersSelectActivity.f32369x;
         if (i11 != 2) {
             z4 = true;
         } else {
@@ -57,43 +57,43 @@ public final class lh1 extends org.telegram.ui.Components.cl0 {
         boolean z11 = false;
         for (int i12 = 0; i12 < size; i12++) {
             TLRPC.Dialog dialog = allDialogs.get(i12);
-            if (!DialogObject.isEncryptedDialog(dialog.f20849id)) {
-                if (DialogObject.isUserDialog(dialog.f20849id)) {
-                    TLRPC.User user = usersSelectActivity.getMessagesController().getUser(Long.valueOf(dialog.f20849id));
+            if (!DialogObject.isEncryptedDialog(dialog.f19163id)) {
+                if (DialogObject.isUserDialog(dialog.f19163id)) {
+                    TLRPC.User user = usersSelectActivity.getMessagesController().getUser(Long.valueOf(dialog.f19163id));
                     if (user != null && ((usersSelectActivity.D || !UserObject.isUserSelf(user)) && (!user.bot || z4))) {
-                        this.f38655r.add(user);
+                        this.f35772r.add(user);
                         if (UserObject.isUserSelf(user)) {
                             z11 = true;
                         }
                     }
                 } else {
-                    TLRPC.Chat chat = usersSelectActivity.getMessagesController().getChat(Long.valueOf(-dialog.f20849id));
+                    TLRPC.Chat chat = usersSelectActivity.getMessagesController().getChat(Long.valueOf(-dialog.f19163id));
                     if (z10 && chat != null) {
-                        this.f38655r.add(chat);
+                        this.f35772r.add(chat);
                     }
                 }
             }
         }
         if (!z11 && usersSelectActivity.D) {
-            this.f38655r.add(0, usersSelectActivity.getMessagesController().getUser(Long.valueOf(usersSelectActivity.getUserConfig().clientUserId)));
+            this.f35772r.add(0, usersSelectActivity.getMessagesController().getUser(Long.valueOf(usersSelectActivity.getUserConfig().clientUserId)));
         }
-        uf.k1 k1Var = new uf.k1(false);
-        this.f38653f = k1Var;
-        k1Var.f48667p = false;
-        k1Var.f48654a = new kl0(this, 25);
+        tf.j1 j1Var = new tf.j1(false);
+        this.f35770f = j1Var;
+        j1Var.f44831p = false;
+        j1Var.f44819a = new kl0(this, 25);
     }
 
     @Override
-    public final void A(f2.m1 m1Var) {
-        View view = m1Var.f5875a;
-        if (view instanceof org.telegram.ui.Cells.g4) {
-            ((org.telegram.ui.Cells.g4) view).f22838a.getImageReceiver().cancelLoadImage();
+    public final void A(f2.l1 l1Var) {
+        View view = l1Var.f5774a;
+        if (view instanceof org.telegram.ui.Cells.f4) {
+            ((org.telegram.ui.Cells.f4) view).f21019a.getImageReceiver().cancelLoadImage();
         }
     }
 
     @Override
-    public final boolean D(f2.m1 m1Var) {
-        if (m1Var.f5879f == 1) {
+    public final boolean D(f2.l1 l1Var) {
+        if (l1Var.f5777f == 1) {
             return true;
         }
         return false;
@@ -105,7 +105,7 @@ public final class lh1 extends org.telegram.ui.Components.cl0 {
     }
 
     @Override
-    public final void G(org.telegram.ui.Components.sl0 sl0Var, float f10, int[] iArr) {
+    public final void G(org.telegram.ui.Components.rl0 rl0Var, float f10, int[] iArr) {
         iArr[0] = (int) (h() * f10);
         iArr[1] = 0;
     }
@@ -117,7 +117,7 @@ public final class lh1 extends org.telegram.ui.Components.cl0 {
             Utilities.searchQueue.cancelRunnable(this.h);
             this.h = null;
         }
-        int i10 = this.v.f34939x;
+        int i10 = this.v.f32369x;
         if (i10 != 2) {
             z4 = true;
         } else {
@@ -130,9 +130,9 @@ public final class lh1 extends org.telegram.ui.Components.cl0 {
         }
         if (str == null) {
             this.d.clear();
-            this.f38652e.clear();
-            this.f38653f.f(null, null);
-            this.f38653f.g(null, true, false, false, false, 0L, false, 0, 0);
+            this.e.clear();
+            this.f35770f.f(null, null);
+            this.f35770f.g(null, true, false, false, false, 0L, false, 0, 0);
             l();
             return;
         }
@@ -144,30 +144,30 @@ public final class lh1 extends org.telegram.ui.Components.cl0 {
 
     @Override
     public final int h() {
-        if (this.f38654n) {
+        if (this.f35771n) {
             int size = this.d.size();
-            uf.k1 k1Var = this.f38653f;
-            return k1Var.f48657e.size() + k1Var.d.size() + size;
+            tf.j1 j1Var = this.f35770f;
+            return j1Var.e.size() + j1Var.d.size() + size;
         }
         UsersSelectActivity usersSelectActivity = this.v;
         int i10 = 0;
         if (!usersSelectActivity.C) {
-            int i11 = usersSelectActivity.f34939x;
+            int i11 = usersSelectActivity.f32369x;
             if (i11 == 2) {
                 i10 = (!usersSelectActivity.E ? 1 : 0) + 3;
             } else if (i11 == 0) {
                 i10 = usersSelectActivity.F ? 7 : 5;
             }
         }
-        return this.f38655r.size() + i10;
+        return this.f35772r.size() + i10;
     }
 
     @Override
     public final int j(int i10) {
         int i11;
-        if (!this.f38654n) {
+        if (!this.f35771n) {
             UsersSelectActivity usersSelectActivity = this.v;
-            if (!usersSelectActivity.C ? !((i11 = usersSelectActivity.f34939x) != 2 ? i11 != 0 || (!usersSelectActivity.F ? !(i10 == 0 || i10 == 4) : !(i10 == 0 || i10 == 6)) : i10 != 0 && i10 != (!usersSelectActivity.E ? 1 : 0) + 4) : i10 == 0) {
+            if (!usersSelectActivity.C ? !((i11 = usersSelectActivity.f32369x) != 2 ? i11 != 0 || (!usersSelectActivity.F ? !(i10 == 0 || i10 == 4) : !(i10 == 0 || i10 == 6)) : i10 != 0 && i10 != (!usersSelectActivity.E ? 1 : 0) + 4) : i10 == 0) {
                 return 2;
             }
         }
@@ -175,19 +175,19 @@ public final class lh1 extends org.telegram.ui.Components.cl0 {
     }
 
     @Override
-    public final void v(f2.m1 r18, int r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.lh1.v(f2.m1, int):void");
+    public final void v(f2.l1 r18, int r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.lh1.v(f2.l1, int):void");
     }
 
     @Override
-    public final f2.m1 x(ViewGroup viewGroup, int i10) {
-        View g4Var;
-        Context context = this.f38651c;
+    public final f2.l1 x(ViewGroup viewGroup, int i10) {
+        View f4Var;
+        Context context = this.f35769c;
         if (i10 != 1) {
-            g4Var = new org.telegram.ui.Cells.u3(context, null);
+            f4Var = new org.telegram.ui.Cells.t3(context, null);
         } else {
-            g4Var = new org.telegram.ui.Cells.g4(context, 1, 0, true);
+            f4Var = new org.telegram.ui.Cells.f4(context, 1, 0, true);
         }
-        return new f2.m1(g4Var);
+        return new f2.l1(f4Var);
     }
 }

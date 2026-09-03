@@ -3,11 +3,11 @@ package a4;
 import h5.w;
 import java.io.EOFException;
 public final class f {
-    public final g f68a = new g();
-    public final w f69b = new w(new byte[65025], 0);
-    public int f70c = -1;
+    public final g f63a = new g();
+    public final w f64b = new w(new byte[65025], 0);
+    public int f65c = -1;
     public int d;
-    public boolean f71e;
+    public boolean e;
 
     public final int a(int i10) {
         int i11;
@@ -16,11 +16,11 @@ public final class f {
         do {
             int i13 = this.d;
             int i14 = i10 + i13;
-            g gVar = this.f68a;
-            if (i14 >= gVar.f74c) {
+            g gVar = this.f63a;
+            if (i14 >= gVar.f68c) {
                 break;
             }
-            int[] iArr = gVar.f76f;
+            int[] iArr = gVar.f69f;
             this.d = i13 + 1;
             i11 = iArr[i14];
             i12 += i11;
@@ -38,53 +38,53 @@ public final class f {
             z4 = false;
         }
         h5.a.i(z4);
-        boolean z11 = this.f71e;
-        w wVar = this.f69b;
+        boolean z11 = this.e;
+        w wVar = this.f64b;
         if (z11) {
-            this.f71e = false;
+            this.e = false;
             wVar.C(0);
         }
-        while (!this.f71e) {
-            int i11 = this.f70c;
-            g gVar = this.f68a;
+        while (!this.e) {
+            int i11 = this.f65c;
+            g gVar = this.f63a;
             if (i11 < 0) {
                 if (gVar.b(lVar, -1L) && gVar.a(lVar, true)) {
                     int i12 = gVar.d;
-                    if ((gVar.f72a & 1) == 1 && wVar.f7310c == 0) {
+                    if ((gVar.f66a & 1) == 1 && wVar.f6989c == 0) {
                         i12 += a(0);
                         i10 = this.d;
                     } else {
                         i10 = 0;
                     }
                     try {
-                        lVar.s(i12);
-                        this.f70c = i10;
+                        lVar.n(i12);
+                        this.f65c = i10;
                     } catch (EOFException unused) {
                     }
                 }
                 return false;
             }
-            int a2 = a(this.f70c);
-            int i13 = this.f70c + this.d;
+            int a2 = a(this.f65c);
+            int i13 = this.f65c + this.d;
             if (a2 > 0) {
-                wVar.b(wVar.f7310c + a2);
+                wVar.b(wVar.f6989c + a2);
                 try {
-                    lVar.readFully(wVar.f7308a, wVar.f7310c, a2);
-                    wVar.E(wVar.f7310c + a2);
-                    if (gVar.f76f[i13 - 1] != 255) {
+                    lVar.readFully(wVar.f6987a, wVar.f6989c, a2);
+                    wVar.E(wVar.f6989c + a2);
+                    if (gVar.f69f[i13 - 1] != 255) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    this.f71e = z10;
+                    this.e = z10;
                 } catch (EOFException unused2) {
                     return false;
                 }
             }
-            if (i13 == gVar.f74c) {
+            if (i13 == gVar.f68c) {
                 i13 = -1;
             }
-            this.f70c = i13;
+            this.f65c = i13;
         }
         return true;
     }

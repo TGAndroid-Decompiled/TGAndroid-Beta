@@ -1,61 +1,73 @@
 package org.telegram.ui.ActionBar;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.os.SystemClock;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.MediaController;
-public final class q5 implements SensorEventListener {
+import android.util.SparseIntArray;
+import org.telegram.ui.jd1;
+public final class q5 extends g5 {
+    public final int R = 1;
+    public final Object S;
+
+    public q5(jd1 jd1Var, int i10, boolean z4) {
+        super(i10, true, z4, null);
+        this.S = jd1Var;
+    }
+
     @Override
-    public final void onSensorChanged(SensorEvent sensorEvent) {
-        float f10 = sensorEvent.values[0];
-        if (f10 <= 0.0f) {
-            f10 = 0.1f;
-        }
-        if (!ApplicationLoader.mainInterfacePaused && ApplicationLoader.isScreenOn) {
-            if (f10 > 500.0f) {
-                k6.h = 1.0f;
-            } else {
-                k6.h = ((float) Math.ceil((Math.log(f10) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
-            }
-            long j10 = 1800;
-            if (k6.h <= k6.f21889q) {
-                if (!MediaController.getInstance().isRecordingOrListeningByProximity()) {
-                    if (k6.f21762j) {
-                        k6.f21762j = false;
-                        AndroidUtilities.cancelRunOnUIThread(k6.f21799l);
-                    }
-                    if (!k6.f21780k) {
-                        k6.f21780k = true;
-                        androidx.emoji2.text.n nVar = k6.f21817m;
-                        if (Math.abs(k6.f21745i - SystemClock.elapsedRealtime()) < 12000) {
-                            j10 = 12000;
-                        }
-                        AndroidUtilities.runOnUIThread(nVar, j10);
-                        return;
-                    }
-                    return;
+    public int g(int i10) {
+        switch (this.R) {
+            case 0:
+                SparseIntArray sparseIntArray = (SparseIntArray) this.S;
+                int indexOfKey = sparseIntArray.indexOfKey(i10);
+                if (indexOfKey > 0) {
+                    return sparseIntArray.valueAt(indexOfKey);
                 }
-                return;
-            }
-            if (k6.f21780k) {
-                k6.f21780k = false;
-                AndroidUtilities.cancelRunOnUIThread(k6.f21817m);
-            }
-            if (!k6.f21762j) {
-                k6.f21762j = true;
-                androidx.emoji2.text.n nVar2 = k6.f21799l;
-                if (Math.abs(k6.f21745i - SystemClock.elapsedRealtime()) < 12000) {
-                    j10 = 12000;
-                }
-                AndroidUtilities.runOnUIThread(nVar2, j10);
-            }
+                return j6.nl[i10];
+            default:
+                return super.g(i10);
         }
     }
 
     @Override
-    public final void onAccuracyChanged(Sensor sensor, int i10) {
+    public int h(int i10) {
+        switch (this.R) {
+            case 0:
+                return ((SparseIntArray) this.S).get(i10);
+            default:
+                return super.h(i10);
+        }
+    }
+
+    @Override
+    public void n(int i10, int i11, int i12) {
+        switch (this.R) {
+            case 1:
+                if (!((jd1) this.S).a2) {
+                    super.n(i10, i11, i12);
+                    return;
+                }
+                return;
+            default:
+                super.n(i10, i11, i12);
+                return;
+        }
+    }
+
+    @Override
+    public void o(int i10, int i11, int i12, int i13, int i14, int i15, boolean z4, boolean z10) {
+        switch (this.R) {
+            case 1:
+                if (!((jd1) this.S).a2) {
+                    super.o(i10, i11, i12, i13, i14, i15, z4, z10);
+                    return;
+                }
+                return;
+            default:
+                super.o(i10, i11, i12, i13, i14, i15, z4, z10);
+                return;
+        }
+    }
+
+    public q5(boolean z4, SparseIntArray sparseIntArray) {
+        super(2, z4, false, null);
+        this.S = sparseIntArray;
     }
 }

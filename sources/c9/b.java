@@ -1,45 +1,45 @@
 package c9;
 
 import j$.util.DesugarCollections;
-import j7.k5;
+import j7.j5;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 public final class b {
-    public final String f2336a;
-    public final Set f2337b;
-    public final Set f2338c;
+    public final String f2171a;
+    public final Set f2172b;
+    public final Set f2173c;
     public final int d;
-    public final int f2339e;
-    public final e f2340f;
-    public final Set f2341g;
+    public final int e;
+    public final f f2174f;
+    public final Set f2175g;
 
-    public b(String str, Set set, Set set2, int i10, int i11, e eVar, Set set3) {
-        this.f2336a = str;
-        this.f2337b = DesugarCollections.unmodifiableSet(set);
-        this.f2338c = DesugarCollections.unmodifiableSet(set2);
+    public b(String str, Set set, Set set2, int i10, int i11, f fVar, Set set3) {
+        this.f2171a = str;
+        this.f2172b = DesugarCollections.unmodifiableSet(set);
+        this.f2173c = DesugarCollections.unmodifiableSet(set2);
         this.d = i10;
-        this.f2339e = i11;
-        this.f2340f = eVar;
-        this.f2341g = DesugarCollections.unmodifiableSet(set3);
+        this.e = i11;
+        this.f2174f = fVar;
+        this.f2175g = DesugarCollections.unmodifiableSet(set3);
     }
 
-    public static a a(t tVar) {
-        t[] tVarArr = new t[0];
+    public static a a(u uVar) {
+        u[] uVarArr = new u[0];
         ?? obj = new Object();
-        obj.f2330a = null;
+        obj.f2166a = null;
         HashSet hashSet = new HashSet();
         obj.d = hashSet;
-        obj.f2333e = new HashSet();
-        obj.f2331b = 0;
-        obj.f2332c = 0;
-        obj.f2334f = new HashSet();
-        hashSet.add(tVar);
-        for (t tVar2 : tVarArr) {
-            k5.a(tVar2, "Null interface");
+        obj.e = new HashSet();
+        obj.f2167b = 0;
+        obj.f2168c = 0;
+        obj.f2169f = new HashSet();
+        hashSet.add(uVar);
+        for (u uVar2 : uVarArr) {
+            j5.a(uVar2, "Null interface");
         }
-        Collections.addAll((HashSet) obj.d, tVarArr);
+        Collections.addAll((HashSet) obj.d, uVarArr);
         return obj;
     }
 
@@ -51,15 +51,15 @@ public final class b {
         HashSet hashSet = new HashSet();
         HashSet hashSet2 = new HashSet();
         HashSet hashSet3 = new HashSet();
-        hashSet.add(t.a(cls));
+        hashSet.add(u.a(cls));
         for (Class cls2 : clsArr) {
-            k5.a(cls2, "Null interface");
-            hashSet.add(t.a(cls2));
+            j5.a(cls2, "Null interface");
+            hashSet.add(u.a(cls2));
         }
         return new b(null, new HashSet(hashSet), new HashSet(hashSet2), 0, 0, new a1.c(obj, 3), hashSet3);
     }
 
     public final String toString() {
-        return "Component<" + Arrays.toString(this.f2337b.toArray()) + ">{" + this.d + ", type=" + this.f2339e + ", deps=" + Arrays.toString(this.f2338c.toArray()) + "}";
+        return "Component<" + Arrays.toString(this.f2172b.toArray()) + ">{" + this.d + ", type=" + this.e + ", deps=" + Arrays.toString(this.f2173c.toArray()) + "}";
     }
 }

@@ -7,151 +7,146 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-public final class vv0 implements r0.o, org.telegram.ui.Components.k71, org.telegram.ui.Components.aq0, org.telegram.ui.Components.jo0, org.telegram.ui.ActionBar.g6, org.telegram.ui.Components.zn0 {
-    public final int f42216a;
-    public final Object f42217b;
+public final class vv0 implements r0.o, org.telegram.ui.Components.j71, org.telegram.ui.Components.aq0, org.telegram.ui.Components.io0, org.telegram.ui.ActionBar.f6, org.telegram.ui.Components.yn0 {
+    public final int f39207a;
+    public final Object f39208b;
 
     public vv0(Object obj, int i10) {
-        this.f42216a = i10;
-        this.f42217b = obj;
+        this.f39207a = i10;
+        this.f39208b = obj;
     }
 
     @Override
-    public void A() {
-        int i10 = this.f42216a;
+    public void B() {
+        int i10 = this.f39207a;
     }
 
     @Override
-    public int B0(int i10) {
-        return ((fd1) this.f42217b).f36777f.f37961a.B0(i10);
-    }
-
-    @Override
-    public Paint F(String str) {
-        return ((fd1) this.f42217b).f36777f.f37961a.F(str);
+    public Paint G(String str) {
+        return ((fd1) this.f39208b).f34044f.f35179a.G(str);
     }
 
     @Override
     public r0.m1 M0(View view, r0.m1 m1Var) {
-        switch (this.f42216a) {
+        switch (this.f39207a) {
             case 0:
-                yv0 yv0Var = (yv0) this.f42217b;
-                i0.b g10 = m1Var.f46483a.g(519);
-                yv0Var.f43716r = g10;
-                yv0Var.d.setPadding(g10.f7757a, g10.f7758b, g10.f7759c, g10.d);
-                yv0Var.f43710c.requestLayout();
-                return r0.m1.f46482b;
+                yv0 yv0Var = (yv0) this.f39208b;
+                i0.b g10 = m1Var.f43154a.g(519);
+                yv0Var.f40341r = g10;
+                yv0Var.d.setPadding(g10.f7196a, g10.f7197b, g10.f7198c, g10.d);
+                yv0Var.f40336c.requestLayout();
+                return r0.m1.f43153b;
             default:
-                zd1 zd1Var = (zd1) this.f42217b;
-                i0.b g11 = m1Var.f46483a.g(519);
-                zd1Var.f43930n = g11;
-                zd1Var.f43927c.setPadding(g11.f7757a, g11.f7758b, g11.f7759c, g11.d);
-                zd1Var.f43925b.requestLayout();
-                return r0.m1.f46482b;
+                yd1 yd1Var = (yd1) this.f39208b;
+                i0.b g11 = m1Var.f43154a.g(519);
+                yd1Var.f40241n = g11;
+                yd1Var.f40239c.setPadding(g11.f7196a, g11.f7197b, g11.f7198c, g11.d);
+                yd1Var.f40237b.requestLayout();
+                return r0.m1.f43153b;
         }
     }
 
     @Override
-    public void U() {
-        ((StickersActivity) this.f42217b).j0();
+    public void V() {
+        ((StickersActivity) this.f39208b).j0();
     }
 
     @Override
-    public void X(float f10, boolean z4) {
-        switch (this.f42216a) {
+    public void Y(float f10, boolean z4) {
+        switch (this.f39207a) {
             case 3:
-                ib1 ib1Var = (ib1) this.f42217b;
-                ThemeActivity.Y(ib1Var.d, Math.round((ib1Var.f37620b * f10) + 0), false);
+                jb1 jb1Var = (jb1) this.f39208b;
+                ThemeActivity.Y(jb1Var.d, Math.round((jb1Var.f35162b * f10) + 0), false);
                 return;
             default:
-                tb1 tb1Var = (tb1) this.f42217b;
-                ThemeActivity themeActivity = tb1Var.h;
-                int i10 = tb1Var.f41499c;
-                ThemeActivity.k0(themeActivity, Math.round(((tb1Var.d - i10) * f10) + i10));
+                ub1 ub1Var = (ub1) this.f39208b;
+                ThemeActivity themeActivity = ub1Var.h;
+                int i10 = ub1Var.f38769c;
+                ThemeActivity.k0(themeActivity, Math.round(((ub1Var.d - i10) * f10) + i10));
                 return;
         }
-    }
-
-    @Override
-    public int Z0(int i10) {
-        return ((fd1) this.f42217b).f36777f.f37961a.Z0(i10);
     }
 
     @Override
     public boolean a() {
-        return ((fd1) this.f42217b).f36777f.f37961a.a();
+        return ((fd1) this.f39208b).f34044f.f35179a.a();
     }
 
     @Override
     public void b(float f10) {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f42217b;
-        o41 o41Var = secretMediaViewer.f34811y;
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f39208b;
+        o41 o41Var = secretMediaViewer.f32249y;
         if (o41Var != null) {
             long p10 = o41Var.p();
             if (p10 != -9223372036854775807L) {
-                secretMediaViewer.f34811y.L(f10 * ((float) p10), false);
+                secretMediaViewer.f32249y.L(f10 * ((float) p10), false);
             }
-            secretMediaViewer.f34811y.C();
+            secretMediaViewer.f32249y.C();
         }
     }
 
     @Override
     public void d(float f10) {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f42217b;
-        o41 o41Var = secretMediaViewer.f34811y;
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f39208b;
+        o41 o41Var = secretMediaViewer.f32249y;
         if (o41Var != null) {
             o41Var.B();
-            long p10 = secretMediaViewer.f34811y.p();
+            long p10 = secretMediaViewer.f32249y.p();
             if (p10 != -9223372036854775807L) {
-                secretMediaViewer.f34811y.L(f10 * ((float) p10), false);
+                secretMediaViewer.f32249y.L(f10 * ((float) p10), false);
             }
         }
+    }
+
+    @Override
+    public int d0(int i10) {
+        return ((fd1) this.f39208b).f34044f.f35179a.x0(i10);
     }
 
     @Override
     public void e(float f10) {
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
-            ((of1) this.f42217b).f39706q0.movePreviewFragment(f10);
+            ((of1) this.f39208b).f36792q0.movePreviewFragment(f10);
         }
     }
 
     @Override
-    public int e0(int i10) {
-        return ((fd1) this.f42217b).f36777f.f37961a.B0(i10);
+    public void f(org.telegram.ui.Cells.q2 q2Var) {
+        sf1 sf1Var = ((of1) this.f39208b).f36792q0;
+        HashSet hashSet = sf1.f38174k1;
+        sf1Var.M0(q2Var);
     }
 
     @Override
-    public void f(org.telegram.ui.Cells.r2 r2Var) {
-        sf1 sf1Var = ((of1) this.f42217b).f39706q0;
-        HashSet hashSet = sf1.f41187k1;
-        sf1Var.M0(r2Var);
+    public int f1(int i10) {
+        return ((fd1) this.f39208b).f34044f.f35179a.f1(i10);
     }
 
     @Override
     public void finish() {
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
-            ((of1) this.f42217b).f39706q0.finishPreviewFragment();
+            ((of1) this.f39208b).f36792q0.finishPreviewFragment();
         }
     }
 
     @Override
     public CharSequence getContentDescription() {
-        switch (this.f42216a) {
+        switch (this.f39207a) {
             case 3:
-                ib1 ib1Var = (ib1) this.f42217b;
-                return String.valueOf(Math.round((ib1Var.f37619a.getProgress() * ib1Var.f37620b) + 0));
+                jb1 jb1Var = (jb1) this.f39208b;
+                return String.valueOf(Math.round((jb1Var.f35161a.getProgress() * jb1Var.f35162b) + 0));
             default:
-                tb1 tb1Var = (tb1) this.f42217b;
-                int i10 = tb1Var.f41499c;
-                return String.valueOf(Math.round((tb1Var.f41498b.getProgress() * (tb1Var.d - i10)) + i10));
+                ub1 ub1Var = (ub1) this.f39208b;
+                int i10 = ub1Var.f38769c;
+                return String.valueOf(Math.round((ub1Var.f38768b.getProgress() * (ub1Var.d - i10)) + i10));
         }
     }
 
     @Override
     public Drawable getDrawable(String str) {
-        jd1 jd1Var = ((fd1) this.f42217b).f36777f;
+        jd1 jd1Var = ((fd1) this.f39208b).f34044f;
         if (str.equals("drawableMsgOut")) {
             return jd1Var.O;
         }
@@ -164,47 +159,52 @@ public final class vv0 implements r0.o, org.telegram.ui.Components.k71, org.tele
         if (str.equals("drawableMsgOutMediaSelected")) {
             return jd1Var.R;
         }
-        ic1 ic1Var = jd1Var.f37961a;
-        if (ic1Var != null) {
-            return ic1Var.getDrawable(str);
+        jc1 jc1Var = jd1Var.f35179a;
+        if (jc1Var != null) {
+            return jc1Var.getDrawable(str);
         }
-        return org.telegram.ui.ActionBar.k6.O0(str);
+        return org.telegram.ui.ActionBar.j6.O0(str);
+    }
+
+    @Override
+    public int j0() {
+        switch (this.f39207a) {
+            case 3:
+                return ((jb1) this.f39208b).f35162b;
+            default:
+                ub1 ub1Var = (ub1) this.f39208b;
+                return ub1Var.d - ub1Var.f38769c;
+        }
     }
 
     @Override
     public void l(float f10, float f11, int i10, int i11) {
-        ic1 ic1Var = ((fd1) this.f42217b).f36777f.f37961a;
-        if (ic1Var != null) {
-            ic1Var.l(f10, f11, i10, i11);
+        jc1 jc1Var = ((fd1) this.f39208b).f34044f.f35179a;
+        if (jc1Var != null) {
+            jc1Var.l(f10, f11, i10, i11);
         } else {
-            org.telegram.ui.ActionBar.k6.q(f10, f11, i10, i11);
+            org.telegram.ui.ActionBar.j6.q(f10, f11, i10, i11);
         }
     }
 
     @Override
-    public int m0() {
-        switch (this.f42216a) {
-            case 3:
-                return ((ib1) this.f42217b).f37620b;
-            default:
-                tb1 tb1Var = (tb1) this.f42217b;
-                return tb1Var.d - tb1Var.f41499c;
-        }
+    public boolean m0() {
+        return ((fd1) this.f39208b).f34044f.f35179a.m0();
     }
 
     @Override
-    public boolean o0() {
-        return ((fd1) this.f42217b).f36777f.f37961a.o0();
+    public void q0() {
+        ((StickersActivity) this.f39208b).j0();
     }
 
     @Override
-    public void u0() {
-        ((StickersActivity) this.f42217b).j0();
+    public ColorFilter x() {
+        return org.telegram.ui.ActionBar.j6.f20197v3;
     }
 
     @Override
-    public ColorFilter w() {
-        return org.telegram.ui.ActionBar.k6.f21978v3;
+    public int x0(int i10) {
+        return ((fd1) this.f39208b).f34044f.f35179a.x0(i10);
     }
 
     private final void c() {

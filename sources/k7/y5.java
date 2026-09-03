@@ -1,7 +1,8 @@
 package k7;
 public abstract class y5 {
-    public abstract void a(boolean z4);
+    public void a() {
+    }
 
-    public void b() {
+    public void b(int i10, int i11) {
     }
 }

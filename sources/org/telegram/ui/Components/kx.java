@@ -1,20 +1,26 @@
 package org.telegram.ui.Components;
+public final class kx extends f2.v {
+    public final kz f26407c;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class kx extends wx {
-    public final mz f28508d3;
-
-    public kx(mz mzVar, Context context) {
-        super(mzVar, context);
-        this.f28508d3 = mzVar;
+    public kx(kz kzVar) {
+        this.f26407c = kzVar;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f28508d3.f29283f) {
-            return false;
+    public final int i(int i10) {
+        kz kzVar = this.f26407c;
+        rx rxVar = kzVar.O;
+        jx jxVar = kzVar.N;
+        f2.o0 adapter = kzVar.M.getAdapter();
+        jy jyVar = kzVar.P;
+        if (adapter == jyVar) {
+            int j10 = jyVar.j(i10);
+            if (j10 == 1 || j10 == 3 || j10 == 2 || j10 == 4 || j10 == 5) {
+                return jxVar.J;
+            }
+        } else if ((kzVar.f26422a0 && i10 == 0) || i10 == rxVar.d || i10 == rxVar.f28597c || i10 == rxVar.f28598f || rxVar.f28600r.indexOfKey(i10) >= 0 || rxVar.v.indexOfKey(i10) >= 0) {
+            return jxVar.J;
         }
-        return super.onInterceptTouchEvent(motionEvent);
+        return 1;
     }
 }

@@ -1,38 +1,38 @@
 package l7;
 public final class b6 implements u9.d {
-    public static final b6 f11800a = new Object();
-    public static final u9.c f11801b = new u9.c("appId", w.c.h(l.d.o(h0.class, new e0(1))));
-    public static final u9.c f11802c = new u9.c("appVersion", w.c.h(l.d.o(h0.class, new e0(2))));
-    public static final u9.c d = new u9.c("firebaseProjectId", w.c.h(l.d.o(h0.class, new e0(3))));
-    public static final u9.c f11803e = new u9.c("mlSdkVersion", w.c.h(l.d.o(h0.class, new e0(4))));
-    public static final u9.c f11804f = new u9.c("tfliteSchemaVersion", w.c.h(l.d.o(h0.class, new e0(5))));
-    public static final u9.c f11805g = new u9.c("gcmSenderId", w.c.h(l.d.o(h0.class, new e0(6))));
-    public static final u9.c h = new u9.c("apiKey", w.c.h(l.d.o(h0.class, new e0(7))));
-    public static final u9.c f11806i = new u9.c("languages", w.c.h(l.d.o(h0.class, new e0(8))));
-    public static final u9.c f11807j = new u9.c("mlSdkInstanceId", w.c.h(l.d.o(h0.class, new e0(9))));
-    public static final u9.c f11808k = new u9.c("isClearcutClient", w.c.h(l.d.o(h0.class, new e0(10))));
-    public static final u9.c f11809l = new u9.c("isStandaloneMlkit", w.c.h(l.d.o(h0.class, new e0(11))));
-    public static final u9.c f11810m = new u9.c("isJsonLogging", w.c.h(l.d.o(h0.class, new e0(12))));
-    public static final u9.c f11811n = new u9.c("buildLevel", w.c.h(l.d.o(h0.class, new e0(13))));
-    public static final u9.c f11812o = new u9.c("optionalModuleVersion", w.c.h(l.d.o(h0.class, new e0(14))));
+    public static final b6 f11529a = new Object();
+    public static final u9.c f11530b = new u9.c("appId", vh.w2.h(kf.k0.o(h0.class, new e0(1))));
+    public static final u9.c f11531c = new u9.c("appVersion", vh.w2.h(kf.k0.o(h0.class, new e0(2))));
+    public static final u9.c d = new u9.c("firebaseProjectId", vh.w2.h(kf.k0.o(h0.class, new e0(3))));
+    public static final u9.c e = new u9.c("mlSdkVersion", vh.w2.h(kf.k0.o(h0.class, new e0(4))));
+    public static final u9.c f11532f = new u9.c("tfliteSchemaVersion", vh.w2.h(kf.k0.o(h0.class, new e0(5))));
+    public static final u9.c f11533g = new u9.c("gcmSenderId", vh.w2.h(kf.k0.o(h0.class, new e0(6))));
+    public static final u9.c h = new u9.c("apiKey", vh.w2.h(kf.k0.o(h0.class, new e0(7))));
+    public static final u9.c f11534i = new u9.c("languages", vh.w2.h(kf.k0.o(h0.class, new e0(8))));
+    public static final u9.c f11535j = new u9.c("mlSdkInstanceId", vh.w2.h(kf.k0.o(h0.class, new e0(9))));
+    public static final u9.c f11536k = new u9.c("isClearcutClient", vh.w2.h(kf.k0.o(h0.class, new e0(10))));
+    public static final u9.c f11537l = new u9.c("isStandaloneMlkit", vh.w2.h(kf.k0.o(h0.class, new e0(11))));
+    public static final u9.c f11538m = new u9.c("isJsonLogging", vh.w2.h(kf.k0.o(h0.class, new e0(12))));
+    public static final u9.c f11539n = new u9.c("buildLevel", vh.w2.h(kf.k0.o(h0.class, new e0(13))));
+    public static final u9.c f11540o = new u9.c("optionalModuleVersion", vh.w2.h(kf.k0.o(h0.class, new e0(14))));
 
     @Override
     public final void a(Object obj, Object obj2) {
         o9 o9Var = (o9) obj;
         u9.e eVar = (u9.e) obj2;
-        eVar.e(f11801b, o9Var.f11973a);
-        eVar.e(f11802c, o9Var.f11974b);
+        eVar.e(f11530b, o9Var.f11690a);
+        eVar.e(f11531c, o9Var.f11691b);
         eVar.e(d, null);
-        eVar.e(f11803e, o9Var.f11975c);
-        eVar.e(f11804f, o9Var.d);
-        eVar.e(f11805g, null);
+        eVar.e(e, o9Var.f11692c);
+        eVar.e(f11532f, o9Var.d);
+        eVar.e(f11533g, null);
         eVar.e(h, null);
-        eVar.e(f11806i, o9Var.f11976e);
-        eVar.e(f11807j, o9Var.f11977f);
-        eVar.e(f11808k, o9Var.f11978g);
-        eVar.e(f11809l, o9Var.h);
-        eVar.e(f11810m, o9Var.f11979i);
-        eVar.e(f11811n, o9Var.f11980j);
-        eVar.e(f11812o, o9Var.f11981k);
+        eVar.e(f11534i, o9Var.e);
+        eVar.e(f11535j, o9Var.f11693f);
+        eVar.e(f11536k, o9Var.f11694g);
+        eVar.e(f11537l, o9Var.h);
+        eVar.e(f11538m, o9Var.f11695i);
+        eVar.e(f11539n, o9Var.f11696j);
+        eVar.e(f11540o, o9Var.f11697k);
     }
 }

@@ -4,35 +4,35 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public interface eg {
-    void A(boolean z4);
+    void A1(CharSequence charSequence);
 
-    void B();
+    void A2();
 
-    void C(CharSequence charSequence, boolean z4, int i10, int i11, long j10);
+    void B(boolean z4);
 
-    void C1(CharSequence charSequence);
+    boolean B1();
 
-    boolean D1();
+    void D();
 
-    TLRPC.TL_channels_sendAsPeers F();
+    void E1();
 
-    void F2();
+    void E2();
 
-    void G(float f10, int i10);
+    void G(CharSequence charSequence, boolean z4, int i10, int i11, long j10);
 
-    void G1();
+    TLRPC.TL_channels_sendAsPeers H();
 
     boolean H0();
 
     void J0(int i10, int i11);
 
-    void J2();
+    void J1();
+
+    void K(float f10, int i10);
 
     void L0();
 
-    void M1();
-
-    void P0();
+    void O0();
 
     void X();
 
@@ -40,59 +40,59 @@ public interface eg {
 
     void Y0();
 
-    void e1(int i10);
+    void c();
 
-    void f();
+    void f1(int i10);
 
-    int f1();
+    int g1();
 
-    void h();
+    TL_stories.StoryItem i1();
 
-    TL_stories.StoryItem h1();
+    void i2();
 
-    boolean j1(long j10);
+    void k();
 
-    boolean k();
+    boolean k1(long j10);
 
-    int l();
+    void k2(int i10);
+
+    boolean l();
 
     boolean n1();
 
     void n2();
 
-    void o0();
+    void o2(boolean z4);
 
-    TLRPC.Peer p();
+    int p();
 
-    void p2(int i10);
+    void p2(int i10, int i11, int i12, long j10, long j11, boolean z4);
 
-    org.telegram.ui.nn r0();
+    void q0();
 
-    void r1(CharSequence charSequence, boolean z4, boolean z10);
+    void q1(CharSequence charSequence, boolean z4, boolean z10);
 
-    void s2();
+    TLRPC.Peer r();
 
-    void t1();
+    void s1();
 
-    void t2(boolean z4);
+    boolean t1();
 
-    void u();
+    void t2();
 
-    boolean u1();
+    org.telegram.ui.pn u0();
 
-    void u2(int i10, int i11, int i12, long j10, long j11, boolean z4);
+    void v();
 
-    void w0();
+    void v1();
 
     void w1();
 
     void x(float f10);
 
+    void x0();
+
     void x1();
 
-    void x2();
-
-    void y1();
-
-    void z1(View view, CharSequence charSequence, boolean z4);
+    void y1(View view, CharSequence charSequence, boolean z4);
 }

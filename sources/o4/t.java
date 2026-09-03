@@ -2,19 +2,19 @@ package o4;
 
 import j3.h2;
 public interface t extends n0 {
-    long d(long j10, h2 h2Var);
+    void J(s sVar, long j10);
 
-    void f(s sVar, long j10);
+    long Y(f5.c[] cVarArr, boolean[] zArr, l0[] l0VarArr, boolean[] zArr2, long j10);
 
-    long g(f5.c[] cVarArr, boolean[] zArr, l0[] l0VarArr, boolean[] zArr2, long j10);
+    long a1();
 
-    void i();
+    void d0();
 
-    long j(long j10);
+    long j0(long j10);
 
-    void k(long j10);
+    void m0(long j10);
 
-    long n();
+    t0 o1();
 
-    t0 o();
+    long z(long j10, h2 h2Var);
 }

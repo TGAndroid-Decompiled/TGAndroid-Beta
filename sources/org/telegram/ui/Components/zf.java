@@ -9,10 +9,10 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class zf implements Runnable {
-    public final ChatActivityEnterView f33932a;
+    public final ChatActivityEnterView f31381a;
 
     public zf(ChatActivityEnterView chatActivityEnterView) {
-        this.f33932a = chatActivityEnterView;
+        this.f31381a = chatActivityEnterView;
     }
 
     @Override
@@ -22,18 +22,18 @@ public final class zf implements Runnable {
         boolean z4;
         boolean z10;
         int i10;
-        ChatActivityEnterView chatActivityEnterView = this.f33932a;
+        ChatActivityEnterView chatActivityEnterView = this.f31381a;
         re reVar = chatActivityEnterView.D3;
         Activity activity = chatActivityEnterView.K2;
         eg egVar = chatActivityEnterView.V2;
         if (egVar != null && activity != null) {
-            egVar.B();
+            egVar.D();
             chatActivityEnterView.F3 = true;
             chatActivityEnterView.E3 = false;
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f24611g1;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f22742g1;
             if (slideTextView != null) {
                 slideTextView.setAlpha(1.0f);
-                chatActivityEnterView.f24611g1.setTranslationY(0.0f);
+                chatActivityEnterView.f22742g1.setTranslationY(0.0f);
             }
             SendMessageChatArguments sendMessageChatArguments = null;
             chatActivityEnterView.Y2 = null;
@@ -84,20 +84,20 @@ public final class zf implements Runnable {
                     }
                     ng ngVar = chatActivityEnterView.V0;
                     if (ngVar != null) {
-                        ngVar.f29450a = false;
+                        ngVar.f27244a = false;
                         ngVar.d = 0L;
-                        ngVar.f29453e = 0L;
-                        ngVar.f29451b = false;
+                        ngVar.e = 0L;
+                        ngVar.f27245b = false;
                     }
                 }
             } else if (Build.VERSION.SDK_INT >= 23 && activity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
                 activity.requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 3);
             } else {
-                chatActivityEnterView.V2.e1(1);
-                chatActivityEnterView.f24714z2 = -1.0f;
+                chatActivityEnterView.V2.f1(1);
+                chatActivityEnterView.f22845z2 = -1.0f;
                 eg egVar2 = chatActivityEnterView.V2;
                 if (egVar2 != null) {
-                    storyItem = egVar2.h1();
+                    storyItem = egVar2.i1();
                 } else {
                     storyItem = null;
                 }
@@ -107,9 +107,9 @@ public final class zf implements Runnable {
                 MessageObject messageObject = chatActivityEnterView.P2;
                 threadMessage = chatActivityEnterView.getThreadMessage();
                 int i12 = chatActivityEnterView.C2;
-                org.telegram.ui.xn xnVar = chatActivityEnterView.L2;
-                if (xnVar != null) {
-                    sendMessageChatArguments = xnVar.C8();
+                org.telegram.ui.zn znVar = chatActivityEnterView.L2;
+                if (znVar != null) {
+                    sendMessageChatArguments = znVar.C8();
                 }
                 mediaController.startRecording(i11, j10, messageObject, threadMessage, storyItem, i12, true, sendMessageChatArguments, chatActivityEnterView.getSendMonoForumPeerId(), chatActivityEnterView.getSendMessageSuggestionParams());
                 chatActivityEnterView.B2 = true;
@@ -118,7 +118,7 @@ public final class zf implements Runnable {
                 if (ngVar2 != null) {
                     ngVar2.a(0L);
                 }
-                kg kgVar = chatActivityEnterView.f24617h1;
+                kg kgVar = chatActivityEnterView.f22748h1;
                 if (kgVar != null) {
                     kgVar.h = false;
                 }

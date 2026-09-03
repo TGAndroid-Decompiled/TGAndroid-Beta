@@ -2,34 +2,33 @@ package na;
 
 import android.content.Context;
 import android.os.Bundle;
-import com.google.firebase.messaging.o;
-import k7.p;
+import k7.o;
 import l7.w0;
 import la.c0;
 import la.r;
 public final class h {
-    public static final f f15899c = new Object();
-    public static final m1.c d = p.a(r.f12236b);
-    public final o f15900a;
-    public final d f15901b;
+    public static final f f14868c = new Object();
+    public static final m1.c d = o.a(r.f11929b);
+    public final android.support.v4.media.d f14869a;
+    public final d f14870b;
 
     public h(w8.g gVar, uc.h hVar, uc.h hVar2, ca.d dVar) {
         gVar.a();
-        Context context = gVar.f49488a;
+        Context context = gVar.f46560a;
         kotlin.jvm.internal.j.d(context, "firebaseApp.applicationContext");
-        c0 c0Var = c0.f12154a;
+        c0 c0Var = c0.f11855a;
         la.b a2 = c0.a(gVar);
-        o oVar = new o(context);
+        android.support.v4.media.d dVar2 = new android.support.v4.media.d(context);
         w0 w0Var = new w0(a2, hVar);
-        f15899c.getClass();
-        d dVar2 = new d(hVar2, dVar, a2, w0Var, d.a(context, f.f15895a[0]));
-        this.f15900a = oVar;
-        this.f15901b = dVar2;
+        f14868c.getClass();
+        d dVar3 = new d(hVar2, dVar, a2, w0Var, d.a(context, f.f14864a[0]));
+        this.f14869a = dVar2;
+        this.f14870b = dVar3;
     }
 
     public final double a() {
         Double d10;
-        Bundle bundle = this.f15900a.f4075a;
+        Bundle bundle = this.f14869a.f235a;
         if (bundle.containsKey("firebase_sessions_sampling_rate")) {
             d10 = Double.valueOf(bundle.getDouble("firebase_sessions_sampling_rate"));
         } else {
@@ -41,9 +40,9 @@ public final class h {
                 return doubleValue;
             }
         }
-        e eVar = this.f15901b.f15890c.f15913b;
+        e eVar = this.f14870b.f14860c.f14881b;
         if (eVar != null) {
-            Double d11 = eVar.f15892b;
+            Double d11 = eVar.f14862b;
             if (d11 != null) {
                 double doubleValue2 = d11.doubleValue();
                 if (0.0d <= doubleValue2 && doubleValue2 <= 1.0d) {

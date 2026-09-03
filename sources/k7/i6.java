@@ -1,9 +1,33 @@
 package k7;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.ui.cb0;
 public abstract class i6 {
-    public static void a(View view, float f10, float f11, float f12, float f13) {
-        view.setPadding(AndroidUtilities.dp(f10), AndroidUtilities.dp(f11), AndroidUtilities.dp(f12), AndroidUtilities.dp(f13));
+    public static boolean a(cb0 cb0Var) {
+        Context context = ApplicationLoader.applicationContext;
+        int componentEnabledSetting = context.getPackageManager().getComponentEnabledSetting(cb0Var.a(context));
+        if (componentEnabledSetting == 1 || (componentEnabledSetting == 0 && cb0Var == cb0.h)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static void b(cb0 cb0Var) {
+        cb0[] values;
+        int i10;
+        Context context = ApplicationLoader.applicationContext;
+        PackageManager packageManager = context.getPackageManager();
+        for (cb0 cb0Var2 : cb0.values()) {
+            ComponentName a2 = cb0Var2.a(context);
+            if (cb0Var2 == cb0Var) {
+                i10 = 1;
+            } else {
+                i10 = 2;
+            }
+            packageManager.setComponentEnabledSetting(a2, i10, 1);
+        }
     }
 }

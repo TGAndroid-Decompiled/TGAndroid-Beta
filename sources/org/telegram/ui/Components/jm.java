@@ -1,30 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class jm implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28142a;
-    public final om f28143b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class jm extends AnimatorListenerAdapter {
+    public final km f25982a;
 
-    public jm(om omVar, int i10) {
-        this.f28142a = i10;
-        this.f28143b = omVar;
+    public jm(km kmVar) {
+        this.f25982a = kmVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28142a) {
-            case 0:
-                om omVar = this.f28143b;
-                omVar.getClass();
-                omVar.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                omVar.invalidate();
-                return;
-            default:
-                om omVar2 = this.f28143b;
-                omVar2.getClass();
-                omVar2.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                omVar2.invalidate();
-                return;
-        }
+    public final void onAnimationEnd(Animator animator) {
+        km kmVar = this.f25982a;
+        kmVar.f26331b.isChatPreviewSpoilerRevealed = true;
+        kmVar.O.f26801z.invalidate();
     }
 }

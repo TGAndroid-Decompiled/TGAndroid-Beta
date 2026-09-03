@@ -1,22 +1,21 @@
 package k7;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import java.lang.reflect.Method;
 public abstract class n7 {
-    public static SharedPreferences f10677a;
-
-    public static SharedPreferences a(Context context) {
-        SharedPreferences sharedPreferences;
-        synchronized (SharedPreferences.class) {
-            try {
-                if (f10677a == null) {
-                    f10677a = (SharedPreferences) j7.i5.a(new h2.f(context, 9));
+    public static void a(Throwable th2, Throwable exception) {
+        kotlin.jvm.internal.j.e(th2, "<this>");
+        kotlin.jvm.internal.j.e(exception, "exception");
+        if (th2 != exception) {
+            Integer num = zc.a.f47465a;
+            if (num != null && num.intValue() < 19) {
+                Method method = yc.a.f47249a;
+                if (method != null) {
+                    method.invoke(th2, exception);
+                    return;
                 }
-                sharedPreferences = f10677a;
-            } catch (Throwable th2) {
-                throw th2;
+                return;
             }
+            th2.addSuppressed(exception);
         }
-        return sharedPreferences;
     }
 }

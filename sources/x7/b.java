@@ -1,49 +1,47 @@
 package x7;
 
 import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.maps.model.LatLng;
-import j7.g5;
-import java.util.ArrayList;
-import u6.p;
-public final class b extends c6.a {
-    public static final Parcelable.Creator<b> CREATOR = new p(14);
-    public LatLng f50474a;
-    public double f50475b;
-    public float f50476c;
-    public int d;
-    public int f50477e;
-    public float f50478f;
-    public boolean h;
-    public boolean f50479n;
-    public ArrayList f50480r;
+import android.os.RemoteException;
+import b6.m;
+public final class b {
+    public final g7.h f46899a;
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q10 = g5.q(parcel, 20293);
-        g5.k(parcel, 2, this.f50474a, i10);
-        double d = this.f50475b;
-        g5.s(parcel, 3, 8);
-        parcel.writeDouble(d);
-        float f10 = this.f50476c;
-        g5.s(parcel, 4, 4);
-        parcel.writeFloat(f10);
-        int i11 = this.d;
-        g5.s(parcel, 5, 4);
-        parcel.writeInt(i11);
-        int i12 = this.f50477e;
-        g5.s(parcel, 6, 4);
-        parcel.writeInt(i12);
-        float f11 = this.f50478f;
-        g5.s(parcel, 7, 4);
-        parcel.writeFloat(f11);
-        boolean z4 = this.h;
-        g5.s(parcel, 8, 4);
-        parcel.writeInt(z4 ? 1 : 0);
-        boolean z10 = this.f50479n;
-        g5.s(parcel, 9, 4);
-        parcel.writeInt(z10 ? 1 : 0);
-        g5.p(parcel, 10, this.f50480r);
-        g5.r(parcel, q10);
+    public b(g7.h hVar) {
+        m.h(hVar);
+        this.f46899a = hVar;
+    }
+
+    public final boolean equals(Object obj) {
+        boolean z4 = false;
+        if (!(obj instanceof b)) {
+            return false;
+        }
+        try {
+            g7.h hVar = this.f46899a;
+            g7.h hVar2 = ((b) obj).f46899a;
+            g7.f fVar = (g7.f) hVar;
+            Parcel M0 = fVar.M0();
+            g7.b.c(M0, hVar2);
+            Parcel L0 = fVar.L0(M0, 17);
+            if (L0.readInt() != 0) {
+                z4 = true;
+            }
+            L0.recycle();
+            return z4;
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public final int hashCode() {
+        try {
+            g7.f fVar = (g7.f) this.f46899a;
+            Parcel L0 = fVar.L0(fVar.M0(), 18);
+            int readInt = L0.readInt();
+            L0.recycle();
+            return readInt;
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

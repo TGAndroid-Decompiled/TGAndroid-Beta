@@ -3,19 +3,19 @@ package k3;
 import android.media.metrics.LogSessionId;
 import h5.d0;
 public final class k {
-    public final j f10455a;
+    public final j f9716a;
 
     static {
-        if (d0.f7237a < 31) {
+        if (d0.f6924a < 31) {
             new k();
         } else {
-            int i10 = j.f10453b;
+            int i10 = j.f9714b;
         }
     }
 
     public k() {
         this((j) null);
-        h5.a.i(d0.f7237a < 31);
+        h5.a.i(d0.f6924a < 31);
     }
 
     public k(LogSessionId logSessionId) {
@@ -23,6 +23,6 @@ public final class k {
     }
 
     public k(j jVar) {
-        this.f10455a = jVar;
+        this.f9716a = jVar;
     }
 }

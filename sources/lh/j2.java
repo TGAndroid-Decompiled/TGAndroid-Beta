@@ -1,36 +1,37 @@
 package lh;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.k81;
-import org.telegram.ui.ProfileActivity;
-public final class j2 implements Utilities.Callback {
-    public final int f12821a;
-    public final x3 f12822b;
+import org.telegram.tgnet.TLRPC;
+public final class j2 implements Runnable {
+    public final int f12645a;
+    public final g5 f12646b;
+    public final TLRPC.TL_error f12647c;
+    public final Runnable d;
 
-    public j2(x3 x3Var, int i10) {
-        this.f12821a = i10;
-        this.f12822b = x3Var;
+    public j2(g5 g5Var, TLRPC.TL_error tL_error, Runnable runnable, int i10) {
+        this.f12645a = i10;
+        this.f12646b = g5Var;
+        this.f12647c = tL_error;
+        this.d = runnable;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f12821a) {
+    public final void run() {
+        switch (this.f12645a) {
             case 0:
-                x3 x3Var = this.f12822b;
-                x3Var.f13103e.b((String) obj, new j2(x3Var, 1));
+                this.f12646b.getBulletinFactory().d0(this.f12647c, false);
+                Runnable runnable = this.d;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
             default:
-                x3 x3Var2 = this.f12822b;
-                x3Var2.f(true);
-                k81 k81Var = x3Var2.f13105n;
-                int i10 = ((TL_stars.TL_starGiftCollection) obj).collection_id;
-                k81Var.d(i10, x3Var2.f13103e.f(i10) + 1);
-                org.telegram.ui.ActionBar.p2 p2Var = x3Var2.f13100a;
-                if (p2Var instanceof ProfileActivity) {
-                    ((ProfileActivity) p2Var).G4(true);
+                this.f12646b.getBulletinFactory().d0(this.f12647c, false);
+                Runnable runnable2 = this.d;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    return;
                 }
-                x3Var2.n();
                 return;
         }
     }

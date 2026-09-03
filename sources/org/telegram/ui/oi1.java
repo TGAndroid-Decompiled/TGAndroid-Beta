@@ -1,21 +1,22 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class oi1 implements org.telegram.ui.ActionBar.c2, id1 {
-    public final WallpapersListActivity f39746a;
+import android.graphics.Bitmap;
+import java.io.File;
+public final class oi1 implements org.telegram.ui.Components.r81 {
+    public final WallpapersListActivity f36826a;
 
     public oi1(WallpapersListActivity wallpapersListActivity) {
-        this.f39746a = wallpapersListActivity;
+        this.f36826a = wallpapersListActivity;
     }
 
     @Override
-    public void a(TLRPC.TL_wallPaper tL_wallPaper) {
-        int[][] iArr = WallpapersListActivity.f34941h0;
-        this.f39746a.removeSelfFromStack();
+    public final void b(File file, Bitmap bitmap, boolean z4) {
+        jd1 jd1Var = new jd1(new vi1(file, file, ""), bitmap, false);
+        jd1Var.c1(0L);
+        this.f36826a.presentFragment(jd1Var, z4);
     }
 
     @Override
-    public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        WallpapersListActivity.U(this.f39746a);
+    public final void a() {
     }
 }

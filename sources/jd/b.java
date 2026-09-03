@@ -3,20 +3,20 @@ package jd;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 public final class b implements Iterator {
-    public final String f9994a;
-    public int f9995b;
-    public int f9996c;
+    public final String f9342a;
+    public int f9343b;
+    public int f9344c;
     public int d;
-    public int f9997e;
+    public int e;
 
     public b(String str) {
-        this.f9994a = str;
+        this.f9342a = str;
     }
 
     @Override
     public final boolean hasNext() {
         int i10;
-        int i11 = this.f9995b;
+        int i11 = this.f9343b;
         if (i11 != 0) {
             if (i11 != 1) {
                 return false;
@@ -24,27 +24,27 @@ public final class b implements Iterator {
             return true;
         }
         int i12 = 2;
-        if (this.f9997e < 0) {
-            this.f9995b = 2;
+        if (this.e < 0) {
+            this.f9343b = 2;
             return false;
         }
-        String str = this.f9994a;
+        String str = this.f9342a;
         int length = str.length();
         int length2 = str.length();
-        for (int i13 = this.f9996c; i13 < length2; i13++) {
+        for (int i13 = this.f9344c; i13 < length2; i13++) {
             char charAt = str.charAt(i13);
             if (charAt == '\n' || charAt == '\r') {
                 i12 = (charAt == '\r' && (i10 = i13 + 1) < str.length() && str.charAt(i10) == '\n') ? 1 : 1;
                 length = i13;
-                this.f9995b = 1;
-                this.f9997e = i12;
+                this.f9343b = 1;
+                this.e = i12;
                 this.d = length;
                 return true;
             }
         }
         i12 = -1;
-        this.f9995b = 1;
-        this.f9997e = i12;
+        this.f9343b = 1;
+        this.e = i12;
         this.d = length;
         return true;
     }
@@ -52,11 +52,11 @@ public final class b implements Iterator {
     @Override
     public final Object next() {
         if (hasNext()) {
-            this.f9995b = 0;
+            this.f9343b = 0;
             int i10 = this.d;
-            int i11 = this.f9996c;
-            this.f9996c = this.f9997e + i10;
-            return this.f9994a.subSequence(i11, i10).toString();
+            int i11 = this.f9344c;
+            this.f9344c = this.e + i10;
+            return this.f9342a.subSequence(i11, i10).toString();
         }
         throw new NoSuchElementException();
     }

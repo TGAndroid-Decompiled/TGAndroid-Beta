@@ -1,15 +1,15 @@
 package org.telegram.ui;
 public final class mw0 extends n61 {
-    public final PremiumPreviewFragment f39128e;
+    public final PremiumPreviewFragment e;
 
     public mw0(PremiumPreviewFragment premiumPreviewFragment, lw0 lw0Var) {
         super(lw0Var);
-        this.f39128e = premiumPreviewFragment;
+        this.e = premiumPreviewFragment;
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.f39128e.f34500p0 = null;
+        this.e.f31944p0 = null;
     }
 }

@@ -1,62 +1,39 @@
 package lh;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.view.MotionEvent;
+import org.telegram.messenger.BillingController;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.k81;
-import org.telegram.ui.Components.l81;
-import org.telegram.ui.Components.oq;
-import org.telegram.ui.Components.or0;
-import org.telegram.ui.ProfileActivity;
-public final class q2 extends l81 {
-    public final org.telegram.ui.ActionBar.p2 Q;
-    public final or0 R;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.sc;
+public final class q2 implements Runnable {
+    public final int f12952a;
+    public final kh.a0 f12953b;
+    public final sc[] f12954c;
+    public final TL_stars.UniqueStarGiftValueInfo d;
+    public final String e;
 
-    public q2(or0 or0Var, Context context, org.telegram.ui.ActionBar.p2 p2Var) {
-        super(context, null);
-        this.R = or0Var;
-        this.Q = p2Var;
+    public q2(kh.a0 a0Var, sc[] scVarArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str, int i10) {
+        this.f12952a = i10;
+        this.f12953b = a0Var;
+        this.f12954c = scVarArr;
+        this.d = uniqueStarGiftValueInfo;
+        this.e = str;
     }
 
     @Override
-    public final void h() {
-        or0 or0Var = this.R;
-        k81 k81Var = or0Var.f13105n;
-        if (or0Var.b() && k81Var != null) {
-            if (or0Var.G == null) {
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(org.telegram.messenger.y3.h(R.string.Gift2NewCollection, new StringBuilder("+ ")));
-                oq oqVar = new oq(R.drawable.poll_add_plus, 0);
-                oqVar.spaceScaleX = 0.8f;
-                spannableStringBuilder.setSpan(oqVar, 0, 1, 33);
-                or0Var.G = spannableStringBuilder;
-            }
-            k81Var.a(-1, or0Var.G);
-        }
-    }
-
-    @Override
-    public final boolean i(MotionEvent motionEvent) {
-        return !this.R.g();
-    }
-
-    @Override
-    public final void w(boolean z4) {
-        or0 or0Var = this.R;
-        or0Var.l();
-        org.telegram.ui.ActionBar.p2 p2Var = this.Q;
-        if (p2Var instanceof ProfileActivity) {
-            ((ProfileActivity) p2Var).R();
-        }
-        or0Var.o();
-    }
-
-    @Override
-    public final void z(int i10) {
-        this.R.l();
-        org.telegram.ui.ActionBar.p2 p2Var = this.Q;
-        if (p2Var instanceof ProfileActivity) {
-            ((ProfileActivity) p2Var).R();
+    public final void run() {
+        int i10 = this.f12952a;
+        String str = this.e;
+        TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo = this.d;
+        sc[] scVarArr = this.f12954c;
+        kh.a0 a0Var = this.f12953b;
+        switch (i10) {
+            case 0:
+                a0Var.run(scVarArr[0], LocaleController.formatString(R.string.GiftValueMinPriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));
+                return;
+            default:
+                a0Var.run(scVarArr[0], LocaleController.formatString(R.string.GiftValueAveragePriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.average_price, uniqueStarGiftValueInfo.currency), str));
+                return;
         }
     }
 }

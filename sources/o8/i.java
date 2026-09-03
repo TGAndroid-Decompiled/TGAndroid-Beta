@@ -9,7 +9,7 @@ import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
 public abstract class i extends f implements List, RandomAccess, j$.util.List {
-    public static final g f16649b = new g(k.d, 0);
+    public static final g f16469b = new g(k.d, 0);
 
     @Override
     public final void add(int i10, Object obj) {
@@ -123,7 +123,7 @@ public abstract class i extends f implements List, RandomAccess, j$.util.List {
 
     @Override
     public i subList(int i10, int i11) {
-        k7.j0.b(i10, i11, size());
+        k7.i0.b(i10, i11, size());
         int i12 = i11 - i10;
         if (i12 == size()) {
             return this;
@@ -139,11 +139,11 @@ public abstract class i extends f implements List, RandomAccess, j$.util.List {
         int size = size();
         if (i10 >= 0 && i10 <= size) {
             if (isEmpty()) {
-                return f16649b;
+                return f16469b;
             }
             return new g(this, i10);
         }
-        throw new IndexOutOfBoundsException(k7.j0.c(i10, size, "index"));
+        throw new IndexOutOfBoundsException(k7.i0.c(i10, size, "index"));
     }
 
     @Override

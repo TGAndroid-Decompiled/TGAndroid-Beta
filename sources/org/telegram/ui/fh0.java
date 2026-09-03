@@ -1,29 +1,30 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class fh0 implements Runnable {
-    public final qh0 f36803a;
+    public final int f34081a;
+    public final rh0 f34082b;
+    public final TLRPC.TL_error f34083c;
+    public final TLObject d;
 
-    public fh0(qh0 qh0Var) {
-        this.f36803a = qh0Var;
+    public fh0(rh0 rh0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
+        this.f34081a = i10;
+        this.f34082b = rh0Var;
+        this.f34083c = tL_error;
+        this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        qh0 qh0Var = this.f36803a;
-        if (qh0Var.f40483b == null) {
-            return;
+        switch (this.f34081a) {
+            case 0:
+                rh0 rh0Var = this.f34082b;
+                rh0Var.getNotificationCenter().doOnIdle(new fh0(rh0Var, this.f34083c, this.d, 1));
+                return;
+            default:
+                rh0.V(this.f34082b, this.f34083c, this.d);
+                return;
         }
-        for (int i10 = 0; i10 < qh0Var.f40483b.getChildCount(); i10++) {
-            View childAt = qh0Var.f40483b.getChildAt(i10);
-            if (childAt instanceof nh0) {
-                nh0 nh0Var = (nh0) childAt;
-                if (nh0Var.F) {
-                    nh0Var.b(nh0Var.f39369n, nh0Var.f39370r);
-                }
-            }
-        }
-        AndroidUtilities.runOnUIThread(this, 500L);
     }
 }

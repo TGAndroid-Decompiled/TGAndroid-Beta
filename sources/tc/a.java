@@ -10,7 +10,7 @@ public final class a extends kotlin.jvm.internal.a implements ListIterator {
         this.d = cVar;
         int i11 = cVar.i();
         if (i10 >= 0 && i10 <= i11) {
-            this.f11328b = i10;
+            this.f11088b = i10;
             return;
         }
         throw new IndexOutOfBoundsException(android.support.v4.media.a.k(i10, i11, "index: ", ", size: "));
@@ -23,7 +23,7 @@ public final class a extends kotlin.jvm.internal.a implements ListIterator {
 
     @Override
     public final boolean hasPrevious() {
-        if (this.f11328b > 0) {
+        if (this.f11088b > 0) {
             return true;
         }
         return false;
@@ -31,14 +31,14 @@ public final class a extends kotlin.jvm.internal.a implements ListIterator {
 
     @Override
     public final int nextIndex() {
-        return this.f11328b;
+        return this.f11088b;
     }
 
     @Override
     public final Object previous() {
         if (hasPrevious()) {
-            int i10 = this.f11328b - 1;
-            this.f11328b = i10;
+            int i10 = this.f11088b - 1;
+            this.f11088b = i10;
             return this.d.get(i10);
         }
         throw new NoSuchElementException();
@@ -46,7 +46,7 @@ public final class a extends kotlin.jvm.internal.a implements ListIterator {
 
     @Override
     public final int previousIndex() {
-        return this.f11328b - 1;
+        return this.f11088b - 1;
     }
 
     @Override

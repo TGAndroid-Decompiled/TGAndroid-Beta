@@ -2,5 +2,5 @@ package m6;
 
 import android.content.Context;
 public interface d {
-    e8.a k(Context context, String str, c cVar);
+    e8.a h(Context context, String str, c cVar);
 }

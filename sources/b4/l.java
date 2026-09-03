@@ -2,25 +2,25 @@ package b4;
 
 import java.util.Arrays;
 public final class l {
-    public static final byte[] f1534f = {0, 0, 1};
-    public boolean f1535a;
-    public int f1536b;
-    public int f1537c;
+    public static final byte[] f1432f = {0, 0, 1};
+    public boolean f1433a;
+    public int f1434b;
+    public int f1435c;
     public int d;
-    public byte[] f1538e;
+    public byte[] e;
 
     public final void a(int i10, int i11, byte[] bArr) {
-        if (!this.f1535a) {
+        if (!this.f1433a) {
             return;
         }
         int i12 = i11 - i10;
-        byte[] bArr2 = this.f1538e;
+        byte[] bArr2 = this.e;
         int length = bArr2.length;
-        int i13 = this.f1537c + i12;
+        int i13 = this.f1435c + i12;
         if (length < i13) {
-            this.f1538e = Arrays.copyOf(bArr2, i13 * 2);
+            this.e = Arrays.copyOf(bArr2, i13 * 2);
         }
-        System.arraycopy(bArr, i10, this.f1538e, this.f1537c, i12);
-        this.f1537c += i12;
+        System.arraycopy(bArr, i10, this.e, this.f1435c, i12);
+        this.f1435c += i12;
     }
 }

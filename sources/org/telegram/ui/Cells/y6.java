@@ -1,67 +1,69 @@
 package org.telegram.ui.Cells;
 
-import android.text.SpannableStringBuilder;
+import android.content.Context;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.g90;
-import org.telegram.ui.Components.l51;
-import org.telegram.ui.Components.s01;
-public abstract class y6 extends LinearLayout {
-    public TextView f24447a;
-    public g90 f24448b;
-    public TextView f24449c;
-    public TextView d;
-    public int f24450e;
-    public int f24451f;
+public final class y6 extends View {
+    public int f22595a;
+    public final int f22596b;
+    public boolean f22597c;
+    public boolean d;
+
+    public y6(Context context) {
+        this(context, (org.telegram.ui.b) null);
+    }
+
+    private int getBackgroundResId() {
+        boolean z4 = this.f22597c;
+        if (z4 && this.d) {
+            return R.drawable.greydivider;
+        }
+        if (z4) {
+            return R.drawable.greydivider_bottom;
+        }
+        if (this.d) {
+            return R.drawable.greydivider_top;
+        }
+        return R.drawable.transparent;
+    }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f22595a), 1073741824));
     }
 
-    public void setType(int i10) {
-        int i11 = this.f24451f;
-        TextView textView = this.f24449c;
-        g90 g90Var = this.f24448b;
-        TextView textView2 = this.f24447a;
-        TextView textView3 = this.d;
-        this.f24450e = i10;
+    public void setSize(int i10) {
+        this.f22595a = i10;
+    }
+
+    public y6(Context context, Object obj) {
+        this(context, (org.telegram.ui.b) null);
+    }
+
+    public y6(Context context, org.telegram.ui.b bVar) {
+        super(context);
+        this.f22597c = true;
+        this.d = true;
+        this.f22595a = 12;
+        int i10 = this.f22596b;
         if (i10 == 0) {
-            textView2.setText(LocaleController.formatString(R.string.CheckPhoneNumber, org.telegram.messenger.y3.j(new StringBuilder("+"), MessagesController.getInstance(i11).getUser(Long.valueOf(UserConfig.getInstance(i11).clientUserId)).phone, se.b.c())));
-            String string = LocaleController.getString(R.string.CheckPhoneNumberInfo);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
-            int indexOf = string.indexOf("**");
-            int lastIndexOf = string.lastIndexOf("**");
-            if (indexOf >= 0 && lastIndexOf >= 0 && indexOf != lastIndexOf) {
-                spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
-                spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
-                try {
-                    spannableStringBuilder.setSpan(new l51(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl), (s01) null), indexOf, lastIndexOf - 2, 33);
-                } catch (Exception e6) {
-                    FileLog.e(e6);
-                }
-            }
-            g90Var.setText(spannableStringBuilder);
-            textView.setText(LocaleController.getString(R.string.CheckPhoneNumberYes));
-            textView3.setVisibility(0);
-            textView3.setText(LocaleController.getString(R.string.CheckPhoneNumberNo));
-        } else if (i10 == 1) {
-            textView2.setText(LocaleController.getString(R.string.YourPasswordHeader));
-            g90Var.setText(LocaleController.getString(R.string.YourPasswordRemember));
-            textView.setText(LocaleController.getString(R.string.YourPasswordRememberYes));
-            textView3.setVisibility(0);
-            textView3.setText(LocaleController.getString(R.string.YourPasswordRememberNo));
-        } else if (i10 == 2) {
-            textView2.setText(LocaleController.getString(R.string.GraceSuggestionTitle));
-            g90Var.setText(LocaleController.getString(R.string.GraceSuggestionMessage));
-            textView.setText(LocaleController.getString(R.string.GraceSuggestionButton));
-            textView3.setVisibility(8);
+            setBackground(null);
+        } else {
+            setBackgroundColor(i10);
+        }
+    }
+
+    public y6(Context context, int i10, int i11) {
+        super(context);
+        this.f22597c = true;
+        this.d = true;
+        this.f22596b = i10;
+        this.f22595a = 12;
+        if (i10 == 0) {
+            setBackground(null);
+        } else {
+            setBackgroundColor(i10);
         }
     }
 }

@@ -1,43 +1,19 @@
 package lh;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.no0;
-import org.telegram.ui.np0;
-public final class h5 implements Utilities.Callback {
-    public final int f12800a = 0;
-    public final mf.b f12801b;
-    public final TL_stars.TL_starGiftUnique f12802c;
-    public final long d;
-    public final Object f12803e;
-    public final Object f12804f;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.k01;
+public final class h5 {
+    public final float f12530a;
+    public final k01 f12531b;
+    public final k01 f12532c;
 
-    public h5(q5 q5Var, org.telegram.ui.ActionBar.d2 d2Var, mf.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10) {
-        this.f12803e = q5Var;
-        this.f12804f = d2Var;
-        this.f12801b = bVar;
-        this.f12802c = tL_starGiftUnique;
-        this.d = j10;
+    public h5(float f10, String str, CharSequence charSequence) {
+        this.f12531b = new k01(str, 12.0f, null);
+        this.f12532c = new k01(charSequence, 12.0f, AndroidUtilities.bold());
+        this.f12530a = (a() / 2.0f) + f10;
     }
 
-    @Override
-    public final void run(Object obj) {
-        switch (this.f12800a) {
-            case 0:
-                q5.U((q5) this.f12803e, (org.telegram.ui.ActionBar.d2) this.f12804f, this.f12801b, this.f12802c, this.d, (TLRPC.TL_payments_paymentFormStarGift) obj);
-                return;
-            default:
-                np0.V((np0) this.f12803e, this.f12801b, this.f12802c, this.d, (no0) this.f12804f, (TLRPC.TL_payments_paymentFormStarGift) obj);
-                return;
-        }
-    }
-
-    public h5(np0 np0Var, mf.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, no0 no0Var) {
-        this.f12803e = np0Var;
-        this.f12801b = bVar;
-        this.f12802c = tL_starGiftUnique;
-        this.d = j10;
-        this.f12804f = no0Var;
+    public final float a() {
+        return Math.max(this.f12531b.j(), this.f12532c.j());
     }
 }

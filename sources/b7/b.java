@@ -11,11 +11,11 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.telegram.ui.yh;
+import org.telegram.ui.ai;
 public abstract class b {
-    public static volatile a f1803b;
-    public static final Object f1802a = new Object();
-    public static final f1 f1804c = new f1("id");
+    public static volatile a f1676b;
+    public static final Object f1675a = new Object();
+    public static final f1 f1677c = new f1("id");
     public static final f1 d = new f1("type");
 
     public static int a(int i10, int i11) {
@@ -26,7 +26,7 @@ public abstract class b {
             int i13 = i10 - (i11 * i12);
             if (i13 != 0) {
                 int i14 = ((i10 ^ i11) >> 31) | 1;
-                switch (r0.f1867a[roundingMode.ordinal()]) {
+                switch (r0.f1735a[roundingMode.ordinal()]) {
                     case 1:
                         throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
                     case 2:
@@ -139,7 +139,7 @@ public abstract class b {
         int length;
         int length2;
         int indexOf;
-        String l10;
+        String k10;
         int i10 = 0;
         int i11 = 0;
         while (true) {
@@ -149,17 +149,17 @@ public abstract class b {
             }
             Object obj = objArr[i11];
             if (obj == null) {
-                l10 = "null";
+                k10 = "null";
             } else {
                 try {
-                    l10 = obj.toString();
-                } catch (Exception e6) {
+                    k10 = obj.toString();
+                } catch (Exception e) {
                     String z4 = android.support.v4.media.a.z(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(z4), (Throwable) e6);
-                    l10 = yh.l("<", z4, " threw ", e6.getClass().getName(), ">");
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(z4), (Throwable) e);
+                    k10 = ai.k("<", z4, " threw ", e.getClass().getName(), ">");
                 }
             }
-            objArr[i11] = l10;
+            objArr[i11] = k10;
             i11++;
         }
         StringBuilder sb = new StringBuilder(str.length() + (length * 16));
@@ -194,7 +194,7 @@ public abstract class b {
         }
         if (i10 >= 0) {
             if (i11 < 0) {
-                throw new IllegalArgumentException(l.d.j(i11, "negative size: "));
+                throw new IllegalArgumentException(kf.k0.j(i11, "negative size: "));
             }
             d10 = d("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
         } else {
@@ -213,18 +213,18 @@ public abstract class b {
         throw new NullPointerException("null key in entry: null=".concat(String.valueOf(obj2)));
     }
 
-    public static final void g(StringBuilder sb, Iterator it, h7.u uVar) {
+    public static final void g(StringBuilder sb, Iterator it, db.a aVar) {
         if (it.hasNext()) {
             Map.Entry entry = (Map.Entry) it.next();
-            sb.append(h7.u.M2(entry.getKey()));
+            sb.append(db.a.W3(entry.getKey()));
             sb.append(" : ");
-            sb.append(h7.u.M2(entry.getValue()));
+            sb.append(db.a.W3(entry.getValue()));
             while (it.hasNext()) {
                 sb.append(",\n  ");
                 Map.Entry entry2 = (Map.Entry) it.next();
-                sb.append(h7.u.M2(entry2.getKey()));
+                sb.append(db.a.W3(entry2.getKey()));
                 sb.append(" : ");
-                sb.append(h7.u.M2(entry2.getValue()));
+                sb.append(db.a.W3(entry2.getValue()));
             }
         }
     }
@@ -246,7 +246,7 @@ public abstract class b {
         if (collection instanceof SortedSet) {
             obj = ((SortedSet) collection).comparator();
             if (obj == null) {
-                obj = y.f1886b;
+                obj = y.f1751b;
             }
         } else if (collection instanceof f0) {
             obj = ((v) ((f0) collection)).d;
@@ -283,8 +283,8 @@ public abstract class b {
             if (d10 != null) {
                 try {
                     try {
-                        byte b10 = d10.f1824a;
-                        byte b11 = d10.f1825b;
+                        byte b10 = d10.f1696a;
+                        byte b11 = d10.f1697b;
                         int i10 = 0;
                         if (b10 != Byte.MIN_VALUE) {
                             if (b10 != -96) {
@@ -323,7 +323,7 @@ public abstract class b {
                             if (c3 <= 1000) {
                                 l(b11, c3);
                                 int i11 = (int) c3;
-                                bf.b[] bVarArr = new bf.b[i11];
+                                af.c[] cVarArr = new af.c[i11];
                                 h1 h1Var = null;
                                 int i12 = 0;
                                 while (i12 < c3) {
@@ -333,15 +333,15 @@ public abstract class b {
                                         String obj2 = k10.toString();
                                         throw new IOException("Keys in CBOR Map not in strictly ascending natural order:\nPrevious key: " + obj + "\nCurrent key: " + obj2);
                                     }
-                                    bVarArr[i12] = new bf.b(15, k10, k(j1Var));
+                                    cVarArr[i12] = new af.c(15, k10, k(j1Var));
                                     i12++;
                                     h1Var = k10;
                                 }
                                 TreeMap treeMap = new TreeMap();
                                 while (i10 < i11) {
-                                    bf.b bVar = bVarArr[i10];
-                                    if (!treeMap.containsKey((h1) bVar.f1935b)) {
-                                        treeMap.put((h1) bVar.f1935b, (h1) bVar.f1936c);
+                                    af.c cVar = cVarArr[i10];
+                                    if (!treeMap.containsKey((h1) cVar.f156b)) {
+                                        treeMap.put((h1) cVar.f156b, (h1) cVar.f157c);
                                         i10++;
                                     } else {
                                         throw new IOException("Attempted to add duplicate key to canonical CBOR Map.");
@@ -362,18 +362,18 @@ public abstract class b {
                             return new z0(o.u(h1VarArr));
                         }
                         throw new IOException("Parser being asked to read a large CBOR array");
-                    } catch (IOException | RuntimeException e6) {
-                        e = e6;
+                    } catch (IOException | RuntimeException e) {
+                        e = e;
                         throw new c1(e);
                     }
-                } catch (RuntimeException e10) {
-                    e = e10;
+                } catch (RuntimeException e6) {
+                    e = e6;
                     throw new c1(e);
                 }
             }
             throw new IOException("Parser being asked to parse an empty input stream");
-        } catch (IOException e11) {
-            throw new c1(e11);
+        } catch (IOException e10) {
+            throw new c1(e10);
         }
     }
 
@@ -428,6 +428,6 @@ public abstract class b {
         if (i11 >= 0) {
             return d("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
         }
-        throw new IllegalArgumentException(l.d.j(i11, "negative size: "));
+        throw new IllegalArgumentException(kf.k0.j(i11, "negative size: "));
     }
 }

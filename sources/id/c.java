@@ -2,20 +2,20 @@ package id;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import k7.q7;
+import k7.p7;
 import kotlin.jvm.internal.j;
 import uc.i;
 import wc.h;
 public final class c implements Iterator, uc.c {
-    public int f8051a;
-    public Object f8052b;
-    public uc.c f8053c;
+    public int f7461a;
+    public Object f7462b;
+    public uc.c f7463c;
 
     public final RuntimeException a() {
-        int i10 = this.f8051a;
+        int i10 = this.f7461a;
         if (i10 != 4) {
             if (i10 != 5) {
-                return new IllegalStateException("Unexpected state of the iterator: " + this.f8051a);
+                return new IllegalStateException("Unexpected state of the iterator: " + this.f7461a);
             }
             return new IllegalStateException("Iterator has failed.");
         }
@@ -23,30 +23,30 @@ public final class c implements Iterator, uc.c {
     }
 
     public final void c(Object obj, h hVar) {
-        this.f8052b = obj;
-        this.f8051a = 3;
-        this.f8053c = hVar;
-        vc.a aVar = vc.a.f48998a;
+        this.f7462b = obj;
+        this.f7461a = 3;
+        this.f7463c = hVar;
+        vc.a aVar = vc.a.f45727a;
     }
 
     @Override
     public final uc.h getContext() {
-        return i.f48516a;
+        return i.f45281a;
     }
 
     @Override
     public final boolean hasNext() {
         int i10;
         while (true) {
-            i10 = this.f8051a;
+            i10 = this.f7461a;
             if (i10 != 0) {
                 break;
             }
-            this.f8051a = 5;
-            uc.c cVar = this.f8053c;
+            this.f7461a = 5;
+            uc.c cVar = this.f7463c;
             j.b(cVar);
-            this.f8053c = null;
-            cVar.resumeWith(sc.i.f47274a);
+            this.f7463c = null;
+            cVar.resumeWith(sc.i.f44318a);
         }
         if (i10 != 1) {
             if (i10 == 2 || i10 == 3) {
@@ -63,18 +63,18 @@ public final class c implements Iterator, uc.c {
 
     @Override
     public final Object next() {
-        int i10 = this.f8051a;
+        int i10 = this.f7461a;
         if (i10 != 0 && i10 != 1) {
             if (i10 != 2) {
                 if (i10 == 3) {
-                    this.f8051a = 0;
-                    Object obj = this.f8052b;
-                    this.f8052b = null;
+                    this.f7461a = 0;
+                    Object obj = this.f7462b;
+                    this.f7462b = null;
                     return obj;
                 }
                 throw a();
             }
-            this.f8051a = 1;
+            this.f7461a = 1;
             j.b(null);
             throw null;
         } else if (hasNext()) {
@@ -91,7 +91,7 @@ public final class c implements Iterator, uc.c {
 
     @Override
     public final void resumeWith(Object obj) {
-        q7.b(obj);
-        this.f8051a = 4;
+        p7.b(obj);
+        this.f7461a = 4;
     }
 }

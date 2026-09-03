@@ -1,241 +1,64 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.view.MotionEvent;
-import android.widget.LinearLayout;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.fc0;
-import org.telegram.ui.ao;
-public class ea extends LinearLayout {
-    public org.telegram.ui.Components.n9 f22777a;
-    public org.telegram.ui.Components.n9 f22778b;
-    public Drawable f22779c;
-    public Drawable d;
-    public final t1[] f22780e;
-    public final Drawable f22781f;
-    public final org.telegram.ui.ActionBar.f5 h;
-    public final int f22782n;
-    public org.telegram.ui.ActionBar.p2 f22783r;
-    public int f22784s;
-    public final g v;
-    public Drawable f22785w;
-    public boolean f22786x;
-    public final org.telegram.ui.Components.z5 f22787y;
+import org.telegram.messenger.LocaleController;
+public final class ea extends FrameLayout {
+    public TextView f21009a;
+    public ImageView f21010b;
+    public boolean f21011c;
 
-    public ea(Context context, org.telegram.ui.ActionBar.f5 f5Var, int i10) {
-        this(context, f5Var, i10, 0L, null);
-    }
-
-    public final boolean a() {
-        int i10 = this.f22782n;
-        if (i10 != 3 && i10 != 0) {
-            return false;
+    public final void a(String str, boolean z4, boolean z10) {
+        int i10;
+        this.f21009a.setText(str);
+        ImageView imageView = this.f21010b;
+        if (z4) {
+            i10 = 0;
+        } else {
+            i10 = 4;
         }
-        return true;
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f22782n != 2 && !a()) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    public t1[] getCells() {
-        return this.f22780e;
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        int i10 = 0;
-        while (true) {
-            t1[] t1VarArr = this.f22780e;
-            if (i10 < t1VarArr.length) {
-                t1VarArr[i10].invalidate();
-                i10++;
-            } else {
-                return;
-            }
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        Drawable drawable = this.f22785w;
-        if (drawable instanceof ao) {
-            ((ao) drawable).f(this);
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        org.telegram.ui.Components.n9 n9Var = this.f22777a;
-        if (n9Var != null) {
-            n9Var.dispose();
-            this.f22777a = null;
-        }
-        org.telegram.ui.Components.n9 n9Var2 = this.f22778b;
-        if (n9Var2 != null) {
-            n9Var2.dispose();
-            this.f22778b = null;
-        }
-        Drawable drawable = this.f22785w;
-        if (drawable instanceof ao) {
-            ((ao) drawable).g(this);
-        }
+        imageView.setVisibility(i10);
+        this.f21011c = z10;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float themeAnimationValue;
-        Drawable drawable;
+        float dp;
         int i10;
-        Drawable drawable2 = this.f22785w;
-        if (drawable2 == null) {
-            drawable2 = org.telegram.ui.ActionBar.k6.s0();
-        }
-        if (org.telegram.ui.ActionBar.k6.d != null) {
-            invalidate();
-        }
-        Drawable drawable3 = this.f22779c;
-        org.telegram.ui.Components.z5 z5Var = this.f22787y;
-        if (drawable2 != drawable3 && drawable2 != null) {
-            if (org.telegram.ui.ActionBar.k6.sl != null || this.f22786x) {
-                this.d = drawable3;
-                this.f22778b = this.f22777a;
+        if (this.f21011c) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
             } else {
-                org.telegram.ui.Components.n9 n9Var = this.f22777a;
-                if (n9Var != null) {
-                    n9Var.dispose();
-                    this.f22777a = null;
-                }
+                dp = AndroidUtilities.dp(20.0f);
             }
-            this.f22779c = drawable2;
-            z5Var.d(0.0f, true);
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(20.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f20000k0);
         }
-        boolean z4 = this.f22786x;
-        org.telegram.ui.ActionBar.f5 f5Var = this.h;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f21011c ? 1 : 0), 1073741824));
+    }
+
+    public void setTypeChecked(boolean z4) {
+        int i10;
+        ImageView imageView = this.f21010b;
         if (z4) {
-            themeAnimationValue = z5Var.d(1.0f, false);
+            i10 = 0;
         } else {
-            themeAnimationValue = f5Var.getThemeAnimationValue();
+            i10 = 4;
         }
-        for (int i11 = 0; i11 < 2; i11++) {
-            if (i11 == 0) {
-                drawable = this.d;
-            } else {
-                drawable = this.f22779c;
-            }
-            if (drawable != null) {
-                if (i11 == 1 && this.d != null && (f5Var != null || this.f22786x)) {
-                    i10 = (int) (255.0f * themeAnimationValue);
-                } else {
-                    i10 = 255;
-                }
-                if (i10 > 0) {
-                    drawable.setAlpha(i10);
-                    if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof fc0)) {
-                        if (drawable instanceof BitmapDrawable) {
-                            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-                            bitmapDrawable.setFilterBitmap(true);
-                            if (bitmapDrawable.getTileModeX() == Shader.TileMode.REPEAT) {
-                                canvas.save();
-                                float f10 = 2.0f / AndroidUtilities.density;
-                                canvas.scale(f10, f10);
-                                drawable.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f10), (int) Math.ceil(getMeasuredHeight() / f10));
-                            } else {
-                                int measuredHeight = getMeasuredHeight();
-                                float max = Math.max(getMeasuredWidth() / drawable.getIntrinsicWidth(), measuredHeight / drawable.getIntrinsicHeight());
-                                int ceil = (int) Math.ceil(drawable.getIntrinsicWidth() * max);
-                                int ceil2 = (int) Math.ceil(drawable.getIntrinsicHeight() * max);
-                                int measuredWidth = (getMeasuredWidth() - ceil) / 2;
-                                int i12 = (measuredHeight - ceil2) / 2;
-                                canvas.save();
-                                canvas.clipRect(0, 0, ceil, getMeasuredHeight());
-                                drawable.setBounds(measuredWidth, i12, ceil + measuredWidth, ceil2 + i12);
-                            }
-                            drawable.draw(canvas);
-                            canvas.restore();
-                        } else {
-                            qh.r6.j(canvas, drawable, getWidth(), getHeight());
-                        }
-                    } else {
-                        drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                        if (drawable instanceof org.telegram.ui.Components.o9) {
-                            this.f22777a = ((org.telegram.ui.Components.o9) drawable).c(canvas, this);
-                        } else {
-                            drawable.draw(canvas);
-                        }
-                    }
-                    if (i11 == 0 && this.d != null && themeAnimationValue >= 1.0f) {
-                        org.telegram.ui.Components.n9 n9Var2 = this.f22778b;
-                        if (n9Var2 != null) {
-                            n9Var2.dispose();
-                            this.f22778b = null;
-                        }
-                        this.d = null;
-                        invalidate();
-                    }
-                }
-            }
-        }
-        int measuredWidth2 = getMeasuredWidth();
-        int measuredHeight2 = getMeasuredHeight();
-        Drawable drawable4 = this.f22781f;
-        drawable4.setBounds(0, 0, measuredWidth2, measuredHeight2);
-        drawable4.draw(canvas);
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f22782n != 2 && !a()) {
-            return false;
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f22782n != 2 && !a()) {
-            return false;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    public void setOverrideBackground(Drawable drawable) {
-        this.f22785w = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        if ((this.f22785w instanceof ao) && isAttachedToWindow()) {
-            ((ao) this.f22785w).f(this);
-        }
-        invalidate();
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f22785w && drawable != this.d && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
-    }
-
-    public ea(android.content.Context r25, org.telegram.ui.ActionBar.f5 r26, int r27, long r28, org.telegram.ui.ActionBar.g6 r30) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ea.<init>(android.content.Context, org.telegram.ui.ActionBar.f5, int, long, org.telegram.ui.ActionBar.g6):void");
-    }
-
-    @Override
-    public final void dispatchSetPressed(boolean z4) {
+        imageView.setVisibility(i10);
     }
 }

@@ -10,47 +10,48 @@ import java.util.Locale;
 import k9.o0;
 import k9.p0;
 import q5.c0;
+import vh.w2;
 public final class q {
-    public static final HashMap f7995f;
-    public static final String f7996g;
-    public final Context f7997a;
-    public final w f7998b;
-    public final a f7999c;
+    public static final HashMap f7410f;
+    public static final String f7411g;
+    public final Context f7412a;
+    public final w f7413b;
+    public final a f7414c;
     public final c0 d;
-    public final e3.g f8000e;
+    public final e3.g e;
 
     static {
         HashMap hashMap = new HashMap();
-        f7995f = hashMap;
-        w.c.i(5, hashMap, "armeabi", 6, "armeabi-v7a");
-        w.c.i(9, hashMap, "arm64-v8a", 0, "x86");
+        f7410f = hashMap;
+        w2.i(5, hashMap, "armeabi", 6, "armeabi-v7a");
+        w2.i(9, hashMap, "arm64-v8a", 0, "x86");
         hashMap.put("x86_64", 1);
         Locale locale = Locale.US;
-        f7996g = "Crashlytics Android SDK/18.6.0";
+        f7411g = "Crashlytics Android SDK/18.6.0";
     }
 
     public q(Context context, w wVar, a aVar, c0 c0Var, e3.g gVar) {
-        this.f7997a = context;
-        this.f7998b = wVar;
-        this.f7999c = aVar;
+        this.f7412a = context;
+        this.f7413b = wVar;
+        this.f7414c = aVar;
         this.d = c0Var;
-        this.f8000e = gVar;
+        this.e = gVar;
     }
 
-    public static p0 c(sf.f fVar, int i10) {
+    public static p0 c(rf.f fVar, int i10) {
         int i11;
-        String str = (String) fVar.f47352c;
-        String str2 = (String) fVar.f47351b;
+        String str = (String) fVar.f43491c;
+        String str2 = (String) fVar.f43490b;
         StackTraceElement[] stackTraceElementArr = (StackTraceElement[]) fVar.d;
         int i12 = 0;
         if (stackTraceElementArr == null) {
             stackTraceElementArr = new StackTraceElement[0];
         }
-        sf.f fVar2 = (sf.f) fVar.f47353e;
+        rf.f fVar2 = (rf.f) fVar.e;
         if (i10 >= 8) {
-            sf.f fVar3 = fVar2;
+            rf.f fVar3 = fVar2;
             while (fVar3 != null) {
-                fVar3 = (sf.f) fVar3.f47353e;
+                fVar3 = (rf.f) fVar3.e;
                 i12++;
             }
             i11 = i12;
@@ -73,7 +74,7 @@ public final class q {
         ArrayList arrayList = new ArrayList();
         for (StackTraceElement stackTraceElement : stackTraceElementArr) {
             ?? obj = new Object();
-            obj.f2318e = Integer.valueOf(i10);
+            obj.e = Integer.valueOf(i10);
             long j11 = 0;
             if (stackTraceElement.isNativeMethod()) {
                 j10 = Math.max(stackTraceElement.getLineNumber(), 0L);
@@ -85,12 +86,12 @@ public final class q {
             if (!stackTraceElement.isNativeMethod() && stackTraceElement.getLineNumber() > 0) {
                 j11 = stackTraceElement.getLineNumber();
             }
-            obj.f2315a = Long.valueOf(j10);
+            obj.f2152a = Long.valueOf(j10);
             if (str != null) {
-                obj.f2316b = str;
-                obj.f2317c = fileName;
+                obj.f2153b = str;
+                obj.f2154c = fileName;
                 obj.d = Long.valueOf(j11);
-                arrayList.add(obj.n());
+                arrayList.add(obj.p());
             } else {
                 throw new NullPointerException("Null symbol");
             }
@@ -99,10 +100,10 @@ public final class q {
     }
 
     public final List a() {
-        a aVar = this.f7999c;
-        String str = aVar.f7934e;
+        a aVar = this.f7414c;
+        String str = aVar.e;
         if (str != null) {
-            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f7932b));
+            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f7352b));
         }
         throw new NullPointerException("Null name");
     }

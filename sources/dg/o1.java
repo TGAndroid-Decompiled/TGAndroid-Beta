@@ -1,368 +1,237 @@
 package dg;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.DashPathEffect;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.view.TextureView;
-import j7.z6;
-import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
+import android.animation.ValueAnimator;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.TextView;
+import lh.bb;
+import lh.f4;
+import lh.g5;
+import lh.l5;
+import lh.x9;
+import lh.y9;
+import nh.t4;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.ba;
-import org.telegram.ui.Components.jv0;
-public class o1 extends TextureView {
-    public n1 f4624a;
-    public h2 f4625b;
-    public final c1 f4626c;
-    public m1 d;
-    public final m0 f4627e;
-    public final d2 f4628f;
-    public Bitmap h;
-    public Bitmap f4629n;
-    public boolean f4630r;
-    public boolean f4631s;
-    public float v;
-    public int f4632w;
-    public m f4633x;
-    public boolean f4634y;
+import org.telegram.ui.Components.Premium.LimitPreviewView;
+import org.telegram.ui.Stories.ProfileStoriesView;
+import org.telegram.ui.a01;
+import org.telegram.ui.lt0;
+public final class o1 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f4695a;
+    public final Object f4696b;
 
-    public o1(Context context, c1 c1Var, Bitmap bitmap, Bitmap bitmap2, ba baVar) {
-        super(context);
-        setOpaque(false);
-        this.h = bitmap;
-        this.f4629n = bitmap2;
-        this.f4626c = c1Var;
-        c1Var.f4455f = this;
-        setSurfaceTextureListener(new k1(this, baVar));
-        this.f4627e = new m0(this);
-        i1 i1Var = new i1(this, 0);
-        ?? obj = new Object();
-        Paint paint = new Paint(1);
-        obj.f4489c = paint;
-        Paint paint2 = new Paint(1);
-        obj.d = paint2;
-        Paint paint3 = new Paint(1);
-        obj.f4490e = paint3;
-        Paint paint4 = new Paint(1);
-        obj.f4491f = paint4;
-        Paint paint5 = new Paint(1);
-        obj.f4492g = paint5;
-        obj.f4497m = new ArrayList();
-        obj.f4498n = new ArrayList();
-        obj.f4500p = new float[2];
-        obj.f4487a = this;
-        obj.f4488b = i1Var;
-        paint2.setColor(-13840296);
-        Paint.Style style = Paint.Style.STROKE;
-        paint3.setStyle(style);
-        paint3.setColor(-1);
-        paint3.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        paint4.setColor(-16745729);
-        paint5.setStyle(style);
-        paint5.setColor(-1);
-        paint5.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        paint.setStyle(style);
-        paint.setColor(-1);
-        paint.setStrokeWidth(AndroidUtilities.dp(0.8f));
-        paint.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f)}, 0.0f));
-        paint.setShadowLayer(4.0f, 0.0f, 1.5f, 1073741824);
-        this.f4628f = obj;
-        c1Var.f4451a = new o5.i(this, 9);
+    public o1(Object obj, int i10) {
+        this.f4695a = i10;
+        this.f4696b = obj;
     }
 
-    public final void a() {
-        i1 i1Var = new i1(this, 2);
-        m0 m0Var = this.f4627e;
-        m0Var.f4587g = new g1(m0Var.f4582a.getPainting().f4456g.f28201a, 0.0d, 1.0d);
-        m0Var.f4591l = true;
-        m0Var.a(new Object(), false, i1Var);
-    }
-
-    public final void b() {
-        o1 o1Var;
-        d2 d2Var = this.f4628f;
-        if (d2Var != null && (o1Var = d2Var.f4487a) != null && o1Var.getPainting() != null && d2Var.h != null) {
-            c1 painting = o1Var.getPainting();
-            painting.f4455f.f(new y0(painting, 0));
-            d2Var.f4497m.clear();
-            d2Var.f4498n.clear();
-            d2Var.h = null;
-        }
-    }
-
-    public final Bitmap c(boolean z4, boolean z10) {
-        if (this.f4633x instanceof l) {
-            this.f4628f.e();
-        }
-        m1 m1Var = this.d;
-        if (m1Var != null && m1Var.f4609f) {
-            CountDownLatch countDownLatch = new CountDownLatch(1);
-            Bitmap[] bitmapArr = new Bitmap[1];
-            try {
-                m1Var.postRunnable(new w0(m1Var, z4, z10, bitmapArr, countDownLatch));
-                countDownLatch.await();
-            } catch (Exception e6) {
-                FileLog.e(e6);
-            }
-            return bitmapArr[0];
-        }
-        return null;
-    }
-
-    public final void d(Canvas canvas) {
-        Canvas canvas2;
-        if (this.f4633x instanceof l) {
-            d2 d2Var = this.f4628f;
-            Paint paint = d2Var.f4489c;
-            ArrayList arrayList = d2Var.f4497m;
-            o1 o1Var = d2Var.f4487a;
-            if (o1Var != null && o1Var.getPainting() != null) {
-                jv0 jv0Var = o1Var.getPainting().f4456g;
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    c2 c2Var = (c2) arrayList.get(i10);
-                    if (c2Var.f4476c && !c2Var.f4475b) {
-                        d2Var.b(canvas, jv0Var, c2Var);
-                    }
-                }
-                r1 r1Var = d2Var.h;
-                if (r1Var != null && r1Var.h != 0.0f) {
-                    canvas.save();
-                    r1 r1Var2 = d2Var.h;
-                    canvas.rotate((float) (((-r1Var2.h) / 3.141592653589793d) * 180.0d), (r1Var2.f4652b / jv0Var.f28201a) * canvas.getWidth(), (d2Var.h.f4653c / jv0Var.f28202b) * canvas.getHeight());
-                }
-                r1 r1Var3 = d2Var.h;
-                if (r1Var3 != null && r1Var3.f4651a.o() == 4) {
-                    float width = canvas.getWidth() * (d2Var.h.f4652b / jv0Var.f28201a);
-                    float height = canvas.getHeight() * (d2Var.h.f4653c / jv0Var.f28202b);
-                    float width2 = canvas.getWidth() * (d2Var.h.f4657i / jv0Var.f28201a);
-                    float height2 = canvas.getHeight() * (d2Var.h.f4658j / jv0Var.f28202b);
-                    canvas2 = canvas;
-                    canvas2.drawLine(width, height, width2, height2, paint);
-                    canvas2.drawLine(canvas2.getWidth() * (d2Var.h.d / jv0Var.f28201a), canvas2.getHeight() * (d2Var.h.f4654e / jv0Var.f28202b), canvas2.getWidth() * (d2Var.h.f4657i / jv0Var.f28201a), canvas2.getHeight() * (d2Var.h.f4658j / jv0Var.f28202b), paint);
-                } else {
-                    canvas2 = canvas;
-                }
-                for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                    c2 c2Var2 = (c2) arrayList.get(i11);
-                    if (c2Var2.f4476c && c2Var2.f4475b) {
-                        d2Var.b(canvas2, jv0Var, c2Var2);
-                    }
-                }
-                r1 r1Var4 = d2Var.h;
-                if (r1Var4 != null && r1Var4.h != 0.0f) {
-                    canvas2.restore();
-                }
-            }
-        }
-    }
-
-    public final void e(android.view.MotionEvent r33) {
-        throw new UnsupportedOperationException("Method not decompiled: dg.o1.e(android.view.MotionEvent):void");
-    }
-
-    public final void f(Runnable runnable) {
-        m1 m1Var = this.d;
-        if (m1Var == null) {
-            return;
-        }
-        m1Var.postRunnable(new a1.e(16, this, runnable));
-    }
-
-    public m getCurrentBrush() {
-        return this.f4633x;
-    }
-
-    public int getCurrentColor() {
-        return this.f4632w;
-    }
-
-    public float getCurrentWeight() {
-        return this.v;
-    }
-
-    public c1 getPainting() {
-        return this.f4626c;
-    }
-
-    public h2 getUndoStore() {
-        return this.f4625b;
-    }
-
-    public final void h() {
-        this.f4634y = true;
-        if (this.d != null) {
-            f(new i1(this, 1));
-        }
-        setVisibility(8);
-    }
-
-    public final void i() {
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         float f10;
-        if (this.d == null) {
-            return;
-        }
-        Matrix matrix = new Matrix();
-        float f11 = 1.0f;
-        c1 c1Var = this.f4626c;
-        if (c1Var != null) {
-            f10 = getWidth() / c1Var.f4456g.f28201a;
-        } else {
-            f10 = 1.0f;
-        }
-        if (f10 > 0.0f) {
-            f11 = f10;
-        }
-        jv0 jv0Var = getPainting().f4456g;
-        matrix.preTranslate(getWidth() / 2.0f, getHeight() / 2.0f);
-        matrix.preScale(f11, -f11);
-        matrix.preTranslate((-jv0Var.f28201a) / 2.0f, (-jv0Var.f28202b) / 2.0f);
-        if (this.f4633x instanceof l) {
-            d2 d2Var = this.f4628f;
-            d2Var.getClass();
-            Matrix matrix2 = new Matrix();
-            d2Var.f4499o = matrix2;
-            matrix.invert(matrix2);
-        } else {
-            m0 m0Var = this.f4627e;
-            m0Var.getClass();
-            Matrix matrix3 = new Matrix();
-            m0Var.f4599t = matrix3;
-            matrix.invert(matrix3);
-        }
-        m1 m1Var = this.d;
-        c1Var.f4472y = z6.c(z6.b(m1Var.f4610n, m1Var.f4611r), z6.a(matrix));
-    }
-
-    public void setBrush(m mVar) {
-        boolean z4 = this.f4633x instanceof l;
-        d2 d2Var = this.f4628f;
-        if (z4) {
-            d2Var.e();
-        }
-        this.f4633x = mVar;
-        i();
-        this.f4626c.q(this.f4633x);
-        m mVar2 = this.f4633x;
-        if (mVar2 instanceof l) {
-            int o10 = ((l) mVar2).o();
-            ArrayList arrayList = d2Var.f4498n;
-            ArrayList arrayList2 = d2Var.f4497m;
-            o1 o1Var = d2Var.f4487a;
-            if (o1Var != null && o1Var.getPainting() != null) {
-                arrayList2.clear();
-                arrayList.clear();
-                d2Var.h = new r1(l.p(o10));
-                jv0 jv0Var = o1Var.getPainting().f4456g;
-                r1 r1Var = d2Var.h;
-                float f10 = jv0Var.f28201a;
-                r1Var.f4652b = f10 / 2.0f;
-                float f11 = jv0Var.f28202b;
-                r1Var.f4653c = f11 / 2.0f;
-                float min = Math.min(f10, f11) / 5.0f;
-                r1Var.f4654e = min;
-                r1Var.d = min;
-                d2Var.h.f4655f = o1Var.getCurrentWeight();
-                d2Var.h.f4656g = AndroidUtilities.dp(32.0f);
-                d2Var.h.f4660l = e1.e(UserConfig.selectedAccount).f4522k;
-                if (d2Var.h.f4651a.o() == 4) {
-                    r1 r1Var2 = d2Var.h;
-                    float f12 = jv0Var.f28201a / 2.0f;
-                    r1Var2.d = f12;
-                    r1Var2.f4652b = f12;
-                    r1Var2.f4657i = f12 + 1.0f;
-                    float f13 = jv0Var.f28202b;
-                    float f14 = f13 / 3.0f;
-                    float f15 = 1.0f * f14;
-                    r1Var2.f4653c = f15;
-                    float f16 = f13 / 2.0f;
-                    r1Var2.f4658j = f16;
-                    r1Var2.f4654e = f14 * 2.0f;
-                    r1Var2.f4659k = Math.abs(f15 - f16);
-                    z1 z1Var = new z1(d2Var, 0);
-                    arrayList2.add(z1Var);
-                    a2 a2Var = new a2(d2Var, z1Var, 0);
-                    arrayList2.add(a2Var);
-                    arrayList.add(a2Var);
-                    a2 a2Var2 = new a2(d2Var, z1Var, 1);
-                    arrayList2.add(a2Var2);
-                    arrayList.add(a2Var2);
+        lh.x3 x3Var;
+        boolean z4;
+        int i10 = this.f4695a;
+        Object obj = this.f4696b;
+        switch (i10) {
+            case 0:
+                ((lt0) ((q1) obj)).H.f31679b0.invalidate();
+                return;
+            case 1:
+                o2 o2Var = (o2) obj;
+                o2Var.getClass();
+                o2Var.f4701n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o2Var.invalidate();
+                return;
+            case 2:
+                x2 x2Var = (x2) obj;
+                x2Var.getClass();
+                x2Var.f4859x = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                x2Var.invalidate();
+                return;
+            case 3:
+                cg.p pVar = (cg.p) obj;
+                pVar.f4859x = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                pVar.invalidate();
+                return;
+            case 4:
+                q3 q3Var = (q3) obj;
+                q3Var.getClass();
+                q3Var.O = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 5:
+                y3 y3Var = (y3) obj;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                y3Var.f4877y = floatValue;
+                u3 u3Var = y3Var.f4870c;
+                u3Var.setAlpha(floatValue);
+                u3Var.setScaleX(AndroidUtilities.lerp(0.9f, 1.0f, y3Var.f4877y));
+                u3Var.setScaleY(AndroidUtilities.lerp(0.9f, 1.0f, y3Var.f4877y));
+                y3Var.f4869b.invalidate();
+                return;
+            case 6:
+                LimitPreviewView limitPreviewView = (LimitPreviewView) obj;
+                int i11 = LimitPreviewView.f23063i0;
+                limitPreviewView.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (floatValue2 < 0.5f) {
+                    f10 = (floatValue2 / 0.5f) * (-7.0f);
+                } else {
+                    f10 = (1.0f - ((floatValue2 - 0.5f) / 0.5f)) * (-7.0f);
                 }
-                if (d2Var.h.f4651a.o() == 0) {
-                    arrayList2.add(new z1(d2Var, 1));
+                limitPreviewView.V = f10;
+                return;
+            case 7:
+                eg.c1 c1Var = (eg.c1) obj;
+                c1Var.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c1Var.d.invalidate();
+                eg.a1 a1Var = c1Var.e;
+                if (a1Var != null) {
+                    a1Var.invalidate();
+                    return;
                 }
-                if (d2Var.h.f4651a.o() == 2) {
-                    arrayList2.add(new z1(d2Var, 2));
+                return;
+            case 8:
+                ((eg.q2) obj).f5457a.f5427o = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 9:
+                gg.b bVar = (gg.b) obj;
+                bVar.getClass();
+                bVar.f6545b = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                bVar.invalidate();
+                return;
+            case 10:
+                kg.k kVar = (kg.k) obj;
+                kVar.getClass();
+                kVar.setContainerHeight(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 11:
+                g5 g5Var = (g5) obj;
+                g5Var.V0.f2107c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                g5Var.T1();
+                return;
+            case 12:
+                ((f4) obj).h.invalidate();
+                return;
+            case 13:
+                lh.y3 y3Var2 = (lh.y3) obj;
+                y3Var2.getClass();
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                y3Var2.B = floatValue3;
+                if (floatValue3 >= 0.8f && (x3Var = y3Var2.E) != null && (z4 = x3Var.f13329l) && z4) {
+                    x3Var.f13329l = false;
+                    x3Var.b();
                 }
-                if (d2Var.h.f4651a.o() == 1 || d2Var.h.f4651a.o() == 3) {
-                    arrayList2.add(new b2(d2Var, d2Var.h, false, false));
-                    arrayList2.add(new b2(d2Var, d2Var.h, true, false));
-                    arrayList2.add(new b2(d2Var, d2Var.h, false, true));
-                    arrayList2.add(new b2(d2Var, d2Var.h, true, true));
-                    arrayList2.add(new z1(d2Var, 3, false));
+                y3Var2.invalidate();
+                return;
+            case 14:
+                View view = (View) obj;
+                float sin = (((float) Math.sin(((Float) valueAnimator.getAnimatedValue()).floatValue() * 3.141592653589793d)) * 0.03f) + 1.0f;
+                view.setScaleX(sin);
+                view.setScaleY(sin);
+                return;
+            case 15:
+                l5 l5Var = (l5) obj;
+                l5Var.getClass();
+                l5Var.f12744y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                l5Var.invalidate();
+                return;
+            case 16:
+                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                x9 x9Var = ((y9) obj).f13392c;
+                x9Var.setScaleX(floatValue4);
+                x9Var.setScaleY(floatValue4);
+                return;
+            case 17:
+                bb bbVar = (bb) obj;
+                bbVar.getClass();
+                bbVar.W = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bbVar.invalidate();
+                return;
+            case 18:
+                float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                mg.u uVar = ((mg.v) obj).f14139b;
+                if (uVar != null) {
+                    uVar.setAlpha(floatValue5);
+                    return;
                 }
-                if (d2Var.h.f4651a.o() == 3) {
-                    r1 r1Var3 = d2Var.h;
-                    r1Var3.f4657i = (r1Var3.d * 0.8f) + r1Var3.f4652b;
-                    r1Var3.f4658j = (r1Var3.f4654e * 1.2f) + r1Var3.f4653c + r1Var3.f4655f;
-                    z1 z1Var2 = new z1(d2Var, 4);
-                    arrayList2.add(z1Var2);
-                    z1Var2.f4475b = false;
-                    arrayList.add(z1Var2);
+                return;
+            case 19:
+                nh.a aVar = (nh.a) obj;
+                aVar.getClass();
+                aVar.h = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                aVar.invalidate();
+                return;
+            case 20:
+                nh.p pVar2 = (nh.p) obj;
+                pVar2.L.e = AndroidUtilities.lerp(0.0f, 1.0f - pVar2.V.f15736a0, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                pVar2.invalidate();
+                return;
+            case 21:
+                ((nh.v0) obj).invalidate();
+                return;
+            case 22:
+                nh.g2 g2Var = (nh.g2) obj;
+                float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                g2Var.f15953c.setAlpha(floatValue6);
+                g2Var.f15949a.setAlpha(AndroidUtilities.lerp(0.0f, 0.5f, floatValue6));
+                g2Var.invalidate();
+                return;
+            case 23:
+                nh.o0 o0Var = (nh.o0) obj;
+                float floatValue7 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                Drawable drawable = o0Var.e;
+                if (drawable != null) {
+                    drawable.setAlpha((int) (AndroidUtilities.lerp(o0Var.f15665f, 1.0f, floatValue7) * 255.0f));
+                    o0Var.h.invalidate();
+                    return;
                 }
-                d2Var.f4496l = new z1(d2Var, 5, false);
-                if (d2Var.h.f4651a.o() != 4) {
-                    d2Var.f4496l.f4476c = false;
+                return;
+            case 24:
+                float floatValue8 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                nh.o0 o0Var2 = (nh.o0) ((cg.l0) obj).f2427b;
+                Drawable drawable2 = o0Var2.e;
+                if (drawable2 != null) {
+                    drawable2.setAlpha((int) (AndroidUtilities.lerp(1.0f, o0Var2.f15665f, floatValue8) * 255.0f));
+                    o0Var2.h.invalidate();
+                    return;
                 }
-                z1 z1Var3 = d2Var.f4496l;
-                z1Var3.f4475b = false;
-                arrayList.add(z1Var3);
-                arrayList2.add(d2Var.f4496l);
-                o1Var.getPainting().k(d2Var.h);
-            }
+                return;
+            case 25:
+                nh.j1 j1Var = (nh.j1) obj;
+                j1Var.getClass();
+                j1Var.h.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 26:
+                nh.r1 r1Var = (nh.r1) obj;
+                r1Var.getClass();
+                r1Var.f15809n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                r1Var.invalidate();
+                return;
+            case 27:
+                nh.z3 z3Var = (nh.z3) obj;
+                z3Var.getClass();
+                float floatValue9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                TextView[] textViewArr = z3Var.f16094c;
+                textViewArr[0].setAlpha(floatValue9);
+                float f11 = 1.0f - floatValue9;
+                textViewArr[0].setTranslationY((-AndroidUtilities.dp(4.0f)) * f11);
+                textViewArr[1].setAlpha(f11);
+                textViewArr[1].setTranslationY(floatValue9 * AndroidUtilities.dp(4.0f));
+                return;
+            case 28:
+                ProfileStoriesView profileStoriesView = (ProfileStoriesView) obj;
+                a01 a01Var = profileStoriesView.h;
+                float floatValue10 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                profileStoriesView.D = floatValue10;
+                a01Var.O = floatValue10;
+                a01Var.invalidate();
+                profileStoriesView.invalidate();
+                return;
+            default:
+                t4 t4Var = (t4) obj;
+                t4Var.f15890r = ((Float) t4Var.f15892w.getAnimatedValue()).floatValue();
+                t4Var.invalidate();
+                return;
         }
-    }
-
-    public void setBrushSize(float f10) {
-        float f11 = this.f4626c.f4456g.f28201a;
-        this.v = e2.c.u(f11, 0.043945312f, f10, 0.00390625f * f11);
-        if (this.f4633x instanceof l) {
-            d2 d2Var = this.f4628f;
-            o1 o1Var = d2Var.f4487a;
-            r1 r1Var = d2Var.h;
-            if (r1Var != null && r1Var.f4655f != o1Var.getCurrentWeight()) {
-                d2Var.h.f4655f = o1Var.getCurrentWeight();
-                o1Var.getPainting().k(d2Var.h);
-            }
-        }
-    }
-
-    public void setColor(int i10) {
-        this.f4632w = i10;
-        if (this.f4633x instanceof l) {
-            d2 d2Var = this.f4628f;
-            if (d2Var.h != null) {
-                d2Var.f4487a.getPainting().k(d2Var.h);
-            }
-        }
-    }
-
-    public void setDelegate(n1 n1Var) {
-        this.f4624a = n1Var;
-    }
-
-    public void setUndoStore(h2 h2Var) {
-        this.f4625b = h2Var;
-    }
-
-    public void g(m mVar) {
-    }
-
-    public void setQueue(DispatchQueue dispatchQueue) {
     }
 }

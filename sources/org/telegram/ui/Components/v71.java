@@ -1,68 +1,108 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.os.AsyncTask;
-import org.telegram.messenger.FileLog;
-public final class v71 extends AsyncTask {
-    public int f31816a = 0;
-    public final y71 f31817b;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class v71 extends View {
+    public ShapeDrawable f29393a;
+    public Drawable f29394b;
+    public StaticLayout f29395c;
+    public TextPaint d;
+    public long e;
+    public float f29396f;
+    public float h;
+    public boolean f29397n;
 
-    public v71(y71 y71Var) {
-        this.f31817b = y71Var;
+    public final void a(boolean z4) {
+        this.f29397n = z4;
+        invalidate();
+    }
+
+    public final void b() {
+        this.d.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20105pf, false));
+        int dp = AndroidUtilities.dp(5.0f);
+        int i10 = org.telegram.ui.ActionBar.j6.qf;
+        this.f29393a = org.telegram.ui.ActionBar.j6.b0(dp, org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+        this.f29394b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, i10, false), PorterDuff.Mode.MULTIPLY));
     }
 
     @Override
-    public final Object doInBackground(Object[] objArr) {
-        Bitmap frameAtTime;
-        y71 y71Var = this.f31817b;
-        this.f31816a = ((Integer[]) objArr)[0].intValue();
-        Bitmap bitmap = null;
-        if (!isCancelled()) {
-            try {
-                frameAtTime = y71Var.f33408r.getFrameAtTime(y71Var.f33411x * this.f31816a * 1000, 2);
-            } catch (Exception e6) {
-                e = e6;
-            }
-            try {
-                if (!isCancelled()) {
-                    if (frameAtTime != null) {
-                        Bitmap createBitmap = Bitmap.createBitmap(y71Var.f33412y, y71Var.B, frameAtTime.getConfig());
-                        Canvas canvas = new Canvas(createBitmap);
-                        float max = Math.max(y71Var.f33412y / frameAtTime.getWidth(), y71Var.B / frameAtTime.getHeight());
-                        int width = (int) (frameAtTime.getWidth() * max);
-                        int height = (int) (frameAtTime.getHeight() * max);
-                        canvas.drawBitmap(frameAtTime, new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new Rect((y71Var.f33412y - width) / 2, (y71Var.B - height) / 2, width, height), (Paint) null);
-                        frameAtTime.recycle();
-                        return createBitmap;
+    public final void onDraw(Canvas canvas) {
+        float f10;
+        Drawable drawable = this.f29394b;
+        if (this.f29395c != null) {
+            if (this.f29397n) {
+                float f11 = this.h;
+                if (f11 != 1.0f) {
+                    float f12 = f11 + 0.12f;
+                    this.h = f12;
+                    if (f12 > 1.0f) {
+                        this.h = 1.0f;
                     }
-                    return frameAtTime;
+                    invalidate();
                 }
-            } catch (Exception e10) {
-                e = e10;
-                bitmap = frameAtTime;
-                FileLog.e(e);
-                return bitmap;
+            } else {
+                float f13 = this.h;
+                if (f13 != 0.0f) {
+                    float f14 = f13 - 0.12f;
+                    this.h = f14;
+                    if (f14 < 0.0f) {
+                        this.h = 0.0f;
+                    }
+                    invalidate();
+                }
+                if (this.h == 0.0f) {
+                    return;
+                }
             }
+            float f15 = this.h;
+            if (f15 > 0.5f) {
+                f10 = 1.0f;
+            } else {
+                f10 = f15 / 0.5f;
+            }
+            int i10 = (int) (f10 * 255.0f);
+            canvas.save();
+            float f16 = this.h;
+            canvas.scale(f16, f16, this.f29396f, getMeasuredHeight());
+            canvas.translate(this.f29396f - (this.f29395c.getWidth() / 2.0f), 0.0f);
+            this.f29393a.setBounds(-AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f) + this.f29395c.getWidth(), (int) (AndroidUtilities.dpf2(4.0f) + this.f29395c.getHeight()));
+            drawable.setBounds(org.telegram.ui.b.u(2, this.f29395c.getWidth() / 2, drawable), (int) (AndroidUtilities.dpf2(4.0f) + this.f29395c.getHeight()), org.telegram.ui.b.A(2, this.f29395c.getWidth() / 2, drawable), drawable.getIntrinsicHeight() + ((int) (AndroidUtilities.dpf2(4.0f) + this.f29395c.getHeight())));
+            drawable.setAlpha(i10);
+            this.f29393a.setAlpha(i10);
+            this.d.setAlpha(i10);
+            drawable.draw(canvas);
+            this.f29393a.draw(canvas);
+            canvas.translate(0.0f, AndroidUtilities.dpf2(1.0f));
+            this.f29395c.draw(canvas);
+            canvas.restore();
         }
-        return null;
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        Bitmap bitmap = (Bitmap) obj;
-        if (!isCancelled()) {
-            y71 y71Var = this.f31817b;
-            y71Var.v.add(bitmap);
-            y71Var.invalidate();
-            int i10 = this.f31816a;
-            if (i10 < y71Var.C) {
-                y71Var.b(i10 + 1);
-            } else {
-                y71Var.L = true;
-            }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f29394b.getIntrinsicHeight() + AndroidUtilities.dp(4.0f) + this.f29395c.getHeight(), 1073741824));
+    }
+
+    public void setCx(float f10) {
+        this.f29396f = f10;
+        invalidate();
+    }
+
+    public void setTime(int i10) {
+        long j10 = i10;
+        if (j10 != this.e) {
+            this.e = j10;
+            String formatShortDuration = AndroidUtilities.formatShortDuration(i10);
+            TextPaint textPaint = this.d;
+            this.f29395c = new StaticLayout(formatShortDuration, textPaint, (int) textPaint.measureText(formatShortDuration), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
         }
     }
 }

@@ -2,17 +2,17 @@ package l7;
 
 import java.util.Map;
 public abstract class f implements Map.Entry {
-    public final int f11840a;
+    public final int f11566a;
 
     @Override
     public final boolean equals(Object obj) {
-        switch (this.f11840a) {
+        switch (this.f11566a) {
             case 0:
                 if (!(obj instanceof Map.Entry)) {
                     return false;
                 }
                 Map.Entry entry = (Map.Entry) obj;
-                if (!k7.j.a(getKey(), entry.getKey()) || !k7.j.a(getValue(), entry.getValue())) {
+                if (!k7.i.a(getKey(), entry.getKey()) || !k7.i.a(getValue(), entry.getValue())) {
                     return false;
                 }
                 return true;
@@ -21,7 +21,7 @@ public abstract class f implements Map.Entry {
                     return false;
                 }
                 Map.Entry entry2 = (Map.Entry) obj;
-                if (!k7.e0.a(getKey(), entry2.getKey()) || !k7.e0.a(getValue(), entry2.getValue())) {
+                if (!k7.d0.a(getKey(), entry2.getKey()) || !k7.d0.a(getValue(), entry2.getValue())) {
                     return false;
                 }
                 return true;
@@ -32,7 +32,7 @@ public abstract class f implements Map.Entry {
     public final int hashCode() {
         int hashCode;
         int hashCode2;
-        switch (this.f11840a) {
+        switch (this.f11566a) {
             case 0:
                 Object key = getKey();
                 Object value = getValue();
@@ -63,7 +63,7 @@ public abstract class f implements Map.Entry {
     }
 
     public final String toString() {
-        switch (this.f11840a) {
+        switch (this.f11566a) {
             case 0:
                 return getKey() + "=" + getValue();
             default:
@@ -72,6 +72,6 @@ public abstract class f implements Map.Entry {
     }
 
     public f(int i10, boolean z4) {
-        this.f11840a = i10;
+        this.f11566a = i10;
     }
 }

@@ -30,156 +30,145 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.ec0;
+import org.telegram.ui.Components.dc0;
 import org.telegram.ui.Components.ey0;
 import org.telegram.ui.Components.f01;
-import org.telegram.ui.Components.g71;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.qf0;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.Components.vt;
-import org.telegram.ui.Components.xt;
+import org.telegram.ui.Components.f71;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.kl0;
+import org.telegram.ui.Components.pf0;
+import org.telegram.ui.Components.st;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.ut;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.SecretMediaViewer;
+import org.telegram.ui.b11;
 import org.telegram.ui.cv0;
 import org.telegram.ui.fn0;
 import org.telegram.ui.gl0;
-import org.telegram.ui.gv;
-import org.telegram.ui.h21;
 import org.telegram.ui.hv;
 import org.telegram.ui.i41;
+import org.telegram.ui.iv;
 import org.telegram.ui.nm0;
-import org.telegram.ui.ow;
-import org.telegram.ui.oy;
+import org.telegram.ui.pw;
 import org.telegram.ui.py;
+import org.telegram.ui.qy;
 import org.telegram.ui.tm0;
 import org.telegram.ui.u21;
-public class qa implements OnCompleteListener, od.b, org.telegram.ui.ActionBar.g6, vt, qh.fa, org.telegram.ui.Cells.k1, org.telegram.ui.k7, ll0, tm0, tg.a, g71, p2.z {
-    public final int f15700a;
-    public Object f15701b;
-    public Object f15702c;
+public class qa implements OnCompleteListener, od.b, org.telegram.ui.ActionBar.f6, st, ph.ia, org.telegram.ui.Cells.j1, org.telegram.ui.m7, kl0, tm0, sg.a, f71, p2.a0 {
+    public final int f14686a;
+    public Object f14687b;
+    public Object f14688c;
 
     public qa(int i10) {
-        this.f15700a = i10;
+        this.f14686a = i10;
     }
 
-    public static qa M0(View view) {
+    public static qa V(View view) {
         return new qa(view);
     }
 
     @Override
-    public boolean A0(MessageObject messageObject) {
+    public boolean B0(MessageObject messageObject) {
         return true;
     }
 
     @Override
-    public int B0(int i10) {
-        switch (this.f15700a) {
-            case 8:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.f15701b;
-                int indexOfKey = sparseIntArray.indexOfKey(i10);
-                if (indexOfKey >= 0) {
-                    return sparseIntArray.valueAt(indexOfKey);
-                }
-                return org.telegram.ui.ActionBar.k6.w0(null, i10, false);
-            case 21:
-                SparseIntArray sparseIntArray2 = (SparseIntArray) this.f15701b;
-                if (sparseIntArray2 != null) {
-                    return sparseIntArray2.get(i10);
-                }
-                return org.telegram.ui.ActionBar.k6.w0(null, i10, false);
-            default:
-                SparseIntArray sparseIntArray3 = (SparseIntArray) this.f15701b;
-                int indexOfKey2 = sparseIntArray3.indexOfKey(i10);
-                if (indexOfKey2 >= 0) {
-                    return sparseIntArray3.valueAt(indexOfKey2);
-                }
-                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f15702c;
-                if (g6Var == null) {
-                    return org.telegram.ui.ActionBar.k6.w0(null, i10, false);
-                }
-                return g6Var.B0(i10);
+    public void C0(float f10, boolean z4) {
+        dc0 dc0Var = (dc0) this.f14687b;
+        pf0 pf0Var = (pf0) this.f14688c;
+        i71 i71Var = pf0Var.d;
+        if (i71Var != null) {
+            long p10 = i71Var.p();
+            float max = 2.8f / ((float) Math.max(60L, p10));
+            long j10 = (((f10 / (1.0f - max)) * max) + f10) * ((float) p10);
+            pf0Var.e = j10;
+            pf0Var.d.L(j10, !z4);
+            if (!z4) {
+                AndroidUtilities.cancelRunOnUIThread(dc0Var);
+                AndroidUtilities.runOnUIThread(dc0Var, 120L);
+            }
         }
     }
 
     @Override
-    public void C(String str, String str2) {
-        fn0 fn0Var = ((nm0) this.f15702c).f39404a;
+    public void D(String str, String str2) {
+        fn0 fn0Var = ((nm0) this.f14688c).f36539a;
         if ("PHONE_VERIFICATION_NEEDED".equals(str)) {
-            fn0Var.O1(true, str2, (gl0) this.f15701b, this, fn0Var.f36878y1);
+            fn0Var.O1(true, str2, (gl0) this.f14687b, this, fn0Var.f34167y1);
         } else {
             fn0Var.N1(true, false);
         }
     }
 
     @Override
-    public boolean E2(int i10) {
-        return false;
-    }
-
-    @Override
-    public Paint F(String str) {
-        switch (this.f15700a) {
-            case 8:
-                return org.telegram.ui.ActionBar.k6.S0(str);
-            case 21:
-                return org.telegram.ui.ActionBar.k6.S0(str);
-            default:
-                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f15702c;
-                if (g6Var == null) {
-                    return org.telegram.ui.ActionBar.k6.S0(str);
-                }
-                return g6Var.F(str);
-        }
-    }
-
-    @Override
-    public boolean H1() {
-        return false;
-    }
-
-    @Override
-    public void I(Canvas canvas, float f10, float f11, float f12, float f13) {
-        switch (this.f15700a) {
-            case 19:
-                canvas.save();
-                canvas.clipRect(f10, f11, f12, f13);
-                ((PhotoViewer) this.f15702c).T0(canvas, (org.telegram.ui.Components.fa) this.f15701b, -14277082, 855638016, false, true, true);
-                canvas.drawColor(637534208);
-                canvas.restore();
-                return;
-            default:
-                Paint paint = (Paint) this.f15701b;
-                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f15702c;
-                fg.p1 p1Var = premiumPreviewFragment.f34494j0;
-                if (premiumPreviewFragment.f34488e0) {
-                    paint.setColor(premiumPreviewFragment.getThemedColor(org.telegram.ui.ActionBar.k6.f21607a7));
-                    canvas.drawRect(f10, f11, f12, f13, paint);
-                    return;
-                }
-                p1Var.d(0, (-premiumPreviewFragment.f34481a0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.Y, 0, premiumPreviewFragment.f34481a0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f34481a0.getMeasuredHeight());
-                canvas.drawRect(f10, f11, f12, f13, p1Var.f6490f);
-                return;
-        }
-    }
-
-    @Override
-    public org.telegram.ui.Cells.n9 I2() {
+    public org.telegram.ui.Cells.m9 D2() {
         return null;
     }
 
     @Override
+    public boolean F1() {
+        return false;
+    }
+
+    @Override
+    public Paint G(String str) {
+        switch (this.f14686a) {
+            case 8:
+                return org.telegram.ui.ActionBar.j6.S0(str);
+            case 21:
+                return org.telegram.ui.ActionBar.j6.S0(str);
+            default:
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f14688c;
+                if (f6Var == null) {
+                    return org.telegram.ui.ActionBar.j6.S0(str);
+                }
+                return f6Var.G(str);
+        }
+    }
+
+    @Override
+    public void H(Canvas canvas, float f10, float f11, float f12, float f13) {
+        switch (this.f14686a) {
+            case 19:
+                canvas.save();
+                canvas.clipRect(f10, f11, f12, f13);
+                ((PhotoViewer) this.f14688c).T0(canvas, (org.telegram.ui.Components.fa) this.f14687b, -14277082, 855638016, false, true, true);
+                canvas.drawColor(637534208);
+                canvas.restore();
+                return;
+            default:
+                Paint paint = (Paint) this.f14687b;
+                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f14688c;
+                eg.q1 q1Var = premiumPreviewFragment.f31938j0;
+                if (premiumPreviewFragment.f31932e0) {
+                    paint.setColor(premiumPreviewFragment.getThemedColor(org.telegram.ui.ActionBar.j6.f19827a7));
+                    canvas.drawRect(f10, f11, f12, f13, paint);
+                    return;
+                }
+                q1Var.d(0, (-premiumPreviewFragment.f31926a0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.Y, 0, premiumPreviewFragment.f31926a0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f31926a0.getMeasuredHeight());
+                canvas.drawRect(f10, f11, f12, f13, q1Var.f5446f);
+                return;
+        }
+    }
+
+    @Override
+    public void J() {
+        ((ut) this.f14687b).getText();
+        ((org.telegram.ui.Cells.e3) this.f14688c).b();
+    }
+
+    @Override
     public void J0(int i10, int i11) {
-        switch (this.f15700a) {
+        switch (this.f14686a) {
             case 8:
             case 21:
                 return;
             default:
-                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f15702c;
-                if (g6Var != null) {
-                    g6Var.J0(i10, i11);
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f14688c;
+                if (f6Var != null) {
+                    f6Var.J0(i10, i11);
                     return;
                 }
                 return;
@@ -187,63 +176,386 @@ public class qa implements OnCompleteListener, od.b, org.telegram.ui.ActionBar.g
     }
 
     @Override
-    public boolean N(org.telegram.ui.Cells.t1 t1Var, TLRPC.TodoItem todoItem, boolean z4) {
+    public boolean K1(org.telegram.ui.Cells.s1 s1Var, TLRPC.Chat chat) {
         return false;
     }
 
-    @Override
-    public boolean N1(org.telegram.ui.Cells.t1 t1Var, TLRPC.Chat chat) {
-        return false;
-    }
-
-    @Override
-    public boolean O() {
-        return false;
-    }
-
-    public p2.d O0() {
-        if (((p2.m) this.f15701b) != null) {
-            return new p2.d(this);
+    public void L0(p2.n nVar) {
+        this.f14687b = nVar;
+        if (nVar.a() != null) {
+            nVar.a().getClass();
+            String str = nVar.a().d;
+            if (str != null) {
+                this.f14688c = str;
+            }
         }
-        throw new NullPointerException("ProductDetails is required for constructing ProductDetailsParams.");
+    }
+
+    public r3.v M0(int i10) {
+        int i11 = 0;
+        while (true) {
+            int[] iArr = (int[]) this.f14687b;
+            if (i11 < iArr.length) {
+                if (i10 == iArr[i11]) {
+                    return ((o4.k0[]) this.f14688c)[i11];
+                }
+                i11++;
+            } else {
+                h5.a.o("BaseMediaChunkOutput", "Unmatched track of type: " + i10);
+                return new r3.j();
+            }
+        }
     }
 
     @Override
-    public boolean P(org.telegram.ui.Cells.t1 t1Var) {
+    public boolean M1() {
+        return false;
+    }
+
+    public void O0(com.google.android.gms.internal.play_billing.g3 g3Var) {
+        try {
+            k1(g3Var, (com.google.android.gms.internal.play_billing.p3) this.f14687b);
+        } catch (Throwable th2) {
+            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
+        }
+    }
+
+    @Override
+    public boolean P(org.telegram.ui.Cells.s1 s1Var, TLRPC.TodoItem todoItem, boolean z4) {
         return false;
     }
 
     @Override
-    public boolean P1() {
+    public boolean Q() {
         return false;
     }
 
+    public void Q0(com.google.android.gms.internal.play_billing.g3 g3Var, int i10, long j10) {
+        try {
+            com.google.android.gms.internal.play_billing.o3 o3Var = (com.google.android.gms.internal.play_billing.o3) ((com.google.android.gms.internal.play_billing.p3) this.f14687b).g();
+            o3Var.c();
+            com.google.android.gms.internal.play_billing.p3.p((com.google.android.gms.internal.play_billing.p3) o3Var.f3578b, i10);
+            com.google.android.gms.internal.play_billing.p3 p3Var = (com.google.android.gms.internal.play_billing.p3) o3Var.a();
+            this.f14687b = p3Var;
+            if (j10 != 0) {
+                com.google.android.gms.internal.play_billing.o3 o3Var2 = (com.google.android.gms.internal.play_billing.o3) p3Var.g();
+                o3Var2.c();
+                com.google.android.gms.internal.play_billing.p3.r((com.google.android.gms.internal.play_billing.p3) o3Var2.f3578b, j10);
+                p3Var = (com.google.android.gms.internal.play_billing.p3) o3Var2.a();
+            }
+            k1(g3Var, p3Var);
+        } catch (Throwable th2) {
+            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
+        }
+    }
+
     @Override
-    public boolean R() {
+    public boolean R(org.telegram.ui.Cells.s1 s1Var) {
         return false;
     }
 
     @Override
     public boolean R0(long j10) {
-        return ((f01) this.f15702c).v;
+        return ((f01) this.f14688c).v;
     }
 
-    public pb.b T0() {
-        if (((pb.b) this.f15702c) == null) {
-            pb.f fVar = (pb.f) this.f15701b;
-            int[] iArr = fVar.f44304c;
-            ob.d dVar = fVar.f44302a;
-            int i10 = dVar.f16690a;
-            int i11 = dVar.f16691b;
+    @Override
+    public void R1(org.telegram.ui.Cells.s1 s1Var, TLRPC.WebPage webPage, String str, boolean z4) {
+        ze.d.s(s1Var.getContext(), str);
+    }
+
+    @Override
+    public boolean S() {
+        return false;
+    }
+
+    @Override
+    public CharacterStyle S1(org.telegram.ui.Cells.s1 s1Var) {
+        return null;
+    }
+
+    public void T0(com.google.android.gms.internal.play_billing.g3 g3Var, long j10, boolean z4) {
+        com.google.android.gms.internal.play_billing.p3 p3Var;
+        try {
+            com.google.android.gms.internal.play_billing.f3 f3Var = (com.google.android.gms.internal.play_billing.f3) g3Var.g();
+            com.google.android.gms.internal.play_billing.t3 t3Var = (com.google.android.gms.internal.play_billing.t3) g3Var.o().g();
+            t3Var.c();
+            com.google.android.gms.internal.play_billing.v3.n((com.google.android.gms.internal.play_billing.v3) t3Var.f3578b, z4);
+            f3Var.c();
+            com.google.android.gms.internal.play_billing.g3.r((com.google.android.gms.internal.play_billing.g3) f3Var.f3578b, (com.google.android.gms.internal.play_billing.v3) t3Var.a());
+            com.google.android.gms.internal.play_billing.g3 g3Var2 = (com.google.android.gms.internal.play_billing.g3) f3Var.a();
+            if (j10 == 0) {
+                p3Var = (com.google.android.gms.internal.play_billing.p3) this.f14687b;
+            } else {
+                com.google.android.gms.internal.play_billing.o3 o3Var = (com.google.android.gms.internal.play_billing.o3) ((com.google.android.gms.internal.play_billing.p3) this.f14687b).g();
+                o3Var.c();
+                com.google.android.gms.internal.play_billing.p3.r((com.google.android.gms.internal.play_billing.p3) o3Var.f3578b, j10);
+                p3Var = (com.google.android.gms.internal.play_billing.p3) o3Var.a();
+            }
+            k1(g3Var2, p3Var);
+        } catch (Throwable th2) {
+            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
+        }
+    }
+
+    @Override
+    public boolean U1(org.telegram.ui.Cells.s1 s1Var, MessageObject messageObject) {
+        return false;
+    }
+
+    public void V0(com.google.android.gms.internal.play_billing.g3 g3Var, int i10, long j10, boolean z4) {
+        com.google.android.gms.internal.play_billing.p3 p3Var;
+        try {
+            com.google.android.gms.internal.play_billing.o3 o3Var = (com.google.android.gms.internal.play_billing.o3) ((com.google.android.gms.internal.play_billing.p3) this.f14687b).g();
+            o3Var.c();
+            com.google.android.gms.internal.play_billing.p3.p((com.google.android.gms.internal.play_billing.p3) o3Var.f3578b, i10);
+            this.f14687b = (com.google.android.gms.internal.play_billing.p3) o3Var.a();
+            com.google.android.gms.internal.play_billing.f3 f3Var = (com.google.android.gms.internal.play_billing.f3) g3Var.g();
+            com.google.android.gms.internal.play_billing.t3 t3Var = (com.google.android.gms.internal.play_billing.t3) g3Var.o().g();
+            t3Var.c();
+            com.google.android.gms.internal.play_billing.v3.n((com.google.android.gms.internal.play_billing.v3) t3Var.f3578b, z4);
+            f3Var.c();
+            com.google.android.gms.internal.play_billing.g3.r((com.google.android.gms.internal.play_billing.g3) f3Var.f3578b, (com.google.android.gms.internal.play_billing.v3) t3Var.a());
+            com.google.android.gms.internal.play_billing.g3 g3Var2 = (com.google.android.gms.internal.play_billing.g3) f3Var.a();
+            if (j10 == 0) {
+                p3Var = (com.google.android.gms.internal.play_billing.p3) this.f14687b;
+            } else {
+                com.google.android.gms.internal.play_billing.o3 o3Var2 = (com.google.android.gms.internal.play_billing.o3) ((com.google.android.gms.internal.play_billing.p3) this.f14687b).g();
+                o3Var2.c();
+                com.google.android.gms.internal.play_billing.p3.r((com.google.android.gms.internal.play_billing.p3) o3Var2.f3578b, j10);
+                p3Var = (com.google.android.gms.internal.play_billing.p3) o3Var2.a();
+            }
+            k1(g3Var2, p3Var);
+        } catch (Throwable th2) {
+            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
+        }
+    }
+
+    @Override
+    public int W() {
+        return 0;
+    }
+
+    public p2.d X() {
+        if (((p2.n) this.f14687b) != null) {
+            return new p2.d(this);
+        }
+        throw new NullPointerException("ProductDetails is required for constructing ProductDetailsParams.");
+    }
+
+    public void X0(com.google.android.gms.internal.play_billing.l3 l3Var) {
+        try {
+            com.google.android.gms.internal.play_billing.w3 t6 = com.google.android.gms.internal.play_billing.x3.t();
+            t6.d((com.google.android.gms.internal.play_billing.p3) this.f14687b);
+            t6.c();
+            com.google.android.gms.internal.play_billing.x3.p((com.google.android.gms.internal.play_billing.x3) t6.f3578b, l3Var);
+            ((c2.u) this.f14688c).h((com.google.android.gms.internal.play_billing.x3) t6.a());
+        } catch (Throwable th2) {
+            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
+        }
+    }
+
+    public void Y0(com.google.android.gms.internal.play_billing.a4 a4Var) {
+        try {
+            com.google.android.gms.internal.play_billing.w3 t6 = com.google.android.gms.internal.play_billing.x3.t();
+            t6.d((com.google.android.gms.internal.play_billing.p3) this.f14687b);
+            t6.c();
+            com.google.android.gms.internal.play_billing.x3.r((com.google.android.gms.internal.play_billing.x3) t6.f3578b, a4Var);
+            ((c2.u) this.f14688c).h((com.google.android.gms.internal.play_billing.x3) t6.a());
+        } catch (Throwable th2) {
+            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
+        }
+    }
+
+    @Override
+    public ug.a Z() {
+        return null;
+    }
+
+    @Override
+    public boolean a() {
+        switch (this.f14686a) {
+            case 8:
+            case 21:
+            default:
+                return org.telegram.ui.ActionBar.j6.I.q();
+        }
+    }
+
+    @Override
+    public boolean a0(org.telegram.ui.Cells.s1 s1Var) {
+        return false;
+    }
+
+    public void a1(com.google.android.gms.internal.play_billing.b4 b4Var) {
+        if (b4Var == null) {
+            return;
+        }
+        try {
+            com.google.android.gms.internal.play_billing.w3 t6 = com.google.android.gms.internal.play_billing.x3.t();
+            t6.d((com.google.android.gms.internal.play_billing.p3) this.f14687b);
+            t6.c();
+            com.google.android.gms.internal.play_billing.x3.s((com.google.android.gms.internal.play_billing.x3) t6.f3578b, b4Var);
+            ((c2.u) this.f14688c).h((com.google.android.gms.internal.play_billing.x3) t6.a());
+        } catch (Throwable th2) {
+            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
+        }
+    }
+
+    @Override
+    public boolean a2(org.telegram.ui.Cells.s1 s1Var, TLRPC.PollAnswer pollAnswer) {
+        return false;
+    }
+
+    @Override
+    public void b() {
+        int i10 = this.f14686a;
+    }
+
+    @Override
+    public boolean mo17c(float f10, float f11, int i10, View view) {
+        qy qyVar = (qy) this.f14688c;
+        if (view instanceof org.telegram.ui.Cells.q2) {
+            org.telegram.ui.Cells.q2 q2Var = (org.telegram.ui.Cells.q2) view;
+            if (q2Var.f21604k2) {
+                qyVar.N4(q2Var.getDialogId(), view);
+                return true;
+            }
+        }
+        pw pwVar = qyVar.f37633w0;
+        if (pwVar != null && pwVar.getVisibility() == 0 && qyVar.f37633w0.f26106n) {
+            return false;
+        }
+        return qyVar.o4(view, i10, f10, ((py) this.f14687b).d);
+    }
+
+    @Override
+    public boolean c0(org.telegram.ui.Cells.s1 s1Var, TLRPC.User user) {
+        return false;
+    }
+
+    @Override
+    public boolean c1(org.telegram.ui.Cells.s1 s1Var, boolean z4) {
+        return false;
+    }
+
+    @Override
+    public cv0 c2() {
+        return null;
+    }
+
+    @Override
+    public int d0(int i10) {
+        switch (this.f14686a) {
+            case 8:
+                return x0(i10);
+            case 21:
+                return x0(i10);
+            default:
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f14688c;
+                if (f6Var == null) {
+                    return org.telegram.ui.ActionBar.j6.w0(null, i10, false);
+                }
+                return f6Var.d0(i10);
+        }
+    }
+
+    @Override
+    public void dismiss() {
+        ((iv) this.f14688c).dismiss();
+    }
+
+    @Override
+    public boolean e() {
+        return false;
+    }
+
+    @Override
+    public boolean e2(long j10) {
+        return ((f01) this.f14688c).f24760s;
+    }
+
+    @Override
+    public boolean f() {
+        return true;
+    }
+
+    @Override
+    public int f1(int i10) {
+        switch (this.f14686a) {
+            case 8:
+                return ((SparseIntArray) this.f14687b).get(i10);
+            case 21:
+                return x0(i10);
+            default:
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f14688c;
+                if (f6Var == null) {
+                    return org.telegram.ui.ActionBar.j6.w0(null, i10, false);
+                }
+                return f6Var.f1(i10);
+        }
+    }
+
+    @Override
+    public String g(org.telegram.ui.Cells.s1 s1Var) {
+        return null;
+    }
+
+    @Override
+    public boolean g0() {
+        return false;
+    }
+
+    @Override
+    public boolean g2(org.telegram.ui.Cells.s1 s1Var, TLRPC.TodoItem todoItem) {
+        return false;
+    }
+
+    @Override
+    public Drawable getDrawable(String str) {
+        switch (this.f14686a) {
+            case 8:
+                return null;
+            case 21:
+                return null;
+            default:
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f14688c;
+                if (f6Var == null) {
+                    return org.telegram.ui.ActionBar.j6.O0(str);
+                }
+                return f6Var.getDrawable(str);
+        }
+    }
+
+    @Override
+    public void h() {
+        Point point = AndroidUtilities.displaySize;
+        if (point.x > point.y) {
+            ((qy) this.f14688c).finishPreviewFragment();
+        }
+    }
+
+    @Override
+    public boolean h1(int i10, org.telegram.ui.Cells.s1 s1Var) {
+        return false;
+    }
+
+    public pb.b j0() {
+        if (((pb.b) this.f14688c) == null) {
+            pb.f fVar = (pb.f) this.f14687b;
+            int[] iArr = fVar.f41135c;
+            ob.d dVar = fVar.f41133a;
+            int i10 = dVar.f16505a;
+            int i11 = dVar.f16506b;
             pb.b bVar = new pb.b(i10, i11);
-            if (fVar.f44303b.length < i10) {
-                fVar.f44303b = new byte[i10];
+            if (fVar.f41134b.length < i10) {
+                fVar.f41134b = new byte[i10];
             }
             for (int i12 = 0; i12 < 32; i12++) {
                 iArr[i12] = 0;
             }
             for (int i13 = 1; i13 < 5; i13++) {
-                byte[] b10 = dVar.b((i11 * i13) / 5, fVar.f44303b);
+                byte[] b10 = dVar.b((i11 * i13) / 5, fVar.f41134b);
                 int i14 = (i10 * 4) / 5;
                 for (int i15 = i10 / 5; i15 < i14; i15++) {
                     int i16 = (b10[i15] & 255) >> 3;
@@ -298,34 +610,113 @@ public class qa implements OnCompleteListener, od.b, org.telegram.ui.ActionBar.g
                     int i35 = i34 * i10;
                     for (int i36 = 0; i36 < i10; i36++) {
                         if ((a2[i35 + i36] & 255) < i33) {
-                            int i37 = (i36 / 32) + (bVar.f44288c * i34);
+                            int i37 = (i36 / 32) + (bVar.f41121c * i34);
                             int[] iArr2 = bVar.d;
                             iArr2[i37] = iArr2[i37] | (1 << (i36 & 31));
                         }
                     }
                 }
-                this.f15702c = bVar;
+                this.f14688c = bVar;
             } else {
                 throw ob.e.a();
             }
         }
-        return (pb.b) this.f15702c;
+        return (pb.b) this.f14688c;
     }
 
     @Override
-    public void U1(org.telegram.ui.Cells.t1 t1Var, TLRPC.WebPage webPage, String str, boolean z4) {
-        af.g.s(t1Var.getContext(), str);
+    public pg.b k() {
+        switch (this.f14686a) {
+            case 19:
+                if (Build.VERSION.SDK_INT >= 29) {
+                    pg.c cVar = new pg.c(this);
+                    ((PhotoViewer) this.f14688c).W.add(cVar);
+                    return cVar;
+                }
+                return new pg.d(this);
+            default:
+                return new pg.d(this);
+        }
     }
 
     @Override
-    public int V() {
+    public int k0(org.telegram.ui.Cells.s1 s1Var) {
         return 0;
     }
 
-    public void V0(Exception exc, boolean z4) {
+    public void k1(com.google.android.gms.internal.play_billing.g3 g3Var, com.google.android.gms.internal.play_billing.p3 p3Var) {
+        if (g3Var == null) {
+            return;
+        }
+        try {
+            com.google.android.gms.internal.play_billing.w3 t6 = com.google.android.gms.internal.play_billing.x3.t();
+            t6.d(p3Var);
+            t6.c();
+            com.google.android.gms.internal.play_billing.x3.n((com.google.android.gms.internal.play_billing.x3) t6.f3578b, g3Var);
+            ((c2.u) this.f14688c).h((com.google.android.gms.internal.play_billing.x3) t6.a());
+        } catch (Throwable th2) {
+            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
+        }
+    }
+
+    @Override
+    public void l(float f10, float f11, int i10, int i11) {
+        switch (this.f14686a) {
+            case 8:
+                org.telegram.ui.ActionBar.j6.q(f10, f11, i10, i11);
+                return;
+            case 21:
+                org.telegram.ui.ActionBar.j6.q(f10, f11, i10, i11);
+                return;
+            default:
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f14688c;
+                if (f6Var == null) {
+                    org.telegram.ui.ActionBar.j6.q(f10, f11, i10, i11);
+                    return;
+                } else {
+                    f6Var.l(f10, f11, i10, i11);
+                    return;
+                }
+        }
+    }
+
+    public void l1(com.google.android.gms.internal.play_billing.i3 i3Var, com.google.android.gms.internal.play_billing.p3 p3Var) {
+        try {
+            com.google.android.gms.internal.play_billing.w3 t6 = com.google.android.gms.internal.play_billing.x3.t();
+            t6.d(p3Var);
+            t6.c();
+            com.google.android.gms.internal.play_billing.x3.o((com.google.android.gms.internal.play_billing.x3) t6.f3578b, i3Var);
+            ((c2.u) this.f14688c).h((com.google.android.gms.internal.play_billing.x3) t6.a());
+        } catch (Throwable th2) {
+            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
+        }
+    }
+
+    @Override
+    public boolean m0() {
+        switch (this.f14686a) {
+            case 8:
+                return false;
+            case 21:
+                return false;
+            default:
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f14688c;
+                if (f6Var == null) {
+                    return org.telegram.ui.ActionBar.j6.a1();
+                }
+                return f6Var.m0();
+        }
+    }
+
+    @Override
+    public boolean m1(MessageObject messageObject) {
+        return org.telegram.ui.b.a(messageObject);
+    }
+
+    public void n0(Exception exc, boolean z4) {
         int i10;
-        this.f15702c = null;
-        HashSet hashSet = (HashSet) this.f15701b;
+        this.f14688c = null;
+        HashSet hashSet = (HashSet) this.f14687b;
         s8.v t6 = s8.v.t(hashSet);
         hashSet.clear();
         s8.t listIterator = t6.listIterator(0);
@@ -342,462 +733,21 @@ public class qa implements OnCompleteListener, od.b, org.telegram.ui.ActionBar.g
     }
 
     @Override
-    public CharacterStyle W1(org.telegram.ui.Cells.t1 t1Var) {
-        return null;
-    }
-
-    public void X0(boolean z4, boolean z10, float f10) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f15701b;
-        oh.y3 y3Var = (oh.y3) this.f15702c;
-        oh.i9 i9Var = y3Var.f17946e;
-        oh.i9.f17252y1 = f10;
-        oh.h9 h9Var = i9Var.f17303w0;
-        if (h9Var != null) {
-            h9Var.setSpeed(f10);
-        }
-        oh.f4.a0(y3Var.f17952l, z4);
-        if (z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
-            actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
-        }
-    }
-
-    @Override
-    public void Y(org.telegram.ui.u6 u6Var, nh.a aVar, boolean z4) {
-        hv hvVar = (hv) this.f15702c;
-        gv gvVar = hvVar.U;
-        if (aVar != null) {
-            ((nh.b) this.f15701b).i(aVar);
-            hvVar.f37485b0.d();
-            nh.b bVar = hvVar.f37487d0;
-            ey0[] ey0VarArr = hvVar.Y;
-            org.telegram.ui.Cells.z1[] z1VarArr = hvVar.Z;
-            org.telegram.ui.Cells.z1 z1Var = z1VarArr[0];
-            if (z1Var != null) {
-                ey0 ey0Var = ey0VarArr[0];
-                boolean z10 = bVar.f16261m;
-                ey0Var.f26696c = z10;
-                z1Var.c(z10, true);
-            }
-            org.telegram.ui.Cells.z1 z1Var2 = z1VarArr[1];
-            if (z1Var2 != null) {
-                ey0 ey0Var2 = ey0VarArr[1];
-                boolean z11 = bVar.f16262n;
-                ey0Var2.f26696c = z11;
-                z1Var2.c(z11, true);
-            }
-            org.telegram.ui.Cells.z1 z1Var3 = z1VarArr[2];
-            if (z1Var3 != null) {
-                ey0 ey0Var3 = ey0VarArr[2];
-                boolean z12 = bVar.f16263o;
-                ey0Var3.f26696c = z12;
-                z1Var3.c(z12, true);
-            }
-            org.telegram.ui.Cells.z1 z1Var4 = z1VarArr[3];
-            if (z1Var4 != null) {
-                ey0 ey0Var4 = ey0VarArr[3];
-                boolean z13 = bVar.f16264p;
-                ey0Var4.f26696c = z13;
-                z1Var4.c(z13, true);
-            }
-            org.telegram.ui.Cells.z1 z1Var5 = z1VarArr[4];
-            if (z1Var5 != null) {
-                ey0 ey0Var5 = ey0VarArr[4];
-                boolean z14 = bVar.f16265q;
-                ey0Var5.f26696c = z14;
-                z1Var5.c(z14, true);
-            }
-            hvVar.X.a(gvVar.d(), true);
-            gvVar.c(true);
-        }
-    }
-
-    public void Y0(o0.g gVar) {
-        androidx.biometric.p pVar = (androidx.biometric.p) this.f15702c;
-        y5.h hVar = (y5.h) this.f15701b;
-        int i10 = gVar.f16299b;
-        if (i10 == 0) {
-            pVar.execute(new androidx.biometric.k(hVar, gVar.f16298a, false, 26));
-        } else {
-            pVar.execute(new m2.b(hVar, i10));
-        }
-    }
-
-    @Override
-    public boolean Y1(org.telegram.ui.Cells.t1 t1Var, MessageObject messageObject) {
-        return false;
-    }
-
-    @Override
-    public vg.a Z() {
-        return null;
-    }
-
-    @Override
-    public int Z0(int i10) {
-        switch (this.f15700a) {
-            case 8:
-                return ((SparseIntArray) this.f15701b).get(i10);
-            case 21:
-                return B0(i10);
-            default:
-                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f15702c;
-                if (g6Var == null) {
-                    return org.telegram.ui.ActionBar.k6.w0(null, i10, false);
-                }
-                return g6Var.Z0(i10);
-        }
-    }
-
-    @Override
-    public boolean a() {
-        switch (this.f15700a) {
-            case 8:
-            case 21:
-            default:
-                return org.telegram.ui.ActionBar.k6.I.q();
-        }
-    }
-
-    @Override
-    public boolean a0(org.telegram.ui.Cells.t1 t1Var) {
-        return false;
-    }
-
-    @Override
-    public void b() {
-        int i10 = this.f15700a;
-    }
-
-    @Override
-    public void b0() {
-        ((xt) this.f15701b).getText();
-        ((org.telegram.ui.Cells.f3) this.f15702c).b();
-    }
-
-    @Override
-    public boolean b1(org.telegram.ui.Cells.t1 t1Var, boolean z4) {
-        return false;
-    }
-
-    @Override
-    public boolean mo17c(float f10, float f11, int i10, View view) {
-        py pyVar = (py) this.f15702c;
-        if (view instanceof org.telegram.ui.Cells.r2) {
-            org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) view;
-            if (r2Var.f23464k2) {
-                pyVar.N4(r2Var.getDialogId(), view);
-                return true;
-            }
-        }
-        ow owVar = pyVar.f40262w0;
-        if (owVar != null && owVar.getVisibility() == 0 && pyVar.f40262w0.f28552n) {
-            return false;
-        }
-        return pyVar.o4(view, i10, f10, ((oy) this.f15701b).d);
-    }
-
-    @Override
-    public boolean c0(org.telegram.ui.Cells.t1 t1Var, TLRPC.User user) {
-        return false;
-    }
-
-    @Override
-    public boolean d() {
-        return false;
-    }
-
-    @Override
-    public void d0(float f10, boolean z4) {
-        ec0 ec0Var = (ec0) this.f15701b;
-        qf0 qf0Var = (qf0) this.f15702c;
-        j71 j71Var = qf0Var.d;
-        if (j71Var != null) {
-            long p10 = j71Var.p();
-            float max = 2.8f / ((float) Math.max(60L, p10));
-            long j10 = (((f10 / (1.0f - max)) * max) + f10) * ((float) p10);
-            qf0Var.f30403e = j10;
-            qf0Var.d.L(j10, !z4);
-            if (!z4) {
-                AndroidUtilities.cancelRunOnUIThread(ec0Var);
-                AndroidUtilities.runOnUIThread(ec0Var, 120L);
-            }
-        }
-    }
-
-    @Override
-    public void dismiss() {
-        ((hv) this.f15702c).dismiss();
-    }
-
-    @Override
-    public boolean e() {
-        return true;
-    }
-
-    @Override
-    public int e0(int i10) {
-        switch (this.f15700a) {
-            case 8:
-                return B0(i10);
-            case 21:
-                return B0(i10);
-            default:
-                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f15702c;
-                if (g6Var == null) {
-                    return org.telegram.ui.ActionBar.k6.w0(null, i10, false);
-                }
-                return g6Var.e0(i10);
-        }
-    }
-
-    @Override
-    public boolean e2(org.telegram.ui.Cells.t1 t1Var, TLRPC.PollAnswer pollAnswer) {
-        return false;
-    }
-
-    @Override
-    public String g(org.telegram.ui.Cells.t1 t1Var) {
-        return null;
-    }
-
-    @Override
-    public boolean g0() {
-        return false;
-    }
-
-    @Override
-    public boolean g1(int i10, org.telegram.ui.Cells.t1 t1Var) {
-        return false;
-    }
-
-    @Override
-    public cv0 g2() {
-        return null;
-    }
-
-    @Override
-    public Drawable getDrawable(String str) {
-        switch (this.f15700a) {
-            case 8:
-                return null;
-            case 21:
-                return null;
-            default:
-                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f15702c;
-                if (g6Var == null) {
-                    return org.telegram.ui.ActionBar.k6.O0(str);
-                }
-                return g6Var.getDrawable(str);
-        }
-    }
-
-    @Override
-    public void h() {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            ((py) this.f15702c).finishPreviewFragment();
-        }
-    }
-
-    public void i1(p2.m mVar) {
-        this.f15701b = mVar;
-        if (mVar.a() != null) {
-            mVar.a().getClass();
-            String str = mVar.a().d;
-            if (str != null) {
-                this.f15702c = str;
-            }
-        }
-    }
-
-    public r3.v j1(int i10) {
-        int i11 = 0;
-        while (true) {
-            int[] iArr = (int[]) this.f15701b;
-            if (i11 < iArr.length) {
-                if (i10 == iArr[i11]) {
-                    return ((o4.k0[]) this.f15702c)[i11];
-                }
-                i11++;
-            } else {
-                h5.a.o("BaseMediaChunkOutput", "Unmatched track of type: " + i10);
-                return new r3.j();
-            }
-        }
-    }
-
-    @Override
-    public boolean j2(long j10) {
-        return ((f01) this.f15702c).f26739s;
-    }
-
-    @Override
-    public qg.b k() {
-        switch (this.f15700a) {
-            case 19:
-                if (Build.VERSION.SDK_INT >= 29) {
-                    qg.c cVar = new qg.c(this);
-                    ((PhotoViewer) this.f15702c).W.add(cVar);
-                    return cVar;
-                }
-                return new qg.d(this);
-            default:
-                return new qg.d(this);
-        }
-    }
-
-    @Override
-    public int k0(org.telegram.ui.Cells.t1 t1Var) {
-        return 0;
-    }
-
-    public void k1(com.google.android.gms.internal.play_billing.g3 g3Var) {
-        try {
-            u1(g3Var, (com.google.android.gms.internal.play_billing.p3) this.f15701b);
-        } catch (Throwable th2) {
-            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
-        }
-    }
-
-    @Override
-    public void l(float f10, float f11, int i10, int i11) {
-        switch (this.f15700a) {
-            case 8:
-                org.telegram.ui.ActionBar.k6.q(f10, f11, i10, i11);
-                return;
-            case 21:
-                org.telegram.ui.ActionBar.k6.q(f10, f11, i10, i11);
-                return;
-            default:
-                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f15702c;
-                if (g6Var == null) {
-                    org.telegram.ui.ActionBar.k6.q(f10, f11, i10, i11);
-                    return;
-                } else {
-                    g6Var.l(f10, f11, i10, i11);
-                    return;
-                }
-        }
-    }
-
-    public void l1(com.google.android.gms.internal.play_billing.g3 g3Var, int i10, long j10) {
-        try {
-            com.google.android.gms.internal.play_billing.o3 o3Var = (com.google.android.gms.internal.play_billing.o3) ((com.google.android.gms.internal.play_billing.p3) this.f15701b).g();
-            o3Var.c();
-            com.google.android.gms.internal.play_billing.p3.p((com.google.android.gms.internal.play_billing.p3) o3Var.f3602b, i10);
-            com.google.android.gms.internal.play_billing.p3 p3Var = (com.google.android.gms.internal.play_billing.p3) o3Var.a();
-            this.f15701b = p3Var;
-            if (j10 != 0) {
-                com.google.android.gms.internal.play_billing.o3 o3Var2 = (com.google.android.gms.internal.play_billing.o3) p3Var.g();
-                o3Var2.c();
-                com.google.android.gms.internal.play_billing.p3.r((com.google.android.gms.internal.play_billing.p3) o3Var2.f3602b, j10);
-                p3Var = (com.google.android.gms.internal.play_billing.p3) o3Var2.a();
-            }
-            u1(g3Var, p3Var);
-        } catch (Throwable th2) {
-            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
-        }
-    }
-
-    @Override
-    public boolean l2(org.telegram.ui.Cells.t1 t1Var, TLRPC.TodoItem todoItem) {
-        return false;
-    }
-
-    @Override
-    public boolean m1(MessageObject messageObject) {
-        return org.telegram.ui.b.a(messageObject);
-    }
-
-    @Override
-    public boolean n0() {
-        return false;
-    }
-
-    public void n1(com.google.android.gms.internal.play_billing.g3 g3Var, long j10, boolean z4) {
-        com.google.android.gms.internal.play_billing.p3 p3Var;
-        try {
-            com.google.android.gms.internal.play_billing.f3 f3Var = (com.google.android.gms.internal.play_billing.f3) g3Var.g();
-            com.google.android.gms.internal.play_billing.t3 t3Var = (com.google.android.gms.internal.play_billing.t3) g3Var.o().g();
-            t3Var.c();
-            com.google.android.gms.internal.play_billing.v3.n((com.google.android.gms.internal.play_billing.v3) t3Var.f3602b, z4);
-            f3Var.c();
-            com.google.android.gms.internal.play_billing.g3.r((com.google.android.gms.internal.play_billing.g3) f3Var.f3602b, (com.google.android.gms.internal.play_billing.v3) t3Var.a());
-            com.google.android.gms.internal.play_billing.g3 g3Var2 = (com.google.android.gms.internal.play_billing.g3) f3Var.a();
-            if (j10 == 0) {
-                p3Var = (com.google.android.gms.internal.play_billing.p3) this.f15701b;
-            } else {
-                com.google.android.gms.internal.play_billing.o3 o3Var = (com.google.android.gms.internal.play_billing.o3) ((com.google.android.gms.internal.play_billing.p3) this.f15701b).g();
-                o3Var.c();
-                com.google.android.gms.internal.play_billing.p3.r((com.google.android.gms.internal.play_billing.p3) o3Var.f3602b, j10);
-                p3Var = (com.google.android.gms.internal.play_billing.p3) o3Var.a();
-            }
-            u1(g3Var2, p3Var);
-        } catch (Throwable th2) {
-            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
-        }
-    }
-
-    @Override
-    public boolean o0() {
-        switch (this.f15700a) {
-            case 8:
-                return false;
-            case 21:
-                return false;
-            default:
-                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f15702c;
-                if (g6Var == null) {
-                    return org.telegram.ui.ActionBar.k6.a1();
-                }
-                return g6Var.o0();
-        }
-    }
-
-    public void o1(com.google.android.gms.internal.play_billing.g3 g3Var, int i10, long j10, boolean z4) {
-        com.google.android.gms.internal.play_billing.p3 p3Var;
-        try {
-            com.google.android.gms.internal.play_billing.o3 o3Var = (com.google.android.gms.internal.play_billing.o3) ((com.google.android.gms.internal.play_billing.p3) this.f15701b).g();
-            o3Var.c();
-            com.google.android.gms.internal.play_billing.p3.p((com.google.android.gms.internal.play_billing.p3) o3Var.f3602b, i10);
-            this.f15701b = (com.google.android.gms.internal.play_billing.p3) o3Var.a();
-            com.google.android.gms.internal.play_billing.f3 f3Var = (com.google.android.gms.internal.play_billing.f3) g3Var.g();
-            com.google.android.gms.internal.play_billing.t3 t3Var = (com.google.android.gms.internal.play_billing.t3) g3Var.o().g();
-            t3Var.c();
-            com.google.android.gms.internal.play_billing.v3.n((com.google.android.gms.internal.play_billing.v3) t3Var.f3602b, z4);
-            f3Var.c();
-            com.google.android.gms.internal.play_billing.g3.r((com.google.android.gms.internal.play_billing.g3) f3Var.f3602b, (com.google.android.gms.internal.play_billing.v3) t3Var.a());
-            com.google.android.gms.internal.play_billing.g3 g3Var2 = (com.google.android.gms.internal.play_billing.g3) f3Var.a();
-            if (j10 == 0) {
-                p3Var = (com.google.android.gms.internal.play_billing.p3) this.f15701b;
-            } else {
-                com.google.android.gms.internal.play_billing.o3 o3Var2 = (com.google.android.gms.internal.play_billing.o3) ((com.google.android.gms.internal.play_billing.p3) this.f15701b).g();
-                o3Var2.c();
-                com.google.android.gms.internal.play_billing.p3.r((com.google.android.gms.internal.play_billing.p3) o3Var2.f3602b, j10);
-                p3Var = (com.google.android.gms.internal.play_billing.p3) o3Var2.a();
-            }
-            u1(g3Var2, p3Var);
-        } catch (Throwable th2) {
-            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
-        }
-    }
-
-    @Override
     public void onComplete(Task task) {
-        o8.c cVar = (o8.c) this.f15701b;
-        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f15702c;
-        synchronized (cVar.f16632f) {
-            cVar.f16631e.remove(taskCompletionSource);
+        o8.c cVar = (o8.c) this.f14687b;
+        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f14688c;
+        synchronized (cVar.f16453f) {
+            cVar.e.remove(taskCompletionSource);
         }
     }
 
     @Override
-    public void onError(j71 j71Var, Exception exc) {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f15702c;
+    public void onError(i71 i71Var, Exception exc) {
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f14688c;
         int i10 = secretMediaViewer.Y;
         if (i10 > 0) {
             secretMediaViewer.Y = i10 - 1;
-            AndroidUtilities.runOnUIThread(new h21(8, this, (File) this.f15701b), 100L);
+            AndroidUtilities.runOnUIThread(new b11(9, this, (File) this.f14687b), 100L);
             return;
         }
         FileLog.e(exc);
@@ -809,28 +759,28 @@ public class qa implements OnCompleteListener, od.b, org.telegram.ui.ActionBar.g
 
     @Override
     public void onStateChanged(boolean z4, int i10) {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f15702c;
-        i41 i41Var = secretMediaViewer.f34775f1;
-        if (secretMediaViewer.f34811y != null && secretMediaViewer.f34771e0 != null) {
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f14688c;
+        i41 i41Var = secretMediaViewer.f32213f1;
+        if (secretMediaViewer.f32249y != null && secretMediaViewer.f32209e0 != null) {
             AndroidUtilities.cancelRunOnUIThread(i41Var);
             AndroidUtilities.runOnUIThread(i41Var);
             if (i10 != 4 && i10 != 1) {
                 try {
-                    secretMediaViewer.f34762b.getWindow().addFlags(128);
-                } catch (Exception e6) {
-                    FileLog.e(e6);
+                    secretMediaViewer.f32201b.getWindow().addFlags(128);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
             } else {
                 try {
-                    secretMediaViewer.f34762b.getWindow().clearFlags(128);
-                } catch (Exception e10) {
-                    FileLog.e(e10);
+                    secretMediaViewer.f32201b.getWindow().clearFlags(128);
+                } catch (Exception e6) {
+                    FileLog.e(e6);
                 }
             }
-            if (i10 == 3 && secretMediaViewer.f34807w.getVisibility() != 0) {
-                secretMediaViewer.f34807w.setVisibility(0);
+            if (i10 == 3 && secretMediaViewer.f32245w.getVisibility() != 0) {
+                secretMediaViewer.f32245w.setVisibility(0);
             }
-            if (secretMediaViewer.f34811y.y() && i10 != 4) {
+            if (secretMediaViewer.f32249y.y() && i10 != 4) {
                 if (!secretMediaViewer.B) {
                     secretMediaViewer.B = true;
                 }
@@ -839,11 +789,11 @@ public class qa implements OnCompleteListener, od.b, org.telegram.ui.ActionBar.g
                 if (i10 == 4) {
                     secretMediaViewer.E = true;
                     if (secretMediaViewer.F) {
-                        secretMediaViewer.e(true, !secretMediaViewer.f34790n1);
+                        secretMediaViewer.e(true, !secretMediaViewer.f32228n1);
                         return;
                     }
-                    secretMediaViewer.f34811y.L(0L, false);
-                    secretMediaViewer.f34811y.C();
+                    secretMediaViewer.f32249y.L(0L, false);
+                    secretMediaViewer.f32249y.C();
                 }
             }
         }
@@ -857,8 +807,8 @@ public class qa implements OnCompleteListener, od.b, org.telegram.ui.ActionBar.g
     @Override
     public void onVideoSizeChanged(int i10, int i11, int i12, float f10) {
         float f11;
-        org.telegram.ui.o4 o4Var = ((SecretMediaViewer) this.f15702c).f34807w;
-        if (o4Var != null) {
+        org.telegram.ui.q4 q4Var = ((SecretMediaViewer) this.f14688c).f32245w;
+        if (q4Var != null) {
             if (i12 != 90 && i12 != 270) {
                 i11 = i10;
                 i10 = i11;
@@ -868,7 +818,7 @@ public class qa implements OnCompleteListener, od.b, org.telegram.ui.ActionBar.g
             } else {
                 f11 = (i11 * f10) / i10;
             }
-            o4Var.a(f11, i12);
+            q4Var.a(f11, i12);
         }
     }
 
@@ -876,59 +826,106 @@ public class qa implements OnCompleteListener, od.b, org.telegram.ui.ActionBar.g
     public void p(float f10) {
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
-            ((py) this.f15702c).movePreviewFragment(f10);
+            ((qy) this.f14688c).movePreviewFragment(f10);
         }
     }
 
     @Override
-    public boolean q0(org.telegram.ui.Components.u5 u5Var) {
+    public boolean p0() {
         return false;
     }
 
-    public void q1(com.google.android.gms.internal.play_billing.l3 l3Var) {
-        try {
-            com.google.android.gms.internal.play_billing.w3 t6 = com.google.android.gms.internal.play_billing.x3.t();
-            t6.d((com.google.android.gms.internal.play_billing.p3) this.f15701b);
-            t6.c();
-            com.google.android.gms.internal.play_billing.x3.p((com.google.android.gms.internal.play_billing.x3) t6.f3602b, l3Var);
-            ((c2.u) this.f15702c).h((com.google.android.gms.internal.play_billing.x3) t6.a());
-        } catch (Throwable th2) {
-            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
+    public void q0(boolean z4, boolean z10, float f10) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f14687b;
+        nh.w3 w3Var = (nh.w3) this.f14688c;
+        nh.i9 i9Var = w3Var.e;
+        nh.i9.f15426y1 = f10;
+        nh.h9 h9Var = i9Var.f15476w0;
+        if (h9Var != null) {
+            h9Var.setSpeed(f10);
+        }
+        nh.d4.a0(w3Var.f16007l, z4);
+        if (z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
+            actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
         }
     }
 
-    public void r1(com.google.android.gms.internal.play_billing.a4 a4Var) {
-        try {
-            com.google.android.gms.internal.play_billing.w3 t6 = com.google.android.gms.internal.play_billing.x3.t();
-            t6.d((com.google.android.gms.internal.play_billing.p3) this.f15701b);
-            t6.c();
-            com.google.android.gms.internal.play_billing.x3.r((com.google.android.gms.internal.play_billing.x3) t6.f3602b, a4Var);
-            ((c2.u) this.f15702c).h((com.google.android.gms.internal.play_billing.x3) t6.a());
-        } catch (Throwable th2) {
-            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
+    @Override
+    public void r(org.telegram.ui.w6 w6Var, mh.a aVar, boolean z4) {
+        iv ivVar = (iv) this.f14688c;
+        hv hvVar = ivVar.U;
+        if (aVar != null) {
+            ((mh.b) this.f14687b).i(aVar);
+            ivVar.f35032b0.d();
+            mh.b bVar = ivVar.f35034d0;
+            ey0[] ey0VarArr = ivVar.Y;
+            org.telegram.ui.Cells.y1[] y1VarArr = ivVar.Z;
+            org.telegram.ui.Cells.y1 y1Var = y1VarArr[0];
+            if (y1Var != null) {
+                ey0 ey0Var = ey0VarArr[0];
+                boolean z10 = bVar.f14171m;
+                ey0Var.f24722c = z10;
+                y1Var.c(z10, true);
+            }
+            org.telegram.ui.Cells.y1 y1Var2 = y1VarArr[1];
+            if (y1Var2 != null) {
+                ey0 ey0Var2 = ey0VarArr[1];
+                boolean z11 = bVar.f14172n;
+                ey0Var2.f24722c = z11;
+                y1Var2.c(z11, true);
+            }
+            org.telegram.ui.Cells.y1 y1Var3 = y1VarArr[2];
+            if (y1Var3 != null) {
+                ey0 ey0Var3 = ey0VarArr[2];
+                boolean z12 = bVar.f14173o;
+                ey0Var3.f24722c = z12;
+                y1Var3.c(z12, true);
+            }
+            org.telegram.ui.Cells.y1 y1Var4 = y1VarArr[3];
+            if (y1Var4 != null) {
+                ey0 ey0Var4 = ey0VarArr[3];
+                boolean z13 = bVar.f14174p;
+                ey0Var4.f24722c = z13;
+                y1Var4.c(z13, true);
+            }
+            org.telegram.ui.Cells.y1 y1Var5 = y1VarArr[4];
+            if (y1Var5 != null) {
+                ey0 ey0Var5 = ey0VarArr[4];
+                boolean z14 = bVar.f14175q;
+                ey0Var5.f24722c = z14;
+                y1Var5.c(z14, true);
+            }
+            ivVar.X.a(hvVar.d(), true);
+            hvVar.c(true);
         }
     }
 
-    public void t1(com.google.android.gms.internal.play_billing.b4 b4Var) {
-        if (b4Var == null) {
-            return;
+    public void r0(o0.g gVar) {
+        androidx.biometric.o oVar = (androidx.biometric.o) this.f14688c;
+        o5.i iVar = (o5.i) this.f14687b;
+        int i10 = gVar.f16142b;
+        if (i10 == 0) {
+            oVar.execute(new androidx.biometric.j(iVar, gVar.f16141a, false, 26));
+        } else {
+            oVar.execute(new m2.b(iVar, i10));
         }
-        try {
-            com.google.android.gms.internal.play_billing.w3 t6 = com.google.android.gms.internal.play_billing.x3.t();
-            t6.d((com.google.android.gms.internal.play_billing.p3) this.f15701b);
-            t6.c();
-            com.google.android.gms.internal.play_billing.x3.s((com.google.android.gms.internal.play_billing.x3) t6.f3602b, b4Var);
-            ((c2.u) this.f15702c).h((com.google.android.gms.internal.play_billing.x3) t6.a());
-        } catch (Throwable th2) {
-            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
-        }
+    }
+
+    @Override
+    public boolean r2(org.telegram.ui.Cells.s1 s1Var, TL_iv.PageBlock pageBlock) {
+        return false;
+    }
+
+    @Override
+    public boolean t0(org.telegram.ui.Components.u5 u5Var) {
+        return false;
     }
 
     public String toString() {
-        switch (this.f15700a) {
-            case 5:
+        switch (this.f14686a) {
+            case 6:
                 try {
-                    return T0().toString();
+                    return j0().toString();
                 } catch (ob.e unused) {
                     return "";
                 }
@@ -937,178 +934,185 @@ public class qa implements OnCompleteListener, od.b, org.telegram.ui.ActionBar.g
         }
     }
 
-    public void u1(com.google.android.gms.internal.play_billing.g3 g3Var, com.google.android.gms.internal.play_billing.p3 p3Var) {
-        if (g3Var == null) {
-            return;
-        }
-        try {
-            com.google.android.gms.internal.play_billing.w3 t6 = com.google.android.gms.internal.play_billing.x3.t();
-            t6.d(p3Var);
-            t6.c();
-            com.google.android.gms.internal.play_billing.x3.n((com.google.android.gms.internal.play_billing.x3) t6.f3602b, g3Var);
-            ((c2.u) this.f15702c).h((com.google.android.gms.internal.play_billing.x3) t6.a());
-        } catch (Throwable th2) {
-            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
-        }
-    }
-
     @Override
-    public String v(long j10) {
-        String trim = ((EditTextBoldCursor) this.f15701b).getText().toString().trim();
+    public String w(long j10) {
+        String trim = ((EditTextBoldCursor) this.f14687b).getText().toString().trim();
         if (trim.length() > 16) {
             trim = trim.substring(0, 16);
         }
-        if (!((f01) this.f15702c).f26739s && TextUtils.isEmpty(trim)) {
+        if (!((f01) this.f14688c).f24760s && TextUtils.isEmpty(trim)) {
             return null;
         }
         return trim;
     }
 
     @Override
-    public boolean v2(org.telegram.ui.Cells.t1 t1Var, TL_iv.PageBlock pageBlock) {
+    public ColorFilter x() {
+        switch (this.f14686a) {
+            case 8:
+                return org.telegram.ui.ActionBar.j6.f20197v3;
+            case 21:
+                return org.telegram.ui.ActionBar.j6.f20197v3;
+            default:
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f14688c;
+                if (f6Var == null) {
+                    return org.telegram.ui.ActionBar.j6.f20197v3;
+                }
+                return f6Var.x();
+        }
+    }
+
+    @Override
+    public int x0(int i10) {
+        switch (this.f14686a) {
+            case 8:
+                SparseIntArray sparseIntArray = (SparseIntArray) this.f14687b;
+                int indexOfKey = sparseIntArray.indexOfKey(i10);
+                if (indexOfKey >= 0) {
+                    return sparseIntArray.valueAt(indexOfKey);
+                }
+                return org.telegram.ui.ActionBar.j6.w0(null, i10, false);
+            case 21:
+                SparseIntArray sparseIntArray2 = (SparseIntArray) this.f14687b;
+                if (sparseIntArray2 != null) {
+                    return sparseIntArray2.get(i10);
+                }
+                return org.telegram.ui.ActionBar.j6.w0(null, i10, false);
+            default:
+                SparseIntArray sparseIntArray3 = (SparseIntArray) this.f14687b;
+                int indexOfKey2 = sparseIntArray3.indexOfKey(i10);
+                if (indexOfKey2 >= 0) {
+                    return sparseIntArray3.valueAt(indexOfKey2);
+                }
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f14688c;
+                if (f6Var == null) {
+                    return org.telegram.ui.ActionBar.j6.w0(null, i10, false);
+                }
+                return f6Var.x0(i10);
+        }
+    }
+
+    @Override
+    public java.lang.Object z(od.c r6, wc.c r7) {
+        throw new UnsupportedOperationException("Method not decompiled: n7.qa.z(od.c, wc.c):java.lang.Object");
+    }
+
+    @Override
+    public boolean z2(int i10) {
         return false;
     }
 
-    @Override
-    public ColorFilter w() {
-        switch (this.f15700a) {
-            case 8:
-                return org.telegram.ui.ActionBar.k6.f21978v3;
-            case 21:
-                return org.telegram.ui.ActionBar.k6.f21978v3;
-            default:
-                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f15702c;
-                if (g6Var == null) {
-                    return org.telegram.ui.ActionBar.k6.f21978v3;
-                }
-                return g6Var.w();
-        }
-    }
-
-    public void w1(com.google.android.gms.internal.play_billing.i3 i3Var, com.google.android.gms.internal.play_billing.p3 p3Var) {
-        try {
-            com.google.android.gms.internal.play_billing.w3 t6 = com.google.android.gms.internal.play_billing.x3.t();
-            t6.d(p3Var);
-            t6.c();
-            com.google.android.gms.internal.play_billing.x3.o((com.google.android.gms.internal.play_billing.x3) t6.f3602b, i3Var);
-            ((c2.u) this.f15702c).h((com.google.android.gms.internal.play_billing.x3) t6.a());
-        } catch (Throwable th2) {
-            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
-        }
-    }
-
-    @Override
-    public java.lang.Object x(od.c r6, wc.c r7) {
-        throw new UnsupportedOperationException("Method not decompiled: n7.qa.x(od.c, wc.c):java.lang.Object");
-    }
-
     public qa(int i10, Object obj, Object obj2) {
-        this.f15700a = i10;
-        this.f15701b = obj;
-        this.f15702c = obj2;
+        this.f14686a = i10;
+        this.f14688c = obj;
+        this.f14687b = obj2;
     }
 
     @Override
     public void onRenderedFirstFrame() {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f15702c;
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f14688c;
         if (secretMediaViewer.Z) {
             return;
         }
         secretMediaViewer.Z = true;
-        secretMediaViewer.f34770e.invalidate();
+        secretMediaViewer.e.invalidate();
     }
 
     public qa(Object obj, Object obj2, boolean z4, int i10) {
-        this.f15700a = i10;
-        this.f15702c = obj;
-        this.f15701b = obj2;
+        this.f14686a = i10;
+        this.f14687b = obj;
+        this.f14688c = obj2;
     }
 
     public qa(Context context, com.google.android.gms.internal.play_billing.p3 p3Var) {
-        this.f15700a = 25;
+        this.f14686a = 25;
         c2.u uVar = new c2.u(5);
         try {
             y2.q.b(context);
-            uVar.f2180c = y2.q.a().c(w2.a.f49361e).a("PLAY_BILLING_LIBRARY", new v2.c("proto"), new db.a(18));
+            uVar.f2037c = y2.q.a().c(w2.a.e).a("PLAY_BILLING_LIBRARY", new v2.c("proto"), new ab.a(19));
         } catch (Throwable unused) {
-            uVar.f2179b = true;
+            uVar.f2036b = true;
         }
-        this.f15702c = uVar;
-        this.f15701b = p3Var;
+        this.f14688c = uVar;
+        this.f14687b = p3Var;
     }
 
-    public qa(org.telegram.ui.ActionBar.g6 g6Var) {
-        this.f15700a = 23;
-        this.f15701b = new SparseIntArray();
-        this.f15702c = g6Var;
-        L0();
+    public qa(org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f14686a = 23;
+        this.f14687b = new SparseIntArray();
+        this.f14688c = f6Var;
+        K();
     }
 
     public qa(pb.f fVar) {
-        this.f15700a = 5;
-        this.f15701b = fVar;
+        this.f14686a = 6;
+        this.f14687b = fVar;
     }
 
     public qa(View view) {
-        this.f15700a = 14;
-        u61 u61Var = new u61(this, view);
-        this.f15701b = u61Var;
-        view.addOnLayoutChangeListener(u61Var);
+        this.f14686a = 14;
+        t61 t61Var = new t61(this, view);
+        this.f14687b = t61Var;
+        view.addOnLayoutChangeListener(t61Var);
     }
 
-    public qa(qf0 qf0Var) {
-        this.f15700a = 12;
-        this.f15702c = qf0Var;
-        this.f15701b = new ec0(this, 9);
+    public qa(pf0 pf0Var) {
+        this.f14686a = 12;
+        this.f14688c = pf0Var;
+        this.f14687b = new dc0(this, 9);
     }
 
     public qa(EditText editText) {
-        this.f15700a = 27;
-        this.f15701b = editText;
+        this.f14686a = 27;
+        this.f14687b = editText;
         q1.i iVar = new q1.i(editText);
-        this.f15702c = iVar;
+        this.f14688c = iVar;
         editText.addTextChangedListener(iVar);
-        if (q1.a.f44451b == null) {
-            synchronized (q1.a.f44450a) {
+        if (q1.a.f42709b == null) {
+            synchronized (q1.a.f42708a) {
                 try {
-                    if (q1.a.f44451b == null) {
+                    if (q1.a.f42709b == null) {
                         ?? factory = new Editable.Factory();
                         try {
-                            q1.a.f44452c = Class.forName("android.text.DynamicLayout$ChangeWatcher", false, q1.a.class.getClassLoader());
+                            q1.a.f42710c = Class.forName("android.text.DynamicLayout$ChangeWatcher", false, q1.a.class.getClassLoader());
                         } catch (Throwable unused) {
                         }
-                        q1.a.f44451b = factory;
+                        q1.a.f42709b = factory;
                     }
                 } finally {
                 }
             }
         }
-        editText.setEditableFactory(q1.a.f44451b);
+        editText.setEditableFactory(q1.a.f42709b);
     }
 
-    private final void P0() {
+    private final void Y() {
     }
 
-    private final void Q0() {
-    }
-
-    @Override
-    public void D0() {
+    private final void h0() {
     }
 
     @Override
-    public void G() {
+    public void B2() {
     }
 
     @Override
-    public void G2() {
-    }
-
-    public void L0() {
+    public void C1() {
     }
 
     @Override
-    public void a2() {
+    public void E0() {
+    }
+
+    public void K() {
+    }
+
+    @Override
+    public void V1() {
+    }
+
+    @Override
+    public void b0() {
     }
 
     @Override
@@ -1116,7 +1120,7 @@ public class qa implements OnCompleteListener, od.b, org.telegram.ui.ActionBar.g
     }
 
     @Override
-    public void f1() {
+    public void g1() {
     }
 
     @Override
@@ -1132,99 +1136,103 @@ public class qa implements OnCompleteListener, od.b, org.telegram.ui.ActionBar.g
     }
 
     @Override
-    public void r() {
+    public void s() {
     }
 
     @Override
-    public void w0() {
+    public void v2() {
     }
 
     @Override
-    public void z2() {
+    public void A(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void A(float f10) {
+    public void B(float f10) {
     }
 
     @Override
-    public void C0(org.telegram.ui.Cells.t1 t1Var) {
+    public void B1(float f10) {
     }
 
     @Override
-    public void E(org.telegram.ui.Cells.t1 t1Var) {
+    public void D0(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void H(MessageObject.TextLayoutBlock textLayoutBlock) {
+    public void F(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void H0(long j10) {
+    public void H1(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void I0(org.telegram.ui.Cells.t1 t1Var) {
+    public void I(MessageObject.TextLayoutBlock textLayoutBlock) {
     }
 
     @Override
-    public void J(float f10) {
+    public void I0(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void J1(org.telegram.ui.Cells.t1 t1Var) {
+    public void K0(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void K(org.telegram.ui.Cells.t1 t1Var) {
+    public void L(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void K0(org.telegram.ui.Cells.t1 t1Var) {
+    public void N0(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void M(MessageObject messageObject) {
+    public void O(MessageObject messageObject) {
     }
 
     @Override
-    public void N0(org.telegram.ui.Cells.t1 t1Var) {
+    public void O1(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void R1(org.telegram.ui.Cells.t1 t1Var) {
+    public void P0(long j10) {
     }
 
     @Override
-    public void S0(org.telegram.ui.Cells.t1 t1Var) {
+    public void Q1(MessageObject messageObject) {
     }
 
     @Override
-    public void T(org.telegram.ui.Cells.t1 t1Var) {
+    public void S0(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void T1(MessageObject messageObject) {
+    public void U(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void U(boolean z4) {
+    public void W1(float f10) {
     }
 
     @Override
-    public void X(float f10) {
+    public void Z0(boolean z4) {
     }
 
     @Override
-    public void c1(org.telegram.ui.Cells.t1 t1Var) {
+    public void d(int i10) {
     }
 
     @Override
-    public void d1(org.telegram.ui.Cells.t1 t1Var) {
+    public void d1(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void f(int i10) {
+    public void e0(float f10) {
+    }
+
+    @Override
+    public void e1(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
@@ -1232,23 +1240,27 @@ public class qa implements OnCompleteListener, od.b, org.telegram.ui.ActionBar.g
     }
 
     @Override
-    public void h0(long j10) {
+    public void i2(long j10) {
     }
 
     @Override
-    public void j0(boolean z4) {
+    public void j1(float f10) {
     }
 
     @Override
-    public void l0(org.telegram.ui.Cells.t1 t1Var) {
+    public void j2(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void n(org.telegram.ui.Cells.t1 t1Var) {
+    public void l0(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void o2(org.telegram.ui.Cells.t1 t1Var) {
+    public void n(org.telegram.ui.Cells.s1 s1Var) {
+    }
+
+    @Override
+    public void o0(boolean z4) {
     }
 
     @Override
@@ -1264,212 +1276,200 @@ public class qa implements OnCompleteListener, od.b, org.telegram.ui.ActionBar.g
     }
 
     @Override
-    public void p0(String str) {
+    public void q(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void q(org.telegram.ui.Cells.t1 t1Var) {
+    public void s0(String str) {
     }
 
     @Override
-    public void r0(float f10) {
+    public void s2(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void s(org.telegram.ui.Cells.t1 t1Var) {
+    public void t(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void t(org.telegram.ui.Cells.t1 t1Var) {
+    public void u(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void t0(float f10) {
+    public void v(float f10) {
     }
 
     @Override
-    public void u(float f10) {
+    public void v1(float f10) {
     }
 
     @Override
-    public void v0(float f10) {
+    public void y(org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void w2(org.telegram.ui.Cells.t1 t1Var) {
-    }
-
-    @Override
-    public void y(org.telegram.ui.Cells.t1 t1Var) {
-    }
-
-    @Override
-    public void y0(float f10) {
-    }
-
-    @Override
-    public void z(org.telegram.ui.Cells.t1 t1Var) {
+    public void z0(float f10) {
     }
 
     public qa(PremiumPreviewFragment premiumPreviewFragment) {
-        this.f15700a = 20;
-        this.f15702c = premiumPreviewFragment;
-        this.f15701b = new Paint();
+        this.f14686a = 20;
+        this.f14688c = premiumPreviewFragment;
+        this.f14687b = new Paint();
     }
 
-    private final void e1(int i10, int i11) {
+    private final void H0(int i10, int i11) {
     }
 
-    private final void h1(int i10, int i11) {
-    }
-
-    @Override
-    public void B(long j10, boolean z4) {
+    private final void u0(int i10, int i11) {
     }
 
     @Override
-    public void D(org.telegram.ui.Cells.t1 t1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
+    public void A1(float f10, int i10) {
     }
 
     @Override
-    public void E0(int i10, long j10) {
+    public void C(long j10, boolean z4) {
     }
 
     @Override
-    public void L(int i10, org.telegram.ui.Cells.t1 t1Var) {
+    public void E(org.telegram.ui.Cells.s1 s1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
     }
 
     @Override
-    public void L1(org.telegram.ui.Cells.t1 t1Var, boolean z4) {
+    public void I1(org.telegram.ui.Cells.s1 s1Var, boolean z4) {
     }
 
     @Override
-    public void O1(org.telegram.ui.Cells.t1 t1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    public void L1(org.telegram.ui.Cells.s1 s1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     @Override
-    public void Q(org.telegram.ui.Cells.t1 t1Var, kh.f fVar) {
+    public void M(org.telegram.ui.Cells.s1 s1Var, jh.f fVar) {
     }
 
     @Override
-    public void U0(int i10, org.telegram.ui.Cells.t1 t1Var) {
+    public void N(int i10, org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void W(float f10, int i10) {
+    public void U0(int i10, org.telegram.ui.Cells.s1 s1Var) {
     }
 
     @Override
-    public void W0(org.telegram.ui.Cells.t1 t1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+    public void W0(org.telegram.ui.Cells.s1 s1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
     }
 
     @Override
-    public void c2(org.telegram.ui.Cells.t1 t1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
+    public void Y1(org.telegram.ui.Cells.s1 s1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
     }
 
     @Override
-    public void m0(float f10, int i10) {
+    public void b2(int i10, long j10) {
     }
 
     @Override
-    public void q2(org.telegram.ui.Cells.t1 t1Var, long j10) {
+    public void i1(float f10, int i10) {
     }
 
     @Override
-    public void s1(org.telegram.ui.Cells.t1 t1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    public void l2(org.telegram.ui.Cells.s1 s1Var, long j10) {
     }
 
     @Override
-    public void u0(float f10, int i10) {
+    public void r1(org.telegram.ui.Cells.s1 s1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     @Override
-    public void v1(org.telegram.ui.Cells.t1 t1Var, TLRPC.Document document) {
+    public void u1(org.telegram.ui.Cells.s1 s1Var, TLRPC.Document document) {
+    }
+
+    @Override
+    public void w0(float f10, int i10) {
     }
 
     public qa() {
-        this.f15700a = 3;
-        this.f15701b = new HashSet();
+        this.f14686a = 4;
+        this.f14687b = new HashSet();
     }
 
     public qa(u21 u21Var) {
-        this.f15700a = 21;
-        this.f15702c = u21Var;
+        this.f14686a = 21;
+        this.f14688c = u21Var;
     }
 
-    public qa(bf.b bVar) {
-        this.f15700a = 28;
-        this.f15701b = bVar;
-        this.f15702c = "";
+    public qa(af.c cVar) {
+        this.f14686a = 28;
+        this.f14687b = cVar;
+        this.f14688c = "";
     }
 
     public qa(PhotoViewer photoViewer) {
-        this.f15700a = 19;
-        this.f15702c = photoViewer;
-        this.f15701b = new org.telegram.ui.Components.fa(photoViewer.Y, photoViewer.f34230b0, 0, false);
+        this.f14686a = 19;
+        this.f14688c = photoViewer;
+        this.f14687b = new org.telegram.ui.Components.fa(photoViewer.Y, photoViewer.f31679b0, 0, false);
     }
 
     @Override
-    public void B1(org.telegram.ui.Cells.t1 t1Var, float f10, float f11) {
+    public void C2(org.telegram.ui.Cells.s1 s1Var, int i10, int i11) {
     }
 
     @Override
-    public void F0(org.telegram.ui.Cells.t1 t1Var, TLObject tLObject, boolean z4) {
+    public void F0(org.telegram.ui.Cells.s1 s1Var, TLObject tLObject, boolean z4) {
     }
 
     @Override
-    public void G0(org.telegram.ui.Cells.t1 t1Var, float f10, float f11) {
+    public void G0(org.telegram.ui.Cells.s1 s1Var, float f10, float f11) {
     }
 
     @Override
-    public void H2(org.telegram.ui.Cells.t1 t1Var, int i10, int i11) {
+    public void b1(org.telegram.ui.Cells.s1 s1Var, CharacterStyle characterStyle, boolean z4) {
     }
 
     @Override
-    public void a1(org.telegram.ui.Cells.t1 t1Var, CharacterStyle characterStyle, boolean z4) {
+    public void i0(org.telegram.ui.Cells.s1 s1Var, float f10, float f11) {
     }
 
     @Override
-    public void i0(org.telegram.ui.Cells.t1 t1Var, float f10, float f11) {
+    public void v0(org.telegram.ui.Cells.s1 s1Var, float f10, float f11) {
     }
 
     @Override
-    public void s0(org.telegram.ui.Cells.t1 t1Var, float f10, float f11) {
+    public void z1(org.telegram.ui.Cells.s1 s1Var, float f10, float f11) {
     }
 
     @Override
-    public void d2(org.telegram.ui.Cells.t1 t1Var, TLRPC.User user, TLRPC.Document document, String str) {
+    public void A0(org.telegram.ui.Cells.s1 s1Var, float f10, float f11, boolean z4) {
     }
 
     @Override
-    public void m(org.telegram.ui.Cells.t1 t1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
+    public void Z1(org.telegram.ui.Cells.s1 s1Var, TLRPC.User user, TLRPC.Document document, String str) {
     }
 
     @Override
-    public void x0(org.telegram.ui.Cells.t1 t1Var, TLRPC.User user, float f10, float f11) {
+    public void m(org.telegram.ui.Cells.s1 s1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
     }
 
     @Override
-    public void z0(org.telegram.ui.Cells.t1 t1Var, float f10, float f11, boolean z4) {
+    public void y0(org.telegram.ui.Cells.s1 s1Var, TLRPC.User user, float f10, float f11) {
     }
 
     @Override
-    public void B2(org.telegram.ui.Cells.t1 t1Var, TLRPC.ReactionCount reactionCount, boolean z4, float f10, float f11) {
+    public void f2(org.telegram.ui.Cells.s1 s1Var, int i10, float f10, float f11, boolean z4) {
     }
 
     @Override
-    public void i(org.telegram.ui.Cells.t1 t1Var, ArrayList arrayList, int i10, int i11, int i12) {
+    public void i(org.telegram.ui.Cells.s1 s1Var, ArrayList arrayList, int i10, int i11, int i12) {
     }
 
     @Override
-    public void k2(org.telegram.ui.Cells.t1 t1Var, int i10, float f10, float f11, boolean z4) {
+    public void x2(org.telegram.ui.Cells.s1 s1Var, TLRPC.ReactionCount reactionCount, boolean z4, float f10, float f11) {
     }
 
     @Override
-    public void S(org.telegram.ui.Cells.t1 t1Var, TLRPC.Chat chat, int i10, float f10, float f11, boolean z4) {
+    public void T(org.telegram.ui.Cells.s1 s1Var, TLRPC.Chat chat, int i10, float f10, float f11, boolean z4) {
     }
 
     @Override
-    public void X1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
+    public void T1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
     }
 }

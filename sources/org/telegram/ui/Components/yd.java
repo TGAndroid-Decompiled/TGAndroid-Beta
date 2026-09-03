@@ -1,22 +1,22 @@
 package org.telegram.ui.Components;
 public final class yd implements Runnable {
-    public final int f33515a;
-    public final ChatActivityEnterView f33516b;
+    public final int f31000a;
+    public final ChatActivityEnterView f31001b;
 
     public yd(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f33515a = i10;
-        this.f33516b = chatActivityEnterView;
+        this.f31000a = i10;
+        this.f31001b = chatActivityEnterView;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f33515a;
-        ChatActivityEnterView chatActivityEnterView = this.f33516b;
+        int i10 = this.f31000a;
+        ChatActivityEnterView chatActivityEnterView = this.f31001b;
         switch (i10) {
             case 0:
                 eg egVar = chatActivityEnterView.V2;
                 if (egVar != null) {
-                    egVar.w1();
+                    egVar.v1();
                     return;
                 }
                 return;
@@ -41,7 +41,7 @@ public final class yd implements Runnable {
                 chatActivityEnterView.m0.callOnClick();
                 return;
             default:
-                int i11 = ChatActivityEnterView.f24570j5;
+                int i11 = ChatActivityEnterView.f22702j5;
                 chatActivityEnterView.C();
                 return;
         }

@@ -9,7 +9,7 @@ public abstract class h0 {
     }
 
     public static h b(View view, h hVar) {
-        ContentInfo d = hVar.f46456a.d();
+        ContentInfo d = hVar.f43130a.d();
         Objects.requireNonNull(d);
         ContentInfo performReceiveContent = view.performReceiveContent(d);
         if (performReceiveContent == null) {

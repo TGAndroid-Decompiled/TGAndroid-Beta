@@ -1,63 +1,132 @@
 package org.telegram.ui;
 
-import android.widget.TextView;
-public final class k5 implements org.telegram.ui.Components.jo0 {
-    public final int f38189a;
-    public final TextView f38190b;
-    public final l5 f38191c;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.Spannable;
+import android.text.style.ReplacementSpan;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class k5 extends ReplacementSpan {
+    public final Paint f35419a;
+    public final ImageReceiver f35420b;
+    public final org.telegram.ui.Components.z8 f35421c;
+    public float d;
+    public final int e;
+    public View f35422f;
+    public boolean h;
+    public final j5 f35423n;
+    public float f35424r;
+    public int f35425s;
+    public boolean v;
 
-    public k5(l5 l5Var, TextView textView, int i10) {
-        this.f38189a = i10;
-        this.f38191c = l5Var;
-        this.f38190b = textView;
+    public k5(int i10, View view) {
+        this(view, 18.0f, i10);
     }
 
-    @Override
-    public final void A() {
-        int i10 = this.f38189a;
+    public static void a(CharSequence charSequence, org.telegram.ui.Cells.r8 r8Var) {
+        if (charSequence != null && (charSequence instanceof Spannable)) {
+            Spannable spannable = (Spannable) charSequence;
+            for (k5 k5Var : (k5[]) spannable.getSpans(0, spannable.length(), k5.class)) {
+                k5Var.d(r8Var);
+            }
+        }
     }
 
-    @Override
-    public final void X(float f10, boolean z4) {
-        switch (this.f38189a) {
-            case 0:
-                l5.f38538c = f10;
-                this.f38190b.setText("Saturation " + (f10 * 5.0f));
-                org.telegram.ui.Components.pv0 pv0Var = this.f38191c.f38540b;
-                pv0Var.N();
-                pv0Var.M();
-                return;
-            default:
-                this.f38190b.setText("Alpha " + l5.f38539e);
-                l5.f38539e = f10;
-                this.f38191c.f38540b.M();
-                return;
+    public final void b(TLRPC.Chat chat) {
+        int i10 = this.e;
+        org.telegram.ui.Components.z8 z8Var = this.f35421c;
+        z8Var.k(i10, chat);
+        this.f35420b.setForUserOrChat(chat, z8Var);
+    }
+
+    public final void c(long j10) {
+        int i10 = this.e;
+        if (j10 >= 0) {
+            e(MessagesController.getInstance(i10).getUser(Long.valueOf(j10)));
+        } else {
+            b(MessagesController.getInstance(i10).getChat(Long.valueOf(-j10)));
+        }
+    }
+
+    public final void d(View view) {
+        View view2 = this.f35422f;
+        if (view2 != view) {
+            j5 j5Var = this.f35423n;
+            ImageReceiver imageReceiver = this.f35420b;
+            if (view2 != null) {
+                view2.removeOnAttachStateChangeListener(j5Var);
+                if (this.f35422f.isAttachedToWindow() && !view.isAttachedToWindow()) {
+                    imageReceiver.onDetachedFromWindow();
+                }
+            }
+            View view3 = this.f35422f;
+            if ((view3 == null || !view3.isAttachedToWindow()) && view != null && view.isAttachedToWindow()) {
+                imageReceiver.onAttachedToWindow();
+            }
+            this.f35422f = view;
+            imageReceiver.setParentView(view);
+            if (view != null) {
+                view.addOnAttachStateChangeListener(j5Var);
+            }
         }
     }
 
     @Override
-    public final CharSequence getContentDescription() {
-        switch (this.f38189a) {
-            case 0:
-                return null;
-            default:
-                return null;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
+        float f11 = 1.0f;
+        if (this.h) {
+            int i15 = this.f35425s;
+            int alpha = paint.getAlpha();
+            Paint paint2 = this.f35419a;
+            if (i15 != alpha) {
+                int alpha2 = paint.getAlpha();
+                this.f35425s = alpha2;
+                paint2.setAlpha(alpha2);
+                paint2.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.j6.l1(this.f35425s / 255.0f, 855638016));
+            }
+            canvas.drawCircle((AndroidUtilities.dp(this.d) / 2.0f) + 0.0f + f10, ((i12 + i14) / 2.0f) + this.f35424r, AndroidUtilities.dp(this.d) / 2.0f, paint2);
         }
+        float f12 = 0.0f + f10;
+        float f13 = (i12 + i14) / 2.0f;
+        ImageReceiver imageReceiver = this.f35420b;
+        imageReceiver.setImageCoords(f12, (f13 + this.f35424r) - (AndroidUtilities.dp(this.d) / 2.0f), AndroidUtilities.dp(this.d), AndroidUtilities.dp(this.d));
+        if (this.v) {
+            f11 = paint.getAlpha() / 255.0f;
+        }
+        imageReceiver.setAlpha(f11);
+        imageReceiver.draw(canvas);
+    }
+
+    public final void e(TLRPC.User user) {
+        int i10 = this.e;
+        org.telegram.ui.Components.z8 z8Var = this.f35421c;
+        z8Var.m(i10, user);
+        this.f35420b.setForUserOrChat(user, z8Var);
     }
 
     @Override
-    public final int m0() {
-        switch (this.f38189a) {
-            case 0:
-                return 0;
-            default:
-                return 0;
-        }
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return AndroidUtilities.dp(this.d);
     }
 
-    private final void a() {
-    }
-
-    private final void b() {
+    public k5(View view, float f10, int i10) {
+        this.h = true;
+        this.f35423n = new j5(this, 0);
+        this.f35425s = 255;
+        this.v = true;
+        this.e = i10;
+        ImageReceiver imageReceiver = new ImageReceiver(view);
+        this.f35420b = imageReceiver;
+        imageReceiver.setInvalidateAll(true);
+        this.f35421c = new org.telegram.ui.Components.z8((org.telegram.ui.ActionBar.f6) null);
+        imageReceiver.setRoundRadius(AndroidUtilities.dp(f10));
+        this.d = f10;
+        Paint paint = new Paint(1);
+        this.f35419a = paint;
+        paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), 855638016);
+        d(view);
     }
 }

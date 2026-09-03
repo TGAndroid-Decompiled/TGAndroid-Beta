@@ -1,6 +1,6 @@
 package e2;
 public interface d {
-    void p();
+    void m0();
 
-    void u(int i10, Object obj);
+    void r0(int i10, Object obj);
 }

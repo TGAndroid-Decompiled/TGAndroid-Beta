@@ -7,15 +7,15 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import java.util.ArrayList;
 import java.util.Arrays;
-public final class ex0 implements v60, ug.e {
-    public final int f36605a;
-    public final boolean f36606b;
-    public final Object f36607c;
+public final class ex0 implements w60, tg.e {
+    public final int f33875a;
+    public final boolean f33876b;
+    public final Object f33877c;
 
     public ex0(int i10, Object obj, boolean z4) {
-        this.f36607c = obj;
-        this.f36605a = i10;
-        this.f36606b = z4;
+        this.f33877c = obj;
+        this.f33875a = i10;
+        this.f33876b = z4;
     }
 
     @Override
@@ -23,30 +23,30 @@ public final class ex0 implements v60, ug.e {
         Paint paint;
         Path.Direction direction;
         float f10;
-        qg.b bVar = (qg.b) this.f36607c;
-        float[] fArr2 = qg.b.C;
-        qg.a aVar = bVar.h;
+        pg.b bVar = (pg.b) this.f33877c;
+        float[] fArr2 = pg.b.C;
+        pg.a aVar = bVar.h;
         Path path = new Path();
         Path.Direction direction2 = Path.Direction.CW;
         path.addRoundRect(rectF, fArr, direction2);
         Paint paint2 = new Paint(1);
         paint2.setStyle(Paint.Style.FILL);
-        paint2.setColor(this.f36605a);
-        float f11 = bVar.f44889l;
+        paint2.setColor(this.f33875a);
+        float f11 = bVar.f41250l;
         if (f11 > 0.0f) {
-            paint2.setShadowLayer(f11, 0.0f, bVar.f44890m, bVar.d);
+            paint2.setShadowLayer(f11, 0.0f, bVar.f41251m, bVar.d);
         }
         canvas.drawPath(path, paint2);
-        if (bVar.f44889l > 0.0f) {
+        if (bVar.f41250l > 0.0f) {
             paint2.clearShadowLayer();
             canvas.drawPath(path, paint2);
         }
-        if (this.f36606b) {
-            float[] copyOf = Arrays.copyOf(aVar.f44868b, 8);
-            boolean c3 = lf.l0.c(copyOf);
+        if (this.f33876b) {
+            float[] copyOf = Arrays.copyOf(aVar.f41231b, 8);
+            boolean c3 = kf.m0.c(copyOf);
             float min = Math.min(rectF.width(), rectF.height()) / 2.0f;
             Paint paint3 = new Paint(1);
-            if (Color.alpha(bVar.f44884f) > 0 && copyOf[0] > 0.0f) {
+            if (Color.alpha(bVar.f41245f) > 0 && copyOf[0] > 0.0f) {
                 Arrays.fill(fArr2, 0.0f);
                 fArr2[0] = copyOf[0];
                 fArr2[1] = copyOf[1];
@@ -67,15 +67,15 @@ public final class ex0 implements v60, ug.e {
                 direction = direction2;
                 float f14 = rectF.left;
                 float f15 = rectF.top;
-                path2.addRoundRect(f14, aVar.f44873i + f15, rectF.right, Math.min(Math.max(copyOf[0], copyOf[2]) + f15, rectF.bottom), fArr2, Path.Direction.CCW);
-                paint.setColor(bVar.f44884f);
+                path2.addRoundRect(f14, aVar.f41235i + f15, rectF.right, Math.min(Math.max(copyOf[0], copyOf[2]) + f15, rectF.bottom), fArr2, Path.Direction.CCW);
+                paint.setColor(bVar.f41245f);
                 canvas.drawPath(path2, paint);
             } else {
                 paint = paint3;
                 direction = direction2;
                 f10 = 0.0f;
             }
-            if (Color.alpha(bVar.f44885g) > 0 && copyOf[4] > f10) {
+            if (Color.alpha(bVar.f41246g) > 0 && copyOf[4] > f10) {
                 Arrays.fill(fArr2, 0.0f);
                 fArr2[4] = copyOf[4];
                 fArr2[5] = copyOf[5];
@@ -89,8 +89,8 @@ public final class ex0 implements v60, ug.e {
                 }
                 Path path3 = new Path();
                 path3.addRoundRect(rectF.left, Math.max(rectF.bottom - Math.max(copyOf[4], copyOf[6]), rectF.top), rectF.right, rectF.bottom, fArr2, direction);
-                path3.addRoundRect(rectF.left, Math.max(rectF.bottom - Math.max(copyOf[4], copyOf[6]), rectF.top), rectF.right, rectF.bottom - aVar.f44874j, fArr2, Path.Direction.CCW);
-                paint.setColor(bVar.f44885g);
+                path3.addRoundRect(rectF.left, Math.max(rectF.bottom - Math.max(copyOf[4], copyOf[6]), rectF.top), rectF.right, rectF.bottom - aVar.f41236j, fArr2, Path.Direction.CCW);
+                paint.setColor(bVar.f41246g);
                 canvas.drawPath(path3, paint);
             }
         }
@@ -99,11 +99,11 @@ public final class ex0 implements v60, ug.e {
     @Override
     public void b(ArrayList arrayList, boolean z4, boolean z10) {
         char c3;
-        PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) this.f36607c;
+        PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) this.f33877c;
         boolean[] zArr = privacyControlActivity.B;
         int i10 = privacyControlActivity.Q;
-        int i11 = this.f36605a;
-        boolean z11 = this.f36606b;
+        int i11 = this.f33875a;
+        boolean z11 = this.f33876b;
         int i12 = 0;
         boolean z12 = true;
         if (i11 == i10) {
@@ -114,7 +114,7 @@ public final class ex0 implements v60, ug.e {
                 i12++;
             }
         } else {
-            boolean[] zArr2 = privacyControlActivity.f34546y;
+            boolean[] zArr2 = privacyControlActivity.f31989y;
             int i13 = privacyControlActivity.F;
             if (i13 == 2) {
                 c3 = 0;
@@ -130,6 +130,6 @@ public final class ex0 implements v60, ug.e {
             }
         }
         privacyControlActivity.E0();
-        privacyControlActivity.f34513a.l();
+        privacyControlActivity.f31957a.l();
     }
 }

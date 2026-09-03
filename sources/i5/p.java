@@ -1,6 +1,6 @@
 package i5;
 public interface p {
-    void r(hg.f fVar);
+    void l(gg.f fVar);
 
-    void s();
+    void z();
 }

@@ -7,19 +7,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class nt0 extends au0 {
     public final int m0;
-    public final NotificationCenter.NotificationCenterDelegate f39450n0;
+    public final NotificationCenter.NotificationCenterDelegate f36581n0;
 
     public nt0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, du0 du0Var, FrameLayout frameLayout, int i10) {
         super(context, du0Var, frameLayout);
         this.m0 = i10;
-        this.f39450n0 = notificationCenterDelegate;
+        this.f36581n0 = notificationCenterDelegate;
     }
 
     @Override
     public boolean C() {
         switch (this.m0) {
             case 0:
-                return !((PhotoViewer) this.f39450n0).f34384s;
+                return !((PhotoViewer) this.f36581n0).f31832s;
             default:
                 return super.C();
         }
@@ -29,9 +29,9 @@ public final class nt0 extends au0 {
     public void D() {
         switch (this.m0) {
             case 1:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f39450n0;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36581n0;
                 if (secretMediaViewer.G && getScrollY() <= 0) {
-                    AndroidUtilities.runOnUIThread(secretMediaViewer.f34792o1, 3000L);
+                    AndroidUtilities.runOnUIThread(secretMediaViewer.f32230o1, 3000L);
                     return;
                 }
                 return;
@@ -44,7 +44,7 @@ public final class nt0 extends au0 {
     public void F() {
         switch (this.m0) {
             case 1:
-                AndroidUtilities.cancelRunOnUIThread(((SecretMediaViewer) this.f39450n0).f34792o1);
+                AndroidUtilities.cancelRunOnUIThread(((SecretMediaViewer) this.f36581n0).f32230o1);
                 return;
             default:
                 return;
@@ -56,9 +56,9 @@ public final class nt0 extends au0 {
         boolean z4;
         switch (this.m0) {
             case 1:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f39450n0;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36581n0;
                 if (secretMediaViewer.H0 == null) {
-                    if (getScrollY() < getMeasuredHeight() / 3.0f && secretMediaViewer.f34778h0) {
+                    if (getScrollY() < getMeasuredHeight() / 3.0f && secretMediaViewer.f32216h0) {
                         z4 = true;
                     } else {
                         z4 = false;
@@ -81,9 +81,9 @@ public final class nt0 extends au0 {
         switch (this.m0) {
             case 0:
                 super.invalidate();
-                PhotoViewer photoViewer = (PhotoViewer) this.f39450n0;
+                PhotoViewer photoViewer = (PhotoViewer) this.f36581n0;
                 mu0[] mu0VarArr = photoViewer.T0;
-                ImageView[] imageViewArr = photoViewer.f34413v3;
+                ImageView[] imageViewArr = photoViewer.f31861v3;
                 if (photoViewer.G) {
                     int scrollY = getScrollY();
                     float translationY = photoViewer.N1.getTranslationY();
@@ -99,7 +99,7 @@ public final class nt0 extends au0 {
                         z10 = false;
                     }
                     if (!z4) {
-                        int b10 = mu0VarArr[0].b() + mu0VarArr[0].f39077j;
+                        int b10 = mu0VarArr[0].b() + mu0VarArr[0].f36210j;
                         if (C()) {
                             i10 = AndroidUtilities.statusBarHeight;
                         } else {
@@ -118,7 +118,7 @@ public final class nt0 extends au0 {
                         }
                         z10 = z11;
                     }
-                    if (photoViewer.f34423w3) {
+                    if (photoViewer.f31871w3) {
                         if (imageViewArr[0].getTag() != null && ((Integer) imageViewArr[0].getTag()).intValue() == 3 && z10) {
                             imageViewArr[0].setTag(2);
                             imageViewArr[0].animate().alpha(1.0f).setDuration(150L).setListener(new ss0(this, 3)).start();

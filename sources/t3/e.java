@@ -5,18 +5,18 @@ import r3.r;
 import r3.t;
 import r3.v;
 public final class e {
-    public final v f47897a;
-    public final int f47898b;
-    public final int f47899c;
+    public final v f44522a;
+    public final int f44523b;
+    public final int f44524c;
     public final long d;
-    public final int f47900e;
-    public int f47901f;
-    public int f47902g;
+    public final int e;
+    public int f44525f;
+    public int f44526g;
     public int h;
-    public int f47903i;
-    public int f47904j;
-    public long[] f47905k;
-    public int[] f47906l;
+    public int f44527i;
+    public int f44528j;
+    public long[] f44529k;
+    public int[] f44530l;
 
     public e(int i10, int i11, long j10, int i12, v vVar) {
         int i13;
@@ -27,39 +27,39 @@ public final class e {
         }
         h5.a.f(z4);
         this.d = j10;
-        this.f47900e = i12;
-        this.f47897a = vVar;
+        this.e = i12;
+        this.f44522a = vVar;
         if (i11 == 2) {
             i13 = 1667497984;
         } else {
             i13 = 1651965952;
         }
         int i15 = (((i10 % 10) + 48) << 8) | ((i10 / 10) + 48);
-        this.f47898b = i13 | i15;
+        this.f44523b = i13 | i15;
         if (i11 == 2) {
             i14 = i15 | 1650720768;
         } else {
             i14 = -1;
         }
-        this.f47899c = i14;
-        this.f47905k = new long[512];
-        this.f47906l = new int[512];
+        this.f44524c = i14;
+        this.f44529k = new long[512];
+        this.f44530l = new int[512];
     }
 
     public final t a(int i10) {
-        return new t(((this.d * 1) / this.f47900e) * this.f47906l[i10], this.f47905k[i10]);
+        return new t(((this.d * 1) / this.e) * this.f44530l[i10], this.f44529k[i10]);
     }
 
     public final r b(long j10) {
-        int i10 = (int) (j10 / ((this.d * 1) / this.f47900e));
-        int d = d0.d(this.f47906l, i10, true, true);
-        if (this.f47906l[d] == i10) {
+        int i10 = (int) (j10 / ((this.d * 1) / this.e));
+        int d = d0.d(this.f44530l, i10, true, true);
+        if (this.f44530l[d] == i10) {
             t a2 = a(d);
             return new r(a2, a2);
         }
         t a10 = a(d);
         int i11 = d + 1;
-        if (i11 < this.f47905k.length) {
+        if (i11 < this.f44529k.length) {
             return new r(a10, a(i11));
         }
         return new r(a10, a10);

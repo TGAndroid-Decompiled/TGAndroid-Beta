@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-public final class z51 extends pv0 {
-    public final int f33806t0;
+public final class z51 extends qv0 {
+    public final int f31259t0;
 
-    public z51(Context context, org.telegram.ui.ActionBar.f5 f5Var, int i10) {
-        super(context, f5Var);
-        this.f33806t0 = i10;
+    public z51(Context context, org.telegram.ui.ActionBar.e5 e5Var, int i10) {
+        super(context, e5Var);
+        this.f31259t0 = i10;
     }
 
     @Override
     public boolean P() {
-        switch (this.f33806t0) {
+        switch (this.f31259t0) {
             case 1:
                 return false;
             case 2:
@@ -29,10 +29,10 @@ public final class z51 extends pv0 {
 
     @Override
     public void addView(View view) {
-        switch (this.f33806t0) {
+        switch (this.f31259t0) {
             case 3:
-                if (view instanceof mz) {
-                    ViewGroup.LayoutParams layoutParams = ((mz) view).getLayoutParams();
+                if (view instanceof kz) {
+                    ViewGroup.LayoutParams layoutParams = ((kz) view).getLayoutParams();
                     if (layoutParams == null) {
                         layoutParams = new FrameLayout.LayoutParams(-1, -2);
                     }
@@ -56,7 +56,7 @@ public final class z51 extends pv0 {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f33806t0) {
+        switch (this.f31259t0) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
                 return;

@@ -1,15 +1,10 @@
 package of;
 
-import cb.b;
+import h7.u;
 import java.nio.ShortBuffer;
-import z9.d;
 public interface a {
-    public static final d f16749l = new d(14);
-    public static final db.a f16750m = new db.a(15);
-    public static final ab.a f16751o = new ab.a(15);
-    public static final b f16752p = new b(15);
+    public static final u f16557q = new u(15);
+    public static final ab.a f16558t = new ab.a(16);
 
-    int S1(int i10, int i11, int i12);
-
-    void X0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11);
+    void r(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12);
 }

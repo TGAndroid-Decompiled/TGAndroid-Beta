@@ -1,54 +1,49 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class si0 extends org.telegram.ui.Cells.t1 {
-    public int Ce;
-    public int De;
-    public int Ee;
-    public final ti0 Fe;
-
-    public si0(ti0 ti0Var, Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, i10, true, null, g6Var);
-        this.Fe = ti0Var;
-        this.Ce = Integer.MAX_VALUE;
-        this.De = Integer.MAX_VALUE;
-        this.Ee = -1;
-    }
-
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+public final class si0 extends f2.u0 {
     @Override
-    public final boolean isPressed() {
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        int id2;
-        super.onLayout(z4, i10, i11, i12, i13);
-        if (this.Wc.f23708w0 && i11 != 0 && this.Ce != Integer.MAX_VALUE && i13 != 0 && this.De != Integer.MAX_VALUE) {
-            int i14 = this.Ee;
-            int i15 = 0;
-            if (getMessageObject() == null) {
-                id2 = 0;
-            } else {
-                id2 = getMessageObject().getId();
-            }
-            if (i14 == id2) {
-                if (!this.Fe.f41573t0) {
-                    setTranslationY(-(i11 - this.Ce));
-                    animate().translationY(0.0f).setDuration(320L).setInterpolator(org.telegram.ui.Components.pr.h).start();
+    public final void a(Rect rect, View view, RecyclerView recyclerView, f2.i1 i1Var) {
+        org.telegram.ui.Cells.s1 s1Var;
+        MessageObject.GroupedMessages currentMessagesGroup;
+        MessageObject.GroupedMessagePosition currentPosition;
+        int i10 = 0;
+        rect.bottom = 0;
+        if ((view instanceof org.telegram.ui.Cells.s1) && (currentMessagesGroup = (s1Var = (org.telegram.ui.Cells.s1) view).getCurrentMessagesGroup()) != null && (currentPosition = s1Var.getCurrentPosition()) != null && currentPosition.siblingHeights != null) {
+            Point point = AndroidUtilities.displaySize;
+            float max = Math.max(point.x, point.y) * 0.5f;
+            int extraInsetHeight = s1Var.getExtraInsetHeight();
+            int i11 = 0;
+            while (true) {
+                float[] fArr = currentPosition.siblingHeights;
+                if (i11 >= fArr.length) {
+                    break;
                 }
-                this.Ce = getTop();
-                this.De = getBottom();
-                if (getMessageObject() != null) {
-                    i15 = getMessageObject().getId();
-                }
-                this.Ee = i15;
+                extraInsetHeight += (int) Math.ceil(fArr[i11] * max);
+                i11++;
             }
+            int round = (Math.round(AndroidUtilities.density * 7.0f) * (currentPosition.maxY - currentPosition.minY)) + extraInsetHeight;
+            int size = currentMessagesGroup.posArray.size();
+            while (true) {
+                if (i10 < size) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = currentMessagesGroup.posArray.get(i10);
+                    byte b10 = groupedMessagePosition.minY;
+                    byte b11 = currentPosition.minY;
+                    if (b10 == b11 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b10 != b11 || groupedMessagePosition.maxY != currentPosition.maxY) && b10 == b11)) {
+                        round = org.telegram.messenger.y3.z(4.0f, (int) Math.ceil(max * groupedMessagePosition.f16646ph), round);
+                        break;
+                    }
+                    i10++;
+                } else {
+                    break;
+                }
+            }
+            rect.bottom = -round;
         }
-    }
-
-    @Override
-    public final jh.j w3() {
-        return jh.j.d(1, this, this.Fe.C);
     }
 }

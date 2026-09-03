@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.view.View;
-public interface fz0 extends org.telegram.ui.Cells.x9 {
+public interface fz0 extends org.telegram.ui.Cells.w9 {
     void attach(View view);
 
     void detach(View view);

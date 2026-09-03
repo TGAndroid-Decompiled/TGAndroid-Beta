@@ -2,12 +2,12 @@ package g6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import j7.f5;
+import j7.l0;
 import java.util.ArrayList;
 public final class c implements Parcelable.Creator {
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        int z4 = f5.z(parcel);
+        int z4 = l0.z(parcel);
         ArrayList arrayList = null;
         String str = null;
         String str2 = null;
@@ -19,21 +19,21 @@ public final class c implements Parcelable.Creator {
                 if (c3 != 2) {
                     if (c3 != 3) {
                         if (c3 != 4) {
-                            f5.y(parcel, readInt);
+                            l0.y(parcel, readInt);
                         } else {
-                            str2 = f5.h(parcel, readInt);
+                            str2 = l0.h(parcel, readInt);
                         }
                     } else {
-                        str = f5.h(parcel, readInt);
+                        str = l0.h(parcel, readInt);
                     }
                 } else {
-                    z10 = f5.n(parcel, readInt);
+                    z10 = l0.n(parcel, readInt);
                 }
             } else {
-                arrayList = f5.l(parcel, readInt, y5.c.CREATOR);
+                arrayList = l0.l(parcel, readInt, y5.c.CREATOR);
             }
         }
-        f5.m(parcel, z4);
+        l0.m(parcel, z4);
         return new a(arrayList, z10, str, str2);
     }
 

@@ -1,38 +1,28 @@
 package org.telegram.ui;
 
-import android.text.style.URLSpan;
 import android.view.View;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-public final class pf implements Utilities.CallbackReturn {
-    public final int f39999a;
-    public final Object f40000b;
-    public final Object f40001c;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class pf implements View.OnClickListener {
+    public final int f37114a;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f37115b;
 
-    public pf(int i10, Object obj, Object obj2) {
-        this.f39999a = i10;
-        this.f40000b = obj;
-        this.f40001c = obj2;
+    public pf(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int i10) {
+        this.f37114a = i10;
+        this.f37115b = actionBarPopupWindow$ActionBarPopupWindowLayout;
     }
 
     @Override
-    public final Object run(Object obj) {
-        org.telegram.ui.Cells.t1 t1Var;
-        switch (this.f39999a) {
+    public final void onClick(View view) {
+        switch (this.f37114a) {
             case 0:
-                xn xnVar = (xn) this.f40000b;
-                View view = (View) this.f40001c;
-                URLSpan uRLSpan = (URLSpan) obj;
-                MessageObject messageObject = xnVar.f43095a5;
-                if (view instanceof org.telegram.ui.Cells.t1) {
-                    t1Var = (org.telegram.ui.Cells.t1) view;
-                } else {
-                    t1Var = null;
-                }
-                xnVar.U7(uRLSpan, false, messageObject, t1Var);
-                return Boolean.TRUE;
+                this.f37115b.getSwipeBack().b(true);
+                return;
+            case 1:
+                this.f37115b.getSwipeBack().b(true);
+                return;
             default:
-                return fh.c.d((View) obj, (String) this.f40000b, (String) this.f40001c, null, null);
+                this.f37115b.getSwipeBack().b(true);
+                return;
         }
     }
 }

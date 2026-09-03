@@ -18,9 +18,9 @@ public final class vc1 extends org.telegram.ui.Components.lq0 {
         int m9 = hVar.m();
         xc1 xc1Var = this.Y0;
         if (m9 == 1) {
-            xc1Var.f43014a.f37988i0.m(((TLRPC.Dialog) hVar.n(0)).f20849id, Integer.valueOf(i10), 61);
+            xc1Var.f39959a.f35205i0.m(((TLRPC.Dialog) hVar.n(0)).f19163id, Integer.valueOf(i10), 61);
         } else {
-            xc1Var.f43014a.f37988i0.k(0L, 61, Integer.valueOf(i10), Integer.valueOf(hVar.m()), null, null);
+            xc1Var.f39959a.f35205i0.k(0L, 61, Integer.valueOf(i10), Integer.valueOf(hVar.m()), null, null);
         }
     }
 }

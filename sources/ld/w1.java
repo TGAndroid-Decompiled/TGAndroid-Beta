@@ -1,6 +1,6 @@
 package ld;
 public final class w1 implements o0, p {
-    public static final w1 f12374a = new Object();
+    public static final w1 f12045a = new Object();
 
     @Override
     public final boolean b(Throwable th2) {

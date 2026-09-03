@@ -1,60 +1,49 @@
 package org.telegram.ui.Components;
 
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.Utilities;
-public final class s30 implements Runnable {
-    public final int f30982a;
-    public final u30 f30983b;
-    public final String f30984c;
-    public final int d;
+public final class s30 implements tf.i1 {
+    public final t30 f28661a;
 
-    public s30(u30 u30Var, String str, int i10, int i11) {
-        this.f30982a = i11;
-        this.f30983b = u30Var;
-        this.f30984c = str;
-        this.d = i10;
+    public s30(t30 t30Var) {
+        this.f28661a = t30Var;
     }
 
     @Override
-    public final void run() {
-        long j10;
-        switch (this.f30982a) {
-            case 0:
-                u30 u30Var = this.f30983b;
-                String str = this.f30984c;
-                int i10 = this.d;
-                if (u30Var.f31490e != null) {
-                    u30Var.f31490e = null;
-                    AndroidUtilities.runOnUIThread(new s30(u30Var, str, i10, 1));
-                    return;
-                }
-                return;
-            default:
-                u30 u30Var2 = this.f30983b;
-                String str2 = this.f30984c;
-                int i11 = this.d;
-                ArrayList arrayList = null;
-                u30Var2.f31490e = null;
-                if (!ChatObject.isChannel(u30Var2.f31495w.S) && u30Var2.f31495w.T != null) {
-                    arrayList = new ArrayList(u30Var2.f31495w.T.participants.participants);
-                }
-                ArrayList arrayList2 = arrayList;
-                if (arrayList2 != null) {
-                    Utilities.searchQueue.postRunnable(new dg.u1(u30Var2, str2, i11, arrayList2, 18));
-                } else {
-                    u30Var2.h = false;
-                }
-                uf.k1 k1Var = u30Var2.d;
-                boolean canAddUsers = ChatObject.canAddUsers(u30Var2.f31495w.S);
-                if (ChatObject.isChannel(u30Var2.f31495w.S)) {
-                    j10 = u30Var2.f31495w.S.f20845id;
-                } else {
-                    j10 = 0;
-                }
-                k1Var.g(str2, canAddUsers, false, true, false, j10, false, 2, i11);
-                return;
+    public final a0.h H0() {
+        return this.f28661a.f28889w.f29094b0;
+    }
+
+    @Override
+    public final a0.h X0() {
+        return null;
+    }
+
+    @Override
+    public final void k(int i10) {
+        t30 t30Var = this.f28661a;
+        u30 u30Var = t30Var.f28889w;
+        if (i10 >= 0 && i10 == t30Var.f28886n && !t30Var.h) {
+            boolean z4 = true;
+            int i11 = t30Var.f28885f - 1;
+            if (u30Var.f28095s.getVisibility() != 0) {
+                z4 = false;
+            }
+            t30Var.l();
+            if (t30Var.f28885f > i11) {
+                u30Var.I(i11);
+            }
+            if (!t30Var.d.e() && u30Var.d.R0()) {
+                u30Var.f28095s.e(false, z4);
+            }
         }
+    }
+
+    @Override
+    public final boolean t1(int i10) {
+        return true;
+    }
+
+    @Override
+    public final void J1(ArrayList arrayList) {
     }
 }

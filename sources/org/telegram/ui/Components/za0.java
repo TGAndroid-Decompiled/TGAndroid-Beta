@@ -1,63 +1,35 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
 import android.view.View;
-public final class za0 extends l81 {
-    public final yb0 Q;
+public final class za0 extends c81 {
+    public final Context f31322a;
+    public final xb0 f31323b;
 
-    public za0(yb0 yb0Var, Context context, ub0 ub0Var) {
-        super(context, ub0Var);
-        this.Q = yb0Var;
+    public za0(xb0 xb0Var, Context context) {
+        this.f31323b = xb0Var;
+        this.f31322a = context;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z4;
-        int i10 = 0;
-        while (true) {
-            View[] viewArr = this.Q.f33457f.f28687e;
-            if (i10 < viewArr.length) {
-                View view = viewArr[i10];
-                if (view != null) {
-                    sb0 sb0Var = (sb0) view;
-                    if (sb0Var.f31027a == 0) {
-                        z4 = sb0Var.f31030e.f24516i;
-                        break;
-                    }
-                }
-                i10++;
-            } else {
-                z4 = false;
-                break;
-            }
-        }
-        if (z4) {
-            return false;
-        }
-        return A(motionEvent);
+    public final void b(View view, int i10, int i11) {
+        rb0 rb0Var = (rb0) view;
+        rb0Var.h();
+        rb0Var.k(false);
     }
 
     @Override
-    public final void u() {
-        View view = this.f28687e[0];
-        if (view instanceof sb0) {
-            ((sb0) view).f31030e.W();
-        }
+    public final View d(int i10) {
+        return new rb0(this.f31323b, this.f31322a, i10);
     }
 
     @Override
-    public final void w(boolean z4) {
-        yb0 yb0Var = this.Q;
-        yb0Var.f33456e.setSelectedTab(yb0Var.f33457f.getPositionAnimated());
-        View[] viewArr = this.f28687e;
-        View view = viewArr[0];
-        if (view instanceof sb0) {
-            ((sb0) view).f31030e.H();
-        }
-        View view2 = viewArr[1];
-        if (view2 instanceof sb0) {
-            ((sb0) view2).f31030e.H();
-        }
+    public final int e() {
+        return this.f31323b.e.f29447a.size();
+    }
+
+    @Override
+    public final int h(int i10) {
+        return ((ub0) this.f31323b.e.f29447a.get(i10)).f29169a;
     }
 }

@@ -3,18 +3,18 @@ package a4;
 import h5.d0;
 import r3.s;
 public final class b implements h {
-    public final g f51a;
-    public final long f52b;
-    public final long f53c;
+    public final g f47a;
+    public final long f48b;
+    public final long f49c;
     public final j d;
-    public int f54e;
-    public long f55f;
+    public int e;
+    public long f50f;
     public long h;
-    public long f56n;
-    public long f57r;
-    public long f58s;
+    public long f51n;
+    public long f52r;
+    public long f53s;
     public long v;
-    public long f59w;
+    public long f54w;
 
     public b(j jVar, long j10, long j11, long j12, long j13, boolean z4) {
         boolean z10;
@@ -25,15 +25,15 @@ public final class b implements h {
         }
         h5.a.f(z10);
         this.d = jVar;
-        this.f52b = j10;
-        this.f53c = j11;
+        this.f48b = j10;
+        this.f49c = j11;
         if (j12 != j11 - j10 && !z4) {
-            this.f54e = 0;
+            this.e = 0;
         } else {
-            this.f55f = j13;
-            this.f54e = 4;
+            this.f50f = j13;
+            this.e = 4;
         }
-        this.f51a = new g();
+        this.f47a = new g();
     }
 
     @Override
@@ -42,20 +42,20 @@ public final class b implements h {
     }
 
     @Override
-    public final s h() {
-        if (this.f55f != 0) {
+    public final s l() {
+        if (this.f50f != 0) {
             return new a(this);
         }
         return null;
     }
 
     @Override
-    public final void u(long j10) {
-        this.f56n = d0.i(j10, 0L, this.f55f - 1);
-        this.f54e = 2;
-        this.f57r = this.f52b;
-        this.f58s = this.f53c;
+    public final void p(long j10) {
+        this.f51n = d0.i(j10, 0L, this.f50f - 1);
+        this.e = 2;
+        this.f52r = this.f48b;
+        this.f53s = this.f49c;
         this.v = 0L;
-        this.f59w = this.f55f;
+        this.f54w = this.f50f;
     }
 }

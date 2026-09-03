@@ -5,25 +5,25 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
 public abstract class a {
-    public static final int[] f11470a = {96000, 88200, 64000, 48000, 44100, 32000, 24000, 22050, 16000, 12000, 11025, 8000, 7350};
-    public static final int[] f11471b = {0, 1, 2, 3, 4, 5, 6, 8, -1, -1, -1, 7, 8, -1, 8, -1};
-    public static final int[] f11472c = {1, 2, 3, 6};
+    public static final int[] f11221a = {96000, 88200, 64000, 48000, 44100, 32000, 24000, 22050, 16000, 12000, 11025, 8000, 7350};
+    public static final int[] f11222b = {0, 1, 2, 3, 4, 5, 6, 8, -1, -1, -1, 7, 8, -1, 8, -1};
+    public static final int[] f11223c = {1, 2, 3, 6};
     public static final int[] d = {48000, 44100, 32000};
-    public static final int[] f11473e = {24000, 22050, 16000};
-    public static final int[] f11474f = {2, 1, 2, 3, 3, 4, 4, 5};
-    public static final int[] f11475g = {32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 384, 448, 512, 576, 640};
+    public static final int[] e = {24000, 22050, 16000};
+    public static final int[] f11224f = {2, 1, 2, 3, 3, 4, 4, 5};
+    public static final int[] f11225g = {32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 384, 448, 512, 576, 640};
     public static final int[] h = {69, 87, 104, 121, 139, 174, 208, 243, 278, 348, 417, 487, 557, 696, 835, 975, 1114, 1253, 1393};
-    public static final int[] f11476i = {2002, 2000, 1920, 1601, 1600, 1001, 1000, 960, 800, 800, 480, 400, 400, 2048};
-    public static final int[] f11477j = {1, 2, 2, 2, 2, 3, 3, 4, 4, 5, 6, 6, 6, 7, 8, 8};
-    public static final int[] f11478k = {-1, 8000, 16000, 32000, -1, -1, 11025, 22050, 44100, -1, -1, 12000, 24000, 48000, -1, -1};
-    public static final int[] f11479l = {64, 112, 128, 192, 224, 256, 384, 448, 512, 640, 768, 896, 1024, 1152, 1280, 1536, 1920, 2048, 2304, 2560, 2688, 2816, 2823, 2944, 3072, 3840, 4096, 6144, 7680};
-    public static final String[] f11480m = {"audio/mpeg-L1", "audio/mpeg-L2", "audio/mpeg"};
-    public static final int[] f11481n = {44100, 48000, 32000};
-    public static final int[] f11482o = {32000, 64000, 96000, 128000, 160000, 192000, 224000, 256000, 288000, 320000, 352000, 384000, 416000, 448000};
-    public static final int[] f11483p = {32000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 144000, 160000, 176000, 192000, 224000, 256000};
-    public static final int[] f11484q = {32000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000, 384000};
-    public static final int[] f11485r = {32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000};
-    public static final int[] f11486s = {8000, 16000, 24000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 144000, 160000};
+    public static final int[] f11226i = {2002, 2000, 1920, 1601, 1600, 1001, 1000, 960, 800, 800, 480, 400, 400, 2048};
+    public static final int[] f11227j = {1, 2, 2, 2, 2, 3, 3, 4, 4, 5, 6, 6, 6, 7, 8, 8};
+    public static final int[] f11228k = {-1, 8000, 16000, 32000, -1, -1, 11025, 22050, 44100, -1, -1, 12000, 24000, 48000, -1, -1};
+    public static final int[] f11229l = {64, 112, 128, 192, 224, 256, 384, 448, 512, 640, 768, 896, 1024, 1152, 1280, 1536, 1920, 2048, 2304, 2560, 2688, 2816, 2823, 2944, 3072, 3840, 4096, 6144, 7680};
+    public static final String[] f11230m = {"audio/mpeg-L1", "audio/mpeg-L2", "audio/mpeg"};
+    public static final int[] f11231n = {44100, 48000, 32000};
+    public static final int[] f11232o = {32000, 64000, 96000, 128000, 160000, 192000, 224000, 256000, 288000, 320000, 352000, 384000, 416000, 448000};
+    public static final int[] f11233p = {32000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 144000, 160000, 176000, 192000, 224000, 256000};
+    public static final int[] f11234q = {32000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000, 384000};
+    public static final int[] f11235r = {32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000};
+    public static final int[] f11236s = {8000, 16000, 24000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 144000, 160000};
 
     public static ArrayList a(byte[] bArr) {
         ArrayList arrayList = new ArrayList(3);
@@ -40,7 +40,7 @@ public abstract class a {
             if (i13 == 44100) {
                 return ((i11 % 2) + h[i12]) * 2;
             }
-            int i14 = f11475g[i12];
+            int i14 = f11225g[i12];
             if (i13 == 32000) {
                 return i14 * 6;
             }
@@ -51,7 +51,7 @@ public abstract class a {
 
     public static void c(int i10, h5.w wVar) {
         wVar.C(7);
-        byte[] bArr = wVar.f7308a;
+        byte[] bArr = wVar.f6987a;
         bArr[0] = -84;
         bArr[1] = 64;
         bArr[2] = -1;
@@ -71,7 +71,7 @@ public abstract class a {
         if ((i10 & (-2097152)) != -2097152 || (i11 = (i10 >>> 19) & 3) == 1 || (i12 = (i10 >>> 17) & 3) == 0 || (i13 = (i10 >>> 12) & 15) == 0 || i13 == 15 || (i14 = (i10 >>> 10) & 3) == 3) {
             return -1;
         }
-        int i17 = f11481n[i14];
+        int i17 = f11231n[i14];
         if (i11 == 2) {
             i17 /= 2;
         } else if (i11 == 0) {
@@ -80,20 +80,20 @@ public abstract class a {
         int i18 = (i10 >>> 9) & 1;
         if (i12 == 3) {
             if (i11 == 3) {
-                i16 = f11482o[i13 - 1];
+                i16 = f11232o[i13 - 1];
             } else {
-                i16 = f11483p[i13 - 1];
+                i16 = f11233p[i13 - 1];
             }
             return (((i16 * 12) / i17) + i18) * 4;
         }
         if (i11 == 3) {
             if (i12 == 2) {
-                i15 = f11484q[i13 - 1];
+                i15 = f11234q[i13 - 1];
             } else {
-                i15 = f11485r[i13 - 1];
+                i15 = f11235r[i13 - 1];
             }
         } else {
-            i15 = f11486s[i13 - 1];
+            i15 = f11236s[i13 - 1];
         }
         int i19 = 144;
         if (i11 == 3) {
@@ -140,7 +140,7 @@ public abstract class a {
             }
             throw r1.a("AAC header insufficient data", null);
         } else if (i10 < 13) {
-            return f11470a[i10];
+            return f11221a[i10];
         } else {
             throw r1.a("AAC header wrong Sampling Frequency Index", null);
         }
@@ -157,7 +157,7 @@ public abstract class a {
         }
         int f10 = f(vVar);
         int i11 = vVar.i(4);
-        String j10 = l.d.j(i10, "mp4a.40.");
+        String j10 = kf.k0.j(i10, "mp4a.40.");
         if (i10 == 5 || i10 == 29) {
             f10 = f(vVar);
             int i12 = vVar.i(5);
@@ -218,12 +218,12 @@ public abstract class a {
                 throw new UnsupportedOperationException();
             }
         }
-        int i14 = f11471b[i11];
+        int i14 = f11222b[i11];
         if (i14 != -1) {
             ?? obj = new Object();
-            obj.f11581a = f10;
-            obj.f11582b = i14;
-            obj.f11583c = j10;
+            obj.f11323a = f10;
+            obj.f11324b = i14;
+            obj.f11325c = j10;
             return obj;
         }
         throw r1.a(null, null);

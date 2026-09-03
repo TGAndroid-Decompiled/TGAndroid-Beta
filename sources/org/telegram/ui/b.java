@@ -29,9 +29,9 @@ public abstract class b {
         return false;
     }
 
-    public static int b(g3 g3Var) {
-        int boundLeft = g3Var.getBoundLeft();
-        int boundRight = g3Var.getBoundRight();
+    public static int b(i3 i3Var) {
+        int boundLeft = i3Var.getBoundLeft();
+        int boundRight = i3Var.getBoundRight();
         if (boundLeft >= 0 && boundRight >= 0 && boundRight >= boundLeft) {
             return boundRight - boundLeft;
         }
@@ -79,8 +79,8 @@ public abstract class b {
         p2Var.presentFragment(new ThemeActivity(i10));
     }
 
-    public static void l(int i10, org.telegram.ui.ActionBar.g6 g6Var, TextView textView, int i11, float f10) {
-        textView.setTextColor(org.telegram.ui.ActionBar.k6.v0(i10, g6Var));
+    public static void l(int i10, org.telegram.ui.ActionBar.f6 f6Var, TextView textView, int i11, float f10) {
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
         textView.setTextSize(i11, f10);
     }
 
@@ -88,16 +88,16 @@ public abstract class b {
         qcVar.i(LocaleController.getString(i10)).j();
     }
 
-    public static void n(int i10, org.telegram.ui.Components.g90 g90Var) {
-        g90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
+    public static void n(int i10, org.telegram.ui.Components.f90 f90Var) {
+        f90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
     }
 
     public static void o(int i10, Object[] objArr, TextView textView) {
         textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i10, objArr)));
     }
 
-    public static void p(ViewPropertyAnimator viewPropertyAnimator, org.telegram.ui.Components.pr prVar, long j10) {
-        viewPropertyAnimator.setInterpolator(prVar).setDuration(j10).start();
+    public static void p(ViewPropertyAnimator viewPropertyAnimator, org.telegram.ui.Components.mr mrVar, long j10) {
+        viewPropertyAnimator.setInterpolator(mrVar).setDuration(j10).start();
     }
 
     public static void q(TextView textView, int i10, int i11, float f10, int i12) {
@@ -107,7 +107,7 @@ public abstract class b {
     }
 
     public static void r(String str, int i10, ArrayList arrayList) {
-        arrayList.add(new org.telegram.ui.Cells.r6(str, i10));
+        arrayList.add(new org.telegram.ui.Cells.q6(str, i10));
     }
 
     public static boolean s(TLRPC.TL_game tL_game) {
@@ -130,8 +130,8 @@ public abstract class b {
         arrayList2.add(num);
     }
 
-    public static void w(int i10, org.telegram.ui.ActionBar.g6 g6Var, TextView textView, int i11, float f10) {
-        textView.setTextColor(org.telegram.ui.ActionBar.k6.v0(i10, g6Var));
+    public static void w(int i10, org.telegram.ui.ActionBar.f6 f6Var, TextView textView, int i11, float f10) {
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
         textView.setTextSize(i11, f10);
         textView.setTypeface(AndroidUtilities.bold());
     }

@@ -1,27 +1,23 @@
 package lh;
-public final class z2 implements Runnable {
-    public final int f13132a;
-    public final n3 f13133b;
 
-    public z2(n3 n3Var, int i10) {
-        this.f13132a = i10;
-        this.f13133b = n3Var;
+import android.content.DialogInterface;
+public final class z2 implements DialogInterface.OnDismissListener {
+    public final int f13411a;
+    public final g5 f13412b;
+
+    public z2(g5 g5Var, int i10) {
+        this.f13411a = i10;
+        this.f13412b = g5Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f13132a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f13411a) {
             case 0:
-                this.f13133b.setReordering(true);
-                return;
-            case 1:
-                this.f13133b.setReordering(true);
-                return;
-            case 2:
-                this.f13133b.f(false);
+                this.f13412b.f12462g0.setLoading(false);
                 return;
             default:
-                this.f13133b.setReordering(true);
+                this.f13412b.f12462g0.setLoading(false);
                 return;
         }
     }

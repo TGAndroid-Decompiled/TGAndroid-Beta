@@ -2,13 +2,13 @@ package j7;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.telegram.ui.yh;
+import org.telegram.ui.ai;
 public abstract class e8 {
     public static String a(String str, Object... objArr) {
         int length;
         int length2;
         int indexOf;
-        String l10;
+        String k10;
         int i10 = 0;
         int i11 = 0;
         while (true) {
@@ -18,17 +18,17 @@ public abstract class e8 {
             }
             Object obj = objArr[i11];
             if (obj == null) {
-                l10 = "null";
+                k10 = "null";
             } else {
                 try {
-                    l10 = obj.toString();
-                } catch (Exception e6) {
+                    k10 = obj.toString();
+                } catch (Exception e) {
                     String z4 = android.support.v4.media.a.z(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(z4), (Throwable) e6);
-                    l10 = yh.l("<", z4, " threw ", e6.getClass().getName(), ">");
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(z4), (Throwable) e);
+                    k10 = ai.k("<", z4, " threw ", e.getClass().getName(), ">");
                 }
             }
-            objArr[i11] = l10;
+            objArr[i11] = k10;
             i11++;
         }
         StringBuilder sb = new StringBuilder(str.length() + (length * 16));

@@ -8,16 +8,16 @@ public abstract class e {
         ?? wVar = new com.google.android.gms.common.api.internal.w();
         Integer[] numArr = {8, 7};
         s8.l.b(2, numArr);
-        wVar.h(wVar.f2825a + 2);
-        System.arraycopy(numArr, 0, wVar.f2827c, wVar.f2825a, 2);
-        wVar.f2825a += 2;
-        int i10 = h5.d0.f7237a;
+        wVar.h(wVar.f2869a + 2);
+        System.arraycopy(numArr, 0, wVar.f2871c, wVar.f2869a, 2);
+        wVar.f2869a += 2;
+        int i10 = h5.d0.f6924a;
         if (i10 >= 31) {
             Integer[] numArr2 = {26, 27};
             s8.l.b(2, numArr2);
-            wVar.h(wVar.f2825a + 2);
-            System.arraycopy(numArr2, 0, wVar.f2827c, wVar.f2825a, 2);
-            wVar.f2825a += 2;
+            wVar.h(wVar.f2869a + 2);
+            System.arraycopy(numArr2, 0, wVar.f2871c, wVar.f2869a, 2);
+            wVar.f2869a += 2;
         }
         if (i10 >= 33) {
             wVar.b(30);

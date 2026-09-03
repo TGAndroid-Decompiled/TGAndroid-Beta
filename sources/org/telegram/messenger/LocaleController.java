@@ -37,7 +37,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
-import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.f51;
 import org.telegram.ui.t31;
 import org.xmlpull.v1.XmlPullParser;
 public class LocaleController {
@@ -82,10 +82,10 @@ public class LocaleController {
     private volatile FastDateFormat formatterYearMax;
     private String languageOverride;
     private boolean loadingRemoteLanguages;
-    private ve.a localizationExternal;
+    private ue.a localizationExternal;
     private int localizationExternalSize;
-    private volatile ve.a localizationInternal;
-    private ve.a localizationInternalDefault;
+    private volatile ue.a localizationInternal;
+    private ue.a localizationInternalDefault;
     private volatile Locale localizationInternalLastLocale;
     private volatile boolean localizationInternalPending;
     private boolean reloadLastFile;
@@ -629,7 +629,7 @@ public class LocaleController {
     public LocaleController() {
         LocaleInfo localeInfo;
         boolean z4 = false;
-        ve.a aVar = ve.a.f49008c;
+        ue.a aVar = ue.a.f45299c;
         this.localizationInternal = aVar;
         this.localizationExternal = aVar;
         addRules(new String[]{"bem", "brx", "da", "de", "el", "en", "eo", "es", "et", "fi", "fo", "gl", "he", "iw", "it", "nb", "nl", "nn", "no", "sv", "af", "bg", "bn", "ca", "eu", "fur", "fy", "gu", "ha", "is", "ku", "lb", "ml", "mr", "nah", "ne", "om", "or", "pa", "pap", "ps", "so", "sq", "sw", "ta", "te", "tk", "ur", "zu", "mn", "gsw", "chr", "rm", "pt", "an", "ast"}, new PluralRules_One());
@@ -745,20 +745,20 @@ public class LocaleController {
         loadOtherLanguages();
         if (this.remoteLanguages.isEmpty()) {
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final LocaleController f19632b;
+                public final LocaleController f18058b;
 
                 {
-                    this.f19632b = this;
+                    this.f18058b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            this.f19632b.lambda$new$0();
+                            this.f18058b.lambda$new$0();
                             return;
                         default:
-                            this.f19632b.lambda$new$1();
+                            this.f18058b.lambda$new$1();
                             return;
                     }
                 }
@@ -815,8 +815,8 @@ public class LocaleController {
                 localeInfo = getLanguageFromDict("en");
             }
             applyLanguage(localeInfo, z4, true, UserConfig.selectedAccount);
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
         try {
             IntentFilter intentFilter = new IntentFilter("android.intent.action.TIMEZONE_CHANGED");
@@ -825,24 +825,24 @@ public class LocaleController {
             } else {
                 ApplicationLoader.applicationContext.registerReceiver(new TimeZoneChangedReceiver(), intentFilter);
             }
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e6) {
+            FileLog.e(e6);
         }
         AndroidUtilities.runOnUIThread(new Runnable(this) {
-            public final LocaleController f19632b;
+            public final LocaleController f18058b;
 
             {
-                this.f19632b = this;
+                this.f18058b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f19632b.lambda$new$0();
+                        this.f18058b.lambda$new$0();
                         return;
                     default:
-                        this.f19632b.lambda$new$1();
+                        this.f18058b.lambda$new$1();
                         return;
                 }
             }
@@ -867,7 +867,7 @@ public class LocaleController {
             sb.append(" force=");
             sb.append(z4);
             sb.append(" currentAccount=");
-            l.d.t(i10, sb);
+            kf.k0.t(i10, sb);
             int[] iArr = {0};
             final g0 g0Var = new g0(new int[]{0}, iArr, runnable, 25);
             if (z4) {
@@ -883,26 +883,26 @@ public class LocaleController {
                         tL_langpack_getDifference.lang_pack = "";
                         iArr[0] = iArr[0] + 1;
                         ConnectionsManager.getInstance(i10).sendRequest(tL_langpack_getDifference, new RequestDelegate(this) {
-                            public final LocaleController f19529b;
+                            public final LocaleController f17966b;
 
                             {
-                                this.f19529b = this;
+                                this.f17966b = this;
                             }
 
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                                 switch (r5) {
                                     case 0:
-                                        this.f19529b.lambda$applyRemoteLanguage$15(localeInfo2, i10, g0Var, tLObject, tL_error);
+                                        this.f17966b.lambda$applyRemoteLanguage$15(localeInfo2, i10, g0Var, tLObject, tL_error);
                                         return;
                                     case 1:
-                                        this.f19529b.lambda$applyRemoteLanguage$17(localeInfo2, i10, g0Var, tLObject, tL_error);
+                                        this.f17966b.lambda$applyRemoteLanguage$17(localeInfo2, i10, g0Var, tLObject, tL_error);
                                         return;
                                     case 2:
-                                        this.f19529b.lambda$applyRemoteLanguage$19(localeInfo2, i10, g0Var, tLObject, tL_error);
+                                        this.f17966b.lambda$applyRemoteLanguage$19(localeInfo2, i10, g0Var, tLObject, tL_error);
                                         return;
                                     default:
-                                        this.f19529b.lambda$applyRemoteLanguage$21(localeInfo2, i10, g0Var, tLObject, tL_error);
+                                        this.f17966b.lambda$applyRemoteLanguage$21(localeInfo2, i10, g0Var, tLObject, tL_error);
                                         return;
                                 }
                             }
@@ -916,26 +916,26 @@ public class LocaleController {
                     iArr[0] = iArr[0] + 1;
                     localeInfo2 = localeInfo;
                     ConnectionsManager.getInstance(i10).sendRequest(tL_langpack_getLangPack, new RequestDelegate(this) {
-                        public final LocaleController f19529b;
+                        public final LocaleController f17966b;
 
                         {
-                            this.f19529b = this;
+                            this.f17966b = this;
                         }
 
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r5) {
                                 case 0:
-                                    this.f19529b.lambda$applyRemoteLanguage$15(localeInfo2, i10, g0Var, tLObject, tL_error);
+                                    this.f17966b.lambda$applyRemoteLanguage$15(localeInfo2, i10, g0Var, tLObject, tL_error);
                                     return;
                                 case 1:
-                                    this.f19529b.lambda$applyRemoteLanguage$17(localeInfo2, i10, g0Var, tLObject, tL_error);
+                                    this.f17966b.lambda$applyRemoteLanguage$17(localeInfo2, i10, g0Var, tLObject, tL_error);
                                     return;
                                 case 2:
-                                    this.f19529b.lambda$applyRemoteLanguage$19(localeInfo2, i10, g0Var, tLObject, tL_error);
+                                    this.f17966b.lambda$applyRemoteLanguage$19(localeInfo2, i10, g0Var, tLObject, tL_error);
                                     return;
                                 default:
-                                    this.f19529b.lambda$applyRemoteLanguage$21(localeInfo2, i10, g0Var, tLObject, tL_error);
+                                    this.f17966b.lambda$applyRemoteLanguage$21(localeInfo2, i10, g0Var, tLObject, tL_error);
                                     return;
                             }
                         }
@@ -951,26 +951,26 @@ public class LocaleController {
                     tL_langpack_getDifference2.lang_pack = "";
                     iArr[0] = iArr[0] + 1;
                     return ConnectionsManager.getInstance(i10).sendRequest(tL_langpack_getDifference2, new RequestDelegate(this) {
-                        public final LocaleController f19529b;
+                        public final LocaleController f17966b;
 
                         {
-                            this.f19529b = this;
+                            this.f17966b = this;
                         }
 
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r5) {
                                 case 0:
-                                    this.f19529b.lambda$applyRemoteLanguage$15(localeInfo2, i10, g0Var, tLObject, tL_error);
+                                    this.f17966b.lambda$applyRemoteLanguage$15(localeInfo2, i10, g0Var, tLObject, tL_error);
                                     return;
                                 case 1:
-                                    this.f19529b.lambda$applyRemoteLanguage$17(localeInfo2, i10, g0Var, tLObject, tL_error);
+                                    this.f17966b.lambda$applyRemoteLanguage$17(localeInfo2, i10, g0Var, tLObject, tL_error);
                                     return;
                                 case 2:
-                                    this.f19529b.lambda$applyRemoteLanguage$19(localeInfo2, i10, g0Var, tLObject, tL_error);
+                                    this.f17966b.lambda$applyRemoteLanguage$19(localeInfo2, i10, g0Var, tLObject, tL_error);
                                     return;
                                 default:
-                                    this.f19529b.lambda$applyRemoteLanguage$21(localeInfo2, i10, g0Var, tLObject, tL_error);
+                                    this.f17966b.lambda$applyRemoteLanguage$21(localeInfo2, i10, g0Var, tLObject, tL_error);
                                     return;
                             }
                         }
@@ -984,26 +984,26 @@ public class LocaleController {
                 tL_langpack_getLangPack2.lang_code = localeInfo.getLangCode();
                 iArr[0] = iArr[0] + 1;
                 return ConnectionsManager.getInstance(i10).sendRequest(tL_langpack_getLangPack2, new RequestDelegate(this) {
-                    public final LocaleController f19529b;
+                    public final LocaleController f17966b;
 
                     {
-                        this.f19529b = this;
+                        this.f17966b = this;
                     }
 
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         switch (r5) {
                             case 0:
-                                this.f19529b.lambda$applyRemoteLanguage$15(localeInfo, i10, g0Var, tLObject, tL_error);
+                                this.f17966b.lambda$applyRemoteLanguage$15(localeInfo, i10, g0Var, tLObject, tL_error);
                                 return;
                             case 1:
-                                this.f19529b.lambda$applyRemoteLanguage$17(localeInfo, i10, g0Var, tLObject, tL_error);
+                                this.f17966b.lambda$applyRemoteLanguage$17(localeInfo, i10, g0Var, tLObject, tL_error);
                                 return;
                             case 2:
-                                this.f19529b.lambda$applyRemoteLanguage$19(localeInfo, i10, g0Var, tLObject, tL_error);
+                                this.f17966b.lambda$applyRemoteLanguage$19(localeInfo, i10, g0Var, tLObject, tL_error);
                                 return;
                             default:
-                                this.f19529b.lambda$applyRemoteLanguage$21(localeInfo, i10, g0Var, tLObject, tL_error);
+                                this.f17966b.lambda$applyRemoteLanguage$21(localeInfo, i10, g0Var, tLObject, tL_error);
                                 return;
                         }
                     }
@@ -1015,11 +1015,11 @@ public class LocaleController {
 
     public static CharSequence bold(CharSequence charSequence) {
         if (charSequence instanceof Spannable) {
-            ((Spannable) charSequence).setSpan(new e51(AndroidUtilities.bold()), 0, charSequence.length(), 33);
+            ((Spannable) charSequence).setSpan(new f51(AndroidUtilities.bold()), 0, charSequence.length(), 33);
             return charSequence;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
-        spannableStringBuilder.setSpan(new e51(AndroidUtilities.bold()), 0, charSequence.length(), 33);
+        spannableStringBuilder.setSpan(new f51(AndroidUtilities.bold()), 0, charSequence.length(), 33);
         return spannableStringBuilder;
     }
 
@@ -1054,9 +1054,9 @@ public class LocaleController {
                         return;
                     }
                     return;
-                } catch (Exception e6) {
+                } catch (Exception e) {
                     useImperialSystemType = Boolean.FALSE;
-                    FileLog.e(e6);
+                    FileLog.e(e);
                     return;
                 }
             }
@@ -1107,7 +1107,7 @@ public class LocaleController {
             String formatPluralString = formatPluralString("Hours", i10 / 3600, new Object[0]);
             int i11 = (i10 % 3600) / 60;
             if (i11 > 0) {
-                StringBuilder f10 = w.c.f(formatPluralString, ", ");
+                StringBuilder f10 = vh.w2.f(formatPluralString, ", ");
                 f10.append(formatPluralString("Minutes", i11, new Object[0]));
                 return f10.toString();
             }
@@ -1145,8 +1145,8 @@ public class LocaleController {
                 }
                 return formatString(R.string.formatDateAtTime, getInstance().getFormatterYear().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
             }
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1170,8 +1170,8 @@ public class LocaleController {
                 return formatString(R.string.formatDateAtTime, getInstance().getChatDateShort().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
             }
             return formatString(R.string.formatDateAtTime, getInstance().getChatFullDate().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1190,8 +1190,8 @@ public class LocaleController {
                 return getInstance().getFormatterBannedUntilThisYear().format(new Date(j11));
             }
             return getInstance().getFormatterBannedUntil().format(new Date(j11));
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1224,8 +1224,8 @@ public class LocaleController {
             } else {
                 return formatString("LastSeenDateFormatted", R.string.LastSeenDateFormatted, formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().getFormatterYear().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11))));
             }
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1249,8 +1249,8 @@ public class LocaleController {
                 return formatString(R.string.formatDateAtTime, getInstance().getChatDate().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
             }
             return formatString(R.string.formatDateAtTime, getInstance().getChatFullDate().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1301,8 +1301,8 @@ public class LocaleController {
         try {
             Date date = new Date(j10 * 1000);
             return String.format("%1$s, %2$s", getInstance().getFormatterYear().format(date), getInstance().getFormatterDay().format(date));
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1317,8 +1317,8 @@ public class LocaleController {
                 formatString = formatString(R.string.formatDateAtTime, getInstance().getFormatterYear().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
             }
             return formatString(R.string.ChannelOtherSubscriberJoined, formatString);
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1375,15 +1375,15 @@ public class LocaleController {
                 }
                 return formatString(R.string.LocationUpdatedFormatted, formatString(R.string.formatDateAtTime, getInstance().getFormatterYear().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11))));
             }
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
 
     public static String formatNumber(long j10, char c3) {
         if (j10 < 0) {
-            return l.d.l(-j10, c3, new StringBuilder("-"));
+            return kf.k0.l(-j10, c3, new StringBuilder("-"));
         }
         StringBuilder sb = new StringBuilder(String.format("%d", Long.valueOf(j10)));
         for (int length = sb.length() - 3; length > 0; length -= 3) {
@@ -1409,7 +1409,7 @@ public class LocaleController {
             System.arraycopy(charSequenceArr, 0, objArr, 1, charSequenceArr.length);
             return formatSpannable(z4, str.concat("_other"), localizedStringByName, localizedStringByName2, objArr);
         }
-        return org.telegram.ui.yh.k("LOC_ERR:", str);
+        return vh.w2.e("LOC_ERR:", str);
     }
 
     public static String formatPluralString(String str, int i10, Object... objArr) {
@@ -1422,7 +1422,7 @@ public class LocaleController {
             System.arraycopy(objArr, 0, objArr2, 1, objArr.length);
             return formatString(z4, str.concat("_other"), localizedStringByName, localizedStringByName2, objArr2);
         }
-        return org.telegram.ui.yh.k("LOC_ERR:", str);
+        return vh.w2.e("LOC_ERR:", str);
     }
 
     public static String formatPluralStringComma(String str, int i10) {
@@ -1452,8 +1452,8 @@ public class LocaleController {
                 return formatString(R.string.PmEditedDateTimeAt, getInstance().getFormatterDayMonth().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
             }
             return formatString(R.string.PmEditedDateTimeAt, getInstance().getFormatterYear().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1477,8 +1477,8 @@ public class LocaleController {
                 return formatString(R.string.PmFwdOriginalDateTimeAt, getInstance().getFormatterDayMonth().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
             }
             return formatString(R.string.PmFwdOriginalDateTimeAt, getInstance().getFormatterYear().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1502,8 +1502,8 @@ public class LocaleController {
                 return formatString(R.string.PmReadDateTimeAt, getInstance().getFormatterDayMonth().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
             }
             return formatString(R.string.PmReadDateTimeAt, getInstance().getFormatterYear().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1527,8 +1527,8 @@ public class LocaleController {
                 return formatString(R.string.PmSentDateTimeAt, getInstance().getFormatterDayMonth().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
             }
             return formatString(R.string.PmSentDateTimeAt, getInstance().getFormatterYear().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1592,8 +1592,8 @@ public class LocaleController {
                 return formatPluralStringComma("MinutesAgo", (int) j11);
             }
             return getString(R.string.LessMinuteAgo);
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1621,8 +1621,8 @@ public class LocaleController {
                 return formatString(R.string.formatDateAtTime, getInstance().getFormatterDayMonth().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
             }
             return formatString(R.string.formatDateAtTime, getInstance().getFormatterYear().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1657,8 +1657,8 @@ public class LocaleController {
                 }
                 return formatString(R.string.formatDateAtTime, getInstance().getFormatterYear().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
             }
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1670,8 +1670,8 @@ public class LocaleController {
                 return getInstance().getFormatterScheduleDay().format(new Date(j11)) + ", " + getInstance().getFormatterDay().format(new Date(j11));
             }
             return getInstance().getFormatterScheduleYear().format(new Date(j11)) + ", " + getInstance().getFormatterDay().format(new Date(j11));
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1790,8 +1790,8 @@ public class LocaleController {
                 return getInstance().getFormatterScheduleDay().format(new Date(j11));
             }
             return getInstance().getChatFullDate().format(new Date(j11));
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1824,8 +1824,8 @@ public class LocaleController {
                 }
                 return formatString(R.string.formatDateAtTime, getInstance().getFormatterYear().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
             }
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1840,8 +1840,8 @@ public class LocaleController {
                 return String.format(getInstance().currentLocale, str, objArr);
             }
             return String.format(str, objArr);
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR: " + str;
         }
     }
@@ -1888,8 +1888,8 @@ public class LocaleController {
                 return formatString(R.string.TodoCompletedDateTimeAt, getInstance().getFormatterDayMonth().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
             }
             return formatString(R.string.TodoCompletedDateTimeAt, getInstance().getFormatterYear().format(new Date(j11)), getInstance().getFormatterDay().format(new Date(j11)));
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1911,8 +1911,8 @@ public class LocaleController {
                 return strArr[i12];
             }
             return strArr[i12] + " " + i11;
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -1931,8 +1931,8 @@ public class LocaleController {
                 return strArr[i12] + " " + i13;
             }
             return strArr[i12] + " " + i13 + ", " + i11;
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -2387,16 +2387,16 @@ public class LocaleController {
             int localizedStringByName = getLocalizedStringByName(z4);
             return getInstance().getStringInternal(z4, str.concat("_other"), getLocalizedStringByName(str.concat("_other")), localizedStringByName);
         }
-        return org.telegram.ui.yh.k("LOC_ERR:", str);
+        return vh.w2.e("LOC_ERR:", str);
     }
 
     public static String getServerString(String str) {
         String str2;
         int localizedStringByName;
-        ve.a aVar = getInstance().localizationExternal;
+        ue.a aVar = getInstance().localizationExternal;
         aVar.getClass();
         if (str != null) {
-            str2 = (String) aVar.f49009a.get(str.hashCode());
+            str2 = (String) aVar.f45300a.get(str.hashCode());
         } else {
             str2 = null;
         }
@@ -2555,7 +2555,7 @@ public class LocaleController {
         for (int i12 = 0; i12 < size2; i12++) {
             TLRPC.TL_langPackLanguage tL_langPackLanguage = (TLRPC.TL_langPackLanguage) vector.objects.get(i12);
             if (BuildVars.LOGS_ENABLED) {
-                org.telegram.ui.yh.v(tL_langPackLanguage.name, new StringBuilder("loaded lang "));
+                org.telegram.ui.ai.v(tL_langPackLanguage.name, new StringBuilder("loaded lang "));
             }
             LocaleInfo localeInfo = new LocaleInfo();
             localeInfo.nameEnglish = tL_langPackLanguage.name;
@@ -2652,9 +2652,9 @@ public class LocaleController {
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
                 edit.putString("language", localeInfo.getKey());
                 edit.commit();
-                oh.h4 h4Var = new oh.h4(23, false);
-                h4Var.p(hashMap);
-                this.localizationExternal = new ve.a(h4Var);
+                o3.c cVar = new o3.c();
+                cVar.m(hashMap);
+                this.localizationExternal = new ue.a(cVar);
                 this.localizationExternalSize = calculateTranslatedCount(hashMap);
                 this.currentLocale = locale;
                 this.currentLocaleInfo = localeInfo;
@@ -2674,12 +2674,12 @@ public class LocaleController {
                 configuration.locale = this.currentLocale;
                 ApplicationLoader.applicationContext.getResources().updateConfiguration(configuration, ApplicationLoader.applicationContext.getResources().getDisplayMetrics());
                 this.changingConfiguration = false;
-                t31.f41423s = false;
+                t31.f38374s = false;
             } else {
                 FileLog.d("saveRemoteLocaleStrings: currentLocaleInfo != localeInfo, do nothing");
             }
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             this.changingConfiguration = false;
         }
         recreateFormatters();
@@ -2812,8 +2812,8 @@ public class LocaleController {
                 return getInstance().getFormatterDayMonth().format(new Date(j11));
             }
             return getInstance().getFormatterDay().format(new Date(j11));
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR";
         }
     }
@@ -2865,17 +2865,17 @@ public class LocaleController {
                         saveOtherLanguages();
                     }
                     LocaleInfo localeInfo = languageFromDict;
-                    oh.h4 h4Var = new oh.h4(23, false);
-                    h4Var.p(localeFileStrings);
-                    this.localizationExternal = new ve.a(h4Var);
+                    o3.c cVar = new o3.c();
+                    cVar.m(localeFileStrings);
+                    this.localizationExternal = new ue.a(cVar);
                     this.localizationExternalSize = calculateTranslatedCount(localeFileStrings);
                     applyLanguage(localeInfo, true, false, true, false, i10, null);
                     return true;
                 }
             }
             return false;
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return false;
         }
     }
@@ -4102,10 +4102,10 @@ public class LocaleController {
                     localeFileStrings2.putAll(getLocaleFileStrings(localeInfo.getPathToFile()));
                 }
                 FileLog.d("saved locale file to " + pathToBaseFile);
-                AndroidUtilities.runOnUIThread(new lf.j0(this, i11, localeInfo, tL_langPackDifference, localeFileStrings2, runnable, 4));
+                AndroidUtilities.runOnUIThread(new kf.j0(this, i11, localeInfo, tL_langPackDifference, localeFileStrings2, runnable, 4));
                 return;
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e) {
+                FileLog.e(e);
                 return;
             }
         }
@@ -4161,8 +4161,8 @@ public class LocaleController {
                 }
                 return getInstance().getFormatterYear().format(new Date(j11));
             }
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR: formatDate";
         }
     }
@@ -4178,8 +4178,8 @@ public class LocaleController {
                 return getInstance().getChatDate().format(j11);
             }
             return getInstance().getChatFullDate().format(j11);
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR: formatDateChat";
         }
     }
@@ -4224,8 +4224,8 @@ public class LocaleController {
                 return getInstance().getFormatterDayMonth().format(j11);
             }
             return getInstance().getFormatterDayMonth().format(j11) + ", " + calendar.get(1);
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR: formatDateChat";
         }
     }
@@ -4268,8 +4268,8 @@ public class LocaleController {
         }
         try {
             return new Locale("", str).getDisplayCountry(getInstance().getCurrentLocale());
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return null;
         }
     }
@@ -4343,12 +4343,12 @@ public class LocaleController {
                     try {
                         fileInputStream2.close();
                         return hashMap;
-                    } catch (Exception e6) {
-                        FileLog.e(e6);
+                    } catch (Exception e) {
+                        FileLog.e(e);
                         return hashMap;
                     }
-                } catch (Exception e10) {
-                    e = e10;
+                } catch (Exception e6) {
+                    e = e6;
                     fileInputStream = fileInputStream2;
                     try {
                         File file2 = new File(ApplicationLoader.getFilesDirFixed(), "malformed_locales/");
@@ -4362,8 +4362,8 @@ public class LocaleController {
                     if (fileInputStream != null) {
                         try {
                             fileInputStream.close();
-                        } catch (Exception e11) {
-                            FileLog.e(e11);
+                        } catch (Exception e10) {
+                            FileLog.e(e10);
                         }
                     }
                     return new HashMap<>();
@@ -4373,8 +4373,8 @@ public class LocaleController {
                     if (fileInputStream != null) {
                         try {
                             fileInputStream.close();
-                        } catch (Exception e12) {
-                            FileLog.e(e12);
+                        } catch (Exception e11) {
+                            FileLog.e(e11);
                         }
                     }
                     throw th;
@@ -4382,8 +4382,8 @@ public class LocaleController {
             } catch (Throwable th3) {
                 th = th3;
             }
-        } catch (Exception e13) {
-            e = e13;
+        } catch (Exception e12) {
+            e = e12;
         }
     }
 
@@ -4401,18 +4401,18 @@ public class LocaleController {
             if (c3 == null) {
                 try {
                     c3 = getLocalizedString(i11);
-                } catch (Exception e6) {
+                } catch (Exception e) {
                     if (i10 != 0) {
                         try {
                             c3 = getLocalizedString(i10);
                         } catch (Exception unused) {
                         }
                     }
-                    FileLog.e(e6);
+                    FileLog.e(e);
                 }
             }
         }
-        return c3 == null ? org.telegram.ui.yh.k("LOC_ERR:", str) : c3;
+        return c3 == null ? vh.w2.e("LOC_ERR:", str) : c3;
     }
 
     public int applyLanguage(org.telegram.messenger.LocaleController.LocaleInfo r22, boolean r23, boolean r24, boolean r25, boolean r26, int r27, java.lang.Runnable r28) {
@@ -4829,8 +4829,8 @@ public class LocaleController {
                 }
             }
             return spannableStringBuilder;
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR: " + str;
         }
     }
@@ -4863,8 +4863,8 @@ public class LocaleController {
                 return String.format(getInstance().currentLocale, c3, objArr);
             }
             return String.format(c3, objArr);
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "LOC_ERR: " + str;
         }
     }
@@ -4882,7 +4882,7 @@ public class LocaleController {
                 userStatus3.expires = userStatus3.by_me ? -1002 : -102;
             }
         }
-        if (user != null && (userStatus2 = user.status) != null && userStatus2.expires <= 0 && MessagesController.getInstance(i10).onlinePrivacy.containsKey(Long.valueOf(user.f20992id))) {
+        if (user != null && (userStatus2 = user.status) != null && userStatus2.expires <= 0 && MessagesController.getInstance(i10).onlinePrivacy.containsKey(Long.valueOf(user.f19306id))) {
             if (zArr != null) {
                 zArr[0] = true;
             }
@@ -4917,7 +4917,7 @@ public class LocaleController {
     @Deprecated
     public static String getString(String str) {
         if (TextUtils.isEmpty(str)) {
-            return org.telegram.ui.yh.k("LOC_ERR:", str);
+            return vh.w2.e("LOC_ERR:", str);
         }
         int stringResId = getStringResId(str);
         if (stringResId != 0) {

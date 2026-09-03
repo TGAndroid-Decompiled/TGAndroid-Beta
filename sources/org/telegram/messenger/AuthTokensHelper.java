@@ -11,7 +11,7 @@ public class AuthTokensHelper {
         int i10 = sharedPreferences.getInt("count", 0);
         SerializedData serializedData = new SerializedData(tL_auth_loggedOut.getObjectSize());
         tL_auth_loggedOut.serializeToStream(serializedData);
-        sharedPreferences.edit().putString(l.d.j(i10, "log_out_token_"), Utilities.bytesToHex(serializedData.toByteArray())).putInt("count", i10 + 1).apply();
+        sharedPreferences.edit().putString(kf.k0.j(i10, "log_out_token_"), Utilities.bytesToHex(serializedData.toByteArray())).putInt("count", i10 + 1).apply();
         BackupAgent.requestBackup();
     }
 
@@ -34,8 +34,8 @@ public class AuthTokensHelper {
                 if (TLdeserialize instanceof TLRPC.TL_auth_authorization) {
                     arrayList.add((TLRPC.TL_auth_authorization) TLdeserialize);
                 }
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
         return arrayList;

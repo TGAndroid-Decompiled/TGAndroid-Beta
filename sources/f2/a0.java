@@ -3,23 +3,23 @@ package f2;
 import android.view.animation.Interpolator;
 import org.telegram.messenger.y3;
 public final class a0 implements Interpolator {
-    public final int f5728a;
+    public final int f5646a;
 
     public a0(int i10) {
-        this.f5728a = i10;
+        this.f5646a = i10;
     }
 
     @Override
     public final float getInterpolation(float f10) {
-        switch (this.f5728a) {
+        switch (this.f5646a) {
             case 0:
                 return f10 * f10 * f10 * f10 * f10;
             case 1:
             case 2:
-            case 3:
+            case 4:
                 float f11 = f10 - 1.0f;
                 return (f11 * f11 * f11 * f11 * f11) + 1.0f;
-            case 4:
+            case 3:
                 return (float) Math.pow(f10, 2.0d);
             default:
                 if (f10 < 0.33f) {

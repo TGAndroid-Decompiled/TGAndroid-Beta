@@ -1,12 +1,12 @@
 package r3;
 public final class t {
-    public static final t f46615c = new t(0, 0);
-    public final long f46616a;
-    public final long f46617b;
+    public static final t f43272c = new t(0, 0);
+    public final long f43273a;
+    public final long f43274b;
 
     public t(long j10, long j11) {
-        this.f46616a = j10;
-        this.f46617b = j11;
+        this.f43273a = j10;
+        this.f43274b = j11;
     }
 
     public final boolean equals(Object obj) {
@@ -15,7 +15,7 @@ public final class t {
         }
         if (obj != null && t.class == obj.getClass()) {
             t tVar = (t) obj;
-            if (this.f46616a == tVar.f46616a && this.f46617b == tVar.f46617b) {
+            if (this.f43273a == tVar.f43273a && this.f43274b == tVar.f43274b) {
                 return true;
             }
         }
@@ -23,13 +23,13 @@ public final class t {
     }
 
     public final int hashCode() {
-        return (((int) this.f46616a) * 31) + ((int) this.f46617b);
+        return (((int) this.f43273a) * 31) + ((int) this.f43274b);
     }
 
     public final String toString() {
         StringBuilder sb = new StringBuilder("[timeUs=");
-        sb.append(this.f46616a);
+        sb.append(this.f43273a);
         sb.append(", position=");
-        return android.support.v4.media.a.q(sb, this.f46617b, "]");
+        return android.support.v4.media.a.q(sb, this.f43274b, "]");
     }
 }

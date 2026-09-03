@@ -1,10 +1,8 @@
 package k7;
-
-import android.text.InputFilter;
 public abstract class l6 {
-    public abstract InputFilter[] a(InputFilter[] inputFilterArr);
-
-    public abstract void b(boolean z4);
-
-    public abstract void c(boolean z4);
+    public static long a(long j10) {
+        long j11 = (j10 ^ (j10 >>> 33)) * (-49064778989728563L);
+        long j12 = (j11 ^ (j11 >>> 33)) * (-4265267296055464877L);
+        return j12 ^ (j12 >>> 33);
+    }
 }

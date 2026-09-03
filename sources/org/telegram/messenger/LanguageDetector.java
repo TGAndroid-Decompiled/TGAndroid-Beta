@@ -36,24 +36,24 @@ public class LanguageDetector {
         if (z4) {
             try {
                 Context context = ApplicationLoader.applicationContext;
-                synchronized (cb.h.f2410b) {
+                synchronized (cb.h.f2242b) {
                     cb.h.d(context, TaskExecutors.MAIN_THREAD);
                 }
-            } catch (IllegalStateException e6) {
+            } catch (IllegalStateException e) {
                 if (!z4) {
                     detectLanguage(str, stringCallback, exceptionCallback, true);
                     return;
                 }
                 if (exceptionCallback != null) {
+                    exceptionCallback.run(e);
+                }
+                FileLog.e((Throwable) e, false);
+                return;
+            } catch (Exception e6) {
+                if (exceptionCallback != null) {
                     exceptionCallback.run(e6);
                 }
-                FileLog.e((Throwable) e6, false);
-                return;
-            } catch (Exception e10) {
-                if (exceptionCallback != null) {
-                    exceptionCallback.run(e10);
-                }
-                FileLog.e(e10);
+                FileLog.e(e6);
                 return;
             } catch (Throwable th2) {
                 if (exceptionCallback != null) {
@@ -63,6 +63,6 @@ public class LanguageDetector {
                 return;
             }
         }
-        j7.i7.a().g(str).addOnSuccessListener(new d0(stringCallback, 5)).addOnFailureListener(new d0(exceptionCallback, 6));
+        j7.e7.a().g(str).addOnSuccessListener(new d0(stringCallback, 5)).addOnFailureListener(new d0(exceptionCallback, 6));
     }
 }

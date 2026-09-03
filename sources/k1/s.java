@@ -1,10 +1,10 @@
 package k1;
 public final class s implements od.c {
-    public final int f10305a = 0;
-    public final od.c f10306b;
+    public final int f9581a = 0;
+    public final od.c f9582b;
 
     public s(od.c cVar, la.z zVar) {
-        this.f10306b = cVar;
+        this.f9582b = cVar;
     }
 
     @Override
@@ -13,6 +13,6 @@ public final class s implements od.c {
     }
 
     public s(od.c cVar) {
-        this.f10306b = cVar;
+        this.f9582b = cVar;
     }
 }

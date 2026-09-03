@@ -2,40 +2,40 @@ package q6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import j7.g5;
+import j7.f5;
 import java.util.Arrays;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class g extends c6.a {
     public static final Parcelable.Creator<g> CREATOR = new r0(13);
-    public final k0 f44702a;
-    public final u0 f44703b;
-    public final h f44704c;
+    public final k0 f42940a;
+    public final u0 f42941b;
+    public final h f42942c;
     public final v0 d;
-    public final String f44705e;
+    public final String e;
 
     public g(k0 k0Var, u0 u0Var, h hVar, v0 v0Var, String str) {
-        this.f44702a = k0Var;
-        this.f44703b = u0Var;
-        this.f44704c = hVar;
+        this.f42940a = k0Var;
+        this.f42941b = u0Var;
+        this.f42942c = hVar;
         this.d = v0Var;
-        this.f44705e = str;
+        this.e = str;
     }
 
     public final JSONObject e() {
         try {
             JSONObject jSONObject = new JSONObject();
-            h hVar = this.f44704c;
+            h hVar = this.f42942c;
             if (hVar != null) {
                 try {
                     JSONObject jSONObject2 = new JSONObject();
-                    jSONObject2.put("rk", hVar.f44706a);
+                    jSONObject2.put("rk", hVar.f42943a);
                     jSONObject.put("credProps", jSONObject2);
-                } catch (JSONException e6) {
-                    throw new RuntimeException("Error encoding AuthenticationExtensionsCredPropsOutputs to JSON object", e6);
+                } catch (JSONException e) {
+                    throw new RuntimeException("Error encoding AuthenticationExtensionsCredPropsOutputs to JSON object", e);
                 }
             }
-            k0 k0Var = this.f44702a;
+            k0 k0Var = this.f42940a;
             if (k0Var != null) {
                 jSONObject.put("uvm", k0Var.e());
             }
@@ -43,13 +43,13 @@ public final class g extends c6.a {
             if (v0Var != null) {
                 jSONObject.put("prf", v0Var.e());
             }
-            String str = this.f44705e;
+            String str = this.e;
             if (str != null) {
                 jSONObject.put("txAuthSimple", str);
             }
             return jSONObject;
-        } catch (JSONException e10) {
-            throw new RuntimeException("Error encoding AuthenticationExtensionsClientOutputs to JSON object", e10);
+        } catch (JSONException e6) {
+            throw new RuntimeException("Error encoding AuthenticationExtensionsClientOutputs to JSON object", e6);
         }
     }
 
@@ -58,14 +58,14 @@ public final class g extends c6.a {
             return false;
         }
         g gVar = (g) obj;
-        if (!b6.m.l(this.f44702a, gVar.f44702a) || !b6.m.l(this.f44703b, gVar.f44703b) || !b6.m.l(this.f44704c, gVar.f44704c) || !b6.m.l(this.d, gVar.d) || !b6.m.l(this.f44705e, gVar.f44705e)) {
+        if (!b6.m.l(this.f42940a, gVar.f42940a) || !b6.m.l(this.f42941b, gVar.f42941b) || !b6.m.l(this.f42942c, gVar.f42942c) || !b6.m.l(this.d, gVar.d) || !b6.m.l(this.e, gVar.e)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f44702a, this.f44703b, this.f44704c, this.d, this.f44705e});
+        return Arrays.hashCode(new Object[]{this.f42940a, this.f42941b, this.f42942c, this.d, this.e});
     }
 
     public final String toString() {
@@ -74,12 +74,12 @@ public final class g extends c6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q10 = g5.q(parcel, 20293);
-        g5.k(parcel, 1, this.f44702a, i10);
-        g5.k(parcel, 2, this.f44703b, i10);
-        g5.k(parcel, 3, this.f44704c, i10);
-        g5.k(parcel, 4, this.d, i10);
-        g5.l(parcel, 5, this.f44705e);
-        g5.r(parcel, q10);
+        int q10 = f5.q(parcel, 20293);
+        f5.k(parcel, 1, this.f42940a, i10);
+        f5.k(parcel, 2, this.f42941b, i10);
+        f5.k(parcel, 3, this.f42942c, i10);
+        f5.k(parcel, 4, this.d, i10);
+        f5.l(parcel, 5, this.e);
+        f5.r(parcel, q10);
     }
 }

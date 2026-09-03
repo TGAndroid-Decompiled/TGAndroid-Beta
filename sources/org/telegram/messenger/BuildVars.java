@@ -73,15 +73,15 @@ public class BuildVars {
     }
 
     private static boolean hasDirectCurrency() {
-        p2.m mVar;
-        if (BillingController.getInstance().isReady() && (mVar = BillingController.PREMIUM_PRODUCT_DETAILS) != null) {
-            ArrayList arrayList = mVar.h;
+        p2.n nVar;
+        if (BillingController.getInstance().isReady() && (nVar = BillingController.PREMIUM_PRODUCT_DETAILS) != null) {
+            ArrayList arrayList = nVar.h;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                ArrayList arrayList2 = ((p2.l) obj).f44189b.f11056a;
+                ArrayList arrayList2 = ((p2.m) obj).f41028b.f41026a;
                 int size2 = arrayList2.size();
                 int i11 = 0;
                 while (i11 < size2) {
@@ -89,7 +89,7 @@ public class BuildVars {
                     i11++;
                     p2.k kVar = (p2.k) obj2;
                     for (String str : MessagesController.getInstance(UserConfig.selectedAccount).directPaymentsCurrency) {
-                        if (Objects.equals(kVar.f44187c, str)) {
+                        if (Objects.equals(kVar.f41025c, str)) {
                             return true;
                         }
                     }

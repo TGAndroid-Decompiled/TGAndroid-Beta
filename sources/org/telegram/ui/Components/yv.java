@@ -1,116 +1,40 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class yv extends Drawable {
-    public final int f33667a;
-    public RectF f33668b;
-    public Paint f33669c;
+import android.view.View;
+import android.view.ViewGroup;
+public final class yv implements ng.j {
+    public final int f31173a;
+    public final ViewGroup f31174b;
 
-    public yv(int i10, byte b10) {
-        this.f33667a = i10;
+    public yv(ViewGroup viewGroup, int i10) {
+        this.f31173a = i10;
+        this.f31174b = viewGroup;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f33667a) {
+    public final boolean a(Canvas canvas, View view, long j10) {
+        switch (this.f31173a) {
             case 0:
-                RectF rectF = this.f33668b;
-                rectF.set(0.0f, 0.0f, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
-                canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(8.0f), AndroidUtilities.dpf2(8.0f), this.f33669c);
-                return;
+                return ((ix) this.f31174b).drawChild(canvas, view, j10);
             case 1:
-                RectF rectF2 = this.f33668b;
-                rectF2.set(getBounds());
-                float height = rectF2.height() * 0.2f;
-                canvas.drawRoundRect(rectF2, height, height, this.f33669c);
-                return;
+                return ((rl0) this.f31174b).drawChild(canvas, view, j10);
             case 2:
-                RectF rectF3 = this.f33668b;
-                rectF3.set(getBounds());
-                rectF3.inset(AndroidUtilities.dp(1.0f), (rectF3.height() - AndroidUtilities.dp(28.0f)) / 2.0f);
-                canvas.drawRoundRect(rectF3, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f33669c);
-                return;
+                pw pwVar = ((kz) this.f31174b).A0;
+                if (view instanceof bg.d) {
+                    canvas.save();
+                    canvas.translate(view.getX(), view.getY());
+                    org.telegram.ui.Cells.c8 c8Var = (org.telegram.ui.Cells.c8) ((bg.d) view);
+                    if (c8Var.I) {
+                        c8Var.b(canvas, pwVar);
+                    }
+                    canvas.restore();
+                }
+                return pwVar.drawChild(canvas, view, j10);
+            case 3:
+                return ((lp0) this.f31174b).drawChild(canvas, view, j10);
             default:
-                RectF rectF4 = this.f33668b;
-                rectF4.set(getBounds());
-                rectF4.inset(0.0f, (rectF4.height() - AndroidUtilities.dp(28.0f)) / 2.0f);
-                canvas.drawRoundRect(rectF4, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f33669c);
-                return;
+                return ((pt0) this.f31174b).drawChild(canvas, view, j10);
         }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.f33667a) {
-            case 0:
-                return -3;
-            case 1:
-                return -3;
-            case 2:
-                return -2;
-            default:
-                return -2;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        switch (this.f33667a) {
-            case 0:
-                this.f33669c.setAlpha(i10);
-                return;
-            case 1:
-                this.f33669c.setAlpha(i10);
-                return;
-            case 2:
-                this.f33669c.setAlpha(i10);
-                return;
-            default:
-                this.f33669c.setAlpha(i10);
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f33667a) {
-            case 0:
-                return;
-            case 1:
-                this.f33669c.setColorFilter(colorFilter);
-                return;
-            case 2:
-            default:
-                return;
-        }
-    }
-
-    public yv() {
-        this.f33667a = 1;
-        this.f33668b = new RectF();
-        this.f33669c = new Paint(1);
-    }
-
-    public yv(int i10) {
-        this.f33667a = 0;
-        Paint paint = new Paint();
-        this.f33669c = paint;
-        this.f33668b = new RectF();
-        paint.setAlpha(45);
-        paint.setColor(i10);
-    }
-
-    private final void a(ColorFilter colorFilter) {
-    }
-
-    private final void b(ColorFilter colorFilter) {
-    }
-
-    private final void c(ColorFilter colorFilter) {
     }
 }

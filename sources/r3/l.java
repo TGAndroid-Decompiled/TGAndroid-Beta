@@ -4,7 +4,7 @@ public interface l extends g5.j {
 
     boolean c(byte[] bArr, int i10, int i11, boolean z4);
 
-    int e(int i10, int i11, byte[] bArr);
+    int d(int i10, int i11, byte[] bArr);
 
     boolean f(byte[] bArr, int i10, int i11, boolean z4);
 
@@ -16,11 +16,11 @@ public interface l extends g5.j {
 
     void i(int i10);
 
-    void r();
+    void m();
+
+    void n(int i10);
 
     void readFully(byte[] bArr, int i10, int i11);
-
-    void s(int i10);
 
     int skip(int i10);
 }

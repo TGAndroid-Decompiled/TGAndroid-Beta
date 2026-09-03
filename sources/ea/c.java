@@ -19,17 +19,18 @@ import java.util.regex.Pattern;
 import java.util.zip.GZIPOutputStream;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.ui.yh;
+import org.telegram.ui.ai;
+import vh.w2;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
-    public static final Charset f5013e = Charset.forName("UTF-8");
-    public final Context f5014a;
-    public final ba.b f5015b;
-    public final d f5016c = new d();
+    public static final Charset e = Charset.forName("UTF-8");
+    public final Context f5179a;
+    public final ba.b f5180b;
+    public final d f5181c = new d();
 
     public c(Context context, ba.b bVar) {
-        this.f5014a = context;
-        this.f5015b = bVar;
+        this.f5179a = context;
+        this.f5180b = bVar;
     }
 
     public static URL a(String str) {
@@ -41,11 +42,11 @@ public final class c {
     }
 
     public static void b(HttpURLConnection httpURLConnection, String str, String str2, String str3) {
-        String k10;
+        String e6;
         InputStream errorStream = httpURLConnection.getErrorStream();
         String str4 = null;
         if (errorStream != null) {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, f5013e));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, e));
             try {
                 StringBuilder sb = new StringBuilder();
                 while (true) {
@@ -73,11 +74,11 @@ public final class c {
         if (!TextUtils.isEmpty(str4)) {
             Log.w("Firebase-Installations", str4);
             if (TextUtils.isEmpty(str)) {
-                k10 = "";
+                e6 = "";
             } else {
-                k10 = yh.k(", ", str);
+                e6 = w2.e(", ", str);
             }
-            Log.w("Firebase-Installations", yh.l("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, k10));
+            Log.w("Firebase-Installations", ai.k("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, e6));
         }
     }
 
@@ -91,7 +92,7 @@ public final class c {
 
     public static a e(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f5013e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, e));
         e0 a2 = b.a();
         jsonReader.beginObject();
         String str = null;
@@ -111,7 +112,7 @@ public final class c {
                 while (jsonReader.hasNext()) {
                     String nextName2 = jsonReader.nextName();
                     if (nextName2.equals("token")) {
-                        a2.f1475c = jsonReader.nextString();
+                        a2.f1379c = jsonReader.nextString();
                     } else if (nextName2.equals("expiresIn")) {
                         a2.d = Long.valueOf(d(jsonReader.nextString()));
                     } else {
@@ -133,13 +134,13 @@ public final class c {
 
     public static b f(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f5013e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, e));
         e0 a2 = b.a();
         jsonReader.beginObject();
         while (jsonReader.hasNext()) {
             String nextName = jsonReader.nextName();
             if (nextName.equals("token")) {
-                a2.f1475c = jsonReader.nextString();
+                a2.f1379c = jsonReader.nextString();
             } else if (nextName.equals("expiresIn")) {
                 a2.d = Long.valueOf(d(jsonReader.nextString()));
             } else {
@@ -149,7 +150,7 @@ public final class c {
         jsonReader.endObject();
         jsonReader.close();
         inputStream.close();
-        a2.f1474b = 1;
+        a2.f1378b = 1;
         return a2.c();
     }
 

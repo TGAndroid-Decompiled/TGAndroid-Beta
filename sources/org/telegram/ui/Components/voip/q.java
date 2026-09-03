@@ -1,31 +1,21 @@
 package org.telegram.ui.Components.voip;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.webrtc.RendererCommon;
-public final class q implements RendererCommon.RendererEvents {
-    public final u f32283a;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.widget.TextView;
+public final class q extends TextView {
+    public final t f29833a;
 
-    public q(u uVar) {
-        this.f32283a = uVar;
+    public q(t tVar, Context context) {
+        super(context);
+        this.f29833a = tVar;
     }
 
     @Override
-    public final void onFirstFrameRendered() {
-        int i10 = 0;
-        while (true) {
-            u uVar = this.f32283a;
-            if (i10 < uVar.f32379j0.size()) {
-                AndroidUtilities.cancelRunOnUIThread((Runnable) uVar.f32379j0.get(i10));
-                ((Runnable) uVar.f32379j0.get(i10)).run();
-                i10++;
-            } else {
-                uVar.f32379j0.clear();
-                return;
-            }
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (Math.abs(this.f29833a.K.getAlpha() - 1.0f) > 0.001f) {
+            return false;
         }
-    }
-
-    @Override
-    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
+        return super.onTouchEvent(motionEvent);
     }
 }

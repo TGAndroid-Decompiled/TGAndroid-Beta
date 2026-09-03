@@ -1,189 +1,34 @@
 package lh;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import mh.m7;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stars;
-public final class b5 implements m7 {
-    public final int f12620a;
-    public final long f12621b;
-    public final Utilities.Callback f12622c;
-    public int f12623e;
-    public long f12626i;
-    public String f12634q;
-    public boolean f12635r;
-    public boolean f12636s;
-    public boolean f12637t;
-    public final ArrayList d = new ArrayList();
-    public final ArrayList f12624f = new ArrayList();
-    public final ArrayList f12625g = new ArrayList();
-    public final ArrayList h = new ArrayList();
-    public final HashSet f12627j = new HashSet();
-    public final HashSet f12628k = new HashSet();
-    public final HashSet f12629l = new HashSet();
-    public final HashMap f12630m = new HashMap();
-    public final HashMap f12631n = new HashMap();
-    public final HashMap f12632o = new HashMap();
-    public a5 f12633p = a5.BY_PRICE;
-    public boolean f12638u = false;
-    public int v = -1;
+public final class b5 extends AnimatorListenerAdapter {
+    public final c5 f12138a;
 
-    public b5(long j10, int i10, Utilities.Callback callback) {
-        this.f12620a = i10;
-        this.f12621b = j10;
-        this.f12622c = callback;
+    public b5(c5 c5Var) {
+        this.f12138a = c5Var;
     }
 
     @Override
-    public final void a() {
-        g(false);
-    }
-
-    @Override
-    public final int b(int i10) {
-        return -1;
-    }
-
-    @Override
-    public final int c() {
-        return this.f12623e;
-    }
-
-    @Override
-    public final int e() {
-        return this.d.size();
-    }
-
-    public final void f() {
-        if (this.v >= 0) {
-            ConnectionsManager.getInstance(this.f12620a).cancelRequest(this.v, true);
-            this.v = -1;
+    public final void onAnimationEnd(Animator animator) {
+        c5 c5Var = this.f12138a;
+        b bVar = c5Var.f12206f0;
+        c5Var.f12216p0 = c5Var.f12215o0;
+        c5Var.d(c5Var.R);
+        TL_stars.starGiftAttributeModel[] stargiftattributemodelArr = c5Var.e;
+        int i10 = 2 - c5Var.f12215o0;
+        stargiftattributemodelArr[i10] = (TL_stars.starGiftAttributeModel) c5Var.T.f2847f;
+        ja.Z0(c5Var.d[i10].getImageReceiver(), stargiftattributemodelArr[2 - c5Var.f12215o0].document, 160);
+        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) c5Var.U.f2847f;
+        if (stargiftattributepattern != null) {
+            org.telegram.ui.Components.l5 m9 = org.telegram.ui.Components.l5.m(UserConfig.selectedAccount, 7, stargiftattributepattern.document);
+            m9.f26589m = true;
+            m9.v();
         }
-        this.f12637t = false;
-    }
-
-    public final void g(boolean z4) {
-        if (!this.f12637t) {
-            if (z4 || !this.f12638u) {
-                this.f12637t = true;
-                TL_stars.getResaleStarGifts getresalestargifts = new TL_stars.getResaleStarGifts();
-                getresalestargifts.gift_id = this.f12621b;
-                String str = this.f12634q;
-                if (str == null) {
-                    str = "";
-                }
-                getresalestargifts.offset = str;
-                getresalestargifts.limit = 15;
-                getresalestargifts.for_craft = this.f12636s;
-                getresalestargifts.stars_only = this.f12635r;
-                a5 a5Var = this.f12633p;
-                int i10 = 0;
-                if (a5Var == a5.BY_NUMBER) {
-                    getresalestargifts.sort_by_num = true;
-                    getresalestargifts.sort_by_price = false;
-                } else if (a5Var == a5.BY_DATE) {
-                    getresalestargifts.sort_by_num = false;
-                    getresalestargifts.sort_by_price = false;
-                } else if (a5Var == a5.BY_PRICE) {
-                    getresalestargifts.sort_by_num = false;
-                    getresalestargifts.sort_by_price = true;
-                }
-                long j10 = this.f12626i;
-                ArrayList arrayList = this.h;
-                ArrayList arrayList2 = this.f12625g;
-                ArrayList arrayList3 = this.f12624f;
-                if (j10 != 0) {
-                    getresalestargifts.flags = 1 | getresalestargifts.flags;
-                    getresalestargifts.attributes_hash = j10;
-                } else if (arrayList3.isEmpty() && arrayList2.isEmpty() && arrayList.isEmpty()) {
-                    getresalestargifts.flags = 1 | getresalestargifts.flags;
-                    getresalestargifts.attributes_hash = 0L;
-                }
-                HashSet hashSet = this.f12627j;
-                boolean isEmpty = hashSet.isEmpty();
-                HashSet hashSet2 = this.f12629l;
-                HashSet hashSet3 = this.f12628k;
-                if (!isEmpty || !hashSet3.isEmpty() || !hashSet2.isEmpty()) {
-                    getresalestargifts.flags |= 8;
-                    if (!hashSet.isEmpty()) {
-                        int size = arrayList3.size();
-                        int i11 = 0;
-                        while (i11 < size) {
-                            Object obj = arrayList3.get(i11);
-                            i11++;
-                            TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj;
-                            if (!hashSet.contains(Long.valueOf(stargiftattributemodel.document.f20851id))) {
-                                TL_stars.starGiftAttributeIdModel stargiftattributeidmodel = new TL_stars.starGiftAttributeIdModel();
-                                stargiftattributeidmodel.document_id = stargiftattributemodel.document.f20851id;
-                                getresalestargifts.attributes.add(stargiftattributeidmodel);
-                            }
-                        }
-                    }
-                    if (!hashSet3.isEmpty()) {
-                        int size2 = arrayList2.size();
-                        int i12 = 0;
-                        while (i12 < size2) {
-                            Object obj2 = arrayList2.get(i12);
-                            i12++;
-                            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj2;
-                            if (!hashSet3.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id))) {
-                                TL_stars.starGiftAttributeIdBackdrop stargiftattributeidbackdrop = new TL_stars.starGiftAttributeIdBackdrop();
-                                stargiftattributeidbackdrop.backdrop_id = stargiftattributebackdrop.backdrop_id;
-                                getresalestargifts.attributes.add(stargiftattributeidbackdrop);
-                            }
-                        }
-                    }
-                    if (!hashSet2.isEmpty()) {
-                        int size3 = arrayList.size();
-                        while (i10 < size3) {
-                            Object obj3 = arrayList.get(i10);
-                            i10++;
-                            TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj3;
-                            if (!hashSet2.contains(Long.valueOf(stargiftattributepattern.document.f20851id))) {
-                                TL_stars.starGiftAttributeIdPattern stargiftattributeidpattern = new TL_stars.starGiftAttributeIdPattern();
-                                stargiftattributeidpattern.document_id = stargiftattributepattern.document.f20851id;
-                                getresalestargifts.attributes.add(stargiftattributeidpattern);
-                            }
-                        }
-                    }
-                }
-                this.v = ConnectionsManager.getInstance(this.f12620a).sendRequest(getresalestargifts, new eg.b3(4, this, getresalestargifts));
-            }
-        }
-    }
-
-    @Override
-    public final Object get(int i10) {
-        return this.d.get(i10);
-    }
-
-    public final void h() {
-        f();
-        this.f12634q = null;
-        this.d.clear();
-        g(true);
-        Utilities.Callback callback = this.f12622c;
-        if (callback != null) {
-            callback.run(Boolean.TRUE);
-        }
-    }
-
-    public final void i(a5 a5Var) {
-        if (this.f12633p != a5Var) {
-            this.f12633p = a5Var;
-            h();
-        }
-    }
-
-    @Override
-    public final int indexOf(Object obj) {
-        return this.d.indexOf(obj);
-    }
-
-    @Override
-    public final void d() {
+        AndroidUtilities.cancelRunOnUIThread(bVar);
+        AndroidUtilities.runOnUIThread(bVar, 2500L);
     }
 }

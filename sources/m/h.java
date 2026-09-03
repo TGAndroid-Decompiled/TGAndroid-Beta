@@ -13,7 +13,7 @@ import android.view.ViewParent;
 import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.appcompat.widget.ActionMenuView;
 import java.util.ArrayList;
-public final class h implements l.y {
+public final class h implements l.x {
     public int B;
     public int C;
     public boolean D;
@@ -21,48 +21,48 @@ public final class h implements l.y {
     public d G;
     public f H;
     public e I;
-    public final Context f13202a;
-    public Context f13203b;
-    public l.l f13204c;
+    public final Context f13490a;
+    public Context f13491b;
+    public l.k f13492c;
     public final LayoutInflater d;
-    public l.x f13205e;
-    public l.a0 f13207n;
-    public g f13208r;
-    public Drawable f13209s;
+    public l.w e;
+    public l.z f13494n;
+    public g f13495r;
+    public Drawable f13496s;
     public boolean v;
-    public boolean f13210w;
-    public boolean f13211x;
-    public int f13212y;
-    public final int f13206f = 2131492867;
+    public boolean f13497w;
+    public boolean f13498x;
+    public int f13499y;
+    public final int f13493f = 2131492867;
     public final int h = 2131492866;
     public final SparseBooleanArray E = new SparseBooleanArray();
-    public final y5.h J = new y5.h(this, 24);
+    public final bb.b J = new bb.b(this, 25);
 
     public h(Context context) {
-        this.f13202a = context;
+        this.f13490a = context;
         this.d = LayoutInflater.from(context);
     }
 
-    public final View a(l.n nVar, View view, ViewGroup viewGroup) {
-        l.z zVar;
-        View actionView = nVar.getActionView();
+    public final View a(l.m mVar, View view, ViewGroup viewGroup) {
+        l.y yVar;
+        View actionView = mVar.getActionView();
         int i10 = 0;
-        if (actionView == null || nVar.e()) {
-            if (view instanceof l.z) {
-                zVar = (l.z) view;
+        if (actionView == null || mVar.e()) {
+            if (view instanceof l.y) {
+                yVar = (l.y) view;
             } else {
-                zVar = (l.z) this.d.inflate(this.h, viewGroup, false);
+                yVar = (l.y) this.d.inflate(this.h, viewGroup, false);
             }
-            zVar.b(nVar);
-            ActionMenuItemView actionMenuItemView = (ActionMenuItemView) zVar;
-            actionMenuItemView.setItemInvoker((ActionMenuView) this.f13207n);
+            yVar.b(mVar);
+            ActionMenuItemView actionMenuItemView = (ActionMenuItemView) yVar;
+            actionMenuItemView.setItemInvoker((ActionMenuView) this.f13494n);
             if (this.I == null) {
                 this.I = new e(this);
             }
             actionMenuItemView.setPopupCallback(this.I);
-            actionView = (View) zVar;
+            actionView = (View) yVar;
         }
-        if (nVar.C) {
+        if (mVar.C) {
             i10 = 8;
         }
         actionView.setVisibility(i10);
@@ -75,20 +75,20 @@ public final class h implements l.y {
     }
 
     @Override
-    public final boolean b(l.n nVar) {
+    public final boolean b(l.m mVar) {
         return false;
     }
 
     @Override
-    public final void c(l.l lVar, boolean z4) {
+    public final void c(l.k kVar, boolean z4) {
         f();
         d dVar = this.G;
         if (dVar != null && dVar.b()) {
-            dVar.f11458i.dismiss();
+            dVar.f11210i.dismiss();
         }
-        l.x xVar = this.f13205e;
-        if (xVar != null) {
-            xVar.c(lVar, z4);
+        l.w wVar = this.e;
+        if (wVar != null) {
+            wVar.c(kVar, z4);
         }
     }
 
@@ -102,9 +102,9 @@ public final class h implements l.y {
         boolean z11;
         boolean z12;
         h hVar = this;
-        l.l lVar = hVar.f13204c;
-        if (lVar != null) {
-            arrayList = lVar.l();
+        l.k kVar = hVar.f13492c;
+        if (kVar != null) {
+            arrayList = kVar.l();
             i10 = arrayList.size();
         } else {
             arrayList = null;
@@ -113,7 +113,7 @@ public final class h implements l.y {
         int i12 = hVar.C;
         int i13 = hVar.B;
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-        ViewGroup viewGroup = (ViewGroup) hVar.f13207n;
+        ViewGroup viewGroup = (ViewGroup) hVar.f13494n;
         int i14 = 0;
         boolean z13 = false;
         int i15 = 0;
@@ -124,8 +124,8 @@ public final class h implements l.y {
             if (i14 >= i10) {
                 break;
             }
-            l.n nVar = (l.n) arrayList.get(i14);
-            int i17 = nVar.f11440y;
+            l.m mVar = (l.m) arrayList.get(i14);
+            int i17 = mVar.f11193y;
             if ((i17 & 2) == 2) {
                 i15++;
             } else if ((i17 & 1) == 1) {
@@ -133,12 +133,12 @@ public final class h implements l.y {
             } else {
                 z13 = true;
             }
-            if (hVar.D && nVar.C) {
+            if (hVar.D && mVar.C) {
                 i12 = 0;
             }
             i14++;
         }
-        if (hVar.f13210w && (z13 || i16 + i15 > i12)) {
+        if (hVar.f13497w && (z13 || i16 + i15 > i12)) {
             i12--;
         }
         int i18 = i12 - i15;
@@ -147,16 +147,16 @@ public final class h implements l.y {
         int i19 = 0;
         int i20 = 0;
         while (i19 < i10) {
-            l.n nVar2 = (l.n) arrayList.get(i19);
-            int i21 = nVar2.f11440y;
+            l.m mVar2 = (l.m) arrayList.get(i19);
+            int i21 = mVar2.f11193y;
             if ((i21 & 2) == i11) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            int i22 = nVar2.f11420b;
+            int i22 = mVar2.f11174b;
             if (z10) {
-                View a2 = hVar.a(nVar2, null, viewGroup);
+                View a2 = hVar.a(mVar2, null, viewGroup);
                 a2.measure(makeMeasureSpec, makeMeasureSpec);
                 int measuredWidth = a2.getMeasuredWidth();
                 i13 -= measuredWidth;
@@ -166,7 +166,7 @@ public final class h implements l.y {
                 if (i22 != 0) {
                     sparseBooleanArray.put(i22, z4);
                 }
-                nVar2.f(z4);
+                mVar2.f(z4);
             } else if ((i21 & 1) == z4) {
                 boolean z14 = sparseBooleanArray.get(i22);
                 if ((i18 > 0 || z14) && i13 > 0) {
@@ -175,7 +175,7 @@ public final class h implements l.y {
                     z11 = false;
                 }
                 if (z11) {
-                    View a10 = hVar.a(nVar2, null, viewGroup);
+                    View a10 = hVar.a(mVar2, null, viewGroup);
                     a10.measure(makeMeasureSpec, makeMeasureSpec);
                     int measuredWidth2 = a10.getMeasuredWidth();
                     i13 -= measuredWidth2;
@@ -194,21 +194,21 @@ public final class h implements l.y {
                 } else if (z14) {
                     sparseBooleanArray.put(i22, false);
                     for (int i23 = 0; i23 < i19; i23++) {
-                        l.n nVar3 = (l.n) arrayList.get(i23);
-                        if (nVar3.f11420b == i22) {
-                            if ((nVar3.f11439x & 32) == 32) {
+                        l.m mVar3 = (l.m) arrayList.get(i23);
+                        if (mVar3.f11174b == i22) {
+                            if ((mVar3.f11192x & 32) == 32) {
                                 i18++;
                             }
-                            nVar3.f(false);
+                            mVar3.f(false);
                         }
                     }
                 }
                 if (z11) {
                     i18--;
                 }
-                nVar2.f(z11);
+                mVar2.f(z11);
             } else {
-                nVar2.f(false);
+                mVar2.f(false);
                 i19++;
                 i11 = 2;
                 hVar = this;
@@ -225,28 +225,28 @@ public final class h implements l.y {
     @Override
     public final void e() {
         int i10;
-        l.n nVar;
-        ViewGroup viewGroup = (ViewGroup) this.f13207n;
+        l.m mVar;
+        ViewGroup viewGroup = (ViewGroup) this.f13494n;
         ArrayList arrayList = null;
         boolean z4 = false;
         if (viewGroup != null) {
-            l.l lVar = this.f13204c;
-            if (lVar != null) {
-                lVar.i();
-                ArrayList l10 = this.f13204c.l();
+            l.k kVar = this.f13492c;
+            if (kVar != null) {
+                kVar.i();
+                ArrayList l10 = this.f13492c.l();
                 int size = l10.size();
                 i10 = 0;
                 for (int i11 = 0; i11 < size; i11++) {
-                    l.n nVar2 = (l.n) l10.get(i11);
-                    if ((nVar2.f11439x & 32) == 32) {
+                    l.m mVar2 = (l.m) l10.get(i11);
+                    if ((mVar2.f11192x & 32) == 32) {
                         View childAt = viewGroup.getChildAt(i10);
-                        if (childAt instanceof l.z) {
-                            nVar = ((l.z) childAt).getItemData();
+                        if (childAt instanceof l.y) {
+                            mVar = ((l.y) childAt).getItemData();
                         } else {
-                            nVar = null;
+                            mVar = null;
                         }
-                        View a2 = a(nVar2, childAt, viewGroup);
-                        if (nVar2 != nVar) {
+                        View a2 = a(mVar2, childAt, viewGroup);
+                        if (mVar2 != mVar) {
                             a2.setPressed(false);
                             a2.jumpDrawablesToCurrentState();
                         }
@@ -255,7 +255,7 @@ public final class h implements l.y {
                             if (viewGroup2 != null) {
                                 viewGroup2.removeView(a2);
                             }
-                            ((ViewGroup) this.f13207n).addView(a2, i10);
+                            ((ViewGroup) this.f13494n).addView(a2, i10);
                         }
                         i10++;
                     }
@@ -264,77 +264,77 @@ public final class h implements l.y {
                 i10 = 0;
             }
             while (i10 < viewGroup.getChildCount()) {
-                if (viewGroup.getChildAt(i10) == this.f13208r) {
+                if (viewGroup.getChildAt(i10) == this.f13495r) {
                     i10++;
                 } else {
                     viewGroup.removeViewAt(i10);
                 }
             }
         }
-        ((View) this.f13207n).requestLayout();
-        l.l lVar2 = this.f13204c;
-        if (lVar2 != null) {
-            lVar2.i();
-            ArrayList arrayList2 = lVar2.f11401i;
+        ((View) this.f13494n).requestLayout();
+        l.k kVar2 = this.f13492c;
+        if (kVar2 != null) {
+            kVar2.i();
+            ArrayList arrayList2 = kVar2.f11155i;
             int size2 = arrayList2.size();
             for (int i12 = 0; i12 < size2; i12++) {
-                l.o oVar = ((l.n) arrayList2.get(i12)).A;
+                l.n nVar = ((l.m) arrayList2.get(i12)).A;
             }
         }
-        l.l lVar3 = this.f13204c;
-        if (lVar3 != null) {
-            lVar3.i();
-            arrayList = lVar3.f11402j;
+        l.k kVar3 = this.f13492c;
+        if (kVar3 != null) {
+            kVar3.i();
+            arrayList = kVar3.f11156j;
         }
-        if (this.f13210w && arrayList != null) {
+        if (this.f13497w && arrayList != null) {
             int size3 = arrayList.size();
             if (size3 == 1) {
-                z4 = !((l.n) arrayList.get(0)).C;
+                z4 = !((l.m) arrayList.get(0)).C;
             } else if (size3 > 0) {
                 z4 = true;
             }
         }
         if (z4) {
-            if (this.f13208r == null) {
-                this.f13208r = new g(this, this.f13202a);
+            if (this.f13495r == null) {
+                this.f13495r = new g(this, this.f13490a);
             }
-            ViewGroup viewGroup3 = (ViewGroup) this.f13208r.getParent();
-            if (viewGroup3 != this.f13207n) {
+            ViewGroup viewGroup3 = (ViewGroup) this.f13495r.getParent();
+            if (viewGroup3 != this.f13494n) {
                 if (viewGroup3 != null) {
-                    viewGroup3.removeView(this.f13208r);
+                    viewGroup3.removeView(this.f13495r);
                 }
-                ActionMenuView actionMenuView = (ActionMenuView) this.f13207n;
-                g gVar = this.f13208r;
+                ActionMenuView actionMenuView = (ActionMenuView) this.f13494n;
+                g gVar = this.f13495r;
                 actionMenuView.getClass();
                 j i13 = ActionMenuView.i();
-                i13.f13224a = true;
+                i13.f13518a = true;
                 actionMenuView.addView(gVar, i13);
             }
         } else {
-            g gVar2 = this.f13208r;
+            g gVar2 = this.f13495r;
             if (gVar2 != null) {
                 ViewParent parent = gVar2.getParent();
-                l.a0 a0Var = this.f13207n;
-                if (parent == a0Var) {
-                    ((ViewGroup) a0Var).removeView(this.f13208r);
+                l.z zVar = this.f13494n;
+                if (parent == zVar) {
+                    ((ViewGroup) zVar).removeView(this.f13495r);
                 }
             }
         }
-        ((ActionMenuView) this.f13207n).setOverflowReserved(this.f13210w);
+        ((ActionMenuView) this.f13494n).setOverflowReserved(this.f13497w);
     }
 
     public final boolean f() {
-        l.a0 a0Var;
+        l.z zVar;
         f fVar = this.H;
-        if (fVar != null && (a0Var = this.f13207n) != null) {
-            ((View) a0Var).removeCallbacks(fVar);
+        if (fVar != null && (zVar = this.f13494n) != null) {
+            ((View) zVar).removeCallbacks(fVar);
             this.H = null;
             return true;
         }
         d dVar = this.F;
         if (dVar != null) {
             if (dVar.b()) {
-                dVar.f11458i.dismiss();
+                dVar.f11210i.dismiss();
             }
             return true;
         }
@@ -350,21 +350,21 @@ public final class h implements l.y {
     }
 
     @Override
-    public final void h(l.x xVar) {
+    public final void h(l.w wVar) {
         throw null;
     }
 
     @Override
-    public final void i(Context context, l.l lVar) {
-        this.f13203b = context;
+    public final void i(Context context, l.k kVar) {
+        this.f13491b = context;
         LayoutInflater.from(context);
-        this.f13204c = lVar;
+        this.f13492c = kVar;
         Resources resources = context.getResources();
-        if (!this.f13211x) {
-            this.f13210w = true;
+        if (!this.f13498x) {
+            this.f13497w = true;
         }
         int i10 = 2;
-        this.f13212y = context.getResources().getDisplayMetrics().widthPixels / 2;
+        this.f13499y = context.getResources().getDisplayMetrics().widthPixels / 2;
         Configuration configuration = context.getResources().getConfiguration();
         int i11 = configuration.screenWidthDp;
         int i12 = configuration.screenHeightDp;
@@ -380,41 +380,41 @@ public final class h implements l.y {
             i10 = 5;
         }
         this.C = i10;
-        int i13 = this.f13212y;
-        if (this.f13210w) {
-            if (this.f13208r == null) {
-                g gVar = new g(this, this.f13202a);
-                this.f13208r = gVar;
+        int i13 = this.f13499y;
+        if (this.f13497w) {
+            if (this.f13495r == null) {
+                g gVar = new g(this, this.f13490a);
+                this.f13495r = gVar;
                 if (this.v) {
-                    gVar.setImageDrawable(this.f13209s);
-                    this.f13209s = null;
+                    gVar.setImageDrawable(this.f13496s);
+                    this.f13496s = null;
                     this.v = false;
                 }
                 int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-                this.f13208r.measure(makeMeasureSpec, makeMeasureSpec);
+                this.f13495r.measure(makeMeasureSpec, makeMeasureSpec);
             }
-            i13 -= this.f13208r.getMeasuredWidth();
+            i13 -= this.f13495r.getMeasuredWidth();
         } else {
-            this.f13208r = null;
+            this.f13495r = null;
         }
         this.B = i13;
         float f10 = resources.getDisplayMetrics().density;
     }
 
     @Override
-    public final boolean j(l.e0 e0Var) {
+    public final boolean j(l.d0 d0Var) {
         boolean z4;
-        if (e0Var.hasVisibleItems()) {
-            l.e0 e0Var2 = e0Var;
+        if (d0Var.hasVisibleItems()) {
+            l.d0 d0Var2 = d0Var;
             while (true) {
-                l.l lVar = e0Var2.f11371z;
-                if (lVar == this.f13204c) {
+                l.k kVar = d0Var2.f11129z;
+                if (kVar == this.f13492c) {
                     break;
                 }
-                e0Var2 = (l.e0) lVar;
+                d0Var2 = (l.d0) kVar;
             }
-            l.n nVar = e0Var2.A;
-            ViewGroup viewGroup = (ViewGroup) this.f13207n;
+            l.m mVar = d0Var2.A;
+            ViewGroup viewGroup = (ViewGroup) this.f13494n;
             View view = null;
             if (viewGroup != null) {
                 int childCount = viewGroup.getChildCount();
@@ -424,7 +424,7 @@ public final class h implements l.y {
                         break;
                     }
                     View childAt = viewGroup.getChildAt(i10);
-                    if ((childAt instanceof l.z) && ((l.z) childAt).getItemData() == nVar) {
+                    if ((childAt instanceof l.y) && ((l.y) childAt).getItemData() == mVar) {
                         view = childAt;
                         break;
                     }
@@ -432,12 +432,12 @@ public final class h implements l.y {
                 }
             }
             if (view != null) {
-                e0Var.A.getClass();
-                int size = e0Var.f11399f.size();
+                d0Var.A.getClass();
+                int size = d0Var.f11153f.size();
                 int i11 = 0;
                 while (true) {
                     if (i11 < size) {
-                        MenuItem item = e0Var.getItem(i11);
+                        MenuItem item = d0Var.getItem(i11);
                         if (item.isVisible() && item.getIcon() != null) {
                             z4 = true;
                             break;
@@ -448,24 +448,24 @@ public final class h implements l.y {
                         break;
                     }
                 }
-                d dVar = new d(this, this.f13203b, e0Var, view);
+                d dVar = new d(this, this.f13491b, d0Var, view);
                 this.G = dVar;
-                dVar.f11457g = z4;
-                l.t tVar = dVar.f11458i;
-                if (tVar != null) {
-                    tVar.o(z4);
+                dVar.f11209g = z4;
+                l.s sVar = dVar.f11210i;
+                if (sVar != null) {
+                    sVar.o(z4);
                 }
                 d dVar2 = this.G;
                 if (!dVar2.b()) {
-                    if (dVar2.f11455e != null) {
+                    if (dVar2.e != null) {
                         dVar2.d(0, 0, false, false);
                     } else {
                         throw new IllegalStateException("MenuPopupHelper cannot be used without an anchor");
                     }
                 }
-                l.x xVar = this.f13205e;
-                if (xVar != null) {
-                    xVar.d0(e0Var);
+                l.w wVar = this.e;
+                if (wVar != null) {
+                    wVar.p(d0Var);
                 }
                 return true;
             }
@@ -474,18 +474,18 @@ public final class h implements l.y {
     }
 
     @Override
-    public final boolean k(l.n nVar) {
+    public final boolean k(l.m mVar) {
         return false;
     }
 
     public final boolean l() {
-        l.l lVar;
-        if (this.f13210w && !g() && (lVar = this.f13204c) != null && this.f13207n != null && this.H == null) {
-            lVar.i();
-            if (!lVar.f11402j.isEmpty()) {
-                f fVar = new f(this, new d(this, this.f13203b, this.f13204c, this.f13208r));
+        l.k kVar;
+        if (this.f13497w && !g() && (kVar = this.f13492c) != null && this.f13494n != null && this.H == null) {
+            kVar.i();
+            if (!kVar.f11156j.isEmpty()) {
+                f fVar = new f(this, new d(this, this.f13491b, this.f13492c, this.f13495r));
                 this.H = fVar;
-                ((View) this.f13207n).post(fVar);
+                ((View) this.f13494n).post(fVar);
                 return true;
             }
             return false;

@@ -1,17 +1,14 @@
 package dg;
 
-import java.util.Arrays;
-import java.util.Vector;
+import android.graphics.PointF;
 public final class d1 {
-    public double f4483a;
-    public Vector f4484b;
-    public int f4485c;
-    public float d;
-    public m f4486e;
+    public final PointF f4452a;
+    public final float f4453b;
+    public final float f4454c;
 
-    public d1(g1[] g1VarArr) {
-        Vector vector = new Vector();
-        this.f4484b = vector;
-        vector.addAll(Arrays.asList(g1VarArr));
+    public d1(PointF pointF, float f10, float f11) {
+        this.f4452a = pointF;
+        this.f4453b = f10;
+        this.f4454c = f11;
     }
 }

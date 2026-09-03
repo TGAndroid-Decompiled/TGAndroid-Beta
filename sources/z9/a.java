@@ -2,13 +2,13 @@ package z9;
 
 import java.util.ArrayList;
 public final class a {
-    public final String f51128a;
-    public final ArrayList f51129b;
+    public final String f47456a;
+    public final ArrayList f47457b;
 
     public a(String str, ArrayList arrayList) {
         if (str != null) {
-            this.f51128a = str;
-            this.f51129b = arrayList;
+            this.f47456a = str;
+            this.f47457b = arrayList;
             return;
         }
         throw new NullPointerException("Null userAgent");
@@ -18,7 +18,7 @@ public final class a {
         if (obj != this) {
             if (obj instanceof a) {
                 a aVar = (a) obj;
-                if (this.f51128a.equals(aVar.f51128a) && this.f51129b.equals(aVar.f51129b)) {
+                if (this.f47456a.equals(aVar.f47456a) && this.f47457b.equals(aVar.f47457b)) {
                     return true;
                 }
                 return false;
@@ -29,10 +29,10 @@ public final class a {
     }
 
     public final int hashCode() {
-        return ((this.f51128a.hashCode() ^ 1000003) * 1000003) ^ this.f51129b.hashCode();
+        return ((this.f47456a.hashCode() ^ 1000003) * 1000003) ^ this.f47457b.hashCode();
     }
 
     public final String toString() {
-        return "HeartBeatResult{userAgent=" + this.f51128a + ", usedDates=" + this.f51129b + "}";
+        return "HeartBeatResult{userAgent=" + this.f47456a + ", usedDates=" + this.f47457b + "}";
     }
 }

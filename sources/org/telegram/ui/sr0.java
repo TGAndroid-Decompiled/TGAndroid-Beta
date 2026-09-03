@@ -7,24 +7,24 @@ import android.view.View;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class sr0 extends AnimatorListenerAdapter {
-    public final int f41300a;
-    public final View f41301b;
-    public final PhotoViewer f41302c;
+    public final int f38299a;
+    public final View f38300b;
+    public final PhotoViewer f38301c;
 
     public sr0(PhotoViewer photoViewer, View view, int i10) {
-        this.f41300a = i10;
-        this.f41302c = photoViewer;
-        this.f41301b = view;
+        this.f38299a = i10;
+        this.f38301c = photoViewer;
+        this.f38300b = view;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f41300a) {
+        switch (this.f38299a) {
             case 0:
-                PhotoViewer photoViewer = this.f41302c;
-                photoViewer.f34443y3 = false;
-                this.f41301b.setOutlineProvider(null);
-                ImageView imageView = photoViewer.f34404u3;
+                PhotoViewer photoViewer = this.f38301c;
+                photoViewer.f31891y3 = false;
+                this.f38300b.setOutlineProvider(null);
+                ImageView imageView = photoViewer.f31852u3;
                 if (imageView != null) {
                     imageView.setOutlineProvider(null);
                 }
@@ -32,17 +32,17 @@ public final class sr0 extends AnimatorListenerAdapter {
                 if (hu0Var != null) {
                     hu0Var.setOutlineProvider(null);
                 }
-                SurfaceView surfaceView = photoViewer.f34451z2;
+                SurfaceView surfaceView = photoViewer.f31899z2;
                 if (surfaceView != null) {
                     surfaceView.setVisibility(0);
                     return;
                 }
                 return;
             default:
-                PhotoViewer photoViewer2 = this.f41302c;
-                photoViewer2.f34443y3 = false;
-                photoViewer2.f34271f4.run();
-                AndroidUtilities.runOnUIThread(new pr0(1, this, this.f41301b), 100L);
+                PhotoViewer photoViewer2 = this.f38301c;
+                photoViewer2.f31891y3 = false;
+                photoViewer2.f31719f4.run();
+                AndroidUtilities.runOnUIThread(new gr0(2, this, this.f38300b), 100L);
                 return;
         }
     }

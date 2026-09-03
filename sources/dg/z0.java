@@ -1,25 +1,35 @@
 package dg;
-public final class z0 implements Runnable {
-    public final int f4739a;
-    public final c1 f4740b;
-    public final b4.e0 f4741c;
 
-    public z0(c1 c1Var, b4.e0 e0Var, int i10) {
-        this.f4739a = i10;
-        this.f4740b = c1Var;
-        this.f4741c = e0Var;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.mt0;
+public final class z0 extends e2 {
+    public final Path f4881d3;
+    public final mt0 f4882e3;
+
+    public z0(mt0 mt0Var, Context context) {
+        super(context);
+        this.f4882e3 = mt0Var;
+        this.f4881d3 = new Path();
     }
 
     @Override
-    public final void run() {
-        switch (this.f4739a) {
-            case 0:
-                this.f4740b.p(this.f4741c, true);
-                return;
-            default:
-                c1 c1Var = this.f4740b;
-                c1Var.f4455f.f(new z0(c1Var, this.f4741c, 0));
-                return;
-        }
+    public final void draw(Canvas canvas) {
+        ViewGroup barView;
+        mt0 mt0Var = this.f4882e3;
+        barView = mt0Var.getBarView();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(AndroidUtilities.lerp(barView.getLeft() - getLeft(), 0, mt0Var.K1), AndroidUtilities.lerp(barView.getTop() - getTop(), 0, mt0Var.K1), AndroidUtilities.lerp(barView.getRight() - getLeft(), getWidth(), mt0Var.K1), AndroidUtilities.lerp(barView.getBottom() - getTop(), getHeight(), mt0Var.K1));
+        Path path = this.f4881d3;
+        path.rewind();
+        path.addRoundRect(rectF, AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f), Path.Direction.CW);
+        canvas.save();
+        canvas.clipPath(path);
+        super.draw(canvas);
+        canvas.restore();
     }
 }

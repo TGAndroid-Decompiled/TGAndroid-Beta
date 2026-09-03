@@ -1,8 +1,19 @@
 package org.telegram.ui;
-public final class c40 implements zg.g {
-    public final d60 f35683a;
 
-    public c40(d60 d60Var) {
-        this.f35683a = d60Var;
+import android.view.View;
+public final class c40 extends View {
+    public final e60 f33014a;
+
+    public c40(e60 e60Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f33014a = e60Var;
+    }
+
+    @Override
+    public final void setAlpha(float f10) {
+        if (getAlpha() != f10) {
+            super.setAlpha(f10);
+            this.f33014a.S0();
+        }
     }
 }

@@ -8,18 +8,18 @@ import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.IOException;
 public final class r0 extends g {
-    public final Resources f6902a;
-    public final String f6903b;
-    public Uri f6904c;
+    public final Resources f6415a;
+    public final String f6416b;
+    public Uri f6417c;
     public AssetFileDescriptor d;
-    public FileInputStream f6905e;
-    public long f6906f;
+    public FileInputStream e;
+    public long f6418f;
     public boolean h;
 
     public r0(Context context) {
         super(false);
-        this.f6902a = context.getResources();
-        this.f6903b = context.getPackageName();
+        this.f6415a = context.getResources();
+        this.f6416b = context.getPackageName();
     }
 
     public static Uri buildRawResourceUri(int i10) {
@@ -28,22 +28,22 @@ public final class r0 extends g {
 
     @Override
     public final void close() {
-        this.f6904c = null;
+        this.f6417c = null;
         try {
             try {
-                FileInputStream fileInputStream = this.f6905e;
+                FileInputStream fileInputStream = this.e;
                 if (fileInputStream != null) {
                     fileInputStream.close();
                 }
-                this.f6905e = null;
+                this.e = null;
                 try {
                     try {
                         AssetFileDescriptor assetFileDescriptor = this.d;
                         if (assetFileDescriptor != null) {
                             assetFileDescriptor.close();
                         }
-                    } catch (IOException e6) {
-                        throw new n(null, e6, 2000);
+                    } catch (IOException e) {
+                        throw new n(null, e, 2000);
                     }
                 } finally {
                     this.d = null;
@@ -52,11 +52,11 @@ public final class r0 extends g {
                         transferEnded();
                     }
                 }
-            } catch (IOException e10) {
-                throw new n(null, e10, 2000);
+            } catch (IOException e6) {
+                throw new n(null, e6, 2000);
             }
         } catch (Throwable th2) {
-            this.f6905e = null;
+            this.e = null;
             try {
                 try {
                     AssetFileDescriptor assetFileDescriptor2 = this.d;
@@ -69,8 +69,8 @@ public final class r0 extends g {
                         transferEnded();
                     }
                     throw th2;
-                } catch (IOException e11) {
-                    throw new n(null, e11, 2000);
+                } catch (IOException e10) {
+                    throw new n(null, e10, 2000);
                 }
             } finally {
                 this.d = null;
@@ -84,7 +84,7 @@ public final class r0 extends g {
 
     @Override
     public final Uri getUri() {
-        return this.f6904c;
+        return this.f6417c;
     }
 
     @Override
@@ -97,26 +97,26 @@ public final class r0 extends g {
         if (i11 == 0) {
             return 0;
         }
-        long j10 = this.f6906f;
+        long j10 = this.f6418f;
         if (j10 != 0) {
             if (j10 != -1) {
                 try {
                     i11 = (int) Math.min(j10, i11);
-                } catch (IOException e6) {
-                    throw new n(null, e6, 2000);
+                } catch (IOException e) {
+                    throw new n(null, e, 2000);
                 }
             }
-            FileInputStream fileInputStream = this.f6905e;
-            int i12 = h5.d0.f7237a;
+            FileInputStream fileInputStream = this.e;
+            int i12 = h5.d0.f6924a;
             int read = fileInputStream.read(bArr, i10, i11);
             if (read == -1) {
-                if (this.f6906f != -1) {
+                if (this.f6418f != -1) {
                     throw new n("End of stream reached having not read sufficient data.", new EOFException(), 2000);
                 }
             } else {
-                long j11 = this.f6906f;
+                long j11 = this.f6418f;
                 if (j11 != -1) {
-                    this.f6906f = j11 - read;
+                    this.f6418f = j11 - read;
                 }
                 bytesTransferred(read);
                 return read;

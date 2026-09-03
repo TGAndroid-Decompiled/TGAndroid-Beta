@@ -1,21 +1,21 @@
 package la;
 public final class t implements od.c {
-    public final int f12237a;
-    public final Object f12238b;
+    public final int f11930a;
+    public final Object f11931b;
 
     public t(Object obj, int i10) {
-        this.f12237a = i10;
-        this.f12238b = obj;
+        this.f11930a = i10;
+        this.f11931b = obj;
     }
 
     @Override
     public final Object c(Object obj, wc.c cVar) {
-        switch (this.f12237a) {
+        switch (this.f11930a) {
             case 0:
-                ((z) this.f12238b).f12254c.set((m) obj);
-                return sc.i.f47274a;
+                ((z) this.f11931b).f11946c.set((m) obj);
+                return sc.i.f44318a;
             default:
-                ((kotlin.jvm.internal.q) this.f12238b).f11340a = obj;
+                ((kotlin.jvm.internal.q) this.f11931b).f11100a = obj;
                 throw new pd.a(this);
         }
     }

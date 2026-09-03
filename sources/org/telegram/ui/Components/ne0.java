@@ -1,20 +1,15 @@
 package org.telegram.ui.Components;
+public final class ne0 extends org.telegram.ui.ActionBar.j {
+    public final te0 f27242a;
 
-import android.app.Activity;
-import android.view.ViewGroup;
-public final class ne0 extends org.telegram.ui.ActionBar.k {
-    public final ue0 f29438q1;
-
-    public ne0(ue0 ue0Var, Activity activity) {
-        super(activity, null);
-        this.f29438q1 = ue0Var;
+    public ne0(te0 te0Var) {
+        this.f27242a = te0Var;
     }
 
     @Override
-    public final void setAlpha(float f10) {
-        ViewGroup viewGroup;
-        super.setAlpha(f10);
-        viewGroup = ((org.telegram.ui.ActionBar.h3) this.f29438q1).containerView;
-        viewGroup.invalidate();
+    public final void b(int i10) {
+        if (i10 == -1) {
+            this.f27242a.dismiss();
+        }
     }
 }

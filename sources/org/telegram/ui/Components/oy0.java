@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.text.Editable;
 public interface oy0 {
-    void a(eh.c cVar);
+    void a(dh.c cVar);
 
     EditTextBoldCursor getEditField();
 

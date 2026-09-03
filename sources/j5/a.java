@@ -65,14 +65,14 @@ public final class a extends e {
         while (!h() && this.E < 100000 + j10) {
             i iVar = this.B;
             iVar.b();
-            b bVar = this.f9053c;
-            bVar.l();
-            if (s(bVar, iVar, 0) == -4 && !iVar.e(4)) {
-                this.E = iVar.f15218f;
-                if (this.D != null && !iVar.e(Integer.MIN_VALUE)) {
-                    iVar.k();
+            b bVar = this.f8472c;
+            bVar.m();
+            if (s(bVar, iVar, 0) == -4 && !iVar.d(4)) {
+                this.E = iVar.f14227f;
+                if (this.D != null && !iVar.d(Integer.MIN_VALUE)) {
+                    iVar.l();
                     ByteBuffer byteBuffer = iVar.d;
-                    int i10 = h5.d0.f7237a;
+                    int i10 = h5.d0.f6924a;
                     if (byteBuffer.remaining() != 16) {
                         fArr = null;
                     } else {

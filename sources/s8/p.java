@@ -2,9 +2,9 @@ package s8;
 
 import java.util.Comparator;
 public abstract class p {
-    public static final n f47158a = new Object();
-    public static final o f47159b = new o(-1);
-    public static final o f47160c = new o(1);
+    public static final n f44207a = new Object();
+    public static final o f44208b = new o(-1);
+    public static final o f44209c = new o(1);
 
     public abstract p a(int i10, int i11);
 

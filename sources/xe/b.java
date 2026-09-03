@@ -1,76 +1,37 @@
 package xe;
 
-import com.google.firebase.messaging.d;
-import java.io.DataInputStream;
+import android.content.Context;
+import h7.u;
 import java.io.EOFException;
-import java.io.IOException;
-import ne.p;
-public final class b extends p {
-    public final int f50575g;
+public final class b implements a3.b {
+    public final Object f46987a;
 
-    public b(d dVar, p pVar, String str, int i10) {
-        super(dVar, pVar, str);
-        this.f50575g = i10;
+    public b(Object obj) {
+        this.f46987a = obj;
     }
 
-    public static void h(StringBuffer stringBuffer, p pVar) {
-        p pVar2 = (p) pVar.f15977c;
-        if (pVar2 != null) {
-            h(stringBuffer, pVar2);
-            stringBuffer.append("/");
+    public byte a() {
+        int read = ((com.google.firebase.messaging.d) this.f46987a).read();
+        if (read >= 0) {
+            return (byte) read;
         }
-        stringBuffer.append((String) pVar.d);
+        throw new EOFException();
     }
 
-    public long i() {
-        return ((ze.a) ((d) this.f15976b)).e();
+    public int b() {
+        return ((a() & 255) << 24) | ((a() & 255) << 16) | ((a() & 255) << 8) | (a() & 255);
     }
 
-    public boolean j() {
-        long j10;
-        b bVar = (b) this.f15979f;
-        if (bVar != null) {
-            j10 = bVar.i();
-        } else {
-            j10 = 0;
-        }
-        if (j10 < i()) {
-            return true;
-        }
-        return false;
+    public int c() {
+        return ((a() & Byte.MAX_VALUE) << 21) | ((a() & Byte.MAX_VALUE) << 14) | ((a() & Byte.MAX_VALUE) << 7) | (a() & Byte.MAX_VALUE);
     }
 
-    public b k(String str) {
-        while (i() > 0) {
-            b c3 = c();
-            if (((String) c3.d).matches(str)) {
-                return c3;
-            }
-        }
-        throw new IOException("atom type mismatch, not found: ".concat(str));
-    }
-
-    public short l() {
-        return ((DataInputStream) this.f15978e).readShort();
-    }
-
-    public String m() {
-        byte[] bArr = new byte[(int) i()];
-        ((DataInputStream) this.f15978e).readFully(bArr);
-        String str = new String(bArr, "UTF-8");
-        int indexOf = str.indexOf(0);
-        if (indexOf < 0) {
-            return str;
-        }
-        return str.substring(0, indexOf);
-    }
-
-    public void n(int i10) {
-        int i11 = 0;
-        while (i11 < i10) {
-            int skipBytes = ((DataInputStream) this.f15978e).skipBytes(i10 - i11);
-            if (skipBytes > 0) {
-                i11 += skipBytes;
+    public void d(long j10) {
+        long j11 = 0;
+        while (j11 < j10) {
+            long skip = ((com.google.firebase.messaging.d) this.f46987a).skip(j10 - j11);
+            if (skip > 0) {
+                j11 += skip;
             } else {
                 throw new EOFException();
             }
@@ -78,24 +39,7 @@ public final class b extends p {
     }
 
     @Override
-    public final String toString() {
-        switch (this.f50575g) {
-            case 0:
-                StringBuffer stringBuffer = new StringBuffer();
-                h(stringBuffer, this);
-                stringBuffer.append("[off=");
-                long j10 = ((d) ((p) this.f15977c).f15976b).f4045b;
-                d dVar = (d) this.f15976b;
-                stringBuffer.append(j10 - dVar.f4045b);
-                stringBuffer.append(",pos=");
-                stringBuffer.append(dVar.f4045b);
-                stringBuffer.append(",len=");
-                ze.a aVar = (ze.a) dVar;
-                stringBuffer.append(aVar.e() + aVar.f4045b);
-                stringBuffer.append("]");
-                return stringBuffer.toString();
-            default:
-                return android.support.v4.media.a.q(new StringBuilder("mp4[pos="), ((d) this.f15976b).f4045b, "]");
-        }
+    public Object mo28get() {
+        return new s5.m((Context) ((a3.c) this.f46987a).f45a, new u(7), new db.a(7), 13);
     }
 }

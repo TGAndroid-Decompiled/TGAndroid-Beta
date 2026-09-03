@@ -1,213 +1,132 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.Layout;
 import android.text.SpannableString;
-import android.view.KeyEvent;
-import android.view.View;
-import java.util.ArrayList;
+import android.text.style.CharacterStyle;
+import android.text.style.ClickableSpan;
+import android.view.MotionEvent;
+import android.view.ViewConfiguration;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class du implements my {
-    public final fu f26364a;
+public final class du extends ih.s {
+    public final c90 O;
+    public g90 P;
+    public boolean Q;
+    public boolean R;
+    public boolean S;
 
-    public du(fu fuVar) {
-        this.f26364a = fuVar;
+    public du(Context context) {
+        super(context, null, true);
+        this.O = new c90(this);
     }
 
     @Override
-    public final boolean A() {
-        return false;
+    public final ClickableSpan a(int i10, int i11) {
+        Layout layout = getLayout();
+        if (layout == null) {
+            return null;
+        }
+        int paddingLeft = i10 - getPaddingLeft();
+        int paddingTop = i11 - getPaddingTop();
+        int lineForVertical = layout.getLineForVertical(paddingTop);
+        float f10 = paddingLeft;
+        int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, f10);
+        float lineLeft = getLayout().getLineLeft(lineForVertical);
+        if (lineLeft <= f10 && layout.getLineWidth(lineForVertical) + lineLeft >= f10 && paddingTop >= 0 && paddingTop <= layout.getHeight()) {
+            ClickableSpan[] clickableSpanArr = (ClickableSpan[]) new SpannableString(layout.getText()).getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
+            if (clickableSpanArr.length != 0 && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
+                return clickableSpanArr[0];
+            }
+        }
+        return null;
     }
 
     @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final int f() {
-        return 0;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final void i(int i10) {
-        boolean z4;
-        fu fuVar = this.f26364a;
-        if (fuVar.b()) {
-            if (i10 != 0) {
-                z4 = true;
+    public final void onDraw(Canvas canvas) {
+        float paddingLeft;
+        canvas.save();
+        if (!this.Q) {
+            float f10 = 0.0f;
+            if (this.R) {
+                paddingLeft = 0.0f;
             } else {
-                z4 = false;
+                paddingLeft = getPaddingLeft();
             }
-            fuVar.f27006x = z4;
-            fuVar.y();
-            pv0 pv0Var = fuVar.f27001f;
-            if (pv0Var != null) {
-                pv0Var.S();
+            if (!this.S) {
+                f10 = getPaddingTop();
             }
+            canvas.translate(paddingLeft, f10);
         }
+        if (this.O.f(canvas)) {
+            invalidate();
+        }
+        canvas.restore();
+        super.onDraw(canvas);
     }
 
     @Override
-    public final boolean j() {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        CharacterStyle characterStyle;
+        c90 c90Var = this.O;
+        if (c90Var != null) {
+            Layout layout = getLayout();
+            ClickableSpan a2 = a((int) motionEvent.getX(), (int) motionEvent.getY());
+            if (a2 != null && motionEvent.getAction() == 0) {
+                g90 g90Var = new g90(a2, null, motionEvent.getX(), motionEvent.getY(), 0);
+                this.P = g90Var;
+                c90Var.a(g90Var, null);
+                SpannableString spannableString = new SpannableString(layout.getText());
+                int spanStart = spannableString.getSpanStart(this.P.f25098i);
+                int spanEnd = spannableString.getSpanEnd(this.P.f25098i);
+                y80 b10 = this.P.b();
+                b10.d(layout, spanStart, getPaddingTop());
+                layout.getSelectionPath(spanStart, spanEnd, b10);
+                AndroidUtilities.runOnUIThread(new up(this, g90Var, a2), ViewConfiguration.getLongPressTimeout());
+                return true;
+            }
+            if (motionEvent.getAction() == 1) {
+                c90Var.d(true);
+                g90 g90Var2 = this.P;
+                if (g90Var2 != null && (characterStyle = g90Var2.f25098i) == a2) {
+                    if (characterStyle != null) {
+                        ((ClickableSpan) characterStyle).onClick(this);
+                    }
+                    this.P = null;
+                    return true;
+                }
+                this.P = null;
+            }
+            if (motionEvent.getAction() == 3) {
+                c90Var.d(true);
+                this.P = null;
+            }
+        }
+        if (this.P != null || super.onTouchEvent(motionEvent)) {
+            return true;
+        }
         return false;
     }
 
     @Override
-    public final boolean k() {
-        au auVar = this.f26364a.f26997a;
-        if (auVar.length() == 0) {
-            return false;
-        }
-        auVar.dispatchKeyEvent(new KeyEvent(0, 67));
-        return true;
+    public void setDisablePaddingsOffset(boolean z4) {
+        this.Q = z4;
     }
 
     @Override
-    public final void l(String str) {
-        au auVar = this.f26364a.f26997a;
-        int selectionEnd = auVar.getSelectionEnd();
-        if (selectionEnd < 0) {
-            selectionEnd = 0;
-        }
-        try {
-            CharSequence replaceEmoji = Emoji.replaceEmoji(str, auVar.getPaint().getFontMetricsInt(), false);
-            auVar.setText(auVar.getText().insert(selectionEnd, replaceEmoji));
-            int length = selectionEnd + replaceEmoji.length();
-            auVar.setSelection(length, length);
-        } catch (Exception e6) {
-            FileLog.e(e6);
-        }
+    public void setDisablePaddingsOffsetX(boolean z4) {
+        this.R = z4;
     }
 
     @Override
-    public final void n() {
-        fu fuVar = this.f26364a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(fuVar.getContext(), 0, fuVar.J);
-        alertDialog$Builder.f21168a.O = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f21168a.Q = LocaleController.getString(R.string.ClearRecentEmojiText);
-        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new u81(this));
-        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        org.telegram.ui.ActionBar.p2 p2Var = fuVar.h;
-        if (p2Var != null) {
-            p2Var.showDialog(alertDialog$Builder.f21168a);
-        } else {
-            alertDialog$Builder.o();
-        }
+    public void setDisablePaddingsOffsetY(boolean z4) {
+        this.S = z4;
     }
 
     @Override
-    public final float p() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void q() {
-        org.telegram.ui.ActionBar.p2 p2Var = this.f26364a.h;
-        if (p2Var == null) {
-            new fg.n1((org.telegram.ui.ActionBar.p2) new fg.x1(this, 6), 11, false).show();
-        } else {
-            p2Var.showDialog(new fg.n1(p2Var, 11, false));
-        }
-    }
-
-    @Override
-    public final void x(long j10, TLRPC.Document document, String str, boolean z4) {
-        u5 u5Var;
-        fu fuVar = this.f26364a;
-        au auVar = fuVar.f26997a;
-        int selectionEnd = auVar.getSelectionEnd();
-        if (selectionEnd < 0) {
-            selectionEnd = 0;
-        }
-        try {
-            SpannableString spannableString = new SpannableString(str);
-            if (document != null) {
-                u5Var = new u5(document, auVar.getPaint().getFontMetricsInt());
-            } else {
-                u5Var = new u5(j10, auVar.getPaint().getFontMetricsInt());
-            }
-            u5Var.cacheType = fuVar.d.f29272c;
-            spannableString.setSpan(u5Var, 0, spannableString.length(), 33);
-            auVar.setText(auVar.getText().insert(selectionEnd, spannableString));
-            int length = selectionEnd + spannableString.length();
-            auVar.setSelection(length, length);
-        } catch (Exception e6) {
-            FileLog.e(e6);
-        } catch (Throwable th2) {
-            throw th2;
-        }
-    }
-
-    @Override
-    public final boolean z() {
-        return this.f26364a.f27006x;
-    }
-
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void o(d51 d51Var) {
-    }
-
-    @Override
-    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void s(int i10) {
-    }
-
-    @Override
-    public final void t(ArrayList arrayList) {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w() {
-    }
-
-    @Override
-    public final void y(long j10) {
-    }
-
-    @Override
-    public final void e(Object obj, Object obj2) {
-    }
-
-    @Override
-    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z4) {
-    }
-
-    @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z4, int i10) {
-    }
-
-    @Override
-    public final void v(View view, Object obj, String str, Object obj2, boolean z4, int i10, int i11) {
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
     }
 }

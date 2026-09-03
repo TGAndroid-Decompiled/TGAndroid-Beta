@@ -74,19 +74,19 @@ public class CodeHighlighting {
         public int getColorKey() {
             switch (this.group) {
                 case 1:
-                    return org.telegram.ui.ActionBar.k6.Ik;
+                    return org.telegram.ui.ActionBar.j6.Ik;
                 case 2:
-                    return org.telegram.ui.ActionBar.k6.Jk;
+                    return org.telegram.ui.ActionBar.j6.Jk;
                 case 3:
-                    return org.telegram.ui.ActionBar.k6.Kk;
+                    return org.telegram.ui.ActionBar.j6.Kk;
                 case 4:
-                    return org.telegram.ui.ActionBar.k6.Lk;
+                    return org.telegram.ui.ActionBar.j6.Lk;
                 case 5:
-                    return org.telegram.ui.ActionBar.k6.Mk;
+                    return org.telegram.ui.ActionBar.j6.Mk;
                 case 6:
-                    return org.telegram.ui.ActionBar.k6.Nk;
+                    return org.telegram.ui.ActionBar.j6.Nk;
                 case 7:
-                    return org.telegram.ui.ActionBar.k6.Ok;
+                    return org.telegram.ui.ActionBar.j6.Ok;
                 default:
                     return -1;
             }
@@ -94,7 +94,7 @@ public class CodeHighlighting {
 
         @Override
         public void updateDrawState(TextPaint textPaint) {
-            textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(null, getColorKey(), false));
+            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, getColorKey(), false));
         }
     }
 
@@ -351,9 +351,9 @@ public class CodeHighlighting {
             if (i10 == 2) {
                 textPaint.setColor(-1);
             } else if (i10 == 1) {
-                textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21703fc, false));
+                textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19922fc, false));
             } else {
-                textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21685ec, false));
+                textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19904ec, false));
             }
             s01 s01Var = this.style;
             if (s01Var != null) {
@@ -570,8 +570,8 @@ public class CodeHighlighting {
                 tokenPatternArr = hashMap.get(str);
             }
             stringTokenArr[0] = tokenize(charSequence, tokenPatternArr, 0).toArray();
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
         FileLog.d("[CodeHighlighter] tokenize took " + (System.currentTimeMillis() - currentTimeMillis) + "ms");
         long currentTimeMillis2 = System.currentTimeMillis();
@@ -616,14 +616,14 @@ public class CodeHighlighting {
                 tokenPatternArr = hashMap.get(str2);
             }
             spannableString2 = spannableString;
-        } catch (Exception e6) {
-            e = e6;
+        } catch (Exception e) {
+            e = e;
             spannableString2 = spannableString;
         }
         try {
             colorize(spannableString2, 0, spannableString.length(), tokenize(str, tokenPatternArr, 0).toArray(), -1, arrayList);
-        } catch (Exception e10) {
-            e = e10;
+        } catch (Exception e6) {
+            e = e6;
             FileLog.e(e);
             AndroidUtilities.runOnUIThread(new g0(13, spannableString2, callback, arrayList));
         }
@@ -658,8 +658,8 @@ public class CodeHighlighting {
             match.length = i12;
             match.string = str.substring(i11, i12 + i11);
             return match;
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return null;
         }
     }

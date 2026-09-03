@@ -1,42 +1,30 @@
 package org.telegram.ui.Components;
 
-import j$.util.Objects;
 import org.telegram.messenger.ContactsController;
-import org.telegram.tgnet.TLRPC;
-public final class hj {
-    public final int f27515a;
-    public final long f27516b;
+public final class hj implements oj {
+    public final int f25428a;
+    public final ContactsController.Contact f25429b;
 
-    public hj(int i10, long j10) {
-        this.f27515a = i10;
-        this.f27516b = j10;
+    public hj(ContactsController.Contact contact, int i10) {
+        this.f25428a = i10;
+        this.f25429b = contact;
     }
 
-    public static hj a(Object obj) {
-        if (obj instanceof ContactsController.Contact) {
-            return new hj(2, ((ContactsController.Contact) obj).contact_id);
-        }
-        if (obj instanceof TLRPC.User) {
-            return new hj(1, ((TLRPC.User) obj).f20992id);
-        }
-        return null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && hj.class == obj.getClass()) {
-                hj hjVar = (hj) obj;
-                if (this.f27516b == hjVar.f27516b && this.f27515a == hjVar.f27515a) {
-                    return true;
+    @Override
+    public final String run() {
+        switch (this.f25428a) {
+            case 0:
+                ContactsController.Contact contact = this.f25429b;
+                if (contact.phones.isEmpty()) {
+                    return "";
                 }
-                return false;
-            }
-            return false;
+                return se.b.c().b(contact.phones.get(0));
+            default:
+                ContactsController.Contact contact2 = this.f25429b;
+                if (contact2.phones.isEmpty()) {
+                    return "";
+                }
+                return se.b.c().b(contact2.phones.get(0));
         }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(m1.j.a(this.f27515a), Long.valueOf(this.f27516b));
     }
 }

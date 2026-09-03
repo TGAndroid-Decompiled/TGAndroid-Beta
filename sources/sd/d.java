@@ -1,16 +1,17 @@
 package sd;
 
 import java.util.concurrent.Executor;
+import kf.k0;
 import ld.a0;
 import ld.x0;
 import qd.v;
 public final class d extends x0 implements Executor {
-    public static final d f47295c = new a0();
+    public static final d f44336c = new a0();
     public static final a0 d;
 
     static {
-        a0 a0Var = l.f47307c;
-        int i10 = v.f44853a;
+        a0 a0Var = l.f44347c;
+        int i10 = v.f43073a;
         if (64 >= i10) {
             i10 = 64;
         }
@@ -21,13 +22,13 @@ public final class d extends x0 implements Executor {
                 if (j10 >= 1) {
                     a0Var = new qd.i(a0Var, j10);
                 } else {
-                    throw new IllegalArgumentException(l.d.j(j10, "Expected positive parallelism level, but got ").toString());
+                    throw new IllegalArgumentException(k0.j(j10, "Expected positive parallelism level, but got ").toString());
                 }
             }
             d = a0Var;
             return;
         }
-        throw new IllegalArgumentException(l.d.j(j10, "Expected positive parallelism level, but got ").toString());
+        throw new IllegalArgumentException(k0.j(j10, "Expected positive parallelism level, but got ").toString());
     }
 
     @Override
@@ -42,7 +43,7 @@ public final class d extends x0 implements Executor {
 
     @Override
     public final void execute(Runnable runnable) {
-        c(uc.i.f48516a, runnable);
+        c(uc.i.f45281a, runnable);
     }
 
     @Override

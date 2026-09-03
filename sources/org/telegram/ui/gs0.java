@@ -1,23 +1,23 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.ImageReceiver;
-public final class gs0 implements org.telegram.ui.Components.y30 {
-    public final PhotoViewer f37159a;
+public final class gs0 implements org.telegram.ui.Components.x30 {
+    public final PhotoViewer f34504a;
 
     public gs0(PhotoViewer photoViewer) {
-        this.f37159a = photoViewer;
+        this.f34504a = photoViewer;
     }
 
     public final void a(int i10) {
-        PhotoViewer photoViewer = this.f37159a;
+        PhotoViewer photoViewer = this.f34504a;
         photoViewer.M4 = -1;
-        ImageReceiver.BitmapHolder bitmapHolder = photoViewer.f34281g5;
+        ImageReceiver.BitmapHolder bitmapHolder = photoViewer.f31729g5;
         if (bitmapHolder != null) {
             bitmapHolder.release();
-            photoViewer.f34281g5 = null;
+            photoViewer.f31729g5 = null;
         }
-        photoViewer.f34299i5 = true;
+        photoViewer.f31747i5 = true;
         photoViewer.B2(i10);
-        photoViewer.f34299i5 = false;
+        photoViewer.f31747i5 = false;
     }
 }

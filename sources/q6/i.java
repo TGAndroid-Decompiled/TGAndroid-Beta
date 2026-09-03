@@ -2,17 +2,17 @@ package q6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import j7.g5;
+import j7.f5;
 import java.util.Arrays;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class i extends l {
     public static final Parcelable.Creator<i> CREATOR = new r0(18);
-    public final b7.w0 f44709a;
-    public final b7.w0 f44710b;
-    public final b7.w0 f44711c;
+    public final b7.w0 f42946a;
+    public final b7.w0 f42947b;
+    public final b7.w0 f42948c;
     public final b7.w0 d;
-    public final b7.w0 f44712e;
+    public final b7.w0 e;
 
     public i(byte[] bArr, byte[] bArr2, byte[] bArr3, byte[] bArr4, byte[] bArr5) {
         b7.w0 t6;
@@ -29,21 +29,21 @@ public final class i extends l {
         } else {
             t6 = b7.w0.t(bArr5.length, bArr5);
         }
-        this.f44709a = t9;
-        this.f44710b = t10;
-        this.f44711c = t11;
+        this.f42946a = t9;
+        this.f42947b = t10;
+        this.f42948c = t11;
         this.d = t12;
-        this.f44712e = t6;
+        this.e = t6;
     }
 
     public final JSONObject e() {
         byte[] u10;
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("clientDataJSON", i6.b.c(this.f44710b.u()));
-            jSONObject.put("authenticatorData", i6.b.c(this.f44711c.u()));
+            jSONObject.put("clientDataJSON", i6.b.c(this.f42947b.u()));
+            jSONObject.put("authenticatorData", i6.b.c(this.f42948c.u()));
             jSONObject.put("signature", i6.b.c(this.d.u()));
-            b7.w0 w0Var = this.f44712e;
+            b7.w0 w0Var = this.e;
             if (w0Var != null) {
                 if (w0Var == null) {
                     u10 = null;
@@ -54,15 +54,15 @@ public final class i extends l {
                 return jSONObject;
             }
             return jSONObject;
-        } catch (JSONException e6) {
-            throw new RuntimeException("Error encoding AuthenticatorAssertionResponse to JSON object", e6);
+        } catch (JSONException e) {
+            throw new RuntimeException("Error encoding AuthenticatorAssertionResponse to JSON object", e);
         }
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof i) {
             i iVar = (i) obj;
-            if (b6.m.l(this.f44709a, iVar.f44709a) && b6.m.l(this.f44710b, iVar.f44710b) && b6.m.l(this.f44711c, iVar.f44711c) && b6.m.l(this.d, iVar.d) && b6.m.l(this.f44712e, iVar.f44712e)) {
+            if (b6.m.l(this.f42946a, iVar.f42946a) && b6.m.l(this.f42947b, iVar.f42947b) && b6.m.l(this.f42948c, iVar.f42948c) && b6.m.l(this.d, iVar.d) && b6.m.l(this.e, iVar.e)) {
                 return true;
             }
             return false;
@@ -71,48 +71,48 @@ public final class i extends l {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(Arrays.hashCode(new Object[]{this.f44709a})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f44710b})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f44711c})), Integer.valueOf(Arrays.hashCode(new Object[]{this.d})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f44712e}))});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(Arrays.hashCode(new Object[]{this.f42946a})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f42947b})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f42948c})), Integer.valueOf(Arrays.hashCode(new Object[]{this.d})), Integer.valueOf(Arrays.hashCode(new Object[]{this.e}))});
     }
 
     public final String toString() {
         byte[] u10;
-        androidx.biometric.e eVar = new androidx.biometric.e(getClass().getSimpleName(), 7);
+        af.d dVar = new af.d(getClass().getSimpleName(), 8);
         b7.o0 o0Var = b7.q0.d;
-        byte[] u11 = this.f44709a.u();
-        eVar.D(o0Var.c(u11.length, u11), "keyHandle");
-        byte[] u12 = this.f44710b.u();
-        eVar.D(o0Var.c(u12.length, u12), "clientDataJSON");
-        byte[] u13 = this.f44711c.u();
-        eVar.D(o0Var.c(u13.length, u13), "authenticatorData");
+        byte[] u11 = this.f42946a.u();
+        dVar.D(o0Var.c(u11.length, u11), "keyHandle");
+        byte[] u12 = this.f42947b.u();
+        dVar.D(o0Var.c(u12.length, u12), "clientDataJSON");
+        byte[] u13 = this.f42948c.u();
+        dVar.D(o0Var.c(u13.length, u13), "authenticatorData");
         byte[] u14 = this.d.u();
-        eVar.D(o0Var.c(u14.length, u14), "signature");
-        b7.w0 w0Var = this.f44712e;
+        dVar.D(o0Var.c(u14.length, u14), "signature");
+        b7.w0 w0Var = this.e;
         if (w0Var == null) {
             u10 = null;
         } else {
             u10 = w0Var.u();
         }
         if (u10 != null) {
-            eVar.D(o0Var.c(u10.length, u10), "userHandle");
+            dVar.D(o0Var.c(u10.length, u10), "userHandle");
         }
-        return eVar.toString();
+        return dVar.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         byte[] u10;
-        int q10 = g5.q(parcel, 20293);
-        g5.c(parcel, 2, this.f44709a.u());
-        g5.c(parcel, 3, this.f44710b.u());
-        g5.c(parcel, 4, this.f44711c.u());
-        g5.c(parcel, 5, this.d.u());
-        b7.w0 w0Var = this.f44712e;
+        int q10 = f5.q(parcel, 20293);
+        f5.c(parcel, 2, this.f42946a.u());
+        f5.c(parcel, 3, this.f42947b.u());
+        f5.c(parcel, 4, this.f42948c.u());
+        f5.c(parcel, 5, this.d.u());
+        b7.w0 w0Var = this.e;
         if (w0Var == null) {
             u10 = null;
         } else {
             u10 = w0Var.u();
         }
-        g5.c(parcel, 6, u10);
-        g5.r(parcel, q10);
+        f5.c(parcel, 6, u10);
+        f5.r(parcel, q10);
     }
 }

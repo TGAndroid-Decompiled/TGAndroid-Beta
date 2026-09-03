@@ -4,15 +4,15 @@ import android.os.Handler;
 import android.os.Looper;
 import java.util.concurrent.Executor;
 public final class l implements Executor {
-    public static final l f4377a;
-    public static final Handler f4378b;
-    public static final l[] f4379c;
+    public static final l f4278a;
+    public static final Handler f4279b;
+    public static final l[] f4280c;
 
     static {
         ?? r02 = new Enum("INSTANCE", 0);
-        f4377a = r02;
-        f4379c = new l[]{r02};
-        f4378b = new Handler(Looper.getMainLooper());
+        f4278a = r02;
+        f4280c = new l[]{r02};
+        f4279b = new Handler(Looper.getMainLooper());
     }
 
     public static l valueOf(String str) {
@@ -20,11 +20,11 @@ public final class l implements Executor {
     }
 
     public static l[] values() {
-        return (l[]) f4379c.clone();
+        return (l[]) f4280c.clone();
     }
 
     @Override
     public final void execute(Runnable runnable) {
-        f4378b.post(runnable);
+        f4279b.post(runnable);
     }
 }

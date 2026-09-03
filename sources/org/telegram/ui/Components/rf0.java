@@ -1,69 +1,22 @@
 package org.telegram.ui.Components;
+public final class rf0 implements Runnable {
+    public final int f28469a;
+    public final wf0 f28470b;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class rf0 extends LinearLayout {
-    public final LinearLayout f30741a;
-    public final LinearLayout f30742b;
-
-    public rf0(Context context) {
-        super(context);
-        setOrientation(0);
-        setGravity(17);
-        setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        LinearLayout a2 = a(R.drawable.msg_replace, LocaleController.getString(R.string.ReplaceAttachedPollMedia));
-        this.f30742b = a2;
-        addView(a2, k7.c6.n(-2, -1));
-        LinearLayout a10 = a(R.drawable.media_button_restore, LocaleController.getString(R.string.Edit));
-        this.f30741a = a10;
-        addView(a10, k7.c6.n(-2, -1));
-    }
-
-    public final LinearLayout a(int i10, String str) {
-        Context context = getContext();
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(0);
-        linearLayout.setGravity(17);
-        linearLayout.setPadding(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f));
-        ImageView imageView = new ImageView(context);
-        imageView.setImageResource(i10);
-        linearLayout.addView(imageView, k7.c6.k(0.0f, 0.0f, 8.0f, 0.0f, 24, 24));
-        TextView textView = new TextView(context);
-        textView.setGravity(16);
-        textView.setText(str);
-        textView.setTextSize(2, 14.0f);
-        textView.setSingleLine(true);
-        textView.setTextColor(-1);
-        linearLayout.addView(textView, k7.c6.n(-2, -2));
-        k7.e6.a(linearLayout);
-        return linearLayout;
+    public rf0(wf0 wf0Var, int i10) {
+        this.f28469a = i10;
+        this.f28470b = wf0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        LinearLayout linearLayout = this.f30741a;
-        ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
-        ViewGroup.LayoutParams layoutParams2 = linearLayout.getLayoutParams();
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        int paddingRight = getPaddingRight() + getPaddingLeft();
-        int paddingTop = getPaddingTop();
-        int max = Math.max(0, size - paddingRight);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - (getPaddingBottom() + paddingTop)), 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE);
-        linearLayout.measure(makeMeasureSpec2, makeMeasureSpec);
-        LinearLayout linearLayout2 = this.f30742b;
-        linearLayout2.measure(makeMeasureSpec2, makeMeasureSpec);
-        int min = Math.min(Math.max(linearLayout.getMeasuredWidth(), linearLayout2.getMeasuredWidth()), max / 2);
-        layoutParams2.width = min;
-        layoutParams.width = min;
-        super.onMeasure(i10, i11);
+    public final void run() {
+        switch (this.f28469a) {
+            case 0:
+                this.f28470b.e();
+                return;
+            default:
+                this.f28470b.g();
+                return;
+        }
     }
 }

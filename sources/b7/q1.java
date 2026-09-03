@@ -28,7 +28,7 @@ public final class q1 extends b6.g {
 
     @Override
     public final y5.c[] r() {
-        return new y5.c[]{n6.a.f15257b, n6.a.f15256a};
+        return new y5.c[]{n6.a.f14261b, n6.a.f14260a};
     }
 
     @Override

@@ -8,33 +8,34 @@ import h5.w;
 import j3.d1;
 import j3.n0;
 import java.util.Arrays;
+import kf.k0;
 import r8.d;
 public final class a implements e4.b {
     public static final Parcelable.Creator<a> CREATOR = new o(4);
-    public final int f7208a;
-    public final String f7209b;
-    public final String f7210c;
+    public final int f6897a;
+    public final String f6898b;
+    public final String f6899c;
     public final int d;
-    public final int f7211e;
-    public final int f7212f;
+    public final int e;
+    public final int f6900f;
     public final int h;
-    public final byte[] f7213n;
+    public final byte[] f6901n;
 
     public a(int i10, String str, String str2, int i11, int i12, int i13, int i14, byte[] bArr) {
-        this.f7208a = i10;
-        this.f7209b = str;
-        this.f7210c = str2;
+        this.f6897a = i10;
+        this.f6898b = str;
+        this.f6899c = str2;
         this.d = i11;
-        this.f7211e = i12;
-        this.f7212f = i13;
+        this.e = i12;
+        this.f6900f = i13;
         this.h = i14;
-        this.f7213n = bArr;
+        this.f6901n = bArr;
     }
 
     public static a a(w wVar) {
         int g10 = wVar.g();
-        String s6 = wVar.s(wVar.g(), d.f46767a);
-        String s9 = wVar.s(wVar.g(), d.f46769c);
+        String s6 = wVar.s(wVar.g(), d.f43411a);
+        String s9 = wVar.s(wVar.g(), d.f43413c);
         int g11 = wVar.g();
         int g12 = wVar.g();
         int g13 = wVar.g();
@@ -52,7 +53,7 @@ public final class a implements e4.b {
 
     @Override
     public final void c(d1 d1Var) {
-        d1Var.a(this.f7208a, this.f7213n);
+        d1Var.a(this.f6897a, this.f6901n);
     }
 
     @Override
@@ -71,7 +72,7 @@ public final class a implements e4.b {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f7208a == aVar.f7208a && this.f7209b.equals(aVar.f7209b) && this.f7210c.equals(aVar.f7210c) && this.d == aVar.d && this.f7211e == aVar.f7211e && this.f7212f == aVar.f7212f && this.h == aVar.h && Arrays.equals(this.f7213n, aVar.f7213n)) {
+            if (this.f6897a == aVar.f6897a && this.f6898b.equals(aVar.f6898b) && this.f6899c.equals(aVar.f6899c) && this.d == aVar.d && this.e == aVar.e && this.f6900f == aVar.f6900f && this.h == aVar.h && Arrays.equals(this.f6901n, aVar.f6901n)) {
                 return true;
             }
         }
@@ -79,35 +80,35 @@ public final class a implements e4.b {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f7213n) + ((((((((l.d.e(l.d.e((527 + this.f7208a) * 31, 31, this.f7209b), 31, this.f7210c) + this.d) * 31) + this.f7211e) * 31) + this.f7212f) * 31) + this.h) * 31);
+        return Arrays.hashCode(this.f6901n) + ((((((((k0.e(k0.e((527 + this.f6897a) * 31, 31, this.f6898b), 31, this.f6899c) + this.d) * 31) + this.e) * 31) + this.f6900f) * 31) + this.h) * 31);
     }
 
     public final String toString() {
-        return "Picture: mimeType=" + this.f7209b + ", description=" + this.f7210c;
+        return "Picture: mimeType=" + this.f6898b + ", description=" + this.f6899c;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeInt(this.f7208a);
-        parcel.writeString(this.f7209b);
-        parcel.writeString(this.f7210c);
+        parcel.writeInt(this.f6897a);
+        parcel.writeString(this.f6898b);
+        parcel.writeString(this.f6899c);
         parcel.writeInt(this.d);
-        parcel.writeInt(this.f7211e);
-        parcel.writeInt(this.f7212f);
+        parcel.writeInt(this.e);
+        parcel.writeInt(this.f6900f);
         parcel.writeInt(this.h);
-        parcel.writeByteArray(this.f7213n);
+        parcel.writeByteArray(this.f6901n);
     }
 
     public a(Parcel parcel) {
-        this.f7208a = parcel.readInt();
+        this.f6897a = parcel.readInt();
         String readString = parcel.readString();
-        int i10 = d0.f7237a;
-        this.f7209b = readString;
-        this.f7210c = parcel.readString();
+        int i10 = d0.f6924a;
+        this.f6898b = readString;
+        this.f6899c = parcel.readString();
         this.d = parcel.readInt();
-        this.f7211e = parcel.readInt();
-        this.f7212f = parcel.readInt();
+        this.e = parcel.readInt();
+        this.f6900f = parcel.readInt();
         this.h = parcel.readInt();
-        this.f7213n = parcel.createByteArray();
+        this.f6901n = parcel.createByteArray();
     }
 }

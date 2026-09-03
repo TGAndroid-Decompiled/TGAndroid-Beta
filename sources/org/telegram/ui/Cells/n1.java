@@ -1,127 +1,34 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.pr;
-public abstract class n1 extends Drawable {
-    public final int f23204a;
-    public final Path f23205b;
-    public final Paint f23206c;
-    public final Object d;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import java.util.Comparator;
+import org.telegram.messenger.CodeHighlighting;
+public final class n1 implements Comparator {
+    public final int f21401a;
+    public final Spanned f21402b;
 
-    public n1(int i10) {
-        this.f23204a = i10;
-        switch (i10) {
-            case 1:
-                this.f23205b = new Path();
-                Paint paint = new Paint(1);
-                this.f23206c = paint;
-                paint.setStyle(Paint.Style.STROKE);
-                paint.setStrokeJoin(Paint.Join.ROUND);
-                paint.setStrokeCap(Paint.Cap.ROUND);
-                this.d = new org.telegram.ui.Components.z5(new org.telegram.ui.web.s0(this, 3), 350L, pr.h, 0);
-                return;
-            default:
-                Paint paint2 = new Paint(1);
-                this.f23206c = paint2;
-                paint2.setColor(-1);
-                this.d = new RectF();
-                this.f23205b = new Path();
-                return;
-        }
+    public n1(Spanned spanned, int i10) {
+        this.f21401a = i10;
+        this.f21402b = spanned;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f23204a) {
+    public final int compare(Object obj, Object obj2) {
+        int spanStart;
+        int spanStart2;
+        switch (this.f21401a) {
             case 0:
-                e();
-                canvas.drawPath(this.f23205b, this.f23206c);
-                return;
+                Spanned spanned = this.f21402b;
+                spanStart = spanned.getSpanStart((CodeHighlighting.Span) obj2);
+                spanStart2 = spanned.getSpanStart((CodeHighlighting.Span) obj);
+                break;
             default:
-                float e6 = ((org.telegram.ui.Components.z5) this.d).e(true);
-                float centerX = getBounds().centerX();
-                float centerY = getBounds().centerY();
-                float width = getBounds().width();
-                float f10 = 0.57f * width;
-                Path path = this.f23205b;
-                path.rewind();
-                float f11 = f10 / 2.0f;
-                path.moveTo(centerX - AndroidUtilities.lerp(f11, (-f10) / 2.0f, e6), centerY);
-                float f12 = f11 + centerX;
-                path.lineTo(f12, centerY);
-                float f13 = f12 - (0.27f * width);
-                float f14 = (0.54f * width) / 2.0f;
-                path.moveTo(f13, centerY - f14);
-                path.lineTo(f12, centerY);
-                path.lineTo(f13, f14 + centerY);
-                canvas.save();
-                Paint paint = this.f23206c;
-                paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-                canvas.translate(0.0f, (-width) * 0.1f * e6);
-                canvas.rotate(e6 * 90.0f, centerX, centerY);
-                canvas.drawPath(path, paint);
-                canvas.restore();
-                return;
+                SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) this.f21402b;
+                spanStart = spannableStringBuilder.getSpanStart((r9) obj2);
+                spanStart2 = spannableStringBuilder.getSpanStart((r9) obj);
+                break;
         }
-    }
-
-    public abstract void e();
-
-    @Override
-    public int getIntrinsicHeight() {
-        switch (this.f23204a) {
-            case 1:
-                return AndroidUtilities.dp(24.0f);
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        switch (this.f23204a) {
-            case 1:
-                return AndroidUtilities.dp(24.0f);
-            default:
-                return super.getIntrinsicWidth();
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.f23204a) {
-            case 0:
-                return -2;
-            default:
-                return -2;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        int i11 = this.f23204a;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f23204a;
-    }
-
-    private final void a(int i10) {
-    }
-
-    private final void b(int i10) {
-    }
-
-    private final void c(ColorFilter colorFilter) {
-    }
-
-    private final void d(ColorFilter colorFilter) {
+        return spanStart - spanStart2;
     }
 }

@@ -1,14 +1,17 @@
 package sh;
 
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.ui.ym0;
-public final class x extends LinearLayout {
-    public TextView f47805a;
-    public ym0 f47806b;
-    public String f47807c;
+import org.telegram.ui.Cells.q2;
+import org.telegram.ui.Components.yn0;
+public final class x implements yn0 {
+    @Override
+    public final void finish() {
+    }
 
-    public String getCommand() {
-        return this.f47807c;
+    @Override
+    public final void e(float f10) {
+    }
+
+    @Override
+    public final void f(q2 q2Var) {
     }
 }

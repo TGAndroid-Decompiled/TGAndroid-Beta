@@ -1,50 +1,50 @@
 package h1;
 
 import android.database.DataSetObserver;
-import m.b3;
-import m.d2;
+import m.c3;
+import m.e2;
 import m2.h;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.q01;
 import org.telegram.ui.sz0;
 public final class a extends DataSetObserver {
-    public final int f7181a;
-    public final Object f7182b;
+    public final int f6871a;
+    public final Object f6872b;
 
     public a(Object obj, int i10) {
-        this.f7181a = i10;
-        this.f7182b = obj;
+        this.f6871a = i10;
+        this.f6872b = obj;
     }
 
     @Override
     public final void onChanged() {
-        switch (this.f7181a) {
+        switch (this.f6871a) {
             case 0:
-                b3 b3Var = (b3) this.f7182b;
-                b3Var.f7183a = true;
-                b3Var.notifyDataSetChanged();
+                c3 c3Var = (c3) this.f6872b;
+                c3Var.f6873a = true;
+                c3Var.notifyDataSetChanged();
                 return;
             case 1:
-                d2 d2Var = (d2) this.f7182b;
-                if (d2Var.L.isShowing()) {
-                    d2Var.g();
+                e2 e2Var = (e2) this.f6872b;
+                if (e2Var.L.isShowing()) {
+                    e2Var.g();
                     return;
                 }
                 return;
             case 2:
-                ((h) this.f7182b).f();
+                ((h) this.f6872b).f();
                 return;
             default:
-                q01 q01Var = (q01) this.f7182b;
-                ProfileActivity profileActivity = q01Var.f40292n;
-                int realCount = profileActivity.f34632k0.getRealCount();
-                if (profileActivity.f34721x0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.K.B) {
-                    profileActivity.f34721x0 = 1;
+                q01 q01Var = (q01) this.f6872b;
+                ProfileActivity profileActivity = q01Var.f37274n;
+                int realCount = profileActivity.f32073k0.getRealCount();
+                if (profileActivity.f32162x0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.K.B) {
+                    profileActivity.f32162x0 = 1;
                 }
                 q01Var.a(false);
                 q01Var.b(1.0f);
-                if (profileActivity.f34652n0 != null) {
+                if (profileActivity.f32093n0 != null) {
                     if (profileActivity.Q0.t()) {
                         AndroidUtilities.runOnUIThread(new sz0(q01Var, 2), 500L);
                         return;
@@ -59,17 +59,17 @@ public final class a extends DataSetObserver {
 
     @Override
     public void onInvalidated() {
-        switch (this.f7181a) {
+        switch (this.f6871a) {
             case 0:
-                b3 b3Var = (b3) this.f7182b;
-                b3Var.f7183a = false;
-                b3Var.notifyDataSetInvalidated();
+                c3 c3Var = (c3) this.f6872b;
+                c3Var.f6873a = false;
+                c3Var.notifyDataSetInvalidated();
                 return;
             case 1:
-                ((d2) this.f7182b).dismiss();
+                ((e2) this.f6872b).dismiss();
                 return;
             case 2:
-                ((h) this.f7182b).f();
+                ((h) this.f6872b).f();
                 return;
             default:
                 super.onInvalidated();

@@ -1,20 +1,20 @@
 package c0;
 
-import j7.i0;
+import j7.h0;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-public final class e extends i0 {
-    public final AtomicReferenceFieldUpdater f2005a;
-    public final AtomicReferenceFieldUpdater f2006b;
-    public final AtomicReferenceFieldUpdater f2007c;
+public final class e extends h0 {
+    public final AtomicReferenceFieldUpdater f1868a;
+    public final AtomicReferenceFieldUpdater f1869b;
+    public final AtomicReferenceFieldUpdater f1870c;
     public final AtomicReferenceFieldUpdater d;
-    public final AtomicReferenceFieldUpdater f2008e;
+    public final AtomicReferenceFieldUpdater e;
 
     public e(AtomicReferenceFieldUpdater atomicReferenceFieldUpdater, AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2, AtomicReferenceFieldUpdater atomicReferenceFieldUpdater3, AtomicReferenceFieldUpdater atomicReferenceFieldUpdater4, AtomicReferenceFieldUpdater atomicReferenceFieldUpdater5) {
-        this.f2005a = atomicReferenceFieldUpdater;
-        this.f2006b = atomicReferenceFieldUpdater2;
-        this.f2007c = atomicReferenceFieldUpdater3;
+        this.f1868a = atomicReferenceFieldUpdater;
+        this.f1869b = atomicReferenceFieldUpdater2;
+        this.f1870c = atomicReferenceFieldUpdater3;
         this.d = atomicReferenceFieldUpdater4;
-        this.f2008e = atomicReferenceFieldUpdater5;
+        this.e = atomicReferenceFieldUpdater5;
     }
 
     @Override
@@ -33,7 +33,7 @@ public final class e extends i0 {
     public final boolean b(h hVar, Object obj, Object obj2) {
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater;
         do {
-            atomicReferenceFieldUpdater = this.f2008e;
+            atomicReferenceFieldUpdater = this.e;
             if (atomicReferenceFieldUpdater.compareAndSet(hVar, obj, obj2)) {
                 return true;
             }
@@ -45,7 +45,7 @@ public final class e extends i0 {
     public final boolean c(h hVar, g gVar, g gVar2) {
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater;
         do {
-            atomicReferenceFieldUpdater = this.f2007c;
+            atomicReferenceFieldUpdater = this.f1870c;
             if (atomicReferenceFieldUpdater.compareAndSet(hVar, gVar, gVar2)) {
                 return true;
             }
@@ -55,11 +55,11 @@ public final class e extends i0 {
 
     @Override
     public final void d(g gVar, g gVar2) {
-        this.f2006b.lazySet(gVar, gVar2);
+        this.f1869b.lazySet(gVar, gVar2);
     }
 
     @Override
     public final void e(g gVar, Thread thread) {
-        this.f2005a.lazySet(gVar, thread);
+        this.f1868a.lazySet(gVar, thread);
     }
 }

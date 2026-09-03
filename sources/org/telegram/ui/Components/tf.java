@@ -6,7 +6,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-public final class tf extends org.telegram.ui.xn {
+public final class tf extends org.telegram.ui.zn {
     public boolean Nc;
     public final TLRPC.User Oc;
     public final TLRPC.User Pc;
@@ -24,7 +24,7 @@ public final class tf extends org.telegram.ui.xn {
         super.onBecomeFullyVisible();
         if (!this.Nc) {
             this.Nc = true;
-            qc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Oc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Pc)), new hg.y1(this, this.Qc, 16)), R.raw.contact_check).j();
+            qc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Oc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Pc)), new gg.y1(this, this.Qc, 16)), R.raw.contact_check).j();
         }
     }
 }

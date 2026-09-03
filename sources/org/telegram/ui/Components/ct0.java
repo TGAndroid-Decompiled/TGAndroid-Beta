@@ -14,7 +14,7 @@ public final class ct0 extends su0 {
         super.l();
         yu0 yu0Var = this.h;
         qt0 W = yu0Var.W(0);
-        if (W != null && W.f30522r.getVisibility() == 0) {
+        if (W != null && W.f28261r.getVisibility() == 0) {
             yu0Var.F.l();
         }
     }

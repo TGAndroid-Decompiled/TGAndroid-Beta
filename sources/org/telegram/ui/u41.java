@@ -15,7 +15,7 @@ import android.view.TextureView;
 import android.view.animation.LinearInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-public final class u41 extends org.telegram.ui.Cells.t1 {
+public final class u41 extends org.telegram.ui.Cells.s1 {
     public boolean Ce;
     public final RectF De;
     public final RectF Ee;
@@ -31,8 +31,8 @@ public final class u41 extends org.telegram.ui.Cells.t1 {
     public final int Oe;
     public final w41 Pe;
 
-    public u41(w41 w41Var, Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var, int i11, int i12) {
-        super(context, i10, false, null, g6Var);
+    public u41(w41 w41Var, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11, int i12) {
+        super(context, i10, false, null, f6Var);
         this.Pe = w41Var;
         this.Ne = i11;
         this.Oe = i12;
@@ -49,11 +49,11 @@ public final class u41 extends org.telegram.ui.Cells.t1 {
         Paint paint = this.Ge;
         w41 w41Var = this.Pe;
         if (paint != null) {
-            float f10 = w41Var.f42288s;
+            float f10 = w41Var.f39271s;
             RectF rectF = w41Var.O;
             if (f10 > 0.0f) {
                 if (w41Var.N) {
-                    if (this.f23941le) {
+                    if (this.f22076le) {
                         Bitmap bitmap = w41Var.M.getBitmap();
                         if (bitmap != null) {
                             canvas.save();
@@ -78,7 +78,7 @@ public final class u41 extends org.telegram.ui.Cells.t1 {
                         }
                         canvas.drawCircle(centerX, centerY, width, this.Je);
                     }
-                    getPhotoImage().setAlpha(Math.max(1.0f - this.Me.e(w41Var.N), 1.0f - w41Var.f42288s));
+                    getPhotoImage().setAlpha(Math.max(1.0f - this.Me.e(w41Var.N), 1.0f - w41Var.f39271s));
                     getPhotoImage().draw(canvas);
                 } else {
                     getPhotoImage().draw(canvas);
@@ -112,7 +112,7 @@ public final class u41 extends org.telegram.ui.Cells.t1 {
         if (this.Le == null) {
             org.telegram.ui.Components.z11 z11Var = new org.telegram.ui.Components.z11(120);
             this.Le = z11Var;
-            z11Var.f33730b = true;
+            z11Var.f31226b = true;
         }
         paint3.setStrokeWidth(AndroidUtilities.dp(2.8f));
         this.Le.a((1.0f - w41Var.X) * (-360.0f), 1.0f, canvas, paint3, rectF2);
@@ -128,10 +128,10 @@ public final class u41 extends org.telegram.ui.Cells.t1 {
     @Override
     public final void d2(Canvas canvas, float f10, Integer num) {
         canvas.save();
-        ng.r0 r0Var = this.K;
+        mg.r0 r0Var = this.K;
         w41 w41Var = this.Pe;
-        canvas.translate(AndroidUtilities.lerp(0, -r0Var.f16188c, w41Var.f42288s), AndroidUtilities.lerp(w41Var.L.getBackgroundDrawableBottom() - getBackgroundDrawableBottom(), r0Var.f16199p, w41Var.f42288s));
-        super.d2(canvas, (1.0f - w41Var.f42288s) * f10, num);
+        canvas.translate(AndroidUtilities.lerp(0, -r0Var.f14103c, w41Var.f39271s), AndroidUtilities.lerp(w41Var.L.getBackgroundDrawableBottom() - getBackgroundDrawableBottom(), r0Var.f14113p, w41Var.f39271s));
+        super.d2(canvas, (1.0f - w41Var.f39271s) * f10, num);
         canvas.restore();
     }
 
@@ -150,7 +150,7 @@ public final class u41 extends org.telegram.ui.Cells.t1 {
         canvas.save();
         w41 w41Var = this.Pe;
         if (w41Var.P) {
-            int i10 = this.f23951mb;
+            int i10 = this.f22086mb;
             MessageObject messageObject = w41Var.J;
             int i11 = 0;
             if (messageObject != null && messageObject.isOutOwner()) {
@@ -160,7 +160,7 @@ public final class u41 extends org.telegram.ui.Cells.t1 {
                 }
                 i11 += 20;
             }
-            canvas.translate(((this.Ee.right - (AndroidUtilities.dp(8 + i11) + i10)) - this.f23980ob) * w41Var.f42288s, 0.0f);
+            canvas.translate(((this.Ee.right - (AndroidUtilities.dp(8 + i11) + i10)) - this.f22115ob) * w41Var.f39271s, 0.0f);
         }
         super.m2(f10, canvas, z4);
         canvas.restore();
@@ -188,21 +188,21 @@ public final class u41 extends org.telegram.ui.Cells.t1 {
                 this.Ge.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
                 this.He = new Matrix();
             }
-            AndroidUtilities.lerp(rectF3, rectF2, w41Var.f42288s, rectF);
+            AndroidUtilities.lerp(rectF3, rectF2, w41Var.f39271s, rectF);
             U3(rectF.left, rectF.top, rectF.width(), rectF.height());
             getPhotoImage().setRoundRadius((int) rectF.width());
-            if (w41Var.f42288s > 0.0f && w41Var.N) {
+            if (w41Var.f39271s > 0.0f && w41Var.N) {
                 canvas2 = canvas;
                 canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             } else {
                 canvas2 = canvas;
             }
-            this.f24040se = 1.0f - w41Var.f42288s;
+            this.f22175se = 1.0f - w41Var.f39271s;
         } else {
             canvas2 = canvas;
         }
         S1(canvas2);
-        if (w41Var.P && w41Var.f42288s > 0.0f && w41Var.N) {
+        if (w41Var.P && w41Var.f39271s > 0.0f && w41Var.N) {
             canvas2.restore();
         }
     }

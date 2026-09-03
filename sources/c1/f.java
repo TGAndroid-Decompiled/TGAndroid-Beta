@@ -9,28 +9,27 @@ import android.os.Looper;
 import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
 import com.google.android.gms.common.api.internal.v;
 import com.google.android.gms.common.api.internal.w;
-import j7.y6;
-import j7.y8;
+import j7.a7;
+import j7.x8;
 import java.util.LinkedHashMap;
 import java.util.concurrent.Executor;
 import kotlin.jvm.internal.j;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.ui.Cells.f1;
 import v0.i;
 import v0.n;
 import v0.p;
 public final class f extends b1.d {
-    public final Context f2034e;
-    public i f2035f;
-    public Executor f2036g;
+    public final Context e;
+    public i f1895f;
+    public Executor f1896g;
     public CancellationSignal h;
-    public final e f2037i;
+    public final e f1897i;
 
     public f(Context context) {
         j.e(context, "context");
-        this.f2034e = context;
-        this.f2037i = new e(this, new Handler(Looper.getMainLooper()), 0);
+        this.e = context;
+        this.f1897i = new e(this, new Handler(Looper.getMainLooper()), 0);
     }
 
     public final v0.o d(l5.g r14) {
@@ -38,7 +37,7 @@ public final class f extends b1.d {
     }
 
     public final i e() {
-        i iVar = this.f2035f;
+        i iVar = this.f1895f;
         if (iVar != null) {
             return iVar;
         }
@@ -47,7 +46,7 @@ public final class f extends b1.d {
     }
 
     public final Executor f() {
-        Executor executor = this.f2036g;
+        Executor executor = this.f1896g;
         if (executor != null) {
             return executor;
         }
@@ -61,13 +60,13 @@ public final class f extends b1.d {
         j.e(callback, "callback");
         j.e(executor, "executor");
         this.h = cancellationSignal;
-        this.f2035f = callback;
-        this.f2036g = executor;
+        this.f1895f = callback;
+        this.f1896g = executor;
         CredentialProviderPlayServicesImpl.Companion.getClass();
         if (g.a(cancellationSignal)) {
             return;
         }
-        Context context = this.f2034e;
+        Context context = this.e;
         j.e(context, "context");
         l5.d dVar = new l5.d(false);
         l5.a aVar = new l5.a(false, null, null, true, null, null, false);
@@ -78,18 +77,18 @@ public final class f extends b1.d {
         long j10 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
         l5.b bVar2 = bVar;
         boolean z10 = false;
-        for (p pVar : request.f48873a) {
+        for (p pVar : request.f45611a) {
             if ((pVar instanceof p) && !z10) {
                 if (j10 >= 231815000) {
-                    LinkedHashMap linkedHashMap = d1.g.f4162a;
+                    LinkedHashMap linkedHashMap = d1.g.f4082a;
                     bVar2 = new l5.b(pVar.d, true);
                 } else {
-                    LinkedHashMap linkedHashMap2 = d1.g.f4162a;
+                    LinkedHashMap linkedHashMap2 = d1.g.f4082a;
                     JSONObject jSONObject = new JSONObject(pVar.d);
                     String optString = jSONObject.optString("rpId", "");
                     j.b(optString);
                     if (optString.length() != 0) {
-                        cVar = new l5.c(true, y6.a(jSONObject), optString);
+                        cVar = new l5.c(true, a7.a(jSONObject), optString);
                     } else {
                         throw new JSONException("GetPublicKeyCredentialOption - rpId not specified in the request or is unexpectedly empty");
                     }
@@ -98,18 +97,18 @@ public final class f extends b1.d {
             }
         }
         if (j10 > 241217000) {
-            z4 = request.f48874b;
+            z4 = request.f45612b;
         } else {
             z4 = false;
         }
-        w6.b a2 = y8.a(context);
+        w6.b a2 = x8.a(context);
         new l5.a(false, null, null, true, null, null, false);
-        l5.e eVar = new l5.e(dVar, aVar, a2.f49474k, false, 0, cVar, bVar2, z4);
-        v e6 = w.e();
-        e6.d = new y5.c[]{new y5.c("auth_api_credentials_begin_sign_in", 8L)};
-        e6.f2824c = new f1(a2, eVar);
-        e6.f2823b = false;
-        e6.f2822a = 1553;
-        a2.e(0, e6.e()).addOnSuccessListener(new a1.c(new b1.f(1, cancellationSignal, this), 1)).addOnFailureListener(new b(0, this, cancellationSignal));
+        l5.e eVar = new l5.e(dVar, aVar, a2.f46546k, false, 0, cVar, bVar2, z4);
+        v e = w.e();
+        e.d = new y5.c[]{new y5.c("auth_api_credentials_begin_sign_in", 8L)};
+        e.f2868c = new o2.i(a2, eVar, 29);
+        e.f2867b = false;
+        e.f2866a = 1553;
+        a2.e(0, e.e()).addOnSuccessListener(new a1.c(new b1.f(1, cancellationSignal, this), 1)).addOnFailureListener(new b(0, this, cancellationSignal));
     }
 }

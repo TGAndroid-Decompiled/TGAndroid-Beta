@@ -5,22 +5,22 @@ import android.content.Context;
 import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Handler;
-import c2.z0;
+import c2.a1;
 public final class j extends ContentObserver {
-    public final ContentResolver f11518a;
-    public final Uri f11519b;
-    public final z0 f11520c;
+    public final ContentResolver f11264a;
+    public final Uri f11265b;
+    public final a1 f11266c;
 
-    public j(z0 z0Var, Handler handler, ContentResolver contentResolver, Uri uri) {
+    public j(a1 a1Var, Handler handler, ContentResolver contentResolver, Uri uri) {
         super(handler);
-        this.f11520c = z0Var;
-        this.f11518a = contentResolver;
-        this.f11519b = uri;
+        this.f11266c = a1Var;
+        this.f11264a = contentResolver;
+        this.f11265b = uri;
     }
 
     @Override
     public final void onChange(boolean z4) {
-        z0 z0Var = this.f11520c;
-        z0.a(z0Var, g.a((Context) z0Var.f2224b));
+        a1 a1Var = this.f11266c;
+        a1.a(a1Var, g.a((Context) a1Var.f1902b));
     }
 }

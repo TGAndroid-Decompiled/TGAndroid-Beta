@@ -1,82 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
+import android.content.Context;
 import android.text.TextUtils;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.HashMap;
-import java.util.WeakHashMap;
-public abstract class ho0 extends View.AccessibilityDelegate {
-    public static final String f27585c = "android.widget.SeekBar";
-    public final HashMap f27586a = new HashMap(4);
-    public final ff.b f27587b = new ff.b(this, 13);
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ProfileActivity;
+public final class ho0 extends w7 {
+    public final Context B;
+    public final Object C;
+    public final int f25466y;
 
-    public abstract boolean a();
-
-    public abstract boolean b();
-
-    public abstract void c(boolean z4);
-
-    public CharSequence d() {
-        return null;
-    }
-
-    public void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        accessibilityNodeInfo.setClassName(f27585c);
-        CharSequence d = d();
-        if (!TextUtils.isEmpty(d)) {
-            accessibilityNodeInfo.setText(d);
-        }
-        if (a()) {
-            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_BACKWARD);
-        }
-        if (b()) {
-            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_FORWARD);
-        }
-    }
-
-    public final void f(AccessibilityNodeInfo accessibilityNodeInfo) {
-        e(null, accessibilityNodeInfo);
-    }
-
-    public boolean g(View view, int i10, Bundle bundle) {
-        boolean z4 = false;
-        if (i10 != 4096 && i10 != 8192) {
-            return false;
-        }
-        if (i10 == 8192) {
-            z4 = true;
-        }
-        c(z4);
-        if (view != null) {
-            WeakHashMap weakHashMap = r0.j0.f46469a;
-            if (view.isAttachedToWindow()) {
-                HashMap hashMap = this.f27586a;
-                Runnable runnable = (Runnable) hashMap.get(view);
-                if (runnable == null) {
-                    runnable = new b90(12, this, view);
-                    hashMap.put(view, runnable);
-                    view.addOnAttachStateChangeListener(this.f27587b);
-                } else {
-                    view.removeCallbacks(runnable);
-                }
-                view.postDelayed(runnable, 400L);
-            }
-        }
-        return true;
+    public ho0(Object obj, Context context, Context context2, int i10) {
+        super(context);
+        this.f25466y = i10;
+        this.C = obj;
+        this.B = context2;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
-        e(view, accessibilityNodeInfo);
-    }
-
-    @Override
-    public final boolean performAccessibilityAction(View view, int i10, Bundle bundle) {
-        if (super.performAccessibilityAction(view, i10, bundle)) {
-            return true;
+    public final TextView a() {
+        switch (this.f25466y) {
+            case 0:
+                u90 u90Var = new u90(this.B);
+                u90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Si, ((jo0) this.C).J));
+                u90Var.setTextSize(1, 12.0f);
+                u90Var.setEllipsize(TextUtils.TruncateAt.END);
+                u90Var.setSingleLine(true);
+                u90Var.setPadding(AndroidUtilities.dp(0.0f), 0, AndroidUtilities.dp(0.0f), AndroidUtilities.dp(0.0f));
+                return u90Var;
+            default:
+                TextView textView = new TextView(this.B);
+                textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Pi, ((ProfileActivity) this.C).f32155w0));
+                textView.setTextSize(0, AndroidUtilities.dp(13.5f));
+                textView.setSingleLine(true);
+                textView.setEllipsize(TextUtils.TruncateAt.END);
+                textView.setGravity(3);
+                return textView;
         }
-        return g(view, i10, bundle);
     }
 }

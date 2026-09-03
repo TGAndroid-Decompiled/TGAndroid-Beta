@@ -7,19 +7,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class gy0 implements RequestDelegate {
-    public final int f37183a;
-    public final ProfileActivity f37184b;
+    public final int f34528a;
+    public final ProfileActivity f34529b;
 
     public gy0(ProfileActivity profileActivity, int i10) {
-        this.f37183a = i10;
-        this.f37184b = profileActivity;
+        this.f34528a = i10;
+        this.f34529b = profileActivity;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f37183a) {
+        switch (this.f34528a) {
             case 0:
-                final ProfileActivity profileActivity = this.f37184b;
+                final ProfileActivity profileActivity = this.f34529b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -73,7 +73,7 @@ public final class gy0 implements RequestDelegate {
                 });
                 return;
             case 1:
-                final ProfileActivity profileActivity2 = this.f37184b;
+                final ProfileActivity profileActivity2 = this.f34529b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -127,7 +127,7 @@ public final class gy0 implements RequestDelegate {
                 });
                 return;
             case 2:
-                final ProfileActivity profileActivity3 = this.f37184b;
+                final ProfileActivity profileActivity3 = this.f34529b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -181,7 +181,7 @@ public final class gy0 implements RequestDelegate {
                 });
                 return;
             case 3:
-                final ProfileActivity profileActivity4 = this.f37184b;
+                final ProfileActivity profileActivity4 = this.f34529b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -236,13 +236,13 @@ public final class gy0 implements RequestDelegate {
                 return;
             case 4:
                 if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new pr0(20, this.f37184b, tLObject));
+                    AndroidUtilities.runOnUIThread(new gr0(21, this.f34529b, tLObject));
                     return;
                 }
                 return;
             default:
                 boolean z4 = tLObject instanceof TL_account.TL_password;
-                ProfileActivity profileActivity5 = this.f37184b;
+                ProfileActivity profileActivity5 = this.f34529b;
                 if (z4) {
                     profileActivity5.E2 = (TL_account.TL_password) tLObject;
                     return;

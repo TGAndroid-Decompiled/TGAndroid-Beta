@@ -1,12 +1,12 @@
 package o4;
 public interface n0 {
+    long H();
+
     boolean b();
 
-    long e();
+    void k2(long j10);
 
-    boolean m(long j10);
+    boolean n0(long j10);
 
-    long r();
-
-    void t(long j10);
+    long y1();
 }

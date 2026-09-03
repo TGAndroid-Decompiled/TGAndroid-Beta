@@ -2,24 +2,24 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.MessagesStorage;
 public final class jf implements Runnable {
-    public final int f19074a;
-    public final MessagesStorage.IntCallback f19075b;
-    public final int[] f19076c;
+    public final int f17565a;
+    public final MessagesStorage.IntCallback f17566b;
+    public final int[] f17567c;
 
     public jf(MessagesStorage.IntCallback intCallback, int[] iArr, int i10) {
-        this.f19074a = i10;
-        this.f19075b = intCallback;
-        this.f19076c = iArr;
+        this.f17565a = i10;
+        this.f17566b = intCallback;
+        this.f17567c = iArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f19074a) {
+        switch (this.f17565a) {
             case 0:
-                MessagesStorage.lambda$getDialogMaxMessageId$254(this.f19075b, this.f19076c);
+                MessagesStorage.lambda$getDialogMaxMessageId$254(this.f17566b, this.f17567c);
                 return;
             default:
-                MessagesStorage.lambda$getSavedDialogMaxMessageId$52(this.f19075b, this.f19076c);
+                MessagesStorage.lambda$getSavedDialogMaxMessageId$52(this.f17566b, this.f17567c);
                 return;
         }
     }

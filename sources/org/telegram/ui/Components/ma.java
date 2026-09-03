@@ -6,10 +6,10 @@ import android.widget.LinearLayout;
 public abstract class ma extends sa {
     public final LinearLayout U;
     public FrameLayout V;
-    public qh.d W;
+    public ph.d W;
 
-    public ma(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, null, false, false, false, 1, g6Var);
+    public ma(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, null, false, false, false, 1, f6Var);
         LinearLayout linearLayout = new LinearLayout(context);
         this.U = linearLayout;
         linearLayout.setOrientation(1);
@@ -17,12 +17,12 @@ public abstract class ma extends sa {
 
     @Override
     public final void setTitle(CharSequence charSequence) {
-        this.f31015e.setTitle(charSequence);
+        this.e.setTitle(charSequence);
     }
 
     @Override
-    public final rl0 v(sl0 sl0Var) {
-        return new fg.g(this, 2);
+    public final ql0 v(rl0 rl0Var) {
+        return new eg.g(this, 2);
     }
 
     @Override

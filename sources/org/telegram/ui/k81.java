@@ -1,44 +1,35 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class k81 implements View.OnClickListener {
-    public final int f38207a;
-    public final v81 f38208b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class k81 implements Runnable {
+    public final int f35444a;
+    public final w81 f35445b;
 
-    public k81(v81 v81Var, int i10) {
-        this.f38207a = i10;
-        this.f38208b = v81Var;
+    public k81(w81 w81Var, int i10) {
+        this.f35444a = i10;
+        this.f35445b = w81Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f38207a) {
+    public final void run() {
+        switch (this.f35444a) {
             case 0:
-                v81 v81Var = this.f38208b;
-                af.g.s(v81Var.getParentActivity(), v81Var.getMessagesController().premiumManageSubscriptionUrl);
-                v81Var.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
+                this.f35445b.f39311c.V2.N(true);
                 return;
             case 1:
-                v81 v81Var2 = this.f38208b;
-                v81Var2.getClass();
-                v81Var2.presentFragment(new i(3));
+                ze.d.s(this.f35445b.getParentActivity(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
                 return;
             case 2:
-                this.f38208b.getMessagesController().removeSuggestion(0L, "VALIDATE_PHONE_NUMBER");
+                w81 w81Var = this.f35445b;
+                w81Var.f39311c.postOnAnimation(new k81(w81Var, 3));
                 return;
             case 3:
-                v81 v81Var3 = this.f38208b;
-                v81Var3.getClass();
-                v81Var3.presentFragment(new vg1(8, null));
-                return;
-            case 4:
-                this.f38208b.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
-                return;
-            case 5:
-                v81.V(this.f38208b);
+                this.f35445b.i0();
                 return;
             default:
-                v81.Y(this.f38208b);
+                MessagesController.getInstance(this.f35445b.currentAccount).deleteUserPhoto(null);
                 return;
         }
     }

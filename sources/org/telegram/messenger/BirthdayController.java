@@ -79,7 +79,7 @@ public class BirthdayController {
                         if (i21 < contactbirthdays.users.size()) {
                             arrayList2 = arrayList3;
                             i10 = i17;
-                            if (contactbirthdays.users.get(i21).f20992id == tL_contactBirthday2.contact_id) {
+                            if (contactbirthdays.users.get(i21).f19306id == tL_contactBirthday2.contact_id) {
                                 user = contactbirthdays.users.get(i21);
                                 break;
                             }
@@ -112,7 +112,7 @@ public class BirthdayController {
             while (i10 < size) {
                 TLRPC.User user = arrayList.get(i10);
                 i10++;
-                if (user.f20992id == j10) {
+                if (user.f19306id == j10) {
                     return true;
                 }
             }
@@ -122,7 +122,7 @@ public class BirthdayController {
             while (i11 < size2) {
                 TLRPC.User user2 = arrayList2.get(i11);
                 i11++;
-                if (user2.f20992id == j10) {
+                if (user2.f19306id == j10) {
                     return true;
                 }
             }
@@ -132,7 +132,7 @@ public class BirthdayController {
             while (i12 < size3) {
                 TLRPC.User user3 = arrayList3.get(i12);
                 i12++;
-                if (user3.f20992id == j10) {
+                if (user3.f19306id == j10) {
                     return true;
                 }
             }
@@ -207,8 +207,8 @@ public class BirthdayController {
             try {
                 SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
                 TLdeserialize = TL_birthdays.TLdeserialize(serializedData, serializedData.readInt32(true), true);
-            } catch (Exception e6) {
-                e = e6;
+            } catch (Exception e) {
+                e = e;
                 birthdayController = this;
             }
             if (TLdeserialize != null && !TLdeserialize.contacts.isEmpty()) {
@@ -216,8 +216,8 @@ public class BirthdayController {
                 for (int i11 = 0; i11 < TLdeserialize.contacts.size(); i11++) {
                     try {
                         arrayList.add(Long.valueOf(TLdeserialize.contacts.get(i11).contact_id));
-                    } catch (Exception e10) {
-                        exc = e10;
+                    } catch (Exception e6) {
+                        exc = e6;
                         birthdayController = this;
                         FileLog.e(exc);
                         birthdayController.hiddenDays = mainSettings.getStringSet("bday_hidden", new HashSet());
@@ -226,8 +226,8 @@ public class BirthdayController {
                 birthdayController = this;
                 try {
                     MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new i0(birthdayController, i10, arrayList, TLdeserialize, 0));
-                } catch (Exception e11) {
-                    e = e11;
+                } catch (Exception e10) {
+                    e = e10;
                     exc = e;
                     FileLog.e(exc);
                     birthdayController.hiddenDays = mainSettings.getStringSet("bday_hidden", new HashSet());

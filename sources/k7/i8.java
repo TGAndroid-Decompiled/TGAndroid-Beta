@@ -1,25 +1,54 @@
 package k7;
 
-import com.google.android.gms.tasks.Task;
-import java.util.concurrent.CancellationException;
-import org.telegram.ui.Components.ai;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.zl0;
 public abstract class i8 {
-    public static final Object a(Task task, wc.c cVar) {
-        if (task.isComplete()) {
-            Exception exception = task.getException();
-            if (exception == null) {
-                if (!task.isCanceled()) {
-                    return task.getResult();
-                }
-                throw new CancellationException("Task " + task + " was cancelled normally.");
-            }
-            throw exception;
+    public static void a(zl0 zl0Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        boolean q10;
+        if (f6Var != null) {
+            q10 = f6Var.a();
+        } else {
+            q10 = org.telegram.ui.ActionBar.j6.I.q();
         }
-        ld.m mVar = new ld.m(1, h8.b(cVar));
-        mVar.s();
-        task.addOnCompleteListener(vd.a.f49006a, new ai(mVar, 18));
-        Object r10 = mVar.r();
-        vc.a aVar = vc.a.f48998a;
-        return r10;
+        zl0Var.q(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Oh, f6Var), q10);
+    }
+
+    public static int b(vh.a aVar) {
+        int i10 = 0;
+        if (aVar == null) {
+            return 0;
+        }
+        int c3 = c(aVar);
+        int max = Math.max(0, aVar.f45854c);
+        if (max > 0) {
+            i10 = AndroidUtilities.dp(e2.c.e(max, 1, 24, 28));
+        }
+        return c3 + i10;
+    }
+
+    public static int c(vh.a aVar) {
+        int size;
+        if (aVar == null) {
+            size = 0;
+        } else {
+            size = aVar.f45859k.size();
+        }
+        if (size <= 0) {
+            return 0;
+        }
+        return AndroidUtilities.dp(e2.c.e(size, 1, 16, 12));
+    }
+
+    public static int d(vh.a aVar) {
+        int size;
+        if (aVar == null) {
+            size = 0;
+        } else {
+            size = aVar.f45859k.size();
+        }
+        if (size <= 0) {
+            return 0;
+        }
+        return AndroidUtilities.dp(e2.c.e(size, 1, 16, 8));
     }
 }

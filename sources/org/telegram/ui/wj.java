@@ -1,56 +1,24 @@
 package org.telegram.ui;
-public final class wj implements Runnable {
-    public final int f42791a;
-    public final xn f42792b;
 
-    public wj(xn xnVar, int i10) {
-        this.f42791a = i10;
-        this.f42792b = xnVar;
+import org.telegram.messenger.MessageObject;
+public final class wj extends f2.v {
+    public final zn f39713c;
+
+    public wj(zn znVar) {
+        this.f39713c = znVar;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f42791a;
-        xn xnVar = this.f42792b;
-        switch (i10) {
-            case 0:
-                xn.i2(xnVar);
-                return;
-            case 1:
-                xn.i2(xnVar);
-                return;
-            case 2:
-                int i11 = xn.Ec;
-                xnVar.Ma();
-                return;
-            case 3:
-                int i12 = xn.Ec;
-                xnVar.Ma();
-                return;
-            case 4:
-                int i13 = xn.Ec;
-                xnVar.Ma();
-                return;
-            case 5:
-                int i14 = xn.Ec;
-                xnVar.Ma();
-                return;
-            case 6:
-                int i15 = xn.Ec;
-                xnVar.Ma();
-                return;
-            case 7:
-                int i16 = xn.Ec;
-                xnVar.Ma();
-                return;
-            case 8:
-                int i17 = xn.Ec;
-                xnVar.Ma();
-                return;
-            default:
-                int i18 = xn.Ec;
-                xnVar.Ma();
-                return;
+    public final int i(int i10) {
+        int i11;
+        MessageObject messageObject;
+        MessageObject.GroupedMessages X8;
+        zn znVar = this.f39713c;
+        lm lmVar = znVar.f40800x0;
+        int i12 = lmVar.G;
+        if (i10 >= i12 && i10 < lmVar.H && (i11 = i10 - i12) >= 0 && i11 < lmVar.L().size() && (X8 = znVar.X8((messageObject = (MessageObject) znVar.f40800x0.L().get(i11)))) != null) {
+            return X8.getPosition(messageObject).spanSize;
         }
+        return 1000;
     }
 }

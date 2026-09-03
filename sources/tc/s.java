@@ -3,33 +3,33 @@ package tc;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 public final class s implements Iterator {
-    public int f48103a;
-    public Object f48104b;
-    public int f48105c;
+    public int f44715a;
+    public Object f44716b;
+    public int f44717c;
     public int d;
-    public final t f48106e;
+    public final t e;
 
     public s(t tVar) {
-        this.f48106e = tVar;
-        this.f48105c = tVar.d;
-        this.d = tVar.f48109c;
+        this.e = tVar;
+        this.f44717c = tVar.d;
+        this.d = tVar.f44720c;
     }
 
     public final boolean a() {
-        this.f48103a = 3;
-        int i10 = this.f48105c;
+        this.f44715a = 3;
+        int i10 = this.f44717c;
         if (i10 == 0) {
-            this.f48103a = 2;
+            this.f44715a = 2;
         } else {
-            t tVar = this.f48106e;
-            Object[] objArr = tVar.f48107a;
+            t tVar = this.e;
+            Object[] objArr = tVar.f44718a;
             int i11 = this.d;
-            this.f48104b = objArr[i11];
-            this.f48103a = 1;
-            this.d = (i11 + 1) % tVar.f48108b;
-            this.f48105c = i10 - 1;
+            this.f44716b = objArr[i11];
+            this.f44715a = 1;
+            this.d = (i11 + 1) % tVar.f44719b;
+            this.f44717c = i10 - 1;
         }
-        if (this.f48103a == 1) {
+        if (this.f44715a == 1) {
             return true;
         }
         return false;
@@ -37,7 +37,7 @@ public final class s implements Iterator {
 
     @Override
     public final boolean hasNext() {
-        int i10 = this.f48103a;
+        int i10 = this.f44715a;
         if (i10 != 0) {
             if (i10 == 1) {
                 return true;
@@ -52,13 +52,13 @@ public final class s implements Iterator {
 
     @Override
     public final Object next() {
-        int i10 = this.f48103a;
+        int i10 = this.f44715a;
         if (i10 == 1) {
-            this.f48103a = 0;
-            return this.f48104b;
+            this.f44715a = 0;
+            return this.f44716b;
         } else if (i10 != 2 && a()) {
-            this.f48103a = 0;
-            return this.f48104b;
+            this.f44715a = 0;
+            return this.f44716b;
         } else {
             throw new NoSuchElementException();
         }

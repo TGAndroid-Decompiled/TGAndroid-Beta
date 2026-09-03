@@ -11,20 +11,20 @@ import android.os.RemoteException;
 import android.util.Log;
 import com.google.android.gms.common.api.Scope;
 public final class f extends c6.a {
-    public final int f1701a;
-    public final int f1702b;
-    public final int f1703c;
+    public final int f1584a;
+    public final int f1585b;
+    public final int f1586c;
     public String d;
-    public IBinder f1704e;
-    public Scope[] f1705f;
+    public IBinder e;
+    public Scope[] f1587f;
     public Bundle h;
-    public Account f1706n;
-    public y5.c[] f1707r;
-    public y5.c[] f1708s;
+    public Account f1588n;
+    public y5.c[] f1589r;
+    public y5.c[] f1590s;
     public final boolean v;
-    public final int f1709w;
-    public boolean f1710x;
-    public final String f1711y;
+    public final int f1591w;
+    public boolean f1592x;
+    public final String f1593y;
     public static final Parcelable.Creator<f> CREATOR = new w.a(28);
     public static final Scope[] B = new Scope[0];
     public static final y5.c[] C = new y5.c[0];
@@ -51,9 +51,9 @@ public final class f extends c6.a {
             cVarArr3 = cVarArr;
         }
         cVarArr4 = cVarArr2 != null ? cVarArr2 : cVarArr4;
-        this.f1701a = i10;
-        this.f1702b = i11;
-        this.f1703c = i12;
+        this.f1584a = i10;
+        this.f1585b = i11;
+        this.f1586c = i12;
         if ("com.google.android.gms".equals(str)) {
             this.d = "com.google.android.gms";
         } else {
@@ -62,7 +62,7 @@ public final class f extends c6.a {
         if (i10 < 2) {
             Account account2 = null;
             if (iBinder != null) {
-                int i14 = a.f1685b;
+                int i14 = a.f1569b;
                 IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.IAccountAccessor");
                 if (queryLocalInterface instanceof i) {
                     aVar = (i) queryLocalInterface;
@@ -87,19 +87,19 @@ public final class f extends c6.a {
                     throw th2;
                 }
             }
-            this.f1706n = account2;
+            this.f1588n = account2;
         } else {
-            this.f1704e = iBinder;
-            this.f1706n = account;
+            this.e = iBinder;
+            this.f1588n = account;
         }
-        this.f1705f = scopeArr2;
+        this.f1587f = scopeArr2;
         this.h = bundle2;
-        this.f1707r = cVarArr3;
-        this.f1708s = cVarArr4;
+        this.f1589r = cVarArr3;
+        this.f1590s = cVarArr4;
         this.v = z4;
-        this.f1709w = i13;
-        this.f1710x = z10;
-        this.f1711y = str2;
+        this.f1591w = i13;
+        this.f1592x = z10;
+        this.f1593y = str2;
     }
 
     @Override

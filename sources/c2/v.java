@@ -2,62 +2,31 @@ package c2;
 
 import android.os.Bundle;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 public final class v {
-    public static final v f2183c = new v(new Bundle(), null);
-    public final Bundle f2184a;
-    public List f2185b;
+    public ArrayList f2038a = new ArrayList();
 
-    public v(Bundle bundle, ArrayList arrayList) {
-        this.f2184a = bundle;
-        this.f2185b = arrayList;
-    }
-
-    public static v b(Bundle bundle) {
-        if (bundle == null) {
-            return null;
+    public w a() {
+        if (this.f2038a == null) {
+            return w.f2041c;
         }
-        return new v(bundle, null);
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("controlCategories", this.f2038a);
+        return new w(bundle, this.f2038a);
     }
 
-    public final void a() {
-        if (this.f2185b == null) {
-            ArrayList<String> stringArrayList = this.f2184a.getStringArrayList("controlCategories");
-            this.f2185b = stringArrayList;
-            if (stringArrayList == null || stringArrayList.isEmpty()) {
-                this.f2185b = Collections.EMPTY_LIST;
-            }
+    public void b(StringBuilder sb) {
+        String str;
+        if (((Boolean) e2.c.g(1, this.f2038a)).booleanValue()) {
+            str = "</ol>";
+        } else {
+            str = "</ul>";
         }
+        sb.append(str);
     }
 
-    public final ArrayList c() {
-        a();
-        return new ArrayList(this.f2185b);
-    }
-
-    public final boolean d() {
-        a();
-        return this.f2185b.isEmpty();
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof v) {
-            v vVar = (v) obj;
-            a();
-            vVar.a();
-            return this.f2185b.equals(vVar.f2185b);
+    public void c(StringBuilder sb) {
+        while (!this.f2038a.isEmpty()) {
+            b(sb);
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        a();
-        return this.f2185b.hashCode();
-    }
-
-    public final String toString() {
-        return "MediaRouteSelector{ controlCategories=" + Arrays.toString(c().toArray()) + " }";
     }
 }

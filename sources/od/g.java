@@ -2,12 +2,12 @@ package od;
 
 import kotlin.jvm.internal.q;
 public final class g implements c {
-    public final c f16727a;
-    public final q f16728b;
+    public final c f16538a;
+    public final q f16539b;
 
     public g(c cVar, q qVar) {
-        this.f16727a = cVar;
-        this.f16728b = qVar;
+        this.f16538a = cVar;
+        this.f16539b = qVar;
     }
 
     @Override

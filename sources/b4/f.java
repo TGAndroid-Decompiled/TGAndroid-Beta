@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 public final class f {
-    public final int f1476a;
-    public final List f1477b;
+    public final int f1380a;
+    public final List f1381b;
 
     public f(int i10, List list) {
-        this.f1476a = i10;
-        this.f1477b = list;
+        this.f1380a = i10;
+        this.f1381b = list;
     }
 
-    public i0 a(int i10, androidx.biometric.e eVar) {
-        String str = (String) eVar.f527b;
+    public i0 a(int i10, af.d dVar) {
+        String str = (String) dVar.f159b;
         if (i10 != 2) {
             if (i10 != 3 && i10 != 4) {
                 if (i10 != 21) {
@@ -34,7 +34,7 @@ public final class f {
                                                             }
                                                             return null;
                                                         case 16:
-                                                            return new w(new n(new d0(1, b(eVar))));
+                                                            return new w(new n(new d0(1, b(dVar))));
                                                         case 17:
                                                             if (!c(2)) {
                                                                 return new w(new t(str));
@@ -58,52 +58,52 @@ public final class f {
                                                 }
                                                 return new w(new b(str, 0));
                                             } else if (!c(16)) {
-                                                return new c0(new androidx.biometric.e("application/x-scte35", 3));
+                                                return new c0(new af.d("application/x-scte35", 4));
                                             } else {
                                                 return null;
                                             }
                                         }
-                                        return new c0(new androidx.biometric.e("application/vnd.dvb.ait", 3));
+                                        return new c0(new af.d("application/vnd.dvb.ait", 4));
                                     }
                                     return new w(new b(str, 1));
                                 }
                                 return new w(new g(str));
                             }
-                            return new w(new h((List) eVar.f528c));
+                            return new w(new h((List) dVar.f160c));
                         }
-                        return new w(new s(new d0(0, b(eVar))));
+                        return new w(new s(new d0(0, b(dVar))));
                     } else if (c(4)) {
                         return null;
                     } else {
-                        return new w(new q(new d0(0, b(eVar)), c(1), c(8)));
+                        return new w(new q(new d0(0, b(dVar)), c(1), c(8)));
                     }
                 }
                 return new w(new h());
             }
             return new w(new u(str));
         }
-        return new w(new k(new d0(1, b(eVar))));
+        return new w(new k(new d0(1, b(dVar))));
     }
 
-    public List b(androidx.biometric.e eVar) {
+    public List b(af.d dVar) {
         boolean z4;
         String str;
         int i10;
         List list;
         boolean c3 = c(32);
-        List list2 = this.f1477b;
+        List list2 = this.f1381b;
         if (c3) {
             return list2;
         }
-        h5.w wVar = new h5.w((byte[]) eVar.d);
+        h5.w wVar = new h5.w((byte[]) dVar.d);
         while (wVar.a() > 0) {
             int u10 = wVar.u();
-            int u11 = wVar.f7309b + wVar.u();
+            int u11 = wVar.f6988b + wVar.u();
             if (u10 == 134) {
                 ArrayList arrayList = new ArrayList();
                 int u12 = wVar.u() & 31;
                 for (int i11 = 0; i11 < u12; i11++) {
-                    String s6 = wVar.s(3, r8.d.f46769c);
+                    String s6 = wVar.s(3, r8.d.f43413c);
                     int u13 = wVar.u();
                     if ((u13 & 128) != 0) {
                         z4 = true;
@@ -125,10 +125,10 @@ public final class f {
                         list = null;
                     }
                     m0 m0Var = new m0();
-                    m0Var.f9265o = str;
-                    m0Var.f9255c = s6;
+                    m0Var.f8666o = str;
+                    m0Var.f8657c = s6;
                     m0Var.G = i10;
-                    m0Var.f9267q = list;
+                    m0Var.f8668q = list;
                     arrayList.add(new n0(m0Var));
                 }
                 list2 = arrayList;
@@ -139,19 +139,19 @@ public final class f {
     }
 
     public boolean c(int i10) {
-        if ((i10 & this.f1476a) != 0) {
+        if ((i10 & this.f1380a) != 0) {
             return true;
         }
         return false;
     }
 
     public f() {
-        this.f1476a = 1;
-        this.f1477b = Collections.singletonList(null);
+        this.f1380a = 1;
+        this.f1381b = Collections.singletonList(null);
     }
 
     public f(ArrayList arrayList) {
-        this.f1476a = 0;
-        this.f1477b = arrayList;
+        this.f1380a = 0;
+        this.f1381b = arrayList;
     }
 }

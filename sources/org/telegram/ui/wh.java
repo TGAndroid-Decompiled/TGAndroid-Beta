@@ -1,39 +1,42 @@
 package org.telegram.ui;
 
-import android.view.View;
-import j$.util.Objects;
-import java.util.Locale;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-public final class wh implements Utilities.CallbackReturn {
-    public final int f42771a;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class wh implements Runnable {
+    public final int f39698a = 1;
+    public final zn f39699b;
+    public final int f39700c;
+    public final MessageObject d;
 
-    public wh(int i10) {
-        this.f42771a = i10;
+    public wh(zn znVar, int i10, MessageObject messageObject) {
+        this.f39699b = znVar;
+        this.f39700c = i10;
+        this.d = messageObject;
     }
 
     @Override
-    public final Object run(Object obj) {
-        boolean z4 = true;
-        switch (this.f42771a) {
+    public final void run() {
+        switch (this.f39698a) {
             case 0:
-                MessageObject messageObject = (MessageObject) obj;
-                return Boolean.valueOf((messageObject == null || messageObject.getFactCheck() == null) ? false : false);
-            case 1:
-                MessageObject messageObject2 = (MessageObject) obj;
-                return Boolean.valueOf((messageObject2 == null || messageObject2.getEffect() == null) ? false : false);
-            case 2:
-                return LocaleController.formatPluralString("Hours", ((Integer) obj).intValue(), new Object[0]);
-            case 3:
-                return LocaleController.formatPluralString("Minutes", ((Integer) obj).intValue(), new Object[0]);
-            case 4:
-                View view = (View) obj;
-                return Boolean.valueOf(((view instanceof org.telegram.ui.Cells.a9) || (view instanceof org.telegram.ui.Cells.z6) || (view instanceof w10) || (view instanceof org.telegram.ui.Cells.u3) || (view instanceof org.telegram.ui.Cells.a2) || Objects.equals(view.getTag(), -33024)) ? false : false);
-            case 5:
-                return Boolean.valueOf(org.telegram.ui.Components.w51.K(((Integer) obj).intValue()));
+                this.f39699b.f40641k4 = null;
+                this.d.messageOwner.replies.read_max_id = this.f39700c;
+                return;
             default:
-                return String.format(Locale.US, "%.1f%%", Float.valueOf(((Integer) obj).intValue() / 10.0f));
+                zn znVar = this.f39699b;
+                org.telegram.ui.Components.qc.a0(znVar).c(LocaleController.getString(R.string.AdHidden)).j();
+                MessagesController.getInstance(this.f39700c).disableAds(false);
+                MessageObject messageObject = this.d;
+                znVar.Fa(messageObject);
+                znVar.Ha(messageObject);
+                return;
         }
+    }
+
+    public wh(zn znVar, MessageObject messageObject, int i10) {
+        this.f39699b = znVar;
+        this.d = messageObject;
+        this.f39700c = i10;
     }
 }

@@ -1,40 +1,31 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class xs extends uf.d {
-    public final ContactsActivity I;
+import java.util.ArrayList;
+public final class xs extends tf.c1 {
+    public final ContactsActivity H;
 
-    public xs(ContactsActivity contactsActivity, Context context, int i10, boolean z4, a0.h hVar, int i11) {
-        super(context, i10, z4, hVar, i11);
-        this.I = contactsActivity;
+    public xs(ContactsActivity contactsActivity, Context context, a0.h hVar, boolean z4, boolean z10, boolean z11) {
+        this.H = contactsActivity;
+        this.d = new ArrayList();
+        this.e = new ArrayList();
+        this.E = new ArrayList();
+        this.f44741c = context;
+        this.h = hVar;
+        this.f44744r = z4;
+        this.f44745s = z10;
+        this.f44747x = 0;
+        this.v = z11;
+        this.f44746w = true;
+        tf.j1 j1Var = new tf.j1(true);
+        this.f44742f = j1Var;
+        j1Var.f44819a = new tf.a1(this);
     }
 
     @Override
-    public final int R() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.xs.R():int");
-    }
-
-    @Override
-    public final void l() {
-        boolean z4 = false;
-        X(false);
-        ContactsActivity contactsActivity = this.I;
-        org.telegram.ui.Components.sl0 sl0Var = contactsActivity.f34060f;
-        if (sl0Var != null && sl0Var.getAdapter() == this) {
-            int h = h();
-            if (contactsActivity.E) {
-                org.telegram.ui.Components.sl0 sl0Var2 = contactsActivity.f34060f;
-                if (h != 2) {
-                    z4 = true;
-                }
-                sl0Var2.setFastScrollVisible(z4);
-                return;
-            }
-            org.telegram.ui.Components.sl0 sl0Var3 = contactsActivity.f34060f;
-            if (h != 0) {
-                z4 = true;
-            }
-            sl0Var3.setFastScrollVisible(z4);
+    public final void F() {
+        if (!this.f44748y && !this.f44742f.e() && h() == 0) {
+            this.H.e.e(false, true);
         }
     }
 }

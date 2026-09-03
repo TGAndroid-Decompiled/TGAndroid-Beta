@@ -1,53 +1,95 @@
 package uf;
 
-import android.view.ViewGroup;
-import org.telegram.ui.Components.rl0;
-import org.telegram.ui.nw0;
-public final class z0 extends rl0 {
-    public u0 f48821c;
-    public Integer d;
-    public nw0 f48822e;
-    public boolean f48823f;
-    public int h;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import k7.b6;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.p2;
+import org.telegram.ui.Components.g61;
+import ph.d4;
+import ph.ga;
+import ph.z8;
+public final class z0 extends p2 {
+    public final CharSequence f45550a;
+    public final ArrayList f45551b;
+    public final int f45552c;
+    public final int d;
+    public final int e;
+    public ga f45553f;
+    public d0 h;
+    public g61 f45554n;
+    public boolean f45555r;
 
-    @Override
-    public final boolean D(f2.m1 m1Var) {
-        if (m1Var.b() == 0) {
+    public z0(CharSequence charSequence, ArrayList arrayList, int i10, int i11, int i12) {
+        super(null);
+        this.f45550a = charSequence;
+        this.f45551b = arrayList;
+        this.f45552c = i10;
+        this.d = i11;
+        this.e = i12;
+        this.f45555r = !arrayList.isEmpty();
+    }
+
+    public final boolean U() {
+        ArrayList arrayList = this.f45551b;
+        if (arrayList.size() != 1 || ((w0) arrayList.get(0)).f45534a != 0 || ((w0) arrayList.get(0)).f45535b != 1439) {
             return false;
         }
-        return this.f48821c.D(m1Var);
+        return true;
     }
 
-    @Override
-    public final int h() {
-        u0 u0Var = this.f48821c;
-        int K = u0Var.K();
-        u0Var.I0 = K;
-        return K + 1;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return -983904;
+    public final boolean V() {
+        ArrayList arrayList = this.f45551b;
+        if (arrayList.size() >= this.e) {
+            return false;
         }
-        return this.f48821c.j(i10 - 1);
+        if (!arrayList.isEmpty() && !U() && ((w0) kf.k0.i(1, arrayList)).f45535b >= Math.min(1438, this.d - 2)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public final void v(f2.m1 m1Var, int i10) {
-        if (i10 > 0) {
-            this.f48821c.v(m1Var, i10 - 1);
-        }
+    public final View createView(Context context) {
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(this.f45550a);
+        this.actionBar.setActionBarMenuOnItemClick(new sh.e(this, 12));
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.setBackgroundColor(j6.w0(null, j6.f19827a7, false));
+        g61 g61Var = new g61(this, new d4(this, 23), new z8(this, 8), null);
+        this.f45554n = g61Var;
+        g61Var.o1();
+        this.actionBar.setAdaptiveBackground(this.f45554n);
+        frameLayout.addView(this.f45554n, b6.c(-1.0f, -1));
+        this.fragmentView = frameLayout;
+        return frameLayout;
     }
 
     @Override
-    public final f2.m1 x(ViewGroup viewGroup, int i10) {
-        if (i10 == -983904) {
-            nw0 nw0Var = new nw0(this, viewGroup.getContext(), 10);
-            this.f48822e = nw0Var;
-            return new f2.m1(nw0Var);
+    public final void onBecomeFullyHidden() {
+        d0 d0Var = this.h;
+        if (d0Var != null) {
+            d0Var.run();
         }
-        return this.f48821c.x(viewGroup, i10);
+        super.onBecomeFullyHidden();
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        if (!this.f45555r) {
+            ArrayList arrayList = this.f45551b;
+            if (!arrayList.isEmpty()) {
+                arrayList.clear();
+                ga gaVar = this.f45553f;
+                if (gaVar != null) {
+                    gaVar.run();
+                }
+            }
+        }
     }
 }

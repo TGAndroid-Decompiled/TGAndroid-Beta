@@ -1,76 +1,52 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class s50 extends View {
-    public int[] f41020a;
-    public int f41021b;
-    public final Paint f41022c;
-    public float d;
-    public final d60 f41023e;
+import android.animation.ValueAnimator;
+import java.util.HashSet;
+public final class s50 extends f2.l {
+    public float F;
+    public ValueAnimator G;
+    public final HashSet H = new HashSet();
+    public final HashSet I = new HashSet();
+    public float J;
+    public float K;
+    public final e60 L;
 
-    public s50(d60 d60Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f41023e = d60Var;
-        Paint paint = new Paint(1);
-        this.f41022c = paint;
-        paint.setStyle(Paint.Style.FILL);
-        paint.setAlpha(0);
+    public s50(e60 e60Var) {
+        this.L = e60Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        d60 d60Var = this.f41023e;
-        if (d60Var.f36084w2 && d60Var.X1.f32147c < 0.1d) {
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f41022c);
-        }
+    public final void g() {
+        super.g();
+        this.I.clear();
+        this.H.clear();
+        this.K = Float.MAX_VALUE;
+        this.L.N.invalidate();
     }
 
-    public void setNewColors(int[] iArr) {
-        int[] iArr2 = this.f41020a;
-        Paint paint = this.f41022c;
-        boolean z4 = true;
-        d60 d60Var = this.f41023e;
-        boolean z10 = false;
-        if (iArr2 == null || iArr[0] != iArr2[0] || iArr[1] != iArr2[1]) {
-            if (iArr2 == null) {
-                paint.setAlpha(255);
-            }
-            this.f41020a = iArr;
-            if (d60Var.f36008e1 != null) {
-                float f10 = d60Var.f36013f1;
-                if (f10 != 1.0f) {
-                    iArr[0] = i0.a.k(iArr[0], (int) (f10 * 255.0f));
-                    int[] iArr3 = this.f41020a;
-                    iArr3[1] = i0.a.k(iArr3[1], (int) (d60Var.f36013f1 * 255.0f));
-                }
-            }
-            paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, d60Var.R0.getMeasuredHeight(), this.f41020a, (float[]) null, Shader.TileMode.CLAMP));
-            z10 = true;
+    @Override
+    public final void m() {
+        boolean isEmpty = this.f5763p.isEmpty();
+        boolean isEmpty2 = this.f5765r.isEmpty();
+        boolean isEmpty3 = this.f5764q.isEmpty();
+        ValueAnimator valueAnimator = this.G;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.G = null;
         }
-        if (this.f41021b != d60Var.S1) {
-            paint.setShadowLayer(AndroidUtilities.dp(36.0f), 0.0f, this.d, d60Var.S1);
-            this.f41021b = d60Var.S1;
-        } else {
-            z4 = z10;
+        if (!isEmpty || !isEmpty2 || !isEmpty3) {
+            this.F = 0.0f;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.G = ofFloat;
+            ofFloat.addUpdateListener(new g3(this, 17));
+            this.G.addListener(new org.telegram.ui.Components.f91(this, 21));
+            this.G.setDuration(350L);
+            this.G.setInterpolator(org.telegram.ui.Components.mr.f27122f);
+            this.G.start();
+            e60 e60Var = this.L;
+            e60Var.N.invalidate();
+            e60Var.X1.invalidate();
         }
-        if (z4) {
-            invalidate();
-        }
-        d60Var.z1();
-    }
-
-    public void setShadowOffset(int i10) {
-        float f10 = i10;
-        if (this.d != f10) {
-            this.f41022c.setShadowLayer(AndroidUtilities.dp(36.0f), 0.0f, this.d, this.f41023e.S1);
-            this.d = f10;
-            invalidate();
-        }
+        super.m();
     }
 }

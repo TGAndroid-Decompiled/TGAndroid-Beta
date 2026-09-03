@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class g11 extends sl0 {
+public final class g11 extends rl0 {
     public final ThemeEditorView.EditorAlert U2;
 
     public g11(ThemeEditorView.EditorAlert editorAlert, Context context) {

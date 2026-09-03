@@ -1,22 +1,41 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-public final class oi extends org.telegram.ui.Components.ho {
-    public final xn J;
+import android.util.SparseArray;
+import org.telegram.messenger.MessageObject;
+public final class oi {
+    public boolean f36821a;
+    public final boolean f36822b;
+    public final SparseArray f36823c;
+    public final zn d;
 
-    public oi(xn xnVar, Activity activity, int i10, TLRPC.Document document, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(activity, i10, document, g6Var);
-        this.J = xnVar;
+    public oi(zn znVar, boolean z4, SparseArray sparseArray) {
+        this.d = znVar;
+        this.f36822b = z4;
+        this.f36823c = sparseArray;
     }
 
-    @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        super.onLayout(z4, i10, i11, i12, i13);
-        float y10 = getY();
-        xn xnVar = this.J;
-        float y11 = xnVar.O0.getY() + y10;
-        this.G = xnVar.U0.getBackgroundSizeY();
-        this.F = y11;
+    public final boolean a(int i10) {
+        zn znVar = this.d;
+        int i11 = i10 - znVar.f40800x0.G;
+        if (i11 >= 0 && i11 < znVar.f40730r6.size()) {
+            MessageObject messageObject = (MessageObject) znVar.f40730r6.get(i11);
+            if (messageObject.contentType == 0) {
+                SparseArray sparseArray = this.f36823c;
+                boolean z4 = this.f36822b;
+                if (!z4 && sparseArray.get(messageObject.getId(), null) == null) {
+                    return true;
+                }
+                if (z4 && sparseArray.get(messageObject.getId(), null) != null) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void b(int r8, boolean r9, float r10, float r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.oi.b(int, boolean, float, float):void");
     }
 }

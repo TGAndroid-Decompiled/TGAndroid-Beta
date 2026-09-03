@@ -1,37 +1,38 @@
 package org.telegram.ui.Cells;
 
-import android.animation.ValueAnimator;
-public final class v2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f24305a;
-    public final x2 f24306b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class v2 extends AnimatorListenerAdapter {
+    public final int f22457a;
+    public final w2 f22458b;
 
-    public v2(x2 x2Var, int i10) {
-        this.f24305a = i10;
-        this.f24306b = x2Var;
+    public v2(w2 w2Var, int i10) {
+        this.f22457a = i10;
+        this.f22458b = w2Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f24305a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f22457a) {
             case 0:
-                x2 x2Var = this.f24306b;
-                x2Var.getClass();
-                x2Var.f24392a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                x2Var.requestLayout();
-                q0.a aVar = x2Var.f24394c;
-                if (aVar != null) {
-                    aVar.accept(Float.valueOf(x2Var.f24392a));
+                w2 w2Var = this.f22458b;
+                Runnable runnable = w2Var.f22494b;
+                if (runnable != null) {
+                    runnable.run();
+                }
+                if (animator == w2Var.e) {
+                    w2Var.e = null;
                     return;
                 }
                 return;
             default:
-                x2 x2Var2 = this.f24306b;
-                x2Var2.getClass();
-                x2Var2.f24392a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                x2Var2.requestLayout();
-                q0.a aVar2 = x2Var2.f24394c;
-                if (aVar2 != null) {
-                    aVar2.accept(Float.valueOf(x2Var2.f24392a));
+                w2 w2Var2 = this.f22458b;
+                Runnable runnable2 = w2Var2.f22494b;
+                if (runnable2 != null) {
+                    runnable2.run();
+                }
+                if (animator == w2Var2.e) {
+                    w2Var2.e = null;
                     return;
                 }
                 return;

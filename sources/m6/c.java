@@ -2,7 +2,7 @@ package m6;
 
 import android.content.Context;
 public interface c {
-    int G(Context context, String str);
+    int h(Context context, String str, boolean z4);
 
-    int u(Context context, String str, boolean z4);
+    int z(Context context, String str);
 }

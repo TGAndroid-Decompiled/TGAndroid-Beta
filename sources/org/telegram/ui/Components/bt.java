@@ -1,26 +1,73 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
-public final class bt extends ReplacementSpan {
-    public int f25687b;
-    public final Paint f25686a = new Paint(1);
-    public float f25688c = 3.0f;
+import org.telegram.messenger.FileLog;
+public final class bt implements Runnable {
+    public final int f23742a;
+    public final dt f23743b;
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
-        int color = paint.getColor();
-        Paint paint2 = this.f25686a;
-        if (color != 0) {
-            paint2.setColor(paint.getColor());
-        }
-        canvas.drawCircle(f10 + (AndroidUtilities.dpf2(this.f25688c) / 2.0f), ((i14 - i12) / 2) + this.f25687b, AndroidUtilities.dpf2(3.0f) / 2.0f, paint2);
+    public bt(dt dtVar, int i10) {
+        this.f23742a = i10;
+        this.f23743b = dtVar;
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return AndroidUtilities.dp(this.f25688c);
+    public final void run() {
+        int i10;
+        Bitmap bitmap;
+        switch (this.f23742a) {
+            case 0:
+                dt dtVar = this.f23743b;
+                try {
+                    i10 = dtVar.f24382w + 0;
+                    bitmap = dtVar.f24376b;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    dtVar.B = true;
+                }
+                if (bitmap != null) {
+                    if (bitmap.getWidth() == dtVar.f24383x) {
+                        if (dtVar.f24376b.getHeight() != i10) {
+                        }
+                        dtVar.f24376b.eraseColor(0);
+                        dtVar.f24377c.save();
+                        dtVar.f24377c.translate(0.0f, 0);
+                        dtVar.c(dtVar.f24377c);
+                        dtVar.f24377c.restore();
+                        dtVar.f24376b.prepareToDraw();
+                        AndroidUtilities.runOnUIThread(dtVar.E);
+                        return;
+                    }
+                }
+                Bitmap bitmap2 = dtVar.f24376b;
+                if (bitmap2 != null) {
+                    bitmap2.recycle();
+                }
+                dtVar.f24376b = Bitmap.createBitmap(dtVar.f24383x, i10, Bitmap.Config.ARGB_8888);
+                dtVar.f24377c = new Canvas(dtVar.f24376b);
+                dtVar.f24376b.eraseColor(0);
+                dtVar.f24377c.save();
+                dtVar.f24377c.translate(0.0f, 0);
+                dtVar.c(dtVar.f24377c);
+                dtVar.f24377c.restore();
+                dtVar.f24376b.prepareToDraw();
+                AndroidUtilities.runOnUIThread(dtVar.E);
+                return;
+            default:
+                dt dtVar2 = this.f23743b;
+                dtVar2.f24378f = false;
+                dtVar2.g();
+                if (!dtVar2.f24375a) {
+                    dtVar2.j();
+                    return;
+                } else if (dtVar2.v == dtVar2.G) {
+                    dtVar2.D = true;
+                    return;
+                } else {
+                    return;
+                }
+        }
     }
 }

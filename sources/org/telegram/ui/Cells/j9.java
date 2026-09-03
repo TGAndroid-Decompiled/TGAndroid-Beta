@@ -1,186 +1,140 @@
 package org.telegram.ui.Cells;
 
-import android.content.ClipboardManager;
-import android.content.Context;
-import android.os.Build;
+import android.graphics.Rect;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.LanguageDetector;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.v31;
-import org.telegram.ui.t31;
-public final class j9 implements ActionMode.Callback {
-    public String f23032a = null;
-    public final z9 f23033b;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.rt;
+public final class j9 extends ActionMode.Callback2 {
+    public final int f21246a = 0;
+    public final ActionMode.Callback f21247b;
+    public final Object f21248c;
 
-    public j9(z9 z9Var) {
-        this.f23033b = z9Var;
-    }
-
-    public final void a(Menu menu) {
-        boolean z4;
-        LocaleController.getInstance().getCurrentLocale().getLanguage();
-        MenuItem findItem = menu.findItem(3);
-        if (findItem == null) {
-            return;
-        }
-        if (this.f23033b.f24523l0 != null && ((this.f23032a != null && !t31.Y().contains(this.f23032a)) || !LanguageDetector.hasSupport())) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        findItem.setVisible(z4);
+    public j9(EditTextBoldCursor editTextBoldCursor, ActionMode.Callback callback) {
+        this.f21248c = editTextBoldCursor;
+        this.f21247b = callback;
     }
 
     @Override
     public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        MessageObject messageObject;
-        CharSequence t6;
-        z9 z9Var = this.f23033b;
-        g gVar = z9Var.f24534r0;
-        if (z9Var.y()) {
-            int itemId = menuItem.getItemId();
-            if (itemId == 16908321) {
-                z9Var.g();
+        switch (this.f21246a) {
+            case 0:
+                ((i9) this.f21247b).onActionItemClicked(actionMode, menuItem);
                 return true;
-            } else if (itemId == 16908319) {
-                if (!z9Var.K() && (t6 = z9Var.t(z9Var.W, false)) != null) {
-                    z9Var.f24539u = 0;
-                    z9Var.v = t6.length();
-                    z9Var.v();
-                    z9Var.x();
-                    AndroidUtilities.cancelRunOnUIThread(gVar);
-                    AndroidUtilities.runOnUIThread(gVar);
-                    return true;
-                }
-            } else if (itemId == 3) {
-                if (z9Var.f24523l0 != null) {
-                    String language = LocaleController.getInstance().getCurrentLocale().getLanguage();
-                    org.telegram.ui.v vVar = z9Var.f24523l0;
-                    CharSequence s6 = z9Var.s();
-                    String str = this.f23032a;
-                    g gVar2 = new g(this, 8);
-                    org.telegram.ui.l4 l4Var = vVar.f41960a;
-                    v31.J(l4Var.I, l4Var.J, str, language, s6, null, gVar2);
-                }
-                z9Var.v();
-                return true;
-            } else if (itemId == R.id.menu_quote) {
-                if (z9Var.y()) {
-                    u9 u9Var = z9Var.W;
-                    if (u9Var instanceof t1) {
-                        messageObject = ((t1) u9Var).getMessageObject();
-                    } else {
-                        messageObject = null;
-                    }
-                    if (messageObject != null && z9Var.s() != null) {
-                        z9Var.J(z9Var.f24539u, z9Var.v, messageObject);
-                        z9Var.f(true);
-                    }
-                }
-                z9Var.v();
-                return true;
-            } else if (itemId == 16908320) {
-                z9Var.E();
-                z9Var.v();
-                return true;
-            } else if (itemId == 16908322) {
-                z9Var.I();
-                z9Var.v();
-                return true;
-            } else {
-                z9Var.f(false);
-                return true;
-            }
+            case 1:
+                return this.f21247b.onActionItemClicked(actionMode, menuItem);
+            default:
+                return ((rt) this.f21247b).onActionItemClicked(actionMode, menuItem);
         }
-        return true;
     }
 
     @Override
     public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        menu.add(0, 16908321, 0, 17039361);
-        menu.add(0, R.id.menu_quote, 1, LocaleController.getString(R.string.Quote));
-        menu.add(0, 3, 2, LocaleController.getString(R.string.TranslateMessage));
-        menu.add(0, 16908320, 3, 17039363);
-        menu.add(0, 16908322, 4, 17039371);
-        menu.add(0, 16908319, 5, 17039373);
-        return true;
+        switch (this.f21246a) {
+            case 0:
+                ((i9) this.f21247b).onCreateActionMode(actionMode, menu);
+                return true;
+            case 1:
+                return this.f21247b.onCreateActionMode(actionMode, menu);
+            default:
+                return ((rt) this.f21247b).onCreateActionMode(actionMode, menu);
+        }
     }
 
     @Override
     public final void onDestroyActionMode(ActionMode actionMode) {
-        if (Build.VERSION.SDK_INT < 23) {
-            this.f23033b.f(false);
+        switch (this.f21246a) {
+            case 0:
+                ((i9) this.f21247b).onDestroyActionMode(actionMode);
+                return;
+            case 1:
+                this.f21247b.onDestroyActionMode(actionMode);
+                ((EditTextBoldCursor) this.f21248c).f();
+                ((EditTextBoldCursor) this.f21248c).floatingActionMode = null;
+                return;
+            default:
+                ((rt) this.f21247b).onDestroyActionMode(actionMode);
+                return;
+        }
+    }
+
+    @Override
+    public final void onGetContentRect(ActionMode actionMode, View view, Rect rect) {
+        int i10;
+        switch (this.f21246a) {
+            case 0:
+                if (((y9) this.f21248c).y()) {
+                    ((y9) this.f21248c).P();
+                    int[] m9 = ((y9) this.f21248c).m();
+                    y9 y9Var = (y9) this.f21248c;
+                    int i11 = 1;
+                    if (y9Var.W != null) {
+                        y9 y9Var2 = (y9) this.f21248c;
+                        int[] C = y9Var2.C(y9Var2.f22637u);
+                        int i12 = C[0];
+                        y9 y9Var3 = (y9) this.f21248c;
+                        i10 = i12 + y9Var3.f22601a;
+                        int dp = (((-y9Var.n()) / 2) + ((C[1] + y9Var3.f22603b) + m9[1])) - AndroidUtilities.dp(4.0f);
+                        if (dp >= 1) {
+                            i11 = dp;
+                        }
+                    } else {
+                        i10 = 0;
+                    }
+                    int width = ((y9) this.f21248c).F.getWidth();
+                    ((y9) this.f21248c).O();
+                    y9 y9Var4 = (y9) this.f21248c;
+                    if (y9Var4.W != null) {
+                        width = y9Var4.C(y9Var4.v)[0] + ((y9) this.f21248c).f22601a;
+                    }
+                    rect.set(Math.min(i10, width), i11, Math.max(i10, width), i11 + 1);
+                    return;
+                }
+                return;
+            case 1:
+                ActionMode.Callback callback = this.f21247b;
+                if (org.telegram.ui.Components.k2.d(callback)) {
+                    m.j0.f(callback).onGetContentRect(actionMode, view, rect);
+                    return;
+                } else {
+                    super.onGetContentRect(actionMode, view, rect);
+                    return;
+                }
+            default:
+                ActionMode.Callback callback2 = (ActionMode.Callback) this.f21248c;
+                if (org.telegram.ui.Components.k2.d(callback2)) {
+                    m.j0.f(callback2).onGetContentRect(actionMode, view, rect);
+                    return;
+                } else {
+                    super.onGetContentRect(actionMode, view, rect);
+                    return;
+                }
         }
     }
 
     @Override
     public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        Context context;
-        ClipboardManager clipboardManager;
-        z9 z9Var;
-        u9 u9Var;
-        MenuItem findItem = menu.findItem(R.id.menu_quote);
-        if (findItem != null) {
-            findItem.setVisible(this.f23033b.e());
+        switch (this.f21246a) {
+            case 0:
+                ((i9) this.f21247b).onPrepareActionMode(actionMode, menu);
+                return true;
+            case 1:
+                return this.f21247b.onPrepareActionMode(actionMode, menu);
+            default:
+                return ((rt) this.f21247b).f28582a.onPrepareActionMode(actionMode, menu);
         }
-        MenuItem findItem2 = menu.findItem(16908321);
-        if (findItem2 != null) {
-            findItem2.setVisible(this.f23033b.b());
-        }
-        MenuItem findItem3 = menu.findItem(16908319);
-        boolean z4 = false;
-        if (findItem3 != null && (u9Var = (z9Var = this.f23033b).W) != null) {
-            CharSequence t6 = z9Var.t(u9Var, false);
-            if (!this.f23033b.b()) {
-                findItem3.setVisible(false);
-            } else if (this.f23033b.k()) {
-                findItem3.setVisible(true);
-            } else {
-                z9 z9Var2 = this.f23033b;
-                if (!z9Var2.Z && (z9Var2.f24539u > 0 || z9Var2.v < t6.length() - 1)) {
-                    findItem3.setVisible(true);
-                } else {
-                    findItem3.setVisible(false);
-                }
-            }
-        }
-        MenuItem findItem4 = menu.findItem(16908320);
-        if (findItem4 != null) {
-            findItem4.setVisible(this.f23033b instanceof wh.f3);
-        }
-        MenuItem findItem5 = menu.findItem(16908322);
-        if (findItem5 != null) {
-            z9 z9Var3 = this.f23033b;
-            if (z9Var3 instanceof wh.f3) {
-                try {
-                    y9 y9Var = z9Var3.C;
-                    if (y9Var != null) {
-                        context = y9Var.getContext();
-                    } else {
-                        context = ApplicationLoader.applicationContext;
-                    }
-                    if (context != null && (clipboardManager = (ClipboardManager) context.getSystemService("clipboard")) != null) {
-                        if (clipboardManager.hasPrimaryClip()) {
-                            z4 = true;
-                        }
-                    }
-                } catch (Exception unused) {
-                }
-            }
-            findItem5.setVisible(z4);
-        }
-        if (this.f23033b.f24523l0 != null && LanguageDetector.hasSupport() && this.f23033b.s() != null) {
-            LanguageDetector.detectLanguage(this.f23033b.s().toString(), new i9(this, menu), new i9(this, menu));
-        } else {
-            this.f23032a = null;
-            a(menu);
-        }
-        return true;
+    }
+
+    public j9(rt rtVar, ActionMode.Callback callback) {
+        this.f21247b = rtVar;
+        this.f21248c = callback;
+    }
+
+    public j9(y9 y9Var, i9 i9Var) {
+        this.f21248c = y9Var;
+        this.f21247b = i9Var;
     }
 }

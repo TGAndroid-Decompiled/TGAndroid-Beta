@@ -1,48 +1,36 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import org.telegram.messenger.MediaController;
-import org.telegram.tgnet.TLRPC;
-public final class kl implements Comparator {
-    public final int f28438a;
-    public final Object f28439b;
+import java.io.File;
+import org.telegram.messenger.Utilities;
+public final class kl implements Utilities.Callback {
+    public final int f26327a;
+    public final boolean f26328b;
+    public final Object f26329c;
+    public final Object d;
 
-    public kl(Object obj, int i10) {
-        this.f28438a = i10;
-        this.f28439b = obj;
+    public kl(Object obj, boolean z4, Object obj2, int i10) {
+        this.f26327a = i10;
+        this.f26329c = obj;
+        this.f26328b = z4;
+        this.d = obj2;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int indexOf;
-        int indexOf2;
-        int i10 = this.f28438a;
-        Object obj3 = this.f28439b;
-        switch (i10) {
-            case 0:
-                ArrayList arrayList = (ArrayList) obj3;
-                MediaController.AlbumEntry albumEntry = (MediaController.AlbumEntry) obj;
-                MediaController.AlbumEntry albumEntry2 = (MediaController.AlbumEntry) obj2;
-                boolean z4 = ChatAttachAlertPhotoLayout.f24738n1;
-                int i11 = albumEntry.bucketId;
-                if (i11 != 0 || albumEntry2.bucketId == 0) {
-                    if ((i11 != 0 && albumEntry2.bucketId == 0) || (indexOf = arrayList.indexOf(albumEntry)) > (indexOf2 = arrayList.indexOf(albumEntry2))) {
-                        return 1;
-                    }
-                    if (indexOf >= indexOf2) {
-                        return 0;
-                    }
-                }
-                return -1;
-            default:
-                mz mzVar = ((vw) obj3).D0;
-                int indexOf3 = mzVar.f29267a1.indexOf((TLRPC.TL_messages_stickerSet) obj);
-                int indexOf4 = mzVar.f29267a1.indexOf((TLRPC.TL_messages_stickerSet) obj2);
-                if (indexOf3 < 0 || indexOf4 < 0) {
-                    return 0;
-                }
-                return indexOf3 - indexOf4;
-        }
+    public final void run(java.lang.Object r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.kl.run(java.lang.Object):void");
+    }
+
+    public kl(ml mlVar, File file, boolean z4) {
+        this.f26327a = 0;
+        this.f26329c = mlVar;
+        this.d = file;
+        this.f26328b = z4;
+    }
+
+    public kl(boolean z4, Object obj, Object obj2, int i10) {
+        this.f26327a = i10;
+        this.f26328b = z4;
+        this.f26329c = obj;
+        this.d = obj2;
     }
 }

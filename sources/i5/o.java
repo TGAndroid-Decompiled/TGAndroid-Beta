@@ -11,8 +11,8 @@ public abstract class o {
         }
         try {
             surface.setFrameRate(f10, i10);
-        } catch (IllegalStateException e6) {
-            h5.a.p("VideoFrameReleaseHelper", "Failed to call Surface.setFrameRate", e6);
+        } catch (IllegalStateException e) {
+            h5.a.p("VideoFrameReleaseHelper", "Failed to call Surface.setFrameRate", e);
         }
     }
 }

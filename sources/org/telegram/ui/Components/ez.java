@@ -1,17 +1,3 @@
 package org.telegram.ui.Components;
-
-import org.telegram.messenger.Utilities;
-public final class ez implements Utilities.Callback {
-    public final int f26698a;
-    public final fz f26699b;
-
-    public ez(fz fzVar, int i10) {
-        this.f26698a = i10;
-        this.f26699b = fzVar;
-    }
-
-    @Override
-    public final void run(java.lang.Object r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ez.run(java.lang.Object):void");
-    }
+public final class ez extends ah.c {
 }

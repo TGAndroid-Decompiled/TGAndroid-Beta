@@ -14,25 +14,25 @@ public final class wy0 extends FrameLayout {
     public int B;
     public int C;
     public nq0 D;
-    public Paint f32848a;
-    public Paint f32849b;
-    public Paint f32850c;
+    public Paint f30377a;
+    public Paint f30378b;
+    public Paint f30379c;
     public Paint d;
-    public RectF f32851e;
-    public vy0 f32852f;
+    public RectF e;
+    public vy0 f30380f;
     public String[] h;
-    public int[] f32853n;
-    public hj0[] f32854r;
-    public int f32855s;
-    public kj0[] v;
-    public float f32856w;
-    public float f32857x;
-    public int f32858y;
+    public int[] f30381n;
+    public gj0[] f30382r;
+    public int f30383s;
+    public jj0[] v;
+    public float f30384w;
+    public float f30385x;
+    public int f30386y;
 
-    public final hj0 a(int i10) {
+    public final gj0 a(int i10) {
         int i11;
-        hj0[] hj0VarArr = this.f32854r;
-        if (hj0VarArr[i10] == null) {
+        gj0[] gj0VarArr = this.f30382r;
+        if (gj0VarArr[i10] == null) {
             if (i10 != 1) {
                 if (i10 != 2) {
                     if (i10 != 3) {
@@ -54,31 +54,31 @@ public final class wy0 extends FrameLayout {
             } else {
                 i11 = R.raw.swipe_read;
             }
-            hj0VarArr[i10] = new hj0(i11, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+            gj0VarArr[i10] = new gj0(i11, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
             c(i10);
         }
-        return hj0VarArr[i10];
+        return gj0VarArr[i10];
     }
 
     public final void b() {
         int value;
-        kj0[] kj0VarArr = this.v;
-        if (this.D == null && this.C != (value = this.f32852f.getValue())) {
+        jj0[] jj0VarArr = this.v;
+        if (this.D == null && this.C != (value = this.f30380f.getValue())) {
             this.C = value;
-            int i10 = (this.f32855s + 1) % 2;
-            hj0 a2 = a(value);
+            int i10 = (this.f30383s + 1) % 2;
+            gj0 a2 = a(value);
             if (a2 != null) {
-                if (kj0VarArr[i10].getVisibility() != 0) {
+                if (jj0VarArr[i10].getVisibility() != 0) {
                     a2.L(0, false, false);
                 }
-                kj0VarArr[i10].setAnimation(a2);
-                kj0VarArr[i10].d();
+                jj0VarArr[i10].setAnimation(a2);
+                jj0VarArr[i10].d();
             } else {
-                kj0VarArr[i10].a();
+                jj0VarArr[i10].a();
             }
-            AndroidUtilities.updateViewVisibilityAnimated(kj0VarArr[this.f32855s], false, 0.5f, true);
-            AndroidUtilities.updateViewVisibilityAnimated(kj0VarArr[i10], true, 0.5f, true);
-            this.f32855s = i10;
+            AndroidUtilities.updateViewVisibilityAnimated(jj0VarArr[this.f30383s], false, 0.5f, true);
+            AndroidUtilities.updateViewVisibilityAnimated(jj0VarArr[i10], true, 0.5f, true);
+            this.f30383s = i10;
             nq0 nq0Var = new nq0(this, 12);
             this.D = nq0Var;
             AndroidUtilities.runOnUIThread(nq0Var, 150L);
@@ -86,17 +86,17 @@ public final class wy0 extends FrameLayout {
     }
 
     public final void c(int i10) {
-        hj0[] hj0VarArr = this.f32854r;
-        if (hj0VarArr[i10] != null) {
-            int d = i0.a.d(0.9f, org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21661d6, false), org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21646c9, false));
-            int w02 = org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21682e9, false);
+        gj0[] gj0VarArr = this.f30382r;
+        if (gj0VarArr[i10] != null) {
+            int d = i0.a.d(0.9f, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19881d6, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19866c9, false));
+            int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19901e9, false);
             if (i10 == 2) {
-                hj0VarArr[i10].O(d, "Arrow");
-                hj0VarArr[i10].O(w02, "Box2");
-                hj0VarArr[i10].O(w02, "Box1");
+                gj0VarArr[i10].O(d, "Arrow");
+                gj0VarArr[i10].O(w02, "Box2");
+                gj0VarArr[i10].O(w02, "Box1");
                 return;
             }
-            hj0VarArr[i10].setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
+            gj0VarArr[i10].setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
         }
     }
 
@@ -107,7 +107,7 @@ public final class wy0 extends FrameLayout {
 
     @Override
     public final void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        vy0 vy0Var = this.f32852f;
+        vy0 vy0Var = this.f30380f;
         super.onInitializeAccessibilityEvent(accessibilityEvent);
         if (accessibilityEvent.getEventType() == 1) {
             int value = vy0Var.getValue() + 1;
@@ -120,7 +120,7 @@ public final class wy0 extends FrameLayout {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setContentDescription(this.h[this.f32852f.getValue()]);
+        accessibilityNodeInfo.setContentDescription(this.h[this.f30380f.getValue()]);
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, null));
     }
 
@@ -131,12 +131,12 @@ public final class wy0 extends FrameLayout {
 
     @Override
     public void setBackgroundColor(int i10) {
-        vy0 vy0Var = this.f32852f;
+        vy0 vy0Var = this.f30380f;
         super.setBackgroundColor(i10);
-        for (int i11 = 0; i11 < this.f32854r.length; i11++) {
+        for (int i11 = 0; i11 < this.f30382r.length; i11++) {
             c(i11);
         }
-        vy0Var.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21768j5, false));
+        vy0Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19987j5, false));
         vy0Var.invalidate();
     }
 }

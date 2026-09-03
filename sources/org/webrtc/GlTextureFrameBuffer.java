@@ -1,6 +1,7 @@
 package org.webrtc;
 
 import android.opengl.GLES20;
+import kf.k0;
 public class GlTextureFrameBuffer {
     private int frameBufferId;
     private int height;
@@ -18,7 +19,7 @@ public class GlTextureFrameBuffer {
                 this.height = 0;
                 return;
             default:
-                throw new IllegalArgumentException(l.d.j(i10, "Invalid pixel format: "));
+                throw new IllegalArgumentException(k0.j(i10, "Invalid pixel format: "));
         }
     }
 
@@ -75,7 +76,7 @@ public class GlTextureFrameBuffer {
                 GLES20.glBindFramebuffer(36160, 0);
                 return;
             }
-            throw new IllegalStateException(l.d.j(glCheckFramebufferStatus, "Framebuffer not complete, status: "));
+            throw new IllegalStateException(k0.j(glCheckFramebufferStatus, "Framebuffer not complete, status: "));
         }
         throw new IllegalArgumentException(android.support.v4.media.a.k(i10, i11, "Invalid size: ", "x"));
     }

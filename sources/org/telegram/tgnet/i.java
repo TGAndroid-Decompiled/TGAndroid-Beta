@@ -3,10 +3,10 @@ package org.telegram.tgnet;
 import java.util.Comparator;
 import org.telegram.tgnet.ConnectionsManager;
 public final class i implements Comparator {
-    public final int f21033a;
+    public final int f19345a;
 
     public i(int i10) {
-        this.f21033a = i10;
+        this.f19345a = i10;
     }
 
     @Override
@@ -15,7 +15,7 @@ public final class i implements Comparator {
         int lambda$doInBackground$02;
         String str = (String) obj;
         String str2 = (String) obj2;
-        switch (this.f21033a) {
+        switch (this.f19345a) {
             case 0:
                 lambda$doInBackground$0 = ConnectionsManager.GoogleDnsLoadTask.lambda$doInBackground$0(str, str2);
                 return lambda$doInBackground$0;

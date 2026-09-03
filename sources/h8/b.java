@@ -4,37 +4,37 @@ import android.content.Context;
 import android.util.Log;
 import com.google.android.gms.internal.vision.t2;
 public final class b {
-    public int f7354a;
-    public int f7355b;
-    public boolean f7356c;
+    public int f7028a;
+    public int f7029b;
+    public boolean f7030c;
     public final Object d;
 
     public b(Context context) {
-        this.f7354a = 0;
-        this.f7356c = true;
-        this.f7355b = 0;
+        this.f7028a = 0;
+        this.f7030c = true;
+        this.f7029b = 0;
         this.d = context;
     }
 
     public c a() {
         boolean z4;
         ?? obj = new Object();
-        int i10 = this.f7355b;
-        obj.f7925a = i10;
-        int i11 = this.f7354a;
-        obj.f7926b = i11;
+        int i10 = this.f7029b;
+        obj.f7346a = i10;
+        int i11 = this.f7028a;
+        obj.f7347b = i11;
         boolean z10 = false;
-        obj.f7927c = 0;
+        obj.f7348c = 0;
         obj.d = false;
-        obj.f7928e = this.f7356c;
-        obj.f7929f = -1.0f;
+        obj.e = this.f7030c;
+        obj.f7349f = -1.0f;
         if (i10 != 2 && i11 == 2) {
             Log.e("FaceDetector", "Contour is not supported for non-SELFIE mode.");
             z4 = false;
         } else {
             z4 = true;
         }
-        if (obj.f7926b == 2 && obj.f7927c == 1) {
+        if (obj.f7347b == 2 && obj.f7348c == 1) {
             Log.e("FaceDetector", "Classification is not supported with contour.");
         } else {
             z10 = z4;
@@ -52,7 +52,7 @@ public final class b {
             sb.append(i10);
             throw new IllegalArgumentException(sb.toString());
         }
-        this.f7354a = i10;
+        this.f7028a = i10;
     }
 
     public void c(int i10) {
@@ -62,13 +62,13 @@ public final class b {
             sb.append(i10);
             throw new IllegalArgumentException(sb.toString());
         }
-        this.f7355b = i10;
+        this.f7029b = i10;
     }
 
     public b(pe.a... aVarArr) {
-        this.f7354a = -1;
-        this.f7355b = -1;
-        this.f7356c = false;
+        this.f7028a = -1;
+        this.f7029b = -1;
+        this.f7030c = false;
         this.d = aVarArr;
     }
 }

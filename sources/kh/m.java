@@ -2,45 +2,30 @@ package kh;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.u00;
-public final class m extends u00 {
-    public final int R;
+import lh.aa;
+import org.telegram.ui.ActionBar.f6;
+public final class m implements View.OnClickListener {
+    public final int f10808a;
+    public final Context f10809b;
+    public final f6 f10810c;
 
-    public m(Context context, int i10, g6 g6Var) {
-        super(context, g6Var);
-        this.R = i10;
+    public m(Context context, int i10, f6 f6Var) {
+        this.f10808a = i10;
+        this.f10809b = context;
+        this.f10810c = f6Var;
     }
 
     @Override
-    public int getColumnsCount() {
-        switch (this.R) {
-            case 1:
-                return 3;
-            default:
-                return super.getColumnsCount();
-        }
-    }
-
-    @Override
-    public int getViewType() {
-        switch (this.R) {
-            case 1:
-                return 2;
-            default:
-                return super.getViewType();
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.R) {
+    public final void onClick(View view) {
+        switch (this.f10808a) {
             case 0:
-                setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(104.0f));
+                new aa(this.f10809b, this.f10810c).show();
+                return;
+            case 1:
+                new aa(this.f10809b, this.f10810c).show();
                 return;
             default:
-                super.onMeasure(i10, i11);
+                new aa(this.f10809b, this.f10810c).show();
                 return;
         }
     }

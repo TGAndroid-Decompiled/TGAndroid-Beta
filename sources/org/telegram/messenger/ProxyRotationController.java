@@ -82,7 +82,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
                     SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
                     edit.putBoolean("proxy_enabled", true);
                     proxyInfo.settings.f(edit);
-                    if (!proxyInfo.settings.f47340f.isEmpty()) {
+                    if (!proxyInfo.settings.f43479f.isEmpty()) {
                         edit.putBoolean("proxy_enabled_calls", false);
                     }
                     edit.apply();

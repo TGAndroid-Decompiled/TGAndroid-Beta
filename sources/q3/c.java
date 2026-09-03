@@ -26,47 +26,47 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import n7.qa;
-import o5.i;
+import vh.w2;
 public final class c {
-    public static final MediaMetadataCompat f44475l;
-    public final c0 f44476a;
-    public final Looper f44477b;
-    public final a f44478c;
+    public static final MediaMetadataCompat f42733l;
+    public final c0 f42734a;
+    public final Looper f42735b;
+    public final a f42736c;
     public final ArrayList d;
-    public final ArrayList f44479e;
-    public final b[] f44480f;
-    public Map f44481g;
+    public final ArrayList e;
+    public final b[] f42737f;
+    public Map f42738g;
     public final qa h;
-    public a2 f44482i;
-    public final long f44483j;
-    public final boolean f44484k;
+    public a2 f42739i;
+    public final long f42740j;
+    public final boolean f42741k;
 
     static {
         l0.a("goog.exo.mediasession");
-        f44475l = new MediaMetadataCompat(new Bundle());
+        f42733l = new MediaMetadataCompat(new Bundle());
     }
 
     public c(c0 c0Var) {
-        this.f44476a = c0Var;
-        int i10 = d0.f7237a;
+        this.f42734a = c0Var;
+        int i10 = d0.f6924a;
         Looper myLooper = Looper.myLooper();
         myLooper = myLooper == null ? Looper.getMainLooper() : myLooper;
-        this.f44477b = myLooper;
+        this.f42735b = myLooper;
         a aVar = new a(this);
-        this.f44478c = aVar;
+        this.f42736c = aVar;
         this.d = new ArrayList();
-        this.f44479e = new ArrayList();
-        this.f44480f = new b[0];
-        this.f44481g = Collections.EMPTY_MAP;
-        this.h = new qa(c0Var.f280b);
-        this.f44483j = 2360143L;
-        c0Var.f279a.f303a.setFlags(3);
+        this.e = new ArrayList();
+        this.f42737f = new b[0];
+        this.f42738g = Collections.EMPTY_MAP;
+        this.h = new qa(c0Var.f262b);
+        this.f42740j = 2360143L;
+        c0Var.f261a.f283a.setFlags(3);
         c0Var.d(aVar, new Handler(myLooper));
-        this.f44484k = true;
+        this.f42741k = true;
     }
 
     public static boolean a(c cVar, long j10) {
-        if (cVar.f44482i != null && (j10 & cVar.f44483j) != 0) {
+        if (cVar.f42739i != null && (j10 & cVar.f42740j) != 0) {
             return true;
         }
         return false;
@@ -77,28 +77,27 @@ public final class c {
         long duration;
         ArrayList arrayList;
         Object obj;
-        MediaMetadataCompat mediaMetadataCompat = f44475l;
+        MediaMetadataCompat mediaMetadataCompat = f42733l;
         qa qaVar = this.h;
-        if (qaVar != null && (a2Var = this.f44482i) != null) {
-            bf.b bVar = (bf.b) qaVar.f15701b;
-            String str = (String) qaVar.f15702c;
+        if (qaVar != null && (a2Var = this.f42739i) != null) {
+            af.c cVar = (af.c) qaVar.f14687b;
+            String str = (String) qaVar.f14688c;
             if (!a2Var.z().p()) {
-                i iVar = new i(1);
-                Bundle bundle = (Bundle) iVar.f16617b;
+                d dVar = new d();
                 if (a2Var.f()) {
-                    iVar.x(1L, "android.media.metadata.ADVERTISEMENT");
+                    dVar.d(1L, "android.media.metadata.ADVERTISEMENT");
                 }
                 e eVar = (e) a2Var;
                 o2 z4 = eVar.z();
-                if ((!z4.p() && z4.m(eVar.x(), (n2) eVar.f2406a, 0L).f9340r) || a2Var.getDuration() == -9223372036854775807L) {
+                if ((!z4.p() && z4.m(eVar.x(), (n2) eVar.f2238a, 0L).f8736r) || a2Var.getDuration() == -9223372036854775807L) {
                     duration = -1;
                 } else {
                     duration = a2Var.getDuration();
                 }
-                iVar.x(duration, "android.media.metadata.DURATION");
-                long j10 = bVar.P().f270s;
+                dVar.d(duration, "android.media.metadata.DURATION");
+                long j10 = cVar.P().f253s;
                 if (j10 != -1) {
-                    List<MediaSession.QueueItem> queue = ((h) bVar.f1935b).f294a.getQueue();
+                    List<MediaSession.QueueItem> queue = ((h) cVar.f156b).f275a.getQueue();
                     if (queue != null) {
                         arrayList = MediaSessionCompat$QueueItem.a(queue);
                     } else {
@@ -110,53 +109,55 @@ public final class c {
                             break;
                         }
                         MediaSessionCompat$QueueItem mediaSessionCompat$QueueItem = (MediaSessionCompat$QueueItem) arrayList.get(i10);
-                        if (mediaSessionCompat$QueueItem.f253b == j10) {
-                            MediaDescriptionCompat mediaDescriptionCompat = mediaSessionCompat$QueueItem.f252a;
-                            Bundle bundle2 = mediaDescriptionCompat.h;
-                            if (bundle2 != null) {
-                                for (String str2 : bundle2.keySet()) {
-                                    Object obj2 = bundle2.get(str2);
+                        if (mediaSessionCompat$QueueItem.f238b == j10) {
+                            MediaDescriptionCompat mediaDescriptionCompat = mediaSessionCompat$QueueItem.f237a;
+                            Bundle bundle = mediaDescriptionCompat.h;
+                            if (bundle != null) {
+                                for (String str2 : bundle.keySet()) {
+                                    Object obj2 = bundle.get(str2);
                                     if (obj2 instanceof String) {
-                                        iVar.A(w.c.e(str, str2), (String) obj2);
+                                        dVar.e(w2.k(str, str2), (String) obj2);
                                     } else {
-                                        boolean z10 = true;
-                                        if (obj2 instanceof CharSequence) {
-                                            String e6 = w.c.e(str, str2);
+                                        boolean z10 = obj2 instanceof CharSequence;
+                                        boolean z11 = true;
+                                        Bundle bundle2 = dVar.f235a;
+                                        if (z10) {
+                                            String k10 = w2.k(str, str2);
                                             CharSequence charSequence = (CharSequence) obj2;
                                             f fVar = MediaMetadataCompat.d;
-                                            if (fVar.containsKey(e6) && ((Integer) fVar.get(e6)).intValue() != 1) {
-                                                throw new IllegalArgumentException(android.support.v4.media.a.o("The ", e6, " key cannot be used to put a CharSequence"));
+                                            if (fVar.containsKey(k10) && ((Integer) fVar.get(k10)).intValue() != 1) {
+                                                throw new IllegalArgumentException(android.support.v4.media.a.o("The ", k10, " key cannot be used to put a CharSequence"));
                                             }
-                                            bundle.putCharSequence(e6, charSequence);
+                                            bundle2.putCharSequence(k10, charSequence);
                                         } else if (obj2 instanceof Long) {
-                                            iVar.x(((Long) obj2).longValue(), w.c.e(str, str2));
+                                            dVar.d(((Long) obj2).longValue(), w2.k(str, str2));
                                         } else if (obj2 instanceof Integer) {
-                                            iVar.x(((Integer) obj2).intValue(), w.c.e(str, str2));
+                                            dVar.d(((Integer) obj2).intValue(), w2.k(str, str2));
                                         } else if (obj2 instanceof Bitmap) {
-                                            iVar.w(w.c.e(str, str2), (Bitmap) obj2);
+                                            dVar.c(w2.k(str, str2), (Bitmap) obj2);
                                         } else if (obj2 instanceof RatingCompat) {
-                                            String e10 = w.c.e(str, str2);
+                                            String k11 = w2.k(str, str2);
                                             RatingCompat ratingCompat = (RatingCompat) obj2;
-                                            float f10 = ratingCompat.f249b;
-                                            int i11 = ratingCompat.f248a;
+                                            float f10 = ratingCompat.f233b;
+                                            int i11 = ratingCompat.f232a;
                                             f fVar2 = MediaMetadataCompat.d;
-                                            if (fVar2.containsKey(e10) && ((Integer) fVar2.get(e10)).intValue() != 3) {
-                                                throw new IllegalArgumentException(android.support.v4.media.a.o("The ", e10, " key cannot be used to put a Rating"));
+                                            if (fVar2.containsKey(k11) && ((Integer) fVar2.get(k11)).intValue() != 3) {
+                                                throw new IllegalArgumentException(android.support.v4.media.a.o("The ", k11, " key cannot be used to put a Rating"));
                                             }
-                                            if (ratingCompat.f250c == null) {
+                                            if (ratingCompat.f234c == null) {
                                                 if (ratingCompat.a()) {
                                                     switch (i11) {
                                                         case 1:
                                                             if (i11 != 1 || f10 != 1.0f) {
-                                                                z10 = false;
+                                                                z11 = false;
                                                             }
-                                                            ratingCompat.f250c = d.g(z10);
+                                                            ratingCompat.f234c = android.support.v4.media.e.g(z11);
                                                             break;
                                                         case 2:
                                                             if (i11 != 2 || f10 != 1.0f) {
-                                                                z10 = false;
+                                                                z11 = false;
                                                             }
-                                                            ratingCompat.f250c = d.j(z10);
+                                                            ratingCompat.f234c = android.support.v4.media.e.j(z11);
                                                             break;
                                                         case 3:
                                                         case 4:
@@ -164,67 +165,67 @@ public final class c {
                                                             if ((i11 != 3 && i11 != 4 && i11 != 5) || !ratingCompat.a()) {
                                                                 f10 = -1.0f;
                                                             }
-                                                            ratingCompat.f250c = d.i(i11, f10);
+                                                            ratingCompat.f234c = android.support.v4.media.e.i(i11, f10);
                                                             break;
                                                         case 6:
-                                                            ratingCompat.f250c = d.h((i11 == 6 && ratingCompat.a()) ? -1.0f : -1.0f);
+                                                            ratingCompat.f234c = android.support.v4.media.e.h((i11 == 6 && ratingCompat.a()) ? -1.0f : -1.0f);
                                                             break;
                                                         default:
                                                             obj = null;
                                                             break;
                                                     }
-                                                    bundle.putParcelable(e10, (Parcelable) obj);
+                                                    bundle2.putParcelable(k11, (Parcelable) obj);
                                                 } else {
-                                                    ratingCompat.f250c = d.k(i11);
+                                                    ratingCompat.f234c = android.support.v4.media.e.k(i11);
                                                 }
                                             }
-                                            obj = ratingCompat.f250c;
-                                            bundle.putParcelable(e10, (Parcelable) obj);
+                                            obj = ratingCompat.f234c;
+                                            bundle2.putParcelable(k11, (Parcelable) obj);
                                         } else {
                                             continue;
                                         }
                                     }
                                 }
                             }
-                            CharSequence charSequence2 = mediaDescriptionCompat.f237b;
+                            CharSequence charSequence2 = mediaDescriptionCompat.f223b;
                             if (charSequence2 != null) {
                                 String valueOf = String.valueOf(charSequence2);
-                                iVar.A("android.media.metadata.TITLE", valueOf);
-                                iVar.A("android.media.metadata.DISPLAY_TITLE", valueOf);
+                                dVar.e("android.media.metadata.TITLE", valueOf);
+                                dVar.e("android.media.metadata.DISPLAY_TITLE", valueOf);
                             }
-                            CharSequence charSequence3 = mediaDescriptionCompat.f238c;
+                            CharSequence charSequence3 = mediaDescriptionCompat.f224c;
                             if (charSequence3 != null) {
-                                iVar.A("android.media.metadata.DISPLAY_SUBTITLE", String.valueOf(charSequence3));
+                                dVar.e("android.media.metadata.DISPLAY_SUBTITLE", String.valueOf(charSequence3));
                             }
                             CharSequence charSequence4 = mediaDescriptionCompat.d;
                             if (charSequence4 != null) {
-                                iVar.A("android.media.metadata.DISPLAY_DESCRIPTION", String.valueOf(charSequence4));
+                                dVar.e("android.media.metadata.DISPLAY_DESCRIPTION", String.valueOf(charSequence4));
                             }
-                            Bitmap bitmap = mediaDescriptionCompat.f239e;
+                            Bitmap bitmap = mediaDescriptionCompat.e;
                             if (bitmap != null) {
-                                iVar.w("android.media.metadata.DISPLAY_ICON", bitmap);
+                                dVar.c("android.media.metadata.DISPLAY_ICON", bitmap);
                             }
-                            Uri uri = mediaDescriptionCompat.f240f;
+                            Uri uri = mediaDescriptionCompat.f225f;
                             if (uri != null) {
-                                iVar.A("android.media.metadata.DISPLAY_ICON_URI", String.valueOf(uri));
+                                dVar.e("android.media.metadata.DISPLAY_ICON_URI", String.valueOf(uri));
                             }
-                            String str3 = mediaDescriptionCompat.f236a;
+                            String str3 = mediaDescriptionCompat.f222a;
                             if (str3 != null) {
-                                iVar.A("android.media.metadata.MEDIA_ID", str3);
+                                dVar.e("android.media.metadata.MEDIA_ID", str3);
                             }
-                            Uri uri2 = mediaDescriptionCompat.f241n;
+                            Uri uri2 = mediaDescriptionCompat.f226n;
                             if (uri2 != null) {
-                                iVar.A("android.media.metadata.MEDIA_URI", String.valueOf(uri2));
+                                dVar.e("android.media.metadata.MEDIA_URI", String.valueOf(uri2));
                             }
                         } else {
                             i10++;
                         }
                     }
                 }
-                mediaMetadataCompat = iVar.b();
+                mediaMetadataCompat = dVar.a();
             }
         }
-        this.f44476a.e(mediaMetadataCompat);
+        this.f42734a.e(mediaMetadataCompat);
     }
 
     public final void c() {
@@ -233,18 +234,18 @@ public final class c {
 
     public final void d(a2 a2Var) {
         boolean z4;
-        if (a2Var != null && a2Var.A() != this.f44477b) {
+        if (a2Var != null && a2Var.A() != this.f42735b) {
             z4 = false;
         } else {
             z4 = true;
         }
         h5.a.f(z4);
-        a2 a2Var2 = this.f44482i;
-        a aVar = this.f44478c;
+        a2 a2Var2 = this.f42739i;
+        a aVar = this.f42736c;
         if (a2Var2 != null) {
             a2Var2.u(aVar);
         }
-        this.f44482i = a2Var;
+        this.f42739i = a2Var;
         if (a2Var != null) {
             a2Var.n(aVar);
         }

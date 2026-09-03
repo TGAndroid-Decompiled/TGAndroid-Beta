@@ -46,15 +46,15 @@ public final class j extends a8 {
         FontFamily.Builder builder = null;
         for (o0.i iVar : iVarArr) {
             try {
-                openFileDescriptor = contentResolver.openFileDescriptor(iVar.f16303a, "r", null);
-            } catch (IOException e6) {
-                Log.w("TypefaceCompatApi29Impl", "Font load failed", e6);
+                openFileDescriptor = contentResolver.openFileDescriptor(iVar.f16146a, "r", null);
+            } catch (IOException e) {
+                Log.w("TypefaceCompatApi29Impl", "Font load failed", e);
             }
             if (openFileDescriptor == null) {
                 if (openFileDescriptor == null) {
                 }
             } else {
-                Font build = new Font.Builder(openFileDescriptor).setWeight(iVar.f16305c).setSlant(iVar.d ? 1 : 0).setTtcIndex(iVar.f16304b).build();
+                Font build = new Font.Builder(openFileDescriptor).setWeight(iVar.f16148c).setSlant(iVar.d ? 1 : 0).setTtcIndex(iVar.f16147b).build();
                 if (builder == null) {
                     builder = new FontFamily.Builder(build);
                 } else {
@@ -85,9 +85,9 @@ public final class j extends a8 {
         h0.f[] fVarArr;
         try {
             FontFamily.Builder builder = null;
-            for (h0.f fVar : eVar.f7154a) {
+            for (h0.f fVar : eVar.f6847a) {
                 try {
-                    Font build = new Font.Builder(resources, fVar.f7159f).setWeight(fVar.f7156b).setSlant(fVar.f7157c ? 1 : 0).setTtcIndex(fVar.f7158e).setFontVariationSettings(fVar.d).build();
+                    Font build = new Font.Builder(resources, fVar.f6851f).setWeight(fVar.f6849b).setSlant(fVar.f6850c ? 1 : 0).setTtcIndex(fVar.e).setFontVariationSettings(fVar.d).build();
                     if (builder == null) {
                         builder = new FontFamily.Builder(build);
                     } else {
@@ -101,8 +101,8 @@ public final class j extends a8 {
             }
             FontFamily build2 = builder.build();
             return new Typeface.CustomFallbackBuilder(build2).setStyle(g(build2, i10).getStyle()).build();
-        } catch (Exception e6) {
-            Log.w("TypefaceCompatApi29Impl", "Font load failed", e6);
+        } catch (Exception e) {
+            Log.w("TypefaceCompatApi29Impl", "Font load failed", e);
             return null;
         }
     }
@@ -115,8 +115,8 @@ public final class j extends a8 {
                 return null;
             }
             return new Typeface.CustomFallbackBuilder(h).setStyle(g(h, i10).getStyle()).build();
-        } catch (Exception e6) {
-            Log.w("TypefaceCompatApi29Impl", "Font load failed", e6);
+        } catch (Exception e) {
+            Log.w("TypefaceCompatApi29Impl", "Font load failed", e);
             return null;
         }
     }
@@ -137,8 +137,8 @@ public final class j extends a8 {
                 }
             }
             return customFallbackBuilder.setStyle(g(h, i10).getStyle()).build();
-        } catch (Exception e6) {
-            Log.w("TypefaceCompatApi29Impl", "Font load failed", e6);
+        } catch (Exception e) {
+            Log.w("TypefaceCompatApi29Impl", "Font load failed", e);
             return null;
         }
     }
@@ -153,8 +153,8 @@ public final class j extends a8 {
         try {
             Font build = new Font.Builder(resources, i10).build();
             return new Typeface.CustomFallbackBuilder(new FontFamily.Builder(build).build()).setStyle(build.getStyle()).build();
-        } catch (Exception e6) {
-            Log.w("TypefaceCompatApi29Impl", "Font load failed", e6);
+        } catch (Exception e) {
+            Log.w("TypefaceCompatApi29Impl", "Font load failed", e);
             return null;
         }
     }

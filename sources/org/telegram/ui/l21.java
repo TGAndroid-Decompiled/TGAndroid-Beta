@@ -9,29 +9,29 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 public final class l21 implements Runnable {
-    public final int f38474a;
-    public final o21 f38475b;
+    public final int f35633a;
+    public final o21 f35634b;
 
     public l21(o21 o21Var, int i10) {
-        this.f38474a = i10;
-        this.f38475b = o21Var;
+        this.f35633a = i10;
+        this.f35634b = o21Var;
     }
 
     @Override
     public final void run() {
         long j10;
         String str;
-        switch (this.f38474a) {
+        switch (this.f35633a) {
             case 0:
-                o21 o21Var = this.f38475b;
+                o21 o21Var = this.f35634b;
                 AndroidUtilities.cancelRunOnUIThread(o21Var.K);
-                boolean z4 = o21Var.f39515r;
+                boolean z4 = o21Var.f36635r;
                 if (z4) {
                     if (z4 && o21Var.C == null) {
-                        org.telegram.ui.Components.hj0 hj0Var = new org.telegram.ui.Components.hj0(R.raw.qr_matrix, AndroidUtilities.dp(200.0f), AndroidUtilities.dp(200.0f));
-                        o21Var.C = hj0Var;
-                        hj0Var.f27542s0 = o21Var;
-                        hj0Var.getPaint().setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+                        org.telegram.ui.Components.gj0 gj0Var = new org.telegram.ui.Components.gj0(R.raw.qr_matrix, AndroidUtilities.dp(200.0f), AndroidUtilities.dp(200.0f));
+                        o21Var.C = gj0Var;
+                        gj0Var.f25176s0 = o21Var;
+                        gj0Var.getPaint().setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
                         o21Var.C.I(1);
                         o21Var.C.start();
                     }
@@ -40,7 +40,7 @@ public final class l21 implements Runnable {
                         if (o21Var.G != 0) {
                             o21Var.F = null;
                             Utilities.themeQueue.postRunnable(new m21(o21Var, o21Var.getWidth(), o21Var.getHeight(), 2));
-                            o21Var.f39516s.q("", true, true);
+                            o21Var.f36636s.q("", true, true);
                         }
                         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
                         if (o21Var.G == 0) {
@@ -48,14 +48,14 @@ public final class l21 implements Runnable {
                         } else {
                             j10 = 1750;
                         }
-                        messagesController.requestContactToken(j10, new w3(o21Var, 18));
+                        messagesController.requestContactToken(j10, new y3(o21Var, 18));
                     }
                     int i10 = o21Var.G;
                     if (i10 > 0 && o21Var.F != null) {
                         long max = Math.max(0L, (i10 - (System.currentTimeMillis() / 1000)) - 1);
                         int i11 = (int) (max % 60);
                         int min = Math.min(99, (int) (max / 60));
-                        org.telegram.ui.Components.no0 no0Var = o21Var.f39516s;
+                        org.telegram.ui.Components.mo0 mo0Var = o21Var.f36636s;
                         StringBuilder sb = new StringBuilder();
                         if (min >= 10) {
                             str = "";
@@ -70,7 +70,7 @@ public final class l21 implements Runnable {
                         }
                         sb.append(str2);
                         sb.append(i11);
-                        no0Var.q(sb.toString(), true, false);
+                        mo0Var.q(sb.toString(), true, false);
                     }
                     if (o21Var.isAttachedToWindow()) {
                         AndroidUtilities.runOnUIThread(o21Var.K, 1000L);
@@ -80,17 +80,17 @@ public final class l21 implements Runnable {
                 }
                 return;
             default:
-                o21 o21Var2 = this.f38475b;
+                o21 o21Var2 = this.f35634b;
                 o21Var2.P = false;
                 Bitmap bitmap = o21Var2.h;
                 if (bitmap != null) {
                     o21Var2.h = null;
-                    o21Var2.f39518x.d(0.0f, true);
-                    Bitmap bitmap2 = o21Var2.f39514n;
+                    o21Var2.f36638x.d(0.0f, true);
+                    Bitmap bitmap2 = o21Var2.f36634n;
                     if (bitmap2 != null) {
                         bitmap2.recycle();
                     }
-                    o21Var2.f39514n = bitmap;
+                    o21Var2.f36634n = bitmap;
                     o21Var2.invalidate();
                     return;
                 }

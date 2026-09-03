@@ -1,57 +1,184 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class y90 extends org.telegram.ui.ActionBar.j {
-    public final fa0 f33443a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.PasscodeActivity;
+import org.telegram.ui.wg1;
+public final class y90 extends qv0 {
+    public final int f30966t0;
+    public final FrameLayout f30967u0;
+    public final org.telegram.ui.ActionBar.p2 f30968v0;
 
-    public y90(fa0 fa0Var) {
-        this.f33443a = fa0Var;
+    public y90(org.telegram.ui.ActionBar.p2 p2Var, Context context, FrameLayout frameLayout, int i10) {
+        super(context, null);
+        this.f30966t0 = i10;
+        this.f30968v0 = p2Var;
+        this.f30967u0 = frameLayout;
     }
 
     @Override
-    public final void b(int i10) {
-        int i11;
-        fa0 fa0Var = this.f33443a;
-        if (i10 == -1) {
-            if (!fa0Var.S.L(true)) {
-                fa0Var.finishFragment();
-            }
-        } else if (i10 == 2) {
-            if (fa0Var.F != null) {
-                ArrayList arrayList = new ArrayList();
-                for (int i12 = 0; i12 < fa0Var.F.size(); i12++) {
-                    TL_stories.StoryItem storyItem = ((MessageObject) fa0Var.F.valueAt(i12)).storyItem;
-                    if (storyItem != null) {
-                        arrayList.add(storyItem);
-                    }
+    public void L(Canvas canvas, ArrayList arrayList) {
+        switch (this.f30966t0) {
+            case 0:
+                ((ea0) this.f30968v0).S.Q(canvas, arrayList);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        qt0[] qt0VarArr;
+        qt0 qt0Var;
+        switch (this.f30966t0) {
+            case 0:
+                ea0 ea0Var = (ea0) this.f30968v0;
+                ba0 ba0Var = ea0Var.S;
+                if (ba0Var != null && (qt0Var = (qt0VarArr = ba0Var.f31131h0)[0]) != null && qt0Var.h.getFastScroll() != null && qt0VarArr[0].h.getFastScroll().f23446n) {
+                    return ea0Var.S.O(motionEvent);
                 }
-                if (!arrayList.isEmpty()) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(fa0Var.getParentActivity(), 0, fa0Var.getResourceProvider());
-                    if (arrayList.size() > 1) {
-                        i11 = R.string.DeleteStoriesTitle;
+                ba0 ba0Var2 = ea0Var.S;
+                if (ba0Var2 != null && ba0Var2.H(motionEvent)) {
+                    return true;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
+        int measuredHeight;
+        int measuredHeight2;
+        switch (this.f30966t0) {
+            case 1:
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f30968v0;
+                int visibility = passcodeActivity.v.getVisibility();
+                FrameLayout frameLayout = this.f30967u0;
+                if (visibility != 8 && R() >= AndroidUtilities.dp(20.0f)) {
+                    if (passcodeActivity.c0()) {
+                        int measuredWidth = getMeasuredWidth();
+                        measuredHeight = R() + (getMeasuredHeight() - AndroidUtilities.dp(230.0f));
+                        frameLayout.layout(0, 0, measuredWidth, measuredHeight);
                     } else {
-                        i11 = R.string.DeleteStoryTitle;
+                        int measuredWidth2 = getMeasuredWidth();
+                        measuredHeight = getMeasuredHeight();
+                        frameLayout.layout(0, 0, measuredWidth2, measuredHeight);
                     }
-                    alertDialog$Builder.f21168a.O = LocaleController.getString(i11);
-                    alertDialog$Builder.f21168a.Q = LocaleController.formatPluralString("DeleteStoriesSubtitle", arrayList.size(), new Object[0]);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new o1(21, this, arrayList));
-                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new k2(16));
-                    org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21168a;
-                    d2Var.show();
-                    d2Var.h();
+                } else if (passcodeActivity.v.getVisibility() != 8) {
+                    int measuredWidth3 = getMeasuredWidth();
+                    measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(230.0f);
+                    frameLayout.layout(0, 0, measuredWidth3, measuredHeight);
+                } else {
+                    int measuredWidth4 = getMeasuredWidth();
+                    measuredHeight = getMeasuredHeight();
+                    frameLayout.layout(0, 0, measuredWidth4, measuredHeight);
                 }
-            }
-        } else if (i10 == 10) {
-            ca0 ca0Var = fa0Var.S;
-            ca0Var.c1(ca0Var.getClosestTab(), false);
-        } else if (i10 == 11) {
-            fa0Var.S.L(true);
-            fa0Var.S.getSearchItem().z(false);
+                passcodeActivity.v.layout(0, measuredHeight, getMeasuredWidth(), AndroidUtilities.dp(230.0f) + measuredHeight);
+                S();
+                return;
+            case 2:
+                org.telegram.ui.n0 n0Var = (org.telegram.ui.n0) this.f30967u0;
+                wg1 wg1Var = (wg1) this.f30968v0;
+                if (wg1Var.f39684b0.getVisibility() != 8 && R() >= AndroidUtilities.dp(20.0f)) {
+                    if (wg1Var.v0()) {
+                        int measuredWidth5 = getMeasuredWidth();
+                        measuredHeight2 = R() + (getMeasuredHeight() - AndroidUtilities.dp(230.0f));
+                        n0Var.layout(0, 0, measuredWidth5, measuredHeight2);
+                    } else {
+                        int measuredWidth6 = getMeasuredWidth();
+                        measuredHeight2 = getMeasuredHeight();
+                        n0Var.layout(0, 0, measuredWidth6, measuredHeight2);
+                    }
+                } else if (wg1Var.f39684b0.getVisibility() != 8) {
+                    int measuredWidth7 = getMeasuredWidth();
+                    measuredHeight2 = getMeasuredHeight() - AndroidUtilities.dp(230.0f);
+                    n0Var.layout(0, 0, measuredWidth7, measuredHeight2);
+                } else {
+                    int measuredWidth8 = getMeasuredWidth();
+                    measuredHeight2 = getMeasuredHeight();
+                    n0Var.layout(0, 0, measuredWidth8, measuredHeight2);
+                }
+                wg1Var.f39684b0.layout(0, measuredHeight2, getMeasuredWidth(), AndroidUtilities.dp(230.0f) + measuredHeight2);
+                return;
+            default:
+                super.onLayout(z4, i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        int i13;
+        float f10;
+        switch (this.f30966t0) {
+            case 0:
+                ea0 ea0Var = (ea0) this.f30968v0;
+                k6[] k6VarArr = ea0Var.f24562x;
+                org.telegram.ui.ActionBar.k5[] k5VarArr = ea0Var.f24561w;
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) ea0Var.S.getLayoutParams();
+                int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+                if (ea0.V(ea0Var).getOccupyStatusBar()) {
+                    i12 = AndroidUtilities.statusBarHeight;
+                } else {
+                    i12 = 0;
+                }
+                layoutParams.topMargin = currentActionBarHeight + i12;
+                FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.f30967u0.getLayoutParams();
+                if (ea0.W(ea0Var).getOccupyStatusBar()) {
+                    i13 = AndroidUtilities.statusBarHeight;
+                } else {
+                    i13 = 0;
+                }
+                layoutParams2.topMargin = i13;
+                layoutParams2.height = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+                for (int i14 = 0; i14 < 2; i14++) {
+                    if (k5VarArr[i14] != null) {
+                        int x10 = org.telegram.ui.b.x(22.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() / 2, 2);
+                        if (!AndroidUtilities.isTablet() && getResources().getConfiguration().orientation == 2) {
+                            f10 = 4.0f;
+                        } else {
+                            f10 = 5.0f;
+                        }
+                        ((FrameLayout.LayoutParams) k5VarArr[i14].getLayoutParams()).topMargin = AndroidUtilities.dp(f10) + x10;
+                    }
+                    if (k6VarArr[i14] != null) {
+                        ((FrameLayout.LayoutParams) k6VarArr[i14].getLayoutParams()).topMargin = ((((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() / 2) - AndroidUtilities.dp(19.0f)) / 2) + (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() / 2)) - AndroidUtilities.dp(7.0f);
+                    }
+                }
+                ((FrameLayout.LayoutParams) ea0Var.f24563y.getLayoutParams()).topMargin = org.telegram.ui.b.x(42.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 2);
+                super.onMeasure(i10, i11);
+                return;
+            case 1:
+                int size = View.MeasureSpec.getSize(i10);
+                int size2 = View.MeasureSpec.getSize(i11);
+                setMeasuredDimension(size, size2);
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f30968v0;
+                if (passcodeActivity.v.getVisibility() != 8 && R() < AndroidUtilities.dp(20.0f)) {
+                    size2 -= AndroidUtilities.dp(230.0f);
+                }
+                this.f30967u0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                passcodeActivity.v.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(230.0f), 1073741824));
+                return;
+            default:
+                int size3 = View.MeasureSpec.getSize(i10);
+                int size4 = View.MeasureSpec.getSize(i11);
+                setMeasuredDimension(size3, size4);
+                wg1 wg1Var = (wg1) this.f30968v0;
+                if (wg1Var.f39684b0.getVisibility() != 8 && R() < AndroidUtilities.dp(20.0f)) {
+                    size4 -= AndroidUtilities.dp(230.0f);
+                }
+                ((org.telegram.ui.n0) this.f30967u0).measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 1073741824));
+                wg1Var.f39684b0.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(230.0f), 1073741824));
+                return;
         }
     }
 }

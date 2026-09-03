@@ -13,11 +13,11 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class gv0 implements org.telegram.ui.Components.my {
-    public final mv0 f37168a;
+public final class gv0 implements org.telegram.ui.Components.ky {
+    public final mv0 f34516a;
 
     public gv0(mv0 mv0Var) {
-        this.f37168a = mv0Var;
+        this.f34516a = mv0Var;
     }
 
     @Override
@@ -58,9 +58,9 @@ public final class gv0 implements org.telegram.ui.Components.my {
         } else {
             z4 = false;
         }
-        mv0 mv0Var = this.f37168a;
-        mv0Var.f39123y0 = z4;
-        mv0Var.f39096e.requestLayout();
+        mv0 mv0Var = this.f34516a;
+        mv0Var.f36262y0 = z4;
+        mv0Var.e.requestLayout();
     }
 
     @Override
@@ -70,7 +70,7 @@ public final class gv0 implements org.telegram.ui.Components.my {
 
     @Override
     public final boolean k() {
-        EditTextBoldCursor editField = this.f37168a.Y.getEditField();
+        EditTextBoldCursor editField = this.f34516a.Y.getEditField();
         if (editField == null) {
             return false;
         }
@@ -80,7 +80,7 @@ public final class gv0 implements org.telegram.ui.Components.my {
 
     @Override
     public final void l(String str) {
-        EditTextBoldCursor editField = this.f37168a.Y.getEditField();
+        EditTextBoldCursor editField = this.f34516a.Y.getEditField();
         if (editField == null) {
             return;
         }
@@ -93,22 +93,22 @@ public final class gv0 implements org.telegram.ui.Components.my {
             editField.setText(editField.getText().insert(selectionEnd, replaceEmoji));
             int length = selectionEnd + replaceEmoji.length();
             editField.setSelection(length, length);
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
     @Override
     public final void n() {
-        org.telegram.ui.ActionBar.g6 g6Var;
-        mv0 mv0Var = this.f37168a;
+        org.telegram.ui.ActionBar.f6 f6Var;
+        mv0 mv0Var = this.f34516a;
         Activity parentActivity = mv0Var.getParentActivity();
-        g6Var = ((org.telegram.ui.ActionBar.p2) mv0Var).resourceProvider;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(parentActivity, 0, g6Var);
-        alertDialog$Builder.f21168a.O = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f21168a.Q = LocaleController.getString(R.string.ClearRecentEmojiText);
+        f6Var = ((org.telegram.ui.ActionBar.p2) mv0Var).resourceProvider;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(parentActivity, 0, f6Var);
+        alertDialog$Builder.f19478a.O = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f19478a.Q = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new kl0(this, 5));
-        l.d.u(R.string.Cancel, alertDialog$Builder, null);
+        kf.k0.u(R.string.Cancel, alertDialog$Builder, null);
     }
 
     @Override
@@ -119,7 +119,7 @@ public final class gv0 implements org.telegram.ui.Components.my {
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z4) {
         org.telegram.ui.Components.u5 u5Var;
-        mv0 mv0Var = this.f37168a;
+        mv0 mv0Var = this.f34516a;
         EditTextBoldCursor editField = mv0Var.Y.getEditField();
         if (editField == null) {
             return;
@@ -135,19 +135,19 @@ public final class gv0 implements org.telegram.ui.Components.my {
             } else {
                 u5Var = new org.telegram.ui.Components.u5(j10, editField.getPaint().getFontMetricsInt());
             }
-            u5Var.cacheType = mv0Var.O.f29272c;
+            u5Var.cacheType = mv0Var.O.f26428c;
             spannableString.setSpan(u5Var, 0, spannableString.length(), 33);
             editField.setText(editField.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
             editField.setSelection(length, length);
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
     @Override
     public final boolean z() {
-        return this.f37168a.f39123y0;
+        return this.f34516a.f36262y0;
     }
 
     @Override
@@ -155,7 +155,7 @@ public final class gv0 implements org.telegram.ui.Components.my {
     }
 
     @Override
-    public final void o(org.telegram.ui.Components.d51 d51Var) {
+    public final void o(org.telegram.ui.Components.e51 e51Var) {
     }
 
     @Override

@@ -1,26 +1,17 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class tt {
-    public String f41631a;
-    public String f41632b;
-    public String f41633c;
-    public String d;
+import android.view.View;
+import org.telegram.messenger.NotificationCenter;
+public final class tt implements View.OnAttachStateChangeListener {
+    public st f38586a;
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && tt.class == obj.getClass()) {
-            tt ttVar = (tt) obj;
-            if (Objects.equals(this.f41631a, ttVar.f41631a) && Objects.equals(this.f41633c, ttVar.f41633c)) {
-                return true;
-            }
-        }
-        return false;
+    @Override
+    public final void onViewAttachedToWindow(View view) {
+        NotificationCenter.getGlobalInstance().addObserver(this.f38586a, NotificationCenter.emojiLoaded);
     }
 
-    public final int hashCode() {
-        return Objects.hash(this.f41631a, this.f41633c);
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        NotificationCenter.getGlobalInstance().removeObserver(this.f38586a, NotificationCenter.emojiLoaded);
     }
 }

@@ -7,20 +7,20 @@ import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class nd1 implements TextWatcher {
-    public final od1 f39329a;
+    public final od1 f36485a;
 
     public nd1(od1 od1Var) {
-        this.f39329a = od1Var;
+        this.f36485a = od1Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        od1 od1Var = this.f39329a;
+        od1 od1Var = this.f36485a;
         if (od1Var.F) {
             return;
         }
-        if (od1Var.f39662a.length() > 0) {
-            String str = "https://" + od1Var.getMessagesController().linkPrefix + "/addtheme/" + ((Object) od1Var.f39662a.getText());
+        if (od1Var.f36755a.length() > 0) {
+            String str = "https://" + od1Var.getMessagesController().linkPrefix + "/addtheme/" + ((Object) od1Var.f36755a.getText());
             String formatString = LocaleController.formatString("ThemeHelpLink", R.string.ThemeHelpLink, str);
             int indexOf = formatString.indexOf(str);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
@@ -35,11 +35,11 @@ public final class nd1 implements TextWatcher {
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        od1 od1Var = this.f39329a;
+        od1 od1Var = this.f36485a;
         if (od1Var.D) {
             return;
         }
-        od1Var.Z(od1Var.f39662a.getText().toString(), false);
+        od1Var.Z(od1Var.f36755a.getText().toString(), false);
     }
 
     @Override

@@ -12,12 +12,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class mk0 extends org.telegram.ui.ActionBar.j {
-    public final Context f38994a;
-    public final qk0 f38995b;
+    public final Context f36127a;
+    public final qk0 f36128b;
 
     public mk0(qk0 qk0Var, Context context) {
-        this.f38995b = qk0Var;
-        this.f38994a = context;
+        this.f36128b = qk0Var;
+        this.f36127a = context;
     }
 
     @Override
@@ -25,8 +25,8 @@ public final class mk0 extends org.telegram.ui.ActionBar.j {
         int i11;
         int i12;
         org.telegram.ui.ActionBar.k kVar;
-        qk0 qk0Var = this.f38995b;
-        org.telegram.ui.ActionBar.g6 g6Var = qk0Var.h;
+        qk0 qk0Var = this.f36128b;
+        org.telegram.ui.ActionBar.f6 f6Var = qk0Var.h;
         SparseArray sparseArray = qk0Var.G;
         if (i10 == -1) {
             kVar = ((org.telegram.ui.ActionBar.p2) qk0Var).actionBar;
@@ -39,18 +39,18 @@ public final class mk0 extends org.telegram.ui.ActionBar.j {
             }
         }
         if (i10 == 1) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qk0Var.getParentActivity(), 0, g6Var);
-            alertDialog$Builder.f21168a.O = LocaleController.formatPluralString("DeleteTones", sparseArray.size(), new Object[0]);
-            alertDialog$Builder.f21168a.Q = AndroidUtilities.replaceTags(LocaleController.formatPluralString("DeleteTonesMessage", sparseArray.size(), new Object[0]));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new org.telegram.ui.Components.mh0(29));
-            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new gu(this, 28));
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qk0Var.getParentActivity(), 0, f6Var);
+            alertDialog$Builder.f19478a.O = LocaleController.formatPluralString("DeleteTones", sparseArray.size(), new Object[0]);
+            alertDialog$Builder.f19478a.Q = AndroidUtilities.replaceTags(LocaleController.formatPluralString("DeleteTonesMessage", sparseArray.size(), new Object[0]));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new org.telegram.ui.Components.lh0(29));
+            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new hu(this, 28));
             TextView textView = (TextView) alertDialog$Builder.o().d(-1);
             if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21897q7, g6Var));
+                textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20116q7, f6Var));
             }
         } else if (i10 == 2) {
             int size = sparseArray.size();
-            Context context = this.f38994a;
+            Context context = this.f36127a;
             if (size == 1) {
                 Intent intent = new Intent(context, LaunchActivity.class);
                 intent.setAction("android.intent.action.SEND");
@@ -78,7 +78,7 @@ public final class mk0 extends org.telegram.ui.ActionBar.j {
             }
             qk0.W(qk0Var);
             qk0Var.c0();
-            qk0Var.f40539f.l();
+            qk0Var.f37433f.l();
         }
     }
 }

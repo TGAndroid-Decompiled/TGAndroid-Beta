@@ -6,9 +6,9 @@ import android.os.Handler;
 import android.os.Looper;
 import java.util.Arrays;
 import java.util.List;
-import org.telegram.ui.yh;
 import org.webrtc.CameraSession;
 import org.webrtc.CameraVideoCapturer;
+import vh.w2;
 abstract class CameraCapturer implements CameraVideoCapturer {
     private static final int MAX_OPEN_CAMERA_ATTEMPTS = 3;
     private static final int OPEN_CAMERA_DELAY_MS = 500;
@@ -279,7 +279,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public void switchCameraInternal(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, String str) {
         Logging.d("CameraCapturer", "switchCamera internal");
         if (!Arrays.asList(this.cameraEnumerator.getDeviceNames()).contains(str)) {
-            reportCameraSwitchError(yh.k("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
+            reportCameraSwitchError(w2.e("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
             return;
         }
         synchronized (this.stateLock) {

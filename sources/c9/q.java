@@ -1,37 +1,33 @@
 package c9;
-
-import j$.util.DesugarCollections;
-import j$.util.concurrent.ConcurrentHashMap;
-import java.util.Collections;
-import java.util.Set;
 public final class q implements ba.b {
-    public volatile Set f2369a;
-    public volatile Set f2370b;
+    public static final Object f2200c = new Object();
+    public volatile Object f2201a = f2200c;
+    public volatile ba.b f2202b;
 
-    public final synchronized void a() {
-        try {
-            for (ba.b bVar : this.f2369a) {
-                this.f2370b.add(bVar.get());
-            }
-            this.f2369a = null;
-        } catch (Throwable th2) {
-            throw th2;
-        }
+    public q(ba.b bVar) {
+        this.f2202b = bVar;
     }
 
     @Override
     public final Object get() {
-        if (this.f2370b == null) {
+        Object obj;
+        Object obj2 = this.f2201a;
+        Object obj3 = f2200c;
+        if (obj2 == obj3) {
             synchronized (this) {
                 try {
-                    if (this.f2370b == null) {
-                        this.f2370b = Collections.newSetFromMap(new ConcurrentHashMap());
-                        a();
+                    obj = this.f2201a;
+                    if (obj == obj3) {
+                        obj = this.f2202b.get();
+                        this.f2201a = obj;
+                        this.f2202b = null;
                     }
-                } finally {
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
+            return obj;
         }
-        return DesugarCollections.unmodifiableSet(this.f2370b);
+        return obj2;
     }
 }

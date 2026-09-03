@@ -69,12 +69,12 @@ public class fu0 implements ou0 {
 
     @Override
     public boolean S() {
-        return !(this instanceof rl);
+        return !(this instanceof tl);
     }
 
     @Override
     public boolean T() {
-        return !(this instanceof tl);
+        return !(this instanceof vl);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class fu0 implements ou0 {
 
     @Override
     public boolean g() {
-        return !(this instanceof rl);
+        return !(this instanceof tl);
     }
 
     @Override
@@ -159,7 +159,7 @@ public class fu0 implements ou0 {
 
     @Override
     public boolean u() {
-        return !(this instanceof org.telegram.ui.Components.vl);
+        return !(this instanceof org.telegram.ui.Components.tl);
     }
 
     @Override

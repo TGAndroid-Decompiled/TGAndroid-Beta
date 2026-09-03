@@ -3,10 +3,10 @@ package jb;
 import b6.m;
 import java.util.Arrays;
 public abstract class c {
-    public final float f9992a;
+    public final float f9340a;
 
     public c(kb.a aVar) {
-        this.f9992a = aVar.f11044a;
+        this.f9340a = aVar.f10259a;
     }
 
     public final boolean equals(Object obj) {
@@ -17,13 +17,13 @@ public abstract class c {
             return false;
         }
         c cVar = (c) obj;
-        if (getClass().equals(cVar.getClass()) && Float.compare(this.f9992a, cVar.f9992a) == 0 && m.l(null, null)) {
+        if (getClass().equals(cVar.getClass()) && Float.compare(this.f9340a, cVar.f9340a) == 0 && m.l(null, null)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{getClass(), Float.valueOf(this.f9992a), null});
+        return Arrays.hashCode(new Object[]{getClass(), Float.valueOf(this.f9340a), null});
     }
 }

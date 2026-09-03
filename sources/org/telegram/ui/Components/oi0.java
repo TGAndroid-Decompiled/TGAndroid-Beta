@@ -1,88 +1,108 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class oi0 extends Drawable {
-    public final Drawable f29774a;
-    public final Drawable f29775b;
-    public final Paint f29776c;
-    public final RectF d;
-    public int f29777e;
-    public long f29778f;
-    public float f29779g;
-    public boolean h;
-    public boolean f29780i;
+import android.animation.ValueAnimator;
+public final class oi0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f27574a;
+    public final qi0 f27575b;
 
-    public oi0(Context context) {
-        Paint paint = new Paint(1);
-        this.f29776c = paint;
-        this.d = new RectF();
-        this.f29777e = 0;
-        this.f29774a = context.getResources().getDrawable(R.drawable.outline_shield_plain_24).mutate();
-        this.f29775b = context.getResources().getDrawable(R.drawable.outline_shield_check).mutate();
-        paint.setColor(-1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(1.66f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        this.f29778f = SystemClock.elapsedRealtime();
+    public oi0(qi0 qi0Var, int i10) {
+        this.f27574a = i10;
+        this.f27575b = qi0Var;
     }
 
-    public final void a(Drawable drawable) {
-        Rect bounds = getBounds();
-        drawable.setBounds(org.telegram.ui.b.u(2, bounds.centerX(), drawable), org.telegram.ui.b.f(2, bounds.centerY(), drawable), org.telegram.ui.b.A(2, bounds.centerX(), drawable), org.telegram.ui.b.y(2, bounds.centerY(), drawable));
-    }
-
-    public final void b(boolean z4, boolean z10, boolean z11) {
-        float f10;
-        this.f29780i = z4;
-        this.h = z10;
-        this.f29778f = SystemClock.elapsedRealtime();
-        if (!z11) {
-            if (this.h) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.0f;
-            }
-            this.f29779g = f10;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f27574a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                qi0 qi0Var = this.f27575b;
+                qi0Var.v = floatValue;
+                org.telegram.ui.Cells.q2 q2Var = qi0Var.H;
+                if (q2Var != null) {
+                    q2Var.invalidate();
+                }
+                rl0 rl0Var = qi0Var.I;
+                if (rl0Var != null) {
+                    rl0Var.invalidate();
+                    return;
+                }
+                return;
+            case 1:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                qi0 qi0Var2 = this.f27575b;
+                qi0Var2.f28188w = floatValue2;
+                org.telegram.ui.Cells.q2 q2Var2 = qi0Var2.H;
+                if (q2Var2 != null) {
+                    q2Var2.invalidate();
+                }
+                rl0 rl0Var2 = qi0Var2.I;
+                if (rl0Var2 != null) {
+                    rl0Var2.invalidate();
+                    return;
+                }
+                return;
+            case 2:
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                qi0 qi0Var3 = this.f27575b;
+                qi0Var3.f28182p = floatValue3;
+                org.telegram.ui.Cells.q2 q2Var3 = qi0Var3.H;
+                if (q2Var3 != null) {
+                    q2Var3.invalidate();
+                    return;
+                }
+                return;
+            case 3:
+                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                qi0 qi0Var4 = this.f27575b;
+                qi0Var4.f28181o = floatValue4;
+                org.telegram.ui.Cells.q2 q2Var4 = qi0Var4.H;
+                if (q2Var4 != null) {
+                    q2Var4.invalidate();
+                    return;
+                }
+                return;
+            case 4:
+                float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                qi0 qi0Var5 = this.f27575b;
+                qi0Var5.f28189x = floatValue5;
+                org.telegram.ui.Cells.q2 q2Var5 = qi0Var5.H;
+                if (q2Var5 != null) {
+                    q2Var5.invalidate();
+                    return;
+                }
+                return;
+            case 5:
+                qi0 qi0Var6 = this.f27575b;
+                qi0Var6.getClass();
+                qi0Var6.e(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                org.telegram.ui.Cells.q2 q2Var6 = qi0Var6.H;
+                if (q2Var6 != null) {
+                    q2Var6.invalidate();
+                    return;
+                }
+                return;
+            case 6:
+                qi0 qi0Var7 = this.f27575b;
+                qi0Var7.getClass();
+                qi0Var7.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                qi0Var7.F = true;
+                org.telegram.ui.Cells.q2 q2Var7 = qi0Var7.H;
+                if (q2Var7 != null) {
+                    q2Var7.invalidate();
+                    return;
+                }
+                return;
+            default:
+                qi0 qi0Var8 = this.f27575b;
+                qi0Var8.getClass();
+                qi0Var8.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                qi0Var8.F = false;
+                org.telegram.ui.Cells.q2 q2Var8 = qi0Var8.H;
+                if (q2Var8 != null) {
+                    q2Var8.invalidate();
+                    return;
+                }
+                return;
         }
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(android.graphics.Canvas r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.oi0.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f29774a.setColorFilter(colorFilter);
-        this.f29775b.setColorFilter(colorFilter);
-        this.f29776c.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
     }
 }

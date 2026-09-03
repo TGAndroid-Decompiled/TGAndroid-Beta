@@ -1,73 +1,58 @@
 package x7;
 
-import android.os.IBinder;
 import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.maps.model.LatLng;
-import j7.g5;
-import org.telegram.ui.Components.ai;
-import u6.p;
-public final class g extends c6.a {
-    public static final Parcelable.Creator<g> CREATOR = new p(18);
-    public LatLng f50487a;
-    public String f50488b;
-    public String f50489c;
-    public ai d;
-    public float f50490e;
-    public float f50491f;
-    public boolean h;
-    public boolean f50492n;
-    public boolean f50493r;
-    public float f50494s;
-    public float v;
-    public float f50495w;
-    public float f50496x;
-    public float f50497y;
+import android.os.RemoteException;
+import b6.m;
+public final class g {
+    public final g7.a f46911a;
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        IBinder asBinder;
-        int q10 = g5.q(parcel, 20293);
-        g5.k(parcel, 2, this.f50487a, i10);
-        g5.l(parcel, 3, this.f50488b);
-        g5.l(parcel, 4, this.f50489c);
-        ai aiVar = this.d;
-        if (aiVar == null) {
-            asBinder = null;
-        } else {
-            asBinder = ((l6.a) aiVar.f25257b).asBinder();
+    public g(g7.a aVar) {
+        m.h(aVar);
+        this.f46911a = aVar;
+    }
+
+    public final void a(a aVar) {
+        try {
+            g7.i iVar = (g7.i) this.f46911a;
+            Parcel M0 = iVar.M0();
+            g7.b.c(M0, (l6.a) aVar.f46898a);
+            iVar.Q0(M0, 18);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
         }
-        g5.f(parcel, 5, asBinder);
-        float f10 = this.f50490e;
-        g5.s(parcel, 6, 4);
-        parcel.writeFloat(f10);
-        float f11 = this.f50491f;
-        g5.s(parcel, 7, 4);
-        parcel.writeFloat(f11);
-        boolean z4 = this.h;
-        g5.s(parcel, 8, 4);
-        parcel.writeInt(z4 ? 1 : 0);
-        boolean z10 = this.f50492n;
-        g5.s(parcel, 9, 4);
-        parcel.writeInt(z10 ? 1 : 0);
-        boolean z11 = this.f50493r;
-        g5.s(parcel, 10, 4);
-        parcel.writeInt(z11 ? 1 : 0);
-        float f12 = this.f50494s;
-        g5.s(parcel, 11, 4);
-        parcel.writeFloat(f12);
-        float f13 = this.v;
-        g5.s(parcel, 12, 4);
-        parcel.writeFloat(f13);
-        float f14 = this.f50495w;
-        g5.s(parcel, 13, 4);
-        parcel.writeFloat(f14);
-        float f15 = this.f50496x;
-        g5.s(parcel, 14, 4);
-        parcel.writeFloat(f15);
-        float f16 = this.f50497y;
-        g5.s(parcel, 15, 4);
-        parcel.writeFloat(f16);
-        g5.r(parcel, q10);
+    }
+
+    public final boolean equals(Object obj) {
+        boolean z4 = false;
+        if (!(obj instanceof g)) {
+            return false;
+        }
+        try {
+            g7.a aVar = this.f46911a;
+            g7.a aVar2 = ((g) obj).f46911a;
+            g7.i iVar = (g7.i) aVar;
+            Parcel M0 = iVar.M0();
+            g7.b.c(M0, aVar2);
+            Parcel L0 = iVar.L0(M0, 16);
+            if (L0.readInt() != 0) {
+                z4 = true;
+            }
+            L0.recycle();
+            return z4;
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public final int hashCode() {
+        try {
+            g7.i iVar = (g7.i) this.f46911a;
+            Parcel L0 = iVar.L0(iVar.M0(), 17);
+            int readInt = L0.readInt();
+            L0.recycle();
+            return readInt;
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

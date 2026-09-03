@@ -1,30 +1,34 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-public final class ak implements Runnable {
-    public final xn f35207a;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class ak extends org.telegram.ui.Components.c21 {
+    public final zn e;
 
-    public ak(xn xnVar) {
-        this.f35207a = xnVar;
+    public ak(zn znVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, i10, f6Var);
+        this.e = znVar;
     }
 
     @Override
-    public final void run() {
-        String formatPluralString;
-        xn xnVar = this.f35207a;
-        MessageObject messageObject = xnVar.f43095a5;
-        if (messageObject != null && xnVar.Q8 != null) {
-            int max = Math.max(0, messageObject.messageOwner.ttl_period - (xnVar.getConnectionsManager().getCurrentTime() - xnVar.f43095a5.messageOwner.date));
-            if (max < 86400) {
-                formatPluralString = AndroidUtilities.formatDuration(max, false, true);
-            } else {
-                formatPluralString = LocaleController.formatPluralString("Days", Math.round(max / 86400.0f), new Object[0]);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.k kVar;
+        if (getAlpha() != 0.0f) {
+            zn znVar = this.e;
+            kVar = ((org.telegram.ui.ActionBar.p2) znVar).actionBar;
+            if (!kVar.s() && !znVar.A9()) {
+                return super.onTouchEvent(motionEvent);
             }
-            xnVar.Q8.setSubtext(LocaleController.formatString(R.string.AutoDeleteIn, formatPluralString));
-            AndroidUtilities.runOnUIThread(xnVar.R8, 1000L);
+            return false;
         }
+        return false;
+    }
+
+    @Override
+    public final void setTranslationY(float f10) {
+        if (getTranslationY() != f10) {
+            invalidate();
+        }
+        super.setTranslationY(f10);
     }
 }

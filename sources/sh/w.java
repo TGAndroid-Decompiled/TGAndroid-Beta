@@ -1,16 +1,20 @@
 package sh;
 
-import org.telegram.ui.ActionBar.g5;
-public final class w extends g5 {
-    public final z f47795p;
+import androidx.recyclerview.widget.RecyclerView;
+import f2.z0;
+import org.telegram.messenger.AndroidUtilities;
+public final class w extends z0 {
+    public final i0 f44478a;
 
-    public w(z zVar) {
-        this.f47795p = zVar;
+    public w(i0 i0Var) {
+        this.f44478a = i0Var;
     }
 
     @Override
-    public final void invalidateSelf() {
-        super.invalidateSelf();
-        this.f47795p.invalidate();
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        i0 i0Var = this.f44478a;
+        if (i0Var.D.H1) {
+            AndroidUtilities.hideKeyboard(i0Var.B.f24117r);
+        }
     }
 }

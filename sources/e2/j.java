@@ -7,15 +7,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 public final class j {
-    public final int f4905a;
-    public final int f4906b;
-    public final long f4907c;
+    public final int f5075a;
+    public final int f5076b;
+    public final long f5077c;
     public final long d;
 
     public j(long j10, int i10, int i11, long j11) {
-        this.f4905a = i10;
-        this.f4906b = i11;
-        this.f4907c = j10;
+        this.f5075a = i10;
+        this.f5076b = i11;
+        this.f5077c = j10;
         this.d = j11;
     }
 
@@ -39,9 +39,9 @@ public final class j {
         file.delete();
         DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(file));
         try {
-            dataOutputStream.writeInt(this.f4905a);
-            dataOutputStream.writeInt(this.f4906b);
-            dataOutputStream.writeLong(this.f4907c);
+            dataOutputStream.writeInt(this.f5075a);
+            dataOutputStream.writeInt(this.f5076b);
+            dataOutputStream.writeLong(this.f5077c);
             dataOutputStream.writeLong(this.d);
             dataOutputStream.close();
         } catch (Throwable th2) {
@@ -60,7 +60,7 @@ public final class j {
         }
         if (obj != null && (obj instanceof j)) {
             j jVar = (j) obj;
-            if (this.f4906b == jVar.f4906b && this.f4907c == jVar.f4907c && this.f4905a == jVar.f4905a && this.d == jVar.d) {
+            if (this.f5076b == jVar.f5076b && this.f5077c == jVar.f5077c && this.f5075a == jVar.f5075a && this.d == jVar.d) {
                 return true;
             }
         }
@@ -68,6 +68,6 @@ public final class j {
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f4906b), Long.valueOf(this.f4907c), Integer.valueOf(this.f4905a), Long.valueOf(this.d));
+        return Objects.hash(Integer.valueOf(this.f5076b), Long.valueOf(this.f5077c), Integer.valueOf(this.f5075a), Long.valueOf(this.d));
     }
 }

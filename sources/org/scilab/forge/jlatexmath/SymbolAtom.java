@@ -41,8 +41,8 @@ public class SymbolAtom extends CharSymbol {
     public static void addSymbolAtom(String str) {
         try {
             addSymbolAtom(new FileInputStream(str), str);
-        } catch (FileNotFoundException e6) {
-            throw new ResourceParseException(str, e6);
+        } catch (FileNotFoundException e) {
+            throw new ResourceParseException(str, e);
         }
     }
 

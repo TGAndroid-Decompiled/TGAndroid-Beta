@@ -1,19 +1,30 @@
 package lh;
 
-import android.view.View;
-public final class n1 implements View.OnAttachStateChangeListener {
-    public final g1 f12859a;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stars;
+public final class n1 implements Utilities.Callback {
+    public final int f12813a;
+    public final Utilities.Callback f12814b;
 
-    public n1(g1 g1Var) {
-        this.f12859a = g1Var;
+    public n1(int i10, Utilities.Callback callback) {
+        this.f12813a = i10;
+        this.f12814b = callback;
     }
 
     @Override
-    public final void onViewAttachedToWindow(View view) {
-        this.f12859a.run();
-    }
-
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
+    public final void run(Object obj) {
+        switch (this.f12813a) {
+            case 0:
+                this.f12814b.run((TL_stars.StarGift) obj);
+                return;
+            default:
+                Boolean bool = (Boolean) obj;
+                Utilities.Callback callback = this.f12814b;
+                if (callback != null) {
+                    callback.run(bool);
+                    return;
+                }
+                return;
+        }
     }
 }

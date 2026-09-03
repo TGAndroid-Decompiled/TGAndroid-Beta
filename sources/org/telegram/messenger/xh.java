@@ -4,24 +4,24 @@ import android.text.Spanned;
 import java.util.Comparator;
 import org.telegram.messenger.RichMessageLayout;
 public final class xh implements Comparator {
-    public final int f20647a;
-    public final Spanned f20648b;
+    public final int f18977a;
+    public final Spanned f18978b;
 
     public xh(Spanned spanned, int i10) {
-        this.f20647a = i10;
-        this.f20648b = spanned;
+        this.f18977a = i10;
+        this.f18978b = spanned;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         int lambda$withReplacements$0;
         int lambda$new$0;
-        switch (this.f20647a) {
+        switch (this.f18977a) {
             case 0:
-                lambda$withReplacements$0 = RichMessageLayout.RichBlock.lambda$withReplacements$0(this.f20648b, (org.telegram.ui.Cells.s9) obj, (org.telegram.ui.Cells.s9) obj2);
+                lambda$withReplacements$0 = RichMessageLayout.RichBlock.lambda$withReplacements$0(this.f18978b, (org.telegram.ui.Cells.r9) obj, (org.telegram.ui.Cells.r9) obj2);
                 return lambda$withReplacements$0;
             default:
-                lambda$new$0 = RichMessageLayout.Text.lambda$new$0(this.f20648b, (RichMessageLayout.RichButtonSpan) obj, (RichMessageLayout.RichButtonSpan) obj2);
+                lambda$new$0 = RichMessageLayout.Text.lambda$new$0(this.f18978b, (RichMessageLayout.RichButtonSpan) obj, (RichMessageLayout.RichButtonSpan) obj2);
                 return lambda$new$0;
         }
     }

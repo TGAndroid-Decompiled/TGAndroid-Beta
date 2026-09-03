@@ -1,160 +1,78 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseArray;
-import android.view.View;
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
-public class rz extends f2.j0 {
-    public final SparseArray I;
-    public int J;
-    public int K;
-    public int L;
-    public int M;
-    public final RecyclerView N;
-    public boolean O;
-    public boolean P;
-    public final boolean Q;
-    public boolean R;
-    public int S;
-    public final boolean T;
+import android.graphics.Point;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.SharedConfig;
+public final class rz implements Runnable {
+    public final int f28612a;
+    public final vz f28613b;
+    public final int f28614c;
+    public final int d;
 
-    public rz(sl0 sl0Var, int i10) {
-        this.I = new SparseArray();
-        this.J = -1;
-        this.P = true;
-        this.Q = true;
-        this.T = true;
-        this.N = sl0Var;
-        this.M = i10;
+    public rz(vz vzVar, int i10, int i11, int i12) {
+        this.f28612a = i12;
+        this.f28613b = vzVar;
+        this.f28614c = i10;
+        this.d = i11;
     }
 
     @Override
-    public final void P(View view) {
-        f2.m1 T;
-        if (this.T) {
-            RecyclerView recyclerView = this.N;
-            View F = recyclerView.F(view);
-            if (F == null) {
-                T = null;
-            } else {
-                T = recyclerView.T(F);
-            }
-            if (T.b() == B() - 1) {
-                ((ViewGroup.MarginLayoutParams) ((f2.x0) view.getLayoutParams())).height = Math.max(this.J, 0);
-            }
-        }
-        super.P(view);
-    }
-
-    @Override
-    public final void Q() {
-        this.I.clear();
-        p1();
-    }
-
-    @Override
-    public final void V(RecyclerView recyclerView, int i10, int i11) {
-        p1();
-    }
-
-    @Override
-    public final void W(RecyclerView recyclerView) {
-        this.I.clear();
-        p1();
-    }
-
-    @Override
-    public final void X(RecyclerView recyclerView, int i10, int i11) {
-        p1();
-    }
-
-    @Override
-    public final void Y(RecyclerView recyclerView, int i10, int i11) {
-        p1();
-    }
-
-    @Override
-    public final void Z() {
-        p1();
-    }
-
-    @Override
-    public final void a0(RecyclerView recyclerView, int i10, int i11, Object obj) {
-        p1();
-        p1();
-    }
-
-    @Override
-    public final void d0(bf.f fVar, f2.j1 j1Var, int i10, int i11) {
-        int i12 = this.K;
-        this.L = View.MeasureSpec.getSize(i10);
-        int size = View.MeasureSpec.getSize(i11);
-        this.K = size;
-        if (i12 != size) {
-            p1();
-        }
-        super.d0(fVar, j1Var, i10, i11);
-    }
-
-    @Override
-    public final boolean e() {
-        return this.Q;
-    }
-
-    public final void p1() {
-        RecyclerView recyclerView;
-        f2.p0 adapter;
-        if (this.K <= 0 || (adapter = (recyclerView = this.N).getAdapter()) == null) {
-            return;
-        }
-        int h = adapter.h() - 1;
-        int i10 = 0;
-        int i11 = 0;
-        for (int i12 = this.O; i12 < h; i12++) {
-            int j10 = adapter.j(i12);
-            SparseArray sparseArray = this.I;
-            f2.m1 m1Var = (f2.m1) sparseArray.get(j10, null);
-            if (m1Var == null) {
-                m1Var = adapter.g(recyclerView, j10);
-                View view = m1Var.f5875a;
-                sparseArray.put(j10, m1Var);
-                if (view.getLayoutParams() == null) {
-                    view.setLayoutParams(n());
+    public final void run() {
+        int i10;
+        switch (this.f28612a) {
+            case 0:
+                vz vzVar = this.f28613b;
+                int i11 = this.f28614c;
+                int i12 = this.d;
+                if (vzVar.T != i11 || vzVar.U != i12) {
+                    vzVar.T = i11;
+                    vzVar.U = i12;
+                    int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+                    int i13 = 1920;
+                    if (devicePerformanceClass != 1) {
+                        if (devicePerformanceClass != 2) {
+                            i13 = 720;
+                        } else {
+                            Point point = AndroidUtilities.displaySize;
+                            i13 = Math.min(1920, Math.max(point.x, point.y));
+                        }
+                    }
+                    if (SharedConfig.getDevicePerformanceClass() == 0 && ((i10 = vzVar.T) > 1280 || vzVar.U > 1280)) {
+                        vzVar.T = i10 / 2;
+                        vzVar.U /= 2;
+                    }
+                    int i14 = vzVar.T;
+                    if (i14 > i13 || vzVar.U > i13) {
+                        int i15 = vzVar.U;
+                        if (i14 > i15) {
+                            vzVar.U = (int) (i15 / (i13 / i14));
+                            vzVar.T = i13;
+                        } else {
+                            vzVar.T = (int) (i14 / (i13 / i15));
+                            vzVar.U = i13;
+                        }
+                    }
+                    vzVar.W = false;
+                    vzVar.g();
+                    vzVar.f30074a0.run();
+                    return;
                 }
-            }
-            View view2 = m1Var.f5875a;
-            if (this.P) {
-                adapter.v(m1Var, i12);
-            }
-            f2.x0 x0Var = (f2.x0) view2.getLayoutParams();
-            view2.measure(f2.w0.s(d(), this.L, this.f5948k, E() + D() + ((ViewGroup.MarginLayoutParams) x0Var).leftMargin + ((ViewGroup.MarginLayoutParams) x0Var).rightMargin, ((ViewGroup.MarginLayoutParams) x0Var).width), f2.w0.s(this.Q, this.K, this.f5949l, C() + F() + ((ViewGroup.MarginLayoutParams) x0Var).topMargin + ((ViewGroup.MarginLayoutParams) x0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) x0Var).height));
-            i10 += view2.getMeasuredHeight();
-            if (i12 == 0) {
-                i11 = view2.getMeasuredHeight();
-            }
-            if (this.R) {
-                if (i10 >= this.K + i11) {
-                    break;
-                }
-            } else if (i10 >= this.K) {
-                break;
-            }
+                return;
+            case 1:
+                vz vzVar2 = this.f28613b;
+                int i16 = this.f28614c;
+                int i17 = this.d;
+                vzVar2.f30078n = i16;
+                vzVar2.f30079r = i17;
+                return;
+            default:
+                vz vzVar3 = this.f28613b;
+                int i18 = this.f28614c;
+                int i19 = this.d;
+                ha haVar = vzVar3.F;
+                haVar.f25360l = i18;
+                haVar.f25361m = i19;
+                return;
         }
-        if (this.R) {
-            this.J = Math.max(this.S, (((this.K - i10) - this.M) - recyclerView.getPaddingBottom()) + i11);
-        } else {
-            this.J = Math.max(this.S, ((this.K - i10) - this.M) - recyclerView.getPaddingBottom());
-        }
-    }
-
-    public rz(int i10, int i11, sl0 sl0Var) {
-        super(1, false);
-        this.I = new SparseArray();
-        this.J = -1;
-        this.P = true;
-        this.Q = true;
-        this.T = true;
-        this.N = sl0Var;
-        this.M = i10;
     }
 }

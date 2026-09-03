@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import org.telegram.messenger.AndroidUtilities;
-public final class rz0 extends z00 {
+public final class rz0 extends a10 {
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
         canvas.save();

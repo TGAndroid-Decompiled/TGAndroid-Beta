@@ -16,7 +16,7 @@ public final class bh implements org.telegram.ui.ActionBar.c2, Vector.TLDeserial
     }
 
     @Override
-    public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+    public void l(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
         SharedConfig.lambda$checkSdCard$1(d2Var, i10);
     }
 }

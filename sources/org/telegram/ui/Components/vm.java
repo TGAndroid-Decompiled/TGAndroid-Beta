@@ -1,201 +1,33 @@
 package org.telegram.ui.Components;
+public final class vm extends org.telegram.ui.fu0 {
+    public boolean f29506a;
+    public final int f29507b;
+    public final pn f29508c;
 
-import android.text.SpannableString;
-import android.view.KeyEvent;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class vm implements my {
-    public final rn f31915a;
-
-    public vm(rn rnVar) {
-        this.f31915a = rnVar;
+    public vm(pn pnVar, int i10) {
+        this.f29508c = pnVar;
+        this.f29507b = i10;
     }
 
     @Override
-    public final boolean A() {
-        return false;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final int f() {
-        return 0;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final void i(int i10) {
-        boolean z4;
-        if (i10 != 0) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        rn rnVar = this.f31915a;
-        rnVar.f30823e1 = z4;
-        rnVar.f26590b.f29096o1.requestLayout();
-    }
-
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final boolean k() {
-        EditTextBoldCursor editField;
-        org.telegram.ui.Cells.c6 c6Var = this.f31915a.f30821d1;
-        if (c6Var == null || (editField = c6Var.getEditField()) == null) {
-            return false;
-        }
-        editField.dispatchKeyEvent(new KeyEvent(0, 67));
-        return true;
-    }
-
-    @Override
-    public final void l(String str) {
-        EditTextBoldCursor editField;
-        org.telegram.ui.Cells.c6 c6Var = this.f31915a.f30821d1;
-        if (c6Var == null || (editField = c6Var.getEditField()) == null) {
-            return;
-        }
-        int selectionEnd = editField.getSelectionEnd();
-        if (selectionEnd < 0) {
-            selectionEnd = 0;
-        }
-        try {
-            CharSequence replaceEmoji = Emoji.replaceEmoji(str, editField.getPaint().getFontMetricsInt(), false);
-            editField.setText(editField.getText().insert(selectionEnd, replaceEmoji));
-            int length = selectionEnd + replaceEmoji.length();
-            editField.setSelection(length, length);
-        } catch (Exception e6) {
-            FileLog.e(e6);
+    public final void D() {
+        if (this.f29506a) {
+            this.f29508c.b0(this.f29507b);
         }
     }
 
     @Override
-    public final void n() {
-        rn rnVar = this.f31915a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(rnVar.getContext(), 0, rnVar.f26589a);
-        alertDialog$Builder.f21168a.O = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f21168a.Q = LocaleController.getString(R.string.ClearRecentEmojiText);
-        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new t(this, 24));
-        l.d.u(R.string.Cancel, alertDialog$Builder, null);
+    public final void I() {
+        this.f29508c.e0(this.f29507b, null);
     }
 
     @Override
-    public final float p() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void x(long j10, TLRPC.Document document, String str, boolean z4) {
-        EditTextBoldCursor editField;
-        u5 u5Var;
-        org.telegram.ui.Cells.c6 c6Var = this.f31915a.f30821d1;
-        if (c6Var == null || (editField = c6Var.getEditField()) == null) {
-            return;
-        }
-        int selectionEnd = editField.getSelectionEnd();
-        if (selectionEnd < 0) {
-            selectionEnd = 0;
-        }
-        try {
-            SpannableString spannableString = new SpannableString(str);
-            if (document != null) {
-                u5Var = new u5(document, editField.getPaint().getFontMetricsInt());
-            } else {
-                u5Var = new u5(j10, editField.getPaint().getFontMetricsInt());
-            }
-            u5Var.cacheType = 3;
-            spannableString.setSpan(u5Var, 0, spannableString.length(), 33);
-            editField.setText(editField.getText().insert(selectionEnd, spannableString));
-            int length = selectionEnd + spannableString.length();
-            editField.setSelection(length, length);
-        } catch (Exception e6) {
-            FileLog.e(e6);
-        }
+    public final void V() {
+        this.f29506a = true;
     }
 
     @Override
     public final boolean z() {
-        return this.f31915a.f30823e1;
-    }
-
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void o(d51 d51Var) {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void s(int i10) {
-    }
-
-    @Override
-    public final void t(ArrayList arrayList) {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w() {
-    }
-
-    @Override
-    public final void y(long j10) {
-    }
-
-    @Override
-    public final void e(Object obj, Object obj2) {
-    }
-
-    @Override
-    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z4) {
-    }
-
-    @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z4, int i10) {
-    }
-
-    @Override
-    public final void v(View view, Object obj, String str, Object obj2, boolean z4, int i10, int i11) {
+        return false;
     }
 }

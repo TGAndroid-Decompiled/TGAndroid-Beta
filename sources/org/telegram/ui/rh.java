@@ -1,38 +1,36 @@
 package org.telegram.ui;
-public final class rh implements Runnable {
-    public final int f40848a = 1;
-    public final int f40849b;
-    public final xn f40850c;
-    public final boolean d;
 
-    public rh(int i10, xn xnVar, boolean z4) {
-        this.f40849b = i10;
-        this.f40850c = xnVar;
-        this.d = z4;
+import org.telegram.tgnet.TLRPC;
+public final class rh implements Runnable {
+    public final int f37839a = 0;
+    public final zn f37840b;
+    public final TLRPC.TL_error f37841c;
+    public final TLRPC.TL_attachMenuBot d;
+    public final TLRPC.User e;
+
+    public rh(zn znVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.TL_error tL_error, TLRPC.User user) {
+        this.f37840b = znVar;
+        this.d = tL_attachMenuBot;
+        this.f37841c = tL_error;
+        this.e = user;
     }
 
     @Override
     public final void run() {
-        switch (this.f40848a) {
+        switch (this.f37839a) {
             case 0:
-                boolean z4 = this.d;
-                this.f40850c.yc(this.f40849b, z4);
+                zn.w1(this.f37840b, this.d, this.f37841c, this.e);
                 return;
             default:
-                int i10 = this.f40849b;
-                xn xnVar = this.f40850c;
-                if (i10 != 2) {
-                    xnVar.U9();
-                    xnVar.Yb();
-                }
-                th.o0.f(org.telegram.ui.Components.qc.a0(xnVar), i10, this.d);
+                zn.W(this.f37840b, this.d, this.f37841c, this.e);
                 return;
         }
     }
 
-    public rh(xn xnVar, boolean z4, int i10) {
-        this.f40850c = xnVar;
-        this.d = z4;
-        this.f40849b = i10;
+    public rh(zn znVar, TLRPC.TL_error tL_error, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.User user) {
+        this.f37840b = znVar;
+        this.f37841c = tL_error;
+        this.d = tL_attachMenuBot;
+        this.e = user;
     }
 }

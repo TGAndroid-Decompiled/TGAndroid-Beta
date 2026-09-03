@@ -3,7 +3,7 @@ package qd;
 import java.lang.reflect.Method;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 public abstract class c {
-    public static final Method f44825a;
+    public static final Method f43048a;
 
     static {
         Method method;
@@ -12,6 +12,6 @@ public abstract class c {
         } catch (Throwable unused) {
             method = null;
         }
-        f44825a = method;
+        f43048a = method;
     }
 }

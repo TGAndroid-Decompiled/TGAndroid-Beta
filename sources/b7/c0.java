@@ -8,20 +8,20 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 public final class c0 extends v {
     public static final c0 h;
-    public final transient o f1812f;
+    public final transient o f1684f;
 
     static {
-        k kVar = o.f1856b;
-        h = new c0(a0.f1799e, y.f1886b);
+        k kVar = o.f1725b;
+        h = new c0(a0.e, y.f1751b);
     }
 
     public c0(o oVar, Comparator comparator) {
         super(comparator);
-        this.f1812f = oVar;
+        this.f1684f = oVar;
     }
 
     public final c0 A(int i10, int i11) {
-        o oVar = this.f1812f;
+        o oVar = this.f1684f;
         if (i10 == 0) {
             if (i11 != oVar.size()) {
                 i10 = 0;
@@ -39,7 +39,7 @@ public final class c0 extends v {
     @Override
     public final Object ceiling(Object obj) {
         int z4 = z(obj, true);
-        o oVar = this.f1812f;
+        o oVar = this.f1684f;
         if (z4 == oVar.size()) {
             return null;
         }
@@ -50,7 +50,7 @@ public final class c0 extends v {
     public final boolean contains(Object obj) {
         if (obj != null) {
             try {
-                if (Collections.binarySearch(this.f1812f, obj, this.d) >= 0) {
+                if (Collections.binarySearch(this.f1684f, obj, this.d) >= 0) {
                     return true;
                 }
             } catch (ClassCastException unused) {
@@ -66,7 +66,7 @@ public final class c0 extends v {
         }
         Comparator comparator = this.d;
         if (b.i(comparator, collection) && collection.size() > 1) {
-            k listIterator = this.f1812f.listIterator(0);
+            k listIterator = this.f1684f.listIterator(0);
             Iterator it = collection.iterator();
             if (listIterator.hasNext()) {
                 Object next = it.next();
@@ -97,7 +97,7 @@ public final class c0 extends v {
 
     @Override
     public final Iterator descendingIterator() {
-        return this.f1812f.r().listIterator(0);
+        return this.f1684f.r().listIterator(0);
     }
 
     @Override
@@ -105,7 +105,7 @@ public final class c0 extends v {
         if (obj != this) {
             if (obj instanceof Set) {
                 Set set = (Set) obj;
-                o oVar = this.f1812f;
+                o oVar = this.f1684f;
                 if (oVar.size() == set.size()) {
                     if (!isEmpty()) {
                         Comparator comparator = this.d;
@@ -140,7 +140,7 @@ public final class c0 extends v {
     @Override
     public final Object first() {
         if (!isEmpty()) {
-            return this.f1812f.get(0);
+            return this.f1684f.get(0);
         }
         throw new NoSuchElementException();
     }
@@ -151,13 +151,13 @@ public final class c0 extends v {
         if (y10 == -1) {
             return null;
         }
-        return this.f1812f.get(y10);
+        return this.f1684f.get(y10);
     }
 
     @Override
     public final Object higher(Object obj) {
         int z4 = z(obj, false);
-        o oVar = this.f1812f;
+        o oVar = this.f1684f;
         if (z4 == oVar.size()) {
             return null;
         }
@@ -166,18 +166,18 @@ public final class c0 extends v {
 
     @Override
     public final int i(Object[] objArr) {
-        return this.f1812f.i(objArr);
+        return this.f1684f.i(objArr);
     }
 
     @Override
     public final Iterator iterator() {
-        return this.f1812f.listIterator(0);
+        return this.f1684f.listIterator(0);
     }
 
     @Override
     public final Object last() {
         if (!isEmpty()) {
-            o oVar = this.f1812f;
+            o oVar = this.f1684f;
             return oVar.get(oVar.size() - 1);
         }
         throw new NoSuchElementException();
@@ -189,42 +189,42 @@ public final class c0 extends v {
         if (y10 == -1) {
             return null;
         }
-        return this.f1812f.get(y10);
+        return this.f1684f.get(y10);
     }
 
     @Override
     public final int n() {
-        return this.f1812f.n();
+        return this.f1684f.n();
     }
 
     @Override
     public final int o() {
-        return this.f1812f.o();
+        return this.f1684f.o();
     }
 
     @Override
     public final g0 p() {
-        return this.f1812f.listIterator(0);
+        return this.f1684f.listIterator(0);
     }
 
     @Override
     public final Object[] q() {
-        return this.f1812f.q();
+        return this.f1684f.q();
     }
 
     @Override
     public final int size() {
-        return this.f1812f.size();
+        return this.f1684f.size();
     }
 
     @Override
     public final o t() {
-        return this.f1812f;
+        return this.f1684f;
     }
 
     public final int y(Object obj, boolean z4) {
         obj.getClass();
-        int binarySearch = Collections.binarySearch(this.f1812f, obj, this.d);
+        int binarySearch = Collections.binarySearch(this.f1684f, obj, this.d);
         if (binarySearch >= 0) {
             if (z4) {
                 return binarySearch + 1;
@@ -236,7 +236,7 @@ public final class c0 extends v {
 
     public final int z(Object obj, boolean z4) {
         obj.getClass();
-        int binarySearch = Collections.binarySearch(this.f1812f, obj, this.d);
+        int binarySearch = Collections.binarySearch(this.f1684f, obj, this.d);
         if (binarySearch >= 0) {
             if (z4) {
                 return binarySearch;

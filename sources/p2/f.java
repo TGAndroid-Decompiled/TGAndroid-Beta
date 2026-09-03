@@ -3,16 +3,16 @@ package p2;
 import android.content.Context;
 import n7.qa;
 public final class f {
-    public boolean f44168a;
-    public Object f44169b;
-    public Object f44170c;
+    public boolean f41008a;
+    public Object f41009b;
+    public Object f41010c;
     public Object d;
-    public Object f44171e = new b0(this, true);
-    public Object f44172f = new b0(this, false);
+    public Object e = new c0(this, true);
+    public Object f41011f = new c0(this, false);
 
-    public f(Context context, o oVar, qa qaVar) {
-        this.f44169b = context;
-        this.f44170c = oVar;
+    public f(Context context, p pVar, qa qaVar) {
+        this.f41009b = context;
+        this.f41010c = pVar;
         this.d = qaVar;
     }
 }

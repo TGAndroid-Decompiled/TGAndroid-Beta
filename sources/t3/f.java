@@ -10,12 +10,12 @@ import s8.l;
 import s8.t;
 import s8.v;
 public final class f implements a {
-    public final v f47907a;
-    public final int f47908b;
+    public final v f44531a;
+    public final int f44532b;
 
     public f(int i10, i0 i0Var) {
-        this.f47908b = i10;
-        this.f47907a = i0Var;
+        this.f44532b = i10;
+        this.f44531a = i0Var;
     }
 
     public static f b(int i10, w wVar) {
@@ -25,13 +25,13 @@ public final class f implements a {
         int i11 = 4;
         l.c(4, "initialCapacity");
         Object[] objArr = new Object[4];
-        int i12 = wVar.f7310c;
+        int i12 = wVar.f6989c;
         int i13 = 0;
         int i14 = -2;
         int i15 = 0;
         while (wVar.a() > 8) {
             int i16 = wVar.i();
-            int i17 = wVar.f7309b + wVar.i();
+            int i17 = wVar.f6988b + wVar.i();
             wVar.E(i17);
             if (i16 == 1414744396) {
                 gVar = b(wVar.i(), wVar);
@@ -80,9 +80,9 @@ public final class f implements a {
                                 break;
                             } else {
                                 m0 m0Var = new m0();
-                                m0Var.f9270t = i18;
-                                m0Var.f9271u = i19;
-                                m0Var.f9265o = str2;
+                                m0Var.f8671t = i18;
+                                m0Var.f8672u = i19;
+                                m0Var.f8666o = str2;
                                 gVar = new g(new n0(m0Var));
                                 break;
                             }
@@ -117,14 +117,14 @@ public final class f implements a {
                                     byte[] bArr = new byte[n12];
                                     wVar.e(i13, n12, bArr);
                                     m0 m0Var2 = new m0();
-                                    m0Var2.f9265o = str;
+                                    m0Var2.f8666o = str;
                                     m0Var2.B = n11;
                                     m0Var2.C = i21;
                                     if ("audio/raw".equals(str) && v != 0) {
                                         m0Var2.D = v;
                                     }
                                     if ("audio/mp4a-latm".equals(str) && n12 > 0) {
-                                        m0Var2.f9267q = v.x(bArr);
+                                        m0Var2.f8668q = v.x(bArr);
                                     }
                                     gVar = new g(new n0(m0Var2));
                                     break;
@@ -158,7 +158,7 @@ public final class f implements a {
                         gVar = dVar;
                         break;
                     case 1852994675:
-                        gVar = new h(wVar.s(wVar.a(), r8.d.f46769c));
+                        gVar = new h(wVar.s(wVar.a(), r8.d.f43413c));
                         break;
                     default:
                         gVar = dVar;
@@ -167,7 +167,7 @@ public final class f implements a {
             }
             if (gVar != null) {
                 if (gVar.getType() == 1752331379) {
-                    int i30 = ((d) gVar).f47893a;
+                    int i30 = ((d) gVar).f44519a;
                     if (i30 != 1935960438) {
                         if (i30 != 1935963489) {
                             if (i30 != 1937012852) {
@@ -199,7 +199,7 @@ public final class f implements a {
     }
 
     public final a a(Class cls) {
-        t listIterator = this.f47907a.listIterator(0);
+        t listIterator = this.f44531a.listIterator(0);
         while (listIterator.hasNext()) {
             a aVar = (a) listIterator.next();
             if (aVar.getClass() == cls) {
@@ -211,6 +211,6 @@ public final class f implements a {
 
     @Override
     public final int getType() {
-        return this.f47908b;
+        return this.f44532b;
     }
 }

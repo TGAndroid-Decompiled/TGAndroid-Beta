@@ -5,53 +5,53 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class og1 implements RequestDelegate {
-    public final int f39736a;
-    public final vg1 f39737b;
+    public final int f36806a;
+    public final wg1 f36807b;
 
-    public og1(vg1 vg1Var, int i10) {
-        this.f39736a = i10;
-        this.f39737b = vg1Var;
+    public og1(wg1 wg1Var, int i10) {
+        this.f36806a = i10;
+        this.f36807b = wg1Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f39736a) {
+        switch (this.f36806a) {
             case 0:
-                final vg1 vg1Var = this.f39737b;
+                final wg1 wg1Var = this.f36807b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r4) {
                             case 0:
-                                vg1.b0(vg1Var, tL_error, tLObject);
+                                wg1.b0(wg1Var, tL_error, tLObject);
                                 return;
                             default:
-                                vg1.h0(vg1Var, tL_error, tLObject);
+                                wg1.h0(wg1Var, tL_error, tLObject);
                                 return;
                         }
                     }
                 });
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new rg1(this.f39737b, tL_error, 0));
+                AndroidUtilities.runOnUIThread(new rg1(this.f36807b, tL_error, 0));
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new rg1(this.f39737b, tL_error, 1));
+                AndroidUtilities.runOnUIThread(new rg1(this.f36807b, tL_error, 1));
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new rg1(this.f39737b, tL_error, 2));
+                AndroidUtilities.runOnUIThread(new rg1(this.f36807b, tL_error, 2));
                 return;
             default:
-                final vg1 vg1Var2 = this.f39737b;
+                final wg1 wg1Var2 = this.f36807b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r4) {
                             case 0:
-                                vg1.b0(vg1Var2, tL_error, tLObject);
+                                wg1.b0(wg1Var2, tL_error, tLObject);
                                 return;
                             default:
-                                vg1.h0(vg1Var2, tL_error, tLObject);
+                                wg1.h0(wg1Var2, tL_error, tLObject);
                                 return;
                         }
                     }

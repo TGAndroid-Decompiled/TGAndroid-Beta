@@ -1,28 +1,43 @@
 package kc;
+public enum g {
+    TOO_MANY_REQUESTS(101, "Switching Protocols"),
+    OK(200, "OK"),
+    PRECONDITION_FAILED(201, "Created"),
+    ACCEPTED(202, "Accepted"),
+    NO_CONTENT(204, "No Content"),
+    PARTIAL_CONTENT(206, "Partial Content"),
+    MULTI_STATUS(207, "Multi-Status"),
+    REDIRECT(301, "Moved Permanently"),
+    FOUND(302, "Found"),
+    REDIRECT_SEE_OTHER(303, "See Other"),
+    NOT_MODIFIED(304, "Not Modified"),
+    TEMPORARY_REDIRECT(307, "Temporary Redirect"),
+    BAD_REQUEST(400, "Bad Request"),
+    UNAUTHORIZED(401, "Unauthorized"),
+    TOO_MANY_REQUESTS(403, "Forbidden"),
+    NOT_FOUND(404, "Not Found"),
+    PRECONDITION_FAILED(405, "Method Not Allowed"),
+    TOO_MANY_REQUESTS(406, "Not Acceptable"),
+    EXPECTATION_FAILED(408, "Request Timeout"),
+    PRECONDITION_FAILED(409, "Conflict"),
+    TOO_MANY_REQUESTS(410, "Gone"),
+    EXPECTATION_FAILED(411, "Length Required"),
+    PRECONDITION_FAILED(412, "Precondition Failed"),
+    TOO_MANY_REQUESTS(413, "Payload Too Large"),
+    EXPECTATION_FAILED(415, "Unsupported Media Type"),
+    TOO_MANY_REQUESTS(416, "Requested Range Not Satisfiable"),
+    EXPECTATION_FAILED(417, "Expectation Failed"),
+    TOO_MANY_REQUESTS(429, "Too Many Requests"),
+    INTERNAL_ERROR(500, "Internal Server Error"),
+    NOT_IMPLEMENTED(501, "Not Implemented"),
+    SERVICE_UNAVAILABLE(503, "Service Unavailable"),
+    UNSUPPORTED_HTTP_VERSION(505, "HTTP Version Not Supported");
+    
+    public final int f10286a;
+    public final String f10287b;
 
-import java.io.FilterOutputStream;
-public final class g extends FilterOutputStream {
-    public final void a() {
-        ((FilterOutputStream) this).out.write("0\r\n\r\n".getBytes());
-    }
-
-    @Override
-    public final void write(int i10) {
-        write(new byte[]{(byte) i10}, 0, 1);
-    }
-
-    @Override
-    public final void write(byte[] bArr) {
-        write(bArr, 0, bArr.length);
-    }
-
-    @Override
-    public final void write(byte[] bArr, int i10, int i11) {
-        if (i11 == 0) {
-            return;
-        }
-        ((FilterOutputStream) this).out.write(String.format("%x\r\n", Integer.valueOf(i11)).getBytes());
-        ((FilterOutputStream) this).out.write(bArr, i10, i11);
-        ((FilterOutputStream) this).out.write("\r\n".getBytes());
+    g(int i10, String str) {
+        this.f10286a = i10;
+        this.f10287b = str;
     }
 }

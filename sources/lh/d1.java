@@ -1,51 +1,29 @@
 package lh;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.Utilities;
+import android.content.Context;
+import android.view.View;
+import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.w51;
-public final class d1 implements Utilities.Callback {
-    public final int f12663a;
-    public final g2 f12664b;
+public final class d1 extends w51 {
+    public final j1 K;
 
-    public d1(g2 g2Var, int i10) {
-        this.f12663a = i10;
-        this.f12664b = g2Var;
+    public d1(j1 j1Var, rl0 rl0Var, Context context, int i10, dg.r1 r1Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(rl0Var, context, i10, 0, true, r1Var, f6Var);
+        this.K = j1Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f12663a) {
-            case 0:
-                int intValue = ((Integer) obj).intValue();
-                g2 g2Var = this.f12664b;
-                if (g2Var.f12775p0 != intValue) {
-                    g2Var.f12775p0 = intValue;
-                    g2Var.f12768h0.g();
-                    g2Var.V.N(true);
-                    return;
-                }
-                return;
-            default:
-                List list = (List) obj;
-                g2 g2Var2 = this.f12664b;
-                if (g2Var2.getContext() != null && g2Var2.isShown()) {
-                    ArrayList b10 = hg.p0.b(1, list);
-                    g2Var2.W = b10;
-                    List c3 = hg.p0.c(b10);
-                    g2Var2.W = c3;
-                    if (!((ArrayList) c3).isEmpty()) {
-                        g2Var2.W();
-                        w51 w51Var = g2Var2.V;
-                        if (w51Var != null) {
-                            w51Var.N(true);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void v(f2.l1 l1Var, int i10) {
+        super.v(l1Var, i10);
+        View view = l1Var.f5774a;
+        if (!(view instanceof h1)) {
+            return;
         }
+        h1 h1Var = (h1) view;
+        f1 f1Var = h1Var.v;
+        boolean R = this.K.R(f1Var);
+        h1Var.f12514c.f(R, false);
+        h1Var.f12517r.a(R, false);
+        h1Var.setOnClickListener(new cg.n(20, this, f1Var));
     }
 }

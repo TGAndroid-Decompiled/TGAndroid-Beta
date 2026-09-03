@@ -1,6 +1,6 @@
 package k3;
 public final class c implements h5.j, h5.k {
-    public final int f10417a;
+    public final int f9682a;
 
     @Override
     public void d(Object obj, h5.g gVar) {
@@ -10,7 +10,7 @@ public final class c implements h5.j, h5.k {
     @Override
     public void invoke(Object obj) {
         b bVar = (b) obj;
-        switch (this.f10417a) {
+        switch (this.f9682a) {
             case 0:
                 bVar.getClass();
                 return;
@@ -27,10 +27,10 @@ public final class c implements h5.j, h5.k {
                 bVar.getClass();
                 return;
             case 5:
-            default:
                 bVar.getClass();
                 return;
             case 6:
+            default:
                 bVar.getClass();
                 return;
             case 7:
@@ -103,6 +103,6 @@ public final class c implements h5.j, h5.k {
     }
 
     public c(a aVar, int i10) {
-        this.f10417a = i10;
+        this.f9682a = i10;
     }
 }

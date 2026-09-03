@@ -5,17 +5,17 @@ import s5.m;
 import v7.j;
 import w7.g;
 public final class d implements e {
-    public final int f11738a;
-    public final j f11739b;
+    public final int f11470a;
+    public final j f11471b;
 
     public d(j jVar, int i10) {
-        this.f11738a = i10;
-        this.f11739b = jVar;
+        this.f11470a = i10;
+        this.f11471b = jVar;
     }
 
     @Override
     public final int a() {
-        switch (this.f11738a) {
+        switch (this.f11470a) {
             case 0:
                 return 4;
             default:
@@ -25,26 +25,26 @@ public final class d implements e {
 
     @Override
     public final void b() {
-        switch (this.f11738a) {
+        switch (this.f11470a) {
             case 0:
-                m mVar = this.f11739b.f48963a;
+                m mVar = this.f11471b.f45695a;
                 mVar.getClass();
                 try {
-                    g gVar = (g) mVar.f47094c;
+                    g gVar = (g) mVar.f44154c;
                     gVar.Q0(gVar.M0(), 12);
+                    return;
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
+            default:
+                m mVar2 = this.f11471b.f45695a;
+                mVar2.getClass();
+                try {
+                    g gVar2 = (g) mVar2.f44154c;
+                    gVar2.Q0(gVar2.M0(), 3);
                     return;
                 } catch (RemoteException e6) {
                     throw new RuntimeException(e6);
-                }
-            default:
-                m mVar2 = this.f11739b.f48963a;
-                mVar2.getClass();
-                try {
-                    g gVar2 = (g) mVar2.f47094c;
-                    gVar2.Q0(gVar2.M0(), 3);
-                    return;
-                } catch (RemoteException e10) {
-                    throw new RuntimeException(e10);
                 }
         }
     }

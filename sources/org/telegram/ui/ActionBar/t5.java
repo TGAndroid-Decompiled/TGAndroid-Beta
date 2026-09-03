@@ -1,24 +1,39 @@
 package org.telegram.ui.ActionBar;
 
 import android.graphics.Point;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class t5 extends k7.z5 {
+public final class t5 extends k7.y5 {
+    public final boolean f20557a;
+    public final View f20558b;
+
+    public t5(View view, boolean z4) {
+        this.f20557a = z4;
+        this.f20558b = view;
+    }
+
     @Override
     public final void b(int i10, int i11) {
         boolean z4;
-        Point point = AndroidUtilities.displaySize;
-        boolean z10 = true;
-        if (point.x <= point.y) {
-            z4 = true;
-        } else {
-            z4 = false;
+        boolean z10 = this.f20557a;
+        View view = this.f20558b;
+        if (!z10) {
+            Point point = AndroidUtilities.displaySize;
+            boolean z11 = false;
+            if (point.x <= point.y) {
+                z4 = true;
+            } else {
+                z4 = false;
+            }
+            if (i10 <= i11) {
+                z11 = true;
+            }
+            if (z4 == z11) {
+                view.invalidate();
+                return;
+            }
+            return;
         }
-        if (i10 > i11) {
-            z10 = false;
-        }
-        if (z4 == z10) {
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
-        }
+        view.invalidate();
     }
 }

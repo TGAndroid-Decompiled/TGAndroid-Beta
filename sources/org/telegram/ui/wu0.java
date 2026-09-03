@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-public final class wu0 extends org.telegram.ui.Components.sl0 {
+public final class wu0 extends org.telegram.ui.Components.rl0 {
     public final Drawable U2;
     public final Paint V2;
     public final RectF W2;
@@ -24,7 +24,7 @@ public final class wu0 extends org.telegram.ui.Components.sl0 {
         vu0 vu0Var = new vu0(this);
         setItemAnimator(vu0Var);
         vu0Var.C = false;
-        vu0Var.f5910m = false;
+        vu0Var.f5807m = false;
         setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
         paint.setColor(2130706432);
         this.U2 = context.getResources().getDrawable(R.drawable.photo_tooltip2).mutate();

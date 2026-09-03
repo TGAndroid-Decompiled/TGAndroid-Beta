@@ -20,7 +20,7 @@ public class StatsController extends BaseController {
     public static final int TYPE_VIDEOS = 2;
     public static final int TYPE_WIFI = 1;
     private byte[] buffer;
-    lf.c0 byteArrayOutputStream;
+    kf.c0 byteArrayOutputStream;
     private int[] callsTotalTime;
     private long lastInternalStatsSaveTime;
     private long[][] receivedBytes;
@@ -51,7 +51,7 @@ public class StatsController extends BaseController {
         this.receivedItems = (int[][]) Array.newInstance(cls2, 3, 8);
         this.resetStatsDate = new long[3];
         this.callsTotalTime = new int[3];
-        this.byteArrayOutputStream = new lf.c0(32);
+        this.byteArrayOutputStream = new kf.c0(32);
         this.saveRunnable = new Runnable() {
             @Override
             public void run() {
@@ -88,8 +88,8 @@ public class StatsController extends BaseController {
                         }
                         StatsController.this.statsFile.seek(0L);
                         RandomAccessFile randomAccessFile = StatsController.this.statsFile;
-                        lf.c0 c0Var = StatsController.this.byteArrayOutputStream;
-                        randomAccessFile.write(c0Var.f12412a, 0, c0Var.f12413b);
+                        kf.c0 c0Var = StatsController.this.byteArrayOutputStream;
+                        randomAccessFile.write(c0Var.f10412a, 0, c0Var.f10413b);
                         StatsController.this.statsFile.getFD().sync();
                     } catch (Exception unused) {
                     }
@@ -98,7 +98,7 @@ public class StatsController extends BaseController {
         };
         File filesDirFixed = ApplicationLoader.getFilesDirFixed();
         if (i10 != 0) {
-            filesDirFixed = new File(ApplicationLoader.getFilesDirFixed(), l.d.k(i10, "account", "/"));
+            filesDirFixed = new File(ApplicationLoader.getFilesDirFixed(), kf.k0.k(i10, "account", "/"));
             filesDirFixed.mkdirs();
         }
         try {

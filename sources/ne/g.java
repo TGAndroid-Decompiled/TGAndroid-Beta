@@ -1,23 +1,23 @@
 package ne;
 
-import k7.h0;
+import k7.g0;
 public final class g extends p {
-    public final int f15963g;
+    public final int f14927g;
 
     @Override
-    public final void a(h0 h0Var) {
-        switch (this.f15963g) {
+    public final void a(g0 g0Var) {
+        switch (this.f14927g) {
             case 0:
-                h0Var.e(this);
+                g0Var.e(this);
                 return;
             case 1:
-                h0Var.r(this);
+                g0Var.r(this);
                 return;
             case 2:
-                h0Var.t(this);
+                g0Var.t(this);
                 return;
             default:
-                h0Var.u(this);
+                g0Var.u(this);
                 return;
         }
     }

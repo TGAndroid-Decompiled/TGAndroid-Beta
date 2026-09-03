@@ -1,8 +1,8 @@
 package j3;
 public final class s0 {
-    public long f9405a;
-    public long f9406b = Long.MIN_VALUE;
-    public boolean f9407c;
+    public long f8796a;
+    public long f8797b = Long.MIN_VALUE;
+    public boolean f8798c;
     public boolean d;
-    public boolean f9408e;
+    public boolean e;
 }

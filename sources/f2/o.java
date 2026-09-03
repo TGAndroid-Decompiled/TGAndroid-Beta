@@ -1,7 +1,7 @@
 package f2;
 public final class o {
-    public int f5899a;
-    public int f5900b;
-    public int f5901c;
+    public int f5802a;
+    public int f5803b;
+    public int f5804c;
     public int d;
 }

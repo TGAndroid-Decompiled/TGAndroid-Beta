@@ -5,39 +5,39 @@ import android.view.View;
 import android.view.WindowInsets;
 import j$.util.Objects;
 public final class m1 {
-    public static final m1 f46482b;
-    public final j1 f46483a;
+    public static final m1 f43153b;
+    public final j1 f43154a;
 
     static {
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 34) {
-            f46482b = i1.f46467s;
+            f43153b = i1.f43140s;
         } else if (i10 >= 30) {
-            f46482b = h1.f46457r;
+            f43153b = h1.f43131r;
         } else {
-            f46482b = j1.f46473b;
+            f43153b = j1.f43145b;
         }
     }
 
     public m1(WindowInsets windowInsets) {
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 34) {
-            this.f46483a = new i1(this, windowInsets);
+            this.f43154a = new i1(this, windowInsets);
         } else if (i10 >= 30) {
-            this.f46483a = new h1(this, windowInsets);
+            this.f43154a = new h1(this, windowInsets);
         } else if (i10 >= 29) {
-            this.f46483a = new g1(this, windowInsets);
+            this.f43154a = new g1(this, windowInsets);
         } else if (i10 >= 28) {
-            this.f46483a = new f1(this, windowInsets);
+            this.f43154a = new f1(this, windowInsets);
         } else {
-            this.f46483a = new e1(this, windowInsets);
+            this.f43154a = new e1(this, windowInsets);
         }
     }
 
     public static i0.b e(i0.b bVar, int i10, int i11, int i12, int i13) {
-        int max = Math.max(0, bVar.f7757a - i10);
-        int max2 = Math.max(0, bVar.f7758b - i11);
-        int max3 = Math.max(0, bVar.f7759c - i12);
+        int max = Math.max(0, bVar.f7196a - i10);
+        int max2 = Math.max(0, bVar.f7197b - i11);
+        int max3 = Math.max(0, bVar.f7198c - i12);
         int max4 = Math.max(0, bVar.d - i13);
         if (max == i10 && max2 == i11 && max3 == i12 && max4 == i13) {
             return bVar;
@@ -50,7 +50,7 @@ public final class m1 {
         m1 m1Var = new m1(windowInsets);
         if (view != null && view.isAttachedToWindow()) {
             m1 f10 = j0.f(view);
-            j1 j1Var = m1Var.f46483a;
+            j1 j1Var = m1Var.f43154a;
             j1Var.r(f10);
             j1Var.d(view.getRootView());
             j1Var.t(view.getWindowSystemUiVisibility());
@@ -59,19 +59,19 @@ public final class m1 {
     }
 
     public final int a() {
-        return this.f46483a.k().d;
+        return this.f43154a.k().d;
     }
 
     public final int b() {
-        return this.f46483a.k().f7757a;
+        return this.f43154a.k().f7196a;
     }
 
     public final int c() {
-        return this.f46483a.k().f7759c;
+        return this.f43154a.k().f7198c;
     }
 
     public final int d() {
-        return this.f46483a.k().f7758b;
+        return this.f43154a.k().f7197b;
     }
 
     public final boolean equals(Object obj) {
@@ -81,7 +81,7 @@ public final class m1 {
         if (!(obj instanceof m1)) {
             return false;
         }
-        return Objects.equals(this.f46483a, ((m1) obj).f46483a);
+        return Objects.equals(this.f43154a, ((m1) obj).f43154a);
     }
 
     public final m1 f(int i10, int i11, int i12, int i13) {
@@ -101,15 +101,15 @@ public final class m1 {
     }
 
     public final WindowInsets g() {
-        j1 j1Var = this.f46483a;
+        j1 j1Var = this.f43154a;
         if (j1Var instanceof d1) {
-            return ((d1) j1Var).f46443c;
+            return ((d1) j1Var).f43119c;
         }
         return null;
     }
 
     public final int hashCode() {
-        j1 j1Var = this.f46483a;
+        j1 j1Var = this.f43154a;
         if (j1Var == null) {
             return 0;
         }
@@ -117,6 +117,6 @@ public final class m1 {
     }
 
     public m1() {
-        this.f46483a = new j1(this);
+        this.f43154a = new j1(this);
     }
 }

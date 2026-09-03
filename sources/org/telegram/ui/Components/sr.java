@@ -1,98 +1,80 @@
 package org.telegram.ui.Components;
 
-import android.view.GestureDetector;
+import android.graphics.Rect;
 import android.view.MotionEvent;
-import android.view.ViewGroup;
+import android.view.View;
+import java.lang.ref.WeakReference;
 import org.telegram.messenger.AndroidUtilities;
-public final class sr extends GestureDetector.SimpleOnGestureListener {
-    public final int f31163a;
-    public final int f31164b;
-    public final ViewGroup f31165c;
+public final class sr implements View.OnTouchListener {
+    public final int f28797a;
+    public final Object f28798b;
 
-    public sr(ViewGroup viewGroup, int i10, int i11) {
-        this.f31163a = i11;
-        this.f31165c = viewGroup;
-        this.f31164b = i10;
+    public sr(Object obj, int i10) {
+        this.f28797a = i10;
+        this.f28798b = obj;
     }
 
     @Override
-    public boolean onDown(MotionEvent motionEvent) {
-        switch (this.f31163a) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        k70 k70Var;
+        switch (this.f28797a) {
             case 0:
-                ur urVar = (ur) this.f31165c;
-                qr qrVar = urVar.f31681r;
-                if (urVar.f31680n) {
-                    urVar.removeCallbacks(qrVar);
-                }
-                urVar.f31680n = true;
-                urVar.postDelayed(qrVar, 200L);
-                urVar.h.run();
-                return true;
-            case 1:
-                return true;
-            default:
-                return super.onDown(motionEvent);
-        }
-    }
-
-    @Override
-    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        org.telegram.ui.web.x0 x0Var;
-        switch (this.f31163a) {
-            case 1:
-                ch0 ch0Var = (ch0) this.f31165c;
-                if (!ch0Var.f25944f && !ch0Var.h && f10 >= 600.0f) {
-                    ch0Var.f25943e = false;
-                    ch0Var.h = false;
-                    ch0Var.a(0.0f, f10 / 6000.0f);
-                }
-                return false;
-            case 2:
-                sh.m3 m3Var = (sh.m3) this.f31165c;
-                if (m3Var.d || !m3Var.J) {
-                    return false;
-                }
-                if (m3Var.G && !m3Var.I) {
-                    return false;
-                }
-                if (m3Var.K && !m3Var.b(false)) {
-                    return false;
-                }
-                float distance = AndroidUtilities.distance(motionEvent.getX(), motionEvent.getY(), motionEvent2.getX(), motionEvent2.getY());
-                float eventTime = (float) (motionEvent2.getEventTime() - motionEvent.getEventTime());
-                if (f11 >= AndroidUtilities.dp(650.0f) && ((distance > AndroidUtilities.dp(200.0f) || eventTime > 250.0f) && ((x0Var = m3Var.f47572x) == null || x0Var.getScrollY() == 0))) {
-                    m3Var.f47571w = true;
-                    float f12 = m3Var.f47569r;
-                    int i10 = m3Var.E;
-                    if (f12 < i10 && !m3Var.G) {
-                        m3Var.e(0.0f);
-                    } else if (m3Var.G && m3Var.I && (m3Var.N == (-m3Var.f47567f) + m3Var.f47566e || (f12 <= (-i10) && f11 < AndroidUtilities.dp(1200.0f)))) {
-                        m3Var.e((-m3Var.f47567f) + m3Var.f47566e);
-                    } else {
-                        sh.l3 l3Var = m3Var.C;
-                        if (l3Var != null) {
-                            l3Var.g(false);
-                        }
-                    }
-                } else if (f11 > -700.0f) {
-                    return false;
-                } else {
-                    float f13 = m3Var.f47569r;
-                    float f14 = (-m3Var.f47567f) + m3Var.f47566e;
-                    if (f13 <= f14) {
+                org.telegram.ui.ActionBar.p1 p1Var = ((ur) this.f28798b).f29289a;
+                if (motionEvent.getActionMasked() == 1 && p1Var != null && p1Var.isShowing()) {
+                    Rect rect = AndroidUtilities.rectTmp2;
+                    view.getHitRect(rect);
+                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        p1Var.d(true);
                         return false;
                     }
-                    m3Var.f47571w = true;
-                    m3Var.e(f14);
+                    return false;
+                }
+                return false;
+            case 1:
+                p70 p70Var = (p70) ((WeakReference) this.f28798b).get();
+                if (p70Var != null && (k70Var = p70Var.f27767m) != null && k70Var.isShowing()) {
+                    if (view.getParent() != null) {
+                        view.getParent().requestDisallowInterceptTouchEvent(true);
+                    }
+                    int actionMasked = motionEvent.getActionMasked();
+                    if (actionMasked == 2) {
+                        p70Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
+                    } else if (actionMasked == 1) {
+                        p70Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
+                        View view2 = p70Var.f27773p0;
+                        if (view2 != null) {
+                            p70Var.f27773p0 = null;
+                            view2.setPressed(false);
+                            view2.performClick();
+                        }
+                        view.setOnTouchListener(null);
+                        p70Var.f27771o0 = null;
+                    } else if (actionMasked == 3) {
+                        View view3 = p70Var.f27773p0;
+                        if (view3 != null) {
+                            view3.setPressed(false);
+                            p70Var.f27773p0 = null;
+                        }
+                        view.setOnTouchListener(null);
+                        p70Var.f27771o0 = null;
+                    }
+                    return true;
+                }
+                view.setOnTouchListener(null);
+                return false;
+            case 2:
+                qa0 qa0Var = (qa0) this.f28798b;
+                qa0Var.getClass();
+                return org.telegram.ui.rt.q().s(motionEvent, qa0Var.getListView(), qa0Var.f28133w, null, qa0Var.f28126a);
+            case 3:
+                rb0 rb0Var = (rb0) this.f28798b;
+                rb0Var.getClass();
+                if (motionEvent.getAction() == 1) {
+                    rb0Var.W.a(true);
                 }
                 return true;
             default:
-                return super.onFling(motionEvent, motionEvent2, f10, f11);
+                return xx0.v((xx0) this.f28798b, motionEvent);
         }
-    }
-
-    @Override
-    public final boolean onScroll(android.view.MotionEvent r18, android.view.MotionEvent r19, float r20, float r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.sr.onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float):boolean");
     }
 }

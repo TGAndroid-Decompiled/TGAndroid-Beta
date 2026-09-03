@@ -1,26 +1,26 @@
 package org.telegram.messenger;
 public final class ta implements Runnable {
-    public final int f20087a;
-    public final MessagesController f20088b;
-    public final lf.t f20089c;
+    public final int f18469a;
+    public final MessagesController f18470b;
+    public final kf.t f18471c;
 
-    public ta(MessagesController messagesController, lf.t tVar, int i10) {
-        this.f20087a = i10;
-        this.f20088b = messagesController;
-        this.f20089c = tVar;
+    public ta(MessagesController messagesController, kf.t tVar, int i10) {
+        this.f18469a = i10;
+        this.f18470b = messagesController;
+        this.f18471c = tVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f20087a) {
+        switch (this.f18469a) {
             case 0:
-                this.f20088b.lambda$processUpdateArray$402(this.f20089c);
+                this.f18470b.lambda$processUpdateArray$402(this.f18471c);
                 return;
             case 1:
-                this.f20088b.lambda$processUpdateArray$404(this.f20089c);
+                this.f18470b.lambda$processUpdateArray$404(this.f18471c);
                 return;
             default:
-                this.f20088b.lambda$processUpdateArray$399(this.f20089c);
+                this.f18470b.lambda$processUpdateArray$399(this.f18471c);
                 return;
         }
     }

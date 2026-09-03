@@ -1,87 +1,79 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import androidx.recyclerview.widget.RecyclerView;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-public final class zi extends f2.w {
-    public final int Q;
-    public final KeyEvent.Callback R;
+import org.telegram.messenger.R;
+public final class zi extends di {
+    public lh.e1 f31386n;
+    public int f31387r;
+    public oh.k f31388s;
+    public ra v;
+    public int f31389w;
+    public q0.a f31390x;
 
-    public zi(ei eiVar, int i10, int i11) {
-        super(i10);
-        this.Q = i11;
-        this.R = eiVar;
+    @Override
+    public final void D(di diVar) {
+        li liVar = this.f24282b;
+        try {
+            liVar.U0.getTitleTextView().setBuildFullLayout(true);
+        } catch (Exception unused) {
+        }
+        liVar.U0.setTitle(LocaleController.getString(R.string.SelectColor));
+        this.f31388s.h1(0, 0);
     }
 
     @Override
-    public boolean Y0() {
-        switch (this.Q) {
-            case 2:
-                if (((xx0) this.R).T != null && LocaleController.isRTL) {
-                    return true;
-                }
-                return false;
-            default:
-                return super.Y0();
-        }
+    public final void F() {
+        this.f31386n.x0(0);
     }
 
     @Override
-    public int o0(int i10, bf.f fVar, f2.j1 j1Var) {
-        switch (this.Q) {
-            case 3:
-                if (((ph.l) this.R).f44423b) {
-                    i10 = 0;
-                }
-                return super.o0(i10, fVar, j1Var);
-            default:
-                return super.o0(i10, fVar, j1Var);
+    public int getCurrentItemTop() {
+        lh.e1 e1Var = this.f31386n;
+        if (e1Var.getChildCount() <= 0) {
+            e1Var.setTopGlowOffset(e1Var.getPaddingTop());
+            return Integer.MAX_VALUE;
         }
+        View childAt = e1Var.getChildAt(0);
+        dl0 dl0Var = (dl0) e1Var.G(childAt);
+        int top = childAt.getTop();
+        int dp = AndroidUtilities.dp(7.0f);
+        if (top < AndroidUtilities.dp(7.0f) || dl0Var == null || dl0Var.b() != 0) {
+            top = dp;
+        }
+        e1Var.setTopGlowOffset(top);
+        return top;
     }
 
     @Override
-    public void v0(RecyclerView recyclerView, f2.j1 j1Var, int i10) {
-        switch (this.Q) {
-            case 0:
-                yi yiVar = new yi(this, recyclerView.getContext());
-                yiVar.f5805a = i10;
-                w0(yiVar);
-                return;
-            case 1:
-                xl xlVar = new xl(this, recyclerView.getContext());
-                xlVar.f5805a = i10;
-                w0(xlVar);
-                return;
-            default:
-                super.v0(recyclerView, j1Var, i10);
-                return;
-        }
+    public int getFirstOffset() {
+        return AndroidUtilities.dp(56.0f) + getListTopPadding();
     }
 
     @Override
-    public boolean y0() {
-        switch (this.Q) {
-            case 0:
-                return false;
-            case 1:
-                return false;
-            case 2:
-            default:
-                return super.y0();
-            case 3:
-                return false;
-        }
+    public int getListTopPadding() {
+        return this.f31386n.getPaddingTop();
     }
 
-    public zi(xx0 xx0Var) {
-        super(5);
-        this.Q = 2;
-        this.R = xx0Var;
+    @Override
+    public final int h() {
+        return 1;
     }
 
-    public zi(ph.l lVar) {
-        super(3);
-        this.Q = 3;
-        this.R = lVar;
+    public void setDelegate(q0.a aVar) {
+        this.f31390x = aVar;
+    }
+
+    @Override
+    public void setTranslationY(float f10) {
+        super.setTranslationY(f10);
+        this.f24282b.getSheetContainer().invalidate();
+        invalidate();
+    }
+
+    @Override
+    public final void y(int r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.zi.y(int, int):void");
     }
 }

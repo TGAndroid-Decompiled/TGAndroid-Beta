@@ -3,24 +3,24 @@ package t4;
 import java.util.List;
 public final class f extends q4.b {
     public final List d;
-    public final long f47920e;
+    public final long e;
 
     public f(long j10, List list) {
         super(0L, list.size() - 1);
-        this.f47920e = j10;
+        this.e = j10;
         this.d = list;
     }
 
     @Override
-    public final long k() {
+    public final long a1() {
         a();
-        return this.f47920e + ((u4.g) this.d.get((int) this.f44490c)).f48308e;
+        u4.g gVar = (u4.g) this.d.get((int) this.f42747c);
+        return this.e + gVar.e + gVar.f45088c;
     }
 
     @Override
-    public final long l() {
+    public final long n0() {
         a();
-        u4.g gVar = (u4.g) this.d.get((int) this.f44490c);
-        return this.f47920e + gVar.f48308e + gVar.f48307c;
+        return this.e + ((u4.g) this.d.get((int) this.f42747c)).e;
     }
 }

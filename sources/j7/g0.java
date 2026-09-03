@@ -1,17 +1,14 @@
 package j7;
 
-import java.io.Closeable;
+import java.lang.ref.Reference;
+import java.util.ArrayList;
 public abstract class g0 {
-    public static final void a(Closeable closeable, Throwable th2) {
-        if (closeable != null) {
-            if (th2 == null) {
-                closeable.close();
+    public static void a(ArrayList arrayList, Object obj) {
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            Object obj2 = ((Reference) arrayList.get(size)).get();
+            if (obj2 == null || obj2 == obj) {
+                arrayList.remove(size);
                 return;
-            }
-            try {
-                closeable.close();
-            } catch (Throwable th3) {
-                k7.o7.a(th2, th3);
             }
         }
     }

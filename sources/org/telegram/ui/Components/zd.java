@@ -3,91 +3,91 @@ package org.telegram.ui.Components;
 import android.util.Property;
 import android.view.View;
 public final class zd extends Property {
-    public final int f33925a;
-    public final ChatActivityEnterView f33926b;
+    public final int f31362a;
+    public final ChatActivityEnterView f31363b;
 
     public zd(ChatActivityEnterView chatActivityEnterView, int i10) {
         super(Float.class, "emoji_button_scale");
-        this.f33925a = i10;
+        this.f31362a = i10;
         switch (i10) {
             case 1:
-                this.f33926b = chatActivityEnterView;
+                this.f31363b = chatActivityEnterView;
                 super(Float.class, "attach_scale");
                 return;
             case 2:
-                this.f33926b = chatActivityEnterView;
+                this.f31363b = chatActivityEnterView;
                 super(Float.class, "emoji_button_alpha");
                 return;
             case 3:
-                this.f33926b = chatActivityEnterView;
+                this.f31363b = chatActivityEnterView;
                 super(Float.class, "attach_layout_translation_x");
                 return;
             case 4:
-                this.f33926b = chatActivityEnterView;
+                this.f31363b = chatActivityEnterView;
                 super(Float.class, "message_text_translation_x");
                 return;
             default:
-                this.f33926b = chatActivityEnterView;
+                this.f31363b = chatActivityEnterView;
                 return;
         }
     }
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f33925a) {
+        switch (this.f31362a) {
             case 0:
                 View view = (View) obj;
-                return Float.valueOf(this.f33926b.h);
+                return Float.valueOf(this.f31363b.h);
             case 1:
                 View view2 = (View) obj;
-                return Float.valueOf(this.f33926b.B);
+                return Float.valueOf(this.f31363b.B);
             case 2:
                 View view3 = (View) obj;
-                return Float.valueOf(this.f33926b.f24646n);
+                return Float.valueOf(this.f31363b.f22777n);
             case 3:
                 View view4 = (View) obj;
-                return Float.valueOf(this.f33926b.f24700x);
+                return Float.valueOf(this.f31363b.f22831x);
             default:
                 View view5 = (View) obj;
-                return Float.valueOf(this.f33926b.D);
+                return Float.valueOf(this.f31363b.D);
         }
     }
 
     @Override
     public final void set(Object obj, Object obj2) {
-        switch (this.f33925a) {
+        switch (this.f31362a) {
             case 0:
                 View view = (View) obj;
                 float floatValue = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView = this.f33926b;
+                ChatActivityEnterView chatActivityEnterView = this.f31363b;
                 chatActivityEnterView.h = floatValue;
                 chatActivityEnterView.F1();
                 return;
             case 1:
                 View view2 = (View) obj;
                 float floatValue2 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView2 = this.f33926b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f31363b;
                 chatActivityEnterView2.B = floatValue2;
                 chatActivityEnterView2.A1();
                 return;
             case 2:
                 View view3 = (View) obj;
                 float floatValue3 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView3 = this.f33926b;
-                chatActivityEnterView3.f24646n = floatValue3;
+                ChatActivityEnterView chatActivityEnterView3 = this.f31363b;
+                chatActivityEnterView3.f22777n = floatValue3;
                 chatActivityEnterView3.F1();
                 return;
             case 3:
                 View view4 = (View) obj;
                 float floatValue4 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView4 = this.f33926b;
-                chatActivityEnterView4.f24700x = floatValue4;
+                ChatActivityEnterView chatActivityEnterView4 = this.f31363b;
+                chatActivityEnterView4.f22831x = floatValue4;
                 chatActivityEnterView4.A1();
                 return;
             default:
                 View view5 = (View) obj;
                 float floatValue5 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView5 = this.f33926b;
+                ChatActivityEnterView chatActivityEnterView5 = this.f31363b;
                 chatActivityEnterView5.D = floatValue5;
                 chatActivityEnterView5.J1();
                 return;

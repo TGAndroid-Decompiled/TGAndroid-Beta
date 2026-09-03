@@ -3,17 +3,17 @@ package org.telegram.ui;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class dq0 implements org.telegram.ui.ActionBar.t0 {
-    public final mq0 f36239a;
+    public final mq0 f33514a;
 
     public dq0(mq0 mq0Var) {
-        this.f36239a = mq0Var;
+        this.f33514a = mq0Var;
     }
 
     @Override
     public final void e() {
         int i10;
         int i11;
-        mq0 mq0Var = this.f36239a;
+        mq0 mq0Var = this.f33514a;
         org.telegram.ui.ActionBar.g1 g1Var = mq0Var.N;
         if (mq0Var.V) {
             i10 = R.string.ShowAsGrid;

@@ -12,36 +12,36 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
 public final class zc extends Drawable {
-    public static final jh.a H = new jh.a(1);
+    public static final ih.a H = new ih.a(1);
     public int B;
     public int C;
     public int D;
     public float h;
-    public float f33908i;
-    public float f33909j;
-    public float f33910k;
-    public float f33911l;
-    public float f33912m;
-    public float f33913n;
-    public float f33914o;
-    public float f33915p;
-    public final yc f33916q;
-    public final yc f33917r;
-    public float f33918s;
-    public long f33919t;
-    public boolean f33920u;
+    public float f31335i;
+    public float f31336j;
+    public float f31337k;
+    public float f31338l;
+    public float f31339m;
+    public float f31340n;
+    public float f31341o;
+    public float f31342p;
+    public final yc f31343q;
+    public final yc f31344r;
+    public float f31345s;
+    public long f31346t;
+    public boolean f31347u;
     public float v;
-    public float f33921w;
-    public float f33922x;
-    public final float f33902a = AndroidUtilities.dp(18.0f);
-    public final float f33903b = AndroidUtilities.dp(22.0f);
-    public final float f33904c = 2.4f;
+    public float f31348w;
+    public float f31349x;
+    public final float f31330a = AndroidUtilities.dp(18.0f);
+    public final float f31331b = AndroidUtilities.dp(22.0f);
+    public final float f31332c = 2.4f;
     public final float d = AndroidUtilities.dp(12.0f);
-    public final float f33905e = AndroidUtilities.dp(1.5f);
-    public final float f33906f = 3600.0f;
-    public final float f33907g = 0.25f;
-    public final Path f33923y = new Path();
-    public final float[] f33924z = new float[4];
+    public final float e = AndroidUtilities.dp(1.5f);
+    public final float f31333f = 3600.0f;
+    public final float f31334g = 0.25f;
+    public final Path f31350y = new Path();
+    public final float[] f31351z = new float[4];
     public int A = -1;
     public float E = 1.0f;
     public final fg F = new fg(this, 16);
@@ -49,23 +49,23 @@ public final class zc extends Drawable {
 
     public zc() {
         yc ycVar = new yc();
-        this.f33916q = ycVar;
-        ycVar.f33464a = 1.0f;
-        ycVar.f33465b = 0.0f;
-        ycVar.f33466c = AndroidUtilities.dp(0.5f);
+        this.f31343q = ycVar;
+        ycVar.f30979a = 1.0f;
+        ycVar.f30980b = 0.0f;
+        ycVar.f30981c = AndroidUtilities.dp(0.5f);
         ycVar.d = AndroidUtilities.dp(8.5f);
-        ycVar.f33467e = 1.0f;
-        ycVar.f33468f = 1.0f;
-        ycVar.f33469g = 61;
+        ycVar.e = 1.0f;
+        ycVar.f30982f = 1.0f;
+        ycVar.f30983g = 61;
         yc ycVar2 = new yc();
-        this.f33917r = ycVar2;
-        ycVar2.f33464a = 0.82f;
-        ycVar2.f33465b = 0.6f;
-        ycVar2.f33466c = AndroidUtilities.dp(0.0f);
+        this.f31344r = ycVar2;
+        ycVar2.f30979a = 0.82f;
+        ycVar2.f30980b = 0.6f;
+        ycVar2.f30981c = AndroidUtilities.dp(0.0f);
         ycVar2.d = AndroidUtilities.dp(4.25f);
-        ycVar2.f33467e = 0.55f;
-        ycVar2.f33468f = 0.55f;
-        ycVar2.f33469g = 128;
+        ycVar2.e = 0.55f;
+        ycVar2.f30982f = 0.55f;
+        ycVar2.f30983g = 128;
         e(0, false);
     }
 
@@ -73,7 +73,7 @@ public final class zc extends Drawable {
         double d = f12;
         float cos = (float) Math.cos(d);
         float sin = (float) Math.sin(d);
-        float f13 = this.f33909j;
+        float f13 = this.f31336j;
         fArr[0] = (f13 * cos) + f10;
         fArr[1] = (f13 * sin) + f11;
         fArr[2] = -sin;
@@ -85,25 +85,25 @@ public final class zc extends Drawable {
         char c3;
         char c10;
         int i11;
-        int i12 = ycVar.f33484x;
+        int i12 = ycVar.f30998x;
         if (i12 == 0) {
             return;
         }
-        float f13 = ycVar.f33466c;
+        float f13 = ycVar.f30981c;
         float f14 = this.v;
         float f15 = ((ycVar.d - f13) * f14) + f13;
-        float y10 = e2.c.y(f14, 1.0f, 0.0f, this.d * ycVar.f33467e);
-        float[] fArr = ycVar.f33482u;
+        float y10 = e2.c.y(f14, 1.0f, 0.0f, this.d * ycVar.e);
+        float[] fArr = ycVar.f30996u;
         float[] fArr2 = ycVar.v;
-        float[] fArr3 = ycVar.f33483w;
+        float[] fArr3 = ycVar.f30997w;
         char c11 = 0;
         for (int i13 = 0; i13 < i12; i13++) {
-            float interpolation = H.getInterpolation(ycVar.f33476o[i13]);
+            float interpolation = H.getInterpolation(ycVar.f30990o[i13]);
             float f16 = 1.0f - interpolation;
-            fArr[i13] = (ycVar.f33473l[i13] * interpolation) + (ycVar.f33472k[i13] * f16);
-            fArr3[i13] = (ycVar.f33475n[i13] * interpolation) + (ycVar.f33474m[i13] * f16);
+            fArr[i13] = (ycVar.f30987l[i13] * interpolation) + (ycVar.f30986k[i13] * f16);
+            fArr3[i13] = (ycVar.f30989n[i13] * interpolation) + (ycVar.f30988m[i13] * f16);
         }
-        float f17 = this.f33907g;
+        float f17 = this.f31334g;
         char c12 = 2;
         if (f17 > 0.0f) {
             int i14 = 0;
@@ -130,57 +130,57 @@ public final class zc extends Drawable {
         int i18 = 0;
         while (i18 < i12) {
             float f19 = (i18 / i12) + fArr3[i18];
-            float floor = (f19 - ((float) Math.floor(f19))) * this.f33915p;
-            float f20 = this.f33912m;
-            float[] fArr5 = this.f33924z;
+            float floor = (f19 - ((float) Math.floor(f19))) * this.f31342p;
+            float f20 = this.f31339m;
+            float[] fArr5 = this.f31351z;
             if (floor < f20) {
-                fArr5[c11] = (-this.f33910k) + floor;
-                fArr5[1] = -this.f33908i;
+                fArr5[c11] = (-this.f31337k) + floor;
+                fArr5[1] = -this.f31335i;
                 fArr5[c12] = 1.0f;
                 fArr5[3] = 0.0f;
                 c3 = 0;
                 c10 = 2;
             } else {
                 float f21 = floor - f20;
-                float f22 = this.f33914o;
+                float f22 = this.f31341o;
                 c3 = 0;
-                float f23 = this.f33904c;
+                float f23 = this.f31332c;
                 if (f21 < f22) {
                     c10 = 2;
-                    a(this.f33910k, -this.f33911l, (f21 / (f23 * this.f33909j)) - 1.5707964f, fArr5);
+                    a(this.f31337k, -this.f31338l, (f21 / (f23 * this.f31336j)) - 1.5707964f, fArr5);
                 } else {
                     c10 = 2;
                     float f24 = f21 - f22;
-                    float f25 = this.f33913n;
+                    float f25 = this.f31340n;
                     if (f24 < f25) {
                         fArr5[0] = this.h;
-                        fArr5[1] = (-this.f33911l) + f24;
+                        fArr5[1] = (-this.f31338l) + f24;
                         fArr5[2] = 0.0f;
                         fArr5[3] = 1.0f;
                     } else {
                         float f26 = f24 - f25;
                         if (f26 < f22) {
-                            a(this.f33910k, this.f33911l, f26 / (f23 * this.f33909j), fArr5);
+                            a(this.f31337k, this.f31338l, f26 / (f23 * this.f31336j), fArr5);
                         } else {
                             float f27 = f26 - f22;
                             if (f27 < f20) {
-                                fArr5[0] = this.f33910k - f27;
-                                fArr5[1] = this.f33908i;
+                                fArr5[0] = this.f31337k - f27;
+                                fArr5[1] = this.f31335i;
                                 fArr5[2] = -1.0f;
                                 fArr5[3] = 0.0f;
                             } else {
                                 float f28 = f27 - f20;
                                 if (f28 < f22) {
-                                    a(-this.f33910k, this.f33911l, (f28 / (f23 * this.f33909j)) + 1.5707964f, fArr5);
+                                    a(-this.f31337k, this.f31338l, (f28 / (f23 * this.f31336j)) + 1.5707964f, fArr5);
                                 } else {
                                     float f29 = f28 - f22;
                                     if (f29 < f25) {
                                         fArr5[0] = -this.h;
-                                        fArr5[1] = this.f33911l - f29;
+                                        fArr5[1] = this.f31338l - f29;
                                         fArr5[2] = 0.0f;
                                         fArr5[3] = -1.0f;
                                     } else {
-                                        a(-this.f33910k, -this.f33911l, ((f29 - f25) / (f23 * this.f33909j)) + 3.1415927f, fArr5);
+                                        a(-this.f31337k, -this.f31338l, ((f29 - f25) / (f23 * this.f31336j)) + 3.1415927f, fArr5);
                                     }
                                 }
                             }
@@ -190,17 +190,17 @@ public final class zc extends Drawable {
             }
             float f30 = fArr5[3];
             float f31 = (fArr[i18] * y10) + f15 + f12;
-            ycVar.f33478q[i18] = (f30 * f31) + f10 + fArr5[c3];
-            ycVar.f33479r[i18] = ((-fArr5[c10]) * f31) + f11 + fArr5[1];
-            ycVar.f33480s[i18] = fArr5[c10];
-            ycVar.f33481t[i18] = fArr5[3];
+            ycVar.f30992q[i18] = (f30 * f31) + f10 + fArr5[c3];
+            ycVar.f30993r[i18] = ((-fArr5[c10]) * f31) + f11 + fArr5[1];
+            ycVar.f30994s[i18] = fArr5[c10];
+            ycVar.f30995t[i18] = fArr5[3];
             i18++;
             c11 = 0;
             c12 = 2;
         }
-        Path path = this.f33923y;
+        Path path = this.f31350y;
         path.rewind();
-        path.moveTo(ycVar.f33478q[0], ycVar.f33479r[0]);
+        path.moveTo(ycVar.f30992q[0], ycVar.f30993r[0]);
         int i19 = 0;
         while (i19 < i12) {
             int i20 = i19 + 1;
@@ -209,54 +209,54 @@ public final class zc extends Drawable {
             } else {
                 i10 = 0;
             }
-            float[] fArr6 = ycVar.f33478q;
+            float[] fArr6 = ycVar.f30992q;
             float f32 = fArr6[i10] - fArr6[i19];
-            float[] fArr7 = ycVar.f33479r;
+            float[] fArr7 = ycVar.f30993r;
             float f33 = fArr7[i10] - fArr7[i19];
             float sqrt = ((float) Math.sqrt((f33 * f33) + (f32 * f32))) / 3.0f;
-            float[] fArr8 = ycVar.f33478q;
+            float[] fArr8 = ycVar.f30992q;
             float f34 = fArr8[i19];
-            float[] fArr9 = ycVar.f33480s;
+            float[] fArr9 = ycVar.f30994s;
             float f35 = (fArr9[i19] * sqrt) + f34;
-            float[] fArr10 = ycVar.f33479r;
+            float[] fArr10 = ycVar.f30993r;
             float f36 = fArr10[i19];
-            float[] fArr11 = ycVar.f33481t;
+            float[] fArr11 = ycVar.f30995t;
             float f37 = fArr8[i10];
             float f38 = fArr10[i10];
             path.cubicTo(f35, (fArr11[i19] * sqrt) + f36, f37 - (fArr9[i10] * sqrt), f38 - (fArr11[i10] * sqrt), f37, f38);
             i19 = i20;
         }
         path.close();
-        canvas.drawPath(path, ycVar.f33470i);
+        canvas.drawPath(path, ycVar.f30984i);
     }
 
     public final float c() {
-        yc ycVar = this.f33916q;
+        yc ycVar = this.f31343q;
         float f10 = ycVar.d;
-        float f11 = ycVar.f33468f;
-        float f12 = this.f33905e;
+        float f11 = ycVar.f30982f;
+        float f12 = this.e;
         float f13 = (f11 * f12) + f10;
-        float f14 = ycVar.f33467e;
+        float f14 = ycVar.e;
         float f15 = this.d;
         float f16 = (f14 * f15) + f13;
-        yc ycVar2 = this.f33917r;
+        yc ycVar2 = this.f31344r;
         float f17 = ycVar2.d;
-        return Math.max(f16, (f15 * ycVar2.f33467e) + (f12 * ycVar2.f33468f) + f17);
+        return Math.max(f16, (f15 * ycVar2.e) + (f12 * ycVar2.f30982f) + f17);
     }
 
     public final void d(float f10) {
         float f11;
-        this.f33921w = f10;
+        this.f31348w = f10;
         if (!LiteMode.isEnabled(512)) {
             return;
         }
-        float f12 = this.f33921w - this.v;
+        float f12 = this.f31348w - this.v;
         if (f12 > 0.0f) {
             f11 = 400.0f;
         } else {
             f11 = 500.0f;
         }
-        this.f33922x = f12 / ((f11 * 0.55f) + 100.0f);
+        this.f31349x = f12 / ((f11 * 0.55f) + 100.0f);
     }
 
     @Override
@@ -265,20 +265,20 @@ public final class zc extends Drawable {
         Rect bounds = getBounds();
         if (!bounds.isEmpty() && this.h >= 1.0f) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            if (!this.f33920u && this.E >= 1.0f) {
+            if (!this.f31347u && this.E >= 1.0f) {
                 min = 0;
             } else {
-                min = Math.min(40L, Math.max(0L, elapsedRealtime - this.f33919t));
+                min = Math.min(40L, Math.max(0L, elapsedRealtime - this.f31346t));
             }
-            this.f33919t = elapsedRealtime;
+            this.f31346t = elapsedRealtime;
             boolean isEnabled = LiteMode.isEnabled(512);
-            yc ycVar = this.f33917r;
-            yc ycVar2 = this.f33916q;
+            yc ycVar = this.f31344r;
+            yc ycVar2 = this.f31343q;
             if (isEnabled && min > 0) {
-                float f10 = this.f33921w;
+                float f10 = this.f31348w;
                 float f11 = this.v;
                 if (f10 != f11) {
-                    float f12 = this.f33922x;
+                    float f12 = this.f31349x;
                     float f13 = (((float) min) * f12) + f11;
                     this.v = f13;
                     if (f12 > 0.0f) {
@@ -289,7 +289,7 @@ public final class zc extends Drawable {
                         this.v = f10;
                     }
                 }
-                this.f33918s = w.c.c((float) min, this.f33906f, 6.2831855f, this.f33918s);
+                this.f31345s = vh.w2.c((float) min, this.f31333f, 6.2831855f, this.f31345s);
                 ycVar2.d(this.v);
                 ycVar.d(this.v);
             }
@@ -310,12 +310,12 @@ public final class zc extends Drawable {
             float exactCenterX = bounds.exactCenterX();
             float exactCenterY = bounds.exactCenterY();
             float f16 = 1.0f - (this.v * 0.7f);
-            float f17 = ycVar2.f33468f;
-            float f18 = this.f33905e;
-            float y10 = e2.c.y((float) Math.sin(this.f33918s), 0.5f, 0.5f, f17 * f18 * f16);
-            float y11 = e2.c.y((float) Math.sin(this.f33918s + ycVar.f33465b), 0.5f, 0.5f, f18 * ycVar.f33468f * f16);
-            b(canvas, this.f33916q, exactCenterX, exactCenterY, y10);
-            b(canvas, this.f33917r, exactCenterX, exactCenterY, y11);
+            float f17 = ycVar2.f30982f;
+            float f18 = this.e;
+            float y10 = e2.c.y((float) Math.sin(this.f31345s), 0.5f, 0.5f, f17 * f18 * f16);
+            float y11 = e2.c.y((float) Math.sin(this.f31345s + ycVar.f30980b), 0.5f, 0.5f, f18 * ycVar.f30982f * f16);
+            b(canvas, this.f31343q, exactCenterX, exactCenterY, y10);
+            b(canvas, this.f31344r, exactCenterX, exactCenterY, y11);
             if (this.E < 1.0f) {
                 invalidateSelf();
             }
@@ -331,15 +331,15 @@ public final class zc extends Drawable {
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
-                    d = org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21636bh, false);
+                    d = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19856bh, false);
                 } else {
-                    d = i0.a.d(0.5f, i0.a.d(0.5f, org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21761ih, false), org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21779jh, false)), org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21798kh, false));
+                    d = i0.a.d(0.5f, i0.a.d(0.5f, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19980ih, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19998jh, false)), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20017kh, false));
                 }
             } else {
-                d = i0.a.d(0.5f, org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.Zg, false), org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21617ah, false));
+                d = i0.a.d(0.5f, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Zg, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19837ah, false));
             }
         } else {
-            d = i0.a.d(0.5f, org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.Xg, false), org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.Yg, false));
+            d = i0.a.d(0.5f, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Xg, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Yg, false));
         }
         if (z4 && this.B != 0 && LiteMode.isEnabled(512)) {
             this.C = this.B;
@@ -348,9 +348,9 @@ public final class zc extends Drawable {
         } else {
             this.E = 1.0f;
             this.B = d;
-            yc ycVar = this.f33916q;
+            yc ycVar = this.f31343q;
             ycVar.h = d;
-            yc ycVar2 = this.f33917r;
+            yc ycVar2 = this.f31344r;
             ycVar2.h = d;
             ycVar.a();
             ycVar2.a();
@@ -404,28 +404,28 @@ public final class zc extends Drawable {
             }
             this.h = (bounds.width() / 2.0f) - c3;
             float height = (bounds.height() / 2.0f) - c3;
-            this.f33908i = height;
+            this.f31335i = height;
             float f10 = this.h;
             if (f10 >= 1.0f && height >= 1.0f) {
-                float min2 = Math.min(this.f33902a, Math.min(f10, height));
-                this.f33909j = min2;
+                float min2 = Math.min(this.f31330a, Math.min(f10, height));
+                this.f31336j = min2;
                 float f11 = this.h - min2;
-                this.f33910k = f11;
-                float f12 = this.f33908i - min2;
-                this.f33911l = f12;
+                this.f31337k = f11;
+                float f12 = this.f31335i - min2;
+                this.f31338l = f12;
                 float f13 = f11 * 2.0f;
-                this.f33912m = f13;
+                this.f31339m = f13;
                 float f14 = f12 * 2.0f;
-                this.f33913n = f14;
-                float f15 = this.f33904c * 1.5707964f * min2;
-                this.f33914o = f15;
+                this.f31340n = f14;
+                float f15 = this.f31332c * 1.5707964f * min2;
+                this.f31341o = f15;
                 float f16 = (f14 * 2.0f) + (f13 * 2.0f);
-                this.f33915p = (f15 * 4.0f) + f16;
-                int max = Math.max(12, Math.min(80, Math.round(((min2 * 6.2831855f) + f16) / this.f33903b)));
-                yc ycVar = this.f33916q;
-                if (max != ycVar.f33484x) {
+                this.f31342p = (f15 * 4.0f) + f16;
+                int max = Math.max(12, Math.min(80, Math.round(((min2 * 6.2831855f) + f16) / this.f31331b)));
+                yc ycVar = this.f31343q;
+                if (max != ycVar.f30998x) {
                     ycVar.c(max);
-                    this.f33917r.c(max);
+                    this.f31344r.c(max);
                 }
             }
         }
@@ -435,11 +435,11 @@ public final class zc extends Drawable {
     public final void setAlpha(int i10) {
         if (this.G != i10) {
             this.G = i10;
-            yc ycVar = this.f33916q;
-            ycVar.f33485y = i10;
+            yc ycVar = this.f31343q;
+            ycVar.f30999y = i10;
             ycVar.a();
-            yc ycVar2 = this.f33917r;
-            ycVar2.f33485y = i10;
+            yc ycVar2 = this.f31344r;
+            ycVar2.f30999y = i10;
             ycVar2.a();
             invalidateSelf();
         }
@@ -447,8 +447,8 @@ public final class zc extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f33916q.f33470i.setColorFilter(colorFilter);
-        this.f33917r.f33470i.setColorFilter(colorFilter);
+        this.f31343q.f30984i.setColorFilter(colorFilter);
+        this.f31344r.f30984i.setColorFilter(colorFilter);
         invalidateSelf();
     }
 }

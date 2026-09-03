@@ -1,30 +1,33 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class hk extends org.telegram.ui.Components.ro {
-    public final xn f37404f;
+import android.os.Bundle;
+public final class hk extends bo {
+    public final int f34687f;
+    public boolean h;
 
-    public hk(xn xnVar, Context context) {
-        super(context);
-        this.f37404f = xnVar;
+    public hk(Context context, org.telegram.ui.ActionBar.e5 e5Var, Bundle bundle, int i10) {
+        super(context, e5Var, bundle);
+        this.f34687f = i10;
     }
 
     @Override
-    public final void a(boolean z4) {
-        xn xnVar = this.f37404f;
-        xnVar.t7();
-        xnVar.r7();
-        xnVar.u7();
-        xnVar.v7();
-        al alVar = xnVar.Ya;
-        if (alVar != null) {
-            alVar.setTranslationY(xnVar.t9 + getCurrentHeight());
+    public final void a() {
+        switch (this.f34687f) {
+            case 0:
+                if (!this.h) {
+                    this.h = true;
+                    super.a();
+                    return;
+                }
+                return;
+            default:
+                if (!this.h) {
+                    this.h = true;
+                    super.a();
+                    return;
+                }
+                return;
         }
-        if (z4) {
-            xnVar.A9 = true;
-            xnVar.jc();
-            return;
-        }
-        xnVar.o9();
     }
 }

@@ -8,36 +8,36 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class uv0 extends FrameLayout {
-    public final int f41945a;
-    public final yv0 f41946b;
+    public final int f38921a;
+    public final yv0 f38922b;
 
     public uv0(yv0 yv0Var, Context context, int i10) {
         super(context);
-        this.f41945a = i10;
-        this.f41946b = yv0Var;
+        this.f38921a = i10;
+        this.f38922b = yv0Var;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
-        org.telegram.ui.Cells.t1 t1Var;
-        switch (this.f41945a) {
+        org.telegram.ui.Cells.s1 s1Var;
+        switch (this.f38921a) {
             case 0:
-                yv0 yv0Var = this.f41946b;
-                if (yv0Var.f43720y > 0.0f && yv0Var.f43718w != null) {
-                    yv0Var.f43719x.reset();
-                    float width = getWidth() / yv0Var.f43717s.getWidth();
-                    yv0Var.f43719x.postScale(width, width);
-                    yv0Var.v.setLocalMatrix(yv0Var.f43719x);
-                    yv0Var.f43718w.setAlpha((int) (yv0Var.f43720y * 255.0f));
+                yv0 yv0Var = this.f38922b;
+                if (yv0Var.f40345y > 0.0f && yv0Var.f40343w != null) {
+                    yv0Var.f40344x.reset();
+                    float width = getWidth() / yv0Var.f40342s.getWidth();
+                    yv0Var.f40344x.postScale(width, width);
+                    yv0Var.v.setLocalMatrix(yv0Var.f40344x);
+                    yv0Var.f40343w.setAlpha((int) (yv0Var.f40345y * 255.0f));
                     canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), yv0Var.f43718w);
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), yv0Var.f40343w);
                 } else {
                     canvas2 = canvas;
                 }
-                if (yv0Var.L && (t1Var = yv0Var.I) != null) {
-                    t1Var.I7 = yv0Var.M;
-                    t1Var.invalidate();
+                if (yv0Var.L && (s1Var = yv0Var.I) != null) {
+                    s1Var.I7 = yv0Var.M;
+                    s1Var.invalidate();
                     yv0Var.L = false;
                 }
                 super.dispatchDraw(canvas2);
@@ -50,10 +50,10 @@ public final class uv0 extends FrameLayout {
 
     @Override
     public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f41945a) {
+        switch (this.f38921a) {
             case 0:
                 if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    this.f41946b.c(true);
+                    this.f38922b.c(true);
                     return true;
                 }
                 return super.dispatchKeyEventPreIme(keyEvent);
@@ -64,14 +64,14 @@ public final class uv0 extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.f41945a) {
+        switch (this.f38921a) {
             case 1:
-                yv0 yv0Var = this.f41946b;
+                yv0 yv0Var = this.f38922b;
                 if (view != yv0Var.H && view != yv0Var.G) {
                     return super.drawChild(canvas, view, j10);
                 }
                 canvas.save();
-                canvas.clipRect(0.0f, AndroidUtilities.lerp(yv0Var.J, 0.0f, yv0Var.f43720y), getWidth(), AndroidUtilities.lerp(yv0Var.K, getHeight(), yv0Var.f43720y));
+                canvas.clipRect(0.0f, AndroidUtilities.lerp(yv0Var.J, 0.0f, yv0Var.f40345y), getWidth(), AndroidUtilities.lerp(yv0Var.K, getHeight(), yv0Var.f40345y));
                 boolean drawChild = super.drawChild(canvas, view, j10);
                 canvas.restore();
                 return drawChild;
@@ -82,10 +82,10 @@ public final class uv0 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        switch (this.f41945a) {
+        switch (this.f38921a) {
             case 0:
                 super.onLayout(z4, i10, i11, i12, i13);
-                this.f41946b.d();
+                this.f38922b.d();
                 return;
             default:
                 super.onLayout(z4, i10, i11, i12, i13);
@@ -95,11 +95,11 @@ public final class uv0 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f41945a) {
+        switch (this.f38921a) {
             case 2:
                 int size = View.MeasureSpec.getSize(i10);
                 int size2 = View.MeasureSpec.getSize(i11);
-                yv0 yv0Var = this.f41946b;
+                yv0 yv0Var = this.f38922b;
                 yv0Var.e();
                 for (int i12 = 0; i12 < getChildCount(); i12++) {
                     View childAt = getChildAt(i12);
@@ -117,9 +117,9 @@ public final class uv0 extends FrameLayout {
                             viewGroup2.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f11), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                         }
                     }
-                    org.telegram.ui.Components.qk0 qk0Var = yv0Var.N;
-                    if (childAt == qk0Var) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(qk0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                    org.telegram.ui.Components.pk0 pk0Var = yv0Var.N;
+                    if (childAt == pk0Var) {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(pk0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                     } else {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                     }
@@ -134,11 +134,11 @@ public final class uv0 extends FrameLayout {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f41945a) {
+        switch (this.f38921a) {
             case 0:
                 super.onSizeChanged(i10, i11, i12, i13);
-                yv0 yv0Var = this.f41946b;
-                ug.c.c(yv0Var.C, yv0Var.f43710c);
+                yv0 yv0Var = this.f38922b;
+                tg.c.c(yv0Var.C, yv0Var.f40336c);
                 yv0Var.D.d();
                 return;
             default:

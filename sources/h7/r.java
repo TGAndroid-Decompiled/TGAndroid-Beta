@@ -14,32 +14,32 @@ import n7.tf;
 import n7.vf;
 import n7.xf;
 public final class r extends cb.e {
-    public final int f7345b;
+    public final int f7019b;
 
     public r(int i10) {
         super(0);
-        this.f7345b = i10;
+        this.f7019b = i10;
     }
 
     @Override
     public final Object E(Object obj) {
-        switch (this.f7345b) {
+        switch (this.f7019b) {
             case 0:
                 cb.h c3 = cb.h.c();
                 Context b10 = cb.h.c().b();
                 ArrayList arrayList = new ArrayList();
                 ((o) obj).getClass();
-                cb.b bVar = new cb.b(8);
-                w2.a aVar = w2.a.f49361e;
+                ab.a aVar = new ab.a(8);
+                w2.a aVar2 = w2.a.e;
                 y2.q.b(b10);
-                y2.q.a().c(aVar);
+                y2.q.a().c(aVar2);
                 w2.a.d.contains(new v2.c("json"));
-                arrayList.add(bVar);
+                arrayList.add(aVar);
                 return new q(c3.b(), (cb.l) c3.a(cb.l.class));
             case 1:
                 z8 z8Var = (z8) obj;
                 cb.h c10 = cb.h.c();
-                return new c9(c10.b(), (cb.l) c10.a(cb.l.class), new a9(cb.h.c().b(), z8Var), z8Var.f9865a);
+                return new c9(c10.b(), (cb.l) c10.a(cb.l.class), new a9(cb.h.c().b(), z8Var), z8Var.f9222a);
             case 2:
                 cb.h c11 = cb.h.c();
                 return new ka(c11.b(), (cb.l) c11.a(cb.l.class), new ja(cb.h.c().b(), (ha) obj));

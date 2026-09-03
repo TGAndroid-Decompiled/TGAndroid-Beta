@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 public class o01 extends MetricAffectingSpan {
-    public final TextPaint f29629a;
-    public final String f29630b;
+    public final TextPaint f27423a;
+    public final String f27424b;
 
     public o01(TextPaint textPaint, String str) {
-        this.f29629a = textPaint;
-        this.f29630b = str;
+        this.f27423a = textPaint;
+        this.f27424b = str;
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f29629a;
+        TextPaint textPaint2 = this.f27423a;
         if (textPaint2 != null) {
             textPaint.setColor(textPaint2.getColor());
             textPaint.setTypeface(textPaint2.getTypeface());
@@ -26,7 +26,7 @@ public class o01 extends MetricAffectingSpan {
 
     @Override
     public final void updateMeasureState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f29629a;
+        TextPaint textPaint2 = this.f27423a;
         if (textPaint2 != null) {
             textPaint.setColor(textPaint2.getColor());
             textPaint.setTypeface(textPaint2.getTypeface());

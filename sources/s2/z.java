@@ -1,20 +1,19 @@
 package s2;
 
-import androidx.biometric.f0;
 import java.nio.ByteBuffer;
-import org.telegram.ui.yh;
+import org.telegram.ui.ai;
 public final class z extends a {
-    public static final f0 h;
-    public static final f0 f46949n;
-    public static final f0 f46950r;
-    public int f46951e;
-    public int[] f46952f;
+    public static final bb.b h;
+    public static final bb.b f44024n;
+    public static final bb.b f44025r;
+    public int e;
+    public int[] f44026f;
 
     static {
         de.a aVar = new de.a(z.class, "VideoMediaHeaderBox.java");
         h = aVar.e(aVar.d("getGraphicsmode", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "", "", "int"));
-        f46949n = aVar.e(aVar.d("getOpcolor", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "", "", "[I"));
-        f46950r = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "", "", "java.lang.String"));
+        f44024n = aVar.e(aVar.d("getOpcolor", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "", "", "[I"));
+        f44025r = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "", "", "java.lang.String"));
         aVar.e(aVar.d("setOpcolor", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "[I", "opcolor", "void"));
         aVar.e(aVar.d("setGraphicsmode", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "int", "graphicsmode", "void"));
     }
@@ -22,18 +21,18 @@ public final class z extends a {
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
-        this.f46951e = r2.b.h(byteBuffer);
-        this.f46952f = new int[3];
+        this.e = r2.b.h(byteBuffer);
+        this.f44026f = new int[3];
         for (int i10 = 0; i10 < 3; i10++) {
-            this.f46952f[i10] = r2.b.h(byteBuffer);
+            this.f44026f[i10] = r2.b.h(byteBuffer);
         }
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
-        r2.b.p(this.f46951e, byteBuffer);
-        for (int i10 : this.f46952f) {
+        r2.b.p(this.e, byteBuffer);
+        for (int i10 : this.f44026f) {
             r2.b.p(i10, byteBuffer);
         }
     }
@@ -44,21 +43,21 @@ public final class z extends a {
     }
 
     public final String toString() {
-        sf.f b10 = de.a.b(f46950r, this, this);
+        rf.f b10 = de.a.b(f44025r, this, this);
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         StringBuilder sb = new StringBuilder("VideoMediaHeaderBox[graphicsmode=");
-        yh.x(de.a.b(h, this, this));
-        sb.append(this.f46951e);
+        ai.x(de.a.b(h, this, this));
+        sb.append(this.e);
         sb.append(";opcolor0=");
-        f0 f0Var = f46949n;
-        yh.x(de.a.b(f0Var, this, this));
-        sb.append(this.f46952f[0]);
+        bb.b bVar = f44024n;
+        ai.x(de.a.b(bVar, this, this));
+        sb.append(this.f44026f[0]);
         sb.append(";opcolor1=");
-        yh.x(de.a.b(f0Var, this, this));
-        sb.append(this.f46952f[1]);
+        ai.x(de.a.b(bVar, this, this));
+        sb.append(this.f44026f[1]);
         sb.append(";opcolor2=");
-        yh.x(de.a.b(f0Var, this, this));
-        return android.support.v4.media.a.m(this.f46952f[2], "]", sb);
+        ai.x(de.a.b(bVar, this, this));
+        return android.support.v4.media.a.m(this.f44026f[2], "]", sb);
     }
 }

@@ -7,12 +7,12 @@ import java.util.Arrays;
 import java.util.List;
 import o4.s0;
 public abstract class c {
-    public final s0 f6010a;
-    public final int f6011b;
-    public final int[] f6012c;
+    public final s0 f5901a;
+    public final int f5902b;
+    public final int[] f5903c;
     public final n0[] d;
-    public final long[] f6013e;
-    public int f6014f;
+    public final long[] e;
+    public int f5904f;
 
     public c(s0 s0Var, int[] iArr) {
         boolean z4;
@@ -24,22 +24,22 @@ public abstract class c {
         }
         h5.a.i(z4);
         s0Var.getClass();
-        this.f6010a = s0Var;
+        this.f5901a = s0Var;
         int length = iArr.length;
-        this.f6011b = length;
+        this.f5902b = length;
         this.d = new n0[length];
         for (int i11 = 0; i11 < iArr.length; i11++) {
             this.d[i11] = s0Var.d[iArr[i11]];
         }
-        Arrays.sort(this.d, new e5.f(2));
-        this.f6012c = new int[this.f6011b];
+        Arrays.sort(this.d, new e5.e(3));
+        this.f5903c = new int[this.f5902b];
         while (true) {
-            int i12 = this.f6011b;
+            int i12 = this.f5902b;
             if (i10 < i12) {
-                this.f6012c[i10] = s0Var.a(this.d[i10]);
+                this.f5903c[i10] = s0Var.a(this.d[i10]);
                 i10++;
             } else {
-                this.f6013e = new long[i12];
+                this.e = new long[i12];
                 return;
             }
         }
@@ -52,7 +52,7 @@ public abstract class c {
     public final boolean d(int i10, long j10) {
         long elapsedRealtime = SystemClock.elapsedRealtime();
         boolean o10 = o(i10, elapsedRealtime);
-        for (int i11 = 0; i11 < this.f6011b && !o10; i11++) {
+        for (int i11 = 0; i11 < this.f5902b && !o10; i11++) {
             if (i11 != i10 && !o(i11, elapsedRealtime)) {
                 o10 = true;
             } else {
@@ -62,9 +62,9 @@ public abstract class c {
         if (!o10) {
             return false;
         }
-        long[] jArr = this.f6013e;
+        long[] jArr = this.e;
         long j11 = jArr[i10];
-        int i12 = d0.f7237a;
+        int i12 = d0.f6924a;
         long j12 = elapsedRealtime + j10;
         if (((j10 ^ j12) & (elapsedRealtime ^ j12)) < 0) {
             j12 = Long.MAX_VALUE;
@@ -83,7 +83,7 @@ public abstract class c {
         }
         if (obj != null && getClass() == obj.getClass()) {
             c cVar = (c) obj;
-            if (this.f6010a == cVar.f6010a && Arrays.equals(this.f6012c, cVar.f6012c)) {
+            if (this.f5901a == cVar.f5901a && Arrays.equals(this.f5903c, cVar.f5903c)) {
                 return true;
             }
         }
@@ -91,7 +91,7 @@ public abstract class c {
     }
 
     public final int f(int i10) {
-        return this.f6012c[i10];
+        return this.f5903c[i10];
     }
 
     public final n0 g() {
@@ -101,14 +101,14 @@ public abstract class c {
     public abstract int h();
 
     public final int hashCode() {
-        if (this.f6014f == 0) {
-            this.f6014f = Arrays.hashCode(this.f6012c) + (System.identityHashCode(this.f6010a) * 31);
+        if (this.f5904f == 0) {
+            this.f5904f = Arrays.hashCode(this.f5903c) + (System.identityHashCode(this.f5901a) * 31);
         }
-        return this.f6014f;
+        return this.f5904f;
     }
 
     public final int i() {
-        return this.f6012c[h()];
+        return this.f5903c[h()];
     }
 
     public abstract Object j();
@@ -116,12 +116,12 @@ public abstract class c {
     public abstract int k();
 
     public final s0 l() {
-        return this.f6010a;
+        return this.f5901a;
     }
 
     public final int m(int i10) {
-        for (int i11 = 0; i11 < this.f6011b; i11++) {
-            if (this.f6012c[i11] == i10) {
+        for (int i11 = 0; i11 < this.f5902b; i11++) {
+            if (this.f5903c[i11] == i10) {
                 return i11;
             }
         }
@@ -129,7 +129,7 @@ public abstract class c {
     }
 
     public final int n(n0 n0Var) {
-        for (int i10 = 0; i10 < this.f6011b; i10++) {
+        for (int i10 = 0; i10 < this.f5902b; i10++) {
             if (this.d[i10] == n0Var) {
                 return i10;
             }
@@ -138,14 +138,14 @@ public abstract class c {
     }
 
     public final boolean o(int i10, long j10) {
-        if (this.f6013e[i10] > j10) {
+        if (this.e[i10] > j10) {
             return true;
         }
         return false;
     }
 
     public final int p() {
-        return this.f6012c.length;
+        return this.f5903c.length;
     }
 
     public final boolean u(long j10, q4.e eVar, List list) {

@@ -2,12 +2,12 @@ package pc;
 public final class i extends j {
     @Override
     public final n3.a g() {
-        r();
+        s();
         return this;
     }
 
     @Override
-    public final j r() {
+    public final j s() {
         super.g();
         this.v = new oc.b();
         return this;
@@ -16,7 +16,7 @@ public final class i extends j {
     @Override
     public final String toString() {
         oc.b bVar = this.v;
-        if (bVar != null && bVar.f16710a > 0) {
+        if (bVar != null && bVar.f16522a > 0) {
             return "<" + o() + " " + this.v.toString() + ">";
         }
         return "<" + o() + ">";

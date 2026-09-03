@@ -1,145 +1,78 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.os.SystemClock;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class mc1 extends FrameLayout {
-    public final int f38950a = 0;
-    public final Object f38951b;
-    public final Object f38952c;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class mc1 implements org.telegram.ui.Components.iq {
+    public final jd1 f36030a;
 
-    public mc1(uf.d dVar, Context context, ViewGroup viewGroup) {
-        super(context);
-        this.f38952c = dVar;
-        this.f38951b = viewGroup;
+    public mc1(jd1 jd1Var) {
+        this.f36030a = jd1Var;
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        boolean z4;
-        float f10;
-        switch (this.f38950a) {
-            case 1:
-                Path path = (Path) this.f38951b;
-                qh.y4 y4Var = (qh.y4) this.f38952c;
-                if (y4Var.h != null && (((z4 = y4Var.f46369f) && view == y4Var.d) || (!z4 && view == y4Var.f46367c))) {
-                    if (z4) {
-                        f10 = y4Var.f46368e;
-                    } else {
-                        f10 = 1.0f - y4Var.f46368e;
-                    }
-                    canvas.save();
-                    path.rewind();
-                    path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (f10 * getMeasuredWidth()) / 2.0f, Path.Direction.CW);
-                    canvas.clipPath(path);
-                    boolean drawChild = super.drawChild(canvas, view, j10);
-                    canvas.restore();
-                    return drawChild;
-                }
-                return super.drawChild(canvas, view, j10);
-            default:
-                return super.drawChild(canvas, view, j10);
+    public final int H0(int i10) {
+        org.telegram.ui.ActionBar.h6 h6Var;
+        jd1 jd1Var = this.f36030a;
+        if (jd1Var.f35213n == 3) {
+            org.telegram.ui.ActionBar.i6 i6Var = jd1Var.f35183b0;
+            if (i6Var.P && i10 == 0 && (h6Var = (org.telegram.ui.ActionBar.h6) i6Var.X.get(org.telegram.ui.ActionBar.j6.f20053n)) != null) {
+                return h6Var.e;
+            }
+            return 0;
         }
+        return 0;
     }
 
     @Override
-    public void invalidate() {
-        switch (this.f38950a) {
-            case 0:
-                super.invalidate();
-                org.telegram.ui.ActionBar.r0 r0Var = ((jd1) this.f38952c).f38003q0;
-                if (r0Var != null) {
-                    r0Var.invalidate();
-                    return;
-                }
+    public final void k(boolean z4) {
+        int i10;
+        int i11;
+        jd1 jd1Var = this.f36030a;
+        org.telegram.ui.ActionBar.h6 h6Var = jd1Var.f35225s;
+        if (z4) {
+            if (h6Var.f19750r == null) {
+                jd1Var.finishFragment();
+                i11 = ((org.telegram.ui.ActionBar.p2) jd1Var).currentAccount;
+                MessagesController.getInstance(i11).saveThemeToServer(h6Var.f19737b, h6Var);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, h6Var.f19737b, h6Var);
                 return;
-            default:
-                super.invalidate();
-                return;
+            }
+            StringBuilder sb = new StringBuilder("https://");
+            i10 = ((org.telegram.ui.ActionBar.p2) jd1Var).currentAccount;
+            sb.append(MessagesController.getInstance(i10).linkPrefix);
+            sb.append("/addtheme/");
+            sb.append(h6Var.f19750r.slug);
+            String sb2 = sb.toString();
+            jd1Var.showDialog(new org.telegram.ui.Components.lq0(jd1Var.getParentActivity(), null, sb2, false, sb2, false, null));
+            return;
         }
+        org.telegram.ui.Components.z4.W(jd1Var, 1, null, null);
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f38950a) {
-            case 0:
-                int[] iArr = (int[]) this.f38951b;
-                jd1 jd1Var = (jd1) this.f38952c;
-                if (!AndroidUtilities.usingHardwareInput) {
-                    getLocationInWindow(iArr);
-                    float translationY = jd1Var.f38001p0.getTranslationY();
-                    int i10 = iArr[1];
-                    if (translationY != i10) {
-                        jd1Var.f38001p0.setTranslationY(-i10);
-                        jd1Var.f38003q0.invalidate();
-                    }
-                    if (SystemClock.elapsedRealtime() < jd1Var.M) {
-                        invalidate();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
+    public final void r0(int r15, int r16, boolean r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.mc1.r0(int, int, boolean):void");
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        int dp;
-        switch (this.f38950a) {
-            case 2:
-                ViewGroup viewGroup = (ViewGroup) this.f38951b;
-                uf.d dVar = (uf.d) this.f38952c;
-                if (dVar.H && dVar.G) {
-                    super.onMeasure(i10, i11);
-                    return;
-                }
-                int size = View.MeasureSpec.getSize(i11);
-                if (size == 0) {
-                    size = viewGroup.getMeasuredHeight();
-                }
-                if (size == 0) {
-                    size = (AndroidUtilities.displaySize.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight;
-                }
-                int dp2 = AndroidUtilities.dp(50.0f);
-                int i12 = 0;
-                if (dVar.v != 0) {
-                    dp = 0;
-                } else {
-                    dp = AndroidUtilities.dp(30.0f) + dp2;
-                }
-                if (!dVar.B && !dVar.f48566w) {
-                    dp += dp2;
-                }
-                int paddingTop = (size - viewGroup.getPaddingTop()) - viewGroup.getPaddingBottom();
-                if (dp < paddingTop) {
-                    i12 = paddingTop - dp;
-                }
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(i12, 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+    public final void z() {
+        jd1 jd1Var = this.f36030a;
+        if (jd1Var.getParentActivity() != null) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(jd1Var.getParentActivity());
+            alertDialog$Builder.f19478a.O = LocaleController.getString(R.string.DeleteThemeTitle);
+            alertDialog$Builder.f19478a.Q = LocaleController.getString(R.string.DeleteThemeAlert);
+            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new kl0(this, 21));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f19478a;
+            jd1Var.showDialog(d2Var);
+            TextView textView = (TextView) d2Var.d(-1);
+            if (textView != null) {
+                textView.setTextColor(jd1Var.getThemedColor(org.telegram.ui.ActionBar.j6.f20116q7));
+            }
         }
-    }
-
-    public mc1(Context context, jd1 jd1Var) {
-        super(context);
-        this.f38952c = jd1Var;
-        this.f38951b = new int[2];
-    }
-
-    public mc1(qh.y4 y4Var, Context context) {
-        super(context);
-        this.f38952c = y4Var;
-        this.f38951b = new Path();
     }
 }

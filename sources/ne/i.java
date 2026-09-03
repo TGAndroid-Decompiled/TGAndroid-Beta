@@ -1,11 +1,11 @@
 package ne;
 
-import k7.h0;
+import k7.g0;
 public final class i extends a {
-    public int f15968g;
+    public int f14932g;
 
     @Override
-    public final void a(h0 h0Var) {
-        h0Var.g(this);
+    public final void a(g0 g0Var) {
+        g0Var.g(this);
     }
 }

@@ -1,22 +1,22 @@
 package org.telegram.ui.Components;
 public final class xa implements q0.a {
-    public final int f32996a;
-    public final Object f32997b;
+    public final int f30567a;
+    public final Object f30568b;
 
     public xa(Object obj, int i10) {
-        this.f32996a = i10;
-        this.f32997b = obj;
+        this.f30567a = i10;
+        this.f30568b = obj;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f32996a) {
+        switch (this.f30567a) {
             case 0:
-                ic icVar = (ic) this.f32997b;
+                ic icVar = (ic) this.f30568b;
                 Float f10 = (Float) obj;
-                fb fbVar = icVar.f27784p;
+                fb fbVar = icVar.f25677p;
                 if (fbVar != null) {
-                    nb nbVar = icVar.f27774e;
+                    nb nbVar = icVar.e;
                     if (!nbVar.top) {
                         fbVar.c(nbVar.getHeight() - f10.floatValue());
                         return;
@@ -25,9 +25,9 @@ public final class xa implements q0.a {
                 }
                 return;
             default:
-                ki kiVar = ((mi) this.f32997b).W1;
-                if (kiVar != null) {
-                    kiVar.Z0(obj);
+                ji jiVar = ((li) this.f30568b).W1;
+                if (jiVar != null) {
+                    jiVar.Z0(obj);
                     return;
                 }
                 return;

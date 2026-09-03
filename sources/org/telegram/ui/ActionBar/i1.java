@@ -14,26 +14,26 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.b8;
 import org.telegram.ui.Components.c8;
-import org.telegram.ui.Components.ov;
+import org.telegram.ui.Components.lv;
 import org.telegram.ui.Components.qy0;
-import org.telegram.ui.Components.um;
+import org.telegram.ui.Components.sm;
 import org.telegram.ui.FiltersSetupActivity;
-import org.telegram.ui.a20;
+import org.telegram.ui.b20;
 import org.telegram.ui.fn0;
-import org.telegram.ui.qt;
-import org.telegram.ui.v10;
+import org.telegram.ui.rt;
 import org.telegram.ui.vl0;
-import org.telegram.ui.vy;
-import org.telegram.ui.yy;
+import org.telegram.ui.wy;
+import org.telegram.ui.x10;
+import org.telegram.ui.zy;
 public final class i1 implements View.OnTouchListener {
-    public final int f21449a;
-    public final Object f21450b;
-    public final Object f21451c;
+    public final int f19760a;
+    public final Object f19761b;
+    public final Object f19762c;
 
     public i1(int i10, Object obj, Object obj2) {
-        this.f21449a = i10;
-        this.f21450b = obj;
-        this.f21451c = obj2;
+        this.f19760a = i10;
+        this.f19761b = obj;
+        this.f19762c = obj2;
     }
 
     @Override
@@ -44,10 +44,10 @@ public final class i1 implements View.OnTouchListener {
         int i12;
         int i13;
         int i14;
-        switch (this.f21449a) {
+        switch (this.f19760a) {
             case 0:
-                p1 p1Var = (p1) this.f21450b;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f21451c;
+                p1 p1Var = (p1) this.f19761b;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f19762c;
                 if (motionEvent.getAction() == 0) {
                     Drawable backgroundDrawable = actionBarPopupWindow$ActionBarPopupWindowLayout.getBackgroundDrawable();
                     RectF rectF = AndroidUtilities.rectTmp;
@@ -60,40 +60,40 @@ public final class i1 implements View.OnTouchListener {
                 }
                 return false;
             case 1:
-                b8 b8Var = (b8) this.f21450b;
-                org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) this.f21451c;
+                b8 b8Var = (b8) this.f19761b;
+                org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) this.f19762c;
                 if (motionEvent.getAction() == 0) {
-                    c8 c8Var = b8Var.f25536n;
-                    c8Var.E.r(c8Var.f25817n.T(xVar));
+                    c8 c8Var = b8Var.f23578n;
+                    c8Var.E.r(c8Var.f23855n.T(xVar));
                     return false;
                 }
                 return false;
             case 2:
-                return ov.m((ov) this.f21450b, (um) this.f21451c, motionEvent);
+                return lv.m((lv) this.f19761b, (sm) this.f19762c, motionEvent);
             case 3:
-                return qy0.a((qy0) this.f21450b, (org.telegram.ui.Components.k) this.f21451c, motionEvent);
+                return qy0.a((qy0) this.f19761b, (org.telegram.ui.Components.k) this.f19762c, motionEvent);
             case 4:
-                vy vyVar = (vy) this.f21450b;
-                org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) this.f21451c;
-                vyVar.getClass();
+                wy wyVar = (wy) this.f19761b;
+                org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) this.f19762c;
+                wyVar.getClass();
                 if (motionEvent.getAction() == 0) {
-                    yy yyVar = vyVar.d;
-                    yyVar.f43731c.r(yyVar.f43730b.T(g4Var));
+                    zy zyVar = wyVar.d;
+                    zyVar.f40894c.r(zyVar.f40893b.T(f4Var));
                     return false;
                 }
                 return false;
             case 5:
-                a20 a20Var = (a20) this.f21450b;
-                v10 v10Var = (v10) this.f21451c;
+                b20 b20Var = (b20) this.f19761b;
+                x10 x10Var = (x10) this.f19762c;
                 if (motionEvent.getAction() == 0) {
-                    FiltersSetupActivity filtersSetupActivity = a20Var.f35001e;
-                    filtersSetupActivity.f34119c.r(filtersSetupActivity.f34117a.T(v10Var));
+                    FiltersSetupActivity filtersSetupActivity = b20Var.e;
+                    filtersSetupActivity.f31573c.r(filtersSetupActivity.f31571a.T(x10Var));
                     return false;
                 }
                 return false;
             case 6:
-                fn0 fn0Var = (fn0) this.f21450b;
-                Context context = (Context) this.f21451c;
+                fn0 fn0Var = (fn0) this.f19761b;
+                Context context = (Context) this.f19762c;
                 int i15 = 0;
                 if (fn0Var.getParentActivity() == null) {
                     return false;
@@ -136,15 +136,15 @@ public final class i1 implements View.OnTouchListener {
                         if (intValue == 8) {
                             x10.h(LocaleController.getString(R.string.PassportSelectNotExpire), new vl0(0, fn0Var, editTextBoldCursor));
                         }
-                        fn0Var.showDialog(x10.f21168a);
-                    } catch (Exception e6) {
-                        FileLog.e(e6);
+                        fn0Var.showDialog(x10.f19478a);
+                    } catch (Exception e) {
+                        FileLog.e(e);
                     }
                 }
                 return true;
             default:
-                qh.h1 h1Var = (qh.h1) this.f21450b;
-                return qt.q().s(motionEvent, h1Var.f45383b, (ag.h) this.f21451c, h1Var.f45386f, qh.x1.H(h1Var.f45388r));
+                ph.h1 h1Var = (ph.h1) this.f19761b;
+                return rt.q().s(motionEvent, h1Var.f41735b, (dg.n) this.f19762c, h1Var.f41737f, ph.y1.H(h1Var.f41739r));
         }
     }
 }

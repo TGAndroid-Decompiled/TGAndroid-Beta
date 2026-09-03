@@ -35,7 +35,7 @@ public final class yc1 extends org.telegram.ui.Components.p9 {
         jd1 jd1Var = this.H;
         if (z4) {
             Drawable drawable = this.D;
-            if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof org.telegram.ui.Components.fc0)) {
+            if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof org.telegram.ui.Components.ec0)) {
                 if (drawable instanceof BitmapDrawable) {
                     if (((BitmapDrawable) drawable).getTileModeX() == Shader.TileMode.REPEAT) {
                         canvas.save();
@@ -47,8 +47,8 @@ public final class yc1 extends org.telegram.ui.Components.p9 {
                     } else {
                         int measuredHeight = getMeasuredHeight();
                         float max = Math.max(getMeasuredWidth() / this.D.getIntrinsicWidth(), measuredHeight / this.D.getIntrinsicHeight());
-                        int ceil = (int) Math.ceil(this.D.getIntrinsicWidth() * max * jd1Var.f38016v1);
-                        int ceil2 = (int) Math.ceil(this.D.getIntrinsicHeight() * max * jd1Var.f38016v1);
+                        int ceil = (int) Math.ceil(this.D.getIntrinsicWidth() * max * jd1Var.f35233v1);
+                        int ceil2 = (int) Math.ceil(this.D.getIntrinsicHeight() * max * jd1Var.f35233v1);
                         int measuredWidth = (getMeasuredWidth() - ceil) / 2;
                         int i10 = (measuredHeight - ceil2) / 2;
                         this.G = i10;
@@ -62,9 +62,9 @@ public final class yc1 extends org.telegram.ui.Components.p9 {
             }
         }
         if (jd1Var.X1) {
-            if (!jd1Var.f37968c.isFinished() && jd1Var.f37968c.computeScrollOffset()) {
-                if (jd1Var.f37968c.getStartX() < jd1Var.T1 && jd1Var.f37968c.getStartX() > 0) {
-                    jd1Var.U1 = jd1Var.f37968c.getCurrX();
+            if (!jd1Var.f35186c.isFinished() && jd1Var.f35186c.computeScrollOffset()) {
+                if (jd1Var.f35186c.getStartX() < jd1Var.T1 && jd1Var.f35186c.getStartX() > 0) {
+                    jd1Var.U1 = jd1Var.f35186c.getCurrX();
                 }
                 jd1Var.V0();
                 invalidate();
@@ -79,7 +79,7 @@ public final class yc1 extends org.telegram.ui.Components.p9 {
             super.onDraw(canvas);
         }
         if (jd1Var.J1) {
-            float f12 = jd1Var.f37993k1;
+            float f12 = jd1Var.f35210k1;
             if (f12 > 0.0f) {
                 canvas.drawColor(i0.a.k(-16777216, (int) (f12 * 255.0f * jd1Var.l1)));
             }
@@ -90,29 +90,29 @@ public final class yc1 extends org.telegram.ui.Components.p9 {
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         jd1 jd1Var = this.H;
-        org.telegram.ui.Components.o81 o81Var = jd1Var.f38010s1;
+        org.telegram.ui.Components.o81 o81Var = jd1Var.f35227s1;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
         o81Var.getClass();
         float a2 = org.telegram.ui.Components.o81.a(measuredWidth, measuredHeight);
-        jd1Var.f38016v1 = a2;
+        jd1Var.f35233v1 = a2;
         if (jd1Var.B1) {
             setScaleX(a2);
-            setScaleY(jd1Var.f38016v1);
+            setScaleY(jd1Var.f35233v1);
         }
-        if (jd1Var.f37964b == 2) {
+        if (jd1Var.f35182b == 2) {
             getMeasuredWidth();
             getMeasuredHeight();
         }
         int measuredWidth2 = getMeasuredWidth() + (getMeasuredHeight() << 16);
         if (jd1Var.Y1 != measuredWidth2) {
             jd1Var.X1 = false;
-            Bitmap bitmap = jd1Var.f38027z1;
+            Bitmap bitmap = jd1Var.f35244z1;
             if (bitmap != null) {
-                int measuredHeight2 = (int) ((getMeasuredHeight() / jd1Var.f38027z1.getHeight()) * bitmap.getWidth());
+                int measuredHeight2 = (int) ((getMeasuredHeight() / jd1Var.f35244z1.getHeight()) * bitmap.getWidth());
                 if (measuredHeight2 - getMeasuredWidth() > 100) {
                     jd1Var.X1 = true;
-                    jd1Var.W1 = (int) ((jd1Var.f38027z1.getHeight() / getMeasuredHeight()) * getMeasuredWidth());
+                    jd1Var.W1 = (int) ((jd1Var.f35244z1.getHeight() / getMeasuredHeight()) * getMeasuredWidth());
                     float measuredWidth3 = (measuredHeight2 - getMeasuredWidth()) / 2.0f;
                     jd1Var.U1 = measuredWidth3;
                     jd1Var.V1 = measuredWidth3;

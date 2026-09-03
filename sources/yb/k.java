@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public abstract class k {
-    public static final Logger f50883a = Logger.getLogger(k.class.getName());
-    public static final HashMap f50884b = new HashMap();
+    public static final Logger f47247a = Logger.getLogger(k.class.getName());
+    public static final HashMap f47248b = new HashMap();
 
     static {
         HashSet hashSet = new HashSet();
@@ -30,14 +30,14 @@ public abstract class k {
             f fVar = (f) cls.getAnnotation(f.class);
             int[] tags = fVar.tags();
             int objectTypeIndication = fVar.objectTypeIndication();
-            Map map = (Map) f50884b.get(Integer.valueOf(objectTypeIndication));
+            Map map = (Map) f47248b.get(Integer.valueOf(objectTypeIndication));
             if (map == null) {
                 map = new HashMap();
             }
             for (int i10 : tags) {
                 map.put(Integer.valueOf(i10), cls);
             }
-            f50884b.put(Integer.valueOf(objectTypeIndication), map);
+            f47248b.put(Integer.valueOf(objectTypeIndication), map);
         }
     }
 
@@ -45,39 +45,39 @@ public abstract class k {
         b bVar;
         int k10 = r2.b.k(byteBuffer);
         Integer valueOf = Integer.valueOf(i10);
-        HashMap hashMap = f50884b;
+        HashMap hashMap = f47248b;
         Map map = (Map) hashMap.get(valueOf);
         if (map == null) {
             map = (Map) hashMap.get(-1);
         }
         Class cls = (Class) map.get(Integer.valueOf(k10));
-        Logger logger = f50883a;
+        Logger logger = f47247a;
         if (cls != null && !cls.isInterface() && !Modifier.isAbstract(cls.getModifiers())) {
             try {
                 bVar = (b) cls.newInstance();
-            } catch (Exception e6) {
+            } catch (Exception e) {
                 Level level = Level.SEVERE;
-                logger.log(level, "Couldn't instantiate BaseDescriptor class " + cls + " for objectTypeIndication " + i10 + " and tag " + k10, (Throwable) e6);
-                throw new RuntimeException(e6);
+                logger.log(level, "Couldn't instantiate BaseDescriptor class " + cls + " for objectTypeIndication " + i10 + " and tag " + k10, (Throwable) e);
+                throw new RuntimeException(e);
             }
         } else {
             logger.warning("No ObjectDescriptor found for objectTypeIndication " + Integer.toHexString(i10) + " and tag " + Integer.toHexString(k10) + " found: " + cls);
             bVar = new Object();
         }
-        bVar.f50858a = k10;
+        bVar.f47224a = k10;
         int a2 = r2.b.a(byteBuffer.get());
-        bVar.f50859b = a2 & 127;
+        bVar.f47225b = a2 & 127;
         int i11 = 1;
         while ((a2 >>> 7) == 1) {
             a2 = r2.b.a(byteBuffer.get());
             i11++;
-            bVar.f50859b = (bVar.f50859b << 7) | (a2 & 127);
+            bVar.f47225b = (bVar.f47225b << 7) | (a2 & 127);
         }
-        bVar.f50860c = i11;
+        bVar.f47226c = i11;
         ByteBuffer slice = byteBuffer.slice();
-        slice.limit(bVar.f50859b);
+        slice.limit(bVar.f47225b);
         bVar.b(slice);
-        byteBuffer.position(byteBuffer.position() + bVar.f50859b);
+        byteBuffer.position(byteBuffer.position() + bVar.f47225b);
         return bVar;
     }
 }

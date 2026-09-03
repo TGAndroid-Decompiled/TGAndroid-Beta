@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.widget.EditText;
-public final class uc1 extends org.telegram.ui.ActionBar.i5 {
+public final class uc1 extends org.telegram.ui.ActionBar.h5 {
     @Override
     public final void m() {
     }

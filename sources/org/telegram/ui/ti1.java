@@ -1,43 +1,30 @@
 package org.telegram.ui;
 
-import android.widget.EditText;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ti1 extends org.telegram.ui.ActionBar.i5 {
-    public final WallpapersListActivity f41580f;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class ti1 extends View {
+    public int f38530a;
+    public final WallpapersListActivity f38531b;
 
-    public ti1(WallpapersListActivity wallpapersListActivity) {
-        this.f41580f = wallpapersListActivity;
+    public ti1(WallpapersListActivity wallpapersListActivity, Context context) {
+        super(context);
+        this.f38531b = wallpapersListActivity;
     }
 
     @Override
-    public final void k() {
-        WallpapersListActivity wallpapersListActivity = this.f41580f;
-        yi1 yi1Var = wallpapersListActivity.G;
-        yi1Var.f43636n = null;
-        yi1Var.E(null, true);
-        wallpapersListActivity.I.setSearchFieldHint(LocaleController.getString(R.string.SearchBackgrounds));
+    public final void onDraw(Canvas canvas) {
+        WallpapersListActivity wallpapersListActivity = this.f38531b;
+        wallpapersListActivity.f32390w.setColor(this.f38530a);
+        canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.f32390w);
+        if (this.f38530a == org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19881d6, false)) {
+            canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.f32391x);
+        }
     }
 
     @Override
-    public final void m() {
-        WallpapersListActivity wallpapersListActivity = this.f41580f;
-        wallpapersListActivity.E.setAdapter(wallpapersListActivity.F);
-        wallpapersListActivity.E.invalidate();
-        wallpapersListActivity.G.E(null, true);
-        wallpapersListActivity.I.setSearchFieldCaption(null);
-        k();
-    }
-
-    @Override
-    public final void n() {
-        WallpapersListActivity wallpapersListActivity = this.f41580f;
-        wallpapersListActivity.E.setAdapter(wallpapersListActivity.G);
-        wallpapersListActivity.E.invalidate();
-    }
-
-    @Override
-    public final void q(EditText editText) {
-        this.f41580f.G.E(editText.getText().toString(), false);
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(AndroidUtilities.dp(50.0f), AndroidUtilities.dp(62.0f));
     }
 }

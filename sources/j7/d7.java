@@ -1,22 +1,20 @@
 package j7;
 
-import java.nio.ByteBuffer;
+import android.util.Log;
 public abstract class d7 {
-    public e4.c a(e4.e eVar) {
-        boolean z4;
-        ByteBuffer byteBuffer = eVar.d;
-        byteBuffer.getClass();
-        if (byteBuffer.position() == 0 && byteBuffer.hasArray() && byteBuffer.arrayOffset() == 0) {
-            z4 = true;
-        } else {
-            z4 = false;
+    public static void a(Exception exc, String str, Object... objArr) {
+        if (Log.isLoggable("Vision", 6)) {
+            if (Log.isLoggable("Vision", 3)) {
+                Log.e("Vision", String.format(str, objArr), exc);
+                return;
+            }
+            String format = String.format(str, objArr);
+            String valueOf = String.valueOf(exc);
+            StringBuilder sb = new StringBuilder(valueOf.length() + format.length() + 2);
+            sb.append(format);
+            sb.append(": ");
+            sb.append(valueOf);
+            Log.e("Vision", sb.toString());
         }
-        h5.a.f(z4);
-        if (eVar.e(Integer.MIN_VALUE)) {
-            return null;
-        }
-        return b(eVar, byteBuffer);
     }
-
-    public abstract e4.c b(e4.e eVar, ByteBuffer byteBuffer);
 }

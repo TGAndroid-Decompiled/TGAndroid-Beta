@@ -3,21 +3,21 @@ package org.telegram.messenger;
 import android.os.Handler;
 import android.os.Message;
 public final class z1 implements Handler.Callback {
-    public final int f20747a;
-    public final Thread f20748b;
+    public final int f19069a;
+    public final Thread f19070b;
 
     public z1(Thread thread, int i10) {
-        this.f20747a = i10;
-        this.f20748b = thread;
+        this.f19069a = i10;
+        this.f19070b = thread;
     }
 
     @Override
     public final boolean handleMessage(Message message) {
-        switch (this.f20747a) {
+        switch (this.f19069a) {
             case 0:
-                return DispatchQueue.a((DispatchQueue) this.f20748b, message);
+                return DispatchQueue.a((DispatchQueue) this.f19070b, message);
             default:
-                return DispatchQueueMainThreadSync.b((DispatchQueueMainThreadSync) this.f20748b, message);
+                return DispatchQueueMainThreadSync.b((DispatchQueueMainThreadSync) this.f19070b, message);
         }
     }
 }

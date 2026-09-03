@@ -1,10 +1,15 @@
 package pf;
 
-import java.nio.ShortBuffer;
-import z9.d;
-public interface a {
-    public static final db.a f44400t = new db.a(19);
-    public static final d f44401u = new d(19);
+import android.graphics.Bitmap;
+import java.util.List;
+public final class a {
+    public final int f41224a;
+    public final Bitmap f41225b;
+    public final List f41226c;
 
-    void u0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12);
+    public a(Bitmap bitmap, int i10, List list) {
+        this.f41226c = list;
+        this.f41225b = bitmap;
+        this.f41224a = i10;
+    }
 }

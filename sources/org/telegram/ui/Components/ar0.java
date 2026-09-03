@@ -6,38 +6,38 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ar0 implements Runnable {
-    public final int f25354a;
-    public final yu0 f25355b;
-    public final TLRPC.TL_error f25356c;
+    public final int f23474a;
+    public final yu0 f23475b;
+    public final TLRPC.TL_error f23476c;
     public final int d;
-    public final int f25357e;
-    public final TLObject f25358f;
+    public final int e;
+    public final TLObject f23477f;
 
     public ar0(yu0 yu0Var, TLRPC.TL_error tL_error, int i10, int i11, TLObject tLObject, int i12) {
-        this.f25354a = i12;
-        this.f25355b = yu0Var;
-        this.f25356c = tL_error;
+        this.f23474a = i12;
+        this.f23475b = yu0Var;
+        this.f23476c = tL_error;
         this.d = i10;
-        this.f25357e = i11;
-        this.f25358f = tLObject;
+        this.e = i11;
+        this.f23477f = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f25354a) {
+        switch (this.f23474a) {
             case 0:
-                yu0 yu0Var = this.f25355b;
-                NotificationCenter.getInstance(yu0Var.f33649s1.getCurrentAccount()).doOnIdle(new ar0(yu0Var, this.f25356c, this.d, this.f25357e, this.f25358f, 1));
+                yu0 yu0Var = this.f23475b;
+                NotificationCenter.getInstance(yu0Var.f31155s1.getCurrentAccount()).doOnIdle(new ar0(yu0Var, this.f23476c, this.d, this.e, this.f23477f, 1));
                 return;
             default:
-                yu0 yu0Var2 = this.f25355b;
-                nu0[] nu0VarArr = yu0Var2.f33643q1;
-                if (this.f25356c == null) {
-                    int i10 = this.f25357e;
+                yu0 yu0Var2 = this.f23475b;
+                nu0[] nu0VarArr = yu0Var2.f31149q1;
+                if (this.f23476c == null) {
+                    int i10 = this.e;
                     nu0 nu0Var = nu0VarArr[i10];
-                    if (this.d == nu0Var.f29593p) {
-                        TLRPC.TL_messages_searchResultsPositions tL_messages_searchResultsPositions = (TLRPC.TL_messages_searchResultsPositions) this.f25358f;
-                        nu0Var.f29583e.clear();
+                    if (this.d == nu0Var.f27380p) {
+                        TLRPC.TL_messages_searchResultsPositions tL_messages_searchResultsPositions = (TLRPC.TL_messages_searchResultsPositions) this.f23477f;
+                        nu0Var.e.clear();
                         int size = tL_messages_searchResultsPositions.positions.size();
                         int i11 = 0;
                         for (int i12 = 0; i12 < size; i12++) {
@@ -45,24 +45,24 @@ public final class ar0 implements Runnable {
                             int i13 = tL_searchResultPosition.date;
                             if (i13 != 0) {
                                 ?? obj = new Object();
-                                obj.f32540c = i13;
+                                obj.f30052c = i13;
                                 obj.d = tL_searchResultPosition.msg_id;
-                                obj.f32539b = tL_searchResultPosition.offset;
-                                obj.f32538a = LocaleController.formatYearMont(i13, true);
-                                nu0VarArr[i10].f29583e.add(obj);
+                                obj.f30051b = tL_searchResultPosition.offset;
+                                obj.f30050a = LocaleController.formatYearMont(i13, true);
+                                nu0VarArr[i10].e.add(obj);
                             }
                         }
-                        Collections.sort(nu0VarArr[i10].f29583e, new oh.k0(28));
+                        Collections.sort(nu0VarArr[i10].e, new nh.e4(28));
                         nu0 nu0Var2 = nu0VarArr[i10];
-                        nu0Var2.f29584f[0] = tL_messages_searchResultsPositions.count;
+                        nu0Var2.f27371f[0] = tL_messages_searchResultsPositions.count;
                         nu0Var2.h = true;
-                        if (!nu0Var2.f29583e.isEmpty()) {
+                        if (!nu0Var2.e.isEmpty()) {
                             while (true) {
-                                qt0[] qt0VarArr = yu0Var2.f33625h0;
+                                qt0[] qt0VarArr = yu0Var2.f31131h0;
                                 if (i11 < qt0VarArr.length) {
                                     qt0 qt0Var = qt0VarArr[i11];
                                     if (qt0Var.C == i10) {
-                                        qt0Var.f30517b = true;
+                                        qt0Var.f28257b = true;
                                         yu0Var2.o1(qt0Var, true);
                                     }
                                     i11++;

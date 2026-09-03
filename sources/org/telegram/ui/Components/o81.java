@@ -6,22 +6,22 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.xb1;
+import org.telegram.ui.yb1;
 public final class o81 implements SensorEventListener {
-    public final float[] f29709a = new float[3];
-    public final float[] f29710b = new float[3];
-    public int f29711c;
+    public final float[] f27491a = new float[3];
+    public final float[] f27492b = new float[3];
+    public int f27493c;
     public final WindowManager d;
-    public final SensorManager f29712e;
-    public final Sensor f29713f;
+    public final SensorManager e;
+    public final Sensor f27494f;
     public boolean h;
-    public n81 f29714n;
+    public n81 f27495n;
 
     public o81(Context context) {
         this.d = (WindowManager) context.getSystemService("window");
         SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
-        this.f29712e = sensorManager;
-        this.f29713f = sensorManager.getDefaultSensor(1);
+        this.e = sensorManager;
+        this.f27494f = sensorManager.getDefaultSensor(1);
     }
 
     public static float a(int i10, int i11) {
@@ -32,16 +32,16 @@ public final class o81 implements SensorEventListener {
         return Math.max(f11, (dp + f12) / f12);
     }
 
-    public final void b(xb1 xb1Var) {
-        this.f29714n = xb1Var;
+    public final void b(yb1 yb1Var) {
+        this.f27495n = yb1Var;
     }
 
     public final void c(boolean z4) {
         if (this.h != z4) {
             this.h = z4;
-            Sensor sensor = this.f29713f;
+            Sensor sensor = this.f27494f;
             if (sensor != null) {
-                SensorManager sensorManager = this.f29712e;
+                SensorManager sensorManager = this.e;
                 if (z4) {
                     sensorManager.registerListener(this, sensor, 1);
                 } else {

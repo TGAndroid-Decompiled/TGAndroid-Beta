@@ -1,162 +1,78 @@
 package sh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.GradientDrawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import java.util.ArrayList;
-import java.util.Iterator;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.pr;
-public abstract class l0 extends LinearLayout implements dh.a, xd.i {
-    public final g6 f47539a;
-    public final FrameLayout f47540b;
-    public TLRPC.TL_replyKeyboardMarkup f47541c;
-    public i0 d;
-    public int f47542e;
-    public boolean f47543f;
-    public int h;
-    public final ArrayList f47544n;
-    public final ScrollView f47545r;
-    public int f47546s;
-    public final GradientDrawable v;
-    public int f47547w;
-    public final xd.j f47548x;
+import org.telegram.tgnet.tl.TL_communities;
+public final class l0 implements Utilities.Callback2 {
+    public final int f44432a;
+    public final n0 f44433b;
 
-    public l0(Context context, g6 g6Var) {
-        super(context);
-        this.f47544n = new ArrayList();
-        this.v = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, null);
-        this.f47548x = new xd.j(this, pr.h, 320L);
-        this.f47539a = g6Var;
-        setOrientation(1);
-        ScrollView scrollView = new ScrollView(context);
-        this.f47545r = scrollView;
-        scrollView.setClipToPadding(false);
-        addView(scrollView);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f47540b = frameLayout;
-        scrollView.addView(frameLayout);
-        d();
+    public l0(n0 n0Var, int i10) {
+        this.f44432a = i10;
+        this.f44433b = n0Var;
     }
 
     @Override
-    public final void b(int i10) {
-        if (this.f47546s == i10) {
-            return;
-        }
-        this.f47546s = i10;
-        ScrollView scrollView = this.f47545r;
-        if (scrollView.getPaddingBottom() != i10) {
-            scrollView.setPadding(0, 0, 0, i10);
-        }
-        invalidate();
-    }
-
-    public final void d() {
-        AndroidUtilities.setScrollViewEdgeEffectColor(this.f47545r, k6.v0(k6.He, this.f47539a));
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.f47544n;
-            if (i10 < arrayList.size()) {
-                ((j0) arrayList.get(i10)).a();
-                i10++;
-            } else {
-                invalidate();
-                return;
-            }
-        }
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(this.f47546s);
-        if (navigationBarThirdButtonsFactor > 0.0f) {
-            int l1 = k6.l1(navigationBarThirdButtonsFactor, k6.v0(k6.He, this.f47539a));
-            int i10 = this.f47547w;
-            GradientDrawable gradientDrawable = this.v;
-            if (i10 != l1) {
-                gradientDrawable.setColors(new int[]{l1, k6.l1(0.66f, l1), i0.a.k(l1, 0)});
-                this.f47547w = l1;
-            }
-            gradientDrawable.setBounds(0, getMeasuredHeight() - this.f47546s, getMeasuredWidth(), getMeasuredHeight());
-            gradientDrawable.draw(canvas);
-        }
-    }
-
-    @Override
-    public final void e(xd.j jVar) {
-        Iterator it = this.f47548x.iterator();
-        while (it.hasNext()) {
-            xd.e eVar = (xd.e) it.next();
-            float c3 = eVar.c();
-            Object obj = eVar.f50549a;
-            float lerp = AndroidUtilities.lerp(0.7f, 1.0f, c3);
-            ((k0) obj).setAlpha(c3);
-            ((k0) obj).setScaleX(lerp);
-            ((k0) obj).setScaleY(lerp);
-        }
-    }
-
-    public int getKeyboardHeight() {
-        TLRPC.TL_replyKeyboardMarkup tL_replyKeyboardMarkup = this.f47541c;
-        if (tL_replyKeyboardMarkup == null) {
-            return 0;
-        }
-        if (this.f47543f) {
-            return this.f47542e;
-        }
-        return org.telegram.messenger.y3.D(4.0f, this.f47541c.rows.size() - 1, AndroidUtilities.dp(16.0f) + (AndroidUtilities.dp(this.h) * tL_replyKeyboardMarkup.rows.size()));
-    }
-
-    public void setButtons(org.telegram.tgnet.TLRPC.TL_replyKeyboardMarkup r21) {
-        throw new UnsupportedOperationException("Method not decompiled: sh.l0.setButtons(org.telegram.tgnet.TLRPC$TL_replyKeyboardMarkup):void");
-    }
-
-    public void setDelegate(i0 i0Var) {
-        this.d = i0Var;
-    }
-
-    public void setPanelHeight(int i10) {
-        TLRPC.TL_replyKeyboardMarkup tL_replyKeyboardMarkup;
-        int max;
-        this.f47542e = i10;
-        if (this.f47543f && (tL_replyKeyboardMarkup = this.f47541c) != null && !tL_replyKeyboardMarkup.rows.isEmpty()) {
-            if (!this.f47543f) {
-                max = 44;
-            } else {
-                max = (int) Math.max(44.0f, (org.telegram.ui.b.z(4.0f, this.f47541c.rows.size() - 1, this.f47542e - AndroidUtilities.dp(16.0f)) / this.f47541c.rows.size()) / AndroidUtilities.density);
-            }
-            this.h = max;
-            int dp = AndroidUtilities.dp(max);
-            Iterator it = this.f47548x.iterator();
-            while (it.hasNext()) {
-                xd.e eVar = (xd.e) it.next();
-                int childCount = ((k0) eVar.f50549a).getChildCount();
-                for (int i11 = 0; i11 < childCount; i11++) {
-                    View childAt = ((k0) eVar.f50549a).getChildAt(i11);
-                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt.getLayoutParams();
-                    if (layoutParams.height != dp) {
-                        layoutParams.height = dp;
-                        childAt.setLayoutParams(layoutParams);
-                    }
+    public final void run(Object obj, Object obj2) {
+        switch (this.f44432a) {
+            case 0:
+                TLRPC.Bool bool = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                n0 n0Var = this.f44433b;
+                n0Var.f44458q.dismiss();
+                n0Var.f44458q = null;
+                n0Var.f44459r = 0;
+                if (tL_error != null) {
+                    n0Var.f44447c.d0(tL_error, false);
+                    return;
                 }
-            }
+                m0 m0Var = n0Var.h;
+                if (m0Var != null) {
+                    m0Var.close();
+                    return;
+                }
+                return;
+            case 1:
+                TL_communities.PeerLinkRequests peerLinkRequests = (TL_communities.PeerLinkRequests) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                n0 n0Var2 = this.f44433b;
+                boolean z4 = false;
+                n0Var2.f44454m = false;
+                if (peerLinkRequests != null) {
+                    ArrayList arrayList = n0Var2.f44451j;
+                    if (arrayList == null) {
+                        n0Var2.f44451j = new ArrayList(peerLinkRequests.requests);
+                    } else {
+                        arrayList.addAll(peerLinkRequests.requests);
+                    }
+                    String str = peerLinkRequests.next_offset;
+                    n0Var2.f44452k = str;
+                    n0Var2.f44453l = peerLinkRequests.total_count;
+                    if (str == null) {
+                        z4 = true;
+                    }
+                    n0Var2.f44455n = z4;
+                    n0Var2.a();
+                    m0 m0Var2 = n0Var2.h;
+                    if (m0Var2 != null) {
+                        m0Var2.f();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                TLRPC.Bool bool2 = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
+                n0 n0Var3 = this.f44433b;
+                if (tL_error3 != null) {
+                    n0Var3.f44447c.d0(tL_error3, false);
+                    return;
+                } else {
+                    n0Var3.getClass();
+                    return;
+                }
         }
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void c(float f10) {
     }
 }

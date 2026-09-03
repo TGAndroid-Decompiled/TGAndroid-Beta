@@ -7,18 +7,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class x21 extends org.telegram.ui.Components.rl0 {
-    public final Context f42910c;
+public final class x21 extends org.telegram.ui.Components.ql0 {
+    public final Context f39834c;
     public final b31 d;
 
     public x21(b31 b31Var, Context context) {
         this.d = b31Var;
-        this.f42910c = context;
+        this.f39834c = context;
     }
 
     @Override
-    public final boolean D(f2.m1 m1Var) {
-        int i10 = m1Var.f5879f;
+    public final boolean D(f2.l1 l1Var) {
+        int i10 = l1Var.f5777f;
         if (i10 != 3 && i10 != 2) {
             return false;
         }
@@ -30,7 +30,7 @@ public final class x21 extends org.telegram.ui.Components.rl0 {
         int i10;
         b31 b31Var = this.d;
         int i11 = b31Var.h;
-        if (b31Var.f35340f < 0) {
+        if (b31Var.f32726f < 0) {
             i10 = b31Var.getMediaDataController().getReactionsList().size();
         } else {
             i10 = 0;
@@ -47,7 +47,7 @@ public final class x21 extends org.telegram.ui.Components.rl0 {
         if (i10 == b31Var.d) {
             return 2;
         }
-        if (i10 == b31Var.f35340f) {
+        if (i10 == b31Var.f32726f) {
             return 3;
         }
         if (i10 != h() - 1) {
@@ -57,41 +57,41 @@ public final class x21 extends org.telegram.ui.Components.rl0 {
     }
 
     @Override
-    public final void v(f2.m1 m1Var, int i10) {
+    public final void v(f2.l1 l1Var, int i10) {
         int i11;
         int i12;
         if (j(i10) != 1) {
             return;
         }
         b31 b31Var = this.d;
-        TLRPC.TL_availableReaction tL_availableReaction = b31Var.getMediaDataController().getReactionsList().get(i10 - b31Var.f35339e);
+        TLRPC.TL_availableReaction tL_availableReaction = b31Var.getMediaDataController().getReactionsList().get(i10 - b31Var.e);
         String str = tL_availableReaction.reaction;
         i11 = ((org.telegram.ui.ActionBar.p2) b31Var).currentAccount;
         boolean contains = str.contains(MediaDataController.getInstance(i11).getDoubleTapReaction());
         i12 = ((org.telegram.ui.ActionBar.p2) b31Var).currentAccount;
-        ((org.telegram.ui.Cells.y) m1Var.f5875a).a(tL_availableReaction, contains, i12);
+        ((org.telegram.ui.Cells.y) l1Var.f5774a).a(tL_availableReaction, contains, i12);
     }
 
     @Override
-    public final f2.m1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.ActionBar.f5 f5Var;
+    public final f2.l1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.ActionBar.e5 e5Var;
         a31 a31Var;
         b31 b31Var = this.d;
-        Context context = this.f42910c;
+        Context context = this.f39834c;
         if (i10 == 0) {
-            f5Var = ((org.telegram.ui.ActionBar.p2) b31Var).parentLayout;
-            org.telegram.ui.Cells.ea eaVar = new org.telegram.ui.Cells.ea(context, f5Var, 2);
-            eaVar.setImportantForAccessibility(4);
-            eaVar.f22783r = b31Var;
-            a31Var = eaVar;
+            e5Var = ((org.telegram.ui.ActionBar.p2) b31Var).parentLayout;
+            org.telegram.ui.Cells.da daVar = new org.telegram.ui.Cells.da(context, e5Var, 2);
+            daVar.setImportantForAccessibility(4);
+            daVar.f20955r = b31Var;
+            a31Var = daVar;
         } else if (i10 != 2) {
             if (i10 != 3) {
                 if (i10 != 4) {
                     a31Var = new org.telegram.ui.Cells.y(context, true, true);
                 } else {
-                    View inVar = new org.telegram.ui.Components.in(context, 20);
-                    inVar.setTag(-33024);
-                    a31Var = inVar;
+                    View gnVar = new org.telegram.ui.Components.gn(context, 20);
+                    gnVar.setTag(-33024);
+                    a31Var = gnVar;
                 }
             } else {
                 a31 a31Var2 = new a31(b31Var, context);
@@ -99,10 +99,10 @@ public final class x21 extends org.telegram.ui.Components.rl0 {
                 a31Var = a31Var2;
             }
         } else {
-            org.telegram.ui.Cells.a9 a9Var = new org.telegram.ui.Cells.a9(context);
-            a9Var.setText(LocaleController.getString(R.string.DoubleTapPreviewRational));
-            a31Var = a9Var;
+            org.telegram.ui.Cells.z8 z8Var = new org.telegram.ui.Cells.z8(context);
+            z8Var.setText(LocaleController.getString(R.string.DoubleTapPreviewRational));
+            a31Var = z8Var;
         }
-        return new f2.m1(a31Var);
+        return new f2.l1(a31Var);
     }
 }

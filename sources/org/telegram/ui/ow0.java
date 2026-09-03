@@ -3,16 +3,16 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-public final class ow0 extends org.telegram.ui.Components.rl0 {
-    public final PremiumPreviewFragment f39816c;
+public final class ow0 extends org.telegram.ui.Components.ql0 {
+    public final PremiumPreviewFragment f36894c;
 
     public ow0(PremiumPreviewFragment premiumPreviewFragment) {
-        this.f39816c = premiumPreviewFragment;
+        this.f36894c = premiumPreviewFragment;
     }
 
     @Override
-    public final boolean D(f2.m1 m1Var) {
-        int i10 = m1Var.f5879f;
+    public final boolean D(f2.l1 l1Var) {
+        int i10 = l1Var.f5777f;
         if (i10 == 1 || i10 == 8) {
             return true;
         }
@@ -21,25 +21,25 @@ public final class ow0 extends org.telegram.ui.Components.rl0 {
 
     @Override
     public final int h() {
-        return this.f39816c.h;
+        return this.f36894c.h;
     }
 
     @Override
     public final int j(int i10) {
         if (i10 != 0) {
-            PremiumPreviewFragment premiumPreviewFragment = this.f39816c;
-            if (i10 < premiumPreviewFragment.f34497n || i10 >= premiumPreviewFragment.f34502r) {
-                if (i10 >= premiumPreviewFragment.v && i10 < premiumPreviewFragment.f34509w) {
+            PremiumPreviewFragment premiumPreviewFragment = this.f36894c;
+            if (i10 < premiumPreviewFragment.f31941n || i10 >= premiumPreviewFragment.f31946r) {
+                if (i10 >= premiumPreviewFragment.v && i10 < premiumPreviewFragment.f31953w) {
                     return 1;
                 }
                 if (i10 == 0) {
                     return 4;
                 }
-                if (i10 != premiumPreviewFragment.f34511x && i10 != premiumPreviewFragment.f34512y && i10 != premiumPreviewFragment.B && i10 != premiumPreviewFragment.E) {
+                if (i10 != premiumPreviewFragment.f31955x && i10 != premiumPreviewFragment.f31956y && i10 != premiumPreviewFragment.B && i10 != premiumPreviewFragment.E) {
                     if (i10 == premiumPreviewFragment.C) {
                         return 6;
                     }
-                    if (i10 != premiumPreviewFragment.f34504s && i10 != premiumPreviewFragment.D) {
+                    if (i10 != premiumPreviewFragment.f31948s && i10 != premiumPreviewFragment.D) {
                         if (i10 == premiumPreviewFragment.showAdsRow) {
                             return 8;
                         }
@@ -55,45 +55,45 @@ public final class ow0 extends org.telegram.ui.Components.rl0 {
     }
 
     @Override
-    public final void v(f2.m1 r18, int r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ow0.v(f2.m1, int):void");
+    public final void v(f2.l1 r18, int r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ow0.v(f2.l1, int):void");
     }
 
     @Override
-    public final f2.m1 x(ViewGroup viewGroup, int i10) {
-        View b2Var;
-        org.telegram.ui.ActionBar.g6 g6Var;
+    public final f2.l1 x(ViewGroup viewGroup, int i10) {
+        View c2Var;
+        org.telegram.ui.ActionBar.f6 f6Var;
         Context context = viewGroup.getContext();
         switch (i10) {
             case 1:
-                b2Var = new fg.b2(this, context);
+                c2Var = new eg.c2(this, context);
                 break;
             case 2:
-                b2Var = new org.telegram.ui.Cells.z6(context, 0, 0);
+                c2Var = new org.telegram.ui.Cells.y6(context, 0, 0);
                 break;
             case 3:
             default:
-                b2Var = new nw0(this, context, 0);
-                b2Var.setTag(-33024);
+                c2Var = new nw0(this, context, 0);
+                c2Var.setTag(-33024);
                 break;
             case 4:
-                b2Var = new fg.a(context);
+                c2Var = new eg.a(context);
                 break;
             case 5:
-                b2Var = new org.telegram.ui.Cells.a9(context);
+                c2Var = new org.telegram.ui.Cells.z8(context);
                 break;
             case 6:
-                b2Var = new View(context);
-                b2Var.setTag(-33024);
+                c2Var = new View(context);
+                c2Var.setTag(-33024);
                 break;
             case 7:
-                b2Var = new org.telegram.ui.Cells.m4(context);
+                c2Var = new org.telegram.ui.Cells.l4(context);
                 break;
             case 8:
-                g6Var = ((org.telegram.ui.ActionBar.p2) this.f39816c).resourceProvider;
-                b2Var = new org.telegram.ui.Cells.o8(23, context, g6Var, false, true);
+                f6Var = ((org.telegram.ui.ActionBar.p2) this.f36894c).resourceProvider;
+                c2Var = new org.telegram.ui.Cells.n8(23, context, f6Var, false, true);
                 break;
         }
-        return yh.o(b2Var, b2Var, -1, -2);
+        return ai.n(c2Var, c2Var, -1, -2);
     }
 }

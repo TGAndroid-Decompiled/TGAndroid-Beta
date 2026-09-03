@@ -1,94 +1,68 @@
 package gg;
 
-import n3.l;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class h extends Thread {
-    public final int f7084a = 0;
-    public final Object f7085b;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.l3;
+import org.telegram.ui.ActionBar.n3;
+import org.telegram.ui.Cells.ra;
+import org.telegram.ui.t31;
+public final class h implements Utilities.Callback {
+    public final int f6643a;
 
-    public h(l lVar) {
-        super("ExoPlayer:SimpleDecoder");
-        this.f7085b = lVar;
+    public h(int i10) {
+        this.f6643a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f7084a) {
+    public final void run(Object obj) {
+        switch (this.f6643a) {
             case 0:
-                i iVar = (i) this.f7085b;
-                iVar.f7095x = true;
-                try {
-                    i.a(iVar);
-                    int glGetError = ((i) this.f7085b).f7092r.glGetError();
-                    if (glGetError != 0) {
-                        FileLog.e("GL error = 0x" + Integer.toHexString(glGetError));
-                    }
-                    long currentTimeMillis = System.currentTimeMillis();
-                    while (((i) this.f7085b).f7095x) {
-                        while (true) {
-                            i iVar2 = (i) this.f7085b;
-                            a aVar = iVar2.f7087b;
-                            if (aVar == null) {
-                                try {
-                                    Thread.sleep(100L);
-                                } catch (InterruptedException unused) {
-                                }
-                            } else {
-                                if (iVar2.B) {
-                                    synchronized (iVar2) {
-                                        if (iVar2.f7095x) {
-                                            aVar.onSurfaceCreated(iVar2.f7092r, iVar2.f7091n);
-                                            aVar.onSurfaceChanged(iVar2.f7092r, iVar2.f7094w, iVar2.v);
-                                        }
-                                    }
-                                    ((i) this.f7085b).B = false;
-                                }
-                                try {
-                                    if (!i.b((i) this.f7085b)) {
-                                        long currentTimeMillis2 = System.currentTimeMillis();
-                                        i.c((i) this.f7085b, ((float) (currentTimeMillis2 - currentTimeMillis)) / 1000.0f);
-                                        if (!((i) this.f7085b).M) {
-                                            ((i) this.f7085b).M = true;
-                                            AndroidUtilities.runOnUIThread(((i) this.f7085b).N);
-                                            ((i) this.f7085b).N = null;
-                                        }
-                                        currentTimeMillis = currentTimeMillis2;
-                                    }
-                                    try {
-                                        if (i.b((i) this.f7085b)) {
-                                            Thread.sleep(100L);
-                                        } else {
-                                            for (long currentTimeMillis3 = System.currentTimeMillis(); currentTimeMillis3 - currentTimeMillis < ((i) this.f7085b).f7093s; currentTimeMillis3 = System.currentTimeMillis()) {
-                                            }
-                                        }
-                                    } catch (InterruptedException unused2) {
-                                    }
-                                } catch (Exception e6) {
-                                    FileLog.e(e6);
-                                    return;
-                                }
-                            }
-                        }
-                    }
-                    return;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                    ((i) this.f7085b).f7095x = false;
-                    return;
-                }
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
+                return;
+            case 1:
+                Boolean bool = (Boolean) obj;
+                HashMap hashMap = n3.H;
+                return;
+            case 2:
+                Boolean bool2 = (Boolean) obj;
+                int i10 = l3.f20396r;
+                return;
+            case 3:
+                ArrayList arrayList = (ArrayList) obj;
+                int i11 = ra.f21894f;
+                return;
+            case 4:
+                ((Boolean) obj).getClass();
+                return;
+            case 5:
+                Integer num = (Integer) obj;
+                return;
             default:
-                do {
+                HashSet hashSet = (HashSet) obj;
+                String str = LocaleController.getInstance().getCurrentLocaleInfo().pluralLangCode;
+                hashSet.addAll(t31.Y());
+                SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+                if (hashSet.size() == 1 && TextUtils.equals((CharSequence) hashSet.iterator().next(), str)) {
+                    edit.remove("translate_button_restricted_languages");
+                } else {
+                    edit.putStringSet("translate_button_restricted_languages", hashSet);
+                }
+                edit.putInt("translate_button_restricted_languages_version", 2).apply();
+                t31.f38374s = false;
+                for (int i12 = 0; i12 < 4; i12++) {
                     try {
-                    } catch (InterruptedException e11) {
-                        throw new IllegalStateException(e11);
+                        MessagesController.getInstance(i12).getTranslateController().checkRestrictedLanguagesUpdate();
+                    } catch (Exception unused) {
                     }
-                } while (((l) this.f7085b).i());
+                }
                 return;
         }
-    }
-
-    public h(i iVar) {
-        this.f7085b = iVar;
     }
 }

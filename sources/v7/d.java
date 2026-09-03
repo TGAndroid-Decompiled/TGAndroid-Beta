@@ -20,7 +20,7 @@ public abstract class d extends FrameLayout {
         m.e("getMapAsync() must be called on the main thread");
         m.i(fVar, "callback must not be null.");
         j jVar = this.zza;
-        s5.m mVar = jVar.f48963a;
+        s5.m mVar = jVar.f45695a;
         if (mVar != null) {
             mVar.j(fVar);
         } else {
@@ -35,7 +35,7 @@ public abstract class d extends FrameLayout {
             j jVar = this.zza;
             jVar.getClass();
             jVar.c(bundle, new l6.c(jVar, bundle));
-            if (this.zza.f48963a == null) {
+            if (this.zza.f45695a == null) {
                 j.a(this);
             }
         } finally {
@@ -45,14 +45,14 @@ public abstract class d extends FrameLayout {
 
     public void onDestroy() {
         j jVar = this.zza;
-        s5.m mVar = jVar.f48963a;
+        s5.m mVar = jVar.f45695a;
         if (mVar != null) {
             try {
-                w7.g gVar = (w7.g) mVar.f47094c;
+                w7.g gVar = (w7.g) mVar.f44154c;
                 gVar.Q0(gVar.M0(), 5);
                 return;
-            } catch (RemoteException e6) {
-                throw new RuntimeException(e6);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
             }
         }
         jVar.b(1);
@@ -60,59 +60,59 @@ public abstract class d extends FrameLayout {
 
     public void onEnterAmbient(Bundle bundle) {
         m.e("onEnterAmbient() must be called on the main thread");
-        s5.m mVar = this.zza.f48963a;
+        s5.m mVar = this.zza.f45695a;
         if (mVar != null) {
             mVar.getClass();
             try {
                 Bundle bundle2 = new Bundle();
                 w7.d.b(bundle, bundle2);
-                w7.g gVar = (w7.g) mVar.f47094c;
+                w7.g gVar = (w7.g) mVar.f44154c;
                 Parcel M0 = gVar.M0();
                 g7.b.b(M0, bundle2);
                 gVar.Q0(M0, 10);
                 w7.d.b(bundle2, bundle);
-            } catch (RemoteException e6) {
-                throw new RuntimeException(e6);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
             }
         }
     }
 
     public void onExitAmbient() {
         m.e("onExitAmbient() must be called on the main thread");
-        s5.m mVar = this.zza.f48963a;
+        s5.m mVar = this.zza.f45695a;
         if (mVar != null) {
             mVar.getClass();
             try {
-                w7.g gVar = (w7.g) mVar.f47094c;
+                w7.g gVar = (w7.g) mVar.f44154c;
                 gVar.Q0(gVar.M0(), 11);
-            } catch (RemoteException e6) {
-                throw new RuntimeException(e6);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
             }
         }
     }
 
     public void onLowMemory() {
-        s5.m mVar = this.zza.f48963a;
+        s5.m mVar = this.zza.f45695a;
         if (mVar != null) {
             try {
-                w7.g gVar = (w7.g) mVar.f47094c;
+                w7.g gVar = (w7.g) mVar.f44154c;
                 gVar.Q0(gVar.M0(), 6);
-            } catch (RemoteException e6) {
-                throw new RuntimeException(e6);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
             }
         }
     }
 
     public void onPause() {
         j jVar = this.zza;
-        s5.m mVar = jVar.f48963a;
+        s5.m mVar = jVar.f45695a;
         if (mVar != null) {
             try {
-                w7.g gVar = (w7.g) mVar.f47094c;
+                w7.g gVar = (w7.g) mVar.f44154c;
                 gVar.Q0(gVar.M0(), 4);
                 return;
-            } catch (RemoteException e6) {
-                throw new RuntimeException(e6);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
             }
         }
         jVar.b(5);
@@ -126,12 +126,12 @@ public abstract class d extends FrameLayout {
 
     public void onSaveInstanceState(Bundle bundle) {
         j jVar = this.zza;
-        s5.m mVar = jVar.f48963a;
+        s5.m mVar = jVar.f45695a;
         if (mVar != null) {
             try {
                 Bundle bundle2 = new Bundle();
                 w7.d.b(bundle, bundle2);
-                w7.g gVar = (w7.g) mVar.f47094c;
+                w7.g gVar = (w7.g) mVar.f44154c;
                 Parcel M0 = gVar.M0();
                 g7.b.b(M0, bundle2);
                 Parcel L0 = gVar.L0(M0, 7);
@@ -141,11 +141,11 @@ public abstract class d extends FrameLayout {
                 L0.recycle();
                 w7.d.b(bundle2, bundle);
                 return;
-            } catch (RemoteException e6) {
-                throw new RuntimeException(e6);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
             }
         }
-        Bundle bundle3 = jVar.f48964b;
+        Bundle bundle3 = jVar.f45696b;
         if (bundle3 != null) {
             bundle.putAll(bundle3);
         }
@@ -159,14 +159,14 @@ public abstract class d extends FrameLayout {
 
     public void onStop() {
         j jVar = this.zza;
-        s5.m mVar = jVar.f48963a;
+        s5.m mVar = jVar.f45695a;
         if (mVar != null) {
             try {
-                w7.g gVar = (w7.g) mVar.f47094c;
+                w7.g gVar = (w7.g) mVar.f44154c;
                 gVar.Q0(gVar.M0(), 13);
                 return;
-            } catch (RemoteException e6) {
-                throw new RuntimeException(e6);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
             }
         }
         jVar.b(4);

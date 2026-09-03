@@ -22,31 +22,32 @@ import android.view.textclassifier.TextClassifier;
 import android.widget.EditText;
 import android.widget.TextView;
 import k7.x7;
+import ph.z8;
 public final class s extends EditText implements r0.p, u0.k {
-    public final m f13334a;
-    public final w0 f13335b;
-    public final y f13336c;
+    public final m f13611a;
+    public final x0 f13612b;
+    public final y f13613c;
     public final u0.j d;
-    public final y f13337e;
-    public r f13338f;
+    public final y e;
+    public r f13614f;
 
     public s(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 2130968776);
-        d3.a(context);
-        c3.a(this, getContext());
+        e3.a(context);
+        d3.a(this, getContext());
         m mVar = new m(this);
-        this.f13334a = mVar;
+        this.f13611a = mVar;
         mVar.d(attributeSet, 2130968776);
-        w0 w0Var = new w0(this);
-        this.f13335b = w0Var;
-        w0Var.f(attributeSet, 2130968776);
-        w0Var.b();
+        x0 x0Var = new x0(this);
+        this.f13612b = x0Var;
+        x0Var.f(attributeSet, 2130968776);
+        x0Var.b();
         y yVar = new y();
-        yVar.f13394b = this;
-        this.f13336c = yVar;
+        yVar.f13676b = this;
+        this.f13613c = yVar;
         this.d = new Object();
         y yVar2 = new y(this);
-        this.f13337e = yVar2;
+        this.e = yVar2;
         yVar2.b(attributeSet, 2130968776);
         KeyListener keyListener = getKeyListener();
         if (!(keyListener instanceof NumberKeyListener)) {
@@ -66,10 +67,10 @@ public final class s extends EditText implements r0.p, u0.k {
     }
 
     private r getSuperCaller() {
-        if (this.f13338f == null) {
-            this.f13338f = new r(this);
+        if (this.f13614f == null) {
+            this.f13614f = new r(this);
         }
-        return this.f13338f;
+        return this.f13614f;
     }
 
     @Override
@@ -81,13 +82,13 @@ public final class s extends EditText implements r0.p, u0.k {
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        m mVar = this.f13334a;
+        m mVar = this.f13611a;
         if (mVar != null) {
             mVar.a();
         }
-        w0 w0Var = this.f13335b;
-        if (w0Var != null) {
-            w0Var.b();
+        x0 x0Var = this.f13612b;
+        if (x0Var != null) {
+            x0Var.b();
         }
     }
 
@@ -97,7 +98,7 @@ public final class s extends EditText implements r0.p, u0.k {
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        m mVar = this.f13334a;
+        m mVar = this.f13611a;
         if (mVar != null) {
             return mVar.b();
         }
@@ -105,7 +106,7 @@ public final class s extends EditText implements r0.p, u0.k {
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        m mVar = this.f13334a;
+        m mVar = this.f13611a;
         if (mVar != null) {
             return mVar.c();
         }
@@ -113,20 +114,20 @@ public final class s extends EditText implements r0.p, u0.k {
     }
 
     public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.f13335b.d();
+        return this.f13612b.d();
     }
 
     public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.f13335b.e();
+        return this.f13612b.e();
     }
 
     @Override
     public TextClassifier getTextClassifier() {
         y yVar;
-        if (Build.VERSION.SDK_INT < 28 && (yVar = this.f13336c) != null) {
-            TextClassifier textClassifier = (TextClassifier) yVar.f13395c;
+        if (Build.VERSION.SDK_INT < 28 && (yVar = this.f13613c) != null) {
+            TextClassifier textClassifier = (TextClassifier) yVar.f13677c;
             if (textClassifier == null) {
-                return q0.a((TextView) yVar.f13394b);
+                return r0.a((TextView) yVar.f13676b);
             }
             return textClassifier;
         }
@@ -135,16 +136,16 @@ public final class s extends EditText implements r0.p, u0.k {
 
     @Override
     public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-        String[] e6;
+        String[] e;
         InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-        this.f13335b.getClass();
-        w0.h(editorInfo, onCreateInputConnection, this);
-        k7.m.a(editorInfo, onCreateInputConnection, this);
-        if (onCreateInputConnection != null && Build.VERSION.SDK_INT <= 30 && (e6 = r0.j0.e(this)) != null) {
-            t0.b.b(editorInfo, e6);
-            onCreateInputConnection = t0.f.a(onCreateInputConnection, editorInfo, new sf.h(this, 4));
+        this.f13612b.getClass();
+        x0.h(editorInfo, onCreateInputConnection, this);
+        k7.l.a(editorInfo, onCreateInputConnection, this);
+        if (onCreateInputConnection != null && Build.VERSION.SDK_INT <= 30 && (e = r0.j0.e(this)) != null) {
+            t0.b.b(editorInfo, e);
+            onCreateInputConnection = t0.f.a(onCreateInputConnection, editorInfo, new z8(this, 5));
         }
-        return this.f13337e.c(onCreateInputConnection, editorInfo);
+        return this.e.c(onCreateInputConnection, editorInfo);
     }
 
     @Override
@@ -196,8 +197,8 @@ public final class s extends EditText implements r0.p, u0.k {
                     eVar = new r0.d(primaryClip, 1);
                 } else {
                     r0.f fVar = new r0.f();
-                    fVar.f46449b = primaryClip;
-                    fVar.f46450c = 1;
+                    fVar.f43124b = primaryClip;
+                    fVar.f43125c = 1;
                     eVar = fVar;
                 }
                 if (i10 == 16908322) {
@@ -216,7 +217,7 @@ public final class s extends EditText implements r0.p, u0.k {
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        m mVar = this.f13334a;
+        m mVar = this.f13611a;
         if (mVar != null) {
             mVar.e();
         }
@@ -225,7 +226,7 @@ public final class s extends EditText implements r0.p, u0.k {
     @Override
     public void setBackgroundResource(int i10) {
         super.setBackgroundResource(i10);
-        m mVar = this.f13334a;
+        m mVar = this.f13611a;
         if (mVar != null) {
             mVar.f(i10);
         }
@@ -234,18 +235,18 @@ public final class s extends EditText implements r0.p, u0.k {
     @Override
     public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f13335b;
-        if (w0Var != null) {
-            w0Var.b();
+        x0 x0Var = this.f13612b;
+        if (x0Var != null) {
+            x0Var.b();
         }
     }
 
     @Override
     public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f13335b;
-        if (w0Var != null) {
-            w0Var.b();
+        x0 x0Var = this.f13612b;
+        if (x0Var != null) {
+            x0Var.b();
         }
     }
 
@@ -255,23 +256,23 @@ public final class s extends EditText implements r0.p, u0.k {
     }
 
     public void setEmojiCompatEnabled(boolean z4) {
-        this.f13337e.d(z4);
+        this.e.d(z4);
     }
 
     @Override
     public void setKeyListener(KeyListener keyListener) {
-        super.setKeyListener(this.f13337e.a(keyListener));
+        super.setKeyListener(this.e.a(keyListener));
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        m mVar = this.f13334a;
+        m mVar = this.f13611a;
         if (mVar != null) {
             mVar.h(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        m mVar = this.f13334a;
+        m mVar = this.f13611a;
         if (mVar != null) {
             mVar.i(mode);
         }
@@ -279,32 +280,32 @@ public final class s extends EditText implements r0.p, u0.k {
 
     @Override
     public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        w0 w0Var = this.f13335b;
-        w0Var.l(colorStateList);
-        w0Var.b();
+        x0 x0Var = this.f13612b;
+        x0Var.l(colorStateList);
+        x0Var.b();
     }
 
     @Override
     public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        w0 w0Var = this.f13335b;
-        w0Var.m(mode);
-        w0Var.b();
+        x0 x0Var = this.f13612b;
+        x0Var.m(mode);
+        x0Var.b();
     }
 
     @Override
     public final void setTextAppearance(Context context, int i10) {
         super.setTextAppearance(context, i10);
-        w0 w0Var = this.f13335b;
-        if (w0Var != null) {
-            w0Var.g(context, i10);
+        x0 x0Var = this.f13612b;
+        if (x0Var != null) {
+            x0Var.g(context, i10);
         }
     }
 
     @Override
     public void setTextClassifier(TextClassifier textClassifier) {
         y yVar;
-        if (Build.VERSION.SDK_INT < 28 && (yVar = this.f13336c) != null) {
-            yVar.f13395c = textClassifier;
+        if (Build.VERSION.SDK_INT < 28 && (yVar = this.f13613c) != null) {
+            yVar.f13677c = textClassifier;
         } else {
             super.setTextClassifier(textClassifier);
         }

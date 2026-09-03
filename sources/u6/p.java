@@ -9,10 +9,10 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 public final class p implements Parcelable.Creator {
-    public final int f48470a;
+    public final int f45239a;
 
     public p(int i10) {
-        this.f48470a = i10;
+        this.f45239a = i10;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class p implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f48470a) {
+        switch (this.f45239a) {
             case 0:
                 return new o[i10];
             case 1:
@@ -52,17 +52,17 @@ public final class p implements Parcelable.Creator {
             case 13:
                 return new CameraPosition[i10];
             case 14:
-                return new x7.b[i10];
+                return new x7.c[i10];
             case 15:
                 return new LatLngBounds[i10];
             case 16:
                 return new LatLng[i10];
             case 17:
-                return new x7.e[i10];
+                return new x7.f[i10];
             case 18:
-                return new x7.g[i10];
-            case 19:
                 return new x7.h[i10];
+            case 19:
+                return new x7.i[i10];
             case 20:
                 return new y5.a[i10];
             case 21:

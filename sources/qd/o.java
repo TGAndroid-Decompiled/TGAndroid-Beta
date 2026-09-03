@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.ServiceConfigurationError;
 public abstract class o {
-    public static final md.d f44849a;
+    public static final md.d f43069a;
 
     static {
         String str;
-        int i10 = v.f44853a;
+        int i10 = v.f43073a;
         Object obj = null;
         try {
             str = System.getProperty("kotlinx.coroutines.fast.service.loader");
@@ -35,7 +35,7 @@ public abstract class o {
             if (((md.a) obj) != null) {
                 Looper mainLooper = Looper.getMainLooper();
                 if (mainLooper != null) {
-                    f44849a = new md.d(md.e.a(mainLooper), false);
+                    f43069a = new md.d(md.e.a(mainLooper), false);
                     return;
                 }
                 throw new IllegalStateException("The main looper is not available");

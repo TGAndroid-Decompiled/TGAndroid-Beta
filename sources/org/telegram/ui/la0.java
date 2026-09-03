@@ -1,60 +1,106 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
 import java.util.regex.Pattern;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stories;
 public final class la0 implements h5.d {
-    public final LaunchActivity f38597a;
-    public final z10 f38598b;
-    public final Long f38599c;
-    public final int d;
+    public final int f35723a;
+    public final LaunchActivity f35724b;
+    public final w10 f35725c;
+    public final Long d;
 
-    public la0(LaunchActivity launchActivity, z10 z10Var, Long l10, int i10) {
-        this.f38597a = launchActivity;
-        this.f38598b = z10Var;
-        this.f38599c = l10;
-        this.d = i10;
+    public la0(LaunchActivity launchActivity, w10 w10Var, Long l10, int i10) {
+        this.f35723a = i10;
+        this.f35724b = launchActivity;
+        this.f35725c = w10Var;
+        this.d = l10;
     }
 
     @Override
     public final void accept(Object obj) {
-        boolean z4;
-        z10 z10Var = this.f38598b;
-        TL_stories.TL_storyAlbum tL_storyAlbum = (TL_stories.TL_storyAlbum) obj;
-        Pattern pattern = LaunchActivity.f34134y1;
-        try {
-            z10Var.run();
-        } catch (Exception e6) {
-            FileLog.e(e6);
-        }
-        LaunchActivity.R();
-        if (tL_storyAlbum == null) {
-            org.telegram.ui.Components.qc X = org.telegram.ui.Components.qc.X();
-            if (X != null) {
-                l.d.v(R.string.StoryAlbumNotFound, X, R.raw.story_bomb2, 36);
+        org.telegram.ui.Components.qc X;
+        int i10;
+        int i11;
+        org.telegram.ui.Components.qc X2;
+        int i12;
+        int i13;
+        int i14 = this.f35723a;
+        Long l10 = this.d;
+        w10 w10Var = this.f35725c;
+        LaunchActivity launchActivity = this.f35724b;
+        TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
+        switch (i14) {
+            case 0:
+                Pattern pattern = LaunchActivity.f31586y1;
+                try {
+                    w10Var.run();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                org.telegram.ui.ActionBar.p2 R = LaunchActivity.R();
+                if (storyItem == null) {
+                    X = org.telegram.ui.Components.qc.X();
+                    if (X != null) {
+                        i10 = R.raw.story_bomb2;
+                        i11 = R.string.StoryNotFound;
+                    } else {
+                        return;
+                    }
+                } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
+                    X = org.telegram.ui.Components.qc.X();
+                    if (X != null) {
+                        i10 = R.raw.story_bomb1;
+                        i11 = R.string.StoryNotFound;
+                    } else {
+                        return;
+                    }
+                } else if (R != null) {
+                    storyItem.dialogId = l10.longValue();
+                    nh.i9 createOverlayStoryViewer = R.createOverlayStoryViewer();
+                    createOverlayStoryViewer.v();
+                    createOverlayStoryViewer.G(launchActivity, storyItem, null);
+                    return;
+                } else {
+                    return;
+                }
+                kf.k0.v(i11, X, i10, 36);
                 return;
-            }
-            return;
+            default:
+                Pattern pattern2 = LaunchActivity.f31586y1;
+                try {
+                    w10Var.run();
+                } catch (Exception e6) {
+                    FileLog.e(e6);
+                }
+                org.telegram.ui.ActionBar.p2 R2 = LaunchActivity.R();
+                if (storyItem == null) {
+                    X2 = org.telegram.ui.Components.qc.X();
+                    if (X2 != null) {
+                        i12 = R.raw.story_bomb2;
+                        i13 = R.string.StoryNotFound;
+                    } else {
+                        return;
+                    }
+                } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
+                    X2 = org.telegram.ui.Components.qc.X();
+                    if (X2 != null) {
+                        i12 = R.raw.story_bomb1;
+                        i13 = R.string.StoryNotFound;
+                    } else {
+                        return;
+                    }
+                } else if (R2 != null) {
+                    storyItem.dialogId = l10.longValue();
+                    nh.i9 createOverlayStoryViewer2 = R2.createOverlayStoryViewer();
+                    createOverlayStoryViewer2.v();
+                    createOverlayStoryViewer2.G(launchActivity, storyItem, null);
+                    return;
+                } else {
+                    return;
+                }
+                kf.k0.v(i13, X2, i12, 36);
+                return;
         }
-        Bundle bundle = new Bundle();
-        Long l10 = this.f38599c;
-        long longValue = l10.longValue();
-        LaunchActivity launchActivity = this.f38597a;
-        if (longValue > 0) {
-            bundle.putLong("user_id", l10.longValue());
-            if (l10.longValue() == UserConfig.getInstance(launchActivity.L).getClientUserId()) {
-                z4 = true;
-            } else {
-                z4 = false;
-            }
-            bundle.putBoolean("my_profile", z4);
-        } else {
-            bundle.putLong("chat_id", -l10.longValue());
-        }
-        bundle.putInt("open_story_album_id", this.d);
-        launchActivity.p0(new ProfileActivity(bundle, null));
     }
 }

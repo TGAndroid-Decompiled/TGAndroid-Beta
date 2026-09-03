@@ -2,35 +2,35 @@ package b4;
 
 import j3.n0;
 public final class t implements i {
-    public final String f1621a;
-    public final h5.w f1622b;
-    public final h5.v f1623c;
+    public final String f1511a;
+    public final h5.w f1512b;
+    public final h5.v f1513c;
     public r3.v d;
-    public String f1624e;
-    public n0 f1625f;
-    public int f1626g;
+    public String e;
+    public n0 f1514f;
+    public int f1515g;
     public int h;
-    public int f1627i;
-    public int f1628j;
-    public long f1629k;
-    public boolean f1630l;
-    public int f1631m;
-    public int f1632n;
-    public int f1633o;
-    public boolean f1634p;
-    public long f1635q;
-    public int f1636r;
-    public long f1637s;
-    public int f1638t;
-    public String f1639u;
+    public int f1516i;
+    public int f1517j;
+    public long f1518k;
+    public boolean f1519l;
+    public int f1520m;
+    public int f1521n;
+    public int f1522o;
+    public boolean f1523p;
+    public long f1524q;
+    public int f1525r;
+    public long f1526s;
+    public int f1527t;
+    public String f1528u;
 
     public t(String str) {
-        this.f1621a = str;
+        this.f1511a = str;
         h5.w wVar = new h5.w(1024);
-        this.f1622b = wVar;
-        byte[] bArr = wVar.f7308a;
-        this.f1623c = new h5.v(bArr, bArr.length);
-        this.f1629k = -9223372036854775807L;
+        this.f1512b = wVar;
+        byte[] bArr = wVar.f6987a;
+        this.f1513c = new h5.v(bArr, bArr.length);
+        this.f1518k = -9223372036854775807L;
     }
 
     @Override
@@ -40,24 +40,24 @@ public final class t implements i {
 
     @Override
     public final void b() {
-        this.f1626g = 0;
-        this.f1629k = -9223372036854775807L;
-        this.f1630l = false;
+        this.f1515g = 0;
+        this.f1518k = -9223372036854775807L;
+        this.f1519l = false;
     }
 
     @Override
     public final void c(r3.m mVar, h0 h0Var) {
         h0Var.a();
         h0Var.b();
-        this.d = mVar.i2(h0Var.d, 1);
+        this.d = mVar.d2(h0Var.d, 1);
         h0Var.b();
-        this.f1624e = h0Var.f1514e;
+        this.e = h0Var.e;
     }
 
     @Override
     public final void e(int i10, long j10) {
         if (j10 != -9223372036854775807L) {
-            this.f1629k = j10;
+            this.f1518k = j10;
         }
     }
 

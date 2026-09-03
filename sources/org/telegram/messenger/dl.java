@@ -1,23 +1,23 @@
 package org.telegram.messenger;
 public final class dl implements Runnable {
-    public final int f18526a;
-    public final TranslateController f18527b;
-    public final long f18528c;
+    public final int f17071a;
+    public final TranslateController f17072b;
+    public final long f17073c;
 
     public dl(TranslateController translateController, long j10, int i10) {
-        this.f18526a = i10;
-        this.f18527b = translateController;
-        this.f18528c = j10;
+        this.f17071a = i10;
+        this.f17072b = translateController;
+        this.f17073c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18526a) {
+        switch (this.f17071a) {
             case 0:
-                TranslateController.G(this.f18527b, this.f18528c);
+                TranslateController.G(this.f17072b, this.f17073c);
                 return;
             default:
-                TranslateController.p(this.f18527b, this.f18528c);
+                TranslateController.p(this.f17072b, this.f17073c);
                 return;
         }
     }

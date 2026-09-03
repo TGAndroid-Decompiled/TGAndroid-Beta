@@ -1,12 +1,14 @@
 package r6;
+
+import p2.l;
 public final class c {
-    public static final c f46762b;
-    public final kc.d f46763a = new kc.d(2);
+    public static final c f43406b;
+    public final l f43407a = new l();
 
     static {
         c cVar = new c();
         synchronized (c.class) {
-            f46762b = cVar;
+            f43406b = cVar;
         }
     }
 }

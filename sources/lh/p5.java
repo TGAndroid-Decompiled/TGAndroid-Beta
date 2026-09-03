@@ -1,55 +1,73 @@
 package lh;
 
-import mh.l7;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.ConnectionsManager;
-public final class p5 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f12896a;
-    public final l7 f12897b;
-    public final b5 f12898c;
-    public f5 d;
-    public boolean f12899e;
+import android.content.DialogInterface;
+import org.telegram.messenger.Utilities;
+public final class p5 implements DialogInterface.OnDismissListener {
+    public final int f12902a;
+    public final Object f12903b;
+    public final boolean[] f12904c;
+    public final Object d;
+    public final Object e;
 
-    public p5(int i10, long j10) {
-        this.f12896a = i10;
-        l7 l7Var = new l7(i10, 0L, false);
-        this.f12897b = l7Var;
-        l7Var.f14411p = j10;
-        b5 b5Var = new b5(j10, i10, new dg.h0(this, 16));
-        b5Var.f12636s = true;
-        this.f12898c = b5Var;
-    }
-
-    public final void a() {
-        if (this.f12899e) {
-            return;
-        }
-        NotificationCenter.getInstance(this.f12896a).addObserver(this, NotificationCenter.starUserGiftsLoaded);
-        this.f12897b.a();
-        this.f12898c.g(false);
-        this.f12899e = true;
-    }
-
-    public final void b() {
-        if (!this.f12899e) {
-            return;
-        }
-        NotificationCenter.getInstance(this.f12896a).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
-        l7 l7Var = this.f12897b;
-        if (l7Var.f14408m != -1) {
-            ConnectionsManager.getInstance(l7Var.f14398a).cancelRequest(l7Var.f14408m, true);
-            l7Var.f14408m = -1;
-        }
-        l7Var.f14404i = false;
-        this.f12898c.f();
-        this.f12899e = false;
+    public p5(t7 t7Var, Utilities.Callback callback, boolean[] zArr, boolean[] zArr2, Object obj, int i10) {
+        this.f12902a = i10;
+        this.f12903b = callback;
+        this.f12904c = zArr;
+        this.d = zArr2;
+        this.e = obj;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        f5 f5Var;
-        if (i10 == NotificationCenter.starUserGiftsLoaded && objArr[1] == this.f12897b && (f5Var = this.d) != null) {
-            f5Var.run();
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f12902a) {
+            case 0:
+                Utilities.Callback callback = (Utilities.Callback) this.f12903b;
+                boolean[] zArr = (boolean[]) this.d;
+                Utilities.Callback2 callback2 = (Utilities.Callback2) this.e;
+                if (callback != null && !this.f12904c[0]) {
+                    callback.run(Boolean.FALSE);
+                    if (!zArr[0]) {
+                        callback2.run("cancelled", 0L);
+                        zArr[0] = true;
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                Utilities.Callback callback3 = (Utilities.Callback) this.f12903b;
+                boolean[] zArr2 = (boolean[]) this.d;
+                Utilities.Callback callback4 = (Utilities.Callback) this.e;
+                if (callback3 != null && !this.f12904c[0]) {
+                    callback3.run(Boolean.FALSE);
+                    if (!zArr2[0] && callback4 != null) {
+                        callback4.run("cancelled");
+                        zArr2[0] = true;
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.web.c1 c1Var = (org.telegram.ui.web.c1) this.f12903b;
+                nh.j7 j7Var = (nh.j7) this.d;
+                String str = (String) this.e;
+                c1Var.getClass();
+                boolean[] zArr3 = this.f12904c;
+                if (!zArr3[0]) {
+                    zArr3[0] = true;
+                    c1Var.z(j7Var, "requested_chat_failed", org.telegram.ui.web.c1.B(str, "req_id"));
+                    return;
+                }
+                return;
         }
+    }
+
+    public p5(org.telegram.ui.web.c1 c1Var, boolean[] zArr, nh.j7 j7Var, String str) {
+        this.f12902a = 2;
+        this.f12903b = c1Var;
+        this.f12904c = zArr;
+        this.d = j7Var;
+        this.e = str;
     }
 }

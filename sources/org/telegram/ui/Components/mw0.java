@@ -3,10 +3,10 @@ package org.telegram.ui.Components;
 import android.graphics.drawable.Drawable;
 public abstract class mw0 extends Drawable {
     public final void a() {
-        lf.j d = lf.j.d();
+        kf.j d = kf.j.d();
         d.getClass();
-        lf.j.c();
-        d.f12477e.add(this);
+        kf.j.c();
+        d.e.add(this);
     }
 
     public abstract void b(int i10);

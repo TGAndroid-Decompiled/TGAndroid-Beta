@@ -3,13 +3,13 @@ package l7;
 import android.os.Parcel;
 import android.os.Parcelable;
 public final class t5 implements Parcelable.Creator {
-    public final int f12037a;
+    public final int f11748a;
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f12037a) {
+        switch (this.f11748a) {
             case 0:
-                int z4 = j7.f5.z(parcel);
+                int z4 = j7.l0.z(parcel);
                 String str = null;
                 String str2 = null;
                 float f10 = 0.0f;
@@ -21,24 +21,24 @@ public final class t5 implements Parcelable.Creator {
                         if (c3 != 3) {
                             if (c3 != 4) {
                                 if (c3 != 5) {
-                                    j7.f5.y(parcel, readInt);
+                                    j7.l0.y(parcel, readInt);
                                 } else {
-                                    i10 = j7.f5.u(parcel, readInt);
+                                    i10 = j7.l0.u(parcel, readInt);
                                 }
                             } else {
-                                str = j7.f5.h(parcel, readInt);
+                                str = j7.l0.h(parcel, readInt);
                             }
                         } else {
-                            f10 = j7.f5.r(parcel, readInt);
+                            f10 = j7.l0.r(parcel, readInt);
                         }
                     } else {
-                        str2 = j7.f5.h(parcel, readInt);
+                        str2 = j7.l0.h(parcel, readInt);
                     }
                 }
-                j7.f5.m(parcel, z4);
+                j7.l0.m(parcel, z4);
                 return new s4(f10, i10, str, str2);
             case 1:
-                int z10 = j7.f5.z(parcel);
+                int z10 = j7.l0.z(parcel);
                 int i11 = 0;
                 int i12 = 0;
                 int i13 = 0;
@@ -50,24 +50,24 @@ public final class t5 implements Parcelable.Creator {
                         if (c10 != 3) {
                             if (c10 != 4) {
                                 if (c10 != 5) {
-                                    j7.f5.y(parcel, readInt2);
+                                    j7.l0.y(parcel, readInt2);
                                 } else {
-                                    i13 = j7.f5.u(parcel, readInt2);
+                                    i13 = j7.l0.u(parcel, readInt2);
                                 }
                             } else {
-                                f11 = j7.f5.r(parcel, readInt2);
+                                f11 = j7.l0.r(parcel, readInt2);
                             }
                         } else {
-                            i12 = j7.f5.u(parcel, readInt2);
+                            i12 = j7.l0.u(parcel, readInt2);
                         }
                     } else {
-                        i11 = j7.f5.u(parcel, readInt2);
+                        i11 = j7.l0.u(parcel, readInt2);
                     }
                 }
-                j7.f5.m(parcel, z10);
+                j7.l0.m(parcel, z10);
                 return new t6(i11, i12, f11, i13);
             case 2:
-                int z11 = j7.f5.z(parcel);
+                int z11 = j7.l0.z(parcel);
                 String str3 = null;
                 String str4 = null;
                 float f12 = 0.0f;
@@ -79,24 +79,24 @@ public final class t5 implements Parcelable.Creator {
                         if (c11 != 2) {
                             if (c11 != 3) {
                                 if (c11 != 4) {
-                                    j7.f5.y(parcel, readInt3);
+                                    j7.l0.y(parcel, readInt3);
                                 } else {
-                                    i14 = j7.f5.u(parcel, readInt3);
+                                    i14 = j7.l0.u(parcel, readInt3);
                                 }
                             } else {
-                                str4 = j7.f5.h(parcel, readInt3);
+                                str4 = j7.l0.h(parcel, readInt3);
                             }
                         } else {
-                            f12 = j7.f5.r(parcel, readInt3);
+                            f12 = j7.l0.r(parcel, readInt3);
                         }
                     } else {
-                        str3 = j7.f5.h(parcel, readInt3);
+                        str3 = j7.l0.h(parcel, readInt3);
                     }
                 }
-                j7.f5.m(parcel, z11);
+                j7.l0.m(parcel, z11);
                 return new ta(f12, i14, str3, str4);
             default:
-                int z12 = j7.f5.z(parcel);
+                int z12 = j7.l0.z(parcel);
                 float f13 = 0.0f;
                 int i15 = 0;
                 while (parcel.dataPosition() < z12) {
@@ -104,22 +104,22 @@ public final class t5 implements Parcelable.Creator {
                     char c12 = (char) readInt4;
                     if (c12 != 1) {
                         if (c12 != 2) {
-                            j7.f5.y(parcel, readInt4);
+                            j7.l0.y(parcel, readInt4);
                         } else {
-                            i15 = j7.f5.u(parcel, readInt4);
+                            i15 = j7.l0.u(parcel, readInt4);
                         }
                     } else {
-                        f13 = j7.f5.r(parcel, readInt4);
+                        f13 = j7.l0.r(parcel, readInt4);
                     }
                 }
-                j7.f5.m(parcel, z12);
+                j7.l0.m(parcel, z12);
                 return new ua(f13, i15);
         }
     }
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f12037a) {
+        switch (this.f11748a) {
             case 0:
                 return new s4[i10];
             case 1:

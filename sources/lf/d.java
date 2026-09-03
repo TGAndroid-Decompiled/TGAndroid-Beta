@@ -1,78 +1,154 @@
 package lf;
 
-import java.util.function.ToIntFunction;
-import org.telegram.messenger.MessageObject;
+import e5.e;
+import j$.util.List;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.zip.CRC32;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.a6;
-public final class d implements ToIntFunction {
-    public final int f12414a;
-
-    public d(int i10) {
-        this.f12414a = i10;
+public abstract class d {
+    public static void a(TLRPC.GroupCall groupCall, TLRPC.GroupCall groupCall2) {
+        if ((groupCall2 instanceof TLRPC.TL_groupCall) && (groupCall instanceof TLRPC.TL_groupCall)) {
+            TLRPC.TL_groupCall tL_groupCall = (TLRPC.TL_groupCall) groupCall2;
+            if (tL_groupCall.min) {
+                TLRPC.TL_groupCall tL_groupCall2 = (TLRPC.TL_groupCall) groupCall;
+                tL_groupCall.can_change_join_muted = tL_groupCall2.can_change_join_muted;
+                tL_groupCall.can_start_video = tL_groupCall2.can_start_video;
+                tL_groupCall.creator = tL_groupCall2.creator;
+                tL_groupCall.can_change_messages_enabled = tL_groupCall2.can_change_messages_enabled;
+            }
+        }
     }
 
-    @Override
-    public final int applyAsInt(Object obj) {
-        switch (this.f12414a) {
-            case 0:
-                return ((f) obj).f12418a;
-            case 1:
-                return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
-            case 2:
-                if (((TL_stars.StarGift) obj).birthday) {
-                    return -1;
+    public static void b(TLRPC.Poll poll, long j10) {
+        if (poll != null) {
+            int size = poll.answers.size();
+            for (int i10 = 0; i10 < size; i10++) {
+                poll.answers.get(i10).unshuffled_index = i10;
+            }
+            if (!poll.creator && poll.shuffle_answers) {
+                CRC32 crc32 = new CRC32();
+                int size2 = poll.answers.size();
+                for (int i11 = 0; i11 < size2; i11++) {
+                    TLRPC.PollAnswer pollAnswer = poll.answers.get(i11);
+                    if (pollAnswer.option != null) {
+                        crc32.reset();
+                        String l10 = Long.toString(j10);
+                        Charset charset = StandardCharsets.UTF_8;
+                        crc32.update(l10.getBytes(charset));
+                        crc32.update(pollAnswer.option);
+                        crc32.update(Long.toString(poll.f19185id).getBytes(charset));
+                        pollAnswer.shuffle_hash = crc32.getValue();
+                    }
                 }
-                return 0;
-            case 3:
-                return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
-            case 4:
-                return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
-            case 5:
-                if (((TL_stars.StarGift) obj).birthday) {
-                    return -1;
-                }
-                return 0;
-            case 6:
-                return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
-            case 7:
-                return -((TL_stories.StoryView) obj).date;
-            case 8:
-                return ((TL_stories.StoryItem) obj).date;
-            case 9:
-                return -((TL_stories.StoryItem) l.d.i(1, ((TL_stories.PeerStories) obj).stories)).date;
-            case 10:
-                return ((MessageObject) obj).getId();
-            case 11:
-                return -((TLRPC.TL_forumTopic) obj).top_message;
-            case 12:
-                return ((TLRPC.Message) obj).f20866id;
-            case 13:
-                return ((TLRPC.Message) obj).f20866id;
-            case 14:
-                return ((a6) obj).d;
-            case 15:
-                return ((a6) obj).f25168e;
-            case 16:
-                mc.c cVar = (mc.c) obj;
-                return cVar.d - cVar.f13633b;
-            case 17:
-                TLRPC.MessagePeerReaction messagePeerReaction = (TLRPC.MessagePeerReaction) obj;
-                int i10 = messagePeerReaction.date;
-                if (i10 > 0 && messagePeerReaction.reaction == null) {
-                    return -i10;
-                }
-                return Integer.MIN_VALUE;
-            case 18:
-                TLRPC.MessagePeerReaction messagePeerReaction2 = (TLRPC.MessagePeerReaction) obj;
-                int i11 = messagePeerReaction2.date;
-                if (i11 > 0 && messagePeerReaction2.reaction == null) {
-                    return -i11;
-                }
-                return Integer.MIN_VALUE;
-            default:
-                return ((Integer) ((Object[]) obj)[1]).intValue();
+                ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(poll.answers);
+                poll.shuffled_answers = arrayList;
+                List.EL.sort(arrayList, new e(17));
+            }
         }
+    }
+
+    public static ArrayList c(java.util.List list, Class cls) {
+        ArrayList arrayList = new ArrayList();
+        if (list != null) {
+            for (Object obj : list) {
+                if (cls.isInstance(obj)) {
+                    arrayList.add(cls.cast(obj));
+                }
+            }
+        }
+        return arrayList;
+    }
+
+    public static Object d(ArrayList arrayList, Class cls) {
+        if (arrayList != null) {
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                if (cls.isInstance(obj)) {
+                    return cls.cast(obj);
+                }
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public static TLRPC.Document e(TL_stars.StarGift starGift) {
+        TLRPC.Document document = starGift.sticker;
+        ArrayList<TL_stars.StarGiftAttribute> arrayList = starGift.attributes;
+        if (arrayList != null && document == null) {
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                TL_stars.StarGiftAttribute starGiftAttribute = arrayList.get(i10);
+                i10++;
+                TL_stars.StarGiftAttribute starGiftAttribute2 = starGiftAttribute;
+                if (starGiftAttribute2 instanceof TL_stars.starGiftAttributeModel) {
+                    return ((TL_stars.starGiftAttributeModel) starGiftAttribute2).document;
+                }
+            }
+        }
+        return document;
+    }
+
+    public static String f(TLRPC.ChatTheme chatTheme) {
+        if (chatTheme instanceof TLRPC.TL_chatTheme) {
+            return ((TLRPC.TL_chatTheme) chatTheme).emoticon;
+        }
+        if (chatTheme instanceof TLRPC.TL_chatThemeUniqueGift) {
+            return ((TLRPC.TL_chatThemeUniqueGift) chatTheme).gift.title;
+        }
+        return null;
+    }
+
+    public static boolean g(Object obj, Class... clsArr) {
+        if (obj != null) {
+            for (Class cls : clsArr) {
+                if (cls.isInstance(obj)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static TLRPC.InputMedia h(TLRPC.MessageMedia messageMedia) {
+        TLRPC.InputMedia tL_inputMediaGeoPoint;
+        if (messageMedia instanceof TLRPC.TL_messageMediaVenue) {
+            tL_inputMediaGeoPoint = new TLRPC.TL_inputMediaVenue();
+            tL_inputMediaGeoPoint.address = messageMedia.address;
+            tL_inputMediaGeoPoint.title = messageMedia.title;
+            tL_inputMediaGeoPoint.provider = messageMedia.provider;
+            tL_inputMediaGeoPoint.venue_id = messageMedia.venue_id;
+            tL_inputMediaGeoPoint.venue_type = "";
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaGeoLive) {
+            tL_inputMediaGeoPoint = new TLRPC.TL_inputMediaGeoLive();
+            tL_inputMediaGeoPoint.period = messageMedia.period;
+            int i10 = tL_inputMediaGeoPoint.flags;
+            tL_inputMediaGeoPoint.flags = i10 | 2;
+            int i11 = messageMedia.heading;
+            if (i11 != 0) {
+                tL_inputMediaGeoPoint.heading = i11;
+                tL_inputMediaGeoPoint.flags = i10 | 6;
+            }
+            int i12 = messageMedia.proximity_notification_radius;
+            if (i12 != 0) {
+                tL_inputMediaGeoPoint.proximity_notification_radius = i12;
+                tL_inputMediaGeoPoint.flags |= 8;
+            }
+        } else {
+            tL_inputMediaGeoPoint = new TLRPC.TL_inputMediaGeoPoint();
+        }
+        TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
+        tL_inputMediaGeoPoint.geo_point = tL_inputGeoPoint;
+        TLRPC.GeoPoint geoPoint = messageMedia.geo;
+        tL_inputGeoPoint.lat = geoPoint.lat;
+        tL_inputGeoPoint._long = geoPoint._long;
+        return tL_inputMediaGeoPoint;
     }
 }

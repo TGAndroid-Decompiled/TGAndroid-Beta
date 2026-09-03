@@ -1,80 +1,84 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.os.Bundle;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ob1;
-public final class xv extends um0 {
-    public long h;
-    public boolean f33181n;
-    public float f33182r;
-    public final zv f33183s;
+import org.telegram.messenger.EmojiData;
+import org.telegram.messenger.UserConfig;
+public final class xv implements Runnable {
+    public final int f30720a;
+    public final kz f30721b;
 
-    public xv(zv zvVar, Context context) {
-        super(context);
-        float f10;
-        this.f33183s = zvVar;
-        boolean z4 = zvVar.f34021n;
-        this.f33181n = z4;
-        if (z4) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        this.f33182r = f10;
-        setSmoothScrollingEnabled(true);
-        int i10 = 0;
-        setHorizontalScrollBarEnabled(false);
-        setVerticalScrollBarEnabled(false);
-        setNestedScrollingEnabled(true);
-        ob1 ob1Var = new ob1(this, context, 7);
-        this.f31649b = ob1Var;
-        ob1Var.setOrientation(0);
-        addView(this.f31649b, new FrameLayout.LayoutParams(-2, -1));
-        while (true) {
-            int[] iArr = zv.f34018b0;
-            if (i10 < 8) {
-                wv wvVar = new wv(this, context, iArr[i10], zv.f34019c0[i10]);
-                wvVar.setContentDescription(zv.f(i10));
-                this.f31649b.addView(wvVar);
-                i10++;
-            } else {
-                return;
-            }
-        }
+    public xv(kz kzVar, int i10) {
+        this.f30720a = i10;
+        this.f30721b = kzVar;
     }
 
-    public final void d(MotionEvent motionEvent) {
-        if (this.f33181n && !this.d) {
-            int action = motionEvent.getAction();
-            if (action != 0) {
-                if (action != 1) {
-                    if (action != 2) {
-                        return;
-                    }
-                } else {
-                    this.f31648a = false;
+    @Override
+    public final void run() {
+        switch (this.f30720a) {
+            case 0:
+                kz kzVar = this.f30721b;
+                kzVar.Z(false);
+                kzVar.F();
+                return;
+            case 1:
+                kz kzVar2 = this.f30721b;
+                kzVar2.M.postOnAnimation(new xv(kzVar2, 6));
+                return;
+            case 2:
+                rx rxVar = this.f30721b.O;
+                if (rxVar != null) {
+                    rxVar.F(true);
                     return;
                 }
-            }
-            this.f31648a = true;
-            if (!this.d) {
-                this.f31651e = -1;
-            }
-            this.f33183s.requestDisallowInterceptTouchEvent(true);
+                return;
+            case 3:
+                kz kzVar3 = this.f30721b;
+                kzVar3.f26435e0.postOnAnimation(new xv(kzVar3, 6));
+                return;
+            case 4:
+                kz kzVar4 = this.f30721b;
+                kzVar4.A0.postOnAnimation(new xv(kzVar4, 6));
+                return;
+            case 5:
+                kz kzVar5 = this.f30721b;
+                ky kyVar = kzVar5.f26472q1;
+                if (kyVar != null) {
+                    kyVar.t(kzVar5.O.h);
+                    return;
+                }
+                return;
+            case 6:
+                this.f30721b.C();
+                return;
+            case 7:
+                ky kyVar2 = this.f30721b.f26472q1;
+                if (kyVar2 != null) {
+                    kyVar2.q();
+                    return;
+                }
+                return;
+            case 8:
+                kz kzVar6 = this.f30721b;
+                kzVar6.getClass();
+                Bundle bundle = new Bundle();
+                bundle.putLong("user_id", UserConfig.getInstance(kzVar6.Z0).getClientUserId());
+                kzVar6.V1.presentFragment(new org.telegram.ui.zn(bundle));
+                return;
+            default:
+                kz kzVar7 = this.f30721b;
+                ArrayList<vx> emojipacks = kzVar7.getEmojipacks();
+                for (int i10 = 0; i10 < emojipacks.size(); i10++) {
+                    if (emojipacks.get(i10).f30068i) {
+                        int i11 = kzVar7.O.f28601s.get(EmojiData.dataColored.length + i10);
+                        kzVar7.M.B0();
+                        kzVar7.W(i11);
+                        kzVar7.H(i11, AndroidUtilities.dp(-9.0f));
+                        kzVar7.n(null, 0);
+                    }
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.lerp(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(Math.min(5.7f, this.f31649b.getChildCount()) * 32.0f), this.f33182r), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        d(motionEvent);
-        return super.onTouchEvent(motionEvent);
     }
 }

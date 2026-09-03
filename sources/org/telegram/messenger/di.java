@@ -2,18 +2,18 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class di implements Runnable {
-    public final int f18514a;
-    public final Object f18515b;
-    public final Object f18516c;
+    public final int f17061a;
+    public final Object f17062b;
+    public final Object f17063c;
     public final long d;
-    public final Object f18517e;
+    public final Object e;
 
     public di(Object obj, Object obj2, long j10, Object obj3, int i10) {
-        this.f18514a = i10;
-        this.f18515b = obj;
-        this.f18516c = obj2;
+        this.f17061a = i10;
+        this.f17062b = obj;
+        this.f17063c = obj2;
         this.d = j10;
-        this.f18517e = obj3;
+        this.e = obj3;
     }
 
     @Override
@@ -22,26 +22,26 @@ public final class di implements Runnable {
     }
 
     public di(Object obj, Object obj2, Object obj3, long j10, int i10) {
-        this.f18514a = i10;
-        this.f18515b = obj;
-        this.f18516c = obj2;
-        this.f18517e = obj3;
+        this.f17061a = i10;
+        this.f17062b = obj;
+        this.f17063c = obj2;
+        this.e = obj3;
         this.d = j10;
     }
 
-    public di(org.telegram.ui.ActionBar.h3 h3Var, long j10, Object obj, Object obj2, int i10) {
-        this.f18514a = i10;
-        this.f18515b = h3Var;
+    public di(org.telegram.ui.ActionBar.g3 g3Var, long j10, Object obj, Object obj2, int i10) {
+        this.f17061a = i10;
+        this.f17062b = g3Var;
         this.d = j10;
-        this.f18516c = obj;
-        this.f18517e = obj2;
+        this.f17063c = obj;
+        this.e = obj2;
     }
 
-    public di(qh.w7 w7Var, TLRPC.Chat chat, MessagesStorage messagesStorage, long j10) {
-        this.f18514a = 11;
-        this.f18515b = w7Var;
-        this.f18517e = chat;
-        this.f18516c = messagesStorage;
+    public di(ph.y7 y7Var, TLRPC.Chat chat, MessagesStorage messagesStorage, long j10) {
+        this.f17061a = 11;
+        this.f17062b = y7Var;
+        this.e = chat;
+        this.f17063c = messagesStorage;
         this.d = j10;
     }
 }

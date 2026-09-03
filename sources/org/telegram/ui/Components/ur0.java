@@ -7,7 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class ur0 extends pz {
+public final class ur0 extends nz {
     public final jv0 X;
     public final tr0 Y;
     public final yu0 Z;
@@ -32,29 +32,29 @@ public final class ur0 extends pz {
         TLRPC.Document document;
         int i11;
         int i12;
-        f2.p0 adapter = this.Y.h.getAdapter();
+        f2.o0 adapter = this.Y.h.getAdapter();
         yu0 yu0Var = this.Z;
-        nu0[] nu0VarArr = yu0Var.f33643q1;
-        if (adapter == yu0Var.L && !nu0VarArr[5].f29580a.isEmpty()) {
-            document = ((MessageObject) nu0VarArr[5].f29580a.get(i10)).getDocument();
+        nu0[] nu0VarArr = yu0Var.f31149q1;
+        if (adapter == yu0Var.L && !nu0VarArr[5].f27368a.isEmpty()) {
+            document = ((MessageObject) nu0VarArr[5].f27368a.get(i10)).getDocument();
         } else {
             document = null;
         }
         jv0 jv0Var = this.X;
-        jv0Var.f28202b = 100.0f;
-        jv0Var.f28201a = 100.0f;
+        jv0Var.f26063b = 100.0f;
+        jv0Var.f26062a = 100.0f;
         if (document != null) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
-            if (closestPhotoSizeWithSize != null && (i11 = closestPhotoSizeWithSize.f20870w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
-                jv0Var.f28201a = i11;
-                jv0Var.f28202b = i12;
+            if (closestPhotoSizeWithSize != null && (i11 = closestPhotoSizeWithSize.f19184w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
+                jv0Var.f26062a = i11;
+                jv0Var.f26063b = i12;
             }
             ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
             for (int i13 = 0; i13 < arrayList.size(); i13++) {
                 TLRPC.DocumentAttribute documentAttribute = arrayList.get(i13);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    jv0Var.f28201a = documentAttribute.f20852w;
-                    jv0Var.f28202b = documentAttribute.h;
+                    jv0Var.f26062a = documentAttribute.f19166w;
+                    jv0Var.f26063b = documentAttribute.h;
                     break;
                 }
             }
@@ -63,10 +63,10 @@ public final class ur0 extends pz {
     }
 
     @Override
-    public final void U(bf.f fVar, f2.j1 j1Var, View view, s0.d dVar) {
+    public final void T(af.h hVar, f2.i1 i1Var, View view, s0.d dVar) {
         a3.c cVar;
-        super.U(fVar, j1Var, view, dVar);
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f46881a;
+        super.T(hVar, i1Var, view, dVar);
+        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f43969a;
         AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
         if (collectionItemInfo != null) {
             cVar = new a3.c(collectionItemInfo);
@@ -74,7 +74,7 @@ public final class ur0 extends pz {
             cVar = null;
         }
         if (cVar != null) {
-            Object obj = cVar.f49a;
+            Object obj = cVar.f45a;
             if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
                 accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
             }
@@ -82,8 +82,8 @@ public final class ur0 extends pz {
     }
 
     @Override
-    public final void z0(f2.j1 j1Var, int[] iArr) {
-        super.z0(j1Var, iArr);
+    public final void z0(f2.i1 i1Var, int[] iArr) {
+        super.z0(i1Var, iArr);
         tr0 tr0Var = this.Y;
         int i10 = tr0Var.C;
         if (i10 != 0 && !yu0.p0(i10)) {
@@ -93,6 +93,6 @@ public final class ur0 extends pz {
             }
             return;
         }
-        iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.s7.a(1) * 2);
+        iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.r7.a(1) * 2);
     }
 }

@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
 public interface aq0 {
-    void U();
+    void V();
 
-    void u0();
+    void q0();
 }

@@ -2,8 +2,8 @@ package ke;
 
 import ne.r;
 public final class o extends pe.a {
-    public final r f11178a = new ne.p();
-    public final k f11179b = new k();
+    public final r f10381a = new ne.p();
+    public final k f10382b = new k();
 
     @Override
     public final void a(java.lang.CharSequence r12) {
@@ -17,28 +17,28 @@ public final class o extends pe.a {
 
     @Override
     public final void d() {
-        if (this.f11179b.f11164b.length() == 0) {
-            this.f11178a.g();
+        if (this.f10382b.f10368b.length() == 0) {
+            this.f10381a.g();
         }
     }
 
     @Override
     public final ne.a e() {
-        return this.f11178a;
+        return this.f10381a;
     }
 
     @Override
     public final void g(oe.a aVar) {
-        StringBuilder sb = this.f11179b.f11164b;
+        StringBuilder sb = this.f10382b.f10368b;
         if (sb.length() > 0) {
-            aVar.a(sb.toString(), this.f11178a);
+            aVar.a(sb.toString(), this.f10381a);
         }
     }
 
     @Override
     public final j4.h h(e eVar) {
         if (!eVar.h) {
-            return j4.h.a(eVar.f11120b);
+            return j4.h.a(eVar.f10327b);
         }
         return null;
     }

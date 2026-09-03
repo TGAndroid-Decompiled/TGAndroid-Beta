@@ -1,253 +1,96 @@
 package org.telegram.ui.Cells;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
+import android.text.TextUtils;
 import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
+import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.dc0;
-import org.telegram.ui.Components.lw0;
-import org.telegram.ui.Components.pr;
-public class n6 extends FrameLayout {
-    public static final dc0 D;
-    public static final dc0 E;
-    public static final dc0 F;
-    public static final dc0 G;
-    public float B;
-    public ValueAnimator C;
-    public boolean f23222a;
-    public final int f23223b;
-    public final m6 f23224c;
-    public final jg.c d;
-    public final org.telegram.ui.ActionBar.l5 f23225e;
-    public final org.telegram.ui.Components.p9 f23226f;
-    public final org.telegram.ui.Components.p9 h;
-    public int f23227n;
-    public final org.telegram.ui.Components.z8 f23228r;
-    public final lw0 f23229s;
-    public final org.telegram.ui.ActionBar.g6 v;
-    public final int f23230w;
-    public long f23231x;
-    public final l6 f23232y;
+import org.telegram.ui.Components.CheckBoxSquare;
+import org.telegram.ui.Components.c90;
+import org.telegram.ui.Components.f90;
+public final class n6 extends FrameLayout {
+    public final c90 f21428a;
+    public final f90 f21429b;
+    public final CheckBoxSquare f21430c;
 
-    static {
-        int i10 = R.drawable.msg_mini_checks;
-        int i11 = org.telegram.ui.ActionBar.k6.f22038y6;
-        D = new dc0(i10, i11);
-        dc0 dc0Var = new dc0(R.drawable.msg_reactions, i11);
-        dc0Var.f26257g = 16;
-        dc0Var.h = 16;
-        dc0Var.f26258i = 5.66f;
-        E = dc0Var;
-        int i12 = R.drawable.mini_repost_story;
-        int i13 = org.telegram.ui.ActionBar.k6.hk;
-        F = new dc0(i12, i13);
-        G = new dc0(R.drawable.mini_forward_story, i13);
-    }
-
-    public n6(int i10, int i11, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z4, boolean z10) {
+    public n6(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        int i12;
+        int i10;
+        int i11;
         float f10;
         float f11;
-        float f12;
-        float f13;
-        this.f23228r = new org.telegram.ui.Components.z8((org.telegram.ui.ActionBar.g6) null);
-        this.B = 1.0f;
-        this.f23230w = i10;
-        this.f23223b = i11;
-        this.v = g6Var;
-        this.f23232y = new l6(this, g6Var);
-        setLayoutParams(new f2.x0(-1, AndroidUtilities.dp(50.0f)));
-        if (i10 == 1) {
-            i12 = 48;
-        } else {
-            i12 = 34;
-        }
-        m6 m6Var = new m6(this, context, i10);
-        this.f23224c = m6Var;
-        float f14 = i12;
-        m6Var.setRoundRadius(AndroidUtilities.dp(f14));
-        addView(m6Var, k7.c6.i(f14, f14, 8388627, 10.0f, 0.0f, 0.0f, 0.0f));
-        if (i10 == 1) {
-            setClipChildren(false);
-        }
-        jg.c cVar = new jg.c(context, 3);
-        this.d = cVar;
-        NotificationCenter.listenEmojiLoading(cVar);
-        cVar.setTextSize(16);
-        cVar.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.E8, g6Var));
-        cVar.setEllipsizeByGradient(true);
-        cVar.setImportantForAccessibility(2);
-        cVar.setRightPadding(AndroidUtilities.dp(30.0f));
+        CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, null, false);
+        this.f21430c = checkBoxSquare;
+        checkBoxSquare.setDuplicateParentStateEnabled(false);
+        checkBoxSquare.setFocusable(false);
+        checkBoxSquare.setFocusableInTouchMode(false);
+        checkBoxSquare.setClickable(false);
         if (LocaleController.isRTL) {
-            f10 = AndroidUtilities.dp(30.0f);
+            i10 = 5;
         } else {
-            f10 = 0.0f;
+            i10 = 3;
         }
-        cVar.setTranslationX(f10);
-        cVar.setRightDrawableOutside(true);
-        if (i10 == 1) {
-            f11 = 7.66f;
+        addView(checkBoxSquare, k7.b6.d(18, 18.0f, i10 | 16, 21.0f, 0.0f, 21.0f, 0.0f));
+        c90 c90Var = new c90(this);
+        this.f21428a = c90Var;
+        f90 f90Var = new f90(context, c90Var, f6Var);
+        this.f21429b = f90Var;
+        f90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
+        f90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.J6, f6Var));
+        f90Var.setTextSize(1, 15.0f);
+        f90Var.setMaxLines(2);
+        if (LocaleController.isRTL) {
+            i11 = 5;
         } else {
-            f11 = 5.33f;
+            i11 = 3;
         }
-        if (i10 == 1) {
-            f12 = 73.0f;
+        f90Var.setGravity(i11 | 16);
+        f90Var.setEllipsize(TextUtils.TruncateAt.END);
+        boolean z4 = LocaleController.isRTL;
+        int i12 = (z4 ? 5 : 3) | 48;
+        if (z4) {
+            f10 = 16.0f;
         } else {
-            f12 = 55.0f;
-        }
-        addView(cVar, k7.c6.i(-1.0f, -2.0f, 55, f12, f11, 12.0f, 0.0f));
-        lw0 lw0Var = new lw0(this);
-        this.f23229s = lw0Var;
-        cVar.setDrawablePadding(AndroidUtilities.dp(3.0f));
-        cVar.i(lw0Var.f28891a);
-        org.telegram.ui.ActionBar.l5 l5Var = new org.telegram.ui.ActionBar.l5(context);
-        this.f23225e = l5Var;
-        l5Var.setTextSize(13);
-        l5Var.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f22038y6, g6Var));
-        l5Var.setEllipsizeByGradient(true);
-        l5Var.setImportantForAccessibility(2);
-        l5Var.setTranslationX(LocaleController.isRTL ? AndroidUtilities.dp(30.0f) : 0.0f);
-        if (i10 == 1) {
-            f13 = 24.0f;
-        } else {
-            f13 = 19.0f;
-        }
-        addView(l5Var, k7.c6.i(-1.0f, -2.0f, 55, f12, f13, 20.0f, 0.0f));
-        if (z10) {
-            org.telegram.ui.Components.p9 p9Var = new org.telegram.ui.Components.p9(context);
-            this.f23226f = p9Var;
-            addView(p9Var, k7.c6.i(24.0f, 24.0f, 8388629, 0.0f, 0.0f, 12.0f, 0.0f));
-            org.telegram.ui.Components.p9 p9Var2 = new org.telegram.ui.Components.p9(context);
-            this.h = p9Var2;
-            addView(p9Var2, k7.c6.i(22.0f, 35.0f, 8388629, 0.0f, 0.0f, 12.0f, 0.0f));
+            f10 = 58.0f;
         }
         if (z4) {
-            View view = new View(context);
-            view.setBackground(org.telegram.ui.ActionBar.k6.K0(false));
-            addView(view, k7.c6.c(-1.0f, -1));
+            f11 = 58.0f;
+        } else {
+            f11 = 16.0f;
         }
+        addView(f90Var, k7.b6.d(-1, -1.0f, i12, f10, 21.0f, f11, 21.0f));
+        setWillNotDraw(false);
     }
 
-    public final void a(float f10, boolean z4) {
-        ValueAnimator valueAnimator = this.C;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.C = null;
-        }
-        if (z4) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.B, f10);
-            this.C = ofFloat;
-            ofFloat.addUpdateListener(new r(this, 4));
-            this.C.addListener(new org.telegram.ui.ActionBar.a1(this, f10, 2));
-            this.C.setInterpolator(pr.h);
-            this.C.setDuration(420L);
-            this.C.start();
-            return;
-        }
-        this.B = f10;
-        invalidate();
+    public CheckBoxSquare getCheckBox() {
+        return this.f21430c;
     }
 
-    public final void c(org.telegram.tgnet.TLRPC.User r21, org.telegram.tgnet.TLRPC.Chat r22, org.telegram.tgnet.TLRPC.Reaction r23, boolean r24, long r25, org.telegram.tgnet.tl.TL_stories.StoryItem r27, boolean r28, boolean r29, boolean r30) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.n6.c(org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, org.telegram.tgnet.TLRPC$Reaction, boolean, long, org.telegram.tgnet.tl.TL_stories$StoryItem, boolean, boolean, boolean):void");
+    public TextView getTextView() {
+        return this.f21429b;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        boolean z4;
-        float f10;
-        if (this.B < 1.0f) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (this.B * 255.0f), 31);
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        super.dispatchDraw(canvas);
-        if (this.f23222a) {
-            if (this.f23230w == 1) {
-                f10 = 73.0f;
-            } else {
-                f10 = 55.0f;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        c90 c90Var = this.f21428a;
+        if (c90Var != null) {
+            canvas.save();
+            f90 f90Var = this.f21429b;
+            canvas.translate(f90Var.getLeft(), f90Var.getTop());
+            if (c90Var.f(canvas)) {
+                invalidate();
             }
-            float dp = AndroidUtilities.dp(f10);
-            boolean z10 = LocaleController.isRTL;
-            org.telegram.ui.ActionBar.g6 g6Var = this.v;
-            if (z10) {
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - dp, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.T0("paintDivider", g6Var));
-            } else {
-                canvas.drawLine(dp, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.T0("paintDivider", g6Var));
-            }
-        }
-        if (z4) {
             canvas.restore();
         }
     }
 
-    public float getAlphaInternal() {
-        return this.B;
+    public void setChecked(boolean z4) {
+        this.f21430c.a(z4, true);
     }
 
-    public org.telegram.ui.ActionBar.g6 getResourcesProvider() {
-        return this.v;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f23229s.f28891a.a();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f23229s.f28891a.b();
-        this.f23232y.g();
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        if (this.f23230w == 0) {
-            i12 = 50;
-        } else {
-            i12 = 58;
-        }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(i12), 1073741824));
-    }
-
-    public void setUserReaction(TLRPC.MessagePeerReaction messagePeerReaction) {
-        TLRPC.User user;
-        if (messagePeerReaction == null) {
-            return;
-        }
-        long peerId = MessageObject.getPeerId(messagePeerReaction.peer_id);
-        int i10 = this.f23223b;
-        TLRPC.Chat chat = null;
-        if (peerId > 0) {
-            user = MessagesController.getInstance(i10).getUser(Long.valueOf(peerId));
-        } else {
-            user = null;
-            chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-peerId));
-        }
-        c(user, chat, messagePeerReaction.reaction, false, messagePeerReaction.date, null, false, messagePeerReaction.dateIsSeen, false);
-    }
-
-    public void b(long j10) {
+    public void setText(CharSequence charSequence) {
+        this.f21429b.setText(charSequence);
     }
 }

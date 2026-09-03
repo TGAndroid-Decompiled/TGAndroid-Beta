@@ -1,56 +1,42 @@
 package ng;
 
-import android.view.ViewGroup;
-import eg.s2;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.pr;
-public final class h implements Runnable {
-    public final int f16075a;
-    public final s f16076b;
+import android.graphics.RenderNode;
+import g.x;
+public final class h {
+    public final RenderNode f14999a;
+    public final g f15000b;
+    public final x f15001c = new Object();
+    public long d = 0;
+    public int e;
+    public int f15002f;
 
-    public h(s sVar, int i10) {
-        this.f16075a = i10;
-        this.f16076b = sVar;
+    public h(RenderNode renderNode, g gVar) {
+        this.f14999a = renderNode;
+        this.f15000b = gVar;
     }
 
-    @Override
-    public final void run() {
-        int i10 = this.f16075a;
-        s sVar = this.f16076b;
-        switch (i10) {
-            case 0:
-                sVar.f16214n.requestFocus();
-                return;
-            case 1:
-                sVar.finishFragment();
-                return;
-            case 2:
-                if (!sVar.H) {
-                    sVar.H = true;
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
-                    int measuredHeight = sVar.f16211c.getMeasuredHeight();
-                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) sVar.f16219y.getLayoutParams();
-                    marginLayoutParams.bottomMargin = measuredHeight;
-                    sVar.f16219y.setLayoutParams(marginLayoutParams);
-                    sVar.f16211c.setVisibility(0);
-                    s2 s2Var = sVar.f16211c;
-                    s2Var.setTranslationY(s2Var.getMeasuredHeight());
-                    sVar.f16211c.animate().setListener(null).cancel();
-                    sVar.f16211c.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(pr.f30168f).setUpdateListener(new j(sVar, 0)).setListener(new r(0)).start();
-                    return;
-                }
-                return;
-            case 3:
-                af.g.s(sVar.getParentActivity(), "https://t.me/stickers");
-                return;
-            case 4:
-                af.g.s(sVar.getParentActivity(), LocaleController.getString(R.string.ChannelEnablePaidReactionsInfoLink));
-                return;
-            default:
-                sVar.Y(false);
-                return;
+    public final void a() {
+        long j10;
+        int width = this.f14999a.getWidth();
+        int height = this.f14999a.getHeight();
+        x xVar = this.f15001c;
+        xVar.f6326a = 0L;
+        boolean z4 = false;
+        xVar.f6327b = false;
+        g gVar = this.f15000b;
+        gVar.D1(xVar);
+        if (xVar.f6327b) {
+            j10 = -1;
+        } else {
+            j10 = xVar.f6326a;
+        }
+        z4 = (this.f14999a.hasDisplayList() && width == this.e && height == this.f15002f && j10 == this.d && j10 != -1) ? true : true;
+        this.e = width;
+        this.f15002f = height;
+        this.d = j10;
+        if (z4) {
+            gVar.D(this.f14999a.beginRecording());
+            this.f14999a.endRecording();
         }
     }
 }

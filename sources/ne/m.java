@@ -1,13 +1,13 @@
 package ne;
 
-import k7.h0;
+import k7.g0;
 public final class m extends p {
-    public String f15973g;
+    public String f14937g;
     public String h;
-    public String f15974i;
+    public String f14938i;
 
     @Override
-    public final void a(h0 h0Var) {
-        h0Var.v(this);
+    public final void a(g0 g0Var) {
+        g0Var.v(this);
     }
 }

@@ -1,48 +1,87 @@
 package ph;
 
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import eg.p1;
-import hg.v0;
-import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Components.rl0;
-import org.telegram.ui.Components.sa;
-import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.w51;
-import org.telegram.ui.web.d1;
-public final class o extends sa {
-    public final int U;
-    public final CharSequence V;
-    public w51 W;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.gj0;
+public final class o extends Drawable {
+    public final Paint f42077a;
+    public float f42078b;
+    public float f42079c;
+    public long d;
+    public boolean e;
+    public boolean f42080f;
+    public boolean f42081g;
+    public final gj0 h;
+    public final t9 f42082i;
+    public final t9 f42083j;
 
-    public o(p2 p2Var, String str, d1 d1Var) {
-        super(p2Var.getParentActivity(), p2Var, true, false, false, 1, p2Var.getResourceProvider());
-        new FrameLayout(getContext());
-        new ImageView(getContext());
-        this.U = p2Var.getCurrentAccount();
-        this.V = str;
-        N();
-        this.v = 0.6f;
-        this.f31022y = true;
-        this.B = true;
-        fixNavigationBar();
-        J();
-        sl0 sl0Var = this.d;
-        int i10 = this.backgroundPaddingLeft;
-        sl0Var.setPadding(i10, 0, i10, 0);
-        this.d.setOnItemClickListener(new v0(23, this, d1Var));
+    public o(t9 t9Var, t9 t9Var2) {
+        this.f42083j = t9Var;
+        Paint paint = new Paint(1);
+        this.f42077a = paint;
+        this.f42079c = 1.0f;
+        this.f42082i = t9Var2;
+        gj0 gj0Var = new gj0(R.raw.chat_audio_record_delete_3, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
+        this.h = gj0Var;
+        gj0Var.m0 = true;
+        paint.setColor(-2406842);
+        gj0Var.X = true;
+        gj0Var.O(-2406842, "Cup Red");
+        gj0Var.O(-2406842, "Box");
+        gj0Var.m();
     }
 
     @Override
-    public final rl0 v(sl0 sl0Var) {
-        w51 w51Var = new w51(sl0Var, getContext(), this.U, 0, false, new p1(this, 25), this.resourcesProvider);
-        this.W = w51Var;
-        w51Var.f32651r = false;
-        return w51Var;
+    public final void draw(Canvas canvas) {
+        boolean z4 = this.f42081g;
+        gj0 gj0Var = this.h;
+        if (z4) {
+            gj0Var.setAlpha((int) (this.f42078b * 255.0f * this.f42079c));
+        }
+        Paint paint = this.f42077a;
+        paint.setAlpha((int) (this.f42078b * 255.0f * this.f42079c));
+        long currentTimeMillis = System.currentTimeMillis() - this.d;
+        if (!this.e && !this.f42081g) {
+            float f10 = this.f42078b - (((float) currentTimeMillis) / 600.0f);
+            this.f42078b = f10;
+            if (f10 <= 0.0f) {
+                this.f42078b = 0.0f;
+                this.e = true;
+            }
+        } else {
+            float f11 = (((float) currentTimeMillis) / 600.0f) + this.f42078b;
+            this.f42078b = f11;
+            if (f11 >= 1.0f) {
+                this.f42078b = 1.0f;
+                this.e = false;
+            }
+        }
+        this.d = System.currentTimeMillis();
+        gj0Var.setBounds(getBounds());
+        if (this.f42081g) {
+            gj0Var.draw(canvas);
+        }
+        if (!this.f42081g || !gj0Var.s()) {
+            canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), AndroidUtilities.dp(5.0f), paint);
+        }
+        this.f42083j.invalidate();
     }
 
     @Override
-    public final CharSequence y() {
-        return this.V;
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f42079c = i10 / 255.0f;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -1,269 +1,231 @@
 package ef;
 
-import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.View;
-import c2.p;
-import c5.j;
-import j$.util.Objects;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-public final class b {
-    public final int f5030a;
-    public final e f5031b;
+import android.view.ViewTreeObserver;
+import com.google.firebase.messaging.r;
+import java.util.ArrayList;
+import kh.k3;
+import kh.t4;
+import kh.u1;
+import kh.v4;
+import kh.w4;
+import kh.y4;
+import l.c0;
+import l.e;
+import lh.p4;
+import lh.r4;
+import nh.q1;
+import org.telegram.ui.Components.ba;
+import org.telegram.ui.Components.go0;
+import org.telegram.ui.Components.ic;
+import org.telegram.ui.Components.j5;
+import org.telegram.ui.Components.oq;
+import org.telegram.ui.Components.zl0;
+public final class b implements View.OnAttachStateChangeListener {
+    public final int f5197a;
+    public final Object f5198b;
 
-    public b(e eVar, int i10) {
-        this.f5030a = i10;
-        this.f5031b = eVar;
+    public b(Object obj, int i10) {
+        this.f5197a = i10;
+        this.f5198b = obj;
     }
 
-    public final void a(boolean z4) {
-        Bitmap bitmap;
-        switch (this.f5030a) {
+    @Override
+    public final void onViewAttachedToWindow(View view) {
+        switch (this.f5197a) {
             case 0:
-                final e eVar = this.f5031b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        Bitmap bitmap2;
-                        switch (r2) {
-                            case 0:
-                                e eVar2 = eVar;
-                                if (eVar2.f5036a != 4) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_2: " + eVar2.f5036a);
-                                    return;
-                                }
-                                eVar2.f5043j.f2491a.b().removeView(eVar2.f5040f);
-                                eVar2.f5042i = null;
-                                eVar2.f5040f = null;
-                                eVar2.f5041g = null;
-                                g gVar = eVar2.f5039e;
-                                if (gVar != null) {
-                                    gVar.b();
-                                    eVar2.f5039e = null;
-                                }
-                                g gVar2 = eVar2.d;
-                                if (gVar2 != null) {
-                                    gVar2.b();
-                                    eVar2.d = null;
-                                }
-                                j jVar = eVar2.h;
-                                if (((f) jVar.f2318e) != null) {
-                                    ((View) jVar.f2315a).setBackground(null);
-                                    jVar.f2318e = null;
-                                }
-                                if (((f) jVar.d) == null && ((f) jVar.f2318e) == null && (bitmap2 = (Bitmap) jVar.f2317c) != null) {
-                                    bitmap2.recycle();
-                                    jVar.f2317c = null;
-                                }
-                                eVar2.f5036a = 0;
-                                Log.i("PIP_DEBUG", "[HANDLER] detach");
-                                if (eVar2.f5047n) {
-                                    eVar2.g();
-                                    return;
-                                }
-                                return;
-                            case 1:
-                                e eVar3 = eVar;
-                                if (eVar3.f5036a != 1) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_ATTACHED: " + eVar3.f5036a);
-                                    return;
-                                }
-                                Log.i("PIP_DEBUG", "[HANDLER] attach");
-                                eVar3.h.A();
-                                eVar3.f5043j.f2496g.e(new p(ApplicationLoader.applicationHandler, new b(eVar3, 2), 400L));
-                                eVar3.f5036a = 2;
-                                if (!eVar3.f5047n) {
-                                    eVar3.h();
-                                    return;
-                                }
-                                return;
-                            default:
-                                e eVar4 = eVar;
-                                cf.f fVar = eVar4.f5043j;
-                                if (eVar4.f5036a != 3) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_1: " + eVar4.f5036a);
-                                    return;
-                                }
-                                fVar.f2496g.a(new p(ApplicationLoader.applicationHandler, new b(eVar4, 3), 400L));
-                                eVar4.f5040f.invalidate();
-                                eVar4.f5036a = 4;
-                                AndroidUtilities.doOnPreDraw(fVar.f2498j, new p(ApplicationLoader.applicationHandler, new b(eVar4, 4), 300L));
-                                Log.i("PIP_DEBUG", "[HANDLER] pre detach 2");
-                                return;
-                        }
-                    }
-                });
+                r rVar = (r) this.f5198b;
+                if (view == ((View) rVar.f4005b)) {
+                    rVar.p(view.getViewTreeObserver());
+                    return;
+                }
                 return;
             case 1:
-                final e eVar2 = this.f5031b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        Bitmap bitmap2;
-                        switch (r2) {
-                            case 0:
-                                e eVar22 = eVar2;
-                                if (eVar22.f5036a != 4) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_2: " + eVar22.f5036a);
-                                    return;
-                                }
-                                eVar22.f5043j.f2491a.b().removeView(eVar22.f5040f);
-                                eVar22.f5042i = null;
-                                eVar22.f5040f = null;
-                                eVar22.f5041g = null;
-                                g gVar = eVar22.f5039e;
-                                if (gVar != null) {
-                                    gVar.b();
-                                    eVar22.f5039e = null;
-                                }
-                                g gVar2 = eVar22.d;
-                                if (gVar2 != null) {
-                                    gVar2.b();
-                                    eVar22.d = null;
-                                }
-                                j jVar = eVar22.h;
-                                if (((f) jVar.f2318e) != null) {
-                                    ((View) jVar.f2315a).setBackground(null);
-                                    jVar.f2318e = null;
-                                }
-                                if (((f) jVar.d) == null && ((f) jVar.f2318e) == null && (bitmap2 = (Bitmap) jVar.f2317c) != null) {
-                                    bitmap2.recycle();
-                                    jVar.f2317c = null;
-                                }
-                                eVar22.f5036a = 0;
-                                Log.i("PIP_DEBUG", "[HANDLER] detach");
-                                if (eVar22.f5047n) {
-                                    eVar22.g();
-                                    return;
-                                }
-                                return;
-                            case 1:
-                                e eVar3 = eVar2;
-                                if (eVar3.f5036a != 1) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_ATTACHED: " + eVar3.f5036a);
-                                    return;
-                                }
-                                Log.i("PIP_DEBUG", "[HANDLER] attach");
-                                eVar3.h.A();
-                                eVar3.f5043j.f2496g.e(new p(ApplicationLoader.applicationHandler, new b(eVar3, 2), 400L));
-                                eVar3.f5036a = 2;
-                                if (!eVar3.f5047n) {
-                                    eVar3.h();
-                                    return;
-                                }
-                                return;
-                            default:
-                                e eVar4 = eVar2;
-                                cf.f fVar = eVar4.f5043j;
-                                if (eVar4.f5036a != 3) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_1: " + eVar4.f5036a);
-                                    return;
-                                }
-                                fVar.f2496g.a(new p(ApplicationLoader.applicationHandler, new b(eVar4, 3), 400L));
-                                eVar4.f5040f.invalidate();
-                                eVar4.f5036a = 4;
-                                AndroidUtilities.doOnPreDraw(fVar.f2498j, new p(ApplicationLoader.applicationHandler, new b(eVar4, 4), 300L));
-                                Log.i("PIP_DEBUG", "[HANDLER] pre detach 2");
-                                return;
-                        }
-                    }
-                });
+                ((u1) this.f5198b).f10960l.a();
                 return;
             case 2:
-                j jVar = this.f5031b.h;
-                if (((f) jVar.f2318e) != null) {
-                    ((View) jVar.f2315a).setBackground(null);
-                    jVar.f2318e = null;
+                v4 v4Var = (v4) this.f5198b;
+                t4 t4Var = v4Var.K;
+                if (t4Var != null) {
+                    t4Var.a(v4Var.f19679c);
+                    return;
                 }
-                if (((f) jVar.d) == null && ((f) jVar.f2318e) == null && (bitmap = (Bitmap) jVar.f2317c) != null) {
-                    bitmap.recycle();
-                    jVar.f2317c = null;
-                }
-                Log.i("PIP_DEBUG", "[HANDLER] on new source render first frame " + z4);
                 return;
             case 3:
-                Log.i("PIP_DEBUG", "[HANDLER] on old source render first frame " + z4);
-                j jVar2 = this.f5031b.h;
-                Objects.requireNonNull(jVar2);
-                AndroidUtilities.runOnUIThread(new ag.e(jVar2, 23));
+                y4 y4Var = (y4) this.f5198b;
+                w4 w4Var = y4Var.K;
+                if (w4Var != null) {
+                    w4Var.a(y4Var.f19679c);
+                    return;
+                }
+                return;
+            case 4:
+            case 5:
+                return;
+            case 6:
+                ArrayList arrayList = ((r4) this.f5198b).e;
+                int size = arrayList.size();
+                int i10 = 0;
+                while (i10 < size) {
+                    Object obj = arrayList.get(i10);
+                    i10++;
+                    p4 p4Var = (p4) obj;
+                    if (p4Var.f12901c) {
+                        p4Var.d.onAttachedToWindow();
+                    }
+                }
+                return;
+            case 7:
+                ((q1) this.f5198b).f15775f.onAttachedToWindow();
+                return;
+            case 8:
+                ((k3) this.f5198b).a(view);
+                return;
+            case 9:
+                ba baVar = (ba) this.f5198b;
+                ArrayList arrayList2 = baVar.f23595c;
+                arrayList2.clear();
+                for (View view2 = baVar.f23594b; view2 != null; view2 = (View) view2.getParent()) {
+                    arrayList2.add(0, view2);
+                    if (!(view2.getParent() instanceof View)) {
+                        return;
+                    }
+                }
+                return;
+            case 10:
+                return;
+            case 11:
+                ((oq) this.f5198b).a();
+                return;
+            case 12:
+                zl0 zl0Var = (zl0) this.f5198b;
+                j5 j5Var = zl0Var.f31426t;
+                if (j5Var != null) {
+                    j5Var.a();
+                }
+                j5 j5Var2 = zl0Var.f31427u;
+                if (j5Var2 != null) {
+                    j5Var2.a();
+                    return;
+                }
+                return;
+            case 13:
                 return;
             default:
-                final e eVar3 = this.f5031b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        Bitmap bitmap2;
-                        switch (r2) {
-                            case 0:
-                                e eVar22 = eVar3;
-                                if (eVar22.f5036a != 4) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_2: " + eVar22.f5036a);
-                                    return;
-                                }
-                                eVar22.f5043j.f2491a.b().removeView(eVar22.f5040f);
-                                eVar22.f5042i = null;
-                                eVar22.f5040f = null;
-                                eVar22.f5041g = null;
-                                g gVar = eVar22.f5039e;
-                                if (gVar != null) {
-                                    gVar.b();
-                                    eVar22.f5039e = null;
-                                }
-                                g gVar2 = eVar22.d;
-                                if (gVar2 != null) {
-                                    gVar2.b();
-                                    eVar22.d = null;
-                                }
-                                j jVar3 = eVar22.h;
-                                if (((f) jVar3.f2318e) != null) {
-                                    ((View) jVar3.f2315a).setBackground(null);
-                                    jVar3.f2318e = null;
-                                }
-                                if (((f) jVar3.d) == null && ((f) jVar3.f2318e) == null && (bitmap2 = (Bitmap) jVar3.f2317c) != null) {
-                                    bitmap2.recycle();
-                                    jVar3.f2317c = null;
-                                }
-                                eVar22.f5036a = 0;
-                                Log.i("PIP_DEBUG", "[HANDLER] detach");
-                                if (eVar22.f5047n) {
-                                    eVar22.g();
-                                    return;
-                                }
-                                return;
-                            case 1:
-                                e eVar32 = eVar3;
-                                if (eVar32.f5036a != 1) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_ATTACHED: " + eVar32.f5036a);
-                                    return;
-                                }
-                                Log.i("PIP_DEBUG", "[HANDLER] attach");
-                                eVar32.h.A();
-                                eVar32.f5043j.f2496g.e(new p(ApplicationLoader.applicationHandler, new b(eVar32, 2), 400L));
-                                eVar32.f5036a = 2;
-                                if (!eVar32.f5047n) {
-                                    eVar32.h();
-                                    return;
-                                }
-                                return;
-                            default:
-                                e eVar4 = eVar3;
-                                cf.f fVar = eVar4.f5043j;
-                                if (eVar4.f5036a != 3) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_1: " + eVar4.f5036a);
-                                    return;
-                                }
-                                fVar.f2496g.a(new p(ApplicationLoader.applicationHandler, new b(eVar4, 3), 400L));
-                                eVar4.f5040f.invalidate();
-                                eVar4.f5036a = 4;
-                                AndroidUtilities.doOnPreDraw(fVar.f2498j, new p(ApplicationLoader.applicationHandler, new b(eVar4, 4), 300L));
-                                Log.i("PIP_DEBUG", "[HANDLER] pre detach 2");
-                                return;
-                        }
-                    }
-                });
+                ((j5) this.f5198b).a();
                 return;
         }
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        switch (this.f5197a) {
+            case 0:
+                r rVar = (r) this.f5198b;
+                if (view == ((View) rVar.f4005b)) {
+                    rVar.p(null);
+                    return;
+                }
+                return;
+            case 1:
+                ((u1) this.f5198b).f10960l.b();
+                return;
+            case 2:
+                v4 v4Var = (v4) this.f5198b;
+                t4 t4Var = v4Var.K;
+                if (t4Var != null) {
+                    t4Var.o(v4Var.f19679c);
+                    return;
+                }
+                return;
+            case 3:
+                y4 y4Var = (y4) this.f5198b;
+                w4 w4Var = y4Var.K;
+                if (w4Var != null) {
+                    w4Var.o(y4Var.f19679c);
+                    return;
+                }
+                return;
+            case 4:
+                e eVar = (e) this.f5198b;
+                ViewTreeObserver viewTreeObserver = eVar.K;
+                if (viewTreeObserver != null) {
+                    if (!viewTreeObserver.isAlive()) {
+                        eVar.K = view.getViewTreeObserver();
+                    }
+                    eVar.K.removeGlobalOnLayoutListener(eVar.f11134r);
+                }
+                view.removeOnAttachStateChangeListener(this);
+                return;
+            case 5:
+                c0 c0Var = (c0) this.f5198b;
+                ViewTreeObserver viewTreeObserver2 = c0Var.B;
+                if (viewTreeObserver2 != null) {
+                    if (!viewTreeObserver2.isAlive()) {
+                        c0Var.B = view.getViewTreeObserver();
+                    }
+                    c0Var.B.removeGlobalOnLayoutListener(c0Var.f11121r);
+                }
+                view.removeOnAttachStateChangeListener(this);
+                return;
+            case 6:
+                ArrayList arrayList = ((r4) this.f5198b).e;
+                int size = arrayList.size();
+                int i10 = 0;
+                while (i10 < size) {
+                    Object obj = arrayList.get(i10);
+                    i10++;
+                    ((p4) obj).a();
+                }
+                return;
+            case 7:
+                ((q1) this.f5198b).f15775f.onDetachedFromWindow();
+                return;
+            case 8:
+                ((k3) this.f5198b).o(view);
+                return;
+            case 9:
+                ((ba) this.f5198b).f23595c.clear();
+                return;
+            case 10:
+                ic icVar = (ic) this.f5198b;
+                icVar.e.removeOnAttachStateChangeListener(this);
+                icVar.c(0L, false);
+                return;
+            case 11:
+                ((oq) this.f5198b).b();
+                return;
+            case 12:
+                zl0 zl0Var = (zl0) this.f5198b;
+                j5 j5Var = zl0Var.f31426t;
+                if (j5Var != null) {
+                    j5Var.b();
+                }
+                j5 j5Var2 = zl0Var.f31427u;
+                if (j5Var2 != null) {
+                    j5Var2.a();
+                    return;
+                }
+                return;
+            case 13:
+                view.removeCallbacks((Runnable) ((go0) this.f5198b).f25213a.remove(view));
+                view.removeOnAttachStateChangeListener(this);
+                return;
+            default:
+                ((j5) this.f5198b).b();
+                return;
+        }
+    }
+
+    private final void a(View view) {
+    }
+
+    private final void b(View view) {
+    }
+
+    private final void c(View view) {
+    }
+
+    private final void d(View view) {
     }
 }

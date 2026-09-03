@@ -8,9 +8,9 @@ public abstract class z7 {
         }
         for (int i10 = 0; i10 < dVarArr.length; i10++) {
             i0.d dVar = dVarArr[i10];
-            char c3 = dVar.f7761a;
+            char c3 = dVar.f7200a;
             i0.d dVar2 = dVarArr2[i10];
-            if (c3 != dVar2.f7761a || dVar.f7762b.length != dVar2.f7762b.length) {
+            if (c3 != dVar2.f7200a || dVar.f7201b.length != dVar2.f7201b.length) {
                 return false;
             }
         }
@@ -40,8 +40,8 @@ public abstract class z7 {
         try {
             i0.d.b(c(str), path);
             return path;
-        } catch (RuntimeException e6) {
-            throw new RuntimeException("Error in parsing ".concat(str), e6);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Error in parsing ".concat(str), e);
         }
     }
 

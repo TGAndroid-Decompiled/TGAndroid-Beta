@@ -1,41 +1,45 @@
 package eg;
 
-import android.content.DialogInterface;
-import mh.e9;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.mt0;
-public final class z implements DialogInterface.OnDismissListener {
-    public final int f5578a = 1;
-    public final int f5579b;
-    public final NotificationCenter.NotificationCenterDelegate f5580c;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class z implements View.OnClickListener {
+    public final int f5573a;
+    public final v0 f5574b;
 
-    public z(int i10, e9 e9Var) {
-        this.f5579b = i10;
-        this.f5580c = e9Var;
+    public z(v0 v0Var, int i10) {
+        this.f5573a = i10;
+        this.f5574b = v0Var;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f5578a) {
+    public final void onClick(View view) {
+        switch (this.f5573a) {
             case 0:
-                c1 c1Var = (c1) this.f5580c;
-                PhotoViewer photoViewer = ((mt0) c1Var).f39068l2;
-                if (photoViewer.C2 != null) {
-                    photoViewer.E2 = false;
-                    photoViewer.u0();
-                    photoViewer.C2.C();
-                }
-                c1Var.B0(this.f5579b);
+                v0 v0Var = this.f5574b;
+                AndroidUtilities.addToClipboard(v0Var.p1());
+                v0Var.dismiss();
                 return;
+            case 1:
+                g0 g0Var = this.f5574b.B0;
+                if (g0Var.h) {
+                    g0Var.e.performClick();
+                    return;
+                } else {
+                    g0Var.f5221r.performClick();
+                    return;
+                }
+            case 2:
+                g0 g0Var2 = this.f5574b.B0;
+                if (g0Var2.h) {
+                    g0Var2.e.performClick();
+                    return;
+                } else {
+                    g0Var2.f5221r.performClick();
+                    return;
+                }
             default:
-                NotificationCenter.getInstance(this.f5579b).removeObserver((e9) this.f5580c, NotificationCenter.starSubscriptionsLoaded);
+                v0.S(this.f5574b);
                 return;
         }
-    }
-
-    public z(c1 c1Var, int i10) {
-        this.f5580c = c1Var;
-        this.f5579b = i10;
     }
 }

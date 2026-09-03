@@ -1,73 +1,80 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
+import android.hardware.Sensor;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.media.AudioManager;
+import android.os.PowerManager;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-public final class et implements Runnable {
-    public final int f26661a;
-    public final gt f26662b;
+public final class et implements SensorEventListener {
+    public int B;
+    public int C;
+    public long D;
+    public boolean F;
+    public boolean G;
+    public float I;
+    public final SensorManager f24682a;
+    public final AudioManager f24683b;
+    public final Sensor f24684c;
+    public final Sensor d;
+    public final Sensor e;
+    public final Sensor f24685f;
+    public final PowerManager.WakeLock h;
+    public boolean f24686n;
+    public boolean f24687r;
+    public i71 f24688s;
+    public boolean v;
+    public long f24689w;
+    public int f24690x;
+    public int f24691y;
+    public long E = 0;
+    public float H = -100.0f;
+    public final float[] J = new float[3];
+    public final float[] K = new float[3];
+    public final float[] L = new float[3];
 
-    public et(gt gtVar, int i10) {
-        this.f26661a = i10;
-        this.f26662b = gtVar;
+    public et() {
+        SensorManager sensorManager = (SensorManager) ApplicationLoader.applicationContext.getSystemService("sensor");
+        this.f24682a = sensorManager;
+        this.f24684c = sensorManager.getDefaultSensor(8);
+        Sensor defaultSensor = sensorManager.getDefaultSensor(10);
+        this.e = defaultSensor;
+        Sensor defaultSensor2 = sensorManager.getDefaultSensor(9);
+        this.f24685f = defaultSensor2;
+        if (defaultSensor == null || defaultSensor2 == null) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("gravity or linear sensor not found");
+            }
+            this.d = sensorManager.getDefaultSensor(1);
+            this.e = null;
+            this.f24685f = null;
+        }
+        this.h = ((PowerManager) ApplicationLoader.applicationContext.getSystemService("power")).newWakeLock(32, "telegram:proximity_lock2");
+        this.f24683b = (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
+    }
+
+    public final void a() {
+        int i10;
+        i71 i71Var = this.f24688s;
+        if (i71Var == null) {
+            return;
+        }
+        if (this.f24687r) {
+            i10 = 0;
+        } else {
+            i10 = 3;
+        }
+        i71Var.S(i10);
     }
 
     @Override
-    public final void run() {
-        int i10;
-        Bitmap bitmap;
-        switch (this.f26661a) {
-            case 0:
-                gt gtVar = this.f26662b;
-                try {
-                    i10 = gtVar.f27275w + 0;
-                    bitmap = gtVar.f27268b;
-                } catch (Exception e6) {
-                    FileLog.e(e6);
-                    gtVar.B = true;
-                }
-                if (bitmap != null) {
-                    if (bitmap.getWidth() == gtVar.f27276x) {
-                        if (gtVar.f27268b.getHeight() != i10) {
-                        }
-                        gtVar.f27268b.eraseColor(0);
-                        gtVar.f27269c.save();
-                        gtVar.f27269c.translate(0.0f, 0);
-                        gtVar.c(gtVar.f27269c);
-                        gtVar.f27269c.restore();
-                        gtVar.f27268b.prepareToDraw();
-                        AndroidUtilities.runOnUIThread(gtVar.E);
-                        return;
-                    }
-                }
-                Bitmap bitmap2 = gtVar.f27268b;
-                if (bitmap2 != null) {
-                    bitmap2.recycle();
-                }
-                gtVar.f27268b = Bitmap.createBitmap(gtVar.f27276x, i10, Bitmap.Config.ARGB_8888);
-                gtVar.f27269c = new Canvas(gtVar.f27268b);
-                gtVar.f27268b.eraseColor(0);
-                gtVar.f27269c.save();
-                gtVar.f27269c.translate(0.0f, 0);
-                gtVar.c(gtVar.f27269c);
-                gtVar.f27269c.restore();
-                gtVar.f27268b.prepareToDraw();
-                AndroidUtilities.runOnUIThread(gtVar.E);
-                return;
-            default:
-                gt gtVar2 = this.f26662b;
-                gtVar2.f27271f = false;
-                gtVar2.g();
-                if (!gtVar2.f27267a) {
-                    gtVar2.j();
-                    return;
-                } else if (gtVar2.v == gtVar2.G) {
-                    gtVar2.D = true;
-                    return;
-                } else {
-                    return;
-                }
-        }
+    public final void onSensorChanged(android.hardware.SensorEvent r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.et.onSensorChanged(android.hardware.SensorEvent):void");
+    }
+
+    @Override
+    public final void onAccuracyChanged(Sensor sensor, int i10) {
     }
 }

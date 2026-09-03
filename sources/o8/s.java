@@ -1,18 +1,18 @@
 package o8;
 public final class s {
-    public final int f16661a;
-    public final long f16662b;
+    public final int f16480a;
+    public final long f16481b;
 
     public s(int i10, long j10) {
-        this.f16661a = i10;
-        this.f16662b = j10;
+        this.f16480a = i10;
+        this.f16481b = j10;
     }
 
     public final boolean equals(Object obj) {
         if (obj != this) {
             if (obj instanceof s) {
                 s sVar = (s) obj;
-                if (this.f16661a == sVar.f16661a && this.f16662b == sVar.f16662b) {
+                if (this.f16480a == sVar.f16480a && this.f16481b == sVar.f16481b) {
                     return true;
                 }
                 return false;
@@ -23,14 +23,14 @@ public final class s {
     }
 
     public final int hashCode() {
-        long j10 = this.f16662b;
-        return ((this.f16661a ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)));
+        long j10 = this.f16481b;
+        return ((this.f16480a ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)));
     }
 
     public final String toString() {
         StringBuilder sb = new StringBuilder("EventRecord{eventType=");
-        sb.append(this.f16661a);
+        sb.append(this.f16480a);
         sb.append(", eventTimestamp=");
-        return android.support.v4.media.a.q(sb, this.f16662b, "}");
+        return android.support.v4.media.a.q(sb, this.f16481b, "}");
     }
 }

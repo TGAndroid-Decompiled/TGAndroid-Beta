@@ -1,17 +1,17 @@
 package kd;
 
+import kf.k0;
 import kotlin.jvm.internal.j;
-import l.d;
 public final class a implements Comparable {
-    public static final long f11092b;
-    public static final long f11093c;
+    public static final long f10302b;
+    public static final long f10303c;
     public static final int d = 0;
-    public final long f11094a;
+    public final long f10304a;
 
     static {
-        int i10 = b.f11095a;
-        f11092b = Long.MAX_VALUE;
-        f11093c = -9223372036854775805L;
+        int i10 = b.f10305a;
+        f10302b = Long.MAX_VALUE;
+        f10303c = -9223372036854775805L;
     }
 
     public static final void a(StringBuilder sb, int i10, int i11, int i12, String str) {
@@ -63,14 +63,14 @@ public final class a implements Comparable {
                     sb.append((CharSequence) obj, 0, ((i14 + 3) / 3) * 3);
                 }
             } else {
-                throw new IllegalArgumentException(d.k(i12, "Desired length ", " is less than zero."));
+                throw new IllegalArgumentException(k0.k(i12, "Desired length ", " is less than zero."));
             }
         }
         sb.append(str);
     }
 
     public static final boolean b(long j10) {
-        if (j10 != f11092b && j10 != f11093c) {
+        if (j10 != f10302b && j10 != f10303c) {
             return false;
         }
         return true;
@@ -79,26 +79,26 @@ public final class a implements Comparable {
     public static final long c(long j10, c unit) {
         c sourceUnit;
         j.e(unit, "unit");
-        if (j10 == f11092b) {
+        if (j10 == f10302b) {
             return Long.MAX_VALUE;
         }
-        if (j10 == f11093c) {
+        if (j10 == f10303c) {
             return Long.MIN_VALUE;
         }
         long j11 = j10 >> 1;
         if ((((int) j10) & 1) == 0) {
-            sourceUnit = c.f11096b;
+            sourceUnit = c.f10306b;
         } else {
-            sourceUnit = c.f11097c;
+            sourceUnit = c.f10307c;
         }
         j.e(sourceUnit, "sourceUnit");
-        return unit.f11101a.convert(j11, sourceUnit.f11101a);
+        return unit.f10310a.convert(j11, sourceUnit.f10310a);
     }
 
     @Override
     public final int compareTo(Object obj) {
-        long j10 = ((a) obj).f11094a;
-        long j11 = this.f11094a;
+        long j10 = ((a) obj).f10304a;
+        long j11 = this.f10304a;
         long j12 = j11 ^ j10;
         if (j12 >= 0 && (((int) j12) & 1) != 0) {
             int i10 = (((int) j11) & 1) - (1 & ((int) j10));
@@ -119,7 +119,7 @@ public final class a implements Comparable {
 
     public final boolean equals(Object obj) {
         if (obj instanceof a) {
-            if (this.f11094a != ((a) obj).f11094a) {
+            if (this.f10304a != ((a) obj).f10304a) {
                 return false;
             }
             return true;
@@ -128,7 +128,7 @@ public final class a implements Comparable {
     }
 
     public final int hashCode() {
-        long j10 = this.f11094a;
+        long j10 = this.f10304a;
         return (int) (j10 ^ (j10 >>> 32));
     }
 
@@ -146,15 +146,15 @@ public final class a implements Comparable {
         boolean z12;
         boolean z13;
         int i12;
-        long j12 = this.f11094a;
+        long j12 = this.f10304a;
         int i13 = (j12 > 0L ? 1 : (j12 == 0L ? 0 : -1));
         if (i13 == 0) {
             return "0s";
         }
-        if (j12 == f11092b) {
+        if (j12 == f10302b) {
             return "Infinity";
         }
-        if (j12 == f11093c) {
+        if (j12 == f10303c) {
             return "-Infinity";
         }
         if (i13 < 0) {
@@ -168,20 +168,20 @@ public final class a implements Comparable {
         }
         if (i13 < 0) {
             j12 = (((int) j12) & 1) + ((-(j12 >> 1)) << 1);
-            int i14 = b.f11095a;
+            int i14 = b.f10305a;
         }
         long c12 = c(j12, c.h);
         if (b(j12)) {
             c3 = 0;
         } else {
-            c3 = (int) (c(j12, c.f11099f) % 24);
+            c3 = (int) (c(j12, c.f10308f) % 24);
         }
         if (b(j12)) {
             j10 = 0;
             c10 = 0;
         } else {
             j10 = 0;
-            c10 = (int) (c(j12, c.f11098e) % 60);
+            c10 = (int) (c(j12, c.e) % 60);
         }
         if (b(j12)) {
             c11 = 0;

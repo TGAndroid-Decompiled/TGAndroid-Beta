@@ -2,14 +2,14 @@ package sc;
 
 import kotlin.jvm.internal.j;
 public final class b implements Comparable {
-    public static final b f47264b = new b();
-    public final int f47265a = 131348;
+    public static final b f44308b = new b();
+    public final int f44309a = 131348;
 
     @Override
     public final int compareTo(Object obj) {
         b other = (b) obj;
         j.e(other, "other");
-        return this.f47265a - other.f47265a;
+        return this.f44309a - other.f44309a;
     }
 
     public final boolean equals(Object obj) {
@@ -22,14 +22,14 @@ public final class b implements Comparable {
         } else {
             bVar = null;
         }
-        if (bVar != null && this.f47265a == bVar.f47265a) {
+        if (bVar != null && this.f44309a == bVar.f44309a) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f47265a;
+        return this.f44309a;
     }
 
     public final String toString() {

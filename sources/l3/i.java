@@ -3,23 +3,23 @@ package l3;
 import android.content.Context;
 import android.media.AudioDeviceCallback;
 import android.media.AudioDeviceInfo;
-import c2.z0;
+import c2.a1;
 public final class i extends AudioDeviceCallback {
-    public final z0 f11516a;
+    public final a1 f11262a;
 
-    public i(z0 z0Var) {
-        this.f11516a = z0Var;
+    public i(a1 a1Var) {
+        this.f11262a = a1Var;
     }
 
     @Override
     public final void onAudioDevicesAdded(AudioDeviceInfo[] audioDeviceInfoArr) {
-        z0 z0Var = this.f11516a;
-        z0.a(z0Var, g.a((Context) z0Var.f2224b));
+        a1 a1Var = this.f11262a;
+        a1.a(a1Var, g.a((Context) a1Var.f1902b));
     }
 
     @Override
     public final void onAudioDevicesRemoved(AudioDeviceInfo[] audioDeviceInfoArr) {
-        z0 z0Var = this.f11516a;
-        z0.a(z0Var, g.a((Context) z0Var.f2224b));
+        a1 a1Var = this.f11262a;
+        a1.a(a1Var, g.a((Context) a1Var.f1902b));
     }
 }

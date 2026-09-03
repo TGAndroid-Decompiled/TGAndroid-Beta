@@ -3,13 +3,13 @@ package u4;
 import android.net.Uri;
 import j3.n0;
 public final class j {
-    public final Uri f48333a;
-    public final n0 f48334b;
-    public final String f48335c;
+    public final Uri f45111a;
+    public final n0 f45112b;
+    public final String f45113c;
 
     public j(Uri uri, n0 n0Var, String str) {
-        this.f48333a = uri;
-        this.f48334b = n0Var;
-        this.f48335c = str;
+        this.f45111a = uri;
+        this.f45112b = n0Var;
+        this.f45113c = str;
     }
 }

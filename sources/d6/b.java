@@ -8,13 +8,13 @@ import com.google.android.gms.common.api.j;
 import com.google.android.gms.tasks.Task;
 import o5.i;
 public final class b extends j {
-    public static final e f4294k = new e("ClientTelemetry.API", new a8.j(4), new Object());
+    public static final e f4203k = new e("ClientTelemetry.API", new a8.j(4), new Object());
 
     public final Task f(p pVar) {
-        v e6 = w.e();
-        e6.d = new y5.c[]{y6.b.f50827a};
-        e6.f2823b = false;
-        e6.f2824c = new i(pVar, 8);
-        return e(2, e6.e());
+        v e = w.e();
+        e.d = new y5.c[]{y6.b.f47195a};
+        e.f2867b = false;
+        e.f2868c = new i(pVar, 11);
+        return e(2, e.e());
     }
 }

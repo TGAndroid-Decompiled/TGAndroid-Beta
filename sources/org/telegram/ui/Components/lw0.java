@@ -7,21 +7,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.TLRPC;
 public final class lw0 {
-    public final j5 f28891a;
-    public Drawable f28892b;
+    public final j5 f26889a;
+    public Drawable f26890b;
 
     public lw0(FrameLayout frameLayout) {
         this(18, frameLayout);
     }
 
     public final j5 a(TLRPC.User user, TLRPC.Chat chat, int i10, boolean z4) {
-        j5 j5Var = this.f28891a;
+        j5 j5Var = this.f26889a;
         if (chat != null && chat.verified) {
-            Drawable drawable = this.f28892b;
+            Drawable drawable = this.f26890b;
             if (drawable == null) {
-                drawable = new pq(org.telegram.ui.ActionBar.k6.f21693f1, org.telegram.ui.ActionBar.k6.f21747i1);
+                drawable = new mq(org.telegram.ui.ActionBar.j6.f19912f1, org.telegram.ui.ActionBar.j6.f19966i1);
             }
-            this.f28892b = drawable;
+            this.f26890b = drawable;
             j5Var.g(drawable, z4);
             j5Var.k(null);
             return j5Var;
@@ -30,11 +30,11 @@ public final class lw0 {
             j5Var.k(Integer.valueOf(i10));
             return j5Var;
         } else if (user != null && user.verified) {
-            Drawable drawable2 = this.f28892b;
+            Drawable drawable2 = this.f26890b;
             if (drawable2 == null) {
-                drawable2 = new pq(org.telegram.ui.ActionBar.k6.f21693f1, org.telegram.ui.ActionBar.k6.f21747i1);
+                drawable2 = new mq(org.telegram.ui.ActionBar.j6.f19912f1, org.telegram.ui.ActionBar.j6.f19966i1);
             }
-            this.f28892b = drawable2;
+            this.f26890b = drawable2;
             j5Var.g(drawable2, z4);
             j5Var.k(null);
             return j5Var;
@@ -43,7 +43,7 @@ public final class lw0 {
             j5Var.k(Integer.valueOf(i10));
             return j5Var;
         } else if (user != null && user.premium) {
-            j5Var.g(fg.q1.d().f6516e, z4);
+            j5Var.g(eg.r1.d().e, z4);
             j5Var.k(Integer.valueOf(i10));
             return j5Var;
         } else {
@@ -54,6 +54,6 @@ public final class lw0 {
     }
 
     public lw0(int i10, View view) {
-        this.f28891a = new j5(AndroidUtilities.dp(i10), view);
+        this.f26889a = new j5(AndroidUtilities.dp(i10), view);
     }
 }

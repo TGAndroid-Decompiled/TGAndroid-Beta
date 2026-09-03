@@ -1,30 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-public final class hu extends CharacterStyle {
-    public final int f27627a;
-    public int f27628b;
+import android.content.DialogInterface;
+public final class hu implements DialogInterface.OnShowListener {
+    public final ou f25496a;
 
-    public hu(int i10, int i11) {
-        this.f27627a = i11;
-        this.f27628b = i10;
+    public hu(ou ouVar) {
+        this.f25496a = ouVar;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f27627a) {
-            case 0:
-                textPaint.setAlpha((int) ((this.f27628b / 255.0f) * textPaint.getAlpha()));
-                return;
-            default:
-                textPaint.setColor(org.telegram.ui.ActionBar.k6.l1(textPaint.getAlpha() / 255.0f, this.f27628b));
-                return;
+    public final void onShow(DialogInterface dialogInterface) {
+        e91 e91Var = this.f25496a.f27652c;
+        if (mg0.m0.M && e91Var.f()) {
+            e91Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Cells.aa(this, 1));
         }
-    }
-
-    public hu() {
-        this.f27627a = 0;
-        this.f27628b = 0;
     }
 }

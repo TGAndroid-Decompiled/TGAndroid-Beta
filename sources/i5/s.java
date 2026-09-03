@@ -3,23 +3,23 @@ package i5;
 import android.view.Surface;
 import h5.d0;
 public final class s {
-    public final e f7870a;
-    public final p f7871b;
-    public final r f7872c;
+    public final e f7298a;
+    public final p f7299b;
+    public final r f7300c;
     public boolean d;
-    public Surface f7873e;
-    public float f7874f;
-    public float f7875g;
+    public Surface e;
+    public float f7301f;
+    public float f7302g;
     public float h;
-    public float f7876i;
-    public int f7877j;
-    public long f7878k;
-    public long f7879l;
-    public long f7880m;
-    public long f7881n;
-    public long f7882o;
-    public long f7883p;
-    public long f7884q;
+    public float f7303i;
+    public int f7304j;
+    public long f7305k;
+    public long f7306l;
+    public long f7307m;
+    public long f7308n;
+    public long f7309o;
+    public long f7310p;
+    public long f7311q;
 
     public s(android.content.Context r6) {
         throw new UnsupportedOperationException("Method not decompiled: i5.s.<init>(android.content.Context):void");
@@ -27,7 +27,7 @@ public final class s {
 
     public final void a() {
         Surface surface;
-        if (d0.f7237a >= 30 && (surface = this.f7873e) != null && this.f7877j != Integer.MIN_VALUE && this.h != 0.0f) {
+        if (d0.f6924a >= 30 && (surface = this.e) != null && this.f7304j != Integer.MIN_VALUE && this.h != 0.0f) {
             this.h = 0.0f;
             o.a(surface, 0.0f);
         }
@@ -40,11 +40,11 @@ public final class s {
     public final void c(boolean z4) {
         Surface surface;
         float f10;
-        if (d0.f7237a >= 30 && (surface = this.f7873e) != null && this.f7877j != Integer.MIN_VALUE) {
+        if (d0.f6924a >= 30 && (surface = this.e) != null && this.f7304j != Integer.MIN_VALUE) {
             if (this.d) {
-                float f11 = this.f7875g;
+                float f11 = this.f7302g;
                 if (f11 != -1.0f) {
-                    f10 = f11 * this.f7876i;
+                    f10 = f11 * this.f7303i;
                     if (!z4 || this.h != f10) {
                         this.h = f10;
                         o.a(surface, f10);

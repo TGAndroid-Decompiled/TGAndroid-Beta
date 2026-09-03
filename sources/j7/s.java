@@ -1,6 +1,6 @@
 package j7;
 public abstract class s {
-    public static androidx.emoji2.text.r a(android.content.Context r8) {
-        throw new UnsupportedOperationException("Method not decompiled: j7.s.a(android.content.Context):androidx.emoji2.text.r");
-    }
+    public abstract void a(Throwable th2);
+
+    public abstract void b(com.google.firebase.messaging.r rVar);
 }

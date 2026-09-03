@@ -1,23 +1,28 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public abstract class h7 extends cg.c {
-    public final int d;
-    public final ArrayList f37232e = new ArrayList();
+import android.view.View;
+public final class h7 implements org.telegram.ui.Components.hl0 {
+    public final org.telegram.ui.Components.rl0 f34588a;
+    public final i7 f34589b;
 
-    public h7(int i10) {
-        this.d = i10;
-    }
-
-    public abstract void F();
-
-    @Override
-    public final int h() {
-        return this.f37232e.size();
+    public h7(i7 i7Var, org.telegram.ui.Components.rl0 rl0Var) {
+        this.f34589b = i7Var;
+        this.f34588a = rl0Var;
     }
 
     @Override
-    public final int j(int i10) {
-        return ((o7) this.f37232e.get(i10)).f2505a;
+    public final void d(int i10, View view) {
+        w7 w7Var = this.f34589b.d;
+        org.telegram.ui.Components.rl0 rl0Var = this.f34588a;
+        j7 j7Var = (j7) rl0Var.getAdapter();
+        q7 q7Var = (q7) j7Var.e.get(i10);
+        if (view instanceof org.telegram.ui.Cells.q7) {
+            w7.a(w7Var, q7Var, (s7) j7Var, rl0Var);
+            return;
+        }
+        m7 m7Var = w7Var.v;
+        if (m7Var != null) {
+            m7Var.r(q7Var.f37321c, q7Var.d, false);
+        }
     }
 }

@@ -1,30 +1,37 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.NotificationCenter;
-public final class xd0 implements NotificationCenter.NotificationCenterDelegate {
-    public final zd0 f43018a;
+import android.content.Context;
+public final class xd0 extends as {
+    public final int h;
+    public final Object f39962n;
 
-    public xd0(zd0 zd0Var) {
-        this.f43018a = zd0Var;
+    public xd0(Object obj, Context context, int i10) {
+        super(context);
+        this.h = i10;
+        this.f39962n = obj;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        zd0 zd0Var = this.f43018a;
-        int intValue = ((Integer) objArr[0]).intValue();
-        ((Integer) objArr[1]).getClass();
-        Intent intent = (Intent) objArr[2];
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onActivityResultReceived);
-        if (intValue == 200) {
-            try {
-                zd0Var.C = (GoogleSignInAccount) k7.z.b(intent).getResult(com.google.android.gms.common.api.f.class);
-                zd0Var.h(null);
-            } catch (com.google.android.gms.common.api.f e6) {
-                FileLog.e(e6);
-            }
+    public final void a() {
+        switch (this.h) {
+            case 0:
+                ((ae0) this.f39962n).h(null);
+                return;
+            case 1:
+                ((ue0) this.f39962n).h(null);
+                return;
+            case 2:
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f39962n;
+                if (passcodeActivity.B == 0) {
+                    postDelayed(new gl0(this, 0), 260L);
+                    return;
+                } else {
+                    passcodeActivity.g0();
+                    return;
+                }
+            default:
+                ((wg1) this.f39962n).C0();
+                return;
         }
     }
 }

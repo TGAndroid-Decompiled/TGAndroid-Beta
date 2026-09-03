@@ -1,7 +1,7 @@
 package h7;
 
 import j$.util.List;
-import j7.u7;
+import j7.t7;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -10,7 +10,7 @@ import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
 public abstract class d extends a implements List, RandomAccess, j$.util.List {
-    public static final b f7324b = new b(g.f7329e, 0);
+    public static final b f7002b = new b(g.e, 0);
 
     @Override
     public final void add(int i10, Object obj) {
@@ -124,22 +124,22 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
 
     @Override
     public d subList(int i10, int i11) {
-        u7.c(i10, i11, size());
+        t7.c(i10, i11, size());
         int i12 = i11 - i10;
         if (i12 == size()) {
             return this;
         }
         if (i12 == 0) {
-            return g.f7329e;
+            return g.e;
         }
         return new c(this, i10, i12);
     }
 
     @Override
     public final b listIterator(int i10) {
-        u7.b(i10, size());
+        t7.b(i10, size());
         if (isEmpty()) {
-            return f7324b;
+            return f7002b;
         }
         return new b(this, i10);
     }

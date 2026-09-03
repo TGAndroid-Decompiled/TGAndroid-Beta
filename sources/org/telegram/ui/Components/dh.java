@@ -5,32 +5,32 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class dh implements o1.g {
-    public final int f26272a = 1;
-    public final boolean f26273b;
-    public final float f26274c;
+    public final int f24276a = 0;
+    public final boolean f24277b;
+    public final float f24278c;
     public final float d;
-    public final KeyEvent.Callback f26275e;
+    public final KeyEvent.Callback e;
 
-    public dh(mi miVar, float f10, float f11, boolean z4) {
-        this.f26275e = miVar;
-        this.f26274c = f10;
+    public dh(li liVar, float f10, float f11, boolean z4) {
+        this.e = liVar;
+        this.f24278c = f10;
         this.d = f11;
-        this.f26273b = z4;
+        this.f24277b = z4;
     }
 
     @Override
     public final void a(o1.h hVar, float f10, float f11) {
-        switch (this.f26272a) {
+        switch (this.f24276a) {
             case 0:
-                mi miVar = (mi) this.f26275e;
-                LinearLayout linearLayout = miVar.f29079i1;
-                LinearLayout linearLayout2 = miVar.f29085k1;
+                li liVar = (li) this.e;
+                LinearLayout linearLayout = liVar.f26705i1;
+                LinearLayout linearLayout2 = liVar.f26711k1;
                 float f12 = f10 / 500.0f;
-                miVar.f29054b0.set(miVar.f29118v0, Float.valueOf(f12));
-                miVar.U0.setAlpha(AndroidUtilities.lerp(this.f26274c, this.d, f12));
-                miVar.X1(miVar.f29118v0, 0);
-                miVar.X1(miVar.f29122w0, 0);
-                if (!(miVar.f29122w0 instanceof pm) || this.f26273b) {
+                liVar.f26681b0.set(liVar.f26744v0, Float.valueOf(f12));
+                liVar.U0.setAlpha(AndroidUtilities.lerp(this.f24278c, this.d, f12));
+                liVar.X1(liVar.f26744v0, 0);
+                liVar.X1(liVar.f26748w0, 0);
+                if (!(liVar.f26748w0 instanceof nm) || this.f24277b) {
                     f12 = 1.0f - f12;
                 }
                 float clamp = Utilities.clamp(f12, 1.0f, 0.0f);
@@ -41,25 +41,25 @@ public final class dh implements o1.g {
                 linearLayout2.setTranslationX(f13 * AndroidUtilities.dp(16.0f));
                 return;
             default:
-                ap0 ap0Var = (ap0) this.f26275e;
-                boolean z4 = this.f26273b;
+                zo0 zo0Var = (zo0) this.e;
+                boolean z4 = this.f24277b;
                 if (z4) {
-                    if (f10 > this.f26274c / 2.0f || !ap0Var.f25344s) {
+                    if (f10 > this.f24278c / 2.0f || !zo0Var.f31446s) {
                         return;
                     }
-                } else if (f10 < this.d / 2.0f || !ap0Var.f25343r) {
+                } else if (f10 < this.d / 2.0f || !zo0Var.f31445r) {
                     return;
                 }
-                ap0Var.f25344s = !z4;
-                ap0Var.f25343r = z4;
+                zo0Var.f31446s = !z4;
+                zo0Var.f31445r = z4;
                 return;
         }
     }
 
-    public dh(ap0 ap0Var, boolean z4, float f10, float f11) {
-        this.f26275e = ap0Var;
-        this.f26273b = z4;
-        this.f26274c = f10;
+    public dh(zo0 zo0Var, boolean z4, float f10, float f11) {
+        this.e = zo0Var;
+        this.f24277b = z4;
+        this.f24278c = f10;
         this.d = f11;
     }
 }

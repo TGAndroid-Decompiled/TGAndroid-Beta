@@ -6,8 +6,8 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.SortedSet;
 public abstract class z extends q implements Set {
-    public static final int f47181c = 0;
-    public transient v f47182b;
+    public static final int f44229c = 0;
+    public transient v f44230b;
 
     public static int s(int i10) {
         int max = Math.max(i10, 2);
@@ -82,7 +82,7 @@ public abstract class z extends q implements Set {
             Objects.requireNonNull(obj4);
             return new t0(obj4);
         }
-        return o0.f47154s;
+        return o0.f44204s;
     }
 
     public static z u(Collection collection) {
@@ -114,18 +114,18 @@ public abstract class z extends q implements Set {
 
     @Override
     public v i() {
-        v vVar = this.f47182b;
+        v vVar = this.f44230b;
         if (vVar == null) {
             v v = v();
-            this.f47182b = v;
+            this.f44230b = v;
             return v;
         }
         return vVar;
     }
 
     public v v() {
-        Object[] array = toArray(q.f47162a);
-        t tVar = v.f47174b;
+        Object[] array = toArray(q.f44211a);
+        t tVar = v.f44222b;
         return v.s(array.length, array);
     }
 

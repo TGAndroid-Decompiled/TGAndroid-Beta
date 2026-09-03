@@ -10,11 +10,11 @@ public interface a2 {
 
     long D();
 
-    void a();
+    void a(v1 v1Var);
 
-    int b();
+    void b();
 
-    void c(v1 v1Var);
+    int c();
 
     v1 d();
 

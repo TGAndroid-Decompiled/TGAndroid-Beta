@@ -8,14 +8,14 @@ public enum c implements x9.b {
     INVALID_PAYLOD(5),
     SERVER_ERROR(6);
     
-    public final int f1400a;
+    public final int f1309a;
 
     c(int i10) {
-        this.f1400a = i10;
+        this.f1309a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f1400a;
+        return this.f1309a;
     }
 }

@@ -9,50 +9,50 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class xk0 implements Runnable {
-    public final org.telegram.ui.web.a1 B;
-    public final qh.d f43065a;
-    public final qh.d f43066b;
-    public final TLRPC.TL_messages_requestUrlAuth f43067c;
+    public final org.telegram.ui.web.c1 B;
+    public final ph.d f40007a;
+    public final ph.d f40008b;
+    public final TLRPC.TL_messages_requestUrlAuth f40009c;
     public final String[] d;
-    public final org.telegram.ui.Cells.s8 f43068e;
-    public final boolean[] f43069f;
+    public final org.telegram.ui.Cells.r8 e;
+    public final boolean[] f40010f;
     public final int[] h;
-    public final boolean[] f43070n;
-    public final org.telegram.ui.ActionBar.h3 f43071r;
-    public final String f43072s;
-    public final org.telegram.ui.ActionBar.g6 v;
-    public final boolean f43073w;
-    public final String f43074x;
-    public final TLRPC.TL_urlAuthResultRequest f43075y;
+    public final boolean[] f40011n;
+    public final org.telegram.ui.ActionBar.g3 f40012r;
+    public final String f40013s;
+    public final org.telegram.ui.ActionBar.f6 v;
+    public final boolean f40014w;
+    public final String f40015x;
+    public final TLRPC.TL_urlAuthResultRequest f40016y;
 
-    public xk0(qh.d dVar, qh.d dVar2, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String[] strArr, org.telegram.ui.Cells.s8 s8Var, boolean[] zArr, int[] iArr, boolean[] zArr2, org.telegram.ui.ActionBar.h3 h3Var, String str, org.telegram.ui.ActionBar.g6 g6Var, boolean z4, String str2, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, org.telegram.ui.web.a1 a1Var) {
-        this.f43065a = dVar;
-        this.f43066b = dVar2;
-        this.f43067c = tL_messages_requestUrlAuth;
+    public xk0(ph.d dVar, ph.d dVar2, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String[] strArr, org.telegram.ui.Cells.r8 r8Var, boolean[] zArr, int[] iArr, boolean[] zArr2, org.telegram.ui.ActionBar.g3 g3Var, String str, org.telegram.ui.ActionBar.f6 f6Var, boolean z4, String str2, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, org.telegram.ui.web.c1 c1Var) {
+        this.f40007a = dVar;
+        this.f40008b = dVar2;
+        this.f40009c = tL_messages_requestUrlAuth;
         this.d = strArr;
-        this.f43068e = s8Var;
-        this.f43069f = zArr;
+        this.e = r8Var;
+        this.f40010f = zArr;
         this.h = iArr;
-        this.f43070n = zArr2;
-        this.f43071r = h3Var;
-        this.f43072s = str;
-        this.v = g6Var;
-        this.f43073w = z4;
-        this.f43074x = str2;
-        this.f43075y = tL_urlAuthResultRequest;
-        this.B = a1Var;
+        this.f40011n = zArr2;
+        this.f40012r = g3Var;
+        this.f40013s = str;
+        this.v = f6Var;
+        this.f40014w = z4;
+        this.f40015x = str2;
+        this.f40016y = tL_urlAuthResultRequest;
+        this.B = c1Var;
     }
 
     @Override
     public final void run() {
-        qh.d dVar = this.f43065a;
-        if (dVar.K || this.f43066b.K) {
+        ph.d dVar = this.f40007a;
+        if (dVar.K || this.f40008b.K) {
             return;
         }
         boolean z4 = true;
         dVar.setLoading(true);
         final TLRPC.TL_messages_acceptUrlAuth tL_messages_acceptUrlAuth = new TLRPC.TL_messages_acceptUrlAuth();
-        final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = this.f43067c;
+        final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = this.f40009c;
         if (TLObject.hasFlag(tL_messages_requestUrlAuth.flags, 2)) {
             tL_messages_acceptUrlAuth.flags |= 2;
             tL_messages_acceptUrlAuth.peer = tL_messages_requestUrlAuth.peer;
@@ -67,20 +67,20 @@ public final class xk0 implements Runnable {
         if (str != null) {
             tL_messages_acceptUrlAuth.match_code = str;
         }
-        org.telegram.ui.Cells.s8 s8Var = this.f43068e;
-        tL_messages_acceptUrlAuth.write_allowed = (s8Var == null || !s8Var.f23755e.h) ? false : false;
-        tL_messages_acceptUrlAuth.share_phone_number = this.f43069f[0];
+        org.telegram.ui.Cells.r8 r8Var = this.e;
+        tL_messages_acceptUrlAuth.write_allowed = (r8Var == null || !r8Var.e.h) ? false : false;
+        tL_messages_acceptUrlAuth.share_phone_number = this.f40010f[0];
         final int[] iArr = this.h;
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(iArr[0]);
         ?? obj = new Object();
-        final boolean[] zArr = this.f43070n;
-        final org.telegram.ui.ActionBar.h3 h3Var = this.f43071r;
-        final String str2 = this.f43072s;
-        final org.telegram.ui.ActionBar.g6 g6Var = this.v;
-        final boolean z10 = this.f43073w;
-        final String str3 = this.f43074x;
-        final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = this.f43075y;
-        final org.telegram.ui.web.a1 a1Var = this.B;
+        final boolean[] zArr = this.f40011n;
+        final org.telegram.ui.ActionBar.g3 g3Var = this.f40012r;
+        final String str2 = this.f40013s;
+        final org.telegram.ui.ActionBar.f6 f6Var = this.v;
+        final boolean z10 = this.f40014w;
+        final String str3 = this.f40015x;
+        final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = this.f40016y;
+        final org.telegram.ui.web.c1 c1Var = this.B;
         connectionsManager.sendRequestTyped(tL_messages_acceptUrlAuth, obj, new Utilities.Callback2() {
             @Override
             public final void run(Object obj2, Object obj3) {
@@ -88,7 +88,7 @@ public final class xk0 implements Runnable {
                 TLRPC.UrlAuthResult urlAuthResult = (TLRPC.UrlAuthResult) obj2;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
                 zArr[0] = true;
-                h3Var.dismiss();
+                g3Var.dismiss();
                 if (tL_error != null) {
                     if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
                         org.telegram.ui.Components.qc a2 = zk0.a();
@@ -98,7 +98,7 @@ public final class xk0 implements Runnable {
                         if (TextUtils.isEmpty(str4)) {
                             replaceSingleLinkBold = LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain);
                         } else {
-                            replaceSingleLinkBold = AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, str4), org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Gi, g6Var));
+                            replaceSingleLinkBold = AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, str4), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Gi, f6Var));
                         }
                         a2.M(string, replaceSingleLinkBold, i10).j();
                         return;
@@ -106,7 +106,7 @@ public final class xk0 implements Runnable {
                     zk0.a().d0(tL_error, false);
                     return;
                 }
-                zk0.b(z10, iArr[0], tL_messages_requestUrlAuth, urlAuthResult, str3, tL_urlAuthResultRequest, null, tL_messages_acceptUrlAuth.share_phone_number, a1Var);
+                zk0.b(z10, iArr[0], tL_messages_requestUrlAuth, urlAuthResult, str3, tL_urlAuthResultRequest, null, tL_messages_acceptUrlAuth.share_phone_number, c1Var);
             }
         });
     }

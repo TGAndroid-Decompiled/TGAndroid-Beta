@@ -7,12 +7,12 @@ import android.util.TypedValue;
 import android.view.ViewConfiguration;
 import java.lang.reflect.Method;
 public abstract class k0 {
-    public static final Method f46475a;
+    public static final Method f43147a;
 
     static {
         if (Build.VERSION.SDK_INT == 25) {
             try {
-                f46475a = ViewConfiguration.class.getDeclaredMethod("getScaledScrollFactor", null);
+                f43147a = ViewConfiguration.class.getDeclaredMethod("getScaledScrollFactor", null);
             } catch (Exception unused) {
                 Log.i("ViewConfigCompat", "Could not find method getScaledScrollFactor() on ViewConfiguration");
             }
@@ -21,7 +21,7 @@ public abstract class k0 {
 
     public static float a(ViewConfiguration viewConfiguration, Context context) {
         Method method;
-        if (Build.VERSION.SDK_INT >= 25 && (method = f46475a) != null) {
+        if (Build.VERSION.SDK_INT >= 25 && (method = f43147a) != null) {
             try {
                 return ((Integer) method.invoke(viewConfiguration, null)).intValue();
             } catch (Exception unused) {

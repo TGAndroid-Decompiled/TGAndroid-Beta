@@ -1,62 +1,33 @@
 package lh;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k6;
-public final class d0 extends mh.c5 {
-    public final Path f12660x0;
-    public final float[] f12661y0;
-    public final f0 f12662z0;
+import android.view.View;
+import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.rl0;
+import org.telegram.ui.Components.w51;
+public final class d0 extends h51 {
+    static {
+        h51.setup(new h51());
+    }
 
-    public d0(f0 f0Var, Context context, g6 g6Var, v vVar, eg.m mVar, eg.m mVar2, eg.m mVar3, eg.m mVar4, eg.m mVar5, eg.m mVar6) {
-        super(context, g6Var, vVar, mVar, null, mVar2, mVar3, mVar4, mVar5, mVar6);
-        this.f12662z0 = f0Var;
-        this.f12660x0 = new Path();
-        this.f12661y0 = new float[8];
+    public static i51 a(String str, CharSequence charSequence, int i10) {
+        i51 J = i51.J(d0.class);
+        J.f1831b = false;
+        J.f25598z = i10;
+        J.f25585l = str;
+        J.f25586m = charSequence;
+        return J;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipPath(this.f12660x0);
-        super.dispatchDraw(canvas);
-        canvas.restore();
+    public final void bindView(View view, i51 i51Var, boolean z4, w51 w51Var, g61 g61Var) {
+        ((e0) view).a(i51Var.f25585l, i51Var.f25586m, i51Var.f25598z);
     }
 
     @Override
-    public final int getFinalHeight() {
-        return AndroidUtilities.dp(288.0f);
-    }
-
-    @Override
-    public final float getRealHeight() {
-        return AndroidUtilities.dp(288.0f);
-    }
-
-    @Override
-    public final void j(int i10) {
-        f0 f0Var = this.f12662z0;
-        TextView textView = f0Var.Y;
-        if (textView != null && k6.B1(textView.getBackground(), i10, false)) {
-            f0Var.Y.invalidate();
-        }
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        float dp = AndroidUtilities.dp(12.0f);
-        float[] fArr = this.f12661y0;
-        fArr[3] = dp;
-        fArr[2] = dp;
-        fArr[1] = dp;
-        fArr[0] = dp;
-        Path path = this.f12660x0;
-        path.rewind();
-        path.addRoundRect(0.0f, 0.0f, i10, i11, this.f12661y0, Path.Direction.CW);
+    public final View createView(Context context, rl0 rl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+        return new e0(context, 0, f6Var);
     }
 }

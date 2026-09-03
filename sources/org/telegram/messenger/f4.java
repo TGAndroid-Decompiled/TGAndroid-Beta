@@ -5,32 +5,32 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 public final class f4 implements Utilities.Callback {
-    public final int f18627a = 0;
-    public final long f18628b;
-    public final BaseController f18629c;
+    public final int f17163a = 0;
+    public final long f17164b;
+    public final BaseController f17165c;
     public final Object d;
 
     public f4(GiftAuctionController giftAuctionController, long j10, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState) {
-        this.f18629c = giftAuctionController;
-        this.f18628b = j10;
+        this.f17165c = giftAuctionController;
+        this.f17164b = j10;
         this.d = tL_StarGiftAuctionState;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f18627a) {
+        switch (this.f17163a) {
             case 0:
-                ((GiftAuctionController) this.f18629c).lambda$subscribeToGiftAuctionStateInternal$0(this.f18628b, (TL_payments.TL_StarGiftAuctionState) this.d, (ArrayList) obj);
+                ((GiftAuctionController) this.f17165c).lambda$subscribeToGiftAuctionStateInternal$0(this.f17164b, (TL_payments.TL_StarGiftAuctionState) this.d, (ArrayList) obj);
                 return;
             default:
-                ((TranslateController) this.f18629c).lambda$checkTranslation$4((MessageObject) this.d, this.f18628b, (TLRPC.TL_textWithEntities) obj);
+                ((TranslateController) this.f17165c).lambda$checkTranslation$4((MessageObject) this.d, this.f17164b, (TLRPC.TL_textWithEntities) obj);
                 return;
         }
     }
 
     public f4(TranslateController translateController, MessageObject messageObject, long j10) {
-        this.f18629c = translateController;
+        this.f17165c = translateController;
         this.d = messageObject;
-        this.f18628b = j10;
+        this.f17164b = j10;
     }
 }

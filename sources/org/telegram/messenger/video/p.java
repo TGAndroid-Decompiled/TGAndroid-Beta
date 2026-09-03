@@ -2,22 +2,22 @@ package org.telegram.messenger.video;
 
 import org.telegram.messenger.video.VideoPlayerHolderBase;
 public final class p implements Runnable {
-    public final int f20357a;
-    public final VideoPlayerHolderBase.AnonymousClass2 f20358b;
+    public final int f18712a;
+    public final VideoPlayerHolderBase.AnonymousClass2 f18713b;
 
     public p(VideoPlayerHolderBase.AnonymousClass2 anonymousClass2, int i10) {
-        this.f20357a = i10;
-        this.f20358b = anonymousClass2;
+        this.f18712a = i10;
+        this.f18713b = anonymousClass2;
     }
 
     @Override
     public final void run() {
-        switch (this.f20357a) {
+        switch (this.f18712a) {
             case 0:
-                this.f20358b.lambda$onRenderedFirstFrame$2();
+                this.f18713b.lambda$onRenderedFirstFrame$2();
                 return;
             default:
-                this.f20358b.lambda$onError$1();
+                this.f18713b.lambda$onError$1();
                 return;
         }
     }

@@ -1,25 +1,25 @@
 package n7;
 public final class m extends i {
-    public static final m f15649e = new m(0, new Object[0]);
-    public final transient Object[] f15650c;
+    public static final m e = new m(0, new Object[0]);
+    public final transient Object[] f14639c;
     public final transient int d;
 
     public m(int i10, Object[] objArr) {
-        this.f15650c = objArr;
+        this.f14639c = objArr;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i10) {
-        k7.f0.a(i10, this.d);
-        Object obj = this.f15650c[i10];
+        k7.e0.a(i10, this.d);
+        Object obj = this.f14639c[i10];
         obj.getClass();
         return obj;
     }
 
     @Override
     public final int i(Object[] objArr) {
-        Object[] objArr2 = this.f15650c;
+        Object[] objArr2 = this.f14639c;
         int i10 = this.d;
         System.arraycopy(objArr2, 0, objArr, 0, i10);
         return i10;
@@ -37,7 +37,7 @@ public final class m extends i {
 
     @Override
     public final Object[] p() {
-        return this.f15650c;
+        return this.f14639c;
     }
 
     @Override

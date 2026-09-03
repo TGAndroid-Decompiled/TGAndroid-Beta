@@ -4,11 +4,11 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 public final class j0 implements ActionMode.Callback {
-    public final int f21492a;
+    public final int f19797a;
 
     @Override
     public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        switch (this.f21492a) {
+        switch (this.f19797a) {
             case 0:
                 return false;
             case 1:
@@ -26,7 +26,7 @@ public final class j0 implements ActionMode.Callback {
 
     @Override
     public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        switch (this.f21492a) {
+        switch (this.f19797a) {
             case 0:
                 return false;
             case 1:
@@ -44,12 +44,12 @@ public final class j0 implements ActionMode.Callback {
 
     @Override
     public final void onDestroyActionMode(ActionMode actionMode) {
-        int i10 = this.f21492a;
+        int i10 = this.f19797a;
     }
 
     @Override
     public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        switch (this.f21492a) {
+        switch (this.f19797a) {
             case 0:
                 return false;
             case 1:

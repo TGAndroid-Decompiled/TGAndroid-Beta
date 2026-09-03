@@ -8,59 +8,59 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
 public final class ss0 implements ViewTreeObserver.OnPreDrawListener {
-    public final sl0 f31168a;
-    public final SparseBooleanArray f31169b;
-    public final View f31170c;
+    public final rl0 f28802a;
+    public final SparseBooleanArray f28803b;
+    public final View f28804c;
     public final int d;
-    public final yu0 f31171e;
+    public final yu0 e;
 
-    public ss0(yu0 yu0Var, sl0 sl0Var, SparseBooleanArray sparseBooleanArray, u00 u00Var, int i10) {
-        this.f31171e = yu0Var;
-        this.f31168a = sl0Var;
-        this.f31169b = sparseBooleanArray;
-        this.f31170c = u00Var;
+    public ss0(yu0 yu0Var, rl0 rl0Var, SparseBooleanArray sparseBooleanArray, u00 u00Var, int i10) {
+        this.e = yu0Var;
+        this.f28802a = rl0Var;
+        this.f28803b = sparseBooleanArray;
+        this.f28804c = u00Var;
         this.d = i10;
     }
 
     @Override
     public final boolean onPreDraw() {
-        yu0 yu0Var = this.f31171e;
+        yu0 yu0Var = this.e;
         yu0Var.getViewTreeObserver().removeOnPreDrawListener(this);
-        final sl0 sl0Var = this.f31168a;
-        f2.p0 adapter = sl0Var.getAdapter();
+        final rl0 rl0Var = this.f28802a;
+        f2.o0 adapter = rl0Var.getAdapter();
         if (adapter != yu0Var.E && adapter != yu0Var.H && adapter != yu0Var.J && adapter != yu0Var.I) {
-            int childCount = sl0Var.getChildCount();
+            int childCount = rl0Var.getChildCount();
             AnimatorSet animatorSet = new AnimatorSet();
             for (int i10 = 0; i10 < childCount; i10++) {
-                View childAt = sl0Var.getChildAt(i10);
-                View view = this.f31170c;
+                View childAt = rl0Var.getChildAt(i10);
+                View view = this.f28804c;
                 if (childAt != view && RecyclerView.R(childAt) >= this.d - 1) {
                     childAt.setAlpha(0.0f);
                     ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
-                    ofFloat.setStartDelay((int) ((Math.min(sl0Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / sl0Var.getMeasuredHeight()) * 100.0f));
+                    ofFloat.setStartDelay((int) ((Math.min(rl0Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / rl0Var.getMeasuredHeight()) * 100.0f));
                     ofFloat.setDuration(200L);
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                             switch (r2) {
                                 case 0:
-                                    sl0 sl0Var2 = sl0Var;
-                                    if (sl0Var2.a1()) {
-                                        sl0Var2.invalidate();
+                                    rl0 rl0Var2 = rl0Var;
+                                    if (rl0Var2.a1()) {
+                                        rl0Var2.invalidate();
                                         return;
                                     }
                                     return;
                                 case 1:
-                                    sl0 sl0Var3 = sl0Var;
-                                    if (sl0Var3.a1()) {
-                                        sl0Var3.invalidate();
+                                    rl0 rl0Var3 = rl0Var;
+                                    if (rl0Var3.a1()) {
+                                        rl0Var3.invalidate();
                                         return;
                                     }
                                     return;
                                 default:
-                                    sl0 sl0Var4 = sl0Var;
-                                    if (sl0Var4.a1()) {
-                                        sl0Var4.invalidate();
+                                    rl0 rl0Var4 = rl0Var;
+                                    if (rl0Var4.a1()) {
+                                        rl0Var4.invalidate();
                                         return;
                                     }
                                     return;
@@ -70,34 +70,34 @@ public final class ss0 implements ViewTreeObserver.OnPreDrawListener {
                     animatorSet.playTogether(ofFloat);
                 }
                 if (view != null && view.getParent() == null) {
-                    sl0Var.addView(view);
-                    f2.w0 layoutManager = sl0Var.getLayoutManager();
+                    rl0Var.addView(view);
+                    f2.v0 layoutManager = rl0Var.getLayoutManager();
                     if (layoutManager != null) {
                         layoutManager.M(view);
                         ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(view, View.ALPHA, view.getAlpha(), 0.0f);
-                        ofFloat2.addListener(new pd0(this, layoutManager));
+                        ofFloat2.addListener(new od0(this, layoutManager));
                         ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
-                                        sl0 sl0Var2 = sl0Var;
-                                        if (sl0Var2.a1()) {
-                                            sl0Var2.invalidate();
+                                        rl0 rl0Var2 = rl0Var;
+                                        if (rl0Var2.a1()) {
+                                            rl0Var2.invalidate();
                                             return;
                                         }
                                         return;
                                     case 1:
-                                        sl0 sl0Var3 = sl0Var;
-                                        if (sl0Var3.a1()) {
-                                            sl0Var3.invalidate();
+                                        rl0 rl0Var3 = rl0Var;
+                                        if (rl0Var3.a1()) {
+                                            rl0Var3.invalidate();
                                             return;
                                         }
                                         return;
                                     default:
-                                        sl0 sl0Var4 = sl0Var;
-                                        if (sl0Var4.a1()) {
-                                            sl0Var4.invalidate();
+                                        rl0 rl0Var4 = rl0Var;
+                                        if (rl0Var4.a1()) {
+                                            rl0Var4.invalidate();
                                             return;
                                         }
                                         return;
@@ -111,41 +111,41 @@ public final class ss0 implements ViewTreeObserver.OnPreDrawListener {
             animatorSet.start();
             return true;
         }
-        SparseBooleanArray sparseBooleanArray = this.f31169b;
+        SparseBooleanArray sparseBooleanArray = this.f28803b;
         if (sparseBooleanArray != null) {
-            int childCount2 = sl0Var.getChildCount();
+            int childCount2 = rl0Var.getChildCount();
             for (int i11 = 0; i11 < childCount2; i11++) {
-                View childAt2 = sl0Var.getChildAt(i11);
+                View childAt2 = rl0Var.getChildAt(i11);
                 int p10 = yu0.p(childAt2);
                 if (p10 != 0 && sparseBooleanArray.get(p10, false)) {
                     yu0Var.L1.put(p10, Float.valueOf(0.0f));
                     ValueAnimator ofFloat3 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    ofFloat3.addUpdateListener(new eg.s(this, p10, sl0Var));
-                    ofFloat3.addListener(new org.telegram.ui.Cells.b4(this, p10, 7));
-                    ofFloat3.setStartDelay((int) ((Math.min(sl0Var.getMeasuredHeight(), Math.max(0, childAt2.getTop())) / sl0Var.getMeasuredHeight()) * 100.0f));
+                    ofFloat3.addUpdateListener(new dg.t(this, p10, rl0Var));
+                    ofFloat3.addListener(new org.telegram.ui.Cells.a4(this, p10, 7));
+                    ofFloat3.setStartDelay((int) ((Math.min(rl0Var.getMeasuredHeight(), Math.max(0, childAt2.getTop())) / rl0Var.getMeasuredHeight()) * 100.0f));
                     ofFloat3.setDuration(250L);
                     ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                             switch (r2) {
                                 case 0:
-                                    sl0 sl0Var2 = sl0Var;
-                                    if (sl0Var2.a1()) {
-                                        sl0Var2.invalidate();
+                                    rl0 rl0Var2 = rl0Var;
+                                    if (rl0Var2.a1()) {
+                                        rl0Var2.invalidate();
                                         return;
                                     }
                                     return;
                                 case 1:
-                                    sl0 sl0Var3 = sl0Var;
-                                    if (sl0Var3.a1()) {
-                                        sl0Var3.invalidate();
+                                    rl0 rl0Var3 = rl0Var;
+                                    if (rl0Var3.a1()) {
+                                        rl0Var3.invalidate();
                                         return;
                                     }
                                     return;
                                 default:
-                                    sl0 sl0Var4 = sl0Var;
-                                    if (sl0Var4.a1()) {
-                                        sl0Var4.invalidate();
+                                    rl0 rl0Var4 = rl0Var;
+                                    if (rl0Var4.a1()) {
+                                        rl0Var4.invalidate();
                                         return;
                                     }
                                     return;
@@ -154,7 +154,7 @@ public final class ss0 implements ViewTreeObserver.OnPreDrawListener {
                     });
                     ofFloat3.start();
                 }
-                sl0Var.invalidate();
+                rl0Var.invalidate();
             }
         }
         return true;

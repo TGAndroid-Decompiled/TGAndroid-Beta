@@ -5,20 +5,20 @@ import android.os.Parcelable;
 import android.text.TextUtils;
 public final class t implements Parcelable {
     public static final Parcelable.Creator<t> CREATOR = new s(1);
-    public final int f48004a;
-    public final int f48005b;
-    public final String f48006c;
+    public final int f44623a;
+    public final int f44624b;
+    public final String f44625c;
     public final String d;
-    public final String f48007e;
-    public final String f48008f;
+    public final String e;
+    public final String f44626f;
 
     public t(int i10, String str, int i11, String str2, String str3, String str4) {
-        this.f48004a = i10;
-        this.f48005b = i11;
-        this.f48006c = str;
+        this.f44623a = i10;
+        this.f44624b = i11;
+        this.f44625c = str;
         this.d = str2;
-        this.f48007e = str3;
-        this.f48008f = str4;
+        this.e = str3;
+        this.f44626f = str4;
     }
 
     @Override
@@ -32,7 +32,7 @@ public final class t implements Parcelable {
         }
         if (obj != null && t.class == obj.getClass()) {
             t tVar = (t) obj;
-            if (this.f48004a == tVar.f48004a && this.f48005b == tVar.f48005b && TextUtils.equals(this.f48006c, tVar.f48006c) && TextUtils.equals(this.d, tVar.d) && TextUtils.equals(this.f48007e, tVar.f48007e) && TextUtils.equals(this.f48008f, tVar.f48008f)) {
+            if (this.f44623a == tVar.f44623a && this.f44624b == tVar.f44624b && TextUtils.equals(this.f44625c, tVar.f44625c) && TextUtils.equals(this.d, tVar.d) && TextUtils.equals(this.e, tVar.e) && TextUtils.equals(this.f44626f, tVar.f44626f)) {
                 return true;
             }
         }
@@ -43,9 +43,9 @@ public final class t implements Parcelable {
         int i10;
         int i11;
         int i12;
-        int i13 = ((this.f48004a * 31) + this.f48005b) * 31;
+        int i13 = ((this.f44623a * 31) + this.f44624b) * 31;
         int i14 = 0;
-        String str = this.f48006c;
+        String str = this.f44625c;
         if (str != null) {
             i10 = str.hashCode();
         } else {
@@ -59,14 +59,14 @@ public final class t implements Parcelable {
             i11 = 0;
         }
         int i16 = (i15 + i11) * 31;
-        String str3 = this.f48007e;
+        String str3 = this.e;
         if (str3 != null) {
             i12 = str3.hashCode();
         } else {
             i12 = 0;
         }
         int i17 = (i16 + i12) * 31;
-        String str4 = this.f48008f;
+        String str4 = this.f44626f;
         if (str4 != null) {
             i14 = str4.hashCode();
         }
@@ -75,20 +75,20 @@ public final class t implements Parcelable {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeInt(this.f48004a);
-        parcel.writeInt(this.f48005b);
-        parcel.writeString(this.f48006c);
+        parcel.writeInt(this.f44623a);
+        parcel.writeInt(this.f44624b);
+        parcel.writeString(this.f44625c);
         parcel.writeString(this.d);
-        parcel.writeString(this.f48007e);
-        parcel.writeString(this.f48008f);
+        parcel.writeString(this.e);
+        parcel.writeString(this.f44626f);
     }
 
     public t(Parcel parcel) {
-        this.f48004a = parcel.readInt();
-        this.f48005b = parcel.readInt();
-        this.f48006c = parcel.readString();
+        this.f44623a = parcel.readInt();
+        this.f44624b = parcel.readInt();
+        this.f44625c = parcel.readString();
         this.d = parcel.readString();
-        this.f48007e = parcel.readString();
-        this.f48008f = parcel.readString();
+        this.e = parcel.readString();
+        this.f44626f = parcel.readString();
     }
 }

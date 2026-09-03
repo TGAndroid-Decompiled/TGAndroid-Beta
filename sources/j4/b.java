@@ -3,13 +3,14 @@ package j4;
 import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.Arrays;
+import kf.k0;
 public final class b extends j {
     public static final Parcelable.Creator<b> CREATOR = new f8.o(13);
-    public final byte[] f9510b;
+    public final byte[] f8890b;
 
     public b(String str, byte[] bArr) {
         super(str);
-        this.f9510b = bArr;
+        this.f8890b = bArr;
     }
 
     public final boolean equals(Object obj) {
@@ -18,7 +19,7 @@ public final class b extends j {
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f9529a.equals(bVar.f9529a) && Arrays.equals(this.f9510b, bVar.f9510b)) {
+            if (this.f8906a.equals(bVar.f8906a) && Arrays.equals(this.f8890b, bVar.f8890b)) {
                 return true;
             }
         }
@@ -26,13 +27,13 @@ public final class b extends j {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f9510b) + l.d.e(527, 31, this.f9529a);
+        return Arrays.hashCode(this.f8890b) + k0.e(527, 31, this.f8906a);
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f9529a);
-        parcel.writeByteArray(this.f9510b);
+        parcel.writeString(this.f8906a);
+        parcel.writeByteArray(this.f8890b);
     }
 
     public b(android.os.Parcel r3) {

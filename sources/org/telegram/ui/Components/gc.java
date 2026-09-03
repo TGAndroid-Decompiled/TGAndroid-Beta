@@ -9,57 +9,57 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class gc extends db {
-    public Runnable f27139a;
-    public Runnable f27140b;
-    public ic f27141c;
+    public Runnable f25112a;
+    public Runnable f25113b;
+    public ic f25114c;
     public final TextView d;
-    public boolean f27142e;
+    public boolean e;
 
-    public gc(Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z4, boolean z10) {
+    public gc(Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z4, boolean z10) {
         super(context);
         int w02;
-        int i10 = org.telegram.ui.ActionBar.k6.Gi;
-        if (g6Var != null) {
-            w02 = g6Var.B0(i10);
+        int i10 = org.telegram.ui.ActionBar.j6.Gi;
+        if (f6Var != null) {
+            w02 = f6Var.x0(i10);
         } else {
-            w02 = org.telegram.ui.ActionBar.k6.w0(null, i10, false);
+            w02 = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
         }
         if (z4) {
             TextView textView = new TextView(context);
             this.d = textView;
-            textView.setBackground(org.telegram.ui.ActionBar.k6.f0((w02 & 16777215) | 419430400, 7, -1));
+            textView.setBackground(org.telegram.ui.ActionBar.j6.f0((w02 & 16777215) | 419430400, 7, -1));
             textView.setTextSize(1, 14.0f);
             textView.setTypeface(AndroidUtilities.bold());
             textView.setTextColor(w02);
             org.telegram.messenger.y3.r(R.string.UndoNoCaps, textView, 16);
             float f10 = z10 ? 34.0f : 12.0f;
             boolean z11 = LocaleController.isRTL;
-            k7.i6.a(textView, z11 ? 12.0f : f10, 8.0f, z11 ? f10 : 12.0f, 8.0f);
-            addView(textView, k7.c6.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
+            k7.h6.a(textView, z11 ? 12.0f : f10, 8.0f, z11 ? f10 : 12.0f, 8.0f);
+            addView(textView, k7.b6.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
         }
         if (z10) {
             ImageView imageView = new ImageView(getContext());
             imageView.setImageResource(R.drawable.chats_undo);
             imageView.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
             if (!z4) {
-                imageView.setBackground(org.telegram.ui.ActionBar.k6.f0((w02 & 16777215) | 419430400, 1, -1));
+                imageView.setBackground(org.telegram.ui.ActionBar.j6.f0((w02 & 16777215) | 419430400, 1, -1));
             }
-            k7.i6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
-            addView(imageView, k7.c6.h(56.0f, 48.0f, 16));
+            k7.h6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
+            addView(imageView, k7.b6.h(56.0f, 48.0f, 16));
         }
         setOnClickListener(new g0(this, 6));
     }
 
     @Override
     public final void a(ic icVar) {
-        this.f27141c = icVar;
+        this.f25114c = icVar;
     }
 
     @Override
     public final void b() {
-        this.f27141c = null;
-        Runnable runnable = this.f27140b;
-        if (runnable != null && !this.f27142e) {
+        this.f25114c = null;
+        Runnable runnable = this.f25113b;
+        if (runnable != null && !this.e) {
             runnable.run();
         }
     }
@@ -72,20 +72,20 @@ public final class gc extends db {
     }
 
     public final void f() {
-        if (this.f27141c != null) {
-            this.f27142e = true;
-            Runnable runnable = this.f27139a;
+        if (this.f25114c != null) {
+            this.e = true;
+            Runnable runnable = this.f25112a;
             if (runnable != null) {
                 runnable.run();
             }
-            ic icVar = this.f27141c;
+            ic icVar = this.f25114c;
             if (icVar != null) {
                 icVar.b();
             }
         }
     }
 
-    public gc(Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z4) {
-        this(context, g6Var, z4, !z4);
+    public gc(Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z4) {
+        this(context, f6Var, z4, !z4);
     }
 }

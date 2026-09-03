@@ -1,29 +1,24 @@
 package k7;
-public abstract class h8 {
-    public static uc.c a(dd.p pVar, uc.c cVar, uc.c cVar2) {
-        kotlin.jvm.internal.j.e(pVar, "<this>");
-        if (pVar instanceof wc.a) {
-            return ((wc.a) pVar).create(cVar, cVar2);
-        }
-        uc.h context = cVar2.getContext();
-        if (context == uc.i.f48516a) {
-            return new vc.b(pVar, cVar2, cVar);
-        }
-        return new vc.c(cVar2, context, pVar, cVar);
-    }
 
-    public static uc.c b(uc.c cVar) {
-        wc.c cVar2;
-        uc.c intercepted;
-        kotlin.jvm.internal.j.e(cVar, "<this>");
-        if (cVar instanceof wc.c) {
-            cVar2 = (wc.c) cVar;
-        } else {
-            cVar2 = null;
+import com.google.android.gms.tasks.Task;
+import java.util.concurrent.CancellationException;
+public abstract class h8 {
+    public static final Object a(Task task, wc.c cVar) {
+        if (task.isComplete()) {
+            Exception exception = task.getException();
+            if (exception == null) {
+                if (!task.isCanceled()) {
+                    return task.getResult();
+                }
+                throw new CancellationException("Task " + task + " was cancelled normally.");
+            }
+            throw exception;
         }
-        if (cVar2 != null && (intercepted = cVar2.intercepted()) != null) {
-            return intercepted;
-        }
-        return cVar;
+        ld.m mVar = new ld.m(1, g8.b(cVar));
+        mVar.s();
+        task.addOnCompleteListener(vd.a.f45735a, new o2.i(mVar, 25));
+        Object r10 = mVar.r();
+        vc.a aVar = vc.a.f45727a;
+        return r10;
     }
 }

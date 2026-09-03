@@ -11,8 +11,8 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.sf1;
-public final class vq0 implements w10, org.telegram.ui.jy {
-    public final yu0 f32530a;
+public final class vq0 implements w10, org.telegram.ui.ky {
+    public final yu0 f30039a;
 
     @Override
     public boolean C() {
@@ -20,12 +20,12 @@ public final class vq0 implements w10, org.telegram.ui.jy {
     }
 
     @Override
-    public boolean J(org.telegram.ui.py pyVar) {
+    public boolean I(org.telegram.ui.qy qyVar) {
         return false;
     }
 
     public void a(boolean z4) {
-        yu0 yu0Var = this.f32530a;
+        yu0 yu0Var = this.f30039a;
         if (!z4) {
             yu0Var.requestLayout();
         }
@@ -33,11 +33,11 @@ public final class vq0 implements w10, org.telegram.ui.jy {
     }
 
     @Override
-    public boolean v(org.telegram.ui.py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, sf1 sf1Var) {
+    public boolean w(org.telegram.ui.qy qyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, sf1 sf1Var) {
         UndoView undoView;
-        yu0 yu0Var = this.f32530a;
+        yu0 yu0Var = this.f30039a;
         SparseArray[] sparseArrayArr = yu0Var.W0;
-        org.telegram.ui.ActionBar.p2 p2Var = yu0Var.f33649s1;
+        org.telegram.ui.ActionBar.p2 p2Var = yu0Var.f31155s1;
         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
         int i12 = 1;
         while (true) {
@@ -66,7 +66,7 @@ public final class vq0 implements w10, org.telegram.ui.jy {
         yu0Var.b1(false);
         hu0 hu0Var = yu0Var.O;
         if (hu0Var != null) {
-            hu0Var.f27635w.clear();
+            hu0Var.f25502w.clear();
         }
         if (arrayList.size() <= 1 && ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId != p2Var.getUserConfig().getClientUserId() && charSequence == null) {
             long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
@@ -79,15 +79,15 @@ public final class vq0 implements w10, org.telegram.ui.jy {
                 } else {
                     i15.putLong("chat_id", -j10);
                 }
-                if (!p2Var.getMessagesController().checkCanOpenChat(i15, pyVar)) {
+                if (!p2Var.getMessagesController().checkCanOpenChat(i15, qyVar)) {
                     return true;
                 }
             }
             p2Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-            org.telegram.ui.xn xnVar = new org.telegram.ui.xn(i15);
-            bg.e.a(xnVar, (MessagesStorage.TopicKey) arrayList.get(0));
-            pyVar.presentFragment(xnVar, true);
-            xnVar.Ab(arrayList2);
+            org.telegram.ui.zn znVar = new org.telegram.ui.zn(i15);
+            ag.f.a(znVar, (MessagesStorage.TopicKey) arrayList.get(0));
+            qyVar.presentFragment(znVar, true);
+            znVar.Ab(arrayList2);
             return true;
         }
         yu0Var.r1(true);
@@ -98,7 +98,7 @@ public final class vq0 implements w10, org.telegram.ui.jy {
             }
             p2Var.getSendMessagesHelper().sendMessage(arrayList2, j11, false, false, true, 0, 0L);
         }
-        pyVar.finishFragment();
+        qyVar.finishFragment();
         if (p2Var instanceof ProfileActivity) {
             undoView = ((ProfileActivity) p2Var).J;
         } else {

@@ -4,8 +4,8 @@ import android.animation.ObjectAnimator;
 import android.graphics.drawable.AnimationDrawable;
 import j7.y7;
 public final class c extends y7 {
-    public final ObjectAnimator f7737a;
-    public final boolean f7738b;
+    public final ObjectAnimator f7178a;
+    public final boolean f7179b;
 
     public c(AnimationDrawable animationDrawable, boolean z4, boolean z10) {
         int i10;
@@ -19,12 +19,12 @@ public final class c extends y7 {
         }
         ?? obj = new Object();
         int numberOfFrames2 = animationDrawable.getNumberOfFrames();
-        obj.f7740b = numberOfFrames2;
-        int[] iArr = obj.f7739a;
+        obj.f7181b = numberOfFrames2;
+        int[] iArr = obj.f7180a;
         if (iArr == null || iArr.length < numberOfFrames2) {
-            obj.f7739a = new int[numberOfFrames2];
+            obj.f7180a = new int[numberOfFrames2];
         }
-        int[] iArr2 = obj.f7739a;
+        int[] iArr2 = obj.f7180a;
         int i13 = 0;
         for (int i14 = 0; i14 < numberOfFrames2; i14++) {
             if (z4) {
@@ -36,32 +36,32 @@ public final class c extends y7 {
             iArr2[i14] = duration;
             i13 += duration;
         }
-        obj.f7741c = i13;
+        obj.f7182c = i13;
         ObjectAnimator ofInt = ObjectAnimator.ofInt(animationDrawable, "currentIndex", i12, i10);
         j.a.a(ofInt, true);
-        ofInt.setDuration(obj.f7741c);
+        ofInt.setDuration(obj.f7182c);
         ofInt.setInterpolator(obj);
-        this.f7738b = z10;
-        this.f7737a = ofInt;
+        this.f7179b = z10;
+        this.f7178a = ofInt;
     }
 
     @Override
     public final boolean a() {
-        return this.f7738b;
+        return this.f7179b;
     }
 
     @Override
     public final void b() {
-        this.f7737a.reverse();
+        this.f7178a.reverse();
     }
 
     @Override
     public final void c() {
-        this.f7737a.start();
+        this.f7178a.start();
     }
 
     @Override
     public final void d() {
-        this.f7737a.cancel();
+        this.f7178a.cancel();
     }
 }

@@ -1,168 +1,249 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Color;
-import android.graphics.ComposeShader;
-import android.graphics.Matrix;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.os.Build;
-import org.telegram.messenger.Utilities;
-public final class kc0 {
-    public static final float[] f28385k = new float[4];
-    public static final Matrix f28386l = new Matrix();
-    public final ic0 d;
-    public int f28390e;
-    public int f28391f;
-    public int f28392g;
-    public int h;
-    public final s5.m f28387a = new s5.m(new k2(17));
-    public final b4.e0 f28388b = new b4.e0(18, (byte) 0);
-    public final j10 f28389c = new j10();
-    public final Matrix f28393i = new Matrix();
-    public final RectF f28394j = new RectF();
+import android.graphics.drawable.Drawable;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+public final class kc0 extends Drawable {
+    public final int f26255a = 0;
+    public final Paint f26256b;
+    public final Paint f26257c;
+    public final Paint d;
+    public final Path e;
+    public boolean f26258f;
+    public final Object f26259g;
 
     public kc0() {
-        if (Build.VERSION.SDK_INT >= 33) {
-            this.d = new ic0();
-        } else {
-            this.d = null;
-        }
+        Path path = new Path();
+        this.e = path;
+        Paint paint = new Paint(1);
+        this.f26256b = paint;
+        Paint paint2 = new Paint(1);
+        this.f26257c = paint2;
+        Paint paint3 = new Paint(1);
+        this.d = paint3;
+        this.f26259g = new z5(new dc0(this, 1), 320L, mr.h, 0);
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setColor(-1);
+        paint2.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(2.0f)));
+        paint2.setColor(-1);
+        paint3.setStyle(style);
+        paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        path.moveTo(-AndroidUtilities.dpf2(3.75f), -AndroidUtilities.dpf2(5.4166f));
+        path.lineTo(AndroidUtilities.dpf2(3.75f), 0.0f);
+        path.lineTo(-AndroidUtilities.dpf2(3.75f), AndroidUtilities.dpf2(5.4166f));
+        path.close();
     }
 
-    public static void a(Matrix matrix, float[] fArr) {
-        Matrix matrix2 = f28386l;
-        matrix.invert(matrix2);
-        float[] fArr2 = f28385k;
-        fArr2[0] = 0.0f;
-        fArr2[1] = 0.0f;
-        fArr2[2] = 1.0f;
-        fArr2[3] = 1.0f;
-        matrix2.mapPoints(fArr2);
-        fArr[0] = fArr2[2] - fArr2[0];
-        fArr[1] = fArr2[3] - fArr2[1];
-        fArr[2] = fArr2[0];
-        fArr[3] = fArr2[1];
-    }
-
-    public static boolean b(float f10) {
-        if (Math.abs(f10 - 1.0f) <= 1.0E-4f) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void c(RectF rectF) {
-        RectF rectF2 = this.f28394j;
-        rectF2.set(0.0f, 0.0f, this.f28390e, this.f28391f);
-        Matrix.ScaleToFit scaleToFit = Matrix.ScaleToFit.FILL;
-        Matrix matrix = this.f28393i;
-        matrix.setRectToRect(rectF2, rectF, scaleToFit);
-        j10 j10Var = this.f28389c;
-        jc0 jc0Var = (jc0) j10Var.f27958c;
-        jc0Var.f28081b.set(matrix);
-        BitmapShader bitmapShader = jc0Var.d;
-        if (bitmapShader != null) {
-            bitmapShader.setLocalMatrix(matrix);
-        }
-        jc0 jc0Var2 = (jc0) j10Var.d;
-        jc0Var2.f28081b.set(matrix);
-        BitmapShader bitmapShader2 = jc0Var2.d;
-        if (bitmapShader2 != null) {
-            bitmapShader2.setLocalMatrix(matrix);
-        }
-        ic0 ic0Var = this.d;
-        if (ic0Var != null && Build.VERSION.SDK_INT >= 33) {
-            float[] fArr = ic0Var.f27795g;
-            a(matrix, fArr);
-            ic0Var.f27793e.a(fArr);
-            ic0Var.f27794f.a(fArr);
-        }
-    }
-
-    public final void d(Matrix matrix) {
-        boolean z4;
-        j10 j10Var = this.f28389c;
-        float[] fArr = (float[]) j10Var.h;
-        a(matrix, fArr);
-        jc0 jc0Var = (jc0) j10Var.f27959e;
-        jc0Var.f28081b.set(matrix);
-        BitmapShader bitmapShader = jc0Var.d;
-        if (bitmapShader != null) {
-            bitmapShader.setLocalMatrix(matrix);
-        }
-        boolean z10 = false;
-        if (b(fArr[0]) && b(fArr[1])) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        jc0Var.a(z4);
-        ic0 ic0Var = this.d;
-        if (ic0Var != null && Build.VERSION.SDK_INT >= 33) {
-            float[] fArr2 = ic0Var.f27795g;
-            a(matrix, fArr2);
-            jc0 jc0Var2 = ic0Var.d;
-            if (b(fArr2[0]) && b(fArr2[1])) {
-                z10 = true;
-            }
-            jc0Var2.a(z10);
-            ic0Var.f27793e.b(fArr2);
-            ic0Var.f27794f.b(fArr2);
-        }
-    }
-
-    public final Paint e(Bitmap bitmap, Bitmap bitmap2, int i10, int i11, int i12, boolean z4) {
-        Bitmap bitmap3;
-        Bitmap bitmap4 = (Bitmap) this.f28387a.i(bitmap2);
-        if (i12 >= 0) {
-            int k10 = i0.a.k(i10, ((Color.alpha(i10) * i11) * i12) / 25500);
-            b4.e0 e0Var = this.f28388b;
-            ug.a aVar = (ug.a) e0Var.f1475c;
-            if (aVar.a(bitmap) || k10 != e0Var.f1474b || ((Bitmap) e0Var.d) == null) {
-                Bitmap bitmap5 = (Bitmap) e0Var.d;
-                if (bitmap5 == null || bitmap5.getWidth() != bitmap.getWidth() || ((Bitmap) e0Var.d).getHeight() != bitmap.getHeight()) {
-                    e0Var.d = Bitmap.createBitmap(bitmap);
+    @Override
+    public final void draw(Canvas canvas) {
+        switch (this.f26255a) {
+            case 0:
+                float dpf2 = AndroidUtilities.dpf2(1.66f);
+                Paint paint = this.f26256b;
+                paint.setStrokeWidth(dpf2);
+                float dpf22 = AndroidUtilities.dpf2(3.32f);
+                Paint paint2 = this.d;
+                paint2.setStrokeWidth(dpf22);
+                float e = ((z5) this.f26259g).e(this.f26258f);
+                float centerX = getBounds().centerX();
+                float centerY = getBounds().centerY();
+                float dpf23 = AndroidUtilities.dpf2(10.66f);
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(centerX - dpf23, centerY - dpf23, centerX + dpf23, dpf23 + centerY);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(8.33f), AndroidUtilities.dpf2(8.33f), paint);
+                int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
+                if (i10 > 0) {
+                    canvas.saveLayerAlpha(rectF, 255, 31);
+                } else {
+                    canvas.save();
                 }
-                Utilities.applySoftLight(bitmap, (Bitmap) e0Var.d, k10);
-                aVar.b(bitmap);
-                e0Var.f1474b = k10;
+                canvas.save();
+                canvas.translate(AndroidUtilities.dpf2(1.0f) + centerX, centerY - AndroidUtilities.dpf2(0.5f));
+                canvas.drawPath(this.e, this.f26257c);
+                canvas.restore();
+                if (i10 > 0) {
+                    if (this.f26258f) {
+                        canvas.drawLine(centerX - AndroidUtilities.dpf2(8.33f), centerY - AndroidUtilities.dpf2(8.33f), (centerX - AndroidUtilities.dpf2(8.33f)) + (AndroidUtilities.dpf2(16.66f) * e), (centerY - AndroidUtilities.dpf2(8.33f)) + (AndroidUtilities.dpf2(16.66f) * e), paint2);
+                        canvas.drawLine(centerX - AndroidUtilities.dpf2(8.33f), centerY - AndroidUtilities.dpf2(8.33f), (AndroidUtilities.dpf2(16.66f) * e) + (centerX - AndroidUtilities.dpf2(8.33f)), (AndroidUtilities.dpf2(16.66f) * e) + (centerY - AndroidUtilities.dpf2(8.33f)), paint);
+                    } else {
+                        canvas.drawLine(AndroidUtilities.dpf2(8.33f) + centerX, AndroidUtilities.dpf2(8.33f) + centerY, (AndroidUtilities.dpf2(8.33f) + centerX) - (AndroidUtilities.dpf2(16.66f) * e), (AndroidUtilities.dpf2(8.33f) + centerY) - (AndroidUtilities.dpf2(16.66f) * e), paint2);
+                        canvas.drawLine(AndroidUtilities.dpf2(8.33f) + centerX, AndroidUtilities.dpf2(8.33f) + centerY, (AndroidUtilities.dpf2(8.33f) + centerX) - (AndroidUtilities.dpf2(16.66f) * e), (AndroidUtilities.dpf2(8.33f) + centerY) - (AndroidUtilities.dpf2(16.66f) * e), paint);
+                    }
+                }
+                canvas.restore();
+                return;
+            default:
+                boolean z4 = this.f26258f;
+                if (z4) {
+                    canvas.saveLayerAlpha(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, 255, 31);
+                } else {
+                    canvas.save();
+                }
+                canvas.translate(getBounds().centerX(), getBounds().centerY());
+                canvas.drawPath(this.e, this.f26256b);
+                if (z4) {
+                    canvas.drawLine(-AndroidUtilities.dp(8.66f), -AndroidUtilities.dp(8.66f), AndroidUtilities.dp(8.66f), AndroidUtilities.dp(8.66f), this.f26257c);
+                    canvas.drawLine(-AndroidUtilities.dp(8.66f), -AndroidUtilities.dp(8.66f), AndroidUtilities.dp(8.66f), AndroidUtilities.dp(8.66f), this.d);
+                }
+                canvas.restore();
+                return;
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        switch (this.f26255a) {
+            case 0:
+                return AndroidUtilities.dp(24.0f);
+            default:
+                return AndroidUtilities.dp(32.0f);
+        }
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        switch (this.f26255a) {
+            case 0:
+                return AndroidUtilities.dp(24.0f);
+            default:
+                return AndroidUtilities.dp(32.0f);
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.f26255a) {
+            case 0:
+                return -2;
+            default:
+                return -2;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        switch (this.f26255a) {
+            case 0:
+                this.f26256b.setAlpha(i10);
+                this.f26257c.setAlpha(i10);
+                return;
+            default:
+                this.f26256b.setAlpha(i10);
+                return;
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        switch (this.f26255a) {
+            case 0:
+                this.f26257c.setColorFilter(colorFilter);
+                this.f26256b.setColorFilter(colorFilter);
+                return;
+            default:
+                this.f26256b.setColorFilter(colorFilter);
+                return;
+        }
+    }
+
+    public kc0(ph.r rVar, boolean z4) {
+        ph.r rVar2 = rVar;
+        Paint paint = new Paint(1);
+        this.f26256b = paint;
+        this.f26257c = new Paint(1);
+        this.d = new Paint(1);
+        Path path = new Path();
+        this.e = path;
+        this.f26259g = new float[8];
+        this.f26258f = z4;
+        paint.setColor(-1);
+        float dpf2 = AndroidUtilities.dpf2(13.333333f);
+        float dpf22 = AndroidUtilities.dpf2(18.666666f);
+        float dpf23 = AndroidUtilities.dpf2(3.0f);
+        float dpf24 = AndroidUtilities.dpf2(10.0f);
+        float dpf25 = AndroidUtilities.dpf2(15.333333f);
+        float dpf26 = AndroidUtilities.dpf2(1.0f);
+        float dpf27 = AndroidUtilities.dpf2(1.33f);
+        path.setFillType(Path.FillType.EVEN_ODD);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set((-dpf2) / 2.0f, (-dpf22) / 2.0f, dpf2 / 2.0f, dpf22 / 2.0f);
+        path.addRoundRect(rectF, dpf23, dpf23, Path.Direction.CW);
+        ArrayList arrayList = rVar2.e;
+        int i10 = rVar2.f42263c;
+        int size = arrayList.size();
+        int i11 = 0;
+        int i12 = 0;
+        while (i12 < size) {
+            Object obj = arrayList.get(i12);
+            int i13 = i12 + 1;
+            ph.q qVar = (ph.q) obj;
+            int[] iArr = rVar2.d;
+            int i14 = qVar.f42228c;
+            int i15 = qVar.f42227b;
+            int i16 = iArr[i14];
+            int i17 = i16 - 1;
+            float max = (dpf24 - (Math.max(i11, i17) * dpf27)) / i16;
+            int i18 = i10 - 1;
+            float max2 = (dpf25 - (Math.max(i11, i18) * dpf27)) / i10;
+            RectF rectF2 = AndroidUtilities.rectTmp;
+            ArrayList arrayList2 = arrayList;
+            float f10 = (-dpf24) / 2.0f;
+            int i19 = i10;
+            float f11 = i15;
+            float f12 = f11 * dpf27;
+            int i20 = size;
+            float f13 = (-dpf25) / 2.0f;
+            float f14 = dpf24;
+            float f15 = i14;
+            float f16 = f15 * dpf27;
+            float f17 = dpf25;
+            float f18 = dpf26;
+            rectF2.set(f12 + (max * f11) + f10, f16 + (max2 * f15) + f13, e2.c.A(max, i15 + 1, f10, f12), e2.c.A(max2, i14 + 1, f13, f16));
+            float[] fArr = (float[]) this.f26259g;
+            float f19 = 0.0f;
+            float f20 = (i15 == 0 && i14 == 0) ? f18 : 0.0f;
+            fArr[1] = f20;
+            fArr[0] = f20;
+            float f21 = (i15 == i17 && i14 == 0) ? f18 : 0.0f;
+            fArr[3] = f21;
+            fArr[2] = f21;
+            float f22 = (i15 == i17 && i14 == i18) ? f18 : 0.0f;
+            fArr[5] = f22;
+            fArr[4] = f22;
+            if (i15 == 0 && i14 == i18) {
+                f19 = f18;
             }
-            bitmap3 = (Bitmap) e0Var.d;
-        } else {
-            bitmap3 = null;
+            fArr[7] = f19;
+            fArr[6] = f19;
+            this.e.addRoundRect(rectF2, fArr, Path.Direction.CW);
+            rVar2 = rVar;
+            arrayList = arrayList2;
+            i10 = i19;
+            i12 = i13;
+            size = i20;
+            dpf24 = f14;
+            dpf26 = f18;
+            dpf25 = f17;
+            i11 = 0;
         }
-        Bitmap bitmap6 = bitmap3;
-        this.f28390e = bitmap.getWidth();
-        this.f28391f = bitmap.getHeight();
-        this.f28392g = bitmap4.getWidth();
-        this.h = bitmap4.getHeight();
-        ic0 ic0Var = this.d;
-        if (ic0Var != null && z4 && Build.VERSION.SDK_INT >= 33) {
-            return ic0Var.a(bitmap, bitmap4, bitmap6, i11, i12);
-        }
-        j10 j10Var = this.f28389c;
-        ft ftVar = (ft) j10Var.f27960f;
-        ft ftVar2 = (ft) j10Var.f27961g;
-        jc0 jc0Var = (jc0) j10Var.d;
-        Paint paint = (Paint) j10Var.f27957b;
-        jc0 jc0Var2 = (jc0) j10Var.f27958c;
-        boolean b10 = jc0Var2.b(bitmap);
-        jc0 jc0Var3 = (jc0) j10Var.f27959e;
-        boolean b11 = b10 | jc0Var3.b(bitmap4);
-        if (i12 >= 0) {
-            if ((jc0Var.b(bitmap6) | b11) || j10Var.f27956a != 1) {
-                j10Var.f27956a = 1;
-                paint.setShader(new ComposeShader(jc0Var2.d, new ComposeShader(jc0Var.d, jc0Var3.d, PorterDuff.Mode.DST_IN), PorterDuff.Mode.SRC_OVER));
-                return paint;
-            }
-        } else if ((ftVar2.a(i0.a.k(-1, ((-i12) * i11) / 100)) | b11 | ftVar.a(-16777216)) || j10Var.f27956a != 2) {
-            j10Var.f27956a = 2;
-            paint.setShader(new ComposeShader((lf.k) ftVar.f26996b, new ComposeShader(new ComposeShader(jc0Var2.d, jc0Var3.d, PorterDuff.Mode.DST_IN), (lf.k) ftVar2.f26996b, PorterDuff.Mode.MULTIPLY), PorterDuff.Mode.SRC_OVER));
-            return paint;
-        }
-        return paint;
+        Paint paint2 = this.f26257c;
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
+        this.f26257c.setStrokeWidth(AndroidUtilities.dp(3.33f));
+        this.f26257c.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        this.d.setStyle(style);
+        this.d.setStrokeWidth(AndroidUtilities.dp(1.33f));
+        this.d.setColor(-1);
+        this.d.setStrokeCap(Paint.Cap.ROUND);
+        this.d.setStrokeJoin(Paint.Join.ROUND);
     }
 }

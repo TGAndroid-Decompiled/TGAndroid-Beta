@@ -1,223 +1,117 @@
 package eh;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.text.TextUtils;
-import android.view.ActionMode;
-import android.view.MotionEvent;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import ng.g0;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Cells.c6;
-import org.telegram.ui.Components.xt;
-import org.telegram.ui.j61;
-import org.telegram.ui.n51;
-public final class b extends xt {
-    public final int f5616c;
-    public final Object d;
+import org.telegram.ui.Components.RadialProgress2;
+public final class b extends Drawable {
+    public final TextPaint f5580a;
+    public final TextPaint f5581b;
+    public RadialProgress2 f5582c;
+    public StaticLayout f5583f;
+    public StaticLayout f5584g;
+    public CharSequence d = "";
+    public CharSequence e = "";
+    public int f5588l = -1;
+    public final int h = AndroidUtilities.dp(64.0f);
+    public final int f5585i = AndroidUtilities.dp(10.66f);
+    public final int f5586j = AndroidUtilities.dp(12.0f);
+    public final int f5587k = AndroidUtilities.dp(4.0f);
 
-    public b(FrameLayout frameLayout, Context context, g6 g6Var, int i10) {
-        super(context, g6Var);
-        this.f5616c = i10;
-        this.d = frameLayout;
+    public b() {
+        TextPaint textPaint = new TextPaint(1);
+        this.f5580a = textPaint;
+        textPaint.setTextSize(AndroidUtilities.dp(15.0f));
+        textPaint.setTypeface(AndroidUtilities.bold());
+        TextPaint textPaint2 = new TextPaint(1);
+        this.f5581b = textPaint2;
+        textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f5616c) {
-            case 1:
-                super.dispatchDraw(canvas);
-                Drawable drawable = (Drawable) this.d;
-                drawable.setBounds(0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(28.0f));
-                drawable.draw(canvas);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
+    public final void draw(Canvas canvas) {
+        int width = getBounds().width();
+        int i10 = this.h;
+        if (width > 0 && (width != this.f5588l || this.f5583f == null || this.f5584g == null)) {
+            this.f5588l = width;
+            int i11 = (width - i10) - this.f5586j;
+            if (i11 <= 0) {
+                this.f5583f = null;
+                this.f5584g = null;
+            } else {
+                CharSequence charSequence = this.d;
+                float f10 = i11;
+                TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.MIDDLE;
+                TextPaint textPaint = this.f5580a;
+                CharSequence ellipsize = TextUtils.ellipsize(charSequence, textPaint, f10, truncateAt);
+                CharSequence charSequence2 = this.e;
+                TextUtils.TruncateAt truncateAt2 = TextUtils.TruncateAt.END;
+                TextPaint textPaint2 = this.f5581b;
+                CharSequence ellipsize2 = TextUtils.ellipsize(charSequence2, textPaint2, f10, truncateAt2);
+                Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+                this.f5583f = new StaticLayout(ellipsize, textPaint, i11, alignment, 1.0f, 0.0f, false);
+                this.f5584g = new StaticLayout(ellipsize2, textPaint2, i11, alignment, 1.0f, 0.0f, false);
+            }
+        }
+        if (this.f5583f != null && this.f5584g != null) {
+            Rect bounds = getBounds();
+            float f11 = bounds.left + i10;
+            float f12 = bounds.top + this.f5585i;
+            this.f5582c.q(AndroidUtilities.dp(10.0f) + bounds.left, AndroidUtilities.dp(9.0f) + bounds.top, AndroidUtilities.dp(42.0f) + AndroidUtilities.dp(10.0f) + bounds.left, AndroidUtilities.dp(42.0f) + AndroidUtilities.dp(9.0f) + bounds.top);
+            canvas.save();
+            canvas.translate(f11, f12);
+            this.f5583f.draw(canvas);
+            canvas.restore();
+            canvas.save();
+            canvas.translate(f11, this.f5583f.getHeight() + f12 + this.f5587k);
+            this.f5584g.draw(canvas);
+            canvas.restore();
+            this.f5582c.draw(canvas);
         }
     }
 
     @Override
-    public int emojiCacheType() {
-        switch (this.f5616c) {
-            case 0:
-                return 3;
-            case 1:
-            default:
-                return super.emojiCacheType();
-            case 2:
-                return 3;
-        }
+    public final int getIntrinsicHeight() {
+        Paint.FontMetricsInt fontMetricsInt = this.f5580a.getFontMetricsInt();
+        int i10 = fontMetricsInt.descent - fontMetricsInt.ascent;
+        int i11 = this.f5585i;
+        int i12 = i10 + i11 + this.f5587k;
+        Paint.FontMetricsInt fontMetricsInt2 = this.f5581b.getFontMetricsInt();
+        return (fontMetricsInt2.descent - fontMetricsInt2.ascent) + i12 + i11;
     }
 
     @Override
-    public void invalidate() {
-        switch (this.f5616c) {
-            case 3:
-                if (!g0.f16070b) {
-                    super.invalidate();
-                    return;
-                }
-                return;
-            default:
-                super.invalidate();
-                return;
-        }
+    public final int getOpacity() {
+        return -3;
     }
 
     @Override
-    public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-        switch (this.f5616c) {
-            case 0:
-                InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-                editorInfo.imeOptions &= -1073741825;
-                return onCreateInputConnection;
-            case 1:
-            default:
-                return super.onCreateInputConnection(editorInfo);
-            case 2:
-                InputConnection onCreateInputConnection2 = super.onCreateInputConnection(editorInfo);
-                if (((c6) this.d).f22656s) {
-                    editorInfo.imeOptions &= -1073741825;
-                }
-                return onCreateInputConnection2;
-        }
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        this.f5588l = -1;
+        this.f5583f = null;
+        this.f5584g = null;
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f5616c) {
-            case 2:
-                super.onDraw(canvas);
-                ((c6) this.d).getClass();
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
+    public final void setAlpha(int i10) {
+        this.f5582c.E = i10 / 255.0f;
+        this.f5580a.setAlpha(i10);
+        this.f5581b.setAlpha(i10);
+        invalidateSelf();
     }
 
     @Override
-    public void onFocusChanged(boolean z4, int i10, Rect rect) {
-        switch (this.f5616c) {
-            case 2:
-                super.onFocusChanged(z4, i10, rect);
-                ((c6) this.d).i(z4);
-                return;
-            case 3:
-                if (z4) {
-                    ((n51) this.d).f38561y.q();
-                    AndroidUtilities.runOnUIThread(new j61(this, 0), 200L);
-                }
-                super.onFocusChanged(z4, i10, rect);
-                return;
-            default:
-                super.onFocusChanged(z4, i10, rect);
-                return;
-        }
-    }
-
-    @Override
-    public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f5616c) {
-            case 0:
-                super.onSizeChanged(i10, i11, i12, i13);
-                postOnAnimation(new ag.e(this, 29));
-                return;
-            default:
-                super.onSizeChanged(i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTextContextMenuItem(int i10) {
-        ClipData primaryClip;
-        switch (this.f5616c) {
-            case 2:
-                if (i10 == 16908322 && (primaryClip = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip()) != null && primaryClip.getItemCount() == 1 && AndroidUtilities.charSequenceIndexOf(primaryClip.getItemAt(0).getText(), "\n") > 0) {
-                    CharSequence text = primaryClip.getItemAt(0).getText();
-                    ArrayList arrayList = new ArrayList();
-                    StringBuilder sb = new StringBuilder();
-                    for (int i11 = 0; i11 < text.length(); i11++) {
-                        char charAt = text.charAt(i11);
-                        if (charAt == '\n') {
-                            arrayList.add(sb.toString());
-                            sb.setLength(0);
-                        } else {
-                            sb.append(charAt);
-                        }
-                    }
-                    if (!TextUtils.isEmpty(sb)) {
-                        arrayList.add(sb);
-                    }
-                    if (((c6) this.d).l(arrayList)) {
-                        return true;
-                    }
-                }
-                return super.onTextContextMenuItem(i10);
-            default:
-                return super.onTextContextMenuItem(i10);
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f5616c) {
-            case 2:
-                if (!isEnabled()) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    ((c6) this.d).k(this);
-                }
-                return super.onTouchEvent(motionEvent);
-            case 3:
-                if (motionEvent.getAction() == 1 && ((n51) this.d).f38561y.u()) {
-                    AndroidUtilities.runOnUIThread(new j61(this, 1), 200L);
-                    return false;
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public ActionMode startActionMode(ActionMode.Callback callback, int i10) {
-        switch (this.f5616c) {
-            case 2:
-                ActionMode startActionMode = super.startActionMode(callback, i10);
-                ((c6) this.d).g(this, startActionMode);
-                return startActionMode;
-            default:
-                return super.startActionMode(callback, i10);
-        }
-    }
-
-    public b(Context context, g6 g6Var, Drawable drawable) {
-        super(context, g6Var);
-        this.f5616c = 1;
-        this.d = drawable;
-    }
-
-    @Override
-    public ActionMode startActionMode(ActionMode.Callback callback) {
-        switch (this.f5616c) {
-            case 2:
-                ActionMode startActionMode = super.startActionMode(callback);
-                ((c6) this.d).g(this, startActionMode);
-                return startActionMode;
-            default:
-                return super.startActionMode(callback);
-        }
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f5580a.setColorFilter(colorFilter);
+        this.f5581b.setColorFilter(colorFilter);
+        invalidateSelf();
     }
 }

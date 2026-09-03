@@ -1,17 +1,13 @@
 package org.telegram.ui;
+public final class fc1 extends f2.l {
+    public final jd1 F;
 
-import android.app.Activity;
-import android.view.MotionEvent;
-public final class fc1 extends qh.k6 {
-    public fc1(Activity activity) {
-        super(activity, 3);
+    public fc1(jd1 jd1Var) {
+        this.F = jd1Var;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (getParent() != null) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-        }
-        return super.dispatchTouchEvent(motionEvent);
+    public final void P(f2.l1 l1Var) {
+        this.F.f35223r0.e1();
     }
 }

@@ -1,229 +1,144 @@
 package dg;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.text.TextUtils;
-import java.util.ArrayList;
-import mh.m9;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.rs;
-import org.telegram.ui.Components.ts;
-import org.telegram.ui.Components.w51;
-public final class a1 implements Runnable {
-    public final int f4431a;
-    public final boolean f4432b;
-    public final int f4433c;
-    public final Object d;
-    public final Object f4434e;
-    public final Object f4435f;
+import android.graphics.SweepGradient;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ai;
+import org.telegram.ui.mt0;
+public final class a1 extends FrameLayout {
+    public float f4353a;
+    public float f4354b;
+    public final mt0 f4355c;
 
-    public a1(c1 c1Var, d1 d1Var, int i10, boolean z4, Runnable runnable) {
-        this.f4431a = 0;
-        this.d = c1Var;
-        this.f4434e = d1Var;
-        this.f4433c = i10;
-        this.f4432b = z4;
-        this.f4435f = runnable;
+    public a1(mt0 mt0Var, Context context) {
+        super(context);
+        this.f4355c = mt0Var;
+        new Path();
+        setWillNotDraw(false);
+        Paint paint = mt0Var.E1;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
     }
 
     @Override
-    public final void run() {
-        RectF rectF;
-        String str;
-        TLRPC.Document document;
-        switch (this.f4431a) {
-            case 0:
-                c1 c1Var = (c1) this.d;
-                d1 d1Var = (d1) this.f4434e;
-                Runnable runnable = (Runnable) this.f4435f;
-                boolean z4 = this.f4432b;
-                if (z4) {
-                    rectF = c1Var.h;
-                } else {
-                    rectF = null;
-                }
-                c1Var.d(d1Var, this.f4433c, rectF);
-                if (z4) {
-                    c1Var.h = null;
-                }
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 1:
-                String str2 = (String) this.d;
-                ImageReceiver imageReceiver = (ImageReceiver) this.f4434e;
-                boolean[] zArr = (boolean[]) this.f4435f;
-                boolean z10 = this.f4432b;
-                int i10 = this.f4433c;
-                if (z10) {
-                    str = UserConfig.getInstance(i10).premiumTonStickerPack;
-                    if (str == null) {
-                        MediaDataController.getInstance(i10).checkTonGiftStickers();
-                        return;
+    public final void onDraw(Canvas canvas) {
+        ViewGroup barView;
+        ViewGroup viewGroup;
+        ViewGroup viewGroup2;
+        Canvas canvas2 = canvas;
+        super.onDraw(canvas);
+        mt0 mt0Var = this.f4355c;
+        cg.f2 f2Var = mt0Var.H1;
+        Paint paint = mt0Var.F1;
+        Paint paint2 = mt0Var.E1;
+        Paint paint3 = mt0Var.G1;
+        barView = mt0Var.getBarView();
+        Rect rect = AndroidUtilities.rectTmp2;
+        int left = barView.getLeft();
+        z0 z0Var = mt0Var.D1;
+        rect.set(AndroidUtilities.lerp(left, z0Var.getLeft(), mt0Var.K1), AndroidUtilities.lerp(barView.getTop(), z0Var.getTop(), mt0Var.K1), AndroidUtilities.lerp(barView.getRight(), z0Var.getRight(), mt0Var.K1), AndroidUtilities.lerp(barView.getBottom(), z0Var.getBottom(), mt0Var.K1));
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(rect);
+        float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f), mt0Var.K1);
+        if (mt0Var.Z1 != null) {
+            rect.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
+            mt0Var.Z1.p(lerp);
+            mt0Var.Z1.setBounds(rect);
+            mt0Var.Z1.draw(canvas2);
+        } else {
+            canvas2.drawRoundRect(rectF, lerp, lerp, mt0Var.L1);
+        }
+        if (barView.getChildCount() >= 1 && mt0Var.K1 != 1.0f) {
+            canvas2.save();
+            canvas2.translate(barView.getLeft(), barView.getTop());
+            View childAt = barView.getChildAt(0);
+            if (barView instanceof k2) {
+                childAt = ((k2) barView).getColorClickableView();
+            }
+            if (childAt.getAlpha() != 0.0f) {
+                canvas2.scale(childAt.getScaleX(), childAt.getScaleY(), childAt.getPivotX(), childAt.getPivotY());
+                paint2.setAlpha((int) (childAt.getAlpha() * (1.0f - mt0Var.K1) * 255.0f));
+                int width = (childAt.getWidth() - childAt.getPaddingLeft()) - childAt.getPaddingRight();
+                int height = (childAt.getHeight() - childAt.getPaddingTop()) - childAt.getPaddingBottom();
+                float x10 = (width / 2.0f) + childAt.getX() + childAt.getPaddingLeft();
+                float y10 = (height / 2.0f) + childAt.getY() + childAt.getPaddingTop();
+                int i10 = f2Var.f2384a;
+                int i11 = mt0Var.f4471e1;
+                View view = childAt;
+                if (i11 != -1) {
+                    if (i11 == 0) {
+                        viewGroup = mt0Var.f4489q1;
+                    } else if (i11 == 2) {
+                        viewGroup = mt0Var.f4490r1;
+                    } else {
+                        viewGroup = null;
                     }
-                } else {
-                    str = UserConfig.getInstance(i10).premiumGiftsStickerPack;
-                    if (str == null) {
-                        MediaDataController.getInstance(i10).checkPremiumGiftStickers();
-                        return;
+                    if (viewGroup == null) {
+                        viewGroup2 = barView;
+                    } else {
+                        viewGroup2 = viewGroup;
                     }
-                }
-                TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByName(str);
-                if (stickerSetByName == null) {
-                    stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName(str);
-                }
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSetByName;
-                if (tL_messages_stickerSet != null) {
-                    int i11 = 0;
-                    while (true) {
-                        if (i11 < tL_messages_stickerSet.packs.size()) {
-                            TLRPC.TL_stickerPack tL_stickerPack = tL_messages_stickerSet.packs.get(i11);
-                            if (TextUtils.equals(tL_stickerPack.emoticon, str2) && !tL_stickerPack.documents.isEmpty()) {
-                                long longValue = tL_stickerPack.documents.get(0).longValue();
-                                for (int i12 = 0; i12 < tL_messages_stickerSet.documents.size(); i12++) {
-                                    document = tL_messages_stickerSet.documents.get(i12);
-                                    if (document == null || document.f20851id != longValue) {
-                                    }
-                                }
-                            } else {
-                                i11++;
-                            }
-                        }
+                    View childAt2 = viewGroup2.getChildAt(0);
+                    if (viewGroup instanceof k2) {
+                        childAt2 = ((k2) viewGroup).getColorClickableView();
                     }
-                    document = null;
-                    if (document == null && !tL_messages_stickerSet.documents.isEmpty()) {
-                        document = tL_messages_stickerSet.documents.get(0);
-                    }
-                } else {
-                    document = null;
+                    x10 = AndroidUtilities.lerp(x10, (((childAt2.getWidth() - childAt2.getPaddingLeft()) - childAt2.getPaddingRight()) / 2.0f) + childAt2.getX() + childAt2.getPaddingLeft(), mt0Var.f4473f1);
+                    y10 = AndroidUtilities.lerp(y10, (((childAt2.getHeight() - childAt2.getPaddingTop()) - childAt2.getPaddingBottom()) / 2.0f) + childAt2.getY() + childAt2.getPaddingTop(), mt0Var.f4473f1);
                 }
-                boolean z11 = true;
-                if (document != null) {
-                    imageReceiver.setAllowStartLottieAnimation(true);
-                    imageReceiver.setDelegate(new m9(zArr));
-                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, k6.f21607a7, 0.3f);
-                    TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 160, true, null, true);
-                    imageReceiver.setAutoRepeat(0);
-                    imageReceiver.setImage(ImageLocation.getForDocument(document), "160_160_nr", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "160_160", svgThumb, document.size, "tgs", tL_messages_stickerSet, 1);
-                    return;
+                if (z0Var != null && z0Var.getChildCount() > 0) {
+                    View childAt3 = z0Var.getChildAt(0);
+                    x10 = AndroidUtilities.lerp(x10, (childAt3.getWidth() / 2.0f) + childAt3.getX() + (z0Var.getX() - barView.getLeft()), mt0Var.K1);
+                    y10 = AndroidUtilities.lerp(y10, (childAt3.getHeight() / 2.0f) + childAt3.getY() + (z0Var.getY() - barView.getTop()), mt0Var.K1);
+                    i10 = i0.a.d(mt0Var.K1, f2Var.f2384a, mt0Var.S1.b(0));
                 }
-                MediaDataController mediaDataController = MediaDataController.getInstance(i10);
-                if (tL_messages_stickerSet != null) {
-                    z11 = false;
+                float f10 = x10;
+                float f11 = y10;
+                if (f10 != this.f4353a || f11 != this.f4354b) {
+                    this.f4353a = f10;
+                    this.f4354b = f11;
+                    paint2.setShader(new SweepGradient(f10, f11, new int[]{-1356981, -1146130, -10452764, -16711681, -7352832, -256, -23296, -1356981}, (float[]) null));
                 }
-                mediaDataController.loadStickersByEmojiOrName(str, false, z11);
-                return;
-            case 2:
-                ((MessagesController) this.d).lambda$startShortPoll$333((TLRPC.Chat) this.f4434e, this.f4432b, this.f4433c, (q0.a) this.f4435f);
-                return;
-            case 3:
-                rs rsVar = (rs) this.d;
-                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = (TLRPC.TL_messages_searchGlobal) this.f4434e;
-                TLObject tLObject = (TLObject) this.f4435f;
-                ArrayList arrayList = rsVar.Q;
-                int i13 = rsVar.K;
-                if (this.f4433c == rsVar.f30882a0 && TextUtils.equals(tL_messages_searchGlobal.f20956q, rsVar.f30883b0)) {
-                    rsVar.W = false;
-                    if (!this.f4432b) {
-                        arrayList.clear();
-                    }
-                    if (tLObject instanceof TLRPC.messages_Messages) {
-                        TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                        MessagesStorage.getInstance(i13).putUsersAndChats(messages_messages.users, messages_messages.chats, true, true);
-                        MessagesController.getInstance(i13).putUsers(messages_messages.users, false);
-                        MessagesController.getInstance(i13).putChats(messages_messages.chats, false);
-                        ArrayList<TLRPC.Message> arrayList2 = messages_messages.messages;
-                        int size = arrayList2.size();
-                        int i14 = 0;
-                        while (i14 < size) {
-                            TLRPC.Message message = arrayList2.get(i14);
-                            i14++;
-                            MessageObject messageObject = new MessageObject(i13, message, false, true);
-                            messageObject.setQuery(rsVar.f30883b0);
-                            arrayList.add(messageObject);
-                        }
-                        rsVar.Y = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
-                        Math.max(arrayList.size(), messages_messages.count);
-                        rsVar.Z = messages_messages.next_rate;
-                    }
-                    rsVar.N(true);
-                    return;
+                float min = (Math.min(width, height) / 2.0f) - AndroidUtilities.dp(0.5f);
+                if (z0Var != null && z0Var.getChildCount() > 0) {
+                    View childAt4 = z0Var.getChildAt(0);
+                    min = AndroidUtilities.lerp(min, (Math.min((childAt4.getWidth() - childAt4.getPaddingLeft()) - childAt4.getPaddingRight(), (childAt4.getHeight() - childAt4.getPaddingTop()) - childAt4.getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f), mt0Var.K1);
                 }
-                return;
-            default:
-                ts tsVar = (ts) this.d;
-                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal2 = (TLRPC.TL_messages_searchGlobal) this.f4434e;
-                TLObject tLObject2 = (TLObject) this.f4435f;
-                ArrayList arrayList3 = tsVar.M;
-                int i15 = tsVar.K;
-                if (this.f4433c == tsVar.X && TextUtils.equals(tL_messages_searchGlobal2.f20956q, tsVar.Y)) {
-                    tsVar.T = false;
-                    if (!this.f4432b) {
-                        arrayList3.clear();
-                    }
-                    if (tLObject2 instanceof TLRPC.messages_Messages) {
-                        TLRPC.messages_Messages messages_messages2 = (TLRPC.messages_Messages) tLObject2;
-                        MessagesStorage.getInstance(i15).putUsersAndChats(messages_messages2.users, messages_messages2.chats, true, true);
-                        MessagesController.getInstance(i15).putUsers(messages_messages2.users, false);
-                        MessagesController.getInstance(i15).putChats(messages_messages2.chats, false);
-                        ArrayList<TLRPC.Message> arrayList4 = messages_messages2.messages;
-                        int size2 = arrayList4.size();
-                        int i16 = 0;
-                        while (i16 < size2) {
-                            TLRPC.Message message2 = arrayList4.get(i16);
-                            i16++;
-                            MessageObject messageObject2 = new MessageObject(i15, message2, false, true);
-                            messageObject2.setQuery(tsVar.Y);
-                            arrayList3.add(messageObject2);
-                        }
-                        tsVar.V = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;
-                        Math.max(arrayList3.size(), messages_messages2.count);
-                        tsVar.W = messages_messages2.next_rate;
-                    }
-                    tsVar.N(true);
-                    return;
+                float f12 = min;
+                rectF.set(f10 - f12, f11 - f12, f10 + f12, f11 + f12);
+                canvas2 = canvas;
+                canvas2.drawArc(rectF, 0.0f, 360.0f, false, paint2);
+                paint.setColor(i10);
+                paint.setAlpha((int) (view.getAlpha() * paint.getAlpha()));
+                paint3.setColor(i10);
+                paint3.setAlpha((int) (view.getAlpha() * 255.0f));
+                float dp = f12 - AndroidUtilities.dp(3.0f);
+                if (z0Var != null && z0Var.getSelectedColorIndex() != 0) {
+                    dp = AndroidUtilities.lerp(f12 - AndroidUtilities.dp(3.0f), AndroidUtilities.dp(2.0f) + f12, mt0Var.K1);
                 }
-                return;
+                e2.w1(f10, f11, dp, paint.getColor(), canvas2);
+                if (z0Var != null && z0Var.getSelectedColorIndex() == 0) {
+                    paint3.setAlpha((int) (view.getAlpha() * paint3.getAlpha() * mt0Var.K1));
+                    canvas2.drawCircle(f10, f11, ai.c(1.0f, mt0Var.K1, paint3.getStrokeWidth() + AndroidUtilities.dp(3.0f), f12), paint3);
+                }
+            }
+            canvas2.restore();
         }
     }
 
-    public a1(MessagesController messagesController, TLRPC.Chat chat, boolean z4, int i10, q0.a aVar) {
-        this.f4431a = 2;
-        this.d = messagesController;
-        this.f4434e = chat;
-        this.f4432b = z4;
-        this.f4433c = i10;
-        this.f4435f = aVar;
-    }
-
-    public a1(w51 w51Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z4, TLObject tLObject, int i11) {
-        this.f4431a = i11;
-        this.d = w51Var;
-        this.f4433c = i10;
-        this.f4434e = tL_messages_searchGlobal;
-        this.f4432b = z4;
-        this.f4435f = tLObject;
-    }
-
-    public a1(boolean z4, int i10, String str, ImageReceiver imageReceiver, boolean[] zArr) {
-        this.f4431a = 1;
-        this.f4432b = z4;
-        this.f4433c = i10;
-        this.d = str;
-        this.f4434e = imageReceiver;
-        this.f4435f = zArr;
+    @Override
+    public final void setTranslationY(float f10) {
+        super.setTranslationY(f10);
+        y0 y0Var = this.f4355c.f4464a1;
+        if (y0Var != null) {
+            y0Var.invalidate();
+        }
     }
 }

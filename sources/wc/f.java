@@ -1,7 +1,7 @@
 package wc;
 
-import m.x2;
+import m.y2;
 public abstract class f {
-    public static final x2 f49526a = new x2(null, null, null);
-    public static x2 f49527b;
+    public static final y2 f46593a = new y2(null, null, null);
+    public static y2 f46594b;
 }

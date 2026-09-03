@@ -10,17 +10,17 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class cb extends Dialog {
-    public final bb f25882a;
-    public final WindowManager.LayoutParams f25883b;
+    public final bb f23915a;
+    public final WindowManager.LayoutParams f23916b;
 
-    public cb(Context context, hg.w wVar) {
+    public cb(Context context, gg.w wVar) {
         super(context);
         AndroidUtilities.enableEdgeToEdge(getWindow());
         bb bbVar = new bb(this, context);
-        this.f25882a = bbVar;
+        this.f23915a = bbVar;
         setContentView(bbVar, new ViewGroup.LayoutParams(-1, -1));
         t tVar = new t(this, 15);
-        WeakHashMap weakHashMap = r0.j0.f46469a;
+        WeakHashMap weakHashMap = r0.j0.f43142a;
         r0.b0.j(bbVar, tVar);
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 30) {
@@ -28,13 +28,13 @@ public final class cb extends Dialog {
         } else {
             bbVar.setSystemUiVisibility(1280);
         }
-        ic.a(bbVar, new lh.t0(wVar, 7));
+        ic.a(bbVar, new kh.t0(wVar, 7));
         try {
             Window window = getWindow();
             window.setWindowAnimations(R.style.DialogNoAnimation);
             window.setBackgroundDrawable(null);
             WindowManager.LayoutParams attributes = window.getAttributes();
-            this.f25883b = attributes;
+            this.f23916b = attributes;
             attributes.width = -1;
             attributes.height = -1;
             attributes.gravity = 51;
@@ -46,7 +46,7 @@ public final class cb extends Dialog {
                 attributes.layoutInDisplayCutoutMode = 1;
             }
             window.setAttributes(attributes);
-            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21607a7, false)) <= 0.721f) {
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19827a7, false)) <= 0.721f) {
                 z4 = false;
             }
             AndroidUtilities.setLightNavigationBar(this, z4);
@@ -55,7 +55,7 @@ public final class cb extends Dialog {
     }
 
     public static bb a(Context context) {
-        return new cb(context, null).f25882a;
+        return new cb(context, null).f23915a;
     }
 
     @Override

@@ -22,7 +22,7 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
     public ChatsRemoteViewsFactory(Context context, Intent intent) {
         this.mContext = context;
-        org.telegram.ui.ActionBar.k6.R(context);
+        org.telegram.ui.ActionBar.j6.R(context);
         boolean z4 = false;
         this.appWidgetId = intent.getIntExtra("appWidgetId", 0);
         SharedPreferences sharedPreferences = context.getSharedPreferences("shortcut_widget", 0);

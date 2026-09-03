@@ -4,14 +4,14 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 public final class fd extends l7.d0 {
-    public final Map f15342b;
-    public final mg f15343c;
+    public final Map f14341b;
+    public final mg f14342c;
 
     public fd(mg mgVar, Map map) {
         super(1);
-        this.f15343c = mgVar;
+        this.f14342c = mgVar;
         map.getClass();
-        this.f15342b = map;
+        this.f14341b = map;
     }
 
     @Override
@@ -30,17 +30,17 @@ public final class fd extends l7.d0 {
 
     @Override
     public final boolean contains(Object obj) {
-        return this.f15342b.containsKey(obj);
+        return this.f14341b.containsKey(obj);
     }
 
     @Override
     public final boolean containsAll(Collection collection) {
-        return this.f15342b.keySet().containsAll(collection);
+        return this.f14341b.keySet().containsAll(collection);
     }
 
     @Override
     public final boolean equals(Object obj) {
-        if (this != obj && !this.f15342b.keySet().equals(obj)) {
+        if (this != obj && !this.f14341b.keySet().equals(obj)) {
             return false;
         }
         return true;
@@ -48,26 +48,26 @@ public final class fd extends l7.d0 {
 
     @Override
     public final int hashCode() {
-        return this.f15342b.keySet().hashCode();
+        return this.f14341b.keySet().hashCode();
     }
 
     @Override
     public final boolean isEmpty() {
-        return this.f15342b.isEmpty();
+        return this.f14341b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new l7.c(this, this.f15342b.entrySet().iterator(), 4);
+        return new l7.c(this, this.f14341b.entrySet().iterator(), 4);
     }
 
     @Override
     public final boolean remove(Object obj) {
-        Collection collection = (Collection) this.f15342b.remove(obj);
+        Collection collection = (Collection) this.f14341b.remove(obj);
         if (collection != null) {
             int size = collection.size();
             collection.clear();
-            this.f15343c.getClass();
+            this.f14342c.getClass();
             if (size > 0) {
                 return true;
             }
@@ -78,6 +78,6 @@ public final class fd extends l7.d0 {
 
     @Override
     public final int size() {
-        return this.f15342b.size();
+        return this.f14341b.size();
     }
 }

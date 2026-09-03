@@ -5,11 +5,11 @@ import android.app.Notification;
 import android.support.v4.media.session.MediaSessionCompat$Token;
 import e0.b0;
 public final class b extends b0 {
-    public int[] f50992e;
-    public MediaSessionCompat$Token f50993f;
+    public int[] e;
+    public MediaSessionCompat$Token f47333f;
 
     @Override
     public final void b(k kVar) {
-        a.d((Notification.Builder) kVar.f94c, a.b(a.a(), this.f50992e, this.f50993f));
+        a.d((Notification.Builder) kVar.f86c, a.b(a.a(), this.e, this.f47333f));
     }
 }

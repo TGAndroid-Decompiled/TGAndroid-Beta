@@ -3,24 +3,24 @@ package r3;
 import h5.d0;
 import java.util.Arrays;
 public final class f implements s {
-    public final int f46574a;
-    public final int[] f46575b;
-    public final long[] f46576c;
+    public final int f43235a;
+    public final int[] f43236b;
+    public final long[] f43237c;
     public final long[] d;
-    public final long[] f46577e;
-    public final long f46578f;
+    public final long[] e;
+    public final long f43238f;
 
     public f(int[] iArr, long[] jArr, long[] jArr2, long[] jArr3) {
-        this.f46575b = iArr;
-        this.f46576c = jArr;
+        this.f43236b = iArr;
+        this.f43237c = jArr;
         this.d = jArr2;
-        this.f46577e = jArr3;
+        this.e = jArr3;
         int length = iArr.length;
-        this.f46574a = length;
+        this.f43235a = length;
         if (length > 0) {
-            this.f46578f = jArr2[length - 1] + jArr3[length - 1];
+            this.f43238f = jArr2[length - 1] + jArr3[length - 1];
         } else {
-            this.f46578f = 0L;
+            this.f43238f = 0L;
         }
     }
 
@@ -31,13 +31,13 @@ public final class f implements s {
 
     @Override
     public final r f(long j10) {
-        long[] jArr = this.f46577e;
-        int e6 = d0.e(jArr, j10, true);
-        long j11 = jArr[e6];
-        long[] jArr2 = this.f46576c;
-        t tVar = new t(j11, jArr2[e6]);
-        if (j11 < j10 && e6 != this.f46574a - 1) {
-            int i10 = e6 + 1;
+        long[] jArr = this.e;
+        int e = d0.e(jArr, j10, true);
+        long j11 = jArr[e];
+        long[] jArr2 = this.f43237c;
+        t tVar = new t(j11, jArr2[e]);
+        if (j11 < j10 && e != this.f43235a - 1) {
+            int i10 = e + 1;
             return new r(tVar, new t(jArr[i10], jArr2[i10]));
         }
         return new r(tVar, tVar);
@@ -45,10 +45,10 @@ public final class f implements s {
 
     @Override
     public final long g() {
-        return this.f46578f;
+        return this.f43238f;
     }
 
     public final String toString() {
-        return "ChunkIndex(length=" + this.f46574a + ", sizes=" + Arrays.toString(this.f46575b) + ", offsets=" + Arrays.toString(this.f46576c) + ", timeUs=" + Arrays.toString(this.f46577e) + ", durationsUs=" + Arrays.toString(this.d) + ")";
+        return "ChunkIndex(length=" + this.f43235a + ", sizes=" + Arrays.toString(this.f43236b) + ", offsets=" + Arrays.toString(this.f43237c) + ", timeUs=" + Arrays.toString(this.e) + ", durationsUs=" + Arrays.toString(this.d) + ")";
     }
 }

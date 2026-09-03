@@ -1,31 +1,15 @@
 package m;
 
-import android.graphics.drawable.Drawable;
-import android.widget.ListAdapter;
-public interface o0 {
-    boolean a();
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.view.View;
+public final class o0 extends View.BaseSavedState {
+    public static final Parcelable.Creator<o0> CREATOR = new l4.j(9);
+    public boolean f13562a;
 
-    int b();
-
-    void c(int i10);
-
-    CharSequence d();
-
-    void dismiss();
-
-    Drawable e();
-
-    void i(CharSequence charSequence);
-
-    void j(Drawable drawable);
-
-    void k(int i10);
-
-    void l(int i10);
-
-    void m(int i10, int i11);
-
-    int n();
-
-    void o(ListAdapter listAdapter);
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        super.writeToParcel(parcel, i10);
+        parcel.writeByte(this.f13562a ? (byte) 1 : (byte) 0);
+    }
 }

@@ -1,55 +1,42 @@
 package org.telegram.ui;
 
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
 public final class zh0 implements Runnable {
-    public final int f43966a;
-    public final ti0 f43967b;
-    public final EditText f43968c;
+    public final int f40485a;
+    public final ui0 f40486b;
 
-    public zh0(ti0 ti0Var, EditText editText, int i10) {
-        this.f43966a = i10;
-        this.f43967b = ti0Var;
-        this.f43968c = editText;
+    public zh0(ui0 ui0Var, int i10) {
+        this.f40485a = i10;
+        this.f40486b = ui0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f43966a) {
+        switch (this.f40485a) {
             case 0:
-                ti0 ti0Var = this.f43967b;
-                if (!ti0Var.m0) {
-                    try {
-                        Window window = ti0Var.getWindow();
-                        WindowManager.LayoutParams attributes = window.getAttributes();
-                        attributes.flags &= -131073;
-                        window.setAttributes(attributes);
-                        ti0Var.m0 = true;
-                    } catch (Exception e6) {
-                        FileLog.e(e6);
-                    }
+                super/*android.app.Dialog*/.dismiss();
+                return;
+            case 1:
+                ui0 ui0Var = this.f40486b;
+                ui0Var.getClass();
+                ih.j.f(false);
+                ih.j jVar = ui0Var.f38834f0;
+                if (jVar != null) {
+                    jVar.b(ui0Var.C);
                 }
-                AndroidUtilities.runOnUIThread(new zh0(ti0Var, this.f43968c, 1), 100L);
+                AndroidUtilities.runOnUIThread(new zh0(ui0Var, 0));
+                return;
+            case 2:
+                ih.j.f(false);
+                ui0 ui0Var2 = this.f40486b;
+                ih.j jVar2 = ui0Var2.f38834f0;
+                if (jVar2 != null) {
+                    jVar2.b(ui0Var2.C);
+                }
+                AndroidUtilities.runOnUIThread(new zh0(ui0Var2, 3));
                 return;
             default:
-                ti0 ti0Var2 = this.f43967b;
-                int[] iArr = ti0Var2.f41563l0;
-                AndroidUtilities.showKeyboard(this.f43968c);
-                org.telegram.ui.Components.lg lgVar = ti0Var2.T;
-                if (lgVar != null) {
-                    lgVar.getLocationOnScreen(iArr);
-                    int i10 = iArr[0];
-                    int width = ti0Var2.T.getWidth();
-                    org.telegram.ui.Components.lg lgVar2 = ti0Var2.T;
-                    lgVar2.getHeight();
-                    iArr[0] = b.C(6.0f, width - lgVar2.m(), i10);
-                    ti0Var2.U.setScaleX(ti0Var2.T.getScaleX());
-                    ti0Var2.U.setScaleY(ti0Var2.T.getScaleY());
-                    return;
-                }
+                super/*android.app.Dialog*/.dismiss();
                 return;
         }
     }

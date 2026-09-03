@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
 public final class hz0 {
-    public final int f27669a;
-    public final int f27670b;
+    public final int f25525a;
+    public final int f25526b;
 
     public hz0(int i10, int i11) {
-        this.f27669a = i10;
-        this.f27670b = i11;
+        this.f25525a = i10;
+        this.f25526b = i11;
     }
 
     public final boolean equals(Object obj) {
@@ -16,13 +16,13 @@ public final class hz0 {
             return false;
         }
         hz0 hz0Var = (hz0) obj;
-        if (this.f27670b == hz0Var.f27670b && this.f27669a == hz0Var.f27669a) {
+        if (this.f25526b == hz0Var.f25526b && this.f25525a == hz0Var.f25525a) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return (this.f27669a * 31) + this.f27670b;
+        return (this.f25525a * 31) + this.f25526b;
     }
 }

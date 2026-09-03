@@ -1,90 +1,60 @@
 package lh;
 
-import android.app.Activity;
-import android.content.DialogInterface;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class i implements DialogInterface.OnDismissListener {
-    public final int f12805a;
-    public final Object f12806b;
-    public final Object f12807c;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.i80;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class i implements RequestDelegate {
+    public final int f12553a;
+    public final boolean f12554b;
+    public final long f12555c;
     public final Object d;
+    public final Object e;
 
-    public i(Object obj, Object obj2, Object obj3, int i10) {
-        this.f12805a = i10;
-        this.f12807c = obj;
-        this.d = obj2;
-        this.f12806b = obj3;
+    public i(MessagesController messagesController, boolean z4, TLRPC.User user, long j10) {
+        this.f12553a = 1;
+        this.d = messagesController;
+        this.f12554b = z4;
+        this.e = user;
+        this.f12555c = j10;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f12805a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f12553a) {
             case 0:
-                org.telegram.ui.ActionBar.p2 p2Var = (org.telegram.ui.ActionBar.p2) this.d;
-                Activity activity = (Activity) this.f12806b;
-                AndroidUtilities.hideKeyboard((eh.b) this.f12807c);
-                if (p2Var != null) {
-                    AndroidUtilities.requestAdjustResize(activity, p2Var.getClassGuid());
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new j((q) this.d, tL_error, tLObject, (TwoStepVerificationActivity) this.e, this.f12554b, this.f12555c));
                 return;
             case 1:
-                AndroidUtilities.hideKeyboard((u2) this.d);
-                AndroidUtilities.requestAdjustResize((Activity) this.f12806b, ((x3) this.f12807c).f13100a.getClassGuid());
+                long j10 = this.f12555c;
+                ((MessagesController) this.d).lambda$deleteParticipantFromChat$316(this.f12554b, (TLRPC.User) this.e, j10, tLObject, tL_error);
                 return;
             case 2:
-                org.telegram.ui.ActionBar.p2 p2Var2 = (org.telegram.ui.ActionBar.p2) this.d;
-                Activity activity2 = (Activity) this.f12806b;
-                AndroidUtilities.hideKeyboard((EditTextBoldCursor) this.f12807c);
-                if (p2Var2 != null) {
-                    AndroidUtilities.requestAdjustResize(activity2, p2Var2.getClassGuid());
-                    return;
-                }
-                return;
-            case 3:
-                ((Utilities.Callback) this.f12807c).run(Integer.valueOf(((org.telegram.ui.Components.o3) this.f12806b).getValue() + (((org.telegram.ui.Components.m3) this.d).getValue() * 60)));
-                return;
-            case 4:
-                org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) this.f12807c;
-                boolean[] zArr = (boolean[]) this.d;
-                String str = (String) this.f12806b;
-                a1Var.getClass();
-                if (!zArr[0]) {
-                    zArr[0] = true;
-                    a1Var.v("requested_chat_failed", org.telegram.ui.web.a1.x(str, "req_id"));
-                    return;
-                }
-                return;
-            case 5:
-                sh.q0 q0Var = (sh.q0) this.f12807c;
-                boolean[] zArr2 = (boolean[]) this.d;
-                org.telegram.ui.web.s sVar = (org.telegram.ui.web.s) this.f12806b;
-                q0Var.getClass();
-                if (!zArr2[0]) {
-                    q0Var.d = true;
-                    q0Var.f47661e = false;
-                    q0Var.l();
-                    Iterator it = q0Var.f47662f.iterator();
-                    while (it.hasNext()) {
-                        ((Runnable) it.next()).run();
-                    }
-                    zArr2[0] = true;
-                    sVar.run(Boolean.TRUE, Boolean.FALSE);
-                    return;
-                }
+                ((MessagesController) this.d).lambda$checkChatInviter$375((TLRPC.Chat) this.e, this.f12554b, this.f12555c, tLObject, tL_error);
                 return;
             default:
-                boolean[] zArr3 = (boolean[]) this.d;
-                Utilities.Callback callback = (Utilities.Callback) this.f12806b;
-                if (!((boolean[]) this.f12807c)[0] && !zArr3[0]) {
-                    zArr3[0] = true;
-                    callback.run("USER_DECLINED");
-                    return;
-                }
+                i80.s((i80) this.d, this.f12555c, this.f12554b, (TLRPC.TL_messages_importChatInvite) this.e, tLObject, tL_error);
                 return;
         }
+    }
+
+    public i(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, boolean z4, long j10, int i10) {
+        this.f12553a = i10;
+        this.d = notificationCenterDelegate;
+        this.e = obj;
+        this.f12554b = z4;
+        this.f12555c = j10;
+    }
+
+    public i(i80 i80Var, long j10, boolean z4, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
+        this.f12553a = 3;
+        this.d = i80Var;
+        this.f12555c = j10;
+        this.f12554b = z4;
+        this.e = tL_messages_importChatInvite;
     }
 }

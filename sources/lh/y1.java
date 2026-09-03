@@ -1,78 +1,43 @@
 package lh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.tl.TL_stars;
-public final class y1 extends View {
-    public final a2 f13118a;
-    public CharSequence f13119b;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class y1 implements RequestDelegate {
+    public final int f13360a = 1;
+    public final g5 f13361b;
+    public final long f13362c;
+    public final long d;
+    public final long e;
+    public final Object f13363f;
 
-    public y1(Context context) {
-        super(context);
-        a2 a2Var = new a2(this);
-        this.f13118a = a2Var;
-        a2Var.setCallback(this);
+    public y1(g5 g5Var, long j10, long j11, Utilities.Callback callback, long j12) {
+        this.f13361b = g5Var;
+        this.f13362c = j10;
+        this.d = j11;
+        this.f13363f = callback;
+        this.e = j12;
     }
 
-    public final void a(int i10, int i11) {
-        this.f13118a.f30869a.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-    }
-
-    public final void b(String str, boolean z4) {
-        int i10;
-        this.f13119b = str;
-        if (z4) {
-            i10 = 10;
-        } else {
-            i10 = 11;
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f13360a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new l2(this.f13361b, (org.telegram.ui.ActionBar.d2) this.f13363f, tLObject, this.f13362c, this.d, this.e, tL_error));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new l2(this.f13361b, tLObject, this.f13362c, this.d, (Utilities.Callback) this.f13363f, tL_error, this.e));
+                return;
         }
-        this.f13118a.e(i10, str, z4);
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int width = getWidth();
-        int height = getHeight();
-        a2 a2Var = this.f13118a;
-        a2Var.setBounds(0, 0, width, height);
-        a2Var.draw(canvas);
-    }
-
-    public CharSequence getText() {
-        return this.f13119b;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
-    }
-
-    public void setBackdrop(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        this.f13118a.d(stargiftattributebackdrop, false, false);
-        invalidate();
-    }
-
-    public void setColor(int i10) {
-        Paint paint = this.f13118a.f30869a;
-        paint.setShader(null);
-        paint.setColor(i10);
-    }
-
-    public void setStrokeColor(int i10) {
-        this.f13118a.d.setColor(i10);
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f13118a != drawable && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public y1(g5 g5Var, org.telegram.ui.ActionBar.d2 d2Var, long j10, long j11, long j12) {
+        this.f13361b = g5Var;
+        this.f13363f = d2Var;
+        this.f13362c = j10;
+        this.d = j11;
+        this.e = j12;
     }
 }

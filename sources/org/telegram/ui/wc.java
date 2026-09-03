@@ -1,57 +1,151 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class wc extends org.telegram.ui.Components.rl0 {
-    public final int f42403c;
-    public final org.telegram.ui.ActionBar.g6 d;
-    public final zc f42404e;
+import android.app.Activity;
+import android.content.Context;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_stories;
+public final class wc extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
+    public final to0 f39334a;
+    public final vc f39335b;
+    public final org.telegram.ui.ActionBar.k5 f39336c;
+    public final TextView d;
+    public final TextView e;
+    public final LinearLayout f39337f;
+    public final dd h;
 
-    public wc(zc zcVar, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
-        this.f42404e = zcVar;
-        this.f42403c = i10;
-        this.d = g6Var;
-    }
-
-    @Override
-    public final boolean D(f2.m1 m1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.f42404e.f43893c.size();
-    }
-
-    @Override
-    public final void v(f2.m1 r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wc.v(f2.m1, int):void");
-    }
-
-    @Override
-    public final f2.m1 x(ViewGroup viewGroup, int i10) {
-        return new f2.m1(new org.telegram.ui.Components.w11(this.f42403c, 3, viewGroup.getContext(), this.d));
-    }
-
-    @Override
-    public final void y(f2.m1 m1Var) {
-        TLRPC.WallPaper wallPaper;
-        zc zcVar = this.f42404e;
-        ArrayList arrayList = zcVar.f43893c;
-        int b10 = m1Var.b();
-        View view = m1Var.f5875a;
-        if (b10 >= 0 && b10 < arrayList.size()) {
-            org.telegram.ui.Components.lp lpVar = (org.telegram.ui.Components.lp) arrayList.get(b10);
-            org.telegram.ui.Components.w11 w11Var = (org.telegram.ui.Components.w11) view;
-            w11Var.g(lpVar.d, false);
-            if (lpVar.f28819a.f21361b) {
-                wallPaper = null;
-            } else {
-                wallPaper = zcVar.v;
-            }
-            w11Var.setFallbackWallpaper(wallPaper);
+    public wc(dd ddVar, Activity activity) {
+        super(activity);
+        org.telegram.ui.ActionBar.f6 f6Var;
+        int i10;
+        org.telegram.ui.ActionBar.f6 f6Var2;
+        float f10;
+        float f11;
+        int i11;
+        int i12;
+        this.h = ddVar;
+        Context context = getContext();
+        f6Var = ((org.telegram.ui.ActionBar.p2) ddVar).resourceProvider;
+        to0 to0Var = new to0(context, f6Var);
+        this.f39334a = to0Var;
+        to0Var.setProgressToGradient(1.0f);
+        to0Var.C = true;
+        addView(to0Var, k7.b6.e(-1, -1, 119));
+        Context context2 = getContext();
+        i10 = ((org.telegram.ui.ActionBar.p2) ddVar).currentAccount;
+        long j10 = ddVar.f33416a;
+        f6Var2 = ((org.telegram.ui.ActionBar.p2) ddVar).resourceProvider;
+        vc vcVar = new vc(this, context2, i10, j10, f6Var2);
+        this.f39335b = vcVar;
+        boolean z4 = ddVar.d;
+        if (z4) {
+            f10 = 230.0f;
+        } else {
+            f10 = 190.0f;
         }
+        if (z4) {
+            f11 = 24.0f;
+        } else {
+            f11 = 0.0f;
+        }
+        addView(vcVar, k7.b6.d(-1, f10, 80, 0.0f, 0.0f, 0.0f, f11));
+        if (ddVar instanceof o60) {
+            org.telegram.ui.ActionBar.k5 k5Var = new org.telegram.ui.ActionBar.k5(getContext());
+            this.f39336c = k5Var;
+            k5Var.setGravity(19);
+            int i13 = org.telegram.ui.ActionBar.j6.A8;
+            k5Var.setTextColor(ddVar.getThemedColor(i13));
+            k5Var.setTypeface(AndroidUtilities.bold());
+            k5Var.l(LocaleController.getString(R.string.ChangeChannelNameColor2), false);
+            k5Var.setAlpha(0.0f);
+            a();
+            addView(k5Var, k7.b6.d(-1, -2.0f, 80, 72.0f, 0.0f, 0.0f, 16.0f));
+            LinearLayout linearLayout = new LinearLayout(activity);
+            this.f39337f = linearLayout;
+            linearLayout.setOrientation(0);
+            linearLayout.setBackground(org.telegram.ui.ActionBar.j6.g0(org.telegram.ui.ActionBar.j6.l1(0.065f, -16777216), -16777216));
+            linearLayout.setGravity(17);
+            linearLayout.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+            TextView textView = new TextView(activity);
+            this.d = textView;
+            textView.setTextSize(1, 12.0f);
+            textView.setTextColor(vcVar.h.getTextColor());
+            TextView textView2 = new TextView(activity);
+            this.e = textView2;
+            textView2.setTextSize(1, 12.0f);
+            if (ddVar.d && ddVar.f33439s == -1) {
+                i11 = ddVar.getThemedColor(i13);
+            } else {
+                i11 = -1;
+            }
+            textView2.setTextColor(i11);
+            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = ddVar.f33420c;
+            if (tL_premium_boostsStatus != null) {
+                i12 = tL_premium_boostsStatus.boosts;
+            } else {
+                i12 = 0;
+            }
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGroupBoostCount", i12, new Object[0])));
+            textView2.setText(LocaleController.getString(R.string.BoostingGroupBoostWhatAreBoosts));
+            linearLayout.addView(textView);
+            linearLayout.addView(textView2, k7.b6.k(3.0f, 0.0f, 0.0f, 0.0f, -2, -2));
+            addView(linearLayout, k7.b6.e(-1, -2, 80));
+        }
+    }
+
+    public final void a() {
+        boolean z4;
+        int i10;
+        float f10;
+        int i11 = 0;
+        if (getResources().getConfiguration().orientation == 2) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        if (!AndroidUtilities.isTablet() && z4) {
+            i10 = 18;
+        } else {
+            i10 = 20;
+        }
+        org.telegram.ui.ActionBar.k5 k5Var = this.f39336c;
+        k5Var.setTextSize(i10);
+        if (AndroidUtilities.isTablet()) {
+            f10 = -2.0f;
+        } else {
+            if (z4) {
+                i11 = 4;
+            }
+            f10 = i11;
+        }
+        k5Var.setTranslationY(AndroidUtilities.dp(f10));
+    }
+
+    @Override
+    public final void e() {
+        int themedColor;
+        org.telegram.ui.ActionBar.k5 k5Var = this.f39336c;
+        if (k5Var != null) {
+            dd ddVar = this.h;
+            int i10 = -1;
+            if (ddVar.d && ddVar.f33439s != -1) {
+                themedColor = -1;
+            } else {
+                themedColor = ddVar.getThemedColor(org.telegram.ui.ActionBar.j6.A8);
+            }
+            k5Var.setTextColor(themedColor);
+            if (ddVar.d && ddVar.f33439s == -1) {
+                i10 = ddVar.getThemedColor(org.telegram.ui.ActionBar.j6.A8);
+            }
+            this.e.setTextColor(i10);
+        }
+    }
+
+    public int[] getColorKeys() {
+        return null;
     }
 }

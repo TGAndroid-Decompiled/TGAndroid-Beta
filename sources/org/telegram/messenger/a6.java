@@ -13,42 +13,42 @@ import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.fn0;
 import org.telegram.ui.xw0;
 public final class a6 implements Runnable {
-    public final int f18111a = 0;
-    public final Object f18112b;
-    public final int f18113c;
+    public final int f16700a = 0;
+    public final Object f16701b;
+    public final int f16702c;
     public final Object d;
-    public final Object f18114e;
-    public final Object f18115f;
+    public final Object e;
+    public final Object f16703f;
     public final Object h;
-    public final Object f18116n;
-    public final Object f18117r;
+    public final Object f16704n;
+    public final Object f16705r;
 
     public a6(int i10, File file, String str, org.telegram.ui.ActionBar.d2 d2Var, boolean[] zArr, String str2, Utilities.Callback callback, boolean[] zArr2) {
-        this.f18113c = i10;
-        this.f18115f = file;
+        this.f16702c = i10;
+        this.f16703f = file;
         this.d = str;
-        this.f18112b = d2Var;
+        this.f16701b = d2Var;
         this.h = zArr;
-        this.f18114e = str2;
-        this.f18117r = callback;
-        this.f18116n = zArr2;
+        this.e = str2;
+        this.f16705r = callback;
+        this.f16704n = zArr2;
     }
 
     @Override
     public final void run() {
         Activity activity;
-        int i10 = this.f18111a;
-        int i11 = this.f18113c;
-        Object obj = this.f18117r;
-        Object obj2 = this.f18116n;
+        int i10 = this.f16700a;
+        int i11 = this.f16702c;
+        Object obj = this.f16705r;
+        Object obj2 = this.f16704n;
         Object obj3 = this.h;
-        Object obj4 = this.f18112b;
-        Object obj5 = this.f18114e;
+        Object obj4 = this.f16701b;
+        Object obj5 = this.e;
         Object obj6 = this.d;
-        Object obj7 = this.f18115f;
+        Object obj7 = this.f16703f;
         switch (i10) {
             case 0:
-                MediaController.lambda$saveFile$50(this.f18113c, (File) obj7, (String) obj6, (org.telegram.ui.ActionBar.d2) obj4, (boolean[]) obj3, (String) obj5, (Utilities.Callback) obj, (boolean[]) obj2);
+                MediaController.lambda$saveFile$50(this.f16702c, (File) obj7, (String) obj6, (org.telegram.ui.ActionBar.d2) obj4, (boolean[]) obj3, (String) obj5, (Utilities.Callback) obj, (boolean[]) obj2);
                 return;
             case 1:
                 ExternalActionActivity externalActionActivity = (ExternalActionActivity) obj7;
@@ -58,25 +58,25 @@ public final class a6 implements Runnable {
                 TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj;
                 String str = (String) obj6;
                 String str2 = (String) obj5;
-                ArrayList arrayList = ExternalActionActivity.f34106x;
+                ArrayList arrayList = ExternalActionActivity.f31561x;
                 try {
                     d2Var.dismiss();
-                } catch (Exception e6) {
-                    FileLog.e(e6);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
                 if (tLObject != null) {
                     MessagesController.getInstance(i11).putUsers(authorizationform.users, false);
                     fn0 fn0Var = new fn0(5, getauthorizationform.bot_id, getauthorizationform.scope, getauthorizationform.public_key, str, str2, (String) null, authorizationform, (TL_account.Password) tLObject);
-                    fn0Var.f36880z1 = true;
+                    fn0Var.f34169z1 = true;
                     if (AndroidUtilities.isTablet()) {
                         externalActionActivity.d.c(-1, fn0Var);
                     } else {
-                        externalActionActivity.f34110c.c(-1, fn0Var);
+                        externalActionActivity.f31565c.c(-1, fn0Var);
                     }
                     if (!AndroidUtilities.isTablet()) {
-                        externalActionActivity.f34111e.setVisibility(8);
+                        externalActionActivity.e.setVisibility(8);
                     }
-                    externalActionActivity.f34110c.c0();
+                    externalActionActivity.f31565c.c0();
                     if (AndroidUtilities.isTablet()) {
                         externalActionActivity.d.c0();
                         return;
@@ -101,12 +101,12 @@ public final class a6 implements Runnable {
                     BillingController billingController = BillingController.getInstance();
                     AccountInstance accountInstance = p2Var.getAccountInstance();
                     n7.qa qaVar = new n7.qa(24);
-                    qaVar.i1(BillingController.PREMIUM_PRODUCT_DETAILS);
+                    qaVar.L0(BillingController.PREMIUM_PRODUCT_DETAILS);
                     xw0Var.a();
-                    String str3 = xw0Var.f43471g.f44188a;
+                    String str3 = xw0Var.f40088g.f41027a;
                     if (!TextUtils.isEmpty(str3)) {
-                        qaVar.f15702c = str3;
-                        billingController.launchBillingFlow(activity2, accountInstance, tL_inputStorePaymentPremiumSubscription, Collections.singletonList(qaVar.O0()), eVar, false);
+                        qaVar.f14688c = str3;
+                        billingController.launchBillingFlow(activity2, accountInstance, tL_inputStorePaymentPremiumSubscription, Collections.singletonList(qaVar.X()), eVar, false);
                         return;
                     }
                     throw new IllegalArgumentException("offerToken can not be empty");
@@ -117,24 +117,24 @@ public final class a6 implements Runnable {
     }
 
     public a6(TLObject tLObject, org.telegram.ui.ActionBar.p2 p2Var, TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription, xw0 xw0Var, p2.e eVar, int i10, TLRPC.TL_error tL_error, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
-        this.f18115f = tLObject;
+        this.f16703f = tLObject;
         this.d = p2Var;
-        this.f18114e = tL_inputStorePaymentPremiumSubscription;
-        this.f18112b = xw0Var;
+        this.e = tL_inputStorePaymentPremiumSubscription;
+        this.f16701b = xw0Var;
         this.h = eVar;
-        this.f18113c = i10;
-        this.f18116n = tL_error;
-        this.f18117r = tL_payments_canPurchaseStore;
+        this.f16702c = i10;
+        this.f16704n = tL_error;
+        this.f16705r = tL_payments_canPurchaseStore;
     }
 
     public a6(ExternalActionActivity externalActionActivity, org.telegram.ui.ActionBar.d2 d2Var, TLObject tLObject, int i10, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2) {
-        this.f18115f = externalActionActivity;
-        this.f18112b = d2Var;
+        this.f16703f = externalActionActivity;
+        this.f16701b = d2Var;
         this.h = tLObject;
-        this.f18113c = i10;
-        this.f18116n = authorizationform;
-        this.f18117r = getauthorizationform;
+        this.f16702c = i10;
+        this.f16704n = authorizationform;
+        this.f16705r = getauthorizationform;
         this.d = str;
-        this.f18114e = str2;
+        this.e = str2;
     }
 }

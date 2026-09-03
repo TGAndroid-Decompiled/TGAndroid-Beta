@@ -1,215 +1,217 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.View;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.regex.Pattern;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LanguageDetector;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class as implements org.telegram.ui.Components.hv0, org.telegram.ui.Components.gv0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.uc0, org.telegram.ui.ActionBar.c2, org.telegram.ui.Components.wc0 {
-    public final int f35244a;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class as extends LinearLayout {
+    public final Paint f32632a;
+    public final Paint f32633b;
+    public float f32634c;
+    public boolean d;
+    public boolean e;
+    public ds[] f32635f;
 
-    public as(int i10) {
-        this.f35244a = i10;
+    public as(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f32632a = paint;
+        this.f32633b = new Paint(1);
+        paint.setStyle(Paint.Style.STROKE);
+        setOrientation(0);
     }
 
-    @Override
-    public void b(Object obj, float f10) {
-        cs csVar = (cs) obj;
-        switch (this.f35244a) {
-            case 0:
-                csVar.d = f10;
-                if (csVar.getParent() != null) {
-                    ((View) csVar.getParent()).invalidate();
-                    return;
-                }
-                return;
-            default:
-                csVar.f35848e = f10;
-                if (csVar.getParent() != null) {
-                    ((View) csVar.getParent()).invalidate();
-                    return;
-                }
-                return;
-        }
-    }
+    public abstract void a();
 
-    @Override
-    public String e(int i10) {
-        int i11;
-        switch (this.f35244a) {
-            case 5:
-                return l.d.j(i10, "");
-            case 6:
-                switch (i10) {
-                    case 0:
-                        return LocaleController.getString(R.string.January);
-                    case 1:
-                        return LocaleController.getString(R.string.February);
-                    case 2:
-                        return LocaleController.getString(R.string.March);
-                    case 3:
-                        return LocaleController.getString(R.string.April);
-                    case 4:
-                        return LocaleController.getString(R.string.May);
-                    case 5:
-                        return LocaleController.getString(R.string.June);
-                    case 6:
-                        return LocaleController.getString(R.string.July);
-                    case 7:
-                        return LocaleController.getString(R.string.August);
-                    case 8:
-                        return LocaleController.getString(R.string.September);
-                    case 9:
-                        return LocaleController.getString(R.string.October);
-                    case 10:
-                        return LocaleController.getString(R.string.November);
-                    default:
-                        return LocaleController.getString(R.string.December);
+    public final void b(int i10, int i11) {
+        int i12;
+        int i13;
+        int i14;
+        ds[] dsVarArr = this.f32635f;
+        int i15 = 0;
+        if (dsVarArr == null || dsVarArr.length != i10) {
+            if (dsVarArr != null) {
+                for (ds dsVar : dsVarArr) {
+                    removeView(dsVar);
                 }
-            case 7:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 8:
-            case 9:
-            case 19:
-            case 26:
-            default:
-                if (i10 == 0) {
-                    return LocaleController.getString(R.string.MessageScheduleToday);
-                }
-                Calendar calendar = Calendar.getInstance();
-                int i12 = calendar.get(1);
-                calendar.add(6, i10);
-                long timeInMillis = calendar.getTimeInMillis();
-                if (calendar.get(1) == i12) {
-                    return LocaleController.getInstance().getFormatterWeek().format(timeInMillis) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis);
-                }
-                return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis);
-            case 10:
-                if (i10 == 0) {
-                    return LocaleController.getString(R.string.MessageScheduleToday);
-                }
-                Calendar calendar2 = Calendar.getInstance();
-                int i13 = calendar2.get(1);
-                calendar2.add(6, i10);
-                long timeInMillis2 = calendar2.getTimeInMillis();
-                int i14 = calendar2.get(1);
-                if (i14 == i13 && i10 < 7) {
-                    return LocaleController.getInstance().getFormatterWeek().format(timeInMillis2) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis2);
-                } else if (i14 == i13) {
-                    return LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis2);
+            }
+            this.f32635f = new ds[i10];
+            for (int i16 = 0; i16 < i10; i16++) {
+                this.f32635f[i16] = new yr(this, getContext(), i16, i10);
+                this.f32635f[i16].setImeOptions(268435461);
+                this.f32635f[i16].setTextSize(1, 20.0f);
+                this.f32635f[i16].setMaxLines(1);
+                this.f32635f[i16].setTypeface(AndroidUtilities.bold());
+                this.f32635f[i16].setPadding(0, 0, 0, 0);
+                this.f32635f[i16].setGravity(17);
+                if (i11 == 3) {
+                    this.f32635f[i16].setEnabled(false);
+                    this.f32635f[i16].setInputType(0);
+                    this.f32635f[i16].setVisibility(8);
                 } else {
-                    return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis2);
+                    this.f32635f[i16].setInputType(3);
                 }
-            case 11:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 12:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 13:
-                Calendar calendar3 = Calendar.getInstance();
-                calendar3.set(5, 1);
-                calendar3.set(2, i10);
-                return calendar3.getDisplayName(2, 1, Locale.getDefault());
-            case 14:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 15:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 16:
-                if (i10 == 0) {
-                    return LocaleController.getString(R.string.MessageScheduleToday);
-                }
-                Calendar calendar4 = Calendar.getInstance();
-                int i15 = calendar4.get(1);
-                calendar4.add(6, i10);
-                long timeInMillis3 = calendar4.getTimeInMillis();
-                if (calendar4.get(1) == i15) {
-                    return LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis3);
-                }
-                return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis3);
-            case 17:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 18:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 20:
-                return LocaleController.formatPluralString("Times", i10 + 1, new Object[0]);
-            case 21:
-                return LocaleController.formatPluralString("Minutes", i10 + 1, new Object[0]);
-            case 22:
-                return LocaleController.getString(R.string.NotificationsFrequencyDivider);
-            case 23:
-                if (i10 == 0) {
-                    return LocaleController.getString(R.string.MessageScheduleToday);
-                }
-                Calendar calendar5 = Calendar.getInstance();
-                int i16 = calendar5.get(1);
-                calendar5.add(6, i10);
-                long timeInMillis4 = calendar5.getTimeInMillis();
-                if (calendar5.get(1) == i16) {
-                    return LocaleController.getInstance().getFormatterWeek().format(timeInMillis4) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis4);
-                }
-                return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis4);
-            case 24:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 25:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 27:
-                boolean z4 = LocaleController.is24HourFormat;
-                int i17 = 12;
-                if (z4) {
-                    i11 = 24;
+                int i17 = 10;
+                if (i11 == 10) {
+                    i12 = 42;
+                    i13 = 47;
+                } else if (i11 == 11) {
+                    i17 = 5;
+                    i12 = 28;
+                    i13 = 34;
                 } else {
-                    i11 = 12;
+                    i17 = 7;
+                    i12 = 34;
+                    i13 = 42;
                 }
-                int i18 = i10 % i11;
-                if (i10 % 12 != 0 || z4) {
-                    i17 = i18;
+                ds dsVar2 = this.f32635f[i16];
+                if (i16 != i10 - 1) {
+                    i14 = i17;
+                } else {
+                    i14 = 0;
                 }
-                String format = String.format("%02d", Integer.valueOf(i17));
-                if (i10 >= 24) {
-                    return LocaleController.formatString(R.string.BusinessHoursNextDayPicker, format);
+                addView(dsVar2, k7.b6.t(i12, i13, 1, 0, 0, i14, 0));
+                this.f32635f[i16].addTextChangedListener(new zr(this, i16, i10));
+                this.f32635f[i16].setOnEditorActionListener(new ja(this, 3));
+            }
+            return;
+        }
+        while (true) {
+            ds[] dsVarArr2 = this.f32635f;
+            if (i15 < dsVarArr2.length) {
+                dsVarArr2[i15].setText("");
+                i15++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    public final void c(String str, boolean z4) {
+        if (this.f32635f != null) {
+            int i10 = 0;
+            if (z4) {
+                int i11 = 0;
+                while (true) {
+                    ds[] dsVarArr = this.f32635f;
+                    if (i11 >= dsVarArr.length) {
+                        break;
+                    } else if (dsVarArr[i11].isFocused()) {
+                        i10 = i11;
+                        break;
+                    } else {
+                        i11++;
+                    }
                 }
-                return format;
-            case 28:
-                return String.format("%02d", Integer.valueOf(i10));
+            }
+            for (int i12 = i10; i12 < Math.min(this.f32635f.length, str.length() + i10); i12++) {
+                this.f32635f[i12].setText(Character.toString(str.charAt(i12 - i10)));
+            }
         }
     }
 
     @Override
-    public float get(Object obj) {
-        return ((cs) obj).f35848e;
+    public final void dispatchDraw(Canvas canvas) {
+        for (int i10 = 0; i10 < getChildCount(); i10++) {
+            View childAt = getChildAt(i10);
+            if (childAt instanceof ds) {
+                ds dsVar = (ds) childAt;
+                if (!this.e) {
+                    if (childAt.isFocused()) {
+                        dsVar.j(1.0f);
+                    } else if (!childAt.isFocused()) {
+                        dsVar.j(0.0f);
+                    }
+                }
+                float successProgress = dsVar.getSuccessProgress();
+                int d = i0.a.d(successProgress, i0.a.d(dsVar.getErrorProgress(), i0.a.d(dsVar.getFocusedProgress(), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20006k6, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20024l6, false)), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20116q7, false)), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19972i7, false));
+                Paint paint = this.f32632a;
+                paint.setColor(d);
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
+                float f10 = this.f32634c;
+                rectF.inset(f10, f10);
+                if (successProgress != 0.0f) {
+                    float f11 = -Math.max(0.0f, (dsVar.getSuccessScaleProgress() - 1.0f) * this.f32634c);
+                    rectF.inset(f11, f11);
+                }
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
+            }
+        }
+        super.dispatchDraw(canvas);
     }
 
     @Override
-    public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f35244a) {
-            case 8:
-                d2Var.dismiss();
-                return;
-            case 19:
-                d2Var.dismiss();
-                return;
-            default:
-                d2Var.dismiss();
-                return;
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        if (view instanceof ds) {
+            ds dsVar = (ds) view;
+            canvas.save();
+            float f10 = dsVar.v;
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(view.getX(), view.getY(), view.getX() + view.getMeasuredWidth(), view.getY() + view.getMeasuredHeight());
+            float f11 = this.f32634c;
+            rectF.inset(f11, f11);
+            canvas.clipRect(rectF);
+            if (dsVar.f33525x) {
+                float f12 = (f10 * 0.5f) + 0.5f;
+                view.setAlpha(f10);
+                canvas.scale(f12, f12, (dsVar.getMeasuredWidth() / 2.0f) + dsVar.getX(), (dsVar.getMeasuredHeight() / 2.0f) + dsVar.getY());
+            } else {
+                view.setAlpha(1.0f);
+                canvas.translate(0.0f, (1.0f - f10) * view.getMeasuredHeight());
+            }
+            super.drawChild(canvas, view, j10);
+            canvas.restore();
+            float f13 = dsVar.f33524w;
+            if (f13 < 1.0f) {
+                canvas.save();
+                float f14 = 1.0f - f13;
+                float f15 = (f14 * 0.5f) + 0.5f;
+                canvas.scale(f15, f15, (dsVar.getMeasuredWidth() / 2.0f) + dsVar.getX(), (dsVar.getMeasuredHeight() / 2.0f) + dsVar.getY());
+                Paint paint = this.f32633b;
+                paint.setAlpha((int) (f14 * 255.0f));
+                canvas.drawBitmap(dsVar.f33526y, dsVar.getX(), dsVar.getY(), paint);
+                canvas.restore();
+                return true;
+            }
+            return true;
+        }
+        return super.drawChild(canvas, view, j10);
+    }
+
+    public String getCode() {
+        if (this.f32635f == null) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        int i10 = 0;
+        while (true) {
+            ds[] dsVarArr = this.f32635f;
+            if (i10 < dsVarArr.length) {
+                sb.append(se.b.d(dsVarArr[i10].getText().toString(), false));
+                i10++;
+            } else {
+                return sb.toString();
+            }
         }
     }
 
     @Override
-    public void q(org.telegram.ui.Components.yc0 yc0Var, int i10) {
-        Pattern pattern = org.telegram.ui.Components.z4.f33754a;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        float dp = AndroidUtilities.dp(1.5f);
+        this.f32634c = dp;
+        this.f32632a.setStrokeWidth(dp);
     }
 
-    @Override
-    public void run(Exception exc) {
-        switch (this.f35244a) {
-            case 3:
-                FileLog.e(exc);
-                return;
-            default:
-                FileLog.e(exc);
-                return;
-        }
+    public void setCode(String str) {
+        this.f32635f[0].setText(str);
+    }
+
+    public void setText(String str) {
+        c(str, false);
     }
 }

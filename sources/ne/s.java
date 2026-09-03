@@ -1,20 +1,20 @@
 package ne;
 
-import k7.h0;
+import k7.g0;
 public final class s extends p {
-    public String f15981g;
+    public String f14944g;
 
     public s(String str) {
-        this.f15981g = str;
+        this.f14944g = str;
     }
 
     @Override
-    public final void a(h0 h0Var) {
-        h0Var.o(this);
+    public final void a(g0 g0Var) {
+        g0Var.o(this);
     }
 
     @Override
     public final String f() {
-        return "literal=" + this.f15981g;
+        return "literal=" + this.f14944g;
     }
 }

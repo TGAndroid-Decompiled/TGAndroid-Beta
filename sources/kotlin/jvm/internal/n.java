@@ -1,6 +1,6 @@
 package kotlin.jvm.internal;
 public abstract class n extends c implements hd.g {
-    public final boolean f11337a;
+    public final boolean f11097a;
 
     public n(java.lang.Object r9, java.lang.Class r10, java.lang.String r11, java.lang.String r12, int r13) {
         throw new UnsupportedOperationException("Method not decompiled: kotlin.jvm.internal.n.<init>(java.lang.Object, java.lang.Class, java.lang.String, java.lang.String, int):void");
@@ -8,7 +8,7 @@ public abstract class n extends c implements hd.g {
 
     @Override
     public final hd.g getReflected() {
-        if (!this.f11337a) {
+        if (!this.f11097a) {
             hd.b compute = compute();
             if (compute != this) {
                 return (hd.g) compute;
@@ -20,7 +20,7 @@ public abstract class n extends c implements hd.g {
 
     @Override
     public final hd.b compute() {
-        if (this.f11337a) {
+        if (this.f11097a) {
             return this;
         }
         return super.compute();

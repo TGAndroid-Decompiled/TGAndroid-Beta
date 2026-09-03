@@ -1,50 +1,58 @@
 package dg;
 
-import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.d81;
-public final class t extends d81 {
-    public final u f4670a;
+import android.animation.ValueAnimator;
+import org.telegram.ui.Components.rl0;
+import org.telegram.ui.Components.rv0;
+import org.telegram.ui.Components.ss0;
+import ph.c5;
+import ph.y4;
+public final class t implements ValueAnimator.AnimatorUpdateListener {
+    public final int f4791a;
+    public final int f4792b;
+    public final Object f4793c;
+    public final Object d;
 
-    public t(u uVar) {
-        this.f4670a = uVar;
+    public t(ss0 ss0Var, int i10, rl0 rl0Var) {
+        this.f4791a = 1;
+        this.f4793c = ss0Var;
+        this.f4792b = i10;
+        this.d = rl0Var;
     }
 
     @Override
-    public final View d(int i10) {
-        u uVar = this.f4670a;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                return (x) uVar.f4679b;
-            }
-            return (d0) uVar.d;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f4791a) {
+            case 0:
+                e1 e1Var = (e1) this.f4793c;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                e1Var.H1.f2384a = i0.a.d(floatValue, ((Integer) this.d).intValue(), this.f4792b);
+                a1 a1Var = e1Var.Z0;
+                if (a1Var != null) {
+                    a1Var.invalidate();
+                    return;
+                }
+                return;
+            case 1:
+                ((ss0) this.f4793c).e.L1.put(this.f4792b, (Float) valueAnimator.getAnimatedValue());
+                ((rl0) this.d).invalidate();
+                return;
+            default:
+                c5 c5Var = (c5) this.f4793c;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c5Var.f41410x1.f2384a = i0.a.d(floatValue2, ((Integer) this.d).intValue(), this.f4792b);
+                y4 y4Var = c5Var.Q0;
+                if (y4Var != null) {
+                    y4Var.invalidate();
+                    return;
+                }
+                return;
         }
-        return (w) uVar.f4680c;
     }
 
-    @Override
-    public final int e() {
-        return 3;
-    }
-
-    @Override
-    public final CharSequence g(int i10) {
-        if (i10 != 1) {
-            if (i10 != 2) {
-                return LocaleController.getString(R.string.PaintPaletteGrid).toUpperCase();
-            }
-            return LocaleController.getString(R.string.PaintPaletteSliders).toUpperCase();
-        }
-        return LocaleController.getString(R.string.PaintPaletteSpectrum).toUpperCase();
-    }
-
-    @Override
-    public final int h(int i10) {
-        return i10;
-    }
-
-    @Override
-    public final void b(View view, int i10, int i11) {
+    public t(rv0 rv0Var, Integer num, int i10, int i11) {
+        this.f4791a = i11;
+        this.f4793c = rv0Var;
+        this.d = num;
+        this.f4792b = i10;
     }
 }

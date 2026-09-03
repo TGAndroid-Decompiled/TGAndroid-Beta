@@ -6,22 +6,22 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationRequest;
-import j7.f5;
+import j7.l0;
 import java.util.ArrayList;
 import java.util.List;
 public final class n implements Parcelable.Creator {
-    public final int f6144a;
+    public final int f6023a;
 
     public n(int i10) {
-        this.f6144a = i10;
+        this.f6023a = i10;
     }
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
         Status status = null;
-        switch (this.f6144a) {
+        switch (this.f6023a) {
             case 0:
-                int z4 = f5.z(parcel);
+                int z4 = l0.z(parcel);
                 IBinder iBinder = null;
                 IBinder iBinder2 = null;
                 PendingIntent pendingIntent = null;
@@ -32,32 +32,32 @@ public final class n implements Parcelable.Creator {
                     int readInt = parcel.readInt();
                     switch ((char) readInt) {
                         case 1:
-                            i10 = f5.u(parcel, readInt);
+                            i10 = l0.u(parcel, readInt);
                             break;
                         case 2:
-                            iBinder = f5.t(parcel, readInt);
+                            iBinder = l0.t(parcel, readInt);
                             break;
                         case 3:
-                            iBinder2 = f5.t(parcel, readInt);
+                            iBinder2 = l0.t(parcel, readInt);
                             break;
                         case 4:
-                            pendingIntent = (PendingIntent) f5.g(parcel, readInt, PendingIntent.CREATOR);
+                            pendingIntent = (PendingIntent) l0.g(parcel, readInt, PendingIntent.CREATOR);
                             break;
                         case 5:
-                            str = f5.h(parcel, readInt);
+                            str = l0.h(parcel, readInt);
                             break;
                         case 6:
-                            str2 = f5.h(parcel, readInt);
+                            str2 = l0.h(parcel, readInt);
                             break;
                         default:
-                            f5.y(parcel, readInt);
+                            l0.y(parcel, readInt);
                             break;
                     }
                 }
-                f5.m(parcel, z4);
+                l0.m(parcel, z4);
                 return new m(i10, iBinder, iBinder2, pendingIntent, str, str2);
             case 1:
-                int z10 = f5.z(parcel);
+                int z10 = l0.z(parcel);
                 LocationRequest locationRequest = null;
                 ArrayList arrayList = null;
                 String str3 = null;
@@ -74,41 +74,41 @@ public final class n implements Parcelable.Creator {
                         if (c3 != 5) {
                             switch (c3) {
                                 case '\b':
-                                    z11 = f5.n(parcel, readInt2);
+                                    z11 = l0.n(parcel, readInt2);
                                     continue;
                                 case '\t':
-                                    z12 = f5.n(parcel, readInt2);
+                                    z12 = l0.n(parcel, readInt2);
                                     continue;
                                 case '\n':
-                                    str3 = f5.h(parcel, readInt2);
+                                    str3 = l0.h(parcel, readInt2);
                                     continue;
                                 case 11:
-                                    z13 = f5.n(parcel, readInt2);
+                                    z13 = l0.n(parcel, readInt2);
                                     continue;
                                 case '\f':
-                                    z14 = f5.n(parcel, readInt2);
+                                    z14 = l0.n(parcel, readInt2);
                                     continue;
                                 case '\r':
-                                    str4 = f5.h(parcel, readInt2);
+                                    str4 = l0.h(parcel, readInt2);
                                     continue;
                                 case 14:
-                                    j10 = f5.w(parcel, readInt2);
+                                    j10 = l0.w(parcel, readInt2);
                                     continue;
                                 default:
-                                    f5.y(parcel, readInt2);
+                                    l0.y(parcel, readInt2);
                                     continue;
                             }
                         } else {
-                            arrayList = f5.l(parcel, readInt2, b6.d.CREATOR);
+                            arrayList = l0.l(parcel, readInt2, b6.d.CREATOR);
                         }
                     } else {
-                        locationRequest = (LocationRequest) f5.g(parcel, readInt2, LocationRequest.CREATOR);
+                        locationRequest = (LocationRequest) l0.g(parcel, readInt2, LocationRequest.CREATOR);
                     }
                 }
-                f5.m(parcel, z10);
+                l0.m(parcel, z10);
                 return new o(locationRequest, arrayList, z11, z12, str3, z13, z14, str4, j10);
             case 2:
-                int z15 = f5.z(parcel);
+                int z15 = l0.z(parcel);
                 o oVar = null;
                 IBinder iBinder3 = null;
                 IBinder iBinder4 = null;
@@ -120,38 +120,38 @@ public final class n implements Parcelable.Creator {
                     int readInt3 = parcel.readInt();
                     switch ((char) readInt3) {
                         case 1:
-                            i11 = f5.u(parcel, readInt3);
+                            i11 = l0.u(parcel, readInt3);
                             break;
                         case 2:
-                            oVar = (o) f5.g(parcel, readInt3, o.CREATOR);
+                            oVar = (o) l0.g(parcel, readInt3, o.CREATOR);
                             break;
                         case 3:
-                            iBinder3 = f5.t(parcel, readInt3);
+                            iBinder3 = l0.t(parcel, readInt3);
                             break;
                         case 4:
-                            pendingIntent2 = (PendingIntent) f5.g(parcel, readInt3, PendingIntent.CREATOR);
+                            pendingIntent2 = (PendingIntent) l0.g(parcel, readInt3, PendingIntent.CREATOR);
                             break;
                         case 5:
-                            iBinder4 = f5.t(parcel, readInt3);
+                            iBinder4 = l0.t(parcel, readInt3);
                             break;
                         case 6:
-                            iBinder5 = f5.t(parcel, readInt3);
+                            iBinder5 = l0.t(parcel, readInt3);
                             break;
                         case 7:
                         default:
-                            f5.y(parcel, readInt3);
+                            l0.y(parcel, readInt3);
                             break;
                         case '\b':
-                            str5 = f5.h(parcel, readInt3);
+                            str5 = l0.h(parcel, readInt3);
                             break;
                     }
                 }
-                f5.m(parcel, z15);
+                l0.m(parcel, z15);
                 return new p(i11, oVar, iBinder3, iBinder4, pendingIntent2, iBinder5, str5);
             case 3:
-                int z16 = f5.z(parcel);
-                s sVar = u.f6157b;
-                List list = v.f6158e;
+                int z16 = l0.z(parcel);
+                s sVar = u.f6034b;
+                List list = v.e;
                 String str6 = null;
                 String str7 = null;
                 String str8 = null;
@@ -163,54 +163,54 @@ public final class n implements Parcelable.Creator {
                     int readInt4 = parcel.readInt();
                     switch ((char) readInt4) {
                         case 1:
-                            i12 = f5.u(parcel, readInt4);
+                            i12 = l0.u(parcel, readInt4);
                             break;
                         case 2:
-                            i13 = f5.u(parcel, readInt4);
+                            i13 = l0.u(parcel, readInt4);
                             break;
                         case 3:
-                            str6 = f5.h(parcel, readInt4);
+                            str6 = l0.h(parcel, readInt4);
                             break;
                         case 4:
-                            str7 = f5.h(parcel, readInt4);
+                            str7 = l0.h(parcel, readInt4);
                             break;
                         case 5:
-                            i14 = f5.u(parcel, readInt4);
+                            i14 = l0.u(parcel, readInt4);
                             break;
                         case 6:
-                            str8 = f5.h(parcel, readInt4);
+                            str8 = l0.h(parcel, readInt4);
                             break;
                         case 7:
-                            kVar = (k) f5.g(parcel, readInt4, k.CREATOR);
+                            kVar = (k) l0.g(parcel, readInt4, k.CREATOR);
                             break;
                         case '\b':
-                            list = f5.l(parcel, readInt4, y5.c.CREATOR);
+                            list = l0.l(parcel, readInt4, y5.c.CREATOR);
                             break;
                         default:
-                            f5.y(parcel, readInt4);
+                            l0.y(parcel, readInt4);
                             break;
                     }
                 }
-                f5.m(parcel, z16);
+                l0.m(parcel, z16);
                 return new k(i12, i13, str6, str7, str8, i14, list, kVar);
             default:
-                int z17 = f5.z(parcel);
+                int z17 = l0.z(parcel);
                 while (parcel.dataPosition() < z17) {
                     int readInt5 = parcel.readInt();
                     if (((char) readInt5) != 1) {
-                        f5.y(parcel, readInt5);
+                        l0.y(parcel, readInt5);
                     } else {
-                        status = (Status) f5.g(parcel, readInt5, Status.CREATOR);
+                        status = (Status) l0.g(parcel, readInt5, Status.CREATOR);
                     }
                 }
-                f5.m(parcel, z17);
+                l0.m(parcel, z17);
                 return new w(status);
         }
     }
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f6144a) {
+        switch (this.f6023a) {
             case 0:
                 return new m[i10];
             case 1:

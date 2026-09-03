@@ -1,98 +1,129 @@
 package org.telegram.ui;
 
-import android.view.View;
 import android.view.ViewGroup;
-import java.io.File;
+import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public final class n7 extends i7 {
-    public final ArrayList f39207n;
-    public final u7 f39208r;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class n7 extends j7 {
+    public final ArrayList f36397f;
+    public final w7 h;
 
-    public n7(u7 u7Var) {
-        super(u7Var, 2);
-        this.f39208r = u7Var;
-        this.f39207n = new ArrayList();
+    public n7(w7 w7Var) {
+        super(0);
+        this.h = w7Var;
+        this.f36397f = new ArrayList();
+    }
+
+    @Override
+    public final boolean D(f2.l1 l1Var) {
+        return true;
     }
 
     @Override
     public final void F() {
-        boolean z4;
-        super.F();
-        ArrayList arrayList = this.f39207n;
+        ArrayList arrayList = this.f36397f;
         arrayList.clear();
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList2 = this.f37232e;
-            if (i10 < arrayList2.size()) {
-                String path = ((o7) arrayList2.get(i10)).d.f16245a.getPath();
-                if (((o7) arrayList2.get(i10)).d.d == 1) {
-                    z4 = true;
-                } else {
-                    z4 = false;
-                }
-                arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, path, 0, z4, 0, 0, 0L));
-                i10++;
-            } else {
-                return;
+        ArrayList arrayList2 = this.e;
+        arrayList.addAll(arrayList2);
+        arrayList2.clear();
+        w7 w7Var = this.h;
+        if (w7Var.f39283f != null) {
+            for (int i10 = 0; i10 < w7Var.f39283f.f14163b.size(); i10++) {
+                ?? bVar = new bg.b(1, true);
+                bVar.f37321c = (w6) w7Var.f39283f.f14163b.get(i10);
+                arrayList2.add(bVar);
             }
         }
+        E(arrayList, arrayList2);
     }
 
     @Override
-    public final void v(f2.m1 m1Var, int i10) {
+    public final void v(f2.l1 l1Var, int i10) {
         boolean z4;
-        boolean z10;
-        String name;
+        String dialogPhotoTitle;
         float f10;
-        View view = m1Var.f5875a;
-        m7 m7Var = (m7) view;
-        org.telegram.ui.Cells.i7 i7Var = (org.telegram.ui.Cells.i7) m7Var.f38866b.getChildAt(0);
-        ArrayList arrayList = this.f37232e;
-        nh.a aVar = ((o7) arrayList.get(i10)).d;
-        if (aVar == view.getTag()) {
-            z4 = true;
-        } else {
-            z4 = false;
+        boolean z10;
+        if (l1Var.f5777f == 1) {
+            c7 c7Var = (c7) l1Var.f5774a;
+            ArrayList arrayList = this.e;
+            w6 w6Var = ((q7) arrayList.get(i10)).f37321c;
+            w7 w7Var = this.h;
+            TLObject userOrChat = w7Var.d.getMessagesController().getUserOrChat(w6Var.f39277a);
+            w6 w6Var2 = c7Var.f33031a;
+            if (w6Var2 != null && w6Var2.f39277a == w6Var.f39277a) {
+                z4 = true;
+            } else {
+                z4 = false;
+            }
+            if (w6Var.f39277a == Long.MAX_VALUE) {
+                dialogPhotoTitle = LocaleController.getString(R.string.CacheOtherChats);
+                c7Var.getImageView().getAvatarDrawable().g(14);
+                c7Var.getImageView().e(null, c7Var.getImageView().getAvatarDrawable());
+            } else {
+                dialogPhotoTitle = DialogObject.setDialogPhotoTitle(c7Var.getImageView(), userOrChat);
+            }
+            c7Var.f33031a = w6Var;
+            org.telegram.ui.Components.p9 imageView = c7Var.getImageView();
+            if ((userOrChat instanceof TLRPC.Chat) && ((TLRPC.Chat) userOrChat).forum) {
+                f10 = 12.0f;
+            } else {
+                f10 = 19.0f;
+            }
+            imageView.setRoundRadius(AndroidUtilities.dp(f10));
+            String formatFileSize = AndroidUtilities.formatFileSize(w6Var.f39279c);
+            if (i10 < arrayList.size() - 1) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            org.telegram.ui.Components.k6 k6Var = c7Var.d;
+            TextView textView = c7Var.f33033c;
+            textView.setText(Emoji.replaceEmoji(dialogPhotoTitle, textView.getPaint().getFontMetricsInt(), false));
+            if (formatFileSize != null) {
+                k6Var.c(formatFileSize, false, true);
+                k6Var.setVisibility(0);
+            } else {
+                k6Var.setVisibility(4);
+            }
+            c7Var.f33034f = z10;
+            c7Var.setWillNotDraw(!z10);
+            c7Var.requestLayout();
+            boolean contains = w7Var.f39283f.f14170l.contains(Long.valueOf(w6Var.f39277a));
+            org.telegram.ui.Components.kp kpVar = c7Var.f33035n;
+            if (kpVar == null && !contains) {
+                return;
+            }
+            if (kpVar == null) {
+                org.telegram.ui.Components.kp kpVar2 = new org.telegram.ui.Components.kp(c7Var.getContext(), 21, c7Var.f33032b);
+                c7Var.f33035n = kpVar2;
+                kpVar2.b(-1, org.telegram.ui.ActionBar.j6.f19881d6, org.telegram.ui.ActionBar.j6.f20007k7);
+                c7Var.f33035n.setDrawUnchecked(false);
+                int i11 = 3;
+                c7Var.f33035n.setDrawBackgroundAsArc(3);
+                org.telegram.ui.Components.kp kpVar3 = c7Var.f33035n;
+                if (LocaleController.isRTL) {
+                    i11 = 5;
+                }
+                c7Var.addView(kpVar3, k7.b6.d(24, 24.0f, i11 | 48, 38.0f, 25.0f, 38.0f, 0.0f));
+            }
+            c7Var.f33035n.a(contains, z4);
         }
-        if (i10 != arrayList.size() - 1) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        view.setTag(aVar);
-        File file = aVar.f16245a;
-        long lastModified = file.lastModified();
-        if (aVar.h == 5) {
-            name = LocaleController.getString(R.string.AttachRound);
-        } else {
-            name = file.getName();
-        }
-        i7Var.d(name, LocaleController.formatDateAudio(lastModified / 1000, true), Utilities.getExtension(file.getName()), null, 0, z10);
-        if (!z4) {
-            i7Var.setPhoto(file.getPath());
-        }
-        org.telegram.ui.Components.p9 imageView = i7Var.getImageView();
-        if (aVar.h == 5) {
-            f10 = 20.0f;
-        } else {
-            f10 = 4.0f;
-        }
-        imageView.setRoundRadius(AndroidUtilities.dp(f10));
-        m7Var.d = z10;
-        m7Var.f38867c.setText(AndroidUtilities.formatFileSize(aVar.f16247c));
-        m7Var.f38865a.a(this.f39208r.f41734f.f16258j.contains(aVar), z4);
     }
 
     @Override
-    public final f2.m1 x(ViewGroup viewGroup, int i10) {
-        m7 m7Var = new m7(this, viewGroup.getContext(), 0);
-        m7Var.f38868e = 2;
-        m7Var.f38866b.addView(new org.telegram.ui.Cells.i7(viewGroup.getContext(), 3, null));
-        return new f2.m1(m7Var);
+    public final f2.l1 x(ViewGroup viewGroup, int i10) {
+        c7 c7Var = null;
+        if (i10 == 1) {
+            c7 c7Var2 = new c7(this.h.getContext(), null);
+            c7Var2.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19881d6, false));
+            c7Var = c7Var2;
+        }
+        return new f2.l1(c7Var);
     }
 }

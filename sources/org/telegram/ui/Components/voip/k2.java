@@ -2,19 +2,19 @@ package org.telegram.ui.Components.voip;
 
 import org.webrtc.RendererCommon;
 public final class k2 implements RendererCommon.RendererEvents {
-    public final n2 f32126a;
+    public final m2 f29722a;
 
-    public k2(n2 n2Var) {
-        this.f32126a = n2Var;
+    public k2(m2 m2Var) {
+        this.f29722a = m2Var;
     }
 
     @Override
     public final void onFirstFrameRendered() {
-        n2 n2Var = this.f32126a;
-        c2.p pVar = n2Var.O;
+        m2 m2Var = this.f29722a;
+        c2.p pVar = m2Var.O;
         if (pVar != null) {
             pVar.run();
-            n2Var.O = null;
+            m2Var.O = null;
         }
     }
 

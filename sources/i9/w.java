@@ -7,23 +7,23 @@ import java.util.Locale;
 import java.util.UUID;
 import java.util.regex.Pattern;
 public final class w {
-    public static final Pattern f8017g = Pattern.compile("[^\\p{Alnum}]");
+    public static final Pattern f7429g = Pattern.compile("[^\\p{Alnum}]");
     public static final String h = Pattern.quote("/");
-    public final i5.c f8018a;
-    public final Context f8019b;
-    public final String f8020c;
+    public final i5.c f7430a;
+    public final Context f7431b;
+    public final String f7432c;
     public final ca.d d;
-    public final s f8021e;
-    public c f8022f;
+    public final s e;
+    public c f7433f;
 
     public w(Context context, String str, ca.d dVar, s sVar) {
         if (context != null) {
             if (str != null) {
-                this.f8019b = context;
-                this.f8020c = str;
+                this.f7431b = context;
+                this.f7432c = str;
                 this.d = dVar;
-                this.f8021e = sVar;
-                this.f8018a = new Object();
+                this.e = sVar;
+                this.f7430a = new Object();
                 return;
             }
             throw new IllegalArgumentException("appIdentifier must not be null");
@@ -37,7 +37,7 @@ public final class w {
         if (uuid == null) {
             lowerCase = null;
         } else {
-            lowerCase = f8017g.matcher(uuid).replaceAll("").toLowerCase(Locale.US);
+            lowerCase = f7429g.matcher(uuid).replaceAll("").toLowerCase(Locale.US);
         }
         String str2 = "Created new Crashlytics installation ID: " + lowerCase + " for FID: " + str;
         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
@@ -49,20 +49,20 @@ public final class w {
 
     public final synchronized c b() {
         String str;
-        c cVar = this.f8022f;
-        if (cVar != null && (cVar.f7941b != null || !this.f8021e.a())) {
-            return this.f8022f;
+        c cVar = this.f7433f;
+        if (cVar != null && (cVar.f7360b != null || !this.e.a())) {
+            return this.f7433f;
         }
-        f9.b bVar = f9.b.f6225a;
+        f9.b bVar = f9.b.f6095a;
         bVar.c("Determining Crashlytics installation ID...");
-        SharedPreferences sharedPreferences = this.f8019b.getSharedPreferences("com.google.firebase.crashlytics", 0);
+        SharedPreferences sharedPreferences = this.f7431b.getSharedPreferences("com.google.firebase.crashlytics", 0);
         String string = sharedPreferences.getString("firebase.installation.id", null);
         bVar.c("Cached Firebase Installation ID: " + string);
-        if (this.f8021e.a()) {
+        if (this.e.a()) {
             try {
                 str = (String) y.a(((ca.c) this.d).d());
-            } catch (Exception e6) {
-                Log.w("FirebaseCrashlytics", "Failed to retrieve Firebase Installation ID.", e6);
+            } catch (Exception e) {
+                Log.w("FirebaseCrashlytics", "Failed to retrieve Firebase Installation ID.", e);
                 str = null;
             }
             bVar.c("Fetched Firebase Installation ID: " + str);
@@ -74,36 +74,36 @@ public final class w {
                 }
             }
             if (str.equals(string)) {
-                this.f8022f = new c(sharedPreferences.getString("crashlytics.installation.id", null), str);
+                this.f7433f = new c(sharedPreferences.getString("crashlytics.installation.id", null), str);
             } else {
-                this.f8022f = new c(a(str, sharedPreferences), str);
+                this.f7433f = new c(a(str, sharedPreferences), str);
             }
         } else if (string != null && string.startsWith("SYN_")) {
-            this.f8022f = new c(sharedPreferences.getString("crashlytics.installation.id", null), null);
+            this.f7433f = new c(sharedPreferences.getString("crashlytics.installation.id", null), null);
         } else {
-            this.f8022f = new c(a("SYN_" + UUID.randomUUID().toString(), sharedPreferences), null);
+            this.f7433f = new c(a("SYN_" + UUID.randomUUID().toString(), sharedPreferences), null);
         }
-        bVar.c("Install IDs: " + this.f8022f);
-        return this.f8022f;
+        bVar.c("Install IDs: " + this.f7433f);
+        return this.f7433f;
     }
 
     public final String c() {
         String str;
-        i5.c cVar = this.f8018a;
-        Context context = this.f8019b;
+        i5.c cVar = this.f7430a;
+        Context context = this.f7431b;
         synchronized (cVar) {
             try {
-                if (cVar.f7812a == null) {
+                if (cVar.f7246a == null) {
                     String installerPackageName = context.getPackageManager().getInstallerPackageName(context.getPackageName());
                     if (installerPackageName == null) {
                         installerPackageName = "";
                     }
-                    cVar.f7812a = installerPackageName;
+                    cVar.f7246a = installerPackageName;
                 }
-                if ("".equals(cVar.f7812a)) {
+                if ("".equals(cVar.f7246a)) {
                     str = null;
                 } else {
-                    str = cVar.f7812a;
+                    str = cVar.f7246a;
                 }
             } finally {
             }

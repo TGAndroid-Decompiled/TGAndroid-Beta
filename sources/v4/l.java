@@ -36,12 +36,12 @@ public final class l extends j3.e implements Handler.Callback {
         if (looper == null) {
             handler = null;
         } else {
-            int i10 = d0.f7237a;
+            int i10 = d0.f6924a;
             handler = new Handler(looper, this);
         }
         this.B = handler;
-        this.D = i.f48942a;
-        this.E = new f7.b((char) 0, 16);
+        this.D = i.f45675a;
+        this.E = new f7.b((char) 0, 17);
         this.P = -9223372036854775807L;
         this.Q = -9223372036854775807L;
         this.R = -9223372036854775807L;
@@ -64,10 +64,10 @@ public final class l extends j3.e implements Handler.Callback {
     }
 
     public final void B(c cVar) {
-        v vVar = cVar.f48940a;
+        v vVar = cVar.f45673a;
         c0 c0Var = this.C;
-        c0Var.f9000a.f9123l.e(27, new z(vVar));
-        c0Var.f9000a.f9123l.e(27, new hg.f(cVar, 11));
+        c0Var.f8423a.f8538l.e(27, new z(vVar));
+        c0Var.f8423a.f8538l.e(27, new gg.f(cVar, 11));
     }
 
     public final void C() {
@@ -75,12 +75,12 @@ public final class l extends j3.e implements Handler.Callback {
         this.O = -1;
         k kVar = this.M;
         if (kVar != null) {
-            kVar.i();
+            kVar.j();
             this.M = null;
         }
         k kVar2 = this.N;
         if (kVar2 != null) {
-            kVar2.i();
+            kVar2.j();
             this.N = null;
         }
     }
@@ -113,7 +113,7 @@ public final class l extends j3.e implements Handler.Callback {
     public final void k() {
         this.J = null;
         this.P = -9223372036854775807L;
-        c cVar = new c(A(this.R), i0.f47139e);
+        c cVar = new c(A(this.R), i0.e);
         Handler handler = this.B;
         if (handler != null) {
             handler.obtainMessage(0, cVar).sendToTarget();
@@ -169,9 +169,9 @@ public final class l extends j3.e implements Handler.Callback {
             return Long.MAX_VALUE;
         }
         this.M.getClass();
-        if (this.O >= this.M.x()) {
+        if (this.O >= this.M.r()) {
             return Long.MAX_VALUE;
         }
-        return this.M.l(this.O);
+        return this.M.h(this.O);
     }
 }

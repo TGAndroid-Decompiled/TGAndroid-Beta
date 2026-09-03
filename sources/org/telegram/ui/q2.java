@@ -1,65 +1,96 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.tgnet.tl.TL_iv;
-public final class q2 extends m2.a {
-    public final s2 f40303c;
+import org.telegram.messenger.Intro;
+public final class q2 implements m2.f {
+    public final int f37283a;
+    public final Object f37284b;
 
-    public q2(s2 s2Var) {
-        this.f40303c = s2Var;
+    public q2(Object obj, int i10) {
+        this.f37283a = i10;
+        this.f37284b = obj;
     }
 
     @Override
-    public final void a(m2.h hVar, Object obj) {
-        hVar.removeView(((p2) obj).f39856b);
-    }
-
-    @Override
-    public final int b() {
-        TL_iv.pageBlockSlideshow pageblockslideshow = this.f40303c.d;
-        if (pageblockslideshow == null) {
-            return 0;
+    public final void a(int i10) {
+        switch (this.f37283a) {
+            case 0:
+                u2 u2Var = (u2) this.f37284b;
+                u2Var.v = i10;
+                u2Var.f38665c.invalidate();
+                return;
+            case 1:
+                ((w70) this.f37284b).E = i10;
+                return;
+            default:
+                ((jd1) this.f37284b).X.invalidate();
+                return;
         }
-        return pageblockslideshow.items.size();
     }
 
     @Override
-    public final int c(Object obj) {
-        if (this.f40303c.d.items.contains(((p2) obj).f39855a)) {
-            return -1;
+    public final void b(float f10, int i10, int i11) {
+        switch (this.f37283a) {
+            case 0:
+                u2 u2Var = (u2) this.f37284b;
+                float measuredWidth = u2Var.f38663a.getMeasuredWidth();
+                if (measuredWidth != 0.0f) {
+                    u2Var.f38669s = e2.c.d(u2Var.v, measuredWidth, (i10 * measuredWidth) + i11, measuredWidth);
+                    u2Var.f38665c.invalidate();
+                    return;
+                }
+                return;
+            case 1:
+                w70 w70Var = (w70) this.f37284b;
+                org.telegram.ui.Components.ka kaVar = w70Var.e;
+                kaVar.f26241b = f10;
+                kaVar.f26242c = i10;
+                kaVar.invalidate();
+                float measuredWidth2 = w70Var.d.getMeasuredWidth();
+                if (measuredWidth2 != 0.0f) {
+                    Intro.setScrollOffset((((i10 * measuredWidth2) + i11) - (w70Var.E * measuredWidth2)) / measuredWidth2);
+                    return;
+                }
+                return;
+            default:
+                return;
         }
-        return -2;
     }
 
     @Override
-    public final Object e(m2.h hVar, int i10) {
-        z2 z2Var;
-        s2 s2Var = this.f40303c;
-        j4 j4Var = s2Var.f40995w;
-        l4 l4Var = s2Var.f40996x;
-        TL_iv.PageBlock pageBlock = s2Var.d.items.get(i10);
-        if (pageBlock instanceof TL_iv.pageBlockPhoto) {
-            e2 e2Var = new e2(s2Var.getContext(), l4Var, j4Var, 1);
-            e2Var.a((TL_iv.pageBlockPhoto) pageBlock, j4Var.B.cached_page, false, true);
-            z2Var = e2Var;
-        } else {
-            z2 z2Var2 = new z2(s2Var.getContext(), l4Var, j4Var, 1);
-            TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
-            z2Var2.b(pageblockvideo, (a3) l4Var.f39563y.f(pageblockvideo.video_id), false, true);
-            z2Var = z2Var2;
+    public final void c(int i10) {
+        switch (this.f37283a) {
+            case 0:
+                return;
+            case 1:
+                w70 w70Var = (w70) this.f37284b;
+                if (i10 == 1) {
+                    w70Var.H = true;
+                    w70Var.d.getCurrentItem();
+                    w70Var.d.getMeasuredWidth();
+                    return;
+                } else if (i10 == 0 || i10 == 2) {
+                    if (w70Var.H) {
+                        w70Var.H = false;
+                    }
+                    if (w70Var.f39294w != w70Var.d.getCurrentItem()) {
+                        w70Var.f39294w = w70Var.d.getCurrentItem();
+                        return;
+                    }
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                return;
         }
-        hVar.addView(z2Var);
-        ?? obj = new Object();
-        obj.f39856b = z2Var;
-        obj.f39855a = pageBlock;
-        return obj;
     }
 
-    @Override
-    public final boolean f(View view, Object obj) {
-        if (((p2) obj).f39856b == view) {
-            return true;
-        }
-        return false;
+    private final void d(int i10) {
+    }
+
+    private final void e(int i10) {
+    }
+
+    private final void f(float f10, int i10, int i11) {
     }
 }

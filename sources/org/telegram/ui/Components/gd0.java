@@ -2,45 +2,313 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.widget.TextView;
-public final class gd0 extends TextView {
-    public final hd0 f27145a;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class gd0 extends HorizontalScrollView {
+    public int B;
+    public int C;
+    public int D;
+    public final org.telegram.ui.ActionBar.f6 E;
+    public int F;
+    public final z5 G;
+    public final z5 H;
+    public final LinearLayout.LayoutParams f25120a;
+    public final nh.h5 f25121b;
+    public m2.f f25122c;
+    public final LinearLayout d;
+    public m2.h e;
+    public int f25123f;
+    public int h;
+    public float f25124n;
+    public final Paint f25125r;
+    public int f25126s;
+    public int v;
+    public boolean f25127w;
+    public int f25128x;
+    public int f25129y;
 
-    public gd0(hd0 hd0Var, Context context, int i10) {
+    public gd0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f27145a = hd0Var;
+        this.f25121b = new nh.h5(1, this);
+        this.h = 0;
+        this.f25124n = 0.0f;
+        this.f25126s = -10066330;
+        this.v = 436207616;
+        this.f25127w = false;
+        this.f25128x = AndroidUtilities.dp(52.0f);
+        this.f25129y = AndroidUtilities.dp(8.0f);
+        this.B = AndroidUtilities.dp(2.0f);
+        this.C = AndroidUtilities.dp(12.0f);
+        this.D = AndroidUtilities.dp(24.0f);
+        this.F = 0;
+        mr mrVar = mr.h;
+        this.G = new z5(this, 350L, mrVar);
+        this.H = new z5(this, 350L, mrVar);
+        this.E = f6Var;
+        setFillViewport(true);
+        setWillNotDraw(false);
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.d = linearLayout;
+        linearLayout.setOrientation(0);
+        linearLayout.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
+        addView(linearLayout);
+        Paint paint = new Paint();
+        this.f25125r = paint;
+        paint.setAntiAlias(true);
+        paint.setStyle(Paint.Style.FILL);
+        this.f25120a = new LinearLayout.LayoutParams(-2, -1);
+    }
+
+    public static void a(gd0 gd0Var, int i10, int i11) {
+        View childAt;
+        if (gd0Var.f25123f != 0 && (childAt = gd0Var.d.getChildAt(i10)) != null) {
+            int left = childAt.getLeft() + i11;
+            if (i10 > 0 || i11 > 0) {
+                left -= gd0Var.f25128x;
+            }
+            if (left != gd0Var.F) {
+                gd0Var.F = left;
+                gd0Var.scrollTo(left, 0);
+            }
+        }
+    }
+
+    public final void b(int i10, CharSequence charSequence) {
+        fd0 fd0Var = new fd0(this, getContext(), i10);
+        boolean z4 = true;
+        fd0Var.setTextSize(1, 14.0f);
+        fd0Var.setTypeface(AndroidUtilities.bold());
+        fd0Var.setTextColor(c(0.6f));
+        fd0Var.setFocusable(true);
+        fd0Var.setGravity(17);
+        fd0Var.setText(charSequence);
+        k7.d6.b(fd0Var, 0.025f, 1.2f);
+        fd0Var.setOnClickListener(new lh.y0(this, i10, 8));
+        fd0Var.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
+        this.d.addView(fd0Var, k7.b6.k(10.0f, 0.0f, 10.0f, 0.0f, -2, -2));
+        if (i10 != this.h) {
+            z4 = false;
+        }
+        fd0Var.setSelected(z4);
+    }
+
+    public final int c(float f10) {
+        return i0.a.k(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Wk, this.E), (int) (f10 * 255.0f));
+    }
+
+    public final void d() {
+        this.d.removeAllViews();
+        this.f25123f = this.e.getAdapter().b();
+        for (int i10 = 0; i10 < this.f25123f; i10++) {
+            if (this.e.getAdapter() instanceof ed0) {
+                ((ed0) this.e.getAdapter()).getClass();
+                b(i10, this.e.getAdapter().d(i10));
+            } else {
+                b(i10, this.e.getAdapter().d(i10));
+            }
+        }
+        e();
+        getViewTreeObserver().addOnGlobalLayoutListener(new androidx.mediarouter.app.k(this, 5));
+    }
+
+    public final void e() {
+        float f10;
+        for (int i10 = 0; i10 < this.f25123f; i10++) {
+            View childAt = this.d.getChildAt(i10);
+            childAt.setLayoutParams(this.f25120a);
+            if (this.f25127w) {
+                childAt.setPadding(0, 0, 0, 0);
+                childAt.setLayoutParams(new LinearLayout.LayoutParams(-1, -1, 1.0f));
+            } else if (this.e.getAdapter() instanceof ed0) {
+                ((cy) ((ed0) this.e.getAdapter())).getClass();
+                if (i10 == 1) {
+                    f10 = 12.0f;
+                } else {
+                    f10 = 18.0f;
+                }
+                int dp = AndroidUtilities.dp(f10);
+                childAt.setPadding(dp, 0, dp, 0);
+            } else {
+                int i11 = this.D;
+                childAt.setPadding(i11, 0, i11, 0);
+            }
+        }
+    }
+
+    public int getDividerPadding() {
+        return this.C;
+    }
+
+    public int getIndicatorColor() {
+        return this.f25126s;
+    }
+
+    public int getIndicatorHeight() {
+        return this.f25129y;
+    }
+
+    public int getScrollOffset() {
+        return this.f25128x;
+    }
+
+    public boolean getShouldExpand() {
+        return this.f25127w;
+    }
+
+    public int getTabPaddingLeftRight() {
+        return this.D;
+    }
+
+    public int getUnderlineColor() {
+        return this.v;
+    }
+
+    public int getUnderlineHeight() {
+        return this.B;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
+        float d;
+        float d10;
+        int i10;
+        if (!isInEditMode() && this.f25123f != 0) {
+            int height = getHeight();
+            int i11 = this.B;
+            LinearLayout linearLayout = this.d;
+            Paint paint = this.f25125r;
+            if (i11 != 0) {
+                paint.setColor(this.v);
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(0.0f, height - this.B, linearLayout.getWidth(), height);
+                float f10 = this.B / 2.0f;
+                canvas.drawRoundRect(rectF, f10, f10, paint);
+            }
+            View childAt = linearLayout.getChildAt(this.h);
+            if (childAt != null) {
+                float paddingLeft = childAt.getPaddingLeft() + childAt.getLeft();
+                float right = childAt.getRight() - childAt.getPaddingRight();
+                float f11 = this.f25124n;
+                z5 z5Var = this.H;
+                z5 z5Var2 = this.G;
+                if (f11 > 0.0f && (i10 = this.h) < this.f25123f - 1) {
+                    View childAt2 = linearLayout.getChildAt(i10 + 1);
+                    float paddingLeft2 = childAt2.getPaddingLeft() + childAt2.getLeft();
+                    float f12 = this.f25124n;
+                    float f13 = 1.0f - f12;
+                    d = (paddingLeft * f13) + (paddingLeft2 * f12);
+                    d10 = (f13 * right) + (f12 * (childAt2.getRight() - childAt2.getPaddingRight()));
+                    z5Var2.d(d, true);
+                    z5Var.d(d10, true);
+                    if (childAt instanceof fd0) {
+                        fd0 fd0Var = (fd0) childAt;
+                        fd0Var.setTextColor(fd0Var.f24864a.c(AndroidUtilities.lerp(0.6f, 0.8f, 1.0f - this.f25124n)));
+                    }
+                    if (childAt2 instanceof fd0) {
+                        fd0 fd0Var2 = (fd0) childAt2;
+                        fd0Var2.setTextColor(fd0Var2.f24864a.c(AndroidUtilities.lerp(0.6f, 0.8f, this.f25124n)));
+                    }
+                } else {
+                    d = z5Var2.d(paddingLeft, false);
+                    d10 = z5Var.d(right, false);
+                }
+                if (this.f25129y != 0) {
+                    paint.setColor(this.f25126s);
+                    RectF rectF2 = AndroidUtilities.rectTmp;
+                    rectF2.set(d - AndroidUtilities.dp(11.0f), getPaddingTop(), d10 + AndroidUtilities.dp(11.0f), height - getPaddingBottom());
+                    rectF2.offset(getPaddingLeft(), 0.0f);
+                    canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, paint);
+                }
+            }
+            super.onDraw(canvas);
+            return;
+        }
         super.onDraw(canvas);
-        hd0 hd0Var = this.f27145a;
-        if (hd0Var.f27481e.getAdapter() instanceof fd0) {
-            ((fd0) hd0Var.f27481e.getAdapter()).getClass();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        if (this.f25127w && View.MeasureSpec.getMode(i10) != 0) {
+            this.d.measure(getMeasuredWidth() | 1073741824, i11);
         }
     }
 
     @Override
-    public final void setSelected(boolean z4) {
-        float f10;
-        float f11;
-        super.setSelected(z4);
-        Drawable background = getBackground();
-        hd0 hd0Var = this.f27145a;
-        if (background != null) {
-            if (z4) {
-                f11 = 0.1f;
-            } else {
-                f11 = 0.05f;
-            }
-            org.telegram.ui.ActionBar.k6.B1(background, hd0Var.c(f11), true);
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        if (!this.f25127w) {
+            post(new dc0(this, 3));
         }
-        if (z4) {
-            f10 = 0.8f;
-        } else {
-            f10 = 0.6f;
+    }
+
+    public void setDividerPadding(int i10) {
+        this.C = i10;
+        invalidate();
+    }
+
+    public void setIndicatorColor(int i10) {
+        this.f25126s = i10;
+        invalidate();
+    }
+
+    public void setIndicatorColorResource(int i10) {
+        this.f25126s = getResources().getColor(i10);
+        invalidate();
+    }
+
+    public void setIndicatorHeight(int i10) {
+        this.f25129y = i10;
+        invalidate();
+    }
+
+    public void setOnPageChangeListener(m2.f fVar) {
+        this.f25122c = fVar;
+    }
+
+    public void setScrollOffset(int i10) {
+        this.f25128x = i10;
+        invalidate();
+    }
+
+    public void setShouldExpand(boolean z4) {
+        this.f25127w = z4;
+        this.d.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
+        e();
+        requestLayout();
+    }
+
+    public void setTabPaddingLeftRight(int i10) {
+        this.D = i10;
+        e();
+    }
+
+    public void setUnderlineColor(int i10) {
+        this.v = i10;
+        invalidate();
+    }
+
+    public void setUnderlineColorResource(int i10) {
+        this.v = getResources().getColor(i10);
+        invalidate();
+    }
+
+    public void setUnderlineHeight(int i10) {
+        this.B = i10;
+        invalidate();
+    }
+
+    public void setViewPager(m2.h hVar) {
+        this.e = hVar;
+        if (hVar.getAdapter() != null) {
+            hVar.setOnPageChangeListener(this.f25121b);
+            d();
+            return;
         }
-        setTextColor(hd0Var.c(f10));
+        throw new IllegalStateException("ViewPager does not have adapter instance.");
     }
 }

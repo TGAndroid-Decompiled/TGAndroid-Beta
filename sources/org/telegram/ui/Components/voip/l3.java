@@ -1,86 +1,45 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import k7.c6;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.ex0;
-import org.telegram.ui.Components.hj0;
-public final class l3 extends FrameLayout {
-    public final o1 f32185a;
-    public k3 f32186b;
-    public int f32187c;
-    public final TextView d;
-    public final TextView f32188e;
-    public int f32189f;
-
-    public l3(Activity activity, o1 o1Var) {
-        super(activity);
-        this.f32185a = o1Var;
-        setWillNotDraw(true);
-        k3 k3Var = new k3(activity, o1Var);
-        this.f32186b = k3Var;
-        addView(k3Var, c6.a(53.5f, 53.5f, 1));
-        TextView textView = new TextView(activity);
-        this.d = textView;
-        textView.setGravity(1);
-        textView.setTextSize(1, 11.0f);
-        textView.setTextColor(-1);
-        textView.setImportantForAccessibility(2);
-        addView(textView, c6.d(-1, -2.0f, 0, 0.0f, 58.0f, 0.0f, 2.0f));
-        TextView textView2 = new TextView(activity);
-        this.f32188e = textView2;
-        textView2.setGravity(1);
-        textView2.setTextSize(1, 11.0f);
-        textView2.setTextColor(-1);
-        textView2.setImportantForAccessibility(2);
-        addView(textView2, c6.d(-1, -2.0f, 0, 0.0f, 58.0f, 0.0f, 2.0f));
-        textView.setVisibility(8);
-        textView2.setVisibility(8);
-    }
-
-    public final void a(int i10) {
-        this.f32186b.f32127a = new hj0(R.raw.bt_to_speaker, i10, i10, true, null);
-        this.f32186b.f32128b = new hj0(R.raw.bt_to_speaker, i10, i10, true, null);
-        this.f32186b.f32128b.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
-    }
-
-    public final void b(int i10, int i11, int i12, boolean z4) {
-        k3 k3Var = new k3(getContext(), this.f32185a);
-        if (i10 == R.raw.camera_flip2) {
-            hj0 hj0Var = new hj0(i10, i11, i11, true, null);
-            k3Var.f32129c = hj0Var;
-            hj0Var.f27542s0 = k3Var;
-        } else {
-            k3Var.f32127a = new hj0(i10, i11, i11, true, null);
-            hj0 hj0Var2 = new hj0(i10, i11, i11, true, null);
-            k3Var.f32128b = hj0Var2;
-            hj0Var2.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+import java.util.Random;
+import org.telegram.messenger.LiteMode;
+import org.telegram.ui.Components.u9;
+public final class l3 extends u9 {
+    public final void g(float f10, float f11) {
+        if (LiteMode.isEnabled(this.f29153r)) {
+            int i10 = 0;
+            while (true) {
+                float f12 = i10;
+                float f13 = this.f29149n;
+                if (f12 < f13) {
+                    float[] fArr = this.f29144i;
+                    float f14 = fArr[i10];
+                    float[] fArr2 = this.f29145j;
+                    float f15 = fArr2[i10];
+                    float f16 = (f15 * f10 * 8.2f * 1.0f) + (0.8f * f15) + f14;
+                    fArr[i10] = f16;
+                    if (f16 >= 1.0f) {
+                        fArr[i10] = 0.0f;
+                        float[] fArr3 = this.f29143g;
+                        this.e[i10] = fArr3[i10];
+                        float[] fArr4 = this.h;
+                        this.f29142f[i10] = fArr4[i10];
+                        if (f11 < 1.0f) {
+                            float f17 = 360.0f / f13;
+                            float f18 = this.f29140b;
+                            float f19 = this.f29139a;
+                            Random random = this.f29148m;
+                            fArr3[i10] = (Math.abs((random.nextInt() % 100.0f) / 100.0f) * (f18 - f19) * f11) + f19;
+                            fArr4[i10] = ((((random.nextInt() * f11) % 100.0f) / 100.0f) * 0.05f * f17) + (f17 * f12);
+                            fArr2[i10] = (float) (((Math.abs(random.nextInt() % 100.0f) / 100.0f) * 0.003d) + 0.017d);
+                        } else {
+                            c(fArr3, fArr4, i10);
+                        }
+                    }
+                    i10++;
+                } else {
+                    return;
+                }
+            }
         }
-        k3Var.a(i12, z4, false);
-        k3Var.setAlpha(0.0f);
-        k3Var.setOnBtnClickedListener(this.f32186b.f32136x);
-        addView(k3Var, c6.a(53.5f, 53.5f, 1));
-        k3 k3Var2 = this.f32186b;
-        this.f32186b = k3Var;
-        k3Var.animate().alpha(1.0f).setDuration(250L).start();
-        k3Var2.animate().alpha(0.0f).setDuration(250L).setListener(new ex0(2, this, k3Var2)).start();
-    }
-
-    public final void c(int i10) {
-        this.f32186b.f32127a = new hj0(R.raw.speaker_to_bt, i10, i10, true, null);
-        this.f32186b.f32128b = new hj0(R.raw.speaker_to_bt, i10, i10, true, null);
-        this.f32186b.f32128b.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
-    }
-
-    public final void d(int r17, boolean r18, boolean r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.l3.d(int, boolean, boolean):void");
-    }
-
-    public void setOnBtnClickedListener(j3 j3Var) {
-        this.f32186b.setOnBtnClickedListener(j3Var);
     }
 }

@@ -1,41 +1,41 @@
 package o8;
 public final class h extends i {
-    public final transient int f16646c;
+    public final transient int f16467c;
     public final transient int d;
-    public final i f16647e;
+    public final i e;
 
     public h(i iVar, int i10, int i11) {
-        this.f16647e = iVar;
-        this.f16646c = i10;
+        this.e = iVar;
+        this.f16467c = i10;
         this.d = i11;
     }
 
     @Override
     public final Object get(int i10) {
-        k7.j0.a(i10, this.d);
-        return this.f16647e.get(i10 + this.f16646c);
+        k7.i0.a(i10, this.d);
+        return this.e.get(i10 + this.f16467c);
     }
 
     @Override
     public final int n() {
-        return this.f16647e.o() + this.f16646c + this.d;
+        return this.e.o() + this.f16467c + this.d;
     }
 
     @Override
     public final int o() {
-        return this.f16647e.o() + this.f16646c;
+        return this.e.o() + this.f16467c;
     }
 
     @Override
     public final Object[] p() {
-        return this.f16647e.p();
+        return this.e.p();
     }
 
     @Override
     public final i subList(int i10, int i11) {
-        k7.j0.b(i10, i11, this.d);
-        int i12 = this.f16646c;
-        return this.f16647e.subList(i10 + i12, i11 + i12);
+        k7.i0.b(i10, i11, this.d);
+        int i12 = this.f16467c;
+        return this.e.subList(i10 + i12, i11 + i12);
     }
 
     @Override

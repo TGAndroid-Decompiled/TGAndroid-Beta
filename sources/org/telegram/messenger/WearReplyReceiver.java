@@ -34,7 +34,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
         if (i10 != 0) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
             tL_message.message = "";
-            tL_message.f20866id = i10;
+            tL_message.f19180id = i10;
             tL_message.peer_id = accountInstance.getMessagesController().getPeer(j10);
             messageObject = new MessageObject(accountInstance.getCurrentAccount(), tL_message, false, false);
         } else {
@@ -44,7 +44,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
         if (i11 != 0) {
             TLRPC.TL_message tL_message2 = new TLRPC.TL_message();
             tL_message2.message = "";
-            tL_message2.f20866id = (int) j11;
+            tL_message2.f19180id = (int) j11;
             tL_message2.peer_id = accountInstance.getMessagesController().getPeer(j10);
             TLRPC.TL_messageActionTopicCreate tL_messageActionTopicCreate = new TLRPC.TL_messageActionTopicCreate();
             tL_message2.action = tL_messageActionTopicCreate;
@@ -57,7 +57,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
             int length = iArr.length;
             int i12 = 0;
             while (i12 < length) {
-                i12 = org.telegram.ui.yh.d(iArr[i12], i12, 1, arrayList);
+                i12 = org.telegram.ui.ai.d(iArr[i12], i12, 1, arrayList);
             }
             accountInstance.getMessagesStorage().markVoiceMessageContentAsRead(j10, arrayList);
         }
@@ -83,20 +83,20 @@ public class WearReplyReceiver extends BroadcastReceiver {
                     if (DialogObject.isUserDialog(longExtra)) {
                         if (accountInstance.getMessagesController().getUser(Long.valueOf(longExtra)) == null) {
                             Utilities.globalQueue.postRunnable(new Runnable(this) {
-                                public final WearReplyReceiver f20737b;
+                                public final WearReplyReceiver f19060b;
 
                                 {
-                                    this.f20737b = this;
+                                    this.f19060b = this;
                                 }
 
                                 @Override
                                 public final void run() {
                                     switch (r10) {
                                         case 0:
-                                            this.f20737b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                            this.f19060b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                                             return;
                                         default:
-                                            this.f20737b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                            this.f19060b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                                             return;
                                     }
                                 }
@@ -105,20 +105,20 @@ public class WearReplyReceiver extends BroadcastReceiver {
                         }
                     } else if (DialogObject.isChatDialog(longExtra) && accountInstance.getMessagesController().getChat(Long.valueOf(-longExtra)) == null) {
                         Utilities.globalQueue.postRunnable(new Runnable(this) {
-                            public final WearReplyReceiver f20737b;
+                            public final WearReplyReceiver f19060b;
 
                             {
-                                this.f20737b = this;
+                                this.f19060b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r10) {
                                     case 0:
-                                        this.f20737b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                        this.f19060b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                                         return;
                                     default:
-                                        this.f20737b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                        this.f19060b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                                         return;
                                 }
                             }

@@ -1,50 +1,75 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
 public final class k9 extends FrameLayout {
-    public final org.telegram.ui.Cells.h6 f38209a;
-    public final org.telegram.ui.Components.gi0 f38210b;
-    public TLRPC.Chat f38211c;
+    public static final int e = 0;
+    public final TextView f35446a;
+    public final TextView f35447b;
+    public final View f35448c;
+    public final org.telegram.ui.Components.jj0 d;
 
-    public k9(Context context) {
+    public k9(n9 n9Var, Context context, org.telegram.ui.Components.u00 u00Var) {
         super(context);
-        int i10;
-        int dp;
-        String string = LocaleController.getString(R.string.VoipChatJoin);
-        org.telegram.ui.Components.gi0 gi0Var = new org.telegram.ui.Components.gi0(context);
-        this.f38210b = gi0Var;
-        int ceil = (int) Math.ceil(gi0Var.getPaint().measureText(string));
-        org.telegram.ui.Cells.h6 h6Var = new org.telegram.ui.Cells.h6(context, null);
-        this.f38209a = h6Var;
-        h6Var.J0 = true;
-        h6Var.B0 = true;
-        if (LocaleController.isRTL) {
-            i10 = AndroidUtilities.dp(44.0f) + ceil;
-        } else {
-            i10 = 0;
+        addView(u00Var, k7.b6.c(-1.0f, -1));
+        this.f35448c = u00Var;
+        ?? imageView = new ImageView(context);
+        this.d = imageView;
+        imageView.f(R.raw.utyan_call, 110, 110, null);
+        imageView.setAutoRepeat(false);
+        addView((View) imageView, k7.b6.d(110, 110.0f, 17, 52.0f, 17.0f, 52.0f, 60.0f));
+        imageView.setOnClickListener(new a(this, 10));
+        TextView textView = new TextView(context);
+        this.f35446a = textView;
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
+        textView.setText(LocaleController.getString(R.string.MakeYourFirstCall));
+        textView.setTextSize(1, 20.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setGravity(17);
+        addView(textView, k7.b6.d(-1, -2.0f, 17, 17.0f, 40.0f, 17.0f, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.f35447b = textView2;
+        String formatString = LocaleController.formatString(R.string.MakeYourFirstCallHint, Integer.valueOf(n9Var.getMessagesController().conferenceCallSizeLimit));
+        if (AndroidUtilities.isTablet() && !AndroidUtilities.isSmallTablet()) {
+            formatString = formatString.replace('\n', ' ');
         }
-        if (LocaleController.isRTL) {
-            dp = 0;
-        } else {
-            dp = AndroidUtilities.dp(44.0f) + ceil;
-        }
-        h6Var.setPadding(i10, 0, dp, 0);
-        h6Var.V = 0;
-        h6Var.W = -AndroidUtilities.dp(4.0f);
-        addView(h6Var, k7.c6.c(-1.0f, -1));
-        gi0Var.setText(string);
-        gi0Var.setTextSize(1, 14.0f);
-        gi0Var.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.Sh, false));
-        gi0Var.setProgressColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.Nh, false));
-        int w02 = org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.hl, false);
-        org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.Qh, false);
-        gi0Var.setBackground(org.telegram.ui.ActionBar.a6.e(new float[]{16.0f}, w02));
-        gi0Var.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
-        addView(gi0Var, k7.c6.i(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f));
+        textView2.setText(formatString);
+        textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19864c7, false));
+        textView2.setTextSize(1, 14.0f);
+        textView2.setGravity(17);
+        textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        addView(textView2, k7.b6.d(-1, -2.0f, 17, 17.0f, 80.0f, 17.0f, 0.0f));
+        u00Var.setAlpha(0.0f);
+        imageView.setAlpha(0.0f);
+        textView.setAlpha(0.0f);
+        textView2.setAlpha(0.0f);
+        setOnTouchListener(new oh.d(4));
+    }
+
+    public final void a() {
+        this.d.animate().alpha(0.0f).setDuration(150L).start();
+        this.f35446a.animate().alpha(0.0f).setDuration(150L).start();
+        this.f35447b.animate().alpha(0.0f).setDuration(150L).start();
+        this.f35448c.animate().alpha(1.0f).setDuration(150L).start();
+    }
+
+    public final void b() {
+        org.telegram.ui.Components.jj0 jj0Var = this.d;
+        jj0Var.animate().alpha(1.0f).setDuration(150L).start();
+        this.f35446a.animate().alpha(1.0f).setDuration(150L).start();
+        this.f35447b.animate().alpha(1.0f).setDuration(150L).start();
+        this.f35448c.animate().alpha(0.0f).setDuration(150L).start();
+        jj0Var.d();
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
     }
 }

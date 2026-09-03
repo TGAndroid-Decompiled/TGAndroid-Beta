@@ -8,16 +8,17 @@ import android.view.WindowInsets;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import org.telegram.messenger.GenericProvider;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-public final class cl0 implements org.telegram.ui.Components.uc0, org.telegram.ui.ActionBar.c2, Utilities.Callback2Return, org.telegram.ui.Components.tv0, j3.f, GenericProvider, androidx.car.app.utils.e {
-    public final int f35826a;
+public final class cl0 implements org.telegram.ui.Components.tc0, org.telegram.ui.ActionBar.c2, Utilities.Callback2Return, org.telegram.ui.Components.tv0, j3.f, GenericProvider, androidx.car.app.utils.e, qg.c {
+    public final int f33188a;
 
     public cl0(int i10) {
-        this.f35826a = i10;
+        this.f33188a = i10;
     }
 
     public static AudioRecordingConfiguration b(Object obj) {
@@ -29,7 +30,7 @@ public final class cl0 implements org.telegram.ui.Components.uc0, org.telegram.u
     }
 
     public Constructor a() {
-        switch (this.f35826a) {
+        switch (this.f33188a) {
             case 24:
                 if (!Boolean.TRUE.equals(Class.forName("com.google.android.exoplayer2.ext.flac.FlacLibrary").getMethod("isAvailable", null).invoke(null, null))) {
                     return null;
@@ -44,9 +45,9 @@ public final class cl0 implements org.telegram.ui.Components.uc0, org.telegram.u
     public j3.g c(Bundle bundle) {
         p4.a[] aVarArr;
         Uri[] uriArr;
-        switch (this.f35826a) {
+        switch (this.f33188a) {
             case 13:
-                ArrayList parcelableArrayList = bundle.getParcelableArrayList(p4.b.f44230n);
+                ArrayList parcelableArrayList = bundle.getParcelableArrayList(p4.b.f41066n);
                 if (parcelableArrayList == null) {
                     aVarArr = new p4.a[0];
                 } else {
@@ -56,15 +57,15 @@ public final class cl0 implements org.telegram.ui.Components.uc0, org.telegram.u
                     }
                     aVarArr = aVarArr2;
                 }
-                return new p4.b(aVarArr, bundle.getLong(p4.b.f44231r, 0L), bundle.getLong(p4.b.f44232s, -9223372036854775807L), bundle.getInt(p4.b.v, 0));
+                return new p4.b(aVarArr, bundle.getLong(p4.b.f41067r, 0L), bundle.getLong(p4.b.f41068s, -9223372036854775807L), bundle.getInt(p4.b.v, 0));
             default:
-                long j10 = bundle.getLong(p4.a.f44218r);
-                int i11 = bundle.getInt(p4.a.f44219s);
+                long j10 = bundle.getLong(p4.a.f41055r);
+                int i11 = bundle.getInt(p4.a.f41056s);
                 int i12 = bundle.getInt(p4.a.C);
                 ArrayList parcelableArrayList2 = bundle.getParcelableArrayList(p4.a.v);
-                int[] intArray = bundle.getIntArray(p4.a.f44220w);
-                long[] longArray = bundle.getLongArray(p4.a.f44221x);
-                long j11 = bundle.getLong(p4.a.f44222y);
+                int[] intArray = bundle.getIntArray(p4.a.f41057w);
+                long[] longArray = bundle.getLongArray(p4.a.f41058x);
+                long j11 = bundle.getLong(p4.a.f41059y);
                 boolean z4 = bundle.getBoolean(p4.a.B);
                 int[] iArr = intArray;
                 if (iArr == null) {
@@ -109,14 +110,56 @@ public final class cl0 implements org.telegram.ui.Components.uc0, org.telegram.u
     }
 
     @Override
-    public void i(int i10) {
+    public int f(org.telegram.ui.ActionBar.f6 f6Var, boolean z4) {
+        float f10;
+        float f11;
+        float f12;
+        float f13;
+        switch (this.f33188a) {
+            case 26:
+                if (LiteMode.isEnabled(262144)) {
+                    f10 = 0.85f;
+                } else {
+                    f10 = 0.76f;
+                }
+                return rg.b.m(f10, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19881d6, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Sd, f6Var));
+            case 27:
+                if (!LiteMode.isEnabled(256)) {
+                    return org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G8, false);
+                }
+                int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G8, false);
+                if (z4) {
+                    f11 = 0.85f;
+                } else {
+                    f11 = 0.825f;
+                }
+                return org.telegram.ui.ActionBar.j6.l1(f11, w02);
+            case 28:
+                if (LiteMode.isEnabled(262144)) {
+                    f12 = 0.85f;
+                } else {
+                    f12 = 0.76f;
+                }
+                return rg.b.m(f12, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19881d6, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Zk, f6Var));
+            default:
+                if (LiteMode.isEnabled(262144)) {
+                    f13 = 0.85f;
+                } else {
+                    f13 = 0.76f;
+                }
+                return org.telegram.ui.ActionBar.j6.l1(f13, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Fi, f6Var));
+        }
+    }
+
+    @Override
+    public void g(int i10) {
         SharedConfig.proxyRotationTimeout = i10;
         SharedConfig.saveConfig();
     }
 
     @Override
-    public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f35826a) {
+    public void l(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f33188a) {
             case 1:
                 Drawable[] drawableArr = PhotoViewer.Q8;
                 return;
@@ -152,7 +195,7 @@ public final class cl0 implements org.telegram.ui.Components.uc0, org.telegram.u
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        MediaController.AlbumEntry albumEntry = qh.z2.f46385g0;
+        MediaController.AlbumEntry albumEntry = ph.a3.f41280g0;
         return 0;
     }
 
@@ -160,10 +203,10 @@ public final class cl0 implements org.telegram.ui.Components.uc0, org.telegram.u
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj;
         Integer num2 = (Integer) obj2;
-        switch (this.f35826a) {
+        switch (this.f33188a) {
             case 4:
                 if (num.intValue() == 0) {
-                    return mh.ja.X0(false, LocaleController.formatPluralStringComma("Stars", num2.intValue()), 0.66f, null);
+                    return lh.ja.X0(false, LocaleController.formatPluralStringComma("Stars", num2.intValue()), 0.66f, null);
                 }
                 return LocaleController.formatNumber(num2.intValue(), ',');
             default:
@@ -178,6 +221,6 @@ public final class cl0 implements org.telegram.ui.Components.uc0, org.telegram.u
     }
 
     @Override
-    public void m() {
+    public void j() {
     }
 }

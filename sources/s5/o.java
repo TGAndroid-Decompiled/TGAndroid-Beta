@@ -3,16 +3,16 @@ package s5;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.internal.BasePendingResult;
 import java.util.Iterator;
-import oh.h4;
+import org.telegram.ui.Components.tp0;
 public abstract class o extends BasePendingResult {
-    public h4 f47097o;
-    public final boolean f47098p;
-    public final h f47099q;
+    public tp0 f44157o;
+    public final boolean f44158p;
+    public final h f44159q;
 
     public o(h hVar, boolean z4) {
         super(null);
-        this.f47099q = hVar;
-        this.f47098p = z4;
+        this.f44159q = hVar;
+        this.f44158p = z4;
     }
 
     @Override
@@ -23,17 +23,17 @@ public abstract class o extends BasePendingResult {
     public abstract void n();
 
     public final u5.o o() {
-        if (this.f47097o == null) {
-            this.f47097o = new h4(this, 18);
+        if (this.f44157o == null) {
+            this.f44157o = new tp0(this, 13);
         }
-        return this.f47097o;
+        return this.f44157o;
     }
 
     public final void p() {
-        if (!this.f47098p) {
-            Iterator it = this.f47099q.h.iterator();
+        if (!this.f44158p) {
+            Iterator it = this.f44159q.h.iterator();
             if (!it.hasNext()) {
-                Iterator it2 = this.f47099q.f47082i.iterator();
+                Iterator it2 = this.f44159q.f44142i.iterator();
                 while (it2.hasNext()) {
                     ((g) it2.next()).f();
                 }
@@ -43,7 +43,7 @@ public abstract class o extends BasePendingResult {
             }
         }
         try {
-            synchronized (this.f47099q.f47076a) {
+            synchronized (this.f44159q.f44137a) {
                 n();
             }
         } catch (u5.l unused) {

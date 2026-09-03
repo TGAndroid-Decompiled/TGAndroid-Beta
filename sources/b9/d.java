@@ -6,17 +6,17 @@ import java.lang.ref.WeakReference;
 import org.telegram.ui.LaunchActivity;
 import w8.h;
 public final class d {
-    public static WeakReference f1905b;
-    public final a8.e f1906a;
+    public static WeakReference f1767b;
+    public final a8.e f1768a;
 
     public d(Context context) {
-        this.f1906a = new j(context, d7.d.f4297a, com.google.android.gms.common.api.b.f2649i, new h(4));
+        this.f1768a = new j(context, d7.d.f4206a, com.google.android.gms.common.api.b.f2704i, new h(4));
     }
 
     public static synchronized d b(LaunchActivity launchActivity) {
         d dVar;
         synchronized (d.class) {
-            WeakReference weakReference = f1905b;
+            WeakReference weakReference = f1767b;
             if (weakReference == null) {
                 dVar = null;
             } else {
@@ -24,7 +24,7 @@ public final class d {
             }
             if (dVar == null) {
                 d dVar2 = new d(launchActivity.getApplicationContext());
-                f1905b = new WeakReference(dVar2);
+                f1767b = new WeakReference(dVar2);
                 return dVar2;
             }
             return dVar;
@@ -32,7 +32,7 @@ public final class d {
     }
 
     public final void a(b bVar) {
-        bVar.f1902e.f1894a = 2;
-        this.f1906a.e(1, new c(new b[]{bVar}));
+        bVar.e.f1759a = 2;
+        this.f1768a.e(1, new c(new b[]{bVar}));
     }
 }

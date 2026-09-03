@@ -1,42 +1,41 @@
 package s2;
 
-import androidx.biometric.f0;
-import j7.l5;
+import j7.k5;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 public final class e extends com.googlecode.mp4parser.c {
-    public static final f0 f46888f;
-    public List f46889e;
+    public static final bb.b f43975f;
+    public List e;
 
     static {
         de.a aVar = new de.a(e.class, "CompositionTimeToSample.java");
         aVar.e(aVar.d("getEntries", "com.coremedia.iso.boxes.CompositionTimeToSample", "", "", "java.util.List"));
-        f46888f = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.CompositionTimeToSample", "java.util.List", "entries", "void"));
+        f43975f = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.CompositionTimeToSample", "java.util.List", "entries", "void"));
     }
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
-        int a2 = l5.a(r2.b.i(byteBuffer));
-        this.f46889e = new ArrayList(a2);
+        int a2 = k5.a(r2.b.i(byteBuffer));
+        this.e = new ArrayList(a2);
         for (int i10 = 0; i10 < a2; i10++) {
-            this.f46889e.add(new d(l5.a(r2.b.i(byteBuffer)), byteBuffer.getInt()));
+            this.e.add(new d(k5.a(r2.b.i(byteBuffer)), byteBuffer.getInt()));
         }
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
-        byteBuffer.putInt(this.f46889e.size());
-        for (d dVar : this.f46889e) {
-            byteBuffer.putInt(dVar.f46886a);
-            byteBuffer.putInt(dVar.f46887b);
+        byteBuffer.putInt(this.e.size());
+        for (d dVar : this.e) {
+            byteBuffer.putInt(dVar.f43973a);
+            byteBuffer.putInt(dVar.f43974b);
         }
     }
 
     @Override
     public final long getContentSize() {
-        return (this.f46889e.size() * 8) + 8;
+        return (this.e.size() * 8) + 8;
     }
 }

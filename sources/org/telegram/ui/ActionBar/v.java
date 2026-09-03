@@ -6,41 +6,41 @@ import android.content.Intent;
 import android.os.Parcelable;
 import com.google.firebase.iid.FirebaseInstanceIdReceiver;
 public final class v implements Runnable {
-    public final int f22316a = 1;
-    public final boolean f22317b;
-    public final Object f22318c;
+    public final int f20578a = 1;
+    public final boolean f20579b;
+    public final Object f20580c;
     public final Object d;
-    public final Object f22319e;
+    public final Object e;
 
     public v(FirebaseInstanceIdReceiver firebaseInstanceIdReceiver, Intent intent, Context context, boolean z4, BroadcastReceiver.PendingResult pendingResult) {
-        this.f22318c = intent;
+        this.f20580c = intent;
         this.d = context;
-        this.f22317b = z4;
-        this.f22319e = pendingResult;
+        this.f20579b = z4;
+        this.e = pendingResult;
     }
 
     @Override
     public final void run() {
         Intent intent;
         int a2;
-        switch (this.f22316a) {
+        switch (this.f20578a) {
             case 0:
-                ActionBarLayout actionBarLayout = (ActionBarLayout) this.f22319e;
-                if (actionBarLayout.f21121e == this) {
-                    actionBarLayout.f21121e = null;
-                    p2 p2Var = (p2) this.f22318c;
+                ActionBarLayout actionBarLayout = (ActionBarLayout) this.e;
+                if (actionBarLayout.e == this) {
+                    actionBarLayout.e = null;
+                    p2 p2Var = (p2) this.f20580c;
                     if (p2Var != null) {
                         p2Var.onTransitionAnimationStart(false, false);
                     }
                     ((p2) this.d).onTransitionAnimationStart(true, false);
-                    actionBarLayout.d0(true, true, this.f22317b);
+                    actionBarLayout.d0(true, true, this.f20579b);
                     return;
                 }
                 return;
             default:
-                Intent intent2 = (Intent) this.f22318c;
+                Intent intent2 = (Intent) this.f20580c;
                 Context context = (Context) this.d;
-                BroadcastReceiver.PendingResult pendingResult = (BroadcastReceiver.PendingResult) this.f22319e;
+                BroadcastReceiver.PendingResult pendingResult = (BroadcastReceiver.PendingResult) this.e;
                 try {
                     Parcelable parcelableExtra = intent2.getParcelableExtra("wrapped_intent");
                     if (parcelableExtra instanceof Intent) {
@@ -53,7 +53,7 @@ public final class v implements Runnable {
                     } else {
                         a2 = FirebaseInstanceIdReceiver.a(context, intent2);
                     }
-                    if (this.f22317b) {
+                    if (this.f20579b) {
                         pendingResult.setResultCode(a2);
                     }
                     pendingResult.finish();
@@ -66,9 +66,9 @@ public final class v implements Runnable {
     }
 
     public v(ActionBarLayout actionBarLayout, p2 p2Var, p2 p2Var2, boolean z4) {
-        this.f22319e = actionBarLayout;
-        this.f22318c = p2Var;
+        this.e = actionBarLayout;
+        this.f20580c = p2Var;
         this.d = p2Var2;
-        this.f22317b = z4;
+        this.f20579b = z4;
     }
 }

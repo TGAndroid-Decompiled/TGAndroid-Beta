@@ -1,14 +1,14 @@
 package r8;
 public final class b extends a {
-    public final char f46765a;
+    public final char f43409a;
 
     public b(char c3) {
-        this.f46765a = c3;
+        this.f43409a = c3;
     }
 
     @Override
     public final boolean a(char c3) {
-        if (c3 == this.f46765a) {
+        if (c3 == this.f43409a) {
             return true;
         }
         return false;
@@ -22,7 +22,7 @@ public final class b extends a {
         cArr[3] = 0;
         cArr[4] = 0;
         cArr[5] = 0;
-        char c3 = this.f46765a;
+        char c3 = this.f43409a;
         for (int i10 = 0; i10 < 4; i10++) {
             cArr[5 - i10] = "0123456789ABCDEF".charAt(c3 & 15);
             c3 = (char) (c3 >> 4);

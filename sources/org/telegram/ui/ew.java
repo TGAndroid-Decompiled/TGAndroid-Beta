@@ -1,98 +1,65 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.UndoView;
+import android.text.SpannableStringBuilder;
+import java.util.Collections;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
 public final class ew implements Runnable {
-    public final int f36597a;
-    public final py f36598b;
+    public final int f33867a;
+    public final qy f33868b;
+    public final long f33869c;
+    public final boolean d;
 
-    public ew(py pyVar, int i10) {
-        this.f36597a = i10;
-        this.f36598b = pyVar;
+    public ew(qy qyVar, long j10, boolean z4, int i10) {
+        this.f33867a = i10;
+        this.f33868b = qyVar;
+        this.f33869c = j10;
+        this.d = z4;
     }
 
     @Override
     public final void run() {
-        switch (this.f36597a) {
+        String str;
+        TLRPC.Chat chat;
+        SpannableStringBuilder replaceTags;
+        int i10 = this.f33867a;
+        boolean z4 = this.d;
+        long j10 = this.f33869c;
+        qy qyVar = this.f33868b;
+        switch (i10) {
             case 0:
-                py pyVar = this.f36598b;
-                if (pyVar.O0 != 10) {
-                    pyVar.c4(false);
-                }
-                if (pyVar.I && pyVar.X3().G()) {
-                    pyVar.B0.h();
-                    return;
+                qy qyVar2 = this.f33868b;
+                nh.t6 storiesController = qyVar2.getMessagesController().getStoriesController();
+                long j11 = this.f33869c;
+                boolean z10 = this.d;
+                storiesController.i0(j11, z10, false);
+                n7.qa qaVar = new n7.qa(11);
+                qaVar.f14687b = new ew(qyVar2, j11, z10, 1);
+                qaVar.f14688c = new ew(qyVar2, j11, z10, 2);
+                if (j11 >= 0) {
+                    TLRPC.User user = qyVar2.getMessagesController().getUser(Long.valueOf(j11));
+                    str = ContactsController.formatName(user.first_name, null, 15);
+                    chat = user;
                 } else {
-                    pyVar.x4(true, true);
-                    return;
+                    TLRPC.Chat chat2 = qyVar2.getMessagesController().getChat(Long.valueOf(-j11));
+                    str = chat2.title;
+                    chat = chat2;
                 }
+                if (qyVar2.e4()) {
+                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToDialogs", R.string.StoriesMovedToDialogs, str));
+                } else {
+                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToContacts", R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 15)));
+                }
+                qyVar2.P = org.telegram.ui.Components.qc.X().V(Collections.singletonList(chat), replaceTags, null, qaVar).j();
+                return;
             case 1:
-                py pyVar2 = this.f36598b;
-                vg.f fVar = pyVar2.f40258v1;
-                if (fVar != null) {
-                    fVar.d();
-                }
-                pyVar2.s3();
-                pyVar2.m3();
-                pyVar2.t3();
-                org.telegram.ui.Components.qp0 qp0Var = pyVar2.f40277z1;
-                if (qp0Var != null) {
-                    qp0Var.setTranslationY(-pyVar2.v.c());
-                    return;
-                }
-                return;
-            case 2:
-                this.f36598b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
-                return;
-            case 3:
-                this.f36598b.M3();
-                return;
-            case 4:
-                this.f36598b.U4();
-                return;
-            case 5:
-                py.F0(this.f36598b);
-                return;
-            case 6:
-                this.f36598b.getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
-                return;
-            case 7:
-                py pyVar3 = this.f36598b;
-                qh.e3 e3Var = pyVar3.f40216n0;
-                if (e3Var != null) {
-                    e3Var.e(true);
-                }
-                pyVar3.presentFragment(new PremiumPreviewFragment(0, "stories"));
-                return;
-            case 8:
-                this.f36598b.f40155b0[0].d.l();
-                return;
-            case 9:
-                py pyVar4 = this.f36598b;
-                UndoView Y3 = pyVar4.Y3();
-                if (Y3 != null) {
-                    Y3.l(0L, 15, null, new nv(pyVar4, 25));
-                    return;
-                }
-                return;
-            case 10:
-                py pyVar5 = this.f36598b;
-                pyVar5.getClass();
-                SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-                long j10 = globalMainSettings.getLong("cache_hint_period", 604800000L);
-                if (j10 <= 604800000) {
-                    j10 = 2592000000L;
-                }
-                globalMainSettings.edit().putLong("cache_hint_showafter", System.currentTimeMillis() + j10).putLong("cache_hint_period", j10).apply();
-                pyVar5.U4();
-                return;
-            case 11:
-                MessagesController.getInstance(this.f36598b.currentAccount).getMainSettings().edit().putBoolean("storyhint", false).commit();
+                qyVar.getMessagesController().getStoriesController().i0(j10, !z4, false);
                 return;
             default:
-                this.f36598b.a5();
+                qyVar.getMessagesController().getStoriesController().i0(j10, z4, true);
                 return;
         }
     }

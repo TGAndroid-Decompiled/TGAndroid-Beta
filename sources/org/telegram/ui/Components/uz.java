@@ -1,40 +1,24 @@
 package org.telegram.ui.Components;
 
 import android.graphics.SurfaceTexture;
-import android.os.Looper;
-import android.view.Surface;
-public final class uz implements Runnable {
-    public final int f31712a;
-    public final xz f31713b;
+import org.telegram.messenger.DispatchQueue;
+public final class uz implements SurfaceTexture.OnFrameAvailableListener {
+    public final int f29320a;
+    public final DispatchQueue f29321b;
 
-    public uz(xz xzVar, int i10) {
-        this.f31712a = i10;
-        this.f31713b = xzVar;
+    public uz(DispatchQueue dispatchQueue, int i10) {
+        this.f29320a = i10;
+        this.f29321b = dispatchQueue;
     }
 
     @Override
-    public final void run() {
-        switch (this.f31712a) {
+    public final void onFrameAvailable(SurfaceTexture surfaceTexture) {
+        switch (this.f29320a) {
             case 0:
-                this.f31713b.finish();
-                Looper myLooper = Looper.myLooper();
-                if (myLooper != null) {
-                    myLooper.quit();
-                    return;
-                }
-                return;
-            case 1:
-                xz.b(this.f31713b);
+                ((vz) this.f29321b).e(false, true, true);
                 return;
             default:
-                xz xzVar = this.f31713b;
-                hv hvVar = xzVar.Y;
-                SurfaceTexture surfaceTexture = xzVar.f33259w;
-                x61 x61Var = (x61) hvVar.f27638b;
-                if (x61Var.f32957a != null) {
-                    x61Var.f32957a.T(new Surface(surfaceTexture));
-                    return;
-                }
+                ((q50) this.f29321b).requestRender(true, false);
                 return;
         }
     }

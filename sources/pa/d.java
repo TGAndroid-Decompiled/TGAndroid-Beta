@@ -1,10 +1,10 @@
 package pa;
 public final class d extends u {
-    public final int f44264a;
+    public final int f41098a;
 
     @Override
     public final Object read(xa.a aVar) {
-        switch (this.f44264a) {
+        switch (this.f41098a) {
             case 0:
                 if (aVar.x() == 9) {
                     aVar.t();
@@ -24,7 +24,7 @@ public final class d extends u {
     }
 
     public String toString() {
-        switch (this.f44264a) {
+        switch (this.f41098a) {
             case 2:
                 return "AnonymousOrNonStaticLocalClassAdapter";
             default:
@@ -34,7 +34,7 @@ public final class d extends u {
 
     @Override
     public final void write(xa.b bVar, Object obj) {
-        switch (this.f44264a) {
+        switch (this.f41098a) {
             case 0:
                 Number number = (Number) obj;
                 if (number == null) {

@@ -1,19 +1,19 @@
 package org.telegram.ui;
+public final class tq implements Runnable {
+    public final int f38574a;
+    public final Object f38575b;
+    public final Object f38576c;
+    public final Object d;
 
-import java.util.Comparator;
-public final class tq implements Comparator {
-    public final int f41619a;
-    public final int f41620b;
-    public final Object f41621c;
-
-    public tq(Object obj, int i10, int i11) {
-        this.f41619a = i11;
-        this.f41621c = obj;
-        this.f41620b = i10;
+    public tq(Object obj, Object obj2, Object obj3, int i10) {
+        this.f38574a = i10;
+        this.f38575b = obj;
+        this.f38576c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final int compare(java.lang.Object r14, java.lang.Object r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.tq.compare(java.lang.Object, java.lang.Object):int");
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.tq.run():void");
     }
 }

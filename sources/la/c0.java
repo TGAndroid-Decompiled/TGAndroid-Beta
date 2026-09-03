@@ -3,28 +3,28 @@ package la;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.os.Build;
-import org.telegram.ui.Components.ai;
+import org.telegram.ui.Components.tp0;
 public final class c0 {
-    public static final c0 f12154a = new Object();
-    public static final ai f12155b;
+    public static final c0 f11855a = new Object();
+    public static final tp0 f11856b;
 
     static {
         w9.d dVar = new w9.d();
-        dVar.b(b0.class, g.f12180a);
-        dVar.b(k0.class, h.f12186a);
-        dVar.b(j.class, e.f12162a);
-        dVar.b(b.class, d.f12156a);
-        dVar.b(a.class, c.f12148a);
-        dVar.b(p.class, f.f12168a);
+        dVar.b(b0.class, g.f11878a);
+        dVar.b(k0.class, h.f11884a);
+        dVar.b(j.class, e.f11862a);
+        dVar.b(b.class, d.f11857a);
+        dVar.b(a.class, c.f11850a);
+        dVar.b(p.class, f.f11868a);
         dVar.d = true;
-        f12155b = new ai(dVar, 19);
+        f11856b = new tp0(dVar, 23);
     }
 
     public static b a(w8.g gVar) {
         String valueOf;
         String str;
         gVar.a();
-        Context context = gVar.f49488a;
+        Context context = gVar.f46560a;
         kotlin.jvm.internal.j.d(context, "firebaseApp.applicationContext");
         String packageName = context.getPackageName();
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
@@ -35,7 +35,7 @@ public final class c0 {
         }
         String str2 = valueOf;
         gVar.a();
-        String str3 = gVar.f49490c.f49501b;
+        String str3 = gVar.f46562c.f46571b;
         kotlin.jvm.internal.j.d(str3, "firebaseApp.options.applicationId");
         String MODEL = Build.MODEL;
         kotlin.jvm.internal.j.d(MODEL, "MODEL");

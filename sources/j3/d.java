@@ -6,37 +6,37 @@ import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.os.Handler;
 public final class d {
-    public final AudioManager f9019a;
-    public final c f9020b;
-    public c0 f9021c;
+    public final AudioManager f8440a;
+    public final c f8441b;
+    public c0 f8442c;
     public l3.d d;
-    public int f9022e;
-    public int f9023f;
-    public float f9024g = 1.0f;
+    public int e;
+    public int f8443f;
+    public float f8444g = 1.0f;
     public AudioFocusRequest h;
 
     public d(Context context, Handler handler, c0 c0Var) {
         AudioManager audioManager = (AudioManager) context.getApplicationContext().getSystemService("audio");
         audioManager.getClass();
-        this.f9019a = audioManager;
-        this.f9021c = c0Var;
-        this.f9020b = new c(this, handler);
-        this.f9022e = 0;
+        this.f8440a = audioManager;
+        this.f8442c = c0Var;
+        this.f8441b = new c(this, handler);
+        this.e = 0;
     }
 
     public final void a() {
-        if (this.f9022e == 0) {
+        if (this.e == 0) {
             return;
         }
-        int i10 = h5.d0.f7237a;
-        AudioManager audioManager = this.f9019a;
+        int i10 = h5.d0.f6924a;
+        AudioManager audioManager = this.f8440a;
         if (i10 >= 26) {
             AudioFocusRequest audioFocusRequest = this.h;
             if (audioFocusRequest != null) {
                 audioManager.abandonAudioFocusRequest(audioFocusRequest);
             }
         } else {
-            audioManager.abandonAudioFocus(this.f9020b);
+            audioManager.abandonAudioFocus(this.f8441b);
         }
         c(0);
     }
@@ -47,19 +47,19 @@ public final class d {
 
     public final void c(int i10) {
         float f10;
-        if (this.f9022e != i10) {
-            this.f9022e = i10;
+        if (this.e != i10) {
+            this.e = i10;
             if (i10 == 3) {
                 f10 = 0.2f;
             } else {
                 f10 = 1.0f;
             }
-            if (this.f9024g != f10) {
-                this.f9024g = f10;
-                c0 c0Var = this.f9021c;
+            if (this.f8444g != f10) {
+                this.f8444g = f10;
+                c0 c0Var = this.f8442c;
                 if (c0Var != null) {
-                    f0 f0Var = c0Var.f9000a;
-                    f0Var.V(1, 2, Float.valueOf(f0Var.Y * f0Var.f9136z.f9024g));
+                    f0 f0Var = c0Var.f8423a;
+                    f0Var.V(1, 2, Float.valueOf(f0Var.Y * f0Var.f8551z.f8444g));
                 }
             }
         }
@@ -70,34 +70,34 @@ public final class d {
         int requestAudioFocus;
         AudioFocusRequest.Builder builder;
         boolean z10;
-        if (i10 != 1 && this.f9023f == 1) {
+        if (i10 != 1 && this.f8443f == 1) {
             if (z4) {
-                if (this.f9022e != 1) {
-                    int i12 = h5.d0.f7237a;
-                    AudioManager audioManager = this.f9019a;
-                    c cVar = this.f9020b;
+                if (this.e != 1) {
+                    int i12 = h5.d0.f6924a;
+                    AudioManager audioManager = this.f8440a;
+                    c cVar = this.f8441b;
                     if (i12 >= 26) {
                         AudioFocusRequest audioFocusRequest = this.h;
                         if (audioFocusRequest == null) {
                             if (audioFocusRequest == null) {
-                                builder = new AudioFocusRequest.Builder(this.f9023f);
+                                builder = new AudioFocusRequest.Builder(this.f8443f);
                             } else {
                                 builder = new AudioFocusRequest.Builder(this.h);
                             }
                             l3.d dVar = this.d;
-                            if (dVar != null && dVar.f11494a == 1) {
+                            if (dVar != null && dVar.f11243a == 1) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
                             dVar.getClass();
-                            this.h = builder.setAudioAttributes((AudioAttributes) dVar.a().f16617b).setWillPauseWhenDucked(z10).setOnAudioFocusChangeListener(cVar).build();
+                            this.h = builder.setAudioAttributes((AudioAttributes) dVar.a().f9336b).setWillPauseWhenDucked(z10).setOnAudioFocusChangeListener(cVar).build();
                         }
                         requestAudioFocus = audioManager.requestAudioFocus(this.h);
                     } else {
                         l3.d dVar2 = this.d;
                         dVar2.getClass();
-                        int i13 = dVar2.f11496c;
+                        int i13 = dVar2.f11245c;
                         if (i13 != 13) {
                             switch (i13) {
                                 case 2:
@@ -126,7 +126,7 @@ public final class d {
                         } else {
                             i11 = 1;
                         }
-                        requestAudioFocus = audioManager.requestAudioFocus(cVar, i11, this.f9023f);
+                        requestAudioFocus = audioManager.requestAudioFocus(cVar, i11, this.f8443f);
                     }
                     if (requestAudioFocus == 1) {
                         c(1);

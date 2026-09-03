@@ -1,4 +1,4 @@
 package v2;
 public interface g {
-    void d(Exception exc);
+    void b(Exception exc);
 }

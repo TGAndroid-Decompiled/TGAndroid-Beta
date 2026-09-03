@@ -6,13 +6,13 @@ import android.os.IInterface;
 import android.os.RemoteException;
 import android.util.Log;
 public final class e0 extends x {
-    public final IBinder f1700g;
+    public final IBinder f1583g;
     public final g h;
 
     public e0(g gVar, int i10, IBinder iBinder, Bundle bundle) {
         super(gVar, i10, bundle);
         this.h = gVar;
-        this.f1700g = iBinder;
+        this.f1583g = iBinder;
     }
 
     @Override
@@ -20,14 +20,14 @@ public final class e0 extends x {
         g gVar = this.h;
         n nVar = gVar.H;
         if (nVar != null) {
-            ((com.google.android.gms.common.api.l) nVar.f1762a).onConnectionFailed(aVar);
+            ((com.google.android.gms.common.api.l) nVar.f1640a).onConnectionFailed(aVar);
         }
         gVar.z(aVar);
     }
 
     @Override
     public final boolean b() {
-        IBinder iBinder = this.f1700g;
+        IBinder iBinder = this.f1583g;
         try {
             m.h(iBinder);
             String interfaceDescriptor = iBinder.getInterfaceDescriptor();
@@ -45,7 +45,7 @@ public final class e0 extends x {
             Bundle s6 = gVar.s();
             n nVar = gVar.G;
             if (nVar != null) {
-                ((com.google.android.gms.common.api.k) nVar.f1762a).onConnected(s6);
+                ((com.google.android.gms.common.api.k) nVar.f1640a).onConnected(s6);
                 return true;
             }
             return true;

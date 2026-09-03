@@ -3,14 +3,14 @@ package ub;
 import java.util.ArrayList;
 import java.util.Arrays;
 public final class e {
-    public static final d f48508e = new Object();
-    public final pb.b f48509a;
-    public boolean f48511c;
-    public final ArrayList f48510b = new ArrayList();
+    public static final d e = new Object();
+    public final pb.b f45274a;
+    public boolean f45276c;
+    public final ArrayList f45275b = new ArrayList();
     public final int[] d = new int[5];
 
     public e(pb.b bVar) {
-        this.f48509a = bVar;
+        this.f45274a = bVar;
     }
 
     public static float a(int i10, int[] iArr) {
@@ -41,8 +41,8 @@ public final class e {
     }
 
     public static double e(c cVar, c cVar2) {
-        double d = cVar.f16705a - cVar2.f16705a;
-        double d10 = cVar.f16706b - cVar2.f16706b;
+        double d = cVar.f16517a - cVar2.f16517a;
+        double d10 = cVar.f16518b - cVar2.f16518b;
         return (d10 * d10) + (d * d);
     }
 
@@ -60,9 +60,9 @@ public final class e {
         int i15 = iArr[0] + iArr[1] + iArr[2] + iArr[3] + iArr[4];
         int a2 = (int) a(i11, iArr);
         int i16 = iArr[2];
-        pb.b bVar = this.f48509a;
-        int i17 = bVar.f44287b;
-        int i18 = bVar.f44286a;
+        pb.b bVar = this.f45274a;
+        int i17 = bVar.f41120b;
+        int i18 = bVar.f41119a;
         int[] iArr2 = this.d;
         Arrays.fill(iArr2, 0);
         int i19 = i10;
@@ -211,7 +211,7 @@ public final class e {
                             i36++;
                         }
                         if (iArr2[0] != 0) {
-                            int i37 = bVar.f44287b;
+                            int i37 = bVar.f41120b;
                             int i38 = 1;
                             while (true) {
                                 int i39 = i26 + i38;
@@ -262,12 +262,12 @@ public final class e {
                             float f16 = i15 / 7.0f;
                             int i45 = 0;
                             while (true) {
-                                arrayList = this.f48510b;
+                                arrayList = this.f45275b;
                                 if (i45 < arrayList.size()) {
                                     cVar = (c) arrayList.get(i45);
-                                    float f17 = cVar.f48507c;
-                                    f11 = cVar.f16705a;
-                                    f12 = cVar.f16706b;
+                                    float f17 = cVar.f45273c;
+                                    f11 = cVar.f16517a;
+                                    f12 = cVar.f16518b;
                                     if (Math.abs(f10 - f12) <= f16 && Math.abs(f13 - f11) <= f16) {
                                         float abs = Math.abs(f16 - f17);
                                         if (abs <= 1.0f || abs <= f17) {
@@ -284,7 +284,7 @@ public final class e {
                             int i47 = i46 + 1;
                             float f18 = i46;
                             float f19 = i47;
-                            arrayList.set(i45, new c(((f11 * f18) + f13) / f19, e2.c.v(f18, f12, f10, f19), e2.c.v(f18, cVar.f48507c, f16, f19), i47));
+                            arrayList.set(i45, new c(((f11 * f18) + f13) / f19, e2.c.v(f18, f12, f10, f19), e2.c.v(f18, cVar.f45273c, f16, f19), i47));
                             return true;
                         }
                     }
@@ -295,7 +295,7 @@ public final class e {
     }
 
     public final boolean d() {
-        ArrayList arrayList = this.f48510b;
+        ArrayList arrayList = this.f45275b;
         int size = arrayList.size();
         int size2 = arrayList.size();
         float f10 = 0.0f;
@@ -308,7 +308,7 @@ public final class e {
             c cVar = (c) obj;
             if (cVar.d >= 2) {
                 i10++;
-                f11 += cVar.f48507c;
+                f11 += cVar.f45273c;
             }
         }
         if (i10 >= 3) {
@@ -318,7 +318,7 @@ public final class e {
             while (i12 < size3) {
                 Object obj2 = arrayList.get(i12);
                 i12++;
-                f10 += Math.abs(((c) obj2).f48507c - f12);
+                f10 += Math.abs(((c) obj2).f45273c - f12);
             }
             if (f10 <= f11 * 0.05f) {
                 return true;

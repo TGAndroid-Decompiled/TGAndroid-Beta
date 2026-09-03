@@ -1,80 +1,97 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class sy extends FrameLayout {
-    public final ImageView f31199a;
-    public final TextView f31200b;
-    public final RadialProgressView f31201c;
-    public boolean d;
-    public final mz f31202e;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.Utilities;
+public final class sy extends ImageView {
+    public int f28831a;
+    public l5 f28832b;
+    public boolean f28833c;
+    public u5 d;
+    public vx e;
+    public final ImageReceiver.BackgroundThreadDrawHolder[] f28834f;
+    public float h;
+    public ValueAnimator f28835n;
 
-    public sy(mz mzVar, Context context) {
+    public sy(Context context) {
         super(context);
-        this.f31202e = mzVar;
-        ImageView imageView = new ImageView(getContext());
-        this.f31199a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.gif_empty);
-        int i10 = org.telegram.ui.ActionBar.k6.Le;
-        imageView.setColorFilter(new PorterDuffColorFilter(mzVar.A(i10), PorterDuff.Mode.MULTIPLY));
-        addView(imageView, k7.c6.d(-2, -2.0f, 17, 0.0f, 8.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(getContext());
-        this.f31200b = textView;
-        textView.setText(LocaleController.getString(R.string.NoGIFsFound));
-        textView.setTextSize(1, 16.0f);
-        textView.setTextColor(mzVar.A(i10));
-        addView(textView, k7.c6.d(-2, -2.0f, 17, 0.0f, 42.0f, 0.0f, 0.0f));
-        RadialProgressView radialProgressView = new RadialProgressView(context, mzVar.W1);
-        this.f31201c = radialProgressView;
-        radialProgressView.setVisibility(8);
-        radialProgressView.setProgressColor(mzVar.A(org.telegram.ui.ActionBar.k6.f21734h6));
-        addView(radialProgressView, k7.c6.e(-2, -2, 17));
+        this.f28834f = new ImageReceiver.BackgroundThreadDrawHolder[2];
+        setScaleType(ImageView.ScaleType.CENTER);
+        setBackground(org.telegram.ui.ActionBar.j6.Y(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19971i6, false), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
     }
 
-    public final void a(boolean z4) {
-        int i10;
-        int i11;
-        if (this.d != z4) {
-            this.d = z4;
-            int i12 = 0;
-            if (z4) {
-                i10 = 8;
-            } else {
-                i10 = 0;
+    public final void a(Drawable drawable, boolean z4) {
+        setImageDrawable(drawable);
+        this.f28833c = z4;
+    }
+
+    public u5 getSpan() {
+        return this.d;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (isPressed()) {
+            float f10 = this.h;
+            if (f10 != 1.0f) {
+                float min = (Math.min(40.0f, 1000.0f / AndroidUtilities.screenRefreshRate) / 100.0f) + f10;
+                this.h = min;
+                this.h = Utilities.clamp(min, 1.0f, 0.0f);
+                invalidate();
             }
-            this.f31199a.setVisibility(i10);
-            if (z4) {
-                i11 = 8;
-            } else {
-                i11 = 0;
-            }
-            this.f31200b.setVisibility(i11);
-            if (!z4) {
-                i12 = 8;
-            }
-            this.f31201c.setVisibility(i12);
         }
+        float f11 = ((1.0f - this.h) * 0.2f) + 0.8f;
+        canvas.save();
+        canvas.scale(f11, f11, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+        super.onDraw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.view.View");
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int dp;
-        mz mzVar = this.f31202e;
-        int measuredHeight = mzVar.f29280e0.getMeasuredHeight();
-        if (!this.d) {
-            dp = (int) (org.telegram.ui.b.x(8.0f, measuredHeight - mzVar.Y0, 3) * 1.7f);
-        } else {
-            dp = measuredHeight - AndroidUtilities.dp(80.0f);
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i10));
+    }
+
+    @Override
+    public void setPressed(boolean z4) {
+        ValueAnimator valueAnimator;
+        if (isPressed() != z4) {
+            super.setPressed(z4);
+            invalidate();
+            if (z4 && (valueAnimator = this.f28835n) != null) {
+                valueAnimator.removeAllListeners();
+                this.f28835n.cancel();
+            }
+            if (!z4) {
+                float f10 = this.h;
+                if (f10 != 0.0f) {
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
+                    this.f28835n = ofFloat;
+                    ofFloat.addUpdateListener(new f6(this, 21));
+                    this.f28835n.addListener(new a9(this, 19));
+                    this.f28835n.setInterpolator(new OvershootInterpolator(5.0f));
+                    this.f28835n.setDuration(350L);
+                    this.f28835n.start();
+                }
+            }
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(dp, 1073741824));
+    }
+
+    public void setSpan(u5 u5Var) {
+        this.d = u5Var;
     }
 }

@@ -5,30 +5,30 @@ import java.util.concurrent.Executor;
 import v0.i;
 import v0.o;
 public final class b implements dd.a {
-    public final int f1369a;
-    public final Executor f1370b;
-    public final i f1371c;
+    public final int f1280a;
+    public final Executor f1281b;
+    public final i f1282c;
     public final Object d;
 
     public b(e1.d dVar, Exception exc, Executor executor, i iVar) {
-        this.f1369a = 3;
+        this.f1280a = 3;
         this.d = exc;
-        this.f1370b = executor;
-        this.f1371c = iVar;
+        this.f1281b = executor;
+        this.f1282c = iVar;
     }
 
     @Override
     public final Object invoke() {
         Object cVar;
-        switch (this.f1369a) {
+        switch (this.f1280a) {
             case 0:
-                this.f1370b.execute(new a1.e(3, this.f1371c, this.d));
+                this.f1281b.execute(new a1.e(3, this.f1282c, this.d));
                 break;
             case 1:
-                this.f1370b.execute(new a1.e(4, this.f1371c, (o) this.d));
+                this.f1281b.execute(new a1.e(4, this.f1282c, (o) this.d));
                 break;
             case 2:
-                this.f1370b.execute(new h(this.f1371c, (w0.i) this.d, 0));
+                this.f1281b.execute(new h(this.f1282c, (w0.i) this.d, 0));
                 break;
             default:
                 Exception exc = (Exception) this.d;
@@ -40,7 +40,7 @@ public final class b implements dd.a {
                         cVar = new w0.c("API is not supported: " + exc.getMessage(), 3);
                     } else if (statusCode == 8) {
                         cVar = new w0.f(exc.getMessage());
-                    } else if (d.f1376b.contains(Integer.valueOf(statusCode))) {
+                    } else if (d.f1287b.contains(Integer.valueOf(statusCode))) {
                         cVar = new w0.e(exc.getMessage());
                     } else {
                         cVar = new w0.c("Conditional create failed, failure: " + exc.getMessage(), 2);
@@ -50,16 +50,16 @@ public final class b implements dd.a {
                 } else {
                     cVar = new w0.c("Conditional create failed, failure: " + exc, 2);
                 }
-                this.f1370b.execute(new a1.e(17, this.f1371c, cVar));
+                this.f1281b.execute(new a1.e(20, this.f1282c, cVar));
                 break;
         }
-        return sc.i.f47274a;
+        return sc.i.f44318a;
     }
 
     public b(Executor executor, i iVar, Object obj, int i10) {
-        this.f1369a = i10;
-        this.f1370b = executor;
-        this.f1371c = iVar;
+        this.f1280a = i10;
+        this.f1281b = executor;
+        this.f1282c = iVar;
         this.d = obj;
     }
 }

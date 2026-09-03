@@ -1,6 +1,6 @@
 package k7;
 public final class f2 implements u9.d {
-    public static final f2 f10532a = new Object();
+    public static final f2 f9787a = new Object();
 
     static {
         e2.c.r(e2.c.o(d.class, e2.c.p(2, e2.c.o(d.class, new a(1)))));

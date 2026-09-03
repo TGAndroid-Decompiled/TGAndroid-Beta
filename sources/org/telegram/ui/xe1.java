@@ -4,31 +4,31 @@ import android.content.SharedPreferences;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-public final class xe1 implements org.telegram.ui.Components.mo {
-    public final TLRPC.TL_forumTopic f43023a;
-    public final sf1 f43024b;
+public final class xe1 implements org.telegram.ui.Components.jo {
+    public final TLRPC.TL_forumTopic f39969a;
+    public final sf1 f39970b;
 
     public xe1(sf1 sf1Var, TLRPC.TL_forumTopic tL_forumTopic) {
-        this.f43024b = sf1Var;
-        this.f43023a = tL_forumTopic;
+        this.f39970b = sf1Var;
+        this.f39969a = tL_forumTopic;
     }
 
     @Override
     public final void dismiss() {
-        this.f43024b.finishPreviewFragment();
+        this.f39970b.finishPreviewFragment();
     }
 
     @Override
     public final void k() {
         int i10;
         int i11;
-        sf1 sf1Var = this.f43024b;
+        sf1 sf1Var = this.f39970b;
         sf1Var.finishPreviewFragment();
         MessagesController messagesController = sf1Var.getMessagesController();
-        long j10 = sf1Var.f41188a;
-        TLRPC.TL_forumTopic tL_forumTopic = this.f43023a;
-        boolean isDialogMuted = messagesController.isDialogMuted(-j10, tL_forumTopic.f20897id);
-        sf1Var.getNotificationsController().muteDialog(-j10, tL_forumTopic.f20897id, !isDialogMuted);
+        long j10 = sf1Var.f38175a;
+        TLRPC.TL_forumTopic tL_forumTopic = this.f39969a;
+        boolean isDialogMuted = messagesController.isDialogMuted(-j10, tL_forumTopic.f19211id);
+        sf1Var.getNotificationsController().muteDialog(-j10, tL_forumTopic.f19211id, !isDialogMuted);
         if (org.telegram.ui.Components.qc.a(sf1Var)) {
             if (!isDialogMuted) {
                 i10 = 3;
@@ -45,23 +45,23 @@ public final class xe1 implements org.telegram.ui.Components.mo {
     }
 
     @Override
-    public final void o() {
-        this.f43024b.finishPreviewFragment();
-        AndroidUtilities.runOnUIThread(new h21(22, this, this.f43023a), 500L);
+    public final void l() {
+        this.f39970b.finishPreviewFragment();
+        AndroidUtilities.runOnUIThread(new b11(23, this, this.f39969a), 500L);
     }
 
     @Override
-    public final void u() {
+    public final void o() {
         int i10;
-        sf1 sf1Var = this.f43024b;
+        sf1 sf1Var = this.f39970b;
         i10 = ((org.telegram.ui.ActionBar.p2) sf1Var).currentAccount;
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i10);
         StringBuilder sb = new StringBuilder("sound_enabled_");
-        long j10 = sf1Var.f41188a;
-        TLRPC.TL_forumTopic tL_forumTopic = this.f43023a;
-        boolean z4 = notificationsSettings.getBoolean(org.telegram.messenger.y3.i(-j10, tL_forumTopic.f20897id, sb), true);
+        long j10 = sf1Var.f38175a;
+        TLRPC.TL_forumTopic tL_forumTopic = this.f39969a;
+        boolean z4 = notificationsSettings.getBoolean(org.telegram.messenger.y3.i(-j10, tL_forumTopic.f19211id, sb), true);
         boolean z10 = !z4 ? 1 : 0;
-        notificationsSettings.edit().putBoolean(org.telegram.messenger.y3.i(-j10, tL_forumTopic.f20897id, new StringBuilder("sound_enabled_")), z10).apply();
+        notificationsSettings.edit().putBoolean(org.telegram.messenger.y3.i(-j10, tL_forumTopic.f19211id, new StringBuilder("sound_enabled_")), z10).apply();
         sf1Var.finishPreviewFragment();
         if (org.telegram.ui.Components.qc.a(sf1Var)) {
             org.telegram.ui.Components.qc.S(z4 ? 1 : 0, sf1Var, sf1Var.getResourceProvider()).j();
@@ -69,14 +69,14 @@ public final class xe1 implements org.telegram.ui.Components.mo {
     }
 
     @Override
-    public final void v(int i10) {
-        sf1 sf1Var = this.f43024b;
-        long j10 = sf1Var.f41188a;
+    public final void s(int i10) {
+        sf1 sf1Var = this.f39970b;
+        long j10 = sf1Var.f38175a;
         sf1Var.finishPreviewFragment();
-        TLRPC.TL_forumTopic tL_forumTopic = this.f43023a;
+        TLRPC.TL_forumTopic tL_forumTopic = this.f39969a;
         if (i10 == 0) {
-            if (sf1Var.getMessagesController().isDialogMuted(-j10, tL_forumTopic.f20897id)) {
-                sf1Var.getNotificationsController().muteDialog(-j10, tL_forumTopic.f20897id, false);
+            if (sf1Var.getMessagesController().isDialogMuted(-j10, tL_forumTopic.f19211id)) {
+                sf1Var.getNotificationsController().muteDialog(-j10, tL_forumTopic.f19211id, false);
             }
             if (org.telegram.ui.Components.qc.a(sf1Var)) {
                 org.telegram.ui.Components.qc.z(sf1Var, 4, i10, sf1Var.getResourceProvider()).j();
@@ -84,7 +84,7 @@ public final class xe1 implements org.telegram.ui.Components.mo {
             }
             return;
         }
-        sf1Var.getNotificationsController().muteUntil(-j10, tL_forumTopic.f20897id, i10);
+        sf1Var.getNotificationsController().muteUntil(-j10, tL_forumTopic.f19211id, i10);
         if (org.telegram.ui.Components.qc.a(sf1Var)) {
             org.telegram.ui.Components.qc.z(sf1Var, 5, i10, sf1Var.getResourceProvider()).j();
         }

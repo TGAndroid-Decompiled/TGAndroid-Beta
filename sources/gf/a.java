@@ -1,284 +1,40 @@
 package gf;
 
-import android.os.Build;
-import d4.t;
-import dg.h0;
-import hg.c2;
-import hg.v2;
-import j$.util.Objects;
-import java.text.Collator;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import mh.eb;
-import mh.l7;
-import mh.m2;
-import mh.p;
-import mh.x;
-import mh.y;
-import oh.f6;
-import oh.h6;
-import oh.t3;
-import oh.z1;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.bh1;
-import org.telegram.ui.web.f2;
-import qh.a7;
-import qh.f1;
-import qh.i6;
-import qh.l6;
-import qh.o7;
-import qh.r6;
-import sh.n3;
-import uf.h1;
-import uf.z;
-import vf.k;
-import vf.k0;
-import vf.n0;
-import vf.p1;
-import vf.x0;
-import wh.u4;
-import wh.w;
-public final class a implements RequestDelegate {
-    public final int f7026a;
-    public final Object f7027b;
+import android.os.Bundle;
+public final class a implements Runnable {
+    public final int f6529a;
+    public final b f6530b;
 
-    public a(Object obj, int i10) {
-        this.f7026a = i10;
-        this.f7027b = obj;
+    public a(b bVar, String str, Bundle bundle, int i10) {
+        this.f6529a = i10;
+        this.f6530b = bVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        final Comparator fVar;
-        Locale locale;
-        final Comparator fVar2;
-        Locale locale2;
-        int i10 = this.f7026a;
-        Object obj = this.f7027b;
-        switch (i10) {
+    public final void run() {
+        switch (this.f6529a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new a1.e(29, (e) obj, tLObject));
+                this.f6530b.f6532b.getClass();
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new androidx.car.app.utils.b((f) obj, tLObject, tL_error, 4));
+                this.f6530b.f6532b.getClass();
                 return;
             case 2:
-                c2 c2Var = (c2) obj;
-                if (tLObject != null) {
-                    TLRPC.TL_help_countriesList tL_help_countriesList = (TLRPC.TL_help_countriesList) tLObject;
-                    HashMap hashMap = new HashMap();
-                    ArrayList arrayList = new ArrayList();
-                    for (int i11 = 0; i11 < tL_help_countriesList.countries.size(); i11++) {
-                        TLRPC.TL_help_country tL_help_country = tL_help_countriesList.countries.get(i11);
-                        String str = tL_help_country.name;
-                        if (str != null) {
-                            tL_help_country.default_name = str;
-                        }
-                        if (!tL_help_country.hidden && !tL_help_country.iso2.equalsIgnoreCase("FT")) {
-                            String upperCase = tL_help_country.default_name.substring(0, 1).toUpperCase();
-                            List list = (List) hashMap.get(upperCase);
-                            if (list == null) {
-                                list = new ArrayList();
-                                hashMap.put(upperCase, list);
-                                arrayList.add(upperCase);
-                            }
-                            list.add(tL_help_country);
-                        }
-                    }
-                    if (Build.VERSION.SDK_INT >= 24) {
-                        if (LocaleController.getInstance().getCurrentLocale() != null) {
-                            locale = LocaleController.getInstance().getCurrentLocale();
-                        } else {
-                            locale = Locale.getDefault();
-                        }
-                        Collator collator = Collator.getInstance(locale);
-                        Objects.requireNonNull(collator);
-                        fVar = new t(collator, 2);
-                    } else {
-                        fVar = new e5.f(13);
-                    }
-                    Collections.sort(arrayList, fVar);
-                    for (List list2 : hashMap.values()) {
-                        Collections.sort(list2, new Comparator() {
-                            @Override
-                            public final int compare(Object obj2, Object obj3) {
-                                TLRPC.TL_help_country tL_help_country2 = (TLRPC.TL_help_country) obj2;
-                                TLRPC.TL_help_country tL_help_country3 = (TLRPC.TL_help_country) obj3;
-                                switch (r2) {
-                                    case 0:
-                                        return fVar.compare(tL_help_country2.default_name, tL_help_country3.default_name);
-                                    default:
-                                        return fVar.compare(tL_help_country2.default_name, tL_help_country3.default_name);
-                                }
-                            }
-                        });
-                    }
-                    AndroidUtilities.runOnUIThread(new androidx.car.app.utils.b(c2Var, hashMap, arrayList, 5));
-                    return;
-                }
-                return;
-            case 3:
-                h0 h0Var = (h0) obj;
-                if (tLObject != null) {
-                    TLRPC.TL_help_countriesList tL_help_countriesList2 = (TLRPC.TL_help_countriesList) tLObject;
-                    HashMap hashMap2 = new HashMap();
-                    ArrayList arrayList2 = new ArrayList();
-                    for (int i12 = 0; i12 < tL_help_countriesList2.countries.size(); i12++) {
-                        TLRPC.TL_help_country tL_help_country2 = tL_help_countriesList2.countries.get(i12);
-                        boolean equalsIgnoreCase = tL_help_country2.iso2.equalsIgnoreCase("FT");
-                        String str2 = tL_help_country2.name;
-                        if (str2 != null) {
-                            tL_help_country2.default_name = str2;
-                        }
-                        if (!tL_help_country2.hidden || equalsIgnoreCase) {
-                            if (equalsIgnoreCase) {
-                                String string = LocaleController.getString(R.string.Fragment);
-                                tL_help_country2.default_name = string;
-                                tL_help_country2.name = string;
-                            }
-                            String upperCase2 = tL_help_country2.default_name.substring(0, 1).toUpperCase();
-                            List list3 = (List) hashMap2.get(upperCase2);
-                            if (list3 == null) {
-                                list3 = new ArrayList();
-                                hashMap2.put(upperCase2, list3);
-                                arrayList2.add(upperCase2);
-                            }
-                            list3.add(tL_help_country2);
-                        }
-                    }
-                    if (Build.VERSION.SDK_INT >= 24) {
-                        if (LocaleController.getInstance().getCurrentLocale() != null) {
-                            locale2 = LocaleController.getInstance().getCurrentLocale();
-                        } else {
-                            locale2 = Locale.getDefault();
-                        }
-                        Collator collator2 = Collator.getInstance(locale2);
-                        Objects.requireNonNull(collator2);
-                        fVar2 = new t(collator2, 2);
-                    } else {
-                        fVar2 = new e5.f(13);
-                    }
-                    Collections.sort(arrayList2, fVar2);
-                    for (List list4 : hashMap2.values()) {
-                        Collections.sort(list4, new Comparator() {
-                            @Override
-                            public final int compare(Object obj2, Object obj3) {
-                                TLRPC.TL_help_country tL_help_country22 = (TLRPC.TL_help_country) obj2;
-                                TLRPC.TL_help_country tL_help_country3 = (TLRPC.TL_help_country) obj3;
-                                switch (r2) {
-                                    case 0:
-                                        return fVar2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
-                                    default:
-                                        return fVar2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
-                                }
-                            }
-                        });
-                    }
-                    AndroidUtilities.runOnUIThread(new androidx.car.app.utils.b(h0Var, hashMap2, arrayList2, 8));
-                    return;
-                }
-                return;
-            case 4:
-                AndroidUtilities.runOnUIThread(new c(11, (v2) obj, tLObject));
-                return;
-            case 5:
-                AndroidUtilities.runOnUIThread(new androidx.car.app.utils.b((p) obj, tLObject, tL_error, 20));
-                return;
-            case 6:
-                AndroidUtilities.runOnUIThread(new c(27, (x) obj, tLObject));
-                return;
-            case 7:
-                AndroidUtilities.runOnUIThread(new c(28, (y) obj, tLObject));
-                return;
-            case 8:
-                AndroidUtilities.runOnUIThread(new m2(10, tLObject, (h0) obj));
-                return;
-            case 9:
-                AndroidUtilities.runOnUIThread(new m2(12, (l7) obj, tLObject));
-                return;
-            case 10:
-                eb ebVar = (eb) obj;
-                if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    MessagesStorage.getInstance(ebVar.f13991c).putMessages(new ArrayList<>(Arrays.asList(ebVar.H.messageOwner)), true, true, true, 0, 0, 0L);
-                    return;
-                } else {
-                    ebVar.getClass();
-                    return;
-                }
-            case 11:
-                AndroidUtilities.runOnUIThread(new t3((o7) obj, 4));
-                return;
-            case 12:
-                AndroidUtilities.runOnUIThread(new z1(5, (f6) obj, tLObject));
-                return;
-            case 13:
-                AndroidUtilities.runOnUIThread(new z1(7, (h6) obj, tLObject));
-                return;
-            case 14:
-                AndroidUtilities.runOnUIThread(new bh1(13, (f2) obj, tLObject));
-                return;
-            case 15:
-                AndroidUtilities.runOnUIThread(new bh1(18, (f1) obj, tLObject));
-                return;
-            case 16:
-                AndroidUtilities.runOnUIThread(new bh1(29, (i6) obj, tLObject));
-                return;
-            case 17:
-                AndroidUtilities.runOnUIThread(new l6(0, (r6) obj, tLObject));
-                return;
-            case 18:
-                AndroidUtilities.runOnUIThread(new l6(1, (a7) obj, tLObject));
-                return;
-            case 19:
-                AndroidUtilities.runOnUIThread(new l6(17, (n3) obj, tL_error));
-                return;
-            case 20:
-                uf.c cVar = (uf.c) obj;
-                if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new l6(22, cVar, tLObject));
-                    return;
-                }
-                return;
-            case 21:
-                z zVar = (z) obj;
-                zVar.getClass();
-                AndroidUtilities.runOnUIThread(new l6(23, zVar, tLObject));
-                return;
-            case 22:
-                AndroidUtilities.runOnUIThread(new h1((vf.c) obj, tL_error, tLObject, 2));
-                return;
-            case 23:
-                AndroidUtilities.runOnUIThread(new l6(28, (vf.f) obj, tLObject));
-                return;
-            case 24:
-                AndroidUtilities.runOnUIThread(new h1((k) obj, tL_error, tLObject, 3));
-                return;
-            case 25:
-                AndroidUtilities.runOnUIThread(new h1((n0) obj, tL_error, tLObject, 7));
-                return;
-            case 26:
-                AndroidUtilities.runOnUIThread(new h1((x0) obj, tL_error, tLObject, 8));
-                return;
-            case 27:
-                AndroidUtilities.runOnUIThread(new k0(4, (p1) obj, tLObject));
-                return;
-            case 28:
-                AndroidUtilities.runOnUIThread(new k0(6, (w) obj, tLObject));
+                this.f6530b.f6532b.getClass();
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new k0(11, (u4) obj, tLObject));
+                this.f6530b.f6532b.getClass();
                 return;
         }
+    }
+
+    public a(b bVar, int i10, Bundle bundle) {
+        this.f6529a = 0;
+        this.f6530b = bVar;
+    }
+
+    public a(b bVar, Bundle bundle) {
+        this.f6529a = 2;
+        this.f6530b = bVar;
     }
 }

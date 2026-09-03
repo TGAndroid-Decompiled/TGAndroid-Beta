@@ -1,13 +1,26 @@
 package org.telegram.ui.Components;
-public final class ys {
-    public f2.m1 f33594a;
-    public f2.m1 f33595b;
-    public int f33596c;
-    public int d;
-    public int f33597e;
-    public int f33598f;
 
-    public final String toString() {
-        return "ChangeInfo{oldHolder=" + this.f33594a + ", newHolder=" + this.f33595b + ", fromX=" + this.f33596c + ", fromY=" + this.d + ", toX=" + this.f33597e + ", toY=" + this.f33598f + '}';
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.style.ReplacementSpan;
+import org.telegram.messenger.AndroidUtilities;
+public final class ys extends ReplacementSpan {
+    public int f31107b;
+    public final Paint f31106a = new Paint(1);
+    public float f31108c = 3.0f;
+
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
+        int color = paint.getColor();
+        Paint paint2 = this.f31106a;
+        if (color != 0) {
+            paint2.setColor(paint.getColor());
+        }
+        canvas.drawCircle(f10 + (AndroidUtilities.dpf2(this.f31108c) / 2.0f), ((i14 - i12) / 2) + this.f31107b, AndroidUtilities.dpf2(3.0f) / 2.0f, paint2);
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return AndroidUtilities.dp(this.f31108c);
     }
 }

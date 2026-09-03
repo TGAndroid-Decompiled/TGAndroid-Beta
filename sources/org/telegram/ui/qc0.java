@@ -1,67 +1,52 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.TLRPC;
-public final class qc0 implements org.telegram.ui.Components.jt0 {
-    public final bd0 f40431a;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserObject;
+public final class qc0 extends tf.h0 {
+    public boolean f37383j0;
+    public final cd0 f37384k0;
 
-    public qc0(bd0 bd0Var) {
-        this.f40431a = bd0Var;
+    public qc0(cd0 cd0Var, Context context, int i10, long j10, org.telegram.ui.ActionBar.f6 f6Var, boolean z4, boolean z10) {
+        super(context, i10, j10, false, f6Var, false, z4, z10);
+        this.f37384k0 = cd0Var;
+        this.f37383j0 = true;
     }
 
     @Override
-    public final void R() {
-        int c02;
-        boolean z4;
-        bd0 bd0Var = this.f40431a;
-        rc0 rc0Var = bd0Var.H0;
-        if (rc0Var == null) {
-            c02 = 0;
-        } else {
-            c02 = rc0Var.c0(8);
+    public final void K() {
+        this.f37384k0.r0(null);
+    }
+
+    @Override
+    public final void N(ArrayList arrayList) {
+        int i10;
+        cd0 cd0Var = this.f37384k0;
+        MessageObject messageObject = cd0Var.f33116y0;
+        if (messageObject != null && messageObject.isLiveLocation()) {
+            int i11 = 0;
+            if (arrayList != null) {
+                i10 = 0;
+                for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                    wc0 wc0Var = (wc0) arrayList.get(i12);
+                    if (wc0Var != null && !UserObject.isUserSelf(wc0Var.f39340c)) {
+                        i10++;
+                    }
+                }
+            } else {
+                i10 = 0;
+            }
+            if (this.f37383j0 && i10 == 1) {
+                cd0Var.f33092f0 = ((wc0) arrayList.get(0)).f39338a;
+            }
+            this.f37383j0 = false;
+            org.telegram.ui.ActionBar.w0 w0Var = cd0Var.W;
+            if (i10 != 1) {
+                i11 = 8;
+            }
+            w0Var.setVisibility(i11);
         }
-        bd0Var.I0.setText(LocaleController.formatPluralString("LocationStories", c02, new Object[0]));
-        pc0 pc0Var = bd0Var.Q;
-        if (c02 > 0) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        if (pc0Var.f48622f0 != z4) {
-            pc0Var.f48622f0 = z4;
-            pc0Var.l();
-            bd0Var.R.v0(0, AndroidUtilities.dp(200.0f), null);
-        }
-    }
-
-    @Override
-    public final boolean T() {
-        return false;
-    }
-
-    @Override
-    public final org.telegram.ui.Components.sl0 f() {
-        return this.f40431a.R;
-    }
-
-    @Override
-    public final TLRPC.Chat g() {
-        return null;
-    }
-
-    @Override
-    public final boolean h(TLRPC.ChatParticipant chatParticipant, boolean z4, boolean z10, View view) {
-        return false;
-    }
-
-    @Override
-    public final boolean q() {
-        return true;
-    }
-
-    @Override
-    public final void E() {
+        super.N(arrayList);
     }
 }

@@ -3,37 +3,37 @@ package b6;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.internal.BasePendingResult;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import j7.o5;
+import j7.q5;
 import java.util.concurrent.TimeUnit;
 public final class u implements com.google.android.gms.common.api.o {
-    public final o5 f1783a;
-    public final TaskCompletionSource f1784b;
-    public final l f1785c;
+    public final q5 f1659a;
+    public final TaskCompletionSource f1660b;
+    public final l f1661c;
 
-    public u(o5 o5Var, TaskCompletionSource taskCompletionSource, l lVar) {
-        this.f1783a = o5Var;
-        this.f1784b = taskCompletionSource;
-        this.f1785c = lVar;
+    public u(q5 q5Var, TaskCompletionSource taskCompletionSource, l lVar) {
+        this.f1659a = q5Var;
+        this.f1660b = taskCompletionSource;
+        this.f1661c = lVar;
     }
 
     @Override
     public final void a(Status status) {
         if (status.e()) {
-            o5 o5Var = this.f1783a;
+            q5 q5Var = this.f1659a;
             TimeUnit timeUnit = TimeUnit.MILLISECONDS;
-            BasePendingResult basePendingResult = (BasePendingResult) o5Var;
-            m.j("Result has already been consumed.", !basePendingResult.f2669j);
+            BasePendingResult basePendingResult = (BasePendingResult) q5Var;
+            m.j("Result has already been consumed.", !basePendingResult.f2723j);
             try {
                 if (!basePendingResult.d.await(0L, timeUnit)) {
-                    basePendingResult.e(Status.f2644n);
+                    basePendingResult.e(Status.f2699n);
                 }
             } catch (InterruptedException unused) {
-                basePendingResult.e(Status.f2643f);
+                basePendingResult.e(Status.f2698f);
             }
             m.j("Result is not ready.", basePendingResult.g());
-            this.f1784b.setResult(this.f1785c.f(basePendingResult.j()));
+            this.f1660b.setResult(this.f1661c.J(basePendingResult.j()));
             return;
         }
-        this.f1784b.setException(m.m(status));
+        this.f1660b.setException(m.m(status));
     }
 }

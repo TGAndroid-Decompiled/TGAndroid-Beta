@@ -26,27 +26,27 @@ public final class b implements j3.g {
     public static final String T;
     public static final String U;
     public static final String V;
-    public static final sg.a W;
+    public static final s0.b W;
     public final float B;
     public final int C;
     public final float D;
-    public final CharSequence f48928a;
-    public final Layout.Alignment f48929b;
-    public final Layout.Alignment f48930c;
+    public final CharSequence f45662a;
+    public final Layout.Alignment f45663b;
+    public final Layout.Alignment f45664c;
     public final Bitmap d;
-    public final float f48931e;
-    public final int f48932f;
+    public final float e;
+    public final int f45665f;
     public final int h;
-    public final float f48933n;
-    public final int f48934r;
-    public final float f48935s;
+    public final float f45666n;
+    public final int f45667r;
+    public final float f45668s;
     public final float v;
-    public final boolean f48936w;
-    public final int f48937x;
-    public final int f48938y;
+    public final boolean f45669w;
+    public final int f45670x;
+    public final int f45671y;
 
     static {
-        int i10 = d0.f7237a;
+        int i10 = d0.f6924a;
         F = Integer.toString(0, 36);
         G = Integer.toString(1, 36);
         H = Integer.toString(2, 36);
@@ -64,7 +64,7 @@ public final class b implements j3.g {
         T = Integer.toString(14, 36);
         U = Integer.toString(15, 36);
         V = Integer.toString(16, 36);
-        W = new sg.a(18);
+        W = new s0.b(23);
     }
 
     public b(CharSequence charSequence, Layout.Alignment alignment, Layout.Alignment alignment2, Bitmap bitmap, float f10, int i10, int i11, float f11, int i12, int i13, float f12, float f13, float f14, boolean z4, int i14, int i15, float f15) {
@@ -80,25 +80,25 @@ public final class b implements j3.g {
             h5.a.f(z10);
         }
         if (charSequence instanceof Spanned) {
-            this.f48928a = SpannedString.valueOf(charSequence);
+            this.f45662a = SpannedString.valueOf(charSequence);
         } else if (charSequence != null) {
-            this.f48928a = charSequence.toString();
+            this.f45662a = charSequence.toString();
         } else {
-            this.f48928a = null;
+            this.f45662a = null;
         }
-        this.f48929b = alignment;
-        this.f48930c = alignment2;
+        this.f45663b = alignment;
+        this.f45664c = alignment2;
         this.d = bitmap;
-        this.f48931e = f10;
-        this.f48932f = i10;
+        this.e = f10;
+        this.f45665f = i10;
         this.h = i11;
-        this.f48933n = f11;
-        this.f48934r = i12;
-        this.f48935s = f13;
+        this.f45666n = f11;
+        this.f45667r = i12;
+        this.f45668s = f13;
         this.v = f14;
-        this.f48936w = z4;
-        this.f48937x = i14;
-        this.f48938y = i13;
+        this.f45669w = z4;
+        this.f45670x = i14;
+        this.f45671y = i13;
         this.B = f12;
         this.C = i15;
         this.D = f15;
@@ -112,7 +112,7 @@ public final class b implements j3.g {
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
             Bitmap bitmap2 = bVar.d;
-            if (TextUtils.equals(this.f48928a, bVar.f48928a) && this.f48929b == bVar.f48929b && this.f48930c == bVar.f48930c && ((bitmap = this.d) != null ? !(bitmap2 == null || !bitmap.sameAs(bitmap2)) : bitmap2 == null) && this.f48931e == bVar.f48931e && this.f48932f == bVar.f48932f && this.h == bVar.h && this.f48933n == bVar.f48933n && this.f48934r == bVar.f48934r && this.f48935s == bVar.f48935s && this.v == bVar.v && this.f48936w == bVar.f48936w && this.f48937x == bVar.f48937x && this.f48938y == bVar.f48938y && this.B == bVar.B && this.C == bVar.C && this.D == bVar.D) {
+            if (TextUtils.equals(this.f45662a, bVar.f45662a) && this.f45663b == bVar.f45663b && this.f45664c == bVar.f45664c && ((bitmap = this.d) != null ? !(bitmap2 == null || !bitmap.sameAs(bitmap2)) : bitmap2 == null) && this.e == bVar.e && this.f45665f == bVar.f45665f && this.h == bVar.h && this.f45666n == bVar.f45666n && this.f45667r == bVar.f45667r && this.f45668s == bVar.f45668s && this.v == bVar.v && this.f45669w == bVar.f45669w && this.f45670x == bVar.f45670x && this.f45671y == bVar.f45671y && this.B == bVar.B && this.C == bVar.C && this.D == bVar.D) {
                 return true;
             }
         }
@@ -120,6 +120,6 @@ public final class b implements j3.g {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f48928a, this.f48929b, this.f48930c, this.d, Float.valueOf(this.f48931e), Integer.valueOf(this.f48932f), Integer.valueOf(this.h), Float.valueOf(this.f48933n), Integer.valueOf(this.f48934r), Float.valueOf(this.f48935s), Float.valueOf(this.v), Boolean.valueOf(this.f48936w), Integer.valueOf(this.f48937x), Integer.valueOf(this.f48938y), Float.valueOf(this.B), Integer.valueOf(this.C), Float.valueOf(this.D)});
+        return Arrays.hashCode(new Object[]{this.f45662a, this.f45663b, this.f45664c, this.d, Float.valueOf(this.e), Integer.valueOf(this.f45665f), Integer.valueOf(this.h), Float.valueOf(this.f45666n), Integer.valueOf(this.f45667r), Float.valueOf(this.f45668s), Float.valueOf(this.v), Boolean.valueOf(this.f45669w), Integer.valueOf(this.f45670x), Integer.valueOf(this.f45671y), Float.valueOf(this.B), Integer.valueOf(this.C), Float.valueOf(this.D)});
     }
 }

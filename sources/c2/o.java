@@ -2,15 +2,15 @@ package c2;
 
 import android.os.Bundle;
 public final class o {
-    public final Bundle f2142a;
-    public v f2143b;
+    public final Bundle f2001a;
+    public w f2002b;
 
-    public o(v vVar, boolean z4) {
-        if (vVar != null) {
+    public o(w wVar, boolean z4) {
+        if (wVar != null) {
             Bundle bundle = new Bundle();
-            this.f2142a = bundle;
-            this.f2143b = vVar;
-            bundle.putBundle("selector", vVar.f2184a);
+            this.f2001a = bundle;
+            this.f2002b = wVar;
+            bundle.putBundle("selector", wVar.f2042a);
             bundle.putBoolean("activeScan", z4);
             return;
         }
@@ -18,26 +18,26 @@ public final class o {
     }
 
     public final void a() {
-        if (this.f2143b == null) {
-            v b10 = v.b(this.f2142a.getBundle("selector"));
-            this.f2143b = b10;
+        if (this.f2002b == null) {
+            w b10 = w.b(this.f2001a.getBundle("selector"));
+            this.f2002b = b10;
             if (b10 == null) {
-                this.f2143b = v.f2183c;
+                this.f2002b = w.f2041c;
             }
         }
     }
 
     public final boolean b() {
-        return this.f2142a.getBoolean("activeScan");
+        return this.f2001a.getBoolean("activeScan");
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof o) {
             o oVar = (o) obj;
             a();
-            v vVar = this.f2143b;
+            w wVar = this.f2002b;
             oVar.a();
-            if (vVar.equals(oVar.f2143b) && b() == oVar.b()) {
+            if (wVar.equals(oVar.f2002b) && b() == oVar.b()) {
                 return true;
             }
         }
@@ -46,20 +46,20 @@ public final class o {
 
     public final int hashCode() {
         a();
-        return this.f2143b.hashCode() ^ b();
+        return this.f2002b.hashCode() ^ b();
     }
 
     public final String toString() {
         StringBuilder sb = new StringBuilder("DiscoveryRequest{ selector=");
         a();
-        sb.append(this.f2143b);
+        sb.append(this.f2002b);
         sb.append(", activeScan=");
         sb.append(b());
         sb.append(", isValid=");
         a();
-        v vVar = this.f2143b;
-        vVar.a();
-        sb.append(!vVar.f2185b.contains(null));
+        w wVar = this.f2002b;
+        wVar.a();
+        sb.append(!wVar.f2043b.contains(null));
         sb.append(" }");
         return sb.toString();
     }

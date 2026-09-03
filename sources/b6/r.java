@@ -8,13 +8,13 @@ import android.util.Log;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class r {
-    public static final a0.k f1771a = new a0.k(0);
-    public static Locale f1772b;
+    public static final a0.k f1648a = new a0.k(0);
+    public static Locale f1649b;
 
     public static String a(Context context) {
         String packageName = context.getPackageName();
         try {
-            Context context2 = k6.c.a(context).f10475a;
+            Context context2 = (Context) k6.b.a(context).f1772b;
             return context2.getPackageManager().getApplicationLabel(context2.getPackageManager().getApplicationInfo(packageName, 0)).toString();
         } catch (PackageManager.NameNotFoundException | NullPointerException unused) {
             String str = context.getApplicationInfo().name;
@@ -140,19 +140,19 @@ public abstract class r {
 
     public static String f(Context context, String str) {
         Resources resources;
-        a0.k kVar = f1771a;
+        a0.k kVar = f1648a;
         synchronized (kVar) {
             try {
-                Locale locale = k7.x.a(context.getResources().getConfiguration()).f15177a.get(0);
-                if (!locale.equals(f1772b)) {
+                Locale locale = k7.w.a(context.getResources().getConfiguration()).f14189a.get(0);
+                if (!locale.equals(f1649b)) {
                     kVar.clear();
-                    f1772b = locale;
+                    f1649b = locale;
                 }
                 String str2 = (String) kVar.get(str);
                 if (str2 != null) {
                     return str2;
                 }
-                AtomicBoolean atomicBoolean = y5.g.f50807a;
+                AtomicBoolean atomicBoolean = y5.g.f47178a;
                 try {
                     resources = context.getPackageManager().getResourcesForApplication("com.google.android.gms");
                 } catch (PackageManager.NameNotFoundException unused) {
@@ -167,7 +167,7 @@ public abstract class r {
                         if (TextUtils.isEmpty(string)) {
                             Log.w("GoogleApiAvailability", "Got empty resource: ".concat(str));
                         } else {
-                            f1771a.put(str, string);
+                            f1648a.put(str, string);
                             return string;
                         }
                     }

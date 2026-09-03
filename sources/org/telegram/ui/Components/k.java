@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
-public final class k implements il0 {
-    public final int f28220a;
-    public final Object f28221b;
+public final class k implements hl0 {
+    public final int f26085a;
+    public final Object f26086b;
 
     public k(Object obj, int i10) {
-        this.f28220a = i10;
-        this.f28221b = obj;
+        this.f26085a = i10;
+        this.f26086b = obj;
     }
 
     @Override
-    public final void f(int r33, android.view.View r34) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k.f(int, android.view.View):void");
+    public final void d(int r33, android.view.View r34) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k.d(int, android.view.View):void");
     }
 }

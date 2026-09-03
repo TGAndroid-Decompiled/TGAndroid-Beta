@@ -6,17 +6,17 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.HashSet;
 public final class m {
-    public final Bundle f2134a;
-    public final ArrayList f2135b;
-    public final ArrayList f2136c;
+    public final Bundle f1996a;
+    public final ArrayList f1997b;
+    public final ArrayList f1998c;
     public final HashSet d;
 
     public m(String str, String str2) {
-        this.f2135b = new ArrayList();
-        this.f2136c = new ArrayList();
+        this.f1997b = new ArrayList();
+        this.f1998c = new ArrayList();
         this.d = new HashSet();
         Bundle bundle = new Bundle();
-        this.f2134a = bundle;
+        this.f1996a = bundle;
         if (str != null) {
             bundle.putString("id", str);
             if (str2 != null) {
@@ -38,7 +38,7 @@ public final class m {
                     i10++;
                     IntentFilter intentFilter = (IntentFilter) obj;
                     if (intentFilter != null) {
-                        ArrayList arrayList2 = this.f2136c;
+                        ArrayList arrayList2 = this.f1998c;
                         if (!arrayList2.contains(intentFilter)) {
                             arrayList2.add(intentFilter);
                         }
@@ -52,21 +52,21 @@ public final class m {
     }
 
     public final n b() {
-        ArrayList<? extends Parcelable> arrayList = new ArrayList<>(this.f2136c);
-        Bundle bundle = this.f2134a;
+        ArrayList<? extends Parcelable> arrayList = new ArrayList<>(this.f1998c);
+        Bundle bundle = this.f1996a;
         bundle.putParcelableArrayList("controlFilters", arrayList);
-        bundle.putStringArrayList("groupMemberIds", new ArrayList<>(this.f2135b));
+        bundle.putStringArrayList("groupMemberIds", new ArrayList<>(this.f1997b));
         bundle.putStringArrayList("allowedPackages", new ArrayList<>(this.d));
         return new n(bundle);
     }
 
     public m(n nVar) {
-        this.f2135b = new ArrayList();
-        this.f2136c = new ArrayList();
+        this.f1997b = new ArrayList();
+        this.f1998c = new ArrayList();
         this.d = new HashSet();
-        this.f2134a = new Bundle(nVar.f2138a);
-        this.f2135b = nVar.c();
-        this.f2136c = nVar.b();
+        this.f1996a = new Bundle(nVar.f1999a);
+        this.f1997b = nVar.c();
+        this.f1998c = nVar.b();
         this.d = nVar.a();
     }
 }

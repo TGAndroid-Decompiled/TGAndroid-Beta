@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-public final class e61 extends fg.r1 {
+public final class e61 extends eg.s1 {
     public final f61 J;
 
     public e61(f61 f61Var, Context context) {

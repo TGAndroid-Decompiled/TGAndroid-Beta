@@ -8,18 +8,18 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import r0.m1;
 public abstract class e implements a2 {
-    public Object f2406a;
+    public Object f2238a;
 
     public abstract Object E(Object obj);
 
     public Object F(Object obj) {
-        synchronized (((HashMap) this.f2406a)) {
+        synchronized (((HashMap) this.f2238a)) {
             try {
-                if (((HashMap) this.f2406a).containsKey(obj)) {
-                    return ((HashMap) this.f2406a).get(obj);
+                if (((HashMap) this.f2238a).containsKey(obj)) {
+                    return ((HashMap) this.f2238a).get(obj);
                 }
                 Object E = E(obj);
-                ((HashMap) this.f2406a).put(obj, E);
+                ((HashMap) this.f2238a).put(obj, E);
                 return E;
             } catch (Throwable th2) {
                 throw th2;
@@ -28,7 +28,7 @@ public abstract class e implements a2 {
     }
 
     public boolean G() {
-        if (b() == 3 && j() && y() == 0) {
+        if (c() == 3 && j() && y() == 0) {
             return true;
         }
         return false;
@@ -39,7 +39,7 @@ public abstract class e implements a2 {
     public abstract m1 I(m1 m1Var, List list);
 
     public void J() {
-        synchronized (this.f2406a) {
+        synchronized (this.f2238a) {
         }
     }
 
@@ -48,22 +48,22 @@ public abstract class e implements a2 {
     public e(int i10) {
         switch (i10) {
             case 2:
-                this.f2406a = new Object();
+                this.f2238a = new Object();
                 return;
             case 3:
-                this.f2406a = new n2();
+                this.f2238a = new n2();
                 return;
             case 7:
-                this.f2406a = new LinkedHashMap();
+                this.f2238a = new LinkedHashMap();
                 return;
             default:
-                this.f2406a = new HashMap();
+                this.f2238a = new HashMap();
                 return;
         }
     }
 
     public e(String str, Bundle data) {
         kotlin.jvm.internal.j.e(data, "data");
-        this.f2406a = data;
+        this.f2238a = data;
     }
 }

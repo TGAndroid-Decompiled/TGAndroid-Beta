@@ -1,29 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class ag0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f25252a;
-    public final cg0 f25253b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ag0 extends AnimatorListenerAdapter {
+    public final int f23372a;
+    public final bg0 f23373b;
 
-    public ag0(cg0 cg0Var, int i10) {
-        this.f25252a = i10;
-        this.f25253b = cg0Var;
+    public ag0(bg0 bg0Var, int i10) {
+        this.f23372a = i10;
+        this.f23373b = bg0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f25252a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f23372a) {
             case 0:
-                cg0 cg0Var = this.f25253b;
-                cg0Var.getClass();
-                cg0Var.f25937y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                cg0Var.invalidate();
+                bg0 bg0Var = this.f23373b;
+                bg0Var.h = false;
+                bg0Var.f23670a = bg0Var.f23672c;
+                bg0Var.invalidate();
+                int i10 = bg0Var.G;
+                if (i10 >= 0) {
+                    bg0Var.b(i10);
+                    bg0Var.G = -1;
+                    return;
+                }
                 return;
             default:
-                cg0 cg0Var2 = this.f25253b;
-                cg0Var2.getClass();
-                cg0Var2.f25937y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                cg0Var2.invalidate();
+                bg0 bg0Var2 = this.f23373b;
+                bg0Var2.f23674n = false;
+                bg0Var2.h = false;
+                bg0Var2.invalidate();
+                int i11 = bg0Var2.G;
+                if (i11 >= 0) {
+                    bg0Var2.b(i11);
+                    bg0Var2.G = -1;
+                }
+                bg0Var2.a();
                 return;
         }
     }

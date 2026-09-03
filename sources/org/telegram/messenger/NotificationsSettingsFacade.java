@@ -39,12 +39,12 @@ public class NotificationsSettingsFacade {
         int c10 = y3.c("notifyuntil_", sharedPrefKey, getPreferences(), 0);
         SharedPreferences.Editor edit = getPreferences().edit();
         if ((peerNotifySettings.flags & 2) != 0) {
-            edit.putBoolean(org.telegram.ui.yh.k("silent_", sharedPrefKey), peerNotifySettings.silent);
+            edit.putBoolean(vh.w2.e("silent_", sharedPrefKey), peerNotifySettings.silent);
         } else {
             edit.remove("silent_" + sharedPrefKey);
         }
         if ((peerNotifySettings.flags & 64) != 0) {
-            edit.putBoolean(org.telegram.ui.yh.k("stories_", sharedPrefKey), !peerNotifySettings.stories_muted);
+            edit.putBoolean(vh.w2.e("stories_", sharedPrefKey), !peerNotifySettings.stories_muted);
         } else {
             edit.remove("stories_" + sharedPrefKey);
         }

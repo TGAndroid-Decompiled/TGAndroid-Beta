@@ -7,45 +7,45 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class mn0 implements Runnable {
-    public final int f39006a;
-    public final lo0 f39007b;
-    public final TLRPC.TL_error f39008c;
+    public final int f36139a;
+    public final lo0 f36140b;
+    public final TLRPC.TL_error f36141c;
     public final TLObject d;
 
     public mn0(lo0 lo0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
-        this.f39006a = i10;
-        this.f39007b = lo0Var;
-        this.f39008c = tL_error;
+        this.f36139a = i10;
+        this.f36140b = lo0Var;
+        this.f36141c = tL_error;
         this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f39006a) {
+        switch (this.f36139a) {
             case 0:
-                lo0 lo0Var = this.f39007b;
-                lo0Var.f38711b0 = false;
-                if (this.f39008c == null) {
+                lo0 lo0Var = this.f36140b;
+                lo0Var.f35819b0 = false;
+                if (this.f36141c == null) {
                     TL_account.Password password = (TL_account.Password) this.d;
                     lo0Var.X = password;
                     if (!TwoStepVerificationActivity.i0(password, false)) {
                         org.telegram.ui.Components.z4.x0(lo0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
                         return;
                     }
-                    TLRPC.PaymentForm paymentForm = lo0Var.f38745z0;
+                    TLRPC.PaymentForm paymentForm = lo0Var.f35852z0;
                     if (paymentForm != null && lo0Var.X.has_password) {
                         paymentForm.password_missing = false;
                         paymentForm.can_save_credentials = true;
                         lo0Var.K0();
                     }
                     TwoStepVerificationActivity.m0(lo0Var.X);
-                    lo0 lo0Var2 = lo0Var.f38714c0;
+                    lo0 lo0Var2 = lo0Var.f35822c0;
                     if (lo0Var2 != null) {
                         lo0Var2.C0(lo0Var.X);
                     }
-                    if (!lo0Var.X.has_password && lo0Var.f38708a0 == null) {
+                    if (!lo0Var.X.has_password && lo0Var.f35816a0 == null) {
                         kn0 kn0Var = new kn0(lo0Var, 3);
-                        lo0Var.f38708a0 = kn0Var;
+                        lo0Var.f35816a0 = kn0Var;
                         AndroidUtilities.runOnUIThread(kn0Var, 5000L);
                         return;
                     }
@@ -53,10 +53,10 @@ public final class mn0 implements Runnable {
                 }
                 return;
             case 1:
-                lo0.V(this.f39007b, this.f39008c, this.d);
+                lo0.V(this.f36140b, this.f36141c, this.d);
                 return;
             default:
-                lo0.X(this.f39007b, this.f39008c, this.d);
+                lo0.X(this.f36140b, this.f36141c, this.d);
                 return;
         }
     }

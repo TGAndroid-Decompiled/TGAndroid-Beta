@@ -2,44 +2,44 @@ package r0;
 
 import android.view.WindowInsets;
 public class g1 extends f1 {
-    public i0.b f46453o;
-    public i0.b f46454p;
-    public i0.b f46455q;
+    public i0.b f43127o;
+    public i0.b f43128p;
+    public i0.b f43129q;
 
     public g1(m1 m1Var, WindowInsets windowInsets) {
         super(m1Var, windowInsets);
-        this.f46453o = null;
-        this.f46454p = null;
-        this.f46455q = null;
+        this.f43127o = null;
+        this.f43128p = null;
+        this.f43129q = null;
     }
 
     @Override
     public i0.b h() {
-        if (this.f46454p == null) {
-            this.f46454p = i0.b.c(this.f46443c.getMandatorySystemGestureInsets());
+        if (this.f43128p == null) {
+            this.f43128p = i0.b.c(this.f43119c.getMandatorySystemGestureInsets());
         }
-        return this.f46454p;
+        return this.f43128p;
     }
 
     @Override
     public i0.b j() {
-        if (this.f46453o == null) {
-            this.f46453o = i0.b.c(this.f46443c.getSystemGestureInsets());
+        if (this.f43127o == null) {
+            this.f43127o = i0.b.c(this.f43119c.getSystemGestureInsets());
         }
-        return this.f46453o;
+        return this.f43127o;
     }
 
     @Override
     public i0.b l() {
-        if (this.f46455q == null) {
-            this.f46455q = i0.b.c(this.f46443c.getTappableElementInsets());
+        if (this.f43129q == null) {
+            this.f43129q = i0.b.c(this.f43119c.getTappableElementInsets());
         }
-        return this.f46455q;
+        return this.f43129q;
     }
 
     @Override
     public m1 m(int i10, int i11, int i12, int i13) {
-        return m1.h(null, this.f46443c.inset(i10, i11, i12, i13));
+        return m1.h(null, this.f43119c.inset(i10, i11, i12, i13));
     }
 
     @Override

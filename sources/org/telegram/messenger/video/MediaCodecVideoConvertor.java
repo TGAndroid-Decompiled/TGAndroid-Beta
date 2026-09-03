@@ -8,14 +8,15 @@ import android.os.Build;
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import kf.k0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.ui.yh;
-import qh.q6;
+import org.telegram.ui.ai;
+import ph.s6;
 public class MediaCodecVideoConvertor {
     private static final int MEDIACODEC_TIMEOUT_DEFAULT = 2500;
     private static final int MEDIACODEC_TIMEOUT_INCREASED = 22000;
@@ -45,7 +46,7 @@ public class MediaCodecVideoConvertor {
         String blurPath;
         File cacheFile;
         MediaController.VideoConvertorListener callback;
-        qh.r collage;
+        ph.r collage;
         ArrayList<VideoEditedInfo.Part> collageParts;
         MediaController.CropState cropState;
         long duration;
@@ -53,7 +54,7 @@ public class MediaCodecVideoConvertor {
         int framerate;
         Integer gradientBottomColor;
         Integer gradientTopColor;
-        q6 hdrInfo;
+        s6 hdrInfo;
         boolean isDark;
         boolean isPhoto;
         boolean isRound;
@@ -141,14 +142,14 @@ public class MediaCodecVideoConvertor {
         }
     }
 
-    private static void applyAudioInputs(ArrayList<MixedSoundInfo> arrayList, ArrayList<nf.a> arrayList2) {
+    private static void applyAudioInputs(ArrayList<MixedSoundInfo> arrayList, ArrayList<mf.a> arrayList2) {
         if (arrayList != null) {
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 MixedSoundInfo mixedSoundInfo = arrayList.get(i10);
                 try {
-                    nf.c cVar = new nf.c(mixedSoundInfo.audioFile);
-                    AudioDecoder audioDecoder = cVar.f15985b;
-                    cVar.f15982a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
+                    mf.c cVar = new mf.c(mixedSoundInfo.audioFile);
+                    AudioDecoder audioDecoder = cVar.f13915b;
+                    cVar.f13912a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
                     long j10 = mixedSoundInfo.startTime;
                     int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
                     if (i11 > 0) {
@@ -168,8 +169,8 @@ public class MediaCodecVideoConvertor {
                         audioDecoder.setEndTimeUs(j11 + j12);
                     }
                     arrayList2.add(cVar);
-                } catch (Exception e6) {
-                    FileLog.e(e6);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
             }
         }
@@ -247,7 +248,7 @@ public class MediaCodecVideoConvertor {
             f17 += 0.01f;
         }
         StringBuilder m9 = e2.c.m("source size ", i10, "x", i11, "    dest size ");
-        l.d.w(m9, i12, "x", i13, "   rotated ");
+        k0.w(m9, i12, "x", i13, "   rotated ");
         m9.append(z10);
         m9.append("   ratio ");
         m9.append(f11);
@@ -280,8 +281,8 @@ public class MediaCodecVideoConvertor {
         sb.append(glslFloat);
         sb.append(";\nconst float offsetY = ");
         sb.append(glslFloat2);
-        yh.w(sb, ";\nconst float kernelScaleX = ", glslFloat3, ";\nconst float kernelScaleY = ", glslFloat4);
-        yh.w(sb, ";\nconst float weightsum = ", glslFloat5, ";\nconst float pixelSizeX = ", glslFloat6);
+        ai.w(sb, ";\nconst float kernelScaleX = ", glslFloat3, ";\nconst float kernelScaleY = ", glslFloat4);
+        ai.w(sb, ";\nconst float weightsum = ", glslFloat5, ";\nconst float pixelSizeX = ", glslFloat6);
         sb.append(";\nconst float pixelSizeY = ");
         sb.append(glslFloat7);
         sb.append(";\nvoid main() {\n    vec3 accumulation = vec3(0.0);\n    for (int i = 0; i < ");
@@ -331,9 +332,9 @@ public class MediaCodecVideoConvertor {
                     String str = (String) arrayList.remove(0);
                     mediaFormat.setString("mime", str);
                     return MediaCodec.createDecoderByType(str);
-                } catch (Exception e6) {
+                } catch (Exception e) {
                     if (exc == null) {
-                        exc = e6;
+                        exc = e;
                     }
                 }
             }
@@ -369,7 +370,7 @@ public class MediaCodecVideoConvertor {
         return sb.toString();
     }
 
-    private static String hdrFragmentShader(int i10, int i11, int i12, int i13, boolean z4, q6 q6Var, int i14, boolean z10) {
+    private static String hdrFragmentShader(int i10, int i11, int i12, int i13, boolean z4, s6 s6Var, int i14, boolean z10) {
         int i15;
         int i16;
         String readRes;
@@ -409,7 +410,7 @@ public class MediaCodecVideoConvertor {
             f17 += 0.01f;
         }
         StringBuilder m9 = e2.c.m("HDR source size ", i10, "x", i11, "    dest size ");
-        l.d.w(m9, i12, "x", i13, "   rotated ");
+        k0.w(m9, i12, "x", i13, "   rotated ");
         m9.append(z10);
         m9.append("   ratio ");
         m9.append(f11);
@@ -431,7 +432,7 @@ public class MediaCodecVideoConvertor {
         String glslFloat5 = glslFloat(min * min2);
         String glslFloat6 = glslFloat(1.0f / f10);
         String glslFloat7 = glslFloat(1.0f / f12);
-        if (q6Var.a() == 1) {
+        if (s6Var.a() == 1) {
             readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_hlg);
         } else {
             readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_pq);
@@ -442,8 +443,8 @@ public class MediaCodecVideoConvertor {
         sb.append(glslFloat);
         sb.append(";\nconst float offsetY = ");
         sb.append(glslFloat2);
-        yh.w(sb, ";\nconst float kernelScaleX = ", glslFloat3, ";\nconst float kernelScaleY = ", glslFloat4);
-        yh.w(sb, ";\nconst float weightsum = ", glslFloat5, ";\nconst float pixelSizeX = ", glslFloat6);
+        ai.w(sb, ";\nconst float kernelScaleX = ", glslFloat3, ";\nconst float kernelScaleY = ", glslFloat4);
+        ai.w(sb, ";\nconst float weightsum = ", glslFloat5, ";\nconst float pixelSizeX = ", glslFloat6);
         sb.append(";\nconst float pixelSizeY = ");
         sb.append(glslFloat7);
         sb.append(";\nvoid main() {\n    vec3 accumulation = vec3(0.0);\n    for (int i = 0; i < ");

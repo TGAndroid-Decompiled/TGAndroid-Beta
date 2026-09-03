@@ -6,40 +6,40 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
-import org.telegram.ui.Components.pv;
-import org.telegram.ui.Components.voip.q1;
+import org.telegram.ui.Components.mv;
+import org.telegram.ui.Components.voip.p1;
 public final class c {
-    public final int f50543a;
-    public final b f50544b;
-    public final Interpolator f50545c;
+    public final int f46962a;
+    public final b f46963b;
+    public final Interpolator f46964c;
     public final long d;
-    public float f50546e;
-    public float f50547f;
-    public boolean f50548g;
+    public float e;
+    public float f46965f;
+    public boolean f46966g;
     public ValueAnimator h;
 
     public c(int i10, b bVar, Interpolator interpolator, long j10) {
-        this.f50543a = i10;
-        this.f50544b = bVar;
-        this.f50545c = interpolator;
+        this.f46962a = i10;
+        this.f46963b = bVar;
+        this.f46964c = interpolator;
         this.d = j10;
     }
 
     public final void a(float f10) {
         long j10;
         if (Looper.myLooper() == Looper.getMainLooper()) {
-            if (this.f50548g) {
+            if (this.f46966g) {
                 b();
             }
-            float f11 = this.f50546e;
-            int i10 = this.f50543a;
-            b bVar = this.f50544b;
+            float f11 = this.e;
+            int i10 = this.f46962a;
+            b bVar = this.f46963b;
             if (f11 == f10) {
                 bVar.z(f11, i10);
                 return;
             }
-            if (!this.f50548g) {
-                this.f50548g = true;
+            if (!this.f46966g) {
+                this.f46966g = true;
             }
             float f12 = f10 - f11;
             if (Build.VERSION.SDK_INT >= 26 && !ValueAnimator.areAnimatorsEnabled()) {
@@ -49,20 +49,20 @@ public final class c {
             }
             if (j10 <= 0) {
                 d(f10, 1.0f);
-                if (this.f50548g) {
-                    this.f50548g = false;
+                if (this.f46966g) {
+                    this.f46966g = false;
                 }
                 bVar.z(f10, i10);
                 return;
             }
-            this.f50547f = f10;
-            DecelerateInterpolator decelerateInterpolator = wd.a.f49529a;
+            this.f46965f = f10;
+            DecelerateInterpolator decelerateInterpolator = wd.a.f46596a;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.h = ofFloat;
             ofFloat.setDuration(j10);
-            this.h.setInterpolator(this.f50545c);
-            this.h.addUpdateListener(new pv(this, f11, f12, 4));
-            this.h.addListener(new q1(this, f11, f12, 1));
+            this.h.setInterpolator(this.f46964c);
+            this.h.addUpdateListener(new mv(this, f11, f12, 4));
+            this.h.addListener(new p1(this, f11, f12, 1));
             try {
                 this.h.start();
                 return;
@@ -76,12 +76,12 @@ public final class c {
     }
 
     public final boolean b() {
-        if (!this.f50548g) {
+        if (!this.f46966g) {
             return false;
         }
         if (Looper.myLooper() == Looper.getMainLooper()) {
-            if (this.f50548g) {
-                this.f50548g = false;
+            if (this.f46966g) {
+                this.f46966g = false;
             }
             ValueAnimator valueAnimator = this.h;
             if (valueAnimator != null) {
@@ -99,23 +99,23 @@ public final class c {
         if (!d(f10, 1.0f) && !b10) {
             return;
         }
-        this.f50544b.z(f10, this.f50543a);
+        this.f46963b.z(f10, this.f46962a);
     }
 
     public final boolean d(float f10, float f11) {
-        if (this.f50546e != f10) {
-            this.f50546e = f10;
-            this.f50544b.L(this.f50543a, f10, f11, this);
+        if (this.e != f10) {
+            this.e = f10;
+            this.f46963b.L(this.f46962a, f10, f11, this);
             return true;
         }
         return false;
     }
 
     public c(int i10, b bVar, Interpolator interpolator, long j10, float f10) {
-        this.f50543a = i10;
-        this.f50544b = bVar;
-        this.f50545c = interpolator;
+        this.f46962a = i10;
+        this.f46963b = bVar;
+        this.f46964c = interpolator;
         this.d = j10;
-        this.f50546e = f10;
+        this.e = f10;
     }
 }

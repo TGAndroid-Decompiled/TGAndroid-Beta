@@ -5,36 +5,36 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class k01 extends View {
-    public int f38153a;
-    public int f38154b;
-    public final n01 f38155c;
+    public int f35398a;
+    public int f35399b;
+    public final n01 f35400c;
 
     public k01(n01 n01Var, Context context) {
         super(context);
-        this.f38155c = n01Var;
-        this.f38153a = 0;
-        this.f38154b = 0;
+        this.f35400c = n01Var;
+        this.f35398a = 0;
+        this.f35399b = 0;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int measuredHeight;
-        int i12 = this.f38154b;
-        ProfileActivity profileActivity = this.f38155c.f39152e;
+        int i12 = this.f35399b;
+        ProfileActivity profileActivity = this.f35400c.e;
         int i13 = 0;
-        if (i12 != profileActivity.f34560a.getMeasuredHeight()) {
-            this.f38153a = 0;
+        if (i12 != profileActivity.f32002a.getMeasuredHeight()) {
+            this.f35398a = 0;
         }
-        this.f38154b = profileActivity.f34560a.getMeasuredHeight();
-        int childCount = profileActivity.f34560a.getChildCount();
-        if (childCount == profileActivity.d.f39152e.K2) {
+        this.f35399b = profileActivity.f32002a.getMeasuredHeight();
+        int childCount = profileActivity.f32002a.getChildCount();
+        if (childCount == profileActivity.d.e.K2) {
             int i14 = 0;
             for (int i15 = 0; i15 < childCount; i15++) {
-                View childAt = profileActivity.f34560a.getChildAt(i15);
-                profileActivity.f34560a.getClass();
+                View childAt = profileActivity.f32002a.getChildAt(i15);
+                profileActivity.f32002a.getClass();
                 int R = RecyclerView.R(childAt);
-                if (R >= 0 && R != profileActivity.f34737z3) {
-                    i14 += profileActivity.f34560a.getChildAt(i15).getMeasuredHeight();
+                if (R >= 0 && R != profileActivity.f32178z3) {
+                    i14 += profileActivity.f32002a.getChildAt(i15).getMeasuredHeight();
                 }
             }
             View view = profileActivity.fragmentView;
@@ -50,11 +50,11 @@ public final class k01 extends View {
             if (currentActionBarHeight > 0) {
                 i13 = currentActionBarHeight;
             }
-            int measuredWidth = profileActivity.f34560a.getMeasuredWidth();
-            this.f38153a = i13;
+            int measuredWidth = profileActivity.f32002a.getMeasuredWidth();
+            this.f35398a = i13;
             setMeasuredDimension(measuredWidth, i13);
             return;
         }
-        setMeasuredDimension(profileActivity.f34560a.getMeasuredWidth(), this.f38153a);
+        setMeasuredDimension(profileActivity.f32002a.getMeasuredWidth(), this.f35398a);
     }
 }

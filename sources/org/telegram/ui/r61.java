@@ -5,42 +5,42 @@ import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class r61 extends AnimatorListenerAdapter {
-    public final boolean f40758a;
-    public final Runnable f40759b;
-    public final boolean[] f40760c;
+    public final boolean f37720a;
+    public final Runnable f37721b;
+    public final boolean[] f37722c;
     public final boolean d;
-    public final Runnable f40761e;
-    public final s61 f40762f;
+    public final Runnable e;
+    public final t61 f37723f;
 
-    public r61(s61 s61Var, boolean z4, Runnable runnable, boolean[] zArr, boolean z10, Runnable runnable2) {
-        this.f40762f = s61Var;
-        this.f40758a = z4;
-        this.f40759b = runnable;
-        this.f40760c = zArr;
+    public r61(t61 t61Var, boolean z4, Runnable runnable, boolean[] zArr, boolean z10, Runnable runnable2) {
+        this.f37723f = t61Var;
+        this.f37720a = z4;
+        this.f37721b = runnable;
+        this.f37722c = zArr;
         this.d = z10;
-        this.f40761e = runnable2;
+        this.e = runnable2;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         float f10;
         Runnable runnable;
-        s61 s61Var = this.f40762f;
-        l0 l0Var = s61Var.f41036s;
-        boolean z4 = this.f40758a;
+        t61 t61Var = this.f37723f;
+        n0 n0Var = t61Var.f38398s;
+        boolean z4 = this.f37720a;
         if (z4) {
             f10 = 1.0f;
         } else {
             f10 = 0.0f;
         }
-        s61Var.F = f10;
-        AndroidUtilities.lerp(s61Var.f41031c, s61Var.d, f10, s61Var.f41032e);
-        l0Var.invalidate();
+        t61Var.F = f10;
+        AndroidUtilities.lerp(t61Var.f38394c, t61Var.d, f10, t61Var.e);
+        n0Var.invalidate();
         if (!z4) {
-            s61Var.v.setAlpha(s61Var.F);
+            t61Var.v.setAlpha(t61Var.F);
         }
-        if (s61Var.F < 0.5f && !z4 && (runnable = this.f40759b) != null) {
-            boolean[] zArr = this.f40760c;
+        if (t61Var.F < 0.5f && !z4 && (runnable = this.f37721b) != null) {
+            boolean[] zArr = this.f37722c;
             if (!zArr[0]) {
                 zArr[0] = true;
                 runnable.run();
@@ -48,14 +48,14 @@ public final class r61 extends AnimatorListenerAdapter {
         }
         if (!z4) {
             if (this.d) {
-                s61Var.f41029a.f36678b = false;
-                s61Var.M.f42314e0.invalidate();
+                t61Var.f38392a.f33964b = false;
+                t61Var.M.f39862e0.invalidate();
             }
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 4);
         }
-        s61Var.H = null;
-        l0Var.invalidate();
-        Runnable runnable2 = this.f40761e;
+        t61Var.H = null;
+        n0Var.invalidate();
+        Runnable runnable2 = this.e;
         if (runnable2 != null) {
             runnable2.run();
         }

@@ -1,23 +1,23 @@
 package h0;
 public final class l {
-    public static final l f7172k;
-    public final float f7173a;
-    public final float f7174b;
-    public final float f7175c;
+    public static final l f6863k;
+    public final float f6864a;
+    public final float f6865b;
+    public final float f6866c;
     public final float d;
-    public final float f7176e;
-    public final float f7177f;
-    public final float[] f7178g;
+    public final float e;
+    public final float f6867f;
+    public final float[] f6868g;
     public final float h;
-    public final float f7179i;
-    public final float f7180j;
+    public final float f6869i;
+    public final float f6870j;
 
     static {
         float f10;
         float j10 = (float) ((b.j() * 63.66197723675813d) / 100.0d);
-        float[] fArr = b.f7152c;
+        float[] fArr = b.f6845c;
         float f11 = fArr[0];
-        float[][] fArr2 = b.f7150a;
+        float[][] fArr2 = b.f6843a;
         float[] fArr3 = fArr2[0];
         float f12 = fArr[1];
         float f13 = fArr3[1] * f12;
@@ -55,19 +55,19 @@ public final class l {
         float f23 = (f22 * 400.0f) / (f22 + 27.13f);
         float f24 = fArr7[2];
         float[] fArr8 = {f21, f23, (400.0f * f24) / (f24 + 27.13f)};
-        f7172k = new l(j11, e2.c.y(fArr8[2], 0.05f, (fArr8[0] * 2.0f) + fArr8[1], pow), pow, pow, f10, 1.0f, fArr6, cbrt, (float) Math.pow(cbrt, 0.25d), sqrt);
+        f6863k = new l(j11, e2.c.y(fArr8[2], 0.05f, (fArr8[0] * 2.0f) + fArr8[1], pow), pow, pow, f10, 1.0f, fArr6, cbrt, (float) Math.pow(cbrt, 0.25d), sqrt);
     }
 
     public l(float f10, float f11, float f12, float f13, float f14, float f15, float[] fArr, float f16, float f17, float f18) {
-        this.f7177f = f10;
-        this.f7173a = f11;
-        this.f7174b = f12;
-        this.f7175c = f13;
+        this.f6867f = f10;
+        this.f6864a = f11;
+        this.f6865b = f12;
+        this.f6866c = f13;
         this.d = f14;
-        this.f7176e = f15;
-        this.f7178g = fArr;
+        this.e = f15;
+        this.f6868g = fArr;
         this.h = f16;
-        this.f7179i = f17;
-        this.f7180j = f18;
+        this.f6869i = f17;
+        this.f6870j = f18;
     }
 }

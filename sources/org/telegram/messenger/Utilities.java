@@ -97,14 +97,14 @@ public class Utilities {
     static {
         long nextLong = random.nextLong();
         ?? random2 = new Random(0L);
-        long a2 = k7.m6.a(nextLong);
-        random2.f44470a = a2;
-        long a10 = k7.m6.a(a2);
-        random2.f44471b = a10;
-        if (random2.f44470a == 0 && a10 == 0) {
-            long a11 = k7.m6.a(3735928559L);
-            random2.f44470a = a11;
-            random2.f44471b = k7.m6.a(a11);
+        long a2 = k7.l6.a(nextLong);
+        random2.f42728a = a2;
+        long a10 = k7.l6.a(a2);
+        random2.f42729b = a10;
+        if (random2.f42728a == 0 && a10 == 0) {
+            long a11 = k7.l6.a(3735928559L);
+            random2.f42728a = a11;
+            random2.f42729b = k7.l6.a(a11);
         }
         fastRandom = random2;
         stageQueue = new DispatchQueue("stageQueue");
@@ -121,8 +121,8 @@ public class Utilities {
             fileInputStream.read(bArr);
             fileInputStream.close();
             random.setSeed(bArr);
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
@@ -137,8 +137,8 @@ public class Utilities {
                 sb.append(Integer.toHexString((b10 & 255) | 256).substring(1, 3));
             }
             return sb.toString();
-        } catch (NoSuchAlgorithmException e6) {
-            FileLog.e(e6);
+        } catch (NoSuchAlgorithmException e) {
+            FileLog.e(e);
             return null;
         }
     }
@@ -154,8 +154,8 @@ public class Utilities {
                 sb.append(Integer.toHexString((b10 & 255) | 256).substring(1, 3));
             }
             return sb.toString();
-        } catch (NoSuchAlgorithmException e6) {
-            FileLog.e(e6);
+        } catch (NoSuchAlgorithmException e) {
+            FileLog.e(e);
             return null;
         }
     }
@@ -273,8 +273,8 @@ public class Utilities {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
             messageDigest.update(bArr, i10, i11);
             return messageDigest.digest();
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return new byte[20];
         }
     }
@@ -288,8 +288,8 @@ public class Utilities {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-512");
             messageDigest.update(bArr, 0, bArr.length);
             return messageDigest.digest();
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return new byte[64];
         }
     }
@@ -545,8 +545,8 @@ public class Utilities {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             messageDigest.update(bArr, i10, (int) j10);
             return messageDigest.digest();
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return new byte[32];
         }
     }
@@ -602,8 +602,8 @@ public class Utilities {
                 byteBuffer.limit(i11);
                 messageDigest.update(byteBuffer);
                 return messageDigest.digest();
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e) {
+                FileLog.e(e);
                 byteBuffer.limit(limit);
                 byteBuffer.position(position);
                 return new byte[20];
@@ -620,8 +620,8 @@ public class Utilities {
             messageDigest.update(bArr, 0, bArr.length);
             messageDigest.update(bArr2, 0, bArr2.length);
             return messageDigest.digest();
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return new byte[64];
         }
     }
@@ -633,8 +633,8 @@ public class Utilities {
                 messageDigest.update(bArr2, 0, bArr2.length);
             }
             return messageDigest.digest();
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return new byte[32];
         }
     }
@@ -663,8 +663,8 @@ public class Utilities {
             messageDigest.update(bArr2, 0, bArr2.length);
             messageDigest.update(bArr3, 0, bArr3.length);
             return messageDigest.digest();
-        } catch (Exception e6) {
-            FileLog.e(e6);
+        } catch (Exception e) {
+            FileLog.e(e);
             return new byte[64];
         }
     }
@@ -680,8 +680,8 @@ public class Utilities {
                 byteBuffer.limit(i13);
                 messageDigest.update(byteBuffer);
                 return messageDigest.digest();
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e) {
+                FileLog.e(e);
                 byteBuffer.limit(limit);
                 byteBuffer.position(position);
                 return new byte[32];

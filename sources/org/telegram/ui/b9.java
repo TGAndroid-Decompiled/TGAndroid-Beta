@@ -1,37 +1,64 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.Layout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class b9 extends TextView {
-    public final Paint f35403a;
-    public final org.telegram.ui.ActionBar.g6 f35404b;
+import android.widget.FrameLayout;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.FragmentContextView;
+public final class b9 extends FragmentContextView {
+    public final int K0;
+    public final NotificationCenter.NotificationCenterDelegate L0;
 
-    public b9(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context);
-        this.f35404b = g6Var;
-        this.f35403a = new Paint(1);
+    public b9(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, org.telegram.ui.ActionBar.p2 p2Var, FrameLayout frameLayout, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        super(context, p2Var, frameLayout, false, f6Var);
+        this.K0 = i10;
+        this.L0 = notificationCenterDelegate;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int l1 = org.telegram.ui.ActionBar.k6.l1(0.8f, org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f22055z6, this.f35404b));
-        Paint paint = this.f35403a;
-        paint.setColor(l1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1.0f);
-        float height = getHeight() / 2.0f;
-        Layout layout = getLayout();
-        int i10 = 0;
-        for (int i11 = 0; i11 < layout.getLineCount(); i11++) {
-            i10 = Math.max(i10, (int) layout.getLineWidth(i11));
+    public final void setVisibility(int i10) {
+        boolean z4;
+        boolean z10;
+        boolean z11;
+        switch (this.K0) {
+            case 0:
+                n9 n9Var = (n9) this.L0;
+                org.telegram.ui.Components.is isVar = n9Var.J;
+                FrameLayout frameLayout = n9Var.K;
+                if (i10 == 0) {
+                    z4 = true;
+                } else {
+                    z4 = false;
+                }
+                isVar.i(frameLayout, z4, true);
+                return;
+            case 1:
+                org.telegram.ui.Components.wi wiVar = (org.telegram.ui.Components.wi) this.L0;
+                org.telegram.ui.Components.is isVar2 = wiVar.f30294x;
+                FrameLayout frameLayout2 = wiVar.f30295y;
+                if (i10 == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                isVar2.i(frameLayout2, z10, true);
+                return;
+            default:
+                sf1 sf1Var = (sf1) this.L0;
+                org.telegram.ui.Components.is isVar3 = sf1Var.R0;
+                FrameLayout frameLayout3 = sf1Var.C0;
+                if (i10 == 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                isVar3.i(frameLayout3, z11, true);
+                return;
         }
-        float f10 = i10 / 2.0f;
-        canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - f10) - AndroidUtilities.dp(8.0f), height, paint);
-        canvas.drawLine((getWidth() / 2.0f) + f10 + AndroidUtilities.dp(8.0f), height, getWidth(), height, paint);
-        super.dispatchDraw(canvas);
+    }
+
+    public b9(sf1 sf1Var, Context context, sf1 sf1Var2) {
+        super(context, sf1Var2, null, false, null);
+        this.K0 = 2;
+        this.L0 = sf1Var;
     }
 }

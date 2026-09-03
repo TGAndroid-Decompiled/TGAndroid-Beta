@@ -1,240 +1,108 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
+import android.content.SharedPreferences;
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.MediaController;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessageSuggestionParams;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-public final class ml implements org.telegram.ui.Components.ki {
-    public final xn f38996a;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+public final class ml implements mm {
+    public final zn f36129a;
+    public final zn f36130b;
 
-    public ml(xn xnVar) {
-        this.f38996a = xnVar;
+    public ml(zn znVar, zn znVar2) {
+        this.f36130b = znVar;
+        this.f36129a = znVar2;
     }
 
     @Override
-    public final void B0(org.telegram.ui.Components.wg wgVar) {
-        this.f38996a.h8(wgVar);
+    public final void O0(int i10) {
+        this.f36130b.j(i10, 0, true, 0, true, 0);
     }
 
     @Override
-    public final void I1(int i10, boolean z4, boolean z10, int i11, int i12, long j10, boolean z11, boolean z12, long j11) {
-        oh.u2 u2Var;
-        HashMap<Object, Object> hashMap;
-        boolean z13;
-        int i13;
-        int i14;
-        boolean z14;
+    public final void X(boolean z4, boolean z10) {
+        int G8;
         ArrayList arrayList;
-        boolean z15;
-        HashMap<Object, Object> hashMap2;
-        boolean z16;
-        String str;
-        boolean z17;
-        String str2;
-        TLRPC.Message message;
-        xn xnVar = this.f38996a;
-        if (xnVar.getParentActivity() != null && (u2Var = xnVar.G1) != null) {
-            boolean z18 = u2Var.D;
-            MessageObject messageObject = u2Var.E1;
-            xnVar.f43247m5 = messageObject;
-            if (messageObject != null && (message = messageObject.messageOwner) != null) {
-                message.invert_media = z11;
-            }
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || u2Var.f29072g0.getSelectedPhotos().isEmpty())) {
-                oh.u2 u2Var2 = xnVar.G1;
-                if (u2Var2 != null) {
-                    u2Var2.dismissWithButtonClick(i10);
+        org.telegram.ui.Components.qb qbVar;
+        int i10;
+        zn znVar = this.f36130b;
+        if (z4) {
+            ArrayList arrayList2 = new ArrayList(znVar.E4);
+            ArrayList arrayList3 = new ArrayList(znVar.G4.values());
+            org.telegram.ui.Components.ic icVar = null;
+            if (z10) {
+                i10 = ((org.telegram.ui.ActionBar.p2) znVar).currentAccount;
+                SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i10);
+                if (znVar.E4.isEmpty()) {
+                    SharedPreferences.Editor edit = notificationsSettings.edit();
+                    edit.remove("pin_" + znVar.Q5).commit();
+                } else {
+                    SharedPreferences.Editor edit2 = notificationsSettings.edit();
+                    edit2.putInt("pin_" + znVar.Q5, ((Integer) znVar.E4.get(0)).intValue()).commit();
                 }
-                xnVar.Aa(i10);
-                return;
-            }
-            oh.u2 u2Var3 = xnVar.G1;
-            if (u2Var3 != null && i10 != 8) {
-                u2Var3.dismiss(true);
-            }
-            HashMap<Object, Object> selectedPhotos = xnVar.G1.f29072g0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = xnVar.G1.f29072g0.getSelectedPhotosOrder();
-            if (!selectedPhotos.isEmpty()) {
-                int ceil = (int) Math.ceil(selectedPhotos.size() / 10.0f);
-                int i15 = 0;
-                while (i15 < ceil) {
-                    int i16 = i15 * 10;
-                    int min = Math.min(10, selectedPhotos.size() - i16);
-                    ArrayList arrayList2 = new ArrayList();
-                    int i17 = 0;
-                    while (i17 < min) {
-                        int i18 = i16 + i17;
-                        if (i18 >= selectedPhotosOrder.size()) {
-                            hashMap2 = selectedPhotos;
-                            z16 = z18;
-                        } else {
-                            MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.get(selectedPhotosOrder.get(i18));
-                            SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                            sendingMediaInfo.imagePath = photoEntry.imagePath;
-                            boolean isLivePhoto = photoEntry.isLivePhoto();
-                            sendingMediaInfo.isLivePhoto = isLivePhoto;
-                            boolean z19 = photoEntry.isVideo;
-                            if (z18 && isLivePhoto) {
-                                sendingMediaInfo.isLivePhoto = false;
-                                z19 = false;
-                            }
-                            if (!z19 && (str2 = photoEntry.imagePath) != null) {
-                                sendingMediaInfo.path = str2;
-                                if (!z18 && photoEntry.isHighQuality()) {
-                                    sendingMediaInfo.originalPhotoEntry = photoEntry.clone();
-                                }
-                            } else {
-                                String str3 = photoEntry.path;
-                                if (str3 != null) {
-                                    sendingMediaInfo.path = str3;
-                                }
-                            }
-                            sendingMediaInfo.thumbPath = photoEntry.thumbPath;
-                            sendingMediaInfo.coverPath = photoEntry.coverPath;
-                            sendingMediaInfo.coverPhoto = photoEntry.coverPhoto;
-                            sendingMediaInfo.isVideo = z19;
-                            sendingMediaInfo.discardLivePhoto = photoEntry.isUnalivePhoto();
-                            hashMap2 = selectedPhotos;
-                            z16 = z18;
-                            sendingMediaInfo.livePhotoVideoOffset = photoEntry.livePhotoVideoOffset;
-                            sendingMediaInfo.livePhotoTimestampUs = photoEntry.livePhotoTimestampUs;
-                            CharSequence charSequence = photoEntry.caption;
-                            if (charSequence != null) {
-                                str = charSequence.toString();
-                            } else {
-                                str = null;
-                            }
-                            sendingMediaInfo.caption = str;
-                            sendingMediaInfo.entities = photoEntry.entities;
-                            sendingMediaInfo.masks = photoEntry.stickers;
-                            sendingMediaInfo.ttl = photoEntry.ttl;
-                            sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
-                            sendingMediaInfo.canDeleteAfter = photoEntry.canDeleteAfter;
-                            sendingMediaInfo.updateStickersOrder = SendMessagesHelper.checkUpdateStickersOrder(photoEntry.caption);
-                            sendingMediaInfo.hasMediaSpoilers = photoEntry.hasSpoiler;
-                            sendingMediaInfo.stars = photoEntry.starsAmount;
-                            if (!z16 && photoEntry.isHighQuality()) {
-                                z17 = true;
-                            } else {
-                                z17 = false;
-                            }
-                            sendingMediaInfo.highQuality = z17;
-                            arrayList2.add(sendingMediaInfo);
-                            photoEntry.reset();
-                        }
-                        i17++;
-                        z18 = z16;
-                        selectedPhotos = hashMap2;
-                    }
-                    HashMap<Object, Object> hashMap3 = selectedPhotos;
-                    boolean z20 = z18;
-                    if (i15 == 0) {
-                        xnVar.l8(((SendMessagesHelper.SendingMediaInfo) arrayList2.get(0)).caption, ((SendMessagesHelper.SendingMediaInfo) arrayList2.get(0)).entities);
-                        z13 = ((SendMessagesHelper.SendingMediaInfo) arrayList2.get(0)).updateStickersOrder;
-                    } else {
-                        z13 = false;
-                    }
-                    MessageObject messageObject2 = xnVar.f43247m5;
-                    if (messageObject2 != null && messageObject2.needResendWhenEdit()) {
-                        MessageSuggestionParams messageSuggestionParams = xnVar.f43135d5;
-                        if (messageSuggestionParams == null) {
-                            messageSuggestionParams = MessageSuggestionParams.of(xnVar.f43247m5.messageOwner.suggested_post);
-                        }
-                        MessageSuggestionParams messageSuggestionParams2 = messageSuggestionParams;
-                        AccountInstance accountInstance = xnVar.getAccountInstance();
-                        int i19 = ceil;
-                        long j12 = xnVar.Q5;
-                        MessageObject messageObject3 = xnVar.f43247m5;
-                        int i20 = i15;
-                        MessageObject messageObject4 = xnVar.U3;
-                        nn nnVar = xnVar.f43199i5;
-                        if (i10 != 4 && !z12) {
-                            arrayList = arrayList2;
-                            z15 = false;
-                        } else {
-                            arrayList = arrayList2;
-                            z15 = true;
-                        }
-                        i14 = i20;
-                        i13 = i19;
-                        SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j12, messageObject3, messageObject4, null, nnVar, z15, z4, null, z10, i11, i12, xnVar.O3, z13, null, xnVar.C8(), j10, z11, j11, xnVar.N8(), messageSuggestionParams2);
-                    } else {
-                        i13 = ceil;
-                        i14 = i15;
-                        AccountInstance accountInstance2 = xnVar.getAccountInstance();
-                        long j13 = xnVar.Q5;
-                        MessageObject messageObject5 = xnVar.f43223k5;
-                        MessageObject messageObject6 = xnVar.U3;
-                        nn nnVar2 = xnVar.f43199i5;
-                        if (i10 != 4 && !z12) {
-                            z14 = false;
-                        } else {
-                            z14 = true;
-                        }
-                        SendMessagesHelper.prepareSendingMedia(accountInstance2, arrayList2, j13, messageObject5, messageObject6, null, nnVar2, z14, z4, xnVar.f43247m5, z10, i11, i12, xnVar.O3, z13, null, xnVar.C8(), j10, z11, j11, xnVar.N8(), xnVar.f43135d5);
-                    }
-                    i15 = i14 + 1;
-                    ceil = i13;
-                    selectedPhotos = hashMap3;
-                    z18 = z20;
-                }
-                hashMap = selectedPhotos;
-                xnVar.y6();
-                xnVar.V.setFieldText("");
+                znVar.yc(0, true);
             } else {
-                hashMap = selectedPhotos;
+                znVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadPinnedMessages, Long.valueOf(znVar.Q5), arrayList2, Boolean.FALSE, 0, 0, 0, 0, Boolean.TRUE);
             }
-            if (i11 != 0) {
-                if (xnVar.P3 == -1) {
-                    xnVar.P3 = 0;
+            org.telegram.ui.Components.ic icVar2 = znVar.f40803x3;
+            if (icVar2 != null) {
+                icVar2.b();
+            }
+            znVar.f40817y3 = true;
+            int i11 = znVar.f40830z3 + 1;
+            znVar.f40830z3 = i11;
+            boolean z11 = znVar.f40567e4;
+            zn znVar2 = this.f36129a;
+            if (z11) {
+                G8 = znVar2.G8();
+            } else {
+                G8 = znVar.G8();
+            }
+            int i12 = G8;
+            if (znVar.f40567e4) {
+                arrayList = znVar2.E4;
+            } else {
+                arrayList = znVar.E4;
+            }
+            ArrayList arrayList4 = new ArrayList(arrayList);
+            org.telegram.messenger.b8 b8Var = new org.telegram.messenger.b8(this, z10, arrayList2, arrayList3, i12, i11);
+            org.telegram.messenger.voip.l0 l0Var = new org.telegram.messenger.voip.l0(this, z10, arrayList4, i11);
+            xn xnVar = znVar.f40534ba;
+            if (znVar.getParentActivity() == null) {
+                l0Var.run();
+            } else {
+                if (z10) {
+                    ?? fcVar = new org.telegram.ui.Components.fc(znVar.getParentActivity(), xnVar);
+                    fcVar.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
+                    fcVar.f24859b.setText(LocaleController.getString(R.string.PinnedMessagesHidden));
+                    fcVar.f24860c.setText(LocaleController.getString(R.string.PinnedMessagesHiddenInfo));
+                    qbVar = fcVar;
+                } else {
+                    org.telegram.ui.Components.qb qbVar2 = new org.telegram.ui.Components.qb(znVar.getParentActivity(), xnVar);
+                    qbVar2.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
+                    qbVar2.f28137b.setText(LocaleController.formatPluralString("MessagesUnpinned", i12, new Object[0]));
+                    qbVar = qbVar2;
                 }
-                xnVar.P3 += hashMap.size();
-                xnVar.Ec(true);
+                org.telegram.ui.Components.gc gcVar = new org.telegram.ui.Components.gc(znVar.getParentActivity(), xnVar, true);
+                gcVar.f25112a = b8Var;
+                gcVar.f25113b = l0Var;
+                qbVar.setButton(gcVar);
+                icVar = org.telegram.ui.Components.ic.g(znVar, qbVar, 5000);
             }
+            znVar.f40803x3 = icVar;
+            return;
         }
-    }
-
-    @Override
-    public final void Q0() {
-        this.f38996a.V.P();
-    }
-
-    @Override
-    public final boolean b2() {
-        return false;
-    }
-
-    @Override
-    public final boolean h0() {
-        return this.f38996a.P9();
-    }
-
-    @Override
-    public final void o1(TLRPC.User user) {
-        String publicUsername = UserObject.getPublicUsername(user);
-        xn xnVar = this.f38996a;
-        if (xnVar.V != null && user != null && !TextUtils.isEmpty(publicUsername)) {
-            jk jkVar = xnVar.V;
-            jkVar.setFieldText("@" + publicUsername + " ");
-            xnVar.V.H0();
+        MessageObject messageObject = (MessageObject) znVar.G4.get(Integer.valueOf(znVar.I4));
+        if (messageObject == null) {
+            messageObject = (MessageObject) znVar.f40655l6[0].get(znVar.I4);
         }
+        znVar.cc(messageObject);
     }
 
     @Override
-    public final void Z0(Object obj) {
-    }
-
-    @Override
-    public final void y0() {
-    }
-
-    @Override
-    public final void f2(ArrayList arrayList, CharSequence charSequence, boolean z4, int i10, int i11, long j10, boolean z10, long j11) {
+    public final void o0(String str) {
+        this.f36130b.da(str, false);
     }
 }

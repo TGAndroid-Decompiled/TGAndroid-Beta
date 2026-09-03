@@ -1,56 +1,41 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.SpannableStringBuilder;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-public final class hs {
-    public int f27609a;
-    public int f27610b;
-    public k01 f27611c;
+import android.graphics.Shader;
+import android.view.View;
+public final class hs extends View {
+    public final Paint f25487a;
+    public final Matrix f25488b;
+    public LinearGradient f25489c;
     public int d;
-    public int f27612e;
+    public float e;
+    public float f25490f;
 
-    public static hs b(org.telegram.ui.Cells.r2 r2Var, MessagesController.DialogFilter dialogFilter) {
-        ?? obj = new Object();
-        obj.f27609a = dialogFilter.f18057id;
-        obj.f27610b = dialogFilter.color;
-        String str = dialogFilter.name;
-        if (str == null) {
-            str = "";
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str.toUpperCase());
-        k01 k01Var = new k01(spannableStringBuilder, 10.0f, AndroidUtilities.bold());
-        k01Var.s(r2Var);
-        obj.f27611c = k01Var;
-        obj.f27611c.r(MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, k01Var.f28225a.getFontMetricsInt(), false), dialogFilter.entities, obj.f27611c.f28225a.getFontMetricsInt()));
-        obj.f27611c.p(26);
-        int dp = AndroidUtilities.dp(9.32f);
-        k01 k01Var2 = obj.f27611c;
-        obj.f27612e = dp + ((int) k01Var2.f28227c);
-        k01Var2.j();
-        int[] iArr = org.telegram.ui.ActionBar.k6.f21916r8;
-        obj.d = org.telegram.ui.ActionBar.k6.w0(null, iArr[dialogFilter.color % iArr.length], false);
-        return obj;
+    public hs(Context context) {
+        super(context);
+        this.f25487a = new Paint(1);
+        this.f25488b = new Matrix();
     }
 
-    public final void a(Canvas canvas) {
-        float f10;
-        Paint paint = org.telegram.ui.ActionBar.k6.A0;
-        int i10 = this.d;
-        if (org.telegram.ui.ActionBar.k6.I.q()) {
-            f10 = 0.2f;
-        } else {
-            f10 = 0.1f;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.e + this.f25490f, this.f25487a);
+    }
+
+    public void setColor(int i10) {
+        if (this.d != i10) {
+            this.d = i10;
+            int alpha = Color.alpha(i10);
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{i0.a.k(i10, (alpha * 232) / 255), i0.a.k(i10, (alpha * 192) / 255), i0.a.k(i10, (alpha * 144) / 255), i0.a.k(i10, 0)}, (float[]) null, Shader.TileMode.CLAMP);
+            this.f25489c = linearGradient;
+            this.f25487a.setShader(linearGradient);
+            this.f25489c.setLocalMatrix(this.f25488b);
+            invalidate();
         }
-        paint.setColor(org.telegram.ui.ActionBar.k6.l1(f10, i10));
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, this.f27612e, AndroidUtilities.dp(14.66f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.k6.A0);
-        this.f27611c.c(AndroidUtilities.dp(4.66f), AndroidUtilities.dp(14.66f) / 2.0f, 1.0f, this.d, canvas);
     }
 }

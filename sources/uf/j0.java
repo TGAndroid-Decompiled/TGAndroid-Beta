@@ -1,38 +1,39 @@
 package uf;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.ui.Cells.d2;
-import org.telegram.ui.Components.ma0;
-public final class j0 implements MediaDataController.KeywordResultCallback, d2 {
-    public final u0 f48643a;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.ActionBar.d2;
+import org.telegram.ui.Components.i51;
+public final class j0 implements c2, Utilities.Callback5 {
+    public final int f45388a;
+    public final l0 f45389b;
 
-    public j0(u0 u0Var) {
-        this.f48643a = u0Var;
+    public j0(l0 l0Var, int i10) {
+        this.f45388a = i10;
+        this.f45389b = l0Var;
     }
 
     @Override
-    public void run(ArrayList arrayList, String str) {
-        boolean z4;
-        u0 u0Var = this.f48643a;
-        u0Var.K = arrayList;
-        u0Var.F = null;
-        u0Var.f48759x0 = null;
-        u0Var.f48758x = null;
-        u0Var.f48760y = null;
-        u0Var.G = null;
-        u0Var.N = null;
-        u0Var.J = null;
-        u0Var.H = null;
-        u0Var.M = null;
-        u0Var.l();
-        ma0 ma0Var = u0Var.S;
-        ArrayList arrayList2 = u0Var.K;
-        if (arrayList2 != null && !arrayList2.isEmpty()) {
-            z4 = true;
-        } else {
-            z4 = false;
+    public void l(d2 d2Var, int i10) {
+        switch (this.f45388a) {
+            case 0:
+                this.f45389b.a0();
+                return;
+            case 1:
+                this.f45389b.finishFragment();
+                return;
+            default:
+                this.f45389b.a0();
+                return;
         }
-        ma0Var.a(z4);
+    }
+
+    @Override
+    public void mo27run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        l0.W(this.f45389b, (i51) obj, (View) obj2);
     }
 }

@@ -1,123 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DispatchQueuePoolBackground;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public class ej0 extends hj0 {
-    public volatile RLottieNative R0;
-    public boolean S0;
-    public boolean T0;
-    public volatile boolean U0;
-    public boolean V0;
-    public final int W0;
-    public int X0;
+public final class ej0 implements Runnable {
+    public final int f24621a;
+    public final gj0 f24622b;
 
-    public ej0(String str, int i10, int i11) {
-        super(i10, i11);
-        String str2;
-        this.W0 = -1;
-        this.H = 1;
-        if ("🎲".equals(str)) {
-            str2 = AndroidUtilities.readRes(R.raw.diceloop);
-            this.W0 = 60;
-        } else if ("🎯".equals(str)) {
-            str2 = AndroidUtilities.readRes(R.raw.dartloop);
-        } else {
-            str2 = null;
-        }
-        getPaint().setFlags(2);
-        if (TextUtils.isEmpty(str2)) {
-            return;
-        }
-        this.f27532k0 = RLottieNative.b(str2, this.f27524e, null, null);
+    public ej0(gj0 gj0Var, int i10) {
+        this.f24621a = i10;
+        this.f24622b = gj0Var;
     }
 
     @Override
-    public void A(boolean z4) {
-        this.f27530i0 = false;
-        this.f27531j0 = true;
-        l();
-        j();
-        if (!this.V0 && !this.S0) {
-            if (this.N == null && !this.f27547w0) {
-                B(z4);
-                lf.g gVar = this.A0;
-                if (gVar != null) {
-                    RandomAccessFile randomAccessFile = gVar.f12446s;
-                    if (randomAccessFile != null) {
-                        try {
-                            randomAccessFile.close();
-                        } catch (IOException e6) {
-                            e6.printStackTrace();
-                        }
-                        gVar.f12446s = null;
+    public final void run() {
+        switch (this.f24621a) {
+            case 0:
+                gj0 gj0Var = this.f24622b;
+                gj0Var.getClass();
+                try {
+                    kf.g gVar = gj0Var.A0;
+                    if (gVar != null) {
+                        gVar.b();
                     }
-                    gVar.f12445r = true;
-                    this.A0 = null;
+                } catch (Throwable unused) {
                 }
-                C();
+                AndroidUtilities.runOnUIThread(gj0Var.f25185y0);
                 return;
-            }
-            this.T = true;
-            return;
+            case 1:
+                gj0 gj0Var2 = this.f24622b;
+                gj0Var2.N = null;
+                gj0Var2.n();
+                return;
+            case 2:
+                gj0.h(this.f24622b);
+                return;
+            case 3:
+                gj0.e(this.f24622b);
+                return;
+            case 4:
+                gj0.d(this.f24622b);
+                return;
+            case 5:
+                gj0.f(this.f24622b);
+                return;
+            default:
+                this.f24622b.k();
+                return;
         }
-        this.T0 = true;
-    }
-
-    @Override
-    public final void B(boolean z4) {
-        RLottieNative rLottieNative = this.f27532k0;
-        RLottieNative rLottieNative2 = this.R0;
-        this.f27532k0 = null;
-        this.R0 = null;
-        if (rLottieNative == null && rLottieNative2 == null) {
-            return;
-        }
-        b90 b90Var = new b90(8, rLottieNative, rLottieNative2);
-        if (z4) {
-            DispatchQueuePoolBackground.execute(b90Var);
-        } else {
-            Utilities.globalQueue.postRunnable(b90Var);
-        }
-    }
-
-    @Override
-    public void n() {
-        if (this.T) {
-            l();
-            if (this.N == null && this.f27532k0 != null) {
-                B(true);
-            }
-        }
-        if (this.f27532k0 == null && this.R0 == null && this.A0 == null) {
-            C();
-            return;
-        }
-        this.R = true;
-        if (!t()) {
-            stop();
-        }
-        if (this.f27530i0) {
-            G();
-        }
-    }
-
-    @Override
-    public final boolean u() {
-        return this.V0;
-    }
-
-    @Override
-    public final boolean x() {
-        return false;
-    }
-
-    @Override
-    public int z() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ej0.z():int");
     }
 }

@@ -1,36 +1,29 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.tgnet.tl.TL_stories;
-public final class x80 implements h5.d {
-    public final int f42956a = 0;
-    public final LaunchActivity f42957b;
-    public final af.f f42958c;
-    public final Runnable d;
-    public final Long f42959e;
-    public final org.telegram.ui.Cells.t1 f42960f;
-    public final Object f42961g;
+import android.animation.ValueAnimator;
+import java.util.regex.Pattern;
+public final class x80 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f39922a;
+    public final LaunchActivity f39923b;
 
-    public x80(LaunchActivity launchActivity, af.f fVar, Long l10, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.Cells.t1 t1Var, Runnable runnable) {
-        this.f42957b = launchActivity;
-        this.f42958c = fVar;
-        this.f42959e = l10;
-        this.f42961g = tL_premium_boostsStatus;
-        this.f42960f = t1Var;
-        this.d = runnable;
+    public x80(LaunchActivity launchActivity, int i10) {
+        this.f39922a = i10;
+        this.f39923b = launchActivity;
     }
 
     @Override
-    public final void accept(java.lang.Object r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.x80.accept(java.lang.Object):void");
-    }
-
-    public x80(LaunchActivity launchActivity, af.f fVar, Runnable runnable, ChannelBoostsController channelBoostsController, Long l10, org.telegram.ui.Cells.t1 t1Var) {
-        this.f42957b = launchActivity;
-        this.f42958c = fVar;
-        this.d = runnable;
-        this.f42961g = channelBoostsController;
-        this.f42959e = l10;
-        this.f42960f = t1Var;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i10 = this.f39922a;
+        LaunchActivity launchActivity = this.f39923b;
+        switch (i10) {
+            case 0:
+                launchActivity.f31624t0.invalidate();
+                return;
+            default:
+                Pattern pattern = LaunchActivity.f31586y1;
+                launchActivity.getClass();
+                launchActivity.z0(((Integer) valueAnimator.getAnimatedValue()).intValue());
+                return;
+        }
     }
 }

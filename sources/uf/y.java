@@ -1,8 +1,25 @@
 package uf;
 
-import org.telegram.tgnet.TLObject;
-public final class y {
-    public TLObject f48775a;
-    public int f48776b;
-    public long f48777c;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.y3;
+import org.telegram.ui.Components.ej;
+public final class y extends f2.j0 {
+    public final ej f45543r;
+
+    public y(ej ejVar, Context context) {
+        super(context);
+        this.f45543r = ejVar;
+    }
+
+    @Override
+    public final int k(int i10, View view) {
+        return y3.z(8.0f, ((c0) this.f45543r.V).f45333s.getPaddingTop() - AndroidUtilities.statusBarHeight, super.k(i10, view));
+    }
+
+    @Override
+    public final int m(int i10) {
+        return super.m(i10) * 2;
+    }
 }

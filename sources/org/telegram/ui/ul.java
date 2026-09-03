@@ -1,30 +1,47 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.ui.Components.UndoView;
-public final class ul extends org.telegram.ui.Components.p20 {
-    public final xn f41869b;
+import java.util.ArrayList;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.VideoEditedInfo;
+public final class ul extends fu0 {
+    public final ArrayList f38882a;
+    public final boolean[] f38883b;
+    public final zn f38884c;
 
-    public ul(xn xnVar, Activity activity, org.telegram.ui.ActionBar.p2 p2Var) {
-        super(activity, p2Var);
-        this.f41869b = xnVar;
+    public ul(zn znVar, ArrayList arrayList, boolean[] zArr) {
+        this.f38884c = znVar;
+        this.f38882a = arrayList;
+        this.f38883b = zArr;
     }
 
     @Override
-    public final void m() {
-        xn xnVar = this.f41869b;
-        xnVar.Q7();
-        UndoView undoView = xnVar.f43356v3;
-        if (undoView == null) {
-            return;
+    public final boolean S() {
+        return false;
+    }
+
+    @Override
+    public final ImageReceiver.BitmapHolder j(int i10) {
+        return null;
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z4, int i11, int i12, boolean z10) {
+        ArrayList arrayList = this.f38882a;
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            if (!this.f38883b[size]) {
+                arrayList.remove(size);
+            }
         }
-        undoView.j(75, 0L, null);
-        xnVar.getMessagesController().removeSuggestion(xnVar.Q5, "CONVERT_GIGAGROUP");
+        this.f38884c.eb(arrayList, i11, z4, z10);
     }
 
     @Override
-    public final void n() {
-        xn xnVar = this.f41869b;
-        xnVar.getMessagesController().convertToGigaGroup(xnVar.getParentActivity(), xnVar.f43143e, xnVar, new a1(this, 19));
+    public final boolean x(int i10) {
+        return this.f38883b[i10];
+    }
+
+    @Override
+    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
+        return i10;
     }
 }

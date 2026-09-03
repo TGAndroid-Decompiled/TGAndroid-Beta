@@ -2,22 +2,22 @@ package b4;
 
 import android.util.SparseArray;
 public final class a0 implements r3.k {
-    public boolean f1416e;
-    public boolean f1417f;
-    public boolean f1418g;
+    public boolean e;
+    public boolean f1325f;
+    public boolean f1326g;
     public long h;
-    public x f1419i;
-    public r3.m f1420j;
-    public boolean f1421k;
-    public final h5.c0 f1413a = new h5.c0(0);
-    public final h5.w f1415c = new h5.w(4096);
-    public final SparseArray f1414b = new SparseArray();
+    public x f1327i;
+    public r3.m f1328j;
+    public boolean f1329k;
+    public final h5.c0 f1322a = new h5.c0(0);
+    public final h5.w f1324c = new h5.w(4096);
+    public final SparseArray f1323b = new SparseArray();
     public final y d = new y(0);
 
     @Override
     public final void d(long j10, long j11) {
         boolean z4;
-        h5.c0 c0Var = this.f1413a;
+        h5.c0 c0Var = this.f1322a;
         boolean z10 = true;
         if (c0Var.d() == -9223372036854775807L) {
             z4 = true;
@@ -31,17 +31,17 @@ public final class a0 implements r3.k {
         if (z4) {
             c0Var.f(j11);
         }
-        x xVar = this.f1419i;
+        x xVar = this.f1327i;
         if (xVar != null) {
             xVar.d(j11);
         }
         int i10 = 0;
         while (true) {
-            SparseArray sparseArray = this.f1414b;
+            SparseArray sparseArray = this.f1323b;
             if (i10 < sparseArray.size()) {
                 z zVar = (z) sparseArray.valueAt(i10);
-                zVar.f1679f = false;
-                zVar.f1675a.b();
+                zVar.f1563f = false;
+                zVar.f1560a.b();
                 i10++;
             } else {
                 return;
@@ -51,7 +51,7 @@ public final class a0 implements r3.k {
 
     @Override
     public final void e(r3.m mVar) {
-        this.f1420j = mVar;
+        this.f1328j = mVar;
     }
 
     @Override

@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 public final class n {
-    public final Bundle f2138a;
+    public final Bundle f1999a;
 
     public n(Bundle bundle) {
-        this.f2138a = bundle;
+        this.f1999a = bundle;
     }
 
     public final HashSet a() {
-        Bundle bundle = this.f2138a;
+        Bundle bundle = this.f1999a;
         if (!bundle.containsKey("allowedPackages")) {
             return new HashSet();
         }
@@ -22,7 +22,7 @@ public final class n {
     }
 
     public final ArrayList b() {
-        Bundle bundle = this.f2138a;
+        Bundle bundle = this.f1999a;
         if (!bundle.containsKey("controlFilters")) {
             return new ArrayList();
         }
@@ -30,7 +30,7 @@ public final class n {
     }
 
     public final ArrayList c() {
-        Bundle bundle = this.f2138a;
+        Bundle bundle = this.f1999a;
         if (!bundle.containsKey("groupMemberIds")) {
             return new ArrayList();
         }
@@ -38,11 +38,11 @@ public final class n {
     }
 
     public final String d() {
-        return this.f2138a.getString("id");
+        return this.f1999a.getString("id");
     }
 
     public final boolean e() {
-        if (!TextUtils.isEmpty(d()) && !TextUtils.isEmpty(this.f2138a.getString("name")) && !b().contains(null)) {
+        if (!TextUtils.isEmpty(d()) && !TextUtils.isEmpty(this.f1999a.getString("name")) && !b().contains(null)) {
             return true;
         }
         return false;
@@ -55,7 +55,7 @@ public final class n {
         sb.append(", groupMemberIds=");
         sb.append(c());
         sb.append(", name=");
-        Bundle bundle = this.f2138a;
+        Bundle bundle = this.f1999a;
         sb.append(bundle.getString("name"));
         sb.append(", description=");
         sb.append(bundle.getString("status"));

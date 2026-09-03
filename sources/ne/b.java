@@ -1,9 +1,9 @@
 package ne;
 
-import k7.h0;
+import k7.g0;
 public final class b extends a {
     @Override
-    public final void a(h0 h0Var) {
-        h0Var.a(this);
+    public final void a(g0 g0Var) {
+        g0Var.a(this);
     }
 }

@@ -5,14 +5,15 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import vh.w2;
 public final class r extends pa.u {
-    public static final p f47235c = new p(pa.t.f44280a, 1);
-    public final pa.g f47236a;
-    public final pa.t f47237b;
+    public static final p f44281c = new p(pa.t.f41113a, 1);
+    public final pa.g f44282a;
+    public final pa.t f44283b;
 
     public r(pa.g gVar, pa.t tVar) {
-        this.f47236a = gVar;
-        this.f47237b = tVar;
+        this.f44282a = gVar;
+        this.f44283b = tVar;
     }
 
     public final Serializable a(xa.a aVar, int i10) {
@@ -24,11 +25,11 @@ public final class r extends pa.u {
                         aVar.t();
                         return null;
                     }
-                    throw new IllegalStateException("Unexpected token: ".concat(w.c.m(i10)));
+                    throw new IllegalStateException("Unexpected token: ".concat(w2.m(i10)));
                 }
                 return Boolean.valueOf(aVar.n());
             }
-            return this.f47237b.a(aVar);
+            return this.f44283b.a(aVar);
         }
         return aVar.v();
     }
@@ -114,7 +115,7 @@ public final class r extends pa.u {
             return;
         }
         Class<?> cls = obj.getClass();
-        pa.g gVar = this.f47236a;
+        pa.g gVar = this.f44282a;
         gVar.getClass();
         pa.u b10 = gVar.b(new wa.a(cls));
         if (b10 instanceof r) {

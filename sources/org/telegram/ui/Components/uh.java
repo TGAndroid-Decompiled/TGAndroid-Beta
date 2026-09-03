@@ -9,14 +9,14 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 public final class uh implements TextWatcher {
-    public boolean f31631a;
-    public boolean f31632b;
-    public final org.telegram.ui.ActionBar.p2 f31633c;
-    public final mi d;
+    public boolean f29211a;
+    public boolean f29212b;
+    public final org.telegram.ui.ActionBar.p2 f29213c;
+    public final li d;
 
-    public uh(mi miVar, org.telegram.ui.ActionBar.p2 p2Var) {
-        this.d = miVar;
-        this.f31633c = p2Var;
+    public uh(li liVar, org.telegram.ui.ActionBar.p2 p2Var) {
+        this.d = liVar;
+        this.f29213c = p2Var;
     }
 
     @Override
@@ -25,37 +25,37 @@ public final class uh implements TextWatcher {
         boolean z10;
         int i10;
         boolean z11;
-        mi miVar = this.d;
-        k6 k6Var = miVar.f29108s;
-        th thVar = miVar.M0;
-        int i11 = miVar.G1;
-        k6 k6Var2 = miVar.v;
-        if (this.f31632b != TextUtils.isEmpty(editable)) {
-            ei eiVar = miVar.f29118v0;
-            if (eiVar != null) {
-                eiVar.B(eiVar.getSelectedItemsCount());
+        li liVar = this.d;
+        k6 k6Var = liVar.f26734s;
+        th thVar = liVar.M0;
+        int i11 = liVar.G1;
+        k6 k6Var2 = liVar.v;
+        if (this.f29212b != TextUtils.isEmpty(editable)) {
+            di diVar = liVar.f26744v0;
+            if (diVar != null) {
+                diVar.B(diVar.getSelectedItemsCount());
             }
-            this.f31632b = !this.f31632b;
+            this.f29212b = !this.f29212b;
         }
         boolean z12 = false;
-        if (this.f31631a) {
+        if (this.f29211a) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             Emoji.replaceEmoji(editable, thVar.getEditText().getPaint().getFontMetricsInt(), false);
-            this.f31631a = false;
+            this.f29211a = false;
         }
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
-        miVar.I = codePointCount;
-        xd.a aVar = miVar.f29064e;
+        liVar.I = codePointCount;
+        xd.a aVar = liVar.e;
         if (codePointCount > 0) {
             z4 = true;
         } else {
             z4 = false;
         }
         aVar.a(z4, true);
-        int i12 = miVar.H;
-        if (i12 > 0 && (i10 = i12 - miVar.I) <= 100) {
+        int i12 = liVar.H;
+        if (i12 > 0 && (i10 = i12 - liVar.I) <= 100) {
             if (i10 < -9999) {
                 i10 = -9999;
             }
@@ -76,10 +76,10 @@ public final class uh implements TextWatcher {
             k6Var2.animate().setListener(null).cancel();
             k6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i10 < 0) {
-                k6Var2.setTextColor(miVar.getThemedColor(org.telegram.ui.ActionBar.k6.f21878p7));
+                k6Var2.setTextColor(liVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20097p7));
                 z10 = false;
             } else {
-                k6Var2.setTextColor(miVar.getThemedColor(org.telegram.ui.ActionBar.k6.f22038y6));
+                k6Var2.setTextColor(liVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20256y6));
                 z10 = true;
             }
             k6Var.c(LocaleController.formatNumber(j10, ','), false, true);
@@ -89,36 +89,36 @@ public final class uh implements TextWatcher {
             k6Var.setAlpha(0.0f);
             z10 = true;
         }
-        if (miVar.R0 != z10) {
-            miVar.R0 = z10;
-            miVar.F0.invalidate();
+        if (liVar.R0 != z10) {
+            liVar.R0 = z10;
+            liVar.F0.invalidate();
         }
-        if (!miVar.f29071f2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && miVar.I > MessagesController.getInstance(i11).captionLengthLimitDefault && miVar.I < MessagesController.getInstance(i11).captionLengthLimitPremium) {
-            miVar.f29071f2 = true;
-            miVar.O1(this.f31633c);
+        if (!liVar.f26697f2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && liVar.I > MessagesController.getInstance(i11).captionLengthLimitDefault && liVar.I < MessagesController.getInstance(i11).captionLengthLimitPremium) {
+            liVar.f26697f2 = true;
+            liVar.O1(this.f29213c);
         }
-        if (miVar.Z) {
+        if (liVar.Z) {
             if (thVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(thVar.getText().toString().trim())) {
                 z12 = true;
             }
-            miVar.M1(z12);
+            liVar.M1(z12);
         }
-        miVar.d1(true);
+        liVar.d1(true);
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         if (i12 - i11 >= 1) {
-            this.f31631a = true;
+            this.f29211a = true;
         }
-        mi miVar = this.d;
-        if (miVar.f29132y2 == null) {
-            mi.Q(miVar);
+        li liVar = this.d;
+        if (liVar.f26758y2 == null) {
+            li.Q(liVar);
         }
-        if (miVar.f29132y2.getAdapter() != null) {
-            miVar.f29132y2.setReversed(true);
-            miVar.f29132y2.getAdapter().U(charSequence, miVar.M0.getEditText().getSelectionStart(), null, false, false);
-            miVar.U1();
+        if (liVar.f26758y2.getAdapter() != null) {
+            liVar.f26758y2.setReversed(true);
+            liVar.f26758y2.getAdapter().U(charSequence, liVar.M0.getEditText().getSelectionStart(), null, false, false);
+            liVar.U1();
         }
     }
 

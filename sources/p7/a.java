@@ -7,12 +7,12 @@ import android.os.Looper;
 import b6.g;
 import com.google.android.gms.common.api.k;
 import com.google.android.gms.common.api.l;
-import m.r3;
+import m.s3;
 public final class a extends g {
     public final Context R;
 
-    public a(Context context, Looper looper, k kVar, l lVar, r3 r3Var) {
-        super(context, looper, 45, r3Var, kVar, lVar, 0);
+    public a(Context context, Looper looper, k kVar, l lVar, s3 s3Var) {
+        super(context, looper, 45, s3Var, kVar, lVar, 0);
         this.R = context;
     }
 

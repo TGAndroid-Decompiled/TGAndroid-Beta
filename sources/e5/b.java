@@ -1,81 +1,75 @@
 package e5;
 
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-public final class b implements v4.f {
-    public final int f4944a;
-    public final List f4945b;
+import h5.w;
+import java.util.regex.Pattern;
+public final class b {
+    public static final Pattern f5115c = Pattern.compile("\\[voice=\"([^\"]*)\"\\]");
+    public static final Pattern d = Pattern.compile("^((?:[0-9]*\\.)?[0-9]+)(px|em|%)$");
+    public final w f5116a = new w();
+    public final StringBuilder f5117b = new StringBuilder();
 
-    public b(int i10, List list) {
-        this.f4944a = i10;
-        this.f4945b = list;
-    }
-
-    @Override
-    public final int d(long j10) {
-        switch (this.f4944a) {
-            case 0:
-                if (j10 < 0) {
-                    return 0;
-                }
-                return -1;
-            case 1:
-                return -1;
-            default:
-                return -1;
+    public static String a(w wVar, StringBuilder sb) {
+        boolean z4 = false;
+        sb.setLength(0);
+        int i10 = wVar.f6988b;
+        int i11 = wVar.f6989c;
+        while (i10 < i11 && !z4) {
+            char c3 = (char) wVar.f6987a[i10];
+            if ((c3 < 'A' || c3 > 'Z') && ((c3 < 'a' || c3 > 'z') && ((c3 < '0' || c3 > '9') && c3 != '#' && c3 != '-' && c3 != '.' && c3 != '_'))) {
+                z4 = true;
+            } else {
+                i10++;
+                sb.append(c3);
+            }
         }
+        wVar.G(i10 - wVar.f6988b);
+        return sb.toString();
     }
 
-    @Override
-    public final long l(int i10) {
-        boolean z4;
-        switch (this.f4944a) {
-            case 0:
-                if (i10 == 0) {
-                    z4 = true;
+    public static String b(w wVar, StringBuilder sb) {
+        c(wVar);
+        if (wVar.a() == 0) {
+            return null;
+        }
+        String a2 = a(wVar, sb);
+        if (!"".equals(a2)) {
+            return a2;
+        }
+        return "" + ((char) wVar.u());
+    }
+
+    public static void c(w wVar) {
+        while (true) {
+            for (boolean z4 = true; wVar.a() > 0 && z4; z4 = false) {
+                int i10 = wVar.f6988b;
+                byte[] bArr = wVar.f6987a;
+                byte b10 = bArr[i10];
+                char c3 = (char) b10;
+                if (c3 != '\t' && c3 != '\n' && c3 != '\f' && c3 != '\r' && c3 != ' ') {
+                    int i11 = wVar.f6989c;
+                    int i12 = i10 + 2;
+                    if (i12 <= i11) {
+                        int i13 = i10 + 1;
+                        if (b10 == 47 && bArr[i13] == 42) {
+                            while (true) {
+                                int i14 = i12 + 1;
+                                if (i14 >= i11) {
+                                    break;
+                                } else if (((char) bArr[i12]) == '*' && ((char) bArr[i14]) == '/') {
+                                    i12 += 2;
+                                    i11 = i12;
+                                } else {
+                                    i12 = i14;
+                                }
+                            }
+                            wVar.G(i11 - wVar.f6988b);
+                        }
+                    }
                 } else {
-                    z4 = false;
+                    wVar.G(1);
                 }
-                h5.a.f(z4);
-                return 0L;
-            case 1:
-                return 0L;
-            default:
-                return 0L;
+            }
+            return;
         }
-    }
-
-    @Override
-    public final List q(long j10) {
-        switch (this.f4944a) {
-            case 0:
-                if (j10 >= 0) {
-                    return this.f4945b;
-                }
-                return Collections.EMPTY_LIST;
-            case 1:
-                return this.f4945b;
-            default:
-                return this.f4945b;
-        }
-    }
-
-    @Override
-    public final int x() {
-        switch (this.f4944a) {
-            case 0:
-                return 1;
-            case 1:
-                return 1;
-            default:
-                return 1;
-        }
-    }
-
-    public b(ArrayList arrayList) {
-        this.f4944a = 0;
-        this.f4945b = DesugarCollections.unmodifiableList(arrayList);
     }
 }

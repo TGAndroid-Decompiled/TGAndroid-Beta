@@ -3,7 +3,7 @@ package q4;
 import g5.p;
 import g5.u0;
 import j3.n0;
-import j7.q7;
+import j7.p7;
 import n7.qa;
 import o4.k0;
 import r3.v;
@@ -22,41 +22,41 @@ public final class m extends a {
     @Override
     public final void a() {
         k0[] k0VarArr;
-        u0 u0Var = this.f44510r;
-        qa qaVar = this.f44486x;
+        u0 u0Var = this.f42764r;
+        qa qaVar = this.f42743x;
         h5.a.j(qaVar);
-        for (k0 k0Var : (k0[]) qaVar.f15702c) {
+        for (k0 k0Var : (k0[]) qaVar.f14688c) {
             if (k0Var.F != 0) {
                 k0Var.F = 0L;
-                k0Var.f16528z = true;
+                k0Var.f16360z = true;
             }
         }
-        v j12 = qaVar.j1(this.B);
-        j12.b(this.C);
+        v M0 = qaVar.M0(this.B);
+        M0.b(this.C);
         try {
-            long open = u0Var.open(this.f44505b.b(this.D));
+            long open = u0Var.open(this.f42760b.b(this.D));
             if (open != -1) {
                 open += this.D;
             }
-            r3.h hVar = new r3.h(this.f44510r, this.D, open);
-            for (int i10 = 0; i10 != -1; i10 = j12.e(hVar, Integer.MAX_VALUE, true)) {
+            r3.h hVar = new r3.h(this.f42764r, this.D, open);
+            for (int i10 = 0; i10 != -1; i10 = M0.e(hVar, Integer.MAX_VALUE, true)) {
                 this.D += i10;
             }
-            j12.c(this.h, 1, (int) this.D, 0, null);
-            q7.a(u0Var);
+            M0.c(this.h, 1, (int) this.D, 0, null);
+            p7.a(u0Var);
             this.E = true;
         } catch (Throwable th2) {
-            q7.a(u0Var);
+            p7.a(u0Var);
             throw th2;
         }
     }
 
     @Override
-    public final boolean c() {
+    public final boolean d() {
         return this.E;
     }
 
     @Override
-    public final void l() {
+    public final void b() {
     }
 }

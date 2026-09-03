@@ -7,6 +7,7 @@ import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import kf.k0;
 import org.webrtc.EglBase;
 import org.webrtc.EglRenderer;
 import org.webrtc.RendererCommon;
@@ -84,7 +85,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
             sb.append(", frame size: ");
             sb.append(this.rotatedFrameWidth);
             sb.append("x");
-            l.d.w(sb, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
+            k0.w(sb, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
             sb.append(min2);
             sb.append(", old surface size: ");
             sb.append(this.surfaceWidth);

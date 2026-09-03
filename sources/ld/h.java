@@ -3,12 +3,12 @@ package ld;
 import java.util.concurrent.locks.LockSupport;
 public final class h extends a {
     public final Thread d;
-    public final w0 f12319e;
+    public final w0 e;
 
     public h(uc.h hVar, Thread thread, w0 w0Var) {
         super(hVar, true);
         this.d = thread;
-        this.f12319e = w0Var;
+        this.e = w0Var;
     }
 
     @Override

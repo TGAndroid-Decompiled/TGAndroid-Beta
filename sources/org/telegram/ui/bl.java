@@ -1,39 +1,44 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class bl implements org.telegram.ui.Components.pk0 {
-    public final xn f35561a;
+import android.animation.LayoutTransition;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+public final class bl implements LayoutTransition.TransitionListener {
+    public al f32905a;
+    public int f32906b;
+    public final org.telegram.ui.ActionBar.z f32907c;
+    public final zn d;
 
-    public bl(xn xnVar) {
-        this.f35561a = xnVar;
+    public bl(zn znVar, org.telegram.ui.ActionBar.z zVar) {
+        this.d = znVar;
+        this.f32907c = zVar;
     }
 
     @Override
-    public final boolean g() {
-        return true;
+    public final void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
+        int i11 = this.f32906b - 1;
+        this.f32906b = i11;
+        if (i11 == 0 && this.f32905a != null) {
+            this.f32907c.getViewTreeObserver().removeOnPreDrawListener(this.f32905a);
+            this.f32905a = null;
+        }
     }
 
     @Override
-    public final boolean h() {
-        return false;
-    }
-
-    @Override
-    public final void o(android.view.View r24, ng.q0 r25, boolean r26, boolean r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bl.o(android.view.View, ng.q0, boolean, boolean):void");
-    }
-
-    @Override
-    public final boolean t() {
-        return false;
-    }
-
-    @Override
-    public final void m() {
-    }
-
-    @Override
-    public final void j(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i10, boolean z4) {
+    public final void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
+        if (this.f32906b == 0 && this.f32905a == null) {
+            this.f32905a = new ViewTreeObserver.OnPreDrawListener() {
+                @Override
+                public final boolean onPreDraw() {
+                    org.telegram.ui.ActionBar.k kVar;
+                    kVar = ((org.telegram.ui.ActionBar.p2) bl.this.d).actionBar;
+                    kVar.invalidate();
+                    return true;
+                }
+            };
+            this.f32907c.getViewTreeObserver().addOnPreDrawListener(this.f32905a);
+        }
+        this.f32906b++;
     }
 }

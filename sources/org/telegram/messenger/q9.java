@@ -2,26 +2,26 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLObject;
 public final class q9 implements Runnable {
-    public final int f19765a;
-    public final MediaDataController f19766b;
-    public final String f19767c;
+    public final int f18178a;
+    public final MediaDataController f18179b;
+    public final String f18180c;
     public final TLObject d;
 
     public q9(MediaDataController mediaDataController, String str, TLObject tLObject, int i10) {
-        this.f19765a = i10;
-        this.f19766b = mediaDataController;
-        this.f19767c = str;
+        this.f18178a = i10;
+        this.f18179b = mediaDataController;
+        this.f18180c = str;
         this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f19765a) {
+        switch (this.f18178a) {
             case 0:
-                this.f19766b.lambda$fetchStickerSetInternal$41(this.f19767c, this.d);
+                this.f18179b.lambda$fetchStickerSetInternal$41(this.f18180c, this.d);
                 return;
             default:
-                this.f19766b.lambda$verifyAnimatedStickerMessageInternal$69(this.f19767c, this.d);
+                this.f18179b.lambda$verifyAnimatedStickerMessageInternal$69(this.f18180c, this.d);
                 return;
         }
     }

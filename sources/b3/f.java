@@ -1,10 +1,10 @@
 package b3;
 public final class f {
-    public final long f1406a;
-    public final long f1407b;
+    public final long f1315a;
+    public final long f1316b;
 
     public f(long j10, long j11) {
-        this.f1406a = j10;
-        this.f1407b = j11;
+        this.f1315a = j10;
+        this.f1316b = j11;
     }
 }

@@ -14,53 +14,53 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class ea extends Drawable {
-    public float f26535a = 1.0f;
-    public final Paint f26536b = new Paint(1);
-    public final Rect f26537c = new Rect();
+    public float f24548a = 1.0f;
+    public final Paint f24549b = new Paint(1);
+    public final Rect f24550c = new Rect();
     public final Path d = new Path();
-    public final float f26538e;
-    public final float f26539f;
-    public final Drawable f26540g;
+    public final float e;
+    public final float f24551f;
+    public final Drawable f24552g;
     public final float h;
-    public final fa f26541i;
+    public final fa f24553i;
 
     public ea(fa faVar, float f10, float f11, Drawable drawable, float f12) {
-        this.f26541i = faVar;
-        this.f26538e = f10;
-        this.f26539f = f11;
-        this.f26540g = drawable;
+        this.f24553i = faVar;
+        this.e = f10;
+        this.f24551f = f11;
+        this.f24552g = drawable;
         this.h = f12;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Bitmap b10;
-        fa faVar = this.f26541i;
-        ba baVar = faVar.f26830a;
-        Matrix matrix = faVar.f26843p;
+        fa faVar = this.f24553i;
+        ba baVar = faVar.f24839a;
+        Matrix matrix = faVar.f24851p;
         Paint paint = null;
         if (baVar != null && (b10 = baVar.b()) != null) {
-            if (faVar.f26842o == null || faVar.f26841n != b10) {
-                faVar.f26841n = b10;
+            if (faVar.f24850o == null || faVar.f24849n != b10) {
+                faVar.f24849n = b10;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(b10, tileMode, tileMode);
-                faVar.f26842o = bitmapShader;
+                faVar.f24850o = bitmapShader;
                 faVar.h.setShader(bitmapShader);
             }
             matrix.reset();
-            matrix.postTranslate((-0.0f) - this.f26538e, (-0.0f) - this.f26539f);
-            View view = baVar.f25552b;
+            matrix.postTranslate((-0.0f) - this.e, (-0.0f) - this.f24551f);
+            View view = baVar.f23594b;
             if (view != null) {
-                matrix.preScale(view.getWidth() / b10.getWidth(), baVar.f25552b.getHeight() / b10.getHeight());
+                matrix.preScale(view.getWidth() / b10.getWidth(), baVar.f23594b.getHeight() / b10.getHeight());
             }
-            faVar.f26842o.setLocalMatrix(matrix);
-            faVar.h.setAlpha((int) (this.f26535a * 255.0f));
+            faVar.f24850o.setLocalMatrix(matrix);
+            faVar.h.setAlpha((int) (this.f24548a * 255.0f));
             paint = faVar.h;
         }
         Paint paint2 = paint;
         Rect bounds = getBounds();
-        Drawable drawable = this.f26540g;
-        Paint paint3 = this.f26536b;
+        Drawable drawable = this.f24552g;
+        Paint paint3 = this.f24549b;
         float f10 = this.h;
         if (paint2 == null && (baVar == null || !baVar.c())) {
             if (drawable != null) {
@@ -83,7 +83,7 @@ public final class ea extends Drawable {
             canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
             drawable.setBounds(bounds);
             drawable.draw(canvas);
-            Rect rect = this.f26537c;
+            Rect rect = this.f24550c;
             if (baVar != null && baVar.c()) {
                 canvas.save();
                 getPadding(rect);
@@ -144,7 +144,7 @@ public final class ea extends Drawable {
 
     @Override
     public final boolean getPadding(Rect rect) {
-        Drawable drawable = this.f26540g;
+        Drawable drawable = this.f24552g;
         if (drawable != null) {
             return drawable.getPadding(rect);
         }
@@ -154,7 +154,7 @@ public final class ea extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f26535a = i10 / 255.0f;
+        this.f24548a = i10 / 255.0f;
     }
 
     @Override

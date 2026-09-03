@@ -7,7 +7,7 @@ public abstract class m {
     public static int a(MediaCodecInfo.VideoCapabilities videoCapabilities, int i10, int i11, double d) {
         List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints = videoCapabilities.getSupportedPerformancePoints();
         if (supportedPerformancePoints != null && !supportedPerformancePoints.isEmpty()) {
-            String str = d0.f7238b;
+            String str = d0.f6925b;
             if (!str.equals("sabrina") && !str.equals("boreal")) {
                 String str2 = d0.d;
                 if (!str2.startsWith("Lenovo TB-X605") && !str2.startsWith("Lenovo TB-X606") && !str2.startsWith("Lenovo TB-X616")) {

@@ -1,31 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
+import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-public final class j60 extends ClickableSpan {
-    public final org.telegram.ui.ActionBar.h3[] f28021a;
-    public final TLRPC.TL_chatInviteImporter f28022b;
+public final class j60 implements View.OnClickListener {
+    public final int f25868a;
+    public final TLRPC.User f25869b;
+    public final String f25870c;
+    public final boolean d;
+    public final boolean e;
+    public final boolean f25871f;
+    public final ql0 h;
 
-    public j60(org.telegram.ui.ActionBar.h3[] h3VarArr, TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
-        this.f28021a = h3VarArr;
-        this.f28022b = tL_chatInviteImporter;
+    public j60(ql0 ql0Var, TLRPC.User user, String str, boolean z4, boolean z10, boolean z11, int i10) {
+        this.f25868a = i10;
+        this.h = ql0Var;
+        this.f25869b = user;
+        this.f25870c = str;
+        this.d = z4;
+        this.e = z10;
+        this.f25871f = z11;
     }
 
     @Override
     public final void onClick(View view) {
-        this.f28021a[0].dismiss();
-        org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
-        if (U != null) {
-            U.presentFragment(ProfileActivity.m4(this.f28022b.user_id));
+        int i10;
+        org.telegram.ui.ActionBar.f6 f6Var;
+        switch (this.f25868a) {
+            case 0:
+                t60 t60Var = ((o60) this.h).f27469c;
+                Context context = t60Var.getContext();
+                i10 = ((org.telegram.ui.ActionBar.g3) t60Var).currentAccount;
+                f6Var = ((org.telegram.ui.ActionBar.g3) t60Var).resourcesProvider;
+                f01.b(context, i10, -t60Var.f28911d0, this.f25869b, this.f25870c, this.d, this.e, this.f25871f, f6Var);
+                return;
+            default:
+                yu0 yu0Var = ((ht0) this.h).f25495f;
+                f01.b(yu0Var.getContext(), yu0Var.f31155s1.getCurrentAccount(), yu0Var.f31130g1, this.f25869b, this.f25870c, this.d, this.e, this.f25871f, yu0Var.C1);
+                return;
         }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
     }
 }

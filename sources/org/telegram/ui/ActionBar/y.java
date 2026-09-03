@@ -3,32 +3,32 @@ package org.telegram.ui.ActionBar;
 import android.graphics.drawable.Drawable;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.xe;
+import org.telegram.ui.ze;
 public final class y {
-    public z f22452a;
-    public int f22453b;
-    public int f22454c;
+    public z f20708a;
+    public int f20709b;
+    public int f20710c;
     public CharSequence d;
-    public int f22455e;
-    public Drawable f22456f;
-    public int f22457g;
-    public g6 h;
-    public float f22458i;
-    public Boolean f22459j;
-    public Boolean f22460k;
-    public int f22461l;
-    public w0 f22462m;
-    public ArrayList f22463n;
-    public Integer f22464o;
+    public int e;
+    public Drawable f20711f;
+    public int f20712g;
+    public f6 h;
+    public float f20713i;
+    public Boolean f20714j;
+    public Boolean f20715k;
+    public int f20716l;
+    public w0 f20717m;
+    public ArrayList f20718n;
+    public Integer f20719o;
 
     public final void a() {
-        z zVar = this.f22452a;
-        if (this.f22462m == null) {
+        z zVar = this.f20708a;
+        if (this.f20717m == null) {
             int childCount = zVar.getChildCount();
-            ArrayList arrayList = zVar.f22477e;
+            ArrayList arrayList = zVar.e;
             int i10 = 0;
             if (arrayList != null) {
-                int indexOf = arrayList.indexOf(Integer.valueOf(this.f22453b));
+                int indexOf = arrayList.indexOf(Integer.valueOf(this.f20709b));
                 int i11 = 0;
                 while (true) {
                     if (i11 >= zVar.getChildCount()) {
@@ -36,7 +36,7 @@ public final class y {
                     }
                     Object tag = zVar.getChildAt(i11).getTag();
                     if (tag instanceof Integer) {
-                        if (zVar.f22477e.indexOf((Integer) tag) > indexOf) {
+                        if (zVar.e.indexOf((Integer) tag) > indexOf) {
                             childCount = i11;
                             break;
                         }
@@ -44,74 +44,74 @@ public final class y {
                     i11++;
                 }
             }
-            w0 f10 = zVar.f(childCount, this.f22453b, this.f22454c, null, this.f22455e, this.f22456f, this.f22457g, null, this.h);
-            this.f22462m = f10;
-            f10.setVisibility(this.f22461l);
+            w0 f10 = zVar.f(childCount, this.f20709b, this.f20710c, null, this.e, this.f20711f, this.f20712g, null, this.h);
+            this.f20717m = f10;
+            f10.setVisibility(this.f20716l);
             CharSequence charSequence = this.d;
             if (charSequence != null) {
-                this.f22462m.setContentDescription(charSequence);
+                this.f20717m.setContentDescription(charSequence);
             }
-            Boolean bool = this.f22460k;
+            Boolean bool = this.f20715k;
             if (bool != null) {
-                this.f22462m.O = bool.booleanValue();
+                this.f20717m.O = bool.booleanValue();
             }
-            Boolean bool2 = this.f22459j;
+            Boolean bool2 = this.f20714j;
             if (bool2 != null) {
-                this.f22462m.P = bool2.booleanValue();
+                this.f20717m.P = bool2.booleanValue();
             }
-            this.f22462m.setAlpha(this.f22458i);
-            ArrayList arrayList2 = this.f22463n;
+            this.f20717m.setAlpha(this.f20713i);
+            ArrayList arrayList2 = this.f20718n;
             if (arrayList2 != null) {
                 int size = arrayList2.size();
                 while (i10 < size) {
                     Object obj = arrayList2.get(i10);
                     i10++;
-                    ((Utilities.Callback) obj).run(this.f22462m);
+                    ((Utilities.Callback) obj).run(this.f20717m);
                 }
-                this.f22463n = null;
+                this.f20718n = null;
             }
         }
     }
 
-    public final void b(xe xeVar) {
-        w0 w0Var = this.f22462m;
+    public final void b(ze zeVar) {
+        w0 w0Var = this.f20717m;
         if (w0Var != null) {
-            xeVar.run(w0Var);
+            zeVar.run(w0Var);
             return;
         }
-        if (this.f22463n == null) {
-            this.f22463n = new ArrayList();
+        if (this.f20718n == null) {
+            this.f20718n = new ArrayList();
         }
-        this.f22463n.add(xeVar);
+        this.f20718n.add(zeVar);
     }
 
     public final void c() {
-        this.f22460k = Boolean.FALSE;
-        w0 w0Var = this.f22462m;
+        this.f20715k = Boolean.FALSE;
+        w0 w0Var = this.f20717m;
         if (w0Var != null) {
             w0Var.O = false;
         }
     }
 
     public final void d() {
-        this.f22459j = Boolean.TRUE;
-        w0 w0Var = this.f22462m;
+        this.f20714j = Boolean.TRUE;
+        w0 w0Var = this.f20717m;
         if (w0Var != null) {
             w0Var.P = true;
         }
     }
 
     public final void e() {
-        this.f22464o = null;
+        this.f20719o = null;
     }
 
     public final void f(int i10) {
-        if (this.f22461l != i10) {
-            this.f22461l = i10;
+        if (this.f20716l != i10) {
+            this.f20716l = i10;
             if (i10 == 0) {
                 a();
             }
-            w0 w0Var = this.f22462m;
+            w0 w0Var = this.f20717m;
             if (w0Var != null) {
                 w0Var.setVisibility(i10);
             }

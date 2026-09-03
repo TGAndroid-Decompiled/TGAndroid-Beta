@@ -9,12 +9,12 @@ import b6.g;
 import b6.q;
 import com.google.android.gms.common.api.k;
 import com.google.android.gms.common.api.l;
-import m.r3;
+import m.s3;
 public final class c extends g {
     public final q R;
 
-    public c(Context context, Looper looper, r3 r3Var, q qVar, k kVar, l lVar) {
-        super(context, looper, 270, r3Var, kVar, lVar, 0);
+    public c(Context context, Looper looper, s3 s3Var, q qVar, k kVar, l lVar) {
+        super(context, looper, 270, s3Var, kVar, lVar, 0);
         this.R = qVar;
     }
 
@@ -37,7 +37,7 @@ public final class c extends g {
 
     @Override
     public final y5.c[] r() {
-        return y6.b.f50828b;
+        return y6.b.f47196b;
     }
 
     @Override
@@ -45,7 +45,7 @@ public final class c extends g {
         q qVar = this.R;
         qVar.getClass();
         Bundle bundle = new Bundle();
-        String str = qVar.f1770a;
+        String str = qVar.f1647a;
         if (str != null) {
             bundle.putString("api", str);
         }

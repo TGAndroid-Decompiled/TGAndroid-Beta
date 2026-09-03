@@ -1,136 +1,213 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
+import android.text.SpannableString;
+import android.view.KeyEvent;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.messenger.XiaomiUtilities;
-public final class au extends xt {
-    public Drawable f25373c;
-    public final int d;
-    public final fu f25374e;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class au implements ky {
+    public final cu f23482a;
 
-    public au(fu fuVar, Context context, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
-        super(context, g6Var);
-        this.f25374e = fuVar;
-        this.d = i10;
-        this.f25373c = null;
+    public au(cu cuVar) {
+        this.f23482a = cuVar;
     }
 
     @Override
-    public final int emojiCacheType() {
-        return this.f25374e.h();
+    public final boolean A() {
+        return false;
     }
 
     @Override
-    public final void extendActionMode(ActionMode actionMode, Menu menu) {
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final void i(int i10) {
         boolean z4;
-        fu fuVar = this.f25374e;
-        if (fuVar.a()) {
-            if (fuVar.I == 3) {
+        cu cuVar = this.f23482a;
+        if (cuVar.b()) {
+            if (i10 != 0) {
                 z4 = true;
             } else {
                 z4 = false;
             }
-            org.telegram.ui.xn.k8(menu, null, z4, true, true, true);
-            return;
-        }
-        fuVar.i(menu);
-    }
-
-    @Override
-    public final int getActionModeStyle() {
-        int i10 = this.d;
-        if (i10 == 2 || i10 == 3) {
-            return 2;
-        }
-        return super.getActionModeStyle();
-    }
-
-    @Override
-    public final void onLineCountChanged(int i10, int i11) {
-        this.f25374e.q(i10, i11);
-    }
-
-    @Override
-    public final void onSelectionChanged(int i10, int i11) {
-        boolean z4;
-        super.onSelectionChanged(i10, i11);
-        fu fuVar = this.f25374e;
-        yl0 yl0Var = fuVar.f26999c;
-        if (yl0Var != null) {
-            boolean z10 = false;
-            if (i11 != i10) {
-                z4 = true;
-            } else {
-                z4 = false;
-            }
-            if (fuVar.a() && z4) {
-                XiaomiUtilities.isMIUI();
-                z10 = true;
-            }
-            if (fuVar.f27002n != z10) {
-                fuVar.f27002n = z10;
-                if (z10) {
-                    this.f25373c = yl0Var.d;
-                    yl0Var.a(R.drawable.msg_edit, true);
-                    return;
-                }
-                yl0Var.b(this.f25373c, true);
-                this.f25373c = null;
+            cuVar.f24038x = z4;
+            cuVar.y();
+            qv0 qv0Var = cuVar.f24033f;
+            if (qv0Var != null) {
+                qv0Var.S();
             }
         }
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int i10;
-        bu buVar;
-        fu fuVar = this.f25374e;
-        if (fuVar.f27000e && motionEvent.getAction() == 0) {
-            fuVar.u();
-            if (fuVar.f27006x && (buVar = fuVar.d) != null) {
-                buVar.t(false);
-                fuVar.f27006x = false;
-                fuVar.k(true);
-                AndroidUtilities.showKeyboard(this);
-            } else {
-                if (AndroidUtilities.usingHardwareInput) {
-                    i10 = 0;
-                } else {
-                    i10 = 2;
-                }
-                fuVar.x(i10);
-            }
-            fuVar.v();
-        }
-        if (motionEvent.getAction() == 0) {
-            boolean isFocused = isFocused();
-            requestFocus();
-            if (!AndroidUtilities.showKeyboard(this)) {
-                clearFocus();
-                requestFocus();
-            }
-            if (!isFocused) {
-                setSelection(getText().length());
-            }
-        }
-        try {
-            return super.onTouchEvent(motionEvent);
-        } catch (Exception e6) {
-            FileLog.e(e6);
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k() {
+        xt xtVar = this.f23482a.f24030a;
+        if (xtVar.length() == 0) {
             return false;
         }
+        xtVar.dispatchKeyEvent(new KeyEvent(0, 67));
+        return true;
     }
 
     @Override
-    public final void scrollTo(int i10, int i11) {
-        if (this.f25374e.t(i11)) {
-            super.scrollTo(i10, i11);
+    public final void l(String str) {
+        xt xtVar = this.f23482a.f24030a;
+        int selectionEnd = xtVar.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
         }
+        try {
+            CharSequence replaceEmoji = Emoji.replaceEmoji(str, xtVar.getPaint().getFontMetricsInt(), false);
+            xtVar.setText(xtVar.getText().insert(selectionEnd, replaceEmoji));
+            int length = selectionEnd + replaceEmoji.length();
+            xtVar.setSelection(length, length);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public final void n() {
+        cu cuVar = this.f23482a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(cuVar.getContext(), 0, cuVar.J);
+        alertDialog$Builder.f19478a.O = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f19478a.Q = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new u81(this));
+        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+        org.telegram.ui.ActionBar.p2 p2Var = cuVar.h;
+        if (p2Var != null) {
+            p2Var.showDialog(alertDialog$Builder.f19478a);
+        } else {
+            alertDialog$Builder.o();
+        }
+    }
+
+    @Override
+    public final float p() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void q() {
+        org.telegram.ui.ActionBar.p2 p2Var = this.f23482a.h;
+        if (p2Var == null) {
+            new eg.o1((org.telegram.ui.ActionBar.p2) new eg.y1(this, 6), 11, false).show();
+        } else {
+            p2Var.showDialog(new eg.o1(p2Var, 11, false));
+        }
+    }
+
+    @Override
+    public final void x(long j10, TLRPC.Document document, String str, boolean z4) {
+        u5 u5Var;
+        cu cuVar = this.f23482a;
+        xt xtVar = cuVar.f24030a;
+        int selectionEnd = xtVar.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            SpannableString spannableString = new SpannableString(str);
+            if (document != null) {
+                u5Var = new u5(document, xtVar.getPaint().getFontMetricsInt());
+            } else {
+                u5Var = new u5(j10, xtVar.getPaint().getFontMetricsInt());
+            }
+            u5Var.cacheType = cuVar.d.f26428c;
+            spannableString.setSpan(u5Var, 0, spannableString.length(), 33);
+            xtVar.setText(xtVar.getText().insert(selectionEnd, spannableString));
+            int length = selectionEnd + spannableString.length();
+            xtVar.setSelection(length, length);
+        } catch (Exception e) {
+            FileLog.e(e);
+        } catch (Throwable th2) {
+            throw th2;
+        }
+    }
+
+    @Override
+    public final boolean z() {
+        return this.f23482a.f24038x;
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void o(e51 e51Var) {
+    }
+
+    @Override
+    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void s(int i10) {
+    }
+
+    @Override
+    public final void t(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void w() {
+    }
+
+    @Override
+    public final void y(long j10) {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z4) {
+    }
+
+    @Override
+    public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z4, int i10) {
+    }
+
+    @Override
+    public final void v(View view, Object obj, String str, Object obj2, boolean z4, int i10, int i11) {
     }
 }

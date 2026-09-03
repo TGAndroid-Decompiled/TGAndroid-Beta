@@ -10,16 +10,16 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class ox0 extends FrameLayout {
-    public int f29909a;
-    public final RectF f29910b;
-    public boolean f29911c;
+    public int f27679a;
+    public final RectF f27680b;
+    public boolean f27681c;
     public Boolean d;
-    public final xx0 f29912e;
+    public final xx0 e;
 
     public ox0(xx0 xx0Var, Context context) {
         super(context);
-        this.f29912e = xx0Var;
-        this.f29910b = new RectF();
+        this.e = xx0Var;
+        this.f27680b = new RectF();
     }
 
     @Override
@@ -30,8 +30,8 @@ public final class ox0 extends FrameLayout {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            xx0 xx0Var = this.f29912e;
-            if (xx0Var.f33222b0 != 0 && motionEvent.getY() < xx0Var.f33222b0) {
+            xx0 xx0Var = this.e;
+            if (xx0Var.f30751b0 != 0 && motionEvent.getY() < xx0Var.f30751b0) {
                 xx0Var.dismiss();
                 return true;
             }
@@ -41,11 +41,11 @@ public final class ox0 extends FrameLayout {
 
     @Override
     public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        int i14 = this.f29909a;
+        int i14 = this.f27679a;
         int i15 = i12 - i10;
-        xx0 xx0Var = this.f29912e;
+        xx0 xx0Var = this.e;
         if (i14 != i15) {
-            this.f29909a = i15;
+            this.f27679a = i15;
             tx0 tx0Var = xx0Var.d;
             if (tx0Var != null && xx0Var.T != null) {
                 tx0Var.l();
@@ -70,17 +70,17 @@ public final class ox0 extends FrameLayout {
         int i21;
         float f10;
         int size = View.MeasureSpec.getSize(i11);
-        xx0 xx0Var = this.f29912e;
+        xx0 xx0Var = this.e;
         ArrayList arrayList = xx0Var.U;
         boolean z4 = true;
-        xx0Var.f33225d0 = true;
-        i12 = ((org.telegram.ui.ActionBar.h3) xx0Var).backgroundPaddingLeft;
+        xx0Var.f30754d0 = true;
+        i12 = ((org.telegram.ui.ActionBar.g3) xx0Var).backgroundPaddingLeft;
         int i22 = AndroidUtilities.statusBarHeight;
-        i13 = ((org.telegram.ui.ActionBar.h3) xx0Var).backgroundPaddingLeft;
+        i13 = ((org.telegram.ui.ActionBar.g3) xx0Var).backgroundPaddingLeft;
         setPadding(i12, i22, i13, 0);
-        xx0Var.f33225d0 = false;
+        xx0Var.f30754d0 = false;
         if (xx0Var.s0()) {
-            int measuredWidth = xx0Var.f33223c.getMeasuredWidth();
+            int measuredWidth = xx0Var.f30752c.getMeasuredWidth();
             if (measuredWidth == 0) {
                 measuredWidth = AndroidUtilities.displaySize.x;
             }
@@ -100,17 +100,17 @@ public final class ox0 extends FrameLayout {
             xx0Var.M = AndroidUtilities.dp(82.0f);
         }
         float f11 = xx0Var.d.d;
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) xx0Var.f33223c.getLayoutParams();
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) xx0Var.f30752c.getLayoutParams();
         int i23 = 3;
         if (arrayList != null) {
             int max = Math.max(3, (int) Math.ceil(arrayList.size() / f11)) * xx0Var.M;
-            i21 = ((org.telegram.ui.ActionBar.h3) xx0Var).backgroundPaddingTop;
+            i21 = ((org.telegram.ui.ActionBar.g3) xx0Var).backgroundPaddingTop;
             i18 = i21 + max + AndroidUtilities.dp(48.0f) + marginLayoutParams.bottomMargin + AndroidUtilities.statusBarHeight;
         } else {
             if (xx0Var.T != null) {
                 int size3 = (xx0Var.T.size() * AndroidUtilities.dp(60.0f)) + AndroidUtilities.dp(8.0f) + marginLayoutParams.bottomMargin;
-                i19 = ((org.telegram.ui.ActionBar.h3) xx0Var).backgroundPaddingTop;
-                i17 = i19 + (xx0Var.d.f31437n * xx0Var.M) + size3;
+                i19 = ((org.telegram.ui.ActionBar.g3) xx0Var).backgroundPaddingTop;
+                i17 = i19 + (xx0Var.d.f29045n * xx0Var.M) + size3;
                 i16 = AndroidUtilities.dp(24.0f);
             } else {
                 int dp = AndroidUtilities.dp(48.0f) + marginLayoutParams.bottomMargin;
@@ -123,7 +123,7 @@ public final class ox0 extends FrameLayout {
                     i14 = 0;
                 }
                 int max2 = (Math.max(i23, i14) * xx0Var.M) + dp;
-                i15 = ((org.telegram.ui.ActionBar.h3) xx0Var).backgroundPaddingTop;
+                i15 = ((org.telegram.ui.ActionBar.g3) xx0Var).backgroundPaddingTop;
                 i16 = i15 + max2;
                 i17 = AndroidUtilities.statusBarHeight;
             }
@@ -142,27 +142,27 @@ public final class ox0 extends FrameLayout {
             i20 -= size - i18;
         }
         if (i20 == 0) {
-            i20 = ((org.telegram.ui.ActionBar.h3) xx0Var).backgroundPaddingTop;
+            i20 = ((org.telegram.ui.ActionBar.g3) xx0Var).backgroundPaddingTop;
         }
         if (xx0Var.T != null) {
             i20 += AndroidUtilities.dp(8.0f);
         }
-        if (xx0Var.f33223c.getPaddingTop() != i20) {
-            xx0Var.f33225d0 = true;
-            xx0Var.f33223c.setPadding(AndroidUtilities.dp(10.0f), i20, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(8.0f));
+        if (xx0Var.f30752c.getPaddingTop() != i20) {
+            xx0Var.f30754d0 = true;
+            xx0Var.f30752c.setPadding(AndroidUtilities.dp(10.0f), i20, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(8.0f));
             xx0Var.H.setPadding(0, i20, 0, 0);
-            xx0Var.f33225d0 = false;
+            xx0Var.f30754d0 = false;
         }
         if (i18 < size) {
             z4 = false;
         }
-        this.f29911c = z4;
+        this.f27681c = z4;
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(i18, size), 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f29912e.isDismissed() && super.onTouchEvent(motionEvent)) {
+        if (!this.e.isDismissed() && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -170,7 +170,7 @@ public final class ox0 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f29912e.f33225d0) {
+        if (this.e.f30754d0) {
             return;
         }
         super.requestLayout();

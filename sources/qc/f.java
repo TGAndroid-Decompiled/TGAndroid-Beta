@@ -3,11 +3,11 @@ package qc;
 import java.util.regex.Pattern;
 import ne.p;
 public final class f extends h {
-    public static final Pattern f44798e = Pattern.compile("^&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
+    public static final Pattern e = Pattern.compile("^&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
 
     @Override
     public final p b() {
-        String a2 = a(f44798e);
+        String a2 = a(e);
         if (a2 != null) {
             return f(me.b.a(a2));
         }

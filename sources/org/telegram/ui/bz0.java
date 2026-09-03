@@ -3,23 +3,23 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
-public final class bz0 implements hq {
-    public final TLRPC.Chat f35640a;
-    public final kq f35641b;
-    public final ProfileActivity f35642c;
+public final class bz0 implements iq {
+    public final TLRPC.Chat f32963a;
+    public final lq f32964b;
+    public final ProfileActivity f32965c;
 
-    public bz0(ProfileActivity profileActivity, TLRPC.Chat chat, kq kqVar) {
-        this.f35642c = profileActivity;
-        this.f35640a = chat;
-        this.f35641b = kqVar;
+    public bz0(ProfileActivity profileActivity, TLRPC.Chat chat, lq lqVar) {
+        this.f32965c = profileActivity;
+        this.f32963a = chat;
+        this.f32964b = lqVar;
     }
 
     @Override
     public final void a(TLRPC.User user) {
         int i10;
-        ProfileActivity profileActivity = this.f35642c;
+        ProfileActivity profileActivity = this.f32965c;
         UndoView undoView = profileActivity.J;
-        long j10 = -profileActivity.f34577c1;
+        long j10 = -profileActivity.f32019c1;
         if (profileActivity.B2.megagroup) {
             i10 = 10;
         } else {
@@ -31,17 +31,17 @@ public final class bz0 implements hq {
     @Override
     public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
         TLRPC.Chat chat;
-        ProfileActivity profileActivity = this.f35642c;
+        ProfileActivity profileActivity = this.f32965c;
         profileActivity.removeSelfFromStack();
-        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f34569b1));
-        if (user != null && (chat = this.f35640a) != null && profileActivity.f34569b1 != 0) {
-            kq kqVar = this.f35641b;
-            if (kqVar.N && kqVar.getParentLayout() != null) {
-                for (org.telegram.ui.ActionBar.p2 p2Var : kqVar.getParentLayout().getFragmentStack()) {
-                    if (p2Var instanceof sb) {
-                        sb sbVar = (sb) p2Var;
-                        sbVar.W0();
-                        AndroidUtilities.runOnUIThread(new if0(sbVar, user, chat, 25));
+        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f32011b1));
+        if (user != null && (chat = this.f32963a) != null && profileActivity.f32011b1 != 0) {
+            lq lqVar = this.f32964b;
+            if (lqVar.N && lqVar.getParentLayout() != null) {
+                for (org.telegram.ui.ActionBar.p2 p2Var : lqVar.getParentLayout().getFragmentStack()) {
+                    if (p2Var instanceof ub) {
+                        ub ubVar = (ub) p2Var;
+                        ubVar.W0();
+                        AndroidUtilities.runOnUIThread(new jf0(ubVar, user, chat, 25));
                         return;
                     }
                 }

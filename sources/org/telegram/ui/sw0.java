@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class sw0 extends org.telegram.ui.Components.sl0 {
+public final class sw0 extends org.telegram.ui.Components.rl0 {
     public final Paint U2;
     public final Path V2;
     public final vw0 W2;
@@ -19,7 +19,7 @@ public final class sw0 extends org.telegram.ui.Components.sl0 {
         this.W2 = vw0Var;
         Paint paint = new Paint(1);
         this.U2 = paint;
-        paint.setColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21733h5, false));
+        paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19952h5, false));
         this.V2 = new Path();
     }
 
@@ -39,7 +39,7 @@ public final class sw0 extends org.telegram.ui.Components.sl0 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.W2.f42226n.f34498n0 >= 1.0f) {
+        if (this.W2.f39214n.f31942n0 >= 1.0f) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -47,7 +47,7 @@ public final class sw0 extends org.telegram.ui.Components.sl0 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.W2.f42226n.f34498n0 >= 1.0f) {
+        if (this.W2.f39214n.f31942n0 >= 1.0f) {
             return false;
         }
         return super.onInterceptTouchEvent(motionEvent);
@@ -56,7 +56,7 @@ public final class sw0 extends org.telegram.ui.Components.sl0 {
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        PremiumPreviewFragment premiumPreviewFragment = this.W2.f42226n;
+        PremiumPreviewFragment premiumPreviewFragment = this.W2.f39214n;
         int i14 = 0;
         int i15 = 0;
         while (true) {

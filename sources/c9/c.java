@@ -4,13 +4,13 @@ import java.util.Set;
 public interface c {
     Object a(Class cls);
 
-    ba.b b(t tVar);
+    ba.b b(u uVar);
 
     ba.b c(Class cls);
 
-    r e(t tVar);
+    s d(u uVar);
 
-    Object f(t tVar);
+    Object f(u uVar);
 
-    Set i(t tVar);
+    Set g(u uVar);
 }

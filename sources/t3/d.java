@@ -1,17 +1,17 @@
 package t3;
 public final class d implements a {
-    public final int f47893a;
-    public final int f47894b;
-    public final int f47895c;
+    public final int f44519a;
+    public final int f44520b;
+    public final int f44521c;
     public final int d;
-    public final int f47896e;
+    public final int e;
 
     public d(int i10, int i11, int i12, int i13, int i14) {
-        this.f47893a = i10;
-        this.f47894b = i11;
-        this.f47895c = i12;
+        this.f44519a = i10;
+        this.f44520b = i11;
+        this.f44521c = i12;
         this.d = i13;
-        this.f47896e = i14;
+        this.e = i14;
     }
 
     @Override

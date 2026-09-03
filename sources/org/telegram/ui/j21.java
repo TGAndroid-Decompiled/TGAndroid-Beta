@@ -1,30 +1,26 @@
 package org.telegram.ui;
+public final class j21 implements Runnable {
+    public final int f35070a;
 
-import android.widget.Toast;
-import java.util.List;
-import org.telegram.tgnet.ResultCallback;
-import org.telegram.tgnet.TLRPC;
-public final class j21 implements ResultCallback {
-    public final u21 f37826a;
-
-    public j21(u21 u21Var) {
-        this.f37826a = u21Var;
+    public j21(int i10) {
+        this.f35070a = i10;
     }
 
     @Override
-    public final void onComplete(Object obj) {
-        List list = (List) obj;
-        this.f37826a.c0(list);
-        u21.P = list;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.j21.run():void");
     }
 
-    @Override
-    public final void onError(Throwable th2) {
-        org.telegram.tgnet.k.a(this, th2);
+    public j21(Object obj, int i10) {
+        this.f35070a = i10;
     }
 
-    @Override
-    public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f37826a.getParentActivity(), tL_error.text, 0).show();
+    private final void a() {
+    }
+
+    private final void b() {
+    }
+
+    private final void c() {
     }
 }

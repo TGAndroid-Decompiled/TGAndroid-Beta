@@ -1,14 +1,18 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-public final class em extends org.telegram.ui.Components.m6 {
-    @Override
-    public final void b(Object obj, float f10) {
-        ((MessageObject.SendAnimationData) obj).currentScale = f10;
+import android.content.Context;
+public final class em extends org.telegram.ui.Cells.h0 {
+    public final lm I;
+
+    public em(lm lmVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, i10, f6Var);
+        this.I = lmVar;
     }
 
     @Override
-    public final Object get(Object obj) {
-        return Float.valueOf(((MessageObject.SendAnimationData) obj).currentScale);
+    public final int getSideMenuWidth() {
+        zn znVar = this.I.N;
+        int i10 = zn.Ec;
+        return znVar.R8();
     }
 }

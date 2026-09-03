@@ -4,28 +4,28 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class rj implements Runnable {
-    public final int f19915a;
-    public final SendMessagesHelper f19916b;
-    public final TLObject f19917c;
+    public final int f18315a;
+    public final SendMessagesHelper f18316b;
+    public final TLObject f18317c;
     public final TLRPC.InputMedia d;
-    public final SendMessagesHelper.DelayedMessage f19918e;
+    public final SendMessagesHelper.DelayedMessage e;
 
     public rj(SendMessagesHelper sendMessagesHelper, TLObject tLObject, TLRPC.InputMedia inputMedia, SendMessagesHelper.DelayedMessage delayedMessage, int i10) {
-        this.f19915a = i10;
-        this.f19916b = sendMessagesHelper;
-        this.f19917c = tLObject;
+        this.f18315a = i10;
+        this.f18316b = sendMessagesHelper;
+        this.f18317c = tLObject;
         this.d = inputMedia;
-        this.f19918e = delayedMessage;
+        this.e = delayedMessage;
     }
 
     @Override
     public final void run() {
-        switch (this.f19915a) {
+        switch (this.f18315a) {
             case 0:
-                this.f19916b.lambda$uploadMultiMedia$59(this.f19917c, this.d, this.f19918e);
+                this.f18316b.lambda$uploadMultiMedia$59(this.f18317c, this.d, this.e);
                 return;
             default:
-                this.f19916b.lambda$performSendDelayedMessage$51(this.f19917c, this.d, this.f19918e);
+                this.f18316b.lambda$performSendDelayedMessage$51(this.f18317c, this.d, this.e);
                 return;
         }
     }

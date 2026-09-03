@@ -1,21 +1,21 @@
 package org.telegram.messenger;
 public final class zg implements Runnable {
-    public final int f20808a;
-    public final NotificationCenter f20809b;
+    public final int f19125a;
+    public final NotificationCenter f19126b;
 
     public zg(NotificationCenter notificationCenter, int i10) {
-        this.f20808a = i10;
-        this.f20809b = notificationCenter;
+        this.f19125a = i10;
+        this.f19126b = notificationCenter;
     }
 
     @Override
     public final void run() {
-        switch (this.f20808a) {
+        switch (this.f19125a) {
             case 0:
-                NotificationCenter.g(this.f20809b);
+                NotificationCenter.g(this.f19126b);
                 return;
             default:
-                NotificationCenter.b(this.f20809b);
+                NotificationCenter.b(this.f19126b);
                 return;
         }
     }

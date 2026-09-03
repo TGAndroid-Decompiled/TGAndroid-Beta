@@ -10,7 +10,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
-import k7.t7;
+import k7.s7;
+import kf.k0;
 public abstract class g extends m {
     public static ArrayList f(Iterable iterable) {
         ArrayList arrayList = new ArrayList();
@@ -66,7 +67,7 @@ public abstract class g extends m {
         Object next;
         kotlin.jvm.internal.j.e(iterable, "<this>");
         if (i10 >= 0) {
-            o oVar = o.f48100a;
+            o oVar = o.f44712a;
             if (i10 == 0) {
                 return oVar;
             }
@@ -90,7 +91,7 @@ public abstract class g extends m {
                             throw new NoSuchElementException("Collection is empty.");
                         }
                     }
-                    return t7.a(next);
+                    return s7.a(next);
                 }
             }
             ArrayList arrayList = new ArrayList(i10);
@@ -107,11 +108,11 @@ public abstract class g extends m {
                 if (size != 1) {
                     return arrayList;
                 }
-                return t7.a(arrayList.get(0));
+                return s7.a(arrayList.get(0));
             }
             return oVar;
         }
-        throw new IllegalArgumentException(l.d.k(i10, "Requested element count ", " is less than zero.").toString());
+        throw new IllegalArgumentException(k0.k(i10, "Requested element count ", " is less than zero.").toString());
     }
 
     public static byte[] j(ArrayList arrayList) {
@@ -154,7 +155,7 @@ public abstract class g extends m {
         Object next;
         kotlin.jvm.internal.j.e(iterable, "<this>");
         boolean z4 = iterable instanceof Collection;
-        o oVar = o.f48100a;
+        o oVar = o.f44712a;
         if (z4) {
             Collection collection = (Collection) iterable;
             int size = collection.size();
@@ -167,7 +168,7 @@ public abstract class g extends m {
                 } else {
                     next = collection.iterator().next();
                 }
-                return t7.a(next);
+                return s7.a(next);
             }
             return oVar;
         }
@@ -183,7 +184,7 @@ public abstract class g extends m {
             if (size2 != 1) {
                 return arrayList;
             }
-            return t7.a(arrayList.get(0));
+            return s7.a(arrayList.get(0));
         }
         return oVar;
     }
@@ -239,6 +240,6 @@ public abstract class g extends m {
                 return singleton2;
             }
         }
-        return q.f48102a;
+        return q.f44714a;
     }
 }

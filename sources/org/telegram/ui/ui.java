@@ -1,29 +1,44 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class ui implements NotificationCenter.NotificationCenterDelegate {
-    public final int f41843a;
-    public final dg.u1 f41844b;
-    public final xn f41845c;
-    public final xn d;
+import org.telegram.messenger.MessageObject;
+public final class ui implements Runnable {
+    public final boolean f38818a;
+    public final boolean f38819b;
+    public final int f38820c;
+    public final boolean d;
+    public final org.telegram.ui.Components.pk0 e;
+    public final float f38821f;
+    public final float h;
+    public final mg.q0 f38822n;
+    public final MessageObject f38823r;
+    public final zn f38824s;
 
-    public ui(xn xnVar, int i10, dg.u1 u1Var, xn xnVar2) {
-        this.d = xnVar;
-        this.f41843a = i10;
-        this.f41844b = u1Var;
-        this.f41845c = xnVar2;
+    public ui(zn znVar, boolean z4, boolean z10, int i10, boolean z11, org.telegram.ui.Components.pk0 pk0Var, float f10, float f11, mg.q0 q0Var, MessageObject messageObject) {
+        this.f38824s = znVar;
+        this.f38818a = z4;
+        this.f38819b = z10;
+        this.f38820c = i10;
+        this.d = z11;
+        this.e = pk0Var;
+        this.f38821f = f10;
+        this.h = f11;
+        this.f38822n = q0Var;
+        this.f38823r = messageObject;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12;
-        int i13 = NotificationCenter.messagesDidLoad;
-        if (i10 == i13 && ((Integer) objArr[10]).intValue() == this.f41843a) {
-            this.f41844b.run();
-            AndroidUtilities.runOnUIThread(new j3.b0(this.f41845c, i10, i11, objArr), 50L);
-            i12 = ((org.telegram.ui.ActionBar.p2) this.d).currentAccount;
-            NotificationCenter.getInstance(i12).removeObserver(this, i13);
+    public final void run() {
+        if (!this.f38818a) {
+            zn znVar = this.f38824s;
+            if (znVar.Zb != null) {
+                znVar.Zb = null;
+                if (this.f38819b) {
+                    znVar.h8(new ti(this, this.f38820c, this.d, this.e, this.f38821f, this.h, this.f38822n, 0));
+                } else {
+                    znVar.h8(new hc(21, this, this.f38823r));
+                }
+                znVar.A7(true);
+            }
         }
     }
 }

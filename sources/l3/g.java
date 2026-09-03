@@ -9,17 +9,17 @@ import java.util.Collections;
 import java.util.List;
 import k7.y7;
 public final class g {
-    public static final g f11501c = new g(10, new int[]{2});
+    public static final g f11249c = new g(10, new int[]{2});
     public static final s8.i0 d;
-    public static final s8.n0 f11502e;
-    public final int[] f11503a;
-    public final int f11504b;
+    public static final s8.n0 e;
+    public final int[] f11250a;
+    public final int f11251b;
 
     static {
         Object[] objArr = {2, 5, 6};
         s8.l.b(3, objArr);
         d = s8.v.s(3, objArr);
-        b4.e0 e0Var = new b4.e0(4, 22);
+        b4.e0 e0Var = new b4.e0(4, 23);
         e0Var.x(5, 6);
         e0Var.x(17, 6);
         e0Var.x(7, 6);
@@ -28,18 +28,18 @@ public final class g {
         e0Var.x(6, 8);
         e0Var.x(8, 8);
         e0Var.x(14, 8);
-        f11502e = e0Var.d();
+        e = e0Var.d();
     }
 
     public g(int i10, int[] iArr) {
         if (iArr != null) {
             int[] copyOf = Arrays.copyOf(iArr, iArr.length);
-            this.f11503a = copyOf;
+            this.f11250a = copyOf;
             Arrays.sort(copyOf);
         } else {
-            this.f11503a = new int[0];
+            this.f11250a = new int[0];
         }
-        this.f11504b = i10;
+        this.f11251b = i10;
     }
 
     public static g a(Context context) {
@@ -48,11 +48,11 @@ public final class g {
 
     public static g b(Context context, Intent intent) {
         List aVar;
-        int i10 = h5.d0.f7237a;
+        int i10 = h5.d0.f6924a;
         if (i10 < 23 || !e.b(context)) {
             ?? wVar = new com.google.android.gms.common.api.internal.w();
             if (i10 >= 17) {
-                String str = h5.d0.f7239c;
+                String str = h5.d0.f6926c;
                 if (("Amazon".equals(str) || "Xiaomi".equals(str)) && Settings.Global.getInt(context.getContentResolver(), "external_surround_sound_enabled", 0) == 1) {
                     s8.i0 i0Var = d;
                     i0Var.getClass();
@@ -84,7 +84,7 @@ public final class g {
                 }
             }
         }
-        return f11501c;
+        return f11249c;
     }
 
     public final android.util.Pair c(j3.n0 r10) {
@@ -99,17 +99,17 @@ public final class g {
             return false;
         }
         g gVar = (g) obj;
-        if (Arrays.equals(this.f11503a, gVar.f11503a) && this.f11504b == gVar.f11504b) {
+        if (Arrays.equals(this.f11250a, gVar.f11250a) && this.f11251b == gVar.f11251b) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return (Arrays.hashCode(this.f11503a) * 31) + this.f11504b;
+        return (Arrays.hashCode(this.f11250a) * 31) + this.f11251b;
     }
 
     public final String toString() {
-        return "AudioCapabilities[maxChannelCount=" + this.f11504b + ", supportedEncodings=" + Arrays.toString(this.f11503a) + "]";
+        return "AudioCapabilities[maxChannelCount=" + this.f11251b + ", supportedEncodings=" + Arrays.toString(this.f11250a) + "]";
     }
 }

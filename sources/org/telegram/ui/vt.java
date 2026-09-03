@@ -1,189 +1,62 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.os.Build;
-import android.view.View;
-import android.view.ViewGroup;
-import j$.util.Objects;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.Collator;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Locale;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-public final class vt extends org.telegram.ui.Components.ol0 {
-    public final Context f42207r;
-    public final HashMap f42208s = new HashMap();
-    public final ArrayList v = new ArrayList();
-    public final zt f42209w;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.TLRPC;
+public final class vt implements Comparator {
+    public final int f39187a;
+    public final Object f39188b;
 
-    public vt(zt ztVar, Context context, ArrayList arrayList, boolean z4) {
-        Comparator fVar;
-        Locale locale;
-        this.f42209w = ztVar;
-        this.f42207r = context;
-        if (arrayList != null) {
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                tt ttVar = (tt) arrayList.get(i10);
-                String upperCase = ttVar.f41631a.substring(0, 1).toUpperCase();
-                ArrayList arrayList2 = (ArrayList) this.f42208s.get(upperCase);
-                if (arrayList2 == null) {
-                    arrayList2 = new ArrayList();
-                    this.f42208s.put(upperCase, arrayList2);
-                    this.v.add(upperCase);
+    public vt(Object obj, int i10) {
+        this.f39187a = i10;
+        this.f39188b = obj;
+    }
+
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        switch (this.f39187a) {
+            case 0:
+                return ((Comparator) this.f39188b).compare(((ut) obj).f38913a, ((ut) obj2).f38913a);
+            case 1:
+                LongSparseIntArray longSparseIntArray = (LongSparseIntArray) this.f39188b;
+                int i10 = longSparseIntArray.get(((Long) obj).longValue());
+                int i11 = longSparseIntArray.get(((Long) obj2).longValue());
+                if (i10 > i11) {
+                    return 1;
                 }
-                arrayList2.add(ttVar);
-            }
-        } else {
-            try {
-                InputStream open = ApplicationLoader.applicationContext.getResources().getAssets().open("countries.txt");
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(open));
-                while (true) {
-                    String readLine = bufferedReader.readLine();
-                    if (readLine == null) {
-                        break;
-                    }
-                    String[] split = readLine.split(";");
-                    ?? obj = new Object();
-                    obj.f41631a = split[2];
-                    obj.f41633c = split[0];
-                    String str = split[1];
-                    obj.d = str;
-                    if (!str.equals("FT") || !z4) {
-                        String upperCase2 = obj.f41631a.substring(0, 1).toUpperCase();
-                        ArrayList arrayList3 = (ArrayList) this.f42208s.get(upperCase2);
-                        if (arrayList3 == null) {
-                            arrayList3 = new ArrayList();
-                            this.f42208s.put(upperCase2, arrayList3);
-                            this.v.add(upperCase2);
+                if (i10 < i11) {
+                    return -1;
+                }
+                return 0;
+            case 2:
+                LocaleController.LocaleInfo localeInfo = (LocaleController.LocaleInfo) this.f39188b;
+                LocaleController.LocaleInfo localeInfo2 = (LocaleController.LocaleInfo) obj;
+                LocaleController.LocaleInfo localeInfo3 = (LocaleController.LocaleInfo) obj2;
+                if (localeInfo2 != localeInfo) {
+                    if (localeInfo3 != localeInfo) {
+                        int i12 = localeInfo2.serverIndex;
+                        int i13 = localeInfo3.serverIndex;
+                        if (i12 == i13) {
+                            return localeInfo2.name.compareTo(localeInfo3.name);
                         }
-                        arrayList3.add(obj);
+                        if (i12 <= i13) {
+                            if (i12 >= i13) {
+                                return 0;
+                            }
+                        }
                     }
+                    return 1;
                 }
-                bufferedReader.close();
-                open.close();
-            } catch (Exception e6) {
-                FileLog.e(e6);
-            }
-        }
-        if (Build.VERSION.SDK_INT >= 24) {
-            if (LocaleController.getInstance().getCurrentLocale() != null) {
-                locale = LocaleController.getInstance().getCurrentLocale();
-            } else {
-                locale = Locale.getDefault();
-            }
-            Collator collator = Collator.getInstance(locale);
-            Objects.requireNonNull(collator);
-            fVar = new d4.t(collator, 2);
-        } else {
-            fVar = new e5.f(13);
-        }
-        Collections.sort(this.v, fVar);
-        for (ArrayList arrayList4 : this.f42208s.values()) {
-            Collections.sort(arrayList4, new ut(fVar, 0));
-        }
-    }
-
-    @Override
-    public final String F(int i10) {
-        int S = S(i10);
-        ArrayList arrayList = this.v;
-        if (S == -1) {
-            S = arrayList.size() - 1;
-        }
-        return (String) arrayList.get(S);
-    }
-
-    @Override
-    public final void G(org.telegram.ui.Components.sl0 sl0Var, float f10, int[] iArr) {
-        iArr[0] = (int) (h() * f10);
-        iArr[1] = 0;
-    }
-
-    @Override
-    public final int M(int i10) {
-        ArrayList arrayList = this.v;
-        int size = ((ArrayList) this.f42208s.get(arrayList.get(i10))).size();
-        if (i10 != arrayList.size() - 1) {
-            return size + 1;
-        }
-        return size;
-    }
-
-    @Override
-    public final int P(int i10, int i11) {
-        if (i11 < ((ArrayList) this.f42208s.get(this.v.get(i10))).size()) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final int R() {
-        return this.v.size();
-    }
-
-    @Override
-    public final View T(int i10, View view) {
-        return null;
-    }
-
-    @Override
-    public final boolean V(int i10, int i11, f2.m1 m1Var) {
-        if (i11 < ((ArrayList) this.f42208s.get(this.v.get(i10))).size()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void W(int i10, int i11, f2.m1 m1Var) {
-        String str;
-        if (m1Var.f5879f == 0) {
-            tt ttVar = (tt) ((ArrayList) this.f42208s.get(this.v.get(i10))).get(i11);
-            org.telegram.ui.Cells.aa aaVar = (org.telegram.ui.Cells.aa) m1Var.f5875a;
-            CharSequence replaceEmoji = Emoji.replaceEmoji(zt.V(ttVar), aaVar.getTextView().getPaint().getFontMetricsInt(), false);
-            if (this.f42209w.h) {
-                str = "+" + ttVar.f41633c;
-            } else {
-                str = null;
-            }
-            aaVar.c(replaceEmoji, str, false, false);
-        }
-    }
-
-    @Override
-    public final tt O(int i10, int i11) {
-        if (i10 >= 0) {
-            ArrayList arrayList = this.v;
-            if (i10 < arrayList.size()) {
-                ArrayList arrayList2 = (ArrayList) this.f42208s.get(arrayList.get(i10));
-                if (i11 >= 0 && i11 < arrayList2.size()) {
-                    return (tt) arrayList2.get(i11);
+                return -1;
+            default:
+                StickersActivity stickersActivity = (StickersActivity) this.f39188b;
+                int indexOf = stickersActivity.e.indexOf((TLRPC.TL_messages_stickerSet) obj);
+                int indexOf2 = stickersActivity.e.indexOf((TLRPC.TL_messages_stickerSet) obj2);
+                if (indexOf >= 0 && indexOf2 >= 0) {
+                    return indexOf - indexOf2;
                 }
-            }
+                return 0;
         }
-        return null;
-    }
-
-    @Override
-    public final f2.m1 x(ViewGroup viewGroup, int i10) {
-        View U;
-        Context context = this.f42207r;
-        if (i10 != 0) {
-            U = new org.telegram.ui.Cells.c3(context, null);
-            U.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(8.0f));
-        } else {
-            U = zt.U(context);
-        }
-        return new f2.m1(U);
     }
 }

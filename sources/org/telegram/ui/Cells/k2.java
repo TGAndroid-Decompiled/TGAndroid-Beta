@@ -1,39 +1,58 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import org.telegram.ui.Components.np;
-public final class k2 extends np {
-    public final int d;
-    public final ViewGroup f23045e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class k2 extends AnimatorListenerAdapter {
+    public final int f21262a;
+    public final q2 f21263b;
 
-    public k2(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
-        super(context, 21, g6Var);
-        this.d = i10;
-        this.f23045e = viewGroup;
+    public k2(q2 q2Var, int i10) {
+        this.f21262a = i10;
+        this.f21263b = q2Var;
     }
 
     @Override
-    public final void invalidate() {
-        switch (this.d) {
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        int i11;
+        switch (this.f21262a) {
             case 0:
-                super.invalidate();
-                ((r2) this.f23045e).invalidate();
+                q2 q2Var = this.f21263b;
+                q2Var.O3 = 1.0f;
+                q2Var.R3 = null;
+                q2Var.S3 = null;
+                q2Var.T3 = null;
+                q2Var.invalidate();
                 return;
             case 1:
-                super.invalidate();
-                ((org.telegram.ui.web.h) this.f23045e).invalidate();
+                q2 q2Var2 = this.f21263b;
+                q2Var2.P3 = 1.0f;
+                q2Var2.invalidate();
                 return;
             default:
-                super.invalidate();
-                ((qh.w2) this.f23045e).invalidate();
+                q2 q2Var3 = this.f21263b;
+                boolean z4 = q2Var3.P2;
+                if (q2Var3.N2) {
+                    i10 = 2;
+                } else {
+                    i10 = 0;
+                }
+                int i12 = (z4 ? 1 : 0) + i10;
+                if (q2Var3.O2) {
+                    i11 = 4;
+                } else {
+                    i11 = 0;
+                }
+                int i13 = i12 + i11;
+                int i14 = q2Var3.f21625o4;
+                if (i14 != i13) {
+                    q2Var3.A(i14, i13);
+                } else {
+                    q2Var3.f21647s4 = false;
+                    q2Var3.f21635q4 = i14;
+                }
+                q2Var3.invalidate();
                 return;
         }
-    }
-
-    public k2(qh.w2 w2Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, 24, g6Var);
-        this.d = 2;
-        this.f23045e = w2Var;
     }
 }

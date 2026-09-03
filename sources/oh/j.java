@@ -1,184 +1,98 @@
 package oh;
 
-import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.el0;
-public final class j extends f2.v0 {
-    public final int f17309a;
+import f2.i1;
+import f2.u0;
+import org.telegram.ui.Cells.q7;
+public final class j extends u0 {
+    public final int f16569a;
+    public final r f16570b;
 
-    public j(int i10) {
-        this.f17309a = i10;
+    public j(r rVar, int i10) {
+        this.f16569a = i10;
+        this.f16570b = rVar;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, f2.j1 j1Var) {
-        int dp;
-        int dp2;
-        int dp3;
-        switch (this.f17309a) {
+    public final void a(Rect rect, View view, RecyclerView recyclerView, i1 i1Var) {
+        boolean z4;
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        switch (this.f16569a) {
             case 0:
-                recyclerView.getClass();
-                int S = RecyclerView.S(view);
-                rect.setEmpty();
-                if (S == 1) {
-                    rect.left = AndroidUtilities.dp(31.0f) + (-AndroidUtilities.dp(85.0f));
-                    return;
-                } else if (S == 2) {
-                    rect.left = AndroidUtilities.dp(31.0f) + (-AndroidUtilities.dp(85.0f));
-                    return;
-                } else {
-                    return;
-                }
-            case 1:
-                rect.right = AndroidUtilities.dp(2.0f);
-                return;
-            case 2:
-                rect.right = AndroidUtilities.dp(2.0f);
-                return;
-            case 3:
-                el0 el0Var = (el0) recyclerView.T(view);
-                if (el0Var != null) {
-                    int b10 = el0Var.b() % 4;
-                    int i10 = 0;
-                    if (b10 == 0) {
-                        dp = 0;
+                if (view instanceof q7) {
+                    q7 q7Var = (q7) view;
+                    r rVar = this.f16570b;
+                    rVar.f16584f.getClass();
+                    int R = RecyclerView.R(q7Var);
+                    int i10 = rVar.h.J;
+                    boolean z13 = true;
+                    if (R < i10) {
+                        z4 = true;
                     } else {
-                        dp = AndroidUtilities.dp(4.0f);
+                        z4 = false;
                     }
-                    rect.left = dp;
-                    if (b10 != 3) {
-                        i10 = AndroidUtilities.dp(4.0f);
-                    }
-                    rect.right = i10;
-                    return;
-                }
-                rect.left = AndroidUtilities.dp(4.0f);
-                rect.right = AndroidUtilities.dp(4.0f);
-                return;
-            case 4:
-                el0 el0Var2 = (el0) recyclerView.T(view);
-                if (el0Var2 != null) {
-                    int b11 = el0Var2.b() % 4;
-                    int i11 = 0;
-                    if (b11 == 0) {
-                        dp2 = 0;
+                    q7Var.U = z4;
+                    int i11 = R % i10;
+                    if (i11 == 0) {
+                        z10 = true;
                     } else {
-                        dp2 = AndroidUtilities.dp(4.0f);
+                        z10 = false;
                     }
-                    rect.left = dp2;
-                    if (b11 != 3) {
-                        i11 = AndroidUtilities.dp(4.0f);
+                    q7Var.S = z10;
+                    if (i11 != i10 - 1) {
+                        z13 = false;
                     }
-                    rect.right = i11;
+                    q7Var.T = z13;
+                    rect.left = 0;
+                    rect.top = 0;
+                    rect.bottom = 0;
+                    rect.right = 0;
                     return;
                 }
-                rect.left = AndroidUtilities.dp(4.0f);
-                rect.right = AndroidUtilities.dp(4.0f);
-                return;
-            case 5:
-                el0 el0Var3 = (el0) recyclerView.T(view);
-                if (el0Var3 != null) {
-                    int i12 = 0;
-                    if (el0Var3.f5879f != 5) {
-                        rect.right = 0;
-                        rect.left = 0;
-                        return;
-                    }
-                    int b12 = el0Var3.b() % 4;
-                    if (b12 == 0) {
-                        dp3 = 0;
-                    } else {
-                        dp3 = AndroidUtilities.dp(4.0f);
-                    }
-                    rect.left = dp3;
-                    if (b12 != 3) {
-                        i12 = AndroidUtilities.dp(4.0f);
-                    }
-                    rect.right = i12;
-                    return;
-                }
-                rect.left = AndroidUtilities.dp(4.0f);
-                rect.right = AndroidUtilities.dp(4.0f);
-                return;
-            case 6:
                 rect.left = 0;
+                rect.top = 0;
+                rect.bottom = 0;
                 rect.right = 0;
-                rect.bottom = 0;
-                rect.top = 0;
-                return;
-            case 7:
-                recyclerView.getClass();
-                int R = RecyclerView.R(view);
-                rect.left = AndroidUtilities.dp(12.0f);
-                rect.top = 0;
-                rect.bottom = 0;
-                if (R == j1Var.b() - 1) {
-                    rect.right = AndroidUtilities.dp(12.0f);
-                    return;
-                }
-                return;
-            case 8:
-                super.a(rect, view, recyclerView, j1Var);
-                rect.top = 1;
-                return;
-            case 9:
-                super.a(rect, view, recyclerView, j1Var);
-                recyclerView.getClass();
-                int R2 = RecyclerView.R(view);
-                rect.left = AndroidUtilities.dp(8.0f);
-                if (R2 == j1Var.b() - 1) {
-                    rect.right = AndroidUtilities.dp(10.0f);
-                }
-                if (R2 == 0) {
-                    rect.left = AndroidUtilities.dp(10.0f);
-                    return;
-                }
                 return;
             default:
-                rect.top = AndroidUtilities.dp(6.0f);
-                return;
-        }
-    }
-
-    @Override
-    public void b(Canvas canvas, RecyclerView recyclerView) {
-        View view;
-        float dp;
-        int i10;
-        switch (this.f17309a) {
-            case 8:
-                int width = recyclerView.getWidth();
-                int childCount = recyclerView.getChildCount();
-                int i11 = childCount - 1;
-                for (int i12 = 0; i12 < i11; i12++) {
-                    View childAt = recyclerView.getChildAt(i12);
-                    if (i12 < childCount - 2) {
-                        view = recyclerView.getChildAt(i12 + 1);
+                if (view instanceof q7) {
+                    q7 q7Var2 = (q7) view;
+                    r rVar2 = this.f16570b;
+                    rVar2.f16586r.getClass();
+                    int R2 = RecyclerView.R(q7Var2);
+                    int i12 = rVar2.f16587s.J;
+                    boolean z14 = true;
+                    if (R2 < i12) {
+                        z11 = true;
                     } else {
-                        view = null;
+                        z11 = false;
                     }
-                    if (RecyclerView.R(childAt) >= 0 && !(childAt instanceof org.telegram.ui.Cells.u3) && !(view instanceof org.telegram.ui.Cells.u3)) {
-                        int bottom = childAt.getBottom();
-                        if (LocaleController.isRTL) {
-                            dp = 0.0f;
-                        } else {
-                            dp = AndroidUtilities.dp(72.0f);
-                        }
-                        float f10 = bottom;
-                        if (LocaleController.isRTL) {
-                            i10 = AndroidUtilities.dp(72.0f);
-                        } else {
-                            i10 = 0;
-                        }
-                        canvas.drawLine(dp, f10, width - i10, f10, org.telegram.ui.ActionBar.k6.f21781k0);
+                    q7Var2.U = z11;
+                    int i13 = R2 % i12;
+                    if (i13 == 0) {
+                        z12 = true;
+                    } else {
+                        z12 = false;
                     }
+                    q7Var2.S = z12;
+                    if (i13 != i12 - 1) {
+                        z14 = false;
+                    }
+                    q7Var2.T = z14;
+                    rect.left = 0;
+                    rect.top = 0;
+                    rect.bottom = 0;
+                    rect.right = 0;
+                    return;
                 }
-                return;
-            default:
+                rect.left = 0;
+                rect.top = 0;
+                rect.bottom = 0;
+                rect.right = 0;
                 return;
         }
     }

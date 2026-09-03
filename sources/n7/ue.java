@@ -1,14 +1,14 @@
 package n7;
 public final class ue {
-    public final Integer f15749a;
-    public final Integer f15750b;
-    public final Integer f15751c;
+    public final Integer f14732a;
+    public final Integer f14733b;
+    public final Integer f14734c;
     public final Integer d;
 
-    public ue(com.google.firebase.messaging.s sVar) {
-        this.f15749a = (Integer) sVar.f4080a;
-        this.f15750b = (Integer) sVar.f4081b;
-        this.f15751c = (Integer) sVar.f4082c;
-        this.d = (Integer) sVar.d;
+    public ue(com.google.firebase.messaging.r rVar) {
+        this.f14732a = (Integer) rVar.f4004a;
+        this.f14733b = (Integer) rVar.f4005b;
+        this.f14734c = (Integer) rVar.f4006c;
+        this.d = (Integer) rVar.d;
     }
 }

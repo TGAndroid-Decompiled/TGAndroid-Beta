@@ -7,25 +7,25 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ph1;
 public final class ab implements View.OnLayoutChangeListener {
-    public final boolean f25206a;
-    public final ic f25207b;
+    public final boolean f23354a;
+    public final ic f23355b;
 
     public ab(ic icVar, boolean z4) {
-        this.f25207b = icVar;
-        this.f25206a = z4;
+        this.f23355b = icVar;
+        this.f23354a = z4;
     }
 
     @Override
     public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
         fb fbVar;
         int i18;
-        ic icVar = this.f25207b;
-        nb nbVar = icVar.f27774e;
+        ic icVar = this.f23355b;
+        nb nbVar = icVar.e;
         nbVar.removeOnLayoutChangeListener(this);
-        if (icVar.f27780l) {
+        if (icVar.f25673l) {
             nbVar.onShow();
-            org.telegram.ui.ActionBar.p2 p2Var = icVar.f27776g;
-            boolean z4 = this.f25206a;
+            org.telegram.ui.ActionBar.p2 p2Var = icVar.f25669g;
+            boolean z4 = this.f23354a;
             if (z4 && (p2Var instanceof ph1)) {
                 p2Var = ((ph1) p2Var).X();
             }
@@ -39,37 +39,37 @@ public final class ab implements View.OnLayoutChangeListener {
                 }
                 fbVar = null;
             }
-            icVar.f27784p = fbVar;
+            icVar.f25677p = fbVar;
             if (fbVar == null && p2Var != null) {
-                icVar.f27784p = new lh.t0(p2Var, 6);
+                icVar.f25677p = new kh.t0(p2Var, 6);
             }
             o1.j jVar = icVar.d;
-            if (jVar == null || !jVar.f16332f) {
-                fb fbVar2 = icVar.f27784p;
+            if (jVar == null || !jVar.f16172f) {
+                fb fbVar2 = icVar.f25677p;
                 if (fbVar2 != null) {
-                    i18 = fbVar2.f(icVar.f27771a);
+                    i18 = fbVar2.f(icVar.f25665a);
                 } else {
                     i18 = 0;
                 }
-                icVar.f27783o = i18;
+                icVar.f25676o = i18;
             }
-            fb fbVar3 = icVar.f27784p;
+            fb fbVar3 = icVar.f25677p;
             if (fbVar3 != null) {
                 fbVar3.b(icVar);
             }
-            if (MessagesController.getGlobalMainSettings().getBoolean("view_animations", true) && !icVar.f27787s) {
-                if (nbVar != null && icVar.f27785q == null) {
-                    icVar.f27785q = nbVar.createTransition();
+            if (MessagesController.getGlobalMainSettings().getBoolean("view_animations", true) && !icVar.f25680s) {
+                if (nbVar != null && icVar.f25678q == null) {
+                    icVar.f25678q = nbVar.createTransition();
                 }
                 nbVar.transitionRunningEnter = true;
-                nbVar.delegate = icVar.f27784p;
+                nbVar.delegate = icVar.f25677p;
                 nbVar.invalidate();
-                mb mbVar = icVar.f27785q;
+                mb mbVar = icVar.f25678q;
                 Objects.requireNonNull(nbVar);
-                mbVar.A(nbVar, new wa(nbVar, 1), new fg(this, 15), new il(2, this, z4));
+                mbVar.J(nbVar, new wa(nbVar, 1), new fg(this, 15), new gl(2, this, z4));
                 return;
             }
-            fb fbVar4 = icVar.f27784p;
+            fb fbVar4 = icVar.f25677p;
             nbVar.delegate = fbVar4;
             if (fbVar4 != null && !z4) {
                 fbVar4.c(nbVar.getHeight());
@@ -77,7 +77,7 @@ public final class ab implements View.OnLayoutChangeListener {
             icVar.l();
             nbVar.onEnterTransitionStart();
             nbVar.onEnterTransitionEnd();
-            if (icVar.f27789u) {
+            if (icVar.f25682u) {
                 icVar.i(true);
             }
         }
