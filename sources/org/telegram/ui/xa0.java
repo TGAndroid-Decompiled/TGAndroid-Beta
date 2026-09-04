@@ -1,21 +1,8 @@
 package org.telegram.ui;
+public final class xa0 implements org.telegram.ui.Components.d01 {
+    public final LaunchActivity f42654a;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class xa0 implements View.OnLayoutChangeListener {
-    public boolean f39948a;
-
-    @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        boolean z4;
-        if (i13 - i11 > i12 - i10) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        if (z4 != this.f39948a) {
-            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.mc(this, 24));
-            this.f39948a = z4;
-        }
+    public xa0(LaunchActivity launchActivity) {
+        this.f42654a = launchActivity;
     }
 }

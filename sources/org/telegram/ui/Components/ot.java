@@ -1,62 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RectShape;
-import org.telegram.messenger.AndroidUtilities;
-public final class ot extends ShapeDrawable {
-    public final int f27644a = 0;
-    public final EditTextBoldCursor f27645b;
+import android.text.Editable;
+import org.telegram.messenger.Utilities;
+public final class ot implements Utilities.Callback0Return {
+    public final int f29179a;
+    public final Object f29180b;
 
-    public ot(EditTextBoldCursor editTextBoldCursor, RectShape rectShape) {
-        super(rectShape);
-        this.f27645b = editTextBoldCursor;
+    public ot(Object obj, int i10) {
+        this.f29179a = i10;
+        this.f29180b = obj;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f27644a) {
+    public final Object run() {
+        boolean z10;
+        Editable text;
+        ri0[] ri0VarArr;
+        int i10 = this.f29179a;
+        Object obj = this.f29180b;
+        switch (i10) {
             case 0:
-                EditTextBoldCursor editTextBoldCursor = this.f27645b;
-                if (editTextBoldCursor.drawInMaim) {
-                    editTextBoldCursor.cursorDrawn = true;
-                    return;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj;
+                int i11 = EditTextBoldCursor.f23971a;
+                if (editTextBoldCursor.hasSelection() && editTextBoldCursor.getSelectionStart() >= 0 && editTextBoldCursor.getSelectionEnd() >= 0 && editTextBoldCursor.getSelectionStart() != editTextBoldCursor.getSelectionEnd() && (text = editTextBoldCursor.getText()) != null && ((ri0VarArr = (ri0[]) text.getSpans(editTextBoldCursor.getSelectionStart(), editTextBoldCursor.getSelectionEnd(), ri0.class)) == null || ri0VarArr.length == 0)) {
+                    z10 = true;
                 } else {
-                    super.draw(canvas);
-                    return;
+                    z10 = false;
                 }
+                return Boolean.valueOf(z10);
             default:
-                super.draw(canvas);
-                this.f27645b.cursorDrawn = true;
-                return;
+                return ((t40) obj).getCloseIntoObject();
         }
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        int i10;
-        switch (this.f27644a) {
-            case 0:
-                i10 = this.f27645b.cursorSize;
-                return AndroidUtilities.dp(i10 + 20);
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        float f10;
-        switch (this.f27644a) {
-            case 0:
-                f10 = this.f27645b.cursorWidth;
-                return AndroidUtilities.dp(f10);
-            default:
-                return super.getIntrinsicWidth();
-        }
-    }
-
-    public ot(EditTextBoldCursor editTextBoldCursor) {
-        this.f27645b = editTextBoldCursor;
     }
 }

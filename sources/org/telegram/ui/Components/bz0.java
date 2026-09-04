@@ -1,11 +1,19 @@
 package org.telegram.ui.Components;
-public final class bz0 {
-    public final hz0 f23776a;
-    public final jz0 f23777b;
-    public boolean f23778c = true;
 
-    public bz0(hz0 hz0Var, jz0 jz0Var) {
-        this.f23776a = hz0Var;
-        this.f23777b = jz0Var;
-    }
+import android.graphics.Canvas;
+import android.view.View;
+public interface bz0 extends org.telegram.ui.Cells.ba {
+    void attach(View view);
+
+    void detach(View view);
+
+    void draw(Canvas canvas, View view);
+
+    int getEmojiOnlyCount();
+
+    void setRow(int i10);
+
+    void setX(int i10);
+
+    void setY(int i10);
 }

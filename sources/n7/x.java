@@ -1,27 +1,49 @@
 package n7;
 
-import java.util.Map;
-public final class x implements u9.d {
-    public static final x f14769b = new x(0);
-    public static final x f14770c = new x(1);
-    public final int f14771a;
+import j$.util.Objects;
+public final class x extends m {
+    public static final x f16693e = new x(0, new Object[0]);
+    public final transient Object[] f16694c;
+    public final transient int d;
 
-    public x(int i10) {
-        this.f14771a = i10;
+    public x(int i10, Object[] objArr) {
+        this.f16694c = objArr;
+        this.d = i10;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        switch (this.f14771a) {
-            case 0:
-                Map.Entry entry = (Map.Entry) obj;
-                u9.e eVar = (u9.e) obj2;
-                eVar.e(y.f14801g, entry.getKey());
-                eVar.e(y.h, entry.getValue());
-                return;
-            default:
-                u9.e eVar2 = (u9.e) obj2;
-                throw new RuntimeException("Couldn't find encoder for type ".concat(String.valueOf(obj.getClass().getCanonicalName())));
-        }
+    public final Object get(int i10) {
+        a.e(i10, this.d);
+        Object obj = this.f16694c[i10];
+        Objects.requireNonNull(obj);
+        return obj;
+    }
+
+    @Override
+    public final int i(Object[] objArr) {
+        Object[] objArr2 = this.f16694c;
+        int i10 = this.d;
+        System.arraycopy(objArr2, 0, objArr, 0, i10);
+        return i10;
+    }
+
+    @Override
+    public final int n() {
+        return this.d;
+    }
+
+    @Override
+    public final int o() {
+        return 0;
+    }
+
+    @Override
+    public final Object[] q() {
+        return this.f16694c;
+    }
+
+    @Override
+    public final int size() {
+        return this.d;
     }
 }

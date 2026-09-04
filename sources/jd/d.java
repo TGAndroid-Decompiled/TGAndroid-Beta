@@ -1,5 +1,11 @@
 package jd;
 
-import j7.r8;
-public abstract class d extends r8 {
+import kd.h;
+import v7.t7;
+public final class d extends h {
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        t7.b(obj);
+        return obj;
+    }
 }

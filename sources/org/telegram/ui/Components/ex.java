@@ -1,33 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ex extends AnimatorListenerAdapter {
-    public final int f24711a;
-    public final boolean f24712b;
-    public final kz f24713c;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class ex extends rv {
+    public final TLRPC.StickerSet W;
+    public final kz X;
 
-    public ex(kz kzVar, boolean z4, int i10) {
-        this.f24711a = i10;
-        this.f24713c = kzVar;
-        this.f24712b = z4;
+    public ex(kz kzVar, org.telegram.ui.ActionBar.n2 n2Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
+        super(n2Var, context, f6Var, arrayList);
+        this.X = kzVar;
+        this.W = stickerSet;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f24711a) {
-            case 0:
-                if (!this.f24712b) {
-                    this.f24713c.f26495x.setVisibility(4);
-                    return;
-                }
-                return;
-            default:
-                if (!this.f24712b) {
-                    this.f24713c.f26499y.setVisibility(4);
-                    return;
-                }
-                return;
+    public final void X(boolean z10) {
+        kz kzVar = this.X;
+        ArrayList arrayList = kzVar.f27972p1;
+        TLRPC.StickerSet stickerSet = this.W;
+        if (z10) {
+            if (!arrayList.contains(Long.valueOf(stickerSet.f19896id))) {
+                arrayList.add(Long.valueOf(stickerSet.f19896id));
+            }
+        } else {
+            arrayList.remove(Long.valueOf(stickerSet.f19896id));
         }
+        kzVar.V();
+    }
+
+    @Override
+    public final void dismiss() {
+        this.X.f27997w2 = false;
+        super.dismiss();
     }
 }

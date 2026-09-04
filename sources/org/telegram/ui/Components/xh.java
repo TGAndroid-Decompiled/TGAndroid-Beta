@@ -1,83 +1,177 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.SendMessagesHelper;
-public final class xh implements xj {
-    public final li f30642a;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class xh extends FrameLayout {
+    public final int f32541a;
+    public final vi f32542b;
 
-    public xh(li liVar) {
-        this.f30642a = liVar;
+    public xh(vi viVar, Context context, int i10) {
+        super(context);
+        this.f32541a = i10;
+        this.f32542b = viVar;
     }
 
     @Override
-    public final void O() {
-        this.f30642a.B1(true);
-    }
-
-    @Override
-    public final void l(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z4, int i10, long j10, boolean z10, long j11) {
-        li liVar = this.f30642a;
-        xj xjVar = liVar.U;
-        if (xjVar != null) {
-            xjVar.l(arrayList, str, arrayList2, arrayList3, z4, i10, j10, z10, j11);
-            return;
-        }
-        org.telegram.ui.ActionBar.p2 p2Var = liVar.f26685c0;
-        if (p2Var instanceof xj) {
-            ((xj) p2Var).l(arrayList, str, arrayList2, arrayList3, z4, i10, j10, z10, j11);
-        } else if (p2Var instanceof org.telegram.ui.fn0) {
-            org.telegram.ui.fn0 fn0Var = (org.telegram.ui.fn0) p2Var;
-            ArrayList arrayList4 = new ArrayList();
-            int size = arrayList.size();
-            for (int i11 = 0; i11 < size; i11++) {
-                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                sendingMediaInfo.path = (String) arrayList.get(i11);
-                arrayList4.add(sendingMediaInfo);
-            }
-            fn0Var.G1(arrayList4);
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f32541a) {
+            case 2:
+                canvas.save();
+                canvas.clipRect(0.0f, this.f32542b.V1, getMeasuredWidth(), getMeasuredHeight());
+                super.dispatchDraw(canvas);
+                canvas.restore();
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
     }
 
     @Override
-    public final void m(long j10, ArrayList arrayList, boolean z4, int i10) {
-        li liVar = this.f30642a;
-        xj xjVar = liVar.U;
-        if (xjVar != null) {
-            xjVar.m(j10, arrayList, z4, i10);
-            return;
-        }
-        org.telegram.ui.ActionBar.p2 p2Var = liVar.f26685c0;
-        if (p2Var instanceof org.telegram.ui.zn) {
-            ((org.telegram.ui.zn) p2Var).m(j10, arrayList, z4, i10);
-        } else if (p2Var instanceof org.telegram.ui.fn0) {
-            ((org.telegram.ui.fn0) p2Var).G1(arrayList);
+    public void onDraw(Canvas canvas) {
+        switch (this.f32541a) {
+            case 2:
+                vi viVar = this.f32542b;
+                xh xhVar = viVar.D0;
+                if (viVar.C0.getAlpha() > 0.0f) {
+                    float f7 = viVar.W1;
+                    if (f7 != 0.0f && f7 != xhVar.getTop() + viVar.W1) {
+                        ValueAnimator valueAnimator = viVar.X1;
+                        if (valueAnimator != null) {
+                            valueAnimator.cancel();
+                        }
+                        float top = viVar.W1 - (xhVar.getTop() + viVar.V1);
+                        viVar.V1 = top;
+                        ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
+                        viVar.X1 = ofFloat;
+                        ofFloat.addUpdateListener(new l6(this, 10));
+                        viVar.X1.setInterpolator(pr.f29466f);
+                        viVar.X1.setDuration(200L);
+                        viVar.X1.start();
+                        viVar.W1 = 0.0f;
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
     }
 
     @Override
-    public final void x() {
-        li liVar = this.f30642a;
-        xj xjVar = liVar.U;
-        if (xjVar != null) {
-            xjVar.x();
-            return;
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f32541a) {
+            case 3:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                vi viVar = this.f32542b;
+                ni niVar = viVar.f31340y0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f31291j0;
+                if (niVar == chatAttachAlertPhotoLayout) {
+                    accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendPhotos", chatAttachAlertPhotoLayout.getSelectedItemsCount(), new Object[0]));
+                } else {
+                    ok okVar = viVar.f31308p0;
+                    if (niVar == okVar) {
+                        accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendFiles", okVar.getSelectedItemsCount(), new Object[0]));
+                    } else {
+                        gj gjVar = viVar.f31297l0;
+                        if (niVar == gjVar) {
+                            accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendAudio", gjVar.getSelectedItemsCount(), new Object[0]));
+                        }
+                    }
+                }
+                accessibilityNodeInfo.setClassName(Button.class.getName());
+                accessibilityNodeInfo.setLongClickable(true);
+                accessibilityNodeInfo.setClickable(true);
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
         }
-        org.telegram.ui.ActionBar.p2 p2Var = liVar.f26685c0;
-        if (p2Var instanceof xj) {
-            ((xj) p2Var).x();
-        } else if (p2Var instanceof org.telegram.ui.fn0) {
-            org.telegram.ui.fn0 fn0Var = (org.telegram.ui.fn0) p2Var;
-            fn0Var.getClass();
-            try {
-                Intent intent = new Intent("android.intent.action.GET_CONTENT");
-                intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
-                intent.setType("*/*");
-                fn0Var.startActivityForResult(intent, 21);
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        switch (this.f32541a) {
+            case 0:
+                if (this.f32542b.f31289i1.getVisibility() != 0) {
+                    return false;
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            default:
+                return super.onInterceptTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f32541a) {
+            case 1:
+                vi viVar = this.f32542b;
+                if (viVar.H && viVar.I != 0) {
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(80.0f) * Integer.bitCount(viVar.I))), 1073741824), i11);
+                    return;
+                }
+                super.onMeasure(i10, i11);
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f32541a) {
+            case 0:
+                if (this.f32542b.f31289i1.getVisibility() != 0) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void setAlpha(float f7) {
+        switch (this.f32541a) {
+            case 0:
+                super.setAlpha(f7);
+                vi viVar = this.f32542b;
+                viVar.a2(0);
+                vi.O(viVar).invalidate();
+                return;
+            case 1:
+            default:
+                super.setAlpha(f7);
+                return;
+            case 2:
+                super.setAlpha(f7);
+                invalidate();
+                return;
+        }
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        switch (this.f32541a) {
+            case 1:
+                super.setTranslationY(f7);
+                this.f32542b.f31340y0.j();
+                return;
+            default:
+                super.setTranslationY(f7);
+                return;
         }
     }
 }

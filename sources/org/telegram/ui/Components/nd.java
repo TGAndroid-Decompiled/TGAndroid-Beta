@@ -1,29 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class nd implements View.OnLongClickListener {
-    public final int f27238a;
-    public final ChatActivityEnterView f27239b;
+import android.content.Context;
+import android.widget.LinearLayout;
+public final class nd extends LinearLayout {
+    public final od[] f28731a;
 
-    public nd(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f27238a = i10;
-        this.f27239b = chatActivityEnterView;
+    public nd(Context context) {
+        super(context);
+        this.f28731a = new od[2];
     }
 
-    @Override
-    public final boolean onLongClick(View view) {
-        int i10 = this.f27238a;
-        ChatActivityEnterView chatActivityEnterView = this.f27239b;
-        switch (i10) {
-            case 0:
-                int i11 = ChatActivityEnterView.f22702j5;
-                return chatActivityEnterView.F0(view);
-            default:
-                ff ffVar = chatActivityEnterView.B0;
-                if (ffVar != null && ffVar.length() > 0) {
-                    return chatActivityEnterView.F0(view);
-                }
-                return false;
+    public final void a(org.telegram.ui.pk pkVar, LinearLayout.LayoutParams layoutParams) {
+        int childCount = getChildCount();
+        if (childCount < 2) {
+            this.f28731a[childCount] = pkVar;
+            addView(pkVar, layoutParams);
         }
+    }
+
+    public od[] getButtons() {
+        return this.f28731a;
     }
 }

@@ -2,46 +2,43 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class ea implements Runnable {
-    public final int f17106a;
-    public final MessagesController f17107b;
-    public final long f17108c;
-    public final ArrayList d;
+    public final int f17542a;
+    public final MessagesController f17543b;
+    public final ArrayList f17544c;
 
-    public ea(MessagesController messagesController, long j10, ArrayList arrayList, int i10) {
-        this.f17106a = i10;
-        this.f17107b = messagesController;
-        this.f17108c = j10;
-        this.d = arrayList;
+    public ea(MessagesController messagesController, ArrayList arrayList, int i10) {
+        this.f17542a = i10;
+        this.f17543b = messagesController;
+        this.f17544c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f17106a) {
+        switch (this.f17542a) {
             case 0:
-                this.f17107b.lambda$markAllTopicsAsRead$7(this.d, this.f17108c);
+                this.f17543b.lambda$processUpdateArray$397(this.f17544c);
                 return;
             case 1:
-                this.f17107b.lambda$generateJoinMessage$368(this.f17108c, this.d);
+                this.f17543b.lambda$processUpdates$379(this.f17544c);
                 return;
             case 2:
-                this.f17107b.lambda$getDifference$354(this.f17108c, this.d);
+                this.f17543b.lambda$processUpdates$378(this.f17544c);
                 return;
             case 3:
-                this.f17107b.lambda$processUpdateArray$418(this.f17108c, this.d);
+                this.f17543b.lambda$getChannelDifference$341(this.f17544c);
                 return;
             case 4:
-                this.f17107b.lambda$deleteMessagesByPush$369(this.d, this.f17108c);
+                this.f17543b.lambda$processUpdateArray$398(this.f17544c);
+                return;
+            case 5:
+                this.f17543b.lambda$checkChatInviter$372(this.f17544c);
+                return;
+            case 6:
+                this.f17543b.lambda$reloadMentionsCountForChannels$222(this.f17544c);
                 return;
             default:
-                this.f17107b.lambda$getDifference$355(this.f17108c, this.d);
+                this.f17543b.lambda$checkChatInviter$373(this.f17544c);
                 return;
         }
-    }
-
-    public ea(MessagesController messagesController, ArrayList arrayList, long j10, int i10) {
-        this.f17106a = i10;
-        this.f17107b = messagesController;
-        this.d = arrayList;
-        this.f17108c = j10;
     }
 }

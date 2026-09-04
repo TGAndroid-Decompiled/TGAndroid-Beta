@@ -1,12 +1,33 @@
 package org.telegram.ui.Components;
-public final class gx extends org.telegram.ui.zn {
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class gx extends AnimatorListenerAdapter {
+    public final int f26515a;
+    public final boolean f26516b;
+    public final kz f26517c;
+
+    public gx(kz kzVar, boolean z10, int i10) {
+        this.f26515a = i10;
+        this.f26517c = kzVar;
+        this.f26516b = z10;
+    }
+
     @Override
-    public final void onTransitionAnimationEnd(boolean z4, boolean z10) {
-        org.telegram.ui.lk lkVar;
-        super.onTransitionAnimationEnd(z4, z10);
-        if (z4 && (lkVar = this.V) != null) {
-            lkVar.s1();
-            this.V.postDelayed(new up(this, 13), 100L);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f26515a) {
+            case 0:
+                if (!this.f26516b) {
+                    this.f26517c.f27998x.setVisibility(4);
+                    return;
+                }
+                return;
+            default:
+                if (!this.f26516b) {
+                    this.f26517c.f28002y.setVisibility(4);
+                    return;
+                }
+                return;
         }
     }
 }

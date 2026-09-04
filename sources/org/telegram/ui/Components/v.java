@@ -3,34 +3,34 @@ package org.telegram.ui.Components;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class v implements TextWatcher {
-    public final int f29329a;
-    public final z f29330b;
+    public final int f31024a;
+    public final z f31025b;
 
     public v(z zVar, int i10) {
-        this.f29329a = i10;
-        this.f29330b = zVar;
+        this.f31024a = i10;
+        this.f31025b = zVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        switch (this.f29329a) {
+        switch (this.f31024a) {
             case 0:
-                this.f29330b.W();
+                this.f31025b.W();
                 return;
             default:
-                this.f29330b.W();
+                this.f31025b.W();
                 return;
         }
     }
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f29329a;
+        int i13 = this.f31024a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f29329a;
+        int i13 = this.f31024a;
     }
 
     private final void a(int i10, int i11, int i12, CharSequence charSequence) {

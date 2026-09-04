@@ -1,102 +1,188 @@
 package i2;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.os.Trace;
-import j7.j8;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-public final class a {
-    public static volatile a d;
-    public static final Object e = new Object();
-    public final Context f7220c;
-    public final HashSet f7219b = new HashSet();
-    public final HashMap f7218a = new HashMap();
+import android.util.Pair;
+public abstract class a extends b2.k1 {
+    public static final int f11449g = 0;
+    public final int f11450e;
+    public final u2.g1 f11451f;
 
-    public a(Context context) {
-        this.f7220c = context.getApplicationContext();
+    public a(u2.g1 g1Var) {
+        this.f11451f = g1Var;
+        this.f11450e = g1Var.getLength();
     }
 
-    public static a c(Context context) {
-        if (d == null) {
-            synchronized (e) {
-                try {
-                    if (d == null) {
-                        d = new a(context);
-                    }
-                } finally {
-                }
+    @Override
+    public final int a(boolean z10) {
+        int i10;
+        if (this.f11450e == 0) {
+            return -1;
+        }
+        if (z10) {
+            i10 = this.f11451f.b();
+        } else {
+            i10 = 0;
+        }
+        while (x(i10).p()) {
+            i10 = w(i10, z10);
+            if (i10 == -1) {
+                return -1;
             }
         }
-        return d;
+        return x(i10).a(z10) + v(i10);
     }
 
-    public final void a(Bundle bundle) {
-        HashSet hashSet;
-        String string = this.f7220c.getString(2131689503);
-        if (bundle != null) {
-            try {
-                HashSet hashSet2 = new HashSet();
-                Iterator<String> it = bundle.keySet().iterator();
-                while (true) {
-                    boolean hasNext = it.hasNext();
-                    hashSet = this.f7219b;
-                    if (!hasNext) {
-                        break;
-                    }
-                    String next = it.next();
-                    if (string.equals(bundle.getString(next, null))) {
-                        Class<?> cls = Class.forName(next);
-                        if (b.class.isAssignableFrom(cls)) {
-                            hashSet.add(cls);
-                        }
-                    }
-                }
-                Iterator it2 = hashSet.iterator();
-                while (it2.hasNext()) {
-                    b((Class) it2.next(), hashSet2);
-                }
-            } catch (ClassNotFoundException e6) {
-                throw new RuntimeException(e6);
-            }
+    @Override
+    public final int b(Object obj) {
+        int b10;
+        if (!(obj instanceof Pair)) {
+            return -1;
         }
+        Pair pair = (Pair) obj;
+        Object obj2 = pair.first;
+        Object obj3 = pair.second;
+        int q6 = q(obj2);
+        if (q6 == -1 || (b10 = x(q6).b(obj3)) == -1) {
+            return -1;
+        }
+        return u(q6) + b10;
     }
 
-    public final Object b(Class cls, HashSet hashSet) {
-        Object obj;
-        HashMap hashMap = this.f7218a;
-        if (j8.b()) {
-            try {
-                j8.a(cls.getSimpleName());
-            } catch (Throwable th2) {
-                Trace.endSection();
-                throw th2;
-            }
+    @Override
+    public final int c(boolean z10) {
+        int i10;
+        int i11 = this.f11450e;
+        if (i11 == 0) {
+            return -1;
         }
-        if (!hashSet.contains(cls)) {
-            if (!hashMap.containsKey(cls)) {
-                hashSet.add(cls);
-                b bVar = (b) cls.getDeclaredConstructor(null).newInstance(null);
-                List<Class> a2 = bVar.a();
-                if (!a2.isEmpty()) {
-                    for (Class cls2 : a2) {
-                        if (!hashMap.containsKey(cls2)) {
-                            b(cls2, hashSet);
-                        }
-                    }
-                }
-                obj = bVar.b(this.f7220c);
-                hashSet.remove(cls);
-                hashMap.put(cls, obj);
+        u2.g1 g1Var = this.f11451f;
+        if (z10) {
+            i10 = g1Var.g();
+        } else {
+            i10 = i11 - 1;
+        }
+        while (x(i10).p()) {
+            if (z10) {
+                i10 = g1Var.c(i10);
+                continue;
+            } else if (i10 > 0) {
+                i10--;
+                continue;
             } else {
-                obj = hashMap.get(cls);
+                i10 = -1;
+                continue;
             }
-            Trace.endSection();
-            return obj;
+            if (i10 == -1) {
+                return -1;
+            }
         }
-        String name = cls.getName();
-        throw new IllegalStateException("Cannot initialize " + name + ". Cycle detected.");
+        return x(i10).c(z10) + v(i10);
     }
+
+    @Override
+    public final int e(int i10, int i11, boolean z10) {
+        int i12;
+        int s10 = s(i10);
+        int v = v(s10);
+        b2.k1 x10 = x(s10);
+        int i13 = i10 - v;
+        if (i11 == 2) {
+            i12 = 0;
+        } else {
+            i12 = i11;
+        }
+        int e7 = x10.e(i13, i12, z10);
+        if (e7 != -1) {
+            return v + e7;
+        }
+        int w10 = w(s10, z10);
+        while (w10 != -1 && x(w10).p()) {
+            w10 = w(w10, z10);
+        }
+        if (w10 != -1) {
+            return x(w10).a(z10) + v(w10);
+        } else if (i11 != 2) {
+            return -1;
+        } else {
+            return a(z10);
+        }
+    }
+
+    @Override
+    public final b2.h1 f(int i10, b2.h1 h1Var, boolean z10) {
+        int r10 = r(i10);
+        int v = v(r10);
+        x(r10).f(i10 - u(r10), h1Var, z10);
+        h1Var.f2056c += v;
+        if (z10) {
+            Object t10 = t(r10);
+            Object obj = h1Var.f2055b;
+            obj.getClass();
+            h1Var.f2055b = Pair.create(t10, obj);
+        }
+        return h1Var;
+    }
+
+    @Override
+    public final b2.h1 g(Object obj, b2.h1 h1Var) {
+        Pair pair = (Pair) obj;
+        Object obj2 = pair.first;
+        Object obj3 = pair.second;
+        int q6 = q(obj2);
+        int v = v(q6);
+        x(q6).g(obj3, h1Var);
+        h1Var.f2056c += v;
+        h1Var.f2055b = obj;
+        return h1Var;
+    }
+
+    @Override
+    public final int k(int r6, int r7, boolean r8) {
+        throw new UnsupportedOperationException("Method not decompiled: i2.a.k(int, int, boolean):int");
+    }
+
+    @Override
+    public final Object l(int i10) {
+        int r10 = r(i10);
+        return Pair.create(t(r10), x(r10).l(i10 - u(r10)));
+    }
+
+    @Override
+    public final b2.j1 m(int i10, b2.j1 j1Var, long j3) {
+        int s10 = s(i10);
+        int v = v(s10);
+        int u10 = u(s10);
+        x(s10).m(i10 - v, j1Var, j3);
+        Object t10 = t(s10);
+        if (!b2.j1.f2097q.equals(j1Var.f2106a)) {
+            t10 = Pair.create(t10, j1Var.f2106a);
+        }
+        j1Var.f2106a = t10;
+        j1Var.f2117n += u10;
+        j1Var.f2118o += u10;
+        return j1Var;
+    }
+
+    public abstract int q(Object obj);
+
+    public abstract int r(int i10);
+
+    public abstract int s(int i10);
+
+    public abstract Object t(int i10);
+
+    public abstract int u(int i10);
+
+    public abstract int v(int i10);
+
+    public final int w(int i10, boolean z10) {
+        if (z10) {
+            return this.f11451f.d(i10);
+        }
+        if (i10 < this.f11450e - 1) {
+            return i10 + 1;
+        }
+        return -1;
+    }
+
+    public abstract b2.k1 x(int i10);
 }

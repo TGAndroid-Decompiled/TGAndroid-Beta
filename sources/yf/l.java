@@ -1,96 +1,133 @@
 package yf;
 
-import android.graphics.Matrix;
-public final class l {
-    public float f47301a;
-    public float f47302b;
-    public float f47304f;
-    public float h;
-    public boolean f47307j;
-    public final n f47309l;
-    public float f47303c = 0.0f;
-    public float d = 0.0f;
-    public float e = 1.0f;
-    public final float f47305g = 0;
-    public float f47306i = 0.0f;
-    public final Matrix f47308k = new Matrix();
-
-    public l(n nVar, int i10, int i11) {
-        this.f47309l = nVar;
-        this.f47301a = i10;
-        this.f47302b = i11;
-    }
-
-    public static float a(l lVar) {
-        if ((lVar.h + lVar.f47305g) % 180.0f != 0.0f) {
-            return lVar.f47302b;
-        }
-        return lVar.f47301a;
-    }
-
-    public static float b(l lVar) {
-        if ((lVar.h + lVar.f47305g) % 180.0f != 0.0f) {
-            return lVar.f47301a;
-        }
-        return lVar.f47302b;
-    }
-
-    public static boolean c(l lVar) {
-        if (Math.abs(lVar.f47303c) <= 1.0E-5f && Math.abs(lVar.d) <= 1.0E-5f && Math.abs(lVar.e - lVar.f47304f) <= 1.0E-5f && Math.abs(lVar.f47306i) <= 1.0E-5f && Math.abs(lVar.h) <= 1.0E-5f) {
-            return false;
-        }
-        return true;
-    }
-
-    public static void d(l lVar, float f10) {
-        Matrix matrix = lVar.f47308k;
-        matrix.reset();
-        lVar.f47303c = 0.0f;
-        lVar.d = 0.0f;
-        lVar.f47306i = 0.0f;
-        lVar.h = f10;
-        lVar.h();
-        float f11 = lVar.f47304f;
-        lVar.e = f11;
-        matrix.postScale(f11, f11);
-    }
-
-    public static void e(l lVar, float f10) {
-        lVar.f47306i += f10;
-        lVar.f47308k.postRotate(f10, 0.0f, 0.0f);
-    }
-
-    public static void f(l lVar, float f10, float f11) {
-        lVar.f47303c += f10;
-        lVar.d += f11;
-        lVar.f47308k.postTranslate(f10, f11);
-    }
-
-    public static void g(l lVar, float f10, float f11, float f12) {
-        lVar.e *= f10;
-        lVar.f47308k.postScale(f10, f10, f11, f12);
-    }
-
-    public final void h() {
-        float f10;
-        float f11;
-        float f12 = this.h;
-        float f13 = this.f47305g;
-        if ((f12 + f13) % 180.0f != 0.0f) {
-            f10 = this.f47302b;
-        } else {
-            f10 = this.f47301a;
-        }
-        if ((f12 + f13) % 180.0f != 0.0f) {
-            f11 = this.f47301a;
-        } else {
-            f11 = this.f47302b;
-        }
-        n nVar = this.f47309l;
-        if (nVar.f47318x) {
-            this.f47304f = nVar.f47310a.getCropWidth() / f10;
-        } else {
-            this.f47304f = Math.max(nVar.f47310a.getCropWidth() / f10, nVar.f47310a.getCropHeight() / f11);
+import android.os.Build;
+import android.text.Html;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.style.StrikethroughSpan;
+import android.text.style.StyleSpan;
+import android.text.style.URLSpan;
+import android.text.style.UnderlineSpan;
+import java.util.ArrayList;
+import org.telegram.messenger.CodeHighlighting;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.n51;
+import org.telegram.ui.Components.si0;
+import org.telegram.ui.Components.z5;
+public abstract class l {
+    public static SpannableStringBuilder a(String str) {
+        Spanned fromHtml;
+        boolean z10;
+        try {
+            if (Build.VERSION.SDK_INT >= 24) {
+                fromHtml = Html.fromHtml("<inject>" + str + "</inject>", 63, null, new j(new t7.u(27)));
+            } else {
+                fromHtml = Html.fromHtml("<inject>" + str + "</inject>", null, new j(new t7.u(27)));
+            }
+            if (fromHtml == null) {
+                return null;
+            }
+            Object[] spans = fromHtml.getSpans(0, fromHtml.length(), Object.class);
+            ArrayList arrayList = new ArrayList(spans.length);
+            ArrayList arrayList2 = new ArrayList();
+            ArrayList arrayList3 = new ArrayList();
+            for (Object obj : spans) {
+                int spanStart = fromHtml.getSpanStart(obj);
+                int spanEnd = fromHtml.getSpanEnd(obj);
+                if (obj instanceof StyleSpan) {
+                    int style = ((StyleSpan) obj).getStyle();
+                    if ((style & 1) > 0) {
+                        TLRPC.TL_messageEntityBold tL_messageEntityBold = new TLRPC.TL_messageEntityBold();
+                        tL_messageEntityBold.offset = spanStart;
+                        tL_messageEntityBold.length = spanEnd - spanStart;
+                        arrayList.add(tL_messageEntityBold);
+                    }
+                    if ((style & 2) > 0) {
+                        TLRPC.TL_messageEntityItalic tL_messageEntityItalic = new TLRPC.TL_messageEntityItalic();
+                        tL_messageEntityItalic.offset = spanStart;
+                        tL_messageEntityItalic.length = spanEnd - spanStart;
+                        arrayList.add(tL_messageEntityItalic);
+                    }
+                } else if (obj instanceof UnderlineSpan) {
+                    TLRPC.TL_messageEntityUnderline tL_messageEntityUnderline = new TLRPC.TL_messageEntityUnderline();
+                    tL_messageEntityUnderline.offset = spanStart;
+                    tL_messageEntityUnderline.length = spanEnd - spanStart;
+                    arrayList.add(tL_messageEntityUnderline);
+                } else if (obj instanceof StrikethroughSpan) {
+                    TLRPC.TL_messageEntityStrike tL_messageEntityStrike = new TLRPC.TL_messageEntityStrike();
+                    tL_messageEntityStrike.offset = spanStart;
+                    tL_messageEntityStrike.length = spanEnd - spanStart;
+                    arrayList.add(tL_messageEntityStrike);
+                } else if (obj instanceof k) {
+                    k kVar = (k) obj;
+                    int i10 = kVar.f50116a;
+                    if (i10 == 0) {
+                        TLRPC.TL_messageEntitySpoiler tL_messageEntitySpoiler = new TLRPC.TL_messageEntitySpoiler();
+                        tL_messageEntitySpoiler.offset = spanStart;
+                        tL_messageEntitySpoiler.length = spanEnd - spanStart;
+                        arrayList.add(tL_messageEntitySpoiler);
+                    } else if (i10 == 1) {
+                        if (!TextUtils.isEmpty(kVar.f50117b)) {
+                            arrayList2.add(kVar);
+                        } else {
+                            TLRPC.TL_messageEntityPre tL_messageEntityPre = new TLRPC.TL_messageEntityPre();
+                            tL_messageEntityPre.offset = spanStart;
+                            tL_messageEntityPre.length = spanEnd - spanStart;
+                            arrayList.add(tL_messageEntityPre);
+                        }
+                    } else if (i10 == 2 || i10 == 3) {
+                        arrayList3.add(kVar);
+                    }
+                } else if (obj instanceof z5) {
+                    TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
+                    z5 z5Var = (z5) obj;
+                    tL_messageEntityCustomEmoji.document_id = z5Var.documentId;
+                    tL_messageEntityCustomEmoji.document = z5Var.document;
+                    tL_messageEntityCustomEmoji.offset = spanStart;
+                    tL_messageEntityCustomEmoji.length = spanEnd - spanStart;
+                    arrayList.add(tL_messageEntityCustomEmoji);
+                }
+            }
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(fromHtml.toString());
+            MediaDataController.addTextStyleRuns(arrayList, spannableStringBuilder, spannableStringBuilder);
+            for (Object obj2 : spans) {
+                if (obj2 instanceof URLSpan) {
+                    int spanStart2 = fromHtml.getSpanStart(obj2);
+                    int spanEnd2 = fromHtml.getSpanEnd(obj2);
+                    String charSequence = fromHtml.subSequence(spanStart2, spanEnd2).toString();
+                    String url = ((URLSpan) obj2).getURL();
+                    if (charSequence.equals(url)) {
+                        spannableStringBuilder.setSpan(new URLSpan(url), spanStart2, spanEnd2, 33);
+                    } else {
+                        spannableStringBuilder.setSpan(new n51(url, null), spanStart2, spanEnd2, 33);
+                    }
+                }
+            }
+            MediaDataController.addAnimatedEmojiSpans(arrayList, spannableStringBuilder, null);
+            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
+                k kVar2 = (k) arrayList2.get(i11);
+                int spanStart3 = fromHtml.getSpanStart(kVar2);
+                int spanEnd3 = fromHtml.getSpanEnd(kVar2);
+                spannableStringBuilder.setSpan(new CodeHighlighting.Span(true, 0, null, kVar2.f50117b, spannableStringBuilder.subSequence(spanStart3, spanEnd3).toString()), spanStart3, spanEnd3, 33);
+            }
+            for (int i12 = 0; i12 < arrayList3.size(); i12++) {
+                k kVar3 = (k) arrayList3.get(i12);
+                int spanStart4 = fromHtml.getSpanStart(kVar3);
+                int spanEnd4 = fromHtml.getSpanEnd(kVar3);
+                if (kVar3.f50116a == 3) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                si0.c(spannableStringBuilder, spanStart4, spanEnd4, z10);
+            }
+            return spannableStringBuilder;
+        } catch (Exception e7) {
+            FileLog.e("Html.fromHtml", e7);
+            return null;
         }
     }
 }

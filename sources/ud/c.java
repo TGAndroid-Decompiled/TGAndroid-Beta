@@ -1,46 +1,38 @@
 package ud;
-
-import ld.i2;
-import ld.l;
-import ld.m;
-import qd.t;
-public final class c implements l, i2 {
-    public final m f45284a;
-    public final d f45285b;
-
-    public c(d dVar, m mVar) {
-        this.f45285b = dVar;
-        this.f45284a = mVar;
+public final class c extends a {
+    static {
+        new a((char) 1, (char) 0);
     }
 
-    @Override
-    public final void a(t tVar, int i10) {
-        this.f45284a.a(tVar, i10);
-    }
-
-    @Override
-    public final o3.c b(dd.l lVar, Object obj) {
-        d dVar = this.f45285b;
-        b bVar = new b(dVar, this, 1);
-        o3.c F = this.f45284a.F(bVar, (sc.i) obj);
-        if (F != null) {
-            d.f45286g.set(dVar, null);
+    public final boolean equals(Object obj) {
+        c cVar;
+        char c10;
+        char c11;
+        if (obj instanceof c) {
+            char c12 = this.f47012a;
+            char c13 = this.f47013b;
+            if (c12 < c13 || c12 == c13 || (c10 = (cVar = (c) obj).f47012a) < (c11 = cVar.f47013b) || c10 == c11) {
+                c cVar2 = (c) obj;
+                if (c12 == cVar2.f47012a && c13 == cVar2.f47013b) {
+                    return true;
+                }
+                return false;
+            }
+            return true;
         }
-        return F;
+        return false;
     }
 
-    @Override
-    public final void e(Object obj) {
-        this.f45284a.e(obj);
+    public final int hashCode() {
+        char c10 = this.f47012a;
+        char c11 = this.f47013b;
+        if (c10 < c11 || c10 == c11) {
+            return (c10 * 31) + c11;
+        }
+        return -1;
     }
 
-    @Override
-    public final uc.h getContext() {
-        return this.f45284a.e;
-    }
-
-    @Override
-    public final void resumeWith(Object obj) {
-        this.f45284a.resumeWith(obj);
+    public final String toString() {
+        return this.f47012a + ".." + this.f47013b;
     }
 }

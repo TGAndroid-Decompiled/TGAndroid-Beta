@@ -50,8 +50,8 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         }
     }
 
-    public HardwareVideoEncoderFactory(EglBase.Context context, boolean z4, boolean z10) {
-        this(context, z4, z10, null);
+    public HardwareVideoEncoderFactory(EglBase.Context context, boolean z10, boolean z11) {
+        this(context, z10, z11, null);
     }
 
     private BitrateAdjuster createBitrateAdjuster(VideoCodecMimeType videoCodecMimeType, String str) {
@@ -73,8 +73,8 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
             }
             try {
                 mediaCodecInfo = MediaCodecList.getCodecInfoAt(i10);
-            } catch (IllegalArgumentException e) {
-                Logging.e("HardwareVideoEncoderFactory", "Cannot retrieve encoder codec info", e);
+            } catch (IllegalArgumentException e7) {
+                Logging.e("HardwareVideoEncoderFactory", "Cannot retrieve encoder codec info", e7);
             }
             if (mediaCodecInfo != null && mediaCodecInfo.isEncoder() && isSupportedCodec(mediaCodecInfo, videoCodecMimeType)) {
                 return mediaCodecInfo;
@@ -218,20 +218,20 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         return (VideoCodecInfo[]) arrayList.toArray(new VideoCodecInfo[arrayList.size()]);
     }
 
-    public HardwareVideoEncoderFactory(EglBase.Context context, boolean z4, boolean z10, Predicate<MediaCodecInfo> predicate) {
+    public HardwareVideoEncoderFactory(EglBase.Context context, boolean z10, boolean z11, Predicate<MediaCodecInfo> predicate) {
         if (context instanceof EglBase14.Context) {
             this.sharedContext = (EglBase14.Context) context;
         } else {
             Logging.w("HardwareVideoEncoderFactory", "No shared EglBase.Context.  Encoders will not use texture mode.");
             this.sharedContext = null;
         }
-        this.enableIntelVp8Encoder = z4;
-        this.enableH264HighProfile = z10;
+        this.enableIntelVp8Encoder = z10;
+        this.enableH264HighProfile = z11;
         this.codecAllowedPredicate = predicate;
     }
 
     @Deprecated
-    public HardwareVideoEncoderFactory(boolean z4, boolean z10) {
-        this(null, z4, z10);
+    public HardwareVideoEncoderFactory(boolean z10, boolean z11) {
+        this(null, z10, z11);
     }
 }

@@ -1,10 +1,24 @@
 package qg;
-public interface a {
-    int D();
 
-    int e0();
+import org.telegram.messenger.R;
+public final class a extends m {
+    @Override
+    public final int c() {
+        return -30208;
+    }
 
-    int m0();
+    @Override
+    public final float d() {
+        return 0.25f;
+    }
 
-    int x();
+    @Override
+    public final int e() {
+        return R.raw.photo_arrow;
+    }
+
+    @Override
+    public final float j() {
+        return 0.25f;
+    }
 }

@@ -1,8 +1,17 @@
 package org.telegram.ui.Components;
-public abstract class ft {
-    public static final mr f24964a = new mr(0.39d, 0.575d, 0.565d, 1.0d);
-    public static final mr f24965b = new mr(0.445d, 0.05d, 0.55d, 0.95d);
-    public static final mr f24966c = new mr(0.55d, 0.085d, 0.68d, 0.53d);
-    public static final mr d = new mr(0.25d, 0.46d, 0.45d, 0.94d);
-    public static final mr e = new mr(0.455d, 0.03d, 0.515d, 0.955d);
+
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
+public final class ft {
+    public int f26181a;
+    public Object f26182b;
+
+    public boolean a(int i10) {
+        if (((yf.i) this.f26182b) != null && this.f26181a == i10) {
+            return false;
+        }
+        this.f26181a = i10;
+        this.f26182b = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{i10, i10}, (float[]) null, Shader.TileMode.CLAMP);
+        return true;
+    }
 }

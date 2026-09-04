@@ -1,22 +1,24 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import java.io.File;
-public final class oi1 implements org.telegram.ui.Components.r81 {
-    public final WallpapersListActivity f36826a;
+import org.webrtc.RendererCommon;
+public final class oi1 implements RendererCommon.RendererEvents {
+    public final ui1 f39258a;
 
-    public oi1(WallpapersListActivity wallpapersListActivity) {
-        this.f36826a = wallpapersListActivity;
+    public oi1(ui1 ui1Var) {
+        this.f39258a = ui1Var;
     }
 
     @Override
-    public final void b(File file, Bitmap bitmap, boolean z4) {
-        jd1 jd1Var = new jd1(new vi1(file, file, ""), bitmap, false);
-        jd1Var.c1(0L);
-        this.f36826a.presentFragment(jd1Var, z4);
+    public final void onFirstFrameRendered() {
+        ui1 ui1Var = this.f39258a;
+        com.google.android.gms.internal.cast.p pVar = ui1Var.l1;
+        if (pVar != null) {
+            pVar.run();
+            ui1Var.l1 = null;
+        }
     }
 
     @Override
-    public final void a() {
+    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
     }
 }

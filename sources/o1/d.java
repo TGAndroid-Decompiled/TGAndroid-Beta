@@ -3,23 +3,23 @@ package o1;
 import java.util.ArrayList;
 import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
 public final class d extends i {
-    public final int f16157a;
-    public final Object f16158b;
+    public final int f16802a;
+    public final Object f16803b;
 
     public d(Object obj, int i10) {
-        this.f16157a = i10;
-        this.f16158b = obj;
+        this.f16802a = i10;
+        this.f16803b = obj;
     }
 
     @Override
     public final float a(Object obj) {
-        switch (this.f16157a) {
+        switch (this.f16802a) {
             case 0:
-                return ((kb.a) this.f16158b).f10259a;
+                return ((j) this.f16803b).f16824a;
             default:
                 Integer num = (Integer) obj;
                 int intValue = num.intValue();
-                ArrayList arrayList = ((AnimatedPhoneNumberEditText) this.f16158b).f22699w;
+                ArrayList arrayList = ((AnimatedPhoneNumberEditText) this.f16803b).f23658w;
                 if (intValue < arrayList.size()) {
                     return ((Float) arrayList.get(num.intValue())).floatValue() * 100.0f;
                 }
@@ -28,18 +28,18 @@ public final class d extends i {
     }
 
     @Override
-    public final void b(Object obj, float f10) {
-        switch (this.f16157a) {
+    public final void b(Object obj, float f7) {
+        switch (this.f16802a) {
             case 0:
-                ((kb.a) this.f16158b).f10259a = f10;
+                ((j) this.f16803b).f16824a = f7;
                 return;
             default:
                 Integer num = (Integer) obj;
                 int intValue = num.intValue();
-                AnimatedPhoneNumberEditText animatedPhoneNumberEditText = (AnimatedPhoneNumberEditText) this.f16158b;
-                ArrayList arrayList = animatedPhoneNumberEditText.f22699w;
+                AnimatedPhoneNumberEditText animatedPhoneNumberEditText = (AnimatedPhoneNumberEditText) this.f16803b;
+                ArrayList arrayList = animatedPhoneNumberEditText.f23658w;
                 if (intValue < arrayList.size()) {
-                    arrayList.set(num.intValue(), Float.valueOf(f10 / 100.0f));
+                    arrayList.set(num.intValue(), Float.valueOf(f7 / 100.0f));
                     animatedPhoneNumberEditText.invalidate();
                     return;
                 }

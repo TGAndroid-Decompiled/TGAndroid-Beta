@@ -1,104 +1,235 @@
 package org.telegram.ui;
 
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SRPHelper;
-import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.SecureDocument;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class rm0 implements RequestDelegate {
-    public final boolean f37895a;
-    public final byte[] f37896b;
-    public final TL_account.getPasswordSettings f37897c;
-    public final String d;
-    public final fn0 e;
+    public final dn0 f40191a;
+    public final String f40192b;
+    public final TL_account.saveSecureValue f40193c;
+    public final TLRPC.TL_secureRequiredType d;
+    public final TLRPC.TL_secureRequiredType f40194e;
+    public final ArrayList f40195f;
+    public final SecureDocument f40196g;
+    public final SecureDocument h;
+    public final SecureDocument f40197i;
+    public final ArrayList f40198j;
+    public final String f40199k;
+    public final String f40200l;
+    public final Runnable f40201m;
+    public final sm0 f40202n;
+    public final TLRPC.TL_inputSecureValue f40203o;
+    public final sm0 f40204p;
 
-    public rm0(fn0 fn0Var, boolean z4, byte[] bArr, TL_account.getPasswordSettings getpasswordsettings, String str) {
-        this.e = fn0Var;
-        this.f37895a = z4;
-        this.f37896b = bArr;
-        this.f37897c = getpasswordsettings;
-        this.d = str;
+    public rm0(sm0 sm0Var, dn0 dn0Var, String str, TL_account.saveSecureValue savesecurevalue, TLRPC.TL_secureRequiredType tL_secureRequiredType, TLRPC.TL_secureRequiredType tL_secureRequiredType2, ArrayList arrayList, SecureDocument secureDocument, SecureDocument secureDocument2, SecureDocument secureDocument3, ArrayList arrayList2, String str2, String str3, Runnable runnable, sm0 sm0Var2, TLRPC.TL_inputSecureValue tL_inputSecureValue) {
+        this.f40204p = sm0Var;
+        this.f40191a = dn0Var;
+        this.f40192b = str;
+        this.f40193c = savesecurevalue;
+        this.d = tL_secureRequiredType;
+        this.f40194e = tL_secureRequiredType2;
+        this.f40195f = arrayList;
+        this.f40196g = secureDocument;
+        this.h = secureDocument2;
+        this.f40197i = secureDocument3;
+        this.f40198j = arrayList2;
+        this.f40199k = str2;
+        this.f40200l = str3;
+        this.f40201m = runnable;
+        this.f40202n = sm0Var2;
+        this.f40203o = tL_inputSecureValue;
     }
 
-    public final void a() {
-        int i10;
-        int i11;
-        org.telegram.ui.ActionBar.e5 e5Var;
-        org.telegram.ui.ActionBar.e5 e5Var2;
-        int i12;
-        fn0 fn0Var = this.e;
-        if (fn0Var.V == null) {
-            return;
-        }
-        if (!this.f37895a) {
-            i12 = ((org.telegram.ui.ActionBar.p2) fn0Var).currentAccount;
-            UserConfig.getInstance(i12).savePassword(this.f37896b, fn0Var.f34115b1);
-        }
-        AndroidUtilities.hideKeyboard(fn0Var.V[0]);
-        fn0Var.f34118c1 = true;
-        long j10 = fn0Var.f34116c;
-        if (j10 == 0) {
-            i10 = 8;
-        } else {
-            i10 = 0;
-        }
-        fn0 fn0Var2 = new fn0(i10, j10, fn0Var.h, fn0Var.f34147r, fn0Var.d, fn0Var.e, fn0Var.f34138n, fn0Var.f34165y, fn0Var.G);
-        fn0Var2.f34112a1 = fn0Var.f34112a1;
-        i11 = ((org.telegram.ui.ActionBar.p2) fn0Var).currentAccount;
-        ((org.telegram.ui.ActionBar.p2) fn0Var2).currentAccount = i11;
-        fn0Var2.f34115b1 = fn0Var.f34115b1;
-        fn0Var2.Z0 = fn0Var.Z0;
-        fn0Var2.Y0 = fn0Var.Y0;
-        fn0Var2.f34169z1 = fn0Var.f34169z1;
-        e5Var = ((org.telegram.ui.ActionBar.p2) fn0Var).parentLayout;
-        if (e5Var != null) {
-            e5Var2 = ((org.telegram.ui.ActionBar.p2) fn0Var).parentLayout;
-            if (((ActionBarLayout) e5Var2).j()) {
-                fn0Var.f34122e1 = fn0Var2;
-                return;
+    public final void a(final TLRPC.TL_error tL_error, final TLRPC.TL_secureValue tL_secureValue, final TLRPC.TL_secureValue tL_secureValue2) {
+        sm0 sm0Var = this.f40204p;
+        final boolean z10 = sm0Var.f40475b;
+        final int i10 = sm0Var.f40476c;
+        final dn0 dn0Var = this.f40191a;
+        final String str = this.f40192b;
+        final TL_account.saveSecureValue savesecurevalue = this.f40193c;
+        final TLRPC.TL_secureRequiredType tL_secureRequiredType = this.d;
+        final TLRPC.TL_secureRequiredType tL_secureRequiredType2 = this.f40194e;
+        final ArrayList arrayList = this.f40195f;
+        final SecureDocument secureDocument = this.f40196g;
+        final SecureDocument secureDocument2 = this.h;
+        final SecureDocument secureDocument3 = this.f40197i;
+        final ArrayList arrayList2 = this.f40198j;
+        final String str2 = this.f40199k;
+        final String str3 = this.f40200l;
+        final Runnable runnable = this.f40201m;
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                pn0 pn0Var;
+                TLRPC.TL_secureRequiredType tL_secureRequiredType3;
+                int i11;
+                sm0 sm0Var2 = rm0.this.f40204p;
+                pn0 pn0Var2 = sm0Var2.d;
+                TLRPC.TL_error tL_error2 = tL_error;
+                String str4 = str;
+                if (tL_error2 != null) {
+                    dn0 dn0Var2 = dn0Var;
+                    if (dn0Var2 != null) {
+                        dn0Var2.b(tL_error2.text, str4);
+                    }
+                    i11 = ((org.telegram.ui.ActionBar.n2) pn0Var2).currentAccount;
+                    org.telegram.ui.Components.e5.f0(i11, tL_error2, pn0Var2, savesecurevalue, str4);
+                    return;
+                }
+                boolean z11 = z10;
+                TLRPC.TL_secureRequiredType tL_secureRequiredType4 = tL_secureRequiredType;
+                TLRPC.TL_secureRequiredType tL_secureRequiredType5 = tL_secureRequiredType2;
+                if (z11) {
+                    if (tL_secureRequiredType4 != null) {
+                        pn0Var2.H1(tL_secureRequiredType4);
+                    } else {
+                        pn0Var2.H1(tL_secureRequiredType5);
+                    }
+                } else {
+                    pn0Var2.H1(tL_secureRequiredType5);
+                    pn0Var2.H1(tL_secureRequiredType4);
+                }
+                TLRPC.TL_secureValue tL_secureValue3 = tL_secureValue;
+                if (tL_secureValue3 != null) {
+                    pn0Var2.f39604y.values.add(tL_secureValue3);
+                }
+                TLRPC.TL_secureValue tL_secureValue4 = tL_secureValue2;
+                if (tL_secureValue4 != null) {
+                    pn0Var2.f39604y.values.add(tL_secureValue4);
+                }
+                ArrayList arrayList3 = arrayList;
+                if (arrayList3 != null && !arrayList3.isEmpty()) {
+                    int size = arrayList3.size();
+                    int i12 = 0;
+                    while (i12 < size) {
+                        SecureDocument secureDocument4 = (SecureDocument) arrayList3.get(i12);
+                        if (secureDocument4.inputFile != null) {
+                            int size2 = tL_secureValue3.files.size();
+                            int i13 = 0;
+                            while (i13 < size2) {
+                                TLRPC.SecureFile secureFile = tL_secureValue3.files.get(i13);
+                                if (secureFile instanceof TLRPC.TL_secureFile) {
+                                    TLRPC.TL_secureFile tL_secureFile = (TLRPC.TL_secureFile) secureFile;
+                                    pn0Var = pn0Var2;
+                                    tL_secureRequiredType3 = tL_secureRequiredType5;
+                                    if (Utilities.arraysEquals(secureDocument4.fileSecret, 0, tL_secureFile.secret, 0)) {
+                                        sm0.a(sm0Var2, secureDocument4, tL_secureFile);
+                                        break;
+                                    }
+                                } else {
+                                    pn0Var = pn0Var2;
+                                    tL_secureRequiredType3 = tL_secureRequiredType5;
+                                }
+                                i13++;
+                                pn0Var2 = pn0Var;
+                                tL_secureRequiredType5 = tL_secureRequiredType3;
+                            }
+                        }
+                        pn0Var = pn0Var2;
+                        tL_secureRequiredType3 = tL_secureRequiredType5;
+                        i12++;
+                        pn0Var2 = pn0Var;
+                        tL_secureRequiredType5 = tL_secureRequiredType3;
+                    }
+                }
+                pn0 pn0Var3 = pn0Var2;
+                TLRPC.TL_secureRequiredType tL_secureRequiredType6 = tL_secureRequiredType5;
+                SecureDocument secureDocument5 = secureDocument;
+                if (secureDocument5 != null && secureDocument5.inputFile != null) {
+                    TLRPC.SecureFile secureFile2 = tL_secureValue3.selfie;
+                    if (secureFile2 instanceof TLRPC.TL_secureFile) {
+                        TLRPC.TL_secureFile tL_secureFile2 = (TLRPC.TL_secureFile) secureFile2;
+                        if (Utilities.arraysEquals(secureDocument5.fileSecret, 0, tL_secureFile2.secret, 0)) {
+                            sm0.a(sm0Var2, secureDocument5, tL_secureFile2);
+                        }
+                    }
+                }
+                SecureDocument secureDocument6 = secureDocument2;
+                if (secureDocument6 != null && secureDocument6.inputFile != null) {
+                    TLRPC.SecureFile secureFile3 = tL_secureValue3.front_side;
+                    if (secureFile3 instanceof TLRPC.TL_secureFile) {
+                        TLRPC.TL_secureFile tL_secureFile3 = (TLRPC.TL_secureFile) secureFile3;
+                        if (Utilities.arraysEquals(secureDocument6.fileSecret, 0, tL_secureFile3.secret, 0)) {
+                            sm0.a(sm0Var2, secureDocument6, tL_secureFile3);
+                        }
+                    }
+                }
+                SecureDocument secureDocument7 = secureDocument3;
+                if (secureDocument7 != null && secureDocument7.inputFile != null) {
+                    TLRPC.SecureFile secureFile4 = tL_secureValue3.reverse_side;
+                    if (secureFile4 instanceof TLRPC.TL_secureFile) {
+                        TLRPC.TL_secureFile tL_secureFile4 = (TLRPC.TL_secureFile) secureFile4;
+                        if (Utilities.arraysEquals(secureDocument7.fileSecret, 0, tL_secureFile4.secret, 0)) {
+                            sm0.a(sm0Var2, secureDocument7, tL_secureFile4);
+                        }
+                    }
+                }
+                ArrayList arrayList4 = arrayList2;
+                if (arrayList4 != null && !arrayList4.isEmpty()) {
+                    int size3 = arrayList4.size();
+                    for (int i14 = 0; i14 < size3; i14++) {
+                        SecureDocument secureDocument8 = (SecureDocument) arrayList4.get(i14);
+                        if (secureDocument8.inputFile != null) {
+                            int size4 = tL_secureValue3.translation.size();
+                            for (int i15 = 0; i15 < size4; i15++) {
+                                TLRPC.SecureFile secureFile5 = tL_secureValue3.translation.get(i15);
+                                if (secureFile5 instanceof TLRPC.TL_secureFile) {
+                                    TLRPC.TL_secureFile tL_secureFile5 = (TLRPC.TL_secureFile) secureFile5;
+                                    if (Utilities.arraysEquals(secureDocument8.fileSecret, 0, tL_secureFile5.secret, 0)) {
+                                        sm0.a(sm0Var2, secureDocument8, tL_secureFile5);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                pn0Var3.L1(tL_secureRequiredType6, str4, str2, tL_secureRequiredType4, str3, z11, i10);
+                runnable.run();
             }
-        }
-        fn0Var.presentFragment(fn0Var2, true);
-    }
-
-    public final void b() {
-        int i10;
-        TL_account.updatePasswordSettings updatepasswordsettings = new TL_account.updatePasswordSettings();
-        fn0 fn0Var = this.e;
-        TL_account.Password password = fn0Var.G;
-        TLRPC.PasswordKdfAlgo passwordKdfAlgo = password.current_algo;
-        if (passwordKdfAlgo instanceof TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) {
-            updatepasswordsettings.password = SRPHelper.startCheck(this.f37896b, password.srp_id, password.srp_B, (TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) passwordKdfAlgo);
-        }
-        TL_account.passwordInputSettings passwordinputsettings = new TL_account.passwordInputSettings();
-        updatepasswordsettings.new_settings = passwordinputsettings;
-        passwordinputsettings.new_secure_settings = new TLRPC.TL_secureSecretSettings();
-        TLRPC.TL_secureSecretSettings tL_secureSecretSettings = updatepasswordsettings.new_settings.new_secure_settings;
-        tL_secureSecretSettings.secure_secret = new byte[0];
-        tL_secureSecretSettings.secure_algo = new TLRPC.TL_securePasswordKdfAlgoUnknown();
-        TL_account.passwordInputSettings passwordinputsettings2 = updatepasswordsettings.new_settings;
-        passwordinputsettings2.new_secure_settings.secure_secret_id = 0L;
-        passwordinputsettings2.flags |= 4;
-        i10 = ((org.telegram.ui.ActionBar.p2) fn0Var).currentAccount;
-        ConnectionsManager.getInstance(i10).sendRequest(this.f37897c, new pm0(this, 1));
+        });
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        rm0 rm0Var;
+        TLRPC.TL_inputSecureValue tL_inputSecureValue;
         int i10;
-        if (tL_error != null && "SRP_ID_INVALID".equals(tL_error.text)) {
-            TL_account.getPassword getpassword = new TL_account.getPassword();
-            i10 = ((org.telegram.ui.ActionBar.p2) this.e).currentAccount;
-            ConnectionsManager.getInstance(i10).sendRequest(getpassword, new org.telegram.messenger.zd(8, this, this.f37895a), 8);
-        } else if (tL_error == null) {
-            Utilities.globalQueue.postRunnable(new cg.u0(this, tLObject, this.d, this.f37895a, 20));
+        int i11;
+        pn0 pn0Var = this.f40204p.d;
+        if (tL_error != null) {
+            boolean equals = tL_error.text.equals("EMAIL_VERIFICATION_NEEDED");
+            String str = this.f40192b;
+            if (equals) {
+                TL_account.sendVerifyEmailCode sendverifyemailcode = new TL_account.sendVerifyEmailCode();
+                sendverifyemailcode.purpose = new TLRPC.TL_emailVerifyPurposePassport();
+                sendverifyemailcode.email = str;
+                i11 = ((org.telegram.ui.ActionBar.n2) pn0Var).currentAccount;
+                ConnectionsManager.getInstance(i11).sendRequest(sendverifyemailcode, new di.kd(this, this.f40192b, this.f40194e, this.f40202n, this.f40191a, 10));
+                return;
+            }
+            rm0Var = this;
+            if (tL_error.text.equals("PHONE_VERIFICATION_NEEDED")) {
+                AndroidUtilities.runOnUIThread(new pf0(rm0Var.f40191a, tL_error, str, 11));
+                return;
+            }
         } else {
-            AndroidUtilities.runOnUIThread(new lh.r5(this, this.f37895a, tL_error, 27));
+            rm0Var = this;
         }
+        if (tL_error == null && (tL_inputSecureValue = rm0Var.f40203o) != null) {
+            TL_account.saveSecureValue savesecurevalue = new TL_account.saveSecureValue();
+            savesecurevalue.value = tL_inputSecureValue;
+            savesecurevalue.secure_secret_id = pn0Var.f39553b1;
+            i10 = ((org.telegram.ui.ActionBar.n2) pn0Var).currentAccount;
+            ConnectionsManager.getInstance(i10).sendRequest(savesecurevalue, new bc0(7, this, (TLRPC.TL_secureValue) tLObject));
+            return;
+        }
+        a(tL_error, (TLRPC.TL_secureValue) tLObject, null);
     }
 }

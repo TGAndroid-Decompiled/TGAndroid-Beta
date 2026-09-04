@@ -1,74 +1,44 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Parcelable;
-import com.google.firebase.iid.FirebaseInstanceIdReceiver;
+import org.telegram.messenger.AndroidUtilities;
 public final class v implements Runnable {
-    public final int f20578a = 1;
-    public final boolean f20579b;
-    public final Object f20580c;
-    public final Object d;
-    public final Object e;
+    public final boolean f21372a;
+    public final n2 f21373b;
+    public final n2 f21374c;
+    public final boolean d;
+    public final ActionBarLayout f21375e;
 
-    public v(FirebaseInstanceIdReceiver firebaseInstanceIdReceiver, Intent intent, Context context, boolean z4, BroadcastReceiver.PendingResult pendingResult) {
-        this.f20580c = intent;
-        this.d = context;
-        this.f20579b = z4;
-        this.e = pendingResult;
+    public v(ActionBarLayout actionBarLayout, boolean z10, n2 n2Var, n2 n2Var2, boolean z11) {
+        this.f21375e = actionBarLayout;
+        this.f21372a = z10;
+        this.f21373b = n2Var;
+        this.f21374c = n2Var2;
+        this.d = z11;
     }
 
     @Override
     public final void run() {
-        Intent intent;
-        int a2;
-        switch (this.f20578a) {
-            case 0:
-                ActionBarLayout actionBarLayout = (ActionBarLayout) this.e;
-                if (actionBarLayout.e == this) {
-                    actionBarLayout.e = null;
-                    p2 p2Var = (p2) this.f20580c;
-                    if (p2Var != null) {
-                        p2Var.onTransitionAnimationStart(false, false);
-                    }
-                    ((p2) this.d).onTransitionAnimationStart(true, false);
-                    actionBarLayout.d0(true, true, this.f20579b);
-                    return;
+        ActionBarLayout actionBarLayout = this.f21375e;
+        if (actionBarLayout.d == this) {
+            actionBarLayout.d = null;
+            if (this.f21372a) {
+                n2 n2Var = this.f21373b;
+                if (n2Var != null) {
+                    n2Var.onTransitionAnimationStart(false, false);
                 }
+                this.f21374c.onTransitionAnimationStart(true, false);
+                actionBarLayout.d0(true, true, this.d);
                 return;
-            default:
-                Intent intent2 = (Intent) this.f20580c;
-                Context context = (Context) this.d;
-                BroadcastReceiver.PendingResult pendingResult = (BroadcastReceiver.PendingResult) this.e;
-                try {
-                    Parcelable parcelableExtra = intent2.getParcelableExtra("wrapped_intent");
-                    if (parcelableExtra instanceof Intent) {
-                        intent = (Intent) parcelableExtra;
-                    } else {
-                        intent = null;
-                    }
-                    if (intent != null) {
-                        a2 = FirebaseInstanceIdReceiver.b(intent);
-                    } else {
-                        a2 = FirebaseInstanceIdReceiver.a(context, intent2);
-                    }
-                    if (this.f20579b) {
-                        pendingResult.setResultCode(a2);
-                    }
-                    pendingResult.finish();
-                    return;
-                } catch (Throwable th2) {
-                    pendingResult.finish();
-                    throw th2;
+            }
+            Runnable runnable = actionBarLayout.f20148e;
+            if (runnable != null) {
+                AndroidUtilities.cancelRunOnUIThread(runnable);
+                if (actionBarLayout.R0) {
+                    actionBarLayout.f20148e.run();
+                } else {
+                    AndroidUtilities.runOnUIThread(actionBarLayout.f20148e, 200L);
                 }
+            }
         }
-    }
-
-    public v(ActionBarLayout actionBarLayout, p2 p2Var, p2 p2Var2, boolean z4) {
-        this.e = actionBarLayout;
-        this.f20580c = p2Var;
-        this.d = p2Var2;
-        this.f20579b = z4;
     }
 }

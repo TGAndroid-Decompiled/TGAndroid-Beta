@@ -1,58 +1,32 @@
 package org.telegram.ui.web;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-public interface g0 {
-    void a();
+import org.telegram.ui.Components.yc;
+import org.telegram.ui.co;
+public final class g0 extends co {
+    public boolean Qc;
+    public final TLRPC.User Rc;
+    public final long Sc;
+    public final d1 Tc;
 
-    void b();
+    public g0(d1 d1Var, Bundle bundle, TLRPC.User user, long j3) {
+        super(bundle);
+        this.Tc = d1Var;
+        this.Rc = user;
+        this.Sc = j3;
+    }
 
-    void c();
-
-    void d(TLRPC.Document document);
-
-    void e(String str);
-
-    void f(ArrayList arrayList);
-
-    String g(boolean z4, boolean z10);
-
-    boolean h();
-
-    void i(boolean z4);
-
-    void j();
-
-    void k(boolean z4);
-
-    void l(boolean z4, boolean z10, String str, long j10, int i10, int i11, boolean z11, boolean z12, String str2);
-
-    void m(int i10);
-
-    void n(TLRPC.InputInvoice inputInvoice, String str, TLObject tLObject);
-
-    void o(int i10, boolean z4);
-
-    void p(boolean z4);
-
-    void q(boolean z4, boolean z10, String str, long j10, int i10, int i11, boolean z11, boolean z12);
-
-    void r(int i10);
-
-    void s();
-
-    void t(boolean z4);
-
-    void u(int i10, int i11, boolean z4);
-
-    void v(TLRPC.User user, String str, ArrayList arrayList);
-
-    void w(boolean z4);
-
-    void x(boolean z4);
-
-    void y();
-
-    rh.u0 z();
+    @Override
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.Qc) {
+            this.Qc = true;
+            yc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Rc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Tc.U)), new bi.g(this, this.Sc, 28)), R.raw.contact_check).j();
+        }
+    }
 }

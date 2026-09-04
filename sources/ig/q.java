@@ -1,13 +1,35 @@
 package ig;
 
-import android.graphics.Outline;
+import android.content.DialogInterface;
 import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-public final class q extends ViewOutlineProvider {
+public final class q implements DialogInterface.OnDismissListener {
+    public final int f12181a;
+    public final View f12182b;
+
+    public q(int i10, View view) {
+        this.f12181a = i10;
+        this.f12182b = view;
+    }
+
     @Override
-    public final void getOutline(View view, Outline outline) {
-        float dp = AndroidUtilities.dp(12.0f);
-        outline.setRoundRect(0, 0, view.getWidth(), (int) (view.getHeight() + dp), dp);
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f12181a) {
+            case 0:
+                v.d = null;
+                View view = this.f12182b;
+                if (view != null) {
+                    view.requestFocus();
+                    return;
+                }
+                return;
+            default:
+                y1.h = null;
+                View view2 = this.f12182b;
+                if (view2 != null) {
+                    view2.requestFocus();
+                    return;
+                }
+                return;
+        }
     }
 }

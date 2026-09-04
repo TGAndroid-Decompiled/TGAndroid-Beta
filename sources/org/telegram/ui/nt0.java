@@ -1,143 +1,78 @@
 package org.telegram.ui;
+public final class nt0 extends org.telegram.ui.Components.g71 {
+    public final PhotoViewer m0;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class nt0 extends au0 {
-    public final int m0;
-    public final NotificationCenter.NotificationCenterDelegate f36581n0;
-
-    public nt0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, du0 du0Var, FrameLayout frameLayout, int i10) {
-        super(context, du0Var, frameLayout);
-        this.m0 = i10;
-        this.f36581n0 = notificationCenterDelegate;
+    public nt0(PhotoViewer photoViewer) {
+        this.m0 = photoViewer;
     }
 
     @Override
-    public boolean C() {
-        switch (this.m0) {
-            case 0:
-                return !((PhotoViewer) this.f36581n0).f31832s;
-            default:
-                return super.C();
+    public final void B() {
+        super.B();
+        PhotoViewer photoViewer = this.m0;
+        if (photoViewer.f33693u4 == 0) {
+            PhotoViewer.Y(photoViewer, false);
+        }
+        if (!photoViewer.N8) {
+            b5.d.D(n());
+            b5.d.x(false);
         }
     }
 
     @Override
-    public void D() {
-        switch (this.m0) {
-            case 1:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36581n0;
-                if (secretMediaViewer.G && getScrollY() <= 0) {
-                    AndroidUtilities.runOnUIThread(secretMediaViewer.f32230o1, 3000L);
-                    return;
-                }
-                return;
-            default:
-                return;
+    public final void C() {
+        super.C();
+        PhotoViewer photoViewer = this.m0;
+        PhotoViewer.Y(photoViewer, true);
+        if (!photoViewer.N8) {
+            b5.d.D(n());
+            b5.d.x(true);
         }
     }
 
     @Override
-    public void F() {
-        switch (this.m0) {
-            case 1:
-                AndroidUtilities.cancelRunOnUIThread(((SecretMediaViewer) this.f36581n0).f32230o1);
-                return;
-            default:
-                return;
+    public final void K(long j3) {
+        L(j3, false);
+        PhotoViewer photoViewer = this.m0;
+        if (photoViewer.f33662r1) {
+            PhotoViewer.Z(photoViewer, j3);
+        }
+        if (!photoViewer.N8) {
+            b5.d.D(j3);
         }
     }
 
     @Override
-    public void G() {
-        boolean z4;
-        switch (this.m0) {
-            case 1:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36581n0;
-                if (secretMediaViewer.H0 == null) {
-                    if (getScrollY() < getMeasuredHeight() / 3.0f && secretMediaViewer.f32216h0) {
-                        z4 = true;
-                    } else {
-                        z4 = false;
-                    }
-                    secretMediaViewer.k(z4, true);
-                    return;
-                }
-                return;
-            default:
-                return;
+    public final void Q(float f7) {
+        super.Q(f7);
+        if (!this.m0.N8) {
+            b5.d.z(f7);
         }
     }
 
     @Override
-    public void invalidate() {
-        boolean z4;
-        boolean z10;
-        int i10;
-        boolean z11;
-        switch (this.m0) {
-            case 0:
-                super.invalidate();
-                PhotoViewer photoViewer = (PhotoViewer) this.f36581n0;
-                mu0[] mu0VarArr = photoViewer.T0;
-                ImageView[] imageViewArr = photoViewer.f31861v3;
-                if (photoViewer.G) {
-                    int scrollY = getScrollY();
-                    float translationY = photoViewer.N1.getTranslationY();
-                    float f10 = 0.0f;
-                    if (scrollY == 0 && translationY == 0.0f) {
-                        z4 = true;
-                    } else {
-                        z4 = false;
-                    }
-                    if (scrollY == 0 && translationY == 0.0f) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (!z4) {
-                        int b10 = mu0VarArr[0].b() + mu0VarArr[0].f36210j;
-                        if (C()) {
-                            i10 = AndroidUtilities.statusBarHeight;
-                        } else {
-                            i10 = 0;
-                        }
-                        int top = (((photoViewer.W1.getTop() + ((int) translationY)) - scrollY) + (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i10)) - AndroidUtilities.dp(12.0f);
-                        if (top > AndroidUtilities.dp(32.0f) + ((int) imageViewArr[0].getY())) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
-                        }
-                        if (top > b10) {
-                            z4 = true;
-                        } else {
-                            z4 = false;
-                        }
-                        z10 = z11;
-                    }
-                    if (photoViewer.f31871w3) {
-                        if (imageViewArr[0].getTag() != null && ((Integer) imageViewArr[0].getTag()).intValue() == 3 && z10) {
-                            imageViewArr[0].setTag(2);
-                            imageViewArr[0].animate().alpha(1.0f).setDuration(150L).setListener(new ss0(this, 3)).start();
-                        } else if (imageViewArr[0].getTag() == null && !z10) {
-                            imageViewArr[0].setTag(3);
-                            imageViewArr[0].animate().alpha(0.0f).setListener(null).setDuration(150L).start();
-                        }
-                    }
-                    mu0 mu0Var = mu0VarArr[0];
-                    if (z4) {
-                        f10 = 1.0f;
-                    }
-                    mu0Var.e(2, f10, true);
-                    return;
-                }
-                return;
-            default:
-                super.invalidate();
-                return;
+    public final void onRenderedFirstFrame() {
+        b2.v0 h;
+        super.onRenderedFirstFrame();
+        PhotoViewer photoViewer = this.m0;
+        boolean z10 = true;
+        photoViewer.R = true;
+        if (photoViewer.D2) {
+            photoViewer.f33549e0.invalidate();
+        }
+        photoViewer.z3();
+        if (!b5.d.u() && !photoViewer.f33660r) {
+            z10 = false;
+        }
+        O(z10);
+        if (!photoViewer.N8) {
+            b5.d.D(n());
+            i2.f0 f0Var = this.d;
+            float f7 = 1.0f;
+            if (f0Var != null && (h = f0Var.h()) != null) {
+                f7 = h.f2400a;
+            }
+            b5.d.z(f7);
         }
     }
 }

@@ -1,83 +1,55 @@
 package f2;
 
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import java.util.ArrayList;
-public final class f implements Runnable {
-    public final int f5681a;
-    public final ArrayList f5682b;
-    public final l f5683c;
+import b2.m0;
+import b2.o0;
+public final class f implements o0 {
+    public final float f9178a;
+    public final float f9179b;
 
-    public f(l lVar, ArrayList arrayList, int i10) {
-        this.f5681a = i10;
-        this.f5683c = lVar;
-        this.f5682b = arrayList;
+    public f(float f7, float f10) {
+        boolean z10;
+        if (f7 >= -90.0f && f7 <= 90.0f && f10 >= -180.0f && f10 <= 180.0f) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        e2.d.a("Invalid latitude or longitude", z10);
+        this.f9178a = f7;
+        this.f9179b = f10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f5681a) {
-            case 0:
-                ArrayList arrayList = this.f5682b;
-                int size = arrayList.size();
-                int i10 = 0;
-                while (true) {
-                    l lVar = this.f5683c;
-                    if (i10 < size) {
-                        Object obj = arrayList.get(i10);
-                        i10++;
-                        k kVar = (k) obj;
-                        lVar.C(kVar.f5755a, kVar);
-                        lVar.f5769w.add(kVar);
-                    } else {
-                        arrayList.clear();
-                        lVar.f5768u.remove(arrayList);
-                        return;
-                    }
-                }
-            case 1:
-                ArrayList arrayList2 = this.f5682b;
-                int size2 = arrayList2.size();
-                int i11 = 0;
-                while (true) {
-                    l lVar2 = this.f5683c;
-                    if (i11 < size2) {
-                        Object obj2 = arrayList2.get(i11);
-                        i11++;
-                        j jVar = (j) obj2;
-                        lVar2.B(jVar);
-                        lVar2.f5770x.add(jVar);
-                    } else {
-                        arrayList2.clear();
-                        lVar2.v.remove(arrayList2);
-                        return;
-                    }
-                }
-            default:
-                ArrayList arrayList3 = this.f5682b;
-                int i12 = Integer.MAX_VALUE;
-                for (int size3 = arrayList3.size() - 1; size3 >= 0; size3--) {
-                    i12 = Math.min(i12, ((l1) arrayList3.get(size3)).b());
-                }
-                int size4 = arrayList3.size();
-                while (true) {
-                    size4--;
-                    l lVar3 = this.f5683c;
-                    if (size4 >= 0) {
-                        l1 l1Var = (l1) arrayList3.get(size4);
-                        long b10 = (l1Var.b() - i12) * lVar3.D;
-                        View view = l1Var.f5774a;
-                        ViewPropertyAnimator animate = view.animate();
-                        lVar3.f5771y.add(l1Var);
-                        animate.alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(lVar3.h()).setStartDelay(b10).setInterpolator(lVar3.h);
-                        animate.setUpdateListener(new d(lVar3, l1Var, 1));
-                        animate.setListener(new g(lVar3, l1Var, view, animate)).start();
-                    } else {
-                        arrayList3.clear();
-                        lVar3.f5767t.remove(arrayList3);
-                        return;
-                    }
-                }
+    public final b2.s a() {
+        return null;
+    }
+
+    @Override
+    public final byte[] c() {
+        return null;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj != null && f.class == obj.getClass()) {
+            f fVar = (f) obj;
+            if (this.f9178a == fVar.f9178a && this.f9179b == fVar.f9179b) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Float.valueOf(this.f9179b).hashCode() + ((Float.valueOf(this.f9178a).hashCode() + 527) * 31);
+    }
+
+    public final String toString() {
+        return "xyz: latitude=" + this.f9178a + ", longitude=" + this.f9179b;
+    }
+
+    @Override
+    public final void b(m0 m0Var) {
     }
 }

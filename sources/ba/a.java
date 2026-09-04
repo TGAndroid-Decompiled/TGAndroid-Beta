@@ -1,4 +1,24 @@
 package ba;
-public interface a {
-    void f(b bVar);
+
+import java.io.File;
+import java.io.FilenameFilter;
+public final class a implements FilenameFilter {
+    public final int f2518a;
+
+    @Override
+    public final boolean accept(File file, String str) {
+        switch (this.f2518a) {
+            case 0:
+                return str.startsWith("event");
+            case 1:
+                if (str.startsWith("event") && !str.endsWith("_")) {
+                    return true;
+                }
+                return false;
+            case 2:
+                return str.startsWith("aqs.");
+            default:
+                return str.startsWith(".ae");
+        }
+    }
 }

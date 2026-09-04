@@ -1,57 +1,39 @@
 package w5;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import j7.f5;
 import java.util.Arrays;
-import u6.p;
-public final class b extends c6.a {
-    public static final Parcelable.Creator<b> CREATOR = new p(11);
-    public final boolean f46535a;
-    public final long f46536b;
-    public final long f46537c;
+import n6.l;
+import n7.z0;
+public final class b implements com.google.android.gms.common.api.b {
+    public static final b f48038c;
+    public final boolean f48039a;
+    public final String f48040b;
 
-    public b(long j10, long j11, boolean z4) {
-        this.f46535a = z4;
-        this.f46536b = j10;
-        this.f46537c = j11;
+    static {
+        z0 z0Var = new z0(21, false);
+        z0Var.f16703b = Boolean.FALSE;
+        f48038c = new b(z0Var);
+    }
+
+    public b(z0 z0Var) {
+        this.f48039a = ((Boolean) z0Var.f16703b).booleanValue();
+        this.f48040b = (String) z0Var.f16704c;
     }
 
     public final boolean equals(Object obj) {
-        if (this == obj) {
+        if (obj == this) {
             return true;
         }
-        if (obj instanceof b) {
-            b bVar = (b) obj;
-            if (this.f46535a == bVar.f46535a && this.f46536b == bVar.f46536b && this.f46537c == bVar.f46537c) {
-                return true;
-            }
+        if (!(obj instanceof b)) {
+            return false;
+        }
+        b bVar = (b) obj;
+        if (l.l(null, null) && this.f48039a == bVar.f48039a && l.l(this.f48040b, bVar.f48040b)) {
+            return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f46535a), Long.valueOf(this.f46536b), Long.valueOf(this.f46537c)});
-    }
-
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("CollectForDebugParcelable[skipPersistentStorage: ");
-        sb.append(this.f46535a);
-        sb.append(",collectForDebugStartTimeMillis: ");
-        sb.append(this.f46536b);
-        sb.append(",collectForDebugExpiryTimeMillis: ");
-        return android.support.v4.media.a.q(sb, this.f46537c, "]");
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q10 = f5.q(parcel, 20293);
-        f5.s(parcel, 1, 4);
-        parcel.writeInt(this.f46535a ? 1 : 0);
-        f5.s(parcel, 2, 8);
-        parcel.writeLong(this.f46537c);
-        f5.s(parcel, 3, 8);
-        parcel.writeLong(this.f46536b);
-        f5.r(parcel, q10);
+        return Arrays.hashCode(new Object[]{null, Boolean.valueOf(this.f48039a), this.f48040b});
     }
 }

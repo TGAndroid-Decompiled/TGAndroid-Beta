@@ -1,41 +1,58 @@
 package kf;
 
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class a extends TLObject {
-    public int f10386a;
-    public long f10387b;
-    public TLRPC.InputStorePaymentPurpose f10388c;
+import android.graphics.Bitmap;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.RandomAccessFile;
+import mf.l;
+public abstract class a {
+    public String f14901a;
+    public long f14902b;
+    public String f14903c;
+    public String d;
+    public String f14904e;
+    public String f14905f;
+    public short f14906g;
+    public String h;
+    public String f14907i;
+    public short f14908j;
+    public short f14909k;
+    public String f14910l;
+    public String f14911m;
+    public String f14912n;
+    public Bitmap f14913o;
+    public Bitmap f14914p;
+    public File f14915q;
 
-    public static a a(SerializedData serializedData, int i10) {
-        TLObject tLObject;
-        if (i10 != 495638674) {
-            tLObject = null;
-        } else {
-            tLObject = new TLObject();
-        }
-        return (a) TLObject.TLdeserialize(a.class, tLObject, serializedData, i10, true);
-    }
-
-    @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z4) {
-        this.f10386a = inputSerializedData.readInt32(z4);
-        this.f10387b = inputSerializedData.readInt64(z4);
-        if ((this.f10386a & 1) != 0) {
-            this.f10388c = TLRPC.InputStorePaymentPurpose.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z4), z4);
-        }
-    }
-
-    @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        outputSerializedData.writeInt32(495638674);
-        outputSerializedData.writeInt32(this.f10386a);
-        outputSerializedData.writeInt64(this.f10387b);
-        if ((this.f10386a & 1) != 0) {
-            this.f10388c.serializeToStream(outputSerializedData);
+    public static a a(File file) {
+        byte b10;
+        try {
+            byte[] bArr = new byte[12];
+            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
+            randomAccessFile.readFully(bArr, 0, 8);
+            randomAccessFile.close();
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
+            if (bArr[4] == 102 && bArr[5] == 116 && bArr[6] == 121 && bArr[7] == 112) {
+                return new lf.a(bufferedInputStream);
+            }
+            if (bArr[0] == 102 && bArr[1] == 76 && bArr[2] == 97 && bArr[3] == 99) {
+                b bVar = new b(file);
+                if (!bVar.f14917s) {
+                    return bVar;
+                }
+                return null;
+            }
+            if (!file.getAbsolutePath().endsWith("mp3") && (((b10 = bArr[0]) != 73 || bArr[1] != 68 || bArr[2] != 51) && (b10 != 84 || bArr[1] != 65 || bArr[2] != 71))) {
+                b bVar2 = new b(file);
+                if (!bVar2.f14917s) {
+                    return bVar2;
+                }
+                return null;
+            }
+            return new l(bufferedInputStream, file.length());
+        } catch (Exception unused) {
+            return null;
         }
     }
 }

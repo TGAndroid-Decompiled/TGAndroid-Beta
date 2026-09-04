@@ -10,7 +10,7 @@ import java.nio.charset.Charset;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
-import vh.w2;
+import org.telegram.ui.Cells.p6;
 public class FileVideoCapturer implements VideoCapturer {
     private static final String TAG = "FileVideoCapturer";
     private CapturerObserver capturerObserver;
@@ -44,7 +44,7 @@ public class FileVideoCapturer implements VideoCapturer {
             RandomAccessFile randomAccessFile = new RandomAccessFile(str, "r");
             this.mediaFile = randomAccessFile;
             this.mediaFileChannel = randomAccessFile.getChannel();
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb2 = new StringBuilder();
             while (true) {
                 int read = this.mediaFile.read();
                 if (read != -1) {
@@ -53,7 +53,7 @@ public class FileVideoCapturer implements VideoCapturer {
                         String str2 = "";
                         int i10 = 0;
                         int i11 = 0;
-                        for (String str3 : sb.toString().split("[ ]")) {
+                        for (String str3 : sb2.toString().split("[ ]")) {
                             char charAt = str3.charAt(0);
                             if (charAt != 'C') {
                                 if (charAt != 'H') {
@@ -79,9 +79,9 @@ public class FileVideoCapturer implements VideoCapturer {
                         }
                         throw new IllegalArgumentException("Does not support odd width or height");
                     }
-                    sb.append((char) read);
+                    sb2.append((char) read);
                 } else {
-                    throw new RuntimeException(w2.e("Found end of file before end of header for file: ", str));
+                    throw new RuntimeException(p6.i("Found end of file before end of header for file: ", str));
                 }
             }
         }
@@ -90,8 +90,8 @@ public class FileVideoCapturer implements VideoCapturer {
         public void close() {
             try {
                 this.mediaFile.close();
-            } catch (IOException e) {
-                Logging.e("VideoReaderY4M", "Problem closing file", e);
+            } catch (IOException e7) {
+                Logging.e("VideoReaderY4M", "Problem closing file", e7);
             }
         }
 
@@ -122,8 +122,8 @@ public class FileVideoCapturer implements VideoCapturer {
                     return new VideoFrame(allocate, 0, nanos);
                 }
                 throw new RuntimeException("Frames should be delimited by FRAME plus newline, found delimter was: '" + str + "'");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            } catch (IOException e7) {
+                throw new RuntimeException(e7);
             }
         }
     }
@@ -131,9 +131,9 @@ public class FileVideoCapturer implements VideoCapturer {
     public FileVideoCapturer(String str) {
         try {
             this.videoReader = new VideoReaderY4M(str);
-        } catch (IOException e) {
+        } catch (IOException e7) {
             Logging.d("FileVideoCapturer", "Could not open video file: " + str);
-            throw e;
+            throw e7;
         }
     }
 

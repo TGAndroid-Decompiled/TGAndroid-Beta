@@ -9,56 +9,56 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-public final class vb implements org.telegram.ui.Components.hl0 {
-    public final int f39064a = 1;
-    public final long f39065b;
-    public final Context f39066c;
+public final class vb implements org.telegram.ui.Components.zk0 {
+    public final int f41503a = 1;
+    public final long f41504b;
+    public final Context f41505c;
     public final KeyEvent.Callback d;
-    public final Object e;
-    public final Object f39067f;
+    public final Object f41506e;
+    public final Object f41507f;
 
-    public vb(cc ccVar, Context context, long j10, org.telegram.ui.ActionBar.f6 f6Var, oa1 oa1Var) {
+    public vb(cc ccVar, Context context, long j3, org.telegram.ui.ActionBar.f6 f6Var, bb1 bb1Var) {
         this.d = ccVar;
-        this.f39066c = context;
-        this.f39065b = j10;
-        this.e = f6Var;
-        this.f39067f = oa1Var;
+        this.f41505c = context;
+        this.f41504b = j3;
+        this.f41506e = f6Var;
+        this.f41507f = bb1Var;
     }
 
     @Override
-    public final void d(int i10, View view) {
-        switch (this.f39064a) {
+    public final void a(int i10, View view) {
+        switch (this.f41503a) {
             case 0:
                 cc ccVar = (cc) this.d;
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.e;
-                oa1 oa1Var = (oa1) this.f39067f;
-                boolean z4 = view instanceof lg.b;
-                long j10 = this.f39065b;
-                boolean z10 = false;
-                if (z4) {
-                    lg.b bVar = (lg.b) view;
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f41506e;
+                bb1 bb1Var = (bb1) this.f41507f;
+                boolean z10 = view instanceof zg.b;
+                long j3 = this.f41504b;
+                boolean z11 = false;
+                if (z10) {
+                    zg.b bVar = (zg.b) view;
                     TL_stories.Boost boost = bVar.getBoost();
-                    boolean z11 = boost.giveaway;
-                    if (z11 && boost.stars > 0) {
-                        lh.ja.e1(this.f39066c, ccVar.f33071b, j10, boost, f6Var);
+                    boolean z12 = boost.giveaway;
+                    if (z12 && boost.stars > 0) {
+                        zh.v7.e1(this.f41505c, ccVar.f35059b, j3, boost, f6Var);
                     } else {
-                        boolean z12 = boost.gift;
-                        if (((!z12 && !z11) || boost.user_id < 0) && !boost.unclaimed) {
-                            if (z11 && boost.user_id == -1) {
-                                org.telegram.ui.Components.qb qbVar = new org.telegram.ui.Components.qb(oa1Var.getParentActivity(), oa1Var.getResourceProvider());
-                                qbVar.c(R.raw.chats_infotip, 36, 36, new String[0]);
-                                qbVar.f28137b.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
-                                qbVar.f28137b.setSingleLine(false);
-                                qbVar.f28137b.setMaxLines(2);
-                                org.telegram.ui.Components.ic.g(oa1Var, qbVar, 2750).j();
-                            } else if (!z12 && !z11) {
-                                oa1Var.presentFragment(ProfileActivity.m4(bVar.getDialogId()));
+                        boolean z13 = boost.gift;
+                        if (((!z13 && !z12) || boost.user_id < 0) && !boost.unclaimed) {
+                            if (z12 && boost.user_id == -1) {
+                                org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(bb1Var.getParentActivity(), bb1Var.getResourceProvider());
+                                ybVar.c(R.raw.chats_infotip, 36, 36, new String[0]);
+                                ybVar.f32876b.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
+                                ybVar.f32876b.setSingleLine(false);
+                                ybVar.f32876b.setMaxLines(2);
+                                org.telegram.ui.Components.qc.g(bb1Var, ybVar, 2750).j();
+                            } else if (!z13 && !z12) {
+                                bb1Var.presentFragment(ProfileActivity.m4(bVar.getDialogId()));
                             }
                         } else {
                             TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = new TLRPC.TL_payments_checkedGiftCode();
                             tL_payments_checkedGiftCode.giveaway_msg_id = boost.giveaway_msg_id;
                             tL_payments_checkedGiftCode.to_id = boost.user_id;
-                            tL_payments_checkedGiftCode.from_id = MessagesController.getInstance(UserConfig.selectedAccount).getPeer(-ccVar.G.f19159id);
+                            tL_payments_checkedGiftCode.from_id = MessagesController.getInstance(UserConfig.selectedAccount).getPeer(-ccVar.J.f19869id);
                             int i11 = boost.date;
                             tL_payments_checkedGiftCode.date = i11;
                             tL_payments_checkedGiftCode.via_giveaway = boost.giveaway;
@@ -71,36 +71,36 @@ public final class vb implements org.telegram.ui.Components.hl0 {
                             } else {
                                 tL_payments_checkedGiftCode.boost = boost;
                             }
-                            new gg.e1(oa1Var, tL_payments_checkedGiftCode, boost.used_gift_slug).show();
+                            new ug.d0(bb1Var, tL_payments_checkedGiftCode, boost.used_gift_slug).show();
                         }
                     }
                 }
-                if (view instanceof org.telegram.ui.Cells.n8) {
-                    gg.x.m(oa1Var, f6Var, j10, null);
+                if (view instanceof org.telegram.ui.Cells.r8) {
+                    ug.n.m(bb1Var, f6Var, j3, null);
                 }
-                if (view instanceof lg.c) {
-                    gg.x.m(oa1Var, f6Var, j10, ((lg.c) view).getPrepaidGiveaway());
+                if (view instanceof zg.c) {
+                    ug.n.m(bb1Var, f6Var, j3, ((zg.c) view).getPrepaidGiveaway());
                 }
-                if (((bc) ccVar.f33078x.get(i10)).f1830a == 9) {
-                    if (ccVar.f33079y == 1) {
-                        z10 = true;
+                if (((bc) ccVar.f35067x.get(i10)).f44071a == 9) {
+                    if (ccVar.f35068y == 1) {
+                        z11 = true;
                     }
-                    ccVar.c(Boolean.valueOf(z10));
+                    ccVar.c(Boolean.valueOf(z11));
                     return;
                 }
                 return;
             default:
-                Context context = this.f39066c;
-                org.telegram.ui.Components.d70.M((org.telegram.ui.Components.d70) this.d, this.f39065b, (org.telegram.ui.ActionBar.p2) this.e, (a0.h) this.f39067f, context, i10);
+                Context context = this.f41505c;
+                org.telegram.ui.Components.b70.M((org.telegram.ui.Components.b70) this.d, this.f41504b, (org.telegram.ui.ActionBar.n2) this.f41506e, (a0.i) this.f41507f, context, i10);
                 return;
         }
     }
 
-    public vb(org.telegram.ui.Components.d70 d70Var, long j10, org.telegram.ui.ActionBar.p2 p2Var, a0.h hVar, Context context) {
-        this.d = d70Var;
-        this.f39065b = j10;
-        this.e = p2Var;
-        this.f39067f = hVar;
-        this.f39066c = context;
+    public vb(org.telegram.ui.Components.b70 b70Var, long j3, org.telegram.ui.ActionBar.n2 n2Var, a0.i iVar, Context context) {
+        this.d = b70Var;
+        this.f41504b = j3;
+        this.f41506e = n2Var;
+        this.f41507f = iVar;
+        this.f41505c = context;
     }
 }

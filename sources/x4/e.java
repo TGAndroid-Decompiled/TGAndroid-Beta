@@ -1,28 +1,35 @@
 package x4;
 
-import android.util.SparseArray;
-public final class e {
-    public final int f46847a;
-    public final boolean f46848b;
-    public final int f46849c;
-    public final int d;
-    public final int e;
-    public final int f46850f;
-    public final int f46851g;
-    public final int h;
-    public final int f46852i;
-    public final SparseArray f46853j;
+import android.animation.TypeEvaluator;
+import v7.g8;
+public final class e implements TypeEvaluator {
+    public i0.e[] f48832a;
 
-    public e(int i10, boolean z4, int i11, int i12, int i13, int i14, int i15, int i16, int i17, SparseArray sparseArray) {
-        this.f46847a = i10;
-        this.f46848b = z4;
-        this.f46849c = i11;
-        this.d = i12;
-        this.e = i13;
-        this.f46850f = i14;
-        this.f46851g = i15;
-        this.h = i16;
-        this.f46852i = i17;
-        this.f46853j = sparseArray;
+    @Override
+    public final Object evaluate(float f7, Object obj, Object obj2) {
+        i0.e[] eVarArr = (i0.e[]) obj;
+        i0.e[] eVarArr2 = (i0.e[]) obj2;
+        if (g8.a(eVarArr, eVarArr2)) {
+            if (!g8.a(this.f48832a, eVarArr)) {
+                this.f48832a = g8.e(eVarArr);
+            }
+            for (int i10 = 0; i10 < eVarArr.length; i10++) {
+                i0.e eVar = this.f48832a[i10];
+                i0.e eVar2 = eVarArr[i10];
+                i0.e eVar3 = eVarArr2[i10];
+                eVar.getClass();
+                eVar.f11429a = eVar2.f11429a;
+                int i11 = 0;
+                while (true) {
+                    float[] fArr = eVar2.f11430b;
+                    if (i11 < fArr.length) {
+                        eVar.f11430b[i11] = (eVar3.f11430b[i11] * f7) + ((1.0f - f7) * fArr[i11]);
+                        i11++;
+                    }
+                }
+            }
+            return this.f48832a;
+        }
+        throw new IllegalArgumentException("Can't interpolate between two incompatible pathData");
     }
 }

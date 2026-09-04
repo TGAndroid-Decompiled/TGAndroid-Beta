@@ -1,47 +1,50 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class ok extends org.telegram.ui.Components.ed {
-    public final boolean e;
-    public final zn f36830f;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class ok extends org.telegram.ui.Components.pd {
+    public final co d;
 
-    public ok(zn znVar, Context context, boolean z4) {
+    public ok(co coVar, Context context) {
         super(context);
-        this.f36830f = znVar;
-        this.e = z4;
+        this.d = coVar;
     }
 
     @Override
-    public final void d() {
-        int i10;
-        if (this.e) {
-            i10 = AndroidUtilities.dp(4.0f);
-        } else {
-            i10 = 0;
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    public final void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        co coVar = this.d;
+        mk mkVar = coVar.Y;
+        if (mkVar != null) {
+            mkVar.invalidate();
         }
-        int i11 = org.telegram.ui.ActionBar.j6.f20208ve;
-        zn znVar = this.f36830f;
-        setBackground(org.telegram.ui.ActionBar.j6.W(AndroidUtilities.dp(19.0f), 436207615 & znVar.getThemedColor(i11), i10, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f)));
-        getImageView().setColorFilter(new PorterDuffColorFilter(znVar.getThemedColor(i11), PorterDuff.Mode.MULTIPLY));
-        getTextView().setTextColor(znVar.getThemedColor(i11));
+        if (getVisibility() != 8) {
+            coVar.h9(true);
+            FrameLayout frameLayout = coVar.P;
+            if (frameLayout != null) {
+                frameLayout.setTranslationY(f7);
+            }
+            coVar.o9();
+            coVar.r9();
+            View view = coVar.fragmentView;
+            if (view != null) {
+                view.invalidate();
+            }
+        }
     }
 
     @Override
-    public final void setEditButton(boolean z4) {
-        int i10;
-        super.setEditButton(z4);
-        if (this.e) {
-            TextView textView = getTextView();
-            if (z4) {
-                i10 = AndroidUtilities.dp(116.0f);
-            } else {
-                i10 = Integer.MAX_VALUE;
-            }
-            textView.setMaxWidth(i10);
+    public final void setVisibility(int i10) {
+        FrameLayout frameLayout;
+        super.setVisibility(i10);
+        if (i10 == 8 && (frameLayout = this.d.P) != null) {
+            frameLayout.setTranslationY(0.0f);
         }
     }
 }

@@ -1,46 +1,53 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class i30 extends FrameLayout {
-    public final n30 f25569a;
+public final class i30 extends TextView {
+    public final Paint[] f26952a;
+    public final l30 f26953b;
 
-    public i30(n30 n30Var, Context context) {
+    public i30(l30 l30Var, Context context) {
         super(context);
-        this.f25569a = n30Var;
+        this.f26953b = l30Var;
+        this.f26952a = new Paint[l30Var.f28038e.length];
+        int i10 = 0;
+        while (true) {
+            Paint[] paintArr = this.f26952a;
+            if (i10 < paintArr.length) {
+                paintArr[i10] = new Paint(1);
+                i10++;
+            } else {
+                return;
+            }
+        }
     }
 
     @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        super.onLayout(z4, i10, i11, i12, i13);
-        n30.m(this.f25569a);
+    public final void onDraw(Canvas canvas) {
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        l30 l30Var = this.f26953b;
+        int i10 = l30Var.h;
+        Paint[] paintArr = this.f26952a;
+        paintArr[i10].setAlpha(255);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[l30Var.h]);
+        float f7 = l30Var.f28039f;
+        if (f7 > 0.0f) {
+            int i11 = l30Var.h;
+            if (i11 + 1 < paintArr.length) {
+                paintArr[i11 + 1].setAlpha((int) (f7 * 255.0f));
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[l30Var.h + 1]);
+            }
+        }
+        super.onDraw(canvas);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        boolean z4;
-        if (View.MeasureSpec.getSize(i10) > View.MeasureSpec.getSize(i11)) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        n30 n30Var = this.f25569a;
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) n30Var.f27180c.getLayoutParams();
-        if (z4) {
-            int dp = AndroidUtilities.dp(80.0f);
-            marginLayoutParams.leftMargin = dp;
-            marginLayoutParams.rightMargin = dp;
-        } else {
-            int dp2 = AndroidUtilities.dp(16.0f);
-            marginLayoutParams.leftMargin = dp2;
-            marginLayoutParams.rightMargin = dp2;
-        }
-        int x10 = org.telegram.ui.b.x(200.0f, View.MeasureSpec.getSize(i10), 2);
-        n30Var.f27179b.setPadding(x10, 0, x10, 0);
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(370.0f), 1073741824));
-        measureChildWithMargins(n30Var.d, View.MeasureSpec.makeMeasureSpec(0, 0), 0, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824), 0);
+    public final void onSizeChanged(int r12, int r13, int r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.i30.onSizeChanged(int, int, int, int):void");
     }
 }

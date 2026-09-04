@@ -1,112 +1,47 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class qw implements org.telegram.ui.Components.f00 {
-    public final Context f37509a;
-    public final qy f37510b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class qw implements RequestDelegate {
+    public final int f39987a = 0;
+    public final org.telegram.ui.ActionBar.b2 f39988b;
+    public final long f39989c;
+    public final NotificationCenter.NotificationCenterDelegate d;
+    public final Object f39990e;
+    public final TLObject f39991f;
+    public final Object f39992g;
 
-    public qw(Context context, qy qyVar) {
-        this.f37510b = qyVar;
-        this.f37509a = context;
+    public qw(uy uyVar, org.telegram.ui.ActionBar.b2 b2Var, TLRPC.User user, TLRPC.Chat chat, long j3, TLRPC.TL_messages_checkHistoryImportPeer tL_messages_checkHistoryImportPeer) {
+        this.d = uyVar;
+        this.f39988b = b2Var;
+        this.f39990e = user;
+        this.f39991f = chat;
+        this.f39989c = j3;
+        this.f39992g = tL_messages_checkHistoryImportPeer;
     }
 
-    public final int a(int i10) {
-        qy qyVar = this.f37510b;
-        if (qyVar.O0 != 3) {
-            if (i10 == qyVar.f37633w0.getDefaultTabId()) {
-                return qyVar.getMessagesStorage().getMainUnreadCount();
-            }
-            ArrayList<MessagesController.DialogFilter> dialogFilters = qyVar.getMessagesController().getDialogFilters();
-            if (i10 >= 0 && i10 < dialogFilters.size()) {
-                return qyVar.getMessagesController().getDialogFilters().get(i10).unreadCount;
-            }
-            return 0;
-        }
-        return 0;
-    }
-
-    public final void b(float f10) {
-        qy qyVar = this.f37510b;
-        int i10 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
-        if (i10 != 0 || qyVar.f37527b0[1].getVisibility() == 0 || qyVar.f37555g2) {
-            if (qyVar.f37545e3) {
-                py pyVar = qyVar.f37527b0[0];
-                pyVar.setTranslationX((-f10) * pyVar.getMeasuredWidth());
-                py[] pyVarArr = qyVar.f37527b0;
-                pyVarArr[1].setTranslationX(pyVarArr[0].getMeasuredWidth() - (f10 * qyVar.f37527b0[0].getMeasuredWidth()));
-            } else {
-                py pyVar2 = qyVar.f37527b0[0];
-                pyVar2.setTranslationX(pyVar2.getMeasuredWidth() * f10);
-                py[] pyVarArr2 = qyVar.f37527b0;
-                pyVarArr2[1].setTranslationX((f10 * pyVarArr2[0].getMeasuredWidth()) - qyVar.f37527b0[0].getMeasuredWidth());
-            }
-            if (i10 == 0) {
-                py[] pyVarArr3 = qyVar.f37527b0;
-                py pyVar3 = pyVarArr3[0];
-                pyVarArr3[0] = pyVarArr3[1];
-                pyVarArr3[1] = pyVar3;
-                pyVar3.setVisibility(8);
-                qy.f1(qyVar, true);
-                qyVar.T4(false);
-                qyVar.f37633w0.L = false;
-                qyVar.r3(qyVar.f37527b0[0]);
-                qyVar.f37527b0[0].d.getClass();
-                qyVar.f37527b0[1].d.getClass();
-            }
-        }
-    }
-
-    public final void c(org.telegram.ui.Components.h00 h00Var, boolean z4) {
-        int i10;
-        int i11;
-        qy qyVar = this.f37510b;
-        int i12 = qyVar.f37527b0[0].h;
-        int i13 = h00Var.f25280a;
-        if (i12 != i13) {
-            if (h00Var.f25283f) {
-                qyVar.f37633w0.i(i13);
-                i11 = ((org.telegram.ui.ActionBar.p2) qyVar).currentAccount;
-                qyVar.showDialog(new eg.v0(3, i11, this.f37509a, qyVar, null));
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f39987a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new fw((uy) this.d, this.f39988b, tLObject, (TLRPC.User) this.f39990e, (TLRPC.Chat) this.f39991f, this.f39989c, tL_error, (TLRPC.TL_messages_checkHistoryImportPeer) this.f39992g));
                 return;
-            }
-            ArrayList<MessagesController.DialogFilter> dialogFilters = qyVar.getMessagesController().getDialogFilters();
-            if (!h00Var.e && ((i10 = h00Var.f25280a) < 0 || i10 >= dialogFilters.size())) {
+            default:
+                AndroidUtilities.runOnUIThread(new fw((zh.w3) this.d, (of.e) this.f39990e, this.f39988b, tLObject, (TL_stars.TL_starGiftUnique) this.f39991f, tL_error, this.f39989c, (CharSequence) this.f39992g));
                 return;
-            }
-            py pyVar = qyVar.f37527b0[1];
-            pyVar.h = h00Var.f25280a;
-            pyVar.setVisibility(0);
-            py[] pyVarArr = qyVar.f37527b0;
-            pyVarArr[1].setTranslationX(pyVarArr[0].getMeasuredWidth());
-            qy.f1(qyVar, false);
-            qyVar.R4(true);
-            qyVar.f37545e3 = z4;
         }
     }
 
-    public final void d(MessagesController.DialogFilter dialogFilter) {
-        boolean isChatlist = dialogFilter.isChatlist();
-        qy qyVar = this.f37510b;
-        if (isChatlist) {
-            org.telegram.ui.Components.d10.T(qyVar, dialogFilter.f16649id, null);
-            return;
-        }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qyVar.getParentActivity());
-        alertDialog$Builder.f19478a.O = LocaleController.getString(R.string.FilterDelete);
-        alertDialog$Builder.f19478a.Q = LocaleController.getString(R.string.FilterDeleteAlert);
-        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new ss(7, this, dialogFilter));
-        org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f19478a;
-        qyVar.showDialog(d2Var);
-        TextView textView = (TextView) d2Var.d(-1);
-        if (textView != null) {
-            textView.setTextColor(qyVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20116q7));
-        }
+    public qw(zh.w3 w3Var, of.e eVar, org.telegram.ui.ActionBar.b2 b2Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, CharSequence charSequence) {
+        this.d = w3Var;
+        this.f39990e = eVar;
+        this.f39988b = b2Var;
+        this.f39991f = tL_starGiftUnique;
+        this.f39989c = j3;
+        this.f39992g = charSequence;
     }
 }

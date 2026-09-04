@@ -1,12 +1,10 @@
 package eb;
 
-import androidx.lifecycle.b0;
-import androidx.lifecycle.m;
-import androidx.lifecycle.s;
-import com.google.android.gms.common.api.n;
-import java.io.Closeable;
-public interface b extends Closeable, s, n {
-    @Override
-    @b0(m.ON_DESTROY)
-    void close();
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+@Retention(RetentionPolicy.RUNTIME)
+public @interface b {
+    String[] alternate() default {};
+
+    String value();
 }

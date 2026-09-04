@@ -3,7 +3,6 @@ package org.webrtc;
 import android.graphics.SurfaceTexture;
 import android.view.Surface;
 import java.util.ArrayList;
-import kf.k0;
 public interface EglBase {
     public static final int EGL_OPENGL_ES2_BIT = 4;
     public static final int EGL_OPENGL_ES3_BIT = 64;
@@ -60,13 +59,13 @@ public interface EglBase {
             return iArr;
         }
 
-        public ConfigBuilder setHasAlphaChannel(boolean z4) {
-            this.hasAlphaChannel = z4;
+        public ConfigBuilder setHasAlphaChannel(boolean z10) {
+            this.hasAlphaChannel = z10;
             return this;
         }
 
-        public ConfigBuilder setIsRecordable(boolean z4) {
-            this.isRecordable = z4;
+        public ConfigBuilder setIsRecordable(boolean z10) {
+            this.isRecordable = z10;
             return this;
         }
 
@@ -75,11 +74,11 @@ public interface EglBase {
                 this.openGlesVersion = i10;
                 return this;
             }
-            throw new IllegalArgumentException(k0.k(i10, "OpenGL ES version ", " not supported"));
+            throw new IllegalArgumentException(i2.g.j(i10, "OpenGL ES version ", " not supported"));
         }
 
-        public ConfigBuilder setSupportsPixelBuffer(boolean z4) {
-            this.supportsPixelBuffer = z4;
+        public ConfigBuilder setSupportsPixelBuffer(boolean z10) {
+            this.supportsPixelBuffer = z10;
             return this;
         }
     }
@@ -114,13 +113,13 @@ public interface EglBase {
 
     void release();
 
-    void releaseSurface(boolean z4);
+    void releaseSurface(boolean z10);
 
     int surfaceHeight();
 
     int surfaceWidth();
 
-    void swapBuffers(long j10, boolean z4);
+    void swapBuffers(long j3, boolean z10);
 
-    void swapBuffers(boolean z4);
+    void swapBuffers(boolean z10);
 }

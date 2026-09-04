@@ -1,29 +1,46 @@
 package sh;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.ui.zn;
-public final class h implements Runnable {
-    public final int f44411a;
-    public final n f44412b;
-    public final long f44413c;
+import android.graphics.Canvas;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SvgHelper;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.j6;
+public final class h extends rh.e {
+    public final TLRPC.Document f46409b;
+    public final Object f46410c;
 
-    public h(n nVar, long j10, int i10) {
-        this.f44411a = i10;
-        this.f44412b = nVar;
-        this.f44413c = j10;
+    public h(TLRPC.Document document, Object obj) {
+        boolean z10;
+        String str;
+        this.f46409b = document;
+        this.f46410c = obj;
+        MessageObject.isAnimatedEmoji(document);
+        ImageReceiver imageReceiver = this.f45617a;
+        if (!MessageObject.isStickerDocument(document) && !MessageObject.isVideoSticker(document)) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        MessageObject.isAnimatedStickerDocument(document, true);
+        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, j6.f20815lc, 1.0f);
+        boolean z11 = z10;
+        ImageLocation forDocument = ImageLocation.getForDocument(document);
+        long j3 = document.size;
+        if (z11) {
+            str = "webp";
+        } else {
+            str = null;
+        }
+        imageReceiver.setImage(forDocument, "38_38", svgThumb, j3, str, obj, 0);
     }
 
     @Override
-    public final void run() {
-        switch (this.f44411a) {
-            case 0:
-                MessagesController.getInstance(r0.currentAccount).unlinkCommunity(this.f44413c, r0.f44436b, new j(this.f44412b, 0));
-                return;
-            default:
-                n nVar = this.f44412b;
-                nVar.getClass();
-                nVar.presentFragment(zn.R9(this.f44413c));
-                return;
-        }
+    public final void c(Canvas canvas, int i10, int i11) {
+        ImageReceiver imageReceiver = this.f45617a;
+        imageReceiver.setImageCoords(0.0f, 0.0f, i10, i11);
+        imageReceiver.draw(canvas);
     }
 }

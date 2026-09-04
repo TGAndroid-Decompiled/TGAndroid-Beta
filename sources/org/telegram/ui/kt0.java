@@ -1,46 +1,44 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class kt0 extends AnimatorListenerAdapter {
-    public final int f35583a;
-    public final int f35584b;
-    public final PhotoViewer f35585c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class kt0 extends org.telegram.ui.Components.u00 {
+    public final ss0 f38126e;
+    public final PhotoViewer f38127f;
 
-    public kt0(PhotoViewer photoViewer, int i10, int i11) {
-        this.f35583a = i11;
-        this.f35585c = photoViewer;
-        this.f35584b = i10;
+    public kt0(PhotoViewer photoViewer, ss0 ss0Var) {
+        super(false);
+        this.f38127f = photoViewer;
+        this.f38126e = ss0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f35583a) {
-            case 0:
-                PhotoViewer photoViewer = this.f35585c;
-                lt0 lt0Var = photoViewer.K1;
-                lt0Var.e.setVisibility(0);
-                FrameLayout frameLayout = lt0Var.f4738r;
-                frameLayout.setVisibility(0);
-                frameLayout.setTranslationY(AndroidUtilities.dp(18.0f));
-                ViewPropertyAnimator translationY = frameLayout.animate().alpha(1.0f).translationY(0.0f);
-                org.telegram.ui.Components.mr mrVar = org.telegram.ui.Components.mr.h;
-                b.p(translationY, mrVar, 320L);
-                lt0Var.f4740w.animate().alpha(1.0f).translationX(0.0f).setInterpolator(mrVar).setDuration(320L).start();
-                photoViewer.f31827r4 = this.f35584b;
-                photoViewer.f31792n6 = null;
-                photoViewer.f31774l6 = -1;
-                return;
-            default:
-                int i10 = this.f35584b;
-                PhotoViewer photoViewer2 = this.f35585c;
-                photoViewer2.f31827r4 = i10;
-                photoViewer2.f31792n6 = null;
-                photoViewer2.f31774l6 = -1;
-                return;
-        }
+    public final CharSequence d() {
+        StringBuilder sb2 = new StringBuilder();
+        PhotoViewer photoViewer = this.f38127f;
+        int[] iArr = photoViewer.f33619m3;
+        sb2.append(LocaleController.formatPluralString("Minutes", iArr[0], new Object[0]));
+        sb2.append(' ');
+        sb2.append(LocaleController.formatPluralString("Seconds", iArr[1], new Object[0]));
+        String sb3 = sb2.toString();
+        StringBuilder sb4 = new StringBuilder();
+        int[] iArr2 = photoViewer.f33629n3;
+        sb4.append(LocaleController.formatPluralString("Minutes", iArr2[0], new Object[0]));
+        sb4.append(' ');
+        sb4.append(LocaleController.formatPluralString("Seconds", iArr2[1], new Object[0]));
+        return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, sb3, sb4.toString());
+    }
+
+    @Override
+    public final float k() {
+        return this.f38127f.f33655q3.c();
+    }
+
+    @Override
+    public final void l(float f7) {
+        this.f38126e.b(f7);
+        PhotoViewer photoViewer = this.f38127f;
+        photoViewer.f33655q3.h(f7, false);
+        photoViewer.f33664r3.invalidate();
     }
 }

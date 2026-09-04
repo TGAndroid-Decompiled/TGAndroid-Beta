@@ -1,33 +1,41 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.MessagesStorage;
 public final class lf implements Runnable {
-    public final int f17743a;
-    public final MessagesStorage f17744b;
-    public final long f17745c;
-    public final MessagesStorage.IntCallback d;
+    public final int f18281a;
+    public final MessagesStorage f18282b;
+    public final long f18283c;
 
-    public lf(MessagesStorage messagesStorage, long j10, MessagesStorage.IntCallback intCallback, int i10) {
-        this.f17743a = i10;
-        this.f17744b = messagesStorage;
-        this.f17745c = j10;
-        this.d = intCallback;
+    public lf(int i10, long j3, MessagesStorage messagesStorage) {
+        this.f18281a = i10;
+        this.f18282b = messagesStorage;
+        this.f18283c = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f17743a) {
+        switch (this.f18281a) {
             case 0:
-                this.f17744b.lambda$getDialogMaxMessageId$255(this.f17745c, this.d);
+                this.f18282b.lambda$deleteStoryPushMessage$39(this.f18283c);
                 return;
             case 1:
-                this.f17744b.lambda$getDialogFolderId$243(this.f17745c, this.d);
+                this.f18282b.lambda$clearUserPhotos$92(this.f18283c);
                 return;
             case 2:
-                this.f17744b.lambda$getMessagesCount$158(this.f17745c, this.d);
+                this.f18282b.lambda$removeAllTopics$56(this.f18283c);
+                return;
+            case 3:
+                this.f18282b.lambda$deleteWallpaper$79(this.f18283c);
+                return;
+            case 4:
+                this.f18282b.lambda$deleteSavedDialog$55(this.f18283c);
+                return;
+            case 5:
+                this.f18282b.lambda$onDeleteQueryComplete$91(this.f18283c);
+                return;
+            case 6:
+                this.f18282b.lambda$removePendingTask$11(this.f18283c);
                 return;
             default:
-                this.f17744b.lambda$getSavedDialogMaxMessageId$53(this.f17745c, this.d);
+                this.f18282b.lambda$loadChannelAdmins$123(this.f18283c);
                 return;
         }
     }

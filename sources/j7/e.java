@@ -1,41 +1,43 @@
 package j7;
-public final class e implements i {
-    public final int f8960a;
 
-    public e(int i10) {
-        this.f8960a = i10;
-    }
-
+import android.os.IBinder;
+import android.os.IInterface;
+import n6.g;
+public final class e extends g {
     @Override
-    public final Class annotationType() {
-        return i.class;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof i) {
-                if (this.f8960a == ((e) ((i) obj)).f8960a) {
-                    Object obj2 = h.f8994a;
-                    if (obj2.equals(obj2)) {
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
-        }
+    public final boolean C() {
         return true;
     }
 
     @Override
-    public final int hashCode() {
-        return (this.f8960a ^ 14552422) + (h.f8994a.hashCode() ^ 2041407134);
+    public final int l() {
+        return 12451000;
     }
 
     @Override
-    public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f8960a + "intEncoding=" + h.f8994a + ')';
+    public final IInterface q(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
+        }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.auth.api.phone.internal.ISmsRetrieverApiService");
+        if (queryLocalInterface instanceof d) {
+            return (d) queryLocalInterface;
+        }
+        return new d(iBinder);
+    }
+
+    @Override
+    public final k6.c[] r() {
+        return b.f13555b;
+    }
+
+    @Override
+    public final String v() {
+        return "com.google.android.gms.auth.api.phone.internal.ISmsRetrieverApiService";
+    }
+
+    @Override
+    public final String w() {
+        return "com.google.android.gms.auth.api.phone.service.SmsRetrieverApiService.START";
     }
 }

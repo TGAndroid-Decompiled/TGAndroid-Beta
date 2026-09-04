@@ -11,15 +11,15 @@ public class UserNameResolver {
     private static final long CACHE_TIME = 3600000;
     private final int currentAccount;
     android.util.LruCache<String, CachedPeer> resolvedCache = new android.util.LruCache<>(100);
-    HashMap<String, ArrayList<h5.d>> resolvingConsumers = new HashMap<>();
+    HashMap<String, ArrayList<e2.h>> resolvingConsumers = new HashMap<>();
 
     public class CachedPeer {
         final long peerId;
         final long time = System.currentTimeMillis();
 
-        public CachedPeer(long j10) {
+        public CachedPeer(long j3) {
             UserNameResolver.this = r1;
-            this.peerId = j10;
+            this.peerId = j3;
         }
     }
 
@@ -28,8 +28,8 @@ public class UserNameResolver {
     }
 
     public void lambda$resolve$0(String str, TLRPC.TL_error tL_error, TLObject tLObject) {
-        org.telegram.ui.ActionBar.p2 R;
-        ArrayList<h5.d> remove = this.resolvingConsumers.remove(str);
+        org.telegram.ui.ActionBar.n2 R;
+        ArrayList<e2.h> remove = this.resolvingConsumers.remove(str);
         if (remove != null) {
             int i10 = 0;
             if (tL_error != null) {
@@ -47,7 +47,7 @@ public class UserNameResolver {
                 }
                 String str3 = tL_error.text;
                 if (str3 != null && str3.contains("FLOOD_WAIT") && (R = LaunchActivity.R()) != null) {
-                    y3.s(R.string.FloodWait, org.telegram.ui.Components.qc.a0(R), null);
+                    w1.p(R.string.FloodWait, org.telegram.ui.Components.yc.a0(R), null);
                     return;
                 }
                 return;
@@ -66,7 +66,7 @@ public class UserNameResolver {
     }
 
     public void lambda$resolve$1(String str, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new ci(str, this, tLObject, tL_error), 2L);
+        AndroidUtilities.runOnUIThread(new ai(str, this, tLObject, tL_error), 2L);
     }
 
     public void lambda$resolve$2(String str, int i10) {
@@ -74,8 +74,8 @@ public class UserNameResolver {
         ConnectionsManager.getInstance(this.currentAccount).cancelRequest(i10, true);
     }
 
-    public Runnable resolve(String str, h5.d dVar) {
-        return resolve(str, null, dVar);
+    public Runnable resolve(String str, e2.h hVar) {
+        return resolve(str, null, hVar);
     }
 
     public void update(TLRPC.User user, TLRPC.User user2) {
@@ -86,35 +86,35 @@ public class UserNameResolver {
         this.resolvedCache.remove(user.username);
         String str2 = user2.username;
         if (str2 != null) {
-            this.resolvedCache.put(str2, new CachedPeer(user2.f19306id));
+            this.resolvedCache.put(str2, new CachedPeer(user2.f20016id));
         }
     }
 
-    public Runnable resolve(String str, String str2, h5.d dVar) {
-        return resolve(str, str2, false, dVar);
+    public Runnable resolve(String str, String str2, e2.h hVar) {
+        return resolve(str, str2, false, hVar);
     }
 
-    public Runnable resolve(String str, String str2, boolean z4, h5.d dVar) {
+    public Runnable resolve(String str, String str2, boolean z10, e2.h hVar) {
         TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername;
         CachedPeer cachedPeer;
-        if (TextUtils.isEmpty(str2) && !z4 && (cachedPeer = this.resolvedCache.get(str)) != null) {
+        if (TextUtils.isEmpty(str2) && !z10 && (cachedPeer = this.resolvedCache.get(str)) != null) {
             if (System.currentTimeMillis() - cachedPeer.time < 3600000) {
-                dVar.accept(Long.valueOf(cachedPeer.peerId));
-                StringBuilder sb = new StringBuilder("resolve username from cache ");
-                sb.append(str);
-                sb.append(" ");
-                kf.k0.x(sb, cachedPeer.peerId);
+                hVar.accept(Long.valueOf(cachedPeer.peerId));
+                StringBuilder sb2 = new StringBuilder("resolve username from cache ");
+                sb2.append(str);
+                sb2.append(" ");
+                i2.g.w(sb2, cachedPeer.peerId);
                 return null;
             }
             this.resolvedCache.remove(str);
         }
-        ArrayList<h5.d> arrayList = this.resolvingConsumers.get(str);
+        ArrayList<e2.h> arrayList = this.resolvingConsumers.get(str);
         if (arrayList != null) {
-            arrayList.add(dVar);
+            arrayList.add(hVar);
             return null;
         }
-        ArrayList<h5.d> arrayList2 = new ArrayList<>();
-        arrayList2.add(dVar);
+        ArrayList<e2.h> arrayList2 = new ArrayList<>();
+        arrayList2.add(hVar);
         this.resolvingConsumers.put(str, arrayList2);
         if (AndroidUtilities.isNumeric(str)) {
             TLRPC.TL_contacts_resolvePhone tL_contacts_resolvePhone = new TLRPC.TL_contacts_resolvePhone();
@@ -129,7 +129,7 @@ public class UserNameResolver {
             }
             tL_contacts_resolveUsername = tL_contacts_resolveUsername2;
         }
-        return new s4(this, str, ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_resolveUsername, new u1(11, this, str)), 22);
+        return new q4(this, str, ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_resolveUsername, new r1(11, this, str)), 22);
     }
 
     public void update(TLRPC.Chat chat, TLRPC.Chat chat2) {
@@ -140,7 +140,7 @@ public class UserNameResolver {
         this.resolvedCache.remove(chat.username);
         String str2 = chat2.username;
         if (str2 != null) {
-            this.resolvedCache.put(str2, new CachedPeer(-chat2.f19159id));
+            this.resolvedCache.put(str2, new CachedPeer(-chat2.f19869id));
         }
     }
 }

@@ -45,8 +45,8 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
         private final int underlyingNetworkSubtypeForVpn;
         private final int underlyingNetworkTypeForVpn;
 
-        public NetworkState(boolean z4, int i10, int i11, int i12, int i13) {
-            this.connected = z4;
+        public NetworkState(boolean z10, int i10, int i11, int i12, int i13) {
+            this.connected = z10;
             this.type = i10;
             this.subtype = i11;
             this.underlyingNetworkTypeForVpn = i12;
@@ -155,8 +155,8 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
                     NetworkChangeDetector.NetworkInformation networkInformation = new NetworkChangeDetector.NetworkInformation(wifiP2pGroup.getInterface(), NetworkChangeDetector.ConnectionType.CONNECTION_WIFI, NetworkChangeDetector.ConnectionType.CONNECTION_NONE, 0L, iPAddressArr);
                     this.wifiP2pNetworkInfo = networkInformation;
                     this.observer.onNetworkConnect(networkInformation);
-                } catch (SocketException e) {
-                    Logging.e("NetworkMonitorAutoDetect", "Unable to get WifiP2p network interface", e);
+                } catch (SocketException e7) {
+                    Logging.e("NetworkMonitorAutoDetect", "Unable to get WifiP2p network interface", e7);
                 }
             }
         }
@@ -233,8 +233,8 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
         this.observer.onConnectionTypeChanged(connectionType);
     }
 
-    private static NetworkChangeDetector.ConnectionType getConnectionType(boolean z4, int i10, int i11) {
-        if (z4) {
+    private static NetworkChangeDetector.ConnectionType getConnectionType(boolean z10, int i10, int i11) {
+        if (z10) {
             if (i10 == 0) {
                 switch (i11) {
                     case 1:
@@ -484,17 +484,17 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
             if (!supportNetworkCallback() || (activeNetworkInfo = this.connectivityManager.getActiveNetworkInfo()) == null) {
                 return -1L;
             }
-            long j10 = -1;
+            long j3 = -1;
             for (Network network : getAllNetworks()) {
                 if (hasInternetCapability(network) && (networkInfo = this.connectivityManager.getNetworkInfo(network)) != null && networkInfo.getType() == activeNetworkInfo.getType()) {
-                    if (j10 == -1) {
-                        j10 = NetworkMonitorAutoDetect.networkToNetId(network);
+                    if (j3 == -1) {
+                        j3 = NetworkMonitorAutoDetect.networkToNetId(network);
                     } else {
                         throw new RuntimeException("Multiple connected networks of same type are not supported.");
                     }
                 }
             }
-            return j10;
+            return j3;
         }
 
         public NetworkChangeDetector.IPAddress[] getIPAddresses(LinkProperties linkProperties) {

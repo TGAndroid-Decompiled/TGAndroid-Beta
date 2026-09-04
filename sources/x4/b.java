@@ -1,18 +1,27 @@
 package x4;
-public final class b {
-    public final int f46838a;
-    public final int f46839b;
-    public final int f46840c;
-    public final int d;
-    public final int e;
-    public final int f46841f;
 
-    public b(int i10, int i11, int i12, int i13, int i14, int i15) {
-        this.f46838a = i10;
-        this.f46839b = i11;
-        this.f46840c = i12;
-        this.d = i13;
-        this.e = i14;
-        this.f46841f = i15;
+import android.animation.AnimatorSet;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import java.util.ArrayList;
+public final class b extends Drawable.ConstantState {
+    public p f48826a;
+    public AnimatorSet f48827b;
+    public ArrayList f48828c;
+    public a0.f d;
+
+    @Override
+    public final int getChangingConfigurations() {
+        return 0;
+    }
+
+    @Override
+    public final Drawable newDrawable() {
+        throw new IllegalStateException("No constant state support for SDK < 24.");
+    }
+
+    @Override
+    public final Drawable newDrawable(Resources resources) {
+        throw new IllegalStateException("No constant state support for SDK < 24.");
     }
 }

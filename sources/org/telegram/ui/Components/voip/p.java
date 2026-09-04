@@ -3,23 +3,23 @@ package org.telegram.ui.Components.voip;
 import org.telegram.messenger.AndroidUtilities;
 import org.webrtc.RendererCommon;
 public final class p implements RendererCommon.RendererEvents {
-    public final t f29816a;
+    public final t f31714a;
 
     public p(t tVar) {
-        this.f29816a = tVar;
+        this.f31714a = tVar;
     }
 
     @Override
     public final void onFirstFrameRendered() {
         int i10 = 0;
         while (true) {
-            t tVar = this.f29816a;
-            if (i10 < tVar.f29904j0.size()) {
-                AndroidUtilities.cancelRunOnUIThread((Runnable) tVar.f29904j0.get(i10));
-                ((Runnable) tVar.f29904j0.get(i10)).run();
+            t tVar = this.f31714a;
+            if (i10 < tVar.m0.size()) {
+                AndroidUtilities.cancelRunOnUIThread((Runnable) tVar.m0.get(i10));
+                ((Runnable) tVar.m0.get(i10)).run();
                 i10++;
             } else {
-                tVar.f29904j0.clear();
+                tVar.m0.clear();
                 return;
             }
         }

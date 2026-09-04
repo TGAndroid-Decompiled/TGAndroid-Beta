@@ -1,69 +1,72 @@
 package org.telegram.ui.Components;
 
-import j$.time.YearMonth;
-import org.telegram.messenger.FileLog;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
 public final class u2 implements Runnable {
-    public final xc0 f29080a;
-    public final int f29081b;
-    public final xc0 f29082c;
-    public final xc0 d;
-    public final int e;
-    public final int f29083f;
-    public final int h;
+    public final int f30781a;
+    public final int f30782b;
+    public final long f30783c;
+    public final long d;
+    public final Utilities.Callback f30784e;
+    public final long f30785f;
 
-    public u2(xc0 xc0Var, int i10, xc0 xc0Var2, xc0 xc0Var3, int i11, int i12, int i13) {
-        this.f29080a = xc0Var;
-        this.f29081b = i10;
-        this.f29082c = xc0Var2;
-        this.d = xc0Var3;
-        this.e = i11;
-        this.f29083f = i12;
-        this.h = i13;
+    public u2(int i10, long j3, long j10, Utilities.Callback callback, long j11, int i11) {
+        this.f30781a = i11;
+        this.f30782b = i10;
+        this.f30783c = j3;
+        this.d = j10;
+        this.f30784e = callback;
+        this.f30785f = j11;
     }
 
     @Override
     public final void run() {
-        xc0 xc0Var = this.f29080a;
-        int value = xc0Var.getValue();
-        int i10 = this.f29081b;
-        xc0 xc0Var2 = this.f29082c;
-        xc0 xc0Var3 = this.d;
-        if (value == i10) {
-            xc0Var2.setMinValue(1);
-            try {
-                xc0Var2.setMaxValue(YearMonth.of(2024, xc0Var3.getValue() + 1).lengthOfMonth());
-            } catch (Exception e) {
-                FileLog.e(e);
-                xc0Var2.setMaxValue(31);
-            }
-            xc0Var3.setMinValue(0);
-            xc0Var3.setMaxValue(11);
-        } else if (xc0Var.getValue() == this.e) {
-            xc0Var3.setMinValue(0);
-            int i11 = this.f29083f;
-            xc0Var3.setMaxValue(i11);
-            if (xc0Var3.getValue() == i11) {
-                xc0Var2.setMinValue(1);
-                xc0Var2.setMaxValue(this.h);
+        org.telegram.ui.ActionBar.f6 bVar;
+        switch (this.f30781a) {
+            case 0:
+                int i10 = this.f30782b;
+                u2 u2Var = new u2(i10, this.f30783c, this.d, this.f30784e, this.f30785f, 1);
+                if (!zh.s5.y(i10, false).f52569e) {
+                    zh.s5 y3 = zh.s5.y(i10, false);
+                    y3.f52569e = false;
+                    y3.q(false, true, u2Var);
+                    y3.f52569e = true;
+                    return;
+                }
+                u2Var.run();
                 return;
-            }
-            xc0Var2.setMinValue(1);
-            try {
-                xc0Var2.setMaxValue(YearMonth.of(xc0Var.getValue(), xc0Var3.getValue() + 1).lengthOfMonth());
-            } catch (Exception e6) {
-                FileLog.e(e6);
-                xc0Var2.setMaxValue(31);
-            }
-        } else {
-            xc0Var2.setMinValue(1);
-            try {
-                xc0Var2.setMaxValue(YearMonth.of(xc0Var.getValue(), xc0Var3.getValue() + 1).lengthOfMonth());
-            } catch (Exception e10) {
-                FileLog.e(e10);
-                xc0Var2.setMaxValue(31);
-            }
-            xc0Var3.setMinValue(0);
-            xc0Var3.setMaxValue(11);
+            default:
+                int i11 = this.f30782b;
+                long j3 = zh.s5.y(i11, false).p().amount;
+                long j10 = this.f30783c;
+                Utilities.Callback callback = this.f30784e;
+                long j11 = this.f30785f;
+                if (j3 < j10) {
+                    Activity activity = AndroidUtilities.getActivity();
+                    org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                    if (!PhotoViewer.t1().Q1() && (U == null || !U.hasShownSheet())) {
+                        if (U != null) {
+                            bVar = U.getResourceProvider();
+                        } else {
+                            bVar = null;
+                        }
+                    } else {
+                        bVar = new bi.b();
+                    }
+                    org.telegram.ui.ActionBar.f6 f6Var = bVar;
+                    if (activity != null) {
+                        long j12 = this.d;
+                        new zh.k7(activity, f6Var, j10, 13, DialogObject.getShortName(i11, j12), new org.telegram.ui.g6(j11, 1, callback), j12).show();
+                        return;
+                    }
+                    return;
+                }
+                callback.run(Long.valueOf(j11));
+                return;
         }
     }
 }

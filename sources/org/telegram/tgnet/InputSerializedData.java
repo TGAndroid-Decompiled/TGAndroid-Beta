@@ -6,27 +6,27 @@ public interface InputSerializedData {
 
     int length();
 
-    boolean readBool(boolean z4);
+    boolean readBool(boolean z10);
 
-    byte readByte(boolean z4);
+    byte readByte(boolean z10);
 
-    byte[] readByteArray(boolean z4);
+    byte[] readByteArray(boolean z10);
 
-    NativeByteBuffer readByteBuffer(boolean z4);
+    NativeByteBuffer readByteBuffer(boolean z10);
 
-    void readBytes(byte[] bArr, boolean z4);
+    void readBytes(byte[] bArr, boolean z10);
 
-    byte[] readData(int i10, boolean z4);
+    byte[] readData(int i10, boolean z10);
 
-    double readDouble(boolean z4);
+    double readDouble(boolean z10);
 
-    float readFloat(boolean z4);
+    float readFloat(boolean z10);
 
-    int readInt32(boolean z4);
+    int readInt32(boolean z10);
 
-    long readInt64(boolean z4);
+    long readInt64(boolean z10);
 
-    String readString(boolean z4);
+    String readString(boolean z10);
 
     int remaining();
 

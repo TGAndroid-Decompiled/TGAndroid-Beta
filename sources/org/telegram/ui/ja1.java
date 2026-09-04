@@ -1,95 +1,64 @@
 package org.telegram.ui;
 
-import java.util.Locale;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.tl.TL_stats;
-public final class ja1 {
-    public String A;
-    public boolean B;
-    public boolean C;
-    public String D;
-    public String E;
-    public String F;
-    public boolean G;
-    public boolean H;
-    public String f35137a;
-    public String f35138b;
-    public String f35139c;
-    public boolean d;
-    public String e;
-    public String f35140f;
-    public String f35141g;
-    public boolean h;
-    public String f35142i;
-    public String f35143j;
-    public String f35144k;
-    public boolean f35145l;
-    public String f35146m;
-    public String f35147n;
-    public String f35148o;
-    public String f35149p;
-    public String f35150q;
-    public boolean f35151r;
-    public boolean f35152s;
-    public String f35153t;
-    public String f35154u;
-    public String v;
-    public boolean f35155w;
-    public boolean f35156x;
-    public String f35157y;
-    public String f35158z;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.Window;
+public final class ja1 extends AnimatorListenerAdapter {
+    public final int f37741a;
+    public final la1 f37742b;
 
-    public static rf.f a(TL_stats.TL_statsAbsValueAndPrev tL_statsAbsValueAndPrev) {
-        float abs;
-        boolean z4;
-        double d = tL_statsAbsValueAndPrev.current;
-        double d10 = tL_statsAbsValueAndPrev.previous;
-        int i10 = (int) (d - d10);
-        if (d10 == 0.0d) {
-            abs = 0.0f;
-        } else {
-            abs = Math.abs((i10 / ((float) d10)) * 100.0f);
-        }
-        String formatWholeNumber = AndroidUtilities.formatWholeNumber((int) tL_statsAbsValueAndPrev.current, 0);
-        boolean z10 = true;
-        String str = "";
-        if (i10 != 0 && abs != 0.0f) {
-            int i11 = (int) abs;
-            if (abs == i11) {
-                Locale locale = Locale.ENGLISH;
-                StringBuilder sb = new StringBuilder();
-                if (i10 > 0) {
-                    str = "+";
+    public ja1(la1 la1Var, int i10) {
+        this.f37741a = i10;
+        this.f37742b = la1Var;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f37741a) {
+            case 0:
+                la1 la1Var = this.f37742b;
+                la1Var.f38252b.setVisibility(4);
+                jg.g gVar = la1Var.f38252b;
+                gVar.J = false;
+                jg.g gVar2 = la1Var.f38253c;
+                gVar2.J = true;
+                gVar.f13698y0 = 0;
+                gVar2.f13698y0 = 0;
+                Window window = la1Var.f38251a;
+                if (window != null) {
+                    window.clearFlags(16);
+                    return;
                 }
-                sb.append(str);
-                sb.append(AndroidUtilities.formatWholeNumber(i10, 0));
-                str = sb.toString() + " (" + i11 + "%)";
-            } else {
-                Locale locale2 = Locale.ENGLISH;
-                StringBuilder sb2 = new StringBuilder();
-                if (i10 > 0) {
-                    str = "+";
+                return;
+            case 1:
+                la1 la1Var2 = this.f37742b;
+                jg.g gVar3 = la1Var2.f38253c;
+                gVar3.setVisibility(4);
+                jg.g gVar4 = la1Var2.f38252b;
+                gVar4.f13698y0 = 0;
+                gVar3.f13698y0 = 0;
+                gVar4.J = true;
+                gVar3.J = false;
+                if (!(gVar4 instanceof jg.q)) {
+                    gVar4.f13691u0 = true;
+                    gVar4.x((gVar4.G0 * gVar4.f13671g0.f13714k) - jg.g.f13639k1);
+                    gVar4.c(true);
+                    gVar4.invalidate();
+                } else {
+                    gVar4.f13691u0 = false;
+                    gVar4.d();
                 }
-                sb2.append(str);
-                sb2.append(AndroidUtilities.formatWholeNumber(i10, 0));
-                str = String.format(locale2, "%s (%.1f%s)", sb2.toString(), Float.valueOf(abs), "%");
-            }
+                Window window2 = la1Var2.f38251a;
+                if (window2 != null) {
+                    window2.clearFlags(16);
+                    return;
+                }
+                return;
+            default:
+                la1 la1Var3 = this.f37742b;
+                la1Var3.f38252b.f13698y0 = 0;
+                la1Var3.f38254e.setVisibility(8);
+                return;
         }
-        if (i10 >= 0) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        if (i10 == 0 && tL_statsAbsValueAndPrev.current == 0.0d) {
-            z10 = false;
-        }
-        Boolean valueOf = Boolean.valueOf(z4);
-        Boolean valueOf2 = Boolean.valueOf(z10);
-        rf.f fVar = new rf.f(11, false);
-        fVar.f43490b = formatWholeNumber;
-        fVar.f43491c = str;
-        fVar.d = valueOf;
-        fVar.e = valueOf2;
-        return fVar;
     }
 }

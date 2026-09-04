@@ -1,37 +1,25 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-public final class e21 implements org.telegram.ui.ActionBar.c2, r0.o {
-    public final u21 f33596a;
+public final class e21 implements org.telegram.ui.Components.bl0, org.telegram.ui.ActionBar.a2 {
+    public final ProxyListActivity f35913a;
 
-    public e21(u21 u21Var) {
-        this.f33596a = u21Var;
+    public e21(ProxyListActivity proxyListActivity) {
+        this.f35913a = proxyListActivity;
     }
 
     @Override
-    public r0.m1 M0(View view, r0.m1 m1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
-        u21 u21Var = this.f33596a;
-        u21Var.N = defaultWindowInsets;
-        u21Var.fragmentView.requestLayout();
-        return r0.m1.f43153b;
-    }
-
-    @Override
-    public void l(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        u21 u21Var = this.f33596a;
-        u21Var.getClass();
-        try {
-            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-            u21Var.getParentActivity().startActivity(intent);
-        } catch (Exception e) {
-            FileLog.e(e);
+    public boolean a(int i10, View view) {
+        ProxyListActivity proxyListActivity = this.f35913a;
+        if (i10 >= proxyListActivity.f34043r && i10 < proxyListActivity.f34044s) {
+            proxyListActivity.f34037a.G(i10);
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        ProxyListActivity.V(this.f35913a);
     }
 }

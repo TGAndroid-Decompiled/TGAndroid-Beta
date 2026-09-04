@@ -1,38 +1,106 @@
 package o8;
 
+import android.accounts.Account;
+import android.content.Context;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.IInterface;
+import android.os.Looper;
+import android.os.Parcel;
 import android.os.RemoteException;
-import java.util.ArrayList;
-public final class a extends g0 {
-    public final IBinder h;
-    public final hf.a f16447n;
+import android.util.Log;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.api.k;
+import com.google.android.gms.common.api.l;
+import m.p3;
+import n6.u;
+public final class a extends n6.g implements com.google.android.gms.common.api.c {
+    public final boolean U;
+    public final p3 V;
+    public final Bundle W;
+    public final Integer X;
 
-    public a(hf.a aVar, IBinder iBinder) {
-        this.h = iBinder;
-        this.f16447n = aVar;
+    public a(Context context, Looper looper, p3 p3Var, Bundle bundle, k kVar, l lVar) {
+        super(context, looper, 44, p3Var, kVar, lVar, 0);
+        this.U = true;
+        this.V = p3Var;
+        this.W = bundle;
+        this.X = (Integer) p3Var.h;
+    }
+
+    public final void G() {
+        e(new n6.c(this));
+    }
+
+    public final void H(c cVar) {
+        GoogleSignInAccount googleSignInAccount;
+        try {
+            this.V.getClass();
+            Account account = new Account("<<default account>>", "com.google");
+            if ("<<default account>>".equals(account.name)) {
+                googleSignInAccount = a6.b.a(this.f16539n).b();
+            } else {
+                googleSignInAccount = null;
+            }
+            Integer num = this.X;
+            n6.l.h(num);
+            u uVar = new u(2, account, num.intValue(), googleSignInAccount);
+            e eVar = (e) u();
+            g gVar = new g(1, uVar);
+            Parcel I0 = eVar.I0();
+            k7.a.c(I0, gVar);
+            k7.a.d(I0, cVar);
+            eVar.J0(I0, 12);
+        } catch (RemoteException e7) {
+            Log.w("SignInClientImpl", "Remote service probably died when signIn is called");
+            try {
+                cVar.B(new h(1, new k6.a(8, null), null));
+            } catch (RemoteException unused) {
+                Log.wtf("SignInClientImpl", "ISignInCallbacks#onSignInComplete should be executed from the same process, unexpected RemoteException.", e7);
+            }
+        }
     }
 
     @Override
-    public final void b() {
-        c cVar = (c) this.f16447n.f7049b;
-        cVar.f16460n = (IInterface) cVar.f16455i.a(this.h);
-        f0 f0Var = cVar.f16451b;
-        int i10 = 0;
-        f0Var.b("linkToDeath", new Object[0]);
-        try {
-            cVar.f16460n.asBinder().linkToDeath(cVar.f16457k, 0);
-        } catch (RemoteException e) {
-            f0Var.a(e, "linkToDeath failed", new Object[0]);
+    public final int l() {
+        return 12451000;
+    }
+
+    @Override
+    public final boolean p() {
+        return this.U;
+    }
+
+    @Override
+    public final IInterface q(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
         }
-        cVar.f16454g = false;
-        ArrayList arrayList = cVar.d;
-        int size = arrayList.size();
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((Runnable) obj).run();
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.signin.internal.ISignInService");
+        if (queryLocalInterface instanceof e) {
+            return (e) queryLocalInterface;
         }
-        cVar.d.clear();
+        return new a9.a(iBinder, "com.google.android.gms.signin.internal.ISignInService", 6);
+    }
+
+    @Override
+    public final Bundle t() {
+        p3 p3Var = this.V;
+        boolean equals = this.f16539n.getPackageName().equals((String) p3Var.d);
+        Bundle bundle = this.W;
+        if (!equals) {
+            bundle.putString("com.google.android.gms.signin.internal.realClientPackageName", (String) p3Var.d);
+        }
+        return bundle;
+    }
+
+    @Override
+    public final String v() {
+        return "com.google.android.gms.signin.internal.ISignInService";
+    }
+
+    @Override
+    public final String w() {
+        return "com.google.android.gms.signin.service.START";
     }
 }

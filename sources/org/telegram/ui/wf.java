@@ -1,75 +1,72 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
+import android.view.View;
+import java.io.Serializable;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class wf implements org.telegram.ui.Components.xj0, org.telegram.ui.ActionBar.c2 {
-    public final int f39673a;
-    public final zn f39674b;
-    public final MessageObject f39675c;
+import org.telegram.tgnet.tl.TL_iv;
+public final class wf implements View.OnClickListener {
+    public final int f42343a;
+    public final co f42344b;
+    public final int f42345c;
+    public final ArrayList d;
+    public final String f42346e;
+    public final String f42347f;
+    public final Serializable h;
+    public final TLRPC.InputPeer f42348n;
+    public final int[] f42349r;
+    public final boolean f42350s;
+    public final vf v;
+    public final Object f42351w;
 
-    public wf(zn znVar, MessageObject messageObject, int i10) {
-        this.f39673a = i10;
-        this.f39674b = znVar;
-        this.f39675c = messageObject;
+    public wf(co coVar, int i10, ArrayList arrayList, String str, String str2, String str3, TLRPC.InputPeer inputPeer, int[] iArr, Object obj, boolean z10, vf vfVar, int i11) {
+        this.f42343a = i11;
+        this.f42344b = coVar;
+        this.f42345c = i10;
+        this.d = arrayList;
+        this.f42346e = str;
+        this.f42347f = str2;
+        this.h = str3;
+        this.f42348n = inputPeer;
+        this.f42349r = iArr;
+        this.f42351w = obj;
+        this.f42350s = z10;
+        this.v = vfVar;
     }
 
     @Override
-    public void a(long j10, TLRPC.MessagePeerReaction messagePeerReaction) {
-        switch (this.f39673a) {
+    public final void onClick(View view) {
+        switch (this.f42343a) {
             case 0:
-                Bundle bundle = new Bundle();
-                if (j10 > 0) {
-                    bundle.putLong("user_id", j10);
-                } else {
-                    bundle.putLong("chat_id", -j10);
-                }
-                zn znVar = this.f39674b;
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    bundle.putInt("report_reaction_message_id", this.f39675c.getId());
-                    bundle.putLong("report_reaction_from_dialog_id", znVar.Q5);
-                }
-                znVar.presentFragment(new ProfileActivity(bundle, null));
-                znVar.A7(true);
+                boolean z10 = this.f42350s;
+                vf vfVar = this.v;
+                co.U0(this.f42344b, this.f42345c, this.d, this.f42346e, this.f42347f, (String) this.h, this.f42348n, this.f42349r, (TL_iv.RichMessage) this.f42351w, z10, vfVar);
+                return;
+            case 1:
+                boolean z11 = this.f42350s;
+                vf vfVar2 = this.v;
+                co.c0(this.f42344b, this.f42345c, this.d, this.f42346e, this.f42347f, (String) this.h, this.f42348n, this.f42349r, (CharSequence) this.f42351w, z11, vfVar2);
                 return;
             default:
-                zn znVar2 = this.f39674b;
-                znVar2.getClass();
-                Bundle bundle2 = new Bundle();
-                if (j10 > 0) {
-                    bundle2.putLong("user_id", j10);
-                } else {
-                    bundle2.putLong("chat_id", -j10);
-                }
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    bundle2.putInt("report_reaction_message_id", this.f39675c.getId());
-                    bundle2.putLong("report_reaction_from_dialog_id", znVar2.Q5);
-                }
-                znVar2.presentFragment(new ProfileActivity(bundle2, null));
-                znVar2.A7(true);
+                boolean z12 = this.f42350s;
+                vf vfVar3 = this.v;
+                co.w0(this.f42344b, this.f42345c, this.d, (String[]) this.h, this.f42346e, this.f42347f, this.f42348n, this.f42349r, (CharSequence) this.f42351w, z12, vfVar3);
                 return;
         }
     }
 
-    @Override
-    public void l(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        zn znVar = this.f39674b;
-        org.telegram.ui.ActionBar.d2[] d2VarArr = {new org.telegram.ui.ActionBar.d2(znVar.getParentActivity(), 3, znVar.f40534ba)};
-        TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
-        MessageObject messageObject = this.f39675c;
-        TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
-        TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
-        tL_inputMediaPoll.poll = tL_poll;
-        TLRPC.Poll poll = ((TLRPC.TL_messageMediaPoll) messageObject.messageOwner.media).poll;
-        tL_poll.f19185id = poll.f19185id;
-        tL_poll.question = poll.question;
-        tL_poll.answers = poll.answers;
-        tL_poll.closed = true;
-        tL_messages_editMessage.media = tL_inputMediaPoll;
-        tL_messages_editMessage.peer = znVar.getMessagesController().getInputPeer(znVar.Q5);
-        tL_messages_editMessage.f19242id = messageObject.getId();
-        tL_messages_editMessage.flags |= 16384;
-        AndroidUtilities.runOnUIThread(new rg(znVar, d2VarArr, znVar.getConnectionsManager().sendRequest(tL_messages_editMessage, new da(znVar, d2VarArr, tL_messages_editMessage, 5)), 2), 500L);
+    public wf(co coVar, int i10, ArrayList arrayList, String[] strArr, String str, String str2, TLRPC.InputPeer inputPeer, int[] iArr, CharSequence charSequence, boolean z10, vf vfVar) {
+        this.f42343a = 2;
+        this.f42344b = coVar;
+        this.f42345c = i10;
+        this.d = arrayList;
+        this.h = strArr;
+        this.f42346e = str;
+        this.f42347f = str2;
+        this.f42348n = inputPeer;
+        this.f42349r = iArr;
+        this.f42351w = charSequence;
+        this.f42350s = z10;
+        this.v = vfVar;
     }
 }

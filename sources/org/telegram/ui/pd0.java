@@ -1,45 +1,28 @@
 package org.telegram.ui;
+public final class pd0 implements org.telegram.ui.ActionBar.a2 {
+    public final int f39479a;
+    public final wg0 f39480b;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class pd0 extends AnimatorListenerAdapter {
-    public final int f37104a;
-    public final pg0 f37105b;
-
-    public pd0(pg0 pg0Var, int i10) {
-        this.f37104a = i10;
-        this.f37105b = pg0Var;
+    public pd0(wg0 wg0Var, int i10) {
+        this.f39479a = i10;
+        this.f39480b = wg0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f37104a) {
+    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f39479a) {
             case 0:
-                pg0 pg0Var = this.f37105b;
-                if (pg0Var.d == animator) {
-                    pg0Var.d = null;
-                    return;
-                }
+                wg0 wg0Var = this.f39480b;
+                wg0Var.f42361b[wg0Var.f42359a].d();
+                wg0Var.k1(true, true);
                 return;
             default:
-                pg0 pg0Var2 = this.f37105b;
-                pg0Var2.f37130c.setVisibility(8);
-                if (pg0Var2.d == animator) {
-                    pg0Var2.d = null;
+                wg0 wg0Var2 = this.f39480b;
+                wg0Var2.f42375l0 = true;
+                if (wg0Var2.f42359a != 0) {
+                    wg0Var2.u1(0, true, null, true);
                     return;
                 }
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f37104a) {
-            case 0:
-                this.f37105b.f37130c.setVisibility(0);
-                return;
-            default:
-                super.onAnimationStart(animator);
                 return;
         }
     }

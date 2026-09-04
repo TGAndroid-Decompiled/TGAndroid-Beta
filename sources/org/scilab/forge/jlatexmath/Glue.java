@@ -13,10 +13,10 @@ public class Glue {
         glueTable = glueSettingsParser.createGlueTable();
     }
 
-    public Glue(float f10, float f11, float f12, String str) {
-        this.space = f10;
-        this.stretch = f11;
-        this.shrink = f12;
+    public Glue(float f7, float f10, float f11, String str) {
+        this.space = f7;
+        this.stretch = f10;
+        this.shrink = f11;
         this.name = str;
     }
 

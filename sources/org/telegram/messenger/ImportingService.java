@@ -51,7 +51,7 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             stopForeground(true);
         } catch (Throwable unused) {
         }
-        new e0.m0(ApplicationLoader.applicationContext).b(5);
+        new e0.n0(ApplicationLoader.applicationContext).b(5);
         for (int i10 = 0; i10 < 4; i10++) {
             NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.historyImportProgressChanged);
             NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.stickersImportProgressChanged);
@@ -77,7 +77,7 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             tVar.E.icon = 17301640;
             tVar.E.when = System.currentTimeMillis();
             e0.t tVar2 = this.builder;
-            tVar2.f5043y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+            tVar2.f8700y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
             tVar2.g(LocaleController.getString(R.string.AppName));
             if (hasImportingHistory()) {
                 this.builder.p(LocaleController.getString(R.string.ImporImportingService));
@@ -88,11 +88,11 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             }
         }
         e0.t tVar3 = this.builder;
-        tVar3.f5033n = 100;
-        tVar3.f5034o = 0;
-        tVar3.f5035p = true;
+        tVar3.f8690n = 100;
+        tVar3.f8691o = 0;
+        tVar3.f8692p = true;
         startForeground(5, tVar3.b());
-        new e0.m0(ApplicationLoader.applicationContext).d(5, this.builder.b());
+        new e0.n0(ApplicationLoader.applicationContext).d(5, this.builder.b());
         return 2;
     }
 }

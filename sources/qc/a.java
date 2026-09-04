@@ -1,34 +1,21 @@
 package qc;
 
-import java.util.regex.Pattern;
-import ne.p;
-import ne.s;
-import vh.w2;
-public final class a extends h {
-    public static final Pattern e = Pattern.compile("^<([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*)>");
-    public static final Pattern f43024f = Pattern.compile("^<[a-zA-Z][a-zA-Z0-9.+-]{1,31}:[^<>\u0000- ]*>");
+import android.util.Log;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+public final class a extends c {
+    public final int f44309a;
+    public Object f44310b;
 
     @Override
-    public final p b() {
-        String a2 = a(e);
-        if (a2 != null) {
-            String j10 = e2.c.j(a2, 1, 1);
-            ne.k kVar = new ne.k(1, w2.e("mailto:", j10), null);
-            kVar.b(new s(j10));
-            return kVar;
+    public final void b(String str) {
+        switch (this.f44309a) {
+            case 0:
+                Log.d("isoparser", String.valueOf((String) this.f44310b) + ":" + str);
+                return;
+            default:
+                ((Logger) this.f44310b).log(Level.FINE, str);
+                return;
         }
-        String a10 = a(f43024f);
-        if (a10 == null) {
-            return null;
-        }
-        String j11 = e2.c.j(a10, 1, 1);
-        ne.k kVar2 = new ne.k(1, j11, null);
-        kVar2.b(new s(j11));
-        return kVar2;
-    }
-
-    @Override
-    public final char d() {
-        return '<';
     }
 }

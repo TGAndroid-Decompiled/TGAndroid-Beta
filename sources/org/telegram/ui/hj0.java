@@ -1,28 +1,45 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class hj0 extends ph.d {
-    public final jj0 f34686e0;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+public final class hj0 extends org.telegram.ui.Components.co {
+    public final lj0 f37050v0;
 
-    public hj0(jj0 jj0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var, true);
-        this.f34686e0 = jj0Var;
+    public hj0(lj0 lj0Var, Context context) {
+        super(context, null, false, null);
+        this.f37050v0 = lj0Var;
     }
 
     @Override
-    public final float a(float f10, float f11) {
-        boolean z4;
-        jj0 jj0Var = this.f34686e0;
-        if (jj0Var.f35308k0 == 0.0f) {
-            z4 = true;
-        } else {
-            z4 = false;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        lj0 lj0Var = this.f37050v0;
+        lj0Var.W.setImageCoords(lj0Var.f38382b0.getAvatarImageView().getX(), lj0Var.f38382b0.getAvatarImageView().getY(), lj0Var.f38382b0.getAvatarImageView().getWidth(), lj0Var.f38382b0.getAvatarImageView().getHeight());
+        if (lj0Var.Y) {
+            canvas.save();
+            canvas.scale(0.9f, 0.9f, lj0Var.W.getCenterX(), lj0Var.W.getCenterY());
+            lj0Var.W.draw(canvas);
+            canvas.restore();
         }
-        jj0Var.f35308k0 = f10;
-        if (z4) {
-            jj0Var.f35309l0 = new gg.o2(jj0Var, 2);
-            jj0Var.S(false);
+        if (lj0Var.X) {
+            int centerX = (int) (lj0Var.W.getCenterX() - (org.telegram.ui.ActionBar.j6.U0.getIntrinsicWidth() / 2));
+            int centerY = (int) (lj0Var.W.getCenterY() - (org.telegram.ui.ActionBar.j6.U0.getIntrinsicHeight() / 2));
+            Drawable drawable = org.telegram.ui.ActionBar.j6.U0;
+            drawable.setBounds(centerX, centerY, drawable.getIntrinsicWidth() + centerX, org.telegram.ui.ActionBar.j6.U0.getIntrinsicHeight() + centerY);
+            org.telegram.ui.ActionBar.j6.U0.draw(canvas);
         }
-        return f10;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f37050v0.W.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f37050v0.W.onDetachedFromWindow();
     }
 }

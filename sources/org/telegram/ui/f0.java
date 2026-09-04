@@ -1,35 +1,37 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class f0 implements Runnable {
-    public final int f33884a = 0;
-    public final f3 f33885b;
-    public final View f33886c;
+import android.net.Uri;
+import org.telegram.messenger.Utilities;
+public final class f0 implements Utilities.Callback0Return {
+    public final i4 f36215a;
+    public final String f36216b;
+    public final boolean[] f36217c;
+    public final of.e d;
 
-    public f0(View view, f3 f3Var) {
-        this.f33886c = view;
-        this.f33885b = f3Var;
+    public f0(i4 i4Var, String str, boolean[] zArr, of.e eVar) {
+        this.f36215a = i4Var;
+        this.f36216b = str;
+        this.f36217c = zArr;
+        this.d = eVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33884a) {
-            case 0:
-                f3 f3Var = this.f33885b;
-                View view = this.f33886c;
-                view.post(new f0(f3Var, view));
-                return;
-            default:
-                f3 f3Var2 = this.f33885b;
-                f3Var2.F.clear();
-                f3Var2.H.set(null);
-                this.f33886c.invalidate();
-                return;
+    public final Object run() {
+        String str = this.f36216b;
+        if (!of.f.f(Uri.parse(str), false, this.f36217c)) {
+            return Boolean.FALSE;
         }
-    }
-
-    public f0(f3 f3Var, View view) {
-        this.f33885b = f3Var;
-        this.f33886c = view;
+        i4 i4Var = this.f36215a;
+        of.e eVar = this.d;
+        if (eVar != null) {
+            eVar.f17005c = new org.telegram.ui.ActionBar.c6(4, i4Var, eVar);
+        } else {
+            v3 v3Var = i4Var.K;
+            if (v3Var != null) {
+                v3Var.dismiss(true);
+            }
+        }
+        of.f.r(i4Var.L, Uri.parse(str), true, true, false, eVar, null, true, true, false);
+        return Boolean.TRUE;
     }
 }

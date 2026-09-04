@@ -1,22 +1,99 @@
 package la;
-public final class h implements u9.d {
-    public static final h f11884a = new Object();
-    public static final u9.c f11885b = u9.c.c("sessionId");
-    public static final u9.c f11886c = u9.c.c("firstSessionId");
-    public static final u9.c d = u9.c.c("sessionIndex");
-    public static final u9.c e = u9.c.c("eventTimestampUs");
-    public static final u9.c f11887f = u9.c.c("dataCollectionStatus");
-    public static final u9.c f11888g = u9.c.c("firebaseInstallationId");
+
+import v7.j;
+import x7.e0;
+import z7.y;
+public final class h implements ia.g {
+    public final int f15333a;
+    public boolean f15334b = false;
+    public boolean f15335c = false;
+    public ia.c d;
+    public final ia.e f15336e;
+
+    public h(ia.e eVar, int i10) {
+        this.f15333a = i10;
+        this.f15336e = eVar;
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        k0 k0Var = (k0) obj;
-        u9.e eVar = (u9.e) obj2;
-        eVar.e(f11885b, k0Var.f11907a);
-        eVar.e(f11886c, k0Var.f11908b);
-        eVar.a(d, k0Var.f11909c);
-        eVar.b(e, k0Var.d);
-        eVar.e(f11887f, k0Var.e);
-        eVar.e(f11888g, k0Var.f11910f);
+    public final ia.g b(String str) {
+        switch (this.f15333a) {
+            case 0:
+                if (!this.f15334b) {
+                    this.f15334b = true;
+                    ((f) this.f15336e).h(this.d, str, this.f15335c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 1:
+                if (!this.f15334b) {
+                    this.f15334b = true;
+                    ((j) this.f15336e).d(this.d, str, this.f15335c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 2:
+                if (!this.f15334b) {
+                    this.f15334b = true;
+                    ((w7.f) this.f15336e).d(this.d, str, this.f15335c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 3:
+                if (!this.f15334b) {
+                    this.f15334b = true;
+                    ((e0) this.f15336e).d(this.d, str, this.f15335c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            default:
+                if (!this.f15334b) {
+                    this.f15334b = true;
+                    ((y) this.f15336e).d(this.d, str, this.f15335c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+        }
+    }
+
+    @Override
+    public final ia.g d(boolean z10) {
+        switch (this.f15333a) {
+            case 0:
+                if (!this.f15334b) {
+                    this.f15334b = true;
+                    ((f) this.f15336e).d(this.d, z10 ? 1 : 0, this.f15335c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 1:
+                if (!this.f15334b) {
+                    this.f15334b = true;
+                    ((j) this.f15336e).h(this.d, z10 ? 1 : 0, this.f15335c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 2:
+                if (!this.f15334b) {
+                    this.f15334b = true;
+                    ((w7.f) this.f15336e).h(this.d, z10 ? 1 : 0, this.f15335c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 3:
+                if (!this.f15334b) {
+                    this.f15334b = true;
+                    ((e0) this.f15336e).h(this.d, z10 ? 1 : 0, this.f15335c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            default:
+                if (!this.f15334b) {
+                    this.f15334b = true;
+                    ((y) this.f15336e).h(this.d, z10 ? 1 : 0, this.f15335c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+        }
     }
 }

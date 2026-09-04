@@ -1,28 +1,46 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import org.telegram.messenger.AndroidUtilities;
-public final class hq0 extends f2.v {
-    public final mq0 f34742c;
+import android.text.Editable;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class hq0 implements ar0 {
+    public final HashMap f37092a;
+    public final ArrayList f37093b;
+    public final kq0 f37094c;
 
-    public hq0(mq0 mq0Var) {
-        this.f34742c = mq0Var;
+    public hq0(kq0 kq0Var, HashMap hashMap, ArrayList arrayList) {
+        this.f37094c = kq0Var;
+        this.f37092a = hashMap;
+        this.f37093b = arrayList;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        mq0 mq0Var = this.f34742c;
-        if (mq0Var.I.j(i10) != 1 && !mq0Var.V && (mq0Var.G != null || !TextUtils.isEmpty(mq0Var.v))) {
-            int i12 = mq0Var.O;
-            int i13 = mq0Var.f36167d0;
-            if (i10 % i13 != i13 - 1) {
-                i11 = AndroidUtilities.dp(2.0f);
-            } else {
-                i11 = 0;
-            }
-            return i12 + i11;
+    public final void b(Editable editable) {
+        kq0 kq0Var = this.f37094c;
+        org.telegram.ui.Components.hu huVar = kq0Var.M;
+        kq0Var.f38104a = editable;
+        huVar.setText(editable);
+    }
+
+    @Override
+    public final boolean e() {
+        return true;
+    }
+
+    @Override
+    public final void h(int i10, boolean z10, boolean z11) {
+        kq0 kq0Var = this.f37094c;
+        kq0Var.removeSelfFromStack();
+        if (!z10) {
+            kq0Var.V(this.f37092a, this.f37093b, z11, i10);
         }
-        return mq0Var.J.J;
+    }
+
+    @Override
+    public final void a() {
+    }
+
+    @Override
+    public final void g() {
     }
 }

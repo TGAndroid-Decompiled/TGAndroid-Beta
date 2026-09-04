@@ -1,83 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-public final class gq0 extends tf.t {
-    public final hq0 f25223n;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class gq0 extends FrameLayout {
+    public org.telegram.ui.ActionBar.j5 f26486a;
+    public org.telegram.ui.ActionBar.j5 f26487b;
+    public di.eb f26488c;
+    public int d;
+    public AnimatorSet f26489e;
+    public Paint f26490f;
+    public RectF h;
 
-    public gq0(hq0 hq0Var, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(i10, context, f6Var, true, true);
-        this.f25223n = hq0Var;
+    public final void a(int i10) {
+        float measuredWidth;
+        if (this.d == i10) {
+            return;
+        }
+        this.d = i10;
+        AnimatorSet animatorSet = this.f26489e;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+        }
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.f26489e = animatorSet2;
+        di.eb ebVar = this.f26488c;
+        if (this.d == 0) {
+            measuredWidth = 0.0f;
+        } else {
+            measuredWidth = ebVar.getMeasuredWidth();
+        }
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(ebVar, View.TRANSLATION_X, measuredWidth));
+        this.f26489e.setDuration(180L);
+        this.f26489e.setInterpolator(pr.f29467g);
+        this.f26489e.addListener(new r80(this, 15));
+        this.f26489e.start();
+        ((tp0) this).f30674n.Z0();
     }
 
     @Override
-    public final void v(f2.l1 l1Var, int i10) {
-        int i11;
-        TLRPC.Chat chat;
-        int i12;
-        int i13;
-        boolean z4;
-        String str;
-        int i14;
-        org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) l1Var.f5774a;
-        lq0 lq0Var = this.f25223n.H;
-        boolean z10 = false;
-        TLRPC.User user = null;
-        if (lq0Var.f26838e0 || lq0Var.f26840f0) {
-            int i15 = org.telegram.ui.ActionBar.j6.f20069ng;
-            int i16 = org.telegram.ui.ActionBar.j6.f19926fg;
-            m4Var.f21350b.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i15, false));
-            m4Var.E = i16;
-            m4Var.v.b(org.telegram.ui.ActionBar.j6.B5, i16, org.telegram.ui.ActionBar.j6.C5);
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        int size = (View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(28.0f)) / 2;
+        ((FrameLayout.LayoutParams) this.f26487b.getLayoutParams()).width = size;
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f26486a.getLayoutParams();
+        layoutParams.width = size;
+        layoutParams.leftMargin = AndroidUtilities.dp(14.0f) + size;
+        di.eb ebVar = this.f26488c;
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) ebVar.getLayoutParams();
+        layoutParams2.width = size;
+        AnimatorSet animatorSet = this.f26489e;
+        if (animatorSet != null) {
+            animatorSet.cancel();
         }
-        i11 = ((org.telegram.ui.ActionBar.g3) lq0Var).currentAccount;
-        TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
-        TLRPC.Peer peer = tL_topPeer.peer;
-        long j10 = peer.user_id;
-        if (j10 != 0) {
-            i14 = ((org.telegram.ui.ActionBar.g3) lq0Var).currentAccount;
-            user = MessagesController.getInstance(i14).getUser(Long.valueOf(tL_topPeer.peer.user_id));
-            chat = null;
+        if (this.d == 0) {
+            f7 = 0.0f;
         } else {
-            long j11 = peer.channel_id;
-            if (j11 != 0) {
-                j10 = -j11;
-                i13 = ((org.telegram.ui.ActionBar.g3) lq0Var).currentAccount;
-                chat = MessagesController.getInstance(i13).getChat(Long.valueOf(tL_topPeer.peer.channel_id));
-            } else {
-                long j12 = peer.chat_id;
-                if (j12 != 0) {
-                    j10 = -j12;
-                    i12 = ((org.telegram.ui.ActionBar.g3) lq0Var).currentAccount;
-                    chat = MessagesController.getInstance(i12).getChat(Long.valueOf(tL_topPeer.peer.chat_id));
-                } else {
-                    chat = null;
-                    j10 = 0;
-                }
-            }
+            f7 = layoutParams2.width;
         }
-        if (j10 == m4Var.getDialogId()) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        m4Var.setTag(Long.valueOf(j10));
-        if (user != null) {
-            str = UserObject.getFirstName(user);
-        } else if (chat != null) {
-            str = chat.title;
-        } else {
-            str = "";
-        }
-        m4Var.a(j10, str);
-        if (lq0Var.R.h(j10) >= 0) {
-            z10 = true;
-        }
-        if (m4Var.f21356w) {
-            m4Var.v.a(z10, z4);
-        }
+        ebVar.setTranslationX(f7);
+        super.onMeasure(i10, i11);
     }
 }

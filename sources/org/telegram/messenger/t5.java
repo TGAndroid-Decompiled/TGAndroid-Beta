@@ -1,28 +1,23 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class t5 implements RequestDelegate {
-    public final int f18451a;
-    public final LocationController f18452b;
+import android.location.Location;
+public final class t5 implements q0.a {
+    public final int f19039a;
+    public final LocationController f19040b;
 
     public t5(LocationController locationController, int i10) {
-        this.f18451a = i10;
-        this.f18452b = locationController;
+        this.f19039a = i10;
+        this.f19040b = locationController;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18451a) {
+    public final void accept(Object obj) {
+        switch (this.f19039a) {
             case 0:
-                this.f18452b.lambda$removeSharingLocation$19(tLObject, tL_error);
-                return;
-            case 1:
-                this.f18452b.lambda$removeAllLocationSharings$22(tLObject, tL_error);
+                this.f19040b.lambda$onConnected$4((Integer) obj);
                 return;
             default:
-                this.f18452b.lambda$markLiveLoactionsAsRead$27(tLObject, tL_error);
+                this.f19040b.setLastKnownLocation((Location) obj);
                 return;
         }
     }

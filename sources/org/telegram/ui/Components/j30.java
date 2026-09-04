@@ -1,24 +1,68 @@
 package org.telegram.ui.Components;
-public final class j30 implements m2.f {
-    public final n30 f25820a;
 
-    public j30(n30 n30Var) {
-        this.f25820a = n30Var;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.accessibility.AccessibilityEvent;
+import android.widget.ImageView;
+public final class j30 extends ImageView {
+    public final int f27328a;
+    public final int f27329b;
+    public final Object f27330c;
+
+    public j30(Object obj, Context context, int i10, int i11) {
+        super(context);
+        this.f27328a = i11;
+        this.f27330c = obj;
+        this.f27329b = i10;
     }
 
     @Override
-    public final void b(float f10, int i10, int i11) {
-        n30 n30Var = this.f25820a;
-        n30Var.h = i10;
-        n30Var.f27181f = f10;
-        n30.m(n30Var);
+    public void onDraw(Canvas canvas) {
+        switch (this.f27328a) {
+            case 1:
+                super.onDraw(canvas);
+                org.telegram.ui.a20 a20Var = (org.telegram.ui.a20) this.f27330c;
+                h90 h90Var = a20Var.f34302s;
+                if (a20Var.f34301r) {
+                    int i10 = this.f27329b / 2;
+                    h90Var.setBounds(i10, i10, getWidth() - i10, getHeight() - i10);
+                    h90Var.draw(canvas);
+                    return;
+                }
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
     }
 
     @Override
-    public final void a(int i10) {
+    public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+        switch (this.f27328a) {
+            case 0:
+                super.onInitializeAccessibilityEvent(accessibilityEvent);
+                if (accessibilityEvent.getEventType() == 32768) {
+                    ((k30) this.f27330c).f27681c.f28036b.x(this.f27329b, true);
+                    return;
+                }
+                return;
+            default:
+                super.onInitializeAccessibilityEvent(accessibilityEvent);
+                return;
+        }
     }
 
     @Override
-    public final void c(int i10) {
+    public boolean verifyDrawable(Drawable drawable) {
+        switch (this.f27328a) {
+            case 1:
+                if (drawable != ((org.telegram.ui.a20) this.f27330c).f34302s && !super.verifyDrawable(drawable)) {
+                    return false;
+                }
+                return true;
+            default:
+                return super.verifyDrawable(drawable);
+        }
     }
 }

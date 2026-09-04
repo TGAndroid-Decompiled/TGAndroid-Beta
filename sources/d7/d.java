@@ -1,4 +1,16 @@
 package d7;
-public abstract class d {
-    public static final com.google.android.gms.common.api.e f4206a = new com.google.android.gms.common.api.e("AppDataSearch.LIGHTWEIGHT_API", new a8.j(5), new Object());
+
+import android.os.IBinder;
+import android.os.IInterface;
+public final class d implements f, IInterface {
+    public final IBinder f6628a;
+
+    public d(IBinder iBinder) {
+        this.f6628a = iBinder;
+    }
+
+    @Override
+    public final IBinder asBinder() {
+        return this.f6628a;
+    }
 }

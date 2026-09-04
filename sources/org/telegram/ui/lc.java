@@ -1,15 +1,15 @@
 package org.telegram.ui;
-public final class lc extends n61 {
-    public final dd e;
+public final class lc extends a71 {
+    public final bd f38289e;
 
-    public lc(dd ddVar, kc kcVar) {
+    public lc(bd bdVar, kc kcVar) {
         super(kcVar);
-        this.e = ddVar;
+        this.f38289e = bdVar;
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.N = null;
+        this.f38289e.Q = null;
     }
 }

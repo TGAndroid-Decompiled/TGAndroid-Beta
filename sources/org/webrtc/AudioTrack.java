@@ -1,10 +1,10 @@
 package org.webrtc;
 public class AudioTrack extends MediaStreamTrack {
-    public AudioTrack(long j10) {
-        super(j10);
+    public AudioTrack(long j3) {
+        super(j3);
     }
 
-    private static native void nativeSetVolume(long j10, double d);
+    private static native void nativeSetVolume(long j3, double d);
 
     public long getNativeAudioTrack() {
         return getNativeMediaStreamTrack();

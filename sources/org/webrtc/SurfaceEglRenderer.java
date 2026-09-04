@@ -88,17 +88,17 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     }
 
     @Override
-    public void setFpsReduction(float f10) {
-        boolean z4;
+    public void setFpsReduction(float f7) {
+        boolean z10;
         synchronized (this.layoutLock) {
-            if (f10 == 0.0f) {
-                z4 = true;
+            if (f7 == 0.0f) {
+                z10 = true;
             } else {
-                z4 = false;
+                z10 = false;
             }
-            this.isRenderingPaused = z4;
+            this.isRenderingPaused = z10;
         }
-        super.setFpsReduction(f10);
+        super.setFpsReduction(f7);
     }
 
     @Override
@@ -117,7 +117,7 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         ThreadUtils.checkIsOnMainThread();
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        releaseEglSurface(new org.telegram.ui.ActionBar.p(countDownLatch, 16), false);
+        releaseEglSurface(new org.telegram.ui.ActionBar.q(countDownLatch, 16), false);
         ThreadUtils.awaitUninterruptibly(countDownLatch);
     }
 

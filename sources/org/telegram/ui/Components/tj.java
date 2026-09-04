@@ -1,57 +1,41 @@
 package org.telegram.ui.Components;
 
-import java.io.File;
-import java.util.Comparator;
-public final class tj implements Comparator {
-    public final int f28990a;
-    public final hk f28991b;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+public final class tj implements Runnable {
+    public final int f30611a;
+    public final uj f30612b;
+    public final String f30613c;
+    public final int d;
 
-    public tj(hk hkVar, int i10) {
-        this.f28990a = i10;
-        this.f28991b = hkVar;
+    public tj(uj ujVar, String str, int i10, int i11) {
+        this.f30611a = i11;
+        this.f30612b = ujVar;
+        this.f30613c = str;
+        this.d = i10;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        ak akVar = (ak) obj;
-        ak akVar2 = (ak) obj2;
-        switch (this.f28990a) {
+    public final void run() {
+        switch (this.f30611a) {
             case 0:
-                hk hkVar = this.f28991b;
-                hkVar.getClass();
-                File file = akVar.f23396f;
-                if (file != null) {
-                    if (akVar2.f23396f != null) {
-                        boolean isDirectory = file.isDirectory();
-                        if (isDirectory != akVar2.f23396f.isDirectory()) {
-                            if (isDirectory) {
-                            }
-                        } else if (!isDirectory && !hkVar.W) {
-                            int i10 = (akVar.f23396f.lastModified() > akVar2.f23396f.lastModified() ? 1 : (akVar.f23396f.lastModified() == akVar2.f23396f.lastModified() ? 0 : -1));
-                            if (i10 == 0) {
-                                return 0;
-                            }
-                            if (i10 > 0) {
-                            }
-                        } else {
-                            return akVar.f23396f.getName().compareToIgnoreCase(akVar2.f23396f.getName());
-                        }
-                    }
-                    return 1;
-                }
-                return -1;
+                uj ujVar = this.f30612b;
+                String str = this.f30613c;
+                int i10 = this.d;
+                ujVar.getClass();
+                AndroidUtilities.runOnUIThread(new tj(ujVar, str, i10, 1));
+                return;
             default:
-                if (this.f28991b.W) {
-                    return akVar.f23396f.getName().compareToIgnoreCase(akVar2.f23396f.getName());
-                }
-                int i11 = (akVar.f23396f.lastModified() > akVar2.f23396f.lastModified() ? 1 : (akVar.f23396f.lastModified() == akVar2.f23396f.lastModified() ? 0 : -1));
-                if (i11 == 0) {
-                    return 0;
-                }
-                if (i11 > 0) {
-                    return -1;
-                }
-                return 1;
+                uj ujVar2 = this.f30612b;
+                String str2 = this.f30613c;
+                int i11 = this.d;
+                ujVar2.getClass();
+                int i12 = UserConfig.selectedAccount;
+                Utilities.searchQueue.postRunnable(new ji.h0(ujVar2, str2, new ArrayList(ContactsController.getInstance(i12).contactsBook.values()), new ArrayList(ContactsController.getInstance(i12).contacts), i12, i11));
+                return;
         }
     }
 }

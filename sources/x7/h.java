@@ -1,72 +1,128 @@
 package x7;
 
-import android.os.IBinder;
-import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.maps.model.LatLng;
-import j7.f5;
-import u6.p;
-public final class h extends c6.a {
-    public static final Parcelable.Creator<h> CREATOR = new p(18);
-    public LatLng f46912a;
-    public String f46913b;
-    public String f46914c;
-    public a d;
-    public float e;
-    public float f46915f;
-    public boolean h;
-    public boolean f46916n;
-    public boolean f46917r;
-    public float f46918s;
-    public float v;
-    public float f46919w;
-    public float f46920x;
-    public float f46921y;
+import java.util.AbstractSet;
+import java.util.Iterator;
+import java.util.Map;
+public final class h extends AbstractSet {
+    public final int f49014a;
+    public final j f49015b;
+
+    public h(j jVar, int i10) {
+        this.f49014a = i10;
+        this.f49015b = jVar;
+    }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        IBinder asBinder;
-        int q10 = f5.q(parcel, 20293);
-        f5.k(parcel, 2, this.f46912a, i10);
-        f5.l(parcel, 3, this.f46913b);
-        f5.l(parcel, 4, this.f46914c);
-        a aVar = this.d;
-        if (aVar == null) {
-            asBinder = null;
-        } else {
-            asBinder = ((l6.a) aVar.f46898a).asBinder();
+    public final void clear() {
+        switch (this.f49014a) {
+            case 0:
+                this.f49015b.clear();
+                return;
+            default:
+                this.f49015b.clear();
+                return;
         }
-        f5.f(parcel, 5, asBinder);
-        float f10 = this.e;
-        f5.s(parcel, 6, 4);
-        parcel.writeFloat(f10);
-        float f11 = this.f46915f;
-        f5.s(parcel, 7, 4);
-        parcel.writeFloat(f11);
-        boolean z4 = this.h;
-        f5.s(parcel, 8, 4);
-        parcel.writeInt(z4 ? 1 : 0);
-        boolean z10 = this.f46916n;
-        f5.s(parcel, 9, 4);
-        parcel.writeInt(z10 ? 1 : 0);
-        boolean z11 = this.f46917r;
-        f5.s(parcel, 10, 4);
-        parcel.writeInt(z11 ? 1 : 0);
-        float f12 = this.f46918s;
-        f5.s(parcel, 11, 4);
-        parcel.writeFloat(f12);
-        float f13 = this.v;
-        f5.s(parcel, 12, 4);
-        parcel.writeFloat(f13);
-        float f14 = this.f46919w;
-        f5.s(parcel, 13, 4);
-        parcel.writeFloat(f14);
-        float f15 = this.f46920x;
-        f5.s(parcel, 14, 4);
-        parcel.writeFloat(f15);
-        float f16 = this.f46921y;
-        f5.s(parcel, 15, 4);
-        parcel.writeFloat(f16);
-        f5.r(parcel, q10);
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        switch (this.f49014a) {
+            case 0:
+                j jVar = this.f49015b;
+                Map a2 = jVar.a();
+                if (a2 != null) {
+                    return a2.entrySet().contains(obj);
+                }
+                if (obj instanceof Map.Entry) {
+                    Map.Entry entry = (Map.Entry) obj;
+                    int e7 = jVar.e(entry.getKey());
+                    if (e7 != -1) {
+                        Object[] objArr = jVar.d;
+                        objArr.getClass();
+                        if (w7.l8.a(objArr[e7], entry.getValue())) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            default:
+                return this.f49015b.containsKey(obj);
+        }
+    }
+
+    @Override
+    public final Iterator iterator() {
+        switch (this.f49014a) {
+            case 0:
+                j jVar = this.f49015b;
+                Map a2 = jVar.a();
+                if (a2 != null) {
+                    return a2.entrySet().iterator();
+                }
+                return new g(jVar, 1);
+            default:
+                j jVar2 = this.f49015b;
+                Map a10 = jVar2.a();
+                if (a10 != null) {
+                    return a10.keySet().iterator();
+                }
+                return new g(jVar2, 0);
+        }
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        switch (this.f49014a) {
+            case 0:
+                j jVar = this.f49015b;
+                Map a2 = jVar.a();
+                if (a2 != null) {
+                    return a2.entrySet().remove(obj);
+                }
+                if (obj instanceof Map.Entry) {
+                    Map.Entry entry = (Map.Entry) obj;
+                    if (!jVar.c()) {
+                        int d = jVar.d();
+                        Object key = entry.getKey();
+                        Object value = entry.getValue();
+                        Object obj2 = jVar.f49044a;
+                        obj2.getClass();
+                        int[] iArr = jVar.f49045b;
+                        iArr.getClass();
+                        Object[] objArr = jVar.f49046c;
+                        objArr.getClass();
+                        Object[] objArr2 = jVar.d;
+                        objArr2.getClass();
+                        int a10 = w7.h8.a(key, value, d, obj2, iArr, objArr, objArr2);
+                        if (a10 != -1) {
+                            jVar.b(a10, d);
+                            jVar.f49048f--;
+                            jVar.f49047e += 32;
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            default:
+                j jVar2 = this.f49015b;
+                Map a11 = jVar2.a();
+                if (a11 != null) {
+                    return a11.keySet().remove(obj);
+                }
+                if (jVar2.g(obj) == j.f49043s) {
+                    return false;
+                }
+                return true;
+        }
+    }
+
+    @Override
+    public final int size() {
+        switch (this.f49014a) {
+            case 0:
+                return this.f49015b.size();
+            default:
+                return this.f49015b.size();
+        }
     }
 }

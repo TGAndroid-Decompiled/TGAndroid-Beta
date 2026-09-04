@@ -2,33 +2,38 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class wh implements gj {
-    public final li f30258a;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.VideoEditedInfo;
+public final class wh extends org.telegram.ui.su0 {
+    public final MediaController.PhotoEntry f32268a;
+    public final vi f32269b;
 
-    public wh(li liVar) {
-        this.f30258a = liVar;
+    public wh(vi viVar, MediaController.PhotoEntry photoEntry) {
+        this.f32269b = viVar;
+        this.f32268a = photoEntry;
     }
 
     @Override
-    public final void a(TLRPC.User user, boolean z4, int i10, long j10) {
-        org.telegram.ui.zn znVar = (org.telegram.ui.zn) this.f30258a.f26685c0;
-        if (znVar.f7()) {
-            SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(user, znVar.Q5, znVar.f40642k5, znVar.U3, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z4, i10, 0);
-            of2.sendMessageChatArguments = znVar.C8();
-            of2.effect_id = 0L;
-            of2.invert_media = false;
-            of2.payStars = j10;
-            of2.monoForumPeer = znVar.N8();
-            of2.suggestionParams = znVar.f40555d5;
-            znVar.getSendMessagesHelper().sendMessage(of2);
-            znVar.y6();
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, final boolean z10, final int i11, int i12, final boolean z11) {
+        vi viVar = this.f32269b;
+        viVar.f31321s2 = true;
+        if (viVar.Z1 == null) {
+            return;
         }
-    }
-
-    @Override
-    public final void b(ArrayList arrayList, String str, boolean z4, int i10, long j10, boolean z10) {
-        ((org.telegram.ui.zn) this.f30258a.f26685c0).db(arrayList, str, z4, i10, j10, z10);
+        final MediaController.PhotoEntry photoEntry = this.f32268a;
+        photoEntry.editedInfo = videoEditedInfo;
+        e5.a0(viVar.J1, viVar.j1() + 1, 0L, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                ArrayList arrayList = ChatAttachAlertPhotoLayout.f23834t1;
+                arrayList.clear();
+                HashMap hashMap = ChatAttachAlertPhotoLayout.f23833s1;
+                hashMap.clear();
+                arrayList.add(0);
+                hashMap.put(0, photoEntry);
+                wh.this.f32269b.Z1.l0(7, true, z10, i11, 0, 0L, false, z11, ((Long) obj).longValue());
+            }
+        });
     }
 }

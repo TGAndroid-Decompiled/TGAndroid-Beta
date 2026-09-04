@@ -1,41 +1,52 @@
 package org.telegram.ui.web;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class p1 implements Runnable {
-    public final int f39555a;
-    public final org.telegram.ui.o0 f39556b;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
+public final class p1 {
+    public static ArrayList d;
+    public final String f42208a;
+    public final String f42209b;
+    public final String f42210c;
 
-    public p1(org.telegram.ui.o0 o0Var, int i10) {
-        this.f39555a = i10;
-        this.f39556b = o0Var;
+    public p1(String str, String str2, String str3) {
+        this.f42208a = str;
+        this.f42209b = str2;
+        this.f42210c = str3;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f39555a) {
-            case 0:
-                org.telegram.ui.o0 o0Var = this.f39556b;
-                o0Var.f39624x0 = true;
-                if (o0Var.getParent() != null) {
-                    o0Var.getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                try {
-                    o0Var.performHapticFeedback(0, 1);
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            default:
-                org.telegram.ui.o0 o0Var2 = this.f39556b;
-                lh.n nVar = o0Var2.V;
-                if (o0Var2.T) {
-                    nVar.requestFocus();
-                    AndroidUtilities.showKeyboard(nVar);
-                    return;
-                }
-                nVar.clearFocus();
-                AndroidUtilities.hideKeyboard(nVar);
-                return;
+    public static p1 a() {
+        ArrayList b10 = b();
+        if (b10.isEmpty()) {
+            return new p1("Google", "https://www.google.com/search?q=", "https://suggestqueries.google.com/complete/search?client=chrome&amp;q=");
         }
+        return (p1) b10.get(Utilities.clamp(SharedConfig.searchEngineType, b10.size() - 1, 0));
+    }
+
+    public static ArrayList b() {
+        if (d == null) {
+            d = new ArrayList();
+            int i10 = 1;
+            while (true) {
+                String c10 = c(LocaleController.getString("SearchEngine" + i10 + "Name"));
+                if (c10 == null) {
+                    break;
+                }
+                String c11 = c(LocaleController.getString("SearchEngine" + i10 + "SearchURL"));
+                String c12 = c(LocaleController.getString("SearchEngine" + i10 + "AutocompleteURL"));
+                c(LocaleController.getString("SearchEngine" + i10 + "PrivacyPolicyURL"));
+                d.add(new p1(c10, c11, c12));
+                i10++;
+            }
+        }
+        return d;
+    }
+
+    public static String c(String str) {
+        if (str != null && !str.startsWith("LOC_ERR") && !"reserved".equals(str)) {
+            return str;
+        }
+        return null;
     }
 }

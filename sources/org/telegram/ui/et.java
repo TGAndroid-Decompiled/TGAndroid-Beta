@@ -1,45 +1,35 @@
 package org.telegram.ui;
-public final class et implements Runnable {
-    public final int f33849a;
-    public final int f33850b;
-    public final Object f33851c;
-    public final Object d;
-    public final Object e;
 
-    public et(int i10, Object obj, Object obj2, Object obj3, int i11) {
-        this.f33849a = i11;
-        this.f33850b = i10;
-        this.d = obj;
-        this.e = obj2;
-        this.f33851c = obj3;
+import android.graphics.Bitmap;
+public final class et implements Runnable {
+    public final int f36168a;
+    public final st f36169b;
+
+    public et(st stVar, int i10) {
+        this.f36168a = i10;
+        this.f36169b = stVar;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.et.run():void");
-    }
-
-    public et(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f33849a = i11;
-        this.d = obj;
-        this.f33850b = i10;
-        this.e = obj2;
-        this.f33851c = obj3;
-    }
-
-    public et(Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f33849a = i11;
-        this.d = obj;
-        this.e = obj2;
-        this.f33850b = i10;
-        this.f33851c = obj3;
-    }
-
-    public et(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f33849a = i11;
-        this.d = obj;
-        this.e = obj2;
-        this.f33851c = obj3;
-        this.f33850b = i10;
+        switch (this.f36168a) {
+            case 0:
+                this.f36169b.f40529c0 = null;
+                return;
+            case 1:
+                st stVar = this.f36169b;
+                stVar.A.setImageBitmap((Bitmap) null);
+                org.telegram.ui.Components.gd0 gd0Var = stVar.C;
+                if (gd0Var != null) {
+                    gd0Var.a();
+                    stVar.f40551z.removeView(stVar.C);
+                    stVar.C = null;
+                    return;
+                }
+                return;
+            default:
+                this.f36169b.Q.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(org.telegram.ui.Components.pr.h).start();
+                return;
+        }
     }
 }

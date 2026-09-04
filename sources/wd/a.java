@@ -1,21 +1,20 @@
 package wd;
 
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AnticipateOvershootInterpolator;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.OvershootInterpolator;
-public abstract class a {
-    public static final DecelerateInterpolator f46596a;
+import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicReference;
+public final class a implements b {
+    public final AtomicReference f48484a;
 
-    static {
-        new AnticipateOvershootInterpolator();
-        f46596a = new DecelerateInterpolator();
-        new AccelerateInterpolator();
-        new DecelerateInterpolator(1.78f);
-        new LinearInterpolator();
-        new OvershootInterpolator(3.2f);
-        new AccelerateDecelerateInterpolator();
+    public a(e eVar) {
+        this.f48484a = new AtomicReference(eVar);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        b bVar = (b) this.f48484a.getAndSet(null);
+        if (bVar != null) {
+            return bVar.iterator();
+        }
+        throw new IllegalStateException("This sequence can be consumed only once.");
     }
 }

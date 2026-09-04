@@ -1,110 +1,95 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SharedConfig;
-public final class g1 extends m1 {
-    public final int e;
-    public final s1 f21048f;
+import android.view.MotionEvent;
+import org.telegram.messenger.video.OldVideoPlayerRewinder;
+import org.telegram.ui.Components.dg0;
+import org.telegram.ui.Components.eg0;
+import org.telegram.ui.Components.w61;
+import org.telegram.ui.PhotoViewer;
+public final class g1 extends OldVideoPlayerRewinder {
+    public final int f21963a;
+    public final Object f21964b;
 
-    public g1(int i10, s1 s1Var) {
-        super(0);
-        this.f21048f = s1Var;
-        this.e = i10;
+    public g1(Object obj, int i10) {
+        this.f21963a = i10;
+        this.f21964b = obj;
     }
 
     @Override
-    public final void e() {
-        float f10;
-        boolean z4;
-        MessageObject.GroupedMessagePosition groupedMessagePosition;
-        int i10;
-        int i11;
-        Rect bounds = getBounds();
-        RectF rectF = (RectF) this.d;
-        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        Path path = this.f21346b;
-        path.rewind();
-        s1 s1Var = this.f21048f;
-        int[] iArr = s1Var.f22191u3;
-        int i12 = this.e;
-        int i13 = iArr[i12];
-        if (i13 != 3 && i13 != 4) {
-            float f11 = 0.0f;
-            if (i13 == 2) {
-                MessageObject messageObject = s1Var.f22210v7;
-                if (messageObject != null && messageObject.isOutOwner()) {
-                    z4 = true;
-                } else {
-                    z4 = false;
-                }
-                for (int i14 = 0; i14 < 4; i14++) {
-                    if (!s1Var.f22094n3) {
-                        if (z4) {
-                            i10 = 3;
-                        } else {
-                            i10 = 2;
-                        }
-                        if (i14 == i10) {
-                            float[] fArr = s1.Be;
-                            int i15 = i14 * 2;
-                            float dp = AndroidUtilities.dp(SharedConfig.bubbleRadius);
-                            fArr[i15 + 1] = dp;
-                            fArr[i15] = dp;
-                        } else if (((s1Var.f22014h8 && s1Var.I == null) || s1Var.C) && (i14 == 2 || i14 == 3)) {
-                            float[] fArr2 = s1.Be;
-                            int i16 = i14 * 2;
-                            int i17 = i16 + 1;
-                            if (s1Var.C) {
-                                i11 = Math.min(5, SharedConfig.bubbleRadius);
-                            } else {
-                                i11 = SharedConfig.bubbleRadius;
-                            }
-                            float dp2 = AndroidUtilities.dp(i11);
-                            fArr2[i17] = dp2;
-                            fArr2[i16] = dp2;
-                        }
-                    }
-                    float[] fArr3 = s1.Be;
-                    int i18 = i14 * 2;
-                    fArr3[i18 + 1] = 0.0f;
-                    fArr3[i18] = 0.0f;
-                }
-                if (!z4 && !s1Var.G && (groupedMessagePosition = s1Var.I) == null && (groupedMessagePosition == null || s1Var.X2)) {
-                    path.moveTo(rectF.left + AndroidUtilities.dp(6.0f), rectF.top);
-                    path.lineTo(rectF.left + AndroidUtilities.dp(6.0f), (rectF.bottom - AndroidUtilities.dp(6.0f)) - AndroidUtilities.dp(5.0f));
-                    RectF rectF2 = AndroidUtilities.rectTmp;
-                    rectF2.set(rectF.left + AndroidUtilities.dp(-7.0f), rectF.bottom - AndroidUtilities.dp(23.0f), rectF.left + AndroidUtilities.dp(6.0f), rectF.bottom);
-                    path.arcTo(rectF2, 0.0f, 83.0f, false);
-                    float f12 = rectF.right;
-                    float[] fArr4 = s1.Be;
-                    float f13 = rectF.bottom;
-                    rectF2.set(f12 - (fArr4[4] * 2.0f), f13 - (fArr4[5] * 2.0f), f12, f13);
-                    path.arcTo(rectF2, 90.0f, -90.0f, false);
-                    path.lineTo(rectF.right, rectF.top);
-                    path.close();
-                } else {
-                    path.addRoundRect(rectF, s1.Be, Path.Direction.CW);
-                }
-                path.close();
+    public final void onRewindCanceled() {
+        switch (this.f21963a) {
+            case 0:
+                t1 t1Var = (t1) this.f21964b;
+                t1Var.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
+                t1Var.Gd.f(false);
                 return;
-            }
-            if (i13 == 0) {
-                f11 = AndroidUtilities.dp(6.0f);
-            }
-            path.addRoundRect(rectF, f11, f11, Path.Direction.CW);
-            return;
+            default:
+                PhotoViewer photoViewer = (PhotoViewer) this.f21964b;
+                PhotoViewer.k(photoViewer, MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
+                photoViewer.f33737z1.f(false);
+                eg0.f25675p0.Q.f(false);
+                return;
         }
-        float centerX = rectF.centerX();
-        float centerY = rectF.centerY();
-        if (iArr[i12] == 3) {
-            f10 = 16.0f;
-        } else {
-            f10 = 20.0f;
+    }
+
+    @Override
+    public final void onRewindStart(boolean z10) {
+        switch (this.f21963a) {
+            case 0:
+                t1 t1Var = (t1) this.f21964b;
+                w61 w61Var = t1Var.Gd;
+                w61Var.f32181n = new l.d(this, 9);
+                w61Var.e(false);
+                t1Var.Gd.d(!z10);
+                t1Var.Gd.f(true);
+                t1Var.invalidate();
+                return;
+            default:
+                PhotoViewer photoViewer = (PhotoViewer) this.f21964b;
+                photoViewer.f33737z1.e(false);
+                photoViewer.f33737z1.d(!z10);
+                photoViewer.f33737z1.f(true);
+                photoViewer.f33549e0.invalidate();
+                eg0.v(z10);
+                return;
         }
-        path.addCircle(centerX, centerY, AndroidUtilities.dp(f10), Path.Direction.CW);
+    }
+
+    @Override
+    public final void updateRewindProgressUi(long j3, float f7, boolean z10) {
+        switch (this.f21963a) {
+            case 0:
+                t1 t1Var = (t1) this.f21964b;
+                t1Var.Gd.g(Math.abs(j3));
+                if (z10) {
+                    t1Var.f23205y7.audioProgress = f7;
+                    t1Var.q4();
+                    return;
+                }
+                return;
+            default:
+                PhotoViewer photoViewer = (PhotoViewer) this.f21964b;
+                photoViewer.f33737z1.g(Math.abs(j3));
+                if (z10) {
+                    photoViewer.f33655q3.h(f7, false);
+                    photoViewer.f33664r3.invalidate();
+                }
+                eg0 eg0Var = eg0.f25675p0;
+                eg0Var.Q.g(0L);
+                if (z10) {
+                    eg0Var.Z = f7;
+                    bi.a4 a4Var = eg0Var.f25679b0;
+                    if (a4Var != null) {
+                        a4Var.invalidate();
+                    }
+                    dg0 dg0Var = eg0Var.h;
+                    if (dg0Var != null) {
+                        dg0Var.invalidate();
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
     }
 }

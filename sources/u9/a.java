@@ -1,4 +1,6 @@
 package u9;
+
+import android.os.Bundle;
 public interface a {
-    void a(Object obj, Object obj2);
+    void b0(Bundle bundle);
 }

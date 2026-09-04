@@ -1,27 +1,27 @@
 package k;
 
 import java.util.ArrayList;
-import m.o3;
+import m.l3;
+import r0.m0;
 import r0.n0;
-import r0.o0;
-public final class i extends o0 {
-    public final int f9521a;
-    public boolean f9522b;
-    public int f9523c;
+public final class i extends n0 {
+    public final int f14424a;
+    public boolean f14425b;
+    public int f14426c;
     public final Object d;
 
-    public i(j jVar) {
-        this.f9521a = 0;
-        this.d = jVar;
-        this.f9522b = false;
-        this.f9523c = 0;
+    public i(bc.d dVar) {
+        this.f14424a = 0;
+        this.d = dVar;
+        this.f14425b = false;
+        this.f14426c = 0;
     }
 
     @Override
     public void a() {
-        switch (this.f9521a) {
+        switch (this.f14424a) {
             case 1:
-                this.f9522b = true;
+                this.f14425b = true;
                 return;
             default:
                 return;
@@ -30,55 +30,55 @@ public final class i extends o0 {
 
     @Override
     public final void b() {
-        switch (this.f9521a) {
+        switch (this.f14424a) {
             case 0:
-                if (!this.f9522b) {
-                    this.f9522b = true;
-                    n0 n0Var = (n0) ((j) this.d).e;
-                    if (n0Var != null) {
-                        n0Var.b();
+                if (!this.f14425b) {
+                    this.f14425b = true;
+                    m0 m0Var = (m0) ((bc.d) this.d).f2580e;
+                    if (m0Var != null) {
+                        m0Var.b();
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                ((o3) this.d).f13566a.setVisibility(0);
+                ((l3) this.d).f15569a.setVisibility(0);
                 return;
         }
     }
 
     @Override
     public final void c() {
-        switch (this.f9521a) {
+        switch (this.f14424a) {
             case 0:
-                int i10 = this.f9523c + 1;
-                this.f9523c = i10;
-                j jVar = (j) this.d;
-                if (i10 == ((ArrayList) jVar.f9526c).size()) {
-                    n0 n0Var = (n0) jVar.e;
-                    if (n0Var != null) {
-                        n0Var.c();
+                int i10 = this.f14426c + 1;
+                this.f14426c = i10;
+                bc.d dVar = (bc.d) this.d;
+                if (i10 == ((ArrayList) dVar.f2579c).size()) {
+                    m0 m0Var = (m0) dVar.f2580e;
+                    if (m0Var != null) {
+                        m0Var.c();
                     }
-                    this.f9523c = 0;
-                    this.f9522b = false;
-                    jVar.f9525b = false;
+                    this.f14426c = 0;
+                    this.f14425b = false;
+                    dVar.f2578b = false;
                     return;
                 }
                 return;
             default:
-                if (!this.f9522b) {
-                    ((o3) this.d).f13566a.setVisibility(this.f9523c);
+                if (!this.f14425b) {
+                    ((l3) this.d).f15569a.setVisibility(this.f14426c);
                     return;
                 }
                 return;
         }
     }
 
-    public i(o3 o3Var, int i10) {
-        this.f9521a = 1;
-        this.d = o3Var;
-        this.f9523c = i10;
-        this.f9522b = false;
+    public i(l3 l3Var, int i10) {
+        this.f14424a = 1;
+        this.d = l3Var;
+        this.f14426c = i10;
+        this.f14425b = false;
     }
 }

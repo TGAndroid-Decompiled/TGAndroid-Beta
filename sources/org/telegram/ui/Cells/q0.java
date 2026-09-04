@@ -1,23 +1,23 @@
 package org.telegram.ui.Cells;
 
-import org.telegram.ui.Components.gj0;
+import org.telegram.ui.Components.xi0;
 public final class q0 implements Runnable {
-    public final int f21529a;
-    public final gj0 f21530b;
+    public final int f22478a;
+    public final xi0 f22479b;
 
-    public q0(gj0 gj0Var, int i10) {
-        this.f21529a = i10;
-        this.f21530b = gj0Var;
+    public q0(xi0 xi0Var, int i10) {
+        this.f22478a = i10;
+        this.f22479b = xi0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f21529a) {
+        switch (this.f22478a) {
             case 0:
-                this.f21530b.F(false);
+                this.f22479b.F(false);
                 return;
             default:
-                this.f21530b.start();
+                this.f22479b.start();
                 return;
         }
     }

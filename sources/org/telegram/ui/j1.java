@@ -1,19 +1,23 @@
 package org.telegram.ui;
 
 import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.tl.TL_iv;
-public final class j1 extends f2.v {
-    public final n1 f35062c;
+import java.util.HashMap;
+public final class j1 {
+    public final ArrayList f37475a = new ArrayList();
+    public final HashMap f37476b = new HashMap();
+    public final int f37477c = 1000;
+    public final k1 d;
 
-    public j1(n1 n1Var) {
-        this.f35062c = n1Var;
+    public j1(k1 k1Var) {
+        this.d = k1Var;
     }
 
-    @Override
-    public final int i(int i10) {
-        n1 n1Var = this.f35062c;
-        ArrayList<TL_iv.PageBlock> arrayList = n1Var.f36305s.items;
-        return ((MessageObject.GroupedMessagePosition) n1Var.v.f35951b.get(arrayList.get((arrayList.size() - i10) - 1))).spanSize;
+    public final float a(float[] fArr, int i10, int i11) {
+        float f7 = 0.0f;
+        while (i10 < i11) {
+            f7 += fArr[i10];
+            i10++;
+        }
+        return this.f37477c / f7;
     }
 }

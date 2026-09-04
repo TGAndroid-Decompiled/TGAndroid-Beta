@@ -5,20 +5,20 @@ import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Iterator;
 public final class e implements AutoCloseable {
-    public final String[] f46430a;
-    public final ArrayDeque f46431b;
+    public final String[] f47901a;
+    public final ArrayDeque f47902b;
 
     public e(Object obj, String str, ArrayDeque arrayDeque) {
-        this.f46431b = arrayDeque;
+        this.f47902b = arrayDeque;
         if (obj != null) {
             arrayDeque.addFirst(new d(obj, str));
             if (Log.isLoggable("CarApp.Bun", 2)) {
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb2 = new StringBuilder();
                 int min = Math.min(arrayDeque.size(), 11);
-                if (this.f46430a == null) {
-                    this.f46430a = new String[12];
+                if (this.f47901a == null) {
+                    this.f47901a = new String[12];
                 }
-                String str2 = this.f46430a[min];
+                String str2 = this.f47901a[min];
                 if (str2 == null) {
                     char[] cArr = new char[min];
                     Arrays.fill(cArr, ' ');
@@ -28,18 +28,18 @@ public final class e implements AutoCloseable {
                     } else {
                         str2 = str3;
                     }
-                    this.f46430a[min] = str2;
+                    this.f47901a[min] = str2;
                 }
-                sb.append(str2);
-                sb.append(g.i(obj.getClass()) + " " + str);
-                Log.v("CarApp.Bun", sb.toString());
+                sb2.append(str2);
+                sb2.append(h.i(obj.getClass()) + " " + str);
+                Log.v("CarApp.Bun", sb2.toString());
             }
         }
     }
 
     public final String a() {
-        StringBuilder sb = new StringBuilder();
-        ArrayDeque arrayDeque = this.f46431b;
+        StringBuilder sb2 = new StringBuilder();
+        ArrayDeque arrayDeque = this.f47902b;
         int min = Math.min(arrayDeque.size(), 8);
         Iterator descendingIterator = arrayDeque.descendingIterator();
         while (descendingIterator.hasNext()) {
@@ -47,17 +47,17 @@ public final class e implements AutoCloseable {
             if (min <= 0) {
                 break;
             }
-            sb.append(((d) descendingIterator.next()).a());
+            sb2.append(((d) descendingIterator.next()).a());
             min = i10;
         }
         if (descendingIterator.hasNext()) {
-            sb.append("[...]");
+            sb2.append("[...]");
         }
-        return sb.toString();
+        return sb2.toString();
     }
 
     @Override
     public final void close() {
-        this.f46431b.removeFirst();
+        this.f47902b.removeFirst();
     }
 }

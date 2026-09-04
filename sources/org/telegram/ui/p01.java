@@ -1,42 +1,43 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class p01 implements m2.f {
-    public int f36913a;
-    public final q01 f36914b;
+import android.view.View;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class p01 implements View.OnClickListener {
+    public final int f39377a;
+    public final a11 f39378b;
 
-    public p01(q01 q01Var) {
-        this.f36914b = q01Var;
+    public p01(a11 a11Var, int i10) {
+        this.f39377a = i10;
+        this.f39378b = a11Var;
     }
 
     @Override
-    public final void a(int i10) {
-        boolean z4;
-        q01 q01Var = this.f36914b;
-        ProfileActivity profileActivity = q01Var.f37274n;
-        int k10 = profileActivity.f32073k0.A0.k(i10);
-        if (this.f36913a != k10) {
-            z4 = true;
-        } else {
-            z4 = false;
+    public final void onClick(View view) {
+        switch (this.f39377a) {
+            case 0:
+                a11 a11Var = this.f39378b;
+                ProfileActivity profileActivity = a11Var.f34291e;
+                TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f33888e1));
+                MessagesController messagesController = profileActivity.getMessagesController();
+                ProfileActivity profileActivity2 = a11Var.f34291e;
+                messagesController.openApp(profileActivity2, user, null, profileActivity2.getClassGuid(), null);
+                return;
+            default:
+                ProfileActivity profileActivity3 = this.f39378b.f34291e;
+                profileActivity3.O4 = !profileActivity3.O4;
+                if (!profileActivity3.N4) {
+                    profileActivity3.N4 = true;
+                }
+                profileActivity3.F4();
+                view.requestLayout();
+                profileActivity3.d.m(profileActivity3.O3);
+                int i10 = profileActivity3.U5;
+                if (i10 >= 0) {
+                    profileActivity3.f33871c.h1(i10, profileActivity3.V5 - profileActivity3.f33856a.getPaddingTop());
+                    return;
+                }
+                return;
         }
-        q01Var.a(z4);
-        this.f36913a = k10;
-        if (profileActivity.f32093n0 == null) {
-            return;
-        }
-        if (profileActivity.Q0.t()) {
-            AndroidUtilities.runOnUIThread(new sz0(q01Var, 2), 500L);
-        } else {
-            q01Var.c();
-        }
-    }
-
-    @Override
-    public final void c(int i10) {
-    }
-
-    @Override
-    public final void b(float f10, int i10, int i11) {
     }
 }

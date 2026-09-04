@@ -1,10 +1,10 @@
 package z3;
-public final class m {
-    public final long f47411a;
-    public final int f47412b;
+public interface m {
+    int U();
 
-    public m(long j10, int i10) {
-        this.f47411a = j10;
-        this.f47412b = i10;
-    }
+    void e0(byte[] bArr, int i10, int i11, l lVar, e2.h hVar);
+
+    d p(int i10, int i11, byte[] bArr);
+
+    void reset();
 }

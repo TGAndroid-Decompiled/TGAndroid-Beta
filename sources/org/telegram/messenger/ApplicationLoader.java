@@ -26,10 +26,10 @@ import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.h10;
-import org.telegram.ui.Components.p70;
+import org.telegram.ui.Components.g10;
+import org.telegram.ui.Components.n70;
 import org.telegram.ui.IUpdateLayout;
-import org.telegram.ui.cb0;
+import org.telegram.ui.lb0;
 public class ApplicationLoader extends Application {
     public static volatile Context applicationContext = null;
     public static volatile Handler applicationHandler = null;
@@ -63,13 +63,13 @@ public class ApplicationLoader extends Application {
 
     private boolean checkPlayServices() {
         try {
-            AtomicBoolean atomicBoolean = y5.g.f47178a;
-            if (y5.g.b(this, 12451000) == 0) {
+            AtomicBoolean atomicBoolean = k6.g.f14818a;
+            if (k6.g.b(this, 12451000) == 0) {
                 return true;
             }
             return false;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             return true;
         }
     }
@@ -88,8 +88,8 @@ public class ApplicationLoader extends Application {
         int i10;
         try {
             ensureCurrentNetworkGet(false);
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
         if (currentNetworkInfo == null) {
             return 0;
@@ -133,8 +133,8 @@ public class ApplicationLoader extends Application {
             File file = new File(applicationContext.getApplicationInfo().dataDir, "files");
             file.mkdirs();
             return file;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             return new File("/data/data/org.telegram.messenger/files");
         }
     }
@@ -163,7 +163,7 @@ public class ApplicationLoader extends Application {
     }
 
     private void initPushServices() {
-        AndroidUtilities.runOnUIThread(new x1(5), 1000L);
+        AndroidUtilities.runOnUIThread(new u1(5), 1000L);
     }
 
     public static boolean isAndroidTestEnvironment() {
@@ -189,8 +189,8 @@ public class ApplicationLoader extends Application {
                 }
                 return true;
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
         return false;
     }
@@ -207,8 +207,8 @@ public class ApplicationLoader extends Application {
                     return true;
                 }
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
         return false;
     }
@@ -256,8 +256,8 @@ public class ApplicationLoader extends Application {
                 return false;
             }
             return true;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             return true;
         }
     }
@@ -280,8 +280,8 @@ public class ApplicationLoader extends Application {
                 return false;
             }
             return true;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             return true;
         }
     }
@@ -295,8 +295,8 @@ public class ApplicationLoader extends Application {
                 }
             }
             return false;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             return false;
         }
     }
@@ -317,8 +317,8 @@ public class ApplicationLoader extends Application {
         PushListenerController.sendRegistrationToServer(getPushProvider().getPushType(), null);
     }
 
-    public static void logDualCamera(boolean z4, boolean z10) {
-        applicationLoaderInstance.logDualCameraInternal(z4, z10);
+    public static void logDualCamera(boolean z10, boolean z11) {
+        applicationLoaderInstance.logDualCameraInternal(z10, z11);
     }
 
     public static void postInitApplication() {
@@ -327,8 +327,8 @@ public class ApplicationLoader extends Application {
             NativeLoader.initNativeLibs(applicationContext);
             try {
                 LocaleController.getInstance();
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (Exception e7) {
+                e7.printStackTrace();
             }
             try {
                 connectivityManager = (ConnectivityManager) applicationContext.getSystemService("connectivity");
@@ -346,23 +346,23 @@ public class ApplicationLoader extends Application {
                         }
                     }
                 }, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
-            } catch (Exception e6) {
-                e6.printStackTrace();
+            } catch (Exception e10) {
+                e10.printStackTrace();
             }
             try {
                 IntentFilter intentFilter = new IntentFilter("android.intent.action.SCREEN_ON");
                 intentFilter.addAction("android.intent.action.SCREEN_OFF");
                 applicationContext.registerReceiver(new ScreenReceiver(), intentFilter);
-            } catch (Exception e10) {
-                e10.printStackTrace();
+            } catch (Exception e11) {
+                e11.printStackTrace();
             }
             try {
                 isScreenOn = ((PowerManager) applicationContext.getSystemService("power")).isScreenOn();
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("screen state = " + isScreenOn);
                 }
-            } catch (Exception e11) {
-                e11.printStackTrace();
+            } catch (Exception e12) {
+                e12.printStackTrace();
             }
             SharedConfig.loadConfig();
             SharedPrefsHelper.init(applicationContext);
@@ -398,14 +398,14 @@ public class ApplicationLoader extends Application {
     }
 
     public static void startPushService() {
-        boolean z4;
+        boolean z10;
         SharedPreferences globalNotificationsSettings = MessagesController.getGlobalNotificationsSettings();
         if (globalNotificationsSettings.contains("pushService")) {
-            z4 = globalNotificationsSettings.getBoolean("pushService", true);
+            z10 = globalNotificationsSettings.getBoolean("pushService", true);
         } else {
-            z4 = MessagesController.getMainSettings(UserConfig.selectedAccount).getBoolean("keepAliveService", false);
+            z10 = MessagesController.getMainSettings(UserConfig.selectedAccount).getBoolean("keepAliveService", false);
         }
-        if (z4) {
+        if (z10) {
             try {
                 applicationContext.startService(new Intent(applicationContext, NotificationsService.class));
                 return;
@@ -477,8 +477,8 @@ public class ApplicationLoader extends Application {
             AndroidUtilities.checkDisplaySize(applicationContext, configuration);
             VideoCapturerDevice.checkScreenCapturerSize();
             AndroidUtilities.resetTabletFlag();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e7) {
+            e7.printStackTrace();
         }
     }
 
@@ -495,10 +495,10 @@ public class ApplicationLoader extends Application {
         int i10 = 0;
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d(helloWorld);
-            StringBuilder sb = new StringBuilder("app start time = ");
+            StringBuilder sb2 = new StringBuilder("app start time = ");
             long elapsedRealtime = SystemClock.elapsedRealtime();
             startTime = elapsedRealtime;
-            kf.k0.x(sb, elapsedRealtime);
+            i2.g.w(sb2, elapsedRealtime);
             try {
                 PackageInfo packageInfo = applicationContext.getPackageManager().getPackageInfo(applicationContext.getPackageName(), 0);
                 int i11 = packageInfo.versionCode % 10;
@@ -513,17 +513,17 @@ public class ApplicationLoader extends Application {
                 }
                 Locale locale = Locale.US;
                 FileLog.d("buildVersion = ".concat("v" + packageInfo.versionName + " (" + (packageInfo.versionCode / 10) + "[" + (packageInfo.versionCode % 10) + "]) " + str));
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e7) {
+                FileLog.e(e7);
             }
-            StringBuilder sb2 = new StringBuilder("device = manufacturer=");
-            sb2.append(Build.MANUFACTURER);
-            sb2.append(", device=");
-            sb2.append(Build.DEVICE);
-            sb2.append(", model=");
-            sb2.append(Build.MODEL);
-            sb2.append(", product=");
-            org.telegram.ui.ai.v(Build.PRODUCT, sb2);
+            StringBuilder sb3 = new StringBuilder("device = manufacturer=");
+            sb3.append(Build.MANUFACTURER);
+            sb3.append(", device=");
+            sb3.append(Build.DEVICE);
+            sb3.append(", model=");
+            sb3.append(Build.MODEL);
+            sb3.append(", product=");
+            com.google.android.gms.internal.vision.e2.t(Build.PRODUCT, sb3);
         }
         if (applicationContext == null) {
             applicationContext = getApplicationContext();
@@ -531,7 +531,7 @@ public class ApplicationLoader extends Application {
         NativeLoader.initNativeLibs(applicationContext);
         try {
             ConnectionsManager.native_setJava(false);
-            new h10(this) {
+            new g10(this) {
                 @Override
                 public void onActivityStarted(Activity activity) {
                     boolean isBackground = isBackground();
@@ -541,22 +541,22 @@ public class ApplicationLoader extends Application {
                     }
                 }
             };
-            new ANRDetector(new x1(3));
+            new ANRDetector(new u1(3));
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("load libs time = " + (SystemClock.elapsedRealtime() - startTime));
             }
             applicationHandler = new Handler(applicationContext.getMainLooper());
-            AndroidUtilities.runOnUIThread(new x1(4));
-            cb0[] values = cb0.values();
+            AndroidUtilities.runOnUIThread(new u1(4));
+            lb0[] values = lb0.values();
             int length = values.length;
             while (true) {
                 if (i10 < length) {
-                    if (k7.i6.a(values[i10])) {
+                    if (w7.e6.a(values[i10])) {
                         break;
                     }
                     i10++;
                 } else {
-                    k7.i6.b(cb0.h);
+                    w7.e6.b(lb0.h);
                     break;
                 }
             }
@@ -598,7 +598,7 @@ public class ApplicationLoader extends Application {
         return false;
     }
 
-    public org.telegram.ui.ActionBar.p2 openSettings(int i10) {
+    public org.telegram.ui.ActionBar.n2 openSettings(int i10) {
         return null;
     }
 
@@ -618,8 +618,8 @@ public class ApplicationLoader extends Application {
         return null;
     }
 
-    public static void ensureCurrentNetworkGet(boolean z4) {
-        if (z4 || currentNetworkInfo == null) {
+    public static void ensureCurrentNetworkGet(boolean z10) {
+        if (z10 || currentNetworkInfo == null) {
             try {
                 if (connectivityManager == null) {
                     connectivityManager = (ConnectivityManager) applicationContext.getSystemService("connectivity");
@@ -650,8 +650,8 @@ public class ApplicationLoader extends Application {
             File file = new File(getFilesDirFixed(), str);
             file.mkdirs();
             return file;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             return null;
         }
     }
@@ -668,7 +668,7 @@ public class ApplicationLoader extends Application {
     public void onResume() {
     }
 
-    public void addItemOptions(p70 p70Var) {
+    public void addItemOptions(n70 n70Var) {
     }
 
     public void appCenterLogInternal(Throwable th2) {
@@ -677,10 +677,10 @@ public class ApplicationLoader extends Application {
     public void startAppCenterInternal(Activity activity) {
     }
 
-    public void checkUpdate(boolean z4, Runnable runnable) {
+    public void checkUpdate(boolean z10, Runnable runnable) {
     }
 
-    public void logDualCameraInternal(boolean z4, boolean z10) {
+    public void logDualCameraInternal(boolean z10, boolean z11) {
     }
 
     public void processUpdate(int i10, TLRPC.Update update) {

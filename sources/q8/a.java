@@ -1,22 +1,27 @@
 package q8;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-public abstract class a extends Activity {
-    public abstract Class getServiceClass();
+import android.util.SparseIntArray;
+public final class a {
+    public static final Object f44206c = new Object();
+    public static int d;
+    public final SparseIntArray f44207a = new SparseIntArray();
+    public final SparseIntArray f44208b = new SparseIntArray();
 
-    @Override
-    public final void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Intent intent = new Intent(this, getServiceClass());
-        intent.putExtra("SearchActionVerificationClientExtraIntent", getIntent());
-        if (Build.VERSION.SDK_INT >= 26) {
-            startForegroundService(intent);
-        } else {
-            startService(intent);
+    public final int a(int i10) {
+        synchronized (f44206c) {
+            try {
+                int i11 = this.f44207a.get(i10, -1);
+                if (i11 != -1) {
+                    return i11;
+                }
+                int i12 = d;
+                d = i12 + 1;
+                this.f44207a.append(i10, i12);
+                this.f44208b.append(i12, i10);
+                return i12;
+            } catch (Throwable th2) {
+                throw th2;
+            }
         }
-        finish();
     }
 }

@@ -1,86 +1,17 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class t9 extends View {
-    public Bitmap f28950a;
-    public Bitmap f28951b;
-    public Paint f28952c;
-    public int d;
-    public int e;
-    public s9 f28953f;
+import android.view.ViewGroup;
+public final class t9 extends w7.i0 {
+    public final ViewGroup f30557a;
+    public final w9 f30558b;
 
-    public int getRating() {
-        return this.e;
+    public t9(w9 w9Var, ViewGroup viewGroup) {
+        this.f30558b = w9Var;
+        this.f30557a = viewGroup;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int i10;
-        Bitmap bitmap;
-        Paint paint = this.f28952c;
-        for (int i11 = 0; i11 < this.d; i11++) {
-            if (i11 < this.e) {
-                i10 = org.telegram.ui.ActionBar.j6.f20041m5;
-            } else {
-                i10 = org.telegram.ui.ActionBar.j6.f20165t5;
-            }
-            paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
-            if (i11 < this.e) {
-                bitmap = this.f28950a;
-            } else {
-                bitmap = this.f28951b;
-            }
-            canvas.drawBitmap(bitmap, AndroidUtilities.dp(48.0f) * i11, 0.0f, paint);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12 = this.d;
-        setMeasuredDimension(org.telegram.messenger.y3.D(16.0f, i12 - 1, AndroidUtilities.dp(32.0f) * i12), AndroidUtilities.dp(32.0f));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int i10;
-        int i11;
-        float dp = AndroidUtilities.dp(-8.0f);
-        boolean z4 = false;
-        for (int i12 = 0; i12 < this.d; i12++) {
-            if (motionEvent.getX() > dp && motionEvent.getX() < AndroidUtilities.dp(48.0f) + dp && this.e != (i10 = i12 + 1)) {
-                this.e = i10;
-                s9 s9Var = this.f28953f;
-                if (s9Var != null) {
-                    View view = ((org.telegram.ui.Components.voip.t1) s9Var).f29927a;
-                    if (i10 > 0) {
-                        z4 = true;
-                    }
-                    view.setEnabled(z4);
-                    TextView textView = (TextView) view;
-                    if (i10 < 4) {
-                        i11 = R.string.Next;
-                    } else {
-                        i11 = R.string.Send;
-                    }
-                    textView.setText(LocaleController.getString(i11).toUpperCase());
-                }
-                invalidate();
-                return true;
-            }
-            dp += AndroidUtilities.dp(48.0f);
-        }
-        return true;
-    }
-
-    public void setOnRatingChangeListener(s9 s9Var) {
-        this.f28953f = s9Var;
+    public final void a() {
+        this.f30557a.invalidate();
     }
 }

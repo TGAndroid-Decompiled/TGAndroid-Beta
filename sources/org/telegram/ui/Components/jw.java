@@ -1,57 +1,62 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
-public final class jw extends rl0 {
-    public boolean U2;
-    public boolean V2;
-    public final kz W2;
+import android.graphics.ColorFilter;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class jw extends bw {
+    public final kz f27579g0;
 
-    public jw(kz kzVar, Context context) {
-        super(context, null);
-        this.W2 = kzVar;
+    public jw(kz kzVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10, cw cwVar, boolean z11) {
+        super(context, f6Var, true, false, true, z10, 0, cwVar, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20990v6, f6Var), z11);
+        this.f27579g0 = kzVar;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.rt q10 = org.telegram.ui.rt.q();
-        kz kzVar = this.W2;
-        boolean r10 = q10.r(motionEvent, kzVar.f26435e0, kzVar.f26434d2, this.f28511m2);
-        if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
+    public final boolean d() {
+        return this.f27579g0.U0;
+    }
+
+    @Override
+    public final void e() {
+        kz kzVar = this.f27579g0;
+        ArrayList arrayList = kzVar.f27966n1;
+        if (arrayList.size() > 0 && ((TLRPC.StickerSetCovered) arrayList.get(0)).set != null && MessagesController.getEmojiSettings(kzVar.f27932c1).getLong("emoji_featured_hidden", 0L) != ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f19896id) {
+            UserConfig.getInstance(UserConfig.selectedAccount).isPremium();
+        }
+    }
+
+    @Override
+    public final boolean g(xx xxVar) {
+        if (!xxVar.f32767f && !this.f27579g0.f27972p1.contains(Long.valueOf(xxVar.f32764b.f19896id))) {
             return false;
         }
         return true;
     }
 
     @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        kz kzVar = this.W2;
-        if (kzVar.f26462n0 && kzVar.f26454k0.D > 1) {
-            this.U2 = true;
-            kzVar.f26439f0.h1(0, 0);
-            kzVar.f26457l0.setVisibility(0);
-            kzVar.m0.k(0, 0);
-            kzVar.f26462n0 = false;
-            this.U2 = false;
-        }
-        super.onLayout(z4, i10, i11, i12, i13);
-        kz.f(kzVar, true);
+    public final ColorFilter getEmojiColorFilter() {
+        return this.f27579g0.f27940e2;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        if (!this.V2) {
-            this.W2.f26454k0.l();
-            this.V2 = true;
-        }
+    public final boolean h(int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.jw.h(int):boolean");
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.U2) {
-            return;
+    public final void setTranslationY(float f7) {
+        if (getTranslationY() != f7) {
+            super.setTranslationY(f7);
+            kz kzVar = this.f27579g0;
+            View view = kzVar.O;
+            if (view != null) {
+                view.setTranslationY(f7);
+            }
+            kzVar.J.invalidate();
         }
-        super.requestLayout();
     }
 }

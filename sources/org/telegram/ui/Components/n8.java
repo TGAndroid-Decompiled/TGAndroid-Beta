@@ -1,31 +1,23 @@
 package org.telegram.ui.Components;
-public final class n8 extends org.telegram.ui.ActionBar.j {
-    public final int f27218a;
-    public final w8 f27219b;
 
-    public n8(w8 w8Var, int i10) {
-        this.f27218a = i10;
-        this.f27219b = w8Var;
+import android.view.View;
+public final class n8 implements View.OnClickListener {
+    public final int f28685a;
+    public final ug0 f28686b;
+
+    public n8(ug0 ug0Var, int i10) {
+        this.f28685a = i10;
+        this.f28686b = ug0Var;
     }
 
     @Override
-    public final void b(int i10) {
-        switch (this.f27218a) {
+    public final void onClick(View view) {
+        switch (this.f28685a) {
             case 0:
-                if (i10 == -1) {
-                    w8.U(this.f27219b);
-                    return;
-                }
+                this.f28686b.b(true);
                 return;
             default:
-                w8 w8Var = this.f27219b;
-                if (i10 == -1) {
-                    w8.U(w8Var);
-                }
-                if (i10 == 1) {
-                    w8Var.f0();
-                    return;
-                }
+                this.f28686b.b(true);
                 return;
         }
     }

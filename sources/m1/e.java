@@ -1,7 +1,7 @@
 package m1;
 
-import androidx.datastore.preferences.protobuf.a2;
-import androidx.datastore.preferences.protobuf.n0;
+import androidx.datastore.preferences.protobuf.m0;
+import androidx.datastore.preferences.protobuf.z1;
 public abstract class e {
-    public static final n0 f13693a = new n0(a2.f633c, a2.e, k.q());
+    public static final m0 f15746a = new m0(z1.f1328c, z1.f1329e, k.q());
 }

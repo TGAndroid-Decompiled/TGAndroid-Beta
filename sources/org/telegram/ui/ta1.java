@@ -1,38 +1,35 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class ta1 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final StickersActivity f38446a;
+public final class ta1 implements nq {
+    public final TLRPC.TL_chatChannelParticipant f40701a;
+    public final boolean f40702b;
+    public final boolean[] f40703c;
 
-    public ta1(StickersActivity stickersActivity) {
-        this.f38446a = stickersActivity;
+    public ta1(TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant, boolean z10, boolean[] zArr) {
+        this.f40701a = tL_chatChannelParticipant;
+        this.f40702b = z10;
+        this.f40703c = zArr;
     }
 
     @Override
-    public void mo27run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        StickersActivity.U(this.f38446a, (org.telegram.ui.Components.i51) obj, (View) obj2);
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        boolean z4;
-        org.telegram.ui.Components.i51 i51Var = (org.telegram.ui.Components.i51) obj;
-        View view = (View) obj2;
-        ((Integer) obj3).intValue();
-        ((Float) obj4).floatValue();
-        ((Float) obj5).floatValue();
-        StickersActivity stickersActivity = this.f38446a;
-        if (stickersActivity.f32275x.isEmpty() && (i51Var.G instanceof TLRPC.TL_messages_stickerSet)) {
-            stickersActivity.n0((org.telegram.ui.Cells.j8) view);
-            z4 = true;
-        } else {
-            z4 = false;
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = this.f40701a;
+        if (i10 == 0) {
+            TLRPC.ChannelParticipant channelParticipant = tL_chatChannelParticipant.channelParticipant;
+            channelParticipant.admin_rights = null;
+            channelParticipant.rank = "";
+            return;
         }
-        return Boolean.valueOf(z4);
+        TLRPC.ChannelParticipant channelParticipant2 = tL_chatChannelParticipant.channelParticipant;
+        channelParticipant2.admin_rights = tL_chatAdminRights;
+        channelParticipant2.rank = str;
+        if (this.f40702b) {
+            this.f40703c[0] = true;
+        }
+    }
+
+    @Override
+    public final void a(TLRPC.User user) {
     }
 }

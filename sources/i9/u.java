@@ -1,48 +1,57 @@
 package i9;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
-public final class u implements ThreadFactory {
-    public final int f7424a;
-    public final Object f7425b;
-    public final Object f7426c;
+import com.google.android.gms.internal.play_billing.s0;
+import java.util.concurrent.Executor;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+public final class u implements w {
+    public static final u f11925b = new u(null);
+    public static final s0 f11926c = new s0(u.class, 1);
+    public final Object f11927a;
 
-    public u(String str) {
-        this.f7424a = 1;
-        this.f7426c = Executors.defaultThreadFactory();
-        this.f7425b = str;
+    public u(Object obj) {
+        this.f11927a = obj;
     }
 
     @Override
-    public final Thread newThread(Runnable runnable) {
-        switch (this.f7424a) {
-            case 0:
-                Thread newThread = Executors.defaultThreadFactory().newThread(new t(runnable));
-                newThread.setName(((String) this.f7425b) + ((AtomicLong) this.f7426c).getAndIncrement());
-                return newThread;
-            case 1:
-                Thread newThread2 = ((ThreadFactory) this.f7426c).newThread(new d9.j(1, runnable));
-                newThread2.setName((String) this.f7425b);
-                return newThread2;
-            default:
-                Thread newThread3 = ((ThreadFactory) this.f7425b).newThread(runnable);
-                int andIncrement = ((AtomicInteger) this.f7426c).getAndIncrement();
-                newThread3.setName("PlayBillingLibrary-" + andIncrement);
-                return newThread3;
+    public final void a(Runnable runnable, Executor executor) {
+        try {
+            executor.execute(runnable);
+        } catch (Exception e7) {
+            Logger a2 = f11926c.a();
+            Level level = Level.SEVERE;
+            a2.log(level, "RuntimeException while executing runnable " + runnable + " with executor " + executor, (Throwable) e7);
         }
     }
 
-    public u(p2.b bVar) {
-        this.f7424a = 2;
-        this.f7425b = Executors.defaultThreadFactory();
-        this.f7426c = new AtomicInteger(1);
+    @Override
+    public final boolean cancel(boolean z10) {
+        return false;
     }
 
-    public u(String str, AtomicLong atomicLong) {
-        this.f7424a = 0;
-        this.f7425b = str;
-        this.f7426c = atomicLong;
+    @Override
+    public final Object get() {
+        return this.f11927a;
+    }
+
+    @Override
+    public final boolean isCancelled() {
+        return false;
+    }
+
+    @Override
+    public final boolean isDone() {
+        return true;
+    }
+
+    public final String toString() {
+        return super.toString() + "[status=SUCCESS, result=[" + this.f11927a + "]]";
+    }
+
+    @Override
+    public final Object get(long j3, TimeUnit timeUnit) {
+        timeUnit.getClass();
+        return this.f11927a;
     }
 }

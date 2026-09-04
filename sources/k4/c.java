@@ -1,66 +1,66 @@
 package k4;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import h5.d0;
-import j8.t;
-import java.util.Arrays;
-import java.util.Locale;
-public final class c implements Parcelable {
-    public static final Parcelable.Creator<c> CREATOR = new t(14);
-    public final long f9723a;
-    public final long f9724b;
-    public final int f9725c;
+import c3.h0;
+import c3.o;
+import c3.p;
+import c3.q;
+import e9.a1;
+import e9.g0;
+import e9.i0;
+import java.util.List;
+public final class c implements o {
+    public q f14725a;
+    public h0 f14726b;
+    public int f14727c;
+    public long d;
+    public b f14728e;
+    public int f14729f;
+    public long f14730g;
 
-    public c(long j10, long j11, int i10) {
-        boolean z4;
-        if (j10 < j11) {
-            z4 = true;
+    @Override
+    public final boolean b(p pVar) {
+        return e.a(pVar);
+    }
+
+    @Override
+    public final void g(q qVar) {
+        this.f14725a = qVar;
+        this.f14726b = qVar.R1(0, 1);
+        qVar.Z0();
+    }
+
+    @Override
+    public final void h(long j3, long j10) {
+        int i10;
+        if (j3 == 0) {
+            i10 = 0;
         } else {
-            z4 = false;
+            i10 = 4;
         }
-        h5.a.f(z4);
-        this.f9723a = j10;
-        this.f9724b = j11;
-        this.f9725c = i10;
+        this.f14727c = i10;
+        b bVar = this.f14728e;
+        if (bVar != null) {
+            bVar.a(j10);
+        }
     }
 
     @Override
-    public final int describeContents() {
-        return 0;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && c.class == obj.getClass()) {
-            c cVar = (c) obj;
-            if (this.f9723a == cVar.f9723a && this.f9724b == cVar.f9724b && this.f9725c == cVar.f9725c) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.f9723a), Long.valueOf(this.f9724b), Integer.valueOf(this.f9725c)});
-    }
-
-    public final String toString() {
-        int i10 = d0.f6924a;
-        Locale locale = Locale.US;
-        StringBuilder s6 = android.support.v4.media.a.s(this.f9723a, "Segment: startTimeMs=", ", endTimeMs=");
-        s6.append(this.f9724b);
-        s6.append(", speedDivisor=");
-        s6.append(this.f9725c);
-        return s6.toString();
+    public final List i() {
+        g0 g0Var = i0.f8957b;
+        return a1.f8920e;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeLong(this.f9723a);
-        parcel.writeLong(this.f9724b);
-        parcel.writeInt(this.f9725c);
+    public final int m(c3.p r21, c3.s r22) {
+        throw new UnsupportedOperationException("Method not decompiled: k4.c.m(c3.p, c3.s):int");
+    }
+
+    @Override
+    public final o c() {
+        return this;
+    }
+
+    @Override
+    public final void release() {
     }
 }

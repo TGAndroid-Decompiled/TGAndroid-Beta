@@ -1,15 +1,36 @@
 package ed;
 
-import com.google.android.gms.common.api.internal.o1;
-import java.util.Random;
-import kotlin.jvm.internal.j;
-public final class b extends a {
-    public final o1 f5191b = new o1(1);
+import bf.p;
+import bf.s;
+import java.util.regex.Pattern;
+public final class b extends h {
+    public static final Pattern f9034e = i.f9047m;
 
     @Override
-    public final Random a() {
-        Object obj = this.f5191b.get();
-        j.d(obj, "get(...)");
-        return (Random) obj;
+    public final p b() {
+        this.d++;
+        if (c() == '\n') {
+            bf.g gVar = new bf.g(1);
+            this.d++;
+            return gVar;
+        }
+        if (this.d < this.f9043c.length()) {
+            String str = this.f9043c;
+            int i10 = this.d;
+            if (f9034e.matcher(str.substring(i10, i10 + 1)).matches()) {
+                String str2 = this.f9043c;
+                int i11 = this.d;
+                this.f9041a.getClass();
+                s sVar = new s(str2.substring(i11, i11 + 1));
+                this.d++;
+                return sVar;
+            }
+        }
+        return f("\\");
+    }
+
+    @Override
+    public final char d() {
+        return '\\';
     }
 }

@@ -1,36 +1,46 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class dq0 implements org.telegram.ui.ActionBar.t0 {
-    public final mq0 f33514a;
+import android.text.Editable;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class dq0 implements ar0 {
+    public final HashMap f35841a;
+    public final ArrayList f35842b;
+    public final kq0 f35843c;
 
-    public dq0(mq0 mq0Var) {
-        this.f33514a = mq0Var;
+    public dq0(kq0 kq0Var, HashMap hashMap, ArrayList arrayList) {
+        this.f35843c = kq0Var;
+        this.f35841a = hashMap;
+        this.f35842b = arrayList;
     }
 
     @Override
-    public final void e() {
-        int i10;
-        int i11;
-        mq0 mq0Var = this.f33514a;
-        org.telegram.ui.ActionBar.g1 g1Var = mq0Var.N;
-        if (mq0Var.V) {
-            i10 = R.string.ShowAsGrid;
-        } else {
-            i10 = R.string.ShowAsList;
-        }
-        g1Var.setText(LocaleController.getString(i10));
-        org.telegram.ui.ActionBar.g1 g1Var2 = mq0Var.N;
-        if (mq0Var.V) {
-            i11 = R.drawable.msg_media;
-        } else {
-            i11 = R.drawable.msg_list;
-        }
-        g1Var2.setIcon(i11);
+    public final void b(Editable editable) {
+        kq0 kq0Var = this.f35843c;
+        org.telegram.ui.Components.hu huVar = kq0Var.M;
+        kq0Var.f38104a = editable;
+        huVar.setText(editable);
     }
 
     @Override
-    public final void c() {
+    public final boolean e() {
+        return true;
+    }
+
+    @Override
+    public final void h(int i10, boolean z10, boolean z11) {
+        kq0 kq0Var = this.f35843c;
+        kq0Var.removeSelfFromStack();
+        if (!z10) {
+            kq0Var.V(this.f35841a, this.f35842b, z11, i10);
+        }
+    }
+
+    @Override
+    public final void a() {
+    }
+
+    @Override
+    public final void g() {
     }
 }

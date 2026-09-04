@@ -1,23 +1,35 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class x implements DialogInterface.OnDismissListener {
-    public final int f39793a;
-    public final n4 f39794b;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+public final class x implements Runnable {
+    public final int f42520a;
+    public final i4 f42521b;
+    public final String f42522c;
 
-    public x(n4 n4Var, int i10) {
-        this.f39793a = i10;
-        this.f39794b = n4Var;
+    public x(i4 i4Var, String str, int i10) {
+        this.f42520a = i10;
+        this.f42521b = i4Var;
+        this.f42522c = str;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f39793a) {
+    public final void run() {
+        switch (this.f42520a) {
             case 0:
-                this.f39794b.f36982c.d(true);
+                i4 i4Var = this.f42521b;
+                gi.o oVar = i4Var.f37220h0.f42277b0;
+                String str = this.f42522c;
+                if (TextUtils.isEmpty(str)) {
+                    str = "about:blank";
+                }
+                oVar.setText(str);
+                gi.o oVar2 = i4Var.f37220h0.f42277b0;
+                oVar2.setSelection(oVar2.getText().length());
+                AndroidUtilities.showKeyboard(i4Var.f37220h0.f42277b0);
                 return;
             default:
-                this.f39794b.f36366h0 = null;
+                of.f.m(this.f42521b.L, this.f42522c, false, null);
                 return;
         }
     }

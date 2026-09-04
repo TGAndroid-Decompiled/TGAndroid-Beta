@@ -1,37 +1,31 @@
 package org.telegram.ui;
+public final class bh1 implements Runnable {
+    public final int f34806a;
+    public final hh1 f34807b;
+    public final byte[] f34808c;
 
-import android.content.Context;
-import android.text.Editable;
-public final class bh1 extends org.telegram.ui.Cells.h3 {
-    public final int f32889x;
-    public final UserInfoActivity f32890y;
-
-    public bh1(UserInfoActivity userInfoActivity, Context context, String str, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(context, str, false, false, -1, f6Var);
-        this.f32889x = i10;
-        this.f32890y = userInfoActivity;
+    public bh1(hh1 hh1Var, byte[] bArr, int i10) {
+        this.f34806a = i10;
+        this.f34807b = hh1Var;
+        this.f34808c = bArr;
     }
 
     @Override
-    public final void b(Editable editable) {
-        switch (this.f32889x) {
+    public final void run() {
+        switch (this.f34806a) {
             case 0:
-                this.f32890y.b0(true);
-                return;
-            case 1:
-                this.f32890y.b0(true);
+                hh1.Y(this.f34807b, this.f34808c);
                 return;
             default:
-                UserInfoActivity userInfoActivity = this.f32890y;
-                userInfoActivity.b0(true);
-                userInfoActivity.e0();
+                hh1 hh1Var = this.f34807b;
+                hh1Var.w0();
+                hh1Var.V = this.f34808c;
+                hh1Var.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
+                hh1 hh1Var2 = new hh1(9, hh1Var.U);
+                hh1Var2.H = hh1Var.H;
+                hh1Var2.G = hh1Var.G;
+                hh1Var.presentFragment(hh1Var2, true);
                 return;
         }
-    }
-
-    public bh1(UserInfoActivity userInfoActivity, Context context, String str, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, str, true, false, i10, f6Var);
-        this.f32889x = 2;
-        this.f32890y = userInfoActivity;
     }
 }

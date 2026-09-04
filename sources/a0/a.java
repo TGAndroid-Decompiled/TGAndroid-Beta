@@ -1,7 +1,7 @@
 package a0;
 
-import androidx.datastore.preferences.protobuf.e1;
-import androidx.datastore.preferences.protobuf.i1;
+import androidx.datastore.preferences.protobuf.d1;
+import androidx.datastore.preferences.protobuf.h1;
 import java.util.AbstractSet;
 import java.util.Iterator;
 import java.util.Map;
@@ -20,7 +20,7 @@ public class a extends AbstractSet {
             case 1:
                 Map.Entry entry = (Map.Entry) obj;
                 if (!contains(entry)) {
-                    ((e1) this.f1b).f((Comparable) entry.getKey(), entry.getValue());
+                    ((d1) this.f1b).f((Comparable) entry.getKey(), entry.getValue());
                     return true;
                 }
                 return false;
@@ -33,7 +33,7 @@ public class a extends AbstractSet {
     public void clear() {
         switch (this.f0a) {
             case 1:
-                ((e1) this.f1b).clear();
+                ((d1) this.f1b).clear();
                 return;
             default:
                 super.clear();
@@ -46,7 +46,7 @@ public class a extends AbstractSet {
         switch (this.f0a) {
             case 1:
                 Map.Entry entry = (Map.Entry) obj;
-                Object obj2 = ((e1) this.f1b).get(entry.getKey());
+                Object obj2 = ((d1) this.f1b).get(entry.getKey());
                 Object value = entry.getValue();
                 if (obj2 != value && (obj2 == null || !obj2.equals(value))) {
                     return false;
@@ -63,7 +63,7 @@ public class a extends AbstractSet {
             case 0:
                 return new d((f) this.f1b);
             default:
-                return new i1((e1) this.f1b);
+                return new h1((d1) this.f1b);
         }
     }
 
@@ -73,7 +73,7 @@ public class a extends AbstractSet {
             case 1:
                 Map.Entry entry = (Map.Entry) obj;
                 if (contains(entry)) {
-                    ((e1) this.f1b).remove(entry.getKey());
+                    ((d1) this.f1b).remove(entry.getKey());
                     return true;
                 }
                 return false;
@@ -86,9 +86,9 @@ public class a extends AbstractSet {
     public final int size() {
         switch (this.f0a) {
             case 0:
-                return ((f) this.f1b).f25c;
+                return ((f) this.f1b).f31c;
             default:
-                return ((e1) this.f1b).size();
+                return ((d1) this.f1b).size();
         }
     }
 }

@@ -1,379 +1,235 @@
 package yf;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.os.Build;
-import android.text.TextPaint;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import dg.f0;
-import k7.b6;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import b2.n1;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.j6;
-public final class e extends FrameLayout {
-    public final Paint f47266a;
-    public final Paint f47267b;
-    public final ImageView f47268c;
-    public final ImageView d;
-    public final ImageView e;
-    public String f47269f;
-    public final TextPaint h;
-    public float f47270n;
-    public final RectF f47271r;
-    public float f47272s;
-    public d v;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.xi0;
+import org.telegram.ui.q31;
+public final class e {
+    public static int A;
+    public static a5.a B;
+    public static boolean v;
+    public static volatile boolean f50066x;
+    public static ThreadPoolExecutor f50068z;
+    public final BitmapDrawable f50069a;
+    public final int f50070b;
+    public final int f50071c;
+    public final AtomicInteger d = new AtomicInteger(0);
+    public final ArrayList f50072e;
+    public final boolean f50073f;
+    public byte[] f50074g;
+    public final Object h;
+    public int f50075i;
+    public boolean f50076j;
+    public volatile boolean f50077k;
+    public final int f50078l;
+    public final File f50079m;
+    public int f50080n;
+    public final AtomicBoolean f50081o;
+    public final rg.b0 f50082p;
+    public volatile boolean f50083q;
+    public volatile boolean f50084r;
+    public RandomAccessFile f50085s;
+    public BitmapFactory.Options f50086t;
+    public Bitmap f50087u;
+    public static final ConcurrentHashMap f50065w = new ConcurrentHashMap();
+    public static final int f50067y = Utilities.clamp(Runtime.getRuntime().availableProcessors() - 2, 6, 1);
 
-    public e(Context context) {
-        super(context);
-        this.f47271r = new RectF(0.0f, 0.0f, 0.0f, 0.0f);
-        Paint paint = new Paint();
-        this.f47266a = paint;
-        Paint.Style style = Paint.Style.FILL;
-        paint.setStyle(style);
-        paint.setColor(-1);
-        paint.setAlpha(255);
-        paint.setAntiAlias(true);
-        Paint paint2 = new Paint();
-        this.f47267b = paint2;
-        paint2.setStyle(style);
-        paint2.setColor(-11420173);
-        paint2.setAlpha(255);
-        paint2.setAntiAlias(true);
-        ImageView imageView = new ImageView(context);
-        this.e = imageView;
-        imageView.setImageResource(R.drawable.msg_photo_flip);
-        imageView.setBackgroundDrawable(j6.f0(1090519039, 1, -1));
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final e f47265b;
-
-            {
-                this.f47265b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        e eVar = this.f47265b;
-                        d dVar = eVar.v;
-                        if (dVar != null) {
-                            eVar.setMirrored(dVar.a());
-                            return;
-                        }
-                        return;
-                    case 1:
-                        d dVar2 = this.f47265b.v;
-                        if (dVar2 != null) {
-                            dVar2.b();
-                            return;
-                        }
-                        return;
-                    default:
-                        e eVar2 = this.f47265b;
-                        d dVar3 = eVar2.v;
-                        if (dVar3 != null) {
-                            eVar2.setRotated(dVar3.d());
-                            return;
-                        }
-                        return;
-                }
-            }
-        });
-        imageView.setOnLongClickListener(new f0(this, 6));
-        imageView.setContentDescription(LocaleController.getString(R.string.AccDescrMirror));
-        addView(imageView, b6.e(70, 64, 19));
-        ImageView imageView2 = new ImageView(context);
-        this.f47268c = imageView2;
-        imageView2.setImageResource(R.drawable.msg_photo_cropfix);
-        imageView2.setBackgroundDrawable(j6.f0(1090519039, 1, -1));
-        imageView2.setScaleType(scaleType);
-        imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final e f47265b;
-
-            {
-                this.f47265b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        e eVar = this.f47265b;
-                        d dVar = eVar.v;
-                        if (dVar != null) {
-                            eVar.setMirrored(dVar.a());
-                            return;
-                        }
-                        return;
-                    case 1:
-                        d dVar2 = this.f47265b.v;
-                        if (dVar2 != null) {
-                            dVar2.b();
-                            return;
-                        }
-                        return;
-                    default:
-                        e eVar2 = this.f47265b;
-                        d dVar3 = eVar2.v;
-                        if (dVar3 != null) {
-                            eVar2.setRotated(dVar3.d());
-                            return;
-                        }
-                        return;
-                }
-            }
-        });
-        imageView2.setVisibility(8);
-        imageView2.setContentDescription(LocaleController.getString(R.string.AccDescrAspectRatio));
-        addView(imageView2, b6.e(70, 64, 19));
-        ImageView imageView3 = new ImageView(context);
-        this.d = imageView3;
-        imageView3.setImageResource(R.drawable.msg_photo_rotate);
-        imageView3.setBackgroundDrawable(j6.f0(1090519039, 1, -1));
-        imageView3.setScaleType(scaleType);
-        imageView3.setOnClickListener(new View.OnClickListener(this) {
-            public final e f47265b;
-
-            {
-                this.f47265b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        e eVar = this.f47265b;
-                        d dVar = eVar.v;
-                        if (dVar != null) {
-                            eVar.setMirrored(dVar.a());
-                            return;
-                        }
-                        return;
-                    case 1:
-                        d dVar2 = this.f47265b.v;
-                        if (dVar2 != null) {
-                            dVar2.b();
-                            return;
-                        }
-                        return;
-                    default:
-                        e eVar2 = this.f47265b;
-                        d dVar3 = eVar2.v;
-                        if (dVar3 != null) {
-                            eVar2.setRotated(dVar3.d());
-                            return;
-                        }
-                        return;
-                }
-            }
-        });
-        imageView3.setContentDescription(LocaleController.getString(R.string.AccDescrRotate));
-        addView(imageView3, b6.e(70, 64, 21));
-        TextPaint textPaint = new TextPaint(1);
-        this.h = textPaint;
-        textPaint.setColor(-1);
-        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
-        setWillNotDraw(false);
-        b(0.0f);
-    }
-
-    public final void a(Canvas canvas, int i10, float f10, int i11, int i12, boolean z4, Paint paint) {
-        int i13;
-        float f11;
-        int dp = (int) ((i11 / 2.0f) - AndroidUtilities.dp(70.0f));
-        int cos = (int) (Math.cos(Math.toRadians(90.0f - ((i10 * 5) + f10))) * dp);
-        int i14 = (i11 / 2) + cos;
-        float abs = Math.abs(cos) / dp;
-        int min = Math.min(255, Math.max(0, (int) ((1.0f - (abs * abs)) * 255.0f)));
-        if (z4) {
-            paint = this.f47267b;
+    public e(File file, c cVar, n1 n1Var, int i10, int i11, boolean z10, int i12) {
+        String str;
+        String str2;
+        RandomAccessFile randomAccessFile;
+        ArrayList arrayList = new ArrayList();
+        this.f50072e = arrayList;
+        this.h = new Object();
+        this.f50081o = new AtomicBoolean(false);
+        this.f50082p = new rg.b0(this, 9);
+        this.f50069a = (BitmapDrawable) cVar;
+        this.f50070b = i10;
+        this.f50071c = i11;
+        this.f50078l = n1Var.f2219a;
+        String name = file.getName();
+        if (f50068z == null) {
+            int i13 = f50067y;
+            f50068z = new ThreadPoolExecutor(i13, i13, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue());
         }
-        Paint paint2 = paint;
-        paint2.setAlpha(min);
-        if (z4) {
-            i13 = 4;
+        File file2 = new File(FileLoader.checkDirectory(4), "acache");
+        boolean z11 = true;
+        if (!v) {
+            file2.mkdir();
+            v = true;
+        }
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(name);
+        sb2.append("_");
+        sb2.append(i10);
+        sb2.append("_");
+        sb2.append(i11);
+        if (z10) {
+            str = "_nolimit";
         } else {
-            i13 = 2;
+            str = " ";
         }
-        if (z4) {
-            f11 = 16.0f;
+        sb2.append(str);
+        if (i12 != 0) {
+            str2 = i2.g.i(i12, "_fitz");
         } else {
-            f11 = 12.0f;
+            str2 = "";
         }
-        int dp2 = AndroidUtilities.dp(f11);
-        int i15 = i13 / 2;
-        canvas.drawRect(i14 - i15, (i12 - dp2) / 2, i14 + i15, (i12 + dp2) / 2, paint2);
-    }
-
-    public final void b(float f10) {
-        this.f47270n = f10;
-        if (Math.abs(f10) < 0.099d) {
-            f10 = Math.abs(f10);
-        }
-        this.f47269f = String.format("%.1fº", Float.valueOf(f10));
-        invalidate();
-    }
-
-    @Override
-    public float getRotation() {
-        return this.f47270n;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Paint paint;
-        boolean z4;
-        Paint paint2;
-        boolean z10;
-        super.onDraw(canvas);
-        int width = getWidth();
-        int height = getHeight();
-        float f10 = (-this.f47270n) * 2.0f;
-        float f11 = f10 % 5.0f;
-        int floor = (int) Math.floor(f10 / 5.0f);
-        int i10 = 0;
-        while (true) {
-            Paint paint3 = this.f47267b;
-            if (i10 < 16) {
-                Paint paint4 = this.f47266a;
-                if (i10 >= floor && (i10 != 0 || f11 >= 0.0f)) {
-                    paint = paint4;
-                } else {
-                    paint = paint3;
-                }
-                if (i10 != floor && (i10 != 0 || floor != -1)) {
-                    z4 = false;
-                } else {
-                    z4 = true;
-                }
-                Canvas canvas2 = canvas;
-                a(canvas2, i10, f11, width, height, z4, paint);
-                int i11 = i10;
-                if (i11 != 0) {
-                    int i12 = -i11;
-                    if (i12 > floor) {
-                        paint2 = paint3;
-                    } else {
-                        paint2 = paint4;
-                    }
-                    if (i12 == floor + 1) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    a(canvas2, i12, f11, width, height, z10, paint2);
-                }
-                i10 = i11 + 1;
-                canvas = canvas2;
-            } else {
-                Canvas canvas3 = canvas;
-                paint3.setAlpha(255);
-                RectF rectF = this.f47271r;
-                rectF.left = (width - AndroidUtilities.dp(2.5f)) / 2;
-                rectF.top = org.telegram.ui.b.x(22.0f, height, 2);
-                rectF.right = (AndroidUtilities.dp(2.5f) + width) / 2;
-                rectF.bottom = (AndroidUtilities.dp(22.0f) + height) / 2;
-                canvas3.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paint3);
-                String str = this.f47269f;
-                TextPaint textPaint = this.h;
-                canvas3.drawText(this.f47269f, (width - textPaint.measureText(str)) / 2.0f, AndroidUtilities.dp(14.0f), textPaint);
-                return;
-            }
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(400.0f)), 1073741824), i11);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int actionMasked = motionEvent.getActionMasked();
-        float x10 = motionEvent.getX();
-        if (actionMasked == 0) {
-            this.f47272s = x10;
-            d dVar = this.v;
-            if (dVar != null) {
-                dVar.e();
-                return true;
-            }
-        } else if (actionMasked != 1 && actionMasked != 3) {
-            if (actionMasked == 2) {
-                float max = Math.max(-45.0f, Math.min(45.0f, this.f47270n + ((float) ((((this.f47272s - x10) / AndroidUtilities.density) / 3.141592653589793d) / 1.649999976158142d))));
-                if (Build.VERSION.SDK_INT >= 27) {
+        File file3 = new File(file2, a4.a.s(sb2, str2, ".pcache2"));
+        this.f50079m = file3;
+        this.f50073f = (i10 >= AndroidUtilities.dp(60.0f) || i11 >= AndroidUtilities.dp(60.0f)) ? false : false;
+        if (SharedConfig.getDevicePerformanceClass() >= 2) {
+            this.f50077k = file3.exists();
+            try {
+                if (this.f50077k) {
                     try {
-                        if ((Math.abs(max - 45.0f) < 0.001f && Math.abs(this.f47270n - 45.0f) >= 0.001f) || (Math.abs(max - (-45.0f)) < 0.001f && Math.abs(this.f47270n - (-45.0f)) >= 0.001f)) {
-                            performHapticFeedback(3, 1);
-                        } else if (Math.floor(this.f47270n / 2.5f) != Math.floor(max / 2.5f)) {
-                            AndroidUtilities.vibrateCursor(this);
+                        randomAccessFile = new RandomAccessFile(file3, "r");
+                        try {
+                            this.f50083q = randomAccessFile.readBoolean();
+                            if (this.f50083q && arrayList.isEmpty()) {
+                                randomAccessFile.seek(randomAccessFile.readInt());
+                                int readInt = randomAccessFile.readInt();
+                                d(randomAccessFile, readInt > 10000 ? 0 : readInt);
+                                if (arrayList.size() == 0) {
+                                    this.f50083q = false;
+                                    this.f50077k = false;
+                                    file3.delete();
+                                } else {
+                                    if (this.f50085s != randomAccessFile) {
+                                        a();
+                                    }
+                                    this.f50085s = randomAccessFile;
+                                }
+                            }
+                            if (this.f50085s != randomAccessFile) {
+                                randomAccessFile.close();
+                            }
+                        } catch (Throwable th2) {
+                            th = th2;
+                            try {
+                                th.printStackTrace();
+                                this.f50079m.delete();
+                                this.f50077k = false;
+                                if (this.f50085s != randomAccessFile && randomAccessFile != null) {
+                                    randomAccessFile.close();
+                                }
+                            } catch (Throwable th3) {
+                                try {
+                                    if (this.f50085s != randomAccessFile && randomAccessFile != null) {
+                                        randomAccessFile.close();
+                                    }
+                                } catch (IOException e7) {
+                                    e7.printStackTrace();
+                                }
+                                throw th3;
+                            }
                         }
-                    } catch (Exception unused) {
+                    } catch (Throwable th4) {
+                        th = th4;
+                        randomAccessFile = null;
                     }
                 }
-                if (Math.abs(max - this.f47270n) > 0.001d) {
-                    if (Math.abs(max) < 0.05d) {
-                        max = 0.0f;
-                    }
-                    b(max);
-                    d dVar2 = this.v;
-                    if (dVar2 != null) {
-                        dVar2.f(this.f47270n);
-                    }
-                    this.f47272s = x10;
-                }
+            } catch (IOException e10) {
+                e10.printStackTrace();
             }
         } else {
-            d dVar3 = this.v;
-            if (dVar3 != null) {
-                dVar3.c();
+            this.f50077k = false;
+            this.f50083q = false;
+        }
+    }
+
+    public static void c() {
+        int i10 = A - 1;
+        A = i10;
+        if (i10 <= 0) {
+            A = 0;
+            xi0.T0.postRunnable(new q31(16));
+        }
+    }
+
+    public final void a() {
+        RandomAccessFile randomAccessFile = this.f50085s;
+        if (randomAccessFile != null) {
+            try {
+                randomAccessFile.close();
+            } catch (IOException e7) {
+                e7.printStackTrace();
             }
-            AndroidUtilities.makeAccessibilityAnnouncement(String.format("%.1f°", Float.valueOf(this.f47270n)));
-            return true;
+        }
+    }
+
+    public final void b() {
+        throw new UnsupportedOperationException("Method not decompiled: yf.e.b():void");
+    }
+
+    public final void d(RandomAccessFile randomAccessFile, int i10) {
+        if (i10 != 0) {
+            byte[] bArr = new byte[i10 * 8];
+            randomAccessFile.read(bArr);
+            ByteBuffer wrap = ByteBuffer.wrap(bArr);
+            for (int i11 = 0; i11 < i10; i11++) {
+                d dVar = new d(i11);
+                dVar.f50056c = wrap.getInt();
+                dVar.f50055b = wrap.getInt();
+                this.f50072e.add(dVar);
+            }
+        }
+    }
+
+    public final byte[] e(d dVar) {
+        boolean z10;
+        byte[] bArr;
+        if (this.f50073f && Thread.currentThread().getName().startsWith("DispatchQueuePoolThreadSafety_")) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z10) {
+            bArr = (byte[]) f50065w.get(Thread.currentThread());
+        } else {
+            bArr = this.f50074g;
+        }
+        if (bArr != null && bArr.length >= dVar.f50055b) {
+            return bArr;
+        }
+        byte[] bArr2 = new byte[(int) (dVar.f50055b * 1.3f)];
+        if (z10) {
+            f50065w.put(Thread.currentThread(), bArr2);
+            if (!f50066x) {
+                f50066x = true;
+                AndroidUtilities.runOnUIThread(this.f50082p, 5000L);
+            }
+            return bArr2;
+        }
+        this.f50074g = bArr2;
+        return bArr2;
+    }
+
+    public final int f(android.graphics.Bitmap r11, int r12) {
+        throw new UnsupportedOperationException("Method not decompiled: yf.e.f(android.graphics.Bitmap, int):int");
+    }
+
+    public final boolean g() {
+        if (this.f50083q && this.f50077k) {
+            return false;
         }
         return true;
-    }
-
-    public void setAspectLock(boolean z4) {
-        PorterDuffColorFilter porterDuffColorFilter;
-        if (z4) {
-            porterDuffColorFilter = new PorterDuffColorFilter(-11420173, PorterDuff.Mode.MULTIPLY);
-        } else {
-            porterDuffColorFilter = null;
-        }
-        this.f47268c.setColorFilter(porterDuffColorFilter);
-    }
-
-    public void setListener(d dVar) {
-        this.v = dVar;
-    }
-
-    public void setMirrored(boolean z4) {
-        PorterDuffColorFilter porterDuffColorFilter = null;
-        if (z4) {
-            porterDuffColorFilter = new PorterDuffColorFilter(j6.w0(null, j6.f20279zf, false), PorterDuff.Mode.MULTIPLY);
-        }
-        this.e.setColorFilter(porterDuffColorFilter);
-    }
-
-    public void setRotated(boolean z4) {
-        PorterDuffColorFilter porterDuffColorFilter = null;
-        if (z4) {
-            porterDuffColorFilter = new PorterDuffColorFilter(j6.w0(null, j6.f20279zf, false), PorterDuff.Mode.MULTIPLY);
-        }
-        this.d.setColorFilter(porterDuffColorFilter);
-    }
-
-    public void setFreeform(boolean z4) {
     }
 }

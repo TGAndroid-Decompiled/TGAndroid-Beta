@@ -1,75 +1,77 @@
 package w2;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import java.net.MalformedURLException;
-import java.net.URL;
-import org.telegram.ui.Components.tp0;
-import vh.w2;
-import w9.d;
-import x2.c;
-import x2.f;
-import x2.g;
-import x2.h;
-import x2.i;
-import x2.j;
-import x2.k;
-import x2.l;
-import x2.n;
-import x2.o;
-import x2.q;
-import x2.r;
-import x2.s;
-import x2.v;
-import z2.e;
-public final class b implements e {
-    public final tp0 f46444a;
-    public final ConnectivityManager f46445b;
-    public final Context f46446c;
-    public final URL d;
-    public final h3.a e;
-    public final h3.a f46447f;
-    public final int f46448g;
+import h2.g;
+import h2.h;
+import h2.j;
+import java.nio.ByteBuffer;
+import z3.f;
+import z3.i;
+import z3.m;
+public final class b extends j implements z3.e {
+    public final m f47912o;
 
-    public b(Context context, h3.a aVar, h3.a aVar2) {
-        d dVar = new d();
-        c cVar = c.f46724a;
-        dVar.b(o.class, cVar);
-        dVar.b(i.class, cVar);
-        f fVar = f.f46734a;
-        dVar.b(s.class, fVar);
-        dVar.b(l.class, fVar);
-        x2.d dVar2 = x2.d.f46726a;
-        dVar.b(q.class, dVar2);
-        dVar.b(j.class, dVar2);
-        x2.b bVar = x2.b.f46714a;
-        dVar.b(x2.a.class, bVar);
-        dVar.b(h.class, bVar);
-        x2.e eVar = x2.e.f46729a;
-        dVar.b(r.class, eVar);
-        dVar.b(k.class, eVar);
-        g gVar = g.f46739a;
-        dVar.b(v.class, gVar);
-        dVar.b(n.class, gVar);
-        dVar.d = true;
-        this.f46444a = new tp0(dVar, 23);
-        this.f46446c = context;
-        this.f46445b = (ConnectivityManager) context.getSystemService("connectivity");
-        this.d = b(a.f46440c);
-        this.e = aVar2;
-        this.f46447f = aVar;
-        this.f46448g = 130000;
+    public b(String str, m mVar) {
+        super(new i[2], new z3.j[2]);
+        boolean z10;
+        int i10 = this.f10861g;
+        g[] gVarArr = this.f10859e;
+        if (i10 == gVarArr.length) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        e2.d.g(z10);
+        for (g gVar : gVarArr) {
+            gVar.l(1024);
+        }
+        this.f47912o = mVar;
     }
 
-    public static URL b(String str) {
+    @Override
+    public final g f() {
+        return new i();
+    }
+
+    @Override
+    public final h g() {
+        return new z3.c(this);
+    }
+
+    @Override
+    public final h2.e h(Throwable th2) {
+        return new Exception("Unexpected decode error", th2);
+    }
+
+    @Override
+    public final h2.e i(g gVar, h hVar, boolean z10) {
+        i iVar = (i) gVar;
+        z3.j jVar = (z3.j) hVar;
         try {
-            return new URL(str);
-        } catch (MalformedURLException e) {
-            throw new IllegalArgumentException(w2.e("Invalid url: ", str), e);
+            ByteBuffer byteBuffer = iVar.f10847e;
+            byteBuffer.getClass();
+            byte[] array = byteBuffer.array();
+            int limit = byteBuffer.limit();
+            m mVar = this.f47912o;
+            if (z10) {
+                mVar.reset();
+            }
+            z3.d p5 = mVar.p(0, limit, array);
+            long j3 = iVar.h;
+            long j10 = iVar.v;
+            jVar.f10852c = j3;
+            jVar.f50699f = p5;
+            if (j10 != Long.MAX_VALUE) {
+                j3 = j10;
+            }
+            jVar.h = j3;
+            jVar.f10853e = false;
+            return null;
+        } catch (f e7) {
+            return e7;
         }
     }
 
-    public final y2.h a(y2.h r7) {
-        throw new UnsupportedOperationException("Method not decompiled: w2.b.a(y2.h):y2.h");
+    @Override
+    public final void b(long j3) {
     }
 }

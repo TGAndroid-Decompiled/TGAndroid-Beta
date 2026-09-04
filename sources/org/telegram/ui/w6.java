@@ -1,38 +1,37 @@
 package org.telegram.ui;
 
-import android.util.SparseArray;
-public final class w6 {
-    public long f39277a;
-    public int f39278b;
-    public long f39279c;
-    public final SparseArray d = new SparseArray();
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class w6 extends s7 {
+    public final int f41775w;
+    public final Object f41776x;
 
-    public w6(long j10) {
-        this.f39277a = j10;
+    public w6(Object obj, Context context, org.telegram.ui.ActionBar.n2 n2Var, int i10) {
+        super(context, n2Var);
+        this.f41775w = i10;
+        this.f41776x = obj;
     }
 
-    public final void a(mh.a aVar, int i10) {
-        SparseArray sparseArray = this.d;
-        x6 x6Var = (x6) sparseArray.get(i10, null);
-        if (x6Var == null) {
-            x6Var = new x6();
-            sparseArray.put(i10, x6Var);
+    public void e(boolean z10) {
+        z6 z6Var = ((x6) this.f41776x).f42597e;
+        if (z10) {
+            z6.b0(z6Var, true);
+            z6.d0(z6Var).O(null, null);
+            return;
         }
-        long j10 = aVar.f14159c;
-        x6Var.f39846a += j10;
-        this.f39279c += j10;
-        this.f39278b++;
-        x6Var.f39847b.add(aVar);
+        z6.e0(z6Var).r();
     }
 
-    public final void b(mh.a aVar) {
-        x6 x6Var = (x6) this.d.get(aVar.d, null);
-        if (x6Var != null && x6Var.f39847b.remove(aVar)) {
-            long j10 = x6Var.f39846a;
-            long j11 = aVar.f14159c;
-            x6Var.f39846a = j10 - j11;
-            this.f39279c -= j11;
-            this.f39278b--;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f41775w) {
+            case 0:
+                super.onMeasure(i10, org.telegram.messenger.wl.d(12.0f, View.MeasureSpec.getSize(i11) - (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() / 2), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((((kv) this.f41776x).h - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight, 1073741824));
+                return;
         }
     }
 }

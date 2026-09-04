@@ -1,85 +1,55 @@
 package org.telegram.ui;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.style.ReplacementSpan;
-import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public final class r70 extends ReplacementSpan {
-    public final Paint f37724a;
-    public final ImageReceiver f37725b;
-    public final float f37726c;
-    public float d;
-    public final View e;
-    public boolean f37727f;
-    public float h;
-    public int f37728n;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class r70 extends LinearLayout {
+    public final org.telegram.ui.Components.zt f40084a;
+    public boolean f40085b;
+    public int f40086c;
+    public yt d;
+    public String f40087e;
+    public final q70 f40088f;
+    public final u70 h;
 
-    public r70(View view, float f10, int i10) {
-        j5 j5Var = new j5(this, 2);
-        this.f37727f = true;
-        this.f37728n = 255;
-        ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f37725b = imageReceiver;
-        imageReceiver.setCurrentAccount(i10);
-        this.f37726c = f10;
-        Paint paint = new Paint(1);
-        this.f37724a = paint;
-        paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), 855638016);
-        View view2 = this.e;
-        if (view2 != view) {
-            if (view2 != null) {
-                view2.removeOnAttachStateChangeListener(j5Var);
-                if (this.e.isAttachedToWindow() && !view.isAttachedToWindow()) {
-                    imageReceiver.onDetachedFromWindow();
-                }
-            }
-            View view3 = this.e;
-            if ((view3 == null || !view3.isAttachedToWindow()) && view != null && view.isAttachedToWindow()) {
-                imageReceiver.onAttachedToWindow();
-            }
-            this.e = view;
-            imageReceiver.setParentView(view);
-            if (view != null) {
-                view.addOnAttachStateChangeListener(j5Var);
-            }
-        }
-    }
-
-    public final void a(float f10) {
-        float dp = AndroidUtilities.dp(f10);
-        this.d = dp;
-        this.f37725b.setRoundRadius((int) dp);
+    public r70(u70 u70Var, Context context) {
+        super(context);
+        this.h = u70Var;
+        this.f40088f = new q70(this);
+        TextView g10 = org.telegram.messenger.w1.g(context, 1, 16.0f);
+        g10.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20770j5, false));
+        g10.setText("t.me/addemoji/");
+        org.telegram.ui.Components.zt ztVar = new org.telegram.ui.Components.zt(context, null);
+        this.f40084a = ztVar;
+        ztVar.setLines(1);
+        ztVar.setSingleLine(true);
+        ztVar.setInputType(16384);
+        ztVar.setTextSize(1, 16.0f);
+        ztVar.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Ud, false));
+        ztVar.setLinkTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20740hc, false));
+        ztVar.setHighlightColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20981uf, false));
+        int i10 = org.telegram.ui.ActionBar.j6.Vd;
+        ztVar.setHintColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+        ztVar.setHintTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+        ztVar.setCursorColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Wd, false));
+        ztVar.setHandlesColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20998vf, false));
+        ztVar.setBackground(null);
+        ztVar.setHint(LocaleController.getString(R.string.AddEmojiPackLinkHint));
+        addView(g10, w7.x5.t(-2, -2, 16, 20, 0, 0, 0));
+        addView(ztVar, w7.x5.t(-1, -2, 16, -4, 0, 0, 0));
+        setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20663d6, false));
+        setPadding(0, AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f));
+        setWillNotDraw(false);
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
-        boolean z4 = this.f37727f;
-        Paint paint2 = this.f37724a;
-        if (z4 && this.f37728n != paint.getAlpha()) {
-            int alpha = paint.getAlpha();
-            this.f37728n = alpha;
-            paint2.setAlpha(alpha);
-            paint2.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.j6.l1(this.f37728n / 255.0f, 855638016));
+    public final void onDraw(Canvas canvas) {
+        if (this.f40085b) {
+            canvas.drawLine(AndroidUtilities.dp(20.0f), getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.j6.f20785k0);
         }
-        float f11 = this.h + f10;
-        float dp = (((i12 + i14) / 2.0f) + 0.0f) - (AndroidUtilities.dp(this.f37726c) / 2.0f);
-        if (this.f37727f) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(f11, dp, AndroidUtilities.dp(this.f37726c) + f11, AndroidUtilities.dp(this.f37726c) + dp);
-            float f12 = this.d;
-            canvas.drawRoundRect(rectF, f12, f12, paint2);
-        }
-        ImageReceiver imageReceiver = this.f37725b;
-        imageReceiver.setImageCoords(f11, dp, AndroidUtilities.dp(this.f37726c), AndroidUtilities.dp(this.f37726c));
-        imageReceiver.setAlpha(paint.getAlpha() / 255.0f);
-        imageReceiver.draw(canvas);
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return AndroidUtilities.dp(this.f37726c);
     }
 }

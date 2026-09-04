@@ -1,31 +1,27 @@
 package ib;
 
-import android.util.Log;
-import b6.h;
-import c5.j;
-import c9.f;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.mlkit.vision.common.internal.MobileVisionBase;
-public final class a implements OnFailureListener, f {
-    public static final a f7454a = new Object();
-    public static final a f7455b = new Object();
-    public static final a f7456c = new Object();
-
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import v7.m8;
+public final class a extends m8 {
     @Override
-    public Object d0(j jVar) {
-        return new c(jVar.x(b.class));
+    public final Method a(Class cls, Field field) {
+        throw new UnsupportedOperationException("Records are not supported on this JVM, this method should not be called");
     }
 
     @Override
-    public void onFailure(Exception exc) {
-        h hVar = MobileVisionBase.e;
-        if (Log.isLoggable(hVar.f1609b, 6)) {
-            String str = hVar.f1610c;
-            String str2 = "Error preloading model resource";
-            if (str != null) {
-                str2 = str.concat("Error preloading model resource");
-            }
-            Log.e("MobileVisionBase", str2, exc);
-        }
+    public final Constructor b(Class cls) {
+        throw new UnsupportedOperationException("Records are not supported on this JVM, this method should not be called");
+    }
+
+    @Override
+    public final String[] c(Class cls) {
+        throw new UnsupportedOperationException("Records are not supported on this JVM, this method should not be called");
+    }
+
+    @Override
+    public final boolean d(Class cls) {
+        return false;
     }
 }

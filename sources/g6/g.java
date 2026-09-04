@@ -1,37 +1,103 @@
 package g6;
 
-import b6.m;
-import com.google.android.gms.common.api.internal.v;
-import com.google.android.gms.common.api.internal.w;
-import com.google.android.gms.common.api.j;
-import com.google.android.gms.common.api.n;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
-import java.util.Arrays;
-import o5.i;
-public final class g extends j {
-    public static final com.google.android.gms.common.api.e f6481k = new com.google.android.gms.common.api.e("ModuleInstall.API", new a8.j(7), new Object());
+import android.os.Parcel;
+public abstract class g extends b8.b implements h {
+    public g() {
+        super("com.google.android.gms.cast.internal.ICastDeviceControllerListener", 1);
+    }
 
-    public final Task f(n... nVarArr) {
-        boolean z4;
-        if (nVarArr.length > 0) {
-            z4 = true;
-        } else {
-            z4 = false;
+    @Override
+    public final boolean J0(int i10, Parcel parcel, Parcel parcel2) {
+        boolean z10 = false;
+        switch (i10) {
+            case 1:
+                int readInt = parcel.readInt();
+                com.google.android.gms.internal.cast.v.b(parcel);
+                P(readInt);
+                return true;
+            case 2:
+                c6.d dVar = (c6.d) com.google.android.gms.internal.cast.v.a(parcel, c6.d.CREATOR);
+                String readString = parcel.readString();
+                String readString2 = parcel.readString();
+                if (parcel.readInt() != 0) {
+                    z10 = true;
+                }
+                com.google.android.gms.internal.cast.v.b(parcel);
+                m(dVar, readString, readString2, z10);
+                return true;
+            case 3:
+                int readInt2 = parcel.readInt();
+                com.google.android.gms.internal.cast.v.b(parcel);
+                X(readInt2);
+                return true;
+            case 4:
+                parcel.readString();
+                parcel.readDouble();
+                int i11 = com.google.android.gms.internal.cast.v.f5487a;
+                parcel.readInt();
+                com.google.android.gms.internal.cast.v.b(parcel);
+                zzn();
+                return true;
+            case 5:
+                String readString3 = parcel.readString();
+                String readString4 = parcel.readString();
+                com.google.android.gms.internal.cast.v.b(parcel);
+                T(readString3, readString4);
+                return true;
+            case 6:
+                String readString5 = parcel.readString();
+                byte[] createByteArray = parcel.createByteArray();
+                com.google.android.gms.internal.cast.v.b(parcel);
+                B0(readString5, createByteArray);
+                return true;
+            case 7:
+                int readInt3 = parcel.readInt();
+                com.google.android.gms.internal.cast.v.b(parcel);
+                c(readInt3);
+                return true;
+            case 8:
+                int readInt4 = parcel.readInt();
+                com.google.android.gms.internal.cast.v.b(parcel);
+                zzg(readInt4);
+                return true;
+            case 9:
+                int readInt5 = parcel.readInt();
+                com.google.android.gms.internal.cast.v.b(parcel);
+                zzd(readInt5);
+                return true;
+            case 10:
+                parcel.readString();
+                long readLong = parcel.readLong();
+                int readInt6 = parcel.readInt();
+                com.google.android.gms.internal.cast.v.b(parcel);
+                zzm(readInt6, readLong);
+                return true;
+            case 11:
+                parcel.readString();
+                long readLong2 = parcel.readLong();
+                com.google.android.gms.internal.cast.v.b(parcel);
+                Y(readLong2);
+                return true;
+            case 12:
+                com.google.android.gms.internal.cast.v.b(parcel);
+                z0((c) com.google.android.gms.internal.cast.v.a(parcel, c.CREATOR));
+                return true;
+            case 13:
+                com.google.android.gms.internal.cast.v.b(parcel);
+                u0((d) com.google.android.gms.internal.cast.v.a(parcel, d.CREATOR));
+                return true;
+            case 14:
+                int readInt7 = parcel.readInt();
+                com.google.android.gms.internal.cast.v.b(parcel);
+                f(readInt7);
+                return true;
+            case 15:
+                int readInt8 = parcel.readInt();
+                com.google.android.gms.internal.cast.v.b(parcel);
+                w0(readInt8);
+                return true;
+            default:
+                return false;
         }
-        m.a("Please provide at least one OptionalModuleApi.", z4);
-        for (n nVar : nVarArr) {
-            m.i(nVar, "Requested API must not be null.");
-        }
-        a e = a.e(Arrays.asList(nVarArr), false);
-        if (e.f6475a.isEmpty()) {
-            return Tasks.forResult(new f6.a(0, true));
-        }
-        v e6 = w.e();
-        e6.d = new y5.c[]{y6.b.f47197c};
-        e6.f2866a = 27301;
-        e6.f2867b = false;
-        e6.f2868c = new i(this, e);
-        return e(0, e6.e());
     }
 }

@@ -1,82 +1,102 @@
 package org.telegram.ui;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.os.Build;
 import android.view.View;
-import java.util.HashSet;
-import org.telegram.messenger.support.LongSparseIntArray;
-public final class l50 extends org.telegram.ui.Components.rl0 {
-    public final LongSparseIntArray U2;
-    public final e60 V2;
+import org.telegram.tgnet.TLRPC;
+public final class l50 implements org.telegram.ui.Components.ek0 {
+    public final Path f38190a = new Path();
+    public final Paint f38191b;
+    public final j60 f38192c;
 
-    public l50(e60 e60Var, LaunchActivity launchActivity) {
-        super(launchActivity, null);
-        this.V2 = e60Var;
-        this.U2 = new LongSparseIntArray();
+    public l50(j60 j60Var) {
+        this.f38192c = j60Var;
+        Paint paint = new Paint(1);
+        this.f38191b = paint;
+        paint.setColor(-14603467);
     }
 
     @Override
-    public final void dispatchDraw(android.graphics.Canvas r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.l50.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.V2.U2) {
-            return false;
+    public final void B(View view, ah.j1 j1Var, boolean z10, boolean z11) {
+        TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
+        String str = j1Var.f597f;
+        if (str == null) {
+            str = "👍";
         }
-        return super.drawChild(canvas, view, j10);
+        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
+        tL_textWithEntities.text = str;
+        long j3 = j1Var.f598g;
+        if (j3 != 0) {
+            tL_messageEntityCustomEmoji.document_id = j3;
+            tL_messageEntityCustomEmoji.offset = 0;
+            tL_messageEntityCustomEmoji.length = str.length();
+            tL_textWithEntities.entities.add(tL_messageEntityCustomEmoji);
+        }
+        j60 j60Var = this.f38192c;
+        j60Var.A1(tL_textWithEntities);
+        i40 i40Var = j60Var.H;
+        if (i40Var.m()) {
+            i40Var.j();
+        } else {
+            i40Var.d();
+        }
+        ah.u0 reactionsWindow = j60Var.K.getReactionsWindow();
+        if (reactionsWindow != null && !reactionsWindow.f699q) {
+            j60Var.K.getReactionsWindow().e();
+            j60Var.K.n();
+        }
     }
 
     @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        int i14;
-        super.onLayout(z4, i10, i11, i12, i13);
-        s50 s50Var = this.V2.U;
-        HashSet hashSet = s50Var.I;
-        e60 e60Var = s50Var.L;
-        HashSet hashSet2 = s50Var.H;
-        if (s50Var.G == null) {
-            hashSet2.clear();
-            hashSet2.addAll(s50Var.f5764q);
-            hashSet.clear();
-            hashSet.addAll(s50Var.f5763p);
-            s50Var.J = 0.0f;
-            s50Var.K = Float.MAX_VALUE;
-            if (hashSet2.isEmpty() && hashSet.isEmpty()) {
-                return;
-            }
-            l50 l50Var = e60Var.N;
-            int childCount = l50Var.getChildCount();
-            for (int i15 = 0; i15 < childCount; i15++) {
-                View childAt = l50Var.getChildAt(i15);
-                f2.l1 G = l50Var.G(childAt);
-                if (G != null && (i14 = G.f5777f) != 3 && i14 != 4 && i14 != 5 && i14 != 7 && !hashSet2.contains(G)) {
-                    s50Var.J = Math.max(s50Var.J, childAt.getY() + childAt.getMeasuredHeight());
-                    s50Var.K = Math.min(s50Var.K, Math.max(0.0f, childAt.getY()));
+    public final void I(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+        Paint paint = this.f38191b;
+        int i11 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
+        if (i11 > 0) {
+            canvas.drawRoundRect(rectF, f7, f7, paint);
+        } else {
+            canvas.drawRect(rectF, paint);
+        }
+        if (Build.VERSION.SDK_INT >= 29 && canvas.isHardwareAccelerated()) {
+            j60 j60Var = this.f38192c;
+            if (j60Var.Q2 != null) {
+                canvas.save();
+                if (i11 > 0) {
+                    Path path = this.f38190a;
+                    path.rewind();
+                    path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
+                    path.close();
+                    canvas.clipPath(path);
+                } else {
+                    canvas.clipRect(rectF);
                 }
+                canvas.translate(-j60Var.K.getX(), -j60Var.K.getY());
+                float f12 = j60Var.R2;
+                canvas.scale(f12, f12);
+                canvas.drawRenderNode(j60Var.Q2);
+                canvas.restore();
             }
-            s50Var.F = 0.0f;
-            l50Var.invalidate();
         }
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z4;
-        if (getVisibility() != i10) {
-            for (int i11 = 0; i11 < getChildCount(); i11++) {
-                View childAt = getChildAt(i11);
-                if (childAt instanceof org.telegram.ui.Components.voip.l) {
-                    org.telegram.ui.Components.voip.l lVar = (org.telegram.ui.Components.voip.l) childAt;
-                    if (childAt.isAttachedToWindow() && i10 == 0) {
-                        z4 = true;
-                    } else {
-                        z4 = false;
-                    }
-                    e60.N(this.V2, lVar, z4);
-                }
-            }
-        }
-        super.setVisibility(i10);
+    public final boolean S() {
+        return true;
+    }
+
+    @Override
+    public final boolean n() {
+        return false;
+    }
+
+    @Override
+    public final boolean t() {
+        return false;
+    }
+
+    @Override
+    public final void J() {
     }
 }

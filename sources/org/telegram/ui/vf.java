@@ -1,37 +1,38 @@
 package org.telegram.ui;
 
+import android.text.style.URLSpan;
 import android.view.View;
-import java.util.ArrayList;
-public final class vf implements View.OnClickListener {
-    public final int f39082a;
-    public final zn f39083b;
-    public final ArrayList f39084c;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+public final class vf implements Utilities.CallbackReturn {
+    public final int f41528a;
+    public final Object f41529b;
+    public final Object f41530c;
 
-    public vf(zn znVar, ArrayList arrayList, int i10) {
-        this.f39082a = i10;
-        this.f39083b = znVar;
-        this.f39084c = arrayList;
+    public vf(int i10, Object obj, Object obj2) {
+        this.f41528a = i10;
+        this.f41529b = obj;
+        this.f41530c = obj2;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f39082a) {
+    public final Object run(Object obj) {
+        org.telegram.ui.Cells.t1 t1Var;
+        switch (this.f41528a) {
             case 0:
-                zn znVar = this.f39083b;
-                ni niVar = new ni(znVar, znVar, znVar.getParentActivity(), znVar.f40534ba, this.f39084c);
-                niVar.setCalcMandatoryInsets(znVar.x9());
-                niVar.setDimBehind(false);
-                znVar.A7(false);
-                znVar.showDialog(niVar);
-                return;
-            default:
-                zn znVar2 = this.f39083b;
-                if (znVar2.getParentActivity() != null && znVar2.getParentActivity() != null) {
-                    new org.telegram.ui.Components.lv(znVar2, znVar2.getParentActivity(), znVar2.f40534ba, this.f39084c).show();
-                    znVar2.A7(true);
-                    return;
+                co coVar = (co) this.f41529b;
+                View view = (View) this.f41530c;
+                URLSpan uRLSpan = (URLSpan) obj;
+                MessageObject messageObject = coVar.f35229d5;
+                if (view instanceof org.telegram.ui.Cells.t1) {
+                    t1Var = (org.telegram.ui.Cells.t1) view;
+                } else {
+                    t1Var = null;
                 }
-                return;
+                coVar.U7(uRLSpan, false, messageObject, t1Var);
+                return Boolean.TRUE;
+            default:
+                return sh.c.d((View) obj, (String) this.f41529b, (String) this.f41530c, null, null);
         }
     }
 }

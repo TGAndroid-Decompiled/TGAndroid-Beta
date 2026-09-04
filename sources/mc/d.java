@@ -1,76 +1,85 @@
 package mc;
 
-import h7.u;
-import j$.util.DesugarCollections;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import k7.s;
-import pc.i;
-public final class d extends s {
-    public static final Set f13898g = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("a", "abbr", "acronym", "b", "bdo", "big", "br", "button", "cite", "code", "dfn", "em", "i", "img", "input", "kbd", "label", "map", "object", "q", "samp", "script", "select", "small", "span", "strong", "sub", "sup", "textarea", "time", "tt", "var")));
-    public static final Set h = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr")));
-    public static final Set f13899i = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("address", "article", "aside", "blockquote", "canvas", "dd", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "li", "main", "nav", "noscript", "ol", "output", "p", "pre", "section", "table", "tfoot", "ul", "video")));
-    public final db.a f13900a;
-    public final u f13901b;
-    public final ArrayList f13902c = new ArrayList(0);
-    public a d = new a("", 0, Collections.EMPTY_MAP, null);
-    public boolean e;
-    public boolean f13903f;
+import java.util.logging.Logger;
+public final class d extends b {
+    public static final Logger f16171m = Logger.getLogger(d.class.getName());
+    public int d;
+    public int f16172e;
+    public int f16173f;
+    public int f16174g;
+    public long h;
+    public long f16175i;
+    public a f16176j;
+    public ArrayList f16177k;
+    public byte[] f16178l;
 
-    public d(db.a aVar, u uVar) {
-        this.f13900a = aVar;
-        this.f13901b = uVar;
-    }
-
-    public static Map a(i iVar) {
-        boolean z4;
-        oc.b bVar = iVar.v;
-        int i10 = bVar.f16522a;
-        if (i10 > 0) {
-            HashMap hashMap = new HashMap(i10);
-            int i11 = 0;
-            while (true) {
-                if (i11 < bVar.f16522a) {
-                    z4 = true;
-                } else {
-                    z4 = false;
-                }
-                if (z4) {
-                    String str = bVar.f16524c[i11];
-                    String str2 = bVar.f16523b[i11];
-                    if (str == null) {
-                        str = "";
-                    }
-                    ?? obj = new Object();
-                    if (str2 != null) {
-                        obj.f16519a = str2.trim();
-                        if (str2.length() != 0) {
-                            obj.f16520b = str;
-                            obj.f16521c = bVar;
-                            i11++;
-                            hashMap.put(obj.f16519a.toLowerCase(Locale.US), obj.f16520b);
-                        } else {
-                            throw new IllegalArgumentException("String must not be empty");
-                        }
-                    } else {
-                        throw new IllegalArgumentException("Object must not be null");
-                    }
-                } else {
-                    return DesugarCollections.unmodifiableMap(hashMap);
-                }
+    @Override
+    public final void b(ByteBuffer byteBuffer) {
+        b a2;
+        this.d = e5.b.a(byteBuffer.get());
+        int a10 = e5.b.a(byteBuffer.get());
+        this.f16172e = a10 >>> 2;
+        this.f16173f = (a10 >> 1) & 1;
+        this.f16174g = e5.b.a(byteBuffer.get()) + (e5.b.h(byteBuffer) << 8);
+        this.h = e5.b.i(byteBuffer);
+        this.f16175i = e5.b.i(byteBuffer);
+        int remaining = byteBuffer.remaining();
+        Logger logger = f16171m;
+        if (remaining > 2) {
+            int position = byteBuffer.position();
+            b a11 = k.a(this.d, byteBuffer);
+            int position2 = byteBuffer.position() - position;
+            logger.finer(a11 + " - DecoderConfigDescr1 read: " + position2 + ", size: " + Integer.valueOf(a11.a()));
+            int a12 = a11.a();
+            if (position2 < a12) {
+                byte[] bArr = new byte[a12 - position2];
+                this.f16178l = bArr;
+                byteBuffer.get(bArr);
             }
-        } else {
-            return Collections.EMPTY_MAP;
+            if (a11 instanceof a) {
+                this.f16176j = (a) a11;
+            }
+        }
+        while (byteBuffer.remaining() > 2) {
+            long position3 = byteBuffer.position();
+            logger.finer(k.a(this.d, byteBuffer) + " - DecoderConfigDescr2 read: " + (byteBuffer.position() - position3) + ", size: " + Integer.valueOf(a2.a()));
         }
     }
 
-    public final void b(java.lang.Appendable r17, java.lang.String r18) {
-        throw new UnsupportedOperationException("Method not decompiled: mc.d.b(java.lang.Appendable, java.lang.String):void");
+    public final String toString() {
+        String obj;
+        StringBuilder sb2 = new StringBuilder("DecoderConfigDescriptor{objectTypeIndication=");
+        sb2.append(this.d);
+        sb2.append(", streamType=");
+        sb2.append(this.f16172e);
+        sb2.append(", upStream=");
+        sb2.append(this.f16173f);
+        sb2.append(", bufferSizeDB=");
+        sb2.append(this.f16174g);
+        sb2.append(", maxBitRate=");
+        sb2.append(this.h);
+        sb2.append(", avgBitRate=");
+        sb2.append(this.f16175i);
+        sb2.append(", decoderSpecificInfo=null, audioSpecificInfo=");
+        sb2.append(this.f16176j);
+        sb2.append(", configDescriptorDeadBytes=");
+        byte[] bArr = this.f16178l;
+        if (bArr == null) {
+            bArr = new byte[0];
+        }
+        sb2.append(e5.b.c(0, bArr));
+        sb2.append(", profileLevelIndicationDescriptors=");
+        ArrayList arrayList = this.f16177k;
+        if (arrayList == null) {
+            obj = "null";
+        } else {
+            obj = Arrays.asList(arrayList).toString();
+        }
+        sb2.append(obj);
+        sb2.append('}');
+        return sb2.toString();
     }
 }

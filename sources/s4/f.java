@@ -1,45 +1,91 @@
 package s4;
 
-import h5.d0;
-public final class f {
-    public final String f44069a;
-    public final String f44070b;
-    public final String f44071c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+public final class f extends AnimatorListenerAdapter {
+    public final int f45773a = 1;
+    public final c1 f45774b;
+    public final View f45775c;
+    public final ViewPropertyAnimator d;
+    public final j f45776e;
 
-    public f(String str, String str2, String str3) {
-        this.f44069a = str;
-        this.f44070b = str2;
-        this.f44071c = str3;
+    public f(j jVar, c1 c1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
+        this.f45776e = jVar;
+        this.f45774b = c1Var;
+        this.d = viewPropertyAnimator;
+        this.f45775c = view;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f45773a) {
+            case 1:
+                View view = this.f45775c;
+                view.setAlpha(1.0f);
+                if (this.f45776e.A(view) > 0.0f) {
+                    view.setScaleX(1.0f);
+                    view.setScaleY(1.0f);
+                    return;
+                }
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
-        if (obj != null && f.class == obj.getClass()) {
-            f fVar = (f) obj;
-            if (d0.a(this.f44069a, fVar.f44069a) && d0.a(this.f44070b, fVar.f44070b) && d0.a(this.f44071c, fVar.f44071c)) {
-                return true;
-            }
-        }
-        return false;
     }
 
-    public final int hashCode() {
-        int i10;
-        int hashCode = this.f44069a.hashCode() * 31;
-        int i11 = 0;
-        String str = this.f44070b;
-        if (str != null) {
-            i10 = str.hashCode();
-        } else {
-            i10 = 0;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f45773a) {
+            case 0:
+                this.d.setListener(null);
+                View view = this.f45775c;
+                view.setAlpha(1.0f);
+                j jVar = this.f45776e;
+                if (jVar.A(view) > 0.0f) {
+                    view.setScaleX(1.0f);
+                    view.setScaleY(1.0f);
+                }
+                view.setTranslationX(0.0f);
+                view.setTranslationY(0.0f);
+                jVar.Q();
+                c1 c1Var = this.f45774b;
+                jVar.d(c1Var);
+                jVar.A.remove(c1Var);
+                jVar.G();
+                return;
+            default:
+                this.d.setListener(null);
+                j jVar2 = this.f45776e;
+                jVar2.M();
+                c1 c1Var2 = this.f45774b;
+                jVar2.u(c1Var2);
+                jVar2.f45812y.remove(c1Var2);
+                jVar2.G();
+                return;
         }
-        int i12 = (hashCode + i10) * 31;
-        String str2 = this.f44071c;
-        if (str2 != null) {
-            i11 = str2.hashCode();
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f45773a) {
+            case 0:
+                return;
+            default:
+                this.f45776e.getClass();
+                return;
         }
-        return i12 + i11;
+    }
+
+    public f(j jVar, c1 c1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
+        this.f45776e = jVar;
+        this.f45774b = c1Var;
+        this.f45775c = view;
+        this.d = viewPropertyAnimator;
+    }
+
+    private final void a(Animator animator) {
     }
 }

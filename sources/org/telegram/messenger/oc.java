@@ -1,24 +1,33 @@
 package org.telegram.messenger;
-public final class oc implements Runnable {
-    public final int f17992a;
-    public final MessagesController f17993b;
-    public final boolean f17994c;
 
-    public oc(int i10, MessagesController messagesController, boolean z4) {
-        this.f17992a = i10;
-        this.f17993b = messagesController;
-        this.f17994c = z4;
+import org.telegram.tgnet.TLObject;
+public final class oc implements Runnable {
+    public final int f18564a = 1;
+    public final MessagesController f18565b;
+    public final long f18566c;
+    public final TLObject d;
+
+    public oc(MessagesController messagesController, long j3, TLObject tLObject) {
+        this.f18565b = messagesController;
+        this.f18566c = j3;
+        this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f17992a) {
+        switch (this.f18564a) {
             case 0:
-                this.f17993b.lambda$checkPromoInfo$164(this.f17994c);
+                this.f18565b.lambda$deleteUserPhoto$114(this.d, this.f18566c);
                 return;
             default:
-                this.f17993b.lambda$removeFolderTemporarily$480(this.f17994c);
+                this.f18565b.lambda$loadPeerSettings$79(this.f18566c, this.d);
                 return;
         }
+    }
+
+    public oc(MessagesController messagesController, TLObject tLObject, long j3) {
+        this.f18565b = messagesController;
+        this.d = tLObject;
+        this.f18566c = j3;
     }
 }

@@ -1,30 +1,22 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.ContactsController;
-public final class hj implements oj {
-    public final int f25428a;
-    public final ContactsController.Contact f25429b;
+import android.content.Context;
+import android.view.View;
+public final class hj extends s4.d0 {
+    public final ci.k f26739r;
 
-    public hj(ContactsController.Contact contact, int i10) {
-        this.f25428a = i10;
-        this.f25429b = contact;
+    public hj(ci.k kVar, Context context) {
+        super(context);
+        this.f26739r = kVar;
     }
 
     @Override
-    public final String run() {
-        switch (this.f25428a) {
-            case 0:
-                ContactsController.Contact contact = this.f25429b;
-                if (contact.phones.isEmpty()) {
-                    return "";
-                }
-                return se.b.c().b(contact.phones.get(0));
-            default:
-                ContactsController.Contact contact2 = this.f25429b;
-                if (contact2.phones.isEmpty()) {
-                    return "";
-                }
-                return se.b.c().b(contact2.phones.get(0));
-        }
+    public final int k(int i10, View view) {
+        return org.telegram.messenger.w1.z(7.0f, ((jj) this.f26739r.R).f27513n.getPaddingTop(), super.k(i10, view));
+    }
+
+    @Override
+    public final int m(int i10) {
+        return super.m(i10) * 2;
     }
 }

@@ -1,13 +1,25 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import org.telegram.messenger.MediaController;
-public final class lt0 extends dg.q1 {
-    public final PhotoViewer H;
+public final class lt0 extends org.telegram.ui.Components.n71 {
+    public final PhotoViewer f38479h0;
 
-    public lt0(PhotoViewer photoViewer, Context context, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, MediaController.CropState cropState) {
-        super(context, i10, bitmap, bitmap2, i11, cropState);
-        this.H = photoViewer;
+    public lt0(PhotoViewer photoViewer, Context context, qr0 qr0Var) {
+        super(context, qr0Var);
+        this.f38479h0 = photoViewer;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        PhotoViewer.X(this.f38479h0);
+    }
+
+    @Override
+    public final void setVisibility(int i10) {
+        super.setVisibility(i10);
+        if (i10 == 0) {
+            PhotoViewer.X(this.f38479h0);
+        }
     }
 }

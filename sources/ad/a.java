@@ -1,26 +1,59 @@
 package ad;
-public abstract class a {
-    public static final Integer f148a;
 
-    static {
-        Integer num;
-        Object obj;
-        Integer num2 = null;
-        try {
-            obj = Class.forName("android.os.Build$VERSION").getField("SDK_INT").get(null);
-        } catch (Throwable unused) {
+import java.util.ArrayList;
+import java.util.Map;
+public final class a extends c {
+    public final a f402e;
+    public ArrayList f403f;
+
+    public a(String str, int i10, Map map, a aVar) {
+        super(i10, str, map);
+        this.f402e = aVar;
+    }
+
+    @Override
+    public final Map a() {
+        return this.f406c;
+    }
+
+    public final void b(int i10) {
+        if (this.d > -1) {
+            return;
         }
-        if (obj instanceof Integer) {
-            num = (Integer) obj;
-            if (num != null && num.intValue() > 0) {
-                num2 = num;
+        this.d = i10;
+        ArrayList arrayList = this.f403f;
+        if (arrayList != null) {
+            int size = arrayList.size();
+            int i11 = 0;
+            while (i11 < size) {
+                Object obj = arrayList.get(i11);
+                i11++;
+                ((a) obj).b(i10);
             }
-            f148a = num2;
         }
-        num = null;
-        if (num != null) {
-            num2 = num;
+    }
+
+    public final String toString() {
+        String str;
+        StringBuilder sb2 = new StringBuilder("BlockImpl{name='");
+        sb2.append(this.f404a);
+        sb2.append("', start=");
+        sb2.append(this.f405b);
+        sb2.append(", end=");
+        sb2.append(this.d);
+        sb2.append(", attributes=");
+        sb2.append(this.f406c);
+        sb2.append(", parent=");
+        a aVar = this.f402e;
+        if (aVar != null) {
+            str = aVar.f404a;
+        } else {
+            str = null;
         }
-        f148a = num2;
+        sb2.append(str);
+        sb2.append(", children=");
+        sb2.append(this.f403f);
+        sb2.append('}');
+        return sb2.toString();
     }
 }

@@ -1,23 +1,33 @@
 package k2;
+public final class f implements Runnable {
+    public final int f14571a;
+    public final n4.y f14572b;
+    public final Exception f14573c;
 
-import android.animation.TypeEvaluator;
-public final class f implements TypeEvaluator {
-    public static final f f9625a = new Object();
+    public f(n4.y yVar, Exception exc, int i10) {
+        this.f14571a = i10;
+        this.f14572b = yVar;
+        this.f14573c = exc;
+    }
 
     @Override
-    public final Object evaluate(float f10, Object obj, Object obj2) {
-        int intValue = ((Integer) obj).intValue();
-        float f11 = ((intValue >> 24) & 255) / 255.0f;
-        int intValue2 = ((Integer) obj2).intValue();
-        float pow = (float) Math.pow(((intValue >> 16) & 255) / 255.0f, 2.2d);
-        float pow2 = (float) Math.pow(((intValue >> 8) & 255) / 255.0f, 2.2d);
-        float pow3 = (float) Math.pow((intValue & 255) / 255.0f, 2.2d);
-        float pow4 = (float) Math.pow(((intValue2 >> 16) & 255) / 255.0f, 2.2d);
-        float w10 = e2.c.w(((intValue2 >> 24) & 255) / 255.0f, f11, f10, f11);
-        float w11 = e2.c.w(pow4, pow, f10, pow);
-        float w12 = e2.c.w((float) Math.pow(((intValue2 >> 8) & 255) / 255.0f, 2.2d), pow2, f10, pow2);
-        float w13 = e2.c.w((float) Math.pow((intValue2 & 255) / 255.0f, 2.2d), pow3, f10, pow3);
-        int round = Math.round(((float) Math.pow(w11, 0.45454545454545453d)) * 255.0f) << 16;
-        return Integer.valueOf(Math.round(((float) Math.pow(w13, 0.45454545454545453d)) * 255.0f) | round | (Math.round(w10 * 255.0f) << 24) | (Math.round(((float) Math.pow(w12, 0.45454545454545453d)) * 255.0f) << 8));
+    public final void run() {
+        int i10 = this.f14571a;
+        Exception exc = this.f14573c;
+        n4.y yVar = this.f14572b;
+        switch (i10) {
+            case 0:
+                String str = e2.d0.f8737a;
+                j2.f fVar = ((i2.c0) ((j) yVar.f16497c)).f11471a.f11533s;
+                j2.a p5 = fVar.p();
+                fVar.q(p5, 1029, new i0.b(p5, exc, 29));
+                return;
+            default:
+                String str2 = e2.d0.f8737a;
+                j2.f fVar2 = ((i2.c0) ((j) yVar.f16497c)).f11471a.f11533s;
+                j2.a p10 = fVar2.p();
+                fVar2.q(p10, 1014, new j2.c(p10, exc, 23));
+                return;
+        }
     }
 }

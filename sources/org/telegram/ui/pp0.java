@@ -1,46 +1,43 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class pp0 implements lq0 {
-    public final HashMap f37205a;
-    public final ArrayList f37206b;
-    public final wp0 f37207c;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class pp0 extends s4.s0 {
+    public final int f39613a;
+    public final vp0 f39614b;
 
-    public pp0(wp0 wp0Var, HashMap hashMap, ArrayList arrayList) {
-        this.f37207c = wp0Var;
-        this.f37205a = hashMap;
-        this.f37206b = arrayList;
+    public pp0(vp0 vp0Var, int i10) {
+        this.f39614b = vp0Var;
+        this.f39613a = i10;
     }
 
     @Override
-    public final void c(Editable editable) {
-        wp0 wp0Var = this.f37207c;
-        org.telegram.ui.Components.cu cuVar = wp0Var.J;
-        wp0Var.f39747a = editable;
-        cuVar.setText(editable);
-    }
-
-    @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final void f(int i10, boolean z4, boolean z10) {
-        wp0 wp0Var = this.f37207c;
-        wp0Var.removeSelfFromStack();
-        if (!z4) {
-            wp0Var.V(this.f37205a, this.f37206b, z10, i10);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        zh.j5 j5Var;
+        bh.f fVar;
+        vp0 vp0Var = this.f39614b;
+        bq0 bq0Var = vp0Var.f41619p0;
+        if (i11 != 0) {
+            bq0Var.D0(1);
         }
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void d() {
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = bq0Var.f34867f0) != null) {
+            fVar.f(i10, i11);
+        }
+        vp0Var.h();
+        if (vp0Var.K != null) {
+            if (vp0Var.J != null && vp0Var.c()) {
+                vp0Var.J.g(false);
+                return;
+            }
+            return;
+        }
+        if (this.f39613a == 1) {
+            j5Var = bq0Var.f34861c;
+        } else {
+            j5Var = bq0Var.f34859b;
+        }
+        if (j5Var != null && vp0Var.c()) {
+            j5Var.a();
+        }
     }
 }

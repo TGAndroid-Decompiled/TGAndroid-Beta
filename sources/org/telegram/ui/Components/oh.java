@@ -1,71 +1,65 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.view.View;
+import android.view.KeyEvent;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class oh extends View {
-    public final int f27568a;
-    public final li f27569b;
+import org.telegram.messenger.Utilities;
+public final class oh implements o1.g {
+    public final int f29050a = 0;
+    public final boolean f29051b;
+    public final float f29052c;
+    public final float d;
+    public final KeyEvent.Callback f29053e;
 
-    public oh(li liVar, Context context, int i10) {
-        super(context);
-        this.f27568a = i10;
-        this.f27569b = liVar;
+    public oh(vi viVar, float f7, float f10, boolean z10) {
+        this.f29053e = viVar;
+        this.f29052c = f7;
+        this.d = f10;
+        this.f29051b = z10;
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        switch (this.f27568a) {
+    public final void a(o1.h hVar, float f7, float f10) {
+        switch (this.f29050a) {
             case 0:
-                super.draw(canvas);
-                this.f27569b.Y.draw(canvas);
+                vi viVar = (vi) this.f29053e;
+                LinearLayout linearLayout = viVar.l1;
+                LinearLayout linearLayout2 = viVar.f31303n1;
+                float f11 = f7 / 500.0f;
+                viVar.f31275e0.set(viVar.f31340y0, Float.valueOf(f11));
+                viVar.X0.setAlpha(AndroidUtilities.lerp(this.f29052c, this.d, f11));
+                viVar.X1(viVar.f31340y0, 0);
+                viVar.X1(viVar.f31343z0, 0);
+                if (!(viVar.f31343z0 instanceof qm) || this.f29051b) {
+                    f11 = 1.0f - f11;
+                }
+                float clamp = Utilities.clamp(f11, 1.0f, 0.0f);
+                linearLayout2.setAlpha(clamp);
+                float f12 = 1.0f - clamp;
+                linearLayout.setAlpha(f12);
+                linearLayout.setTranslationX(clamp * (-AndroidUtilities.dp(16.0f)));
+                linearLayout2.setTranslationX(f12 * AndroidUtilities.dp(16.0f));
                 return;
             default:
-                super.draw(canvas);
+                xo0 xo0Var = (xo0) this.f29053e;
+                boolean z10 = this.f29051b;
+                if (z10) {
+                    if (f7 > this.f29052c / 2.0f || !xo0Var.f32642s) {
+                        return;
+                    }
+                } else if (f7 < this.d / 2.0f || !xo0Var.f32641r) {
+                    return;
+                }
+                xo0Var.f32642s = !z10;
+                xo0Var.f32641r = z10;
                 return;
         }
     }
 
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f27568a) {
-            case 1:
-                li liVar = this.f27569b;
-                String format = String.format("%d", Integer.valueOf(Math.max(1, liVar.f26744v0.getSelectedItemsCount())));
-                int ceil = (int) Math.ceil(liVar.G0.measureText(format));
-                int max = Math.max(AndroidUtilities.dp(16.0f) + ceil, AndroidUtilities.dp(24.0f));
-                int measuredWidth = getMeasuredWidth() / 2;
-                int themedColor = liVar.getThemedColor(org.telegram.ui.ActionBar.j6.C5);
-                liVar.G0.setColor(i0.a.k(themedColor, (int) (((liVar.S0 * 0.42d) + 0.58d) * Color.alpha(themedColor))));
-                liVar.I0.setColor(liVar.getThemedColor(org.telegram.ui.ActionBar.j6.f19952h5));
-                int i10 = max / 2;
-                int i11 = measuredWidth - i10;
-                int i12 = i10 + measuredWidth;
-                liVar.H0.set(i11, 0.0f, i12, getMeasuredHeight());
-                canvas.drawRoundRect(liVar.H0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), liVar.I0);
-                liVar.I0.setColor(liVar.getThemedColor(org.telegram.ui.ActionBar.j6.W9));
-                liVar.H0.set(AndroidUtilities.dp(2.0f) + i11, AndroidUtilities.dp(2.0f), i12 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
-                canvas.drawRoundRect(liVar.H0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), liVar.I0);
-                canvas.drawText(format, measuredWidth - (ceil / 2), AndroidUtilities.dp(16.2f), liVar.G0);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f27568a) {
-            case 0:
-                super.onSizeChanged(i10, i11, i12, i13);
-                this.f27569b.Y.setBounds(0, (i11 - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(48.0f), i10, i11);
-                return;
-            default:
-                super.onSizeChanged(i10, i11, i12, i13);
-                return;
-        }
+    public oh(xo0 xo0Var, boolean z10, float f7, float f10) {
+        this.f29053e = xo0Var;
+        this.f29051b = z10;
+        this.f29052c = f7;
+        this.d = f10;
     }
 }

@@ -1,162 +1,80 @@
 package n7;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
 import java.util.ListIterator;
-import java.util.RandomAccess;
-public abstract class i extends e implements List, RandomAccess {
-    public static final g f14446b = new g(m.e, 0);
+import java.util.NoSuchElementException;
+public final class i extends d0 implements ListIterator {
+    public final int f16638a;
+    public int f16639b;
+    public final m f16640c;
 
-    public static m r(int i10, Object[] objArr) {
-        if (i10 == 0) {
-            return m.e;
+    public i(m mVar, int i10) {
+        int size = mVar.size();
+        if (i10 >= 0 && i10 <= size) {
+            this.f16638a = size;
+            this.f16639b = i10;
+            this.f16640c = mVar;
+            return;
         }
-        return new m(i10, objArr);
+        throw new IndexOutOfBoundsException(a.n(i10, size, "index"));
+    }
+
+    public final Object a(int i10) {
+        return this.f16640c.get(i10);
     }
 
     @Override
-    public final void add(int i10, Object obj) {
+    public final void add(Object obj) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public final boolean addAll(int i10, Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (indexOf(obj) >= 0) {
+    public final boolean hasNext() {
+        if (this.f16639b < this.f16638a) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof List) {
-                List list = (List) obj;
-                int size = size();
-                if (size == list.size()) {
-                    if (list instanceof RandomAccess) {
-                        for (int i10 = 0; i10 < size; i10++) {
-                            if (k7.d0.a(get(i10), list.get(i10))) {
-                            }
-                        }
-                        return true;
-                    }
-                    g listIterator = listIterator(0);
-                    Iterator it = list.iterator();
-                    while (true) {
-                        if (listIterator.hasNext()) {
-                            if (it.hasNext()) {
-                                if (!k7.d0.a(listIterator.next(), it.next())) {
-                                    break;
-                                }
-                            } else {
-                                break;
-                            }
-                        } else if (!it.hasNext()) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
+    public final boolean hasPrevious() {
+        if (this.f16639b > 0) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override
-    public final int hashCode() {
-        int size = size();
-        int i10 = 1;
-        for (int i11 = 0; i11 < size; i11++) {
-            i10 = (i10 * 31) + get(i11).hashCode();
+    public final Object next() {
+        if (hasNext()) {
+            int i10 = this.f16639b;
+            this.f16639b = i10 + 1;
+            return a(i10);
         }
-        return i10;
+        throw new NoSuchElementException();
     }
 
     @Override
-    public int i(Object[] objArr) {
-        int size = size();
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = get(i10);
-        }
-        return size;
+    public final int nextIndex() {
+        return this.f16639b;
     }
 
     @Override
-    public final int indexOf(Object obj) {
-        if (obj == null) {
-            return -1;
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i10 = this.f16639b - 1;
+            this.f16639b = i10;
+            return a(i10);
         }
-        int size = size();
-        for (int i10 = 0; i10 < size; i10++) {
-            if (obj.equals(get(i10))) {
-                return i10;
-            }
-        }
-        return -1;
+        throw new NoSuchElementException();
     }
 
     @Override
-    public final Iterator iterator() {
-        return listIterator(0);
+    public final int previousIndex() {
+        return this.f16639b - 1;
     }
 
     @Override
-    public final int lastIndexOf(Object obj) {
-        if (obj == null) {
-            return -1;
-        }
-        for (int size = size() - 1; size >= 0; size--) {
-            if (obj.equals(get(size))) {
-                return size;
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    public final ListIterator listIterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public i subList(int i10, int i11) {
-        k7.e0.b(i10, i11, size());
-        int i12 = i11 - i10;
-        if (i12 == size()) {
-            return this;
-        }
-        if (i12 == 0) {
-            return m.e;
-        }
-        return new h(this, i10, i12);
-    }
-
-    @Override
-    public final Object remove(int i10) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final g listIterator(int i10) {
-        int size = size();
-        if (i10 >= 0 && i10 <= size) {
-            if (isEmpty()) {
-                return f14446b;
-            }
-            return new g(this, i10);
-        }
-        throw new IndexOutOfBoundsException(k7.e0.c(i10, size, "index"));
-    }
-
-    @Override
-    public final Object set(int i10, Object obj) {
+    public final void set(Object obj) {
         throw new UnsupportedOperationException();
     }
 }

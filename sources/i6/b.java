@@ -1,110 +1,57 @@
 package i6;
 
-import android.app.AppOpsManager;
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.util.Base64;
-import android.util.Log;
-import java.io.Closeable;
-import java.io.IOException;
-import y5.h;
-public abstract class b {
-    public static final char[] f7328a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-    public static Boolean f7329b;
-    public static Boolean f7330c;
-    public static Boolean d;
-    public static Boolean e;
+import android.os.Parcel;
+import android.os.Parcelable;
+import g8.j;
+import java.util.Arrays;
+import w7.e0;
+public final class b extends o6.a {
+    public static final Parcelable.Creator<b> CREATOR = new j(8);
+    public final boolean f11870a;
+    public final long f11871b;
+    public final long f11872c;
 
-    public static void a(Closeable closeable) {
-        if (closeable != null) {
-            try {
-                closeable.close();
-            } catch (IOException unused) {
-            }
-        }
+    public b(long j3, long j10, boolean z10) {
+        this.f11870a = z10;
+        this.f11871b = j3;
+        this.f11872c = j10;
     }
 
-    public static byte[] b(String str) {
-        if (str == null) {
-            return null;
-        }
-        return Base64.decode(str, 11);
-    }
-
-    public static String c(byte[] bArr) {
-        if (bArr == null) {
-            return null;
-        }
-        return Base64.encodeToString(bArr, 11);
-    }
-
-    public static boolean d() {
-        if (Build.VERSION.SDK_INT >= 26) {
+    public final boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        return false;
-    }
-
-    public static boolean e(Context context, int i10) {
-        if (g(context, "com.google.android.gms", i10)) {
-            try {
-                PackageInfo packageInfo = context.getPackageManager().getPackageInfo("com.google.android.gms", 64);
-                h b10 = h.b(context);
-                b10.getClass();
-                if (packageInfo != null) {
-                    if (!h.d(packageInfo, false)) {
-                        if (h.d(packageInfo, true)) {
-                            if (!y5.g.a(b10.f47182a)) {
-                                Log.w("GoogleSignatureVerifier", "Test-keys aren't accepted on this build.");
-                            }
-                        }
-                    }
-                    return true;
-                }
-                return false;
-            } catch (PackageManager.NameNotFoundException unused) {
-                if (Log.isLoggable("UidVerifier", 3)) {
-                    Log.d("UidVerifier", "Package manager can't find google play services package, defaulting to false");
-                }
-            }
-        }
-        return false;
-    }
-
-    public static boolean f(Context context) {
-        PackageManager packageManager = context.getPackageManager();
-        if (f7329b == null) {
-            f7329b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
-        }
-        if (!f7329b.booleanValue() || Build.VERSION.SDK_INT >= 24) {
-            if (f7330c == null) {
-                f7330c = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
-            }
-            if (f7330c.booleanValue()) {
-                if (!d() || Build.VERSION.SDK_INT >= 30) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean g(Context context, String str, int i10) {
-        bb.b a2 = k6.b.a(context);
-        a2.getClass();
-        try {
-            AppOpsManager appOpsManager = (AppOpsManager) ((Context) a2.f1772b).getSystemService("appops");
-            if (appOpsManager != null) {
-                appOpsManager.checkPackage(i10, str);
+        if (obj instanceof b) {
+            b bVar = (b) obj;
+            if (this.f11870a == bVar.f11870a && this.f11871b == bVar.f11871b && this.f11872c == bVar.f11872c) {
                 return true;
             }
-            throw new NullPointerException("context.getSystemService(Context.APP_OPS_SERVICE) is null");
-        } catch (SecurityException unused) {
-            return false;
         }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f11870a), Long.valueOf(this.f11871b), Long.valueOf(this.f11872c)});
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("CollectForDebugParcelable[skipPersistentStorage: ");
+        sb2.append(this.f11870a);
+        sb2.append(",collectForDebugStartTimeMillis: ");
+        sb2.append(this.f11871b);
+        sb2.append(",collectForDebugExpiryTimeMillis: ");
+        return a4.a.r(sb2, this.f11872c, "]");
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = e0.q(parcel, 20293);
+        e0.s(parcel, 1, 4);
+        parcel.writeInt(this.f11870a ? 1 : 0);
+        e0.s(parcel, 2, 8);
+        parcel.writeLong(this.f11872c);
+        e0.s(parcel, 3, 8);
+        parcel.writeLong(this.f11871b);
+        e0.r(parcel, q6);
     }
 }

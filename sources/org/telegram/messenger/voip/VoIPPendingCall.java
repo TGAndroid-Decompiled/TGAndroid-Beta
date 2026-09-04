@@ -9,7 +9,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.voip.f2;
+import org.telegram.ui.Components.voip.d2;
 public final class VoIPPendingCall {
     private AccountInstance accountInstance;
     private final Activity activity;
@@ -21,7 +21,7 @@ public final class VoIPPendingCall {
     private final long userId;
     private final boolean video;
 
-    private VoIPPendingCall(Activity activity, long j10, boolean z4, long j11, AccountInstance accountInstance) {
+    private VoIPPendingCall(Activity activity, long j3, boolean z10, long j10, AccountInstance accountInstance) {
         NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = new NotificationCenter.NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
@@ -29,11 +29,11 @@ public final class VoIPPendingCall {
             }
         };
         this.observer = notificationCenterDelegate;
-        s0 s0Var = new s0(this, 2);
-        this.releaseRunnable = s0Var;
+        r0 r0Var = new r0(this, 2);
+        this.releaseRunnable = r0Var;
         this.activity = activity;
-        this.userId = j10;
-        this.video = z4;
+        this.userId = j3;
+        this.video = z10;
         this.accountInstance = accountInstance;
         if (!onConnectionStateUpdated(false)) {
             NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
@@ -41,7 +41,7 @@ public final class VoIPPendingCall {
             notificationCenter.addObserver(notificationCenterDelegate, NotificationCenter.didUpdateConnectionState);
             Handler handler = new Handler(Looper.myLooper());
             this.handler = handler;
-            handler.postDelayed(s0Var, j11);
+            handler.postDelayed(r0Var, j10);
         }
     }
 
@@ -69,31 +69,31 @@ public final class VoIPPendingCall {
         onConnectionStateUpdated(true);
     }
 
-    private boolean onConnectionStateUpdated(boolean z4) {
-        boolean z10;
-        if (this.released || (!z4 && !isConnected(this.accountInstance) && !isAirplaneMode())) {
+    private boolean onConnectionStateUpdated(boolean z10) {
+        boolean z11;
+        if (this.released || (!z10 && !isConnected(this.accountInstance) && !isAirplaneMode())) {
             return false;
         }
         MessagesController messagesController = this.accountInstance.getMessagesController();
         TLRPC.User user = messagesController.getUser(Long.valueOf(this.userId));
         if (user != null) {
-            TLRPC.UserFull userFull = messagesController.getUserFull(user.f19306id);
-            boolean z11 = this.video;
+            TLRPC.UserFull userFull = messagesController.getUserFull(user.f20016id);
+            boolean z12 = this.video;
             if (userFull != null && userFull.video_calls_available) {
-                z10 = true;
+                z11 = true;
             } else {
-                z10 = false;
+                z11 = false;
             }
-            f2.m(user, z11, z10, this.activity, userFull, this.accountInstance);
+            d2.m(user, z12, z11, this.activity, userFull, this.accountInstance);
         } else if (isAirplaneMode()) {
-            f2.m(null, this.video, false, this.activity, null, this.accountInstance);
+            d2.m(null, this.video, false, this.activity, null, this.accountInstance);
         }
         release();
         return true;
     }
 
-    public static VoIPPendingCall startOrSchedule(Activity activity, long j10, boolean z4, AccountInstance accountInstance) {
-        return new VoIPPendingCall(activity, j10, z4, 1000L, accountInstance);
+    public static VoIPPendingCall startOrSchedule(Activity activity, long j3, boolean z10, AccountInstance accountInstance) {
+        return new VoIPPendingCall(activity, j3, z10, 1000L, accountInstance);
     }
 
     public void release() {

@@ -1,133 +1,123 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.View;
-import android.widget.FrameLayout;
-import k7.b6;
-import nh.e5;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
-import org.telegram.ui.Components.mr;
-import org.telegram.ui.Components.p9;
-public final class q0 extends FrameLayout {
-    public final p0 f29834a;
-    public final p9 f29835b;
-    public AnimatorSet f29836c;
-    public boolean d;
-    public boolean e;
-    public final boolean f29837f;
+import org.telegram.ui.Components.ca;
+import org.telegram.ui.Components.pr;
+public final class q0 {
+    public float f31723a;
+    public float f31724b;
+    public float f31725c;
+    public boolean f31726e;
+    public final j3 f31727f;
+    public final j3 f31728g;
+    public ValueAnimator f31730j;
+    public int f31731k;
+    public float d = 0.0f;
+    public boolean h = false;
+    public float f31729i = 1.0f;
 
-    public q0(Activity activity) {
-        super(activity);
-        p0 p0Var = new p0(AndroidUtilities.dp(104.0f), AndroidUtilities.dp(111.0f), AndroidUtilities.dp(12.0f), 8);
-        this.f29834a = p0Var;
-        p0Var.b(3.0d);
-        if (!p0Var.e) {
-            invalidate();
-        }
-        p0Var.e = true;
-        p9 p9Var = new p9(activity);
-        this.f29835b = p9Var;
-        addView(p9Var, b6.e(135, 135, 17));
-        setWillNotDraw(false);
-        AnimatorSet animatorSet = new AnimatorSet();
-        this.f29836c = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this, View.SCALE_X, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f));
-        this.f29836c.setInterpolator(mr.f27123g);
-        this.f29836c.setDuration(3000L);
-        boolean isEnabled = LiteMode.isEnabled(512);
-        this.f29837f = isEnabled;
-        if (isEnabled) {
-            this.f29836c.start();
-        }
-        setClipChildren(false);
+    public q0(int i10, int i11, int i12, int i13) {
+        ?? caVar = new ca(i13 - 1);
+        this.f31727f = caVar;
+        ?? caVar2 = new ca(i13);
+        this.f31728g = caVar2;
+        caVar.f24926a = i10;
+        caVar.f24927b = i11;
+        caVar2.f24926a = i10 - i12;
+        caVar2.f24927b = i11 - i12;
+        caVar.b();
+        caVar2.b();
+        caVar.d.setColor(-1);
+        caVar.d.setAlpha(20);
+        caVar2.d.setColor(-1);
+        caVar2.d.setAlpha(36);
     }
 
-    public final void a() {
-        if (this.d) {
-            return;
+    public final void a(Canvas canvas, float f7, float f10, View view) {
+        float f11 = (this.f31723a * 0.4f) + 0.8f;
+        if (this.f31726e || this.d != 0.0f) {
+            canvas.save();
+            float interpolation = pr.f29466f.getInterpolation(this.d) * f11;
+            canvas.scale(interpolation, interpolation, f7, f10);
+            float f12 = this.f31723a;
+            float f13 = this.f31729i;
+            j3 j3Var = this.f31727f;
+            j3Var.g(f12, f13);
+            Paint paint = j3Var.d;
+            j3Var.a(f7, f10, canvas, paint);
+            float f14 = this.f31723a;
+            float f15 = this.f31729i;
+            j3 j3Var2 = this.f31728g;
+            j3Var2.g(f14, f15);
+            j3Var2.a(f7, f10, canvas, paint);
+            canvas.restore();
         }
-        AnimatorSet animatorSet = this.f29836c;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        this.d = true;
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f29836c = animatorSet2;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.SCALE_X, getScaleX(), 1.05f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, getScaleY(), 1.05f, 1.0f));
-        this.f29836c.setInterpolator(mr.f27123g);
-        this.f29836c.setDuration(400L);
-        this.f29836c.start();
-    }
-
-    public final void b(boolean z4, boolean z10) {
-        if (this.e != z4) {
-            this.e = z4;
-            p0 p0Var = this.f29834a;
-            if (z4) {
-                p0Var.b(3.0d);
+        if (!this.h || this.f31731k != 0) {
+            int i10 = this.f31731k;
+            if (i10 != 0) {
+                this.f31731k = i10 - 1;
             }
-            if (p0Var.h != z4) {
-                p0Var.h = z4;
-                ValueAnimator valueAnimator = p0Var.f29823j;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllUpdateListeners();
-                    p0Var.f29823j.cancel();
-                }
-                if (z4) {
-                    p0Var.f29823j = ValueAnimator.ofFloat(p0Var.f29822i, 0.0f);
-                    p0Var.f29824k = (int) (2000.0f / AndroidUtilities.screenRefreshTime);
-                } else {
-                    p0Var.f29824k = 0;
-                    p0Var.f29823j = ValueAnimator.ofFloat(p0Var.f29822i, 1.0f);
-                }
-                p0Var.f29823j.addUpdateListener(new e5(p0Var, 4));
-                if (z10) {
-                    p0Var.f29823j.setDuration(150L);
-                } else {
-                    p0Var.f29823j.setDuration(1000L);
-                }
-                p0Var.f29823j.start();
-                invalidate();
+            if (this.d != 0.0f) {
+                view.invalidate();
             }
         }
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f29837f) {
-            p0 p0Var = this.f29834a;
-            p0Var.c();
-            p0Var.a(canvas, getWidth() / 2, getHeight() / 2, this);
+    public final void b(double d) {
+        float f7 = ((float) d) / 80.0f;
+        float f10 = 0.0f;
+        if (!this.f31726e) {
+            f7 = 0.0f;
         }
-        super.onDraw(canvas);
+        if (f7 > 1.0f) {
+            f10 = 1.0f;
+        } else if (f7 >= 0.0f) {
+            f10 = f7;
+        }
+        this.f31724b = f10;
+        this.f31725c = (f10 - this.f31723a) / 200.0f;
     }
 
-    public void setAmplitude(double d) {
-        if (this.e) {
-            return;
+    public final void c() {
+        float f7 = this.f31724b;
+        float f10 = this.f31723a;
+        if (f7 != f10) {
+            float f11 = this.f31725c;
+            float f12 = (16.0f * f11) + f10;
+            this.f31723a = f12;
+            if (f11 > 0.0f) {
+                if (f12 > f7) {
+                    this.f31723a = f7;
+                }
+            } else if (f12 < f7) {
+                this.f31723a = f7;
+            }
         }
-        p0 p0Var = this.f29834a;
-        if (d > 1.5d) {
-            p0Var.b(d);
-        } else {
-            p0Var.b(0.0d);
+        boolean z10 = this.f31726e;
+        if (z10) {
+            float f13 = this.d;
+            if (f13 != 1.0f) {
+                float f14 = f13 + 0.045714285f;
+                this.d = f14;
+                if (f14 > 1.0f) {
+                    this.d = 1.0f;
+                    return;
+                }
+                return;
+            }
         }
-    }
-
-    public void setRoundRadius(int i10) {
-        this.f29835b.setRoundRadius(i10);
-    }
-
-    public void setShowWaves(boolean z4) {
-        p0 p0Var = this.f29834a;
-        if (p0Var.e != z4) {
-            invalidate();
+        if (!z10) {
+            float f15 = this.d;
+            if (f15 != 0.0f) {
+                float f16 = f15 - 0.045714285f;
+                this.d = f16;
+                if (f16 < 0.0f) {
+                    this.d = 0.0f;
+                }
+            }
         }
-        p0Var.e = z4;
     }
 }

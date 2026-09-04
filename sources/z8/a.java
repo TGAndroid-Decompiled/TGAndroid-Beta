@@ -1,5 +1,5 @@
 package z8;
 
-import w8.c;
-public class a extends c {
+import v0.m;
+public final class a extends m {
 }

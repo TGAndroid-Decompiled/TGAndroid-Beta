@@ -1,70 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.PhotoViewer;
-public final class ol extends rl0 {
-    public final int U2;
-    public final ChatAttachAlertPhotoLayout V2;
+import java.util.ArrayList;
+import java.util.Comparator;
+import org.telegram.messenger.MediaController;
+import org.telegram.tgnet.TLRPC;
+public final class ol implements Comparator {
+    public final int f29106a;
+    public final Object f29107b;
 
-    public ol(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(context, f6Var);
-        this.U2 = i10;
-        this.V2 = chatAttachAlertPhotoLayout;
+    public ol(Object obj, int i10) {
+        this.f29106a = i10;
+        this.f29107b = obj;
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.U2) {
-            case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.V2.f24282b.Y1[0] - AndroidUtilities.dp(80.0f)) {
-                    return false;
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            default:
-                return super.onInterceptTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        switch (this.U2) {
-            case 1:
-                super.onLayout(z4, i10, i11, i12, i13);
-                PhotoViewer.t1().y0();
-                return;
-            default:
-                super.onLayout(z4, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.U2) {
-            case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.V2.f24282b.Y1[0] - AndroidUtilities.dp(80.0f)) {
-                    return false;
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void requestLayout() {
-        switch (this.U2) {
+    public final int compare(Object obj, Object obj2) {
+        int indexOf;
+        int indexOf2;
+        int i10 = this.f29106a;
+        Object obj3 = this.f29107b;
+        switch (i10) {
             case 0:
-                if (!this.V2.G0) {
-                    super.requestLayout();
-                    return;
+                ArrayList arrayList = (ArrayList) obj3;
+                MediaController.AlbumEntry albumEntry = (MediaController.AlbumEntry) obj;
+                MediaController.AlbumEntry albumEntry2 = (MediaController.AlbumEntry) obj2;
+                boolean z10 = ChatAttachAlertPhotoLayout.f23831q1;
+                int i11 = albumEntry.bucketId;
+                if (i11 != 0 || albumEntry2.bucketId == 0) {
+                    if ((i11 != 0 && albumEntry2.bucketId == 0) || (indexOf = arrayList.indexOf(albumEntry)) > (indexOf2 = arrayList.indexOf(albumEntry2))) {
+                        return 1;
+                    }
+                    if (indexOf >= indexOf2) {
+                        return 0;
+                    }
                 }
-                return;
+                return -1;
             default:
-                super.requestLayout();
-                return;
+                kz kzVar = ((xw) obj3).G0;
+                int indexOf3 = kzVar.f27935d1.indexOf((TLRPC.TL_messages_stickerSet) obj);
+                int indexOf4 = kzVar.f27935d1.indexOf((TLRPC.TL_messages_stickerSet) obj2);
+                if (indexOf3 < 0 || indexOf4 < 0) {
+                    return 0;
+                }
+                return indexOf3 - indexOf4;
         }
     }
 }

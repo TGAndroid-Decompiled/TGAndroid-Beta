@@ -1,37 +1,42 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.Layout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class d9 extends TextView {
-    public final Paint f33372a;
-    public final org.telegram.ui.ActionBar.f6 f33373b;
+import android.os.Bundle;
+import java.util.HashSet;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_phone;
+public final class d9 extends f70 {
+    public final int f35725v0;
+    public final org.telegram.ui.ActionBar.n2 f35726w0;
 
-    public d9(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        this.f33373b = f6Var;
-        this.f33372a = new Paint(1);
+    public d9(Bundle bundle, int i10, org.telegram.ui.ActionBar.n2 n2Var) {
+        super(bundle);
+        this.f35725v0 = i10;
+        this.f35726w0 = n2Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int l1 = org.telegram.ui.ActionBar.j6.l1(0.8f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20273z6, this.f33373b));
-        Paint paint = this.f33372a;
-        paint.setColor(l1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1.0f);
-        float height = getHeight() / 2.0f;
-        Layout layout = getLayout();
-        int i10 = 0;
-        for (int i11 = 0; i11 < layout.getLineCount(); i11++) {
-            i10 = Math.max(i10, (int) layout.getLineWidth(i11));
+    public final void n0(HashSet hashSet) {
+        int size = hashSet.size();
+        int i10 = this.f35725v0;
+        if (size == 1) {
+            TLRPC.User user = MessagesController.getInstance(i10).getUser((Long) hashSet.iterator().next());
+            TLRPC.UserFull userFull = MessagesController.getInstance(i10).getUserFull(user.f20016id);
+            if (userFull == null) {
+                TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
+                tL_users_getFullUser.f20009id = MessagesController.getInstance(i10).getInputUser(user.f20016id);
+                ConnectionsManager.getInstance(i10).sendRequest(tL_users_getFullUser, new hg.u(this, i10, user, 3));
+                return;
+            }
+            org.telegram.ui.Components.voip.d2.m(user, false, userFull.video_calls_available, getParentActivity(), userFull, AccountInstance.getInstance(i10));
+        } else {
+            TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
+            createconferencecall.random_id = Utilities.random.nextInt();
+            ConnectionsManager.getInstance(i10).sendRequest(createconferencecall, new hg.u(i10, hashSet, this.f35726w0));
         }
-        float f10 = i10 / 2.0f;
-        canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - f10) - AndroidUtilities.dp(8.0f), height, paint);
-        canvas.drawLine((getWidth() / 2.0f) + f10 + AndroidUtilities.dp(8.0f), height, getWidth(), height, paint);
-        super.dispatchDraw(canvas);
+        finishFragment();
     }
 }

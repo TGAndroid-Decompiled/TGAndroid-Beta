@@ -1,183 +1,73 @@
 package d5;
 
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
-import android.text.style.TypefaceSpan;
-import android.text.style.UnderlineSpan;
-import h5.d0;
-import h5.w;
-import java.nio.charset.Charset;
-import java.util.List;
-import kf.k0;
-import r8.d;
-import v4.e;
-import v4.f;
-public final class a extends e {
-    public final w f4194n;
-    public final boolean f4195o;
-    public final int f4196p;
-    public final int f4197q;
-    public final String f4198r;
-    public final float f4199s;
-    public final int f4200t;
+import java.util.Random;
+public final class a extends Random {
+    public long f6571a;
+    public long f6572b;
 
-    public a(List list) {
-        super("Tx3gDecoder");
-        this.f4194n = new w();
-        if (list.size() == 1 && (((byte[]) list.get(0)).length == 48 || ((byte[]) list.get(0)).length == 53)) {
-            byte[] bArr = (byte[]) list.get(0);
-            this.f4196p = bArr[24];
-            this.f4197q = ((bArr[26] & 255) << 24) | ((bArr[27] & 255) << 16) | ((bArr[28] & 255) << 8) | (bArr[29] & 255);
-            this.f4198r = "Serif".equals(new String(bArr, 43, bArr.length - 43, d.f43413c)) ? "serif" : "sans-serif";
-            int i10 = bArr[25] * 20;
-            this.f4200t = i10;
-            boolean z4 = (bArr[0] & 32) != 0;
-            this.f4195o = z4;
-            if (z4) {
-                this.f4199s = d0.g(((bArr[11] & 255) | ((bArr[10] & 255) << 8)) / i10, 0.0f, 0.95f);
-                return;
-            } else {
-                this.f4199s = 0.85f;
-                return;
-            }
-        }
-        this.f4196p = 0;
-        this.f4197q = -1;
-        this.f4198r = "sans-serif";
-        this.f4195o = false;
-        this.f4199s = 0.85f;
-        this.f4200t = -1;
+    @Override
+    public final int next(int i10) {
+        return ((int) nextLong()) >>> (32 - i10);
     }
 
-    public static void l(SpannableStringBuilder spannableStringBuilder, int i10, int i11, int i12, int i13, int i14) {
-        if (i10 != i11) {
-            spannableStringBuilder.setSpan(new ForegroundColorSpan((i10 >>> 8) | ((i10 & 255) << 24)), i12, i13, i14 | 33);
+    @Override
+    public final boolean nextBoolean() {
+        if (nextLong() >= 0) {
+            return true;
         }
+        return false;
     }
 
-    public static void m(SpannableStringBuilder spannableStringBuilder, int i10, int i11, int i12, int i13, int i14) {
-        boolean z4;
-        boolean z10;
-        if (i10 != i11) {
-            int i15 = i14 | 33;
-            boolean z11 = true;
-            if ((i10 & 1) != 0) {
-                z4 = true;
-            } else {
-                z4 = false;
-            }
-            if ((i10 & 2) != 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (z4) {
-                if (z10) {
-                    spannableStringBuilder.setSpan(new StyleSpan(3), i12, i13, i15);
-                } else {
-                    spannableStringBuilder.setSpan(new StyleSpan(1), i12, i13, i15);
+    @Override
+    public final void nextBytes(byte[] bArr) {
+        int length = bArr.length;
+        int i10 = 0;
+        while (i10 < length) {
+            long nextLong = (int) nextLong();
+            int min = Math.min(length - i10, 8);
+            while (true) {
+                int i11 = min - 1;
+                if (min > 0) {
+                    bArr[i10] = (byte) nextLong;
+                    nextLong >>>= 8;
+                    i10++;
+                    min = i11;
                 }
-            } else if (z10) {
-                spannableStringBuilder.setSpan(new StyleSpan(2), i12, i13, i15);
-            }
-            if ((i10 & 4) == 0) {
-                z11 = false;
-            }
-            if (z11) {
-                spannableStringBuilder.setSpan(new UnderlineSpan(), i12, i13, i15);
-            }
-            if (!z11 && !z4 && !z10) {
-                spannableStringBuilder.setSpan(new StyleSpan(0), i12, i13, i15);
             }
         }
     }
 
     @Override
-    public final f k(int i10, boolean z4, byte[] bArr) {
-        String s6;
-        w wVar = this.f4194n;
-        wVar.D(i10, bArr);
-        int i11 = 2;
-        if (wVar.a() >= 2) {
-            int z10 = wVar.z();
-            if (z10 == 0) {
-                s6 = "";
-            } else {
-                int i12 = wVar.f6988b;
-                Charset B = wVar.B();
-                int i13 = z10 - (wVar.f6988b - i12);
-                if (B == null) {
-                    B = d.f43413c;
-                }
-                s6 = wVar.s(i13, B);
-            }
-            if (s6.isEmpty()) {
-                return b.f4201b;
-            }
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(s6);
-            m(spannableStringBuilder, this.f4196p, 0, 0, spannableStringBuilder.length(), 16711680);
-            l(spannableStringBuilder, this.f4197q, -1, 0, spannableStringBuilder.length(), 16711680);
-            int length = spannableStringBuilder.length();
-            String str = this.f4198r;
-            if (str != "sans-serif") {
-                spannableStringBuilder.setSpan(new TypefaceSpan(str), 0, length, 16711713);
-            }
-            float f10 = this.f4199s;
-            while (wVar.a() >= 8) {
-                int i14 = wVar.f6988b;
-                int g10 = wVar.g();
-                int g11 = wVar.g();
-                if (g11 == 1937013100) {
-                    if (wVar.a() >= i11) {
-                        int z11 = wVar.z();
-                        int i15 = 0;
-                        while (i15 < z11) {
-                            if (wVar.a() >= 12) {
-                                int z12 = wVar.z();
-                                int z13 = wVar.z();
-                                wVar.G(i11);
-                                int u10 = wVar.u();
-                                wVar.G(1);
-                                int g12 = wVar.g();
-                                if (z13 > spannableStringBuilder.length()) {
-                                    StringBuilder m9 = k0.m(z13, "Truncating styl end (", ") to cueText.length() (");
-                                    m9.append(spannableStringBuilder.length());
-                                    m9.append(").");
-                                    h5.a.K("Tx3gDecoder", m9.toString());
-                                    z13 = spannableStringBuilder.length();
-                                }
-                                int i16 = z13;
-                                if (z12 >= i16) {
-                                    h5.a.K("Tx3gDecoder", "Ignoring styl with start (" + z12 + ") >= end (" + i16 + ").");
-                                } else {
-                                    m(spannableStringBuilder, u10, this.f4196p, z12, i16, 0);
-                                    l(spannableStringBuilder, g12, this.f4197q, z12, i16, 0);
-                                }
-                                i15++;
-                                i11 = 2;
-                            } else {
-                                throw new Exception("Unexpected subtitle format.");
-                            }
-                        }
-                        continue;
-                    } else {
-                        throw new Exception("Unexpected subtitle format.");
-                    }
-                } else if (g11 == 1952608120 && this.f4195o) {
-                    i11 = 2;
-                    if (wVar.a() >= 2) {
-                        f10 = d0.g(wVar.z() / this.f4200t, 0.0f, 0.95f);
-                    } else {
-                        throw new Exception("Unexpected subtitle format.");
-                    }
-                } else {
-                    i11 = 2;
-                }
-                wVar.F(i14 + g10);
-            }
-            return new b(new v4.b(spannableStringBuilder, null, null, null, f10, 0, 0, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, false, -16777216, Integer.MIN_VALUE, 0.0f));
+    public final double nextDouble() {
+        return (nextLong() >>> 11) * 1.1102230246251565E-16d;
+    }
+
+    @Override
+    public final float nextFloat() {
+        return (((int) nextLong()) >>> 8) * 5.9604645E-8f;
+    }
+
+    @Override
+    public final int nextInt() {
+        return (int) nextLong();
+    }
+
+    @Override
+    public final long nextLong() {
+        long j3 = this.f6571a;
+        long j10 = this.f6572b;
+        long j11 = j3 + j10;
+        long j12 = j10 ^ j3;
+        this.f6571a = (Long.rotateLeft(j3, 55) ^ j12) ^ (j12 << 14);
+        this.f6572b = Long.rotateLeft(j12, 36);
+        return j11;
+    }
+
+    @Override
+    public final void setSeed(long j3) {
+        if (this.f6571a == 0 && this.f6572b == 0) {
+            return;
         }
-        throw new Exception("Unexpected subtitle format.");
+        throw new RuntimeException("No seed set");
     }
 }

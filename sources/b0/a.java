@@ -1,13 +1,13 @@
 package b0;
 
-import kotlin.jvm.internal.j;
+import kotlin.jvm.internal.i;
 public abstract class a {
-    public static final int[] f1277a = new int[0];
-    public static final long[] f1278b = new long[0];
-    public static final Object[] f1279c = new Object[0];
+    public static final int[] f1913a = new int[0];
+    public static final long[] f1914b = new long[0];
+    public static final Object[] f1915c = new Object[0];
 
     public static final int a(int i10, int i11, int[] array) {
-        j.e(array, "array");
+        i.e(array, "array");
         int i12 = i10 - 1;
         int i13 = 0;
         while (i13 <= i12) {
@@ -24,13 +24,13 @@ public abstract class a {
         return ~i13;
     }
 
-    public static final int b(long[] array, int i10, long j10) {
-        j.e(array, "array");
+    public static final int b(long[] array, int i10, long j3) {
+        i.e(array, "array");
         int i11 = i10 - 1;
         int i12 = 0;
         while (i12 <= i11) {
             int i13 = (i12 + i11) >>> 1;
-            int i14 = (array[i13] > j10 ? 1 : (array[i13] == j10 ? 0 : -1));
+            int i14 = (array[i13] > j3 ? 1 : (array[i13] == j3 ? 0 : -1));
             if (i14 < 0) {
                 i12 = i13 + 1;
             } else if (i14 > 0) {

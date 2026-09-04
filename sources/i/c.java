@@ -2,32 +2,32 @@ package i;
 
 import android.animation.ObjectAnimator;
 import android.graphics.drawable.AnimationDrawable;
-import j7.y7;
-public final class c extends y7 {
-    public final ObjectAnimator f7178a;
-    public final boolean f7179b;
+import v7.f8;
+public final class c extends f8 {
+    public final ObjectAnimator f11406a;
+    public final boolean f11407b;
 
-    public c(AnimationDrawable animationDrawable, boolean z4, boolean z10) {
+    public c(AnimationDrawable animationDrawable, boolean z10, boolean z11) {
         int i10;
         int i11;
         int numberOfFrames = animationDrawable.getNumberOfFrames();
-        int i12 = z4 ? numberOfFrames - 1 : 0;
-        if (z4) {
+        int i12 = z10 ? numberOfFrames - 1 : 0;
+        if (z10) {
             i10 = 0;
         } else {
             i10 = numberOfFrames - 1;
         }
         ?? obj = new Object();
         int numberOfFrames2 = animationDrawable.getNumberOfFrames();
-        obj.f7181b = numberOfFrames2;
-        int[] iArr = obj.f7180a;
+        obj.f11409b = numberOfFrames2;
+        int[] iArr = obj.f11408a;
         if (iArr == null || iArr.length < numberOfFrames2) {
-            obj.f7180a = new int[numberOfFrames2];
+            obj.f11408a = new int[numberOfFrames2];
         }
-        int[] iArr2 = obj.f7180a;
+        int[] iArr2 = obj.f11408a;
         int i13 = 0;
         for (int i14 = 0; i14 < numberOfFrames2; i14++) {
-            if (z4) {
+            if (z10) {
                 i11 = (numberOfFrames2 - i14) - 1;
             } else {
                 i11 = i14;
@@ -36,32 +36,32 @@ public final class c extends y7 {
             iArr2[i14] = duration;
             i13 += duration;
         }
-        obj.f7182c = i13;
+        obj.f11410c = i13;
         ObjectAnimator ofInt = ObjectAnimator.ofInt(animationDrawable, "currentIndex", i12, i10);
         j.a.a(ofInt, true);
-        ofInt.setDuration(obj.f7182c);
+        ofInt.setDuration(obj.f11410c);
         ofInt.setInterpolator(obj);
-        this.f7179b = z10;
-        this.f7178a = ofInt;
+        this.f11407b = z11;
+        this.f11406a = ofInt;
     }
 
     @Override
     public final boolean a() {
-        return this.f7179b;
+        return this.f11407b;
     }
 
     @Override
     public final void b() {
-        this.f7178a.reverse();
+        this.f11406a.reverse();
     }
 
     @Override
     public final void c() {
-        this.f7178a.start();
+        this.f11406a.start();
     }
 
     @Override
     public final void d() {
-        this.f7178a.cancel();
+        this.f11406a.cancel();
     }
 }

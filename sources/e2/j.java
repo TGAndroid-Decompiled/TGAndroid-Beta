@@ -1,73 +1,36 @@
 package e2;
 
-import j$.util.Objects;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-public final class j {
-    public final int f5075a;
-    public final int f5076b;
-    public final long f5077c;
-    public final long d;
+import android.graphics.SurfaceTexture;
+import android.opengl.EGLContext;
+import android.opengl.EGLDisplay;
+import android.opengl.EGLSurface;
+import android.os.Handler;
+public final class j implements SurfaceTexture.OnFrameAvailableListener, Runnable {
+    public static final int[] h = {12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 0, 12327, 12344, 12339, 4, 12344};
+    public final Handler f8758a;
+    public final int[] f8759b = new int[1];
+    public EGLDisplay f8760c;
+    public EGLContext d;
+    public EGLSurface f8761e;
+    public SurfaceTexture f8762f;
 
-    public j(long j10, int i10, int i11, long j11) {
-        this.f5075a = i10;
-        this.f5076b = i11;
-        this.f5077c = j10;
-        this.d = j11;
+    public j(Handler handler) {
+        this.f8758a = handler;
     }
 
-    public static j a(File file) {
-        DataInputStream dataInputStream = new DataInputStream(new FileInputStream(file));
-        try {
-            j jVar = new j(dataInputStream.readLong(), dataInputStream.readInt(), dataInputStream.readInt(), dataInputStream.readLong());
-            dataInputStream.close();
-            return jVar;
-        } catch (Throwable th2) {
+    @Override
+    public final void onFrameAvailable(SurfaceTexture surfaceTexture) {
+        this.f8758a.post(this);
+    }
+
+    @Override
+    public final void run() {
+        SurfaceTexture surfaceTexture = this.f8762f;
+        if (surfaceTexture != null) {
             try {
-                dataInputStream.close();
-            } catch (Throwable th3) {
-                th2.addSuppressed(th3);
-            }
-            throw th2;
-        }
-    }
-
-    public final void b(File file) {
-        file.delete();
-        DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(file));
-        try {
-            dataOutputStream.writeInt(this.f5075a);
-            dataOutputStream.writeInt(this.f5076b);
-            dataOutputStream.writeLong(this.f5077c);
-            dataOutputStream.writeLong(this.d);
-            dataOutputStream.close();
-        } catch (Throwable th2) {
-            try {
-                dataOutputStream.close();
-            } catch (Throwable th3) {
-                th2.addSuppressed(th3);
-            }
-            throw th2;
-        }
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && (obj instanceof j)) {
-            j jVar = (j) obj;
-            if (this.f5076b == jVar.f5076b && this.f5077c == jVar.f5077c && this.f5075a == jVar.f5075a && this.d == jVar.d) {
-                return true;
+                surfaceTexture.updateTexImage();
+            } catch (RuntimeException unused) {
             }
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f5076b), Long.valueOf(this.f5077c), Integer.valueOf(this.f5075a), Long.valueOf(this.d));
     }
 }

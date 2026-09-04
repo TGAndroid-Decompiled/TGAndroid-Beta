@@ -9,48 +9,48 @@ public class OverUnderBox extends Box {
     private final boolean over;
     private final Box script;
 
-    public OverUnderBox(Box box, Box box2, Box box3, float f10, boolean z4) {
+    public OverUnderBox(Box box, Box box2, Box box3, float f7, boolean z10) {
+        float f10;
         float f11;
-        float f12;
         float width;
         this.base = box;
         this.del = box2;
         this.script = box3;
-        this.kern = f10;
-        this.over = z4;
+        this.kern = f7;
+        this.over = z10;
         this.width = box.getWidth();
-        float f13 = box.height;
-        float f14 = 0.0f;
-        if (z4) {
-            f11 = box2.getWidth();
+        float f12 = box.height;
+        float f13 = 0.0f;
+        if (z10) {
+            f10 = box2.getWidth();
+        } else {
+            f10 = 0.0f;
+        }
+        float f14 = f12 + f10;
+        if (z10 && box3 != null) {
+            f11 = box3.height + box3.depth + f7;
         } else {
             f11 = 0.0f;
         }
-        float f15 = f13 + f11;
-        if (z4 && box3 != null) {
-            f12 = box3.height + box3.depth + f10;
-        } else {
-            f12 = 0.0f;
-        }
-        this.height = f15 + f12;
-        float f16 = box.depth;
-        if (z4) {
+        this.height = f14 + f11;
+        float f15 = box.depth;
+        if (z10) {
             width = 0.0f;
         } else {
             width = box2.getWidth();
         }
-        float f17 = f16 + width;
-        if (!z4 && box3 != null) {
-            f14 = box3.height + box3.depth + f10;
+        float f16 = f15 + width;
+        if (!z10 && box3 != null) {
+            f13 = box3.height + box3.depth + f7;
         }
-        this.depth = f17 + f14;
+        this.depth = f16 + f13;
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f10, float f11) {
-        drawDebug(graphics2D, f10, f11);
-        this.base.draw(graphics2D, f10, f11);
-        float width = (f11 - this.base.height) - this.del.getWidth();
+    public void draw(Graphics2D graphics2D, float f7, float f10) {
+        drawDebug(graphics2D, f7, f10);
+        this.base.draw(graphics2D, f7, f10);
+        float width = (f10 - this.base.height) - this.del.getWidth();
         Box box = this.del;
         box.setDepth(this.del.getDepth() + box.getHeight());
         this.del.setHeight(0.0f);
@@ -58,27 +58,27 @@ public class OverUnderBox extends Box {
             Box box2 = this.del;
             double d = (box2.height + box2.depth) * 0.75d;
             AffineTransform transform = graphics2D.getTransform();
-            graphics2D.translate(d + f10, width);
+            graphics2D.translate(d + f7, width);
             graphics2D.rotate(1.5707963267948966d);
             this.del.draw(graphics2D, 0.0f, 0.0f);
             graphics2D.setTransform(transform);
             Box box3 = this.script;
             if (box3 != null) {
-                box3.draw(graphics2D, f10, (width - this.kern) - box3.depth);
+                box3.draw(graphics2D, f7, (width - this.kern) - box3.depth);
             }
         }
-        float f12 = f11 + this.base.depth;
+        float f11 = f10 + this.base.depth;
         if (!this.over) {
             double height = (this.del.getHeight() + this.del.depth) * 0.75d;
             AffineTransform transform2 = graphics2D.getTransform();
-            graphics2D.translate(height + f10, f12);
+            graphics2D.translate(height + f7, f11);
             graphics2D.rotate(1.5707963267948966d);
             this.del.draw(graphics2D, 0.0f, 0.0f);
             graphics2D.setTransform(transform2);
-            float width2 = this.del.getWidth() + f12;
+            float width2 = this.del.getWidth() + f11;
             Box box4 = this.script;
             if (box4 != null) {
-                box4.draw(graphics2D, f10, width2 + this.kern + box4.height);
+                box4.draw(graphics2D, f7, width2 + this.kern + box4.height);
             }
         }
     }

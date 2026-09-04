@@ -1,100 +1,52 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class fh1 extends org.telegram.ui.Components.h51 {
-    public static final int f34084a = 0;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class fh1 extends org.telegram.ui.ActionBar.j {
+    public final hh1 f36407a;
 
-    static {
-        org.telegram.ui.Components.h51.setup(new org.telegram.ui.Components.h51());
+    public fh1(hh1 hh1Var) {
+        this.f36407a = hh1Var;
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.i51 i51Var, boolean z4, org.telegram.ui.Components.w51 w51Var, org.telegram.ui.Components.g61 g61Var) {
-        float f10;
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        gh1 gh1Var = (gh1) view;
-        int i14 = i51Var.f25584k;
-        CharSequence charSequence = i51Var.f25585l;
-        CharSequence charSequence2 = i51Var.f25586m;
-        boolean z10 = i51Var.f25590q;
-        boolean z11 = i51Var.f25591r;
-        int i15 = i51Var.f25598z;
-        TextView textView = gh1Var.d;
-        TextView textView2 = gh1Var.e;
-        ImageView imageView = gh1Var.f34456f;
-        gh1Var.h = z10;
-        gh1Var.f34457n = z11;
-        ImageView imageView2 = gh1Var.f34454b;
-        imageView2.setImageResource(i14);
-        int i16 = 8;
-        if (i15 != 0) {
-            imageView.setVisibility(0);
-            imageView.setImageResource(i15);
-        } else {
-            imageView.setVisibility(8);
+    public final void b(int i10) {
+        String string;
+        org.telegram.ui.ActionBar.d5 d5Var;
+        hh1 hh1Var = this.f36407a;
+        if (i10 == -1) {
+            if (hh1Var.G >= 0) {
+                d5Var = ((org.telegram.ui.ActionBar.n2) hh1Var).parentLayout;
+                if (d5Var.getFragmentStack().size() == 1) {
+                    hh1Var.I0();
+                    return;
+                }
+            }
+            hh1Var.finishFragment();
+        } else if (i10 == 1) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hh1Var.getParentActivity());
+            TL_account.Password password = hh1Var.U;
+            if (password != null && password.has_password) {
+                string = LocaleController.getString(R.string.CancelEmailQuestion);
+            } else {
+                string = LocaleController.getString(R.string.CancelPasswordQuestion);
+            }
+            String string2 = LocaleController.getString(R.string.CancelEmailQuestionTitle);
+            String string3 = LocaleController.getString(R.string.Abort);
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+            b2Var.T = string;
+            b2Var.R = string2;
+            alertDialog$Builder.k(string3, new vl0(this, 24));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder.f20198a;
+            hh1Var.showDialog(b2Var2);
+            TextView textView = (TextView) b2Var2.d(-1);
+            if (textView != null) {
+                textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20898q7, false));
+            }
         }
-        textView.setText(charSequence);
-        textView2.setText(charSequence2);
-        if (!TextUtils.isEmpty(charSequence2)) {
-            i16 = 0;
-        }
-        textView2.setVisibility(i16);
-        if (TextUtils.isEmpty(charSequence2)) {
-            f10 = 15.0f;
-        } else {
-            f10 = 10.0f;
-        }
-        int dp = AndroidUtilities.dp(f10);
-        gh1Var.f34455c.setPadding(0, dp, 0, dp);
-        org.telegram.ui.ActionBar.f6 f6Var = gh1Var.f34453a;
-        if (gh1Var.f34457n) {
-            i10 = org.telegram.ui.ActionBar.j6.f20116q7;
-        } else if (gh1Var.h) {
-            i10 = org.telegram.ui.ActionBar.j6.f20060n6;
-        } else {
-            i10 = org.telegram.ui.ActionBar.j6.G6;
-        }
-        int v02 = org.telegram.ui.ActionBar.j6.v0(i10, f6Var);
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        imageView2.setColorFilter(new PorterDuffColorFilter(v02, mode));
-        if (gh1Var.f34457n) {
-            i11 = org.telegram.ui.ActionBar.j6.f20116q7;
-        } else if (gh1Var.h) {
-            i11 = org.telegram.ui.ActionBar.j6.f20060n6;
-        } else {
-            i11 = org.telegram.ui.ActionBar.j6.G6;
-        }
-        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i11, f6Var), mode));
-        if (gh1Var.f34457n) {
-            i12 = org.telegram.ui.ActionBar.j6.f20097p7;
-        } else if (gh1Var.h) {
-            i12 = org.telegram.ui.ActionBar.j6.f20060n6;
-        } else {
-            i12 = org.telegram.ui.ActionBar.j6.G6;
-        }
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
-        if (gh1Var.f34457n) {
-            i13 = org.telegram.ui.ActionBar.j6.f20097p7;
-        } else if (gh1Var.h) {
-            i13 = org.telegram.ui.ActionBar.j6.f20060n6;
-        } else {
-            i13 = org.telegram.ui.ActionBar.j6.f20256y6;
-        }
-        textView2.setTextColor(org.telegram.ui.ActionBar.j6.v0(i13, f6Var));
-    }
-
-    @Override
-    public final View createView(Context context, org.telegram.ui.Components.rl0 rl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        return new gh1(context, f6Var);
     }
 }

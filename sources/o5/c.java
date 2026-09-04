@@ -1,44 +1,21 @@
 package o5;
+public enum c implements la.c {
+    REASON_UNKNOWN(0),
+    MESSAGE_TOO_OLD(1),
+    CACHE_FULL(2),
+    PAYLOAD_TOO_BIG(3),
+    MAX_RETRIES_REACHED(4),
+    INVALID_PAYLOD(5),
+    SERVER_ERROR(6);
+    
+    public final int f16967a;
 
-import android.util.Log;
-import b4.e0;
-import b6.m;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.internal.u;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-public final class c implements Runnable {
-    public static final e0 f16423c = new e0("RevokeAccessOperation", new String[0]);
-    public final String f16424a;
-    public final u f16425b;
-
-    public c(String str) {
-        m.f(str);
-        this.f16424a = str;
-        this.f16425b = new u(null, 0);
+    c(int i10) {
+        this.f16967a = i10;
     }
 
     @Override
-    public final void run() {
-        e0 e0Var = f16423c;
-        Status status = Status.h;
-        try {
-            String str = this.f16424a;
-            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL("https://accounts.google.com/o/oauth2/revoke?token=" + str).openConnection();
-            httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            int responseCode = httpURLConnection.getResponseCode();
-            if (responseCode == 200) {
-                status = Status.e;
-            } else {
-                Log.e((String) e0Var.f1379c, ((String) e0Var.d).concat("Unable to revoke access!"));
-            }
-            e0Var.g("Response Code: " + responseCode, new Object[0]);
-        } catch (IOException e) {
-            Log.e((String) e0Var.f1379c, ((String) e0Var.d).concat("IOException when revoking access: ".concat(String.valueOf(e.toString()))));
-        } catch (Exception e6) {
-            Log.e((String) e0Var.f1379c, ((String) e0Var.d).concat("Exception when revoking access: ".concat(String.valueOf(e6.toString()))));
-        }
-        this.f16425b.a(status);
+    public final int a() {
+        return this.f16967a;
     }
 }

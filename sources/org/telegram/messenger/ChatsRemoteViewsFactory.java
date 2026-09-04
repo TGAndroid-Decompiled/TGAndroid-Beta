@@ -17,22 +17,22 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     private Context mContext;
     private Paint roundPaint;
     private ArrayList<Long> dids = new ArrayList<>();
-    private a0.h dialogs = new a0.h();
-    private a0.h messageObjects = new a0.h();
+    private a0.i dialogs = new a0.i();
+    private a0.i messageObjects = new a0.i();
 
     public ChatsRemoteViewsFactory(Context context, Intent intent) {
         this.mContext = context;
         org.telegram.ui.ActionBar.j6.R(context);
-        boolean z4 = false;
+        boolean z10 = false;
         this.appWidgetId = intent.getIntExtra("appWidgetId", 0);
         SharedPreferences sharedPreferences = context.getSharedPreferences("shortcut_widget", 0);
         int i10 = sharedPreferences.getInt("account" + this.appWidgetId, -1);
         if (i10 >= 0) {
             this.accountInstance = AccountInstance.getInstance(i10);
         }
-        StringBuilder sb = new StringBuilder("deleted");
-        sb.append(this.appWidgetId);
-        this.deleted = (sharedPreferences.getBoolean(sb.toString(), false) || this.accountInstance == null) ? true : true;
+        StringBuilder sb2 = new StringBuilder("deleted");
+        sb2.append(this.appWidgetId);
+        this.deleted = (sharedPreferences.getBoolean(sb2.toString(), false) || this.accountInstance == null) ? true : true;
     }
 
     @Override
@@ -81,14 +81,14 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         if (accountInstance != null && accountInstance.getUserConfig().isClientActivated()) {
             ArrayList<TLRPC.User> arrayList = new ArrayList<>();
             ArrayList<TLRPC.Chat> arrayList2 = new ArrayList<>();
-            a0.h hVar = new a0.h();
-            this.accountInstance.getMessagesStorage().getWidgetDialogs(this.appWidgetId, 0, this.dids, this.dialogs, hVar, arrayList, arrayList2);
+            a0.i iVar = new a0.i();
+            this.accountInstance.getMessagesStorage().getWidgetDialogs(this.appWidgetId, 0, this.dids, this.dialogs, iVar, arrayList, arrayList2);
             this.accountInstance.getMessagesController().putUsers(arrayList, true);
             this.accountInstance.getMessagesController().putChats(arrayList2, true);
             this.messageObjects.b();
-            int m9 = hVar.m();
-            for (int i10 = 0; i10 < m9; i10++) {
-                this.messageObjects.k(new MessageObject(this.accountInstance.getCurrentAccount(), (TLRPC.Message) hVar.n(i10), (a0.h) null, (a0.h) null, false, true), hVar.j(i10));
+            int m10 = iVar.m();
+            for (int i10 = 0; i10 < m10; i10++) {
+                this.messageObjects.k(new MessageObject(this.accountInstance.getCurrentAccount(), (TLRPC.Message) iVar.n(i10), (a0.i) null, (a0.i) null, false, true), iVar.j(i10));
             }
         }
     }

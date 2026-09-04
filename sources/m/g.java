@@ -12,7 +12,7 @@ public final class g extends v implements i {
         setFocusable(true);
         setVisibility(0);
         setEnabled(true);
-        k7.m.a(this, getContentDescription());
+        w7.o.a(this, getContentDescription());
         setOnTouchListener(new l.b(this, this));
     }
 

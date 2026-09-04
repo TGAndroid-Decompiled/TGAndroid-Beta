@@ -1,227 +1,128 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RadialGradient;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.view.TextureView;
-import android.view.animation.LinearInterpolator;
+import android.graphics.PorterDuffColorFilter;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class u41 extends org.telegram.ui.Cells.s1 {
-    public boolean Ce;
-    public final RectF De;
-    public final RectF Ee;
-    public RadialGradient Fe;
-    public Paint Ge;
-    public Matrix He;
-    public final Path Ie;
-    public Paint Je;
-    public final Paint Ke;
-    public org.telegram.ui.Components.z11 Le;
-    public final org.telegram.ui.Components.z5 Me;
-    public final int Ne;
-    public final int Oe;
-    public final w41 Pe;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+public final class u41 extends org.telegram.ui.Components.bb {
+    public final LinearLayout X;
+    public org.telegram.ui.Components.v51 Y;
 
-    public u41(w41 w41Var, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11, int i12) {
-        super(context, i10, false, null, f6Var);
-        this.Pe = w41Var;
-        this.Ne = i11;
-        this.Oe = i12;
-        this.Ce = false;
-        this.De = new RectF();
-        this.Ee = new RectF();
-        this.Ie = new Path();
-        this.Ke = new Paint(1);
-        this.Me = new org.telegram.ui.Components.z5(0.0f, this, 0L, 120L, new LinearInterpolator());
-    }
-
-    @Override
-    public final void E1(Canvas canvas) {
-        Paint paint = this.Ge;
-        w41 w41Var = this.Pe;
-        if (paint != null) {
-            float f10 = w41Var.f39271s;
-            RectF rectF = w41Var.O;
-            if (f10 > 0.0f) {
-                if (w41Var.N) {
-                    if (this.f22076le) {
-                        Bitmap bitmap = w41Var.M.getBitmap();
-                        if (bitmap != null) {
-                            canvas.save();
-                            Path path = this.Ie;
-                            path.rewind();
-                            path.addCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, Path.Direction.CW);
-                            canvas.clipPath(path);
-                            canvas.scale(rectF.width() / bitmap.getWidth(), rectF.height() / bitmap.getHeight());
-                            canvas.translate(rectF.left, rectF.top);
-                            canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
-                            canvas.restore();
-                            bitmap.recycle();
-                        }
-                    } else {
-                        float centerX = rectF.centerX();
-                        float centerY = rectF.centerY();
-                        float width = rectF.width() / 2.0f;
-                        if (this.Je == null) {
-                            Paint paint2 = new Paint(1);
-                            this.Je = paint2;
-                            paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                        }
-                        canvas.drawCircle(centerX, centerY, width, this.Je);
-                    }
-                    getPhotoImage().setAlpha(Math.max(1.0f - this.Me.e(w41Var.N), 1.0f - w41Var.f39271s));
-                    getPhotoImage().draw(canvas);
-                } else {
-                    getPhotoImage().draw(canvas);
-                }
-            }
-            this.He.reset();
-            float width2 = (rectF.width() / 76.8f) * w41Var.v;
-            this.He.postScale(width2, width2);
-            this.He.postTranslate(rectF.centerX(), rectF.centerY());
-            this.Fe.setLocalMatrix(this.He);
-            canvas.saveLayerAlpha(rectF, 255, 31);
-            super.E1(canvas);
-            canvas.save();
-            canvas.drawRect(rectF, this.Ge);
-            canvas.restore();
-            canvas.restore();
+    public u41(Context context, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.Components.jn0 jn0Var) {
+        super(context, null, false, false, f6Var);
+        int i10;
+        fixNavigationBar();
+        this.v = 0.2f;
+        Paint paint = new Paint(1);
+        paint.setStyle(Paint.Style.FILL);
+        int i11 = org.telegram.ui.ActionBar.j6.Oh;
+        paint.setColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.X = linearLayout;
+        linearLayout.setPadding(AndroidUtilities.dp(6.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(6.0f) + this.backgroundPaddingLeft, 0);
+        linearLayout.setOrientation(1);
+        FrameLayout frameLayout = new FrameLayout(context);
+        ImageView imageView = new ImageView(getContext());
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.large_ads_info);
+        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        imageView.setBackground(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(80.0f), org.telegram.ui.ActionBar.j6.v0(i11, f6Var)));
+        frameLayout.addView(imageView, w7.x5.d(80, 80.0f, 1, 0.0f, 20.0f, 0.0f, 0.0f));
+        linearLayout.addView(frameLayout, w7.x5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, 100));
+        TextView textView = new TextView(context);
+        textView.setText(LocaleController.getString(R.string.SearchAdsAboutTitle));
+        textView.setTypeface(AndroidUtilities.bold());
+        int i12 = org.telegram.ui.ActionBar.j6.G6;
+        org.telegram.messenger.wl.n(i12, f6Var, textView, 1, 20.0f);
+        textView.setGravity(1);
+        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.x5.t(-2, -2, 1, 22, 14, 22, 0), context);
+        h.setText(LocaleController.getString(R.string.SearchAdsAboutSubtitle));
+        h.setTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
+        h.setTextSize(1, 14.0f);
+        h.setGravity(1);
+        linearLayout.addView(h, w7.x5.t(-2, -2, 1, 22, 8, 22, 0));
+        linearLayout.addView(new bi.g5(this, context, R.drawable.menu_privacy, LocaleController.getString(R.string.SearchAdsAbout1Title), LocaleController.getString(R.string.SearchAdsAbout1Subtitle)), w7.x5.p(-1, -2, 0.0f, 0, 0, 20, 0, 0));
+        boolean isPremium = UserConfig.getInstance(this.currentAccount).isPremium();
+        int i13 = R.drawable.menu_feature_noads;
+        String string = LocaleController.getString(R.string.SearchAdsAbout2Title);
+        if (isPremium) {
+            i10 = R.string.SearchAdsAbout2SubtitlePremium;
         } else {
-            super.E1(canvas);
+            i10 = R.string.SearchAdsAbout2Subtitle;
         }
-        canvas.saveLayerAlpha(w41Var.O, (int) (w41Var.v * 178.0f), 31);
-        Paint.Style style = Paint.Style.STROKE;
-        Paint paint3 = this.Ke;
-        paint3.setStyle(style);
-        paint3.setStrokeWidth(AndroidUtilities.dp(3.33f));
-        paint3.setColor(-1);
-        paint3.setStrokeCap(Paint.Cap.ROUND);
-        RectF rectF2 = AndroidUtilities.rectTmp;
-        rectF2.set(w41Var.O);
-        rectF2.inset(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
-        canvas.drawArc(rectF2, -90.0f, (1.0f - w41Var.X) * (-360.0f), false, paint3);
-        if (this.Le == null) {
-            org.telegram.ui.Components.z11 z11Var = new org.telegram.ui.Components.z11(120);
-            this.Le = z11Var;
-            z11Var.f31226b = true;
-        }
-        paint3.setStrokeWidth(AndroidUtilities.dp(2.8f));
-        this.Le.a((1.0f - w41Var.X) * (-360.0f), 1.0f, canvas, paint3, rectF2);
-        canvas.restore();
+        linearLayout.addView(new bi.g5(this, context, i13, string, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(i10), new dm0(this, isPremium, jn0Var, 7)), true)), w7.x5.p(-1, -2, 0.0f, 0, 0, 16, 0, 0));
+        View view = new View(getContext());
+        view.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20664d7, f6Var));
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);
+        layoutParams.setMargins(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f));
+        linearLayout.addView(view, layoutParams);
+        TextView textView2 = new TextView(context);
+        textView2.setText(LocaleController.getString(R.string.SearchAdsAboutLaunchTitle));
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
+        textView2.setTextSize(1, 20.0f);
+        textView2.setTextAlignment(4);
+        textView2.setGravity(17);
+        linearLayout.addView(textView2, w7.x5.t(-2, -2, 1, 22, 0, 22, 0));
+        SpannableStringBuilder replaceCharSequence = AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString(R.string.SearchAdsAboutLaunchSubtitle)), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.SearchAdsAboutLaunchLearnMore), new f01(this, 10)), true));
+        org.telegram.ui.Components.d90 d90Var = new org.telegram.ui.Components.d90(context, null);
+        d90Var.setText(replaceCharSequence);
+        d90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
+        d90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.gc, f6Var));
+        d90Var.setTextSize(1, 14.0f);
+        d90Var.setGravity(1);
+        d90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        linearLayout.addView(d90Var, w7.x5.t(-2, -2, 1, 26, 8, 26, 0));
+        TextView textView3 = new TextView(context);
+        textView3.setLines(1);
+        textView3.setSingleLine(true);
+        textView3.setGravity(17);
+        textView3.setEllipsize(TextUtils.TruncateAt.END);
+        textView3.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Sh, f6Var));
+        textView3.setTypeface(AndroidUtilities.bold());
+        textView3.setTextSize(1, 14.0f);
+        textView3.setText(LocaleController.getString(R.string.SearchAdsAboutUnderstood));
+        textView3.setBackground(org.telegram.ui.ActionBar.y5.e(new float[]{24.0f}, org.telegram.ui.ActionBar.j6.v0(i11, f6Var)));
+        textView3.setOnClickListener(new j41(this, 2));
+        linearLayout.addView(textView3, w7.x5.t(-1, 48, 0, 14, 22, 14, 14));
+        this.Y.N(false);
     }
 
-    @Override
-    public final void F1(Canvas canvas) {
-        AndroidUtilities.lerp(1.0f, 1.5f, this.Pe.v);
-        super.F1(canvas);
-    }
-
-    @Override
-    public final void d2(Canvas canvas, float f10, Integer num) {
-        canvas.save();
-        mg.r0 r0Var = this.K;
-        w41 w41Var = this.Pe;
-        canvas.translate(AndroidUtilities.lerp(0, -r0Var.f14103c, w41Var.f39271s), AndroidUtilities.lerp(w41Var.L.getBackgroundDrawableBottom() - getBackgroundDrawableBottom(), r0Var.f14113p, w41Var.f39271s));
-        super.d2(canvas, (1.0f - w41Var.f39271s) * f10, num);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getBoundsLeft() {
-        return 0;
-    }
-
-    @Override
-    public final int getBoundsRight() {
-        return getWidth();
-    }
-
-    @Override
-    public final void m2(float f10, Canvas canvas, boolean z4) {
-        canvas.save();
-        w41 w41Var = this.Pe;
-        if (w41Var.P) {
-            int i10 = this.f22086mb;
-            MessageObject messageObject = w41Var.J;
-            int i11 = 0;
-            if (messageObject != null && messageObject.isOutOwner()) {
-                MessageObject messageObject2 = w41Var.J;
-                if (messageObject2 != null && messageObject2.type == 19) {
-                    i11 = 4;
-                }
-                i11 += 20;
-            }
-            canvas.translate(((this.Ee.right - (AndroidUtilities.dp(8 + i11) + i10)) - this.f22115ob) * w41Var.f39271s, 0.0f);
-        }
-        super.m2(f10, canvas, z4);
-        canvas.restore();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        w41 w41Var = this.Pe;
-        boolean z4 = w41Var.P;
-        RectF rectF = w41Var.O;
-        if (z4) {
-            boolean z10 = this.Ce;
-            RectF rectF2 = this.Ee;
-            RectF rectF3 = this.De;
-            if (!z10) {
-                rectF3.set(getPhotoImage().getImageX(), getPhotoImage().getImageY(), getPhotoImage().getImageX2(), getPhotoImage().getImageY2());
-                float min = Math.min(getMeasuredWidth(), getMeasuredHeight()) * 0.92f;
-                rectF2.set((getMeasuredWidth() - min) / 2.0f, (getMeasuredHeight() - min) / 2.0f, (getMeasuredWidth() + min) / 2.0f, (getMeasuredHeight() + min) / 2.0f);
-                this.Ce = true;
-                this.Fe = new RadialGradient(0.0f, 0.0f, 48.0f, new int[]{-1, -1, 0}, new float[]{0.0f, 0.8f, 1.0f}, Shader.TileMode.CLAMP);
-                Paint paint = new Paint(1);
-                this.Ge = paint;
-                paint.setShader(this.Fe);
-                this.Ge.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-                this.He = new Matrix();
-            }
-            AndroidUtilities.lerp(rectF3, rectF2, w41Var.f39271s, rectF);
-            U3(rectF.left, rectF.top, rectF.width(), rectF.height());
-            getPhotoImage().setRoundRadius((int) rectF.width());
-            if (w41Var.f39271s > 0.0f && w41Var.N) {
-                canvas2 = canvas;
-                canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-            } else {
-                canvas2 = canvas;
-            }
-            this.f22175se = 1.0f - w41Var.f39271s;
+    public static void P(u41 u41Var, boolean z10, org.telegram.ui.Components.jn0 jn0Var) {
+        if (z10) {
+            MessagesController.getInstance(u41Var.currentAccount).disableAds(true);
+            jn0Var.run();
         } else {
-            canvas2 = canvas;
+            org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+            if (U == null) {
+                return;
+            }
+            U.presentFragment(new PremiumPreviewFragment(0, PremiumPreviewFragment.l0(3)));
         }
-        S1(canvas2);
-        if (w41Var.P && w41Var.f39271s > 0.0f && w41Var.N) {
-            canvas2.restore();
-        }
+        u41Var.dismiss();
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(this.Ne, this.Oe);
+    public final org.telegram.ui.Components.kl0 v(org.telegram.ui.Components.ll0 ll0Var) {
+        org.telegram.ui.Components.v51 v51Var = new org.telegram.ui.Components.v51(ll0Var, getContext(), this.currentAccount, 0, true, new b5(this, 21), this.resourcesProvider);
+        this.Y = v51Var;
+        return v51Var;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        super.setVisibility(i10);
-        TextureView textureView = this.Pe.M;
-        if (textureView != null && i10 == 8) {
-            textureView.setVisibility(i10);
-        }
-    }
-
-    @Override
-    public final void setPressed(boolean z4) {
+    public final CharSequence y() {
+        return LocaleController.getString(R.string.AboutRevenueSharingAds);
     }
 }

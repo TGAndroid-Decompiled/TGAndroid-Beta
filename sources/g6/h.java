@@ -1,47 +1,34 @@
 package g6;
 
-import android.os.IBinder;
 import android.os.IInterface;
-public final class h extends b6.g {
-    @Override
-    public final boolean C() {
-        return true;
-    }
+public interface h extends IInterface {
+    void B0(String str, byte[] bArr);
 
-    @Override
-    public final int k() {
-        return 17895000;
-    }
+    void P(int i10);
 
-    @Override
-    public final IInterface q(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
-        }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.moduleinstall.internal.IModuleInstallService");
-        if (queryLocalInterface instanceof e) {
-            return (e) queryLocalInterface;
-        }
-        return new a7.a(iBinder, "com.google.android.gms.common.moduleinstall.internal.IModuleInstallService", 11);
-    }
+    void T(String str, String str2);
 
-    @Override
-    public final y5.c[] r() {
-        return y6.b.d;
-    }
+    void X(int i10);
 
-    @Override
-    public final String v() {
-        return "com.google.android.gms.common.moduleinstall.internal.IModuleInstallService";
-    }
+    void Y(long j3);
 
-    @Override
-    public final String w() {
-        return "com.google.android.gms.chimera.container.moduleinstall.ModuleInstallService.START";
-    }
+    void c(int i10);
 
-    @Override
-    public final boolean y() {
-        return true;
-    }
+    void f(int i10);
+
+    void m(c6.d dVar, String str, String str2, boolean z10);
+
+    void u0(d dVar);
+
+    void w0(int i10);
+
+    void z0(c cVar);
+
+    void zzd(int i10);
+
+    void zzg(int i10);
+
+    void zzm(int i10, long j3);
+
+    void zzn();
 }

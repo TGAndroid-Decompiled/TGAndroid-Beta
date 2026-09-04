@@ -3,48 +3,48 @@ package org.telegram.ui.Cells;
 import android.text.Layout;
 import android.text.style.ClickableSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.c90;
-import org.telegram.ui.Components.j90;
-public final class h extends ze.c {
-    public j90 d;
-    public final Layout e;
-    public final ClickableSpan f21117f;
-    public final float f21118g;
+import org.telegram.ui.Components.a90;
+import org.telegram.ui.Components.h90;
+public final class h extends of.e {
+    public h90 d;
+    public final Layout f21999e;
+    public final ClickableSpan f22000f;
+    public final float f22001g;
     public final j h;
 
-    public h(j jVar, Layout layout, ClickableSpan clickableSpan, float f10) {
+    public h(j jVar, Layout layout, ClickableSpan clickableSpan, float f7) {
         this.h = jVar;
-        this.e = layout;
-        this.f21117f = clickableSpan;
-        this.f21118g = f10;
+        this.f21999e = layout;
+        this.f22000f = clickableSpan;
+        this.f22001g = f7;
     }
 
     @Override
-    public final void c(boolean z4) {
-        long j10;
+    public final void c(boolean z10) {
+        long j3;
         g gVar = new g(this, 0);
-        if (z4) {
-            j10 = 0;
+        if (z10) {
+            j3 = 0;
         } else {
-            j10 = 350;
+            j3 = 350;
         }
-        AndroidUtilities.runOnUIThread(gVar, j10);
+        AndroidUtilities.runOnUIThread(gVar, j3);
     }
 
     @Override
     public final void d() {
         j jVar = this.h;
-        c90 c90Var = jVar.B;
-        j90 j90Var = jVar.D;
-        if (j90Var != null) {
-            c90Var.l(j90Var, true);
+        a90 a90Var = jVar.E;
+        h90 h90Var = jVar.G;
+        if (h90Var != null) {
+            a90Var.l(h90Var, true);
         }
-        j90 i10 = c90.i(this.e, this.f21117f, this.f21118g);
+        h90 i10 = a90.i(this.f21999e, this.f22000f, this.f22001g);
         this.d = i10;
-        jVar.D = i10;
-        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Ld, jVar.F);
+        jVar.G = i10;
+        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Ld, jVar.I);
         this.d.f(org.telegram.ui.ActionBar.j6.l1(0.8f, v02), org.telegram.ui.ActionBar.j6.l1(1.3f, v02), org.telegram.ui.ActionBar.j6.l1(1.0f, v02), org.telegram.ui.ActionBar.j6.l1(4.0f, v02));
-        this.d.f25922w.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
-        c90Var.b(this.d, null);
+        this.d.f26690w.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
+        a90Var.b(this.d, null);
     }
 }

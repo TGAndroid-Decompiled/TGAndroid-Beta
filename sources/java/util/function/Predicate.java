@@ -1,4 +1,4 @@
 package java.util.function;
 public interface Predicate<T> {
-    boolean test(T t6);
+    boolean test(T t10);
 }

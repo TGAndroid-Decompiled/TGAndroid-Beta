@@ -1,29 +1,77 @@
 package x7;
-public final class d extends i {
-    public final int f46906c;
-    public final float d;
 
-    public d(float f10, int i10) {
-        super(0, Float.valueOf(Math.max(f10, 0.0f)));
-        this.f46906c = i10;
-        switch (i10) {
-            case 1:
-                super(2, Float.valueOf(Math.max(f10, 0.0f)));
-                this.d = Math.max(f10, 0.0f);
-                return;
+import java.util.Map;
+public abstract class d implements Map.Entry {
+    public final int f48945a;
+
+    @Override
+    public final boolean equals(Object obj) {
+        switch (this.f48945a) {
+            case 0:
+                if (!(obj instanceof Map.Entry)) {
+                    return false;
+                }
+                Map.Entry entry = (Map.Entry) obj;
+                if (!w7.l8.a(getKey(), entry.getKey()) || !w7.l8.a(getValue(), entry.getValue())) {
+                    return false;
+                }
+                return true;
             default:
-                this.d = Math.max(f10, 0.0f);
-                return;
+                if (!(obj instanceof Map.Entry)) {
+                    return false;
+                }
+                Map.Entry entry2 = (Map.Entry) obj;
+                if (!w7.i9.a(getKey(), entry2.getKey()) || !w7.i9.a(getValue(), entry2.getValue())) {
+                    return false;
+                }
+                return true;
         }
     }
 
     @Override
-    public final String toString() {
-        switch (this.f46906c) {
+    public final int hashCode() {
+        int hashCode;
+        int hashCode2;
+        switch (this.f48945a) {
             case 0:
-                return "[Dash: length=" + this.d + "]";
+                Object key = getKey();
+                Object value = getValue();
+                int i10 = 0;
+                if (key == null) {
+                    hashCode = 0;
+                } else {
+                    hashCode = key.hashCode();
+                }
+                if (value != null) {
+                    i10 = value.hashCode();
+                }
+                return hashCode ^ i10;
             default:
-                return "[Gap: length=" + this.d + "]";
+                Object key2 = getKey();
+                Object value2 = getValue();
+                int i11 = 0;
+                if (key2 == null) {
+                    hashCode2 = 0;
+                } else {
+                    hashCode2 = key2.hashCode();
+                }
+                if (value2 != null) {
+                    i11 = value2.hashCode();
+                }
+                return hashCode2 ^ i11;
         }
+    }
+
+    public final String toString() {
+        switch (this.f48945a) {
+            case 0:
+                return getKey() + "=" + getValue();
+            default:
+                return a4.a.C(String.valueOf(getKey()), "=", String.valueOf(getValue()));
+        }
+    }
+
+    public d(int i10, boolean z10) {
+        this.f48945a = i10;
     }
 }

@@ -1,38 +1,29 @@
 package org.telegram.ui;
-public final class pe1 implements Runnable {
-    public final int f37112a;
-    public final sf1 f37113b;
 
-    public pe1(sf1 sf1Var, int i10) {
-        this.f37112a = i10;
-        this.f37113b = sf1Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class pe1 extends AnimatorListenerAdapter {
+    public final int f39494a;
+    public final te1 f39495b;
+
+    public pe1(te1 te1Var, int i10) {
+        this.f39494a = i10;
+        this.f39495b = te1Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37112a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f39494a) {
             case 0:
-                sf1 sf1Var = this.f37113b;
-                sf1Var.x0();
-                sf1Var.B0();
+                te1 te1Var = this.f39495b;
+                te1Var.v = 0;
+                te1Var.f40733n.setVisibility(8);
                 return;
             case 1:
-                this.f37113b.x0();
-                return;
-            case 2:
-                this.f37113b.O0(true);
-                return;
-            case 3:
-                this.f37113b.finishPreviewFragment();
-                return;
-            case 4:
-                sf1 sf1Var2 = this.f37113b;
-                sf1Var2.f38216x0 = null;
-                sf1Var2.U0(true, false);
+                this.f39495b.v = 0;
                 return;
             default:
-                sf1 sf1Var3 = this.f37113b;
-                sf1Var3.K.postOnAnimation(new pe1(sf1Var3, 1));
+                this.f39495b.F.setVisibility(8);
                 return;
         }
     }

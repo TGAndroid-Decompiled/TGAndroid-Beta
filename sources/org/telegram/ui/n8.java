@@ -1,55 +1,54 @@
 package org.telegram.ui;
 
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class n8 implements Runnable {
-    public final int f36404a;
-    public final n9 f36405b;
+import org.telegram.tgnet.TLRPC;
+public final class n8 implements View.OnClickListener {
+    public final int f38849a;
+    public final k9 f38850b;
 
-    public n8(n9 n9Var, int i10) {
-        this.f36404a = i10;
-        this.f36405b = n9Var;
+    public n8(k9 k9Var, int i10) {
+        this.f38849a = i10;
+        this.f38850b = k9Var;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.qc a02;
-        switch (this.f36404a) {
+    public final void onClick(View view) {
+        switch (this.f38849a) {
             case 0:
-                n9 n9Var = this.f36405b;
-                n9Var.f0();
-                n9Var.i0();
+                Long l4 = (Long) view.getTag();
+                k9 k9Var = this.f38850b;
+                ChatObject.Call groupCall = k9Var.getMessagesController().getGroupCall(l4.longValue(), false);
+                TLRPC.Chat chat = k9Var.getMessagesController().getChat(l4);
+                k9Var.Q = chat;
+                if (groupCall != null) {
+                    org.telegram.ui.Components.voip.d2.l(chat, null, false, null, k9Var.getParentActivity(), k9Var, k9Var.getAccountInstance());
+                    return;
+                }
+                k9Var.R = l4;
+                k9Var.getMessagesController().loadFullChat(l4.longValue(), 0, true);
                 return;
             case 1:
-                n9 n9Var2 = this.f36405b;
-                n9Var2.n0(false);
-                if (n9Var2.f36420w) {
-                    a02 = org.telegram.ui.Components.qc.X();
-                } else {
-                    a02 = org.telegram.ui.Components.qc.a0(n9Var2);
-                }
-                org.telegram.ui.Components.ic I = a02.I(R.raw.contact_check, AndroidUtilities.replaceTags(LocaleController.getString(R.string.GroupCallTabWasHiddenTitle)), LocaleController.getString(R.string.UndoNoCaps), 5000, true, new n8(n9Var2, 5));
-                I.f25671j = 5000;
-                I.j();
+                this.f38850b.k0(true);
                 return;
             case 2:
-                this.f36405b.p0(true);
-                return;
-            case 3:
-                n9 n9Var3 = this.f36405b;
-                n9Var3.h0();
-                n9Var3.f0();
-                return;
-            case 4:
-                this.f36405b.n0(false);
-                return;
-            case 5:
-                this.f36405b.n0(true);
+                k9 k9Var2 = this.f38850b;
+                org.telegram.ui.Components.n70 H = org.telegram.ui.Components.n70.H(k9Var2, k9Var2.F);
+                H.f28660s = 8;
+                if (k9Var2.getUserConfig().showCallsTab) {
+                    H.c(R.drawable.msg_archive_hide, LocaleController.getString(R.string.HideCallTab), new j8(k9Var2, 1), false);
+                }
+                H.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteAllCalls), new j8(k9Var2, 2), true);
+                H.Z();
+                H.X(-AndroidUtilities.dp(64.0f));
                 return;
             default:
-                n9 n9Var4 = this.f36405b;
-                n9Var4.d.postOnAnimation(new n8(n9Var4, 3));
+                k9 k9Var3 = this.f38850b;
+                k9Var3.getClass();
+                k9.m0(k9Var3);
                 return;
         }
     }

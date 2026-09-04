@@ -1,91 +1,64 @@
 package org.telegram.ui;
 
-import android.app.Activity;
 import android.view.View;
-import java.util.HashMap;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class gf1 extends View {
-    public final HashMap f34442a;
-    public final hf1 f34443b;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public final class gf1 extends s4.c0 {
+    public boolean I;
+    public final eg1 J;
 
-    public gf1(hf1 hf1Var, Activity activity) {
-        super(activity);
-        this.f34443b = hf1Var;
-        this.f34442a = new HashMap();
+    public gf1(eg1 eg1Var) {
+        this.J = eg1Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        int i13;
-        float f10;
-        int i14;
-        int dp;
-        boolean z4;
-        int i15;
-        hf1 hf1Var = this.f34443b;
-        sf1 sf1Var = hf1Var.d;
-        int size = View.MeasureSpec.getSize(i10);
-        int dp2 = AndroidUtilities.dp(64.0f);
-        int i16 = 0;
-        int i17 = 0;
-        for (int i18 = 0; i18 < hf1Var.F().size(); i18++) {
-            if (hf1Var.F().get(i18) != null && ((jf1) hf1Var.F().get(i18)).f35268c != null) {
-                String str = ((jf1) hf1Var.F().get(i18)).f35268c.title;
-                HashMap hashMap = this.f34442a;
-                Boolean bool = (Boolean) hashMap.get(str);
-                if (bool == null) {
-                    int i19 = 50;
-                    if (!LocaleController.isRTL) {
-                        if (sf1Var.isInPreviewMode()) {
-                            i15 = 11;
-                        } else {
-                            i15 = 50;
-                        }
-                        f10 = i15 + 4;
-                    } else {
-                        f10 = 18.0f;
-                    }
-                    int dp3 = AndroidUtilities.dp(f10);
-                    if (!LocaleController.isRTL) {
-                        i14 = size - dp3;
-                        dp = AndroidUtilities.dp(22.0f);
-                    } else {
-                        i14 = size - dp3;
-                        if (sf1Var.isInPreviewMode()) {
-                            i19 = 11;
-                        }
-                        dp = AndroidUtilities.dp(i19 + 13);
-                    }
-                    if (org.telegram.ui.ActionBar.j6.B0[0].measureText(str) <= (i14 - dp) - ((int) Math.ceil(org.telegram.ui.ActionBar.j6.I0.measureText("00:00")))) {
-                        z4 = true;
-                    } else {
-                        z4 = false;
-                    }
-                    bool = Boolean.valueOf(z4);
-                    hashMap.put(str, bool);
-                }
-                if (!bool.booleanValue()) {
-                    i13 = 20;
-                } else {
-                    i13 = 0;
-                }
-                int dp4 = AndroidUtilities.dp(i13 + 64);
-                if (((jf1) hf1Var.F().get(i18)).f35268c.f19211id == 1) {
-                    dp2 = dp4;
-                }
-                if (((jf1) hf1Var.F().get(i18)).f35268c.hidden) {
-                    i16++;
-                }
-                i17 += dp4;
+    public final void b0(pf.e eVar, s4.z0 z0Var) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            try {
+                super.b0(eVar, z0Var);
+                return;
+            } catch (IndexOutOfBoundsException unused) {
+                throw new RuntimeException("Inconsistency detected. ");
             }
         }
-        if (i16 > 0) {
-            i12 = (((sf1Var.K.getMeasuredHeight() - sf1Var.K.getPaddingTop()) - sf1Var.K.getPaddingBottom()) - i17) + dp2;
-        } else {
-            i12 = 0;
+        try {
+            super.b0(eVar, z0Var);
+        } catch (IndexOutOfBoundsException e7) {
+            FileLog.e(e7);
+            AndroidUtilities.runOnUIThread(new f01(this, 18));
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, i12), 1073741824));
+    }
+
+    @Override
+    public final void b1(View view, View view2, int i10, int i11) {
+        this.I = true;
+        super.b1(view, view2, i10, i11);
+        this.I = false;
+    }
+
+    @Override
+    public final void h1(int i10, int i11) {
+        if (this.I) {
+            i11 -= this.J.N.getPaddingTop();
+        }
+        super.h1(i10, i11);
+    }
+
+    @Override
+    public final int o0(int r19, pf.e r20, s4.z0 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gf1.o0(int, pf.e, s4.z0):int");
+    }
+
+    @Override
+    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
+        if (this.J.f36068x > 0 && i10 == 1) {
+            super.v0(recyclerView, z0Var, i10);
+            return;
+        }
+        ki.p pVar = new ki.p(recyclerView.getContext(), 0);
+        pVar.f45906a = i10;
+        w0(pVar);
     }
 }

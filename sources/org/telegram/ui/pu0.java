@@ -1,189 +1,231 @@
 package org.telegram.ui;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
+import android.text.Spanned;
+import android.text.style.ClickableSpan;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.CheckBox;
-import org.telegram.ui.Components.UndoView;
-public final class pu0 extends FrameLayout {
-    public final PhotoViewer f37233a;
+import org.telegram.messenger.Utilities;
+public final class pu0 extends wh.p {
+    public final org.telegram.ui.Cells.aa R;
+    public ArrayList S;
+    public boolean T;
+    public Layout U;
+    public org.telegram.ui.Components.v5 V;
+    public boolean W;
+    public org.telegram.ui.Components.h90 f39638a0;
+    public Layout f39639b0;
+    public Path f39640c0;
 
-    public pu0(PhotoViewer photoViewer, Activity activity) {
-        super(activity);
-        this.f37233a = photoViewer;
+    public pu0(Context context, nu0 nu0Var, org.telegram.ui.Cells.aa aaVar, final Utilities.Callback2 callback2, final Utilities.Callback3 callback3) {
+        super(context);
+        setClearLinkOnLongPress(false);
+        setDisablePaddingsOffsetY(false);
+        this.f48674x = new org.telegram.ui.Components.c90(this) {
+            public final pu0 f39314b;
+
+            {
+                this.f39314b = this;
+            }
+
+            @Override
+            public final void a(ClickableSpan clickableSpan) {
+                switch (r3) {
+                    case 0:
+                        pu0 pu0Var = this.f39314b;
+                        pu0Var.getClass();
+                        ((Utilities.Callback2) callback2).run(clickableSpan, pu0Var);
+                        return;
+                    default:
+                        pu0 pu0Var2 = this.f39314b;
+                        ((Utilities.Callback3) callback2).run(clickableSpan, pu0Var2, new rl0(pu0Var2, 21));
+                        return;
+                }
+            }
+        };
+        this.f48675y = new org.telegram.ui.Components.c90(this) {
+            public final pu0 f39314b;
+
+            {
+                this.f39314b = this;
+            }
+
+            @Override
+            public final void a(ClickableSpan clickableSpan) {
+                switch (r3) {
+                    case 0:
+                        pu0 pu0Var = this.f39314b;
+                        pu0Var.getClass();
+                        ((Utilities.Callback2) callback3).run(clickableSpan, pu0Var);
+                        return;
+                    default:
+                        pu0 pu0Var2 = this.f39314b;
+                        ((Utilities.Callback3) callback3).run(clickableSpan, pu0Var2, new rl0(pu0Var2, 21));
+                        return;
+                }
+            }
+        };
+        this.R = aaVar;
+        w7.d6.a(this, 16.0f, 8.0f, 16.0f, 8.0f);
+        setLinkTextColor(-8796932);
+        setTextColor(-1);
+        setHighlightColor(872415231);
+        setGravity(w7.x5.y() | 16);
+        setTextSize(1, 16.0f);
+        setOnClickListener(new l60(nu0Var, 19));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
+        int i10;
+        float f7;
+        if (this.W) {
+            Layout layout = getLayout();
+            Path path = this.f39640c0;
+            if (path == null || this.f39639b0 != layout) {
+                if (path == null) {
+                    this.f39640c0 = new Path();
+                } else {
+                    path.rewind();
+                }
+                if (layout != null) {
+                    float dp = AndroidUtilities.dp(16.0f);
+                    float dp2 = AndroidUtilities.dp(8.0f);
+                    int i11 = 0;
+                    float f10 = 0.0f;
+                    while (i11 < layout.getLineCount()) {
+                        float f11 = dp / 3.0f;
+                        float lineLeft = layout.getLineLeft(i11) - f11;
+                        float lineRight = layout.getLineRight(i11) + f11;
+                        if (i11 == 0) {
+                            f10 = layout.getLineTop(i11) - (dp2 / 3.0f);
+                        }
+                        float lineBottom = layout.getLineBottom(i11);
+                        if (i11 >= layout.getLineCount() - 1) {
+                            f7 = (dp2 / 3.0f) + lineBottom;
+                        } else {
+                            f7 = lineBottom;
+                        }
+                        this.f39640c0.addRect(getPaddingLeft() + lineLeft, getPaddingTop() + f10, getPaddingLeft() + lineRight, getPaddingTop() + f7, Path.Direction.CW);
+                        i11++;
+                        f10 = f7;
+                    }
+                }
+                this.f39639b0 = layout;
+            }
+            if (this.f39638a0 == null) {
+                org.telegram.ui.Components.h90 h90Var = new org.telegram.ui.Components.h90();
+                this.f39638a0 = h90Var;
+                h90Var.f26691x = this.f39640c0;
+                h90Var.j(4.0f);
+                this.f39638a0.f(org.telegram.ui.ActionBar.j6.l1(0.3f, -1), org.telegram.ui.ActionBar.j6.l1(0.1f, -1), org.telegram.ui.ActionBar.j6.l1(0.2f, -1), org.telegram.ui.ActionBar.j6.l1(0.7f, -1));
+                this.f39638a0.setCallback(this);
+            }
+            this.f39638a0.setBounds(0, 0, getWidth(), getHeight());
+            this.f39638a0.draw(canvas);
+        }
+        if (this.W) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 178, 31);
+        }
+        if (this.S != null && this.T) {
+            canvas.save();
+            canvas.translate(getPaddingLeft(), getPaddingTop());
+            for (int i12 = 0; i12 < this.S.size(); i12++) {
+                org.telegram.ui.Components.oi0 oi0Var = (org.telegram.ui.Components.oi0) this.S.get(i12);
+                int width = (getWidth() - getPaddingLeft()) - getPaddingRight();
+                if (this.T) {
+                    i10 = AndroidUtilities.dp(32.0f);
+                } else {
+                    i10 = 0;
+                }
+                getPaint();
+                oi0Var.a(canvas, width + i10, -1);
+            }
+            canvas.restore();
+        }
         super.dispatchDraw(canvas);
-        zn znVar = this.f37233a.f31746i4;
-        if (znVar != null) {
-            znVar.Q7();
-            UndoView undoView = znVar.f40775v3;
-            if (undoView != null && undoView.getVisibility() == 0) {
-                canvas.save();
-                View view = (View) undoView.getParent();
-                canvas.clipRect(view.getX(), view.getY(), view.getX() + view.getWidth(), view.getY() + view.getHeight());
-                canvas.translate(undoView.getX(), undoView.getY());
-                undoView.draw(canvas);
-                canvas.restore();
-                invalidate();
-            }
+        if (this.W) {
+            canvas.restore();
         }
-    }
-
-    @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        keyEvent.getKeyCode();
-        PhotoViewer photoViewer = this.f37233a;
-        if (!photoViewer.f31822r && photoViewer.Z1 != 1 && photoViewer.f31796o1 && photoViewer.C2 != null && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 0 && (keyEvent.getKeyCode() == 24 || keyEvent.getKeyCode() == 25)) {
-            photoViewer.C2.W(1.0f);
-        }
-        return super.dispatchKeyEvent(keyEvent);
-    }
-
-    @Override
-    public final boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-            PhotoViewer photoViewer = this.f37233a;
-            if (photoViewer.N.y()) {
-                photoViewer.N.f(false);
-            }
-            if (photoViewer.H1()) {
-                photoViewer.E0(true);
-                return false;
-            } else if (rt.q().E) {
-                rt.q().o();
-                return false;
-            } else {
-                PhotoViewer.t1().G0(true, false);
-                return true;
-            }
-        }
-        return super.dispatchKeyEventPreIme(keyEvent);
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(android.view.MotionEvent r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pu0.dispatchTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        if (this.f37233a.O8) {
-            return;
-        }
-        super.draw(canvas);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        try {
-            return super.drawChild(canvas, view, j10);
-        } catch (Throwable unused) {
-            return false;
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        PhotoViewer photoViewer = this.f37233a;
-        photoViewer.z4.onAttachedToWindow();
-        photoViewer.f31892y4.onAttachedToWindow();
-        photoViewer.A4.onAttachedToWindow();
-        photoViewer.P5 = true;
+        canvas.save();
+        canvas.translate(getPaddingLeft(), getPaddingTop());
+        canvas.clipRect(0.0f, getScrollY(), getWidth() - getPaddingRight(), (getScrollY() + getHeight()) - (getPaddingBottom() * 0.75f));
+        org.telegram.ui.Components.z5.drawAnimatedEmojis(canvas, getLayout(), this.V, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
+        canvas.restore();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        PhotoViewer photoViewer = this.f37233a;
-        photoViewer.z4.onDetachedFromWindow();
-        photoViewer.f31892y4.onDetachedFromWindow();
-        photoViewer.A4.onDetachedFromWindow();
-        photoViewer.P5 = false;
-        photoViewer.Q5 = false;
+        org.telegram.ui.Components.z5.release(this, this.V);
+        this.S = org.telegram.ui.Components.si0.e(null, this.S);
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pu0.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f37233a.e && super.onInterceptTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        PhotoViewer photoViewer = this.f37233a;
-        photoViewer.f31706e0.layout(getPaddingLeft(), 0, photoViewer.f31706e0.getMeasuredWidth() + getPaddingLeft(), photoViewer.f31706e0.getMeasuredHeight());
-        photoViewer.f31679b0.layout(getPaddingLeft(), 0, photoViewer.f31679b0.getMeasuredWidth() + getPaddingLeft(), photoViewer.f31679b0.getMeasuredHeight());
-        photoViewer.f31724g0.layout(getPaddingLeft(), photoViewer.f31679b0.getMeasuredHeight(), photoViewer.f31724g0.getMeasuredWidth(), photoViewer.f31724g0.getMeasuredHeight() + photoViewer.f31679b0.getMeasuredHeight());
-        photoViewer.Q5 = true;
-        if (z4) {
-            if (!photoViewer.R5) {
-                float r22 = photoViewer.r2(true);
-                photoViewer.X5 = r22;
-                photoViewer.U5 = 0.0f;
-                photoViewer.V5 = 0.0f;
-                photoViewer.w3(r22);
+    public final void onDraw(Canvas canvas) {
+        org.telegram.ui.Cells.aa aaVar = this.R;
+        if (aaVar != null && aaVar.y()) {
+            canvas.save();
+            canvas.translate(getPaddingLeft(), getPaddingTop());
+            if (aaVar != null && getStaticTextLayout() != null && aaVar.f21620u0 == this) {
+                aaVar.X(canvas);
             }
-            CheckBox checkBox = photoViewer.K0;
-            if (checkBox != null) {
-                checkBox.post(new yt0(this, 1));
+            canvas.restore();
+        }
+        super.onDraw(canvas);
+        if (this.U != getLayout()) {
+            boolean z10 = true;
+            int i10 = 0;
+            this.V = org.telegram.ui.Components.z5.update(0, this, this.V, getLayout());
+            this.S = org.telegram.ui.Components.si0.e(getLayout(), this.S);
+            z10 = (getLayout() == null || !(getLayout().getText() instanceof Spanned) || ((org.telegram.ui.Components.ri0[]) ((Spanned) getLayout().getText()).getSpans(0, getLayout().getText().length(), org.telegram.ui.Components.ri0.class)).length <= 0) ? false : false;
+            this.T = z10;
+            if (z10) {
+                i10 = 32;
             }
-        }
-        if (photoViewer.R5) {
-            photoViewer.N2();
-            photoViewer.R5 = false;
+            w7.d6.a(this, 16.0f, 8.0f, i10 + 16, 8.0f);
+            this.U = getLayout();
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        PhotoViewer photoViewer = this.f37233a;
-        if (!photoViewer.f31832s && AndroidUtilities.incorrectDisplaySizeFix) {
-            int i12 = AndroidUtilities.displaySize.y;
-            if (size2 > i12) {
-                size2 = i12;
-            }
-            size2 += AndroidUtilities.statusBarHeight;
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        super.onTextChanged(charSequence, i10, i11, i12);
+        this.V = org.telegram.ui.Components.z5.update(0, this, this.V, getLayout());
+        this.S = org.telegram.ui.Components.si0.e(getLayout(), this.S);
+    }
+
+    public void setLoading(boolean z10) {
+        if (this.W == z10) {
+            return;
         }
-        setMeasuredDimension(size, size2);
-        int i13 = size2 - photoViewer.f31806p2.bottom;
-        int paddingRight = size - (getPaddingRight() + getPaddingLeft());
-        int paddingBottom = i13 - getPaddingBottom();
-        ViewGroup.LayoutParams layoutParams = photoViewer.f31706e0.getLayoutParams();
-        photoViewer.f31706e0.measure(View.MeasureSpec.makeMeasureSpec(layoutParams.width, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(layoutParams.height, Integer.MIN_VALUE));
-        photoViewer.f31679b0.measure(View.MeasureSpec.makeMeasureSpec(paddingRight, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingBottom, 1073741824));
-        photoViewer.f31724g0.measure(View.MeasureSpec.makeMeasureSpec(paddingRight, 1073741824), View.MeasureSpec.makeMeasureSpec(photoViewer.f31733h0, 1073741824));
+        this.W = z10;
+        invalidate();
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        PhotoViewer photoViewer = this.f37233a;
-        if (photoViewer.e && PhotoViewer.k(photoViewer, motionEvent)) {
-            return true;
+    public void setPressed(boolean z10) {
+        boolean z11;
+        if (z10 != isPressed()) {
+            z11 = true;
+        } else {
+            z11 = false;
         }
-        return false;
+        super.setPressed(z10);
+        if (z11) {
+            invalidate();
+        }
     }
 
     @Override
-    public final void requestLayout() {
-        super.requestLayout();
-        AndroidUtilities.printStackTrace("requestLayout");
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.f39638a0 && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

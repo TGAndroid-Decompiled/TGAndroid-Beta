@@ -1,20 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.View;
-public final class dd0 {
-    public Paint f24248a;
-    public Paint f24249b;
-    public View f24250c;
-    public j3.b0 d;
-    public long e;
-    public RectF f24251f;
-    public float f24252g;
-    public float h;
-    public float f24253i;
-    public Path f24254j;
-    public boolean f24255k;
-    public boolean f24256l;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.widget.TextView;
+public final class dd0 extends TextView {
+    public final ed0 f25371a;
+
+    public dd0(ed0 ed0Var, Context context, int i10) {
+        super(context);
+        this.f25371a = ed0Var;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        ed0 ed0Var = this.f25371a;
+        if (ed0Var.f25657e.getAdapter() instanceof cd0) {
+            ((cd0) ed0Var.f25657e.getAdapter()).getClass();
+        }
+    }
+
+    @Override
+    public final void setSelected(boolean z10) {
+        float f7;
+        float f10;
+        super.setSelected(z10);
+        Drawable background = getBackground();
+        ed0 ed0Var = this.f25371a;
+        if (background != null) {
+            if (z10) {
+                f10 = 0.1f;
+            } else {
+                f10 = 0.05f;
+            }
+            org.telegram.ui.ActionBar.j6.B1(background, ed0Var.c(f10), true);
+        }
+        if (z10) {
+            f7 = 0.8f;
+        } else {
+            f7 = 0.6f;
+        }
+        setTextColor(ed0Var.c(f7));
+    }
 }

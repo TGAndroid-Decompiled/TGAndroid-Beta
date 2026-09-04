@@ -1,153 +1,93 @@
 package org.telegram.ui.Components;
 
-import android.os.Looper;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
+import android.animation.TimeInterpolator;
+import android.os.SystemClock;
+import android.view.View;
 public final class h5 {
-    public HashMap f25314a;
-    public HashMap f25315b;
-    public HashSet f25316c;
-    public fg d;
-    public final int e;
+    public final View f26576a;
+    public final Runnable f26577b;
+    public int f26578c;
+    public int d;
+    public boolean f26579e;
+    public final long f26580f;
+    public final TimeInterpolator f26581g;
+    public boolean h;
+    public long f26582i;
+    public int f26583j;
 
-    public h5(int i10) {
-        this.e = i10;
+    public h5(View view) {
+        this.f26580f = 200L;
+        this.f26581g = pr.f29466f;
+        this.f26576a = view;
+        this.f26579e = true;
     }
 
-    public static boolean a() {
-        if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
-            if (BuildVars.DEBUG_VERSION) {
-                FileLog.e("EmojiDocumentFetcher", new IllegalStateException("Wrong thread"));
-                return false;
+    public final int a(int i10, boolean z10) {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j3 = this.f26580f;
+        if (!z10 && j3 > 0 && !this.f26579e) {
+            if (this.d != i10) {
+                this.h = true;
+                this.d = i10;
+                this.f26583j = this.f26578c;
+                this.f26582i = elapsedRealtime;
             }
-            return false;
+        } else {
+            this.d = i10;
+            this.f26578c = i10;
+            this.h = false;
+            this.f26579e = false;
         }
-        return true;
-    }
-
-    public final void b(long j10, i5 i5Var) {
-        TLRPC.Document document;
-        if (j10 != 0) {
-            synchronized (this) {
-                try {
-                    HashMap hashMap = this.f25314a;
-                    if (hashMap != null && (document = (TLRPC.Document) hashMap.get(Long.valueOf(j10))) != null) {
-                        if (i5Var != null) {
-                            i5Var.a(document);
-                        }
-                    } else if (a()) {
-                        if (this.f25315b == null) {
-                            this.f25315b = new HashMap();
-                        }
-                        ArrayList arrayList = (ArrayList) this.f25315b.get(Long.valueOf(j10));
-                        if (arrayList != null) {
-                            arrayList.add(i5Var);
-                            return;
-                        }
-                        ArrayList arrayList2 = new ArrayList(1);
-                        arrayList2.add(i5Var);
-                        this.f25315b.put(Long.valueOf(j10), arrayList2);
-                        if (this.f25316c == null) {
-                            this.f25316c = new HashSet();
-                        }
-                        this.f25316c.add(Long.valueOf(j10));
-                        if (this.d != null) {
-                            return;
-                        }
-                        fg fgVar = new fg(this, 5);
-                        this.d = fgVar;
-                        AndroidUtilities.runOnUIThread(fgVar);
-                    }
-                } catch (Throwable th2) {
-                    throw th2;
+        if (this.h) {
+            float a2 = w7.p.a(((float) (elapsedRealtime - this.f26582i)) / ((float) j3), 0.0f, 1.0f);
+            if (elapsedRealtime - this.f26582i >= 0) {
+                TimeInterpolator timeInterpolator = this.f26581g;
+                if (timeInterpolator == null) {
+                    this.f26578c = i0.a.d(a2, this.f26583j, this.d);
+                } else {
+                    this.f26578c = i0.a.d(timeInterpolator.getInterpolation(a2), this.f26583j, this.d);
+                }
+            }
+            if (a2 >= 1.0f) {
+                this.h = false;
+            } else {
+                View view = this.f26576a;
+                if (view != null) {
+                    view.invalidate();
+                }
+                Runnable runnable = this.f26577b;
+                if (runnable != null) {
+                    runnable.run();
                 }
             }
         }
+        return this.f26578c;
     }
 
-    public final TLRPC.InputStickerSet c(long j10) {
-        synchronized (this) {
-            try {
-                HashMap hashMap = this.f25314a;
-                if (hashMap == null) {
-                    return null;
-                }
-                TLRPC.Document document = (TLRPC.Document) hashMap.get(Long.valueOf(j10));
-                if (document == null) {
-                    return null;
-                }
-                return MessageObject.getInputStickerSet(document);
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
+    public h5(View view, long j3, TimeInterpolator timeInterpolator) {
+        this.f26580f = 200L;
+        pr prVar = pr.f29466f;
+        this.f26576a = view;
+        this.f26580f = j3;
+        this.f26581g = timeInterpolator;
+        this.f26579e = true;
     }
 
-    public final void d(ArrayList arrayList) {
-        ArrayList arrayList2;
-        if (a()) {
-            l5.x();
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                if (arrayList.get(i10) instanceof TLRPC.Document) {
-                    TLRPC.Document document = (TLRPC.Document) arrayList.get(i10);
-                    e(document);
-                    HashMap hashMap = this.f25315b;
-                    if (hashMap != null && (arrayList2 = (ArrayList) hashMap.remove(Long.valueOf(document.f19165id))) != null) {
-                        for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                            i5 i5Var = (i5) arrayList2.get(i11);
-                            if (i5Var != null) {
-                                i5Var.a(document);
-                            }
-                        }
-                        arrayList2.clear();
-                    }
-                }
-            }
-        }
+    public h5(View view, long j3, TimeInterpolator timeInterpolator, int i10) {
+        this.f26580f = 200L;
+        pr prVar = pr.f29466f;
+        this.f26576a = view;
+        this.f26580f = j3;
+        this.f26581g = timeInterpolator;
+        this.f26579e = true;
     }
 
-    public final void e(TLRPC.Document document) {
-        if (document == null) {
-            return;
-        }
-        synchronized (this) {
-            try {
-                if (this.f25314a == null) {
-                    this.f25314a = new HashMap();
-                }
-                this.f25314a.put(Long.valueOf(document.f19165id), document);
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-    }
-
-    public final void f(ArrayList arrayList) {
-        if (arrayList == null) {
-            return;
-        }
-        synchronized (this) {
-            try {
-                if (this.f25314a == null) {
-                    this.f25314a = new HashMap();
-                }
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    TLRPC.Document document = (TLRPC.Document) obj;
-                    this.f25314a.put(Long.valueOf(document.f19165id), document);
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
+    public h5(Runnable runnable, long j3, TimeInterpolator timeInterpolator) {
+        this.f26580f = 200L;
+        pr prVar = pr.f29466f;
+        this.f26577b = runnable;
+        this.f26580f = j3;
+        this.f26581g = timeInterpolator;
+        this.f26579e = true;
     }
 }

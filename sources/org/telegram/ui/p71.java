@@ -1,18 +1,15 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class p71 implements View.OnClickListener {
-    public final TLRPC.TL_authorization f36990a;
-    public final v71 f36991b;
+public final class p71 implements View.OnLayoutChangeListener {
+    public final t71 f39421a;
 
-    public p71(v71 v71Var, TLRPC.TL_authorization tL_authorization) {
-        this.f36991b = v71Var;
-        this.f36990a = tL_authorization;
+    public p71(t71 t71Var) {
+        this.f39421a = t71Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        v71.m(this.f36991b, this.f36990a.ip);
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        t71.S(this.f39421a);
     }
 }

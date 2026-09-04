@@ -3,14 +3,14 @@ package org.telegram.ui;
 import android.webkit.JavascriptInterface;
 import org.telegram.messenger.AndroidUtilities;
 public class PaymentFormActivity$TelegramWebviewProxy {
-    public final lo0 f31668a;
+    public final xo0 f33508a;
 
-    public PaymentFormActivity$TelegramWebviewProxy(lo0 lo0Var) {
-        this.f31668a = lo0Var;
+    public PaymentFormActivity$TelegramWebviewProxy(xo0 xo0Var) {
+        this.f33508a = xo0Var;
     }
 
     @JavascriptInterface
     public void postEvent(String str, String str2) {
-        AndroidUtilities.runOnUIThread(new u1(this, str, str2, 1));
+        AndroidUtilities.runOnUIThread(new r1(this, str, str2, 1));
     }
 }

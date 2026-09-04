@@ -1,20 +1,10 @@
 package eh;
+public interface a {
+    int G();
 
-import android.view.View;
-public final class a implements View.OnAttachStateChangeListener {
-    public final b f5579a;
+    int J();
 
-    public a(b bVar) {
-        this.f5579a = bVar;
-    }
+    int k0();
 
-    @Override
-    public final void onViewAttachedToWindow(View view) {
-        this.f5579a.f5582c.e();
-    }
-
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        this.f5579a.f5582c.f();
-    }
+    int p();
 }

@@ -2,60 +2,84 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.RectF;
+import android.os.Bundle;
+import android.text.TextPaint;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.SharedConfig;
 public final class hc1 extends FrameLayout {
-    public final int f34641a;
-    public final RectF f34642b;
-    public final jd1 f34643c;
+    public final org.telegram.ui.Cells.ia f36952a;
+    public final org.telegram.ui.Components.fo0 f36953b;
+    public final int f36954c;
+    public final int d;
+    public final TextPaint f36955e;
+    public int f36956f;
+    public final ThemeActivity h;
 
-    public hc1(jd1 jd1Var, Context context, int i10) {
+    public hc1(ThemeActivity themeActivity, Context context) {
         super(context);
-        this.f34641a = i10;
-        switch (i10) {
-            case 1:
-                this.f34643c = jd1Var;
-                super(context);
-                this.f34642b = new RectF();
-                return;
-            default:
-                this.f34643c = jd1Var;
-                this.f34642b = new RectF();
-                return;
-        }
+        org.telegram.ui.ActionBar.d5 d5Var;
+        this.h = themeActivity;
+        this.f36954c = 12;
+        this.d = 30;
+        setWillNotDraw(false);
+        TextPaint textPaint = new TextPaint(1);
+        this.f36955e = textPaint;
+        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
+        org.telegram.ui.Components.fo0 fo0Var = new org.telegram.ui.Components.fo0(context);
+        this.f36953b = fo0Var;
+        fo0Var.setReportChanges(true);
+        fo0Var.setSeparatorsCount(19);
+        fo0Var.setDelegate(new iw0(this, 4));
+        fo0Var.setImportantForAccessibility(2);
+        addView(fo0Var, w7.x5.d(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
+        d5Var = ((org.telegram.ui.ActionBar.n2) themeActivity).parentLayout;
+        org.telegram.ui.Cells.ia iaVar = new org.telegram.ui.Cells.ia(context, d5Var, 0);
+        this.f36952a = iaVar;
+        iaVar.setImportantForAccessibility(4);
+        addView(iaVar, w7.x5.d(-1, -2.0f, 51, 0.0f, 53.0f, 0.0f, 0.0f));
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        this.f36952a.invalidate();
+        this.f36953b.invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        switch (this.f34641a) {
-            case 0:
-                RectF rectF = this.f34642b;
-                rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                jd1 jd1Var = this.f34643c;
-                hc1 hc1Var = jd1Var.A0;
-                yc1 yc1Var = jd1Var.f35230u0;
-                jc1 jc1Var = jd1Var.f35179a;
-                org.telegram.ui.ActionBar.j6.s(hc1Var, yc1Var, jc1Var);
-                canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, jc1Var.G("paintChatActionBackground"));
-                if (org.telegram.ui.ActionBar.j6.a1()) {
-                    canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, jc1Var.G("paintChatActionBackgroundDarken"));
-                    return;
-                }
-                return;
-            default:
-                RectF rectF2 = this.f34642b;
-                rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                jd1 jd1Var2 = this.f34643c;
-                hc1 hc1Var2 = jd1Var2.B0;
-                yc1 yc1Var2 = jd1Var2.f35230u0;
-                jc1 jc1Var2 = jd1Var2.f35179a;
-                org.telegram.ui.ActionBar.j6.s(hc1Var2, yc1Var2, jc1Var2);
-                canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, jc1Var2.G("paintChatActionBackground"));
-                if (org.telegram.ui.ActionBar.j6.a1()) {
-                    canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, jc1Var2.G("paintChatActionBackgroundDarken"));
-                    return;
-                }
-                return;
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.I6, false);
+        TextPaint textPaint = this.f36955e;
+        textPaint.setColor(w02);
+        canvas.drawText("" + SharedConfig.fontSize, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), textPaint);
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        this.f36953b.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        int size = View.MeasureSpec.getSize(i10);
+        if (this.f36956f != size) {
+            int i12 = SharedConfig.fontSize;
+            int i13 = this.f36954c;
+            this.f36953b.setProgress((i12 - i13) / (this.d - i13));
+            this.f36956f = size;
         }
+    }
+
+    @Override
+    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
+        if (!super.performAccessibilityAction(i10, bundle) && !this.f36953b.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
+            return false;
+        }
+        return true;
     }
 }

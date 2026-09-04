@@ -1,25 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import org.telegram.messenger.Utilities;
-public final class pt implements Utilities.Callback {
-    public final ut f27996a;
-    public final int f27997b;
-    public final int f27998c;
+import android.view.View;
+import android.view.ViewTreeObserver;
+public final class pt implements ViewTreeObserver.OnPreDrawListener {
+    public final int f29486a;
+    public final View f29487b;
 
-    public pt(ut utVar, int i10, int i11) {
-        this.f27996a = utVar;
-        this.f27997b = i10;
-        this.f27998c = i11;
+    public pt(int i10, View view) {
+        this.f29486a = i10;
+        this.f29487b = view;
     }
 
     @Override
-    public final void run(Object obj) {
-        CharSequence charSequence = (CharSequence) obj;
-        ut utVar = this.f27996a;
-        Editable text = utVar.getText();
-        int i10 = this.f27997b;
-        text.replace(i10, this.f27998c, charSequence);
-        utVar.setSelection(i10, charSequence.length() + i10);
+    public final boolean onPreDraw() {
+        switch (this.f29486a) {
+            case 0:
+                org.telegram.ui.ActionBar.i4 i4Var = ((EditTextBoldCursor) this.f29487b).floatingActionMode;
+                if (i4Var != null) {
+                    i4Var.e();
+                    return true;
+                }
+                return true;
+            default:
+                ((l70) this.f29487b).invalidate();
+                return true;
+        }
     }
 }

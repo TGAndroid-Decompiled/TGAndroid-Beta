@@ -1,27 +1,102 @@
 package v4;
 
-import android.graphics.Bitmap;
-import android.text.Layout;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Trace;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import w7.z7;
 public final class a {
-    public CharSequence f45648a = null;
-    public final Bitmap f45649b = null;
-    public Layout.Alignment f45650c = null;
-    public Layout.Alignment d = null;
-    public float e = -3.4028235E38f;
-    public int f45651f = Integer.MIN_VALUE;
-    public int f45652g = Integer.MIN_VALUE;
-    public float h = -3.4028235E38f;
-    public int f45653i = Integer.MIN_VALUE;
-    public int f45654j = Integer.MIN_VALUE;
-    public float f45655k = -3.4028235E38f;
-    public float f45656l = -3.4028235E38f;
-    public final float f45657m = -3.4028235E38f;
-    public final boolean f45658n = false;
-    public final int f45659o = -16777216;
-    public int f45660p = Integer.MIN_VALUE;
-    public float f45661q;
+    public static volatile a d;
+    public static final Object f47361e = new Object();
+    public final Context f47364c;
+    public final HashSet f47363b = new HashSet();
+    public final HashMap f47362a = new HashMap();
 
-    public final b a() {
-        return new b(this.f45648a, this.f45650c, this.d, this.f45649b, this.e, this.f45651f, this.f45652g, this.h, this.f45653i, this.f45654j, this.f45655k, this.f45656l, this.f45657m, this.f45658n, this.f45659o, this.f45660p, this.f45661q);
+    public a(Context context) {
+        this.f47364c = context.getApplicationContext();
+    }
+
+    public static a c(Context context) {
+        if (d == null) {
+            synchronized (f47361e) {
+                try {
+                    if (d == null) {
+                        d = new a(context);
+                    }
+                } finally {
+                }
+            }
+        }
+        return d;
+    }
+
+    public final void a(Bundle bundle) {
+        HashSet hashSet;
+        String string = this.f47364c.getString(2131689503);
+        if (bundle != null) {
+            try {
+                HashSet hashSet2 = new HashSet();
+                Iterator<String> it = bundle.keySet().iterator();
+                while (true) {
+                    boolean hasNext = it.hasNext();
+                    hashSet = this.f47363b;
+                    if (!hasNext) {
+                        break;
+                    }
+                    String next = it.next();
+                    if (string.equals(bundle.getString(next, null))) {
+                        Class<?> cls = Class.forName(next);
+                        if (b.class.isAssignableFrom(cls)) {
+                            hashSet.add(cls);
+                        }
+                    }
+                }
+                Iterator it2 = hashSet.iterator();
+                while (it2.hasNext()) {
+                    b((Class) it2.next(), hashSet2);
+                }
+            } catch (ClassNotFoundException e7) {
+                throw new RuntimeException(e7);
+            }
+        }
+    }
+
+    public final Object b(Class cls, HashSet hashSet) {
+        Object obj;
+        HashMap hashMap = this.f47362a;
+        if (z7.b()) {
+            try {
+                z7.a(cls.getSimpleName());
+            } catch (Throwable th2) {
+                Trace.endSection();
+                throw th2;
+            }
+        }
+        if (!hashSet.contains(cls)) {
+            if (!hashMap.containsKey(cls)) {
+                hashSet.add(cls);
+                b bVar = (b) cls.getDeclaredConstructor(null).newInstance(null);
+                List<Class> a2 = bVar.a();
+                if (!a2.isEmpty()) {
+                    for (Class cls2 : a2) {
+                        if (!hashMap.containsKey(cls2)) {
+                            b(cls2, hashSet);
+                        }
+                    }
+                }
+                obj = bVar.b(this.f47364c);
+                hashSet.remove(cls);
+                hashMap.put(cls, obj);
+            } else {
+                obj = hashMap.get(cls);
+            }
+            Trace.endSection();
+            return obj;
+        }
+        String name = cls.getName();
+        throw new IllegalStateException("Cannot initialize " + name + ". Cycle detected.");
     }
 }

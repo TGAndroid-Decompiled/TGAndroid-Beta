@@ -1,25 +1,36 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
 public final class mf implements Runnable {
-    public final int f17826a;
-    public final MessagesStorage f17827b;
-    public final TLRPC.TL_chatFull f17828c;
+    public final int f18388a;
+    public final MessagesStorage f18389b;
+    public final ArrayList f18390c;
+    public final Runnable d;
 
-    public mf(MessagesStorage messagesStorage, TLRPC.TL_chatFull tL_chatFull, int i10) {
-        this.f17826a = i10;
-        this.f17827b = messagesStorage;
-        this.f17828c = tL_chatFull;
+    public mf(MessagesStorage messagesStorage, ArrayList arrayList, Runnable runnable, int i10) {
+        this.f18388a = i10;
+        this.f18389b = messagesStorage;
+        this.f18390c = arrayList;
+        this.d = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f17826a) {
+        switch (this.f18388a) {
             case 0:
-                this.f17827b.lambda$updateChatParticipants$121(this.f17828c);
+                this.f18389b.lambda$loadMessageAttachPaths$235(this.f18390c, this.d);
+                return;
+            case 1:
+                this.f18389b.lambda$processAnchoredEphemeralMessages$203(this.f18390c, this.d);
+                return;
+            case 2:
+                this.f18389b.lambda$processEphemeralMessages$201(this.f18390c, this.d);
+                return;
+            case 3:
+                this.f18389b.lambda$checkLoadedRemoteFilters$69(this.f18390c, this.d);
                 return;
             default:
-                this.f17827b.lambda$updateChatInfo$139(this.f17828c);
+                this.f18389b.lambda$processEphemeralEditedMessages$202(this.f18390c, this.d);
                 return;
         }
     }

@@ -1,52 +1,124 @@
 package n7;
 
-import java.util.Iterator;
-import java.util.Map;
-public final class o extends j {
-    public final transient com.google.android.gms.internal.cast.i0 f14660c;
-    public final transient Object[] d;
-    public final transient int e = 1;
+import j$.util.Objects;
+import java.util.Arrays;
+import java.util.Set;
+public abstract class o extends h implements Set, j$.util.Set {
+    public static final int f16668c = 0;
+    public transient m f16669b;
 
-    public o(com.google.android.gms.internal.cast.i0 i0Var, Object[] objArr) {
-        this.f14660c = i0Var;
-        this.d = objArr;
+    public static o r(int i10, Object... objArr) {
+        if (i10 != 0) {
+            if (i10 != 1) {
+                int s10 = s(i10);
+                Object[] objArr2 = new Object[s10];
+                int i11 = s10 - 1;
+                int i12 = 0;
+                int i13 = 0;
+                for (int i14 = 0; i14 < i10; i14++) {
+                    Object obj = objArr[i14];
+                    if (obj != null) {
+                        int hashCode = obj.hashCode();
+                        int rotateLeft = (int) (Integer.rotateLeft((int) (hashCode * (-862048943)), 15) * 461845907);
+                        while (true) {
+                            int i15 = rotateLeft & i11;
+                            Object obj2 = objArr2[i15];
+                            if (obj2 == null) {
+                                objArr[i13] = obj;
+                                objArr2[i15] = obj;
+                                i12 += hashCode;
+                                i13++;
+                                break;
+                            } else if (!obj2.equals(obj)) {
+                                rotateLeft++;
+                            }
+                        }
+                    } else {
+                        throw new NullPointerException(i2.g.i(i14, "at index "));
+                    }
+                }
+                Arrays.fill(objArr, i13, i10, (Object) null);
+                if (i13 == 1) {
+                    Object obj3 = objArr[0];
+                    Objects.requireNonNull(obj3);
+                    return new b0(obj3);
+                }
+                if (s(i13) < s10 / 2) {
+                    return r(i13, objArr);
+                }
+                if (i13 <= 0) {
+                    objArr = Arrays.copyOf(objArr, i13);
+                }
+                return new y(i12, i11, i13, objArr, objArr2);
+            }
+            Object obj4 = objArr[0];
+            Objects.requireNonNull(obj4);
+            return new b0(obj4);
+        }
+        return y.f16696s;
+    }
+
+    public static int s(int i10) {
+        int max = Math.max(i10, 2);
+        if (max < 751619276) {
+            int highestOneBit = Integer.highestOneBit(max - 1);
+            do {
+                highestOneBit += highestOneBit;
+            } while (highestOneBit * 0.7d < max);
+            return highestOneBit;
+        } else if (max < 1073741824) {
+            return 1073741824;
+        } else {
+            throw new IllegalArgumentException("collection too large");
+        }
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (obj instanceof Map.Entry) {
-            Map.Entry entry = (Map.Entry) obj;
-            Object key = entry.getKey();
-            Object value = entry.getValue();
-            if (value != null && value.equals(this.f14660c.get(key))) {
+    public boolean equals(Object obj) {
+        if (obj != this) {
+            if (!(obj instanceof o) || !(this instanceof y) || !(((o) obj) instanceof y) || ((y) this).f16697e == obj.hashCode()) {
+                if (obj != this) {
+                    if (obj instanceof Set) {
+                        Set set = (Set) obj;
+                        try {
+                            if (size() == set.size()) {
+                                if (containsAll(set)) {
+                                    return true;
+                                }
+                                return false;
+                            }
+                            return false;
+                        } catch (ClassCastException | NullPointerException unused) {
+                            return false;
+                        }
+                    }
+                    return false;
+                }
                 return true;
             }
+            return false;
         }
-        return false;
+        return true;
     }
 
     @Override
-    public final int i(Object[] objArr) {
-        i iVar = this.f14596b;
-        if (iVar == null) {
-            iVar = new n(this);
-            this.f14596b = iVar;
-        }
-        return iVar.i(objArr);
+    public int hashCode() {
+        return a.b(this);
     }
 
-    @Override
-    public final Iterator iterator() {
-        i iVar = this.f14596b;
-        if (iVar == null) {
-            iVar = new n(this);
-            this.f14596b = iVar;
+    public m t() {
+        m mVar = this.f16669b;
+        if (mVar == null) {
+            m u10 = u();
+            this.f16669b = u10;
+            return u10;
         }
-        return iVar.listIterator(0);
+        return mVar;
     }
 
-    @Override
-    public final int size() {
-        return this.e;
+    public m u() {
+        Object[] array = toArray(h.f16636a);
+        i iVar = m.f16659b;
+        return m.t(array.length, array);
     }
 }

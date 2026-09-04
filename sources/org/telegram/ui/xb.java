@@ -4,81 +4,81 @@ import android.view.View;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stories;
-public final class xb implements h5.d {
-    public final int f39953a;
-    public final Object f39954b;
+public final class xb implements e2.h {
+    public final int f42669a;
+    public final Object f42670b;
 
     public xb(Object obj, int i10) {
-        this.f39953a = i10;
-        this.f39954b = obj;
+        this.f42669a = i10;
+        this.f42670b = obj;
     }
 
     @Override
     public final void accept(Object obj) {
-        int i10 = this.f39953a;
-        Object obj2 = this.f39954b;
+        int i10 = this.f42669a;
+        Object obj2 = this.f42670b;
         switch (i10) {
             case 0:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.h(29, (cc) obj2, (TL_stories.TL_premium_boostsStatus) obj));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.c6(18, (cc) obj2, (TL_stories.TL_premium_boostsStatus) obj));
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new hc(5, (me) obj2, (TL_stories.TL_premium_boostsStatus) obj));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.c6(24, (ke) obj2, (TL_stories.TL_premium_boostsStatus) obj));
                 return;
             case 2:
                 Boolean bool = (Boolean) obj;
-                Pattern pattern = LaunchActivity.f31586y1;
-                ((t90) obj2).run();
+                Pattern pattern = LaunchActivity.B1;
+                ((ba0) obj2).run();
                 return;
             case 3:
-                hp0 hp0Var = (hp0) obj2;
+                vp0 vp0Var = (vp0) obj2;
                 View view = (View) obj;
-                np0 np0Var = hp0Var.m0;
-                if (view instanceof kp0) {
-                    view.setBackgroundColor(np0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f19881d6));
-                    ((kp0) view).b();
+                bq0 bq0Var = vp0Var.f41619p0;
+                if (view instanceof yp0) {
+                    view.setBackgroundColor(bq0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f20663d6));
+                    ((yp0) view).b();
                     return;
-                } else if (view instanceof org.telegram.ui.Cells.n8) {
-                    view.setBackgroundColor(np0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f19881d6));
-                    ((org.telegram.ui.Cells.n8) view).v();
+                } else if (view instanceof org.telegram.ui.Cells.r8) {
+                    view.setBackgroundColor(bq0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f20663d6));
+                    ((org.telegram.ui.Cells.r8) view).v();
                     return;
-                } else if (view instanceof gp0) {
-                    int i11 = org.telegram.ui.ActionBar.j6.f19881d6;
-                    view.setBackgroundColor(np0Var.getThemedColor(i11));
-                    gp0 gp0Var = (gp0) view;
-                    np0 np0Var2 = gp0Var.d.m0;
-                    gp0Var.setBackgroundColor(np0Var2.getThemedColor(i11));
-                    gp0Var.f34492a.setTextColor(np0Var2.getThemedColor(org.telegram.ui.ActionBar.j6.G6));
+                } else if (view instanceof up0) {
+                    int i11 = org.telegram.ui.ActionBar.j6.f20663d6;
+                    view.setBackgroundColor(bq0Var.getThemedColor(i11));
+                    up0 up0Var = (up0) view;
+                    bq0 bq0Var2 = up0Var.d.f41619p0;
+                    up0Var.setBackgroundColor(bq0Var2.getThemedColor(i11));
+                    up0Var.f41196a.setTextColor(bq0Var2.getThemedColor(org.telegram.ui.ActionBar.j6.G6));
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.l4) {
-                    view.setBackgroundColor(np0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f19881d6));
+                    view.setBackgroundColor(bq0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f20663d6));
                     return;
-                } else if (view instanceof vo0) {
-                    ((vo0) view).d.invalidate();
+                } else if (view instanceof jp0) {
+                    ((jp0) view).d.invalidate();
                     return;
-                } else if (view instanceof mp0) {
-                    hp0Var.l((mp0) view);
+                } else if (view instanceof aq0) {
+                    vp0Var.l((aq0) view);
                     return;
-                } else if (view instanceof fp0) {
-                    ((fp0) view).a();
+                } else if (view instanceof tp0) {
+                    ((tp0) view).a();
                     return;
                 } else {
                     return;
                 }
             case 4:
-                org.telegram.ui.ActionBar.p2 p2Var = (org.telegram.ui.ActionBar.p2) obj2;
-                Long l10 = (Long) obj;
-                if (!p2Var.isFinished) {
-                    if (l10 != null && l10.longValue() != Long.MAX_VALUE) {
-                        p2Var.presentFragment(ProfileActivity.m4(l10.longValue()), true);
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj2;
+                Long l4 = (Long) obj;
+                if (!n2Var.isFinished) {
+                    if (l4 != null && l4.longValue() != Long.MAX_VALUE) {
+                        n2Var.presentFragment(ProfileActivity.m4(l4.longValue()), true);
                         return;
                     } else {
-                        AndroidUtilities.runOnUIThread(new j21(1));
+                        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.ue(29));
                         return;
                     }
                 }
                 return;
             default:
-                ((sf1) obj2).U = (TL_stories.TL_premium_boostsStatus) obj;
+                ((eg1) obj2).X = (TL_stories.TL_premium_boostsStatus) obj;
                 return;
         }
     }

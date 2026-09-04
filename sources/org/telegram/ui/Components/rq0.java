@@ -1,84 +1,117 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import java.util.Random;
-import org.telegram.messenger.AndroidUtilities;
-public final class rq0 extends View {
-    public Random f28562a;
-    public Paint f28563b;
-    public Paint f28564c;
-    public Paint d;
-    public Paint e;
-    public float f28565f;
-    public float h;
-    public float f28566n;
+import android.os.Bundle;
+import android.util.SparseArray;
+import java.util.ArrayList;
+import java.util.Collections;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.eg1;
+public final class rq0 implements v10, org.telegram.ui.oy {
+    public final xu0 f30073a;
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f10;
-        Paint paint = this.f28564c;
-        Paint paint2 = this.f28563b;
-        super.onDraw(canvas);
-        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
-        float f11 = 3.0f;
-        int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(3.0f);
-        int i10 = 7;
-        int dp = AndroidUtilities.dp(1.0f) + ((AndroidUtilities.dp(1.0f) + measuredWidth) * 7);
-        mr mrVar = mr.f27123g;
-        float f12 = this.f28565f;
-        if (f12 > 0.4f) {
-            f10 = (f12 - 0.4f) / 0.6f;
-        } else {
-            f10 = 0.0f;
+    public boolean B() {
+        return false;
+    }
+
+    @Override
+    public boolean K(org.telegram.ui.uy uyVar) {
+        return false;
+    }
+
+    public void a(boolean z10) {
+        xu0 xu0Var = this.f30073a;
+        if (!z10) {
+            xu0Var.requestLayout();
         }
-        float interpolation = mrVar.getInterpolation(f10);
-        float f13 = (this.f28566n * interpolation) + ((1.0f - interpolation) * this.h);
-        canvas.save();
-        canvas.translate(0.0f, (-org.telegram.messenger.y3.z(4.0f, getMeasuredHeight(), dp)) * f13);
-        int i11 = 0;
-        while (i11 < i10) {
-            int dp2 = ((AndroidUtilities.dp(1.0f) + measuredWidth) * i11) + AndroidUtilities.dp(f11);
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f14 = dp2;
-            float f15 = dp2 + measuredWidth;
-            rectF.set(0.0f, f14, measuredWidth, f15);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paint2);
-            rectF.set(AndroidUtilities.dp(1.0f) + measuredWidth, f14, org.telegram.messenger.y3.C(1.0f, measuredWidth, measuredWidth), f15);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paint2);
-            i11++;
-            i10 = 7;
-            f11 = 3.0f;
-        }
-        canvas.restore();
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(4.0f), this.d);
-        canvas.translate(0.0f, getMeasuredHeight() - AndroidUtilities.dp(4.0f));
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(4.0f), this.e);
-        canvas.restore();
-        float measuredHeight = ((getMeasuredHeight() - AndroidUtilities.dp(21.0f)) * f13) + AndroidUtilities.dp(3.0f);
-        RectF rectF2 = AndroidUtilities.rectTmp;
-        rectF2.set(getMeasuredWidth() - AndroidUtilities.dp(3.0f), measuredHeight, getMeasuredWidth(), AndroidUtilities.dp(15.0f) + measuredHeight);
-        canvas.drawRoundRect(rectF2, AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f), paint);
-        float centerY = rectF2.centerY();
-        float dp3 = AndroidUtilities.dp(0.5f) + measuredWidth;
-        rectF2.set(dp3 - AndroidUtilities.dp(8.0f), centerY - AndroidUtilities.dp(3.0f), dp3 + AndroidUtilities.dp(8.0f), centerY + AndroidUtilities.dp(3.0f));
-        canvas.drawRoundRect(rectF2, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), paint);
-        float f16 = this.f28565f + 0.016f;
-        this.f28565f = f16;
-        if (f16 > 1.0f) {
-            this.h = this.f28566n;
-            float f17 = org.telegram.ui.ai.f(this.f28562a, 1001) / 1000.0f;
-            this.f28566n = f17;
-            if (f17 > this.h) {
-                this.f28566n = f17 + 0.3f;
-            } else {
-                this.f28566n = f17 - 0.3f;
+        xu0Var.setVisibleHeight(xu0Var.M1);
+    }
+
+    @Override
+    public boolean u(org.telegram.ui.uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
+        UndoView undoView;
+        xu0 xu0Var = this.f30073a;
+        SparseArray[] sparseArrayArr = xu0Var.Z0;
+        org.telegram.ui.ActionBar.n2 n2Var = xu0Var.f32726v1;
+        ArrayList<MessageObject> arrayList2 = new ArrayList<>();
+        int i12 = 1;
+        while (true) {
+            int i13 = 0;
+            if (i12 < 0) {
+                break;
             }
-            this.f28566n = Math.max(0.0f, Math.min(1.0f, this.f28566n));
-            this.f28565f = 0.0f;
+            ArrayList arrayList3 = new ArrayList();
+            for (int i14 = 0; i14 < sparseArrayArr[i12].size(); i14++) {
+                arrayList3.add(Integer.valueOf(sparseArrayArr[i12].keyAt(i14)));
+            }
+            Collections.sort(arrayList3);
+            int size = arrayList3.size();
+            while (i13 < size) {
+                Object obj = arrayList3.get(i13);
+                i13++;
+                Integer num = (Integer) obj;
+                if (num.intValue() > 0) {
+                    arrayList2.add((MessageObject) sparseArrayArr[i12].get(num.intValue()));
+                }
+            }
+            sparseArrayArr[i12].clear();
+            i12--;
         }
-        invalidate();
+        xu0Var.f32677a1 = 0;
+        xu0Var.b1(false);
+        hu0 hu0Var = xu0Var.R;
+        if (hu0Var != null) {
+            hu0Var.f26864w.clear();
+        }
+        if (arrayList.size() <= 1 && ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId != n2Var.getUserConfig().getClientUserId() && charSequence == null) {
+            long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
+            Bundle i15 = a4.a.i("scrollToTopOnResume", true);
+            if (DialogObject.isEncryptedDialog(j3)) {
+                i15.putInt("enc_id", DialogObject.getEncryptedChatId(j3));
+            } else {
+                if (DialogObject.isUserDialog(j3)) {
+                    i15.putLong("user_id", j3);
+                } else {
+                    i15.putLong("chat_id", -j3);
+                }
+                if (!n2Var.getMessagesController().checkCanOpenChat(i15, uyVar)) {
+                    return true;
+                }
+            }
+            n2Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
+            org.telegram.ui.co coVar = new org.telegram.ui.co(i15);
+            og.d.a(coVar, (MessagesStorage.TopicKey) arrayList.get(0));
+            uyVar.presentFragment(coVar, true);
+            coVar.Ab(arrayList2);
+            return true;
+        }
+        xu0Var.r1(true);
+        for (int i16 = 0; i16 < arrayList.size(); i16++) {
+            long j10 = ((MessagesStorage.TopicKey) arrayList.get(i16)).dialogId;
+            if (charSequence != null) {
+                n2Var.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j10, null, null, null, true, null, null, null, true, 0, 0, null, false));
+            }
+            n2Var.getSendMessagesHelper().sendMessage(arrayList2, j10, false, false, true, 0, 0L);
+        }
+        uyVar.finishFragment();
+        if (n2Var instanceof ProfileActivity) {
+            undoView = ((ProfileActivity) n2Var).M;
+        } else {
+            undoView = null;
+        }
+        if (undoView == null) {
+            return true;
+        }
+        if (arrayList.size() == 1) {
+            undoView.m(((MessagesStorage.TopicKey) arrayList.get(0)).dialogId, Integer.valueOf(arrayList2.size()), 53);
+            return true;
+        }
+        undoView.k(0L, 53, Integer.valueOf(arrayList2.size()), Integer.valueOf(arrayList.size()), null, null);
+        return true;
     }
 }

@@ -1,103 +1,59 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ql0 implements View.OnClickListener {
-    public final int f37440a;
-    public final fn0 f37441b;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class ql0 implements TextWatcher {
+    public final int f39903a;
+    public final PasscodeActivity f39904b;
 
-    public ql0(fn0 fn0Var, int i10) {
-        this.f37440a = i10;
-        this.f37441b = fn0Var;
+    public ql0(PasscodeActivity passcodeActivity, int i10) {
+        this.f39903a = i10;
+        this.f39904b = passcodeActivity;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f37440a) {
+    public final void afterTextChanged(Editable editable) {
+        int i10 = this.f39903a;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        switch (this.f39903a) {
             case 0:
-                fn0 fn0Var = this.f37441b;
-                fn0Var.P0 = 2;
-                fn0Var.D1();
-                return;
-            case 1:
-                this.f37441b.d1();
-                return;
-            case 2:
-                fn0 fn0Var2 = this.f37441b;
-                fn0Var2.P0 = 3;
-                fn0Var2.D1();
-                return;
-            case 3:
-                fn0 fn0Var3 = this.f37441b;
-                fn0Var3.P0 = 1;
-                fn0Var3.D1();
-                return;
-            case 4:
-                fn0 fn0Var4 = this.f37441b;
-                fn0Var4.P0 = 4;
-                fn0Var4.D1();
-                return;
-            case 5:
-                fn0.e0(this.f37441b);
-                return;
-            case 6:
-                fn0 fn0Var5 = this.f37441b;
-                fn0Var5.f34123f = true;
-                fn0Var5.I.callOnClick();
-                fn0Var5.f34123f = false;
-                return;
-            case 7:
-                fn0 fn0Var6 = this.f37441b;
-                fn0Var6.P0 = 0;
-                fn0Var6.D1();
-                return;
-            case 8:
-                fn0 fn0Var7 = this.f37441b;
-                fn0Var7.P0 = 4;
-                fn0Var7.D1();
-                return;
-            case 9:
-                this.f37441b.d1();
-                return;
-            case 10:
-                fn0.b0(this.f37441b);
-                return;
-            case 11:
-                fn0.c0(this.f37441b);
-                return;
-            case 12:
-                this.f37441b.C1();
-                return;
-            case 13:
-                fn0 fn0Var8 = this.f37441b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(fn0Var8.getParentActivity());
-                alertDialog$Builder.f19478a.O = LocaleController.getString(R.string.TelegramPassportDeleteTitle);
-                alertDialog$Builder.f19478a.Q = LocaleController.getString(R.string.TelegramPassportDeleteAlert);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new sl0(fn0Var8, 5));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f19478a;
-                fn0Var8.showDialog(d2Var);
-                TextView textView = (TextView) d2Var.d(-1);
-                if (textView != null) {
-                    textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20116q7, false));
+                PasscodeActivity passcodeActivity = this.f39904b;
+                ml0 ml0Var = passcodeActivity.O;
+                if (passcodeActivity.N) {
+                    passcodeActivity.f33500n.removeCallbacks(ml0Var);
+                    ml0Var.run();
                     return;
                 }
                 return;
-            case 14:
-                this.f37441b.C1();
-                return;
-            case 15:
-                fn0.V(this.f37441b);
-                return;
             default:
-                fn0 fn0Var9 = this.f37441b;
-                fn0Var9.f34123f = true;
-                fn0Var9.I.callOnClick();
-                fn0Var9.f34123f = false;
+                PasscodeActivity passcodeActivity2 = this.f39904b;
+                ml0 ml0Var2 = passcodeActivity2.O;
+                if (passcodeActivity2.N) {
+                    passcodeActivity2.f33500n.removeCallbacks(ml0Var2);
+                    ml0Var2.run();
+                    return;
+                }
                 return;
         }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f39903a;
+    }
+
+    private final void a(Editable editable) {
+    }
+
+    private final void b(Editable editable) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

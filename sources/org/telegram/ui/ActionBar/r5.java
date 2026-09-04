@@ -3,21 +3,21 @@ package org.telegram.ui.ActionBar;
 import android.graphics.Point;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-public final class r5 extends k7.y5 {
+public final class r5 extends w7.i0 {
     @Override
     public final void b(int i10, int i11) {
-        boolean z4;
+        boolean z10;
         Point point = AndroidUtilities.displaySize;
-        boolean z10 = true;
+        boolean z11 = true;
         if (point.x <= point.y) {
-            z4 = true;
+            z10 = true;
         } else {
-            z4 = false;
-        }
-        if (i10 > i11) {
             z10 = false;
         }
-        if (z4 == z10) {
+        if (i10 > i11) {
+            z11 = false;
+        }
+        if (z10 == z11) {
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
         }
     }

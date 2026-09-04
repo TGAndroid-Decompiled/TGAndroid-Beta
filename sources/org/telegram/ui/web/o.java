@@ -1,67 +1,103 @@
 package org.telegram.ui.web;
 
-import android.text.TextUtils;
-import android.widget.EditText;
-import nh.n5;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.h5;
-import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Components.a61;
-public final class o extends h5 {
-    public final n5 f39539f = new n5(this, 29);
-    public final p h;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.qv0;
+public final class o extends org.telegram.ui.ActionBar.j {
+    public final q f42195a;
 
-    public o(p pVar) {
-        this.h = pVar;
+    public o(q qVar) {
+        this.f42195a = qVar;
     }
 
     @Override
-    public final void m() {
-        p pVar = this.h;
-        pVar.f39549s = null;
-        AndroidUtilities.cancelRunOnUIThread(this.f39539f);
-        i iVar = pVar.e;
-        if (iVar != null) {
-            iVar.c();
-            pVar.e = null;
-        }
-        a61 a61Var = pVar.f23568a;
-        if (a61Var != null) {
-            a61Var.V2.N(true);
-            pVar.f23568a.U2.h1(0, 0);
-        }
-    }
-
-    @Override
-    public final void q(EditText editText) {
-        int i10;
-        p pVar = this.h;
-        boolean z4 = !TextUtils.isEmpty(pVar.f39549s);
-        String obj = editText.getText().toString();
-        if (!TextUtils.equals(pVar.f39549s, obj)) {
-            pVar.f39549s = obj;
-            i iVar = pVar.e;
-            if (iVar != null) {
-                iVar.c();
+    public final void b(int i10) {
+        String str;
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        q qVar = this.f42195a;
+        HashSet hashSet = qVar.f42216w;
+        if (i10 == -1) {
+            kVar = ((org.telegram.ui.ActionBar.n2) qVar).actionBar;
+            if (kVar.s()) {
+                kVar2 = ((org.telegram.ui.ActionBar.n2) qVar).actionBar;
+                kVar2.r();
+                hashSet.clear();
+                AndroidUtilities.forEachViews((RecyclerView) qVar.f32849a, (e2.h) new n(0));
+                return;
             }
-            i10 = ((p2) pVar).currentAccount;
-            i iVar2 = new i(obj, i10, new l(pVar, 1));
-            pVar.e = iVar2;
-            iVar2.a();
-            n5 n5Var = this.f39539f;
-            AndroidUtilities.cancelRunOnUIThread(n5Var);
-            AndroidUtilities.runOnUIThread(n5Var, 500L);
-        }
-        a61 a61Var = pVar.f23568a;
-        if (a61Var != null) {
-            a61Var.V2.N(true);
-            if (z4 != (!TextUtils.isEmpty(obj))) {
-                pVar.f23568a.U2.h1(0, 0);
+            qVar.finishFragment();
+        } else if (i10 == R.id.menu_delete) {
+            HashSet hashSet2 = new HashSet();
+            ArrayList arrayList = new ArrayList();
+            HashSet hashSet3 = new HashSet();
+            Iterator it = hashSet.iterator();
+            while (true) {
+                MessageObject messageObject = null;
+                int i11 = 0;
+                if (!it.hasNext()) {
+                    break;
+                }
+                int intValue = ((Integer) it.next()).intValue();
+                ArrayList arrayList2 = qVar.d.f42132a;
+                int size = arrayList2.size();
+                int i12 = 0;
+                while (true) {
+                    if (i12 >= size) {
+                        break;
+                    }
+                    Object obj = arrayList2.get(i12);
+                    i12++;
+                    MessageObject messageObject2 = (MessageObject) obj;
+                    if (messageObject2 != null && messageObject2.getId() == intValue) {
+                        messageObject = messageObject2;
+                        break;
+                    }
+                }
+                j jVar = qVar.f42211e;
+                if (jVar != null && messageObject == null) {
+                    ArrayList arrayList3 = jVar.f42132a;
+                    int size2 = arrayList3.size();
+                    while (true) {
+                        if (i11 >= size2) {
+                            break;
+                        }
+                        Object obj2 = arrayList3.get(i11);
+                        i11++;
+                        MessageObject messageObject3 = (MessageObject) obj2;
+                        if (messageObject3 != null && messageObject3.getId() == intValue) {
+                            messageObject = messageObject3;
+                            break;
+                        }
+                    }
+                }
+                if (messageObject != null) {
+                    arrayList.add(messageObject);
+                    hashSet3.add(Integer.valueOf(messageObject.getId()));
+                    hashSet2.add(l.a(messageObject));
+                }
             }
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qVar.getParentActivity(), 0, qVar.getResourceProvider());
+            alertDialog$Builder.f20198a.R = LocaleController.formatPluralString("DeleteOptionsTitle", hashSet3.size(), new Object[0]);
+            if (hashSet3.size() == 1) {
+                str = "AreYouSureUnsaveSingleMessage";
+            } else {
+                str = "AreYouSureUnsaveFewMessages";
+            }
+            alertDialog$Builder.f20198a.T = LocaleController.getString(str);
+            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new qv0(22, qVar, hashSet3));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            alertDialog$Builder.d(-1);
+            alertDialog$Builder.o();
+        } else if (i10 == R.id.menu_link) {
+            qVar.d0();
         }
-    }
-
-    @Override
-    public final void n() {
     }
 }

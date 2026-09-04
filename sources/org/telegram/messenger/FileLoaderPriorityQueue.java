@@ -14,7 +14,7 @@ public class FileLoaderPriorityQueue {
     public ArrayList<FileLoadOperation> allOperations = new ArrayList<>();
     public ArrayList<FileLoadOperation> tmpListOperations = new ArrayList<>();
     boolean checkOperationsScheduled = false;
-    Runnable checkOperationsRunnable = new e1(this, 20);
+    Runnable checkOperationsRunnable = new d1(this, 20);
 
     public FileLoaderPriorityQueue(int i10, String str, int i11, DispatchQueue dispatchQueue) {
         this.currentAccount = i10;
@@ -36,7 +36,7 @@ public class FileLoaderPriorityQueue {
             i10 = MessagesController.getInstance(this.currentAccount).smallQueueMaxActiveOperations;
         }
         this.tmpListOperations.clear();
-        boolean z4 = false;
+        boolean z10 = false;
         int i11 = 0;
         for (int i12 = 0; i12 < this.allOperations.size(); i12++) {
             if (i12 > 0) {
@@ -45,18 +45,18 @@ public class FileLoaderPriorityQueue {
                 fileLoadOperation = null;
             }
             FileLoadOperation fileLoadOperation2 = this.allOperations.get(i12);
-            if (i12 > 0 && !z4) {
+            if (i12 > 0 && !z10) {
                 if (this.type == 1 && fileLoadOperation != null && fileLoadOperation.isStory && fileLoadOperation.getPriority() >= 1048576 && fileLoadOperation2.getPriority() <= 0) {
-                    z4 = true;
+                    z10 = true;
                 }
                 if (i11 > 0 && fileLoadOperation2.getPriority() == 0) {
-                    z4 = true;
+                    z10 = true;
                 }
             }
             if (fileLoadOperation2.preFinished) {
                 i10++;
             } else {
-                if (!z4 && i12 < i10) {
+                if (!z10 && i12 < i10) {
                     this.tmpListOperations.add(fileLoadOperation2);
                 } else if (fileLoadOperation2.wasStarted()) {
                     fileLoadOperation2.pause();
@@ -130,8 +130,8 @@ public class FileLoaderPriorityQueue {
         return this.allOperations.remove(fileLoadOperation);
     }
 
-    public void checkLoadingOperations(boolean z4) {
-        if (z4) {
+    public void checkLoadingOperations(boolean z10) {
+        if (z10) {
             this.workerQueue.cancelRunnable(this.checkOperationsRunnable);
             this.checkOperationsRunnable.run();
         } else if (this.checkOperationsScheduled) {

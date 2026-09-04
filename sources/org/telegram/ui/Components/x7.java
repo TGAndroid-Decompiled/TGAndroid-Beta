@@ -1,25 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class x7 extends FrameLayout {
-    public final p9[] f30519a;
-    public int f30520b;
-    public AnimatorSet f30521c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class x7 extends AnimatorListenerAdapter {
+    public final int f32440a;
+    public final k8 f32441b;
 
-    public x7(Context context) {
-        super(context);
-        this.f30519a = new p9[2];
-        for (int i10 = 0; i10 < 2; i10++) {
-            this.f30519a[i10] = new p9(context);
-            this.f30519a[i10].getImageReceiver().setDelegate(new gg.m2(this, i10, 5));
-            this.f30519a[i10].setRoundRadius(AndroidUtilities.dp(4.0f));
-            if (i10 == 1) {
-                this.f30519a[i10].setVisibility(8);
-            }
-            addView(this.f30519a[i10], k7.b6.c(-1.0f, -1));
+    public x7(k8 k8Var, int i10) {
+        this.f32440a = i10;
+        this.f32441b = k8Var;
+    }
+
+    @Override
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f32440a) {
+            case 2:
+                this.f32441b.C0 = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f32440a) {
+            case 0:
+                this.f32441b.m0 = false;
+                return;
+            case 1:
+                k8 k8Var = this.f32441b;
+                k8Var.f27725i0.setVisibility(4);
+                k8Var.f27726j0.setImageBitmap(null);
+                k8Var.m0 = false;
+                return;
+            default:
+                return;
+        }
+    }
+
+    private final void a(Animator animator) {
     }
 }

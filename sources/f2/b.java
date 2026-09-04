@@ -1,84 +1,184 @@
 package f2;
-public final class b implements k0 {
-    public final k0 f5650a;
-    public int f5651b = 0;
-    public int f5652c = -1;
-    public int d = -1;
 
-    public b(k0 k0Var) {
-        this.f5650a = k0Var;
-    }
+import b2.m0;
+import b2.o0;
+import com.google.android.gms.internal.vision.e2;
+import e2.d0;
+import e2.v;
+import java.util.ArrayList;
+import java.util.Arrays;
+import v7.u6;
+import v7.x7;
+public final class b implements o0 {
+    public final String f9171a;
+    public final byte[] f9172b;
+    public final int f9173c;
+    public final int d;
 
-    @Override
-    public final void D(int i10, int i11) {
-        a();
-        this.f5650a.D(i10, i11);
-    }
-
-    @Override
-    public final void L0(int i10, int i11) {
-        int i12;
-        if (this.f5651b == 2 && (i12 = this.f5652c) >= i10 && i12 <= i10 + i11) {
-            this.d += i11;
-            this.f5652c = i10;
-            return;
+    public b(String str, byte[] bArr, int i10, int i11) {
+        byte b10;
+        str.getClass();
+        char c10 = 65535;
+        switch (str.hashCode()) {
+            case -1949883051:
+                if (str.equals("com.android.capture.fps")) {
+                    c10 = 0;
+                    break;
+                }
+                break;
+            case -269399509:
+                if (str.equals("auxiliary.tracks.interleaved")) {
+                    c10 = 1;
+                    break;
+                }
+                break;
+            case 1011693540:
+                if (str.equals("auxiliary.tracks.length")) {
+                    c10 = 2;
+                    break;
+                }
+                break;
+            case 1098277265:
+                if (str.equals("auxiliary.tracks.offset")) {
+                    c10 = 3;
+                    break;
+                }
+                break;
+            case 2002123038:
+                if (str.equals("auxiliary.tracks.map")) {
+                    c10 = 4;
+                    break;
+                }
+                break;
         }
-        a();
-        this.f5652c = i10;
+        switch (c10) {
+            case 0:
+                if (i11 == 23 && bArr.length == 4) {
+                    r2 = true;
+                }
+                e2.d.b(r2);
+                break;
+            case 1:
+                if (i11 == 75 && bArr.length == 1 && ((b10 = bArr[0]) == 0 || b10 == 1)) {
+                    r2 = true;
+                }
+                e2.d.b(r2);
+                break;
+            case 2:
+            case 3:
+                if (i11 == 78 && bArr.length == 8) {
+                    r2 = true;
+                }
+                e2.d.b(r2);
+                break;
+            case 4:
+                e2.d.b(i11 == 0);
+                break;
+        }
+        this.f9171a = str;
+        this.f9172b = bArr;
+        this.f9173c = i10;
         this.d = i11;
-        this.f5651b = 2;
     }
 
-    public final void a() {
-        int i10 = this.f5651b;
-        if (i10 == 0) {
-            return;
+    @Override
+    public final b2.s a() {
+        return null;
+    }
+
+    @Override
+    public final byte[] c() {
+        return null;
+    }
+
+    public final ArrayList d() {
+        e2.d.f("Metadata is not an auxiliary tracks map", this.f9171a.equals("auxiliary.tracks.map"));
+        byte[] bArr = this.f9172b;
+        byte b10 = bArr[1];
+        ArrayList arrayList = new ArrayList();
+        for (int i10 = 0; i10 < b10; i10 = e2.e(bArr[i10 + 2], i10, 1, arrayList)) {
         }
-        k0 k0Var = this.f5650a;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 == 3) {
-                    k0Var.j1(this.f5652c, this.d);
+        return arrayList;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && b.class == obj.getClass()) {
+            b bVar = (b) obj;
+            if (this.f9171a.equals(bVar.f9171a) && Arrays.equals(this.f9172b, bVar.f9172b) && this.f9173c == bVar.f9173c && this.d == bVar.d) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return ((((Arrays.hashCode(this.f9172b) + a4.a.h(527, 31, this.f9171a)) * 31) + this.f9173c) * 31) + this.d;
+    }
+
+    public final String toString() {
+        String sb2;
+        boolean z10;
+        boolean z11;
+        String str = this.f9171a;
+        byte[] bArr = this.f9172b;
+        int i10 = this.d;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 23) {
+                    if (i10 != 67) {
+                        if (i10 != 75) {
+                            if (i10 == 78) {
+                                sb2 = String.valueOf(new v(bArr).C());
+                            }
+                            sb2 = d0.c0(bArr);
+                        } else {
+                            sb2 = String.valueOf(bArr[0] & 255);
+                        }
+                    } else {
+                        if (bArr.length >= 4) {
+                            z11 = true;
+                        } else {
+                            z11 = false;
+                        }
+                        int length = bArr.length;
+                        if (z11) {
+                            sb2 = String.valueOf(x7.c(bArr[0], bArr[1], bArr[2], bArr[3]));
+                        } else {
+                            throw new IllegalArgumentException(u6.a("array too small: %s < %s", Integer.valueOf(length), 4));
+                        }
+                    }
+                } else {
+                    if (bArr.length >= 4) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    int length2 = bArr.length;
+                    if (z10) {
+                        sb2 = String.valueOf(Float.intBitsToFloat(x7.c(bArr[0], bArr[1], bArr[2], bArr[3])));
+                    } else {
+                        throw new IllegalArgumentException(u6.a("array too small: %s < %s", Integer.valueOf(length2), 4));
+                    }
                 }
             } else {
-                k0Var.L0(this.f5652c, this.d);
+                sb2 = d0.p(bArr);
             }
         } else {
-            k0Var.h0(this.f5652c, this.d);
-        }
-        this.f5651b = 0;
-    }
-
-    @Override
-    public final void h0(int i10, int i11) {
-        int i12;
-        if (this.f5651b == 1 && i10 >= (i12 = this.f5652c)) {
-            int i13 = this.d;
-            if (i10 <= i12 + i13) {
-                this.d = i13 + i11;
-                this.f5652c = Math.min(i10, i12);
-                return;
+            if (str.equals("auxiliary.tracks.map")) {
+                ArrayList d = d();
+                StringBuilder u10 = a4.a.u("track types = ");
+                new d9.f(String.valueOf(',')).a(u10, d.iterator());
+                sb2 = u10.toString();
             }
+            sb2 = d0.c0(bArr);
         }
-        a();
-        this.f5652c = i10;
-        this.d = i11;
-        this.f5651b = 1;
+        return e2.j("mdta: key=", str, ", value=", sb2);
     }
 
     @Override
-    public final void j1(int i10, int i11) {
-        int i12;
-        int i13;
-        int i14;
-        if (this.f5651b == 3 && i10 <= (i13 = this.d + (i12 = this.f5652c)) && (i14 = i10 + i11) >= i12) {
-            this.f5652c = Math.min(i10, i12);
-            this.d = Math.max(i13, i14) - this.f5652c;
-            return;
-        }
-        a();
-        this.f5652c = i10;
-        this.d = i11;
-        this.f5651b = 3;
+    public final void b(m0 m0Var) {
     }
 }

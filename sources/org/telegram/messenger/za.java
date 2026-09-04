@@ -1,49 +1,38 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.FileLoadOperation;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class za implements RequestDelegate {
-    public final int f19105a;
-    public final int f19106b;
-    public final Object f19107c;
-    public final Object d;
+public final class za implements Runnable {
+    public final int f19805a;
+    public final MessagesController f19806b;
+    public final TLRPC.Chat f19807c;
 
-    public za(Object obj, int i10, Object obj2, int i11) {
-        this.f19105a = i11;
-        this.f19107c = obj;
-        this.f19106b = i10;
-        this.d = obj2;
+    public za(MessagesController messagesController, TLRPC.Chat chat, int i10) {
+        this.f19805a = i10;
+        this.f19806b = messagesController;
+        this.f19807c = chat;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19105a) {
+    public final void run() {
+        switch (this.f19805a) {
             case 0:
-                ((MessagesController) this.f19107c).lambda$checkChatlistFolderUpdate$478(this.f19106b, (MessagesController.ChatlistUpdatesStat) this.d, tLObject, tL_error);
+                this.f19806b.lambda$addOrRemoveActiveVoiceChat$61(this.f19807c);
                 return;
             case 1:
-                ((FileLoadOperation) this.f19107c).lambda$startDownloadRequest$28(this.f19106b, (FileLoadOperation.RequestInfo) this.d, tLObject, tL_error);
+                this.f19806b.lambda$processLoadedDialogs$218(this.f19807c);
                 return;
             case 2:
-                ((MediaDataController) this.f19107c).lambda$toggleStickerSetInternal$117((TLRPC.StickerSet) this.d, this.f19106b, tLObject, tL_error);
+                this.f19806b.lambda$processUpdateArray$413(this.f19807c);
                 return;
             case 3:
-                ((MediaDataController) this.f19107c).lambda$loadStickers$97(this.f19106b, (Utilities.Callback) this.d, tLObject, tL_error);
+                this.f19806b.lambda$putChat$58(this.f19807c);
+                return;
+            case 4:
+                this.f19806b.lambda$putChat$59(this.f19807c);
                 return;
             default:
-                ((MessagesController) this.f19107c).lambda$registerForPush$324(this.f19106b, (String) this.d, tLObject, tL_error);
+                this.f19806b.lambda$putChat$60(this.f19807c);
                 return;
         }
-    }
-
-    public za(MediaDataController mediaDataController, TLRPC.StickerSet stickerSet, int i10) {
-        this.f19105a = 2;
-        this.f19107c = mediaDataController;
-        this.d = stickerSet;
-        this.f19106b = i10;
     }
 }

@@ -1,110 +1,106 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class k extends f2.i0 {
-    public final int I;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.R;
+public final class k extends pg.b {
+    public final l d;
 
-    public k(int i10) {
-        this.I = i10;
+    public k(l lVar) {
+        this.d = lVar;
     }
 
     @Override
-    public int W0(f2.i1 i1Var) {
-        switch (this.I) {
-            case 3:
-                return 5000;
-            case 7:
-                return AndroidUtilities.dp(4000.0f);
-            default:
-                return super.W0(i1Var);
+    public final boolean D(s4.c1 c1Var) {
+        int i10 = c1Var.f45742f;
+        if (i10 != 2 && i10 != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.h.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 >= 0) {
+            l lVar = this.d;
+            if (i10 < lVar.h.size()) {
+                return ((j) lVar.h.get(i10)).f44071a;
+            }
+            return 0;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        boolean z10;
+        boolean z11;
+        l lVar = this.d;
+        ArrayList arrayList = lVar.h;
+        if (i10 >= 0 && i10 < arrayList.size()) {
+            j jVar = (j) arrayList.get(i10);
+            int i11 = i10 + 1;
+            int i12 = 0;
+            if (i11 < arrayList.size() && ((j) arrayList.get(i11)).f44071a == jVar.f44071a) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int i13 = c1Var.f45742f;
+            View view = c1Var.f45738a;
+            if (i13 == 0) {
+                ((org.telegram.ui.Cells.l4) view).setText(jVar.f37459c);
+            } else if (i13 == 2) {
+                org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
+                if (TextUtils.isEmpty(jVar.f37459c)) {
+                    e9Var.setFixedSize(12);
+                    e9Var.setText(null);
+                    return;
+                }
+                e9Var.setFixedSize(0);
+                e9Var.setText(jVar.f37459c);
+            } else if (i13 == 1) {
+                org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
+                int i14 = jVar.d;
+                if (i14 == 1) {
+                    z11 = lVar.d.keep_archived_unmuted;
+                    w8Var.setCheckBoxIcon(0);
+                } else if (i14 == 4) {
+                    z11 = lVar.d.keep_archived_folders;
+                    w8Var.setCheckBoxIcon(0);
+                } else if (i14 == 7) {
+                    boolean z12 = lVar.d.archive_and_mute_new_noncontact_peers;
+                    if (!lVar.getUserConfig().isPremium() && !lVar.getMessagesController().autoarchiveAvailable) {
+                        i12 = R.drawable.permission_locked;
+                    }
+                    w8Var.setCheckBoxIcon(i12);
+                    z11 = z12;
+                } else {
+                    return;
+                }
+                w8Var.f(jVar.f37459c, z11, z10);
+            }
         }
     }
 
     @Override
-    public boolean e() {
-        switch (this.I) {
-            case 20:
-                return false;
-            default:
-                return super.e();
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        View e9Var;
+        l lVar = this.d;
+        if (i10 == 0) {
+            e9Var = new org.telegram.ui.Cells.l4(lVar.getParentActivity());
+        } else if (i10 == 1) {
+            e9Var = new org.telegram.ui.Cells.w8(lVar.getParentActivity());
+        } else {
+            e9Var = new org.telegram.ui.Cells.e9(lVar.getParentActivity());
         }
-    }
-
-    @Override
-    public void v0(RecyclerView recyclerView, f2.i1 i1Var, int i10) {
-        switch (this.I) {
-            case 2:
-                wh.o oVar = new wh.o(recyclerView.getContext(), 0);
-                oVar.f5712a = i10;
-                w0(oVar);
-                return;
-            case 13:
-                os0 os0Var = new os0(recyclerView.getContext());
-                os0Var.f5712a = i10;
-                w0(os0Var);
-                return;
-            default:
-                super.v0(recyclerView, i1Var, i10);
-                return;
-        }
-    }
-
-    @Override
-    public boolean y0() {
-        switch (this.I) {
-            case 0:
-                return false;
-            case 1:
-                return false;
-            case 2:
-                return true;
-            case 3:
-            case 4:
-            case 7:
-            case 13:
-            default:
-                return super.y0();
-            case 5:
-                return false;
-            case 6:
-                return false;
-            case 8:
-                return true;
-            case 9:
-                return false;
-            case 10:
-                return false;
-            case 11:
-                return false;
-            case 12:
-                return false;
-            case 14:
-                return false;
-            case 15:
-                return false;
-            case 16:
-                return true;
-            case 17:
-                return false;
-            case 18:
-                return false;
-            case 19:
-                return false;
-        }
-    }
-
-    public k(int i10, boolean z4, int i11) {
-        super(i10, z4);
-        this.I = i11;
-    }
-
-    public k(ub ubVar) {
-        this.I = 2;
-    }
-
-    public k() {
-        super(0, true);
-        this.I = 13;
+        return new s4.c1(e9Var);
     }
 }

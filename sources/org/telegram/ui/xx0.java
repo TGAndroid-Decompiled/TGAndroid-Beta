@@ -1,41 +1,58 @@
 package org.telegram.ui;
 
-import java.util.List;
-import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class xx0 implements MessagesStorage.BooleanCallback, os {
-    public final ProfileActivity f40090a;
-    public final TLRPC.User f40091b;
+import org.telegram.tgnet.tl.TL_account;
+public final class xx0 implements Utilities.Callback {
+    public final int f42911a;
+    public final zx0 f42912b;
 
-    public xx0(ProfileActivity profileActivity, TLRPC.User user) {
-        this.f40090a = profileActivity;
-        this.f40091b = user;
+    public xx0(zx0 zx0Var, int i10) {
+        this.f42911a = i10;
+        this.f42912b = zx0Var;
     }
 
     @Override
-    public void a() {
-        ProfileActivity.j0(this.f40090a, this.f40091b);
-    }
-
-    @Override
-    public void run(boolean z4) {
-        org.telegram.ui.ActionBar.p2 p2Var;
-        ProfileActivity profileActivity = this.f40090a;
-        if (profileActivity.getParentLayout() != null) {
-            List fragmentStack = profileActivity.getParentLayout().getFragmentStack();
-            if (fragmentStack != null && fragmentStack.size() >= 2) {
-                p2Var = (org.telegram.ui.ActionBar.p2) ai.j(2, fragmentStack);
-            } else {
-                p2Var = null;
-            }
-            if (p2Var instanceof zn) {
-                ((ActionBarLayout) profileActivity.getParentLayout()).Y(fragmentStack.size() - 2);
-            }
+    public final void run(Object obj) {
+        TL_account.TL_birthday tL_birthday;
+        int i10;
+        int i11;
+        switch (this.f42911a) {
+            case 0:
+                PrivacyControlActivity privacyControlActivity = this.f42912b.d;
+                privacyControlActivity.L = ((Integer) obj).intValue();
+                AndroidUtilities.updateVisibleRow(privacyControlActivity.d, privacyControlActivity.f33820j0);
+                privacyControlActivity.E0();
+                return;
+            default:
+                TL_account.TL_birthday tL_birthday2 = (TL_account.TL_birthday) obj;
+                TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
+                updatebirthday.flags |= 1;
+                updatebirthday.birthday = tL_birthday2;
+                zx0 zx0Var = this.f42912b;
+                PrivacyControlActivity privacyControlActivity2 = zx0Var.d;
+                TLRPC.UserFull userFull = privacyControlActivity2.getMessagesController().getUserFull(privacyControlActivity2.getUserConfig().getClientUserId());
+                if (userFull != null) {
+                    tL_birthday = userFull.birthday;
+                } else {
+                    tL_birthday = null;
+                }
+                if (userFull != null) {
+                    userFull.flags2 |= 32;
+                    userFull.birthday = tL_birthday2;
+                    privacyControlActivity2.getMessagesStorage().updateUserInfo(userFull, false);
+                }
+                privacyControlActivity2.getMessagesController().invalidateContentSettings();
+                privacyControlActivity2.getConnectionsManager().sendRequest(updatebirthday, new ms0(zx0Var, userFull, tL_birthday, 1), 1024);
+                i10 = ((org.telegram.ui.ActionBar.n2) privacyControlActivity2).currentAccount;
+                MessagesController.getInstance(i10).removeSuggestion(0L, "BIRTHDAY_SETUP");
+                i11 = ((org.telegram.ui.ActionBar.n2) privacyControlActivity2).currentAccount;
+                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
+                privacyControlActivity2.F0(true);
+                return;
         }
-        profileActivity.K1 = true;
-        profileActivity.finishFragment();
-        profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(profileActivity.f32039f1), this.f40091b, profileActivity.B2, Boolean.valueOf(z4));
     }
 }

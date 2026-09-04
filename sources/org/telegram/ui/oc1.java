@@ -1,24 +1,29 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class oc1 extends AnimatorListenerAdapter {
-    public final jd1 f36751a;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.tgnet.tl.TL_stories;
+public final class oc1 implements e2.h {
+    public final int f39216a;
+    public final wd1 f39217b;
 
-    public oc1(jd1 jd1Var) {
-        this.f36751a = jd1Var;
+    public oc1(wd1 wd1Var, int i10) {
+        this.f39216a = i10;
+        this.f39217b = wd1Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        char c3;
-        jd1 jd1Var = this.f36751a;
-        org.telegram.ui.Components.m81[] m81VarArr = jd1Var.G0;
-        if (jd1Var.T0 != null) {
-            c3 = 0;
-        } else {
-            c3 = 2;
+    public final void accept(Object obj) {
+        switch (this.f39216a) {
+            case 0:
+                wd1 wd1Var = this.f39217b;
+                wd1Var.V1 = (TL_stories.TL_premium_boostsStatus) obj;
+                wd1Var.U1 = true;
+                wd1Var.h1(true);
+                wd1Var.T1 = false;
+                return;
+            default:
+                wd1.V(this.f39217b, (ChannelBoostsController.CanApplyBoost) obj);
+                return;
         }
-        m81VarArr[c3].setVisibility(4);
     }
 }

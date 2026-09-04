@@ -1,35 +1,23 @@
 package org.telegram.ui;
-
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
 public final class k81 implements Runnable {
-    public final int f35444a;
-    public final w81 f35445b;
+    public final int f37958a;
+    public final SessionsActivity f37959b;
+    public final boolean f37960c;
 
-    public k81(w81 w81Var, int i10) {
-        this.f35444a = i10;
-        this.f35445b = w81Var;
+    public k81(SessionsActivity sessionsActivity, boolean z10, int i10) {
+        this.f37958a = i10;
+        this.f37959b = sessionsActivity;
+        this.f37960c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f35444a) {
+        switch (this.f37958a) {
             case 0:
-                this.f35445b.f39311c.V2.N(true);
-                return;
-            case 1:
-                ze.d.s(this.f35445b.getParentActivity(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
-                return;
-            case 2:
-                w81 w81Var = this.f35445b;
-                w81Var.f39311c.postOnAnimation(new k81(w81Var, 3));
-                return;
-            case 3:
-                this.f35445b.i0();
+                this.f37959b.k0(this.f37960c);
                 return;
             default:
-                MessagesController.getInstance(this.f35445b.currentAccount).deleteUserPhoto(null);
+                this.f37959b.k0(this.f37960c);
                 return;
         }
     }

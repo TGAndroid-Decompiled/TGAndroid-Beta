@@ -1,16 +1,22 @@
 package org.telegram.ui.ActionBar;
-public interface b5 {
-    void a(float f10);
+public final class b5 {
+    public final n2 f20268a;
+    public boolean f20269b;
+    public boolean f20270c;
+    public boolean d = true;
+    public boolean f20271e;
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout f20272f;
+    public boolean f20273g;
 
-    void b(ActionBarLayout actionBarLayout, boolean z4);
+    public b5(n2 n2Var) {
+        this.f20268a = n2Var;
+    }
 
-    void e(int[] iArr);
+    public final void a() {
+        this.f20270c = true;
+    }
 
-    boolean h(p2 p2Var, ActionBarLayout actionBarLayout);
-
-    boolean j();
-
-    boolean k(ActionBarLayout actionBarLayout);
-
-    boolean l(ActionBarLayout actionBarLayout, c5 c5Var);
+    public final void b(boolean z10) {
+        this.f20269b = z10;
+    }
 }

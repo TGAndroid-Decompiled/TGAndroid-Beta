@@ -15,7 +15,7 @@ public class RtcCertificatePem {
         return nativeGenerateCertificate(PeerConnection.KeyType.ECDSA, 2592000L);
     }
 
-    private static native RtcCertificatePem nativeGenerateCertificate(PeerConnection.KeyType keyType, long j10);
+    private static native RtcCertificatePem nativeGenerateCertificate(PeerConnection.KeyType keyType, long j3);
 
     public String getCertificate() {
         return this.certificate;
@@ -29,11 +29,11 @@ public class RtcCertificatePem {
         return nativeGenerateCertificate(keyType, 2592000L);
     }
 
-    public static RtcCertificatePem generateCertificate(long j10) {
-        return nativeGenerateCertificate(PeerConnection.KeyType.ECDSA, j10);
+    public static RtcCertificatePem generateCertificate(long j3) {
+        return nativeGenerateCertificate(PeerConnection.KeyType.ECDSA, j3);
     }
 
-    public static RtcCertificatePem generateCertificate(PeerConnection.KeyType keyType, long j10) {
-        return nativeGenerateCertificate(keyType, j10);
+    public static RtcCertificatePem generateCertificate(PeerConnection.KeyType keyType, long j3) {
+        return nativeGenerateCertificate(keyType, j3);
     }
 }

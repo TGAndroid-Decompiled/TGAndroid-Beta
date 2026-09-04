@@ -54,34 +54,34 @@ public class CaptchaController {
 
     private static RecaptchaAction getAction(String str) {
         str.getClass();
-        char c3 = 65535;
+        char c10 = 65535;
         switch (str.hashCode()) {
             case -1849137896:
                 if (str.equals("SIGNUP")) {
-                    c3 = 0;
+                    c10 = 0;
                     break;
                 }
                 break;
             case -902467304:
                 if (str.equals("signup")) {
-                    c3 = 1;
+                    c10 = 1;
                     break;
                 }
                 break;
             case 72611657:
                 if (str.equals("LOGIN")) {
-                    c3 = 2;
+                    c10 = 2;
                     break;
                 }
                 break;
             case 103149417:
                 if (str.equals("login")) {
-                    c3 = 3;
+                    c10 = 3;
                     break;
                 }
                 break;
         }
-        switch (c3) {
+        switch (c10) {
             case 0:
             case 1:
                 return RecaptchaAction.SIGNUP;
@@ -94,7 +94,7 @@ public class CaptchaController {
     }
 
     public static void lambda$request$0(String str, String str2, Request request, String str3) {
-        org.telegram.ui.ai.v(str3, org.telegram.ui.ai.l("CaptchaController: got token for {action=", str, ", key_id=", str2, "}: "));
+        com.google.android.gms.internal.vision.e2.t(str3, a4.a.w("CaptchaController: got token for {action=", str, ", key_id=", str2, "}: "));
         if (str3 == null) {
             request.done("RECAPTCHA_FAILED_TOKEN_NULL");
         } else {
@@ -108,7 +108,7 @@ public class CaptchaController {
     }
 
     public static void lambda$request$2(String str, String str2, Request request, RecaptchaTasksClient recaptchaTasksClient) {
-        recaptchaTasksClient.executeTask(getAction(str)).addOnSuccessListener(new r0(str, str2, request, 1)).addOnFailureListener(new s0(request, 1));
+        recaptchaTasksClient.executeTask(getAction(str)).addOnSuccessListener(new q0(str, str2, request, 1)).addOnFailureListener(new r0(request, 1));
     }
 
     public static void lambda$request$3(Request request, Exception exc) {
@@ -133,6 +133,6 @@ public class CaptchaController {
             request2.done("RECAPTCHA_FAILED_NO_ACTIVITY");
             return;
         }
-        Recaptcha.getTasksClient(activity.getApplication(), str2).addOnSuccessListener(new r0(str, str2, request2, 0)).addOnFailureListener(new s0(request2, 0));
+        Recaptcha.getTasksClient(activity.getApplication(), str2).addOnSuccessListener(new q0(str, str2, request2, 0)).addOnFailureListener(new r0(request2, 0));
     }
 }

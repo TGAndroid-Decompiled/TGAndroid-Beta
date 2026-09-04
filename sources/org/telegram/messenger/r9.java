@@ -1,47 +1,106 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
 public final class r9 implements Runnable {
-    public final int f18258a = 0;
-    public final int f18259b;
-    public final boolean f18260c;
-    public final boolean d;
-    public final int e;
-    public final BaseController f18261f;
-    public final Object h;
+    public final int f18871a;
+    public final MessagesController f18872b;
 
-    public r9(MediaDataController mediaDataController, boolean z4, int i10, ArrayList arrayList, boolean z10, int i11) {
-        this.f18261f = mediaDataController;
-        this.f18260c = z4;
-        this.f18259b = i10;
-        this.h = arrayList;
-        this.d = z10;
-        this.e = i11;
+    public r9(MessagesController messagesController, int i10) {
+        this.f18871a = i10;
+        this.f18872b = messagesController;
     }
 
     @Override
     public final void run() {
-        switch (this.f18258a) {
+        switch (this.f18871a) {
             case 0:
-                boolean z4 = this.d;
-                int i10 = this.e;
-                ((MediaDataController) this.f18261f).lambda$processLoadedRecentDocuments$52(this.f18260c, this.f18259b, (ArrayList) this.h, z4, i10);
+                this.f18872b.lambda$new$18();
+                return;
+            case 1:
+                this.f18872b.lambda$new$39();
+                return;
+            case 2:
+                this.f18872b.requestIsUserContactBlocked();
+                return;
+            case 3:
+                this.f18872b.lambda$new$505();
+                return;
+            case 4:
+                this.f18872b.lambda$updateTimerProc$158();
+                return;
+            case 5:
+                this.f18872b.lambda$updateTimerProc$161();
+                return;
+            case 6:
+                this.f18872b.lambda$applyAppConfig$36();
+                return;
+            case 7:
+                this.f18872b.lambda$applyAppConfig$37();
+                return;
+            case 8:
+                this.f18872b.lambda$processUpdates$380();
+                return;
+            case 9:
+                this.f18872b.lambda$migrateDialogs$213();
+                return;
+            case 10:
+                this.f18872b.lambda$loadRemoteFilters$26();
+                return;
+            case 11:
+                this.f18872b.lambda$loadRemoteFilters$27();
+                return;
+            case 12:
+                this.f18872b.lambda$loadRemoteFilters$28();
+                return;
+            case 13:
+                this.f18872b.lambda$loadRemoteFilters$29();
+                return;
+            case 14:
+                this.f18872b.lambda$cleanup$52();
+                return;
+            case 15:
+                this.f18872b.lambda$cleanup$53();
+                return;
+            case 16:
+                this.f18872b.lambda$cleanup$54();
+                return;
+            case 17:
+                this.f18872b.lambda$toggleChannelInvitesHistory$287();
+                return;
+            case 18:
+                this.f18872b.lambda$removeWebBrowserException$514();
+                return;
+            case 19:
+                this.f18872b.lambda$checkPromoInfoInternal$166();
+                return;
+            case 20:
+                this.f18872b.lambda$toggleChatJoinToSend$279();
+                return;
+            case 21:
+                this.f18872b.lambda$migrateDialogs$215();
+                return;
+            case 22:
+                this.f18872b.lambda$scheduleTranscriptionUpdate$38();
+                return;
+            case 23:
+                this.f18872b.lambda$processUpdateArray$409();
+                return;
+            case 24:
+                this.f18872b.lambda$processUpdateArray$410();
+                return;
+            case 25:
+                this.f18872b.lambda$processUpdateArray$411();
+                return;
+            case 26:
+                this.f18872b.lambda$registerForPush$323();
+                return;
+            case 27:
+                this.f18872b.lambda$updateEmojiStatusUntil$474();
+                return;
+            case 28:
+                this.f18872b.lambda$toggleChannelForum$285();
                 return;
             default:
-                boolean z10 = this.d;
-                int i11 = this.e;
-                ((MessagesController) this.f18261f).lambda$processLoadedMessages$189(this.f18259b, (TLRPC.messages_Messages) this.h, this.f18260c, z10, i11);
+                this.f18872b.lambda$toggleChannelSignatures$283();
                 return;
         }
-    }
-
-    public r9(MessagesController messagesController, int i10, TLRPC.messages_Messages messages_messages, boolean z4, boolean z10, int i11) {
-        this.f18261f = messagesController;
-        this.f18259b = i10;
-        this.h = messages_messages;
-        this.f18260c = z4;
-        this.d = z10;
-        this.e = i11;
     }
 }

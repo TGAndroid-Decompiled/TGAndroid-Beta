@@ -1,61 +1,88 @@
 package org.telegram.ui.web;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.ui.Components.vk;
-public final class h1 extends AsyncTask {
-    public final HashMap f39466a = new HashMap();
-    public final vk f39467b;
-    public Exception f39468c;
+import android.text.TextUtils;
+import android.widget.EditText;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.g5;
+import org.telegram.ui.Components.x51;
+public final class h1 extends g5 {
+    public final b f42101f = new b(this, 4);
+    public final i1 h;
 
-    public h1(vk vkVar) {
-        this.f39467b = vkVar;
+    public h1(i1 i1Var) {
+        this.h = i1Var;
     }
 
-    @Override
-    public final Object doInBackground(Object[] objArr) {
-        try {
-            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-            for (Map.Entry entry : this.f39466a.entrySet()) {
-                if (entry.getKey() != null && entry.getValue() != null) {
-                    httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
+    public static boolean t(String str, String str2) {
+        if (str != null && str2 != null) {
+            String lowerCase = str.toLowerCase();
+            String lowerCase2 = str2.toLowerCase();
+            if (!lowerCase.startsWith(lowerCase2) && !org.telegram.messenger.w1.w(" ", lowerCase2, lowerCase) && !org.telegram.messenger.w1.w(".", lowerCase2, lowerCase)) {
+                String translitSafe = AndroidUtilities.translitSafe(lowerCase);
+                String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
+                if (translitSafe.startsWith(translitSafe2) || org.telegram.messenger.w1.w(" ", translitSafe2, translitSafe) || org.telegram.messenger.w1.w(".", translitSafe2, translitSafe)) {
+                    return true;
                 }
+                return false;
             }
-            httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.setDoInput(true);
-            int responseCode = httpURLConnection.getResponseCode();
-            if (responseCode >= 200 && responseCode < 300) {
-                if (httpURLConnection.getContentType() != null && httpURLConnection.getContentType().contains("svg")) {
-                    return SvgHelper.getBitmap((InputStream) new BufferedInputStream(httpURLConnection.getInputStream()), 64, 64, false);
-                }
-                return BitmapFactory.decodeStream(new BufferedInputStream(httpURLConnection.getInputStream()));
-            }
-            httpURLConnection.disconnect();
-            return null;
-        } catch (Exception e) {
-            this.f39468c = e;
-            return null;
+            return true;
         }
+        return false;
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        Bitmap bitmap = (Bitmap) obj;
-        vk vkVar = this.f39467b;
-        if (vkVar != null) {
-            if (this.f39468c == null) {
-                vkVar.run(bitmap);
+    public final void m() {
+        int i10;
+        i1 i1Var = this.h;
+        i1Var.f42124n = null;
+        i1Var.h = false;
+        AndroidUtilities.cancelRunOnUIThread(this.f42101f);
+        x51 x51Var = i1Var.f32849a;
+        if (x51Var != null) {
+            x51Var.Y2.N(true);
+            i1Var.f32849a.X2.h1(0, 0);
+        }
+        wh.p pVar = i1Var.f42127w.d;
+        if (TextUtils.isEmpty(i1Var.f42124n)) {
+            i10 = R.string.WebNoHistory;
+        } else {
+            i10 = R.string.WebNoSearchedHistory;
+        }
+        pVar.setText(LocaleController.getString(i10));
+    }
+
+    @Override
+    public final void q(EditText editText) {
+        int i10;
+        i1 i1Var = this.h;
+        boolean z10 = !TextUtils.isEmpty(i1Var.f42124n);
+        String obj = editText.getText().toString();
+        if (!TextUtils.equals(i1Var.f42124n, obj)) {
+            i1Var.f42124n = obj;
+            i1Var.h = true;
+            b bVar = this.f42101f;
+            AndroidUtilities.cancelRunOnUIThread(bVar);
+            AndroidUtilities.runOnUIThread(bVar, 500L);
+            wh.p pVar = i1Var.f42127w.d;
+            if (TextUtils.isEmpty(obj)) {
+                i10 = R.string.WebNoHistory;
             } else {
-                vkVar.run(null);
+                i10 = R.string.WebNoSearchedHistory;
+            }
+            pVar.setText(LocaleController.getString(i10));
+        }
+        x51 x51Var = i1Var.f32849a;
+        if (x51Var != null) {
+            x51Var.Y2.N(true);
+            if (z10 != (!TextUtils.isEmpty(obj))) {
+                i1Var.f32849a.X2.h1(0, 0);
             }
         }
+    }
+
+    @Override
+    public final void n() {
     }
 }

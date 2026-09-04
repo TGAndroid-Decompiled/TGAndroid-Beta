@@ -1,160 +1,127 @@
 package z3;
 
-import h5.d0;
-import h5.w;
-import r3.v;
-public final class h {
-    public final v f47357a;
-    public r d;
-    public f e;
-    public int f47360f;
-    public int f47361g;
+import b2.r;
+import b2.r0;
+import b2.s;
+import c3.h0;
+import c3.p;
+import c3.q;
+import c3.y;
+import e2.d0;
+import e2.v;
+import e9.a1;
+import e9.g0;
+import e9.i0;
+import java.util.ArrayList;
+import java.util.List;
+public final class h implements c3.o {
+    public final m f50691a;
+    public final s f50692b;
+    public final ArrayList f50693c;
+    public h0 f50695f;
+    public int f50696g;
     public int h;
-    public int f47362i;
-    public boolean f47365l;
-    public final q f47358b = new q();
-    public final w f47359c = new w();
-    public final w f47363j = new w(1);
-    public final w f47364k = new w();
+    public long[] f50697i;
+    public long f50698j;
+    public byte[] f50694e = d0.f8738b;
+    public final v d = new v();
 
-    public h(v vVar, r rVar, f fVar) {
-        this.f47357a = vVar;
-        this.d = rVar;
-        this.e = fVar;
-        this.d = rVar;
-        this.e = fVar;
-        vVar.b(rVar.f47441a.f47419f);
-        d();
-    }
-
-    public final p a() {
-        if (this.f47365l) {
-            q qVar = this.f47358b;
-            f fVar = qVar.f47427a;
-            int i10 = d0.f6924a;
-            int i11 = fVar.f47351a;
-            p pVar = qVar.f47436m;
-            if (pVar == null) {
-                pVar = this.d.f47441a.f47423k[i11];
-            }
-            if (pVar != null && pVar.f47424a) {
-                return pVar;
-            }
-            return null;
-        }
-        return null;
-    }
-
-    public final boolean b() {
-        this.f47360f++;
-        if (!this.f47365l) {
-            return false;
-        }
-        int i10 = this.f47361g + 1;
-        this.f47361g = i10;
-        int[] iArr = this.f47358b.f47431g;
-        int i11 = this.h;
-        if (i10 != iArr[i11]) {
-            return true;
-        }
-        this.h = i11 + 1;
-        this.f47361g = 0;
-        return false;
-    }
-
-    public final int c(int i10, int i11) {
-        w wVar;
-        boolean z4;
-        boolean z10;
-        int i12;
-        p a2 = a();
-        if (a2 == null) {
-            return 0;
-        }
-        int i13 = a2.d;
-        q qVar = this.f47358b;
-        if (i13 != 0) {
-            wVar = qVar.f47437n;
+    public h(m mVar, s sVar) {
+        s sVar2;
+        this.f50691a = mVar;
+        if (sVar != null) {
+            r a2 = sVar.a();
+            a2.f2312q = r0.n("application/x-media3-cues");
+            a2.f2305j = sVar.f2370r;
+            a2.O = mVar.U();
+            sVar2 = new s(a2);
         } else {
-            byte[] bArr = a2.e;
-            int i14 = d0.f6924a;
-            int length = bArr.length;
-            w wVar2 = this.f47364k;
-            wVar2.D(length, bArr);
-            i13 = bArr.length;
-            wVar = wVar2;
+            sVar2 = null;
         }
-        int i15 = this.f47360f;
-        if (qVar.f47434k && qVar.f47435l[i15]) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        if (!z4 && i11 == 0) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        w wVar3 = this.f47363j;
-        byte[] bArr2 = wVar3.f6987a;
-        if (z10) {
-            i12 = 128;
-        } else {
-            i12 = 0;
-        }
-        bArr2[0] = (byte) (i12 | i13);
-        wVar3.F(0);
-        v vVar = this.f47357a;
-        vVar.a(1, wVar3);
-        vVar.a(i13, wVar);
-        if (!z10) {
-            return i13 + 1;
-        }
-        w wVar4 = this.f47359c;
-        if (!z4) {
-            wVar4.C(8);
-            byte[] bArr3 = wVar4.f6987a;
-            bArr3[0] = 0;
-            bArr3[1] = 1;
-            bArr3[2] = (byte) 0;
-            bArr3[3] = (byte) (i11 & 255);
-            bArr3[4] = (byte) ((i10 >> 24) & 255);
-            bArr3[5] = (byte) ((i10 >> 16) & 255);
-            bArr3[6] = (byte) ((i10 >> 8) & 255);
-            bArr3[7] = (byte) (i10 & 255);
-            vVar.a(8, wVar4);
-            return i13 + 9;
-        }
-        w wVar5 = qVar.f47437n;
-        int z11 = wVar5.z();
-        wVar5.G(-2);
-        int i16 = (z11 * 6) + 2;
-        if (i11 != 0) {
-            wVar4.C(i16);
-            byte[] bArr4 = wVar4.f6987a;
-            wVar5.e(0, i16, bArr4);
-            int i17 = (((bArr4[2] & 255) << 8) | (bArr4[3] & 255)) + i11;
-            bArr4[2] = (byte) ((i17 >> 8) & 255);
-            bArr4[3] = (byte) (i17 & 255);
-        } else {
-            wVar4 = wVar5;
-        }
-        vVar.a(i16, wVar4);
-        return i13 + 1 + i16;
-    }
-
-    public final void d() {
-        q qVar = this.f47358b;
-        qVar.d = 0;
-        qVar.f47439p = 0L;
-        qVar.f47440q = false;
-        qVar.f47434k = false;
-        qVar.f47438o = false;
-        qVar.f47436m = null;
-        this.f47360f = 0;
+        this.f50692b = sVar2;
+        this.f50693c = new ArrayList();
         this.h = 0;
-        this.f47361g = 0;
-        this.f47362i = 0;
-        this.f47365l = false;
+        this.f50697i = d0.f8739c;
+        this.f50698j = -9223372036854775807L;
+    }
+
+    public final void a(g gVar) {
+        e2.d.h(this.f50695f);
+        byte[] bArr = gVar.f50690b;
+        int length = bArr.length;
+        v vVar = this.d;
+        vVar.getClass();
+        vVar.H(bArr.length, bArr);
+        this.f50695f.d(length, vVar);
+        this.f50695f.c(gVar.f50689a, 1, length, 0, null);
+    }
+
+    @Override
+    public final boolean b(p pVar) {
+        return true;
+    }
+
+    @Override
+    public final void g(q qVar) {
+        boolean z10;
+        if (this.h == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        e2.d.g(z10);
+        h0 R1 = qVar.R1(0, 3);
+        this.f50695f = R1;
+        s sVar = this.f50692b;
+        if (sVar != null) {
+            R1.b(sVar);
+            qVar.Z0();
+            qVar.P1(new y(-9223372036854775807L, new long[]{0}, new long[]{0}));
+        }
+        this.h = 1;
+    }
+
+    @Override
+    public final void h(long j3, long j10) {
+        boolean z10;
+        int i10 = this.h;
+        if (i10 != 0 && i10 != 5) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        e2.d.g(z10);
+        this.f50698j = j10;
+        if (this.h == 2) {
+            this.h = 1;
+        }
+        if (this.h == 4) {
+            this.h = 3;
+        }
+    }
+
+    @Override
+    public final List i() {
+        g0 g0Var = i0.f8957b;
+        return a1.f8920e;
+    }
+
+    @Override
+    public final int m(c3.p r21, c3.s r22) {
+        throw new UnsupportedOperationException("Method not decompiled: z3.h.m(c3.p, c3.s):int");
+    }
+
+    @Override
+    public final void release() {
+        if (this.h == 5) {
+            return;
+        }
+        this.f50691a.reset();
+        this.h = 5;
+    }
+
+    @Override
+    public final c3.o c() {
+        return this;
     }
 }

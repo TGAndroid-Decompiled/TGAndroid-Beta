@@ -3,8 +3,8 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatMessageSharedResources;
-public final class du0 extends org.telegram.ui.Cells.s1 {
-    public final int Ce = 1;
+public final class du0 extends org.telegram.ui.Cells.t1 {
+    public final int Fe = 1;
 
     public du0(Context context, int i10) {
         super(context, i10);
@@ -14,7 +14,7 @@ public final class du0 extends org.telegram.ui.Cells.s1 {
     public int getParentWidth() {
         int i10;
         int dp;
-        switch (this.Ce) {
+        switch (this.Fe) {
             case 1:
                 if (getMeasuredWidth() != 0) {
                     i10 = getMeasuredWidth();
@@ -31,7 +31,7 @@ public final class du0 extends org.telegram.ui.Cells.s1 {
 
     @Override
     public final boolean isPressed() {
-        switch (this.Ce) {
+        switch (this.Fe) {
             case 0:
                 return false;
             default:
@@ -39,7 +39,7 @@ public final class du0 extends org.telegram.ui.Cells.s1 {
         }
     }
 
-    public du0(Context context, int i10, boolean z4, ChatMessageSharedResources chatMessageSharedResources, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, i10, z4, chatMessageSharedResources, f6Var);
+    public du0(Context context, int i10, boolean z10, ChatMessageSharedResources chatMessageSharedResources, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, i10, z10, chatMessageSharedResources, f6Var);
     }
 }

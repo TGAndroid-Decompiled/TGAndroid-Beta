@@ -1,51 +1,96 @@
 package mg;
 
-import android.view.ViewPropertyAnimator;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.e5;
-import org.telegram.ui.ActionBar.r1;
-public final class o extends r1 {
-    public final ah.e f14060x;
+import android.graphics.Matrix;
+public final class o {
+    public float f16293a;
+    public float f16294b;
+    public float f16297f;
+    public float h;
+    public boolean f16300j;
+    public final q f16302l;
+    public float f16295c = 0.0f;
+    public float d = 0.0f;
+    public float f16296e = 1.0f;
+    public final float f16298g = 0;
+    public float f16299i = 0.0f;
+    public final Matrix f16301k = new Matrix();
 
-    public o(ah.e eVar, ah.e eVar2) {
-        super(eVar2);
-        this.f14060x = eVar;
+    public o(q qVar, int i10, int i11) {
+        this.f16302l = qVar;
+        this.f16293a = i10;
+        this.f16294b = i11;
     }
 
-    @Override
-    public final boolean b() {
-        s sVar = (s) this.f14060x.f213c;
-        e5 parentLayout = sVar.getParentLayout();
-        if (!s.U(sVar) && !AndroidUtilities.isTablet() && !s.V(sVar) && !AndroidUtilities.isInMultiwindow && parentLayout != null) {
-            return true;
+    public static float a(o oVar) {
+        if ((oVar.h + oVar.f16298g) % 180.0f != 0.0f) {
+            return oVar.f16294b;
         }
-        return false;
+        return oVar.f16293a;
     }
 
-    @Override
-    public final void e(float f10, float f11, boolean z4) {
-        s sVar = (s) this.f14060x.f213c;
-        if (sVar.getParentLayout() != null) {
-            boolean z10 = ((ActionBarLayout) sVar.getParentLayout()).f19449n;
+    public static float b(o oVar) {
+        if ((oVar.h + oVar.f16298g) % 180.0f != 0.0f) {
+            return oVar.f16293a;
         }
+        return oVar.f16294b;
     }
 
-    @Override
-    public final void g(int i10, boolean z4) {
+    public static boolean c(o oVar) {
+        if (Math.abs(oVar.f16295c) <= 1.0E-5f && Math.abs(oVar.d) <= 1.0E-5f && Math.abs(oVar.f16296e - oVar.f16297f) <= 1.0E-5f && Math.abs(oVar.f16299i) <= 1.0E-5f && Math.abs(oVar.h) <= 1.0E-5f) {
+            return false;
+        }
+        return true;
+    }
+
+    public static void d(o oVar, float f7) {
+        Matrix matrix = oVar.f16301k;
+        matrix.reset();
+        oVar.f16295c = 0.0f;
+        oVar.d = 0.0f;
+        oVar.f16299i = 0.0f;
+        oVar.h = f7;
+        oVar.h();
+        float f10 = oVar.f16297f;
+        oVar.f16296e = f10;
+        matrix.postScale(f10, f10);
+    }
+
+    public static void e(o oVar, float f7) {
+        oVar.f16299i += f7;
+        oVar.f16301k.postRotate(f7, 0.0f, 0.0f);
+    }
+
+    public static void f(o oVar, float f7, float f10) {
+        oVar.f16295c += f7;
+        oVar.d += f10;
+        oVar.f16301k.postTranslate(f7, f10);
+    }
+
+    public static void g(o oVar, float f7, float f10, float f11) {
+        oVar.f16296e *= f7;
+        oVar.f16301k.postScale(f7, f7, f10, f11);
+    }
+
+    public final void h() {
+        float f7;
         float f10;
-        s sVar = (s) this.f14060x.f213c;
-        sVar.f14130w.setVisibility(0);
-        ViewPropertyAnimator animate = sVar.f14130w.animate();
-        if (!z4) {
-            f10 = 1.0f;
+        float f11 = this.h;
+        float f12 = this.f16298g;
+        if ((f11 + f12) % 180.0f != 0.0f) {
+            f7 = this.f16294b;
         } else {
-            f10 = 0.0f;
+            f7 = this.f16293a;
         }
-        animate.alpha(f10).withEndAction(new jh.f(5, this, z4)).start();
-    }
-
-    @Override
-    public final void f() {
+        if ((f11 + f12) % 180.0f != 0.0f) {
+            f10 = this.f16293a;
+        } else {
+            f10 = this.f16294b;
+        }
+        q qVar = this.f16302l;
+        if (qVar.f16312x) {
+            this.f16297f = qVar.f16303a.getCropWidth() / f7;
+        } else {
+            this.f16297f = Math.max(qVar.f16303a.getCropWidth() / f7, qVar.f16303a.getCropHeight() / f10);
+        }
     }
 }

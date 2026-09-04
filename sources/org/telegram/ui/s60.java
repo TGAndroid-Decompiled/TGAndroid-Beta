@@ -1,36 +1,22 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class s60 extends org.telegram.ui.Components.h20 {
-    public final a70 f38108r;
+import android.app.Activity;
+public final class s60 extends sg.k0 {
+    public final t60 W0;
 
-    public s60(a70 a70Var, Context context, int i10) {
-        super(context, i10);
-        this.f38108r = a70Var;
+    public s60(t60 t60Var, t60 t60Var2, Activity activity, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(i10, i11, activity, t60Var2, f6Var);
+        this.W0 = t60Var;
     }
 
     @Override
-    public final void a(org.telegram.ui.Components.o30 o30Var) {
-        super.a(o30Var);
-        a70.Z(this.f38108r);
+    public final void dismiss() {
+        super.dismiss();
+        this.W0.B0 = false;
     }
 
     @Override
-    public final void b() {
-        super.b();
-        a70.Z(this.f38108r);
-    }
-
-    @Override
-    public final void c(org.telegram.ui.Components.o30 o30Var) {
-        a70 a70Var = this.f38108r;
-        if (o30Var == a70Var.U) {
-            a70Var.U = null;
-        }
-        if (o30Var == a70Var.V) {
-            a70Var.V = null;
-        }
-        super.c(o30Var);
-        a70.Z(a70Var);
+    public final void onOpenAnimationEnd() {
+        this.W0.B0 = false;
     }
 }

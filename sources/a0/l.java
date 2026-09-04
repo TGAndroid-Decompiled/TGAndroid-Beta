@@ -1,157 +1,442 @@
 package a0;
 
 import java.util.Arrays;
-public final class l implements Cloneable {
-    public int[] f26a;
-    public Object[] f27b;
-    public int f28c;
+import java.util.ConcurrentModificationException;
+import java.util.Map;
+public class l {
+    public int[] f29a;
+    public Object[] f30b;
+    public int f31c;
 
-    public l() {
-        int i10;
-        int i11 = 4;
-        while (true) {
-            i10 = 40;
-            if (i11 >= 32) {
-                break;
+    public l(int i10) {
+        int[] iArr;
+        Object[] objArr;
+        if (i10 == 0) {
+            iArr = b0.a.f1913a;
+        } else {
+            iArr = new int[i10];
+        }
+        this.f29a = iArr;
+        if (i10 == 0) {
+            objArr = b0.a.f1915c;
+        } else {
+            objArr = new Object[i10 << 1];
+        }
+        this.f30b = objArr;
+    }
+
+    public final int a(Object obj) {
+        int i10 = this.f31c * 2;
+        Object[] objArr = this.f30b;
+        if (obj == null) {
+            for (int i11 = 1; i11 < i10; i11 += 2) {
+                if (objArr[i11] == null) {
+                    return i11 >> 1;
+                }
             }
-            int i12 = (1 << i11) - 12;
-            if (40 <= i12) {
-                i10 = i12;
-                break;
+            return -1;
+        }
+        for (int i12 = 1; i12 < i10; i12 += 2) {
+            if (obj.equals(objArr[i12])) {
+                return i12 >> 1;
+            }
+        }
+        return -1;
+    }
+
+    public final int b(int i10, Object obj) {
+        int i11 = this.f31c;
+        if (i11 == 0) {
+            return -1;
+        }
+        int a2 = b0.a.a(i11, i10, this.f29a);
+        if (a2 < 0 || kotlin.jvm.internal.i.a(obj, this.f30b[a2 << 1])) {
+            return a2;
+        }
+        int i12 = a2 + 1;
+        while (i12 < i11 && this.f29a[i12] == i10) {
+            if (kotlin.jvm.internal.i.a(obj, this.f30b[i12 << 1])) {
+                return i12;
+            }
+            i12++;
+        }
+        for (int i13 = a2 - 1; i13 >= 0 && this.f29a[i13] == i10; i13--) {
+            if (kotlin.jvm.internal.i.a(obj, this.f30b[i13 << 1])) {
+                return i13;
+            }
+        }
+        return ~i12;
+    }
+
+    public final int c(Object obj) {
+        if (obj == null) {
+            return d();
+        }
+        return b(obj.hashCode(), obj);
+    }
+
+    public final void clear() {
+        if (this.f31c > 0) {
+            this.f29a = b0.a.f1913a;
+            this.f30b = b0.a.f1915c;
+            this.f31c = 0;
+        }
+        if (this.f31c <= 0) {
+            return;
+        }
+        throw new ConcurrentModificationException();
+    }
+
+    public boolean containsKey(Object obj) {
+        if (c(obj) >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean containsValue(Object obj) {
+        if (a(obj) >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int d() {
+        int i10 = this.f31c;
+        if (i10 == 0) {
+            return -1;
+        }
+        int a2 = b0.a.a(i10, 0, this.f29a);
+        if (a2 < 0 || this.f30b[a2 << 1] == null) {
+            return a2;
+        }
+        int i11 = a2 + 1;
+        while (i11 < i10 && this.f29a[i11] == 0) {
+            if (this.f30b[i11 << 1] == null) {
+                return i11;
             }
             i11++;
         }
-        int i13 = i10 / 4;
-        this.f26a = new int[i13];
-        this.f27b = new Object[i13];
-    }
-
-    public final void a(int i10, Object obj) {
-        int i11 = this.f28c;
-        if (i11 != 0 && i10 <= this.f26a[i11 - 1]) {
-            d(i10, obj);
-            return;
-        }
-        if (i11 >= this.f26a.length) {
-            int i12 = (i11 + 1) * 4;
-            int i13 = 4;
-            while (true) {
-                if (i13 >= 32) {
-                    break;
-                }
-                int i14 = (1 << i13) - 12;
-                if (i12 <= i14) {
-                    i12 = i14;
-                    break;
-                }
-                i13++;
+        for (int i12 = a2 - 1; i12 >= 0 && this.f29a[i12] == 0; i12--) {
+            if (this.f30b[i12 << 1] == null) {
+                return i12;
             }
-            int i15 = i12 / 4;
-            int[] copyOf = Arrays.copyOf(this.f26a, i15);
-            kotlin.jvm.internal.j.d(copyOf, "copyOf(this, newSize)");
-            this.f26a = copyOf;
-            Object[] copyOf2 = Arrays.copyOf(this.f27b, i15);
-            kotlin.jvm.internal.j.d(copyOf2, "copyOf(this, newSize)");
-            this.f27b = copyOf2;
         }
-        this.f26a[i11] = i10;
-        this.f27b[i11] = obj;
-        this.f28c = i11 + 1;
+        return ~i11;
     }
 
-    public final l clone() {
-        Object clone = super.clone();
-        kotlin.jvm.internal.j.c(clone, "null cannot be cast to non-null type androidx.collection.SparseArrayCompat<E of androidx.collection.SparseArrayCompat>");
-        l lVar = (l) clone;
-        lVar.f26a = (int[]) this.f26a.clone();
-        lVar.f27b = (Object[]) this.f27b.clone();
-        return lVar;
+    public final Object e(int i10) {
+        if (i10 >= 0 && i10 < this.f31c) {
+            return this.f30b[i10 << 1];
+        }
+        throw new IllegalArgumentException(i2.g.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
-    public final Object c(int i10) {
-        Object obj;
-        int a2 = b0.a.a(this.f28c, i10, this.f26a);
-        if (a2 >= 0 && (obj = this.f27b[a2]) != i.f18b) {
-            return obj;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        try {
+            if (obj instanceof l) {
+                int i10 = this.f31c;
+                if (i10 != ((l) obj).f31c) {
+                    return false;
+                }
+                l lVar = (l) obj;
+                for (int i11 = 0; i11 < i10; i11++) {
+                    Object e7 = e(i11);
+                    Object h = h(i11);
+                    Object obj2 = lVar.get(e7);
+                    if (h == null) {
+                        if (obj2 != null || !lVar.containsKey(e7)) {
+                            return false;
+                        }
+                    } else if (!h.equals(obj2)) {
+                        return false;
+                    }
+                }
+                return true;
+            } else if (!(obj instanceof Map) || this.f31c != ((Map) obj).size()) {
+                return false;
+            } else {
+                int i12 = this.f31c;
+                for (int i13 = 0; i13 < i12; i13++) {
+                    Object e10 = e(i13);
+                    Object h10 = h(i13);
+                    Object obj3 = ((Map) obj).get(e10);
+                    if (h10 == null) {
+                        if (obj3 != null || !((Map) obj).containsKey(e10)) {
+                            return false;
+                        }
+                    } else if (!h10.equals(obj3)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        } catch (ClassCastException | NullPointerException unused) {
+        }
+        return false;
+    }
+
+    public final Object f(int i10) {
+        int i11;
+        if (i10 >= 0 && i10 < (i11 = this.f31c)) {
+            Object[] objArr = this.f30b;
+            int i12 = i10 << 1;
+            Object obj = objArr[i12 + 1];
+            if (i11 <= 1) {
+                clear();
+                return obj;
+            }
+            int i13 = i11 - 1;
+            int[] iArr = this.f29a;
+            int i14 = 8;
+            if (iArr.length > 8 && i11 < iArr.length / 3) {
+                if (i11 > 8) {
+                    i14 = i11 + (i11 >> 1);
+                }
+                int[] copyOf = Arrays.copyOf(iArr, i14);
+                kotlin.jvm.internal.i.d(copyOf, "copyOf(this, newSize)");
+                this.f29a = copyOf;
+                Object[] copyOf2 = Arrays.copyOf(this.f30b, i14 << 1);
+                kotlin.jvm.internal.i.d(copyOf2, "copyOf(this, newSize)");
+                this.f30b = copyOf2;
+                if (i11 == this.f31c) {
+                    if (i10 > 0) {
+                        hd.f.b(0, 0, i10, iArr, this.f29a);
+                        hd.f.c(0, 0, i12, objArr, this.f30b);
+                    }
+                    if (i10 < i13) {
+                        int i15 = i10 + 1;
+                        hd.f.b(i10, i15, i11, iArr, this.f29a);
+                        hd.f.c(i12, i15 << 1, i11 << 1, objArr, this.f30b);
+                    }
+                } else {
+                    throw new ConcurrentModificationException();
+                }
+            } else {
+                if (i10 < i13) {
+                    int i16 = i10 + 1;
+                    hd.f.b(i10, i16, i11, iArr, iArr);
+                    Object[] objArr2 = this.f30b;
+                    hd.f.c(i12, i16 << 1, i11 << 1, objArr2, objArr2);
+                }
+                Object[] objArr3 = this.f30b;
+                int i17 = i13 << 1;
+                objArr3[i17] = null;
+                objArr3[i17 + 1] = null;
+            }
+            if (i11 == this.f31c) {
+                this.f31c = i13;
+                return obj;
+            }
+            throw new ConcurrentModificationException();
+        }
+        throw new IllegalArgumentException(i2.g.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
+    }
+
+    public final Object g(int i10, Object obj) {
+        if (i10 >= 0 && i10 < this.f31c) {
+            int i11 = (i10 << 1) + 1;
+            Object[] objArr = this.f30b;
+            Object obj2 = objArr[i11];
+            objArr[i11] = obj;
+            return obj2;
+        }
+        throw new IllegalArgumentException(i2.g.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
+    }
+
+    public Object get(Object obj) {
+        int c10 = c(obj);
+        if (c10 >= 0) {
+            return this.f30b[(c10 << 1) + 1];
         }
         return null;
     }
 
-    public final void d(int i10, Object obj) {
-        int a2 = b0.a.a(this.f28c, i10, this.f26a);
-        if (a2 >= 0) {
-            this.f27b[a2] = obj;
-            return;
+    public final Object getOrDefault(Object obj, Object obj2) {
+        int c10 = c(obj);
+        if (c10 >= 0) {
+            return this.f30b[(c10 << 1) + 1];
         }
-        int i11 = ~a2;
-        int i12 = this.f28c;
-        if (i11 < i12) {
-            Object[] objArr = this.f27b;
-            if (objArr[i11] == i.f18b) {
-                this.f26a[i11] = i10;
-                objArr[i11] = obj;
-                return;
+        return obj2;
+    }
+
+    public final Object h(int i10) {
+        if (i10 >= 0 && i10 < this.f31c) {
+            return this.f30b[(i10 << 1) + 1];
+        }
+        throw new IllegalArgumentException(i2.g.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
+    }
+
+    public final int hashCode() {
+        int i10;
+        int[] iArr = this.f29a;
+        Object[] objArr = this.f30b;
+        int i11 = this.f31c;
+        int i12 = 1;
+        int i13 = 0;
+        int i14 = 0;
+        while (i13 < i11) {
+            Object obj = objArr[i12];
+            int i15 = iArr[i13];
+            if (obj != null) {
+                i10 = obj.hashCode();
+            } else {
+                i10 = 0;
+            }
+            i14 += i10 ^ i15;
+            i13++;
+            i12 += 2;
+        }
+        return i14;
+    }
+
+    public final boolean isEmpty() {
+        if (this.f31c <= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final Object put(Object obj, Object obj2) {
+        int i10;
+        int d;
+        int i11 = this.f31c;
+        if (obj != null) {
+            i10 = obj.hashCode();
+        } else {
+            i10 = 0;
+        }
+        if (obj != null) {
+            d = b(i10, obj);
+        } else {
+            d = d();
+        }
+        if (d >= 0) {
+            int i12 = (d << 1) + 1;
+            Object[] objArr = this.f30b;
+            Object obj3 = objArr[i12];
+            objArr[i12] = obj2;
+            return obj3;
+        }
+        int i13 = ~d;
+        int[] iArr = this.f29a;
+        if (i11 >= iArr.length) {
+            int i14 = 8;
+            if (i11 >= 8) {
+                i14 = (i11 >> 1) + i11;
+            } else if (i11 < 4) {
+                i14 = 4;
+            }
+            int[] copyOf = Arrays.copyOf(iArr, i14);
+            kotlin.jvm.internal.i.d(copyOf, "copyOf(this, newSize)");
+            this.f29a = copyOf;
+            Object[] copyOf2 = Arrays.copyOf(this.f30b, i14 << 1);
+            kotlin.jvm.internal.i.d(copyOf2, "copyOf(this, newSize)");
+            this.f30b = copyOf2;
+            if (i11 != this.f31c) {
+                throw new ConcurrentModificationException();
             }
         }
-        if (i12 >= this.f26a.length) {
-            int i13 = (i12 + 1) * 4;
-            int i14 = 4;
-            while (true) {
-                if (i14 >= 32) {
-                    break;
-                }
-                int i15 = (1 << i14) - 12;
-                if (i13 <= i15) {
-                    i13 = i15;
-                    break;
-                }
-                i14++;
+        if (i13 < i11) {
+            int[] iArr2 = this.f29a;
+            int i15 = i13 + 1;
+            hd.f.b(i15, i13, i11, iArr2, iArr2);
+            Object[] objArr2 = this.f30b;
+            hd.f.c(i15 << 1, i13 << 1, this.f31c << 1, objArr2, objArr2);
+        }
+        int i16 = this.f31c;
+        if (i11 == i16) {
+            int[] iArr3 = this.f29a;
+            if (i13 < iArr3.length) {
+                iArr3[i13] = i10;
+                Object[] objArr3 = this.f30b;
+                int i17 = i13 << 1;
+                objArr3[i17] = obj;
+                objArr3[i17 + 1] = obj2;
+                this.f31c = i16 + 1;
+                return null;
             }
-            int i16 = i13 / 4;
-            int[] copyOf = Arrays.copyOf(this.f26a, i16);
-            kotlin.jvm.internal.j.d(copyOf, "copyOf(this, newSize)");
-            this.f26a = copyOf;
-            Object[] copyOf2 = Arrays.copyOf(this.f27b, i16);
-            kotlin.jvm.internal.j.d(copyOf2, "copyOf(this, newSize)");
-            this.f27b = copyOf2;
         }
-        int i17 = this.f28c;
-        if (i17 - i11 != 0) {
-            int[] iArr = this.f26a;
-            int i18 = i11 + 1;
-            tc.f.b(i18, i11, i17, iArr, iArr);
-            Object[] objArr2 = this.f27b;
-            tc.f.c(i18, i11, this.f28c, objArr2, objArr2);
+        throw new ConcurrentModificationException();
+    }
+
+    public final Object putIfAbsent(Object obj, Object obj2) {
+        Object obj3 = get(obj);
+        if (obj3 == null) {
+            return put(obj, obj2);
         }
-        this.f26a[i11] = i10;
-        this.f27b[i11] = obj;
-        this.f28c++;
+        return obj3;
+    }
+
+    public Object remove(Object obj) {
+        int c10 = c(obj);
+        if (c10 >= 0) {
+            return f(c10);
+        }
+        return null;
+    }
+
+    public final Object replace(Object obj, Object obj2) {
+        int c10 = c(obj);
+        if (c10 >= 0) {
+            return g(c10, obj2);
+        }
+        return null;
+    }
+
+    public final int size() {
+        return this.f31c;
     }
 
     public final String toString() {
-        int i10 = this.f28c;
-        if (i10 <= 0) {
+        if (isEmpty()) {
             return "{}";
         }
-        StringBuilder sb = new StringBuilder(i10 * 28);
-        sb.append('{');
-        int i11 = this.f28c;
-        for (int i12 = 0; i12 < i11; i12++) {
-            if (i12 > 0) {
-                sb.append(", ");
+        StringBuilder sb2 = new StringBuilder(this.f31c * 28);
+        sb2.append('{');
+        int i10 = this.f31c;
+        for (int i11 = 0; i11 < i10; i11++) {
+            if (i11 > 0) {
+                sb2.append(", ");
             }
-            sb.append(this.f26a[i12]);
-            sb.append('=');
-            Object obj = this.f27b[i12];
-            if (obj != this) {
-                sb.append(obj);
+            Object e7 = e(i11);
+            if (e7 != sb2) {
+                sb2.append(e7);
             } else {
-                sb.append("(this Map)");
+                sb2.append("(this Map)");
+            }
+            sb2.append('=');
+            Object h = h(i11);
+            if (h != sb2) {
+                sb2.append(h);
+            } else {
+                sb2.append("(this Map)");
             }
         }
-        sb.append('}');
-        String sb2 = sb.toString();
-        kotlin.jvm.internal.j.d(sb2, "buffer.toString()");
-        return sb2;
+        sb2.append('}');
+        String sb3 = sb2.toString();
+        kotlin.jvm.internal.i.d(sb3, "StringBuilder(capacity).…builderAction).toString()");
+        return sb3;
+    }
+
+    public final boolean remove(Object obj, Object obj2) {
+        int c10 = c(obj);
+        if (c10 < 0 || !kotlin.jvm.internal.i.a(obj2, h(c10))) {
+            return false;
+        }
+        f(c10);
+        return true;
+    }
+
+    public final boolean replace(Object obj, Object obj2, Object obj3) {
+        int c10 = c(obj);
+        if (c10 < 0 || !kotlin.jvm.internal.i.a(obj2, h(c10))) {
+            return false;
+        }
+        g(c10, obj3);
+        return true;
     }
 }

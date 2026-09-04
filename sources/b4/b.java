@@ -1,114 +1,97 @@
 package b4;
 
-import j3.n0;
-public final class b implements i {
-    public final int f1330a;
-    public final h5.v f1331b;
-    public final h5.w f1332c;
-    public final String d;
-    public String e;
-    public r3.v f1333f;
-    public int f1334g;
-    public int h;
-    public boolean f1335i;
-    public long f1336j;
-    public n0 f1337k;
-    public int f1338l;
-    public long f1339m;
+import android.text.TextUtils;
+import v7.r6;
+public final class b {
+    public final int f2444a;
+    public final int f2445b;
+    public final int f2446c;
+    public final int d;
+    public final int f2447e;
+    public final int f2448f;
 
-    public b(String str, int i10) {
-        this.f1330a = i10;
-        switch (i10) {
-            case 1:
-                h5.v vVar = new h5.v(new byte[16], 16);
-                this.f1331b = vVar;
-                this.f1332c = new h5.w(vVar.f6984b);
-                this.f1334g = 0;
-                this.h = 0;
-                this.f1335i = false;
-                this.f1339m = -9223372036854775807L;
-                this.d = str;
-                return;
-            default:
-                h5.v vVar2 = new h5.v(new byte[128], 128);
-                this.f1331b = vVar2;
-                this.f1332c = new h5.w(vVar2.f6984b);
-                this.f1334g = 0;
-                this.f1339m = -9223372036854775807L;
-                this.d = str;
-                return;
+    public b(int i10, int i11, int i12, int i13, int i14, int i15) {
+        this.f2444a = i10;
+        this.f2445b = i11;
+        this.f2446c = i12;
+        this.d = i13;
+        this.f2447e = i14;
+        this.f2448f = i15;
+    }
+
+    public static b a(String str) {
+        char c10;
+        e2.d.b(str.startsWith("Format:"));
+        String[] split = TextUtils.split(str.substring(7), ",");
+        int i10 = -1;
+        int i11 = -1;
+        int i12 = -1;
+        int i13 = -1;
+        int i14 = -1;
+        for (int i15 = 0; i15 < split.length; i15++) {
+            String b10 = r6.b(split[i15].trim());
+            b10.getClass();
+            switch (b10.hashCode()) {
+                case 100571:
+                    if (b10.equals("end")) {
+                        c10 = 0;
+                        break;
+                    }
+                    c10 = 65535;
+                    break;
+                case 3556653:
+                    if (b10.equals("text")) {
+                        c10 = 1;
+                        break;
+                    }
+                    c10 = 65535;
+                    break;
+                case 102749521:
+                    if (b10.equals("layer")) {
+                        c10 = 2;
+                        break;
+                    }
+                    c10 = 65535;
+                    break;
+                case 109757538:
+                    if (b10.equals("start")) {
+                        c10 = 3;
+                        break;
+                    }
+                    c10 = 65535;
+                    break;
+                case 109780401:
+                    if (b10.equals("style")) {
+                        c10 = 4;
+                        break;
+                    }
+                    c10 = 65535;
+                    break;
+                default:
+                    c10 = 65535;
+                    break;
+            }
+            switch (c10) {
+                case 0:
+                    i12 = i15;
+                    break;
+                case 1:
+                    i14 = i15;
+                    break;
+                case 2:
+                    i10 = i15;
+                    break;
+                case 3:
+                    i11 = i15;
+                    break;
+                case 4:
+                    i13 = i15;
+                    break;
+            }
         }
-    }
-
-    @Override
-    public final void a(h5.w r23) {
-        throw new UnsupportedOperationException("Method not decompiled: b4.b.a(h5.w):void");
-    }
-
-    @Override
-    public final void b() {
-        switch (this.f1330a) {
-            case 0:
-                this.f1334g = 0;
-                this.h = 0;
-                this.f1335i = false;
-                this.f1339m = -9223372036854775807L;
-                return;
-            default:
-                this.f1334g = 0;
-                this.h = 0;
-                this.f1335i = false;
-                this.f1339m = -9223372036854775807L;
-                return;
+        if (i11 != -1 && i12 != -1 && i14 != -1) {
+            return new b(i10, i11, i12, i13, i14, split.length);
         }
-    }
-
-    @Override
-    public final void c(r3.m mVar, h0 h0Var) {
-        switch (this.f1330a) {
-            case 0:
-                h0Var.a();
-                h0Var.b();
-                this.e = h0Var.e;
-                h0Var.b();
-                this.f1333f = mVar.d2(h0Var.d, 1);
-                return;
-            default:
-                h0Var.a();
-                h0Var.b();
-                this.e = h0Var.e;
-                h0Var.b();
-                this.f1333f = mVar.d2(h0Var.d, 1);
-                return;
-        }
-    }
-
-    @Override
-    public final void d() {
-        int i10 = this.f1330a;
-    }
-
-    @Override
-    public final void e(int i10, long j10) {
-        switch (this.f1330a) {
-            case 0:
-                if (j10 != -9223372036854775807L) {
-                    this.f1339m = j10;
-                    return;
-                }
-                return;
-            default:
-                if (j10 != -9223372036854775807L) {
-                    this.f1339m = j10;
-                    return;
-                }
-                return;
-        }
-    }
-
-    private final void f() {
-    }
-
-    private final void g() {
+        return null;
     }
 }

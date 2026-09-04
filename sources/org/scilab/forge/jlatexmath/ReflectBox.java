@@ -13,13 +13,13 @@ public class ReflectBox extends Box {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f10, float f11) {
-        drawDebug(graphics2D, f10, f11);
-        graphics2D.translate(f10, f11);
+    public void draw(Graphics2D graphics2D, float f7, float f10) {
+        drawDebug(graphics2D, f7, f10);
+        graphics2D.translate(f7, f10);
         graphics2D.scale(-1.0d, 1.0d);
         this.box.draw(graphics2D, -this.width, 0.0f);
         graphics2D.scale(-1.0d, 1.0d);
-        graphics2D.translate(-f10, -f11);
+        graphics2D.translate(-f7, -f10);
     }
 
     @Override

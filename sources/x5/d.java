@@ -2,14 +2,32 @@ package x5;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-public final class d implements Parcelable.Creator {
-    @Override
-    public final Object createFromParcel(Parcel parcel) {
-        return new f(parcel.readStrongBinder());
+import java.util.Arrays;
+import w7.e0;
+public final class d extends o6.a {
+    public static final Parcelable.Creator<d> CREATOR = new h(0);
+    public final boolean f48898a;
+
+    public d(boolean z10) {
+        this.f48898a = z10;
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof d) || this.f48898a != ((d) obj).f48898a) {
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f48898a)});
     }
 
     @Override
-    public final Object[] newArray(int i10) {
-        return new f[i10];
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = e0.q(parcel, 20293);
+        e0.s(parcel, 1, 4);
+        parcel.writeInt(this.f48898a ? 1 : 0);
+        e0.r(parcel, q6);
     }
 }

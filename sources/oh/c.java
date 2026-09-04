@@ -1,146 +1,111 @@
 package oh;
 
-import android.graphics.RectF;
-import android.view.WindowManager;
-import java.util.ArrayList;
-import java.util.HashMap;
-import nh.n5;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.TextUtils;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import le.e;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.ji;
-import org.telegram.ui.Components.li;
-import org.telegram.ui.Components.wg;
-import ph.ca;
-import ph.da;
-import ph.g8;
-import ph.p9;
-import ph.t6;
-public final class c implements ji {
-    public final li f16561a;
-    public final String f16562b;
-    public final v f16563c;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.z5;
+import org.telegram.ui.Cells.f8;
+import org.telegram.ui.Components.pr;
+import w7.x5;
+import yf.p;
+public final class c extends FrameLayout implements le.d, z5 {
+    public ShapeDrawable f17029a;
+    public final f6 f17030b;
+    public final f8 f17031c;
+    public final TextView d;
+    public final le.b f17032e;
 
-    public c(v vVar, li liVar, String str) {
-        this.f16563c = vVar;
-        this.f16561a = liVar;
-        this.f16562b = str;
+    public c(Context context, f6 f6Var) {
+        super(context);
+        this.f17032e = new le.b(0, this, pr.h, 380L, false);
+        this.f17030b = f6Var;
+        f8 f8Var = new f8(context, f6Var, false);
+        this.f17031c = f8Var;
+        addView(f8Var, x5.d(45, 45.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 10.0f);
+        textView.setGravity(17);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setSingleLine();
+        addView(textView, x5.d(-1, -2.0f, 80, 6.0f, 0.0f, 6.0f, 5.0f));
+        d();
     }
 
     @Override
-    public final void C0(wg wgVar) {
-        wgVar.run();
+    public final void E(int i10, float f7, float f10, e eVar) {
+        ShapeDrawable shapeDrawable = this.f17029a;
+        if (shapeDrawable != null) {
+            shapeDrawable.setAlpha((int) (f7 * 255.0f));
+        }
+        invalidate();
+    }
+
+    public final void a(boolean z10, boolean z11) {
+        if (z10 && this.f17029a == null) {
+            this.f17029a = j6.b0(AndroidUtilities.dp(10.0f), i0.a.k(j6.v0(j6.Wk, this.f17030b), 25));
+        }
+        le.b bVar = this.f17032e;
+        if (bVar.f15369f == z10 && !z11) {
+            return;
+        }
+        bVar.a(z10, z11);
     }
 
     @Override
-    public final void G1(int i10, boolean z4, boolean z10, int i11, int i12, long j10, boolean z11, boolean z12, long j11) {
-        int i13;
-        ca caVar;
-        v vVar = this.f16563c;
-        long j12 = vVar.d;
-        li liVar = this.f16561a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = liVar.f26698g0;
-        if (!chatAttachAlertPhotoLayout.getSelectedPhotos().isEmpty()) {
-            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
-            chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            if (selectedPhotos.size() == 1) {
-                Object next = selectedPhotos.values().iterator().next();
-                if (next instanceof MediaController.PhotoEntry) {
-                    t6 l10 = t6.l((MediaController.PhotoEntry) next);
-                    l10.J0 = j12;
-                    String str = this.f16562b;
-                    l10.K0 = str;
-                    l10.A();
-                    da E = da.E(vVar.f16595a.getParentActivity(), vVar.f16596b);
-                    RectF rectF = E.E;
-                    WindowManager.LayoutParams layoutParams = E.h;
-                    int i14 = E.f41517c;
-                    WindowManager windowManager = E.f41527f;
-                    if (!E.d) {
-                        if (MessagesController.getInstance(i14).isFrozen()) {
-                            org.telegram.ui.c.b(i14);
-                        } else {
-                            E.f41568s0 = j12;
-                            E.f41571t0 = str;
-                            E.f41564r0 = false;
-                            E.e = false;
-                            E.f41591y2 = false;
-                            if (windowManager != null && (caVar = E.f41550n) != null && caVar.getParent() == null) {
-                                AndroidUtilities.setPreferredMaxRefreshRate(windowManager, E.f41550n, layoutParams);
-                                windowManager.addView(E.f41550n, layoutParams);
-                                E.g0();
-                            }
-                            E.H1 = l10;
-                            l10.J0 = j12;
-                            l10.K0 = str;
-                            E.L1 = l10.K ? 1 : 0;
-                            E.f41557p0.f41818g = false;
-                            E.G = 0;
-                            rectF.set(0.0f, AndroidUtilities.dp(100.0f), AndroidUtilities.displaySize.x, AndroidUtilities.dp(100.0f) + AndroidUtilities.displaySize.y);
-                            E.D = AndroidUtilities.dp(8.0f);
-                            E.f41563r.c();
-                            p9 p9Var = E.f41524e0;
-                            int i15 = E.G;
-                            if (i15 != 1 && i15 != 0) {
-                                i13 = -14737633;
-                            } else {
-                                i13 = 0;
-                            }
-                            p9Var.setBackgroundColor(i13);
-                            E.f41563r.setTranslationX(0.0f);
-                            E.f41563r.setTranslationY(0.0f);
-                            E.f41563r.b(0.0f);
-                            E.f41563r.setScaleX(1.0f);
-                            E.f41563r.setScaleY(1.0f);
-                            E.H = 0.0f;
-                            AndroidUtilities.lockOrientation(E.f41513b, 1);
-                            t6 t6Var = E.H1;
-                            if (t6Var != null) {
-                                E.Z0.setText(t6Var.C0);
-                            }
-                            E.K(1, false);
-                            E.l0(-1, false, false);
-                            E.Y0.b(false, false);
-                            E.Y0.b(true, true);
-                            E.g(1.0f, true, new g8(E, 6));
-                            E.e();
-                        }
-                    }
-                    AndroidUtilities.runOnUIThread(new n5(liVar, 16), 400L);
-                }
+    public final void d() {
+        ShapeDrawable shapeDrawable = this.f17029a;
+        f6 f6Var = this.f17030b;
+        if (shapeDrawable != null) {
+            ShapeDrawable b02 = j6.b0(AndroidUtilities.dp(10.0f), i0.a.k(j6.v0(j6.Wk, f6Var), 25));
+            this.f17029a = b02;
+            b02.setAlpha((int) (this.f17032e.f15368e * 255.0f));
+        }
+        this.d.setTextColor(i0.a.k(j6.v0(j6.Wk, f6Var), 229));
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        ShapeDrawable shapeDrawable = this.f17029a;
+        if (shapeDrawable != null) {
+            le.b bVar = this.f17032e;
+            if (bVar.f15368e > 0.0f) {
+                shapeDrawable.setBounds(0, 0, getWidth(), getHeight());
+                p.b(canvas, this.f17029a, AndroidUtilities.lerp(0.9f, 1.0f, bVar.f15368e));
             }
         }
+        super.dispatchDraw(canvas);
+    }
+
+    public int[] getColorKeys() {
+        return null;
     }
 
     @Override
-    public final boolean X1() {
-        return true;
+    public final boolean isSelected() {
+        return this.f17032e.f15369f;
+    }
+
+    public void setPack(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        TLRPC.Document document;
+        this.d.setText(tL_messages_stickerSet.set.short_name);
+        if (!tL_messages_stickerSet.documents.isEmpty()) {
+            document = tL_messages_stickerSet.documents.get(0);
+        } else {
+            document = null;
+        }
+        this.f17031c.d(document, null, null, null, false, false);
     }
 
     @Override
-    public final boolean h0() {
-        return false;
-    }
-
-    @Override
-    public final void Q0() {
-    }
-
-    @Override
-    public final void z0() {
-    }
-
-    @Override
-    public final void Z0(Object obj) {
-    }
-
-    @Override
-    public final void o1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void b2(ArrayList arrayList, CharSequence charSequence, boolean z4, int i10, int i11, long j10, boolean z10, long j11) {
+    public final void z(float f7, int i10) {
     }
 }

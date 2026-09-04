@@ -1,96 +1,55 @@
 package sg;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Shader;
-public final class b implements a {
-    public final Paint f44369a;
-    public final Matrix f44370b;
-    public BitmapShader f44371c;
-    public Bitmap d;
-    public final Matrix e;
-    public Bitmap f44372f;
-    public int h;
-    public int f44373n;
+import android.widget.FrameLayout;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.ll0;
+import w7.x5;
+public abstract class b extends FrameLayout implements m0 {
+    public final f6 f46022a;
+    public final ll0 f46023b;
+    public final s4.c0 f46024c;
 
-    public b() {
-        Paint paint = new Paint(3);
-        this.f44369a = paint;
-        this.f44370b = new Matrix();
-        this.e = new Matrix();
-        paint.setFilterBitmap(true);
+    public b(Context context, f6 f6Var) {
+        super(context);
+        this.f46022a = f6Var;
+        ll0 ll0Var = new ll0(context, f6Var);
+        this.f46023b = ll0Var;
+        ll0Var.setNestedScrollingEnabled(true);
+        ll0Var.setAdapter(a());
+        s4.c0 c0Var = new s4.c0(1, false);
+        this.f46024c = c0Var;
+        ll0Var.setLayoutManager(c0Var);
+        ll0Var.setClipToPadding(false);
+        addView(ll0Var, x5.c(-1.0f, -1));
+    }
+
+    public abstract s4.h0 a();
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        Paint T0 = j6.T0("paintDivider", this.f46022a);
+        if (T0 == null) {
+            T0 = j6.f20785k0;
+        }
+        canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, T0);
     }
 
     @Override
-    public final void H(Canvas canvas, float f10, float f11, float f12, float f13) {
-        Bitmap bitmap = this.d;
-        if (bitmap != null && !bitmap.isRecycled() && this.f44371c != null) {
-            Matrix matrix = this.e;
-            Matrix matrix2 = this.f44370b;
-            matrix.set(matrix2);
-            matrix.postTranslate(f10, f11);
-            this.f44371c.setLocalMatrix(matrix2);
-            canvas.drawRect(f10, f11, f12, f13, this.f44369a);
-        }
-    }
-
-    public final void a(Bitmap bitmap) {
-        if (this.d != bitmap) {
-            this.d = bitmap;
-            Paint paint = this.f44369a;
-            paint.setShader(null);
-            this.f44371c = null;
-            if (bitmap != null) {
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-                this.f44371c = bitmapShader;
-                paint.setShader(bitmapShader);
-                d();
+    public void setOffset(float f7) {
+        if (Math.abs(f7 / getMeasuredWidth()) == 1.0f) {
+            ll0 ll0Var = this.f46023b;
+            if (ll0Var.K(0) == null || ll0Var.K(0).f45738a.getTop() != ll0Var.getPaddingTop()) {
+                ll0Var.u0(0);
             }
         }
     }
 
-    public final void c(int i10, int i11) {
-        if (this.h == i10 && this.f44373n == i11) {
-            return;
-        }
-        this.h = i10;
-        this.f44373n = i11;
-        d();
-    }
-
-    public final void d() {
-        Bitmap bitmap = this.d;
-        Matrix matrix = this.f44370b;
-        if (bitmap == null) {
-            matrix.reset();
-            return;
-        }
-        int width = bitmap.getWidth();
-        int height = this.d.getHeight();
-        int i10 = this.h;
-        int i11 = this.f44373n;
-        matrix.reset();
-        if (width > 0 && height > 0 && i10 > 0 && i11 > 0) {
-            float f10 = i10;
-            float f11 = width;
-            float f12 = i11;
-            float f13 = height;
-            float max = Math.max(f10 / f11, f12 / f13);
-            matrix.setScale(max, max);
-            matrix.postTranslate((f10 - (f11 * max)) * 0.5f, ((f12 - (f13 * max)) * 0.5f) + 0);
-        }
-    }
-
-    @Override
-    public final pg.b k() {
-        return new pg.d(this);
-    }
-
-    @Override
-    public final void b() {
+    public void setTopOffset(int i10) {
+        this.f46023b.setPadding(0, i10, 0, 0);
     }
 }

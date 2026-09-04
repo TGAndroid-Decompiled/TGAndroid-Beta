@@ -1,303 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.text.TextUtils;
-import android.util.Property;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class w7 extends FrameLayout {
-    public final TextView[] f30162a;
-    public final float[] f30163b;
-    public final int f30164c;
-    public final Matrix d;
-    public final Paint e;
-    public final Paint f30165f;
-    public int h;
-    public AnimatorSet f30166n;
-    public LinearGradient f30167r;
-    public int f30168s;
-    public final RectF v;
-    public int f30169w;
-    public boolean f30170x;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.R;
+public final class w7 extends s4.v {
+    public final k8 d;
 
-    public w7(Context context) {
-        super(context);
-        this.f30162a = new TextView[2];
-        this.f30163b = new float[]{0.0f, 0.75f};
-        this.f30164c = AndroidUtilities.dp(24.0f);
-        this.f30168s = -1;
-        this.v = new RectF();
-        for (int i10 = 0; i10 < 2; i10++) {
-            this.f30162a[i10] = a();
-            if (i10 == 1) {
-                this.f30162a[i10].setAlpha(0.0f);
-                this.f30162a[i10].setVisibility(8);
-            }
-            addView(this.f30162a[i10], k7.b6.c(-1.0f, -2));
-        }
-        this.d = new Matrix();
-        Paint paint = new Paint(1);
-        this.e = paint;
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-        Paint paint2 = new Paint(1);
-        this.f30165f = paint2;
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+    public w7(k8 k8Var) {
+        this.d = k8Var;
     }
 
-    public abstract TextView a();
+    @Override
+    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
+        super.a(recyclerView, c1Var);
+        View view = c1Var.f45738a;
+        view.setPressed(false);
+        view.setTag(R.id.dragging, null);
+    }
 
-    public final void b(CharSequence charSequence, boolean z4) {
-        final int i10;
-        int i11 = this.h;
-        TextView[] textViewArr = this.f30162a;
-        CharSequence text = textViewArr[i11].getText();
-        if (!TextUtils.isEmpty(text) && z4) {
-            if (TextUtils.equals(charSequence, text)) {
-                return;
-            }
-            this.f30168s = 0;
-            int min = Math.min(charSequence.length(), text.length());
-            for (int i12 = 0; i12 < min && charSequence.charAt(i12) == text.charAt(i12); i12++) {
-                this.f30168s++;
-            }
-            if (this.f30168s <= 3) {
-                this.f30168s = -1;
-            }
-            final int i13 = this.h;
-            if (i13 == 0) {
-                i10 = 1;
+    @Override
+    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
+        if (c1Var.f45742f != 0) {
+            return 0;
+        }
+        return s4.v.l(3, 0);
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
+        int b10 = c1Var.b();
+        int b11 = c1Var2.b();
+        k8 k8Var = this.d;
+        if (k8Var.f27740v0) {
+            if (b10 > 0 && b11 > 0) {
+                k8Var.f27742w0.move(b10 - 1, b11 - 1);
             } else {
-                i10 = 0;
+                return false;
             }
-            this.h = i10;
-            AnimatorSet animatorSet = this.f30166n;
-            if (animatorSet != null) {
-                animatorSet.cancel();
-            }
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f30166n = animatorSet2;
-            animatorSet2.addListener(new org.telegram.ui.Cells.a4(this, i13, 2));
-            textViewArr[i10].setText(charSequence);
-            textViewArr[i10].bringToFront();
-            textViewArr[i10].setVisibility(0);
-            float[] fArr = this.f30163b;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr[i13], 0.75f);
-            ofFloat.setDuration(200L);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final w7 f29391b;
-
-                {
-                    this.f29391b = this;
-                }
-
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    switch (r3) {
-                        case 0:
-                            w7 w7Var = this.f29391b;
-                            w7Var.f30163b[i13] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            w7Var.invalidate();
-                            return;
-                        default:
-                            w7 w7Var2 = this.f29391b;
-                            w7Var2.f30163b[i13] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            w7Var2.invalidate();
-                            return;
-                    }
-                }
-            });
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(fArr[i10], 0.0f);
-            ofFloat2.setStartDelay(100L);
-            ofFloat2.setDuration(200L);
-            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final w7 f29391b;
-
-                {
-                    this.f29391b = this;
-                }
-
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    switch (r3) {
-                        case 0:
-                            w7 w7Var = this.f29391b;
-                            w7Var.f30163b[i10] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            w7Var.invalidate();
-                            return;
-                        default:
-                            w7 w7Var2 = this.f29391b;
-                            w7Var2.f30163b[i10] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            w7Var2.invalidate();
-                            return;
-                    }
-                }
-            });
-            Property property = View.ALPHA;
-            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(textViewArr[i13], property, 0.0f);
-            ofFloat3.setStartDelay(75L);
-            ofFloat3.setDuration(150L);
-            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(textViewArr[i10], property, 1.0f);
-            ofFloat4.setStartDelay(75L);
-            ofFloat4.setDuration(150L);
-            this.f30166n.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
-            this.f30166n.start();
-            return;
+        } else {
+            k8Var.f27742w0.move(b10, b11);
         }
-        textViewArr[this.h].setText(charSequence);
+        k8Var.f27744x0.clear();
+        k8Var.f27744x0.addAll(k8Var.f27742w0.list);
+        k8Var.f27736s.p(b10, b11);
+        return true;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        int i10;
-        boolean z4;
-        Canvas canvas2;
-        TextView[] textViewArr = this.f30162a;
-        boolean z10 = true;
-        if (view == textViewArr[0]) {
-            i10 = 0;
-        } else {
-            i10 = 1;
+    public final void p(s4.c1 c1Var, int i10) {
+        Boolean bool;
+        v7 v7Var = this.d.f27729n;
+        if (c1Var != null) {
+            v7Var.c1(false);
         }
-        if (this.f30170x) {
-            this.f30168s = -1;
-        }
-        if (this.f30168s > 0) {
-            int length = textViewArr.length;
-            int i11 = 0;
-            while (true) {
-                if (i11 >= length) {
-                    break;
-                }
-                TextView textView = textViewArr[i11];
-                if ((textView instanceof u90) && ((u90) textView).d) {
-                    this.f30168s = -1;
-                    break;
-                }
-                i11++;
+        if (i10 != 0) {
+            v7Var.I0(false);
+            if (c1Var != null) {
+                c1Var.f45738a.setPressed(true);
             }
         }
-        int i12 = this.f30168s;
-        RectF rectF = this.v;
-        if (i12 > 0 && textViewArr[this.h].getAlpha() != 1.0f && textViewArr[this.h].getLayout() != null) {
-            float primaryHorizontal = textViewArr[this.h].getLayout().getPrimaryHorizontal(0);
-            float primaryHorizontal2 = textViewArr[this.h].getLayout().getPrimaryHorizontal(this.f30168s);
-            if (primaryHorizontal == primaryHorizontal2) {
-                z10 = false;
-            } else if (primaryHorizontal2 > primaryHorizontal) {
-                rectF.set(primaryHorizontal, 0.0f, primaryHorizontal2, getMeasuredHeight());
+        if (c1Var != null) {
+            View view = c1Var.f45738a;
+            int i11 = R.id.dragging;
+            if (i10 == 2) {
+                bool = Boolean.TRUE;
             } else {
-                rectF.set(primaryHorizontal2, 0.0f, primaryHorizontal, getMeasuredHeight());
+                bool = null;
             }
-            if (z10 && i10 == this.h) {
-                canvas.save();
-                canvas.clipRect(rectF);
-                textViewArr[0].draw(canvas);
-                canvas.restore();
-            }
-            z4 = z10;
-        } else {
-            z4 = false;
-        }
-        float[] fArr = this.f30163b;
-        if (fArr[i10] <= 0.0f && !z4) {
-            return super.drawChild(canvas, view, j10);
-        }
-        float min = Math.min(view.getWidth(), getWidth());
-        float min2 = Math.min(view.getHeight(), getHeight());
-        int saveLayer = canvas.saveLayer(0.0f, 0.0f, min, min2, null, 31);
-        boolean drawChild = super.drawChild(canvas, view, j10);
-        float f10 = (1.0f - fArr[i10]) * min;
-        float f11 = f10 + this.f30164c;
-        Matrix matrix = this.d;
-        matrix.setTranslate(f10, 0.0f);
-        this.f30167r.setLocalMatrix(matrix);
-        canvas.drawRect(f10, 0.0f, f11, min2, this.e);
-        Paint paint = this.f30165f;
-        if (min > f11) {
-            canvas2 = canvas;
-            canvas2.drawRect(f11, 0.0f, min, min2, paint);
-        } else {
-            canvas2 = canvas;
-        }
-        if (z4) {
-            canvas2.drawRect(rectF, paint);
-        }
-        canvas2.restoreToCount(saveLayer);
-        return drawChild;
-    }
-
-    public int getCustomPaddingRight() {
-        return this.f30169w;
-    }
-
-    public TextView getNextTextView() {
-        char c3;
-        if (this.h == 0) {
-            c3 = 1;
-        } else {
-            c3 = 0;
-        }
-        return this.f30162a[c3];
-    }
-
-    public TextView getTextView() {
-        return this.f30162a[this.h];
-    }
-
-    @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        super.onLayout(z4, i10, i11, i12, i13);
-        if (this.f30170x) {
-            int i14 = 0;
-            while (true) {
-                TextView[] textViewArr = this.f30162a;
-                if (i14 < textViewArr.length) {
-                    TextView textView = textViewArr[i14];
-                    if (textView != null && textView.getMeasuredWidth() < getMeasuredWidth()) {
-                        int measuredWidth = (getMeasuredWidth() - textView.getMeasuredWidth()) / 2;
-                        textView.layout(measuredWidth, 0, textView.getMeasuredWidth() + measuredWidth, textView.getMeasuredHeight());
-                    }
-                    i14++;
-                } else {
-                    return;
-                }
-            }
+            view.setTag(i11, bool);
         }
     }
 
     @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        LinearGradient linearGradient = new LinearGradient(this.f30164c, 0.0f, 0.0f, 0.0f, 0, -16777216, Shader.TileMode.CLAMP);
-        this.f30167r = linearGradient;
-        this.e.setShader(linearGradient);
-    }
-
-    public void setCustomPaddingRight(int i10) {
-        TextView[] textViewArr;
-        this.f30169w = i10;
-        for (TextView textView : this.f30162a) {
-            if (textView instanceof u90) {
-                ((u90) textView).setCustomPaddingRight(i10);
-            }
-        }
-        invalidate();
-    }
-
-    public void setText(CharSequence charSequence) {
-        b(charSequence, true);
+    public final void q(s4.c1 c1Var) {
     }
 }

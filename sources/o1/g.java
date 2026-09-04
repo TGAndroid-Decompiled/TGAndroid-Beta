@@ -1,4 +1,4 @@
 package o1;
 public interface g {
-    void a(h hVar, float f10, float f11);
+    void a(h hVar, float f7, float f10);
 }

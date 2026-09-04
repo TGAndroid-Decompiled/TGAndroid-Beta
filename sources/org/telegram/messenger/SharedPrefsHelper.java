@@ -27,11 +27,11 @@ public class SharedPrefsHelper {
         webViewBotsPrefs = context.getSharedPreferences("webview_bots", 0);
     }
 
-    public static boolean isWebViewConfirmShown(int i10, long j10) {
-        return webViewBotsPrefs.getBoolean(String.format(WEB_VIEW_SHOWN_DIALOG_FORMAT, Integer.valueOf(i10), Long.valueOf(j10)), false);
+    public static boolean isWebViewConfirmShown(int i10, long j3) {
+        return webViewBotsPrefs.getBoolean(String.format(WEB_VIEW_SHOWN_DIALOG_FORMAT, Integer.valueOf(i10), Long.valueOf(j3)), false);
     }
 
-    public static void setWebViewConfirmShown(int i10, long j10, boolean z4) {
-        webViewBotsPrefs.edit().putBoolean(String.format(WEB_VIEW_SHOWN_DIALOG_FORMAT, Integer.valueOf(i10), Long.valueOf(j10)), z4).apply();
+    public static void setWebViewConfirmShown(int i10, long j3, boolean z10) {
+        webViewBotsPrefs.edit().putBoolean(String.format(WEB_VIEW_SHOWN_DIALOG_FORMAT, Integer.valueOf(i10), Long.valueOf(j3)), z10).apply();
     }
 }

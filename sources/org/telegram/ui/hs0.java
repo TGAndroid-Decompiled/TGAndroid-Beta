@@ -1,22 +1,18 @@
 package org.telegram.ui;
-public final class hs0 extends org.telegram.ui.Cells.v9 {
-    public final int f34748v0 = 0;
 
-    public hs0(nh.z7 z7Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(z7Var, f6Var);
+import android.util.FloatProperty;
+public final class hs0 extends FloatProperty {
+    public hs0() {
+        super("progress");
     }
 
     @Override
-    public final int p() {
-        switch (this.f34748v0) {
-            case 0:
-                return 0;
-            default:
-                return 0;
-        }
+    public final Float get(Object obj) {
+        return Float.valueOf(((jv0) obj).f37846a);
     }
 
-    public hs0(nh.b bVar) {
-        super(null, bVar);
+    @Override
+    public final void setValue(Object obj, float f7) {
+        ((jv0) obj).b(f7);
     }
 }

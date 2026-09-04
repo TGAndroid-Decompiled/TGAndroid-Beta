@@ -29,8 +29,8 @@ public class FingerprintController {
         } catch (KeyPermanentlyInvalidatedException unused) {
             hasChangedFingerprints = Boolean.TRUE;
             return true;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             hasChangedFingerprints = Boolean.FALSE;
             return false;
         }
@@ -43,14 +43,14 @@ public class FingerprintController {
     public static void deleteInvalidKey() {
         try {
             getKeyStore().deleteEntry("tmessages_passcode");
-        } catch (KeyStoreException e) {
-            FileLog.e(e);
+        } catch (KeyStoreException e7) {
+            FileLog.e(e7);
         }
         hasChangedFingerprints = null;
         checkKeyReady(false);
     }
 
-    public static void generateNewKey(boolean z4) {
+    public static void generateNewKey(boolean z10) {
         KeyPairGenerator keyPairGenerator2 = getKeyPairGenerator();
         if (keyPairGenerator2 != null) {
             try {
@@ -59,12 +59,12 @@ public class FingerprintController {
                 keyPairGenerator2.initialize(new KeyGenParameterSpec.Builder("tmessages_passcode", 3).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setUserAuthenticationRequired(true).build());
                 keyPairGenerator2.generateKeyPair();
                 setLocale(locale);
-                AndroidUtilities.runOnUIThread(new z3(1, z4));
-            } catch (InvalidAlgorithmParameterException e) {
-                FileLog.e(e);
-            } catch (Exception e6) {
-                if (!e6.getClass().getName().equals("android.security.KeyStoreException")) {
-                    FileLog.e(e6);
+                AndroidUtilities.runOnUIThread(new x3(1, z10));
+            } catch (InvalidAlgorithmParameterException e7) {
+                FileLog.e(e7);
+            } catch (Exception e10) {
+                if (!e10.getClass().getName().equals("android.security.KeyStoreException")) {
+                    FileLog.e(e10);
                 }
             }
         }
@@ -79,8 +79,8 @@ public class FingerprintController {
             KeyPairGenerator keyPairGenerator3 = KeyPairGenerator.getInstance("RSA", "AndroidKeyStore");
             keyPairGenerator = keyPairGenerator3;
             return keyPairGenerator3;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             return null;
         }
     }
@@ -95,8 +95,8 @@ public class FingerprintController {
             keyStore = keyStore3;
             keyStore3.load(null);
             return keyStore;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             return null;
         }
     }
@@ -104,14 +104,14 @@ public class FingerprintController {
     public static boolean isKeyReady() {
         try {
             return getKeyStore().containsAlias("tmessages_passcode");
-        } catch (KeyStoreException e) {
-            FileLog.e(e);
+        } catch (KeyStoreException e7) {
+            FileLog.e(e7);
             return false;
         }
     }
 
-    public static void lambda$generateNewKey$0(boolean z4) {
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didGenerateFingerprintKeyPair, Boolean.valueOf(z4));
+    public static void lambda$generateNewKey$0(boolean z10) {
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didGenerateFingerprintKeyPair, Boolean.valueOf(z10));
     }
 
     private static void setLocale(Locale locale) {
@@ -122,14 +122,14 @@ public class FingerprintController {
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 
-    public static void checkKeyReady(boolean z4) {
+    public static void checkKeyReady(boolean z10) {
         if (isKeyReady() || !AndroidUtilities.isKeyguardSecure()) {
             return;
         }
         Context context = ApplicationLoader.applicationContext;
-        jf.a aVar = jf.b.f9350a;
-        if (aVar.M0(context) && aVar.h(ApplicationLoader.applicationContext)) {
-            Utilities.globalQueue.postRunnable(new z3(0, z4));
+        xf.a aVar = xf.b.f49347a;
+        if (aVar.E0(context) && aVar.e(ApplicationLoader.applicationContext)) {
+            Utilities.globalQueue.postRunnable(new x3(0, z10));
         }
     }
 }

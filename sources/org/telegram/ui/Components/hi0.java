@@ -1,55 +1,65 @@
 package org.telegram.ui.Components;
 
-import java.util.Locale;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class hi0 implements tc0, vc0 {
-    public final int f25426a;
-    public final mi0 f25427b;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class hi0 extends Drawable {
+    public Path f26736a;
+    public Paint f26737b;
+    public float f26738c;
 
-    public hi0(mi0 mi0Var, int i10) {
-        this.f25426a = i10;
-        this.f25427b = mi0Var;
+    public final void a() {
+        int dp = AndroidUtilities.dp(18.0f);
+        Path path = this.f26736a;
+        path.reset();
+        float f7 = dp >> 1;
+        path.moveTo(f7, AndroidUtilities.dpf2(4.98f));
+        path.lineTo(AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
+        path.lineTo(dp - AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
+        path.lineTo(f7, AndroidUtilities.dpf2(4.98f));
+        Paint paint = this.f26737b;
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
+        this.f26738c = AndroidUtilities.density;
     }
 
     @Override
-    public String e(int i10) {
-        int i11 = this.f25426a;
-        mi0 mi0Var = this.f25427b;
-        switch (i11) {
-            case 0:
-                if (mi0Var.L) {
-                    return LocaleController.formatString("MilesShort", R.string.MilesShort, Integer.valueOf(i10));
-                }
-                return LocaleController.formatString("KMetersShort", R.string.KMetersShort, Integer.valueOf(i10));
-            default:
-                if (mi0Var.L) {
-                    if (i10 == 1) {
-                        return LocaleController.formatString("FootsShort", R.string.FootsShort, 250);
-                    }
-                    if (i10 > 1) {
-                        i10--;
-                    }
-                    Locale locale = Locale.US;
-                    return kf.k0.j(i10, ".");
-                } else if (i10 == 1) {
-                    return LocaleController.formatString("MetersShort", R.string.MetersShort, 50);
-                } else {
-                    if (i10 > 1) {
-                        i10--;
-                    }
-                    return LocaleController.formatString("MetersShort", R.string.MetersShort, Integer.valueOf(i10 * 100));
-                }
+    public final void draw(Canvas canvas) {
+        Paint paint = this.f26737b;
+        if (this.f26738c != AndroidUtilities.density) {
+            a();
         }
+        canvas.save();
+        canvas.translate(getBounds().left, getBounds().top);
+        canvas.drawPath(this.f26736a, paint);
+        canvas.drawRect(AndroidUtilities.dpf2(7.56f), AndroidUtilities.dpf2(8.0f), AndroidUtilities.dp(18.0f) - AndroidUtilities.dpf2(7.56f), AndroidUtilities.dpf2(11.1f), paint);
+        canvas.restore();
     }
 
     @Override
-    public void q(xc0 xc0Var, int i10) {
-        mi0 mi0Var = this.f25427b;
-        try {
-            mi0Var.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
-        mi0Var.c(true);
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

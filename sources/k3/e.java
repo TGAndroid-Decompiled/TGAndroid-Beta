@@ -1,114 +1,50 @@
 package k3;
 
-import android.media.AudioDeviceInfo;
-import android.media.MediaDrmResetException;
-import android.util.Base64;
-import com.google.firebase.sessions.FirebaseSessionsRegistrar;
-import kh.p5;
-import lh.g5;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.ui.ActionBar.c2;
-import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.wg1;
-public final class e implements h5.j, r8.i, Vector.TLDeserializer, c2, GenericProvider, c9.f {
-    public final int f9686a;
+import e9.a1;
+import e9.f0;
+import e9.i0;
+import org.xmlpull.v1.XmlPullParser;
+public abstract class e {
+    public static final String[] f14710a = {"Camera:MotionPhoto", "GCamera:MotionPhoto", "Camera:MicroVideo", "GCamera:MicroVideo"};
+    public static final String[] f14711b = {"Camera:MotionPhotoPresentationTimestampUs", "GCamera:MotionPhotoPresentationTimestampUs", "Camera:MicroVideoPresentationTimestampUs", "GCamera:MicroVideoPresentationTimestampUs"};
+    public static final String[] f14712c = {"Camera:MicroVideoOffset", "GCamera:MicroVideoOffset"};
 
-    public e(int i10) {
-        this.f9686a = i10;
+    public static e6.n a(java.lang.String r21) {
+        throw new UnsupportedOperationException("Method not decompiled: k3.e.a(java.lang.String):e6.n");
     }
 
-    public static AudioDeviceInfo a(Object obj) {
-        return (AudioDeviceInfo) obj;
-    }
-
-    public static boolean b(Object obj) {
-        return obj instanceof MediaDrmResetException;
-    }
-
-    @Override
-    public Object d0(c5.j jVar) {
-        switch (this.f9686a) {
-            case 21:
-                return FirebaseSessionsRegistrar.e(jVar);
-            case 22:
-                return FirebaseSessionsRegistrar.f(jVar);
-            case 23:
-                return FirebaseSessionsRegistrar.a(jVar);
-            case 24:
-                return FirebaseSessionsRegistrar.b(jVar);
-            case 25:
-                return FirebaseSessionsRegistrar.d(jVar);
-            default:
-                return FirebaseSessionsRegistrar.c(jVar);
-        }
-    }
-
-    @Override
-    public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z4) {
-        return TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, i10, z4);
-    }
-
-    @Override
-    public Object get() {
-        byte[] bArr = new byte[12];
-        h.f9698i.nextBytes(bArr);
-        return Base64.encodeToString(bArr, 10);
-    }
-
-    @Override
-    public void invoke(Object obj) {
-        b bVar = (b) obj;
-        switch (this.f9686a) {
-            case 0:
-                bVar.getClass();
-                return;
-            case 1:
-                bVar.getClass();
-                return;
-            case 2:
-                bVar.getClass();
-                return;
-            case 3:
-                bVar.getClass();
-                return;
-            case 4:
-                bVar.getClass();
-                return;
-            case 5:
-                bVar.getClass();
-                return;
-            default:
-                bVar.getClass();
-                return;
-        }
-    }
-
-    @Override
-    public void l(d2 d2Var, int i10) {
-        switch (this.f9686a) {
-            case 10:
-                d2Var.dismiss();
-                return;
-            case 11:
-                d2Var.dismiss();
-                return;
-            case 27:
-                g5.d2(new wg1(6, null));
-                return;
-            default:
-                int i11 = g5.f12449n1;
-                return;
-        }
-    }
-
-    @Override
-    public Object provide(Object obj) {
-        Integer num = (Integer) obj;
-        int i10 = p5.f10859h0;
-        return 0;
+    public static a1 b(XmlPullParser xmlPullParser, String str, String str2) {
+        long j3;
+        f0 u10 = i0.u();
+        String concat = str.concat(":Item");
+        String concat2 = str.concat(":Directory");
+        do {
+            xmlPullParser.next();
+            if (e2.d.m(xmlPullParser, concat)) {
+                String concat3 = str2.concat(":Mime");
+                String concat4 = str2.concat(":Semantic");
+                String concat5 = str2.concat(":Length");
+                String concat6 = str2.concat(":Padding");
+                String k10 = e2.d.k(xmlPullParser, concat3);
+                String k11 = e2.d.k(xmlPullParser, concat4);
+                String k12 = e2.d.k(xmlPullParser, concat5);
+                String k13 = e2.d.k(xmlPullParser, concat6);
+                if (k10 != null && k11 != null) {
+                    long j10 = 0;
+                    if (k12 != null) {
+                        j3 = Long.parseLong(k12);
+                    } else {
+                        j3 = 0;
+                    }
+                    if (k13 != null) {
+                        j10 = Long.parseLong(k13);
+                    }
+                    u10.b(new c(k10, j3, j10, k11));
+                } else {
+                    return a1.f8920e;
+                }
+            }
+        } while (!e2.d.l(xmlPullParser, concat2));
+        return u10.i();
     }
 }

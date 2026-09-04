@@ -1,18 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class b80 extends FrameLayout {
-    public TextView f23579a;
+import android.content.DialogInterface;
+public final class b80 implements DialogInterface.OnDismissListener {
+    public final int f24595a;
+    public final Object f24596b;
+    public final boolean f24597c;
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    public b80(int i10, Object obj, boolean z10) {
+        this.f24595a = i10;
+        this.f24596b = obj;
+        this.f24597c = z10;
     }
 
-    public void setText(CharSequence charSequence) {
-        this.f23579a.setText(charSequence);
+    @Override
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f24595a) {
+            case 0:
+                g80 g80Var = (g80) this.f24596b;
+                g80.w(g80Var.getContext(), g80Var.f26322c, g80Var.f26325n, this.f24597c);
+                return;
+            case 1:
+                g80 g80Var2 = (g80) this.f24596b;
+                g80.w(g80Var2.getContext(), g80Var2.f26322c, g80Var2.f26325n, this.f24597c);
+                return;
+            default:
+                di.pc pcVar = (di.pc) this.f24596b;
+                pcVar.f7926z2 = false;
+                pcVar.X0.x(7, true);
+                if (this.f24597c) {
+                    pcVar.q(true);
+                    return;
+                }
+                return;
+        }
     }
 }

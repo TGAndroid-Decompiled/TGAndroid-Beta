@@ -1,53 +1,30 @@
 package org.telegram.messenger;
 
-import android.content.Context;
-import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.TranslateController;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class ol implements RequestDelegate {
-    public final int f18039a;
-    public final BaseController f18040b;
-    public final Object f18041c;
-    public final Object d;
-    public final Object e;
-    public final Object f18042f;
-    public final Object f18043g;
+import org.telegram.messenger.Utilities;
+public final class ol implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
+    public final TranslateController f18629a;
+    public final MessageObject f18630b;
+    public final TranslateController.MessageKey f18631c;
+    public final Utilities.Callback d;
 
-    public ol(BaseController baseController, Object obj, Object obj2, Object obj3, Object obj4, TLObject tLObject, int i10) {
-        this.f18039a = i10;
-        this.f18040b = baseController;
-        this.f18041c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f18042f = obj4;
-        this.f18043g = tLObject;
+    public ol(TranslateController translateController, MessageObject messageObject, TranslateController.MessageKey messageKey, Utilities.Callback callback) {
+        this.f18629a = translateController;
+        this.f18630b = messageObject;
+        this.f18631c = messageKey;
+        this.d = callback;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18039a) {
-            case 0:
-                ((TranslateController) this.f18040b).lambda$translateStory$38((TL_stories.StoryItem) this.f18041c, (String) this.d, (TranslateController.StoryKey) this.e, (Runnable) this.f18042f, (TLRPC.TL_textWithEntities) this.f18043g, tLObject, tL_error);
-                return;
-            case 1:
-                ((MessagesController) this.f18040b).lambda$convertToGigaGroup$270((Context) this.f18041c, (org.telegram.ui.ActionBar.d2) this.d, (MessagesStorage.BooleanCallback) this.e, (org.telegram.ui.ActionBar.p2) this.f18042f, (TLRPC.TL_channels_convertToGigagroup) this.f18043g, tLObject, tL_error);
-                return;
-            default:
-                ((SecretChatHelper) this.f18040b).lambda$performSendEncryptedRequest$7((TLRPC.DecryptedMessage) this.f18041c, (TLRPC.EncryptedChat) this.e, (TLRPC.Message) this.f18042f, (MessageObject) this.f18043g, (String) this.d, tLObject, tL_error);
-                return;
-        }
+    public void run(Exception exc) {
+        this.f18629a.lambda$detectPhotoLanguage$42(this.f18630b, this.f18631c, this.d, exc);
     }
 
-    public ol(SecretChatHelper secretChatHelper, TLRPC.DecryptedMessage decryptedMessage, TLRPC.EncryptedChat encryptedChat, TLRPC.Message message, MessageObject messageObject, String str) {
-        this.f18039a = 2;
-        this.f18040b = secretChatHelper;
-        this.f18041c = decryptedMessage;
-        this.e = encryptedChat;
-        this.f18042f = message;
-        this.f18043g = messageObject;
-        this.d = str;
+    @Override
+    public void run(String str) {
+        TranslateController.MessageKey messageKey = this.f18631c;
+        Utilities.Callback callback = this.d;
+        this.f18629a.lambda$detectPhotoLanguage$40(this.f18630b, messageKey, callback, str);
     }
 }

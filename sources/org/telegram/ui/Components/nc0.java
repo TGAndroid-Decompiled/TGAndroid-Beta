@@ -1,99 +1,181 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class nc0 extends Drawable {
-    public final Drawable f27235a;
-    public final Paint f27236b;
-    public final Paint f27237c;
-    public final z5 d;
-    public boolean e;
+import android.view.View;
+import android.view.ViewGroup;
+public abstract class nc0 extends ov0 implements r0.m, View.OnLayoutChangeListener {
+    public int A0;
+    public int B0;
+    public boolean C0;
+    public final b2.q0 f28727w0;
+    public View f28728x0;
+    public mc0 f28729y0;
+    public org.telegram.ui.ActionBar.d3 f28730z0;
 
     public nc0(Context context) {
-        Paint paint = new Paint(1);
-        this.f27236b = paint;
-        Paint paint2 = new Paint(1);
-        this.f27237c = paint2;
-        this.d = new z5(new dc0(this, 2), 200L, mr.f27123g, 0);
-        this.f27235a = context.getResources().getDrawable(R.drawable.filled_sound_on).mutate();
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.566f));
-        paint.setColor(-1);
-        Paint.Cap cap = Paint.Cap.ROUND;
-        paint.setStrokeCap(cap);
-        Paint.Join join = Paint.Join.ROUND;
-        paint.setStrokeJoin(join);
-        paint2.setStyle(style);
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(4.5f));
-        paint2.setColor(-65536);
-        paint2.setStrokeCap(cap);
-        paint2.setStrokeJoin(join);
+        super(context, null);
+        this.f28727w0 = new Object();
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-        Drawable drawable = this.f27235a;
-        drawable.setBounds(bounds);
-        drawable.draw(canvas);
-        float e = this.d.e(this.e);
-        if (e > 0.0f) {
-            float dpf2 = AndroidUtilities.dpf2(0.783f);
-            float centerX = (bounds.centerX() - AndroidUtilities.dp(9.0f)) + dpf2;
-            float centerY = (bounds.centerY() - AndroidUtilities.dp(9.0f)) + dpf2;
-            float dp = (AndroidUtilities.dp(9.0f) + bounds.centerX()) - dpf2;
-            float dp2 = (AndroidUtilities.dp(9.0f) + bounds.centerY()) - dpf2;
-            if (this.e) {
-                centerX = AndroidUtilities.lerp(dp, centerX, e);
-                centerY = AndroidUtilities.lerp(dp2, centerY, e);
-            } else {
-                dp = AndroidUtilities.lerp(centerX, dp, e);
-                dp2 = AndroidUtilities.lerp(centerY, dp2, e);
+    public void E(ViewGroup viewGroup, int i10, int i11, int[] iArr, int i12) {
+        mc0 mc0Var;
+        int max;
+        if (viewGroup == this.f28728x0 && (mc0Var = this.f28729y0) != null && ((org.telegram.ui.s7) mc0Var).getListView() != null) {
+            int top = this.f28729y0.getTop();
+            if (i11 < 0) {
+                if (top <= this.A0) {
+                    ll0 listView = ((org.telegram.ui.s7) this.f28729y0).getListView();
+                    int L0 = ((s4.c0) listView.getLayoutManager()).L0();
+                    int i13 = -1;
+                    if (L0 != -1) {
+                        s4.c1 K = listView.K(L0);
+                        if (K != null) {
+                            i13 = K.f45738a.getTop();
+                        }
+                        int paddingTop = listView.getPaddingTop();
+                        if (i13 != paddingTop || L0 != 0) {
+                            if (L0 != 0) {
+                                max = i11;
+                            } else {
+                                max = Math.max(i11, i13 - paddingTop);
+                            }
+                            iArr[1] = max;
+                            listView.scrollBy(0, i11);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                } else if (this.f28730z0 != null && !this.f28728x0.canScrollVertically(i11)) {
+                    this.f28730z0.onNestedScroll(viewGroup, 0, 0, i10, i11);
+                    return;
+                } else {
+                    return;
+                }
             }
-            float f10 = dp2;
-            float f11 = centerX;
-            float f12 = centerY;
-            float f13 = dp;
-            canvas.drawLine(f11, f12, f13, f10, this.f27237c);
-            Paint paint = this.f27236b;
-            paint.setAlpha((int) (Math.min(1.0f, e * 10.0f) * 255.0f));
-            canvas.drawLine(f11, f12, f13, f10, paint);
+            org.telegram.ui.ActionBar.d3 d3Var = this.f28730z0;
+            if (d3Var != null) {
+                d3Var.onNestedPreScroll(viewGroup, i10, i11, iArr);
+            }
         }
-        canvas.restore();
+    }
+
+    public final boolean Z() {
+        mc0 mc0Var = this.f28729y0;
+        if (mc0Var != null && mc0Var.getTop() == this.A0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void a0(mc0 mc0Var, int i10) {
+        this.B0 = i10;
+        if (this.f28729y0 != mc0Var) {
+            this.f28729y0 = mc0Var;
+            if (this.C0 && mc0Var != null) {
+                org.telegram.ui.s7 s7Var = (org.telegram.ui.s7) mc0Var;
+                if (s7Var.getListView() != null) {
+                    s7Var.getListView().addOnLayoutChangeListener(this);
+                }
+            }
+        }
+        b0();
+    }
+
+    public final void b0() {
+        View view = this.f28728x0;
+        if (view != null && this.f28729y0 != null) {
+            if (this.B0 != 0) {
+                this.A0 = view.getPaddingTop() + this.B0;
+            } else {
+                this.A0 = (view.getMeasuredHeight() - this.f28728x0.getPaddingBottom()) - this.f28729y0.getMeasuredHeight();
+            }
+        }
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    public void i(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
+        mc0 mc0Var;
+        if (viewGroup == this.f28728x0 && (mc0Var = this.f28729y0) != null && ((org.telegram.ui.s7) mc0Var).getListView() != null) {
+            ll0 listView = ((org.telegram.ui.s7) this.f28729y0).getListView();
+            if (this.f28729y0.getTop() == this.A0) {
+                iArr[1] = i13;
+                listView.scrollBy(0, i13);
+            }
+        }
+    }
+
+    public void n(int i10, View view) {
+        this.f28727w0.f2260a = 0;
+        org.telegram.ui.ActionBar.d3 d3Var = this.f28730z0;
+        if (d3Var != null) {
+            d3Var.onStopNestedScroll(view);
+        }
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.C0 = true;
+        mc0 mc0Var = this.f28729y0;
+        if (mc0Var != null) {
+            mc0Var.addOnLayoutChangeListener(this);
+        }
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.C0 = false;
+        mc0 mc0Var = this.f28729y0;
+        if (mc0Var != null) {
+            mc0Var.removeOnLayoutChangeListener(this);
+        }
     }
 
     @Override
-    public final void setAlpha(int i10) {
-        this.f27235a.setAlpha(i10);
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        b0();
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        b0();
+    }
+
+    public boolean p(View view, View view2, int i10, int i11) {
+        if (view != null && view.isAttachedToWindow() && i10 == 2) {
+            return true;
+        }
+        return false;
+    }
+
+    public void s(View view, View view2, int i10, int i11) {
+        this.f28727w0.f2260a = i10;
+    }
+
+    public void setBottomSheetContainerView(org.telegram.ui.ActionBar.d3 d3Var) {
+        this.f28730z0 = d3Var;
+    }
+
+    public void setChildLayout(mc0 mc0Var) {
+        a0(mc0Var, 0);
+    }
+
+    public void setTargetListView(View view) {
+        this.f28728x0 = view;
+        b0();
+    }
+
+    @Override
+    public void onStopNestedScroll(View view) {
+    }
+
+    public void b(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14) {
     }
 }

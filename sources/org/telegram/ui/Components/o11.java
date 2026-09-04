@@ -1,118 +1,60 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class o11 extends ql0 {
-    public final Context f27430c;
-    public int d;
-    public ArrayList e = new ArrayList();
-    public ArrayList f27431f = new ArrayList();
-    public ey h;
-    public String f27432n;
-    public final ThemeEditorView.EditorAlert f27433r;
+public final class o11 extends FrameLayout {
+    public final ImageView f28922a;
+    public final m11 f28923b;
+    public final ThemeEditorView.EditorAlert f28924c;
 
     public o11(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        this.f27433r = editorAlert;
-        this.f27430c = context;
-    }
-
-    public static CharSequence E(String str, String str2) {
-        if (TextUtils.isEmpty(str)) {
-            return "";
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        String trim = str.trim();
-        String lowerCase = trim.toLowerCase();
-        int i10 = 0;
-        while (true) {
-            int indexOf = lowerCase.indexOf(str2, i10);
-            if (indexOf == -1) {
-                break;
-            }
-            int length = str2.length() + indexOf;
-            if (i10 != 0 && i10 != indexOf + 1) {
-                spannableStringBuilder.append((CharSequence) trim.substring(i10, indexOf));
-            } else if (i10 == 0 && indexOf != 0) {
-                spannableStringBuilder.append((CharSequence) trim.substring(0, indexOf));
-            }
-            String substring = trim.substring(indexOf, Math.min(trim.length(), length));
-            if (substring.startsWith(" ")) {
-                spannableStringBuilder.append((CharSequence) " ");
-            }
-            String trim2 = substring.trim();
-            int length2 = spannableStringBuilder.length();
-            spannableStringBuilder.append((CharSequence) trim2);
-            spannableStringBuilder.setSpan(new ForegroundColorSpan(-11697229), length2, trim2.length() + length2, 33);
-            i10 = length;
-        }
-        if (i10 != -1 && i10 < trim.length()) {
-            spannableStringBuilder.append((CharSequence) trim.substring(i10));
-        }
-        return spannableStringBuilder;
-    }
-
-    @Override
-    public final boolean D(f2.l1 l1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        if (this.e.isEmpty()) {
-            return 0;
-        }
-        return this.e.size() + 1;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(f2.l1 l1Var, int i10) {
-        int b10;
-        if (l1Var.f5777f == 0) {
-            boolean z4 = true;
-            int i11 = i10 - 1;
-            org.telegram.ui.ActionBar.l6 l6Var = (org.telegram.ui.ActionBar.l6) ((ArrayList) this.e.get(i11)).get(0);
-            if (l6Var.f20409f == org.telegram.ui.ActionBar.j6.Nd) {
-                b10 = 0;
-            } else {
-                b10 = l6Var.b();
-            }
-            org.telegram.ui.Cells.u8 u8Var = (org.telegram.ui.Cells.u8) l1Var.f5774a;
-            u8Var.f22380a.setText((CharSequence) this.f27431f.get(i11));
-            u8Var.f22381b = b10;
-            if (b10 != 0) {
-                z4 = false;
-            }
-            u8Var.setWillNotDraw(z4);
-            u8Var.invalidate();
-        }
-    }
-
-    @Override
-    public final f2.l1 x(ViewGroup viewGroup, int i10) {
-        View u8Var;
-        Context context = this.f27430c;
-        if (i10 != 0) {
-            u8Var = new View(context);
-            u8Var.setLayoutParams(new f2.w0(-1, AndroidUtilities.dp(56.0f)));
-        } else {
-            u8Var = new org.telegram.ui.Cells.u8(context);
-            u8Var.setLayoutParams(new f2.w0(-1, -2));
-        }
-        return new f2.l1(u8Var);
+        super(context);
+        this.f28924c = editorAlert;
+        View view = new View(context);
+        view.setBackgroundDrawable(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(18.0f), -854795));
+        addView(view, w7.x5.d(-1, 36.0f, 51, 14.0f, 11.0f, 14.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setImageResource(R.drawable.smiles_inputsearch);
+        imageView.setColorFilter(new PorterDuffColorFilter(-6182737, PorterDuff.Mode.MULTIPLY));
+        addView(imageView, w7.x5.d(36, 36.0f, 51, 16.0f, 11.0f, 0.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f28922a = imageView2;
+        imageView2.setScaleType(scaleType);
+        eq eqVar = new eq();
+        imageView2.setImageDrawable(eqVar);
+        eqVar.f25750f = AndroidUtilities.dp(7.0f);
+        imageView2.setScaleX(0.1f);
+        imageView2.setScaleY(0.1f);
+        imageView2.setAlpha(0.0f);
+        addView(imageView2, w7.x5.d(36, 36.0f, 53, 14.0f, 11.0f, 14.0f, 0.0f));
+        imageView2.setOnClickListener(new x70(this, 21));
+        m11 m11Var = new m11(this, context);
+        this.f28923b = m11Var;
+        m11Var.setTextSize(1, 16.0f);
+        m11Var.setHintTextColor(-6774617);
+        m11Var.setTextColor(-14540254);
+        m11Var.setBackgroundDrawable(null);
+        m11Var.setPadding(0, 0, 0, 0);
+        m11Var.setMaxLines(1);
+        m11Var.setLines(1);
+        m11Var.setSingleLine(true);
+        m11Var.setImeOptions(268435459);
+        m11Var.setHint(LocaleController.getString(R.string.Search));
+        m11Var.setCursorColor(-11491093);
+        m11Var.setCursorSize(AndroidUtilities.dp(20.0f));
+        m11Var.setCursorWidth(1.5f);
+        addView(m11Var, w7.x5.d(-1, 40.0f, 51, 54.0f, 9.0f, 46.0f, 0.0f));
+        m11Var.addTextChangedListener(new n11(this));
+        m11Var.setOnEditorActionListener(new f1(this, 9));
     }
 }

@@ -1,28 +1,40 @@
 package org.telegram.ui.Components;
 
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class d80 implements Runnable {
-    public final int f24227a;
-    public final i80 f24228b;
-    public final TLRPC.TL_chatInviteJoinResultWebView f24229c;
-    public final long d;
+import org.telegram.tgnet.tl.TL_stars;
+public final class d80 implements Utilities.Callback2 {
+    public final int f25291a;
+    public final long f25292b;
+    public final org.telegram.ui.ActionBar.f3 f25293c;
+    public final Object d;
 
-    public d80(i80 i80Var, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j10, int i10) {
-        this.f24227a = i10;
-        this.f24228b = i80Var;
-        this.f24229c = tL_chatInviteJoinResultWebView;
-        this.d = j10;
+    public d80(bb bbVar, Object obj, long j3, int i10) {
+        this.f25291a = i10;
+        this.f25293c = bbVar;
+        this.d = obj;
+        this.f25292b = j3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f24227a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f25291a) {
             case 0:
-                i80.p(this.f24228b, this.f24229c, this.d);
+                g80.m((g80) this.f25293c, this.f25292b, (TLRPC.TL_messages_importChatInvite) this.d, (TLRPC.ChatInviteJoinResult) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 1:
+                yh.f4.V((yh.f4) this.f25293c, (TL_stars.TL_starGiftUnique) this.d, this.f25292b, (zh.a3) obj, (of.e) obj2);
                 return;
             default:
-                i80.o(this.f24228b, this.f24229c, this.d);
+                zh.g7.Q((zh.g7) this.f25293c, (h51) this.d, this.f25292b, (Boolean) obj, (String) obj2);
                 return;
         }
+    }
+
+    public d80(g80 g80Var, long j3, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
+        this.f25291a = 0;
+        this.f25293c = g80Var;
+        this.f25292b = j3;
+        this.d = tL_messages_importChatInvite;
     }
 }

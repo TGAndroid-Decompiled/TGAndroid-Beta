@@ -1,12 +1,11 @@
 package org.telegram.ui.Cells;
-public interface t9 {
-    int getBottom();
 
-    int getTop();
-
-    float getX();
-
-    float getY();
-
-    void invalidate();
+import android.graphics.Rect;
+import android.text.Layout;
+public final class t9 {
+    public int f23295a;
+    public Layout f23296b;
+    public float f23297c;
+    public float d;
+    public Rect f23298e;
 }

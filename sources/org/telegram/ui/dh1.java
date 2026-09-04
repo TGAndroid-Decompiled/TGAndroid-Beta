@@ -1,29 +1,89 @@
 package org.telegram.ui;
-public final class dh1 implements Runnable {
-    public final int f33479a;
-    public final eh1 f33480b;
 
-    public dh1(eh1 eh1Var, int i10) {
-        this.f33479a = i10;
-        this.f33480b = eh1Var;
+import android.app.Dialog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class dh1 implements Runnable {
+    public final int f35789a;
+    public final hh1 f35790b;
+    public final TLRPC.TL_error f35791c;
+
+    public dh1(hh1 hh1Var, TLRPC.TL_error tL_error, int i10) {
+        this.f35789a = i10;
+        this.f35790b = hh1Var;
+        this.f35791c = tL_error;
     }
 
     @Override
     public final void run() {
-        switch (this.f33479a) {
+        String formatPluralString;
+        String formatPluralString2;
+        int i10 = this.f35789a;
+        TLRPC.TL_error tL_error = this.f35791c;
+        hh1 hh1Var = this.f35790b;
+        switch (i10) {
             case 0:
-                org.telegram.ui.Components.a61 a61Var = this.f33480b.f23568a;
-                if (a61Var != null) {
-                    a61Var.V2.N(true);
+                hh1Var.w0();
+                if (tL_error == null) {
+                    hh1Var.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hh1Var.getParentActivity());
+                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), new yg1(hh1Var, 3));
+                    String string = LocaleController.getString(R.string.PasswordReset);
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+                    b2Var.T = string;
+                    b2Var.R = LocaleController.getString(R.string.TwoStepVerificationTitle);
+                    Dialog showDialog = hh1Var.showDialog(b2Var);
+                    if (showDialog != null) {
+                        showDialog.setCanceledOnTouchOutside(false);
+                        showDialog.setCancelable(false);
+                        return;
+                    }
+                    return;
+                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                    int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
+                    if (intValue < 60) {
+                        formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
+                    } else {
+                        formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
+                    }
+                    hh1Var.G0(LocaleController.getString(R.string.TwoStepVerificationTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
+                    return;
+                } else {
+                    hh1Var.G0(LocaleController.getString(R.string.TwoStepVerificationTitle), tL_error.text);
                     return;
                 }
+            case 1:
+                hh1Var.w0();
+                if (tL_error == null) {
+                    if (hh1Var.getParentActivity() != null) {
+                        hh1Var.u0(new zg1(hh1Var, 5));
+                        return;
+                    }
+                    return;
+                } else if (tL_error.text.startsWith("CODE_INVALID")) {
+                    hh1Var.y0();
+                    return;
+                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                    int intValue2 = Utilities.parseInt((CharSequence) tL_error.text).intValue();
+                    if (intValue2 < 60) {
+                        formatPluralString2 = LocaleController.formatPluralString("Seconds", intValue2, new Object[0]);
+                    } else {
+                        formatPluralString2 = LocaleController.formatPluralString("Minutes", intValue2 / 60, new Object[0]);
+                    }
+                    hh1Var.G0(LocaleController.getString(R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString2));
+                    return;
+                } else {
+                    hh1Var.G0(LocaleController.getString(R.string.AppName), tL_error.text);
+                    return;
+                }
+            case 2:
+                hh1.e0(hh1Var, tL_error);
                 return;
             default:
-                org.telegram.ui.Components.a61 a61Var2 = this.f33480b.f23568a;
-                if (a61Var2 != null) {
-                    a61Var2.V2.N(true);
-                    return;
-                }
+                hh1.Z(hh1Var, tL_error);
                 return;
         }
     }

@@ -2,174 +2,120 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Rect;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class wl0 extends Drawable {
-    public final vv e;
-    public final vv f30311f;
-    public float h;
-    public float f30313i;
-    public final Rect f30308a = new Rect();
-    public final mr f30309b = ft.f24965b;
-    public final int f30310c = AndroidUtilities.dp(24.0f);
-    public final int d = AndroidUtilities.dp(24.0f);
-    public long f30312g = -1;
+    public long f32279a;
+    public boolean f32280b;
+    public Paint f32281c;
+    public float d;
+    public float f32282e;
+    public float f32283f;
+    public int f32284g;
+    public int h;
+    public int f32285i;
+    public org.telegram.ui.Cells.t1 f32286j;
+    public float f32287k;
+    public int f32288l;
+    public int f32289m;
+    public org.telegram.ui.ActionBar.f6 f32290n;
 
-    public wl0() {
-        vv vvVar = new vv();
-        this.e = vvVar;
-        vvVar.f30061c.setColor(-2130706433);
-        vv vvVar2 = new vv();
-        this.f30311f = vvVar2;
-        vvVar2.f30061c.setColor(-2130706433);
+    public final void a() {
+        if (this.f32280b) {
+            return;
+        }
+        this.f32279a = System.currentTimeMillis();
+        this.f32280b = true;
+        this.f32286j.invalidate();
     }
 
-    public final void a(Canvas canvas, float f10) {
-        Rect bounds = getBounds();
-        float interpolation = this.f30309b.getInterpolation(f10);
-        Rect rect = this.f30308a;
-        rect.left = (int) (AndroidUtilities.dp(2.0f) * this.h);
-        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f30313i));
-        rect.bottom = dp;
-        rect.right = bounds.right - rect.left;
-        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f30313i));
-        vv vvVar = this.f30311f;
-        vvVar.setBounds(rect);
-        vvVar.draw(canvas);
-        int dp2 = AndroidUtilities.dp(12.0f);
-        rect.right = dp2;
-        rect.left = dp2;
-        int dp3 = AndroidUtilities.dp(8.0f);
-        rect.bottom = dp3;
-        rect.top = dp3;
-        rect.inset(-AndroidUtilities.dp(AndroidUtilities.lerp(10, 11, interpolation)), -AndroidUtilities.dp(AndroidUtilities.lerp(2, 3, interpolation)));
-        vv vvVar2 = this.e;
-        vvVar2.setBounds(rect);
-        vvVar2.setAlpha(AndroidUtilities.lerp(128, 255, interpolation));
-        vvVar2.draw(canvas);
-    }
-
-    public final void b(Canvas canvas, float f10) {
-        Rect bounds = getBounds();
-        float interpolation = this.f30309b.getInterpolation(f10);
-        Rect rect = this.f30308a;
-        rect.left = (int) (AndroidUtilities.dp(2.0f) * this.h);
-        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f30313i));
-        rect.bottom = dp;
-        rect.right = bounds.right - rect.left;
-        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f30313i));
-        rect.offset(0, AndroidUtilities.dp(AndroidUtilities.lerp(0, -8, interpolation)));
-        vv vvVar = this.f30311f;
-        vvVar.setBounds(rect);
-        vvVar.draw(canvas);
-        rect.left = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(1, 2, interpolation)) * this.h);
-        int dpf2 = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(5, 6, interpolation)) * this.f30313i);
-        rect.top = dpf2;
-        rect.right = bounds.right - rect.left;
-        rect.bottom = dpf2 + ((int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(6, 4, interpolation)) * this.f30313i));
-        rect.offset(0, AndroidUtilities.dp(AndroidUtilities.lerp(0, 8, interpolation)));
-        vv vvVar2 = this.e;
-        vvVar2.setBounds(rect);
-        vvVar2.setAlpha(255);
-        vvVar2.draw(canvas);
-    }
-
-    public final void c(Canvas canvas, float f10) {
-        Rect bounds = getBounds();
-        float interpolation = this.f30309b.getInterpolation(f10);
-        Rect rect = this.f30308a;
-        rect.left = (int) (AndroidUtilities.dp(2.0f) * this.h);
-        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f30313i));
-        rect.bottom = dp;
-        rect.right = bounds.right - rect.left;
-        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f30313i));
-        rect.offset(0, AndroidUtilities.dp(-8.0f));
-        vv vvVar = this.f30311f;
-        vvVar.setBounds(rect);
-        vvVar.draw(canvas);
-        rect.left = (int) (AndroidUtilities.dpf2(2.0f) * this.h);
-        int dpf2 = (int) (AndroidUtilities.dpf2(6.0f) * this.f30313i);
-        rect.top = dpf2;
-        rect.right = bounds.right - rect.left;
-        rect.bottom = dpf2 + ((int) (AndroidUtilities.dpf2(4.0f) * this.f30313i));
-        rect.offset(0, AndroidUtilities.dp(8.0f));
-        vv vvVar2 = this.e;
-        vvVar2.setBounds(rect);
-        vvVar2.setAlpha(AndroidUtilities.lerp(255, 128, interpolation));
-        vvVar2.draw(canvas);
+    public final void b() {
+        if (!this.f32280b) {
+            return;
+        }
+        this.f32280b = false;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f30312g > 0) {
-            int currentTimeMillis = (int) (System.currentTimeMillis() - this.f30312g);
-            int i10 = currentTimeMillis - 300;
-            if (i10 >= 0) {
-                if (i10 < 150) {
-                    a(canvas, i10 / 150.0f);
-                } else {
-                    int i11 = currentTimeMillis - 750;
-                    if (i11 >= 0) {
-                        if (i11 < 200) {
-                            b(canvas, i11 / 200.0f);
-                        } else {
-                            int i12 = currentTimeMillis - 1250;
-                            if (i12 >= 0) {
-                                if (i12 < 150) {
-                                    c(canvas, i12 / 150.0f);
-                                } else {
-                                    c(canvas, 1.0f);
-                                    if (currentTimeMillis - 1400 >= 100) {
-                                        this.f30312g = System.currentTimeMillis();
-                                    }
-                                }
-                            } else {
-                                b(canvas, 1.0f);
-                            }
-                        }
-                    } else {
-                        a(canvas, 1.0f);
-                    }
-                }
-            } else {
-                a(canvas, 0.0f);
-            }
-            invalidateSelf();
-            return;
+        Paint paint = this.f32281c;
+        paint.setColor(i0.a.d(this.f32287k, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20759ic, this.f32290n), this.f32288l));
+        int i10 = this.f32289m;
+        if (i10 != 255) {
+            paint.setAlpha((int) ((paint.getAlpha() / 255.0f) * i10));
         }
-        a(canvas, 0.0f);
+        int i11 = getBounds().left;
+        int i12 = getBounds().top;
+        int i13 = 0;
+        while (i13 < 3) {
+            Canvas canvas2 = canvas;
+            canvas2.drawRect(AndroidUtilities.dp(2.0f) + i11, AndroidUtilities.dp((this.d * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(4.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
+            canvas2.drawRect(AndroidUtilities.dp(5.0f) + i11, AndroidUtilities.dp((this.f32282e * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(7.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
+            canvas2.drawRect(AndroidUtilities.dp(8.0f) + i11, AndroidUtilities.dp((this.f32283f * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(10.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
+            i13++;
+            canvas = canvas2;
+        }
+        if (this.f32280b) {
+            long currentTimeMillis = System.currentTimeMillis();
+            long j3 = currentTimeMillis - this.f32279a;
+            this.f32279a = currentTimeMillis;
+            if (j3 > 50) {
+                j3 = 50;
+            }
+            float f7 = (float) j3;
+            float f10 = ((f7 / 300.0f) * this.f32284g) + this.d;
+            this.d = f10;
+            if (f10 > 1.0f) {
+                this.f32284g = -1;
+                this.d = 1.0f;
+            } else if (f10 < 0.0f) {
+                this.f32284g = 1;
+                this.d = 0.0f;
+            }
+            float f11 = ((f7 / 310.0f) * this.h) + this.f32282e;
+            this.f32282e = f11;
+            if (f11 > 1.0f) {
+                this.h = -1;
+                this.f32282e = 1.0f;
+            } else if (f11 < 0.0f) {
+                this.h = 1;
+                this.f32282e = 0.0f;
+            }
+            float f12 = ((f7 / 320.0f) * this.f32285i) + this.f32283f;
+            this.f32283f = f12;
+            if (f12 > 1.0f) {
+                this.f32285i = -1;
+                this.f32283f = 1.0f;
+            } else if (f12 < 0.0f) {
+                this.f32285i = 1;
+                this.f32283f = 0.0f;
+            }
+            this.f32286j.invalidate();
+        }
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.d;
+        return AndroidUtilities.dp(12.0f);
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f30310c;
+        return AndroidUtilities.dp(12.0f);
     }
 
     @Override
     public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        this.h = rect.width() / this.f30310c;
-        this.f30313i = rect.height() / this.d;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.e.setColorFilter(colorFilter);
-        this.f30311f.setColorFilter(colorFilter);
-        invalidateSelf();
+        return -2;
     }
 
     @Override
     public final void setAlpha(int i10) {
+        this.f32289m = i10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

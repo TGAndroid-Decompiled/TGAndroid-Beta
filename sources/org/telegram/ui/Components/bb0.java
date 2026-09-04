@@ -1,26 +1,27 @@
 package org.telegram.ui.Components;
+public final class bb0 implements Runnable {
+    public final int f24655a;
+    public final qb0 f24656b;
 
-import android.view.View;
-import android.view.ViewGroup;
-public final class bb0 implements h5.d {
-    public final int f23611a;
-    public final ViewGroup f23612b;
-
-    public bb0(ViewGroup viewGroup, int i10) {
-        this.f23611a = i10;
-        this.f23612b = viewGroup;
+    public bb0(qb0 qb0Var, int i10) {
+        this.f24655a = i10;
+        this.f24656b = qb0Var;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f23611a) {
+    public final void run() {
+        switch (this.f24655a) {
             case 0:
-                rb0 rb0Var = (rb0) this.f23612b;
-                rb0Var.f28444n.y(rb0Var.f28443f.T((View) obj));
+                qb0 qb0Var = this.f24656b;
+                ib0 ib0Var = qb0Var.f29664f;
+                if (qb0Var.f29662c0.d.webpageTop) {
+                    ib0Var.w0(-ib0Var.computeVerticalScrollOffset(), 250, ki.o.V);
+                    return;
+                }
+                ib0Var.w0(ib0Var.computeVerticalScrollRange() - (ib0Var.computeVerticalScrollExtent() + ib0Var.computeVerticalScrollOffset()), 250, ki.o.V);
                 return;
             default:
-                g61 g61Var = (g61) this.f23612b;
-                g61Var.V2.Q(g61Var.T((View) obj), g61Var.Z2);
+                this.f24656b.g(true, false);
                 return;
         }
     }

@@ -1,20 +1,38 @@
 package na;
-public final class a extends wc.c {
-    public Object f14850a;
-    public ud.a f14851b;
-    public Object f14852c;
-    public final d d;
-    public int e;
 
-    public a(d dVar, wc.c cVar) {
-        super(cVar);
-        this.d = dVar;
+import java.util.ArrayList;
+public final class a {
+    public final String f16708a;
+    public final ArrayList f16709b;
+
+    public a(String str, ArrayList arrayList) {
+        if (str != null) {
+            this.f16708a = str;
+            this.f16709b = arrayList;
+            return;
+        }
+        throw new NullPointerException("Null userAgent");
     }
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f14852c = obj;
-        this.e |= Integer.MIN_VALUE;
-        return this.d.c(this);
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof a) {
+                a aVar = (a) obj;
+                if (this.f16708a.equals(aVar.f16708a) && this.f16709b.equals(aVar.f16709b)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return ((this.f16708a.hashCode() ^ 1000003) * 1000003) ^ this.f16709b.hashCode();
+    }
+
+    public final String toString() {
+        return "HeartBeatResult{userAgent=" + this.f16708a + ", usedDates=" + this.f16709b + "}";
     }
 }

@@ -1,34 +1,33 @@
 package org.telegram.ui.Components;
-public final class vt implements Runnable {
-    public final int f30048a;
-    public final wt f30049b;
 
-    public vt(wt wtVar, int i10) {
-        this.f30048a = i10;
-        this.f30049b = wtVar;
+import android.content.DialogInterface;
+import org.telegram.messenger.AndroidUtilities;
+public final class vt implements DialogInterface.OnShowListener {
+    public final int f31976a;
+    public final EditTextBoldCursor f31977b;
+
+    public vt(int i10, EditTextBoldCursor editTextBoldCursor) {
+        this.f31976a = i10;
+        this.f31977b = editTextBoldCursor;
     }
 
     @Override
-    public final void run() {
-        switch (this.f30048a) {
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f31976a) {
             case 0:
-                wt wtVar = this.f30049b;
-                wtVar.post(new vt(wtVar, 1));
+                gi.o oVar = (gi.o) this.f31977b;
+                oVar.requestFocus();
+                AndroidUtilities.showKeyboard(oVar);
                 return;
             case 1:
-                wt wtVar2 = this.f30049b;
-                wtVar2.invalidateSpoilers();
-                wtVar2.b();
-                return;
-            case 2:
-                wt.a(this.f30049b);
-                return;
-            case 3:
-                wt wtVar3 = this.f30049b;
-                wtVar3.post(new vt(wtVar3, 4));
+                gi.o oVar2 = (gi.o) this.f31977b;
+                oVar2.requestFocus();
+                AndroidUtilities.showKeyboard(oVar2);
                 return;
             default:
-                this.f30049b.setSpoilersRevealed(false, true);
+                f4 f4Var = (f4) this.f31977b;
+                f4Var.requestFocus();
+                AndroidUtilities.showKeyboard(f4Var);
                 return;
         }
     }

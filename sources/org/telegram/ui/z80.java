@@ -1,120 +1,42 @@
 package org.telegram.ui;
 
-import java.io.File;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class z80 implements Runnable {
-    public final int f40424a;
-    public final LaunchActivity f40425b;
+import org.telegram.messenger.ContactsController;
+public final class z80 implements org.telegram.ui.ActionBar.a2 {
+    public final int f43335a;
+    public final int f43336b;
+    public final HashMap f43337c;
+    public final boolean d;
+    public final boolean f43338e;
 
-    public z80(LaunchActivity launchActivity, int i10) {
-        this.f40424a = i10;
-        this.f40425b = launchActivity;
+    public z80(int i10, HashMap hashMap, boolean z10, boolean z11, int i11) {
+        this.f43335a = i11;
+        this.f43336b = i10;
+        this.f43337c = hashMap;
+        this.d = z10;
+        this.f43338e = z11;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f40424a;
-        org.telegram.ui.ActionBar.p2 p2Var = null;
-        LaunchActivity launchActivity = this.f40425b;
-        switch (i10) {
+    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        int i11 = this.f43335a;
+        boolean z10 = this.f43338e;
+        boolean z11 = this.d;
+        HashMap<String, ContactsController.Contact> hashMap = this.f43337c;
+        int i12 = this.f43336b;
+        switch (i11) {
             case 0:
-                Pattern pattern = LaunchActivity.f31586y1;
-                org.telegram.ui.Components.qb qbVar = new org.telegram.ui.Components.qb(launchActivity, null);
-                qbVar.d(R.raw.email_check_inbox, new String[0]);
-                qbVar.f28137b.setText(LocaleController.getString(R.string.YourLoginEmailChangedSuccess));
-                org.telegram.ui.ActionBar.p2 R = LaunchActivity.R();
-                if (R != null) {
-                    org.telegram.ui.Components.ic.g(R, qbVar, 1500).j();
-                    try {
-                        R.fragmentView.performHapticFeedback(3, 2);
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
-                }
+                Pattern pattern = LaunchActivity.B1;
+                ContactsController.getInstance(i12).syncPhoneBookByAlert(hashMap, z11, z10, true);
                 return;
             case 1:
-                if (launchActivity.T0) {
-                    launchActivity.T0 = false;
-                    launchActivity.H(false, false, true);
-                    return;
-                }
-                return;
-            case 2:
-                Pattern pattern2 = LaunchActivity.f31586y1;
-                launchActivity.H(false, true, false);
-                if (LaunchActivity.R() != null && LaunchActivity.R().getLastStoryViewer() != null) {
-                    LaunchActivity.R().getLastStoryViewer().P();
-                    return;
-                }
-                return;
-            case 3:
-                if (!launchActivity.f31612n0.getFragmentStack().isEmpty()) {
-                    launchActivity.f31612n0.getFragmentStack().get(0).showDialog(new org.telegram.ui.Components.xx0(launchActivity, launchActivity.f31600g0, launchActivity.f31596e0, launchActivity.f31598f0));
-                    return;
-                }
-                return;
-            case 4:
-                Pattern pattern3 = LaunchActivity.f31586y1;
-                launchActivity.getClass();
-                org.telegram.ui.Components.b30.f23531b0 = false;
-                org.telegram.ui.Components.b30.j(launchActivity);
-                return;
-            case 5:
-                ArrayList arrayList = launchActivity.f31588a0;
-                ArrayList arrayList2 = launchActivity.f31590b0;
-                if (AndroidUtilities.isTablet()) {
-                    if (!arrayList2.isEmpty()) {
-                        p2Var = (org.telegram.ui.ActionBar.p2) kf.k0.i(1, arrayList2);
-                    }
-                } else if (!arrayList.isEmpty()) {
-                    p2Var = (org.telegram.ui.ActionBar.p2) kf.k0.i(1, arrayList);
-                }
-                if (!(p2Var instanceof ProxyListActivity) && !(p2Var instanceof d21)) {
-                    launchActivity.p0(new ProxyListActivity());
-                    return;
-                }
-                return;
-            case 6:
-                if (!launchActivity.f31623s1) {
-                    try {
-                        org.telegram.ui.ActionBar.d2 C = org.telegram.ui.Components.z4.C(launchActivity);
-                        C.setOnDismissListener(new a90(launchActivity, 0));
-                        launchActivity.f31623s1 = true;
-                        C.show();
-                    } catch (Throwable unused2) {
-                        return;
-                    }
-                }
-                return;
-            case 7:
-                if (launchActivity.Q0 != null) {
-                    File file = new File(ApplicationLoader.getFilesDirFixed(), android.support.v4.media.a.q(new StringBuilder("remote"), launchActivity.Q0.f19296id, ".attheme"));
-                    TLRPC.TL_theme tL_theme = launchActivity.Q0;
-                    org.telegram.ui.ActionBar.i6 u10 = org.telegram.ui.ActionBar.j6.u(file, tL_theme.title, tL_theme, true);
-                    if (u10 != null) {
-                        launchActivity.p0(new jd1(u10, true, 0, false, false));
-                    }
-                    launchActivity.h0();
-                    return;
-                }
-                return;
-            case 8:
-                Pattern pattern4 = LaunchActivity.f31586y1;
-                launchActivity.getClass();
-                launchActivity.p0(new gc0());
-                return;
-            case 9:
-                launchActivity.f31619q1 = null;
+                Pattern pattern2 = LaunchActivity.B1;
+                ContactsController.getInstance(i12).syncPhoneBookByAlert(hashMap, z11, z10, false);
                 return;
             default:
-                launchActivity.f31621r1 = null;
+                Pattern pattern3 = LaunchActivity.B1;
+                ContactsController.getInstance(i12).syncPhoneBookByAlert(hashMap, z11, z10, true);
                 return;
         }
     }

@@ -50,14 +50,14 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         }
     }
 
-    public static void start(boolean z4) {
+    public static void start(boolean z10) {
         if (instance == null) {
             try {
                 ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, VideoEncodingService.class));
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e7) {
+                FileLog.e(e7);
             }
-        } else if (z4) {
+        } else if (z10) {
             MediaController.VideoConvertMessage currentForegroundConverMessage = MediaController.getInstance().getCurrentForegroundConverMessage();
             VideoEncodingService videoEncodingService = instance;
             if (videoEncodingService.currentMessage != currentForegroundConverMessage) {
@@ -78,20 +78,20 @@ public class VideoEncodingService extends Service implements NotificationCenter.
     }
 
     private void updateBuilderForMessage(MediaController.VideoConvertMessage videoConvertMessage) {
-        boolean z4;
+        boolean z10;
         if (videoConvertMessage == null) {
             return;
         }
         MessageObject messageObject = videoConvertMessage.messageObject;
         if (messageObject != null && MessageObject.isGifMessage(messageObject.messageOwner)) {
-            z4 = true;
+            z10 = true;
         } else {
-            z4 = false;
+            z10 = false;
         }
         if (videoConvertMessage.foregroundConversion) {
             this.builder.p(LocaleController.getString(R.string.ConvertingVideo));
             this.builder.f(LocaleController.getString(R.string.ConvertingVideo));
-        } else if (z4) {
+        } else if (z10) {
             this.builder.p(LocaleController.getString(R.string.SendingGif));
             this.builder.f(LocaleController.getString(R.string.SendingGif));
         } else {
@@ -99,9 +99,9 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             this.builder.f(LocaleController.getString(R.string.SendingVideo));
         }
         e0.t tVar = this.builder;
-        tVar.f5033n = 100;
-        tVar.f5034o = 0;
-        tVar.f5035p = true;
+        tVar.f8690n = 100;
+        tVar.f8691o = 0;
+        tVar.f8692p = true;
     }
 
     public void updateNotification() {
@@ -109,7 +109,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             if (MediaController.getInstance().getCurrentForegroundConverMessage() == null) {
                 return;
             }
-            new e0.m0(ApplicationLoader.applicationContext).d(4, this.builder.b());
+            new e0.n0(ApplicationLoader.applicationContext).d(4, this.builder.b());
         } catch (Throwable th2) {
             FileLog.e(th2);
         }
@@ -119,7 +119,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
     public void didReceivedNotification(int i10, int i11, Object... objArr) {
         String str;
         String str2;
-        boolean z4 = false;
+        boolean z10 = false;
         if (i10 == NotificationCenter.fileUploadProgressChanged) {
             String str3 = (String) objArr[0];
             if (i11 == this.currentAccount && (str2 = this.currentPath) != null && str2.equals(str3)) {
@@ -128,17 +128,17 @@ public class VideoEncodingService extends Service implements NotificationCenter.
                 int i12 = (int) (min * 100.0f);
                 e0.t tVar = this.builder;
                 if (i12 == 0) {
-                    z4 = true;
+                    z10 = true;
                 }
-                tVar.f5033n = 100;
-                tVar.f5034o = i12;
-                tVar.f5035p = z4;
+                tVar.f8690n = 100;
+                tVar.f8691o = i12;
+                tVar.f8692p = z10;
                 updateNotification();
             }
         } else if (i10 == NotificationCenter.fileUploaded || i10 == NotificationCenter.fileUploadFailed) {
             String str4 = (String) objArr[0];
             if (i11 == this.currentAccount && (str = this.currentPath) != null && str.equals(str4)) {
-                AndroidUtilities.runOnUIThread(new xl(this, 0));
+                AndroidUtilities.runOnUIThread(new vl(this, 0));
             }
         }
     }
@@ -156,7 +156,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             stopForeground(true);
         } catch (Throwable unused) {
         }
-        new e0.m0(ApplicationLoader.applicationContext).b(4);
+        new e0.n0(ApplicationLoader.applicationContext).b(4);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileUploadProgressChanged);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileUploadFailed);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileUploaded);
@@ -180,7 +180,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             tVar.E.icon = 17301640;
             tVar.E.when = System.currentTimeMillis();
             e0.t tVar2 = this.builder;
-            tVar2.f5043y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+            tVar2.f8700y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
             tVar2.g(LocaleController.getString(R.string.AppName));
         }
         setCurrentMessage(currentForegroundConverMessage);
@@ -189,7 +189,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         } catch (Throwable th2) {
             FileLog.e(th2);
         }
-        AndroidUtilities.runOnUIThread(new xl(this, 1));
+        AndroidUtilities.runOnUIThread(new vl(this, 1));
         return 2;
     }
 }

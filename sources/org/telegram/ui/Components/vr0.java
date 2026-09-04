@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
-public final class vr0 extends f2.v {
-    public final tr0 f30042c;
-    public final yu0 d;
+public final class vr0 extends g.p {
+    public final tr0 f31970c;
+    public final xu0 d;
 
-    public vr0(yu0 yu0Var, tr0 tr0Var) {
-        this.d = yu0Var;
-        this.f30042c = tr0Var;
+    public vr0(xu0 xu0Var, tr0 tr0Var) {
+        this.d = xu0Var;
+        this.f31970c = tr0Var;
     }
 
     @Override

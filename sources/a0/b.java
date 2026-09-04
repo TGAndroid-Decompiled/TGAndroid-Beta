@@ -7,7 +7,7 @@ public final class b implements Iterator {
     public int f3b;
     public boolean f4c;
     public final int d;
-    public final Object e;
+    public final Object f5e;
 
     public b(int i10) {
         this.f2a = i10;
@@ -23,23 +23,23 @@ public final class b implements Iterator {
 
     @Override
     public final Object next() {
-        Object e;
+        Object e7;
         if (hasNext()) {
             int i10 = this.f3b;
             switch (this.d) {
                 case 0:
-                    e = ((f) this.e).e(i10);
+                    e7 = ((f) this.f5e).e(i10);
                     break;
                 case 1:
-                    e = ((f) this.e).h(i10);
+                    e7 = ((f) this.f5e).h(i10);
                     break;
                 default:
-                    e = ((g) this.e).f12b[i10];
+                    e7 = ((g) this.f5e).f14b[i10];
                     break;
             }
             this.f3b++;
             this.f4c = true;
-            return e;
+            return e7;
         }
         throw new NoSuchElementException();
     }
@@ -51,13 +51,13 @@ public final class b implements Iterator {
             this.f3b = i10;
             switch (this.d) {
                 case 0:
-                    ((f) this.e).f(i10);
+                    ((f) this.f5e).f(i10);
                     break;
                 case 1:
-                    ((f) this.e).f(i10);
+                    ((f) this.f5e).f(i10);
                     break;
                 default:
-                    ((g) this.e).i(i10);
+                    ((g) this.f5e).i(i10);
                     break;
             }
             this.f2a--;
@@ -68,21 +68,21 @@ public final class b implements Iterator {
     }
 
     public b(g gVar) {
-        this(gVar.f13c);
+        this(gVar.f15c);
         this.d = 2;
-        this.e = gVar;
+        this.f5e = gVar;
     }
 
     public b(f fVar, int i10) {
-        this(fVar.f25c);
+        this(fVar.f31c);
         this.d = i10;
         switch (i10) {
             case 1:
-                this.e = fVar;
-                this(fVar.f25c);
+                this.f5e = fVar;
+                this(fVar.f31c);
                 return;
             default:
-                this.e = fVar;
+                this.f5e = fVar;
                 return;
         }
     }

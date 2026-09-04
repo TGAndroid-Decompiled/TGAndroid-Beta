@@ -1,34 +1,59 @@
 package r3;
-public final class a implements s {
-    public final c f43223a;
-    public final long f43224b;
-    public final long f43225c;
+
+import b2.m0;
+import b2.o0;
+import b2.s;
+import v7.y7;
+public final class a implements o0 {
+    public final long f44879a;
+    public final long f44880b;
+    public final long f44881c;
     public final long d;
-    public final long e;
-    public final long f43226f;
+    public final long f44882e;
 
-    public a(c cVar, long j10, long j11, long j12, long j13, long j14) {
-        this.f43223a = cVar;
-        this.f43224b = j10;
-        this.f43225c = j11;
+    public a(long j3, long j10, long j11, long j12, long j13) {
+        this.f44879a = j3;
+        this.f44880b = j10;
+        this.f44881c = j11;
         this.d = j12;
-        this.e = j13;
-        this.f43226f = j14;
+        this.f44882e = j13;
     }
 
     @Override
-    public final boolean c() {
-        return true;
+    public final s a() {
+        return null;
     }
 
     @Override
-    public final r f(long j10) {
-        t tVar = new t(j10, b.a(this.f43223a.k(j10), 0L, this.f43225c, this.d, this.e, this.f43226f));
-        return new r(tVar, tVar);
+    public final byte[] c() {
+        return null;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && a.class == obj.getClass()) {
+            a aVar = (a) obj;
+            if (this.f44879a == aVar.f44879a && this.f44880b == aVar.f44880b && this.f44881c == aVar.f44881c && this.d == aVar.d && this.f44882e == aVar.f44882e) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int b10 = y7.b(this.f44880b);
+        int b11 = y7.b(this.f44881c);
+        int b12 = y7.b(this.d);
+        return y7.b(this.f44882e) + ((b12 + ((b11 + ((b10 + ((y7.b(this.f44879a) + 527) * 31)) * 31)) * 31)) * 31);
+    }
+
+    public final String toString() {
+        return "Motion photo metadata: photoStartPosition=" + this.f44879a + ", photoSize=" + this.f44880b + ", photoPresentationTimestampUs=" + this.f44881c + ", videoStartPosition=" + this.d + ", videoSize=" + this.f44882e;
     }
 
     @Override
-    public final long g() {
-        return this.f43224b;
+    public final void b(m0 m0Var) {
     }
 }

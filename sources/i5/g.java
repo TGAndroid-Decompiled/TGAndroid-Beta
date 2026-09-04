@@ -1,3 +1,4 @@
 package i5;
-public final class g extends d4.l {
+public interface g {
+    void c(Exception exc);
 }

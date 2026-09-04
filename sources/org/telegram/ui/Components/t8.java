@@ -1,90 +1,30 @@
 package org.telegram.ui.Components;
 
 import android.app.Activity;
-import android.view.View;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class t8 extends rl0 {
-    public final ArrayList U2;
-    public final int V2;
-    public int W2;
-    public final org.telegram.ui.a8 X2;
-    public s8 Y2;
-    public final w8 Z2;
+public final class t8 extends org.telegram.ui.ActionBar.f3 {
+    public final f9 f30553b;
 
-    public t8(w8 w8Var, Activity activity) {
-        super(activity, null);
-        this.Z2 = w8Var;
-        this.U2 = new ArrayList();
-        this.V2 = 200;
-        this.W2 = -1;
-        f2.i0 i0Var = new f2.i0();
-        i0Var.j1(0);
-        setLayoutManager(i0Var);
-        for (int i10 = 0; i10 < 7; i10++) {
-            ?? obj = new Object();
-            int i11 = this.V2;
-            this.V2 = i11 + 1;
-            obj.f28690a = i11;
-            int[] iArr = w8.Z[i10];
-            obj.f28692c = iArr[0];
-            obj.d = iArr[1];
-            obj.e = iArr[2];
-            obj.f28693f = iArr[3];
-            this.U2.add(obj);
-        }
-        for (int i12 = 0; i12 < 30; i12++) {
-            ?? obj2 = new Object();
-            int i13 = this.V2;
-            this.V2 = i13 + 1;
-            obj2.f28690a = i13;
-            int[] iArr2 = w8.f30172a0[i12];
-            obj2.f28692c = iArr2[0];
-            obj2.d = iArr2[1];
-            obj2.e = 0;
-            obj2.f28693f = 0;
-            obj2.f28691b = true;
-            this.U2.add(obj2);
-        }
-        setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        setClipToPadding(false);
-        this.f28495e1 = true;
-        setOnItemClickListener(new k(this, 2));
-        org.telegram.ui.a8 a8Var = new org.telegram.ui.a8(this, 2);
-        this.X2 = a8Var;
-        setAdapter(a8Var);
-        setOverScrollMode(1);
+    public t8(f9 f9Var, Activity activity) {
+        super(activity, true);
+        this.f30553b = f9Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10) / this.X2.h();
-        w8 w8Var = this.Z2;
-        w8Var.M = size;
-        if (size < AndroidUtilities.dp(39.0f)) {
-            w8Var.M = AndroidUtilities.dp(39.0f);
-        } else if (w8Var.M > AndroidUtilities.dp(150.0f)) {
-            w8Var.M = AndroidUtilities.dp(48.0f);
-        }
-        super.onMeasure(i10, i11);
+    public final void dismiss() {
+        super.dismiss();
+        f9 f9Var = this.f30553b;
+        f9Var.J.v1(f9Var.Y);
+        f9Var.f25970f = true;
+        f9Var.fragmentView.invalidate();
+        f9Var.f25969e.animate().setListener(new j6(this, 3)).alpha(0.0f).setDuration(200L).start();
     }
 
-    public final void v1(s8 s8Var) {
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.U2;
-            if (i10 < arrayList.size()) {
-                if (((s8) arrayList.get(i10)).equals(s8Var)) {
-                    this.W2 = ((s8) arrayList.get(i10)).f28690a;
-                    break;
-                }
-                i10++;
-            } else {
-                this.Y2 = s8Var;
-                this.W2 = 1;
-                break;
-            }
-        }
-        this.X2.l();
+    @Override
+    public final void dismissInternal() {
+        super.dismissInternal();
+        f9 f9Var = this.f30553b;
+        AndroidUtilities.requestAdjustResize(f9Var.getParentActivity(), f9Var.getClassGuid());
+        f9Var.S = null;
     }
 }

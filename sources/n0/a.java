@@ -2,9 +2,9 @@ package n0;
 
 import android.os.Build;
 import java.util.Locale;
-import kotlin.jvm.internal.j;
+import kotlin.jvm.internal.i;
 public abstract class a {
-    public static final int f14186a = 0;
+    public static final int f16338a = 0;
 
     static {
         int i10 = Build.VERSION.SDK_INT;
@@ -29,18 +29,18 @@ public abstract class a {
         if (i10 < 33) {
             if (i10 >= 32) {
                 String CODENAME = Build.VERSION.CODENAME;
-                j.d(CODENAME, "CODENAME");
+                i.d(CODENAME, "CODENAME");
                 if (!"REL".equals(CODENAME)) {
                     Locale locale = Locale.ROOT;
                     String upperCase = CODENAME.toUpperCase(locale);
-                    j.d(upperCase, "this as java.lang.String).toUpperCase(Locale.ROOT)");
+                    i.d(upperCase, "this as java.lang.String).toUpperCase(Locale.ROOT)");
                     if (upperCase.equals("BAKLAVA")) {
                         num = num2;
                     } else {
                         num = null;
                     }
                     String upperCase2 = "Tiramisu".toUpperCase(locale);
-                    j.d(upperCase2, "this as java.lang.String).toUpperCase(Locale.ROOT)");
+                    i.d(upperCase2, "this as java.lang.String).toUpperCase(Locale.ROOT)");
                     if (!upperCase2.equals("BAKLAVA")) {
                         num2 = null;
                     }
@@ -50,9 +50,9 @@ public abstract class a {
                         }
                     } else if (num == null && num2 == null) {
                         String upperCase3 = CODENAME.toUpperCase(locale);
-                        j.d(upperCase3, "this as java.lang.String).toUpperCase(Locale.ROOT)");
+                        i.d(upperCase3, "this as java.lang.String).toUpperCase(Locale.ROOT)");
                         String upperCase4 = "Tiramisu".toUpperCase(locale);
-                        j.d(upperCase4, "this as java.lang.String).toUpperCase(Locale.ROOT)");
+                        i.d(upperCase4, "this as java.lang.String).toUpperCase(Locale.ROOT)");
                         if (upperCase3.compareTo(upperCase4) >= 0) {
                             return true;
                         }

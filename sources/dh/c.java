@@ -1,676 +1,108 @@
 package dh;
 
-import android.graphics.drawable.Drawable;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.ViewPropertyAnimator;
-import android.widget.ImageView;
-import androidx.appcompat.widget.SearchView;
-import f2.o0;
-import gg.b1;
-import gg.r0;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import lh.b0;
-import lh.e1;
-import lh.r5;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bd;
-import org.telegram.ui.Components.d20;
-import org.telegram.ui.Components.dc0;
-import org.telegram.ui.Components.dn0;
-import org.telegram.ui.Components.ec0;
-import org.telegram.ui.Components.fq;
-import org.telegram.ui.Components.mr;
-import org.telegram.ui.Components.oy0;
-import org.telegram.ui.Components.p61;
-import org.telegram.ui.Components.q61;
-import org.telegram.ui.Components.ql0;
-import org.telegram.ui.Components.qy0;
-import org.telegram.ui.Components.ut;
-import org.telegram.ui.Components.vy;
-import org.telegram.ui.Components.wd0;
-import org.telegram.ui.Components.wy;
-import org.telegram.ui.d0;
-import org.telegram.ui.n4;
-import org.telegram.ui.web.q0;
-import org.telegram.ui.web.y0;
-import ph.q1;
-import ph.r1;
-import uf.h0;
-import uf.l0;
-import uf.v0;
-public final class c implements TextWatcher {
-    public final int f4891a;
-    public final Object f4892b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import java.util.Arrays;
+import w7.p;
+import yf.f0;
+public final class c {
+    public int d;
+    public boolean f6821e;
+    public int f6822f;
+    public float f6824i;
+    public float f6825j;
+    public final Rect f6818a = new Rect();
+    public final float[] f6819b = new float[8];
+    public final float[] f6820c = new float[8];
+    public float f6823g = 0.75f;
+    public final float h = 1.5f;
+    public final Path f6826k = new Path();
+    public boolean f6827l = true;
+    public final Rect f6828m = new Rect();
+    public final Path f6829n = new Path();
+    public final Path f6830o = new Path();
 
-    public c(Object obj, int i10) {
-        this.f4891a = i10;
-        this.f4892b = obj;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z4;
-        boolean z10;
-        long j10;
-        boolean z11;
-        int i10;
-        boolean z12;
-        int i11;
-        boolean z13;
-        boolean z14;
-        float f10;
-        int h;
-        e1 e1Var;
-        boolean z15;
-        String str;
-        float f11;
-        long j11;
-        switch (this.f4891a) {
-            case 0:
-                f fVar = (f) this.f4892b;
-                int length = fVar.f4897a.getText().length();
-                xd.a aVar = fVar.E;
-                int i12 = fVar.f4905x;
-                if (length > (i12 * 7) / 10) {
-                    z4 = true;
-                } else {
-                    z4 = false;
-                }
-                aVar.a(z4, true);
-                xd.a aVar2 = fVar.F;
-                if (length > i12) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                aVar2.a(z10, true);
-                fVar.f4900f.l(Integer.toString(i12 - length), false);
-                return;
-            case 1:
-                gh.f fVar2 = (gh.f) this.f4892b;
-                fVar2.I();
-                fVar2.Z = editable.toString();
-                fVar2.f6826a0.N(true);
-                return;
-            case 2:
-                ig.l lVar = ((ig.m) this.f4892b).f7510c;
-                if (lVar != null) {
-                    String trim = editable.toString().trim();
-                    b1 b1Var = ((r0) lVar).f6727a;
-                    b1Var.f6567s0 = trim;
-                    b1Var.a0(false, false);
-                    b1Var.a0(true, true);
-                    return;
-                }
-                return;
-            case 3:
-                lh.q qVar = (lh.q) this.f4892b;
-                lh.d dVar = qVar.f12943k0;
-                TLRPC.TL_payments_starsRevenueStats h9 = b0.g(lh.q.d0(qVar)).h(qVar.f12931b, false);
-                long j12 = 0;
-                if (h9 == null) {
-                    j10 = 0;
-                } else {
-                    j10 = h9.status.available_balance.amount;
-                }
-                if (!TextUtils.isEmpty(editable)) {
-                    j12 = Long.parseLong(editable.toString());
-                }
-                qVar.M = j12;
-                boolean z16 = true;
-                if (j12 > j10) {
-                    qVar.M = j10;
-                    qVar.K = true;
-                    qVar.N.setText(Long.toString(j10));
-                    lh.n nVar = qVar.N;
-                    nVar.setSelection(nVar.getText().length());
-                    qVar.K = false;
-                }
-                if (qVar.M != j10) {
-                    z16 = false;
-                }
-                qVar.L = z16;
-                AndroidUtilities.cancelRunOnUIThread(dVar);
-                dVar.run();
-                if (!qVar.K) {
-                    qVar.L = false;
-                    return;
-                }
-                return;
-            case 4:
-                return;
-            case 5:
-                bd bdVar = (bd) this.f4892b;
-                if (bdVar.f41842f.getEditText().getLineCount() > 2 && editable != null && !TextUtils.isEmpty(editable.toString().trim())) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                bdVar.F(z11);
-                return;
-            case 6:
-                ut utVar = (ut) this.f4892b;
-                i10 = utVar.lineCount;
-                if (i10 != utVar.getLineCount()) {
-                    z12 = utVar.isInitLineCount;
-                    if (!z12 && utVar.getMeasuredWidth() > 0) {
-                        i11 = utVar.lineCount;
-                        utVar.onLineCountChanged(i11, utVar.getLineCount());
-                    }
-                    utVar.lineCount = utVar.getLineCount();
-                    return;
-                }
-                return;
-            case 7:
-                ((gg.j) this.f4892b).run();
-                return;
-            case 8:
-                wy wyVar = (wy) this.f4892b;
-                wyVar.g(false);
-                fq fqVar = wyVar.d;
-                String obj = fqVar.getText().toString();
-                wyVar.c(obj, true);
-                vy vyVar = wyVar.f30372r;
-                if (vyVar != null) {
-                    vyVar.E1(null);
-                    vyVar.F1(TextUtils.isEmpty(obj), true);
-                }
-                wyVar.f(!TextUtils.isEmpty(obj));
-                if (fqVar != null) {
-                    fqVar.clearAnimation();
-                    fqVar.animate().translationX(0.0f).setInterpolator(mr.h).start();
-                }
-                wyVar.d(false);
-                return;
-            case 9:
-                d20 d20Var = (d20) this.f4892b;
-                if (!d20Var.C.isEmpty() && editable.length() > 0 && d20Var.F >= 0) {
-                    d20Var.F = -1;
-                    d20Var.f();
-                }
-                xd.a aVar3 = d20Var.f24112a;
-                if (!d20Var.f24116n && d20Var.f24117r.length() <= 0) {
-                    z13 = false;
-                } else {
-                    z13 = true;
-                }
-                aVar3.a(z13, true);
-                return;
-            case 10:
-                wd0 wd0Var = (wd0) this.f4892b;
-                if (wd0Var.f30228r.length() == 4 && SharedConfig.passcodeType == 0) {
-                    wd0Var.k(false);
-                    return;
-                }
-                return;
-            case 11:
-                dn0 dn0Var = (dn0) this.f4892b;
-                ImageView imageView = dn0Var.f24327c;
-                kg.f fVar3 = dn0Var.e;
-                boolean z17 = false;
-                if (fVar3.length() > 0) {
-                    z14 = true;
-                } else {
-                    z14 = false;
-                }
-                float f12 = 0.0f;
-                if (imageView.getAlpha() != 0.0f) {
-                    z17 = true;
-                }
-                if (z14 != z17) {
-                    ViewPropertyAnimator animate = imageView.animate();
-                    float f13 = 1.0f;
-                    if (z14) {
-                        f12 = 1.0f;
-                    }
-                    ViewPropertyAnimator duration = animate.alpha(f12).setDuration(150L);
-                    if (z14) {
-                        f10 = 1.0f;
-                    } else {
-                        f10 = 0.1f;
-                    }
-                    ViewPropertyAnimator scaleX = duration.scaleX(f10);
-                    if (!z14) {
-                        f13 = 0.1f;
-                    }
-                    scaleX.scaleY(f13).start();
-                }
-                dn0Var.a(fVar3.getText().toString());
-                return;
-            case 12:
-                AndroidUtilities.runOnUIThread(new dc0(this, 28));
-                return;
-            case 13:
-                qy0 qy0Var = (qy0) this.f4892b;
-                oy0 oy0Var = qy0Var.f28320c;
-                if (oy0Var != null && oy0Var.getVisibility() == 0) {
-                    qy0Var.e();
-                    return;
-                }
-                return;
-            case 14:
-                p61 p61Var = (p61) this.f4892b;
-                String obj2 = p61Var.G.getText().toString();
-                q61 q61Var = p61Var.H;
-                if (q61Var.d.getAdapter() == null) {
-                    h = 0;
-                } else {
-                    h = q61Var.d.getAdapter().h();
-                }
-                q61Var.F(obj2);
-                if (TextUtils.isEmpty(obj2) && (e1Var = q61Var.d) != null) {
-                    o0 adapter = e1Var.getAdapter();
-                    ql0 ql0Var = q61Var.f28092f;
-                    if (adapter != ql0Var) {
-                        e1 e1Var2 = q61Var.d;
-                        e1Var2.V1 = false;
-                        e1Var2.W1 = 0;
-                        e1Var2.setAdapter(ql0Var);
-                        e1 e1Var3 = q61Var.d;
-                        e1Var3.V1 = true;
-                        e1Var3.W1 = 0;
-                        if (h == 0) {
-                            q61Var.I(0);
-                        }
-                    }
-                }
-                q61Var.v.setVisibility(0);
-                return;
-            case 15:
-                org.telegram.ui.o0 o0Var = (org.telegram.ui.o0) this.f4892b;
-                ImageView imageView2 = o0Var.G;
-                if (editable.length() > 0 && o0Var.Q) {
-                    z15 = true;
-                } else {
-                    z15 = false;
-                }
-                AndroidUtilities.updateViewShow(imageView2, z15, true, true);
-                String obj3 = editable.toString();
-                n4 n4Var = o0Var.f36611y0;
-                String lowerCase = obj3.toLowerCase();
-                ah.a aVar4 = n4Var.S0;
-                if (aVar4 != null) {
-                    AndroidUtilities.cancelRunOnUIThread(aVar4);
-                    n4Var.S0 = null;
-                }
-                if (TextUtils.isEmpty(lowerCase)) {
-                    n4Var.B.clear();
-                    n4Var.C = lowerCase;
-                    n4Var.f36375r0[0].f37685c.f35648y.clear();
-                    n4Var.d0(false);
-                    if (n4Var.f36375r0[0].f()) {
-                        if (n4Var.f36375r0[0].getWebView() != null) {
-                            y0 webView = n4Var.f36375r0[0].getWebView();
-                            webView.F = new d0(n4Var, 9);
-                            webView.findAllAsync("");
-                            n4Var.h0();
-                        }
-                    } else {
-                        n4Var.f36375r0[0].f37684b.e1();
-                        n4Var.W(0);
-                    }
-                    n4Var.T0 = -1;
-                    return;
-                }
-                int i13 = n4Var.T0 + 1;
-                n4Var.T0 = i13;
-                if (n4Var.f36375r0[0].f()) {
-                    n4Var.d0(true);
-                    if (n4Var.f36375r0[0].getWebView() != null) {
-                        y0 webView2 = n4Var.f36375r0[0].getWebView();
-                        webView2.F = new d0(n4Var, 9);
-                        webView2.findAllAsync(lowerCase);
-                        n4Var.h0();
-                        return;
-                    }
-                    return;
-                }
-                ah.a aVar5 = new ah.a(n4Var, lowerCase, i13, 20);
-                n4Var.S0 = aVar5;
-                AndroidUtilities.runOnUIThread(aVar5, 400L);
-                return;
-            case 16:
-                r1 r1Var = (r1) this.f4892b;
-                ImageView imageView3 = r1Var.f42271n;
-                kg.f fVar4 = r1Var.d;
-                if (!r1Var.f42272r) {
-                    r1Var.d(false);
-                    String obj4 = fVar4.getText().toString();
-                    if (TextUtils.isEmpty(obj4)) {
-                        str = null;
-                    } else {
-                        str = obj4;
-                    }
-                    Utilities.Callback2 callback2 = r1Var.v;
-                    if (callback2 != null) {
-                        callback2.run(str, -1);
-                    }
-                    q1 q1Var = r1Var.f42270f;
-                    if (q1Var != null) {
-                        q1Var.E1(null);
-                        r1Var.f42270f.F1(TextUtils.isEmpty(obj4), true);
-                    }
-                    if (fVar4 != null) {
-                        fVar4.animate().cancel();
-                        float f14 = 0.0f;
-                        ViewPropertyAnimator translationX = fVar4.animate().translationX(0.0f);
-                        mr mrVar = mr.h;
-                        translationX.setInterpolator(mrVar).start();
-                        if (imageView3 != null && r1Var.h != (!TextUtils.isEmpty(fVar4.getText()))) {
-                            r1Var.h = !r1Var.h;
-                            imageView3.animate().cancel();
-                            if (r1Var.h) {
-                                imageView3.setVisibility(0);
-                            }
-                            ViewPropertyAnimator animate2 = imageView3.animate();
-                            float f15 = 0.7f;
-                            if (r1Var.h) {
-                                f11 = 1.0f;
-                            } else {
-                                f11 = 0.7f;
-                            }
-                            ViewPropertyAnimator scaleX2 = animate2.scaleX(f11);
-                            if (r1Var.h) {
-                                f15 = 1.0f;
-                            }
-                            ViewPropertyAnimator scaleY = scaleX2.scaleY(f15);
-                            if (r1Var.h) {
-                                f14 = 1.0f;
-                            }
-                            ViewPropertyAnimator duration2 = scaleY.alpha(f14).withEndAction(new q0(this, 15)).setInterpolator(mrVar).setDuration(320L);
-                            if (r1Var.h) {
-                                j11 = 240;
-                            } else {
-                                j11 = 0;
-                            }
-                            duration2.setStartDelay(j11).start();
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 17:
-                ((sh.n) this.f4892b).Y();
-                return;
-            case 18:
-                l0 l0Var = (l0) this.f4892b;
-                l0Var.f45435x = false;
-                h0 h0Var = l0Var.C;
-                AndroidUtilities.cancelRunOnUIThread(h0Var);
-                if (TextUtils.isEmpty(l0Var.f45430f.getText())) {
-                    l0Var.f45436y = null;
-                    l0Var.d.b();
-                } else {
-                    l0Var.f45435x = true;
-                    AndroidUtilities.runOnUIThread(h0Var, 800L);
-                }
-                l0Var.f45429c.V2.N(true);
-                l0Var.b0();
-                return;
-            default:
-                v0 v0Var = (v0) this.f4892b;
-                if (!v0Var.d) {
-                    v0Var.B = false;
-                    v0Var.f45532y = editable.toString();
-                    v0Var.U(true);
-                    return;
-                }
-                return;
+    public final void a() {
+        float[] fArr = this.f6819b;
+        this.f6827l = f0.c(fArr);
+        Rect rect = this.f6818a;
+        Rect rect2 = this.f6828m;
+        rect2.set(rect);
+        int i10 = this.d;
+        rect2.inset(i10, i10);
+        Path path = this.f6826k;
+        path.rewind();
+        Path.Direction direction = Path.Direction.CW;
+        path.addRoundRect(rect2.left, rect2.top, rect2.right, rect2.bottom, this.f6819b, direction);
+        path.close();
+        float min = Math.min(rect2.width(), rect2.height()) / 2.0f;
+        float[] fArr2 = d.C;
+        Arrays.fill(fArr2, 0.0f);
+        fArr2[0] = fArr[0];
+        fArr2[1] = fArr[1];
+        fArr2[2] = fArr[2];
+        fArr2[3] = fArr[3];
+        if (this.f6827l && fArr[0] > min) {
+            fArr2[3] = min;
+            fArr2[2] = min;
+            fArr2[1] = min;
+            fArr2[0] = min;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        boolean z4;
-        switch (this.f4891a) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-                return;
-            case 10:
-                wd0 wd0Var = (wd0) this.f4892b;
-                LinkedList linkedList = wd0Var.K;
-                LinkedList linkedList2 = wd0Var.J;
-                Drawable drawable = wd0Var.f30223a;
-                if (drawable instanceof ec0) {
-                    ec0 ec0Var = (ec0) drawable;
-                    ec0Var.D = null;
-                    ec0Var.z();
-                    float f10 = ec0Var.h;
-                    int i13 = 0;
-                    boolean z10 = true;
-                    if (i11 == 0 && i12 == 1) {
-                        ec0Var.x(true);
-                        z4 = true;
-                    } else if (i11 == 1 && i12 == 0) {
-                        ec0Var.y();
-                        z4 = false;
-                    } else {
-                        z4 = false;
-                        z10 = false;
-                    }
-                    if (z10) {
-                        if (f10 >= 1.0f) {
-                            wd0Var.b(ec0Var);
-                            return;
-                        }
-                        linkedList2.offer(new r5(this, z4, ec0Var, 17));
-                        linkedList.offer(Boolean.valueOf(z4));
-                        ArrayList arrayList = new ArrayList();
-                        ArrayList arrayList2 = new ArrayList();
-                        for (int i14 = 0; i14 < linkedList2.size(); i14++) {
-                            Runnable runnable = (Runnable) linkedList2.get(i14);
-                            if (((Boolean) linkedList.get(i14)).booleanValue() != z4) {
-                                arrayList.add(runnable);
-                                arrayList2.add(Integer.valueOf(i14));
-                            }
-                        }
-                        int size = arrayList.size();
-                        int i15 = 0;
-                        while (i15 < size) {
-                            Object obj = arrayList.get(i15);
-                            i15++;
-                            linkedList2.remove((Runnable) obj);
-                        }
-                        int size2 = arrayList2.size();
-                        while (i13 < size2) {
-                            Object obj2 = arrayList2.get(i13);
-                            i13++;
-                            int intValue = ((Integer) obj2).intValue();
-                            if (intValue < linkedList.size()) {
-                                linkedList.remove(intValue);
-                            }
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 11:
-            case 12:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-            case 17:
-            case 18:
-            default:
-                return;
+        Path path2 = this.f6829n;
+        path2.rewind();
+        float f7 = rect2.left;
+        int i11 = rect2.top;
+        path2.addRoundRect(f7, i11, rect2.right, Math.min(i11 + fArr[0], rect2.bottom), fArr2, direction);
+        int i12 = rect2.top;
+        float min2 = Math.min(i12 + fArr[0], rect2.bottom);
+        Path.Direction direction2 = Path.Direction.CCW;
+        path2.addRoundRect(rect2.left, i12 + this.f6824i, rect2.right, min2, fArr2, direction2);
+        path2.close();
+        Arrays.fill(fArr2, 0.0f);
+        fArr2[4] = fArr[4];
+        fArr2[5] = fArr[5];
+        fArr2[6] = fArr[6];
+        fArr2[7] = fArr[7];
+        if (this.f6827l && fArr[0] > min) {
+            fArr2[7] = min;
+            fArr2[6] = min;
+            fArr2[5] = min;
+            fArr2[4] = min;
         }
+        Path path3 = this.f6830o;
+        path3.rewind();
+        path3.addRoundRect(rect2.left, Math.max(rect2.bottom - fArr[4], rect2.top), rect2.right, rect2.bottom, fArr2, direction);
+        path3.addRoundRect(rect2.left, Math.max(rect2.bottom - fArr[4], rect2.top), rect2.right, rect2.bottom - this.f6825j, fArr2, direction2);
+        path3.close();
     }
 
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f4891a) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-                return;
-            case 4:
-                SearchView searchView = (SearchView) this.f4892b;
-                Editable text = searchView.C.getText();
-                searchView.f440l0 = text;
-                boolean isEmpty = TextUtils.isEmpty(text);
-                searchView.u(!isEmpty);
-                int i13 = 8;
-                if (searchView.f439k0 && !searchView.f432d0 && isEmpty) {
-                    searchView.H.setVisibility(8);
-                    i13 = 0;
-                }
-                searchView.J.setVisibility(i13);
-                searchView.q();
-                searchView.t();
-                charSequence.toString();
-                return;
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-            case 17:
-            case 18:
-            default:
-                return;
+    public final void b(Canvas canvas, Paint paint) {
+        Rect rect;
+        if (this.f6827l) {
+            float f7 = this.f6828m.bottom;
+            float f10 = this.f6819b[0];
+            canvas.drawRoundRect(rect.left, rect.top, rect.right, f7, f10, f10, paint);
+            return;
         }
+        canvas.drawPath(this.f6826k, paint);
     }
 
-    private final void a(Editable editable) {
-    }
-
-    private final void A(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void B(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void C(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void D(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void E(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void F(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void G(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void H(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void I(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void J(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void K(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void L(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void M(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void f(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void g(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void h(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void i(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void j(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void k(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void l(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void m(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void n(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void o(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void p(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void q(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void r(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void s(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void t(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void u(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void v(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void w(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void x(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void y(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void z(int i10, int i11, int i12, CharSequence charSequence) {
+    public final void c(Canvas canvas, Paint paint, boolean z10) {
+        Rect rect;
+        if (z10) {
+            float f7 = this.f6828m.top;
+            float[] fArr = this.f6819b;
+            float a2 = p.a((fArr[0] * 2.0f) + f7, f7, rect.bottom);
+            canvas.save();
+            Rect rect2 = this.f6818a;
+            canvas.clipRect(rect2.left, rect2.top, rect2.right, a2);
+            float f10 = fArr[0];
+            canvas.drawRoundRect(rect.left, rect.top, rect.right, a2, f10, f10, paint);
+            canvas.restore();
+            return;
+        }
+        b(canvas, paint);
     }
 }

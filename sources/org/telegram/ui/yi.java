@@ -1,68 +1,29 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-public final class yi extends ze.c {
-    public final int d;
-    public final int e;
-    public final org.telegram.ui.Cells.s1 f40284f;
-    public final zn f40285g;
+import org.telegram.messenger.NotificationCenter;
+public final class yi implements NotificationCenter.NotificationCenterDelegate {
+    public final int f43154a;
+    public final bi.k8 f43155b;
+    public final co f43156c;
+    public final co d;
 
-    public yi(zn znVar, int i10, org.telegram.ui.Cells.s1 s1Var, int i11) {
-        this.d = i11;
-        this.f40285g = znVar;
-        this.e = i10;
-        this.f40284f = s1Var;
+    public yi(co coVar, int i10, bi.k8 k8Var, co coVar2) {
+        this.d = coVar;
+        this.f43154a = i10;
+        this.f43155b = k8Var;
+        this.f43156c = coVar2;
     }
 
     @Override
-    public final void c(boolean z4) {
-        switch (this.d) {
-            case 0:
-                if (!z4) {
-                    AndroidUtilities.runOnUIThread(new ah.b(this, this.e, 18), 240L);
-                    return;
-                }
-                return;
-            case 1:
-                if (!z4) {
-                    AndroidUtilities.runOnUIThread(new ah.b(this, this.e, 20), 240L);
-                    return;
-                }
-                return;
-            default:
-                if (!z4) {
-                    AndroidUtilities.runOnUIThread(new ah.b(this, this.e, 21), 240L);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void d() {
-        switch (this.d) {
-            case 0:
-                int i10 = this.e;
-                zn znVar = this.f40285g;
-                znVar.f40757tb = i10;
-                znVar.f40770ub = 6;
-                this.f40284f.invalidate();
-                return;
-            case 1:
-                int i11 = this.e;
-                zn znVar2 = this.f40285g;
-                znVar2.f40757tb = i11;
-                znVar2.f40770ub = 5;
-                znVar2.f40797wb = null;
-                this.f40284f.invalidate();
-                return;
-            default:
-                int i12 = this.e;
-                zn znVar3 = this.f40285g;
-                znVar3.f40757tb = i12;
-                znVar3.f40770ub = 7;
-                this.f40284f.invalidate();
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12;
+        int i13 = NotificationCenter.messagesDidLoad;
+        if (i10 == i13 && ((Integer) objArr[10]).intValue() == this.f43154a) {
+            this.f43155b.run();
+            AndroidUtilities.runOnUIThread(new i2.a0(this.f43156c, i10, i11, objArr), 50L);
+            i12 = ((org.telegram.ui.ActionBar.n2) this.d).currentAccount;
+            NotificationCenter.getInstance(i12).removeObserver(this, i13);
         }
     }
 }

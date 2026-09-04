@@ -6,11 +6,11 @@ public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
     private static final String TAG = "SoftwareVideoEncoderFactory";
     private final long nativeFactory = nativeCreateFactory();
 
-    private static native long nativeCreateEncoder(long j10, VideoCodecInfo videoCodecInfo);
+    private static native long nativeCreateEncoder(long j3, VideoCodecInfo videoCodecInfo);
 
     private static native long nativeCreateFactory();
 
-    private static native List<VideoCodecInfo> nativeGetSupportedCodecs(long j10);
+    private static native List<VideoCodecInfo> nativeGetSupportedCodecs(long j3);
 
     @Override
     public VideoEncoder createEncoder(VideoCodecInfo videoCodecInfo) {

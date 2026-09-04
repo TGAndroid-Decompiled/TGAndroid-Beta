@@ -1,31 +1,60 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-public final class o2 extends ReplacementSpan {
-    public final int f21479a;
+import org.telegram.messenger.Utilities;
+public final class o2 {
+    public long f22405a;
+    public long f22406b;
+    public boolean f22407c;
+    public boolean d;
+    public long f22408e;
+    public int f22409f;
+    public Integer f22410g;
+    public int h;
+    public int f22411i;
+    public boolean f22412j;
+    public boolean f22413k;
+    public float f22414l;
+    public boolean f22415m;
+    public int f22416n;
+    public boolean f22417o = false;
+    public long f22418p;
+    public final r2 f22419q;
 
-    public o2(int i10) {
-        this.f21479a = i10;
+    public o2(r2 r2Var) {
+        this.f22419q = r2Var;
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt == null) {
-            fontMetricsInt = paint.getFontMetricsInt();
-        }
-        if (fontMetricsInt != null) {
-            int i12 = 1 - (fontMetricsInt.descent - fontMetricsInt.ascent);
-            fontMetricsInt.descent = i12;
-            fontMetricsInt.bottom = i12;
-            fontMetricsInt.ascent = -1;
-            fontMetricsInt.top = -1;
-        }
-        return this.f21479a;
+    public final boolean a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.o2.a():boolean");
     }
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
+    public final void b() {
+        boolean z10 = this.f22417o;
+        r2 r2Var = this.f22419q;
+        if (!z10) {
+            Integer num = this.f22410g;
+            if (num != null && r2Var.f22562f3 != null) {
+                float f7 = this.f22414l;
+                if (f7 != 1.0f) {
+                    this.f22414l = f7 + 0.08f;
+                    r2Var.invalidate();
+                    this.f22414l = Utilities.clamp(this.f22414l, 1.0f, 0.0f);
+                    return;
+                }
+            }
+            if (num == null) {
+                float f10 = this.f22414l;
+                if (f10 != 0.0f) {
+                    this.f22414l = f10 - 0.08f;
+                    r2Var.invalidate();
+                }
+            }
+            this.f22414l = Utilities.clamp(this.f22414l, 1.0f, 0.0f);
+            return;
+        }
+        if (System.currentTimeMillis() - this.f22418p > 100) {
+            this.f22417o = false;
+        }
+        r2Var.invalidate();
     }
 }

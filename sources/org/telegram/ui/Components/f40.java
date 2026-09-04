@@ -1,58 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.HashtagSearchController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class f40 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final g40 f24791a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.text.TextPaint;
+import android.util.TypedValue;
+public class f40 extends EditTextBoldCursor {
+    public final TextPaint f25900b;
+    public String f25901c;
+    public final Rect d;
 
-    public f40(g40 g40Var) {
-        this.f24791a = g40Var;
+    public f40(Context context) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.f25900b = textPaint;
+        this.d = new Rect();
+        textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.H6, false));
+    }
+
+    public String getHintText() {
+        return this.f25901c;
     }
 
     @Override
-    public void mo27run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        int i10 = ((i51) obj).d;
-        g40 g40Var = this.f24791a;
-        if (i10 == 0) {
-            HashtagSearchController.getInstance(g40Var.f25038a).clearHistory();
-            g40Var.f25041f.N(true);
-            return;
+    public void onDraw(Canvas canvas) {
+        float measureText;
+        Canvas canvas2;
+        if (this.f25901c != null && length() < this.f25901c.length()) {
+            int i10 = 0;
+            float f7 = 0.0f;
+            while (i10 < this.f25901c.length()) {
+                int length = length();
+                TextPaint textPaint = this.f25900b;
+                if (i10 < length) {
+                    measureText = getPaint().measureText(getText(), i10, i10 + 1);
+                } else {
+                    measureText = textPaint.measureText(this.f25901c, i10, i10 + 1);
+                }
+                if (i10 < length()) {
+                    f7 += measureText;
+                    canvas2 = canvas;
+                } else {
+                    int color = textPaint.getColor();
+                    canvas.save();
+                    String str = this.f25901c;
+                    int length2 = str.length();
+                    Rect rect = this.d;
+                    textPaint.getTextBounds(str, 0, length2, rect);
+                    float height = (rect.height() + getHeight()) / 2.0f;
+                    i(i10);
+                    canvas2 = canvas;
+                    canvas2.drawText(this.f25901c, i10, i10 + 1, f7, height, (Paint) textPaint);
+                    f7 += measureText;
+                    canvas2.restore();
+                    textPaint.setColor(color);
+                }
+                i10++;
+                canvas = canvas2;
+            }
         }
-        Utilities.Callback callback = g40Var.h;
-        if (callback != null) {
-            callback.run((String) g40Var.f25040c.get(i10 - 1));
-        }
+        super.onDraw(canvas);
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        int i10 = ((i51) obj).d;
-        boolean z4 = false;
-        if (i10 != 0) {
-            g40 g40Var = this.f24791a;
-            String str = (String) g40Var.f25040c.get(i10 - 1);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(g40Var.getContext(), 0, g40Var.f25039b);
-            String string = LocaleController.getString(R.string.ClearSearchSingleAlertTitle);
-            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f19478a;
-            d2Var.O = string;
-            d2Var.Q = LocaleController.formatString(R.string.ClearSearchSingleHashtagAlertText, str);
-            alertDialog$Builder.k(LocaleController.getString(R.string.ClearSearchRemove), new o1(20, g40Var, str));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            d2Var.show();
-            z4 = true;
-        }
-        return Boolean.valueOf(z4);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        invalidate();
+    }
+
+    public void setHintText(String str) {
+        this.f25901c = str;
+        invalidate();
+        setText(getText());
+    }
+
+    @Override
+    public void setTextSize(int i10, float f7) {
+        super.setTextSize(i10, f7);
+        this.f25900b.setTextSize(TypedValue.applyDimension(i10, f7, getResources().getDisplayMetrics()));
+    }
+
+    public void i(int i10) {
     }
 }

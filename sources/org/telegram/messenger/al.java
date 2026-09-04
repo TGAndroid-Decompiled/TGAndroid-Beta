@@ -1,33 +1,33 @@
 package org.telegram.messenger;
+public final class al implements Runnable {
+    public final int f17182a;
+    public final TranslateController f17183b;
+    public final String f17184c;
+    public final MessageObject d;
+    public final long f17185e;
+    public final int f17186f;
 
-import org.telegram.messenger.Utilities;
-public final class al implements Utilities.Callback2 {
-    public final int f16779a;
-    public final TranslateController f16780b;
-    public final Utilities.Callback4 f16781c;
-    public final boolean d;
-    public final int e;
-    public final String f16782f;
-    public final long f16783g;
-
-    public al(TranslateController translateController, Utilities.Callback4 callback4, boolean z4, int i10, String str, long j10, int i11) {
-        this.f16779a = i11;
-        this.f16780b = translateController;
-        this.f16781c = callback4;
-        this.d = z4;
-        this.e = i10;
-        this.f16782f = str;
-        this.f16783g = j10;
+    public al(TranslateController translateController, String str, MessageObject messageObject, long j3, int i10, int i11) {
+        this.f17182a = i11;
+        this.f17183b = translateController;
+        this.f17184c = str;
+        this.d = messageObject;
+        this.f17185e = j3;
+        this.f17186f = i10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f16779a) {
+    public final void run() {
+        switch (this.f17182a) {
             case 0:
-                this.f16780b.lambda$pushToTranslate$21(this.f16781c, this.d, this.e, this.f16782f, this.f16783g, (String) obj, (Boolean) obj2);
+                long j3 = this.f17185e;
+                int i10 = this.f17186f;
+                this.f17183b.lambda$checkLanguage$16(this.f17184c, this.d, j3, i10);
                 return;
             default:
-                this.f16780b.lambda$pushToTranslate$20(this.f16781c, this.d, this.e, this.f16782f, this.f16783g, (String) obj, (Boolean) obj2);
+                long j10 = this.f17185e;
+                int i11 = this.f17186f;
+                this.f17183b.lambda$checkLanguage$12(this.f17184c, this.d, j10, i11);
                 return;
         }
     }

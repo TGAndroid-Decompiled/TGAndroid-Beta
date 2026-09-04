@@ -1,105 +1,96 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-public final class py0 extends View {
-    public String f28025a;
-    public Drawable f28026b;
-    public boolean f28027c;
-    public int d;
-    public final z5 e;
-    public final qy0 f28028f;
+import org.telegram.messenger.R;
+public final class py0 extends Drawable {
+    public boolean f29520a;
+    public final e6 f29521b;
+    public final Drawable f29522c;
+    public final Drawable d;
+    public int f29523e = 255;
 
-    public py0(qy0 qy0Var, Context context) {
-        super(context);
-        this.f28028f = qy0Var;
-        this.d = 0;
-        this.e = new z5(this, 350L, new OvershootInterpolator(5.0f));
+    public py0(org.telegram.ui.Cells.t1 t1Var) {
+        this.f29521b = new e6(t1Var, 420L, pr.h);
+        this.f29522c = t1Var.getContext().getResources().getDrawable(R.drawable.summary_arrow);
+        this.d = t1Var.getContext().getResources().getDrawable(R.drawable.summary_stars);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f10;
-        if (isPressed()) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        Drawable drawable = this.d;
+        drawable.setBounds(bounds);
+        drawable.setAlpha(this.f29523e);
+        drawable.draw(canvas);
+        float e7 = this.f29521b.e(this.f29520a);
+        float centerX = getBounds().centerX();
+        float centerY = getBounds().centerY();
+        float width = getBounds().width();
+        canvas.save();
+        if (e7 < 0.5f) {
+            float abs = Math.abs(e7 - 0.5f) + 0.5f;
+            canvas.scale(abs, abs, centerX, centerY);
         }
-        float d = ((1.0f - this.e.d(f10, false)) * 0.2f) + 0.8f;
-        if (this.f28026b != null) {
-            int height = getHeight() - getPaddingBottom();
-            this.f28026b.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-            canvas.scale(d, d, getWidth() / 2, (getPaddingTop() + height) / 2);
-            Drawable drawable = this.f28026b;
-            if (drawable instanceof l5) {
-                ((l5) drawable).q(System.currentTimeMillis());
-            }
-            this.f28026b.draw(canvas);
+        canvas.save();
+        int i10 = (e7 > 0.5f ? 1 : (e7 == 0.5f ? 0 : -1));
+        if (i10 > 0) {
+            float abs2 = Math.abs(e7 - 0.5f) + 0.5f;
+            float f7 = -abs2;
+            float f10 = width * 0.32f;
+            canvas.scale(f7, f7, getBounds().left + f10, getBounds().bottom - f10);
+            float f11 = 1.0f - abs2;
+            canvas.translate((-width) * f11 * 0.4f, f11 * width * 0.4f);
         }
+        Rect bounds2 = getBounds();
+        Drawable drawable2 = this.f29522c;
+        drawable2.setBounds(bounds2);
+        drawable2.setAlpha(this.f29523e);
+        drawable2.draw(canvas);
+        canvas.restore();
+        canvas.save();
+        if (i10 > 0) {
+            float f12 = -(Math.abs(e7 - 0.5f) + 0.5f);
+            float f13 = 0.32f * width;
+            canvas.scale(f12, f12, getBounds().right - f13, getBounds().top + f13);
+        }
+        canvas.rotate(180.0f, centerX, centerY);
+        if (i10 > 0) {
+            float abs3 = 1.0f - (Math.abs(e7 - 0.5f) + 0.5f);
+            canvas.translate((-width) * abs3 * 0.4f, width * abs3 * 0.4f);
+        }
+        drawable2.setBounds(getBounds());
+        drawable2.setAlpha(this.f29523e);
+        drawable2.draw(canvas);
+        canvas.restore();
+        canvas.restore();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        Drawable drawable = this.f28026b;
-        if (drawable instanceof l5) {
-            ((l5) drawable).a(this);
-        }
-        this.f28027c = true;
+    public final int getIntrinsicHeight() {
+        return this.f29522c.getIntrinsicHeight();
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        Drawable drawable = this.f28026b;
-        if (drawable instanceof l5) {
-            ((l5) drawable).o(this);
-        }
-        this.f28027c = false;
+    public final int getIntrinsicWidth() {
+        return this.f29522c.getIntrinsicWidth();
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        float f10;
-        int dp = AndroidUtilities.dp(3.0f);
-        float f11 = 6.66f;
-        if (this.d == 0) {
-            f10 = 0.0f;
-        } else {
-            f10 = 6.66f;
-        }
-        int dp2 = AndroidUtilities.dp(f10 + 3.0f);
-        int dp3 = AndroidUtilities.dp(3.0f);
-        if (this.d != 0) {
-            f11 = 0.0f;
-        }
-        setPadding(dp, dp2, dp3, AndroidUtilities.dp(f11 + 3.0f));
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
-    }
-
-    public void setDirection(int i10) {
-        this.d = i10;
-        invalidate();
-    }
-
-    public void setImageDrawable(Drawable drawable) {
-        Drawable drawable2 = this.f28026b;
-        if (drawable2 instanceof l5) {
-            ((l5) drawable2).o(this);
-        }
-        this.f28026b = drawable;
-        if ((drawable instanceof l5) && this.f28027c) {
-            ((l5) drawable).a(this);
-        }
+    public final int getOpacity() {
+        return -2;
     }
 
     @Override
-    public void setPressed(boolean z4) {
-        super.setPressed(z4);
-        invalidate();
+    public final void setAlpha(int i10) {
+        this.f29523e = i10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f29522c.setColorFilter(colorFilter);
+        this.d.setColorFilter(colorFilter);
     }
 }

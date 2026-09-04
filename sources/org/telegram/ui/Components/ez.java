@@ -1,3 +1,3 @@
 package org.telegram.ui.Components;
-public final class ez extends ah.c {
+public final class ez extends oh.a {
 }

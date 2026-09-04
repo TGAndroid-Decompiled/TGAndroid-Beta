@@ -1,27 +1,34 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class d7 implements RequestDelegate {
-    public final int f17021a;
-    public final MediaDataController f17022b;
-    public final String f17023c;
+public final class d7 implements Runnable {
+    public final int f17455a;
+    public final MediaDataController f17456b;
+    public final TLRPC.TL_messages_stickerSet f17457c;
 
-    public d7(MediaDataController mediaDataController, String str, int i10) {
-        this.f17021a = i10;
-        this.f17022b = mediaDataController;
-        this.f17023c = str;
+    public d7(MediaDataController mediaDataController, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10) {
+        this.f17455a = i10;
+        this.f17456b = mediaDataController;
+        this.f17457c = tL_messages_stickerSet;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17021a) {
+    public final void run() {
+        switch (this.f17455a) {
             case 0:
-                this.f17022b.lambda$verifyAnimatedStickerMessageInternal$70(this.f17023c, tLObject, tL_error);
+                this.f17456b.lambda$saveStickerSetIntoCache$40(this.f17457c);
+                return;
+            case 1:
+                this.f17456b.lambda$loadGroupStickerSet$45(this.f17457c);
+                return;
+            case 2:
+                this.f17456b.lambda$loadGroupStickerSet$43(this.f17457c);
+                return;
+            case 3:
+                this.f17456b.lambda$putSetToCache$47(this.f17457c);
                 return;
             default:
-                this.f17022b.lambda$fetchStickerSetInternal$42(this.f17023c, tLObject, tL_error);
+                this.f17456b.lambda$replaceStickerSet$28(this.f17457c);
                 return;
         }
     }

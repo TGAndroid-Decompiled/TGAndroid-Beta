@@ -1,6 +1,6 @@
 package org.webrtc;
 public class StatsReport {
-    public final String f40911id;
+    public final String f43584id;
     public final double timestamp;
     public final String type;
     public final Value[] values;
@@ -15,37 +15,37 @@ public class StatsReport {
         }
 
         public String toString() {
-            StringBuilder sb = new StringBuilder("[");
-            sb.append(this.name);
-            sb.append(": ");
-            return android.support.v4.media.a.r(sb, this.value, "]");
+            StringBuilder sb2 = new StringBuilder("[");
+            sb2.append(this.name);
+            sb2.append(": ");
+            return a4.a.s(sb2, this.value, "]");
         }
     }
 
     public StatsReport(String str, String str2, double d, Value[] valueArr) {
-        this.f40911id = str;
+        this.f43584id = str;
         this.type = str2;
         this.timestamp = d;
         this.values = valueArr;
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder("id: ");
-        sb.append(this.f40911id);
-        sb.append(", type: ");
-        sb.append(this.type);
-        sb.append(", timestamp: ");
-        sb.append(this.timestamp);
-        sb.append(", values: ");
+        StringBuilder sb2 = new StringBuilder("id: ");
+        sb2.append(this.f43584id);
+        sb2.append(", type: ");
+        sb2.append(this.type);
+        sb2.append(", timestamp: ");
+        sb2.append(this.timestamp);
+        sb2.append(", values: ");
         int i10 = 0;
         while (true) {
             Value[] valueArr = this.values;
             if (i10 < valueArr.length) {
-                sb.append(valueArr[i10].toString());
-                sb.append(", ");
+                sb2.append(valueArr[i10].toString());
+                sb2.append(", ");
                 i10++;
             } else {
-                return sb.toString();
+                return sb2.toString();
             }
         }
     }

@@ -43,15 +43,15 @@ public class PushListenerController {
             FirebaseMessaging firebaseMessaging;
             try {
                 SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
-                w8.g.f(ApplicationLoader.applicationContext);
-                ja.c cVar = FirebaseMessaging.f3942l;
+                k9.h.f(ApplicationLoader.applicationContext);
+                a6.i iVar = FirebaseMessaging.f6308l;
                 synchronized (FirebaseMessaging.class) {
-                    firebaseMessaging = FirebaseMessaging.getInstance(w8.g.c());
+                    firebaseMessaging = FirebaseMessaging.getInstance(k9.h.c());
                 }
                 firebaseMessaging.getClass();
                 TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-                firebaseMessaging.f3948f.execute(new a1.e(12, firebaseMessaging, taskCompletionSource));
-                taskCompletionSource.getTask().addOnCompleteListener(new d0(this, 11));
+                firebaseMessaging.f6315f.execute(new bi.s8(19, firebaseMessaging, taskCompletionSource));
+                taskCompletionSource.getTask().addOnCompleteListener(new c0(this, 11));
             } catch (Throwable th2) {
                 FileLog.e(th2);
             }
@@ -69,17 +69,17 @@ public class PushListenerController {
 
         @Override
         public boolean hasServices() {
-            boolean z4;
+            boolean z10;
             if (this.hasServices == null) {
                 try {
-                    if (y5.d.d.d(ApplicationLoader.applicationContext, y5.e.f47175a) == 0) {
-                        z4 = true;
+                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f14815a) == 0) {
+                        z10 = true;
                     } else {
-                        z4 = false;
+                        z10 = false;
                     }
-                    this.hasServices = Boolean.valueOf(z4);
-                } catch (Exception e) {
-                    FileLog.e(e);
+                    this.hasServices = Boolean.valueOf(z10);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
                     this.hasServices = Boolean.FALSE;
                 }
             }
@@ -96,7 +96,7 @@ public class PushListenerController {
             } else if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("FCM Registration not found.");
             }
-            Utilities.globalQueue.postRunnable(new xg(this, 5));
+            Utilities.globalQueue.postRunnable(new vg(this, 5));
         }
     }
 
@@ -116,244 +116,244 @@ public class PushListenerController {
 
     private static String getReactedText(String str, Object[] objArr) {
         str.getClass();
-        char c3 = 65535;
+        char c10 = 65535;
         switch (str.hashCode()) {
             case -2114646919:
                 if (str.equals("CHAT_REACT_CONTACT")) {
-                    c3 = 0;
+                    c10 = 0;
                     break;
                 }
                 break;
             case -1891797827:
                 if (str.equals("REACT_GEOLIVE")) {
-                    c3 = 1;
+                    c10 = 1;
                     break;
                 }
                 break;
             case -1773019340:
                 if (str.equals("REACT_STORY_HIDDEN")) {
-                    c3 = 2;
+                    c10 = 2;
                     break;
                 }
                 break;
             case -1553058678:
                 if (str.equals("REACT_HIDDEN")) {
-                    c3 = 3;
+                    c10 = 3;
                     break;
                 }
                 break;
             case -1415696683:
                 if (str.equals("CHAT_REACT_NOTEXT")) {
-                    c3 = 4;
+                    c10 = 4;
                     break;
                 }
                 break;
             case -1375264434:
                 if (str.equals("REACT_NOTEXT")) {
-                    c3 = 5;
+                    c10 = 5;
                     break;
                 }
                 break;
             case -1105974394:
                 if (str.equals("CHAT_REACT_INVOICE")) {
-                    c3 = 6;
+                    c10 = 6;
                     break;
                 }
                 break;
             case -861247200:
                 if (str.equals("REACT_CONTACT")) {
-                    c3 = 7;
+                    c10 = 7;
                     break;
                 }
                 break;
             case -661458538:
                 if (str.equals("CHAT_REACT_STICKER")) {
-                    c3 = '\b';
+                    c10 = '\b';
                     break;
                 }
                 break;
             case 51977938:
                 if (str.equals("REACT_GAME")) {
-                    c3 = '\t';
+                    c10 = '\t';
                     break;
                 }
                 break;
             case 52259487:
                 if (str.equals("REACT_POLL")) {
-                    c3 = '\n';
+                    c10 = '\n';
                     break;
                 }
                 break;
             case 52294965:
                 if (str.equals("REACT_QUIZ")) {
-                    c3 = 11;
+                    c10 = 11;
                     break;
                 }
                 break;
             case 52369421:
                 if (str.equals("REACT_TEXT")) {
-                    c3 = '\f';
+                    c10 = '\f';
                     break;
                 }
                 break;
             case 52378406:
                 if (str.equals("REACT_TODO")) {
-                    c3 = '\r';
+                    c10 = '\r';
                     break;
                 }
                 break;
             case 147425325:
                 if (str.equals("REACT_INVOICE")) {
-                    c3 = 14;
+                    c10 = 14;
                     break;
                 }
                 break;
             case 192842257:
                 if (str.equals("CHAT_REACT_DOC")) {
-                    c3 = 15;
+                    c10 = 15;
                     break;
                 }
                 break;
             case 192844842:
                 if (str.equals("CHAT_REACT_GEO")) {
-                    c3 = 16;
+                    c10 = 16;
                     break;
                 }
                 break;
             case 192844957:
                 if (str.equals("CHAT_REACT_GIF")) {
-                    c3 = 17;
+                    c10 = 17;
                     break;
                 }
                 break;
             case 591941181:
                 if (str.equals("REACT_STICKER")) {
-                    c3 = 18;
+                    c10 = 18;
                     break;
                 }
                 break;
             case 635226735:
                 if (str.equals("CHAT_REACT_AUDIO")) {
-                    c3 = 19;
+                    c10 = 19;
                     break;
                 }
                 break;
             case 648703179:
                 if (str.equals("CHAT_REACT_PHOTO")) {
-                    c3 = 20;
+                    c10 = 20;
                     break;
                 }
                 break;
             case 650764327:
                 if (str.equals("CHAT_REACT_ROUND")) {
-                    c3 = 21;
+                    c10 = 21;
                     break;
                 }
                 break;
             case 654263060:
                 if (str.equals("CHAT_REACT_VIDEO")) {
-                    c3 = 22;
+                    c10 = 22;
                     break;
                 }
                 break;
             case 731873318:
                 if (str.equals("CHAT_REACT_GIVEAWAY")) {
-                    c3 = 23;
+                    c10 = 23;
                     break;
                 }
                 break;
             case 932558943:
                 if (str.equals("REACT_GIVEAWAY")) {
-                    c3 = 24;
+                    c10 = 24;
                     break;
                 }
                 break;
             case 1149769750:
                 if (str.equals("CHAT_REACT_GEOLIVE")) {
-                    c3 = 25;
+                    c10 = 25;
                     break;
                 }
                 break;
             case 1606362326:
                 if (str.equals("REACT_AUDIO")) {
-                    c3 = 26;
+                    c10 = 26;
                     break;
                 }
                 break;
             case 1619838770:
                 if (str.equals("REACT_PHOTO")) {
-                    c3 = 27;
+                    c10 = 27;
                     break;
                 }
                 break;
             case 1621899918:
                 if (str.equals("REACT_ROUND")) {
-                    c3 = 28;
+                    c10 = 28;
                     break;
                 }
                 break;
             case 1622966773:
                 if (str.equals("REACT_STORY")) {
-                    c3 = 29;
+                    c10 = 29;
                     break;
                 }
                 break;
             case 1625398651:
                 if (str.equals("REACT_VIDEO")) {
-                    c3 = 30;
+                    c10 = 30;
                     break;
                 }
                 break;
             case 1664242232:
                 if (str.equals("REACT_DOC")) {
-                    c3 = 31;
+                    c10 = 31;
                     break;
                 }
                 break;
             case 1664244817:
                 if (str.equals("REACT_GEO")) {
-                    c3 = ' ';
+                    c10 = ' ';
                     break;
                 }
                 break;
             case 1664244932:
                 if (str.equals("REACT_GIF")) {
-                    c3 = '!';
+                    c10 = '!';
                     break;
                 }
                 break;
             case 1683218969:
                 if (str.equals("CHAT_REACT_GAME")) {
-                    c3 = '\"';
+                    c10 = '\"';
                     break;
                 }
                 break;
             case 1683500518:
                 if (str.equals("CHAT_REACT_POLL")) {
-                    c3 = '#';
+                    c10 = '#';
                     break;
                 }
                 break;
             case 1683535996:
                 if (str.equals("CHAT_REACT_QUIZ")) {
-                    c3 = '$';
+                    c10 = '$';
                     break;
                 }
                 break;
             case 1683610452:
                 if (str.equals("CHAT_REACT_TEXT")) {
-                    c3 = '%';
+                    c10 = '%';
                     break;
                 }
                 break;
             case 1683619437:
                 if (str.equals("CHAT_REACT_TODO")) {
-                    c3 = '&';
+                    c10 = '&';
                     break;
                 }
                 break;
         }
-        switch (c3) {
+        switch (c10) {
             case 0:
                 return LocaleController.formatString(R.string.PushChatReactContact, objArr);
             case 1:
@@ -452,15 +452,15 @@ public class PushListenerController {
         LocationController.getInstance(i10).setNewLocationEndWatchTime();
     }
 
-    public static void lambda$processRemoteMessage$5(int i10, long j10, int i11) {
-        MessagesController.getInstance(i10).reportMessageDelivery(j10, i11, true);
+    public static void lambda$processRemoteMessage$5(int i10, long j3, int i11) {
+        MessagesController.getInstance(i10).reportMessageDelivery(j3, i11, true);
     }
 
     public static void lambda$processRemoteMessage$6(java.lang.String r72, java.lang.String r73, long r74) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.PushListenerController.lambda$processRemoteMessage$6(java.lang.String, java.lang.String, long):void");
     }
 
-    public static void lambda$processRemoteMessage$7(String str, String str2, long j10) {
+    public static void lambda$processRemoteMessage$7(String str, String str2, long j3) {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d(str + " PRE INIT APP");
         }
@@ -468,7 +468,7 @@ public class PushListenerController {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d(str + " POST INIT APP");
         }
-        Utilities.stageQueue.postRunnable(new vh(0, j10, str, str2));
+        Utilities.stageQueue.postRunnable(new th(0, j3, str, str2));
     }
 
     public static void lambda$sendRegistrationToServer$0(int i10, int i11, String str) {
@@ -476,15 +476,15 @@ public class PushListenerController {
     }
 
     public static void lambda$sendRegistrationToServer$1(String str, int i10) {
-        boolean z4;
+        boolean z10;
         String str2;
         ConnectionsManager.setRegId(str, i10, SharedConfig.pushStringStatus);
         if (str != null) {
             if (SharedConfig.pushStringGetTimeStart != 0 && SharedConfig.pushStringGetTimeEnd != 0 && (!SharedConfig.pushStatSent || !TextUtils.equals(SharedConfig.pushString, str))) {
                 SharedConfig.pushStatSent = false;
-                z4 = true;
+                z10 = true;
             } else {
-                z4 = false;
+                z10 = false;
             }
             SharedConfig.pushString = str;
             SharedConfig.pushType = i10;
@@ -493,7 +493,7 @@ public class PushListenerController {
                 userConfig.registeredForPush = false;
                 userConfig.saveConfig(false);
                 if (userConfig.getClientUserId() != 0) {
-                    if (z4) {
+                    if (z10) {
                         if (i10 == 2) {
                             str2 = "fcm";
                         } else {
@@ -515,9 +515,9 @@ public class PushListenerController {
                         SharedConfig.pushStatSent = true;
                         SharedConfig.saveConfig();
                         ConnectionsManager.getInstance(i11).sendRequest(tL_help_saveAppLog, null);
-                        z4 = false;
+                        z10 = false;
                     }
-                    AndroidUtilities.runOnUIThread(new u6(i11, i10, str));
+                    AndroidUtilities.runOnUIThread(new q6(i11, i10, str));
                 }
             }
         }
@@ -533,7 +533,7 @@ public class PushListenerController {
         countDownLatch.countDown();
     }
 
-    public static void processRemoteMessage(int i10, String str, long j10) {
+    public static void processRemoteMessage(int i10, String str, long j3) {
         String str2;
         if (i10 == 2) {
             str2 = "FCM";
@@ -545,19 +545,19 @@ public class PushListenerController {
             FileLog.d(str3.concat(" PRE START PROCESSING"));
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        AndroidUtilities.runOnUIThread(new vh(1, j10, str3, str));
+        AndroidUtilities.runOnUIThread(new th(1, j3, str3, str));
         try {
             countDownLatch.await();
         } catch (Throwable unused) {
         }
         if (BuildVars.DEBUG_VERSION) {
-            StringBuilder t6 = android.support.v4.media.a.t("finished ", str3, " service, time = ");
-            t6.append(SystemClock.elapsedRealtime() - elapsedRealtime);
-            FileLog.d(t6.toString());
+            StringBuilder v = a4.a.v("finished ", str3, " service, time = ");
+            v.append(SystemClock.elapsedRealtime() - elapsedRealtime);
+            FileLog.d(v.toString());
         }
     }
 
     public static void sendRegistrationToServer(int i10, String str) {
-        Utilities.stageQueue.postRunnable(new s6(str, i10, 8));
+        Utilities.stageQueue.postRunnable(new o6(str, i10, 8));
     }
 }

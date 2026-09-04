@@ -1,107 +1,165 @@
 package b4;
-public final class d implements r3.k {
-    public final int f1347a;
-    public final h5.w d;
-    public final h5.v e;
-    public r3.m f1350f;
-    public long f1351g;
-    public boolean f1353j;
-    public boolean f1354k;
-    public boolean f1355l;
-    public final e f1348b = new e(null, true);
-    public final h5.w f1349c = new h5.w(2048);
-    public int f1352i = -1;
-    public long h = -1;
 
-    public d(int i10) {
-        this.f1347a = i10;
-        h5.w wVar = new h5.w(10);
-        this.d = wVar;
-        byte[] bArr = wVar.f6987a;
-        this.e = new h5.v(bArr, bArr.length);
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.util.Log;
+import android.util.SparseArray;
+import b2.s;
+import e2.d0;
+import e2.v;
+import java.util.List;
+public final class d implements w3.b {
+    public int f2452a;
+    public int f2453b;
+    public final Object f2454c;
+
+    public d(Context context) {
+        this.f2453b = 0;
+        this.f2454c = context;
     }
 
-    public final int a(r3.l lVar) {
-        int i10 = 0;
-        while (true) {
-            h5.w wVar = this.d;
-            lVar.b(0, 10, wVar.f6987a);
-            wVar.F(0);
-            if (wVar.w() != 4801587) {
-                break;
-            }
-            wVar.G(3);
-            int t6 = wVar.t();
-            i10 += t6 + 10;
-            lVar.i(t6);
-        }
-        lVar.m();
-        lVar.i(i10);
-        if (this.h == -1) {
-            this.h = i10;
+    @Override
+    public int a() {
+        return this.f2452a;
+    }
+
+    @Override
+    public int b() {
+        return this.f2453b;
+    }
+
+    @Override
+    public int c() {
+        int i10 = this.f2452a;
+        if (i10 == -1) {
+            return ((v) this.f2454c).B();
         }
         return i10;
     }
 
-    @Override
-    public final void d(long j10, long j11) {
-        this.f1354k = false;
-        this.f1348b.b();
-        this.f1351g = j11;
+    public int d() {
+        return ((((byte[]) this.f2454c).length - this.f2452a) * 8) - this.f2453b;
     }
 
-    @Override
-    public final void e(r3.m mVar) {
-        this.f1350f = mVar;
-        this.f1348b.c(mVar, new h0(0, 1));
-        mVar.j1();
-    }
-
-    @Override
-    public final int h(r3.l r20, org.telegram.ui.Components.jb r21) {
-        throw new UnsupportedOperationException("Method not decompiled: b4.d.h(r3.l, org.telegram.ui.Components.jb):int");
-    }
-
-    @Override
-    public final boolean i(r3.l lVar) {
-        int a2 = a(lVar);
-        int i10 = a2;
-        int i11 = 0;
-        int i12 = 0;
-        do {
-            h5.w wVar = this.d;
-            r3.h hVar = (r3.h) lVar;
-            hVar.f(wVar.f6987a, 0, 2, false);
-            wVar.F(0);
-            if ((wVar.z() & 65526) == 65520) {
-                i11++;
-                if (i11 >= 4 && i12 > 188) {
-                    return true;
+    public int e(int i10) {
+        byte[] bArr = (byte[]) this.f2454c;
+        if (i10 >= 1 && i10 <= 32 && i10 <= d()) {
+            int i11 = this.f2453b;
+            int i12 = 0;
+            if (i11 > 0) {
+                int i13 = 8 - i11;
+                int min = Math.min(i10, i13);
+                int i14 = i13 - min;
+                int i15 = this.f2452a;
+                int i16 = (((255 >> (8 - min)) << i14) & bArr[i15]) >> i14;
+                i10 -= min;
+                int i17 = this.f2453b + min;
+                this.f2453b = i17;
+                if (i17 == 8) {
+                    this.f2453b = 0;
+                    this.f2452a = i15 + 1;
                 }
-                hVar.f(wVar.f6987a, 0, 4, false);
-                h5.v vVar = this.e;
-                vVar.p(14);
-                int i13 = vVar.i(13);
-                if (i13 <= 6) {
-                    i10++;
-                    hVar.f43247f = 0;
-                    hVar.a(i10, false);
-                } else {
-                    hVar.a(i13 - 6, false);
-                    i12 += i13;
-                }
-            } else {
-                i10++;
-                hVar.f43247f = 0;
-                hVar.a(i10, false);
+                i12 = i16;
             }
-            i11 = 0;
-            i12 = 0;
-        } while (i10 - a2 < 8192);
-        return false;
+            if (i10 > 0) {
+                while (i10 >= 8) {
+                    int i18 = i12 << 8;
+                    int i19 = this.f2452a;
+                    this.f2452a = i19 + 1;
+                    i10 -= 8;
+                    i12 = i18 | (bArr[i19] & 255);
+                }
+                if (i10 > 0) {
+                    int i20 = 8 - i10;
+                    int i21 = ((bArr[this.f2452a] & ((255 >> i20) << i20)) >> i20) | (i12 << i10);
+                    this.f2453b += i10;
+                    return i21;
+                }
+            }
+            return i12;
+        }
+        throw new IllegalArgumentException(String.valueOf(i10));
     }
 
-    @Override
-    public final void release() {
+    public synchronized int f() {
+        PackageInfo packageInfo;
+        if (this.f2452a == 0) {
+            try {
+                packageInfo = w6.b.a((Context) this.f2454c).d(0, "com.google.android.gms");
+            } catch (PackageManager.NameNotFoundException e7) {
+                Log.w("Metadata", "Failed to find package ".concat(e7.toString()));
+                packageInfo = null;
+            }
+            if (packageInfo != null) {
+                this.f2452a = packageInfo.versionCode;
+            }
+        }
+        return this.f2452a;
+    }
+
+    public synchronized int g() {
+        int i10 = this.f2453b;
+        if (i10 != 0) {
+            return i10;
+        }
+        Context context = (Context) this.f2454c;
+        PackageManager packageManager = context.getPackageManager();
+        if (w6.b.a(context).f14823a.getPackageManager().checkPermission("com.google.android.c2dm.permission.SEND", "com.google.android.gms") == -1) {
+            Log.e("Metadata", "Google Play services missing or without correct permission.");
+            return 0;
+        }
+        int i11 = 1;
+        if (!u6.b.d()) {
+            Intent intent = new Intent("com.google.android.c2dm.intent.REGISTER");
+            intent.setPackage("com.google.android.gms");
+            List<ResolveInfo> queryIntentServices = packageManager.queryIntentServices(intent, 0);
+            if (queryIntentServices != null && !queryIntentServices.isEmpty()) {
+                this.f2453b = i11;
+                return i11;
+            }
+        }
+        Intent intent2 = new Intent("com.google.iid.TOKEN_REQUEST");
+        intent2.setPackage("com.google.android.gms");
+        List<ResolveInfo> queryBroadcastReceivers = packageManager.queryBroadcastReceivers(intent2, 0);
+        if (queryBroadcastReceivers != null && !queryBroadcastReceivers.isEmpty()) {
+            i11 = 2;
+            this.f2453b = i11;
+            return i11;
+        }
+        Log.w("Metadata", "Failed to resolve IID implementation package, falling back");
+        if (true == u6.b.d()) {
+            i11 = 2;
+        }
+        this.f2453b = i11;
+        return i11;
+    }
+
+    public d(byte[] bArr) {
+        this.f2454c = bArr;
+    }
+
+    public d(int i10, int i11, SparseArray sparseArray) {
+        this.f2452a = i10;
+        this.f2453b = i11;
+        this.f2454c = sparseArray;
+    }
+
+    public d(f2.e eVar, s sVar) {
+        v vVar = eVar.f9177c;
+        this.f2454c = vVar;
+        vVar.J(12);
+        int B = vVar.B();
+        if ("audio/raw".equals(sVar.f2370r)) {
+            int t10 = d0.t(sVar.L) * sVar.J;
+            if (B == 0 || B % t10 != 0) {
+                e2.a.n("BoxParsers", "Audio sample size mismatch. stsd sample size: " + t10 + ", stsz sample size: " + B);
+                B = t10;
+            }
+        }
+        this.f2452a = B == 0 ? -1 : B;
+        this.f2453b = vVar.B();
     }
 }

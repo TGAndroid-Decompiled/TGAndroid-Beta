@@ -1,23 +1,48 @@
 package org.telegram.messenger;
+public final class v5 implements Runnable {
+    public final int f19205a;
+    public final MediaController f19206b;
 
-import android.location.Location;
-public final class v5 implements q0.a {
-    public final int f18616a;
-    public final LocationController f18617b;
-
-    public v5(LocationController locationController, int i10) {
-        this.f18616a = i10;
-        this.f18617b = locationController;
+    public v5(MediaController mediaController, int i10) {
+        this.f19205a = i10;
+        this.f19206b = mediaController;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f18616a) {
+    public final void run() {
+        switch (this.f19205a) {
             case 0:
-                this.f18617b.lambda$onConnected$4((Integer) obj);
+                this.f19206b.lambda$startRaiseToEarSensors$8();
+                return;
+            case 1:
+                this.f19206b.lambda$playMessage$20();
+                return;
+            case 2:
+                this.f19206b.lambda$setTextureView$15();
+                return;
+            case 3:
+                this.f19206b.lambda$toggleRecordingPause$29();
+                return;
+            case 4:
+                this.f19206b.lambda$toggleRecordingPause$30();
+                return;
+            case 5:
+                this.f19206b.lambda$stopRaiseToEarSensors$9();
+                return;
+            case 6:
+                this.f19206b.lambda$new$2();
+                return;
+            case 7:
+                this.f19206b.lambda$new$3();
+                return;
+            case 8:
+                this.f19206b.lambda$new$4();
+                return;
+            case 9:
+                this.f19206b.lambda$toggleRecordingPause$31();
                 return;
             default:
-                this.f18617b.setLastKnownLocation((Location) obj);
+                this.f19206b.lambda$setCurrentVideoVisible$14();
                 return;
         }
     }

@@ -1,159 +1,197 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.ViewConfiguration;
-import android.view.animation.AnimationUtils;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.Interpolator;
-public final class um0 {
-    public static final float A;
-    public static final float v = (float) (Math.log(0.75d) / Math.log(0.9d));
-    public static final float f29245w = 0.4f;
-    public static final float f29246x = 1.0f - 0.4f;
-    public static final float[] f29247y = new float[101];
-    public static final float f29248z;
-    public int f29249a;
-    public int f29250b;
-    public int f29251c;
-    public int d;
-    public int e;
-    public int f29252f;
-    public int f29253g;
-    public int h;
-    public int f29254i;
-    public int f29255j;
-    public int f29256k;
-    public long f29257l;
-    public int f29258m;
-    public float f29259n;
-    public float f29260o;
-    public float f29261p;
-    public final Interpolator f29263r;
-    public float f29265t;
-    public final float f29266u;
-    public boolean f29262q = true;
-    public final boolean f29264s = true;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+public final class um0 extends kl0 {
+    public final vm0 f30924c;
 
-    static {
-        float f10;
-        float f11;
-        float f12 = 0.0f;
-        for (int i10 = 0; i10 <= 100; i10++) {
-            float f13 = i10 / 100.0f;
-            float f14 = 1.0f;
-            while (true) {
-                float x10 = e2.c.x(f14, f12, 2.0f, f12);
-                float f15 = 1.0f - x10;
-                f10 = 3.0f * x10 * f15;
-                f11 = x10 * x10 * x10;
-                float y10 = e2.c.y(x10, f29246x, f15 * f29245w, f10) + f11;
-                if (Math.abs(y10 - f13) < 1.0E-5d) {
-                    break;
-                } else if (y10 > f13) {
-                    f14 = x10;
-                } else {
-                    f12 = x10;
-                }
-            }
-            f29247y[i10] = f10 + f11;
-        }
-        f29247y[100] = 1.0f;
-        f29248z = 8.0f;
-        A = 1.0f;
-        A = 1.0f / e(1.0f);
+    public um0(vm0 vm0Var) {
+        this.f30924c = vm0Var;
     }
 
-    public um0(Context context, DecelerateInterpolator decelerateInterpolator) {
-        this.f29263r = decelerateInterpolator;
-        this.f29266u = context.getResources().getDisplayMetrics().density * 160.0f * 386.0878f * ViewConfiguration.getScrollFriction();
-    }
-
-    public static float e(float f10) {
-        float w10;
-        float f11 = f10 * f29248z;
-        if (f11 < 1.0f) {
-            w10 = f11 - (1.0f - ((float) Math.exp(-f11)));
-        } else {
-            w10 = e2.c.w(1.0f, (float) Math.exp(1.0f - f11), 0.63212055f, 0.36787945f);
-        }
-        return w10 * A;
-    }
-
-    public final void a() {
-        this.f29255j = this.d;
-        this.f29256k = this.e;
-        this.f29262q = true;
-    }
-
-    public final boolean b() {
-        float interpolation;
-        if (this.f29262q) {
-            return false;
-        }
-        int currentAnimationTimeMillis = (int) (AnimationUtils.currentAnimationTimeMillis() - this.f29257l);
-        int i10 = this.f29258m;
-        if (currentAnimationTimeMillis < i10) {
-            int i11 = this.f29249a;
-            if (i11 != 0) {
-                if (i11 == 1) {
-                    float f10 = currentAnimationTimeMillis / i10;
-                    int i12 = (int) (f10 * 100.0f);
-                    float f11 = i12 / 100.0f;
-                    int i13 = i12 + 1;
-                    float[] fArr = f29247y;
-                    float f12 = fArr[i12];
-                    float w10 = e2.c.w(fArr[i13], f12, (f10 - f11) / ((i13 / 100.0f) - f11), f12);
-                    int i14 = this.f29250b;
-                    int round = Math.round((this.d - i14) * w10) + i14;
-                    this.f29255j = round;
-                    int min = Math.min(round, this.f29253g);
-                    this.f29255j = min;
-                    this.f29255j = Math.max(min, this.f29252f);
-                    int i15 = this.f29251c;
-                    int round2 = Math.round(w10 * (this.e - i15)) + i15;
-                    this.f29256k = round2;
-                    int min2 = Math.min(round2, this.f29254i);
-                    this.f29256k = min2;
-                    int max = Math.max(min2, this.h);
-                    this.f29256k = max;
-                    if (this.f29255j == this.d && max == this.e) {
-                        this.f29262q = true;
-                    }
-                }
-                return true;
-            }
-            float f13 = currentAnimationTimeMillis * this.f29259n;
-            Interpolator interpolator = this.f29263r;
-            if (interpolator == null) {
-                interpolation = e(f13);
-            } else {
-                interpolation = interpolator.getInterpolation(f13);
-            }
-            this.f29255j = Math.round(this.f29260o * interpolation) + this.f29250b;
-            this.f29256k = Math.round(interpolation * this.f29261p) + this.f29251c;
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        int i10 = c1Var.f45742f;
+        if (i10 == 1 || i10 == 2) {
             return true;
         }
-        this.f29255j = this.d;
-        this.f29256k = this.e;
-        this.f29262q = true;
-        return true;
+        return false;
     }
 
-    public final void c(int r19, int r20, int r21, int r22, int r23, int r24, int r25, int r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.um0.c(int, int, int, int, int, int, int, int):void");
+    public final MessageObject E(int i10) {
+        vm0 vm0Var = this.f30924c;
+        int i11 = vm0Var.v;
+        if (i10 >= i11 && i10 < vm0Var.f31371w) {
+            return (MessageObject) vm0Var.f31366e.get(i10 - i11);
+        }
+        int i12 = vm0Var.f31373y;
+        if (i10 >= i12 && i10 < vm0Var.E) {
+            return (MessageObject) vm0Var.f31367f.get(i10 - i12);
+        }
+        return null;
     }
 
-    public final void d(int i10, int i11) {
-        this.f29249a = 0;
-        this.f29262q = false;
-        this.f29258m = i11;
-        this.f29257l = AnimationUtils.currentAnimationTimeMillis();
-        this.f29250b = 0;
-        this.f29251c = 0;
-        this.d = 0;
-        this.e = i10;
-        this.f29260o = 0;
-        this.f29261p = i10;
-        this.f29259n = 1.0f / this.f29258m;
+    @Override
+    public final int h() {
+        return this.f30924c.f31369r;
+    }
+
+    @Override
+    public final int j(int i10) {
+        vm0 vm0Var = this.f30924c;
+        if (i10 != vm0Var.f31370s && i10 != vm0Var.f31372x) {
+            MessageObject E = E(i10);
+            if (E == null || !E.isMusic()) {
+                return 1;
+            }
+            return 2;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        boolean z10;
+        int id2;
+        boolean z11;
+        int id3;
+        boolean z12;
+        int i11;
+        int i12;
+        vm0 vm0Var = this.f30924c;
+        org.telegram.ui.p10 p10Var = vm0Var.J;
+        int i13 = c1Var.f45742f;
+        View view = c1Var.f45738a;
+        boolean z13 = false;
+        if (i13 == 0) {
+            org.telegram.ui.Cells.u3 u3Var = (org.telegram.ui.Cells.u3) view;
+            if (i10 == vm0Var.f31370s) {
+                String string = LocaleController.getString(R.string.Downloading);
+                if (u3Var.getText().equals(string)) {
+                    if (vm0Var.H) {
+                        i12 = R.string.PauseAll;
+                    } else {
+                        i12 = R.string.ResumeAll;
+                    }
+                    String string2 = LocaleController.getString(i12);
+                    boolean z14 = vm0Var.H;
+                    org.telegram.ui.Cells.t3 t3Var = u3Var.f23317b;
+                    t3Var.c(string2, true, z14);
+                    t3Var.setVisibility(0);
+                    return;
+                }
+                if (vm0Var.H) {
+                    i11 = R.string.PauseAll;
+                } else {
+                    i11 = R.string.ResumeAll;
+                }
+                u3Var.c(string, LocaleController.getString(i11), new tm0(this));
+                return;
+            } else if (i10 == vm0Var.f31372x) {
+                u3Var.c(LocaleController.getString(R.string.RecentlyDownloaded), LocaleController.getString(R.string.Settings), new x70(this, 11));
+                return;
+            } else {
+                return;
+            }
+        }
+        MessageObject E = E(i10);
+        if (E != null) {
+            if (vm0Var.I.g() && i10 >= vm0Var.v && i10 < vm0Var.f31371w) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            float f7 = 0.0f;
+            if (i13 == 1) {
+                rm0 rm0Var = (rm0) view;
+                rm0Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20663d6, false));
+                org.telegram.ui.Cells.j7 j7Var = rm0Var.f30052a;
+                if (j7Var.getMessage() == null) {
+                    id3 = 0;
+                } else {
+                    id3 = j7Var.getMessage().getId();
+                }
+                j7Var.c(E, true);
+                int id4 = j7Var.getMessage().getId();
+                p10Var.f39381a = j7Var.getMessage().getDialogId();
+                p10Var.f39382b = id4;
+                boolean b10 = vm0Var.I.b(p10Var);
+                if (id3 == E.getId()) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                j7Var.b(b10, z12);
+                if (id3 == E.getId()) {
+                    z13 = true;
+                }
+                if (j7Var.O != z10) {
+                    j7Var.O = z10;
+                    if (!z13) {
+                        if (z10) {
+                            f7 = 1.0f;
+                        }
+                        j7Var.P = f7;
+                    }
+                    j7Var.invalidate();
+                }
+            } else if (i13 == 2) {
+                org.telegram.ui.Cells.i7 i7Var = (org.telegram.ui.Cells.i7) view;
+                if (i7Var.getMessage() == null) {
+                    id2 = 0;
+                } else {
+                    id2 = i7Var.getMessage().getId();
+                }
+                i7Var.f(E, true);
+                int id5 = i7Var.getMessage().getId();
+                p10Var.f39381a = i7Var.getMessage().getDialogId();
+                p10Var.f39382b = id5;
+                boolean b11 = vm0Var.I.b(p10Var);
+                if (id2 == E.getId()) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                i7Var.e(b11, z11);
+                if (id2 == E.getId()) {
+                    z13 = true;
+                }
+                if (i7Var.f22110d0 != z10) {
+                    i7Var.f22110d0 = z10;
+                    if (!z13) {
+                        if (z10) {
+                            f7 = 1.0f;
+                        }
+                        i7Var.f22112e0 = f7;
+                    }
+                    i7Var.invalidate();
+                }
+            }
+        }
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        FrameLayout frameLayout;
+        if (i10 == 0) {
+            frameLayout = new org.telegram.ui.Cells.u3(viewGroup.getContext(), null);
+        } else if (i10 == 1) {
+            Context context = viewGroup.getContext();
+            ?? frameLayout2 = new FrameLayout(context);
+            org.telegram.ui.Cells.j7 j7Var = new org.telegram.ui.Cells.j7(context, 2, null);
+            frameLayout2.f30052a = j7Var;
+            j7Var.f22189r.setVisibility(8);
+            frameLayout2.addView(j7Var);
+            frameLayout = frameLayout2;
+        } else {
+            frameLayout = new org.telegram.ui.Cells.i7(viewGroup.getContext());
+        }
+        frameLayout.setLayoutParams(new s4.p0(-1, -2));
+        return new s4.c1(frameLayout);
     }
 }

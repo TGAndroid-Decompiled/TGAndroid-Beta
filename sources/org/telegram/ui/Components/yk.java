@@ -1,38 +1,24 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.widget.TextView;
-public final class yk extends TextView {
-    public final int f31042a;
-    public float f31043b;
-    public float f31044c;
+import android.view.View;
+public final class yk extends s4.d0 {
+    public final ig.e0 f32939r;
 
-    public yk(Context context, int i10) {
+    public yk(ig.e0 e0Var, Context context) {
         super(context);
-        this.f31042a = i10;
+        this.f32939r = e0Var;
     }
 
     @Override
-    public final float getTranslationX() {
-        switch (this.f31042a) {
-            case 0:
-                return this.f31043b;
-            default:
-                return this.f31043b;
-        }
+    public final int k(int i10, View view) {
+        int k10 = super.k(i10, view);
+        gl glVar = (gl) this.f32939r.V;
+        return k10 - (glVar.P.getPaddingTop() - (glVar.A0 - glVar.f26458z0));
     }
 
     @Override
-    public final void setTranslationX(float f10) {
-        switch (this.f31042a) {
-            case 0:
-                this.f31043b = f10;
-                setTranslationY(this.f31044c + f10);
-                return;
-            default:
-                this.f31043b = f10;
-                setTranslationY(this.f31044c + f10);
-                return;
-        }
+    public final int m(int i10) {
+        return super.m(i10) * 4;
     }
 }

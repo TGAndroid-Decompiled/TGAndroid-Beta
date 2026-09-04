@@ -1,54 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class uw extends FrameLayout {
-    public final Paint f29311a;
-    public final kz f29312b;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.FileLog;
+public final class uw extends s4.s {
+    public final kz Q;
 
-    public uw(kz kzVar, Context context) {
-        super(context);
-        this.f29312b = kzVar;
-        this.f29311a = new Paint();
+    public uw(kz kzVar) {
+        super(5);
+        this.Q = kzVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        kz kzVar = this.f29312b;
-        tw twVar = kzVar.f26500y0;
-        float dp = AndroidUtilities.dp(50.0f) * kzVar.f26472q1.p();
-        if (dp > getMeasuredHeight()) {
-            return;
+    public final int o0(int i10, pf.e eVar, s4.z0 z0Var) {
+        int o02 = super.o0(i10, eVar, z0Var);
+        kz kzVar = this.Q;
+        if (o02 != 0 && kzVar.D0.getScrollState() == 1) {
+            kzVar.X1 = false;
+            kzVar.a0();
         }
-        canvas.save();
-        if (dp != 0.0f) {
-            canvas.clipRect(0.0f, dp, getMeasuredWidth(), getMeasuredHeight());
+        if (kzVar.T0 == null) {
+            hg.g1 g1Var = new hg.g1(kzVar, kzVar.f27932c1, kzVar.f27986t1.a(), kzVar.f27986t1.f(), 1);
+            kzVar.T0 = g1Var;
+            g1Var.a();
         }
-        int A = kzVar.A(org.telegram.ui.ActionBar.j6.He);
-        Paint paint = this.f29311a;
-        paint.setColor(A);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), twVar.getExpandedOffset() + AndroidUtilities.dp(36.0f), paint);
-        super.dispatchDraw(canvas);
-        if (twVar.f27615s != null) {
-            canvas.save();
-            float f10 = twVar.W - twVar.f27595a0;
-            float f11 = twVar.v;
-            if (f11 > 0.0f) {
-                f10 = ((twVar.f27615s.getX() - twVar.getScrollX()) * twVar.v) + ((1.0f - f11) * f10);
-            }
-            canvas.translate(f10, 0.0f);
-            twVar.f27615s.draw(canvas);
-            canvas.restore();
-        }
-        canvas.restore();
+        kzVar.T0.b();
+        return o02;
     }
 
     @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        super.onLayout(z4, i10, i11, i12, i13);
-        this.f29312b.a0();
+    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
+        try {
+            ki.p pVar = new ki.p(recyclerView.getContext(), 2);
+            pVar.f45906a = i10;
+            w0(pVar);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+        }
     }
 }

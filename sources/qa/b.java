@@ -1,10 +1,15 @@
 package qa;
+public final class b implements Runnable {
+    public final int f44248a;
+    public final c f44249b;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-@Retention(RetentionPolicy.RUNTIME)
-public @interface b {
-    String[] alternate() default {};
+    public b(c cVar, int i10) {
+        this.f44248a = i10;
+        this.f44249b = cVar;
+    }
 
-    String value();
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: qa.b.run():void");
+    }
 }

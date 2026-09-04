@@ -1,42 +1,66 @@
 package ng;
 
-import android.graphics.RenderNode;
-import g.x;
-public final class h {
-    public final RenderNode f14999a;
-    public final g f15000b;
-    public final x f15001c = new Object();
-    public long d = 0;
-    public int e;
-    public int f15002f;
+import android.graphics.Canvas;
+import android.os.Bundle;
+import android.text.TextPaint;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import java.util.Locale;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.fo0;
+import org.telegram.ui.Components.s6;
+public final class h extends FrameLayout {
+    public fo0 f16737a;
+    public float f16738b;
+    public float f16739c;
+    public float d;
+    public s6 f16740e;
+    public String f16741f;
+    public TextPaint h;
+    public int f16742n;
 
-    public h(RenderNode renderNode, g gVar) {
-        this.f14999a = renderNode;
-        this.f15000b = gVar;
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        this.f16737a.invalidate();
     }
 
-    public final void a() {
-        long j10;
-        int width = this.f14999a.getWidth();
-        int height = this.f14999a.getHeight();
-        x xVar = this.f15001c;
-        xVar.f6326a = 0L;
-        boolean z4 = false;
-        xVar.f6327b = false;
-        g gVar = this.f15000b;
-        gVar.D1(xVar);
-        if (xVar.f6327b) {
-            j10 = -1;
-        } else {
-            j10 = xVar.f6326a;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        TextPaint textPaint = this.h;
+        textPaint.setColor(j6.w0(null, j6.G6, false));
+        canvas.drawText(this.f16741f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), textPaint);
+        textPaint.setColor(j6.w0(null, j6.I6, false));
+        String format = String.format(Locale.ROOT, "%.2f", Float.valueOf(this.d));
+        canvas.drawText(format, (getMeasuredWidth() - AndroidUtilities.dp(8.0f)) - textPaint.measureText(format), this.f16737a.getY() + AndroidUtilities.dp(23.0f), textPaint);
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        this.f16737a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        int size = View.MeasureSpec.getSize(i10);
+        if (this.f16742n != size) {
+            fo0 fo0Var = this.f16737a;
+            float floatValue = ((Float) this.f16740e.get(null)).floatValue();
+            float f7 = this.f16738b;
+            fo0Var.setProgress((floatValue - f7) / (this.f16739c - f7));
+            this.f16742n = size;
         }
-        z4 = (this.f14999a.hasDisplayList() && width == this.e && height == this.f15002f && j10 == this.d && j10 != -1) ? true : true;
-        this.e = width;
-        this.f15002f = height;
-        this.d = j10;
-        if (z4) {
-            gVar.D(this.f14999a.beginRecording());
-            this.f14999a.endRecording();
+    }
+
+    @Override
+    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
+        if (!super.performAccessibilityAction(i10, bundle) && !this.f16737a.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
+            return false;
         }
+        return true;
     }
 }

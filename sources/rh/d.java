@@ -1,69 +1,100 @@
 package rh;
 
-import android.app.Activity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.tgnet.tl.TL_payments;
-public final class d implements Runnable {
-    public final int f43546a;
-    public final j f43547b;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.pr;
+public final class d extends View {
+    public final Drawable f45614a;
+    public final le.b f45615b;
+    public final int f45616c;
+    public e d;
 
-    public d(j jVar, int i10) {
-        this.f43546a = i10;
-        this.f43547b = jVar;
+    public d(Context context, int i10) {
+        super(context);
+        this.f45615b = new le.b(this, pr.h, 380L);
+        this.f45616c = i10;
+        Drawable mutate = context.getResources().getDrawable(R.drawable.outline_poll_attach_24).mutate();
+        this.f45614a = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(j6.w0(null, j6.f20863o7, false), PorterDuff.Mode.SRC_IN));
+    }
+
+    public final void a(e eVar, boolean z10) {
+        boolean z11;
+        e eVar2;
+        e eVar3;
+        if (eVar != null) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.f45615b.a(z11, z10);
+        if (isAttachedToWindow() && (eVar3 = this.d) != null) {
+            eVar3.b();
+        }
+        this.d = eVar;
+        if (isAttachedToWindow() && (eVar2 = this.d) != null) {
+            eVar2.a(this);
+        }
     }
 
     @Override
-    public final void run() {
-        int i10;
-        String f10;
-        int i11;
-        switch (this.f43546a) {
-            case 0:
-                j jVar = this.f43547b;
-                lh.o oVar = jVar.Q;
-                if (jVar.V.end_date == 0) {
-                    f10 = null;
-                } else {
-                    f10 = kg.n.f((i10 - jVar.getConnectionsManager().getCurrentTime()) * 1000);
-                }
-                oVar.f(f10, true);
-                if (jVar.V.end_date != 0 && jVar.Y) {
-                    AndroidUtilities.runOnUIThread(jVar.S, 1000L);
-                    return;
-                }
-                return;
-            case 1:
-                TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
-                j jVar2 = this.f43547b;
-                updatestarrefprogram.bot = jVar2.getMessagesController().getInputUser(jVar2.M);
-                TL_payments.starRefProgram starrefprogram = jVar2.V;
-                updatestarrefprogram.commission_permille = starrefprogram.commission_permille;
-                int i12 = starrefprogram.duration_months;
-                updatestarrefprogram.duration_months = i12;
-                if (i12 > 0) {
-                    updatestarrefprogram.flags |= 1;
-                    starrefprogram.duration_months = i12 | 1;
-                } else {
-                    updatestarrefprogram.flags &= -2;
-                    starrefprogram.duration_months = i12 & (-2);
-                }
-                org.telegram.ui.ActionBar.d2 d2Var = new org.telegram.ui.ActionBar.d2(jVar2.getParentActivity(), 3, null);
-                d2Var.q(150L);
-                jVar2.getConnectionsManager().sendRequest(updatestarrefprogram, new b(jVar2, d2Var, 1));
-                return;
-            default:
-                j jVar3 = this.f43547b;
-                Activity parentActivity = jVar3.getParentActivity();
-                if (!jVar3.T && jVar3.V.end_date == 0) {
-                    i11 = R.string.AffiliateProgramStartInfoLink;
-                } else {
-                    i11 = R.string.AffiliateProgramUpdateInfoLink;
-                }
-                ze.d.s(parentActivity, LocaleController.getString(i11));
-                return;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        e eVar = this.d;
+        if (eVar != null) {
+            eVar.a(this);
         }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        e eVar = this.d;
+        if (eVar != null) {
+            eVar.b();
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float width = getWidth() / 2.0f;
+        float height = getHeight() / 2.0f;
+        float f7 = this.f45615b.f15368e;
+        if (f7 < 1.0f) {
+            canvas.save();
+            float f10 = 1.0f - f7;
+            canvas.scale(f10, f10, width, height);
+            this.f45614a.draw(canvas);
+            canvas.restore();
+        }
+        if (f7 > 0.0f) {
+            float f11 = this.f45616c;
+            int dp = AndroidUtilities.dp(f11);
+            canvas.save();
+            canvas.translate((getWidth() - dp) / 2, (getHeight() - dp) / 2);
+            canvas.scale(f7, f7, AndroidUtilities.dp(f11) / 2.0f, AndroidUtilities.dp(f11) / 2.0f);
+            e eVar = this.d;
+            if (eVar != null) {
+                eVar.c(canvas, AndroidUtilities.dp(f11), AndroidUtilities.dp(f11));
+            }
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        int dp = AndroidUtilities.dp(24.0f);
+        int i14 = (i10 - dp) / 2;
+        int i15 = (i11 - dp) / 2;
+        this.f45614a.setBounds(i14, i15, i14 + dp, dp + i15);
     }
 }

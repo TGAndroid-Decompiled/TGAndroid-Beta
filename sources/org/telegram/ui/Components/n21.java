@@ -7,46 +7,46 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class n21 extends AnimatorListenerAdapter {
-    public final boolean f27174a;
-    public final w21 f27175b;
+    public final boolean f28603a;
+    public final w21 f28604b;
 
-    public n21(w21 w21Var, boolean z4) {
-        this.f27175b = w21Var;
-        this.f27174a = z4;
+    public n21(w21 w21Var, boolean z10) {
+        this.f28604b = w21Var;
+        this.f28603a = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        float f10;
+        float f7;
         int i10;
-        w21 w21Var = this.f27175b;
-        long j10 = w21Var.f30126c;
-        if (w21Var.R == animator) {
-            boolean z4 = this.f27174a;
-            if (z4) {
-                f10 = 1.0f;
+        w21 w21Var = this.f28604b;
+        long j3 = w21Var.f32095c;
+        if (w21Var.U == animator) {
+            boolean z10 = this.f28603a;
+            if (z10) {
+                f7 = 1.0f;
             } else {
-                f10 = 0.0f;
+                f7 = 0.0f;
             }
-            w21Var.O = f10;
+            w21Var.R = f7;
             w21Var.n();
-            w21Var.P = false;
-            ImageView imageView = w21Var.B;
-            if (w21Var.M) {
+            w21Var.S = false;
+            ImageView imageView = w21Var.E;
+            if (w21Var.P) {
                 i10 = R.drawable.menu_sidebar_top;
             } else {
                 i10 = R.drawable.menu_sidebar_bottom;
             }
             imageView.setImageResource(i10);
-            w21Var.R = null;
-            MessagesController.getInstance(w21Var.f30124b).getMainSettings().edit().putBoolean(android.support.v4.media.a.n(j10, "topicssidetabs"), w21Var.N).putBoolean(android.support.v4.media.a.n(j10, "topicssidetabsb"), w21Var.M).apply();
-            Boolean bool = w21Var.Q;
-            if (bool != null && z4 != bool.booleanValue()) {
-                boolean booleanValue = w21Var.Q.booleanValue();
-                w21Var.Q = null;
+            w21Var.U = null;
+            MessagesController.getInstance(w21Var.f32093b).getMainSettings().edit().putBoolean(a4.a.o(j3, "topicssidetabs"), w21Var.Q).putBoolean(a4.a.o(j3, "topicssidetabsb"), w21Var.P).apply();
+            Boolean bool = w21Var.T;
+            if (bool != null && z10 != bool.booleanValue()) {
+                boolean booleanValue = w21Var.T.booleanValue();
+                w21Var.T = null;
                 w21Var.d(booleanValue);
             }
-            AndroidUtilities.runOnUIThread(new nq0(this, 19));
+            AndroidUtilities.runOnUIThread(new jq0(this, 19));
         }
     }
 }

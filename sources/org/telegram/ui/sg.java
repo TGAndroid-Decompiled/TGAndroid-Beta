@@ -1,45 +1,27 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
 public final class sg implements Runnable {
-    public final int f38220a;
-    public final org.telegram.ui.ActionBar.d2[] f38221b;
+    public final int f40439a;
+    public final co f40440b;
+    public final TLRPC.User f40441c;
 
-    public sg(org.telegram.ui.ActionBar.d2[] d2VarArr, int i10) {
-        this.f38220a = i10;
-        this.f38221b = d2VarArr;
+    public sg(co coVar, TLRPC.User user, int i10) {
+        this.f40439a = i10;
+        this.f40440b = coVar;
+        this.f40441c = user;
     }
 
     @Override
     public final void run() {
-        switch (this.f38220a) {
+        switch (this.f40439a) {
             case 0:
-                org.telegram.ui.ActionBar.d2[] d2VarArr = this.f38221b;
-                try {
-                    d2VarArr[0].dismiss();
-                } catch (Throwable unused) {
-                }
-                d2VarArr[0] = null;
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.d2[] d2VarArr2 = this.f38221b;
-                try {
-                    d2VarArr2[0].dismiss();
-                } catch (Throwable unused2) {
-                }
-                d2VarArr2[0] = null;
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new sg(this.f38221b, 4));
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new sg(this.f38221b, 5));
-                return;
-            case 4:
-                this.f38221b[0].dismiss();
+                co coVar = this.f40440b;
+                coVar.getClass();
+                coVar.presentFragment(co.R9(this.f40441c.f20016id));
                 return;
             default:
-                this.f38221b[0].dismiss();
+                this.f40440b.ma(this.f40441c);
                 return;
         }
     }

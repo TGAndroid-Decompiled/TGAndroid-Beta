@@ -5,13 +5,13 @@ public class SoftwareVideoDecoderFactory implements VideoDecoderFactory {
     private static final String TAG = "SoftwareVideoDecoderFactory";
     private final long nativeFactory = nativeCreateFactory();
 
-    public static native long nativeCreate(long j10, long j11, VideoCodecInfo videoCodecInfo);
+    public static native long nativeCreate(long j3, long j10, VideoCodecInfo videoCodecInfo);
 
     private static native long nativeCreateFactory();
 
-    private static native List<VideoCodecInfo> nativeGetSupportedCodecs(long j10);
+    private static native List<VideoCodecInfo> nativeGetSupportedCodecs(long j3);
 
-    private static native boolean nativeIsSupported(long j10, VideoCodecInfo videoCodecInfo);
+    private static native boolean nativeIsSupported(long j3, VideoCodecInfo videoCodecInfo);
 
     @Override
     public VideoDecoder createDecoder(final VideoCodecInfo videoCodecInfo) {
@@ -21,8 +21,8 @@ public class SoftwareVideoDecoderFactory implements VideoDecoderFactory {
         }
         return new WrappedNativeVideoDecoder() {
             @Override
-            public long createNative(long j10) {
-                return SoftwareVideoDecoderFactory.nativeCreate(SoftwareVideoDecoderFactory.this.nativeFactory, j10, videoCodecInfo);
+            public long createNative(long j3) {
+                return SoftwareVideoDecoderFactory.nativeCreate(SoftwareVideoDecoderFactory.this.nativeFactory, j3, videoCodecInfo);
             }
         };
     }

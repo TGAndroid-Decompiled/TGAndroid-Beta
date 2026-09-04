@@ -8,8 +8,8 @@ public class DefaultVideoEncoderFactory implements VideoEncoderFactory {
     private final VideoEncoderFactory hardwareVideoEncoderFactory;
     private final VideoEncoderFactory softwareVideoEncoderFactory = new SoftwareVideoEncoderFactory();
 
-    public DefaultVideoEncoderFactory(EglBase.Context context, boolean z4, boolean z10) {
-        this.hardwareVideoEncoderFactory = new HardwareVideoEncoderFactory(context, z4, z10);
+    public DefaultVideoEncoderFactory(EglBase.Context context, boolean z10, boolean z11) {
+        this.hardwareVideoEncoderFactory = new HardwareVideoEncoderFactory(context, z10, z11);
     }
 
     @Override

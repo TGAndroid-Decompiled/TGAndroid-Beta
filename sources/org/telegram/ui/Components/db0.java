@@ -1,28 +1,59 @@
 package org.telegram.ui.Components;
-public final class db0 implements Runnable {
-    public final int f24240a;
-    public final rb0 f24241b;
 
-    public db0(rb0 rb0Var, int i10) {
-        this.f24240a = i10;
-        this.f24241b = rb0Var;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+public final class db0 extends s4.t {
+    public final qb0 S;
+
+    public db0(qb0 qb0Var) {
+        super(true);
+        this.S = qb0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f24240a) {
-            case 0:
-                rb0 rb0Var = this.f24241b;
-                jb0 jb0Var = rb0Var.f28443f;
-                if (rb0Var.W.d.webpageTop) {
-                    jb0Var.w0(-jb0Var.computeVerticalScrollOffset(), 250, wh.n.V);
-                    return;
+    public final boolean B1(int i10) {
+        byte b10;
+        qb0 qb0Var = this.S;
+        MessageObject messageObject = qb0Var.f29666r.previewMessages.get(i10);
+        MessageObject.GroupedMessages a2 = qb0.a(qb0Var, messageObject);
+        if (a2 != null) {
+            MessageObject.GroupedMessagePosition position = a2.getPosition(messageObject);
+            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
+                int size = a2.posArray.size();
+                for (int i11 = 0; i11 < size; i11++) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = a2.posArray.get(i11);
+                    if (groupedMessagePosition != position) {
+                        byte b11 = groupedMessagePosition.minY;
+                        byte b12 = position.minY;
+                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
+                            return true;
+                        }
+                    }
                 }
-                jb0Var.w0(jb0Var.computeVerticalScrollRange() - (jb0Var.computeVerticalScrollExtent() + jb0Var.computeVerticalScrollOffset()), 250, wh.n.V);
-                return;
-            default:
-                this.f24241b.g(true, false);
-                return;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean C1(View view) {
+        return false;
+    }
+
+    @Override
+    public final void b0(pf.e eVar, s4.z0 z0Var) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            super.b0(eVar, z0Var);
+            return;
+        }
+        try {
+            super.b0(eVar, z0Var);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+            AndroidUtilities.runOnUIThread(new wp(this, 28));
         }
     }
 }

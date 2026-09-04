@@ -1,14 +1,14 @@
 package r0;
-public class a1 extends z0 {
+public final class a1 extends z0 {
     public a1() {
     }
 
     @Override
-    public void c(int i10, i0.b bVar) {
-        this.f43185c.setInsets(k1.a(i10), bVar.d());
+    public void c(int i10, i0.c cVar) {
+        this.f44748c.setInsets(k1.a(i10), cVar.d());
     }
 
-    public a1(m1 m1Var) {
-        super(m1Var);
+    public a1(l1 l1Var) {
+        super(l1Var);
     }
 }

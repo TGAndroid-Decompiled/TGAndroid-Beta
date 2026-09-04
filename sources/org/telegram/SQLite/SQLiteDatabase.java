@@ -3,7 +3,7 @@ package org.telegram.SQLite;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-import vh.w2;
+import org.telegram.ui.Cells.p6;
 public class SQLiteDatabase {
     private boolean inTransaction;
     private boolean isOpen = true;
@@ -25,7 +25,7 @@ public class SQLiteDatabase {
         beginTransaction(this.sqliteHandle);
     }
 
-    public native void beginTransaction(long j10);
+    public native void beginTransaction(long j3);
 
     public void checkOpened() {
         if (this.isOpen) {
@@ -39,16 +39,16 @@ public class SQLiteDatabase {
             try {
                 commitTransaction();
                 closedb(this.sqliteHandle);
-            } catch (SQLiteException e) {
+            } catch (SQLiteException e7) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e(e.getMessage(), e);
+                    FileLog.e(e7.getMessage(), e7);
                 }
             }
             this.isOpen = false;
         }
     }
 
-    public native void closedb(long j10);
+    public native void closedb(long j3);
 
     public void commitTransaction() {
         if (this.inTransaction) {
@@ -57,7 +57,7 @@ public class SQLiteDatabase {
         }
     }
 
-    public native void commitTransaction(long j10);
+    public native void commitTransaction(long j3);
 
     public SQLitePreparedStatement executeFast(String str) {
         return new SQLitePreparedStatement(this, str);
@@ -79,15 +79,15 @@ public class SQLiteDatabase {
 
     public void explainQuery(String str, Object... objArr) {
         checkOpened();
-        SQLiteCursor query = new SQLitePreparedStatement(this, w2.e("EXPLAIN QUERY PLAN ", str)).query(objArr);
+        SQLiteCursor query = new SQLitePreparedStatement(this, p6.i("EXPLAIN QUERY PLAN ", str)).query(objArr);
         while (query.next()) {
             int columnCount = query.getColumnCount();
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb2 = new StringBuilder();
             for (int i10 = 0; i10 < columnCount; i10++) {
-                sb.append(query.stringValue(i10));
-                sb.append(", ");
+                sb2.append(query.stringValue(i10));
+                sb2.append(", ");
             }
-            FileLog.d("EXPLAIN QUERY PLAN " + sb.toString());
+            FileLog.d("EXPLAIN QUERY PLAN " + sb2.toString());
         }
         query.dispose();
     }

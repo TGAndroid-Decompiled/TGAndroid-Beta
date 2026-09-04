@@ -1,48 +1,29 @@
 package k2;
 
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-public final class c extends Drawable.ConstantState {
-    public final Drawable.ConstantState f9621a;
+import android.content.Context;
+import android.media.AudioDeviceCallback;
+import android.media.AudioDeviceInfo;
+import di.g7;
+import ji.u4;
+public final class c extends AudioDeviceCallback {
+    public final g7 f14521a;
 
-    public c(Drawable.ConstantState constantState) {
-        this.f9621a = constantState;
+    public c(g7 g7Var) {
+        this.f14521a = g7Var;
     }
 
     @Override
-    public final boolean canApplyTheme() {
-        return this.f9621a.canApplyTheme();
+    public final void onAudioDevicesAdded(AudioDeviceInfo[] audioDeviceInfoArr) {
+        g7 g7Var = this.f14521a;
+        g7Var.a(b.c((Context) g7Var.f7265b, (b2.e) g7Var.f7271j, (u4) g7Var.f7270i));
     }
 
     @Override
-    public final int getChangingConfigurations() {
-        return this.f9621a.getChangingConfigurations();
-    }
-
-    @Override
-    public final Drawable newDrawable() {
-        d dVar = new d(null);
-        Drawable newDrawable = this.f9621a.newDrawable();
-        dVar.f9626a = newDrawable;
-        newDrawable.setCallback(dVar.d);
-        return dVar;
-    }
-
-    @Override
-    public final Drawable newDrawable(Resources resources) {
-        d dVar = new d(null);
-        Drawable newDrawable = this.f9621a.newDrawable(resources);
-        dVar.f9626a = newDrawable;
-        newDrawable.setCallback(dVar.d);
-        return dVar;
-    }
-
-    @Override
-    public final Drawable newDrawable(Resources resources, Resources.Theme theme) {
-        d dVar = new d(null);
-        Drawable newDrawable = this.f9621a.newDrawable(resources, theme);
-        dVar.f9626a = newDrawable;
-        newDrawable.setCallback(dVar.d);
-        return dVar;
+    public final void onAudioDevicesRemoved(AudioDeviceInfo[] audioDeviceInfoArr) {
+        if (e2.d0.k(audioDeviceInfoArr, (u4) this.f14521a.f7270i)) {
+            this.f14521a.f7270i = null;
+        }
+        g7 g7Var = this.f14521a;
+        g7Var.a(b.c((Context) g7Var.f7265b, (b2.e) g7Var.f7271j, (u4) g7Var.f7270i));
     }
 }

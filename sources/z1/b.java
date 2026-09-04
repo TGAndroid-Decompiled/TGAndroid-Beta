@@ -1,15 +1,12 @@
 package z1;
 
-import a4.k;
 import android.app.Notification;
-import android.support.v4.media.session.MediaSessionCompat$Token;
-import e0.b0;
-public final class b extends b0 {
-    public int[] e;
-    public MediaSessionCompat$Token f47333f;
-
-    @Override
-    public final void b(k kVar) {
-        a.d((Notification.Builder) kVar.f86c, a.b(a.a(), this.e, this.f47333f));
+import android.app.PendingIntent;
+public abstract class b {
+    public static Notification.MediaStyle a(Notification.MediaStyle mediaStyle, CharSequence charSequence, int i10, PendingIntent pendingIntent, Boolean bool) {
+        if (bool.booleanValue()) {
+            mediaStyle.setRemotePlaybackInfo(charSequence, i10, pendingIntent);
+        }
+        return mediaStyle;
     }
 }

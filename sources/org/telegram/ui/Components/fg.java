@@ -1,223 +1,286 @@
 package org.telegram.ui.Components;
 
-import android.app.Dialog;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.util.SparseArray;
-import android.widget.EditText;
-import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class fg implements Runnable {
-    public final int f24880a;
-    public final Object f24881b;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.PhotoViewer;
+public final class fg implements org.telegram.ui.av0 {
+    public boolean f26033a;
+    public final Object f26034b;
+    public final Object f26035c;
+    public final MediaController.PhotoEntry d;
+    public final hg f26036e;
 
-    public fg(Object obj, int i10) {
-        this.f24880a = i10;
-        this.f24881b = obj;
+    public fg(hg hgVar, Object obj, Object obj2, MediaController.PhotoEntry photoEntry) {
+        this.f26036e = hgVar;
+        this.f26034b = obj;
+        this.f26035c = obj2;
+        this.d = photoEntry;
     }
 
     @Override
-    public final void run() {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout;
-        int i10 = this.f24880a;
-        Object obj = this.f24881b;
-        switch (i10) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = ((ig) obj).S;
-                if (!MediaController.getInstance().isRecordingPaused()) {
-                    MessagesController.getGlobalMainSettings().edit().putInt("voicepausehint", 3).apply();
-                }
-                if (chatActivityEnterView.f22787o4) {
-                    chatActivityEnterView.F3 = true;
-                }
-                MediaController.getInstance().toggleRecordingPause(chatActivityEnterView.L);
-                chatActivityEnterView.V2.f1(0);
-                ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f22742g1;
-                if (slideTextView != null) {
-                    slideTextView.setEnabled(false);
-                    return;
-                }
-                return;
-            case 1:
-                qc qcVar = (qc) obj;
-                new eg.o1(qcVar.W(), 42, qcVar.f28142c).show();
-                return;
-            case 2:
-                AndroidUtilities.removeFromParent((ph.f3) obj);
-                return;
-            case 3:
-                AndroidUtilities.showKeyboard((EditText) obj);
-                return;
-            case 4:
-                SparseArray sparseArray = l5.f26574q;
-                ((l5) obj).v();
-                return;
-            case 5:
-                h5 h5Var = (h5) obj;
-                ArrayList arrayList = new ArrayList(h5Var.f25316c);
-                h5Var.f25316c.clear();
-                MessagesStorage.getInstance(h5Var.e).getStorageQueue().postRunnable(new e5(h5Var, arrayList, 0));
-                h5Var.d = null;
-                return;
-            case 6:
-                ((j5) obj).invalidate();
-                return;
-            case 7:
-                ((o1.j) obj).f();
-                return;
-            case 8:
-                k6 k6Var = (k6) obj;
-                CharSequence charSequence = k6Var.f26172f;
-                if (charSequence != null) {
-                    k6Var.c(charSequence, k6Var.h, true);
-                    k6Var.f26172f = null;
-                    k6Var.h = false;
-                    return;
-                }
-                return;
-            case 9:
-                ((b8) obj).f23578n.f23855n.setVisibility(8);
-                return;
-            case 10:
-                ((h8) obj).f25335c.i1();
-                return;
-            case 11:
-                x9 x9Var = (x9) obj;
-                x9Var.f30556o = true;
-                x9Var.d.invalidate();
-                return;
-            case 12:
-                w9 w9Var = (w9) obj;
-                if (!w9Var.f30185a) {
-                    x9 x9Var2 = w9Var.d;
-                    Bitmap[] bitmapArr = x9Var2.f30549g;
-                    Canvas[] canvasArr = x9Var2.h;
-                    x9Var2.f30549g = x9Var2.f30548f;
-                    x9Var2.h = x9Var2.f30550i;
-                    x9Var2.f30548f = bitmapArr;
-                    x9Var2.f30550i = canvasArr;
-                    x9Var2.f30552k = false;
-                    eg.i0 i0Var = x9Var2.d;
-                    if (i0Var != null) {
-                        i0Var.invalidate();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 13:
-                ba baVar = ((ha) obj).f25368t;
-                if (baVar != null) {
-                    baVar.d();
-                    return;
-                }
-                return;
-            case 14:
-                ba baVar2 = (ba) obj;
-                baVar2.f23604o = baVar2.f23603n.f25109b;
-                baVar2.d();
-                return;
-            case 15:
-                ic icVar = ((ab) obj).f23355b;
-                nb nbVar = icVar.e;
-                nbVar.transitionRunningEnter = false;
-                nbVar.onEnterTransitionEnd();
-                if (icVar.f25682u) {
-                    icVar.i(true);
-                    return;
-                }
-                return;
-            case 16:
-                zc zcVar = (zc) obj;
-                zcVar.getClass();
-                if (LiteMode.isEnabled(512)) {
-                    zcVar.invalidateSelf();
-                    return;
-                }
-                return;
-            case 17:
-                bd bdVar = (bd) obj;
-                if (bdVar.l1) {
-                    bdVar.l1 = false;
-                    bdVar.invalidate();
-                    return;
-                }
-                return;
-            case 18:
-                ((Dialog) obj).dismiss();
-                return;
-            case 19:
-                ChatActivityEnterView chatActivityEnterView2 = ((hf) obj).f25396f;
-                int i11 = ChatActivityEnterView.f22702j5;
-                chatActivityEnterView2.q1();
-                return;
-            case 20:
-                ((qg) obj).f28158s = null;
-                return;
-            case 21:
-                ((bi) obj).f23697y0.f26753x1.l();
-                return;
-            case 22:
-                hk hkVar = (hk) ((androidx.mediarouter.app.h) obj).f1118b;
-                try {
-                    File file = hkVar.L;
-                    if (file == null) {
-                        hkVar.O();
-                    } else {
-                        hkVar.N(file);
-                    }
-                    hkVar.V();
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            case 23:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = ((tl) obj).f28995b;
-                boolean z4 = ChatAttachAlertPhotoLayout.f22867n1;
-                chatAttachAlertPhotoLayout2.p0(-1, true);
-                return;
-            case 24:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout3 = ((pl) obj).f27923c;
-                if (chatAttachAlertPhotoLayout3.M != null && !chatAttachAlertPhotoLayout3.f24282b.isDismissed()) {
-                    chatAttachAlertPhotoLayout3.M.setSystemUiVisibility(1028);
-                    return;
-                }
-                return;
-            case 25:
-                nm nmVar = (nm) obj;
-                li liVar = nmVar.f24282b;
-                if (nmVar.N && (chatAttachAlertPhotoLayout = liVar.f26698g0) != null) {
-                    org.telegram.ui.ActionBar.g1 g1Var = chatAttachAlertPhotoLayout.Z0;
-                    g1Var.setIcon(R.drawable.ic_ab_back);
-                    g1Var.setText(LocaleController.getString(R.string.Back));
-                    g1Var.setRightIcon(0);
-                    return;
-                }
-                return;
-            case 26:
-                pn pnVar = (pn) obj;
-                pnVar.f27947h1 = -1;
-                pnVar.f27945g1 = null;
-                return;
-            case 27:
-                ((jo) obj).k();
-                return;
-            case 28:
-                ((lo) obj).setVisibility(8);
-                return;
-            default:
-                ((mp) obj).f27107b.a();
-                return;
+    public final boolean A() {
+        return this.f26033a;
+    }
+
+    @Override
+    public final CharSequence C(int i10) {
+        return null;
+    }
+
+    @Override
+    public final org.telegram.ui.cv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        return null;
+    }
+
+    @Override
+    public final void F(boolean z10) {
+        this.f26033a = z10;
+    }
+
+    @Override
+    public final int H() {
+        return 0;
+    }
+
+    @Override
+    public final boolean J() {
+        return false;
+    }
+
+    @Override
+    public final boolean K() {
+        return false;
+    }
+
+    @Override
+    public final boolean M() {
+        return true;
+    }
+
+    @Override
+    public final boolean N() {
+        return false;
+    }
+
+    @Override
+    public final boolean O() {
+        return false;
+    }
+
+    @Override
+    public final boolean P() {
+        return false;
+    }
+
+    @Override
+    public final int Q(Object obj) {
+        return 0;
+    }
+
+    @Override
+    public final int R(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final boolean S() {
+        return false;
+    }
+
+    @Override
+    public final boolean T() {
+        return true;
+    }
+
+    @Override
+    public final MessageObject U() {
+        return null;
+    }
+
+    @Override
+    public final boolean Y() {
+        return false;
+    }
+
+    @Override
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final String a0() {
+        return "";
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final CharSequence b0(int i10) {
+        return null;
+    }
+
+    @Override
+    public final ArrayList c() {
+        return null;
+    }
+
+    @Override
+    public final void d() {
+        di.g gVar;
+        ld f12 = PhotoViewer.t1().f1();
+        if (f12 != null && (gVar = f12.f7593f) != null) {
+            cu cuVar = gVar.f26847a;
+            cuVar.requestFocus();
+            AndroidUtilities.showKeyboard(cuVar);
         }
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final boolean h() {
+        return false;
+    }
+
+    @Override
+    public final ImageReceiver.BitmapHolder j(int i10) {
+        return null;
+    }
+
+    @Override
+    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
+        return 0;
+    }
+
+    @Override
+    public final boolean l() {
+        return true;
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        this.f26036e.B(null, this.f26034b, null, this.f26035c, z10, i11, i12, this.d, this.f26033a);
+    }
+
+    @Override
+    public final boolean p() {
+        return false;
+    }
+
+    @Override
+    public final boolean q() {
+        return false;
+    }
+
+    @Override
+    public final boolean r() {
+        return false;
+    }
+
+    @Override
+    public final boolean t() {
+        return true;
+    }
+
+    @Override
+    public final boolean u() {
+        return false;
+    }
+
+    @Override
+    public final HashMap v() {
+        return null;
+    }
+
+    @Override
+    public final boolean w() {
+        return false;
+    }
+
+    @Override
+    public final boolean x(int i10) {
+        return false;
+    }
+
+    @Override
+    public final int y() {
+        return 0;
+    }
+
+    @Override
+    public final boolean z() {
+        return true;
+    }
+
+    @Override
+    public final void B(int i10) {
+    }
+
+    @Override
+    public final void D() {
+    }
+
+    @Override
+    public final void G() {
+    }
+
+    @Override
+    public final void I() {
+    }
+
+    @Override
+    public final void L(VideoEditedInfo videoEditedInfo) {
+    }
+
+    @Override
+    public final void V() {
+    }
+
+    @Override
+    public final void W(int i10) {
+    }
+
+    @Override
+    public final void X(int i10) {
+    }
+
+    @Override
+    public final void Z(int i10) {
+    }
+
+    @Override
+    public final void e(CharSequence charSequence) {
+    }
+
+    @Override
+    public final void i() {
+    }
+
+    @Override
+    public final void m() {
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void s() {
+    }
+
+    @Override
+    public final void f(String str, String str2, boolean z10) {
     }
 }

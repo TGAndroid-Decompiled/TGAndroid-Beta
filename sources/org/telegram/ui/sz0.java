@@ -1,164 +1,43 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.voip.VoIPService;
-public final class sz0 implements Runnable {
-    public final int f38339a;
-    public final Object f38340b;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Stories.ProfileStoriesView;
+public final class sz0 extends ProfileStoriesView {
+    public final Context f40575t0;
+    public final ProfileActivity f40576u0;
 
-    public sz0(Object obj, int i10) {
-        this.f38339a = i10;
-        this.f38340b = obj;
+    public sz0(ProfileActivity profileActivity, Context context, int i10, long j3, boolean z10, j0 j0Var, pz0 pz0Var, org.telegram.ui.ActionBar.f6 f6Var, Context context2) {
+        super(context, i10, j3, z10, j0Var, pz0Var, f6Var);
+        this.f40576u0 = profileActivity;
+        this.f40575t0 = context2;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f38339a;
-        Object obj = this.f38340b;
-        switch (i10) {
-            case 0:
-                ProfileActivity profileActivity = ((vz0) obj).f39224b;
-                profileActivity.getMessagesController().toggleChatNoForwards(profileActivity.f32011b1, 0, true, new ry0(true, profileActivity, 0));
+    public final void e(a6.i iVar) {
+        TL_stories.PeerStories peerStories;
+        TL_stories.PeerStories peerStories2;
+        ProfileActivity profileActivity = this.f40576u0;
+        long a2 = profileActivity.a();
+        bi.u8 storiesController = profileActivity.getMessagesController().getStoriesController();
+        boolean I = storiesController.I(a2);
+        Context context = this.f40575t0;
+        if (!I && !storiesController.K(a2) && !storiesController.N(a2)) {
+            TLRPC.UserFull userFull = profileActivity.f34006v2;
+            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f33888e1 != profileActivity.getUserConfig().clientUserId) {
+                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f34006v2.stories, iVar);
                 return;
-            case 1:
-                zz0 zz0Var = (zz0) obj;
-                zz0Var.M0(zz0Var.getTabProgress());
+            }
+            TLRPC.ChatFull chatFull = profileActivity.f33999u2;
+            if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
+                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f33999u2.stories, iVar);
                 return;
-            case 2:
-                ((q01) obj).c();
+            } else {
+                profileActivity.K3();
                 return;
-            case 3:
-                ((f11) obj).a();
-                return;
-            case 4:
-                c11 c11Var = (c11) obj;
-                c11Var.f32989f.add(c11Var.f32988c);
-                c11Var.a();
-                return;
-            case 5:
-                Runnable[] runnableArr = (Runnable[]) obj;
-                runnableArr[0].run();
-                runnableArr[0] = null;
-                return;
-            case 6:
-                ((nh.h6) obj).e();
-                return;
-            case 7:
-                org.telegram.ui.Components.qc qcVar = (org.telegram.ui.Components.qc) obj;
-                if (LaunchActivity.U() != null) {
-                    if (qcVar == null) {
-                        qcVar = org.telegram.ui.Components.qc.a0(LaunchActivity.U());
-                    }
-                    if (qcVar != null) {
-                        org.telegram.ui.Components.ic M = qcVar.M(LocaleController.getString(R.string.ReportChatSent), LocaleController.getString(R.string.Reported2), R.raw.msg_antispam);
-                        M.f25671j = 5000;
-                        M.j();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 8:
-                ((a41) obj).invalidate();
-                return;
-            case 9:
-                SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) obj;
-                saveToGallerySettingsActivity.v.clear();
-                saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f32190a, saveToGallerySettingsActivity.v);
-                saveToGallerySettingsActivity.Z();
-                return;
-            case 10:
-                g41 g41Var = (g41) obj;
-                g41Var.dismiss();
-                ze.d.s(g41Var.getContext(), LocaleController.getString(R.string.PromoteUrl));
-                return;
-            case 11:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) ((org.telegram.ui.Components.ex0) obj).f24716c;
-                Runnable runnable = secretMediaViewer.f32224l0;
-                if (runnable != null) {
-                    runnable.run();
-                    secretMediaViewer.f32224l0 = null;
-                    return;
-                }
-                return;
-            case 12:
-                w41 w41Var = ((v41) obj).f39005a;
-                w41Var.N = true;
-                w41Var.K.invalidate();
-                return;
-            case 13:
-                ((NotificationCenter) obj).runDelayedNotifications();
-                return;
-            case 14:
-                AndroidUtilities.updateViewShow(((l61) obj).f35657c, true);
-                return;
-            case 15:
-                org.telegram.ui.Components.w51 w51Var = ((i71) obj).f34826f0;
-                if (w51Var != null) {
-                    w51Var.N(true);
-                    return;
-                }
-                return;
-            case 16:
-                ((b71) obj).a();
-                return;
-            case 17:
-                uf.f.a(((SessionsActivity) obj).currentAccount).b();
-                return;
-            case 18:
-                ((te1) obj).J.f38206r.l();
-                return;
-            case 19:
-                ((cf1) obj).f33137b.C0();
-                return;
-            case 20:
-                ((VoIPFeedbackActivity) obj).finish();
-                return;
-            case 21:
-                ((xh1) obj).f39991a.H();
-                return;
-            case 22:
-                ((yh1) obj).f40283a.H();
-                return;
-            case 23:
-                ii1 ii1Var = ((wh1) obj).f39706b;
-                ii1Var.I0.unlock();
-                org.telegram.ui.Components.voip.m2.k().getClass();
-                if (VoIPService.getSharedInstance() != null) {
-                    VoIPService.getSharedInstance().swapSinks();
-                }
-                ii1Var.V.setCornerRadius(-1.0f);
-                ii1Var.Z.d.release();
-                ii1Var.f34945a0.d.release();
-                ii1Var.Y.release();
-                ii1Var.l();
-                ii1Var.f34976r0.d();
-                org.telegram.ui.Components.voip.m2.Q = false;
-                ii1Var.B0 = false;
-                ii1.f34943k1 = null;
-                return;
-            case 24:
-                gi1 gi1Var = (gi1) obj;
-                gi1Var.getClass();
-                if (VoIPService.getSharedState() != null) {
-                    VoIPService.getSharedState().acceptIncomingCall();
-                    if (gi1Var.f34463a.f34968k0 && VoIPService.getSharedInstance() != null) {
-                        VoIPService.getSharedInstance().requestVideoCall(false);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 25:
-                ((VoIPPermissionActivity) obj).finish();
-                return;
-            default:
-                int[][] iArr = WallpapersListActivity.f32371h0;
-                ((WallpapersListActivity) obj).B0(false);
-                return;
+            }
         }
+        profileActivity.getOrCreateStoryViewer().D(context, a2, iVar);
     }
 }

@@ -1,10 +1,34 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.ImageReceiver;
-public interface s6 {
-    void a(jj0 jj0Var);
+import android.util.Property;
+public abstract class s6 extends Property {
+    public final int f30200a;
 
-    void b(ImageReceiver imageReceiver);
+    public s6(String str, int i10) {
+        super(Float.class, str);
+        this.f30200a = i10;
+        switch (i10) {
+            case 1:
+                super(Integer.class, str);
+                return;
+            default:
+                return;
+        }
+    }
 
-    void c(ImageReceiver imageReceiver);
+    public abstract void a(int i10, Object obj);
+
+    public abstract void b(Object obj, float f7);
+
+    @Override
+    public final void set(Object obj, Object obj2) {
+        switch (this.f30200a) {
+            case 0:
+                b(obj, ((Float) obj2).floatValue());
+                return;
+            default:
+                a(((Integer) obj2).intValue(), obj);
+                return;
+        }
+    }
 }

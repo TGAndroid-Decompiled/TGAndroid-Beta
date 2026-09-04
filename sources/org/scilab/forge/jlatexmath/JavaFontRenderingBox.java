@@ -9,14 +9,14 @@ public class JavaFontRenderingBox extends Box {
     private float size;
     private TextLayout text;
 
-    public JavaFontRenderingBox(String str, int i10, float f10, Font font2, boolean z4) {
-        this.size = f10;
+    public JavaFontRenderingBox(String str, int i10, float f7, Font font2, boolean z10) {
+        this.size = f7;
         TextLayout textLayout = new TextLayout(str, font2.deriveFont(i10), null);
         this.text = textLayout;
         Rectangle2D bounds = textLayout.getBounds();
-        this.height = ((-bounds.getY()) * f10) / 10.0f;
-        this.depth = ((bounds.getHeight() * f10) / 10.0f) - this.height;
-        this.width = (((bounds.getX() + bounds.getWidth()) + 0.4f) * f10) / 10.0f;
+        this.height = ((-bounds.getY()) * f7) / 10.0f;
+        this.depth = ((bounds.getHeight() * f7) / 10.0f) - this.height;
+        this.width = (((bounds.getX() + bounds.getWidth()) + 0.4f) * f7) / 10.0f;
     }
 
     public static void setFont(String str) {
@@ -24,15 +24,15 @@ public class JavaFontRenderingBox extends Box {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f10, float f11) {
-        drawDebug(graphics2D, f10, f11);
-        graphics2D.translate(f10, f11);
-        float f12 = this.size;
-        graphics2D.scale(f12 * 0.1d, f12 * 0.1d);
+    public void draw(Graphics2D graphics2D, float f7, float f10) {
+        drawDebug(graphics2D, f7, f10);
+        graphics2D.translate(f7, f10);
+        float f11 = this.size;
+        graphics2D.scale(f11 * 0.1d, f11 * 0.1d);
         this.text.draw(graphics2D, 0, 0);
-        float f13 = this.size;
-        graphics2D.scale(10.0f / f13, 10.0f / f13);
-        graphics2D.translate(-f10, -f11);
+        float f12 = this.size;
+        graphics2D.scale(10.0f / f12, 10.0f / f12);
+        graphics2D.translate(-f7, -f10);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class JavaFontRenderingBox extends Box {
         return 0;
     }
 
-    public JavaFontRenderingBox(String str, int i10, float f10) {
-        this(str, i10, f10, font, true);
+    public JavaFontRenderingBox(String str, int i10, float f7) {
+        this(str, i10, f7, font, true);
     }
 }

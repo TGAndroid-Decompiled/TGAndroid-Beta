@@ -1,85 +1,52 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLMethod;
+import android.content.Context;
+import android.os.Bundle;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class t9 implements Runnable {
-    public final int f18465a;
-    public final long f18466b;
-    public final int f18467c;
-    public final long d;
-    public final Object e;
-    public final Object f18468f;
+public final class t9 implements RequestDelegate {
+    public final int f19055a;
+    public final BaseController f19056b;
+    public final Object f19057c;
+    public final Object d;
+    public final Object f19058e;
+    public final Object f19059f;
 
-    public t9(int i10, long j10, long j11, org.telegram.ui.ActionBar.g1 g1Var, org.telegram.ui.ActionBar.g1 g1Var2) {
-        this.f18465a = 3;
-        this.f18467c = i10;
-        this.f18466b = j10;
-        this.d = j11;
-        this.e = g1Var;
-        this.f18468f = g1Var2;
+    public t9(BaseController baseController, Object obj, Object obj2, Object obj3, Object obj4, int i10) {
+        this.f19055a = i10;
+        this.f19056b = baseController;
+        this.f19057c = obj;
+        this.d = obj2;
+        this.f19058e = obj3;
+        this.f19059f = obj4;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        switch (this.f18465a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19055a) {
             case 0:
-                int i11 = this.f18467c;
-                ((MediaDataController) this.e).lambda$loadBotInfo$199(this.f18466b, this.d, (Utilities.Callback) this.f18468f, i11);
+                ((MessagesController) this.f19056b).lambda$checkCanOpenChat$452((org.telegram.ui.ActionBar.b2) this.f19057c, (of.e) this.d, (org.telegram.ui.ActionBar.n2) this.f19058e, (Bundle) this.f19059f, tLObject, tL_error);
                 return;
             case 1:
-                int i12 = this.f18467c;
-                long j10 = this.d;
-                ((MessagesController) this.e).lambda$loadFullChat$67(this.f18466b, (TLRPC.TL_messages_chatFull) this.f18468f, i12, j10);
+                ((MessagesController) this.f19056b).lambda$didReceivedNotification$51((TLRPC.TL_theme) this.f19057c, (org.telegram.ui.ActionBar.i6) this.d, (TLRPC.TL_inputThemeSettings) this.f19058e, (org.telegram.ui.ActionBar.h6) this.f19059f, tLObject, tL_error);
                 return;
             case 2:
-                int i13 = this.f18467c;
-                ((MessagesStorage) this.e).lambda$loadPendingTasks$20(this.f18466b, this.d, (TLMethod) this.f18468f, i13);
+                ((SecretChatHelper) this.f19056b).lambda$startSecretChat$28((Context) this.d, (org.telegram.ui.ActionBar.b2) this.f19057c, (byte[]) this.f19058e, (TLRPC.User) this.f19059f, tLObject, tL_error);
                 return;
             default:
-                org.telegram.ui.ActionBar.g1 g1Var = (org.telegram.ui.ActionBar.g1) this.e;
-                org.telegram.ui.ActionBar.g1 g1Var2 = (org.telegram.ui.ActionBar.g1) this.f18468f;
-                int i14 = this.f18467c;
-                MessagesController messagesController = MessagesController.getInstance(i14);
-                long j11 = this.f18466b;
-                long j12 = this.d;
-                if (messagesController.isDialogMuted(j11, j12)) {
-                    g1Var.g(LocaleController.getString(R.string.UnmuteNotifications), R.drawable.msg_unmute, null);
-                    i10 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20238x6, false);
-                    g1Var2.setVisibility(8);
-                } else {
-                    g1Var.g(LocaleController.getString(R.string.MuteNotifications), R.drawable.msg_mute, null);
-                    int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20116q7, false);
-                    g1Var2.setVisibility(0);
-                    if (MessagesController.getInstance(i14).isDialogNotificationsSoundEnabled(j11, j12)) {
-                        g1Var2.g(LocaleController.getString(R.string.SoundOff), R.drawable.msg_tone_off, null);
-                    } else {
-                        g1Var2.g(LocaleController.getString(R.string.SoundOn), R.drawable.msg_tone_on, null);
-                    }
-                    i10 = w02;
-                }
-                g1Var.c(i10, i10);
-                g1Var.setSelectorColor(org.telegram.ui.ActionBar.j6.l1(0.1f, i10));
+                ((SendMessagesHelper) this.f19056b).lambda$performSendDelayedMessage$56((TLRPC.InputMedia) this.f19057c, (SendMessagesHelper.DelayedMessage) this.d, (String) this.f19058e, (MessageObject) this.f19059f, tLObject, tL_error);
                 return;
         }
     }
 
-    public t9(BaseController baseController, long j10, long j11, Object obj, int i10, int i11) {
-        this.f18465a = i11;
-        this.e = baseController;
-        this.f18466b = j10;
-        this.d = j11;
-        this.f18468f = obj;
-        this.f18467c = i10;
-    }
-
-    public t9(MessagesController messagesController, long j10, TLRPC.TL_messages_chatFull tL_messages_chatFull, int i10, long j11) {
-        this.f18465a = 1;
-        this.e = messagesController;
-        this.f18466b = j10;
-        this.f18468f = tL_messages_chatFull;
-        this.f18467c = i10;
-        this.d = j11;
+    public t9(SecretChatHelper secretChatHelper, Context context, org.telegram.ui.ActionBar.b2 b2Var, byte[] bArr, TLRPC.User user) {
+        this.f19055a = 2;
+        this.f19056b = secretChatHelper;
+        this.d = context;
+        this.f19057c = b2Var;
+        this.f19058e = bArr;
+        this.f19059f = user;
     }
 }

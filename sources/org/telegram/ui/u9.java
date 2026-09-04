@@ -1,263 +1,676 @@
 package org.telegram.ui;
 
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
+import android.graphics.PointF;
 import android.graphics.RectF;
-import android.os.SystemClock;
+import android.graphics.Typeface;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraView;
-public final class u9 extends ViewGroup {
-    public final int f38709a = 1;
-    public final Object f38710b;
-    public final org.telegram.ui.ActionBar.p2 f38711c;
+import org.telegram.messenger.camera.Size;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public class u9 extends org.telegram.ui.ActionBar.n2 {
+    public final PointF[] E;
+    public final PointF[] F;
+    public final PointF[] G;
+    public final PointF[] H;
+    public final RectF I;
+    public final RectF J;
+    public long K;
+    public t9 L;
+    public boolean M;
+    public long N;
+    public int O;
+    public int P;
+    public String Q;
+    public final int R;
+    public boolean S;
+    public a6.m T;
+    public r8.n U;
+    public final int V;
+    public ValueAnimator W;
+    public float X;
+    public float Y;
+    public o1.k Z;
+    public s9 f40977a;
+    public float f40978a0;
+    public TextView f40979b;
+    public RectF f40980b0;
+    public CameraView f40981c;
+    public final w5 f40982c0;
+    public final HandlerThread d;
+    public float f40983d0;
+    public Handler f40984e;
+    public long f40985e0;
+    public TextView f40986f;
+    public final Paint h;
+    public final Paint f40987n;
+    public ImageView f40988r;
+    public AnimatorSet f40989s;
+    public float v;
+    public boolean f40990w;
+    public o1.k f40991x;
+    public float f40992y;
 
-    public u9(x9 x9Var, Context context) {
-        super(context);
-        this.f38711c = x9Var;
-        this.f38710b = new Path();
+    public u9(int i10) {
+        super(null);
+        this.d = new HandlerThread("ScanCamera");
+        this.h = new Paint();
+        this.f40987n = new Paint(1);
+        new Path();
+        this.v = 0.5f;
+        this.f40990w = false;
+        this.f40991x = null;
+        this.f40992y = 0.0f;
+        this.E = new PointF[4];
+        this.F = new PointF[4];
+        this.G = new PointF[4];
+        this.H = new PointF[4];
+        for (int i11 = 0; i11 < 4; i11++) {
+            this.E[i11] = new PointF(-1.0f, -1.0f);
+            this.F[i11] = new PointF(-1.0f, -1.0f);
+            this.G[i11] = new PointF(-1.0f, -1.0f);
+            this.H[i11] = new PointF(-1.0f, -1.0f);
+        }
+        this.I = new RectF();
+        this.J = new RectF();
+        this.K = 0L;
+        this.O = 0;
+        this.P = 0;
+        this.S = false;
+        this.T = null;
+        this.U = null;
+        this.X = 0.0f;
+        this.Y = 0.0f;
+        this.f40978a0 = 0.0f;
+        this.f40982c0 = new w5(this, 1);
+        this.f40983d0 = 0.0f;
+        this.f40985e0 = 0L;
+        this.V = i10;
+        if (a0()) {
+            Utilities.globalQueue.postRunnable(new l9(this, 5));
+        }
+        int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+        if (devicePerformanceClass != 0) {
+            if (devicePerformanceClass != 1) {
+                this.R = 40;
+                return;
+            } else {
+                this.R = 24;
+                return;
+            }
+        }
+        this.R = 8;
     }
 
-    public static RectF a(int i10, int i11, int i12) {
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(i10 - i12, i11 - i12, i10 + i12, i11 + i12);
-        return rectF;
+    public static Bitmap Z(Bitmap bitmap) {
+        Bitmap createBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(createBitmap);
+        Paint paint = new Paint();
+        ColorMatrix colorMatrix = new ColorMatrix();
+        colorMatrix.setSaturation(0.0f);
+        ColorMatrix colorMatrix2 = new ColorMatrix();
+        colorMatrix2.set(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f});
+        colorMatrix2.preConcat(colorMatrix);
+        paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
+        canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
+        return createBitmap;
+    }
+
+    public static Bitmap b0(Bitmap bitmap) {
+        Bitmap createBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(createBitmap);
+        Paint paint = new Paint();
+        float f7 = 90 * (-255.0f);
+        paint.setColorFilter(new ColorMatrixColorFilter(new ColorMatrix(new float[]{85.0f, 85.0f, 85.0f, 0.0f, f7, 85.0f, 85.0f, 85.0f, 0.0f, f7, 85.0f, 85.0f, 85.0f, 0.0f, f7, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f})));
+        canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
+        return createBitmap;
+    }
+
+    public static void d0(RectF rectF, PointF[] pointFArr) {
+        pointFArr[0].set(rectF.left, rectF.top);
+        pointFArr[1].set(rectF.right, rectF.top);
+        pointFArr[2].set(rectF.right, rectF.bottom);
+        pointFArr[3].set(rectF.left, rectF.bottom);
+    }
+
+    public static q9 e0(Activity activity, int i10, t9 t9Var) {
+        if (activity == null) {
+            return null;
+        }
+        q9 q9Var = new q9(activity, new org.telegram.ui.ActionBar.d5[]{new ActionBarLayout(activity, false)}, i10, t9Var);
+        q9Var.setUseLightStatusBar(false);
+        AndroidUtilities.setLightNavigationBar((Dialog) q9Var, false);
+        AndroidUtilities.setNavigationBarColor((Dialog) q9Var, -16777216, false);
+        q9Var.setUseLightStatusBar(false);
+        q9Var.getWindow().addFlags(512);
+        q9Var.show();
+        return q9Var;
+    }
+
+    public static PointF[] f0(Point[] pointArr, int i10, int i11) {
+        PointF[] pointFArr = new PointF[pointArr.length];
+        for (int i12 = 0; i12 < pointArr.length; i12++) {
+            Point point = pointArr[i12];
+            pointFArr[i12] = new PointF(point.x / i10, point.y / i11);
+        }
+        return pointFArr;
+    }
+
+    public final void Y() {
+        TextView textView;
+        if (this.fragmentView != null && CameraView.isCameraAllowed()) {
+            CameraController.getInstance().initCamera(null);
+            CameraView cameraView = new CameraView(this.fragmentView.getContext(), false);
+            this.f40981c = cameraView;
+            cameraView.setUseMaxPreview(true);
+            this.f40981c.setOptimizeForBarcode(true);
+            this.f40981c.setDelegate(new z0(this, 11));
+            ((ViewGroup) this.fragmentView).addView(this.f40981c, 0, w7.x5.c(-1.0f, -1));
+            if (this.V == 0 && (textView = this.f40986f) != null) {
+                this.f40981c.addView(textView);
+            }
+        }
+    }
+
+    public final boolean a0() {
+        int i10 = this.V;
+        if (i10 == 1 || i10 == 2 || i10 == 3) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void c0(android.graphics.Bitmap r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.u9.c0(android.graphics.Bitmap):void");
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.f38709a) {
-            case 0:
-                Path path = (Path) this.f38710b;
-                boolean drawChild = super.drawChild(canvas, view, j10);
-                x9 x9Var = (x9) this.f38711c;
-                Paint paint = x9Var.f39932n;
-                Paint paint2 = x9Var.h;
-                if (x9Var.a0() && view == x9Var.f39930c) {
-                    float min = Math.min(1.0f, Math.max(0.0f, ((float) (SystemClock.elapsedRealtime() - x9Var.H)) / 75.0f));
-                    if (min < 1.0f) {
-                        x9Var.fragmentView.invalidate();
+    public final View createView(Context context) {
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        if (this.f40990w) {
+            this.actionBar.C(-1, false);
+            this.actionBar.B(-1, false);
+            this.actionBar.setTitleColor(-1);
+        } else {
+            this.actionBar.C(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f21061z6, false), false);
+            this.actionBar.B(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20974u8, false), false);
+            this.actionBar.setTitleColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.A8, false));
+        }
+        this.actionBar.setCastShadows(false);
+        if (!AndroidUtilities.isTablet() && !a0()) {
+            org.telegram.ui.ActionBar.k kVar = this.actionBar;
+            if (kVar.I && kVar.v == null) {
+                View view = new View(kVar.getContext());
+                kVar.v = view;
+                view.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f21027x8, kVar.I0));
+                kVar.addView(kVar.v);
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) kVar.v.getLayoutParams();
+                layoutParams.height = AndroidUtilities.statusBarHeight;
+                layoutParams.width = -1;
+                layoutParams.gravity = 51;
+                kVar.v.setLayoutParams(layoutParams);
+            }
+        }
+        this.actionBar.setActionBarMenuOnItemClick(new ah.t(this, 26));
+        this.h.setColor(2130706432);
+        Paint paint = this.f40987n;
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.FILL);
+        r9 r9Var = new r9(this, context);
+        r9Var.setOnTouchListener(new ci.d(2));
+        this.fragmentView = r9Var;
+        if (a0()) {
+            this.fragmentView.postDelayed(new l9(this, 0), 450L);
+        } else {
+            Y();
+        }
+        int i10 = this.V;
+        if (i10 == 0) {
+            org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
+            int i11 = org.telegram.ui.ActionBar.j6.f20663d6;
+            kVar2.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
+            this.fragmentView.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
+        } else {
+            this.actionBar.setBackgroundDrawable(null);
+            this.actionBar.setAddToContainer(false);
+            this.actionBar.setTitleColor(-1);
+            this.actionBar.C(-1, false);
+            this.actionBar.B(587202559, false);
+            r9Var.setBackgroundColor(-16777216);
+            r9Var.addView(this.actionBar);
+        }
+        if (i10 == 2 || i10 == 3) {
+            this.actionBar.setTitle(LocaleController.getString(R.string.AuthAnotherClientScan));
+        }
+        Paint paint2 = new Paint(1);
+        paint2.setPathEffect(org.telegram.ui.Components.x80.c());
+        paint2.setColor(i0.a.k(-1, 40));
+        s9 s9Var = new s9(context, paint2);
+        this.f40977a = s9Var;
+        s9Var.setGravity(1);
+        this.f40977a.setTextSize(1, 24.0f);
+        r9Var.addView(this.f40977a);
+        TextView textView = new TextView(context);
+        this.f40979b = textView;
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.D6, false));
+        this.f40979b.setGravity(1);
+        this.f40979b.setTextSize(1, 16.0f);
+        r9Var.addView(this.f40979b);
+        TextView textView2 = new TextView(context);
+        this.f40986f = textView2;
+        textView2.setTextColor(-1);
+        this.f40986f.setGravity(81);
+        this.f40986f.setAlpha(0.0f);
+        if (i10 == 0) {
+            this.f40977a.setText(LocaleController.getString(R.string.PassportScanPassport));
+            this.f40979b.setText(LocaleController.getString(R.string.PassportScanPassportInfo));
+            this.f40977a.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
+            this.f40986f.setTypeface(Typeface.MONOSPACE);
+        } else {
+            if (i10 != 1 && i10 != 3) {
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.AuthAnotherClientInfo5));
+                String[] strArr = {LocaleController.getString(R.string.AuthAnotherClientDownloadClientUrl), LocaleController.getString(R.string.AuthAnotherWebClientUrl)};
+                int i12 = 0;
+                for (int i13 = 2; i12 < i13; i13 = 2) {
+                    String spannableStringBuilder2 = spannableStringBuilder.toString();
+                    int indexOf = spannableStringBuilder2.indexOf(42);
+                    int i14 = indexOf + 1;
+                    int indexOf2 = spannableStringBuilder2.indexOf(42, i14);
+                    if (indexOf == -1 || indexOf2 == -1 || indexOf == indexOf2) {
+                        break;
                     }
-                    RectF rectF = x9Var.F;
-                    RectF rectF2 = x9Var.G;
-                    RectF rectF3 = AndroidUtilities.rectTmp;
-                    AndroidUtilities.lerp(rectF, rectF2, min, rectF3);
-                    if (x9Var.X < 1.0f) {
-                        if (x9Var.Y == null) {
-                            x9Var.h0();
+                    this.f40977a.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
+                    spannableStringBuilder.replace(indexOf2, indexOf2 + 1, (CharSequence) " ");
+                    spannableStringBuilder.replace(indexOf, i14, (CharSequence) " ");
+                    spannableStringBuilder.setSpan(new org.telegram.ui.Components.l51(strArr[i12], 0), i14, indexOf2, 33);
+                    spannableStringBuilder.setSpan(new org.telegram.ui.Components.e51(AndroidUtilities.bold()), i14, indexOf2, 33);
+                    i12++;
+                }
+                this.f40977a.setLinkTextColor(-1);
+                this.f40977a.setTextSize(1, 16.0f);
+                this.f40977a.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+                this.f40977a.setPadding(0, 0, 0, 0);
+                this.f40977a.setText(spannableStringBuilder);
+            } else {
+                this.f40977a.setText(LocaleController.getString(R.string.AuthAnotherClientScan));
+            }
+            this.f40977a.setTextColor(-1);
+            if (i10 == 3) {
+                this.f40979b.setTextColor(-1711276033);
+            }
+            this.f40986f.setTextSize(1, 16.0f);
+            this.f40986f.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
+            this.f40986f.setText(LocaleController.getString(R.string.AuthAnotherClientNotFound));
+            r9Var.addView(this.f40986f);
+            ImageView imageView = new ImageView(context);
+            this.f40988r = imageView;
+            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            this.f40988r.setImageResource(R.drawable.qr_flashlight);
+            this.f40988r.setBackgroundDrawable(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(60.0f), 587202559));
+            r9Var.addView(this.f40988r);
+            this.f40988r.setOnClickListener(new a(this, 11));
+        }
+        AndroidUtilities.lockOrientation(getParentActivity(), 1);
+        this.fragmentView.setKeepScreenOn(true);
+        return this.fragmentView;
+    }
+
+    public final m2.t g0(Size size, int i10, int i11, int i12, Bitmap bitmap) {
+        m2.t tVar;
+        m2.t tVar2;
+        int i13;
+        String str;
+        PointF[] pointFArr;
+        int i14;
+        cc.d dVar;
+        PointF[] pointFArr2;
+        m2.t tVar3;
+        PointF[] pointFArr3;
+        PointF[] pointFArr4;
+        m2.t tVar4 = null;
+        try {
+            RectF rectF = new RectF();
+            r8.n nVar = this.U;
+            float f7 = Float.MIN_VALUE;
+            float f10 = Float.MAX_VALUE;
+            int i15 = 0;
+            if (nVar != null && nVar.f45030b.k()) {
+                if (bitmap != null) {
+                    tVar3 = new m2.t(20);
+                    int width = bitmap.getWidth();
+                    int height = bitmap.getHeight();
+                    tVar3.d = bitmap;
+                    a3.k kVar = (a3.k) tVar3.f15817b;
+                    kVar.f129a = width;
+                    kVar.f130b = height;
+                    i13 = bitmap.getWidth();
+                    i14 = bitmap.getHeight();
+                } else {
+                    tVar3 = new m2.t(20);
+                    ByteBuffer wrap = ByteBuffer.wrap(null);
+                    int width2 = size.getWidth();
+                    int height2 = size.getHeight();
+                    if (wrap != null) {
+                        if (wrap.capacity() >= width2 * height2) {
+                            tVar3.f15818c = wrap;
+                            a3.k kVar2 = (a3.k) tVar3.f15817b;
+                            kVar2.f129a = width2;
+                            kVar2.f130b = height2;
+                            i13 = size.getWidth();
+                            i14 = size.getWidth();
+                        } else {
+                            throw new IllegalArgumentException("Invalid image data size.");
                         }
-                        AndroidUtilities.lerp(x9Var.Y, rectF3, x9Var.X, rectF3);
-                    }
-                    int width = (int) (rectF3.width() * view.getWidth());
-                    int height = (int) (rectF3.height() * view.getHeight());
-                    int centerX = (int) (rectF3.centerX() * view.getWidth());
-                    float centerY = rectF3.centerY();
-                    float f10 = x9Var.f39937y;
-                    float f11 = (f10 * 0.5f) + 0.5f;
-                    int i10 = (int) (width * f11);
-                    int i11 = (int) (f11 * height);
-                    int i12 = centerX - (i10 / 2);
-                    int height2 = ((int) (centerY * view.getHeight())) - (i11 / 2);
-                    paint2.setAlpha((int) ((1.0f - (Math.min(1.0f, f10) * (1.0f - x9Var.v))) * 255.0f));
-                    float f12 = height2;
-                    canvas.drawRect(0.0f, 0.0f, view.getMeasuredWidth(), f12, paint2);
-                    int i13 = height2 + i11;
-                    float f13 = i13;
-                    canvas.drawRect(0.0f, f13, view.getMeasuredWidth(), view.getMeasuredHeight(), paint2);
-                    float f14 = i12;
-                    canvas.drawRect(0.0f, f12, f14, f13, paint2);
-                    int i14 = i12 + i10;
-                    float f15 = i14;
-                    canvas.drawRect(f15, f12, view.getMeasuredWidth(), f13, paint2);
-                    paint2.setAlpha((int) (Math.max(0.0f, 1.0f - x9Var.f39937y) * 255.0f));
-                    canvas.drawRect(f14, f12, f15, f13, paint2);
-                    int lerp = AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), Math.min(1.0f, x9Var.f39937y * 20.0f));
-                    int i15 = lerp / 2;
-                    int lerp2 = AndroidUtilities.lerp(Math.min(i10, i11), AndroidUtilities.dp(20.0f), Math.min(1.2f, (float) Math.pow(x9Var.f39937y, 1.7999999523162842d)));
-                    paint.setAlpha((int) (Math.min(1.0f, x9Var.f39937y) * 255.0f));
-                    path.reset();
-                    int i16 = height2 + lerp2;
-                    path.arcTo(a(i12, i16, i15), 0.0f, 180.0f);
-                    float f16 = lerp * 1.5f;
-                    int i17 = (int) (f14 + f16);
-                    int i18 = (int) (f12 + f16);
-                    int i19 = lerp * 2;
-                    path.arcTo(a(i17, i18, i19), 180.0f, 90.0f);
-                    int i20 = i12 + lerp2;
-                    path.arcTo(a(i20, height2, i15), 270.0f, 180.0f);
-                    path.lineTo(i12 + i15, height2 + i15);
-                    path.arcTo(a(i17, i18, lerp), 270.0f, -90.0f);
-                    path.close();
-                    canvas.drawPath(path, paint);
-                    path.reset();
-                    path.arcTo(a(i14, i16, i15), 180.0f, -180.0f);
-                    int i21 = (int) (f15 - f16);
-                    path.arcTo(a(i21, i18, i19), 0.0f, -90.0f);
-                    int i22 = i14 - lerp2;
-                    path.arcTo(a(i22, height2, i15), 270.0f, -180.0f);
-                    path.arcTo(a(i21, i18, lerp), 270.0f, 90.0f);
-                    path.close();
-                    canvas.drawPath(path, paint);
-                    path.reset();
-                    int i23 = i13 - lerp2;
-                    path.arcTo(a(i12, i23, i15), 0.0f, -180.0f);
-                    int i24 = (int) (f13 - f16);
-                    path.arcTo(a(i17, i24, i19), 180.0f, -90.0f);
-                    path.arcTo(a(i20, i13, i15), 90.0f, -180.0f);
-                    path.arcTo(a(i17, i24, lerp), 90.0f, 90.0f);
-                    path.close();
-                    canvas.drawPath(path, paint);
-                    path.reset();
-                    path.arcTo(a(i14, i23, i15), 180.0f, 180.0f);
-                    path.arcTo(a(i21, i24, i19), 0.0f, 90.0f);
-                    path.arcTo(a(i22, i13, i15), 90.0f, 180.0f);
-                    path.arcTo(a(i21, i24, lerp), 90.0f, -90.0f);
-                    path.close();
-                    canvas.drawPath(path, paint);
-                    return drawChild;
-                }
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j10);
-        }
-    }
-
-    @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        org.telegram.ui.ActionBar.k kVar3;
-        int measuredHeight;
-        int dp;
-        org.telegram.ui.ActionBar.k kVar4;
-        org.telegram.ui.ActionBar.k kVar5;
-        org.telegram.ui.ActionBar.k kVar6;
-        switch (this.f38709a) {
-            case 0:
-                int i14 = i12 - i10;
-                int i15 = i13 - i11;
-                x9 x9Var = (x9) this.f38711c;
-                int i16 = x9Var.S;
-                if (i16 != 0) {
-                    kVar = ((org.telegram.ui.ActionBar.p2) x9Var).actionBar;
-                    kVar2 = ((org.telegram.ui.ActionBar.p2) x9Var).actionBar;
-                    int measuredWidth = kVar2.getMeasuredWidth();
-                    kVar3 = ((org.telegram.ui.ActionBar.p2) x9Var).actionBar;
-                    kVar.layout(0, 0, measuredWidth, kVar3.getMeasuredHeight());
-                    CameraView cameraView = x9Var.f39930c;
-                    if (cameraView != null) {
-                        cameraView.layout(0, 0, cameraView.getMeasuredWidth(), x9Var.f39930c.getMeasuredHeight());
-                    }
-                    int min = (int) (Math.min(i14, i15) / 1.5f);
-                    if (i16 == 1) {
-                        measuredHeight = ((i15 - min) / 2) - x9Var.f39926a.getMeasuredHeight();
-                        dp = AndroidUtilities.dp(30.0f);
                     } else {
-                        measuredHeight = ((i15 - min) / 2) - x9Var.f39926a.getMeasuredHeight();
-                        dp = AndroidUtilities.dp(64.0f);
+                        throw new IllegalArgumentException("Null image data supplied.");
                     }
-                    int i17 = measuredHeight - dp;
-                    x9Var.f39926a.layout(AndroidUtilities.dp(36.0f), i17, x9Var.f39926a.getMeasuredWidth() + AndroidUtilities.dp(36.0f), x9Var.f39926a.getMeasuredHeight() + i17);
-                    if (i16 == 3) {
-                        int C = org.telegram.messenger.y3.C(8.0f, x9Var.f39926a.getMeasuredHeight(), i17);
-                        x9Var.f39928b.layout(AndroidUtilities.dp(36.0f), C, x9Var.f39928b.getMeasuredWidth() + AndroidUtilities.dp(36.0f), x9Var.f39928b.getMeasuredHeight() + C);
+                }
+                SparseArray Z0 = this.U.Z0(tVar3);
+                if (Z0.size() > 0) {
+                    r8.m mVar = (r8.m) Z0.valueAt(0);
+                    str = mVar.f45020b;
+                    Point[] pointArr = mVar.f45022e;
+                    PointF[] f02 = f0(pointArr, i13, i14);
+                    pointFArr4 = f02;
+                    if (pointArr.length != 0) {
+                        int length = pointArr.length;
+                        float f11 = Float.MIN_VALUE;
+                        float f12 = Float.MAX_VALUE;
+                        while (i15 < length) {
+                            Point point = pointArr[i15];
+                            f10 = Math.min(f10, point.x);
+                            f7 = Math.max(f7, point.x);
+                            f12 = Math.min(f12, point.y);
+                            f11 = Math.max(f11, point.y);
+                            i15++;
+                        }
+                        rectF.set(f10, f12, f7, f11);
+                        pointFArr3 = f02;
+                        tVar2 = null;
+                        pointFArr = pointFArr3;
                     }
-                    x9Var.f39931f.layout(0, getMeasuredHeight() - x9Var.f39931f.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
-                    int measuredWidth2 = (i14 / 2) - (x9Var.f39933r.getMeasuredWidth() / 2);
-                    int dp2 = AndroidUtilities.dp(80.0f) + kf.k0.d(i15, min, 2, min);
-                    ImageView imageView = x9Var.f39933r;
-                    imageView.layout(measuredWidth2, dp2, imageView.getMeasuredWidth() + measuredWidth2, x9Var.f39933r.getMeasuredHeight() + dp2);
+                    rectF = null;
+                    pointFArr3 = pointFArr4;
+                    tVar2 = null;
+                    pointFArr = pointFArr3;
                 } else {
-                    CameraView cameraView2 = x9Var.f39930c;
-                    if (cameraView2 != null) {
-                        cameraView2.layout(0, 0, cameraView2.getMeasuredWidth(), x9Var.f39930c.getMeasuredHeight());
+                    if (bitmap != null) {
+                        Bitmap Z = Z(bitmap);
+                        bitmap.recycle();
+                        m2.t tVar5 = new m2.t(20);
+                        int width3 = Z.getWidth();
+                        int height3 = Z.getHeight();
+                        tVar5.d = Z;
+                        a3.k kVar3 = (a3.k) tVar5.f15817b;
+                        kVar3.f129a = width3;
+                        kVar3.f130b = height3;
+                        i13 = Z.getWidth();
+                        i14 = Z.getHeight();
+                        SparseArray Z02 = this.U.Z0(tVar5);
+                        if (Z02.size() > 0) {
+                            r8.m mVar2 = (r8.m) Z02.valueAt(0);
+                            str = mVar2.f45020b;
+                            Point[] pointArr2 = mVar2.f45022e;
+                            PointF[] f03 = f0(pointArr2, i13, i14);
+                            if (pointArr2.length == 0) {
+                                pointFArr4 = f03;
+                                rectF = null;
+                                pointFArr3 = pointFArr4;
+                            } else {
+                                int length2 = pointArr2.length;
+                                float f13 = Float.MIN_VALUE;
+                                float f14 = Float.MAX_VALUE;
+                                while (i15 < length2) {
+                                    Point point2 = pointArr2[i15];
+                                    f10 = Math.min(f10, point2.x);
+                                    f7 = Math.max(f7, point2.x);
+                                    f14 = Math.min(f14, point2.y);
+                                    f13 = Math.max(f13, point2.y);
+                                    i15++;
+                                }
+                                rectF.set(f10, f14, f7, f13);
+                                pointFArr3 = f03;
+                            }
+                        } else {
+                            Bitmap b02 = b0(Z);
+                            Z.recycle();
+                            m2.t tVar6 = new m2.t(20);
+                            int width4 = b02.getWidth();
+                            int height4 = b02.getHeight();
+                            tVar6.d = b02;
+                            a3.k kVar4 = (a3.k) tVar6.f15817b;
+                            kVar4.f129a = width4;
+                            kVar4.f130b = height4;
+                            int width5 = Z.getWidth();
+                            int height5 = Z.getHeight();
+                            SparseArray Z03 = this.U.Z0(tVar6);
+                            if (Z03.size() > 0) {
+                                r8.m mVar3 = (r8.m) Z03.valueAt(0);
+                                String str2 = mVar3.f45020b;
+                                Point[] pointArr3 = mVar3.f45022e;
+                                PointF[] f04 = f0(pointArr3, width5, height5);
+                                if (pointArr3.length == 0) {
+                                    rectF = null;
+                                } else {
+                                    int length3 = pointArr3.length;
+                                    float f15 = Float.MIN_VALUE;
+                                    float f16 = Float.MAX_VALUE;
+                                    while (i15 < length3) {
+                                        Point point3 = pointArr3[i15];
+                                        f10 = Math.min(f10, point3.x);
+                                        f7 = Math.max(f7, point3.x);
+                                        f16 = Math.min(f16, point3.y);
+                                        f15 = Math.max(f15, point3.y);
+                                        i15++;
+                                    }
+                                    rectF.set(f10, f16, f7, f15);
+                                }
+                                i14 = height5;
+                                str = str2;
+                                i13 = width5;
+                                pointFArr3 = f04;
+                            } else {
+                                i13 = width5;
+                                i14 = height5;
+                            }
+                        }
+                        tVar2 = null;
+                        pointFArr = pointFArr3;
                     }
-                    x9Var.f39931f.setTextSize(0, i15 / 22);
-                    x9Var.f39931f.setPadding(0, 0, 0, i15 / 15);
-                    int i18 = (int) (i15 * 0.65f);
-                    x9Var.f39926a.layout(AndroidUtilities.dp(36.0f), i18, x9Var.f39926a.getMeasuredWidth() + AndroidUtilities.dp(36.0f), x9Var.f39926a.getMeasuredHeight() + i18);
+                    str = null;
+                    pointFArr3 = null;
+                    tVar2 = null;
+                    pointFArr = pointFArr3;
                 }
-                if (i16 != 3) {
-                    int i19 = (int) (i15 * 0.74f);
-                    int i20 = (int) (i14 * 0.05f);
-                    TextView textView = x9Var.f39928b;
-                    textView.layout(i20, i19, textView.getMeasuredWidth() + i20, x9Var.f39928b.getMeasuredHeight() + i19);
+            } else if (this.T != null) {
+                if (bitmap != null) {
+                    int[] iArr = new int[bitmap.getWidth() * bitmap.getHeight()];
+                    bitmap.getPixels(iArr, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
+                    dVar = new cc.g(bitmap.getWidth(), bitmap.getHeight(), iArr);
+                    int width6 = bitmap.getWidth();
+                    i14 = bitmap.getHeight();
+                    i13 = width6;
+                } else {
+                    cc.f fVar = new cc.f(size.getWidth(), size.getHeight(), i10, i11, i12, i12);
+                    i13 = size.getWidth();
+                    i14 = size.getHeight();
+                    dVar = fVar;
                 }
-                x9Var.h0();
-                return;
-            default:
-                wg1 wg1Var = (wg1) this.f38711c;
-                kVar4 = ((org.telegram.ui.ActionBar.p2) wg1Var).actionBar;
-                kVar5 = ((org.telegram.ui.ActionBar.p2) wg1Var).actionBar;
-                int measuredWidth3 = kVar5.getMeasuredWidth();
-                kVar6 = ((org.telegram.ui.ActionBar.p2) wg1Var).actionBar;
-                kVar4.layout(0, 0, measuredWidth3, kVar6.getMeasuredHeight());
-                eg.i0 i0Var = wg1Var.f39697y;
-                i0Var.layout(0, 0, i0Var.getMeasuredWidth(), wg1Var.f39697y.getMeasuredHeight());
-                org.telegram.ui.Components.y90 y90Var = (org.telegram.ui.Components.y90) this.f38710b;
-                y90Var.layout(0, 0, y90Var.getMeasuredWidth(), y90Var.getMeasuredHeight());
-                return;
+                aa.a X = this.T.X(new pf.b(new dc.f(dVar)));
+                cc.j[] jVarArr = (cc.j[]) X.f372c;
+                String str3 = (String) X.f371b;
+                if (jVarArr == null || jVarArr.length == 0) {
+                    tVar2 = null;
+                    pointFArr2 = null;
+                    rectF = null;
+                } else {
+                    int length4 = jVarArr.length;
+                    float f17 = Float.MIN_VALUE;
+                    float f18 = Float.MAX_VALUE;
+                    int i16 = 0;
+                    while (i16 < length4) {
+                        cc.j jVar = jVarArr[i16];
+                        float f19 = jVar.f4747a;
+                        tVar = tVar4;
+                        try {
+                            float f20 = jVar.f4748b;
+                            f10 = Math.min(f10, f19);
+                            f7 = Math.max(f7, jVar.f4747a);
+                            f18 = Math.min(f18, f20);
+                            f17 = Math.max(f17, f20);
+                            i16++;
+                            tVar4 = tVar;
+                        } catch (Throwable unused) {
+                            AndroidUtilities.runOnUIThread(new l9(this, 6));
+                            return tVar;
+                        }
+                    }
+                    tVar2 = tVar4;
+                    rectF.set(f10, f18, f7, f17);
+                    if (jVarArr.length == 4) {
+                        pointFArr2 = new PointF[4];
+                        while (i15 < 4) {
+                            cc.j jVar2 = jVarArr[i15];
+                            pointFArr2[i15] = new PointF(jVar2.f4747a / i13, jVar2.f4748b / i14);
+                            i15++;
+                        }
+                    } else {
+                        pointFArr2 = tVar2;
+                    }
+                }
+                str = str3;
+                pointFArr = pointFArr2;
+            } else {
+                tVar2 = null;
+                i13 = 1;
+                str = null;
+                pointFArr = null;
+                i14 = 1;
+            }
+            if (TextUtils.isEmpty(str)) {
+                AndroidUtilities.runOnUIThread(new l9(this, 6));
+                return tVar2;
+            } else if (this.V == 2 && !str.startsWith("tg://login?token=")) {
+                AndroidUtilities.runOnUIThread(new l9(this, 6));
+                return tVar2;
+            } else {
+                m2.t tVar7 = new m2.t(9, false);
+                if (rectF != null) {
+                    float dp = AndroidUtilities.dp(25.0f);
+                    float dp2 = AndroidUtilities.dp(15.0f);
+                    rectF.set(rectF.left - dp, rectF.top - dp2, rectF.right + dp, rectF.bottom + dp2);
+                    float f21 = i13;
+                    float f22 = i14;
+                    rectF.set(rectF.left / f21, rectF.top / f22, rectF.right / f21, rectF.bottom / f22);
+                }
+                tVar7.d = pointFArr;
+                tVar7.f15818c = rectF;
+                tVar7.f15817b = str;
+                return tVar7;
+            }
+        } catch (Throwable unused2) {
+            tVar = null;
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        org.telegram.ui.ActionBar.k kVar3;
-        switch (this.f38709a) {
-            case 0:
-                int size = View.MeasureSpec.getSize(i10);
-                int size2 = View.MeasureSpec.getSize(i11);
-                x9 x9Var = (x9) this.f38711c;
-                kVar = ((org.telegram.ui.ActionBar.p2) x9Var).actionBar;
-                kVar.measure(i10, i11);
-                int i12 = x9Var.S;
-                if (i12 == 0) {
-                    CameraView cameraView = x9Var.f39930c;
-                    if (cameraView != null) {
-                        cameraView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size * 0.704f), 1073741824));
+    public final ArrayList getThemeDescriptions() {
+        ArrayList arrayList = new ArrayList();
+        if (a0()) {
+            return arrayList;
+        }
+        View view = this.fragmentView;
+        int i10 = org.telegram.ui.ActionBar.j6.f20663d6;
+        arrayList.add(new org.telegram.ui.ActionBar.l6(view, 1, null, null, null, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 1, null, null, null, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.j6.f21061z6));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.j6.f20974u8));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.f40977a, 256, null, null, null, null, org.telegram.ui.ActionBar.j6.G6));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.f40979b, 256, null, null, null, null, org.telegram.ui.ActionBar.j6.D6));
+        return arrayList;
+    }
+
+    public final void h0() {
+        int height;
+        if (this.f40980b0 == null) {
+            this.f40980b0 = new RectF();
+        }
+        int width = this.fragmentView.getWidth();
+        int min = (int) (Math.min(width, height) / 1.5f);
+        float f7 = width;
+        float height2 = this.fragmentView.getHeight();
+        this.f40980b0.set(((width - min) / 2.0f) / f7, ((height - min) / 2.0f) / height2, ((width + min) / 2.0f) / f7, ((height + min) / 2.0f) / height2);
+    }
+
+    @Override
+    public final void onActivityResultFragment(int i10, int i11, Intent intent) {
+        Point realScreenSize;
+        if (i11 == -1 && i10 == 11 && intent != null && intent.getData() != null) {
+            try {
+                realScreenSize = AndroidUtilities.getRealScreenSize();
+            } catch (Throwable th2) {
+                th = th2;
+            }
+            try {
+                m2.t g02 = g0(null, 0, 0, 0, ImageLoader.loadBitmap(null, intent.getData(), realScreenSize.x, realScreenSize.y, true));
+                if (g02 != null) {
+                    t9 t9Var = this.L;
+                    if (t9Var != null) {
+                        t9Var.K((String) g02.f15817b);
                     }
-                } else {
-                    CameraView cameraView2 = x9Var.f39930c;
-                    if (cameraView2 != null) {
-                        cameraView2.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                    }
-                    x9Var.f39931f.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                    x9Var.f39933r.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
+                    finishFragment();
                 }
-                x9Var.f39926a.measure(b.d(72.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                if (i12 == 3) {
-                    x9Var.f39928b.measure(b.d(72.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                } else {
-                    x9Var.f39928b.measure(View.MeasureSpec.makeMeasureSpec((int) (size * 0.9f), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                }
-                setMeasuredDimension(size, size2);
-                return;
-            default:
-                int size3 = View.MeasureSpec.getSize(i10);
-                int size4 = View.MeasureSpec.getSize(i11);
-                wg1 wg1Var = (wg1) this.f38711c;
-                kVar2 = ((org.telegram.ui.ActionBar.p2) wg1Var).actionBar;
-                kVar2.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), i11);
-                eg.i0 i0Var = wg1Var.f39697y;
-                int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size3, 1073741824);
-                kVar3 = ((org.telegram.ui.ActionBar.p2) wg1Var).actionBar;
-                i0Var.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(3.0f) + kVar3.getMeasuredHeight(), 1073741824));
-                ((org.telegram.ui.Components.y90) this.f38710b).measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), i11);
-                setMeasuredDimension(size3, size4);
-                return;
+            } catch (Throwable th3) {
+                th = th3;
+                FileLog.e(th);
+            }
         }
     }
 
-    public u9(wg1 wg1Var, Context context, org.telegram.ui.Components.y90 y90Var) {
-        super(context);
-        this.f38711c = wg1Var;
-        this.f38710b = y90Var;
+    @Override
+    public final void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        CameraView cameraView = this.f40981c;
+        if (cameraView != null) {
+            cameraView.destroy(false, null);
+            this.f40981c = null;
+        }
+        this.d.quitSafely();
+        AndroidUtilities.unlockOrientation(getParentActivity());
+        r8.n nVar = this.U;
+        if (nVar != null) {
+            nVar.U0();
+        }
     }
 }

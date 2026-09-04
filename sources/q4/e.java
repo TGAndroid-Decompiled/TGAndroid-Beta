@@ -1,28 +1,74 @@
 package q4;
+public final class e {
+    public static final e d;
+    public static final e f44190e;
+    public static final e f44191f;
+    public static final e f44192g;
+    public static final e h;
+    public static final e f44193i;
+    public final float[] f44194a;
+    public final float[] f44195b;
+    public final float[] f44196c;
 
-import g5.j0;
-import g5.p;
-import g5.u0;
-import j3.n0;
-public abstract class e implements j0 {
-    public final long f42759a = o4.j.f16337a.getAndIncrement();
-    public final p f42760b;
-    public final int f42761c;
-    public final n0 d;
-    public final int e;
-    public final Object f42762f;
-    public final long h;
-    public final long f42763n;
-    public final u0 f42764r;
+    static {
+        e eVar = new e();
+        d = eVar;
+        float[] fArr = eVar.f44195b;
+        fArr[0] = 0.55f;
+        fArr[1] = 0.74f;
+        float[] fArr2 = eVar.f44194a;
+        fArr2[0] = 0.35f;
+        fArr2[1] = 1.0f;
+        e eVar2 = new e();
+        f44190e = eVar2;
+        float[] fArr3 = eVar2.f44195b;
+        fArr3[0] = 0.3f;
+        fArr3[1] = 0.5f;
+        fArr3[2] = 0.7f;
+        float[] fArr4 = eVar2.f44194a;
+        fArr4[0] = 0.35f;
+        fArr4[1] = 1.0f;
+        e eVar3 = new e();
+        f44191f = eVar3;
+        float[] fArr5 = eVar3.f44195b;
+        fArr5[1] = 0.26f;
+        fArr5[2] = 0.45f;
+        float[] fArr6 = eVar3.f44194a;
+        fArr6[0] = 0.35f;
+        fArr6[1] = 1.0f;
+        e eVar4 = new e();
+        f44192g = eVar4;
+        float[] fArr7 = eVar4.f44195b;
+        fArr7[0] = 0.55f;
+        fArr7[1] = 0.74f;
+        float[] fArr8 = eVar4.f44194a;
+        fArr8[1] = 0.3f;
+        fArr8[2] = 0.4f;
+        e eVar5 = new e();
+        h = eVar5;
+        float[] fArr9 = eVar5.f44195b;
+        fArr9[0] = 0.3f;
+        fArr9[1] = 0.5f;
+        fArr9[2] = 0.7f;
+        float[] fArr10 = eVar5.f44194a;
+        fArr10[1] = 0.3f;
+        fArr10[2] = 0.4f;
+        e eVar6 = new e();
+        f44193i = eVar6;
+        float[] fArr11 = eVar6.f44195b;
+        fArr11[1] = 0.26f;
+        fArr11[2] = 0.45f;
+        float[] fArr12 = eVar6.f44194a;
+        fArr12[1] = 0.3f;
+        fArr12[2] = 0.4f;
+    }
 
-    public e(g5.m mVar, p pVar, int i10, n0 n0Var, int i11, Object obj, long j10, long j11) {
-        this.f42764r = new u0(mVar);
-        this.f42760b = pVar;
-        this.f42761c = i10;
-        this.d = n0Var;
-        this.e = i11;
-        this.f42762f = obj;
-        this.h = j10;
-        this.f42763n = j11;
+    public e() {
+        this.f44194a = r1;
+        this.f44195b = r2;
+        this.f44196c = r0;
+        float[] fArr = {0.0f, 0.5f, 1.0f};
+        float[] fArr2 = {0.0f, 0.5f, 1.0f};
+        float[] fArr3 = {0.24f, 0.52f, 0.24f};
     }
 }

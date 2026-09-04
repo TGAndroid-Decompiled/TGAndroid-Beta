@@ -1,164 +1,145 @@
 package da;
 
+import a6.i;
+import android.util.Log;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 import m1.j;
+import org.json.JSONObject;
+import org.telegram.ui.Cells.p6;
+import y9.b0;
+import y9.k0;
 public final class b {
-    public final String f4287a;
-    public final int f4288b;
-    public final String f4289c;
-    public final String d;
-    public final long e;
-    public final long f4290f;
-    public final String f4291g;
+    public Object f6651a;
+    public Object f6652b;
+    public Object f6653c;
+    public Object d;
+    public Object f6654e;
+    public Object f6655f;
+    public Object f6656g;
+    public Object h;
+    public Object f6657i;
 
-    public b(String str, int i10, String str2, String str3, long j10, long j11, String str4) {
-        this.f4287a = str;
-        this.f4288b = i10;
-        this.f4289c = str2;
-        this.d = str3;
-        this.e = j10;
-        this.f4290f = j11;
-        this.f4291g = str4;
+    public static void f(String str, JSONObject jSONObject) {
+        StringBuilder u10 = a4.a.u(str);
+        u10.append(jSONObject.toString());
+        String sb2 = u10.toString();
+        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+            Log.d("FirebaseCrashlytics", sb2, null);
+        }
     }
 
-    public final a a() {
-        a aVar = new a(0);
-        aVar.f4284c = this.f4287a;
-        aVar.f4283b = this.f4288b;
-        aVar.d = this.f4289c;
-        aVar.e = this.d;
-        aVar.f4286g = Long.valueOf(this.e);
-        aVar.h = Long.valueOf(this.f4290f);
-        aVar.f4285f = this.f4291g;
-        return aVar;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof b) {
-                b bVar = (b) obj;
-                String str = bVar.f4291g;
-                String str2 = bVar.d;
-                String str3 = bVar.f4289c;
-                String str4 = bVar.f4287a;
-                String str5 = this.f4287a;
-                if (str5 == null) {
-                    if (str4 != null) {
-                        return false;
-                    }
-                } else if (!str5.equals(str4)) {
-                    return false;
-                }
-                if (j.b(this.f4288b, bVar.f4288b)) {
-                    String str6 = this.f4289c;
-                    if (str6 == null) {
-                        if (str3 != null) {
-                            return false;
-                        }
-                    } else if (!str6.equals(str3)) {
-                        return false;
-                    }
-                    String str7 = this.d;
-                    if (str7 == null) {
-                        if (str2 != null) {
-                            return false;
-                        }
-                    } else if (!str7.equals(str2)) {
-                        return false;
-                    }
-                    if (this.e == bVar.e && this.f4290f == bVar.f4290f) {
-                        String str8 = this.f4291g;
-                        if (str8 == null) {
-                            if (str == null) {
-                                return true;
-                            }
-                            return false;
-                        } else if (str8.equals(str)) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        int hashCode;
-        int hashCode2;
-        int hashCode3;
-        int i10 = 0;
-        String str = this.f4287a;
-        if (str == null) {
-            hashCode = 0;
-        } else {
-            hashCode = str.hashCode();
-        }
-        int c3 = (((hashCode ^ 1000003) * 1000003) ^ j.c(this.f4288b)) * 1000003;
-        String str2 = this.f4289c;
-        if (str2 == null) {
-            hashCode2 = 0;
-        } else {
-            hashCode2 = str2.hashCode();
-        }
-        int i11 = (c3 ^ hashCode2) * 1000003;
-        String str3 = this.d;
-        if (str3 == null) {
-            hashCode3 = 0;
-        } else {
-            hashCode3 = str3.hashCode();
-        }
-        long j10 = this.e;
-        long j11 = this.f4290f;
-        int i12 = (((((i11 ^ hashCode3) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003;
-        String str4 = this.f4291g;
-        if (str4 != null) {
-            i10 = str4.hashCode();
-        }
-        return i10 ^ i12;
-    }
-
-    public final String toString() {
+    public b0 a() {
         String str;
-        StringBuilder sb = new StringBuilder("PersistedInstallationEntry{firebaseInstallationId=");
-        sb.append(this.f4287a);
-        sb.append(", registrationStatus=");
-        int i10 = this.f4288b;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    if (i10 != 4) {
-                        if (i10 != 5) {
-                            str = "null";
-                        } else {
-                            str = "REGISTER_ERROR";
+        if (((Integer) this.f6651a) == null) {
+            str = " pid";
+        } else {
+            str = "";
+        }
+        if (((String) this.f6652b) == null) {
+            str = str.concat(" processName");
+        }
+        if (((Integer) this.f6653c) == null) {
+            str = p6.t(str, " reasonCode");
+        }
+        if (((Integer) this.d) == null) {
+            str = p6.t(str, " importance");
+        }
+        if (((Long) this.f6654e) == null) {
+            str = p6.t(str, " pss");
+        }
+        if (((Long) this.f6655f) == null) {
+            str = p6.t(str, " rss");
+        }
+        if (((Long) this.f6656g) == null) {
+            str = p6.t(str, " timestamp");
+        }
+        if (str.isEmpty()) {
+            return new b0(((Integer) this.f6651a).intValue(), (String) this.f6652b, ((Integer) this.f6653c).intValue(), ((Integer) this.d).intValue(), ((Long) this.f6654e).longValue(), ((Long) this.f6655f).longValue(), ((Long) this.f6656g).longValue(), (String) this.h, (List) this.f6657i);
+        }
+        throw new IllegalStateException("Missing required properties:".concat(str));
+    }
+
+    public k0 b() {
+        String str;
+        if (((Integer) this.f6651a) == null) {
+            str = " arch";
+        } else {
+            str = "";
+        }
+        if (((String) this.f6652b) == null) {
+            str = str.concat(" model");
+        }
+        if (((Integer) this.f6653c) == null) {
+            str = p6.t(str, " cores");
+        }
+        if (((Long) this.d) == null) {
+            str = p6.t(str, " ram");
+        }
+        if (((Long) this.f6654e) == null) {
+            str = p6.t(str, " diskSpace");
+        }
+        if (((Boolean) this.f6655f) == null) {
+            str = p6.t(str, " simulator");
+        }
+        if (((Integer) this.f6656g) == null) {
+            str = p6.t(str, " state");
+        }
+        if (((String) this.h) == null) {
+            str = p6.t(str, " manufacturer");
+        }
+        if (((String) this.f6657i) == null) {
+            str = p6.t(str, " modelClass");
+        }
+        if (str.isEmpty()) {
+            return new k0(((Integer) this.f6651a).intValue(), (String) this.f6652b, ((Integer) this.f6653c).intValue(), ((Long) this.d).longValue(), ((Long) this.f6654e).longValue(), ((Boolean) this.f6655f).booleanValue(), ((Integer) this.f6656g).intValue(), (String) this.h, (String) this.f6657i);
+        }
+        throw new IllegalStateException("Missing required properties:".concat(str));
+    }
+
+    public a c(int i10) {
+        a aVar = null;
+        try {
+            if (!j.b(2, i10)) {
+                JSONObject B = ((i) this.f6654e).B();
+                if (B != null) {
+                    a O = ((xa.c) this.f6653c).O(B);
+                    f("Loaded cached settings: ", B);
+                    ((ob.a) this.d).getClass();
+                    long currentTimeMillis = System.currentTimeMillis();
+                    if (!j.b(3, i10) && O.f6648c < currentTimeMillis) {
+                        if (Log.isLoggable("FirebaseCrashlytics", 2)) {
+                            Log.v("FirebaseCrashlytics", "Cached settings have expired.", null);
+                            return null;
                         }
                     } else {
-                        str = "REGISTERED";
+                        try {
+                            if (Log.isLoggable("FirebaseCrashlytics", 2)) {
+                                Log.v("FirebaseCrashlytics", "Returning cached settings.", null);
+                            }
+                            return O;
+                        } catch (Exception e7) {
+                            e = e7;
+                            aVar = O;
+                            Log.e("FirebaseCrashlytics", "Failed to get cached settings", e);
+                            return aVar;
+                        }
                     }
-                } else {
-                    str = "UNREGISTERED";
+                } else if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                    Log.d("FirebaseCrashlytics", "No cached settings data found.", null);
                 }
-            } else {
-                str = "NOT_GENERATED";
             }
-        } else {
-            str = "ATTEMPT_MIGRATION";
+            return null;
+        } catch (Exception e10) {
+            e = e10;
         }
-        sb.append(str);
-        sb.append(", authToken=");
-        sb.append(this.f4289c);
-        sb.append(", refreshToken=");
-        sb.append(this.d);
-        sb.append(", expiresInSecs=");
-        sb.append(this.e);
-        sb.append(", tokenCreationEpochInSecs=");
-        sb.append(this.f4290f);
-        sb.append(", fisError=");
-        return android.support.v4.media.a.r(sb, this.f4291g, "}");
+    }
+
+    public a d() {
+        return (a) ((AtomicReference) this.h).get();
+    }
+
+    public void e(l5.i r46, int r47) {
+        throw new UnsupportedOperationException("Method not decompiled: da.b.e(l5.i, int):void");
     }
 }

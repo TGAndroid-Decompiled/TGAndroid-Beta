@@ -4,86 +4,86 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
-public class oz extends f2.w {
+public class oz extends s4.s {
     public final SparseArray Q;
     public int R;
     public int S;
     public int T;
     public final int U;
-    public final rl0 V;
+    public final ll0 V;
     public boolean W;
     public boolean X;
 
-    public oz(int i10, int i11, rl0 rl0Var) {
+    public oz(int i10, int i11, ll0 ll0Var) {
         super(i10);
         this.Q = new SparseArray();
         this.R = -1;
         this.W = true;
         this.X = true;
-        this.V = rl0Var;
+        this.V = ll0Var;
         this.U = i11;
     }
 
     public final void B1() {
-        rl0 rl0Var;
-        f2.o0 adapter;
+        ll0 ll0Var;
+        s4.h0 adapter;
         int i10;
-        rl0 rl0Var2;
-        if (this.S > 0 && D1() && (adapter = (rl0Var = this.V).getAdapter()) != null) {
+        ll0 ll0Var2;
+        if (this.S > 0 && D1() && (adapter = (ll0Var = this.V).getAdapter()) != null) {
             int i11 = this.J;
             int h = adapter.h() - 1;
-            f2.v vVar = this.O;
+            g.p pVar = this.O;
             int i12 = 0;
             int i13 = 0;
-            boolean z4 = true;
+            boolean z10 = true;
             int i14 = 0;
             while (true) {
                 i10 = this.U;
                 if (i12 < h) {
-                    int i15 = vVar.i(i12);
+                    int i15 = pVar.i(i12);
                     i13 += i15;
                     if (i15 == i11 || i13 > i11) {
                         i13 = i15;
-                        z4 = true;
+                        z10 = true;
                     }
-                    if (!z4) {
-                        rl0Var2 = rl0Var;
+                    if (!z10) {
+                        ll0Var2 = ll0Var;
                     } else {
-                        int j10 = adapter.j(i12);
+                        int j3 = adapter.j(i12);
                         SparseArray sparseArray = this.Q;
-                        f2.l1 l1Var = (f2.l1) sparseArray.get(j10, null);
-                        if (l1Var == null) {
-                            l1Var = adapter.g(rl0Var, j10);
-                            View view = l1Var.f5774a;
-                            sparseArray.put(j10, l1Var);
+                        s4.c1 c1Var = (s4.c1) sparseArray.get(j3, null);
+                        if (c1Var == null) {
+                            c1Var = adapter.g(ll0Var, j3);
+                            View view = c1Var.f45738a;
+                            sparseArray.put(j3, c1Var);
                             if (view.getLayoutParams() == null) {
                                 view.setLayoutParams(n());
                             }
                         }
-                        View view2 = l1Var.f5774a;
+                        View view2 = c1Var.f45738a;
                         if (this.W) {
-                            adapter.v(l1Var, i12);
+                            adapter.v(c1Var, i12);
                         }
-                        f2.w0 w0Var = (f2.w0) view2.getLayoutParams();
+                        s4.p0 p0Var = (s4.p0) view2.getLayoutParams();
                         int i16 = this.T;
-                        int i17 = this.f5843k;
+                        int i17 = this.f45849k;
                         int D = D();
-                        rl0Var2 = rl0Var;
-                        view2.measure(f2.v0.s(d(), i16, i17, E() + D + ((ViewGroup.MarginLayoutParams) w0Var).leftMargin + ((ViewGroup.MarginLayoutParams) w0Var).rightMargin, ((ViewGroup.MarginLayoutParams) w0Var).width), f2.v0.s(this.X, this.S, this.f5844l, C() + F() + ((ViewGroup.MarginLayoutParams) w0Var).topMargin + ((ViewGroup.MarginLayoutParams) w0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) w0Var).height));
+                        ll0Var2 = ll0Var;
+                        view2.measure(s4.o0.s(d(), i16, i17, E() + D + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, ((ViewGroup.MarginLayoutParams) p0Var).width), s4.o0.s(this.X, this.S, this.f45850l, C() + F() + ((ViewGroup.MarginLayoutParams) p0Var).topMargin + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) p0Var).height));
                         i14 += view2.getMeasuredHeight();
-                        if (i14 >= (this.S - i10) - rl0Var2.getPaddingBottom()) {
+                        if (i14 >= (this.S - i10) - ll0Var2.getPaddingBottom()) {
                             break;
                         }
-                        z4 = false;
+                        z10 = false;
                     }
                     i12++;
-                    rl0Var = rl0Var2;
+                    ll0Var = ll0Var2;
                 } else {
-                    rl0Var2 = rl0Var;
+                    ll0Var2 = ll0Var;
                     break;
                 }
             }
-            this.R = Math.max(0, ((this.S - i14) - i10) - rl0Var2.getPaddingBottom());
+            this.R = Math.max(0, ((this.S - i14) - i10) - ll0Var2.getPaddingBottom());
         }
     }
 
@@ -138,7 +138,7 @@ public class oz extends f2.w {
     }
 
     @Override
-    public final void d0(af.h hVar, f2.i1 i1Var, int i10, int i11) {
+    public final void d0(pf.e eVar, s4.z0 z0Var, int i10, int i11) {
         int i12 = this.S;
         this.T = View.MeasureSpec.getSize(i10);
         int size = View.MeasureSpec.getSize(i11);
@@ -146,7 +146,7 @@ public class oz extends f2.w {
         if (i12 != size) {
             B1();
         }
-        super.d0(hVar, i1Var, i10, i11);
+        super.d0(eVar, z0Var, i10, i11);
     }
 
     @Override
@@ -155,20 +155,20 @@ public class oz extends f2.w {
     }
 
     @Override
-    public final void w1(View view, int i10, boolean z4) {
+    public final void w1(View view, int i10, boolean z10) {
         if (this.V.G(view).b() == B() - 1) {
-            ((ViewGroup.MarginLayoutParams) ((f2.w0) view.getLayoutParams())).height = Math.max(this.R, 0);
+            ((ViewGroup.MarginLayoutParams) ((s4.p0) view.getLayoutParams())).height = Math.max(this.R, 0);
         }
-        super.w1(view, i10, z4);
+        super.w1(view, i10, z10);
     }
 
-    public oz(int i10, org.telegram.ui.l50 l50Var) {
+    public oz(int i10, org.telegram.ui.p50 p50Var) {
         super(i10, false);
         this.Q = new SparseArray();
         this.R = -1;
         this.W = true;
         this.X = true;
-        this.V = l50Var;
+        this.V = p50Var;
         this.U = 0;
     }
 }

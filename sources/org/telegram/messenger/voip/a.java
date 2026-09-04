@@ -3,31 +3,31 @@ package org.telegram.messenger.voip;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class a implements Runnable {
-    public final int f18730a;
-    public final ConferenceCall f18731b;
-    public final long f18732c;
+    public final int f19317a;
+    public final ConferenceCall f19318b;
+    public final long f19319c;
     public final TLObject d;
-    public final TLRPC.TL_error e;
+    public final TLRPC.TL_error f19320e;
 
-    public a(ConferenceCall conferenceCall, long j10, TLObject tLObject, TLRPC.TL_error tL_error, int i10) {
-        this.f18730a = i10;
-        this.f18731b = conferenceCall;
-        this.f18732c = j10;
+    public a(ConferenceCall conferenceCall, long j3, TLObject tLObject, TLRPC.TL_error tL_error, int i10) {
+        this.f19317a = i10;
+        this.f19318b = conferenceCall;
+        this.f19319c = j3;
         this.d = tLObject;
-        this.e = tL_error;
+        this.f19320e = tL_error;
     }
 
     @Override
     public final void run() {
-        switch (this.f18730a) {
+        switch (this.f19317a) {
             case 0:
-                this.f18731b.lambda$pull_outbound$5(this.f18732c, this.d, this.e);
+                this.f19318b.lambda$pull_outbound$5(this.f19319c, this.d, this.f19320e);
                 return;
             case 1:
-                this.f18731b.lambda$kick$12(this.f18732c, this.d, this.e);
+                this.f19318b.lambda$kick$12(this.f19319c, this.d, this.f19320e);
                 return;
             default:
-                this.f18731b.lambda$updateParticipants$10(this.f18732c, this.d, this.e);
+                this.f19318b.lambda$updateParticipants$10(this.f19319c, this.d, this.f19320e);
                 return;
         }
     }

@@ -1,10 +1,12 @@
 package org.telegram.ui.Components;
+
+import android.graphics.Canvas;
 public interface rh0 {
-    void a();
+    void a(float f7);
 
-    void b(boolean z4);
+    void b(float f7);
 
-    void c();
+    void c(kv kvVar, Canvas canvas);
 
-    void d();
+    void d(int i10, int i11);
 }

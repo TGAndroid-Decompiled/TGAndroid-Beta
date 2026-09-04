@@ -1,30 +1,32 @@
 package org.telegram.ui;
-public final class fj extends org.telegram.ui.ActionBar.p1 {
-    public final zn f34098o;
 
-    public fj(zn znVar, dj djVar) {
-        super(djVar, -2, -2);
-        this.f34098o = znVar;
+import android.app.Activity;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class fj extends FrameLayout {
+    public final co f36418a;
+
+    public fj(co coVar, Activity activity) {
+        super(activity);
+        this.f36418a = coVar;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        zn znVar = this.f34098o;
-        if (znVar.N8 == this) {
-            znVar.N8 = null;
-            znVar.Q8 = null;
-            znVar.P8 = null;
-            znVar.f40786w0.R = true;
-            if (znVar.O8) {
-                znVar.g8(false, true, 0.0f);
-            } else {
-                znVar.O8 = true;
-            }
-            lk lkVar = znVar.V;
-            if (lkVar != null && lkVar.getEditField() != null) {
-                znVar.V.getEditField().setAllowDrawCursor(true);
-            }
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
+            this.f36418a.A7(true);
         }
+        return super.dispatchKeyEvent(keyEvent);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int min = Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(300.0f));
+        if (min == 0) {
+            min = AndroidUtilities.dp(300.0f);
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(min, Integer.MIN_VALUE));
     }
 }

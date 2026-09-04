@@ -1,11 +1,18 @@
 package kd;
-public abstract class b {
-    public static final int f10305a = 0;
+public final class b implements id.c {
+    public static final b f14893a = new Object();
 
-    static {
-        ThreadLocal[] threadLocalArr = new ThreadLocal[4];
-        for (int i10 = 0; i10 < 4; i10++) {
-            threadLocalArr[i10] = new ThreadLocal();
-        }
+    @Override
+    public final id.h getContext() {
+        throw new IllegalStateException("This continuation is already complete");
+    }
+
+    @Override
+    public final void resumeWith(Object obj) {
+        throw new IllegalStateException("This continuation is already complete");
+    }
+
+    public final String toString() {
+        return "This continuation is already complete";
     }
 }

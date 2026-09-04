@@ -1,3 +1,11 @@
 package dd;
-public interface g extends sc.a {
+public final class g extends k {
+    public g() {
+        super(6, 0);
+    }
+
+    @Override
+    public final k f() {
+        return this;
+    }
 }

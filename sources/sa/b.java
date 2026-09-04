@@ -1,52 +1,98 @@
 package sa;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-public final class b extends pa.u {
-    public static final a f44236c = new a();
-    public final Class f44237a;
-    public final o f44238b;
+import m1.j;
+public final class b {
+    public final String f45970a;
+    public final long f45971b;
+    public final int f45972c;
 
-    public b(pa.g gVar, pa.u uVar, Class cls) {
-        this.f44238b = new o(gVar, uVar, cls);
-        this.f44237a = cls;
+    public b(String str, long j3, int i10) {
+        this.f45970a = str;
+        this.f45971b = j3;
+        this.f45972c = i10;
     }
 
-    @Override
-    public final Object read(xa.a aVar) {
-        if (aVar.x() == 9) {
-            aVar.t();
-            return null;
-        }
-        ArrayList arrayList = new ArrayList();
-        aVar.a();
-        while (aVar.k()) {
-            arrayList.add(((pa.u) this.f44238b.f44276c).read(aVar));
-        }
-        aVar.e();
-        int size = arrayList.size();
-        Class cls = this.f44237a;
-        if (cls.isPrimitive()) {
-            Object newInstance = Array.newInstance(cls, size);
-            for (int i10 = 0; i10 < size; i10++) {
-                Array.set(newInstance, i10, arrayList.get(i10));
+    public static a5.a a() {
+        a5.a aVar = new a5.a((char) 0, 18);
+        aVar.d = 0L;
+        return aVar;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof b) {
+                b bVar = (b) obj;
+                int i10 = bVar.f45972c;
+                String str = bVar.f45970a;
+                String str2 = this.f45970a;
+                if (str2 == null) {
+                    if (str != null) {
+                        return false;
+                    }
+                } else if (!str2.equals(str)) {
+                    return false;
+                }
+                if (this.f45971b == bVar.f45971b) {
+                    int i11 = this.f45972c;
+                    if (i11 == 0) {
+                        if (i10 == 0) {
+                            return true;
+                        }
+                        return false;
+                    } else if (j.b(i11, i10)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+                return false;
             }
-            return newInstance;
+            return false;
         }
-        return arrayList.toArray((Object[]) Array.newInstance(cls, size));
+        return true;
     }
 
-    @Override
-    public final void write(xa.b bVar, Object obj) {
-        if (obj == null) {
-            bVar.i();
-            return;
+    public final int hashCode() {
+        int hashCode;
+        int i10 = 0;
+        String str = this.f45970a;
+        if (str == null) {
+            hashCode = 0;
+        } else {
+            hashCode = str.hashCode();
         }
-        bVar.b();
-        int length = Array.getLength(obj);
-        for (int i10 = 0; i10 < length; i10++) {
-            this.f44238b.write(bVar, Array.get(obj, i10));
+        long j3 = this.f45971b;
+        int i11 = (((hashCode ^ 1000003) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)))) * 1000003;
+        int i12 = this.f45972c;
+        if (i12 != 0) {
+            i10 = j.c(i12);
         }
-        bVar.e();
+        return i10 ^ i11;
+    }
+
+    public final String toString() {
+        String str;
+        StringBuilder sb2 = new StringBuilder("TokenResult{token=");
+        sb2.append(this.f45970a);
+        sb2.append(", tokenExpirationTimestamp=");
+        sb2.append(this.f45971b);
+        sb2.append(", responseCode=");
+        int i10 = this.f45972c;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    str = "null";
+                } else {
+                    str = "AUTH_ERROR";
+                }
+            } else {
+                str = "BAD_CONFIG";
+            }
+        } else {
+            str = "OK";
+        }
+        sb2.append(str);
+        sb2.append("}");
+        return sb2.toString();
     }
 }

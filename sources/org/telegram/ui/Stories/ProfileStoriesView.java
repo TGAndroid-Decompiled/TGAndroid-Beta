@@ -1,5 +1,6 @@
 package org.telegram.ui.Stories;
 
+import a6.i;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -14,14 +15,12 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
-import bb.b;
+import bi.l9;
+import bi.p5;
+import bi.r5;
+import bi.t8;
+import bi.u8;
 import java.util.ArrayList;
-import k7.n6;
-import nh.f4;
-import nh.g4;
-import nh.k7;
-import nh.s6;
-import nh.t6;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessagesController;
@@ -29,137 +28,139 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.j6;
-import org.telegram.ui.Components.kj0;
-import org.telegram.ui.Components.mr;
-import org.telegram.ui.Components.z5;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.bj0;
+import org.telegram.ui.Components.e6;
+import org.telegram.ui.Components.p6;
+import org.telegram.ui.Components.pr;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.a01;
-import org.telegram.ui.fz0;
+import org.telegram.ui.n01;
+import org.telegram.ui.sz0;
+import v7.z6;
 public class ProfileStoriesView extends View implements NotificationCenter.NotificationCenterDelegate {
-    public static final int f32277p0 = 0;
-    public boolean B;
-    public boolean C;
-    public float D;
-    public float E;
-    public float F;
-    public int G;
-    public s6 H;
-    public final k7 I;
-    public final t6 J;
-    public float K;
-    public float L;
-    public final RectF M;
-    public final RectF N;
-    public final RectF O;
-    public final Path P;
-    public final z5 Q;
-    public final z5 R;
-    public final z5 S;
-    public float T;
-    public ValueAnimator U;
-    public final Path V;
-    public final Matrix W;
-    public final Paint f32278a;
-    public final PathMeasure f32279a0;
-    public final Paint f32280b;
-    public final Path f32281b0;
-    public final int f32282c;
-    public float f32283c0;
+    public static final int f34142s0 = 0;
+    public boolean E;
+    public boolean F;
+    public float G;
+    public float H;
+    public float I;
+    public int J;
+    public t8 K;
+    public final l9 L;
+    public final u8 M;
+    public float N;
+    public float O;
+    public final RectF P;
+    public final RectF Q;
+    public final RectF R;
+    public final Path S;
+    public final e6 T;
+    public final e6 U;
+    public final e6 V;
+    public float W;
+    public final Paint f34143a;
+    public ValueAnimator f34144a0;
+    public final Paint f34145b;
+    public final Path f34146b0;
+    public final int f34147c;
+    public final Matrix f34148c0;
     public final long d;
-    public float f32284d0;
-    public final boolean e;
-    public float f32285e0;
-    public final View f32286f;
-    public float f32287f0;
-    public float f32288g0;
-    public final a01 h;
-    public boolean f32289h0;
-    public final z5 f32290i0;
-    public final z5 f32291j0;
-    public final b f32292k0;
-    public final f4 f32293l0;
-    public long m0;
-    public final j6 f32294n;
-    public float f32295n0;
-    public float f32296o0;
-    public int f32297r;
-    public int f32298s;
-    public g4 v;
-    public final ArrayList f32299w;
-    public boolean f32300x;
-    public kj0 f32301y;
+    public final PathMeasure f34149d0;
+    public final boolean f34150e;
+    public final Path f34151e0;
+    public final View f34152f;
+    public float f34153f0;
+    public float f34154g0;
+    public final n01 h;
+    public float f34155h0;
+    public float f34156i0;
+    public float f34157j0;
+    public boolean f34158k0;
+    public final e6 f34159l0;
+    public final e6 m0;
+    public final p6 f34160n;
+    public final i f34161n0;
+    public final p5 f34162o0;
+    public long f34163p0;
+    public float f34164q0;
+    public int f34165r;
+    public float f34166r0;
+    public int f34167s;
+    public r5 v;
+    public final ArrayList f34168w;
+    public boolean f34169x;
+    public bj0 f34170y;
 
-    public ProfileStoriesView(Context context, int i10, long j10, boolean z4, View view, a01 a01Var, f6 f6Var) {
+    public ProfileStoriesView(Context context, int i10, long j3, boolean z10, View view, n01 n01Var, f6 f6Var) {
         super(context);
         Paint paint = new Paint(1);
-        this.f32278a = paint;
+        this.f34143a = paint;
         Paint paint2 = new Paint(1);
-        this.f32280b = paint2;
+        this.f34145b = paint2;
         Paint paint3 = new Paint(1);
-        j6 j6Var = new j6(false, true, true, false);
-        this.f32294n = j6Var;
+        p6 p6Var = new p6(false, true, true, false);
+        this.f34160n = p6Var;
         Paint paint4 = new Paint(1);
-        this.f32299w = new ArrayList();
+        this.f34168w = new ArrayList();
         Paint paint5 = new Paint(1);
-        this.D = 1.0f;
-        this.E = 1.0f;
-        this.I = new k7(this);
-        this.M = new RectF();
-        this.N = new RectF();
-        this.O = new RectF();
-        this.P = new Path();
-        mr mrVar = mr.h;
-        this.Q = new z5(this, 0L, 480L, mrVar);
-        this.R = new z5(this, 0L, 240L, mrVar);
-        this.S = new z5(this, 0L, 150L, mr.f27122f);
-        this.T = 1.0f;
-        this.V = new Path();
-        this.W = new Matrix();
-        this.f32279a0 = new PathMeasure();
-        this.f32281b0 = new Path();
-        this.f32290i0 = new z5(this, 0L, 350L, mrVar);
-        this.f32291j0 = new z5(this, 0L, 350L, mrVar);
-        final fz0 fz0Var = (fz0) this;
-        this.f32292k0 = new b(fz0Var, 28);
-        this.f32293l0 = new Runnable() {
+        this.G = 1.0f;
+        this.H = 1.0f;
+        this.L = new l9(this);
+        this.P = new RectF();
+        this.Q = new RectF();
+        this.R = new RectF();
+        this.S = new Path();
+        pr prVar = pr.h;
+        this.T = new e6(this, 0L, 480L, prVar);
+        this.U = new e6(this, 0L, 240L, prVar);
+        this.V = new e6(this, 0L, 150L, pr.f29466f);
+        this.W = 1.0f;
+        this.f34146b0 = new Path();
+        this.f34148c0 = new Matrix();
+        this.f34149d0 = new PathMeasure();
+        this.f34151e0 = new Path();
+        this.f34159l0 = new e6(this, 0L, 350L, prVar);
+        this.m0 = new e6(this, 0L, 350L, prVar);
+        final sz0 sz0Var = (sz0) this;
+        this.f34161n0 = new i(sz0Var, 8);
+        this.f34162o0 = new Runnable() {
             @Override
             public final void run() {
                 int i11 = r2;
-                fz0 fz0Var2 = fz0Var;
+                sz0 sz0Var2 = sz0Var;
                 switch (i11) {
                     case 0:
-                        int i12 = ProfileStoriesView.f32277p0;
-                        fz0Var2.f34258r0.w4(false);
+                        int i12 = ProfileStoriesView.f34142s0;
+                        sz0Var2.f40576u0.w4(false);
                         return;
                     default:
-                        fz0Var2.invalidate();
+                        sz0Var2.invalidate();
                         return;
                 }
             }
         };
-        this.f32282c = i10;
-        this.d = j10;
-        this.e = z4;
-        this.f32286f = view;
-        this.h = a01Var;
-        a01Var.getImageReceiver().setVisibleInvalidate(new Runnable() {
+        this.f34147c = i10;
+        this.d = j3;
+        this.f34150e = z10;
+        this.f34152f = view;
+        this.h = n01Var;
+        n01Var.getImageReceiver().setVisibleInvalidate(new Runnable() {
             @Override
             public final void run() {
                 int i11 = r2;
-                fz0 fz0Var2 = fz0Var;
+                sz0 sz0Var2 = sz0Var;
                 switch (i11) {
                     case 0:
-                        int i12 = ProfileStoriesView.f32277p0;
-                        fz0Var2.f34258r0.w4(false);
+                        int i12 = ProfileStoriesView.f34142s0;
+                        sz0Var2.f40576u0.w4(false);
                         return;
                     default:
-                        fz0Var2.invalidate();
+                        sz0Var2.invalidate();
                         return;
                 }
             }
         });
-        this.J = MessagesController.getInstance(i10).getStoriesController();
+        this.M = MessagesController.getInstance(i10).getStoriesController();
         paint.setColor(1526726655);
         paint.getAlpha();
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
@@ -167,41 +168,41 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         paint.setStyle(style);
         Paint.Cap cap = Paint.Cap.ROUND;
         paint.setStrokeCap(cap);
-        paint2.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.nk, f6Var));
+        paint2.setColor(j6.v0(j6.nk, f6Var));
         paint2.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
         paint2.setStyle(style);
         paint2.setStrokeCap(cap);
-        paint3.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19881d6, f6Var));
-        j6Var.t(AndroidUtilities.dp(18.0f));
-        j6Var.k(0.4f, 320L, mrVar);
-        j6Var.u(AndroidUtilities.bold());
-        j6Var.r(-1);
-        j6Var.n(true);
-        j6Var.setCallback(this);
+        paint3.setColor(j6.v0(j6.f20663d6, f6Var));
+        p6Var.t(AndroidUtilities.dp(18.0f));
+        p6Var.k(0.4f, 320L, prVar);
+        p6Var.u(AndroidUtilities.bold());
+        p6Var.r(-1);
+        p6Var.n(true);
+        p6Var.setCallback(this);
         paint4.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         paint5.setStrokeWidth(AndroidUtilities.dpf2(2.33f));
         paint5.setStyle(style);
         f(false, false);
     }
 
-    public static g4 d(g4 g4Var, g4 g4Var2, g4 g4Var3) {
-        if (g4Var3 != null) {
-            RectF rectF = g4Var3.f15340n;
-            if (g4Var != null || g4Var2 != null) {
-                if (g4Var != null) {
-                    RectF rectF2 = g4Var.f15340n;
-                    if (g4Var2 != null) {
-                        RectF rectF3 = g4Var2.f15340n;
+    public static r5 d(r5 r5Var, r5 r5Var2, r5 r5Var3) {
+        if (r5Var3 != null) {
+            RectF rectF = r5Var3.f3639n;
+            if (r5Var != null || r5Var2 != null) {
+                if (r5Var != null) {
+                    RectF rectF2 = r5Var.f3639n;
+                    if (r5Var2 != null) {
+                        RectF rectF3 = r5Var2.f3639n;
                         if (Math.min(Math.abs(rectF2.left - rectF.right), Math.abs(rectF2.right - rectF.left)) > Math.min(Math.abs(rectF3.left - rectF.right), Math.abs(rectF3.right - rectF.left))) {
-                            return g4Var;
+                            return r5Var;
                         }
-                        return g4Var2;
+                        return r5Var2;
                     }
                 }
-                if (g4Var != null) {
-                    return g4Var;
+                if (r5Var != null) {
+                    return r5Var;
                 }
-                return g4Var2;
+                return r5Var2;
             }
             return null;
         }
@@ -209,24 +210,24 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     }
 
     private float getExpandRight() {
-        return this.f32287f0 - (this.f32290i0.e(this.f32289h0) * AndroidUtilities.dp(71.0f));
+        return this.f34156i0 - (this.f34159l0.e(this.f34158k0) * AndroidUtilities.dp(71.0f));
     }
 
-    public final void a(Canvas canvas, g4 g4Var, g4 g4Var2) {
-        if (g4Var2 == null) {
+    public final void a(Canvas canvas, r5 r5Var, r5 r5Var2) {
+        if (r5Var2 == null) {
             return;
         }
-        RectF rectF = g4Var2.f15339m;
+        RectF rectF = r5Var2.f3638m;
         RectF rectF2 = AndroidUtilities.rectTmp;
         rectF2.set(rectF);
-        float f10 = -(AndroidUtilities.dpf2(1.66f) * g4Var2.f15336j);
-        rectF2.inset(f10, f10);
+        float f7 = -(AndroidUtilities.dpf2(1.66f) * r5Var2.f3635j);
+        rectF2.inset(f7, f7);
         float centerX = rectF.centerX();
         float width = rectF.width() / 2.0f;
-        RectF rectF3 = g4Var.f15339m;
+        RectF rectF3 = r5Var.f3638m;
         float centerX2 = rectF3.centerX();
         float width2 = rectF3.width() / 2.0f;
-        Path path = this.P;
+        Path path = this.S;
         path.rewind();
         if (centerX > centerX2) {
             float degrees = (float) Math.toDegrees(Math.acos(Math.abs((((centerX2 + width2) + (centerX - width)) / 2.0f) - centerX2) / width2));
@@ -234,113 +235,113 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
             path.arcTo(rectF3, degrees, 360.0f - (2.0f * degrees));
         } else {
             float degrees2 = (float) Math.toDegrees(Math.acos(Math.abs((((centerX2 - width2) + (centerX + width)) / 2.0f) - centerX2) / width2));
-            float f11 = 2.0f * degrees2;
-            path.arcTo(rectF2, -degrees2, f11);
-            path.arcTo(rectF3, 180.0f - degrees2, -(360.0f - f11));
+            float f10 = 2.0f * degrees2;
+            path.arcTo(rectF2, -degrees2, f10);
+            path.arcTo(rectF3, 180.0f - degrees2, -(360.0f - f10));
         }
         path.close();
         canvas.save();
         canvas.clipPath(path);
     }
 
-    public final void b(float f10, float f11, Canvas canvas, Paint paint, RectF rectF) {
+    public final void b(float f7, float f10, Canvas canvas, Paint paint, RectF rectF) {
         if (ChatObject.isForum(UserConfig.selectedAccount, this.d)) {
             float height = rectF.height() * 0.32f;
-            if (Math.abs(f11) == 360.0f) {
+            if (Math.abs(f10) == 360.0f) {
                 canvas.drawRoundRect(rectF, height, height, paint);
                 return;
             }
-            float f12 = f10 + f11;
-            float f13 = (((int) f12) / 90) * 90;
-            float f14 = (-199.0f) + f13;
-            Path path = this.V;
+            float f11 = f7 + f10;
+            float f12 = (((int) f11) / 90) * 90;
+            float f13 = (-199.0f) + f12;
+            Path path = this.f34146b0;
             path.rewind();
             path.addRoundRect(rectF, height, height, Path.Direction.CW);
-            Matrix matrix = this.W;
+            Matrix matrix = this.f34148c0;
             matrix.reset();
-            matrix.postRotate(f13, rectF.centerX(), rectF.centerY());
+            matrix.postRotate(f12, rectF.centerX(), rectF.centerY());
             path.transform(matrix);
-            PathMeasure pathMeasure = this.f32279a0;
+            PathMeasure pathMeasure = this.f34149d0;
             pathMeasure.setPath(path, false);
             float length = pathMeasure.getLength();
-            Path path2 = this.f32281b0;
+            Path path2 = this.f34151e0;
             path2.reset();
-            pathMeasure.getSegment(((f12 - f14) / 360.0f) * length, length * (((f12 - f11) - f14) / 360.0f), path2, true);
+            pathMeasure.getSegment(((f11 - f13) / 360.0f) * length, length * (((f11 - f10) - f13) / 360.0f), path2, true);
             path2.rLineTo(0.0f, 0.0f);
             canvas.drawPath(path2, paint);
             return;
         }
-        canvas.drawArc(rectF, f10, f11, false, paint);
+        canvas.drawArc(rectF, f7, f10, false, paint);
     }
 
-    public final void c(Canvas canvas, g4 g4Var, g4 g4Var2, g4 g4Var3, Paint paint) {
-        boolean z4;
+    public final void c(Canvas canvas, r5 r5Var, r5 r5Var2, r5 r5Var3, Paint paint) {
+        boolean z10;
         double degrees;
         double degrees2;
-        g4 g4Var4 = g4Var;
-        RectF rectF = g4Var2.f15340n;
-        if (g4Var4 == null && g4Var3 == null) {
+        r5 r5Var4 = r5Var;
+        RectF rectF = r5Var2.f3639n;
+        if (r5Var4 == null && r5Var3 == null) {
             b(0.0f, 360.0f, canvas, paint, rectF);
             return;
         }
-        if (g4Var4 != null) {
-            RectF rectF2 = g4Var4.f15340n;
-            if (g4Var3 != null) {
-                RectF rectF3 = g4Var3.f15340n;
+        if (r5Var4 != null) {
+            RectF rectF2 = r5Var4.f3639n;
+            if (r5Var3 != null) {
+                RectF rectF3 = r5Var3.f3639n;
                 float centerX = rectF2.centerX();
                 float width = rectF2.width() / 2.0f;
                 float centerX2 = rectF.centerX();
                 float width2 = rectF.width() / 2.0f;
                 float centerX3 = rectF3.centerX();
                 float width3 = rectF3.width() / 2.0f;
-                boolean z10 = false;
+                boolean z11 = false;
                 if (centerX > centerX2) {
-                    z4 = true;
+                    z10 = true;
                 } else {
-                    z4 = false;
+                    z10 = false;
                 }
-                if (z4) {
+                if (z10) {
                     degrees = Math.toDegrees(Math.acos(Math.abs((((centerX2 + width2) + (centerX - width)) / 2.0f) - centerX2) / width2));
                 } else {
                     degrees = Math.toDegrees(Math.acos(Math.abs((((centerX2 - width2) + (centerX + width)) / 2.0f) - centerX2) / width2));
                 }
-                float f10 = (float) degrees;
+                float f7 = (float) degrees;
                 if (centerX3 > centerX2) {
-                    z10 = true;
+                    z11 = true;
                 }
-                if (z10) {
+                if (z11) {
                     degrees2 = Math.toDegrees(Math.acos(Math.abs((((centerX2 + width2) + (centerX3 - width3)) / 2.0f) - centerX2) / width2));
                 } else {
                     degrees2 = Math.toDegrees(Math.acos(Math.abs((((centerX2 - width2) + (centerX3 + width3)) / 2.0f) - centerX2) / width2));
                 }
-                float f11 = (float) degrees2;
-                if (z4 && z10) {
-                    float max = Math.max(f10, f11);
+                float f10 = (float) degrees2;
+                if (z10 && z11) {
+                    float max = Math.max(f7, f10);
                     b(max, 360.0f - (2.0f * max), canvas, paint, rectF);
                     return;
-                } else if (z4) {
-                    b(f11 + 180.0f, 180.0f - (f10 + f11), canvas, paint, rectF);
-                    b(f10, (180.0f - f11) - f10, canvas, paint, rectF);
-                    return;
                 } else if (z10) {
-                    b(f10 + 180.0f, 180.0f - (f11 + f10), canvas, paint, rectF);
-                    b(f11, (180.0f - f11) - f10, canvas, paint, rectF);
+                    b(f10 + 180.0f, 180.0f - (f7 + f10), canvas, paint, rectF);
+                    b(f7, (180.0f - f10) - f7, canvas, paint, rectF);
+                    return;
+                } else if (z11) {
+                    b(f7 + 180.0f, 180.0f - (f10 + f7), canvas, paint, rectF);
+                    b(f10, (180.0f - f10) - f7, canvas, paint, rectF);
                     return;
                 } else {
-                    float max2 = Math.max(f10, f11);
+                    float max2 = Math.max(f7, f10);
                     b(max2 + 180.0f, 360.0f - (max2 * 2.0f), canvas, paint, rectF);
                     return;
                 }
             }
         }
-        if (g4Var4 == null && g4Var3 == null) {
+        if (r5Var4 == null && r5Var3 == null) {
             return;
         }
-        if (g4Var4 == null) {
-            g4Var4 = g4Var3;
+        if (r5Var4 == null) {
+            r5Var4 = r5Var3;
         }
-        float centerX4 = g4Var4.f15340n.centerX();
-        float width4 = g4Var4.f15340n.width() / 2.0f;
+        float centerX4 = r5Var4.f3639n.centerX();
+        float width4 = r5Var4.f3639n.width() / 2.0f;
         float centerX5 = rectF.centerX();
         float width5 = rectF.width() / 2.0f;
         if (Math.abs(centerX4 - centerX5) > width4 + width5) {
@@ -362,7 +363,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     }
 
     @Override
-    public final void dispatchDraw(android.graphics.Canvas r42) {
+    public final void dispatchDraw(android.graphics.Canvas r44) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.ProfileStoriesView.dispatchDraw(android.graphics.Canvas):void");
     }
 
@@ -371,21 +372,21 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     }
 
     public float getFragmentTransitionProgress() {
-        return this.F;
+        return this.I;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f32300x = true;
+        this.f34169x = true;
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f32299w;
+            ArrayList arrayList = this.f34168w;
             if (i10 < arrayList.size()) {
-                ((g4) arrayList.get(i10)).f15331b.onAttachedToWindow();
+                ((r5) arrayList.get(i10)).f3629b.onAttachedToWindow();
                 i10++;
             } else {
-                NotificationCenter.getInstance(this.f32282c).addObserver(this, NotificationCenter.storiesUpdated);
+                NotificationCenter.getInstance(this.f34147c).addObserver(this, NotificationCenter.storiesUpdated);
                 return;
             }
         }
@@ -395,14 +396,14 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         int i10 = 0;
-        this.f32300x = false;
+        this.f34169x = false;
         while (true) {
-            ArrayList arrayList = this.f32299w;
+            ArrayList arrayList = this.f34168w;
             if (i10 < arrayList.size()) {
-                ((g4) arrayList.get(i10)).f15331b.onDetachedFromWindow();
+                ((r5) arrayList.get(i10)).f3629b.onDetachedFromWindow();
                 i10++;
             } else {
-                NotificationCenter.getInstance(this.f32282c).removeObserver(this, NotificationCenter.storiesUpdated);
+                NotificationCenter.getInstance(this.f34147c).removeObserver(this, NotificationCenter.storiesUpdated);
                 return;
             }
         }
@@ -410,68 +411,68 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z4;
-        if (this.K < 0.9f) {
-            z4 = this.N.contains(motionEvent.getX(), motionEvent.getY());
-        } else if (motionEvent.getX() >= this.f32283c0 && motionEvent.getX() <= this.f32284d0 && Math.abs(motionEvent.getY() - this.f32285e0) < AndroidUtilities.dp(32.0f)) {
-            z4 = true;
+        boolean z10;
+        if (this.N < 0.9f) {
+            z10 = this.Q.contains(motionEvent.getX(), motionEvent.getY());
+        } else if (motionEvent.getX() >= this.f34153f0 && motionEvent.getX() <= this.f34154g0 && Math.abs(motionEvent.getY() - this.f34155h0) < AndroidUtilities.dp(32.0f)) {
+            z10 = true;
         } else {
-            z4 = false;
+            z10 = false;
         }
-        f4 f4Var = this.f32293l0;
-        if (z4 && motionEvent.getAction() == 0) {
-            this.m0 = System.currentTimeMillis();
-            this.f32295n0 = motionEvent.getX();
-            this.f32296o0 = motionEvent.getY();
-            AndroidUtilities.cancelRunOnUIThread(f4Var);
-            AndroidUtilities.runOnUIThread(f4Var, ViewConfiguration.getLongPressTimeout());
+        p5 p5Var = this.f34162o0;
+        if (z10 && motionEvent.getAction() == 0) {
+            this.f34163p0 = System.currentTimeMillis();
+            this.f34164q0 = motionEvent.getX();
+            this.f34166r0 = motionEvent.getY();
+            AndroidUtilities.cancelRunOnUIThread(p5Var);
+            AndroidUtilities.runOnUIThread(p5Var, ViewConfiguration.getLongPressTimeout());
             return true;
         }
         if (motionEvent.getAction() == 1) {
-            AndroidUtilities.cancelRunOnUIThread(f4Var);
-            if (z4 && System.currentTimeMillis() - this.m0 <= ViewConfiguration.getTapTimeout() && n6.a(this.f32295n0, this.f32296o0, motionEvent.getX(), motionEvent.getY()) <= AndroidUtilities.dp(12.0f)) {
-                t6 t6Var = this.J;
-                long j10 = this.d;
-                if (t6Var.K(j10) || t6Var.I(j10) || !this.f32299w.isEmpty()) {
-                    e(this.f32292k0);
+            AndroidUtilities.cancelRunOnUIThread(p5Var);
+            if (z10 && System.currentTimeMillis() - this.f34163p0 <= ViewConfiguration.getTapTimeout() && z6.a(this.f34164q0, this.f34166r0, motionEvent.getX(), motionEvent.getY()) <= AndroidUtilities.dp(12.0f)) {
+                u8 u8Var = this.M;
+                long j3 = this.d;
+                if (u8Var.K(j3) || u8Var.I(j3) || !this.f34168w.isEmpty()) {
+                    e(this.f34161n0);
                     return true;
                 }
             }
         } else if (motionEvent.getAction() == 3) {
-            this.m0 = -1L;
-            AndroidUtilities.cancelRunOnUIThread(f4Var);
+            this.f34163p0 = -1L;
+            AndroidUtilities.cancelRunOnUIThread(p5Var);
         }
         return super.onTouchEvent(motionEvent);
     }
 
-    public void setActionBarActionMode(float f10) {
-        if (org.telegram.ui.ActionBar.j6.I.q()) {
+    public void setActionBarActionMode(float f7) {
+        if (j6.I.q()) {
             return;
         }
-        this.L = f10;
+        this.O = f7;
         invalidate();
     }
 
-    public void setExpandProgress(float f10) {
-        if (this.K != f10) {
-            this.K = f10;
+    public void setExpandProgress(float f7) {
+        if (this.N != f7) {
+            this.N = f7;
             invalidate();
         }
     }
 
-    public void setFragmentTransitionProgress(float f10) {
-        if (this.F == f10) {
+    public void setFragmentTransitionProgress(float f7) {
+        if (this.I == f7) {
             return;
         }
-        this.F = f10;
+        this.I = f7;
         invalidate();
     }
 
-    public void setProgressToStoriesInsets(float f10) {
-        if (this.E == f10) {
+    public void setProgressToStoriesInsets(float f7) {
+        if (this.H == f7) {
             return;
         }
-        this.E = f10;
+        this.H = f7;
         invalidate();
     }
 
@@ -481,12 +482,12 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f32294n && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f34160n && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;
     }
 
-    public void e(b bVar) {
+    public void e(i iVar) {
     }
 }

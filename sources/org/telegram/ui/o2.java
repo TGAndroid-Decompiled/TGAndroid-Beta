@@ -1,29 +1,65 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class o2 extends View {
-    public final p70 f36626a;
-    public final org.telegram.ui.Components.mq f36627b;
+import org.telegram.tgnet.tl.TL_iv;
+public final class o2 extends z4.a {
+    public final q2 f39086c;
 
-    public o2(Context context, p70 p70Var) {
-        super(context);
-        this.f36626a = p70Var;
-        org.telegram.ui.Components.mq mqVar = new org.telegram.ui.Components.mq(new ColorDrawable(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Qk, false)), org.telegram.ui.ActionBar.j6.U0(context, R.drawable.greydivider_bottom, -16777216));
-        this.f36627b = mqVar;
-        mqVar.f27116w = true;
-        setBackgroundDrawable(mqVar);
-        setImportantForAccessibility(2);
+    public o2(q2 q2Var) {
+        this.f39086c = q2Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(12.0f));
-        int i12 = org.telegram.ui.ActionBar.j6.Qk;
-        ((n4) this.f36626a).getClass();
-        org.telegram.ui.ActionBar.j6.v1(this.f36627b, org.telegram.ui.ActionBar.j6.w0(null, i12, false), false);
+    public final void a(z4.g gVar, Object obj) {
+        gVar.removeView(((n2) obj).f38814b);
+    }
+
+    @Override
+    public final int b() {
+        TL_iv.pageBlockSlideshow pageblockslideshow = this.f39086c.d;
+        if (pageblockslideshow == null) {
+            return 0;
+        }
+        return pageblockslideshow.items.size();
+    }
+
+    @Override
+    public final int c(Object obj) {
+        if (this.f39086c.d.items.contains(((n2) obj).f38813a)) {
+            return -1;
+        }
+        return -2;
+    }
+
+    @Override
+    public final Object e(z4.g gVar, int i10) {
+        x2 x2Var;
+        q2 q2Var = this.f39086c;
+        g4 g4Var = q2Var.f39679w;
+        i4 i4Var = q2Var.f39680x;
+        TL_iv.PageBlock pageBlock = q2Var.d.items.get(i10);
+        if (pageBlock instanceof TL_iv.pageBlockPhoto) {
+            d2 d2Var = new d2(q2Var.getContext(), i4Var, g4Var, 1);
+            d2Var.a((TL_iv.pageBlockPhoto) pageBlock, g4Var.E.cached_page, false, true);
+            x2Var = d2Var;
+        } else {
+            x2 x2Var2 = new x2(q2Var.getContext(), i4Var, g4Var, 1);
+            TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
+            x2Var2.b(pageblockvideo, (y2) i4Var.f41443y.f(pageblockvideo.video_id), false, true);
+            x2Var = x2Var2;
+        }
+        gVar.addView(x2Var);
+        ?? obj = new Object();
+        obj.f38814b = x2Var;
+        obj.f38813a = pageBlock;
+        return obj;
+    }
+
+    @Override
+    public final boolean f(View view, Object obj) {
+        if (((n2) obj).f38814b == view) {
+            return true;
+        }
+        return false;
     }
 }

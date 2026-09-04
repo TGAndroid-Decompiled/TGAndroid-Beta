@@ -1,16 +1,63 @@
 package g6;
 
-import java.util.Comparator;
-public final class b implements Comparator {
-    public static final b f6478a = new Object();
+import android.os.Build;
+import android.text.TextUtils;
+import android.util.Log;
+import java.util.Locale;
+public final class b {
+    public final String f10386a;
+    public final boolean f10387b;
+    public final String f10388c;
 
-    @Override
-    public final int compare(Object obj, Object obj2) {
-        y5.c cVar = (y5.c) obj;
-        y5.c cVar2 = (y5.c) obj2;
-        if (!cVar.f47171a.equals(cVar2.f47171a)) {
-            return cVar.f47171a.compareTo(cVar2.f47171a);
+    public b(String str, String str2) {
+        boolean z10;
+        String p5;
+        n6.l.g(str, "The log tag cannot be null or empty.");
+        this.f10386a = str;
+        if (str.length() <= 23) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        return (cVar.e() > cVar2.e() ? 1 : (cVar.e() == cVar2.e() ? 0 : -1));
+        this.f10387b = z10;
+        if (TextUtils.isEmpty(str2)) {
+            p5 = null;
+        } else {
+            p5 = a4.a.p("[", str2, "] ");
+        }
+        this.f10388c = p5;
+    }
+
+    public final void a(Exception exc, String str, Object... objArr) {
+        if (!Build.TYPE.equals("user") && this.f10387b) {
+            String str2 = this.f10386a;
+            if (Log.isLoggable(str2, 3)) {
+                Log.d(str2, d(str, objArr), exc);
+            }
+        }
+    }
+
+    public final void b(String str, Object... objArr) {
+        if (!Build.TYPE.equals("user") && this.f10387b) {
+            String str2 = this.f10386a;
+            if (Log.isLoggable(str2, 3)) {
+                Log.d(str2, d(str, objArr));
+            }
+        }
+    }
+
+    public final void c(Object... objArr) {
+        Log.e(this.f10386a, d("Bundle is null", objArr));
+    }
+
+    public final String d(String str, Object... objArr) {
+        if (objArr.length != 0) {
+            str = String.format(Locale.ROOT, str, objArr);
+        }
+        String str2 = this.f10388c;
+        if (!TextUtils.isEmpty(str2)) {
+            return String.valueOf(str2).concat(String.valueOf(str));
+        }
+        return str;
     }
 }

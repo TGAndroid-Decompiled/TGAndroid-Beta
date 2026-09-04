@@ -1,16 +1,18 @@
 package p7;
 
-import android.os.IBinder;
-import android.os.IInterface;
-public final class c implements IInterface {
-    public final IBinder f41077a;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class c {
+    public static final int f43957a = 0;
 
-    public c(IBinder iBinder) {
-        this.f41077a = iBinder;
+    static {
+        c.class.getClassLoader();
     }
 
-    @Override
-    public final IBinder asBinder() {
-        return this.f41077a;
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
+        }
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 }

@@ -1,32 +1,52 @@
 package c2;
-public final class c implements Runnable {
-    public final int f1931a;
-    public final androidx.emoji2.text.p f1932b;
-    public final int f1933c;
 
-    public c(androidx.emoji2.text.p pVar, int i10, int i11) {
-        this.f1931a = i11;
-        this.f1932b = pVar;
-        this.f1933c = i10;
+import android.media.AudioAttributes;
+import android.media.AudioFocusRequest;
+import android.media.AudioManager;
+import android.os.Build;
+import android.os.Handler;
+import j$.util.Objects;
+public final class c {
+    public final int f4143a;
+    public final AudioManager.OnAudioFocusChangeListener f4144b;
+    public final Handler f4145c;
+    public final b2.e d;
+    public final boolean f4146e;
+    public final Object f4147f;
+
+    public c(int i10, AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener, Handler handler, b2.e eVar, boolean z10) {
+        this.f4143a = i10;
+        this.f4145c = handler;
+        this.d = eVar;
+        this.f4146e = z10;
+        int i11 = Build.VERSION.SDK_INT;
+        if (i11 < 26) {
+            this.f4144b = new b(onAudioFocusChangeListener, handler);
+        } else {
+            this.f4144b = onAudioFocusChangeListener;
+        }
+        if (i11 >= 26) {
+            this.f4147f = new AudioFocusRequest.Builder(i10).setAudioAttributes((AudioAttributes) eVar.b().f2408a).setWillPauseWhenDucked(z10).setOnAudioFocusChangeListener(onAudioFocusChangeListener, handler).build();
+        } else {
+            this.f4147f = null;
+        }
     }
 
-    @Override
-    public final void run() {
-        switch (this.f1931a) {
-            case 0:
-                b0 b0Var = ((e) ((af.d) this.f1932b.f794f).d).d;
-                if (b0Var != null) {
-                    b0Var.j(this.f1933c);
-                    return;
-                }
-                return;
-            default:
-                b0 b0Var2 = ((e) ((af.d) this.f1932b.f794f).d).d;
-                if (b0Var2 != null) {
-                    b0Var2.k(this.f1933c);
-                    return;
-                }
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (!(obj instanceof c)) {
+            return false;
+        }
+        c cVar = (c) obj;
+        if (this.f4143a == cVar.f4143a && this.f4146e == cVar.f4146e && Objects.equals(this.f4144b, cVar.f4144b) && Objects.equals(this.f4145c, cVar.f4145c) && Objects.equals(this.d, cVar.d)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.f4143a), this.f4144b, this.f4145c, this.d, Boolean.valueOf(this.f4146e));
     }
 }

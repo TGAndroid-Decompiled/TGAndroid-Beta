@@ -1,21 +1,26 @@
 package od;
+public abstract class a {
+    public static final Integer f16989a;
 
-import androidx.biometric.e0;
-public final class a extends wc.c {
-    public pd.g f16526a;
-    public Object f16527b;
-    public final e0 f16528c;
-    public int d;
-
-    public a(e0 e0Var, wc.c cVar) {
-        super(cVar);
-        this.f16528c = e0Var;
-    }
-
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f16527b = obj;
-        this.d |= Integer.MIN_VALUE;
-        return this.f16528c.z(null, this);
+    static {
+        Integer num;
+        Object obj;
+        Integer num2 = null;
+        try {
+            obj = Class.forName("android.os.Build$VERSION").getField("SDK_INT").get(null);
+        } catch (Throwable unused) {
+        }
+        if (obj instanceof Integer) {
+            num = (Integer) obj;
+            if (num != null && num.intValue() > 0) {
+                num2 = num;
+            }
+            f16989a = num2;
+        }
+        num = null;
+        if (num != null) {
+            num2 = num;
+        }
+        f16989a = num2;
     }
 }

@@ -6,43 +6,43 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
-public final class qb extends f2.o0 {
-    public final Context f37372c;
+public final class qb extends s4.h0 {
+    public final Context f39819c;
     public int d;
-    public int e;
-    public int f37373f;
+    public int f39820e;
+    public int f39821f;
     public int h;
-    public final ub f37374n;
+    public final ub f39822n;
 
     public qb(ub ubVar, Context context) {
-        this.f37374n = ubVar;
+        this.f39822n = ubVar;
         new ArrayList();
         new ArrayList();
-        this.f37372c = context;
+        this.f39819c = context;
         C(true);
     }
 
-    public final void D(boolean z4) {
+    public final void D(boolean z10) {
         this.d = 0;
-        ub ubVar = this.f37374n;
-        ArrayList arrayList = ubVar.f38748p0;
+        ub ubVar = this.f39822n;
+        ArrayList arrayList = ubVar.f41040s0;
         if (!arrayList.isEmpty()) {
-            if (!ubVar.f38751r0) {
+            if (!ubVar.f41042u0) {
                 int i10 = this.d;
                 this.d = i10 + 1;
-                this.e = i10;
+                this.f39820e = i10;
             } else {
-                this.e = -1;
+                this.f39820e = -1;
             }
             int i11 = this.d;
-            this.f37373f = i11;
+            this.f39821f = i11;
             int size = arrayList.size() + i11;
             this.d = size;
             this.h = size;
             return;
         }
-        this.e = -1;
-        this.f37373f = -1;
+        this.f39820e = -1;
+        this.f39821f = -1;
         this.h = -1;
     }
 
@@ -53,10 +53,10 @@ public final class qb extends f2.o0 {
 
     @Override
     public final long i(int i10) {
-        if (i10 >= this.f37373f && i10 < this.h) {
-            ArrayList arrayList = this.f37374n.f38748p0;
-            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f37373f)) - 1)).stableId;
-        } else if (i10 == this.e) {
+        if (i10 >= this.f39821f && i10 < this.h) {
+            ArrayList arrayList = this.f39822n.f41040s0;
+            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f39821f)) - 1)).stableId;
+        } else if (i10 == this.f39820e) {
             return 2L;
         } else {
             return 5L;
@@ -65,9 +65,9 @@ public final class qb extends f2.o0 {
 
     @Override
     public final int j(int i10) {
-        if (i10 >= this.f37373f && i10 < this.h) {
-            ArrayList arrayList = this.f37374n.f38748p0;
-            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f37373f)) - 1)).contentType;
+        if (i10 >= this.f39821f && i10 < this.h) {
+            ArrayList arrayList = this.f39822n.f41040s0;
+            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f39821f)) - 1)).contentType;
         }
         return 4;
     }
@@ -77,8 +77,8 @@ public final class qb extends f2.o0 {
         D(true);
         try {
             super.l();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 
@@ -87,8 +87,8 @@ public final class qb extends f2.o0 {
         D(false);
         try {
             super.m(i10);
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 
@@ -97,8 +97,8 @@ public final class qb extends f2.o0 {
         D(false);
         try {
             super.p(i10, i11);
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 
@@ -107,8 +107,8 @@ public final class qb extends f2.o0 {
         D(false);
         try {
             super.q(i10, i11);
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 
@@ -117,8 +117,8 @@ public final class qb extends f2.o0 {
         D(false);
         try {
             super.s(i10, i11);
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 
@@ -127,66 +127,66 @@ public final class qb extends f2.o0 {
         D(false);
         try {
             super.t(i10, i11);
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 
     @Override
-    public final void v(f2.l1 r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qb.v(f2.l1, int):void");
+    public final void v(s4.c1 r21, int r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qb.v(s4.c1, int):void");
     }
 
     @Override
-    public final f2.l1 x(ViewGroup viewGroup, int i10) {
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.ActionBar.f6 f6Var;
-        org.telegram.ui.Cells.t1 t1Var;
+        org.telegram.ui.Cells.u1 u1Var;
         int i11;
         View view;
-        ub ubVar = this.f37374n;
+        ub ubVar = this.f39822n;
         ArrayList arrayList = ubVar.v;
-        Context context = this.f37372c;
+        Context context = this.f39819c;
         if (i10 == 0) {
             if (arrayList.isEmpty()) {
-                i11 = ((org.telegram.ui.ActionBar.p2) ubVar).currentAccount;
-                view = new org.telegram.ui.Cells.s1(context, i11);
+                i11 = ((org.telegram.ui.ActionBar.n2) ubVar).currentAccount;
+                view = new org.telegram.ui.Cells.t1(context, i11);
             } else {
                 arrayList.remove(0);
                 view = (View) arrayList.get(0);
             }
-            org.telegram.ui.Cells.s1 s1Var = (org.telegram.ui.Cells.s1) view;
-            s1Var.setDelegate(new lb(this));
-            s1Var.setAllowAssistant(true);
-            t1Var = view;
+            org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) view;
+            t1Var.setDelegate(new lb(this));
+            t1Var.setAllowAssistant(true);
+            u1Var = view;
         } else if (i10 == 1) {
-            org.telegram.ui.Cells.v0 v0Var = new org.telegram.ui.Cells.v0(context);
-            v0Var.setDelegate(new ob(this));
-            t1Var = v0Var;
+            org.telegram.ui.Cells.w0 w0Var = new org.telegram.ui.Cells.w0(context);
+            w0Var.setDelegate(new ob(this));
+            u1Var = w0Var;
         } else if (i10 == 2) {
-            t1Var = new org.telegram.ui.Cells.u1(context, null);
+            u1Var = new org.telegram.ui.Cells.v1(context, null);
         } else if (i10 == 10) {
-            f6Var = ((org.telegram.ui.ActionBar.p2) ubVar).resourceProvider;
-            org.telegram.ui.Cells.t1 t1Var2 = new org.telegram.ui.Cells.t1(context, f6Var);
-            t1Var2.setDelegate(new h(this, 10));
-            t1Var = t1Var2;
+            f6Var = ((org.telegram.ui.ActionBar.n2) ubVar).resourceProvider;
+            org.telegram.ui.Cells.u1 u1Var2 = new org.telegram.ui.Cells.u1(context, f6Var);
+            u1Var2.setDelegate(new g(this, 10));
+            u1Var = u1Var2;
         } else {
-            t1Var = new org.telegram.ui.Cells.y0(context, null);
+            u1Var = new org.telegram.ui.Cells.z0(context, null);
         }
-        return ai.n(t1Var, t1Var, -1, -2);
+        return com.google.android.gms.internal.vision.e2.l(u1Var, u1Var, -1, -2);
     }
 
     @Override
-    public final void y(f2.l1 l1Var) {
-        View view = l1Var.f5774a;
-        if ((view instanceof org.telegram.ui.Cells.s1) || (view instanceof org.telegram.ui.Cells.v0)) {
-            view.getViewTreeObserver().addOnPreDrawListener(new pb(this, view, l1Var));
+    public final void y(s4.c1 c1Var) {
+        View view = c1Var.f45738a;
+        if ((view instanceof org.telegram.ui.Cells.t1) || (view instanceof org.telegram.ui.Cells.w0)) {
+            view.getViewTreeObserver().addOnPreDrawListener(new pb(this, view, c1Var));
         }
-        if (view instanceof org.telegram.ui.Cells.s1) {
-            org.telegram.ui.Cells.s1 s1Var = (org.telegram.ui.Cells.s1) view;
-            s1Var.getMessageObject();
-            s1Var.setBackgroundDrawable(null);
-            s1Var.K3(true, false);
-            s1Var.setHighlighted(false);
+        if (view instanceof org.telegram.ui.Cells.t1) {
+            org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) view;
+            t1Var.getMessageObject();
+            t1Var.setBackgroundDrawable(null);
+            t1Var.K3(true, false);
+            t1Var.setHighlighted(false);
         }
     }
 }

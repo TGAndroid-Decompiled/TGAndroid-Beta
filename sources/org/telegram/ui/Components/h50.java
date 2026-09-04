@@ -1,55 +1,33 @@
 package org.telegram.ui.Components;
 
-import com.google.android.gms.common.api.internal.BasePendingResult;
-import java.util.ArrayDeque;
-import java.util.TimerTask;
-import org.telegram.messenger.AndroidUtilities;
-public final class h50 extends TimerTask {
-    public final int f25317a;
-    public final Object f25318b;
+import android.animation.ValueAnimator;
+public final class h50 implements ValueAnimator.AnimatorUpdateListener {
+    public final boolean[] f26584a;
+    public final d50 f26585b;
+    public final w50 f26586c;
 
-    public h50(Object obj, int i10) {
-        this.f25317a = i10;
-        this.f25318b = obj;
+    public h50(w50 w50Var, boolean[] zArr, d50 d50Var) {
+        this.f26586c = w50Var;
+        this.f26584a = zArr;
+        this.f26585b = d50Var;
     }
 
     @Override
-    public final void run() {
-        BasePendingResult basePendingResult;
-        switch (this.f25317a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new up(this, 24));
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.d10(this, 23));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.gl0(this, 5));
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.q0(this, 16));
-                return;
-            default:
-                s5.c cVar = (s5.c) this.f25318b;
-                ArrayDeque arrayDeque = cVar.h;
-                if (!arrayDeque.isEmpty() && cVar.f44120k == null && cVar.f44114b != 0) {
-                    s5.h hVar = cVar.f44115c;
-                    int[] e = u5.a.e(arrayDeque);
-                    hVar.getClass();
-                    b6.m.e("Must be called from the main thread.");
-                    if (!hVar.w()) {
-                        basePendingResult = s5.h.t();
-                    } else {
-                        s5.j jVar = new s5.j(hVar, e);
-                        s5.h.x(jVar);
-                        basePendingResult = jVar;
-                    }
-                    cVar.f44120k = basePendingResult;
-                    basePendingResult.i(new s5.q(cVar, 1));
-                    arrayDeque.clear();
-                    return;
-                }
-                return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        if (floatValue > 0.5f) {
+            boolean[] zArr = this.f26584a;
+            if (!zArr[0]) {
+                zArr[0] = true;
+                this.f26585b.run();
+            }
         }
+        if (floatValue >= 0.5f) {
+            floatValue -= 1.0f;
+        }
+        float f7 = floatValue * 180.0f;
+        w50 w50Var = this.f26586c;
+        w50Var.f32127b.setRotationY(f7);
+        w50Var.m0.setRotationY(f7);
     }
 }

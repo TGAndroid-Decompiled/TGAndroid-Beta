@@ -1,178 +1,92 @@
 package org.telegram.ui.Cells;
 
 import android.graphics.Canvas;
+import android.text.StaticLayout;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.RadioButton;
-public final class s2 extends FrameLayout {
-    public int f22277a;
-    public TextView f22278b;
-    public TextView f22279c;
-    public RadioButton d;
-    public boolean e;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public final class s2 extends a0 {
+    public boolean E;
+    public int F;
+    public boolean G;
+    public int H;
+    public TLRPC.RecentMeUrl f22817f;
+    public ImageReceiver h;
+    public org.telegram.ui.Components.i9 f22818n;
+    public int f22819r;
+    public StaticLayout f22820s;
+    public int v;
+    public int f22821w;
+    public int f22822x;
+    public StaticLayout f22823y;
 
-    public final void a(boolean z4, boolean z10) {
-        float f10;
-        float f11;
-        float f12;
-        float f13;
-        RadioButton radioButton = this.d;
-        TextView textView = this.f22279c;
-        TextView textView2 = this.f22278b;
-        setEnabled(z4);
-        float f14 = 0.5f;
-        if (z10) {
-            ViewPropertyAnimator animate = textView2.animate();
-            if (z4) {
-                f12 = 1.0f;
-            } else {
-                f12 = 0.5f;
-            }
-            animate.alpha(f12).start();
-            ViewPropertyAnimator animate2 = textView.animate();
-            if (z4) {
-                f13 = 1.0f;
-            } else {
-                f13 = 0.5f;
-            }
-            animate2.alpha(f13).start();
-            ViewPropertyAnimator animate3 = radioButton.animate();
-            if (z4) {
-                f14 = 1.0f;
-            }
-            animate3.alpha(f14).start();
-            return;
-        }
-        if (z4) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.5f;
-        }
-        textView2.setAlpha(f10);
-        if (z4) {
-            f11 = 1.0f;
-        } else {
-            f11 = 0.5f;
-        }
-        textView.setAlpha(f11);
-        if (z4) {
-            f14 = 1.0f;
-        }
-        radioButton.setAlpha(f14);
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.h.onAttachedToWindow();
     }
 
-    public final void b() {
-        int i10;
-        float f10;
-        float f11;
-        FrameLayout.LayoutParams d;
-        FrameLayout.LayoutParams d10;
-        int i11;
-        float f12;
-        float f13;
-        TextView textView = this.f22278b;
-        TextView textView2 = this.f22279c;
-        int i12 = 3;
-        if (textView2.getVisibility() == 0) {
-            boolean z4 = LocaleController.isRTL;
-            if (z4) {
-                i11 = 5;
-            } else {
-                i11 = 3;
-            }
-            int i13 = i11 | 48;
-            if (z4) {
-                f12 = 23.0f;
-            } else {
-                f12 = 61.0f;
-            }
-            if (z4) {
-                f13 = 61.0f;
-            } else {
-                f13 = 23.0f;
-            }
-            d = k7.b6.d(-1, -1.0f, i13, f12, 0.0f, f13, 0.0f);
-        } else {
-            boolean z10 = LocaleController.isRTL;
-            if (z10) {
-                i10 = 5;
-            } else {
-                i10 = 3;
-            }
-            int i14 = i10 | 48;
-            if (z10) {
-                f10 = 61.0f;
-            } else {
-                f10 = 23.0f;
-            }
-            if (z10) {
-                f11 = 23.0f;
-            } else {
-                f11 = 61.0f;
-            }
-            d = k7.b6.d(-1, -1.0f, i14, f10, 0.0f, f11, 0.0f);
-        }
-        textView.setLayoutParams(d);
-        RadioButton radioButton = this.d;
-        if (textView2.getVisibility() == 0) {
-            if (LocaleController.isRTL) {
-                i12 = 5;
-            }
-            d10 = k7.b6.d(22, 22.0f, i12 | 48, 20.0f, 15.0f, 20.0f, 0.0f);
-        } else {
-            if (!LocaleController.isRTL) {
-                i12 = 5;
-            }
-            d10 = k7.b6.d(22, 22.0f, i12 | 48, 20.0f, 15.0f, 20.0f, 0.0f);
-        }
-        radioButton.setLayoutParams(d10);
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.h.onDetachedFromWindow();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float f10;
-        if (this.e) {
-            float f11 = 23.0f;
-            if (LocaleController.isRTL) {
-                f10 = 0.0f;
-            } else {
-                f10 = 23.0f;
-            }
-            float dp = AndroidUtilities.dp(f10);
-            float height = getHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (!LocaleController.isRTL) {
-                f11 = 0.0f;
-            }
-            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f11), getHeight() - 1, org.telegram.ui.ActionBar.j6.f20000k0);
+        Canvas canvas2;
+        if (this.G) {
+            canvas2 = canvas;
+            canvas2.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.j6.f20966u0);
+        } else {
+            canvas2 = canvas;
         }
+        if (this.f22820s != null) {
+            canvas2.save();
+            canvas2.translate(this.f22819r, AndroidUtilities.dp(13.0f));
+            this.f22820s.draw(canvas2);
+            canvas2.restore();
+        }
+        if (this.f22823y != null) {
+            canvas2.save();
+            canvas2.translate(this.f22822x, this.f22821w);
+            try {
+                this.f22823y.draw(canvas2);
+            } catch (Exception e7) {
+                FileLog.e(e7);
+            }
+            canvas2.restore();
+        }
+        if (this.E) {
+            a0.o(this.v, AndroidUtilities.dp(16.5f), org.telegram.ui.ActionBar.j6.f20695f1);
+            a0.o(this.v, AndroidUtilities.dp(16.5f), org.telegram.ui.ActionBar.j6.f20748i1);
+            org.telegram.ui.ActionBar.j6.f20695f1.draw(canvas2);
+            org.telegram.ui.ActionBar.j6.f20748i1.draw(canvas2);
+        }
+        this.h.draw(canvas2);
+    }
+
+    @Override
+    public final void onLayout(boolean r22, int r23, int r24, int r25, int r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.s2.onLayout(boolean, int, int, int, int):void");
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int i12;
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(50.0f) + (this.e ? 1 : 0));
-        int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
-        TextView textView = this.f22279c;
-        if (textView.getVisibility() == 0) {
-            i12 = 12;
-        } else {
-            i12 = 0;
-        }
-        int dp = measuredWidth - AndroidUtilities.dp(i12 + 84);
-        this.d.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(22.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(22.0f), 1073741824));
-        if (textView.getVisibility() == 0) {
-            textView.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
-            dp = org.telegram.ui.b.t(12.0f, textView.getMeasuredWidth(), dp);
-        }
-        this.f22278b.measure(View.MeasureSpec.makeMeasureSpec(dp, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(72.0f));
     }
 
-    public void setTextColor(int i10) {
-        this.f22278b.setTextColor(i10);
+    public void setDialogSelected(boolean z10) {
+        if (this.G != z10) {
+            invalidate();
+        }
+        this.G = z10;
+    }
+
+    public void setRecentMeUrl(TLRPC.RecentMeUrl recentMeUrl) {
+        this.f22817f = recentMeUrl;
+        requestLayout();
     }
 }

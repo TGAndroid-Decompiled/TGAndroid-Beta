@@ -1,43 +1,13 @@
 package k2;
+public final class o extends Exception {
+    public final int f14633a;
+    public final boolean f14634b;
+    public final b2.s f14635c;
 
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.VectorDrawable;
-public final class o extends Drawable.ConstantState {
-    public final Drawable.ConstantState f9668a;
-
-    public o(Drawable.ConstantState constantState) {
-        this.f9668a = constantState;
-    }
-
-    @Override
-    public final boolean canApplyTheme() {
-        return this.f9668a.canApplyTheme();
-    }
-
-    @Override
-    public int getChangingConfigurations() {
-        return this.f9668a.getChangingConfigurations();
-    }
-
-    @Override
-    public final Drawable newDrawable() {
-        p pVar = new p();
-        pVar.f9626a = (VectorDrawable) this.f9668a.newDrawable();
-        return pVar;
-    }
-
-    @Override
-    public final Drawable newDrawable(Resources resources) {
-        p pVar = new p();
-        pVar.f9626a = (VectorDrawable) this.f9668a.newDrawable(resources);
-        return pVar;
-    }
-
-    @Override
-    public final Drawable newDrawable(Resources resources, Resources.Theme theme) {
-        p pVar = new p();
-        pVar.f9626a = (VectorDrawable) this.f9668a.newDrawable(resources, theme);
-        return pVar;
+    public o(int i10, b2.s sVar, boolean z10) {
+        super(i2.g.i(i10, "AudioTrack write failed: "));
+        this.f14634b = z10;
+        this.f14633a = i10;
+        this.f14635c = sVar;
     }
 }

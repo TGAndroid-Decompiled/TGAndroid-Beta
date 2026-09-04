@@ -1,47 +1,65 @@
 package i7;
 
-import j7.d8;
-public final class c extends d {
-    public final transient int f7341c;
-    public final transient int d;
-    public final d e;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Looper;
+import com.google.android.gms.common.api.k;
+import com.google.android.gms.common.api.l;
+import m.p3;
+public final class c extends n6.g {
+    public final Bundle U;
 
-    public c(d dVar, int i10, int i11) {
-        this.e = dVar;
-        this.f7341c = i10;
-        this.d = i11;
+    public c(Context context, Looper looper, k kVar, l lVar, p3 p3Var) {
+        super(context, looper, 212, p3Var, kVar, lVar, 0);
+        this.U = new Bundle();
     }
 
     @Override
-    public final Object get(int i10) {
-        d8.a(i10, this.d);
-        return this.e.get(i10 + this.f7341c);
+    public final boolean C() {
+        return true;
     }
 
     @Override
-    public final int n() {
-        return this.e.o() + this.f7341c + this.d;
+    public final int l() {
+        return 17895000;
     }
 
     @Override
-    public final int o() {
-        return this.e.o() + this.f7341c;
+    public final IInterface q(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
+        }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.auth.api.identity.internal.ISignInService");
+        if (queryLocalInterface instanceof i) {
+            return (i) queryLocalInterface;
+        }
+        return new a9.a(iBinder, "com.google.android.gms.auth.api.identity.internal.ISignInService", 5);
     }
 
     @Override
-    public final Object[] p() {
-        return this.e.p();
+    public final k6.c[] r() {
+        return d.f11884b;
     }
 
     @Override
-    public final d subList(int i10, int i11) {
-        d8.b(i10, i11, this.d);
-        int i12 = this.f7341c;
-        return this.e.subList(i10 + i12, i11 + i12);
+    public final Bundle t() {
+        return this.U;
     }
 
     @Override
-    public final int size() {
-        return this.d;
+    public final String v() {
+        return "com.google.android.gms.auth.api.identity.internal.ISignInService";
+    }
+
+    @Override
+    public final String w() {
+        return "com.google.android.gms.auth.api.identity.service.signin.START";
+    }
+
+    @Override
+    public final boolean y() {
+        return true;
     }
 }

@@ -1,29 +1,47 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class jk0 implements org.telegram.ui.Components.il0, org.telegram.ui.ActionBar.c2 {
-    public final NotificationsSettingsActivity f35315a;
+public final class jk0 implements Runnable {
+    public final int f37797a;
+    public final NotificationsCustomSettingsActivity f37798b;
+    public final wk0 f37799c;
+    public final View d;
 
-    public jk0(NotificationsSettingsActivity notificationsSettingsActivity) {
-        this.f35315a = notificationsSettingsActivity;
+    public jk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, wk0 wk0Var, View view, int i10, int i11) {
+        this.f37797a = i11;
+        this.f37798b = notificationsCustomSettingsActivity;
+        this.f37799c = wk0Var;
+        this.d = view;
     }
 
     @Override
-    public boolean Z0(View view) {
-        return false;
+    public final void run() {
+        switch (this.f37797a) {
+            case 0:
+                this.f37798b.k0(this.f37799c, this.d, false);
+                return;
+            case 1:
+                this.f37798b.e0(this.f37799c, this.d);
+                return;
+            case 2:
+                NotificationsCustomSettingsActivity.X(this.f37798b, this.f37799c, this.d);
+                return;
+            case 3:
+                NotificationsCustomSettingsActivity.V(this.f37798b, this.f37799c, this.d);
+                return;
+            case 4:
+                this.f37798b.e0(this.f37799c, this.d);
+                return;
+            default:
+                this.f37798b.k0(this.f37799c, this.d, true);
+                return;
+        }
     }
 
-    @Override
-    public void c(float f10, float f11, int i10, View view) {
-        NotificationsSettingsActivity.Y(this.f35315a, view, i10, f10);
-    }
-
-    @Override
-    public void l(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        NotificationsSettingsActivity.Z(this.f35315a);
-    }
-
-    @Override
-    public void n0(View view, float f10, float f11) {
+    public jk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, wk0 wk0Var, View view, boolean z10, int i10) {
+        this.f37797a = i10;
+        this.f37798b = notificationsCustomSettingsActivity;
+        this.f37799c = wk0Var;
+        this.d = view;
     }
 }

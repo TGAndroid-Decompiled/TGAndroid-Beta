@@ -1,28 +1,25 @@
 package org.telegram.ui;
-public final class b40 implements m2.f {
-    public final e60 f32730a;
 
-    public b40(e60 e60Var) {
-        this.f32730a = e60Var;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.tgnet.TLRPC;
+public final class b40 extends r4 {
+    public final j60 U;
+
+    public b40(j60 j60Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.U = j60Var;
     }
 
     @Override
-    public final void a(int i10) {
-        e60 e60Var = this.f32730a;
-        e60Var.f33620b.A0.k(i10);
-        y30 y30Var = e60Var.A2;
-        y30Var.G = y30Var.I;
-        y30Var.H = y30Var.J;
-        y30Var.K = 0.0f;
-        y30Var.L = 1;
-        y30Var.invalidate();
-    }
-
-    @Override
-    public final void c(int i10) {
-    }
-
-    @Override
-    public final void b(float f10, int i10, int i11) {
+    public final void c() {
+        j60 j60Var = this.U;
+        AccountInstance accountInstance = j60Var.d;
+        c40 c40Var = j60Var.f37515b;
+        long dialogId = c40Var.getDialogId();
+        if (dialogId > 0) {
+            TLRPC.User user = accountInstance.getMessagesController().getUser(Long.valueOf(dialogId));
+            c40Var.H(null, ImageLocation.getForUserOrChat(accountInstance.getCurrentAccount(), user, 0), ImageLocation.getForUserOrChat(accountInstance.getCurrentAccount(), user, 1), false);
+        }
     }
 }

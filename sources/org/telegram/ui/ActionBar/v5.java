@@ -6,173 +6,48 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.View;
 public final class v5 extends Drawable {
-    public final int f20609a = 1;
-    public final int f20610b;
-    public final int f20611c;
-    public Object d;
+    public final RectF f21434a = new RectF();
+    public final View f21435b;
+    public final View f21436c;
+    public final int d;
+    public final Paint f21437e;
 
-    public v5(int i10, int i11, Drawable drawable) {
-        this.f20610b = i10;
-        this.f20611c = i11;
-        this.d = drawable;
+    public v5(View view, View view2, int i10, Paint paint) {
+        this.f21435b = view;
+        this.f21436c = view2;
+        this.d = i10;
+        this.f21437e = paint;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        int i10;
-        float f10;
-        switch (this.f20609a) {
-            case 0:
-                Rect bounds = getBounds();
-                canvas.drawCircle(bounds.centerX(), bounds.centerY(), this.f20611c / 2.0f, (Paint) this.d);
-                return;
-            case 1:
-                Rect bounds2 = getBounds();
-                int i11 = this.f20611c;
-                int i12 = this.f20610b;
-                if (i12 == 7) {
-                    if (((RectF) this.d) == null) {
-                        this.d = new RectF();
-                    }
-                    ((RectF) this.d).set(bounds2);
-                    if (i11 <= 0) {
-                        f10 = AndroidUtilities.dp(6.0f);
-                    } else {
-                        f10 = i11;
-                    }
-                    canvas.drawRoundRect((RectF) this.d, f10, f10, j6.f20267z);
-                    return;
-                }
-                if (i12 != 1 && i12 != 6) {
-                    if (i12 == 3) {
-                        i10 = Math.max(bounds2.width(), bounds2.height()) / 2;
-                    } else {
-                        i10 = (int) Math.ceil(Math.sqrt(((bounds2.top - bounds2.centerY()) * (bounds2.top - bounds2.centerY())) + ((bounds2.left - bounds2.centerX()) * (bounds2.left - bounds2.centerX()))));
-                    }
-                } else {
-                    if (i11 <= 0) {
-                        i11 = AndroidUtilities.dp(20.0f);
-                    }
-                    i10 = i11;
-                }
-                canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), i10, j6.f20267z);
-                return;
-            default:
-                ((Drawable) this.d).draw(canvas);
-                return;
+        Rect bounds = getBounds();
+        RectF rectF = this.f21434a;
+        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
+        j6.s(this.f21435b, this.f21436c, null);
+        float f7 = this.d;
+        Paint paint = this.f21437e;
+        if (paint == null) {
+            paint = j6.S0("paintChatActionBackground");
         }
-    }
-
-    @Override
-    public int getAlpha() {
-        switch (this.f20609a) {
-            case 2:
-                return ((Drawable) this.d).getAlpha();
-            default:
-                return super.getAlpha();
-        }
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        switch (this.f20609a) {
-            case 0:
-                return this.f20611c + this.f20610b;
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        switch (this.f20609a) {
-            case 0:
-                return this.f20611c + this.f20610b;
-            default:
-                return super.getIntrinsicWidth();
+        canvas.drawRoundRect(rectF, f7, f7, paint);
+        if (j6.a1()) {
+            canvas.drawRoundRect(rectF, f7, f7, j6.S0("paintChatActionBackgroundDarken"));
         }
     }
 
     @Override
     public final int getOpacity() {
-        switch (this.f20609a) {
-            case 0:
-                return -2;
-            case 1:
-                return 0;
-            default:
-                return ((Drawable) this.d).getOpacity();
-        }
-    }
-
-    @Override
-    public void onBoundsChange(Rect rect) {
-        switch (this.f20609a) {
-            case 2:
-                super.onBoundsChange(rect);
-                int width = rect.width();
-                int i10 = this.f20610b;
-                int i11 = (width - i10) / 2;
-                int height = rect.height();
-                int i12 = this.f20611c;
-                int i13 = (height - i12) / 2;
-                ((Drawable) this.d).setBounds(i11, i13, i10 + i11, i12 + i13);
-                return;
-            default:
-                super.onBoundsChange(rect);
-                return;
-        }
+        return -2;
     }
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f20609a) {
-            case 0:
-                ((Paint) this.d).setAlpha(i10);
-                return;
-            case 1:
-                return;
-            default:
-                ((Drawable) this.d).setAlpha(i10);
-                return;
-        }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f20609a) {
-            case 0:
-                ((Paint) this.d).setColorFilter(colorFilter);
-                return;
-            case 1:
-            default:
-                return;
-        }
-    }
-
-    public v5(int i10, int i11, int i12) {
-        this.f20610b = i10;
-        this.f20611c = i12;
-        Paint paint = new Paint(1);
-        this.d = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(i10);
-        paint.setColor(i11);
-    }
-
-    public v5(int i10, int i11) {
-        this.f20610b = i10;
-        this.f20611c = i11;
-    }
-
-    private final void a(int i10) {
-    }
-
-    private final void b(ColorFilter colorFilter) {
-    }
-
-    private final void c(ColorFilter colorFilter) {
     }
 }

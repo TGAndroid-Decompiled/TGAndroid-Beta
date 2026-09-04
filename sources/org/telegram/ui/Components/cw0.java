@@ -1,103 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.text.Layout;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
+import android.animation.TimeAnimator;
+import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-public final class cw0 extends CharacterStyle {
-    public final Paint f24052a;
-    public final Path f24053b;
+public final class cw0 extends TimeAnimator {
+    public int f25100a;
+    public int f25101b;
+    public ValueAnimator.AnimatorUpdateListener f25102c;
+    public Float d;
+    public float[] f25103e;
 
-    public cw0() {
-        Paint paint = new Paint(1);
-        this.f24052a = paint;
-        this.f24053b = new Path();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-    }
-
-    public static void a(Canvas canvas, Layout layout) {
-        CharSequence text;
-        int lineStart;
-        int lineEnd;
-        Layout layout2 = layout;
-        if (layout2 != null && (text = layout2.getText()) != null && (text instanceof Spanned)) {
-            Spanned spanned = (Spanned) text;
-            cw0[] cw0VarArr = (cw0[]) spanned.getSpans(0, spanned.length(), cw0.class);
-            if (cw0VarArr != null && cw0VarArr.length != 0) {
-                int i10 = 0;
-                while (i10 < cw0VarArr.length) {
-                    cw0 cw0Var = cw0VarArr[i10];
-                    int spanStart = spanned.getSpanStart(cw0Var);
-                    int spanEnd = spanned.getSpanEnd(cw0Var);
-                    int lineForOffset = layout2.getLineForOffset(spanStart);
-                    int lineForOffset2 = layout2.getLineForOffset(spanEnd);
-                    int i11 = lineForOffset;
-                    while (i11 <= lineForOffset2) {
-                        float lineBottom = layout2.getLineBottom(i11) - AndroidUtilities.dp(1.0f);
-                        if (i11 == lineForOffset) {
-                            lineStart = spanStart;
-                        } else {
-                            lineStart = layout2.getLineStart(i11);
-                        }
-                        float primaryHorizontal = layout2.getPrimaryHorizontal(lineStart);
-                        if (i11 == lineForOffset2) {
-                            lineEnd = spanEnd;
-                        } else {
-                            lineEnd = layout2.getLineEnd(i11) - 1;
-                        }
-                        float primaryHorizontal2 = layout2.getPrimaryHorizontal(lineEnd);
-                        cw0Var.getClass();
-                        float dp = AndroidUtilities.dp(1.33f);
-                        float dp2 = AndroidUtilities.dp(10.0f);
-                        float dp3 = AndroidUtilities.dp(2.0f);
-                        Paint paint = cw0Var.f24052a;
-                        Spanned spanned2 = spanned;
-                        cw0[] cw0VarArr2 = cw0VarArr;
-                        int i12 = i10;
-                        paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Oh, false));
-                        paint.setStrokeWidth(dp);
-                        Path path = cw0Var.f24053b;
-                        path.rewind();
-                        path.moveTo(primaryHorizontal, lineBottom);
-                        float f10 = primaryHorizontal;
-                        while (f10 < primaryHorizontal2) {
-                            float f11 = f10;
-                            float f12 = dp2;
-                            path.quadTo((dp2 / 4.0f) + f10, lineBottom - dp3, (dp2 / 2.0f) + f11, lineBottom);
-                            float f13 = f11 + f12;
-                            path.quadTo(((f12 * 3.0f) / 4.0f) + f11, lineBottom + dp3, f13, lineBottom);
-                            f10 = f13;
-                            dp2 = f12;
-                        }
-                        if (f10 > primaryHorizontal2) {
-                            canvas.save();
-                            float f14 = dp / 2.0f;
-                            canvas.clipRect(primaryHorizontal - f14, (lineBottom - dp3) - f14, primaryHorizontal2 + f14, lineBottom + dp3 + f14);
-                            canvas.drawPath(path, paint);
-                            canvas.restore();
-                        } else {
-                            canvas.drawPath(path, paint);
-                        }
-                        i11++;
-                        layout2 = layout;
-                        spanned = spanned2;
-                        cw0VarArr = cw0VarArr2;
-                        i10 = i12;
-                    }
-                    i10++;
-                    layout2 = layout;
-                }
-            }
-        }
+    @Override
+    public final void addUpdateListener(ValueAnimator.AnimatorUpdateListener animatorUpdateListener) {
+        this.f25102c = animatorUpdateListener;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
+    public final void end() {
+        this.f25102c = null;
+        super.end();
+    }
+
+    @Override
+    public final Object getAnimatedValue() {
+        return this.d;
+    }
+
+    @Override
+    public final void setFloatValues(float[] fArr) {
+        super.setFloatValues(fArr);
+        this.f25103e = fArr;
+    }
+
+    @Override
+    public final void start() {
+        setTimeListener(new TimeAnimator.TimeListener() {
+            @Override
+            public final void onTimeUpdate(TimeAnimator timeAnimator, long j3, long j10) {
+                int i10;
+                cw0 cw0Var = cw0.this;
+                int i11 = cw0Var.f25100a;
+                if (i11 > 0 && (i10 = cw0Var.f25101b) > 0) {
+                    int i12 = i11 - 1;
+                    cw0Var.f25100a = i12;
+                    if (cw0Var.f25102c != null) {
+                        float[] fArr = cw0Var.f25103e;
+                        if (fArr != null && fArr.length == 2) {
+                            float interpolation = cw0Var.getInterpolator().getInterpolation(1.0f - (i12 / i10));
+                            float[] fArr2 = cw0Var.f25103e;
+                            float f7 = fArr2[0];
+                            cw0Var.d = Float.valueOf(((fArr2[1] - f7) * interpolation) + f7);
+                            cw0Var.f25102c.onAnimationUpdate(cw0Var);
+                            return;
+                        }
+                        cw0Var.end();
+                        return;
+                    }
+                    return;
+                }
+                cw0Var.end();
+            }
+        });
+        int duration = (int) (((float) getDuration()) / AndroidUtilities.screenRefreshTime);
+        this.f25100a = duration;
+        this.f25101b = duration;
+        super.start();
     }
 }

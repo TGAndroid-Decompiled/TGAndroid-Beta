@@ -51,8 +51,8 @@ public class Camera2Enumerator implements CameraEnumerator {
     private CameraCharacteristics getCameraCharacteristics(String str) {
         try {
             return this.cameraManager.getCameraCharacteristics(str);
-        } catch (AndroidException e) {
-            Logging.e("Camera2Enumerator", "Camera access exception: " + e);
+        } catch (AndroidException e7) {
+            Logging.e("Camera2Enumerator", "Camera access exception: " + e7);
             return null;
         }
     }
@@ -104,8 +104,8 @@ public class Camera2Enumerator implements CameraEnumerator {
     public String[] getDeviceNames() {
         try {
             return this.cameraManager.getCameraIdList();
-        } catch (AndroidException e) {
-            Logging.e("Camera2Enumerator", "Camera access exception: " + e);
+        } catch (AndroidException e7) {
+            Logging.e("Camera2Enumerator", "Camera access exception: " + e7);
             return new String[0];
         }
     }
@@ -138,7 +138,7 @@ public class Camera2Enumerator implements CameraEnumerator {
     }
 
     public static List<CameraEnumerationAndroid.CaptureFormat> getSupportedFormats(CameraManager cameraManager, String str) {
-        long j10;
+        long j3;
         Map<String, List<CameraEnumerationAndroid.CaptureFormat>> map = cachedSupportedFormats;
         synchronized (map) {
             try {
@@ -158,11 +158,11 @@ public class Camera2Enumerator implements CameraEnumerator {
                         ArrayList arrayList = new ArrayList();
                         for (Size size : supportedSizes) {
                             try {
-                                j10 = streamConfigurationMap.getOutputMinFrameDuration(SurfaceTexture.class, new android.util.Size(size.width, size.height));
+                                j3 = streamConfigurationMap.getOutputMinFrameDuration(SurfaceTexture.class, new android.util.Size(size.width, size.height));
                             } catch (Exception unused) {
-                                j10 = 0;
+                                j3 = 0;
                             }
-                            int round = j10 == 0 ? i10 : ((int) Math.round(1.0E9d / j10)) * 1000;
+                            int round = j3 == 0 ? i10 : ((int) Math.round(1.0E9d / j3)) * 1000;
                             arrayList.add(new CameraEnumerationAndroid.CaptureFormat(size.width, size.height, 0, round));
                             Logging.d("Camera2Enumerator", "Format: " + size.width + "x" + size.height + "@" + round);
                         }
@@ -170,8 +170,8 @@ public class Camera2Enumerator implements CameraEnumerator {
                         long elapsedRealtime2 = SystemClock.elapsedRealtime();
                         Logging.d("Camera2Enumerator", "Get supported formats for camera index " + str + " done. Time spent: " + (elapsedRealtime2 - elapsedRealtime) + " ms.");
                         return arrayList;
-                    } catch (Exception e) {
-                        Logging.e("Camera2Enumerator", "getCameraCharacteristics()", e);
+                    } catch (Exception e7) {
+                        Logging.e("Camera2Enumerator", "getCameraCharacteristics()", e7);
                         return new ArrayList();
                     }
                 }

@@ -1,10 +1,27 @@
 package org.telegram.tgnet;
 
-import org.telegram.tgnet.TLRPC;
-public abstract class k {
-    public static void a(ResultCallback resultCallback, Throwable th2) {
+import android.os.AsyncTask;
+import org.telegram.tgnet.ConnectionsManager;
+public final class k implements Runnable {
+    public final int f20061a;
+    public final NativeByteBuffer f20062b;
+    public final AsyncTask f20063c;
+
+    public k(AsyncTask asyncTask, NativeByteBuffer nativeByteBuffer, int i10) {
+        this.f20061a = i10;
+        this.f20063c = asyncTask;
+        this.f20062b = nativeByteBuffer;
     }
 
-    public static void b(ResultCallback resultCallback, TLRPC.TL_error tL_error) {
+    @Override
+    public final void run() {
+        switch (this.f20061a) {
+            case 0:
+                ((ConnectionsManager.GoogleDnsLoadTask) this.f20063c).lambda$onPostExecute$1(this.f20062b);
+                return;
+            default:
+                ((ConnectionsManager.MozillaDnsLoadTask) this.f20063c).lambda$onPostExecute$1(this.f20062b);
+                return;
+        }
     }
 }

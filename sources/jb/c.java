@@ -1,29 +1,17 @@
 package jb;
 
-import b6.m;
-import java.util.Arrays;
-public abstract class c {
-    public final float f9340a;
-
-    public c(kb.a aVar) {
-        this.f9340a = aVar.f10259a;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+import db.g;
+import db.u;
+import db.v;
+import java.sql.Timestamp;
+import java.util.Date;
+public class c implements v {
+    @Override
+    public final u create(g gVar, kb.a aVar) {
+        if (aVar.f14888a == Timestamp.class) {
+            gVar.getClass();
+            return new d(gVar.b(new kb.a(Date.class)));
         }
-        if (!(obj instanceof c)) {
-            return false;
-        }
-        c cVar = (c) obj;
-        if (getClass().equals(cVar.getClass()) && Float.compare(this.f9340a, cVar.f9340a) == 0 && m.l(null, null)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{getClass(), Float.valueOf(this.f9340a), null});
+        return null;
     }
 }

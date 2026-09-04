@@ -1,16 +1,14 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class e81 extends f2.j0 {
-    public final org.telegram.ui.dr f24511r;
+import android.text.TextPaint;
+public final class e81 {
+    public int f25602a;
+    public CharSequence f25603b;
+    public int f25604c;
 
-    public e81(org.telegram.ui.dr drVar, Context context) {
-        super(context);
-        this.f24511r = drVar;
-    }
-
-    @Override
-    public final void g(android.view.View r6, f2.g1 r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.e81.g(android.view.View, f2.g1):void");
+    public final int a(TextPaint textPaint) {
+        int ceil = (int) Math.ceil(di.f4.g(this.f25603b, textPaint));
+        this.f25604c = ceil;
+        return Math.max(0, ceil);
     }
 }

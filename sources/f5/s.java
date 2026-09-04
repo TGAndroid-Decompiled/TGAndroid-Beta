@@ -1,20 +1,45 @@
 package f5;
 
-import o4.t0;
-public final class s {
-    public final int f5947a;
-    public final int[] f5948b;
-    public final t0[] f5949c;
-    public final int[] d;
-    public final int[][][] e;
-    public final t0 f5950f;
+import com.google.android.gms.internal.vision.e2;
+import java.nio.ByteBuffer;
+public final class s extends a {
+    public static final mg.n f9339f;
+    public static final mg.n h;
+    public float f9340e;
 
-    public s(int[] iArr, t0[] t0VarArr, int[] iArr2, int[][][] iArr3, t0 t0Var) {
-        this.f5948b = iArr;
-        this.f5949c = t0VarArr;
-        this.e = iArr3;
-        this.d = iArr2;
-        this.f5950f = t0Var;
-        this.f5947a = iArr.length;
+    static {
+        re.a aVar = new re.a(s.class, "SoundMediaHeaderBox.java");
+        f9339f = aVar.e(aVar.d("getBalance", "com.coremedia.iso.boxes.SoundMediaHeaderBox", "", "", "float"));
+        h = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SoundMediaHeaderBox", "", "", "java.lang.String"));
+    }
+
+    @Override
+    public final void _parseDetails(ByteBuffer byteBuffer) {
+        f(byteBuffer);
+        this.f9340e = e5.b.g(byteBuffer);
+        e5.b.h(byteBuffer);
+    }
+
+    @Override
+    public final void getContent(ByteBuffer byteBuffer) {
+        i(byteBuffer);
+        e5.b.o(byteBuffer, this.f9340e);
+        e5.b.p(0, byteBuffer);
+    }
+
+    @Override
+    public final long getContentSize() {
+        return 8L;
+    }
+
+    public final String toString() {
+        com.google.firebase.messaging.s b10 = re.a.b(h, this, this);
+        com.googlecode.mp4parser.g.a().getClass();
+        com.googlecode.mp4parser.g.b(b10);
+        StringBuilder sb2 = new StringBuilder("SoundMediaHeaderBox[balance=");
+        e2.q(re.a.b(f9339f, this, this));
+        sb2.append(this.f9340e);
+        sb2.append("]");
+        return sb2.toString();
     }
 }

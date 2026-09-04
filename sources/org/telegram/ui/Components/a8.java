@@ -1,121 +1,30 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class a8 implements Runnable {
-    public final int f23335a = 0;
-    public final b8 f23336b;
-    public final ArrayList f23337c;
-    public final String d;
+import android.content.Context;
+import android.os.SystemClock;
+import android.view.MotionEvent;
+public final class a8 extends f8 {
+    public long d;
+    public final k8 f24300e;
 
-    public a8(b8 b8Var, String str, ArrayList arrayList) {
-        this.f23336b = b8Var;
-        this.d = str;
-        this.f23337c = arrayList;
+    public a8(k8 k8Var, Context context) {
+        super(context);
+        this.f24300e = k8Var;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        TLRPC.Document document;
-        boolean z4;
-        String str;
-        int i11 = this.f23335a;
-        String str2 = this.d;
-        ArrayList arrayList = this.f23337c;
-        b8 b8Var = this.f23336b;
-        switch (i11) {
-            case 0:
-                b8Var.getClass();
-                String lowerCase = str2.trim().toLowerCase();
-                if (lowerCase.length() == 0) {
-                    AndroidUtilities.runOnUIThread(new a8(b8Var, new ArrayList(), str2));
-                    return;
-                }
-                String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
-                translitString = (lowerCase.equals(translitString) || translitString.length() == 0) ? null : null;
-                if (translitString != null) {
-                    i10 = 1;
-                } else {
-                    i10 = 0;
-                }
-                int i12 = i10 + 1;
-                String[] strArr = new String[i12];
-                strArr[0] = lowerCase;
-                if (translitString != null) {
-                    strArr[1] = translitString;
-                }
-                ArrayList arrayList2 = new ArrayList();
-                for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                    MessageObject messageObject = (MessageObject) arrayList.get(i13);
-                    int i14 = 0;
-                    while (true) {
-                        if (i14 < i12) {
-                            String str3 = strArr[i14];
-                            String documentName = messageObject.getDocumentName();
-                            if (documentName != null && documentName.length() != 0) {
-                                if (documentName.toLowerCase().contains(str3)) {
-                                    arrayList2.add(messageObject);
-                                } else {
-                                    if (messageObject.type == 0) {
-                                        document = messageObject.messageOwner.media.webpage.document;
-                                    } else {
-                                        document = messageObject.messageOwner.media.document;
-                                    }
-                                    int i15 = 0;
-                                    while (true) {
-                                        if (i15 < document.attributes.size()) {
-                                            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i15);
-                                            if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
-                                                String str4 = documentAttribute.performer;
-                                                if (str4 != null) {
-                                                    z4 = str4.toLowerCase().contains(str3);
-                                                } else {
-                                                    z4 = false;
-                                                }
-                                                if (!z4 && (str = documentAttribute.title) != null) {
-                                                    z4 = str.toLowerCase().contains(str3);
-                                                }
-                                            } else {
-                                                i15++;
-                                            }
-                                        } else {
-                                            z4 = false;
-                                        }
-                                    }
-                                    if (z4) {
-                                        arrayList2.add(messageObject);
-                                    }
-                                }
-                            }
-                            i14++;
-                        }
-                    }
-                }
-                AndroidUtilities.runOnUIThread(new a8(b8Var, arrayList2, str2));
-                return;
-            default:
-                c8 c8Var = b8Var.f23578n;
-                if (c8Var.h) {
-                    c8Var.f23847f = true;
-                    b8Var.d = arrayList;
-                    b8Var.e = str2;
-                    b8Var.l();
-                    c8Var.f23860r.n0(0);
-                    org.telegram.ui.b.o(R.string.NoAudioFoundPlayerInfo, new Object[]{str2}, c8Var.f23871y);
-                    return;
-                }
-                return;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int action = motionEvent.getAction();
+        k8 k8Var = this.f24300e;
+        if (action == 0) {
+            if (this.f25952a[this.f25953b].getImageReceiver().hasBitmapImage()) {
+                k8Var.A0(true, true);
+                this.d = SystemClock.elapsedRealtime();
+                return true;
+            }
+        } else if (action != 2 && SystemClock.elapsedRealtime() - this.d >= 400) {
+            k8Var.A0(false, true);
         }
-    }
-
-    public a8(b8 b8Var, ArrayList arrayList, String str) {
-        this.f23336b = b8Var;
-        this.f23337c = arrayList;
-        this.d = str;
+        return true;
     }
 }

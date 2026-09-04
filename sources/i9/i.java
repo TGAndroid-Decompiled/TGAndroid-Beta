@@ -1,24 +1,13 @@
 package i9;
 
-import java.io.File;
-import java.io.FilenameFilter;
-public final class i implements FilenameFilter {
-    public final int f7370a;
-
-    @Override
-    public final boolean accept(File file, String str) {
-        switch (this.f7370a) {
-            case 0:
-                return str.startsWith("aqs.");
-            case 1:
-                return str.startsWith(".ae");
-            case 2:
-                return str.startsWith("event");
-            default:
-                if (str.startsWith("event") && !str.endsWith("_")) {
-                    return true;
-                }
+import sun.misc.Unsafe;
+public abstract class i {
+    public static boolean a(Unsafe unsafe, o oVar, long j3, n nVar, n nVar2) {
+        while (!unsafe.compareAndSwapObject(oVar, j3, nVar, nVar2)) {
+            if (unsafe.getObject(oVar, j3) != nVar) {
                 return false;
+            }
         }
+        return true;
     }
 }

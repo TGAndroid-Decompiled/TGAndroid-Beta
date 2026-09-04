@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 public final class c {
-    public final int f43192a;
-    public final int f43193b;
-    public final long f43194c;
+    public final int f44759a;
+    public final int f44760b;
+    public final long f44761c;
     public final byte[] d;
 
     public c(int i10, int i11, byte[] bArr) {
         this(-1L, bArr, i10, i11);
     }
 
-    public static c a(long j10, ByteOrder byteOrder) {
-        long[] jArr = {j10};
+    public static c a(long j3, ByteOrder byteOrder) {
+        long[] jArr = {j3};
         ByteBuffer wrap = ByteBuffer.wrap(new byte[g.F[4]]);
         wrap.order(byteOrder);
         wrap.putInt((int) jArr[0]);
@@ -26,8 +26,8 @@ public final class c {
         ByteBuffer wrap = ByteBuffer.wrap(new byte[g.F[5]]);
         wrap.order(byteOrder);
         e eVar2 = eVarArr[0];
-        wrap.putInt((int) eVar2.f43198a);
-        wrap.putInt((int) eVar2.f43199b);
+        wrap.putInt((int) eVar2.f44765a);
+        wrap.putInt((int) eVar2.f44766b);
         return new c(5, 1, wrap.array());
     }
 
@@ -66,7 +66,7 @@ public final class c {
                 e[] eVarArr = (e[]) g10;
                 if (eVarArr.length == 1) {
                     e eVar = eVarArr[0];
-                    return eVar.f43198a / eVar.f43199b;
+                    return eVar.f44765a / eVar.f44766b;
                 }
                 throw new NumberFormatException("There are more than one component");
             } else {
@@ -107,50 +107,50 @@ public final class c {
             if (g10 instanceof String) {
                 return (String) g10;
             }
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb2 = new StringBuilder();
             int i10 = 0;
             if (g10 instanceof long[]) {
                 long[] jArr = (long[]) g10;
                 while (i10 < jArr.length) {
-                    sb.append(jArr[i10]);
+                    sb2.append(jArr[i10]);
                     i10++;
                     if (i10 != jArr.length) {
-                        sb.append(",");
+                        sb2.append(",");
                     }
                 }
-                return sb.toString();
+                return sb2.toString();
             } else if (g10 instanceof int[]) {
                 int[] iArr = (int[]) g10;
                 while (i10 < iArr.length) {
-                    sb.append(iArr[i10]);
+                    sb2.append(iArr[i10]);
                     i10++;
                     if (i10 != iArr.length) {
-                        sb.append(",");
+                        sb2.append(",");
                     }
                 }
-                return sb.toString();
+                return sb2.toString();
             } else if (g10 instanceof double[]) {
                 double[] dArr = (double[]) g10;
                 while (i10 < dArr.length) {
-                    sb.append(dArr[i10]);
+                    sb2.append(dArr[i10]);
                     i10++;
                     if (i10 != dArr.length) {
-                        sb.append(",");
+                        sb2.append(",");
                     }
                 }
-                return sb.toString();
+                return sb2.toString();
             } else if (g10 instanceof e[]) {
                 e[] eVarArr = (e[]) g10;
                 while (i10 < eVarArr.length) {
-                    sb.append(eVarArr[i10].f43198a);
-                    sb.append('/');
-                    sb.append(eVarArr[i10].f43199b);
+                    sb2.append(eVarArr[i10].f44765a);
+                    sb2.append('/');
+                    sb2.append(eVarArr[i10].f44766b);
                     i10++;
                     if (i10 != eVarArr.length) {
-                        sb.append(",");
+                        sb2.append(",");
                     }
                 }
-                return sb.toString();
+                return sb2.toString();
             } else {
                 return null;
             }
@@ -163,16 +163,16 @@ public final class c {
     }
 
     public final String toString() {
-        StringBuilder sb = new StringBuilder("(");
-        sb.append(g.E[this.f43192a]);
-        sb.append(", data length:");
-        return android.support.v4.media.a.m(this.d.length, ")", sb);
+        StringBuilder sb2 = new StringBuilder("(");
+        sb2.append(g.E[this.f44759a]);
+        sb2.append(", data length:");
+        return a4.a.n(this.d.length, ")", sb2);
     }
 
-    public c(long j10, byte[] bArr, int i10, int i11) {
-        this.f43192a = i10;
-        this.f43193b = i11;
-        this.f43194c = j10;
+    public c(long j3, byte[] bArr, int i10, int i11) {
+        this.f44759a = i10;
+        this.f44760b = i11;
+        this.f44761c = j3;
         this.d = bArr;
     }
 }

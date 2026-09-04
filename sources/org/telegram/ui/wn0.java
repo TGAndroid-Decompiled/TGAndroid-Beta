@@ -1,92 +1,63 @@
 package org.telegram.ui;
 
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class wn0 extends WebViewClient {
-    public final Context f39738a;
-    public final lo0 f39739b;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class wn0 implements Runnable {
+    public final int f42441a;
+    public final xo0 f42442b;
+    public final TLRPC.TL_error f42443c;
+    public final TLObject d;
 
-    public wn0(lo0 lo0Var, Context context) {
-        this.f39739b = lo0Var;
-        this.f39738a = context;
+    public wn0(xo0 xo0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
+        this.f42441a = i10;
+        this.f42442b = xo0Var;
+        this.f42443c = tL_error;
+        this.d = tLObject;
     }
 
     @Override
-    public final void onPageFinished(WebView webView, String str) {
-        super.onPageFinished(webView, str);
-        lo0 lo0Var = this.f39739b;
-        lo0Var.f35847w0 = false;
-        lo0Var.H0(true, false);
-        lo0Var.K0();
-    }
-
-    @Override
-    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        lo0 lo0Var = this.f39739b;
-        try {
-            if (!AndroidUtilities.isSafeToShow(lo0Var.getParentActivity())) {
-                return true;
-            }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(lo0Var.getParentActivity(), 0, lo0Var.V0);
-            alertDialog$Builder.f19478a.O = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f19478a.Q = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new gl0(this, 7));
-            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.o();
-            return true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
-        }
-    }
-
-    @Override
-    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        Uri parse;
-        boolean equals;
-        lo0 lo0Var;
-        boolean z4;
-        try {
-            parse = Uri.parse(str);
-            equals = "t.me".equals(parse.getHost());
-            lo0Var = this.f39739b;
-        } catch (Exception unused) {
-        }
-        if (equals) {
-            lo0Var.t0();
-            return true;
-        }
-        if (!lo0.f35814e1.contains(parse.getScheme())) {
-            if (!lo0.f35813d1.contains(parse.getScheme())) {
-                try {
-                    if (lo0Var.getParentActivity() != null) {
-                        z4 = true;
-                    } else {
-                        z4 = false;
+    public final void run() {
+        switch (this.f42441a) {
+            case 0:
+                xo0 xo0Var = this.f42442b;
+                xo0Var.f42817e0 = false;
+                if (this.f42443c == null) {
+                    TL_account.Password password = (TL_account.Password) this.d;
+                    xo0Var.f42806a0 = password;
+                    if (!TwoStepVerificationActivity.i0(password, false)) {
+                        org.telegram.ui.Components.e5.x0(xo0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
+                        return;
                     }
-                    if (z4) {
-                        lo0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
-                        return true;
+                    TLRPC.PaymentForm paymentForm = xo0Var.C0;
+                    if (paymentForm != null && xo0Var.f42806a0.has_password) {
+                        paymentForm.password_missing = false;
+                        paymentForm.can_save_credentials = true;
+                        xo0Var.K0();
                     }
-                } catch (ActivityNotFoundException unused2) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f39738a);
-                    alertDialog$Builder.f19478a.O = lo0Var.m0;
-                    alertDialog$Builder.f19478a.Q = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                    alertDialog$Builder.o();
+                    TwoStepVerificationActivity.m0(xo0Var.f42806a0);
+                    xo0 xo0Var2 = xo0Var.f42820f0;
+                    if (xo0Var2 != null) {
+                        xo0Var2.C0(xo0Var.f42806a0);
+                    }
+                    if (!xo0Var.f42806a0.has_password && xo0Var.f42814d0 == null) {
+                        un0 un0Var = new un0(xo0Var, 3);
+                        xo0Var.f42814d0 = un0Var;
+                        AndroidUtilities.runOnUIThread(un0Var, 5000L);
+                        return;
+                    }
+                    return;
                 }
-            }
-            return false;
+                return;
+            case 1:
+                xo0.V(this.f42442b, this.f42443c, this.d);
+                return;
+            default:
+                xo0.X(this.f42442b, this.f42443c, this.d);
+                return;
         }
-        return true;
     }
 }

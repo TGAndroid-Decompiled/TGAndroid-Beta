@@ -1,24 +1,10 @@
 package cg;
 
-import org.telegram.messenger.R;
-public final class a extends m {
-    @Override
-    public final int c() {
-        return -30208;
-    }
+import java.nio.ShortBuffer;
+import t7.u;
+public interface a {
+    public static final u f4800p = new u(6);
+    public static final ob.a f4801q = new ob.a(7);
 
-    @Override
-    public final float d() {
-        return 0.25f;
-    }
-
-    @Override
-    public final int e() {
-        return R.raw.photo_arrow;
-    }
-
-    @Override
-    public final float j() {
-        return 0.25f;
-    }
+    void z(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12);
 }

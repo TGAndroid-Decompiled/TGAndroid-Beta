@@ -1,18 +1,11 @@
 package pd;
 
-import java.util.concurrent.CancellationException;
-import la.t;
-public final class a extends CancellationException {
-    public final transient t f41209a;
-
-    public a(t tVar) {
-        super("Flow was aborted, no more elements needed");
-        this.f41209a = tVar;
-    }
-
-    @Override
-    public final Throwable fillInStackTrace() {
-        setStackTrace(new StackTraceElement[0]);
-        return this;
+import java.io.ByteArrayOutputStream;
+import kotlin.jvm.internal.i;
+public final class a extends ByteArrayOutputStream {
+    public final byte[] a() {
+        byte[] buf = ((ByteArrayOutputStream) this).buf;
+        i.d(buf, "buf");
+        return buf;
     }
 }

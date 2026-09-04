@@ -1,57 +1,47 @@
 package j8;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.SystemClock;
-import android.util.Log;
-import com.google.android.gms.tasks.Task;
-import java.util.concurrent.TimeUnit;
-public abstract class a {
-    public static final long f9223a = TimeUnit.MINUTES.toMillis(10);
-    public static final long f9224b = SystemClock.elapsedRealtime();
-    public static final int f9225c = 0;
+import android.os.Parcel;
+import android.os.RemoteException;
+import n6.l;
+public final class a {
+    public final s7.h f13558a;
 
-    public static void a(Task task, Activity activity) {
-        ?? obj = new Object();
-        int incrementAndGet = u.f9290f.incrementAndGet();
-        obj.f9291a = incrementAndGet;
-        u.e.put(incrementAndGet, obj);
-        u.d.postDelayed(obj, f9223a);
-        task.addOnCompleteListener(obj);
-        FragmentTransaction beginTransaction = activity.getFragmentManager().beginTransaction();
-        int i10 = obj.f9291a;
-        Bundle bundle = new Bundle();
-        bundle.putInt("resolveCallId", i10);
-        bundle.putInt("requestCode", 991);
-        bundle.putLong("initializationElapsedRealtime", f9224b);
-        Fragment fragment = new Fragment();
-        fragment.setArguments(bundle);
-        int i11 = obj.f9291a;
-        StringBuilder sb = new StringBuilder(58);
-        sb.append("com.google.android.gms.wallet.AutoResolveHelper");
-        sb.append(i11);
-        beginTransaction.add(fragment, sb.toString()).commit();
+    public a(s7.h hVar) {
+        l.h(hVar);
+        this.f13558a = hVar;
     }
 
-    public static void b(Activity activity, int i10, int i11, Intent intent) {
-        PendingIntent createPendingResult = activity.createPendingResult(i10, intent, 1073741824);
-        if (createPendingResult == null) {
-            if (Log.isLoggable("AutoResolveHelper", 5)) {
-                Log.w("AutoResolveHelper", "Null pending result returned when trying to deliver task result!");
-                return;
-            }
-            return;
+    public final boolean equals(Object obj) {
+        boolean z10 = false;
+        if (!(obj instanceof a)) {
+            return false;
         }
         try {
-            createPendingResult.send(i11);
-        } catch (PendingIntent.CanceledException e) {
-            if (Log.isLoggable("AutoResolveHelper", 6)) {
-                Log.e("AutoResolveHelper", "Exception sending pending result", e);
+            s7.h hVar = this.f13558a;
+            s7.h hVar2 = ((a) obj).f13558a;
+            s7.f fVar = (s7.f) hVar;
+            Parcel O0 = fVar.O0();
+            s7.b.c(O0, hVar2);
+            Parcel N0 = fVar.N0(O0, 17);
+            if (N0.readInt() != 0) {
+                z10 = true;
             }
+            N0.recycle();
+            return z10;
+        } catch (RemoteException e7) {
+            throw new RuntimeException(e7);
+        }
+    }
+
+    public final int hashCode() {
+        try {
+            s7.f fVar = (s7.f) this.f13558a;
+            Parcel N0 = fVar.N0(fVar.O0(), 18);
+            int readInt = N0.readInt();
+            N0.recycle();
+            return readInt;
+        } catch (RemoteException e7) {
+            throw new RuntimeException(e7);
         }
     }
 }

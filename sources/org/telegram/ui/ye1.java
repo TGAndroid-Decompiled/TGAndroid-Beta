@@ -1,211 +1,54 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.animation.ValueAnimator;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.os.Build;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class ye1 extends org.telegram.ui.Components.qv0 {
-    public boolean f40251t0;
-    public final Paint f40252u0;
-    public final sf1 f40253v0;
-
-    public ye1(sf1 sf1Var, Context context) {
-        super(context, null);
-        this.f40253v0 = sf1Var;
-        setWillNotDraw(false);
-        this.f40252u0 = new Paint();
-    }
-
-    @Override
-    public final void J(Canvas canvas, float f10, Rect rect, Paint paint, boolean z4) {
-        if (Build.VERSION.SDK_INT >= 29 && SharedConfig.chatBlurEnabled()) {
-            sf1 sf1Var = this.f40253v0;
-            if (sf1Var.f38185d1 != null) {
-                canvas.save();
-                canvas.translate(0.0f, -f10);
-                sf1Var.f38185d1.H(canvas, rect.left, rect.top + f10, rect.right, rect.bottom + f10);
-                canvas.restore();
-                int alpha = paint.getAlpha();
-                paint.setAlpha(178);
-                canvas.drawRect(rect, paint);
-                paint.setAlpha(alpha);
-                return;
-            }
-        }
-        canvas.drawRect(rect, paint);
-    }
-
-    @Override
-    public final void L(Canvas canvas, ArrayList arrayList) {
-        int i10 = 0;
-        while (true) {
-            sf1 sf1Var = this.f40253v0;
-            if (i10 < sf1Var.K.getChildCount()) {
-                View childAt = sf1Var.K.getChildAt(i10);
-                if (childAt.getY() < AndroidUtilities.dp(100.0f) && childAt.getVisibility() == 0) {
-                    int save = canvas.save();
-                    canvas.translate(childAt.getX() + sf1Var.K.getX(), childAt.getY() + sf1Var.K.getY() + getY());
-                    if (arrayList != null && (childAt instanceof org.telegram.ui.Components.nv0)) {
-                        arrayList.add((org.telegram.ui.Components.nv0) childAt);
-                    }
-                    childAt.draw(canvas);
-                    canvas.restoreToCount(save);
-                }
-                i10++;
-            } else {
-                return;
-            }
-        }
-    }
+import android.view.animation.OvershootInterpolator;
+import android.widget.FrameLayout;
+import org.telegram.messenger.Utilities;
+public final class ye1 extends FrameLayout {
+    public ValueAnimator f43093a;
+    public boolean f43094b;
+    public float f43095c;
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        int measuredWidth;
-        int measuredHeight;
-        sf1 sf1Var = this.f40253v0;
-        sg.d dVar = sf1Var.f38187e1;
-        sg.d dVar2 = sf1Var.f38185d1;
-        ng.e eVar = sf1Var.f38183c1;
-        if (Build.VERSION.SDK_INT >= 31 && eVar != null) {
-            sf1Var.x0();
-            qy qyVar = sf1Var.J0;
-            if (qyVar != null) {
-                measuredWidth = qyVar.fragmentView.getMeasuredWidth();
-            } else {
-                measuredWidth = getMeasuredWidth();
-            }
-            qy qyVar2 = sf1Var.J0;
-            if (qyVar2 != null) {
-                measuredHeight = qyVar2.fragmentView.getMeasuredHeight();
-            } else {
-                measuredHeight = getMeasuredHeight();
-            }
-            if (dVar2 != null && !dVar2.f44379n && dVar2.f(measuredWidth, measuredHeight)) {
-                eVar.b(dVar2.a(measuredWidth, measuredHeight), -3);
-                dVar2.c();
-            }
-            if (dVar != null && !dVar.f44379n && dVar.f(measuredWidth, measuredHeight)) {
-                eVar.b(dVar.a(measuredWidth, measuredHeight), -2);
-                dVar.c();
-            }
-        }
+        float f7 = ((1.0f - this.f43095c) * 0.2f) + 0.8f;
+        canvas.save();
+        canvas.scale(f7, f7, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f);
         super.dispatchDraw(canvas);
-        if (sf1Var.isInPreviewMode()) {
-            int themedColor = sf1Var.getThemedColor(org.telegram.ui.ActionBar.j6.f19881d6);
-            Paint paint = this.f40252u0;
-            paint.setColor(themedColor);
-            paint.setAlpha((int) (sf1Var.T * 255.0f));
-            canvas2 = canvas;
-            canvas2.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.statusBarHeight, paint);
-            canvas2.drawLine(0.0f, 0.0f, 0.0f, getHeight(), org.telegram.ui.ActionBar.j6.f20000k0);
-        } else {
-            canvas2 = canvas;
-        }
-        if (sf1Var.J0 == null) {
-            AndroidUtilities.drawNavigationBarProtection(canvas2, this, sf1Var.getThemedColor(org.telegram.ui.ActionBar.j6.f19881d6), sf1Var.f38180b1);
+        canvas.restore();
+        if (isPressed()) {
+            float f10 = this.f43095c;
+            if (f10 != 1.0f) {
+                this.f43095c = Utilities.clamp(f10 + 0.16f, 1.0f, 0.0f);
+                invalidate();
+            }
         }
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        org.telegram.ui.ActionBar.k kVar3;
-        float f10;
-        sf1 sf1Var = this.f40253v0;
-        kVar = ((org.telegram.ui.ActionBar.p2) sf1Var).actionBar;
-        if (view == kVar && !sf1Var.isInPreviewMode()) {
-            kVar2 = ((org.telegram.ui.ActionBar.p2) sf1Var).actionBar;
-            float y10 = kVar2.getY();
-            kVar3 = ((org.telegram.ui.ActionBar.p2) sf1Var).actionBar;
-            float height = kVar3.getHeight();
-            org.telegram.ui.Components.k81 k81Var = sf1Var.X0;
-            if (k81Var != null && k81Var.getVisibility() != 8) {
-                f10 = sf1Var.X0.getMeasuredHeight();
-            } else {
-                f10 = 0.0f;
+    public final void setPressed(boolean z10) {
+        ValueAnimator valueAnimator;
+        super.setPressed(z10);
+        if (this.f43094b != z10) {
+            this.f43094b = z10;
+            invalidate();
+            if (z10 && (valueAnimator = this.f43093a) != null) {
+                valueAnimator.removeAllListeners();
+                this.f43093a.cancel();
             }
-            int i10 = (int) (y10 + ((int) ((f10 * sf1Var.T) + height)));
-            ((ActionBarLayout) sf1Var.getParentLayout()).p(canvas, (int) ((1.0f - sf1Var.T) * 255.0f), i10);
-            float f11 = sf1Var.T;
-            if (f11 > 0.0f) {
-                if (f11 < 1.0f) {
-                    int alpha = org.telegram.ui.ActionBar.j6.f20000k0.getAlpha();
-                    org.telegram.ui.ActionBar.j6.f20000k0.setAlpha((int) (alpha * sf1Var.T));
-                    float f12 = i10;
-                    canvas.drawLine(0.0f, f12, getMeasuredWidth(), f12, org.telegram.ui.ActionBar.j6.f20000k0);
-                    org.telegram.ui.ActionBar.j6.f20000k0.setAlpha(alpha);
-                } else {
-                    float f13 = i10;
-                    canvas.drawLine(0.0f, f13, getMeasuredWidth(), f13, org.telegram.ui.ActionBar.j6.f20000k0);
+            if (!z10) {
+                float f7 = this.f43095c;
+                if (f7 != 0.0f) {
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
+                    this.f43093a = ofFloat;
+                    ofFloat.addUpdateListener(new b21(this, 16));
+                    this.f43093a.addListener(new gk0(this, 26));
+                    this.f43093a.setInterpolator(new OvershootInterpolator(5.0f));
+                    this.f43093a.setDuration(350L);
+                    this.f43093a.start();
                 }
             }
         }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ye1.onLayout(boolean, int, int, int, int):void");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        sf1 sf1Var = this.f40253v0;
-        h51 h51Var = sf1Var.f38200l0;
-        if (h51Var != null) {
-            this.f40251t0 = true;
-            ViewGroup.LayoutParams layoutParams = h51Var.getLayoutParams();
-            int dp = AndroidUtilities.dp(51.0f);
-            int i13 = sf1Var.f38180b1;
-            layoutParams.height = dp + i13;
-            sf1Var.f38200l0.setPadding(0, 0, 0, i13);
-            this.f40251t0 = false;
-        }
-        int i14 = 0;
-        for (int i15 = 0; i15 < getChildCount(); i15++) {
-            View childAt = getChildAt(i15);
-            if (childAt instanceof org.telegram.ui.ActionBar.k) {
-                childAt.measure(i10, View.MeasureSpec.makeMeasureSpec(0, 0));
-                i14 = childAt.getMeasuredHeight();
-            }
-        }
-        int i16 = 0;
-        while (i16 < getChildCount()) {
-            View childAt2 = getChildAt(i16);
-            if (!(childAt2 instanceof org.telegram.ui.ActionBar.k)) {
-                if (childAt2.getFitsSystemWindows()) {
-                    measureChildWithMargins(childAt2, i10, 0, i11, 0);
-                } else {
-                    i12 = i14;
-                    measureChildWithMargins(childAt2, i10, 0, i11, i12);
-                    i16++;
-                    i14 = i12;
-                }
-            }
-            i12 = i14;
-            i16++;
-            i14 = i12;
-        }
-        setMeasuredDimension(size, size2);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f40251t0) {
-            return;
-        }
-        super.requestLayout();
     }
 }

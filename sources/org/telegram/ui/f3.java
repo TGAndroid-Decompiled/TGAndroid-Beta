@@ -1,223 +1,132 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.text.Layout;
-import android.text.SpannableStringBuilder;
-import android.text.StaticLayout;
+import android.graphics.Bitmap;
+import android.os.Build;
+import android.view.Surface;
+import android.view.TextureView;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.Stack;
-import java.util.concurrent.atomic.AtomicReference;
+import android.view.ViewGroup;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.video.VideoPlayerHolderBase;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class f3 implements org.telegram.ui.Cells.w9, kj0, org.telegram.ui.Components.fz0 {
-    public int B = -1;
-    public int C = -1;
-    public int D = -1;
-    public org.telegram.ui.Components.q5 E;
-    public ArrayList F;
-    public Stack G;
-    public AtomicReference H;
-    public View I;
-    public final p70 f33927a;
-    public View f33928b;
-    public boolean f33929c;
-    public StaticLayout d;
-    public org.telegram.ui.Components.y80 e;
-    public org.telegram.ui.Components.y80 f33930f;
-    public org.telegram.ui.Components.y80 h;
-    public TL_iv.PageBlock f33931n;
-    public TL_iv.RichText f33932r;
-    public int f33933s;
-    public int v;
-    public int f33934w;
-    public CharSequence f33935x;
-    public SpannableStringBuilder f33936y;
+public final class f3 extends su0 {
+    public final int[] f36242a = new int[2];
+    public final List f36243b;
+    public final i4 f36244c;
 
-    public f3(p70 p70Var) {
-        this.f33927a = p70Var;
-    }
-
-    public final int a() {
-        int i10 = this.B;
-        if (i10 != -1) {
-            return i10;
-        }
-        this.B = this.d.getWidth();
-        for (int i11 = 0; i11 < this.d.getLineCount(); i11++) {
-            this.B = Math.min(this.B, (int) this.d.getLineLeft(i11));
-        }
-        return this.B;
+    public f3(i4 i4Var, List list) {
+        this.f36244c = i4Var;
+        this.f36243b = list;
     }
 
     @Override
-    public final void attach(View view) {
-        this.I = view;
-        StaticLayout staticLayout = this.d;
-        if (staticLayout != null) {
-            this.E = org.telegram.ui.Components.u5.update(0, view, false, this.E, staticLayout);
-        }
-    }
-
-    public final int b() {
-        int i10 = this.C;
-        if (i10 != -1) {
-            return i10;
-        }
-        this.C = 0;
-        for (int i11 = 0; i11 < this.d.getLineCount(); i11++) {
-            this.C = Math.max(this.C, (int) this.d.getLineRight(i11));
-        }
-        return this.C;
-    }
-
-    public final int c() {
-        int i10 = this.D;
-        if (i10 != -1) {
-            return i10;
-        }
-        this.D = 0;
-        if (this.d.getLineCount() > 0) {
-            int i11 = this.D;
-            StaticLayout staticLayout = this.d;
-            this.D = Math.max(i11, (int) staticLayout.getLineRight(staticLayout.getLineCount() - 1));
-        }
-        return this.D;
+    public final void D() {
+        this.f36244c.n();
     }
 
     @Override
-    public final void detach(View view) {
-        if (view == null) {
-            view = this.I;
-        }
-        org.telegram.ui.Components.u5.release(view, this.E);
-        this.I = null;
-    }
-
-    @Override
-    public final void draw(Canvas canvas, View view) {
-        float width;
-        Object obj;
-        TL_iv.RichText richText;
-        this.f33929c = true;
-        this.f33928b = view;
-        p70 p70Var = this.f33927a;
-        float f10 = 0.0f;
-        if (!p70Var.B.isEmpty()) {
-            w3 w3Var = (w3) p70Var.B.get(p70Var.D);
-            if (w3Var.f39260c == this.f33931n && ((obj = w3Var.f39259b) == (richText = this.f33932r) || ((obj instanceof String) && richText == null))) {
-                if (-1 != w3Var.f39258a) {
-                    org.telegram.ui.Components.y80 y80Var = new org.telegram.ui.Components.y80(0);
-                    this.h = y80Var;
-                    y80Var.f30951n = false;
-                    y80Var.d(this.d, w3Var.f39258a, 0.0f);
-                    this.h.f30952o = 0;
-                    StaticLayout staticLayout = this.d;
-                    int i10 = w3Var.f39258a;
-                    staticLayout.getSelectionPath(i10, p70Var.C.length() + i10, this.h);
-                    this.h.f30951n = true;
+    public final cv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        if (i10 >= 0) {
+            List list = this.f36243b;
+            if (i10 < list.size()) {
+                i4 i4Var = this.f36244c;
+                int[] iArr = this.f36242a;
+                ImageReceiver c02 = c0(i4Var.f37232u0[0].f38551b, (TL_iv.PageBlock) list.get(i10), iArr);
+                if (c02 != null) {
+                    cv0 cv0Var = new cv0();
+                    cv0Var.f35541b = iArr[0];
+                    cv0Var.f35542c = iArr[1];
+                    cv0Var.d = i4Var.f37232u0[0].f38551b;
+                    cv0Var.f35540a = c02;
+                    cv0Var.f35543e = c02.getBitmapSafe();
+                    cv0Var.h = c02.getRoundRadius(true);
+                    cv0Var.f35547j = i4Var.I0;
+                    return cv0Var;
                 }
-            } else {
-                this.h = null;
+                return null;
             }
-        } else {
-            this.h = null;
+            return null;
         }
-        org.telegram.ui.Components.y80 y80Var2 = this.h;
-        if (y80Var2 != null) {
-            canvas.drawPath(y80Var2, n4.f36355v1);
-        }
-        org.telegram.ui.Components.y80 y80Var3 = this.e;
-        if (y80Var3 != null) {
-            canvas.drawPath(y80Var3, n4.f36354u1);
-        }
-        org.telegram.ui.Components.y80 y80Var4 = this.f33930f;
-        if (y80Var4 != null) {
-            canvas.drawPath(y80Var4, n4.f36356w1);
-        }
-        if (p70Var.f36982c.g(canvas, this)) {
-            view.invalidate();
-        }
-        if (p70Var.d == this && p70Var.f36981b == null && p70Var.h) {
-            if (this.d.getLineCount() == 1) {
-                width = this.d.getLineWidth(0);
-                f10 = this.d.getLineLeft(0);
-            } else {
-                width = this.d.getWidth();
-            }
-            canvas.drawRect((-AndroidUtilities.dp(2.0f)) + f10, 0.0f, f10 + width + AndroidUtilities.dp(2.0f), this.d.getHeight(), n4.f36353t1);
-        }
-        ArrayList arrayList = this.F;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            ih.k.g(view, false, this.d.getPaint().getColor(), 0, this.H, 0, this.d, this.F, canvas, false);
-        } else {
-            this.d.draw(canvas);
-        }
-        this.f33929c = false;
-    }
-
-    @Override
-    public final int getEmojiOnlyCount() {
-        return 0;
-    }
-
-    @Override
-    public final Layout getLayout() {
-        return this.d;
-    }
-
-    @Override
-    public final View getParentView() {
-        View view = this.I;
-        if (view != null) {
-            return view;
-        }
-        return this.f33928b;
-    }
-
-    @Override
-    public final CharSequence getPrefix() {
-        return this.f33935x;
-    }
-
-    @Override
-    public final int getRow() {
-        return this.f33934w;
-    }
-
-    @Override
-    public final Rect getSelectionBounds() {
         return null;
     }
 
     @Override
-    public final CharSequence getText() {
-        return this.d.getText();
+    public final void X(int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.f3.X(int):void");
     }
 
-    @Override
-    public final int getX() {
-        return this.f33933s;
+    public final ImageReceiver c0(ViewGroup viewGroup, TL_iv.PageBlock pageBlock, int[] iArr) {
+        int childCount = viewGroup.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            ImageReceiver d02 = d0(viewGroup.getChildAt(i10), pageBlock, iArr);
+            if (d02 != null) {
+                return d02;
+            }
+        }
+        return null;
     }
 
-    @Override
-    public final int getY() {
-        return this.v;
-    }
-
-    @Override
-    public final void setRow(int i10) {
-        this.f33934w = i10;
-    }
-
-    @Override
-    public final void setX(int i10) {
-        this.f33933s = i10;
-    }
-
-    @Override
-    public final void setY(int i10) {
-        this.v = i10;
+    public final ImageReceiver d0(View view, TL_iv.PageBlock pageBlock, int[] iArr) {
+        org.telegram.ui.Components.vk0 vk0Var;
+        ImageReceiver d02;
+        ImageReceiver d03;
+        VideoPlayerHolderBase videoPlayerHolderBase;
+        if (view instanceof d2) {
+            d2 d2Var = (d2) view;
+            if (d2Var.N == pageBlock) {
+                view.getLocationInWindow(iArr);
+                return d2Var.f35615e;
+            }
+            return null;
+        } else if (view instanceof x2) {
+            x2 x2Var = (x2) view;
+            ImageReceiver imageReceiver = x2Var.f42566e;
+            TextureView textureView = x2Var.f42568n;
+            if (x2Var.L == pageBlock) {
+                view.getLocationInWindow(iArr);
+                i4 i4Var = this.f36244c;
+                if (x2Var == i4Var.f41442x && (videoPlayerHolderBase = i4Var.f41441w) != null && videoPlayerHolderBase.firstFrameRendered && textureView.getSurfaceTexture() != null) {
+                    if (Build.VERSION.SDK_INT >= 24) {
+                        Surface surface = new Surface(textureView.getSurfaceTexture());
+                        Bitmap createBitmap = Bitmap.createBitmap(textureView.getMeasuredWidth(), textureView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                        AndroidUtilities.getBitmapFromSurface(surface, createBitmap);
+                        surface.release();
+                        imageReceiver.setImageBitmap(createBitmap);
+                    } else {
+                        imageReceiver.setImageBitmap(textureView.getBitmap());
+                    }
+                    int i10 = x2.V;
+                    textureView.setAlpha(0.0f);
+                }
+                return imageReceiver;
+            }
+            return null;
+        } else if (view instanceof k1) {
+            ImageReceiver c02 = c0(((k1) view).f37877a, pageBlock, iArr);
+            if (c02 != null) {
+                return c02;
+            }
+            return null;
+        } else if (view instanceof q2) {
+            ImageReceiver c03 = c0(((q2) view).f39671a, pageBlock, iArr);
+            if (c03 != null) {
+                return c03;
+            }
+            return null;
+        } else if (view instanceof y1) {
+            org.telegram.ui.Components.vk0 vk0Var2 = ((y1) view).d;
+            if (vk0Var2 != null && (d03 = d0(vk0Var2.f45738a, pageBlock, iArr)) != null) {
+                return d03;
+            }
+            return null;
+        } else if ((view instanceof b2) && (vk0Var = ((b2) view).d) != null && (d02 = d0(vk0Var.f45738a, pageBlock, iArr)) != null) {
+            return d02;
+        } else {
+            return null;
+        }
     }
 }

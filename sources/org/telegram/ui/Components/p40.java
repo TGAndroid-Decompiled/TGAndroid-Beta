@@ -1,83 +1,135 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-public final class p40 extends Drawable {
-    public byte[] f27723a;
-    public final Paint f27724b = new Paint();
-    public final int[] f27725c = {-1, -2758925, -13805707, -13657655};
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLRPC;
+public final class p40 implements ti {
+    public final u40 f29271a;
+
+    public p40(u40 u40Var) {
+        this.f29271a = u40Var;
+    }
 
     @Override
-    public final void draw(Canvas canvas) {
-        byte[] bArr = this.f27723a;
-        if (bArr != null) {
-            int length = bArr.length;
-            int[] iArr = this.f27725c;
-            Paint paint = this.f27724b;
-            if (length == 16) {
-                float floor = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 8.0f);
-                float f10 = 8.0f * floor;
-                float max = Math.max(0.0f, (getBounds().width() - f10) / 2.0f);
-                float max2 = Math.max(0.0f, (getBounds().height() - f10) / 2.0f);
-                int i10 = 0;
-                for (int i11 = 0; i11 < 8; i11++) {
-                    int i12 = 0;
-                    while (i12 < 8) {
-                        int i13 = i10 + 2;
-                        paint.setColor(iArr[Math.abs((this.f27723a[i10 / 8] >> (i10 % 8)) & 3) % 4]);
-                        float f11 = (i12 * floor) + max;
-                        float f12 = i11 * floor;
-                        canvas.drawRect(f11, f12 + max2, f11 + floor, f12 + floor + max2, paint);
-                        i12++;
-                        i10 = i13;
-                    }
+    public final void B(hh hhVar) {
+        hhVar.run();
+    }
+
+    @Override
+    public final boolean D0() {
+        return false;
+    }
+
+    @Override
+    public final void H() {
+        AndroidUtilities.hideKeyboard(this.f29271a.f30799a.getFragmentView().findFocus());
+    }
+
+    @Override
+    public final void l0(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+        vi viVar;
+        u40 u40Var = this.f29271a;
+        org.telegram.ui.ActionBar.n2 n2Var = u40Var.f30799a;
+        if (n2Var != null && n2Var.getParentActivity() != null && (viVar = u40Var.f30801c) != null) {
+            if (i10 != 8 && i10 != 7) {
+                viVar.dismissWithButtonClick(i10);
+                if (i10 == 0) {
+                    u40Var.m();
+                    return;
                 }
                 return;
             }
-            float floor2 = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 12.0f);
-            float f13 = 12.0f * floor2;
-            float max3 = Math.max(0.0f, (getBounds().width() - f13) / 2.0f);
-            float max4 = Math.max(0.0f, (getBounds().height() - f13) / 2.0f);
-            int i14 = 0;
-            int i15 = 0;
-            while (i15 < 12) {
-                int i16 = i14;
-                for (int i17 = 0; i17 < 12; i17++) {
-                    paint.setColor(iArr[Math.abs((this.f27723a[i16 / 8] >> (i16 % 8)) & 3) % 4]);
-                    float f14 = (i17 * floor2) + max3;
-                    float f15 = i15 * floor2;
-                    canvas.drawRect(f14, f15 + max4, f14 + floor2, f15 + floor2 + max4, paint);
-                    i16 += 2;
+            HashMap<Object, Object> selectedPhotos = viVar.f31291j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = u40Var.f30801c.f31291j0.getSelectedPhotosOrder();
+            ArrayList arrayList = new ArrayList();
+            boolean z14 = false;
+            for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
+                Object obj = selectedPhotos.get(selectedPhotosOrder.get(i13));
+                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                arrayList.add(sendingMediaInfo);
+                String str = null;
+                if (obj instanceof MediaController.PhotoEntry) {
+                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
+                    String str2 = photoEntry.imagePath;
+                    if (str2 != null) {
+                        sendingMediaInfo.path = str2;
+                    } else {
+                        sendingMediaInfo.path = photoEntry.path;
+                    }
+                    sendingMediaInfo.thumbPath = photoEntry.thumbPath;
+                    sendingMediaInfo.coverPath = photoEntry.coverPath;
+                    sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
+                    sendingMediaInfo.isLivePhoto = photoEntry.isLivePhoto();
+                    sendingMediaInfo.isVideo = photoEntry.isVideo;
+                    sendingMediaInfo.livePhotoVideoOffset = photoEntry.livePhotoVideoOffset;
+                    sendingMediaInfo.discardLivePhoto = true;
+                    CharSequence charSequence = photoEntry.caption;
+                    if (charSequence != null) {
+                        str = charSequence.toString();
+                    }
+                    sendingMediaInfo.caption = str;
+                    sendingMediaInfo.entities = photoEntry.entities;
+                    sendingMediaInfo.masks = photoEntry.stickers;
+                    sendingMediaInfo.ttl = photoEntry.ttl;
+                    TLRPC.VideoSize videoSize = photoEntry.emojiMarkup;
+                    sendingMediaInfo.emojiMarkup = videoSize;
+                    z14 = videoSize instanceof TLRPC.TL_videoSizeEmojiMarkup;
+                } else if (obj instanceof MediaController.SearchImage) {
+                    MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
+                    String str3 = searchImage.imagePath;
+                    if (str3 != null) {
+                        sendingMediaInfo.path = str3;
+                    } else {
+                        sendingMediaInfo.searchImage = searchImage;
+                    }
+                    sendingMediaInfo.thumbPath = searchImage.thumbPath;
+                    sendingMediaInfo.coverPath = searchImage.coverPath;
+                    sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
+                    CharSequence charSequence2 = searchImage.caption;
+                    if (charSequence2 != null) {
+                        str = charSequence2.toString();
+                    }
+                    sendingMediaInfo.caption = str;
+                    sendingMediaInfo.entities = searchImage.entities;
+                    sendingMediaInfo.masks = searchImage.stickers;
+                    sendingMediaInfo.ttl = searchImage.ttl;
+                    TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
+                    if (botInlineResult != null && searchImage.type == 1) {
+                        sendingMediaInfo.inlineResult = botInlineResult;
+                        sendingMediaInfo.params = searchImage.params;
+                    }
+                    searchImage.date = (int) (System.currentTimeMillis() / 1000);
                 }
-                i15++;
-                i14 = i16;
+            }
+            u40.b(u40Var, z14, arrayList);
+            if (i10 != 8) {
+                u40Var.f30801c.dismiss(true);
             }
         }
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(32.0f);
+    public final boolean q() {
+        return false;
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(32.0f);
+    public final void x() {
+        this.f29271a.r();
     }
 
     @Override
-    public final int getOpacity() {
-        return 0;
+    public final void K(Object obj) {
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public final void X(TLRPC.User user) {
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void E0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
     }
 }

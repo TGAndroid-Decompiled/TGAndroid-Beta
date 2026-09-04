@@ -1,51 +1,72 @@
 package org.telegram.messenger;
 
-import android.content.Context;
-import org.telegram.messenger.voip.VoIPGroupNotification;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
 public final class lb implements Runnable {
-    public final int f17727a = 0;
-    public final int f17728b;
-    public final long f17729c;
+    public final int f18260a;
+    public final MessagesController f18261b;
+    public final long f18262c;
     public final long d;
-    public final int e;
-    public final boolean f17730f;
-    public final Object h;
-    public final Object f17731n;
-    public final Object f17732r;
+    public final int f18263e;
+    public final ArrayList f18264f;
 
-    public lb(MessagesController messagesController, long j10, int i10, int i11, long j11, TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory, boolean z4, Runnable runnable) {
-        this.h = messagesController;
-        this.f17729c = j10;
-        this.f17728b = i10;
-        this.e = i11;
-        this.d = j11;
-        this.f17731n = tL_messages_affectedHistory;
-        this.f17730f = z4;
-        this.f17732r = runnable;
+    public lb(MessagesController messagesController, long j3, int i10, long j10, ArrayList arrayList, int i11) {
+        this.f18260a = i11;
+        this.f18261b = messagesController;
+        this.f18262c = j3;
+        this.f18263e = i10;
+        this.d = j10;
+        this.f18264f = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f17727a) {
+        switch (this.f18260a) {
             case 0:
-                ((MessagesController) this.h).lambda$deleteMessagesRange$464(this.f17729c, this.f17728b, this.e, this.d, (TLRPC.TL_messages_affectedHistory) this.f17731n, this.f17730f, (Runnable) this.f17732r);
+                int i10 = this.f18263e;
+                ArrayList arrayList = this.f18264f;
+                this.f18261b.lambda$checkUnreadReactionsInternal2$424(this.f18262c, this.d, i10, arrayList);
+                return;
+            case 1:
+                int i11 = this.f18263e;
+                ArrayList arrayList2 = this.f18264f;
+                this.f18261b.lambda$checkUnreadPollVotesInternal2$435(this.f18262c, this.d, i11, arrayList2);
+                return;
+            case 2:
+                int i12 = this.f18263e;
+                ArrayList arrayList3 = this.f18264f;
+                this.f18261b.lambda$checkUnreadReactionsInternal2$426(this.f18262c, this.d, i12, arrayList3);
+                return;
+            case 3:
+                int i13 = this.f18263e;
+                ArrayList arrayList4 = this.f18264f;
+                this.f18261b.lambda$checkUnreadPollVotesInternal2$433(this.f18262c, this.d, i13, arrayList4);
+                return;
+            case 4:
+                int i14 = this.f18263e;
+                ArrayList arrayList5 = this.f18264f;
+                this.f18261b.lambda$checkUnreadReactionsInternal2$428(this.f18262c, this.d, i14, arrayList5);
+                return;
+            case 5:
+                long j3 = this.d;
+                ArrayList arrayList6 = this.f18264f;
+                int i15 = this.f18263e;
+                this.f18261b.lambda$checkUnreadReactionsInternal2$422(this.f18262c, i15, j3, arrayList6);
                 return;
             default:
-                VoIPGroupNotification.b((TLObject) this.h, this.f17728b, this.f17729c, this.d, this.e, this.f17730f, (Context) this.f17731n, (String) this.f17732r);
+                long j10 = this.d;
+                ArrayList arrayList7 = this.f18264f;
+                int i16 = this.f18263e;
+                this.f18261b.lambda$checkUnreadPollVotesInternal2$429(this.f18262c, i16, j10, arrayList7);
                 return;
         }
     }
 
-    public lb(TLObject tLObject, int i10, long j10, long j11, int i11, boolean z4, Context context, String str) {
-        this.h = tLObject;
-        this.f17728b = i10;
-        this.f17729c = j10;
-        this.d = j11;
-        this.e = i11;
-        this.f17730f = z4;
-        this.f17731n = context;
-        this.f17732r = str;
+    public lb(MessagesController messagesController, long j3, long j10, int i10, ArrayList arrayList, int i11) {
+        this.f18260a = i11;
+        this.f18261b = messagesController;
+        this.f18262c = j3;
+        this.d = j10;
+        this.f18263e = i10;
+        this.f18264f = arrayList;
     }
 }

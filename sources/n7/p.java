@@ -1,36 +1,21 @@
 package n7;
 
-import java.util.Iterator;
-public final class p extends j {
-    public final transient r f14668c;
-    public final transient q d;
+import java.util.AbstractMap;
+public final class p extends m {
+    public final q f16672c;
 
-    public p(r rVar, q qVar) {
-        this.f14668c = rVar;
-        this.d = qVar;
+    public p(q qVar) {
+        this.f16672c = qVar;
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (this.f14668c.get(obj) != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int i(Object[] objArr) {
-        return this.d.i(objArr);
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return this.d.listIterator(0);
+    public final Object get(int i10) {
+        q qVar = this.f16672c;
+        return new AbstractMap.SimpleImmutableEntry(qVar.d.f16676c.f16701f.get(i10), qVar.d.d.get(i10));
     }
 
     @Override
     public final int size() {
-        this.f14668c.getClass();
-        return 1;
+        return this.f16672c.d.d.size();
     }
 }

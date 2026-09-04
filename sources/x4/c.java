@@ -1,14 +1,48 @@
 package x4;
-public final class c {
-    public final int f46842a;
-    public final boolean f46843b;
-    public final byte[] f46844c;
-    public final byte[] d;
 
-    public c(byte[] bArr, byte[] bArr2, boolean z4, int i10) {
-        this.f46842a = i10;
-        this.f46843b = z4;
-        this.f46844c = bArr;
-        this.d = bArr2;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+public final class c extends Drawable.ConstantState {
+    public final Drawable.ConstantState f48829a;
+
+    public c(Drawable.ConstantState constantState) {
+        this.f48829a = constantState;
+    }
+
+    @Override
+    public final boolean canApplyTheme() {
+        return this.f48829a.canApplyTheme();
+    }
+
+    @Override
+    public final int getChangingConfigurations() {
+        return this.f48829a.getChangingConfigurations();
+    }
+
+    @Override
+    public final Drawable newDrawable() {
+        d dVar = new d(null);
+        Drawable newDrawable = this.f48829a.newDrawable();
+        dVar.f48834a = newDrawable;
+        newDrawable.setCallback(dVar.d);
+        return dVar;
+    }
+
+    @Override
+    public final Drawable newDrawable(Resources resources) {
+        d dVar = new d(null);
+        Drawable newDrawable = this.f48829a.newDrawable(resources);
+        dVar.f48834a = newDrawable;
+        newDrawable.setCallback(dVar.d);
+        return dVar;
+    }
+
+    @Override
+    public final Drawable newDrawable(Resources resources, Resources.Theme theme) {
+        d dVar = new d(null);
+        Drawable newDrawable = this.f48829a.newDrawable(resources, theme);
+        dVar.f48834a = newDrawable;
+        newDrawable.setCallback(dVar.d);
+        return dVar;
     }
 }

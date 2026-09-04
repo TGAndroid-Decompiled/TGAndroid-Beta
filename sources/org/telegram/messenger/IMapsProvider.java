@@ -17,9 +17,9 @@ public interface IMapsProvider {
         public final LatLng target;
         public final float zoom;
 
-        public CameraPosition(LatLng latLng, float f10) {
+        public CameraPosition(LatLng latLng, float f7) {
             this.target = latLng;
-            this.zoom = f10;
+            this.zoom = f7;
         }
     }
 
@@ -101,7 +101,7 @@ public interface IMapsProvider {
 
         void setMapType(int i10);
 
-        void setMyLocationEnabled(boolean z4);
+        void setMyLocationEnabled(boolean z10);
 
         void setOnCameraIdleListener(Runnable runnable);
 
@@ -164,9 +164,9 @@ public interface IMapsProvider {
     }
 
     public interface IMarkerOptions {
-        IMarkerOptions anchor(float f10, float f11);
+        IMarkerOptions anchor(float f7, float f10);
 
-        IMarkerOptions flat(boolean z4);
+        IMarkerOptions flat(boolean z10);
 
         IMarkerOptions icon(int i10);
 
@@ -188,11 +188,11 @@ public interface IMapsProvider {
     }
 
     public interface IUISettings {
-        void setCompassEnabled(boolean z4);
+        void setCompassEnabled(boolean z10);
 
-        void setMyLocationButtonEnabled(boolean z4);
+        void setMyLocationButtonEnabled(boolean z10);
 
-        void setZoomControlsEnabled(boolean z4);
+        void setZoomControlsEnabled(boolean z10);
     }
 
     public static final class LatLng {
@@ -248,7 +248,7 @@ public interface IMapsProvider {
 
     ICameraUpdate newCameraUpdateLatLngBounds(ILatLngBounds iLatLngBounds, int i10);
 
-    ICameraUpdate newCameraUpdateLatLngZoom(LatLng latLng, float f10);
+    ICameraUpdate newCameraUpdateLatLngZoom(LatLng latLng, float f7);
 
     ICircleOptions onCreateCircleOptions();
 

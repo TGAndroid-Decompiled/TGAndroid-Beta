@@ -1,51 +1,15 @@
 package org.telegram.ui.Components;
 
+import org.telegram.messenger.CacheFetcher;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class uw0 implements RequestDelegate {
-    public final int f29313a;
-    public final Utilities.Callback4 f29314b;
-
-    public uw0(Utilities.Callback4 callback4, int i10) {
-        this.f29313a = i10;
-        this.f29314b = callback4;
-    }
-
+public final class uw0 extends CacheFetcher {
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f29313a) {
-            case 0:
-                boolean z4 = tLObject instanceof TLRPC.TL_messages_emojiGroupsNotModified;
-                Utilities.Callback4 callback4 = this.f29314b;
-                if (z4) {
-                    Boolean bool = Boolean.TRUE;
-                    callback4.run(bool, null, 0L, bool);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_messages_emojiGroups) {
-                    TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) tLObject;
-                    callback4.run(Boolean.FALSE, tL_messages_emojiGroups, Long.valueOf(tL_messages_emojiGroups.hash), Boolean.TRUE);
-                    return;
-                } else {
-                    callback4.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
-                    return;
-                }
-            default:
-                boolean z10 = tLObject instanceof TLRPC.TL_emojiListNotModified;
-                Utilities.Callback4 callback42 = this.f29314b;
-                if (z10) {
-                    Boolean bool2 = Boolean.TRUE;
-                    callback42.run(bool2, null, 0L, bool2);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_emojiList) {
-                    TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) tLObject;
-                    callback42.run(Boolean.FALSE, tL_emojiList, Long.valueOf(tL_emojiList.hash), Boolean.TRUE);
-                    return;
-                } else {
-                    callback42.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
-                    return;
-                }
-        }
+    public final void getRemote(int i10, Object obj, long j3, Utilities.Callback4 callback4) {
+        TLRPC.TL_messages_searchCustomEmoji tL_messages_searchCustomEmoji = new TLRPC.TL_messages_searchCustomEmoji();
+        tL_messages_searchCustomEmoji.emoticon = (String) obj;
+        tL_messages_searchCustomEmoji.hash = j3;
+        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_searchCustomEmoji, new sw0(callback4, 1));
     }
 }

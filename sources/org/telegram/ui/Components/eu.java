@@ -1,30 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-public final class eu extends CharacterStyle {
-    public final int f24692a;
-    public int f24693b;
+import android.app.Dialog;
+import android.content.Context;
+public final class eu extends Dialog {
+    public final bi.l3 f25785a;
 
-    public eu(int i10, int i11) {
-        this.f24692a = i11;
-        this.f24693b = i10;
+    public eu(bi.l3 l3Var, Context context) {
+        super(context);
+        this.f25785a = l3Var;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f24692a) {
-            case 0:
-                textPaint.setAlpha((int) ((this.f24693b / 255.0f) * textPaint.getAlpha()));
-                return;
-            default:
-                textPaint.setColor(org.telegram.ui.ActionBar.j6.l1(textPaint.getAlpha() / 255.0f, this.f24693b));
-                return;
-        }
-    }
-
-    public eu() {
-        this.f24692a = 0;
-        this.f24693b = 0;
+    public final void dismiss() {
+        fu fuVar = (fu) this.f25785a.f3240b;
+        fuVar.f26183a.k(false);
+        fuVar.f26183a.e();
     }
 }

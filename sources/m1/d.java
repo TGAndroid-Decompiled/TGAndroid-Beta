@@ -1,5 +1,5 @@
 package m1;
 
-import androidx.datastore.preferences.protobuf.v;
-public final class d extends v {
+import androidx.datastore.preferences.protobuf.u;
+public final class d extends u {
 }

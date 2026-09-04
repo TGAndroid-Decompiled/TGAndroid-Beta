@@ -1,83 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
-public final class r40 implements org.telegram.ui.lq0 {
-    public boolean f28402a;
-    public final HashMap f28403b;
-    public final ArrayList f28404c;
-    public final x40 d;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+public final class r40 extends org.telegram.ui.su0 {
+    public final ArrayList f29928a;
+    public final u40 f29929b;
 
-    public r40(x40 x40Var, HashMap hashMap, ArrayList arrayList) {
-        this.d = x40Var;
-        this.f28403b = hashMap;
-        this.f28404c = arrayList;
+    public r40(u40 u40Var, ArrayList arrayList) {
+        this.f29929b = u40Var;
+        this.f29928a = arrayList;
     }
 
     @Override
-    public final boolean e() {
-        return this.d.f30467b.e();
-    }
-
-    @Override
-    public final void f(int i10, boolean z4, boolean z10) {
-        String str;
-        HashMap hashMap = this.f28403b;
-        if (!hashMap.isEmpty()) {
-            x40 x40Var = this.d;
-            if (x40Var.f30467b != null && !this.f28402a && !z4) {
-                this.f28402a = true;
-                ArrayList arrayList = new ArrayList();
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList2 = this.f28404c;
-                    if (i11 < arrayList2.size()) {
-                        Object obj = hashMap.get(arrayList2.get(i11));
-                        SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                        arrayList.add(sendingMediaInfo);
-                        if (obj instanceof MediaController.SearchImage) {
-                            MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-                            String str2 = searchImage.imagePath;
-                            if (str2 != null) {
-                                sendingMediaInfo.path = str2;
-                            } else {
-                                sendingMediaInfo.searchImage = searchImage;
-                            }
-                            sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
-                            sendingMediaInfo.thumbPath = searchImage.thumbPath;
-                            CharSequence charSequence = searchImage.caption;
-                            if (charSequence != null) {
-                                str = charSequence.toString();
-                            } else {
-                                str = null;
-                            }
-                            sendingMediaInfo.caption = str;
-                            sendingMediaInfo.entities = searchImage.entities;
-                            sendingMediaInfo.masks = searchImage.stickers;
-                            sendingMediaInfo.ttl = searchImage.ttl;
-                        }
-                        i11++;
-                    } else {
-                        x40.b(x40Var, false, arrayList);
-                        return;
-                    }
-                }
-            }
+    public final org.telegram.ui.cv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        t40 t40Var = this.f29929b.f30800b;
+        if (t40Var == null) {
+            return null;
         }
+        return t40Var.getCloseIntoObject();
     }
 
     @Override
-    public final void a() {
+    public final boolean S() {
+        return false;
     }
 
     @Override
-    public final void c(Editable editable) {
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        this.f29929b.t((MediaController.PhotoEntry) this.f29928a.get(0));
     }
 
     @Override
-    public final void d() {
+    public final boolean z() {
+        return false;
     }
 }

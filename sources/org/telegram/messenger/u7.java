@@ -1,50 +1,25 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
+import java.util.ArrayList;
 public final class u7 implements Runnable {
-    public final int f18549a;
-    public final Utilities.Callback f18550b;
+    public final int f19123a;
+    public final MediaDataController f19124b;
+    public final ArrayList f19125c;
 
-    public u7(int i10, Utilities.Callback callback) {
-        this.f18549a = i10;
-        this.f18550b = callback;
+    public u7(MediaDataController mediaDataController, ArrayList arrayList, int i10) {
+        this.f19123a = i10;
+        this.f19124b = mediaDataController;
+        this.f19125c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f18549a) {
+        switch (this.f19123a) {
             case 0:
-                MediaDataController.lambda$loadStickers$98(this.f18550b);
-                return;
-            case 1:
-                MediaDataController.lambda$loadStickers$99(this.f18550b);
-                return;
-            case 2:
-                MediaDataController.lambda$loadBotInfo$198(this.f18550b);
-                return;
-            case 3:
-                MediaDataController.lambda$loadStickers$94(this.f18550b);
-                return;
-            case 4:
-                MediaDataController.lambda$loadStickers$95(this.f18550b);
-                return;
-            case 5:
-                MediaDataController.lambda$loadStickers$96(this.f18550b);
-                return;
-            case 6:
-                this.f18550b.run(null);
-                return;
-            case 7:
-                MessagesController.lambda$addUserToChat$301(this.f18550b);
-                return;
-            case 8:
-                MessagesController.lambda$addUserToChat$305(this.f18550b);
-                return;
-            case 9:
-                this.f18550b.run(null);
+                this.f19124b.lambda$loadRepliesOfDraftReplies$0(this.f19125c);
                 return;
             default:
-                ShortcutResultReceiver.a(this.f18550b);
+                this.f19124b.lambda$broadcastPinnedMessage$168(this.f19125c);
                 return;
         }
     }

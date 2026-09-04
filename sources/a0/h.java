@@ -1,368 +1,933 @@
 package a0;
 
+import androidx.datastore.preferences.protobuf.b0;
+import androidx.datastore.preferences.protobuf.b1;
+import androidx.datastore.preferences.protobuf.e0;
+import androidx.datastore.preferences.protobuf.i0;
+import androidx.datastore.preferences.protobuf.s;
+import androidx.datastore.preferences.protobuf.u1;
+import androidx.datastore.preferences.protobuf.x;
+import androidx.datastore.preferences.protobuf.y0;
+import androidx.datastore.preferences.protobuf.z;
+import androidx.datastore.preferences.protobuf.z1;
+import androidx.recyclerview.widget.RecyclerView;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
-import kf.k0;
-public final class h implements Cloneable {
-    public boolean f14a;
-    public long[] f15b;
-    public Object[] f16c;
+import java.util.List;
+import s4.c0;
+import s4.o0;
+import s4.z0;
+public final class h {
+    public int f16a;
+    public int f17b;
+    public Object f18c;
     public int d;
 
-    public h(int i10) {
-        if (i10 == 0) {
-            this.f15b = b0.a.f1278b;
-            this.f16c = b0.a.f1279c;
-            return;
-        }
-        int i11 = i10 * 8;
-        int i12 = 4;
-        while (true) {
-            if (i12 >= 32) {
-                break;
-            }
-            int i13 = (1 << i12) - 12;
-            if (i11 <= i13) {
-                i11 = i13;
-                break;
-            }
-            i12++;
-        }
-        int i14 = i11 / 8;
-        this.f15b = new long[i14];
-        this.f16c = new Object[i14];
+    public h() {
+        int highestOneBit = Integer.bitCount(8) != 1 ? Integer.highestOneBit(7) << 1 : 8;
+        this.d = highestOneBit - 1;
+        this.f18c = new int[highestOneBit];
     }
 
-    public final void a(Long l10, long j10) {
-        int i10 = this.d;
-        if (i10 != 0 && j10 <= this.f15b[i10 - 1]) {
-            k(l10, j10);
+    public static void V(int i10) {
+        if ((i10 & 3) == 0) {
             return;
         }
-        if (this.f14a) {
-            long[] jArr = this.f15b;
-            if (i10 >= jArr.length) {
-                Object[] objArr = this.f16c;
-                int i11 = 0;
-                for (int i12 = 0; i12 < i10; i12++) {
-                    Object obj = objArr[i12];
-                    if (obj != i.f17a) {
-                        if (i12 != i11) {
-                            jArr[i11] = jArr[i12];
-                            objArr[i11] = obj;
-                            objArr[i12] = null;
+        throw b0.e();
+    }
+
+    public static void W(int i10) {
+        if ((i10 & 7) == 0) {
+            return;
+        }
+        throw b0.e();
+    }
+
+    public void A(List list) {
+        int z10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if (!(list instanceof i0)) {
+            int i10 = this.f16a & 7;
+            if (i10 != 0) {
+                if (i10 == 2) {
+                    int b10 = hVar.b() + hVar.A();
+                    do {
+                        list.add(Long.valueOf(hVar.m()));
+                    } while (hVar.b() < b10);
+                    S(b10);
+                    return;
+                }
+                throw b0.b();
+            }
+            do {
+                list.add(Long.valueOf(hVar.m()));
+                if (hVar.c()) {
+                    return;
+                }
+                z10 = hVar.z();
+            } while (z10 == this.f16a);
+            this.d = z10;
+            return;
+        }
+        throw new ClassCastException();
+    }
+
+    public Object B(b1 b1Var, androidx.datastore.preferences.protobuf.m mVar) {
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        int A = hVar.A();
+        if (hVar.f1234a < 100) {
+            int e7 = hVar.e(A);
+            Object a2 = b1Var.a();
+            hVar.f1234a++;
+            b1Var.c(a2, this, mVar);
+            b1Var.d(a2);
+            hVar.a(0);
+            hVar.f1234a--;
+            hVar.d(e7);
+            return a2;
+        }
+        throw new IOException("Protocol message had too many levels of nesting.  May be malicious.  Use CodedInputStream.setRecursionLimit() to increase the depth limit.");
+    }
+
+    public Object C(b1 b1Var, androidx.datastore.preferences.protobuf.m mVar) {
+        T(2);
+        return B(b1Var, mVar);
+    }
+
+    public int D() {
+        T(5);
+        return ((androidx.datastore.preferences.protobuf.h) this.f18c).v();
+    }
+
+    public void E(List list) {
+        int z10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if (!(list instanceof x)) {
+            int i10 = this.f16a & 7;
+            if (i10 != 2) {
+                if (i10 == 5) {
+                    do {
+                        list.add(Integer.valueOf(hVar.v()));
+                        if (!hVar.c()) {
+                            z10 = hVar.z();
+                        } else {
+                            return;
                         }
-                        i11++;
-                    }
+                    } while (z10 == this.f16a);
+                    this.d = z10;
+                    return;
                 }
-                this.f14a = false;
-                this.d = i11;
+                throw b0.b();
             }
-        }
-        int i13 = this.d;
-        if (i13 >= this.f15b.length) {
-            int i14 = (i13 + 1) * 8;
-            int i15 = 4;
-            while (true) {
-                if (i15 >= 32) {
-                    break;
-                }
-                int i16 = (1 << i15) - 12;
-                if (i14 <= i16) {
-                    i14 = i16;
-                    break;
-                }
-                i15++;
-            }
-            int i17 = i14 / 8;
-            long[] copyOf = Arrays.copyOf(this.f15b, i17);
-            kotlin.jvm.internal.j.d(copyOf, "copyOf(this, newSize)");
-            this.f15b = copyOf;
-            Object[] copyOf2 = Arrays.copyOf(this.f16c, i17);
-            kotlin.jvm.internal.j.d(copyOf2, "copyOf(this, newSize)");
-            this.f16c = copyOf2;
-        }
-        this.f15b[i13] = j10;
-        this.f16c[i13] = l10;
-        this.d = i13 + 1;
-    }
-
-    public final void b() {
-        int i10 = this.d;
-        Object[] objArr = this.f16c;
-        for (int i11 = 0; i11 < i10; i11++) {
-            objArr[i11] = null;
-        }
-        this.d = 0;
-        this.f14a = false;
-    }
-
-    public final h clone() {
-        Object clone = super.clone();
-        kotlin.jvm.internal.j.c(clone, "null cannot be cast to non-null type androidx.collection.LongSparseArray<E of androidx.collection.LongSparseArray>");
-        h hVar = (h) clone;
-        hVar.f15b = (long[]) this.f15b.clone();
-        hVar.f16c = (Object[]) this.f16c.clone();
-        return hVar;
-    }
-
-    public final boolean d(long j10) {
-        if (h(j10) >= 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void e(long j10) {
-        int b10 = b0.a.b(this.f15b, this.d, j10);
-        if (b10 >= 0) {
-            Object[] objArr = this.f16c;
-            Object obj = objArr[b10];
-            Object obj2 = i.f17a;
-            if (obj != obj2) {
-                objArr[b10] = obj2;
-                this.f14a = true;
-            }
-        }
-    }
-
-    public final Object f(long j10) {
-        Object obj;
-        int b10 = b0.a.b(this.f15b, this.d, j10);
-        if (b10 >= 0 && (obj = this.f16c[b10]) != i.f17a) {
-            return obj;
-        }
-        return null;
-    }
-
-    public final Object g(Object obj, long j10) {
-        Object obj2;
-        int b10 = b0.a.b(this.f15b, this.d, j10);
-        if (b10 >= 0 && (obj2 = this.f16c[b10]) != i.f17a) {
-            return obj2;
-        }
-        return obj;
-    }
-
-    public final int h(long j10) {
-        if (this.f14a) {
-            int i10 = this.d;
-            long[] jArr = this.f15b;
-            Object[] objArr = this.f16c;
-            int i11 = 0;
-            for (int i12 = 0; i12 < i10; i12++) {
-                Object obj = objArr[i12];
-                if (obj != i.f17a) {
-                    if (i12 != i11) {
-                        jArr[i11] = jArr[i12];
-                        objArr[i11] = obj;
-                        objArr[i12] = null;
-                    }
-                    i11++;
-                }
-            }
-            this.f14a = false;
-            this.d = i11;
-        }
-        return b0.a.b(this.f15b, this.d, j10);
-    }
-
-    public final boolean i() {
-        if (m() == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final long j(int i10) {
-        int i11;
-        if (i10 >= 0 && i10 < (i11 = this.d)) {
-            if (this.f14a) {
-                long[] jArr = this.f15b;
-                Object[] objArr = this.f16c;
-                int i12 = 0;
-                for (int i13 = 0; i13 < i11; i13++) {
-                    Object obj = objArr[i13];
-                    if (obj != i.f17a) {
-                        if (i13 != i12) {
-                            jArr[i12] = jArr[i13];
-                            objArr[i12] = obj;
-                            objArr[i13] = null;
-                        }
-                        i12++;
-                    }
-                }
-                this.f14a = false;
-                this.d = i12;
-            }
-            return this.f15b[i10];
-        }
-        throw new IllegalArgumentException(k0.j(i10, "Expected index to be within 0..size()-1, but was ").toString());
-    }
-
-    public final void k(Object obj, long j10) {
-        Object obj2 = i.f17a;
-        int b10 = b0.a.b(this.f15b, this.d, j10);
-        if (b10 >= 0) {
-            this.f16c[b10] = obj;
+            int A = hVar.A();
+            V(A);
+            int b10 = hVar.b() + A;
+            do {
+                list.add(Integer.valueOf(hVar.v()));
+            } while (hVar.b() < b10);
             return;
         }
-        int i10 = ~b10;
-        int i11 = this.d;
-        if (i10 < i11) {
-            Object[] objArr = this.f16c;
-            if (objArr[i10] == obj2) {
-                this.f15b[i10] = j10;
-                objArr[i10] = obj;
+        throw new ClassCastException();
+    }
+
+    public long F() {
+        T(1);
+        return ((androidx.datastore.preferences.protobuf.h) this.f18c).w();
+    }
+
+    public void G(List list) {
+        int z10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if (!(list instanceof i0)) {
+            int i10 = this.f16a & 7;
+            if (i10 != 1) {
+                if (i10 == 2) {
+                    int A = hVar.A();
+                    W(A);
+                    int b10 = hVar.b() + A;
+                    do {
+                        list.add(Long.valueOf(hVar.w()));
+                    } while (hVar.b() < b10);
+                    return;
+                }
+                throw b0.b();
+            }
+            do {
+                list.add(Long.valueOf(hVar.w()));
+                if (hVar.c()) {
+                    return;
+                }
+                z10 = hVar.z();
+            } while (z10 == this.f16a);
+            this.d = z10;
+            return;
+        }
+        throw new ClassCastException();
+    }
+
+    public int H() {
+        T(0);
+        return ((androidx.datastore.preferences.protobuf.h) this.f18c).x();
+    }
+
+    public void I(List list) {
+        int z10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if (!(list instanceof x)) {
+            int i10 = this.f16a & 7;
+            if (i10 != 0) {
+                if (i10 == 2) {
+                    int b10 = hVar.b() + hVar.A();
+                    do {
+                        list.add(Integer.valueOf(hVar.x()));
+                    } while (hVar.b() < b10);
+                    S(b10);
+                    return;
+                }
+                throw b0.b();
+            }
+            do {
+                list.add(Integer.valueOf(hVar.x()));
+                if (hVar.c()) {
+                    return;
+                }
+                z10 = hVar.z();
+            } while (z10 == this.f16a);
+            this.d = z10;
+            return;
+        }
+        throw new ClassCastException();
+    }
+
+    public long J() {
+        T(0);
+        return ((androidx.datastore.preferences.protobuf.h) this.f18c).y();
+    }
+
+    public void K(List list) {
+        int z10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if (!(list instanceof i0)) {
+            int i10 = this.f16a & 7;
+            if (i10 != 0) {
+                if (i10 == 2) {
+                    int b10 = hVar.b() + hVar.A();
+                    do {
+                        list.add(Long.valueOf(hVar.y()));
+                    } while (hVar.b() < b10);
+                    S(b10);
+                    return;
+                }
+                throw b0.b();
+            }
+            do {
+                list.add(Long.valueOf(hVar.y()));
+                if (hVar.c()) {
+                    return;
+                }
+                z10 = hVar.z();
+            } while (z10 == this.f16a);
+            this.d = z10;
+            return;
+        }
+        throw new ClassCastException();
+    }
+
+    public String L() {
+        T(2);
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        byte[] bArr = hVar.d;
+        int s10 = hVar.s();
+        if (s10 > 0) {
+            int i10 = hVar.f1237e;
+            int i11 = hVar.f1239g;
+            if (s10 <= i10 - i11) {
+                String str = new String(bArr, i11, s10, z.f1324a);
+                hVar.f1239g += s10;
+                return str;
+            }
+        }
+        if (s10 == 0) {
+            return "";
+        }
+        if (s10 <= hVar.f1237e) {
+            hVar.D(s10);
+            String str2 = new String(bArr, hVar.f1239g, s10, z.f1324a);
+            hVar.f1239g += s10;
+            return str2;
+        }
+        return new String(hVar.n(s10), z.f1324a);
+    }
+
+    public void M(List list, boolean z10) {
+        String L;
+        int z11;
+        int z12;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if ((this.f16a & 7) == 2) {
+            if ((list instanceof e0) && !z10) {
+                e0 e0Var = (e0) list;
+                do {
+                    e0Var.g(h());
+                    if (!hVar.c()) {
+                        z12 = hVar.z();
+                    } else {
+                        return;
+                    }
+                } while (z12 == this.f16a);
+                this.d = z12;
                 return;
             }
-        }
-        if (this.f14a) {
-            long[] jArr = this.f15b;
-            if (i11 >= jArr.length) {
-                Object[] objArr2 = this.f16c;
-                int i12 = 0;
-                for (int i13 = 0; i13 < i11; i13++) {
-                    Object obj3 = objArr2[i13];
-                    if (obj3 != obj2) {
-                        if (i13 != i12) {
-                            jArr[i12] = jArr[i13];
-                            objArr2[i12] = obj3;
-                            objArr2[i13] = null;
-                        }
-                        i12++;
-                    }
+            do {
+                if (z10) {
+                    L = N();
+                } else {
+                    L = L();
                 }
-                this.f14a = false;
-                this.d = i12;
-                i10 = ~b0.a.b(this.f15b, i12, j10);
-            }
-        }
-        int i14 = this.d;
-        if (i14 >= this.f15b.length) {
-            int i15 = (i14 + 1) * 8;
-            int i16 = 4;
-            while (true) {
-                if (i16 >= 32) {
-                    break;
+                list.add(L);
+                if (hVar.c()) {
+                    return;
                 }
-                int i17 = (1 << i16) - 12;
-                if (i15 <= i17) {
-                    i15 = i17;
-                    break;
-                }
-                i16++;
-            }
-            int i18 = i15 / 8;
-            long[] copyOf = Arrays.copyOf(this.f15b, i18);
-            kotlin.jvm.internal.j.d(copyOf, "copyOf(this, newSize)");
-            this.f15b = copyOf;
-            Object[] copyOf2 = Arrays.copyOf(this.f16c, i18);
-            kotlin.jvm.internal.j.d(copyOf2, "copyOf(this, newSize)");
-            this.f16c = copyOf2;
+                z11 = hVar.z();
+            } while (z11 == this.f16a);
+            this.d = z11;
+            return;
         }
-        int i19 = this.d - i10;
-        if (i19 != 0) {
-            long[] jArr2 = this.f15b;
-            int i20 = i10 + 1;
-            kotlin.jvm.internal.j.e(jArr2, "<this>");
-            System.arraycopy(jArr2, i10, jArr2, i20, i19);
-            Object[] objArr3 = this.f16c;
-            tc.f.c(i20, i10, this.d, objArr3, objArr3);
-        }
-        this.f15b[i10] = j10;
-        this.f16c[i10] = obj;
-        this.d++;
+        throw b0.b();
     }
 
-    public final void l(long j10) {
-        int b10 = b0.a.b(this.f15b, this.d, j10);
-        if (b10 >= 0) {
-            Object[] objArr = this.f16c;
-            Object obj = objArr[b10];
-            Object obj2 = i.f17a;
-            if (obj != obj2) {
-                objArr[b10] = obj2;
-                this.f14a = true;
-            }
-        }
-    }
-
-    public final int m() {
-        if (this.f14a) {
-            int i10 = this.d;
-            long[] jArr = this.f15b;
-            Object[] objArr = this.f16c;
-            int i11 = 0;
-            for (int i12 = 0; i12 < i10; i12++) {
-                Object obj = objArr[i12];
-                if (obj != i.f17a) {
-                    if (i12 != i11) {
-                        jArr[i11] = jArr[i12];
-                        objArr[i11] = obj;
-                        objArr[i12] = null;
-                    }
-                    i11++;
-                }
-            }
-            this.f14a = false;
-            this.d = i11;
-        }
-        return this.d;
-    }
-
-    public final Object n(int i10) {
-        int i11;
-        if (i10 >= 0 && i10 < (i11 = this.d)) {
-            if (this.f14a) {
-                long[] jArr = this.f15b;
-                Object[] objArr = this.f16c;
-                int i12 = 0;
-                for (int i13 = 0; i13 < i11; i13++) {
-                    Object obj = objArr[i13];
-                    if (obj != i.f17a) {
-                        if (i13 != i12) {
-                            jArr[i12] = jArr[i13];
-                            objArr[i12] = obj;
-                            objArr[i13] = null;
-                        }
-                        i12++;
-                    }
-                }
-                this.f14a = false;
-                this.d = i12;
-            }
-            return this.f16c[i10];
-        }
-        throw new IllegalArgumentException(k0.j(i10, "Expected index to be within 0..size()-1, but was ").toString());
-    }
-
-    public final String toString() {
-        if (m() <= 0) {
-            return "{}";
-        }
-        StringBuilder sb = new StringBuilder(this.d * 28);
-        sb.append('{');
-        int i10 = this.d;
-        for (int i11 = 0; i11 < i10; i11++) {
-            if (i11 > 0) {
-                sb.append(", ");
-            }
-            sb.append(j(i11));
-            sb.append('=');
-            Object n10 = n(i11);
-            if (n10 != sb) {
-                sb.append(n10);
+    public String N() {
+        T(2);
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        byte[] bArr = hVar.d;
+        int s10 = hVar.s();
+        int i10 = hVar.f1239g;
+        int i11 = hVar.f1237e;
+        if (s10 <= i11 - i10 && s10 > 0) {
+            hVar.f1239g = i10 + s10;
+        } else if (s10 == 0) {
+            return "";
+        } else {
+            i10 = 0;
+            if (s10 <= i11) {
+                hVar.D(s10);
+                hVar.f1239g = s10;
             } else {
-                sb.append("(this Map)");
+                bArr = hVar.n(s10);
             }
         }
-        sb.append('}');
-        String sb2 = sb.toString();
-        kotlin.jvm.internal.j.d(sb2, "StringBuilder(capacity).…builderAction).toString()");
-        return sb2;
+        return u1.f1318a.e(i10, s10, bArr);
     }
 
-    public h() {
-        this(10);
+    public int O() {
+        T(0);
+        return ((androidx.datastore.preferences.protobuf.h) this.f18c).A();
+    }
+
+    public void P(List list) {
+        int z10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if (!(list instanceof x)) {
+            int i10 = this.f16a & 7;
+            if (i10 != 0) {
+                if (i10 == 2) {
+                    int b10 = hVar.b() + hVar.A();
+                    do {
+                        list.add(Integer.valueOf(hVar.A()));
+                    } while (hVar.b() < b10);
+                    S(b10);
+                    return;
+                }
+                throw b0.b();
+            }
+            do {
+                list.add(Integer.valueOf(hVar.A()));
+                if (hVar.c()) {
+                    return;
+                }
+                z10 = hVar.z();
+            } while (z10 == this.f16a);
+            this.d = z10;
+            return;
+        }
+        throw new ClassCastException();
+    }
+
+    public long Q() {
+        T(0);
+        return ((androidx.datastore.preferences.protobuf.h) this.f18c).B();
+    }
+
+    public void R(List list) {
+        int z10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if (!(list instanceof i0)) {
+            int i10 = this.f16a & 7;
+            if (i10 != 0) {
+                if (i10 == 2) {
+                    int b10 = hVar.b() + hVar.A();
+                    do {
+                        list.add(Long.valueOf(hVar.B()));
+                    } while (hVar.b() < b10);
+                    S(b10);
+                    return;
+                }
+                throw b0.b();
+            }
+            do {
+                list.add(Long.valueOf(hVar.B()));
+                if (hVar.c()) {
+                    return;
+                }
+                z10 = hVar.z();
+            } while (z10 == this.f16a);
+            this.d = z10;
+            return;
+        }
+        throw new ClassCastException();
+    }
+
+    public void S(int i10) {
+        if (((androidx.datastore.preferences.protobuf.h) this.f18c).b() == i10) {
+            return;
+        }
+        throw b0.f();
+    }
+
+    public void T(int i10) {
+        if ((this.f16a & 7) == i10) {
+            return;
+        }
+        throw b0.b();
+    }
+
+    public boolean U() {
+        int i10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if (!hVar.c() && (i10 = this.f16a) != this.f17b) {
+            return hVar.E(i10);
+        }
+        return false;
+    }
+
+    public void a(int i10) {
+        int[] iArr = (int[]) this.f18c;
+        int i11 = this.f17b;
+        iArr[i11] = i10;
+        int i12 = this.d & (i11 + 1);
+        this.f17b = i12;
+        int i13 = this.f16a;
+        if (i12 == i13) {
+            int length = iArr.length;
+            int i14 = length - i13;
+            int i15 = length << 1;
+            if (i15 >= 0) {
+                int[] iArr2 = new int[i15];
+                hd.f.b(0, i13, length, iArr, iArr2);
+                hd.f.b(i14, 0, this.f16a, (int[]) this.f18c, iArr2);
+                this.f18c = iArr2;
+                this.f16a = 0;
+                this.f17b = length;
+                this.d = i15 - 1;
+                return;
+            }
+            throw new RuntimeException("Max array capacity exceeded");
+        }
+    }
+
+    public void b(int i10, int i11) {
+        if (i10 >= 0) {
+            if (i11 >= 0) {
+                int i12 = this.d;
+                int i13 = i12 * 2;
+                int[] iArr = (int[]) this.f18c;
+                if (iArr == null) {
+                    int[] iArr2 = new int[4];
+                    this.f18c = iArr2;
+                    Arrays.fill(iArr2, -1);
+                } else if (i13 >= iArr.length) {
+                    int[] iArr3 = new int[i12 * 4];
+                    this.f18c = iArr3;
+                    System.arraycopy(iArr, 0, iArr3, 0, iArr.length);
+                }
+                int[] iArr4 = (int[]) this.f18c;
+                iArr4[i13] = i10;
+                iArr4[i13 + 1] = i11;
+                this.d++;
+                return;
+            }
+            throw new IllegalArgumentException("Pixel distance must be non-negative");
+        }
+        throw new IllegalArgumentException("Layout positions must be non-negative");
+    }
+
+    public void c(RecyclerView recyclerView, boolean z10) {
+        boolean z11;
+        int i10;
+        this.d = 0;
+        int[] iArr = (int[]) this.f18c;
+        int i11 = -1;
+        if (iArr != null) {
+            Arrays.fill(iArr, -1);
+        }
+        o0 o0Var = recyclerView.f1896x;
+        if (recyclerView.f1894w != null && o0Var != null && o0Var.h) {
+            if (z10) {
+                if (!recyclerView.d.h()) {
+                    int h = recyclerView.f1894w.h();
+                    c0 c0Var = (c0) o0Var;
+                    s4.b0 b0Var = c0Var.B;
+                    if (b0Var != null && (i10 = b0Var.f45716a) >= 0) {
+                        z11 = b0Var.f45718c;
+                    } else {
+                        c0Var.f1();
+                        z11 = c0Var.v;
+                        i10 = c0Var.f45735y;
+                        if (i10 == -1) {
+                            i10 = z11 ? h - 1 : 0;
+                        }
+                    }
+                    if (!z11) {
+                        i11 = 1;
+                    }
+                    for (int i12 = 0; i12 < c0Var.E && i10 >= 0 && i10 < h; i12++) {
+                        b(i10, 0);
+                        i10 += i11;
+                    }
+                }
+            } else if (!recyclerView.Z()) {
+                int i13 = this.f16a;
+                int i14 = this.f17b;
+                z0 z0Var = recyclerView.f1891t0;
+                c0 c0Var2 = (c0) o0Var;
+                if (c0Var2.f45726o != 0) {
+                    i13 = i14;
+                }
+                if (c0Var2.r() != 0 && i13 != 0) {
+                    c0Var2.G0();
+                    if (i13 > 0) {
+                        i11 = 1;
+                    }
+                    c0Var2.m1(i11, Math.abs(i13), true, z0Var);
+                    c0Var2.A0(z0Var, c0Var2.f45727p, this);
+                }
+            }
+            int i15 = this.d;
+            if (i15 > o0Var.f45847i) {
+                o0Var.f45847i = i15;
+                o0Var.f45848j = z10;
+                recyclerView.f1867b.l();
+            }
+        }
+    }
+
+    public int d() {
+        int i10 = this.d;
+        if (i10 != 0) {
+            this.f16a = i10;
+            this.d = 0;
+        } else {
+            this.f16a = ((androidx.datastore.preferences.protobuf.h) this.f18c).z();
+        }
+        int i11 = this.f16a;
+        if (i11 != 0 && i11 != this.f17b) {
+            return i11 >>> 3;
+        }
+        return Integer.MAX_VALUE;
+    }
+
+    public int e() {
+        return this.f16a;
+    }
+
+    public boolean f() {
+        T(0);
+        return ((androidx.datastore.preferences.protobuf.h) this.f18c).f();
+    }
+
+    public void g(List list) {
+        int z10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if (!(list instanceof androidx.datastore.preferences.protobuf.d)) {
+            int i10 = this.f16a & 7;
+            if (i10 != 0) {
+                if (i10 == 2) {
+                    int b10 = hVar.b() + hVar.A();
+                    do {
+                        list.add(Boolean.valueOf(hVar.f()));
+                    } while (hVar.b() < b10);
+                    S(b10);
+                    return;
+                }
+                throw b0.b();
+            }
+            do {
+                list.add(Boolean.valueOf(hVar.f()));
+                if (hVar.c()) {
+                    return;
+                }
+                z10 = hVar.z();
+            } while (z10 == this.f16a);
+            this.d = z10;
+            return;
+        }
+        throw new ClassCastException();
+    }
+
+    public androidx.datastore.preferences.protobuf.g h() {
+        T(2);
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        byte[] bArr = hVar.d;
+        int s10 = hVar.s();
+        int i10 = hVar.f1237e;
+        int i11 = hVar.f1239g;
+        if (s10 <= i10 - i11 && s10 > 0) {
+            androidx.datastore.preferences.protobuf.g i12 = androidx.datastore.preferences.protobuf.g.i(i11, s10, bArr);
+            hVar.f1239g += s10;
+            return i12;
+        } else if (s10 == 0) {
+            return androidx.datastore.preferences.protobuf.g.f1228c;
+        } else {
+            byte[] o9 = hVar.o(s10);
+            if (o9 != null) {
+                return androidx.datastore.preferences.protobuf.g.i(0, o9.length, o9);
+            }
+            int i13 = hVar.f1239g;
+            int i14 = hVar.f1237e;
+            int i15 = i14 - i13;
+            hVar.f1240i += i14;
+            hVar.f1239g = 0;
+            hVar.f1237e = 0;
+            ArrayList p5 = hVar.p(s10 - i15);
+            byte[] bArr2 = new byte[s10];
+            System.arraycopy(bArr, i13, bArr2, 0, i15);
+            int size = p5.size();
+            int i16 = 0;
+            while (i16 < size) {
+                Object obj = p5.get(i16);
+                i16++;
+                byte[] bArr3 = (byte[]) obj;
+                System.arraycopy(bArr3, 0, bArr2, i15, bArr3.length);
+                i15 += bArr3.length;
+            }
+            androidx.datastore.preferences.protobuf.g gVar = androidx.datastore.preferences.protobuf.g.f1228c;
+            return new androidx.datastore.preferences.protobuf.g(bArr2);
+        }
+    }
+
+    public void i(List list) {
+        int z10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if ((this.f16a & 7) == 2) {
+            do {
+                list.add(h());
+                if (hVar.c()) {
+                    return;
+                }
+                z10 = hVar.z();
+            } while (z10 == this.f16a);
+            this.d = z10;
+            return;
+        }
+        throw b0.b();
+    }
+
+    public double j() {
+        T(1);
+        return ((androidx.datastore.preferences.protobuf.h) this.f18c).g();
+    }
+
+    public void k(List list) {
+        int z10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if (!(list instanceof androidx.datastore.preferences.protobuf.k)) {
+            int i10 = this.f16a & 7;
+            if (i10 != 1) {
+                if (i10 == 2) {
+                    int A = hVar.A();
+                    W(A);
+                    int b10 = hVar.b() + A;
+                    do {
+                        list.add(Double.valueOf(hVar.g()));
+                    } while (hVar.b() < b10);
+                    return;
+                }
+                throw b0.b();
+            }
+            do {
+                list.add(Double.valueOf(hVar.g()));
+                if (hVar.c()) {
+                    return;
+                }
+                z10 = hVar.z();
+            } while (z10 == this.f16a);
+            this.d = z10;
+            return;
+        }
+        throw new ClassCastException();
+    }
+
+    public int l() {
+        T(0);
+        return ((androidx.datastore.preferences.protobuf.h) this.f18c).h();
+    }
+
+    public void m(List list) {
+        int z10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if (!(list instanceof x)) {
+            int i10 = this.f16a & 7;
+            if (i10 != 0) {
+                if (i10 == 2) {
+                    int b10 = hVar.b() + hVar.A();
+                    do {
+                        list.add(Integer.valueOf(hVar.h()));
+                    } while (hVar.b() < b10);
+                    S(b10);
+                    return;
+                }
+                throw b0.b();
+            }
+            do {
+                list.add(Integer.valueOf(hVar.h()));
+                if (hVar.c()) {
+                    return;
+                }
+                z10 = hVar.z();
+            } while (z10 == this.f16a);
+            this.d = z10;
+            return;
+        }
+        throw new ClassCastException();
+    }
+
+    public Object n(z1 z1Var, Class cls, androidx.datastore.preferences.protobuf.m mVar) {
+        switch (z1Var.ordinal()) {
+            case 0:
+                return Double.valueOf(j());
+            case 1:
+                return Float.valueOf(s());
+            case 2:
+                return Long.valueOf(z());
+            case 3:
+                return Long.valueOf(Q());
+            case 4:
+                return Integer.valueOf(x());
+            case 5:
+                return Long.valueOf(q());
+            case 6:
+                return Integer.valueOf(o());
+            case 7:
+                return Boolean.valueOf(f());
+            case 8:
+                return N();
+            case 9:
+            default:
+                throw new RuntimeException("unsupported field type.");
+            case 10:
+                T(2);
+                return B(y0.f1321c.a(cls), mVar);
+            case 11:
+                return h();
+            case 12:
+                return Integer.valueOf(O());
+            case 13:
+                return Integer.valueOf(l());
+            case 14:
+                return Integer.valueOf(D());
+            case 15:
+                return Long.valueOf(F());
+            case 16:
+                return Integer.valueOf(H());
+            case 17:
+                return Long.valueOf(J());
+        }
+    }
+
+    public int o() {
+        T(5);
+        return ((androidx.datastore.preferences.protobuf.h) this.f18c).i();
+    }
+
+    public void p(List list) {
+        int z10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if (!(list instanceof x)) {
+            int i10 = this.f16a & 7;
+            if (i10 != 2) {
+                if (i10 == 5) {
+                    do {
+                        list.add(Integer.valueOf(hVar.i()));
+                        if (!hVar.c()) {
+                            z10 = hVar.z();
+                        } else {
+                            return;
+                        }
+                    } while (z10 == this.f16a);
+                    this.d = z10;
+                    return;
+                }
+                throw b0.b();
+            }
+            int A = hVar.A();
+            V(A);
+            int b10 = hVar.b() + A;
+            do {
+                list.add(Integer.valueOf(hVar.i()));
+            } while (hVar.b() < b10);
+            return;
+        }
+        throw new ClassCastException();
+    }
+
+    public long q() {
+        T(1);
+        return ((androidx.datastore.preferences.protobuf.h) this.f18c).j();
+    }
+
+    public void r(List list) {
+        int z10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if (!(list instanceof i0)) {
+            int i10 = this.f16a & 7;
+            if (i10 != 1) {
+                if (i10 == 2) {
+                    int A = hVar.A();
+                    W(A);
+                    int b10 = hVar.b() + A;
+                    do {
+                        list.add(Long.valueOf(hVar.j()));
+                    } while (hVar.b() < b10);
+                    return;
+                }
+                throw b0.b();
+            }
+            do {
+                list.add(Long.valueOf(hVar.j()));
+                if (hVar.c()) {
+                    return;
+                }
+                z10 = hVar.z();
+            } while (z10 == this.f16a);
+            this.d = z10;
+            return;
+        }
+        throw new ClassCastException();
+    }
+
+    public float s() {
+        T(5);
+        return ((androidx.datastore.preferences.protobuf.h) this.f18c).k();
+    }
+
+    public void t(List list) {
+        int z10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if (!(list instanceof s)) {
+            int i10 = this.f16a & 7;
+            if (i10 != 2) {
+                if (i10 == 5) {
+                    do {
+                        list.add(Float.valueOf(hVar.k()));
+                        if (!hVar.c()) {
+                            z10 = hVar.z();
+                        } else {
+                            return;
+                        }
+                    } while (z10 == this.f16a);
+                    this.d = z10;
+                    return;
+                }
+                throw b0.b();
+            }
+            int A = hVar.A();
+            V(A);
+            int b10 = hVar.b() + A;
+            do {
+                list.add(Float.valueOf(hVar.k()));
+            } while (hVar.b() < b10);
+            return;
+        }
+        throw new ClassCastException();
+    }
+
+    public Object u(b1 b1Var, androidx.datastore.preferences.protobuf.m mVar) {
+        int i10 = this.f17b;
+        this.f17b = ((this.f16a >>> 3) << 3) | 4;
+        try {
+            Object a2 = b1Var.a();
+            b1Var.c(a2, this, mVar);
+            b1Var.d(a2);
+            if (this.f16a == this.f17b) {
+                return a2;
+            }
+            throw b0.e();
+        } finally {
+            this.f17b = i10;
+        }
+    }
+
+    public Object v(b1 b1Var, androidx.datastore.preferences.protobuf.m mVar) {
+        T(3);
+        return u(b1Var, mVar);
+    }
+
+    public void w(List list, b1 b1Var, androidx.datastore.preferences.protobuf.m mVar) {
+        int z10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        int i10 = this.f16a;
+        if ((i10 & 7) == 3) {
+            do {
+                list.add(u(b1Var, mVar));
+                if (!hVar.c() && this.d == 0) {
+                    z10 = hVar.z();
+                } else {
+                    return;
+                }
+            } while (z10 == i10);
+            this.d = z10;
+            return;
+        }
+        throw b0.b();
+    }
+
+    public int x() {
+        T(0);
+        return ((androidx.datastore.preferences.protobuf.h) this.f18c).l();
+    }
+
+    public void y(List list) {
+        int z10;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
+        if (!(list instanceof x)) {
+            int i10 = this.f16a & 7;
+            if (i10 != 0) {
+                if (i10 == 2) {
+                    int b10 = hVar.b() + hVar.A();
+                    do {
+                        list.add(Integer.valueOf(hVar.l()));
+                    } while (hVar.b() < b10);
+                    S(b10);
+                    return;
+                }
+                throw b0.b();
+            }
+            do {
+                list.add(Integer.valueOf(hVar.l()));
+                if (hVar.c()) {
+                    return;
+                }
+                z10 = hVar.z();
+            } while (z10 == this.f16a);
+            this.d = z10;
+            return;
+        }
+        throw new ClassCastException();
+    }
+
+    public long z() {
+        T(0);
+        return ((androidx.datastore.preferences.protobuf.h) this.f18c).m();
     }
 }

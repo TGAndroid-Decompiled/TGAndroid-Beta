@@ -1,13 +1,13 @@
 package org.telegram.ui.Components;
-public final class on0 extends f2.l {
-    public final org.telegram.ui.zx F;
+public final class on0 extends s4.j {
+    public final org.telegram.ui.ey F;
 
-    public on0(org.telegram.ui.zx zxVar) {
-        this.F = zxVar;
+    public on0(org.telegram.ui.ey eyVar) {
+        this.F = eyVar;
     }
 
     @Override
-    public final void P(f2.l1 l1Var) {
+    public final void P(s4.c1 c1Var) {
         this.F.invalidate();
     }
 }

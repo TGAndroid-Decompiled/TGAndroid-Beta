@@ -1,4 +1,4 @@
 package java.util.function;
 public interface ToDoubleFunction<T> {
-    double applyAsDouble(T t6);
+    double applyAsDouble(T t10);
 }

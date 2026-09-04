@@ -1,26 +1,19 @@
 package mg;
 
-import android.animation.ValueAnimator;
-public final class j implements ValueAnimator.AnimatorUpdateListener {
-    public final int f14010a;
-    public final s f14011b;
+import android.content.DialogInterface;
+public final class j implements DialogInterface.OnClickListener {
+    public final int f16278a;
+    public final Object f16279b;
+    public final Object f16280c;
 
-    public j(s sVar, int i10) {
-        this.f14010a = i10;
-        this.f14011b = sVar;
+    public j(int i10, Object obj, Object obj2) {
+        this.f16278a = i10;
+        this.f16279b = obj;
+        this.f16280c = obj2;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f14010a) {
-            case 0:
-                s sVar = this.f14011b;
-                sVar.f14130w.setTranslationY((-((Float) valueAnimator.getAnimatedValue()).floatValue()) * sVar.f14125c.getMeasuredHeight());
-                return;
-            default:
-                s sVar2 = this.f14011b;
-                sVar2.f14130w.setTranslationY((-(1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue())) * sVar2.f14125c.getMeasuredHeight());
-                return;
-        }
+    public final void onClick(android.content.DialogInterface r23, int r24) {
+        throw new UnsupportedOperationException("Method not decompiled: mg.j.onClick(android.content.DialogInterface, int):void");
     }
 }

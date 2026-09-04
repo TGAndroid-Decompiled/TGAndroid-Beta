@@ -1,51 +1,15 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class la0 {
-    public final org.telegram.ui.ActionBar.p2 f26636a;
-    public final qa0 f26637b;
+import android.graphics.Paint;
+import org.telegram.tgnet.TLRPC;
+public interface la0 {
+    void f(TLRPC.BotInlineResult botInlineResult, boolean z10, int i10);
 
-    public la0(qa0 qa0Var, org.telegram.ui.ActionBar.p2 p2Var) {
-        this.f26637b = qa0Var;
-        this.f26636a = p2Var;
-    }
+    Paint.FontMetricsInt k();
 
-    public final void a(boolean z4) {
-        qa0 qa0Var = this.f26637b;
-        boolean z10 = false;
-        if (qa0Var.getNeededLayoutManager() != qa0Var.getCurrentLayoutManager() && qa0Var.a()) {
-            if (qa0Var.f28129f.I0 > 0) {
-                qa0Var.K = true;
-                qa0Var.o(false);
-                return;
-            }
-            qa0Var.f28127b.setLayoutManager(qa0Var.getNeededLayoutManager());
-        }
-        if (z4 && !qa0Var.a()) {
-            z4 = false;
-        }
-        if (!z4 || qa0Var.f28129f.K() > 0) {
-            z10 = z4;
-        }
-        qa0Var.o(z10);
-    }
+    void n(TLRPC.TL_document tL_document, String str, Object obj);
 
-    public final void b(boolean z4) {
-        this.f26637b.l(z4);
-    }
+    void v(int i10, int i11, CharSequence charSequence, boolean z10);
 
-    public final void c() {
-        long j10;
-        qa0 qa0Var = this.f26637b;
-        up upVar = qa0Var.G;
-        if (qa0Var.f28127b.getLayoutManager() != qa0Var.d && qa0Var.F) {
-            AndroidUtilities.cancelRunOnUIThread(upVar);
-            if (this.f26636a.getFragmentBeginToShow()) {
-                j10 = 0;
-            } else {
-                j10 = 100;
-            }
-            AndroidUtilities.runOnUIThread(upVar, j10);
-        }
-    }
+    void x(String str);
 }

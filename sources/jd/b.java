@@ -1,68 +1,37 @@
 package jd;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-public final class b implements Iterator {
-    public final String f9342a;
-    public int f9343b;
-    public int f9344c;
-    public int d;
-    public int e;
+import kd.h;
+import kotlin.jvm.internal.i;
+import kotlin.jvm.internal.s;
+import rd.p;
+import v7.t7;
+public final class b extends h {
+    public int f13616a;
+    public final p f13617b;
+    public final id.c f13618c;
 
-    public b(String str) {
-        this.f9342a = str;
+    public b(id.c cVar, id.c cVar2, p pVar) {
+        super(cVar);
+        this.f13617b = pVar;
+        this.f13618c = cVar2;
     }
 
     @Override
-    public final boolean hasNext() {
-        int i10;
-        int i11 = this.f9343b;
-        if (i11 != 0) {
-            if (i11 != 1) {
-                return false;
+    public final Object invokeSuspend(Object obj) {
+        int i10 = this.f13616a;
+        if (i10 != 0) {
+            if (i10 == 1) {
+                this.f13616a = 2;
+                t7.b(obj);
+                return obj;
             }
-            return true;
+            throw new IllegalStateException("This coroutine had already completed");
         }
-        int i12 = 2;
-        if (this.e < 0) {
-            this.f9343b = 2;
-            return false;
-        }
-        String str = this.f9342a;
-        int length = str.length();
-        int length2 = str.length();
-        for (int i13 = this.f9344c; i13 < length2; i13++) {
-            char charAt = str.charAt(i13);
-            if (charAt == '\n' || charAt == '\r') {
-                i12 = (charAt == '\r' && (i10 = i13 + 1) < str.length() && str.charAt(i10) == '\n') ? 1 : 1;
-                length = i13;
-                this.f9343b = 1;
-                this.e = i12;
-                this.d = length;
-                return true;
-            }
-        }
-        i12 = -1;
-        this.f9343b = 1;
-        this.e = i12;
-        this.d = length;
-        return true;
-    }
-
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            this.f9343b = 0;
-            int i10 = this.d;
-            int i11 = this.f9344c;
-            this.f9344c = this.e + i10;
-            return this.f9342a.subSequence(i11, i10).toString();
-        }
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public final void remove() {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        this.f13616a = 1;
+        t7.b(obj);
+        p pVar = this.f13617b;
+        i.c(pVar, "null cannot be cast to non-null type kotlin.Function2<R of kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted, kotlin.coroutines.Continuation<T of kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted>, kotlin.Any?>");
+        s.a(2, pVar);
+        return pVar.invoke(this.f13618c, this);
     }
 }

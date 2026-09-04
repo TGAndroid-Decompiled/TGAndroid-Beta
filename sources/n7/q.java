@@ -1,24 +1,48 @@
 package n7;
-public final class q extends i {
-    public final transient Object[] f14677c;
-    public final transient int d;
-    public final transient int e = 1;
 
-    public q(int i10, Object[] objArr) {
-        this.f14677c = objArr;
-        this.d = i10;
+import java.util.Iterator;
+import java.util.Map;
+public final class q extends o {
+    public final r d;
+
+    public q(r rVar) {
+        this.d = rVar;
     }
 
     @Override
-    public final Object get(int i10) {
-        k7.e0.a(i10, this.e);
-        Object obj = this.f14677c[i10 + i10 + this.d];
-        obj.getClass();
-        return obj;
+    public final boolean contains(Object obj) {
+        if (obj instanceof Map.Entry) {
+            Map.Entry entry = (Map.Entry) obj;
+            Object obj2 = this.d.get(entry.getKey());
+            if (obj2 != null && obj2.equals(entry.getValue())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final int hashCode() {
+        return a.b(this.d.entrySet());
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return t().listIterator(0);
+    }
+
+    @Override
+    public final d0 p() {
+        return t().listIterator(0);
     }
 
     @Override
     public final int size() {
-        return this.e;
+        return this.d.d.size();
+    }
+
+    @Override
+    public final m u() {
+        return new p(this);
     }
 }

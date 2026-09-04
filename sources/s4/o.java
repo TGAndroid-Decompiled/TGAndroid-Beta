@@ -1,26 +1,16 @@
 package s4;
+public abstract class o {
+    public static final fb.i f45840a = new fb.i(4);
 
-import java.util.List;
-public final class o extends n {
-    public final List f44094j;
-
-    public o(j jVar, long j10, long j11, long j12, long j13, List list, long j14, List list2, long j15, long j16) {
-        super(jVar, j10, j11, j12, j13, list, j14, j15, j16);
-        this.f44094j = list2;
+    public static s4.k c(s4.o r27, boolean r28) {
+        throw new UnsupportedOperationException("Method not decompiled: s4.o.c(s4.o, boolean):s4.k");
     }
 
-    @Override
-    public final long d(long j10) {
-        return this.f44094j.size();
-    }
+    public abstract boolean a(int i10, int i11);
 
-    @Override
-    public final j h(k kVar, long j10) {
-        return (j) this.f44094j.get((int) (j10 - this.d));
-    }
+    public abstract boolean b(int i10, int i11);
 
-    @Override
-    public final boolean i() {
-        return true;
-    }
+    public abstract int d();
+
+    public abstract int e();
 }

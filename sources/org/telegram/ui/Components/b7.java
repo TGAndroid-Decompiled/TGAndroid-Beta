@@ -1,44 +1,33 @@
 package org.telegram.ui.Components;
-public final class b7 implements Runnable {
-    public final int f23571a;
-    public final c8 f23572b;
-    public final p70 f23573c;
 
-    public b7(c8 c8Var, p70 p70Var, int i10) {
-        this.f23571a = i10;
-        this.f23572b = c8Var;
-        this.f23573c = p70Var;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+public final class b7 implements Utilities.Callback2 {
+    public final int f24565a;
+    public final k8 f24566b;
+
+    public b7(k8 k8Var, int i10) {
+        this.f24565a = i10;
+        this.f24566b = k8Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f23571a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f24565a) {
             case 0:
-                c8 c8Var = this.f23572b;
-                c8Var.getClass();
-                this.f23573c.u();
-                c8Var.t0(1);
-                return;
-            case 1:
-                c8 c8Var2 = this.f23572b;
-                c8Var2.getClass();
-                this.f23573c.u();
-                c8Var2.t0(2);
-                return;
-            case 2:
-                c8 c8Var3 = this.f23572b;
-                c8Var3.getClass();
-                this.f23573c.u();
-                c8Var3.t0(4);
-                return;
-            case 3:
-                c8 c8Var4 = this.f23572b;
-                c8Var4.getClass();
-                this.f23573c.u();
-                c8Var4.t0(7);
+                k8 k8Var = this.f24566b;
+                k8Var.Y = !((Boolean) obj2).booleanValue();
+                MediaController mediaController = MediaController.getInstance();
+                org.telegram.ui.ActionBar.b1 b1Var = k8Var.X;
+                float floatValue = ((Float) obj).floatValue();
+                b1Var.getClass();
+                mediaController.setPlaybackSpeed(true, (floatValue * 2.8f) + 0.2f);
                 return;
             default:
-                c8.q(this.f23572b, this.f23573c);
+                Bitmap bitmap = (Bitmap) obj2;
+                this.f24566b.f27725i0.setBackground(new BitmapDrawable((Bitmap) obj));
                 return;
         }
     }

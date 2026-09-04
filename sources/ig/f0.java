@@ -1,32 +1,130 @@
 package ig;
 
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Cells.z8;
-import org.telegram.ui.Components.mq;
-public final class f0 extends z8 {
-    public final f6 v;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.Components.hl0;
+import org.telegram.ui.Components.ll0;
+public final class f0 extends hl0 {
+    public final ArrayList f12064r;
+    public final int f12065s;
+    public final Context v;
+    public final i0 f12066w;
 
-    public f0(Context context, f6 f6Var) {
-        super(context, f6Var);
-        this.v = f6Var;
+    public f0(i0 i0Var, Context context) {
+        this.f12066w = i0Var;
+        ArrayList arrayList = new ArrayList();
+        this.f12064r = arrayList;
+        int i10 = UserConfig.selectedAccount;
+        this.f12065s = i10;
+        this.v = context;
+        arrayList.addAll(b2.f(i10).e());
     }
 
-    public void setBackground(boolean z4) {
-        int i10;
-        Context context = getContext();
-        if (z4) {
-            i10 = R.drawable.greydivider_bottom;
-        } else {
-            i10 = R.drawable.greydivider;
+    @Override
+    public final String F(int i10) {
+        return null;
+    }
+
+    @Override
+    public final void G(ll0 ll0Var, float f7, int[] iArr) {
+        iArr[0] = 0;
+        iArr[1] = 0;
+    }
+
+    @Override
+    public final int M(int i10) {
+        if (i10 != 0 && i10 != 2) {
+            return this.f12064r.size();
         }
-        int i11 = j6.f19846b7;
-        f6 f6Var = this.v;
-        mq mqVar = new mq(new ColorDrawable(j6.v0(j6.f19827a7, f6Var)), j6.U0(context, i10, j6.v0(i11, f6Var)), 0, 0);
-        mqVar.f27116w = true;
-        setBackground(mqVar);
+        return 1;
+    }
+
+    @Override
+    public final Object O(int i10, int i11) {
+        if (i10 != 0 && i11 >= 0) {
+            ArrayList arrayList = this.f12064r;
+            if (i11 < arrayList.size()) {
+                return arrayList.get(i11);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public final int P(int i10, int i11) {
+        if (i10 == 0) {
+            return 1;
+        }
+        if (i10 == 2) {
+            return 2;
+        }
+        return 0;
+    }
+
+    @Override
+    public final int R() {
+        return 3;
+    }
+
+    @Override
+    public final View T(int i10, View view) {
+        return null;
+    }
+
+    @Override
+    public final boolean V(int i10, int i11, s4.c1 c1Var) {
+        if (i10 != 0 && i10 != 2 && i11 < this.f12064r.size()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void W(int i10, int i11, s4.c1 c1Var) {
+        if (c1Var.f45742f == 0) {
+            x1 x1Var = (x1) c1Var.f45738a;
+            Object O = O(i10, i11);
+            boolean z10 = true;
+            if (i10 == 1 && i11 == M(i10) - 1) {
+                z10 = false;
+            }
+            if (O instanceof a2) {
+                a2 a2Var = (a2) O;
+                x1Var.a(a2Var, null, z10);
+                x1Var.d.a(this.f12066w.f12094w.contains(Integer.valueOf(a2Var.f11992a)), false);
+            }
+        }
+    }
+
+    @Override
+    public final void l() {
+        ArrayList arrayList = this.f12064r;
+        arrayList.clear();
+        arrayList.addAll(b2.f(this.f12065s).e());
+        X(false);
+        this.f12066w.L();
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        View x1Var;
+        Context context = this.v;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                x1Var = new View(context);
+                x1Var.setTag(-33024);
+            } else {
+                x1Var = new View(context);
+                x1Var.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(56.0f)));
+                x1Var.setTag(-33024);
+            }
+        } else {
+            x1Var = new x1(context, this.f12066w.f28752a, false);
+        }
+        return new s4.c1(x1Var);
     }
 }

@@ -19,31 +19,31 @@ public class NativeByteBuffer extends AbstractSerializedData {
     private int len;
     public boolean reused = true;
 
-    private NativeByteBuffer(int i10, boolean z4) {
+    private NativeByteBuffer(int i10, boolean z10) {
     }
 
     public static native long native_getFreeBuffer(int i10);
 
-    public static native ByteBuffer native_getJavaByteBuffer(long j10);
+    public static native ByteBuffer native_getJavaByteBuffer(long j3);
 
-    public static native int native_limit(long j10);
+    public static native int native_limit(long j3);
 
-    public static native int native_position(long j10);
+    public static native int native_position(long j3);
 
-    public static native void native_reuse(long j10);
+    public static native void native_reuse(long j3);
 
-    public static NativeByteBuffer wrap(long j10) {
-        if (j10 != 0) {
+    public static NativeByteBuffer wrap(long j3) {
+        if (j3 != 0) {
             NativeByteBuffer poll = addressWrappers.get().poll();
             if (poll == null) {
                 poll = new NativeByteBuffer(0, true);
             }
-            poll.address = j10;
+            poll.address = j3;
             poll.reused = false;
-            ByteBuffer native_getJavaByteBuffer = native_getJavaByteBuffer(j10);
+            ByteBuffer native_getJavaByteBuffer = native_getJavaByteBuffer(j3);
             poll.buffer = native_getJavaByteBuffer;
-            native_getJavaByteBuffer.limit(native_limit(j10));
-            int native_position = native_position(j10);
+            native_getJavaByteBuffer.limit(native_limit(j3));
+            int native_position = native_position(j3);
             if (native_position <= poll.buffer.limit()) {
                 poll.buffer.position(native_position);
             }
@@ -87,8 +87,8 @@ public class NativeByteBuffer extends AbstractSerializedData {
     public String hex() {
         try {
             return Utilities.bytesToHex(readData(Math.min(limit(), 1024), true));
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             return "<err>";
         }
     }
@@ -114,15 +114,15 @@ public class NativeByteBuffer extends AbstractSerializedData {
     }
 
     @Override
-    public boolean readBool(boolean z4) {
-        int readInt32 = readInt32(z4);
+    public boolean readBool(boolean z10) {
+        int readInt32 = readInt32(z10);
         if (readInt32 == -1720552011) {
             return true;
         }
         if (readInt32 == -1132882121) {
             return false;
         }
-        if (!z4) {
+        if (!z10) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("Not bool value!");
             }
@@ -132,24 +132,24 @@ public class NativeByteBuffer extends AbstractSerializedData {
     }
 
     @Override
-    public byte readByte(boolean z4) {
+    public byte readByte(boolean z10) {
         try {
             return this.buffer.get();
-        } catch (Exception e) {
-            if (!z4) {
+        } catch (Exception e7) {
+            if (!z10) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.e("read byte error");
-                    FileLog.e(e);
+                    FileLog.e(e7);
                     return (byte) 0;
                 }
                 return (byte) 0;
             }
-            throw new RuntimeException("read byte error", e);
+            throw new RuntimeException("read byte error", e7);
         }
     }
 
     @Override
-    public byte[] readByteArray(boolean z4) {
+    public byte[] readByteArray(boolean z10) {
         int i10;
         try {
             int intFromByte = getIntFromByte(this.buffer.get());
@@ -169,20 +169,20 @@ public class NativeByteBuffer extends AbstractSerializedData {
                 return bArr;
             }
             throw new RuntimeException("byte array size too big");
-        } catch (Exception e) {
-            if (!z4) {
+        } catch (Exception e7) {
+            if (!z10) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.e("read byte array error");
-                    FileLog.e(e);
+                    FileLog.e(e7);
                 }
                 return new byte[0];
             }
-            throw new RuntimeException("read byte array error", e);
+            throw new RuntimeException("read byte array error", e7);
         }
     }
 
     @Override
-    public NativeByteBuffer readByteBuffer(boolean z4) {
+    public NativeByteBuffer readByteBuffer(boolean z10) {
         int i10;
         try {
             int intFromByte = getIntFromByte(this.buffer.get());
@@ -207,113 +207,113 @@ public class NativeByteBuffer extends AbstractSerializedData {
                 return nativeByteBuffer;
             }
             throw new RuntimeException("byte array size too big");
-        } catch (Exception e) {
-            if (!z4) {
+        } catch (Exception e7) {
+            if (!z10) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.e("read byte array error");
-                    FileLog.e(e);
+                    FileLog.e(e7);
                     return null;
                 }
                 return null;
             }
-            throw new RuntimeException("read byte array error", e);
+            throw new RuntimeException("read byte array error", e7);
         }
     }
 
     @Override
-    public void readBytes(byte[] bArr, boolean z4) {
+    public void readBytes(byte[] bArr, boolean z10) {
         try {
             this.buffer.get(bArr);
-        } catch (Exception e) {
-            if (!z4) {
+        } catch (Exception e7) {
+            if (!z10) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.e("read raw error");
-                    FileLog.e(e);
+                    FileLog.e(e7);
                     return;
                 }
                 return;
             }
-            throw new RuntimeException("read raw error", e);
+            throw new RuntimeException("read raw error", e7);
         }
     }
 
     @Override
-    public byte[] readData(int i10, boolean z4) {
+    public byte[] readData(int i10, boolean z10) {
         byte[] bArr = new byte[i10];
-        readBytes(bArr, z4);
+        readBytes(bArr, z10);
         return bArr;
     }
 
     @Override
-    public double readDouble(boolean z4) {
+    public double readDouble(boolean z10) {
         try {
-            return Double.longBitsToDouble(readInt64(z4));
-        } catch (Exception e) {
-            if (!z4) {
+            return Double.longBitsToDouble(readInt64(z10));
+        } catch (Exception e7) {
+            if (!z10) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.e("read double error");
-                    FileLog.e(e);
+                    FileLog.e(e7);
                     return 0.0d;
                 }
                 return 0.0d;
             }
-            throw new RuntimeException("read double error", e);
+            throw new RuntimeException("read double error", e7);
         }
     }
 
     @Override
-    public float readFloat(boolean z4) {
+    public float readFloat(boolean z10) {
         try {
             return Float.intBitsToFloat(this.buffer.getInt());
-        } catch (Exception e) {
-            if (!z4) {
+        } catch (Exception e7) {
+            if (!z10) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.e("read float error");
-                    FileLog.e(e);
+                    FileLog.e(e7);
                     return 0.0f;
                 }
                 return 0.0f;
             }
-            throw new RuntimeException("read float error", e);
+            throw new RuntimeException("read float error", e7);
         }
     }
 
     @Override
-    public int readInt32(boolean z4) {
+    public int readInt32(boolean z10) {
         try {
             return this.buffer.getInt();
-        } catch (Exception e) {
-            if (!z4) {
+        } catch (Exception e7) {
+            if (!z10) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.e("read int32 error");
-                    FileLog.e(e);
+                    FileLog.e(e7);
                     return 0;
                 }
                 return 0;
             }
-            throw new RuntimeException("read int32 error", e);
+            throw new RuntimeException("read int32 error", e7);
         }
     }
 
     @Override
-    public long readInt64(boolean z4) {
+    public long readInt64(boolean z10) {
         try {
             return this.buffer.getLong();
-        } catch (Exception e) {
-            if (!z4) {
+        } catch (Exception e7) {
+            if (!z10) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.e("read int64 error");
-                    FileLog.e(e);
+                    FileLog.e(e7);
                     return 0L;
                 }
                 return 0L;
             }
-            throw new RuntimeException("read int64 error", e);
+            throw new RuntimeException("read int64 error", e7);
         }
     }
 
     @Override
-    public String readString(boolean z4) {
+    public String readString(boolean z10) {
         int i10;
         int position = getPosition();
         try {
@@ -334,16 +334,16 @@ public class NativeByteBuffer extends AbstractSerializedData {
                 return new String(bArr, "UTF-8");
             }
             throw new RuntimeException("string size too big");
-        } catch (Exception e) {
-            if (!z4) {
+        } catch (Exception e7) {
+            if (!z10) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.e("read string error");
-                    FileLog.e(e);
+                    FileLog.e(e7);
                 }
                 position(position);
                 return "";
             }
-            throw new RuntimeException("read string error", e);
+            throw new RuntimeException("read string error", e7);
         }
     }
 
@@ -382,9 +382,9 @@ public class NativeByteBuffer extends AbstractSerializedData {
     }
 
     @Override
-    public void writeBool(boolean z4) {
+    public void writeBool(boolean z10) {
         if (!this.justCalc) {
-            if (z4) {
+            if (z10) {
                 writeInt32(-1720552011);
                 return;
             } else {
@@ -429,10 +429,10 @@ public class NativeByteBuffer extends AbstractSerializedData {
                     this.buffer.put((byte) 0);
                 }
             }
-        } catch (Exception e) {
+        } catch (Exception e7) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("write byte array error");
-                FileLog.e(e);
+                FileLog.e(e7);
             }
         }
     }
@@ -475,8 +475,8 @@ public class NativeByteBuffer extends AbstractSerializedData {
                 }
                 i10++;
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 
@@ -488,10 +488,10 @@ public class NativeByteBuffer extends AbstractSerializedData {
             } else {
                 this.len += bArr.length;
             }
-        } catch (Exception e) {
+        } catch (Exception e7) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("write raw error");
-                FileLog.e(e);
+                FileLog.e(e7);
             }
         }
     }
@@ -500,26 +500,26 @@ public class NativeByteBuffer extends AbstractSerializedData {
     public void writeDouble(double d) {
         try {
             writeInt64(Double.doubleToRawLongBits(d));
-        } catch (Exception e) {
+        } catch (Exception e7) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("write double error");
-                FileLog.e(e);
+                FileLog.e(e7);
             }
         }
     }
 
     @Override
-    public void writeFloat(float f10) {
+    public void writeFloat(float f7) {
         try {
             if (!this.justCalc) {
-                this.buffer.putInt(Float.floatToIntBits(f10));
+                this.buffer.putInt(Float.floatToIntBits(f7));
             } else {
                 this.len += 4;
             }
-        } catch (Exception e) {
+        } catch (Exception e7) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("write float error");
-                FileLog.e(e);
+                FileLog.e(e7);
             }
         }
     }
@@ -532,26 +532,26 @@ public class NativeByteBuffer extends AbstractSerializedData {
             } else {
                 this.len += 4;
             }
-        } catch (Exception e) {
+        } catch (Exception e7) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("write int32 error");
-                FileLog.e(e);
+                FileLog.e(e7);
             }
         }
     }
 
     @Override
-    public void writeInt64(long j10) {
+    public void writeInt64(long j3) {
         try {
             if (!this.justCalc) {
-                this.buffer.putLong(j10);
+                this.buffer.putLong(j3);
             } else {
                 this.len += 8;
             }
-        } catch (Exception e) {
+        } catch (Exception e7) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("write int64 error");
-                FileLog.e(e);
+                FileLog.e(e7);
             }
         }
     }
@@ -567,10 +567,10 @@ public class NativeByteBuffer extends AbstractSerializedData {
         }
         try {
             writeByteArray(str.getBytes("UTF-8"));
-        } catch (Exception e) {
+        } catch (Exception e7) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("write string error");
-                FileLog.e(e);
+                FileLog.e(e7);
             }
         }
     }
@@ -591,10 +591,10 @@ public class NativeByteBuffer extends AbstractSerializedData {
             } else {
                 this.len++;
             }
-        } catch (Exception e) {
+        } catch (Exception e7) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("write byte error");
-                FileLog.e(e);
+                FileLog.e(e7);
             }
         }
     }
@@ -616,19 +616,19 @@ public class NativeByteBuffer extends AbstractSerializedData {
         throw new Exception("invalid NativeByteBuffer size");
     }
 
-    public void readBytes(byte[] bArr, int i10, int i11, boolean z4) {
+    public void readBytes(byte[] bArr, int i10, int i11, boolean z10) {
         try {
             this.buffer.get(bArr, i10, i11);
-        } catch (Exception e) {
-            if (!z4) {
+        } catch (Exception e7) {
+            if (!z10) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.e("read raw error");
-                    FileLog.e(e);
+                    FileLog.e(e7);
                     return;
                 }
                 return;
             }
-            throw new RuntimeException("read raw error", e);
+            throw new RuntimeException("read raw error", e7);
         }
     }
 
@@ -640,16 +640,16 @@ public class NativeByteBuffer extends AbstractSerializedData {
             } else {
                 this.len += i11;
             }
-        } catch (Exception e) {
+        } catch (Exception e7) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("write raw error");
-                FileLog.e(e);
+                FileLog.e(e7);
             }
         }
     }
 
-    public NativeByteBuffer(boolean z4) {
-        this.justCalc = z4;
+    public NativeByteBuffer(boolean z10) {
+        this.justCalc = z10;
     }
 
     public void writeBytes(NativeByteBuffer nativeByteBuffer) {
@@ -690,10 +690,10 @@ public class NativeByteBuffer extends AbstractSerializedData {
                     this.buffer.put((byte) 0);
                 }
             }
-        } catch (Exception e) {
+        } catch (Exception e7) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("write byte array error");
-                FileLog.e(e);
+                FileLog.e(e7);
             }
         }
     }

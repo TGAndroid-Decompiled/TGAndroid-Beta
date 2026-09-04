@@ -1,73 +1,22 @@
 package org.telegram.messenger;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.TranslateController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class nd implements Runnable {
-    public final int f17912a = 2;
-    public final long f17913b;
-    public final boolean f17914c;
-    public final BaseController d;
-    public final Object e;
-    public final Object f17915f;
-    public final Object h;
+import java.util.function.IntFunction;
+public final class nd implements IntFunction {
+    public final int f18471a;
 
-    public nd(ChatThemeController chatThemeController, TLObject tLObject, long j10, boolean z4, String str, Runnable runnable) {
-        this.d = chatThemeController;
-        this.e = tLObject;
-        this.f17913b = j10;
-        this.f17914c = z4;
-        this.f17915f = str;
-        this.h = runnable;
+    public nd(int i10) {
+        this.f18471a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17912a) {
+    public final Object apply(int i10) {
+        int[][] lambda$new$16;
+        switch (this.f18471a) {
             case 0:
-                boolean z4 = this.f17914c;
-                ((MessagesController) this.d).lambda$getSendAsPeers$442((TLRPC.TL_channels_sendAsPeers) this.e, (a0.h) this.f17915f, this.f17913b, (MessagesController.SendAsPeersInfo) this.h, z4);
-                return;
-            case 1:
-                ((TranslateController) this.d).lambda$pushToTranslate$24((HashMap) this.e, this.f17913b, (TranslateController.PendingTranslation) this.f17915f, this.f17914c, (Set) this.h);
-                return;
-            case 2:
-                ((ChatThemeController) this.d).lambda$setWallpaperToPeer$16((TLObject) this.e, this.f17913b, this.f17914c, (String) this.f17915f, (Runnable) this.h);
-                return;
+                return String.valueOf(i10);
             default:
-                ((TopicsController) this.d).lambda$reloadTopics$15((TLObject) this.e, this.f17914c, this.f17913b, (HashSet) this.f17915f, (Runnable) this.h);
-                return;
+                lambda$new$16 = MessagesController.lambda$new$16(i10);
+                return lambda$new$16;
         }
-    }
-
-    public nd(MessagesController messagesController, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, a0.h hVar, long j10, MessagesController.SendAsPeersInfo sendAsPeersInfo, boolean z4) {
-        this.d = messagesController;
-        this.e = tL_channels_sendAsPeers;
-        this.f17915f = hVar;
-        this.f17913b = j10;
-        this.h = sendAsPeersInfo;
-        this.f17914c = z4;
-    }
-
-    public nd(TopicsController topicsController, TLObject tLObject, boolean z4, long j10, HashSet hashSet, Runnable runnable) {
-        this.d = topicsController;
-        this.e = tLObject;
-        this.f17914c = z4;
-        this.f17913b = j10;
-        this.f17915f = hashSet;
-        this.h = runnable;
-    }
-
-    public nd(TranslateController translateController, HashMap hashMap, long j10, TranslateController.PendingTranslation pendingTranslation, boolean z4, Set set) {
-        this.d = translateController;
-        this.e = hashMap;
-        this.f17913b = j10;
-        this.f17915f = pendingTranslation;
-        this.f17914c = z4;
-        this.h = set;
     }
 }

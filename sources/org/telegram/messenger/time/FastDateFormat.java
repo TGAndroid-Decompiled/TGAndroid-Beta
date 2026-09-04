@@ -117,8 +117,8 @@ public class FastDateFormat extends Format implements DateParser, DatePrinter {
     }
 
     @Override
-    public String format(long j10) {
-        return this.printer.format(j10);
+    public String format(long j3) {
+        return this.printer.format(j3);
     }
 
     @Override
@@ -173,8 +173,8 @@ public class FastDateFormat extends Format implements DateParser, DatePrinter {
     }
 
     @Override
-    public StringBuffer format(long j10, StringBuffer stringBuffer) {
-        return this.printer.format(j10, stringBuffer);
+    public StringBuffer format(long j3, StringBuffer stringBuffer) {
+        return this.printer.format(j3, stringBuffer);
     }
 
     @Override

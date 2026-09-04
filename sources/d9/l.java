@@ -1,30 +1,44 @@
 package d9;
 
-import android.os.Handler;
-import android.os.Looper;
-import java.util.concurrent.Executor;
-public final class l implements Executor {
-    public static final l f4278a;
-    public static final Handler f4279b;
-    public static final l[] f4280c;
+import a3.r;
+public final class l implements j {
+    public static final r d = new r(1);
+    public final Object f6643a = new Object();
+    public volatile j f6644b;
+    public Object f6645c;
 
-    static {
-        ?? r02 = new Enum("INSTANCE", 0);
-        f4278a = r02;
-        f4280c = new l[]{r02};
-        f4279b = new Handler(Looper.getMainLooper());
-    }
-
-    public static l valueOf(String str) {
-        return (l) Enum.valueOf(l.class, str);
-    }
-
-    public static l[] values() {
-        return (l[]) f4280c.clone();
+    public l(j jVar) {
+        this.f6644b = jVar;
     }
 
     @Override
-    public final void execute(Runnable runnable) {
-        f4279b.post(runnable);
+    public final Object get() {
+        j jVar = this.f6644b;
+        r rVar = d;
+        if (jVar != rVar) {
+            synchronized (this.f6643a) {
+                try {
+                    if (this.f6644b != rVar) {
+                        Object obj = this.f6644b.get();
+                        this.f6645c = obj;
+                        this.f6644b = rVar;
+                        return obj;
+                    }
+                } finally {
+                }
+            }
+        }
+        return this.f6645c;
+    }
+
+    public final String toString() {
+        Object obj = this.f6644b;
+        StringBuilder sb2 = new StringBuilder("Suppliers.memoize(");
+        if (obj == d) {
+            obj = "<supplier that returned " + this.f6645c + ">";
+        }
+        sb2.append(obj);
+        sb2.append(")");
+        return sb2.toString();
     }
 }

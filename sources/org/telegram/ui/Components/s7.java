@@ -1,30 +1,36 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.os.SystemClock;
-import android.view.MotionEvent;
-public final class s7 extends x7 {
-    public long d;
-    public final c8 e;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class s7 extends aj0 {
+    public final r7 E;
+    public long F;
+    public final float G;
+    public final k8 H;
+    public float f30211r;
+    public float f30212s;
+    public int v;
+    public long f30213w;
+    public long f30214x;
+    public final r7 f30215y;
 
-    public s7(c8 c8Var, Context context) {
+    public s7(k8 k8Var, Context context, float f7) {
         super(context);
-        this.e = c8Var;
+        this.H = k8Var;
+        this.G = f7;
+        this.v = 0;
+        this.f30215y = new r7(this, 0);
+        this.E = new r7(this, 1);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int action = motionEvent.getAction();
-        c8 c8Var = this.e;
-        if (action == 0) {
-            if (this.f30519a[this.f30520b].getImageReceiver().hasBitmapImage()) {
-                c8Var.A0(true, true);
-                this.d = SystemClock.elapsedRealtime();
-                return true;
-            }
-        } else if (action != 2 && SystemClock.elapsedRealtime() - this.d >= 400) {
-            c8Var.A0(false, true);
-        }
-        return true;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.addAction(16);
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.s7.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

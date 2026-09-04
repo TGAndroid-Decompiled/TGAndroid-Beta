@@ -1,29 +1,111 @@
 package ig;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import k7.b6;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.tv0;
-import org.telegram.ui.Components.uv0;
-public final class x extends FrameLayout {
-    public final uv0 f7535a;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class x implements RequestDelegate {
+    public final int f12269a;
+    public final y f12270b;
 
-    public x(Context context, f6 f6Var) {
-        super(context);
-        View view = new View(context);
-        addView(view, b6.n(-1, -1));
-        view.setBackgroundColor(j6.v0(j6.f19952h5, f6Var));
-        uv0 uv0Var = new uv0(context, f6Var);
-        this.f7535a = uv0Var;
-        addView(uv0Var, b6.d(-1, -1.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
-        setBackground(j6.V0(getContext(), R.drawable.greydivider_top, j6.f19846b7));
+    public x(y yVar, int i10) {
+        this.f12269a = i10;
+        this.f12270b = yVar;
     }
 
-    public void setCallBack(tv0 tv0Var) {
-        this.f7535a.setCallback(tv0Var);
+    @Override
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f12269a) {
+            case 0:
+                final y yVar = this.f12270b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i10 = r3;
+                        TLObject tLObject2 = tLObject;
+                        y yVar2 = yVar;
+                        switch (i10) {
+                            case 0:
+                                int i11 = yVar2.f12283a;
+                                if (tLObject2 instanceof TL_account.TL_businessChatLink) {
+                                    TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) tLObject2;
+                                    yVar2.f12284b.add(tL_businessChatLink);
+                                    NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                                    NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinkCreated, tL_businessChatLink);
+                                    yVar2.f();
+                                    return;
+                                }
+                                return;
+                            default:
+                                ArrayList arrayList = yVar2.f12284b;
+                                int i12 = yVar2.f12283a;
+                                if (tLObject2 instanceof TL_account.businessChatLinks) {
+                                    TL_account.businessChatLinks businesschatlinks = (TL_account.businessChatLinks) tLObject2;
+                                    arrayList.clear();
+                                    arrayList.addAll(businesschatlinks.links);
+                                    MessagesController.getInstance(i12).putUsers(businesschatlinks.users, false);
+                                    MessagesController.getInstance(i12).putChats(businesschatlinks.chats, false);
+                                    MessagesStorage.getInstance(i12).putUsersAndChats(businesschatlinks.users, businesschatlinks.chats, true, true);
+                                    NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                                    yVar2.f();
+                                } else {
+                                    FileLog.e(new RuntimeException("Unexpected response from server!"));
+                                }
+                                yVar2.f12285c = false;
+                                yVar2.d = true;
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final y yVar2 = this.f12270b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i10 = r3;
+                        TLObject tLObject2 = tLObject;
+                        y yVar22 = yVar2;
+                        switch (i10) {
+                            case 0:
+                                int i11 = yVar22.f12283a;
+                                if (tLObject2 instanceof TL_account.TL_businessChatLink) {
+                                    TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) tLObject2;
+                                    yVar22.f12284b.add(tL_businessChatLink);
+                                    NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                                    NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinkCreated, tL_businessChatLink);
+                                    yVar22.f();
+                                    return;
+                                }
+                                return;
+                            default:
+                                ArrayList arrayList = yVar22.f12284b;
+                                int i12 = yVar22.f12283a;
+                                if (tLObject2 instanceof TL_account.businessChatLinks) {
+                                    TL_account.businessChatLinks businesschatlinks = (TL_account.businessChatLinks) tLObject2;
+                                    arrayList.clear();
+                                    arrayList.addAll(businesschatlinks.links);
+                                    MessagesController.getInstance(i12).putUsers(businesschatlinks.users, false);
+                                    MessagesController.getInstance(i12).putChats(businesschatlinks.chats, false);
+                                    MessagesStorage.getInstance(i12).putUsersAndChats(businesschatlinks.users, businesschatlinks.chats, true, true);
+                                    NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                                    yVar22.f();
+                                } else {
+                                    FileLog.e(new RuntimeException("Unexpected response from server!"));
+                                }
+                                yVar22.f12285c = false;
+                                yVar22.d = true;
+                                return;
+                        }
+                    }
+                });
+                return;
+        }
     }
 }

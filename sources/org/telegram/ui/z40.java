@@ -1,42 +1,28 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.graphics.Paint;
-public final class z40 extends AnimatorListenerAdapter {
-    public final int f40394a;
-    public final e60 f40395b;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+public final class z40 implements ViewTreeObserver.OnPreDrawListener {
+    public final ChatObject.VideoParticipant f43289a;
+    public final j60 f43290b;
 
-    public z40(e60 e60Var, int i10) {
-        this.f40394a = i10;
-        this.f40395b = e60Var;
+    public z40(j60 j60Var, ChatObject.VideoParticipant videoParticipant) {
+        this.f43290b = j60Var;
+        this.f43289a = videoParticipant;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        switch (this.f40394a) {
-            case 0:
-                e60 e60Var = this.f40395b;
-                e60Var.S.setVisibility(4);
-                e60Var.T.setVisibility(4);
-                e60Var.R.setVisibility(4);
-                return;
-            case 1:
-                this.f40395b.f33633e0 = null;
-                return;
-            default:
-                e60 e60Var2 = this.f40395b;
-                e60Var2.f33634e1 = null;
-                Paint paint = e60Var2.f33630d1;
-                if (e60Var2.Q1 == 3) {
-                    i10 = -1163700;
-                } else {
-                    i10 = -12761513;
-                }
-                paint.setColor(i10);
-                e60Var2.f33627c1.invalidate();
-                return;
-        }
+    public final boolean onPreDraw() {
+        ViewGroup viewGroup;
+        j60 j60Var = this.f43290b;
+        j60Var.Q.getViewTreeObserver().removeOnPreDrawListener(this);
+        j60Var.f37579q2 = null;
+        j60Var.a2.j(this.f43289a);
+        AndroidUtilities.updateVisibleRows(j60Var.f37562m2);
+        viewGroup = ((org.telegram.ui.ActionBar.f3) j60Var).containerView;
+        viewGroup.requestLayout();
+        return false;
     }
 }

@@ -1,50 +1,36 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
+import android.animation.AnimatorSet;
 import android.widget.FrameLayout;
-public final class nk extends org.telegram.ui.Components.fd {
-    public final zn d;
+public final class nk implements Runnable {
+    public final int f38971a;
+    public final co f38972b;
 
-    public nk(zn znVar, Context context) {
-        super(context);
-        this.d = znVar;
+    public nk(co coVar, int i10) {
+        this.f38971a = i10;
+        this.f38972b = coVar;
     }
 
     @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
-    }
-
-    @Override
-    public final void setTranslationY(float f10) {
-        super.setTranslationY(f10);
-        zn znVar = this.d;
-        lk lkVar = znVar.V;
-        if (lkVar != null) {
-            lkVar.invalidate();
-        }
-        if (getVisibility() != 8) {
-            znVar.h9(true);
-            FrameLayout frameLayout = znVar.M;
-            if (frameLayout != null) {
-                frameLayout.setTranslationY(f10);
-            }
-            znVar.o9();
-            znVar.r9();
-            View view = znVar.fragmentView;
-            if (view != null) {
-                view.invalidate();
-            }
-        }
-    }
-
-    @Override
-    public final void setVisibility(int i10) {
+    public final void run() {
+        org.telegram.ui.Components.dh dhVar;
         FrameLayout frameLayout;
-        super.setVisibility(i10);
-        if (i10 == 8 && (frameLayout = this.d.M) != null) {
-            frameLayout.setTranslationY(0.0f);
+        switch (this.f38971a) {
+            case 0:
+                co coVar = this.f38972b;
+                AnimatorSet animatorSet = coVar.V9;
+                if (animatorSet != null && !animatorSet.isRunning()) {
+                    coVar.V9.start();
+                    return;
+                }
+                return;
+            default:
+                co coVar2 = this.f38972b;
+                if (coVar2.O2 == this && (dhVar = coVar2.M0) != null && (frameLayout = coVar2.N2) != null) {
+                    dhVar.i(frameLayout, false, true);
+                    return;
+                }
+                return;
         }
     }
 }

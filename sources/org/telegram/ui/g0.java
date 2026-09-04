@@ -1,17 +1,39 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class g0 implements View.OnTouchListener {
-    public final int f34261a;
-    public final Object f34262b;
+import org.telegram.messenger.NotificationCenter;
+public final class g0 extends org.telegram.ui.ActionBar.g5 {
+    public final int f36516f;
+    public final NotificationCenter.NotificationCenterDelegate h;
 
-    public g0(Object obj, int i10) {
-        this.f34261a = i10;
-        this.f34262b = obj;
+    public g0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
+        this.f36516f = i10;
+        this.h = notificationCenterDelegate;
     }
 
     @Override
-    public final boolean onTouch(android.view.View r18, android.view.MotionEvent r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.g0.onTouch(android.view.View, android.view.MotionEvent):boolean");
+    public boolean g() {
+        switch (this.f36516f) {
+            case 0:
+                i4 i4Var = (i4) this.h;
+                org.telegram.ui.Cells.q9 q9Var = i4Var.P0;
+                if (q9Var != null && q9Var.y()) {
+                    i4Var.P0.f(false);
+                    return false;
+                }
+                return true;
+            default:
+                return super.g();
+        }
+    }
+
+    @Override
+    public void onOpenAnimationEnd() {
+        switch (this.f36516f) {
+            case 1:
+                ((org.telegram.ui.Components.hq0) this.h).Y = true;
+                return;
+            default:
+                return;
+        }
     }
 }

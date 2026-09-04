@@ -1,152 +1,145 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class y61 extends Drawable {
-    public static final int[] f30914r = {10, 7, 26, 16, 10, 25};
-    public final Paint f30915a;
-    public final TextPaint f30916b;
-    public final Path f30917c;
-    public boolean d;
-    public final boolean e;
-    public Path f30918f;
-    public int f30919g;
-    public float h;
-    public float f30920i;
-    public boolean f30921j;
-    public boolean f30922k;
-    public boolean f30923l;
-    public long f30924m;
-    public x61 f30925n;
-    public long f30926o;
-    public String f30927p;
-    public float f30928q;
+import java.util.List;
+public final class y61 implements b2.z0 {
+    public final g71 f32855a;
 
-    public y61(boolean z4) {
-        Paint paint = new Paint(1);
-        this.f30915a = paint;
-        TextPaint textPaint = new TextPaint(1);
-        this.f30916b = textPaint;
-        Path path = new Path();
-        this.f30917c = path;
-        this.f30928q = 1.0f;
-        this.e = z4;
-        paint.setColor(-1);
-        textPaint.setColor(-1);
-        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        path.reset();
-        for (int i10 = 0; i10 < 3; i10++) {
-            int[] iArr = f30914r;
-            if (i10 == 0) {
-                int i11 = i10 * 2;
-                this.f30917c.moveTo(AndroidUtilities.dp(iArr[i11]), AndroidUtilities.dp(iArr[i11 + 1]));
-            } else {
-                int i12 = i10 * 2;
-                this.f30917c.lineTo(AndroidUtilities.dp(iArr[i12]), AndroidUtilities.dp(iArr[i12 + 1]));
+    public y61(g71 g71Var) {
+        this.f32855a = g71Var;
+    }
+
+    @Override
+    public final void onCues(d2.c cVar) {
+    }
+
+    @Override
+    public final void onPlayerStateChanged(boolean z10, int i10) {
+        g71 g71Var = this.f32855a;
+        if (!g71Var.H && i10 == 3) {
+            g71Var.H = true;
+            if (g71Var.G && g71Var.I) {
+                g71Var.C();
             }
         }
-        this.f30917c.close();
-    }
-
-    public final void a() {
-        x61 x61Var = this.f30925n;
-        if (x61Var != null) {
-            x61Var.invalidate();
-        } else {
-            invalidateSelf();
-        }
-    }
-
-    public final boolean b() {
-        return this.f30921j;
-    }
-
-    public final void c(org.telegram.ui.es0 es0Var) {
-        this.f30925n = es0Var;
-    }
-
-    public final void d(boolean z4) {
-        boolean z10 = this.d;
-        if (z10 == z4 && this.h >= 1.0f && this.f30922k) {
-            return;
-        }
-        if (z10 != z4) {
-            this.f30926o = 0L;
-            this.f30927p = null;
-        }
-        this.d = z4;
-        this.f30921j = true;
-        this.h = 0.0f;
-        invalidateSelf();
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y61.draw(android.graphics.Canvas):void");
-    }
-
-    public final void e(boolean z4) {
-        if (this.f30922k != z4) {
-            this.f30922k = z4;
-            this.f30927p = null;
-            this.f30926o = 0L;
-            this.h = 0.0f;
-        }
-    }
-
-    public final void f(boolean z4) {
-        this.f30923l = z4;
-        a();
-    }
-
-    public final void g(long j10) {
-        this.f30926o = j10;
-        if (j10 >= 1000) {
-            this.f30927p = LocaleController.formatPluralString("Seconds", (int) (j10 / 1000), new Object[0]);
-        } else {
-            this.f30927p = null;
-        }
+    public final void onPositionDiscontinuity(int i10) {
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(32.0f);
+    public final void onCues(List list) {
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(32.0f);
+    public final void onPositionDiscontinuity(b2.a1 a1Var, b2.a1 a1Var2, int i10) {
     }
 
     @Override
-    public final int getMinimumHeight() {
-        return AndroidUtilities.dp(32.0f);
+    public final void onAudioAttributesChanged(b2.e eVar) {
     }
 
     @Override
-    public final int getMinimumWidth() {
-        return AndroidUtilities.dp(32.0f);
+    public final void onAudioSessionIdChanged(int i10) {
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final void onAvailableCommandsChanged(b2.x0 x0Var) {
     }
 
     @Override
-    public final void setAlpha(int i10) {
-        this.f30915a.setAlpha(i10);
-        this.f30916b.setAlpha(i10);
+    public final void onIsLoadingChanged(boolean z10) {
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f30915a.setColorFilter(colorFilter);
+    public final void onIsPlayingChanged(boolean z10) {
+    }
+
+    @Override
+    public final void onLoadingChanged(boolean z10) {
+    }
+
+    @Override
+    public final void onMediaMetadataChanged(b2.n0 n0Var) {
+    }
+
+    @Override
+    public final void onMetadata(b2.p0 p0Var) {
+    }
+
+    @Override
+    public final void onPlaybackParametersChanged(b2.v0 v0Var) {
+    }
+
+    @Override
+    public final void onPlaybackStateChanged(int i10) {
+    }
+
+    @Override
+    public final void onPlaybackSuppressionReasonChanged(int i10) {
+    }
+
+    @Override
+    public final void onPlayerError(b2.u0 u0Var) {
+    }
+
+    @Override
+    public final void onPlayerErrorChanged(b2.u0 u0Var) {
+    }
+
+    @Override
+    public final void onPlaylistMetadataChanged(b2.n0 n0Var) {
+    }
+
+    @Override
+    public final void onRenderedFirstFrame() {
+    }
+
+    @Override
+    public final void onRepeatModeChanged(int i10) {
+    }
+
+    @Override
+    public final void onShuffleModeEnabledChanged(boolean z10) {
+    }
+
+    @Override
+    public final void onSkipSilenceEnabledChanged(boolean z10) {
+    }
+
+    @Override
+    public final void onTrackSelectionParametersChanged(b2.q1 q1Var) {
+    }
+
+    @Override
+    public final void onTracksChanged(b2.s1 s1Var) {
+    }
+
+    @Override
+    public final void onVideoSizeChanged(b2.x1 x1Var) {
+    }
+
+    @Override
+    public final void onVolumeChanged(float f7) {
+    }
+
+    @Override
+    public final void onEvents(b2.b1 b1Var, b2.y0 y0Var) {
+    }
+
+    @Override
+    public final void onMediaItemTransition(b2.k0 k0Var, int i10) {
+    }
+
+    @Override
+    public final void onPlayWhenReadyChanged(boolean z10, int i10) {
+    }
+
+    @Override
+    public final void onSurfaceSizeChanged(int i10, int i11) {
+    }
+
+    @Override
+    public final void onTimelineChanged(b2.k1 k1Var, int i10) {
     }
 }

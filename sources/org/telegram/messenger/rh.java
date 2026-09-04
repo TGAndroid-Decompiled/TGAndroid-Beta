@@ -1,41 +1,39 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.PasskeysController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-public final class rh implements Utilities.Callback2 {
-    public final int f18302a;
-    public final long f18303b;
-    public final Object f18304c;
-    public final Object d;
+import android.os.SystemClock;
+import org.telegram.messenger.SharedConfig;
+public final class rh implements Runnable {
+    public final int f18911a;
+    public final SharedConfig.ProxyInfo f18912b;
+    public final long f18913c;
 
-    public rh(Object obj, Object obj2, long j10, int i10) {
-        this.f18302a = i10;
-        this.f18304c = obj;
-        this.d = obj2;
-        this.f18303b = j10;
+    public rh(SharedConfig.ProxyInfo proxyInfo, long j3, int i10) {
+        this.f18911a = i10;
+        this.f18912b = proxyInfo;
+        this.f18913c = j3;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f18302a) {
+    public final void run() {
+        int i10 = this.f18911a;
+        long j3 = this.f18913c;
+        SharedConfig.ProxyInfo proxyInfo = this.f18912b;
+        switch (i10) {
             case 0:
-                PasskeysController.AnonymousClass1.lambda$onResult$0((org.telegram.ui.ActionBar.d2) this.f18304c, (Utilities.Callback3) this.d, this.f18303b, (TLRPC.auth_Authorization) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 1:
-                ((BotForumHelper) this.f18304c).lambda$performSendBotTopicCreate$5(this.f18303b, (String) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                ProxyRotationController.lambda$new$0(proxyInfo, j3);
                 return;
             default:
-                ((GiftAuctionController) this.f18304c).lambda$getOrRequestAuction$12((Utilities.Callback2) this.d, this.f18303b, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
+                proxyInfo.availableCheckTime = SystemClock.elapsedRealtime();
+                proxyInfo.checking = false;
+                if (j3 == -1) {
+                    proxyInfo.available = false;
+                    proxyInfo.ping = 0L;
+                } else {
+                    proxyInfo.ping = j3;
+                    proxyInfo.available = true;
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxyCheckDone, proxyInfo);
                 return;
         }
-    }
-
-    public rh(BotForumHelper botForumHelper, long j10, String str) {
-        this.f18302a = 1;
-        this.f18304c = botForumHelper;
-        this.f18303b = j10;
-        this.d = str;
     }
 }

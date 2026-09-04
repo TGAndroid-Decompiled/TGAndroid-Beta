@@ -1,97 +1,99 @@
 package org.telegram.ui;
 
-import android.view.View;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class m0 extends ze.c {
-    public final int d = 1;
-    public final Object e;
-    public final Object f35948f;
-    public final Object f35949g;
+public final class m0 extends Drawable {
+    public final int f38527a;
+    public final Bitmap f38528b;
+    public final Paint f38529c;
 
-    public m0(n4 n4Var, f3 f3Var, org.telegram.ui.Components.g90 g90Var) {
-        this.e = n4Var;
-        this.f35948f = f3Var;
-        this.f35949g = g90Var;
+    public m0(Bitmap bitmap, Paint paint, int i10) {
+        this.f38527a = i10;
+        this.f38528b = bitmap;
+        this.f38529c = paint;
     }
 
     @Override
-    public void b() {
-        switch (this.d) {
+    public final void draw(Canvas canvas) {
+        switch (this.f38527a) {
             case 0:
-                n4 n4Var = (n4) this.e;
-                n4Var.f36982c.l(n4Var.v, true);
-                View view = n4Var.f36986s;
-                if (view != null) {
-                    view.invalidate();
-                }
-                c(false);
-                return;
-            default:
-                super.b();
-                return;
-        }
-    }
-
-    @Override
-    public void c(boolean z4) {
-        switch (this.d) {
-            case 1:
-                if (!z4) {
-                    AndroidUtilities.runOnUIThread(new yj(((ln) this.f35949g).f35808a, 9), 250L);
+                Bitmap bitmap = this.f38528b;
+                if (bitmap != null) {
+                    canvas.save();
+                    canvas.translate(getBounds().left, getBounds().top);
+                    canvas.scale(getBounds().width() / bitmap.getWidth(), getBounds().height() / bitmap.getHeight());
+                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, this.f38529c);
+                    canvas.restore();
                     return;
                 }
                 return;
             default:
-                super.c(z4);
+                Bitmap bitmap2 = this.f38528b;
+                if (bitmap2 != null) {
+                    canvas.save();
+                    canvas.translate(getBounds().left, getBounds().top);
+                    canvas.scale(getBounds().width() / bitmap2.getWidth(), getBounds().height() / bitmap2.getHeight());
+                    canvas.drawBitmap(bitmap2, 0.0f, 0.0f, this.f38529c);
+                    canvas.restore();
+                    return;
+                }
                 return;
         }
     }
 
     @Override
-    public final void d() {
-        View view;
-        switch (this.d) {
+    public final int getIntrinsicHeight() {
+        switch (this.f38527a) {
             case 0:
-                org.telegram.ui.Components.g90 g90Var = (org.telegram.ui.Components.g90) this.f35949g;
-                n4 n4Var = (n4) this.e;
-                org.telegram.ui.Components.c90 c90Var = n4Var.f36982c;
-                f3 f3Var = (f3) this.f35948f;
-                if (f3Var != null) {
-                    view = f3Var.f33928b;
-                } else {
-                    view = null;
-                }
-                n4Var.f36986s = view;
-                org.telegram.ui.Components.o01 o01Var = (org.telegram.ui.Components.o01) g90Var.f25098i;
-                c90Var.l(n4Var.v, true);
-                if (f3Var != null) {
-                    n4Var.v = org.telegram.ui.Components.c90.i(f3Var.d, g90Var.f25098i, 0.0f);
-                    int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Ld, false);
-                    n4Var.v.f(org.telegram.ui.ActionBar.j6.l1(0.8f, w02), org.telegram.ui.ActionBar.j6.l1(1.3f, w02), org.telegram.ui.ActionBar.j6.l1(1.0f, w02), org.telegram.ui.ActionBar.j6.l1(4.0f, w02));
-                    n4Var.v.f25922w.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
-                    c90Var.b(n4Var.v, f3Var);
-                }
-                View view2 = n4Var.f36986s;
-                if (view2 != null) {
-                    view2.invalidate();
-                }
-                super.d();
-                return;
+                return AndroidUtilities.dp(24.0f);
             default:
-                ln lnVar = (ln) this.f35949g;
-                lnVar.f35808a.f40757tb = ((MessageObject) this.e).getId();
-                zn znVar = lnVar.f35808a;
-                znVar.f40770ub = 0;
-                znVar.f40783vb = null;
-                ((org.telegram.ui.Cells.s1) this.f35948f).invalidate();
-                return;
+                return AndroidUtilities.dp(24.0f);
         }
     }
 
-    public m0(ln lnVar, MessageObject messageObject, org.telegram.ui.Cells.s1 s1Var) {
-        this.f35949g = lnVar;
-        this.e = messageObject;
-        this.f35948f = s1Var;
+    @Override
+    public final int getIntrinsicWidth() {
+        switch (this.f38527a) {
+            case 0:
+                return AndroidUtilities.dp(24.0f);
+            default:
+                return AndroidUtilities.dp(24.0f);
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.f38527a) {
+            case 0:
+                return -2;
+            default:
+                return -2;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        int i11 = this.f38527a;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        int i10 = this.f38527a;
+    }
+
+    private final void a(int i10) {
+    }
+
+    private final void b(int i10) {
+    }
+
+    private final void c(ColorFilter colorFilter) {
+    }
+
+    private final void d(ColorFilter colorFilter) {
     }
 }

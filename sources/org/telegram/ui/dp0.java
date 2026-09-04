@@ -1,68 +1,56 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
-public final class dp0 extends x61 {
-    public final gp0 a2;
-    public final n61[] f33510b2;
-    public final hp0 f33511c2;
+public final class dp0 implements Utilities.Callback2 {
+    public final int f35835a;
+    public final TL_stars.TL_starGiftUnique f35836b;
+    public final long f35837c;
+    public final NotificationCenter.NotificationCenterDelegate d;
+    public final Object f35838e;
+    public final Object f35839f;
 
-    public dp0(hp0 hp0Var, org.telegram.ui.ActionBar.p2 p2Var, Context context, Integer num, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11, int i12, gp0 gp0Var, n61[] n61VarArr) {
-        super(p2Var, context, true, num, i10, true, f6Var, i11, i12);
-        this.f33511c2 = hp0Var;
-        this.a2 = gp0Var;
-        this.f33510b2 = n61VarArr;
+    public dp0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, Object obj2, int i10) {
+        this.f35835a = i10;
+        this.d = notificationCenterDelegate;
+        this.f35838e = obj;
+        this.f35836b = tL_starGiftUnique;
+        this.f35837c = j3;
+        this.f35839f = obj2;
     }
 
     @Override
-    public final float getScrimDrawableTranslationY() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        long longValue;
-        hp0 hp0Var = this.f33511c2;
-        if (tL_starGiftUnique != null) {
-            if (hp0Var.f34731j0 == 0) {
-                TLRPC.PeerColor peerColor = tL_starGiftUnique.peer_color;
-                if (peerColor instanceof TLRPC.TL_peerColorCollectible) {
-                    hp0Var.f34736s = (TLRPC.TL_peerColorCollectible) peerColor;
-                    hp0Var.f34735r = null;
-                } else {
+    public final void run(Object obj, Object obj2) {
+        boolean z10;
+        switch (this.f35835a) {
+            case 0:
+                bq0.U((bq0) this.d, (boolean[]) this.f35838e, this.f35836b, this.f35837c, (zo0) this.f35839f, (zh.a3) obj, (of.e) obj2);
+                return;
+            default:
+                zh.w3 w3Var = (zh.w3) this.d;
+                yh.j0 j0Var = (yh.j0) this.f35839f;
+                String str = (String) obj2;
+                ((of.e) this.f35838e).b();
+                if (((Boolean) obj).booleanValue()) {
+                    zh.j2 j2Var = w3Var.O0;
+                    if (j2Var != null) {
+                        if (j0Var != null) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        j2Var.b(this.f35836b, this.f35837c, z10);
+                    }
+                    if (j0Var != null) {
+                        AndroidUtilities.runOnUIThread(new yh.d0(j0Var, 2));
+                        w3Var.skipDismissAnimation();
+                    }
+                    w3Var.dismiss();
                     return;
                 }
-            } else {
-                hp0Var.f34736s = null;
-                hp0Var.f34735r = MessagesController.emojiStatusCollectibleFromGift(tL_starGiftUnique);
-            }
-            hp0Var.F = null;
-            hp0Var.h = -1;
-        } else {
-            if (l10 == null) {
-                longValue = 0;
-            } else {
-                longValue = l10.longValue();
-            }
-            hp0Var.f34734n = longValue;
-            hp0Var.f34735r = null;
-            hp0Var.f34736s = null;
-            hp0Var.F = null;
-        }
-        gp0 gp0Var = this.a2;
-        if (gp0Var != null) {
-            gp0Var.b(true);
-        }
-        hp0Var.j(true);
-        hp0Var.i();
-        hp0Var.f(true);
-        n61 n61Var = this.f33510b2[0];
-        if (n61Var != null) {
-            hp0Var.f34733l0 = null;
-            n61Var.dismiss();
+                return;
         }
     }
 }

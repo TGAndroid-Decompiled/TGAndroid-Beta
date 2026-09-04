@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.telegram.messenger.Emoji;
-import org.telegram.ui.Components.mr;
+import org.telegram.ui.Components.pr;
 public class CompoundEmoji {
     public static List<String> skinTones = Arrays.asList("🏻", "🏼", "🏽", "🏾", "🏿");
     private static Paint placeholderPaint = new Paint(2);
@@ -77,7 +77,7 @@ public class CompoundEmoji {
                 ArrayList<Integer> arrayList = loading;
                 if (!arrayList.contains(Integer.valueOf(this.hash))) {
                     arrayList.add(Integer.valueOf(this.hash));
-                    Utilities.globalQueue.postRunnable(new e1(this, 0));
+                    Utilities.globalQueue.postRunnable(new d1(this, 0));
                 }
             }
         }
@@ -100,20 +100,20 @@ public class CompoundEmoji {
         }
         if (str2.contains("\u200d")) {
             String[] split = str2.split("\u200d");
-            StringBuilder sb = new StringBuilder("🫱");
+            StringBuilder sb2 = new StringBuilder("🫱");
             String str4 = "";
             if (split.length < 1) {
                 str3 = "";
             } else {
                 str3 = split[0];
             }
-            sb.append(str3);
-            sb.append("\u200d🫲");
+            sb2.append(str3);
+            sb2.append("\u200d🫲");
             if (split.length >= 2) {
                 str4 = split[1];
             }
-            sb.append(str4);
-            return sb.toString();
+            sb2.append(str4);
+            return sb2.toString();
         }
         return "🤝".concat(str2);
     }
@@ -194,12 +194,12 @@ public class CompoundEmoji {
         private static Paint paint = new Paint(2);
         private static Rect rect = new Rect();
         private DrawableInfo left;
-        private org.telegram.ui.Components.z5 leftUpdateT;
+        private org.telegram.ui.Components.e6 leftUpdateT;
         private DrawableInfo newLeft;
         private DrawableInfo newRight;
         private View parent;
         private DrawableInfo right;
-        private org.telegram.ui.Components.z5 rightUpdateT;
+        private org.telegram.ui.Components.e6 rightUpdateT;
 
         public CompoundEmojiDrawable(DrawableInfo drawableInfo, DrawableInfo drawableInfo2) {
             this.left = drawableInfo;
@@ -210,7 +210,7 @@ public class CompoundEmoji {
             compoundEmojiDrawable.invalidate();
         }
 
-        private void drawDrawableInfo(Canvas canvas, DrawableInfo drawableInfo, Rect rect2, float f10) {
+        private void drawDrawableInfo(Canvas canvas, DrawableInfo drawableInfo, Rect rect2, float f7) {
             Paint paint2;
             int i10;
             Bitmap bitmap = drawableInfo.getBitmap();
@@ -220,10 +220,10 @@ public class CompoundEmoji {
                 } else {
                     paint2 = paint;
                 }
-                int i11 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
+                int i11 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
                 if (i11 < 0) {
                     i10 = paint2.getAlpha();
-                    paint2.setAlpha((int) (i10 * f10));
+                    paint2.setAlpha((int) (i10 * f7));
                 } else {
                     i10 = 255;
                 }
@@ -260,7 +260,7 @@ public class CompoundEmoji {
             if (!canvas.quickReject(bounds.left, bounds.top, bounds.right, bounds.bottom, Canvas.EdgeType.AA)) {
                 if (this.newLeft != null) {
                     if (this.leftUpdateT == null) {
-                        this.leftUpdateT = new org.telegram.ui.Components.z5(0.0f, new e1(this, 16), 0L, 320L, mr.f27123g);
+                        this.leftUpdateT = new org.telegram.ui.Components.e6(0.0f, new d1(this, 16), 0L, 320L, pr.f29467g);
                     }
                     float d = this.leftUpdateT.d(1.0f, false);
                     drawDrawableInfo(canvas, this.newLeft, bounds, Math.min(1.0f, d * 1.5f));
@@ -274,7 +274,7 @@ public class CompoundEmoji {
                 }
                 if (this.newRight != null) {
                     if (this.rightUpdateT == null) {
-                        this.rightUpdateT = new org.telegram.ui.Components.z5(0.0f, new e1(this, 16), 0L, 320L, mr.f27123g);
+                        this.rightUpdateT = new org.telegram.ui.Components.e6(0.0f, new d1(this, 16), 0L, 320L, pr.f29467g);
                     }
                     float d10 = this.rightUpdateT.d(1.0f, false);
                     drawDrawableInfo(canvas, this.newRight, bounds, Math.min(1.0f, 1.5f * d10));
@@ -299,29 +299,29 @@ public class CompoundEmoji {
             int centerX = bounds.centerX();
             int centerY = bounds.centerY();
             Rect rect2 = rect;
-            boolean z4 = this.fullSize;
-            if (z4) {
+            boolean z10 = this.fullSize;
+            if (z10) {
                 i10 = Emoji.bigImgSize;
             } else {
                 i10 = Emoji.drawImgSize;
             }
             rect2.left = centerX - (i10 / 2);
             Rect rect3 = rect;
-            if (z4) {
+            if (z10) {
                 i11 = Emoji.bigImgSize;
             } else {
                 i11 = Emoji.drawImgSize;
             }
             rect3.right = (i11 / 2) + centerX;
             Rect rect4 = rect;
-            if (z4) {
+            if (z10) {
                 i12 = Emoji.bigImgSize;
             } else {
                 i12 = Emoji.drawImgSize;
             }
             rect4.top = centerY - (i12 / 2);
             Rect rect5 = rect;
-            if (z4) {
+            if (z10) {
                 i13 = Emoji.bigImgSize;
             } else {
                 i13 = Emoji.drawImgSize;
@@ -363,9 +363,9 @@ public class CompoundEmoji {
                     this.left = drawableInfo;
                 }
                 this.newLeft = this.left.updateSkin(i10);
-                org.telegram.ui.Components.z5 z5Var = this.leftUpdateT;
-                if (z5Var != null) {
-                    z5Var.d(0.0f, true);
+                org.telegram.ui.Components.e6 e6Var = this.leftUpdateT;
+                if (e6Var != null) {
+                    e6Var.d(0.0f, true);
                 }
             }
             if (this.right.skin != i11) {
@@ -374,9 +374,9 @@ public class CompoundEmoji {
                     this.right = drawableInfo2;
                 }
                 this.newRight = this.right.updateSkin(i11);
-                org.telegram.ui.Components.z5 z5Var2 = this.rightUpdateT;
-                if (z5Var2 != null) {
-                    z5Var2.d(0.0f, true);
+                org.telegram.ui.Components.e6 e6Var2 = this.rightUpdateT;
+                if (e6Var2 != null) {
+                    e6Var2.d(0.0f, true);
                 }
             }
             invalidate();

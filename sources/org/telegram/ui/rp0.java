@@ -2,80 +2,67 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class rp0 extends org.telegram.ui.Components.qv0 {
-    public int f37938t0;
-    public boolean f37939u0;
-    public final wp0 f37940v0;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class rp0 extends j71 {
+    public final up0 f40218d2;
+    public final a71[] f40219e2;
+    public final vp0 f40220f2;
 
-    public rp0(wp0 wp0Var, Context context) {
-        super(context, null);
-        this.f37940v0 = wp0Var;
+    public rp0(vp0 vp0Var, org.telegram.ui.ActionBar.n2 n2Var, Context context, Integer num, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11, int i12, up0 up0Var, a71[] a71VarArr) {
+        super(n2Var, context, true, num, i10, true, f6Var, i11, i12);
+        this.f40220f2 = vp0Var;
+        this.f40218d2 = up0Var;
+        this.f40219e2 = a71VarArr;
     }
 
     @Override
-    public final void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.rp0.onLayout(boolean, int, int, int, int):void");
+    public final float getScrimDrawableTranslationY() {
+        return 0.0f;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        float f10;
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        setMeasuredDimension(size, size2);
-        int dp = AndroidUtilities.dp(20.0f);
-        int i13 = 0;
-        wp0 wp0Var = this.f37940v0;
-        if (dp >= 0) {
-            if (!AndroidUtilities.isInMultiwindow) {
-                size2 -= wp0Var.J.getEmojiPadding();
-                i11 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
-            }
-        } else {
-            this.f37939u0 = true;
-            wp0Var.J.j();
-            this.f37939u0 = false;
-        }
-        int i14 = i11;
-        int childCount = getChildCount();
-        while (i13 < childCount) {
-            View childAt = getChildAt(i13);
-            if (childAt != null && childAt.getVisibility() != 8) {
-                org.telegram.ui.Components.cu cuVar = wp0Var.J;
-                if (cuVar != null && cuVar.l(childAt)) {
-                    if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
-                    } else if (AndroidUtilities.isTablet()) {
-                        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-                        if (AndroidUtilities.isTablet()) {
-                            f10 = 200.0f;
-                        } else {
-                            f10 = 320.0f;
-                        }
-                        childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(f10), getPaddingTop() + (size2 - AndroidUtilities.statusBarHeight)), 1073741824));
-                    } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size2 - AndroidUtilities.statusBarHeight), 1073741824));
-                    }
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        long longValue;
+        vp0 vp0Var = this.f40220f2;
+        if (tL_starGiftUnique != null) {
+            if (vp0Var.m0 == 0) {
+                TLRPC.PeerColor peerColor = tL_starGiftUnique.peer_color;
+                if (peerColor instanceof TLRPC.TL_peerColorCollectible) {
+                    vp0Var.f41621s = (TLRPC.TL_peerColorCollectible) peerColor;
+                    vp0Var.f41620r = null;
                 } else {
-                    i12 = i10;
-                    measureChildWithMargins(childAt, i12, 0, i14, 0);
-                    i13++;
-                    i10 = i12;
+                    return;
                 }
+            } else {
+                vp0Var.f41621s = null;
+                vp0Var.f41620r = MessagesController.emojiStatusCollectibleFromGift(tL_starGiftUnique);
             }
-            i12 = i10;
-            i13++;
-            i10 = i12;
+            vp0Var.I = null;
+            vp0Var.h = -1;
+        } else {
+            if (l4 == null) {
+                longValue = 0;
+            } else {
+                longValue = l4.longValue();
+            }
+            vp0Var.f41616n = longValue;
+            vp0Var.f41620r = null;
+            vp0Var.f41621s = null;
+            vp0Var.I = null;
         }
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f37939u0) {
-            return;
+        up0 up0Var = this.f40218d2;
+        if (up0Var != null) {
+            up0Var.b(true);
         }
-        super.requestLayout();
+        vp0Var.j(true);
+        vp0Var.i();
+        vp0Var.f(true);
+        a71 a71Var = this.f40219e2[0];
+        if (a71Var != null) {
+            vp0Var.f41618o0 = null;
+            a71Var.dismiss();
+        }
     }
 }

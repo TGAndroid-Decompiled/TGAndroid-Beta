@@ -1,48 +1,20 @@
 package x2;
-public final class n extends v {
-    public final u f46763a;
-    public final t f46764b;
 
-    public n(u uVar, t tVar) {
-        this.f46763a = uVar;
-        this.f46764b = tVar;
+import b2.l1;
+public abstract class n {
+    public final int f48741a;
+    public final l1 f48742b;
+    public final int f48743c;
+    public final b2.s d;
+
+    public n(int i10, l1 l1Var, int i11) {
+        this.f48741a = i10;
+        this.f48742b = l1Var;
+        this.f48743c = i11;
+        this.d = l1Var.d[i11];
     }
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof v) {
-            v vVar = (v) obj;
-            u uVar = this.f46763a;
-            if (uVar != null ? uVar.equals(((n) vVar).f46763a) : ((n) vVar).f46763a == null) {
-                t tVar = this.f46764b;
-                if (tVar != null ? tVar.equals(((n) vVar).f46764b) : ((n) vVar).f46764b == null) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+    public abstract int a();
 
-    public final int hashCode() {
-        int hashCode;
-        int i10 = 0;
-        u uVar = this.f46763a;
-        if (uVar == null) {
-            hashCode = 0;
-        } else {
-            hashCode = uVar.hashCode();
-        }
-        int i11 = (hashCode ^ 1000003) * 1000003;
-        t tVar = this.f46764b;
-        if (tVar != null) {
-            i10 = tVar.hashCode();
-        }
-        return i10 ^ i11;
-    }
-
-    public final String toString() {
-        return "NetworkConnectionInfo{networkType=" + this.f46763a + ", mobileSubtype=" + this.f46764b + "}";
-    }
+    public abstract boolean b(n nVar);
 }

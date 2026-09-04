@@ -1,3 +1,7 @@
 package dd;
-public interface h extends sc.a {
+public final class h extends j {
+    @Override
+    public final String toString() {
+        return "</" + o() + ">";
+    }
 }

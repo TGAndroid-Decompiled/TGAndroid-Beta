@@ -1,3 +1,3 @@
 package fc;
-public class c extends g {
+public final class c extends Exception {
 }

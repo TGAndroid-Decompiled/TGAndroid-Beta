@@ -1,84 +1,332 @@
 package o2;
-public abstract class l {
-    public static final b f16196a;
-    public static final b f16197b;
-    public static final b f16198c;
-    public static final b d;
-    public static final b e;
+
+import android.net.Uri;
+import android.os.Looper;
+import b2.e0;
+import b2.f0;
+import b2.k0;
+import b2.l0;
+import e9.i0;
+import g2.c0;
+import j$.util.Objects;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import ji.u4;
+import u2.d0;
+import u2.h1;
+public final class l extends u2.a {
+    public final c h;
+    public final u4 f16886i;
+    public final qb.b f16887j;
+    public final n2.m f16888k;
+    public final rb.a f16889l;
+    public final boolean f16890m;
+    public final int f16891n;
+    public final p2.c f16892o;
+    public final long f16893p;
+    public e0 f16894q;
+    public c0 f16895r;
+    public k0 f16896s;
 
     static {
-        new b(0, "VISUAL_STATE_CALLBACK", "VISUAL_STATE_CALLBACK");
-        new b(0, "OFF_SCREEN_PRERASTER", "OFF_SCREEN_PRERASTER");
-        new b(3, "SAFE_BROWSING_ENABLE", "SAFE_BROWSING_ENABLE");
-        new b(1, "DISABLED_ACTION_MODE_MENU_ITEMS", "DISABLED_ACTION_MODE_MENU_ITEMS");
-        new b(4, "START_SAFE_BROWSING", "START_SAFE_BROWSING");
-        new b(4, "SAFE_BROWSING_WHITELIST", "SAFE_BROWSING_WHITELIST");
-        new b(4, "SAFE_BROWSING_WHITELIST", "SAFE_BROWSING_ALLOWLIST");
-        new b(4, "SAFE_BROWSING_ALLOWLIST", "SAFE_BROWSING_WHITELIST");
-        new b(4, "SAFE_BROWSING_ALLOWLIST", "SAFE_BROWSING_ALLOWLIST");
-        new b(4, "SAFE_BROWSING_PRIVACY_POLICY_URL", "SAFE_BROWSING_PRIVACY_POLICY_URL");
-        new b(1, "SERVICE_WORKER_BASIC_USAGE", "SERVICE_WORKER_BASIC_USAGE");
-        new b(1, "SERVICE_WORKER_CACHE_MODE", "SERVICE_WORKER_CACHE_MODE");
-        new b(1, "SERVICE_WORKER_CONTENT_ACCESS", "SERVICE_WORKER_CONTENT_ACCESS");
-        new b(1, "SERVICE_WORKER_FILE_ACCESS", "SERVICE_WORKER_FILE_ACCESS");
-        new b(1, "SERVICE_WORKER_BLOCK_NETWORK_LOADS", "SERVICE_WORKER_BLOCK_NETWORK_LOADS");
-        new b(1, "SERVICE_WORKER_SHOULD_INTERCEPT_REQUEST", "SERVICE_WORKER_SHOULD_INTERCEPT_REQUEST");
-        new b(0, "RECEIVE_WEB_RESOURCE_ERROR", "RECEIVE_WEB_RESOURCE_ERROR");
-        new b(0, "RECEIVE_HTTP_ERROR", "RECEIVE_HTTP_ERROR");
-        new b(1, "SHOULD_OVERRIDE_WITH_REDIRECTS", "SHOULD_OVERRIDE_WITH_REDIRECTS");
-        new b(4, "SAFE_BROWSING_HIT", "SAFE_BROWSING_HIT");
-        new b(1, "WEB_RESOURCE_REQUEST_IS_REDIRECT", "WEB_RESOURCE_REQUEST_IS_REDIRECT");
-        new b(0, "WEB_RESOURCE_ERROR_GET_DESCRIPTION", "WEB_RESOURCE_ERROR_GET_DESCRIPTION");
-        new b(0, "WEB_RESOURCE_ERROR_GET_CODE", "WEB_RESOURCE_ERROR_GET_CODE");
-        new b(4, "SAFE_BROWSING_RESPONSE_BACK_TO_SAFETY", "SAFE_BROWSING_RESPONSE_BACK_TO_SAFETY");
-        new b(4, "SAFE_BROWSING_RESPONSE_PROCEED", "SAFE_BROWSING_RESPONSE_PROCEED");
-        new b(4, "SAFE_BROWSING_RESPONSE_SHOW_INTERSTITIAL", "SAFE_BROWSING_RESPONSE_SHOW_INTERSTITIAL");
-        new b(0, "WEB_MESSAGE_PORT_POST_MESSAGE", "WEB_MESSAGE_PORT_POST_MESSAGE");
-        new b(0, "WEB_MESSAGE_PORT_CLOSE", "WEB_MESSAGE_PORT_CLOSE");
-        f16196a = new b(2, "WEB_MESSAGE_ARRAY_BUFFER", "WEB_MESSAGE_ARRAY_BUFFER");
-        new b(0, "WEB_MESSAGE_PORT_SET_MESSAGE_CALLBACK", "WEB_MESSAGE_PORT_SET_MESSAGE_CALLBACK");
-        new b(0, "CREATE_WEB_MESSAGE_CHANNEL", "CREATE_WEB_MESSAGE_CHANNEL");
-        new b(0, "POST_WEB_MESSAGE", "POST_WEB_MESSAGE");
-        new b(0, "WEB_MESSAGE_CALLBACK_ON_MESSAGE", "WEB_MESSAGE_CALLBACK_ON_MESSAGE");
-        new b(3, "GET_WEB_VIEW_CLIENT", "GET_WEB_VIEW_CLIENT");
-        new b(3, "GET_WEB_CHROME_CLIENT", "GET_WEB_CHROME_CLIENT");
-        new b(6, "GET_WEB_VIEW_RENDERER", "GET_WEB_VIEW_RENDERER");
-        new b(6, "WEB_VIEW_RENDERER_TERMINATE", "WEB_VIEW_RENDERER_TERMINATE");
-        new b(5, "TRACING_CONTROLLER_BASIC_USAGE", "TRACING_CONTROLLER_BASIC_USAGE");
-        new g();
-        new g();
-        new g();
-        new b(6, "WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE", "WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE");
-        new j();
-        new b(2, "PROXY_OVERRIDE", "PROXY_OVERRIDE:3");
-        f16197b = new b(2, "MULTI_PROCESS", "MULTI_PROCESS_QUERY");
-        new b(6, "FORCE_DARK", "FORCE_DARK");
-        new b(2, "FORCE_DARK_STRATEGY", "FORCE_DARK_BEHAVIOR");
-        f16198c = new b(2, "WEB_MESSAGE_LISTENER", "WEB_MESSAGE_LISTENER");
-        d = new b(2, "DOCUMENT_START_SCRIPT", "DOCUMENT_START_SCRIPT:1");
-        new b(2, "PROXY_OVERRIDE_REVERSE_BYPASS", "PROXY_OVERRIDE_REVERSE_BYPASS");
-        new b(2, "GET_VARIATIONS_HEADER", "GET_VARIATIONS_HEADER");
-        new b(2, "ENTERPRISE_AUTHENTICATION_APP_LINK_POLICY", "ENTERPRISE_AUTHENTICATION_APP_LINK_POLICY");
-        new b(2, "GET_COOKIE_INFO", "GET_COOKIE_INFO");
-        new b(2, "REQUESTED_WITH_HEADER_ALLOW_LIST", "REQUESTED_WITH_HEADER_ALLOW_LIST");
-        new b(2, "USER_AGENT_METADATA", "USER_AGENT_METADATA");
-        new k(0, "MULTI_PROFILE", "MULTI_PROFILE");
-        new b(2, "ATTRIBUTION_REGISTRATION_BEHAVIOR", "ATTRIBUTION_BEHAVIOR");
-        new b(2, "WEBVIEW_MEDIA_INTEGRITY_API_STATUS", "WEBVIEW_INTEGRITY_API_STATUS");
-        new b(2, "MUTE_AUDIO", "MUTE_AUDIO");
-        new b(2, "WEB_AUTHENTICATION", "WEB_AUTHENTICATION");
-        new b(2, "SPECULATIVE_LOADING_STATUS", "SPECULATIVE_LOADING");
-        new b(2, "BACK_FORWARD_CACHE", "BACK_FORWARD_CACHE");
-        new b(2, "DELETE_BROWSING_DATA", "WEB_STORAGE_DELETE_BROWSING_DATA");
-        new k(1, "PREFETCH_URL_V4", "PREFETCH_URL_V4");
-        new b(2, "IMPLEMENTATION_ONLY_FEATURE", "ASYNC_WEBVIEW_STARTUP");
-        new b(2, "DEFAULT_TRAFFICSTATS_TAGGING", "DEFAULT_TRAFFICSTATS_TAGGING");
-        new b(2, "PRERENDER_URL_V2", "PRERENDER_URL_V2");
-        new b(2, "SPECULATIVE_LOADING_CONFIG_V2", "SPECULATIVE_LOADING_CONFIG_V2");
-        new b(2, "SAVE_STATE", "SAVE_STATE");
-        new b(2, "WEB_VIEW_NAVIGATION_CLIENT_BASIC_USAGE", "WEB_VIEW_NAVIGATION_CLIENT_BASIC_USAGE");
-        e = new b(2, "CACHE_PROVIDER", "PROVIDER_WEAKLY_REF_WEBVIEW");
-        new b(2, "PAYMENT_REQUEST", "PAYMENT_REQUEST");
-        new b(2, "WEBVIEW_BUILDER", "WEBVIEW_BUILDER");
+        l0.a("media3.exoplayer.hls");
+    }
+
+    public l(k0 k0Var, u4 u4Var, c cVar, qb.b bVar, n2.m mVar, rb.a aVar, p2.c cVar2, long j3, boolean z10, int i10) {
+        this.f16896s = k0Var;
+        this.f16894q = k0Var.f2128c;
+        this.f16886i = u4Var;
+        this.h = cVar;
+        this.f16887j = bVar;
+        this.f16888k = mVar;
+        this.f16889l = aVar;
+        this.f16892o = cVar2;
+        this.f16893p = j3;
+        this.f16890m = z10;
+        this.f16891n = i10;
+    }
+
+    public static p2.g u(long j3, List list) {
+        p2.g gVar = null;
+        for (int i10 = 0; i10 < list.size(); i10++) {
+            p2.g gVar2 = (p2.g) list.get(i10);
+            long j10 = gVar2.f43704e;
+            if (j10 <= j3 && gVar2.f43694w) {
+                gVar = gVar2;
+            } else if (j10 > j3) {
+                break;
+            }
+        }
+        return gVar;
+    }
+
+    @Override
+    public final boolean a(k0 k0Var) {
+        k0 i10 = i();
+        f0 f0Var = i10.f2127b;
+        f0Var.getClass();
+        f0 f0Var2 = k0Var.f2127b;
+        if (f0Var2 != null && f0Var2.f2032a.equals(f0Var.f2032a) && f0Var2.f2035e.equals(f0Var.f2035e) && Objects.equals(f0Var2.f2034c, f0Var.f2034c) && i10.f2128c.equals(k0Var.f2128c)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final d0 c(u2.f0 f0Var, y2.d dVar, long j3) {
+        a5.a b10 = b(f0Var);
+        n2.j jVar = new n2.j(this.d.f16402c, 0, f0Var);
+        c0 c0Var = this.f16895r;
+        j2.k kVar = this.f46609g;
+        e2.d.h(kVar);
+        return new k(this.h, this.f16892o, this.f16886i, c0Var, this.f16888k, jVar, this.f16889l, b10, dVar, this.f16887j, this.f16890m, this.f16891n, kVar);
+    }
+
+    @Override
+    public final synchronized k0 i() {
+        return this.f16896s;
+    }
+
+    @Override
+    public final void k() {
+        p2.c cVar = this.f16892o;
+        y2.m mVar = cVar.h;
+        if (mVar != null) {
+            mVar.b();
+        }
+        Uri uri = cVar.v;
+        if (uri != null) {
+            p2.b bVar = (p2.b) cVar.d.get(uri);
+            bVar.f43642b.b();
+            IOException iOException = bVar.f43648s;
+            if (iOException != null) {
+                throw iOException;
+            }
+        }
+    }
+
+    @Override
+    public final void m(c0 c0Var) {
+        boolean z10;
+        this.f16895r = c0Var;
+        Looper myLooper = Looper.myLooper();
+        myLooper.getClass();
+        j2.k kVar = this.f46609g;
+        e2.d.h(kVar);
+        n2.m mVar = this.f16888k;
+        mVar.B(myLooper, kVar);
+        mVar.b();
+        a5.a b10 = b(null);
+        f0 f0Var = i().f2127b;
+        f0Var.getClass();
+        Uri uri = f0Var.f2032a;
+        p2.c cVar = this.f16892o;
+        cVar.getClass();
+        cVar.f43655n = e2.d0.o(null);
+        cVar.f43654f = b10;
+        cVar.f43656r = this;
+        Map map = Collections.EMPTY_MAP;
+        e2.d.i(uri, "The uri must be set.");
+        y2.p pVar = new y2.p(((g2.g) cVar.f43650a.f14221b).createDataSource(), new g2.m(uri, 1, null, map, 0L, -1L, null, 1), 4, cVar.f43651b.U());
+        if (cVar.h == null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        e2.d.g(z10);
+        y2.m mVar2 = new y2.m("DefaultHlsPlaylistTracker:MultivariantPlaylist");
+        cVar.h = mVar2;
+        mVar2.f(pVar, cVar, cVar.f43652c.L3(pVar.f49523c));
+    }
+
+    @Override
+    public final void o(d0 d0Var) {
+        q[] qVarArr;
+        p[] pVarArr;
+        k kVar = (k) d0Var;
+        kVar.f16876b.f43653e.remove(kVar);
+        for (q qVar : kVar.J) {
+            if (qVar.T) {
+                for (p pVar : qVar.L) {
+                    pVar.k();
+                    n2.g gVar = pVar.h;
+                    if (gVar != null) {
+                        gVar.a(pVar.f46621e);
+                        pVar.h = null;
+                        pVar.f46623g = null;
+                    }
+                }
+            }
+            i iVar = qVar.d;
+            p2.b bVar = (p2.b) iVar.f16857g.d.get(iVar.f16855e[iVar.f16867r.l()]);
+            if (bVar != null) {
+                bVar.v = false;
+            }
+            iVar.f16863n = null;
+            qVar.f16929s.e(qVar);
+            qVar.H.removeCallbacksAndMessages(null);
+            qVar.X = true;
+            qVar.I.clear();
+        }
+        kVar.G = null;
+    }
+
+    @Override
+    public final void q() {
+        p2.c cVar = this.f16892o;
+        cVar.v = null;
+        cVar.f43658w = null;
+        cVar.f43657s = null;
+        cVar.f43660y = -9223372036854775807L;
+        cVar.h.e(null);
+        cVar.h = null;
+        HashMap hashMap = cVar.d;
+        for (p2.b bVar : hashMap.values()) {
+            bVar.f43642b.e(null);
+        }
+        cVar.f43655n.removeCallbacksAndMessages(null);
+        cVar.f43655n = null;
+        hashMap.clear();
+        this.f16888k.release();
+    }
+
+    @Override
+    public final synchronized void t(k0 k0Var) {
+        this.f16896s = k0Var;
+    }
+
+    public final void v(p2.l lVar) {
+        long j3;
+        long j10;
+        long j11;
+        h1 h1Var;
+        long j12;
+        boolean z10;
+        long j13;
+        long j14;
+        long j15;
+        boolean z11;
+        float f7;
+        long j16;
+        boolean z12;
+        boolean z13 = lVar.f43723p;
+        boolean z14 = lVar.f43715g;
+        i0 i0Var = lVar.f43725r;
+        long j17 = lVar.f43728u;
+        long j18 = lVar.f43713e;
+        int i10 = lVar.d;
+        long j19 = lVar.h;
+        if (z13) {
+            j3 = e2.d0.e0(j19);
+        } else {
+            j3 = -9223372036854775807L;
+        }
+        if (i10 != 2 && i10 != 1) {
+            j10 = -9223372036854775807L;
+        } else {
+            j10 = j3;
+        }
+        p2.c cVar = this.f16892o;
+        cVar.f43657s.getClass();
+        ?? obj = new Object();
+        long j20 = 0;
+        if (cVar.f43659x) {
+            p2.k kVar = lVar.v;
+            long j21 = j19 - cVar.f43660y;
+            boolean z15 = lVar.f43722o;
+            if (z15) {
+                j12 = j21 + j17;
+            } else {
+                j12 = -9223372036854775807L;
+            }
+            if (lVar.f43723p) {
+                z10 = z14;
+                j13 = e2.d0.Q(e2.d0.A(this.f16893p)) - (j19 + j17);
+            } else {
+                z10 = z14;
+                j13 = 0;
+            }
+            long j22 = this.f16894q.f2015a;
+            if (j22 != -9223372036854775807L) {
+                j15 = e2.d0.Q(j22);
+            } else {
+                if (j18 != -9223372036854775807L) {
+                    j14 = j17 - j18;
+                } else {
+                    j14 = kVar.d;
+                    if (j14 == -9223372036854775807L || lVar.f43721n == -9223372036854775807L) {
+                        j14 = kVar.f43711c;
+                        if (j14 == -9223372036854775807L) {
+                            j14 = 3 * lVar.f43720m;
+                        }
+                    }
+                }
+                j15 = j14 + j13;
+            }
+            long j23 = j17 + j13;
+            long i11 = e2.d0.i(j15, j13, j23);
+            e0 e0Var = i().f2128c;
+            if (e0Var.d == -3.4028235E38f && e0Var.f2018e == -3.4028235E38f && kVar.f43711c == -9223372036854775807L && kVar.d == -9223372036854775807L) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            b2.d0 d0Var = new b2.d0();
+            d0Var.f1991a = e2.d0.e0(i11);
+            float f10 = 1.0f;
+            if (z11) {
+                f7 = 1.0f;
+            } else {
+                f7 = this.f16894q.d;
+            }
+            d0Var.d = f7;
+            if (!z11) {
+                f10 = this.f16894q.f2018e;
+            }
+            d0Var.f1994e = f10;
+            e0 e0Var2 = new e0(d0Var);
+            this.f16894q = e0Var2;
+            if (j18 == -9223372036854775807L) {
+                j18 = j23 - e2.d0.Q(e0Var2.f2015a);
+            }
+            if (z10) {
+                j20 = j18;
+            } else {
+                p2.g u10 = u(j18, lVar.f43726s);
+                if (u10 != null) {
+                    j16 = u10.f43704e;
+                } else if (!i0Var.isEmpty()) {
+                    p2.i iVar = (p2.i) i0Var.get(e2.d0.c(i0Var, Long.valueOf(j18), true));
+                    p2.g u11 = u(j18, iVar.f43700x);
+                    if (u11 != null) {
+                        j16 = u11.f43704e;
+                    } else {
+                        j16 = iVar.f43704e;
+                    }
+                }
+                j20 = j16;
+            }
+            if (i10 == 2 && lVar.f43714f) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            h1Var = new h1(j10, j3, j12, lVar.f43728u, j21, j20, true, !z15, z12, obj, i(), this.f16894q);
+        } else {
+            if (j18 != -9223372036854775807L && !i0Var.isEmpty()) {
+                if (!z14 && j18 != j17) {
+                    j18 = ((p2.i) i0Var.get(e2.d0.c(i0Var, Long.valueOf(j18), true))).f43704e;
+                }
+                j11 = j18;
+            } else {
+                j11 = 0;
+            }
+            long j24 = lVar.f43728u;
+            h1Var = new h1(j10, j3, j24, j24, 0L, j11, true, false, true, obj, i(), null);
+        }
+        n(h1Var);
     }
 }

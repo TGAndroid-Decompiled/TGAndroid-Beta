@@ -1,54 +1,25 @@
 package org.telegram.messenger;
 public final class hd implements Runnable {
-    public final int f17379a;
-    public final MessagesController f17380b;
+    public final int f17879a;
+    public final long f17880b;
+    public final long f17881c;
+    public final BaseController d;
 
-    public hd(MessagesController messagesController, int i10) {
-        this.f17379a = i10;
-        this.f17380b = messagesController;
+    public hd(BaseController baseController, long j3, long j10, int i10) {
+        this.f17879a = i10;
+        this.d = baseController;
+        this.f17880b = j3;
+        this.f17881c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17379a) {
+        switch (this.f17879a) {
             case 0:
-                this.f17380b.lambda$processLoadedDeleteTask$87();
-                return;
-            case 1:
-                this.f17380b.lambda$markAllTopicsAsRead$5();
-                return;
-            case 2:
-                this.f17380b.lambda$hidePromoDialog$136();
-                return;
-            case 3:
-                this.f17380b.removePromoDialog();
-                return;
-            case 4:
-                this.f17380b.lambda$putUsers$57();
-                return;
-            case 5:
-                this.f17380b.lambda$didReceivedNotification$42();
-                return;
-            case 6:
-                this.f17380b.lambda$addWebBrowserException$512();
-                return;
-            case 7:
-                this.f17380b.lambda$markAllTopicsAsRead$6();
-                return;
-            case 8:
-                this.f17380b.lambda$removeWebBrowserException$514();
-                return;
-            case 9:
-                this.f17380b.lambda$new$13();
-                return;
-            case 10:
-                this.f17380b.loadAppConfig();
-                return;
-            case 11:
-                this.f17380b.lambda$new$17();
+                ((MessagesController) this.d).lambda$markDialogAsReadNow$240(this.f17880b, this.f17881c);
                 return;
             default:
-                this.f17380b.lambda$new$0();
+                ((NotificationsController) this.d).lambda$setOpenedDialogId$3(this.f17880b, this.f17881c);
                 return;
         }
     }

@@ -1,13 +1,13 @@
 package ub;
 
-import ob.j;
-public final class c extends j {
-    public final float f45273c;
-    public final int d;
+import java.util.Comparator;
+public final class c implements Comparator {
+    public static final c f46987a = new Object();
 
-    public c(float f10, float f11, float f12, int i10) {
-        super(f10, f11);
-        this.f45273c = f12;
-        this.d = i10;
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        ((tb.a) obj2).getClass();
+        ((tb.a) obj).getClass();
+        return 0;
     }
 }

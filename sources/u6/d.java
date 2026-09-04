@@ -1,23 +1,84 @@
 package u6;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import j7.f5;
-import r5.c0;
-public final class d extends c6.a {
-    public static final Parcelable.Creator<d> CREATOR = new c0(18);
-    public final boolean f45221a;
+import android.app.Application;
+import android.os.Build;
+import android.os.Process;
+import android.os.StrictMode;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import n6.l;
+import w7.v;
+public abstract class d {
+    public static String f46956a;
+    public static int f46957b;
+    public static Boolean f46958c;
 
-    public d(boolean z4) {
-        this.f45221a = z4;
+    public static String a() {
+        BufferedReader bufferedReader;
+        if (f46956a == null) {
+            if (Build.VERSION.SDK_INT >= 28) {
+                f46956a = Application.getProcessName();
+            } else {
+                int i10 = f46957b;
+                if (i10 == 0) {
+                    i10 = Process.myPid();
+                    f46957b = i10;
+                }
+                String str = null;
+                str = null;
+                str = null;
+                BufferedReader bufferedReader2 = null;
+                if (i10 > 0) {
+                    try {
+                        String str2 = "/proc/" + i10 + "/cmdline";
+                        StrictMode.ThreadPolicy allowThreadDiskReads = StrictMode.allowThreadDiskReads();
+                        bufferedReader = new BufferedReader(new FileReader(str2));
+                        StrictMode.setThreadPolicy(allowThreadDiskReads);
+                        try {
+                            String readLine = bufferedReader.readLine();
+                            l.h(readLine);
+                            str = readLine.trim();
+                        } catch (IOException unused) {
+                        } catch (Throwable th2) {
+                            th = th2;
+                            bufferedReader2 = bufferedReader;
+                            b.a(bufferedReader2);
+                            throw th;
+                        }
+                    } catch (IOException unused2) {
+                        bufferedReader = null;
+                    } catch (Throwable th3) {
+                        th = th3;
+                    }
+                    b.a(bufferedReader);
+                }
+                f46956a = str;
+            }
+        }
+        return f46956a;
     }
 
-    @Override
-    public final void writeToParcel(Parcel dest, int i10) {
-        kotlin.jvm.internal.j.e(dest, "dest");
-        int q10 = f5.q(dest, 20293);
-        f5.s(dest, 1, 4);
-        dest.writeInt(this.f45221a ? 1 : 0);
-        f5.r(dest, q10);
+    public static boolean b() {
+        Boolean bool = f46958c;
+        if (bool == null) {
+            if (Build.VERSION.SDK_INT >= 28) {
+                bool = Boolean.valueOf(Process.isIsolated());
+            } else {
+                try {
+                    Object invoke = Process.class.getDeclaredMethod("isIsolated", null).invoke(null, null);
+                    Object[] objArr = new Object[0];
+                    if (invoke != null) {
+                        bool = (Boolean) invoke;
+                    } else {
+                        throw new RuntimeException(v.a(objArr));
+                    }
+                } catch (ReflectiveOperationException unused) {
+                    bool = Boolean.FALSE;
+                }
+            }
+            f46958c = bool;
+        }
+        return bool.booleanValue();
     }
 }

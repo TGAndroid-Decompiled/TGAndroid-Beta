@@ -1,38 +1,38 @@
 package x1;
 
+import a6.d;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import c5.x;
 import com.google.android.gms.common.api.m;
-import h2.f;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-import o5.d;
-import org.telegram.ui.az;
+import u4.e;
 public final class a implements Runnable {
-    public static Handler f46709f;
-    public final d e;
-    public volatile int f46711b = 1;
-    public final AtomicBoolean f46712c = new AtomicBoolean();
+    public static Handler f48677f;
+    public final d f48681e;
+    public volatile int f48679b = 1;
+    public final AtomicBoolean f48680c = new AtomicBoolean();
     public final AtomicBoolean d = new AtomicBoolean();
-    public final b f46710a = new b(this, new f(this, 10));
+    public final b f48678a = new b(this, new x(this, 8));
 
     public a(d dVar) {
-        this.e = dVar;
+        this.f48681e = dVar;
     }
 
     public final void a() {
-        d dVar = this.e;
+        d dVar = this.f48681e;
         int i10 = 0;
-        for (m mVar : dVar.f16432j) {
+        for (m mVar : dVar.f305j) {
             if (mVar.d(dVar)) {
                 i10++;
             }
         }
         try {
-            dVar.f16431i.tryAcquire(i10, 5L, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            Log.i("GACSignInLoader", "Unexpected InterruptedException", e);
+            dVar.f304i.tryAcquire(i10, 5L, TimeUnit.SECONDS);
+        } catch (InterruptedException e7) {
+            Log.i("GACSignInLoader", "Unexpected InterruptedException", e7);
             Thread.currentThread().interrupt();
         }
     }
@@ -41,19 +41,19 @@ public final class a implements Runnable {
         Handler handler;
         synchronized (a.class) {
             try {
-                if (f46709f == null) {
-                    f46709f = new Handler(Looper.getMainLooper());
+                if (f48677f == null) {
+                    f48677f = new Handler(Looper.getMainLooper());
                 }
-                handler = f46709f;
+                handler = f48677f;
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        handler.post(new az(11, this, obj));
+        handler.post(new e(6, this, obj));
     }
 
     @Override
     public final void run() {
-        this.e.b();
+        this.f48681e.b();
     }
 }

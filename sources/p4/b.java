@@ -1,142 +1,184 @@
 package p4;
 
-import android.net.Uri;
-import h5.d0;
-import j3.g;
-import java.util.Arrays;
-import org.telegram.ui.cl0;
-public final class b implements g {
-    public static final b f41065f = new b(new a[0], 0, -9223372036854775807L, 0);
-    public static final a h;
-    public static final String f41066n;
-    public static final String f41067r;
-    public static final String f41068s;
-    public static final String v;
-    public static final cl0 f41069w;
-    public final int f41070a;
-    public final long f41071b;
-    public final long f41072c;
-    public final int d;
-    public final a[] e;
+import android.os.Handler;
+import android.os.Message;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+public final class b extends Handler {
+    public final ArrayList f43798a = new ArrayList();
+    public final ArrayList f43799b = new ArrayList();
+    public final e f43800c;
 
-    static {
-        a aVar = new a(0L, -1, -1, new int[0], new Uri[0], new long[0], 0L, false);
-        int[] iArr = aVar.e;
-        int length = iArr.length;
-        int max = Math.max(0, length);
-        int[] copyOf = Arrays.copyOf(iArr, max);
-        Arrays.fill(copyOf, length, max, 0);
-        long[] jArr = aVar.f41063f;
-        int length2 = jArr.length;
-        int max2 = Math.max(0, length2);
-        long[] copyOf2 = Arrays.copyOf(jArr, max2);
-        Arrays.fill(copyOf2, length2, max2, -9223372036854775807L);
-        h = new a(aVar.f41060a, 0, aVar.f41062c, copyOf, (Uri[]) Arrays.copyOf(aVar.d, 0), copyOf2, aVar.h, aVar.f41064n);
-        int i10 = d0.f6924a;
-        f41066n = Integer.toString(1, 36);
-        f41067r = Integer.toString(2, 36);
-        f41068s = Integer.toString(3, 36);
-        v = Integer.toString(4, 36);
-        f41069w = new cl0(13);
+    public b(e eVar) {
+        this.f43800c = eVar;
     }
 
-    public b(a[] aVarArr, long j10, long j11, int i10) {
-        this.f41071b = j10;
-        this.f41072c = j11;
-        this.f41070a = aVarArr.length + i10;
-        this.e = aVarArr;
-        this.d = i10;
-    }
-
-    public final a a(int i10) {
-        int i11 = this.d;
-        if (i10 < i11) {
-            return h;
-        }
-        return this.e[i10 - i11];
-    }
-
-    public final boolean b(int i10) {
-        if (i10 == this.f41070a - 1) {
-            a a2 = a(i10);
-            if (a2.f41064n && a2.f41060a == Long.MIN_VALUE && a2.f41061b == -1) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && b.class == obj.getClass()) {
-                b bVar = (b) obj;
-                int i10 = d0.f6924a;
-                if (this.f41070a == bVar.f41070a && this.f41071b == bVar.f41071b && this.f41072c == bVar.f41072c && this.d == bVar.d && Arrays.equals(this.e, bVar.e)) {
-                    return true;
+    public static void a(t tVar, int i10, Object obj, int i11) {
+        v vVar;
+        v vVar2;
+        boolean z10;
+        x xVar = tVar.f43914a;
+        s sVar = tVar.f43915b;
+        int i12 = 65280 & i10;
+        if (i12 != 256) {
+            if (i12 != 512) {
+                if (i12 == 768 && i10 == 769) {
+                    sVar.l((z) obj);
+                    return;
                 }
-                return false;
+                return;
             }
-            return false;
+            u uVar = (u) obj;
+            switch (i10) {
+                case 513:
+                    sVar.a();
+                    return;
+                case 514:
+                    sVar.c();
+                    return;
+                case 515:
+                    sVar.b();
+                    return;
+                default:
+                    return;
+            }
         }
-        return true;
+        if (i10 != 264 && i10 != 262) {
+            vVar = (v) obj;
+        } else {
+            vVar = (v) ((q0.b) obj).f44101b;
+        }
+        if (i10 != 264 && i10 != 262) {
+            vVar2 = null;
+        } else {
+            vVar2 = (v) ((q0.b) obj).f44100a;
+        }
+        if (vVar != null) {
+            boolean z11 = true;
+            if ((tVar.d & 2) == 0 && !vVar.h(tVar.f43916c)) {
+                z zVar = x.c().f43823u;
+                if (zVar == null) {
+                    z10 = false;
+                } else {
+                    z10 = zVar.d;
+                }
+                z11 = (z10 && vVar.d() && i10 == 262 && i11 == 3 && vVar2 != null) ? true ^ vVar2.d() : false;
+            }
+            if (z11) {
+                switch (i10) {
+                    case 257:
+                        sVar.d(vVar);
+                        return;
+                    case 258:
+                        sVar.f(vVar);
+                        return;
+                    case 259:
+                        sVar.e(vVar);
+                        return;
+                    case 260:
+                        sVar.k(vVar);
+                        return;
+                    case 261:
+                        sVar.getClass();
+                        return;
+                    case 262:
+                        sVar.h(xVar, vVar, i11);
+                        return;
+                    case 263:
+                        sVar.j(xVar, vVar, i11);
+                        return;
+                    case 264:
+                        sVar.h(xVar, vVar, i11);
+                        return;
+                    default:
+                        return;
+                }
+            }
+        }
     }
 
-    public final int hashCode() {
-        return (((((((this.f41070a * 961) + ((int) this.f41071b)) * 31) + ((int) this.f41072c)) * 31) + this.d) * 31) + Arrays.hashCode(this.e);
+    public final void b(int i10, Object obj) {
+        obtainMessage(i10, obj).sendToTarget();
     }
 
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("AdPlaybackState(adsId=null, adResumePositionUs=");
-        sb.append(this.f41071b);
-        sb.append(", adGroups=[");
-        int i10 = 0;
-        while (true) {
-            a[] aVarArr = this.e;
-            if (i10 < aVarArr.length) {
-                sb.append("adGroup(timeUs=");
-                sb.append(aVarArr[i10].f41060a);
-                sb.append(", ads=[");
-                for (int i11 = 0; i11 < aVarArr[i10].e.length; i11++) {
-                    sb.append("ad(state=");
-                    int i12 = aVarArr[i10].e[i11];
-                    if (i12 != 0) {
-                        if (i12 != 1) {
-                            if (i12 != 2) {
-                                if (i12 != 3) {
-                                    if (i12 != 4) {
-                                        sb.append('?');
-                                    } else {
-                                        sb.append('!');
-                                    }
-                                } else {
-                                    sb.append('P');
-                                }
-                            } else {
-                                sb.append('S');
-                            }
-                        } else {
-                            sb.append('R');
+    @Override
+    public final void handleMessage(Message message) {
+        int q6;
+        ArrayList arrayList = this.f43798a;
+        e eVar = this.f43800c;
+        ArrayList arrayList2 = eVar.f43811i;
+        j0 j0Var = eVar.f43821s;
+        int i10 = message.what;
+        Object obj = message.obj;
+        int i11 = message.arg1;
+        if (i10 == 259 && eVar.e().f43926c.equals(((v) obj).f43926c)) {
+            eVar.o(true);
+        }
+        int i12 = 0;
+        ArrayList arrayList3 = this.f43799b;
+        if (i10 != 262) {
+            if (i10 != 264) {
+                switch (i10) {
+                    case 257:
+                        j0Var.v((v) obj);
+                        break;
+                    case 258:
+                        j0Var.w((v) obj);
+                        break;
+                    case 259:
+                        v vVar = (v) obj;
+                        j0Var.getClass();
+                        if (vVar.c() != j0Var && (q6 = j0Var.q(vVar)) >= 0) {
+                            j0Var.C((i0) j0Var.H.get(q6));
+                            break;
                         }
-                    } else {
-                        sb.append('_');
-                    }
-                    sb.append(", durationUs=");
-                    sb.append(aVarArr[i10].f41063f[i11]);
-                    sb.append(')');
-                    if (i11 < aVarArr[i10].e.length - 1) {
-                        sb.append(", ");
-                    }
+                        break;
                 }
-                sb.append("])");
-                if (i10 < aVarArr.length - 1) {
-                    sb.append(", ");
-                }
-                i10++;
             } else {
-                sb.append("])");
-                return sb.toString();
+                v vVar2 = (v) ((q0.b) obj).f44101b;
+                arrayList3.add(vVar2);
+                j0Var.v(vVar2);
+                j0Var.x(vVar2);
             }
+        } else {
+            v vVar3 = (v) ((q0.b) obj).f44101b;
+            j0Var.x(vVar3);
+            if (eVar.v != null && vVar3.d()) {
+                int size = arrayList3.size();
+                int i13 = 0;
+                while (i13 < size) {
+                    Object obj2 = arrayList3.get(i13);
+                    i13++;
+                    j0Var.w((v) obj2);
+                }
+                arrayList3.clear();
+            }
+        }
+        try {
+            int size2 = arrayList2.size();
+            while (true) {
+                size2--;
+                if (size2 >= 0) {
+                    x xVar = (x) ((WeakReference) arrayList2.get(size2)).get();
+                    if (xVar == null) {
+                        arrayList2.remove(size2);
+                    } else {
+                        arrayList.addAll(xVar.f43946b);
+                    }
+                } else {
+                    int size3 = arrayList.size();
+                    while (i12 < size3) {
+                        Object obj3 = arrayList.get(i12);
+                        i12++;
+                        a((t) obj3, i10, obj, i11);
+                    }
+                    arrayList.clear();
+                    return;
+                }
+            }
+        } catch (Throwable th2) {
+            arrayList.clear();
+            throw th2;
         }
     }
 }

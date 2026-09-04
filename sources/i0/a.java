@@ -1,50 +1,51 @@
 package i0;
 
 import android.graphics.Color;
+import com.google.android.gms.internal.vision.e2;
 public abstract class a {
-    public static final ThreadLocal f7195a = new ThreadLocal();
+    public static final ThreadLocal f11422a = new ThreadLocal();
 
     public static int a(float[] fArr) {
         int round;
         int round2;
         int i10 = 0;
-        float f10 = fArr[0];
-        float f11 = fArr[1];
-        float f12 = fArr[2];
-        float abs = (1.0f - Math.abs((f12 * 2.0f) - 1.0f)) * f11;
-        float f13 = f12 - (0.5f * abs);
-        float abs2 = (1.0f - Math.abs(((f10 / 60.0f) % 2.0f) - 1.0f)) * abs;
-        switch (((int) f10) / 60) {
+        float f7 = fArr[0];
+        float f10 = fArr[1];
+        float f11 = fArr[2];
+        float abs = (1.0f - Math.abs((f11 * 2.0f) - 1.0f)) * f10;
+        float f12 = f11 - (0.5f * abs);
+        float abs2 = (1.0f - Math.abs(((f7 / 60.0f) % 2.0f) - 1.0f)) * abs;
+        switch (((int) f7) / 60) {
             case 0:
-                i10 = Math.round((abs + f13) * 255.0f);
-                round = Math.round((abs2 + f13) * 255.0f);
-                round2 = Math.round(f13 * 255.0f);
+                i10 = Math.round((abs + f12) * 255.0f);
+                round = Math.round((abs2 + f12) * 255.0f);
+                round2 = Math.round(f12 * 255.0f);
                 break;
             case 1:
-                i10 = Math.round((abs2 + f13) * 255.0f);
-                round = Math.round((abs + f13) * 255.0f);
-                round2 = Math.round(f13 * 255.0f);
+                i10 = Math.round((abs2 + f12) * 255.0f);
+                round = Math.round((abs + f12) * 255.0f);
+                round2 = Math.round(f12 * 255.0f);
                 break;
             case 2:
-                i10 = Math.round(f13 * 255.0f);
-                round = Math.round((abs + f13) * 255.0f);
-                round2 = Math.round((abs2 + f13) * 255.0f);
+                i10 = Math.round(f12 * 255.0f);
+                round = Math.round((abs + f12) * 255.0f);
+                round2 = Math.round((abs2 + f12) * 255.0f);
                 break;
             case 3:
-                i10 = Math.round(f13 * 255.0f);
-                round = Math.round((abs2 + f13) * 255.0f);
-                round2 = Math.round((abs + f13) * 255.0f);
+                i10 = Math.round(f12 * 255.0f);
+                round = Math.round((abs2 + f12) * 255.0f);
+                round2 = Math.round((abs + f12) * 255.0f);
                 break;
             case 4:
-                i10 = Math.round((abs2 + f13) * 255.0f);
-                round = Math.round(f13 * 255.0f);
-                round2 = Math.round((abs + f13) * 255.0f);
+                i10 = Math.round((abs2 + f12) * 255.0f);
+                round = Math.round(f12 * 255.0f);
+                round2 = Math.round((abs + f12) * 255.0f);
                 break;
             case 5:
             case 6:
-                i10 = Math.round((abs + f13) * 255.0f);
-                round = Math.round(f13 * 255.0f);
-                round2 = Math.round((abs2 + f13) * 255.0f);
+                i10 = Math.round((abs + f12) * 255.0f);
+                round = Math.round(f12 * 255.0f);
+                round2 = Math.round((abs2 + f12) * 255.0f);
                 break;
             default:
                 round2 = 0;
@@ -55,39 +56,39 @@ public abstract class a {
     }
 
     public static void b(float[] fArr, int i10, int i11, int i12) {
-        float x10;
+        float A;
         float abs;
         float min;
         float min2;
-        float f10 = i10 / 255.0f;
-        float f11 = i11 / 255.0f;
-        float f12 = i12 / 255.0f;
-        float max = Math.max(f10, Math.max(f11, f12));
-        float min3 = Math.min(f10, Math.min(f11, f12));
-        float f13 = max - min3;
-        float f14 = (max + min3) / 2.0f;
-        float f15 = 0.0f;
+        float f7 = i10 / 255.0f;
+        float f10 = i11 / 255.0f;
+        float f11 = i12 / 255.0f;
+        float max = Math.max(f7, Math.max(f10, f11));
+        float min3 = Math.min(f7, Math.min(f10, f11));
+        float f12 = max - min3;
+        float f13 = (max + min3) / 2.0f;
+        float f14 = 0.0f;
         if (max == min3) {
-            x10 = 0.0f;
+            A = 0.0f;
             abs = 0.0f;
         } else {
-            if (max == f10) {
-                x10 = ((f11 - f12) / f13) % 6.0f;
-            } else if (max == f11) {
-                x10 = e2.c.x(f12, f10, f13, 2.0f);
+            if (max == f7) {
+                A = ((f10 - f11) / f12) % 6.0f;
+            } else if (max == f10) {
+                A = e2.A(f11, f7, f12, 2.0f);
             } else {
-                x10 = e2.c.x(f10, f11, f13, 4.0f);
+                A = e2.A(f7, f10, f12, 4.0f);
             }
-            abs = f13 / (1.0f - Math.abs((2.0f * f14) - 1.0f));
+            abs = f12 / (1.0f - Math.abs((2.0f * f13) - 1.0f));
         }
-        float f16 = (x10 * 60.0f) % 360.0f;
-        if (f16 < 0.0f) {
-            f16 += 360.0f;
+        float f15 = (A * 60.0f) % 360.0f;
+        if (f15 < 0.0f) {
+            f15 += 360.0f;
         }
-        if (f16 < 0.0f) {
+        if (f15 < 0.0f) {
             min = 0.0f;
         } else {
-            min = Math.min(f16, 360.0f);
+            min = Math.min(f15, 360.0f);
         }
         fArr[0] = min;
         if (abs < 0.0f) {
@@ -96,10 +97,10 @@ public abstract class a {
             min2 = Math.min(abs, 1.0f);
         }
         fArr[1] = min2;
-        if (f14 >= 0.0f) {
-            f15 = Math.min(f14, 1.0f);
+        if (f13 >= 0.0f) {
+            f14 = Math.min(f13, 1.0f);
         }
-        fArr[2] = f15;
+        fArr[2] = f14;
     }
 
     public static int c(double d, double d10, double d11) {
@@ -127,9 +128,9 @@ public abstract class a {
         return Color.rgb(j((int) Math.round(d12 * 255.0d)), j((int) Math.round(d13 * 255.0d)), j((int) Math.round(d14 * 255.0d)));
     }
 
-    public static int d(float f10, int i10, int i11) {
-        float f11 = 1.0f - f10;
-        return Color.argb((int) ((Color.alpha(i11) * f10) + (Color.alpha(i10) * f11)), (int) ((Color.red(i11) * f10) + (Color.red(i10) * f11)), (int) ((Color.green(i11) * f10) + (Color.green(i10) * f11)), (int) ((Color.blue(i11) * f10) + (Color.blue(i10) * f11)));
+    public static int d(float f7, int i10, int i11) {
+        float f10 = 1.0f - f7;
+        return Color.argb((int) ((Color.alpha(i11) * f7) + (Color.alpha(i10) * f10)), (int) ((Color.red(i11) * f7) + (Color.red(i10) * f10)), (int) ((Color.green(i11) * f7) + (Color.green(i10) * f10)), (int) ((Color.blue(i11) * f7) + (Color.blue(i10) * f10)));
     }
 
     public static double e(int i10, int i11) {
@@ -137,9 +138,9 @@ public abstract class a {
             if (Color.alpha(i10) < 255) {
                 i10 = h(i10, i11);
             }
-            double f10 = f(i10) + 0.05d;
-            double f11 = f(i11) + 0.05d;
-            return Math.max(f10, f11) / Math.min(f10, f11);
+            double f7 = f(i10) + 0.05d;
+            double f10 = f(i11) + 0.05d;
+            return Math.max(f7, f10) / Math.min(f7, f10);
         }
         throw new IllegalArgumentException("background can not be translucent: #" + Integer.toHexString(i11));
     }
@@ -148,7 +149,7 @@ public abstract class a {
         double pow;
         double pow2;
         double pow3;
-        ThreadLocal threadLocal = f7195a;
+        ThreadLocal threadLocal = f11422a;
         double[] dArr = (double[]) threadLocal.get();
         if (dArr == null) {
             dArr = new double[3];
@@ -186,10 +187,10 @@ public abstract class a {
         throw new IllegalArgumentException("outXyz must have a length of 3.");
     }
 
-    public static int g(float f10, int i10, int i11) {
+    public static int g(float f7, int i10, int i11) {
         int i12 = 255;
         if (Color.alpha(i11) == 255) {
-            double d = f10;
+            double d = f7;
             if (e(k(i10, 255), i11) < d) {
                 return -1;
             }
@@ -218,7 +219,7 @@ public abstract class a {
         if (i14 == 0) {
             return 0;
         }
-        return e2.c.e(255, i11, i12 * i13, (i10 * 255) * i11) / (i14 * 255);
+        return e2.w(255, i11, i12 * i13, (i10 * 255) * i11) / (i14 * 255);
     }
 
     public static int j(int i10) {

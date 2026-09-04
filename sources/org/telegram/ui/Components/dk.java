@@ -1,58 +1,70 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.AccountInstance;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-public final class dk implements Runnable {
-    public final int f24296a = 0;
-    public final TLObject f24297b;
-    public final int f24298c;
-    public final long d;
-    public final long e;
-    public final boolean f24299f;
-    public final TLRPC.TL_error h;
-    public final Object f24300n;
-    public final Object f24301r;
-    public final Object f24302s;
-    public final Object v;
-    public final Object f24303w;
-    public final Object f24304x;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.MotionEvent;
+public final class dk extends ll0 {
+    public final int X2;
+    public final Paint Y2;
+    public final ok Z2;
 
-    public dk(gk gkVar, int i10, TLRPC.TL_error tL_error, TLObject tLObject, AccountInstance accountInstance, boolean z4, String str, ArrayList arrayList, long j10, long j11, ArrayList arrayList2, ArrayList arrayList3) {
-        this.f24300n = gkVar;
-        this.f24298c = i10;
-        this.h = tL_error;
-        this.f24297b = tLObject;
-        this.f24301r = accountInstance;
-        this.f24299f = z4;
-        this.f24302s = str;
-        this.v = arrayList;
-        this.d = j10;
-        this.e = j11;
-        this.f24303w = arrayList2;
-        this.f24304x = arrayList3;
+    public dk(ok okVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        super(context, f6Var);
+        this.X2 = i10;
+        switch (i10) {
+            case 1:
+                this.Z2 = okVar;
+                super(context, f6Var);
+                this.Y2 = new Paint();
+                return;
+            default:
+                this.Z2 = okVar;
+                this.Y2 = new Paint();
+                return;
+        }
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.dk.run():void");
+    public final void dispatchDraw(Canvas canvas) {
+        switch (this.X2) {
+            case 0:
+                if (this.Z2.f29091n == 2 && getChildCount() > 0) {
+                    float f7 = 2.1474836E9f;
+                    for (int i10 = 0; i10 < getChildCount(); i10++) {
+                        if (getChildAt(i10).getY() < f7) {
+                            f7 = getChildAt(i10).getY();
+                        }
+                    }
+                    this.Y2.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20734h5, false));
+                }
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                if (this.Z2.f29091n == 1 && getChildCount() > 0) {
+                    float f10 = 2.1474836E9f;
+                    for (int i11 = 0; i11 < getChildCount(); i11++) {
+                        if (getChildAt(i11).getY() < f10) {
+                            f10 = getChildAt(i11).getY();
+                        }
+                    }
+                    this.Y2.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20734h5, false));
+                }
+                super.dispatchDraw(canvas);
+                return;
+        }
     }
 
-    public dk(ph.d dVar, TLObject tLObject, int i10, long j10, org.telegram.ui.ActionBar.g3 g3Var, TL_payments.starRefProgram starrefprogram, long j11, boolean z4, Context context, org.telegram.ui.ActionBar.f6 f6Var, TLRPC.User user, TLRPC.TL_error tL_error) {
-        this.f24300n = dVar;
-        this.f24297b = tLObject;
-        this.f24298c = i10;
-        this.d = j10;
-        this.f24301r = g3Var;
-        this.f24302s = starrefprogram;
-        this.e = j11;
-        this.f24299f = z4;
-        this.v = context;
-        this.f24303w = f6Var;
-        this.f24304x = user;
-        this.h = tL_error;
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.X2) {
+            case 0:
+                if (this.Z2.f29091n != 0) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
     }
 }

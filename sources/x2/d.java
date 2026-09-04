@@ -1,15 +1,15 @@
 package x2;
-public final class d implements u9.d {
-    public static final d f46726a = new Object();
-    public static final u9.c f46727b = u9.c.c("clientType");
-    public static final u9.c f46728c = u9.c.c("androidClientInfo");
+public final class d implements d9.g {
+    public final p f48704a;
+    public final i f48705b;
+
+    public d(p pVar, i iVar) {
+        this.f48704a = pVar;
+        this.f48705b = iVar;
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        u9.e eVar = (u9.e) obj2;
-        j jVar = (j) ((q) obj);
-        jVar.getClass();
-        eVar.e(f46727b, p.f46765a);
-        eVar.e(f46728c, jVar.f46752a);
+    public final boolean apply(java.lang.Object r9) {
+        throw new UnsupportedOperationException("Method not decompiled: x2.d.apply(java.lang.Object):boolean");
     }
 }

@@ -2,25 +2,25 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-public final class fs0 extends u00 {
-    public final tr0 R;
-    public final yu0 S;
+public final class fs0 extends t00 {
+    public final tr0 U;
+    public final xu0 V;
 
-    public fs0(yu0 yu0Var, Context context, tr0 tr0Var) {
+    public fs0(xu0 xu0Var, Context context, tr0 tr0Var) {
         super(context, null);
-        this.S = yu0Var;
-        this.R = tr0Var;
+        this.V = xu0Var;
+        this.U = tr0Var;
     }
 
     @Override
     public final int getColumnsCount() {
-        return this.S.f31136j1[yu0.p0(this.R.C) ? 1 : 0];
+        return this.V.f32705m1[xu0.p0(this.U.F) ? 1 : 0];
     }
 
     @Override
     public final int getViewType() {
         setIsSingleCell(false);
-        int i10 = this.R.C;
+        int i10 = this.U.F;
         if (i10 == 0 || i10 == 5) {
             return 2;
         }
@@ -33,11 +33,11 @@ public final class fs0 extends u00 {
             }
             if (i10 != 7) {
                 if (i10 == 6) {
-                    if (this.S.F0.getTabsCount() == 1) {
+                    if (this.V.I0.getTabsCount() == 1) {
                         setIsSingleCell(true);
                         return 1;
                     }
-                } else if (yu0.p0(i10)) {
+                } else if (xu0.p0(i10)) {
                     return 27;
                 }
                 return 1;
@@ -48,9 +48,9 @@ public final class fs0 extends u00 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        yu0 yu0Var = this.S;
-        yu0Var.Q0.setColor(yu0Var.h0(org.telegram.ui.ActionBar.j6.f19881d6));
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), yu0Var.Q0);
+        xu0 xu0Var = this.V;
+        xu0Var.T0.setColor(xu0Var.h0(org.telegram.ui.ActionBar.j6.f20663d6));
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), xu0Var.T0);
         super.onDraw(canvas);
     }
 }

@@ -1,81 +1,47 @@
 package c5;
 
-import android.text.Layout;
-public final class i {
-    public String f2136a;
-    public int f2137b;
-    public boolean f2138c;
-    public int d;
-    public boolean e;
-    public float f2143k;
-    public String f2144l;
-    public Layout.Alignment f2147o;
-    public Layout.Alignment f2148p;
-    public b f2150r;
-    public int f2139f = -1;
-    public int f2140g = -1;
-    public int h = -1;
-    public int f2141i = -1;
-    public int f2142j = -1;
-    public int f2145m = -1;
-    public int f2146n = -1;
-    public int f2149q = -1;
-    public float f2151s = Float.MAX_VALUE;
+import android.content.ContentResolver;
+import android.net.Uri;
+import android.util.Log;
+import com.google.android.gms.internal.clearcut.e2;
+import java.util.HashMap;
+import org.telegram.ui.Cells.p6;
+public final class i implements com.google.android.gms.internal.clearcut.g {
+    public String f4403a;
 
-    public final void a(i iVar) {
-        int i10;
-        Layout.Alignment alignment;
-        Layout.Alignment alignment2;
-        String str;
-        if (iVar != null) {
-            if (!this.f2138c && iVar.f2138c) {
-                this.f2137b = iVar.f2137b;
-                this.f2138c = true;
-            }
-            if (this.h == -1) {
-                this.h = iVar.h;
-            }
-            if (this.f2141i == -1) {
-                this.f2141i = iVar.f2141i;
-            }
-            if (this.f2136a == null && (str = iVar.f2136a) != null) {
-                this.f2136a = str;
-            }
-            if (this.f2139f == -1) {
-                this.f2139f = iVar.f2139f;
-            }
-            if (this.f2140g == -1) {
-                this.f2140g = iVar.f2140g;
-            }
-            if (this.f2146n == -1) {
-                this.f2146n = iVar.f2146n;
-            }
-            if (this.f2147o == null && (alignment2 = iVar.f2147o) != null) {
-                this.f2147o = alignment2;
-            }
-            if (this.f2148p == null && (alignment = iVar.f2148p) != null) {
-                this.f2148p = alignment;
-            }
-            if (this.f2149q == -1) {
-                this.f2149q = iVar.f2149q;
-            }
-            if (this.f2142j == -1) {
-                this.f2142j = iVar.f2142j;
-                this.f2143k = iVar.f2143k;
-            }
-            if (this.f2150r == null) {
-                this.f2150r = iVar.f2150r;
-            }
-            if (this.f2151s == Float.MAX_VALUE) {
-                this.f2151s = iVar.f2151s;
-            }
-            if (!this.e && iVar.e) {
-                this.d = iVar.d;
-                this.e = true;
-            }
-            if (this.f2145m == -1 && (i10 = iVar.f2145m) != -1) {
-                this.f2145m = i10;
-            }
+    @Override
+    public Object zzp() {
+        Object obj;
+        boolean z10;
+        String str = this.f4403a;
+        ContentResolver contentResolver = com.google.android.gms.internal.clearcut.d.f5569g.getContentResolver();
+        Uri uri = e2.f5586a;
+        synchronized (e2.class) {
+            e2.c(contentResolver);
+            obj = e2.f5594k;
         }
+        HashMap hashMap = e2.f5591g;
+        Boolean bool = Boolean.FALSE;
+        Boolean bool2 = (Boolean) e2.a(hashMap, str, bool);
+        if (bool2 != null) {
+            z10 = bool2.booleanValue();
+        } else {
+            String b10 = e2.b(contentResolver, str);
+            boolean z11 = false;
+            if (b10 != null && !b10.equals("")) {
+                if (e2.f5588c.matcher(b10).matches()) {
+                    bool = Boolean.TRUE;
+                    z11 = true;
+                } else if (!e2.d.matcher(b10).matches()) {
+                    Log.w("Gservices", p6.j("attempt to read gservices key ", str, " (value \"", b10, "\") as boolean"));
+                }
+                e2.e(obj, hashMap, str, bool);
+                z10 = z11;
+            }
+            bool = bool2;
+            e2.e(obj, hashMap, str, bool);
+            z10 = z11;
+        }
+        return Boolean.valueOf(z10);
     }
 }

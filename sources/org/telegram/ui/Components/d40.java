@@ -1,59 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-public final class d40 extends AnimatorListenerAdapter {
-    public final int f24163a;
-    public final boolean f24164b;
-    public final e40 f24165c;
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+public final class d40 extends FrameLayout {
+    public final int f25222a;
+    public final org.telegram.ui.ActionBar.f6 f25223b;
+    public ArrayList f25224c;
+    public final FrameLayout d;
+    public final d61 f25225e;
+    public final v51 f25226f;
+    public Utilities.Callback h;
 
-    public d40(e40 e40Var, boolean z4, int i10) {
-        this.f24163a = i10;
-        this.f24165c = e40Var;
-        this.f24164b = z4;
+    public d40(int i10, Activity activity, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(activity);
+        this.f25222a = i10;
+        this.f25223b = f6Var;
+        d61 d61Var = new d61(activity, i10, 0, false, new d(this, 15), new c40(this), new c40(this), f6Var);
+        this.f25225e = d61Var;
+        d61Var.setClipToPadding(false);
+        v51 v51Var = (v51) d61Var.getAdapter();
+        this.f25226f = v51Var;
+        v51Var.f31135r = false;
+        addView(d61Var, -1, -1);
+        FrameLayout frameLayout = new FrameLayout(activity);
+        this.d = frameLayout;
+        ImageView imageView = new ImageView(activity);
+        int i11 = org.telegram.ui.ActionBar.j6.f20827m6;
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i11, f6Var), PorterDuff.Mode.MULTIPLY));
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.large_hashtags);
+        frameLayout.addView(imageView, w7.x5.e(56, 56, 49));
+        TextView textView = new TextView(activity);
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
+        org.telegram.messenger.wl.k(R.string.HashtagSearchPlaceholder, textView, 17);
+        frameLayout.addView(textView, w7.x5.d(-2, -2.0f, 81, 0.0f, 56.0f, 0.0f, 0.0f));
+        addView(frameLayout, w7.x5.e(210, -2, 17));
+        d61Var.setEmptyView(frameLayout);
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f10;
-        float f11;
-        org.telegram.ui.ao aoVar;
-        lh.e1 e1Var;
-        switch (this.f24163a) {
-            case 0:
-                if (this.f24164b) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                e40 e40Var = this.f24165c;
-                e40Var.f24465w = f10;
-                e40Var.e.setTranslationY(f10 * AndroidUtilities.dp(48.0f));
-                e40Var.e.setPadding(0, 0, 0, (int) (e40Var.f24465w * AndroidUtilities.dp(48.0f)));
-                return;
-            default:
-                boolean z4 = this.f24164b;
-                if (z4) {
-                    f11 = 1.0f;
-                } else {
-                    f11 = 0.0f;
-                }
-                e40 e40Var2 = this.f24165c;
-                e40Var2.B = f11;
-                e40Var2.f24462n.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, f11));
-                e40Var2.f24462n.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, e40Var2.B));
-                org.telegram.ui.hk hkVar = e40Var2.f24461f;
-                if (hkVar != null && (aoVar = hkVar.f32924a) != null && (e1Var = aoVar.I3) != null) {
-                    e1Var.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, e40Var2.B));
-                    e40Var2.f24461f.f32924a.I3.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, e40Var2.B));
-                }
-                e40Var2.h.setAlpha(e40Var2.B);
-                if (!z4) {
-                    e40Var2.h.setVisibility(8);
-                    return;
-                }
-                return;
-        }
+    public void setOnHashtagClickListener(Utilities.Callback<String> callback) {
+        this.h = callback;
+    }
+
+    public void setOnScrollListener(s4.s0 s0Var) {
+        this.f25225e.j(s0Var);
     }
 }

@@ -1,45 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class f7 implements o1.g {
-    public final int f24812a;
-    public final Object f24813b;
+import android.net.Uri;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+public final class f7 implements Utilities.Callback {
+    public final int f25942a;
+    public final k8 f25943b;
 
-    public f7(Object obj, int i10) {
-        this.f24812a = i10;
-        this.f24813b = obj;
+    public f7(k8 k8Var, int i10) {
+        this.f25942a = i10;
+        this.f25943b = k8Var;
     }
 
     @Override
-    public final void a(o1.h hVar, float f10, float f11) {
-        ViewGroup viewGroup;
-        switch (this.f24812a) {
+    public final void run(Object obj) {
+        switch (this.f25942a) {
             case 0:
-                ((c8) this.f24813b).Q.setBufferedProgress(f10 / 1000.0f);
-                return;
-            case 1:
-                ic icVar = (ic) this.f24813b;
-                icVar.f25676o = (int) f10;
-                icVar.l();
-                return;
-            case 2:
-                if (Math.abs(f10) > ((nb) this.f24813b).getWidth()) {
-                    hVar.c();
-                    return;
-                }
-                return;
-            case 3:
-                li liVar = (li) ((lh.k3) this.f24813b).d;
-                di diVar = liVar.f26748w0;
-                if (diVar == liVar.f26707j0 || diVar == liVar.f26710k0 || (liVar.C && liVar.f26728q1 != null)) {
-                    liVar.a2(1);
-                }
-                liVar.f26748w0.k(liVar.f26706i2);
-                viewGroup = ((org.telegram.ui.ActionBar.g3) liVar).containerView;
-                viewGroup.invalidate();
+                k8.u(this.f25943b, (MessageObject) obj);
                 return;
             default:
-                ((ec0) this.f24813b).z();
+                Uri uri = (Uri) obj;
+                k8.x(this.f25943b);
                 return;
         }
     }

@@ -1,32 +1,26 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class ki1 extends AnimatorListenerAdapter {
-    public final org.telegram.ui.Cells.s1 f35546a;
-    public final org.telegram.ui.Components.ki f35547b;
-    public final li1 f35548c;
+import org.telegram.messenger.AndroidUtilities;
+import org.webrtc.RendererCommon;
+public final class ki1 implements RendererCommon.RendererEvents {
+    public final ui1 f38075a;
 
-    public ki1(li1 li1Var, org.telegram.ui.Cells.s1 s1Var, org.telegram.ui.Components.ki kiVar) {
-        this.f35548c = li1Var;
-        this.f35546a = s1Var;
-        this.f35547b = kiVar;
+    public ki1(ui1 ui1Var) {
+        this.f38075a = ui1Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.f35546a.setEnterTransitionInProgress(false);
-        org.telegram.ui.Components.ki kiVar = this.f35547b;
-        li1 li1Var = this.f35548c;
-        ((ArrayList) kiVar.f26297c).remove(li1Var);
-        kiVar.a();
-        ((ViewGroup) kiVar.d).invalidate();
-        ChatActivityEnterView.RecordCircle recordCircle = li1Var.f35784g;
-        if (recordCircle != null) {
-            recordCircle.K = false;
+    public final void onFirstFrameRendered() {
+        ui1 ui1Var = this.f38075a;
+        com.google.android.gms.internal.cast.p pVar = ui1Var.l1;
+        if (pVar != null) {
+            pVar.run();
+            ui1Var.l1 = null;
         }
+        AndroidUtilities.runOnUIThread(new f01(this, 22));
+    }
+
+    @Override
+    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
     }
 }

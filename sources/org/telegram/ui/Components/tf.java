@@ -1,30 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-public final class tf extends org.telegram.ui.zn {
-    public boolean Nc;
-    public final TLRPC.User Oc;
-    public final TLRPC.User Pc;
-    public final long Qc;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class tf extends AnimatorListenerAdapter {
+    public final ChatActivityEnterView f30595a;
 
-    public tf(Bundle bundle, TLRPC.User user, TLRPC.User user2, long j10) {
-        super(bundle);
-        this.Oc = user;
-        this.Pc = user2;
-        this.Qc = j10;
+    public tf(ChatActivityEnterView chatActivityEnterView) {
+        this.f30595a = chatActivityEnterView;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.Nc) {
-            this.Nc = true;
-            qc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Oc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Pc)), new gg.y1(this, this.Qc, 16)), R.raw.contact_check).j();
+    public final void onAnimationEnd(Animator animator) {
+        ChatActivityEnterView chatActivityEnterView = this.f30595a;
+        v71 v71Var = chatActivityEnterView.f23697f1;
+        if (v71Var != null) {
+            v71Var.setVisibility(8);
+        }
+        gk0 gk0Var = chatActivityEnterView.f23709h1;
+        if (gk0Var != null) {
+            gk0Var.setVisibility(8);
+        }
+        chatActivityEnterView.f23749o4 = 0.0f;
+        chatActivityEnterView.x0();
+        chatActivityEnterView.p0();
+        ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.M1;
+        if (recordCircle != null) {
+            recordCircle.d();
         }
     }
 }

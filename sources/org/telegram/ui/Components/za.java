@@ -1,38 +1,121 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.GestureDetector;
-import android.widget.FrameLayout;
-public final class za extends FrameLayout {
-    public final nb f31312a;
-    public final Rect f31313b;
-    public final GestureDetector f31314c;
-    public boolean d;
-    public boolean e;
-    public float f31315f;
-    public float h;
-    public float f31316n;
-    public boolean f31317r;
-    public boolean f31318s;
-    public boolean v;
-    public boolean f31319w;
-    public final FrameLayout f31320x;
-    public final ic f31321y;
+import android.content.Context;
+import android.view.KeyEvent;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public final class za extends kl0 {
+    public final int f33112c;
+    public final Context d;
+    public final Object f33113e;
+    public final KeyEvent.Callback f33114f;
 
-    public za(ic icVar, nb nbVar, FrameLayout frameLayout) {
-        super(nbVar.getContext());
-        this.f31321y = icVar;
-        this.f31320x = frameLayout;
-        this.f31313b = new Rect();
-        this.f31312a = nbVar;
-        GestureDetector gestureDetector = new GestureDetector(nbVar.getContext(), new xb(this, nbVar));
-        this.f31314c = gestureDetector;
-        gestureDetector.setIsLongpressEnabled(false);
-        addView(nbVar);
+    public za(jj jjVar, Context context) {
+        this.f33112c = 1;
+        this.f33114f = jjVar;
+        this.f33113e = new ArrayList();
+        this.d = context;
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.za.onTouchEvent(android.view.MotionEvent):boolean");
+    public void B(s4.j0 j0Var) {
+        switch (this.f33112c) {
+            case 0:
+                ((kl0) this.f33113e).B(new ya(this, j0Var));
+                return;
+            default:
+                super.B(j0Var);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        switch (this.f33112c) {
+            case 0:
+                return ((kl0) this.f33113e).D(c1Var);
+            default:
+                if (c1Var.f45742f == 0) {
+                    return true;
+                }
+                return false;
+        }
+    }
+
+    @Override
+    public final int h() {
+        switch (this.f33112c) {
+            case 0:
+                return ((kl0) this.f33113e).h() + 1;
+            default:
+                return ((ArrayList) this.f33113e).size();
+        }
+    }
+
+    @Override
+    public final int j(int i10) {
+        int i11;
+        switch (this.f33112c) {
+            case 0:
+                bb bbVar = (bb) this.f33114f;
+                if (bbVar.P) {
+                    i11 = h() - 1;
+                } else {
+                    i11 = 0;
+                }
+                if (i10 == i11) {
+                    return -1000;
+                }
+                return ((kl0) this.f33113e).j(i10 - (!bbVar.P ? 1 : 0));
+            default:
+                return 0;
+        }
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        int i11;
+        switch (this.f33112c) {
+            case 0:
+                bb bbVar = (bb) this.f33114f;
+                if (bbVar.P) {
+                    i11 = h() - 1;
+                } else {
+                    i11 = 0;
+                }
+                if (i10 != i11) {
+                    ((kl0) this.f33113e).v(c1Var, i10 - (!bbVar.P ? 1 : 0));
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.Cells.eb ebVar = (org.telegram.ui.Cells.eb) c1Var.f45738a;
+                ebVar.d(1, false, false);
+                ebVar.setSize(((jj) this.f33114f).f27514r);
+                ebVar.e(1, ((ArrayList) this.f33113e).get(i10), null, 0);
+                return;
+        }
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        switch (this.f33112c) {
+            case 0:
+                if (i10 == -1000) {
+                    return new s4.c1(new di.eb((bb) this.f33114f, this.d));
+                }
+                return ((kl0) this.f33113e).x(viewGroup, i10);
+            default:
+                ij ijVar = new ij(this, this.d);
+                ijVar.f21886b = false;
+                return new s4.c1(ijVar);
+        }
+    }
+
+    public za(bb bbVar, kl0 kl0Var, Context context) {
+        this.f33112c = 0;
+        this.f33114f = bbVar;
+        this.f33113e = kl0Var;
+        this.d = context;
     }
 }

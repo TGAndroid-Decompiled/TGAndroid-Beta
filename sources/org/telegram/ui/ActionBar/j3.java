@@ -1,111 +1,66 @@
 package org.telegram.ui.ActionBar;
 
-import android.app.Dialog;
-import android.graphics.Paint;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowInsets;
-import android.view.WindowManager;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.R;
-import org.telegram.ui.LaunchActivity;
-public final class j3 extends Dialog {
-    public final t3 f19801a;
-    public final i3 f19802b;
-    public final eg.h0 f19803c;
-    public final Paint d;
-    public boolean e;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Cells.wa;
+import org.telegram.ui.h41;
+public final class j3 implements Utilities.Callback {
+    public final int f20563a;
 
-    public j3(t3 t3Var) {
-        super(t3Var.mo37getWindowView().getContext(), R.style.TransparentDialog);
-        Paint paint = new Paint(1);
-        this.d = paint;
-        this.f19801a = t3Var;
-        u3 mo37getWindowView = t3Var.mo37getWindowView();
-        eg.h0 h0Var = new eg.h0(this, getContext(), 3);
-        this.f19803c = h0Var;
-        paint.setColor(j6.w0(null, j6.f19827a7, false));
-        i3 i3Var = new i3(mo37getWindowView);
-        this.f19802b = i3Var;
-        setContentView(i3Var, new ViewGroup.LayoutParams(-1, -1));
-        i3Var.addView(h0Var, k7.b6.e(-1, -2, 80));
-        i3Var.setClipToPadding(false);
+    public j3(int i10) {
+        this.f20563a = i10;
     }
 
-    public static WindowInsets a(View view, WindowInsets windowInsets) {
-        view.setPadding(0, 0, 0, windowInsets.getSystemWindowInsetBottom());
-        if (Build.VERSION.SDK_INT >= 30) {
-            return WindowInsets.CONSUMED;
-        }
-        return windowInsets.consumeSystemWindowInsets();
-    }
-
-    public static void b(t3 t3Var) {
-        p2 U = LaunchActivity.U();
-        if (U != null) {
-            if (AndroidUtilities.isTablet() || t3Var.b() || AndroidUtilities.hasDialogOnTop(U)) {
-                j3 j3Var = new j3(t3Var);
-                if (t3Var.c(j3Var)) {
-                    i3 i3Var = j3Var.f19802b;
-                    View view = (View) i3Var.f19772a;
-                    AndroidUtilities.removeFromParent(view);
-                    i3Var.addView(view, k7.b6.e(-1, -1, 119));
+    @Override
+    public final void run(Object obj) {
+        switch (this.f20563a) {
+            case 0:
+                Boolean bool = (Boolean) obj;
+                HashMap hashMap = o3.K;
+                return;
+            case 1:
+                Boolean bool2 = (Boolean) obj;
+                int i10 = m3.f21192r;
+                return;
+            case 2:
+                ArrayList arrayList = (ArrayList) obj;
+                int i11 = wa.f23499f;
+                return;
+            case 3:
+                ((Boolean) obj).getClass();
+                return;
+            case 4:
+                Integer num = (Integer) obj;
+                return;
+            case 5:
+                HashSet hashSet = (HashSet) obj;
+                String str = LocaleController.getInstance().getCurrentLocaleInfo().pluralLangCode;
+                hashSet.addAll(h41.Y());
+                SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+                if (hashSet.size() == 1 && TextUtils.equals((CharSequence) hashSet.iterator().next(), str)) {
+                    edit.remove("translate_button_restricted_languages");
+                } else {
+                    edit.putStringSet("translate_button_restricted_languages", hashSet);
                 }
-            }
+                edit.putInt("translate_button_restricted_languages_version", 2).apply();
+                h41.f36877s = false;
+                for (int i12 = 0; i12 < 4; i12++) {
+                    try {
+                        MessagesController.getInstance(i12).getTranslateController().checkRestrictedLanguagesUpdate();
+                    } catch (Exception unused) {
+                    }
+                }
+                return;
+            default:
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
+                return;
         }
-    }
-
-    public final void c() {
-        this.f19801a.c(null);
-        if (!this.e) {
-            return;
-        }
-        this.e = false;
-        try {
-            super.dismiss();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
-
-    @Override
-    public final void dismiss() {
-        this.f19801a.dismiss(false);
-    }
-
-    @Override
-    public final void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Window window = getWindow();
-        int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 30) {
-            window.addFlags(-2147483392);
-        } else {
-            window.addFlags(-2147417856);
-        }
-        window.setWindowAnimations(R.style.DialogNoAnimation);
-        WindowManager.LayoutParams attributes = window.getAttributes();
-        attributes.width = -1;
-        attributes.gravity = 51;
-        attributes.dimAmount = 0.0f;
-        attributes.flags &= -3;
-        attributes.softInputMode = 16;
-        attributes.height = -1;
-        if (i10 >= 28) {
-            attributes.layoutInDisplayCutoutMode = 1;
-        }
-        window.setAttributes(attributes);
-        if (i10 >= 23) {
-            window.setStatusBarColor(0);
-        }
-        i3 i3Var = this.f19802b;
-        i3Var.setFitsSystemWindows(true);
-        i3Var.setSystemUiVisibility(1792);
-        i3Var.setPadding(0, 0, 0, 0);
-        i3Var.setOnApplyWindowInsetsListener(new h3(0));
     }
 }

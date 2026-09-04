@@ -9,27 +9,27 @@ import android.os.Build;
 import android.os.PersistableBundle;
 import android.text.TextUtils;
 import androidx.core.graphics.drawable.IconCompat;
-import e0.o0;
-import f0.i;
+import e0.p0;
+import f0.h;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 public final class c {
-    public Context f6333a;
-    public String f6334b;
-    public Intent[] f6335c;
+    public Context f10273a;
+    public String f10274b;
+    public Intent[] f10275c;
     public ComponentName d;
-    public CharSequence e;
-    public CharSequence f6336f;
-    public CharSequence f6337g;
+    public CharSequence f10276e;
+    public CharSequence f10277f;
+    public CharSequence f10278g;
     public IconCompat h;
-    public o0[] f6338i;
-    public Set f6339j;
-    public i f6340k;
-    public boolean f6341l;
-    public int f6342m;
-    public PersistableBundle f6343n;
+    public p0[] f10279i;
+    public Set f10280j;
+    public h f10281k;
+    public boolean f10282l;
+    public int f10283m;
+    public PersistableBundle f10284n;
 
     public static ArrayList a(Context context, List list) {
         ArrayList arrayList = new ArrayList(list.size());
@@ -41,99 +41,99 @@ public final class c {
     }
 
     public final String b() {
-        return this.f6334b;
+        return this.f10274b;
     }
 
     public final Intent c() {
-        Intent[] intentArr = this.f6335c;
+        Intent[] intentArr = this.f10275c;
         return intentArr[intentArr.length - 1];
     }
 
     public final ShortcutInfo d() {
         String str;
-        ShortcutInfo.Builder intents = new ShortcutInfo.Builder(this.f6333a, this.f6334b).setShortLabel(this.e).setIntents(this.f6335c);
+        ShortcutInfo.Builder intents = new ShortcutInfo.Builder(this.f10273a, this.f10274b).setShortLabel(this.f10276e).setIntents(this.f10275c);
         IconCompat iconCompat = this.h;
         if (iconCompat != null) {
-            intents.setIcon(iconCompat.m(this.f6333a));
+            intents.setIcon(iconCompat.m(this.f10273a));
         }
-        if (!TextUtils.isEmpty(this.f6336f)) {
-            intents.setLongLabel(this.f6336f);
+        if (!TextUtils.isEmpty(this.f10277f)) {
+            intents.setLongLabel(this.f10277f);
         }
-        if (!TextUtils.isEmpty(this.f6337g)) {
-            intents.setDisabledMessage(this.f6337g);
+        if (!TextUtils.isEmpty(this.f10278g)) {
+            intents.setDisabledMessage(this.f10278g);
         }
         ComponentName componentName = this.d;
         if (componentName != null) {
             intents.setActivity(componentName);
         }
-        Set<String> set = this.f6339j;
+        Set<String> set = this.f10280j;
         if (set != null) {
             intents.setCategories(set);
         }
-        intents.setRank(this.f6342m);
-        PersistableBundle persistableBundle = this.f6343n;
+        intents.setRank(this.f10283m);
+        PersistableBundle persistableBundle = this.f10284n;
         if (persistableBundle != null) {
             intents.setExtras(persistableBundle);
         }
         int i10 = 0;
         if (Build.VERSION.SDK_INT >= 29) {
-            o0[] o0VarArr = this.f6338i;
-            if (o0VarArr != null && o0VarArr.length > 0) {
-                int length = o0VarArr.length;
+            p0[] p0VarArr = this.f10279i;
+            if (p0VarArr != null && p0VarArr.length > 0) {
+                int length = p0VarArr.length;
                 Person[] personArr = new Person[length];
                 while (i10 < length) {
-                    o0 o0Var = this.f6338i[i10];
-                    o0Var.getClass();
-                    personArr[i10] = d1.f.E(o0Var);
+                    p0 p0Var = this.f10279i[i10];
+                    p0Var.getClass();
+                    personArr[i10] = b5.d.E(p0Var);
                     i10++;
                 }
                 intents.setPersons(personArr);
             }
-            i iVar = this.f6340k;
-            if (iVar != null) {
-                intents.setLocusId(iVar.f5636b);
+            h hVar = this.f10281k;
+            if (hVar != null) {
+                intents.setLocusId(hVar.f9165b);
             }
-            intents.setLongLived(this.f6341l);
+            intents.setLongLived(this.f10282l);
         } else {
-            if (this.f6343n == null) {
-                this.f6343n = new PersistableBundle();
+            if (this.f10284n == null) {
+                this.f10284n = new PersistableBundle();
             }
-            o0[] o0VarArr2 = this.f6338i;
-            if (o0VarArr2 != null && o0VarArr2.length > 0) {
-                this.f6343n.putInt("extraPersonCount", o0VarArr2.length);
-                while (i10 < this.f6338i.length) {
-                    PersistableBundle persistableBundle2 = this.f6343n;
-                    StringBuilder sb = new StringBuilder("extraPerson_");
+            p0[] p0VarArr2 = this.f10279i;
+            if (p0VarArr2 != null && p0VarArr2.length > 0) {
+                this.f10284n.putInt("extraPersonCount", p0VarArr2.length);
+                while (i10 < this.f10279i.length) {
+                    PersistableBundle persistableBundle2 = this.f10284n;
+                    StringBuilder sb2 = new StringBuilder("extraPerson_");
                     int i11 = i10 + 1;
-                    sb.append(i11);
-                    String sb2 = sb.toString();
-                    o0 o0Var2 = this.f6338i[i10];
-                    o0Var2.getClass();
+                    sb2.append(i11);
+                    String sb3 = sb2.toString();
+                    p0 p0Var2 = this.f10279i[i10];
+                    p0Var2.getClass();
                     PersistableBundle persistableBundle3 = new PersistableBundle();
-                    CharSequence charSequence = o0Var2.f5012a;
+                    CharSequence charSequence = p0Var2.f8667a;
                     if (charSequence != null) {
                         str = charSequence.toString();
                     } else {
                         str = null;
                     }
                     persistableBundle3.putString("name", str);
-                    persistableBundle3.putString("uri", o0Var2.f5014c);
-                    persistableBundle3.putString("key", o0Var2.d);
-                    persistableBundle3.putBoolean("isBot", o0Var2.e);
-                    persistableBundle3.putBoolean("isImportant", o0Var2.f5015f);
-                    persistableBundle2.putPersistableBundle(sb2, persistableBundle3);
+                    persistableBundle3.putString("uri", p0Var2.f8669c);
+                    persistableBundle3.putString("key", p0Var2.d);
+                    persistableBundle3.putBoolean("isBot", p0Var2.f8670e);
+                    persistableBundle3.putBoolean("isImportant", p0Var2.f8671f);
+                    persistableBundle2.putPersistableBundle(sb3, persistableBundle3);
                     i10 = i11;
                 }
             }
-            i iVar2 = this.f6340k;
-            if (iVar2 != null) {
-                this.f6343n.putString("extraLocusId", iVar2.f5635a);
+            h hVar2 = this.f10281k;
+            if (hVar2 != null) {
+                this.f10284n.putString("extraLocusId", hVar2.f9164a);
             }
-            this.f6343n.putBoolean("extraLongLived", this.f6341l);
-            intents.setExtras(this.f6343n);
+            this.f10284n.putBoolean("extraLongLived", this.f10282l);
+            intents.setExtras(this.f10284n);
         }
         if (Build.VERSION.SDK_INT >= 33) {
-            a.f(intents);
+            a.h(intents);
         }
         return intents.build();
     }

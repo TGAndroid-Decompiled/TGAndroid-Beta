@@ -3,49 +3,49 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class u21 extends h51 {
-    public static final int f29089a = 0;
+public final class u21 extends g51 {
+    public static final int f30788a = 0;
 
     static {
-        h51.setup(new h51());
+        g51.setup(new g51());
     }
 
     @Override
-    public final void bindView(View view, i51 i51Var, boolean z4, w51 w51Var, g61 g61Var) {
-        boolean z10;
+    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
+        boolean z11;
         v21 v21Var = (v21) view;
-        boolean z11 = false;
-        if (i51Var.f25591r) {
+        boolean z12 = false;
+        if (h51Var.f26600r) {
             v21Var.e();
         } else {
-            Object obj = i51Var.G;
+            Object obj = h51Var.G;
             if (obj == null) {
-                if (i51Var.B == -2) {
-                    v21Var.b(i51Var.f25590q, i51Var.e);
+                if (h51Var.B == -2) {
+                    v21Var.b(h51Var.f26599q, h51Var.f26588e);
                 } else {
-                    if ((i51Var.f25597y & 1) != 0) {
-                        z10 = true;
+                    if ((h51Var.f26606y & 1) != 0) {
+                        z11 = true;
                     } else {
-                        z10 = false;
+                        z11 = false;
                     }
-                    v21Var.c(z10, i51Var.f25590q, i51Var.e);
+                    v21Var.c(z11, h51Var.f26599q, h51Var.f26588e);
                 }
             } else if (obj instanceof TLRPC.TL_forumTopic) {
-                if (!i51Var.I) {
-                    v21Var.f((TLRPC.TL_forumTopic) obj, i51Var.e);
+                if (!h51Var.I) {
+                    v21Var.f((TLRPC.TL_forumTopic) obj, h51Var.f26588e);
                 } else {
-                    v21Var.a(i51Var.f25596x, (TLRPC.TL_forumTopic) obj, i51Var.e);
+                    v21Var.a(h51Var.f26605x, (TLRPC.TL_forumTopic) obj, h51Var.f26588e);
                 }
             }
         }
-        if (g61Var != null && g61Var.Z2 && v21Var.f29365y) {
-            z11 = true;
+        if (d61Var != null && d61Var.f25281c3 && v21Var.f31071y) {
+            z12 = true;
         }
-        v21Var.setReorder(z11);
+        v21Var.setReorder(z12);
     }
 
     @Override
-    public final View createView(Context context, rl0 rl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+    public final View createView(Context context, ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
         return new v21(context, i10, f6Var);
     }
 }

@@ -1,39 +1,86 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.VideoEditedInfo;
-public final class lh extends org.telegram.ui.fu0 {
-    public final MediaController.PhotoEntry f26675a;
-    public final li f26676b;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class lh implements ch.a {
+    public final int f28173a;
+    public final Object f28174b;
 
-    public lh(li liVar, MediaController.PhotoEntry photoEntry) {
-        this.f26676b = liVar;
-        this.f26675a = photoEntry;
+    public lh(Object obj, int i10) {
+        this.f28173a = i10;
+        this.f28174b = obj;
     }
 
     @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, final boolean z4, final int i11, int i12, final boolean z10) {
-        li liVar = this.f26676b;
-        liVar.f26726p2 = true;
-        if (liVar.W1 == null) {
-            return;
+    public final void e(bh.a aVar, RectF rectF) {
+        switch (this.f28173a) {
+            case 0:
+            case 1:
+            default:
+                aVar.f2648a = true;
+                return;
         }
-        final MediaController.PhotoEntry photoEntry = this.f26675a;
-        photoEntry.editedInfo = videoEditedInfo;
-        z4.a0(liVar.G1, liVar.j1() + 1, 0L, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                ArrayList arrayList = ChatAttachAlertPhotoLayout.f22870q1;
-                arrayList.clear();
-                HashMap hashMap = ChatAttachAlertPhotoLayout.f22869p1;
-                hashMap.clear();
-                arrayList.add(0);
-                hashMap.put(0, photoEntry);
-                lh.this.f26676b.W1.G1(7, true, z4, i11, 0, 0L, false, z10, ((Long) obj).longValue());
-            }
-        });
+    }
+
+    @Override
+    public final void f(Canvas canvas, RectF rectF) {
+        ni niVar;
+        Canvas canvas2;
+        RectF rectF2;
+        float alpha;
+        ni niVar2;
+        di.z7 z7Var;
+        switch (this.f28173a) {
+            case 0:
+                vi viVar = (vi) this.f28174b;
+                int i10 = 0;
+                while (i10 < 2) {
+                    if (i10 == 0) {
+                        niVar = viVar.f31340y0;
+                    } else {
+                        niVar = viVar.f31343z0;
+                    }
+                    if (niVar != null && niVar.f28754c != null && niVar.getVisibility() == 0) {
+                        if (i10 == 0 && (niVar2 = viVar.f31343z0) != null && niVar2.getVisibility() == 0) {
+                            alpha = (1.0f - viVar.f31343z0.getAlpha()) * niVar.getAlpha();
+                        } else {
+                            alpha = niVar.getAlpha();
+                        }
+                        canvas2 = canvas;
+                        rectF2 = rectF;
+                        hh.d.a(niVar.f28754c, canvas2, rectF2, niVar.d, viVar.getContainerView(), (int) (alpha * 255.0f));
+                    } else {
+                        canvas2 = canvas;
+                        rectF2 = rectF;
+                    }
+                    i10++;
+                    canvas = canvas2;
+                    rectF = rectF2;
+                }
+                return;
+            case 1:
+                ch.a[] aVarArr = (ch.a[]) this.f28174b;
+                for (int i11 = 0; i11 < 3; i11++) {
+                    ch.a aVar = aVarArr[i11];
+                    if (aVar != null) {
+                        aVar.f(canvas, rectF);
+                    }
+                }
+                return;
+            default:
+                xu0 xu0Var = (xu0) this.f28174b;
+                for (qt0 qt0Var : xu0Var.f32702k0) {
+                    bh.l lVar = qt0Var.f29820n;
+                    if (lVar != null) {
+                        lVar.f(canvas, rectF);
+                    }
+                }
+                nr0 nr0Var = xu0Var.V;
+                if (nr0Var != null && (z7Var = nr0Var.R) != null) {
+                    z7Var.f(canvas, rectF);
+                    return;
+                }
+                return;
+        }
     }
 }

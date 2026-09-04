@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import android.support.v4.media.a;
+import a4.a;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,8 +26,8 @@ public class GlueSettingsParser {
             newInstance.setIgnoringComments(true);
             this.root = newInstance.newDocumentBuilder().parse(JLatexMathAndroid.getResourceAsStream("GlueSettings.xml")).getDocumentElement();
             parseGlueTypes();
-        } catch (Exception e) {
-            throw new XMLResourceParseException("GlueSettings.xml", e);
+        } catch (Exception e7) {
+            throw new XMLResourceParseException("GlueSettings.xml", e7);
         }
     }
 
@@ -35,7 +35,7 @@ public class GlueSettingsParser {
         if (obj != null) {
             return;
         }
-        throw new XMLResourceParseException("GlueSettings.xml", str, str2, a.o("has an unknown value '", str3, "'!"));
+        throw new XMLResourceParseException("GlueSettings.xml", str, str2, a.p("has an unknown value '", str3, "'!"));
     }
 
     private Glue createGlue(Element element, String str) {
@@ -53,7 +53,7 @@ public class GlueSettingsParser {
                 }
                 fArr[i10] = (float) d;
             } catch (NumberFormatException unused) {
-                throw new XMLResourceParseException("GlueSettings.xml", "GlueType", strArr[i10], a.o("has an invalid real value '", str2, "'!"));
+                throw new XMLResourceParseException("GlueSettings.xml", "GlueType", strArr[i10], a.p("has an invalid real value '", str2, "'!"));
             }
         }
         return new Glue(fArr[0], fArr[1], fArr[2], str);

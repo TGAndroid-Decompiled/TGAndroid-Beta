@@ -1,74 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.widget.FrameLayout;
-public final class up0 extends AnimatorListenerAdapter {
-    public final int f29274a;
-    public final boolean f29275b;
-    public final lq0 f29276c;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class up0 implements TextWatcher {
+    public final hq0 f30934a;
 
-    public up0(lq0 lq0Var, boolean z4, int i10) {
-        this.f29274a = i10;
-        this.f29276c = lq0Var;
-        this.f29275b = z4;
+    public up0(hq0 hq0Var) {
+        this.f30934a = hq0Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f29274a) {
-            case 0:
-                AnimatorSet[] animatorSetArr = this.f29276c.Q;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    animatorSetArr[0] = null;
-                    return;
+    public final void afterTextChanged(Editable editable) {
+        hq0 hq0Var = this.f30934a;
+        zp0 zp0Var = hq0Var.K;
+        xw0 xw0Var = hq0Var.Q;
+        b20 b20Var = hq0Var.f26820y0;
+        if (!TextUtils.isEmpty(b20Var.f24522r.getText())) {
+            hq0Var.K0(false);
+        }
+        if (hq0Var.A0) {
+            String obj = b20Var.f24522r.getText().toString();
+            if (obj.length() != 0) {
+                if (xw0Var != null) {
+                    xw0Var.d.setText(LocaleController.getString(R.string.NoResult));
                 }
-                return;
-            default:
-                lq0 lq0Var = this.f29276c;
-                if (animator.equals(lq0Var.f26863y)) {
-                    lq0Var.f26863y = null;
-                    return;
+            } else if (hq0Var.F.getAdapter() != zp0Var) {
+                int F0 = hq0.F0(hq0Var);
+                xw0Var.d.setText(LocaleController.getString(R.string.NoResult));
+                xw0Var.e(false, true);
+                hq0Var.K0(false);
+                zp0Var.l();
+                if (F0 > 0) {
+                    hq0Var.H.h1(0, -F0);
                 }
-                return;
+            }
+            dq0 dq0Var = hq0Var.M;
+            if (dq0Var != null) {
+                dq0Var.E(obj);
+            }
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f29274a) {
-            case 0:
-                lq0 lq0Var = this.f29276c;
-                AnimatorSet[] animatorSetArr = lq0Var.Q;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f29275b) {
-                        lq0Var.P[0].setVisibility(4);
-                    }
-                    animatorSetArr[0] = null;
-                    return;
-                }
-                return;
-            default:
-                lq0 lq0Var2 = this.f29276c;
-                FrameLayout frameLayout = lq0Var2.h;
-                if (animator.equals(lq0Var2.f26863y)) {
-                    if (!this.f29275b) {
-                        lq0Var2.f26835c.setVisibility(4);
-                        FrameLayout frameLayout2 = lq0Var2.Z;
-                        if (frameLayout2 != null && frameLayout == null) {
-                            frameLayout2.setVisibility(4);
-                        }
-                        lq0Var2.f26839f.setVisibility(4);
-                    } else if (frameLayout != null) {
-                        frameLayout.setVisibility(4);
-                    }
-                    lq0Var2.f26863y = null;
-                    return;
-                }
-                return;
-        }
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

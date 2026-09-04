@@ -1,45 +1,81 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
-public final class kg implements DialogInterface.OnCancelListener {
-    public final int f35532a;
-    public final Object f35533b;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class kg implements Utilities.Callback2 {
+    public final int f38049a;
+    public final int f38050b;
+    public final Object f38051c;
+    public final Object d;
 
-    public kg(Object obj, int i10) {
-        this.f35532a = i10;
-        this.f35533b = obj;
+    public kg(org.telegram.ui.ActionBar.n2 n2Var, int i10, TLObject tLObject, int i11) {
+        this.f38049a = i11;
+        this.f38051c = n2Var;
+        this.f38050b = i10;
+        this.d = tLObject;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f35532a) {
+    public final void run(Object obj, Object obj2) {
+        TLRPC.Updates updates;
+        int i10 = this.f38049a;
+        Object obj3 = this.d;
+        Object obj4 = this.f38051c;
+        switch (i10) {
             case 0:
-                zn znVar = (zn) this.f35533b;
-                znVar.Y8 = true;
-                znVar.W8 = 0;
-                znVar.f40685nb = 0;
-                znVar.K4 = 0;
-                znVar.r9();
-                znVar.Nb(false);
+                AndroidUtilities.runOnUIThread(new fi.l3((co) obj4, this.f38050b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 15));
                 return;
             case 1:
-                ro roVar = (ro) this.f35533b;
-                roVar.J0 = false;
-                roVar.f37902b = null;
-                roVar.K0 = false;
-                return;
-            case 2:
-                ((sp) this.f35533b).f38285n = null;
+                LaunchActivity launchActivity = (LaunchActivity) obj4;
+                r80 r80Var = (r80) obj3;
+                TLRPC.ChatInviteJoinResult chatInviteJoinResult = (TLRPC.ChatInviteJoinResult) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                Pattern pattern = LaunchActivity.B1;
+                if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
+                    TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
+                    MessagesController.getInstance(launchActivity.O).processUpdates(updates2, false);
+                    updates = updates2;
+                } else {
+                    if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
+                        AndroidUtilities.runOnUIThread(new r80(3, launchActivity, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult));
+                    }
+                    updates = null;
+                }
+                AndroidUtilities.runOnUIThread(new fi.l3(launchActivity, r80Var, tL_error, updates, this.f38050b, 25));
                 return;
             default:
-                yb0 yb0Var = (yb0) this.f35533b;
-                if (yb0Var.h >= 0) {
-                    ConnectionsManager.getInstance(yb0Var.f40222b).cancelRequest(yb0Var.h, true);
-                    yb0Var.h = -1;
+                PasskeysActivity passkeysActivity = (PasskeysActivity) obj4;
+                TL_account.Passkey passkey = (TL_account.Passkey) obj3;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                ArrayList arrayList = passkeysActivity.f33507b;
+                boolean z10 = ((TLRPC.Bool) obj) instanceof TLRPC.TL_boolFalse;
+                int i11 = this.f38050b;
+                if (z10) {
+                    org.telegram.ui.Components.yc.a0(passkeysActivity).c0("FALSE", false);
+                    arrayList.add(Utilities.clamp(i11, arrayList.size(), 0), passkey);
+                    passkeysActivity.f33506a.Y2.N(true);
+                    return;
+                } else if (tL_error2 != null) {
+                    org.telegram.ui.Components.yc.a0(passkeysActivity).d0(tL_error2, false);
+                    arrayList.add(Utilities.clamp(i11, arrayList.size(), 0), passkey);
+                    passkeysActivity.f33506a.Y2.N(true);
+                    return;
+                } else {
                     return;
                 }
-                return;
         }
+    }
+
+    public kg(LaunchActivity launchActivity, r80 r80Var, int i10) {
+        this.f38049a = 1;
+        this.f38051c = launchActivity;
+        this.d = r80Var;
+        this.f38050b = i10;
     }
 }

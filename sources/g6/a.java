@@ -1,63 +1,69 @@
 package g6;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import b6.m;
-import com.google.android.gms.common.api.n;
-import j7.f5;
+import android.os.SystemClock;
+import android.text.TextUtils;
+import com.google.android.gms.internal.vision.e2;
+import java.util.AbstractCollection;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
-import java.util.TreeSet;
-public final class a extends c6.a {
-    public static final Parcelable.Creator<a> CREATOR = new Object();
-    public final List f6475a;
-    public final boolean f6476b;
-    public final String f6477c;
-    public final String d;
+import java.util.Random;
+import java.util.regex.Pattern;
+import org.json.JSONObject;
+public abstract class a {
+    public static final Pattern f10384a = Pattern.compile("urn:x-cast:[-A-Za-z0-9_]+(\\.[-A-Za-z0-9_]+)*");
+    public static final Random f10385b = new Random(SystemClock.elapsedRealtime());
 
-    public a(ArrayList arrayList, boolean z4, String str, String str2) {
-        m.h(arrayList);
-        this.f6475a = arrayList;
-        this.f6476b = z4;
-        this.f6477c = str;
-        this.d = str2;
+    public static String a(String str, JSONObject jSONObject) {
+        if (jSONObject != null && jSONObject.has(str)) {
+            return jSONObject.optString(str);
+        }
+        return null;
     }
 
-    public static a e(List list, boolean z4) {
-        TreeSet treeSet = new TreeSet(b.f6478a);
-        Iterator it = list.iterator();
+    public static void b(String str) {
+        if (!TextUtils.isEmpty(str)) {
+            if (str.length() <= 128) {
+                if (str.startsWith("urn:x-cast:")) {
+                    if (str.length() != 11) {
+                        return;
+                    }
+                    throw new IllegalArgumentException("Namespace must begin with the prefix \"urn:x-cast:\" and have non-empty suffix");
+                }
+                throw new IllegalArgumentException("Namespace must begin with the prefix \"urn:x-cast:\"");
+            }
+            throw new IllegalArgumentException("Invalid namespace length");
+        }
+        throw new IllegalArgumentException("Namespace cannot be null or empty");
+    }
+
+    public static ArrayList c(int[] iArr) {
+        ArrayList arrayList = new ArrayList();
+        int length = iArr.length;
+        int i10 = 0;
+        while (i10 < length) {
+            i10 = e2.e(iArr[i10], i10, 1, arrayList);
+        }
+        return arrayList;
+    }
+
+    public static boolean d(Object obj, Object obj2) {
+        if (obj == null && obj2 == null) {
+            return true;
+        }
+        if (obj != null && obj2 != null && obj.equals(obj2)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static int[] e(AbstractCollection abstractCollection) {
+        int[] iArr = new int[abstractCollection.size()];
+        Iterator it = abstractCollection.iterator();
+        int i10 = 0;
         while (it.hasNext()) {
-            Collections.addAll(treeSet, ((n) it.next()).c());
+            iArr[i10] = ((Integer) it.next()).intValue();
+            i10++;
         }
-        return new a(new ArrayList(treeSet), z4, null, null);
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof a)) {
-            return false;
-        }
-        a aVar = (a) obj;
-        if (this.f6476b != aVar.f6476b || !m.l(this.f6475a, aVar.f6475a) || !m.l(this.f6477c, aVar.f6477c) || !m.l(this.d, aVar.d)) {
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f6476b), this.f6475a, this.f6477c, this.d});
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q10 = f5.q(parcel, 20293);
-        f5.p(parcel, 1, this.f6475a);
-        f5.s(parcel, 2, 4);
-        parcel.writeInt(this.f6476b ? 1 : 0);
-        f5.l(parcel, 3, this.f6477c);
-        f5.l(parcel, 4, this.d);
-        f5.r(parcel, q10);
+        return iArr;
     }
 }

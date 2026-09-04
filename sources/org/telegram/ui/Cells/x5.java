@@ -5,34 +5,35 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
+import org.telegram.messenger.wl;
 public final class x5 extends FrameLayout {
-    public v5[] f22545a;
-    public MediaController.AlbumEntry[] f22546b;
-    public int f22547c;
+    public v5[] f23531a;
+    public MediaController.AlbumEntry[] f23532b;
+    public int f23533c;
     public w5 d;
-    public Paint e;
+    public Paint f23534e;
 
     public final void a(int i10, MediaController.AlbumEntry albumEntry) {
-        v5[] v5VarArr = this.f22545a;
-        this.f22546b[i10] = albumEntry;
+        v5[] v5VarArr = this.f23531a;
+        this.f23532b[i10] = albumEntry;
         if (albumEntry != null) {
             v5 v5Var = v5VarArr[i10];
-            org.telegram.ui.Components.p9 p9Var = v5Var.f22468a;
-            org.telegram.ui.Components.p9 p9Var2 = v5Var.f22468a;
-            p9Var.q(0, true);
+            org.telegram.ui.Components.x9 x9Var = v5Var.f23370a;
+            org.telegram.ui.Components.x9 x9Var2 = v5Var.f23370a;
+            x9Var.q(0, true);
             MediaController.PhotoEntry photoEntry = albumEntry.coverPhoto;
             if (photoEntry != null && photoEntry.path != null) {
-                p9Var2.p(photoEntry.orientation, photoEntry.invert, true);
+                x9Var2.p(photoEntry.orientation, photoEntry.invert, true);
                 if (albumEntry.coverPhoto.isVideo) {
-                    p9Var2.f("vthumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, org.telegram.ui.ActionBar.j6.R4);
+                    x9Var2.f("vthumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, org.telegram.ui.ActionBar.j6.R4);
                 } else {
-                    p9Var2.f("thumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, org.telegram.ui.ActionBar.j6.R4);
+                    x9Var2.f("thumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, org.telegram.ui.ActionBar.j6.R4);
                 }
             } else {
-                p9Var2.setImageDrawable(org.telegram.ui.ActionBar.j6.R4);
+                x9Var2.setImageDrawable(org.telegram.ui.ActionBar.j6.R4);
             }
-            v5Var.f22469b.setText(albumEntry.bucketName);
-            v5Var.f22470c.setText(String.format("%d", Integer.valueOf(albumEntry.photos.size())));
+            v5Var.f23371b.setText(albumEntry.bucketName);
+            v5Var.f23372c.setText(String.format("%d", Integer.valueOf(albumEntry.photos.size())));
             return;
         }
         v5VarArr[i10].setVisibility(4);
@@ -40,30 +41,30 @@ public final class x5 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int z4;
-        View[] viewArr = this.f22545a;
+        int A;
+        View[] viewArr = this.f23531a;
         if (AndroidUtilities.isTablet()) {
-            z4 = org.telegram.ui.b.z(4.0f, this.f22547c - 1, AndroidUtilities.dp(490.0f) - AndroidUtilities.dp(12.0f)) / this.f22547c;
+            A = wl.A(4.0f, this.f23533c - 1, AndroidUtilities.dp(490.0f) - AndroidUtilities.dp(12.0f)) / this.f23533c;
         } else {
-            z4 = org.telegram.ui.b.z(4.0f, this.f22547c - 1, AndroidUtilities.displaySize.x - AndroidUtilities.dp(12.0f)) / this.f22547c;
+            A = wl.A(4.0f, this.f23533c - 1, AndroidUtilities.displaySize.x - AndroidUtilities.dp(12.0f)) / this.f23533c;
         }
-        for (int i12 = 0; i12 < this.f22547c; i12++) {
+        for (int i12 = 0; i12 < this.f23533c; i12++) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i12].getLayoutParams();
             layoutParams.topMargin = AndroidUtilities.dp(4.0f);
-            layoutParams.leftMargin = (AndroidUtilities.dp(4.0f) + z4) * i12;
-            layoutParams.width = z4;
-            layoutParams.height = z4;
+            layoutParams.leftMargin = (AndroidUtilities.dp(4.0f) + A) * i12;
+            layoutParams.width = A;
+            layoutParams.height = A;
             layoutParams.gravity = 51;
             viewArr[i12].setLayoutParams(layoutParams);
         }
-        super.onMeasure(i10, org.telegram.ui.b.B(4.0f, z4, 1073741824));
+        super.onMeasure(i10, wl.C(4.0f, A, 1073741824));
     }
 
     public void setAlbumsCount(int i10) {
         int i11;
         int i12 = 0;
         while (true) {
-            v5[] v5VarArr = this.f22545a;
+            v5[] v5VarArr = this.f23531a;
             if (i12 < v5VarArr.length) {
                 v5 v5Var = v5VarArr[i12];
                 if (i12 < i10) {
@@ -74,7 +75,7 @@ public final class x5 extends FrameLayout {
                 v5Var.setVisibility(i11);
                 i12++;
             } else {
-                this.f22547c = i10;
+                this.f23533c = i10;
                 return;
             }
         }

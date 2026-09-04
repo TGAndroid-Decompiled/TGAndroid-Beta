@@ -1,48 +1,76 @@
 package org.telegram.messenger;
 
-import java.util.Comparator;
-import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class x9 implements Comparator {
-    public final int f18950a;
-    public final MessagesController f18951b;
+public final class x9 implements RequestDelegate {
+    public final int f19573a;
+    public final MessagesController f19574b;
+    public final long f19575c;
 
-    public x9(MessagesController messagesController, int i10) {
-        this.f18950a = i10;
-        this.f18951b = messagesController;
+    public x9(MessagesController messagesController, long j3, int i10) {
+        this.f19573a = i10;
+        this.f19574b = messagesController;
+        this.f19575c = j3;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$new$9;
-        int lambda$new$10;
-        int lambda$new$11;
-        int lambda$new$12;
-        int lambda$processUpdatesQueue$327;
-        int lambda$renameSavedReactionTag$484;
-        int lambda$updateSavedReactionTags$483;
-        switch (this.f18950a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19573a) {
             case 0:
-                lambda$new$9 = this.f18951b.lambda$new$9((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
-                return lambda$new$9;
+                this.f19574b.lambda$markMessageAsRead2$235(this.f19575c, tLObject, tL_error);
+                return;
             case 1:
-                lambda$new$10 = this.f18951b.lambda$new$10((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
-                return lambda$new$10;
+                this.f19574b.lambda$markMessageAsRead2$236(this.f19575c, tLObject, tL_error);
+                return;
             case 2:
-                lambda$new$11 = this.f18951b.lambda$new$11((MessagesController.CommunityPeerDialog) obj, (MessagesController.CommunityPeerDialog) obj2);
-                return lambda$new$11;
+                this.f19574b.lambda$pinDialog$364(this.f19575c, tLObject, tL_error);
+                return;
             case 3:
-                lambda$new$12 = this.f18951b.lambda$new$12((TLRPC.Update) obj, (TLRPC.Update) obj2);
-                return lambda$new$12;
+                this.f19574b.lambda$saveWallpaperToServer$121(this.f19575c, tLObject, tL_error);
+                return;
             case 4:
-                lambda$processUpdatesQueue$327 = this.f18951b.lambda$processUpdatesQueue$327((TLRPC.Updates) obj, (TLRPC.Updates) obj2);
-                return lambda$processUpdatesQueue$327;
+                this.f19574b.lambda$updateTimerProc$160(this.f19575c, tLObject, tL_error);
+                return;
             case 5:
-                lambda$renameSavedReactionTag$484 = this.f18951b.lambda$renameSavedReactionTag$484((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
-                return lambda$renameSavedReactionTag$484;
+                this.f19574b.lambda$deleteUserPhoto$115(this.f19575c, tLObject, tL_error);
+                return;
+            case 6:
+                this.f19574b.lambda$reorderPinnedDialogs$363(this.f19575c, tLObject, tL_error);
+                return;
+            case 7:
+                this.f19574b.lambda$loadPeerSettings$80(this.f19575c, tLObject, tL_error);
+                return;
+            case 8:
+                this.f19574b.lambda$setChannelSlowMode$94(this.f19575c, tLObject, tL_error);
+                return;
+            case 9:
+                this.f19574b.lambda$loadChannelAdmins$65(this.f19575c, tLObject, tL_error);
+                return;
+            case 10:
+                this.f19574b.lambda$deleteDialog$141(this.f19575c, tLObject, tL_error);
+                return;
+            case 11:
+                this.f19574b.lambda$addDialogToFolder$198(this.f19575c, tLObject, tL_error);
+                return;
+            case 12:
+                this.f19574b.lambda$setDefaultSendAs$275(this.f19575c, tLObject, tL_error);
+                return;
+            case 13:
+                this.f19574b.lambda$deleteMessages$122(this.f19575c, tLObject, tL_error);
+                return;
+            case 14:
+                this.f19574b.lambda$deleteMessages$123(this.f19575c, tLObject, tL_error);
+                return;
+            case 15:
+                this.f19574b.lambda$deleteMessages$125(this.f19575c, tLObject, tL_error);
+                return;
+            case 16:
+                this.f19574b.lambda$setBoostsToUnblockRestrictions$96(this.f19575c, tLObject, tL_error);
+                return;
             default:
-                lambda$updateSavedReactionTags$483 = this.f18951b.lambda$updateSavedReactionTags$483((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
-                return lambda$updateSavedReactionTags$483;
+                this.f19574b.lambda$markDialogAsUnread$360(this.f19575c, tLObject, tL_error);
+                return;
         }
     }
 }

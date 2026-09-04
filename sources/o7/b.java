@@ -1,9 +1,8 @@
 package o7;
+public abstract class b {
+    public static final int f16977a = 0;
 
-import android.os.IInterface;
-import com.google.android.gms.common.api.Status;
-public interface b extends IInterface {
-    void k(Status status, z7.d dVar);
-
-    void w0(Status status, z7.b bVar);
+    static {
+        b.class.getClassLoader();
+    }
 }

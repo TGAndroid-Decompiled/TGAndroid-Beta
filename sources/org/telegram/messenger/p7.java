@@ -1,30 +1,30 @@
 package org.telegram.messenger;
-public final class p7 implements Runnable {
-    public final int f18063a;
-    public final MediaDataController f18064b;
-    public final long f18065c;
-    public final long d;
-    public final int[] e;
 
-    public p7(MediaDataController mediaDataController, long j10, long j11, int[] iArr, int i10) {
-        this.f18063a = i10;
-        this.f18064b = mediaDataController;
-        this.f18065c = j10;
-        this.d = j11;
-        this.e = iArr;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class p7 implements Utilities.Callback2 {
+    public final int f18660a;
+    public final MediaDataController f18661b;
+    public final String f18662c;
+    public final Utilities.Callback d;
+
+    public p7(MediaDataController mediaDataController, String str, Utilities.Callback callback, int i10) {
+        this.f18660a = i10;
+        this.f18661b = mediaDataController;
+        this.f18662c = str;
+        this.d = callback;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18063a) {
+    public final void run(Object obj, Object obj2) {
+        Boolean bool = (Boolean) obj;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj2;
+        switch (this.f18660a) {
             case 0:
-                this.f18064b.lambda$getMediaCounts$128(this.f18065c, this.d, this.e);
-                return;
-            case 1:
-                this.f18064b.lambda$getMediaCounts$127(this.f18065c, this.d, this.e);
+                this.f18661b.lambda$getStickerSet$32(this.f18662c, this.d, bool, tL_messages_stickerSet);
                 return;
             default:
-                this.f18064b.lambda$getMediaCounts$130(this.f18065c, this.d, this.e);
+                this.f18661b.lambda$getStickerSet$35(this.f18662c, this.d, bool, tL_messages_stickerSet);
                 return;
         }
     }

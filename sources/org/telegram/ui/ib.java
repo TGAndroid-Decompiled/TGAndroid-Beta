@@ -8,26 +8,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class ib extends rb {
-    public final ug.j f34889u0;
-    public final ub f34890v0;
+    public final ih.l f37284x0;
+    public final ub f37285y0;
 
     public ib(ub ubVar, Context context) {
         super(ubVar, context);
-        this.f34890v0 = ubVar;
-        this.f34889u0 = new ug.j();
+        this.f37285y0 = ubVar;
+        this.f37284x0 = new ih.l();
     }
 
     @Override
     public final void U(Drawable drawable) {
-        if (drawable instanceof org.telegram.ui.Components.ec0) {
-            ((org.telegram.ui.Components.ec0) drawable).p();
+        if (drawable instanceof org.telegram.ui.Components.dc0) {
+            ((org.telegram.ui.Components.dc0) drawable).p();
         }
-        ug.j jVar = this.f34889u0;
-        sg.a c3 = jVar.c(drawable);
-        AndroidUtilities.computePerceivedBrightness(jVar.a(c3));
-        ub ubVar = this.f34890v0;
-        ubVar.f38729a.f44382a = c3;
-        wg.f fVar = ubVar.X;
+        ih.l lVar = this.f37284x0;
+        gh.a c10 = lVar.c(drawable);
+        AndroidUtilities.computePerceivedBrightness(lVar.a(c10));
+        ub ubVar = this.f37285y0;
+        ubVar.f41015a.f10661a = c10;
+        kh.f fVar = ubVar.f41016a0;
         if (fVar != null) {
             fVar.invalidate();
         }
@@ -35,11 +35,11 @@ public final class ib extends rb {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        cb.m mVar = cb.m.e;
-        if (mVar != null && mVar.f2255a) {
-            w4 w4Var = (w4) cb.m.l().d;
-            if (w4Var != null) {
-                w4Var.onTouchEvent(motionEvent);
+        com.google.firebase.messaging.m mVar = com.google.firebase.messaging.m.f6370e;
+        if (mVar != null && mVar.f6371a) {
+            s4 s4Var = (s4) com.google.firebase.messaging.m.k().d;
+            if (s4Var != null) {
+                s4Var.onTouchEvent(motionEvent);
                 return true;
             }
             return true;
@@ -53,9 +53,9 @@ public final class ib extends rb {
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject != null && playingMessageObject.isRoundVideo() && playingMessageObject.eventId != 0) {
             long dialogId = playingMessageObject.getDialogId();
-            ub ubVar = this.f34890v0;
-            if (dialogId == (-ubVar.f38752s.f19159id)) {
-                MediaController.getInstance().setTextureView(ubVar.Q0(false), ubVar.f38738f0, ubVar.f38736e0, true);
+            ub ubVar = this.f37285y0;
+            if (dialogId == (-ubVar.f41039s.f19869id)) {
+                MediaController.getInstance().setTextureView(ubVar.Q0(false), ubVar.f41028i0, ubVar.f41027h0, true);
             }
         }
     }
@@ -71,21 +71,21 @@ public final class ib extends rb {
         org.telegram.ui.ActionBar.k kVar2;
         org.telegram.ui.ActionBar.k kVar3;
         org.telegram.ui.ActionBar.k kVar4;
-        ub ubVar = this.f34890v0;
-        ubVar.Q0.a();
+        ub ubVar = this.f37285y0;
+        ubVar.T0.a();
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        sg.a aVar = ubVar.f38729a.f44382a;
-        if (aVar instanceof sg.b) {
-            ((sg.b) aVar).c(size, size2);
+        gh.a aVar = ubVar.f41015a.f10661a;
+        if (aVar instanceof gh.b) {
+            ((gh.b) aVar).b(size, size2);
         }
         setMeasuredDimension(size, size2);
         int paddingTop = size2 - getPaddingTop();
-        kVar = ((org.telegram.ui.ActionBar.p2) ubVar).actionBar;
+        kVar = ((org.telegram.ui.ActionBar.n2) ubVar).actionBar;
         measureChildWithMargins(kVar, i10, 0, i11, 0);
-        kVar2 = ((org.telegram.ui.ActionBar.p2) ubVar).actionBar;
+        kVar2 = ((org.telegram.ui.ActionBar.n2) ubVar).actionBar;
         int measuredHeight = kVar2.getMeasuredHeight();
-        kVar3 = ((org.telegram.ui.ActionBar.p2) ubVar).actionBar;
+        kVar3 = ((org.telegram.ui.ActionBar.n2) ubVar).actionBar;
         if (kVar3.getVisibility() == 0) {
             paddingTop -= measuredHeight;
         }
@@ -93,16 +93,16 @@ public final class ib extends rb {
         for (int i12 = 0; i12 < childCount; i12++) {
             View childAt = getChildAt(i12);
             if (childAt != null && childAt.getVisibility() != 8) {
-                kVar4 = ((org.telegram.ui.ActionBar.p2) ubVar).actionBar;
+                kVar4 = ((org.telegram.ui.ActionBar.n2) ubVar).actionBar;
                 if (childAt != kVar4) {
-                    if (childAt != ubVar.B && childAt != ubVar.f38757w) {
-                        if (childAt == ubVar.I) {
+                    if (childAt != ubVar.E && childAt != ubVar.f41044w) {
+                        if (childAt == ubVar.L) {
                             childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
                         } else {
                             measureChildWithMargins(childAt, i10, 0, i11, 0);
                         }
                     } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10.0f), View.MeasureSpec.getSize(i11)) + (ubVar.f38750r * 2), 1073741824));
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10.0f), View.MeasureSpec.getSize(i11)) + (ubVar.f41037r * 2), 1073741824));
                     }
                 }
             }

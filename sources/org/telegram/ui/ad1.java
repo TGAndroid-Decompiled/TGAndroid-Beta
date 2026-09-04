@@ -1,8 +1,63 @@
 package org.telegram.ui;
-public interface ad1 {
-    boolean T0();
 
-    boolean a();
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+public final class ad1 extends AnimatorListenerAdapter {
+    public final int f34388a;
+    public final wd1 f34389b;
 
-    void l1(boolean z4);
+    public ad1(wd1 wd1Var, int i10) {
+        this.f34388a = i10;
+        this.f34389b = wd1Var;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f34388a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                wd1 wd1Var = this.f34389b;
+                wd1Var.f41977x0.invalidate();
+                wd1Var.f41974w0[1].setVisibility(8);
+                wd1Var.f41924c2 = null;
+                return;
+            case 1:
+                this.f34389b.B0 = null;
+                return;
+            case 2:
+                wd1 wd1Var2 = this.f34389b;
+                if (wd1Var2.D0.getTag() == null) {
+                    wd1Var2.D0.setVisibility(4);
+                }
+                wd1Var2.H0 = null;
+                return;
+            case 3:
+                wd1 wd1Var3 = this.f34389b;
+                if (wd1Var3.E0.getTag() == null) {
+                    wd1Var3.E0.setVisibility(4);
+                }
+                wd1Var3.I0 = null;
+                return;
+            case 4:
+                wd1 wd1Var4 = this.f34389b;
+                mc mcVar = wd1Var4.f41941h2;
+                if (mcVar != null) {
+                    if (mcVar.getParent() != null) {
+                        ((ViewGroup) wd1Var4.f41941h2.getParent()).removeView(wd1Var4.f41941h2);
+                    }
+                    wd1Var4.f41941h2 = null;
+                }
+                wd1Var4.f41947j2 = null;
+                super.onAnimationEnd(animator);
+                return;
+            default:
+                wd1 wd1Var5 = this.f34389b;
+                if (!wd1Var5.f41958p1.a()) {
+                    wd1Var5.R1.setVisibility(8);
+                    return;
+                }
+                return;
+        }
+    }
 }

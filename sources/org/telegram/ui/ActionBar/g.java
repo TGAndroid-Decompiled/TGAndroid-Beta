@@ -5,57 +5,57 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.ba0;
-import org.telegram.ui.Components.di;
-import org.telegram.ui.Components.ea0;
-import org.telegram.ui.Components.li;
-import org.telegram.ui.Components.p8;
-import org.telegram.ui.Components.w8;
-import org.telegram.ui.pg0;
+import org.telegram.ui.Components.ca0;
+import org.telegram.ui.Components.f9;
+import org.telegram.ui.Components.ni;
+import org.telegram.ui.Components.vi;
+import org.telegram.ui.Components.y8;
+import org.telegram.ui.Components.z90;
+import org.telegram.ui.wg0;
 public final class g extends AnimatorListenerAdapter {
-    public final int f19671a;
-    public boolean f19672b;
-    public final boolean f19673c;
+    public final int f20447a;
+    public boolean f20448b;
+    public final boolean f20449c;
     public final Object d;
 
-    public g(Object obj, boolean z4, boolean z10, int i10) {
-        this.f19671a = i10;
+    public g(Object obj, boolean z10, boolean z11, int i10) {
+        this.f20447a = i10;
         this.d = obj;
-        this.f19672b = z4;
-        this.f19673c = z10;
+        this.f20448b = z10;
+        this.f20449c = z11;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f19671a) {
+        switch (this.f20447a) {
             case 1:
-                this.f19672b = true;
+                this.f20448b = true;
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;
-                actionBarLayout.f19424a1 = false;
-                actionBarLayout.f19456s.setAlpha(1.0f);
+                actionBarLayout.f20147d1 = false;
+                actionBarLayout.f20175s.setAlpha(1.0f);
                 ActionBarLayout.a(actionBarLayout, true);
-                actionBarLayout.f19434e1 = null;
+                actionBarLayout.f20157h1 = null;
                 return;
             case 2:
             default:
                 super.onAnimationCancel(animator);
                 return;
             case 3:
-                li liVar = (li) this.d;
-                if (animator.equals(liVar.J0)) {
-                    liVar.J0 = null;
+                vi viVar = (vi) this.d;
+                if (animator.equals(viVar.M0)) {
+                    viVar.M0 = null;
                     return;
                 }
                 return;
             case 4:
-                ((ba0) this.d).f23606c2 = null;
+                ((z90) this.d).f33108f2 = null;
                 return;
             case 5:
-                pg0 pg0Var = (pg0) this.d;
-                AnimatorSet[] animatorSetArr = pg0Var.H;
-                boolean z4 = this.f19672b;
-                if (animatorSetArr[!z4 ? 1 : 0] != null && animatorSetArr[!z4 ? 1 : 0].equals(animator)) {
-                    pg0Var.H[!z4 ? 1 : 0] = null;
+                wg0 wg0Var = (wg0) this.d;
+                AnimatorSet[] animatorSetArr = wg0Var.K;
+                boolean z10 = this.f20448b;
+                if (animatorSetArr[!z10 ? 1 : 0] != null && animatorSetArr[!z10 ? 1 : 0].equals(animator)) {
+                    wg0Var.K[!z10 ? 1 : 0] = null;
                     return;
                 }
                 return;
@@ -64,125 +64,125 @@ public final class g extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        float f10;
-        di diVar;
+        float f7;
+        ni niVar;
         int i10;
-        w0 w0Var;
-        switch (this.f19671a) {
+        v0 v0Var;
+        switch (this.f20447a) {
             case 0:
                 k kVar = (k) this.d;
-                k5 k5Var = kVar.f20309n[1];
-                if (k5Var != null && k5Var.getParent() != null) {
-                    ((ViewGroup) kVar.f20309n[1].getParent()).removeView(kVar.f20309n[1]);
+                j5 j5Var = kVar.f21102n[1];
+                if (j5Var != null && j5Var.getParent() != null) {
+                    ((ViewGroup) kVar.f21102n[1].getParent()).removeView(kVar.f21102n[1]);
                 }
-                kVar.f20309n[1] = null;
-                kVar.f20322u0 = false;
-                if (this.f19672b && this.f19673c) {
-                    kVar.f20317r.setVisibility(8);
+                kVar.f21102n[1] = null;
+                kVar.f21123x0 = false;
+                if (this.f20448b && this.f20449c) {
+                    kVar.f21111r.setVisibility(8);
                 }
                 kVar.requestLayout();
                 return;
             case 1:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;
-                if (!this.f19672b) {
-                    actionBarLayout.f19424a1 = false;
-                    actionBarLayout.f19456s.setAlpha(1.0f);
-                    ActionBarLayout.a(actionBarLayout, this.f19673c);
-                    actionBarLayout.f19434e1 = null;
+                if (!this.f20448b) {
+                    actionBarLayout.f20147d1 = false;
+                    actionBarLayout.f20175s.setAlpha(1.0f);
+                    ActionBarLayout.a(actionBarLayout, this.f20449c);
+                    actionBarLayout.f20157h1 = null;
                     return;
                 }
                 return;
             case 2:
-                w8 w8Var = (w8) this.d;
-                w8Var.D = null;
-                boolean z4 = this.f19672b;
-                if (z4) {
-                    f10 = 1.0f;
+                f9 f9Var = (f9) this.d;
+                f9Var.G = null;
+                boolean z10 = this.f20448b;
+                if (z10) {
+                    f7 = 1.0f;
                 } else {
-                    f10 = 0.0f;
+                    f7 = 0.0f;
                 }
-                w8Var.i0(f10, false);
-                if (this.f19673c) {
-                    p8 p8Var = w8Var.f30173a;
-                    p8Var.f29405w = -1.0f;
-                    p8Var.setExpanded(z4);
+                f9Var.i0(f7, false);
+                if (this.f20449c) {
+                    y8 y8Var = f9Var.f25964a;
+                    y8Var.f25613w = -1.0f;
+                    y8Var.setExpanded(z10);
                     return;
                 }
                 return;
             case 3:
-                boolean z10 = this.f19672b;
-                li liVar = (li) this.d;
-                if (animator.equals(liVar.J0)) {
-                    if (!z10) {
-                        if (!liVar.K) {
-                            liVar.A0.setVisibility(4);
+                boolean z11 = this.f20448b;
+                vi viVar = (vi) this.d;
+                if (animator.equals(viVar.M0)) {
+                    if (!z11) {
+                        if (!viVar.N) {
+                            viVar.D0.setVisibility(4);
                         }
-                        liVar.E0.setVisibility(4);
-                    } else if (liVar.P0 && ((diVar = liVar.f26744v0) == null || diVar.I())) {
-                        liVar.f26742u1.setVisibility(4);
+                        viVar.H0.setVisibility(4);
+                    } else if (viVar.S0 && ((niVar = viVar.f31340y0) == null || niVar.J())) {
+                        viVar.f31337x1.setVisibility(4);
                     }
-                    if (this.f19673c) {
-                        liVar.b2();
-                        ah.e eVar = liVar.L0;
-                        if (z10) {
+                    if (this.f20449c) {
+                        viVar.b2();
+                        ah.w wVar = viVar.O0;
+                        if (z11) {
                             i10 = 0;
                         } else {
                             i10 = 8;
                         }
-                        eVar.setVisibility(i10);
+                        wVar.setVisibility(i10);
                     }
-                    liVar.J0 = null;
+                    viVar.M0 = null;
                     return;
                 }
                 return;
             case 4:
-                ba0 ba0Var = (ba0) this.d;
-                ea0 ea0Var = ba0Var.f23609f2;
-                if (ba0Var.f23606c2 != null) {
-                    ba0Var.f23606c2 = null;
-                    if (!this.f19672b) {
-                        ea0Var.C.setVisibility(4);
-                        FrameLayout frameLayout = ea0Var.P;
+                z90 z90Var = (z90) this.d;
+                ca0 ca0Var = z90Var.f33111i2;
+                if (z90Var.f33108f2 != null) {
+                    z90Var.f33108f2 = null;
+                    if (!this.f20448b) {
+                        ca0Var.F.setVisibility(4);
+                        FrameLayout frameLayout = ca0Var.S;
                         if (frameLayout != null) {
                             frameLayout.setVisibility(4);
                         }
-                        w0 w0Var2 = ea0Var.E;
-                        if (w0Var2 != null) {
-                            w0Var2.setVisibility(8);
+                        v0 v0Var2 = ca0Var.H;
+                        if (v0Var2 != null) {
+                            v0Var2.setVisibility(8);
                         }
-                        if (this.f19673c && (w0Var = ea0Var.D) != null) {
-                            w0Var.setVisibility(8);
+                        if (this.f20449c && (v0Var = ca0Var.G) != null) {
+                            v0Var.setVisibility(8);
                             return;
                         }
                         return;
                     }
-                    ea0Var.f24560s.setVisibility(4);
-                    w0 w0Var3 = ea0Var.D;
-                    if (w0Var3 != null) {
-                        w0Var3.setVisibility(8);
+                    ca0Var.f24954s.setVisibility(4);
+                    v0 v0Var3 = ca0Var.G;
+                    if (v0Var3 != null) {
+                        v0Var3.setVisibility(8);
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                pg0 pg0Var = (pg0) this.d;
-                AnimatorSet[] animatorSetArr = pg0Var.H;
-                boolean z11 = this.f19672b;
-                if (animatorSetArr[!z11 ? 1 : 0] != null && animatorSetArr[!z11 ? 1 : 0].equals(animator) && !this.f19673c && z11 && pg0Var.J.getAlpha() != 1.0f) {
-                    pg0Var.J.setAlpha(1.0f);
-                    pg0Var.J.setScaleX(1.0f);
-                    pg0Var.J.setScaleY(1.0f);
-                    pg0Var.J.setVisibility(0);
+                wg0 wg0Var = (wg0) this.d;
+                AnimatorSet[] animatorSetArr = wg0Var.K;
+                boolean z12 = this.f20448b;
+                if (animatorSetArr[!z12 ? 1 : 0] != null && animatorSetArr[!z12 ? 1 : 0].equals(animator) && !this.f20449c && z12 && wg0Var.M.getAlpha() != 1.0f) {
+                    wg0Var.M.setAlpha(1.0f);
+                    wg0Var.M.setScaleX(1.0f);
+                    wg0Var.M.setScaleY(1.0f);
+                    wg0Var.M.setVisibility(0);
                     return;
                 }
                 return;
         }
     }
 
-    public g(ActionBarLayout actionBarLayout, boolean z4) {
-        this.f19671a = 1;
+    public g(ActionBarLayout actionBarLayout, boolean z10) {
+        this.f20447a = 1;
         this.d = actionBarLayout;
-        this.f19673c = z4;
+        this.f20449c = z10;
     }
 }

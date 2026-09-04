@@ -1,10 +1,9 @@
 package g5;
-public final class a {
-    public final byte[] f6357a;
-    public final int f6358b;
+public abstract class a extends com.googlecode.mp4parser.b {
+    public int f10375f;
 
-    public a(byte[] bArr, int i10) {
-        this.f6357a = bArr;
-        this.f6358b = i10;
+    public a(String str) {
+        super(str);
+        this.f10375f = 1;
     }
 }

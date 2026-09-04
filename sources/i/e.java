@@ -2,21 +2,21 @@ package i;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import j7.y7;
-public final class e extends g implements j0.b {
-    public boolean B;
-    public b C;
-    public y7 D;
-    public int E;
-    public int F;
-    public boolean G;
-    public b f7183y;
+import v7.f8;
+public final class e extends f implements j0.b {
+    public boolean E;
+    public b F;
+    public f8 G;
+    public int H;
+    public int I;
+    public boolean J;
+    public b f11411y;
 
     public e(b bVar, Resources resources) {
-        this.e = 255;
+        this.f11416e = 255;
         this.h = -1;
-        this.E = -1;
-        this.F = -1;
+        this.H = -1;
+        this.I = -1;
         d(new b(bVar, this, resources));
         onStateChange(getState());
         jumpToCurrentState();
@@ -34,27 +34,27 @@ public final class e extends g implements j0.b {
 
     @Override
     public final void d(b bVar) {
-        this.f7187a = bVar;
+        this.f11413a = bVar;
         int i10 = this.h;
         if (i10 >= 0) {
             Drawable d = bVar.d(i10);
-            this.f7189c = d;
+            this.f11415c = d;
             if (d != null) {
                 b(d);
             }
         }
         this.d = null;
-        this.f7183y = bVar;
-        this.C = bVar;
+        this.f11411y = bVar;
+        this.F = bVar;
     }
 
     public final Drawable f() {
-        if (!this.B) {
+        if (!this.E) {
             super.mutate();
-            b bVar = this.f7183y;
+            b bVar = this.f11411y;
             bVar.I = bVar.I.clone();
             bVar.J = bVar.J.clone();
-            this.B = true;
+            this.E = true;
         }
         return this;
     }
@@ -67,24 +67,24 @@ public final class e extends g implements j0.b {
     @Override
     public final void jumpToCurrentState() {
         super.jumpToCurrentState();
-        y7 y7Var = this.D;
-        if (y7Var != null) {
-            y7Var.d();
-            this.D = null;
-            c(this.E);
-            this.E = -1;
-            this.F = -1;
+        f8 f8Var = this.G;
+        if (f8Var != null) {
+            f8Var.d();
+            this.G = null;
+            c(this.H);
+            this.H = -1;
+            this.I = -1;
         }
     }
 
     @Override
     public final Drawable mutate() {
-        if (!this.G) {
+        if (!this.J) {
             f();
-            b bVar = this.C;
+            b bVar = this.F;
             bVar.I = bVar.I.clone();
             bVar.J = bVar.J.clone();
-            this.G = true;
+            this.J = true;
         }
         return this;
     }
@@ -95,12 +95,12 @@ public final class e extends g implements j0.b {
     }
 
     @Override
-    public final boolean setVisible(boolean z4, boolean z10) {
-        boolean visible = super.setVisible(z4, z10);
-        y7 y7Var = this.D;
-        if (y7Var != null && (visible || z10)) {
-            if (z4) {
-                y7Var.c();
+    public final boolean setVisible(boolean z10, boolean z11) {
+        boolean visible = super.setVisible(z10, z11);
+        f8 f8Var = this.G;
+        if (f8Var != null && (visible || z11)) {
+            if (z10) {
+                f8Var.c();
                 return visible;
             }
             jumpToCurrentState();

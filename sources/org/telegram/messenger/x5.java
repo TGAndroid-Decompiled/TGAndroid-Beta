@@ -1,49 +1,36 @@
 package org.telegram.messenger;
 public final class x5 implements Runnable {
-    public final int f18935a;
-    public final MediaController f18936b;
+    public final int f19552a;
+    public final org.telegram.ui.ActionBar.b2 f19553b;
+    public final boolean[] f19554c;
 
-    public x5(MediaController mediaController, int i10) {
-        this.f18935a = i10;
-        this.f18936b = mediaController;
+    public x5(org.telegram.ui.ActionBar.b2 b2Var, boolean[] zArr, int i10) {
+        this.f19552a = i10;
+        this.f19553b = b2Var;
+        this.f19554c = zArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f18935a) {
+        switch (this.f19552a) {
             case 0:
-                this.f18936b.lambda$startRaiseToEarSensors$8();
+                MediaController.lambda$saveFile$45(this.f19554c, this.f19553b);
                 return;
             case 1:
-                this.f18936b.lambda$playMessage$20();
+                MediaController.lambda$saveFile$49(this.f19553b, this.f19554c);
                 return;
             case 2:
-                this.f18936b.lambda$setTextureView$15();
-                return;
-            case 3:
-                this.f18936b.lambda$toggleRecordingPause$29();
-                return;
-            case 4:
-                this.f18936b.lambda$toggleRecordingPause$30();
-                return;
-            case 5:
-                this.f18936b.lambda$stopRaiseToEarSensors$9();
-                return;
-            case 6:
-                this.f18936b.lambda$new$2();
-                return;
-            case 7:
-                this.f18936b.lambda$new$3();
-                return;
-            case 8:
-                this.f18936b.lambda$new$4();
-                return;
-            case 9:
-                this.f18936b.lambda$toggleRecordingPause$31();
+                MediaController.lambda$saveFile$52(this.f19554c, this.f19553b);
                 return;
             default:
-                this.f18936b.lambda$setCurrentVideoVisible$14();
+                MediaController.lambda$saveFile$54(this.f19553b, this.f19554c);
                 return;
         }
+    }
+
+    public x5(boolean[] zArr, org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        this.f19552a = i10;
+        this.f19554c = zArr;
+        this.f19553b = b2Var;
     }
 }

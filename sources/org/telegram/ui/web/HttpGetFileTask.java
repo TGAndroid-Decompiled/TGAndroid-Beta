@@ -16,8 +16,8 @@ public class HttpGetFileTask extends AsyncTask<String, Void, File> {
         this.progressCallback = callback2;
     }
 
-    public void lambda$doInBackground$0(float f10) {
-        this.progressCallback.run(Float.valueOf(f10));
+    public void lambda$doInBackground$0(float f7) {
+        this.progressCallback.run(Float.valueOf(f7));
     }
 
     public void lambda$doInBackground$1() {
@@ -29,8 +29,8 @@ public class HttpGetFileTask extends AsyncTask<String, Void, File> {
         return this;
     }
 
-    public HttpGetFileTask setMaxSize(long j10) {
-        this.max_size = j10;
+    public HttpGetFileTask setMaxSize(long j3) {
+        this.max_size = j3;
         return this;
     }
 

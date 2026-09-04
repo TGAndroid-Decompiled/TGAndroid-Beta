@@ -1,6 +1,4 @@
 package pa;
 public interface a {
-    boolean shouldSkipClass(Class cls);
-
-    boolean shouldSkipField(b bVar);
+    void h(b bVar);
 }

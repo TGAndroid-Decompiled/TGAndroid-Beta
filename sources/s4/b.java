@@ -1,35 +1,84 @@
 package s4;
+public final class b implements e0 {
+    public final e0 f45713a;
+    public int f45714b = 0;
+    public int f45715c = -1;
+    public int d = -1;
 
-import java.util.Arrays;
-import k7.b7;
-public final class b {
-    public final String f44048a;
-    public final String f44049b;
-    public final int f44050c;
-    public final int d;
+    public b(e0 e0Var) {
+        this.f45713a = e0Var;
+    }
 
-    public b(int i10, int i11, String str, String str2) {
-        this.f44048a = str;
-        this.f44049b = str2;
-        this.f44050c = i10;
+    @Override
+    public final void D(int i10, int i11) {
+        a();
+        this.f45713a.D(i10, i11);
+    }
+
+    @Override
+    public final void P0(int i10, int i11) {
+        int i12;
+        if (this.f45714b == 2 && (i12 = this.f45715c) >= i10 && i12 <= i10 + i11) {
+            this.d += i11;
+            this.f45715c = i10;
+            return;
+        }
+        a();
+        this.f45715c = i10;
         this.d = i11;
+        this.f45714b = 2;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final void a() {
+        int i10 = this.f45714b;
+        if (i10 == 0) {
+            return;
         }
-        if (!(obj instanceof b)) {
-            return false;
+        e0 e0Var = this.f45713a;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                if (i10 == 3) {
+                    e0Var.m1(this.f45715c, this.d);
+                }
+            } else {
+                e0Var.P0(this.f45715c, this.d);
+            }
+        } else {
+            e0Var.k0(this.f45715c, this.d);
         }
-        b bVar = (b) obj;
-        if (this.f44050c == bVar.f44050c && this.d == bVar.d && b7.a(this.f44048a, bVar.f44048a) && b7.a(this.f44049b, bVar.f44049b)) {
-            return true;
-        }
-        return false;
+        this.f45714b = 0;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f44048a, this.f44049b, Integer.valueOf(this.f44050c), Integer.valueOf(this.d)});
+    @Override
+    public final void k0(int i10, int i11) {
+        int i12;
+        if (this.f45714b == 1 && i10 >= (i12 = this.f45715c)) {
+            int i13 = this.d;
+            if (i10 <= i12 + i13) {
+                this.d = i13 + i11;
+                this.f45715c = Math.min(i10, i12);
+                return;
+            }
+        }
+        a();
+        this.f45715c = i10;
+        this.d = i11;
+        this.f45714b = 1;
+    }
+
+    @Override
+    public final void m1(int i10, int i11) {
+        int i12;
+        int i13;
+        int i14;
+        if (this.f45714b == 3 && i10 <= (i13 = this.d + (i12 = this.f45715c)) && (i14 = i10 + i11) >= i12) {
+            this.f45715c = Math.min(i10, i12);
+            this.d = Math.max(i13, i14) - this.f45715c;
+            return;
+        }
+        a();
+        this.f45715c = i10;
+        this.d = i11;
+        this.f45714b = 3;
     }
 }

@@ -1,50 +1,57 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-public final class mi0 extends org.telegram.ui.Components.qv0 {
-    public final ui0 A0;
-    public final int[] f36097t0;
-    public final int[] f36098u0;
-    public int f36099v0;
-    public final int[] f36100w0;
-    public final i20 f36101x0;
-    public final Paint f36102y0;
-    public final org.telegram.ui.ActionBar.f6 f36103z0;
+import android.graphics.Point;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+public final class mi0 extends s4.h0 {
+    public final Context f38716c;
+    public final org.telegram.ui.ActionBar.f6 d;
+    public final cj0 f38717e;
 
-    public mi0(ui0 ui0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, null);
-        this.A0 = ui0Var;
-        this.f36103z0 = f6Var;
-        this.f36097t0 = new int[2];
-        this.f36098u0 = new int[2];
-        this.f36099v0 = 0;
-        this.f36100w0 = new int[2];
-        this.f36101x0 = new i20();
-        org.telegram.ui.Components.mr mrVar = org.telegram.ui.Components.mr.f27122f;
-        this.f36102y0 = new Paint(1);
+    public mi0(cj0 cj0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f38717e = cj0Var;
+        this.f38716c = context;
+        this.d = f6Var;
     }
 
     @Override
-    public final void dispatchDraw(android.graphics.Canvas r34) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.mi0.dispatchDraw(android.graphics.Canvas):void");
+    public final int h() {
+        return this.f38717e.N.size();
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        ui0 ui0Var = this.A0;
-        if (ui0Var.f38853w) {
-            if (view != ui0Var.U) {
-                org.telegram.ui.Cells.s1 s1Var = ui0Var.N;
-                if (view == s1Var && s1Var != null && s1Var.getCurrentPosition() == null) {
-                    return false;
-                }
-            } else {
-                return false;
-            }
+    public final void v(s4.c1 c1Var, int i10) {
+        cj0 cj0Var = this.f38717e;
+        ArrayList arrayList = cj0Var.N;
+        boolean z10 = true;
+        MessageObject messageObject = (MessageObject) arrayList.get((h() - 1) - i10);
+        org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) c1Var.f45738a;
+        MessageObject.GroupedMessages l4 = cj0Var.l(messageObject);
+        int i11 = 0;
+        if (l4 == null) {
+            z10 = false;
         }
-        return super.drawChild(canvas, view, j10);
+        t1Var.setInvalidatesParent(z10);
+        t1Var.X3(messageObject, l4, false, false, false, false);
+        if (!cj0Var.P.i() && arrayList.size() >= 10) {
+            i11 = arrayList.size() % 10;
+        }
+        if (i10 == i11 && !messageObject.needDrawForwarded()) {
+            cj0Var.Q = t1Var;
+            Point point = AndroidUtilities.displaySize;
+            t1Var.Z3(point.x, point.y);
+            cj0Var.R = messageObject.getId();
+        }
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        cj0 cj0Var = this.f38717e;
+        bj0 bj0Var = new bj0(cj0Var, this.f38716c, cj0Var.f35131c, this.d);
+        bj0Var.setDelegate(new ob.a(17));
+        return new s4.c1(bj0Var);
     }
 }

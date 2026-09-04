@@ -1,41 +1,44 @@
 package k7;
-public final class a implements d {
-    public final int f9737a;
 
-    public a(int i10) {
-        this.f9737a = i10;
+import android.os.BadParcelableException;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.Parcelable;
+import i2.g;
+public abstract class a {
+    static {
+        a.class.getClassLoader();
     }
 
-    @Override
-    public final Class annotationType() {
-        return d.class;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof d) {
-                if (this.f9737a == ((a) ((d) obj)).f9737a) {
-                    Object obj2 = c.f9752a;
-                    if (obj2.equals(obj2)) {
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
         }
-        return true;
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 
-    @Override
-    public final int hashCode() {
-        return (this.f9737a ^ 14552422) + (c.f9752a.hashCode() ^ 2041407134);
+    public static void b(Parcel parcel) {
+        int dataAvail = parcel.dataAvail();
+        if (dataAvail <= 0) {
+            return;
+        }
+        throw new BadParcelableException(g.i(dataAvail, "Parcel data not fully consumed, unread size: "));
     }
 
-    @Override
-    public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f9737a + "intEncoding=" + c.f9752a + ')';
+    public static void c(Parcel parcel, Parcelable parcelable) {
+        if (parcelable == null) {
+            parcel.writeInt(0);
+            return;
+        }
+        parcel.writeInt(1);
+        parcelable.writeToParcel(parcel, 0);
+    }
+
+    public static void d(Parcel parcel, IInterface iInterface) {
+        if (iInterface == null) {
+            parcel.writeStrongBinder(null);
+        } else {
+            parcel.writeStrongBinder(iInterface.asBinder());
+        }
     }
 }

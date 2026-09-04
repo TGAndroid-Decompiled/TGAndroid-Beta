@@ -11,87 +11,87 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class i00 extends View {
-    public float B;
-    public float C;
-    public boolean D;
-    public boolean E;
-    public int F;
-    public int G;
-    public StaticLayout H;
-    public StaticLayout I;
-    public StaticLayout J;
-    public CharSequence K;
-    public q5 L;
+    public float E;
+    public float F;
+    public boolean G;
+    public boolean H;
+    public int I;
+    public int J;
+    public StaticLayout K;
+    public StaticLayout L;
     public StaticLayout M;
-    public q5 N;
-    public StaticLayout O;
-    public q5 P;
-    public StaticLayout Q;
-    public boolean R;
-    public boolean S;
-    public boolean T;
-    public float U;
-    public int V;
-    public int W;
-    public ValueAnimator f25532a;
-    public int f25533a0;
-    public h00 f25534b;
-    public float f25535b0;
-    public int f25536c;
-    public float f25537c0;
+    public CharSequence N;
+    public v5 O;
+    public StaticLayout P;
+    public v5 Q;
+    public StaticLayout R;
+    public v5 S;
+    public StaticLayout T;
+    public boolean U;
+    public boolean V;
+    public boolean W;
+    public ValueAnimator f26898a;
+    public float f26899a0;
+    public g00 f26900b;
+    public int f26901b0;
+    public int f26902c;
+    public int f26903c0;
     public int d;
-    public float f25538d0;
-    public int e;
-    public float f25539e0;
-    public final RectF f25540f;
-    public float f25541f0;
-    public float f25542g0;
+    public int f26904d0;
+    public int f26905e;
+    public float f26906e0;
+    public final RectF f26907f;
+    public float f26908f0;
+    public float f26909g0;
     public CharSequence h;
-    public float f25543h0;
-    public boolean f25544i0;
-    public final k00 f25545j0;
-    public boolean f25546n;
-    public q5 f25547r;
-    public StaticLayout f25548s;
+    public float f26910h0;
+    public float f26911i0;
+    public float f26912j0;
+    public float f26913k0;
+    public boolean f26914l0;
+    public final k00 m0;
+    public boolean f26915n;
+    public v5 f26916r;
+    public StaticLayout f26917s;
     public int v;
-    public boolean f25549w;
-    public float f25550x;
-    public float f25551y;
+    public boolean f26918w;
+    public float f26919x;
+    public float f26920y;
 
     public i00(k00 k00Var, Context context) {
         super(context);
-        this.f25545j0 = k00Var;
-        this.f25540f = new RectF();
-        this.F = -1;
+        this.m0 = k00Var;
+        this.f26907f = new RectF();
+        this.I = -1;
     }
 
     public final void a() {
-        this.f25549w = false;
-        this.E = false;
-        this.R = false;
-        this.D = false;
-        this.T = false;
-        this.f25532a = null;
+        this.f26918w = false;
+        this.H = false;
+        this.U = false;
+        this.G = false;
+        this.W = false;
+        this.f26898a = null;
         invalidate();
     }
 
-    public final void b(float f10, int i10) {
+    public final void b(float f7, int i10) {
         if (i10 == 6) {
-            this.f25551y = 0.0f;
+            this.f26920y = 0.0f;
             return;
         }
         AnimatorSet animatorSet = new AnimatorSet();
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, AndroidUtilities.dp(f10));
-        ofFloat.addUpdateListener(new c00(this, 1));
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, AndroidUtilities.dp(f7));
+        ofFloat.addUpdateListener(new b00(this, 1));
         animatorSet.playTogether(ofFloat);
         animatorSet.setDuration(50L);
-        animatorSet.addListener(new lh.ab(this, i10, f10, 1));
+        animatorSet.addListener(new h00(this, i10, f7, 0));
         animatorSet.start();
     }
 
     @Override
     public int getId() {
-        return this.f25534b.f25280a;
+        return this.f26900b.f26217a;
     }
 
     @Override
@@ -99,54 +99,54 @@ public final class i00 extends View {
         int i10;
         int i11;
         int i12;
-        this.f25544i0 = true;
+        this.f26914l0 = true;
         super.onAttachedToWindow();
         int i13 = 26;
-        if (this.f25534b.f25284g) {
+        if (this.f26900b.f26222g) {
             i10 = 26;
         } else {
             i10 = 0;
         }
-        this.f25547r = u5.update(i10, this, this.f25547r, this.f25548s);
-        if (this.f25534b.f25284g) {
+        this.f26916r = z5.update(i10, this, this.f26916r, this.f26917s);
+        if (this.f26900b.f26222g) {
             i11 = 26;
         } else {
             i11 = 0;
         }
-        this.L = u5.update(i11, this, this.L, this.M);
-        if (this.f25534b.f25284g) {
+        this.O = z5.update(i11, this, this.O, this.P);
+        if (this.f26900b.f26222g) {
             i12 = 26;
         } else {
             i12 = 0;
         }
-        this.N = u5.update(i12, this, this.N, this.O);
-        if (!this.f25534b.f25284g) {
+        this.Q = z5.update(i12, this, this.Q, this.R);
+        if (!this.f26900b.f26222g) {
             i13 = 0;
         }
-        this.P = u5.update(i13, this, this.P, this.Q);
+        this.S = z5.update(i13, this, this.S, this.T);
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        this.f25544i0 = false;
+        this.f26914l0 = false;
         super.onDetachedFromWindow();
-        this.f25549w = false;
-        this.E = false;
-        this.R = false;
-        this.D = false;
-        this.T = false;
-        ValueAnimator valueAnimator = this.f25532a;
+        this.f26918w = false;
+        this.H = false;
+        this.U = false;
+        this.G = false;
+        this.W = false;
+        ValueAnimator valueAnimator = this.f26898a;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f25532a.removeAllUpdateListeners();
-            this.f25532a.cancel();
-            this.f25532a = null;
+            this.f26898a.removeAllUpdateListeners();
+            this.f26898a.cancel();
+            this.f26898a = null;
         }
         invalidate();
-        u5.release(this, this.f25547r);
-        u5.release(this, this.L);
-        u5.release(this, this.N);
-        u5.release(this, this.P);
+        z5.release(this, this.f26916r);
+        z5.release(this, this.O);
+        z5.release(this, this.Q);
+        z5.release(this, this.S);
     }
 
     @Override
@@ -156,38 +156,38 @@ public final class i00 extends View {
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        boolean z4;
+        boolean z10;
         int i10;
         int i11;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        h00 h00Var = this.f25534b;
-        if (h00Var != null && (i11 = this.f25545j0.I) != -1 && h00Var.f25280a == i11) {
-            z4 = true;
+        g00 g00Var = this.f26900b;
+        if (g00Var != null && (i11 = this.m0.L) != -1 && g00Var.f26217a == i11) {
+            z10 = true;
         } else {
-            z4 = false;
+            z10 = false;
         }
-        accessibilityNodeInfo.setSelected(z4);
+        accessibilityNodeInfo.setSelected(z10);
         accessibilityNodeInfo.addAction(16);
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenMenu2)));
-        if (this.f25534b != null) {
-            StringBuilder sb = new StringBuilder();
-            sb.append(this.f25534b.f25281b);
-            h00 h00Var2 = this.f25534b;
-            if (h00Var2 != null) {
-                i10 = h00Var2.d;
+        if (this.f26900b != null) {
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(this.f26900b.f26218b);
+            g00 g00Var2 = this.f26900b;
+            if (g00Var2 != null) {
+                i10 = g00Var2.d;
             } else {
                 i10 = 0;
             }
             if (i10 > 0) {
-                sb.append("\n");
-                sb.append(LocaleController.formatPluralString("AccDescrUnreadCount", i10, new Object[0]));
+                sb2.append("\n");
+                sb2.append(LocaleController.formatPluralString("AccDescrUnreadCount", i10, new Object[0]));
             }
-            accessibilityNodeInfo.setContentDescription(sb);
+            accessibilityNodeInfo.setContentDescription(sb2);
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(AndroidUtilities.dp(24.0f) + this.f25534b.a(false) + this.f25545j0.K, View.MeasureSpec.getSize(i11));
+        setMeasuredDimension(AndroidUtilities.dp(24.0f) + this.f26900b.a(false) + this.m0.N, View.MeasureSpec.getSize(i11));
     }
 }

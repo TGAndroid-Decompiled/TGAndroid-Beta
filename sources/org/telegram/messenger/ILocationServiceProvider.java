@@ -27,9 +27,9 @@ public interface ILocationServiceProvider {
     }
 
     public interface ILocationRequest {
-        void setFastestInterval(long j10);
+        void setFastestInterval(long j3);
 
-        void setInterval(long j10);
+        void setInterval(long j3);
 
         void setPriority(int i10);
     }

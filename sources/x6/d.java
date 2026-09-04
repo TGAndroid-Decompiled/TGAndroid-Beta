@@ -1,16 +1,50 @@
 package x6;
 
-import android.os.IBinder;
-import android.os.IInterface;
-public final class d implements IInterface {
-    public final IBinder f46897a;
+import android.os.RemoteException;
+import h8.j;
+import i8.g;
+public final class d implements e {
+    public final int f48917a;
+    public final j f48918b;
 
-    public d(IBinder iBinder) {
-        this.f46897a = iBinder;
+    public d(j jVar, int i10) {
+        this.f48917a = i10;
+        this.f48918b = jVar;
     }
 
     @Override
-    public final IBinder asBinder() {
-        return this.f46897a;
+    public final int a() {
+        switch (this.f48917a) {
+            case 0:
+                return 4;
+            default:
+                return 5;
+        }
+    }
+
+    @Override
+    public final void b() {
+        switch (this.f48917a) {
+            case 0:
+                aa.a aVar = this.f48918b.f10908a;
+                aVar.getClass();
+                try {
+                    g gVar = (g) aVar.f372c;
+                    gVar.S0(gVar.O0(), 12);
+                    return;
+                } catch (RemoteException e7) {
+                    throw new RuntimeException(e7);
+                }
+            default:
+                aa.a aVar2 = this.f48918b.f10908a;
+                aVar2.getClass();
+                try {
+                    g gVar2 = (g) aVar2.f372c;
+                    gVar2.S0(gVar2.O0(), 3);
+                    return;
+                } catch (RemoteException e10) {
+                    throw new RuntimeException(e10);
+                }
+        }
     }
 }

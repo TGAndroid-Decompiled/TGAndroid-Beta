@@ -1,26 +1,29 @@
 package c5;
-public final class h {
-    public final String f2129a;
-    public final float f2130b;
-    public final float f2131c;
-    public final int d;
-    public final int e;
-    public final float f2132f;
-    public final float f2133g;
-    public final int h;
-    public final float f2134i;
-    public final int f2135j;
 
-    public h(String str, float f10, float f11, int i10, int i11, float f12, float f13, int i12, float f14, int i13) {
-        this.f2129a = str;
-        this.f2130b = f10;
-        this.f2131c = f11;
-        this.d = i10;
-        this.e = i11;
-        this.f2132f = f12;
-        this.f2133g = f13;
-        this.h = i12;
-        this.f2134i = f14;
-        this.f2135j = i13;
+import com.google.android.gms.internal.vision.e2;
+public final class h {
+    public int f4397a;
+    public int f4398b;
+    public String f4399c;
+
+    public static c3.a a() {
+        ?? obj = new Object();
+        obj.f4197c = 0;
+        obj.f4195a = "";
+        return obj;
+    }
+
+    public final String toString() {
+        com.google.android.gms.internal.play_billing.j jVar;
+        int i10 = this.f4397a;
+        int i11 = com.google.android.gms.internal.play_billing.u.f5895a;
+        com.google.android.gms.internal.play_billing.a0 a0Var = com.google.android.gms.internal.play_billing.j.f5800c;
+        Integer valueOf = Integer.valueOf(i10);
+        if (!a0Var.containsKey(valueOf)) {
+            jVar = com.google.android.gms.internal.play_billing.j.RESPONSE_CODE_UNSPECIFIED;
+        } else {
+            jVar = (com.google.android.gms.internal.play_billing.j) a0Var.get(valueOf);
+        }
+        return e2.j("Response Code: ", jVar.toString(), ", Debug Message: ", this.f4399c);
     }
 }

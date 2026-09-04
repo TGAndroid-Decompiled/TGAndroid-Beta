@@ -7,44 +7,44 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
 public final class ts0 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f29024a;
-    public final int f29025b;
-    public final KeyEvent.Callback f29026c;
+    public final int f30695a;
+    public final int f30696b;
+    public final KeyEvent.Callback f30697c;
 
     public ts0(KeyEvent.Callback callback, int i10, int i11) {
-        this.f29024a = i11;
-        this.f29026c = callback;
-        this.f29025b = i10;
+        this.f30695a = i11;
+        this.f30697c = callback;
+        this.f30696b = i10;
     }
 
     @Override
     public final boolean onPreDraw() {
-        int i10 = this.f29024a;
-        int i11 = this.f29025b;
-        KeyEvent.Callback callback = this.f29026c;
+        int i10 = this.f30695a;
+        int i11 = this.f30696b;
+        KeyEvent.Callback callback = this.f30697c;
         switch (i10) {
             case 0:
-                yu0 yu0Var = (yu0) callback;
-                yu0Var.f31131h0[i11].getViewTreeObserver().removeOnPreDrawListener(this);
-                yu0Var.U(i11);
+                xu0 xu0Var = (xu0) callback;
+                xu0Var.f32702k0[i11].getViewTreeObserver().removeOnPreDrawListener(this);
+                xu0Var.U(i11);
                 return true;
             default:
-                q61 q61Var = (q61) callback;
-                lh.e1 e1Var = q61Var.d;
-                e1Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                int childCount = e1Var.getChildCount();
+                o61 o61Var = (o61) callback;
+                bi.o0 o0Var = o61Var.d;
+                o0Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                int childCount = o0Var.getChildCount();
                 AnimatorSet animatorSet = new AnimatorSet();
                 for (int i12 = 0; i12 < childCount; i12++) {
-                    View childAt = e1Var.getChildAt(i12);
-                    e1Var.getClass();
+                    View childAt = o0Var.getChildAt(i12);
+                    o0Var.getClass();
                     int R = RecyclerView.R(childAt);
                     if (R >= i11) {
-                        if (R == 1 && e1Var.getAdapter() == q61Var.e && (childAt instanceof org.telegram.ui.Cells.t3)) {
-                            childAt = ((org.telegram.ui.Cells.t3) childAt).getTextView();
+                        if (R == 1 && o0Var.getAdapter() == o61Var.f28977e && (childAt instanceof org.telegram.ui.Cells.u3)) {
+                            childAt = ((org.telegram.ui.Cells.u3) childAt).getTextView();
                         }
                         childAt.setAlpha(0.0f);
                         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
-                        ofFloat.setStartDelay((int) ((Math.min(e1Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / e1Var.getMeasuredHeight()) * 100.0f));
+                        ofFloat.setStartDelay((int) ((Math.min(o0Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / o0Var.getMeasuredHeight()) * 100.0f));
                         ofFloat.setDuration(200L);
                         animatorSet.playTogether(ofFloat);
                     }

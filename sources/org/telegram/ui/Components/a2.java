@@ -9,74 +9,74 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 public final class a2 implements View.OnClickListener {
-    public final int f23285a = 0;
-    public final int[] f23286b;
-    public final Object f23287c;
+    public final int f24227a = 0;
+    public final int[] f24228b;
+    public final Object f24229c;
     public final ViewGroup d;
-    public final Object e;
-    public final KeyEvent.Callback f23288f;
+    public final Object f24230e;
+    public final KeyEvent.Callback f24231f;
     public final Object h;
-    public final Object f23289n;
-    public final Object f23290r;
+    public final Object f24232n;
+    public final Object f24233r;
 
-    public a2(FrameLayout frameLayout, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.ActionBar.g3 g3Var, FrameLayout frameLayout2, int[] iArr, String[] strArr, int[] iArr2, org.telegram.ui.kh khVar) {
-        this.f23287c = frameLayout;
-        this.e = f6Var;
-        this.f23288f = g3Var;
+    public a2(FrameLayout frameLayout, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.ActionBar.f3 f3Var, FrameLayout frameLayout2, int[] iArr, String[] strArr, int[] iArr2, org.telegram.ui.ActionBar.n5 n5Var) {
+        this.f24229c = frameLayout;
+        this.f24230e = f6Var;
+        this.f24231f = f3Var;
         this.d = frameLayout2;
-        this.f23286b = iArr;
-        this.f23289n = strArr;
+        this.f24228b = iArr;
+        this.f24232n = strArr;
         this.h = iArr2;
-        this.f23290r = khVar;
+        this.f24233r = n5Var;
     }
 
     @Override
     public final void onClick(View view) {
         Runnable runnable;
-        switch (this.f23285a) {
+        switch (this.f24227a) {
             case 0:
-                FrameLayout frameLayout = (FrameLayout) this.f23287c;
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.e;
-                org.telegram.ui.ActionBar.g3 g3Var = (org.telegram.ui.ActionBar.g3) this.f23288f;
+                FrameLayout frameLayout = (FrameLayout) this.f24229c;
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f24230e;
+                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f24231f;
                 FrameLayout frameLayout2 = (FrameLayout) this.d;
-                String[] strArr = (String[]) this.f23289n;
+                String[] strArr = (String[]) this.f24232n;
                 int[] iArr = (int[]) this.h;
-                Runnable runnable2 = (Runnable) this.f23290r;
+                Runnable runnable2 = (Runnable) this.f24233r;
                 if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
-                    new qc(frameLayout, f6Var).Q(R.raw.star_premium_2, 36, AndroidUtilities.premiumText(LocaleController.getString(R.string.MessageScheduledRepeatPremium), new cg.n0(25))).j();
+                    new yc(frameLayout, f6Var).Q(R.raw.star_premium_2, 36, AndroidUtilities.premiumText(LocaleController.getString(R.string.MessageScheduledRepeatPremium), new ah.j(23))).j();
                     return;
                 }
-                p70 F = p70.F(g3Var.container, f6Var, frameLayout2);
+                n70 F = n70.F(f3Var.container, f6Var, frameLayout2);
                 int i10 = 0;
                 while (true) {
-                    int[] iArr2 = this.f23286b;
+                    int[] iArr2 = this.f24228b;
                     if (i10 < iArr2.length) {
-                        F.c(0, strArr[i10], new z2(iArr, runnable2, iArr2[i10]), false);
+                        F.c(0, strArr[i10], new d3(iArr, runnable2, iArr2[i10]), false);
                         i10++;
                     } else {
-                        F.f27759i = 1;
+                        F.f28642i = 1;
                         F.Z();
                         return;
                     }
                 }
             default:
-                lh.g0 g0Var = (lh.g0) this.f23289n;
-                ((boolean[]) this.f23287c)[0] = false;
-                ut.j((ut) g0Var.f12439c, g0Var.f12437a, g0Var.f12438b, (int) (z4.c(null, (xc0) this.d, (xc0) this.e, (xc0) this.f23288f, (xc0) this.h) / 1000), this.f23286b[0]);
-                runnable = ((org.telegram.ui.ActionBar.b3) this.f23290r).f19500a.dismissRunnable;
+                ut utVar = (ut) this.f24232n;
+                ((boolean[]) this.f24229c)[0] = false;
+                zt.j((zt) utVar.f30969c, utVar.f30967a, utVar.f30968b, (int) (e5.c(null, (vc0) this.d, (vc0) this.f24230e, (vc0) this.f24231f, (vc0) this.h) / 1000), this.f24228b[0]);
+                runnable = ((org.telegram.ui.ActionBar.a3) this.f24233r).f20204a.dismissRunnable;
                 runnable.run();
                 return;
         }
     }
 
-    public a2(boolean[] zArr, xc0 xc0Var, xc0 xc0Var2, xc0 xc0Var3, xc0 xc0Var4, lh.g0 g0Var, int[] iArr, org.telegram.ui.ActionBar.b3 b3Var) {
-        this.f23287c = zArr;
-        this.d = xc0Var;
-        this.e = xc0Var2;
-        this.f23288f = xc0Var3;
-        this.h = xc0Var4;
-        this.f23289n = g0Var;
-        this.f23286b = iArr;
-        this.f23290r = b3Var;
+    public a2(boolean[] zArr, vc0 vc0Var, vc0 vc0Var2, vc0 vc0Var3, vc0 vc0Var4, ut utVar, int[] iArr, org.telegram.ui.ActionBar.a3 a3Var) {
+        this.f24229c = zArr;
+        this.d = vc0Var;
+        this.f24230e = vc0Var2;
+        this.f24231f = vc0Var3;
+        this.h = vc0Var4;
+        this.f24232n = utVar;
+        this.f24228b = iArr;
+        this.f24233r = a3Var;
     }
 }

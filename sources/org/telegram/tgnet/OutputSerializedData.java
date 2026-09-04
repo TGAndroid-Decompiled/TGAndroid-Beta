@@ -4,7 +4,7 @@ public interface OutputSerializedData {
 
     void skip(int i10);
 
-    void writeBool(boolean z4);
+    void writeBool(boolean z10);
 
     void writeByte(byte b10);
 
@@ -22,11 +22,11 @@ public interface OutputSerializedData {
 
     void writeDouble(double d);
 
-    void writeFloat(float f10);
+    void writeFloat(float f7);
 
     void writeInt32(int i10);
 
-    void writeInt64(long j10);
+    void writeInt64(long j3);
 
     void writeString(String str);
 }

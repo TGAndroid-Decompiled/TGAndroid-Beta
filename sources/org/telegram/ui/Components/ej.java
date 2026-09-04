@@ -1,69 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
+import android.content.Context;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class ej extends pz {
-    public final int U;
-    public final di V;
+public final class ej extends g51 {
+    public static final int f25717a = 0;
 
-    public ej(di diVar, int i10, rl0 rl0Var, int i11) {
-        super(i10, 0, rl0Var);
-        this.U = i11;
-        this.V = diVar;
+    static {
+        g51.setup(new g51());
     }
 
     @Override
-    public int[] t(View view, Rect rect) {
-        switch (this.U) {
-            case 3:
-                int C = this.f5846n - C();
-                int top = (view.getTop() + rect.top) - view.getScrollY();
-                int min = Math.min(0, top);
-                int max = Math.max(0, (rect.height() + top) - C);
-                if (min == 0) {
-                    min = Math.min(top, max);
-                }
-                return new int[]{0, min};
-            default:
-                return super.t(view, rect);
-        }
+    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
+        fj fjVar = (fj) view;
+        CharSequence charSequence = h51Var.f26594l;
+        CharSequence charSequence2 = h51Var.f26595m;
+        fjVar.f26065b.setText(charSequence);
+        fjVar.f26066c.setText(charSequence2);
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, f2.i1 i1Var, int i10) {
-        switch (this.U) {
-            case 0:
-                dj djVar = new dj(this, recyclerView.getContext());
-                djVar.f5712a = i10;
-                w0(djVar);
-                return;
-            case 1:
-                wj wjVar = new wj(this, recyclerView.getContext());
-                wjVar.f5712a = i10;
-                w0(wjVar);
-                return;
-            case 2:
-                rk rkVar = new rk(this, recyclerView.getContext());
-                rkVar.f5712a = i10;
-                w0(rkVar);
-                return;
-            case 3:
-                en enVar = new en(this, recyclerView.getContext());
-                enVar.f5712a = i10;
-                w0(enVar);
-                return;
-            default:
-                uf.y yVar = new uf.y(this, recyclerView.getContext());
-                yVar.f5712a = i10;
-                w0(yVar);
-                return;
-        }
+    public final View createView(Context context, ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+        return new fj(context, f6Var);
     }
 
-    public ej(al alVar, lh.e1 e1Var) {
-        super(0, 0, e1Var);
-        this.U = 2;
-        this.V = alVar;
+    @Override
+    public final boolean isShadow() {
+        return true;
     }
 }

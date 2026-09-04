@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import android.support.v4.media.a;
+import a4.a;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +39,7 @@ public class TeXSymbolParser {
     }
 
     public Map<String, SymbolAtom> readSymbols() {
-        boolean z4;
+        boolean z10;
         HashMap hashMap = new HashMap();
         NodeList elementsByTagName = this.root.getElementsByTagName("Symbol");
         for (int i10 = 0; i10 < elementsByTagName.getLength(); i10++) {
@@ -48,15 +48,15 @@ public class TeXSymbolParser {
             String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("type", element);
             String attribute = element.getAttribute("del");
             if (attribute != null && attribute.equals("true")) {
-                z4 = true;
+                z10 = true;
             } else {
-                z4 = false;
+                z10 = false;
             }
             Integer num = typeMappings.get(attrValueAndCheckIfNotNull2);
             if (num != null) {
-                hashMap.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z4));
+                hashMap.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z10));
             } else {
-                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", a.o("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
+                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", a.p("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
             }
         }
         return hashMap;
@@ -69,8 +69,8 @@ public class TeXSymbolParser {
             newInstance.setIgnoringComments(true);
             this.root = newInstance.newDocumentBuilder().parse(inputStream).getDocumentElement();
             setTypeMappings();
-        } catch (Exception e) {
-            throw new XMLResourceParseException(str, e);
+        } catch (Exception e7) {
+            throw new XMLResourceParseException(str, e7);
         }
     }
 }

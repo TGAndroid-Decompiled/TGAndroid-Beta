@@ -1,12 +1,15 @@
 package org.telegram.ui;
-public final class bs0 extends fu0 {
-    @Override
-    public final boolean P() {
-        return true;
-    }
 
+import android.animation.ValueAnimator;
+import android.graphics.drawable.Drawable;
+public final class bs0 implements ValueAnimator.AnimatorUpdateListener {
     @Override
-    public final boolean z() {
-        return false;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        org.telegram.ui.Components.ub ubVar;
+        Drawable[] drawableArr = PhotoViewer.T8;
+        org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29671w;
+        if (qcVar != null && (ubVar = qcVar.f29675e) != null) {
+            ubVar.updatePosition();
+        }
     }
 }

@@ -1,15 +1,37 @@
 package k1;
-public final class l extends m {
-    public final wc.i f9566a;
-    public final ld.t f9567b;
-    public final e0 f9568c;
-    public final uc.h d;
 
-    public l(dd.p pVar, ld.t tVar, e0 e0Var, uc.h callerContext) {
-        kotlin.jvm.internal.j.e(callerContext, "callerContext");
-        this.f9566a = (wc.i) pVar;
-        this.f9567b = tVar;
-        this.f9568c = e0Var;
-        this.d = callerContext;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+public final class l extends OutputStream {
+    public final FileOutputStream f14454a;
+
+    public l(FileOutputStream fileOutputStream) {
+        this.f14454a = fileOutputStream;
+    }
+
+    @Override
+    public final void flush() {
+        this.f14454a.flush();
+    }
+
+    @Override
+    public final void write(int i10) {
+        this.f14454a.write(i10);
+    }
+
+    @Override
+    public final void write(byte[] b10) {
+        kotlin.jvm.internal.i.e(b10, "b");
+        this.f14454a.write(b10);
+    }
+
+    @Override
+    public final void write(byte[] bytes, int i10, int i11) {
+        kotlin.jvm.internal.i.e(bytes, "bytes");
+        this.f14454a.write(bytes, i10, i11);
+    }
+
+    @Override
+    public final void close() {
     }
 }

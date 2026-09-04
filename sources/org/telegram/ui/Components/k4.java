@@ -1,10 +1,9 @@
 package org.telegram.ui.Components;
 
-import android.widget.Button;
-import android.widget.TextView;
-public final class k4 extends TextView {
+import org.telegram.messenger.LocaleController;
+public final class k4 extends vc0 {
     @Override
-    public final CharSequence getAccessibilityClassName() {
-        return Button.class.getName();
+    public final CharSequence d(int i10) {
+        return LocaleController.formatPluralString("Times", i10 + 1, new Object[0]);
     }
 }

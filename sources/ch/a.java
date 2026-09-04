@@ -1,6 +1,9 @@
 package ch;
-public interface a {
-    void b(int i10);
 
-    void c(float f10);
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public interface a {
+    void e(bh.a aVar, RectF rectF);
+
+    void f(Canvas canvas, RectF rectF);
 }

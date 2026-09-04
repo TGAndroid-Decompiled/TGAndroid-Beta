@@ -1,55 +1,57 @@
 package mg;
 
-import android.view.ViewGroup;
-import dg.u2;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.mr;
-public final class h implements Runnable {
-    public final int f13996a;
-    public final s f13997b;
+import android.animation.ValueAnimator;
+import com.google.android.gms.internal.vision.e2;
+public final class h implements ValueAnimator.AnimatorUpdateListener {
+    public final int f16267a;
+    public final q f16268b;
+    public final float f16269c;
+    public final float[] d;
+    public final float f16270e;
+    public final float f16271f;
 
-    public h(s sVar, int i10) {
-        this.f13996a = i10;
-        this.f13997b = sVar;
+    public h(q qVar, float f7, float[] fArr, float f10, float f11, int i10) {
+        this.f16267a = i10;
+        this.f16268b = qVar;
+        this.f16269c = f7;
+        this.d = fArr;
+        this.f16270e = f10;
+        this.f16271f = f11;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f13996a;
-        s sVar = this.f13997b;
-        switch (i10) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f16267a) {
             case 0:
-                sVar.f14127n.requestFocus();
-                return;
-            case 1:
-                sVar.finishFragment();
-                return;
-            case 2:
-                if (!sVar.H) {
-                    sVar.H = true;
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
-                    int measuredHeight = sVar.f14125c.getMeasuredHeight();
-                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) sVar.f14132y.getLayoutParams();
-                    marginLayoutParams.bottomMargin = measuredHeight;
-                    sVar.f14132y.setLayoutParams(marginLayoutParams);
-                    sVar.f14125c.setVisibility(0);
-                    u2 u2Var = sVar.f14125c;
-                    u2Var.setTranslationY(u2Var.getMeasuredHeight());
-                    sVar.f14125c.animate().setListener(null).cancel();
-                    sVar.f14125c.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(mr.f27122f).setUpdateListener(new j(sVar, 0)).setListener(new r(0)).start();
-                    return;
-                }
-                return;
-            case 3:
-                ze.d.s(sVar.getParentActivity(), "https://t.me/stickers");
-                return;
-            case 4:
-                ze.d.s(sVar.getParentActivity(), LocaleController.getString(R.string.ChannelEnablePaidReactionsInfoLink));
+                q qVar = this.f16268b;
+                qVar.getClass();
+                float z10 = e2.z(this.f16269c, 1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue(), 1.0f);
+                float[] fArr = this.d;
+                float f7 = fArr[0];
+                float f10 = z10 / f7;
+                fArr[0] = f7 * f10;
+                o.g(qVar.L, f10, this.f16270e, this.f16271f);
+                qVar.r(false);
                 return;
             default:
-                sVar.Y(false);
+                q qVar2 = this.f16268b;
+                qVar2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float[] fArr2 = this.d;
+                float f11 = fArr2[1];
+                float f12 = (this.f16269c * floatValue) - f11;
+                fArr2[1] = f11 + f12;
+                float f13 = fArr2[2];
+                float f14 = (this.f16270e * floatValue) - f13;
+                fArr2[2] = f13 + f14;
+                o oVar = qVar2.L;
+                float f15 = fArr2[0];
+                o.f(oVar, f12 * f15, f14 * f15);
+                float f16 = fArr2[0];
+                float f17 = (((this.f16271f - 1.0f) * floatValue) + 1.0f) / f16;
+                fArr2[0] = f16 * f17;
+                o.g(qVar2.L, f17, 0.0f, 0.0f);
+                qVar2.r(false);
                 return;
         }
     }

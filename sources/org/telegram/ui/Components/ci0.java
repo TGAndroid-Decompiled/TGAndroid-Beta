@@ -1,7 +1,10 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.DispatchQueue;
-public abstract class ci0 extends View {
-    public static final DispatchQueue f23949a = new DispatchQueue("profileBlurQueue");
+import android.widget.Button;
+import android.widget.TextView;
+public final class ci0 extends TextView {
+    @Override
+    public final CharSequence getAccessibilityClassName() {
+        return Button.class.getName();
+    }
 }

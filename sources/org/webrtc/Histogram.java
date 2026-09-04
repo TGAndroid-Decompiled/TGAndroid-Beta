@@ -2,8 +2,8 @@ package org.webrtc;
 public class Histogram {
     private final long handle;
 
-    private Histogram(long j10) {
-        this.handle = j10;
+    private Histogram(long j3) {
+        this.handle = j3;
     }
 
     public static Histogram createCounts(String str, int i10, int i11, int i12) {
@@ -14,7 +14,7 @@ public class Histogram {
         return new Histogram(nativeCreateEnumeration(str, i10));
     }
 
-    private static native void nativeAddSample(long j10, int i10);
+    private static native void nativeAddSample(long j3, int i10);
 
     private static native long nativeCreateCounts(String str, int i10, int i11, int i12);
 

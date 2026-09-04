@@ -1,75 +1,50 @@
 package f2;
-public final class a {
-    public int f5643a;
-    public int f5644b;
-    public Object f5645c;
-    public int d;
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && a.class == obj.getClass()) {
-                a aVar = (a) obj;
-                int i10 = this.f5643a;
-                if (i10 == aVar.f5643a) {
-                    if (i10 != 8 || Math.abs(this.d - this.f5644b) != 1 || this.d != aVar.f5644b || this.f5644b != aVar.d) {
-                        if (this.d == aVar.d && this.f5644b == aVar.f5644b) {
-                            Object obj2 = this.f5645c;
-                            if (obj2 != null) {
-                                if (!obj2.equals(aVar.f5645c)) {
-                                    return false;
-                                }
-                            } else if (aVar.f5645c != null) {
-                                return false;
-                            }
-                        } else {
-                            return false;
-                        }
-                    }
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        }
-        return true;
+import e2.v;
+public final class a implements fb.n {
+    public final String f9170a;
+
+    public a(String str) {
+        this.f9170a = str;
     }
 
-    public final int hashCode() {
-        return (((this.f5643a * 31) + this.f5644b) * 31) + this.d;
-    }
-
-    public final String toString() {
+    public static a a(v vVar) {
         String str;
-        StringBuilder sb = new StringBuilder();
-        sb.append(Integer.toHexString(System.identityHashCode(this)));
-        sb.append("[");
-        int i10 = this.f5643a;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 4) {
-                    if (i10 != 8) {
-                        str = "??";
-                    } else {
-                        str = "mv";
-                    }
-                } else {
-                    str = "up";
-                }
+        String str2;
+        vVar.K(2);
+        int x10 = vVar.x();
+        int i10 = x10 >> 1;
+        int x11 = ((vVar.x() >> 3) & 31) | ((x10 & 1) << 5);
+        if (i10 != 4 && i10 != 5 && i10 != 7 && i10 != 8) {
+            if (i10 == 9) {
+                str = "dvav";
+            } else if (i10 == 10) {
+                str = "dav1";
             } else {
-                str = "rm";
+                return null;
             }
         } else {
-            str = "add";
+            str = "dvhe";
         }
-        sb.append(str);
-        sb.append(",s:");
-        sb.append(this.f5644b);
-        sb.append("c:");
-        sb.append(this.d);
-        sb.append(",p:");
-        sb.append(this.f5645c);
-        sb.append("]");
-        return sb.toString();
+        StringBuilder u10 = a4.a.u(str);
+        String str3 = ".";
+        if (i10 >= 10) {
+            str2 = ".";
+        } else {
+            str2 = ".0";
+        }
+        u10.append(str2);
+        u10.append(i10);
+        if (x11 < 10) {
+            str3 = ".0";
+        }
+        u10.append(str3);
+        u10.append(x11);
+        return new a(u10.toString());
+    }
+
+    @Override
+    public Object h2() {
+        throw new RuntimeException(this.f9170a);
     }
 }

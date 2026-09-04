@@ -11,30 +11,30 @@ import android.view.accessibility.AccessibilityNodeProvider;
 import java.lang.ref.WeakReference;
 import java.util.Collections;
 import java.util.List;
-import org.telegram.ui.Components.zz;
+import ji.u4;
 public class b {
-    public static final View.AccessibilityDelegate f43107c = new View.AccessibilityDelegate();
-    public final View.AccessibilityDelegate f43108a;
-    public final a f43109b;
+    public static final View.AccessibilityDelegate f44661c = new View.AccessibilityDelegate();
+    public final View.AccessibilityDelegate f44662a;
+    public final a f44663b;
 
     public b() {
-        this(f43107c);
+        this(f44661c);
     }
 
-    public zz a(View view) {
-        AccessibilityNodeProvider accessibilityNodeProvider = this.f43108a.getAccessibilityNodeProvider(view);
+    public u4 a(View view) {
+        AccessibilityNodeProvider accessibilityNodeProvider = this.f44662a.getAccessibilityNodeProvider(view);
         if (accessibilityNodeProvider != null) {
-            return new zz(accessibilityNodeProvider, 13);
+            return new u4(accessibilityNodeProvider, 22);
         }
         return null;
     }
 
     public void b(View view, AccessibilityEvent accessibilityEvent) {
-        this.f43108a.onInitializeAccessibilityEvent(view, accessibilityEvent);
+        this.f44662a.onInitializeAccessibilityEvent(view, accessibilityEvent);
     }
 
-    public void c(View view, s0.d dVar) {
-        this.f43108a.onInitializeAccessibilityNodeInfo(view, dVar.f43969a);
+    public void c(View view, s0.c cVar) {
+        this.f44662a.onInitializeAccessibilityNodeInfo(view, cVar.f45685a);
     }
 
     public boolean d(View view, int i10, Bundle bundle) {
@@ -45,9 +45,9 @@ public class b {
         if (list == null) {
             list = Collections.EMPTY_LIST;
         }
-        for (int i11 = 0; i11 < list.size() && ((AccessibilityNodeInfo.AccessibilityAction) ((s0.c) list.get(i11)).f43966a).getId() != i10; i11++) {
+        for (int i11 = 0; i11 < list.size() && ((AccessibilityNodeInfo.AccessibilityAction) ((s0.b) list.get(i11)).f45682a).getId() != i10; i11++) {
         }
-        boolean performAccessibilityAction = this.f43108a.performAccessibilityAction(view, i10, bundle);
+        boolean performAccessibilityAction = this.f44662a.performAccessibilityAction(view, i10, bundle);
         if (!performAccessibilityAction && i10 == 2131296269 && bundle != null) {
             int i12 = bundle.getInt("ACCESSIBILITY_CLICKABLE_SPAN_ID", -1);
             SparseArray sparseArray = (SparseArray) view.getTag(2131296683);
@@ -71,7 +71,7 @@ public class b {
     }
 
     public b(View.AccessibilityDelegate accessibilityDelegate) {
-        this.f43108a = accessibilityDelegate;
-        this.f43109b = new a(this);
+        this.f44662a = accessibilityDelegate;
+        this.f44663b = new a(this);
     }
 }

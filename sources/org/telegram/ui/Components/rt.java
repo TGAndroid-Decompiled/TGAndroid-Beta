@@ -1,48 +1,62 @@
 package org.telegram.ui.Components;
 
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
-public final class rt implements ActionMode.Callback {
-    public final ActionMode.Callback f28582a;
-    public final ut f28583b;
+import android.graphics.Canvas;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+import org.telegram.messenger.AndroidUtilities;
+public final class rt extends ShapeDrawable {
+    public final int f30084a = 0;
+    public final EditTextBoldCursor f30085b;
 
-    public rt(ut utVar, ActionMode.Callback callback) {
-        this.f28583b = utVar;
-        this.f28582a = callback;
+    public rt(EditTextBoldCursor editTextBoldCursor, RectShape rectShape) {
+        super(rectShape);
+        this.f30085b = editTextBoldCursor;
     }
 
     @Override
-    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        if (this.f28583b.performMenuAction(menuItem.getItemId())) {
-            actionMode.finish();
-            return true;
+    public final void draw(Canvas canvas) {
+        switch (this.f30084a) {
+            case 0:
+                EditTextBoldCursor editTextBoldCursor = this.f30085b;
+                if (editTextBoldCursor.drawInMaim) {
+                    editTextBoldCursor.cursorDrawn = true;
+                    return;
+                } else {
+                    super.draw(canvas);
+                    return;
+                }
+            default:
+                super.draw(canvas);
+                this.f30085b.cursorDrawn = true;
+                return;
         }
-        try {
-            return this.f28582a.onActionItemClicked(actionMode, menuItem);
-        } catch (Exception unused) {
-            return true;
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        int i10;
+        switch (this.f30084a) {
+            case 0:
+                i10 = this.f30085b.cursorSize;
+                return AndroidUtilities.dp(i10 + 20);
+            default:
+                return super.getIntrinsicHeight();
         }
     }
 
     @Override
-    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        ut utVar = this.f28583b;
-        utVar.copyPasteShowed = true;
-        utVar.onContextMenuOpen();
-        return this.f28582a.onCreateActionMode(actionMode, menu);
+    public int getIntrinsicWidth() {
+        float f7;
+        switch (this.f30084a) {
+            case 0:
+                f7 = this.f30085b.cursorWidth;
+                return AndroidUtilities.dp(f7);
+            default:
+                return super.getIntrinsicWidth();
+        }
     }
 
-    @Override
-    public final void onDestroyActionMode(ActionMode actionMode) {
-        ut utVar = this.f28583b;
-        utVar.copyPasteShowed = false;
-        utVar.onContextMenuClose();
-        this.f28582a.onDestroyActionMode(actionMode);
-    }
-
-    @Override
-    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        return this.f28582a.onPrepareActionMode(actionMode, menu);
+    public rt(EditTextBoldCursor editTextBoldCursor) {
+        this.f30085b = editTextBoldCursor;
     }
 }

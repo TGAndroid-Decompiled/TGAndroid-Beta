@@ -1,25 +1,26 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class t0 implements RequestDelegate {
-    public final int f18427a;
-    public final ChatMessagesMetadataController f18428b;
+import org.telegram.messenger.ChatObject;
+public final class t0 implements Runnable {
+    public final int f19016a;
+    public final ChatObject.Call f19017b;
 
-    public t0(ChatMessagesMetadataController chatMessagesMetadataController, int i10) {
-        this.f18427a = i10;
-        this.f18428b = chatMessagesMetadataController;
+    public t0(ChatObject.Call call, int i10) {
+        this.f19016a = i10;
+        this.f19017b = call;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18427a) {
+    public final void run() {
+        switch (this.f19016a) {
             case 0:
-                this.f18428b.lambda$loadExtendedMediaForMessages$4(tLObject, tL_error);
+                ChatObject.Call.j(this.f19017b);
+                return;
+            case 1:
+                ChatObject.Call.a(this.f19017b);
                 return;
             default:
-                this.f18428b.lambda$loadReactionsForMessages$3(tLObject, tL_error);
+                ChatObject.Call.c(this.f19017b);
                 return;
         }
     }

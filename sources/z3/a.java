@@ -1,45 +1,21 @@
 package z3;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-public final class a extends n3.a {
-    public final long f47342c;
-    public final ArrayList d;
-    public final ArrayList e;
+import e9.i0;
+import java.util.List;
+public final class a {
+    public final i0 f50682a;
+    public final long f50683b;
+    public final long f50684c;
+    public final long d;
 
-    public a(int i10, long j10) {
-        super(i10, 2);
-        this.f47342c = j10;
-        this.d = new ArrayList();
-        this.e = new ArrayList();
-    }
-
-    public final a j(int i10) {
-        ArrayList arrayList = this.e;
-        int size = arrayList.size();
-        for (int i11 = 0; i11 < size; i11++) {
-            a aVar = (a) arrayList.get(i11);
-            if (aVar.f14207b == i10) {
-                return aVar;
-            }
+    public a(long j3, long j10, List list) {
+        this.f50682a = i0.v(list);
+        this.f50683b = j3;
+        this.f50684c = j10;
+        long j11 = -9223372036854775807L;
+        if (j3 != -9223372036854775807L && j10 != -9223372036854775807L) {
+            j11 = j3 + j10;
         }
-        return null;
-    }
-
-    public final b k(int i10) {
-        ArrayList arrayList = this.d;
-        int size = arrayList.size();
-        for (int i11 = 0; i11 < size; i11++) {
-            b bVar = (b) arrayList.get(i11);
-            if (bVar.f14207b == i10) {
-                return bVar;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final String toString() {
-        return n3.a.c(this.f14207b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.e.toArray());
+        this.d = j11;
     }
 }

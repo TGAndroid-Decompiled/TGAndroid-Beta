@@ -1,3 +1,3 @@
 package w;
-public final class c extends f {
+public final class c extends g {
 }

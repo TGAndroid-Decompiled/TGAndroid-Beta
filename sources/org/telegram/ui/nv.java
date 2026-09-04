@@ -1,56 +1,29 @@
 package org.telegram.ui;
 
-import android.app.Activity;
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class nv implements Runnable {
-    public final int f36590a;
-    public final Context f36591b;
+import android.widget.FrameLayout;
+public final class nv extends FrameLayout {
+    public org.telegram.ui.ActionBar.n2 f39035a;
+    public FrameLayout f39036b;
+    public org.telegram.ui.ActionBar.k f39037c;
+    public org.telegram.ui.Components.ll0 d;
+    public bi.o0 f39038e;
+    public int f39039f;
+    public final ov h;
 
-    public nv(Context context, int i10) {
-        this.f36590a = i10;
-        this.f36591b = context;
+    public nv(ov ovVar, Context context) {
+        super(context);
+        this.h = ovVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36590a) {
-            case 0:
-                org.telegram.ui.ActionBar.j6.J(this.f36591b, false);
-                return;
-            case 1:
-                Activity findActivity = AndroidUtilities.findActivity(this.f36591b);
-                if (findActivity == null) {
-                    findActivity = LaunchActivity.D1;
-                }
-                if (findActivity != null && !findActivity.isFinishing()) {
-                    findActivity.moveTaskToBack(true);
-                    return;
-                }
-                return;
-            case 2:
-                ze.d.s(this.f36591b, "https://promote.telegram.org/guidelines");
-                return;
-            case 3:
-                ze.d.s(this.f36591b, "https://promote.telegram.org/guidelines");
-                return;
-            case 4:
-                ze.d.s(this.f36591b, "https://promote.telegram.org/guidelines");
-                return;
-            case 5:
-                ze.d.s(this.f36591b, "https://promote.telegram.org/guidelines");
-                return;
-            case 6:
-                ze.d.s(this.f36591b, "https://promote.telegram.org/guidelines");
-                return;
-            case 7:
-                ze.d.s(this.f36591b, "https://promote.telegram.org/guidelines");
-                return;
-            default:
-                ze.d.s(this.f36591b, LocaleController.getString(R.string.WebAppDisclaimerUrl));
-                return;
+    public final void setTranslationX(float f7) {
+        nv nvVar;
+        super.setTranslationX(f7);
+        ov ovVar = this.h;
+        nv[] nvVarArr = ovVar.f39321f;
+        if (ovVar.f39322n && (nvVar = nvVarArr[0]) == this) {
+            ovVar.f39320e.j(Math.abs(nvVar.getTranslationX()) / nvVarArr[0].getMeasuredWidth(), nvVarArr[1].f39039f);
         }
     }
 }

@@ -1,59 +1,37 @@
 package org.telegram.ui.web;
 
+import android.util.Base64InputStream;
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FilterInputStream;
-public final class m1 extends FilterInputStream {
-    public m1(BufferedInputStream bufferedInputStream) {
-        super(bufferedInputStream);
-    }
+import java.util.HashMap;
+public final class m1 {
+    public final HashMap f42179a = new HashMap();
+    public File f42180b;
+    public long f42181c;
+    public long d;
 
-    public static int a(int i10) {
-        if (i10 >= 48 && i10 <= 57) {
-            return i10 - 48;
+    public final FilterInputStream a() {
+        String str;
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(new l1(this.f42180b, this.f42181c, this.d));
+        HashMap hashMap = this.f42179a;
+        n1 n1Var = (n1) hashMap.get("content-transfer-encoding");
+        String str2 = null;
+        if (n1Var == null) {
+            str = null;
+        } else {
+            str = n1Var.f42186a;
         }
-        if (i10 >= 65 && i10 <= 70) {
-            return i10 - 55;
+        if ("base64".equals(str)) {
+            return new Base64InputStream(bufferedInputStream, 0);
         }
-        if (i10 >= 97 && i10 <= 102) {
-            return i10 - 87;
+        n1 n1Var2 = (n1) hashMap.get("content-transfer-encoding");
+        if (n1Var2 != null) {
+            str2 = n1Var2.f42186a;
         }
-        return 0;
-    }
-
-    @Override
-    public final int read() {
-        int read = ((FilterInputStream) this).in.read();
-        if (read == 61) {
-            int read2 = ((FilterInputStream) this).in.read();
-            int read3 = ((FilterInputStream) this).in.read();
-            if (read2 == -1 || read3 == -1) {
-                return -1;
-            }
-            if (read2 == 13 && read3 == 10) {
-                return read();
-            }
-            return (read2 == 10 || read3 == 10) ? read3 : (a(read2) << 4) | a(read3);
+        if ("quoted-printable".equalsIgnoreCase(str2)) {
+            return new o1(bufferedInputStream);
         }
-        return read;
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        int i12 = 0;
-        int i13 = 0;
-        while (true) {
-            if (i12 >= i11) {
-                break;
-            }
-            int read = read();
-            if (read != -1) {
-                bArr[i10 + i12] = (byte) read;
-                i13++;
-                i12++;
-            } else if (i13 == 0) {
-                return -1;
-            }
-        }
-        return i13;
+        return bufferedInputStream;
     }
 }

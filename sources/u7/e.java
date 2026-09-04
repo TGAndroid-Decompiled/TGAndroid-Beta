@@ -1,31 +1,50 @@
 package u7;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import j$.util.DesugarCollections;
-import j7.f5;
-import java.util.ArrayList;
-import java.util.List;
-public final class e extends c6.a {
-    public static final Parcelable.Creator<e> CREATOR = new u6.p(10);
-    public final List f45244a;
-    public final boolean f45245b;
-    public final boolean f45246c;
+import j$.util.Objects;
+import w7.r7;
+public final class e extends d {
+    public static final e f46970e = new e(0, new Object[0]);
+    public final transient Object[] f46971c;
+    public final transient int d;
 
-    public e(ArrayList arrayList, boolean z4, boolean z10) {
-        this.f45244a = arrayList;
-        this.f45245b = z4;
-        this.f45246c = z10;
+    public e(int i10, Object[] objArr) {
+        this.f46971c = objArr;
+        this.d = i10;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q10 = f5.q(parcel, 20293);
-        f5.p(parcel, 1, DesugarCollections.unmodifiableList(this.f45244a));
-        f5.s(parcel, 2, 4);
-        parcel.writeInt(this.f45245b ? 1 : 0);
-        f5.s(parcel, 3, 4);
-        parcel.writeInt(this.f45246c ? 1 : 0);
-        f5.r(parcel, q10);
+    public final Object get(int i10) {
+        r7.a(i10, this.d);
+        Object obj = this.f46971c[i10];
+        Objects.requireNonNull(obj);
+        return obj;
+    }
+
+    @Override
+    public final int i(Object[] objArr) {
+        Object[] objArr2 = this.f46971c;
+        int i10 = this.d;
+        System.arraycopy(objArr2, 0, objArr, 0, i10);
+        return i10;
+    }
+
+    @Override
+    public final int n() {
+        return this.d;
+    }
+
+    @Override
+    public final int o() {
+        return 0;
+    }
+
+    @Override
+    public final Object[] p() {
+        return this.f46971c;
+    }
+
+    @Override
+    public final int size() {
+        return this.d;
     }
 }

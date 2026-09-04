@@ -29,8 +29,8 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     public static class CharacterLiteral implements Rule {
         private final char mValue;
 
-        public CharacterLiteral(char c3) {
-            this.mValue = c3;
+        public CharacterLiteral(char c10) {
+            this.mValue = c10;
         }
 
         @Override
@@ -162,9 +162,9 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         private final int mStyle;
         private final TimeZone mTimeZone;
 
-        public TimeZoneDisplayKey(TimeZone timeZone, boolean z4, int i10, Locale locale) {
+        public TimeZoneDisplayKey(TimeZone timeZone, boolean z10, int i10, Locale locale) {
             this.mTimeZone = timeZone;
-            if (z4) {
+            if (z10) {
                 this.mStyle = Integer.MIN_VALUE | i10;
             } else {
                 this.mStyle = i10;
@@ -225,8 +225,8 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         static final TimeZoneNumberRule INSTANCE_NO_COLON = new TimeZoneNumberRule(false);
         final boolean mColon;
 
-        public TimeZoneNumberRule(boolean z4) {
-            this.mColon = z4;
+        public TimeZoneNumberRule(boolean z10) {
+            this.mColon = z10;
         }
 
         @Override
@@ -388,12 +388,12 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         return applyRules(calendar, new StringBuffer(this.mMaxLengthEstimate)).toString();
     }
 
-    public static String getTimeZoneDisplay(TimeZone timeZone, boolean z4, int i10, Locale locale) {
-        TimeZoneDisplayKey timeZoneDisplayKey = new TimeZoneDisplayKey(timeZone, z4, i10, locale);
+    public static String getTimeZoneDisplay(TimeZone timeZone, boolean z10, int i10, Locale locale) {
+        TimeZoneDisplayKey timeZoneDisplayKey = new TimeZoneDisplayKey(timeZone, z10, i10, locale);
         ConcurrentMap<TimeZoneDisplayKey, String> concurrentMap = cTimeZoneDisplayCache;
         String str = concurrentMap.get(timeZoneDisplayKey);
         if (str == null) {
-            String displayName = timeZone.getDisplayName(z4, i10, locale);
+            String displayName = timeZone.getDisplayName(z10, i10, locale);
             String putIfAbsent = concurrentMap.putIfAbsent(timeZoneDisplayKey, displayName);
             if (putIfAbsent != null) {
                 return putIfAbsent;
@@ -647,44 +647,44 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     }
 
     public String parseToken(String str, int[] iArr) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
         int i10 = iArr[0];
         int length = str.length();
         char charAt = str.charAt(i10);
         if ((charAt >= 'A' && charAt <= 'Z') || (charAt >= 'a' && charAt <= 'z')) {
-            sb.append(charAt);
+            sb2.append(charAt);
             while (true) {
                 int i11 = i10 + 1;
                 if (i11 >= length || str.charAt(i11) != charAt) {
                     break;
                 }
-                sb.append(charAt);
+                sb2.append(charAt);
                 i10 = i11;
             }
         } else {
-            sb.append('\'');
-            boolean z4 = false;
+            sb2.append('\'');
+            boolean z10 = false;
             while (i10 < length) {
                 char charAt2 = str.charAt(i10);
                 if (charAt2 == '\'') {
                     int i12 = i10 + 1;
                     if (i12 < length && str.charAt(i12) == '\'') {
-                        sb.append(charAt2);
+                        sb2.append(charAt2);
                         i10 = i12;
                     } else {
-                        z4 = !z4;
+                        z10 = !z10;
                     }
-                } else if (!z4 && ((charAt2 >= 'A' && charAt2 <= 'Z') || (charAt2 >= 'a' && charAt2 <= 'z'))) {
+                } else if (!z10 && ((charAt2 >= 'A' && charAt2 <= 'Z') || (charAt2 >= 'a' && charAt2 <= 'z'))) {
                     i10--;
                     break;
                 } else {
-                    sb.append(charAt2);
+                    sb2.append(charAt2);
                 }
                 i10++;
             }
         }
         iArr[0] = i10;
-        return sb.toString();
+        return sb2.toString();
     }
 
     public NumberRule selectNumberRule(int i10, int i11) {
@@ -756,9 +756,9 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     }
 
     @Override
-    public String format(long j10) {
+    public String format(long j3) {
         GregorianCalendar newCalendar = newCalendar();
-        newCalendar.setTimeInMillis(j10);
+        newCalendar.setTimeInMillis(j3);
         return applyRulesToString(newCalendar);
     }
 
@@ -775,8 +775,8 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     }
 
     @Override
-    public StringBuffer format(long j10, StringBuffer stringBuffer) {
-        return format(new Date(j10), stringBuffer);
+    public StringBuffer format(long j3, StringBuffer stringBuffer) {
+        return format(new Date(j3), stringBuffer);
     }
 
     @Override

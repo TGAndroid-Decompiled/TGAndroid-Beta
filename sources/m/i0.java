@@ -5,21 +5,21 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.ListAdapter;
 import androidx.appcompat.app.AlertController$RecycleListView;
-public final class i0 implements p0, DialogInterface.OnClickListener {
-    public g.f f13512a;
-    public k0 f13513b;
-    public CharSequence f13514c;
-    public final q0 d;
+public final class i0 implements o0, DialogInterface.OnClickListener {
+    public g.g f15544a;
+    public j0 f15545b;
+    public CharSequence f15546c;
+    public final p0 d;
 
-    public i0(q0 q0Var) {
-        this.d = q0Var;
+    public i0(p0 p0Var) {
+        this.d = p0Var;
     }
 
     @Override
     public final boolean a() {
-        g.f fVar = this.f13512a;
-        if (fVar != null) {
-            return fVar.isShowing();
+        g.g gVar = this.f15544a;
+        if (gVar != null) {
+            return gVar.isShowing();
         }
         return false;
     }
@@ -36,16 +36,16 @@ public final class i0 implements p0, DialogInterface.OnClickListener {
 
     @Override
     public final void dismiss() {
-        g.f fVar = this.f13512a;
-        if (fVar != null) {
-            fVar.dismiss();
-            this.f13512a = null;
+        g.g gVar = this.f15544a;
+        if (gVar != null) {
+            gVar.dismiss();
+            this.f15544a = null;
         }
     }
 
     @Override
     public final CharSequence e() {
-        return this.f13514c;
+        return this.f15546c;
     }
 
     @Override
@@ -55,7 +55,7 @@ public final class i0 implements p0, DialogInterface.OnClickListener {
 
     @Override
     public final void i(CharSequence charSequence) {
-        this.f13514c = charSequence;
+        this.f15546c = charSequence;
     }
 
     @Override
@@ -75,47 +75,47 @@ public final class i0 implements p0, DialogInterface.OnClickListener {
 
     @Override
     public final void m(int i10, int i11) {
-        if (this.f13513b == null) {
+        if (this.f15545b == null) {
             return;
         }
-        q0 q0Var = this.d;
-        p2.w wVar = new p2.w(q0Var.getPopupContext());
-        g.c cVar = (g.c) wVar.f41052c;
-        CharSequence charSequence = this.f13514c;
+        p0 p0Var = this.d;
+        c5.b0 b0Var = new c5.b0(p0Var.getPopupContext());
+        g.c cVar = (g.c) b0Var.f4347c;
+        CharSequence charSequence = this.f15546c;
         if (charSequence != null) {
             cVar.d = charSequence;
         }
-        k0 k0Var = this.f13513b;
-        int selectedItemPosition = q0Var.getSelectedItemPosition();
-        cVar.f6239i = k0Var;
-        cVar.f6240j = this;
-        cVar.f6243m = selectedItemPosition;
-        cVar.f6242l = true;
-        g.f f10 = wVar.f();
-        this.f13512a = f10;
-        AlertController$RecycleListView alertController$RecycleListView = f10.f6266f.e;
+        j0 j0Var = this.f15545b;
+        int selectedItemPosition = p0Var.getSelectedItemPosition();
+        cVar.f10169i = j0Var;
+        cVar.f10170j = this;
+        cVar.f10173m = selectedItemPosition;
+        cVar.f10172l = true;
+        g.g e7 = b0Var.e();
+        this.f15544a = e7;
+        AlertController$RecycleListView alertController$RecycleListView = e7.f10199f.f10179e;
         g0.d(alertController$RecycleListView, i10);
         g0.c(alertController$RecycleListView, i11);
-        this.f13512a.show();
+        this.f15544a.show();
     }
 
     @Override
-    public final int o() {
+    public final int n() {
         return 0;
     }
 
     @Override
     public final void onClick(DialogInterface dialogInterface, int i10) {
-        q0 q0Var = this.d;
-        q0Var.setSelection(i10);
-        if (q0Var.getOnItemClickListener() != null) {
-            q0Var.performItemClick(null, i10, this.f13513b.getItemId(i10));
+        p0 p0Var = this.d;
+        p0Var.setSelection(i10);
+        if (p0Var.getOnItemClickListener() != null) {
+            p0Var.performItemClick(null, i10, this.f15545b.getItemId(i10));
         }
         dismiss();
     }
 
     @Override
     public final void p(ListAdapter listAdapter) {
-        this.f13513b = (k0) listAdapter;
+        this.f15545b = (j0) listAdapter;
     }
 }

@@ -1,44 +1,58 @@
 package org.telegram.messenger;
 
-import java.text.Collator;
-import java.util.Comparator;
-import org.telegram.messenger.ContactsController;
-public final class l1 implements Comparator {
-    public final int f17699a;
-    public final Collator f17700b;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class l1 implements Runnable {
+    public final int f18222a;
+    public final ContactsController f18223b;
+    public final ArrayList f18224c;
+    public final HashMap d;
+    public final HashMap f18225e;
 
-    public l1(Collator collator, int i10) {
-        this.f17699a = i10;
-        this.f17700b = collator;
+    public l1(ArrayList arrayList, HashMap hashMap, HashMap hashMap2, ContactsController contactsController) {
+        this.f18222a = 1;
+        this.f18223b = contactsController;
+        this.f18224c = arrayList;
+        this.d = hashMap;
+        this.f18225e = hashMap2;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$buildContactsSectionsArrays$44;
-        int lambda$mergePhonebookAndTelegramContacts$38;
-        int lambda$mergePhonebookAndTelegramContacts$39;
-        int lambda$processLoadedContacts$31;
-        int lambda$processLoadedContacts$32;
-        int lambda$updateUnregisteredContacts$42;
-        switch (this.f17699a) {
+    public final void run() {
+        switch (this.f18222a) {
             case 0:
-                lambda$buildContactsSectionsArrays$44 = ContactsController.lambda$buildContactsSectionsArrays$44(this.f17700b, (String) obj, (String) obj2);
-                return lambda$buildContactsSectionsArrays$44;
+                ArrayList arrayList = this.f18224c;
+                HashMap hashMap = this.f18225e;
+                this.f18223b.lambda$performSyncPhoneBook$15(this.d, arrayList, hashMap);
+                return;
             case 1:
-                lambda$mergePhonebookAndTelegramContacts$38 = ContactsController.lambda$mergePhonebookAndTelegramContacts$38(this.f17700b, obj, obj2);
-                return lambda$mergePhonebookAndTelegramContacts$38;
+                HashMap hashMap2 = this.d;
+                HashMap hashMap3 = this.f18225e;
+                this.f18223b.lambda$mergePhonebookAndTelegramContacts$40(this.f18224c, hashMap2, hashMap3);
+                return;
             case 2:
-                lambda$mergePhonebookAndTelegramContacts$39 = ContactsController.lambda$mergePhonebookAndTelegramContacts$39(this.f17700b, (String) obj, (String) obj2);
-                return lambda$mergePhonebookAndTelegramContacts$39;
+                ArrayList arrayList2 = this.f18224c;
+                HashMap hashMap4 = this.f18225e;
+                this.f18223b.lambda$performSyncPhoneBook$21(this.d, arrayList2, hashMap4);
+                return;
             case 3:
-                lambda$processLoadedContacts$31 = ContactsController.lambda$processLoadedContacts$31(this.f17700b, (String) obj, (String) obj2);
-                return lambda$processLoadedContacts$31;
-            case 4:
-                lambda$processLoadedContacts$32 = ContactsController.lambda$processLoadedContacts$32(this.f17700b, (String) obj, (String) obj2);
-                return lambda$processLoadedContacts$32;
+                ArrayList arrayList3 = this.f18224c;
+                HashMap hashMap5 = this.f18225e;
+                this.f18223b.lambda$performSyncPhoneBook$17(this.d, arrayList3, hashMap5);
+                return;
             default:
-                lambda$updateUnregisteredContacts$42 = ContactsController.lambda$updateUnregisteredContacts$42(this.f17700b, (ContactsController.Contact) obj, (ContactsController.Contact) obj2);
-                return lambda$updateUnregisteredContacts$42;
+                ArrayList arrayList4 = this.f18224c;
+                HashMap hashMap6 = this.f18225e;
+                this.f18223b.lambda$performSyncPhoneBook$23(this.d, arrayList4, hashMap6);
+                return;
         }
+    }
+
+    public l1(ContactsController contactsController, HashMap hashMap, ArrayList arrayList, HashMap hashMap2, int i10) {
+        this.f18222a = i10;
+        this.f18223b = contactsController;
+        this.d = hashMap;
+        this.f18224c = arrayList;
+        this.f18225e = hashMap2;
     }
 }

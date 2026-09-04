@@ -1,58 +1,25 @@
 package i5;
-
-import java.util.Arrays;
 public final class d {
-    public long f7247a;
-    public long f7248b;
-    public long f7249c;
-    public long d;
-    public long e;
-    public long f7250f;
-    public final boolean[] f7251g = new boolean[15];
-    public int h;
+    public static final d f11859a;
+    public static final d f11860b;
+    public static final d f11861c;
+    public static final d[] d;
 
-    public final boolean a() {
-        if (this.d > 15 && this.h == 0) {
-            return true;
-        }
-        return false;
+    static {
+        ?? r02 = new Enum("DEFAULT", 0);
+        f11859a = r02;
+        ?? r12 = new Enum("VERY_LOW", 1);
+        f11860b = r12;
+        ?? r32 = new Enum("HIGHEST", 2);
+        f11861c = r32;
+        d = new d[]{r02, r12, r32};
     }
 
-    public final void b(long j10) {
-        long j11 = this.d;
-        if (j11 == 0) {
-            this.f7247a = j10;
-        } else if (j11 == 1) {
-            long j12 = j10 - this.f7247a;
-            this.f7248b = j12;
-            this.f7250f = j12;
-            this.e = 1L;
-        } else {
-            long j13 = j10 - this.f7249c;
-            int i10 = (int) (j11 % 15);
-            long abs = Math.abs(j13 - this.f7248b);
-            boolean[] zArr = this.f7251g;
-            if (abs <= 1000000) {
-                this.e++;
-                this.f7250f += j13;
-                if (zArr[i10]) {
-                    zArr[i10] = false;
-                    this.h--;
-                }
-            } else if (!zArr[i10]) {
-                zArr[i10] = true;
-                this.h++;
-            }
-        }
-        this.d++;
-        this.f7249c = j10;
+    public static d valueOf(String str) {
+        return (d) Enum.valueOf(d.class, str);
     }
 
-    public final void c() {
-        this.d = 0L;
-        this.e = 0L;
-        this.f7250f = 0L;
-        this.h = 0;
-        Arrays.fill(this.f7251g, false);
+    public static d[] values() {
+        return (d[]) d.clone();
     }
 }

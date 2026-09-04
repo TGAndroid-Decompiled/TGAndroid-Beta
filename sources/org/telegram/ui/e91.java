@@ -1,35 +1,75 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.style.ReplacementSpan;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class e91 extends ReplacementSpan {
-    public final org.telegram.ui.Components.k01 f33749a = new org.telegram.ui.Components.k01(LocaleController.getString(R.string.StakeDiceTitleBeta), 12.0f, AndroidUtilities.bold());
-    public final Paint f33750b = new Paint(1);
-    public final org.telegram.ui.ActionBar.f6 f33751c;
+public final class e91 extends org.telegram.ui.Components.g51 {
+    static {
+        org.telegram.ui.Components.g51.setup(new org.telegram.ui.Components.g51());
+    }
 
-    public e91(org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f33751c = f6Var;
+    public static org.telegram.ui.Components.h51 a(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
+        org.telegram.ui.Components.h51 J = org.telegram.ui.Components.h51.J(e91.class);
+        J.d = i10;
+        J.f26593k = i13;
+        J.f26594l = charSequence;
+        J.f26595m = charSequence2;
+        J.f26596n = charSequence3;
+        J.B = (i11 & 4294967295L) | (i12 << 32);
+        return J;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
-        float dp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(1.0f);
-        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Oh, this.f33751c);
-        Paint paint2 = this.f33750b;
-        paint2.setColor(v02);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(f10, dp - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f) + f10 + this.f33749a.f26124c, AndroidUtilities.dp(9.0f) + dp);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), paint2);
-        this.f33749a.c(f10 + AndroidUtilities.dp(8.0f), dp, 1.0f, -1, canvas);
+    public final void bindView(View view, org.telegram.ui.Components.h51 h51Var, boolean z10, org.telegram.ui.Components.v51 v51Var, org.telegram.ui.Components.d61 d61Var) {
+        int i10;
+        float f7;
+        long j3 = h51Var.B;
+        int i11 = (int) j3;
+        int i12 = (int) (j3 >>> 32);
+        f91 f91Var = (f91) view;
+        int i13 = h51Var.f26593k;
+        CharSequence charSequence = h51Var.f26594l;
+        CharSequence charSequence2 = h51Var.f26595m;
+        CharSequence charSequence3 = h51Var.f26596n;
+        TextView textView = f91Var.f36352e;
+        TextView textView2 = f91Var.f36353f;
+        FrameLayout frameLayout = f91Var.f36351c;
+        int i14 = 8;
+        if (i13 != 0) {
+            i10 = 0;
+        } else {
+            i10 = 8;
+        }
+        frameLayout.setVisibility(i10);
+        float f10 = 0.0f;
+        if (i13 == 0) {
+            f7 = AndroidUtilities.dp(2.0f);
+        } else {
+            f7 = 0.0f;
+        }
+        textView.setTranslationX(f7);
+        if (i13 == 0) {
+            f10 = AndroidUtilities.dp(2.0f);
+        }
+        textView2.setTranslationX(f10);
+        f91Var.f36350b.b(i11, i12);
+        f91Var.d.setImageResource(i13);
+        textView.setText(charSequence);
+        boolean isEmpty = TextUtils.isEmpty(charSequence2);
+        f91Var.f36354n = !isEmpty;
+        if (!isEmpty) {
+            i14 = 0;
+        }
+        textView2.setVisibility(i14);
+        textView2.setText(charSequence2);
+        f91Var.setValue(charSequence3);
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return (int) (AndroidUtilities.dp(16.0f) + this.f33749a.f26124c);
+    public final View createView(Context context, org.telegram.ui.Components.ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+        return new f91(context, f6Var);
     }
 }

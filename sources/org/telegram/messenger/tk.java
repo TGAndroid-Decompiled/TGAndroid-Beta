@@ -1,34 +1,24 @@
 package org.telegram.messenger;
+public final class tk implements Runnable {
+    public final int f19100a;
+    public final TopicsController f19101b;
+    public final long f19102c;
 
-import android.icu.text.Collator;
-import java.util.Comparator;
-import java.util.HashMap;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.TranslateController;
-public final class tk implements Comparator {
-    public final int f18519a;
-    public final Object f18520b;
-
-    public tk(Object obj, int i10) {
-        this.f18519a = i10;
-        this.f18520b = obj;
+    public tk(TopicsController topicsController, long j3, int i10) {
+        this.f19100a = i10;
+        this.f19101b = topicsController;
+        this.f19102c = j3;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$getMusicDialogsSortedByVisibleOrder$1;
-        int lambda$getLocales$3;
-        int lambda$getLanguages$1;
-        switch (this.f18519a) {
+    public final void run() {
+        switch (this.f19100a) {
             case 0:
-                lambda$getMusicDialogsSortedByVisibleOrder$1 = TelegramMediaSession.lambda$getMusicDialogsSortedByVisibleOrder$1((HashMap) this.f18520b, (Long) obj, (Long) obj2);
-                return lambda$getMusicDialogsSortedByVisibleOrder$1;
-            case 1:
-                lambda$getLocales$3 = TranslateController.lambda$getLocales$3((LocaleController.LocaleInfo) this.f18520b, (LocaleController.LocaleInfo) obj, (LocaleController.LocaleInfo) obj2);
-                return lambda$getLocales$3;
+                TopicsController.o(this.f19101b, this.f19102c);
+                return;
             default:
-                lambda$getLanguages$1 = TranslateController.lambda$getLanguages$1((Collator) this.f18520b, (TranslateController.Language) obj, (TranslateController.Language) obj2);
-                return lambda$getLanguages$1;
+                TopicsController.y(this.f19101b, this.f19102c);
+                return;
         }
     }
 }

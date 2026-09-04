@@ -1,25 +1,29 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Shader;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.Switch;
-public final class r71 implements View.OnClickListener {
-    public final u71 f37729a;
-    public final TLRPC.TL_authorization f37730b;
-    public final v71 f37731c;
+import org.telegram.messenger.AndroidUtilities;
+public final class r71 extends View {
+    public final Paint f40089a;
+    public final LinearGradient f40090b;
 
-    public r71(v71 v71Var, u71 u71Var, TLRPC.TL_authorization tL_authorization) {
-        this.f37731c = v71Var;
-        this.f37729a = u71Var;
-        this.f37730b = tL_authorization;
+    public r71(t71 t71Var, Context context) {
+        super(context);
+        this.f40089a = new Paint(1);
+        float dp = AndroidUtilities.dp(68.0f);
+        int i10 = org.telegram.ui.ActionBar.j6.f20734h5;
+        this.f40090b = new LinearGradient(0.0f, 0.0f, 0.0f, dp, new int[]{org.telegram.ui.ActionBar.j6.l1(0.0f, t71Var.getThemedColor(i10)), t71Var.getThemedColor(i10)}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
     }
 
     @Override
-    public final void onClick(View view) {
-        u71 u71Var = this.f37729a;
-        Switch r02 = u71Var.d;
-        r02.c(!r02.h, true);
-        this.f37730b.encrypted_requests_disabled = !u71Var.d.h;
-        v71.n(this.f37731c);
+    public final void onDraw(Canvas canvas) {
+        LinearGradient linearGradient = this.f40090b;
+        Paint paint = this.f40089a;
+        paint.setShader(linearGradient);
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
     }
 }

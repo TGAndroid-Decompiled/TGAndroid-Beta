@@ -1,89 +1,42 @@
 package p2;
+public abstract class j implements Comparable {
+    public final String f43701a;
+    public final i f43702b;
+    public final long f43703c;
+    public final int d;
+    public final long f43704e;
+    public final b2.o f43705f;
+    public final String h;
+    public final String f43706n;
+    public final long f43707r;
+    public final long f43708s;
+    public final boolean v;
 
-import java.util.ArrayList;
-import org.json.JSONArray;
-import org.json.JSONObject;
-public final class j {
-    public final String f41018a;
-    public final long f41019b;
-    public final String f41020c;
-    public final String d;
-    public final ArrayList e;
-    public final String f41021f;
-    public final cb.b f41022g;
+    public j(String str, i iVar, long j3, int i10, long j10, b2.o oVar, String str2, String str3, long j11, long j12, boolean z10) {
+        this.f43701a = str;
+        this.f43702b = iVar;
+        this.f43703c = j3;
+        this.d = i10;
+        this.f43704e = j10;
+        this.f43705f = oVar;
+        this.h = str2;
+        this.f43706n = str3;
+        this.f43707r = j11;
+        this.f43708s = j12;
+        this.v = z10;
+    }
 
-    public j(JSONObject jSONObject) {
-        this.f41018a = jSONObject.optString("formattedPrice");
-        this.f41019b = jSONObject.optLong("priceAmountMicros");
-        this.f41020c = jSONObject.optString("priceCurrencyCode");
-        String optString = jSONObject.optString("offerIdToken");
-        cb.b bVar = null;
-        this.d = true == optString.isEmpty() ? null : optString;
-        jSONObject.optString("offerId").getClass();
-        jSONObject.optString("purchaseOptionId").getClass();
-        jSONObject.optInt("offerType");
-        JSONArray optJSONArray = jSONObject.optJSONArray("offerTags");
-        this.e = new ArrayList();
-        if (optJSONArray != null) {
-            for (int i10 = 0; i10 < optJSONArray.length(); i10++) {
-                this.e.add(optJSONArray.getString(i10));
-            }
+    @Override
+    public final int compareTo(Object obj) {
+        Long l4 = (Long) obj;
+        long longValue = l4.longValue();
+        long j3 = this.f43704e;
+        if (j3 > longValue) {
+            return 1;
         }
-        if (jSONObject.has("fullPriceMicros")) {
-            jSONObject.optLong("fullPriceMicros");
+        if (j3 < l4.longValue()) {
+            return -1;
         }
-        JSONObject optJSONObject = jSONObject.optJSONObject("discountDisplayInfo");
-        if (optJSONObject != null) {
-            if (optJSONObject.has("percentageDiscount")) {
-                optJSONObject.optInt("percentageDiscount");
-            }
-            JSONObject optJSONObject2 = optJSONObject.optJSONObject("discountAmount");
-            if (optJSONObject2 != null) {
-                optJSONObject2.optString("formattedDiscountAmount");
-                optJSONObject2.optLong("discountAmountMicros");
-                optJSONObject2.optString("discountAmountCurrencyCode");
-            }
-        }
-        JSONObject optJSONObject3 = jSONObject.optJSONObject("validTimeWindow");
-        if (optJSONObject3 != null) {
-            if (optJSONObject3.has("startTimeMillis")) {
-                optJSONObject3.optLong("startTimeMillis");
-            }
-            if (optJSONObject3.has("endTimeMillis")) {
-                optJSONObject3.optLong("endTimeMillis");
-            }
-        }
-        JSONObject optJSONObject4 = jSONObject.optJSONObject("limitedQuantityInfo");
-        if (optJSONObject4 != null) {
-            optJSONObject4.getInt("maximumQuantity");
-            optJSONObject4.getInt("remainingQuantity");
-        }
-        this.f41021f = jSONObject.optString("serializedDocid");
-        JSONObject optJSONObject5 = jSONObject.optJSONObject("preorderDetails");
-        if (optJSONObject5 != null) {
-            optJSONObject5.getLong("preorderReleaseTimeMillis");
-            optJSONObject5.getLong("preorderPresaleEndTimeMillis");
-        }
-        JSONObject optJSONObject6 = jSONObject.optJSONObject("rentalDetails");
-        if (optJSONObject6 != null) {
-            optJSONObject6.getString("rentalPeriod");
-            optJSONObject6.optString("rentalExpirationPeriod").getClass();
-        }
-        JSONObject optJSONObject7 = jSONObject.optJSONObject("autoPayDetails");
-        if (optJSONObject7 != null) {
-            bVar = new cb.b(19);
-            optJSONObject7.getString("type");
-        }
-        this.f41022g = bVar;
-        JSONArray optJSONArray2 = jSONObject.optJSONArray("pricingPhases");
-        if (optJSONArray2 != null) {
-            ArrayList arrayList = new ArrayList();
-            for (int i11 = 0; i11 < optJSONArray2.length(); i11++) {
-                JSONObject optJSONObject8 = optJSONArray2.optJSONObject(i11);
-                if (optJSONObject8 != null) {
-                    arrayList.add(new k(optJSONObject8));
-                }
-            }
-        }
+        return 0;
     }
 }

@@ -1,34 +1,47 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import org.telegram.ui.Components.cc0;
-public final class l6 extends org.telegram.ui.Components.p9 {
-    public final int D;
-    public final m6 E;
+import android.view.View;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.yn;
+import org.telegram.ui.LaunchActivity;
+public final class l6 extends bi.j9 {
+    public final int S = 0;
+    public final View T;
 
-    public l6(m6 m6Var, Context context, int i10) {
-        super(context);
-        this.E = m6Var;
-        this.D = i10;
+    public l6(n6 n6Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(f6Var, false);
+        this.T = n6Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        m6 m6Var = this.E;
-        k6 k6Var = m6Var.f21371y;
-        cc0 cc0Var = m6.D;
-        if (this.D == 1) {
-            k6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            nh.m7.h(m6Var.f21370x, canvas, getImageReceiver(), k6Var);
-            return;
+    public final void f(long j3) {
+        switch (this.S) {
+            case 0:
+                ((n6) this.T).b(j3);
+                return;
+            case 1:
+                za zaVar = (za) this.T;
+                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                if (R != null) {
+                    R.getOrCreateStoryViewer().getClass();
+                    R.getOrCreateStoryViewer().D(zaVar.getContext(), j3, bi.d9.a((ll0) zaVar.getParent()));
+                    return;
+                }
+                return;
+            default:
+                yn ynVar = (yn) this.T;
+                ynVar.H.getOrCreateStoryViewer().D(ynVar.getContext(), j3, new org.telegram.ui.Components.t(this, 25));
+                return;
         }
-        super.onDraw(canvas);
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.E.f21371y.a(motionEvent, this);
+    public l6(za zaVar) {
+        super(null, false);
+        this.T = zaVar;
+    }
+
+    public l6(yn ynVar) {
+        super(null, true);
+        this.T = ynVar;
     }
 }

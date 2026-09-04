@@ -1,34 +1,43 @@
 package wh;
 
-import android.animation.ValueAnimator;
-import o4.h0;
-import org.telegram.ui.Cells.u0;
-import org.telegram.ui.Cells.v0;
-import ph.z8;
-public final class d implements ValueAnimator.AnimatorUpdateListener {
-    public final int f46656a;
-    public final Object f46657b;
-    public final Object f46658c;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public final class d implements Runnable {
+    public final int f48587a;
+    public final g f48588b;
 
-    public d(int i10, Object obj, Object obj2) {
-        this.f46656a = i10;
-        this.f46657b = obj;
-        this.f46658c = obj2;
+    public d(g gVar, int i10) {
+        this.f48587a = i10;
+        this.f48588b = gVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f46656a) {
+    public final void run() {
+        switch (this.f48587a) {
             case 0:
-                ((u0) this.f46657b).f22361c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ((v0) this.f46658c).invalidate();
+                g gVar = this.f48588b;
+                if (gVar.f48609j.isEmpty()) {
+                    gVar.f48608i = true;
+                    g.f48601n = null;
+                    f fVar = gVar.f48606f;
+                    if (fVar != null) {
+                        fVar.f48590a = false;
+                        gVar.f48606f = null;
+                    }
+                    gVar.d.removeView(gVar.f48605e);
+                    if (gVar.d.getParent() instanceof ViewGroup) {
+                        ((ViewGroup) gVar.d.getParent()).removeView(gVar.d);
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                h0 h0Var = (h0) this.f46657b;
-                h0Var.getClass();
-                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                h0Var.f16330b = intValue;
-                ((z8) this.f46658c).c(intValue);
+                ArrayList arrayList = this.f48588b.f48609j;
+                for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                    ((View) arrayList.get(i10)).invalidate();
+                }
                 return;
         }
     }

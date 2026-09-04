@@ -1,111 +1,53 @@
 package j5;
 
-import e2.c;
-import f7.b;
-import h5.w;
-import j3.d0;
-import j3.e;
-import j3.n0;
-import java.nio.ByteBuffer;
-import n3.i;
-public final class a extends e {
-    public final i B;
-    public final w C;
-    public d0 D;
-    public long E;
+import j$.util.DesugarCollections;
+import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.regex.Pattern;
+import l5.k;
+import v7.r8;
+public final class a implements k {
+    public static final String f13507c;
+    public static final Set d;
+    public static final a f13508e;
+    public static final a f13509f;
+    public final String f13510a;
+    public final String f13511b;
 
-    public a() {
-        super(6);
-        this.B = new i(1, 0);
-        this.C = new w();
+    static {
+        String a2 = r8.a("hts/frbslgiggolai.o/0clgbthfra=snpoo", "tp:/ieaeogn.ogepscmvc/o/ac?omtjo_rt3");
+        f13507c = a2;
+        String a10 = r8.a("hts/frbslgigp.ogepscmv/ieo/eaybtho", "tp:/ieaeogn-agolai.o/1frlglgc/aclg");
+        String a11 = r8.a("AzSCki82AwsLzKd5O8zo", "IayckHiZRO1EFl1aGoK");
+        d = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(new i5.c("proto"), new i5.c("json"))));
+        f13508e = new a(a2, null);
+        f13509f = new a(a10, a11);
     }
 
-    @Override
-    public final void b(int i10, Object obj) {
-        if (i10 == 8) {
-            this.D = (d0) obj;
-        }
+    public a(String str, String str2) {
+        this.f13510a = str;
+        this.f13511b = str2;
     }
 
-    @Override
-    public final String g() {
-        return "CameraMotionRenderer";
-    }
-
-    @Override
-    public final boolean i() {
-        return h();
-    }
-
-    @Override
-    public final boolean j() {
-        return true;
-    }
-
-    @Override
-    public final void k() {
-        d0 d0Var = this.D;
-        if (d0Var != null) {
-            d0Var.d();
-        }
-    }
-
-    @Override
-    public final void m(long j10, boolean z4) {
-        this.E = Long.MIN_VALUE;
-        d0 d0Var = this.D;
-        if (d0Var != null) {
-            d0Var.d();
-        }
-    }
-
-    @Override
-    public final void t(long j10, long j11) {
-        float[] fArr;
-        while (!h() && this.E < 100000 + j10) {
-            i iVar = this.B;
-            iVar.b();
-            b bVar = this.f8472c;
-            bVar.m();
-            if (s(bVar, iVar, 0) == -4 && !iVar.d(4)) {
-                this.E = iVar.f14227f;
-                if (this.D != null && !iVar.d(Integer.MIN_VALUE)) {
-                    iVar.l();
-                    ByteBuffer byteBuffer = iVar.d;
-                    int i10 = h5.d0.f6924a;
-                    if (byteBuffer.remaining() != 16) {
-                        fArr = null;
-                    } else {
-                        byte[] array = byteBuffer.array();
-                        int limit = byteBuffer.limit();
-                        w wVar = this.C;
-                        wVar.D(limit, array);
-                        wVar.F(byteBuffer.arrayOffset() + 4);
-                        float[] fArr2 = new float[3];
-                        for (int i11 = 0; i11 < 3; i11++) {
-                            fArr2[i11] = Float.intBitsToFloat(wVar.i());
-                        }
-                        fArr = fArr2;
+    public static a a(byte[] bArr) {
+        String str = new String(bArr, Charset.forName("UTF-8"));
+        if (str.startsWith("1$")) {
+            String[] split = str.substring(2).split(Pattern.quote("\\"), 2);
+            if (split.length == 2) {
+                String str2 = split[0];
+                if (!str2.isEmpty()) {
+                    String str3 = split[1];
+                    if (str3.isEmpty()) {
+                        str3 = null;
                     }
-                    if (fArr != null) {
-                        this.D.c();
-                    }
+                    return new a(str2, str3);
                 }
-            } else {
-                return;
+                throw new IllegalArgumentException("Missing endpoint in CCTDestination extras");
             }
+            throw new IllegalArgumentException("Extra is not a valid encoded LegacyFlgDestination");
         }
-    }
-
-    @Override
-    public final int x(n0 n0Var) {
-        if ("application/x-camera-motion".equals(n0Var.C)) {
-            return c.b(4, 0, 0);
-        }
-        return c.b(0, 0, 0);
-    }
-
-    @Override
-    public final void r(n0[] n0VarArr, long j10, long j11) {
+        throw new IllegalArgumentException("Version marker missing from extras");
     }
 }

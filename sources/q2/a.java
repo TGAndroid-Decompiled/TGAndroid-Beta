@@ -1,73 +1,26 @@
 package q2;
 
-import java.util.Random;
-public final class a extends Random {
-    public long f42728a;
-    public long f42729b;
+import android.graphics.Bitmap;
+import h2.h;
+public final class a extends h {
+    public Bitmap f44122f;
+    public final c h;
 
-    @Override
-    public final int next(int i10) {
-        return ((int) nextLong()) >>> (32 - i10);
+    public a(c cVar) {
+        this.h = cVar;
     }
 
     @Override
-    public final boolean nextBoolean() {
-        if (nextLong() >= 0) {
-            return true;
-        }
-        return false;
+    public final void i() {
+        this.f44122f = null;
+        this.f6773b = 0;
+        this.f10852c = 0L;
+        this.d = 0;
+        this.f10853e = false;
     }
 
     @Override
-    public final void nextBytes(byte[] bArr) {
-        int length = bArr.length;
-        int i10 = 0;
-        while (i10 < length) {
-            long nextLong = (int) nextLong();
-            int min = Math.min(length - i10, 8);
-            while (true) {
-                int i11 = min - 1;
-                if (min > 0) {
-                    bArr[i10] = (byte) nextLong;
-                    nextLong >>>= 8;
-                    i10++;
-                    min = i11;
-                }
-            }
-        }
-    }
-
-    @Override
-    public final double nextDouble() {
-        return (nextLong() >>> 11) * 1.1102230246251565E-16d;
-    }
-
-    @Override
-    public final float nextFloat() {
-        return (((int) nextLong()) >>> 8) * 5.9604645E-8f;
-    }
-
-    @Override
-    public final int nextInt() {
-        return (int) nextLong();
-    }
-
-    @Override
-    public final long nextLong() {
-        long j10 = this.f42728a;
-        long j11 = this.f42729b;
-        long j12 = j10 + j11;
-        long j13 = j11 ^ j10;
-        this.f42728a = (Long.rotateLeft(j10, 55) ^ j13) ^ (j13 << 14);
-        this.f42729b = Long.rotateLeft(j13, 36);
-        return j12;
-    }
-
-    @Override
-    public final void setSeed(long j10) {
-        if (this.f42728a == 0 && this.f42729b == 0) {
-            return;
-        }
-        throw new RuntimeException("No seed set");
+    public final void j() {
+        this.h.n(this);
     }
 }

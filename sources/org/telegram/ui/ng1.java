@@ -3,76 +3,40 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class ng1 implements Runnable {
-    public final int f36512a;
-    public final wg1 f36513b;
+    public final int f38953a;
+    public final TwoStepVerificationActivity f38954b;
 
-    public ng1(wg1 wg1Var, int i10) {
-        this.f36512a = i10;
-        this.f36513b = wg1Var;
+    public ng1(TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
+        this.f38953a = i10;
+        this.f38954b = twoStepVerificationActivity;
     }
 
     @Override
     public final void run() {
-        switch (this.f36512a) {
+        EditTextBoldCursor editTextBoldCursor;
+        switch (this.f38953a) {
             case 0:
-                wg1 wg1Var = this.f36513b;
-                EditTextBoldCursor editTextBoldCursor = wg1Var.f39692n;
-                if (editTextBoldCursor != null && editTextBoldCursor.getVisibility() == 0) {
-                    wg1Var.f39692n.requestFocus();
-                    AndroidUtilities.showKeyboard(wg1Var.f39692n);
+                TwoStepVerificationActivity twoStepVerificationActivity = this.f38954b;
+                if (!twoStepVerificationActivity.isFinishing() && !twoStepVerificationActivity.H && (editTextBoldCursor = twoStepVerificationActivity.f34225s) != null) {
+                    editTextBoldCursor.requestFocus();
+                    AndroidUtilities.showKeyboard(twoStepVerificationActivity.f34225s);
                     return;
                 }
                 return;
             case 1:
-                wg1 wg1Var2 = this.f36513b;
-                xd0 xd0Var = wg1Var2.f39695w;
-                if (xd0Var != null && xd0Var.getVisibility() == 0) {
-                    wg1Var2.f39695w.f32635f[0].requestFocus();
-                    return;
-                }
+                TwoStepVerificationActivity twoStepVerificationActivity2 = this.f38954b;
+                twoStepVerificationActivity2.U = false;
+                twoStepVerificationActivity2.v.a(0.0f);
                 return;
             case 2:
-                int i10 = 0;
-                while (true) {
-                    ds[] dsVarArr = this.f36513b.f39695w.f32635f;
-                    if (i10 < dsVarArr.length) {
-                        dsVarArr[i10].i(0.0f);
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
-            case 3:
-                wg1 wg1Var3 = this.f36513b;
-                EditTextBoldCursor editTextBoldCursor2 = wg1Var3.f39692n;
-                if (editTextBoldCursor2 != null) {
-                    if (editTextBoldCursor2.length() != 0) {
-                        wg1Var3.f39686c0[2].N(49);
-                        wg1Var3.f39686c0[2].Q(0.0f, false);
-                        wg1Var3.f39681a.d();
-                        return;
-                    }
-                    wg1Var3.F0(true);
-                    return;
-                }
-                return;
-            case 4:
-                wg1 wg1Var4 = this.f36513b;
-                if (wg1Var4.f39687d0 != null) {
-                    wg1Var4.F0(false);
-                    return;
-                }
-                return;
-            case 5:
-                wg1.f0(this.f36513b);
-                return;
-            case 6:
-                AndroidUtilities.runOnUIThread(new ng1(this.f36513b, 7), 150L);
+                this.f38954b.y0();
                 return;
             default:
-                for (ds dsVar : this.f36513b.f39695w.f32635f) {
-                    dsVar.i(0.0f);
-                }
+                TwoStepVerificationActivity twoStepVerificationActivity3 = this.f38954b;
+                ng1 ng1Var = twoStepVerificationActivity3.V;
+                AndroidUtilities.cancelRunOnUIThread(ng1Var);
+                AndroidUtilities.runOnUIThread(ng1Var, 1500L);
+                twoStepVerificationActivity3.U = true;
                 return;
         }
     }

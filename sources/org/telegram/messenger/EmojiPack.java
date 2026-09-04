@@ -74,8 +74,8 @@ public final class EmojiPack {
         if (instance == null) {
             try {
                 instance = new EmojiPack();
-            } catch (IOException e) {
-                throw new RuntimeException("Unable to open emoji pack", e);
+            } catch (IOException e7) {
+                throw new RuntimeException("Unable to open emoji pack", e7);
             }
         }
         return instance;
@@ -91,7 +91,7 @@ public final class EmojiPack {
                 int i14 = 65535 & order.getShort();
                 int i15 = order.getInt();
                 int i16 = order.getInt();
-                validateRange(i15, i16, kf.k0.j(i13, "emoji "));
+                validateRange(i15, i16, i2.g.i(i13, "emoji "));
                 this.emojis.put(i13, new EmojiEntry(i15, i16, i14));
             }
             int i17 = order.getInt();
@@ -101,14 +101,14 @@ public final class EmojiPack {
                     int i20 = order.getShort() & 65535;
                     int i21 = order.getInt();
                     int i22 = order.getInt();
-                    validateRange(i21, i22, kf.k0.j(i20, "mask "));
+                    validateRange(i21, i22, i2.g.i(i20, "mask "));
                     this.masks.put(i20, new ImageEntry(i21, i22));
                 }
                 return;
             }
-            throw new IOException(kf.k0.j(i17, "Invalid mask metadata length: "));
+            throw new IOException(i2.g.i(i17, "Invalid mask metadata length: "));
         }
-        throw new IOException(kf.k0.j(i10, "Invalid emoji metadata length: "));
+        throw new IOException(i2.g.i(i10, "Invalid emoji metadata length: "));
     }
 
     private void validateRange(int i10, int i11, String str) {
@@ -126,8 +126,8 @@ public final class EmojiPack {
         if (i10 < 0 || i11 < 0 || i11 >= 4096) {
             return null;
         }
-        long j10 = (i10 * 4096) + i11;
-        if (j10 > 65535 || (emojiEntry = this.emojis.get((int) j10)) == null) {
+        long j3 = (i10 * 4096) + i11;
+        if (j3 > 65535 || (emojiEntry = this.emojis.get((int) j3)) == null) {
             return null;
         }
         return decode(emojiEntry);
@@ -144,8 +144,8 @@ public final class EmojiPack {
     public int getMaskId(int i10, int i11) {
         EmojiEntry emojiEntry;
         if (i10 >= 0 && i11 >= 0 && i11 < 4096) {
-            long j10 = (i10 * 4096) + i11;
-            if (j10 <= 65535 && (emojiEntry = this.emojis.get((int) j10)) != null) {
+            long j3 = (i10 * 4096) + i11;
+            if (j3 <= 65535 && (emojiEntry = this.emojis.get((int) j3)) != null) {
                 return emojiEntry.maskId;
             }
         }

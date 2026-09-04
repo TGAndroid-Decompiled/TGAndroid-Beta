@@ -1,55 +1,61 @@
 package org.telegram.ui;
 
-import java.util.Comparator;
-import org.telegram.tgnet.TLRPC;
-public final class lm0 implements Comparator {
-    public final fn0 f35807a;
+import android.text.TextWatcher;
+import java.util.regex.Pattern;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class lm0 implements TextWatcher {
+    public final int f38405a;
+    public final Object f38406b;
+    public String f38407c;
+    public final Object d;
 
-    public lm0(fn0 fn0Var) {
-        this.f35807a = fn0Var;
-    }
-
-    public final int a(TLRPC.SecureValueError secureValueError) {
-        if (secureValueError instanceof TLRPC.TL_secureValueError) {
-            return 0;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorFrontSide) {
-            return 1;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorReverseSide) {
-            return 2;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorSelfie) {
-            return 3;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFile) {
-            return 4;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFiles) {
-            return 5;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorFile) {
-            return 6;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorFiles) {
-            return 7;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorData) {
-            return fn0.C0(this.f35807a, ((TLRPC.TL_secureValueErrorData) secureValueError).field);
-        }
-        return 100;
+    public lm0(pn0 pn0Var, EditTextBoldCursor editTextBoldCursor, String str, int i10) {
+        this.f38405a = i10;
+        this.d = pn0Var;
+        this.f38406b = editTextBoldCursor;
+        this.f38407c = str;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int a2 = a((TLRPC.SecureValueError) obj);
-        int a10 = a((TLRPC.SecureValueError) obj2);
-        if (a2 < a10) {
-            return -1;
+    public final void afterTextChanged(android.text.Editable r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.lm0.afterTextChanged(android.text.Editable):void");
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        switch (this.f38405a) {
+            case 0:
+            case 1:
+                return;
+            default:
+                this.f38407c = charSequence.toString();
+                return;
         }
-        if (a2 > a10) {
-            return 1;
-        }
-        return 0;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f38405a;
+    }
+
+    public lm0(qg.w wVar) {
+        this.f38405a = 2;
+        this.d = wVar;
+        this.f38406b = Pattern.compile("^[0-9a-fA-F]*$");
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

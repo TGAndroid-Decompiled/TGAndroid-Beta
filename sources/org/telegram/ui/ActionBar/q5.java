@@ -1,14 +1,14 @@
 package org.telegram.ui.ActionBar;
 
 import android.util.SparseIntArray;
-import org.telegram.ui.jd1;
-public final class q5 extends g5 {
+import org.telegram.ui.wd1;
+public final class q5 extends f5 {
     public final int R = 1;
     public final Object S;
 
-    public q5(jd1 jd1Var, int i10, boolean z4) {
-        super(i10, true, z4, null);
-        this.S = jd1Var;
+    public q5(wd1 wd1Var, int i10, boolean z10) {
+        super(i10, true, z10, null);
+        this.S = wd1Var;
     }
 
     @Override
@@ -40,7 +40,7 @@ public final class q5 extends g5 {
     public void n(int i10, int i11, int i12) {
         switch (this.R) {
             case 1:
-                if (!((jd1) this.S).a2) {
+                if (!((wd1) this.S).f41927d2) {
                     super.n(i10, i11, i12);
                     return;
                 }
@@ -52,22 +52,22 @@ public final class q5 extends g5 {
     }
 
     @Override
-    public void o(int i10, int i11, int i12, int i13, int i14, int i15, boolean z4, boolean z10) {
+    public void o(int i10, int i11, int i12, int i13, int i14, int i15, boolean z10, boolean z11) {
         switch (this.R) {
             case 1:
-                if (!((jd1) this.S).a2) {
-                    super.o(i10, i11, i12, i13, i14, i15, z4, z10);
+                if (!((wd1) this.S).f41927d2) {
+                    super.o(i10, i11, i12, i13, i14, i15, z10, z11);
                     return;
                 }
                 return;
             default:
-                super.o(i10, i11, i12, i13, i14, i15, z4, z10);
+                super.o(i10, i11, i12, i13, i14, i15, z10, z11);
                 return;
         }
     }
 
-    public q5(boolean z4, SparseIntArray sparseIntArray) {
-        super(2, z4, false, null);
+    public q5(boolean z10, SparseIntArray sparseIntArray) {
+        super(2, z10, false, null);
         this.S = sparseIntArray;
     }
 }

@@ -5,36 +5,36 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class xt0 implements org.telegram.ui.pt {
-    public final TLRPC.TL_messageMediaPoll f30713a;
-    public final TLRPC.PollAnswer f30714b;
-    public final org.telegram.ui.Cells.s1 f30715c;
+public final class xt0 implements org.telegram.ui.qt {
+    public final TLRPC.TL_messageMediaPoll f32662a;
+    public final TLRPC.PollAnswer f32663b;
+    public final org.telegram.ui.Cells.t1 f32664c;
     public final cu0 d;
 
-    public xt0(cu0 cu0Var, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, org.telegram.ui.Cells.s1 s1Var) {
+    public xt0(cu0 cu0Var, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, org.telegram.ui.Cells.t1 t1Var) {
         this.d = cu0Var;
-        this.f30713a = tL_messageMediaPoll;
-        this.f30714b = pollAnswer;
-        this.f30715c = s1Var;
+        this.f32662a = tL_messageMediaPoll;
+        this.f32663b = pollAnswer;
+        this.f32664c = t1Var;
     }
 
     @Override
-    public final boolean B() {
+    public final boolean A() {
         return false;
     }
 
     @Override
-    public final boolean D() {
+    public final boolean C() {
         return false;
     }
 
     @Override
-    public final boolean E(TLRPC.Document document) {
+    public final boolean D(TLRPC.Document document) {
         return false;
     }
 
     @Override
-    public final String G(boolean z4) {
+    public final String F(boolean z10) {
         return null;
     }
 
@@ -51,22 +51,22 @@ public final class xt0 implements org.telegram.ui.pt {
     @Override
     public final void K() {
         ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(1);
-        arrayList.add(this.f30714b);
-        SendMessagesHelper.getInstance(this.d.f24040a).sendVote(this.f30715c.getMessageObject(), arrayList, null);
+        arrayList.add(this.f32663b);
+        SendMessagesHelper.getInstance(this.d.f25095a).sendVote(this.f32664c.getMessageObject(), arrayList, null);
     }
 
     @Override
-    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z4) {
+    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         cu0 cu0Var = this.d;
-        eu0 eu0Var = cu0Var.f24042c;
-        if (inputStickerSet != null && eu0Var.f24698s.getContext() != null) {
+        eu0 eu0Var = cu0Var.f25097c;
+        if (inputStickerSet != null && eu0Var.f25791s.getContext() != null) {
             TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
             tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-            tL_inputStickerSetID.f19179id = inputStickerSet.f19179id;
-            xx0 xx0Var = new xx0(eu0Var.f24698s.getContext(), eu0Var.f24698s.f31155s1, tL_inputStickerSetID, null, null, cu0Var.f24041b);
-            xx0Var.setCalcMandatoryInsets(true);
-            xx0Var.f30757f0 = z4;
-            xx0Var.show();
+            tL_inputStickerSetID.f19889id = inputStickerSet.f19889id;
+            ux0 ux0Var = new ux0(eu0Var.f25791s.getContext(), eu0Var.f25791s.f32726v1, tL_inputStickerSetID, null, null, cu0Var.f25096b);
+            ux0Var.setCalcMandatoryInsets(true);
+            ux0Var.f31003i0 = z10;
+            ux0Var.show();
         }
     }
 
@@ -87,7 +87,7 @@ public final class xt0 implements org.telegram.ui.pt {
 
     @Override
     public final long a() {
-        return this.d.f24042c.f24698s.f31130g1;
+        return this.d.f25097c.f25791s.f32701j1;
     }
 
     @Override
@@ -101,53 +101,53 @@ public final class xt0 implements org.telegram.ui.pt {
     }
 
     @Override
-    public final p70 d(ah.e eVar) {
-        return null;
+    public final TLRPC.TL_messageMediaPoll d() {
+        return this.f32662a;
     }
 
     @Override
-    public final TLRPC.TL_messageMediaPoll e() {
-        return this.f30713a;
-    }
-
-    @Override
-    public final boolean f(TLRPC.Document document) {
+    public final boolean e(TLRPC.Document document) {
         return false;
     }
 
     @Override
-    public final boolean g() {
+    public final boolean f() {
         return false;
     }
 
     @Override
-    public final TLRPC.PollAnswer h() {
-        return this.f30714b;
+    public final TLRPC.PollAnswer g() {
+        return this.f32663b;
     }
 
     @Override
-    public final boolean i() {
+    public final boolean h() {
         return true;
     }
 
     @Override
-    public final boolean k() {
+    public final boolean j() {
         return false;
     }
 
     @Override
-    public final boolean l(int i10) {
+    public final boolean k(int i10) {
         return false;
     }
 
     @Override
-    public final boolean p() {
+    public final boolean o() {
         return false;
     }
 
     @Override
-    public final void r() {
-        SendMessagesHelper.getInstance(this.d.f24040a).sendVote(this.f30715c.getMessageObject(), null, null);
+    public final void q() {
+        SendMessagesHelper.getInstance(this.d.f25095a).sendVote(this.f32664c.getMessageObject(), null, null);
+    }
+
+    @Override
+    public final n70 t(ah.w wVar) {
+        return null;
     }
 
     @Override
@@ -157,15 +157,15 @@ public final class xt0 implements org.telegram.ui.pt {
 
     @Override
     public final MessageObject z() {
-        return this.f30715c.getMessageObject();
+        return this.f32664c.getMessageObject();
     }
 
     @Override
-    public final void C(TLRPC.Document document) {
+    public final void B(TLRPC.Document document) {
     }
 
     @Override
-    public final void F(TLRPC.Document document) {
+    public final void E(TLRPC.Document document) {
     }
 
     @Override
@@ -181,23 +181,23 @@ public final class xt0 implements org.telegram.ui.pt {
     }
 
     @Override
-    public final void j(SendMessagesHelper.ImportingSticker importingSticker) {
+    public final void i(SendMessagesHelper.ImportingSticker importingSticker) {
     }
 
     @Override
-    public final void n(String str) {
+    public final void m(String str) {
     }
 
     @Override
-    public final void o(TLRPC.Document document) {
+    public final void n(TLRPC.Document document) {
     }
 
     @Override
-    public final void q(TLRPC.Document document) {
+    public final void p(TLRPC.Document document) {
     }
 
     @Override
-    public final void t() {
+    public final void s() {
     }
 
     @Override
@@ -217,14 +217,14 @@ public final class xt0 implements org.telegram.ui.pt {
     }
 
     @Override
-    public final void A(CharSequence charSequence, String str, vk vkVar) {
+    public final void G(CharSequence charSequence, String str, org.telegram.ui.nf nfVar) {
     }
 
     @Override
-    public final void s(int i10, int i11, Object obj, TLObject tLObject, boolean z4) {
+    public final void r(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
     }
 
     @Override
-    public final void m(TLRPC.Document document, String str, Object obj, boolean z4, int i10, int i11) {
+    public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
     }
 }

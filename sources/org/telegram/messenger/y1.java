@@ -1,23 +1,24 @@
 package org.telegram.messenger;
+public final class y1 implements Runnable {
+    public final int f19652a;
+    public final DownloadController f19653b;
 
-import org.telegram.messenger.NotificationCenter;
-public final class y1 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f18997a;
-    public final Object f18998b;
-
-    public y1(Object obj, int i10) {
-        this.f18997a = i10;
-        this.f18998b = obj;
+    public y1(DownloadController downloadController, int i10) {
+        this.f19652a = i10;
+        this.f19653b = downloadController;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
-        switch (this.f18997a) {
+    public final void run() {
+        switch (this.f19652a) {
             case 0:
-                ContactsLoadingObserver.a((ContactsLoadingObserver) this.f18998b, i10, i11, objArr);
+                DownloadController.m(this.f19653b);
+                return;
+            case 1:
+                DownloadController.l(this.f19653b);
                 return;
             default:
-                ((TelegramMediaSession) this.f18998b).lambda$new$0(i10, i11, objArr);
+                DownloadController.a(this.f19653b);
                 return;
         }
     }

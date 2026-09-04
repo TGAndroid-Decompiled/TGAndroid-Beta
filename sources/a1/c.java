@@ -1,347 +1,544 @@
 package a1;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.graphics.fonts.Font;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.Region;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import c2.a1;
-import c2.z0;
-import c5.j;
-import cg.h2;
-import cg.r0;
-import cg.t0;
+import b5.h;
+import bi.ba;
+import bi.c9;
+import bi.ca;
+import bi.d1;
+import bi.da;
+import bi.db;
+import bi.e1;
+import bi.e3;
+import bi.eb;
+import bi.f1;
+import bi.g1;
+import bi.jb;
+import bi.o0;
+import bi.o1;
+import bi.pb;
+import bi.r6;
+import bi.t1;
+import bi.z;
+import ci.x;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.a0;
-import com.google.firebase.messaging.c0;
-import com.google.firebase.messaging.r;
-import d4.n;
-import d4.x;
-import d4.y;
-import dg.j3;
-import dg.q3;
-import dg.r3;
-import dg.v2;
-import f3.h;
-import gg.e1;
-import gg.x1;
-import j3.n0;
-import j7.o5;
+import com.google.firebase.messaging.b0;
+import com.google.firebase.messaging.d0;
+import com.google.firebase.messaging.y;
+import di.b7;
+import di.dc;
+import di.f6;
+import di.fb;
+import di.fc;
+import di.h7;
+import di.hb;
+import di.ja;
+import di.l7;
+import di.na;
+import di.o8;
+import di.p1;
+import di.pc;
+import di.r;
+import di.rb;
+import fg.k;
+import j$.util.Objects;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.concurrent.ScheduledFuture;
-import org.telegram.messenger.Emoji;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.j5;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c2;
-import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Components.gj0;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ai;
-import org.telegram.ui.mt0;
-import org.telegram.ui.tq0;
-import ph.r6;
-import y2.i;
-public final class c implements OnSuccessListener, c9.f, r0, Continuation, OnCompleteListener, x, h2, c2, r6, ImageReceiver.ImageReceiverDelegate, xd.b, g3.b, ba.a {
-    public final int f31a;
-    public final Object f32b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.camera.CameraController;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.ActionBar.a2;
+import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.Components.al0;
+import org.telegram.ui.Components.bl0;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.lr0;
+import org.telegram.ui.Components.nk0;
+import qg.s1;
+import r0.l1;
+import r0.n;
+import s4.m0;
+import wh.l;
+public final class c implements OnSuccessListener, bl0, Utilities.Callback2Return, al0, a2, c9, jb, l, n, Continuation, OnCompleteListener, nk0, Utilities.Callback5, s1, CameraController.VideoTakeCallback, a5.b {
+    public final int f37a;
+    public final Object f38b;
 
-    public c(a1 a1Var, z0 z0Var) {
-        this.f31a = 2;
-        this.f32b = a1Var;
+    public c(Object obj, int i10) {
+        this.f37a = i10;
+        this.f38b = obj;
     }
 
     @Override
-    public void L(int i10, float f10, float f11, xd.c cVar) {
-        dh.f.a((dh.f) this.f32b);
-    }
-
-    @Override
-    public Typeface a() {
-        return t0.a((Font) this.f32b);
-    }
-
-    @Override
-    public int b(Object obj) {
-        n0 n0Var = (n0) this.f32b;
-        n nVar = (n) obj;
-        String str = nVar.f4146b;
-        if ((!str.equals(n0Var.C) && !str.equals(y.b(n0Var))) || !nVar.c(n0Var, false)) {
-            return 0;
+    public l1 T0(View view, l1 l1Var) {
+        int a2;
+        pb pbVar = (pb) this.f38b;
+        int i10 = 0;
+        i0.c defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) pbVar.v.getLayoutParams();
+        if (!pbVar.f3537c) {
+            i10 = l1Var.d();
         }
-        return 1;
+        marginLayoutParams.topMargin = i10;
+        if (pbVar.f3537c) {
+            a2 = l1Var.f44711a.f(2).d;
+        } else {
+            a2 = l1Var.a();
+        }
+        marginLayoutParams.bottomMargin = a2;
+        marginLayoutParams.leftMargin = defaultWindowInsets.f11425a;
+        marginLayoutParams.rightMargin = defaultWindowInsets.f11427c;
+        db dbVar = pbVar.f3572s;
+        if (dbVar != null) {
+            dbVar.requestLayout();
+        }
+        eb ebVar = pbVar.v;
+        if (ebVar != null) {
+            ebVar.requestLayout();
+        }
+        return l1.f44710b;
     }
 
     @Override
-    public Bitmap c(BitmapFactory.Options options) {
-        return BitmapFactory.decodeFile((String) this.f32b, options);
+    public boolean a(int r33, final android.view.View r34) {
+        throw new UnsupportedOperationException("Method not decompiled: a1.c.a(int, android.view.View):boolean");
     }
 
     @Override
-    public Object d0(j jVar) {
-        return this.f32b;
+    public void b() {
+        ((p1) this.f38b).invalidate();
     }
 
     @Override
-    public void didSetImage(ImageReceiver imageReceiver, boolean z4, boolean z10, boolean z11) {
-        gj0 lottieAnimation;
-        r3 r3Var = (r3) this.f32b;
-        if (z4 && !z10 && (lottieAnimation = imageReceiver.getLottieAnimation()) != null) {
-            r3Var.q(lottieAnimation);
+    public void c(WebView webView, a5.a aVar, Uri uri, boolean z10, h hVar) {
+        h hVar2;
+        k kVar = (k) this.f38b;
+        if (webView == kVar.f9515m && z10 && kVar.d.equals(uri.toString())) {
+            int i10 = aVar.f285b;
+            if (i10 == 0) {
+                aVar.d(0);
+                kVar.g((String) aVar.f286c, hVar);
+            } else if (i10 == 1) {
+                synchronized (kVar.f9505a) {
+                    if (!kVar.f9518p && (hVar2 = kVar.f9516n) != null && hVar2 == hVar) {
+                        aVar.d(1);
+                        byte[] bArr = (byte[]) aVar.d;
+                        Objects.requireNonNull(bArr);
+                        kVar.f9511i.execute(new b7(22, kVar, bArr));
+                    }
+                }
+            }
         }
     }
 
     @Override
-    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        j5.a(this, i10, str, drawable);
-    }
-
-    @Override
-    public void f(ba.b bVar) {
-        f9.a aVar = (f9.a) this.f32b;
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", "Crashlytics native component now available.", null);
+    public void d(float f7, float f10, int i10, View view) {
+        long j3;
+        long j10;
+        int i11;
+        int i12;
+        int i13;
+        e3 e3Var = (e3) this.f38b;
+        o0 o0Var = e3Var.f3004c;
+        ArrayList arrayList = e3Var.f3013r;
+        f1 f1Var = ((d1) view).f2851f;
+        int i14 = e3Var.N;
+        int currentTime = ConnectionsManager.getInstance(i14).getCurrentTime();
+        HashSet hashSet = new HashSet();
+        int i15 = 0;
+        int i16 = 0;
+        while (true) {
+            j3 = 0;
+            if (i16 >= f1Var.f2951f.size()) {
+                break;
+            }
+            e1 e1Var = (e1) f1Var.f2951f.get(i16);
+            long j11 = e1Var.f2903g;
+            if (j11 > 0 && currentTime - e1Var.d <= z.b(i14, (int) j11, 0)) {
+                hashSet.add(Integer.valueOf(e1Var.f2898a));
+            }
+            i16++;
         }
-        aVar.f6094b.set((f9.a) bVar.get());
+        t1 t1Var = e3Var.P;
+        if (t1Var != null) {
+            j3 = t1Var.j();
+        }
+        int i17 = 0;
+        int i18 = 0;
+        while (i17 < arrayList.size()) {
+            e1 e1Var2 = (e1) arrayList.get(i17);
+            if (!e1Var2.f2899b && e1Var2.f2901e && e1Var2.f2903g < j3) {
+                j10 = j3;
+            } else {
+                if (hashSet.contains(Integer.valueOf(e1Var2.f2898a))) {
+                    j10 = j3;
+                    if (e3Var.f3015w != f1Var.f2948b || (i13 = e3Var.f3016x) == 0 || e1Var2.f2898a < i13) {
+                        i11 = e1Var2.f2898a;
+                        break;
+                    }
+                } else {
+                    j10 = j3;
+                }
+                i18++;
+            }
+            i17++;
+            j3 = j10;
+        }
+        j10 = j3;
+        i11 = -1;
+        if (i11 < 0) {
+            int i19 = 0;
+            while (true) {
+                if (i15 < arrayList.size()) {
+                    e1 e1Var3 = (e1) arrayList.get(i15);
+                    if (e1Var3.f2899b || !e1Var3.f2901e || e1Var3.f2903g >= j10) {
+                        if (hashSet.contains(Integer.valueOf(e1Var3.f2898a))) {
+                            i12 = e1Var3.f2898a;
+                            i18 = i19;
+                            break;
+                        }
+                        i19++;
+                    }
+                    i15++;
+                } else {
+                    i18 = i19;
+                    i12 = -1;
+                    break;
+                }
+            }
+        } else {
+            i12 = i11;
+        }
+        if (i12 < 0) {
+            return;
+        }
+        e3Var.f3015w = f1Var.f2948b;
+        e3Var.f3016x = i12;
+        e3Var.f3017y = true;
+        m0 itemAnimator = o0Var.getItemAnimator();
+        o0Var.setItemAnimator(null);
+        e3Var.d.i1(i18, o0Var.getHeight() / 2, true);
+        e3Var.f3007e.m(i18);
+        o0Var.setItemAnimator(itemAnimator);
     }
 
     @Override
-    public void g() {
-        float f10;
-        mt0 mt0Var = (mt0) this.f32b;
-        TextView textView = mt0Var.f4494v1;
-        boolean a2 = mt0Var.C0.a();
-        ImageView imageView = mt0Var.f4492t1;
+    public boolean d1(View view) {
+        return false;
+    }
+
+    @Override
+    public void e(boolean z10) {
+        r6 r6Var = (r6) this.f38b;
+        if (r6Var != null) {
+            r6Var.c();
+        }
+    }
+
+    @Override
+    public void f() {
+        float f7;
+        rb rbVar = (rb) this.f38b;
+        TextView textView = rbVar.f7979o1;
+        boolean a2 = rbVar.D0.a();
+        ImageView imageView = rbVar.f7977n1;
         imageView.animate().cancel();
         ViewPropertyAnimator animate = imageView.animate();
-        float f11 = 0.6f;
+        float f10 = 0.6f;
         if (a2) {
-            f10 = 1.0f;
+            f7 = 1.0f;
         } else {
-            f10 = 0.6f;
+            f7 = 0.6f;
         }
-        animate.alpha(f10).translationY(0.0f).setDuration(150L).start();
+        animate.alpha(f7).translationY(0.0f).setDuration(150L).start();
         imageView.setClickable(a2);
         textView.animate().cancel();
         ViewPropertyAnimator animate2 = textView.animate();
         if (a2) {
-            f11 = 1.0f;
+            f10 = 1.0f;
         }
-        animate2.alpha(f11).translationY(0.0f).setDuration(150L).start();
+        animate2.alpha(f10).translationY(0.0f).setDuration(150L).start();
         textView.setClickable(a2);
     }
 
     @Override
-    public Object h() {
-        SQLiteDatabase a2;
-        int i10 = this.f31a;
-        Object obj = this.f32b;
-        switch (i10) {
-            case 22:
-                h hVar = (h) ((f3.c) obj);
-                hVar.getClass();
-                int i11 = b3.a.e;
-                ?? obj2 = new Object();
-                obj2.f4005b = null;
-                obj2.f4006c = new ArrayList();
-                obj2.d = null;
-                obj2.f4004a = "";
-                HashMap hashMap = new HashMap();
-                a2 = hVar.a();
-                a2.beginTransaction();
-                try {
-                    b3.a aVar = (b3.a) h.h(a2.rawQuery("SELECT log_source, reason, events_dropped_count FROM log_event_dropped", new String[0]), new androidx.car.app.utils.a(hVar, hashMap, (Object) obj2, 7));
-                    a2.setTransactionSuccessful();
-                    return aVar;
-                } finally {
-                }
-            case 23:
-                h hVar2 = (h) ((f3.d) obj);
-                long l10 = hVar2.f5876b.l() - hVar2.d.d;
-                a2 = hVar2.a();
-                a2.beginTransaction();
-                try {
-                    String[] strArr = {String.valueOf(l10)};
-                    Cursor rawQuery = a2.rawQuery("SELECT COUNT(*), transport_name FROM events WHERE timestamp_ms < ? GROUP BY transport_name", strArr);
-                    while (rawQuery.moveToNext()) {
-                        int i12 = rawQuery.getInt(0);
-                        hVar2.e(i12, b3.c.MESSAGE_TOO_OLD, rawQuery.getString(1));
-                    }
-                    rawQuery.close();
-                    int delete = a2.delete("events", "timestamp_ms < ?", strArr);
-                    a2.setTransactionSuccessful();
-                    a2.endTransaction();
-                    return Integer.valueOf(delete);
-                } finally {
-                }
-            case 24:
-                h hVar3 = (h) ((f3.c) ((e3.g) obj).f5106i);
-                a2 = hVar3.a();
-                a2.beginTransaction();
-                try {
-                    a2.compileStatement("DELETE FROM log_event_dropped").execute();
-                    a2.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + hVar3.f5876b.l()).execute();
-                    a2.setTransactionSuccessful();
-                    return null;
-                } finally {
-                }
-            default:
-                r rVar = (r) obj;
-                for (i iVar : (Iterable) ((h) ((f3.d) rVar.f4005b)).c(new f0.d(1))) {
-                    ((af.d) rVar.f4006c).A(iVar, 1, false);
-                }
-                return null;
-        }
-    }
-
-    @Override
-    public void l(d2 d2Var, int i10) {
-        switch (this.f31a) {
-            case 13:
-                ((tq0) this.f32b).run();
-                return;
-            case 14:
-                ((dg.r0) this.f32b).f4770a.f4468c2.r();
-                return;
-            case 28:
-                ((x1) this.f32b).run();
-                return;
-            default:
-                TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f32b;
-                p2 R = LaunchActivity.R();
-                if (R != null) {
-                    e1.T(R, tL_payments_giveawayInfoResults.gift_code_slug, null);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationReady(ImageReceiver imageReceiver) {
-        j5.b(this, imageReceiver);
-    }
-
-    @Override
-    public void onComplete(Task task) {
-        switch (this.f31a) {
-            case 7:
-                a0.b((Intent) this.f32b);
-                return;
-            case 8:
-                ((c0) this.f32b).f3973b.trySetResult(null);
-                return;
-            default:
-                ((ScheduledFuture) this.f32b).cancel(false);
-                return;
-        }
-    }
-
-    @Override
-    public void onSuccess(Object obj) {
-        boolean z4;
-        switch (this.f31a) {
-            case 0:
-                ((f) this.f32b).invoke(obj);
-                return;
-            case 1:
-                ((b1.f) this.f32b).invoke(obj);
-                return;
+    public void g(b2 b2Var, int i10) {
+        switch (this.f37a) {
             case 5:
-                com.google.firebase.messaging.x xVar = (com.google.firebase.messaging.x) obj;
-                if (((FirebaseMessaging) this.f32b).e.o() && xVar.h.a() != null) {
-                    synchronized (xVar) {
-                        z4 = xVar.f4028g;
+                ((Runnable) this.f38b).run();
+                return;
+            case 20:
+                pc pcVar = ((fc) ((r) this.f38b)).S1;
+                dc dcVar = pcVar.X0;
+                if (dcVar != null) {
+                    dcVar.s(null, null, true);
+                }
+                rb rbVar = pcVar.f7910v1;
+                if (rbVar != null) {
+                    rbVar.q0();
+                }
+                fc fcVar = pcVar.f7850c1;
+                if (fcVar != null) {
+                    fcVar.setHasRoundVideo(false);
+                }
+                o8 o8Var = pcVar.K1;
+                if (o8Var != null) {
+                    File file = o8Var.f7771o0;
+                    if (file != null) {
+                        try {
+                            file.delete();
+                        } catch (Exception unused) {
+                        }
+                        pcVar.K1.f7771o0 = null;
                     }
-                    if (!z4) {
-                        xVar.h(0L);
+                    if (pcVar.K1.f7773p0 != null) {
+                        try {
+                            new File(pcVar.K1.f7773p0).delete();
+                        } catch (Exception unused2) {
+                        }
+                        pcVar.K1.f7773p0 = null;
                         return;
                     }
                     return;
                 }
                 return;
-            case 10:
-                ((b1.f) this.f32b).invoke(obj);
-                return;
-            case 16:
-                v2 v2Var = (v2) this.f32b;
-                mb.b bVar = (mb.b) obj;
-                v2Var.f4835z0 = true;
-                v2Var.f4834y0 = false;
-                return;
-            case 17:
-                j3 j3Var = (j3) this.f32b;
-                mb.b bVar2 = (mb.b) obj;
-                ArrayList arrayList = new ArrayList();
-                for (int i10 = 0; i10 < bVar2.f13887a.size(); i10++) {
-                    mb.a aVar = (mb.a) bVar2.f13887a.get(i10);
-                    ?? obj2 = new Object();
-                    obj2.f4726a = aVar.f13884a;
-                    obj2.f4727b = aVar.d;
-                    obj2.f4728c = aVar.e;
-                    obj2.d = aVar.f13885b;
-                    obj2.e = aVar.f13886c;
-                    arrayList.add(obj2);
-                }
-                j3Var.run(arrayList);
-                return;
-            case 18:
-                q3 q3Var = (q3) this.f32b;
-                List list = (List) obj;
-                q3Var.getClass();
-                if (list.size() <= 0) {
-                    FileLog.d("objimg: no objects");
-                    return;
-                }
-                int i11 = ((jb.a) list.get(0)).f9339c;
-                String str = null;
-                if (o5.f9084a == null) {
-                    o5.f9084a = new String[]{"👥", "🔥", "📚", "🏔", "🧊", "🍱", null, "🚰", "🧸", "🗿", "🍔", "🚜", "🛷", "🐠", "🎪", null, "🪑", "🧔", "🌉", "🩰", "🐦", "🚣", "🏞", null, "🏭", "🎓", "🍶", "🌿", "🌸", "🛋", "😎", "🏗", "🎡", "🐠", "🤿", "🐶", "⛵", "🎨", "🏆", "🧗", "🏸", "🦁", "🚲", "🏟", null, "⛵", "🙂", "🏄", "🍟", "🌇", "🌭", "🩳", "🚌", "🐂", "🌌", "🐹", "🪨", "👥", "👗", "👣", null, "🐻", "🍽", "🗼", "🧱", "🗑", "👤", "🏄", "👙", "🎢", "🏕", "🎠", "🚽", "😆", "🎈", "🎤", "👗", "🚧", "📦", "🐠", "🧺", "🌼", "🛒", "🥊", "💍", "💎", "🎰", "🚗", "🪜", "💻", "🍳", "📽️", "🪑", "🖼", "🍷", "🚢", "🛳", "👥", "🧗", "🕳", "👔", "🛠", "🌊", "🤡", "🎉", "🚴", "☄️", "🎓", "🏟", "🎄", "⛪", "🕰", "👨", "🐄", "🌴", "🖥", "🥌", "🍲", "🐱", "🧃", "🍚", null, "👥", "🏙", null, "🧸", "🍪", "🟩", "🕎", "🧶", "🛹", "✂️", "💅", "🥤", "🍴", "📜", null, "👘", "🧸", "📱", "🚦", "❄️", "🇵🇷", "⛓", "💃", "🏜", "🎅", "🦃", "🤵", "👄", "🏜", "🦕", "👳\u200d♂️", "🔥", "🛏", "🥽", "🐉", "🛋", "🛷", "🧢", "📋", "🎩", "🍨", "🐎", "🧶", "👕", "🧣", "🏖", "⚽", "🖤", "🎧", "🏛", "🚘", "🛹", "🦢", "🍖", "🥅", "🧁", "🐕", "🚤", "🌳", "☕", "⚽", "🧸", "🍲", "🧍", "📖", "🍉", "🍜", "✨", "💼", "🌳", "🐕", "🌲", "🚩", "⛵", "🦶", "🧥", null, "🛏", null, "🛁", "🗻", "🤸\u200d♀️", "👂", "🌸", "🐚", "👵", "🏛", "👁️", "🛏", "⚖️", "🎒", "🐎", "✨", "🛸", "💇", "🧸", "👥", "🪟", "🌟", "🐱", "🐄", "🐞", "❄️", "💍", "🚪", "💎", "🧶", "🏺", "🧥", "❤️", "💪", "🏍", "💰", "🕌", "🍽", "💃", "🛶", "🏖", "🧾", "🏞", "🚨", "🐴", "🧥", "📯", "⌚", "🧱", "🤿", "👖", "🏊", "🎸", "🎭", "🤘", "🌕", "🧥", "💍", "📱", "🪖", "🍽", "🎉", "🌌", "📰", "🗞", null, "🎹", "🪴", "🛂", "🐧", "🐕", "🏰", "🏵", "🏇", "📝", "🎶", "⛵", "🍕", "🐾", "🧵", "🐦", "🛹", "🏄", "🏉", "💄", "🏞", "🏁", "🚣", "🛣", "🏃", "🛋", "🏠", "⭐", "🏅", "👟", "🚤", "🪐", "😴", "🤲", "🏊", "🏫", "🍣", "🛋", "🦸", "😎", "⛷", "🚢", "🎵", "📚", "🏙", "🌋", "📺", "🐎", "💉", "🚆", "🚪", "🥤", "🚗", "👜", "💡", "🎫", "🍷", "🍗", "🎡", "🏄", "💻", null, null, "🏡", "🎣", "❤️", "🌱", "☕", "🍞", "🏖", null, "🏛", "🚁", "⛰", "🦆", "🌱", "🐢", "🐊", "🎶", "👟", "🧶", "💍", "🎤", "🎡", "🏂", "🚤", "🧱", "🚀", "🏠", "🏖", "🌈", "🌿", "👨", "🌷", "👗", "🏞", "🐶", "🦸", "🌸", "🍽", "🔊", "⛪", "🏢", "✈️", "🐾", "🐂", "🪑", "🛕", "🦋", "👠", "🏃", "🪡", "🍳", "🏰", "🌌", "🐛", "🏎", null, "✈️", "🚣", "🧵", "🤵", "🎢", "🍲", "🥦", "🚲", "👖", "🪴", "🗄", "🎂", "💺", "✈️", null, "🌫", "🎆", "🚜", "🦭", "📚", "💇", "⚡", "🚐", "🐱", "🚗", "👖", "🌾", "🤿", "☔", "🛣", "⛵", "🐶", "🔳", "🍽", "👰", "💧", null, "🍴", "🚙", "👶", "👓", "🚗", "✈️", "✋", "🐎", "🏞", "🍽", "⚾", "🍷", "👰", "🌿", "🥧", "🎒", "🃏", "🦹", "🪖", "🛶", "🤳", "🛺", "🏚", "🏹", "🚀", null, "⛈", "⛑"};
-                }
-                if (i11 >= 0) {
-                    String[] strArr = o5.f9084a;
-                    if (i11 < strArr.length) {
-                        str = strArr[i11];
-                    }
-                }
-                q3Var.W = str;
-                StringBuilder sb = new StringBuilder("objimg: detected #");
-                sb.append(((jb.a) list.get(0)).f9339c);
-                sb.append(" ");
-                sb.append(q3Var.W);
-                sb.append(" ");
-                ai.v(((jb.a) list.get(0)).f9337a, sb);
-                Emoji.getEmojiDrawable(q3Var.W);
-                return;
-            case 21:
-                ((e1.b) this.f32b).invoke(obj);
-                return;
             default:
-                ((e1.b) this.f32b).invoke(obj);
+                ((f6) this.f38b).f7233a.f7982p2.r();
                 return;
         }
     }
 
     @Override
+    public void h(float f7, Canvas canvas, RectF rectF, boolean z10) {
+        Path path = (Path) this.f38b;
+        if (z10) {
+            return;
+        }
+        path.rewind();
+        float pow = (float) Math.pow(f7, 2.0d);
+        path.addCircle((rectF.right + AndroidUtilities.dp(7.0f)) - (AndroidUtilities.dp(14.0f) * pow), (rectF.bottom + AndroidUtilities.dp(7.0f)) - (AndroidUtilities.dp(14.0f) * pow), AndroidUtilities.dp(11.0f), Path.Direction.CW);
+        canvas.clipPath(path, Region.Op.DIFFERENCE);
+    }
+
+    @Override
+    public void o(wh.h hVar, float f7, float f10) {
+        ca caVar = (ca) this.f38b;
+        da daVar = caVar.v;
+        if (!daVar.f2885x) {
+            hVar.f48627q = new ba(caVar, 2);
+            float sqrt = (float) Math.sqrt(Math.pow(daVar.getHeight(), 2.0d) + Math.pow(daVar.getWidth(), 2.0d));
+            ArrayList arrayList = caVar.f2830i;
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                ((wh.h) obj).j(f7, f10, sqrt, false);
+            }
+        }
+    }
+
+    @Override
+    public void onComplete(Task task) {
+        switch (this.f37a) {
+            case 16:
+                b0.b((Intent) this.f38b);
+                return;
+            case 17:
+                ((d0) this.f38b).f6350b.trySetResult(null);
+                return;
+            default:
+                ((ScheduledFuture) this.f38b).cancel(false);
+                return;
+        }
+    }
+
+    @Override
+    public void onFinishVideoRecording(String str, long j3) {
+        di.jb jbVar = (di.jb) this.f38b;
+        pc pcVar = jbVar.f7443a;
+        l7 l7Var = pcVar.O0;
+        int i10 = pcVar.f7848c;
+        if (l7Var != null) {
+            l7Var.g(true);
+        }
+        if (pcVar.q0()) {
+            pcVar.f7899s.d();
+        }
+        if (pcVar.G1 != null && pcVar.B0 != null) {
+            pcVar.Q1 = false;
+            pcVar.R1 = false;
+            h7 h7Var = pcVar.C0;
+            if (h7Var != null) {
+                h7Var.c(false);
+            }
+            if (j3 <= 800) {
+                pcVar.h(false, true);
+                pcVar.d0(false);
+                pcVar.J0.b(false, true);
+                l7 l7Var2 = pcVar.O0;
+                if (l7Var2 != null) {
+                    l7Var2.g(true);
+                }
+                try {
+                    pcVar.G1.delete();
+                    pcVar.G1 = null;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                }
+                if (str != null) {
+                    try {
+                        new File(str).delete();
+                        return;
+                    } catch (Exception e10) {
+                        FileLog.e(e10);
+                        return;
+                    }
+                }
+                return;
+            }
+            pcVar.i0(false, true);
+            o8 o9 = o8.o(pcVar.G1, str, j3);
+            o9.J0 = pcVar.f7909v0;
+            o9.K0 = pcVar.f7913w0;
+            o9.B();
+            pcVar.h(false, true);
+            pcVar.d0(false);
+            pcVar.J0.b(false, true);
+            l7 l7Var3 = pcVar.O0;
+            if (l7Var3 != null) {
+                l7Var3.g(true);
+            }
+            if (pcVar.A0.j()) {
+                pcVar.G1 = null;
+                o9.P = 1.0f;
+                if (pcVar.A0.l(o9)) {
+                    o8 a2 = o8.a(pcVar.A0.getLayout(), pcVar.A0.getContent());
+                    pcVar.K1 = a2;
+                    ja.a(i10, a2);
+                    pcVar.L1 = false;
+                    int videoWidth = pcVar.B0.getVideoWidth();
+                    int videoHeight = pcVar.B0.getVideoHeight();
+                    if (videoWidth > 0 && videoHeight > 0) {
+                        o8 o8Var = pcVar.K1;
+                        o8Var.f7764k0 = videoWidth;
+                        o8Var.f7766l0 = videoHeight;
+                        o8Var.A();
+                    }
+                }
+                pcVar.m0(true);
+                return;
+            }
+            pcVar.K1 = o9;
+            ja.a(i10, o9);
+            pcVar.L1 = false;
+            int videoWidth2 = pcVar.B0.getVideoWidth();
+            int videoHeight2 = pcVar.B0.getVideoHeight();
+            if (videoWidth2 > 0 && videoHeight2 > 0) {
+                o8 o8Var2 = pcVar.K1;
+                o8Var2.f7764k0 = videoWidth2;
+                o8Var2.f7766l0 = videoHeight2;
+                o8Var2.A();
+            }
+            pcVar.L(new hb(jbVar, 3), 0L);
+        }
+    }
+
+    @Override
+    public void onSuccess(Object obj) {
+        boolean z10;
+        switch (this.f37a) {
+            case 0:
+                ((f) this.f38b).invoke(obj);
+                return;
+            case 11:
+                ((b1.f) this.f38b).invoke(obj);
+                return;
+            case 14:
+                y yVar = (y) obj;
+                if (((FirebaseMessaging) this.f38b).f6314e.n() && yVar.h.a() != null) {
+                    synchronized (yVar) {
+                        z10 = yVar.f6418g;
+                    }
+                    if (!z10) {
+                        yVar.h(0L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 19:
+                ((b1.f) this.f38b).invoke(obj);
+                return;
+            case 27:
+                ((e1.b) this.f38b).invoke(obj);
+                return;
+            default:
+                ((e1.b) this.f38b).invoke(obj);
+                return;
+        }
+    }
+
+    @Override
+    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        fb fbVar = (fb) this.f38b;
+        h51 h51Var = (h51) obj;
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        int i10 = h51Var.d;
+        o8 o8Var = (o8) h51Var.G;
+        fbVar.c(false, true);
+        pc pcVar = fbVar.O;
+        if (o8Var == pcVar.K1 || pcVar.X1) {
+            return;
+        }
+        pcVar.f7853d1.setSelected(i10);
+        pcVar.X1 = true;
+        ah.g gVar = new ah.g(pcVar, i10, 7);
+        rb rbVar = pcVar.f7910v1;
+        o8 o8Var2 = pcVar.K1;
+        if (rbVar != null && o8Var2 != null) {
+            if (!rbVar.u0()) {
+                gVar.run();
+                return;
+            }
+            o8Var2.f();
+            boolean u02 = rbVar.u0();
+            boolean z10 = rbVar.O0.getPainting().E;
+            Utilities.searchQueue.postRunnable(new na(pcVar, rbVar, o8Var2.f7760i0, o8Var2.f7762j0, o8Var2, z10, u02, gVar, 0));
+            return;
+        }
+        gVar.run();
+    }
+
+    @Override
     public Object then(Task task) {
-        ((a9.a) this.f32b).getClass();
+        ((com.google.firebase.messaging.n) this.f38b).getClass();
         Bundle bundle = (Bundle) task.getResult(IOException.class);
         if (bundle != null) {
             String string = bundle.getString("registration_id");
@@ -365,12 +562,24 @@ public final class c implements OnSuccessListener, c9.f, r0, Continuation, OnCom
         throw new IOException("SERVICE_NOT_AVAILABLE");
     }
 
-    public c(Object obj, int i10) {
-        this.f31a = i10;
-        this.f32b = obj;
+    @Override
+    public Object run(Object obj, Object obj2) {
+        switch (this.f37a) {
+            case 3:
+                Long l4 = (Long) obj;
+                return g1.a((g1) this.f38b, (Long) obj2);
+            default:
+                lr0 lr0Var = (lr0) this.f38b;
+                Integer num = (Integer) obj2;
+                if (((Integer) obj).intValue() == -1) {
+                    new x(lr0Var.f4848a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new o1(lr0Var, 4)).show();
+                    return Boolean.TRUE;
+                }
+                return Boolean.FALSE;
+        }
     }
 
     @Override
-    public void z(float f10, int i10) {
+    public void q0(View view, float f7, float f10) {
     }
 }

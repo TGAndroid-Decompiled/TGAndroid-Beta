@@ -1,25 +1,41 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.MessagesStorage;
 public final class jf implements Runnable {
-    public final int f17565a;
-    public final MessagesStorage.IntCallback f17566b;
-    public final int[] f17567c;
+    public final int f18068a;
+    public final MessagesStorage f18069b;
+    public final int f18070c;
 
-    public jf(MessagesStorage.IntCallback intCallback, int[] iArr, int i10) {
-        this.f17565a = i10;
-        this.f17566b = intCallback;
-        this.f17567c = iArr;
+    public jf(MessagesStorage messagesStorage, int i10, int i11) {
+        this.f18068a = i11;
+        this.f18069b = messagesStorage;
+        this.f18070c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17565a) {
+        switch (this.f18068a) {
             case 0:
-                MessagesStorage.lambda$getDialogMaxMessageId$254(this.f17566b, this.f17567c);
+                this.f18069b.lambda$readAllDialogs$65(this.f18070c);
+                return;
+            case 1:
+                this.f18069b.lambda$checkIfFolderEmptyInternal$245(this.f18070c);
+                return;
+            case 2:
+                this.f18069b.lambda$clearDownloadQueue$184(this.f18070c);
+                return;
+            case 3:
+                this.f18069b.lambda$putMessagesInternal$196(this.f18070c);
+                return;
+            case 4:
+                this.f18069b.lambda$getDownloadQueue$186(this.f18070c);
+                return;
+            case 5:
+                this.f18069b.lambda$getUnsentMessages$152(this.f18070c);
+                return;
+            case 6:
+                this.f18069b.lambda$checkIfFolderEmpty$246(this.f18070c);
                 return;
             default:
-                MessagesStorage.lambda$getSavedDialogMaxMessageId$52(this.f17566b, this.f17567c);
+                this.f18069b.lambda$clearWidgetDialogs$167(this.f18070c);
                 return;
         }
     }

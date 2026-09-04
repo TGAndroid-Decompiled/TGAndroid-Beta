@@ -1,44 +1,144 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class m60 implements org.telegram.ui.ob0 {
-    public final n60 f26970a;
+import android.content.Context;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.UserConfig;
+public final class m60 extends kl0 {
+    public final r60 f28393c;
 
-    public m60(n60 n60Var) {
-        this.f26970a = n60Var;
+    public m60(r60 r60Var) {
+        this.f28393c = r60Var;
     }
 
     @Override
-    public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
-        int i10;
-        org.telegram.ui.gb gbVar = this.f26970a.f27200a.f27469c.f28915g0;
-        if (gbVar != null) {
-            TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
-            TLRPC.TL_channelAdminLogEventActionExportedInviteEdit tL_channelAdminLogEventActionExportedInviteEdit = new TLRPC.TL_channelAdminLogEventActionExportedInviteEdit();
-            tL_channelAdminLogEventActionExportedInviteEdit.new_invite = tL_chatInviteExported;
-            tL_channelAdminLogEventActionExportedInviteEdit.prev_invite = tL_chatInviteExported;
-            tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteEdit;
-            tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
-            org.telegram.ui.ub ubVar = gbVar.f34400a;
-            tL_channelAdminLogEvent.user_id = ubVar.getAccountInstance().getUserConfig().clientUserId;
-            i10 = ((org.telegram.ui.ActionBar.p2) ubVar).currentAccount;
-            if (new MessageObject(i10, tL_channelAdminLogEvent, (ArrayList<MessageObject>) ubVar.f38747o0, (HashMap<String, ArrayList<MessageObject>>) ubVar.f38746n0, ubVar.f38752s, ubVar.U, true).contentType >= 0) {
-                ubVar.R0();
-                ubVar.F.l();
-                org.telegram.ui.ub.K0(ubVar);
+    public final boolean D(s4.c1 c1Var) {
+        int b10 = c1Var.b();
+        r60 r60Var = this.f28393c;
+        if (b10 == r60Var.f29956n) {
+            if (r60Var.f29941b.admin_id != UserConfig.getInstance(r60.M(r60Var)).clientUserId) {
+                return true;
             }
+            return false;
+        } else if (b10 < r60Var.f29960x || b10 >= r60Var.f29961y) {
+            if (b10 >= r60Var.O && b10 < r60Var.P) {
+                return true;
+            }
+            return false;
+        } else {
+            return true;
         }
     }
 
     @Override
-    public final void a(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+    public final int h() {
+        return this.f28393c.S;
     }
 
     @Override
-    public final void c(TLObject tLObject) {
+    public final int j(int i10) {
+        r60 r60Var = this.f28393c;
+        if (i10 == r60Var.h || i10 == r60Var.N || i10 == r60Var.f29959w || i10 == r60Var.f29946e) {
+            return 0;
+        }
+        if (i10 != r60Var.f29956n) {
+            if (i10 < r60Var.O || i10 >= r60Var.P) {
+                if (i10 < r60Var.f29960x || i10 >= r60Var.f29961y) {
+                    if (i10 != r60Var.f29957r && i10 != r60Var.f29958s) {
+                        if (i10 == r60Var.H) {
+                            return 3;
+                        }
+                        if (i10 == r60Var.I) {
+                            return 4;
+                        }
+                        if (i10 == r60Var.J) {
+                            return 5;
+                        }
+                        r60Var.getClass();
+                        if (i10 != 0 && i10 != r60Var.K && i10 != r60Var.L) {
+                            if (i10 == r60Var.v) {
+                                return 7;
+                            }
+                            if (i10 == r60Var.M) {
+                                return 8;
+                            }
+                            if (i10 != r60Var.f29948f) {
+                                return 0;
+                            }
+                            return 9;
+                        }
+                        return 6;
+                    }
+                    return 2;
+                }
+                return 1;
+            }
+            return 1;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void v(s4.c1 r25, int r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m60.v(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        t00 t00Var;
+        t00 t00Var2;
+        Context context = viewGroup.getContext();
+        r60 r60Var = this.f28393c;
+        switch (i10) {
+            case 1:
+                t00Var2 = new p60(context);
+                break;
+            case 2:
+                t00Var2 = new org.telegram.ui.Cells.a7(context, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20607a7, false), 0);
+                break;
+            case 3:
+                i60 i60Var = new i60(this, context, r60Var.U, r60Var, r60Var.f29951h0);
+                i60Var.setDelegate(new l60(this));
+                i60Var.setLayoutParams(new s4.p0(-1, -2));
+                t00Var2 = i60Var;
+                break;
+            case 4:
+                t00Var2 = new q60(r60Var, context);
+                break;
+            case 5:
+                t00 t00Var3 = new t00(context, null);
+                t00Var3.setIsSingleCell(true);
+                t00Var3.setViewType(10);
+                t00Var3.f30465w = false;
+                t00Var3.setPaddingLeft(AndroidUtilities.dp(10.0f));
+                t00Var = t00Var3;
+                t00Var2 = t00Var;
+                break;
+            case 6:
+                t00Var2 = new jn(context, 12);
+                break;
+            case 7:
+                t00Var2 = new org.telegram.ui.Cells.a7(context, (org.telegram.ui.Cells.p6) null);
+                break;
+            case 8:
+                ?? frameLayout = new FrameLayout(context);
+                TextView textView = new TextView(context);
+                frameLayout.f28626a = textView;
+                textView.setTextSize(1, 14.0f);
+                com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.j6.f21042y6, null, false, textView, 1);
+                frameLayout.addView(textView, w7.x5.d(-1, -2.0f, 16, 60.0f, 0.0f, 60.0f, 0.0f));
+                t00Var = frameLayout;
+                t00Var2 = t00Var;
+                break;
+            case 9:
+                t00Var2 = new o60(r60Var, context);
+                break;
+            default:
+                t00Var2 = new org.telegram.ui.Cells.u3(context, r60.y(r60Var));
+                break;
+        }
+        return com.google.android.gms.internal.vision.e2.l(t00Var2, t00Var2, -1, -2);
     }
 }

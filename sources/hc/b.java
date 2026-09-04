@@ -1,182 +1,147 @@
 package hc;
 
-import com.google.android.gms.internal.clearcut.e;
-import fc.g;
-import j7.o8;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import javax.net.ssl.HttpsURLConnection;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.telegram.ui.ai;
-import vh.w2;
+import dc.h;
 public abstract class b {
-    public static final c f7043a = new c();
+    public static final char[] f10924a = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".toCharArray();
 
-    public static HttpURLConnection a(String str, e eVar) {
-        Throwable th2;
-        OutputStream outputStream;
-        HttpURLConnection httpURLConnection = (HttpURLConnection) new URL("https://api.stripe.com/v1/tokens").openConnection();
-        httpURLConnection.setConnectTimeout(30000);
-        httpURLConnection.setReadTimeout(80000);
-        httpURLConnection.setUseCaches(false);
-        HashMap hashMap = new HashMap();
-        hashMap.put("Accept-Charset", "UTF-8");
-        hashMap.put("Accept", "application/json");
-        hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
-        String str2 = eVar.f3275a;
-        hashMap.put("Authorization", "Bearer " + str2);
-        String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
-        HashMap hashMap2 = new HashMap();
-        for (int i10 = 0; i10 < 7; i10++) {
-            String str3 = strArr[i10];
-            hashMap2.put(str3, System.getProperty(str3));
-        }
-        hashMap2.put("bindings.version", "3.5.0");
-        hashMap2.put("lang", "Java");
-        hashMap2.put("publisher", "Stripe");
-        hashMap.put("X-Stripe-Client-User-Agent", new JSONObject(hashMap2).toString());
-        for (Map.Entry entry : hashMap.entrySet()) {
-            httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
-        }
-        if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f7043a);
-        }
-        httpURLConnection.setDoOutput(true);
-        httpURLConnection.setRequestMethod("POST");
-        httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
-        try {
-            outputStream = httpURLConnection.getOutputStream();
-            try {
-                outputStream.write(str.getBytes("UTF-8"));
-                outputStream.close();
-                return httpURLConnection;
-            } catch (Throwable th3) {
-                th2 = th3;
-                if (outputStream != null) {
-                    outputStream.close();
-                }
-                throw th2;
-            }
-        } catch (Throwable th4) {
-            th2 = th4;
-            outputStream = null;
-        }
-    }
-
-    public static String b(HashMap hashMap) {
-        String encode;
-        String encode2;
-        StringBuilder sb = new StringBuilder();
-        for (a aVar : d(null, hashMap)) {
-            if (sb.length() > 0) {
-                sb.append("&");
-            }
-            String str = aVar.f7041a;
-            String str2 = aVar.f7042b;
-            if (str == null) {
-                encode = null;
+    public static void a(b4.d dVar, StringBuilder sb2, int i10, boolean z10) {
+        while (i10 > 1) {
+            if (dVar.d() >= 11) {
+                int e7 = dVar.e(11);
+                sb2.append(f(e7 / 45));
+                sb2.append(f(e7 % 45));
+                i10 -= 2;
             } else {
-                encode = URLEncoder.encode(str, "UTF-8");
+                throw cc.c.a();
             }
-            if (str2 == null) {
-                encode2 = null;
+        }
+        if (i10 == 1) {
+            if (dVar.d() >= 6) {
+                sb2.append(f(dVar.e(6)));
             } else {
-                encode2 = URLEncoder.encode(str2, "UTF-8");
+                throw cc.c.a();
             }
-            sb.append(encode + "=" + encode2);
         }
-        return sb.toString();
-    }
-
-    public static af.d c(java.util.HashMap r7, com.google.android.gms.internal.clearcut.e r8) {
-        throw new UnsupportedOperationException("Method not decompiled: hc.b.c(java.util.HashMap, com.google.android.gms.internal.clearcut.e):af.d");
-    }
-
-    public static LinkedList d(String str, Map map) {
-        LinkedList linkedList = new LinkedList();
-        if (map != null) {
-            for (Map.Entry entry : map.entrySet()) {
-                String str2 = (String) entry.getKey();
-                Object value = entry.getValue();
-                if (str != null) {
-                    str2 = str + "[" + str2 + "]";
+        if (z10) {
+            for (int length = sb2.length(); length < sb2.length(); length++) {
+                if (sb2.charAt(length) == '%') {
+                    if (length < sb2.length() - 1) {
+                        int i11 = length + 1;
+                        if (sb2.charAt(i11) == '%') {
+                            sb2.deleteCharAt(i11);
+                        }
+                    }
+                    sb2.setCharAt(length, (char) 29);
                 }
-                linkedList.addAll(e(value, str2));
             }
-        }
-        return linkedList;
-    }
-
-    public static List e(Object obj, String str) {
-        if (obj instanceof Map) {
-            return d(str, (Map) obj);
-        }
-        if (obj instanceof List) {
-            List<Object> list = (List) obj;
-            LinkedList linkedList = new LinkedList();
-            String k10 = w2.k(str, "[]");
-            if (list.isEmpty()) {
-                linkedList.add(new a(str, ""));
-                return linkedList;
-            }
-            for (Object obj2 : list) {
-                linkedList.addAll(e(obj2, k10));
-            }
-            return linkedList;
-        } else if (!"".equals(obj)) {
-            if (obj == null) {
-                LinkedList linkedList2 = new LinkedList();
-                linkedList2.add(new a(str, ""));
-                return linkedList2;
-            }
-            LinkedList linkedList3 = new LinkedList();
-            linkedList3.add(new a(str, obj.toString()));
-            return linkedList3;
-        } else {
-            throw new g(ai.k("You cannot set '", str, "' to an empty string. We interpret empty strings as null in requests. You may set '", str, "' to null to delete the property."), null, null);
         }
     }
 
-    public static b4.e0 f(java.util.HashMap r7, com.google.android.gms.internal.clearcut.e r8) {
-        throw new UnsupportedOperationException("Method not decompiled: hc.b.f(java.util.HashMap, com.google.android.gms.internal.clearcut.e):b4.e0");
+    public static void b(b4.d r24, java.lang.StringBuilder r25, int r26, dc.c r27, java.util.ArrayList r28) {
+        throw new UnsupportedOperationException("Method not decompiled: hc.b.b(b4.d, java.lang.StringBuilder, int, dc.c, java.util.ArrayList):void");
     }
 
-    public static void g(int i10, String str, String str2) {
-        String str3;
-        try {
-            JSONObject jSONObject = new JSONObject(str).getJSONObject("error");
-            o8.a(jSONObject.optString("charge"));
-            o8.a(jSONObject.optString("code"));
-            o8.a(jSONObject.optString("decline_code"));
-            str3 = o8.a(jSONObject.optString("message"));
-            o8.a(jSONObject.optString("param"));
-            o8.a(jSONObject.optString("type"));
-        } catch (JSONException unused) {
-            str3 = "An improperly formatted error response was found.";
+    public static void c(b4.d dVar, StringBuilder sb2, int i10) {
+        int i11;
+        if (h.f6719c != null) {
+            if (i10 * 13 <= dVar.d()) {
+                byte[] bArr = new byte[i10 * 2];
+                int i12 = 0;
+                while (i10 > 0) {
+                    int e7 = dVar.e(13);
+                    int i13 = (e7 % 96) | ((e7 / 96) << 8);
+                    if (i13 < 2560) {
+                        i11 = 41377;
+                    } else {
+                        i11 = 42657;
+                    }
+                    int i14 = i13 + i11;
+                    bArr[i12] = (byte) ((i14 >> 8) & 255);
+                    bArr[i12 + 1] = (byte) (i14 & 255);
+                    i12 += 2;
+                    i10--;
+                }
+                sb2.append(new String(bArr, h.f6719c));
+                return;
+            }
+            throw cc.c.a();
         }
-        if (i10 != 429) {
-            switch (i10) {
-                case 400:
-                    throw new g(str3, str2, null);
-                case 401:
-                    throw new g(str3, str2);
-                case 402:
-                    throw new g(str3, str2, null);
-                case 403:
-                    throw new g(str3, str2);
-                case 404:
-                    throw new g(str3, str2, null);
-                default:
-                    throw new g(str3, str2, null);
+        throw cc.c.a();
+    }
+
+    public static void d(b4.d dVar, StringBuilder sb2, int i10) {
+        int i11;
+        if (h.f6718b != null) {
+            if (i10 * 13 <= dVar.d()) {
+                byte[] bArr = new byte[i10 * 2];
+                int i12 = 0;
+                while (i10 > 0) {
+                    int e7 = dVar.e(13);
+                    int i13 = (e7 % 192) | ((e7 / 192) << 8);
+                    if (i13 < 7936) {
+                        i11 = 33088;
+                    } else {
+                        i11 = 49472;
+                    }
+                    int i14 = i13 + i11;
+                    bArr[i12] = (byte) (i14 >> 8);
+                    bArr[i12 + 1] = (byte) i14;
+                    i12 += 2;
+                    i10--;
+                }
+                sb2.append(new String(bArr, h.f6718b));
+                return;
+            }
+            throw cc.c.a();
+        }
+        throw cc.c.a();
+    }
+
+    public static void e(b4.d dVar, StringBuilder sb2, int i10) {
+        while (i10 >= 3) {
+            if (dVar.d() >= 10) {
+                int e7 = dVar.e(10);
+                if (e7 < 1000) {
+                    sb2.append(f(e7 / 100));
+                    sb2.append(f((e7 / 10) % 10));
+                    sb2.append(f(e7 % 10));
+                    i10 -= 3;
+                } else {
+                    throw cc.c.a();
+                }
+            } else {
+                throw cc.c.a();
             }
         }
-        throw new g(str3, str2, null);
+        if (i10 == 2) {
+            if (dVar.d() >= 7) {
+                int e10 = dVar.e(7);
+                if (e10 < 100) {
+                    sb2.append(f(e10 / 10));
+                    sb2.append(f(e10 % 10));
+                    return;
+                }
+                throw cc.c.a();
+            }
+            throw cc.c.a();
+        } else if (i10 == 1) {
+            if (dVar.d() >= 4) {
+                int e11 = dVar.e(4);
+                if (e11 < 10) {
+                    sb2.append(f(e11));
+                    return;
+                }
+                throw cc.c.a();
+            }
+            throw cc.c.a();
+        }
+    }
+
+    public static char f(int i10) {
+        char[] cArr = f10924a;
+        if (i10 < cArr.length) {
+            return cArr[i10];
+        }
+        throw cc.c.a();
     }
 }

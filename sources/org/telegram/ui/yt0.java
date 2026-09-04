@@ -1,15 +1,13 @@
 package org.telegram.ui;
-public final class yt0 implements Runnable {
-    public final int f40327a;
-    public final Object f40328b;
 
-    public yt0(Object obj, int i10) {
-        this.f40327a = i10;
-        this.f40328b = obj;
-    }
+import android.content.Context;
+import android.graphics.Bitmap;
+import org.telegram.messenger.MediaController;
+public final class yt0 extends rg.y0 {
+    public final PhotoViewer K;
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yt0.run():void");
+    public yt0(PhotoViewer photoViewer, Context context, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, MediaController.CropState cropState) {
+        super(context, i10, bitmap, bitmap2, i11, cropState);
+        this.K = photoViewer;
     }
 }

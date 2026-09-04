@@ -187,25 +187,25 @@ public class SpaceAtom extends Atom {
         this.blankType = i10;
     }
 
-    public SpaceAtom(int i10, float f10, float f11, float f12) {
+    public SpaceAtom(int i10, float f7, float f10, float f11) {
         checkUnit(i10);
         this.wUnit = i10;
         this.hUnit = i10;
         this.dUnit = i10;
-        this.width = f10;
-        this.height = f11;
-        this.depth = f12;
+        this.width = f7;
+        this.height = f10;
+        this.depth = f11;
     }
 
-    public SpaceAtom(int i10, float f10, int i11, float f11, int i12, float f12) {
+    public SpaceAtom(int i10, float f7, int i11, float f10, int i12, float f11) {
         checkUnit(i10);
         checkUnit(i11);
         checkUnit(i12);
         this.wUnit = i10;
         this.hUnit = i11;
         this.dUnit = i12;
-        this.width = f10;
-        this.height = f11;
-        this.depth = f12;
+        this.width = f7;
+        this.height = f10;
+        this.depth = f11;
     }
 }

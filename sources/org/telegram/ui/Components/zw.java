@@ -1,59 +1,64 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-public final class zw {
-    public final int f31477a;
-    public final long f31478b;
-    public final long f31479c;
-    public boolean e;
-    public final int f31481g;
-    public final NotificationCenter.NotificationCenterDelegate h;
-    public boolean d = false;
-    public long f31480f = -1;
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+public final class zw extends z4.g {
+    public final kz f33250w0;
 
-    public zw(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10, long j10, long j11, int i11) {
-        this.f31481g = i11;
-        this.h = notificationCenterDelegate;
-        this.f31477a = i10;
-        this.f31478b = j10;
-        this.f31479c = j11;
+    public zw(kz kzVar, Context context) {
+        super(context);
+        this.f33250w0 = kzVar;
     }
 
-    public final void a() {
-        boolean z4;
-        switch (this.f31481g) {
-            case 0:
-                kz kzVar = (kz) this.h;
-                if (kzVar.f26472q1 != null && kzVar.getVisibility() == 0 && kzVar.H0) {
-                    z4 = true;
-                    break;
-                } else {
-                    z4 = false;
-                    break;
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.f33250w0.f27941f) {
+            return false;
+        }
+        if (getParent() != null) {
+            getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+        }
+        try {
+            return super.onInterceptTouchEvent(motionEvent);
+        } catch (IllegalArgumentException unused) {
+            return false;
+        }
+    }
+
+    @Override
+    public final void x(int i10, boolean z10) {
+        boolean z11;
+        kz kzVar = this.f33250w0;
+        jw jwVar = kzVar.I;
+        if (i10 == 1) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        kz.c(kzVar, z11);
+        if (i10 == getCurrentItem()) {
+            if (i10 == 0) {
+                kzVar.Q0[1] = 0;
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(jwVar, ViewGroup.TRANSLATION_Y, 0.0f);
+                ofFloat.setDuration(150L);
+                ofFloat.setInterpolator(pr.h);
+                ofFloat.start();
+                kzVar.I(1, 0);
+                if (jwVar != null) {
+                    jwVar.j(0, true);
+                    return;
                 }
-            default:
-                z4 = ((tf.u0) this.h).N();
-                break;
-        }
-        this.d = z4;
-        if (!z4) {
-            if (this.e) {
-                MessagesController.getInstance(this.f31477a).sendTyping(this.f31478b, this.f31479c, 2, 0);
-            }
-            this.f31480f = -1L;
-        }
-    }
-
-    public final void b() {
-        if (this.d) {
-            if (this.f31480f == -1) {
-                this.f31480f = System.currentTimeMillis();
-            } else if (System.currentTimeMillis() - this.f31480f > 2000) {
-                this.e = true;
-                this.f31480f = System.currentTimeMillis();
-                MessagesController.getInstance(this.f31477a).sendTyping(this.f31478b, this.f31479c, 10, 0);
+                return;
+            } else if (i10 == 1) {
+                kzVar.f27948h0.x0(0);
+                return;
+            } else {
+                kzVar.D0.x0(1);
+                return;
             }
         }
+        super.x(i10, z10);
     }
 }

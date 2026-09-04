@@ -1,38 +1,63 @@
 package org.telegram.ui.Components;
-public final class hb extends o1.i {
-    public final int f25373a;
+public final class hb implements o1.f {
+    public final int f26699a;
+    public final Object f26700b;
 
-    public hb(int i10) {
-        this.f25373a = i10;
+    public hb(Object obj, int i10) {
+        this.f26699a = i10;
+        this.f26700b = obj;
     }
 
     @Override
-    public final float a(Object obj) {
-        switch (this.f25373a) {
+    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
+        switch (this.f26699a) {
             case 0:
-                return ((nb) obj).inOutOffset;
-            case 1:
-                return ((org.telegram.ui.zg0) obj).K;
-            default:
-                return ((org.telegram.ui.zg0) obj).J;
-        }
-    }
-
-    @Override
-    public final void b(Object obj, float f10) {
-        switch (this.f25373a) {
-            case 0:
-                nb.access$2200((nb) obj, f10);
+                qc qcVar = (qc) this.f26700b;
+                if (qcVar.d == hVar) {
+                    qcVar.d = null;
+                    return;
+                }
                 return;
             case 1:
-                org.telegram.ui.zg0 zg0Var = (org.telegram.ui.zg0) obj;
-                zg0Var.K = f10;
-                zg0Var.invalidate();
+                db dbVar = (db) this.f26700b;
+                if (!z10) {
+                    dbVar.run();
+                    return;
+                }
+                return;
+            case 2:
+                vo0 vo0Var = (vo0) this.f26700b;
+                vo0Var.f31382q = false;
+                vo0Var.dismiss();
+                return;
+            case 3:
+                xo0 xo0Var = (xo0) this.f26700b;
+                xo0Var.f32642s = false;
+                xo0Var.f32641r = false;
+                if (!z10) {
+                    hVar.c();
+                }
+                if (hVar == xo0Var.f32639f) {
+                    xo0Var.f32639f = null;
+                    return;
+                }
+                return;
+            case 4:
+                hq0 hq0Var = (hq0) this.f26700b;
+                hq0Var.E.setVisibility(8);
+                hq0Var.f26821z0.setVisibility(8);
+                eq0 eq0Var = hq0Var.L;
+                eq0Var.f25754f = null;
+                eq0Var.l();
+                hq0Var.B0 = null;
+                hq0Var.M0 = false;
                 return;
             default:
-                org.telegram.ui.zg0 zg0Var2 = (org.telegram.ui.zg0) obj;
-                zg0Var2.J = f10;
-                zg0Var2.invalidate();
+                hq0 hq0Var2 = ((op0) this.f26700b).d;
+                hq0Var2.F.setVisibility(8);
+                hq0Var2.G.setVisibility(8);
+                hq0Var2.f26820y0.setVisibility(8);
+                hq0Var2.B0 = null;
                 return;
         }
     }

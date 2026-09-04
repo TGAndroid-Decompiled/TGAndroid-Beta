@@ -5,47 +5,47 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ue implements Runnable {
-    public final int f38784a = 0;
-    public final zn f38785b;
-    public final MessagesController f38786c;
+    public final int f41073a = 0;
+    public final co f41074b;
+    public final MessagesController f41075c;
     public final CharSequence d;
-    public final boolean e;
+    public final boolean f41076e;
 
-    public ue(zn znVar, CharSequence charSequence, MessagesController messagesController, boolean z4) {
-        this.f38785b = znVar;
+    public ue(co coVar, CharSequence charSequence, MessagesController messagesController, boolean z10) {
+        this.f41074b = coVar;
         this.d = charSequence;
-        this.f38786c = messagesController;
-        this.e = z4;
+        this.f41075c = messagesController;
+        this.f41076e = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f38784a) {
+        switch (this.f41073a) {
             case 0:
-                zn.k0(this.f38785b, this.d, this.f38786c, this.e);
+                co.k0(this.f41074b, this.d, this.f41075c, this.f41076e);
                 return;
             default:
-                zn znVar = this.f38785b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(znVar.getParentActivity(), 0, znVar.f40534ba);
-                alertDialog$Builder.f19478a.O = LocaleController.getString(R.string.AppName);
+                co coVar = this.f41074b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(coVar.getParentActivity(), 0, coVar.f35247ea);
+                alertDialog$Builder.f20198a.R = LocaleController.getString(R.string.AppName);
                 String string = LocaleController.getString(R.string.OK);
-                MessagesController messagesController = this.f38786c;
-                alertDialog$Builder.k(string, new o9.b(znVar, messagesController, this.d, this.e, 1));
+                MessagesController messagesController = this.f41075c;
+                alertDialog$Builder.k(string, new ca.b(coVar, messagesController, this.d, this.f41076e, 3));
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                 String string2 = LocaleController.getString(R.string.SecretLinkPreviewAlert);
-                org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f19478a;
-                d2Var.Q = string2;
-                znVar.showDialog(d2Var);
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+                b2Var.T = string2;
+                coVar.showDialog(b2Var);
                 messagesController.secretWebpagePreview = 0;
                 MessagesController.getGlobalMainSettings().edit().putInt("secretWebpage2", messagesController.secretWebpagePreview).commit();
                 return;
         }
     }
 
-    public ue(zn znVar, MessagesController messagesController, CharSequence charSequence, boolean z4) {
-        this.f38785b = znVar;
-        this.f38786c = messagesController;
+    public ue(co coVar, MessagesController messagesController, CharSequence charSequence, boolean z10) {
+        this.f41074b = coVar;
+        this.f41075c = messagesController;
         this.d = charSequence;
-        this.e = z4;
+        this.f41076e = z10;
     }
 }

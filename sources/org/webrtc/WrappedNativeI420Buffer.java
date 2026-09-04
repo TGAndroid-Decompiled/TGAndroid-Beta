@@ -13,7 +13,7 @@ class WrappedNativeI420Buffer implements VideoFrame.I420Buffer {
     private final int strideY;
     private final int width;
 
-    public WrappedNativeI420Buffer(int i10, int i11, ByteBuffer byteBuffer, int i12, ByteBuffer byteBuffer2, int i13, ByteBuffer byteBuffer3, int i14, long j10) {
+    public WrappedNativeI420Buffer(int i10, int i11, ByteBuffer byteBuffer, int i12, ByteBuffer byteBuffer2, int i13, ByteBuffer byteBuffer3, int i14, long j3) {
         this.width = i10;
         this.height = i11;
         this.dataY = byteBuffer;
@@ -22,7 +22,7 @@ class WrappedNativeI420Buffer implements VideoFrame.I420Buffer {
         this.strideU = i13;
         this.dataV = byteBuffer3;
         this.strideV = i14;
-        this.nativeBuffer = j10;
+        this.nativeBuffer = j3;
         retain();
     }
 

@@ -1,33 +1,38 @@
 package o2;
 
-import android.os.Build;
-import java.util.HashSet;
-public abstract class c implements d {
-    public static final HashSet f16187c = new HashSet();
-    public final String f16188a;
-    public final String f16189b;
+import b2.r0;
+import java.util.ArrayList;
+import v7.x7;
+public final class c {
+    public static final int[] f16842c = {8, 13, 11, 2, 0, 1, 7};
+    public rb.a f16843a;
+    public boolean f16844b;
 
-    public c(String str, String str2) {
-        this.f16188a = str;
-        this.f16189b = str2;
-        f16187c.add(this);
+    public static void a(int i10, ArrayList arrayList) {
+        if (x7.d(i10, 0, 7, f16842c) != -1 && !arrayList.contains(Integer.valueOf(i10))) {
+            arrayList.add(Integer.valueOf(i10));
+        }
     }
 
-    public abstract boolean a();
-
-    public boolean b() {
-        HashSet hashSet = a.f16186a;
-        String str = this.f16189b;
-        if (!hashSet.contains(str)) {
-            String str2 = Build.TYPE;
-            if ("eng".equals(str2) || "userdebug".equals(str2)) {
-                if (!hashSet.contains(str + ":dev")) {
-                    return false;
-                }
-                return true;
+    public final b2.s b(b2.s sVar) {
+        String str;
+        if (this.f16844b && this.f16843a.i0(sVar)) {
+            b2.r a2 = sVar.a();
+            String str2 = sVar.f2363k;
+            a2.f2312q = r0.n("application/x-media3-cues");
+            a2.O = this.f16843a.J(sVar);
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(sVar.f2370r);
+            if (str2 != null) {
+                str = " ".concat(str2);
+            } else {
+                str = "";
             }
-            return false;
+            sb2.append(str);
+            a2.f2305j = sb2.toString();
+            a2.v = Long.MAX_VALUE;
+            return new b2.s(a2);
         }
-        return true;
+        return sVar;
     }
 }

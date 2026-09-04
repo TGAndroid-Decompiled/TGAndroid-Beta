@@ -1,20 +1,6 @@
 package l;
-
-import android.content.Context;
 public interface x {
-    boolean b(m mVar);
+    void d(l lVar, boolean z10);
 
-    void c(k kVar, boolean z4);
-
-    boolean d();
-
-    void e();
-
-    void h(w wVar);
-
-    void i(Context context, k kVar);
-
-    boolean j(d0 d0Var);
-
-    boolean k(m mVar);
+    boolean q(l lVar);
 }

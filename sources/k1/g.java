@@ -1,6 +1,9 @@
 package k1;
-public interface g {
-    Object C(dd.p pVar, wc.c cVar);
+public final class g extends b0 {
+    public final Throwable f14448a;
 
-    od.b getData();
+    public g(Throwable finalException) {
+        kotlin.jvm.internal.i.e(finalException, "finalException");
+        this.f14448a = finalException;
+    }
 }

@@ -1,95 +1,83 @@
 package u7;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import f7.q;
-import j7.f5;
-import java.util.Arrays;
-public final class b extends c6.a {
-    public static final Parcelable.Creator<b> CREATOR = new u6.p(6);
-    public final long f45240a;
-    public final int f45241b;
-    public final boolean f45242c;
-    public final String d;
-    public final f7.k e;
+import a9.o;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+import w7.r7;
+public final class b extends o implements ListIterator {
+    public final int f46965b;
+    public int f46966c;
+    public final d d;
 
-    public b(long j10, int i10, boolean z4, String str, f7.k kVar) {
-        this.f45240a = j10;
-        this.f45241b = i10;
-        this.f45242c = z4;
-        this.d = str;
-        this.e = kVar;
+    public b(d dVar, int i10) {
+        super(5);
+        int size = dVar.size();
+        if (i10 >= 0 && i10 <= size) {
+            this.f46965b = size;
+            this.f46966c = i10;
+            this.d = dVar;
+            return;
+        }
+        throw new IndexOutOfBoundsException(r7.c(i10, size, "index"));
     }
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof b)) {
-            return false;
-        }
-        b bVar = (b) obj;
-        if (this.f45240a != bVar.f45240a || this.f45241b != bVar.f45241b || this.f45242c != bVar.f45242c || !b6.m.l(this.d, bVar.d) || !b6.m.l(this.e, bVar.e)) {
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.f45240a), Integer.valueOf(this.f45241b), Boolean.valueOf(this.f45242c)});
-    }
-
-    public final String toString() {
-        String str;
-        StringBuilder l10 = e2.c.l("LastLocationRequest[");
-        long j10 = this.f45240a;
-        if (j10 != Long.MAX_VALUE) {
-            l10.append("maxAge=");
-            q.a(l10, j10);
-        }
-        int i10 = this.f45241b;
-        if (i10 != 0) {
-            l10.append(", ");
-            if (i10 != 0) {
-                if (i10 != 1) {
-                    if (i10 == 2) {
-                        str = "GRANULARITY_FINE";
-                    } else {
-                        throw new IllegalArgumentException();
-                    }
-                } else {
-                    str = "GRANULARITY_COARSE";
-                }
-            } else {
-                str = "GRANULARITY_PERMISSION_LEVEL";
-            }
-            l10.append(str);
-        }
-        if (this.f45242c) {
-            l10.append(", bypass");
-        }
-        String str2 = this.d;
-        if (str2 != null) {
-            l10.append(", moduleId=");
-            l10.append(str2);
-        }
-        f7.k kVar = this.e;
-        if (kVar != null) {
-            l10.append(", impersonation=");
-            l10.append(kVar);
-        }
-        l10.append(']');
-        return l10.toString();
+    public final Object a(int i10) {
+        return this.d.get(i10);
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q10 = f5.q(parcel, 20293);
-        f5.s(parcel, 1, 8);
-        parcel.writeLong(this.f45240a);
-        f5.s(parcel, 2, 4);
-        parcel.writeInt(this.f45241b);
-        f5.s(parcel, 3, 4);
-        parcel.writeInt(this.f45242c ? 1 : 0);
-        f5.l(parcel, 4, this.d);
-        f5.k(parcel, 5, this.e, i10);
-        f5.r(parcel, q10);
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean hasNext() {
+        if (this.f46966c < this.f46965b) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean hasPrevious() {
+        if (this.f46966c > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final Object next() {
+        if (hasNext()) {
+            int i10 = this.f46966c;
+            this.f46966c = i10 + 1;
+            return a(i10);
+        }
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final int nextIndex() {
+        return this.f46966c;
+    }
+
+    @Override
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i10 = this.f46966c - 1;
+            this.f46966c = i10;
+            return a(i10);
+        }
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final int previousIndex() {
+        return this.f46966c - 1;
+    }
+
+    @Override
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

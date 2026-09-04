@@ -1,35 +1,66 @@
 package ah;
 
-import android.content.Context;
-import android.view.View;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.g61;
-public abstract class c extends g61 {
-    public c(Context context, int i10, Utilities.Callback2 callback2, Utilities.Callback5 callback5, f6 f6Var) {
-        super(context, i10, -1, false, callback2, callback5, null, f6Var, -1, 0);
-        this.f28531w2 = true;
-        setOverScrollMode(2);
+import org.telegram.ui.ActionBar.j6;
+public final class c extends ReplacementSpan {
+    public final TextPaint f464a;
+    public final RectF f465b;
+    public StaticLayout f466c;
+    public float d;
+    public float f467e;
+    public int f468f;
+
+    public c(f6 f6Var) {
+        TextPaint textPaint = new TextPaint(1);
+        this.f464a = textPaint;
+        this.f465b = new RectF();
+        textPaint.setTextSize(AndroidUtilities.dp(15.0f));
+        textPaint.setColor(j6.v0(j6.C6, f6Var));
     }
 
-    public final void H1(View view) {
-        int i10;
-        if (view != null) {
-            float dp = AndroidUtilities.dp(92.0f);
-            float width = getWidth() - dp;
-            float x10 = view.getX();
-            float width2 = view.getWidth() + x10;
-            if (x10 < dp) {
-                i10 = (int) (x10 - dp);
-            } else if (width2 > width) {
-                i10 = (int) (width2 - width);
+    public final void a() {
+        Layout.Alignment alignment;
+        if (this.f466c == null) {
+            String string = LocaleController.getString(R.string.ReactionAddReactionsHint);
+            int i10 = AndroidUtilities.displaySize.x;
+            if (LocaleController.isRTL) {
+                alignment = Layout.Alignment.ALIGN_OPPOSITE;
             } else {
-                i10 = 0;
+                alignment = Layout.Alignment.ALIGN_NORMAL;
             }
-            if (i10 != 0) {
-                AndroidUtilities.doOnLayout(this, new a(this, view, i10, 0));
-            }
+            StaticLayout staticLayout = new StaticLayout(string, this.f464a, i10, alignment, 1.0f, 0.0f, false);
+            this.f466c = staticLayout;
+            this.d = staticLayout.getLineWidth(0);
+            this.f467e = this.f466c.getHeight();
         }
+    }
+
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        a();
+        Rect clipBounds = canvas.getClipBounds();
+        RectF rectF = this.f465b;
+        rectF.set(clipBounds);
+        canvas.saveLayerAlpha(rectF, this.f468f, 31);
+        canvas.translate(f7 + AndroidUtilities.dp(4.0f), (((i14 - i12) / 2.0f) + i12) - (this.f467e / 2.0f));
+        this.f466c.draw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        a();
+        return (int) (AndroidUtilities.dp(8.0f) + this.d);
     }
 }

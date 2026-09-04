@@ -1,24 +1,67 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-public final class wj extends f2.v {
-    public final zn f39713c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public final class wj extends ki.o {
+    public Runnable W;
+    public final co X;
 
-    public wj(zn znVar) {
-        this.f39713c = znVar;
+    public wj(co coVar, co coVar2, uj ujVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(coVar2, ujVar, f6Var);
+        this.X = coVar;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        MessageObject messageObject;
-        MessageObject.GroupedMessages X8;
-        zn znVar = this.f39713c;
-        lm lmVar = znVar.f40800x0;
-        int i12 = lmVar.G;
-        if (i10 >= i12 && i10 < lmVar.H && (i11 = i10 - i12) >= 0 && i11 < lmVar.L().size() && (X8 = znVar.X8((messageObject = (MessageObject) znVar.f40800x0.L().get(i11)))) != null) {
-            return X8.getPosition(messageObject).spanSize;
+    public final void F() {
+        co coVar = this.X;
+        if (coVar.H9 == -1) {
+            coVar.H9 = coVar.getNotificationCenter().setAnimationInProgress(coVar.H9, co.Nc, false);
         }
-        return 1000;
+    }
+
+    @Override
+    public final void N() {
+        super.N();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.W = null;
+        }
+        vj vjVar = new vj(this, 1);
+        this.W = vjVar;
+        AndroidUtilities.runOnUIThread(vjVar);
+    }
+
+    @Override
+    public final void W() {
+        co coVar = this.X;
+        coVar.H9 = coVar.getNotificationCenter().setAnimationInProgress(coVar.H9, co.Nc, false);
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.W = null;
+        }
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("chatItemAnimator disable notifications");
+        }
+        org.telegram.ui.ActionBar.v2 v2Var = coVar.Y.getAdjustPanLayoutHelper().h;
+        AndroidUtilities.cancelRunOnUIThread(v2Var);
+        v2Var.run();
+        org.telegram.ui.Components.bf bfVar = coVar.Y.X3;
+        AndroidUtilities.cancelRunOnUIThread(bfVar);
+        bfVar.run();
+    }
+
+    @Override
+    public final void g() {
+        super.g();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+        }
+        vj vjVar = new vj(this, 0);
+        this.W = vjVar;
+        AndroidUtilities.runOnUIThread(vjVar);
     }
 }

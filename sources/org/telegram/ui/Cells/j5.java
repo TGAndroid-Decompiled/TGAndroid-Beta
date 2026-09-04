@@ -13,28 +13,28 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.MediaController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.ec0;
-import org.telegram.ui.gd1;
-public final class j5 extends org.telegram.ui.Components.p9 implements DownloadController.FileDownloadProgressListener {
-    public RectF D;
-    public RadialProgress2 E;
-    public TLRPC.TL_wallPaper F;
-    public int G;
-    public LinearGradient H;
-    public int I;
+import org.telegram.ui.Components.dc0;
+import org.telegram.ui.td1;
+public final class j5 extends org.telegram.ui.Components.x9 implements DownloadController.FileDownloadProgressListener {
+    public RectF G;
+    public RadialProgress2 H;
+    public TLRPC.TL_wallPaper I;
     public int J;
-    public int K;
+    public LinearGradient K;
     public int L;
     public int M;
-    public Paint N;
-    public ec0 O;
+    public int N;
+    public int O;
     public int P;
-    public gd1 Q;
-    public int R;
+    public Paint Q;
+    public dc0 R;
+    public int S;
+    public td1 T;
+    public int U;
 
     @Override
     public int getObserverTag() {
-        return this.P;
+        return this.S;
     }
 
     @Override
@@ -49,14 +49,14 @@ public final class j5 extends org.telegram.ui.Components.p9 implements DownloadC
     }
 
     @Override
-    public final void onFailedDownload(String str, boolean z4) {
-        TLRPC.TL_wallPaper tL_wallPaper = this.Q.f34420a.d.T0;
-        TLRPC.TL_wallPaper tL_wallPaper2 = this.F;
-        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f19311id == tL_wallPaper.f19311id)) {
-            if (z4) {
-                this.E.setIcon(4, false, true);
+    public final void onFailedDownload(String str, boolean z10) {
+        TLRPC.TL_wallPaper tL_wallPaper = this.T.f40720a.d.W0;
+        TLRPC.TL_wallPaper tL_wallPaper2 = this.I;
+        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f20021id == tL_wallPaper.f20021id)) {
+            if (z10) {
+                this.H.setIcon(4, false, true);
             } else {
-                t(tL_wallPaper2, true, z4);
+                t(tL_wallPaper2, true, z10);
             }
         }
     }
@@ -67,28 +67,28 @@ public final class j5 extends org.telegram.ui.Components.p9 implements DownloadC
     }
 
     @Override
-    public final void onProgressDownload(String str, long j10, long j11) {
-        RadialProgress2 radialProgress2 = this.E;
-        radialProgress2.o(Math.min(1.0f, ((float) j10) / ((float) j11)), true);
-        TLRPC.TL_wallPaper tL_wallPaper = this.Q.f34420a.d.T0;
-        TLRPC.TL_wallPaper tL_wallPaper2 = this.F;
-        if (((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f19311id == tL_wallPaper.f19311id)) && radialProgress2.f23090i.f29432q != 10) {
+    public final void onProgressDownload(String str, long j3, long j10) {
+        RadialProgress2 radialProgress2 = this.H;
+        radialProgress2.o(Math.min(1.0f, ((float) j3) / ((float) j10)), true);
+        TLRPC.TL_wallPaper tL_wallPaper = this.T.f40720a.d.W0;
+        TLRPC.TL_wallPaper tL_wallPaper2 = this.I;
+        if (((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f20021id == tL_wallPaper.f20021id)) && radialProgress2.f24076i.f30573q != 10) {
             t(tL_wallPaper2, false, true);
         }
     }
 
     @Override
     public final void onSuccessDownload(String str) {
-        this.E.o(1.0f, true);
-        TLRPC.TL_wallPaper tL_wallPaper = this.Q.f34420a.d.T0;
-        TLRPC.TL_wallPaper tL_wallPaper2 = this.F;
-        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f19311id == tL_wallPaper.f19311id)) {
+        this.H.o(1.0f, true);
+        TLRPC.TL_wallPaper tL_wallPaper = this.T.f40720a.d.W0;
+        TLRPC.TL_wallPaper tL_wallPaper2 = this.I;
+        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f20021id == tL_wallPaper.f20021id)) {
             t(tL_wallPaper2, false, true);
         }
     }
 
     public void setPattern(TLRPC.TL_wallPaper tL_wallPaper) {
-        this.F = tL_wallPaper;
+        this.I = tL_wallPaper;
         if (tL_wallPaper != null) {
             k(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tL_wallPaper.document.thumbs, AndroidUtilities.dp(100.0f)), tL_wallPaper.document), "100_100", null, null, 0L, "png", tL_wallPaper, 1);
         } else {
@@ -97,17 +97,17 @@ public final class j5 extends org.telegram.ui.Components.p9 implements DownloadC
         u(false);
     }
 
-    public final void t(Object obj, boolean z4, boolean z10) {
+    public final void t(Object obj, boolean z10, boolean z11) {
         File httpFilePath;
         String name;
-        int i10 = this.G;
-        RadialProgress2 radialProgress2 = this.E;
-        boolean z11 = obj instanceof TLRPC.TL_wallPaper;
-        if (!z11 && !(obj instanceof MediaController.SearchImage)) {
-            radialProgress2.setIcon(6, z4, z10);
+        int i10 = this.J;
+        RadialProgress2 radialProgress2 = this.H;
+        boolean z12 = obj instanceof TLRPC.TL_wallPaper;
+        if (!z12 && !(obj instanceof MediaController.SearchImage)) {
+            radialProgress2.setIcon(6, z10, z11);
             return;
         }
-        if (z11) {
+        if (z12) {
             TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) obj;
             name = FileLoader.getAttachFileName(tL_wallPaper.document);
             if (!TextUtils.isEmpty(name)) {
@@ -119,7 +119,7 @@ public final class j5 extends org.telegram.ui.Components.p9 implements DownloadC
             MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
             TLRPC.Photo photo = searchImage.photo;
             if (photo != null) {
-                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, this.R, true);
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, this.U, true);
                 File pathToAttach = FileLoader.getInstance(i10).getPathToAttach(closestPhotoSizeWithSize, true);
                 name = FileLoader.getAttachFileName(closestPhotoSizeWithSize);
                 httpFilePath = pathToAttach;
@@ -133,33 +133,33 @@ public final class j5 extends org.telegram.ui.Components.p9 implements DownloadC
         }
         if (httpFilePath.exists()) {
             DownloadController.getInstance(i10).removeLoadingFileObserver(this);
-            radialProgress2.o(1.0f, z10);
-            radialProgress2.setIcon(6, z4, z10);
+            radialProgress2.o(1.0f, z11);
+            radialProgress2.setIcon(6, z10, z11);
             return;
         }
         DownloadController.getInstance(i10).addLoadingFileObserver(name, null, this);
         FileLoader.getInstance(i10).isLoadingFile(name);
         Float fileProgress = ImageLoader.getInstance().getFileProgress(name);
         if (fileProgress != null) {
-            radialProgress2.o(fileProgress.floatValue(), z10);
+            radialProgress2.o(fileProgress.floatValue(), z11);
         } else {
-            radialProgress2.o(0.0f, z10);
+            radialProgress2.o(0.0f, z11);
         }
-        radialProgress2.setIcon(10, z4, z10);
+        radialProgress2.setIcon(10, z10, z11);
     }
 
-    public final void u(boolean z4) {
-        TLRPC.TL_wallPaper tL_wallPaper = this.Q.f34420a.d.T0;
-        TLRPC.TL_wallPaper tL_wallPaper2 = this.F;
-        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f19311id == tL_wallPaper.f19311id)) {
-            t(tL_wallPaper, false, z4);
+    public final void u(boolean z10) {
+        TLRPC.TL_wallPaper tL_wallPaper = this.T.f40720a.d.W0;
+        TLRPC.TL_wallPaper tL_wallPaper2 = this.I;
+        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f20021id == tL_wallPaper.f20021id)) {
+            t(tL_wallPaper, false, z10);
         } else {
-            this.E.setIcon(4, false, z4);
+            this.H.setIcon(4, false, z10);
         }
         super.invalidate();
     }
 
     @Override
-    public final void onProgressUpload(String str, long j10, long j11, boolean z4) {
+    public final void onProgressUpload(String str, long j3, long j10, boolean z10) {
     }
 }

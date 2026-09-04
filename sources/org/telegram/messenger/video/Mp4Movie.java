@@ -7,18 +7,18 @@ import java.util.ArrayList;
 public class Mp4Movie {
     private File cacheFile;
     private int height;
-    private cc.d matrix = cc.d.f2278j;
+    private qc.d matrix = qc.d.f44312j;
     private ArrayList<Track> tracks = new ArrayList<>();
     private int width;
 
-    public void addSample(int i10, long j10, MediaCodec.BufferInfo bufferInfo) {
+    public void addSample(int i10, long j3, MediaCodec.BufferInfo bufferInfo) {
         if (i10 >= 0 && i10 < this.tracks.size()) {
-            this.tracks.get(i10).addSample(j10, bufferInfo);
+            this.tracks.get(i10).addSample(j3, bufferInfo);
         }
     }
 
-    public int addTrack(MediaFormat mediaFormat, boolean z4) {
-        this.tracks.add(new Track(this.tracks.size(), mediaFormat, z4));
+    public int addTrack(MediaFormat mediaFormat, boolean z10) {
+        this.tracks.add(new Track(this.tracks.size(), mediaFormat, z10));
         return this.tracks.size() - 1;
     }
 
@@ -37,7 +37,7 @@ public class Mp4Movie {
         return 0L;
     }
 
-    public cc.d getMatrix() {
+    public qc.d getMatrix() {
         return this.matrix;
     }
 
@@ -55,13 +55,13 @@ public class Mp4Movie {
 
     public void setRotation(int i10) {
         if (i10 == 0) {
-            this.matrix = cc.d.f2278j;
+            this.matrix = qc.d.f44312j;
         } else if (i10 == 90) {
-            this.matrix = cc.d.f2279k;
+            this.matrix = qc.d.f44313k;
         } else if (i10 == 180) {
-            this.matrix = cc.d.f2280l;
+            this.matrix = qc.d.f44314l;
         } else if (i10 == 270) {
-            this.matrix = cc.d.f2281m;
+            this.matrix = qc.d.f44315m;
         }
     }
 

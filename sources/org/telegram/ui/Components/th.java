@@ -1,70 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MotionEvent;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
-public final class th extends cu {
-    public final li S;
+public final class th extends AnimatorListenerAdapter {
+    public final int f30600a;
+    public final boolean f30601b;
+    public final bi f30602c;
 
-    public th(li liVar, Context context, bi biVar, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, biVar, null, 1, true, f6Var);
-        this.S = liVar;
+    public th(bi biVar, boolean z10, int i10) {
+        this.f30600a = i10;
+        this.f30602c = biVar;
+        this.f30601b = z10;
     }
 
     @Override
-    public final void f() {
-        super.f();
-        kz emojiView = getEmojiView();
-        if (emojiView != null) {
-            emojiView.f26482t0 = false;
-            emojiView.f26487u2 = false;
-            emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        switch (this.f30600a) {
+            case 0:
+                bi biVar = this.f30602c;
+                vi viVar = biVar.f24714e;
+                boolean z10 = this.f30601b;
+                if (!z10) {
+                    viVar.E1.setVisibility(8);
+                } else {
+                    viVar.f31337x1.setVisibility(8);
+                }
+                if (z10) {
+                    i10 = AndroidUtilities.dp(36.0f);
+                } else {
+                    i10 = 0;
+                }
+                for (int i11 = 0; i11 < viVar.f31336x0.size(); i11++) {
+                    ((fi.r4) viVar.f31336x0.valueAt(i11)).setMeasureOffsetY(i10);
+                }
+                if (biVar.f24711a == animator) {
+                    biVar.f24711a = null;
+                    return;
+                }
+                return;
+            default:
+                vi viVar2 = this.f30602c.f24714e;
+                boolean z11 = this.f30601b;
+                viVar2.B1 = z11;
+                if (!z11) {
+                    viVar2.C1.setVisibility(8);
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final void i(Menu menu) {
-        org.telegram.ui.ActionBar.p2 p2Var = this.S.f26685c0;
-        if (p2Var instanceof org.telegram.ui.zn) {
-            org.telegram.ui.zn.k8(menu, ((org.telegram.ui.zn) p2Var).h, true, true, true, true);
-        }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        li liVar = this.S;
-        th thVar = liVar.M0;
-        if (!liVar.f26732r1) {
-            if (motionEvent.getX() > thVar.getEditText().getLeft() && motionEvent.getX() < thVar.getEditText().getRight() && motionEvent.getY() > thVar.getEditText().getTop() && motionEvent.getY() < thVar.getEditText().getBottom()) {
-                liVar.t1(thVar.getEditText(), true);
-            } else {
-                liVar.t1(thVar.getEditText(), false);
-            }
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        super.onLayout(z4, i10, i11, i12, i13);
-        this.S.b2();
-    }
-
-    @Override
-    public final void q(int i10, int i11) {
-        boolean z4;
-        li liVar = this.S;
-        liVar.b2();
-        if (liVar.Z) {
-            if (i11 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
-                z4 = true;
-            } else {
-                z4 = false;
-            }
-            liVar.M1(z4);
+    public void onAnimationStart(Animator animator) {
+        switch (this.f30600a) {
+            case 0:
+                vi viVar = this.f30602c.f24714e;
+                if (this.f30601b) {
+                    viVar.E1.setAlpha(0.0f);
+                    viVar.E1.setVisibility(0);
+                    int dp = AndroidUtilities.dp(36.0f);
+                    for (int i10 = 0; i10 < viVar.f31336x0.size(); i10++) {
+                        ((fi.r4) viVar.f31336x0.valueAt(i10)).setMeasureOffsetY(dp);
+                    }
+                    return;
+                }
+                viVar.f31337x1.setAlpha(0.0f);
+                viVar.f31337x1.setVisibility(0);
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
     }
 }

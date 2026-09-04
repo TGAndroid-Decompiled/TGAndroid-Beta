@@ -1,54 +1,96 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
+import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-public final class ga {
-    public String f25108a;
-    public Bitmap f25109b;
-    public final Paint f25110c;
-    public final int d;
-    public final Runnable e;
-    public org.telegram.messenger.b8 f25111f;
+import android.graphics.Rect;
+import android.view.View;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
+import org.telegram.messenger.SharedConfig;
+public abstract class ga extends FrameLayout {
+    public final ov0 f26327a;
+    public Paint f26328b;
+    public int f26329c;
+    public final boolean d;
+    public final boolean f26330e;
+    public final Rect f26331f;
 
-    public ga(int i10, Runnable runnable) {
-        Paint paint = new Paint(1);
-        this.f25110c = paint;
-        this.d = i10;
-        this.e = runnable;
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+    public ga(Context context, ov0 ov0Var) {
+        super(context);
+        this.f26329c = 0;
+        this.d = true;
+        this.f26330e = true;
+        this.f26331f = new Rect();
+        this.f26327a = ov0Var;
     }
 
-    public final void a() {
-        this.f25108a = null;
-        if (this.f25111f != null) {
-            Utilities.globalQueue.cancelRunnable(this.f25111f);
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        if (SharedConfig.chatBlurEnabled() && this.f26327a != null && this.f26330e && this.f26329c != 0) {
+            if (this.f26328b == null) {
+                this.f26328b = new Paint();
+            }
+            this.f26328b.setColor(this.f26329c);
+            this.f26331f.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            float f7 = 0.0f;
+            View view = this;
+            while (true) {
+                ov0 ov0Var = this.f26327a;
+                if (view != ov0Var) {
+                    f7 += view.getY();
+                    ViewParent parent = view.getParent();
+                    if (parent instanceof View) {
+                        view = (View) parent;
+                    } else {
+                        super.dispatchDraw(canvas);
+                        return;
+                    }
+                } else {
+                    canvas2 = canvas;
+                    ov0Var.J(canvas2, f7, this.f26331f, this.f26328b, this.d);
+                    break;
+                }
+            }
+        } else {
+            canvas2 = canvas;
         }
-        Bitmap bitmap = this.f25109b;
-        if (bitmap != null && !bitmap.isRecycled()) {
-            this.f25109b.recycle();
-        }
-        this.f25109b = null;
+        super.dispatchDraw(canvas2);
     }
 
-    public final android.graphics.Bitmap b(android.graphics.Bitmap r9, java.lang.String r10, int r11, int r12, boolean r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ga.b(android.graphics.Bitmap, java.lang.String, int, int, boolean):android.graphics.Bitmap");
+    @Override
+    public void onAttachedToWindow() {
+        ov0 ov0Var;
+        if (SharedConfig.chatBlurEnabled() && (ov0Var = this.f26327a) != null) {
+            ov0Var.T.add(this);
+        }
+        super.onAttachedToWindow();
     }
 
-    public final Bitmap c(ImageReceiver.BitmapHolder bitmapHolder) {
-        if (bitmapHolder == null) {
-            return null;
+    @Override
+    public void onDetachedFromWindow() {
+        ov0 ov0Var = this.f26327a;
+        if (ov0Var != null) {
+            ov0Var.T.remove(this);
         }
-        return b(bitmapHolder.bitmap, bitmapHolder.getKey(), bitmapHolder.orientation, 0, false);
+        super.onDetachedFromWindow();
     }
 
-    public final Bitmap d(ImageReceiver imageReceiver) {
-        if (imageReceiver == null) {
-            return null;
+    @Override
+    public void setBackgroundColor(int i10) {
+        if (SharedConfig.chatBlurEnabled() && this.f26327a != null) {
+            this.f26329c = i10;
+        } else {
+            super.setBackgroundColor(i10);
         }
-        return b(imageReceiver.getBitmap(), imageReceiver.getImageKey(), imageReceiver.getOrientation(), imageReceiver.getInvert(), false);
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        if (SharedConfig.chatBlurEnabled() && f7 != getTranslationY()) {
+            invalidate();
+        }
+        super.setTranslationY(f7);
     }
 }

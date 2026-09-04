@@ -1,83 +1,138 @@
 package org.telegram.ui;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.messenger.voip.VoIPServiceState;
-import org.webrtc.OrientationHelper;
-public final class ai1 extends org.telegram.ui.Components.voip.w2 {
-    public final Path f32596s;
-    public final RectF v;
-    public final ii1 f32597w;
+public final class ai1 extends org.telegram.ui.Components.i81 {
+    public boolean T;
+    public final Path U;
+    public final bi1 V;
 
-    public ai1(Activity activity, boolean z4, ii1 ii1Var) {
-        super(activity);
-        this.f32597w = ii1Var;
-        this.f29990c = new AnimationNotificationsLocker();
-        this.f29988a = activity;
-        setSystemUiVisibility(1792);
-        AndroidUtilities.lockOrientation(activity, 1);
-        OrientationHelper.cameraRotationDisabled = true;
-        if (!z4) {
-            this.e = true;
-        }
-        this.f32596s = new Path();
-        this.v = new RectF();
+    public ai1(bi1 bi1Var, Context context) {
+        super(context, null);
+        this.V = bi1Var;
+        this.U = new Path();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ii1 ii1Var = this.f32597w;
-        if (ii1Var.B0 && getAlpha() != 0.0f) {
-            float scaleX = ii1Var.Z.getScaleX() * ii1Var.Z.getWidth();
-            float scaleY = ii1Var.Z.getScaleY() * ii1Var.Z.getHeight();
-            float x10 = ii1Var.Z.getX() + ((ii1Var.Z.getWidth() - scaleX) / 2.0f);
-            float y10 = ii1Var.Z.getY() + ((ii1Var.Z.getHeight() - scaleY) / 2.0f);
-            canvas.save();
-            Path path = this.f32596s;
+        if (this.T) {
+            Path path = this.U;
             path.rewind();
-            RectF rectF = this.v;
-            rectF.set(x10, y10, scaleX + x10, scaleY + y10);
-            float dp = AndroidUtilities.dp(4.0f);
-            path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
-            path.close();
+            float dpf2 = AndroidUtilities.dpf2(24.0f);
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, AndroidUtilities.statusBarHeight, getWidth(), getHeight());
+            path.addRoundRect(rectF, dpf2, dpf2, Path.Direction.CW);
+            canvas.save();
             canvas.clipPath(path);
-            super.dispatchDraw(canvas);
-            canvas.restore();
-            return;
         }
         super.dispatchDraw(canvas);
+        if (this.T) {
+            canvas.restore();
+        }
     }
 
     @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        VoIPServiceState sharedState;
-        ii1 ii1Var = this.f32597w;
-        if (!ii1Var.D0 && !ii1Var.B0) {
-            int keyCode = keyEvent.getKeyCode();
-            if (keyCode == 4 && keyEvent.getAction() == 1) {
-                ii1Var.p();
-                return true;
-            } else if ((keyCode == 25 || keyCode == 24) && ii1Var.m0 == 15 && (sharedState = VoIPService.getSharedState()) != null) {
-                sharedState.stopRinging();
-                return true;
-            } else {
-                return super.dispatchKeyEvent(keyEvent);
-            }
+    public float getAvailableTranslationX() {
+        return getMeasuredWidth();
+    }
+
+    @Override
+    public long getManualScrollDuration() {
+        return 320L;
+    }
+
+    @Override
+    public final boolean j(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.n2 X = ((eh0) this.V).X();
+        if (!(X instanceof dh0)) {
+            return false;
+        }
+        return ((dh0) X).S(motionEvent, false);
+    }
+
+    @Override
+    public final boolean k(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.n2 X = ((eh0) this.V).X();
+        if (X instanceof dh0) {
+            return ((dh0) X).S(motionEvent, true);
         }
         return false;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (this.f32597w.f34967j1) {
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+    }
+
+    @Override
+    public void setLayoutParams(ViewGroup.LayoutParams layoutParams) {
+        super.setLayoutParams(layoutParams);
+    }
+
+    public void setTabletLayout(boolean z10) {
+        if (this.T == z10) {
             return;
         }
-        super.draw(canvas);
+        this.T = z10;
+        invalidate();
+    }
+
+    @Override
+    public final void t(View view, View view2, int i10, int i11) {
+        this.V.U();
+    }
+
+    @Override
+    public final void u() {
+        uy uyVar;
+        bi1 bi1Var = this.V;
+        eh0 eh0Var = (eh0) bi1Var;
+        if (eh0Var.F != null) {
+            eh0Var.m0(eh0Var.f34816c.getCurrentPosition(), true);
+            eh0Var.n0(0.0f, false);
+        }
+        eh0Var.d0();
+        ai1 ai1Var = eh0Var.f34816c;
+        if (ai1Var != null) {
+            int currentPosition = ai1Var.getCurrentPosition();
+            if (currentPosition != 2 && eh0Var.f36081x) {
+                eh0Var.W(2);
+                eh0Var.f36081x = false;
+            }
+            if (currentPosition != 3) {
+                eh0Var.W(3);
+            }
+            Integer num = eh0Var.I;
+            if (num != null && currentPosition == 0 && (uyVar = eh0Var.J) != null) {
+                uyVar.w4(num.intValue());
+                eh0Var.I = null;
+            }
+        }
+        bi1Var.U();
+    }
+
+    @Override
+    public final void w(boolean z10) {
+        bi1 bi1Var = this.V;
+        eh0 eh0Var = (eh0) bi1Var;
+        boolean z11 = !z10;
+        if (eh0Var.F != null) {
+            float positionAnimated = eh0Var.f34816c.getPositionAnimated();
+            eh0Var.n0(positionAnimated, z11);
+            if (!z10) {
+                eh0Var.m0(Math.round(positionAnimated), true);
+            }
+        }
+        eh0Var.h0();
+        eh0Var.d0();
+        eh0Var.f34815b.invalidate();
+        bi1Var.U();
+        bi1Var.checkSystemBarColors();
     }
 }

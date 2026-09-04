@@ -3,55 +3,55 @@ package org.telegram.ui.Cells;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class k2 extends AnimatorListenerAdapter {
-    public final int f21262a;
-    public final q2 f21263b;
+    public final int f22210a;
+    public final r2 f22211b;
 
-    public k2(q2 q2Var, int i10) {
-        this.f21262a = i10;
-        this.f21263b = q2Var;
+    public k2(r2 r2Var, int i10) {
+        this.f22210a = i10;
+        this.f22211b = r2Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i10;
         int i11;
-        switch (this.f21262a) {
+        switch (this.f22210a) {
             case 0:
-                q2 q2Var = this.f21263b;
-                q2Var.O3 = 1.0f;
-                q2Var.R3 = null;
-                q2Var.S3 = null;
-                q2Var.T3 = null;
-                q2Var.invalidate();
+                r2 r2Var = this.f22211b;
+                r2Var.R3 = 1.0f;
+                r2Var.U3 = null;
+                r2Var.V3 = null;
+                r2Var.W3 = null;
+                r2Var.invalidate();
                 return;
             case 1:
-                q2 q2Var2 = this.f21263b;
-                q2Var2.P3 = 1.0f;
-                q2Var2.invalidate();
+                r2 r2Var2 = this.f22211b;
+                r2Var2.S3 = 1.0f;
+                r2Var2.invalidate();
                 return;
             default:
-                q2 q2Var3 = this.f21263b;
-                boolean z4 = q2Var3.P2;
-                if (q2Var3.N2) {
+                r2 r2Var3 = this.f22211b;
+                boolean z10 = r2Var3.S2;
+                if (r2Var3.Q2) {
                     i10 = 2;
                 } else {
                     i10 = 0;
                 }
-                int i12 = (z4 ? 1 : 0) + i10;
-                if (q2Var3.O2) {
+                int i12 = (z10 ? 1 : 0) + i10;
+                if (r2Var3.R2) {
                     i11 = 4;
                 } else {
                     i11 = 0;
                 }
                 int i13 = i12 + i11;
-                int i14 = q2Var3.f21625o4;
+                int i14 = r2Var3.f22621r4;
                 if (i14 != i13) {
-                    q2Var3.A(i14, i13);
+                    r2Var3.A(i14, i13);
                 } else {
-                    q2Var3.f21647s4 = false;
-                    q2Var3.f21635q4 = i14;
+                    r2Var3.f22642v4 = false;
+                    r2Var3.f22632t4 = i14;
                 }
-                q2Var3.invalidate();
+                r2Var3.invalidate();
                 return;
         }
     }

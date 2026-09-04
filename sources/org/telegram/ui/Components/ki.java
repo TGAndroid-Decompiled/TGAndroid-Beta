@@ -1,90 +1,120 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class ki extends View {
-    public final int f26295a = 0;
-    public final int f26296b;
-    public final Object f26297c;
-    public final Object d;
-    public final Object e;
+public final class ki extends org.telegram.ui.ActionBar.p1 {
+    public final li f27829x;
 
-    public ki(ViewGroup viewGroup, int i10) {
-        super(viewGroup.getContext());
-        this.f26297c = new ArrayList();
-        this.e = new org.telegram.ui.d10(this, 27);
-        this.d = viewGroup;
-        this.f26296b = i10;
-    }
-
-    public void a() {
-        org.telegram.ui.d10 d10Var = (org.telegram.ui.d10) this.e;
-        ArrayList arrayList = (ArrayList) this.f26297c;
-        boolean isEmpty = arrayList.isEmpty();
-        int i10 = this.f26296b;
-        if (isEmpty && getVisibility() != 8) {
-            NotificationCenter.getInstance(i10).removeDelayed(d10Var);
-            NotificationCenter.getInstance(i10).doOnIdle(d10Var);
-        } else if (!arrayList.isEmpty() && getVisibility() != 0) {
-            NotificationCenter.getInstance(i10).removeDelayed(d10Var);
-            setVisibility(0);
-        }
+    public ki(li liVar, li liVar2) {
+        super(liVar2);
+        this.f27829x = liVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.f26295a) {
-            case 0:
-                kf.b0 b0Var = (kf.b0) this.d;
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f26297c;
-                int i10 = this.f26296b;
-                b0Var.b(org.telegram.ui.ActionBar.j6.l1(0.5f, org.telegram.ui.ActionBar.j6.v0(i10, f6Var)));
-                b0Var.draw(canvas);
-                kf.b0 b0Var2 = (kf.b0) this.e;
-                b0Var2.b(org.telegram.ui.ActionBar.j6.l1(0.95f, org.telegram.ui.ActionBar.j6.v0(i10, f6Var)));
-                b0Var2.draw(canvas);
-                return;
-            default:
-                ArrayList arrayList = (ArrayList) this.f26297c;
-                if (!arrayList.isEmpty()) {
-                    for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                        ((org.telegram.ui.uh0) arrayList.get(i11)).a(canvas);
+    public final boolean b() {
+        kz kzVar;
+        vi viVar = this.f27829x.B0;
+        if (!viVar.isDismissed() && viVar.f31320s1) {
+            ni niVar = viVar.f31340y0;
+            if (niVar == viVar.m0 || niVar == viVar.f31302n0 || viVar.m1().m()) {
+                ni niVar2 = viVar.f31340y0;
+                tn tnVar = viVar.m0;
+                if (niVar2 != tnVar || ((kzVar = tnVar.E) != null && kzVar.getVisibility() == 0)) {
+                    ni niVar3 = viVar.f31340y0;
+                    tn tnVar2 = viVar.f31302n0;
+                    if (niVar3 == tnVar2) {
+                        kz kzVar2 = tnVar2.E;
+                        if (kzVar2 != null && kzVar2.getVisibility() == 0) {
+                            return false;
+                        }
+                        return true;
                     }
-                    return;
+                } else {
+                    return true;
                 }
-                return;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final void e(float f7, float f10, boolean z10) {
+        li liVar = this.f27829x;
+        vi viVar = liVar.B0;
+        viVar.f31298l2 = f7;
+        float f11 = viVar.f31273d2;
+        if (f11 > 0.0f) {
+            viVar.f31298l2 = com.google.android.gms.internal.vision.e2.z(1.0f, f10, f11 - viVar.f31277e2, f7);
+        }
+        viVar.X0.setTranslationY(viVar.f31298l2);
+        viVar.f31262a1.setTranslationY(viVar.f31298l2);
+        org.telegram.ui.ActionBar.v0 v0Var = viVar.f31276e1;
+        if (v0Var != null) {
+            v0Var.setTranslationY(viVar.f31298l2);
+        }
+        org.telegram.ui.ActionBar.v0 v0Var2 = viVar.f31269c1;
+        if (v0Var2 != null) {
+            v0Var2.setTranslationY(viVar.f31262a1.getTranslationY());
+        }
+        di.f4 f4Var = viVar.f31272d1;
+        if (f4Var != null) {
+            f4Var.setTranslationY(viVar.f31262a1.getTranslationY());
+        }
+        viVar.f31280f1.setTranslationY(viVar.f31298l2);
+        viVar.a2(0);
+        viVar.setCurrentPanTranslationY(viVar.f31298l2);
+        liVar.invalidate();
+        viVar.D0.invalidate();
+        viVar.U1();
+        ni niVar = viVar.f31340y0;
+        if (niVar != null) {
+            niVar.k(viVar.f31298l2);
         }
     }
 
     @Override
-    public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f26295a) {
-            case 0:
-                super.onSizeChanged(i10, i11, i12, i13);
-                int i14 = AndroidUtilities.statusBarHeight;
-                kf.b0 b0Var = (kf.b0) this.d;
-                b0Var.c(AndroidUtilities.dp(12.0f) + i14, 0);
-                b0Var.setBounds(0, 0, i10, AndroidUtilities.dp(52.0f) + i14);
-                kf.b0 b0Var2 = (kf.b0) this.e;
-                b0Var2.c(i14 / 3, 0);
-                b0Var2.setBounds(0, 0, i10, i14);
-                return;
-            default:
-                super.onSizeChanged(i10, i11, i12, i13);
-                return;
+    public final void f() {
+        boolean z10;
+        int i10;
+        vi viVar = this.f27829x.B0;
+        viVar.X1(viVar.f31340y0, 0);
+        viVar.f31270c2 = viVar.f31266b2[0];
+        viVar.f31340y0.v();
+        if ((viVar.f31340y0 instanceof fi.r4) && !viVar.D1) {
+            z10 = ((org.telegram.ui.ActionBar.f3) viVar).keyboardVisible;
+            if (z10) {
+                i10 = AndroidUtilities.dp(84.0f);
+            } else {
+                i10 = 0;
+            }
+            for (int i11 = 0; i11 < viVar.f31336x0.size(); i11++) {
+                ((fi.r4) viVar.f31336x0.valueAt(i11)).setMeasureOffsetY(i10);
+            }
         }
     }
 
-    public ki(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        this.d = new kf.b0(2);
-        this.e = new kf.b0(2);
-        this.f26297c = f6Var;
-        this.f26296b = i10;
+    @Override
+    public final void g(int i10, boolean z10) {
+        int i11;
+        li liVar = this.f27829x;
+        vi viVar = liVar.B0;
+        int i12 = viVar.f31270c2;
+        if (i12 > 0 && i12 != (i11 = viVar.f31266b2[0]) && z10) {
+            viVar.f31273d2 = i12;
+            viVar.f31277e2 = i11;
+        } else {
+            viVar.f31273d2 = -1.0f;
+        }
+        liVar.invalidate();
+        xh xhVar = viVar.f31337x1;
+        if ((viVar.f31340y0 instanceof fi.r4) && !viVar.D1) {
+            if (z10) {
+                xhVar.setVisibility(8);
+            } else {
+                xhVar.setVisibility(0);
+            }
+        }
+        viVar.f31340y0.w(i10, z10);
     }
 }

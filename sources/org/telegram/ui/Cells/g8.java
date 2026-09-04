@@ -1,51 +1,39 @@
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class g8 extends AnimatorListenerAdapter {
-    public final int f21111a;
-    public final boolean f21112b;
-    public final j8 f21113c;
+import android.view.View;
+import android.widget.TextView;
+public final class g8 implements View.OnClickListener {
+    public final int f21989a;
+    public final m8 f21990b;
 
-    public g8(j8 j8Var, boolean z4, int i10) {
-        this.f21111a = i10;
-        this.f21113c = j8Var;
-        this.f21112b = z4;
+    public g8(m8 m8Var, int i10) {
+        this.f21989a = i10;
+        this.f21990b = m8Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f21111a) {
+    public final void onClick(View view) {
+        switch (this.f21989a) {
             case 0:
-                if (!this.f21112b) {
-                    this.f21113c.h.setVisibility(4);
-                    return;
-                }
+                this.f21990b.getClass();
                 return;
             default:
-                if (!this.f21112b) {
-                    this.f21113c.f21244x.setVisibility(4);
+                m8 m8Var = this.f21990b;
+                TextView textView = m8Var.E;
+                TextView textView2 = m8Var.f22304y;
+                sg.r0 r0Var = m8Var.F;
+                if (r0Var.getVisibility() == 0 && r0Var.f46241r.isEnabled()) {
+                    r0Var.performClick();
+                    return;
+                } else if (textView2.getVisibility() == 0 && textView2.isEnabled()) {
+                    textView2.performClick();
+                    return;
+                } else if (textView.getVisibility() == 0 && textView.isEnabled()) {
+                    textView.performClick();
+                    return;
+                } else {
                     return;
                 }
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.f21111a) {
-            case 0:
-                if (this.f21112b) {
-                    this.f21113c.h.setVisibility(0);
-                    return;
-                }
-                return;
-            default:
-                if (this.f21112b) {
-                    this.f21113c.f21244x.setVisibility(0);
-                    return;
-                }
-                return;
         }
     }
 }

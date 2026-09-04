@@ -1,48 +1,32 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.widget.FrameLayout;
-public final class ua implements Runnable {
-    public final int f29164a;
-    public final ic f29165b;
+import android.widget.LinearLayout;
+public abstract class ua extends bb {
+    public final LinearLayout X;
+    public FrameLayout Y;
+    public di.d Z;
 
-    public ua(ic icVar, int i10) {
-        this.f29164a = i10;
-        this.f29165b = icVar;
+    public ua(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, null, false, false, f6Var);
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.X = linearLayout;
+        linearLayout.setOrientation(1);
     }
 
     @Override
-    public final void run() {
-        switch (this.f29164a) {
-            case 0:
-                this.f29165b.b();
-                return;
-            case 1:
-                ic icVar = this.f29165b;
-                FrameLayout frameLayout = icVar.h;
-                nb nbVar = icVar.e;
-                fb fbVar = icVar.f25677p;
-                if (fbVar != null && !nbVar.top) {
-                    fbVar.c(0.0f);
-                    icVar.f25677p.d(icVar);
-                }
-                nbVar.transitionRunningExit = false;
-                nbVar.onExitTransitionEnd();
-                nbVar.onHide();
-                frameLayout.removeView(icVar.f25668f);
-                frameLayout.removeOnLayoutChangeListener(icVar.f25667c);
-                nbVar.onDetach();
-                Runnable runnable = icVar.v;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                ic icVar2 = this.f29165b;
-                FrameLayout frameLayout2 = icVar2.h;
-                frameLayout2.removeView(icVar2.f25668f);
-                frameLayout2.removeOnLayoutChangeListener(icVar2.f25667c);
-                return;
-        }
+    public final void setTitle(CharSequence charSequence) {
+        this.f24647e.setTitle(charSequence);
+    }
+
+    @Override
+    public final kl0 v(ll0 ll0Var) {
+        return new hg.n0(this, 1);
+    }
+
+    @Override
+    public final CharSequence y() {
+        return null;
     }
 }

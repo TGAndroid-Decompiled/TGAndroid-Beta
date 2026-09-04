@@ -1,19 +1,17 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class mf extends AnimatorListenerAdapter {
-    public final ChatActivityEnterView f27021a;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class mf extends org.telegram.ui.ActionBar.n1 {
+    public final ChatActivityEnterView f28440o;
 
-    public mf(ChatActivityEnterView chatActivityEnterView) {
-        this.f27021a = chatActivityEnterView;
+    public mf(ChatActivityEnterView chatActivityEnterView, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f28440o = chatActivityEnterView;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f27021a;
-        chatActivityEnterView.f22729e1.setAllowDraw(true);
-        chatActivityEnterView.J1.setTransformToSeekbar(1.0f);
-        chatActivityEnterView.x0();
+    public final void dismiss() {
+        d(true);
+        this.f28440o.J0.invalidate();
     }
 }

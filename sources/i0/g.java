@@ -1,13 +1,13 @@
 package i0;
 
-import a0.k;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.net.Uri;
+import android.os.ParcelFileDescriptor;
+import android.system.ErrnoException;
+import android.system.Os;
+import android.system.OsConstants;
 import android.util.Log;
-import j7.a8;
-import j7.b8;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,135 +15,142 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.nio.ByteBuffer;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
-import java.util.List;
-public final class g extends a8 {
-    public static final Class f7207a;
-    public static final Constructor f7208b;
-    public static final Method f7209c;
-    public static final Method d;
+import v7.h8;
+import v7.i8;
+public class g extends h8 {
+    public static Class f11433a = null;
+    public static Constructor f11434b = null;
+    public static Method f11435c = null;
+    public static Method d = null;
+    public static boolean f11436e = false;
 
-    static {
-        Class<?> cls;
+    public static boolean g(Object obj, String str, int i10, boolean z10) {
+        h();
+        try {
+            return ((Boolean) f11435c.invoke(obj, str, Integer.valueOf(i10), Boolean.valueOf(z10))).booleanValue();
+        } catch (IllegalAccessException | InvocationTargetException e7) {
+            throw new RuntimeException(e7);
+        }
+    }
+
+    public static void h() {
         Method method;
+        Class<?> cls;
         Method method2;
+        if (f11436e) {
+            return;
+        }
+        f11436e = true;
         Constructor<?> constructor = null;
         try {
             cls = Class.forName("android.graphics.FontFamily");
             Constructor<?> constructor2 = cls.getConstructor(null);
-            Class<?> cls2 = Integer.TYPE;
-            method2 = cls.getMethod("addFontWeightStyle", ByteBuffer.class, cls2, List.class, cls2, Boolean.TYPE);
+            method2 = cls.getMethod("addFontWeightStyle", String.class, Integer.TYPE, Boolean.TYPE);
             method = Typeface.class.getMethod("createFromFamiliesWithDefault", Array.newInstance(cls, 1).getClass());
             constructor = constructor2;
-        } catch (ClassNotFoundException | NoSuchMethodException e) {
-            Log.e("TypefaceCompatApi24Impl", e.getClass().getName(), e);
-            cls = null;
+        } catch (ClassNotFoundException | NoSuchMethodException e7) {
+            Log.e("TypefaceCompatApi21Impl", e7.getClass().getName(), e7);
             method = null;
+            cls = null;
             method2 = null;
         }
-        f7208b = constructor;
-        f7207a = cls;
-        f7209c = method2;
+        f11434b = constructor;
+        f11433a = cls;
+        f11435c = method2;
         d = method;
     }
 
-    public static boolean g(Object obj, ByteBuffer byteBuffer, int i10, int i11, boolean z4) {
-        try {
-            return ((Boolean) f7209c.invoke(obj, byteBuffer, Integer.valueOf(i10), null, Integer.valueOf(i11), Boolean.valueOf(z4))).booleanValue();
-        } catch (IllegalAccessException | InvocationTargetException unused) {
-            return false;
-        }
-    }
-
-    public static Typeface h(Object obj) {
-        try {
-            Object newInstance = Array.newInstance(f7207a, 1);
-            Array.set(newInstance, 0, obj);
-            return (Typeface) d.invoke(null, newInstance);
-        } catch (IllegalAccessException | InvocationTargetException unused) {
-            return null;
-        }
-    }
-
     @Override
-    public final Typeface a(Context context, h0.e eVar, Resources resources, int i10) {
-        Object obj;
+    public Typeface a(Context context, h0.e eVar, Resources resources, int i10) {
         h0.f[] fVarArr;
-        MappedByteBuffer mappedByteBuffer;
-        FileInputStream fileInputStream;
+        h();
         try {
-            obj = f7208b.newInstance(null);
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
-            obj = null;
-        }
-        if (obj != null) {
-            for (h0.f fVar : eVar.f6847a) {
-                int i11 = fVar.f6851f;
-                File d10 = b8.d(context);
-                if (d10 != null) {
-                    try {
-                        if (b8.b(d10, resources, i11)) {
-                            try {
-                                fileInputStream = new FileInputStream(d10);
-                            } catch (IOException unused2) {
-                                mappedByteBuffer = null;
-                            }
-                            try {
-                                FileChannel channel = fileInputStream.getChannel();
-                                mappedByteBuffer = channel.map(FileChannel.MapMode.READ_ONLY, 0L, channel.size());
-                                fileInputStream.close();
-                                if (mappedByteBuffer != null && g(obj, mappedByteBuffer, fVar.e, fVar.f6849b, fVar.f6850c)) {
-                                }
-                            } finally {
-                                break;
-                            }
-                        }
-                    } finally {
-                        d10.delete();
-                    }
+            Object newInstance = f11434b.newInstance(null);
+            for (h0.f fVar : eVar.f10801a) {
+                File d10 = i8.d(context);
+                if (d10 == null) {
+                    return null;
                 }
-                mappedByteBuffer = null;
-                if (mappedByteBuffer != null) {
+                try {
+                    if (!i8.b(d10, resources, fVar.f10806f)) {
+                        return null;
+                    }
+                    if (!g(newInstance, d10.getPath(), fVar.f10803b, fVar.f10804c)) {
+                        return null;
+                    }
+                    d10.delete();
+                } catch (RuntimeException unused) {
+                    return null;
+                } finally {
+                    d10.delete();
                 }
             }
-            return h(obj);
+            h();
+            try {
+                Object newInstance2 = Array.newInstance(f11433a, 1);
+                Array.set(newInstance2, 0, newInstance);
+                return (Typeface) d.invoke(null, newInstance2);
+            } catch (IllegalAccessException | InvocationTargetException e7) {
+                throw new RuntimeException(e7);
+            }
+        } catch (IllegalAccessException | InstantiationException | InvocationTargetException e10) {
+            throw new RuntimeException(e10);
         }
-        return null;
     }
 
     @Override
-    public final Typeface b(Context context, o0.i[] iVarArr, int i10) {
-        Object obj;
-        try {
-            obj = f7208b.newInstance(null);
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
-            obj = null;
-        }
-        if (obj != null) {
-            int i11 = 0;
-            k kVar = new k(0);
-            int length = iVarArr.length;
-            while (true) {
-                if (i11 < length) {
-                    o0.i iVar = iVarArr[i11];
-                    Uri uri = iVar.f16146a;
-                    ByteBuffer byteBuffer = (ByteBuffer) kVar.get(uri);
-                    if (byteBuffer == null) {
-                        byteBuffer = b8.e(context, uri);
-                        kVar.put(uri, byteBuffer);
+    public Typeface b(Context context, o0.i[] iVarArr, int i10) {
+        File file;
+        FileInputStream fileInputStream;
+        String readlink;
+        if (iVarArr.length >= 1) {
+            try {
+                ParcelFileDescriptor openFileDescriptor = context.getContentResolver().openFileDescriptor(f(iVarArr, i10).f16789a, "r", null);
+                if (openFileDescriptor == null) {
+                    if (openFileDescriptor != null) {
+                        openFileDescriptor.close();
+                        return null;
                     }
-                    if (byteBuffer == null || !g(obj, byteBuffer, iVar.f16147b, iVar.f16148c, iVar.d)) {
-                        break;
-                    }
-                    i11++;
                 } else {
-                    Typeface h = h(obj);
-                    if (h != null) {
-                        return Typeface.create(h, i10);
+                    try {
+                        readlink = Os.readlink("/proc/self/fd/" + openFileDescriptor.getFd());
+                    } catch (ErrnoException unused) {
                     }
+                    try {
+                        if (OsConstants.S_ISREG(Os.stat(readlink).st_mode)) {
+                            file = new File(readlink);
+                            if (file != null && file.canRead()) {
+                                Typeface createFromFile = Typeface.createFromFile(file);
+                                openFileDescriptor.close();
+                                return createFromFile;
+                            }
+                            fileInputStream = new FileInputStream(openFileDescriptor.getFileDescriptor());
+                            Typeface d10 = d(context, fileInputStream);
+                            fileInputStream.close();
+                            openFileDescriptor.close();
+                            return d10;
+                        }
+                        Typeface d102 = d(context, fileInputStream);
+                        fileInputStream.close();
+                        openFileDescriptor.close();
+                        return d102;
+                    } catch (Throwable th2) {
+                        try {
+                            fileInputStream.close();
+                        } catch (Throwable th3) {
+                            th2.addSuppressed(th3);
+                        }
+                        throw th2;
+                    }
+                    file = null;
+                    if (file != null) {
+                        Typeface createFromFile2 = Typeface.createFromFile(file);
+                        openFileDescriptor.close();
+                        return createFromFile2;
+                    }
+                    fileInputStream = new FileInputStream(openFileDescriptor.getFileDescriptor());
                 }
+            } catch (IOException unused2) {
             }
         }
         return null;

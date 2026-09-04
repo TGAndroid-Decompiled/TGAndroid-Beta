@@ -1,23 +1,27 @@
 package org.telegram.messenger;
+public final class z1 implements Runnable {
+    public final int f19768a;
+    public final DownloadController f19769b;
+    public final MessageObject f19770c;
 
-import android.os.Handler;
-import android.os.Message;
-public final class z1 implements Handler.Callback {
-    public final int f19069a;
-    public final Thread f19070b;
-
-    public z1(Thread thread, int i10) {
-        this.f19069a = i10;
-        this.f19070b = thread;
+    public z1(DownloadController downloadController, MessageObject messageObject, int i10) {
+        this.f19768a = i10;
+        this.f19769b = downloadController;
+        this.f19770c = messageObject;
     }
 
     @Override
-    public final boolean handleMessage(Message message) {
-        switch (this.f19069a) {
+    public final void run() {
+        switch (this.f19768a) {
             case 0:
-                return DispatchQueue.a((DispatchQueue) this.f19070b, message);
+                this.f19769b.lambda$startDownloadFile$4(this.f19770c);
+                return;
+            case 1:
+                this.f19769b.lambda$onDownloadFail$9(this.f19770c);
+                return;
             default:
-                return DispatchQueueMainThreadSync.b((DispatchQueueMainThreadSync) this.f19070b, message);
+                this.f19769b.lambda$onDownloadComplete$6(this.f19770c);
+                return;
         }
     }
 }

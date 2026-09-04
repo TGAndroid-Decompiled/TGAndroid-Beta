@@ -1,25 +1,17 @@
 package e3;
-public final class c {
-    public static final c f5089a;
-    public static final c f5090b;
-    public static final c f5091c;
-    public static final c[] d;
+public final class c implements a {
+    public final int f8813a;
+    public final int f8814b;
+    public final int f8815c;
 
-    static {
-        ?? r02 = new Enum("NETWORK_UNMETERED", 0);
-        f5089a = r02;
-        ?? r12 = new Enum("DEVICE_IDLE", 1);
-        f5090b = r12;
-        ?? r32 = new Enum("DEVICE_CHARGING", 2);
-        f5091c = r32;
-        d = new c[]{r02, r12, r32};
+    public c(int i10, int i11, int i12) {
+        this.f8813a = i10;
+        this.f8814b = i11;
+        this.f8815c = i12;
     }
 
-    public static c valueOf(String str) {
-        return (c) Enum.valueOf(c.class, str);
-    }
-
-    public static c[] values() {
-        return (c[]) d.clone();
+    @Override
+    public final int getType() {
+        return 1751742049;
     }
 }

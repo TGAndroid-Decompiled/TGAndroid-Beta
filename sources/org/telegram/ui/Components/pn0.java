@@ -1,51 +1,22 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class pn0 extends zw0 {
-    public final int H;
-    public final org.telegram.ui.zx I;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class pn0 extends e40 {
+    public final org.telegram.ui.ey f29443c0;
 
-    public pn0(org.telegram.ui.zx zxVar, Context context, u00 u00Var, int i10) {
-        super(context, u00Var, 1, null);
-        this.H = i10;
-        this.I = zxVar;
+    public pn0(org.telegram.ui.ey eyVar, ll0 ll0Var, Context context, int i10) {
+        super(ll0Var, context, i10);
+        this.f29443c0 = eyVar;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        switch (this.H) {
-            case 0:
-                if (this.I.J0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-            case 1:
-                if (this.I.J0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-            case 2:
-                if (this.I.J0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-            default:
-                if (this.I.J0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-        }
+    public final void N(boolean z10) {
+        super.N(z10);
+        ln0 ln0Var = this.f29443c0.f32966s0;
+        ln0Var.e(false, z10);
+        ln0Var.d.setText(LocaleController.getString(R.string.NoResult));
+        ln0Var.f32755e.setVisibility(8);
     }
 }

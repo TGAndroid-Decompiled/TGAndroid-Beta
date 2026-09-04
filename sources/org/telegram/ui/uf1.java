@@ -1,25 +1,40 @@
 package org.telegram.ui;
 
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class uf1 implements k11 {
-    public final TLRPC.TL_forumTopic f38808a;
-    public final vf1 f38809b;
-
-    public uf1(vf1 vf1Var, TLRPC.TL_forumTopic tL_forumTopic) {
-        this.f38809b = vf1Var;
-        this.f38808a = tL_forumTopic;
-    }
+import org.telegram.messenger.LocaleController;
+public final class uf1 extends FrameLayout {
+    public TextView f41085a;
+    public float f41086b;
+    public boolean f41087c;
 
     @Override
-    public final void b0() {
-        yf1 yf1Var = this.f38809b.f39087a;
-        TLRPC.TL_forumTopic tL_forumTopic = this.f38808a;
-        yf1.U(yf1Var, tL_forumTopic.f19211id);
-        AndroidUtilities.runOnUIThread(new b11(25, this, tL_forumTopic), 300L);
-    }
-
-    @Override
-    public final void v(lk0 lk0Var) {
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        int i10 = 1;
+        if (this.f41087c) {
+            float f7 = this.f41086b + 0.013333334f;
+            this.f41086b = f7;
+            if (f7 > 1.0f) {
+                this.f41087c = false;
+                this.f41086b = 1.0f;
+            }
+        } else {
+            float f10 = this.f41086b - 0.013333334f;
+            this.f41086b = f10;
+            if (f10 < 0.0f) {
+                this.f41087c = true;
+                this.f41086b = 0.0f;
+            }
+        }
+        TextView textView = this.f41085a;
+        float interpolation = org.telegram.ui.Components.pr.f29466f.getInterpolation(this.f41086b) * AndroidUtilities.dp(8.0f);
+        if (LocaleController.isRTL) {
+            i10 = -1;
+        }
+        textView.setTranslationX(interpolation * i10);
+        invalidate();
     }
 }

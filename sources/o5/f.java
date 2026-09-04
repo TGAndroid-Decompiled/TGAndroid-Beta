@@ -1,60 +1,10 @@
 package o5;
+public final class f {
+    public final long f16973a;
+    public final long f16974b;
 
-import android.os.Parcel;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.common.api.Status;
-public final class f extends a7.c implements j {
-    public final int f16433b;
-    public final g f16434c;
-
-    public f(g gVar, int i10) {
-        super("com.google.android.gms.auth.api.signin.internal.ISignInCallbacks", 10);
-        this.f16433b = i10;
-        this.f16434c = gVar;
-    }
-
-    @Override
-    public final boolean G0(int i10, Parcel parcel, Parcel parcel2) {
-        switch (i10) {
-            case 101:
-                GoogleSignInAccount googleSignInAccount = (GoogleSignInAccount) w6.f.a(parcel, GoogleSignInAccount.CREATOR);
-                Status status = (Status) w6.f.a(parcel, Status.CREATOR);
-                w6.f.b(parcel);
-                throw new UnsupportedOperationException();
-            case 102:
-                w6.f.b(parcel);
-                f0((Status) w6.f.a(parcel, Status.CREATOR));
-                break;
-            case 103:
-                w6.f.b(parcel);
-                X((Status) w6.f.a(parcel, Status.CREATOR));
-                break;
-            default:
-                return false;
-        }
-        parcel2.writeNoException();
-        return true;
-    }
-
-    @Override
-    public void X(Status status) {
-        switch (this.f16433b) {
-            case 1:
-                this.f16434c.a(status);
-                return;
-            default:
-                throw new UnsupportedOperationException();
-        }
-    }
-
-    @Override
-    public void f0(Status status) {
-        switch (this.f16433b) {
-            case 0:
-                this.f16434c.a(status);
-                return;
-            default:
-                throw new UnsupportedOperationException();
-        }
+    public f(long j3, long j10) {
+        this.f16973a = j3;
+        this.f16974b = j10;
     }
 }

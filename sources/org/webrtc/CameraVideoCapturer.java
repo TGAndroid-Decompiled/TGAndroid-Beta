@@ -88,7 +88,7 @@ public interface CameraVideoCapturer extends VideoCapturer {
     }
 
     public interface CameraSwitchHandler {
-        void onCameraSwitchDone(boolean z4);
+        void onCameraSwitchDone(boolean z10);
 
         void onCameraSwitchError(String str);
     }

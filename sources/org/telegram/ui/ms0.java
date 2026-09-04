@@ -1,200 +1,99 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.text.TextUtils;
-import android.widget.FrameLayout;
+import android.widget.Toast;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class ms0 extends org.telegram.ui.Components.bd {
-    public final Path f36197q1;
-    public final PhotoViewer f36198r1;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_stats;
+public final class ms0 implements RequestDelegate {
+    public final int f38755a;
+    public final Object f38756b;
+    public final Object f38757c;
+    public final Object d;
 
-    public ms0(PhotoViewer photoViewer, Context context, pu0 pu0Var, org.telegram.ui.Components.qv0 qv0Var, FrameLayout frameLayout, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.Components.ba baVar, tq0 tq0Var) {
-        super(context, pu0Var, qv0Var, frameLayout, f6Var, baVar, tq0Var);
-        this.f36198r1 = photoViewer;
-        this.f36197q1 = new Path();
+    public ms0(Object obj, Object obj2, Object obj3, int i10) {
+        this.f38755a = i10;
+        this.f38756b = obj;
+        this.f38757c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void A() {
-        PhotoViewer.W(this.f36198r1);
-    }
-
-    @Override
-    public final void B() {
-        z();
-        ns0 ns0Var = this.f36198r1.S1;
-        if (ns0Var != null) {
-            ns0Var.z();
-        }
-    }
-
-    @Override
-    public final boolean G() {
-        ou0 ou0Var = this.f36198r1.d;
-        if (ou0Var != null && ou0Var.l()) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void I() {
-        boolean z4;
-        PhotoViewer photoViewer = this.f36198r1;
-        ou0 ou0Var = photoViewer.d;
-        if (ou0Var != null && ou0Var.l() && (photoViewer.R1.I.c() || (!photoViewer.f31796o1 && !TextUtils.isEmpty(photoViewer.f1().getText())))) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        D(z4, true);
-    }
-
-    @Override
-    public final boolean e() {
-        PhotoViewer photoViewer = this.f36198r1;
-        org.telegram.ui.Components.ic icVar = photoViewer.f31767k7;
-        if (icVar != null && org.telegram.ui.Components.ic.f25664w == icVar) {
-            return false;
-        }
-        return photoViewer.T2(photoViewer.f31679b0);
-    }
-
-    @Override
-    public final boolean g() {
-        return true;
-    }
-
-    @Override
-    public final void h(org.telegram.ui.Components.fa faVar, Canvas canvas, RectF rectF, float f10, boolean z4, float f11, float f12, boolean z10) {
-        int i10;
-        int i11;
-        boolean z11;
-        canvas.save();
-        Path path = this.f36197q1;
-        path.rewind();
-        path.addRoundRect(rectF, f10, f10, Path.Direction.CW);
-        canvas.clipPath(path);
-        PhotoViewer photoViewer = this.f36198r1;
-        if (z10) {
-            canvas.translate(((-getX()) - photoViewer.U1.getX()) + f11, ((-getY()) - photoViewer.U1.getY()) + f12);
-        } else {
-            canvas.translate(f11, f12);
-        }
-        if (z4) {
-            i10 = -8882056;
-        } else {
-            i10 = -14277082;
-        }
-        int l1 = org.telegram.ui.ActionBar.j6.l1(1.0f, i10);
-        if (z10) {
-            if (z4) {
-                i11 = 0;
-            } else {
-                i11 = 855638016;
-            }
-        } else {
-            i11 = 1140850688;
-        }
-        int l12 = org.telegram.ui.ActionBar.j6.l1(1.0f, i11);
-        boolean z12 = !z4;
-        if (!z4 && z10) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        photoViewer.T0(canvas, faVar, l1, l12, false, z12, z11);
-        canvas.restore();
-    }
-
-    @Override
-    public final void invalidate() {
-        int i10;
-        if (SharedConfig.photoViewerBlur && ((i10 = this.f36198r1.f31764k4) == 1 || i10 == 2 || i10 == 3)) {
-            return;
-        }
-        super.invalidate();
-    }
-
-    @Override
-    public final boolean l(float f10, float f11) {
-        if (!this.m0 && this.f36198r1.f31827r4 != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void setText(CharSequence charSequence) {
-        super.setText(charSequence);
-        I();
-    }
-
-    @Override
-    public final void u(float f10) {
-        int i10;
-        int i11;
-        super.u(f10);
-        PhotoViewer photoViewer = this.f36198r1;
-        org.telegram.ui.ActionBar.l0 l0Var = photoViewer.f31680b1;
-        float f11 = 1.0f - f10;
-        int i12 = 0;
-        if (l0Var.getTag() != null) {
-            i10 = 1;
-        } else {
-            i10 = 0;
-        }
-        l0Var.setAlpha(i10 * f11);
-        org.telegram.ui.Components.h90 h90Var = photoViewer.f31690c1;
-        if (h90Var.getTag() != null) {
-            i11 = 1;
-        } else {
-            i11 = 0;
-        }
-        h90Var.setAlpha(i11 * f11);
-        FrameLayout frameLayout = photoViewer.N7;
-        if (frameLayout.getTag() != null) {
-            i12 = 1;
-        }
-        frameLayout.setAlpha(f11 * i12);
-    }
-
-    @Override
-    public final void w() {
-        this.J.getAdapter().f44901c = false;
-        this.J.getAdapter().d = false;
-        this.J.getAdapter().e = false;
-        PhotoViewer photoViewer = this.f36198r1;
-        boolean z4 = true;
-        if (photoViewer.f31746i4 != null) {
-            this.J.getAdapter().f44910j0 = false;
-            this.J.getAdapter().W(photoViewer.f31746i4.W7);
-            tf.u0 adapter = this.J.getAdapter();
-            if (photoViewer.f31746i4.e == null) {
-                z4 = false;
-            }
-            adapter.f44900b0 = z4;
-        } else {
-            this.J.getAdapter().f44910j0 = true;
-            this.J.getAdapter().W(null);
-            this.J.getAdapter().f44900b0 = false;
-        }
-        this.J.getAdapter().f44902c0 = false;
-    }
-
-    @Override
-    public final void x(int r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ms0.x(int):void");
-    }
-
-    @Override
-    public final void y() {
-        org.telegram.ui.Components.zh zhVar = this.J;
-        if (zhVar != null) {
-            zhVar.setTranslationY(((-getEditTextHeight()) - AndroidUtilities.dp(14.0f)) - this.I.f41779l);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f38755a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new es0((rs0) this.f38756b, tLObject, (UserConfig) this.f38757c, (TLRPC.Photo) this.d, 1));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new h90((Object) ((zx0) this.f38756b), tLObject, (Object) ((TLRPC.UserFull) this.f38757c), (Object) ((TL_account.TL_birthday) this.d), tL_error, 17));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new es0((PrivacySettingsActivity) this.f38756b, (org.telegram.ui.ActionBar.b2) this.f38757c, tLObject, (TL_account.setAccountTTL) this.d, 4));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new h90((Object) ((ProfileActivity) this.f38756b), tLObject, (Object) ((TLRPC.UserFull) this.f38757c), (Object) ((TL_account.TL_birthday) this.d), tL_error, 21));
+                return;
+            case 4:
+                AndroidUtilities.runOnUIThread(new h90((Object) ((ProfileActivity) this.f38756b), tLObject, (Object) ((TLRPC.TL_username) this.f38757c), (Object) ((zz0) this.d), tL_error, 19));
+                return;
+            case 5:
+                AndroidUtilities.runOnUIThread(new h90((Object) ((ProfileActivity) this.f38756b), tLObject, (Object) ((String) this.f38757c), (Object) ((TLRPC.User) this.d), tL_error, 20));
+                return;
+            case 6:
+                AndroidUtilities.runOnUIThread(new es0((i01) this.f38756b, tLObject, (UserConfig) this.f38757c, (TLRPC.Photo) this.d, 10));
+                return;
+            case 7:
+                AndroidUtilities.runOnUIThread(new h90((Object) ((t71) this.f38756b), tL_error, tLObject, (Object) ((TwoStepVerificationActivity) this.f38757c), (Object) ((TLRPC.User) this.d), 24));
+                return;
+            case 8:
+                AndroidUtilities.runOnUIThread(new es0((SessionsActivity) this.f38756b, (org.telegram.ui.ActionBar.b2) this.f38757c, tL_error, (TLRPC.TL_authorization) this.d, 13));
+                return;
+            case 9:
+                AndroidUtilities.runOnUIThread(new es0((SessionsActivity) this.f38756b, (org.telegram.ui.ActionBar.b2) this.f38757c, tL_error, (TLRPC.TL_webAuthorization) this.d, 12));
+                return;
+            case 10:
+                ma1 ma1Var = (ma1) this.f38756b;
+                String str = (String) this.f38757c;
+                ab1 ab1Var = (ab1) this.d;
+                boolean z10 = true;
+                kg.b bVar = null;
+                if (tLObject instanceof TL_stats.TL_statsGraph) {
+                    try {
+                        JSONObject jSONObject = new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data);
+                        na1 na1Var = ma1Var.f38257r;
+                        int i10 = na1Var.f38900i;
+                        if (na1Var != ma1Var.f38605w.f34719w) {
+                            z10 = false;
+                        }
+                        bVar = bb1.e0(jSONObject, i10, z10);
+                    } catch (JSONException e7) {
+                        e7.printStackTrace();
+                    }
+                } else if (tLObject instanceof TL_stats.TL_statsGraphError) {
+                    Toast.makeText(ma1Var.getContext(), ((TL_stats.TL_statsGraphError) tLObject).error, 1).show();
+                }
+                AndroidUtilities.runOnUIThread(new es0(ma1Var, bVar, str, ab1Var, 16));
+                return;
+            case 11:
+                AndroidUtilities.runOnUIThread(new es0((we1) this.f38756b, tLObject, (String) this.f38757c, (org.telegram.ui.ActionBar.b2) this.d, 18));
+                return;
+            default:
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f38756b;
+                byte[] bArr = (byte[]) this.f38757c;
+                byte[] bArr2 = (byte[]) this.d;
+                if (tL_error == null) {
+                    Utilities.globalQueue.postRunnable(new es0(twoStepVerificationActivity, bArr, tLObject, bArr2, 19));
+                    return;
+                } else {
+                    AndroidUtilities.runOnUIThread(new w81(17, twoStepVerificationActivity, tL_error));
+                    return;
+                }
         }
     }
 }

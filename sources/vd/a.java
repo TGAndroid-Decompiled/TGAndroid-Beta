@@ -1,11 +1,6 @@
 package vd;
 
-import java.util.concurrent.Executor;
-public final class a implements Executor {
-    public static final a f45735a = new Object();
-
-    @Override
-    public final void execute(Runnable runnable) {
-        runnable.run();
-    }
+import java.util.List;
+public interface a {
+    List getAnnotations();
 }

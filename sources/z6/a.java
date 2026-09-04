@@ -1,16 +1,7 @@
 package z6;
 
-import android.os.Build;
+import k6.c;
 public abstract class a {
-    public static final int f47449a;
-
-    static {
-        int i10;
-        if (Build.VERSION.SDK_INT >= 31) {
-            i10 = 33554432;
-        } else {
-            i10 = 0;
-        }
-        f47449a = i10;
-    }
+    public static final c f50770a = new c("is_user_verifying_platform_authenticator_available_for_credential", 1);
+    public static final c f50771b = new c("is_user_verifying_platform_authenticator_available", 1);
 }

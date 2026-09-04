@@ -1,21 +1,31 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class yy0 extends org.telegram.ui.Components.lq0 {
-    public final zy0 Y0;
+import android.view.View;
+public final class yy0 implements View.OnClickListener {
+    public final int f43238a;
+    public final ProfileActivity f43239b;
+    public final String f43240c;
 
-    public yy0(zy0 zy0Var, Activity activity, String str) {
-        super(activity, null, str, false, null, false, null);
-        this.Y0 = zy0Var;
+    public yy0(ProfileActivity profileActivity, String str, int i10) {
+        this.f43238a = i10;
+        this.f43239b = profileActivity;
+        this.f43240c = str;
     }
 
     @Override
-    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z4) {
-        if (!z4) {
-            return;
+    public final void onClick(View view) {
+        switch (this.f43238a) {
+            case 0:
+                ProfileActivity profileActivity = this.f43239b;
+                Activity parentActivity = profileActivity.getParentActivity();
+                of.f.s(parentActivity, "https://" + profileActivity.getMessagesController().linkPrefix + "/nft/" + this.f43240c);
+                return;
+            default:
+                ProfileActivity profileActivity2 = this.f43239b;
+                Activity parentActivity2 = profileActivity2.getParentActivity();
+                of.f.s(parentActivity2, "https://" + profileActivity2.getMessagesController().linkPrefix + "/nft/" + this.f43240c);
+                return;
         }
-        AndroidUtilities.runOnUIThread(new gr0(this, hVar, i10, 24), 250L);
     }
 }

@@ -1,91 +1,90 @@
 package ig;
 
-import k7.b6;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.p9;
-import org.telegram.ui.Components.z8;
-public final class f extends e {
-    @Override
-    public final void d() {
-        int i10;
-        int i11;
-        float f10;
-        float f11;
-        float f12;
-        float f13;
-        int i12 = 3;
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
+import bi.v7;
+import java.util.ArrayList;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
+public final class f {
+    public static volatile f[] f12058g = new f[4];
+    public static final Object[] h = new Object[4];
+    public final int f12059a;
+    public long f12060b;
+    public TL_account.connectedBots f12061c;
+    public final ArrayList d = new ArrayList();
+    public boolean f12062e;
+    public boolean f12063f;
+
+    static {
+        for (int i10 = 0; i10 < 4; i10++) {
+            h[i10] = new Object();
         }
-        this.f7483c.setLayoutParams(b6.d(40, 40.0f, i10 | 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        boolean z4 = LocaleController.isRTL;
-        if (z4) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        int i13 = i11 | 16;
-        if (z4) {
-            f10 = 20.0f;
-        } else {
-            f10 = 69.0f;
-        }
-        if (z4) {
-            f11 = 69.0f;
-        } else {
-            f11 = 20.0f;
-        }
-        this.d.setLayoutParams(b6.d(-1, -2.0f, i13, f10, 0.0f, f11, 0.0f));
-        boolean z10 = LocaleController.isRTL;
-        if (z10) {
-            i12 = 5;
-        }
-        int i14 = i12 | 16;
-        if (z10) {
-            f12 = 20.0f;
-        } else {
-            f12 = 69.0f;
-        }
-        if (z10) {
-            f13 = 69.0f;
-        } else {
-            f13 = 20.0f;
-        }
-        this.e.setLayoutParams(b6.d(-1, -2.0f, i14, f12, 0.0f, f13, 0.0f));
     }
 
-    public void setGiveaway(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.e.setTextColor(j6.v0(j6.f20131r5, this.f7481a));
-        boolean z4 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
-        c cVar = this.d;
-        z8 z8Var = this.f7482b;
-        if (z4) {
-            TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
-            z8Var.g(26);
-            cVar.k(LocaleController.formatPluralStringComma("BoostingStarsPreparedGiveawaySubscriptionsPlural", (int) tL_prepaidStarsGiveaway.stars));
-            setSubtitle(LocaleController.formatPluralString("AmongWinners", tL_prepaidStarsGiveaway.quantity, new Object[0]));
-        } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
-            cVar.k(LocaleController.getString(R.string.BoostingPreparedGiveawayOne));
-            z8Var.g(16);
-            TL_stories.TL_prepaidGiveaway tL_prepaidGiveaway = (TL_stories.TL_prepaidGiveaway) prepaidGiveaway;
-            int i10 = tL_prepaidGiveaway.months;
-            if (i10 == 12) {
-                z8Var.i(-31392, -2796986);
-            } else if (i10 == 6) {
-                z8Var.i(-10703110, -12481584);
-            } else {
-                z8Var.i(-6631068, -11945404);
+    public f(int i10) {
+        this.f12059a = i10;
+    }
+
+    public static f a(int i10) {
+        f fVar;
+        f fVar2 = f12058g[i10];
+        if (fVar2 == null) {
+            synchronized (h[i10]) {
+                try {
+                    fVar = f12058g[i10];
+                    if (fVar == null) {
+                        f[] fVarArr = f12058g;
+                        f fVar3 = new f(i10);
+                        fVarArr[i10] = fVar3;
+                        fVar = fVar3;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
             }
-            setSubtitle(LocaleController.formatPluralString("BoostingPreparedGiveawaySubscriptionsPlural", prepaidGiveaway.quantity, LocaleController.formatPluralString("Months", tL_prepaidGiveaway.months, new Object[0])));
+            return fVar;
         }
-        p9 p9Var = this.f7483c;
-        p9Var.setImageDrawable(z8Var);
-        p9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
+        return fVar2;
+    }
+
+    public final void b() {
+        this.f12063f = false;
+        c(null);
+    }
+
+    public final void c(Utilities.Callback callback) {
+        boolean z10;
+        if (callback != null) {
+            this.d.add(callback);
+        }
+        if (!this.f12062e) {
+            if (System.currentTimeMillis() - this.f12060b <= 60000 && (z10 = this.f12063f)) {
+                if (z10) {
+                    d();
+                    return;
+                }
+                return;
+            }
+            this.f12062e = true;
+            ConnectionsManager.getInstance(this.f12059a).sendRequest(new TL_account.getConnectedBots(), new v7(this, 11));
+        }
+    }
+
+    public final void d() {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.d;
+            if (i10 < arrayList.size()) {
+                if (arrayList.get(i10) != null) {
+                    ((Utilities.Callback) arrayList.get(i10)).run(this.f12061c);
+                }
+                i10++;
+            } else {
+                arrayList.clear();
+                NotificationCenter.getInstance(this.f12059a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updatedChatbot, new Object[0]);
+                return;
+            }
+        }
     }
 }

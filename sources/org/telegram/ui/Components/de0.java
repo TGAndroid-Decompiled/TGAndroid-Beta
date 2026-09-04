@@ -1,171 +1,189 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import java.util.ArrayList;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-public final class de0 {
-    public Path f24258a;
-    public float f24259b;
-    public float f24260c;
-    public float d;
-    public float e;
-    public float f24261f;
-    public ArrayList f24262g;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.LaunchActivity;
+public abstract class de0 {
+    public static int f25375a = 1500;
 
-    public final void a(String str, float f10) {
-        float f11 = this.e;
-        float f12 = this.d;
-        float f13 = this.f24260c;
-        try {
-            ?? obj = new Object();
-            obj.f23365a = new ArrayList();
-            obj.f23366b = f10 * this.f24261f;
-            String[] split = str.split(" ");
-            int i10 = 0;
-            while (i10 < split.length) {
-                char charAt = split[i10].charAt(0);
-                if (charAt != 'C') {
-                    if (charAt != 'L') {
-                        if (charAt == 'M') {
-                            ?? obj2 = new Object();
-                            obj2.f23934a = (Float.parseFloat(split[i10 + 1]) + f12) * f13;
-                            i10 += 2;
-                            obj2.f23935b = (Float.parseFloat(split[i10]) + f11) * f13;
-                            obj.f23365a.add(obj2);
-                        }
-                    } else {
-                        ?? obj3 = new Object();
-                        obj3.f23659a = (Float.parseFloat(split[i10 + 1]) + f12) * f13;
-                        i10 += 2;
-                        obj3.f23660b = (Float.parseFloat(split[i10]) + f11) * f13;
-                        obj.f23365a.add(obj3);
-                    }
-                } else {
-                    ?? obj4 = new Object();
-                    obj4.f31366c = (Float.parseFloat(split[i10 + 1]) + f12) * f13;
-                    obj4.d = (Float.parseFloat(split[i10 + 2]) + f11) * f13;
-                    obj4.e = (Float.parseFloat(split[i10 + 3]) + f12) * f13;
-                    obj4.f31367f = (Float.parseFloat(split[i10 + 4]) + f11) * f13;
-                    obj4.f31364a = (Float.parseFloat(split[i10 + 5]) + f12) * f13;
-                    i10 += 6;
-                    obj4.f31365b = (Float.parseFloat(split[i10]) + f11) * f13;
-                    obj.f23365a.add(obj4);
-                }
+    public static void a(String[] strArr, Activity activity, Utilities.Callback callback) {
+        int length = strArr.length;
+        boolean z10 = false;
+        int i10 = 0;
+        while (true) {
+            if (i10 >= length) {
+                break;
+            } else if (activity.checkSelfPermission(strArr[i10]) == 0) {
+                z10 = true;
+                break;
+            } else {
                 i10++;
             }
-            this.f24262g.add(obj);
-        } catch (Exception e) {
-            FileLog.e(e);
         }
+        callback.run(Boolean.valueOf(z10));
     }
 
-    public final void b(Canvas canvas, Paint paint, float f10) {
-        ae0 ae0Var;
-        ae0 ae0Var2;
-        Object obj;
-        float f11;
-        ArrayList arrayList = this.f24262g;
-        Path path = this.f24258a;
-        if (this.f24259b != f10) {
-            this.f24259b = f10;
-            int size = arrayList.size();
-            ae0 ae0Var3 = null;
-            ae0 ae0Var4 = null;
-            for (int i10 = 0; i10 < size; i10++) {
-                ae0 ae0Var5 = (ae0) arrayList.get(i10);
-                if ((ae0Var4 == null || ae0Var4.f23366b < ae0Var5.f23366b) && ae0Var5.f23366b <= f10) {
-                    ae0Var4 = ae0Var5;
+    public static void b(String[] strArr, Activity activity, Utilities.Callback callback) {
+        int length = strArr.length;
+        boolean z10 = false;
+        int i10 = 0;
+        while (true) {
+            if (i10 < length) {
+                if (activity.checkSelfPermission(strArr[i10]) != 0) {
+                    break;
                 }
-                if ((ae0Var3 == null || ae0Var3.f23366b > ae0Var5.f23366b) && ae0Var5.f23366b >= f10) {
-                    ae0Var3 = ae0Var5;
-                }
-            }
-            if (ae0Var3 == ae0Var4) {
-                ae0Var4 = null;
-            }
-            if (ae0Var4 != null && ae0Var3 == null) {
-                ae0Var = ae0Var4;
-                ae0Var2 = null;
+                i10++;
             } else {
-                ae0Var = ae0Var3;
-                ae0Var2 = ae0Var4;
+                z10 = true;
+                break;
             }
-            if (ae0Var != null) {
-                ArrayList arrayList2 = ae0Var.f23365a;
-                if (ae0Var2 == null || ae0Var2.f23365a.size() == arrayList2.size()) {
-                    path.reset();
-                    int size2 = arrayList2.size();
-                    for (int i11 = 0; i11 < size2; i11++) {
-                        if (ae0Var2 != null) {
-                            obj = ae0Var2.f23365a.get(i11);
-                        } else {
-                            obj = null;
-                        }
-                        Object obj2 = arrayList2.get(i11);
-                        if (obj == null || obj.getClass() == obj2.getClass()) {
-                            if (ae0Var2 != null) {
-                                float f12 = ae0Var2.f23366b;
-                                f11 = (f10 - f12) / (ae0Var.f23366b - f12);
-                            } else {
-                                f11 = 1.0f;
-                            }
-                            if (obj2 instanceof ce0) {
-                                ce0 ce0Var = (ce0) obj2;
-                                ce0 ce0Var2 = (ce0) obj;
-                                if (ce0Var2 != null) {
-                                    float f13 = ce0Var2.f23934a;
-                                    float dpf2 = AndroidUtilities.dpf2(((ce0Var.f23934a - f13) * f11) + f13);
-                                    float f14 = ce0Var2.f23935b;
-                                    path.moveTo(dpf2, AndroidUtilities.dpf2(((ce0Var.f23935b - f14) * f11) + f14));
-                                } else {
-                                    path.moveTo(AndroidUtilities.dpf2(ce0Var.f23934a), AndroidUtilities.dpf2(ce0Var.f23935b));
-                                }
-                            } else if (obj2 instanceof be0) {
-                                be0 be0Var = (be0) obj2;
-                                be0 be0Var2 = (be0) obj;
-                                if (be0Var2 != null) {
-                                    float f15 = be0Var2.f23659a;
-                                    float dpf22 = AndroidUtilities.dpf2(((be0Var.f23659a - f15) * f11) + f15);
-                                    float f16 = be0Var2.f23660b;
-                                    path.lineTo(dpf22, AndroidUtilities.dpf2(((be0Var.f23660b - f16) * f11) + f16));
-                                } else {
-                                    path.lineTo(AndroidUtilities.dpf2(be0Var.f23659a), AndroidUtilities.dpf2(be0Var.f23660b));
-                                }
-                            } else if (obj2 instanceof zd0) {
-                                zd0 zd0Var = (zd0) obj2;
-                                zd0 zd0Var2 = (zd0) obj;
-                                if (zd0Var2 != null) {
-                                    float f17 = zd0Var2.f31366c;
-                                    float dpf23 = AndroidUtilities.dpf2(((zd0Var.f31366c - f17) * f11) + f17);
-                                    float f18 = zd0Var2.d;
-                                    float dpf24 = AndroidUtilities.dpf2(((zd0Var.d - f18) * f11) + f18);
-                                    float f19 = zd0Var2.e;
-                                    float dpf25 = AndroidUtilities.dpf2(((zd0Var.e - f19) * f11) + f19);
-                                    float f20 = zd0Var2.f31367f;
-                                    float dpf26 = AndroidUtilities.dpf2(((zd0Var.f31367f - f20) * f11) + f20);
-                                    float f21 = zd0Var2.f31364a;
-                                    float dpf27 = AndroidUtilities.dpf2(((zd0Var.f31364a - f21) * f11) + f21);
-                                    float f22 = zd0Var2.f31365b;
-                                    path.cubicTo(dpf23, dpf24, dpf25, dpf26, dpf27, AndroidUtilities.dpf2(((zd0Var.f31365b - f22) * f11) + f22));
-                                } else {
-                                    path.cubicTo(AndroidUtilities.dpf2(zd0Var.f31366c), AndroidUtilities.dpf2(zd0Var.d), AndroidUtilities.dpf2(zd0Var.e), AndroidUtilities.dpf2(zd0Var.f31367f), AndroidUtilities.dpf2(zd0Var.f31364a), AndroidUtilities.dpf2(zd0Var.f31365b));
-                                }
-                            }
-                        } else {
+        }
+        callback.run(Boolean.valueOf(z10));
+    }
+
+    public static boolean c() {
+        Activity activity = LaunchActivity.G1;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        }
+        if (activity != null && Build.VERSION.SDK_INT >= 23) {
+            return activity.shouldShowRequestPermissionRationale("android.permission.POST_NOTIFICATIONS");
+        }
+        return false;
+    }
+
+    public static void d(int i10, int i11, String[] strArr, Utilities.Callback callback) {
+        Activity activity = LaunchActivity.G1;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        }
+        if (activity == null) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= 23) {
+            for (String str : strArr) {
+                if (activity.checkSelfPermission(str) != 0) {
+                    for (String str2 : strArr) {
+                        if (activity.shouldShowRequestPermissionRationale(str2)) {
+                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, null);
+                            alertDialog$Builder.m(i10, 72, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.L5, false), null);
+                            alertDialog$Builder.f20198a.T = AndroidUtilities.replaceTags(LocaleController.getString(i11));
+                            alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new k1(activity, 2));
+                            alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
+                            alertDialog$Builder.f20198a.show();
+                            callback.run(Boolean.FALSE);
                             return;
                         }
                     }
-                    path.close();
-                } else {
+                    g(strArr, new be0(strArr, activity, callback, 1));
                     return;
                 }
-            } else {
-                return;
+            }
+            callback.run(Boolean.TRUE);
+            return;
+        }
+        callback.run(Boolean.TRUE);
+    }
+
+    public static void e(int i10, int i11, String[] strArr, String[] strArr2, Utilities.Callback callback) {
+        Activity activity = LaunchActivity.G1;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        }
+        if (activity == null) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= 23) {
+            for (String str : strArr) {
+                if (activity.checkSelfPermission(str) == 0) {
+                    callback.run(Boolean.TRUE);
+                    return;
+                }
+            }
+            for (String str2 : strArr) {
+                if (!activity.shouldShowRequestPermissionRationale(str2)) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, null);
+                    alertDialog$Builder.m(i10, 72, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.L5, false), null);
+                    alertDialog$Builder.f20198a.T = AndroidUtilities.replaceTags(LocaleController.getString(i11));
+                    alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new k1(activity, 1));
+                    alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
+                    alertDialog$Builder.f20198a.show();
+                    callback.run(Boolean.FALSE);
+                    return;
+                }
+            }
+            g(strArr2, new be0(strArr2, activity, callback, 0));
+            return;
+        }
+        callback.run(Boolean.TRUE);
+    }
+
+    public static boolean f(String str) {
+        Activity activity = LaunchActivity.G1;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        }
+        if (activity == null) {
+            return false;
+        }
+        if (Build.VERSION.SDK_INT >= 23 && activity.checkSelfPermission(str) != 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public static void g(String[] strArr, Utilities.Callback callback) {
+        int i10;
+        Activity activity = LaunchActivity.G1;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        }
+        if (activity != null) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                int i11 = f25375a;
+                f25375a = i11 + 1;
+                NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = {new ce0(i11, callback, notificationCenterDelegateArr)};
+                NotificationCenter.getGlobalInstance().addObserver(notificationCenterDelegateArr[0], NotificationCenter.activityPermissionsGranted);
+                activity.requestPermissions(strArr, i11);
+            } else if (callback != null) {
+                int[] iArr = new int[strArr.length];
+                for (int i12 = 0; i12 < strArr.length; i12++) {
+                    if (f(strArr[i12])) {
+                        i10 = 0;
+                    } else {
+                        i10 = -1;
+                    }
+                    iArr[i12] = i10;
+                }
+                callback.run(iArr);
             }
         }
-        canvas.drawPath(path, paint);
+    }
+
+    public static void h() {
+        Activity activity = LaunchActivity.G1;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        }
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+        intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+        try {
+            activity.startActivity(intent);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+        }
     }
 }

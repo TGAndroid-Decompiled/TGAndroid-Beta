@@ -1,13 +1,12 @@
 package r0;
+public final class g {
+    public final f f44684a;
 
-import android.content.ClipData;
-import android.view.ContentInfo;
-public interface g {
-    ClipData a();
+    public g(f fVar) {
+        this.f44684a = fVar;
+    }
 
-    ContentInfo d();
-
-    int e();
-
-    int f();
+    public final String toString() {
+        return this.f44684a.toString();
+    }
 }

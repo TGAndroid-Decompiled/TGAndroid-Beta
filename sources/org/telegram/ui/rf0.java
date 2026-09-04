@@ -1,68 +1,38 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class rf0 extends org.telegram.ui.Components.voip.n2 {
-    public final int e;
-    public final org.telegram.ui.Components.vv0 f37825f;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class rf0 implements RequestDelegate {
+    public final int f40164a;
+    public final zf0 f40165b;
+    public final Bundle f40166c;
 
-    public rf0(tf0 tf0Var, Context context, int i10) {
-        super(tf0Var.f38503p0, context);
-        this.e = i10;
-        switch (i10) {
-            case 1:
-                this.f37825f = tf0Var;
-                super(tf0Var.f38503p0, context);
-                return;
-            default:
-                this.f37825f = tf0Var;
-                return;
-        }
+    public rf0(zf0 zf0Var, Bundle bundle, int i10) {
+        this.f40164a = i10;
+        this.f40165b = zf0Var;
+        this.f40166c = bundle;
     }
 
     @Override
-    public final boolean a() {
-        switch (this.e) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f40164a) {
             case 0:
-                return ((tf0) this.f37825f).f38493f0;
-            case 1:
-                return ((tf0) this.f37825f).f38493f0;
+                zf0 zf0Var = this.f40165b;
+                if (tLObject != null) {
+                    AndroidUtilities.runOnUIThread(new pf0(zf0Var, this.f40166c, tLObject, 1));
+                    return;
+                } else if (tL_error != null && tL_error.text != null) {
+                    AndroidUtilities.runOnUIThread(new r80(24, zf0Var, tL_error));
+                    return;
+                } else {
+                    return;
+                }
             default:
-                return ((re0) this.f37825f).J;
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.in0(this.f40165b, tL_error, this.f40166c, tLObject, 20));
+                return;
         }
-    }
-
-    @Override
-    public final boolean b() {
-        rf0 rf0Var;
-        switch (this.e) {
-            case 0:
-                if (getVisibility() == 0) {
-                    tf0 tf0Var = (tf0) this.f37825f;
-                    if (tf0Var.S <= 0 || tf0Var.O == null) {
-                        return true;
-                    }
-                }
-                return false;
-            case 1:
-                tf0 tf0Var2 = (tf0) this.f37825f;
-                if (isClickable() && getVisibility() == 0 && !tf0Var2.f38485a0 && (((rf0Var = tf0Var2.v) == null || rf0Var.getVisibility() == 8) && !tf0Var2.f38493f0)) {
-                    return true;
-                }
-                return false;
-            default:
-                if (getVisibility() == 0) {
-                    re0 re0Var = (re0) this.f37825f;
-                    if (re0Var.M <= 0 || re0Var.K == null) {
-                        return true;
-                    }
-                }
-                return false;
-        }
-    }
-
-    public rf0(re0 re0Var, Context context) {
-        super(re0Var.U, context);
-        this.e = 2;
-        this.f37825f = re0Var;
     }
 }

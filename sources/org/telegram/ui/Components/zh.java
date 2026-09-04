@@ -2,84 +2,69 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.KeyEvent;
-public final class zh extends qa0 {
-    public final int S;
-    public final KeyEvent.Callback T;
+import android.graphics.Color;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class zh extends View {
+    public final int f33156a;
+    public final vi f33157b;
 
-    public zh(KeyEvent.Callback callback, Context context, long j10, org.telegram.ui.ActionBar.p2 p2Var, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(context, j10, 0L, p2Var, f6Var);
-        this.S = i10;
-        this.T = callback;
+    public zh(vi viVar, Context context, int i10) {
+        super(context);
+        this.f33156a = i10;
+        this.f33157b = viVar;
     }
 
     @Override
-    public void f(Canvas canvas, Rect rect, float f10) {
-        switch (this.S) {
-            case 1:
-                ph.k kVar = (ph.k) this.T;
-                Paint paint = kVar.e;
-                RectF rectF = kVar.f41863w0;
-                rectF.set(rect);
-                if (kVar.g()) {
-                    kVar.h(kVar.Q, canvas, kVar.f41863w0, f10, false, -kVar.J.getX(), -kVar.J.getY(), false);
-                    return;
-                }
-                Paint c3 = kVar.Q.c(1.0f);
-                if (c3 == null) {
-                    paint.setAlpha(128);
-                    canvas.drawRoundRect(rectF, f10, f10, paint);
-                    return;
-                }
-                canvas.drawRoundRect(rectF, f10, f10, c3);
-                paint.setAlpha(80);
-                canvas.drawRoundRect(rectF, f10, f10, paint);
-                return;
-            default:
-                super.f(canvas, rect, f10);
-                return;
-        }
-    }
-
-    @Override
-    public boolean h() {
-        switch (this.S) {
-            case 1:
-                return true;
-            default:
-                return super.h();
-        }
-    }
-
-    @Override
-    public void i() {
-        switch (this.S) {
+    public void draw(Canvas canvas) {
+        switch (this.f33156a) {
             case 0:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((li) this.T).f26698g0;
-                if (chatAttachAlertPhotoLayout != null) {
-                    chatAttachAlertPhotoLayout.V();
-                    return;
-                }
+                super.draw(canvas);
+                this.f33157b.f31264b0.draw(canvas);
                 return;
             default:
+                super.draw(canvas);
                 return;
         }
     }
 
     @Override
-    public void n(boolean z4) {
-        switch (this.S) {
-            case 0:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((li) this.T).f26698g0;
-                if (chatAttachAlertPhotoLayout != null) {
-                    chatAttachAlertPhotoLayout.V();
-                    return;
-                }
+    public void onDraw(Canvas canvas) {
+        switch (this.f33156a) {
+            case 1:
+                vi viVar = this.f33157b;
+                String format = String.format("%d", Integer.valueOf(Math.max(1, viVar.f31340y0.getSelectedItemsCount())));
+                int ceil = (int) Math.ceil(viVar.J0.measureText(format));
+                int max = Math.max(AndroidUtilities.dp(16.0f) + ceil, AndroidUtilities.dp(24.0f));
+                int measuredWidth = getMeasuredWidth() / 2;
+                int themedColor = viVar.getThemedColor(org.telegram.ui.ActionBar.j6.C5);
+                viVar.J0.setColor(i0.a.k(themedColor, (int) (((viVar.V0 * 0.42d) + 0.58d) * Color.alpha(themedColor))));
+                viVar.L0.setColor(viVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20734h5));
+                int i10 = max / 2;
+                int i11 = measuredWidth - i10;
+                int i12 = i10 + measuredWidth;
+                viVar.K0.set(i11, 0.0f, i12, getMeasuredHeight());
+                canvas.drawRoundRect(viVar.K0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), viVar.L0);
+                viVar.L0.setColor(viVar.getThemedColor(org.telegram.ui.ActionBar.j6.W9));
+                viVar.K0.set(AndroidUtilities.dp(2.0f) + i11, AndroidUtilities.dp(2.0f), i12 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
+                canvas.drawRoundRect(viVar.K0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), viVar.L0);
+                canvas.drawText(format, measuredWidth - (ceil / 2), AndroidUtilities.dp(16.2f), viVar.J0);
                 return;
             default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onSizeChanged(int i10, int i11, int i12, int i13) {
+        switch (this.f33156a) {
+            case 0:
+                super.onSizeChanged(i10, i11, i12, i13);
+                this.f33157b.f31264b0.setBounds(0, (i11 - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(48.0f), i10, i11);
+                return;
+            default:
+                super.onSizeChanged(i10, i11, i12, i13);
                 return;
         }
     }

@@ -1,200 +1,213 @@
 package e3;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.util.Pair;
-import android.view.View;
-import gg.y1;
-import java.io.File;
-import java.util.ArrayList;
-import k9.b1;
-import lh.j;
-import lh.q;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.j5;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.ResultCallback;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c2;
-import org.telegram.ui.ActionBar.c4;
-import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Components.il0;
-import org.telegram.ui.Components.ir;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.e60;
-import org.telegram.ui.ig1;
-import org.telegram.ui.qy;
-import org.telegram.ui.vz0;
-import ph.y7;
-import y2.i;
-public final class f implements g3.b, f3.f, ba.a, ig1, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, c2, il0, MessagesController.IsInChatCheckedCallback {
-    public final int f5098a;
-    public final long f5099b;
-    public final Object f5100c;
-    public final Object d;
+import b2.r;
+import b2.r0;
+import b2.s;
+import com.google.android.gms.common.api.internal.w;
+import com.google.android.gms.internal.vision.e2;
+import e2.d0;
+import e2.v;
+import e9.a1;
+import e9.g0;
+import e9.i0;
+import e9.q;
+import java.nio.ByteOrder;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+public final class f implements a {
+    public final i0 f8833a;
+    public final int f8834b;
 
-    public f(Object obj, long j10, Object obj2, int i10) {
-        this.f5098a = i10;
-        this.f5100c = obj;
-        this.f5099b = j10;
-        this.d = obj2;
+    public f(int i10, a1 a1Var) {
+        this.f8834b = i10;
+        this.f8833a = a1Var;
     }
 
-    @Override
-    public boolean Z0(View view) {
-        return false;
-    }
-
-    @Override
-    public Object apply(Object obj) {
-        boolean z4;
-        String str = (String) this.f5100c;
-        SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
-        int i10 = ((b3.c) this.d).f1309a;
-        Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT 1 FROM log_event_dropped WHERE log_source = ? AND reason = ?", new String[]{str, Integer.toString(i10)});
-        try {
-            if (rawQuery.getCount() > 0) {
-                z4 = true;
+    public static f b(int i10, v vVar) {
+        String str;
+        int i11;
+        a gVar;
+        String str2;
+        int i12 = 4;
+        q.e(4, "initialCapacity");
+        Object[] objArr = new Object[4];
+        int i13 = vVar.f8791c;
+        int i14 = -2;
+        int i15 = 0;
+        while (vVar.a() > 8) {
+            int l4 = vVar.l();
+            int l10 = vVar.f8790b + vVar.l();
+            vVar.I(l10);
+            if (l4 == 1414744396) {
+                gVar = b(vVar.l(), vVar);
             } else {
-                z4 = false;
-            }
-            rawQuery.close();
-            long j10 = this.f5099b;
-            if (!z4) {
-                ContentValues contentValues = new ContentValues();
-                contentValues.put("log_source", str);
-                contentValues.put("reason", Integer.valueOf(i10));
-                contentValues.put("events_dropped_count", Long.valueOf(j10));
-                sQLiteDatabase.insert("log_event_dropped", null, contentValues);
-                return null;
-            }
-            sQLiteDatabase.execSQL(e2.c.i(j10, "UPDATE log_event_dropped SET events_dropped_count = events_dropped_count + ", " WHERE log_source = ? AND reason = ?"), new String[]{str, Integer.toString(i10)});
-            return null;
-        } catch (Throwable th2) {
-            rawQuery.close();
-            throw th2;
-        }
-    }
-
-    @Override
-    public void c(float f10, float f11, int i10, View view) {
-        ProfileActivity.b0((ProfileActivity) this.f5100c, (Context) this.d, this.f5099b, view, i10, f10, f11);
-    }
-
-    @Override
-    public void didSetImage(ImageReceiver imageReceiver, boolean z4, boolean z10, boolean z11) {
-        ResultCallback resultCallback = (ResultCallback) this.f5100c;
-        long j10 = this.f5099b;
-        File file = (File) this.d;
-        ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
-        if (z4 && bitmapSafe != null && !bitmapSafe.bitmap.isRecycled()) {
-            Bitmap bitmap = bitmapSafe.bitmap;
-            if (bitmap == null) {
-                Drawable drawable = bitmapSafe.drawable;
-                if (drawable instanceof BitmapDrawable) {
-                    bitmap = ((BitmapDrawable) drawable).getBitmap();
+                d dVar = null;
+                switch (l4) {
+                    case 1718776947:
+                        if (i14 == 2) {
+                            vVar.K(i12);
+                            int l11 = vVar.l();
+                            int l12 = vVar.l();
+                            vVar.K(i12);
+                            int l13 = vVar.l();
+                            switch (l13) {
+                                case 808802372:
+                                case 877677894:
+                                case 1145656883:
+                                case 1145656920:
+                                case 1482049860:
+                                case 1684633208:
+                                case 2021026148:
+                                    str2 = "video/mp4v-es";
+                                    break;
+                                case 826496577:
+                                case 828601953:
+                                case 875967048:
+                                    str2 = "video/avc";
+                                    break;
+                                case 842289229:
+                                    str2 = "video/mp42";
+                                    break;
+                                case 859066445:
+                                    str2 = "video/mp43";
+                                    break;
+                                case 1196444237:
+                                case 1735420525:
+                                    str2 = "video/mjpeg";
+                                    break;
+                                default:
+                                    str2 = null;
+                                    break;
+                            }
+                            if (str2 == null) {
+                                e2.n(l13, "Ignoring track with unsupported compression ", "StreamFormatChunk");
+                                gVar = dVar;
+                                break;
+                            } else {
+                                r rVar = new r();
+                                rVar.f2318x = l11;
+                                rVar.f2319y = l12;
+                                rVar.f2312q = r0.n(str2);
+                                gVar = new g(new s(rVar));
+                                break;
+                            }
+                        } else {
+                            if (i14 == 1) {
+                                int q6 = vVar.q();
+                                if (q6 == 1) {
+                                    str = "audio/raw";
+                                } else if (q6 != 85) {
+                                    if (q6 == 255) {
+                                        str = "audio/mp4a-latm";
+                                    } else if (q6 != 8192) {
+                                        if (q6 != 8193) {
+                                            str = null;
+                                        } else {
+                                            str = "audio/vnd.dts";
+                                        }
+                                    } else {
+                                        str = "audio/ac3";
+                                    }
+                                } else {
+                                    str = "audio/mpeg";
+                                }
+                                if (str == null) {
+                                    e2.n(q6, "Ignoring track with unsupported format tag ", "StreamFormatChunk");
+                                } else {
+                                    int q10 = vVar.q();
+                                    int l14 = vVar.l();
+                                    vVar.K(6);
+                                    int q11 = vVar.q();
+                                    String str3 = d0.f8737a;
+                                    int B = d0.B(q11, ByteOrder.LITTLE_ENDIAN);
+                                    if (vVar.a() > 0) {
+                                        i11 = vVar.q();
+                                    } else {
+                                        i11 = 0;
+                                    }
+                                    r rVar2 = new r();
+                                    rVar2.f2312q = r0.n(str);
+                                    rVar2.I = q10;
+                                    rVar2.J = l14;
+                                    if (str.equals("audio/raw") && B != 0) {
+                                        rVar2.K = B;
+                                    }
+                                    if (str.equals("audio/mp4a-latm") && i11 > 0) {
+                                        byte[] bArr = new byte[i11];
+                                        vVar.h(0, i11, bArr);
+                                        rVar2.f2315t = i0.z(bArr);
+                                    }
+                                    gVar = new g(new s(rVar2));
+                                    break;
+                                }
+                            } else {
+                                e2.a.n("StreamFormatChunk", "Ignoring strf box for unsupported track type: " + d0.G(i14));
+                            }
+                            gVar = dVar;
+                        }
+                    case 1751742049:
+                        int l15 = vVar.l();
+                        vVar.K(8);
+                        int l16 = vVar.l();
+                        int l17 = vVar.l();
+                        vVar.K(i12);
+                        vVar.l();
+                        vVar.K(12);
+                        gVar = new c(l15, l16, l17);
+                        break;
+                    case 1752331379:
+                        int l18 = vVar.l();
+                        vVar.K(12);
+                        vVar.l();
+                        int l19 = vVar.l();
+                        int l20 = vVar.l();
+                        vVar.K(i12);
+                        int l21 = vVar.l();
+                        int l22 = vVar.l();
+                        vVar.K(i12);
+                        dVar = new d(l18, l19, l20, l21, l22, vVar.l());
+                        gVar = dVar;
+                        break;
+                    case 1852994675:
+                        gVar = new h(vVar.v(vVar.a(), StandardCharsets.UTF_8));
+                        break;
+                    default:
+                        gVar = dVar;
+                        break;
                 }
             }
-            if (bitmap != null) {
-                if (resultCallback != null) {
-                    resultCallback.onComplete(new Pair(Long.valueOf(j10), bitmap));
+            if (gVar != null) {
+                if (gVar.getType() == 1752331379) {
+                    i14 = ((d) gVar).a();
                 }
-                Utilities.globalQueue.postRunnable(new c4(file, bitmap));
-            } else if (resultCallback != null) {
-                resultCallback.onComplete(null);
+                int i16 = i15 + 1;
+                int h = w.h(objArr.length, i16);
+                if (h > objArr.length) {
+                    objArr = Arrays.copyOf(objArr, h);
+                }
+                objArr[i15] = gVar;
+                i15 = i16;
+            }
+            vVar.J(l10);
+            vVar.I(i13);
+            i12 = 4;
+        }
+        return new f(i10, i0.t(i15, objArr));
+    }
+
+    public final a a(Class cls) {
+        g0 listIterator = this.f8833a.listIterator(0);
+        while (listIterator.hasNext()) {
+            a aVar = (a) listIterator.next();
+            if (aVar.getClass() == cls) {
+                return aVar;
             }
         }
-    }
-
-    @Override
-    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        j5.a(this, i10, str, drawable);
-    }
-
-    @Override
-    public void f(ba.b bVar) {
-        ((f9.a) bVar.get()).d((String) this.f5100c, this.f5099b, (b1) this.d);
-    }
-
-    @Override
-    public void g(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        ((q) this.f5100c).h0(true, this.f5099b, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.d);
-    }
-
-    @Override
-    public Object h() {
-        g gVar = (g) this.f5100c;
-        long l10 = ((h3.a) gVar.f5105g).l() + this.f5099b;
-        f3.h hVar = (f3.h) ((f3.d) gVar.f5103c);
-        hVar.getClass();
-        hVar.c(new f3.e(l10, (i) this.d));
         return null;
     }
 
     @Override
-    public void l(d2 d2Var, int i10) {
-        switch (this.f5098a) {
-            case 6:
-                ir.Q((ir) this.f5100c, (ph.d) this.d, this.f5099b);
-                return;
-            case 7:
-                e60 e60Var = (e60) this.f5100c;
-                e60Var.d.getMessagesController().addUserToChat(e60Var.i1(), (TLRPC.User) this.d, 0, null, (p2) e60Var.f33638f0.O().getFragmentStack().get(e60Var.f33638f0.O().getFragmentStack().size() - 1), new y1(e60Var, this.f5099b, 20));
-                return;
-            default:
-                y7 y7Var = (y7) this.f5100c;
-                ArrayList arrayList = (ArrayList) this.d;
-                y7Var.d.put(Long.valueOf(this.f5099b), arrayList);
-                int size = arrayList.size();
-                int i11 = 0;
-                while (i11 < size) {
-                    Object obj = arrayList.get(i11);
-                    i11++;
-                    y7Var.f42659b.k(Boolean.TRUE, ((Long) obj).longValue());
-                }
-                y7Var.i(true);
-                y7Var.e(true);
-                y7Var.f(true);
-                d2Var.dismiss();
-                y7Var.f42666x.H = true;
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationReady(ImageReceiver imageReceiver) {
-        j5.b(this, imageReceiver);
-    }
-
-    @Override
-    public void onLoad(ArrayList arrayList) {
-        ((VoIPService) this.f5100c).lambda$createGroupInstance$69(this.f5099b, (int[]) this.d, arrayList);
-    }
-
-    @Override
-    public void run(boolean z4, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        AndroidUtilities.runOnUIThread(new j((vz0) this.f5100c, this.f5099b, tL_chatAdminRights, str, z4, (qy) this.d));
-    }
-
-    public f(Object obj, Object obj2, long j10, int i10) {
-        this.f5098a = i10;
-        this.f5100c = obj;
-        this.d = obj2;
-        this.f5099b = j10;
-    }
-
-    @Override
-    public void n0(View view, float f10, float f11) {
+    public final int getType() {
+        return this.f8834b;
     }
 }

@@ -1,15 +1,26 @@
 package org.telegram.ui;
-public final class ww0 {
-    public final int f39779a;
-    public final int f39780b;
-    public final CharSequence f39781c;
-    public final String d;
-    public int e;
+public final class ww0 implements Runnable {
+    public final int f42498a;
+    public final PremiumPreviewFragment f42499b;
 
-    public ww0(int i10, int i11, String str, String str2) {
-        this.f39779a = i10;
-        this.f39780b = i11;
-        this.f39781c = str;
-        this.d = str2;
+    public ww0(PremiumPreviewFragment premiumPreviewFragment, int i10) {
+        this.f42498a = i10;
+        this.f42499b = premiumPreviewFragment;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f42498a) {
+            case 0:
+                this.f42499b.j0();
+                return;
+            case 1:
+                PremiumPreviewFragment premiumPreviewFragment = this.f42499b;
+                premiumPreviewFragment.f33770a.postOnAnimation(new ww0(premiumPreviewFragment, 0));
+                return;
+            default:
+                this.f42499b.getMediaDataController().loadPremiumPromo(false);
+                return;
+        }
     }
 }

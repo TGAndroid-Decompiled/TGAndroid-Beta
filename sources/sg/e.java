@@ -1,23 +1,15 @@
 package sg;
+public final class e {
+    public final String f46072a;
+    public final String f46073b;
+    public final int f46074c;
+    public final int d;
+    public int f46075e;
 
-import android.graphics.Canvas;
-public final class e implements a {
-    public a f44382a;
-
-    @Override
-    public final void H(Canvas canvas, float f10, float f11, float f12, float f13) {
-        a aVar = this.f44382a;
-        if (aVar != null) {
-            aVar.H(canvas, f10, f11, f12, f13);
-        }
-    }
-
-    @Override
-    public final pg.b k() {
-        return new pg.d(this);
-    }
-
-    @Override
-    public final void b() {
+    public e(int i10, int i11, String str, String str2) {
+        this.f46072a = str;
+        this.f46073b = str2;
+        this.f46074c = i10;
+        this.d = i11;
     }
 }

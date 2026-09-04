@@ -1,51 +1,64 @@
 package fg;
 
-import android.animation.ValueAnimator;
-import org.telegram.ui.Components.voip.k0;
-import org.telegram.ui.ii1;
-public final class c implements ValueAnimator.AnimatorUpdateListener {
-    public final int f6141a;
-    public final float f6142b;
-    public final float f6143c;
-    public final float d;
-    public final Object e;
+import ji.k5;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
+public final class c implements Runnable {
+    public final int f9483a;
+    public final f f9484b;
+    public final e f9485c;
 
-    public c(Object obj, float f10, float f11, float f12, int i10) {
-        this.f6141a = i10;
-        this.e = obj;
-        this.f6142b = f10;
-        this.f6143c = f11;
-        this.d = f12;
+    public c(f fVar, e eVar, int i10) {
+        this.f9483a = i10;
+        this.f9484b = fVar;
+        this.f9485c = eVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f6141a) {
+    public final void run() {
+        switch (this.f9483a) {
             case 0:
-                i iVar = (i) this.e;
-                iVar.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                a aVar = iVar.f6156b;
-                aVar.d = this.f6142b * floatValue;
-                aVar.e = this.f6143c * floatValue;
-                aVar.f6121g = floatValue * this.d;
+                f fVar = this.f9484b;
+                e eVar = (e) fVar.f9493b;
+                e eVar2 = this.f9485c;
+                if (eVar == eVar2) {
+                    fVar.f9494c = null;
+                    fVar.k(eVar2);
+                    return;
+                }
                 return;
             case 1:
-                k0 k0Var = (k0) this.e;
-                k0Var.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k0Var.f29710v0 = e2.c.w(1.0f, floatValue2, 1.0f, this.f6142b * floatValue2);
-                k0Var.f29701o0 = this.f6143c * floatValue2;
-                k0Var.f29702p0 = this.d * floatValue2;
-                k0Var.invalidate();
+                f fVar2 = this.f9484b;
+                e eVar3 = (e) fVar2.f9493b;
+                e eVar4 = this.f9485c;
+                if (eVar3 == eVar4) {
+                    c cVar = (c) fVar2.f9494c;
+                    if (cVar != null) {
+                        AndroidUtilities.cancelRunOnUIThread(cVar);
+                        fVar2.f9494c = null;
+                    }
+                    int i10 = eVar4.d;
+                    if (i10 == 0) {
+                        fVar2.k(eVar4);
+                        return;
+                    }
+                    c cVar2 = new c(fVar2, eVar4, 2);
+                    fVar2.d = cVar2;
+                    AndroidUtilities.runOnUIThread(cVar2, 20000L);
+                    k5 k5Var = eVar4.f9488a;
+                    ((ConnectionsManager) k5Var.f14022b).checkWebProxyInternal(eVar4.f9489b, i10, new d(fVar2, eVar4));
+                    return;
+                }
                 return;
             default:
-                ii1 ii1Var = (ii1) this.e;
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ii1Var.f34952c1 = e2.c.w(1.0f, floatValue3, 1.0f, this.f6142b * floatValue3);
-                ii1Var.V0 = this.f6143c * floatValue3;
-                ii1Var.W0 = this.d * floatValue3;
-                ii1Var.f34977s.invalidate();
+                f fVar3 = this.f9484b;
+                e eVar5 = (e) fVar3.f9493b;
+                e eVar6 = this.f9485c;
+                if (eVar5 == eVar6) {
+                    fVar3.d = null;
+                    fVar3.k(eVar6);
+                    return;
+                }
                 return;
         }
     }

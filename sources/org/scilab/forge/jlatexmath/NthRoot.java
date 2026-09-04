@@ -12,16 +12,16 @@ public class NthRoot extends Atom {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        float f10;
+        float f7;
         TeXFont teXFont = teXEnvironment.getTeXFont();
         int style = teXEnvironment.getStyle();
         float defaultRuleThickness = teXFont.getDefaultRuleThickness(style);
         if (style < 2) {
-            f10 = teXFont.getXHeight(style, teXFont.getChar("sqrt", style).getFontCode());
+            f7 = teXFont.getXHeight(style, teXFont.getChar("sqrt", style).getFontCode());
         } else {
-            f10 = defaultRuleThickness;
+            f7 = defaultRuleThickness;
         }
-        float abs = (Math.abs(f10) / 4.0f) + defaultRuleThickness;
+        float abs = (Math.abs(f7) / 4.0f) + defaultRuleThickness;
         HorizontalBox horizontalBox = new HorizontalBox(this.base.createBox(teXEnvironment.crampStyle()));
         horizontalBox.add(new SpaceAtom(5, 1.0f, 0.0f, 0.0f).createBox(teXEnvironment.crampStyle()));
         float depth = horizontalBox.getDepth() + horizontalBox.getHeight() + abs;

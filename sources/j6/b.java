@@ -1,19 +1,34 @@
 package j6;
 
-import d9.j;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.atomic.AtomicInteger;
-public final class b implements ThreadFactory {
-    public final AtomicInteger f8921b = new AtomicInteger();
-    public final ThreadFactory f8922c = Executors.defaultThreadFactory();
-    public final String f8920a = "GAC_Executor";
+import android.os.Bundle;
+import android.util.Log;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.SuccessContinuation;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import java.io.IOException;
+public final class b implements Continuation, SuccessContinuation {
+    public static final b f13529a = new Object();
+    public static final b f13530b = new Object();
 
     @Override
-    public final Thread newThread(Runnable runnable) {
-        Thread newThread = this.f8922c.newThread(new j(1, runnable));
-        int andIncrement = this.f8921b.getAndIncrement();
-        newThread.setName(this.f8920a + "[" + andIncrement + "]");
-        return newThread;
+    public Task then(Object obj) {
+        Bundle bundle = (Bundle) obj;
+        int i10 = a.h;
+        if (bundle != null && bundle.containsKey("google.messenger")) {
+            return Tasks.forResult(null);
+        }
+        return Tasks.forResult(bundle);
+    }
+
+    @Override
+    public Object then(Task task) {
+        if (task.isSuccessful()) {
+            return (Bundle) task.getResult();
+        }
+        if (Log.isLoggable("Rpc", 3)) {
+            Log.d("Rpc", "Error making request: ".concat(String.valueOf(task.getException())));
+        }
+        throw new IOException("SERVICE_NOT_AVAILABLE", task.getException());
     }
 }

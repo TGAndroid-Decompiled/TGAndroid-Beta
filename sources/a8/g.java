@@ -1,36 +1,46 @@
 package a8;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import j7.f5;
-public final class g extends c6.a {
-    public static final Parcelable.Creator<g> CREATOR = new w.a(4);
-    public final long f135a;
-    public final a[] f136b;
-    public final int f137c;
-    public final boolean d;
-
-    public g(long j10, a[] aVarArr, int i10, boolean z4) {
-        this.f135a = j10;
-        this.f136b = aVarArr;
-        this.d = z4;
-        if (z4) {
-            this.f137c = i10;
-        } else {
-            this.f137c = -1;
-        }
+import android.os.IBinder;
+import android.os.IInterface;
+import kotlin.jvm.internal.i;
+public final class g extends n6.g {
+    @Override
+    public final boolean C() {
+        return false;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q10 = f5.q(parcel, 20293);
-        f5.s(parcel, 2, 8);
-        parcel.writeLong(this.f135a);
-        f5.o(parcel, 3, this.f136b, i10);
-        f5.s(parcel, 4, 4);
-        parcel.writeInt(this.f137c);
-        f5.s(parcel, 5, 4);
-        parcel.writeInt(this.d ? 1 : 0);
-        f5.r(parcel, q10);
+    public final int l() {
+        return 17895000;
+    }
+
+    @Override
+    public final IInterface q(IBinder iBinder) {
+        i.e(iBinder, "iBinder");
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService");
+        if (queryLocalInterface instanceof c) {
+            return (c) queryLocalInterface;
+        }
+        return new c(iBinder);
+    }
+
+    @Override
+    public final k6.c[] r() {
+        return l8.f.f15319c;
+    }
+
+    @Override
+    public final String v() {
+        return "com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService";
+    }
+
+    @Override
+    public final String w() {
+        return "com.google.android.gms.recaptchabase.service.START";
+    }
+
+    @Override
+    public final boolean y() {
+        return true;
     }
 }

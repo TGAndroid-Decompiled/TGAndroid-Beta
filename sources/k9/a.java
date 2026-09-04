@@ -1,16 +1,41 @@
 package k9;
-public final class a implements u9.d {
-    public static final a f10045a = new Object();
-    public static final u9.c f10046b = u9.c.c("arch");
-    public static final u9.c f10047c = u9.c.c("libraryName");
-    public static final u9.c d = u9.c.c("buildId");
+public final class a {
+    public final long f14844a;
+    public final long f14845b;
+    public final long f14846c;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        u9.e eVar = (u9.e) obj2;
-        c0 c0Var = (c0) ((f1) obj);
-        eVar.e(f10046b, c0Var.f10076a);
-        eVar.e(f10047c, c0Var.f10077b);
-        eVar.e(d, c0Var.f10078c);
+    public a(long j3, long j10, long j11) {
+        this.f14844a = j3;
+        this.f14845b = j10;
+        this.f14846c = j11;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof a) {
+            a aVar = (a) obj;
+            if (this.f14844a == aVar.f14844a && this.f14845b == aVar.f14845b && this.f14846c == aVar.f14846c) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        long j3 = this.f14844a;
+        long j10 = this.f14845b;
+        long j11 = this.f14846c;
+        return ((int) (j11 ^ (j11 >>> 32))) ^ ((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003);
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("StartupTime{epochMillis=");
+        sb2.append(this.f14844a);
+        sb2.append(", elapsedRealtime=");
+        sb2.append(this.f14845b);
+        sb2.append(", uptimeMillis=");
+        return a4.a.r(sb2, this.f14846c, "}");
     }
 }

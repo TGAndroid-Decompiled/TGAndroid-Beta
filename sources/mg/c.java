@@ -1,107 +1,173 @@
 package mg;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ai;
-import vh.w2;
+import android.content.Context;
+import android.os.SystemClock;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
+import android.view.VelocityTracker;
+import android.view.ViewConfiguration;
+import org.telegram.messenger.AndroidUtilities;
 public final class c {
-    public float f13933a;
-    public float f13934b;
-    public float f13935c;
+    public final ScaleGestureDetector f16236a;
+    public q f16237b;
+    public float f16238c;
     public float d;
-    public float e;
-    public float f13936f;
-    public float f13937g;
-    public float h;
-    public long f13938i;
-    public boolean f13939j;
-    public float f13940k;
-    public final d f13941l;
+    public final float f16240f;
+    public VelocityTracker f16241g;
+    public boolean h;
+    public long f16244k;
+    public boolean f16245l;
+    public final float f16239e = AndroidUtilities.dp(1.0f);
+    public int f16242i = -1;
+    public int f16243j = 0;
 
-    public c(d dVar) {
-        this.f13941l = dVar;
+    public c(Context context) {
+        this.f16240f = ViewConfiguration.get(context).getScaledMinimumFlingVelocity();
+        this.f16236a = new ScaleGestureDetector(context, new b(this, 0));
     }
 
-    public final void a() {
-        d dVar;
-        float f10;
-        float f11 = 0.0f;
-        this.h = 0.0f;
-        float b10 = b();
-        float c3 = c();
-        int i10 = 0;
-        while (true) {
-            dVar = this.f13941l;
-            if (i10 >= 20) {
-                break;
-            }
-            float b11 = b();
-            float c10 = c();
-            float f12 = 2.1474836E9f;
-            for (int i11 = 0; i11 < dVar.f13953c.size(); i11++) {
-                float f13 = ((c) dVar.f13953c.get(i11)).f13935c - b11;
-                float f14 = ((c) dVar.f13953c.get(i11)).d - c10;
-                float f15 = (f14 * f14) + (f13 * f13);
-                if (f15 < f12) {
-                    f12 = f15;
+    public final void a(MotionEvent motionEvent) {
+        float x10;
+        float y3;
+        float x11;
+        float y10;
+        float x12;
+        float y11;
+        p pVar;
+        int i10;
+        this.f16236a.onTouchEvent(motionEvent);
+        int action = motionEvent.getAction() & 255;
+        boolean z10 = true;
+        if (action != 0) {
+            if (action != 1 && action != 3) {
+                if (action == 6) {
+                    int action2 = (65280 & motionEvent.getAction()) >> 8;
+                    if (motionEvent.getPointerId(action2) == this.f16242i) {
+                        if (action2 == 0) {
+                            i10 = 1;
+                        } else {
+                            i10 = 0;
+                        }
+                        this.f16242i = motionEvent.getPointerId(i10);
+                        this.f16238c = motionEvent.getX(i10);
+                        this.d = motionEvent.getY(i10);
+                    }
                 }
+            } else {
+                if (!this.h && SystemClock.elapsedRealtime() - this.f16244k < 800 && (pVar = this.f16237b.M) != null) {
+                    pVar.b0();
+                }
+                this.f16242i = -1;
             }
-            if (f12 > f11) {
-                b10 = b11;
-                c3 = c10;
-                f11 = f12;
+        } else {
+            this.f16242i = motionEvent.getPointerId(0);
+            this.f16244k = SystemClock.elapsedRealtime();
+        }
+        int i11 = this.f16242i;
+        if (i11 == -1) {
+            i11 = 0;
+        }
+        this.f16243j = motionEvent.findPointerIndex(i11);
+        int action3 = motionEvent.getAction();
+        if (action3 != 0) {
+            if (action3 != 1) {
+                if (action3 != 2) {
+                    if (action3 == 3) {
+                        VelocityTracker velocityTracker = this.f16241g;
+                        if (velocityTracker != null) {
+                            velocityTracker.recycle();
+                            this.f16241g = null;
+                        }
+                        this.f16245l = false;
+                        this.h = false;
+                        return;
+                    }
+                    return;
+                }
+            } else {
+                if (this.h) {
+                    if (this.f16241g != null) {
+                        try {
+                            x12 = motionEvent.getX(this.f16243j);
+                        } catch (Exception unused) {
+                            x12 = motionEvent.getX();
+                        }
+                        this.f16238c = x12;
+                        try {
+                            y11 = motionEvent.getY(this.f16243j);
+                        } catch (Exception unused2) {
+                            y11 = motionEvent.getY();
+                        }
+                        this.d = y11;
+                        this.f16241g.addMovement(motionEvent);
+                        this.f16241g.computeCurrentVelocity(1000);
+                        if (Math.max(Math.abs(this.f16241g.getXVelocity()), Math.abs(this.f16241g.getYVelocity())) >= this.f16240f) {
+                            this.f16237b.getClass();
+                        }
+                    }
+                    this.h = false;
+                }
+                VelocityTracker velocityTracker2 = this.f16241g;
+                if (velocityTracker2 != null) {
+                    velocityTracker2.recycle();
+                    this.f16241g = null;
+                }
+                this.f16245l = false;
+                return;
             }
-            i10++;
         }
-        if (dVar.f13954f) {
-            f10 = 0.8f;
-        } else {
-            f10 = 0.5f;
+        if (!this.f16245l) {
+            VelocityTracker obtain = VelocityTracker.obtain();
+            this.f16241g = obtain;
+            if (obtain != null) {
+                obtain.addMovement(motionEvent);
+            }
+            try {
+                x11 = motionEvent.getX(this.f16243j);
+            } catch (Exception unused3) {
+                x11 = motionEvent.getX();
+            }
+            this.f16238c = x11;
+            try {
+                y10 = motionEvent.getY(this.f16243j);
+            } catch (Exception unused4) {
+                y10 = motionEvent.getY();
+            }
+            this.d = y10;
+            this.h = false;
+            this.f16245l = true;
+            return;
         }
-        this.f13935c = b10;
-        if (b10 > dVar.f13952b.width() * f10) {
-            this.f13933a = dVar.f13952b.width() * f10;
-        } else {
-            float width = dVar.f13952b.width() * f10;
-            this.f13933a = width;
-            if (this.f13935c > width) {
-                this.f13935c = width - 0.1f;
+        try {
+            x10 = motionEvent.getX(this.f16243j);
+        } catch (Exception unused5) {
+            x10 = motionEvent.getX();
+        }
+        try {
+            y3 = motionEvent.getY(this.f16243j);
+        } catch (Exception unused6) {
+            y3 = motionEvent.getY();
+        }
+        float f7 = x10 - this.f16238c;
+        float f10 = y3 - this.d;
+        if (!this.h) {
+            if (((float) Math.sqrt((f10 * f10) + (f7 * f7))) < this.f16239e) {
+                z10 = false;
+            }
+            this.h = z10;
+        }
+        if (this.h) {
+            q qVar = this.f16237b;
+            if (!qVar.F) {
+                o.f(qVar.L, f7, f10);
+                qVar.r(false);
+            }
+            this.f16238c = x10;
+            this.d = y3;
+            VelocityTracker velocityTracker3 = this.f16241g;
+            if (velocityTracker3 != null) {
+                velocityTracker3.addMovement(motionEvent);
             }
         }
-        float height = dVar.f13952b.height() * 0.1f;
-        this.f13934b = w2.c(ai.f(Utilities.fastRandom, 100), 100.0f, height, dVar.f13952b.height() * 0.45f);
-        if (dVar.f13954f) {
-            float width2 = dVar.f13952b.width() * 0.1f;
-            float c11 = w2.c(ai.f(Utilities.fastRandom, 100), 100.0f, width2, dVar.f13952b.width() * 0.05f);
-            this.f13936f = c11;
-            this.f13937g = (((ai.f(Utilities.fastRandom, 100) / 100.0f) * 1.5f) + 1.5f) * c11;
-            float height2 = dVar.f13952b.height() * 0.1f;
-            this.d = w2.c(ai.f(Utilities.fastRandom, 100), 100.0f, height2, this.f13936f / 2.0f);
-            this.e = dVar.f13952b.height() + this.f13936f;
-            this.f13938i = Math.abs(Utilities.fastRandom.nextInt() % 600) + 1000;
-        } else {
-            float width3 = dVar.f13952b.width() * 0.1f;
-            float c12 = w2.c(ai.f(Utilities.fastRandom, 100), 100.0f, width3, dVar.f13952b.width() * 0.05f);
-            this.f13936f = c12;
-            this.f13937g = (((ai.f(Utilities.fastRandom, 100) / 100.0f) * 0.5f) + 1.5f) * c12;
-            this.d = c3;
-            this.e = c3 + dVar.f13952b.height();
-            this.f13938i = 1800L;
-        }
-        this.f13938i = ((float) this.f13938i) / 1.75f;
-        this.f13939j = Utilities.fastRandom.nextBoolean();
-        this.f13940k = ((Utilities.fastRandom.nextInt() % 100) / 100.0f) * 20.0f;
-    }
-
-    public final float b() {
-        d dVar = this.f13941l;
-        if (dVar.f13954f) {
-            float width = dVar.f13952b.width() * 1.5f;
-            return w2.c(ai.f(Utilities.fastRandom, 100), 100.0f, width, dVar.f13952b.width() * (-0.25f));
-        }
-        return (ai.f(Utilities.fastRandom, 100) / 100.0f) * dVar.f13952b.width();
-    }
-
-    public final float c() {
-        return (ai.f(Utilities.fastRandom, 100) / 100.0f) * this.f13941l.f13952b.height() * 0.5f;
     }
 }

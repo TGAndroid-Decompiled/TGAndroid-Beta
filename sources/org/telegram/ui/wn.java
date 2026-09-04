@@ -1,17 +1,27 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class wn extends AnimatorListenerAdapter {
-    public final org.telegram.ui.Components.ec0 f39737a;
+import android.animation.ValueAnimator;
+public final class wn implements ValueAnimator.AnimatorUpdateListener {
+    public final int f42439a;
+    public final org.telegram.ui.Components.dc0 f42440b;
 
-    public wn(org.telegram.ui.Components.ec0 ec0Var) {
-        this.f39737a = ec0Var;
+    public wn(org.telegram.ui.Components.dc0 dc0Var, int i10) {
+        this.f42439a = i10;
+        this.f42440b = dc0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        super.onAnimationEnd(animator);
-        this.f39737a.s(1.0f);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f42439a) {
+            case 0:
+                this.f42440b.s(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 1:
+                this.f42440b.s(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                this.f42440b.s(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+        }
     }
 }

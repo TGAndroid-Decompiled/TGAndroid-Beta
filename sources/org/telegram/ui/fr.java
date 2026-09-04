@@ -2,55 +2,43 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class fr implements kr {
-    public final rr f34210a;
+public final class fr implements nq {
+    public final TLObject f36450a;
+    public final long f36451b;
+    public final boolean f36452c;
+    public final vr d;
 
-    public fr(rr rrVar) {
-        this.f34210a = rrVar;
-    }
-
-    @Override
-    public final void c(long j10, TLObject tLObject) {
-        rr rrVar = this.f34210a;
-        if (rrVar.H.f(j10) == null) {
-            lr w02 = rrVar.w0();
-            rrVar.C.add(tLObject);
-            rrVar.H.k(tLObject, j10);
-            rrVar.z0(rrVar.C);
-            rrVar.A0(w02);
-        }
-    }
-
-    @Override
-    public final void d(long j10) {
-        rr rrVar = this.f34210a;
-        if (rrVar.H.f(j10) == null) {
-            lr w02 = rrVar.w0();
-            TLRPC.TL_channelParticipantBanned tL_channelParticipantBanned = new TLRPC.TL_channelParticipantBanned();
-            if (j10 > 0) {
-                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                tL_channelParticipantBanned.peer = tL_peerUser;
-                tL_peerUser.user_id = j10;
-            } else {
-                TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
-                tL_channelParticipantBanned.peer = tL_peerChannel;
-                tL_peerChannel.channel_id = -j10;
-            }
-            tL_channelParticipantBanned.date = rrVar.getConnectionsManager().getCurrentTime();
-            tL_channelParticipantBanned.kicked_by = rrVar.getAccountInstance().getUserConfig().clientUserId;
-            rrVar.f37995s.kicked_count++;
-            rrVar.C.add(tL_channelParticipantBanned);
-            rrVar.H.k(tL_channelParticipantBanned, j10);
-            rrVar.z0(rrVar.C);
-            rrVar.A0(w02);
-        }
+    public fr(vr vrVar, TLObject tLObject, long j3, boolean z10) {
+        this.d = vrVar;
+        this.f36450a = tLObject;
+        this.f36451b = j3;
+        this.f36452c = z10;
     }
 
     @Override
     public final void a(TLRPC.User user) {
+        vr.c0(this.d, user);
     }
 
     @Override
-    public final void b(long j10) {
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLObject tLObject = this.f36450a;
+        if (tLObject instanceof TLRPC.ChannelParticipant) {
+            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
+            channelParticipant.admin_rights = tL_chatAdminRights;
+            channelParticipant.banned_rights = tL_chatBannedRights;
+            channelParticipant.rank = str;
+        }
+        vr vrVar = this.d;
+        or orVar = vrVar.f41657m1;
+        long j3 = this.f36451b;
+        if (orVar != null && i10 == 1) {
+            orVar.b(j3);
+        } else if (orVar != null) {
+            orVar.c(j3, tLObject);
+        }
+        if (this.f36452c) {
+            vrVar.removeSelfFromStack();
+        }
     }
 }

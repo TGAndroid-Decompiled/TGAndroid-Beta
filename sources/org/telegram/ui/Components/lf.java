@@ -1,46 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.SharedConfig;
-public final class lf extends AnimatorListenerAdapter {
-    public final boolean f26649a;
-    public final ChatActivityEnterView f26650b;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.NotificationCenter;
+public final class lf implements View.OnTouchListener {
+    public final int f28164a = 0;
+    public final Rect f28165b = new Rect();
+    public final NotificationCenter.NotificationCenterDelegate f28166c;
 
-    public lf(ChatActivityEnterView chatActivityEnterView, boolean z4) {
-        this.f26650b = chatActivityEnterView;
-        this.f26649a = z4;
+    public lf(org.telegram.ui.kq0 kq0Var) {
+        this.f28166c = kq0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f26650b;
-        if (animator.equals(chatActivityEnterView.f22790p2)) {
-            chatActivityEnterView.f22790p2 = null;
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        mf mfVar;
+        org.telegram.ui.ActionBar.n1 n1Var;
+        org.telegram.ui.ActionBar.n1 n1Var2;
+        switch (this.f28164a) {
+            case 0:
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f28166c;
+                if (motionEvent.getActionMasked() == 0 && (mfVar = chatActivityEnterView.N0) != null && mfVar.isShowing()) {
+                    Rect rect = this.f28165b;
+                    view.getHitRect(rect);
+                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        chatActivityEnterView.N0.dismiss();
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+            case 1:
+                org.telegram.ui.kq0 kq0Var = (org.telegram.ui.kq0) this.f28166c;
+                if (motionEvent.getActionMasked() == 0 && (n1Var = kq0Var.I) != null && n1Var.isShowing()) {
+                    Rect rect2 = this.f28165b;
+                    view.getHitRect(rect2);
+                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        kq0Var.I.d(true);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+            default:
+                org.telegram.ui.br0 br0Var = (org.telegram.ui.br0) this.f28166c;
+                if (motionEvent.getActionMasked() == 0 && (n1Var2 = br0Var.m0) != null && n1Var2.isShowing()) {
+                    Rect rect3 = this.f28165b;
+                    view.getHitRect(rect3);
+                    if (!rect3.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        br0Var.m0.d(true);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
         }
-        chatActivityEnterView.x0();
-        chatActivityEnterView.f22742g1.setAlpha(1.0f);
-        chatActivityEnterView.f22742g1.setTranslationX(0.0f);
-        ig igVar = chatActivityEnterView.K1;
-        if (igVar != null && SharedConfig.lockRecordAudioVideoHint < 3) {
-            ChatActivityEnterView chatActivityEnterView2 = igVar.S;
-            chatActivityEnterView2.f22707a4 = true;
-            chatActivityEnterView2.f22714b4 = System.currentTimeMillis();
-        }
-        ff ffVar = chatActivityEnterView.B0;
-        if (ffVar != null) {
-            ffVar.setAlpha(0.0f);
-        }
-        if (this.f26649a) {
-            qk0 qk0Var = chatActivityEnterView.f22729e1;
-            if (qk0Var != null) {
-                qk0Var.setVisibility(8);
-            }
-            ae aeVar = chatActivityEnterView.f22711b1;
-            if (aeVar != null) {
-                aeVar.setVisibility(8);
-            }
-            chatActivityEnterView.x0();
-        }
+    }
+
+    public lf(org.telegram.ui.br0 br0Var) {
+        this.f28166c = br0Var;
+    }
+
+    public lf(ChatActivityEnterView chatActivityEnterView) {
+        this.f28166c = chatActivityEnterView;
     }
 }

@@ -1,18 +1,14 @@
 package d7;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class c {
-    public static final int f4205a = 0;
+import c5.m;
+public final class c {
+    public static final c f6626b;
+    public final m f6627a = new m(1);
 
     static {
-        c.class.getClassLoader();
-    }
-
-    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() == 0) {
-            return null;
+        c cVar = new c();
+        synchronized (c.class) {
+            f6626b = cVar;
         }
-        return (Parcelable) creator.createFromParcel(parcel);
     }
 }

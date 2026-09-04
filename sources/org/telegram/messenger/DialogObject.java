@@ -77,10 +77,10 @@ public class DialogObject {
 
     public static long getDialogId(TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
-            return ((TLRPC.User) tLObject).f19306id;
+            return ((TLRPC.User) tLObject).f20016id;
         }
         if (tLObject instanceof TLRPC.Chat) {
-            return -((TLRPC.Chat) tLObject).f19159id;
+            return -((TLRPC.Chat) tLObject).f19869id;
         }
         return 0L;
     }
@@ -100,15 +100,15 @@ public class DialogObject {
         return tL_emojiStatusCollectible.collectible_id;
     }
 
-    public static long getEmojiStatusDocumentId(long j10) {
-        if (j10 >= 0) {
-            TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j10));
+    public static long getEmojiStatusDocumentId(long j3) {
+        if (j3 >= 0) {
+            TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j3));
             if (user == null) {
                 return 0L;
             }
             return getEmojiStatusDocumentId(user.emoji_status);
         }
-        TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j10));
+        TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j3));
         if (chat == null) {
             return 0L;
         }
@@ -133,12 +133,12 @@ public class DialogObject {
         }
     }
 
-    public static int getEncryptedChatId(long j10) {
-        return (int) (j10 & 4294967295L);
+    public static int getEncryptedChatId(long j3) {
+        return (int) (j3 & 4294967295L);
     }
 
-    public static int getFolderId(long j10) {
-        return (int) j10;
+    public static int getFolderId(long j3) {
+        return (int) j3;
     }
 
     public static long getLastMessageOrDraftDate(TLRPC.Dialog dialog, TLRPC.DraftMessage draftMessage) {
@@ -156,20 +156,20 @@ public class DialogObject {
         return 0L;
     }
 
-    public static String getName(long j10) {
-        return getName(UserConfig.selectedAccount, j10);
+    public static String getName(long j3) {
+        return getName(UserConfig.selectedAccount, j3);
     }
 
     public static long getPeerDialogId(TLRPC.Peer peer) {
         if (peer == null) {
             return 0L;
         }
-        long j10 = peer.user_id;
-        if (j10 != 0) {
-            return j10;
+        long j3 = peer.user_id;
+        if (j3 != 0) {
+            return j3;
         }
-        long j11 = peer.chat_id;
-        return j11 != 0 ? -j11 : -peer.channel_id;
+        long j10 = peer.chat_id;
+        return j10 != 0 ? -j10 : -peer.channel_id;
     }
 
     public static String getPublicUsername(TLObject tLObject) {
@@ -184,8 +184,8 @@ public class DialogObject {
         }
     }
 
-    public static String getShortName(int i10, long j10) {
-        return getShortName(MessagesController.getInstance(i10).getUserOrChat(j10));
+    public static String getShortName(int i10, long j3) {
+        return getShortName(MessagesController.getInstance(i10).getUserOrChat(j3));
     }
 
     public static String getShortTitle(TLObject tLObject) {
@@ -230,8 +230,8 @@ public class DialogObject {
         return str3;
     }
 
-    public static String getStatus(long j10) {
-        return getStatus(UserConfig.selectedAccount, j10);
+    public static String getStatus(long j3) {
+        return getStatus(UserConfig.selectedAccount, j3);
     }
 
     public static boolean hasPhoto(TLObject tLObject) {
@@ -248,26 +248,26 @@ public class DialogObject {
     }
 
     public static void initDialog(TLRPC.Dialog dialog) {
-        if (dialog != null && dialog.f19163id == 0) {
+        if (dialog != null && dialog.f19873id == 0) {
             if (dialog instanceof TLRPC.TL_dialog) {
                 TLRPC.Peer peer = dialog.peer;
                 if (peer != null) {
-                    long j10 = peer.user_id;
-                    if (j10 != 0) {
-                        dialog.f19163id = j10;
+                    long j3 = peer.user_id;
+                    if (j3 != 0) {
+                        dialog.f19873id = j3;
                         return;
                     }
-                    long j11 = peer.chat_id;
-                    if (j11 != 0) {
-                        dialog.f19163id = -j11;
+                    long j10 = peer.chat_id;
+                    if (j10 != 0) {
+                        dialog.f19873id = -j10;
                     } else {
-                        dialog.f19163id = -peer.channel_id;
+                        dialog.f19873id = -peer.channel_id;
                     }
                 }
             } else if (dialog instanceof TLRPC.TL_dialogFolder) {
-                dialog.f19163id = makeFolderDialogId(((TLRPC.TL_dialogFolder) dialog).folder.f19210id);
+                dialog.f19873id = makeFolderDialogId(((TLRPC.TL_dialogFolder) dialog).folder.f19920id);
             } else if (dialog instanceof TLRPC.TL_dialogCommunity) {
-                dialog.f19163id = -dialog.community_id;
+                dialog.f19873id = -dialog.community_id;
             }
         }
     }
@@ -279,22 +279,22 @@ public class DialogObject {
         return false;
     }
 
-    public static boolean isChatDialog(long j10) {
-        if (!isEncryptedDialog(j10) && !isFolderDialogId(j10) && j10 < 0) {
+    public static boolean isChatDialog(long j3) {
+        if (!isEncryptedDialog(j3) && !isFolderDialogId(j3) && j3 < 0) {
             return true;
         }
         return false;
     }
 
-    public static boolean isEmojiStatusCollectible(long j10) {
-        if (j10 >= 0) {
-            TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j10));
+    public static boolean isEmojiStatusCollectible(long j3) {
+        if (j3 >= 0) {
+            TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j3));
             if (user == null) {
                 return false;
             }
             return isEmojiStatusCollectible(user.emoji_status);
         }
-        TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j10));
+        TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j3));
         if (chat == null) {
             return false;
         }
@@ -308,15 +308,15 @@ public class DialogObject {
         return true;
     }
 
-    public static boolean isEncryptedDialog(long j10) {
-        if ((4611686018427387904L & j10) != 0 && (j10 & Long.MIN_VALUE) == 0) {
+    public static boolean isEncryptedDialog(long j3) {
+        if ((4611686018427387904L & j3) != 0 && (j3 & Long.MIN_VALUE) == 0) {
             return true;
         }
         return false;
     }
 
-    public static boolean isFolderDialogId(long j10) {
-        if ((2305843009213693952L & j10) != 0 && (j10 & Long.MIN_VALUE) == 0) {
+    public static boolean isFolderDialogId(long j3) {
+        if ((2305843009213693952L & j3) != 0 && (j3 & Long.MIN_VALUE) == 0) {
             return true;
         }
         return false;
@@ -326,60 +326,60 @@ public class DialogObject {
         return requirementToContact instanceof TL_account.requirementToContactPremium;
     }
 
-    public static boolean isUserDialog(long j10) {
-        if (!isEncryptedDialog(j10) && !isFolderDialogId(j10) && j10 > 0) {
+    public static boolean isUserDialog(long j3) {
+        if (!isEncryptedDialog(j3) && !isFolderDialogId(j3) && j3 > 0) {
             return true;
         }
         return false;
     }
 
-    public static long makeEncryptedDialogId(long j10) {
-        return (j10 & 4294967295L) | 4611686018427387904L;
+    public static long makeEncryptedDialogId(long j3) {
+        return (j3 & 4294967295L) | 4611686018427387904L;
     }
 
     public static long makeFolderDialogId(int i10) {
         return 2305843009213693952L | i10;
     }
 
-    public static String setDialogPhotoTitle(ImageReceiver imageReceiver, org.telegram.ui.Components.z8 z8Var, TLObject tLObject) {
+    public static String setDialogPhotoTitle(ImageReceiver imageReceiver, org.telegram.ui.Components.i9 i9Var, TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) tLObject;
             if (UserObject.isReplyUser(user)) {
                 String string = LocaleController.getString(R.string.RepliesTitle);
-                if (z8Var != null) {
-                    z8Var.g(12);
+                if (i9Var != null) {
+                    i9Var.g(12);
                 }
                 if (imageReceiver != null) {
-                    imageReceiver.setForUserOrChat(null, z8Var);
+                    imageReceiver.setForUserOrChat(null, i9Var);
                 }
                 return string;
             } else if (UserObject.isUserSelf(user)) {
                 String string2 = LocaleController.getString(R.string.SavedMessages);
-                if (z8Var != null) {
-                    z8Var.g(1);
+                if (i9Var != null) {
+                    i9Var.g(1);
                 }
                 if (imageReceiver != null) {
-                    imageReceiver.setForUserOrChat(null, z8Var);
+                    imageReceiver.setForUserOrChat(null, i9Var);
                 }
                 return string2;
             } else {
                 String userName = UserObject.getUserName(user);
-                if (z8Var != null) {
-                    z8Var.r(user);
+                if (i9Var != null) {
+                    i9Var.r(user);
                 }
                 if (imageReceiver != null) {
-                    imageReceiver.setForUserOrChat(tLObject, z8Var);
+                    imageReceiver.setForUserOrChat(tLObject, i9Var);
                 }
                 return userName;
             }
         } else if (tLObject instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
             String str = chat.title;
-            if (z8Var != null) {
-                z8Var.q(chat);
+            if (i9Var != null) {
+                i9Var.q(chat);
             }
             if (imageReceiver != null) {
-                imageReceiver.setForUserOrChat(tLObject, z8Var);
+                imageReceiver.setForUserOrChat(tLObject, i9Var);
             }
             return str;
         } else {
@@ -406,16 +406,16 @@ public class DialogObject {
         return findUsername(str, chat.usernames);
     }
 
-    public static String getName(int i10, long j10) {
-        return getName(MessagesController.getInstance(i10).getUserOrChat(j10));
+    public static String getName(int i10, long j3) {
+        return getName(MessagesController.getInstance(i10).getUserOrChat(j3));
     }
 
-    public static String getShortName(long j10) {
-        return getShortName(MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j10));
+    public static String getShortName(long j3) {
+        return getShortName(MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j3));
     }
 
-    public static String getStatus(int i10, long j10) {
-        return getStatus(i10, MessagesController.getInstance(i10).getUserOrChat(j10));
+    public static String getStatus(int i10, long j3) {
+        return getStatus(i10, MessagesController.getInstance(i10).getUserOrChat(j3));
     }
 
     public static TLRPC.TL_username findUsername(String str, ArrayList<TLRPC.TL_username> arrayList) {
@@ -479,12 +479,12 @@ public class DialogObject {
         if (inputPeer == null) {
             return 0L;
         }
-        long j10 = inputPeer.user_id;
-        if (j10 != 0) {
-            return j10;
+        long j3 = inputPeer.user_id;
+        if (j3 != 0) {
+            return j3;
         }
-        long j11 = inputPeer.chat_id;
-        return j11 != 0 ? -j11 : -inputPeer.channel_id;
+        long j10 = inputPeer.chat_id;
+        return j10 != 0 ? -j10 : -inputPeer.channel_id;
     }
 
     public static long getEmojiStatusDocumentId(TLRPC.EmojiStatus emojiStatus) {
@@ -525,17 +525,17 @@ public class DialogObject {
         }
     }
 
-    public static String getPublicUsername(String str, ArrayList<TLRPC.TL_username> arrayList, boolean z4) {
-        if (TextUtils.isEmpty(str) || z4) {
+    public static String getPublicUsername(String str, ArrayList<TLRPC.TL_username> arrayList, boolean z10) {
+        if (TextUtils.isEmpty(str) || z10) {
             if (arrayList != null) {
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     TLRPC.TL_username tL_username = arrayList.get(i10);
-                    if (tL_username != null && (((tL_username.active && !z4) || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
+                    if (tL_username != null && (((tL_username.active && !z10) || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
                         return tL_username.username;
                     }
                 }
             }
-            if (TextUtils.isEmpty(str) || !z4) {
+            if (TextUtils.isEmpty(str) || !z10) {
                 return null;
             }
             if (arrayList != null && arrayList.size() > 0) {
@@ -545,9 +545,9 @@ public class DialogObject {
         return str;
     }
 
-    public static String setDialogPhotoTitle(org.telegram.ui.Components.p9 p9Var, TLObject tLObject) {
-        if (p9Var != null) {
-            return setDialogPhotoTitle(p9Var.getImageReceiver(), p9Var.getAvatarDrawable(), tLObject);
+    public static String setDialogPhotoTitle(org.telegram.ui.Components.x9 x9Var, TLObject tLObject) {
+        if (x9Var != null) {
+            return setDialogPhotoTitle(x9Var.getImageReceiver(), x9Var.getAvatarDrawable(), tLObject);
         }
         return setDialogPhotoTitle(null, null, tLObject);
     }

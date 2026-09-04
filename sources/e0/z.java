@@ -7,17 +7,17 @@ import android.os.Build;
 import android.os.Bundle;
 import java.util.ArrayList;
 public final class z {
-    public final CharSequence f5045a;
-    public final long f5046b;
-    public final o0 f5047c;
+    public final CharSequence f8702a;
+    public final long f8703b;
+    public final p0 f8704c;
     public final Bundle d = new Bundle();
-    public String e;
-    public Uri f5048f;
+    public String f8705e;
+    public Uri f8706f;
 
-    public z(CharSequence charSequence, long j10, o0 o0Var) {
-        this.f5045a = charSequence;
-        this.f5046b = j10;
-        this.f5047c = o0Var;
+    public z(CharSequence charSequence, long j3, p0 p0Var) {
+        this.f8702a = charSequence;
+        this.f8703b = j3;
+        this.f8704c = p0Var;
     }
 
     public static Bundle[] a(ArrayList arrayList) {
@@ -25,26 +25,26 @@ public final class z {
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             z zVar = (z) arrayList.get(i10);
-            o0 o0Var = zVar.f5047c;
+            p0 p0Var = zVar.f8704c;
             Bundle bundle = new Bundle();
-            CharSequence charSequence = zVar.f5045a;
+            CharSequence charSequence = zVar.f8702a;
             if (charSequence != null) {
                 bundle.putCharSequence("text", charSequence);
             }
-            bundle.putLong("time", zVar.f5046b);
-            if (o0Var != null) {
-                bundle.putCharSequence("sender", o0Var.f5012a);
+            bundle.putLong("time", zVar.f8703b);
+            if (p0Var != null) {
+                bundle.putCharSequence("sender", p0Var.f8667a);
                 if (Build.VERSION.SDK_INT >= 28) {
-                    bundle.putParcelable("sender_person", y.a(d1.f.E(o0Var)));
+                    bundle.putParcelable("sender_person", y.a(b5.d.E(p0Var)));
                 } else {
-                    bundle.putBundle("person", o0Var.c());
+                    bundle.putBundle("person", p0Var.c());
                 }
             }
-            String str = zVar.e;
+            String str = zVar.f8705e;
             if (str != null) {
                 bundle.putString("type", str);
             }
-            Uri uri = zVar.f5048f;
+            Uri uri = zVar.f8706f;
             if (uri != null) {
                 bundle.putParcelable("uri", uri);
             }
@@ -62,23 +62,23 @@ public final class z {
         int i10 = Build.VERSION.SDK_INT;
         CharSequence charSequence = null;
         Person person = null;
-        long j10 = this.f5046b;
-        CharSequence charSequence2 = this.f5045a;
-        o0 o0Var = this.f5047c;
+        long j3 = this.f8703b;
+        CharSequence charSequence2 = this.f8702a;
+        p0 p0Var = this.f8704c;
         if (i10 >= 28) {
-            if (o0Var != null) {
-                person = d1.f.E(o0Var);
+            if (p0Var != null) {
+                person = b5.d.E(p0Var);
             }
-            a2 = y.b(charSequence2, j10, person);
+            a2 = y.b(charSequence2, j3, person);
         } else {
-            if (o0Var != null) {
-                charSequence = o0Var.f5012a;
+            if (p0Var != null) {
+                charSequence = p0Var.f8667a;
             }
-            a2 = x.a(charSequence2, j10, charSequence);
+            a2 = x.a(charSequence2, j3, charSequence);
         }
-        String str = this.e;
+        String str = this.f8705e;
         if (str != null) {
-            x.b(a2, str, this.f5048f);
+            x.b(a2, str, this.f8706f);
         }
         return a2;
     }

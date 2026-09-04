@@ -15,13 +15,13 @@ public class VerticalBox extends Box {
 
     private void recalculateWidth(Box box) {
         this.leftMostPos = Math.min(this.leftMostPos, box.shift);
-        float f10 = this.rightMostPos;
-        float f11 = box.shift;
-        float f12 = box.width;
-        if (f12 <= 0.0f) {
-            f12 = 0.0f;
+        float f7 = this.rightMostPos;
+        float f10 = box.shift;
+        float f11 = box.width;
+        if (f11 <= 0.0f) {
+            f11 = 0.0f;
         }
-        float max = Math.max(f10, f11 + f12);
+        float max = Math.max(f7, f10 + f11);
         this.rightMostPos = max;
         this.width = max - this.leftMostPos;
     }
@@ -39,14 +39,14 @@ public class VerticalBox extends Box {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f10, float f11) {
-        float f12 = f11 - this.height;
+    public void draw(Graphics2D graphics2D, float f7, float f10) {
+        float f11 = f10 - this.height;
         Iterator<Box> it = this.children.iterator();
         while (it.hasNext()) {
             Box next = it.next();
-            float height = next.getHeight() + f12;
-            next.draw(graphics2D, (next.getShift() + f10) - this.leftMostPos, height);
-            f12 = next.getDepth() + height;
+            float height = next.getHeight() + f11;
+            next.draw(graphics2D, (next.getShift() + f7) - this.leftMostPos, height);
+            f11 = next.getDepth() + height;
         }
     }
 
@@ -65,28 +65,28 @@ public class VerticalBox extends Box {
         return this.children.size();
     }
 
-    public VerticalBox(Box box, float f10, int i10) {
+    public VerticalBox(Box box, float f7, int i10) {
         this();
         add(box);
         if (i10 == 2) {
-            float f11 = f10 / 2.0f;
-            StrutBox strutBox = new StrutBox(0.0f, f11, 0.0f, 0.0f);
+            float f10 = f7 / 2.0f;
+            StrutBox strutBox = new StrutBox(0.0f, f10, 0.0f, 0.0f);
             super.add(0, strutBox);
-            this.height += f11;
-            this.depth += f11;
+            this.height += f10;
+            this.depth += f10;
             super.add(strutBox);
         } else if (i10 == 3) {
-            this.depth += f10;
-            super.add(new StrutBox(0.0f, f10, 0.0f, 0.0f));
+            this.depth += f7;
+            super.add(new StrutBox(0.0f, f7, 0.0f, 0.0f));
         } else if (i10 == 4) {
-            this.height += f10;
-            super.add(0, new StrutBox(0.0f, f10, 0.0f, 0.0f));
+            this.height += f7;
+            super.add(0, new StrutBox(0.0f, f7, 0.0f, 0.0f));
         }
     }
 
-    public final void add(Box box, float f10) {
+    public final void add(Box box, float f7) {
         if (this.children.size() >= 1) {
-            add(new StrutBox(0.0f, f10, 0.0f, 0.0f));
+            add(new StrutBox(0.0f, f7, 0.0f, 0.0f));
         }
         add(box);
     }

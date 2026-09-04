@@ -1,76 +1,130 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.View;
-import java.util.ArrayList;
+import android.graphics.Typeface;
+import android.media.AudioRecordingConfiguration;
+import android.media.MediaRoute2Info;
+import com.google.firebase.components.ComponentRegistrar;
+import com.google.firebase.concurrent.ExecutorsRegistrar;
+import com.google.firebase.installations.FirebaseInstallationsRegistrar;
+import java.util.List;
+import java.util.concurrent.ScheduledExecutorService;
 import org.telegram.messenger.AndroidUtilities;
-public final class sw0 extends org.telegram.ui.Components.rl0 {
-    public final Paint U2;
-    public final Path V2;
-    public final vw0 W2;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
+public final class sw0 implements Utilities.Callback2Return, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.rv0, g2.g, q3.g, q9.e, pa.a, q9.d, qg.h0, androidx.car.app.utils.d {
+    public final int f40560a;
 
-    public sw0(vw0 vw0Var, Context context) {
-        super(context, null);
-        this.W2 = vw0Var;
-        Paint paint = new Paint(1);
-        this.U2 = paint;
-        paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19952h5, false));
-        this.V2 = new Path();
+    public sw0(int i10) {
+        this.f40560a = i10;
+    }
+
+    public static AudioRecordingConfiguration d(Object obj) {
+        return (AudioRecordingConfiguration) obj;
+    }
+
+    public static MediaRoute2Info e(Object obj) {
+        return (MediaRoute2Info) obj;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Path path = this.V2;
-        path.rewind();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        path.addRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
-        canvas.drawPath(path, this.U2);
-        canvas.save();
-        canvas.clipPath(path);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.W2.f39214n.f31942n0 >= 1.0f) {
-            return false;
+    public Object D(cf.c cVar) {
+        qa.d lambda$getComponents$0;
+        switch (this.f40560a) {
+            case 16:
+                lambda$getComponents$0 = FirebaseInstallationsRegistrar.lambda$getComponents$0(cVar);
+                return lambda$getComponents$0;
+            case 28:
+                return (ScheduledExecutorService) ExecutorsRegistrar.f6302a.get();
+            default:
+                return (ScheduledExecutorService) ExecutorsRegistrar.f6304c.get();
         }
-        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.W2.f39214n.f31942n0 >= 1.0f) {
-            return false;
+    public Typeface a() {
+        switch (this.f40560a) {
+            case 17:
+                return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
+            case 18:
+                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
+            case 19:
+                return Typeface.create("serif", 1);
+            case 20:
+                return AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf");
+            case 21:
+                return AndroidUtilities.getTypeface("fonts/rmono.ttf");
+            default:
+                return AndroidUtilities.getTypeface("fonts/mw_bold.ttf");
         }
-        return super.onInterceptTouchEvent(motionEvent);
     }
 
     @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        PremiumPreviewFragment premiumPreviewFragment = this.W2.f39214n;
-        int i14 = 0;
-        int i15 = 0;
-        while (true) {
-            ArrayList arrayList = premiumPreviewFragment.d;
-            if (i14 < arrayList.size()) {
-                premiumPreviewFragment.J.a((xw0) arrayList.get(i14), false);
-                premiumPreviewFragment.J.measure(View.MeasureSpec.makeMeasureSpec(i10, 1073741824), View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
-                ((xw0) arrayList.get(i14)).h = i15;
-                i15 += premiumPreviewFragment.J.getMeasuredHeight();
-                i14++;
-            } else {
-                premiumPreviewFragment.L = i15;
+    public List b(ComponentRegistrar componentRegistrar) {
+        return componentRegistrar.getComponents();
+    }
+
+    @Override
+    public boolean c(int i10, int i11, int i12, int i13, int i14) {
+        return false;
+    }
+
+    @Override
+    public void call() {
+        throw null;
+    }
+
+    @Override
+    public g2.h createDataSource() {
+        return new g2.b(ApplicationLoader.applicationContext);
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f40560a) {
+            case 1:
+                b2Var.dismiss();
                 return;
-            }
+            case 2:
+                b2Var.dismiss();
+                return;
+            case 3:
+            default:
+                b2Var.dismiss();
+                return;
+            case 4:
+                b2Var.dismiss();
+                return;
+            case 5:
+                b2Var.dismiss();
+                return;
+            case 6:
+                b2Var.dismiss();
+                return;
         }
+    }
+
+    @Override
+    public void i(int i10) {
+        SharedConfig.proxyRotationTimeout = i10;
+        SharedConfig.saveConfig();
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2) {
+        Integer num = (Integer) obj2;
+        if (((Integer) obj).intValue() == 0) {
+            return zh.v7.X0(false, LocaleController.formatPluralStringComma("Stars", num.intValue()), 0.66f, null);
+        }
+        return LocaleController.formatNumber(num.intValue(), ',');
+    }
+
+    @Override
+    public void h(pa.b bVar) {
+    }
+
+    @Override
+    public void l() {
     }
 }

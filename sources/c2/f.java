@@ -1,27 +1,46 @@
 package c2;
 
-import android.os.Handler;
-import java.util.concurrent.Executor;
-public final class f implements Executor {
-    public final int f1963a;
-    public final Handler f1964b;
+import e2.d0;
+import j$.util.Objects;
+public final class f {
+    public static final f f4152e = new f(-1, -1, -1);
+    public final int f4153a;
+    public final int f4154b;
+    public final int f4155c;
+    public final int d;
 
-    public f(Handler handler, int i10) {
-        this.f1963a = i10;
-        this.f1964b = handler;
+    public f(int i10, int i11, int i12) {
+        int i13;
+        this.f4153a = i10;
+        this.f4154b = i11;
+        this.f4155c = i12;
+        if (d0.K(i12)) {
+            i13 = d0.t(i12) * i11;
+        } else {
+            i13 = -1;
+        }
+        this.d = i13;
     }
 
-    @Override
-    public final void execute(Runnable runnable) {
-        Handler handler;
-        switch (this.f1963a) {
-            case 0:
-                handler = this.f1964b;
-                break;
-            default:
-                handler = (b) this.f1964b;
-                break;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        handler.post(runnable);
+        if (!(obj instanceof f)) {
+            return false;
+        }
+        f fVar = (f) obj;
+        if (this.f4153a == fVar.f4153a && this.f4154b == fVar.f4154b && this.f4155c == fVar.f4155c) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.f4153a), Integer.valueOf(this.f4154b), Integer.valueOf(this.f4155c));
+    }
+
+    public final String toString() {
+        return "AudioFormat[sampleRate=" + this.f4153a + ", channelCount=" + this.f4154b + ", encoding=" + this.f4155c + ']';
     }
 }

@@ -1,19 +1,37 @@
 package jd;
 
-import java.io.Serializable;
-import java.util.regex.Pattern;
-public final class c implements Serializable {
-    public final Pattern f9345a;
+import id.h;
+import kotlin.jvm.internal.i;
+import kotlin.jvm.internal.s;
+import rd.p;
+import v7.t7;
+public final class c extends kd.c {
+    public int f13619a;
+    public final p f13620b;
+    public final id.c f13621c;
 
-    public c() {
-        Pattern compile = Pattern.compile("^[a-zA-Z0-9/_]{1,100}$");
-        kotlin.jvm.internal.j.d(compile, "compile(...)");
-        this.f9345a = compile;
+    public c(id.c cVar, h hVar, p pVar, id.c cVar2) {
+        super(cVar, hVar);
+        this.f13620b = pVar;
+        this.f13621c = cVar2;
     }
 
-    public final String toString() {
-        String pattern = this.f9345a.toString();
-        kotlin.jvm.internal.j.d(pattern, "toString(...)");
-        return pattern;
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        int i10 = this.f13619a;
+        if (i10 != 0) {
+            if (i10 == 1) {
+                this.f13619a = 2;
+                t7.b(obj);
+                return obj;
+            }
+            throw new IllegalStateException("This coroutine had already completed");
+        }
+        this.f13619a = 1;
+        t7.b(obj);
+        p pVar = this.f13620b;
+        i.c(pVar, "null cannot be cast to non-null type kotlin.Function2<R of kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted, kotlin.coroutines.Continuation<T of kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted>, kotlin.Any?>");
+        s.a(2, pVar);
+        return pVar.invoke(this.f13621c, this);
     }
 }

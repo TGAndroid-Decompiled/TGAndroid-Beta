@@ -1,34 +1,47 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
-public final class aa implements Utilities.Callback2 {
-    public final int f16722a;
-    public final MessagesController f16723b;
-    public final Utilities.Callback2 f16724c;
+import java.util.ArrayList;
+public final class aa implements Runnable {
+    public final int f17144a;
+    public final MessagesController f17145b;
+    public final long f17146c;
+    public final ArrayList d;
 
-    public aa(MessagesController messagesController, Utilities.Callback2 callback2, int i10) {
-        this.f16722a = i10;
-        this.f16723b = messagesController;
-        this.f16724c = callback2;
+    public aa(MessagesController messagesController, long j3, ArrayList arrayList, int i10) {
+        this.f17144a = i10;
+        this.f17145b = messagesController;
+        this.f17146c = j3;
+        this.d = arrayList;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f16722a) {
+    public final void run() {
+        switch (this.f17144a) {
             case 0:
-                this.f16723b.lambda$toggleChatNoForwards$278(this.f16724c, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                MessagesController.f7(this.f17146c, this.d, this.f17145b);
                 return;
             case 1:
-                this.f16723b.lambda$fetchCommunityPendingJoinRequests$246(this.f16724c, (TL_communities.PeerLinkRequests) obj, (TLRPC.TL_error) obj2);
+                MessagesController.U0(this.f17146c, this.d, this.f17145b);
                 return;
             case 2:
-                this.f16723b.lambda$fetchCommunityJoinedChats$247(this.f16724c, (TL_communities.ParticipantJoinedChats) obj, (TLRPC.TL_error) obj2);
+                MessagesController.t0(this.f17146c, this.d, this.f17145b);
+                return;
+            case 3:
+                MessagesController.S1(this.f17146c, this.d, this.f17145b);
+                return;
+            case 4:
+                MessagesController.I4(this.f17146c, this.d, this.f17145b);
                 return;
             default:
-                this.f16723b.lambda$fetchChatsToAddToCommunity$252(this.f16724c, (TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
+                MessagesController.r4(this.f17146c, this.d, this.f17145b);
                 return;
         }
+    }
+
+    public aa(MessagesController messagesController, ArrayList arrayList, long j3, int i10) {
+        this.f17144a = i10;
+        this.f17145b = messagesController;
+        this.d = arrayList;
+        this.f17146c = j3;
     }
 }

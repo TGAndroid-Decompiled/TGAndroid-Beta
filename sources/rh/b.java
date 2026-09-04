@@ -1,57 +1,37 @@
 package rh;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class b implements RequestDelegate {
-    public final int f43530a;
-    public final j f43531b;
-    public final org.telegram.ui.ActionBar.d2 f43532c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.pr;
+public final class b extends View {
+    public final le.b f45600a;
+    public final Drawable f45601b;
+    public final Drawable f45602c;
 
-    public b(j jVar, org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        this.f43530a = i10;
-        this.f43531b = jVar;
-        this.f43532c = d2Var;
+    public b(Context context) {
+        super(context);
+        this.f45600a = new le.b(this, pr.h, 320L);
+        this.f45601b = context.getResources().getDrawable(R.drawable.outline_poll_emoji_24).mutate();
+        this.f45602c = context.getResources().getDrawable(R.drawable.input_keyboard).mutate();
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f43530a) {
-            case 0:
-                final j jVar = this.f43531b;
-                final org.telegram.ui.ActionBar.d2 d2Var = this.f43532c;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r5) {
-                            case 0:
-                                j.y0(jVar, d2Var, tLObject, tL_error);
-                                return;
-                            default:
-                                j.z0(jVar, d2Var, tLObject, tL_error);
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final j jVar2 = this.f43531b;
-                final org.telegram.ui.ActionBar.d2 d2Var2 = this.f43532c;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r5) {
-                            case 0:
-                                j.y0(jVar2, d2Var2, tLObject, tL_error);
-                                return;
-                            default:
-                                j.z0(jVar2, d2Var2, tLObject, tL_error);
-                                return;
-                        }
-                    }
-                });
-                return;
-        }
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float f7 = this.f45600a.f15368e;
+        yf.p.b(canvas, this.f45601b, 1.0f - f7);
+        yf.p.b(canvas, this.f45602c, f7);
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        float f7 = i10 / 2.0f;
+        float f10 = i11 / 2.0f;
+        yf.p.d(this.f45601b, f7, f10, 17);
+        yf.p.d(this.f45602c, f7, f10, 17);
     }
 }

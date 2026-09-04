@@ -1,77 +1,44 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-public final class p7 extends f2.b0 {
-    public final c8 d;
+public final class p7 implements eo0 {
+    public final k8 f29310a;
 
-    public p7(c8 c8Var) {
-        this.d = c8Var;
+    public p7(k8 k8Var) {
+        this.f29310a = k8Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, f2.l1 l1Var) {
-        super.a(recyclerView, l1Var);
-        View view = l1Var.f5774a;
-        view.setPressed(false);
-        view.setTag(R.id.dragging, null);
-    }
-
-    @Override
-    public final int e(RecyclerView recyclerView, f2.l1 l1Var) {
-        if (l1Var.f5777f != 0) {
-            return 0;
+    public final void X(float f7, boolean z10) {
+        if (z10) {
+            MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f7);
         }
-        return f2.b0.l(3, 0);
-    }
-
-    @Override
-    public final boolean n(RecyclerView recyclerView, f2.l1 l1Var, f2.l1 l1Var2) {
-        int b10 = l1Var.b();
-        int b11 = l1Var2.b();
-        c8 c8Var = this.d;
-        if (c8Var.f23863s0) {
-            if (b10 > 0 && b11 > 0) {
-                c8Var.f23864t0.move(b10 - 1, b11 - 1);
-            } else {
-                return false;
-            }
-        } else {
-            c8Var.f23864t0.move(b10, b11);
-        }
-        c8Var.f23865u0.clear();
-        c8Var.f23865u0.addAll(c8Var.f23864t0.list);
-        c8Var.f23862s.p(b10, b11);
-        return true;
-    }
-
-    @Override
-    public final void p(f2.l1 l1Var, int i10) {
-        Boolean bool;
-        o7 o7Var = this.d.f23855n;
-        if (l1Var != null) {
-            o7Var.c1(false);
-        }
-        if (i10 != 0) {
-            o7Var.I0(false);
-            if (l1Var != null) {
-                l1Var.f5774a.setPressed(true);
-            }
-        }
-        if (l1Var != null) {
-            View view = l1Var.f5774a;
-            int i11 = R.id.dragging;
-            if (i10 == 2) {
-                bool = Boolean.TRUE;
-            } else {
-                bool = null;
-            }
-            view.setTag(i11, bool);
+        MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
+        if (playingMessageObject != null && playingMessageObject.isMusic()) {
+            this.f29310a.G0(playingMessageObject, false);
         }
     }
 
     @Override
-    public final void q(f2.l1 l1Var) {
+    public final CharSequence getContentDescription() {
+        StringBuilder sb2 = new StringBuilder();
+        k8 k8Var = this.f29310a;
+        sb2.append(LocaleController.formatPluralString("Minutes", k8Var.D0 / 60, new Object[0]));
+        sb2.append(' ');
+        sb2.append(LocaleController.formatPluralString("Seconds", k8Var.D0 % 60, new Object[0]));
+        String sb3 = sb2.toString();
+        return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, sb3, LocaleController.formatPluralString("Minutes", k8Var.E0 / 60, new Object[0]) + ' ' + LocaleController.formatPluralString("Seconds", k8Var.E0 % 60, new Object[0]));
+    }
+
+    @Override
+    public final int l0() {
+        return 0;
+    }
+
+    @Override
+    public final void B() {
     }
 }

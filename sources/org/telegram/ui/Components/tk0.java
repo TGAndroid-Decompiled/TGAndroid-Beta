@@ -1,14 +1,23 @@
 package org.telegram.ui.Components;
-public final class tk0 {
-    public final c2.z f28992a;
-    public final int f28993b;
-    public final int f28994c;
-    public final boolean d;
+public abstract class tk0 extends kl0 {
+    public boolean E(ll0 ll0Var) {
+        return true;
+    }
 
-    public tk0(c2.z zVar, int i10, int i11, boolean z4) {
-        this.f28992a = zVar;
-        this.f28993b = i10;
-        this.f28994c = i11;
-        this.d = z4;
+    public abstract String F(int i10);
+
+    public abstract void G(ll0 ll0Var, float f7, int[] iArr);
+
+    public float H(ll0 ll0Var) {
+        return ll0Var.computeVerticalScrollOffset() / ((k() * ll0Var.getChildAt(0).getMeasuredHeight()) - ll0Var.getMeasuredHeight());
+    }
+
+    public void I() {
+    }
+
+    public void J(ll0 ll0Var) {
+    }
+
+    public void K() {
     }
 }

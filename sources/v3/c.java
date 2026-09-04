@@ -1,86 +1,73 @@
 package v3;
 
-import cb.e;
-import h5.w;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-public final class c extends e {
-    public long f45642b;
-    public long[] f45643c;
-    public long[] d;
+import android.util.Pair;
+import c3.a0;
+import c3.c0;
+import e2.d0;
+public final class c implements f {
+    public final long[] f47328a;
+    public final long[] f47329b;
+    public final long f47330c;
 
-    public static Serializable L(int i10, w wVar) {
-        if (i10 != 0) {
-            boolean z4 = false;
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 3) {
-                        if (i10 != 8) {
-                            if (i10 != 10) {
-                                if (i10 != 11) {
-                                    return null;
-                                }
-                                Date date = new Date((long) Double.longBitsToDouble(wVar.o()));
-                                wVar.G(2);
-                                return date;
-                            }
-                            int x10 = wVar.x();
-                            ArrayList arrayList = new ArrayList(x10);
-                            for (int i11 = 0; i11 < x10; i11++) {
-                                Serializable L = L(wVar.u(), wVar);
-                                if (L != null) {
-                                    arrayList.add(L);
-                                }
-                            }
-                            return arrayList;
-                        }
-                        return M(wVar);
-                    }
-                    HashMap hashMap = new HashMap();
-                    while (true) {
-                        String N = N(wVar);
-                        int u10 = wVar.u();
-                        if (u10 == 9) {
-                            return hashMap;
-                        }
-                        Serializable L2 = L(u10, wVar);
-                        if (L2 != null) {
-                            hashMap.put(N, L2);
-                        }
-                    }
-                } else {
-                    return N(wVar);
-                }
-            } else {
-                if (wVar.u() == 1) {
-                    z4 = true;
-                }
-                return Boolean.valueOf(z4);
-            }
+    public c(long j3, long[] jArr, long[] jArr2) {
+        this.f47328a = jArr;
+        this.f47329b = jArr2;
+        this.f47330c = j3 == -9223372036854775807L ? d0.Q(jArr2[jArr2.length - 1]) : j3;
+    }
+
+    public static Pair b(long j3, long[] jArr, long[] jArr2) {
+        double d;
+        int e7 = d0.e(jArr, j3, true);
+        long j10 = jArr[e7];
+        long j11 = jArr2[e7];
+        int i10 = e7 + 1;
+        if (i10 == jArr.length) {
+            return Pair.create(Long.valueOf(j10), Long.valueOf(j11));
+        }
+        long j12 = jArr[i10];
+        long j13 = jArr2[i10];
+        if (j12 == j10) {
+            d = 0.0d;
         } else {
-            return Double.valueOf(Double.longBitsToDouble(wVar.o()));
+            d = (j3 - j10) / (j12 - j10);
         }
+        return Pair.create(Long.valueOf(j3), Long.valueOf(((long) (d * (j13 - j11))) + j11));
     }
 
-    public static HashMap M(w wVar) {
-        int x10 = wVar.x();
-        HashMap hashMap = new HashMap(x10);
-        for (int i10 = 0; i10 < x10; i10++) {
-            String N = N(wVar);
-            Serializable L = L(wVar.u(), wVar);
-            if (L != null) {
-                hashMap.put(N, L);
-            }
-        }
-        return hashMap;
+    @Override
+    public final long a(long j3) {
+        return d0.Q(((Long) b(j3, this.f47328a, this.f47329b).second).longValue());
     }
 
-    public static String N(w wVar) {
-        int z4 = wVar.z();
-        int i10 = wVar.f6988b;
-        wVar.G(z4);
-        return new String(wVar.f6987a, i10, z4);
+    @Override
+    public final long d() {
+        return -1L;
+    }
+
+    @Override
+    public final long e() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean f() {
+        return true;
+    }
+
+    @Override
+    public final a0 j(long j3) {
+        Pair b10 = b(d0.e0(d0.i(j3, 0L, this.f47330c)), this.f47329b, this.f47328a);
+        c0 c0Var = new c0(d0.Q(((Long) b10.first).longValue()), ((Long) b10.second).longValue());
+        return new a0(c0Var, c0Var);
+    }
+
+    @Override
+    public final int k() {
+        return -2147483647;
+    }
+
+    @Override
+    public final long l() {
+        return this.f47330c;
     }
 }

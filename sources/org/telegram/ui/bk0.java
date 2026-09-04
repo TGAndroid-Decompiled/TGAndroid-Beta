@@ -1,54 +1,25 @@
 package org.telegram.ui;
 
-import android.widget.EditText;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class bk0 extends org.telegram.ui.ActionBar.h5 {
-    public final NotificationsCustomSettingsActivity f32904f;
+import android.content.Context;
+import android.widget.TextView;
+import org.telegram.messenger.NotificationCenter;
+public final class bk0 extends TextView {
+    public final tt f34827a;
 
-    public bk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity) {
-        this.f32904f = notificationsCustomSettingsActivity;
+    public bk0(Context context) {
+        super(context);
+        this.f34827a = new tt(1, this);
     }
 
     @Override
-    public final void m() {
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f32904f;
-        notificationsCustomSettingsActivity.d.F(null);
-        notificationsCustomSettingsActivity.f31639f = false;
-        notificationsCustomSettingsActivity.getClass();
-        notificationsCustomSettingsActivity.f31638c.setText(LocaleController.getString("NoExceptions", R.string.NoExceptions));
-        notificationsCustomSettingsActivity.f31636a.setAdapter(notificationsCustomSettingsActivity.f31637b);
-        notificationsCustomSettingsActivity.f31637b.l();
-        notificationsCustomSettingsActivity.f31636a.setFastScrollVisible(true);
-        notificationsCustomSettingsActivity.f31636a.setVerticalScrollBarEnabled(false);
-        notificationsCustomSettingsActivity.f31638c.setShowAtCenter(false);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getGlobalInstance().addObserver(this.f34827a, NotificationCenter.emojiLoaded);
     }
 
     @Override
-    public final void n() {
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f32904f;
-        notificationsCustomSettingsActivity.f31639f = true;
-        notificationsCustomSettingsActivity.f31638c.setShowAtCenter(true);
-    }
-
-    @Override
-    public final void q(EditText editText) {
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f32904f;
-        if (notificationsCustomSettingsActivity.d == null) {
-            return;
-        }
-        String obj = editText.getText().toString();
-        if (obj.length() != 0) {
-            notificationsCustomSettingsActivity.getClass();
-            if (notificationsCustomSettingsActivity.f31636a != null) {
-                notificationsCustomSettingsActivity.f31638c.setText(LocaleController.getString("NoResult", R.string.NoResult));
-                notificationsCustomSettingsActivity.f31638c.b();
-                notificationsCustomSettingsActivity.f31636a.setAdapter(notificationsCustomSettingsActivity.d);
-                notificationsCustomSettingsActivity.d.l();
-                notificationsCustomSettingsActivity.f31636a.setFastScrollVisible(false);
-                notificationsCustomSettingsActivity.f31636a.setVerticalScrollBarEnabled(true);
-            }
-        }
-        notificationsCustomSettingsActivity.d.F(obj);
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getGlobalInstance().removeObserver(this.f34827a, NotificationCenter.emojiLoaded);
     }
 }

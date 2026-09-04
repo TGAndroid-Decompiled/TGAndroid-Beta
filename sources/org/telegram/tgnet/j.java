@@ -1,27 +1,27 @@
 package org.telegram.tgnet;
 
-import android.os.AsyncTask;
+import java.util.Comparator;
 import org.telegram.tgnet.ConnectionsManager;
-public final class j implements Runnable {
-    public final int f19346a;
-    public final NativeByteBuffer f19347b;
-    public final AsyncTask f19348c;
+public final class j implements Comparator {
+    public final int f20060a;
 
-    public j(AsyncTask asyncTask, NativeByteBuffer nativeByteBuffer, int i10) {
-        this.f19346a = i10;
-        this.f19348c = asyncTask;
-        this.f19347b = nativeByteBuffer;
+    public j(int i10) {
+        this.f20060a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19346a) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$doInBackground$0;
+        int lambda$doInBackground$02;
+        String str = (String) obj;
+        String str2 = (String) obj2;
+        switch (this.f20060a) {
             case 0:
-                ((ConnectionsManager.GoogleDnsLoadTask) this.f19348c).lambda$onPostExecute$1(this.f19347b);
-                return;
+                lambda$doInBackground$0 = ConnectionsManager.GoogleDnsLoadTask.lambda$doInBackground$0(str, str2);
+                return lambda$doInBackground$0;
             default:
-                ((ConnectionsManager.MozillaDnsLoadTask) this.f19348c).lambda$onPostExecute$1(this.f19347b);
-                return;
+                lambda$doInBackground$02 = ConnectionsManager.MozillaDnsLoadTask.lambda$doInBackground$0(str, str2);
+                return lambda$doInBackground$02;
         }
     }
 }

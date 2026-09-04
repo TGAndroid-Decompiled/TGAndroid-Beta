@@ -1,21 +1,10 @@
 package cc;
+public final class a extends h {
+    public static final a f4724c;
 
-import android.util.Log;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-public final class a extends c {
-    public final int f2275a;
-    public Object f2276b;
-
-    @Override
-    public final void b(String str) {
-        switch (this.f2275a) {
-            case 0:
-                Log.d("isoparser", String.valueOf((String) this.f2276b) + ":" + str);
-                return;
-            default:
-                ((Logger) this.f2276b).log(Level.FINE, str);
-                return;
-        }
+    static {
+        ?? exc = new Exception();
+        f4724c = exc;
+        exc.setStackTrace(h.f4741b);
     }
 }

@@ -1,69 +1,63 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_account;
-public final class ml0 extends org.telegram.ui.Components.h51 {
-    public static final int f36131a = 0;
+public final class ml0 implements Runnable {
+    public final int f38731a;
+    public final PasscodeActivity f38732b;
 
-    static {
-        org.telegram.ui.Components.h51.setup(new org.telegram.ui.Components.h51());
+    public ml0(PasscodeActivity passcodeActivity, int i10) {
+        this.f38731a = i10;
+        this.f38732b = passcodeActivity;
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.i51 i51Var, boolean z4, org.telegram.ui.Components.w51 w51Var, org.telegram.ui.Components.g61 g61Var) {
-        nl0 nl0Var = (nl0) view;
-        TL_account.Passkey passkey = (TL_account.Passkey) i51Var.G;
-        View.OnClickListener onClickListener = i51Var.D;
-        TextView textView = nl0Var.f36534f;
-        TextView textView2 = nl0Var.e;
-        org.telegram.ui.ActionBar.f6 f6Var = nl0Var.f36532b;
-        FrameLayout frameLayout = nl0Var.f36533c;
-        org.telegram.ui.Components.p9 p9Var = nl0Var.d;
-        nl0Var.f36536r = passkey.f19362id;
-        long j10 = passkey.software_emoji_id;
-        if (j10 != 0) {
-            p9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.l5.n(nl0Var.f36531a, j10, null, 3));
-            frameLayout.setBackground(null);
-            p9Var.setColorFilter(null);
-            p9Var.setScaleX(1.0f);
-            p9Var.setScaleY(1.0f);
-        } else {
-            int dp = AndroidUtilities.dp(4.0f);
-            int i10 = org.telegram.ui.ActionBar.j6.G6;
-            frameLayout.setBackground(org.telegram.ui.ActionBar.j6.b0(dp, org.telegram.ui.ActionBar.j6.l1(0.04f, org.telegram.ui.ActionBar.j6.v0(i10, f6Var))));
-            p9Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.l1(0.3f, org.telegram.ui.ActionBar.j6.v0(i10, f6Var)), PorterDuff.Mode.SRC_IN));
-            p9Var.setImageResource(R.drawable.msg2_permissions);
-            p9Var.setScaleX(0.666f);
-            p9Var.setScaleY(0.666f);
-            p9Var.setAnimatedEmojiDrawable(null);
+    public final void run() {
+        long j3;
+        switch (this.f38731a) {
+            case 0:
+                PasscodeActivity passcodeActivity = this.f38732b;
+                passcodeActivity.f33500n.postDelayed(passcodeActivity.O, 3000L);
+                passcodeActivity.N = true;
+                return;
+            case 1:
+                PasscodeActivity passcodeActivity2 = new PasscodeActivity(0);
+                PasscodeActivity passcodeActivity3 = this.f38732b;
+                passcodeActivity3.presentFragment(passcodeActivity2, true);
+                ac0 ac0Var = passcodeActivity3.Q;
+                if (ac0Var != null) {
+                    AndroidUtilities.runOnUIThread(ac0Var);
+                    passcodeActivity3.Q = null;
+                    return;
+                }
+                return;
+            case 2:
+                PasscodeActivity passcodeActivity4 = this.f38732b;
+                ml0 ml0Var = new ml0(passcodeActivity4, 3);
+                if (passcodeActivity4.e0()) {
+                    j3 = 150;
+                } else {
+                    j3 = 1000;
+                }
+                AndroidUtilities.runOnUIThread(ml0Var, j3);
+                return;
+            case 3:
+                PasscodeActivity passcodeActivity5 = this.f38732b;
+                if (passcodeActivity5.e0()) {
+                    for (gs gsVar : passcodeActivity5.f33500n.f36163f) {
+                        gsVar.i(0.0f);
+                    }
+                    return;
+                }
+                passcodeActivity5.f33499f.a(0.0f);
+                return;
+            case 4:
+                PasscodeActivity passcodeActivity6 = this.f38732b;
+                passcodeActivity6.N = false;
+                AndroidUtilities.updateViewVisibilityAnimated(passcodeActivity6.f33501r, false);
+                return;
+            default:
+                this.f38732b.k0();
+                return;
         }
-        if (TextUtils.isEmpty(passkey.name)) {
-            textView2.setText(LocaleController.getString(R.string.PasskeyUnknown));
-        } else {
-            textView2.setText(passkey.name);
-        }
-        int i11 = passkey.last_usage_date;
-        if (i11 != 0) {
-            textView.setText(LocaleController.formatString(R.string.PasskeyLastUsedOn, LocaleController.formatDateTime(i11, false)));
-        } else {
-            textView.setText(LocaleController.formatString(R.string.PasskeyCreatedOn, LocaleController.formatDateTime(passkey.date, false)));
-        }
-        nl0Var.h.setOnClickListener(onClickListener);
-        nl0Var.f36535n = z4;
-        nl0Var.setWillNotDraw(!z4);
-    }
-
-    @Override
-    public final View createView(Context context, org.telegram.ui.Components.rl0 rl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        return new nl0(context, i10, f6Var);
     }
 }

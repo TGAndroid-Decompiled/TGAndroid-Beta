@@ -1,15 +1,15 @@
 package m1;
 
 import android.content.Context;
-import dd.l;
-import tc.o;
-public final class a extends kotlin.jvm.internal.k implements l {
-    public static final a f13687b = new kotlin.jvm.internal.k(1);
+import hd.o;
+import rd.l;
+public final class a extends kotlin.jvm.internal.j implements l {
+    public static final a f15739b = new kotlin.jvm.internal.j(1);
 
     @Override
     public final Object invoke(Object obj) {
         Context it = (Context) obj;
-        kotlin.jvm.internal.j.e(it, "it");
-        return o.f44712a;
+        kotlin.jvm.internal.i.e(it, "it");
+        return o.f10956a;
     }
 }

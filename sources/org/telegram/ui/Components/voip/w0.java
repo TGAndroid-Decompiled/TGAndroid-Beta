@@ -1,42 +1,50 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-public final class w0 extends AnimatorListenerAdapter {
-    public final int f29980a;
-    public final a1 f29981b;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+public final class w0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f31907a;
+    public final b1 f31908b;
 
-    public w0(a1 a1Var, int i10) {
-        this.f29980a = i10;
-        this.f29981b = a1Var;
+    public w0(b1 b1Var, int i10) {
+        this.f31907a = i10;
+        this.f31908b = b1Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f29980a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f31907a) {
             case 0:
-                super.onAnimationEnd(animator);
-                a1 a1Var = this.f29981b;
-                if (a1Var.getParent() != null) {
-                    ((ViewGroup) a1Var.getParent()).removeView(a1Var);
-                    return;
-                }
+                b1 b1Var = this.f31908b;
+                b1Var.getClass();
+                b1Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                b1Var.invalidate();
                 return;
             case 1:
-                a1 a1Var2 = this.f29981b;
-                if (a1Var2.getParent() != null) {
-                    ((ViewGroup) a1Var2.getParent()).removeView(a1Var2);
-                    return;
-                }
+                b1 b1Var2 = this.f31908b;
+                b1Var2.getClass();
+                b1Var2.f31424y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float dp = b1Var2.I + AndroidUtilities.dp(28.0f);
+                float dp2 = b1Var2.J + AndroidUtilities.dp(52.0f);
+                float f7 = b1Var2.f31424y;
+                b1Var2.G = dp - (dp * f7);
+                b1Var2.H = dp2 - (f7 * dp2);
+                b1Var2.invalidate();
+                return;
+            case 2:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                b1 b1Var3 = this.f31908b;
+                b1Var3.E = floatValue;
+                int dp3 = (AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f);
+                z0 z0Var = b1Var3.f31416c;
+                z0Var.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (dp3 * b1Var3.E));
+                z0Var.requestLayout();
                 return;
             default:
-                super.onAnimationEnd(animator);
-                a1 a1Var3 = this.f29981b;
-                if (a1Var3.getParent() != null) {
-                    ((ViewGroup) a1Var3.getParent()).removeView(a1Var3);
-                    return;
-                }
+                b1 b1Var4 = this.f31908b;
+                b1Var4.getClass();
+                b1Var4.f31421s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                b1Var4.e();
                 return;
         }
     }

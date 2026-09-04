@@ -54,9 +54,9 @@ public class EncryptedFileInputStream extends FileInputStream {
     }
 
     @Override
-    public long skip(long j10) {
-        this.fileOffset = (int) (this.fileOffset + j10);
-        return super.skip(j10);
+    public long skip(long j3) {
+        this.fileOffset = (int) (this.fileOffset + j3);
+        return super.skip(j3);
     }
 
     public static void decryptBytesWithKeyFile(byte[] bArr, int i10, int i11, File file) {

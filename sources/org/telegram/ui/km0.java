@@ -1,85 +1,56 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class km0 implements org.telegram.ui.Components.ji {
-    public final fn0 f35558a;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class km0 implements TextWatcher {
+    public boolean f38091a;
+    public final EditTextBoldCursor f38092b;
+    public final String f38093c;
+    public final pn0 d;
 
-    public km0(fn0 fn0Var) {
-        this.f35558a = fn0Var;
+    public km0(pn0 pn0Var, EditTextBoldCursor editTextBoldCursor, String str) {
+        this.d = pn0Var;
+        this.f38092b = editTextBoldCursor;
+        this.f38093c = str;
     }
 
     @Override
-    public final void C0(org.telegram.ui.Components.wg wgVar) {
-        wgVar.run();
-    }
-
-    @Override
-    public final void G1(int i10, boolean z4, boolean z10, int i11, int i12, long j10, boolean z11, boolean z12, long j11) {
-        org.telegram.ui.Components.li liVar;
-        fn0 fn0Var = this.f35558a;
-        if (fn0Var.getParentActivity() != null && (liVar = fn0Var.O0) != null) {
-            if (i10 != 8 && i10 != 7) {
-                liVar.dismissWithButtonClick(i10);
-                fn0Var.F1(i10);
-                return;
-            }
-            if (i10 != 8) {
-                liVar.dismiss(true);
-            }
-            HashMap<Object, Object> selectedPhotos = fn0Var.O0.f26698g0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = fn0Var.O0.f26698g0.getSelectedPhotosOrder();
-            if (!selectedPhotos.isEmpty()) {
-                ArrayList arrayList = new ArrayList();
-                for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
-                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.get(selectedPhotosOrder.get(i13));
-                    SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                    String str = photoEntry.imagePath;
-                    if (str != null) {
-                        sendingMediaInfo.path = str;
-                    } else {
-                        sendingMediaInfo.path = photoEntry.path;
-                    }
-                    arrayList.add(sendingMediaInfo);
-                    photoEntry.reset();
+    public final void afterTextChanged(Editable editable) {
+        if (this.f38091a) {
+            return;
+        }
+        boolean z10 = true;
+        this.f38091a = true;
+        int i10 = 0;
+        while (true) {
+            if (i10 < editable.length()) {
+                char charAt = editable.charAt(i10);
+                if ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && !((charAt >= '0' && charAt <= '9') || charAt == '-' || charAt == ' '))) {
+                    break;
                 }
-                fn0Var.G1(arrayList);
+                i10++;
+            } else {
+                z10 = false;
+                break;
             }
+        }
+        this.f38091a = false;
+        EditTextBoldCursor editTextBoldCursor = this.f38092b;
+        if (z10) {
+            editTextBoldCursor.setErrorText(LocaleController.getString(R.string.PassportUseLatinOnly));
+        } else {
+            pn0.J0(this.d, editTextBoldCursor, this.f38093c, editable, false);
         }
     }
 
     @Override
-    public final void Q0() {
-        AndroidUtilities.hideKeyboard(this.f35558a.fragmentView.findFocus());
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 
     @Override
-    public final boolean X1() {
-        return false;
-    }
-
-    @Override
-    public final boolean h0() {
-        return false;
-    }
-
-    @Override
-    public final void Z0(Object obj) {
-    }
-
-    @Override
-    public final void o1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void z0() {
-    }
-
-    @Override
-    public final void b2(ArrayList arrayList, CharSequence charSequence, boolean z4, int i10, int i11, long j10, boolean z10, long j11) {
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

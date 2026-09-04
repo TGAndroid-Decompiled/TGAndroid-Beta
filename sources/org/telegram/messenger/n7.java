@@ -1,28 +1,49 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MediaDataController;
-public final class n7 implements Runnable {
-    public final int f17887a;
-    public final MediaDataController.KeywordResultCallback f17888b;
-    public final ArrayList f17889c;
-    public final String d;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class n7 implements RequestDelegate {
+    public final int f18443a;
+    public final MediaDataController f18444b;
 
-    public n7(MediaDataController.KeywordResultCallback keywordResultCallback, ArrayList arrayList, String str, int i10) {
-        this.f17887a = i10;
-        this.f17888b = keywordResultCallback;
-        this.f17889c = arrayList;
-        this.d = str;
+    public n7(MediaDataController mediaDataController, int i10) {
+        this.f18443a = i10;
+        this.f18444b = mediaDataController;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17887a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18443a) {
             case 0:
-                this.f17888b.run(this.f17889c, this.d);
+                this.f18444b.lambda$checkGenericAnimations$80(tLObject, tL_error);
+                return;
+            case 1:
+                this.f18444b.lambda$clearRecentStickers$19(tLObject, tL_error);
+                return;
+            case 2:
+                this.f18444b.lambda$preloadPremiumPreviewStickers$206(tLObject, tL_error);
+                return;
+            case 3:
+                this.f18444b.lambda$loadPremiumPromo$8(tLObject, tL_error);
+                return;
+            case 4:
+                this.f18444b.lambda$loadReactions$14(tLObject, tL_error);
+                return;
+            case 5:
+                this.f18444b.lambda$checkPremiumGiftStickers$76(tLObject, tL_error);
+                return;
+            case 6:
+                this.f18444b.lambda$loadDraftsIfNeed$187(tLObject, tL_error);
+                return;
+            case 7:
+                this.f18444b.lambda$checkDefaultTopicIcons$82(tLObject, tL_error);
+                return;
+            case 8:
+                this.f18444b.lambda$loadGroupStickerSet$46(tLObject, tL_error);
                 return;
             default:
-                this.f17888b.run(this.f17889c, this.d);
+                this.f18444b.lambda$checkTonGiftStickers$78(tLObject, tL_error);
                 return;
         }
     }

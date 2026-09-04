@@ -1,75 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class oe extends lg {
-    public final int f27518i0;
-    public final ChatActivityEnterView f27519j0;
+import android.app.Activity;
+import android.view.View;
+import android.widget.ImageView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationsController;
+import org.telegram.messenger.R;
+public final class oe implements View.OnClickListener {
+    public final org.telegram.ui.co f29039a;
+    public final Activity f29040b;
+    public final ChatActivityEnterView f29041c;
 
-    public oe(ChatActivityEnterView chatActivityEnterView, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
-        super(i10, context, f6Var, true);
-        this.f27518i0 = i11;
-        this.f27519j0 = chatActivityEnterView;
+    public oe(ChatActivityEnterView chatActivityEnterView, org.telegram.ui.co coVar, Activity activity) {
+        this.f29041c = chatActivityEnterView;
+        this.f29039a = coVar;
+        this.f29040b = activity;
     }
 
     @Override
-    public boolean d() {
-        switch (this.f27518i0) {
-            case 0:
-                return this.f27519j0.c();
-            default:
-                return super.d();
+    public final void onClick(View view) {
+        long d;
+        String str;
+        int i10;
+        int i11;
+        org.telegram.ui.co coVar = this.f29039a;
+        if (coVar == null) {
+            return;
         }
-    }
-
-    @Override
-    public final boolean e() {
-        switch (this.f27518i0) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f27519j0;
-                if (!chatActivityEnterView.c() && chatActivityEnterView.D0 == Integer.MAX_VALUE) {
-                    return true;
-                }
-                return false;
-            default:
-                return !this.f27519j0.f22775m3;
+        ChatActivityEnterView chatActivityEnterView = this.f29041c;
+        chatActivityEnterView.f23698f2 = !chatActivityEnterView.f23698f2;
+        if (chatActivityEnterView.f23689e0 == null) {
+            chatActivityEnterView.f23689e0 = new mr(this.f29040b, R.drawable.input_notify_on, org.telegram.ui.ActionBar.j6.Wk);
         }
-    }
-
-    @Override
-    public final boolean f() {
-        switch (this.f27518i0) {
-            case 0:
-                cf cfVar = this.f27519j0.I0;
-                if ((cfVar != null && !cfVar.f38842n0) || this.f26668r > 0) {
-                    return true;
-                }
-                return false;
-            default:
-                return true;
+        chatActivityEnterView.f23689e0.a(chatActivityEnterView.f23698f2, true);
+        chatActivityEnterView.H1.setImageDrawable(chatActivityEnterView.f23689e0);
+        MessagesController.getNotificationsSettings(chatActivityEnterView.Q).edit().putBoolean("silent_" + chatActivityEnterView.P2, chatActivityEnterView.f23698f2).commit();
+        NotificationsController notificationsController = NotificationsController.getInstance(chatActivityEnterView.Q);
+        long j3 = chatActivityEnterView.P2;
+        if (coVar == null) {
+            d = 0;
+        } else {
+            d = coVar.d();
         }
-    }
-
-    @Override
-    public boolean j() {
-        switch (this.f27518i0) {
-            case 0:
-                return this.f27519j0.f22819u4;
-            default:
-                return super.j();
+        notificationsController.updateServerNotificationsSettings(j3, d);
+        coVar.Q7();
+        UndoView undoView = coVar.y3;
+        if (undoView != null) {
+            if (!chatActivityEnterView.f23698f2) {
+                i11 = 54;
+            } else {
+                i11 = 55;
+            }
+            undoView.j(i11, 0L, null);
         }
-    }
-
-    @Override
-    public void setAlpha(float f10) {
-        switch (this.f27518i0) {
-            case 0:
-                super.setAlpha(f10);
-                int i10 = ChatActivityEnterView.f22702j5;
-                this.f27519j0.z1();
-                return;
-            default:
-                super.setAlpha(f10);
-                return;
+        ImageView imageView = chatActivityEnterView.H1;
+        if (chatActivityEnterView.f23698f2) {
+            str = "AccDescrChanSilentOn";
+            i10 = R.string.AccDescrChanSilentOn;
+        } else {
+            str = "AccDescrChanSilentOff";
+            i10 = R.string.AccDescrChanSilentOff;
         }
+        imageView.setContentDescription(LocaleController.getString(str, i10));
+        chatActivityEnterView.G1(true);
     }
 }

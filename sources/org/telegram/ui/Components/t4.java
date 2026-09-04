@@ -1,24 +1,23 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class t4 extends FrameLayout {
-    public final org.telegram.ui.Cells.y1[] f28894a;
+import android.os.Vibrator;
+import android.text.Spanned;
+public final class t4 extends fq {
+    public final Context f30528b;
 
-    public t4(Context context, org.telegram.ui.Cells.y1[] y1VarArr) {
-        super(context);
-        this.f28894a = y1VarArr;
+    public t4(Context context) {
+        super(255);
+        this.f30528b = context;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        org.telegram.ui.Cells.y1[] y1VarArr = this.f28894a;
-        if (y1VarArr[0] != null) {
-            int measuredWidth = getMeasuredWidth();
-            int measuredHeight = getMeasuredHeight();
-            setMeasuredDimension(measuredWidth, AndroidUtilities.dp(7.0f) + y1VarArr[0].getMeasuredHeight() + measuredHeight);
+    public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
+        Vibrator vibrator;
+        CharSequence filter = super.filter(charSequence, i10, i11, spanned, i12, i13);
+        if (filter != null && charSequence != null && filter.length() != charSequence.length() && (vibrator = (Vibrator) this.f30528b.getSystemService("vibrator")) != null) {
+            vibrator.vibrate(200L);
         }
+        return filter;
     }
 }

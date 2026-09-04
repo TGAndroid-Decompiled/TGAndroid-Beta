@@ -8,7 +8,7 @@ public abstract class y {
         return person;
     }
 
-    public static Notification.MessagingStyle.Message b(CharSequence charSequence, long j10, Person person) {
-        return new Notification.MessagingStyle.Message(charSequence, j10, person);
+    public static Notification.MessagingStyle.Message b(CharSequence charSequence, long j3, Person person) {
+        return new Notification.MessagingStyle.Message(charSequence, j3, person);
     }
 }

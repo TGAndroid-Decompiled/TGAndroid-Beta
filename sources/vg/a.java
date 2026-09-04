@@ -1,206 +1,147 @@
 package vg;
 
-import android.content.Context;
-import android.graphics.BlendMode;
-import android.graphics.BlendModeColorFilter;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.os.Build;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import k7.b6;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.mr;
-import org.telegram.ui.Components.qp;
-import xd.c;
-public final class a extends FrameLayout implements xd.b {
-    public final xd.a f45843a;
-    public final xd.a f45844b;
-    public ImageView f45845c;
-    public ImageView d;
-    public qp e;
-    public f6 f45846f;
-    public float h;
-    public pg.b f45847n;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class a extends pg.a {
+    public CharSequence f47785c;
+    public TLRPC.InputPeer d;
+    public TLRPC.Chat f47786e;
+    public Object f47787f;
+    public boolean f47788g;
+    public long h;
+    public int f47789i;
+    public int f47790j;
+    public List f47791k;
+    public int f47792l;
+    public TLObject f47793m;
 
-    public a(Context context) {
-        super(context);
-        mr mrVar = mr.h;
-        this.f45843a = new xd.a(0, this, mrVar, 320L, false);
-        this.f45844b = new xd.a(1, this, mrVar, 320L, true);
-        this.h = 1.0f;
+    public static a b(TLRPC.Chat chat, int i10, boolean z10) {
+        ?? aVar = new pg.a(9, false);
+        aVar.f47786e = chat;
+        aVar.d = null;
+        aVar.f47788g = z10;
+        aVar.f47789i = i10;
+        return aVar;
     }
 
-    public static a c(Context context, ng.a aVar, f6 f6Var, qg.a aVar2) {
-        int v02 = j6.v0(j6.Wk, f6Var);
-        a aVar3 = new a(context);
-        aVar3.f45846f = f6Var;
-        aVar3.setBlurredBackgroundDrawable(aVar.c(aVar3, aVar2, false));
-        aVar3.setIconColor(v02);
-        int dp = AndroidUtilities.dp(22.0f);
-        int l1 = j6.l1(0.15f, v02);
-        int dp2 = AndroidUtilities.dp(6.0f);
-        aVar3.setBackground(j6.W(dp, l1, dp2, dp2, dp2, dp2));
-        return aVar3;
+    public static a c(CharSequence charSequence, boolean z10) {
+        ?? aVar = new pg.a(7, false);
+        aVar.f47785c = charSequence;
+        aVar.f47788g = z10;
+        return aVar;
     }
 
-    public static a d(Context context, ng.a aVar, qg.a aVar2, f6 f6Var, int i10, int i11) {
-        int v02 = j6.v0(j6.Wk, f6Var);
-        a aVar3 = new a(context);
-        aVar3.f45846f = f6Var;
-        aVar3.setBlurredBackgroundDrawable(aVar.c(aVar3, aVar2, false));
-        aVar3.f(i10, i11);
-        aVar3.setIconColor(v02);
-        int dp = AndroidUtilities.dp(22.0f);
-        int l1 = j6.l1(0.15f, v02);
-        int dp2 = AndroidUtilities.dp(6.0f);
-        aVar3.setBackground(j6.W(dp, l1, dp2, dp2, dp2, dp2));
-        return aVar3;
+    public static a d(TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption, int i10, long j3, boolean z10, boolean z11) {
+        ?? aVar = new pg.a(17, z10);
+        aVar.f47789i = i10;
+        aVar.h = j3;
+        aVar.f47793m = tL_starsGiveawayOption;
+        aVar.f47788g = z11;
+        return aVar;
+    }
+
+    public static a e(int i10, int i11, boolean z10, ArrayList arrayList) {
+        boolean z11;
+        if (i11 == i10) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        ?? aVar = new pg.a(11, z11);
+        aVar.f47792l = i10;
+        aVar.f47788g = z10;
+        aVar.f47787f = arrayList;
+        return aVar;
+    }
+
+    public static a f(String str) {
+        ?? aVar = new pg.a(6, false);
+        aVar.f47785c = str;
+        return aVar;
+    }
+
+    public static boolean g(List list, List list2) {
+        if (list == null && list2 == null) {
+            return true;
+        }
+        if (list == null || list2 == null || list.size() != list2.size()) {
+            return false;
+        }
+        for (int i10 = 0; i10 < list.size(); i10++) {
+            if (((Integer) list.get(i10)).intValue() != ((Integer) list2.get(i10)).intValue()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
-    public final void L(int i10, float f10, float f11, c cVar) {
-        if (i10 == 0) {
-            a();
-            b();
-        }
-        if (i10 == 1) {
-            a();
-            b();
-        }
-    }
-
-    public final void a() {
+    public final boolean a(pg.a aVar) {
+        a aVar2;
         int i10;
-        float f10 = 1.0f - this.f45843a.e;
-        float lerp = AndroidUtilities.lerp(f10 / 2.0f, f10, this.f45844b.e);
-        ImageView imageView = this.f45845c;
-        if (imageView != null) {
-            imageView.setAlpha(lerp);
-            this.f45845c.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, f10));
-            this.f45845c.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, f10) * this.h);
-            ImageView imageView2 = this.f45845c;
-            if (f10 > 0.0f) {
-                i10 = 0;
-            } else {
-                i10 = 8;
+        int i11;
+        if (this != aVar) {
+            if (a.class == aVar.getClass() && (i10 = (aVar2 = (a) aVar).f44071a) == (i11 = this.f44071a)) {
+                if (i11 == 0) {
+                    if (this.f47788g == aVar2.f47788g) {
+                        return true;
+                    }
+                    return false;
+                } else if (i10 == 17) {
+                    if (this.f47789i == aVar2.f47789i && this.h == aVar2.h && this.f47793m == aVar2.f47793m && this.f47788g == aVar2.f47788g && this.f44072b == aVar2.f44072b) {
+                        return true;
+                    }
+                    return false;
+                } else if (i11 == 5) {
+                    if (this.f47789i == aVar2.f47789i && g(this.f47791k, aVar2.f47791k)) {
+                        return true;
+                    }
+                    return false;
+                } else if (i11 == 13 && this.f47789i == aVar2.f47789i && TextUtils.equals(this.f47785c, aVar2.f47785c)) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
-            imageView2.setVisibility(i10);
+            return false;
         }
+        return true;
     }
 
-    public final void b() {
-        int i10;
-        float f10 = this.f45843a.e;
-        float lerp = AndroidUtilities.lerp(f10 / 2.0f, f10, this.f45844b.e);
-        ImageView imageView = this.d;
-        if (imageView != null) {
-            imageView.setAlpha(lerp);
-            this.d.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, f10));
-            this.d.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, f10));
-            if (f10 > 0.0f) {
-                i10 = 0;
-            } else {
-                i10 = 8;
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && a.class == obj.getClass()) {
+                a aVar = (a) obj;
+                int i10 = this.f44071a;
+                if (i10 == aVar.f44071a) {
+                    if (i10 != 0) {
+                        if (i10 == 17) {
+                            if (this.f47789i == aVar.f47789i && this.f47793m == aVar.f47793m) {
+                                return true;
+                            }
+                            return false;
+                        } else if (i10 == 5) {
+                            return g(this.f47791k, aVar.f47791k);
+                        } else {
+                            if (i10 == 13) {
+                                return TextUtils.equals(this.f47785c, aVar.f47785c);
+                            }
+                            if (this.f47786e == aVar.f47786e && this.f47787f == aVar.f47787f && this.d == aVar.d && this.f47793m == aVar.f47793m && this.f47788g == aVar.f47788g && this.f47789i == aVar.f47789i && this.f47790j == aVar.f47790j && this.h == aVar.h && this.f47792l == aVar.f47792l && TextUtils.equals(this.f47785c, aVar.f47785c)) {
+                                return true;
+                            }
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+                return false;
             }
-            if (this.d.getVisibility() != i10) {
-                this.d.setVisibility(i10);
-                this.e.f28227c = -1L;
-            }
+            return false;
         }
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        this.f45847n.draw(canvas);
-        super.draw(canvas);
-    }
-
-    public final void e(boolean z4, boolean z10) {
-        super.setEnabled(z4);
-        this.f45844b.a(z4, z10);
-    }
-
-    public final void f(int i10, int i11) {
-        if (this.f45845c == null) {
-            if (i10 == 0) {
-                return;
-            }
-            ImageView imageView = new ImageView(getContext());
-            this.f45845c = imageView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
-            addView(this.f45845c, b6.e(i11, i11, 17));
-            a();
-        }
-        this.f45845c.setImageResource(i10);
-    }
-
-    public final void g() {
-        pg.b bVar = this.f45847n;
-        if (bVar != null) {
-            bVar.u();
-            invalidate();
-        }
-        int i10 = j6.Wk;
-        int v02 = j6.v0(i10, this.f45846f);
-        setIconColor(j6.v0(i10, this.f45846f));
-        int dp = AndroidUtilities.dp(22.0f);
-        int l1 = j6.l1(0.15f, v02);
-        int dp2 = AndroidUtilities.dp(6.0f);
-        setBackground(j6.W(dp, l1, dp2, dp2, dp2, dp2));
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        this.f45847n.setBounds(0, 0, i10, i11);
-    }
-
-    public void setBlurredBackgroundDrawable(pg.b bVar) {
-        this.f45847n = bVar;
-        bVar.o(AndroidUtilities.dp(6.0f));
-        this.f45847n.p(AndroidUtilities.dp(22.0f));
-    }
-
-    @Override
-    public void setEnabled(boolean z4) {
-        e(z4, false);
-    }
-
-    public void setIcon(int i10) {
-        f(i10, 48);
-    }
-
-    public void setIconColor(int i10) {
-        BlendMode blendMode;
-        ImageView imageView = this.f45845c;
-        if (imageView == null) {
-            return;
-        }
-        if (Build.VERSION.SDK_INT >= 29) {
-            blendMode = BlendMode.SRC_IN;
-            imageView.setColorFilter(new BlendModeColorFilter(i10, blendMode));
-            return;
-        }
-        imageView.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
-    }
-
-    public void setIconPadding(int i10) {
-        ImageView imageView = this.f45845c;
-        if (imageView != null) {
-            imageView.setPadding(0, i10, 0, 0);
-        }
-    }
-
-    @Override
-    public final void z(float f10, int i10) {
+        return true;
     }
 }

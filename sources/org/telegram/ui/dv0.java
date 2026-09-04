@@ -1,28 +1,55 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class dv0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f33537a;
-    public final mv0 f33538b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class dv0 extends org.telegram.ui.Components.x50 {
+    public final ev0 d;
 
-    public dv0(mv0 mv0Var, int i10) {
-        this.f33537a = i10;
-        this.f33538b = mv0Var;
+    public dv0(ev0 ev0Var) {
+        this.d = ev0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f33537a) {
-            case 0:
-                mv0 mv0Var = this.f33538b;
-                mv0Var.getClass();
-                mv0Var.O.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            default:
-                mv0 mv0Var2 = this.f33538b;
-                mv0Var2.getClass();
-                mv0Var2.O.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
+    public final CharSequence d() {
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(LocaleController.getString("AccDescrVideoQuality", R.string.AccDescrVideoQuality));
+        if (this.d.f36193s.Y7 > 0) {
+            sb2.append(", ");
+            sb2.append(this.d.f36193s.X7 + 1);
+            sb2.append(" / ");
+            sb2.append(this.d.f36193s.Y7);
+        }
+        sb2.append(", ");
+        sb2.append(this.d.h);
+        sb2.append(" – ");
+        sb2.append(this.d.f36191n);
+        return sb2.toString();
+    }
+
+    @Override
+    public final int i() {
+        return Math.max(0, this.d.f36193s.Y7 - 1);
+    }
+
+    @Override
+    public final int j() {
+        return this.d.f36193s.X7;
+    }
+
+    @Override
+    public final void k(int i10) {
+        int max;
+        if (this.d.f36193s.Y7 > 0 && (max = Math.max(0, Math.min(this.d.f36193s.Y7 - 1, i10))) != this.d.f36193s.X7) {
+            ev0 ev0Var = this.d;
+            ev0Var.f36192r = ev0Var.f36193s.X7;
+            this.d.f36193s.X7 = max;
+            this.d.f36193s.R0();
+            this.d.invalidate();
+            int i11 = this.d.f36193s.X7;
+            ev0 ev0Var2 = this.d;
+            if (i11 != ev0Var2.f36192r) {
+                ev0Var2.f36193s.p2(1);
+            }
         }
     }
 }

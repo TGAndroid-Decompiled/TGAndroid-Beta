@@ -1,66 +1,63 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import java.util.Set;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.TranslateController;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class zk implements Runnable {
-    public final int f19150a = 0;
-    public final boolean f19151b;
-    public final long f19152c;
-    public final BaseController d;
-    public final Object e;
-    public final Object f19153f;
-    public final Object h;
-    public final Object f19154n;
+public final class zk implements RequestDelegate {
+    public final int f19862a;
+    public final BaseController f19863b;
+    public final long f19864c;
+    public final Object d;
 
-    public zk(long j10, Set set, TranslateController.PendingTranslation pendingTranslation, TranslateController translateController, TLObject tLObject, TLRPC.TL_error tL_error, boolean z4) {
-        this.d = translateController;
-        this.e = pendingTranslation;
-        this.f19153f = tLObject;
-        this.f19151b = z4;
-        this.h = tL_error;
-        this.f19152c = j10;
-        this.f19154n = set;
+    public zk(BaseController baseController, long j3, Object obj, int i10) {
+        this.f19862a = i10;
+        this.f19863b = baseController;
+        this.f19864c = j3;
+        this.d = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19150a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19862a) {
             case 0:
-                long j10 = this.f19152c;
-                ((TranslateController) this.d).lambda$pushToTranslate$22((TranslateController.PendingTranslation) this.e, (TLObject) this.f19153f, this.f19151b, (TLRPC.TL_error) this.h, j10, (Set) this.f19154n);
+                ((TranslateController) this.f19863b).lambda$pushPollToTranslate$26((TranslateController.PendingPollTranslation) this.d, this.f19864c, tLObject, tL_error);
                 return;
             case 1:
-                long j11 = this.f19152c;
-                ((MediaDataController) this.d).lambda$broadcastReplyMessages$179((ArrayList) this.e, this.f19151b, (ArrayList) this.f19153f, (ArrayList) this.h, (a0.h) this.f19154n, j11);
+                ((TranslateController) this.f19863b).lambda$pushRichMessageToTranslate$29((TranslateController.PendingRichTranslation) this.d, this.f19864c, tLObject, tL_error);
+                return;
+            case 2:
+                ((MediaDataController) this.f19863b).lambda$loadPinnedMessageInternal$165(this.f19864c, (TLRPC.TL_messages_getMessages) this.d, tLObject, tL_error);
+                return;
+            case 3:
+                ((MessagesController) this.f19863b).lambda$updateTimerProc$155(this.f19864c, (TLRPC.TL_messages_getMessagesViews) this.d, tLObject, tL_error);
+                return;
+            case 4:
+                ((MessagesController) this.f19863b).lambda$reloadMentionsCountForChannel$221((TLRPC.InputPeer) this.d, this.f19864c, tLObject, tL_error);
+                return;
+            case 5:
+                ((MessagesController) this.f19863b).lambda$getGroupCall$63(this.f19864c, (Runnable) this.d, tLObject, tL_error);
+                return;
+            case 6:
+                ((MessagesController) this.f19863b).lambda$getSponsoredMessages$440(this.f19864c, (MessagesController.SponsoredMessagesInfo) this.d, tLObject, tL_error);
+                return;
+            case 7:
+                ((MessagesController) this.f19863b).lambda$loadUnknownChannel$330(this.f19864c, (TLRPC.TL_channel) this.d, tLObject, tL_error);
+                return;
+            case 8:
+                ((MessagesController) this.f19863b).lambda$setChatReactions$471(this.f19864c, (TLRPC.TL_messages_setChatAvailableReactions) this.d, tLObject, tL_error);
                 return;
             default:
-                long j12 = this.f19152c;
-                ((MemberRequestsController) this.d).lambda$getImporters$0((TLRPC.TL_error) this.h, (TLObject) this.f19153f, (TLRPC.TL_chatInviteImporter) this.e, this.f19151b, j12, (RequestDelegate) this.f19154n);
+                ((MessagesController) this.f19863b).lambda$checkLastDialogMessage$227((TLRPC.Dialog) this.d, this.f19864c, tLObject, tL_error);
                 return;
         }
     }
 
-    public zk(long j10, MemberRequestsController memberRequestsController, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, TLRPC.TL_error tL_error, boolean z4) {
-        this.d = memberRequestsController;
-        this.h = tL_error;
-        this.f19153f = tLObject;
-        this.e = tL_chatInviteImporter;
-        this.f19151b = z4;
-        this.f19152c = j10;
-        this.f19154n = requestDelegate;
-    }
-
-    public zk(MediaDataController mediaDataController, ArrayList arrayList, boolean z4, ArrayList arrayList2, ArrayList arrayList3, a0.h hVar, long j10) {
-        this.d = mediaDataController;
-        this.e = arrayList;
-        this.f19151b = z4;
-        this.f19153f = arrayList2;
-        this.h = arrayList3;
-        this.f19154n = hVar;
-        this.f19152c = j10;
+    public zk(BaseController baseController, Object obj, long j3, int i10) {
+        this.f19862a = i10;
+        this.f19863b = baseController;
+        this.d = obj;
+        this.f19864c = j3;
     }
 }

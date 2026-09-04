@@ -1,7 +1,7 @@
 package org.telegram.messenger;
-public class GoogleVoiceClientActivity extends q8.a {
+public class GoogleVoiceClientActivity extends c9.a {
     @Override
-    public Class<? extends q8.c> getServiceClass() {
+    public Class<? extends c9.c> getServiceClass() {
         return GoogleVoiceClientService.class;
     }
 }

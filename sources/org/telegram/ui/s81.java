@@ -1,75 +1,58 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class s81 extends org.telegram.ui.Components.h51 {
-    static {
-        org.telegram.ui.Components.h51.setup(new org.telegram.ui.Components.h51());
-    }
+import org.telegram.messenger.MrzRecognizer;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class s81 implements t9 {
+    public TLObject f40348a = null;
+    public TLRPC.TL_error f40349b = null;
+    public final SessionsActivity f40350c;
 
-    public static org.telegram.ui.Components.i51 a(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
-        org.telegram.ui.Components.i51 J = org.telegram.ui.Components.i51.J(s81.class);
-        J.d = i10;
-        J.f25584k = i13;
-        J.f25585l = charSequence;
-        J.f25586m = charSequence2;
-        J.f25587n = charSequence3;
-        J.B = (i11 & 4294967295L) | (i12 << 32);
-        return J;
+    public s81(SessionsActivity sessionsActivity) {
+        this.f40350c = sessionsActivity;
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.i51 i51Var, boolean z4, org.telegram.ui.Components.w51 w51Var, org.telegram.ui.Components.g61 g61Var) {
-        int i10;
-        float f10;
-        long j10 = i51Var.B;
-        int i11 = (int) j10;
-        int i12 = (int) (j10 >>> 32);
-        t81 t81Var = (t81) view;
-        int i13 = i51Var.f25584k;
-        CharSequence charSequence = i51Var.f25585l;
-        CharSequence charSequence2 = i51Var.f25586m;
-        CharSequence charSequence3 = i51Var.f25587n;
-        TextView textView = t81Var.e;
-        TextView textView2 = t81Var.f38419f;
-        FrameLayout frameLayout = t81Var.f38418c;
-        int i14 = 8;
-        if (i13 != 0) {
-            i10 = 0;
-        } else {
-            i10 = 8;
+    public final void K(String str) {
+        TLObject tLObject = this.f40348a;
+        if (tLObject instanceof TLRPC.TL_authorization) {
+            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
+            boolean z10 = tL_authorization.password_pending;
+            SessionsActivity sessionsActivity = this.f40350c;
+            if (z10) {
+                sessionsActivity.f34122f.add(0, tL_authorization);
+                sessionsActivity.V = 4;
+                sessionsActivity.k0(false);
+            } else {
+                sessionsActivity.f34121e.add(0, tL_authorization);
+            }
+            sessionsActivity.m0();
+            sessionsActivity.f34118a.l();
+            sessionsActivity.f34125s.m(0L, this.f40348a, 11);
+        } else if (this.f40349b != null) {
+            AndroidUtilities.runOnUIThread(new r81(this, 0));
         }
-        frameLayout.setVisibility(i10);
-        float f11 = 0.0f;
-        if (i13 == 0) {
-            f10 = AndroidUtilities.dp(2.0f);
-        } else {
-            f10 = 0.0f;
-        }
-        textView.setTranslationX(f10);
-        if (i13 == 0) {
-            f11 = AndroidUtilities.dp(2.0f);
-        }
-        textView2.setTranslationX(f11);
-        t81Var.f38417b.b(i11, i12);
-        t81Var.d.setImageResource(i13);
-        textView.setText(charSequence);
-        boolean isEmpty = TextUtils.isEmpty(charSequence2);
-        t81Var.f38420n = !isEmpty;
-        if (!isEmpty) {
-            i14 = 0;
-        }
-        textView2.setVisibility(i14);
-        textView2.setText(charSequence2);
-        t81Var.setValue(charSequence3);
     }
 
     @Override
-    public final View createView(Context context, org.telegram.ui.Components.rl0 rl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        return new t81(context, f6Var);
+    public final String K0() {
+        return null;
+    }
+
+    @Override
+    public final boolean f1(String str, l9 l9Var) {
+        this.f40348a = null;
+        this.f40349b = null;
+        AndroidUtilities.runOnUIThread(new pf0(this, str, l9Var, 29), 750L);
+        return true;
+    }
+
+    @Override
+    public final void W0(MrzRecognizer.Result result) {
+    }
+
+    @Override
+    public final void onDismiss() {
     }
 }

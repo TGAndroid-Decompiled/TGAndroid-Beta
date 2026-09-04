@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
-public final class tg0 {
-    public float f28987a;
+public interface tg0 {
+    void a(float f7, float f10);
 }

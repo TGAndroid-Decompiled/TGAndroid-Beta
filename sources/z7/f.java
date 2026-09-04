@@ -1,14 +1,28 @@
 package z7;
-public abstract class f {
-    public static final y5.c f47453a;
-    public static final y5.c f47454b;
-    public static final y5.c[] f47455c;
 
-    static {
-        y5.c cVar = new y5.c("EXECUTE", 1L);
-        f47453a = cVar;
-        y5.c cVar2 = new y5.c("INIT", 1L);
-        f47454b = cVar2;
-        f47455c = new y5.c[]{cVar, cVar2};
+import java.io.Serializable;
+public final class f extends x7.d implements Serializable {
+    public final Object f50848b;
+    public final e9.l f50849c;
+
+    public f(Object obj, e9.l lVar) {
+        super(1, false);
+        this.f50848b = obj;
+        this.f50849c = lVar;
+    }
+
+    @Override
+    public final Object getKey() {
+        return this.f50848b;
+    }
+
+    @Override
+    public final Object getValue() {
+        return this.f50849c;
+    }
+
+    @Override
+    public final Object setValue(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

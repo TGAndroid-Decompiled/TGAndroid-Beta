@@ -5,37 +5,37 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.af0;
-import org.telegram.ui.Components.bf0;
+import org.telegram.ui.Components.ve0;
+import org.telegram.ui.Components.we0;
 public final class u5 extends FrameLayout {
-    public TextView f22374a;
-    public TextView f22375b;
-    public bf0 f22376c;
+    public TextView f23322a;
+    public TextView f23323b;
+    public we0 f23324c;
     public AnimatorSet d;
-    public m2.b e;
+    public androidx.activity.i f23325e;
 
-    public final void a(String str, int i10, float f10) {
-        TextView textView = this.f22374a;
-        TextView textView2 = this.f22375b;
+    public final void a(String str, int i10, float f7) {
+        TextView textView = this.f23322a;
+        TextView textView2 = this.f23323b;
         AnimatorSet animatorSet = this.d;
         if (animatorSet != null) {
             animatorSet.cancel();
             this.d = null;
         }
-        AndroidUtilities.cancelRunOnUIThread(this.e);
+        AndroidUtilities.cancelRunOnUIThread(this.f23325e);
         textView2.setTag(null);
         textView.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
-        if (f10 > 0.0f) {
-            textView2.setText("+" + ((int) f10));
+        if (f7 > 0.0f) {
+            textView2.setText("+" + ((int) f7));
         } else {
-            textView2.setText("" + ((int) f10));
+            textView2.setText("" + ((int) f7));
         }
         textView2.setAlpha(0.0f);
         textView.setAlpha(1.0f);
-        bf0 bf0Var = this.f22376c;
-        bf0Var.h = i10;
-        bf0Var.f23666n = 100;
-        bf0Var.a((int) f10, false);
+        we0 we0Var = this.f23324c;
+        we0Var.h = i10;
+        we0Var.f32255n = 100;
+        we0Var.a((int) f7, false);
     }
 
     @Override
@@ -43,13 +43,13 @@ public final class u5 extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
     }
 
-    public void setSeekBarDelegate(af0 af0Var) {
-        this.f22376c.setDelegate(new h9(this, af0Var));
+    public void setSeekBarDelegate(ve0 ve0Var) {
+        this.f23324c.setDelegate(new m9(this, ve0Var));
     }
 
     @Override
     public void setTag(Object obj) {
         super.setTag(obj);
-        this.f22376c.setTag(obj);
+        this.f23324c.setTag(obj);
     }
 }

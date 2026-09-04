@@ -1,29 +1,19 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class sw extends org.telegram.ui.Components.xs {
-    public final py E;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class sw extends org.telegram.ui.Components.k00 {
+    public final uy B0;
 
-    public sw(my myVar, py pyVar) {
-        super(myVar);
-        this.E = pyVar;
+    public sw(uy uyVar, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+        this.B0 = uyVar;
     }
 
     @Override
-    public final void y() {
-        py pyVar = this.E;
-        if (pyVar.f37248c.L0() == 0) {
-            View m9 = pyVar.f37248c.m(0);
-            if (m9 != null) {
-                m9.invalidate();
-            }
-            if (pyVar.v == 2) {
-                pyVar.v = 1;
-            }
-            xw xwVar = pyVar.f37250n;
-            if (xwVar != null) {
-                xwVar.b();
-            }
-        }
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        getParent().requestDisallowInterceptTouchEvent(true);
+        this.B0.f41299m3 = false;
+        return super.onInterceptTouchEvent(motionEvent);
     }
 }

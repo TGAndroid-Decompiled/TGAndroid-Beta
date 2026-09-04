@@ -1,36 +1,24 @@
 package org.telegram.messenger;
 public final class z5 implements Runnable {
-    public final int f19083a;
-    public final org.telegram.ui.ActionBar.d2 f19084b;
-    public final boolean[] f19085c;
+    public final int f19790a;
+    public final MediaController f19791b;
+    public final int f19792c;
 
-    public z5(org.telegram.ui.ActionBar.d2 d2Var, boolean[] zArr, int i10) {
-        this.f19083a = i10;
-        this.f19084b = d2Var;
-        this.f19085c = zArr;
+    public z5(MediaController mediaController, int i10, int i11) {
+        this.f19790a = i11;
+        this.f19791b = mediaController;
+        this.f19792c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19083a) {
+        switch (this.f19790a) {
             case 0:
-                MediaController.lambda$saveFile$45(this.f19085c, this.f19084b);
-                return;
-            case 1:
-                MediaController.lambda$saveFile$49(this.f19084b, this.f19085c);
-                return;
-            case 2:
-                MediaController.lambda$saveFile$52(this.f19085c, this.f19084b);
+                this.f19791b.lambda$onAudioFocusChange$5(this.f19792c);
                 return;
             default:
-                MediaController.lambda$saveFile$54(this.f19084b, this.f19085c);
+                this.f19791b.lambda$stopRecording$42(this.f19792c);
                 return;
         }
-    }
-
-    public z5(boolean[] zArr, org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        this.f19083a = i10;
-        this.f19085c = zArr;
-        this.f19084b = d2Var;
     }
 }

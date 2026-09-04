@@ -1,81 +1,47 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class gg implements Utilities.Callback2 {
-    public final int f34444a;
-    public final int f34445b;
-    public final Object f34446c;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.tl.TL_keyboard;
+public final class gg implements View.OnLongClickListener {
+    public final int f36663a;
+    public final Object f36664b;
+    public final Object f36665c;
     public final Object d;
+    public final Object f36666e;
 
-    public gg(org.telegram.ui.ActionBar.p2 p2Var, int i10, TLObject tLObject, int i11) {
-        this.f34444a = i11;
-        this.f34446c = p2Var;
-        this.f34445b = i10;
-        this.d = tLObject;
+    public gg(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
+        this.f36663a = i10;
+        this.f36664b = obj;
+        this.f36665c = obj2;
+        this.d = obj3;
+        this.f36666e = obj4;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        TLRPC.Updates updates;
-        int i10 = this.f34444a;
-        Object obj3 = this.d;
-        Object obj4 = this.f34446c;
-        switch (i10) {
+    public final boolean onLongClick(View view) {
+        switch (this.f36663a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new dg.f3((zn) obj4, this.f34445b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 12));
-                return;
-            case 1:
-                LaunchActivity launchActivity = (LaunchActivity) obj4;
-                w10 w10Var = (w10) obj3;
-                TLRPC.ChatInviteJoinResult chatInviteJoinResult = (TLRPC.ChatInviteJoinResult) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                Pattern pattern = LaunchActivity.f31586y1;
-                if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
-                    TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
-                    MessagesController.getInstance(launchActivity.L).processUpdates(updates2, false);
-                    updates = updates2;
-                } else {
-                    if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
-                        AndroidUtilities.runOnUIThread(new w10(14, launchActivity, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult));
-                    }
-                    updates = null;
+                co coVar = (co) this.f36664b;
+                TL_keyboard.KeyboardInlineButton keyboardInlineButton = (TL_keyboard.KeyboardInlineButton) this.f36665c;
+                MessageObject messageObject = (MessageObject) this.d;
+                bi.c4 c4Var = (bi.c4) this.f36666e;
+                TL_keyboard.TL_inlineButtonTypeUrl tL_inlineButtonTypeUrl = (TL_keyboard.TL_inlineButtonTypeUrl) zf.c.a(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUrl.class);
+                if (coVar.getParentActivity() == null) {
+                    return false;
                 }
-                AndroidUtilities.runOnUIThread(new dg.f3(launchActivity, w10Var, tL_error, updates, this.f34445b, 22));
-                return;
+                if ((coVar.O0.getVisibility() == 0 && tL_inlineButtonTypeUrl == null && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeSwitchInline.class) && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeCallback.class) && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeGame.class) && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeBuy.class) && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUrlAuth.class) && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUserProfile.class)) || tL_inlineButtonTypeUrl == null) {
+                    return false;
+                }
+                coVar.Z9(null, tL_inlineButtonTypeUrl.url, true, null, messageObject);
+                try {
+                    c4Var.performHapticFeedback(0, 1);
+                } catch (Exception unused) {
+                }
+                return true;
             default:
-                PasskeysActivity passkeysActivity = (PasskeysActivity) obj4;
-                TL_account.Passkey passkey = (TL_account.Passkey) obj3;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                ArrayList arrayList = passkeysActivity.f31667b;
-                boolean z4 = ((TLRPC.Bool) obj) instanceof TLRPC.TL_boolFalse;
-                int i11 = this.f34445b;
-                if (z4) {
-                    org.telegram.ui.Components.qc.a0(passkeysActivity).c0("FALSE", false);
-                    arrayList.add(Utilities.clamp(i11, arrayList.size(), 0), passkey);
-                    passkeysActivity.f31666a.V2.N(true);
-                    return;
-                } else if (tL_error2 != null) {
-                    org.telegram.ui.Components.qc.a0(passkeysActivity).d0(tL_error2, false);
-                    arrayList.add(Utilities.clamp(i11, arrayList.size(), 0), passkey);
-                    passkeysActivity.f31666a.V2.N(true);
-                    return;
-                } else {
-                    return;
-                }
+                return org.telegram.ui.Components.vi.q((org.telegram.ui.Components.vi) this.f36664b, (Context) this.f36665c, (org.telegram.ui.ActionBar.f6) this.d, (org.telegram.ui.ActionBar.n2) this.f36666e, view);
         }
-    }
-
-    public gg(LaunchActivity launchActivity, w10 w10Var, int i10) {
-        this.f34444a = 1;
-        this.f34446c = launchActivity;
-        this.d = w10Var;
-        this.f34445b = i10;
     }
 }

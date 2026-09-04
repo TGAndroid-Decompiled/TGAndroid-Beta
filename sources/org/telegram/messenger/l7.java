@@ -1,72 +1,28 @@
 package org.telegram.messenger;
-public final class l7 implements Runnable {
-    public final int f17718a;
-    public final MediaDataController f17719b;
 
-    public l7(MediaDataController mediaDataController, int i10) {
-        this.f17718a = i10;
-        this.f17719b = mediaDataController;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaDataController;
+public final class l7 implements Runnable {
+    public final int f18243a;
+    public final MediaDataController.KeywordResultCallback f18244b;
+    public final ArrayList f18245c;
+    public final String d;
+
+    public l7(MediaDataController.KeywordResultCallback keywordResultCallback, ArrayList arrayList, String str, int i10) {
+        this.f18243a = i10;
+        this.f18244b = keywordResultCallback;
+        this.f18245c = arrayList;
+        this.d = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f17718a) {
+        switch (this.f18243a) {
             case 0:
-                this.f17719b.lambda$fetchEmojiStatuses$232();
-                return;
-            case 1:
-                this.f17719b.lambda$processLoadedMenuBots$5();
-                return;
-            case 2:
-                this.f17719b.lambda$addRecentSticker$20();
-                return;
-            case 3:
-                this.f17719b.lambda$processLoadedReactions$15();
-                return;
-            case 4:
-                this.f17719b.lambda$clearRecentEmojiStatuses$229();
-                return;
-            case 5:
-                this.f17719b.lambda$clearRecentStickers$17();
-                return;
-            case 6:
-                this.f17719b.lambda$loadPremiumPromo$7();
-                return;
-            case 7:
-                this.f17719b.lambda$processLoadedPremiumPromo$9();
-                return;
-            case 8:
-                this.f17719b.lambda$cleanupStickerSetCache$39();
-                return;
-            case 9:
-                this.f17719b.lambda$cleanup$2();
-                return;
-            case 10:
-                this.f17719b.lambda$loadReactions$12();
-                return;
-            case 11:
-                this.f17719b.lambda$fetchEmojiStatuses$230();
-                return;
-            case 12:
-                this.f17719b.lambda$loadHints$145();
-                return;
-            case 13:
-                this.f17719b.lambda$loadAttachMenuBots$3();
-                return;
-            case 14:
-                this.f17719b.lambda$loadHints$146();
-                return;
-            case 15:
-                this.f17719b.lambda$clearTopPeers$149();
-                return;
-            case 16:
-                this.f17719b.lambda$loadDraftsIfNeed$185();
-                return;
-            case 17:
-                this.f17719b.lambda$loadDraftsIfNeed$186();
+                this.f18244b.run(this.f18245c, this.d);
                 return;
             default:
-                this.f17719b.lambda$fetchNewEmojiKeywords$210();
+                this.f18244b.run(this.f18245c, this.d);
                 return;
         }
     }

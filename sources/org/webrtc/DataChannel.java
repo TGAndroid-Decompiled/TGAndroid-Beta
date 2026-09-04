@@ -9,9 +9,9 @@ public class DataChannel {
         public final boolean binary;
         public final ByteBuffer data;
 
-        public Buffer(ByteBuffer byteBuffer, boolean z4) {
+        public Buffer(ByteBuffer byteBuffer, boolean z10) {
             this.data = byteBuffer;
-            this.binary = z4;
+            this.binary = z10;
         }
     }
 
@@ -21,10 +21,10 @@ public class DataChannel {
         public int maxRetransmitTimeMs = -1;
         public int maxRetransmits = -1;
         public String protocol = "";
-        public int f40908id = -1;
+        public int f43581id = -1;
 
         public int getId() {
-            return this.f40908id;
+            return this.f43581id;
         }
 
         public int getMaxRetransmitTimeMs() {
@@ -49,7 +49,7 @@ public class DataChannel {
     }
 
     public interface Observer {
-        void onBufferedAmountChange(long j10);
+        void onBufferedAmountChange(long j3);
 
         void onMessage(Buffer buffer);
 
@@ -67,8 +67,8 @@ public class DataChannel {
         }
     }
 
-    public DataChannel(long j10) {
-        this.nativeDataChannel = j10;
+    public DataChannel(long j3) {
+        this.nativeDataChannel = j3;
     }
 
     private void checkDataChannelExists() {
@@ -88,11 +88,11 @@ public class DataChannel {
 
     private native long nativeRegisterObserver(Observer observer);
 
-    private native boolean nativeSend(byte[] bArr, boolean z4);
+    private native boolean nativeSend(byte[] bArr, boolean z10);
 
     private native State nativeState();
 
-    private native void nativeUnregisterObserver(long j10);
+    private native void nativeUnregisterObserver(long j3);
 
     public long bufferedAmount() {
         checkDataChannelExists();
@@ -126,9 +126,9 @@ public class DataChannel {
 
     public void registerObserver(Observer observer) {
         checkDataChannelExists();
-        long j10 = this.nativeObserver;
-        if (j10 != 0) {
-            nativeUnregisterObserver(j10);
+        long j3 = this.nativeObserver;
+        if (j3 != 0) {
+            nativeUnregisterObserver(j3);
         }
         this.nativeObserver = nativeRegisterObserver(observer);
     }

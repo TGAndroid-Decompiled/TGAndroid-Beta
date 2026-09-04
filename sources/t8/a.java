@@ -1,12 +1,16 @@
 package t8;
 
-import java.math.BigInteger;
-public abstract class a {
-    public static final int f44679a = 0;
+import java.util.Arrays;
+import java.util.List;
+import t7.u;
+public final class a {
+    public final int f46465a;
+    public final List f46466b;
+    public final List f46467c;
 
-    static {
-        new BigInteger("16a09e667f3bcc908b2fb1366ea957d3e3adec17512775099da2f590b0667322a", 16);
-        Math.log(10.0d);
-        Math.log(2.0d);
+    public a(int i10, d[] dVarArr, u[] uVarArr) {
+        this.f46465a = i10;
+        this.f46466b = Arrays.asList(dVarArr);
+        this.f46467c = Arrays.asList(uVarArr);
     }
 }

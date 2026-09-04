@@ -1,31 +1,23 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class nj implements Runnable {
-    public final int f27278a;
-    public final pj f27279b;
+public final class nj extends s4.d0 {
+    public final ig.e0 f28772r;
 
-    public nj(pj pjVar, int i10) {
-        this.f27278a = i10;
-        this.f27279b = pjVar;
+    public nj(ig.e0 e0Var, Context context) {
+        super(context);
+        this.f28772r = e0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f27278a) {
-            case 0:
-                pj pjVar = this.f27279b;
-                if (pjVar.f27866f != null) {
-                    pjVar.v = org.telegram.messenger.y3.j(new StringBuilder("+"), pjVar.f27866f.phone, se.b.c());
-                    pjVar.f27869s = pjVar.f27866f;
-                    AndroidUtilities.runOnUIThread(new nj(pjVar, 1));
-                    return;
-                }
-                return;
-            default:
-                pj pjVar2 = this.f27279b;
-                pjVar2.f27865c.l(pjVar2.v, false);
-                return;
-        }
+    public final int k(int i10, View view) {
+        return org.telegram.messenger.w1.z(8.0f, ((yj) this.f28772r.V).f32933s.getPaddingTop() - AndroidUtilities.statusBarHeight, super.k(i10, view));
+    }
+
+    @Override
+    public final int m(int i10) {
+        return super.m(i10) * 2;
     }
 }

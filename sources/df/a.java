@@ -1,23 +1,31 @@
 package df;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.view.View;
-import c2.p;
-public interface a {
-    void a(p pVar);
+import q3.h;
+import xe.b;
+import ye.d;
+public abstract class a {
+    public boolean b(bf.a aVar) {
+        return this instanceof ye.a;
+    }
 
-    Bitmap b();
+    public boolean c() {
+        return this instanceof b;
+    }
 
-    void c(Canvas canvas);
+    public abstract bf.a e();
 
-    Bitmap d();
+    public boolean f() {
+        return this instanceof ye.a;
+    }
 
-    void e(p pVar);
+    public abstract h h(d dVar);
 
-    void f(Canvas canvas);
+    public void d() {
+    }
 
-    boolean g();
+    public void a(CharSequence charSequence) {
+    }
 
-    View h();
+    public void g(cf.a aVar) {
+    }
 }

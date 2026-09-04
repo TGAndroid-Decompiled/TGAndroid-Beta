@@ -1,75 +1,33 @@
 package k4;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import j3.d1;
-import j3.n0;
-import j8.t;
-import java.util.ArrayList;
-public final class d implements e4.b {
-    public static final Parcelable.Creator<d> CREATOR = new t(13);
-    public final ArrayList f9726a;
+import c3.p;
+import e2.v;
+public final class d {
+    public final int f14731a;
+    public final long f14732b;
 
-    public d(ArrayList arrayList) {
-        this.f9726a = arrayList;
-        boolean z4 = false;
-        if (!arrayList.isEmpty()) {
-            long j10 = ((c) arrayList.get(0)).f9724b;
-            int i10 = 1;
-            while (true) {
-                if (i10 >= arrayList.size()) {
-                    break;
-                } else if (((c) arrayList.get(i10)).f9723a < j10) {
-                    z4 = true;
-                    break;
-                } else {
-                    j10 = ((c) arrayList.get(i10)).f9724b;
-                    i10++;
-                }
-            }
-        }
-        h5.a.f(!z4);
+    public d(int i10, long j3, boolean z10) {
+        this.f14731a = i10;
+        this.f14732b = j3;
     }
 
-    @Override
-    public final n0 b() {
-        return null;
+    public static d b(p pVar, v vVar) {
+        pVar.b(0, 8, vVar.f8789a);
+        vVar.J(0);
+        return new d(vVar.j(), vVar.o(), false);
     }
 
-    @Override
-    public final byte[] d() {
-        return null;
-    }
-
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
+    public boolean a() {
+        int i10 = this.f14731a;
+        if (i10 == 0 || i10 == 1) {
             return true;
-        }
-        if (obj != null && d.class == obj.getClass()) {
-            return this.f9726a.equals(((d) obj).f9726a);
         }
         return false;
     }
 
-    public final int hashCode() {
-        return this.f9726a.hashCode();
-    }
-
-    public final String toString() {
-        return "SlowMotion: segments=" + this.f9726a;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeList(this.f9726a);
-    }
-
-    @Override
-    public final void c(d1 d1Var) {
+    public d(int i10, long j3) {
+        e2.d.b(j3 >= 0);
+        this.f14731a = i10;
+        this.f14732b = j3;
     }
 }

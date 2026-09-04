@@ -1,84 +1,68 @@
 package org.telegram.ui.Components;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.os.Build;
 import android.view.ViewGroup;
-import java.util.LinkedList;
-public final class lb implements o1.f {
-    public final int f26638a;
-    public final Object f26639b;
-    public final Object f26640c;
+import android.view.Window;
+import android.view.WindowManager;
+import java.util.WeakHashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class lb extends Dialog {
+    public final kb f28128a;
+    public final WindowManager.LayoutParams f28129b;
 
-    public lb(int i10, Object obj, Object obj2) {
-        this.f26638a = i10;
-        this.f26639b = obj;
-        this.f26640c = obj2;
+    public lb(Context context, di.c9 c9Var) {
+        super(context);
+        AndroidUtilities.enableEdgeToEdge(getWindow());
+        kb kbVar = new kb(this, context);
+        this.f28128a = kbVar;
+        setContentView(kbVar, new ViewGroup.LayoutParams(-1, -1));
+        t tVar = new t(this, 15);
+        WeakHashMap weakHashMap = r0.i0.f44697a;
+        r0.a0.j(kbVar, tVar);
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 30) {
+            kbVar.setSystemUiVisibility(1792);
+        } else {
+            kbVar.setSystemUiVisibility(1280);
+        }
+        qc.a(kbVar, new ah.n0(c9Var, 7));
+        try {
+            Window window = getWindow();
+            window.setWindowAnimations(R.style.DialogNoAnimation);
+            window.setBackgroundDrawable(null);
+            WindowManager.LayoutParams attributes = window.getAttributes();
+            this.f28129b = attributes;
+            attributes.width = -1;
+            attributes.height = -1;
+            attributes.gravity = 51;
+            attributes.dimAmount = 0.0f;
+            attributes.format = -3;
+            attributes.flags = (((-3) & attributes.flags) | (-1946091240)) & (-1025);
+            boolean z10 = true;
+            if (i10 >= 28) {
+                attributes.layoutInDisplayCutoutMode = 1;
+            }
+            window.setAttributes(attributes);
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20607a7, false)) <= 0.721f) {
+                z10 = false;
+            }
+            AndroidUtilities.setLightNavigationBar(this, z10);
+        } catch (Exception unused) {
+        }
+    }
+
+    public static kb a(Context context) {
+        return new lb(context, null).f28128a;
     }
 
     @Override
-    public final void a(o1.h hVar, boolean z4, float f10, float f11) {
-        ViewGroup viewGroup;
-        switch (this.f26638a) {
-            case 0:
-                fg fgVar = (fg) this.f26640c;
-                ((nb) this.f26639b).setInOutOffset(0.0f);
-                if (!z4) {
-                    fgVar.run();
-                    return;
-                }
-                return;
-            case 1:
-                li.r((li) this.f26639b, (lh.p6) this.f26640c);
-                return;
-            case 2:
-                li liVar = (li) ((lh.k3) this.f26639b).d;
-                liVar.f26748w0.setTranslationY(0.0f);
-                liVar.f26748w0.k(liVar.f26706i2);
-                viewGroup = ((org.telegram.ui.ActionBar.g3) liVar).containerView;
-                viewGroup.invalidate();
-                ((wg) this.f26640c).run();
-                liVar.a2(0);
-                return;
-            case 3:
-                wd0 wd0Var = (wd0) this.f26639b;
-                ec0 ec0Var = (ec0) this.f26640c;
-                LinkedList linkedList = wd0Var.J;
-                wd0Var.I = null;
-                ec0Var.D = null;
-                ec0Var.z();
-                if (!z4) {
-                    ec0Var.h = 1.0f;
-                    ec0Var.z();
-                    if (!linkedList.isEmpty()) {
-                        ((Runnable) linkedList.poll()).run();
-                        wd0Var.K.poll();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                rh.m3 m3Var = (rh.m3) this.f26639b;
-                Runnable runnable = (Runnable) this.f26640c;
-                if (hVar == m3Var.D) {
-                    m3Var.D = null;
-                    if (runnable != null) {
-                        runnable.run();
-                    }
-                    Runnable runnable2 = m3Var.B;
-                    if (runnable2 != null) {
-                        runnable2.run();
-                    }
-                    float f12 = m3Var.h;
-                    if (f12 != -1.0f) {
-                        boolean z10 = m3Var.f43685s;
-                        m3Var.f43685s = true;
-                        m3Var.setOffsetY(f12);
-                        m3Var.h = -1.0f;
-                        m3Var.f43685s = z10;
-                    }
-                    m3Var.f43683n = -2.1474836E9f;
-                    return;
-                }
-                return;
+    public final void show() {
+        if (!AndroidUtilities.isSafeToShow(getContext())) {
+            return;
         }
+        super.show();
     }
 }

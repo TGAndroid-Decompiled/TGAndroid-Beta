@@ -1,37 +1,66 @@
 package org.telegram.ui.web;
 
-import android.util.Base64InputStream;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FilterInputStream;
+import android.os.AsyncTask;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
-public final class k1 {
-    public final HashMap f39507a = new HashMap();
-    public File f39508b;
-    public long f39509c;
-    public long d;
+import java.util.Map;
+import org.telegram.messenger.Utilities;
+public final class k1 extends AsyncTask {
+    public final HashMap f42153a = new HashMap();
+    public final Utilities.Callback f42154b;
+    public Exception f42155c;
 
-    public final FilterInputStream a() {
-        String str;
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(new j1(this.f39508b, this.f39509c, this.d));
-        HashMap hashMap = this.f39507a;
-        l1 l1Var = (l1) hashMap.get("content-transfer-encoding");
-        String str2 = null;
-        if (l1Var == null) {
-            str = null;
-        } else {
-            str = l1Var.f39515a;
+    public k1(Utilities.Callback callback) {
+        this.f42154b = callback;
+    }
+
+    @Override
+    public final Object doInBackground(Object[] objArr) {
+        BufferedReader bufferedReader;
+        try {
+            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
+            for (Map.Entry entry : this.f42153a.entrySet()) {
+                if (entry.getKey() != null && entry.getValue() != null) {
+                    httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
+                }
+            }
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setDoInput(true);
+            int responseCode = httpURLConnection.getResponseCode();
+            if (responseCode >= 200 && responseCode < 300) {
+                bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+            } else {
+                bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
+            }
+            StringBuilder sb2 = new StringBuilder();
+            while (true) {
+                String readLine = bufferedReader.readLine();
+                if (readLine != null) {
+                    sb2.append(readLine);
+                } else {
+                    bufferedReader.close();
+                    return sb2.toString();
+                }
+            }
+        } catch (Exception e7) {
+            this.f42155c = e7;
+            return null;
         }
-        if ("base64".equals(str)) {
-            return new Base64InputStream(bufferedInputStream, 0);
+    }
+
+    @Override
+    public final void onPostExecute(Object obj) {
+        String str = (String) obj;
+        Utilities.Callback callback = this.f42154b;
+        if (callback != null) {
+            if (this.f42155c == null) {
+                callback.run(str);
+            } else {
+                callback.run(null);
+            }
         }
-        l1 l1Var2 = (l1) hashMap.get("content-transfer-encoding");
-        if (l1Var2 != null) {
-            str2 = l1Var2.f39515a;
-        }
-        if ("quoted-printable".equalsIgnoreCase(str2)) {
-            return new m1(bufferedInputStream);
-        }
-        return bufferedInputStream;
     }
 }

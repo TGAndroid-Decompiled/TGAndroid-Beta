@@ -1,15 +1,11 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-public final class wb0 extends u21 {
-    public wb0(Bundle bundle) {
-        super(bundle);
-    }
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public interface wb0 {
+    void a(TLRPC.TL_chatInviteExported tL_chatInviteExported);
 
-    @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        AndroidUtilities.runOnUIThread(new d10(this, 16));
-    }
+    void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject);
+
+    void c(TLObject tLObject);
 }

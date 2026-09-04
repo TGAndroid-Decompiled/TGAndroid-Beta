@@ -27,10 +27,10 @@ public final class RenderSynchronizer {
         void onRenderWindowOpen();
     }
 
-    public RenderSynchronizer(float f10) {
+    public RenderSynchronizer(float f7) {
         this.lock = new Object();
         this.listeners = new CopyOnWriteArrayList();
-        this.targetFrameIntervalNanos = Math.round(((float) TimeUnit.SECONDS.toNanos(1L)) / f10);
+        this.targetFrameIntervalNanos = Math.round(((float) TimeUnit.SECONDS.toNanos(1L)) / f7);
         Handler handler = new Handler(Looper.getMainLooper());
         this.mainThreadHandler = handler;
         handler.post(new n(this, 1));
@@ -53,7 +53,7 @@ public final class RenderSynchronizer {
         this.choreographer.postFrameCallback(new o(this));
     }
 
-    public void onDisplayRefreshCycleBegin(long j10) {
+    public void onDisplayRefreshCycleBegin(long j3) {
         synchronized (this.lock) {
             try {
                 if (this.listeners.isEmpty()) {
@@ -62,10 +62,10 @@ public final class RenderSynchronizer {
                     return;
                 }
                 this.choreographer.postFrameCallback(new o(this));
-                long j11 = j10 - this.lastOpenedTimeNanos;
-                this.lastRefreshTimeNanos = j10;
-                if (Math.abs(j11 - this.targetFrameIntervalNanos) < Math.abs((j11 - this.targetFrameIntervalNanos) + (j10 - this.lastRefreshTimeNanos))) {
-                    this.lastOpenedTimeNanos = j10;
+                long j10 = j3 - this.lastOpenedTimeNanos;
+                this.lastRefreshTimeNanos = j3;
+                if (Math.abs(j10 - this.targetFrameIntervalNanos) < Math.abs((j10 - this.targetFrameIntervalNanos) + (j3 - this.lastRefreshTimeNanos))) {
+                    this.lastOpenedTimeNanos = j3;
                     openRenderWindow();
                 } else if (this.renderWindowOpen) {
                     closeRenderWindow();
@@ -85,14 +85,14 @@ public final class RenderSynchronizer {
     }
 
     private void traceRenderWindowChange() {
-        long j10;
+        long j3;
         if (Build.VERSION.SDK_INT >= 29) {
             if (this.renderWindowOpen) {
-                j10 = 1;
+                j3 = 1;
             } else {
-                j10 = 0;
+                j3 = 0;
             }
-            Trace.setCounter("RenderWindow", j10);
+            Trace.setCounter("RenderWindow", j3);
         }
     }
 

@@ -1,8 +1,12 @@
 package z3;
+
+import java.util.List;
 public interface d {
-    int a();
+    int d(long j3);
 
-    int b();
+    long e(int i10);
 
-    int c();
+    List h(long j3);
+
+    int k();
 }

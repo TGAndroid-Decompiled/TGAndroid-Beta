@@ -1,33 +1,20 @@
 package o2;
+public final class h {
+    public final p2.j f16849a;
+    public final long f16850b;
+    public final int f16851c;
+    public final boolean d;
 
-import j$.util.Objects;
-import org.chromium.support_lib_boundary.WebMessagePayloadBoundaryInterface;
-public final class h implements WebMessagePayloadBoundaryInterface {
-    public final byte[] f16193a;
-
-    public h(byte[] bArr) {
-        this.f16193a = bArr;
-    }
-
-    @Override
-    public final byte[] getAsArrayBuffer() {
-        byte[] bArr = this.f16193a;
-        Objects.requireNonNull(bArr);
-        return bArr;
-    }
-
-    @Override
-    public final String getAsString() {
-        throw new IllegalStateException("Expected 0, but type is 1");
-    }
-
-    @Override
-    public final String[] getSupportedFeatures() {
-        return new String[0];
-    }
-
-    @Override
-    public final int getType() {
-        return 1;
+    public h(p2.j jVar, long j3, int i10) {
+        boolean z10;
+        this.f16849a = jVar;
+        this.f16850b = j3;
+        this.f16851c = i10;
+        if ((jVar instanceof p2.g) && ((p2.g) jVar).f43695x) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.d = z10;
     }
 }

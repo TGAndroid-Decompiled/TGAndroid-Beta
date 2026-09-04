@@ -1,43 +1,80 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
+import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-public final class w1 extends Drawable {
-    public final int f20649a;
-    public final GradientDrawable f20650b;
-    public final d2 f20651c;
+public final class w1 extends k5 {
+    public final int d;
 
-    public w1(d2 d2Var, GradientDrawable gradientDrawable) {
-        this.f20651c = d2Var;
-        this.f20650b = gradientDrawable;
-        this.f20649a = AndroidUtilities.dp(52.0f) + d2Var.V;
+    public w1(Context context, int i10) {
+        super(context);
+        this.d = i10;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        d2 d2Var = this.f20651c;
-        int width = d2Var.f19570h0.getWidth();
-        int i10 = this.f20649a;
-        GradientDrawable gradientDrawable = this.f20650b;
-        gradientDrawable.setBounds((int) ((width - i10) / 2.0f), (int) ((d2Var.f19570h0.getHeight() - i10) / 2.0f), (int) ((d2Var.f19570h0.getWidth() + i10) / 2.0f), (int) ((d2Var.f19570h0.getHeight() + i10) / 2.0f));
-        gradientDrawable.draw(canvas);
+    public final void setEnabled(boolean z10) {
+        float f7;
+        float f10;
+        float f11;
+        float f12;
+        switch (this.d) {
+            case 0:
+                super.setEnabled(z10);
+                if (z10) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.5f;
+                }
+                setAlpha(f7);
+                return;
+            case 1:
+                super.setEnabled(z10);
+                if (z10) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.5f;
+                }
+                setAlpha(f10);
+                return;
+            case 2:
+                super.setEnabled(z10);
+                if (z10) {
+                    f11 = 1.0f;
+                } else {
+                    f11 = 0.5f;
+                }
+                setAlpha(f11);
+                return;
+            default:
+                super.setEnabled(z10);
+                if (z10) {
+                    f12 = 1.0f;
+                } else {
+                    f12 = 0.5f;
+                }
+                setAlpha(f12);
+                return;
+        }
     }
 
     @Override
-    public final int getOpacity() {
-        return this.f20650b.getOpacity();
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f20650b.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f20650b.setColorFilter(colorFilter);
+    public final void setTextColor(int i10) {
+        switch (this.d) {
+            case 0:
+                super.setTextColor(i10);
+                setBackground(j6.G0(AndroidUtilities.dp(20.0f), i10));
+                return;
+            case 1:
+                super.setTextColor(i10);
+                setBackground(j6.G0(AndroidUtilities.dp(20.0f), i10));
+                return;
+            case 2:
+                super.setTextColor(i10);
+                setBackground(j6.G0(AndroidUtilities.dp(20.0f), i10));
+                return;
+            default:
+                super.setTextColor(i10);
+                setBackgroundDrawable(j6.G0(AndroidUtilities.dp(20.0f), i10));
+                return;
+        }
     }
 }

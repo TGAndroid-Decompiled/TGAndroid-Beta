@@ -1,29 +1,25 @@
 package org.telegram.messenger;
 public final class l5 implements Runnable {
-    public final int f17708a;
-    public final LocaleController f17709b;
-    public final int f17710c;
+    public final int f18237a;
+    public final LocaleController f18238b;
+    public final String f18239c;
+    public final Runnable d;
 
-    public l5(LocaleController localeController, int i10, int i11) {
-        this.f17708a = i11;
-        this.f17709b = localeController;
-        this.f17710c = i10;
+    public l5(LocaleController localeController, String str, Runnable runnable, int i10) {
+        this.f18237a = i10;
+        this.f18238b = localeController;
+        this.f18239c = str;
+        this.d = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f17708a) {
+        switch (this.f18237a) {
             case 0:
-                LocaleController.u(this.f17709b, this.f17710c);
-                return;
-            case 1:
-                LocaleController.h(this.f17709b, this.f17710c);
-                return;
-            case 2:
-                LocaleController.k(this.f17709b, this.f17710c);
+                LocaleController.m(this.f18238b, this.f18239c, this.d);
                 return;
             default:
-                LocaleController.q(this.f17709b, this.f17710c);
+                LocaleController.o(this.f18238b, this.f18239c, this.d);
                 return;
         }
     }

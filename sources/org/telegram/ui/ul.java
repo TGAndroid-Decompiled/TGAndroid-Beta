@@ -1,47 +1,28 @@
 package org.telegram.ui;
 
+import android.graphics.Bitmap;
 import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.VideoEditedInfo;
-public final class ul extends fu0 {
-    public final ArrayList f38882a;
-    public final boolean[] f38883b;
-    public final zn f38884c;
+public final class ul extends su0 {
+    public final Bitmap f41180a;
+    public final ArrayList f41181b;
+    public final co f41182c;
 
-    public ul(zn znVar, ArrayList arrayList, boolean[] zArr) {
-        this.f38884c = znVar;
-        this.f38882a = arrayList;
-        this.f38883b = zArr;
-    }
-
-    @Override
-    public final boolean S() {
-        return false;
+    public ul(co coVar, Bitmap bitmap, ArrayList arrayList) {
+        this.f41182c = coVar;
+        this.f41180a = bitmap;
+        this.f41181b = arrayList;
     }
 
     @Override
     public final ImageReceiver.BitmapHolder j(int i10) {
-        return null;
+        return new ImageReceiver.BitmapHolder(this.f41180a, (String) null, 0);
     }
 
     @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z4, int i11, int i12, boolean z10) {
-        ArrayList arrayList = this.f38882a;
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (!this.f38883b[size]) {
-                arrayList.remove(size);
-            }
-        }
-        this.f38884c.eb(arrayList, i11, z4, z10);
-    }
-
-    @Override
-    public final boolean x(int i10) {
-        return this.f38883b[i10];
-    }
-
-    @Override
-    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
-        return i10;
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        this.f41182c.q((MediaController.PhotoEntry) this.f41181b.get(0), videoEditedInfo, z10, i11, 0, z11, 0L);
     }
 }

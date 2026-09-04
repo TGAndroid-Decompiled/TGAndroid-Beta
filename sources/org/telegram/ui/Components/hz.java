@@ -5,22 +5,22 @@ import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
-public final class hz extends p9 {
-    public final iz D;
+public final class hz extends x9 {
+    public final iz G;
 
     public hz(iz izVar, Context context) {
         super(context);
-        this.D = izVar;
+        this.G = izVar;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        iz izVar = this.D;
+        iz izVar = this.G;
         kz kzVar = izVar.d;
-        boolean z4 = izVar.f25793c;
-        if (!z4 && MediaDataController.getInstance(kzVar.Z0).isStickerPackUnread(z4, ((TLRPC.StickerSetCovered) getTag()).set.f19186id) && kzVar.f26469p1 != null) {
-            canvas.drawCircle(canvas.getWidth() - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f), kzVar.f26469p1);
+        boolean z10 = izVar.f27287c;
+        if (!z10 && MediaDataController.getInstance(kzVar.f27932c1).isStickerPackUnread(z10, ((TLRPC.StickerSetCovered) getTag()).set.f19896id) && kzVar.f27983s1 != null) {
+            canvas.drawCircle(canvas.getWidth() - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f), kzVar.f27983s1);
         }
     }
 }

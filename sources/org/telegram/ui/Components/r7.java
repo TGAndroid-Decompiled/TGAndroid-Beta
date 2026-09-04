@@ -1,71 +1,87 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class r7 extends FrameLayout {
-    public final RectF f28413a;
-    public boolean f28414b;
-    public int f28415c;
-    public int d;
-    public final c8 e;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+public final class r7 implements Runnable {
+    public final int f29965a;
+    public final s7 f29966b;
 
-    public r7(c8 c8Var, Context context) {
-        super(context);
-        this.e = c8Var;
-        this.f28413a = new RectF();
-        this.f28414b = false;
+    public r7(s7 s7Var, int i10) {
+        this.f29965a = i10;
+        this.f29966b = s7Var;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        ic.a(this, new kh.t0(this, 5));
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        ic.h(this);
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r7.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(android.view.MotionEvent r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r7.onInterceptTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        super.onLayout(z4, i10, i11, i12, i13);
-        c8 c8Var = this.e;
-        c8.P(c8Var);
-        c8Var.E0();
-    }
-
-    @Override
-    public final void onMeasure(int r10, int r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r7.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.e.isDismissed() && super.onTouchEvent(motionEvent)) {
-            return true;
+    public final void run() {
+        long j3;
+        switch (this.f29965a) {
+            case 0:
+                s7 s7Var = this.f29966b;
+                int i10 = s7Var.v + 1;
+                s7Var.v = i10;
+                if (i10 == 1) {
+                    k8 k8Var = s7Var.H;
+                    k8Var.H0 = -1;
+                    k8Var.I0 = MediaController.getInstance().getPlayingMessageObject().audioProgress;
+                    s7Var.f30213w = System.currentTimeMillis();
+                    AndroidUtilities.runOnUIThread(this, 2000L);
+                    AndroidUtilities.runOnUIThread(s7Var.E);
+                    return;
+                } else if (i10 == 2) {
+                    AndroidUtilities.runOnUIThread(this, 2000L);
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                s7 s7Var2 = this.f29966b;
+                k8 k8Var2 = s7Var2.H;
+                long duration = MediaController.getInstance().getDuration();
+                if (duration != 0 && duration != -9223372036854775807L) {
+                    float f7 = k8Var2.I0;
+                    long currentTimeMillis = System.currentTimeMillis();
+                    long j10 = currentTimeMillis - s7Var2.f30213w;
+                    s7Var2.f30213w = currentTimeMillis;
+                    long j11 = currentTimeMillis - s7Var2.f30214x;
+                    int i11 = s7Var2.v;
+                    if (i11 == 1) {
+                        j3 = 3;
+                    } else if (i11 == 2) {
+                        j3 = 6;
+                    } else {
+                        j3 = 12;
+                    }
+                    float f10 = (float) duration;
+                    float f11 = ((f7 * f10) - ((float) (j10 * j3))) / f10;
+                    if (f11 < 0.0f) {
+                        f11 = 0.0f;
+                    }
+                    k8Var2.I0 = f11;
+                    MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
+                    if (playingMessageObject != null && playingMessageObject.isMusic()) {
+                        k8Var2.G0(playingMessageObject, false);
+                    }
+                    if (k8Var2.H0 == -1 && s7Var2.v > 0) {
+                        if (j11 > 200 || k8Var2.I0 == 0.0f) {
+                            s7Var2.f30214x = currentTimeMillis;
+                            if (k8Var2.I0 == 0.0f) {
+                                MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), 0.0f);
+                                MediaController.getInstance().pauseByRewind();
+                            } else {
+                                MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f11);
+                            }
+                        }
+                        if (s7Var2.v > 0 && k8Var2.I0 > 0.0f) {
+                            AndroidUtilities.runOnUIThread(s7Var2.E, 16L);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                s7Var2.f30213w = System.currentTimeMillis();
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f28414b) {
-            return;
-        }
-        super.requestLayout();
     }
 }

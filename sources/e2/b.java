@@ -1,25 +1,34 @@
 package e2;
+public final class b implements Runnable {
+    public final int f8725a;
+    public final c f8726b;
+    public final Object f8727c;
 
-import java.util.TreeMap;
-public final class b {
-    public final String f5060a;
-    public final String f5061b;
-    public final long f5062c;
-    public long d = 0;
-    public int e;
-    public final int f5063f;
-    public final int f5064g;
-    public int[] h;
-    public final TreeMap f5065i;
+    public b(c cVar, Object obj, int i10) {
+        this.f8725a = i10;
+        this.f8726b = cVar;
+        this.f8727c = obj;
+    }
 
-    public b(String str, String str2, long j10, int i10, int i11, int i12, int[] iArr, TreeMap treeMap) {
-        this.f5060a = str;
-        this.f5061b = str2;
-        this.f5062c = j10;
-        this.e = i10;
-        this.f5063f = i11;
-        this.f5064g = i12;
-        this.h = iArr;
-        this.f5065i = treeMap;
+    @Override
+    public final void run() {
+        switch (this.f8725a) {
+            case 0:
+                c cVar = this.f8726b;
+                if (cVar.f8731a == 0) {
+                    cVar.n(this.f8727c);
+                    return;
+                }
+                return;
+            default:
+                c cVar2 = this.f8726b;
+                int i10 = cVar2.f8731a - 1;
+                cVar2.f8731a = i10;
+                if (i10 == 0) {
+                    cVar2.n(this.f8727c);
+                    return;
+                }
+                return;
+        }
     }
 }

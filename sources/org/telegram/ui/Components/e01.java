@@ -1,69 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.style.ReplacementSpan;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class e01 extends ReplacementSpan {
-    public final int f24433a;
-    public int f24434b;
-    public final Object f24435c;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class e01 extends FrameLayout {
+    public static final int f25501e = 0;
+    public TextView f25502a;
+    public d01 f25503b;
+    public TLRPC.TL_help_termsOfService f25504c;
+    public int d;
 
-    public e01(int i10) {
-        this.f24433a = 0;
-        Paint paint = new Paint(1);
-        this.f24435c = paint;
-        this.f24434b = i10;
-        paint.setColor(org.telegram.ui.ActionBar.j6.l1(0.3f, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20066nd, false)));
-    }
-
-    public void a(int i10) {
-        org.telegram.ui.ip0 ip0Var = (org.telegram.ui.ip0) this.f24435c;
-        if (ip0Var != null) {
-            ip0Var.f35011a = i10 / 2.0f;
-            ip0Var.d();
-            this.f24434b = i10;
+    public final void a() {
+        d01 d01Var = this.f25503b;
+        int i10 = this.d;
+        org.telegram.ui.xa0 xa0Var = (org.telegram.ui.xa0) d01Var;
+        xa0Var.getClass();
+        UserConfig.getInstance(i10).unacceptedTermsOfService = null;
+        UserConfig.getInstance(i10).saveConfig(false);
+        LaunchActivity launchActivity = xa0Var.f42654a;
+        ArrayList arrayList = launchActivity.f33429d0;
+        if (!arrayList.isEmpty()) {
+            ((org.telegram.ui.ActionBar.n2) i2.g.h(1, arrayList)).onResume();
         }
+        launchActivity.C0.animate().alpha(0.0f).setDuration(150L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new org.telegram.ui.g10(xa0Var, 15)).start();
+        TLRPC.TL_help_acceptTermsOfService tL_help_acceptTermsOfService = new TLRPC.TL_help_acceptTermsOfService();
+        tL_help_acceptTermsOfService.f19924id = this.f25504c.f19926id;
+        ConnectionsManager.getInstance(this.d).sendRequest(tL_help_acceptTermsOfService, new bi.c7(16));
     }
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
-        switch (this.f24433a) {
-            case 0:
-                float dp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(1.33f);
-                RectF rectF = AndroidUtilities.rectTmp;
-                float dp2 = AndroidUtilities.dp(6.66f) / 2.0f;
-                rectF.set(f10, dp - dp2, this.f24434b + f10, dp + dp2);
-                canvas.drawRoundRect(rectF, dp2, dp2, (Paint) this.f24435c);
-                return;
-            default:
-                org.telegram.ui.ip0 ip0Var = (org.telegram.ui.ip0) this.f24435c;
-                if (ip0Var != null) {
-                    int i15 = (i12 + i14) / 2;
-                    float dp3 = f10 + AndroidUtilities.dp(5.0f);
-                    int i16 = this.f24434b;
-                    ip0Var.setBounds((int) (AndroidUtilities.dp(3.0f) + f10), i15 - this.f24434b, (int) (dp3 + i16), i15 + i16);
-                    ip0Var.draw(canvas);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f24433a) {
-            case 0:
-                return this.f24434b;
-            default:
-                return AndroidUtilities.dp(3.0f) + AndroidUtilities.dp(3.0f) + this.f24434b;
-        }
-    }
-
-    public e01(boolean z4, int i10, int i11) {
-        this.f24433a = 1;
-        this.f24434b = AndroidUtilities.dp(21.0f);
-        this.f24435c = z4 ? org.telegram.ui.ip0.c(i10, i11) : org.telegram.ui.ip0.a(i10, i11);
+    public void setDelegate(d01 d01Var) {
+        this.f25503b = d01Var;
     }
 }

@@ -35,8 +35,8 @@ public class NetworkMonitor {
         return Build.VERSION.SDK_INT;
     }
 
-    private static void assertIsTrue(boolean z4) {
-        if (z4) {
+    private static void assertIsTrue(boolean z10) {
+        if (z10) {
             return;
         }
         throw new AssertionError("Expected to be true");
@@ -62,8 +62,8 @@ public class NetworkMonitor {
             }
 
             @Override
-            public void onNetworkDisconnect(long j10) {
-                NetworkMonitor.this.notifyObserversOfNetworkDisconnect(j10);
+            public void onNetworkDisconnect(long j3) {
+                NetworkMonitor.this.notifyObserversOfNetworkDisconnect(j3);
             }
 
             @Override
@@ -96,36 +96,36 @@ public class NetworkMonitor {
         return false;
     }
 
-    private native void nativeNotifyConnectionTypeChanged(long j10);
+    private native void nativeNotifyConnectionTypeChanged(long j3);
 
-    private native void nativeNotifyOfActiveNetworkList(long j10, NetworkChangeDetector.NetworkInformation[] networkInformationArr);
+    private native void nativeNotifyOfActiveNetworkList(long j3, NetworkChangeDetector.NetworkInformation[] networkInformationArr);
 
-    private native void nativeNotifyOfNetworkConnect(long j10, NetworkChangeDetector.NetworkInformation networkInformation);
+    private native void nativeNotifyOfNetworkConnect(long j3, NetworkChangeDetector.NetworkInformation networkInformation);
 
-    private native void nativeNotifyOfNetworkDisconnect(long j10, long j11);
+    private native void nativeNotifyOfNetworkDisconnect(long j3, long j10);
 
-    private native void nativeNotifyOfNetworkPreference(long j10, NetworkChangeDetector.ConnectionType connectionType, int i10);
+    private native void nativeNotifyOfNetworkPreference(long j3, NetworkChangeDetector.ConnectionType connectionType, int i10);
 
     private boolean networkBindingSupported() {
-        boolean z4;
+        boolean z10;
         synchronized (this.networkChangeDetectorLock) {
             try {
                 NetworkChangeDetector networkChangeDetector = this.networkChangeDetector;
                 if (networkChangeDetector != null && networkChangeDetector.supportNetworkCallback()) {
-                    z4 = true;
+                    z10 = true;
                 } else {
-                    z4 = false;
+                    z10 = false;
                 }
             } finally {
             }
         }
-        return z4;
+        return z10;
     }
 
     private void notifyObserversOfConnectionTypeChange(NetworkChangeDetector.ConnectionType connectionType) {
         ArrayList arrayList;
-        for (Long l10 : getNativeNetworkObserversSync()) {
-            nativeNotifyConnectionTypeChanged(l10.longValue());
+        for (Long l4 : getNativeNetworkObserversSync()) {
+            nativeNotifyConnectionTypeChanged(l4.longValue());
         }
         synchronized (this.networkObservers) {
             arrayList = new ArrayList(this.networkObservers);
@@ -140,22 +140,22 @@ public class NetworkMonitor {
     }
 
     public void notifyObserversOfNetworkConnect(NetworkChangeDetector.NetworkInformation networkInformation) {
-        for (Long l10 : getNativeNetworkObserversSync()) {
-            nativeNotifyOfNetworkConnect(l10.longValue(), networkInformation);
+        for (Long l4 : getNativeNetworkObserversSync()) {
+            nativeNotifyOfNetworkConnect(l4.longValue(), networkInformation);
         }
     }
 
-    public void notifyObserversOfNetworkDisconnect(long j10) {
-        for (Long l10 : getNativeNetworkObserversSync()) {
-            nativeNotifyOfNetworkDisconnect(l10.longValue(), j10);
+    public void notifyObserversOfNetworkDisconnect(long j3) {
+        for (Long l4 : getNativeNetworkObserversSync()) {
+            nativeNotifyOfNetworkDisconnect(l4.longValue(), j3);
         }
     }
 
     public void notifyObserversOfNetworkPreference(List<NetworkChangeDetector.ConnectionType> list, int i10) {
         List<Long> nativeNetworkObserversSync = getNativeNetworkObserversSync();
         for (NetworkChangeDetector.ConnectionType connectionType : list) {
-            for (Long l10 : nativeNetworkObserversSync) {
-                nativeNotifyOfNetworkPreference(l10.longValue(), connectionType, i10);
+            for (Long l4 : nativeNetworkObserversSync) {
+                nativeNotifyOfNetworkPreference(l4.longValue(), connectionType, i10);
             }
         }
     }
@@ -170,7 +170,7 @@ public class NetworkMonitor {
         notifyObserversOfConnectionTypeChange(connectionType);
     }
 
-    private void updateObserverActiveNetworkList(long j10) {
+    private void updateObserverActiveNetworkList(long j3) {
         List<NetworkChangeDetector.NetworkInformation> activeNetworkList;
         synchronized (this.networkChangeDetectorLock) {
             NetworkChangeDetector networkChangeDetector = this.networkChangeDetector;
@@ -183,7 +183,7 @@ public class NetworkMonitor {
         if (activeNetworkList == null) {
             return;
         }
-        nativeNotifyOfActiveNetworkList(j10, (NetworkChangeDetector.NetworkInformation[]) activeNetworkList.toArray(new NetworkChangeDetector.NetworkInformation[activeNetworkList.size()]));
+        nativeNotifyOfActiveNetworkList(j3, (NetworkChangeDetector.NetworkInformation[]) activeNetworkList.toArray(new NetworkChangeDetector.NetworkInformation[activeNetworkList.size()]));
     }
 
     public void addObserver(NetworkObserver networkObserver) {
@@ -215,13 +215,13 @@ public class NetworkMonitor {
     }
 
     public void setNetworkChangeDetectorFactory(NetworkChangeDetectorFactory networkChangeDetectorFactory) {
-        boolean z4;
+        boolean z10;
         if (this.numObservers == 0) {
-            z4 = true;
+            z10 = true;
         } else {
-            z4 = false;
+            z10 = false;
         }
-        assertIsTrue(z4);
+        assertIsTrue(z10);
         this.networkChangeDetectorFactory = networkChangeDetectorFactory;
     }
 
@@ -268,11 +268,11 @@ public class NetworkMonitor {
         this.currentConnectionType = NetworkChangeDetector.ConnectionType.CONNECTION_UNKNOWN;
     }
 
-    private void stopMonitoring(long j10) {
-        Logging.d("NetworkMonitor", "Stop monitoring with native observer " + j10);
+    private void stopMonitoring(long j3) {
+        Logging.d("NetworkMonitor", "Stop monitoring with native observer " + j3);
         stopMonitoring();
         synchronized (this.nativeNetworkObservers) {
-            this.nativeNetworkObservers.remove(Long.valueOf(j10));
+            this.nativeNetworkObservers.remove(Long.valueOf(j3));
         }
     }
 
@@ -286,16 +286,16 @@ public class NetworkMonitor {
         startMonitoring(ContextUtils.getApplicationContext(), "");
     }
 
-    private void startMonitoring(Context context, long j10, String str) {
-        Logging.d("NetworkMonitor", "Start monitoring with native observer " + j10 + " fieldTrialsString: " + str);
+    private void startMonitoring(Context context, long j3, String str) {
+        Logging.d("NetworkMonitor", "Start monitoring with native observer " + j3 + " fieldTrialsString: " + str);
         if (context == null) {
             context = ContextUtils.getApplicationContext();
         }
         startMonitoring(context, str);
         synchronized (this.nativeNetworkObservers) {
-            this.nativeNetworkObservers.add(Long.valueOf(j10));
+            this.nativeNetworkObservers.add(Long.valueOf(j3));
         }
-        updateObserverActiveNetworkList(j10);
+        updateObserverActiveNetworkList(j3);
         notifyObserversOfConnectionTypeChange(this.currentConnectionType);
     }
 

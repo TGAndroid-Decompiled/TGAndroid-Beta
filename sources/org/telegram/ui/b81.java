@@ -1,36 +1,19 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_account;
-public final class b81 implements Utilities.Callback {
-    public final int f32770a;
-    public final SessionsActivity f32771b;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class b81 implements View.OnLongClickListener {
+    public final TLRPC.TL_authorization f34659a;
+    public final g81 f34660b;
 
-    public b81(SessionsActivity sessionsActivity, int i10) {
-        this.f32770a = i10;
-        this.f32771b = sessionsActivity;
+    public b81(g81 g81Var, TLRPC.TL_authorization tL_authorization) {
+        this.f34660b = g81Var;
+        this.f34659a = tL_authorization;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f32770a) {
-            case 0:
-                TL_account.connectedBots connectedbots = (TL_account.connectedBots) obj;
-                SessionsActivity sessionsActivity = this.f32771b;
-                sessionsActivity.getClass();
-                if (connectedbots != null) {
-                    sessionsActivity.h = connectedbots.connected_bots;
-                    if (sessionsActivity.f32255a != null) {
-                        sessionsActivity.m0();
-                        sessionsActivity.f32255a.l();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                SessionsActivity.V(this.f32771b, (Boolean) obj);
-                return;
-        }
+    public final boolean onLongClick(View view) {
+        g81.m(this.f34660b, this.f34659a.country);
+        return true;
     }
 }

@@ -1,24 +1,14 @@
 package l5;
-
-import android.app.PendingIntent;
-import android.os.Parcel;
-import android.os.Parcelable;
-import b6.m;
-import j7.f5;
-import l4.j;
-public final class f extends c6.a {
-    public static final Parcelable.Creator<f> CREATOR = new j(2);
-    public final PendingIntent f11460a;
-
-    public f(PendingIntent pendingIntent) {
-        m.h(pendingIntent);
-        this.f11460a = pendingIntent;
-    }
+public final class f implements ia.d {
+    public static final f f15272a = new Object();
+    public static final ia.c f15273b = new ia.c("currentCacheSizeBytes", i2.g.n(i2.g.m(la.e.class, new la.a(1))));
+    public static final ia.c f15274c = new ia.c("maxCacheSizeBytes", i2.g.n(i2.g.m(la.e.class, new la.a(2))));
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q10 = f5.q(parcel, 20293);
-        f5.k(parcel, 1, this.f11460a, i10);
-        f5.r(parcel, q10);
+    public final void a(Object obj, Object obj2) {
+        o5.f fVar = (o5.f) obj;
+        ia.e eVar = (ia.e) obj2;
+        eVar.f(f15273b, fVar.f16973a);
+        eVar.f(f15274c, fVar.f16974b);
     }
 }

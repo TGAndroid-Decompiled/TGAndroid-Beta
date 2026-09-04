@@ -1,44 +1,45 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class xs0 extends org.telegram.ui.Components.v00 {
-    public final es0 e;
-    public final PhotoViewer f40063f;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import org.telegram.messenger.SharedConfig;
+public final class xs0 extends org.telegram.ui.Components.r71 {
+    public final org.telegram.ui.Components.na f42885g0;
+    public final PhotoViewer f42886h0;
 
-    public xs0(PhotoViewer photoViewer, es0 es0Var) {
-        super(false);
-        this.f40063f = photoViewer;
-        this.e = es0Var;
+    public xs0(Context context, PhotoViewer photoViewer) {
+        super(context);
+        this.f42886h0 = photoViewer;
+        new Path();
+        this.f42885g0 = new org.telegram.ui.Components.na(photoViewer.f33520b0, this, 0, false);
     }
 
     @Override
-    public final CharSequence d() {
-        StringBuilder sb = new StringBuilder();
-        PhotoViewer photoViewer = this.f40063f;
-        int[] iArr = photoViewer.f31754j3;
-        sb.append(LocaleController.formatPluralString("Minutes", iArr[0], new Object[0]));
-        sb.append(' ');
-        sb.append(LocaleController.formatPluralString("Seconds", iArr[1], new Object[0]));
-        String sb2 = sb.toString();
-        StringBuilder sb3 = new StringBuilder();
-        int[] iArr2 = photoViewer.f31763k3;
-        sb3.append(LocaleController.formatPluralString("Minutes", iArr2[0], new Object[0]));
-        sb3.append(' ');
-        sb3.append(LocaleController.formatPluralString("Seconds", iArr2[1], new Object[0]));
-        return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, sb2, sb3.toString());
+    public final void b(Canvas canvas, RectF rectF) {
+        canvas.save();
+        canvas.clipRect(rectF);
+        PhotoViewer photoViewer = this.f42886h0;
+        canvas.translate((-getX()) - photoViewer.Q7.getX(), (-getY()) - photoViewer.Q7.getY());
+        photoViewer.T0(canvas, this.f42885g0, -14803426, 855638016, false, true, false);
+        canvas.restore();
     }
 
     @Override
-    public final float k() {
-        return this.f40063f.f31789n3.c();
+    public final void invalidate() {
+        int i10;
+        if (SharedConfig.photoViewerBlur && ((i10 = this.f42886h0.f33630n4) == 1 || i10 == 2 || i10 == 3)) {
+            return;
+        }
+        super.invalidate();
     }
 
     @Override
-    public final void l(float f10) {
-        this.e.b(f10);
-        PhotoViewer photoViewer = this.f40063f;
-        photoViewer.f31789n3.h(f10, false);
-        photoViewer.f31798o3.invalidate();
+    public final void setTranslationY(float f7) {
+        if (getTranslationY() != f7) {
+            super.setTranslationY(f7);
+            this.f42886h0.f33549e0.invalidate();
+        }
     }
 }

@@ -1,18 +1,37 @@
 package p7;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class b {
-    public static final int f41076a = 0;
-
-    static {
-        b.class.getClassLoader();
+import android.os.IBinder;
+import android.os.IInterface;
+public final class b extends n6.g {
+    @Override
+    public final boolean C() {
+        return true;
     }
 
-    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() == 0) {
+    @Override
+    public final int l() {
+        return 12600000;
+    }
+
+    @Override
+    public final IInterface q(IBinder iBinder) {
+        if (iBinder == null) {
             return null;
         }
-        return (Parcelable) creator.createFromParcel(parcel);
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch");
+        if (queryLocalInterface instanceof a) {
+            return (a) queryLocalInterface;
+        }
+        return new a(iBinder);
+    }
+
+    @Override
+    public final String v() {
+        return "com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch";
+    }
+
+    @Override
+    public final String w() {
+        return "com.google.android.gms.icing.LIGHTWEIGHT_INDEX_SERVICE";
     }
 }

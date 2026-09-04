@@ -1,64 +1,58 @@
 package oh;
 
 import android.content.Context;
-import android.view.View;
-import nh.d6;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.c81;
-import org.telegram.ui.Components.nr0;
-import org.telegram.ui.Components.v31;
-public final class b extends c81 {
-    public final Context f16559a;
-    public final nr0 f16560b;
+import android.os.Build;
+import le.e;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.pr;
+import yf.j0;
+public final class b extends di.d implements le.d {
+    public final le.b f17027h0;
+    public final f6 f17028i0;
 
-    public b(nr0 nr0Var, Context context) {
-        this.f16560b = nr0Var;
-        this.f16559a = context;
+    public b(Context context, f6 f6Var) {
+        super(context, f6Var, true);
+        this.f17027h0 = new le.b(0, this, pr.h, 320L, true);
+        this.f17028i0 = f6Var;
+        e();
+        setOutlineProvider(j0.f50113b);
     }
 
     @Override
-    public final void b(View view, int i10, int i11) {
-        d6 d6Var;
-        r rVar = (r) view;
-        nr0 nr0Var = this.f16560b;
-        if (i10 == 0) {
-            d6Var = nr0Var.e;
+    public final void E(int i10, float f7, float f10, e eVar) {
+        boolean q6;
+        f6 f6Var = this.f17028i0;
+        if (f6Var != null) {
+            q6 = f6Var.a();
         } else {
-            d6Var = (d6) nr0Var.f16598f.get(i10 - 1);
+            q6 = j6.I.q();
         }
-        d6Var.H(null);
-        rVar.setList(d6Var);
-        rVar.setVisibleHeight(nr0Var.v);
+        float f11 = this.f17027h0.f15368e;
+        setElevation((1.0f - f11) * AndroidUtilities.dp(1.0f));
+        setColor(i0.a.d(f11, m(j6.f20663d6), m(j6.Oh)));
+        setTextColor(i0.a.d(f11, m(j6.f20898q7), m(j6.Sh)));
+        if (Build.VERSION.SDK_INT >= 28) {
+            if (q6) {
+                setOutlineAmbientShadowColor(553648127);
+                setOutlineSpotShadowColor(553648127);
+                return;
+            }
+            setOutlineAmbientShadowColor(1610612736);
+            setOutlineSpotShadowColor(1610612736);
+        }
+    }
+
+    public final int m(int i10) {
+        f6 f6Var = this.f17028i0;
+        if (f6Var != null) {
+            return f6Var.G0(i10);
+        }
+        return j6.w0(null, i10, false);
     }
 
     @Override
-    public final View d(int i10) {
-        return new r(this.f16560b, this.f16559a);
-    }
-
-    @Override
-    public final int e() {
-        return this.f16560b.f16598f.size() + 1;
-    }
-
-    @Override
-    public final int f(int i10) {
-        if (i10 == 0) {
-            return 0;
-        }
-        return ((d6) this.f16560b.f16598f.get(i10 - 1)).E.hashCode();
-    }
-
-    @Override
-    public final CharSequence g(int i10) {
-        if (i10 == 0) {
-            return LocaleController.getString(R.string.ProfileBotLanguageGeneral);
-        }
-        String D = v31.D(((d6) this.f16560b.f16598f.get(i10 - 1)).E, null, null);
-        if (D == null) {
-            return null;
-        }
-        return D.substring(0, 1).toUpperCase() + D.substring(1);
+    public final void z(float f7, int i10) {
     }
 }

@@ -15,10 +15,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.ext.SdkExtensions;
+import android.view.Surface;
 import android.view.View;
 import android.view.Window;
 import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.core.graphics.drawable.IconCompat;
+import di.w9;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,18 +28,18 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 public abstract class f {
-    public static volatile e f6344a;
-    public static volatile ArrayList f6345b;
+    public static volatile e f10285a;
+    public static volatile ArrayList f10286b;
 
     public static void a(Context context, ArrayList arrayList) {
-        List p10 = p(arrayList);
+        List p5 = p(arrayList);
         int i10 = Build.VERSION.SDK_INT;
         if (i10 <= 29) {
-            c(context, p10);
+            c(context, p5);
         }
         if (i10 >= 25) {
             ArrayList arrayList2 = new ArrayList();
-            ArrayList arrayList3 = (ArrayList) p10;
+            ArrayList arrayList3 = (ArrayList) p5;
             int size = arrayList3.size();
             int i11 = 0;
             while (i11 < size) {
@@ -49,7 +51,7 @@ public abstract class f {
                 return;
             }
         }
-        j(context).a(p10);
+        j(context).a(p5);
         Iterator it = ((ArrayList) i(context)).iterator();
         if (!it.hasNext()) {
             return;
@@ -60,10 +62,10 @@ public abstract class f {
 
     public static boolean b(Context context, c cVar) {
         Bitmap decodeStream;
-        IconCompat c3;
+        IconCompat c10;
         IconCompat iconCompat = cVar.h;
         if (iconCompat != null) {
-            int i10 = iconCompat.f607a;
+            int i10 = iconCompat.f1168a;
             if (i10 != 6 && i10 != 4) {
                 return true;
             }
@@ -72,12 +74,12 @@ public abstract class f {
                 return false;
             }
             if (i10 == 6) {
-                c3 = new IconCompat(5);
-                c3.f608b = decodeStream;
+                c10 = new IconCompat(5);
+                c10.f1169b = decodeStream;
             } else {
-                c3 = IconCompat.c(decodeStream);
+                c10 = IconCompat.c(decodeStream);
             }
-            cVar.h = c3;
+            cVar.h = c10;
             return true;
         }
         return false;
@@ -103,7 +105,7 @@ public abstract class f {
 
     public static List e(Context context) {
         if (Build.VERSION.SDK_INT >= 25) {
-            List<ShortcutInfo> dynamicShortcuts = f0.d.b(context.getSystemService(f0.d.i())).getDynamicShortcuts();
+            List<ShortcutInfo> dynamicShortcuts = w9.a(context.getSystemService(w9.d())).getDynamicShortcuts();
             ArrayList arrayList = new ArrayList(dynamicShortcuts.size());
             for (ShortcutInfo shortcutInfo : dynamicShortcuts) {
                 arrayList.add(new b(context, shortcutInfo).a());
@@ -124,7 +126,7 @@ public abstract class f {
     public static int g(Context context) {
         context.getClass();
         if (Build.VERSION.SDK_INT >= 25) {
-            return f0.d.b(context.getSystemService(f0.d.i())).getMaxShortcutCountPerActivity();
+            return w9.a(context.getSystemService(w9.d())).getMaxShortcutCountPerActivity();
         }
         return 5;
     }
@@ -147,7 +149,7 @@ public abstract class f {
     public static List i(Context context) {
         Bundle bundle;
         String string;
-        if (f6345b == null) {
+        if (f10286b == null) {
             ArrayList arrayList = new ArrayList();
             PackageManager packageManager = context.getPackageManager();
             Intent intent = new Intent("androidx.core.content.pm.SHORTCUT_LISTENER");
@@ -166,26 +168,26 @@ public abstract class f {
                     }
                 }
             }
-            if (f6345b == null) {
-                f6345b = arrayList;
+            if (f10286b == null) {
+                f10286b = arrayList;
             }
         }
-        return f6345b;
+        return f10286b;
     }
 
     public static e j(Context context) {
-        if (f6344a == null) {
+        if (f10285a == null) {
             if (Build.VERSION.SDK_INT >= 23) {
                 try {
-                    f6344a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
+                    f10285a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
                 } catch (Exception unused) {
                 }
             }
-            if (f6344a == null) {
-                f6344a = new Object();
+            if (f10285a == null) {
+                f10285a = new Object();
             }
         }
-        return f6344a;
+        return f10285a;
     }
 
     public static List k(Context context) {
@@ -236,21 +238,21 @@ public abstract class f {
                 }
                 shortcutManager.addDynamicShortcuts(Arrays.asList(cVar.d()));
             }
-            e j10 = j(context);
+            e j3 = j(context);
             try {
-                List<c> b10 = j10.b();
+                List<c> b10 = j3.b();
                 if (b10.size() >= g10) {
                     String str2 = null;
                     for (c cVar2 : b10) {
-                        int i13 = cVar2.f6342m;
+                        int i13 = cVar2.f10283m;
                         if (i13 > i11) {
-                            str2 = cVar2.f6334b;
+                            str2 = cVar2.f10274b;
                             i11 = i13;
                         }
                     }
-                    j10.d(Arrays.asList(str2));
+                    j3.d(Arrays.asList(str2));
                 }
-                j10.a(Arrays.asList(cVar));
+                j3.a(Arrays.asList(cVar));
                 Iterator it = ((ArrayList) i(context)).iterator();
                 if (it.hasNext()) {
                     if (it.next() == null) {
@@ -277,16 +279,16 @@ public abstract class f {
                     }
                     throw new ClassCastException();
                 }
-                q(context, cVar.f6334b);
+                q(context, cVar.f10274b);
                 throw th2;
             }
-            q(context, cVar.f6334b);
+            q(context, cVar.f10274b);
         }
     }
 
     public static void n(Context context) {
         if (Build.VERSION.SDK_INT >= 25) {
-            f0.d.b(context.getSystemService(f0.d.i())).removeAllDynamicShortcuts();
+            w9.a(context.getSystemService(w9.d())).removeAllDynamicShortcuts();
         }
         j(context).c();
         Iterator it = ((ArrayList) i(context)).iterator();
@@ -329,7 +331,7 @@ public abstract class f {
         context.getClass();
         str.getClass();
         if (Build.VERSION.SDK_INT >= 25) {
-            f0.d.b(context.getSystemService(f0.d.i())).reportShortcutUsed(str);
+            w9.a(context.getSystemService(w9.d())).reportShortcutUsed(str);
         }
         Iterator it = ((ArrayList) i(context)).iterator();
         if (!it.hasNext()) {
@@ -360,19 +362,33 @@ public abstract class f {
         accessibilityNodeInfo.setStateDescription(charSequence);
     }
 
-    public static c2.n v(android.media.MediaRoute2Info r13) {
-        throw new UnsupportedOperationException("Method not decompiled: g0.f.v(android.media.MediaRoute2Info):c2.n");
+    public static void v(Surface surface, float f7) {
+        int i10;
+        if (f7 == 0.0f) {
+            i10 = 0;
+        } else {
+            i10 = 1;
+        }
+        try {
+            surface.setFrameRate(f7, i10);
+        } catch (IllegalStateException e7) {
+            e2.a.f("VideoFrameReleaseHelper", "Failed to call Surface.setFrameRate", e7);
+        }
     }
 
-    public static void w(Context context, ArrayList arrayList) {
-        List p10 = p(arrayList);
+    public static p4.m w(android.media.MediaRoute2Info r13) {
+        throw new UnsupportedOperationException("Method not decompiled: g0.f.w(android.media.MediaRoute2Info):p4.m");
+    }
+
+    public static void x(Context context, ArrayList arrayList) {
+        List p5 = p(arrayList);
         int i10 = Build.VERSION.SDK_INT;
         if (i10 <= 29) {
-            c(context, p10);
+            c(context, p5);
         }
         if (i10 >= 25) {
             ArrayList arrayList2 = new ArrayList();
-            ArrayList arrayList3 = (ArrayList) p10;
+            ArrayList arrayList3 = (ArrayList) p5;
             int size = arrayList3.size();
             int i11 = 0;
             while (i11 < size) {
@@ -384,7 +400,7 @@ public abstract class f {
                 return;
             }
         }
-        j(context).a(p10);
+        j(context).a(p5);
         Iterator it = ((ArrayList) i(context)).iterator();
         if (!it.hasNext()) {
             return;

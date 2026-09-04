@@ -1,461 +1,317 @@
 package org.telegram.ui;
 
 import android.animation.AnimatorSet;
-import android.app.Activity;
-import android.graphics.Bitmap;
+import android.content.Context;
+import android.content.res.Configuration;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
+import android.os.Build;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
+import android.view.ViewConfiguration;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_fragment;
-public final class gr0 implements Runnable {
-    public final int f34498a;
-    public final Object f34499b;
-    public final Object f34500c;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
+public final class gr0 extends org.telegram.ui.ActionBar.n2 {
+    public static final org.telegram.ui.Components.ir0 f36751y = new org.telegram.ui.Components.ir0(4);
+    public final br0 f36752a;
+    public final br0 f36753b;
+    public org.telegram.ui.ActionBar.v0 f36754c;
+    public org.telegram.ui.Components.hu d;
+    public boolean f36755e;
+    public final Paint f36756f;
+    public ScrollSlidingTextTabStrip h;
+    public final er0[] f36757n;
+    public AnimatorSet f36758r;
+    public boolean f36759s;
+    public boolean v;
+    public boolean f36760w;
+    public int f36761x;
 
-    public gr0(int i10, Object obj, Object obj2) {
-        this.f34498a = i10;
-        this.f34499b = obj;
-        this.f34500c = obj2;
+    public gr0(HashMap hashMap, ArrayList arrayList, int i10, boolean z10, co coVar) {
+        super(null);
+        this.f36755e = true;
+        this.f36756f = new Paint();
+        this.f36757n = new er0[2];
+        this.f36752a = new br0(0, null, hashMap, arrayList, i10, z10, coVar, false);
+        this.f36753b = new br0(1, null, hashMap, arrayList, i10, z10, coVar, false);
     }
 
-    @Override
-    public final void run() {
-        int i10;
-        org.telegram.messenger.w8 w8Var;
-        ArrayList arrayList;
-        int i11;
-        String str;
-        String str2;
-        String str3;
-        int i12;
-        String[] strArr;
-        SpannableStringBuilder spannableStringBuilder;
-        String str4;
-        int i13 = this.f34498a;
-        long j10 = 0;
-        Object obj = this.f34500c;
-        Object obj2 = this.f34499b;
-        switch (i13) {
-            case 0:
-                PhotoViewer photoViewer = (PhotoViewer) obj2;
-                dg.q1 q1Var = (dg.q1) obj;
-                Drawable[] drawableArr = PhotoViewer.Q8;
-                q1Var.e.h();
-                q1Var.f4735c.postRunnable(new cg.n0(2));
-                photoViewer.f31679b0.removeView(photoViewer.K1);
+    public static void g0(gr0 gr0Var, float f7) {
+        gr0Var.actionBar.setTranslationY(f7);
+        int i10 = 0;
+        while (true) {
+            er0[] er0VarArr = gr0Var.f36757n;
+            if (i10 < er0VarArr.length) {
+                er0VarArr[i10].d.setPinnedSectionOffsetY((int) f7);
+                i10++;
+            } else {
+                gr0Var.fragmentView.invalidate();
                 return;
-            case 1:
-                org.telegram.ui.Components.y5 y5Var = (org.telegram.ui.Components.y5) obj2;
-                Bitmap bitmap = (Bitmap) obj;
-                Drawable[] drawableArr2 = PhotoViewer.Q8;
-                if (y5Var != null) {
-                    ArrayList arrayList2 = y5Var.h;
-                    org.telegram.ui.Components.v5 v5Var = y5Var.f30852n;
-                    if (v5Var != null) {
-                        arrayList2.add(v5Var);
-                    }
-                    org.telegram.ui.Components.v5 v5Var2 = y5Var.f30857r;
-                    if (v5Var2 != null) {
-                        arrayList2.add(v5Var2);
-                    }
-                    org.telegram.ui.Components.v5 v5Var3 = y5Var.f30859s;
-                    if (v5Var3 != null) {
-                        arrayList2.add(v5Var3);
-                    }
-                    y5Var.f30852n = new org.telegram.ui.Components.v5(bitmap);
-                    y5Var.f30857r = null;
-                    y5Var.f30859s = null;
-                    y5Var.t();
-                    return;
-                }
-                return;
-            case 2:
-                sr0 sr0Var = (sr0) obj2;
-                sr0Var.getClass();
-                ((View) obj).setOutlineProvider(null);
-                PhotoViewer photoViewer2 = sr0Var.f38301c;
-                ImageView imageView = photoViewer2.f31852u3;
-                if (imageView != null) {
-                    imageView.setOutlineProvider(null);
-                }
-                hu0 hu0Var = photoViewer2.B2;
-                if (hu0Var != null) {
-                    hu0Var.setOutlineProvider(null);
-                    return;
-                }
-                return;
-            case 3:
-                dt0 dt0Var = (dt0) obj2;
-                org.telegram.ui.Components.i71 i71Var = (org.telegram.ui.Components.i71) obj;
-                dt0Var.getClass();
-                if (i71Var.p() > 0 && i71Var.n() >= i71Var.p() - 590) {
-                    dt0Var.f33530a.f31679b0.invalidate();
-                    return;
-                }
-                return;
-            case 4:
-                ht0 ht0Var = (ht0) obj2;
-                dg.q1 q1Var2 = (dg.q1) obj;
-                q1Var2.e.h();
-                q1Var2.f4735c.postRunnable(new cg.n0(2));
-                try {
-                    ht0Var.f34751b.f31679b0.removeView(q1Var2);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            case 5:
-                ah.e eVar = (ah.e) obj;
-                PhotoViewer photoViewer3 = ((ls0) obj2).f35916b;
-                if (photoViewer3.f31900z3 != null) {
-                    ImageView imageView2 = photoViewer3.f31852u3;
-                    if (imageView2 != null) {
-                        imageView2.setVisibility(0);
-                        photoViewer3.f31852u3.setImageBitmap(photoViewer3.f31900z3);
-                    }
-                    ((ImageReceiver) eVar.f212b).setImageBitmap(photoViewer3.f31900z3);
-                    return;
-                }
-                return;
-            case 6:
-                ((rt0) obj2).f38059r.f31749i7.lock();
-                ((AnimatorSet) obj).start();
-                return;
-            case 7:
-                qu0 qu0Var = (qu0) obj;
-                ((rt0) obj2).f38059r.f31808p4 = false;
-                if (!qu0Var.f37502s) {
-                    qu0Var.f37487a.setVisible(false, true);
-                    return;
-                }
-                return;
-            case 8:
-                yv0 yv0Var = (yv0) obj2;
-                yv0Var.getClass();
-                AndroidUtilities.addToClipboard((String) obj);
-                yv0Var.c(true);
-                return;
-            case 9:
-                yv0 yv0Var2 = (yv0) obj2;
-                yv0Var2.getClass();
-                AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(((TLRPC.PollAnswer) obj).text, false));
-                yv0Var2.c(true);
-                return;
-            case 10:
-                yv0 yv0Var3 = (yv0) obj2;
-                SendMessagesHelper.getInstance(yv0Var3.E.currentAccount).deletePollOption(yv0Var3.E, (byte[]) obj);
-                yv0Var3.c(true);
-                return;
-            case 11:
-                PrivacyControlActivity.W((PrivacyControlActivity) obj2, (TLObject) obj);
-                return;
-            case 12:
-                PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) obj2;
-                boolean[] zArr = (boolean[]) obj;
-                privacyControlActivity.getClass();
-                zArr[0] = true;
-                if (zArr[1]) {
-                    privacyControlActivity.x0();
-                    return;
-                }
-                return;
-            case 13:
-                PrivacySettingsActivity privacySettingsActivity = (PrivacySettingsActivity) obj2;
-                privacySettingsActivity.d = (TL_account.Password) obj;
-                privacySettingsActivity.y0();
-                return;
-            case 14:
-                PrivacySettingsActivity privacySettingsActivity2 = (PrivacySettingsActivity) obj2;
-                boolean z4 = !privacySettingsActivity2.S;
-                privacySettingsActivity2.S = z4;
-                ((org.telegram.ui.Cells.r8) obj).setChecked(z4);
-                return;
-            case 15:
-                ((tx0) obj2).getMessagesController().unblockPeer(((Long) obj).longValue());
-                return;
-            case 16:
-                ProfileActivity profileActivity = (ProfileActivity) obj2;
-                NotificationCenter notificationCenter = profileActivity.getNotificationCenter();
-                int i14 = NotificationCenter.closeChats;
-                notificationCenter.removeObserver(profileActivity, i14);
-                profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i14, new Object[0]);
-                Bundle bundle = new Bundle();
-                bundle.putInt("enc_id", ((TLRPC.EncryptedChat) ((Object[]) obj)[0]).f19167id);
-                profileActivity.presentFragment(new zn(bundle), true);
-                return;
-            case 17:
-                ProfileActivity profileActivity2 = (ProfileActivity) obj2;
-                TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) obj;
-                long j11 = profileActivity2.f32164x2;
-                if (j11 != 0) {
-                    TLRPC.User user = profileActivity2.getMessagesController().getUser(Long.valueOf(j11));
-                    profileActivity2.getMessagesController().deleteParticipantFromChat(profileActivity2.f32019c1, user);
-                    if (profileActivity2.B2 != null && user != null && org.telegram.ui.Components.qc.a(profileActivity2)) {
-                        org.telegram.ui.Components.qc.D(profileActivity2, user, profileActivity2.B2.title).j();
-                    }
-                    if (profileActivity2.f32124r2.participants.participants.remove(chatParticipant)) {
-                        profileActivity2.e5(true, false);
-                        return;
-                    }
-                    return;
-                }
-                NotificationCenter notificationCenter2 = profileActivity2.getNotificationCenter();
-                int i15 = NotificationCenter.closeChats;
-                notificationCenter2.removeObserver(profileActivity2, i15);
-                if (AndroidUtilities.isTablet()) {
-                    i10 = 0;
-                    profileActivity2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i15, Long.valueOf(-profileActivity2.f32019c1));
-                } else {
-                    i10 = 0;
-                    profileActivity2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i15, new Object[0]);
-                }
-                profileActivity2.getMessagesController().deleteParticipantFromChat(profileActivity2.f32019c1, profileActivity2.getMessagesController().getUser(Long.valueOf(profileActivity2.getUserConfig().getClientUserId())));
-                profileActivity2.G1 = i10;
-                profileActivity2.finishFragment();
-                return;
-            case 18:
-                AndroidUtilities.addToClipboard("https://" + ((ProfileActivity) obj2).getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername((TLRPC.Chat) obj));
-                return;
-            case 19:
-                ProfileActivity profileActivity3 = (ProfileActivity) obj2;
-                profileActivity3.getClass();
-                org.telegram.ui.Components.ic.e();
-                ze.d.s(profileActivity3.getParentActivity(), ((TL_fragment.TL_collectibleInfo) obj).url);
-                return;
-            case 20:
-                ProfileActivity profileActivity4 = (ProfileActivity) obj2;
-                profileActivity4.B2 = profileActivity4.getMessagesStorage().getChat(profileActivity4.f32019c1);
-                ((CountDownLatch) obj).countDown();
-                return;
-            case 21:
-                ProfileActivity profileActivity5 = (ProfileActivity) obj2;
-                profileActivity5.getClass();
-                profileActivity5.D2 = ((TLRPC.TL_channels_channelParticipant) ((TLObject) obj)).participant;
-                return;
-            case 22:
-                ProfileActivity profileActivity6 = (ProfileActivity) obj2;
-                profileActivity6.getClass();
-                ((org.telegram.ui.Cells.n8) ((View) obj)).setChecked(profileActivity6.f32109p2.g());
-                return;
-            case 23:
-                ProfileActivity profileActivity7 = (ProfileActivity) obj2;
-                if (!((boolean[]) obj)[0] && (w8Var = profileActivity7.f32147u5) != null) {
-                    w8Var.run();
-                }
-                profileActivity7.f32147u5 = null;
-                return;
-            case 24:
-                yy0 yy0Var = (yy0) obj2;
-                a0.h hVar = (a0.h) obj;
-                ProfileActivity profileActivity8 = yy0Var.Y0.f40904c;
-                Activity parentActivity = profileActivity8.getParentActivity();
-                xz0 xz0Var = profileActivity8.f32071j5;
-                int m9 = hVar.m();
-                if (hVar.m() == 1) {
-                    j10 = ((TLRPC.Dialog) hVar.n(0)).f19163id;
-                }
-                org.telegram.ui.Components.qc.x(parentActivity, xz0Var, m9, j10, yy0Var.getThemedColor(org.telegram.ui.ActionBar.j6.Fi), yy0Var.getThemedColor(org.telegram.ui.ActionBar.j6.Hi)).j();
-                return;
-            case 25:
-                mz0 mz0Var = (mz0) obj2;
-                a0.h hVar2 = (a0.h) obj;
-                ProfileActivity profileActivity9 = mz0Var.Y0;
-                Activity parentActivity2 = profileActivity9.getParentActivity();
-                xz0 xz0Var2 = profileActivity9.f32071j5;
-                int m10 = hVar2.m();
-                if (hVar2.m() == 1) {
-                    j10 = ((TLRPC.Dialog) hVar2.n(0)).f19163id;
-                }
-                org.telegram.ui.Components.qc.x(parentActivity2, xz0Var2, m10, j10, mz0Var.getThemedColor(org.telegram.ui.ActionBar.j6.Fi), mz0Var.getThemedColor(org.telegram.ui.ActionBar.j6.Hi)).j();
-                return;
-            case 26:
-                ((n01) obj2).e.presentFragment(ProfileActivity.m4(((Long) obj).longValue()));
-                return;
-            case 27:
-                ?? p2Var = new org.telegram.ui.ActionBar.p2(null);
-                p2Var.d = (org.telegram.ui.ActionBar.f6) obj;
-                ((org.telegram.ui.ActionBar.p2) obj2).presentFragment((org.telegram.ui.ActionBar.p2) p2Var);
-                return;
-            case 28:
-                x01 x01Var = (x01) obj2;
-                String str5 = (String) obj;
-                ArrayList arrayList3 = x01Var.d;
-                org.telegram.ui.ActionBar.p2 p2Var2 = x01Var.e;
-                ArrayList arrayList4 = new ArrayList();
-                ArrayList arrayList5 = new ArrayList();
-                ArrayList arrayList6 = new ArrayList();
-                String[] split = str5.split(" ");
-                String[] strArr2 = new String[split.length];
-                for (int i16 = 0; i16 < split.length; i16++) {
-                    String translitString = LocaleController.getInstance().getTranslitString(split[i16]);
-                    strArr2[i16] = translitString;
-                    if (translitString.equals(split[i16])) {
-                        strArr2[i16] = null;
-                    }
-                }
-                int i17 = 0;
-                while (true) {
-                    w01[] w01VarArr = x01Var.f39799c;
-                    if (i17 < w01VarArr.length) {
-                        w01 w01Var = w01VarArr[i17];
-                        if (w01Var != null) {
-                            String str6 = w01Var.f39228a;
-                            String str7 = " " + str6.toLowerCase();
-                            int i18 = 0;
-                            SpannableStringBuilder spannableStringBuilder2 = null;
-                            while (i18 < split.length) {
-                                if (split[i18].length() != 0) {
-                                    String str8 = split[i18];
-                                    str2 = str5;
-                                    int indexOf = str7.indexOf(" " + str8);
-                                    if (indexOf < 0 && (str4 = strArr2[i18]) != null) {
-                                        indexOf = str7.indexOf(" ".concat(str4));
-                                    } else {
-                                        str4 = str8;
-                                    }
-                                    if (indexOf >= 0) {
-                                        String str9 = str4;
-                                        if (spannableStringBuilder2 == null) {
-                                            spannableStringBuilder = new SpannableStringBuilder(str6);
-                                        } else {
-                                            spannableStringBuilder = spannableStringBuilder2;
-                                        }
-                                        str3 = str7;
-                                        i12 = i17;
-                                        strArr = strArr2;
-                                        spannableStringBuilder.setSpan(new ForegroundColorSpan(p2Var2.getThemedColor(org.telegram.ui.ActionBar.j6.f20115q6)), indexOf, str9.length() + indexOf, 33);
-                                    } else {
-                                        i17++;
-                                        str5 = str2;
-                                        strArr2 = strArr2;
-                                    }
-                                } else {
-                                    str2 = str5;
-                                    str3 = str7;
-                                    i12 = i17;
-                                    strArr = strArr2;
-                                    spannableStringBuilder = spannableStringBuilder2;
-                                }
-                                if (spannableStringBuilder != null && i18 == split.length - 1) {
-                                    if (w01Var.f39231f == 502) {
-                                        int i19 = 0;
-                                        while (true) {
-                                            if (i19 < 4) {
-                                                if (UserConfig.getInstance(i19).isClientActivated()) {
-                                                    i19++;
-                                                }
-                                            } else {
-                                                i19 = -1;
-                                            }
-                                        }
-                                        if (i19 < 0) {
-                                        }
-                                    }
-                                    arrayList4.add(w01Var);
-                                    arrayList6.add(spannableStringBuilder);
-                                }
-                                i18++;
-                                spannableStringBuilder2 = spannableStringBuilder;
-                                str5 = str2;
-                                strArr2 = strArr;
-                                str7 = str3;
-                                i17 = i12;
-                            }
-                        }
-                        str2 = str5;
-                        i17++;
-                        str5 = str2;
-                        strArr2 = strArr2;
-                    } else {
-                        String str10 = str5;
-                        String[] strArr3 = strArr2;
-                        if (x01Var.B != null) {
-                            int size = arrayList3.size();
-                            int i20 = 0;
-                            while (i20 < size) {
-                                MessagesController.FaqSearchResult faqSearchResult = (MessagesController.FaqSearchResult) arrayList3.get(i20);
-                                String str11 = " " + faqSearchResult.title.toLowerCase();
-                                int i21 = 0;
-                                SpannableStringBuilder spannableStringBuilder3 = null;
-                                while (true) {
-                                    if (i21 < split.length) {
-                                        if (split[i21].length() != 0) {
-                                            String str12 = split[i21];
-                                            int indexOf2 = str11.indexOf(" " + str12);
-                                            arrayList = arrayList3;
-                                            if (indexOf2 < 0 && (str = strArr3[i21]) != null) {
-                                                indexOf2 = str11.indexOf(" ".concat(str));
-                                                str12 = str;
-                                            }
-                                            if (indexOf2 >= 0) {
-                                                if (spannableStringBuilder3 == null) {
-                                                    spannableStringBuilder3 = new SpannableStringBuilder(faqSearchResult.title);
-                                                }
-                                                i11 = size;
-                                                spannableStringBuilder3.setSpan(new ForegroundColorSpan(p2Var2.getThemedColor(org.telegram.ui.ActionBar.j6.f20115q6)), indexOf2, str12.length() + indexOf2, 33);
-                                            }
-                                        } else {
-                                            arrayList = arrayList3;
-                                            i11 = size;
-                                        }
-                                        if (spannableStringBuilder3 != null && i21 == split.length - 1) {
-                                            arrayList5.add(faqSearchResult);
-                                            arrayList6.add(spannableStringBuilder3);
-                                        }
-                                        i21++;
-                                        arrayList3 = arrayList;
-                                        size = i11;
-                                    } else {
-                                        arrayList = arrayList3;
-                                    }
-                                }
-                                i20++;
-                                arrayList3 = arrayList;
-                                size = size;
-                            }
-                        }
-                        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.jy0(x01Var, str10, arrayList4, arrayList5, arrayList6, 28));
-                        return;
-                    }
-                }
-                break;
-            default:
-                x01 x01Var2 = (x01) obj2;
-                ArrayList<MessagesController.FaqSearchResult> arrayList7 = (ArrayList) obj;
-                x01Var2.d.addAll(arrayList7);
-                int i22 = x01Var2.f39800f;
-                MessagesController.getInstance(i22).faqSearchArray = arrayList7;
-                MessagesController.getInstance(i22).faqWebPage = x01Var2.B;
-                if (!x01Var2.f39804w) {
-                    x01Var2.l();
-                    return;
-                }
-                return;
+            }
         }
     }
 
-    public gr0(org.telegram.ui.Components.lq0 lq0Var, a0.h hVar, int i10, int i11) {
-        this.f34498a = i11;
-        this.f34499b = lq0Var;
-        this.f34500c = hVar;
+    public static void h0(gr0 gr0Var, String str) {
+        gr0Var.f36754c.getSearchField().setText(str);
+        gr0Var.f36754c.getSearchField().setSelection(str.length());
+        gr0Var.actionBar.w();
+    }
+
+    @Override
+    public final View createView(Context context) {
+        er0[] er0VarArr;
+        View view;
+        this.actionBar.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20734h5, false));
+        org.telegram.ui.ActionBar.k kVar = this.actionBar;
+        int i10 = org.telegram.ui.ActionBar.j6.f20770j5;
+        kVar.setTitleColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+        this.actionBar.C(org.telegram.ui.ActionBar.j6.w0(null, i10, false), false);
+        this.actionBar.B(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.I5, false), false);
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        org.telegram.ui.ActionBar.d5 d5Var = this.parentLayout;
+        if (d5Var != null && ((ActionBarLayout) d5Var).M0) {
+            this.actionBar.setOccupyStatusBar(false);
+        }
+        this.actionBar.setExtraHeight(AndroidUtilities.dp(44.0f));
+        this.actionBar.setAllowOverlayTitle(false);
+        this.actionBar.setAddToContainer(false);
+        boolean z10 = true;
+        this.actionBar.setClipContent(true);
+        this.actionBar.setActionBarMenuOnItemClick(new o70(this, 17));
+        this.hasOwnBackground = true;
+        org.telegram.ui.ActionBar.v0 a2 = this.actionBar.n().a(0, R.drawable.outline_header_search);
+        a2.F();
+        a2.H = new ig.d2(this, 14);
+        this.f36754c = a2;
+        a2.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));
+        EditTextBoldCursor searchField = this.f36754c.getSearchField();
+        searchField.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+        searchField.setCursorColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+        searchField.setHintTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Vd, false));
+        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = new ScrollSlidingTextTabStrip(context, null);
+        this.h = scrollSlidingTextTabStrip;
+        scrollSlidingTextTabStrip.setUseSameWidth(true);
+        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip2 = this.h;
+        int i11 = org.telegram.ui.ActionBar.j6.Y9;
+        int i12 = org.telegram.ui.ActionBar.j6.Z9;
+        scrollSlidingTextTabStrip2.L = i11;
+        scrollSlidingTextTabStrip2.M = i12;
+        scrollSlidingTextTabStrip2.d();
+        this.actionBar.addView(this.h, w7.x5.e(-1, 44, 83));
+        this.h.setDelegate(new cr0(this));
+        this.f36761x = ViewConfiguration.get(context).getScaledMaximumFlingVelocity();
+        dr0 dr0Var = new dr0(this, context);
+        this.fragmentView = dr0Var;
+        dr0Var.setWillNotDraw(false);
+        br0 br0Var = this.f36752a;
+        br0Var.setParentFragment(this);
+        org.telegram.ui.Components.hu huVar = br0Var.f34887d0;
+        this.d = huVar;
+        huVar.setSizeNotifierLayout(dr0Var);
+        for (int i13 = 0; i13 < 4; i13++) {
+            if (i13 != 0) {
+                if (i13 != 1) {
+                    if (i13 != 2) {
+                        view = br0Var.f34886c0;
+                    } else {
+                        view = br0Var.f34884b0;
+                    }
+                } else {
+                    view = br0Var.f34882a0;
+                }
+            } else {
+                view = br0Var.Z;
+            }
+            ((ViewGroup) view.getParent()).removeView(view);
+        }
+        FrameLayout frameLayout = br0Var.Z;
+        j0 j0Var = br0Var.f34882a0;
+        t50 t50Var = br0Var.f34884b0;
+        View view2 = br0Var.f34886c0;
+        org.telegram.ui.Components.hu huVar2 = br0Var.f34887d0;
+        br0 br0Var2 = this.f36753b;
+        br0Var2.Z = frameLayout;
+        br0Var2.f34882a0 = j0Var;
+        br0Var2.f34887d0 = huVar2;
+        br0Var2.f34884b0 = t50Var;
+        br0Var2.f34886c0 = view2;
+        br0Var2.f34902q0 = false;
+        br0Var2.setParentFragment(this);
+        int i14 = 0;
+        while (true) {
+            er0VarArr = this.f36757n;
+            if (i14 >= er0VarArr.length) {
+                break;
+            }
+            er0 er0Var = new er0(this, context);
+            er0VarArr[i14] = er0Var;
+            dr0Var.addView(er0Var, w7.x5.c(-1.0f, -1));
+            if (i14 == 0) {
+                er0 er0Var2 = er0VarArr[i14];
+                er0Var2.f36154a = br0Var;
+                er0Var2.d = br0Var.K;
+            } else if (i14 == 1) {
+                er0 er0Var3 = er0VarArr[i14];
+                er0Var3.f36154a = br0Var2;
+                er0Var3.d = br0Var2.K;
+                er0Var3.setVisibility(8);
+            }
+            er0VarArr[i14].d.setScrollingTouchSlop(1);
+            er0 er0Var4 = er0VarArr[i14];
+            er0Var4.f36155b = (FrameLayout) er0Var4.f36154a.getFragmentView();
+            er0VarArr[i14].d.setClipToPadding(false);
+            er0 er0Var5 = er0VarArr[i14];
+            er0Var5.f36156c = er0Var5.f36154a.getActionBar();
+            er0 er0Var6 = er0VarArr[i14];
+            er0Var6.addView(er0Var6.f36155b, w7.x5.c(-1.0f, -1));
+            er0 er0Var7 = er0VarArr[i14];
+            er0Var7.addView(er0Var7.f36156c, w7.x5.c(-2.0f, -1));
+            er0VarArr[i14].f36156c.setVisibility(8);
+            er0VarArr[i14].d.setOnScrollListener(new ji.l3(7, this, er0VarArr[i14].d.getOnScrollListener()));
+            i14++;
+        }
+        dr0Var.addView(this.actionBar, w7.x5.c(-2.0f, -1));
+        dr0Var.addView(br0Var.Z, w7.x5.e(-1, 48, 83));
+        dr0Var.addView(br0Var.f34882a0, w7.x5.d(60, 60.0f, 85, 0.0f, 0.0f, 12.0f, 10.0f));
+        dr0Var.addView(br0Var.f34884b0, w7.x5.d(42, 24.0f, 85, 0.0f, 0.0f, -2.0f, 9.0f));
+        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip3 = this.h;
+        if (scrollSlidingTextTabStrip3 != null) {
+            scrollSlidingTextTabStrip3.a(0, LocaleController.getString(R.string.ImagesTab2), null);
+            this.h.a(1, LocaleController.getString(R.string.GifsTab2), null);
+            this.h.setVisibility(0);
+            this.actionBar.setExtraHeight(AndroidUtilities.dp(44.0f));
+            int currentTabId = this.h.getCurrentTabId();
+            if (currentTabId >= 0) {
+                er0VarArr[0].f36157e = currentTabId;
+            }
+            this.h.c();
+        }
+        j0(false);
+        if (this.h.getCurrentTabId() != this.h.getFirstTabId()) {
+            z10 = false;
+        }
+        this.f36755e = z10;
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20734h5, false);
+        if (Build.VERSION.SDK_INT >= 23 && AndroidUtilities.computePerceivedBrightness(w02) >= 0.721f) {
+            View view3 = this.fragmentView;
+            view3.setSystemUiVisibility(view3.getSystemUiVisibility() | 8192);
+        }
+        return this.fragmentView;
+    }
+
+    @Override
+    public final ArrayList getThemeDescriptions() {
+        ArrayList arrayList = new ArrayList();
+        View view = this.fragmentView;
+        int i10 = org.telegram.ui.ActionBar.j6.f20734h5;
+        arrayList.add(new org.telegram.ui.ActionBar.l6(view, 1, null, null, null, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 1, null, null, null, null, i10));
+        org.telegram.ui.ActionBar.k kVar = this.actionBar;
+        int i11 = org.telegram.ui.ActionBar.j6.f20770j5;
+        arrayList.add(new org.telegram.ui.ActionBar.l6(kVar, 64, null, null, null, null, i11));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 128, null, null, null, null, i11));
+        org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
+        int i12 = org.telegram.ui.ActionBar.j6.I5;
+        arrayList.add(new org.telegram.ui.ActionBar.l6(kVar2, 256, null, null, null, null, i12));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 134217728, null, null, null, null, i11));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 67108864, null, null, null, null, org.telegram.ui.ActionBar.j6.Vd));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.f36754c.getSearchField(), 16777216, null, null, null, null, i11));
+        int i13 = org.telegram.ui.ActionBar.j6.Y9;
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.h.getTabsContainer(), 262148, new Class[]{TextView.class}, null, null, null, i13));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.h.getTabsContainer(), 262148, new Class[]{TextView.class}, null, null, null, org.telegram.ui.ActionBar.j6.Z9));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.h.getTabsContainer(), 65568, new Class[]{TextView.class}, null, null, null, i12));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(null, 0, null, null, new Drawable[]{this.h.getSelectorDrawable()}, null, i13));
+        arrayList.addAll(this.f36752a.getThemeDescriptions());
+        arrayList.addAll(this.f36753b.getThemeDescriptions());
+        return arrayList;
+    }
+
+    @Override
+    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+        return this.f36755e;
+    }
+
+    public final void j0(boolean z10) {
+        er0[] er0VarArr;
+        int i10 = 0;
+        while (true) {
+            er0VarArr = this.f36757n;
+            if (i10 >= er0VarArr.length) {
+                break;
+            }
+            er0VarArr[i10].d.B0();
+            i10++;
+        }
+        er0VarArr[z10 ? 1 : 0].d.getAdapter();
+        er0VarArr[z10 ? 1 : 0].d.setPinnedHeaderShadowDrawable(null);
+        if (this.actionBar.getTranslationY() != 0.0f) {
+            ((s4.c0) er0VarArr[z10 ? 1 : 0].d.getLayoutManager()).h1(0, (int) this.actionBar.getTranslationY());
+        }
+    }
+
+    @Override
+    public final void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        br0 br0Var = this.f36752a;
+        if (br0Var != null) {
+            br0Var.onConfigurationChanged(configuration);
+        }
+        br0 br0Var2 = this.f36753b;
+        if (br0Var2 != null) {
+            br0Var2.onConfigurationChanged(configuration);
+        }
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        br0 br0Var = this.f36752a;
+        if (br0Var != null) {
+            br0Var.onFragmentDestroy();
+        }
+        br0 br0Var2 = this.f36753b;
+        if (br0Var2 != null) {
+            br0Var2.onFragmentDestroy();
+        }
+        super.onFragmentDestroy();
+    }
+
+    @Override
+    public final void onPause() {
+        super.onPause();
+        br0 br0Var = this.f36752a;
+        if (br0Var != null) {
+            br0Var.onPause();
+        }
+        br0 br0Var2 = this.f36753b;
+        if (br0Var2 != null) {
+            br0Var2.onPause();
+        }
+    }
+
+    @Override
+    public final void onResume() {
+        super.onResume();
+        org.telegram.ui.ActionBar.v0 v0Var = this.f36754c;
+        if (v0Var != null) {
+            v0Var.z(true);
+            getParentActivity().getWindow().setSoftInputMode(32);
+        }
+        br0 br0Var = this.f36752a;
+        if (br0Var != null) {
+            br0Var.onResume();
+        }
+        br0 br0Var2 = this.f36753b;
+        if (br0Var2 != null) {
+            br0Var2.onResume();
+        }
     }
 }

@@ -1,17 +1,69 @@
 package w6;
 
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import j7.r5;
-public final class a extends com.google.android.gms.common.api.internal.i {
-    public final TaskCompletionSource f46544b;
+import android.app.RemoteInput;
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
+import android.view.MenuItem;
+import android.webkit.WebView;
+public abstract class a {
+    public static Context f48041a;
+    public static Boolean f48042b;
 
-    public a(TaskCompletionSource taskCompletionSource) {
-        this.f46544b = taskCompletionSource;
+    public static PackageInfo a() {
+        return WebView.getCurrentWebViewPackage();
     }
 
-    @Override
-    public final void z(Status status) {
-        r5.a(status, null, this.f46544b);
+    public static synchronized boolean b(Context context) {
+        Boolean bool;
+        synchronized (a.class) {
+            Context applicationContext = context.getApplicationContext();
+            Context context2 = f48041a;
+            if (context2 != null && (bool = f48042b) != null && context2 == applicationContext) {
+                return bool.booleanValue();
+            }
+            f48042b = null;
+            if (u6.b.d()) {
+                f48042b = Boolean.valueOf(applicationContext.getPackageManager().isInstantApp());
+            } else {
+                try {
+                    context.getClassLoader().loadClass("com.google.android.instantapps.supervisor.InstantAppsRuntime");
+                    f48042b = Boolean.TRUE;
+                } catch (ClassNotFoundException unused) {
+                    f48042b = Boolean.FALSE;
+                }
+            }
+            f48041a = applicationContext;
+            return f48042b.booleanValue();
+        }
+    }
+
+    public static void c(RemoteInput.Builder builder, String str) {
+        builder.setAllowDataType(str, true);
+    }
+
+    public static void d(MenuItem menuItem, char c10, int i10) {
+        menuItem.setAlphabeticShortcut(c10, i10);
+    }
+
+    public static void e(MenuItem menuItem, CharSequence charSequence) {
+        menuItem.setContentDescription(charSequence);
+    }
+
+    public static void f(MenuItem menuItem, ColorStateList colorStateList) {
+        menuItem.setIconTintList(colorStateList);
+    }
+
+    public static void g(MenuItem menuItem, PorterDuff.Mode mode) {
+        menuItem.setIconTintMode(mode);
+    }
+
+    public static void h(MenuItem menuItem, char c10, int i10) {
+        menuItem.setNumericShortcut(c10, i10);
+    }
+
+    public static void i(MenuItem menuItem, CharSequence charSequence) {
+        menuItem.setTooltipText(charSequence);
     }
 }

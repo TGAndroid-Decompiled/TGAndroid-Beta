@@ -1,25 +1,11 @@
 package org.telegram.ui.Components;
+public final class xy0 {
+    public final dz0 f32783a;
+    public final fz0 f32784b;
+    public boolean f32785c = true;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class xy0 extends AnimatorListenerAdapter {
-    public final int f30774a;
-    public final Switch f30775b;
-
-    public xy0(Switch r12, int i10) {
-        this.f30774a = i10;
-        this.f30775b = r12;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f30774a) {
-            case 0:
-                this.f30775b.d = null;
-                return;
-            default:
-                this.f30775b.e = null;
-                return;
-        }
+    public xy0(dz0 dz0Var, fz0 fz0Var) {
+        this.f32783a = dz0Var;
+        this.f32784b = fz0Var;
     }
 }

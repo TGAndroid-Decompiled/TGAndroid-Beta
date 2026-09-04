@@ -1,30 +1,28 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.CacheByChatsController;
-public final class e6 extends bg.b {
-    public final CacheByChatsController.KeepMediaException f33616c;
+import org.telegram.messenger.Utilities;
+public final class e6 implements Runnable {
+    public final int f35941a;
+    public final z6 f35942b;
+    public final m6 f35943c;
+    public final n6 d;
 
-    public e6(int i10, CacheByChatsController.KeepMediaException keepMediaException) {
-        super(i10, false);
-        this.f33616c = keepMediaException;
+    public e6(z6 z6Var, m6 m6Var, n6 n6Var, int i10) {
+        this.f35941a = i10;
+        this.f35942b = z6Var;
+        this.f35943c = m6Var;
+        this.d = n6Var;
     }
 
-    public final boolean equals(Object obj) {
-        CacheByChatsController.KeepMediaException keepMediaException;
-        if (this == obj) {
-            return true;
+    @Override
+    public final void run() {
+        switch (this.f35941a) {
+            case 0:
+                Utilities.globalQueue.postRunnable(new e6(this.f35942b, this.f35943c, this.d, 1));
+                return;
+            default:
+                z6.W(this.f35942b, this.f35943c, this.d);
+                return;
         }
-        if (obj == null || e6.class != obj.getClass()) {
-            return false;
-        }
-        e6 e6Var = (e6) obj;
-        if (this.f1830a != e6Var.f1830a) {
-            return false;
-        }
-        CacheByChatsController.KeepMediaException keepMediaException2 = this.f33616c;
-        if (keepMediaException2 == null || (keepMediaException = e6Var.f33616c) == null || keepMediaException2.dialogId == keepMediaException.dialogId) {
-            return true;
-        }
-        return false;
     }
 }

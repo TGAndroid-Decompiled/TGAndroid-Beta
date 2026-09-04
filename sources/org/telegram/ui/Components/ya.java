@@ -1,64 +1,41 @@
 package org.telegram.ui.Components;
-public final class ya implements o1.f {
-    public final int f30969a;
-    public final Object f30970b;
+public final class ya extends s4.j0 {
+    public final s4.j0 f32871a;
+    public final za f32872b;
 
-    public ya(Object obj, int i10) {
-        this.f30969a = i10;
-        this.f30970b = obj;
+    public ya(za zaVar, s4.j0 j0Var) {
+        this.f32872b = zaVar;
+        this.f32871a = j0Var;
     }
 
     @Override
-    public final void a(o1.h hVar, boolean z4, float f10, float f11) {
-        switch (this.f30969a) {
-            case 0:
-                ic icVar = (ic) this.f30970b;
-                if (icVar.d == hVar) {
-                    icVar.d = null;
-                    return;
-                }
-                return;
-            case 1:
-                ua uaVar = (ua) this.f30970b;
-                if (!z4) {
-                    uaVar.run();
-                    return;
-                }
-                return;
-            case 2:
-                yo0 yo0Var = (yo0) this.f30970b;
-                yo0Var.f31086q = false;
-                yo0Var.dismiss();
-                return;
-            case 3:
-                zo0 zo0Var = (zo0) this.f30970b;
-                zo0Var.f31446s = false;
-                zo0Var.f31445r = false;
-                if (!z4) {
-                    hVar.c();
-                }
-                if (hVar == zo0Var.f31443f) {
-                    zo0Var.f31443f = null;
-                    return;
-                }
-                return;
-            case 4:
-                lq0 lq0Var = (lq0) this.f30970b;
-                lq0Var.B.setVisibility(8);
-                lq0Var.f26860w0.setVisibility(8);
-                iq0 iq0Var = lq0Var.I;
-                iq0Var.f25756f = null;
-                iq0Var.l();
-                lq0Var.f26864y0 = null;
-                lq0Var.J0 = false;
-                return;
-            default:
-                lq0 lq0Var2 = ((rp0) this.f30970b).d;
-                lq0Var2.C.setVisibility(8);
-                lq0Var2.D.setVisibility(8);
-                lq0Var2.f26858v0.setVisibility(8);
-                lq0Var2.f26864y0 = null;
-                return;
-        }
+    public final void a() {
+        this.f32871a.a();
+    }
+
+    @Override
+    public final void b(int i10, int i11) {
+        this.f32871a.b(i10 + (!((bb) this.f32872b.f33114f).P ? 1 : 0), i11);
+    }
+
+    @Override
+    public final void c(int i10, int i11, Object obj) {
+        this.f32871a.c(i10 + (!((bb) this.f32872b.f33114f).P ? 1 : 0), i11, obj);
+    }
+
+    @Override
+    public final void d(int i10, int i11) {
+        this.f32871a.d(i10 + (!((bb) this.f32872b.f33114f).P ? 1 : 0), i11);
+    }
+
+    @Override
+    public final void e(int i10, int i11) {
+        int i12 = !((bb) this.f32872b.f33114f).P ? 1 : 0;
+        this.f32871a.e(i10 + i12, i11 + i12);
+    }
+
+    @Override
+    public final void f(int i10, int i11) {
+        this.f32871a.f(i10 + (!((bb) this.f32872b.f33114f).P ? 1 : 0), i11);
     }
 }

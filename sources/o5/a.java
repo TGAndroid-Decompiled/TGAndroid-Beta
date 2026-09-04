@@ -1,29 +1,23 @@
 package o5;
 
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-import j7.f5;
-public final class a extends c6.a {
-    public static final Parcelable.Creator<a> CREATOR = new l4.j(16);
-    public final int f16417a;
-    public final int f16418b;
-    public final Bundle f16419c;
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.List;
+public final class a {
+    public static final int f16956e = 0;
+    public final g f16957a;
+    public final List f16958b;
+    public final b f16959c;
+    public final String d;
 
-    public a(int i10, int i11, Bundle bundle) {
-        this.f16417a = i10;
-        this.f16418b = i11;
-        this.f16419c = bundle;
+    static {
+        DesugarCollections.unmodifiableList(new ArrayList());
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q10 = f5.q(parcel, 20293);
-        f5.s(parcel, 1, 4);
-        parcel.writeInt(this.f16417a);
-        f5.s(parcel, 2, 4);
-        parcel.writeInt(this.f16418b);
-        f5.b(parcel, 3, this.f16419c);
-        f5.r(parcel, q10);
+    public a(g gVar, List list, b bVar, String str) {
+        this.f16957a = gVar;
+        this.f16958b = list;
+        this.f16959c = bVar;
+        this.d = str;
     }
 }

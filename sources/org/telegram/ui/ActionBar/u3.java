@@ -1,14 +1,18 @@
 package org.telegram.ui.ActionBar;
-
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
 public interface u3 {
-    Context getContext();
+    n3 a();
 
-    RectF getRect();
+    boolean b();
 
-    void setDrawingFromOverlay(boolean z4);
+    boolean c(i3 i3Var);
 
-    float z(Canvas canvas, RectF rectF, float f10, RectF rectF2, float f11);
+    void dismiss(boolean z10);
+
+    int getNavigationBarColor(int i10);
+
+    v3 mo37getWindowView();
+
+    void release();
+
+    void setLastVisible(boolean z10);
 }

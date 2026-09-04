@@ -1,37 +1,19 @@
 package w8;
 
-import android.util.Log;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.concurrent.atomic.AtomicReference;
-public final class e implements com.google.android.gms.common.api.internal.c {
-    public static final AtomicReference f46555a = new AtomicReference();
+import android.os.Parcel;
+import android.os.Parcelable;
+import v8.r;
+import w7.e0;
+public final class e extends o6.a {
+    public static final Parcelable.Creator<e> CREATOR = new r(21);
+    public String f48359a;
+    public String f48360b;
 
     @Override
-    public final void a(boolean z4) {
-        synchronized (g.f46558k) {
-            try {
-                ArrayList arrayList = new ArrayList(g.f46559l.values());
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    g gVar = (g) obj;
-                    if (gVar.e.get()) {
-                        Log.d("FirebaseApp", "Notifying background state change listeners.");
-                        Iterator it = gVar.f46565i.iterator();
-                        while (it.hasNext()) {
-                            g gVar2 = ((d) it.next()).f46554a;
-                            if (!z4) {
-                                ((z9.c) gVar2.h.get()).c();
-                            }
-                        }
-                    }
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = e0.q(parcel, 20293);
+        e0.l(parcel, 2, this.f48359a);
+        e0.l(parcel, 3, this.f48360b);
+        e0.r(parcel, q6);
     }
 }

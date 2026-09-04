@@ -1,26 +1,31 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
-import android.content.Intent;
-public final class a2 implements org.telegram.ui.ActionBar.c2 {
-    public final int f29535a;
-    public final Activity f29536b;
-    public final Intent f29537c;
+import android.content.DialogInterface;
+public final class a2 implements DialogInterface.OnDismissListener {
+    public final int f31397a;
+    public final Runnable f31398b;
 
-    public a2(Activity activity, Intent intent, int i10) {
-        this.f29535a = i10;
-        this.f29536b = activity;
-        this.f29537c = intent;
+    public a2(int i10, Runnable runnable) {
+        this.f31397a = i10;
+        this.f31398b = runnable;
     }
 
     @Override
-    public final void l(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f29535a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f31397a) {
             case 0:
-                this.f29536b.startActivity(this.f29537c);
+                Runnable runnable = this.f31398b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
             default:
-                this.f29536b.startActivity(this.f29537c);
+                Runnable runnable2 = this.f31398b;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    return;
+                }
                 return;
         }
     }

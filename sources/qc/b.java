@@ -1,36 +1,35 @@
 package qc;
 
-import java.util.regex.Pattern;
-import ne.p;
-import ne.s;
-public final class b extends h {
-    public static final Pattern e = i.f43032m;
+import java.nio.ByteBuffer;
+import java.nio.channels.ByteChannel;
+public final class b implements ByteChannel {
+    public ByteBuffer f44311a;
 
     @Override
-    public final p b() {
-        this.d++;
-        if (c() == '\n') {
-            ne.g gVar = new ne.g(1);
-            this.d++;
-            return gVar;
-        }
-        if (this.d < this.f43028c.length()) {
-            String str = this.f43028c;
-            int i10 = this.d;
-            if (e.matcher(str.substring(i10, i10 + 1)).matches()) {
-                String str2 = this.f43028c;
-                int i11 = this.d;
-                this.f43026a.getClass();
-                s sVar = new s(str2.substring(i11, i11 + 1));
-                this.d++;
-                return sVar;
-            }
-        }
-        return f("\\");
+    public final boolean isOpen() {
+        return true;
     }
 
     @Override
-    public final char d() {
-        return '\\';
+    public final int read(ByteBuffer byteBuffer) {
+        int remaining = byteBuffer.remaining();
+        ByteBuffer byteBuffer2 = this.f44311a;
+        if (byteBuffer2.remaining() <= 0) {
+            return -1;
+        }
+        byteBuffer.put((ByteBuffer) byteBuffer2.duplicate().limit(byteBuffer.remaining() + byteBuffer2.position()));
+        byteBuffer2.position(byteBuffer2.position() + remaining);
+        return remaining;
+    }
+
+    @Override
+    public final int write(ByteBuffer byteBuffer) {
+        int remaining = byteBuffer.remaining();
+        this.f44311a.put(byteBuffer);
+        return remaining;
+    }
+
+    @Override
+    public final void close() {
     }
 }

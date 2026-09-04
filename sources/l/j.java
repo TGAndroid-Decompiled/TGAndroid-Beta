@@ -1,4 +1,8 @@
 package l;
+
+import android.view.MenuItem;
 public interface j {
-    boolean a(m mVar);
+    void n(l lVar);
+
+    boolean s(l lVar, MenuItem menuItem);
 }

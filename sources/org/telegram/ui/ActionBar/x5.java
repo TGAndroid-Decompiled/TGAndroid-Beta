@@ -2,41 +2,33 @@ package org.telegram.ui.ActionBar;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
 public final class x5 extends Drawable {
-    public final RectF f20704a = new RectF();
-    public final int f20705b;
-    public final int f20706c;
-    public final int d;
-    public final int e;
-    public final float f20707f;
-
-    public x5(int i10, int i11, int i12, int i13, float f10) {
-        this.f20705b = i10;
-        this.f20706c = i11;
-        this.d = i12;
-        this.e = i13;
-        this.f20707f = f10;
-    }
+    public static Paint f21520c;
+    public Paint f21521a;
+    public float f21522b;
 
     @Override
     public final void draw(Canvas canvas) {
+        int dp;
         Rect bounds = getBounds();
-        RectF rectF = this.f20704a;
-        rectF.set(bounds);
-        rectF.left += this.f20705b;
-        rectF.top += this.f20706c;
-        rectF.right -= this.d;
-        rectF.bottom -= this.e;
-        float f10 = this.f20707f;
-        canvas.drawRoundRect(rectF, f10, f10, j6.f20267z);
+        float f7 = this.f21522b;
+        if (Math.abs(f7 - (-1.0f)) < 0.01f) {
+            dp = Math.max(bounds.width(), bounds.height()) / 2;
+        } else if (Math.abs(f7 - (-2.0f)) < 0.01f) {
+            dp = (int) Math.ceil(Math.sqrt(((bounds.top - bounds.centerY()) * (bounds.top - bounds.centerY())) + ((bounds.left - bounds.centerX()) * (bounds.left - bounds.centerX()))));
+        } else {
+            dp = AndroidUtilities.dp(f7);
+        }
+        canvas.drawCircle(bounds.centerX(), bounds.centerY(), dp, this.f21521a);
     }
 
     @Override
     public final int getOpacity() {
-        return 0;
+        return -2;
     }
 
     @Override

@@ -1,21 +1,36 @@
 package org.telegram.ui;
 public final class kh1 implements Runnable {
-    public final int f35541a;
-    public final lh1 f35542b;
-    public final String f35543c;
-    public final boolean d;
-    public final boolean e;
+    public final int f38070a;
+    public final UserInfoActivity f38071b;
 
-    public kh1(lh1 lh1Var, String str, boolean z4, boolean z10, int i10) {
-        this.f35541a = i10;
-        this.f35542b = lh1Var;
-        this.f35543c = str;
-        this.d = z4;
-        this.e = z10;
+    public kh1(UserInfoActivity userInfoActivity, int i10) {
+        this.f38070a = i10;
+        this.f38071b = userInfoActivity;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kh1.run():void");
+        switch (this.f38070a) {
+            case 0:
+                this.f38071b.presentFragment(new PrivacyControlActivity(9, true));
+                return;
+            case 1:
+                org.telegram.ui.Components.x51 x51Var = this.f38071b.f34235x;
+                if (x51Var != null) {
+                    x51Var.Y2.N(true);
+                    return;
+                }
+                return;
+            case 2:
+                UserInfoActivity userInfoActivity = this.f38071b;
+                userInfoActivity.getClass();
+                userInfoActivity.presentFragment(new PrivacyControlActivity(11, false));
+                return;
+            default:
+                UserInfoActivity userInfoActivity2 = this.f38071b;
+                userInfoActivity2.getClass();
+                userInfoActivity2.presentFragment(new PremiumPreviewFragment(0, "add_account"));
+                return;
+        }
     }
 }

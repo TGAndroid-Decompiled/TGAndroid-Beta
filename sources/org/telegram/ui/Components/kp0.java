@@ -1,54 +1,32 @@
 package org.telegram.ui.Components;
+public final class kp0 extends g.p {
+    public final int f27886c;
+    public final hq0 d;
 
-import android.os.Build;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class kp0 extends f2.z0 {
-    public final int f26380a;
-    public final lq0 f26381b;
-
-    public kp0(lq0 lq0Var, int i10) {
-        this.f26380a = i10;
-        this.f26381b = lq0Var;
+    public kp0(hq0 hq0Var, int i10) {
+        this.f27886c = i10;
+        this.d = hq0Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ng.e eVar;
-        nb nbVar;
-        switch (this.f26380a) {
+    public final int i(int i10) {
+        switch (this.f27886c) {
             case 0:
-                if (i11 != 0) {
-                    lq0 lq0Var = this.f26381b;
-                    lq0.s0(lq0Var);
-                    lq0Var.f26848n0 = lq0Var.m0;
-                    return;
+                if (i10 == 0) {
+                    return this.d.H.J;
                 }
-                return;
+                return 1;
             case 1:
-                lq0 lq0Var2 = this.f26381b;
-                if (i11 != 0) {
-                    lq0.s0(lq0Var2);
-                    lq0Var2.f26848n0 = lq0Var2.m0;
+                dq0 dq0Var = this.d.M;
+                if (i10 != dq0Var.f25447w && i10 != dq0Var.f25448x && i10 != dq0Var.f25449y && i10 != dq0Var.F && dq0Var.j(i10) != 0) {
+                    return 1;
                 }
-                ic icVar = ic.f25664w;
-                if (icVar != null && (nbVar = icVar.e) != null && (nbVar.getParent() instanceof View) && ((View) ic.f25664w.e.getParent()).getParent() == lq0Var2.f26859w) {
-                    ic.e();
-                }
-                if (Build.VERSION.SDK_INT >= 31 && (eVar = lq0Var2.L0) != null) {
-                    eVar.f(i10, i11);
-                    lq0.A0(lq0Var2);
-                    return;
-                }
-                return;
+                return 4;
             default:
-                if (i11 != 0) {
-                    lq0 lq0Var3 = this.f26381b;
-                    lq0.s0(lq0Var3);
-                    lq0Var3.f26848n0 = lq0Var3.m0;
-                    return;
+                if (i10 == 0) {
+                    return this.d.I.J;
                 }
-                return;
+                return 1;
         }
     }
 }

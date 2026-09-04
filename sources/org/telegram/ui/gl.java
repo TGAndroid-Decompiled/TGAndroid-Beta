@@ -1,35 +1,17 @@
 package org.telegram.ui;
-public final class gl implements Runnable {
-    public final int f34464a;
-    public final hl f34465b;
 
-    public gl(hl hlVar, int i10) {
-        this.f34464a = i10;
-        this.f34465b = hlVar;
+import android.app.Activity;
+public final class gl extends org.telegram.ui.Components.w50 {
+    public final co f36711d1;
+
+    public gl(co coVar, Activity activity, org.telegram.ui.Components.o50 o50Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(activity, o50Var, f6Var, true);
+        this.f36711d1 = coVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f34464a) {
-            case 0:
-                lk lkVar = this.f34465b.E.V;
-                if (lkVar != null) {
-                    lkVar.Q0 = false;
-                    org.telegram.ui.Components.uf ufVar = lkVar.R0;
-                    if (ufVar != null) {
-                        ufVar.u(false);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                lk lkVar2 = this.f34465b.E.V;
-                if (lkVar2 != null) {
-                    lkVar2.H0();
-                    return;
-                }
-                return;
-        }
+    public final void m(boolean z10, boolean z11) {
+        super.m(z10, z11);
+        this.f36711d1.f35458vc.a(z10, true);
     }
 }

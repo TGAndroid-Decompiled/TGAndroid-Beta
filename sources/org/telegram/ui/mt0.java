@@ -2,23 +2,39 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-public final class mt0 extends dg.e1 {
-    public final PhotoViewer f36200l2;
+import android.view.OrientationEventListener;
+public final class mt0 extends OrientationEventListener {
+    public final PhotoViewer f38759a;
 
-    public mt0(PhotoViewer photoViewer, Context context, Activity activity, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, ArrayList arrayList, MediaController.CropState cropState, tq0 tq0Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, activity, i10, bitmap, bitmap2, i11, arrayList, cropState, tq0Var, f6Var);
-        this.f36200l2 = photoViewer;
+    public mt0(Context context, PhotoViewer photoViewer) {
+        super(context);
+        this.f38759a = photoViewer;
     }
 
     @Override
-    public final int getPKeyboardHeight() {
-        ph.i3 i3Var = this.f36200l2.H1;
-        if (i3Var != null) {
-            return i3Var.f41779l;
+    public final void onOrientationChanged(int i10) {
+        rt0 rt0Var;
+        Activity activity;
+        int i11;
+        PhotoViewer photoViewer = this.f38759a;
+        if (photoViewer.W3 != null && (rt0Var = photoViewer.f33730y2) != null && rt0Var.getVisibility() == 0 && (activity = photoViewer.f33727y) != null && (i11 = photoViewer.Y3) != 0) {
+            if (i11 == 1) {
+                if (i10 >= 240 && i10 <= 300) {
+                    photoViewer.Z3 = true;
+                } else if (photoViewer.Z3 && i10 > 0) {
+                    if (i10 >= 330 || i10 <= 30) {
+                        activity.setRequestedOrientation(photoViewer.X3);
+                        photoViewer.Y3 = 0;
+                        photoViewer.Z3 = false;
+                    }
+                }
+            } else if (i10 > 0 && (i10 >= 330 || i10 <= 30)) {
+                photoViewer.Z3 = true;
+            } else if (photoViewer.Z3 && i10 >= 240 && i10 <= 300) {
+                activity.setRequestedOrientation(photoViewer.X3);
+                photoViewer.Y3 = 0;
+                photoViewer.Z3 = false;
+            }
         }
-        return 0;
     }
 }

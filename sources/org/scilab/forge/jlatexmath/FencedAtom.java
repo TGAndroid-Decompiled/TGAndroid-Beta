@@ -13,9 +13,9 @@ public class FencedAtom extends Atom {
         this(atom, symbolAtom, null, symbolAtom2);
     }
 
-    private static void center(Box box, float f10) {
+    private static void center(Box box, float f7) {
         float height = box.getHeight();
-        box.setShift((-(((box.getDepth() + height) / 2.0f) - height)) - f10);
+        box.setShift((-(((box.getDepth() + height) / 2.0f) - height)) - f7);
     }
 
     @Override

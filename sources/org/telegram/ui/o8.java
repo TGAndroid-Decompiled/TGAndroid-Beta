@@ -1,42 +1,70 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class o8 implements r0.o, Utilities.Callback5, Utilities.Callback5Return, org.telegram.ui.Components.xk0 {
-    public final n9 f36682a;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class o8 implements RequestDelegate {
+    public final int f39128a;
+    public final k9 f39129b;
+    public final org.telegram.ui.ActionBar.b2 f39130c;
+    public final HashSet d;
+    public final TLRPC.TL_inputGroupCallInviteMessage f39131e;
+    public final boolean f39132f;
 
-    @Override
-    public r0.m1 M0(View view, r0.m1 m1Var) {
-        return this.f36682a.onInsetsInternal(view, m1Var);
+    public o8(k9 k9Var, org.telegram.ui.ActionBar.b2 b2Var, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, boolean z10, int i10) {
+        this.f39128a = i10;
+        this.f39129b = k9Var;
+        this.f39130c = b2Var;
+        this.d = hashSet;
+        this.f39131e = tL_inputGroupCallInviteMessage;
+        this.f39132f = z10;
     }
 
     @Override
-    public void e() {
-        this.f36682a.f0();
-    }
-
-    @Override
-    public void mo27run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        n9.X(this.f36682a, (org.telegram.ui.Components.i51) obj, (View) obj2);
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        boolean z4;
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        Object obj6 = ((org.telegram.ui.Components.i51) obj).G;
-        if (obj6 instanceof j9) {
-            this.f36682a.e0(((j9) obj6).f35123c, (i9) view);
-            z4 = true;
-        } else {
-            z4 = false;
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f39128a) {
+            case 0:
+                final k9 k9Var = this.f39129b;
+                final org.telegram.ui.ActionBar.b2 b2Var = this.f39130c;
+                final HashSet hashSet = this.d;
+                final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage = this.f39131e;
+                final boolean z10 = this.f39132f;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r8) {
+                            case 0:
+                                k9.V(k9Var, b2Var, tLObject, hashSet, tL_inputGroupCallInviteMessage, z10, tL_error);
+                                return;
+                            default:
+                                k9.Y(k9Var, b2Var, tLObject, hashSet, tL_inputGroupCallInviteMessage, z10, tL_error);
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final k9 k9Var2 = this.f39129b;
+                final org.telegram.ui.ActionBar.b2 b2Var2 = this.f39130c;
+                final HashSet hashSet2 = this.d;
+                final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage2 = this.f39131e;
+                final boolean z11 = this.f39132f;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r8) {
+                            case 0:
+                                k9.V(k9Var2, b2Var2, tLObject, hashSet2, tL_inputGroupCallInviteMessage2, z11, tL_error);
+                                return;
+                            default:
+                                k9.Y(k9Var2, b2Var2, tLObject, hashSet2, tL_inputGroupCallInviteMessage2, z11, tL_error);
+                                return;
+                        }
+                    }
+                });
+                return;
         }
-        return Boolean.valueOf(z4);
     }
 }

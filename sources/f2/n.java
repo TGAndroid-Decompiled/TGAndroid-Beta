@@ -1,12 +1,10 @@
 package f2;
 public final class n {
-    public final int f5798a;
-    public int f5799b;
-    public final boolean f5800c;
+    public final int f9210a;
+    public final boolean f9211b;
 
-    public n(int i10, int i11, boolean z4) {
-        this.f5798a = i10;
-        this.f5799b = i11;
-        this.f5800c = z4;
+    public n(int i10, int i11, boolean z10) {
+        this.f9210a = i11;
+        this.f9211b = z10;
     }
 }

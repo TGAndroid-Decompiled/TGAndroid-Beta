@@ -2,11 +2,11 @@ package o1;
 
 import android.view.View;
 public final class c extends i {
-    public final int f16156a;
+    public final int f16801a;
 
     @Override
     public final float a(Object obj) {
-        switch (this.f16156a) {
+        switch (this.f16801a) {
             case 0:
                 return ((View) obj).getAlpha();
             case 1:
@@ -27,31 +27,31 @@ public final class c extends i {
     }
 
     @Override
-    public final void b(Object obj, float f10) {
-        switch (this.f16156a) {
+    public final void b(Object obj, float f7) {
+        switch (this.f16801a) {
             case 0:
-                ((View) obj).setAlpha(f10);
+                ((View) obj).setAlpha(f7);
                 return;
             case 1:
-                ((View) obj).setTranslationX(f10);
+                ((View) obj).setTranslationX(f7);
                 return;
             case 2:
-                ((View) obj).setTranslationY(f10);
+                ((View) obj).setTranslationY(f7);
                 return;
             case 3:
-                ((View) obj).setScaleX(f10);
+                ((View) obj).setScaleX(f7);
                 return;
             case 4:
-                ((View) obj).setScaleY(f10);
+                ((View) obj).setScaleY(f7);
                 return;
             case 5:
-                ((View) obj).setRotation(f10);
+                ((View) obj).setRotation(f7);
                 return;
             case 6:
-                ((View) obj).setRotationX(f10);
+                ((View) obj).setRotationX(f7);
                 return;
             default:
-                ((View) obj).setRotationY(f10);
+                ((View) obj).setRotationY(f7);
                 return;
         }
     }

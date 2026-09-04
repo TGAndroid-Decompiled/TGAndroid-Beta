@@ -1,20 +1,49 @@
 package org.telegram.ui.Components;
 
-import java.util.Comparator;
-import org.telegram.messenger.MessagesController;
-public final class p30 implements Comparator {
-    public final int f27718a;
-    public final MessagesController f27719b;
-    public final int f27720c;
+import java.util.ArrayList;
+public final class p30 implements hg.a2 {
+    public final q30 f29268a;
 
-    public p30(MessagesController messagesController, int i10, int i11) {
-        this.f27718a = i11;
-        this.f27719b = messagesController;
-        this.f27720c = i10;
+    public p30(q30 q30Var) {
+        this.f29268a = q30Var;
     }
 
     @Override
-    public final int compare(java.lang.Object r6, java.lang.Object r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.p30.compare(java.lang.Object, java.lang.Object):int");
+    public final a0.i G() {
+        return null;
+    }
+
+    @Override
+    public final boolean Q(int i10) {
+        return true;
+    }
+
+    @Override
+    public final void f(int i10) {
+        q30 q30Var = this.f29268a;
+        r30 r30Var = q30Var.f29563w;
+        if (i10 >= 0 && i10 == q30Var.f29560n && !q30Var.h) {
+            boolean z10 = true;
+            int i11 = q30Var.f29559f - 1;
+            if (r30Var.f28981s.getVisibility() != 0) {
+                z10 = false;
+            }
+            q30Var.l();
+            if (q30Var.f29559f > i11) {
+                r30Var.J(i11);
+            }
+            if (!q30Var.d.e() && r30Var.d.R0()) {
+                r30Var.f28981s.e(false, z10);
+            }
+        }
+    }
+
+    @Override
+    public final a0.i w() {
+        return this.f29268a.f29563w.f29915e0;
+    }
+
+    @Override
+    public final void Y(ArrayList arrayList) {
     }
 }

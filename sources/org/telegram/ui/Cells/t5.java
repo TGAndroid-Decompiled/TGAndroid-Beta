@@ -9,60 +9,60 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.RadioButton;
 public final class t5 extends FrameLayout {
-    public final TextView f22333a;
-    public final LinearLayout f22334b;
-    public View.OnClickListener f22335c;
+    public final TextView f23243a;
+    public final LinearLayout f23244b;
+    public View.OnClickListener f23245c;
     public int d;
-    public final int[] e;
+    public final int[] f23246e;
 
     public t5(Context context) {
         super(context);
-        this.e = new int[]{0, -45747, -753630, -13056, -8269183, -9321002, -16747844, -10080879};
+        this.f23246e = new int[]{0, -45747, -753630, -13056, -8269183, -9321002, -16747844, -10080879};
         TextView textView = new TextView(context);
-        this.f22333a = textView;
+        this.f23243a = textView;
         textView.setGravity(5);
         textView.setTextColor(-1);
         textView.setTextSize(1, 12.0f);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        addView(textView, k7.b6.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
+        addView(textView, w7.x5.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f22334b = linearLayout;
+        this.f23244b = linearLayout;
         linearLayout.setOrientation(0);
-        for (int i10 = 0; i10 < this.e.length; i10++) {
+        for (int i10 = 0; i10 < this.f23246e.length; i10++) {
             RadioButton radioButton = new RadioButton(context);
             radioButton.setSize(AndroidUtilities.dp(20.0f));
             radioButton.setTag(Integer.valueOf(i10));
-            this.f22334b.addView(radioButton, k7.b6.l(1.0f / this.e.length, 0, -1));
+            this.f23244b.addView(radioButton, w7.x5.l(1.0f / this.f23246e.length, 0, -1));
             radioButton.setOnClickListener(new a(this, 8));
         }
-        addView(this.f22334b, k7.b6.d(-1, 40.0f, 51, 96.0f, 0.0f, 24.0f, 0.0f));
+        addView(this.f23244b, w7.x5.d(-1, 40.0f, 51, 96.0f, 0.0f, 24.0f, 0.0f));
     }
 
     public final void a(int i10, String str) {
         this.d = i10;
-        this.f22333a.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
+        this.f23243a.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
         b(false);
     }
 
-    public final void b(boolean z4) {
-        boolean z10;
+    public final void b(boolean z10) {
+        boolean z11;
         int i10;
-        LinearLayout linearLayout = this.f22334b;
+        LinearLayout linearLayout = this.f23244b;
         int childCount = linearLayout.getChildCount();
         for (int i11 = 0; i11 < childCount; i11++) {
             View childAt = linearLayout.getChildAt(i11);
             if (childAt instanceof RadioButton) {
                 RadioButton radioButton = (RadioButton) childAt;
                 int intValue = ((Integer) radioButton.getTag()).intValue();
-                int[] iArr = this.e;
+                int[] iArr = this.f23246e;
                 if (this.d == iArr[intValue]) {
-                    z10 = true;
+                    z11 = true;
                 } else {
-                    z10 = false;
+                    z11 = false;
                 }
-                radioButton.a(z10, z4);
+                radioButton.a(z11, z10);
                 int i12 = -1;
                 if (intValue == 0) {
                     i10 = -1;
@@ -88,6 +88,6 @@ public final class t5 extends FrameLayout {
 
     @Override
     public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.f22335c = onClickListener;
+        this.f23245c = onClickListener;
     }
 }

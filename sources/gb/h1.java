@@ -1,0 +1,76 @@
+package gb;
+
+import java.net.InetAddress;
+import java.net.URI;
+import java.net.URL;
+import java.util.BitSet;
+import java.util.Currency;
+import java.util.Locale;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicIntegerArray;
+public abstract class h1 {
+    public static final x0 A;
+    public static final v0 B;
+    public static final x0 f10516a = new x0(Class.class, new l0().nullSafe(), 0);
+    public static final x0 f10517b = new x0(BitSet.class, new w0().nullSafe(), 0);
+    public static final a1 f10518c;
+    public static final y0 d;
+    public static final y0 f10519e;
+    public static final y0 f10520f;
+    public static final y0 f10521g;
+    public static final x0 h;
+    public static final x0 f10522i;
+    public static final x0 f10523j;
+    public static final c0 f10524k;
+    public static final y0 f10525l;
+    public static final h0 f10526m;
+    public static final i0 f10527n;
+    public static final j0 f10528o;
+    public static final x0 f10529p;
+    public static final x0 f10530q;
+    public static final x0 f10531r;
+    public static final x0 f10532s;
+    public static final x0 f10533t;
+    public static final x0 f10534u;
+    public static final x0 v;
+    public static final x0 f10535w;
+    public static final p f10536x;
+    public static final x0 f10537y;
+    public static final u0 f10538z;
+
+    static {
+        z0 z0Var = new z0();
+        f10518c = new a1();
+        d = new y0(Boolean.TYPE, Boolean.class, z0Var);
+        f10519e = new y0(Byte.TYPE, Byte.class, new b1());
+        f10520f = new y0(Short.TYPE, Short.class, new c1());
+        f10521g = new y0(Integer.TYPE, Integer.class, new d1());
+        h = new x0(AtomicInteger.class, new e1().nullSafe(), 0);
+        f10522i = new x0(AtomicBoolean.class, new f1().nullSafe(), 0);
+        f10523j = new x0(AtomicIntegerArray.class, new b0().nullSafe(), 0);
+        f10524k = new c0();
+        new d0();
+        new e0();
+        f10525l = new y0(Character.TYPE, Character.class, new f0());
+        g0 g0Var = new g0();
+        f10526m = new h0();
+        f10527n = new i0();
+        f10528o = new j0();
+        f10529p = new x0(String.class, g0Var, 0);
+        f10530q = new x0(StringBuilder.class, new k0(), 0);
+        f10531r = new x0(StringBuffer.class, new m0(), 0);
+        f10532s = new x0(URL.class, new n0(), 0);
+        f10533t = new x0(URI.class, new o0(), 0);
+        f10534u = new x0(InetAddress.class, new p0(), 1);
+        v = new x0(UUID.class, new q0(), 0);
+        f10535w = new x0(Currency.class, new r0().nullSafe(), 0);
+        f10536x = new p(new s0(), 2);
+        f10537y = new x0(Locale.class, new t0(), 0);
+        u0 u0Var = new u0();
+        f10538z = u0Var;
+        A = new x0(db.i.class, u0Var, 1);
+        B = new v0();
+    }
+}

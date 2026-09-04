@@ -1,95 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotForumHelper;
-public final class ae extends FrameLayout {
-    public final int f23363a;
-    public final ChatActivityEnterView f23364b;
+import android.view.KeyEvent;
+public final class ae implements fi.m0, org.telegram.ui.ActionBar.a2, xt, org.telegram.ui.ActionBar.l1 {
+    public final ChatActivityEnterView f24343a;
 
-    public ae(ChatActivityEnterView chatActivityEnterView, Context context, int i10) {
-        super(context);
-        this.f23363a = i10;
-        this.f23364b = chatActivityEnterView;
+    public ae(ChatActivityEnterView chatActivityEnterView) {
+        this.f24343a = chatActivityEnterView;
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f23363a) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f23364b;
-                rh.e3 e3Var = chatActivityEnterView.f22747h0;
-                if (e3Var != null && e3Var.getVisibility() == 0) {
-                    return chatActivityEnterView.f22747h0.dispatchTouchEvent(motionEvent);
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            case 1:
-                ChatActivityEnterView chatActivityEnterView2 = this.f23364b;
-                if (chatActivityEnterView2.G && chatActivityEnterView2.P4 != BotForumHelper.SteamingSendButtonState.BLOCKING) {
-                    return super.dispatchTouchEvent(motionEvent);
-                }
-                return false;
-            default:
-                return super.dispatchTouchEvent(motionEvent);
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        int i11 = ChatActivityEnterView.f23661m5;
+        ChatActivityEnterView chatActivityEnterView = this.f24343a;
+        chatActivityEnterView.O();
+        qf qfVar = chatActivityEnterView.E0;
+        if (qfVar != null) {
+            qfVar.setText("");
         }
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.f23363a) {
-            case 1:
-                ChatActivityEnterView chatActivityEnterView = this.f23364b;
-                if (view == chatActivityEnterView.G0 && chatActivityEnterView.f22728e0) {
-                    return true;
-                }
-                return super.drawChild(canvas, view, j10);
-            default:
-                return super.drawChild(canvas, view, j10);
+    public void j() {
+        ChatActivityEnterView chatActivityEnterView = this.f24343a;
+        chatActivityEnterView.E0.invalidateEffects();
+        og ogVar = chatActivityEnterView.Y2;
+        if (ogVar != null) {
+            ogVar.p1(chatActivityEnterView.E0.getTextToUse());
         }
     }
 
     @Override
-    public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f23363a) {
-            case 1:
-                super.onSizeChanged(i10, i11, i12, i13);
-                setPivotX(i10 - AndroidUtilities.dp(22.0f));
-                setPivotY(i11 - AndroidUtilities.dp(22.0f));
-                return;
-            default:
-                super.onSizeChanged(i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f23363a) {
-            case 1:
-                ChatActivityEnterView chatActivityEnterView = this.f23364b;
-                if (chatActivityEnterView.G && chatActivityEnterView.P4 != BotForumHelper.SteamingSendButtonState.BLOCKING) {
-                    return super.onTouchEvent(motionEvent);
-                }
-                return false;
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        switch (this.f23363a) {
-            case 2:
-                super.setVisibility(i10);
-                this.f23364b.P1(true);
-                return;
-            default:
-                super.setVisibility(i10);
-                return;
+    public void n(KeyEvent keyEvent) {
+        ChatActivityEnterView chatActivityEnterView;
+        mf mfVar;
+        int i10 = ChatActivityEnterView.f23661m5;
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (mfVar = (chatActivityEnterView = this.f24343a).N0) != null && mfVar.isShowing()) {
+            chatActivityEnterView.N0.dismiss();
         }
     }
 }

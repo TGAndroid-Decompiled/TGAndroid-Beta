@@ -1,41 +1,29 @@
 package org.telegram.messenger;
 
-import android.app.Activity;
-import java.util.HashMap;
-import org.telegram.ui.qy;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class n1 implements Runnable {
-    public final int f17863a = 0;
-    public final boolean f17864b;
-    public final boolean f17865c;
-    public final boolean d;
-    public final Object e;
-    public final Object f17866f;
+    public final int f18431a;
+    public final ContactsController f18432b;
+    public final TLRPC.TL_error f18433c;
+    public final TLObject d;
 
-    public n1(ContactsController contactsController, HashMap hashMap, boolean z4, boolean z10, boolean z11) {
-        this.e = contactsController;
-        this.f17866f = hashMap;
-        this.f17864b = z4;
-        this.f17865c = z10;
-        this.d = z11;
+    public n1(int i10, ContactsController contactsController, TLObject tLObject, TLRPC.TL_error tL_error) {
+        this.f18431a = i10;
+        this.f18432b = contactsController;
+        this.f18433c = tL_error;
+        this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f17863a) {
+        switch (this.f18431a) {
             case 0:
-                ((ContactsController) this.e).lambda$syncPhoneBookByAlert$7((HashMap) this.f17866f, this.f17864b, this.f17865c, this.d);
+                this.f18432b.lambda$loadGlobalPrivacySetting$60(this.f18433c, this.d);
                 return;
             default:
-                qy.h0((qy) this.e, this.f17864b, this.f17865c, this.d, (Activity) this.f17866f);
+                this.f18432b.lambda$loadPrivacySettings$62(this.f18433c, this.d);
                 return;
         }
-    }
-
-    public n1(qy qyVar, boolean z4, boolean z10, boolean z11, Activity activity) {
-        this.e = qyVar;
-        this.f17864b = z4;
-        this.f17865c = z10;
-        this.d = z11;
-        this.f17866f = activity;
     }
 }

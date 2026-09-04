@@ -1,3 +1,4 @@
 package kotlin.jvm.internal;
-public abstract class f {
+public interface f extends gd.a {
+    int getArity();
 }

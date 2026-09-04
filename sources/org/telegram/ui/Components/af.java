@@ -1,68 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.NotificationCenter;
-public final class af implements View.OnTouchListener {
-    public final int f23367a = 0;
-    public final Rect f23368b = new Rect();
-    public final NotificationCenter.NotificationCenterDelegate f23369c;
+import android.content.Context;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+public final class af extends ImageView {
+    public float f24351a;
+    public final ChatActivityEnterView f24352b;
 
-    public af(org.telegram.ui.wp0 wp0Var) {
-        this.f23369c = wp0Var;
+    public af(ChatActivityEnterView chatActivityEnterView, Context context) {
+        super(context);
+        this.f24352b = chatActivityEnterView;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        bf bfVar;
-        org.telegram.ui.ActionBar.p1 p1Var;
-        org.telegram.ui.ActionBar.p1 p1Var2;
-        switch (this.f23367a) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f23369c;
-                if (motionEvent.getActionMasked() == 0 && (bfVar = chatActivityEnterView.K0) != null && bfVar.isShowing()) {
-                    Rect rect = this.f23368b;
-                    view.getHitRect(rect);
-                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        chatActivityEnterView.K0.dismiss();
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            case 1:
-                org.telegram.ui.wp0 wp0Var = (org.telegram.ui.wp0) this.f23369c;
-                if (motionEvent.getActionMasked() == 0 && (p1Var = wp0Var.F) != null && p1Var.isShowing()) {
-                    Rect rect2 = this.f23368b;
-                    view.getHitRect(rect2);
-                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        wp0Var.F.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            default:
-                org.telegram.ui.mq0 mq0Var = (org.telegram.ui.mq0) this.f23369c;
-                if (motionEvent.getActionMasked() == 0 && (p1Var2 = mq0Var.f36174j0) != null && p1Var2.isShowing()) {
-                    Rect rect3 = this.f23368b;
-                    view.getHitRect(rect3);
-                    if (!rect3.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        mq0Var.f36174j0.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
+    public final float getTranslationX() {
+        return this.f24351a;
+    }
+
+    @Override
+    public final void setTranslationX(float f7) {
+        float f10;
+        float alpha;
+        this.f24351a = f7;
+        float f11 = -44.0f;
+        float dp = AndroidUtilities.dp(-44.0f) + this.f24351a;
+        ChatActivityEnterView chatActivityEnterView = this.f24352b;
+        float f12 = dp + chatActivityEnterView.f23799y + chatActivityEnterView.f23793x;
+        cf cfVar = chatActivityEnterView.J1;
+        float f13 = 0.0f;
+        if (cfVar != null && cfVar.getVisibility() == 0) {
+            f10 = -44.0f;
+        } else {
+            f10 = 0.0f;
         }
-    }
-
-    public af(org.telegram.ui.mq0 mq0Var) {
-        this.f23369c = mq0Var;
-    }
-
-    public af(ChatActivityEnterView chatActivityEnterView) {
-        this.f23369c = chatActivityEnterView;
+        float dp2 = AndroidUtilities.dp(f10);
+        cf cfVar2 = chatActivityEnterView.J1;
+        if (cfVar2 == null) {
+            alpha = 0.0f;
+        } else {
+            alpha = cfVar2.getAlpha();
+        }
+        float f14 = (dp2 * alpha) + f12;
+        cf cfVar3 = chatActivityEnterView.f23789w1;
+        float dp3 = AndroidUtilities.dp((cfVar3 == null || cfVar3.getVisibility() != 0) ? 0.0f : 0.0f);
+        cf cfVar4 = chatActivityEnterView.f23789w1;
+        if (cfVar4 != null) {
+            f13 = cfVar4.getAlpha();
+        }
+        super.setTranslationX((dp3 * f13) + f14);
     }
 }

@@ -23,33 +23,33 @@ public class WebRtcAudioEffects {
         Logging.d("WebRtcAudioEffects", "ctor" + WebRtcAudioUtils.getThreadInfo());
     }
 
-    private static void assertTrue(boolean z4) {
-        if (z4) {
+    private static void assertTrue(boolean z10) {
+        if (z10) {
             return;
         }
         throw new AssertionError("Expected condition to be true");
     }
 
     public static boolean canUseAcousticEchoCanceler() {
-        boolean z4;
+        boolean z10;
         if (isAcousticEchoCancelerSupported() && !WebRtcAudioUtils.useWebRtcBasedAcousticEchoCanceler() && !isAcousticEchoCancelerBlacklisted() && !isAcousticEchoCancelerExcludedByUUID()) {
-            z4 = true;
+            z10 = true;
         } else {
-            z4 = false;
+            z10 = false;
         }
-        Logging.d("WebRtcAudioEffects", "canUseAcousticEchoCanceler: " + z4);
-        return z4;
+        Logging.d("WebRtcAudioEffects", "canUseAcousticEchoCanceler: " + z10);
+        return z10;
     }
 
     public static boolean canUseNoiseSuppressor() {
-        boolean z4;
+        boolean z10;
         if (isNoiseSuppressorSupported() && !WebRtcAudioUtils.useWebRtcBasedNoiseSuppressor() && !isNoiseSuppressorBlacklisted() && !isNoiseSuppressorExcludedByUUID()) {
-            z4 = true;
+            z10 = true;
         } else {
-            z4 = false;
+            z10 = false;
         }
-        Logging.d("WebRtcAudioEffects", "canUseNoiseSuppressor: " + z4);
-        return z4;
+        Logging.d("WebRtcAudioEffects", "canUseNoiseSuppressor: " + z10);
+        return z10;
     }
 
     public static WebRtcAudioEffects create() {
@@ -146,26 +146,26 @@ public class WebRtcAudioEffects {
     }
 
     public void enable(int i10) {
-        boolean z4;
         boolean z10;
-        String str;
         boolean z11;
+        String str;
+        boolean z12;
         String str2;
         String str3;
         Logging.d("WebRtcAudioEffects", "enable(audioSession=" + i10 + ")");
-        boolean z12 = false;
+        boolean z13 = false;
         if (this.aec == null) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        assertTrue(z4);
-        if (this.ns == null) {
             z10 = true;
         } else {
             z10 = false;
         }
         assertTrue(z10);
+        if (this.ns == null) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        assertTrue(z11);
         String str4 = "disabled";
         if (isAcousticEchoCancelerSupported()) {
             AcousticEchoCanceler create = AcousticEchoCanceler.create(i10);
@@ -173,30 +173,30 @@ public class WebRtcAudioEffects {
             if (create != null) {
                 boolean enabled = create.getEnabled();
                 if (this.shouldEnableAec && canUseAcousticEchoCanceler() && !SharedConfig.disableVoiceAudioEffects) {
-                    z11 = true;
+                    z12 = true;
                 } else {
-                    z11 = false;
+                    z12 = false;
                 }
-                if (this.aec.setEnabled(z11) != 0) {
+                if (this.aec.setEnabled(z12) != 0) {
                     Logging.e("WebRtcAudioEffects", "Failed to set the AcousticEchoCanceler state");
                 }
-                StringBuilder sb = new StringBuilder("AcousticEchoCanceler: was ");
+                StringBuilder sb2 = new StringBuilder("AcousticEchoCanceler: was ");
                 if (!enabled) {
                     str2 = "disabled";
                 } else {
                     str2 = "enabled";
                 }
-                sb.append(str2);
-                sb.append(", enable: ");
-                sb.append(z11);
-                sb.append(", is now: ");
+                sb2.append(str2);
+                sb2.append(", enable: ");
+                sb2.append(z12);
+                sb2.append(", is now: ");
                 if (!this.aec.getEnabled()) {
                     str3 = "disabled";
                 } else {
                     str3 = "enabled";
                 }
-                sb.append(str3);
-                Logging.d("WebRtcAudioEffects", sb.toString());
+                sb2.append(str3);
+                Logging.d("WebRtcAudioEffects", sb2.toString());
             } else {
                 Logging.e("WebRtcAudioEffects", "Failed to create the AcousticEchoCanceler instance");
             }
@@ -207,26 +207,26 @@ public class WebRtcAudioEffects {
             if (create2 != null) {
                 boolean enabled2 = create2.getEnabled();
                 if (this.shouldEnableNs && canUseNoiseSuppressor() && !SharedConfig.disableVoiceAudioEffects) {
-                    z12 = true;
+                    z13 = true;
                 }
-                if (this.ns.setEnabled(z12) != 0) {
+                if (this.ns.setEnabled(z13) != 0) {
                     Logging.e("WebRtcAudioEffects", "Failed to set the NoiseSuppressor state");
                 }
-                StringBuilder sb2 = new StringBuilder("NoiseSuppressor: was ");
+                StringBuilder sb3 = new StringBuilder("NoiseSuppressor: was ");
                 if (!enabled2) {
                     str = "disabled";
                 } else {
                     str = "enabled";
                 }
-                sb2.append(str);
-                sb2.append(", enable: ");
-                sb2.append(z12);
-                sb2.append(", is now: ");
+                sb3.append(str);
+                sb3.append(", enable: ");
+                sb3.append(z13);
+                sb3.append(", is now: ");
                 if (this.ns.getEnabled()) {
                     str4 = "enabled";
                 }
-                sb2.append(str4);
-                Logging.d("WebRtcAudioEffects", sb2.toString());
+                sb3.append(str4);
+                Logging.d("WebRtcAudioEffects", sb3.toString());
                 return;
             }
             Logging.e("WebRtcAudioEffects", "Failed to create the NoiseSuppressor instance");
@@ -247,32 +247,32 @@ public class WebRtcAudioEffects {
         }
     }
 
-    public boolean setAEC(boolean z4) {
-        Logging.d("WebRtcAudioEffects", "setAEC(" + z4 + ")");
+    public boolean setAEC(boolean z10) {
+        Logging.d("WebRtcAudioEffects", "setAEC(" + z10 + ")");
         if (!canUseAcousticEchoCanceler()) {
             Logging.w("WebRtcAudioEffects", "Platform AEC is not supported");
             this.shouldEnableAec = false;
             return false;
-        } else if (this.aec != null && z4 != this.shouldEnableAec) {
+        } else if (this.aec != null && z10 != this.shouldEnableAec) {
             Logging.e("WebRtcAudioEffects", "Platform AEC state can't be modified while recording");
             return false;
         } else {
-            this.shouldEnableAec = z4;
+            this.shouldEnableAec = z10;
             return true;
         }
     }
 
-    public boolean setNS(boolean z4) {
-        Logging.d("WebRtcAudioEffects", "setNS(" + z4 + ")");
+    public boolean setNS(boolean z10) {
+        Logging.d("WebRtcAudioEffects", "setNS(" + z10 + ")");
         if (!canUseNoiseSuppressor()) {
             Logging.w("WebRtcAudioEffects", "Platform NS is not supported");
             this.shouldEnableNs = false;
             return false;
-        } else if (this.ns != null && z4 != this.shouldEnableNs) {
+        } else if (this.ns != null && z10 != this.shouldEnableNs) {
             Logging.e("WebRtcAudioEffects", "Platform NS state can't be modified while recording");
             return false;
         } else {
-            this.shouldEnableNs = z4;
+            this.shouldEnableNs = z10;
             return true;
         }
     }

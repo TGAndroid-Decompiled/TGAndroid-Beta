@@ -1,115 +1,86 @@
 package org.telegram.ui.Components;
 
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.MediaController;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessageSuggestionParams;
-import org.telegram.messenger.SendMessageChatArguments;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.VideoEditedInfo;
-public final class cg extends org.telegram.ui.fu0 {
-    public boolean f23938a;
-    public final MediaController.PhotoEntry f23939b;
-    public final File f23940c;
-    public final dg d;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.LaunchActivity;
+public final class cg implements Runnable {
+    public final MessageObject f25001a;
+    public final long f25002b;
+    public final TL_keyboard.KeyboardButtonProto f25003c;
+    public final MessageObject d;
+    public final TLRPC.User f25004e;
+    public final ChatActivityEnterView f25005f;
 
-    public cg(dg dgVar, MediaController.PhotoEntry photoEntry, File file) {
-        this.d = dgVar;
-        this.f23939b = photoEntry;
-        this.f23940c = file;
+    public cg(ChatActivityEnterView chatActivityEnterView, MessageObject messageObject, long j3, TL_keyboard.KeyboardButtonProto keyboardButtonProto, MessageObject messageObject2, TLRPC.User user) {
+        this.f25005f = chatActivityEnterView;
+        this.f25001a = messageObject;
+        this.f25002b = j3;
+        this.f25003c = keyboardButtonProto;
+        this.d = messageObject2;
+        this.f25004e = user;
     }
 
     @Override
-    public final void G() {
-        if (!this.f23938a) {
-            try {
-                this.f23940c.delete();
-            } catch (Throwable unused) {
+    public final void run() {
+        int i10;
+        long N8;
+        String restrictionReason;
+        ChatActivityEnterView chatActivityEnterView = this.f25005f;
+        org.telegram.ui.co coVar = chatActivityEnterView.O2;
+        if (chatActivityEnterView.l1.R() <= AndroidUtilities.dp(20.0f) && !chatActivityEnterView.t0()) {
+            if (coVar != null) {
+                int i11 = chatActivityEnterView.Q;
+                long j3 = this.f25001a.messageOwner.dialog_id;
+                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f25003c;
+                String text = keyboardButtonProto.getText();
+                String url = keyboardButtonProto.getUrl();
+                boolean c10 = zf.c.c(keyboardButtonProto, TL_keyboard.TL_buttonTypeSimpleWebView.class);
+                MessageObject messageObject = this.d;
+                if (messageObject != null) {
+                    i10 = messageObject.messageOwner.f19890id;
+                } else {
+                    i10 = 0;
+                }
+                if (coVar == null) {
+                    N8 = 0;
+                } else {
+                    N8 = coVar.N8();
+                }
+                fi.f5 b10 = fi.f5.b(i11, j3, this.f25002b, text, url, c10 ? 1 : 0, i10, N8, null, false, null, null, 0, false, false);
+                LaunchActivity launchActivity = LaunchActivity.G1;
+                if (launchActivity != null && launchActivity.P() != null && LaunchActivity.G1.P().k(b10) != null) {
+                    fi.c0 c0Var = chatActivityEnterView.f23731l0;
+                    if (c0Var != null) {
+                        c0Var.setOpened(false);
+                        return;
+                    }
+                    return;
+                }
+                TLRPC.User user = this.f25004e;
+                if (user == null) {
+                    restrictionReason = null;
+                } else {
+                    restrictionReason = MessagesController.getInstance(chatActivityEnterView.Q).getRestrictionReason(user.restriction_reason);
+                }
+                if (!TextUtils.isEmpty(restrictionReason)) {
+                    MessagesController.getInstance(chatActivityEnterView.Q);
+                    MessagesController.showCantOpenAlert(coVar, restrictionReason);
+                    return;
+                }
+                fi.k3 k3Var = new fi.k3(chatActivityEnterView.getContext(), chatActivityEnterView.V3);
+                k3Var.f9773k0 = chatActivityEnterView.N2;
+                k3Var.s(coVar, b10);
+                k3Var.show();
+                return;
             }
-        }
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z4, int i11, int i12, boolean z10) {
-        String str;
-        MessageObject threadMessage;
-        int i13;
-        SendMessageChatArguments sendMessageChatArguments;
-        String str2;
-        org.telegram.ui.zn znVar;
-        ChatActivityEnterView chatActivityEnterView = this.d.d;
-        org.telegram.ui.pn pnVar = chatActivityEnterView.R2;
-        if (pnVar != null && (znVar = chatActivityEnterView.L2) != null && pnVar.f37192f) {
-            znVar.Rb();
             return;
         }
-        ArrayList arrayList = new ArrayList();
-        SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-        MediaController.PhotoEntry photoEntry = this.f23939b;
-        if (!photoEntry.isVideo && (str2 = photoEntry.imagePath) != null) {
-            sendingMediaInfo.path = str2;
-        } else {
-            String str3 = photoEntry.path;
-            if (str3 != null) {
-                sendingMediaInfo.path = str3;
-            }
-        }
-        sendingMediaInfo.thumbPath = photoEntry.thumbPath;
-        sendingMediaInfo.isLivePhoto = photoEntry.isLivePhoto();
-        sendingMediaInfo.isVideo = photoEntry.isVideo;
-        sendingMediaInfo.discardLivePhoto = photoEntry.isUnalivePhoto();
-        sendingMediaInfo.livePhotoVideoOffset = photoEntry.livePhotoVideoOffset;
-        sendingMediaInfo.livePhotoTimestampUs = photoEntry.livePhotoTimestampUs;
-        CharSequence charSequence = photoEntry.caption;
-        if (charSequence != null) {
-            str = charSequence.toString();
-        } else {
-            str = null;
-        }
-        sendingMediaInfo.caption = str;
-        sendingMediaInfo.entities = photoEntry.entities;
-        sendingMediaInfo.masks = photoEntry.stickers;
-        sendingMediaInfo.ttl = photoEntry.ttl;
-        sendingMediaInfo.videoEditedInfo = videoEditedInfo;
-        sendingMediaInfo.canDeleteAfter = true;
-        arrayList.add(sendingMediaInfo);
-        photoEntry.reset();
-        this.f23938a = true;
-        boolean checkUpdateStickersOrder = SendMessagesHelper.checkUpdateStickersOrder(sendingMediaInfo.caption);
-        AccountInstance accountInstance = chatActivityEnterView.O;
-        MessageSuggestionParams messageSuggestionParams = null;
-        long j10 = chatActivityEnterView.M2;
-        MessageObject messageObject = chatActivityEnterView.P2;
-        threadMessage = chatActivityEnterView.getThreadMessage();
-        org.telegram.ui.pn pnVar2 = chatActivityEnterView.R2;
-        MessageObject messageObject2 = chatActivityEnterView.V1;
-        org.telegram.ui.zn znVar2 = chatActivityEnterView.L2;
-        if (znVar2 == null) {
-            i13 = 0;
-        } else {
-            i13 = znVar2.O3;
-        }
-        if (znVar2 != null) {
-            sendMessageChatArguments = znVar2.C8();
-        } else {
-            sendMessageChatArguments = null;
-        }
-        long sendMonoForumPeerId = chatActivityEnterView.getSendMonoForumPeerId();
-        org.telegram.ui.zn znVar3 = chatActivityEnterView.L2;
-        if (znVar3 != null) {
-            messageSuggestionParams = znVar3.f40555d5;
-        }
-        SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j10, messageObject, threadMessage, null, pnVar2, false, false, messageObject2, z4, i11, i12, i13, checkUpdateStickersOrder, null, sendMessageChatArguments, 0L, false, 0L, sendMonoForumPeerId, messageSuggestionParams);
-        eg egVar = chatActivityEnterView.V2;
-        if (egVar != null) {
-            egVar.G(null, true, i11, i12, 0L);
-        }
+        chatActivityEnterView.m0(false);
+        AndroidUtilities.hideKeyboard(chatActivityEnterView);
+        AndroidUtilities.runOnUIThread(this, 150L);
     }
 }

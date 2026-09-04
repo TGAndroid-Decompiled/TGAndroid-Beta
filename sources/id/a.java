@@ -1,20 +1,36 @@
 package id;
 
-import java.util.Iterator;
-import java.util.concurrent.atomic.AtomicReference;
-public final class a implements b {
-    public final AtomicReference f7460a;
+import rd.p;
+import v7.n8;
+public abstract class a implements f {
+    public final g f11950a;
 
-    public a(e eVar) {
-        this.f7460a = new AtomicReference(eVar);
+    public a(g gVar) {
+        this.f11950a = gVar;
     }
 
     @Override
-    public final Iterator iterator() {
-        b bVar = (b) this.f7460a.getAndSet(null);
-        if (bVar != null) {
-            return bVar.iterator();
-        }
-        throw new IllegalStateException("This sequence can be consumed only once.");
+    public final Object fold(Object obj, p pVar) {
+        return pVar.invoke(obj, this);
+    }
+
+    @Override
+    public f get(g gVar) {
+        return n8.a(this, gVar);
+    }
+
+    @Override
+    public final g getKey() {
+        return this.f11950a;
+    }
+
+    @Override
+    public h minusKey(g gVar) {
+        return n8.b(this, gVar);
+    }
+
+    @Override
+    public final h plus(h hVar) {
+        return n8.c(this, hVar);
     }
 }

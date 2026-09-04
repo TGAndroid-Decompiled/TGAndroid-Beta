@@ -1,35 +1,27 @@
 package org.telegram.ui;
+public final class gq implements Runnable {
+    public final int f36745a;
+    public final qq f36746b;
+    public final long f36747c;
 
-import android.content.DialogInterface;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.DatePicker;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class gq implements DialogInterface.OnShowListener {
-    public final int f34495a;
-    public final View f34496b;
-
-    public gq(int i10, View view) {
-        this.f34495a = i10;
-        this.f34496b = view;
+    public gq(qq qqVar, long j3, int i10) {
+        this.f36745a = i10;
+        this.f36746b = qqVar;
+        this.f36747c = j3;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f34495a) {
+    public final void run() {
+        switch (this.f36745a) {
             case 0:
-                DatePicker datePicker = (DatePicker) this.f34496b;
-                int childCount = datePicker.getChildCount();
-                for (int i10 = 0; i10 < childCount; i10++) {
-                    View childAt = datePicker.getChildAt(i10);
-                    ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
-                    layoutParams.width = -1;
-                    childAt.setLayoutParams(layoutParams);
-                }
+                long j3 = this.f36747c;
+                qq qqVar = this.f36746b;
+                qqVar.f39953n = j3;
+                qqVar.f39958r = true;
+                qqVar.n0();
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new eh(1, (EditTextBoldCursor) this.f34496b));
+                qq.Z(this.f36746b, this.f36747c);
                 return;
         }
     }

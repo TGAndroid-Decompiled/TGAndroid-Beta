@@ -1,25 +1,25 @@
 package n1;
 
-import kotlin.jvm.internal.j;
+import kotlin.jvm.internal.i;
 public final class d {
-    public final String f14201a;
+    public final String f16353a;
 
     public d(String str) {
-        this.f14201a = str;
+        this.f16353a = str;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof d) {
-            return j.a(this.f14201a, ((d) obj).f14201a);
+            return i.a(this.f16353a, ((d) obj).f16353a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f14201a.hashCode();
+        return this.f16353a.hashCode();
     }
 
     public final String toString() {
-        return this.f14201a;
+        return this.f16353a;
     }
 }

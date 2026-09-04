@@ -1,33 +1,34 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.IMapsProvider;
-public final class zc0 extends FrameLayout {
-    public final HashMap f40443a;
-    public final cd0 f40444b;
+import androidx.recyclerview.widget.RecyclerView;
+public final class zc0 extends s4.s0 {
+    public final id0 f43378a;
 
-    public zc0(cd0 cd0Var, Context context) {
-        super(context);
-        this.f40444b = cd0Var;
-        this.f40443a = new HashMap();
+    public zc0(id0 id0Var) {
+        this.f43378a = id0Var;
     }
 
-    public final void a() {
-        IMapsProvider.IMap iMap = this.f40444b.F;
-        if (iMap != null) {
-            IMapsProvider.IProjection projection = iMap.getProjection();
-            for (Map.Entry entry : this.f40443a.entrySet()) {
-                View view = (View) entry.getValue();
-                Point screenLocation = projection.toScreenLocation(((IMapsProvider.IMarker) entry.getKey()).getPosition());
-                view.setTranslationX(screenLocation.x - (view.getMeasuredWidth() / 2));
-                view.setTranslationY(AndroidUtilities.dp(22.0f) + (screenLocation.y - view.getMeasuredHeight()));
-            }
+    @Override
+    public final void a(RecyclerView recyclerView, int i10) {
+        boolean z10;
+        if (i10 != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        id0 id0Var = this.f43378a;
+        id0Var.Q = z10;
+        if (!z10 && id0Var.L != null) {
+            id0Var.L = null;
+        }
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        id0 id0Var = this.f43378a;
+        id0Var.A0(false);
+        if (id0Var.L != null) {
+            id0Var.N += i11;
         }
     }
 }

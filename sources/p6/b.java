@@ -1,42 +1,21 @@
 package p6;
 
-import android.os.Binder;
-import android.os.IBinder;
-import android.os.IInterface;
-import b9.c;
-import com.google.android.gms.tasks.TaskCompletionSource;
-public final class b extends Binder implements IInterface {
-    public final int f41074a;
-    public final Object f41075b;
+import a8.d;
+import com.google.android.gms.common.api.e;
+import com.google.android.gms.common.api.internal.v;
+import com.google.android.gms.common.api.internal.w;
+import com.google.android.gms.common.api.j;
+import com.google.android.gms.tasks.Task;
+import k2.g0;
+import n6.o;
+public final class b extends j {
+    public static final e f43955k = new e("ClientTelemetry.API", new d(11), new Object());
 
-    public b(int i10, TaskCompletionSource taskCompletionSource) {
-        this.f41074a = i10;
-        switch (i10) {
-            case 1:
-                this.f41075b = taskCompletionSource;
-                attachInterface(this, "com.google.android.gms.auth.api.phone.internal.ISmsRetrieverResultCallback");
-                return;
-            default:
-                this.f41075b = taskCompletionSource;
-                attachInterface(this, "com.google.android.gms.fido.fido2.internal.regular.IFido2AppCallbacks");
-                return;
-        }
-    }
-
-    @Override
-    public final IBinder asBinder() {
-        int i10 = this.f41074a;
-        return this;
-    }
-
-    @Override
-    public final boolean onTransact(int r7, android.os.Parcel r8, android.os.Parcel r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: p6.b.onTransact(int, android.os.Parcel, android.os.Parcel, int):boolean");
-    }
-
-    public b(c cVar) {
-        this.f41074a = 2;
-        attachInterface(this, "com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearchCallbacks");
-        this.f41075b = cVar;
+    public final Task f(o oVar) {
+        v e7 = w.e();
+        e7.d = new k6.c[]{k7.b.f14834a};
+        e7.f5116b = false;
+        e7.f5117c = new g0(oVar, 15);
+        return e(2, e7.a());
     }
 }

@@ -1,3 +1,5 @@
 package vf;
-public interface e {
+
+import android.os.IInterface;
+public interface e extends IInterface {
 }

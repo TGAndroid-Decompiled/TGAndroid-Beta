@@ -1,57 +1,63 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.ui.web.HttpGetFileTask;
-public final class e0 implements Runnable {
-    public final int f33570a;
-    public final float f33571b;
-    public final Object f33572c;
+import android.view.View;
+import android.widget.PopupWindow;
+public final class e0 implements PopupWindow.OnDismissListener {
+    public final int f35901a;
+    public final Object f35902b;
 
-    public e0(Object obj, float f10, int i10) {
-        this.f33570a = i10;
-        this.f33572c = obj;
-        this.f33571b = f10;
+    public e0(Object obj, int i10) {
+        this.f35901a = i10;
+        this.f35902b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33570a) {
+    public final void onDismiss() {
+        switch (this.f35901a) {
             case 0:
-                ((n4) this.f33572c).f36363e0.J.c(this.f33571b, true);
+                i4 i4Var = (i4) this.f35902b;
+                View view = i4Var.f41437f;
+                if (view != null) {
+                    i4Var.d = null;
+                    view.invalidate();
+                    i4Var.f41437f = null;
+                    return;
+                }
                 return;
             case 1:
-                org.telegram.ui.Components.za zaVar = (org.telegram.ui.Components.za) this.f33572c;
-                if (zaVar.f31312a.getTranslationX() == this.f33571b) {
-                    zaVar.f31321y.b();
+                co coVar = (co) this.f35902b;
+                coVar.Q8 = null;
+                coVar.T8 = null;
+                coVar.S8 = null;
+                coVar.f35498z0.R = true;
+                coVar.g8(false, true, 0.0f);
+                mk mkVar = coVar.Y;
+                if (mkVar != null && mkVar.getEditField() != null) {
+                    coVar.Y.getEditField().setAllowDrawCursor(true);
                     return;
                 }
                 return;
             case 2:
-                org.telegram.ui.Components.voip.x0 x0Var = (org.telegram.ui.Components.voip.x0) this.f33572c;
-                float f10 = this.f33571b;
-                bi1 bi1Var = x0Var.f29997c;
-                if (f10 > 0.0f) {
-                    int i10 = bi1Var.f29532w;
-                    if (i10 < 2) {
-                        bi1Var.c(i10 + 1, true);
-                    }
+                oj ojVar = (oj) this.f35902b;
+                ojVar.f39260b = null;
+                co coVar2 = ojVar.f39267w;
+                coVar2.Q8 = null;
+                coVar2.T8 = null;
+                coVar2.S8 = null;
+                coVar2.f35498z0.R = true;
+                if (coVar2.R8) {
+                    coVar2.g8(false, true, 0.0f);
                 } else {
-                    int i11 = bi1Var.f29532w;
-                    if (i11 > 0) {
-                        bi1Var.c(i11 - 1, true);
-                    }
+                    coVar2.R8 = true;
                 }
-                x0Var.f29996b = false;
-                return;
-            case 3:
-                ((c80) this.f33572c).f33042f.e.smoothScrollTo(0, (int) this.f33571b);
-                return;
-            case 4:
-                float f11 = this.f33571b;
-                ApplicationLoader.applicationContext.getSharedPreferences("media_saved_pos", 0).edit().putFloat((String) this.f33572c, f11).commit();
+                mk mkVar2 = coVar2.Y;
+                if (mkVar2 != null && mkVar2.getEditField() != null) {
+                    coVar2.Y.getEditField().setAllowDrawCursor(true);
+                    return;
+                }
                 return;
             default:
-                HttpGetFileTask.b((HttpGetFileTask) this.f33572c, this.f33571b);
+                ((ProfileActivity) this.f35902b).H3(0.0f);
                 return;
         }
     }

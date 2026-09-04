@@ -1,24 +1,36 @@
 package x2;
-public final class f implements u9.d {
-    public static final f f46734a = new Object();
-    public static final u9.c f46735b = u9.c.c("requestTimeMs");
-    public static final u9.c f46736c = u9.c.c("requestUptimeMs");
-    public static final u9.c d = u9.c.c("clientInfo");
-    public static final u9.c e = u9.c.c("logSource");
-    public static final u9.c f46737f = u9.c.c("logSourceName");
-    public static final u9.c f46738g = u9.c.c("logEvent");
-    public static final u9.c h = u9.c.c("qosTier");
+
+import b2.l1;
+public final class f extends n implements Comparable {
+    public final int f48714e;
+    public final int f48715f;
+
+    public f(int i10, l1 l1Var, int i11, i iVar, int i12) {
+        super(i10, l1Var, i11);
+        int i13;
+        this.f48714e = i2.g.d(i12, iVar.f48726t0) ? 1 : 0;
+        b2.s sVar = this.d;
+        int i14 = sVar.f2376y;
+        int i15 = -1;
+        if (i14 != -1 && (i13 = sVar.f2377z) != -1) {
+            i15 = i14 * i13;
+        }
+        this.f48715f = i15;
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        u9.e eVar = (u9.e) obj2;
-        l lVar = (l) ((s) obj);
-        eVar.b(f46735b, lVar.f46758a);
-        eVar.b(f46736c, lVar.f46759b);
-        eVar.e(d, lVar.f46760c);
-        eVar.e(e, lVar.d);
-        eVar.e(f46737f, lVar.e);
-        eVar.e(f46738g, lVar.f46761f);
-        eVar.e(h, w.f46771a);
+    public final int a() {
+        return this.f48714e;
+    }
+
+    @Override
+    public final boolean b(n nVar) {
+        f fVar = (f) nVar;
+        return false;
+    }
+
+    @Override
+    public final int compareTo(Object obj) {
+        return Integer.compare(this.f48715f, ((f) obj).f48715f);
     }
 }

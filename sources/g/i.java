@@ -1,75 +1,53 @@
 package g;
 
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.PopupWindow;
 import java.util.WeakHashMap;
-import r0.j0;
-import r0.o0;
-public final class i extends o0 {
-    public final int f6272a;
-    public final Object f6273b;
+import r0.i0;
+import r0.l0;
+public final class i implements Runnable {
+    public final int f10203a;
+    public final s f10204b;
 
-    public i(Object obj, int i10) {
-        this.f6272a = i10;
-        this.f6273b = obj;
+    public i(s sVar, int i10) {
+        this.f10203a = i10;
+        this.f10204b = sVar;
     }
 
     @Override
-    public void b() {
-        int i10 = this.f6272a;
-        Object obj = this.f6273b;
+    public final void run() {
+        ViewGroup viewGroup;
+        int i10 = this.f10203a;
+        s sVar = this.f10204b;
         switch (i10) {
             case 0:
-                ((h) obj).f6271b.f6313y.setVisibility(0);
-                return;
-            case 1:
-                q qVar = (q) obj;
-                qVar.f6313y.setVisibility(0);
-                if (qVar.f6313y.getParent() instanceof View) {
-                    WeakHashMap weakHashMap = j0.f43142a;
-                    r0.z.c((View) qVar.f6313y.getParent());
-                    return;
+                if ((sVar.f10243i0 & 1) != 0) {
+                    sVar.j(0);
                 }
+                if ((sVar.f10243i0 & 4096) != 0) {
+                    sVar.j(108);
+                }
+                sVar.f10242h0 = false;
+                sVar.f10243i0 = 0;
                 return;
             default:
-                return;
-        }
-    }
-
-    @Override
-    public final void c() {
-        int i10 = this.f6272a;
-        Object obj = this.f6273b;
-        switch (i10) {
-            case 0:
-                q qVar = ((h) obj).f6271b;
-                qVar.f6313y.setAlpha(1.0f);
-                qVar.D.d(null);
-                qVar.D = null;
-                return;
-            case 1:
-                q qVar2 = (q) obj;
-                qVar2.f6313y.setAlpha(1.0f);
-                qVar2.D.d(null);
-                qVar2.D = null;
-                return;
-            default:
-                q qVar3 = (q) ((f7.b) obj).f6002c;
-                qVar3.f6313y.setVisibility(8);
-                PopupWindow popupWindow = qVar3.B;
-                if (popupWindow != null) {
-                    popupWindow.dismiss();
-                } else if (qVar3.f6313y.getParent() instanceof View) {
-                    WeakHashMap weakHashMap = j0.f43142a;
-                    r0.z.c((View) qVar3.f6313y.getParent());
+                sVar.E.showAtLocation(sVar.f10255y, 55, 0, 0);
+                l0 l0Var = sVar.G;
+                if (l0Var != null) {
+                    l0Var.b();
                 }
-                qVar3.f6313y.e();
-                qVar3.D.d(null);
-                qVar3.D = null;
-                ViewGroup viewGroup = qVar3.G;
-                WeakHashMap weakHashMap2 = j0.f43142a;
-                r0.z.c(viewGroup);
+                if (sVar.I && (viewGroup = sVar.J) != null) {
+                    WeakHashMap weakHashMap = i0.f44697a;
+                    if (viewGroup.isLaidOut()) {
+                        sVar.f10255y.setAlpha(0.0f);
+                        l0 a2 = i0.a(sVar.f10255y);
+                        a2.a(1.0f);
+                        sVar.G = a2;
+                        a2.d(new j(this, 0));
+                        return;
+                    }
+                }
+                sVar.f10255y.setAlpha(1.0f);
+                sVar.f10255y.setVisibility(0);
                 return;
         }
     }

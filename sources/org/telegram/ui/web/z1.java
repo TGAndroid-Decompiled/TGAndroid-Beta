@@ -1,127 +1,66 @@
 package org.telegram.ui.web;
 
-import android.app.Activity;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.FrameLayout;
-import java.io.InputStream;
-import k7.b6;
-import org.json.JSONObject;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Timer;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class z1 implements Utilities.Callback {
-    public final int f39669a;
-    public final Timer.Task f39670b;
-    public final boolean[] f39671c;
-    public final Timer d;
-    public final h2 e;
-    public final Utilities.Callback f39672f;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.q5;
+import org.telegram.ui.sk;
+import w7.x5;
+public final class z1 extends FrameLayout {
+    public final ImageView f42338a;
+    public final TextView f42339b;
+    public final sk f42340c;
+    public q5 d;
+    public String f42341e;
+    public boolean f42342f;
 
-    public z1(Timer.Task task, boolean[] zArr, Timer timer, h2 h2Var, Utilities.Callback callback, int i10) {
-        this.f39669a = i10;
-        this.f39670b = task;
-        this.f39671c = zArr;
-        this.d = timer;
-        this.e = h2Var;
-        this.f39672f = callback;
+    public z1(Context context) {
+        super(context);
+        ImageView imageView = new ImageView(context);
+        this.f42338a = imageView;
+        addView(imageView, x5.d(32, 32.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.f42339b = textView;
+        textView.setTextColor(j6.w0(null, j6.G6, false));
+        textView.setTextSize(1, 16.0f);
+        textView.setMaxLines(1);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        addView(textView, x5.d(-1, -2.0f, 55, 68.0f, 7.0f, 54.0f, 0.0f));
+        sk skVar = new sk(this, context, 6);
+        this.f42340c = skVar;
+        skVar.setTextColor(j6.w0(null, j6.f21042y6, false));
+        skVar.setTextSize(1, 13.0f);
+        skVar.setMaxLines(1);
+        skVar.setEllipsize(truncateAt);
+        skVar.setPivotX(0.0f);
+        addView(skVar, x5.d(-1, -2.0f, 55, 68.0f, 30.0f, 54.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        imageView2.setImageResource(R.drawable.ic_ab_other);
+        imageView2.setColorFilter(new PorterDuffColorFilter(j6.w0(null, j6.A6, false), PorterDuff.Mode.SRC_IN));
+        addView(imageView2, x5.d(32, 32.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f39669a) {
-            case 0:
-                Timer.Task task = this.f39670b;
-                boolean[] zArr = this.f39671c;
-                Timer timer = this.d;
-                h2 h2Var = this.e;
-                Utilities.Callback callback = this.f39672f;
-                InputStream inputStream = (InputStream) obj;
-                Timer.done(task);
-                if (!zArr[0]) {
-                    Timer.Task start = Timer.start(timer, "readHTML");
-                    String str = h2Var.f39470a;
-                    final z1 z1Var = new z1(start, zArr, timer, h2Var, callback, 1);
-                    if (inputStream == null) {
-                        z1Var.run(null);
-                        return;
-                    }
-                    Context context = LaunchActivity.D1;
-                    if (context == null) {
-                        context = ApplicationLoader.applicationContext;
-                    }
-                    Activity findActivity = AndroidUtilities.findActivity(context);
-                    if (findActivity == null) {
-                        z1Var.run(null);
-                        return;
-                    }
-                    View rootView = findActivity.findViewById(16908290).getRootView();
-                    if (!(rootView instanceof ViewGroup)) {
-                        z1Var.run(null);
-                        return;
-                    }
-                    final ?? frameLayout = new FrameLayout(context);
-                    ((ViewGroup) rootView).addView(frameLayout);
-                    final WebView webView = new WebView(context);
-                    WebSettings settings = webView.getSettings();
-                    settings.setAllowContentAccess(false);
-                    settings.setDatabaseEnabled(false);
-                    settings.setAllowFileAccess(false);
-                    settings.setJavaScriptEnabled(true);
-                    settings.setSaveFormData(false);
-                    settings.setGeolocationEnabled(false);
-                    settings.setDomStorageEnabled(false);
-                    settings.setAllowFileAccessFromFileURLs(false);
-                    settings.setAllowUniversalAccessFromFileURLs(false);
-                    webView.setWebViewClient(new c2(h2Var, inputStream));
-                    webView.setWebChromeClient(new WebChromeClient());
-                    frameLayout.addView(webView, b6.c(-1.0f, -1));
-                    final boolean[] zArr2 = {false};
-                    webView.addJavascriptInterface(new Object() {
-                        @JavascriptInterface
-                        public void done(String str2) {
-                            AndroidUtilities.runOnUIThread(new b0(zArr2, webView, frameLayout, str2, z1Var, 6));
-                        }
-                    }, "Instant");
-                    webView.loadUrl(str);
-                    return;
-                }
-                return;
-            default:
-                Timer.Task task2 = this.f39670b;
-                boolean[] zArr3 = this.f39671c;
-                Timer timer2 = this.d;
-                h2 h2Var2 = this.e;
-                Utilities.Callback callback2 = this.f39672f;
-                JSONObject jSONObject = (JSONObject) obj;
-                Timer.done(task2);
-                if (!zArr3[0]) {
-                    Timer.Task start2 = Timer.start(timer2, "parseJSON");
-                    try {
-                        h2Var2.f39472c = h2Var2.i(h2Var2.f39470a, jSONObject);
-                    } catch (Exception e) {
-                        Timer.log(timer2, "error: " + e);
-                        FileLog.e(e);
-                    }
-                    Timer.done(start2);
-                    callback2.run(h2Var2);
-                    TLRPC.TL_webPage tL_webPage = h2Var2.f39472c;
-                    if (tL_webPage != null) {
-                        h2.e.put(tL_webPage, h2Var2);
-                    }
-                    Timer.finish(timer2);
-                    return;
-                }
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.f42342f) {
+            canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - 1, getWidth(), getHeight(), j6.f20785k0);
         }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
     }
 }

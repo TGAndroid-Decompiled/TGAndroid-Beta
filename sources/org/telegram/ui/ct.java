@@ -1,35 +1,47 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-public final class ct implements Runnable {
-    public final int f33217a;
-    public final rt f33218b;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ct implements TextWatcher {
+    public final EditTextBoldCursor f35530a;
 
-    public ct(rt rtVar, int i10) {
-        this.f33217a = i10;
-        this.f33218b = rtVar;
+    public ct(EditTextBoldCursor editTextBoldCursor) {
+        this.f35530a = editTextBoldCursor;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33217a) {
-            case 0:
-                this.f33218b.f38032c0 = null;
-                return;
-            case 1:
-                rt rtVar = this.f33218b;
-                rtVar.A.setImageBitmap((Bitmap) null);
-                org.telegram.ui.Components.id0 id0Var = rtVar.C;
-                if (id0Var != null) {
-                    id0Var.a();
-                    rtVar.f38053z.removeView(rtVar.C);
-                    rtVar.C = null;
-                    return;
+    public final void afterTextChanged(Editable editable) {
+        try {
+            String obj = editable.toString();
+            if (!obj.isEmpty()) {
+                int intValue = Utilities.parseInt((CharSequence) obj).intValue();
+                EditTextBoldCursor editTextBoldCursor = this.f35530a;
+                if (intValue < 0) {
+                    editTextBoldCursor.setText("0");
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                } else if (intValue > 300) {
+                    editTextBoldCursor.setText("300");
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                } else {
+                    if (!obj.equals("" + intValue)) {
+                        editTextBoldCursor.setText("" + intValue);
+                        editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                    }
                 }
-                return;
-            default:
-                this.f33218b.Q.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(org.telegram.ui.Components.mr.h).start();
-                return;
+            }
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

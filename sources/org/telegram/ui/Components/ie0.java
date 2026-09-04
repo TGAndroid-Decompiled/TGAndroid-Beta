@@ -1,23 +1,20 @@
 package org.telegram.ui.Components;
 
-import androidx.core.widget.NestedScrollView;
-public final class ie0 implements u0.g, y4 {
-    public final te0 f25692a;
+import android.app.Activity;
+import android.view.ViewGroup;
+public final class ie0 extends org.telegram.ui.ActionBar.k {
+    public final pe0 f27107t1;
 
-    public ie0(te0 te0Var) {
-        this.f25692a = te0Var;
+    public ie0(pe0 pe0Var, Activity activity) {
+        super(activity, null);
+        this.f27107t1 = pe0Var;
     }
 
     @Override
-    public void J(int i10, int i11, boolean z4) {
-        te0 te0Var = this.f25692a;
-        te0Var.H.a(te0Var.K, z4, i10, 0L);
-        te0Var.dismiss();
-    }
-
-    @Override
-    public void a(NestedScrollView nestedScrollView) {
-        te0 te0Var = this.f25692a;
-        te0Var.G(!te0Var.f28979s);
+    public final void setAlpha(float f7) {
+        ViewGroup viewGroup;
+        super.setAlpha(f7);
+        viewGroup = ((org.telegram.ui.ActionBar.f3) this.f27107t1).containerView;
+        viewGroup.invalidate();
     }
 }

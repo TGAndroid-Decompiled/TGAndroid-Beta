@@ -1,7 +1,4 @@
 package p8;
-
-import android.os.Binder;
-import android.os.IInterface;
-public abstract class b extends Binder implements c, IInterface {
-    public static final int f41082a = 0;
+public final class b {
+    public int f44006a;
 }

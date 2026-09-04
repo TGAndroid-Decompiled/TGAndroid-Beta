@@ -1,20 +1,32 @@
 package org.telegram.ui.Components;
-public final class yl0 {
-    public final float f31051a;
-    public final float f31052b;
-    public final float f31053c;
-    public final float d;
-    public final boolean e;
 
-    public yl0(float f10, float f11, float f12, float f13, int i10) {
-        this(f10, f11, f12, f13);
-        this.e = true;
+import org.telegram.messenger.AndroidUtilities;
+public final class yl0 implements Runnable {
+    public final int f32942a;
+    public final am0 f32943b;
+
+    public yl0(am0 am0Var, int i10) {
+        this.f32942a = i10;
+        this.f32943b = am0Var;
     }
 
-    public yl0(float f10, float f11, float f12, float f13) {
-        this.f31051a = f10;
-        this.f31052b = f11;
-        this.f31053c = f12;
-        this.d = f13;
+    @Override
+    public final void run() {
+        switch (this.f32942a) {
+            case 0:
+                am0 am0Var = this.f32943b;
+                am0Var.getClass();
+                AndroidUtilities.runOnUIThread(new yl0(am0Var, 2));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new yl0(this.f32943b, 3));
+                return;
+            case 2:
+                super/*android.app.Dialog*/.dismiss();
+                return;
+            default:
+                super/*android.app.Dialog*/.dismiss();
+                return;
+        }
     }
 }

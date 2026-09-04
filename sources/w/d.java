@@ -1,15 +1,15 @@
 package w;
 public final class d {
-    public final Object f46428a;
-    public final String f46429b;
+    public final Object f47899a;
+    public final String f47900b;
 
     public d(Object obj, String str) {
-        this.f46428a = obj;
-        this.f46429b = str;
+        this.f47899a = obj;
+        this.f47900b = str;
     }
 
     public final String a() {
-        return "[" + this.f46429b + ", " + g.i(this.f46428a.getClass()) + "]";
+        return "[" + this.f47900b + ", " + h.i(this.f47899a.getClass()) + "]";
     }
 
     public final String toString() {

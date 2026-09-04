@@ -1,44 +1,36 @@
 package ye;
 
-import com.google.firebase.messaging.d;
-import java.io.InputStream;
-public final class a extends d {
-    public final long d;
+import bf.p;
+public final class a extends df.a {
+    public final bf.b f49974a = new p();
 
-    public a(InputStream inputStream, long j10, long j11) {
-        super(inputStream, j10);
-        this.d = j10 + j11;
-    }
-
-    public final long e() {
-        return this.d - this.f3975b;
+    public static boolean i(d dVar, int i10) {
+        CharSequence charSequence = dVar.f49985a;
+        if (dVar.f49990g < 4 && i10 < charSequence.length() && charSequence.charAt(i10) == '>') {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final int read() {
-        if (this.f3975b == this.d) {
-            return -1;
-        }
-        return super.read();
+    public final bf.a e() {
+        return this.f49974a;
     }
 
     @Override
-    public final long skip(long j10) {
-        long j11 = this.f3975b;
-        long j12 = this.d;
-        if (j11 + j10 > j12) {
-            j10 = (int) (j12 - j11);
+    public final q3.h h(d dVar) {
+        char charAt;
+        int i10 = dVar.f49988e;
+        if (i(dVar, i10)) {
+            int i11 = dVar.f49987c + dVar.f49990g;
+            int i12 = i11 + 1;
+            CharSequence charSequence = dVar.f49985a;
+            int i13 = i10 + 1;
+            if (i13 < charSequence.length() && ((charAt = charSequence.charAt(i13)) == '\t' || charAt == ' ')) {
+                i12 = i11 + 2;
+            }
+            return new q3.h(-1, i12, false);
         }
-        return super.skip(j10);
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        long j10 = this.f3975b;
-        long j11 = this.d;
-        if (i11 + j10 <= j11 || (i11 = (int) (j11 - j10)) != 0) {
-            return super.read(bArr, i10, i11);
-        }
-        return -1;
+        return null;
     }
 }

@@ -1,69 +1,44 @@
 package d9;
 
-import b6.m;
-import java.util.ArrayDeque;
-import java.util.concurrent.Executor;
-import java.util.concurrent.RejectedExecutionException;
-import java.util.logging.Logger;
-public final class k implements Executor {
-    public static final Logger f4274f = Logger.getLogger(k.class.getName());
-    public final Executor f4275a;
-    public final ArrayDeque f4276b = new ArrayDeque();
-    public int f4277c = 1;
-    public long d = 0;
-    public final androidx.biometric.j e = new androidx.biometric.j(this);
+import java.io.Serializable;
+public final class k implements j, Serializable {
+    public final transient Object f6640a = new Object();
+    public final j f6641b;
+    public volatile transient boolean f6642c;
+    public transient Object d;
 
-    public k(Executor executor) {
-        m.h(executor);
-        this.f4275a = executor;
+    public k(j jVar) {
+        this.f6641b = jVar;
     }
 
     @Override
-    public final void execute(Runnable runnable) {
-        m.h(runnable);
-        synchronized (this.f4276b) {
-            int i10 = this.f4277c;
-            if (i10 != 4 && i10 != 3) {
-                long j10 = this.d;
-                j jVar = new j(0, runnable);
-                this.f4276b.add(jVar);
-                this.f4277c = 2;
+    public final Object get() {
+        if (!this.f6642c) {
+            synchronized (this.f6640a) {
                 try {
-                    this.f4275a.execute(this.e);
-                    if (this.f4277c == 2) {
-                        synchronized (this.f4276b) {
-                            try {
-                                if (this.d == j10 && this.f4277c == 2) {
-                                    this.f4277c = 3;
-                                }
-                            } finally {
-                            }
-                        }
-                        return;
+                    if (!this.f6642c) {
+                        Object obj = this.f6641b.get();
+                        this.d = obj;
+                        this.f6642c = true;
+                        return obj;
                     }
-                    return;
-                } catch (Error | RuntimeException e) {
-                    synchronized (this.f4276b) {
-                        try {
-                            int i11 = this.f4277c;
-                            boolean z4 = true;
-                            if ((i11 != 1 && i11 != 2) || !this.f4276b.removeLastOccurrence(jVar)) {
-                                z4 = false;
-                            }
-                            if (!(e instanceof RejectedExecutionException) || z4) {
-                                throw e;
-                            }
-                        } finally {
-                        }
-                    }
-                    return;
+                } finally {
                 }
             }
-            this.f4276b.add(runnable);
         }
+        return this.d;
     }
 
     public final String toString() {
-        return "SequentialExecutor@" + System.identityHashCode(this) + "{" + this.f4275a + "}";
+        Object obj;
+        StringBuilder sb2 = new StringBuilder("Suppliers.memoize(");
+        if (this.f6642c) {
+            obj = "<supplier that returned " + this.d + ">";
+        } else {
+            obj = this.f6641b;
+        }
+        sb2.append(obj);
+        sb2.append(")");
+        return sb2.toString();
     }
 }

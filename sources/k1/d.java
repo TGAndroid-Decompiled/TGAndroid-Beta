@@ -1,18 +1,34 @@
 package k1;
 
-import j7.s8;
-import java.io.Serializable;
-import java.util.Iterator;
-public final class d extends wc.c {
-    public Serializable f9545a;
-    public Iterator f9546b;
-    public Object f9547c;
-    public int d;
+import v7.t7;
+public final class d extends kd.j implements rd.l {
+    public int f14442a;
+
+    @Override
+    public final id.c create(id.c cVar) {
+        return new kd.j(1, cVar);
+    }
+
+    @Override
+    public final Object invoke(Object obj) {
+        gd.i iVar = gd.i.f10588a;
+        ((d) create((id.c) obj)).invokeSuspend(iVar);
+        return iVar;
+    }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f9547c = obj;
-        this.d |= Integer.MIN_VALUE;
-        return s8.a(null, null, this);
+        jd.a aVar = jd.a.f13614a;
+        int i10 = this.f14442a;
+        if (i10 != 0) {
+            if (i10 == 1) {
+                t7.b(obj);
+                return gd.i.f10588a;
+            }
+            throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+        }
+        t7.b(obj);
+        this.f14442a = 1;
+        throw null;
     }
 }

@@ -1,105 +1,222 @@
 package v7;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.RemoteException;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import androidx.mediarouter.app.b0;
-import b6.r;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import k7.m8;
-import s5.m;
-public final class j {
-    public m f45695a;
-    public Bundle f45696b;
-    public LinkedList f45697c;
-    public final d e;
-    public final Context f45698f;
-    public ja.c f45699g;
-    public final ja.c d = new ja.c(this, 18);
-    public final ArrayList h = new ArrayList();
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.charset.Charset;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+public final class j implements ia.e {
+    public static final Charset f47479f = Charset.forName("UTF-8");
+    public static final ia.c f47480g = new ia.c("key", i2.g.n(org.telegram.ui.Cells.p6.k(h.class, new e(1))));
+    public static final ia.c h = new ia.c("value", i2.g.n(org.telegram.ui.Cells.p6.k(h.class, new e(2))));
+    public static final i f47481i = i.f47468b;
+    public OutputStream f47482a;
+    public final HashMap f47483b;
+    public final HashMap f47484c;
+    public final ia.d d;
+    public final la.h f47485e = new la.h(this, 1);
 
-    public j(d dVar, Context context) {
-        this.e = dVar;
-        this.f45698f = context;
+    public j(ByteArrayOutputStream byteArrayOutputStream, HashMap hashMap, HashMap hashMap2, ia.d dVar) {
+        this.f47482a = byteArrayOutputStream;
+        this.f47483b = hashMap;
+        this.f47484c = hashMap2;
+        this.d = dVar;
     }
 
-    public static void a(d dVar) {
-        y5.d dVar2 = y5.d.d;
-        Context context = dVar.getContext();
-        int d = dVar2.d(context, y5.e.f47175a);
-        String c3 = r.c(context, d);
-        String b10 = r.b(context, d);
-        LinearLayout linearLayout = new LinearLayout(dVar.getContext());
-        linearLayout.setOrientation(1);
-        linearLayout.setLayoutParams(new FrameLayout.LayoutParams(-2, -2));
-        dVar.addView(linearLayout);
-        TextView textView = new TextView(dVar.getContext());
-        textView.setLayoutParams(new FrameLayout.LayoutParams(-2, -2));
-        textView.setText(c3);
-        linearLayout.addView(textView);
-        Intent b11 = dVar2.b(context, null, d);
-        if (b11 != null) {
-            Button button = new Button(context);
-            button.setId(16908313);
-            button.setLayoutParams(new FrameLayout.LayoutParams(-2, -2));
-            button.setText(b10);
-            linearLayout.addView(button);
-            button.setOnClickListener(new b0(context, b11));
+    public static int i(ia.c cVar) {
+        h hVar = (h) cVar.b(h.class);
+        if (hVar != null) {
+            return ((e) hVar).f47435a;
         }
+        throw new RuntimeException("Field has no @Protobuf config");
     }
 
-    public final void b(int i10) {
-        while (!this.f45697c.isEmpty() && ((l6.e) this.f45697c.getLast()).a() >= i10) {
-            this.f45697c.removeLast();
-        }
+    @Override
+    public final ia.e a(ia.c cVar, Object obj) {
+        d(cVar, obj, true);
+        return this;
     }
 
-    public final void c(Bundle bundle, l6.e eVar) {
-        if (this.f45695a != null) {
-            eVar.b();
+    public final void b(ia.c cVar, double d, boolean z10) {
+        if (z10 && d == 0.0d) {
             return;
         }
-        if (this.f45697c == null) {
-            this.f45697c = new LinkedList();
-        }
-        this.f45697c.add(eVar);
-        if (bundle != null) {
-            Bundle bundle2 = this.f45696b;
-            if (bundle2 == null) {
-                this.f45696b = (Bundle) bundle.clone();
+        k((i(cVar) << 3) | 1);
+        this.f47482a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putDouble(d).array());
+    }
+
+    @Override
+    public final ia.e c(ia.c cVar, boolean z10) {
+        h(cVar, z10 ? 1 : 0, true);
+        return this;
+    }
+
+    public final void d(ia.c cVar, Object obj, boolean z10) {
+        if (obj != null) {
+            if (obj instanceof CharSequence) {
+                CharSequence charSequence = (CharSequence) obj;
+                if (!z10 || charSequence.length() != 0) {
+                    k((i(cVar) << 3) | 2);
+                    byte[] bytes = charSequence.toString().getBytes(f47479f);
+                    k(bytes.length);
+                    this.f47482a.write(bytes);
+                }
+            } else if (obj instanceof Collection) {
+                for (Object obj2 : (Collection) obj) {
+                    d(cVar, obj2, false);
+                }
+            } else if (obj instanceof Map) {
+                for (Map.Entry entry : ((Map) obj).entrySet()) {
+                    j(f47481i, cVar, entry, false);
+                }
+            } else if (obj instanceof Double) {
+                b(cVar, ((Double) obj).doubleValue(), z10);
+            } else if (obj instanceof Float) {
+                float floatValue = ((Float) obj).floatValue();
+                if (!z10 || floatValue != 0.0f) {
+                    k((i(cVar) << 3) | 5);
+                    this.f47482a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putFloat(floatValue).array());
+                }
+            } else if (obj instanceof Number) {
+                long longValue = ((Number) obj).longValue();
+                if (!z10 || longValue != 0) {
+                    h hVar = (h) cVar.b(h.class);
+                    if (hVar != null) {
+                        k(((e) hVar).f47435a << 3);
+                        l(longValue);
+                        return;
+                    }
+                    throw new RuntimeException("Field has no @Protobuf config");
+                }
+            } else if (obj instanceof Boolean) {
+                h(cVar, ((Boolean) obj).booleanValue() ? 1 : 0, z10);
+            } else if (obj instanceof byte[]) {
+                byte[] bArr = (byte[]) obj;
+                if (z10 && bArr.length == 0) {
+                    return;
+                }
+                k((i(cVar) << 3) | 2);
+                k(bArr.length);
+                this.f47482a.write(bArr);
             } else {
-                bundle2.putAll(bundle);
+                ia.d dVar = (ia.d) this.f47483b.get(obj.getClass());
+                if (dVar != null) {
+                    j(dVar, cVar, obj, z10);
+                    return;
+                }
+                ia.f fVar = (ia.f) this.f47484c.get(obj.getClass());
+                if (fVar != null) {
+                    la.h hVar2 = this.f47485e;
+                    hVar2.f15334b = false;
+                    hVar2.d = cVar;
+                    hVar2.f15335c = z10;
+                    fVar.a(obj, hVar2);
+                } else if (obj instanceof f) {
+                    h(cVar, ((f) obj).zza(), true);
+                } else if (obj instanceof Enum) {
+                    h(cVar, ((Enum) obj).ordinal(), true);
+                } else {
+                    j(this.d, cVar, obj, z10);
+                }
             }
         }
-        this.f45699g = this.d;
-        ArrayList arrayList = this.h;
-        Context context = this.f45698f;
-        if (this.f45695a == null) {
+    }
+
+    @Override
+    public final ia.e e(ia.c cVar, int i10) {
+        h(cVar, i10, true);
+        return this;
+    }
+
+    @Override
+    public final ia.e f(ia.c cVar, long j3) {
+        if (j3 != 0) {
+            h hVar = (h) cVar.b(h.class);
+            if (hVar != null) {
+                k(((e) hVar).f47435a << 3);
+                l(j3);
+                return this;
+            }
+            throw new RuntimeException("Field has no @Protobuf config");
+        }
+        return this;
+    }
+
+    @Override
+    public final ia.e g(ia.c cVar, double d) {
+        b(cVar, d, true);
+        return this;
+    }
+
+    public final void h(ia.c cVar, int i10, boolean z10) {
+        if (z10 && i10 == 0) {
+            return;
+        }
+        h hVar = (h) cVar.b(h.class);
+        if (hVar != null) {
+            k(((e) hVar).f47435a << 3);
+            k(i10);
+            return;
+        }
+        throw new RuntimeException("Field has no @Protobuf config");
+    }
+
+    public final void j(ia.d dVar, ia.c cVar, Object obj, boolean z10) {
+        la.b bVar = new la.b(1);
+        bVar.f15322b = 0L;
+        try {
+            OutputStream outputStream = this.f47482a;
+            this.f47482a = bVar;
+            dVar.a(obj, this);
+            this.f47482a = outputStream;
+            long j3 = bVar.f15322b;
+            bVar.close();
+            if (z10 && j3 == 0) {
+                return;
+            }
+            k((i(cVar) << 3) | 2);
+            l(j3);
+            dVar.a(obj, this);
+        } catch (Throwable th2) {
             try {
-                synchronized (e.class) {
-                    e.a(context);
+                bVar.close();
+            } catch (Throwable th3) {
+                try {
+                    Throwable.class.getDeclaredMethod("addSuppressed", Throwable.class).invoke(th2, th3);
+                } catch (Exception unused) {
                 }
-                w7.g V0 = m8.a(context).V0(new l6.b(context));
-                if (V0 != null) {
-                    this.f45699g.s(new m(this.e, V0));
-                    int size = arrayList.size();
-                    int i10 = 0;
-                    while (i10 < size) {
-                        Object obj = arrayList.get(i10);
-                        i10++;
-                        this.f45695a.j((f) obj);
-                    }
-                    arrayList.clear();
-                }
-            } catch (RemoteException e) {
-                throw new RuntimeException(e);
-            } catch (y5.f unused) {
+            }
+            throw th2;
+        }
+    }
+
+    public final void k(int i10) {
+        while (true) {
+            int i11 = ((i10 & (-128)) > 0L ? 1 : ((i10 & (-128)) == 0L ? 0 : -1));
+            OutputStream outputStream = this.f47482a;
+            if (i11 != 0) {
+                outputStream.write((i10 & 127) | 128);
+                i10 >>>= 7;
+            } else {
+                outputStream.write(i10 & 127);
+                return;
+            }
+        }
+    }
+
+    public final void l(long j3) {
+        while (true) {
+            int i10 = (((-128) & j3) > 0L ? 1 : (((-128) & j3) == 0L ? 0 : -1));
+            OutputStream outputStream = this.f47482a;
+            if (i10 != 0) {
+                outputStream.write((((int) j3) & 127) | 128);
+                j3 >>>= 7;
+            } else {
+                outputStream.write(((int) j3) & 127);
+                return;
             }
         }
     }

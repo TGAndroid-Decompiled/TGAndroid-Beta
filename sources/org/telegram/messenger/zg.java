@@ -1,22 +1,22 @@
 package org.telegram.messenger;
-public final class zg implements Runnable {
-    public final int f19125a;
-    public final NotificationCenter f19126b;
 
-    public zg(NotificationCenter notificationCenter, int i10) {
-        this.f19125a = i10;
-        this.f19126b = notificationCenter;
+import android.app.NotificationChannel;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+public final class zg implements org.telegram.ui.ActionBar.a2, Vector.TLDeserializer {
+    public static NotificationChannel a(Object obj) {
+        return (NotificationChannel) obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19125a) {
-            case 0:
-                NotificationCenter.g(this.f19126b);
-                return;
-            default:
-                NotificationCenter.b(this.f19126b);
-                return;
-        }
+    public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        return TLRPC.PollAnswer.TLdeserialize(inputSerializedData, i10, z10);
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        SharedConfig.lambda$checkSdCard$1(b2Var, i10);
     }
 }

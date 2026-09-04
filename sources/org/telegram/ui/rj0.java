@@ -1,25 +1,28 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.TextView;
-import org.telegram.messenger.NotificationCenter;
-public final class rj0 extends TextView {
-    public final st f37875a;
+public final class rj0 extends di.d {
+    public final tj0 f40184h0;
 
-    public rj0(Context context) {
-        super(context);
-        this.f37875a = new st(1, this);
+    public rj0(tj0 tj0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var, true);
+        this.f40184h0 = tj0Var;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getGlobalInstance().addObserver(this.f37875a, NotificationCenter.emojiLoaded);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getGlobalInstance().removeObserver(this.f37875a, NotificationCenter.emojiLoaded);
+    public final float a(float f7, float f10) {
+        boolean z10;
+        tj0 tj0Var = this.f40184h0;
+        if (tj0Var.f40780n0 == 0.0f) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        tj0Var.f40780n0 = f7;
+        if (z10) {
+            tj0Var.f40781o0 = new org.telegram.ui.Components.sa0(tj0Var, 1);
+            tj0Var.S(false);
+        }
+        return f7;
     }
 }

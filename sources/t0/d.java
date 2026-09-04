@@ -1,100 +1,27 @@
 package t0;
 
-import android.content.ClipDescription;
-import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.ResultReceiver;
-import android.text.TextUtils;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputConnectionWrapper;
+import android.view.inputmethod.InputContentInfo;
 public final class d extends InputConnectionWrapper {
-    public final e f44490a;
+    public final f f46419a;
 
-    public d(InputConnection inputConnection, e eVar) {
+    public d(InputConnection inputConnection, f fVar) {
         super(inputConnection, false);
-        this.f44490a = eVar;
+        this.f46419a = fVar;
     }
 
     @Override
-    public final boolean performPrivateCommand(String str, Bundle bundle) {
-        boolean z4;
-        String str2;
-        ResultReceiver resultReceiver;
-        String str3;
-        String str4;
-        String str5;
-        String str6;
-        String str7;
-        e eVar = this.f44490a;
-        boolean z10 = false;
-        z10 = false;
-        z10 = false;
-        z10 = false;
-        if (bundle != null) {
-            if (TextUtils.equals("androidx.core.view.inputmethod.InputConnectionCompat.COMMIT_CONTENT", str)) {
-                z4 = false;
-            } else {
-                z4 = TextUtils.equals("android.support.v13.view.inputmethod.InputConnectionCompat.COMMIT_CONTENT", str) ? true : true;
-            }
-            if (z4) {
-                str2 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_RESULT_RECEIVER";
-            } else {
-                str2 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_RESULT_RECEIVER";
-            }
-            try {
-                resultReceiver = (ResultReceiver) bundle.getParcelable(str2);
-                if (z4) {
-                    str3 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_URI";
-                } else {
-                    str3 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_URI";
-                }
-                try {
-                    Uri uri = (Uri) bundle.getParcelable(str3);
-                    if (z4) {
-                        str4 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION";
-                    } else {
-                        str4 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION";
-                    }
-                    ClipDescription clipDescription = (ClipDescription) bundle.getParcelable(str4);
-                    if (z4) {
-                        str5 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI";
-                    } else {
-                        str5 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI";
-                    }
-                    Uri uri2 = (Uri) bundle.getParcelable(str5);
-                    if (z4) {
-                        str6 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS";
-                    } else {
-                        str6 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS";
-                    }
-                    int i10 = bundle.getInt(str6);
-                    if (z4) {
-                        str7 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_OPTS";
-                    } else {
-                        str7 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_OPTS";
-                    }
-                    Bundle bundle2 = (Bundle) bundle.getParcelable(str7);
-                    if (uri != null && clipDescription != null) {
-                        z10 = eVar.h(new i(uri, clipDescription, uri2), i10, bundle2);
-                    }
-                    if (resultReceiver != null) {
-                        resultReceiver.send(z10 ? 1 : 0, null);
-                    }
-                } catch (Throwable th2) {
-                    th = th2;
-                    if (resultReceiver != null) {
-                        resultReceiver.send(0, null);
-                    }
-                    throw th;
-                }
-            } catch (Throwable th3) {
-                th = th3;
-                resultReceiver = null;
-            }
+    public final boolean commitContent(InputContentInfo inputContentInfo, int i10, Bundle bundle) {
+        j jVar = null;
+        if (inputContentInfo != null && Build.VERSION.SDK_INT >= 25) {
+            jVar = new j(new h(inputContentInfo));
         }
-        if (z10) {
+        if (this.f46419a.l(jVar, i10, bundle)) {
             return true;
         }
-        return super.performPrivateCommand(str, bundle);
+        return super.commitContent(inputContentInfo, i10, bundle);
     }
 }

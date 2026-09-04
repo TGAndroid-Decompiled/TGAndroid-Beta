@@ -9,7 +9,7 @@ public final class Size {
     }
 
     private static NumberFormatException invalidSize(String str) {
-        throw new NumberFormatException(android.support.v4.media.a.o("Invalid Size: \"", str, "\""));
+        throw new NumberFormatException(a4.a.p("Invalid Size: \"", str, "\""));
     }
 
     public static Size parseSize(String str) {

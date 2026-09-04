@@ -1,68 +1,49 @@
 package k4;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import j3.d1;
-import j3.n0;
-import j8.t;
-public final class e implements e4.b {
-    public static final Parcelable.Creator<e> CREATOR = new t(15);
-    public final float f9727a;
-    public final int f9728b;
+import b2.s0;
+import c3.p;
+import com.google.android.gms.internal.vision.e2;
+import e2.v;
+public abstract class e {
+    public static final byte[] f14733a = {0, 0, 0, 0, 16, 0, Byte.MIN_VALUE, 0, 0, -86, 0, 56, -101, 113};
+    public static final byte[] f14734b = {0, 0, 33, 7, -45, 17, -122, 68, -56, -63, -54, 0, 0, 0};
 
-    public e(float f10, int i10) {
-        this.f9727a = f10;
-        this.f9728b = i10;
-    }
-
-    @Override
-    public final n0 b() {
-        return null;
-    }
-
-    @Override
-    public final byte[] d() {
-        return null;
-    }
-
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public static boolean a(p pVar) {
+        v vVar = new v(8);
+        int i10 = d.b(pVar, vVar).f14731a;
+        if (i10 != 1380533830 && i10 != 1380333108) {
+            return false;
         }
-        if (obj != null && e.class == obj.getClass()) {
-            e eVar = (e) obj;
-            if (this.f9727a == eVar.f9727a && this.f9728b == eVar.f9728b) {
-                return true;
+        pVar.b(0, 4, vVar.f8789a);
+        vVar.J(0);
+        int j3 = vVar.j();
+        if (j3 != 1463899717) {
+            e2.a.e("WavHeaderReader", "Unsupported form type: " + j3);
+            return false;
+        }
+        return true;
+    }
+
+    public static d b(int i10, p pVar, v vVar) {
+        d b10 = d.b(pVar, vVar);
+        while (true) {
+            int i11 = b10.f14731a;
+            if (i11 != i10) {
+                e2.n(i11, "Ignoring unknown WAV chunk: ", "WavHeaderReader");
+                long j3 = b10.f14732b;
+                long j10 = 8 + j3;
+                if (j3 % 2 != 0) {
+                    j10 = 9 + j3;
+                }
+                if (j10 <= 2147483647L) {
+                    pVar.r((int) j10);
+                    b10 = d.b(pVar, vVar);
+                } else {
+                    throw s0.c("Chunk is too large (~2GB+) to skip; id: " + i11);
+                }
+            } else {
+                return b10;
             }
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return ((Float.valueOf(this.f9727a).hashCode() + 527) * 31) + this.f9728b;
-    }
-
-    public final String toString() {
-        return "smta: captureFrameRate=" + this.f9727a + ", svcTemporalLayerCount=" + this.f9728b;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeFloat(this.f9727a);
-        parcel.writeInt(this.f9728b);
-    }
-
-    public e(Parcel parcel) {
-        this.f9727a = parcel.readFloat();
-        this.f9728b = parcel.readInt();
-    }
-
-    @Override
-    public final void c(d1 d1Var) {
     }
 }

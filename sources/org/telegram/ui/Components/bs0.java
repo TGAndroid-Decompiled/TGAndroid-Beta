@@ -1,34 +1,34 @@
 package org.telegram.ui.Components;
 
 import android.os.Bundle;
-public final class bs0 extends org.telegram.ui.zn {
-    public boolean Nc;
-    public final int Oc;
-    public final yu0 Pc;
+public final class bs0 extends org.telegram.ui.co {
+    public boolean Qc;
+    public final int Rc;
+    public final xu0 Sc;
 
-    public bs0(yu0 yu0Var, Bundle bundle, int i10) {
+    public bs0(xu0 xu0Var, Bundle bundle, int i10) {
         super(bundle);
-        this.Pc = yu0Var;
-        this.Oc = i10;
-        this.Nc = true;
+        this.Sc = xu0Var;
+        this.Rc = i10;
+        this.Qc = true;
     }
 
     @Override
-    public final void onTransitionAnimationStart(boolean z4, boolean z10) {
-        yu0 yu0Var = this.Pc;
-        ju0 ju0Var = yu0Var.P;
-        if (this.Nc) {
-            if (this.f40588g0 != null) {
+    public final void onTransitionAnimationStart(boolean z10, boolean z11) {
+        xu0 xu0Var = this.Sc;
+        iu0 iu0Var = xu0Var.S;
+        if (this.Qc) {
+            if (this.f35298j0 != null) {
                 la("");
-                this.f40588g0.H(ju0Var.f26058w, false);
+                this.f35298j0.H(iu0Var.f27264w, false);
             }
-            org.telegram.ui.xk xkVar = this.l1;
-            if (xkVar != null) {
-                xkVar.e(ju0Var.f26059x, false);
+            org.telegram.ui.yk ykVar = this.f35359o1;
+            if (ykVar != null) {
+                ykVar.e(iu0Var.f27265x, false);
             }
-            yu0Var.f31155s1.getMediaDataController().portSavedSearchResults(getClassGuid(), ju0Var.f26059x, ju0Var.f26058w, ju0Var.f26055n, ju0Var.h, this.Oc, ju0Var.v, ju0Var.f26057s);
-            this.Nc = false;
+            xu0Var.f32726v1.getMediaDataController().portSavedSearchResults(getClassGuid(), iu0Var.f27265x, iu0Var.f27264w, iu0Var.f27261n, iu0Var.h, this.Rc, iu0Var.v, iu0Var.f27263s);
+            this.Qc = false;
         }
-        super.onTransitionAnimationStart(z4, z10);
+        super.onTransitionAnimationStart(z10, z11);
     }
 }

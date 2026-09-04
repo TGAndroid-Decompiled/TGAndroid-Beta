@@ -1,63 +1,98 @@
 package org.telegram.ui;
 
-import j$.util.function.Predicate$CC;
-import java.util.function.Predicate;
-import org.telegram.messenger.ChatObject;
+import android.view.KeyEvent;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class u8 implements Predicate {
-    public final int f38704a;
-    public final long f38705b;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_phone;
+public final class u8 implements RequestDelegate {
+    public final int f40966a;
+    public final int f40967b;
+    public final Object f40968c;
+    public final Object d;
+    public final Object f40969e;
+    public final Object f40970f;
+    public final Object f40971g;
+    public final Object h;
 
-    public u8(long j10, int i10) {
-        this.f38704a = i10;
-        this.f38705b = j10;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i10 = this.f38704a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f38704a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            case 1:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
-        }
-    }
-
-    public Predicate or(Predicate predicate) {
-        int i10 = this.f38704a;
-        return Predicate$CC.$default$or(this, predicate);
+    public u8(int i10, TLRPC.InputGroupCall inputGroupCall, String[] strArr, FrameLayout frameLayout, org.telegram.ui.Components.d90 d90Var, org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f40966a = 0;
+        this.f40967b = i10;
+        this.f40968c = inputGroupCall;
+        this.d = strArr;
+        this.f40969e = frameLayout;
+        this.f40970f = d90Var;
+        this.f40971g = f3Var;
+        this.h = f6Var;
     }
 
     @Override
-    public final boolean test(Object obj) {
-        switch (this.f38704a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i10 = this.f40966a;
+        Object obj = this.h;
+        Object obj2 = this.f40971g;
+        Object obj3 = this.f40970f;
+        Object obj4 = this.f40969e;
+        Object obj5 = this.d;
+        Object obj6 = this.f40968c;
+        switch (i10) {
             case 0:
-                if (((TLRPC.User) obj).f19306id == this.f38705b) {
-                    return true;
+                TLRPC.InputGroupCall inputGroupCall = (TLRPC.InputGroupCall) obj6;
+                String[] strArr = (String[]) obj5;
+                FrameLayout frameLayout = (FrameLayout) obj4;
+                org.telegram.ui.Components.d90 d90Var = (org.telegram.ui.Components.d90) obj3;
+                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) obj2;
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) obj;
+                boolean z10 = tLObject instanceof TLRPC.Updates;
+                int i11 = this.f40967b;
+                if (z10) {
+                    MessagesController.getInstance(i11).processUpdates((TLRPC.Updates) tLObject, false);
                 }
-                return false;
+                TL_phone.exportGroupCallInvite exportgroupcallinvite = new TL_phone.exportGroupCallInvite();
+                exportgroupcallinvite.call = inputGroupCall;
+                ConnectionsManager.getInstance(i11).sendRequest(exportgroupcallinvite, new di.kd(strArr, frameLayout, d90Var, f3Var, f6Var, 1));
+                return;
             case 1:
-                if (((TLRPC.User) obj).f19306id == this.f38705b) {
-                    return true;
+                ExternalActionActivity externalActionActivity = (ExternalActionActivity) obj6;
+                int[] iArr = (int[]) obj5;
+                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj4;
+                TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj3;
+                String str = (String) obj2;
+                String str2 = (String) obj;
+                ArrayList arrayList = ExternalActionActivity.f33395x;
+                TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
+                if (authorizationform != null) {
+                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                    int i12 = this.f40967b;
+                    iArr[0] = ConnectionsManager.getInstance(i12).sendRequest(getpassword, new u8(externalActionActivity, b2Var, i12, authorizationform, getauthorizationform, str, str2, 2));
+                    return;
                 }
-                return false;
+                AndroidUtilities.runOnUIThread(new yq(externalActionActivity, b2Var, tL_error, 5));
+                return;
+            case 2:
+                ArrayList arrayList2 = ExternalActionActivity.f33395x;
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.y5((ExternalActionActivity) obj6, (org.telegram.ui.ActionBar.b2) obj5, tLObject, this.f40967b, (TL_account.authorizationForm) obj4, (TL_account.getAuthorizationForm) obj3, (String) obj2, (String) obj));
+                return;
             default:
-                TLObject tLObject = (TLObject) obj;
-                if (tLObject instanceof TLRPC.User) {
-                    if (((TLRPC.User) tLObject).f19306id != this.f38705b) {
-                        return true;
-                    }
-                } else if (tLObject instanceof TLRPC.Chat) {
-                    return true ^ ChatObject.hasAdminRights((TLRPC.Chat) tLObject);
-                }
-                return false;
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb((fg0) obj6, tLObject, tL_error, (c5.k) obj5, this.f40967b, (c5.o) obj4, (TLRPC.TL_inputStorePaymentAuthCode) obj3, (String) obj2, (TLRPC.TL_payments_canPurchaseStore) obj));
+                return;
         }
+    }
+
+    public u8(KeyEvent.Callback callback, Object obj, int i10, Object obj2, TLObject tLObject, String str, Object obj3, int i11) {
+        this.f40966a = i11;
+        this.f40968c = callback;
+        this.d = obj;
+        this.f40967b = i10;
+        this.f40969e = obj2;
+        this.f40970f = tLObject;
+        this.f40971g = str;
+        this.h = obj3;
     }
 }

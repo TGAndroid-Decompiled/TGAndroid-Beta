@@ -1,40 +1,43 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.MotionEvent;
-public final class p2 extends m2.h {
-    public final u2 f36923t0;
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class p2 extends View {
+    public final q2 f39391a;
 
-    public p2(u2 u2Var, Context context) {
+    public p2(q2 q2Var, Context context) {
         super(context);
-        this.f36923t0 = u2Var;
+        this.f39391a = q2Var;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        int actionMasked = motionEvent.getActionMasked();
-        u2 u2Var = this.f36923t0;
-        if (actionMasked == 0) {
-            u2Var.f38671x.f36361c0.requestDisallowInterceptTouchEvent(true);
-        } else if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
-            u2Var.f38671x.f36361c0.requestDisallowInterceptTouchEvent(false);
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        q2 q2Var = this.f39391a;
+        if (q2Var.d == null) {
+            return;
         }
-        u2Var.f38671x.k();
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int actionMasked = motionEvent.getActionMasked();
-        u2 u2Var = this.f36923t0;
-        if (actionMasked == 0) {
-            u2Var.f38671x.f36361c0.requestDisallowInterceptTouchEvent(true);
+        int b10 = q2Var.f39672b.b();
+        int dp2 = AndroidUtilities.dp(4.0f) + org.telegram.messenger.w1.D(6.0f, b10 - 1, AndroidUtilities.dp(7.0f) * b10);
+        float f7 = q2Var.v + q2Var.f39678s;
+        if (dp2 < getMeasuredWidth()) {
+            dp = (getMeasuredWidth() - dp2) / 2.0f;
+        } else {
+            int dp3 = AndroidUtilities.dp(13.0f);
+            int measuredWidth = ((getMeasuredWidth() - AndroidUtilities.dp(8.0f)) / 2) / dp3;
+            dp = AndroidUtilities.dp(4.0f) - (Utilities.clamp(f7 - measuredWidth, Math.max(0, (b10 - (measuredWidth * 2)) - 1), 0.0f) * dp3);
         }
-        boolean onTouchEvent = super.onTouchEvent(motionEvent);
-        if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
-            return onTouchEvent;
+        canvas.save();
+        canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        for (int i10 = 0; i10 < q2Var.d.items.size(); i10++) {
+            float max = Math.max(0.0f, 1.0f - Math.abs(i10 - f7));
+            float dp4 = (AndroidUtilities.dp(1.0f) * max) + AndroidUtilities.dp(2.0f);
+            i4.B1.setAlpha((int) ((max * 95.0f) + 160.0f));
+            canvas.drawCircle(AndroidUtilities.dp(4.0f) + dp + (AndroidUtilities.dp(13.0f) * i10), getMeasuredHeight() / 2.0f, dp4, i4.B1);
         }
-        u2Var.f38671x.f36361c0.requestDisallowInterceptTouchEvent(false);
-        return onTouchEvent;
+        canvas.restore();
     }
 }

@@ -32,28 +32,28 @@ public class LanguageDetector {
         }
     }
 
-    public static void detectLanguage(String str, StringCallback stringCallback, ExceptionCallback exceptionCallback, boolean z4) {
-        if (z4) {
+    public static void detectLanguage(String str, StringCallback stringCallback, ExceptionCallback exceptionCallback, boolean z10) {
+        if (z10) {
             try {
                 Context context = ApplicationLoader.applicationContext;
-                synchronized (cb.h.f2242b) {
-                    cb.h.d(context, TaskExecutors.MAIN_THREAD);
+                synchronized (qb.g.f44278b) {
+                    qb.g.d(context, TaskExecutors.MAIN_THREAD);
                 }
-            } catch (IllegalStateException e) {
-                if (!z4) {
+            } catch (IllegalStateException e7) {
+                if (!z10) {
                     detectLanguage(str, stringCallback, exceptionCallback, true);
                     return;
                 }
                 if (exceptionCallback != null) {
-                    exceptionCallback.run(e);
+                    exceptionCallback.run(e7);
                 }
-                FileLog.e((Throwable) e, false);
+                FileLog.e((Throwable) e7, false);
                 return;
-            } catch (Exception e6) {
+            } catch (Exception e10) {
                 if (exceptionCallback != null) {
-                    exceptionCallback.run(e6);
+                    exceptionCallback.run(e10);
                 }
-                FileLog.e(e6);
+                FileLog.e(e10);
                 return;
             } catch (Throwable th2) {
                 if (exceptionCallback != null) {
@@ -63,6 +63,6 @@ public class LanguageDetector {
                 return;
             }
         }
-        j7.e7.a().g(str).addOnSuccessListener(new d0(stringCallback, 5)).addOnFailureListener(new d0(exceptionCallback, 6));
+        w7.g7.a().g(str).addOnSuccessListener(new c0(stringCallback, 5)).addOnFailureListener(new c0(exceptionCallback, 6));
     }
 }

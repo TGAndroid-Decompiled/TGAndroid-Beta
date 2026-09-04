@@ -1,16 +1,25 @@
 package y2;
+public final class g {
+    public final int f49505a;
+    public final int f49506b;
+    public final int f49507c;
+    public final int d;
 
-import vh.w2;
-public final class g implements u9.d {
-    public static final g f47101a = new Object();
-    public static final u9.c f47102b = new u9.c("startMs", w2.h(w2.g(x9.d.class, new x9.a(1))));
-    public static final u9.c f47103c = new u9.c("endMs", w2.h(w2.g(x9.d.class, new x9.a(2))));
+    public g(int i10, int i11, int i12, int i13) {
+        this.f49505a = i10;
+        this.f49506b = i11;
+        this.f49507c = i12;
+        this.d = i13;
+    }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        b3.g gVar = (b3.g) obj;
-        u9.e eVar = (u9.e) obj2;
-        eVar.b(f47102b, gVar.f1317a);
-        eVar.b(f47103c, gVar.f1318b);
+    public final boolean a(int i10) {
+        if (i10 == 1) {
+            if (this.f49505a - this.f49506b <= 1) {
+                return false;
+            }
+        } else if (this.f49507c - this.d <= 1) {
+            return false;
+        }
+        return true;
     }
 }

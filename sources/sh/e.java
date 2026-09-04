@@ -1,189 +1,114 @@
 package sh;
 
-import android.os.Bundle;
-import android.text.TextUtils;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import uf.r1;
-import uf.v0;
-import uf.x0;
-import uf.z0;
-public final class e extends org.telegram.ui.ActionBar.j {
-    public final int f44395a;
-    public final Object f44396b;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.pr;
+import org.telegram.ui.Components.sp;
+import yf.p;
+public final class e extends rh.e implements Drawable.Callback, le.d {
+    public final String f46399b;
+    public final Drawable d;
+    public final sp f46402f;
+    public rh.d h;
+    public TLRPC.WebPage f46403n;
+    public final le.b f46404r;
+    public final le.b f46405s;
+    public final a5.a f46400c = new a5.a((char) 0, 14);
+    public final Paint f46401e = new Paint(1);
 
-    public e(Object obj, int i10) {
-        this.f44395a = i10;
-        this.f44396b = obj;
+    public e(String str) {
+        sp spVar = new sp(-1);
+        this.f46402f = spVar;
+        pr prVar = pr.h;
+        this.f46404r = new le.b(0, this, prVar, 320L, false);
+        this.f46405s = new le.b(0, this, prVar, 320L, false);
+        this.f46399b = str;
+        this.f45617a.setRoundRadius(AndroidUtilities.dp(7.0f));
+        this.d = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.media_link_24).mutate();
+        spVar.setCallback(this);
+        spVar.b(j6.w0(null, j6.f20863o7, false));
+        spVar.f30382a = AndroidUtilities.dp(15.0f);
     }
 
     @Override
-    public final void b(int i10) {
-        switch (this.f44395a) {
-            case 0:
-                if (i10 == -1) {
-                    ((g) this.f44396b).finishFragment();
-                    return;
-                }
-                return;
-            case 1:
-                if (i10 == -1) {
-                    ((n) this.f44396b).finishFragment();
-                    return;
-                }
-                return;
-            case 2:
-                if (i10 == -1) {
-                    ((q) this.f44396b).finishFragment();
-                    return;
-                }
-                return;
-            case 3:
-                i0 i0Var = ((c0) this.f44396b).h;
-                if (i10 == -1) {
-                    if (i0Var.K) {
-                        i0Var.dismiss();
-                        return;
-                    }
-                    i0Var.v.d.V2.N(false);
-                    i0Var.d.D(0);
-                    return;
-                } else if (i10 == 3) {
-                    i0Var.f44417c.a(true, true);
-                    i0Var.setAllowNestedScroll(false);
-                    i0Var.P = null;
-                    i0Var.D.V2.N(true);
-                    i0Var.B.f24117r.getText().clear();
-                    i0Var.B.f24117r.requestFocus();
-                    AndroidUtilities.showKeyboard(i0Var.B.f24117r);
-                    return;
-                } else {
-                    return;
-                }
-            case 4:
-                i0 i0Var2 = ((d0) this.f44396b).f44394r;
-                if (i10 == 2) {
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("community_id", i0Var2.e);
-                    i0Var2.f44421s.presentFragment(new n(bundle));
-                    i0Var2.dismiss();
-                    return;
-                } else if (i10 == 3) {
-                    i0Var2.f44416b.a(true, true);
-                    i0Var2.setAllowNestedScroll(false);
-                    TextUtils.isEmpty(i0Var2.O);
-                    i0Var2.O = null;
-                    i0Var2.C.h(0L, i0Var2.e, 0L, 0L, null, false, null, true);
-                    i0Var2.f44424y.f24117r.getText().clear();
-                    i0Var2.f44424y.f24117r.requestFocus();
-                    AndroidUtilities.showKeyboard(i0Var2.f44424y.f24117r);
-                    return;
-                } else {
-                    return;
-                }
-            case 5:
-                i0 i0Var3 = ((h0) this.f44396b).h;
-                if (i10 == -1) {
-                    i0Var3.v.d.V2.N(false);
-                    i0Var3.d.D(0);
-                    return;
-                }
-                return;
-            case 6:
-                uf.c cVar = (uf.c) this.f44396b;
-                if (i10 == -1) {
-                    if (cVar.onBackPressed(true)) {
-                        cVar.finishFragment();
-                        return;
-                    }
-                    return;
-                } else if (i10 == 1) {
-                    cVar.X();
-                    return;
-                } else {
-                    return;
-                }
-            case 7:
-                uf.k kVar = (uf.k) this.f44396b;
-                if (i10 == -1) {
-                    if (kVar.onBackPressed(true)) {
-                        kVar.finishFragment();
-                        return;
-                    }
-                    return;
-                } else if (i10 == 1) {
-                    kVar.h0();
-                    return;
-                } else {
-                    return;
-                }
-            case 8:
-                uf.l0 l0Var = (uf.l0) this.f44396b;
-                if (i10 == -1) {
-                    if (l0Var.onBackPressed(true)) {
-                        l0Var.finishFragment();
-                        return;
-                    }
-                    return;
-                } else if (i10 == 1) {
-                    l0Var.a0();
-                    return;
-                } else {
-                    return;
-                }
-            case 9:
-                uf.n0 n0Var = (uf.n0) this.f44396b;
-                if (i10 == -1) {
-                    if (n0Var.onBackPressed(true)) {
-                        n0Var.finishFragment();
-                        return;
-                    }
-                    return;
-                } else if (i10 == 1) {
-                    n0Var.X();
-                    return;
-                } else {
-                    return;
-                }
-            case 10:
-                v0 v0Var = (v0) this.f44396b;
-                if (i10 == -1) {
-                    if (v0Var.onBackPressed(true)) {
-                        v0Var.finishFragment();
-                        return;
-                    }
-                    return;
-                } else if (i10 == 1) {
-                    v0Var.W();
-                    return;
-                } else {
-                    return;
-                }
-            case 11:
-                x0 x0Var = (x0) this.f44396b;
-                if (i10 == -1) {
-                    if (x0Var.onBackPressed(true)) {
-                        x0Var.finishFragment();
-                        return;
-                    }
-                    return;
-                } else if (i10 == 1) {
-                    x0Var.d0();
-                    return;
-                } else {
-                    return;
-                }
-            case 12:
-                if (i10 == -1) {
-                    ((z0) this.f44396b).finishFragment();
-                    return;
-                }
-                return;
-            default:
-                if (i10 == -1) {
-                    ((r1) this.f44396b).finishFragment();
-                    return;
-                }
-                return;
+    public final void E(int i10, float f7, float f10, le.e eVar) {
+        rh.d dVar = this.h;
+        if (dVar != null) {
+            dVar.invalidate();
         }
+    }
+
+    @Override
+    public final void a(View view) {
+        super.a(view);
+        this.h = (rh.d) view;
+    }
+
+    @Override
+    public final void b() {
+        super.b();
+        this.h = null;
+    }
+
+    @Override
+    public final void c(Canvas canvas, int i10, int i11) {
+        float f7 = i10;
+        float f10 = i11;
+        ImageReceiver imageReceiver = this.f45617a;
+        imageReceiver.setImageCoords(0.0f, 0.0f, f7, f10);
+        imageReceiver.draw(canvas);
+        sp spVar = this.f46402f;
+        spVar.setBounds(0, 0, i10, i11);
+        int w02 = j6.w0(null, j6.f20607a7, false);
+        le.b bVar = this.f46405s;
+        int d = i0.a.d(bVar.f15368e, w02, 1073741824);
+        Paint paint = this.f46401e;
+        paint.setColor(d);
+        canvas.drawRoundRect(0.0f, 0.0f, f7, f10, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), paint);
+        int d10 = i0.a.d(bVar.f15368e, j6.w0(null, j6.f20863o7, false), -1);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        a5.a aVar = this.f46400c;
+        aVar.getClass();
+        if (((PorterDuffColorFilter) aVar.f286c) == null || aVar.f285b != d10 || ((PorterDuff.Mode) aVar.d) != mode) {
+            aVar.f286c = new PorterDuffColorFilter(d10, mode);
+            aVar.f285b = d10;
+            aVar.d = mode;
+        }
+        Drawable drawable = this.d;
+        drawable.setColorFilter((PorterDuffColorFilter) aVar.f286c);
+        p.e(this.d, f7 / 2.0f, f10 / 2.0f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), 17);
+        le.b bVar2 = this.f46404r;
+        p.b(canvas, drawable, 1.0f - bVar2.f15368e);
+        p.b(canvas, spVar, bVar2.f15368e);
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        rh.d dVar = this.h;
+        if (dVar != null) {
+            dVar.invalidate();
+        }
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+    }
+
+    @Override
+    public final void z(float f7, int i10) {
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
     }
 }

@@ -1,22 +1,26 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class n60 extends eg.v0 {
-    public final o60 T0;
+import android.content.Context;
+public final class n60 extends org.telegram.ui.Components.voip.l {
+    public final p60 h;
 
-    public n60(o60 o60Var, o60 o60Var2, Activity activity, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(i10, i11, activity, o60Var2, f6Var);
-        this.T0 = o60Var;
+    public n60(p60 p60Var, Context context) {
+        super(context, true);
+        this.h = p60Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.T0.f36662y0 = false;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        p60 p60Var = this.h;
+        if (p60Var.f39414r && getParticipant() != null) {
+            p60Var.E(this, true);
+        }
     }
 
     @Override
-    public final void onOpenAnimationEnd() {
-        this.T0.f36662y0 = false;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.h.E(this, false);
     }
 }

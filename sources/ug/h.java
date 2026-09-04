@@ -1,16 +1,10 @@
 package ug;
 
-import android.graphics.RectF;
-import android.view.ViewGroup;
-public final class h {
-    public final ViewGroup f45592a;
-    public final g f45593b;
-    public final RectF f45594c = new RectF();
-    public boolean d;
-    public boolean e;
-
-    public h(ViewGroup viewGroup, g gVar) {
-        this.f45592a = viewGroup;
-        this.f45593b = gVar;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.vc0;
+public final class h extends vc0 {
+    @Override
+    public final CharSequence d(int i10) {
+        return LocaleController.formatPluralString("Hours", i10, new Object[0]);
     }
 }

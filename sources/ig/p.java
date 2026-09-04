@@ -1,31 +1,86 @@
 package ig;
 
-import android.content.Context;
-import eg.q2;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class p extends q2 {
-    public final s f7517n;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class p implements TextView.OnEditorActionListener {
+    public final int f12173a;
+    public final int f12174b;
+    public final org.telegram.ui.ActionBar.b2[] f12175c;
+    public final View d;
+    public final EditTextBoldCursor f12176e;
+    public final Object f12177f;
 
-    public p(s sVar, Context context) {
-        super(context);
-        this.f7517n = sVar;
+    public p(EditTextBoldCursor editTextBoldCursor, int i10, Object obj, org.telegram.ui.ActionBar.b2[] b2VarArr, View view, int i11) {
+        this.f12173a = i11;
+        this.f12176e = editTextBoldCursor;
+        this.f12174b = i10;
+        this.f12177f = obj;
+        this.f12175c = b2VarArr;
+        this.d = view;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f7517n.f7522b.setPaused(false);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f7517n.f7522b.setPaused(true);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        this.f5457a.f5417b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        switch (this.f12173a) {
+            case 0:
+                s sVar = (s) this.f12176e;
+                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.f12177f;
+                if (i10 != 6) {
+                    return false;
+                }
+                String obj = sVar.getText().toString();
+                if (obj.length() > 32) {
+                    AndroidUtilities.shakeView(sVar);
+                } else {
+                    y d = y.d(this.f12174b);
+                    TL_account.TL_businessChatLink c10 = d.c(tL_businessChatLink.link);
+                    if (c10 != null) {
+                        TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
+                        tL_inputBusinessChatLink.message = c10.message;
+                        tL_inputBusinessChatLink.entities = c10.entities;
+                        tL_inputBusinessChatLink.title = obj;
+                        d.b(c10, tL_inputBusinessChatLink, null);
+                    }
+                    org.telegram.ui.ActionBar.b2[] b2VarArr = this.f12175c;
+                    org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
+                    if (b2Var != null) {
+                        b2Var.dismiss();
+                    }
+                    if (b2VarArr[0] == v.d) {
+                        v.d = null;
+                    }
+                    View view = this.d;
+                    if (view != null) {
+                        view.requestFocus();
+                    }
+                }
+                return true;
+            default:
+                MessagesStorage.StringCallback stringCallback = (MessagesStorage.StringCallback) this.f12177f;
+                if (i10 != 6) {
+                    return false;
+                }
+                EditTextBoldCursor editTextBoldCursor = this.f12176e;
+                String obj2 = editTextBoldCursor.getText().toString();
+                if (obj2.length() > this.f12174b) {
+                    AndroidUtilities.shakeView(editTextBoldCursor);
+                } else {
+                    stringCallback.run(obj2);
+                    org.telegram.ui.ActionBar.b2 b2Var2 = this.f12175c[0];
+                    if (b2Var2 != null) {
+                        b2Var2.dismiss();
+                    }
+                    View view2 = this.d;
+                    if (view2 != null) {
+                        view2.requestFocus();
+                    }
+                }
+                return true;
+        }
     }
 }

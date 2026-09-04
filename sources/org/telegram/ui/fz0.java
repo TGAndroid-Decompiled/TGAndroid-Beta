@@ -1,43 +1,78 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.view.TextureView;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Stories.ProfileStoriesView;
-public final class fz0 extends ProfileStoriesView {
-    public final Context f34257q0;
-    public final ProfileActivity f34258r0;
+import org.telegram.ui.Components.UndoView;
+public final class fz0 implements org.telegram.ui.ActionBar.s0, kv0, org.telegram.ui.Components.p8 {
+    public final ProfileActivity f36513a;
 
-    public fz0(ProfileActivity profileActivity, Context context, int i10, long j10, boolean z4, n0 n0Var, cz0 cz0Var, org.telegram.ui.ActionBar.f6 f6Var, Context context2) {
-        super(context, i10, j10, z4, n0Var, cz0Var, f6Var);
-        this.f34258r0 = profileActivity;
-        this.f34257q0 = context2;
+    public fz0(ProfileActivity profileActivity) {
+        this.f36513a = profileActivity;
     }
 
     @Override
-    public final void e(bb.b bVar) {
-        TL_stories.PeerStories peerStories;
-        TL_stories.PeerStories peerStories2;
-        ProfileActivity profileActivity = this.f34258r0;
-        long a2 = profileActivity.a();
-        nh.t6 storiesController = profileActivity.getMessagesController().getStoriesController();
-        boolean I = storiesController.I(a2);
-        Context context = this.f34257q0;
-        if (!I && !storiesController.K(a2) && !storiesController.N(a2)) {
-            TLRPC.UserFull userFull = profileActivity.f32132s2;
-            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f32011b1 != profileActivity.getUserConfig().clientUserId) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f32132s2.stories, bVar);
-                return;
-            }
-            TLRPC.ChatFull chatFull = profileActivity.f32124r2;
-            if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f32124r2.stories, bVar);
-                return;
-            } else {
-                profileActivity.K3();
-                return;
-            }
+    public void E0(MessageObject messageObject) {
+        ProfileActivity profileActivity = this.f36513a;
+        profileActivity.f33856a.I0(true);
+        m01 m01Var = profileActivity.O;
+        if (m01Var != null && m01Var.getCurrentListView() != null) {
+            profileActivity.O.getCurrentListView().I0(true);
         }
-        profileActivity.getOrCreateStoryViewer().D(context, a2, bVar);
+        profileActivity.f33880d1.setBackgroundColor(i0.a.d(0.1f, profileActivity.P3(profileActivity.V4.f39330f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20607a7, profileActivity.f34031z0)));
+    }
+
+    @Override
+    public void H(MessageObject messageObject) {
+        org.telegram.ui.Components.fh0 fh0Var = this.f36513a.m0;
+        if (fh0Var != null && fh0Var.f26045a) {
+            fh0Var.O.d(0.0f, true);
+            fh0Var.invalidate();
+        }
+    }
+
+    @Override
+    public void Y0(int i10, int i11) {
+        int i12;
+        ProfileActivity profileActivity = this.f36513a;
+        long a2 = profileActivity.a();
+        profileActivity.getMessagesController().setDialogHistoryTTL(a2, i10);
+        if (profileActivity.f34006v2 == null && profileActivity.f33999u2 == null) {
+            return;
+        }
+        UndoView undoView = profileActivity.M;
+        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(a2));
+        TLRPC.UserFull userFull = profileActivity.f34006v2;
+        if (userFull != null) {
+            i12 = userFull.ttl_period;
+        } else {
+            i12 = profileActivity.f33999u2.ttl_period;
+        }
+        undoView.k(a2, i11, user, Integer.valueOf(i12), null, null);
+    }
+
+    @Override
+    public void dismiss() {
+        this.f36513a.T0.M(null, null);
+    }
+
+    @Override
+    public void e() {
+        org.telegram.ui.Components.am0.d(new b5(this.f36513a, 18));
+    }
+
+    @Override
+    public TextureView i0() {
+        return null;
+    }
+
+    @Override
+    public void l1() {
+        this.f36513a.presentFragment(new q4());
+        dismiss();
+    }
+
+    @Override
+    public void d() {
     }
 }

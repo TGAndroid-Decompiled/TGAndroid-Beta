@@ -1,18 +1,13 @@
 package org.telegram.ui;
-public final class sc1 extends jd1 {
-    public final zn f38151h2;
-    public final boolean f38152i2;
+public final class sc1 extends s4.j {
+    public final wd1 F;
 
-    public sc1(Object obj, zn znVar, boolean z4) {
-        super(obj, null, true);
-        this.f38151h2 = znVar;
-        this.f38152i2 = z4;
+    public sc1(wd1 wd1Var) {
+        this.F = wd1Var;
     }
 
     @Override
-    public final void onFragmentClosed() {
-        super.onFragmentClosed();
-        xn xnVar = this.f38151h2.f40534ba;
-        xnVar.i(xnVar.f40028f, xnVar.h, false, Boolean.valueOf(this.f38152i2), false);
+    public final void P(s4.c1 c1Var) {
+        this.F.f41969u0.e1();
     }
 }

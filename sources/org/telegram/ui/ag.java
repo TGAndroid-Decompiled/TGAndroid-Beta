@@ -1,112 +1,75 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.os.SystemClock;
-import android.view.View;
-import j$.util.Objects;
-public final class ag implements og.a {
-    public final int f32580a;
-    public final rm f32581b;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class ag implements org.telegram.ui.Components.oj0, org.telegram.ui.ActionBar.a2 {
+    public final int f34421a;
+    public final co f34422b;
+    public final MessageObject f34423c;
 
-    public ag(rm rmVar, int i10) {
-        this.f32580a = i10;
-        this.f32581b = rmVar;
+    public ag(co coVar, MessageObject messageObject, int i10) {
+        this.f34421a = i10;
+        this.f34422b = coVar;
+        this.f34423c = messageObject;
     }
 
     @Override
-    public final void e(Canvas canvas, RectF rectF) {
-        rm rmVar;
-        switch (this.f32580a) {
+    public void a(long j3, TLRPC.MessagePeerReaction messagePeerReaction) {
+        switch (this.f34421a) {
             case 0:
-                rm rmVar2 = this.f32581b;
-                zn znVar = rmVar2.G0;
-                zn znVar2 = znVar.f40520aa;
-                if (znVar2 != null) {
-                    rmVar = znVar2.U0;
+                Bundle bundle = new Bundle();
+                if (j3 > 0) {
+                    bundle.putLong("user_id", j3);
                 } else {
-                    rmVar = znVar.U0;
+                    bundle.putLong("chat_id", -j3);
                 }
-                rm rmVar3 = rmVar;
-                float f10 = znVar.f40784vc.e;
-                int i10 = (int) ((1.0f - f10) * 255.0f);
-                int i11 = (int) (255.0f * f10);
-                if (f10 > 0.0f) {
-                    canvas.drawColor(org.telegram.ui.ActionBar.j6.l1(f10 * 0.85f, znVar.getThemedColor(org.telegram.ui.ActionBar.j6.f19881d6)));
+                co coVar = this.f34422b;
+                if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
+                    bundle.putInt("report_reaction_message_id", this.f34423c.getId());
+                    bundle.putLong("report_reaction_from_dialog_id", coVar.T5);
                 }
-                tg.c.a(new ag(rmVar2, 1), canvas, rectF, znVar.f40759u0, rmVar3, i10);
-                lh.e1 e1Var = znVar.I3;
-                if (e1Var != null) {
-                    tg.c.a(e1Var, canvas, rectF, e1Var, rmVar3, i11);
-                }
-                gk gkVar = znVar.f40675n1;
-                if (gkVar != null && gkVar.getVisibility() == 0) {
-                    int childCount = znVar.f40675n1.getChildCount();
-                    for (int i12 = 0; i12 < childCount; i12++) {
-                        View childAt = znVar.f40675n1.getChildAt(i12);
-                        if ((childAt instanceof bo) && childAt.getVisibility() == 0) {
-                            bo boVar = (bo) childAt;
-                            ao aoVar = boVar.f32924a;
-                            rm rmVar4 = aoVar.U0;
-                            Objects.requireNonNull(rmVar4);
-                            tg.c.b(new ag(rmVar4, 0), canvas, rectF, aoVar.U0, boVar);
-                        }
-                    }
-                    return;
-                }
+                coVar.presentFragment(new ProfileActivity(bundle, null));
+                coVar.A7(true);
                 return;
             default:
-                long uptimeMillis = SystemClock.uptimeMillis();
-                zn znVar3 = this.f32581b.G0;
-                if (znVar3.f40759u0.Y0()) {
-                    znVar3.f40759u0.e(canvas, rectF);
-                    return;
+                co coVar2 = this.f34422b;
+                coVar2.getClass();
+                Bundle bundle2 = new Bundle();
+                if (j3 > 0) {
+                    bundle2.putLong("user_id", j3);
+                } else {
+                    bundle2.putLong("chat_id", -j3);
                 }
-                znVar3.f40759u0.v1(canvas, rectF);
-                for (int i13 = 0; i13 < znVar3.f40759u0.getChildCount(); i13++) {
-                    View childAt2 = znVar3.f40759u0.getChildAt(i13);
-                    if (!zn.d2(znVar3, childAt2, rectF)) {
-                        if (childAt2 instanceof org.telegram.ui.Cells.s1) {
-                            canvas.save();
-                            canvas.translate(childAt2.getX(), childAt2.getY());
-                            org.telegram.ui.Cells.s1 s1Var = (org.telegram.ui.Cells.s1) childAt2;
-                            if (s1Var.C1()) {
-                                canvas.save();
-                                canvas.translate(0.0f, s1Var.S);
-                                s1Var.D1(canvas, true, false);
-                                canvas.restore();
-                            }
-                            canvas.restore();
-                            znVar3.f40759u0.drawChild(canvas, childAt2, uptimeMillis);
-                            if (s1Var.U2()) {
-                                canvas.save();
-                                canvas.translate(s1Var.getX(), s1Var.getY());
-                                s1Var.X1(canvas);
-                                canvas.restore();
-                            }
-                        } else if (childAt2 instanceof org.telegram.ui.Cells.v0) {
-                            znVar3.f40759u0.drawChild(canvas, childAt2, uptimeMillis);
-                            canvas.save();
-                            canvas.translate(childAt2.getX(), childAt2.getY());
-                            ((org.telegram.ui.Cells.v0) childAt2).A(canvas);
-                            canvas.restore();
-                        } else {
-                            znVar3.f40759u0.drawChild(canvas, childAt2, uptimeMillis);
-                        }
-                    }
+                if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
+                    bundle2.putInt("report_reaction_message_id", this.f34423c.getId());
+                    bundle2.putLong("report_reaction_from_dialog_id", coVar2.T5);
                 }
-                znVar3.f40759u0.w1(canvas, rectF);
+                coVar2.presentFragment(new ProfileActivity(bundle2, null));
+                coVar2.A7(true);
                 return;
         }
     }
 
     @Override
-    public final void g(g.x xVar, RectF rectF) {
-        switch (this.f32580a) {
-            case 0:
-            default:
-                xVar.f6327b = true;
-                return;
-        }
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        co coVar = this.f34422b;
+        org.telegram.ui.ActionBar.b2[] b2VarArr = {new org.telegram.ui.ActionBar.b2(coVar.getParentActivity(), 3, coVar.f35247ea)};
+        TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
+        MessageObject messageObject = this.f34423c;
+        TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
+        TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
+        tL_inputMediaPoll.poll = tL_poll;
+        TLRPC.Poll poll = ((TLRPC.TL_messageMediaPoll) messageObject.messageOwner.media).poll;
+        tL_poll.f19895id = poll.f19895id;
+        tL_poll.question = poll.question;
+        tL_poll.answers = poll.answers;
+        tL_poll.closed = true;
+        tL_messages_editMessage.media = tL_inputMediaPoll;
+        tL_messages_editMessage.peer = coVar.getMessagesController().getInputPeer(coVar.T5);
+        tL_messages_editMessage.f19952id = messageObject.getId();
+        tL_messages_editMessage.flags |= 16384;
+        AndroidUtilities.runOnUIThread(new wg(coVar, b2VarArr, coVar.getConnectionsManager().sendRequest(tL_messages_editMessage, new aa(coVar, b2VarArr, tL_messages_editMessage, 5)), 2), 500L);
     }
 }

@@ -1,85 +1,62 @@
 package j4;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import h5.d0;
-import java.util.Arrays;
-public final class c extends j {
-    public static final Parcelable.Creator<c> CREATOR = new f8.o(14);
-    public final String f8891b;
-    public final int f8892c;
-    public final int d;
-    public final long e;
-    public final long f8893f;
-    public final j[] h;
+import e9.a1;
+import e9.i0;
+import java.util.List;
+public final class c implements c3.o {
+    public final b f13233a = new b(0, 1, null, "audio/ac4");
+    public final e2.v f13234b = new e2.v(16384);
+    public boolean f13235c;
 
-    public c(String str, int i10, int i11, long j10, long j11, j[] jVarArr) {
-        super("CHAP");
-        this.f8891b = str;
-        this.f8892c = i10;
-        this.d = i11;
-        this.e = j10;
-        this.f8893f = j11;
-        this.h = jVarArr;
+    @Override
+    public final boolean b(c3.p r15) {
+        throw new UnsupportedOperationException("Method not decompiled: j4.c.b(c3.p):boolean");
     }
 
     @Override
-    public final int describeContents() {
+    public final void g(c3.q qVar) {
+        this.f13233a.e(qVar, new f0(0, 1));
+        qVar.Z0();
+        qVar.P1(new c3.t(-9223372036854775807L));
+    }
+
+    @Override
+    public final void h(long j3, long j10) {
+        this.f13235c = false;
+        this.f13233a.d();
+    }
+
+    @Override
+    public final List i() {
+        e9.g0 g0Var = i0.f8957b;
+        return a1.f8920e;
+    }
+
+    @Override
+    public final int m(c3.p pVar, c3.s sVar) {
+        e2.v vVar = this.f13234b;
+        int read = pVar.read(vVar.f8789a, 0, 16384);
+        if (read == -1) {
+            return -1;
+        }
+        vVar.J(0);
+        vVar.I(read);
+        boolean z10 = this.f13235c;
+        b bVar = this.f13233a;
+        if (!z10) {
+            bVar.f13227o = 0L;
+            this.f13235c = true;
+        }
+        bVar.b(vVar);
         return 0;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && c.class == obj.getClass()) {
-            c cVar = (c) obj;
-            if (this.f8892c == cVar.f8892c && this.d == cVar.d && this.e == cVar.e && this.f8893f == cVar.f8893f && d0.a(this.f8891b, cVar.f8891b) && Arrays.equals(this.h, cVar.h)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        int i10;
-        int i11 = (((((((527 + this.f8892c) * 31) + this.d) * 31) + ((int) this.e)) * 31) + ((int) this.f8893f)) * 31;
-        String str = this.f8891b;
-        if (str != null) {
-            i10 = str.hashCode();
-        } else {
-            i10 = 0;
-        }
-        return i11 + i10;
+    @Override
+    public final c3.o c() {
+        return this;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f8891b);
-        parcel.writeInt(this.f8892c);
-        parcel.writeInt(this.d);
-        parcel.writeLong(this.e);
-        parcel.writeLong(this.f8893f);
-        j[] jVarArr = this.h;
-        parcel.writeInt(jVarArr.length);
-        for (j jVar : jVarArr) {
-            parcel.writeParcelable(jVar, 0);
-        }
-    }
-
-    public c(Parcel parcel) {
-        super("CHAP");
-        String readString = parcel.readString();
-        int i10 = d0.f6924a;
-        this.f8891b = readString;
-        this.f8892c = parcel.readInt();
-        this.d = parcel.readInt();
-        this.e = parcel.readLong();
-        this.f8893f = parcel.readLong();
-        int readInt = parcel.readInt();
-        this.h = new j[readInt];
-        for (int i11 = 0; i11 < readInt; i11++) {
-            this.h[i11] = (j) parcel.readParcelable(j.class.getClassLoader());
-        }
+    public final void release() {
     }
 }

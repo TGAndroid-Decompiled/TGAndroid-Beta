@@ -1,57 +1,45 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.Typeface;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class lc implements Utilities.Callback {
-    public final int f26641a = 0;
-    public final long f26642b;
-    public final int f26643c;
-    public final Object d;
+public final class lc extends nb {
+    public final x9 f28132a;
+    public final d90 f28133b;
+    public final d90 f28134c;
 
-    public lc(int i10, ic icVar, long j10) {
-        this.f26643c = i10;
-        this.d = icVar;
-        this.f26642b = j10;
+    public lc(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+        int i10 = org.telegram.ui.ActionBar.j6.Hi;
+        getThemedColor(i10);
+        setBackground(getThemedColor(org.telegram.ui.ActionBar.j6.Fi));
+        x9 x9Var = new x9(context);
+        this.f28132a = x9Var;
+        addView(x9Var, w7.x5.i(32.0f, 32.0f, 8388627, 12.0f, 0.0f, 12.0f, 0.0f));
+        int themedColor = getThemedColor(i10);
+        int themedColor2 = getThemedColor(org.telegram.ui.ActionBar.j6.Gi);
+        LinearLayout f7 = org.telegram.messenger.wl.f(context, 1);
+        addView(f7, w7.x5.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
+        d90 d90Var = new d90(context, null);
+        this.f28133b = d90Var;
+        d90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        d90Var.setTextColor(themedColor);
+        d90Var.setTextSize(1, 14.0f);
+        d90Var.setTypeface(AndroidUtilities.bold());
+        f7.addView(d90Var);
+        d90 d90Var2 = new d90(context, null);
+        this.f28134c = d90Var2;
+        d90Var2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        d90Var2.setTextColor(themedColor);
+        d90Var2.setLinkTextColor(themedColor2);
+        d90Var2.setTypeface(Typeface.SANS_SERIF);
+        d90Var2.setTextSize(1, 13.0f);
+        f7.addView(d90Var2);
     }
 
     @Override
-    public final void run(Object obj) {
-        Object string;
-        TLRPC.StickerSet stickerSet;
-        int i10 = this.f26641a;
-        int i11 = this.f26643c;
-        long j10 = this.f26642b;
-        Object obj2 = this.d;
-        switch (i10) {
-            case 0:
-                ic icVar = (ic) obj2;
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null) {
-                    if (i11 == 1) {
-                        string = AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, stickerSet.title));
-                    } else if (i11 == 2) {
-                        string = AndroidUtilities.replaceTags(LocaleController.formatString("StoryContainsEmojiPackSingle", R.string.StoryContainsEmojiPackSingle, stickerSet.title));
-                    } else {
-                        string = AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, stickerSet.title));
-                    }
-                } else {
-                    string = LocaleController.getString(R.string.AddEmojiNotFound);
-                }
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.np(10, icVar, string), Math.max(1L, 750 - (System.currentTimeMillis() - j10)));
-                return;
-            default:
-                ((yu0) obj2).getStoriesController().b(i11, j10, (ArrayList) obj);
-                return;
-        }
-    }
-
-    public lc(yu0 yu0Var, long j10, int i10) {
-        this.d = yu0Var;
-        this.f26642b = j10;
-        this.f26643c = i10;
+    public CharSequence getAccessibilityText() {
+        return ((Object) this.f28133b.getText()) + ".\n" + ((Object) this.f28134c.getText());
     }
 }

@@ -1,18 +1,27 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-public final class hg0 implements Utilities.Callback3 {
-    public final int f34669a;
-    public final NotificationCenter.NotificationCenterDelegate f34670b;
+import android.view.View;
+public final class hg0 implements View.OnClickListener {
+    public final int f36995a = 0;
+    public final kg0 f36996b;
 
-    public hg0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f34669a = i10;
-        this.f34670b = notificationCenterDelegate;
+    public hg0(kg0 kg0Var) {
+        this.f36996b = kg0Var;
     }
 
     @Override
-    public final void run(java.lang.Object r18, java.lang.Object r19, java.lang.Object r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hg0.run(java.lang.Object, java.lang.Object, java.lang.Object):void");
+    public final void onClick(View view) {
+        switch (this.f36995a) {
+            case 0:
+                this.f36996b.a();
+                return;
+            default:
+                this.f36996b.a();
+                return;
+        }
+    }
+
+    public hg0(kg0 kg0Var, ug0 ug0Var) {
+        this.f36996b = kg0Var;
     }
 }

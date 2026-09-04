@@ -1,88 +1,105 @@
 package yf;
 
-import android.view.ViewTreeObserver;
-import org.telegram.messenger.MediaController;
-import org.telegram.ui.Components.Crop.CropAreaView;
-public final class j implements ViewTreeObserver.OnPreDrawListener {
-    public final MediaController.CropState f47295a;
-    public final int f47296b;
-    public final int f47297c;
-    public final n d;
+import android.text.Editable;
+import android.text.Html;
+import java.util.ArrayDeque;
+import org.xml.sax.Attributes;
+import org.xml.sax.ContentHandler;
+import org.xml.sax.Locator;
+import org.xml.sax.XMLReader;
+public final class j implements Html.TagHandler, ContentHandler {
+    public final t7.u f50109a;
+    public ContentHandler f50110b;
+    public Editable f50111c;
+    public final ArrayDeque d = new ArrayDeque();
 
-    public j(n nVar, MediaController.CropState cropState, int i10, int i11) {
-        this.d = nVar;
-        this.f47295a = cropState;
-        this.f47296b = i10;
-        this.f47297c = i11;
+    public j(t7.u uVar) {
+        this.f50109a = uVar;
+    }
+
+    public static String a(String str, Attributes attributes) {
+        int length = attributes.getLength();
+        for (int i10 = 0; i10 < length; i10++) {
+            if (str.equals(attributes.getLocalName(i10))) {
+                return attributes.getValue(i10);
+            }
+        }
+        return null;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        float f10;
-        float f11;
-        boolean z4;
-        n nVar = this.d;
-        nVar.l(false);
-        CropAreaView cropAreaView = nVar.f47310a;
-        MediaController.CropState cropState = this.f47295a;
-        if (cropState != null) {
-            float f12 = cropState.lockedAspectRatio;
-            if (f12 > 1.0E-4f) {
-                cropAreaView.setLockedAspectRatio(f12);
-                m mVar = nVar.J;
-                if (mVar != null) {
-                    mVar.M0(true);
-                }
-            }
-            nVar.setFreeform(cropState.freeform);
-            float aspectRatio = cropAreaView.getAspectRatio();
-            int i10 = cropState.transformRotation;
-            int i11 = this.f47296b;
-            int i12 = this.f47297c;
-            if (i10 != 90 && i10 != 270) {
-                l lVar = nVar.I;
-                f10 = lVar.f47301a;
-                f11 = lVar.f47302b;
-                i12 = i11;
-                i11 = i12;
-            } else {
-                aspectRatio = 1.0f / aspectRatio;
-                l lVar2 = nVar.I;
-                f10 = lVar2.f47302b;
-                f11 = lVar2.f47301a;
-            }
-            if (nVar.f47318x && cropAreaView.getLockAspectRatio() > 0.0f) {
-                cropAreaView.setLockedAspectRatio(1.0f / cropAreaView.getLockAspectRatio());
-                cropAreaView.setActualRect(cropAreaView.getLockAspectRatio());
-            } else {
-                int currentWidth = nVar.getCurrentWidth();
-                int currentHeight = nVar.getCurrentHeight();
-                if ((i10 + nVar.I.f47305g) % 180.0f != 0.0f) {
-                    z4 = true;
-                } else {
-                    z4 = false;
-                }
-                cropAreaView.e(currentWidth, currentHeight, z4, nVar.f47318x);
-            }
-            l.d(nVar.I, i10);
-            cropAreaView.setActualRect((aspectRatio * cropState.cropPw) / cropState.cropPh);
-            l lVar3 = nVar.I;
-            lVar3.f47307j = cropState.mirrored;
-            l.e(lVar3, cropState.cropRotate);
-            l lVar4 = nVar.I;
-            float f13 = cropState.cropPx * i11;
-            float f14 = lVar4.f47304f;
-            l.f(lVar4, f13 * f14, cropState.cropPy * i12 * f14);
-            float max = Math.max(cropAreaView.getCropWidth() / f10, cropAreaView.getCropHeight() / f11);
-            l lVar5 = nVar.I;
-            l.g(lVar5, cropState.cropScale * (max / lVar5.f47304f), 0.0f, 0.0f);
-            nVar.r(false);
-            m mVar2 = nVar.J;
-            if (mVar2 != null) {
-                mVar2.G1(false);
-            }
+    public final void characters(char[] cArr, int i10, int i11) {
+        this.f50110b.characters(cArr, i10, i11);
+    }
+
+    @Override
+    public final void endDocument() {
+        this.f50110b.endDocument();
+    }
+
+    @Override
+    public final void endElement(String str, String str2, String str3) {
+        if (!((Boolean) this.d.removeLast()).booleanValue()) {
+            this.f50110b.endElement(str, str2, str3);
         }
-        cropAreaView.getViewTreeObserver().removeOnPreDrawListener(this);
-        return false;
+        Editable editable = this.f50111c;
+        this.f50109a.getClass();
+        t7.u.w3(false, str2, editable, null);
+    }
+
+    @Override
+    public final void endPrefixMapping(String str) {
+        this.f50110b.endPrefixMapping(str);
+    }
+
+    @Override
+    public final void handleTag(boolean z10, String str, Editable editable, XMLReader xMLReader) {
+        if (this.f50110b == null) {
+            this.f50111c = editable;
+            this.f50110b = xMLReader.getContentHandler();
+            xMLReader.setContentHandler(this);
+            this.d.addLast(Boolean.FALSE);
+        }
+    }
+
+    @Override
+    public final void ignorableWhitespace(char[] cArr, int i10, int i11) {
+        this.f50110b.ignorableWhitespace(cArr, i10, i11);
+    }
+
+    @Override
+    public final void processingInstruction(String str, String str2) {
+        this.f50110b.processingInstruction(str, str2);
+    }
+
+    @Override
+    public final void setDocumentLocator(Locator locator) {
+        this.f50110b.setDocumentLocator(locator);
+    }
+
+    @Override
+    public final void skippedEntity(String str) {
+        this.f50110b.skippedEntity(str);
+    }
+
+    @Override
+    public final void startDocument() {
+        this.f50110b.startDocument();
+    }
+
+    @Override
+    public final void startElement(String str, String str2, String str3, Attributes attributes) {
+        Editable editable = this.f50111c;
+        this.f50109a.getClass();
+        boolean w32 = t7.u.w3(true, str2, editable, attributes);
+        this.d.addLast(Boolean.valueOf(w32));
+        if (!w32) {
+            this.f50110b.startElement(str, str2, str3, attributes);
+        }
+    }
+
+    @Override
+    public final void startPrefixMapping(String str, String str2) {
+        this.f50110b.startPrefixMapping(str, str2);
     }
 }

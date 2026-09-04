@@ -1,29 +1,31 @@
 package org.telegram.messenger;
+public final class m7 implements Runnable {
+    public final int f18341a;
+    public final MediaDataController f18342b;
+    public final long f18343c;
+    public final long d;
+    public final int[] f18344e;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-public final class m7 implements Comparator {
-    public final int f17804a;
-    public final ArrayList f17805b;
-
-    public m7(ArrayList arrayList, int i10) {
-        this.f17804a = i10;
-        this.f17805b = arrayList;
+    public m7(MediaDataController mediaDataController, long j3, long j10, int[] iArr, int i10) {
+        this.f18341a = i10;
+        this.f18342b = mediaDataController;
+        this.f18343c = j3;
+        this.d = j10;
+        this.f18344e = iArr;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$getEmojiSuggestions$220;
-        int lambda$reorderStickers$54;
-        switch (this.f17804a) {
+    public final void run() {
+        switch (this.f18341a) {
             case 0:
-                lambda$getEmojiSuggestions$220 = MediaDataController.lambda$getEmojiSuggestions$220(this.f17805b, (MediaDataController.KeywordResult) obj, (MediaDataController.KeywordResult) obj2);
-                return lambda$getEmojiSuggestions$220;
+                this.f18342b.lambda$getMediaCounts$128(this.f18343c, this.d, this.f18344e);
+                return;
+            case 1:
+                this.f18342b.lambda$getMediaCounts$127(this.f18343c, this.d, this.f18344e);
+                return;
             default:
-                lambda$reorderStickers$54 = MediaDataController.lambda$reorderStickers$54(this.f17805b, (TLRPC.TL_messages_stickerSet) obj, (TLRPC.TL_messages_stickerSet) obj2);
-                return lambda$reorderStickers$54;
+                this.f18342b.lambda$getMediaCounts$130(this.f18343c, this.d, this.f18344e);
+                return;
         }
     }
 }

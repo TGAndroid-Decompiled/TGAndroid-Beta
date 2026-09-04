@@ -32,12 +32,12 @@ public class AutoDeleteMediaTask {
     }
 
     public static int lambda$run$0(FileInfoInternal fileInfoInternal, FileInfoInternal fileInfoInternal2) {
-        long j10 = fileInfoInternal2.lastUsageDate;
-        long j11 = fileInfoInternal.lastUsageDate;
-        if (j10 > j11) {
+        long j3 = fileInfoInternal2.lastUsageDate;
+        long j10 = fileInfoInternal.lastUsageDate;
+        if (j3 > j10) {
             return -1;
         }
-        if (j10 < j11) {
+        if (j3 < j10) {
             return 1;
         }
         return 0;
@@ -60,7 +60,7 @@ public class AutoDeleteMediaTask {
             return;
         }
         SharedConfig.lastKeepMediaCheckTime = currentTimeMillis;
-        Utilities.cacheClearQueue.postRunnable(new s6(currentTimeMillis, FileLoader.checkDirectory(4), 4));
+        Utilities.cacheClearQueue.postRunnable(new o6(currentTimeMillis, FileLoader.checkDirectory(4), 4));
     }
 
     public static void unlockFile(File file) {

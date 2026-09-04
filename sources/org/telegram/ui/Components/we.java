@@ -1,18 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewTreeObserver;
-public final class we implements ViewTreeObserver.OnDrawListener {
-    public final fv0 f30233a;
-    public final xo0 f30234b;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class we extends bh {
+    public final Rect f32248x;
+    public final ChatActivityEnterView f32249y;
 
-    public we(fv0 fv0Var, xo0 xo0Var) {
-        this.f30233a = fv0Var;
-        this.f30234b = xo0Var;
+    public we(ChatActivityEnterView chatActivityEnterView, Activity activity) {
+        super(activity, 24);
+        this.f32249y = chatActivityEnterView;
+        this.f32248x = new Rect();
     }
 
     @Override
-    public final void onDraw() {
-        fv0 fv0Var = this.f30233a;
-        fv0Var.post(new lh.p6(this, fv0Var, this.f30234b, 25));
+    public final void draw(Canvas canvas) {
+        Drawable drawable;
+        ChatActivityEnterView chatActivityEnterView = this.f32249y;
+        if (chatActivityEnterView.f23664a1) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            Rect rect = this.f32248x;
+            rect.set(0, 0, measuredWidth, measuredHeight);
+            rect.inset(AndroidUtilities.dp(7.5f), AndroidUtilities.dp(7.5f));
+            if (getCurrentState() == zg.f33150b) {
+                drawable = chatActivityEnterView.N3;
+            } else {
+                drawable = chatActivityEnterView.M3;
+            }
+            drawable.setBounds(rect);
+            drawable.draw(canvas);
+            return;
+        }
+        super.draw(canvas);
     }
 }

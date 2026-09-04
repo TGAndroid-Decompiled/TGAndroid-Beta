@@ -19,8 +19,8 @@ public class SendMessageChatArguments {
             this.quickReplyShortcutId = i10;
         }
 
-        public void setWelcomeMessageChatId(long j10) {
-            this.welcomeMessageChatId = j10;
+        public void setWelcomeMessageChatId(long j3) {
+            this.welcomeMessageChatId = j3;
         }
     }
 

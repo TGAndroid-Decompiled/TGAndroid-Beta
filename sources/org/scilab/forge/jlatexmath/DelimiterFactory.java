@@ -2,9 +2,9 @@ package org.scilab.forge.jlatexmath;
 public class DelimiterFactory {
     private static final float MAX_LENGTH = 4096.0f;
 
-    public static Box create(String str, TeXEnvironment teXEnvironment, float f10) {
-        float f11;
-        float min = Math.min((Float.isInfinite(f10) || Float.isNaN(f10) || f10 < 0.0f) ? 0.0f : 0.0f, 4096.0f);
+    public static Box create(String str, TeXEnvironment teXEnvironment, float f7) {
+        float f10;
+        float min = Math.min((Float.isInfinite(f7) || Float.isNaN(f7) || f7 < 0.0f) ? 0.0f : 0.0f, 4096.0f);
         TeXFont teXFont = teXEnvironment.getTeXFont();
         int style = teXEnvironment.getStyle();
         Char r42 = teXFont.getChar(str, style);
@@ -12,8 +12,8 @@ public class DelimiterFactory {
         float height = metrics.getHeight();
         float depth = metrics.getDepth();
         while (true) {
-            f11 = depth + height;
-            if (f11 >= min || !teXFont.hasNextLarger(r42)) {
+            f10 = depth + height;
+            if (f10 >= min || !teXFont.hasNextLarger(r42)) {
                 break;
             }
             r42 = teXFont.getNextLarger(r42, style);
@@ -21,7 +21,7 @@ public class DelimiterFactory {
             height = metrics2.getHeight();
             depth = metrics2.getDepth();
         }
-        if (f11 >= min) {
+        if (f10 >= min) {
             return new CharBox(r42);
         }
         if (teXFont.isExtensionChar(r42)) {

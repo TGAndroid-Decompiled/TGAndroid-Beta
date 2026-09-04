@@ -1,114 +1,90 @@
 package h2;
 
-import android.util.Log;
-import androidx.sharetarget.ShortcutInfoCompatSaverImpl;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
-import com.google.mlkit.vision.common.internal.MobileVisionBase;
-import i9.n;
-import i9.p;
-import i9.s;
-import java.io.File;
-import java.util.HashMap;
-import java.util.concurrent.Callable;
-import java.util.concurrent.Executor;
-import k7.fa;
-import k7.ga;
-import k7.na;
-import k7.oa;
-public final class g implements Callable {
-    public final int f6891a;
-    public final Object f6892b;
-    public final Object f6893c;
+import b2.l0;
+import b2.s;
+import dd.k;
+import java.nio.ByteBuffer;
+public class g extends k {
+    public s f10846c;
+    public final c d = new c();
+    public ByteBuffer f10847e;
+    public boolean f10848f;
+    public long h;
+    public ByteBuffer f10849n;
+    public final int f10850r;
+    public final int f10851s;
 
-    public g(int i10, Object obj, Object obj2) {
-        this.f6891a = i10;
-        this.f6893c = obj;
-        this.f6892b = obj2;
+    static {
+        l0.a("media3.decoder");
     }
 
-    @Override
-    public final Object call() {
-        ga gaVar;
-        int i10 = this.f6891a;
-        Object obj = this.f6893c;
-        Object obj2 = this.f6892b;
-        switch (i10) {
-            case 0:
-                return (h) ((ShortcutInfoCompatSaverImpl) obj).f1269b.get((String) obj2);
-            case 1:
-                f7.b bVar = (f7.b) obj;
-                n nVar = (n) bVar.f6002c;
-                Boolean bool = (Boolean) obj2;
-                if (!bool.booleanValue()) {
-                    if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-                        Log.v("FirebaseCrashlytics", "Deleting cached crash reports...", null);
-                    }
-                    for (File file : n9.b.e(nVar.f7386g.f14847b.listFiles(n.f7381r))) {
-                        file.delete();
-                    }
-                    n9.b bVar2 = ((n9.a) nVar.f7391m.f143b).f14844b;
-                    n9.a.a(n9.b.e(bVar2.d.listFiles()));
-                    n9.a.a(n9.b.e(bVar2.e.listFiles()));
-                    n9.a.a(n9.b.e(bVar2.f14849f.listFiles()));
-                    nVar.f7395q.trySetResult(null);
-                    return Tasks.forResult(null);
-                }
-                if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                    Log.d("FirebaseCrashlytics", "Sending cached crash reports...", null);
-                }
-                boolean booleanValue = bool.booleanValue();
-                s sVar = nVar.f7383b;
-                if (booleanValue) {
-                    sVar.h.trySetResult(null);
-                    Executor executor = (Executor) nVar.e.f43490b;
-                    return ((Task) bVar.f6001b).onSuccessTask(executor, new f7.b(this, executor, false, 12));
-                }
-                sVar.getClass();
-                throw new IllegalStateException("An invalid data collection token was used.");
-            case 2:
-                n.a((n) obj, (String) obj2, Boolean.FALSE);
-                return null;
-            case 3:
-                return p.a((p) obj, (e3.g) obj2);
-            default:
-                MobileVisionBase mobileVisionBase = (MobileVisionBase) obj2;
-                hb.a aVar = (hb.a) obj;
-                HashMap hashMap = ga.f9843f;
-                oa.b();
-                int i11 = na.f9929a;
-                oa.b();
-                if (!Boolean.parseBoolean("")) {
-                    gaVar = fa.h;
-                } else {
-                    HashMap hashMap2 = ga.f9843f;
-                    if (hashMap2.get("detectorTaskWithResource#run") == null) {
-                        hashMap2.put("detectorTaskWithResource#run", new ga("detectorTaskWithResource#run"));
-                    }
-                    gaVar = (ga) hashMap2.get("detectorTaskWithResource#run");
-                }
-                gaVar.a();
-                try {
-                    Object e = mobileVisionBase.f4051b.e(aVar);
-                    gaVar.close();
-                    return e;
-                } catch (Throwable th2) {
-                    try {
-                        gaVar.close();
-                    } catch (Throwable th3) {
-                        try {
-                            Throwable.class.getDeclaredMethod("addSuppressed", Throwable.class).invoke(th2, th3);
-                        } catch (Exception unused) {
-                        }
-                    }
-                    throw th2;
-                }
+    public g(int i10, int i11) {
+        this.f10850r = i10;
+        this.f10851s = i11;
+    }
+
+    public void i() {
+        this.f6773b = 0;
+        ByteBuffer byteBuffer = this.f10847e;
+        if (byteBuffer != null) {
+            byteBuffer.clear();
         }
+        ByteBuffer byteBuffer2 = this.f10849n;
+        if (byteBuffer2 != null) {
+            byteBuffer2.clear();
+        }
+        this.f10848f = false;
     }
 
-    public g(MobileVisionBase mobileVisionBase, hb.a aVar) {
-        this.f6891a = 4;
-        this.f6892b = mobileVisionBase;
-        this.f6893c = aVar;
+    public final ByteBuffer j(int i10) {
+        int capacity;
+        int i11 = this.f10850r;
+        if (i11 == 1) {
+            return ByteBuffer.allocate(i10);
+        }
+        if (i11 == 2) {
+            return ByteBuffer.allocateDirect(i10);
+        }
+        ByteBuffer byteBuffer = this.f10847e;
+        if (byteBuffer == null) {
+            capacity = 0;
+        } else {
+            capacity = byteBuffer.capacity();
+        }
+        throw new IllegalStateException("Buffer too small (" + capacity + " < " + i10 + ")");
+    }
+
+    public final void l(int i10) {
+        int i11 = i10 + this.f10851s;
+        ByteBuffer byteBuffer = this.f10847e;
+        if (byteBuffer == null) {
+            this.f10847e = j(i11);
+            return;
+        }
+        int capacity = byteBuffer.capacity();
+        int position = byteBuffer.position();
+        int i12 = i11 + position;
+        if (capacity >= i12) {
+            this.f10847e = byteBuffer;
+            return;
+        }
+        ByteBuffer j3 = j(i12);
+        j3.order(byteBuffer.order());
+        if (position > 0) {
+            byteBuffer.flip();
+            j3.put(byteBuffer);
+        }
+        this.f10847e = j3;
+    }
+
+    public final void m() {
+        ByteBuffer byteBuffer = this.f10847e;
+        if (byteBuffer != null) {
+            byteBuffer.flip();
+        }
+        ByteBuffer byteBuffer2 = this.f10849n;
+        if (byteBuffer2 != null) {
+            byteBuffer2.flip();
+        }
     }
 }

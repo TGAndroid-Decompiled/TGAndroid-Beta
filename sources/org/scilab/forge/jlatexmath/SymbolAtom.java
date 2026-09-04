@@ -41,8 +41,8 @@ public class SymbolAtom extends CharSymbol {
     public static void addSymbolAtom(String str) {
         try {
             addSymbolAtom(new FileInputStream(str), str);
-        } catch (FileNotFoundException e) {
-            throw new ResourceParseException(str, e);
+        } catch (FileNotFoundException e7) {
+            throw new ResourceParseException(str, e7);
         }
     }
 
@@ -56,12 +56,12 @@ public class SymbolAtom extends CharSymbol {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        char c3;
+        char c10;
         TeXFont teXFont = teXEnvironment.getTeXFont();
         int style = teXEnvironment.getStyle();
         Char r22 = teXFont.getChar(this.name, style);
         Box charBox = new CharBox(r22);
-        if (teXEnvironment.getSmallCap() && (c3 = this.unicode) != 0 && Character.isLowerCase(c3)) {
+        if (teXEnvironment.getSmallCap() && (c10 = this.unicode) != 0 && Character.isLowerCase(c10)) {
             try {
                 charBox = new ScaleBox(new CharBox(teXFont.getChar(TeXFormula.symbolTextMappings[Character.toUpperCase(this.unicode)], style)), 0.8d, 0.8d);
             } catch (SymbolMappingNotFoundException unused) {
@@ -100,8 +100,8 @@ public class SymbolAtom extends CharSymbol {
         return this.delimiter;
     }
 
-    public SymbolAtom setUnicode(char c3) {
-        this.unicode = c3;
+    public SymbolAtom setUnicode(char c10) {
+        this.unicode = c10;
         return this;
     }
 
@@ -113,12 +113,12 @@ public class SymbolAtom extends CharSymbol {
         symbols.put(symbolAtom.name, symbolAtom);
     }
 
-    public SymbolAtom(String str, int i10, boolean z4) {
+    public SymbolAtom(String str, int i10, boolean z10) {
         this.name = str;
         this.type = i10;
         if (i10 == 1) {
             this.type_limits = 0;
         }
-        this.delimiter = z4;
+        this.delimiter = z10;
     }
 }

@@ -1,26 +1,43 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class ma0 extends org.telegram.ui.fu0 {
-    public final qa0 f27005a;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class ma0 extends s4.n0 {
+    public final na0 f28430a;
 
-    public ma0(qa0 qa0Var) {
-        this.f27005a = qa0Var;
+    public ma0(na0 na0Var) {
+        this.f28430a = na0Var;
     }
 
     @Override
-    public final org.telegram.ui.qu0 E(org.telegram.messenger.MessageObject r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ma0.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.qu0");
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z4, int i11, int i12, boolean z10) {
-        if (i10 >= 0) {
-            qa0 qa0Var = this.f27005a;
-            if (i10 < qa0Var.M.size()) {
-                qa0Var.f28134x.a((TLRPC.BotInlineResult) qa0Var.M.get(i10), z4, i11);
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
+        int R;
+        int i10 = 0;
+        rect.left = 0;
+        rect.right = 0;
+        rect.top = 0;
+        rect.bottom = 0;
+        s4.o0 layoutManager = recyclerView.getLayoutManager();
+        oa0 oa0Var = this.f28430a.f28722b3;
+        if (layoutManager == oa0Var.d && (R = RecyclerView.R(view)) != 0 && !oa0Var.f29021f.N()) {
+            if (oa0Var.f29021f.I() == null && oa0Var.f29021f.U == null) {
+                rect.top = AndroidUtilities.dp(2.0f);
+            } else if (R != 0) {
+                R--;
+                ha0 ha0Var = oa0Var.d;
+                ha0Var.B1();
+                if (R > ha0Var.U) {
+                    rect.top = AndroidUtilities.dp(2.0f);
+                }
+            } else {
+                return;
             }
+            if (!oa0Var.d.E1(R)) {
+                i10 = AndroidUtilities.dp(2.0f);
+            }
+            rect.right = i10;
         }
     }
 }

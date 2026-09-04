@@ -5,11 +5,11 @@ public class MessageKeyData {
     public byte[] aesIv;
     public byte[] aesKey;
 
-    public static MessageKeyData generateMessageKeyData(byte[] bArr, byte[] bArr2, boolean z4, int i10) {
+    public static MessageKeyData generateMessageKeyData(byte[] bArr, byte[] bArr2, boolean z10, int i10) {
         int i11;
         MessageKeyData messageKeyData = new MessageKeyData();
         if (bArr != null && bArr.length != 0) {
-            if (z4) {
+            if (z10) {
                 i11 = 8;
             } else {
                 i11 = 0;

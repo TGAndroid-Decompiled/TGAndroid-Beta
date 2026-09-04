@@ -1,16 +1,35 @@
 package y2;
 
-import vh.w2;
-public final class d implements u9.d {
-    public static final d f47094a = new Object();
-    public static final u9.c f47095b = new u9.c("logSource", w2.h(w2.g(x9.d.class, new x9.a(1))));
-    public static final u9.c f47096c = new u9.c("logEventDropped", w2.h(w2.g(x9.d.class, new x9.a(2))));
+import e2.d0;
+import java.util.Arrays;
+public final class d {
+    public int f49482c;
+    public int d;
+    public final boolean f49480a = true;
+    public final int f49481b = 65536;
+    public int f49483e = 0;
+    public a[] f49484f = new a[100];
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        b3.e eVar = (b3.e) obj;
-        u9.e eVar2 = (u9.e) obj2;
-        eVar2.e(f47095b, eVar.f1313a);
-        eVar2.e(f47096c, eVar.f1314b);
+    public final synchronized void a(int i10) {
+        boolean z10;
+        if (i10 < this.f49482c) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f49482c = i10;
+        if (z10) {
+            b();
+        }
+    }
+
+    public final synchronized void b() {
+        int max = Math.max(0, d0.f(this.f49482c, this.f49481b) - this.d);
+        int i10 = this.f49483e;
+        if (max >= i10) {
+            return;
+        }
+        Arrays.fill(this.f49484f, max, i10, (Object) null);
+        this.f49483e = max;
     }
 }

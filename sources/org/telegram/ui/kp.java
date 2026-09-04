@@ -1,55 +1,148 @@
 package org.telegram.ui;
 
-import android.widget.LinearLayout;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.NotificationCenter;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class kp extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
-    public org.telegram.ui.Components.p9 f35563a;
-    public org.telegram.ui.Components.l90 f35564b;
-    public int f35565c;
+public final class kp extends org.telegram.ui.Components.ll0 {
+    public static final int f38099b3 = 0;
+    public final jp X2;
+    public boolean Y2;
+    public final Paint Z2;
+    public final lp f38100a3;
 
-    public final void a() {
-        boolean z4;
-        org.telegram.ui.Components.p9 p9Var = this.f35563a;
-        int i10 = this.f35565c;
-        TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByName("tg_placeholders_android");
-        if (stickerSetByName == null) {
-            stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName("tg_placeholders_android");
+    public kp(lp lpVar, Context context) {
+        super(context, null);
+        this.f38100a3 = lpVar;
+        this.Y2 = false;
+        this.Z2 = new Paint(1);
+        jp jpVar = new jp(this);
+        this.X2 = jpVar;
+        setAdapter(jpVar);
+        setLayoutManager(new s4.c0());
+        setOnItemClickListener(new ip(this));
+        new s4.y(new ci.f(this, 1)).d(this);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        int R;
+        int size = this.f38100a3.N.size();
+        int i10 = Integer.MAX_VALUE;
+        int i11 = Integer.MIN_VALUE;
+        for (int i12 = 0; i12 < getChildCount(); i12++) {
+            View childAt = getChildAt(i12);
+            if (childAt != null && (R = RecyclerView.R(childAt)) >= 1 && R <= size) {
+                i10 = Math.min(childAt.getTop(), i10);
+                i11 = Math.max(childAt.getBottom(), i11);
+            }
         }
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSetByName;
-        if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents.size() >= 3) {
-            p9Var.i(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(2)), "104_104", "tgs", this.f35564b, tL_messages_stickerSet);
-            return;
-        }
-        MediaDataController mediaDataController = MediaDataController.getInstance(i10);
-        if (tL_messages_stickerSet == null) {
-            z4 = true;
+        if (i10 < i11) {
+            int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20663d6, this.f28224p2);
+            Paint paint = this.Z2;
+            paint.setColor(v02);
+            canvas2 = canvas;
+            canvas2.drawRect(0.0f, i10, getWidth(), i11, paint);
         } else {
-            z4 = false;
+            canvas2 = canvas;
         }
-        mediaDataController.loadStickersByEmojiOrName("tg_placeholders_android", false, z4);
-        p9Var.setImageDrawable(this.f35564b);
+        super.dispatchDraw(canvas2);
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.diceStickersDidLoad && "tg_placeholders_android".equals((String) objArr[0])) {
-            a();
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
+    }
+
+    public final void v1(TLRPC.TL_username tL_username, boolean z10, boolean z11) {
+        TLRPC.TL_username tL_username2;
+        int min;
+        lp lpVar = this.f38100a3;
+        ArrayList arrayList = lpVar.N;
+        int i10 = 0;
+        for (int i11 = 0; i11 < arrayList.size(); i11++) {
+            if (arrayList.get(i11) == tL_username) {
+                int i12 = i11 + 1;
+                if (i11 >= 0 && i11 < arrayList.size() && (tL_username2 = (TLRPC.TL_username) arrayList.get(i11)) != null) {
+                    int i13 = -1;
+                    if (tL_username2.active != z10) {
+                        tL_username2.active = z10;
+                        if (z10) {
+                            int i14 = 0;
+                            while (true) {
+                                if (i14 < arrayList.size()) {
+                                    if (!((TLRPC.TL_username) arrayList.get(i14)).active) {
+                                        break;
+                                    }
+                                    i14++;
+                                } else {
+                                    i14 = -1;
+                                    break;
+                                }
+                            }
+                            if (i14 >= 0) {
+                                min = Math.max(0, i14 - 1);
+                                i13 = min + 1;
+                            }
+                        } else {
+                            int i15 = -1;
+                            for (int i16 = 0; i16 < arrayList.size(); i16++) {
+                                if (((TLRPC.TL_username) arrayList.get(i16)).active) {
+                                    i15 = i16;
+                                }
+                            }
+                            if (i15 >= 0) {
+                                min = Math.min(arrayList.size() - 1, i15 + 1);
+                                i13 = min + 1;
+                            }
+                        }
+                    }
+                    int i17 = 0;
+                    while (true) {
+                        if (i17 >= getChildCount()) {
+                            break;
+                        }
+                        View childAt = getChildAt(i17);
+                        if (RecyclerView.R(childAt) == i12) {
+                            if (z11) {
+                                AndroidUtilities.shakeView(childAt);
+                            }
+                            if (childAt instanceof na) {
+                                na naVar = (na) childAt;
+                                naVar.setLoading(lpVar.P.contains(tL_username2.username));
+                                TLRPC.TL_username tL_username3 = naVar.v;
+                                if (tL_username3 != null) {
+                                    naVar.a(tL_username3, naVar.f38890w, true, naVar.f38891x);
+                                }
+                            }
+                        } else {
+                            i17++;
+                        }
+                    }
+                    if (i13 >= 0 && i12 != i13) {
+                        int i18 = i13 - 1;
+                        jp jpVar = this.X2;
+                        ArrayList arrayList2 = jpVar.f37825c.f38100a3.N;
+                        if (i11 < arrayList2.size() && i18 < arrayList2.size()) {
+                            arrayList2.add(i18, (TLRPC.TL_username) arrayList2.remove(i11));
+                            jpVar.p(i12, i13);
+                            while (i10 < arrayList2.size()) {
+                                i10++;
+                                jpVar.m(i10);
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            }
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        a();
-        NotificationCenter.getInstance(this.f35565c).addObserver(this, NotificationCenter.diceStickersDidLoad);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f35565c).removeObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 }

@@ -1,176 +1,51 @@
 package org.telegram.ui;
 
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public final class oz0 extends org.telegram.ui.Components.m6 {
-    public final ProfileActivity f36906b;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.UndoView;
+public final class oz0 implements nq {
+    public final TLRPC.Chat f39363a;
+    public final qq f39364b;
+    public final ProfileActivity f39365c;
 
-    public oz0(ProfileActivity profileActivity) {
-        super("avatarAnimationProgress", 0);
-        this.f36906b = profileActivity;
+    public oz0(ProfileActivity profileActivity, TLRPC.Chat chat, qq qqVar) {
+        this.f39365c = profileActivity;
+        this.f39363a = chat;
+        this.f39364b = qqVar;
     }
 
     @Override
-    public final void b(Object obj, float f10) {
-        int v02;
-        int v03;
-        org.telegram.ui.ActionBar.k kVar;
-        int v04;
-        org.telegram.ui.ActionBar.k kVar2;
-        int v05;
-        int v06;
-        int v07;
-        int v08;
-        org.telegram.ui.ActionBar.w0 w0Var;
-        int v09;
-        int color3;
-        float f11;
-        org.telegram.ui.ActionBar.k kVar3 = (org.telegram.ui.ActionBar.k) obj;
-        ProfileActivity profileActivity = this.f36906b;
-        profileActivity.B5 = f10;
-        Drawable[] drawableArr = profileActivity.B;
-        Drawable[] drawableArr2 = profileActivity.F;
-        Drawable[] drawableArr3 = profileActivity.f32168y;
-        fz0 fz0Var = profileActivity.f32122r0;
-        if (fz0Var != null) {
-            fz0Var.setActionBarActionMode(f10);
-        }
-        lh.u0 u0Var = profileActivity.f32130s0;
-        if (u0Var != null) {
-            u0Var.setActionBarActionMode(f10);
-        }
-        profileActivity.f32004a1.invalidate();
-        int i10 = -1;
-        if (profileActivity.N5 != null) {
-            v02 = -1;
+    public final void a(TLRPC.User user) {
+        int i10;
+        ProfileActivity profileActivity = this.f39365c;
+        UndoView undoView = profileActivity.M;
+        long j3 = -profileActivity.f33896f1;
+        if (profileActivity.E2.megagroup) {
+            i10 = 10;
         } else {
-            v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20211vh, profileActivity.f32155w0);
+            i10 = 9;
         }
-        int i11 = org.telegram.ui.ActionBar.j6.Oi;
-        int v010 = org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f32155w0);
-        int offsetColor = AndroidUtilities.getOffsetColor(v02, v010, f10, 1.0f);
-        profileActivity.f32037f[1].setTextColor(offsetColor);
-        Drawable drawable = profileActivity.f32161x;
-        if (drawable != null) {
-            if (profileActivity.N5 != null) {
-                offsetColor = -1;
-            }
-            drawable.setColorFilter(offsetColor, PorterDuff.Mode.MULTIPLY);
-        }
-        if (profileActivity.I != null) {
-            profileActivity.I.b(AndroidUtilities.getOffsetColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19955h8, profileActivity.f32155w0), v010, f10, 1.0f));
-        }
-        if (profileActivity.N5 != null) {
-            v03 = -1;
-        } else {
-            v03 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20202v8, profileActivity.f32155w0);
-        }
-        int v011 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20258y8, profileActivity.f32155w0);
-        kVar = ((org.telegram.ui.ActionBar.p2) profileActivity).actionBar;
-        kVar.C(AndroidUtilities.getOffsetColor(v03, v011, f10, 1.0f), false);
-        MessagesController.PeerColor peerColor = profileActivity.N5;
-        if (peerColor != null) {
-            v04 = 1090519039;
-        } else if (peerColor != null) {
-            v04 = 553648127;
-        } else {
-            v04 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19919f8, profileActivity.f32155w0);
-        }
-        int v012 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20275z8, profileActivity.f32155w0);
-        kVar2 = ((org.telegram.ui.ActionBar.p2) profileActivity).actionBar;
-        kVar2.B(AndroidUtilities.getOffsetColor(v04, v012, f10, 1.0f), false);
-        profileActivity.f32004a1.invalidate();
-        org.telegram.ui.ActionBar.w0 w0Var2 = profileActivity.Q0;
-        if (profileActivity.N5 != null) {
-            v05 = -1;
-        } else {
-            v05 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20202v8, profileActivity.f32155w0);
-        }
-        w0Var2.setIconColor(v05);
-        org.telegram.ui.ActionBar.w0 w0Var3 = profileActivity.N0;
-        if (profileActivity.N5 != null) {
-            v06 = -1;
-        } else {
-            v06 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20202v8, profileActivity.f32155w0);
-        }
-        w0Var3.setIconColor(v06);
-        org.telegram.ui.ActionBar.w0 w0Var4 = profileActivity.O0;
-        if (profileActivity.N5 != null) {
-            v07 = -1;
-        } else {
-            v07 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20202v8, profileActivity.f32155w0);
-        }
-        w0Var4.setIconColor(v07);
-        org.telegram.ui.ActionBar.w0 w0Var5 = profileActivity.P0;
-        if (profileActivity.N5 != null) {
-            v08 = -1;
-        } else {
-            v08 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20202v8, profileActivity.f32155w0);
-        }
-        w0Var5.setIconColor(v08);
-        if (drawableArr3[0] != null) {
-            drawableArr3[0].setColorFilter(AndroidUtilities.getOffsetColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.zh, profileActivity.f32155w0), org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f32155w0), f10, 1.0f), PorterDuff.Mode.MULTIPLY);
-        }
-        if (drawableArr3[1] != null) {
-            MessagesController.PeerColor peerColor2 = profileActivity.N5;
-            if (peerColor2 != null) {
-                int color2 = peerColor2.getColor2();
-                if (profileActivity.N5.hasColor6(org.telegram.ui.ActionBar.j6.I.q())) {
-                    color3 = profileActivity.N5.getColor5();
-                } else {
-                    color3 = profileActivity.N5.getColor3();
-                }
-                int d = i0.a.d(0.4f, color2, color3);
-                if (org.telegram.ui.ActionBar.j6.I.q()) {
-                    f11 = -0.1f;
-                } else {
-                    f11 = -0.08f;
-                }
-                v09 = org.telegram.ui.ActionBar.j6.b(0.1f, f11, d);
-            } else {
-                v09 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.zh, profileActivity.f32155w0);
-            }
-            drawableArr3[1].setColorFilter(AndroidUtilities.getOffsetColor(v09, org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f32155w0), f10, 1.0f), PorterDuff.Mode.MULTIPLY);
-        }
-        if (drawableArr2[0] != null) {
-            drawableArr2[0].setColorFilter(AndroidUtilities.getOffsetColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Ah, profileActivity.f32155w0), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19881d6, profileActivity.f32155w0), f10, 1.0f), PorterDuff.Mode.MULTIPLY);
-        }
-        if (drawableArr2[1] != null) {
-            if (profileActivity.N5 == null) {
-                i10 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Ah, profileActivity.f32155w0);
-            }
-            drawableArr2[1].setColorFilter(AndroidUtilities.getOffsetColor(i10, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19881d6, profileActivity.f32155w0), f10, 1.0f), PorterDuff.Mode.MULTIPLY);
-        }
-        if (drawableArr[0] != null) {
-            drawableArr[0].setColorFilter(AndroidUtilities.getOffsetColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.zh, profileActivity.f32155w0), org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f32155w0), f10, 1.0f), PorterDuff.Mode.MULTIPLY);
-        }
-        if (drawableArr[1] != null) {
-            drawableArr[1].setColorFilter(AndroidUtilities.getOffsetColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.zh, profileActivity.f32155w0), org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f32155w0), f10, 1.0f), PorterDuff.Mode.MULTIPLY);
-        }
-        profileActivity.X4();
-        ProfileActivity profileActivity2 = profileActivity.f32080l0.f37274n;
-        if (profileActivity2.I0) {
-            w0Var = profileActivity2.N0;
-        } else if (profileActivity2.K0) {
-            w0Var = profileActivity2.P0;
-        } else {
-            w0Var = profileActivity2.R0;
-            if (w0Var == null) {
-                w0Var = null;
-            }
-        }
-        if (w0Var != null) {
-            if (profileActivity.J0 || profileActivity.K0 || profileActivity.I0) {
-                profileActivity.l4(0, profileActivity.y3(), true);
-            }
-        }
+        undoView.m(j3, user, i10);
     }
 
     @Override
-    public final Object get(Object obj) {
-        org.telegram.ui.ActionBar.k kVar = (org.telegram.ui.ActionBar.k) obj;
-        return Float.valueOf(this.f36906b.B5);
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLRPC.Chat chat;
+        ProfileActivity profileActivity = this.f39365c;
+        profileActivity.removeSelfFromStack();
+        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f33888e1));
+        if (user != null && (chat = this.f39363a) != null && profileActivity.f33888e1 != 0) {
+            qq qqVar = this.f39364b;
+            if (qqVar.Q && qqVar.getParentLayout() != null) {
+                for (org.telegram.ui.ActionBar.n2 n2Var : qqVar.getParentLayout().getFragmentStack()) {
+                    if (n2Var instanceof ub) {
+                        ub ubVar = (ub) n2Var;
+                        ubVar.W0();
+                        AndroidUtilities.runOnUIThread(new pf0(ubVar, user, chat, 25));
+                        return;
+                    }
+                }
+            }
+        }
     }
 }

@@ -1,29 +1,48 @@
 package org.telegram.ui;
 
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.voip.VoIPService;
-public final class j40 implements org.telegram.ui.ActionBar.a3 {
-    public final e60 f35082a;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import org.telegram.messenger.BotWebViewVibrationEffect;
+public final class j40 implements TextWatcher {
+    public final j60 f37502a;
 
-    public j40(e60 e60Var) {
-        this.f35082a = e60Var;
+    public j40(j60 j60Var) {
+        this.f37502a = j60Var;
     }
 
     @Override
-    public final boolean g() {
-        return true;
+    public final void afterTextChanged(Editable editable) {
+        String str;
+        int i10;
+        j60 j60Var = this.f37502a;
+        j60Var.A3.a(TextUtils.isEmpty(editable), true);
+        int codePointCount = Character.codePointCount(editable, 0, editable.length());
+        int i11 = j60Var.f37525d0;
+        if (codePointCount + 25 > i11) {
+            str = "" + (i11 - codePointCount);
+        } else {
+            str = null;
+        }
+        j60Var.M.a();
+        j60Var.M.setText(str);
+        org.telegram.ui.Components.q6 q6Var = j60Var.M;
+        if (codePointCount >= i11) {
+            i10 = -1280137;
+        } else {
+            i10 = -1;
+        }
+        q6Var.setTextColor(i10);
+        if (codePointCount > i11) {
+            BotWebViewVibrationEffect.APP_ERROR.vibrate();
+        }
     }
 
     @Override
-    public final void onOpenAnimationEnd() {
-        CountDownLatch groupCallBottomSheetLatch;
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance != null && (groupCallBottomSheetLatch = sharedInstance.getGroupCallBottomSheetLatch()) != null) {
-            groupCallBottomSheetLatch.countDown();
-        }
-        e60 e60Var = this.f35082a;
-        if (e60Var.C1 == 6) {
-            e60.B0(e60Var);
-        }
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

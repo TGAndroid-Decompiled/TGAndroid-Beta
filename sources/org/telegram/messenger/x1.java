@@ -1,87 +1,23 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SvgHelper;
-public final class x1 implements Runnable {
-    public final int f18926a;
+import android.os.Handler;
+import android.os.Message;
+public final class x1 implements Handler.Callback {
+    public final int f19541a;
+    public final Thread f19542b;
 
-    public x1(int i10) {
-        this.f18926a = i10;
+    public x1(Thread thread, int i10) {
+        this.f19541a = i10;
+        this.f19542b = thread;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18926a) {
+    public final boolean handleMessage(Message message) {
+        switch (this.f19541a) {
             case 0:
-                ContactsController.MyContentObserver.lambda$new$0();
-                return;
-            case 1:
-                MediaController.GalleryObserverExternal.lambda$onChange$0();
-                return;
-            case 2:
-                AppStartReceiver.a();
-                return;
-            case 3:
-                FileLog.dumpANR();
-                return;
-            case 4:
-                ApplicationLoader.startPushService();
-                return;
-            case 5:
-                ApplicationLoader.lambda$initPushServices$0();
-                return;
-            case 6:
-                BotGuardHelper.a();
-                return;
-            case 7:
-                CodeHighlighting.f();
-                return;
-            case 8:
-                Emoji.lambda$static$0();
-                return;
-            case 9:
-                KeepAliveJob.b();
-                return;
-            case 10:
-                KeepAliveJob.a();
-                return;
-            case 11:
-                LocaleController.lambda$applyLanguage$9();
-                return;
-            case 12:
-                LocationController.lambda$setLastKnownLocation$10();
-                return;
-            case 13:
-                LocationSharingService.lambda$onCreate$0();
-                return;
-            case 14:
-                MediaDataController.lambda$cleanup$1();
-                return;
-            case 15:
-                org.telegram.ui.ActionBar.j6.E(false);
-                return;
-            case 16:
-                NotificationCenter.lambda$listen$3();
-                return;
-            case 17:
-                NotificationsController.lambda$dismissNotification$37();
-                return;
-            case 18:
-                SharedConfig.saveConfig();
-                return;
-            case 19:
-                SharedConfig.lambda$checkSdCard$0();
-                return;
-            case 20:
-                SharedConfig.lambda$checkSdCard$2();
-                return;
-            case 21:
-                SharedConfig.lambda$checkSaveToGalleryFiles$5();
-                return;
+                return DispatchQueue.a((DispatchQueue) this.f19542b, message);
             default:
-                SvgHelper.SvgDrawable.shiftRunnable = null;
-                return;
+                return DispatchQueueMainThreadSync.b((DispatchQueueMainThreadSync) this.f19542b, message);
         }
     }
 }

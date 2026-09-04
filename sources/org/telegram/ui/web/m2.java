@@ -1,56 +1,33 @@
 package org.telegram.ui.web;
 
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.Utilities;
-public final class m2 {
-    public static m2 e;
-    public HashMap f39529a;
-    public boolean f39530b;
-    public boolean f39531c;
-    public boolean d;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLObject;
+public final class m2 extends TLObject {
+    public final ArrayList f42182a = new ArrayList();
 
-    public static m2 b() {
-        if (e == null) {
-            e = new Object();
-        }
-        return e;
-    }
-
-    public final l2 a(String str) {
-        c();
-        l2 l2Var = (l2) this.f39529a.get(str);
-        if (l2Var == null) {
-            return null;
-        }
-        l2Var.f39517a = Math.max(l2Var.f39517a, System.currentTimeMillis());
-        d();
-        return l2Var;
-    }
-
-    public final void c() {
-        if (!this.f39530b && !this.f39531c) {
-            this.f39531c = true;
-            if (this.f39529a == null) {
-                this.f39529a = new HashMap();
+    @Override
+    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
+        int readInt32 = inputSerializedData.readInt32(z10);
+        for (int i10 = 0; i10 < readInt32; i10++) {
+            n2 n2Var = new n2();
+            n2Var.readParams(inputSerializedData, z10);
+            if (!TextUtils.isEmpty(n2Var.f42189b)) {
+                this.f42182a.add(n2Var);
+            } else {
+                return;
             }
-            Utilities.globalQueue.postRunnable(new i2(this, 1));
         }
     }
 
-    public final void d() {
-        long j10;
-        AndroidUtilities.cancelRunOnUIThread(new i2(this, 0));
-        if (this.d) {
-            return;
+    @Override
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        ArrayList arrayList = this.f42182a;
+        outputSerializedData.writeInt32(arrayList.size());
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            ((n2) arrayList.get(i10)).serializeToStream(outputSerializedData);
         }
-        i2 i2Var = new i2(this, 0);
-        if (BuildVars.DEBUG_PRIVATE_VERSION) {
-            j10 = 1;
-        } else {
-            j10 = 1000;
-        }
-        AndroidUtilities.runOnUIThread(i2Var, j10);
     }
 }

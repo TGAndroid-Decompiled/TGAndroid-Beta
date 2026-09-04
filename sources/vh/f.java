@@ -1,45 +1,51 @@
 package vh;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.li;
-import org.telegram.ui.Components.ti;
-import org.telegram.ui.Components.uk;
-public final class f implements uk, ti {
-    public final q f45959a;
-    public final li f45960b;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import org.telegram.ui.Components.pr;
+public abstract class f {
+    public static final DecelerateInterpolator f47857a = new DecelerateInterpolator();
+    public static final LinearInterpolator f47858b;
+    public static final e f47859c;
+    public static final e d;
+    public static final e f47860e;
+    public static final e f47861f;
+    public static final e f47862g;
+    public static final e h;
+    public static final e f47863i;
+    public static final e f47864j;
+    public static final e f47865k;
+    public static final e f47866l;
+    public static final e f47867m;
+    public static final e f47868n;
+    public static final e f47869o;
+    public static final e f47870p;
+    public static final e f47871q;
+    public static final e f47872r;
+    public static final e f47873s;
+    public static final e f47874t;
 
-    public f(q qVar, li liVar) {
-        this.f45959a = qVar;
-        this.f45960b = liVar;
-    }
-
-    @Override
-    public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z4, int i11, long j10) {
-        q qVar = this.f45959a;
-        qVar.getClass();
-        li liVar = this.f45960b;
-        if (messageMedia != null && messageMedia.geo != null) {
-            TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
-            pageblockmap.geo = messageMedia.geo;
-            pageblockmap.zoom = 15;
-            pageblockmap.f19380w = 600;
-            pageblockmap.h = 400;
-            qVar.f46156r.Q1(pageblockmap);
-            qVar.V(true);
-            liVar.dismiss(true);
-            return;
-        }
-        liVar.dismiss(true);
-    }
-
-    @Override
-    public void g(ArrayList arrayList, CharSequence charSequence, boolean z4, int i10, int i11, long j10, boolean z10, long j11) {
-        if (!arrayList.isEmpty()) {
-            this.f45959a.f46156r.a2((MessageObject) arrayList.get(0));
-        }
-        this.f45960b.dismiss(true);
+    static {
+        LinearInterpolator linearInterpolator = new LinearInterpolator();
+        f47858b = linearInterpolator;
+        f47859c = h.i(new DecelerateInterpolator(), 0, 240, 240, false);
+        d = h.i(linearInterpolator, 0, 240, 240, false);
+        f47860e = h.i(new DecelerateInterpolator(), 220, 240, 240, false);
+        f47861f = h.i(new pr(0.7f, -0.6f, 0.4f, 1.0f), 0, 200, 560, false);
+        f47862g = h.i(new pr(0.7f, -0.6f, 0.4f, 1.0f), 200, 400, 560, true);
+        h = h.i(new DecelerateInterpolator(), 0, 150, 560, false);
+        f47863i = h.i(new DecelerateInterpolator(), 210, 425, 560, false);
+        pr prVar = pr.h;
+        f47864j = h.i(prVar, 0, 320, 560, false);
+        f47865k = h.i(prVar, 40, 320, 560, false);
+        f47866l = h.i(new DecelerateInterpolator(), 0, 250, 560, false);
+        f47867m = h.i(prVar, 0, 460, 560, false);
+        f47868n = h.i(prVar, 0, 325, 560, false);
+        f47869o = h.i(new DecelerateInterpolator(), 150, 250, 560, false);
+        f47870p = h.i(new DecelerateInterpolator(), 200, 480, 560, false);
+        f47871q = h.i(prVar, 60, 320, 560, false);
+        f47872r = h.i(prVar, 90, 380, 560, false);
+        f47873s = h.i(prVar, 110, 440, 560, false);
+        f47874t = h.i(new DecelerateInterpolator(), 200, 460, 560, false);
     }
 }

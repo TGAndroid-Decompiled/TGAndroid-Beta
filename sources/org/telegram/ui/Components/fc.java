@@ -1,66 +1,121 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-public final class fc extends eb {
-    public final jj0 f24858a;
-    public final f90 f24859b;
-    public final f90 f24860c;
-    public final LinearLayout d;
-    public final int e;
+import org.telegram.messenger.Utilities;
+public final class fc extends GestureDetector.SimpleOnGestureListener {
+    public final ub f26009a;
+    public final ib f26010b;
 
-    public fc(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
-        int i10 = org.telegram.ui.ActionBar.j6.Hi;
-        this.e = getThemedColor(i10);
-        setBackground(getThemedColor(org.telegram.ui.ActionBar.j6.Fi));
-        ?? imageView = new ImageView(context);
-        this.f24858a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView((View) imageView, k7.b6.h(56.0f, 48.0f, 8388627));
-        int themedColor = getThemedColor(i10);
-        int themedColor2 = getThemedColor(org.telegram.ui.ActionBar.j6.Gi);
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.d = linearLayout;
-        linearLayout.setOrientation(1);
-        addView(linearLayout, k7.b6.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
-        f90 f90Var = new f90(context, null);
-        this.f24859b = f90Var;
-        f90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        f90Var.setTextColor(themedColor);
-        f90Var.setTextSize(1, 14.0f);
-        f90Var.setTypeface(AndroidUtilities.bold());
-        linearLayout.addView(f90Var);
-        f90 f90Var2 = new f90(context, null);
-        this.f24860c = f90Var2;
-        f90Var2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        f90Var2.setTextColor(themedColor);
-        f90Var2.setLinkTextColor(themedColor2);
-        f90Var2.setTypeface(Typeface.SANS_SERIF);
-        f90Var2.setTextSize(1, 13.0f);
-        linearLayout.addView(f90Var2);
+    public fc(ib ibVar, ub ubVar) {
+        this.f26010b = ibVar;
+        this.f26009a = ubVar;
     }
 
-    public final void c(int i10, int i11, int i12, String... strArr) {
-        jj0 jj0Var = this.f24858a;
-        jj0Var.f(i10, i11, i12, null);
-        for (String str : strArr) {
-            jj0Var.h(this.e, str);
+    @Override
+    public final boolean onDown(MotionEvent motionEvent) {
+        ib ibVar = this.f26010b;
+        if (ibVar.f27065s) {
+            return false;
         }
+        ub ubVar = this.f26009a;
+        ibVar.v = ub.access$1400(ubVar, true);
+        ibVar.f27066w = ub.access$1400(ubVar, false);
+        return true;
     }
 
     @Override
-    public CharSequence getAccessibilityText() {
-        return ((Object) this.f24859b.getText()) + ".\n" + ((Object) this.f24860c.getText());
+    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        boolean z10 = false;
+        if (Math.abs(f7) <= 2000.0f) {
+            return false;
+        }
+        ib ibVar = this.f26010b;
+        if ((f7 < 0.0f && ibVar.v) || (f7 > 0.0f && ibVar.f27066w)) {
+            z10 = true;
+        }
+        float signum = Math.signum(f7);
+        ub ubVar = this.f26009a;
+        o1.k kVar = new o1.k(ubVar, o1.h.f16806m, signum * ubVar.getWidth() * 2.0f);
+        if (!z10) {
+            kVar.a(new o1.f(this) {
+                public final fc f25338b;
+
+                {
+                    this.f25338b = this;
+                }
+
+                @Override
+                public final void a(o1.h hVar, boolean z11, float f11, float f12) {
+                    switch (r2) {
+                        case 0:
+                            this.f25338b.f26010b.f27068y.b();
+                            return;
+                        default:
+                            this.f25338b.f26010b.f27068y.b();
+                            return;
+                    }
+                }
+            });
+            kVar.b(new l7(ubVar, 2));
+        }
+        kVar.f16825u.a(1.0f);
+        kVar.f16825u.b(100.0f);
+        kVar.f16814a = f7;
+        kVar.f();
+        if (z10) {
+            o1.k kVar2 = new o1.k(ubVar, o1.h.f16813t, 0.0f);
+            kVar2.a(new o1.f(this) {
+                public final fc f25338b;
+
+                {
+                    this.f25338b = this;
+                }
+
+                @Override
+                public final void a(o1.h hVar, boolean z11, float f11, float f12) {
+                    switch (r2) {
+                        case 0:
+                            this.f25338b.f26010b.f27068y.b();
+                            return;
+                        default:
+                            this.f25338b.f26010b.f27068y.b();
+                            return;
+                    }
+                }
+            });
+            kVar2.b(new Object());
+            kVar.f16825u.a(1.0f);
+            kVar.f16825u.b(10.0f);
+            kVar.f16814a = f7;
+            kVar2.f();
+        }
+        ibVar.f27065s = true;
+        return true;
     }
 
     @Override
-    public final void onShow() {
-        super.onShow();
-        this.f24858a.d();
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        ib ibVar = this.f26010b;
+        float f11 = ibVar.h + f7;
+        ibVar.h = f11;
+        float f12 = ibVar.f27063n + f10;
+        ibVar.f27063n = f12;
+        if (Utilities.dist(0.0f, 0.0f, f11, f12) > AndroidUtilities.touchSlop) {
+            ibVar.f27064r = true;
+        }
+        if (!ibVar.d) {
+            return false;
+        }
+        float f13 = ibVar.f27062f - f7;
+        ibVar.f27062f = f13;
+        ub ubVar = this.f26009a;
+        ubVar.setTranslationX(f13);
+        float f14 = ibVar.f27062f;
+        if (f14 == 0.0f || ((f14 < 0.0f && ibVar.v) || (f14 > 0.0f && ibVar.f27066w))) {
+            ubVar.setAlpha(1.0f - (Math.abs(f14) / ubVar.getWidth()));
+        }
+        return true;
     }
 }

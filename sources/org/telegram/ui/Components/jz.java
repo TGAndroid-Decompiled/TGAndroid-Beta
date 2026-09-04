@@ -8,47 +8,47 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public class jz extends f2.z0 {
-    public final int f26081a;
-    public boolean f26082b;
-    public final kz f26083c;
+public class jz extends s4.s0 {
+    public final int f27586a;
+    public boolean f27587b;
+    public final kz f27588c;
 
     public jz(kz kzVar, int i10) {
-        this.f26083c = kzVar;
-        this.f26081a = i10;
+        this.f27588c = kzVar;
+        this.f27586a = i10;
     }
 
     @Override
     public void a(RecyclerView recyclerView, int i10) {
         ObjectAnimator objectAnimator;
-        wy wyVar;
-        float f10;
+        xy xyVar;
+        float f7;
         int i11;
-        kz kzVar = this.f26083c;
-        ObjectAnimator[] objectAnimatorArr = kzVar.O0;
-        f2.h1 h1Var = recyclerView.getLayoutManager().e;
-        boolean z4 = true;
-        if (h1Var != null && h1Var.e) {
-            this.f26082b = true;
+        kz kzVar = this.f27588c;
+        ObjectAnimator[] objectAnimatorArr = kzVar.R0;
+        s4.y0 y0Var = recyclerView.getLayoutManager().f45844e;
+        boolean z10 = true;
+        if (y0Var != null && y0Var.f45909e) {
+            this.f27587b = true;
             return;
         }
-        int i12 = this.f26081a;
+        int i12 = this.f27586a;
         if (i10 == 0) {
-            if (!this.f26082b) {
-                int[] iArr = kzVar.N0;
-                ky kyVar = kzVar.f26472q1;
-                if ((kyVar == null || !kyVar.z()) && i12 != 0) {
-                    float f11 = 48.0f;
+            if (!this.f27587b) {
+                int[] iArr = kzVar.Q0;
+                ly lyVar = kzVar.f27986t1;
+                if ((lyVar == null || !lyVar.z()) && i12 != 0) {
+                    float f10 = 48.0f;
                     if (i12 == 1) {
-                        f10 = 36.0f;
+                        f7 = 36.0f;
                     } else {
-                        f10 = 48.0f;
+                        f7 = 48.0f;
                     }
-                    float dpf2 = AndroidUtilities.dpf2(f10);
-                    float f12 = iArr[i12] / (-dpf2);
-                    if (f12 > 0.0f && f12 < 1.0f) {
-                        HorizontalScrollView y10 = kzVar.y(i12);
-                        int i13 = (f12 > 0.5f ? 1 : (f12 == 0.5f ? 0 : -1));
+                    float dpf2 = AndroidUtilities.dpf2(f7);
+                    float f11 = iArr[i12] / (-dpf2);
+                    if (f11 > 0.0f && f11 < 1.0f) {
+                        HorizontalScrollView y3 = kzVar.y(i12);
+                        int i13 = (f11 > 0.5f ? 1 : (f11 == 0.5f ? 0 : -1));
                         if (i13 > 0) {
                             i11 = (int) (-Math.ceil(dpf2));
                         } else {
@@ -62,81 +62,81 @@ public class jz extends f2.z0 {
                         }
                         ObjectAnimator objectAnimator2 = objectAnimatorArr[i12];
                         if (objectAnimator2 == null) {
-                            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(y10, View.TRANSLATION_Y, y10.getTranslationY(), i11);
+                            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(y3, View.TRANSLATION_Y, y3.getTranslationY(), i11);
                             objectAnimatorArr[i12] = ofFloat;
-                            ofFloat.addUpdateListener(new ih.b(kzVar, i12, 4));
+                            ofFloat.addUpdateListener(new org.telegram.ui.ActionBar.q2(kzVar, i12, 3));
                             objectAnimatorArr[i12].setDuration(200L);
                         } else {
-                            objectAnimator2.setFloatValues(y10.getTranslationY(), i11);
+                            objectAnimator2.setFloatValues(y3.getTranslationY(), i11);
                         }
                         objectAnimatorArr[i12].start();
                     } else {
-                        rl0 x10 = kzVar.x(i12);
+                        ll0 x10 = kzVar.x(i12);
                         if (i12 == 1) {
-                            f11 = 38.0f;
+                            f10 = 38.0f;
                         }
-                        int dp = AndroidUtilities.dp(f11);
-                        f2.l1 K = x10.K(0);
+                        int dp = AndroidUtilities.dp(f10);
+                        s4.c1 K = x10.K(0);
                         if (K != null) {
-                            int bottom = K.f5774a.getBottom();
+                            int bottom = K.f45738a.getBottom();
                             int i14 = iArr[i12];
-                            float f13 = (bottom - (dp + i14)) / kzVar.Y0;
-                            if (f13 > 0.0f || f13 < 1.0f) {
-                                if (f13 <= 0.5f) {
-                                    z4 = false;
+                            float f12 = (bottom - (dp + i14)) / kzVar.f27928b1;
+                            if (f12 > 0.0f || f12 < 1.0f) {
+                                if (f12 <= 0.5f) {
+                                    z10 = false;
                                 }
-                                kzVar.i(i12, i14, z4);
+                                kzVar.i(i12, i14, z10);
                             }
                         }
                     }
                 }
             }
-            if (kzVar.G0) {
-                kzVar.G0 = false;
+            if (kzVar.J0) {
+                kzVar.J0 = false;
             }
-            this.f26082b = false;
+            this.f27587b = false;
             return;
         }
         if (i10 == 1) {
-            if (kzVar.G0) {
-                kzVar.G0 = false;
+            if (kzVar.J0) {
+                kzVar.J0 = false;
             }
             if (i12 != 0) {
                 if (i12 != 1) {
                     if (i12 == 2) {
-                        wyVar = kzVar.f26457l0;
+                        xyVar = kzVar.f27968o0;
                     } else {
-                        throw new IllegalArgumentException(kf.k0.j(i12, "Unexpected argument: "));
+                        throw new IllegalArgumentException(i2.g.i(i12, "Unexpected argument: "));
                     }
                 } else {
-                    wyVar = kzVar.S;
+                    xyVar = kzVar.V;
                 }
             } else {
-                wyVar = kzVar.D0;
+                xyVar = kzVar.G0;
             }
-            if (wyVar != null) {
-                wyVar.b();
+            if (xyVar != null) {
+                xyVar.b();
             }
-            this.f26082b = false;
+            this.f27587b = false;
         }
-        if (!this.f26082b && (objectAnimator = objectAnimatorArr[i12]) != null && objectAnimator.isRunning()) {
+        if (!this.f27587b && (objectAnimator = objectAnimatorArr[i12]) != null && objectAnimator.isRunning()) {
             objectAnimatorArr[i12].cancel();
         }
         if (i12 == 0) {
-            if (kzVar.Q0 == null) {
-                zw zwVar = new zw(kzVar, kzVar.Z0, kzVar.f26472q1.a(), kzVar.f26472q1.f(), 0);
-                kzVar.Q0 = zwVar;
-                zwVar.a();
+            if (kzVar.T0 == null) {
+                hg.g1 g1Var = new hg.g1(kzVar, kzVar.f27932c1, kzVar.f27986t1.a(), kzVar.f27986t1.f(), 1);
+                kzVar.T0 = g1Var;
+                g1Var.a();
             }
-            kzVar.Q0.b();
+            kzVar.T0.b();
         }
     }
 
     @Override
     public void b(RecyclerView recyclerView, int i10, int i11) {
         int dp;
-        kz kzVar = this.f26083c;
-        int i12 = this.f26081a;
+        kz kzVar = this.f27588c;
+        int i12 = this.f27586a;
         kzVar.p(i12);
         kz.e(kzVar, i12, i11);
         if (i12 != 0) {
@@ -150,23 +150,23 @@ public class jz extends f2.z0 {
         } else {
             kzVar.q(false);
         }
-        if (!this.f26082b) {
-            float f10 = i11;
-            FrameLayout frameLayout = kzVar.f26461n;
-            if (SystemClock.elapsedRealtime() - kzVar.C2 >= ViewConfiguration.getTapTimeout()) {
-                kzVar.E += f10;
+        if (!this.f27587b) {
+            float f7 = i11;
+            FrameLayout frameLayout = kzVar.f27964n;
+            if (SystemClock.elapsedRealtime() - kzVar.F2 >= ViewConfiguration.getTapTimeout()) {
+                kzVar.H += f7;
                 if (kzVar.h.getCurrentItem() == 0) {
                     dp = AndroidUtilities.dp(38.0f);
                 } else {
                     dp = AndroidUtilities.dp(48.0f);
                 }
-                float f11 = kzVar.E;
-                if (f11 >= dp) {
+                float f10 = kzVar.H;
+                if (f10 >= dp) {
                     kzVar.O(false);
-                } else if (f11 <= (-dp)) {
+                } else if (f10 <= (-dp)) {
                     kzVar.O(true);
-                } else if ((frameLayout.getTag() == null && kzVar.E < 0.0f) || (frameLayout.getTag() != null && kzVar.E > 0.0f)) {
-                    kzVar.E = 0.0f;
+                } else if ((frameLayout.getTag() == null && kzVar.H < 0.0f) || (frameLayout.getTag() != null && kzVar.H > 0.0f)) {
+                    kzVar.H = 0.0f;
                 }
             }
         }

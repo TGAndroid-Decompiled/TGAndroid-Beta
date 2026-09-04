@@ -1,47 +1,4 @@
 package h7;
-
-import j7.t7;
-public final class c extends d {
-    public final transient int f7001c;
-    public final transient int d;
-    public final d e;
-
-    public c(d dVar, int i10, int i11) {
-        this.e = dVar;
-        this.f7001c = i10;
-        this.d = i11;
-    }
-
-    @Override
-    public final Object get(int i10) {
-        t7.a(i10, this.d);
-        return this.e.get(i10 + this.f7001c);
-    }
-
-    @Override
-    public final int n() {
-        return this.e.o() + this.f7001c + this.d;
-    }
-
-    @Override
-    public final int o() {
-        return this.e.o() + this.f7001c;
-    }
-
-    @Override
-    public final Object[] p() {
-        return this.e.p();
-    }
-
-    @Override
-    public final d subList(int i10, int i11) {
-        t7.c(i10, i11, this.d);
-        int i12 = this.f7001c;
-        return this.e.subList(i10 + i12, i11 + i12);
-    }
-
-    @Override
-    public final int size() {
-        return this.d;
-    }
+public abstract class c extends b8.b implements d {
+    public static final int f10895b = 0;
 }

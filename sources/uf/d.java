@@ -1,43 +1,49 @@
 package uf;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.MessagesController;
+import bi.v7;
+import java.io.File;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class d implements Runnable {
-    public final int f45339a;
-    public final e f45340b;
+public final class d implements NotificationCenter.NotificationCenterDelegate {
+    public final int f47035a;
+    public final String f47036b;
+    public boolean f47037c;
 
-    public d(e eVar, int i10) {
-        this.f45339a = i10;
-        this.f45340b = eVar;
+    public d(String str, int i10) {
+        this.f47035a = i10;
+        this.f47036b = str;
+        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploaded);
+        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploadFailed);
+        FileLoader.getInstance(i10).uploadFile(str, false, true, 50331648);
+    }
+
+    public final void a() {
+        int i10 = this.f47035a;
+        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileUploaded);
+        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileUploadFailed);
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f45339a;
-        e eVar = this.f45340b;
-        switch (i10) {
-            case 0:
-                eVar.a();
-                return;
-            case 1:
-                eVar.getClass();
-                TL_account.disablePeerConnectedBot disablepeerconnectedbot = new TL_account.disablePeerConnectedBot();
-                int i11 = eVar.f45345a;
-                disablepeerconnectedbot.peer = MessagesController.getInstance(i11).getInputPeer(eVar.f45351s);
-                ConnectionsManager.getInstance(i11).sendRequest(disablepeerconnectedbot, null);
-                SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(i11).edit();
-                SharedPreferences.Editor remove = edit.remove("dialog_botid" + eVar.f45351s);
-                SharedPreferences.Editor remove2 = remove.remove("dialog_boturl" + eVar.f45351s);
-                remove2.remove("dialog_botflags" + eVar.f45351s).apply();
-                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(eVar.f45351s));
-                f.a(i11).f45364f = false;
-                return;
-            default:
-                ze.d.s(eVar.getContext(), eVar.f45353x);
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.fileUploaded) {
+            String str = (String) objArr[0];
+            if (!this.f47037c && str.equals(this.f47036b)) {
+                TLRPC.InputFile inputFile = (TLRPC.InputFile) objArr[1];
+                TL_account.uploadRingtone uploadringtone = new TL_account.uploadRingtone();
+                uploadringtone.file = inputFile;
+                uploadringtone.file_name = inputFile.name;
+                String fileExtension = FileLoader.getFileExtension(new File(inputFile.name));
+                uploadringtone.mime_type = fileExtension;
+                if ("ogg".equals(fileExtension)) {
+                    uploadringtone.mime_type = "audio/ogg";
+                } else {
+                    uploadringtone.mime_type = "audio/mpeg";
+                }
+                ConnectionsManager.getInstance(this.f47035a).sendRequest(uploadringtone, new v7(this, 20));
+            }
         }
     }
 }

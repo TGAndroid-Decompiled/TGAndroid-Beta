@@ -1,40 +1,103 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class gr extends h51 {
-    public static final int f25224a = 0;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_phone;
+public final class gr implements RequestDelegate {
+    public final int f26491a;
+    public final lr f26492b;
+    public final di.d f26493c;
 
-    static {
-        h51.setup(new h51());
+    public gr(lr lrVar, di.d dVar, int i10) {
+        this.f26491a = i10;
+        this.f26492b = lrVar;
+        this.f26493c = dVar;
     }
 
     @Override
-    public final void bindView(View view, i51 i51Var, boolean z4, w51 w51Var, g61 g61Var) {
-        org.telegram.ui.Cells.x8 x8Var = (org.telegram.ui.Cells.x8) view;
-        x8Var.c(i51Var.f25585l, i51Var.f25587n, !i51Var.f25583j);
-        ih.s sVar = x8Var.f22552a;
-        if (i51Var.f25585l instanceof SpannableStringBuilder) {
-            sVar.setTextSize(1, 13.0f);
-            sVar.setTranslationY(AndroidUtilities.dp(2.0f));
-            sVar.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f26491a) {
+            case 0:
+                final lr lrVar = this.f26492b;
+                final di.d dVar = this.f26493c;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                lr lrVar2 = lrVar;
+                                lrVar2.getClass();
+                                dVar.setLoading(false);
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
+                                    lrVar2.f28292b0 = groupcallstreamrtmpurl.url;
+                                    lrVar2.f28293c0 = groupcallstreamrtmpurl.key;
+                                    lrVar2.f28294d0 = new SpannableStringBuilder(lrVar2.f28293c0);
+                                    lrVar2.f28295e0.N(true);
+                                    return;
+                                }
+                                return;
+                            default:
+                                lr lrVar3 = lrVar;
+                                lrVar3.getClass();
+                                dVar.setLoading(false);
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
+                                    lrVar3.f28292b0 = groupcallstreamrtmpurl2.url;
+                                    lrVar3.f28293c0 = groupcallstreamrtmpurl2.key;
+                                    lrVar3.f28294d0 = new SpannableStringBuilder(lrVar3.f28293c0);
+                                    lrVar3.f28295e0.N(true);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final lr lrVar2 = this.f26492b;
+                final di.d dVar2 = this.f26493c;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                lr lrVar22 = lrVar2;
+                                lrVar22.getClass();
+                                dVar2.setLoading(false);
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
+                                    lrVar22.f28292b0 = groupcallstreamrtmpurl.url;
+                                    lrVar22.f28293c0 = groupcallstreamrtmpurl.key;
+                                    lrVar22.f28294d0 = new SpannableStringBuilder(lrVar22.f28293c0);
+                                    lrVar22.f28295e0.N(true);
+                                    return;
+                                }
+                                return;
+                            default:
+                                lr lrVar3 = lrVar2;
+                                lrVar3.getClass();
+                                dVar2.setLoading(false);
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
+                                    lrVar3.f28292b0 = groupcallstreamrtmpurl2.url;
+                                    lrVar3.f28293c0 = groupcallstreamrtmpurl2.key;
+                                    lrVar3.f28294d0 = new SpannableStringBuilder(lrVar3.f28293c0);
+                                    lrVar3.f28295e0.N(true);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
         }
-    }
-
-    @Override
-    public final View createView(Context context, rl0 rl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        org.telegram.ui.Cells.x8 x8Var = new org.telegram.ui.Cells.x8(context, f6Var, true);
-        x8Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19881d6, f6Var));
-        Drawable mutate = context.getDrawable(R.drawable.msg_copy).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.L6, f6Var), PorterDuff.Mode.MULTIPLY));
-        x8Var.setImage(mutate);
-        x8Var.setImageClickListener(new dg.p(this, context, x8Var, 22));
-        return x8Var;
     }
 }

@@ -1,40 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.ui.LanguageSelectActivity;
-import org.telegram.ui.LaunchActivity;
-public final class g1 implements org.telegram.ui.ActionBar.c2 {
-    public final int f25014a;
-    public final LaunchActivity f25015b;
+import android.content.DialogInterface;
+import org.telegram.messenger.AndroidUtilities;
+public final class g1 implements DialogInterface.OnShowListener {
+    public final int f26228a;
+    public final EditTextBoldCursor f26229b;
 
-    public g1(LaunchActivity launchActivity, int i10) {
-        this.f25014a = i10;
-        this.f25015b = launchActivity;
+    public g1(int i10, EditTextBoldCursor editTextBoldCursor) {
+        this.f26228a = i10;
+        this.f26229b = editTextBoldCursor;
     }
 
     @Override
-    public final void l(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f25014a) {
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f26228a) {
             case 0:
-                this.f25015b.p0(new LanguageSelectActivity());
+                EditTextBoldCursor editTextBoldCursor = this.f26229b;
+                editTextBoldCursor.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor);
                 return;
             case 1:
-                this.f25015b.p0(new org.telegram.ui.d7());
+                EditTextBoldCursor editTextBoldCursor2 = this.f26229b;
+                editTextBoldCursor2.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor2);
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new r1(0, this.f26229b));
                 return;
             default:
-                LaunchActivity launchActivity = this.f25015b;
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    launchActivity.startActivity(intent);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new r1(6, this.f26229b));
+                return;
         }
     }
 }

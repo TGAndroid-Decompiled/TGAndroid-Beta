@@ -1,40 +1,29 @@
 package ca;
+
+import androidx.emoji2.text.w;
 public final class a {
-    public final String f2210a;
-    public final long f2211b;
-    public final long f2212c;
+    public static final z9.b f4707b = new Object();
+    public static final String f4708c = a("hts/cahyiseot-agolai.o/1frlglgc/aclg", "tp:/rsltcrprsp.ogepscmv/ieo/eaybtho");
+    public static final String d = a("AzSBpY4F0rHiHFdinTvM", "IayrSTFL9eJ69YeSUO2");
+    public static final w f4709e = new w(20);
+    public final c f4710a;
 
-    public a(long j10, long j11, String str) {
-        this.f2210a = str;
-        this.f2211b = j10;
-        this.f2212c = j11;
+    public a(c cVar) {
+        this.f4710a = cVar;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof a) {
-            a aVar = (a) obj;
-            if (this.f2210a.equals(aVar.f2210a) && this.f2211b == aVar.f2211b && this.f2212c == aVar.f2212c) {
-                return true;
+    public static String a(String str, String str2) {
+        int length = str.length() - str2.length();
+        if (length >= 0 && length <= 1) {
+            StringBuilder sb2 = new StringBuilder(str2.length() + str.length());
+            for (int i10 = 0; i10 < str.length(); i10++) {
+                sb2.append(str.charAt(i10));
+                if (str2.length() > i10) {
+                    sb2.append(str2.charAt(i10));
+                }
             }
+            return sb2.toString();
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        long j10 = this.f2211b;
-        long j11 = this.f2212c;
-        return ((((this.f2210a.hashCode() ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)));
-    }
-
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("InstallationTokenResult{token=");
-        sb.append(this.f2210a);
-        sb.append(", tokenExpirationTimestamp=");
-        sb.append(this.f2211b);
-        sb.append(", tokenCreationTimestamp=");
-        return android.support.v4.media.a.q(sb, this.f2212c, "}");
+        throw new IllegalArgumentException("Invalid input received");
     }
 }

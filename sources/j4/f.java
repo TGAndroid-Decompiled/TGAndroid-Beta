@@ -1,82 +1,97 @@
 package j4;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import h5.d0;
-import java.util.Arrays;
-public final class f extends j {
-    public static final Parcelable.Creator<f> CREATOR = new f8.o(17);
-    public final String f8899b;
-    public final String f8900c;
-    public final String d;
-    public final byte[] e;
+import b2.r0;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+public final class f {
+    public final int f13290a;
+    public final List f13291b;
 
-    public f(String str, byte[] bArr, String str2, String str3) {
-        super("GEOB");
-        this.f8899b = str;
-        this.f8900c = str2;
-        this.d = str3;
-        this.e = bArr;
+    public f(int i10, List list) {
+        this.f13290a = i10;
+        this.f13291b = list;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public j4.g0 a(int r6, j6.l r7) {
+        throw new UnsupportedOperationException("Method not decompiled: j4.f.a(int, j6.l):j4.g0");
+    }
+
+    public List b(j6.l lVar) {
+        boolean z10;
+        String str;
+        int i10;
+        List list;
+        boolean z11;
+        boolean c10 = c(32);
+        List list2 = this.f13291b;
+        if (c10) {
+            return list2;
         }
-        if (obj != null && f.class == obj.getClass()) {
-            f fVar = (f) obj;
-            if (d0.a(this.f8899b, fVar.f8899b) && d0.a(this.f8900c, fVar.f8900c) && d0.a(this.d, fVar.d) && Arrays.equals(this.e, fVar.e)) {
-                return true;
+        e2.v vVar = new e2.v((byte[]) lVar.d);
+        while (vVar.a() > 0) {
+            int x10 = vVar.x();
+            int x11 = vVar.f8790b + vVar.x();
+            if (x10 == 134) {
+                ArrayList arrayList = new ArrayList();
+                int x12 = vVar.x() & 31;
+                for (int i11 = 0; i11 < x12; i11++) {
+                    String v = vVar.v(3, StandardCharsets.UTF_8);
+                    int x13 = vVar.x();
+                    if ((x13 & 128) != 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (z10) {
+                        i10 = x13 & 63;
+                        str = "application/cea-708";
+                    } else {
+                        str = "application/cea-608";
+                        i10 = 1;
+                    }
+                    byte x14 = (byte) vVar.x();
+                    vVar.K(1);
+                    if (z10) {
+                        if ((x14 & 64) != 0) {
+                            z11 = true;
+                        } else {
+                            z11 = false;
+                        }
+                        byte[] bArr = e2.e.f8747a;
+                        list = Collections.singletonList(z11 ? new byte[]{1} : new byte[]{0});
+                    } else {
+                        list = null;
+                    }
+                    b2.r rVar = new b2.r();
+                    rVar.f2312q = r0.n(str);
+                    rVar.d = v;
+                    rVar.N = i10;
+                    rVar.f2315t = list;
+                    arrayList.add(new b2.s(rVar));
+                }
+                list2 = arrayList;
             }
+            vVar.J(x11);
+        }
+        return list2;
+    }
+
+    public boolean c(int i10) {
+        if ((i10 & this.f13290a) != 0) {
+            return true;
         }
         return false;
     }
 
-    public final int hashCode() {
-        int i10;
-        int i11;
-        int i12 = 0;
-        String str = this.f8899b;
-        if (str != null) {
-            i10 = str.hashCode();
-        } else {
-            i10 = 0;
-        }
-        int i13 = (527 + i10) * 31;
-        String str2 = this.f8900c;
-        if (str2 != null) {
-            i11 = str2.hashCode();
-        } else {
-            i11 = 0;
-        }
-        int i14 = (i13 + i11) * 31;
-        String str3 = this.d;
-        if (str3 != null) {
-            i12 = str3.hashCode();
-        }
-        return Arrays.hashCode(this.e) + ((i14 + i12) * 31);
+    public f() {
+        this.f13290a = 1;
+        this.f13291b = Collections.singletonList(null);
     }
 
-    @Override
-    public final String toString() {
-        return this.f8906a + ": mimeType=" + this.f8899b + ", filename=" + this.f8900c + ", description=" + this.d;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f8899b);
-        parcel.writeString(this.f8900c);
-        parcel.writeString(this.d);
-        parcel.writeByteArray(this.e);
-    }
-
-    public f(Parcel parcel) {
-        super("GEOB");
-        String readString = parcel.readString();
-        int i10 = d0.f6924a;
-        this.f8899b = readString;
-        this.f8900c = parcel.readString();
-        this.d = parcel.readString();
-        this.e = parcel.createByteArray();
+    public f(ArrayList arrayList) {
+        this.f13290a = 0;
+        this.f13291b = arrayList;
     }
 }

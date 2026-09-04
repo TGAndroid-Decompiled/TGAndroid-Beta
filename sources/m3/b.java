@@ -1,69 +1,88 @@
 package m3;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import j3.d1;
-import j3.n0;
-import l4.j;
-public final class b implements e4.b {
-    public static final Parcelable.Creator<b> CREATOR = new j(11);
-    public final float f13736a;
-    public final float f13737b;
+import a4.h;
+import b2.p0;
+import e2.v;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import w7.l;
+public final class b extends l {
+    public final int f15824a;
 
-    public b(float f10, float f11) {
-        h5.a.e("Invalid latitude or longitude", f10 >= -90.0f && f10 <= 90.0f && f11 >= -180.0f && f11 <= 180.0f);
-        this.f13736a = f10;
-        this.f13737b = f11;
+    public static n3.a c(v vVar) {
+        String s10 = vVar.s();
+        s10.getClass();
+        String s11 = vVar.s();
+        s11.getClass();
+        return new n3.a(s10, s11, vVar.r(), vVar.r(), Arrays.copyOfRange(vVar.f8789a, vVar.f8790b, vVar.f8791c));
     }
 
     @Override
-    public final n0 b() {
-        return null;
-    }
-
-    @Override
-    public final byte[] d() {
-        return null;
-    }
-
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final p0 b(l3.a aVar, ByteBuffer byteBuffer) {
+        switch (this.f15824a) {
+            case 0:
+                if (byteBuffer.get() != 116) {
+                    return null;
+                }
+                h hVar = new h(byteBuffer.array(), byteBuffer.limit());
+                int i10 = 12;
+                hVar.t(12);
+                int f7 = (hVar.f() + hVar.i(12)) - 4;
+                hVar.t(44);
+                hVar.u(hVar.i(12));
+                hVar.t(16);
+                ArrayList arrayList = new ArrayList();
+                while (hVar.f() < f7) {
+                    hVar.t(48);
+                    int i11 = hVar.i(8);
+                    hVar.t(4);
+                    int f10 = hVar.f() + hVar.i(i10);
+                    String str = null;
+                    String str2 = null;
+                    while (hVar.f() < f10) {
+                        int i12 = hVar.i(8);
+                        int i13 = hVar.i(8);
+                        int f11 = hVar.f() + i13;
+                        if (i12 == 2) {
+                            int i14 = hVar.i(16);
+                            hVar.t(8);
+                            if (i14 == 3) {
+                                while (hVar.f() < f11) {
+                                    int i15 = hVar.i(8);
+                                    Charset charset = StandardCharsets.US_ASCII;
+                                    byte[] bArr = new byte[i15];
+                                    hVar.l(i15, bArr);
+                                    String str3 = new String(bArr, charset);
+                                    int i16 = hVar.i(8);
+                                    for (int i17 = 0; i17 < i16; i17++) {
+                                        hVar.u(hVar.i(8));
+                                    }
+                                    str = str3;
+                                }
+                            }
+                        } else if (i12 == 21) {
+                            Charset charset2 = StandardCharsets.US_ASCII;
+                            byte[] bArr2 = new byte[i13];
+                            hVar.l(i13, bArr2);
+                            str2 = new String(bArr2, charset2);
+                        }
+                        hVar.q(f11 * 8);
+                    }
+                    hVar.q(f10 * 8);
+                    if (str != null && str2 != null) {
+                        arrayList.add(new a(i11, str.concat(str2)));
+                    }
+                    i10 = 12;
+                }
+                if (arrayList.isEmpty()) {
+                    return null;
+                }
+                return new p0(arrayList);
+            default:
+                return new p0(c(new v(byteBuffer.array(), byteBuffer.limit())));
         }
-        if (obj != null && b.class == obj.getClass()) {
-            b bVar = (b) obj;
-            if (this.f13736a == bVar.f13736a && this.f13737b == bVar.f13737b) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Float.valueOf(this.f13737b).hashCode() + ((Float.valueOf(this.f13736a).hashCode() + 527) * 31);
-    }
-
-    public final String toString() {
-        return "xyz: latitude=" + this.f13736a + ", longitude=" + this.f13737b;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeFloat(this.f13736a);
-        parcel.writeFloat(this.f13737b);
-    }
-
-    public b(Parcel parcel) {
-        this.f13736a = parcel.readFloat();
-        this.f13737b = parcel.readFloat();
-    }
-
-    @Override
-    public final void c(d1 d1Var) {
     }
 }

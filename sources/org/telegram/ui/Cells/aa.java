@@ -1,104 +1,83 @@
 package org.telegram.ui.Cells;
 
-import android.animation.ValueAnimator;
-import android.graphics.Bitmap;
-import android.view.ViewTreeObserver;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.b30;
-import org.telegram.ui.Components.e91;
-import org.telegram.ui.Components.f30;
-import org.telegram.ui.Components.h30;
-import org.telegram.ui.Components.hu;
-import org.telegram.ui.Components.z61;
-public final class aa implements ViewTreeObserver.OnPreDrawListener {
-    public final int f20821a;
-    public final Object f20822b;
+import android.graphics.Canvas;
+import android.text.Layout;
+import org.telegram.messenger.FileLog;
+public class aa extends da {
+    public final z9 f21620u0;
 
-    public aa(Object obj, int i10) {
-        this.f20821a = i10;
-        this.f20822b = obj;
+    public aa(bi.da daVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f21620u0 = daVar;
+        this.f21775h0 = f6Var;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        boolean z4;
-        int i10 = this.f20821a;
-        Object obj = this.f20822b;
-        switch (i10) {
-            case 0:
-                ca caVar = ((ba) obj).f20862a;
-                caVar.getViewTreeObserver().removeOnPreDrawListener(this);
-                caVar.getTransitionParams().j();
-                caVar.getTransitionParams().f();
-                caVar.getTransitionParams().f21773g = true;
-                caVar.getTransitionParams().K1 = 0.0f;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                ofFloat.addUpdateListener(new r(this, 8));
-                ofFloat.addListener(new org.telegram.ui.u5(this, 12));
-                ofFloat.start();
-                return false;
-            case 1:
-                ((hu) obj).f25496a.f27652c.getViewTreeObserver().removeOnPreDrawListener(this);
-                return true;
-            case 2:
-                b30 b30Var = (b30) obj;
-                f30 f30Var = b30Var.f23535f;
-                org.telegram.ui.y7 y7Var = b30Var.e;
-                y7Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                int[] iArr = b30Var.D;
-                y7Var.getLocationOnScreen(iArr);
-                float f10 = b30Var.f23537r.x + b30Var.N;
-                h30 h30Var = b30Var.R;
-                float measuredWidth = ((h30Var.getMeasuredWidth() / 2.0f) + f10) - iArr[0];
-                float measuredWidth2 = ((h30Var.getMeasuredWidth() / 2.0f) + (b30Var.f23537r.y + b30Var.O)) - iArr[1];
-                if (measuredWidth2 - AndroidUtilities.dp(61.0f) > 0.0f && AndroidUtilities.dp(61.0f) + measuredWidth2 < y7Var.getMeasuredHeight()) {
-                    z4 = true;
-                } else {
-                    z4 = false;
-                }
-                if (AndroidUtilities.dp(61.0f) + measuredWidth + f30Var.getMeasuredWidth() < y7Var.getMeasuredWidth() - AndroidUtilities.dp(16.0f) && z4) {
-                    f30Var.setTranslationX(AndroidUtilities.dp(61.0f) + measuredWidth);
-                    float dp = AndroidUtilities.dp(40.0f) / f30Var.getMeasuredHeight();
-                    f30Var.setTranslationY((int) (measuredWidth2 - (f30Var.getMeasuredHeight() * Math.max(dp, Math.min(measuredWidth2 / y7Var.getMeasuredHeight(), 1.0f - dp)))));
-                    f30Var.c(measuredWidth, measuredWidth2, 0);
-                } else if ((measuredWidth - AndroidUtilities.dp(61.0f)) - f30Var.getMeasuredWidth() > AndroidUtilities.dp(16.0f) && z4) {
-                    float dp2 = AndroidUtilities.dp(40.0f) / f30Var.getMeasuredHeight();
-                    float max = Math.max(dp2, Math.min(measuredWidth2 / y7Var.getMeasuredHeight(), 1.0f - dp2));
-                    f30Var.setTranslationX((int) ((measuredWidth - AndroidUtilities.dp(61.0f)) - f30Var.getMeasuredWidth()));
-                    f30Var.setTranslationY((int) (measuredWidth2 - (f30Var.getMeasuredHeight() * max)));
-                    f30Var.c(measuredWidth, measuredWidth2, 1);
-                } else if (measuredWidth2 > y7Var.getMeasuredHeight() * 0.3f) {
-                    float dp3 = AndroidUtilities.dp(40.0f) / f30Var.getMeasuredWidth();
-                    f30Var.setTranslationX((int) (measuredWidth - (f30Var.getMeasuredWidth() * Math.max(dp3, Math.min(measuredWidth / y7Var.getMeasuredWidth(), 1.0f - dp3)))));
-                    f30Var.setTranslationY((int) ((measuredWidth2 - f30Var.getMeasuredHeight()) - AndroidUtilities.dp(61.0f)));
-                    f30Var.c(measuredWidth, measuredWidth2, 3);
-                } else {
-                    float dp4 = AndroidUtilities.dp(40.0f) / f30Var.getMeasuredWidth();
-                    f30Var.setTranslationX((int) (measuredWidth - (f30Var.getMeasuredWidth() * Math.max(dp4, Math.min(measuredWidth / y7Var.getMeasuredWidth(), 1.0f - dp4)))));
-                    f30Var.setTranslationY((int) (AndroidUtilities.dp(61.0f) + measuredWidth2));
-                    f30Var.c(measuredWidth, measuredWidth2, 2);
-                }
-                return false;
-            case 3:
-                ((eg.i0) obj).invalidate();
-                return true;
-            default:
-                e91 e91Var = (e91) ((ih.h) obj).f7563b;
-                e91Var.f24542n.getViewTreeObserver().removeOnPreDrawListener(this);
-                ImageView imageView = e91Var.e;
-                if (imageView != null) {
-                    imageView.setVisibility(4);
-                    e91Var.e.setImageDrawable(null);
-                    Bitmap bitmap = e91Var.h;
-                    if (bitmap != null) {
-                        bitmap.recycle();
-                        e91Var.h = null;
-                    }
-                }
-                AndroidUtilities.runOnUIThread(new z61(this, 3));
-                e91Var.f24543r = 0;
-                return true;
+    public final void M(y9 y9Var, y9 y9Var2) {
+        z9 z9Var = (z9) y9Var;
+        z9 z9Var2 = (z9) y9Var2;
+    }
+
+    public final void X(Canvas canvas) {
+        Layout staticTextLayout = this.f21620u0.getStaticTextLayout();
+        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Md, this.f21775h0);
+        this.f21787o.setColor(v02);
+        this.f21789p.setColor(v02);
+        i(canvas, staticTextLayout, this.f21799u, this.v, true, true, 0.0f);
+    }
+
+    @Override
+    public final void j(int i10, t9 t9Var, boolean z10) {
+        t9Var.f23296b = this.f21620u0.getStaticTextLayout();
+        t9Var.f23297c = 0.0f;
+        t9Var.d = 0.0f;
+        t9Var.f23295a = 0;
+    }
+
+    @Override
+    public final int l(int i10, int i11, int i12, int i13, y9 y9Var, boolean z10) {
+        z9 z9Var = (z9) y9Var;
+        if (i11 < 0) {
+            i11 = 1;
         }
+        Layout staticTextLayout = z9Var.getStaticTextLayout();
+        if (i11 > staticTextLayout.getLineBottom(staticTextLayout.getLineCount() - 1) + 0.0f) {
+            i11 = (int) ((staticTextLayout.getLineBottom(staticTextLayout.getLineCount() - 1) + 0.0f) - 1.0f);
+        }
+        t9 t9Var = this.f21763a0;
+        Layout layout = t9Var.f23296b;
+        if (layout != null) {
+            int i14 = (int) (i10 - t9Var.d);
+            int i15 = 0;
+            while (true) {
+                if (i15 < layout.getLineCount()) {
+                    if (i11 > layout.getLineTop(i15) + i13 && i11 < layout.getLineBottom(i15) + i13) {
+                        break;
+                    }
+                    i15++;
+                } else {
+                    i15 = -1;
+                    break;
+                }
+            }
+            if (i15 >= 0) {
+                try {
+                    return t9Var.f23295a + layout.getOffsetForHorizontal(i15, i14);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                }
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public final int n() {
+        Layout staticTextLayout = this.f21620u0.getStaticTextLayout();
+        return staticTextLayout.getLineBottom(0) - staticTextLayout.getLineTop(0);
+    }
+
+    @Override
+    public final CharSequence t(y9 y9Var, boolean z10) {
+        return ((z9) y9Var).getText();
     }
 }

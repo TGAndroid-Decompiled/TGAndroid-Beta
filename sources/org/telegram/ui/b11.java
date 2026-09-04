@@ -1,256 +1,121 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.os.Vibrator;
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.GradientDrawable;
 import android.view.View;
-import java.io.File;
-import java.util.ArrayList;
+import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class b11 implements Runnable {
-    public final int f32694a;
-    public final Object f32695b;
-    public final Object f32696c;
+public final class b11 extends View implements org.telegram.ui.Components.jh0 {
+    public boolean E;
+    public float F;
+    public float G;
+    public float[] H;
+    public long I;
+    public float J;
+    public int K;
+    public float L;
+    public int M;
+    public float N;
+    public int O;
+    public final ProfileActivity P;
+    public final int f34586a;
+    public final Rect f34587b;
+    public final Rect f34588c;
+    public final RectF d;
+    public final GradientDrawable f34589e;
+    public final GradientDrawable f34590f;
+    public final ValueAnimator h;
+    public final float[] f34591n;
+    public final Paint f34592r;
+    public final Paint f34593s;
+    public final Paint v;
+    public final GradientDrawable[] f34594w;
+    public final boolean[] f34595x;
+    public final float[] f34596y;
 
-    public b11(int i10, Object obj, Object obj2) {
-        this.f32694a = i10;
-        this.f32695b = obj;
-        this.f32696c = obj2;
+    public b11(org.telegram.ui.ProfileActivity r7, android.content.Context r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.b11.<init>(org.telegram.ui.ProfileActivity, android.content.Context):void");
     }
 
     @Override
-    public final void run() {
-        long j10;
-        org.telegram.ui.Components.dl0 dl0Var;
-        int i10 = this.f32694a;
-        Object obj = this.f32696c;
-        Object obj2 = this.f32695b;
-        switch (i10) {
-            case 0:
-                c11 c11Var = (c11) obj2;
-                c11Var.f32989f.add((e11) obj);
-                c11Var.a();
-                return;
-            case 1:
-                ((u21) obj2).e0(34, (Bitmap) obj, true);
-                return;
-            case 2:
-                o21 o21Var = (o21) obj2;
-                TLRPC.TL_exportedContactToken tL_exportedContactToken = (TLRPC.TL_exportedContactToken) obj;
-                if (tL_exportedContactToken == null) {
-                    o21Var.getClass();
-                    return;
-                }
-                int i11 = o21Var.G;
-                if (i11 != 0 && i11 < tL_exportedContactToken.expires) {
-                    try {
-                        try {
-                            Vibrator vibrator = (Vibrator) o21Var.getContext().getSystemService("vibrator");
-                            if (vibrator != null) {
-                                vibrator.vibrate(100L);
-                            }
-                        } catch (Exception unused) {
-                        }
-                    } catch (Exception unused2) {
-                        o21Var.performHapticFeedback(0, 2);
-                    }
-                }
-                o21Var.G = tL_exportedContactToken.expires;
-                o21Var.c(tL_exportedContactToken.url, null, false, true);
-                return;
-            case 3:
-                p31 p31Var = (p31) ((View[]) obj2)[0];
-                p31Var.f36930b = (TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) obj;
-                p31Var.f36931c = null;
-                p31Var.d = null;
-                p31Var.f36932f.V2.N(false);
-                return;
-            case 4:
-                ((p31) ((View[]) obj2)[0]).b((TLRPC.TL_reportResultAddComment) obj);
-                return;
-            case 5:
-                p31 p31Var2 = (p31) ((View[]) obj2)[0];
-                p31Var2.f36930b = null;
-                p31Var2.f36931c = (TLRPC.TL_reportResultChooseOption) obj;
-                p31Var2.d = null;
-                p31Var2.f36932f.V2.N(false);
-                return;
-            case 6:
-                ((org.telegram.messenger.video.a) obj2).run();
-                ((org.telegram.ui.Components.qc) obj).c(LocaleController.getString(R.string.AdHidden)).j();
-                return;
-            case 7:
-                org.telegram.ui.Components.qc.a0((org.telegram.ui.ActionBar.p2) obj2).c(LocaleController.getString(R.string.AdHidden)).j();
-                AndroidUtilities.runOnUIThread((org.telegram.ui.Components.z80) obj);
-                return;
-            case 8:
-                ((SecretMediaViewer) obj2).J = false;
-                ((qu0) obj).f37487a.setVisible(false, true);
-                return;
-            case 9:
-                ((SecretMediaViewer) ((n7.qa) obj2).f14688c).h((File) obj);
-                return;
-            case 10:
-                x61 x61Var = (x61) obj2;
-                x61Var.v(null, false, false);
-                ((org.telegram.ui.ActionBar.p2) obj).presentFragment(new StickersActivity(5, x61Var.I0));
-                Runnable runnable = x61Var.Q1;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 11:
-                AndroidUtilities.addToClipboard((String) obj);
-                org.telegram.ui.Components.qc.a0((w81) obj2).k(false).j();
-                return;
-            case 12:
-                w81.W((w81) obj2, (TLRPC.TL_attachMenuBot) obj);
-                return;
-            case 13:
-                p81 p81Var = (p81) obj2;
-                a0.h hVar = (a0.h) obj;
-                w81 w81Var = p81Var.Y0;
-                Activity parentActivity = w81Var.getParentActivity();
-                kh.i4 i4Var = w81Var.f39310b;
-                int m9 = hVar.m();
-                if (hVar.m() == 1) {
-                    j10 = ((TLRPC.Dialog) hVar.n(0)).f19163id;
-                } else {
-                    j10 = 0;
-                }
-                org.telegram.ui.Components.qc.x(parentActivity, i4Var, m9, j10, p81Var.getThemedColor(org.telegram.ui.ActionBar.j6.Fi), p81Var.getThemedColor(org.telegram.ui.ActionBar.j6.Hi)).j();
-                return;
-            case 14:
-                org.telegram.ui.ActionBar.p2 p2Var = (org.telegram.ui.ActionBar.p2) obj2;
-                new g91(p2Var.getContext(), p2Var.getCurrentAccount(), p2Var.getResourceProvider(), (kh.a1) obj).show();
-                return;
-            case 15:
-                ((StickersActivity) obj2).n0((org.telegram.ui.Cells.j8) obj);
-                return;
-            case 16:
-                ThemeActivity themeActivity = (ThemeActivity) obj2;
-                View view = (View) obj;
-                themeActivity.getMessagesController().setContentSettings(true);
-                if (view instanceof org.telegram.ui.Cells.r8) {
-                    ((org.telegram.ui.Cells.r8) view).setChecked(themeActivity.getMessagesController().showSensitiveContent());
-                    return;
-                }
-                return;
-            case 17:
-                ThemeActivity themeActivity2 = (ThemeActivity) obj2;
-                String str = (String) obj;
-                themeActivity2.getClass();
-                org.telegram.ui.ActionBar.j6.f20212w = str;
-                if (str == null) {
-                    org.telegram.ui.ActionBar.j6.f20212w = String.format("(%.06f, %.06f)", Double.valueOf(org.telegram.ui.ActionBar.j6.f20231x), Double.valueOf(org.telegram.ui.ActionBar.j6.f20249y));
-                }
-                org.telegram.ui.ActionBar.j6.q1();
-                org.telegram.ui.Components.rl0 rl0Var = themeActivity2.f32307b;
-                if (rl0Var != null && (dl0Var = (org.telegram.ui.Components.dl0) rl0Var.K(themeActivity2.V)) != null) {
-                    View view2 = dl0Var.f5774a;
-                    if (view2 instanceof org.telegram.ui.Cells.z9) {
-                        ((org.telegram.ui.Cells.z9) view2).c(LocaleController.getString("AutoNightUpdateLocation", R.string.AutoNightUpdateLocation), org.telegram.ui.ActionBar.j6.f20212w, false, false);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 18:
-                jd1 jd1Var = (jd1) obj2;
-                SharedPreferences sharedPreferences = (SharedPreferences) obj;
-                if (jd1Var.f35213n == 3) {
-                    sharedPreferences.edit().putBoolean("bganimationhint", true).commit();
-                    jd1Var.f35238x0.f(jd1Var.H0[0], true);
-                    return;
-                }
-                return;
-            case 19:
-                od1.X((od1) obj2, (String) obj);
-                return;
-            case 20:
-                od1.V((od1) obj2, (TLRPC.TL_theme) obj);
-                return;
-            case 21:
-                yd1 yd1Var = (yd1) obj2;
-                yd1Var.getClass();
-                AndroidUtilities.addToClipboard((String) obj);
-                yd1Var.c(true);
-                return;
-            case 22:
-                yd1 yd1Var2 = (yd1) obj2;
-                yd1Var2.getClass();
-                AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(((TLRPC.TodoItem) obj).title, false));
-                yd1Var2.c(true);
-                return;
-            case 23:
-                xe1 xe1Var = (xe1) obj2;
-                xe1Var.getClass();
-                Bundle bundle = new Bundle();
-                sf1 sf1Var = xe1Var.f39970b;
-                bundle.putLong("dialog_id", -sf1Var.f38175a);
-                bundle.putLong("topic_id", ((TLRPC.TL_forumTopic) obj).f19211id);
-                sf1Var.presentFragment(new l11(bundle, null));
-                return;
-            case 24:
-                of1 of1Var = (of1) obj2;
-                String str2 = (String) obj;
-                ArrayList arrayList = of1Var.W;
-                sf1 sf1Var2 = of1Var.f36792q0;
-                String lowerCase = str2.trim().toLowerCase();
-                ArrayList arrayList2 = new ArrayList();
-                int i12 = 0;
-                while (true) {
-                    ArrayList arrayList3 = sf1Var2.f38178b;
-                    if (i12 < arrayList3.size()) {
-                        if (((jf1) arrayList3.get(i12)).f35268c != null && ((jf1) arrayList3.get(i12)).f35268c.title.toLowerCase().contains(lowerCase)) {
-                            arrayList2.add(((jf1) arrayList3.get(i12)).f35268c);
-                            ((jf1) arrayList3.get(i12)).f35268c.searchQuery = lowerCase;
-                        }
-                        i12++;
-                    } else {
-                        arrayList.clear();
-                        arrayList.addAll(arrayList2);
-                        of1Var.L();
-                        if (!arrayList.isEmpty()) {
-                            of1Var.f36785i0 = false;
-                            of1Var.f36788l0.b(0);
-                        }
-                        of1Var.J(str2);
-                        return;
-                    }
-                }
-                break;
-            case 25:
-                vf1 vf1Var = ((uf1) obj2).f38809b;
-                vf1Var.f39087a.e.remove(Integer.valueOf(((TLRPC.TL_forumTopic) obj).f19211id));
-                vf1Var.f39087a.V();
-                return;
-            case 26:
-                TwoStepVerificationActivity.Y((TwoStepVerificationActivity) obj2, (byte[]) obj);
-                return;
-            case 27:
-                TwoStepVerificationActivity.d0((TwoStepVerificationActivity) obj2, (TL_account.updatePasswordSettings) obj);
-                return;
-            case 28:
-                TwoStepVerificationActivity.W((TwoStepVerificationActivity) obj2, (TLRPC.TL_error) obj);
-                return;
-            default:
-                wg1.g0((wg1) obj2, (String) obj);
-                return;
+    public final void a() {
+        Arrays.fill(this.f34595x, false);
+        postInvalidateOnAnimation();
+    }
+
+    @Override
+    public final void b(boolean z10) {
+        this.f34595x[!z10 ? 1 : 0] = true;
+        postInvalidateOnAnimation();
+    }
+
+    @Override
+    public final void c() {
+        this.P.i5(false);
+    }
+
+    @Override
+    public final void d() {
+        invalidate();
+    }
+
+    public final void e(float f7, boolean z10) {
+        int i10 = (int) (255.0f * f7);
+        this.f34589e.setAlpha(i10);
+        this.f34590f.setAlpha(i10);
+        this.f34592r.setAlpha((int) (66.0f * f7));
+        this.f34593s.setAlpha((int) (85.0f * f7));
+        this.v.setAlpha(i10);
+        this.G = f7;
+        if (!z10) {
+            this.F = f7;
+        }
+        invalidate();
+    }
+
+    public final void f(float f7, boolean z10) {
+        if (z10 != this.E) {
+            this.E = z10;
+            ValueAnimator valueAnimator = this.h;
+            valueAnimator.cancel();
+            float f10 = this.F;
+            float[] fArr = this.f34591n;
+            float lerp = AndroidUtilities.lerp(fArr, f10);
+            float f11 = 1.0f;
+            if (z10) {
+                valueAnimator.setDuration(((1.0f - lerp) * 250.0f) / f7);
+            } else {
+                valueAnimator.setDuration((250.0f * lerp) / f7);
+            }
+            fArr[0] = lerp;
+            if (!z10) {
+                f11 = 0.0f;
+            }
+            fArr[1] = f11;
+            valueAnimator.start();
         }
     }
 
-    public b11(p81 p81Var, a0.h hVar, int i10) {
-        this.f32694a = 13;
-        this.f32695b = p81Var;
-        this.f32696c = hVar;
+    @Override
+    public final void onDraw(android.graphics.Canvas r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.b11.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.f34586a;
+        Rect rect = this.f34587b;
+        rect.set(0, 0, i10, (int) (currentActionBarHeight * 0.5f));
+        Rect rect2 = this.f34588c;
+        rect2.set(0, (int) (i11 - (AndroidUtilities.dp(72.0f) * 0.5f)), i10, i11);
+        this.f34589e.setBounds(0, rect.bottom, i10, AndroidUtilities.dp(16.0f) + currentActionBarHeight);
+        this.f34590f.setBounds(0, ((i11 - this.P.O3()) - AndroidUtilities.dp(72.0f)) - AndroidUtilities.dp(24.0f), i10, rect2.top);
+        GradientDrawable[] gradientDrawableArr = this.f34594w;
+        int i14 = i10 / 5;
+        gradientDrawableArr[0].setBounds(0, 0, i14, i11);
+        gradientDrawableArr[1].setBounds(i10 - i14, 0, i10, i11);
     }
 }

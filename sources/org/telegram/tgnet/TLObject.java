@@ -1,7 +1,7 @@
 package org.telegram.tgnet;
 
-import k7.w8;
 import org.telegram.tgnet.Vector;
+import w7.b0;
 public class TLObject {
     public static final int FLAG_0 = 1;
     public static final int FLAG_1 = 2;
@@ -44,34 +44,34 @@ public class TLObject {
     public boolean disableFree = false;
     public int networkType;
 
-    public static <T extends TLObject> T TLdeserialize(Class<T> cls, T t6, InputSerializedData inputSerializedData, int i10, boolean z4) {
-        if (t6 == null) {
-            TLParseException.doThrowOrLog(inputSerializedData, cls.getName(), i10, z4);
+    public static <T extends TLObject> T TLdeserialize(Class<T> cls, T t10, InputSerializedData inputSerializedData, int i10, boolean z10) {
+        if (t10 == null) {
+            TLParseException.doThrowOrLog(inputSerializedData, cls.getName(), i10, z10);
             return null;
         }
-        t6.readParams(inputSerializedData, z4);
-        return t6;
+        t10.readParams(inputSerializedData, z10);
+        return t10;
     }
 
-    public static <T extends TLObject> T deepCopy(T t6, Vector.TLDeserializer<T> tLDeserializer) {
-        if (t6 == null) {
+    public static <T extends TLObject> T deepCopy(T t10, Vector.TLDeserializer<T> tLDeserializer) {
+        if (t10 == null) {
             return null;
         }
-        SerializedData serializedData = new SerializedData(t6.getObjectSize());
-        t6.serializeToStream(serializedData);
+        SerializedData serializedData = new SerializedData(t10.getObjectSize());
+        t10.serializeToStream(serializedData);
         SerializedData serializedData2 = new SerializedData(serializedData.toByteArray());
         return tLDeserializer.deserialize(serializedData2, serializedData2.readInt32(false), false);
     }
 
     public static boolean hasFlag(int i10, int i11) {
-        return w8.a(i10, i11);
+        return b0.a(i10, i11);
     }
 
-    public static int setFlag(int i10, int i11, boolean z4) {
-        return w8.b(i10, i11, z4);
+    public static int setFlag(int i10, int i11, boolean z10) {
+        return b0.b(i10, i11, z10);
     }
 
-    public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z4) {
+    public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
         return null;
     }
 
@@ -89,6 +89,6 @@ public class TLObject {
     public void serializeToStream(OutputSerializedData outputSerializedData) {
     }
 
-    public void readParams(InputSerializedData inputSerializedData, boolean z4) {
+    public void readParams(InputSerializedData inputSerializedData, boolean z10) {
     }
 }

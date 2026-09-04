@@ -1,65 +1,49 @@
 package org.telegram.ui.Components;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.view.View;
-public final class cl implements g91, y4, jl0 {
-    public final int f23961a;
-    public final ChatAttachAlertPhotoLayout f23962b;
+import android.view.animation.OvershootInterpolator;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class cl implements ValueAnimator.AnimatorUpdateListener {
+    public boolean f25025a;
+    public final float[] f25026b = {0.0f, 1.0f};
+    public final FrameLayout f25027c;
+    public final dl d;
 
-    public cl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10) {
-        this.f23961a = i10;
-        this.f23962b = chatAttachAlertPhotoLayout;
+    public cl(dl dlVar, FrameLayout frameLayout) {
+        this.d = dlVar;
+        this.f25027c = frameLayout;
     }
 
     @Override
-    public void J(int i10, int i11, boolean z4) {
-        int i12 = this.f23961a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f23962b;
-        switch (i12) {
-            case 1:
-                boolean z10 = ChatAttachAlertPhotoLayout.f22867n1;
-                li liVar = chatAttachAlertPhotoLayout.f24282b;
-                liVar.Y0();
-                liVar.W1.G1(7, false, z4, i10, 0, 0L, liVar.s1(), false, 0L);
-                return;
-            default:
-                boolean z11 = ChatAttachAlertPhotoLayout.f22867n1;
-                li liVar2 = chatAttachAlertPhotoLayout.f24282b;
-                liVar2.Y0();
-                liVar2.W1.G1(4, true, z4, i10, 0, 0L, liVar2.s1(), false, 0L);
-                return;
-        }
-    }
-
-    @Override
-    public void a(float f10) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f23962b;
-        zl zlVar = chatAttachAlertPhotoLayout.M;
-        if (zlVar != null) {
-            chatAttachAlertPhotoLayout.f22913y0 = f10;
-            zlVar.setZoom(f10);
-        }
-        chatAttachAlertPhotoLayout.t0(true);
-    }
-
-    @Override
-    public boolean d(int i10, View view) {
-        boolean z4 = ChatAttachAlertPhotoLayout.f22867n1;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f23962b;
-        li liVar = chatAttachAlertPhotoLayout.f24282b;
-        if (!liVar.Q0) {
-            if (i10 == 0 && chatAttachAlertPhotoLayout.Q0 == chatAttachAlertPhotoLayout.R0) {
-                ji jiVar = liVar.W1;
-                if (jiVar != null) {
-                    jiVar.G1(0, false, true, 0, 0, 0L, liVar.s1(), false, 0L);
-                }
-                return true;
-            } else if (view instanceof org.telegram.ui.Cells.s5) {
-                ul0 ul0Var = chatAttachAlertPhotoLayout.F;
-                boolean z10 = !((org.telegram.ui.Cells.s5) view).a();
-                chatAttachAlertPhotoLayout.H = z10;
-                ul0Var.d(view, i10, z10);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float interpolation;
+        float lerp = AndroidUtilities.lerp(this.f25026b, valueAnimator.getAnimatedFraction());
+        if (lerp >= 0.7f && !this.f25025a) {
+            dl dlVar = this.d;
+            gl glVar = dlVar.f25419b;
+            gl glVar2 = dlVar.f25419b;
+            if (glVar.f26436i0 != null) {
+                AnimatorSet animatorSet = new AnimatorSet();
+                animatorSet.playTogether(ObjectAnimator.ofFloat(glVar2.f26436i0, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(glVar2.f26436i0, View.SCALE_Y, 0.0f, 1.0f), ObjectAnimator.ofFloat(glVar2.f26436i0, View.ALPHA, 0.0f, 1.0f));
+                animatorSet.setInterpolator(new OvershootInterpolator(1.02f));
+                animatorSet.setDuration(250L);
+                animatorSet.start();
+                this.f25025a = true;
             }
         }
-        return false;
+        if (lerp <= 0.5f) {
+            interpolation = pr.f29467g.getInterpolation(lerp / 0.5f) * 1.1f;
+        } else if (lerp <= 0.75f) {
+            interpolation = 1.1f - (pr.f29467g.getInterpolation((lerp - 0.5f) / 0.25f) * 0.2f);
+        } else {
+            interpolation = (pr.f29467g.getInterpolation((lerp - 0.75f) / 0.25f) * 0.1f) + 0.9f;
+        }
+        FrameLayout frameLayout = this.f25027c;
+        frameLayout.setScaleX(interpolation);
+        frameLayout.setScaleY(interpolation);
     }
 }

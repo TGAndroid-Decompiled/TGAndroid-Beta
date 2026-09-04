@@ -1,213 +1,35 @@
 package org.telegram.ui.Components;
+public final class au implements Runnable {
+    public final int f24456a;
+    public final bu f24457b;
 
-import android.text.SpannableString;
-import android.view.KeyEvent;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class au implements ky {
-    public final cu f23482a;
-
-    public au(cu cuVar) {
-        this.f23482a = cuVar;
+    public au(bu buVar, int i10) {
+        this.f24456a = i10;
+        this.f24457b = buVar;
     }
 
     @Override
-    public final boolean A() {
-        return false;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final int f() {
-        return 0;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final void i(int i10) {
-        boolean z4;
-        cu cuVar = this.f23482a;
-        if (cuVar.b()) {
-            if (i10 != 0) {
-                z4 = true;
-            } else {
-                z4 = false;
-            }
-            cuVar.f24038x = z4;
-            cuVar.y();
-            qv0 qv0Var = cuVar.f24033f;
-            if (qv0Var != null) {
-                qv0Var.S();
-            }
+    public final void run() {
+        switch (this.f24456a) {
+            case 0:
+                bu buVar = this.f24457b;
+                buVar.post(new au(buVar, 1));
+                return;
+            case 1:
+                bu buVar2 = this.f24457b;
+                buVar2.invalidateSpoilers();
+                buVar2.b();
+                return;
+            case 2:
+                bu.a(this.f24457b);
+                return;
+            case 3:
+                bu buVar3 = this.f24457b;
+                buVar3.post(new au(buVar3, 4));
+                return;
+            default:
+                this.f24457b.setSpoilersRevealed(false, true);
+                return;
         }
-    }
-
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final boolean k() {
-        xt xtVar = this.f23482a.f24030a;
-        if (xtVar.length() == 0) {
-            return false;
-        }
-        xtVar.dispatchKeyEvent(new KeyEvent(0, 67));
-        return true;
-    }
-
-    @Override
-    public final void l(String str) {
-        xt xtVar = this.f23482a.f24030a;
-        int selectionEnd = xtVar.getSelectionEnd();
-        if (selectionEnd < 0) {
-            selectionEnd = 0;
-        }
-        try {
-            CharSequence replaceEmoji = Emoji.replaceEmoji(str, xtVar.getPaint().getFontMetricsInt(), false);
-            xtVar.setText(xtVar.getText().insert(selectionEnd, replaceEmoji));
-            int length = selectionEnd + replaceEmoji.length();
-            xtVar.setSelection(length, length);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
-
-    @Override
-    public final void n() {
-        cu cuVar = this.f23482a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(cuVar.getContext(), 0, cuVar.J);
-        alertDialog$Builder.f19478a.O = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f19478a.Q = LocaleController.getString(R.string.ClearRecentEmojiText);
-        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new u81(this));
-        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        org.telegram.ui.ActionBar.p2 p2Var = cuVar.h;
-        if (p2Var != null) {
-            p2Var.showDialog(alertDialog$Builder.f19478a);
-        } else {
-            alertDialog$Builder.o();
-        }
-    }
-
-    @Override
-    public final float p() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void q() {
-        org.telegram.ui.ActionBar.p2 p2Var = this.f23482a.h;
-        if (p2Var == null) {
-            new eg.o1((org.telegram.ui.ActionBar.p2) new eg.y1(this, 6), 11, false).show();
-        } else {
-            p2Var.showDialog(new eg.o1(p2Var, 11, false));
-        }
-    }
-
-    @Override
-    public final void x(long j10, TLRPC.Document document, String str, boolean z4) {
-        u5 u5Var;
-        cu cuVar = this.f23482a;
-        xt xtVar = cuVar.f24030a;
-        int selectionEnd = xtVar.getSelectionEnd();
-        if (selectionEnd < 0) {
-            selectionEnd = 0;
-        }
-        try {
-            SpannableString spannableString = new SpannableString(str);
-            if (document != null) {
-                u5Var = new u5(document, xtVar.getPaint().getFontMetricsInt());
-            } else {
-                u5Var = new u5(j10, xtVar.getPaint().getFontMetricsInt());
-            }
-            u5Var.cacheType = cuVar.d.f26428c;
-            spannableString.setSpan(u5Var, 0, spannableString.length(), 33);
-            xtVar.setText(xtVar.getText().insert(selectionEnd, spannableString));
-            int length = selectionEnd + spannableString.length();
-            xtVar.setSelection(length, length);
-        } catch (Exception e) {
-            FileLog.e(e);
-        } catch (Throwable th2) {
-            throw th2;
-        }
-    }
-
-    @Override
-    public final boolean z() {
-        return this.f23482a.f24038x;
-    }
-
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void o(e51 e51Var) {
-    }
-
-    @Override
-    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void s(int i10) {
-    }
-
-    @Override
-    public final void t(ArrayList arrayList) {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w() {
-    }
-
-    @Override
-    public final void y(long j10) {
-    }
-
-    @Override
-    public final void e(Object obj, Object obj2) {
-    }
-
-    @Override
-    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z4) {
-    }
-
-    @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z4, int i10) {
-    }
-
-    @Override
-    public final void v(View view, Object obj, String str, Object obj2, boolean z4, int i10, int i11) {
     }
 }

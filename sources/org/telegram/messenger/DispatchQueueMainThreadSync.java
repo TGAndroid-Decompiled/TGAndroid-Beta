@@ -83,14 +83,14 @@ public class DispatchQueueMainThreadSync extends Thread {
 
     public void recycle() {
         checkThread();
-        postRunnable(new e1(this, 18));
+        postRunnable(new d1(this, 18));
         this.isRecycled = true;
     }
 
     @Override
     public void run() {
         Looper.prepare();
-        this.handler = new Handler(Looper.myLooper(), new z1(this, 1));
+        this.handler = new Handler(Looper.myLooper(), new x1(this, 1));
         AndroidUtilities.runOnUIThread(new Runnable() {
             {
                 DispatchQueueMainThreadSync.this = this;
@@ -122,14 +122,14 @@ public class DispatchQueueMainThreadSync extends Thread {
         }
     }
 
-    public DispatchQueueMainThreadSync(String str, boolean z4) {
+    public DispatchQueueMainThreadSync(String str, boolean z10) {
         this.handler = null;
         int i10 = indexPointer;
         indexPointer = i10 + 1;
         this.index = i10;
         this.postponedTasks = new ArrayList<>();
         setName(str);
-        if (z4) {
+        if (z10) {
             start();
         }
     }
@@ -154,25 +154,25 @@ public class DispatchQueueMainThreadSync extends Thread {
             }
         }
 
-        public PostponedTask(Runnable runnable, long j10) {
+        public PostponedTask(Runnable runnable, long j3) {
             DispatchQueueMainThreadSync.this = r1;
             this.runnable = runnable;
-            this.delay = j10;
+            this.delay = j3;
         }
     }
 
-    public boolean postRunnable(Runnable runnable, long j10) {
+    public boolean postRunnable(Runnable runnable, long j3) {
         checkThread();
         if (this.isRecycled) {
             return false;
         }
         if (!this.isRunning) {
-            this.postponedTasks.add(new PostponedTask(runnable, j10));
+            this.postponedTasks.add(new PostponedTask(runnable, j3));
             return true;
-        } else if (j10 <= 0) {
+        } else if (j3 <= 0) {
             return this.handler.post(runnable);
         } else {
-            return this.handler.postDelayed(runnable, j10);
+            return this.handler.postDelayed(runnable, j3);
         }
     }
 

@@ -1,161 +1,152 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.graphics.SurfaceTexture;
-import android.view.TextureView;
-public final class w61 extends TextureView implements TextureView.SurfaceTextureListener {
-    public i71 f30155a;
-    public vz f30156b;
-    public final rk0 f30157c;
-    public int d;
-    public int e;
-    public ph.s6 f30158f;
-    public v61 h;
-    public int f30159n;
-    public int f30160r;
-    public ba f30161s;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class w61 extends Drawable {
+    public static final int[] f32169r = {10, 7, 26, 16, 10, 25};
+    public final Paint f32170a;
+    public final TextPaint f32171b;
+    public final Path f32172c;
+    public boolean d;
+    public final boolean f32173e;
+    public Path f32174f;
+    public int f32175g;
+    public float h;
+    public float f32176i;
+    public boolean f32177j;
+    public boolean f32178k;
+    public boolean f32179l;
+    public long f32180m;
+    public v61 f32181n;
+    public long f32182o;
+    public String f32183p;
+    public float f32184q;
 
-    public w61(Context context, i71 i71Var) {
-        super(context);
-        this.f30157c = new Object();
-        this.f30155a = i71Var;
-        setSurfaceTextureListener(this);
-    }
-
-    public final void a(float f10, float f11, float f12, float f13) {
-        rk0 rk0Var = this.f30157c;
-        rk0Var.f28483a = f10;
-        rk0Var.f28484b = f11;
-        rk0Var.f28485c = f12;
-        rk0Var.d = f13;
-    }
-
-    public Bitmap getUiBlurBitmap() {
-        ha haVar;
-        vz vzVar = this.f30156b;
-        if (vzVar == null || (haVar = vzVar.F) == null) {
-            return null;
-        }
-        synchronized (haVar.f25362n) {
-            try {
-                if (!haVar.f25365q) {
-                    return null;
-                }
-                return haVar.f25364p;
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-    }
-
-    public int getVideoHeight() {
-        return this.e;
-    }
-
-    public int getVideoWidth() {
-        return this.d;
-    }
-
-    @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        int i12;
-        if (this.f30156b == null && surfaceTexture != null && this.f30155a != null) {
-            vz vzVar = new vz(surfaceTexture, new ev(this, 28), this.f30158f, this.f30161s, i10, i11);
-            this.f30156b = vzVar;
-            vzVar.i(this.f30159n, this.f30160r);
-            vz vzVar2 = this.f30156b;
-            ba baVar = this.f30161s;
-            ha haVar = vzVar2.F;
-            if (haVar != null) {
-                ba baVar2 = haVar.f25368t;
-                if (baVar2 != null && baVar2.f23602m != null) {
-                    baVar2.f23602m = null;
-                }
-                haVar.f25368t = baVar;
-                if (baVar != null && baVar.f23602m != haVar) {
-                    baVar.f23602m = haVar;
-                    baVar.d();
-                }
-            }
-            int i13 = this.d;
-            if (i13 != 0 && (i12 = this.e) != 0) {
-                vz vzVar3 = this.f30156b;
-                vzVar3.getClass();
-                vzVar3.postRunnable(new rz(vzVar3, i13, i12, 0));
-            }
-            this.f30156b.e(true, true, false);
-            v61 v61Var = this.h;
-            if (v61Var != null) {
-                v61Var.b(this.f30156b);
-            }
-        }
-    }
-
-    @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        vz vzVar = this.f30156b;
-        if (vzVar != null) {
-            vzVar.postRunnable(new sz(vzVar, 0));
-            this.f30156b = null;
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        vz vzVar = this.f30156b;
-        if (vzVar != null) {
-            vzVar.postRunnable(new rz(vzVar, i10, i11, 1));
-            this.f30156b.e(false, true, false);
-            this.f30156b.postRunnable(new nq0(this, 29));
-        }
-    }
-
-    public void setDelegate(v61 v61Var) {
-        this.h = v61Var;
-        vz vzVar = this.f30156b;
-        if (vzVar != null) {
-            if (v61Var == null) {
-                vzVar.f(null);
+    public w61(boolean z10) {
+        Paint paint = new Paint(1);
+        this.f32170a = paint;
+        TextPaint textPaint = new TextPaint(1);
+        this.f32171b = textPaint;
+        Path path = new Path();
+        this.f32172c = path;
+        this.f32184q = 1.0f;
+        this.f32173e = z10;
+        paint.setColor(-1);
+        textPaint.setColor(-1);
+        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        path.reset();
+        for (int i10 = 0; i10 < 3; i10++) {
+            int[] iArr = f32169r;
+            if (i10 == 0) {
+                int i11 = i10 * 2;
+                this.f32172c.moveTo(AndroidUtilities.dp(iArr[i11]), AndroidUtilities.dp(iArr[i11 + 1]));
             } else {
-                v61Var.b(vzVar);
+                int i12 = i10 * 2;
+                this.f32172c.lineTo(AndroidUtilities.dp(iArr[i12]), AndroidUtilities.dp(iArr[i12 + 1]));
             }
+        }
+        this.f32172c.close();
+    }
+
+    public final void a() {
+        v61 v61Var = this.f32181n;
+        if (v61Var != null) {
+            v61Var.invalidate();
+        } else {
+            invalidateSelf();
         }
     }
 
-    public void setHDRInfo(ph.s6 s6Var) {
-        this.f30158f = s6Var;
-        vz vzVar = this.f30156b;
-        if (vzVar != null) {
-            vzVar.postRunnable(new em(19, vzVar, s6Var));
+    public final boolean b() {
+        return this.f32177j;
+    }
+
+    public final void c(org.telegram.ui.ss0 ss0Var) {
+        this.f32181n = ss0Var;
+    }
+
+    public final void d(boolean z10) {
+        boolean z11 = this.d;
+        if (z11 == z10 && this.h >= 1.0f && this.f32178k) {
+            return;
+        }
+        if (z11 != z10) {
+            this.f32182o = 0L;
+            this.f32183p = null;
+        }
+        this.d = z10;
+        this.f32177j = true;
+        this.h = 0.0f;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void draw(android.graphics.Canvas r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w61.draw(android.graphics.Canvas):void");
+    }
+
+    public final void e(boolean z10) {
+        if (this.f32178k != z10) {
+            this.f32178k = z10;
+            this.f32183p = null;
+            this.f32182o = 0L;
+            this.h = 0.0f;
+        }
+    }
+
+    public final void f(boolean z10) {
+        this.f32179l = z10;
+        a();
+    }
+
+    public final void g(long j3) {
+        this.f32182o = j3;
+        if (j3 >= 1000) {
+            this.f32183p = LocaleController.formatPluralString("Seconds", (int) (j3 / 1000), new Object[0]);
+        } else {
+            this.f32183p = null;
         }
     }
 
     @Override
-    public void setTransform(Matrix matrix) {
-        super.setTransform(matrix);
-        vz vzVar = this.f30156b;
-        if (vzVar != null) {
-            int width = getWidth();
-            int height = getHeight();
-            ha haVar = vzVar.F;
-            if (haVar != null) {
-                Matrix matrix2 = haVar.v;
-                matrix.invert(matrix2);
-                float f10 = width;
-                float f11 = height;
-                matrix2.preScale(f10, f11);
-                matrix2.postScale(1.0f / f10, 1.0f / f11);
-                haVar.c(matrix2);
-                vzVar.e(false, false, false);
-            }
-        }
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(32.0f);
     }
 
     @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public final int getMinimumHeight() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public final int getMinimumWidth() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f32170a.setAlpha(i10);
+        this.f32171b.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f32170a.setColorFilter(colorFilter);
     }
 }

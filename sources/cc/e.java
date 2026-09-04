@@ -1,34 +1,17 @@
 package cc;
+public final class e extends h {
+    public static final e f4734c;
 
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-import s2.f;
-public abstract class e {
     static {
-        Pattern.compile("(....|\\.\\.)(\\[(.*)\\])?");
+        ?? exc = new Exception();
+        f4734c = exc;
+        exc.setStackTrace(h.f4741b);
     }
 
-    public static String a(s2.b bVar, String str) {
-        f parent = bVar.getParent();
-        ArrayList arrayList = ((com.googlecode.mp4parser.e) parent).f4059b;
-        int size = arrayList.size();
-        int i10 = 0;
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = arrayList.get(i11);
-            i11++;
-            s2.b bVar2 = (s2.b) obj;
-            if (bVar2.getType().equals(bVar.getType())) {
-                if (bVar2 == bVar) {
-                    break;
-                }
-                i10++;
-            }
+    public static e a() {
+        if (h.f4740a) {
+            return new Exception();
         }
-        String str2 = String.format("/%s[%d]", bVar.getType(), Integer.valueOf(i10)) + str;
-        if (parent instanceof s2.b) {
-            return a((s2.b) parent, str2);
-        }
-        return str2;
+        return f4734c;
     }
 }

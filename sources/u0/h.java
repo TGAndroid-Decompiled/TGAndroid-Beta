@@ -3,21 +3,20 @@ package u0;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.View;
-import r5.c0;
 public final class h extends View.BaseSavedState {
-    public static final Parcelable.Creator<h> CREATOR = new c0(11);
-    public int f45041a;
+    public static final Parcelable.Creator<h> CREATOR = new p7.j(23);
+    public int f46595a;
 
     public final String toString() {
-        StringBuilder sb = new StringBuilder("HorizontalScrollView.SavedState{");
-        sb.append(Integer.toHexString(System.identityHashCode(this)));
-        sb.append(" scrollPosition=");
-        return android.support.v4.media.a.m(this.f45041a, "}", sb);
+        StringBuilder sb2 = new StringBuilder("HorizontalScrollView.SavedState{");
+        sb2.append(Integer.toHexString(System.identityHashCode(this)));
+        sb2.append(" scrollPosition=");
+        return a4.a.n(this.f46595a, "}", sb2);
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         super.writeToParcel(parcel, i10);
-        parcel.writeInt(this.f45041a);
+        parcel.writeInt(this.f46595a);
     }
 }

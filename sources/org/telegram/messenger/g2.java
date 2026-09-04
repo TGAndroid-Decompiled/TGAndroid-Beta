@@ -1,99 +1,45 @@
 package org.telegram.messenger;
-public final class g2 implements Runnable {
-    public final int f17250a;
-    public final MessagesStorage f17251b;
 
-    public g2(MessagesStorage messagesStorage, int i10) {
-        this.f17250a = i10;
-        this.f17251b = messagesStorage;
+import java.util.ArrayList;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.FactCheckController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_stories;
+public final class g2 implements Utilities.Callback {
+    public final int f17709a;
+    public final Object f17710b;
+    public final Object f17711c;
+    public final Object d;
+
+    public g2(Object obj, Object obj2, Object obj3, int i10) {
+        this.f17709a = i10;
+        this.f17710b = obj;
+        this.f17711c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17250a) {
+    public final void run(Object obj) {
+        switch (this.f17709a) {
             case 0:
-                FactCheckController.f(this.f17251b);
+                ((FactCheckController) this.f17710b).lambda$getFactCheck$0((FactCheckController.Key) this.f17711c, (MessageObject) this.d, (TLRPC.TL_factCheck) obj);
                 return;
             case 1:
-                this.f17251b.lambda$saveDialogFilter$73();
+                ChannelBoostsController.lambda$userCanBoostChannel$2((ChannelBoostsController.CanApplyBoost) this.f17710b, (TL_stories.TL_premium_boostsStatus) this.f17711c, (e2.h) this.d, (TL_stories.TL_premium_myBoosts) obj);
                 return;
             case 2:
-                this.f17251b.lambda$clearLocalDatabase$43();
+                ((FileRefController) this.f17710b).lambda$requestReferenceFromServer$1((String) this.f17711c, (String) this.d, (bi.a8) obj);
                 return;
             case 3:
-                this.f17251b.lambda$fixNotificationSettings$9();
+                MediaDataController.lambda$setPlaceholderImage$31((String) this.f17710b, (org.telegram.ui.Components.x9) this.f17711c, (String) this.d, (TLRPC.TL_messages_stickerSet) obj);
                 return;
             case 4:
-                this.f17251b.lambda$getWallpapers$81();
-                return;
-            case 5:
-                this.f17251b.lambda$loadUnreadMessages$77();
-                return;
-            case 6:
-                this.f17251b.lambda$updateMutedDialogsFiltersCounters$36();
-                return;
-            case 7:
-                this.f17251b.lambda$openDatabase$1();
-                return;
-            case 8:
-                this.f17251b.lambda$openDatabase$2();
-                return;
-            case 9:
-                this.f17251b.lambda$updateFiltersReadCounter$119();
-                return;
-            case 10:
-                this.f17251b.lambda$clearLocalDatabase$44();
-                return;
-            case 11:
-                this.f17251b.lambda$checkSQLException$8();
-                return;
-            case 12:
-                this.f17251b.lambda$fullReset$62();
-                return;
-            case 13:
-                this.f17251b.lambda$new$0();
-                return;
-            case 14:
-                this.f17251b.lambda$resetAllUnreadCounters$250();
-                return;
-            case 15:
-                this.f17251b.lambda$reset$61();
-                return;
-            case 16:
-                this.f17251b.lambda$updateDbToLastVersion$3();
-                return;
-            case 17:
-                this.f17251b.lambda$updateDbToLastVersion$4();
-                return;
-            case 18:
-                this.f17251b.lambda$deleteDialog$89();
-                return;
-            case 19:
-                this.f17251b.lambda$loadDialogFilters$67();
-                return;
-            case 20:
-                this.f17251b.lambda$clearSentMedia$163();
-                return;
-            case 21:
-                this.f17251b.lambda$fullReset$63();
-                return;
-            case 22:
-                this.f17251b.lambda$loadPendingTasks$33();
-                return;
-            case 23:
-                this.f17251b.lambda$deleteAllStoryPushMessages$40();
-                return;
-            case 24:
-                this.f17251b.lambda$cleanup$5();
-                return;
-            case 25:
-                this.f17251b.lambda$deleteAllStoryReactionPushMessages$41();
-                return;
-            case 26:
-                this.f17251b.lambda$getContacts$151();
+                MediaDataController.lambda$fillWithAnimatedEmoji$226((boolean[]) this.f17710b, (ArrayList[]) this.f17711c, (Runnable) this.d, (ArrayList) obj);
                 return;
             default:
-                this.f17251b.lambda$broadcastQuickRepliesMessagesChange$223();
+                MessagesController.lambda$openApp$499((boolean[]) this.f17710b, (TL_bots.BotInfo[]) this.f17711c, (Runnable) this.d, (TLRPC.UserFull) obj);
                 return;
         }
     }

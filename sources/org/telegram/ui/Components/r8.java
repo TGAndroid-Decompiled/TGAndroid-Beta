@@ -1,37 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-public final class r8 implements ValueAnimator.AnimatorUpdateListener {
-    public final float f28421a;
-    public final float f28422b;
-    public final boolean f28423c;
-    public final w8 d;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class r8 implements Runnable {
+    public final int f29985a;
+    public final f9 f29986b;
 
-    public r8(w8 w8Var, float f10, float f11, boolean z4) {
-        this.d = w8Var;
-        this.f28421a = f10;
-        this.f28422b = f11;
-        this.f28423c = z4;
+    public r8(f9 f9Var, int i10) {
+        this.f29985a = i10;
+        this.f29986b = f9Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        w8 w8Var = this.d;
-        w8Var.K = floatValue;
-        float lerp = AndroidUtilities.lerp(this.f28421a, this.f28422b, floatValue);
-        kVar = ((org.telegram.ui.ActionBar.p2) w8Var).actionBar;
-        kVar.getTitleTextView().setAlpha(w8Var.K);
-        if (w8Var.C && !this.f28423c) {
-            w8Var.i0(1.0f - w8Var.K, false);
+    public final void run() {
+        switch (this.f29985a) {
+            case 0:
+                f9 f9Var = this.f29986b;
+                if (!f9Var.U) {
+                    if (f9Var.N > 0.0f) {
+                        if (f9Var.M != null) {
+                            f9Var.E = 1.0f;
+                            f9Var.F = true;
+                        }
+                        AndroidUtilities.hideKeyboard(f9Var.fragmentView);
+                        return;
+                    }
+                    f9Var.g0(!f9Var.f25964a.v, true, false);
+                    return;
+                }
+                return;
+            default:
+                f9 f9Var2 = this.f29986b;
+                f9Var2.getClass();
+                f9Var2.presentFragment(new PremiumPreviewFragment(0, "avatar"));
+                return;
         }
-        w8Var.f30178r.setTranslationY(lerp);
-        w8Var.f30181x.setTranslationY(lerp);
-        w8Var.fragmentView.invalidate();
-        kVar2 = ((org.telegram.ui.ActionBar.p2) w8Var).actionBar;
-        kVar2.invalidate();
     }
 }

@@ -1,55 +1,33 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class ih1 implements TextWatcher {
-    public final UsersSelectActivity f34941a;
+public final class ih1 extends FrameLayout {
+    public final sg.r0 f37376a;
 
-    public ih1(UsersSelectActivity usersSelectActivity) {
-        this.f34941a = usersSelectActivity;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        UsersSelectActivity usersSelectActivity = this.f34941a;
-        if (usersSelectActivity.f32363c.length() != 0) {
-            lh1 lh1Var = usersSelectActivity.h;
-            boolean z4 = lh1Var.f35771n;
-            if (!z4) {
-                usersSelectActivity.J = true;
-                usersSelectActivity.I = true;
-                if (!z4) {
-                    lh1Var.f35771n = true;
-                    lh1Var.l();
-                }
-                usersSelectActivity.d.setFastScrollVisible(false);
-                usersSelectActivity.d.setVerticalScrollBarEnabled(true);
-                usersSelectActivity.f32364f.d.setText(LocaleController.getString(R.string.NoResult));
-            }
-            usersSelectActivity.f32364f.e(true, true);
-            usersSelectActivity.h.L(usersSelectActivity.f32363c.getText().toString());
-            return;
-        }
-        usersSelectActivity.J = false;
-        usersSelectActivity.I = false;
-        lh1 lh1Var2 = usersSelectActivity.h;
-        if (lh1Var2.f35771n) {
-            lh1Var2.f35771n = false;
-            lh1Var2.l();
-        }
-        usersSelectActivity.h.L(null);
-        usersSelectActivity.d.setFastScrollVisible(true);
-        usersSelectActivity.d.setVerticalScrollBarEnabled(false);
-        usersSelectActivity.f32364f.d.setText(LocaleController.getString(R.string.NoContacts));
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public ih1(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        LinearLayout linearLayout = new LinearLayout(context);
+        addView(linearLayout, w7.x5.e(-1, -2, 80));
+        linearLayout.setOrientation(1);
+        TextView textView = new TextView(context);
+        textView.setTextColor(i0.a.k(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var), 100));
+        textView.setTextSize(1, 13.0f);
+        textView.setGravity(17);
+        textView.setText(LocaleController.getString(R.string.UnlockPremiumStickersDescription));
+        linearLayout.addView(textView, w7.x5.t(-1, -2, 0, 16, 17, 17, 16));
+        sg.r0 r0Var = new sg.r0(context, f6Var, false);
+        this.f37376a = r0Var;
+        String string = LocaleController.getString(R.string.UnlockPremiumStickers);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        spannableStringBuilder.append((CharSequence) "d ").setSpan(new org.telegram.ui.Components.nq(0, context.getDrawable(R.drawable.msg_premium_normal)), 0, 1, 0);
+        spannableStringBuilder.append((CharSequence) string);
+        r0Var.d.setText(spannableStringBuilder);
+        linearLayout.addView(r0Var, w7.x5.t(-1, 48, 0, 16, 0, 16, 16));
     }
 }

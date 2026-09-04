@@ -1,223 +1,116 @@
 package dh;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.ActionMode;
-import android.view.MotionEvent;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import mg.g0;
+import android.graphics.Outline;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import di.i;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Cells.b6;
-import org.telegram.ui.Components.ut;
-import org.telegram.ui.j61;
-import org.telegram.ui.n51;
-public final class b extends ut {
-    public final int f4890c;
-    public final Object d;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+import org.telegram.ui.Components.qb0;
+import org.telegram.ui.Components.vi;
+import org.telegram.ui.Components.voip.q2;
+import org.telegram.ui.Components.voip.s1;
+import org.telegram.ui.Components.w50;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class b extends ViewOutlineProvider {
+    public final int f6816a;
+    public final Object f6817b;
 
-    public b(FrameLayout frameLayout, Context context, f6 f6Var, int i10) {
-        super(context, f6Var);
-        this.f4890c = i10;
-        this.d = frameLayout;
+    public b(Object obj, int i10) {
+        this.f6816a = i10;
+        this.f6817b = obj;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f4890c) {
-            case 1:
-                super.dispatchDraw(canvas);
-                Drawable drawable = (Drawable) this.d;
-                drawable.setBounds(0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(28.0f));
-                drawable.draw(canvas);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public int emojiCacheType() {
-        switch (this.f4890c) {
+    public final void getOutline(View view, Outline outline) {
+        float f7;
+        float f10;
+        int i10 = this.f6816a;
+        Object obj = this.f6817b;
+        switch (i10) {
             case 0:
-                return 3;
+                c cVar = ((d) obj).h;
+                d.h(outline, cVar.f6828m, cVar.f6819b);
+                return;
             case 1:
-            default:
-                return super.emojiCacheType();
-            case 2:
-                return 3;
-        }
-    }
-
-    @Override
-    public void invalidate() {
-        switch (this.f4890c) {
-            case 3:
-                if (!g0.f13992b) {
-                    super.invalidate();
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
+                vi viVar = chatAttachAlertPhotoLayout.f28753b;
+                float f11 = viVar.G0[1];
+                i iVar = viVar.B2;
+                if (iVar != null) {
+                    f7 = iVar.d() + AndroidUtilities.dp(16.0f);
+                } else {
+                    f7 = 0.0f;
+                }
+                int min = (int) Math.min((viVar.getContainerView().getTranslationY() + ((f11 - f7) + chatAttachAlertPhotoLayout.W0)) - chatAttachAlertPhotoLayout.P.getTranslationY(), view.getMeasuredHeight());
+                if (chatAttachAlertPhotoLayout.f23838b0) {
+                    min = view.getMeasuredHeight();
+                } else if (chatAttachAlertPhotoLayout.f23842d0) {
+                    min = AndroidUtilities.lerp(min, view.getMeasuredHeight(), chatAttachAlertPhotoLayout.f23844e0);
+                }
+                boolean z10 = chatAttachAlertPhotoLayout.f23842d0;
+                if (z10) {
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    float f12 = chatAttachAlertPhotoLayout.f23862n1;
+                    boolean z11 = ChatAttachAlertPhotoLayout.f23831q1;
+                    float f13 = 1.0f - chatAttachAlertPhotoLayout.f23844e0;
+                    rectF.set((0.0f * f13) + f12, (f13 * chatAttachAlertPhotoLayout.W) + chatAttachAlertPhotoLayout.f23857k1, chatAttachAlertPhotoLayout.f23859m1, chatAttachAlertPhotoLayout.l1);
+                    outline.setRect((int) rectF.left, (int) rectF.top, (int) rectF.right, Math.min(min, (int) rectF.bottom));
+                    return;
+                } else if (!z10 && !chatAttachAlertPhotoLayout.f23838b0) {
+                    int dp = AndroidUtilities.dp(16.0f);
+                    boolean z12 = ChatAttachAlertPhotoLayout.f23831q1;
+                    outline.setRoundRect((int) 0.0f, (int) chatAttachAlertPhotoLayout.W, view.getMeasuredWidth() + dp, Math.min(min, view.getMeasuredHeight()) + dp, dp);
+                    return;
+                } else {
+                    outline.setRect(0, 0, view.getMeasuredWidth(), Math.min(min, view.getMeasuredHeight()));
                     return;
                 }
-                return;
-            default:
-                super.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-        switch (this.f4890c) {
-            case 0:
-                InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-                editorInfo.imeOptions &= -1073741825;
-                return onCreateInputConnection;
-            case 1:
-            default:
-                return super.onCreateInputConnection(editorInfo);
             case 2:
-                InputConnection onCreateInputConnection2 = super.onCreateInputConnection(editorInfo);
-                if (((b6) this.d).f20850s) {
-                    editorInfo.imeOptions &= -1073741825;
-                }
-                return onCreateInputConnection2;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f4890c) {
-            case 2:
-                super.onDraw(canvas);
-                ((b6) this.d).getClass();
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onFocusChanged(boolean z4, int i10, Rect rect) {
-        switch (this.f4890c) {
-            case 2:
-                super.onFocusChanged(z4, i10, rect);
-                ((b6) this.d).i(z4);
+                int i11 = ((w50) obj).N0;
+                outline.setOval(0, 0, i11, i11);
                 return;
             case 3:
-                if (z4) {
-                    ((n51) this.d).f35664y.q();
-                    AndroidUtilities.runOnUIThread(new j61(this, 0), 200L);
-                }
-                super.onFocusChanged(z4, i10, rect);
+                outline.setRoundRect(0, ((qb0) obj).T + 1, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(8.0f));
                 return;
-            default:
-                super.onFocusChanged(z4, i10, rect);
-                return;
-        }
-    }
-
-    @Override
-    public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f4890c) {
-            case 0:
-                super.onSizeChanged(i10, i11, i12, i13);
-                postOnAnimation(new ag.d(this, 27));
-                return;
-            default:
-                super.onSizeChanged(i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTextContextMenuItem(int i10) {
-        ClipData primaryClip;
-        switch (this.f4890c) {
-            case 2:
-                if (i10 == 16908322 && (primaryClip = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip()) != null && primaryClip.getItemCount() == 1 && AndroidUtilities.charSequenceIndexOf(primaryClip.getItemAt(0).getText(), "\n") > 0) {
-                    CharSequence text = primaryClip.getItemAt(0).getText();
-                    ArrayList arrayList = new ArrayList();
-                    StringBuilder sb = new StringBuilder();
-                    for (int i11 = 0; i11 < text.length(); i11++) {
-                        char charAt = text.charAt(i11);
-                        if (charAt == '\n') {
-                            arrayList.add(sb.toString());
-                            sb.setLength(0);
-                        } else {
-                            sb.append(charAt);
-                        }
+            case 4:
+                s1 s1Var = (s1) obj;
+                float f14 = s1Var.Q;
+                if (f14 >= 0.0f) {
+                    if (f14 < 1.0f) {
+                        outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+                        return;
+                    } else {
+                        outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), s1Var.Q);
+                        return;
                     }
-                    if (!TextUtils.isEmpty(sb)) {
-                        arrayList.add(sb);
+                } else if (!s1Var.M) {
+                    outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+                    return;
+                } else {
+                    int measuredWidth = view.getMeasuredWidth();
+                    int measuredHeight = view.getMeasuredHeight();
+                    if (s1Var.M) {
+                        f10 = AndroidUtilities.dp(4.0f);
+                    } else {
+                        f10 = 0.0f;
                     }
-                    if (((b6) this.d).l(arrayList)) {
-                        return true;
-                    }
+                    outline.setRoundRect(0, 0, measuredWidth, measuredHeight, f10);
+                    return;
                 }
-                return super.onTextContextMenuItem(i10);
-            default:
-                return super.onTextContextMenuItem(i10);
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f4890c) {
-            case 2:
-                if (!isEnabled()) {
-                    return false;
+            case 5:
+                q2 q2Var = (q2) obj;
+                if (q2Var.f31737b < 1.0f) {
+                    outline.setRect((int) q2Var.O, (int) q2Var.N, (int) (view.getMeasuredWidth() - q2Var.O), (int) (view.getMeasuredHeight() - q2Var.N));
+                    return;
+                } else {
+                    outline.setRoundRect((int) q2Var.O, (int) q2Var.N, (int) (view.getMeasuredWidth() - q2Var.O), (int) (view.getMeasuredHeight() - q2Var.N), q2Var.f31737b);
+                    return;
                 }
-                if (motionEvent.getAction() == 1) {
-                    ((b6) this.d).k(this);
-                }
-                return super.onTouchEvent(motionEvent);
-            case 3:
-                if (motionEvent.getAction() == 1 && ((n51) this.d).f35664y.u()) {
-                    AndroidUtilities.runOnUIThread(new j61(this, 1), 200L);
-                    return false;
-                }
-                return super.onTouchEvent(motionEvent);
             default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public ActionMode startActionMode(ActionMode.Callback callback, int i10) {
-        switch (this.f4890c) {
-            case 2:
-                ActionMode startActionMode = super.startActionMode(callback, i10);
-                ((b6) this.d).g(this, startActionMode);
-                return startActionMode;
-            default:
-                return super.startActionMode(callback, i10);
-        }
-    }
-
-    public b(Context context, f6 f6Var, Drawable drawable) {
-        super(context, f6Var);
-        this.f4890c = 1;
-        this.d = drawable;
-    }
-
-    @Override
-    public ActionMode startActionMode(ActionMode.Callback callback) {
-        switch (this.f4890c) {
-            case 2:
-                ActionMode startActionMode = super.startActionMode(callback);
-                ((b6) this.d).g(this, startActionMode);
-                return startActionMode;
-            default:
-                return super.startActionMode(callback);
+                outline.setRoundRect(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + PremiumPreviewFragment.e0((PremiumPreviewFragment) obj).getBottom(), view.getWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f) + view.getMeasuredHeight(), AndroidUtilities.dp(16.0f));
+                return;
         }
     }
 }

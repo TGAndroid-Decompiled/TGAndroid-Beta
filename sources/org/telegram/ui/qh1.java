@@ -1,94 +1,80 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.View;
-import android.view.WindowInsets;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.voip.VoIPService;
-public final class qh1 implements org.telegram.ui.ActionBar.c2, org.telegram.ui.Components.voip.r1, r0.o, org.telegram.ui.Components.voip.i3 {
-    public final int f37420a;
-    public final ii1 f37421b;
+public final class qh1 extends org.telegram.ui.Components.y51 {
+    public oh1 d;
+    public long f39878e;
+    public mh1 f39879f;
+    public String h;
+    public org.telegram.ui.ActionBar.v0 f39880n;
+    public boolean f39881r;
 
-    public qh1(ii1 ii1Var, int i10) {
-        this.f37420a = i10;
-        this.f37421b = ii1Var;
+    @Override
+    public final void U(java.util.ArrayList r18, org.telegram.ui.Components.v51 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qh1.U(java.util.ArrayList, org.telegram.ui.Components.v51):void");
     }
 
     @Override
-    public r0.m1 M0(View view, r0.m1 m1Var) {
-        WindowInsets g10 = m1Var.g();
-        ii1 ii1Var = this.f37421b;
-        ii1Var.f34972o0 = g10;
-        ((FrameLayout.LayoutParams) ii1Var.f34960g0.getLayoutParams()).bottomMargin = ii1Var.f34972o0.getSystemWindowInsetBottom();
-        ((FrameLayout.LayoutParams) ii1Var.f34948b0.getLayoutParams()).bottomMargin = ii1Var.f34972o0.getSystemWindowInsetBottom();
-        ((FrameLayout.LayoutParams) ii1Var.E.getLayoutParams()).topMargin = ii1Var.f34972o0.getSystemWindowInsetTop();
-        ((FrameLayout.LayoutParams) ii1Var.F.getLayoutParams()).topMargin = ii1Var.f34972o0.getSystemWindowInsetTop();
-        ((FrameLayout.LayoutParams) ii1Var.H.getLayoutParams()).topMargin = ii1Var.f34972o0.getSystemWindowInsetTop() + AndroidUtilities.dp(56.0f);
-        ((FrameLayout.LayoutParams) ii1Var.U.getLayoutParams()).topMargin = ii1Var.f34972o0.getSystemWindowInsetTop() + AndroidUtilities.dp(135.0f);
-        ((FrameLayout.LayoutParams) ii1Var.K.getLayoutParams()).topMargin = ii1Var.f34972o0.getSystemWindowInsetTop() + AndroidUtilities.dp(17.0f);
-        ((FrameLayout.LayoutParams) ii1Var.f34986y.getLayoutParams()).topMargin = ii1Var.f34972o0.getSystemWindowInsetTop() + AndroidUtilities.dp(93.0f);
-        ((FrameLayout.LayoutParams) ii1Var.L.getLayoutParams()).topMargin = ii1Var.f34972o0.getSystemWindowInsetTop();
-        ((FrameLayout.LayoutParams) ii1Var.O.getLayoutParams()).topMargin = ii1Var.f34972o0.getSystemWindowInsetTop() + AndroidUtilities.dp(118.0f);
-        ((FrameLayout.LayoutParams) ii1Var.N.getLayoutParams()).topMargin = ii1Var.f34972o0.getSystemWindowInsetTop() + AndroidUtilities.dp(380.0f);
-        ((FrameLayout.LayoutParams) ii1Var.W.getLayoutParams()).bottomMargin = ii1Var.f34972o0.getSystemWindowInsetBottom();
-        ((FrameLayout.LayoutParams) ii1Var.J0.getLayoutParams()).bottomMargin = ii1Var.f34972o0.getSystemWindowInsetBottom();
-        ii1Var.V.setInsets(ii1Var.f34972o0);
-        ii1Var.W.setInsets(ii1Var.f34972o0);
-        ii1Var.f34977s.requestLayout();
-        bi1 bi1Var = ii1Var.f34969l0;
-        if (bi1Var != null) {
-            bi1Var.setBottomPadding(ii1Var.f34972o0.getSystemWindowInsetBottom());
-        }
-        return r0.m1.f43153b;
+    public final CharSequence V() {
+        return LocaleController.getString(R.string.EditProfileChannelTitle);
     }
 
     @Override
-    public void f(org.telegram.ui.Components.voip.j3 j3Var) {
-        int i10;
-        switch (this.f37420a) {
-            case 5:
-                VoIPService sharedInstance = VoIPService.getSharedInstance();
-                if (sharedInstance != null) {
-                    ii1 ii1Var = this.f37421b;
-                    AndroidUtilities.cancelRunOnUIThread(ii1Var.P0);
-                    ii1Var.O0 = false;
-                    boolean isMicMute = sharedInstance.isMicMute();
-                    boolean z4 = !isMicMute;
-                    if (ii1Var.f34979t0.isTouchExplorationEnabled()) {
-                        if (!isMicMute) {
-                            i10 = R.string.AccDescrVoipMicOff;
-                        } else {
-                            i10 = R.string.AccDescrVoipMicOn;
-                        }
-                        j3Var.announceForAccessibility(LocaleController.getString(i10));
-                    }
-                    sharedInstance.setMicMute(z4, false, true);
-                    ii1Var.f34971n0 = ii1Var.m0;
-                    ii1Var.H();
-                    return;
-                }
+    public final void W(org.telegram.ui.Components.h51 h51Var, View view) {
+        mh1 mh1Var = this.f39879f;
+        int i10 = h51Var.d;
+        if (i10 == 1) {
+            mh1Var.run(null);
+            finishFragment();
+        } else if (i10 == 2) {
+            this.f39881r = true;
+            SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+            if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
+                presentFragment(new md(org.telegram.ui.Cells.p6.e(0, "step")));
                 return;
-            default:
-                ii1.i(this.f37421b);
-                return;
+            }
+            presentFragment(new h(0));
+            globalMainSettings.edit().putBoolean("channel_intro", true).apply();
+        } else if (h51Var.f44071a == 12) {
+            finishFragment();
+            mh1Var.run(getMessagesController().getChat(Long.valueOf(-h51Var.f26605x)));
         }
     }
 
     @Override
-    public void l(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f37420a) {
-            case 0:
-                ai1 ai1Var = this.f37421b.f34976r0;
-                if (ai1Var != null) {
-                    ai1Var.b();
-                    return;
-                }
-                return;
-            default:
-                this.f37421b.f34976r0.b();
-                return;
+    public final boolean X(org.telegram.ui.Components.h51 h51Var, View view) {
+        return false;
+    }
+
+    @Override
+    public final View createView(Context context) {
+        org.telegram.ui.ActionBar.v0 c10 = this.actionBar.n().c(0, R.drawable.outline_header_search, getResourceProvider());
+        c10.F();
+        c10.H = new ig.d2(this, 19);
+        this.f39880n = c10;
+        c10.setSearchFieldHint(LocaleController.getString(R.string.Search));
+        this.f39880n.setContentDescription(LocaleController.getString(R.string.Search));
+        this.f39880n.setVisibility(8);
+        super.createView(context);
+        this.f32849a.o1();
+        this.actionBar.setAdaptiveBackground(this.f32849a);
+        return this.fragmentView;
+    }
+
+    @Override
+    public final void onResume() {
+        super.onResume();
+        if (this.f39881r) {
+            oh1 oh1Var = this.d;
+            oh1Var.f39253c = false;
+            oh1Var.f39255f.add(new ph1(this, 0));
+            this.f39881r = false;
         }
     }
 }

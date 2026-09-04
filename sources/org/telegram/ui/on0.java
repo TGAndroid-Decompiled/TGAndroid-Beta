@@ -1,190 +1,69 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class on0 implements TextWatcher {
-    public boolean f36848a;
-    public String f36849b;
-    public boolean f36850c;
-    public int d;
-    public int e;
-    public boolean f36851f;
-    public final char[] h = {',', '.', 1643, 12289, 11841, 65040, 65041, 65104, 65105, 65292, 65380, 699};
-    public final lo0 f36852n;
+public final class on0 extends FrameLayout {
+    public TextView f39284a;
+    public TextView f39285b;
+    public ImageView f39286c;
+    public boolean d;
 
-    public on0(lo0 lo0Var) {
-        this.f36852n = lo0Var;
+    public final void a(String str, boolean z10) {
+        this.f39284a.setText(str);
+        this.f39285b.setText("");
+        this.d = z10;
+        setWillNotDraw(!z10);
     }
 
-    public final int a(String str) {
-        int i10 = 0;
-        while (true) {
-            char[] cArr = this.h;
-            if (i10 < cArr.length) {
-                int indexOf = str.indexOf(cArr[i10]);
-                if (indexOf >= 0) {
-                    return indexOf;
-                }
-                i10++;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        if (this.d) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
             } else {
-                return -1;
+                dp = AndroidUtilities.dp(20.0f);
             }
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(20.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f20785k0);
         }
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        long j10;
-        boolean z4;
-        String str;
-        String str2;
-        String substring;
-        lo0 lo0Var = this.f36852n;
-        if (lo0Var.f35831j0) {
-            return;
-        }
-        Long l10 = lo0Var.E0;
-        if (l10 != null) {
-            j10 = l10.longValue();
-        } else {
-            j10 = 0;
-        }
-        String str3 = this.f36849b;
-        if (str3 == null) {
-            str3 = LocaleController.fixNumbers(editable.toString());
-        }
-        int a2 = a(str3);
-        if (a2 >= 0) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        int currencyExpDivider = LocaleController.getCurrencyExpDivider(lo0Var.f35852z0.invoice.currency);
-        if (a2 >= 0) {
-            str = str3.substring(0, a2);
-        } else {
-            str = str3;
-        }
-        String str4 = "";
-        if (a2 < 0) {
-            str2 = "";
-        } else {
-            str2 = str3.substring(a2 + 1);
-        }
-        long longValue = Utilities.parseLong(se.b.d(str, false)).longValue() * currencyExpDivider;
-        long longValue2 = Utilities.parseLong(se.b.d(str2, false)).longValue();
-        String n10 = android.support.v4.media.a.n(longValue2, "");
-        String str5 = "" + (currencyExpDivider - 1);
-        if (a2 > 0 && n10.length() > str5.length()) {
-            if (this.e - a2 < n10.length()) {
-                substring = n10.substring(0, str5.length());
-            } else {
-                substring = n10.substring(n10.length() - str5.length());
-            }
-            longValue2 = Utilities.parseLong(substring).longValue();
-        }
-        Long valueOf = Long.valueOf(longValue + longValue2);
-        lo0Var.E0 = valueOf;
-        if (lo0Var.f35852z0.invoice.max_tip_amount != 0) {
-            long longValue3 = valueOf.longValue();
-            long j11 = lo0Var.f35852z0.invoice.max_tip_amount;
-            if (longValue3 > j11) {
-                lo0Var.E0 = Long.valueOf(j11);
-            }
-        }
-        int selectionStart = lo0Var.f35826f[0].getSelectionStart();
-        lo0Var.f35831j0 = true;
-        if (lo0Var.E0.longValue() == 0) {
-            lo0Var.f35826f[0].setText("");
-        } else {
-            EditTextBoldCursor editTextBoldCursor = lo0Var.f35826f[0];
-            str4 = LocaleController.getInstance().formatCurrencyString(lo0Var.E0.longValue(), false, z4, true, lo0Var.f35852z0.invoice.currency);
-            editTextBoldCursor.setText(str4);
-        }
-        if (j10 < lo0Var.E0.longValue() && j10 != 0 && this.f36848a && selectionStart >= 0) {
-            EditTextBoldCursor editTextBoldCursor2 = lo0Var.f35826f[0];
-            editTextBoldCursor2.setSelection(Math.min(selectionStart, editTextBoldCursor2.length()));
-        } else if (this.f36850c && this.d != lo0Var.f35826f[0].length()) {
-            EditTextBoldCursor editTextBoldCursor3 = lo0Var.f35826f[0];
-            editTextBoldCursor3.setSelection(Math.max(0, Math.min(selectionStart, editTextBoldCursor3.length())));
-        } else if (!this.f36851f && z4 && a2 >= 0) {
-            int a10 = a(str4);
-            if (a10 > 0) {
-                lo0Var.f35826f[0].setSelection(a10 + 1);
-            } else {
-                EditTextBoldCursor editTextBoldCursor4 = lo0Var.f35826f[0];
-                editTextBoldCursor4.setSelection(editTextBoldCursor4.length());
-            }
-        } else {
-            EditTextBoldCursor editTextBoldCursor5 = lo0Var.f35826f[0];
-            editTextBoldCursor5.setSelection(editTextBoldCursor5.length());
-        }
-        this.f36851f = z4;
-        lo0Var.L0();
-        this.f36849b = null;
-        lo0Var.f35831j0 = false;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.d ? 1 : 0), 1073741824));
     }
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int length;
-        boolean z4;
-        String str;
-        if (!this.f36852n.f35831j0) {
-            this.f36848a = !TextUtils.isEmpty(charSequence);
-            this.f36849b = null;
-            if (charSequence == null) {
-                length = 0;
-            } else {
-                length = charSequence.length();
-            }
-            this.d = length;
-            this.e = i10;
-            if (i11 == 1 && i12 == 0) {
-                z4 = true;
-            } else {
-                z4 = false;
-            }
-            this.f36850c = z4;
-            if (z4) {
-                String fixNumbers = LocaleController.fixNumbers(charSequence);
-                char charAt = fixNumbers.charAt(i10);
-                int a2 = a(fixNumbers);
-                if (a2 >= 0) {
-                    str = fixNumbers.substring(a2 + 1);
-                } else {
-                    str = "";
-                }
-                long longValue = Utilities.parseLong(se.b.d(str, false)).longValue();
-                if ((charAt >= '0' && charAt <= '9') || (str.length() != 0 && longValue == 0)) {
-                    if (a2 > 0 && i10 > a2 && longValue == 0) {
-                        this.f36849b = fixNumbers.substring(0, a2 - 1);
-                        return;
-                    }
-                    return;
-                }
-                while (true) {
-                    int i13 = i10 - 1;
-                    if (i13 >= 0) {
-                        char charAt2 = fixNumbers.charAt(i13);
-                        if (charAt2 >= '0' && charAt2 <= '9') {
-                            this.f36849b = fixNumbers.substring(0, i13) + fixNumbers.substring(i10);
-                            return;
-                        }
-                        i10 = i13;
-                    } else {
-                        return;
-                    }
-                }
-            }
+    public void setChecked(boolean z10) {
+        int i10;
+        ImageView imageView = this.f39286c;
+        if (z10) {
+            i10 = 0;
+        } else {
+            i10 = 4;
         }
+        imageView.setVisibility(i10);
     }
 
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public void setNeedDivider(boolean z10) {
+        this.d = z10;
+        setWillNotDraw(!z10);
+        invalidate();
+    }
+
+    public void setValue(CharSequence charSequence) {
+        this.f39285b.setText(charSequence);
     }
 }

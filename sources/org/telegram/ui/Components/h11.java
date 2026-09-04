@@ -1,16 +1,25 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class h11 extends f2.z0 {
-    public final ThemeEditorView.EditorAlert f25290a;
+import android.text.TextWatcher;
+public final class h11 implements TextWatcher {
+    public final int f26561a;
+    public final i11 f26562b;
 
-    public h11(ThemeEditorView.EditorAlert editorAlert) {
-        this.f25290a = editorAlert;
+    public h11(i11 i11Var, int i10) {
+        this.f26562b = i11Var;
+        this.f26561a = i10;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ThemeEditorView.EditorAlert.s(this.f25290a);
+    public final void afterTextChanged(android.text.Editable r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.h11.afterTextChanged(android.text.Editable):void");
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

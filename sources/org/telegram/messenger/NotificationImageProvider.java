@@ -98,13 +98,13 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
                 ApplicationLoader.postInitApplication();
                 if (!AndroidUtilities.isInternalUri(Uri.fromFile(file))) {
                     if (!file.exists()) {
-                        Long l10 = this.fileStartTimes.get(str2);
-                        if (l10 != null) {
-                            currentTimeMillis = l10.longValue();
+                        Long l4 = this.fileStartTimes.get(str2);
+                        if (l4 != null) {
+                            currentTimeMillis = l4.longValue();
                         } else {
                             currentTimeMillis = System.currentTimeMillis();
                         }
-                        if (l10 == null) {
+                        if (l4 == null) {
                             this.fileStartTimes.put(str2, Long.valueOf(currentTimeMillis));
                         }
                         while (!file.exists()) {

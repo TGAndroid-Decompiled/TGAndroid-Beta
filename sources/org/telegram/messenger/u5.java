@@ -1,25 +1,21 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class u5 implements Runnable {
-    public final int f18543a;
-    public final LocationController f18544b;
-    public final ArrayList f18545c;
+    public final int f19118a;
+    public final LocationSharingService f19119b;
 
-    public u5(LocationController locationController, ArrayList arrayList, int i10) {
-        this.f18543a = i10;
-        this.f18544b = locationController;
-        this.f18545c = arrayList;
+    public u5(LocationSharingService locationSharingService, int i10) {
+        this.f19118a = i10;
+        this.f19119b = locationSharingService;
     }
 
     @Override
     public final void run() {
-        switch (this.f18543a) {
+        switch (this.f19118a) {
             case 0:
-                this.f18544b.lambda$loadSharingLocations$14(this.f18545c);
+                LocationSharingService.a(this.f19119b);
                 return;
             default:
-                this.f18544b.lambda$loadSharingLocations$15(this.f18545c);
+                LocationSharingService.b(this.f19119b);
                 return;
         }
     }

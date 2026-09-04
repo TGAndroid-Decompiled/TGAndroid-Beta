@@ -1,62 +1,49 @@
 package org.telegram.ui;
 
-import java.io.File;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.tgnet.TLRPC;
-public final class ds0 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.f6 f33527a;
-    public final PhotoViewer f33528b;
+import android.animation.AnimatorSet;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+public final class ds0 implements Runnable {
+    public final PhotoViewer f35854a;
+    public final View f35855b;
+    public final gt0 f35856c;
+    public final float d;
+    public final float f35857e;
+    public final AnimatorSet f35858f;
 
-    public ds0(PhotoViewer photoViewer, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f33528b = photoViewer;
-        this.f33527a = f6Var;
+    public ds0(PhotoViewer photoViewer, View view, gt0 gt0Var, float f7, float f10, AnimatorSet animatorSet) {
+        this.f35854a = photoViewer;
+        this.f35855b = view;
+        this.f35856c = gt0Var;
+        this.d = f7;
+        this.f35857e = f10;
+        this.f35858f = animatorSet;
     }
 
     @Override
-    public final boolean a() {
-        TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated;
-        boolean z4;
-        PhotoViewer photoViewer = this.f33528b;
-        if (photoViewer.Q4 != null || photoViewer.Y4 != null) {
-            return true;
+    public final void run() {
+        Drawable[] drawableArr = PhotoViewer.T8;
+        View view = this.f35855b;
+        gt0 gt0Var = this.f35856c;
+        view.setOutlineProvider(gt0Var);
+        view.setClipToOutline(true);
+        PhotoViewer photoViewer = this.f35854a;
+        photoViewer.f33721x3.setOutlineProvider(gt0Var);
+        photoViewer.f33721x3.setClipToOutline(true);
+        tu0 tu0Var = photoViewer.E2;
+        if (tu0Var != null) {
+            tu0Var.setOutlineProvider(gt0Var);
+            photoViewer.E2.setClipToOutline(true);
         }
-        if (photoViewer.X4 != null) {
-            FileLoader fileLoader = FileLoader.getInstance(photoViewer.Q);
-            ImageLocation imageLocation = photoViewer.X4;
-            TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated2 = null;
-            if (imageLocation == null) {
-                tL_fileLocationToBeDeprecated = null;
-            } else {
-                tL_fileLocationToBeDeprecated = imageLocation.location;
-            }
-            String q12 = PhotoViewer.q1(imageLocation);
-            if (photoViewer.f31873w5 == 0 && !photoViewer.f31893y5) {
-                z4 = false;
-            } else {
-                z4 = true;
-            }
-            File pathToAttach = fileLoader.getPathToAttach(tL_fileLocationToBeDeprecated, q12, z4);
-            File file = new File(FileLoader.getDirectory(4), pathToAttach.getName());
-            FileLoader fileLoader2 = FileLoader.getInstance(photoViewer.Q);
-            ImageLocation imageLocation2 = photoViewer.X4;
-            if (imageLocation2 != null) {
-                tL_fileLocationToBeDeprecated2 = imageLocation2.location;
-            }
-            File pathToAttach2 = fileLoader2.getPathToAttach(tL_fileLocationToBeDeprecated2, PhotoViewer.q1(imageLocation2), false);
-            if (pathToAttach.exists() || file.exists() || pathToAttach2.exists()) {
-                return true;
-            }
-            return false;
-        } else if (photoViewer.f31731g7 != null) {
-            return true;
-        } else {
-            return false;
+        photoViewer.f33721x3.setTranslationY(this.d);
+        float f7 = this.f35857e;
+        view.setTranslationY(f7);
+        tu0 tu0Var2 = photoViewer.E2;
+        if (tu0Var2 != null) {
+            tu0Var2.setTranslationY(f7);
         }
-    }
-
-    @Override
-    public final void b(int r36) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ds0.b(int):void");
+        photoViewer.Y5 = 0.0f;
+        photoViewer.f33549e0.invalidate();
+        this.f35858f.start();
     }
 }

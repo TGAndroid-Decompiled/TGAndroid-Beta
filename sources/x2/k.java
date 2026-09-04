@@ -1,83 +1,95 @@
 package x2;
 
-import java.util.Arrays;
-public final class k extends r {
-    public final long f46753a;
-    public final Integer f46754b;
-    public final long f46755c;
-    public final byte[] d;
-    public final String e;
-    public final long f46756f;
-    public final v f46757g;
+import android.content.Context;
+import android.media.AudioAttributes;
+import android.media.AudioFormat;
+import android.media.AudioManager;
+import android.media.Spatializer;
+import android.os.Handler;
+import android.os.Looper;
+import e2.d0;
+import j$.util.Objects;
+import k2.a0;
+public final class k {
+    public final Spatializer f48731a;
+    public final boolean f48732b;
+    public final Handler f48733c;
+    public final j d;
 
-    public k(long j10, Integer num, long j11, byte[] bArr, String str, long j12, v vVar) {
-        this.f46753a = j10;
-        this.f46754b = num;
-        this.f46755c = j11;
-        this.d = bArr;
-        this.e = str;
-        this.f46756f = j12;
-        this.f46757g = vVar;
+    public k(Context context, p pVar, Boolean bool) {
+        AudioManager e7;
+        if (context == null) {
+            e7 = null;
+        } else {
+            e7 = c2.d.e(context);
+        }
+        if (e7 != null && (bool == null || !bool.booleanValue())) {
+            Spatializer spatializer = e7.getSpatializer();
+            this.f48731a = spatializer;
+            this.f48732b = spatializer.getImmersiveAudioLevel() != 0;
+            j jVar = new j(pVar);
+            this.d = jVar;
+            Looper myLooper = Looper.myLooper();
+            e2.d.h(myLooper);
+            Handler handler = new Handler(myLooper);
+            this.f48733c = handler;
+            spatializer.addOnSpatializerStateChangedListener(new a0(handler, 0), jVar);
+            return;
+        }
+        this.f48731a = null;
+        this.f48732b = false;
+        this.f48733c = null;
+        this.d = null;
     }
 
-    public final boolean equals(Object obj) {
-        Integer num;
-        byte[] bArr;
-        String str;
-        v vVar;
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof r) {
-            r rVar = (r) obj;
-            k kVar = (k) rVar;
-            v vVar2 = kVar.f46757g;
-            String str2 = kVar.e;
-            Integer num2 = kVar.f46754b;
-            if (this.f46753a == kVar.f46753a && ((num = this.f46754b) != null ? num.equals(num2) : num2 == null) && this.f46755c == kVar.f46755c) {
-                if (rVar instanceof k) {
-                    bArr = ((k) rVar).d;
-                } else {
-                    bArr = kVar.d;
-                }
-                if (Arrays.equals(this.d, bArr) && ((str = this.e) != null ? str.equals(str2) : str2 == null) && this.f46756f == kVar.f46756f && ((vVar = this.f46757g) != null ? vVar.equals(vVar2) : vVar2 == null)) {
-                    return true;
-                }
+    public final boolean a(b2.e eVar, b2.s sVar) {
+        String str = sVar.f2370r;
+        String str2 = sVar.f2370r;
+        int i10 = sVar.J;
+        if (Objects.equals(str, "audio/eac3-joc")) {
+            if (i10 == 16) {
+                i10 = 12;
             }
+        } else if (Objects.equals(str2, "audio/iamf")) {
+            if (i10 == -1) {
+                i10 = 6;
+            }
+        } else if (Objects.equals(str2, "audio/ac4") && (i10 == 18 || i10 == 21)) {
+            i10 = 24;
         }
-        return false;
+        int s10 = d0.s(i10);
+        if (s10 == 0) {
+            return false;
+        }
+        AudioFormat.Builder channelMask = new AudioFormat.Builder().setEncoding(2).setChannelMask(s10);
+        int i11 = sVar.K;
+        if (i11 != -1) {
+            channelMask.setSampleRate(i11);
+        }
+        Spatializer spatializer = this.f48731a;
+        spatializer.getClass();
+        return spatializer.canBeSpatialized((AudioAttributes) eVar.b().f2408a, channelMask.build());
     }
 
-    public final int hashCode() {
-        int hashCode;
-        int hashCode2;
-        long j10 = this.f46753a;
-        int i10 = (((int) (j10 ^ (j10 >>> 32))) ^ 1000003) * 1000003;
-        int i11 = 0;
-        Integer num = this.f46754b;
-        if (num == null) {
-            hashCode = 0;
-        } else {
-            hashCode = num.hashCode();
-        }
-        long j11 = this.f46755c;
-        int hashCode3 = (((((i10 ^ hashCode) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003) ^ Arrays.hashCode(this.d)) * 1000003;
-        String str = this.e;
-        if (str == null) {
-            hashCode2 = 0;
-        } else {
-            hashCode2 = str.hashCode();
-        }
-        long j12 = this.f46756f;
-        int i12 = (((hashCode3 ^ hashCode2) * 1000003) ^ ((int) (j12 ^ (j12 >>> 32)))) * 1000003;
-        v vVar = this.f46757g;
-        if (vVar != null) {
-            i11 = vVar.hashCode();
-        }
-        return i12 ^ i11;
+    public final boolean b() {
+        Spatializer spatializer = this.f48731a;
+        spatializer.getClass();
+        return spatializer.isAvailable();
     }
 
-    public final String toString() {
-        return "LogEvent{eventTimeMs=" + this.f46753a + ", eventCode=" + this.f46754b + ", eventUptimeMs=" + this.f46755c + ", sourceExtension=" + Arrays.toString(this.d) + ", sourceExtensionJsonProto3=" + this.e + ", timezoneOffsetSeconds=" + this.f46756f + ", networkConnectionInfo=" + this.f46757g + "}";
+    public final boolean c() {
+        Spatializer spatializer = this.f48731a;
+        spatializer.getClass();
+        return spatializer.isEnabled();
+    }
+
+    public final void d() {
+        j jVar;
+        Handler handler;
+        Spatializer spatializer = this.f48731a;
+        if (spatializer != null && (jVar = this.d) != null && (handler = this.f48733c) != null) {
+            spatializer.removeOnSpatializerStateChangedListener(jVar);
+            handler.removeCallbacksAndMessages(null);
+        }
     }
 }

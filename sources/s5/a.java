@@ -1,76 +1,49 @@
 package s5;
+public final class a {
+    public static final a f45927f = new a(200, 10485760, 604800000, 10000, 81920);
+    public final long f45928a;
+    public final int f45929b;
+    public final int f45930c;
+    public final long d;
+    public final int f45931e;
 
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.os.RemoteException;
-import j7.f5;
-import r5.c0;
-public final class a extends c6.a {
-    public final String f44106a;
-    public final String f44107b;
-    public final k f44108c;
-    public final f d;
-    public final boolean e;
-    public final boolean f44109f;
-    public static final u5.b h = new u5.b("CastMediaOptions", null);
-    public static final Parcelable.Creator<a> CREATOR = new c0(1);
-
-    public a(String str, String str2, IBinder iBinder, f fVar, boolean z4, boolean z10) {
-        k aVar;
-        this.f44106a = str;
-        this.f44107b = str2;
-        if (iBinder == null) {
-            aVar = 0;
-        } else {
-            IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.cast.framework.media.IImagePicker");
-            if (queryLocalInterface instanceof k) {
-                aVar = (k) queryLocalInterface;
-            } else {
-                aVar = new a7.a(iBinder, "com.google.android.gms.cast.framework.media.IImagePicker", 1);
-            }
-        }
-        this.f44108c = aVar;
-        this.d = fVar;
-        this.e = z4;
-        this.f44109f = z10;
+    public a(int i10, long j3, long j10, int i11, int i12) {
+        this.f45928a = j3;
+        this.f45929b = i10;
+        this.f45930c = i11;
+        this.d = j10;
+        this.f45931e = i12;
     }
 
-    public final void e() {
-        k kVar = this.f44108c;
-        if (kVar != null) {
-            try {
-                Parcel O0 = kVar.O0(kVar.M0(), 2);
-                l6.a J0 = l6.b.J0(O0.readStrongBinder());
-                O0.recycle();
-                if (l6.b.K0(J0) != null) {
-                    throw new ClassCastException();
-                }
-            } catch (RemoteException e) {
-                h.a(e, "Unable to call %s on %s.", "getWrappedClientObject", k.class.getSimpleName());
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof a) {
+            a aVar = (a) obj;
+            if (this.f45928a == aVar.f45928a && this.f45929b == aVar.f45929b && this.f45930c == aVar.f45930c && this.d == aVar.d && this.f45931e == aVar.f45931e) {
+                return true;
             }
         }
+        return false;
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        IBinder iBinder;
-        int q10 = f5.q(parcel, 20293);
-        f5.l(parcel, 2, this.f44106a);
-        f5.l(parcel, 3, this.f44107b);
-        k kVar = this.f44108c;
-        if (kVar == null) {
-            iBinder = null;
-        } else {
-            iBinder = kVar.f123b;
-        }
-        f5.f(parcel, 4, iBinder);
-        f5.k(parcel, 5, this.d, i10);
-        f5.s(parcel, 6, 4);
-        parcel.writeInt(this.e ? 1 : 0);
-        f5.s(parcel, 7, 4);
-        parcel.writeInt(this.f44109f ? 1 : 0);
-        f5.r(parcel, q10);
+    public final int hashCode() {
+        long j3 = this.f45928a;
+        long j10 = this.d;
+        return this.f45931e ^ ((((((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ this.f45929b) * 1000003) ^ this.f45930c) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003);
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("EventStoreConfig{maxStorageSizeInBytes=");
+        sb2.append(this.f45928a);
+        sb2.append(", loadBatchSize=");
+        sb2.append(this.f45929b);
+        sb2.append(", criticalSectionEnterTimeoutMs=");
+        sb2.append(this.f45930c);
+        sb2.append(", eventCleanUpAge=");
+        sb2.append(this.d);
+        sb2.append(", maxBlobByteSizePerRow=");
+        return a4.a.n(this.f45931e, "}", sb2);
     }
 }

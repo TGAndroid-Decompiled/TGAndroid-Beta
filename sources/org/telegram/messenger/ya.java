@@ -1,28 +1,23 @@
 package org.telegram.messenger;
+public final class ya implements Runnable {
+    public final int f19701a;
+    public final q0.a f19702b;
+    public final int f19703c;
 
-import android.content.DialogInterface;
-public final class ya implements DialogInterface.OnCancelListener {
-    public final int f19021a;
-    public final BaseController f19022b;
-    public final int f19023c;
-
-    public ya(BaseController baseController, int i10, int i11) {
-        this.f19021a = i11;
-        this.f19022b = baseController;
-        this.f19023c = i10;
+    public ya(q0.a aVar, int i10, int i11) {
+        this.f19701a = i11;
+        this.f19702b = aVar;
+        this.f19703c = i10;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f19021a) {
+    public final void run() {
+        switch (this.f19701a) {
             case 0:
-                ((MessagesController) this.f19022b).lambda$convertToGigaGroup$271(this.f19023c, dialogInterface);
-                return;
-            case 1:
-                ((MessagesController) this.f19022b).lambda$convertToMegaGroup$266(this.f19023c, dialogInterface);
+                MessagesController.lambda$getNextReactionMentionInternal$1(this.f19702b, this.f19703c);
                 return;
             default:
-                ((SecretChatHelper) this.f19022b).lambda$startSecretChat$31(this.f19023c, dialogInterface);
+                MessagesController.lambda$getNextReactionMentionInternal$2(this.f19702b, this.f19703c);
                 return;
         }
     }

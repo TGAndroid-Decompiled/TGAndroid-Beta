@@ -1,24 +1,16 @@
 package be;
 
-import java.util.HashMap;
-public final class c {
-    public b f1786b;
-    public final HashMap f1787c = new HashMap();
-    public final boolean f1785a = true;
+import rd.p;
+public final class c extends kotlin.jvm.internal.h implements p {
+    public static final c f2601a = new kotlin.jvm.internal.h(2, d.class, "createSegment", "createSegment(JLkotlinx/coroutines/channels/ChannelSegment;)Lkotlinx/coroutines/channels/ChannelSegment;", 1);
 
-    public final boolean a(Long l10) {
-        boolean z4;
-        synchronized (this.f1787c) {
-            try {
-                b bVar = (b) this.f1787c.get(l10);
-                if (bVar != null && !bVar.isEmpty()) {
-                    z4 = true;
-                } else {
-                    z4 = false;
-                }
-            } finally {
-            }
-        }
-        return z4;
+    @Override
+    public final Object invoke(Object obj, Object obj2) {
+        long longValue = ((Number) obj).longValue();
+        h hVar = (h) obj2;
+        h hVar2 = d.f2602a;
+        b bVar = hVar.f2620e;
+        kotlin.jvm.internal.i.b(bVar);
+        return new h(longValue, hVar, bVar, 0);
     }
 }

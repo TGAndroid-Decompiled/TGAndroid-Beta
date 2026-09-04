@@ -1,30 +1,34 @@
 package s5;
+public final class b {
+    public final long f45932a;
+    public final l5.i f45933b;
+    public final l5.h f45934c;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import j7.f5;
-import r5.c0;
-public final class b extends c6.a {
-    public static final Parcelable.Creator<b> CREATOR = new c0(3);
-    public final int f44110a;
-    public final int f44111b;
-    public final int f44112c;
-
-    public b(int i10, int i11, int i12) {
-        this.f44110a = i10;
-        this.f44111b = i11;
-        this.f44112c = i12;
+    public b(long j3, l5.i iVar, l5.h hVar) {
+        this.f45932a = j3;
+        this.f45933b = iVar;
+        this.f45934c = hVar;
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q10 = f5.q(parcel, 20293);
-        f5.s(parcel, 2, 4);
-        parcel.writeInt(this.f44110a);
-        f5.s(parcel, 3, 4);
-        parcel.writeInt(this.f44111b);
-        f5.s(parcel, 4, 4);
-        parcel.writeInt(this.f44112c);
-        f5.r(parcel, q10);
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof b) {
+            b bVar = (b) obj;
+            if (this.f45932a == bVar.f45932a && this.f45933b.equals(bVar.f45933b) && this.f45934c.equals(bVar.f45934c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        long j3 = this.f45932a;
+        return ((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ this.f45933b.hashCode()) * 1000003) ^ this.f45934c.hashCode();
+    }
+
+    public final String toString() {
+        return "PersistedEvent{id=" + this.f45932a + ", transportContext=" + this.f45933b + ", event=" + this.f45934c + "}";
     }
 }

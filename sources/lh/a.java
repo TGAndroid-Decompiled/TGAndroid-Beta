@@ -1,59 +1,64 @@
 package lh;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import ig.t0;
+import le.d;
+import le.e;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.js;
-import org.telegram.ui.Components.os;
-public final class a implements Runnable {
-    public final int f12066a = 0;
-    public final org.telegram.ui.ActionBar.f6 f12067b;
-    public final Context f12068c;
+import org.telegram.ui.Components.pr;
+import org.telegram.ui.Components.voip.t2;
+public final class a implements d {
+    public final e f15463a;
+    public final e f15464b;
+    public final le.b f15465c;
+    public final le.b d;
+    public final t2 f15466e;
+    public final t0 f15467f;
+    public boolean h;
 
-    public a(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f12068c = context;
-        this.f12067b = f6Var;
+    public a(t2 t2Var, t0 t0Var) {
+        pr prVar = pr.h;
+        this.f15463a = new e(1, this, prVar, 350L);
+        this.f15464b = new e(2, this, prVar, 350L);
+        this.f15465c = new le.b(0, this, prVar, 350L, true);
+        this.d = new le.b(3, this, prVar, 350L, true);
+        this.h = true;
+        this.f15466e = t2Var;
+        this.f15467f = t0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f12066a) {
-            case 0:
-                new aa(this.f12068c, this.f12067b).show();
-                return;
-            default:
-                org.telegram.ui.ActionBar.d2[] d2VarArr = new org.telegram.ui.ActionBar.d2[1];
-                String string = LocaleController.getString(R.string.AppsTabInfoText);
-                js jsVar = new js(d2VarArr, 0);
-                org.telegram.ui.ActionBar.f6 f6Var = this.f12067b;
-                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(AndroidUtilities.replaceLinks(string, f6Var, jsVar));
-                Matcher matcher = Pattern.compile("@([a-zA-Z0-9_-]+)").matcher(replaceTags);
-                while (true) {
-                    boolean find = matcher.find();
-                    Context context = this.f12068c;
-                    if (find) {
-                        replaceTags.setSpan(new org.telegram.ui.r0(d2VarArr, context, matcher.group(1), 1), matcher.start(), matcher.end(), 33);
-                    } else {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
-                        String string2 = LocaleController.getString(R.string.AppsTabInfoTitle);
-                        org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f19478a;
-                        d2Var.O = string2;
-                        d2Var.Q = replaceTags;
-                        alertDialog$Builder.k(LocaleController.getString(R.string.AppsTabInfoButton), null);
-                        d2VarArr[0] = alertDialog$Builder.o();
-                        return;
-                    }
-                }
+    public final void E(int i10, float f7, float f10, e eVar) {
+        int i11;
+        t2 t2Var = this.f15466e;
+        if (i10 == 1) {
+            t2Var.setTranslationX(this.f15463a.f15376e);
+        }
+        if (i10 == 2) {
+            t2Var.setTranslationY(this.f15464b.f15376e);
+        }
+        le.b bVar = this.d;
+        le.b bVar2 = this.f15465c;
+        if (i10 == 0) {
+            t2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, bVar.f15368e) * bVar2.f15368e);
+            t2Var.setScaleX(AndroidUtilities.lerp(0.3f, 1.0f, f7));
+            t2Var.setScaleY(AndroidUtilities.lerp(0.3f, 1.0f, f7));
+            if (f7 > 0.0f) {
+                i11 = 0;
+            } else {
+                i11 = 8;
+            }
+            t2Var.setVisibility(i11);
+        }
+        if (i10 == 3) {
+            t2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, bVar.f15368e) * bVar2.f15368e);
+        }
+        t0 t0Var = this.f15467f;
+        if (t0Var != null) {
+            t0Var.run();
         }
     }
 
-    public a(os osVar, org.telegram.ui.ActionBar.f6 f6Var, Context context) {
-        this.f12067b = f6Var;
-        this.f12068c = context;
+    @Override
+    public final void z(float f7, int i10) {
     }
 }

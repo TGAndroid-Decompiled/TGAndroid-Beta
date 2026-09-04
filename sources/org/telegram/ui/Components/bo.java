@@ -1,42 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.ImageReceiver;
-public final class bo implements ImageReceiver.ImageReceiverDelegate {
-    public boolean f23725a;
-    public final uf.g f23726b;
-    public final eo f23727c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class bo extends AnimatorListenerAdapter {
+    public final int f24752a;
+    public final co f24753b;
 
-    public bo(uf.i iVar, uf.g gVar) {
-        this.f23727c = iVar;
-        this.f23726b = gVar;
+    public bo(co coVar, int i10) {
+        this.f24752a = i10;
+        this.f24753b = coVar;
     }
 
     @Override
-    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        gj0 gj0Var;
-        kf.g gVar;
-        if (!this.f23725a) {
-            if ((i10 == 0 || i10 == 3) && drawable != null) {
-                this.f23725a = true;
-                boolean z4 = drawable instanceof gj0;
-                uf.g gVar2 = this.f23726b;
-                if (z4 && (gVar = (gj0Var = (gj0) drawable).A0) != null && gVar.g()) {
-                    gj0Var.f25186z0 = new em(1, this, gVar2);
-                    return;
-                }
-                eo.a(this.f23727c);
-                gVar2.run();
-            }
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f24752a) {
+            case 0:
+                this.f24753b.Q = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
     }
 
     @Override
-    public final void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.j5.b(this, imageReceiver);
-    }
-
-    @Override
-    public final void didSetImage(ImageReceiver imageReceiver, boolean z4, boolean z10, boolean z11) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f24752a) {
+            case 0:
+                co coVar = this.f24753b;
+                if (coVar.Q == animator) {
+                    coVar.getSubtitleTextView().setVisibility(4);
+                    coVar.Q = null;
+                    return;
+                }
+                return;
+            default:
+                this.f24753b.Q = null;
+                return;
+        }
     }
 }

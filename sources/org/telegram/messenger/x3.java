@@ -1,24 +1,29 @@
 package org.telegram.messenger;
+public final class x3 implements Runnable {
+    public final int f19546a;
+    public final boolean f19547b;
 
-import android.view.View;
-import org.telegram.messenger.FilesMigrationService;
-public final class x3 implements View.OnClickListener {
-    public final int f18930a;
-    public final Object f18931b;
-
-    public x3(Object obj, int i10) {
-        this.f18930a = i10;
-        this.f18931b = obj;
+    public x3(int i10, boolean z10) {
+        this.f19546a = i10;
+        this.f19547b = z10;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f18930a) {
+    public final void run() {
+        int i10 = this.f19546a;
+        boolean z10 = this.f19547b;
+        switch (i10) {
             case 0:
-                FilesMigrationService.FilesMigrationBottomSheet.m((FilesMigrationService.FilesMigrationBottomSheet) this.f18931b, view);
+                FingerprintController.b(z10);
+                return;
+            case 1:
+                FingerprintController.a(z10);
+                return;
+            case 2:
+                LiteMode.lambda$onPowerSaverApplied$0(z10);
                 return;
             default:
-                MessagesController.lambda$checkSensitive$445((boolean[]) this.f18931b, view);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewTheme, Boolean.FALSE, Boolean.valueOf(z10));
                 return;
         }
     }

@@ -1,30 +1,48 @@
 package org.telegram.messenger;
-public final class ha implements Runnable {
-    public final int f17370a;
-    public final MessagesController f17371b;
-    public final int f17372c;
 
-    public ha(MessagesController messagesController, int i10, int i11) {
-        this.f17370a = i11;
-        this.f17371b = messagesController;
-        this.f17372c = i10;
+import j$.util.function.Function$CC;
+import java.util.function.Function;
+import org.telegram.messenger.TranslateController;
+public final class ha implements Function {
+    public final int f17863a;
+
+    public ha(int i10) {
+        this.f17863a = i10;
+    }
+
+    public Function andThen(Function function) {
+        int i10 = this.f17863a;
+        return Function$CC.$default$andThen(this, function);
     }
 
     @Override
-    public final void run() {
-        switch (this.f17370a) {
+    public final Object apply(Object obj) {
+        String valueOf;
+        String lambda$applyAppConfig$35;
+        Long lambda$new$14;
+        int[] lambda$new$15;
+        String str;
+        switch (this.f17863a) {
             case 0:
-                this.f17371b.lambda$updateTimerProc$157(this.f17372c);
-                return;
+                valueOf = String.valueOf((Long) obj);
+                return valueOf;
             case 1:
-                this.f17371b.lambda$onFolderEmpty$197(this.f17372c);
-                return;
+                lambda$applyAppConfig$35 = MessagesController.lambda$applyAppConfig$35((int[]) obj);
+                return lambda$applyAppConfig$35;
             case 2:
-                this.f17371b.lambda$ensureMessagesLoaded$462(this.f17372c);
-                return;
+                lambda$new$14 = MessagesController.lambda$new$14((String) obj);
+                return lambda$new$14;
+            case 3:
+                lambda$new$15 = MessagesController.lambda$new$15((String) obj);
+                return lambda$new$15;
             default:
-                this.f17371b.lambda$didAddedNewTask$81(this.f17372c);
-                return;
+                str = ((TranslateController.Language) obj).displayName;
+                return str;
         }
+    }
+
+    public Function compose(Function function) {
+        int i10 = this.f17863a;
+        return Function$CC.$default$compose(this, function);
     }
 }

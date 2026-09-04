@@ -1,17 +1,17 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class hs0 extends zw0 {
-    public final yu0 H;
+public final class hs0 extends xw0 {
+    public final xu0 K;
 
-    public hs0(yu0 yu0Var, Context context, u00 u00Var) {
-        super(context, u00Var, 1, null);
-        this.H = yu0Var;
+    public hs0(xu0 xu0Var, Context context, t00 t00Var) {
+        super(context, t00Var, 1, null);
+        this.K = xu0Var;
     }
 
     @Override
     public final void a() {
         invalidate();
-        this.H.E0();
+        this.K.E0();
     }
 }

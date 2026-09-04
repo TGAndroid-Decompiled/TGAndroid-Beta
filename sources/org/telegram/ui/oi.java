@@ -1,41 +1,23 @@
 package org.telegram.ui;
+public final class oi implements org.telegram.ui.Components.tg0 {
+    public boolean f39256a = true;
+    public final org.telegram.ui.Components.fk0 f39257b;
 
-import android.util.SparseArray;
-import org.telegram.messenger.MessageObject;
-public final class oi {
-    public boolean f36821a;
-    public final boolean f36822b;
-    public final SparseArray f36823c;
-    public final zn d;
-
-    public oi(zn znVar, boolean z4, SparseArray sparseArray) {
-        this.d = znVar;
-        this.f36822b = z4;
-        this.f36823c = sparseArray;
+    public oi(org.telegram.ui.Components.fk0 fk0Var) {
+        this.f39257b = fk0Var;
     }
 
-    public final boolean a(int i10) {
-        zn znVar = this.d;
-        int i11 = i10 - znVar.f40800x0.G;
-        if (i11 >= 0 && i11 < znVar.f40730r6.size()) {
-            MessageObject messageObject = (MessageObject) znVar.f40730r6.get(i11);
-            if (messageObject.contentType == 0) {
-                SparseArray sparseArray = this.f36823c;
-                boolean z4 = this.f36822b;
-                if (!z4 && sparseArray.get(messageObject.getId(), null) == null) {
-                    return true;
-                }
-                if (z4 && sparseArray.get(messageObject.getId(), null) != null) {
-                    return true;
-                }
-                return false;
+    @Override
+    public final void a(float f7, float f10) {
+        org.telegram.ui.Components.fk0 fk0Var = this.f39257b;
+        if (f7 == 0.0f && !this.f39256a) {
+            fk0Var.r(false);
+            this.f39256a = true;
+        } else if (f7 == 1.0f && this.f39256a) {
+            fk0Var.setAlpha(1.0f - f10);
+            if (f10 == 1.0f) {
+                this.f39256a = false;
             }
-            return false;
         }
-        return false;
-    }
-
-    public final void b(int r8, boolean r9, float r10, float r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.oi.b(int, boolean, float, float):void");
     }
 }

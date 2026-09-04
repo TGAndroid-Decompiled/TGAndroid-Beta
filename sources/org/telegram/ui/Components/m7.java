@@ -1,30 +1,22 @@
 package org.telegram.ui.Components;
+public final class m7 implements Runnable {
+    public final int f28398a;
+    public final k8 f28399b;
 
-import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class m7 extends jj0 {
-    public float f26975r;
-    public float f26976s;
-    public boolean v;
-    public final m2.b f26977w;
-    public final float f26978x;
-    public final c8 f26979y;
-
-    public m7(c8 c8Var, Context context, float f10) {
-        super(context);
-        this.f26979y = c8Var;
-        this.f26978x = f10;
-        this.f26977w = new m2.b(this, 12);
+    public m7(k8 k8Var, int i10) {
+        this.f28398a = i10;
+        this.f28399b = k8Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.addAction(16);
-    }
-
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m7.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void run() {
+        switch (this.f28398a) {
+            case 0:
+                k8.n(this.f28399b);
+                return;
+            default:
+                k8.G(this.f28399b);
+                return;
+        }
     }
 }

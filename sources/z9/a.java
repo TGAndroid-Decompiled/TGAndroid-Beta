@@ -1,38 +1,50 @@
 package z9;
 
-import java.util.ArrayList;
-public final class a {
-    public final String f47456a;
-    public final ArrayList f47457b;
+import cf.c;
+import com.google.firebase.sessions.FirebaseSessionsRegistrar;
+import org.telegram.ui.ActionBar.a2;
+import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.hh1;
+import q9.d;
+import zh.w3;
+public final class a implements d, a2 {
+    public final int f51376a;
 
-    public a(String str, ArrayList arrayList) {
-        if (str != null) {
-            this.f47456a = str;
-            this.f47457b = arrayList;
-            return;
+    public a(int i10) {
+        this.f51376a = i10;
+    }
+
+    @Override
+    public Object D(c cVar) {
+        switch (this.f51376a) {
+            case 7:
+                return FirebaseSessionsRegistrar.e(cVar);
+            case 8:
+                return FirebaseSessionsRegistrar.f(cVar);
+            case 9:
+                return FirebaseSessionsRegistrar.a(cVar);
+            case 10:
+                return FirebaseSessionsRegistrar.b(cVar);
+            case 11:
+                return FirebaseSessionsRegistrar.d(cVar);
+            default:
+                return FirebaseSessionsRegistrar.c(cVar);
         }
-        throw new NullPointerException("Null userAgent");
     }
 
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof a) {
-                a aVar = (a) obj;
-                if (this.f47456a.equals(aVar.f47456a) && this.f47457b.equals(aVar.f47457b)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+    @Override
+    public void g(b2 b2Var, int i10) {
+        switch (this.f51376a) {
+            case 13:
+                w3.d2(new hh1(6, null));
+                return;
+            default:
+                int i11 = w3.f52754q1;
+                return;
         }
-        return true;
     }
 
-    public final int hashCode() {
-        return ((this.f47456a.hashCode() ^ 1000003) * 1000003) ^ this.f47457b.hashCode();
-    }
-
-    public final String toString() {
-        return "HeartBeatResult{userAgent=" + this.f47456a + ", usedDates=" + this.f47457b + "}";
+    public a(w3 w3Var) {
+        this.f51376a = 13;
     }
 }

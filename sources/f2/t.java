@@ -1,24 +1,6 @@
 package f2;
-public final class t extends v {
-    public final int f5823c;
 
-    @Override
-    public int h(int i10, int i11) {
-        switch (this.f5823c) {
-            case 0:
-                return i10 % i11;
-            default:
-                return super.h(i10, i11);
-        }
-    }
-
-    @Override
-    public final int i(int i10) {
-        switch (this.f5823c) {
-            case 0:
-                return 1;
-            default:
-                return 1;
-        }
-    }
+import e2.v;
+public interface t {
+    void a(long j3, v vVar);
 }

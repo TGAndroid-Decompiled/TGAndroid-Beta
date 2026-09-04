@@ -1,52 +1,34 @@
 package org.telegram.ui.ActionBar;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.fb;
-import org.telegram.ui.Components.ic;
-public final class j2 implements fb {
-    public final p2 f19800a;
+import android.app.Dialog;
+import android.view.View;
+import org.telegram.ui.Components.yc;
+public interface j2 {
+    boolean attachedToParent();
 
-    public j2(p2 p2Var) {
-        this.f19800a = p2Var;
-    }
+    void dismiss();
 
-    @Override
-    public final boolean a() {
-        return true;
-    }
+    void dismiss(boolean z10);
 
-    @Override
-    public final boolean e() {
-        return true;
-    }
+    yc getBulletinFactory();
 
-    @Override
-    public final int f(int i10) {
-        if (this.f19800a.isSupportEdgeToEdge()) {
-            return AndroidUtilities.navigationBarHeight;
-        }
-        return 0;
-    }
+    int getNavigationBarColor(int i10);
 
-    @Override
-    public final boolean g(int i10) {
-        return false;
-    }
+    View getWindowView();
 
-    @Override
-    public final int h(int i10) {
-        return 0;
-    }
+    boolean isAttachedLightStatusBar();
 
-    @Override
-    public final void b(ic icVar) {
-    }
+    boolean isFullyVisible();
 
-    @Override
-    public final void c(float f10) {
-    }
+    boolean isShown();
 
-    @Override
-    public final void d(ic icVar) {
-    }
+    boolean onAttachedBackPressed();
+
+    void setKeyboardHeightFromParent(int i10);
+
+    void setLastVisible(boolean z10);
+
+    void setOnDismissListener(Runnable runnable);
+
+    boolean showDialog(Dialog dialog);
 }

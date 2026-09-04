@@ -1,32 +1,20 @@
 package org.telegram.ui;
-public final class p9 implements o1.g {
-    public final int f37023a;
-    public final x9 f37024b;
+public final class p9 extends u9 {
+    public final q9 f39434f0;
 
-    public p9(x9 x9Var, int i10) {
-        this.f37023a = i10;
-        this.f37024b = x9Var;
+    public p9(q9 q9Var, int i10) {
+        super(i10);
+        this.f39434f0 = q9Var;
     }
 
     @Override
-    public final void a(o1.h hVar, float f10, float f11) {
-        float f12;
-        switch (this.f37023a) {
-            case 0:
-                x9 x9Var = this.f37024b;
-                x9Var.f39937y = f10 / 500.0f;
-                x9Var.fragmentView.invalidate();
-                return;
-            default:
-                x9 x9Var2 = this.f37024b;
-                if (x9Var2.J) {
-                    f12 = f10 / 500.0f;
-                } else {
-                    f12 = 1.0f - (f10 / 500.0f);
-                }
-                x9Var2.X = f12;
-                x9Var2.fragmentView.invalidate();
-                return;
-        }
+    public final void finishFragment() {
+        setFinishing(true);
+        this.f39434f0.dismiss();
+    }
+
+    @Override
+    public final void removeSelfFromStack() {
+        this.f39434f0.dismiss();
     }
 }

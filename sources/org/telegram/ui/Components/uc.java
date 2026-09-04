@@ -1,130 +1,279 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RadialGradient;
-import android.graphics.RectF;
+import android.text.SpannableStringBuilder;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
-public final class uc {
-    public float A;
-    public float B;
-    public float C;
-    public float D;
-    public final wc E;
-    public final Paint f29172a;
-    public Bitmap f29173b;
-    public float f29174c;
-    public float d;
-    public final z5 e;
-    public final z5 f29175f;
-    public float f29176g;
-    public final z5 h;
-    public float f29177i;
-    public final z5 f29178j;
-    public final j6 f29179k;
-    public float f29180l;
-    public final z5 f29181m;
-    public boolean f29182n;
-    public final z5 f29183o;
-    public final Path f29184p;
-    public final Paint f29185q;
-    public final RectF f29186r;
-    public final Paint f29187s;
-    public final Paint f29188t;
-    public final RectF f29189u;
-    public RadialGradient v;
-    public Matrix f29190w;
-    public float f29191x;
-    public float f29192y;
-    public float f29193z;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.SharedPrefsHelper;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class uc implements Runnable {
+    public final int f30857a;
+    public final Object f30858b;
+    public final Object f30859c;
 
-    public uc(wc wcVar) {
-        this.E = wcVar;
-        Paint paint = new Paint(3);
-        this.f29172a = paint;
-        paint.setColor(-1);
-        mr mrVar = mr.h;
-        this.e = new z5(wcVar, 650L, mrVar);
-        this.f29175f = new z5(wcVar, 650L, mrVar);
-        mr mrVar2 = mr.f27123g;
-        this.h = new z5(wcVar, 0L, 150L, mrVar2);
-        this.f29177i = 1.0f;
-        this.f29178j = new z5(wcVar, 0L, 150L, mrVar2);
-        j6 j6Var = new j6(false, true, true, false);
-        this.f29179k = j6Var;
-        this.f29181m = new z5(wcVar, 0L, 150L, mrVar2);
-        this.f29183o = new z5(wcVar, 0L, 200L, mrVar);
-        j6Var.r(-1);
-        j6Var.k(0.35f, 200L, mrVar);
-        j6Var.u(AndroidUtilities.bold());
-        j6Var.t(AndroidUtilities.dp(15.0f));
-        j6Var.f25847b = 17;
-        this.f29184p = new Path();
-        Paint paint2 = new Paint(1);
-        this.f29185q = paint2;
-        this.f29186r = new RectF();
-        this.f29187s = new Paint(1);
-        Paint paint3 = new Paint(1);
-        this.f29188t = paint3;
-        paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
-        this.f29189u = new RectF();
+    public uc(int i10, Object obj, Object obj2) {
+        this.f30857a = i10;
+        this.f30858b = obj;
+        this.f30859c = obj2;
     }
 
-    public final void a(Canvas canvas, float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17, float f18, float f19) {
-        double d;
-        if (f19 > 0.0f && LiteMode.isEnabled(360928)) {
-            long currentTimeMillis = System.currentTimeMillis();
-            float sqrt = (float) Math.sqrt(2.0d);
-            if (wc.V < 0) {
-                wc.V = currentTimeMillis;
-            }
-            float f20 = ((float) (currentTimeMillis - wc.V)) / 10000.0f;
-            Bitmap bitmap = this.f29173b;
-            if (bitmap != null) {
-                int width = bitmap.getWidth();
-                float f21 = width;
-                float dpf2 = AndroidUtilities.dpf2(15.0f) / f21;
-                float f22 = 7.0f;
-                int floor = (int) Math.floor((f14 % 360.0f) / 7.0f);
-                int ceil = (int) Math.ceil((f15 % 360.0f) / 7.0f);
-                while (floor <= ceil) {
-                    float f23 = floor * f22;
-                    float sin = (float) (((((Math.sin(2000.0f * f23) + 1.0d) * 0.25d) + 1.0d) * (100.0f + f20)) % 1.0d);
-                    float f24 = f21 * sqrt;
-                    float f25 = f20;
-                    double lerp = AndroidUtilities.lerp(f16 - f24, f17 + f24, sin);
-                    float a2 = (float) kf.k0.a(wc.a(f23), lerp, f10);
-                    int i10 = width;
-                    float sin2 = (float) ((Math.sin(wc.a(f23)) * lerp) + f11);
-                    float abs = (Math.abs(sin - 0.5f) * (-1.75f)) + 1.0f;
-                    float y10 = e2.c.y((float) (Math.sin(sin * 3.141592653589793d) - 1.0d), 0.25f, 1.0f, abs * 0.65f * f19);
-                    Paint paint = this.f29172a;
-                    paint.setAlpha((int) (Math.max(0.0f, Math.min(1.0f, AndroidUtilities.lerp(1.0f, Math.min(k7.n6.a(a2, sin2, f12, f13) / AndroidUtilities.dpf2(64.0f), 1.0f), f18) * y10)) * 255.0f));
-                    float f26 = dpf2;
-                    float sin3 = f26 * ((float) ((((Math.sin(f23) + 1.0d) * 0.25d) + 0.800000011920929d) * e2.c.y((float) (Math.sin(d) - 1.0d), 0.25f, 1.0f, 0.75f)));
-                    canvas.save();
-                    canvas.translate(a2, sin2);
-                    canvas.scale(sin3, sin3);
-                    float f27 = -(i10 >> 1);
-                    canvas.drawBitmap(this.f29173b, f27, f27, paint);
-                    canvas.restore();
-                    floor++;
-                    sqrt = sqrt;
-                    width = i10;
-                    f21 = f21;
-                    dpf2 = f26;
-                    f20 = f25;
-                    f22 = 7.0f;
+    @Override
+    public final void run() {
+        boolean z10;
+        Bitmap createBitmap;
+        switch (this.f30857a) {
+            case 0:
+                boolean[] zArr = (boolean[]) this.f30858b;
+                Runnable runnable = (Runnable) this.f30859c;
+                if (!zArr[0]) {
+                    zArr[0] = true;
+                    runnable.run();
+                    return;
                 }
-            }
+                return;
+            case 1:
+                ((ld) this.f30858b).removeView((di.f4) this.f30859c);
+                return;
+            case 2:
+                int i10 = ChatActivityEnterView.f23661m5;
+                ((ChatActivityEnterView) this.f30858b).removeView((di.f4) this.f30859c);
+                return;
+            case 3:
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f30858b;
+                int i11 = ChatActivityEnterView.f23661m5;
+                chatActivityEnterView.setFieldText((CharSequence) this.f30859c);
+                chatActivityEnterView.W = null;
+                return;
+            case 4:
+                ChatActivityEnterView chatActivityEnterView2 = (ChatActivityEnterView) this.f30858b;
+                int i12 = ChatActivityEnterView.f23661m5;
+                ((sd) this.f30859c).run();
+                SharedPrefsHelper.setWebViewConfirmShown(chatActivityEnterView2.Q, chatActivityEnterView2.P2, true);
+                return;
+            case 5:
+                pg pgVar = (pg) this.f30859c;
+                ChatActivityEnterView chatActivityEnterView3 = ((sg) this.f30858b).V;
+                chatActivityEnterView3.f23715i1 = chatActivityEnterView3.f23709h1.getAudioRightMs() - chatActivityEnterView3.f23709h1.getAudioLeftMs();
+                MediaController.getInstance().trimCurrentRecording(chatActivityEnterView3.f23709h1.getAudioLeftMs(), chatActivityEnterView3.f23709h1.getAudioRightMs(), pgVar);
+                return;
+            case 6:
+                vi.u((vi) this.f30858b, (di.f4) this.f30859c);
+                return;
+            case 7:
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f30859c;
+                ((vi) this.f30858b).dismiss(true);
+                if (n2Var != null) {
+                    n2Var.presentFragment(new PremiumPreviewFragment(0, "caption_limit"));
+                    return;
+                }
+                return;
+            case 8:
+                vi viVar = (vi) this.f30858b;
+                TLRPC.TL_attachMenuBot tL_attachMenuBot = ((oi) this.f30859c).f29075c;
+                tL_attachMenuBot.side_menu_disclaimer_needed = false;
+                tL_attachMenuBot.inactive = false;
+                viVar.N1(tL_attachMenuBot.bot_id, null, false, true);
+                MediaDataController.getInstance(viVar.J1).updateAttachMenuBotsInCache();
+                return;
+            case 9:
+                vi viVar2 = (vi) this.f30858b;
+                MediaDataController.getInstance(viVar2.J1).loadAttachMenuBots(false, true);
+                if (viVar2.f31340y0 == viVar2.f31336x0.get(((TLRPC.TL_attachMenuBot) this.f30859c).bot_id)) {
+                    viVar2.Q1(viVar2.f31291j0);
+                    return;
+                }
+                return;
+            case 10:
+                gj gjVar = (gj) this.f30858b;
+                gjVar.H = false;
+                gjVar.I = (ArrayList) this.f30859c;
+                gjVar.P();
+                return;
+            case 11:
+                gj gjVar2 = (gj) this.f30858b;
+                ((vi) this.f30859c).Z0();
+                gjVar2.L();
+                gjVar2.f28753b.X1(gjVar2, 0);
+                return;
+            case 12:
+                AndroidUtilities.runOnUIThread(new uc(13, (xj) this.f30858b, ((wj) this.f30859c).run()));
+                return;
+            case 13:
+                ((xj) this.f30858b).setStatus((CharSequence) this.f30859c);
+                return;
+            case 14:
+                nk nkVar = (nk) this.f30858b;
+                String str = (String) this.f30859c;
+                nkVar.getClass();
+                ArrayList arrayList = new ArrayList(nkVar.X.v.f26740c);
+                if (nkVar.X.v.d.isEmpty()) {
+                    arrayList.addAll(0, nkVar.X.v.f26741e);
+                }
+                Utilities.searchQueue.postRunnable(new bi.e4(nkVar, str, !nkVar.R.isEmpty(), arrayList, 17));
+                return;
+            case 15:
+                nk nkVar2 = (nk) this.f30858b;
+                ArrayList arrayList2 = (ArrayList) this.f30859c;
+                ok okVar = nkVar2.X;
+                boolean z11 = okVar.f29086b0;
+                dk dkVar = okVar.f29092r;
+                if (z11) {
+                    s4.h0 adapter = dkVar.getAdapter();
+                    nk nkVar3 = okVar.f29096y;
+                    if (adapter != nkVar3) {
+                        dkVar.setAdapter(nkVar3);
+                    }
+                }
+                nkVar2.f28774s = arrayList2;
+                nkVar2.l();
+                return;
+            case 16:
+                gl glVar = (gl) this.f30858b;
+                float[] fArr = (float[]) this.f30859c;
+                glVar.getClass();
+                glVar.b0(fArr[0], fArr[1]);
+                return;
+            case 17:
+                ni niVar = (ni) this.f30859c;
+                boolean z12 = ChatAttachAlertPhotoLayout.f23831q1;
+                int currentItemTop = niVar.getCurrentItemTop();
+                int listTopPadding = niVar.getListTopPadding();
+                tl tlVar = ((ChatAttachAlertPhotoLayout) this.f30858b).E;
+                if (currentItemTop > AndroidUtilities.dp(8.0f)) {
+                    listTopPadding -= currentItemTop;
+                }
+                tlVar.scrollBy(0, listTopPadding);
+                return;
+            case 18:
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f30859c;
+                dm dmVar = ((ChatAttachAlertPhotoLayout) this.f30858b).P;
+                if (dmVar != null) {
+                    dmVar.setLayoutParams(layoutParams);
+                    return;
+                }
+                return;
+            case 19:
+                ni niVar2 = (ni) this.f30859c;
+                int currentItemTop2 = niVar2.getCurrentItemTop();
+                int listTopPadding2 = niVar2.getListTopPadding();
+                bi.o0 o0Var = ((qm) this.f30858b).f29769r;
+                if (currentItemTop2 > AndroidUtilities.dp(7.0f)) {
+                    listTopPadding2 -= currentItemTop2;
+                }
+                o0Var.scrollBy(0, listTopPadding2);
+                return;
+            case 20:
+                io.a(((go) this.f30858b).f26471c);
+                ((ig.g) this.f30859c).run();
+                return;
+            case 21:
+                ((gp) this.f30858b).f26479b.x((List) this.f30859c);
+                return;
+            case 22:
+                ((hp) this.f30858b).f26780b.x((List) this.f30859c);
+                return;
+            case 23:
+                ((org.telegram.ui.ActionBar.f3) this.f30858b).dismiss();
+                of.f.s((Context) this.f30859c, "https://t.me/BotFather?start=deletebot");
+                return;
+            case 24:
+                lr lrVar = (lr) this.f30858b;
+                lrVar.getClass();
+                ((di.d) this.f30859c).setLoading(false);
+                lrVar.dismiss();
+                return;
+            case 25:
+                lr lrVar2 = (lr) this.f30858b;
+                TLObject tLObject = (TLObject) this.f30859c;
+                if (tLObject != null && (tLObject instanceof TL_phone.groupCallStreamRtmpUrl)) {
+                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject;
+                    lrVar2.f28292b0 = groupcallstreamrtmpurl.url;
+                    lrVar2.f28293c0 = groupcallstreamrtmpurl.key;
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(lrVar2.f28293c0);
+                    lrVar2.f28294d0 = spannableStringBuilder;
+                    ?? obj = new Object();
+                    obj.f28591a |= 256;
+                    obj.f28592b = 0;
+                    obj.f28593c = spannableStringBuilder.length();
+                    lrVar2.f28294d0.setSpan(new o01(obj, 0), 0, lrVar2.f28294d0.length(), 0);
+                    lrVar2.f28295e0.N(false);
+                    return;
+                }
+                return;
+            case 26:
+                ps psVar = (ps) this.f30858b;
+                TLObject tLObject2 = (TLObject) this.f30859c;
+                ls lsVar = psVar.f29479b;
+                ArrayList arrayList3 = psVar.h;
+                int i13 = psVar.f29478a;
+                if (tLObject2 instanceof TL_bots.popularAppBots) {
+                    TL_bots.popularAppBots popularappbots = (TL_bots.popularAppBots) tLObject2;
+                    MessagesController.getInstance(i13).putUsers(popularappbots.users, false);
+                    MessagesStorage.getInstance(i13).putUsersAndChats(popularappbots.users, null, false, true);
+                    arrayList3.addAll(popularappbots.users);
+                    String str2 = popularappbots.next_offset;
+                    psVar.f29483g = str2;
+                    if (str2 == null) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    psVar.f29481e = z10;
+                    long currentTimeMillis = System.currentTimeMillis();
+                    psVar.f29482f = currentTimeMillis;
+                    if (!psVar.f29484i) {
+                        psVar.f29484i = true;
+                        String str3 = psVar.f29483g;
+                        if (str3 == null) {
+                            str3 = "";
+                        }
+                        String str4 = str3;
+                        ArrayList arrayList4 = new ArrayList();
+                        for (int i14 = 0; i14 < arrayList3.size(); i14 = com.google.android.gms.internal.vision.e2.g(((TLRPC.User) arrayList3.get(i14)).f20016id, arrayList4, i14, 1)) {
+                        }
+                        MessagesStorage messagesStorage = MessagesStorage.getInstance(i13);
+                        messagesStorage.getStorageQueue().postRunnable(new org.telegram.messenger.voip.f(psVar, messagesStorage, arrayList4, currentTimeMillis, str4, 3));
+                    }
+                    psVar.f29480c = false;
+                    lsVar.run();
+                    return;
+                }
+                psVar.f29483g = null;
+                psVar.f29481e = true;
+                psVar.f29480c = false;
+                lsVar.run();
+                return;
+            case 27:
+                Bitmap decodeFile = BitmapFactory.decodeFile((String) this.f30859c);
+                Canvas canvas = new Canvas(Bitmap.createBitmap(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f), Bitmap.Config.ARGB_8888));
+                Paint paint = new Paint(3);
+                canvas.translate(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f);
+                float max = Math.max(createBitmap.getWidth() / decodeFile.getWidth(), createBitmap.getHeight() / decodeFile.getHeight());
+                canvas.scale(max, max);
+                canvas.drawBitmap(decodeFile, (-decodeFile.getWidth()) / 2.0f, (-decodeFile.getHeight()) / 2.0f, paint);
+                AndroidUtilities.runOnUIThread(new uc(28, (nt) this.f30858b, decodeFile));
+                return;
+            case 28:
+                ((nt) this.f30858b).setImage((Bitmap) this.f30859c);
+                return;
+            default:
+                ((EditTextBoldCursor) this.f30858b).hintLayout.draw((Canvas) this.f30859c);
+                return;
         }
     }
 }

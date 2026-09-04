@@ -1,53 +1,126 @@
 package org.telegram.messenger;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.text.Spannable;
+import android.util.SparseArray;
+import java.io.File;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
 public final class d3 implements Runnable {
-    public final int f17004a = 0;
-    public final String f17005b;
-    public final boolean f17006c;
-    public final boolean d;
-    public final Object e;
-    public final Object f17007f;
-    public final Object h;
-    public final Object f17008n;
-    public final Object f17009r;
-    public final Object f17010s;
+    public final int f17441a;
+    public final Object f17442b;
+    public final Object f17443c;
 
-    public d3(FileLoader.AnonymousClass1 anonymousClass1, boolean z4, String str, boolean z10, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, FileUploadOperation fileUploadOperation) {
-        this.e = anonymousClass1;
-        this.f17006c = z4;
-        this.f17005b = str;
-        this.d = z10;
-        this.f17007f = inputFile;
-        this.h = inputEncryptedFile;
-        this.f17008n = bArr;
-        this.f17009r = bArr2;
-        this.f17010s = fileUploadOperation;
+    public d3(int i10, Object obj, Object obj2) {
+        this.f17441a = i10;
+        this.f17442b = obj;
+        this.f17443c = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f17004a) {
+        switch (this.f17441a) {
             case 0:
-                ((FileLoader.AnonymousClass1) this.e).lambda$didFinishUploadingFile$0(this.f17006c, this.f17005b, this.d, (TLRPC.InputFile) this.f17007f, (TLRPC.InputEncryptedFile) this.h, (byte[]) this.f17008n, (byte[]) this.f17009r, (FileUploadOperation) this.f17010s);
+                FileLoader.AnonymousClass2.lambda$didPreFinishLoading$0((FileLoadOperation) this.f17442b, (FileLoaderPriorityQueue) this.f17443c);
+                return;
+            case 1:
+                ((ImageLoader) this.f17442b).lambda$runHttpFileLoadTasks$13((ImageLoader.HttpFileTask) this.f17443c);
+                return;
+            case 2:
+                ((ImageLoader.ArtworkLoadTask) this.f17442b).lambda$onPostExecute$0((String) this.f17443c);
+                return;
+            case 3:
+                ((ImageLoader.CacheOutTask) this.f17442b).lambda$onPostExecute$1((Drawable) this.f17443c);
+                return;
+            case 4:
+                ((ImageLoader.ThumbGenerateTask) this.f17442b).lambda$removeTask$0((String) this.f17443c);
+                return;
+            case 5:
+                ((MediaController.AnonymousClass2) this.f17442b).lambda$run$0((ByteBuffer) this.f17443c);
+                return;
+            case 6:
+                ((MediaController.AnonymousClass5) this.f17442b).lambda$run$1((MessageObject) this.f17443c);
+                return;
+            case 7:
+                ((MediaController.MediaLoader) this.f17442b).lambda$addMessageToLoad$7((MessageObject) this.f17443c);
+                return;
+            case 8:
+                ((MediaDataController.AnonymousClass2) this.f17442b).lambda$run$0((ArrayList) this.f17443c);
+                return;
+            case 9:
+                ((MediaDataController.AnonymousClass3) this.f17442b).lambda$run$0((ArrayList) this.f17443c);
+                return;
+            case 10:
+                ((SendMessagesHelper.ImportingHistory.AnonymousClass2) this.f17442b).lambda$run$0((String) this.f17443c);
+                return;
+            case 11:
+                ((BetaUpdaterController) this.f17442b).lambda$downloadUpdate$4((File) this.f17443c);
+                return;
+            case 12:
+                BirthdayController.a((BirthdayController) this.f17442b, (TLObject) this.f17443c);
+                return;
+            case 13:
+                ChatMessagesMetadataController.a((ChatMessagesMetadataController) this.f17442b, (ArrayList) this.f17443c);
+                return;
+            case 14:
+                ChatThemeController.o((File) this.f17442b, (ResultCallback) this.f17443c);
+                return;
+            case 15:
+                ChatThemeController.s((ResultCallback) this.f17442b, (Bitmap) this.f17443c);
+                return;
+            case 16:
+                ChatThemeController.u((ChatThemeController) this.f17442b, (TLRPC.ChatFull) this.f17443c);
+                return;
+            case 17:
+                ChatThemeController.m((File) this.f17442b, (Utilities.Callback) this.f17443c);
+                return;
+            case 18:
+                ChatThemeController.t((Utilities.Callback) this.f17442b, (dg.a) this.f17443c);
+                return;
+            case 19:
+                ChatThemeController.k((ChatThemeController) this.f17442b, (ResultCallback) this.f17443c);
+                return;
+            case 20:
+                ChatThemeController.f((File) this.f17442b, (Bitmap) this.f17443c);
+                return;
+            case 21:
+                CodeHighlighting.lambda$highlight$4((ArrayList) this.f17442b, (Spannable) this.f17443c);
+                return;
+            case 22:
+                ((ContactsController) this.f17442b).lambda$addContact$50((TLRPC.User) this.f17443c);
+                return;
+            case 23:
+                ((ContactsController) this.f17442b).lambda$deleteAllContacts$8((Runnable) this.f17443c);
+                return;
+            case 24:
+                ((ContactsController) this.f17442b).lambda$checkInviteText$2((TLRPC.TL_help_inviteText) this.f17443c);
+                return;
+            case 25:
+                ((ContactsController) this.f17442b).lambda$applyContactsUpdates$46((Long) this.f17443c);
+                return;
+            case 26:
+                ((ContactsController) this.f17442b).lambda$migratePhoneBookToV7$12((SparseArray) this.f17443c);
+                return;
+            case 27:
+                ((ContactsController) this.f17442b).lambda$deleteContactsUndoable$53((HashMap) this.f17443c);
+                return;
+            case 28:
+                ((DispatchQueuePoolBackground) this.f17442b).lambda$execute$0((DispatchQueue) this.f17443c);
                 return;
             default:
-                ((MessagesController) this.e).lambda$openApp$498((org.telegram.ui.ActionBar.p2) this.f17007f, (ze.c) this.h, (boolean[]) this.f17008n, (TLRPC.User) this.f17009r, this.f17005b, this.f17006c, this.d, (TL_bots.BotInfo[]) this.f17010s);
+                ((DownloadController) this.f17442b).lambda$deleteRecentFiles$13((ArrayList) this.f17443c);
                 return;
         }
-    }
-
-    public d3(MessagesController messagesController, org.telegram.ui.ActionBar.p2 p2Var, ze.c cVar, boolean[] zArr, TLRPC.User user, String str, boolean z4, boolean z10, TL_bots.BotInfo[] botInfoArr) {
-        this.e = messagesController;
-        this.f17007f = p2Var;
-        this.h = cVar;
-        this.f17008n = zArr;
-        this.f17009r = user;
-        this.f17005b = str;
-        this.f17006c = z4;
-        this.d = z10;
-        this.f17010s = botInfoArr;
     }
 }

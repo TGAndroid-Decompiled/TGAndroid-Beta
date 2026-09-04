@@ -27,7 +27,7 @@ public interface WebViewProviderBoundaryInterface {
 
     InvocationHandler getWebViewRendererClient();
 
-    void insertVisualStateCallback(long j10, InvocationHandler invocationHandler);
+    void insertVisualStateCallback(long j3, InvocationHandler invocationHandler);
 
     boolean isAudioMuted();
 
@@ -39,9 +39,9 @@ public interface WebViewProviderBoundaryInterface {
 
     void removeWebMessageListener(String str);
 
-    void saveState(Bundle bundle, int i10, boolean z4);
+    void saveState(Bundle bundle, int i10, boolean z10);
 
-    void setAudioMuted(boolean z4);
+    void setAudioMuted(boolean z10);
 
     void setProfile(String str);
 

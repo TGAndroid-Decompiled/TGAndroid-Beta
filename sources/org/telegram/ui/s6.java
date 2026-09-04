@@ -1,40 +1,38 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class s6 implements Runnable {
-    public final int f38105a;
-    public final boolean[] f38106b;
-    public final v6 f38107c;
-    public final long[] d;
-    public final t6 e;
+import android.util.SparseArray;
+public final class s6 {
+    public long f40312a;
+    public int f40313b;
+    public long f40314c;
+    public final SparseArray d = new SparseArray();
 
-    public s6(boolean[] zArr, v6 v6Var, long[] jArr, t6 t6Var, int i10) {
-        this.f38105a = i10;
-        this.f38106b = zArr;
-        this.f38107c = v6Var;
-        this.d = jArr;
-        this.e = t6Var;
+    public s6(long j3) {
+        this.f40312a = j3;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f38105a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new s6(this.f38106b, this.f38107c, this.d, this.e, 1));
-                return;
-            default:
-                this.f38106b[0] = true;
-                this.f38107c.a(1.0f);
-                long[] jArr = this.d;
-                long j10 = jArr[0];
-                t6 t6Var = this.e;
-                if (j10 > 0) {
-                    AndroidUtilities.runOnUIThread(new yt0(t6Var, 16), Math.max(0L, 1000 - (System.currentTimeMillis() - jArr[0])));
-                    return;
-                } else {
-                    t6Var.dismiss();
-                    return;
-                }
+    public final void a(ai.b bVar, int i10) {
+        SparseArray sparseArray = this.d;
+        t6 t6Var = (t6) sparseArray.get(i10, null);
+        if (t6Var == null) {
+            t6Var = new t6();
+            sparseArray.put(i10, t6Var);
+        }
+        long j3 = bVar.f740c;
+        t6Var.f40632a += j3;
+        this.f40314c += j3;
+        this.f40313b++;
+        t6Var.f40633b.add(bVar);
+    }
+
+    public final void b(ai.b bVar) {
+        t6 t6Var = (t6) this.d.get(bVar.d, null);
+        if (t6Var != null && t6Var.f40633b.remove(bVar)) {
+            long j3 = t6Var.f40632a;
+            long j10 = bVar.f740c;
+            t6Var.f40632a = j3 - j10;
+            this.f40314c -= j10;
+            this.f40313b--;
         }
     }
 }

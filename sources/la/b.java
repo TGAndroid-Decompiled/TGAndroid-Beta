@@ -1,48 +1,94 @@
 package la;
 
-import android.os.Build;
-public final class b {
-    public final String f11846a;
-    public final a f11847b;
+import java.io.OutputStream;
+public final class b extends OutputStream {
+    public final int f15321a;
+    public long f15322b;
 
-    public b(String appId, a aVar) {
-        String deviceModel = Build.MODEL;
-        String osVersion = Build.VERSION.RELEASE;
-        kotlin.jvm.internal.j.e(appId, "appId");
-        kotlin.jvm.internal.j.e(deviceModel, "deviceModel");
-        kotlin.jvm.internal.j.e(osVersion, "osVersion");
-        this.f11846a = appId;
-        this.f11847b = aVar;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof b) {
-                b bVar = (b) obj;
-                if (kotlin.jvm.internal.j.a(this.f11846a, bVar.f11846a)) {
-                    String str = Build.MODEL;
-                    if (kotlin.jvm.internal.j.a(str, str)) {
-                        String str2 = Build.VERSION.RELEASE;
-                        if (!kotlin.jvm.internal.j.a(str2, str2) || !this.f11847b.equals(bVar.f11847b)) {
-                            return false;
-                        }
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
+    @Override
+    public final void write(int i10) {
+        switch (this.f15321a) {
+            case 0:
+                this.f15322b++;
+                return;
+            case 1:
+                this.f15322b++;
+                return;
+            case 2:
+                this.f15322b++;
+                return;
+            case 3:
+                this.f15322b++;
+                return;
+            default:
+                this.f15322b++;
+                return;
         }
-        return true;
     }
 
-    public final int hashCode() {
-        int e = kf.k0.e((((Build.MODEL.hashCode() + (this.f11846a.hashCode() * 31)) * 31) + 46672439) * 31, 31, Build.VERSION.RELEASE);
-        return this.f11847b.hashCode() + ((o.LOG_ENVIRONMENT_PROD.hashCode() + e) * 31);
+    @Override
+    public final void write(byte[] bArr) {
+        switch (this.f15321a) {
+            case 0:
+                this.f15322b += bArr.length;
+                return;
+            case 1:
+                this.f15322b += bArr.length;
+                return;
+            case 2:
+                this.f15322b += bArr.length;
+                return;
+            case 3:
+                this.f15322b += bArr.length;
+                return;
+            default:
+                this.f15322b += bArr.length;
+                return;
+        }
     }
 
-    public final String toString() {
-        return "ApplicationInfo(appId=" + this.f11846a + ", deviceModel=" + Build.MODEL + ", sessionSdkVersion=1.2.0, osVersion=" + Build.VERSION.RELEASE + ", logEnvironment=" + o.LOG_ENVIRONMENT_PROD + ", androidAppInfo=" + this.f11847b + ')';
+    @Override
+    public final void write(byte[] bArr, int i10, int i11) {
+        int i12;
+        int length;
+        int i13;
+        int length2;
+        int i14;
+        int length3;
+        int i15;
+        int length4;
+        int i16;
+        switch (this.f15321a) {
+            case 0:
+                if (i10 >= 0 && i10 <= bArr.length && i11 >= 0 && (i12 = i10 + i11) <= bArr.length && i12 >= 0) {
+                    this.f15322b += i11;
+                    return;
+                }
+                throw new IndexOutOfBoundsException();
+            case 1:
+                if (i10 >= 0 && i10 <= (length = bArr.length) && i11 >= 0 && (i13 = i10 + i11) <= length && i13 >= 0) {
+                    this.f15322b += i11;
+                    return;
+                }
+                throw new IndexOutOfBoundsException();
+            case 2:
+                if (i10 >= 0 && i10 <= (length2 = bArr.length) && i11 >= 0 && (i14 = i10 + i11) <= length2 && i14 >= 0) {
+                    this.f15322b += i11;
+                    return;
+                }
+                throw new IndexOutOfBoundsException();
+            case 3:
+                if (i10 >= 0 && i10 <= (length3 = bArr.length) && i11 >= 0 && (i15 = i10 + i11) <= length3 && i15 >= 0) {
+                    this.f15322b += i11;
+                    return;
+                }
+                throw new IndexOutOfBoundsException();
+            default:
+                if (i10 >= 0 && i10 <= (length4 = bArr.length) && i11 >= 0 && (i16 = i10 + i11) <= length4 && i16 >= 0) {
+                    this.f15322b += i11;
+                    return;
+                }
+                throw new IndexOutOfBoundsException();
+        }
     }
 }

@@ -1,49 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import org.telegram.messenger.AndroidUtilities;
-public final class re implements Runnable {
-    public final int f28463a;
-    public final ChatActivityEnterView f28464b;
+import android.view.View;
+public final class re implements d5, bl0 {
+    public final ChatActivityEnterView f30018a;
 
-    public re(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f28463a = i10;
-        this.f28464b = chatActivityEnterView;
+    public re(ChatActivityEnterView chatActivityEnterView) {
+        this.f30018a = chatActivityEnterView;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28463a) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f28464b;
-                re reVar = chatActivityEnterView.f22781n3;
-                if ((!chatActivityEnterView.j0() || !chatActivityEnterView.v()) && !org.telegram.ui.ActionBar.p2.hasSheets(chatActivityEnterView.L2) && !chatActivityEnterView.U1 && chatActivityEnterView.B0 != null && chatActivityEnterView.f22744g3 && !chatActivityEnterView.f22822v2 && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow) {
-                    eg egVar = chatActivityEnterView.V2;
-                    if (egVar != null) {
-                        egVar.w1();
-                    }
-                    chatActivityEnterView.B0.requestFocus();
-                    AndroidUtilities.showKeyboard(chatActivityEnterView.B0);
-                    AndroidUtilities.cancelRunOnUIThread(reVar);
-                    AndroidUtilities.runOnUIThread(reVar, 100L);
-                    return;
-                }
-                return;
-            case 1:
-                eg egVar2 = this.f28464b.V2;
-                if (egVar2 != null) {
-                    egVar2.p2(0, 0, 0, 0L, 0L, true);
-                    return;
-                }
-                return;
-            default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f28464b;
-                AnimatorSet animatorSet = chatActivityEnterView2.S0;
-                if (animatorSet != null && !animatorSet.isRunning()) {
-                    chatActivityEnterView2.S0.start();
-                    return;
-                }
-                return;
+    public void J(int i10, int i11, boolean z10) {
+        ChatActivityEnterView chatActivityEnterView = this.f30018a;
+        boolean T0 = chatActivityEnterView.T0(i10, z10, i11, true, 0L);
+        nf nfVar = chatActivityEnterView.L0;
+        if (nfVar != null) {
+            nfVar.h(!T0);
+            chatActivityEnterView.L0 = null;
         }
+    }
+
+    @Override
+    public boolean a(int i10, View view) {
+        if (view instanceof fi.a0) {
+            ChatActivityEnterView chatActivityEnterView = this.f30018a;
+            chatActivityEnterView.setFieldText(((fi.a0) view).getCommand() + " ");
+            chatActivityEnterView.m0.c();
+            return true;
+        }
+        return false;
     }
 }

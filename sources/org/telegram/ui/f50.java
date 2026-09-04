@@ -1,37 +1,39 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class f50 extends org.telegram.ui.ActionBar.p1 {
-    public final e60 f33951o;
+import android.graphics.Canvas;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+public final class f50 extends org.telegram.ui.ActionBar.k {
+    public final org.telegram.ui.Components.qp f36266t1;
+    public final j60 f36267u1;
 
-    public f50(e60 e60Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f33951o = e60Var;
+    public f50(j60 j60Var, LaunchActivity launchActivity, org.telegram.ui.Components.qp qpVar) {
+        super(launchActivity, null);
+        this.f36267u1 = j60Var;
+        this.f36266t1 = qpVar;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        e60 e60Var = this.f33951o;
-        if (e60Var.c3 != this) {
-            return;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
+            canvas.save();
+            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - AndroidUtilities.dp(1.0f));
+            org.telegram.ui.Components.qp qpVar = this.f36266t1;
+            qpVar.f29792f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
+            qpVar.draw(canvas);
+            canvas.restore();
+            invalidate();
         }
-        e60Var.c3 = null;
-        AnimatorSet animatorSet = e60Var.f33624b3;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            e60Var.f33624b3 = null;
+    }
+
+    @Override
+    public final void setAlpha(float f7) {
+        ViewGroup viewGroup;
+        if (getAlpha() != f7) {
+            super.setAlpha(f7);
+            viewGroup = ((org.telegram.ui.ActionBar.f3) this.f36267u1).containerView;
+            viewGroup.invalidate();
         }
-        e60Var.V.X = true;
-        e60Var.f33624b3 = new AnimatorSet();
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(ObjectAnimator.ofInt(e60Var.T2, org.telegram.ui.Components.n6.f27196b, 0));
-        e60Var.f33624b3.playTogether(arrayList);
-        e60Var.f33624b3.setDuration(220L);
-        e60Var.f33624b3.addListener(new org.telegram.ui.Components.f91(this, 20));
-        e60Var.f33624b3.start();
     }
 }

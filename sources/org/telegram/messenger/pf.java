@@ -1,41 +1,40 @@
 package org.telegram.messenger;
 public final class pf implements Runnable {
-    public final int f18114a;
-    public final MessagesStorage f18115b;
-    public final long f18116c;
+    public final int f18708a;
+    public final MessagesStorage f18709b;
+    public final int f18710c;
+    public final long d;
 
-    public pf(int i10, long j10, MessagesStorage messagesStorage) {
-        this.f18114a = i10;
-        this.f18115b = messagesStorage;
-        this.f18116c = j10;
+    public pf(MessagesStorage messagesStorage, int i10, long j3, int i11) {
+        this.f18708a = i11;
+        this.f18709b = messagesStorage;
+        this.f18710c = i10;
+        this.d = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f18114a) {
+        switch (this.f18708a) {
             case 0:
-                this.f18115b.lambda$deleteStoryPushMessage$39(this.f18116c);
+                this.f18709b.lambda$saveChannelPts$34(this.f18710c, this.d);
                 return;
             case 1:
-                this.f18115b.lambda$clearUserPhotos$92(this.f18116c);
+                this.f18709b.lambda$markMessageAsMention$113(this.f18710c, this.d);
                 return;
             case 2:
-                this.f18115b.lambda$removeAllTopics$56(this.f18116c);
+                this.f18709b.lambda$setDialogPinned$251(this.f18710c, this.d);
                 return;
             case 3:
-                this.f18115b.lambda$deleteWallpaper$79(this.f18116c);
+                this.f18709b.lambda$setDialogTtl$60(this.f18710c, this.d);
                 return;
             case 4:
-                this.f18115b.lambda$deleteSavedDialog$55(this.f18116c);
+                this.f18709b.lambda$deleteDialog$90(this.f18710c, this.d);
                 return;
             case 5:
-                this.f18115b.lambda$onDeleteQueryComplete$91(this.f18116c);
-                return;
-            case 6:
-                this.f18115b.lambda$removePendingTask$11(this.f18116c);
+                this.f18709b.lambda$updateChatOnlineCount$135(this.f18710c, this.d);
                 return;
             default:
-                this.f18115b.lambda$loadChannelAdmins$123(this.f18116c);
+                this.f18709b.lambda$saveChatLinksCount$133(this.f18710c, this.d);
                 return;
         }
     }

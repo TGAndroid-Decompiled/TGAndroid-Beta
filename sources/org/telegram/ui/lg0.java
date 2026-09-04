@@ -1,62 +1,55 @@
 package org.telegram.ui;
+public final class lg0 implements Runnable {
+    public final int f38350a;
+    public final vg0 f38351b;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
-public final class lg0 extends AnimatedPhoneNumberEditText {
-    public final og0 D;
-
-    public lg0(og0 og0Var, Context context) {
-        super(context);
-        this.D = og0Var;
+    public lg0(vg0 vg0Var, int i10) {
+        this.f38350a = i10;
+        this.f38351b = vg0Var;
     }
 
     @Override
-    public final void onFocusChanged(boolean z4, int i10, Rect rect) {
-        float f10;
-        super.onFocusChanged(z4, i10, rect);
-        og0 og0Var = this.D;
-        pg0 pg0Var = og0Var.S;
-        org.telegram.ui.Components.bd0 bd0Var = og0Var.f36799f;
-        if (!z4 && !og0Var.f36796a.isFocused()) {
-            f10 = 0.0f;
-        } else {
-            f10 = 1.0f;
+    public final void run() {
+        switch (this.f38350a) {
+            case 0:
+                vg0 vg0Var = this.f38351b;
+                ck0 ck0Var = vg0Var.f41536a;
+                wg0 wg0Var = vg0Var.V;
+                sg0 sg0Var = vg0Var.f41537b;
+                if (sg0Var != null) {
+                    if (wg0Var.f42364c0) {
+                        ck0Var.clearFocus();
+                        sg0Var.clearFocus();
+                    } else if (ck0Var.length() != 0) {
+                        sg0Var.requestFocus();
+                        if (!vg0Var.R) {
+                            sg0Var.setSelection(sg0Var.length());
+                        }
+                        wg0.T0(wg0Var, sg0Var);
+                    } else {
+                        ck0Var.requestFocus();
+                        wg0.T0(wg0Var, ck0Var);
+                    }
+                }
+                if (wg0Var.F == 0) {
+                    vg0Var.u(false);
+                    return;
+                }
+                return;
+            case 1:
+                vg0 vg0Var2 = this.f38351b;
+                vg0Var2.postDelayed(new lg0(vg0Var2, 2), 200L);
+                return;
+            case 2:
+                this.f38351b.h(null);
+                return;
+            case 3:
+                this.f38351b.u(true);
+                return;
+            default:
+                vg0 vg0Var3 = this.f38351b;
+                wg0.T0(vg0Var3.V, vg0Var3.f41537b);
+                return;
         }
-        bd0Var.b(f10, f10, true);
-        if (z4) {
-            pg0Var.f37130c.setEditText(this);
-            pg0Var.f37130c.setDispatchBackWhenEmpty(true);
-            if (og0Var.f36804x == 2) {
-                og0Var.setCountryButtonText(LocaleController.getString(R.string.WrongCountry));
-            }
-        } else if (og0Var.f36804x == 2) {
-            og0Var.setCountryButtonText(null);
-        }
-    }
-
-    @Override
-    public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
-        og0 og0Var = this.D;
-        sj0 sj0Var = og0Var.f36796a;
-        if (i10 == 67 && og0Var.f36797b.length() == 0) {
-            sj0Var.requestFocus();
-            sj0Var.setSelection(sj0Var.length());
-            sj0Var.dispatchKeyEvent(keyEvent);
-        }
-        return super.onKeyDown(i10, keyEvent);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0 && !pg0.T0(this.D.S, this)) {
-            clearFocus();
-            requestFocus();
-        }
-        return super.onTouchEvent(motionEvent);
     }
 }

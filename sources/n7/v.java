@@ -1,15 +1,51 @@
 package n7;
-public final class v {
-    public static final v f14735a;
-    public static final v[] f14736b;
 
-    static {
-        ?? r02 = new Enum("DEFAULT", 0);
-        f14735a = r02;
-        f14736b = new v[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
+import java.io.Serializable;
+public final class v extends w implements Serializable {
+    public static final v f16688b = new v(0);
+    public static final v f16689c = new v(1);
+    public final int f16690a;
+
+    public v(int i10) {
+        this.f16690a = i10;
     }
 
-    public static v[] values() {
-        return (v[]) f14736b.clone();
+    @Override
+    public final w a() {
+        switch (this.f16690a) {
+            case 0:
+                return f16689c;
+            default:
+                return f16688b;
+        }
+    }
+
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        switch (this.f16690a) {
+            case 0:
+                Comparable comparable = (Comparable) obj;
+                Comparable comparable2 = (Comparable) obj2;
+                comparable.getClass();
+                comparable2.getClass();
+                return comparable.compareTo(comparable2);
+            default:
+                Comparable comparable3 = (Comparable) obj;
+                Comparable comparable4 = (Comparable) obj2;
+                comparable3.getClass();
+                if (comparable3 == comparable4) {
+                    return 0;
+                }
+                return comparable4.compareTo(comparable3);
+        }
+    }
+
+    public final String toString() {
+        switch (this.f16690a) {
+            case 0:
+                return "Ordering.natural()";
+            default:
+                return "Ordering.natural().reverse()";
+        }
     }
 }

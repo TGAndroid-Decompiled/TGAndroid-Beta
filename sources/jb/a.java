@@ -1,63 +1,65 @@
 package jb;
 
-import b6.m;
-import java.util.Arrays;
-import l7.w0;
-public final class a {
-    public final String f9337a;
-    public final float f9338b;
-    public final int f9339c;
-    public final String d;
+import db.g;
+import db.u;
+import db.v;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
+public final class a extends u {
+    public static final C0000a f13585b = new C0000a();
+    public final SimpleDateFormat f13586a;
 
-    public a(float f10, int i10, String str, String str2) {
-        int i11 = m7.b.f13752a;
-        this.f9337a = str == null ? "" : str;
-        this.f9338b = f10;
-        this.f9339c = i10;
-        this.d = str2;
+    public class C0000a implements v {
+        @Override
+        public final u create(g gVar, kb.a aVar) {
+            if (aVar.f14888a == Date.class) {
+                return new a(0);
+            }
+            return null;
+        }
     }
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof a)) {
-            return false;
-        }
-        a aVar = (a) obj;
-        if (m.l(this.f9337a, aVar.f9337a) && Float.compare(this.f9338b, aVar.f9338b) == 0 && this.f9339c == aVar.f9339c && m.l(this.d, aVar.d)) {
-            return true;
-        }
-        return false;
+    public a(int i10) {
+        this();
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f9337a, Float.valueOf(this.f9338b), Integer.valueOf(this.f9339c), this.d});
+    @Override
+    public final Object read(lb.a aVar) {
+        Date date;
+        if (aVar.x() == 9) {
+            aVar.t();
+            return null;
+        }
+        String v = aVar.v();
+        synchronized (this) {
+            TimeZone timeZone = this.f13586a.getTimeZone();
+            try {
+                date = new Date(this.f13586a.parse(v).getTime());
+                this.f13586a.setTimeZone(timeZone);
+            } catch (ParseException e7) {
+                throw new RuntimeException("Failed parsing '" + v + "' as SQL Date; at path " + aVar.j(), e7);
+            }
+        }
+        return date;
     }
 
-    public final String toString() {
-        w0 w0Var = new w0(a.class.getSimpleName());
-        w0 w0Var2 = new w0(4, false);
-        ((w0) w0Var.d).d = w0Var2;
-        w0Var.d = w0Var2;
-        w0Var2.f11787c = this.f9337a;
-        w0Var2.f11786b = "text";
-        String valueOf = String.valueOf(this.f9338b);
-        w0 w0Var3 = new w0(4, false);
-        ((w0) w0Var.d).d = w0Var3;
-        w0Var.d = w0Var3;
-        w0Var3.f11787c = valueOf;
-        w0Var3.f11786b = "confidence";
-        String valueOf2 = String.valueOf(this.f9339c);
-        w0 w0Var4 = new w0(4, false);
-        ((w0) w0Var.d).d = w0Var4;
-        w0Var4.f11787c = valueOf2;
-        w0Var4.f11786b = "index";
-        w0 w0Var5 = new w0(4, false);
-        w0Var4.d = w0Var5;
-        w0Var.d = w0Var5;
-        w0Var5.f11787c = this.d;
-        w0Var5.f11786b = "mid";
-        return w0Var.toString();
+    @Override
+    public final void write(lb.b bVar, Object obj) {
+        String format;
+        Date date = (Date) obj;
+        if (date == null) {
+            bVar.i();
+            return;
+        }
+        synchronized (this) {
+            format = this.f13586a.format((java.util.Date) date);
+        }
+        bVar.r(format);
+    }
+
+    private a() {
+        this.f13586a = new SimpleDateFormat("MMM d, yyyy");
     }
 }

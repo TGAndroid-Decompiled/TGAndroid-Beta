@@ -1,27 +1,38 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class ir implements v60 {
-    public final a70 f35018a;
-    public final rr f35019b;
+import org.telegram.messenger.AnimationNotificationsLocker;
+public final class ir extends s4.j {
+    public final AnimationNotificationsLocker F = new AnimationNotificationsLocker();
+    public final vr G;
 
-    public ir(rr rrVar, a70 a70Var) {
-        this.f35019b = rrVar;
-        this.f35018a = a70Var;
+    public ir(vr vrVar) {
+        this.G = vrVar;
     }
 
     @Override
-    public final void h(TLRPC.User user) {
-        this.f35019b.t0(user.f19306id, null, null, null, "", true, 0, false);
+    public final void N() {
+        this.F.unlock();
     }
 
     @Override
-    public final void i(int i10, ArrayList arrayList) {
-        if (this.f35018a.getParentActivity() == null) {
-            return;
+    public final void O() {
+        this.G.f41635c.invalidate();
+    }
+
+    @Override
+    public final void P(s4.c1 c1Var) {
+        this.G.f41635c.invalidate();
+    }
+
+    @Override
+    public final void m() {
+        boolean isEmpty = this.f45804p.isEmpty();
+        boolean isEmpty2 = this.f45806r.isEmpty();
+        boolean isEmpty3 = this.f45807s.isEmpty();
+        boolean isEmpty4 = this.f45805q.isEmpty();
+        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
+            this.F.lock();
         }
-        rr rrVar = this.f35019b;
-        rrVar.getMessagesController().addUsersToChat(rrVar.f37992r, rrVar, arrayList, i10, new l3(this, 2), new hr(0), null);
+        super.m();
     }
 }

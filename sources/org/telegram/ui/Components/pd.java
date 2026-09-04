@@ -1,54 +1,59 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class pd implements Runnable {
-    public final int f27835a;
-    public final ChatActivityEnterView f27836b;
-    public final boolean f27837c;
+import android.view.View;
+import android.widget.FrameLayout;
+public abstract class pd extends FrameLayout {
+    public ah.y f29350a;
+    public nd f29351b;
+    public boolean f29352c;
 
-    public pd(ChatActivityEnterView chatActivityEnterView, boolean z4, int i10) {
-        this.f27835a = i10;
-        this.f27836b = chatActivityEnterView;
-        this.f27837c = z4;
+    public final void a(nd ndVar, FrameLayout.LayoutParams layoutParams) {
+        if (this.f29351b == null) {
+            this.f29351b = ndVar;
+            ndVar.setVisibility(8);
+            addView(ndVar, layoutParams);
+        }
     }
 
-    @Override
-    public final void run() {
-        cf cfVar;
-        int i10 = this.f27835a;
-        ChatActivityEnterView chatActivityEnterView = this.f27836b;
-        boolean z4 = this.f27837c;
-        switch (i10) {
-            case 0:
-                if (!z4) {
-                    chatActivityEnterView.f22789p1.setVisibility(8);
-                    return;
-                }
-                int i11 = ChatActivityEnterView.f22702j5;
-                chatActivityEnterView.getClass();
-                return;
-            case 1:
-                if (!z4) {
-                    chatActivityEnterView.f22794q1.setVisibility(8);
-                    return;
-                }
-                int i12 = ChatActivityEnterView.f22702j5;
-                chatActivityEnterView.getClass();
-                return;
-            default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f27836b;
-                id idVar = chatActivityEnterView2.B4;
-                chatActivityEnterView2.J0 = System.currentTimeMillis();
-                boolean T0 = chatActivityEnterView2.T0(0, false, 0, true, 0L);
-                if (!z4 && (cfVar = chatActivityEnterView2.I0) != null) {
-                    cfVar.h(!T0);
-                    chatActivityEnterView2.I0 = null;
-                    return;
-                }
-                chatActivityEnterView2.A4 = !T0;
-                AndroidUtilities.cancelRunOnUIThread(idVar);
-                AndroidUtilities.runOnUIThread(idVar, 500L);
-                return;
+    public final void b(ah.y yVar, FrameLayout.LayoutParams layoutParams) {
+        if (this.f29350a == null) {
+            this.f29350a = yVar;
+            addView(yVar, layoutParams);
         }
+    }
+
+    public nd getEditView() {
+        return this.f29351b;
+    }
+
+    public View getReplyView() {
+        return this.f29350a;
+    }
+
+    public void setEditMode(boolean z10) {
+        int i10;
+        this.f29352c = z10;
+        ah.y yVar = this.f29350a;
+        int i11 = 0;
+        if (z10) {
+            i10 = 8;
+        } else {
+            i10 = 0;
+        }
+        yVar.setVisibility(i10);
+        nd ndVar = this.f29351b;
+        if (!z10) {
+            i11 = 8;
+        }
+        ndVar.setVisibility(i11);
+    }
+
+    public void setEditSuggestionMode(boolean z10) {
+        setEditMode(z10);
+        if (z10) {
+            this.f29350a.setVisibility(0);
+        }
+        this.f29351b.f28731a[0].setOnlyIconMode(z10);
+        this.f29351b.f28731a[1].setOnlyIconMode(z10);
     }
 }

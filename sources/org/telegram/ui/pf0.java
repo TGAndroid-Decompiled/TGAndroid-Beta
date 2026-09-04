@@ -1,24 +1,29 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class pf0 implements DialogInterface.OnDismissListener {
-    public final int f37116a;
-    public final tf0 f37117b;
+import android.view.KeyEvent;
+import org.telegram.tgnet.TLObject;
+public final class pf0 implements Runnable {
+    public final int f39501a;
+    public final Object f39502b;
+    public final Object f39503c;
+    public final Object d;
 
-    public pf0(tf0 tf0Var, int i10) {
-        this.f37116a = i10;
-        this.f37117b = tf0Var;
+    public pf0(KeyEvent.Callback callback, TLObject tLObject, Object obj, int i10) {
+        this.f39501a = i10;
+        this.f39502b = callback;
+        this.f39503c = tLObject;
+        this.d = obj;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f37116a) {
-            case 0:
-                this.f37117b.f38503p0.finishFragment();
-                return;
-            default:
-                this.f37117b.f38503p0.finishFragment();
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pf0.run():void");
+    }
+
+    public pf0(Object obj, Object obj2, Object obj3, int i10) {
+        this.f39501a = i10;
+        this.f39502b = obj;
+        this.d = obj2;
+        this.f39503c = obj3;
     }
 }

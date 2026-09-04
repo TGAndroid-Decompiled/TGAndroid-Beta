@@ -1,3 +1,3 @@
 package n7;
-public abstract class k1 {
+public interface k1 {
 }

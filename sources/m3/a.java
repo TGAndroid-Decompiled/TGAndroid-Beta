@@ -1,74 +1,35 @@
 package m3;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import j3.d1;
-import j3.n0;
-import k7.z7;
-import l4.j;
-public final class a implements e4.b {
-    public static final Parcelable.Creator<a> CREATOR = new j(10);
-    public final long f13735a;
+import b2.m0;
+import b2.o0;
+import b2.s;
+public final class a implements o0 {
+    public final int f15822a;
+    public final String f15823b;
 
-    public a(long j10) {
-        this.f13735a = j10;
+    public a(int i10, String str) {
+        this.f15822a = i10;
+        this.f15823b = str;
     }
 
     @Override
-    public final n0 b() {
+    public final s a() {
         return null;
     }
 
     @Override
-    public final byte[] d() {
+    public final byte[] c() {
         return null;
-    }
-
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof a)) {
-            return false;
-        }
-        if (this.f13735a == ((a) obj).f13735a) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return z7.a(this.f13735a);
     }
 
     public final String toString() {
-        Object valueOf;
-        StringBuilder sb = new StringBuilder("Creation time: ");
-        long j10 = this.f13735a;
-        if (j10 == -2082844800000L) {
-            valueOf = "unset";
-        } else {
-            valueOf = Long.valueOf(j10);
-        }
-        sb.append(valueOf);
-        return sb.toString();
+        StringBuilder sb2 = new StringBuilder("Ait(controlCode=");
+        sb2.append(this.f15822a);
+        sb2.append(",url=");
+        return a4.a.s(sb2, this.f15823b, ")");
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeLong(this.f13735a);
-    }
-
-    public a(Parcel parcel) {
-        this.f13735a = parcel.readLong();
-    }
-
-    @Override
-    public final void c(d1 d1Var) {
+    public final void b(m0 m0Var) {
     }
 }

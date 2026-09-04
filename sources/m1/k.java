@@ -1,17 +1,17 @@
 package m1;
 
-import androidx.datastore.preferences.protobuf.b1;
-import androidx.datastore.preferences.protobuf.v;
-import androidx.datastore.preferences.protobuf.x;
-import androidx.datastore.preferences.protobuf.x0;
-public final class k extends x {
+import androidx.datastore.preferences.protobuf.a1;
+import androidx.datastore.preferences.protobuf.u;
+import androidx.datastore.preferences.protobuf.w;
+import androidx.datastore.preferences.protobuf.w0;
+public final class k extends w {
     public static final int BOOLEAN_FIELD_NUMBER = 1;
     private static final k DEFAULT_INSTANCE;
     public static final int DOUBLE_FIELD_NUMBER = 7;
     public static final int FLOAT_FIELD_NUMBER = 2;
     public static final int INTEGER_FIELD_NUMBER = 3;
     public static final int LONG_FIELD_NUMBER = 4;
-    private static volatile x0 PARSER = null;
+    private static volatile w0 PARSER = null;
     public static final int STRING_FIELD_NUMBER = 5;
     public static final int STRING_SET_FIELD_NUMBER = 6;
     private int bitField0_;
@@ -21,12 +21,12 @@ public final class k extends x {
     static {
         k kVar = new k();
         DEFAULT_INSTANCE = kVar;
-        x.h(k.class, kVar);
+        w.h(k.class, kVar);
     }
 
-    public static void i(k kVar, long j10) {
+    public static void i(k kVar, long j3) {
         kVar.valueCase_ = 4;
-        kVar.value_ = Long.valueOf(j10);
+        kVar.value_ = Long.valueOf(j3);
     }
 
     public static void j(k kVar, String str) {
@@ -46,14 +46,14 @@ public final class k extends x {
         kVar.value_ = Double.valueOf(d);
     }
 
-    public static void m(k kVar, boolean z4) {
+    public static void m(k kVar, boolean z10) {
         kVar.valueCase_ = 1;
-        kVar.value_ = Boolean.valueOf(z4);
+        kVar.value_ = Boolean.valueOf(z10);
     }
 
-    public static void n(k kVar, float f10) {
+    public static void n(k kVar, float f7) {
         kVar.valueCase_ = 2;
-        kVar.value_ = Float.valueOf(f10);
+        kVar.value_ = Float.valueOf(f7);
     }
 
     public static void o(k kVar, int i10) {
@@ -66,44 +66,44 @@ public final class k extends x {
     }
 
     public static i y() {
-        return (i) ((v) DEFAULT_INSTANCE.d(5));
+        return (i) ((u) DEFAULT_INSTANCE.d(5));
     }
 
     @Override
     public final Object d(int i10) {
-        x0 x0Var;
+        w0 w0Var;
         switch (j.c(i10)) {
             case 0:
                 return (byte) 1;
             case 1:
                 return null;
             case 2:
-                return new b1(DEFAULT_INSTANCE, "\u0001\u0007\u0001\u0001\u0001\u0007\u0007\u0000\u0000\u0000\u0001:\u0000\u00024\u0000\u00037\u0000\u00045\u0000\u0005;\u0000\u0006<\u0000\u00073\u0000", new Object[]{"value_", "valueCase_", "bitField0_", h.class});
+                return new a1(DEFAULT_INSTANCE, "\u0001\u0007\u0001\u0001\u0001\u0007\u0007\u0000\u0000\u0000\u0001:\u0000\u00024\u0000\u00037\u0000\u00045\u0000\u0005;\u0000\u0006<\u0000\u00073\u0000", new Object[]{"value_", "valueCase_", "bitField0_", h.class});
             case 3:
                 return new k();
             case 4:
-                return new v(DEFAULT_INSTANCE);
+                return new u(DEFAULT_INSTANCE);
             case 5:
                 return DEFAULT_INSTANCE;
             case 6:
-                x0 x0Var2 = PARSER;
-                if (x0Var2 == null) {
+                w0 w0Var2 = PARSER;
+                if (w0Var2 == null) {
                     synchronized (k.class) {
                         try {
-                            x0 x0Var3 = PARSER;
-                            x0Var = x0Var3;
-                            if (x0Var3 == null) {
+                            w0 w0Var3 = PARSER;
+                            w0Var = w0Var3;
+                            if (w0Var3 == null) {
                                 ?? obj = new Object();
                                 PARSER = obj;
-                                x0Var = obj;
+                                w0Var = obj;
                             }
                         } catch (Throwable th2) {
                             throw th2;
                         }
                     }
-                    return x0Var;
+                    return w0Var;
                 }
-                return x0Var2;
+                return w0Var2;
             default:
                 throw new UnsupportedOperationException();
         }

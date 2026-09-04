@@ -1,24 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class bp extends jj0 {
-    public final jp f23730r;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.vd1;
+public final class bp implements vd1 {
+    public final int f24777a;
+    public final cp f24778b;
 
-    public bp(jp jpVar, Context context) {
-        super(context);
-        this.f23730r = jpVar;
+    public bp(cp cpVar, int i10) {
+        this.f24777a = i10;
+        this.f24778b = cpVar;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f23730r.K) {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToDayTheme));
-        } else {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToNightTheme));
+    public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
+        switch (this.f24777a) {
+            case 0:
+                lp lpVar = this.f24778b.f25072a;
+                lpVar.Y.dismissInternal();
+                lpVar.dismiss();
+                return;
+            default:
+                lp lpVar2 = this.f24778b.f25072a;
+                lpVar2.Y.dismissInternal();
+                lpVar2.dismiss();
+                return;
         }
     }
 }

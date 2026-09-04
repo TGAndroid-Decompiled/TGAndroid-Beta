@@ -1,30 +1,65 @@
 package na;
 
-import android.util.Log;
-import dd.p;
-import k7.p7;
-public final class c extends wc.i implements p {
-    public Object f14857a;
+import android.content.Context;
+import android.os.Build;
+import androidx.emoji2.text.x;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import java.util.Set;
+import java.util.concurrent.Executor;
+public final class c implements e, f {
+    public final k9.d f16712a;
+    public final Context f16713b;
+    public final pa.b f16714c;
+    public final Set d;
+    public final Executor f16715e;
 
-    @Override
-    public final uc.c create(Object obj, uc.c cVar) {
-        ?? iVar = new wc.i(2, cVar);
-        iVar.f14857a = obj;
-        return iVar;
+    public c(Context context, String str, Set set, pa.b bVar, Executor executor) {
+        this.f16712a = new k9.d(context, str);
+        this.d = set;
+        this.f16715e = executor;
+        this.f16714c = bVar;
+        this.f16713b = context;
     }
 
-    @Override
-    public final Object invoke(Object obj, Object obj2) {
-        sc.i iVar = sc.i.f44318a;
-        ((c) create((String) obj, (uc.c) obj2)).invokeSuspend(iVar);
-        return iVar;
+    public final synchronized int a() {
+        long currentTimeMillis = System.currentTimeMillis();
+        g gVar = (g) this.f16712a.get();
+        if (gVar.i(currentTimeMillis)) {
+            gVar.g();
+            return 3;
+        }
+        return 1;
     }
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        vc.a aVar = vc.a.f45727a;
-        p7.b(obj);
-        Log.e("SessionConfigFetcher", "Error failing to fetch the remote configs: " + ((String) this.f14857a));
-        return sc.i.f44318a;
+    public final Task b() {
+        boolean z10;
+        if (Build.VERSION.SDK_INT >= 24) {
+            z10 = x.g(this.f16713b);
+        } else {
+            z10 = true;
+        }
+        if (!z10) {
+            return Tasks.forResult("");
+        }
+        return Tasks.call(this.f16715e, new b(this, 0));
+    }
+
+    public final void c() {
+        boolean z10;
+        if (this.d.size() <= 0) {
+            Tasks.forResult(null);
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= 24) {
+            z10 = x.g(this.f16713b);
+        } else {
+            z10 = true;
+        }
+        if (!z10) {
+            Tasks.forResult(null);
+            return;
+        }
+        Tasks.call(this.f16715e, new b(this, 1));
     }
 }

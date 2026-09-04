@@ -1,27 +1,34 @@
 package org.telegram.messenger;
 public final class ve implements Runnable {
-    public final int f18649a;
-    public final MessagesStorage f18650b;
-    public final long f18651c;
+    public final int f19240a;
+    public final MessagesStorage f19241b;
+    public final long f19242c;
     public final long d;
-    public final String e;
 
-    public ve(MessagesStorage messagesStorage, long j10, long j11, String str, int i10) {
-        this.f18649a = i10;
-        this.f18650b = messagesStorage;
-        this.f18651c = j10;
-        this.d = j11;
-        this.e = str;
+    public ve(int i10, long j3, long j10, MessagesStorage messagesStorage) {
+        this.f19240a = i10;
+        this.f19241b = messagesStorage;
+        this.f19242c = j3;
+        this.d = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18649a) {
+        switch (this.f19240a) {
             case 0:
-                this.f18650b.lambda$updateRanksInLastMessages$45(this.f18651c, this.d, this.e);
+                this.f19241b.lambda$clearUserPhoto$93(this.f19242c, this.d);
+                return;
+            case 1:
+                this.f19241b.lambda$saveChatInviter$132(this.f19242c, this.d);
+                return;
+            case 2:
+                this.f19241b.lambda$setDialogFlags$37(this.f19242c, this.d);
+                return;
+            case 3:
+                this.f19241b.lambda$removeTopic$57(this.f19242c, this.d);
                 return;
             default:
-                this.f18650b.lambda$updateRanksInLastMessages$46(this.f18651c, this.d, this.e);
+                this.f19241b.lambda$deleteUserChatHistory$87(this.f19242c, this.d);
                 return;
         }
     }

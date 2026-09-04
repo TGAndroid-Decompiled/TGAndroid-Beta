@@ -2,7 +2,7 @@ package v0;
 
 import android.os.Bundle;
 import org.json.JSONObject;
-public class m extends cb.e {
+public class m extends b2.g {
     public m(String str, int i10, Bundle data) {
         super(str, data);
         switch (i10) {
@@ -23,7 +23,7 @@ public class m extends cb.e {
                 }
                 throw new IllegalArgumentException("authenticationResponseJson must not be empty, and must be a valid JSON");
             default:
-                kotlin.jvm.internal.j.e(data, "data");
+                kotlin.jvm.internal.i.e(data, "data");
                 if (str.length() > 0) {
                     return;
                 }

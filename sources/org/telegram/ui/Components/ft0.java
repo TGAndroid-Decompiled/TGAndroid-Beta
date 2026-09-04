@@ -1,32 +1,32 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class ft0 extends vu0 {
-    public final yu0 D;
+public final class ft0 extends uu0 {
+    public final xu0 G;
 
-    public ft0(yu0 yu0Var, Context context) {
-        super(yu0Var, context, 0, false);
-        this.D = yu0Var;
+    public ft0(xu0 xu0Var, Context context) {
+        super(xu0Var, context, 0, false);
+        this.G = xu0Var;
     }
 
     @Override
     public final void l() {
-        boolean z4;
+        boolean z10;
         super.l();
-        yu0 yu0Var = this.D;
-        qt0 W = yu0Var.W(8);
-        if (W != null && W.f28261r.getVisibility() == 0) {
-            yu0Var.f31114a0.l();
+        xu0 xu0Var = this.G;
+        qt0 W = xu0Var.W(8);
+        if (W != null && W.f29821r.getVisibility() == 0) {
+            xu0Var.f32686d0.l();
         }
         if (W != null) {
-            hs0 hs0Var = W.f28263w;
-            nh.l6 l6Var = this.f30055s;
-            if (l6Var != null && (l6Var.k() || (yu0Var.i0() && this.f30055s.g() > 0))) {
-                z4 = true;
+            hs0 hs0Var = W.f29823w;
+            bi.l8 l8Var = this.f30984s;
+            if (l8Var != null && (l8Var.k() || (xu0Var.i0() && this.f30984s.g() > 0))) {
+                z10 = true;
             } else {
-                z4 = false;
+                z10 = false;
             }
-            hs0Var.e(z4, true);
+            hs0Var.e(z10, true);
         }
     }
 }

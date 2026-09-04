@@ -7,7 +7,7 @@ import android.os.Looper;
 import android.text.TextUtils;
 import java.util.Arrays;
 import java.util.HashSet;
-public abstract class e extends f0.f {
+public abstract class e extends f0.e {
     public static void g(Activity activity, String[] strArr, int i10) {
         String[] strArr2;
         HashSet hashSet = new HashSet();
@@ -17,7 +17,7 @@ public abstract class e extends f0.f {
                     hashSet.add(Integer.valueOf(i11));
                 }
             } else {
-                throw new IllegalArgumentException(android.support.v4.media.a.r(new StringBuilder("Permission request for permissions "), Arrays.toString(strArr), " must not contain null or empty values"));
+                throw new IllegalArgumentException(a4.a.s(new StringBuilder("Permission request for permissions "), Arrays.toString(strArr), " must not contain null or empty values"));
             }
         }
         int size = hashSet.size();
@@ -43,7 +43,7 @@ public abstract class e extends f0.f {
             if (activity instanceof d) {
                 d dVar = (d) activity;
             }
-            b.q(activity, strArr, i10);
+            b.v(activity, strArr, i10);
         } else if (activity instanceof c) {
             new Handler(Looper.getMainLooper()).post(new androidx.activity.g(strArr2, activity, i10, 4));
         }

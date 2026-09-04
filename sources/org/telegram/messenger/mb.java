@@ -1,31 +1,27 @@
 package org.telegram.messenger;
-public final class mb implements Runnable {
-    public final int f17818a;
-    public final MessagesController f17819b;
-    public final a0.h f17820c;
-    public final a0.h d;
 
-    public mb(MessagesController messagesController, a0.h hVar, a0.h hVar2, int i10) {
-        this.f17818a = i10;
-        this.f17819b = messagesController;
-        this.f17820c = hVar;
-        this.d = hVar2;
+import org.telegram.tgnet.TLRPC;
+public final class mb implements Runnable {
+    public final int f18363a;
+    public final MessagesController f18364b;
+    public final TLRPC.TL_error f18365c;
+    public final long d;
+
+    public mb(MessagesController messagesController, TLRPC.TL_error tL_error, long j3, int i10) {
+        this.f18363a = i10;
+        this.f18364b = messagesController;
+        this.f18365c = tL_error;
+        this.d = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f17818a) {
+        switch (this.f18363a) {
             case 0:
-                this.f17819b.lambda$checkDeletingTask$86(this.f17820c, this.d);
-                return;
-            case 1:
-                this.f17819b.lambda$updatePrintingStrings$170(this.f17820c, this.d);
-                return;
-            case 2:
-                this.f17819b.lambda$getNewDeleteTask$83(this.f17820c, this.d);
+                this.f18364b.lambda$loadFullChat$68(this.f18365c, this.d);
                 return;
             default:
-                this.f17819b.lambda$checkDeletingTask$85(this.f17820c, this.d);
+                this.f18364b.lambda$getChannelDifference$348(this.f18365c, this.d);
                 return;
         }
     }

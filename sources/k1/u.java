@@ -1,27 +1,19 @@
 package k1;
+public final class u extends kd.c {
+    public a0 f14487a;
+    public Object f14488b;
+    public final a0 f14489c;
+    public int d;
 
-import java.io.Serializable;
-import java.util.Iterator;
-public final class u extends wc.c {
-    public d0 f9587a;
-    public Object f9588b;
-    public Serializable f9589c;
-    public Object d;
-    public w e;
-    public Iterator f9590f;
-    public Object h;
-    public final d0 f9591n;
-    public int f9592r;
-
-    public u(d0 d0Var, wc.c cVar) {
+    public u(a0 a0Var, kd.c cVar) {
         super(cVar);
-        this.f9591n = d0Var;
+        this.f14489c = a0Var;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.h = obj;
-        this.f9592r |= Integer.MIN_VALUE;
-        return this.f9591n.c(this);
+        this.f14488b = obj;
+        this.d |= Integer.MIN_VALUE;
+        return this.f14489c.d(this);
     }
 }

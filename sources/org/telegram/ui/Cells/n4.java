@@ -5,9 +5,9 @@ import org.telegram.tgnet.TLRPC;
 public interface n4 {
     boolean a();
 
-    void c(boolean z4, boolean z10);
+    void e(boolean z10, boolean z11);
 
-    void f(TLRPC.ReactionCount reactionCount, boolean z4, float f10, float f11);
+    void f(TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10);
 
     float getAlpha();
 

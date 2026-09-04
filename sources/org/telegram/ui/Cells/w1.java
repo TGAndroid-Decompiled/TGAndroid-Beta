@@ -2,131 +2,121 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.text.style.ForegroundColorSpan;
-import android.widget.TextView;
+import android.graphics.drawable.ShapeDrawable;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.c90;
-import org.telegram.ui.Components.f51;
-import org.telegram.ui.Components.f90;
-import org.telegram.ui.pd;
-public final class w1 extends f90 {
-    public final int I;
-    public final Object J;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.ng0;
+import org.telegram.ui.Components.pg0;
+import org.telegram.ui.lc0;
+public final class w1 extends org.telegram.ui.Components.q6 {
+    public final int f23464s;
+    public Object v;
 
-    public w1(Object obj, Context context, int i10) {
-        super(context, null);
-        this.I = i10;
-        this.J = obj;
+    public w1(Context context, boolean z10, boolean z11, boolean z12) {
+        super(context, z10, z11, z12);
+        this.f23464s = 3;
     }
 
     @Override
-    public int a() {
-        switch (this.I) {
-            case 4:
-                return ((UndoView) this.J).f23186a;
-            default:
-                return super.a();
-        }
-    }
-
-    @Override
-    public int c() {
-        switch (this.I) {
+    public void invalidate() {
+        switch (this.f23464s) {
             case 1:
-                Integer num = ((z8) this.J).d;
-                if (num != null) {
-                    return num.intValue();
+                super.invalidate();
+                ng0 ng0Var = (ng0) this.v;
+                pg0 pg0Var = ng0Var.d;
+                if (ng0Var == pg0Var.f29370b.getPinnedHeader()) {
+                    pg0Var.f29370b.invalidate();
+                    return;
                 }
-                return super.c();
+                return;
             default:
-                return super.c();
+                super.invalidate();
+                return;
         }
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.I) {
+        switch (this.f23464s) {
             case 0:
                 super.onDraw(canvas);
-                ((y1) this.J).f();
+                ((z1) this.v).f();
                 return;
             case 1:
-                z8 z8Var = (z8) this.J;
-                z8Var.b();
-                super.onDraw(canvas);
-                z8Var.a();
-                return;
             default:
+                super.onDraw(canvas);
+                return;
+            case 2:
+                canvas.save();
+                canvas.translate(AndroidUtilities.dp(15.0f), 0.0f);
+                super.onDraw(canvas);
+                canvas.translate(((getMeasuredWidth() - d()) / 2.0f) - AndroidUtilities.dp(30.0f), AndroidUtilities.dp(11.0f));
+                ((l61) this.v).f28069b.draw(canvas);
+                canvas.restore();
+                return;
+            case 3:
+                ShapeDrawable shapeDrawable = (ShapeDrawable) this.v;
+                shapeDrawable.setBounds(0, 0, (int) (getDrawable().d() + getPaddingLeft() + getPaddingRight()), getMeasuredHeight());
+                shapeDrawable.draw(canvas);
                 super.onDraw(canvas);
                 return;
         }
     }
 
     @Override
-    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        String str;
-        switch (this.I) {
-            case 0:
-                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+    public void onMeasure(int i10, int i11) {
+        switch (this.f23464s) {
+            case 4:
+                lc0 lc0Var = (lc0) this.v;
+                int size = View.MeasureSpec.getSize(i10);
+                if (size <= 0) {
+                    size = AndroidUtilities.displaySize.x - AndroidUtilities.dp(20.0f);
+                }
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - lc0Var.d.getPaint().measureText(lc0Var.d.getText().toString())) - lc0Var.f38294f.getPaint().measureText(lc0Var.f38294f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
                 return;
-            case 1:
             default:
-                super.setText(charSequence, bufferType);
-                return;
-            case 2:
-                if (charSequence != 0) {
-                    charSequence = AndroidUtilities.replaceTags(charSequence.toString());
-                    int indexOf = charSequence.toString().indexOf(10);
-                    if (indexOf >= 0) {
-                        charSequence.replace(indexOf, indexOf + 1, " ");
-                        charSequence.setSpan(new ForegroundColorSpan(((org.telegram.ui.qa) this.J).e.getThemedColor(org.telegram.ui.ActionBar.j6.f20097p7)), 0, indexOf, 33);
-                    }
-                    f51[] f51VarArr = (f51[]) charSequence.getSpans(0, charSequence.length(), f51.class);
-                    for (int i10 = 0; i10 < f51VarArr.length; i10++) {
-                        charSequence.setSpan(new eg.l0(this, 2), charSequence.getSpanStart(f51VarArr[i10]), charSequence.getSpanEnd(f51VarArr[i10]), 33);
-                        charSequence.removeSpan(f51VarArr[i10]);
-                    }
-                }
-                super.setText(charSequence, bufferType);
-                return;
-            case 3:
-                pd pdVar = (pd) this.J;
-                if (charSequence != 0) {
-                    charSequence = AndroidUtilities.replaceTags(charSequence.toString());
-                    int indexOf2 = charSequence.toString().indexOf(10);
-                    if (indexOf2 >= 0) {
-                        charSequence.replace(indexOf2, indexOf2 + 1, " ");
-                        charSequence.setSpan(new ForegroundColorSpan(pdVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20097p7)), 0, indexOf2, 33);
-                    }
-                    f51[] f51VarArr2 = (f51[]) charSequence.getSpans(0, charSequence.length(), f51.class);
-                    EditTextBoldCursor editTextBoldCursor = pdVar.f37101w;
-                    if (editTextBoldCursor != null && editTextBoldCursor.getText() != null) {
-                        str = pdVar.f37101w.getText().toString();
-                    } else {
-                        str = "";
-                    }
-                    for (int i11 = 0; i11 < f51VarArr2.length; i11++) {
-                        charSequence.setSpan(new i(4, (Object) this, str), charSequence.getSpanStart(f51VarArr2[i11]), charSequence.getSpanEnd(f51VarArr2[i11]), 33);
-                        charSequence.removeSpan(f51VarArr2[i11]);
-                    }
-                }
-                super.setText(charSequence, bufferType);
+                super.onMeasure(i10, i11);
                 return;
         }
     }
 
-    public w1(z8 z8Var, Context context, c90 c90Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, c90Var, f6Var);
-        this.I = 1;
-        this.J = z8Var;
+    @Override
+    public boolean post(Runnable runnable) {
+        switch (this.f23464s) {
+            case 1:
+                return pg0.p(((ng0) this.v).d).post(runnable);
+            default:
+                return super.post(runnable);
+        }
     }
 
-    public w1(UndoView undoView, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
-        this.I = 4;
-        this.J = undoView;
+    @Override
+    public boolean postDelayed(Runnable runnable, long j3) {
+        switch (this.f23464s) {
+            case 1:
+                return pg0.q(((ng0) this.v).d).postDelayed(runnable, j3);
+            default:
+                return super.postDelayed(runnable, j3);
+        }
+    }
+
+    public w1(FrameLayout frameLayout, Context context, int i10) {
+        super(context, false, false, false);
+        this.f23464s = i10;
+        this.v = frameLayout;
+    }
+
+    public w1(l61 l61Var, Context context) {
+        super(context, true, true, true);
+        this.f23464s = 2;
+        this.v = l61Var;
+    }
+
+    public w1(lc0 lc0Var, Context context) {
+        super(context, false, true, true);
+        this.f23464s = 4;
+        this.v = lc0Var;
     }
 }

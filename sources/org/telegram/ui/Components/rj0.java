@@ -1,76 +1,58 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class rj0 extends f2.o0 {
-    public final int f28480c;
-    public final Context d;
-    public final org.telegram.ui.ActionBar.f6 e;
-    public final boolean f28481f;
-    public final yj0 h;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public final class rj0 implements e2.h {
+    public final int f30033a;
+    public final fk0 f30034b;
 
-    public rj0(yj0 yj0Var, int i10, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z4) {
-        this.h = yj0Var;
-        this.f28480c = i10;
-        this.d = context;
-        this.e = f6Var;
-        this.f28481f = z4;
+    public rj0(fk0 fk0Var, int i10) {
+        this.f30033a = i10;
+        this.f30034b = fk0Var;
     }
 
     @Override
-    public final int h() {
-        int i10;
-        yj0 yj0Var = this.h;
-        int size = yj0Var.f31036n.size();
-        if (!yj0Var.E.isEmpty() && !MessagesController.getInstance(this.f28480c).premiumFeaturesBlocked()) {
-            i10 = 1;
-        } else {
-            i10 = 0;
-        }
-        return size + i10;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 < this.h.f31036n.size()) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void v(f2.l1 l1Var, int i10) {
-        if (l1Var.f5777f == 0) {
-            ((org.telegram.ui.Cells.m6) l1Var.f5774a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f31036n.get(i10));
-        }
-    }
-
-    @Override
-    public final f2.l1 x(ViewGroup viewGroup, int i10) {
-        FrameLayout m6Var;
-        if (i10 != 0) {
-            yj0 yj0Var = this.h;
-            wa0 wa0Var = yj0Var.G;
-            if (wa0Var != null) {
-                if (wa0Var.getParent() != null) {
-                    ((ViewGroup) yj0Var.G.getParent()).removeView(yj0Var.G);
+    public final void accept(Object obj) {
+        float f7;
+        View view = (View) obj;
+        switch (this.f30033a) {
+            case 0:
+                fk0 fk0Var = this.f30034b;
+                ArrayList arrayList = fk0Var.d;
+                fk0Var.f26080b.getClass();
+                int R = RecyclerView.R(view);
+                if (R >= 0 && R < arrayList.size() && (view instanceof dk0)) {
+                    ((dk0) view).f(((wj0) arrayList.get(R)).f32274c, true);
+                    return;
                 }
-            } else {
-                yj0Var.i();
-            }
-            Context context = this.d;
-            m6Var = new FrameLayout(context);
-            View view = new View(context);
-            view.setBackgroundColor(org.telegram.ui.ActionBar.j6.l1(0.06f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.E8, this.e)));
-            m6Var.addView(view, k7.b6.c(8.0f, -1));
-            m6Var.addView(yj0Var.G, k7.b6.d(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
-        } else {
-            m6Var = new org.telegram.ui.Cells.m6(0, this.f28480c, this.d, this.e, true, this.f28481f);
+                return;
+            default:
+                if (view instanceof dk0) {
+                    dk0 dk0Var = (dk0) view;
+                    ck0 ck0Var = dk0Var.f25408b;
+                    dk0Var.N = false;
+                    float f10 = 1.0f;
+                    ck0Var.setAlpha(1.0f);
+                    if (this.f30034b.N0) {
+                        float f11 = dk0Var.I;
+                        if (dk0Var.f25415w) {
+                            f7 = 0.76f;
+                        } else {
+                            f7 = 1.0f;
+                        }
+                        ck0Var.setScaleX(f11 * f7);
+                        float f12 = dk0Var.I;
+                        if (dk0Var.f25415w) {
+                            f10 = 0.76f;
+                        }
+                        ck0Var.setScaleY(f12 * f10);
+                        return;
+                    }
+                    dk0Var.d();
+                    return;
+                }
+                return;
         }
-        return new f2.l1(m6Var);
     }
 }

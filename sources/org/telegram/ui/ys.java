@@ -1,40 +1,67 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class ys extends tf.d {
-    public final ContactsActivity I;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ys extends org.telegram.ui.ActionBar.j {
+    public final ContactsActivity f43201a;
 
-    public ys(ContactsActivity contactsActivity, Context context, int i10, boolean z4, a0.h hVar, int i11) {
-        super(context, i10, z4, hVar, i11);
-        this.I = contactsActivity;
+    public ys(ContactsActivity contactsActivity) {
+        this.f43201a = contactsActivity;
     }
 
     @Override
-    public final int R() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ys.R():int");
-    }
-
-    @Override
-    public final void l() {
-        boolean z4 = false;
-        X(false);
-        ContactsActivity contactsActivity = this.I;
-        org.telegram.ui.Components.rl0 rl0Var = contactsActivity.f31517f;
-        if (rl0Var != null && rl0Var.getAdapter() == this) {
-            int h = h();
-            if (contactsActivity.E) {
-                org.telegram.ui.Components.rl0 rl0Var2 = contactsActivity.f31517f;
-                if (h != 2) {
-                    z4 = true;
-                }
-                rl0Var2.setFastScrollVisible(z4);
+    public final void b(int i10) {
+        int i11;
+        org.telegram.ui.ActionBar.k kVar;
+        ContactsActivity contactsActivity = this.f43201a;
+        if (i10 == -1) {
+            kVar = ((org.telegram.ui.ActionBar.n2) contactsActivity).actionBar;
+            if (kVar.s()) {
+                contactsActivity.o0();
+                return;
+            } else {
+                contactsActivity.finishFragment();
                 return;
             }
-            org.telegram.ui.Components.rl0 rl0Var3 = contactsActivity.f31517f;
-            if (h != 0) {
-                z4 = true;
+        }
+        int i12 = 1;
+        if (i10 == 100) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(contactsActivity.getParentActivity(), 0, contactsActivity.getResourceProvider());
+            a0.i iVar = contactsActivity.f33343d0;
+            if (iVar.m() == 1) {
+                alertDialog$Builder.f20198a.R = LocaleController.getString(R.string.DeleteContactTitle);
+                alertDialog$Builder.f20198a.T = LocaleController.getString(R.string.DeleteContactSubtitle);
+            } else {
+                alertDialog$Builder.f20198a.R = LocaleController.formatPluralString("DeleteContactsTitle", iVar.m(), new Object[0]);
+                alertDialog$Builder.f20198a.T = LocaleController.getString(R.string.DeleteContactsSubtitle);
             }
-            rl0Var3.setFastScrollVisible(z4);
+            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new vs(contactsActivity));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new org.telegram.ui.Components.wo0(14));
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+            b2Var.show();
+            b2Var.h();
+        } else if (i10 == 1) {
+            SharedConfig.toggleSortContactsByName();
+            boolean z10 = SharedConfig.sortContactsByName;
+            contactsActivity.v = z10;
+            at atVar = contactsActivity.d;
+            if (!z10) {
+                i12 = 2;
+            }
+            atVar.Y(i12, false);
+            org.telegram.ui.ActionBar.v0 v0Var = contactsActivity.f33361s;
+            if (contactsActivity.v) {
+                i11 = R.drawable.msg_contacts_time;
+            } else {
+                i11 = R.drawable.msg_contacts_name;
+            }
+            v0Var.setIcon(i11);
+        } else if (i10 == 0) {
+            contactsActivity.f33346f.x0(0);
+            AndroidUtilities.doOnPreDraw(contactsActivity.Z.f24522r, new dj(this, 14));
         }
     }
 }

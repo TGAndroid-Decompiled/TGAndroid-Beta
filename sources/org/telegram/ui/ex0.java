@@ -1,135 +1,55 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import java.util.ArrayList;
-import java.util.Arrays;
-public final class ex0 implements w60, tg.e {
-    public final int f33875a;
-    public final boolean f33876b;
-    public final Object f33877c;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class ex0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f36202a;
+    public final Object f36203b;
+    public final View f36204c;
+    public final Object d;
 
-    public ex0(int i10, Object obj, boolean z4) {
-        this.f33877c = obj;
-        this.f33875a = i10;
-        this.f33876b = z4;
+    public ex0(Object obj, ViewGroup viewGroup, Object obj2, int i10) {
+        this.f36202a = i10;
+        this.f36203b = obj;
+        this.f36204c = viewGroup;
+        this.d = obj2;
     }
 
     @Override
-    public void a(Canvas canvas, RectF rectF, float[] fArr) {
-        Paint paint;
-        Path.Direction direction;
-        float f10;
-        pg.b bVar = (pg.b) this.f33877c;
-        float[] fArr2 = pg.b.C;
-        pg.a aVar = bVar.h;
-        Path path = new Path();
-        Path.Direction direction2 = Path.Direction.CW;
-        path.addRoundRect(rectF, fArr, direction2);
-        Paint paint2 = new Paint(1);
-        paint2.setStyle(Paint.Style.FILL);
-        paint2.setColor(this.f33875a);
-        float f11 = bVar.f41250l;
-        if (f11 > 0.0f) {
-            paint2.setShadowLayer(f11, 0.0f, bVar.f41251m, bVar.d);
-        }
-        canvas.drawPath(path, paint2);
-        if (bVar.f41250l > 0.0f) {
-            paint2.clearShadowLayer();
-            canvas.drawPath(path, paint2);
-        }
-        if (this.f33876b) {
-            float[] copyOf = Arrays.copyOf(aVar.f41231b, 8);
-            boolean c3 = kf.m0.c(copyOf);
-            float min = Math.min(rectF.width(), rectF.height()) / 2.0f;
-            Paint paint3 = new Paint(1);
-            if (Color.alpha(bVar.f41245f) > 0 && copyOf[0] > 0.0f) {
-                Arrays.fill(fArr2, 0.0f);
-                fArr2[0] = copyOf[0];
-                fArr2[1] = copyOf[1];
-                fArr2[2] = copyOf[2];
-                fArr2[3] = copyOf[3];
-                if (c3 && copyOf[0] > min) {
-                    fArr2[3] = min;
-                    fArr2[2] = min;
-                    fArr2[1] = min;
-                    fArr2[0] = min;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float dp;
+        switch (this.f36202a) {
+            case 0:
+                jx0 jx0Var = (jx0) this.f36203b;
+                PremiumPreviewFragment premiumPreviewFragment = jx0Var.f37864n;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                View view = this.f36204c;
+                view.setAlpha(floatValue);
+                view.setScaleX(floatValue);
+                view.setScaleY(floatValue);
+                float animatedFraction = ((ValueAnimator) this.d).getAnimatedFraction();
+                for (int i10 = 0; i10 < premiumPreviewFragment.U.getChildCount(); i10++) {
+                    View childAt = premiumPreviewFragment.U.getChildAt(i10);
+                    if (childAt != jx0Var.f37862e) {
+                        if (childAt == jx0Var.f37861c) {
+                            dp = 0.0f - (AndroidUtilities.dp(15.0f) * animatedFraction);
+                        } else {
+                            dp = 0.0f + (AndroidUtilities.dp(8.0f) * animatedFraction);
+                        }
+                        childAt.setTranslationY((view.getMeasuredHeight() * animatedFraction) + dp);
+                    }
                 }
-                Path path2 = new Path();
-                float f12 = rectF.left;
-                float f13 = rectF.top;
-                f10 = 0.0f;
-                paint = paint3;
-                path2.addRoundRect(f12, f13, rectF.right, Math.min(Math.max(copyOf[0], copyOf[2]) + f13, rectF.bottom), fArr2, direction2);
-                direction = direction2;
-                float f14 = rectF.left;
-                float f15 = rectF.top;
-                path2.addRoundRect(f14, aVar.f41235i + f15, rectF.right, Math.min(Math.max(copyOf[0], copyOf[2]) + f15, rectF.bottom), fArr2, Path.Direction.CCW);
-                paint.setColor(bVar.f41245f);
-                canvas.drawPath(path2, paint);
-            } else {
-                paint = paint3;
-                direction = direction2;
-                f10 = 0.0f;
-            }
-            if (Color.alpha(bVar.f41246g) > 0 && copyOf[4] > f10) {
-                Arrays.fill(fArr2, 0.0f);
-                fArr2[4] = copyOf[4];
-                fArr2[5] = copyOf[5];
-                fArr2[6] = copyOf[6];
-                fArr2[7] = copyOf[7];
-                if (c3 && copyOf[0] > min) {
-                    fArr2[7] = min;
-                    fArr2[6] = min;
-                    fArr2[5] = min;
-                    fArr2[4] = min;
-                }
-                Path path3 = new Path();
-                path3.addRoundRect(rectF.left, Math.max(rectF.bottom - Math.max(copyOf[4], copyOf[6]), rectF.top), rectF.right, rectF.bottom, fArr2, direction);
-                path3.addRoundRect(rectF.left, Math.max(rectF.bottom - Math.max(copyOf[4], copyOf[6]), rectF.top), rectF.right, rectF.bottom - aVar.f41236j, fArr2, Path.Direction.CCW);
-                paint.setColor(bVar.f41246g);
-                canvas.drawPath(path3, paint);
-            }
+                return;
+            default:
+                lb1 lb1Var = (lb1) this.f36203b;
+                lb1Var.getClass();
+                lb1Var.f38266a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((ChatActivityEnterView) this.f36204c).getEditField().setAlpha(lb1Var.f38266a);
+                ((org.telegram.ui.Components.ui) this.d).invalidate();
+                return;
         }
-    }
-
-    @Override
-    public void b(ArrayList arrayList, boolean z4, boolean z10) {
-        char c3;
-        PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) this.f33877c;
-        boolean[] zArr = privacyControlActivity.B;
-        int i10 = privacyControlActivity.Q;
-        int i11 = this.f33875a;
-        boolean z11 = this.f33876b;
-        int i12 = 0;
-        boolean z12 = true;
-        if (i11 == i10) {
-            privacyControlActivity.E = arrayList;
-            zArr[privacyControlActivity.F] = (z11 && z10) ? false : false;
-            while (i12 < privacyControlActivity.E.size()) {
-                privacyControlActivity.D.remove(privacyControlActivity.E.get(i12));
-                i12++;
-            }
-        } else {
-            boolean[] zArr2 = privacyControlActivity.f31989y;
-            int i13 = privacyControlActivity.F;
-            if (i13 == 2) {
-                c3 = 0;
-            } else {
-                c3 = 1;
-            }
-            zArr2[c3] = z4;
-            zArr[i13] = (z11 && z10) ? false : false;
-            privacyControlActivity.D = arrayList;
-            while (i12 < privacyControlActivity.D.size()) {
-                privacyControlActivity.E.remove(privacyControlActivity.D.get(i12));
-                i12++;
-            }
-        }
-        privacyControlActivity.E0();
-        privacyControlActivity.f31957a.l();
     }
 }

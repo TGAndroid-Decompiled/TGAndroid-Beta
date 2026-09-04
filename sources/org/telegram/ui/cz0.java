@@ -1,34 +1,30 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class cz0 extends a01 {
-    public cz0(Context context) {
-        super(context);
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class cz0 implements Utilities.Callback {
+    public final int f35578a;
+    public final ProfileActivity f35579b;
+
+    public cz0(ProfileActivity profileActivity, int i10) {
+        this.f35578a = i10;
+        this.f35579b = profileActivity;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        nh.y2 y2Var;
-        super.dispatchDraw(canvas);
-        org.telegram.ui.Components.l5 l5Var = this.e;
-        if (l5Var != null && (y2Var = l5Var.f26587k) != null) {
-            y2Var.startAnimation();
+    public final void run(Object obj) {
+        switch (this.f35578a) {
+            case 0:
+                ProfileActivity profileActivity = this.f35579b;
+                profileActivity.getClass();
+                ArrayList arrayList = new ArrayList(1);
+                arrayList.add((TLRPC.InputStickerSet) obj);
+                profileActivity.showDialog(new org.telegram.ui.Components.rv(profileActivity, profileActivity.getParentActivity(), profileActivity.f34031z0, arrayList));
+                return;
+            default:
+                ProfileActivity.e0(this.f35579b, (Boolean) obj);
+                return;
         }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (getImageReceiver().hasNotThumb()) {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenInPhotoViewer)));
-            return;
-        }
-        accessibilityNodeInfo.setVisibleToUser(false);
     }
 }

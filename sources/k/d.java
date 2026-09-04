@@ -5,13 +5,14 @@ import android.view.MenuItem;
 import android.view.View;
 import androidx.appcompat.widget.ActionBarContextView;
 import java.lang.ref.WeakReference;
-public final class d extends a implements l.i {
-    public Context f9487c;
+import n4.y;
+public final class d extends a implements l.j {
+    public Context f14387c;
     public ActionBarContextView d;
-    public f7.b e;
-    public WeakReference f9488f;
+    public y f14388e;
+    public WeakReference f14389f;
     public boolean h;
-    public l.k f9489n;
+    public l.l f14390n;
 
     @Override
     public final void a() {
@@ -19,12 +20,12 @@ public final class d extends a implements l.i {
             return;
         }
         this.h = true;
-        this.e.u(this);
+        this.f14388e.I(this);
     }
 
     @Override
     public final View b() {
-        WeakReference weakReference = this.f9488f;
+        WeakReference weakReference = this.f14389f;
         if (weakReference != null) {
             return (View) weakReference.get();
         }
@@ -32,8 +33,8 @@ public final class d extends a implements l.i {
     }
 
     @Override
-    public final l.k c() {
-        return this.f9489n;
+    public final l.l c() {
+        return this.f14390n;
     }
 
     @Override
@@ -53,16 +54,48 @@ public final class d extends a implements l.i {
 
     @Override
     public final void g() {
-        this.e.v(this, this.f9489n);
+        this.f14388e.J(this, this.f14390n);
     }
 
     @Override
     public final boolean h() {
-        return this.d.F;
+        return this.d.I;
     }
 
     @Override
-    public final void i(l.k kVar) {
+    public final void i(View view) {
+        WeakReference weakReference;
+        this.d.setCustomView(view);
+        if (view != null) {
+            weakReference = new WeakReference(view);
+        } else {
+            weakReference = null;
+        }
+        this.f14389f = weakReference;
+    }
+
+    @Override
+    public final void j(int i10) {
+        k(this.f14387c.getString(i10));
+    }
+
+    @Override
+    public final void k(CharSequence charSequence) {
+        this.d.setSubtitle(charSequence);
+    }
+
+    @Override
+    public final void l(int i10) {
+        m(this.f14387c.getString(i10));
+    }
+
+    @Override
+    public final void m(CharSequence charSequence) {
+        this.d.setTitle(charSequence);
+    }
+
+    @Override
+    public final void n(l.l lVar) {
         g();
         m.h hVar = this.d.d;
         if (hVar != null) {
@@ -71,45 +104,13 @@ public final class d extends a implements l.i {
     }
 
     @Override
-    public final void j(View view) {
-        WeakReference weakReference;
-        this.d.setCustomView(view);
-        if (view != null) {
-            weakReference = new WeakReference(view);
-        } else {
-            weakReference = null;
-        }
-        this.f9488f = weakReference;
+    public final void o(boolean z10) {
+        this.f14383b = z10;
+        this.d.setTitleOptional(z10);
     }
 
     @Override
-    public final void k(int i10) {
-        l(this.f9487c.getString(i10));
-    }
-
-    @Override
-    public final void l(CharSequence charSequence) {
-        this.d.setSubtitle(charSequence);
-    }
-
-    @Override
-    public final void m(int i10) {
-        n(this.f9487c.getString(i10));
-    }
-
-    @Override
-    public final void n(CharSequence charSequence) {
-        this.d.setTitle(charSequence);
-    }
-
-    @Override
-    public final void o(boolean z4) {
-        this.f9483b = z4;
-        this.d.setTitleOptional(z4);
-    }
-
-    @Override
-    public final boolean q(l.k kVar, MenuItem menuItem) {
-        return ((rf.f) this.e.f6001b).A(this, menuItem);
+    public final boolean s(l.l lVar, MenuItem menuItem) {
+        return ((fg.f) this.f14388e.f16496b).H(this, menuItem);
     }
 }

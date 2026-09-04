@@ -1,32 +1,30 @@
 package org.telegram.messenger;
 
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.p70;
-public final class c6 implements Runnable {
-    public final int f16893a;
-    public final float f16894b;
-    public final NotificationCenter.NotificationCenterDelegate f16895c;
-    public final Object d;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class c6 implements RequestDelegate {
+    public final int f17309a;
+    public final int f17310b;
+    public final int f17311c;
+    public final NotificationCenter.NotificationCenterDelegate d;
 
-    public c6(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, float f10, int i10) {
-        this.f16893a = i10;
-        this.f16895c = notificationCenterDelegate;
-        this.d = obj;
-        this.f16894b = f10;
+    public c6(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10, int i11, int i12) {
+        this.f17309a = i12;
+        this.d = notificationCenterDelegate;
+        this.f17310b = i10;
+        this.f17311c = i11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f16893a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f17309a) {
             case 0:
-                ((MediaController) this.f16895c).lambda$setPlaybackSpeed$16((MessageObject) this.d, this.f16894b);
+                ((MediaController) this.d).lambda$loadMoreMusic$12(this.f17310b, this.f17311c, tLObject, tL_error);
                 return;
             default:
-                org.telegram.ui.n4 n4Var = (org.telegram.ui.n4) this.f16895c;
-                p70 p70Var = (p70) this.d;
-                n4Var.f36363e0.J.c(0.0f, true);
-                p70Var.f27772p = new org.telegram.ui.e0(n4Var, this.f16894b, 0);
-                p70Var.Z();
+                ((MessagesController) this.d).lambda$getDifference$359(this.f17310b, this.f17311c, tLObject, tL_error);
                 return;
         }
     }

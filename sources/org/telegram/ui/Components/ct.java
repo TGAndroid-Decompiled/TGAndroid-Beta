@@ -1,17 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
-public final class ct {
-    public int f24028a;
-    public Object f24029b;
+import android.view.View;
+public final class ct implements View.OnClickListener {
+    public final int f25090a;
+    public final Object f25091b;
+    public final Object f25092c;
 
-    public boolean a(int i10) {
-        if (((kf.k) this.f24029b) != null && this.f24028a == i10) {
-            return false;
-        }
-        this.f24028a = i10;
-        this.f24029b = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{i10, i10}, (float[]) null, Shader.TileMode.CLAMP);
-        return true;
+    public ct(int i10, Object obj, Object obj2) {
+        this.f25090a = i10;
+        this.f25091b = obj;
+        this.f25092c = obj2;
+    }
+
+    @Override
+    public final void onClick(android.view.View r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ct.onClick(android.view.View):void");
     }
 }

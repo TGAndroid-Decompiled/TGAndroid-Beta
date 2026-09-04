@@ -1,34 +1,55 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class qp implements Runnable {
-    public final int f37448a;
-    public final rp f37449b;
-    public final String f37450c;
+import android.widget.LinearLayout;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+public final class qp extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
+    public org.telegram.ui.Components.x9 f39930a;
+    public org.telegram.ui.Components.j90 f39931b;
+    public int f39932c;
 
-    public qp(rp rpVar, String str, int i10) {
-        this.f37448a = i10;
-        this.f37449b = rpVar;
-        this.f37450c = str;
+    public final void a() {
+        boolean z10;
+        org.telegram.ui.Components.x9 x9Var = this.f39930a;
+        int i10 = this.f39932c;
+        TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByName("tg_placeholders_android");
+        if (stickerSetByName == null) {
+            stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName("tg_placeholders_android");
+        }
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSetByName;
+        if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents.size() >= 3) {
+            x9Var.i(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(2)), "104_104", "tgs", this.f39931b, tL_messages_stickerSet);
+            return;
+        }
+        MediaDataController mediaDataController = MediaDataController.getInstance(i10);
+        if (tL_messages_stickerSet == null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        mediaDataController.loadStickersByEmojiOrName("tg_placeholders_android", false, z10);
+        x9Var.setImageDrawable(this.f39931b);
     }
 
     @Override
-    public final void run() {
-        switch (this.f37448a) {
-            case 0:
-                rp rpVar = this.f37449b;
-                String str = this.f37450c;
-                rpVar.getClass();
-                AndroidUtilities.runOnUIThread(new qp(rpVar, str, 1));
-                return;
-            default:
-                rp rpVar2 = this.f37449b;
-                String str2 = this.f37450c;
-                rpVar2.f37937f = null;
-                Utilities.searchQueue.postRunnable(new u1(rpVar2, str2, new ArrayList(rpVar2.h.v), 28));
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.diceStickersDidLoad && "tg_placeholders_android".equals((String) objArr[0])) {
+            a();
         }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a();
+        NotificationCenter.getInstance(this.f39932c).addObserver(this, NotificationCenter.diceStickersDidLoad);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(this.f39932c).removeObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 }

@@ -1,39 +1,91 @@
 package org.telegram.ui.web;
 
-import android.app.Activity;
-import nh.j7;
-import org.json.JSONObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.x9;
-public final class d0 implements NotificationCenter.NotificationCenterDelegate {
-    public final j7 f39420a;
-    public final c1 f39421b;
+import bi.k9;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.eg1;
+import org.telegram.ui.oy;
+import org.telegram.ui.sj0;
+import org.telegram.ui.uy;
+public final class d0 implements sj0, oy {
+    public final d1 f42031a;
+    public final boolean[] f42032b;
+    public final String f42033c;
+    public final TL_keyboard.TL_buttonTypeRequestPeer d;
+    public final k9 f42034e;
 
-    public d0(c1 c1Var, j7 j7Var) {
-        this.f39421b = c1Var;
-        this.f39420a = j7Var;
+    public d0(d1 d1Var, boolean[] zArr, String str, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer, k9 k9Var) {
+        this.f42031a = d1Var;
+        this.f42032b = zArr;
+        this.f42033c = str;
+        this.d = tL_buttonTypeRequestPeer;
+        this.f42034e = k9Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12 = NotificationCenter.onRequestPermissionResultReceived;
-        if (i10 == i12) {
-            int intValue = ((Integer) objArr[0]).intValue();
-            int[] iArr = (int[]) objArr[2];
-            if (intValue == 5000) {
-                NotificationCenter.getGlobalInstance().removeObserver(this, i12);
-                int i13 = iArr[0];
-                c1 c1Var = this.f39421b;
-                if (i13 == 0) {
-                    Activity activity = c1Var.T;
-                    if (activity != null) {
-                        c1Var.f39387d0 = x9.e0(activity, 3, new o3.c(c1Var, 8));
-                        return;
-                    }
-                    return;
-                }
-                c1Var.z(this.f39420a, "scan_qr_popup_closed", new JSONObject());
+    public boolean B() {
+        return false;
+    }
+
+    @Override
+    public boolean K(uy uyVar) {
+        return false;
+    }
+
+    @Override
+    public void a(ArrayList arrayList) {
+        if (!arrayList.isEmpty()) {
+            int i10 = 0;
+            this.f42032b[0] = true;
+            TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
+            d1 d1Var = this.f42031a;
+            MessagesController.getInstance(d1Var.M);
+            tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(d1Var.U);
+            String str = this.f42033c;
+            tL_messages_sendBotRequestedPeer.webapp_req_id = str;
+            tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
+            int size = arrayList.size();
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(d1Var.M).getInputPeer(((Long) obj).longValue()));
             }
+            ConnectionsManager.getInstance(d1Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new Object(), new w(d1Var, this.f42034e, str, 2));
         }
+    }
+
+    @Override
+    public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
+        if (!arrayList.isEmpty()) {
+            int i12 = 0;
+            this.f42032b[0] = true;
+            TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
+            d1 d1Var = this.f42031a;
+            MessagesController.getInstance(d1Var.M);
+            tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(d1Var.U);
+            String str = this.f42033c;
+            tL_messages_sendBotRequestedPeer.webapp_req_id = str;
+            tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
+            HashSet hashSet = new HashSet();
+            int size = arrayList.size();
+            while (i12 < size) {
+                Object obj = arrayList.get(i12);
+                i12++;
+                hashSet.add(Long.valueOf(((MessagesStorage.TopicKey) obj).dialogId));
+            }
+            Iterator it = hashSet.iterator();
+            while (it.hasNext()) {
+                tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(d1Var.M).getInputPeer(((Long) it.next()).longValue()));
+            }
+            ConnectionsManager.getInstance(d1Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new Object(), new w(d1Var, this.f42034e, str, 1));
+        }
+        uyVar.finishFragment();
+        return true;
     }
 }

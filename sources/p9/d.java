@@ -1,26 +1,39 @@
 package p9;
 
-import i9.w;
+import android.content.Context;
+import com.google.android.gms.common.api.j;
+import com.google.android.gms.internal.clearcut.u0;
+import java.lang.ref.WeakReference;
+import k9.i;
+import org.telegram.ui.LaunchActivity;
 public final class d {
-    public final String f41088a;
-    public final String f41089b;
-    public final String f41090c;
-    public final String d;
-    public final w e;
-    public final String f41091f;
-    public final String f41092g;
-    public final String h;
-    public final int f41093i;
+    public static WeakReference f44018b;
+    public final u0 f44019a;
 
-    public d(String str, String str2, String str3, String str4, w wVar, String str5, String str6, String str7, int i10) {
-        this.f41088a = str;
-        this.f41089b = str2;
-        this.f41090c = str3;
-        this.d = str4;
-        this.e = wVar;
-        this.f41091f = str5;
-        this.f41092g = str6;
-        this.h = str7;
-        this.f41093i = i10;
+    public d(Context context) {
+        this.f44019a = new j(context, p7.d.f43958a, com.google.android.gms.common.api.b.f4949t, new i(4));
+    }
+
+    public static synchronized d b(LaunchActivity launchActivity) {
+        d dVar;
+        synchronized (d.class) {
+            WeakReference weakReference = f44018b;
+            if (weakReference == null) {
+                dVar = null;
+            } else {
+                dVar = (d) weakReference.get();
+            }
+            if (dVar == null) {
+                d dVar2 = new d(launchActivity.getApplicationContext());
+                f44018b = new WeakReference(dVar2);
+                return dVar2;
+            }
+            return dVar;
+        }
+    }
+
+    public final void a(b bVar) {
+        bVar.f44015e.f44007a = 2;
+        this.f44019a.e(1, new c(new b[]{bVar}));
     }
 }

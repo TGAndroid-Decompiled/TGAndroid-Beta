@@ -16,7 +16,7 @@ public class WebFile extends TLObject {
     public int scale;
     public int size;
     public String url;
-    public int f16675w;
+    public int f17106w;
     public int zoom;
 
     public static WebFile createWithGeoPoint(TLRPC.GeoPoint geoPoint, int i10, int i11, int i12, int i13) {
@@ -56,18 +56,18 @@ public class WebFile extends TLObject {
         }
     }
 
-    public static WebFile createWithGeoPoint(double d, double d10, long j10, int i10, int i11, int i12, int i13) {
+    public static WebFile createWithGeoPoint(double d, double d10, long j3, int i10, int i11, int i12, int i13) {
         WebFile webFile = new WebFile();
         TLRPC.TL_inputWebFileGeoPointLocation tL_inputWebFileGeoPointLocation = new TLRPC.TL_inputWebFileGeoPointLocation();
         webFile.location = tL_inputWebFileGeoPointLocation;
         TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
         webFile.geo_point = tL_inputGeoPoint;
         tL_inputWebFileGeoPointLocation.geo_point = tL_inputGeoPoint;
-        tL_inputWebFileGeoPointLocation.access_hash = j10;
+        tL_inputWebFileGeoPointLocation.access_hash = j3;
         tL_inputGeoPoint.lat = d;
         tL_inputGeoPoint._long = d10;
-        webFile.f16675w = i10;
-        tL_inputWebFileGeoPointLocation.f19233w = i10;
+        webFile.f17106w = i10;
+        tL_inputWebFileGeoPointLocation.f19943w = i10;
         webFile.h = i11;
         tL_inputWebFileGeoPointLocation.h = i11;
         webFile.zoom = i12;

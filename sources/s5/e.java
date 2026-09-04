@@ -1,3 +1,4 @@
 package s5;
-public abstract class e {
+public interface e {
+    Object apply(Object obj);
 }

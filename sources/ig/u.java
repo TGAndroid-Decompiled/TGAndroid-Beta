@@ -1,39 +1,22 @@
 package ig;
 
-import android.view.View;
-public final class u implements View.OnClickListener {
-    public final int f7528a;
-    public final Runnable f7529b;
+import android.text.TextUtils;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.tl.TL_account;
+public final class u {
+    public TL_account.TL_businessChatLink f12212a;
 
-    public u(int i10, Runnable runnable) {
-        this.f7528a = i10;
-        this.f7529b = runnable;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        switch (this.f7528a) {
-            case 0:
-                this.f7529b.run();
-                return;
-            case 1:
-                this.f7529b.run();
-                return;
-            case 2:
-                this.f7529b.run();
-                return;
-            case 3:
-                this.f7529b.run();
-                return;
-            case 4:
-                this.f7529b.run();
-                return;
-            case 5:
-                this.f7529b.run();
-                return;
-            default:
-                this.f7529b.run();
-                return;
+    public final boolean equals(Object obj) {
+        TL_account.TL_businessChatLink tL_businessChatLink = this.f12212a;
+        if (this == obj) {
+            return true;
         }
+        if (obj != null && u.class == obj.getClass()) {
+            TL_account.TL_businessChatLink tL_businessChatLink2 = ((u) obj).f12212a;
+            if (tL_businessChatLink.views == tL_businessChatLink2.views && TextUtils.equals(tL_businessChatLink.link, tL_businessChatLink2.link) && TextUtils.equals(tL_businessChatLink.title, tL_businessChatLink2.title) && TextUtils.equals(tL_businessChatLink.message, tL_businessChatLink2.message) && MediaDataController.entitiesEqual(tL_businessChatLink.entities, tL_businessChatLink2.entities)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

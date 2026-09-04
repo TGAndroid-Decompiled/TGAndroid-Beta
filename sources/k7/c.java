@@ -1,15 +1,23 @@
 package k7;
-public final class c {
-    public static final c f9752a;
-    public static final c[] f9753b;
 
-    static {
-        ?? r02 = new Enum("DEFAULT", 0);
-        f9752a = r02;
-        f9753b = new c[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
-    }
-
-    public static c[] values() {
-        return (c[]) f9753b.clone();
+import android.content.Context;
+import android.content.IntentFilter;
+import android.os.Build;
+import com.google.android.gms.common.api.internal.u0;
+import f0.e;
+public abstract class c extends e {
+    public static void g(Context context, u0 u0Var, IntentFilter intentFilter) {
+        int i10;
+        int i11 = Build.VERSION.SDK_INT;
+        if (i11 >= 33) {
+            if (i11 >= 33) {
+                i10 = 2;
+            } else {
+                i10 = 0;
+            }
+            context.registerReceiver(u0Var, intentFilter, i10);
+            return;
+        }
+        context.registerReceiver(u0Var, intentFilter);
     }
 }

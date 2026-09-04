@@ -1,34 +1,37 @@
 package tf;
 
-import android.location.Location;
-import org.telegram.messenger.AndroidUtilities;
-public final class a implements Runnable {
-    public final int f44724a;
-    public final c f44725b;
-    public final String f44726c;
-    public final Location d;
+import android.content.SharedPreferences;
+import android.os.SystemClock;
+import org.telegram.messenger.ApplicationLoader;
+import w7.p;
+public final class a {
+    public final SharedPreferences f46482a;
+    public long f46483b;
+    public long f46484c;
+    public int d;
 
-    public a(c cVar, String str, Location location, int i10) {
-        this.f44724a = i10;
-        this.f44725b = cVar;
-        this.f44726c = str;
-        this.d = location;
+    public a(String str) {
+        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("pip_duration_".concat(str), 0);
+        this.f46482a = sharedPreferences;
+        this.f46483b = sharedPreferences.getLong("estimated", 400L);
+        this.d = sharedPreferences.getInt("count", 0);
     }
 
-    @Override
-    public final void run() {
-        switch (this.f44724a) {
-            case 0:
-                c cVar = this.f44725b;
-                cVar.getClass();
-                AndroidUtilities.runOnUIThread(new a(cVar, this.f44726c, this.d, 1));
-                return;
-            default:
-                c cVar2 = this.f44725b;
-                cVar2.B = null;
-                cVar2.v = null;
-                cVar2.H(this.f44726c, this.d, true);
-                return;
+    public final void a() {
+        int b10;
+        if (this.f46484c == 0) {
+            return;
         }
+        this.f46483b = (((SystemClock.uptimeMillis() - this.f46484c) * (10 - b10)) / 10) + ((this.f46483b * p.b(this.d, 0, 9)) / 10);
+        this.f46484c = 0L;
+        this.d++;
+        this.f46482a.edit().putLong("estimated", this.f46483b).putInt("count", this.d).apply();
+    }
+
+    public final float b() {
+        if (this.f46483b > 0) {
+            return p.a(((float) (SystemClock.uptimeMillis() - this.f46484c)) / ((float) this.f46483b), 0.0f, 1.0f);
+        }
+        return 0.5f;
     }
 }

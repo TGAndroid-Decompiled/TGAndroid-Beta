@@ -1,3 +1,5 @@
 package dd;
-public interface b extends sc.a {
+
+import java.util.ArrayList;
+public final class b extends ArrayList {
 }

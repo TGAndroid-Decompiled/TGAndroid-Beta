@@ -1,58 +1,35 @@
 package org.telegram.ui.Components;
-public final class fh implements Runnable {
-    public final int f24884a;
-    public final li f24885b;
-    public final boolean f24886c;
 
-    public fh(li liVar, boolean z4, int i10) {
-        this.f24884a = i10;
-        this.f24885b = liVar;
-        this.f24886c = z4;
+import android.animation.ValueAnimator;
+public final class fh implements ValueAnimator.AnimatorUpdateListener {
+    public final int f26043a;
+    public final vi f26044b;
+
+    public fh(vi viVar, int i10) {
+        this.f26043a = i10;
+        this.f26044b = viVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f24884a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f26043a) {
             case 0:
-                boolean z4 = this.f24886c;
-                li liVar = this.f24885b;
-                if (!z4) {
-                    liVar.Z0.setVisibility(8);
-                    return;
-                } else {
-                    liVar.getClass();
-                    return;
-                }
+                this.f26044b.b2();
+                return;
             case 1:
-                boolean z10 = this.f24886c;
-                li liVar2 = this.f24885b;
-                if (!z10) {
-                    liVar2.f26747w.setVisibility(8);
-                    return;
-                } else {
-                    liVar2.getClass();
-                    return;
-                }
+                this.f26044b.D0.invalidate();
+                return;
             case 2:
-                boolean z11 = this.f24886c;
-                li liVar3 = this.f24885b;
-                if (!z11) {
-                    liVar3.f26755y.setVisibility(8);
-                    return;
-                } else {
-                    liVar3.getClass();
-                    return;
-                }
+                vi.m(this.f26044b, valueAnimator);
+                return;
+            case 3:
+                vi viVar = this.f26044b;
+                viVar.getClass();
+                viVar.K1(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
             default:
-                boolean z12 = this.f24886c;
-                li liVar4 = this.f24885b;
-                if (z12) {
-                    liVar4.f26742u1.setVisibility(4);
-                    return;
-                } else {
-                    liVar4.getClass();
-                    return;
-                }
+                this.f26044b.b2();
+                return;
         }
     }
 }

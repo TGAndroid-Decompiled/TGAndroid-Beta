@@ -1,214 +1,241 @@
 package kh;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import java.util.List;
-import lh.p6;
-import nh.i9;
-import nh.j7;
-import nh.m6;
-import nh.z8;
-import org.json.JSONObject;
+import android.content.Context;
+import android.view.animation.Interpolator;
+import android.widget.FrameLayout;
+import b2.n1;
+import di.o4;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.ay;
-import org.telegram.ui.Components.by0;
-import org.telegram.ui.Components.c8;
-import org.telegram.ui.Components.iy;
-import org.telegram.ui.Components.lv;
-import org.telegram.ui.Components.pn;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.zn;
-public final class h implements Utilities.Callback {
-    public final int f10757a;
-    public final Object f10758b;
-    public final Object f10759c;
-    public final Object d;
+import org.telegram.ui.Components.pr;
+import org.telegram.ui.Components.vq;
+import w7.x5;
+import w7.z5;
+public final class h extends FrameLayout implements le.d {
+    public static final int[] f14963s;
+    public final String[] f14964a;
+    public final f6 f14965b;
+    public final eh.a f14966c;
+    public final bh.b d;
+    public final aa.a[] f14967e;
+    public final n1[] f14968f;
+    public a h;
+    public b f14969n;
+    public int f14970r;
 
-    public h(Object obj, Object obj2, Object obj3, int i10) {
-        this.f10757a = i10;
-        this.d = obj;
-        this.f10758b = obj2;
-        this.f10759c = obj3;
+    static {
+        int i10 = R.drawable.msg_input_attach2;
+        int i11 = R.drawable.pagedown;
+        f14963s = new int[]{i10, i11, R.drawable.mentionbutton, R.drawable.reactionbutton, R.drawable.menu_poll_notify, i11, i11};
+    }
+
+    public h(Context context, f6 f6Var, eh.b bVar, bh.b bVar2) {
+        super(context);
+        this.f14964a = new String[]{LocaleController.getString(R.string.AttachMenu), LocaleController.getString(R.string.AccDescrPageDown), LocaleController.getString(R.string.AccDescrMentionDown), LocaleController.getString(R.string.AccDescrReactionMentionDown), LocaleController.getString(R.string.AccDescrPollVotesMentionDown), LocaleController.getString(R.string.AccDescrSearchPrev), LocaleController.getString(R.string.AccDescrSearchNext)};
+        this.f14967e = new aa.a[7];
+        this.f14968f = new n1[7];
+        this.f14970r = 83;
+        this.d = bVar2;
+        this.f14966c = bVar;
+        this.f14965b = f6Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        nh.d6 d6Var;
-        ArrayList<TLRPC.Document> arrayList;
-        String str;
-        int i10 = this.f10757a;
-        int i11 = 0;
-        Object obj2 = this.f10759c;
-        Object obj3 = this.f10758b;
-        Object obj4 = this.d;
-        switch (i10) {
-            case 0:
-                s sVar = (s) obj4;
-                sVar.getClass();
-                ((boolean[]) obj3)[0] = false;
-                new d(sVar.getContext(), (f6) obj2, sVar.f10907i0, (List) obj).show();
-                return;
-            case 1:
-                f0 f0Var = (f0) obj4;
-                f6 f6Var = (f6) obj2;
-                List list = (List) obj;
-                f0Var.getClass();
-                ((boolean[]) obj3)[0] = false;
-                if (f0Var.f10705j0 != null) {
-                    new d(f0Var.getContext(), f6Var, f0Var.f10705j0, list).show();
-                    f0Var.dismiss();
-                    return;
+    public final void E(int i10, float f7, float f10, le.e eVar) {
+        int i11 = i10 >> 16;
+        int i12 = i10 & 65535;
+        if (i11 >= 0) {
+            aa.a[] aVarArr = this.f14967e;
+            if (i11 < aVarArr.length && aVarArr[i11] != null) {
+                if (i12 == 1 || i12 == 2) {
+                    a();
                 }
-                return;
-            case 2:
-                lh.g5 g5Var = (lh.g5) obj4;
-                ze.c cVar = (ze.c) obj;
-                cVar.d();
-                g5Var.v1(((Long) obj3).longValue(), new h(g5Var, cVar, (gg.v2[]) obj2, 3));
-                return;
-            case 3:
-                lh.g5 g5Var2 = (lh.g5) obj4;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                ((ze.c) obj3).b();
-                ((gg.v2[]) obj2)[0].dismiss();
-                if (tL_error != null) {
-                    AndroidUtilities.runOnUIThread(new lh.n2(1, g5Var2, tL_error));
-                    return;
-                } else {
-                    g5Var2.dismiss();
-                    return;
-                }
-            case 4:
-                nh.m3 m3Var = (nh.m3) obj4;
-                m3Var.getClass();
-                ArrayList arrayList2 = new ArrayList(1);
-                arrayList2.add((TLRPC.InputStickerSet) obj);
-                lv lvVar = new lv(((i9) obj3).f15441f, m3Var.getContext(), (f6) obj2, arrayList2);
-                nh.x3 x3Var = m3Var.f15585w0.N1;
-                if (x3Var != null) {
-                    ((z8) x3Var).h(lvVar);
-                    return;
-                }
-                return;
-            case 5:
-                nh.w3 w3Var = (nh.w3) obj4;
-                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj3;
-                TL_stories.StoryItem storyItem2 = (TL_stories.StoryItem) obj2;
-                Utilities.Callback callback = (Utilities.Callback) obj;
-                nh.d4 d4Var = w3Var.f16007l;
-                if ((storyItem instanceof nh.c6) && (d6Var = ((nh.c6) storyItem).f15142a) != null) {
-                    p6 p6Var = new p6(d6Var, storyItem2, callback, 4);
-                    if (d6Var.F != 0) {
-                        ConnectionsManager.getInstance(d6Var.f15557c).cancelRequest(d6Var.F, true);
-                        d6Var.F = 0;
-                    }
-                    d6Var.C = false;
-                    d6Var.D = false;
-                    d6Var.H(p6Var);
-                    return;
-                }
-                TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
-                tL_stories_getStoriesByID.peer = MessagesController.getInstance(d4Var.f15243z2).getInputPeer(storyItem.dialogId);
-                tL_stories_getStoriesByID.f19401id.add(Integer.valueOf(storyItem.f19394id));
-                ConnectionsManager.getInstance(d4Var.f15243z2).sendRequest(tL_stories_getStoriesByID, new gg.y(w3Var, storyItem, callback));
-                return;
-            case 6:
-                m6 m6Var = (m6) obj;
-                nh.d4 d4Var2 = ((nh.w3) obj4).f16007l;
-                d4Var2.P1.c(m6Var.f15598a, d4Var2.f15238y1, (TL_stories.StoryItem) obj3);
-                new qc(d4Var2.Z0, (f6) obj2).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoryAddedToAlbumX, m6Var.f15599b))).j();
-                return;
-            case 7:
-                c8.J((c8) obj4, (org.telegram.ui.ActionBar.d2) obj3, (TLRPC.Document) obj2, (TLRPC.InputFile) obj);
-                return;
-            case 8:
-                pn pnVar = (pn) obj4;
-                zn znVar = (zn) obj3;
-                TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) obj2;
-                Long l10 = (Long) obj;
-                if (znVar.c()) {
-                    org.telegram.ui.Components.z4.L(znVar.getParentActivity(), znVar.a(), new androidx.car.app.utils.a(pnVar, tL_messageMediaToDo, l10, 21));
-                    return;
-                }
-                pnVar.f27944g0.c(tL_messageMediaToDo, null, null, null, true, 0, l10.longValue());
-                pnVar.f24282b.dismiss(true);
-                return;
-            case 9:
-                iy iyVar = (iy) obj4;
-                ArrayList arrayList3 = (ArrayList) obj3;
-                Runnable runnable = (Runnable) obj2;
-                ArrayList arrayList4 = (ArrayList) obj;
-                int size = arrayList4.size();
-                while (i11 < size) {
-                    Object obj5 = arrayList4.get(i11);
-                    i11++;
-                    TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) obj5;
-                    if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
-                        arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
-                    } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-                        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(iyVar.f25785a.C.Z0).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true);
-                        if (stickerSet != null) {
-                            arrayList = stickerSet.documents;
-                        } else {
-                            arrayList = null;
-                        }
-                    } else {
-                        arrayList = stickerSetCovered.covers;
-                    }
-                    if (arrayList != null && !arrayList.isEmpty()) {
-                        arrayList3.add(new ay(stickerSetCovered, arrayList));
-                    }
-                }
-                runnable.run();
-                return;
-            case 10:
-                org.telegram.ui.ActionBar.d2 d2Var = (org.telegram.ui.ActionBar.d2) obj3;
-                by0 by0Var = (by0) obj2;
-                ((org.telegram.ui.ActionBar.d2) obj4).dismiss();
-                if (((Boolean) obj).booleanValue()) {
-                    d2Var.dismiss();
-                    return;
-                }
-                by0Var.setErrorText(".");
-                AndroidUtilities.shakeViewSpring(by0Var, -6.0f);
-                BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                AndroidUtilities.showKeyboard(by0Var);
-                return;
-            default:
-                org.telegram.ui.web.c1 c1Var = (org.telegram.ui.web.c1) obj4;
-                String str2 = (String) obj3;
-                j7 j7Var = (j7) obj2;
-                Boolean bool = (Boolean) obj;
-                c1Var.getClass();
-                try {
-                    JSONObject jSONObject = new JSONObject();
-                    if (bool.booleanValue()) {
-                        if (TextUtils.isEmpty(str2)) {
-                            str = "removed";
-                        } else {
-                            str = "updated";
-                        }
-                    } else {
-                        str = "failed";
-                    }
-                    jSONObject.put("status", str);
-                    c1Var.z(j7Var, "biometry_token_updated", jSONObject);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
+            }
         }
+    }
+
+    public final void a() {
+        int i10;
+        int i11 = 0;
+        float f7 = 0.0f;
+        while (true) {
+            aa.a[] aVarArr = this.f14967e;
+            if (i11 < aVarArr.length) {
+                aa.a aVar = aVarArr[i11];
+                if (aVar != null) {
+                    jh.b bVar = (jh.b) aVar.f371b;
+                    float f10 = ((le.b) aVar.f372c).f15368e;
+                    float f11 = ((le.b) aVar.d).f15368e;
+                    if (f10 > 0.0f) {
+                        i10 = 0;
+                    } else {
+                        i10 = 8;
+                    }
+                    bVar.setVisibility(i10);
+                    bVar.setAlpha(f10);
+                    bVar.setScaleX(AndroidUtilities.lerp(0.7f, 1.0f, f10));
+                    bVar.setScaleY(AndroidUtilities.lerp(0.7f, 1.0f, f10));
+                    if (i11 != 0) {
+                        bVar.setTranslationY(((1.0f - f10) * AndroidUtilities.dp(80.0f)) - f7);
+                    }
+                    f7 += (AndroidUtilities.dp((f11 * 10.0f) + 10.0f) + AndroidUtilities.dp(44.0f)) * f10;
+                }
+                i11++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    public final n1 b(int i10) {
+        n1[] n1VarArr = this.f14968f;
+        if (n1VarArr[i10] == 0) {
+            ?? obj = new Object();
+            obj.f2219a = 0;
+            obj.f2220b = false;
+            obj.f2221c = true;
+            n1VarArr[i10] = obj;
+        }
+        return n1VarArr[i10];
+    }
+
+    public final void c(int i10, int i11, boolean z10) {
+        boolean z11;
+        b(i10).f2219a = i11;
+        aa.a aVar = this.f14967e[i10];
+        if (aVar != null) {
+            ((jh.b) aVar.f371b).a(i11, z10);
+            le.b bVar = (le.b) aVar.d;
+            if (i11 > 0) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            bVar.a(z11, z10);
+        }
+    }
+
+    public final void d(boolean z10) {
+        b(1).f2220b = z10;
+        aa.a aVar = this.f14967e[1];
+        if (aVar != null) {
+            ((jh.b) aVar.f371b).c(z10, true);
+        }
+    }
+
+    public final void e(int i10, boolean z10, boolean z11) {
+        Interpolator interpolator;
+        long j3;
+        Interpolator interpolator2;
+        long j10;
+        int i11;
+        int i12;
+        aa.a[] aVarArr = this.f14967e;
+        aa.a aVar = aVarArr[i10];
+        if (aVar == null && !z10) {
+            return;
+        }
+        if (aVar == null) {
+            int i13 = i10 << 16;
+            int i14 = i13 | 1;
+            if (i10 == 0) {
+                interpolator = pr.h;
+            } else {
+                interpolator = ke.a.f14900a;
+            }
+            if (i10 == 0) {
+                j3 = 300;
+            } else {
+                j3 = 280;
+            }
+            le.b bVar = new le.b(i14, this, interpolator, j3, false);
+            int i15 = i13 | 2;
+            if (i10 == 0) {
+                interpolator2 = pr.h;
+            } else {
+                interpolator2 = ke.a.f14900a;
+            }
+            Interpolator interpolator3 = interpolator2;
+            if (i10 == 0) {
+                j10 = 300;
+            } else {
+                j10 = 280;
+            }
+            le.b bVar2 = new le.b(i15, this, interpolator3, j10, false);
+            if (i10 == 0) {
+                i11 = 50;
+                i12 = 32;
+            } else {
+                i11 = 56;
+                i12 = 48;
+            }
+            Context context = getContext();
+            int i16 = f14963s[i10];
+            f6 f6Var = this.f14965b;
+            jh.b bVar3 = new jh.b(context, f6Var);
+            jh.a d = jh.a.d(context, this.d, this.f14966c, f6Var, i16, i12);
+            bVar3.f13728b = d;
+            bVar3.addView(d, x5.e(i11, i11, 80));
+            d.setIconPadding(AndroidUtilities.dp(2.0f));
+            z5.b(bVar3, 0.13f, 2.0f);
+            float f7 = i11 / 2.0f;
+            bVar3.setPivotX(AndroidUtilities.dp(f7));
+            bVar3.setPivotY(AndroidUtilities.dp(f7 + 8.0f));
+            bVar3.setVisibility(8);
+            bVar3.setContentDescription(this.f14964a[i10]);
+            bVar3.setOnClickListener(new o4(this, i10, 4));
+            bVar3.setOnLongClickListener(new g(this, i10, 0));
+            if (i10 == 6) {
+                jh.a aVar2 = bVar3.f13728b;
+                aVar2.h = -1.0f;
+                aVar2.a();
+            }
+            boolean z12 = true;
+            if (i10 == 1) {
+                bVar3.d = true;
+                vq vqVar = bVar3.f13729c;
+                if (vqVar != null) {
+                    vqVar.setReverse(true);
+                }
+            }
+            addView(bVar3, x5.e(i11, i11 + 8, this.f14970r));
+            aVarArr[i10] = new aa.a(bVar3, bVar, bVar2, false, 25);
+            n1 n1Var = this.f14968f[i10];
+            if (n1Var != null) {
+                bVar3.a(n1Var.f2219a, false);
+                bVar.a(false, false);
+                if (n1Var.f2219a <= 0) {
+                    z12 = false;
+                }
+                bVar2.a(z12, false);
+                bVar3.c(n1Var.f2220b, false);
+                bVar3.b(n1Var.f2221c, false);
+            }
+            a();
+        }
+        ((le.b) aVarArr[i10].f372c).a(z10, z11);
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    public void setGravity(int i10) {
+        this.f14970r = i10;
+    }
+
+    public void setOnClickListener(a aVar) {
+        this.h = aVar;
+    }
+
+    public void setOnLongClickListener(b bVar) {
+        this.f14969n = bVar;
+    }
+
+    @Override
+    public final void z(float f7, int i10) {
     }
 }

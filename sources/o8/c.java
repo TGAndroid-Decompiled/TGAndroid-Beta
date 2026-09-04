@@ -1,132 +1,47 @@
 package o8;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.RemoteException;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.concurrent.atomic.AtomicInteger;
-public final class c {
-    public static final HashMap f16449o = new HashMap();
-    public final Context f16450a;
-    public final f0 f16451b;
-    public final String f16452c;
-    public boolean f16454g;
-    public final Intent h;
-    public final j0 f16455i;
-    public hf.a f16459m;
-    public IInterface f16460n;
-    public final ArrayList d = new ArrayList();
-    public final HashSet e = new HashSet();
-    public final Object f16453f = new Object();
-    public final h0 f16457k = new IBinder.DeathRecipient() {
-        @Override
-        public final void binderDied() {
-            c cVar = c.this;
-            int i10 = 0;
-            cVar.f16451b.b("reportBinderDeath", new Object[0]);
-            if (cVar.f16456j.get() == null) {
-                cVar.f16451b.b("%s : Binder has died.", cVar.f16452c);
-                ArrayList arrayList = cVar.d;
-                int size = arrayList.size();
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((g0) obj).a(new RemoteException(String.valueOf(cVar.f16452c).concat(" : Binder has died.")));
-                }
-                cVar.d.clear();
-                synchronized (cVar.f16453f) {
-                    cVar.e();
-                }
-                return;
-            }
-            throw new ClassCastException();
-        }
-    };
-    public final AtomicInteger f16458l = new AtomicInteger(0);
-    public final WeakReference f16456j = new WeakReference(null);
-
-    public c(Context context, f0 f0Var, String str, Intent intent, j0 j0Var) {
-        this.f16450a = context;
-        this.f16451b = f0Var;
-        this.f16452c = str;
-        this.h = intent;
-        this.f16455i = j0Var;
+import android.os.Parcel;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.api.Status;
+public abstract class c extends b8.b implements d {
+    public c() {
+        super("com.google.android.gms.signin.internal.ISignInCallbacks", 6);
     }
 
-    public static void b(c cVar, g0 g0Var) {
-        IInterface iInterface = cVar.f16460n;
-        f0 f0Var = cVar.f16451b;
-        ArrayList arrayList = cVar.d;
-        int i10 = 0;
-        if (iInterface == null && !cVar.f16454g) {
-            f0Var.b("Initiate binding to the service.", new Object[0]);
-            arrayList.add(g0Var);
-            hf.a aVar = new hf.a(cVar, 2);
-            cVar.f16459m = aVar;
-            cVar.f16454g = true;
-            if (!cVar.f16450a.bindService(cVar.h, aVar, 1)) {
-                f0Var.b("Failed to bind to the service.", new Object[0]);
-                cVar.f16454g = false;
-                int size = arrayList.size();
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((g0) obj).a(new RuntimeException("Failed to bind to the service."));
-                }
-                arrayList.clear();
-            }
-        } else if (cVar.f16454g) {
-            f0Var.b("Waiting to bind to the service.", new Object[0]);
-            arrayList.add(g0Var);
-        } else {
-            g0Var.run();
+    @Override
+    public final boolean H0(int i10, Parcel parcel, Parcel parcel2) {
+        switch (i10) {
+            case 3:
+                k6.a aVar = (k6.a) k7.a.a(parcel, k6.a.CREATOR);
+                b bVar = (b) k7.a.a(parcel, b.CREATOR);
+                k7.a.b(parcel);
+                break;
+            case 4:
+                Status status = (Status) k7.a.a(parcel, Status.CREATOR);
+                k7.a.b(parcel);
+                break;
+            case 5:
+            default:
+                return false;
+            case 6:
+                Status status2 = (Status) k7.a.a(parcel, Status.CREATOR);
+                k7.a.b(parcel);
+                break;
+            case 7:
+                Status status3 = (Status) k7.a.a(parcel, Status.CREATOR);
+                GoogleSignInAccount googleSignInAccount = (GoogleSignInAccount) k7.a.a(parcel, GoogleSignInAccount.CREATOR);
+                k7.a.b(parcel);
+                break;
+            case 8:
+                k7.a.b(parcel);
+                B((h) k7.a.a(parcel, h.CREATOR));
+                break;
+            case 9:
+                f fVar = (f) k7.a.a(parcel, f.CREATOR);
+                k7.a.b(parcel);
+                break;
         }
-    }
-
-    public final Handler a() {
-        Handler handler;
-        HashMap hashMap = f16449o;
-        synchronized (hashMap) {
-            try {
-                if (!hashMap.containsKey(this.f16452c)) {
-                    HandlerThread handlerThread = new HandlerThread(this.f16452c, 10);
-                    handlerThread.start();
-                    hashMap.put(this.f16452c, new Handler(handlerThread.getLooper()));
-                }
-                handler = (Handler) hashMap.get(this.f16452c);
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        return handler;
-    }
-
-    public final void c(g0 g0Var, TaskCompletionSource taskCompletionSource) {
-        a().post(new i0(this, g0Var.c(), taskCompletionSource, g0Var));
-    }
-
-    public final void d(TaskCompletionSource taskCompletionSource) {
-        synchronized (this.f16453f) {
-            this.e.remove(taskCompletionSource);
-        }
-        a().post(new b(this, 1));
-    }
-
-    public final void e() {
-        HashSet hashSet = this.e;
-        Iterator it = hashSet.iterator();
-        while (it.hasNext()) {
-            ((TaskCompletionSource) it.next()).trySetException(new RemoteException(String.valueOf(this.f16452c).concat(" : Binder has died.")));
-        }
-        hashSet.clear();
+        parcel2.writeNoException();
+        return true;
     }
 }

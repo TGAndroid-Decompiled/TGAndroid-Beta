@@ -1,18 +1,16 @@
 package p2;
-
-import org.json.JSONObject;
 public final class k {
-    public final String f41023a;
-    public final long f41024b;
-    public final String f41025c;
-    public final String d;
+    public final long f43709a;
+    public final boolean f43710b;
+    public final long f43711c;
+    public final long d;
+    public final boolean f43712e;
 
-    public k(JSONObject jSONObject) {
-        this.d = jSONObject.optString("billingPeriod");
-        this.f41025c = jSONObject.optString("priceCurrencyCode");
-        this.f41023a = jSONObject.optString("formattedPrice");
-        this.f41024b = jSONObject.optLong("priceAmountMicros");
-        jSONObject.optInt("recurrenceMode");
-        jSONObject.optInt("billingCycleCount");
+    public k(long j3, boolean z10, long j10, long j11, boolean z11) {
+        this.f43709a = j3;
+        this.f43710b = z10;
+        this.f43711c = j10;
+        this.d = j11;
+        this.f43712e = z11;
     }
 }

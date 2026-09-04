@@ -1,103 +1,55 @@
 package h6;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.util.Log;
-import b6.i0;
-import b6.m;
-import j$.util.concurrent.ConcurrentHashMap;
-import java.util.NoSuchElementException;
-import java.util.concurrent.Executor;
-import k6.b;
-public final class a {
-    public static final Object f6995b = new Object();
-    public static volatile a f6996c;
-    public final ConcurrentHashMap f6997a = new ConcurrentHashMap();
+import g6.b;
+import java.util.Iterator;
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+public abstract class a {
+    public static final b f10891a = new b("MetadataUtils", null);
+    public static final String[] f10892b;
+    public static final String f10893c;
 
-    public static a a() {
-        if (f6996c == null) {
-            synchronized (f6995b) {
-                try {
-                    if (f6996c == null) {
-                        f6996c = new a();
-                    }
-                } finally {
-                }
-            }
-        }
-        a aVar = f6996c;
-        m.h(aVar);
-        return aVar;
+    static {
+        String[] strArr = {"Z", "+hh", "+hhmm", "+hh:mm"};
+        f10892b = strArr;
+        f10893c = "yyyyMMdd'T'HHmmss".concat(String.valueOf(strArr[0]));
     }
 
-    public final void b(Context context, ServiceConnection serviceConnection) {
-        if (!(serviceConnection instanceof i0)) {
-            ConcurrentHashMap concurrentHashMap = this.f6997a;
-            if (concurrentHashMap.containsKey(serviceConnection)) {
-                try {
-                    try {
-                        context.unbindService((ServiceConnection) concurrentHashMap.get(serviceConnection));
-                    } catch (IllegalArgumentException | IllegalStateException | NoSuchElementException unused) {
-                    }
-                    return;
-                } finally {
-                    concurrentHashMap.remove(serviceConnection);
-                }
+    public static java.util.Calendar a(java.lang.String r8) {
+        throw new UnsupportedOperationException("Method not decompiled: h6.a.a(java.lang.String):java.util.Calendar");
+    }
+
+    public static JSONArray b(List list) {
+        list.getClass();
+        JSONArray jSONArray = new JSONArray();
+        Iterator it = list.iterator();
+        while (it.hasNext()) {
+            m6.a aVar = (m6.a) it.next();
+            aVar.getClass();
+            JSONObject jSONObject = new JSONObject();
+            try {
+                jSONObject.put("url", aVar.f16126b.toString());
+                jSONObject.put("width", aVar.f16127c);
+                jSONObject.put("height", aVar.d);
+            } catch (JSONException unused) {
             }
+            jSONArray.put(jSONObject);
         }
+        return jSONArray;
+    }
+
+    public static void c(List list, JSONArray jSONArray) {
         try {
-            context.unbindService(serviceConnection);
-        } catch (IllegalArgumentException | IllegalStateException | NoSuchElementException unused2) {
-        }
-    }
-
-    public final boolean c(Context context, String str, Intent intent, ServiceConnection serviceConnection, int i10, Executor executor) {
-        boolean bindService;
-        ComponentName component = intent.getComponent();
-        if (component != null) {
-            String packageName = component.getPackageName();
-            "com.google.android.gms".equals(packageName);
-            try {
-                if ((((Context) b.a(context).f1772b).getPackageManager().getApplicationInfo(packageName, 0).flags & 2097152) != 0) {
-                    Log.w("ConnectionTracker", "Attempted to bind to a service in a STOPPED package.");
-                    return false;
+            list.clear();
+            for (int i10 = 0; i10 < jSONArray.length(); i10++) {
+                try {
+                    list.add(new m6.a(jSONArray.getJSONObject(i10)));
+                } catch (IllegalArgumentException unused) {
                 }
-            } catch (PackageManager.NameNotFoundException unused) {
             }
+        } catch (JSONException unused2) {
         }
-        if (!(serviceConnection instanceof i0)) {
-            ConcurrentHashMap concurrentHashMap = this.f6997a;
-            ServiceConnection serviceConnection2 = (ServiceConnection) concurrentHashMap.putIfAbsent(serviceConnection, serviceConnection);
-            if (serviceConnection2 != null && serviceConnection != serviceConnection2) {
-                Log.w("ConnectionTracker", String.format("Duplicate binding with the same ServiceConnection: %s, %s, %s.", serviceConnection, str, intent.getAction()));
-            }
-            if (executor == null) {
-                executor = null;
-            }
-            try {
-                if (Build.VERSION.SDK_INT >= 29 && executor != null) {
-                    bindService = context.bindService(intent, i10, executor, serviceConnection);
-                } else {
-                    bindService = context.bindService(intent, serviceConnection, i10);
-                }
-                if (!bindService) {
-                    return false;
-                }
-                return bindService;
-            } finally {
-                concurrentHashMap.remove(serviceConnection, serviceConnection);
-            }
-        }
-        if (executor == null) {
-            executor = null;
-        }
-        if (Build.VERSION.SDK_INT >= 29 && executor != null) {
-            return context.bindService(intent, i10, executor, serviceConnection);
-        }
-        return context.bindService(intent, serviceConnection, i10);
     }
 }

@@ -4,20 +4,18 @@ import android.content.Context;
 import android.os.CancellationSignal;
 import android.os.Handler;
 import android.os.Looper;
-import c1.e;
 import java.util.concurrent.Executor;
-import kotlin.jvm.internal.j;
 import v0.i;
 public final class d extends b1.d {
-    public final Context e;
-    public i f5057f;
-    public Executor f5058g;
+    public final Context f8716e;
+    public i f8717f;
+    public Executor f8718g;
     public CancellationSignal h;
-    public final e f5059i;
+    public final c1.d f8719i;
 
     public d(Context context) {
-        j.e(context, "context");
-        this.e = context;
-        this.f5059i = new e(this, new Handler(Looper.getMainLooper()), 2);
+        kotlin.jvm.internal.i.e(context, "context");
+        this.f8716e = context;
+        this.f8719i = new c1.d(this, new Handler(Looper.getMainLooper()), 2);
     }
 }

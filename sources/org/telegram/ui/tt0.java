@@ -1,57 +1,57 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.util.Property;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.view.ViewTreeObserver;
-import org.telegram.messenger.AndroidUtilities;
-public final class tt0 implements ViewTreeObserver.OnPreDrawListener {
-    public final ou0 f38587a;
-    public final Integer f38588b;
-    public final PhotoViewer f38589c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class tt0 extends AnimatorListenerAdapter {
+    public final int f40827a;
+    public final ut0 f40828b;
 
-    public tt0(PhotoViewer photoViewer, ou0 ou0Var, Integer num) {
-        this.f38589c = photoViewer;
-        this.f38587a = ou0Var;
-        this.f38588b = num;
+    public tt0(ut0 ut0Var, int i10) {
+        this.f40828b = ut0Var;
+        this.f40827a = i10;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        PhotoViewer photoViewer = this.f38589c;
-        photoViewer.f31697d0.getViewTreeObserver().removeOnPreDrawListener(this);
-        photoViewer.C.setTranslationY(-AndroidUtilities.dp(32.0f));
-        ViewPropertyAnimator duration = photoViewer.C.animate().alpha(1.0f).translationY(0.0f).setDuration(150L);
-        org.telegram.ui.Components.mr mrVar = org.telegram.ui.Components.mr.f27122f;
-        duration.setInterpolator(mrVar).start();
-        photoViewer.K0.setTranslationY(-AndroidUtilities.dp(32.0f));
-        photoViewer.K0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(mrVar).start();
-        photoViewer.L0.setTranslationY(-AndroidUtilities.dp(32.0f));
-        photoViewer.L0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(mrVar).start();
-        photoViewer.M0.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.M0.animate().alpha(1.0f).setDuration(150L).setInterpolator(mrVar).start();
-        photoViewer.P0.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.P0.setAlpha(0.0f);
-        photoViewer.P0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(mrVar).start();
-        photoViewer.f31807p3.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.f31807p3.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(mrVar).start();
-        photoViewer.f31679b0.setAlpha(0.0f);
-        photoViewer.I0.setAlpha(0);
-        photoViewer.f31764k4 = 4;
-        photoViewer.f31679b0.invalidate();
-        AnimatorSet animatorSet = new AnimatorSet();
-        dg.s1 s1Var = photoViewer.M0;
-        ObjectAnimator duration2 = ObjectAnimator.ofFloat(s1Var, View.TRANSLATION_Y, s1Var.getTranslationY(), 0.0f).setDuration(220L);
-        duration2.setInterpolator(mrVar);
-        dg.s1 s1Var2 = photoViewer.M0;
-        Property property = View.ALPHA;
-        ObjectAnimator duration3 = ObjectAnimator.ofFloat(s1Var2, property, 1.0f).setDuration(220L);
-        duration3.setInterpolator(mrVar);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer.f31679b0, property, 0.0f, 1.0f).setDuration(220L), ObjectAnimator.ofFloat(photoViewer.f31724g0, property, 0.0f, 1.0f).setDuration(220L), duration2, duration3);
-        animatorSet.addListener(new st0(this));
-        animatorSet.start();
-        return true;
+    public final void onAnimationEnd(Animator animator) {
+        if (this.f40828b.f41218b.f33600j8) {
+            PhotoViewer photoViewer = this.f40828b.f41218b;
+            if (photoViewer.f33662r1) {
+                photoViewer.B3();
+            }
+        }
+        if (this.f40827a == 3) {
+            PhotoViewer photoViewer2 = this.f40828b.f41218b;
+            photoViewer2.G2(photoViewer2.P4, false, true, true);
+        }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        int i10;
+        PhotoViewer photoViewer = this.f40828b.f41218b;
+        photoViewer.P0.setVisibility(0);
+        if (photoViewer.E3()) {
+            photoViewer.f33626n0.setVisibility(0);
+        } else {
+            photoViewer.S0.setVisibility(0);
+        }
+        photoViewer.F.setVisibility(0);
+        if (photoViewer.f33586i2) {
+            qu0 qu0Var = photoViewer.Q1;
+            if (qu0Var.getTag() != null) {
+                i10 = 0;
+            } else {
+                i10 = 4;
+            }
+            qu0Var.setVisibility(i10);
+        }
+        if (!photoViewer.f33541d2 && !photoViewer.f33551e2) {
+            int i11 = photoViewer.f33532c2;
+            if ((i11 == 0 || i11 == 4 || ((i11 == 2 || i11 == 5) && photoViewer.f33573g7.size() > 1)) && !photoViewer.f33562f4) {
+                photoViewer.N0.setVisibility(0);
+                photoViewer.O0.setVisibility(0);
+                photoViewer.s3();
+            }
+        }
     }
 }

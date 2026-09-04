@@ -1,13 +1,22 @@
 package org.telegram.ui;
-public final class nt implements Runnable {
-    public final rt f36580a;
 
-    public nt(rt rtVar) {
-        this.f36580a = rtVar;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class nt extends org.telegram.ui.ActionBar.n1 {
+    public final ot f39017o;
+
+    public nt(ot otVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f39017o = otVar;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.nt.run():void");
+    public final void dismiss() {
+        d(true);
+        st stVar = this.f39017o.f39309a;
+        stVar.f40537k = null;
+        stVar.K = false;
+        if (stVar.R) {
+            stVar.n();
+        }
     }
 }

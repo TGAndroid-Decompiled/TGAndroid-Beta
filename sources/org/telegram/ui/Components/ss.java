@@ -1,57 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ss extends AnimatorListenerAdapter {
-    public final int f28799a;
-    public final f2.l1 f28800b;
-    public final org.telegram.ui.Cells.q2 f28801c;
-    public final xs d;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public abstract class ss extends v51 {
+    public final int N;
+    public final int O;
+    public final ArrayList P;
+    public final ArrayList Q;
+    public final ArrayList R;
+    public final ArrayList S;
+    public boolean T;
+    public boolean U;
+    public final ArrayList V;
+    public boolean W;
+    public boolean X;
+    public boolean Y;
+    public int Z;
+    public int f30405a0;
+    public String f30406b0;
+    public final wp f30407c0;
 
-    public ss(xs xsVar, f2.l1 l1Var, org.telegram.ui.Cells.q2 q2Var, int i10) {
-        this.f28799a = i10;
-        this.d = xsVar;
-        this.f28800b = l1Var;
-        this.f28801c = q2Var;
+    public ss(ll0 ll0Var, Context context, int i10, int i11) {
+        super(ll0Var, context, i10, 0, false, null, null);
+        this.P = new ArrayList();
+        this.Q = new ArrayList();
+        this.R = new ArrayList();
+        this.S = new ArrayList();
+        this.V = new ArrayList();
+        tn0 tn0Var = (tn0) this;
+        this.f30407c0 = new wp(tn0Var, 6);
+        this.f31136s = new d(tn0Var, 9);
+        this.N = i10;
+        this.O = i11;
+        N(false);
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f28799a) {
-            case 0:
-                animator.removeAllListeners();
-                org.telegram.ui.Cells.q2 q2Var = this.f28801c;
-                q2Var.setClipProgress(0.0f);
-                q2Var.setElevation(0.0f);
-                xs xsVar = this.d;
-                f2.l1 l1Var = this.f28800b;
-                xsVar.d(l1Var);
-                xsVar.f30707x.remove(l1Var);
-                xsVar.A();
-                return;
-            default:
-                animator.removeAllListeners();
-                org.telegram.ui.Cells.q2 q2Var2 = this.f28801c;
-                q2Var2.setClipProgress(0.0f);
-                q2Var2.setElevation(0.0f);
-                xs xsVar2 = this.d;
-                f2.l1 l1Var2 = this.f28800b;
-                xsVar2.d(l1Var2);
-                xsVar2.f30707x.remove(l1Var2);
-                xsVar2.A();
-                return;
-        }
+    public final void V(boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ss.V(boolean):void");
     }
 
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.f28799a) {
-            case 0:
-                this.d.y();
-                return;
-            default:
-                this.d.y();
-                return;
+    public final void W() {
+        ArrayList arrayList = new ArrayList();
+        int i10 = this.N;
+        ArrayList<TLRPC.Dialog> allDialogs = MessagesController.getInstance(i10).getAllDialogs();
+        int size = allDialogs.size();
+        int i11 = 0;
+        while (i11 < size) {
+            TLRPC.Dialog dialog = allDialogs.get(i11);
+            i11++;
+            TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-dialog.f19873id));
+            if (chat != null && ChatObject.isChannelAndNotMegaGroup(chat) && ChatObject.isPublic(chat) && !ChatObject.isNotInChat(chat)) {
+                arrayList.add(chat);
+                if (arrayList.size() >= 100) {
+                    break;
+                }
+            }
         }
+        ArrayList arrayList2 = this.V;
+        arrayList2.clear();
+        arrayList2.addAll(arrayList);
     }
 }

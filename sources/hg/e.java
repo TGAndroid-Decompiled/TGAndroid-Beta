@@ -1,374 +1,543 @@
 package hg;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import cg.h0;
-import cg.n;
-import f2.l1;
-import ig.e0;
-import ig.f0;
-import ig.s;
-import ig.v;
-import java.util.Date;
+import j$.util.Objects;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.Emoji;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Components.p9;
-import org.telegram.ui.Components.ql0;
-import org.telegram.ui.Components.z8;
-import org.telegram.ui.ai;
-public abstract class e extends ql0 {
-    public final f6 f7068c;
-    public boolean d;
-    public p2 e;
-    public TLRPC.TL_payments_checkedGiftCode f7069f;
-    public String h;
-    public FrameLayout f7070n;
+import org.telegram.ui.Cells.a7;
+import org.telegram.ui.Cells.c3;
+import org.telegram.ui.Cells.l4;
+import org.telegram.ui.Cells.o4;
+import org.telegram.ui.Cells.p6;
+import org.telegram.ui.Cells.q4;
+import org.telegram.ui.Cells.r8;
+import org.telegram.ui.Cells.u3;
+import org.telegram.ui.Cells.za;
+import org.telegram.ui.Components.hl0;
+import org.telegram.ui.Components.jn;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.rq;
+import w7.x5;
+public abstract class e extends hl0 {
+    public final boolean E;
+    public int F;
+    public final boolean G;
+    public boolean H;
+    public boolean I;
+    public boolean J;
+    public boolean K;
+    public final int f11021r = UserConfig.selectedAccount;
+    public final Context f11022s;
+    public final int v;
+    public final boolean f11023w;
+    public final a0.i f11024x;
+    public ArrayList f11025y;
 
-    public e(f6 f6Var) {
-        this.f7068c = f6Var;
+    public e(Context context, int i10, boolean z10, a0.i iVar, int i11) {
+        boolean z11;
+        this.f11022s = context;
+        this.v = i10;
+        this.f11023w = z10;
+        this.f11024x = iVar;
+        if (i11 != 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.E = z11;
+        this.G = i11 == 2;
     }
 
     @Override
-    public final boolean D(l1 l1Var) {
-        return false;
+    public final String F(int i10) {
+        ArrayList<String> arrayList;
+        if (this.F != 2 && !this.I) {
+            int i11 = this.f11021r;
+            int i12 = this.v;
+            ContactsController contactsController = ContactsController.getInstance(i11);
+            if (i12 == 2) {
+                arrayList = contactsController.sortedUsersMutualSectionsArray;
+            } else {
+                arrayList = contactsController.sortedUsersSectionsArray;
+            }
+            int S = S(i10);
+            if (S == -1) {
+                S = arrayList.size() - 1;
+            }
+            if (i12 != 0 && !this.E) {
+                if (S >= 0 && S < arrayList.size()) {
+                    return arrayList.get(S);
+                }
+            } else if (S > 0 && S <= arrayList.size()) {
+                return arrayList.get(S - 1);
+            }
+        }
+        return null;
     }
 
-    public abstract void E();
-
-    public abstract void F(TLObject tLObject);
-
     @Override
-    public final int h() {
-        return 5;
+    public final void G(ll0 ll0Var, float f7, int[] iArr) {
+        iArr[0] = (int) (h() * f7);
+        iArr[1] = 0;
     }
 
     @Override
-    public final int j(int i10) {
-        if (i10 != 0) {
-            int i11 = 1;
-            if (i10 != 1) {
-                i11 = 2;
-                if (i10 != 2) {
-                    i11 = 3;
-                    if (i10 != 3) {
-                        i11 = 4;
-                        if (i10 != 4) {
-                            return 5;
-                        }
-                    }
+    public final int M(int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: hg.e.M(int):int");
+    }
+
+    @Override
+    public final int N(int i10, int i11) {
+        return Objects.hash(Integer.valueOf(i10 * (-49612)), O(i10, i11));
+    }
+
+    @Override
+    public final Object O(int i10, int i11) {
+        HashMap<String, ArrayList<TLRPC.TL_contact>> hashMap;
+        ArrayList<String> arrayList;
+        int i12;
+        boolean z10 = this.K;
+        int i13 = this.f11021r;
+        if (z10 && i10 == 1 && i11 > 1 && i11 - 2 < ContactsController.getInstance(i13).phoneBookContacts.size()) {
+            return ContactsController.getInstance(i13).phoneBookContacts.get(i12);
+        }
+        if (P(i10, i11) == 2) {
+            return "Header";
+        }
+        int i14 = this.v;
+        ContactsController contactsController = ContactsController.getInstance(i13);
+        if (i14 == 2) {
+            hashMap = contactsController.usersMutualSectionsDict;
+        } else {
+            hashMap = contactsController.usersSectionsDict;
+        }
+        ContactsController contactsController2 = ContactsController.getInstance(i13);
+        if (i14 == 2) {
+            arrayList = contactsController2.sortedUsersMutualSectionsArray;
+        } else {
+            arrayList = contactsController2.sortedUsersSectionsArray;
+        }
+        if (i14 != 0 && !this.E) {
+            if (i10 < arrayList.size()) {
+                ArrayList<TLRPC.TL_contact> arrayList2 = hashMap.get(arrayList.get(i10));
+                if (i11 < arrayList2.size()) {
+                    return MessagesController.getInstance(i13).getUser(Long.valueOf(arrayList2.get(i11).user_id));
                 }
             }
-            return i11;
+            return null;
+        } else if (i10 == 0) {
+            return null;
+        } else {
+            if (this.F == 2) {
+                if (i10 == 1) {
+                    if (i11 >= this.f11025y.size()) {
+                        return null;
+                    }
+                    return MessagesController.getInstance(i13).getUser(Long.valueOf(((TLRPC.TL_contact) this.f11025y.get(i11)).user_id));
+                }
+            } else {
+                int i15 = i10 - 1;
+                if (i15 < arrayList.size()) {
+                    ArrayList<TLRPC.TL_contact> arrayList3 = hashMap.get(arrayList.get(i15));
+                    if (i11 >= arrayList3.size()) {
+                        return null;
+                    }
+                    return MessagesController.getInstance(i13).getUser(Long.valueOf(arrayList3.get(i11).user_id));
+                }
+            }
+            if (!this.f11023w || i11 < 0 || i11 >= ContactsController.getInstance(i13).phoneBookContacts.size()) {
+                return null;
+            }
+            return ContactsController.getInstance(i13).phoneBookContacts.get(i11);
         }
-        return 0;
     }
 
     @Override
-    public final void v(l1 l1Var, int i10) {
-        int i11;
+    public final int P(int r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: hg.e.P(int, int):int");
+    }
+
+    @Override
+    public final View T(int i10, View view) {
+        ArrayList<String> arrayList;
+        View view2;
+        int i11 = this.f11021r;
+        int i12 = this.v;
+        ContactsController contactsController = ContactsController.getInstance(i11);
+        if (i12 == 2) {
+            HashMap<String, ArrayList<TLRPC.TL_contact>> hashMap = contactsController.usersMutualSectionsDict;
+        } else {
+            HashMap<String, ArrayList<TLRPC.TL_contact>> hashMap2 = contactsController.usersSectionsDict;
+        }
+        ContactsController contactsController2 = ContactsController.getInstance(i11);
+        if (i12 == 2) {
+            arrayList = contactsController2.sortedUsersMutualSectionsArray;
+        } else {
+            arrayList = contactsController2.sortedUsersSectionsArray;
+        }
+        if (view == null) {
+            ?? frameLayout = new FrameLayout(this.f11022s);
+            frameLayout.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(76.0f), AndroidUtilities.dp(64.0f)));
+            TextView textView = new TextView(frameLayout.getContext());
+            frameLayout.f22490a = textView;
+            com.google.android.gms.internal.vision.e2.m(22.0f, 1, textView);
+            com.google.android.gms.internal.vision.e2.p(j6.B6, null, false, textView, 17);
+            frameLayout.addView(textView, x5.d(-1, -1.0f, 119, 12.0f, 0.0f, 0.0f, 0.0f));
+            view2 = frameLayout;
+        } else {
+            view2 = view;
+        }
+        q4 q4Var = (q4) view2;
+        if (this.F != 2 && !this.H && !this.I) {
+            if (i12 != 0 && !this.E) {
+                if (i10 < arrayList.size()) {
+                    q4Var.setLetter(arrayList.get(i10));
+                    return view2;
+                }
+                q4Var.setLetter("");
+                return view2;
+            } else if (i10 == 0) {
+                q4Var.setLetter("");
+                return view2;
+            } else {
+                int i13 = i10 - 1;
+                if (i13 < arrayList.size()) {
+                    q4Var.setLetter(arrayList.get(i13));
+                    return view2;
+                }
+                q4Var.setLetter("");
+                return view2;
+            }
+        }
+        q4Var.setLetter("");
+        return view2;
+    }
+
+    @Override
+    public final boolean V(int i10, int i11, s4.c1 c1Var) {
+        HashMap<String, ArrayList<TLRPC.TL_contact>> hashMap;
+        ArrayList<String> arrayList;
+        if (this.K) {
+            if (i10 != 1 || i11 <= 1) {
+                return false;
+            }
+        } else {
+            int i12 = this.v;
+            int i13 = this.f11021r;
+            ContactsController contactsController = ContactsController.getInstance(i13);
+            if (i12 == 2) {
+                hashMap = contactsController.usersMutualSectionsDict;
+            } else {
+                hashMap = contactsController.usersSectionsDict;
+            }
+            ContactsController contactsController2 = ContactsController.getInstance(i13);
+            if (i12 == 2) {
+                arrayList = contactsController2.sortedUsersMutualSectionsArray;
+            } else {
+                arrayList = contactsController2.sortedUsersSectionsArray;
+            }
+            boolean z10 = this.E;
+            if (i12 != 0 && !z10) {
+                if (this.I || i11 >= hashMap.get(arrayList.get(i10)).size()) {
+                    return false;
+                }
+            } else if (i10 == 0) {
+                if (z10) {
+                    if (i11 >= 1) {
+                        return false;
+                    }
+                } else if (this.f11023w) {
+                    if (i11 >= 2) {
+                        return false;
+                    }
+                } else if (i11 >= 3) {
+                    return false;
+                }
+            } else if (!this.I) {
+                if (this.F == 2) {
+                    if (i10 == 1 && i11 >= this.f11025y.size()) {
+                        return false;
+                    }
+                } else {
+                    int i14 = i10 - 1;
+                    if (i14 < arrayList.size() && i11 >= hashMap.get(arrayList.get(i14)).size()) {
+                        return false;
+                    }
+                }
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final void W(int i10, int i11, s4.c1 c1Var) {
+        HashMap<String, ArrayList<TLRPC.TL_contact>> hashMap;
+        ArrayList<String> arrayList;
         int i12;
-        int i13;
-        char c3;
-        String formatPluralString;
-        String string;
-        int i14 = l1Var.f5777f;
-        View view = l1Var.f5774a;
-        if (i14 != 0) {
-            if (i14 != 1) {
-                if (i14 != 2) {
-                    if (i14 != 3) {
-                        if (i14 == 4) {
-                            ig.a aVar = (ig.a) view;
-                            aVar.setOkStyle(this.d);
-                            aVar.setOnClickListener(new n(7, this, aVar));
-                            TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = this.f7069f;
-                            if (tL_payments_checkedGiftCode.boost != null || tL_payments_checkedGiftCode.flags == -1) {
-                                aVar.e = false;
-                                ph.d dVar = aVar.f7470a;
-                                dVar.setShowZero(false);
-                                dVar.setEnabled(true);
-                                dVar.g(LocaleController.formatString("Close", R.string.Close, new Object[0]), false, true);
-                                aVar.setOnClickListener(new androidx.mediarouter.app.c(this, 9));
+        ArrayList<TLRPC.TL_contact> arrayList2;
+        float f7;
+        int i13 = c1Var.f45742f;
+        View view = c1Var.f45738a;
+        int i14 = 7;
+        boolean z10 = this.E;
+        int i15 = this.f11021r;
+        boolean z11 = true;
+        if (i13 != 0) {
+            if (i13 != 1) {
+                if (i13 != 2) {
+                    if (i13 != 4) {
+                        if (i13 != 7) {
+                            if (i13 == 8) {
+                                o4 o4Var = (o4) view;
+                                int i16 = i11 - 2;
+                                if (i16 >= 0 && i16 < ContactsController.getInstance(i15).phoneBookContacts.size()) {
+                                    o4Var.f22435f = ContactsController.getInstance(i15).phoneBookContacts.get(i16);
+                                    o4Var.h = null;
+                                    o4Var.a();
+                                    return;
+                                }
                                 return;
                             }
                             return;
                         }
-                        return;
-                    }
-                    f0 f0Var = (f0) view;
-                    f0Var.setTextGravity(17);
-                    f0Var.setTextColor(j6.w0(null, j6.G6, false));
-                    f0Var.setTopPadding(14);
-                    f0Var.setBottomPadding(15);
-                    TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode2 = this.f7069f;
-                    if (tL_payments_checkedGiftCode2.boost != null) {
-                        String str = this.h;
-                        if (str != null && !str.isEmpty()) {
-                            f0Var.setFixedSize(14);
-                            f0Var.setText(null);
+                        l4 l4Var = (l4) view;
+                        if (this.K && i11 == 1 && i10 == 1) {
+                            l4Var.setText(LocaleController.getString(R.string.InviteFriends));
+                            return;
+                        } else if (this.F == 1) {
+                            l4Var.setText(LocaleController.getString(R.string.SortedByName));
+                            return;
+                        } else {
+                            l4Var.setText(LocaleController.getString(R.string.SortedByLastSeen));
                             return;
                         }
-                        f0Var.setText(LocaleController.getString(R.string.BoostingLinkNotActivated));
-                        return;
-                    } else if (this.d) {
-                        if (tL_payments_checkedGiftCode2.to_id == -1) {
-                            string = LocaleController.getString(R.string.BoostingSendLinkToAnyone);
-                        } else {
-                            string = LocaleController.getString(R.string.BoostingSendLinkToFriends);
-                        }
-                        f0Var.setText(AndroidUtilities.replaceSingleTag(string, j6.f19941gc, 0, new c(this, 1), this.f7068c));
-                        return;
+                    }
+                    if (!this.J) {
+                        f7 = 96.0f;
                     } else {
-                        Date date = new Date(this.f7069f.used_date * 1000);
-                        f0Var.setText(LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date))));
-                        return;
+                        f7 = 25.0f;
                     }
-                }
-                e0 e0Var = (e0) view;
-                final TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode3 = this.f7069f;
-                final h0 h0Var = new h0(this, 11);
-                p9 p9Var = e0Var.h;
-                FrameLayout frameLayout = e0Var.f7497w;
-                p9 p9Var2 = e0Var.f7493f;
-                TextView textView = e0Var.f7490a;
-                TextView textView2 = e0Var.f7491b;
-                f6 f6Var = e0Var.f7494n;
-                Date date2 = new Date(tL_payments_checkedGiftCode3.date * 1000);
-                e0Var.e.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date2), LocaleController.getInstance().getFormatterDay().format(date2)));
-                TextView textView3 = e0Var.d;
-                if (tL_payments_checkedGiftCode3.via_giveaway) {
-                    i11 = j6.f20041m5;
-                } else {
-                    i11 = j6.f19987j5;
-                }
-                textView3.setTextColor(j6.v0(i11, f6Var));
-                TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_payments_checkedGiftCode3.from_id)));
-                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
-                if (tL_payments_checkedGiftCode3.via_giveaway) {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) "**");
-                    spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.BoostingGiveaway));
-                    spannableStringBuilder.append((CharSequence) "**");
-                    textView3.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder.toString(), j6.f19941gc, 0, new Runnable() {
-                        @Override
-                        public final void run() {
-                            switch (r3) {
-                                case 0:
-                                    h0Var.run(tL_payments_checkedGiftCode3);
-                                    return;
-                                default:
-                                    h0Var.run(tL_payments_checkedGiftCode3);
-                                    return;
-                            }
-                        }
-                    }, f6Var));
-                    textView3.setOnClickListener(new n(9, h0Var, tL_payments_checkedGiftCode3));
-                } else {
-                    if (isChannelAndNotMegaGroup) {
-                        i12 = R.string.BoostingYouWereSelected;
-                    } else {
-                        i12 = R.string.BoostingYouWereSelectedGroup;
-                    }
-                    textView3.setText(LocaleController.getString(i12));
-                    textView3.setOnClickListener(null);
-                }
-                int i15 = tL_payments_checkedGiftCode3.months;
-                if (i15 == 12) {
-                    i13 = 1;
-                    formatPluralString = LocaleController.formatPluralString("Years", 1, new Object[0]);
-                    c3 = 0;
-                } else {
-                    i13 = 1;
-                    c3 = 0;
-                    formatPluralString = LocaleController.formatPluralString("Months", i15, new Object[0]);
-                }
-                TextView textView4 = e0Var.f7492c;
-                int i16 = R.string.BoostingTelegramPremiumFor;
-                String str2 = formatPluralString;
-                Object[] objArr = new Object[i13];
-                objArr[c3] = str2;
-                textView4.setText(LocaleController.formatString("BoostingTelegramPremiumFor", i16, objArr));
-                if (chat != null) {
-                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-                    spannableStringBuilder2.append((CharSequence) "**");
-                    spannableStringBuilder2.append((CharSequence) chat.title);
-                    spannableStringBuilder2.append((CharSequence) "**");
-                    textView.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder2.toString(), j6.f19941gc, 0, new ff.c(16, h0Var, chat), f6Var), textView.getPaint().getFontMetricsInt(), false));
-                    p9Var2.e(chat, new z8(chat));
-                    frameLayout.setOnClickListener(new n(10, h0Var, chat));
-                } else {
-                    final TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tL_payments_checkedGiftCode3.from_id.user_id));
-                    textView.setText(Emoji.replaceEmoji(UserObject.getFirstName(user), textView.getPaint().getFontMetricsInt(), false));
-                    p9Var2.e(user, new z8(0, user));
-                    frameLayout.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view2) {
-                            switch (r3) {
-                                case 0:
-                                    h0Var.run(user);
-                                    return;
-                                default:
-                                    h0Var.run(user);
-                                    return;
-                            }
-                        }
-                    });
-                }
-                if (tL_payments_checkedGiftCode3.to_id == -1 && tL_payments_checkedGiftCode3.via_giveaway) {
-                    SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
-                    spannableStringBuilder3.append((CharSequence) "**");
-                    spannableStringBuilder3.append((CharSequence) LocaleController.getString(R.string.BoostingIncompleteGiveaway));
-                    spannableStringBuilder3.append((CharSequence) "**");
-                    textView3.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder3.toString(), j6.f19941gc, 0, new Runnable() {
-                        @Override
-                        public final void run() {
-                            switch (r3) {
-                                case 0:
-                                    h0Var.run(tL_payments_checkedGiftCode3);
-                                    return;
-                                default:
-                                    h0Var.run(tL_payments_checkedGiftCode3);
-                                    return;
-                            }
-                        }
-                    }, f6Var));
-                    textView2.setText(LocaleController.getString(R.string.BoostingNoRecipient));
-                    textView2.setTextColor(j6.v0(j6.f19987j5, f6Var));
-                    ((ViewGroup.MarginLayoutParams) textView2.getLayoutParams()).leftMargin = 0;
-                    ((ViewGroup.MarginLayoutParams) textView2.getLayoutParams()).rightMargin = 0;
-                    p9Var.setVisibility(8);
-                } else {
-                    final TLRPC.User user2 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tL_payments_checkedGiftCode3.to_id));
-                    if (user2 != null) {
-                        SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder();
-                        spannableStringBuilder4.append((CharSequence) "**");
-                        spannableStringBuilder4.append((CharSequence) UserObject.getFirstName(user2));
-                        spannableStringBuilder4.append((CharSequence) "**");
-                        textView2.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder4.toString(), j6.f19941gc, 0, new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r3) {
-                                    case 0:
-                                        h0Var.run(user2);
-                                        return;
-                                    default:
-                                        h0Var.run(user2);
-                                        return;
-                                }
-                            }
-                        }, f6Var), textView2.getPaint().getFontMetricsInt(), false));
-                        p9Var.e(user2, new z8(0, user2));
-                        e0Var.f7498x.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public final void onClick(View view2) {
-                                switch (r3) {
-                                    case 0:
-                                        h0Var.run(user2);
-                                        return;
-                                    default:
-                                        h0Var.run(user2);
-                                        return;
-                                }
-                            }
-                        });
-                    }
-                }
-                if (tL_payments_checkedGiftCode3.boost != null) {
-                    e0Var.f7499y.setVisibility(8);
+                    view.setPadding(0, AndroidUtilities.dp(f7), 0, AndroidUtilities.dp(18.0f));
                     return;
                 }
+                u3 u3Var = (u3) view;
+                int i17 = this.F;
+                if (i17 == 0) {
+                    u3Var.setText(LocaleController.getString(R.string.Contacts));
+                    return;
+                } else if (i17 == 1) {
+                    u3Var.setText(LocaleController.getString(R.string.SortedByName));
+                    return;
+                } else {
+                    u3Var.setText(LocaleController.getString(R.string.SortedByLastSeen));
+                    return;
+                }
+            }
+            r8 r8Var = (r8) view;
+            boolean z12 = this.f11023w;
+            if (!z12 && z10) {
+                int i18 = j6.il;
+                r8Var.e(i18, i18);
+            } else {
+                int i19 = j6.G6;
+                r8Var.e(i19, i19);
+            }
+            if (i10 == 0) {
+                if (z12) {
+                    if (i11 == 0) {
+                        r8Var.p(LocaleController.getString(R.string.InviteFriends), "", false, R.drawable.settings_invite, -14899731, -15431455, false);
+                        return;
+                    } else if (i11 == 1) {
+                        r8Var.p(LocaleController.getString(R.string.RecentCalls), "", false, R.drawable.settings_calls, -11154873, -14175180, false);
+                        return;
+                    } else {
+                        return;
+                    }
+                } else if (z10) {
+                    if (this.G) {
+                        r8Var.m(R.drawable.msg_link2, LocaleController.getString(R.string.ChannelInviteViaLink), false);
+                        return;
+                    }
+                    r8Var.m(R.drawable.msg_link2, LocaleController.getString(R.string.InviteToGroupByLink), false);
+                    return;
+                } else if (i11 == 0) {
+                    r8Var.p(LocaleController.getString(R.string.NewGroup), "", false, R.drawable.settings_group, -14899731, -15431455, false);
+                    return;
+                } else if (i11 == 1) {
+                    r8Var.p(LocaleController.getString(R.string.NewChannel), "", false, R.drawable.settings_channel, -11154873, -14175180, false);
+                    return;
+                } else {
+                    return;
+                }
+            }
+            ContactsController.Contact contact = ContactsController.getInstance(i15).phoneBookContacts.get(i11);
+            String str = contact.first_name;
+            if (str != null && contact.last_name != null) {
+                r8Var.i(contact.first_name + " " + contact.last_name, false);
+                return;
+            } else if (str != null && contact.last_name == null) {
+                r8Var.i(str, false);
+                return;
+            } else {
+                r8Var.i(contact.last_name, false);
                 return;
             }
-            v vVar = (v) view;
-            vVar.setSlug(this.h);
-            if (this.f7069f.boost != null && this.h == null) {
-                vVar.a(new c(this, 0));
-            }
-            String str3 = this.h;
-            if ((str3 == null || str3.isEmpty()) && this.f7069f.to_id == -1) {
-                vVar.a(new c(this, 0));
-                return;
-            }
-            return;
         }
-        s sVar = (s) view;
-        if (this.d) {
-            sVar.f7523c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
-            sVar.d.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkAllows", R.string.BoostingLinkAllows, new Object[0])));
+        za zaVar = (za) view;
+        zaVar.T.f3147a = false;
+        if (this.F != 2 && !this.H) {
+            i14 = 58;
+        }
+        zaVar.b(i14, 1);
+        if (this.F == 2) {
+            arrayList2 = this.f11025y;
         } else {
-            sVar.f7523c.setText(LocaleController.formatString("BoostingUsedGiftLink", R.string.BoostingUsedGiftLink, new Object[0]));
-            sVar.d.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkUsed", R.string.BoostingLinkUsed, new Object[0])));
+            int i20 = this.v;
+            ContactsController contactsController = ContactsController.getInstance(i15);
+            if (i20 == 2) {
+                hashMap = contactsController.usersMutualSectionsDict;
+            } else {
+                hashMap = contactsController.usersSectionsDict;
+            }
+            if (i20 == 2) {
+                arrayList = ContactsController.getInstance(i15).sortedUsersMutualSectionsArray;
+            } else {
+                arrayList = ContactsController.getInstance(i15).sortedUsersSectionsArray;
+            }
+            if (i20 != 0 && !z10) {
+                i12 = 0;
+            } else {
+                i12 = 1;
+            }
+            arrayList2 = hashMap.get(arrayList.get(i10 - i12));
         }
-        TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode4 = this.f7069f;
-        if (tL_payments_checkedGiftCode4.boost != null) {
-            long j10 = tL_payments_checkedGiftCode4.to_id;
-            final h0 h0Var2 = new h0(this, 11);
-            sVar.f7523c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
-            SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingLinkAllowsToUser));
-            final TLRPC.User user3 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j10));
-            sVar.d.setText(AndroidUtilities.replaceCharSequence("%1$s", replaceTags, AndroidUtilities.replaceSingleTag("**" + UserObject.getUserName(user3) + "**", j6.f19941gc, 2, new Runnable() {
-                @Override
-                public final void run() {
-                    switch (r3) {
-                        case 0:
-                            h0Var2.run(user3);
-                            return;
-                        default:
-                            h0Var2.run(user3);
-                            return;
+        TLRPC.User user = MessagesController.getInstance(i15).getUser(Long.valueOf(arrayList2.get(i11).user_id));
+        zaVar.e(user, null, null, false);
+        if (this.f11024x.h(user.f20016id) < 0) {
+            z11 = false;
+        }
+        zaVar.c(z11, false);
+    }
+
+    public final void Y(int i10, boolean z10) {
+        this.F = i10;
+        if (i10 == 2) {
+            if (this.f11025y == null || z10) {
+                int i11 = this.f11021r;
+                this.f11025y = new ArrayList(ContactsController.getInstance(i11).contacts);
+                long j3 = UserConfig.getInstance(i11).clientUserId;
+                int size = this.f11025y.size();
+                int i12 = 0;
+                while (true) {
+                    if (i12 >= size) {
+                        break;
+                    } else if (((TLRPC.TL_contact) this.f11025y.get(i12)).user_id == j3) {
+                        this.f11025y.remove(i12);
+                        break;
+                    } else {
+                        i12++;
                     }
                 }
-            }, sVar.e)));
+            }
+            Z();
+            return;
         }
-        if (this.f7069f.to_id == -1) {
-            sVar.f7523c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
-            sVar.d.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkAllowsAnyone", R.string.BoostingLinkAllowsAnyone, new Object[0])));
+        l();
+    }
+
+    public final void Z() {
+        int i10 = this.f11021r;
+        if (this.f11025y == null) {
+            return;
+        }
+        try {
+            int currentTime = ConnectionsManager.getInstance(i10).getCurrentTime();
+            Collections.sort(this.f11025y, new d(MessagesController.getInstance(i10), currentTime, 0));
+            l();
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 
     @Override
-    public final l1 x(ViewGroup viewGroup, int i10) {
-        View vVar;
-        Context context = viewGroup.getContext();
-        f6 f6Var = this.f7068c;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    if (i10 != 4) {
-                        if (i10 != 5) {
-                            vVar = new s(context, f6Var);
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        View view;
+        float f7;
+        View view2;
+        Context context = this.f11022s;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        if (i10 != 4) {
+                            if (i10 != 7) {
+                                if (i10 != 8) {
+                                    if (i10 != 9) {
+                                        view = new a7(context, (p6) null);
+                                    } else {
+                                        View jnVar = new jn(context, 4);
+                                        jnVar.setId(9);
+                                        jnVar.setTag(-33024);
+                                        view2 = jnVar;
+                                    }
+                                } else {
+                                    view = new o4(context, false);
+                                }
+                            } else {
+                                view = new l4(this.f11022s, j6.L6, 21, 14, 5, false, false, null);
+                            }
                         } else {
-                            vVar = new View(context);
+                            FrameLayout wVar = new ah.w(this, context, viewGroup, 3);
+                            wVar.addView(new rq(context), x5.e(-1, -2, 17));
+                            wVar.setLayoutParams(new s4.p0(-1, -2));
+                            wVar.setTag(-33024);
+                            view2 = wVar;
                         }
+                        view = view2;
                     } else {
-                        vVar = new ig.a(context, f6Var);
-                        vVar.setPadding(0, 0, 0, AndroidUtilities.dp(14.0f));
+                        View c3Var = new c3(context, null);
+                        float f10 = 72.0f;
+                        if (LocaleController.isRTL) {
+                            f7 = 28.0f;
+                        } else {
+                            f7 = 72.0f;
+                        }
+                        int dp = AndroidUtilities.dp(f7);
+                        int dp2 = AndroidUtilities.dp(8.0f);
+                        if (!LocaleController.isRTL) {
+                            f10 = 28.0f;
+                        }
+                        c3Var.setPadding(dp, dp2, AndroidUtilities.dp(f10), AndroidUtilities.dp(8.0f));
+                        view = c3Var;
                     }
                 } else {
-                    vVar = new f0(context, f6Var);
+                    view = new u3(context, null);
                 }
             } else {
-                vVar = new e0(context, f6Var);
+                view = new r8(context);
             }
         } else {
-            vVar = new v(context, f6Var);
+            za zaVar = new za(context, 58, 1, false);
+            zaVar.setCallCellStyle(58);
+            view = zaVar;
         }
-        return ai.n(vVar, vVar, -1, -2);
+        return new s4.c1(view);
     }
 }

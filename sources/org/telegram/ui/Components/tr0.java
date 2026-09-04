@@ -3,47 +3,47 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.widget.ImageView;
 public final class tr0 extends qt0 {
-    public final yu0 J;
+    public final xu0 M;
 
-    public tr0(yu0 yu0Var, Context context) {
+    public tr0(xu0 xu0Var, Context context) {
         super(context);
-        this.J = yu0Var;
+        this.M = xu0Var;
     }
 
     @Override
-    public final void setTranslationX(float f10) {
+    public final void setTranslationX(float f7) {
         qt0 qt0Var;
         int i10;
-        super.setTranslationX(f10);
-        yu0 yu0Var = this.J;
-        qt0[] qt0VarArr = yu0Var.f31131h0;
-        if (yu0Var.f31123d1 && (qt0Var = qt0VarArr[0]) == this) {
+        super.setTranslationX(f7);
+        xu0 xu0Var = this.M;
+        qt0[] qt0VarArr = xu0Var.f32702k0;
+        if (xu0Var.f32695g1 && (qt0Var = qt0VarArr[0]) == this) {
             float abs = Math.abs(qt0Var.getTranslationX()) / qt0VarArr[0].getMeasuredWidth();
-            yu0Var.Z0(abs, qt0VarArr[1].C);
-            if (yu0Var.D()) {
-                int i11 = yu0Var.f31158u0;
+            xu0Var.Z0(abs, qt0VarArr[1].F);
+            if (xu0Var.D()) {
+                int i11 = xu0Var.f32731x0;
                 if (i11 == 2) {
-                    yu0Var.f31139l0 = 1.0f - abs;
+                    xu0Var.f32709o0 = 1.0f - abs;
                 } else if (i11 == 1) {
-                    yu0Var.f31139l0 = abs;
+                    xu0Var.f32709o0 = abs;
                 }
-                yu0Var.s1(abs);
-                float a02 = yu0Var.a0(abs);
-                yu0Var.m0 = a02;
-                ImageView imageView = yu0Var.f31144o0;
-                if (a02 != 0.0f && yu0Var.D() && !yu0Var.q0()) {
+                xu0Var.s1(abs);
+                float a02 = xu0Var.a0(abs);
+                xu0Var.f32711p0 = a02;
+                ImageView imageView = xu0Var.f32716r0;
+                if (a02 != 0.0f && xu0Var.D() && !xu0Var.q0()) {
                     i10 = 0;
                 } else {
                     i10 = 4;
                 }
                 imageView.setVisibility(i10);
             } else {
-                yu0Var.f31139l0 = 0.0f;
+                xu0Var.f32709o0 = 0.0f;
             }
-            yu0Var.q1(false);
+            xu0Var.q1(false);
         }
-        yu0Var.I();
-        yu0Var.K();
-        yu0Var.o0();
+        xu0Var.I();
+        xu0Var.K();
+        xu0Var.o0();
     }
 }

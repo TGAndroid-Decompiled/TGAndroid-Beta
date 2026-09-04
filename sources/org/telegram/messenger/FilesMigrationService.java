@@ -23,7 +23,7 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.function.Consumer;
-import org.telegram.ui.Components.ax0;
+import org.telegram.ui.Components.yw0;
 public class FilesMigrationService extends Service {
     public static FilesMigrationBottomSheet filesMigrationBottomSheet = null;
     public static boolean hasOldFolder = false;
@@ -47,11 +47,11 @@ public class FilesMigrationService extends Service {
         @Override
         public void run() {
             FilesMigrationService.this.migrateOldFolder();
-            AndroidUtilities.runOnUIThread(new e1(this, 2));
+            AndroidUtilities.runOnUIThread(new d1(this, 2));
         }
     }
 
-    public static void checkBottomSheet(org.telegram.ui.ActionBar.p2 p2Var) {
+    public static void checkBottomSheet(org.telegram.ui.ActionBar.n2 n2Var) {
         ArrayList<File> rootDirs;
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0);
         if (Environment.isExternalStorageLegacy() && !sharedPreferences.getBoolean("migration_to_scoped_storage_finished", false) && sharedPreferences.getInt("migration_to_scoped_storage_count", 0) < 5 && !wasShown && filesMigrationBottomSheet == null && !isRunning) {
@@ -75,7 +75,7 @@ public class FilesMigrationService extends Service {
                 hasOldFolder = new File(externalStorageDirectory, "Telegram").exists();
             }
             if (hasOldFolder) {
-                FilesMigrationBottomSheet filesMigrationBottomSheet2 = new FilesMigrationBottomSheet(p2Var);
+                FilesMigrationBottomSheet filesMigrationBottomSheet2 = new FilesMigrationBottomSheet(n2Var);
                 filesMigrationBottomSheet = filesMigrationBottomSheet2;
                 filesMigrationBottomSheet2.show();
                 wasShown = true;
@@ -110,12 +110,12 @@ public class FilesMigrationService extends Service {
         }
         try {
             Files.move(path, file2.toPath(), new CopyOption[0]);
-        } catch (Exception e) {
-            FileLog.e((Throwable) e, false);
+        } catch (Exception e7) {
+            FileLog.e((Throwable) e7, false);
             try {
                 path.toFile().delete();
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e10) {
+                FileLog.e(e10);
             }
         }
         this.movedFilesCount++;
@@ -123,7 +123,7 @@ public class FilesMigrationService extends Service {
     }
 
     public void lambda$updateProgress$1(int i10) {
-        Notification.Builder contentTitle = v3.a(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(LocaleController.getString(R.string.MigratingFiles));
+        Notification.Builder contentTitle = u3.a(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(LocaleController.getString(R.string.MigratingFiles));
         int i11 = this.totalFilesCount;
         ((NotificationManager) getSystemService("notification")).notify(301, contentTitle.setContentText(i10 + "/" + i11).setSmallIcon(R.drawable.notification).setAutoCancel(false).setProgress(this.totalFilesCount, i10, false).build());
     }
@@ -145,13 +145,13 @@ public class FilesMigrationService extends Service {
                         }
                     });
                     convert.close();
-                } catch (Exception e) {
-                    FileLog.e(e);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
                 }
                 try {
                     file.delete();
-                } catch (Exception e6) {
-                    FileLog.e(e6);
+                } catch (Exception e10) {
+                    FileLog.e(e10);
                 }
             }
         }
@@ -165,7 +165,7 @@ public class FilesMigrationService extends Service {
         if (System.currentTimeMillis() - this.lastUpdateTime <= 20 && this.movedFilesCount < this.totalFilesCount - 1) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new s6(this, this.movedFilesCount, 6));
+        AndroidUtilities.runOnUIThread(new o6(this, this.movedFilesCount, 6));
     }
 
     public void migrateOldFolder() {
@@ -205,38 +205,38 @@ public class FilesMigrationService extends Service {
     @Override
     public int onStartCommand(Intent intent, int i10, int i11) {
         NotificationsController.checkOtherNotificationsChannel();
-        Notification build = v3.a(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(LocaleController.getString(R.string.MigratingFiles)).setAutoCancel(false).setSmallIcon(R.drawable.notification).build();
+        Notification build = u3.a(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(LocaleController.getString(R.string.MigratingFiles)).setAutoCancel(false).setSmallIcon(R.drawable.notification).build();
         isRunning = true;
         new AnonymousClass1().start();
         startForeground(301, build);
         return super.onStartCommand(intent, i10, i11);
     }
 
-    public static class FilesMigrationBottomSheet extends org.telegram.ui.ActionBar.g3 {
-        org.telegram.ui.ActionBar.p2 fragment;
+    public static class FilesMigrationBottomSheet extends org.telegram.ui.ActionBar.f3 {
+        org.telegram.ui.ActionBar.n2 fragment;
 
-        public FilesMigrationBottomSheet(org.telegram.ui.ActionBar.p2 p2Var) {
-            super(p2Var.getParentActivity(), false);
-            this.fragment = p2Var;
+        public FilesMigrationBottomSheet(org.telegram.ui.ActionBar.n2 n2Var) {
+            super(n2Var.getParentActivity(), false);
+            this.fragment = n2Var;
             setCanceledOnTouchOutside(false);
-            Activity parentActivity = p2Var.getParentActivity();
-            LinearLayout h = kf.k0.h(parentActivity, 1);
-            ax0 ax0Var = new ax0(parentActivity, this.currentAccount);
-            ax0Var.setStickerNum(7);
-            ax0Var.getImageReceiver().setAutoRepeat(1);
-            h.addView(ax0Var, k7.b6.t(144, 144, 1, 0, 16, 0, 0));
+            Activity parentActivity = n2Var.getParentActivity();
+            LinearLayout f7 = w1.f(parentActivity, 1);
+            yw0 yw0Var = new yw0(parentActivity, this.currentAccount);
+            yw0Var.setStickerNum(7);
+            yw0Var.getImageReceiver().setAutoRepeat(1);
+            f7.addView(yw0Var, w7.x5.t(144, 144, 1, 0, 16, 0, 0));
             TextView textView = new TextView(parentActivity);
             textView.setGravity(8388611);
-            int i10 = org.telegram.ui.ActionBar.j6.f19987j5;
-            y3.t(textView, org.telegram.ui.ActionBar.j6.w0(null, i10, false), 1, 20.0f);
+            int i10 = org.telegram.ui.ActionBar.j6.f20770j5;
+            w1.q(textView, org.telegram.ui.ActionBar.j6.w0(null, i10, false), 1, 20.0f);
             textView.setText(LocaleController.getString(R.string.MigrateOldFolderTitle));
-            h.addView(textView, k7.b6.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
+            f7.addView(textView, w7.x5.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
             TextView textView2 = new TextView(parentActivity);
             textView2.setGravity(8388611);
             textView2.setTextSize(1, 15.0f);
             textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
-            y3.q(R.string.MigrateOldFolderDescription, textView2);
-            h.addView(textView2, k7.b6.d(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
+            w1.n(R.string.MigrateOldFolderDescription, textView2);
+            f7.addView(textView2, w7.x5.d(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
             TextView textView3 = new TextView(parentActivity);
             textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             textView3.setGravity(17);
@@ -244,11 +244,11 @@ public class FilesMigrationService extends Service {
             textView3.setTypeface(AndroidUtilities.bold());
             textView3.setText(LocaleController.getString(R.string.MigrateOldFolderButton));
             textView3.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Sh, false));
-            textView3.setBackground(org.telegram.ui.ActionBar.z5.f(new float[]{6.0f}, org.telegram.ui.ActionBar.j6.Oh));
-            h.addView(textView3, k7.b6.d(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
-            textView3.setOnClickListener(new x3(this, 0));
+            textView3.setBackground(org.telegram.ui.ActionBar.y5.f(new float[]{6.0f}, org.telegram.ui.ActionBar.j6.Oh));
+            f7.addView(textView3, w7.x5.d(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
+            textView3.setOnClickListener(new w3(this, 0));
             ScrollView scrollView = new ScrollView(parentActivity);
-            scrollView.addView(h);
+            scrollView.addView(f7);
             setCustomView(scrollView);
         }
 
@@ -273,25 +273,25 @@ public class FilesMigrationService extends Service {
         }
 
         public void migrateOldFolder() {
-            boolean z4;
+            boolean z10;
             Activity parentActivity = this.fragment.getParentActivity();
-            boolean z10 = false;
+            boolean z11 = false;
             if (parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") == 0) {
-                z4 = true;
+                z10 = true;
             } else {
-                z4 = false;
+                z10 = false;
             }
             int i10 = Build.VERSION.SDK_INT;
             if ((i10 >= 33 && parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") == 0 && parentActivity.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") == 0 && parentActivity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") == 0) || (i10 < 33 && parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") == 0)) {
-                z10 = true;
+                z11 = true;
             }
-            if (z10 && z4) {
+            if (z11 && z10) {
                 FilesMigrationService.start();
                 dismiss();
                 return;
             }
             ArrayList arrayList = new ArrayList();
-            if (!z10) {
+            if (!z11) {
                 if (i10 >= 33) {
                     arrayList.add("android.permission.READ_MEDIA_IMAGES");
                     arrayList.add("android.permission.READ_MEDIA_VIDEO");
@@ -300,14 +300,14 @@ public class FilesMigrationService extends Service {
                     arrayList.add("android.permission.READ_EXTERNAL_STORAGE");
                 }
             }
-            if (!z4) {
+            if (!z10) {
                 arrayList.add("android.permission.WRITE_EXTERNAL_STORAGE");
             }
             parentActivity.requestPermissions((String[]) arrayList.toArray(new String[arrayList.size()]), 4);
         }
 
         @Override
-        public void setLastVisible(boolean z4) {
+        public void setLastVisible(boolean z10) {
         }
     }
 }

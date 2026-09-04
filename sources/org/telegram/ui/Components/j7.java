@@ -1,63 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class j7 extends FrameLayout {
-    public final int f25893a;
-    public final c8 f25894b;
+import org.telegram.tgnet.TLRPC;
+public final class j7 implements Runnable {
+    public final int f27366a;
+    public final k8 f27367b;
+    public final TLRPC.TL_error f27368c;
 
-    public j7(c8 c8Var, Context context, int i10) {
-        super(context);
-        this.f25893a = i10;
-        this.f25894b = c8Var;
+    public j7(k8 k8Var, TLRPC.TL_error tL_error, int i10) {
+        this.f27366a = i10;
+        this.f27367b = k8Var;
+        this.f27368c = tL_error;
     }
 
     @Override
-    public void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        TextView textView;
-        switch (this.f25893a) {
+    public final void run() {
+        switch (this.f27366a) {
             case 0:
-                int x10 = org.telegram.ui.b.x(248.0f, i12 - i10, 4);
-                for (int i14 = 0; i14 < 5; i14++) {
-                    int dp = (x10 * i14) + AndroidUtilities.dp((i14 * 48) + 4);
-                    int dp2 = AndroidUtilities.dp(9.0f);
-                    c8 c8Var = this.f25894b;
-                    View view = c8Var.f23853k0[i14];
-                    view.layout(dp, dp2, view.getMeasuredWidth() + dp, c8Var.f23853k0[i14].getMeasuredHeight() + dp2);
-                }
+                k8.s(this.f27367b, this.f27368c);
                 return;
             case 1:
-            default:
-                super.onLayout(z4, i10, i11, i12, i13);
+                k8.w(this.f27367b, this.f27368c);
                 return;
             case 2:
-                super.onLayout(z4, i10, i11, i12, i13);
-                c8 c8Var2 = this.f25894b;
-                if (c8Var2.S != null && (textView = c8Var2.X) != null) {
-                    int left = (textView.getLeft() - AndroidUtilities.dp(4.0f)) - c8Var2.S.getMeasuredWidth();
-                    org.telegram.ui.ActionBar.w0 w0Var = c8Var2.S;
-                    w0Var.layout(left, w0Var.getTop(), c8Var2.S.getMeasuredWidth() + left, c8Var2.S.getBottom());
-                    return;
-                }
+                k8.H(this.f27367b, this.f27368c);
                 return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f25893a) {
-            case 1:
-                c8 c8Var = this.f25894b;
-                if (c8Var.f23848f0.getTag() != null) {
-                    c8Var.A0(false, true);
-                }
-                return true;
             default:
-                return super.onTouchEvent(motionEvent);
+                k8.I(this.f27367b, this.f27368c);
+                return;
         }
     }
 }

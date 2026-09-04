@@ -1,161 +1,122 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.animation.DecelerateInterpolator;
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class i2 extends Drawable {
-    public final Paint f19763a;
-    public boolean f19764b;
-    public long f19765c;
-    public float d;
-    public float e;
-    public int f19766f;
-    public final boolean f19767g;
-    public final DecelerateInterpolator h;
-    public int f19768i;
-    public int f19769j;
-    public float f19770k;
-    public int f19771l;
+import org.telegram.ui.LaunchActivity;
+public final class i2 extends f3 {
+    public final l2 f20516b;
+    public final d5[] f20517c;
+    public final n2 d;
+    public final f3[] f20518e;
 
-    public i2(boolean z4) {
-        Paint paint = new Paint(1);
-        this.f19763a = paint;
-        Paint paint2 = new Paint(1);
-        this.h = new DecelerateInterpolator();
-        this.f19768i = -1;
-        this.f19769j = -9079435;
-        this.f19770k = 300.0f;
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint2.setColor(-65536);
-        this.f19767g = z4;
-    }
-
-    public final void a(int i10) {
-        this.f19768i = i10;
-        invalidateSelf();
-    }
-
-    public final void b(int i10) {
-        this.f19769j = i10;
-        invalidateSelf();
-    }
-
-    public final void c(float f10, boolean z4) {
-        this.f19765c = 0L;
-        float f11 = this.e;
-        if (f11 == 1.0f) {
-            this.f19764b = true;
-        } else if (f11 == 0.0f) {
-            this.f19764b = false;
-        }
-        this.f19765c = 0L;
-        if (z4) {
-            if (f11 < f10) {
-                this.f19766f = (int) (f11 * this.f19770k);
-            } else {
-                this.f19766f = (int) ((1.0f - f11) * this.f19770k);
-            }
-            this.f19765c = System.currentTimeMillis();
-            this.d = f10;
+    public i2(Activity activity, f6 f6Var, l2 l2Var, d5[] d5VarArr, n2 n2Var, f3[] f3VarArr) {
+        super(1, (Context) activity, f6Var, true);
+        boolean z10;
+        this.f20516b = l2Var;
+        this.f20517c = d5VarArr;
+        this.d = n2Var;
+        this.f20518e = f3VarArr;
+        if (l2Var != null && l2Var.f21145e) {
+            z10 = true;
         } else {
-            this.e = f10;
-            this.d = f10;
+            z10 = false;
         }
-        invalidateSelf();
+        this.occupyNavigationBar = z10;
+        this.drawNavigationBar = !z10;
+        d5VarArr[0].setFragmentStack(new ArrayList());
+        ((ActionBarLayout) d5VarArr[0]).c(-1, n2Var);
+        ((ActionBarLayout) d5VarArr[0]).c0();
+        ViewGroup view = d5VarArr[0].getView();
+        int i10 = this.backgroundPaddingLeft;
+        view.setPadding(i10, 0, i10, 0);
+        this.containerView = d5VarArr[0].getView();
+        setApplyBottomPadding(false);
+        setOnDismissListener(new fi.e0(4, n2Var, l2Var));
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int i10;
-        int i11;
-        if (this.e != this.d) {
-            if (this.f19765c != 0) {
-                int currentTimeMillis = this.f19766f + ((int) (System.currentTimeMillis() - this.f19765c));
-                this.f19766f = currentTimeMillis;
-                float f10 = currentTimeMillis;
-                float f11 = this.f19770k;
-                if (f10 >= f11) {
-                    this.e = this.d;
-                } else {
-                    float f12 = this.e;
-                    float f13 = this.d;
-                    DecelerateInterpolator decelerateInterpolator = this.h;
-                    if (f12 < f13) {
-                        this.e = decelerateInterpolator.getInterpolation(f10 / f11) * this.d;
-                    } else {
-                        this.e = 1.0f - decelerateInterpolator.getInterpolation(f10 / f11);
-                    }
+    public final boolean canDismissWithSwipe() {
+        return false;
+    }
+
+    @Override
+    public final boolean canSwipeToBack(MotionEvent motionEvent) {
+        d5[] d5VarArr;
+        d5 d5Var;
+        l2 l2Var = this.f20516b;
+        if (l2Var == null || !l2Var.f21142a || (d5Var = (d5VarArr = this.f20517c)[0]) == null || d5Var.getFragmentStack().size() > 1 || (d5VarArr[0].getFragmentStack().size() == 1 && !((n2) d5VarArr[0].getFragmentStack().get(0)).isSwipeBackEnabled(motionEvent))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void dismiss() {
+        l2 l2Var;
+        Runnable runnable;
+        if (!isDismissed() && (l2Var = this.f20516b) != null && (runnable = l2Var.d) != null) {
+            runnable.run();
+        }
+        super.dismiss();
+        ArrayList arrayList = LaunchActivity.G1.P;
+        d5[] d5VarArr = this.f20517c;
+        arrayList.remove(d5VarArr[0]);
+        d5VarArr[0] = null;
+    }
+
+    @Override
+    public final void onBackPressed() {
+        d5[] d5VarArr = this.f20517c;
+        d5 d5Var = d5VarArr[0];
+        if (d5Var != null && d5Var.getFragmentStack().size() > 1) {
+            ((ActionBarLayout) d5VarArr[0]).G();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        d5 d5Var = this.f20517c[0];
+        f3[] f3VarArr = this.f20518e;
+        d5Var.setWindow(f3VarArr[0].getWindow());
+        n2 n2Var = this.d;
+        l2 l2Var = this.f20516b;
+        if (l2Var != null && l2Var.f21145e) {
+            AndroidUtilities.setLightNavigationBar((Dialog) f3VarArr[0], true);
+        } else {
+            fixNavigationBar(j6.v0(j6.f20752i5, n2Var.getResourceProvider()));
+        }
+        AndroidUtilities.setLightStatusBar(this, n2Var.isLightStatusBar());
+        n2Var.onBottomSheetCreated();
+    }
+
+    @Override
+    public final void onInsetsChanged() {
+        d5 d5Var = this.f20517c[0];
+        if (d5Var != null) {
+            for (n2 n2Var : d5Var.getFragmentStack()) {
+                if (n2Var.getFragmentView() != null) {
+                    n2Var.getFragmentView().requestLayout();
                 }
             }
-            this.f19765c = System.currentTimeMillis();
-            invalidateSelf();
         }
-        int d = i0.a.d(this.e, this.f19768i, this.f19769j);
-        Paint paint = this.f19763a;
-        paint.setColor(d);
-        canvas.save();
-        canvas.translate(AndroidUtilities.dp(24.0f) / 2.0f, AndroidUtilities.dp(24.0f) / 2.0f);
-        int i12 = this.f19771l;
-        if (i12 != 0) {
-            canvas.rotate(i12);
+    }
+
+    @Override
+    public final void onOpenAnimationEnd() {
+        Runnable runnable;
+        this.d.onTransitionAnimationEnd(true, false);
+        l2 l2Var = this.f20516b;
+        if (l2Var != null && (runnable = l2Var.f21144c) != null) {
+            runnable.run();
         }
-        float f14 = this.e;
-        canvas.translate(-AndroidUtilities.dp(0.66f), 0.0f);
-        if (!this.f19767g) {
-            float f15 = this.e;
-            if (this.f19764b) {
-                i11 = -225;
-            } else {
-                i11 = 135;
-            }
-            canvas.rotate(f15 * i11);
-        } else {
-            float f16 = this.e;
-            if (this.f19764b) {
-                i10 = -180;
-            } else {
-                i10 = 180;
-            }
-            canvas.rotate((f16 * i10) + 135.0f);
-            f14 = 1.0f;
-        }
-        float f17 = 1.0f - f14;
-        canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.lerp(-6.75f, -8.0f, f14)), 0.0f, AndroidUtilities.dp(8.0f) - ((paint.getStrokeWidth() / 2.0f) * f17), 0.0f, paint);
-        float dp = AndroidUtilities.dp(-0.25f);
-        float dp2 = AndroidUtilities.dp(AndroidUtilities.lerp(7.0f, 8.0f, f14)) - ((paint.getStrokeWidth() / 4.0f) * f17);
-        float dp3 = AndroidUtilities.dp(AndroidUtilities.lerp(-7.25f, 0.0f, f14));
-        canvas.drawLine(dp3, -dp, 0.0f, -dp2, paint);
-        canvas.drawLine(dp3, dp, 0.0f, dp2, paint);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f19763a.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f19763a.setColorFilter(colorFilter);
     }
 }

@@ -1,32 +1,18 @@
 package e5;
 
-import java.util.Set;
-public final class c {
-    public String f5118a;
-    public String f5119b;
-    public Set f5120c;
-    public String d;
-    public String e;
-    public int f5121f;
-    public boolean f5122g;
-    public int h;
-    public boolean f5123i;
-    public int f5124j;
-    public int f5125k;
-    public int f5126l;
-    public int f5127m;
-    public int f5128n;
-    public float f5129o;
-    public int f5130p;
-    public boolean f5131q;
+import com.googlecode.mp4parser.e;
+public abstract class c extends e {
+    static {
+        qc.c.a(c.class);
+    }
 
-    public static int a(int i10, int i11, String str, String str2) {
-        if (!str.isEmpty() && i10 != -1) {
-            if (!str.equals(str2)) {
-                return -1;
+    public static byte[] d(String str) {
+        byte[] bArr = new byte[4];
+        if (str != null) {
+            for (int i10 = 0; i10 < Math.min(4, str.length()); i10++) {
+                bArr[i10] = (byte) str.charAt(i10);
             }
-            return i10 + i11;
         }
-        return i10;
+        return bArr;
     }
 }

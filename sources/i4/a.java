@@ -1,68 +1,75 @@
 package i4;
 
-import e4.e;
-import j7.c7;
-import java.nio.ByteBuffer;
-import java.nio.charset.CharacterCodingException;
-import java.nio.charset.CharsetDecoder;
-import java.util.regex.Matcher;
+import e2.v;
 import java.util.regex.Pattern;
-import k7.a7;
-import r8.d;
-public final class a extends c7 {
-    public static final Pattern f7223c = Pattern.compile("(.+?)='(.*?)';", 32);
-    public final CharsetDecoder f7224a = d.f43413c.newDecoder();
-    public final CharsetDecoder f7225b = d.f43412b.newDecoder();
+public final class a {
+    public static final Pattern f11812c = Pattern.compile("\\[voice=\"([^\"]*)\"\\]");
+    public static final Pattern d = Pattern.compile("^((?:[0-9]*\\.)?[0-9]+)(px|em|%)$");
+    public final v f11813a = new v();
+    public final StringBuilder f11814b = new StringBuilder();
 
-    @Override
-    public final e4.c b(e eVar, ByteBuffer byteBuffer) {
-        String str;
-        CharsetDecoder charsetDecoder = this.f7225b;
-        CharsetDecoder charsetDecoder2 = this.f7224a;
-        String str2 = null;
-        try {
-            str = charsetDecoder2.decode(byteBuffer).toString();
-        } catch (CharacterCodingException unused) {
-            try {
-                String charBuffer = charsetDecoder.decode(byteBuffer).toString();
-                charsetDecoder.reset();
-                byteBuffer.rewind();
-                str = charBuffer;
-            } catch (CharacterCodingException unused2) {
-                charsetDecoder.reset();
-                byteBuffer.rewind();
-                str = null;
-            } catch (Throwable th2) {
-                charsetDecoder.reset();
-                byteBuffer.rewind();
-                throw th2;
+    public static String a(v vVar, StringBuilder sb2) {
+        boolean z10 = false;
+        sb2.setLength(0);
+        int i10 = vVar.f8790b;
+        int i11 = vVar.f8791c;
+        while (i10 < i11 && !z10) {
+            char c10 = (char) vVar.f8789a[i10];
+            if ((c10 < 'A' || c10 > 'Z') && ((c10 < 'a' || c10 > 'z') && ((c10 < '0' || c10 > '9') && c10 != '#' && c10 != '-' && c10 != '.' && c10 != '_'))) {
+                z10 = true;
+            } else {
+                i10++;
+                sb2.append(c10);
             }
-        } finally {
-            charsetDecoder2.reset();
-            byteBuffer.rewind();
         }
-        byte[] bArr = new byte[byteBuffer.limit()];
-        byteBuffer.get(bArr);
-        if (str == null) {
-            return new e4.c(new c(null, null, bArr));
+        vVar.K(i10 - vVar.f8790b);
+        return sb2.toString();
+    }
+
+    public static String b(v vVar, StringBuilder sb2) {
+        c(vVar);
+        if (vVar.a() == 0) {
+            return null;
         }
-        Matcher matcher = f7223c.matcher(str);
-        String str3 = null;
-        for (int i10 = 0; matcher.find(i10); i10 = matcher.end()) {
-            String group = matcher.group(1);
-            String group2 = matcher.group(2);
-            if (group != null) {
-                String b10 = a7.b(group);
-                b10.getClass();
-                if (!b10.equals("streamurl")) {
-                    if (b10.equals("streamtitle")) {
-                        str2 = group2;
+        String a2 = a(vVar, sb2);
+        if (!a2.isEmpty()) {
+            return a2;
+        }
+        return "" + ((char) vVar.x());
+    }
+
+    public static void c(v vVar) {
+        while (true) {
+            for (boolean z10 = true; vVar.a() > 0 && z10; z10 = false) {
+                int i10 = vVar.f8790b;
+                byte[] bArr = vVar.f8789a;
+                byte b10 = bArr[i10];
+                char c10 = (char) b10;
+                if (c10 != '\t' && c10 != '\n' && c10 != '\f' && c10 != '\r' && c10 != ' ') {
+                    int i11 = vVar.f8791c;
+                    int i12 = i10 + 2;
+                    if (i12 <= i11) {
+                        int i13 = i10 + 1;
+                        if (b10 == 47 && bArr[i13] == 42) {
+                            while (true) {
+                                int i14 = i12 + 1;
+                                if (i14 >= i11) {
+                                    break;
+                                } else if (((char) bArr[i12]) == '*' && ((char) bArr[i14]) == '/') {
+                                    i12 += 2;
+                                    i11 = i12;
+                                } else {
+                                    i12 = i14;
+                                }
+                            }
+                            vVar.K(i11 - vVar.f8790b);
+                        }
                     }
                 } else {
-                    str3 = group2;
+                    vVar.K(1);
                 }
             }
+            return;
         }
-        return new e4.c(new c(str2, str3, bArr));
     }
 }

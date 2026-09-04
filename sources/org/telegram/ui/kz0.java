@@ -1,25 +1,37 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class kz0 extends lq {
-    public final boolean[] f35610a1;
-    public final TLRPC.User f35611b1;
-    public final ProfileActivity f35612c1;
+import android.content.DialogInterface;
+import org.telegram.messenger.SharedConfig;
+public final class kz0 implements DialogInterface.OnClickListener {
+    public final int f38154a;
+    public final int f38155b;
 
-    public kz0(ProfileActivity profileActivity, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i10, boolean[] zArr, TLRPC.User user) {
-        super(j10, j11, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i10, true, false, null);
-        this.f35612c1 = profileActivity;
-        this.f35610a1 = zArr;
-        this.f35611b1 = user;
+    public kz0(int i10, int i11) {
+        this.f38154a = i11;
+        this.f38155b = i10;
     }
 
     @Override
-    public final void onTransitionAnimationEnd(boolean z4, boolean z10) {
-        if (!z4 && z10 && this.f35610a1[0]) {
-            ProfileActivity profileActivity = this.f35612c1;
-            if (org.telegram.ui.Components.qc.a(profileActivity)) {
-                org.telegram.ui.Components.qc.C(profileActivity, this.f35611b1.first_name).j();
-            }
+    public final void onClick(DialogInterface dialogInterface, int i10) {
+        switch (this.f38154a) {
+            case 0:
+                int i11 = 2 - i10;
+                if (i11 == this.f38155b) {
+                    SharedConfig.overrideDevicePerformanceClass(-1);
+                    return;
+                } else {
+                    SharedConfig.overrideDevicePerformanceClass(i11);
+                    return;
+                }
+            default:
+                int i12 = 2 - i10;
+                if (i12 == this.f38155b) {
+                    SharedConfig.overrideDevicePerformanceClass(-1);
+                    return;
+                } else {
+                    SharedConfig.overrideDevicePerformanceClass(i12);
+                    return;
+                }
         }
     }
 }

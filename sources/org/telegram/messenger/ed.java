@@ -1,55 +1,55 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.zn;
 public final class ed implements Runnable {
-    public final int f17122a;
-    public final long f17123b;
-    public final boolean f17124c;
-    public final boolean d;
-    public final NotificationCenter.NotificationCenterDelegate e;
+    public final int f17551a;
+    public final MessagesController f17552b;
 
-    public ed(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, boolean z4, boolean z10, long j10, int i10) {
-        this.f17122a = i10;
-        this.e = notificationCenterDelegate;
-        this.f17124c = z4;
-        this.d = z10;
-        this.f17123b = j10;
+    public ed(MessagesController messagesController, int i10) {
+        this.f17551a = i10;
+        this.f17552b = messagesController;
     }
 
     @Override
     public final void run() {
-        int i10;
-        switch (this.f17122a) {
+        switch (this.f17551a) {
             case 0:
-                ((MessagesController) this.e).lambda$setLastCreatedDialogId$55(this.f17124c, this.d, this.f17123b);
+                this.f17552b.lambda$processLoadedDeleteTask$87();
                 return;
             case 1:
-                zn.c1((zn) this.e, this.f17123b, this.f17124c, this.d);
+                this.f17552b.lambda$markAllTopicsAsRead$5();
                 return;
             case 2:
-                sh.n nVar = (sh.n) this.e;
-                String string = LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity);
-                if (this.f17124c) {
-                    i10 = R.string.CommunityMenuRemoveBotFromCommunityConfirm;
-                } else if (this.d) {
-                    i10 = R.string.CommunityMenuRemoveChannelFromCommunityConfirm;
-                } else {
-                    i10 = R.string.CommunityMenuRemoveGroupFromCommunityConfirm;
-                }
-                org.telegram.ui.Components.z4.v0(nVar, string, LocaleController.getString(i10), LocaleController.getString(R.string.Remove), true, new sh.h(nVar, this.f17123b, 0));
+                this.f17552b.lambda$hidePromoDialog$136();
+                return;
+            case 3:
+                this.f17552b.removePromoDialog();
+                return;
+            case 4:
+                this.f17552b.lambda$putUsers$57();
+                return;
+            case 5:
+                this.f17552b.lambda$didReceivedNotification$42();
+                return;
+            case 6:
+                this.f17552b.lambda$addWebBrowserException$512();
+                return;
+            case 7:
+                this.f17552b.lambda$markAllTopicsAsRead$6();
+                return;
+            case 8:
+                this.f17552b.lambda$removeWebBrowserException$514();
+                return;
+            case 9:
+                this.f17552b.lambda$new$13();
+                return;
+            case 10:
+                this.f17552b.loadAppConfig();
+                return;
+            case 11:
+                this.f17552b.lambda$new$17();
                 return;
             default:
-                sh.i0.q((sh.i0) this.e, this.f17124c, this.d, this.f17123b);
+                this.f17552b.lambda$new$0();
                 return;
         }
-    }
-
-    public ed(zn znVar, long j10, boolean z4, boolean z10) {
-        this.f17122a = 1;
-        this.e = znVar;
-        this.f17123b = j10;
-        this.f17124c = z4;
-        this.d = z10;
     }
 }

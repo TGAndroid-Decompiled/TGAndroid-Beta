@@ -1,41 +1,35 @@
 package v2;
-public final class b {
-    public final Integer f45622a;
 
-    public b(Integer num) {
-        this.f45622a = num;
+import java.util.NoSuchElementException;
+public abstract class b implements l {
+    public final long f47282a;
+    public final long f47283b;
+    public long f47284c;
+
+    public b(long j3, long j10) {
+        this.f47282a = j3;
+        this.f47283b = j10;
+        this.f47284c = j3 - 1;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    public final void b() {
+        long j3 = this.f47284c;
+        if (j3 >= this.f47282a && j3 <= this.f47283b) {
+            return;
         }
-        if (!(obj instanceof b)) {
-            return false;
-        }
-        Integer num = ((b) obj).f45622a;
-        Integer num2 = this.f45622a;
-        if (num2 == null) {
-            if (num == null) {
-                return true;
-            }
-            return false;
-        }
-        return num2.equals(num);
+        throw new NoSuchElementException();
     }
 
-    public final int hashCode() {
-        int hashCode;
-        Integer num = this.f45622a;
-        if (num == null) {
-            hashCode = 0;
+    @Override
+    public final boolean next() {
+        boolean z10;
+        long j3 = this.f47284c + 1;
+        this.f47284c = j3;
+        if (j3 > this.f47283b) {
+            z10 = true;
         } else {
-            hashCode = num.hashCode();
+            z10 = false;
         }
-        return hashCode ^ 1000003;
-    }
-
-    public final String toString() {
-        return "ProductData{productId=" + this.f45622a + "}";
+        return !z10;
     }
 }

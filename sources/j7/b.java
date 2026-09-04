@@ -1,36 +1,13 @@
 package j7;
+public abstract class b {
+    public static final k6.c f13554a;
+    public static final k6.c[] f13555b;
 
-import java.util.Iterator;
-public final class b extends m9 {
-    public final transient d f8930c;
-    public final transient c d;
-
-    public b(d dVar, c cVar) {
-        this.f8930c = dVar;
-        this.d = cVar;
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (this.f8930c.get(obj) != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int i(Object[] objArr) {
-        return this.d.i(objArr);
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return this.d.listIterator(0);
-    }
-
-    @Override
-    public final int size() {
-        this.f8930c.getClass();
-        return 1;
+    static {
+        k6.c cVar = new k6.c("sms_code_autofill", 2L);
+        k6.c cVar2 = new k6.c("sms_code_browser", 2L);
+        k6.c cVar3 = new k6.c("sms_retrieve", 1L);
+        f13554a = cVar3;
+        f13555b = new k6.c[]{cVar, cVar2, cVar3, new k6.c("user_consent", 3L)};
     }
 }

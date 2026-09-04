@@ -1,128 +1,29 @@
 package n7;
+public final class b extends d {
+    public static final b f16621a = new Object();
 
-import java.util.AbstractSet;
-import java.util.Iterator;
-import java.util.Map;
-public final class b extends AbstractSet {
-    public final int f14274a;
-    public final d f14275b;
-
-    public b(d dVar, int i10) {
-        this.f14274a = i10;
-        this.f14275b = dVar;
+    @Override
+    public final Object a() {
+        throw new IllegalStateException("Optional.get() cannot be called on an absent value");
     }
 
     @Override
-    public final void clear() {
-        switch (this.f14274a) {
-            case 0:
-                this.f14275b.clear();
-                return;
-            default:
-                this.f14275b.clear();
-                return;
-        }
+    public final boolean b() {
+        return false;
     }
 
-    @Override
-    public final boolean contains(Object obj) {
-        switch (this.f14274a) {
-            case 0:
-                d dVar = this.f14275b;
-                Map a2 = dVar.a();
-                if (a2 != null) {
-                    return a2.entrySet().contains(obj);
-                }
-                if (obj instanceof Map.Entry) {
-                    Map.Entry entry = (Map.Entry) obj;
-                    int e = dVar.e(entry.getKey());
-                    if (e != -1) {
-                        Object[] objArr = dVar.d;
-                        objArr.getClass();
-                        if (k7.d0.a(objArr[e], entry.getValue())) {
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            default:
-                return this.f14275b.containsKey(obj);
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
+        return false;
     }
 
-    @Override
-    public final Iterator iterator() {
-        switch (this.f14274a) {
-            case 0:
-                d dVar = this.f14275b;
-                Map a2 = dVar.a();
-                if (a2 != null) {
-                    return a2.entrySet().iterator();
-                }
-                return new a(dVar, 1);
-            default:
-                d dVar2 = this.f14275b;
-                Map a10 = dVar2.a();
-                if (a10 != null) {
-                    return a10.keySet().iterator();
-                }
-                return new a(dVar2, 0);
-        }
+    public final int hashCode() {
+        return 2040732332;
     }
 
-    @Override
-    public final boolean remove(Object obj) {
-        switch (this.f14274a) {
-            case 0:
-                d dVar = this.f14275b;
-                Map a2 = dVar.a();
-                if (a2 != null) {
-                    return a2.entrySet().remove(obj);
-                }
-                if (obj instanceof Map.Entry) {
-                    Map.Entry entry = (Map.Entry) obj;
-                    if (!dVar.c()) {
-                        int d = dVar.d();
-                        Object key = entry.getKey();
-                        Object value = entry.getValue();
-                        Object obj2 = dVar.f14303a;
-                        obj2.getClass();
-                        int[] iArr = dVar.f14304b;
-                        iArr.getClass();
-                        Object[] objArr = dVar.f14305c;
-                        objArr.getClass();
-                        Object[] objArr2 = dVar.d;
-                        objArr2.getClass();
-                        int a10 = k7.z.a(key, value, d, obj2, iArr, objArr, objArr2);
-                        if (a10 != -1) {
-                            dVar.b(a10, d);
-                            dVar.f14306f--;
-                            dVar.e += 32;
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            default:
-                d dVar2 = this.f14275b;
-                Map a11 = dVar2.a();
-                if (a11 != null) {
-                    return a11.keySet().remove(obj);
-                }
-                if (dVar2.g(obj) == d.f14302s) {
-                    return false;
-                }
-                return true;
-        }
-    }
-
-    @Override
-    public final int size() {
-        switch (this.f14274a) {
-            case 0:
-                return this.f14275b.size();
-            default:
-                return this.f14275b.size();
-        }
+    public final String toString() {
+        return "Optional.absent()";
     }
 }

@@ -1,29 +1,40 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserConfig;
-public final class an0 implements View.OnClickListener {
-    public final bn0 f23460a;
-
-    public an0(bn0 bn0Var) {
-        this.f23460a = bn0Var;
+public final class an0 extends s4.j {
+    @Override
+    public final boolean r(s4.c1 c1Var, b2.q0 q0Var, int i10, int i11, int i12, int i13) {
+        gn0 gn0Var;
+        fn0 fn0Var;
+        View view = c1Var.f45738a;
+        if ((view instanceof gn0) && (fn0Var = (gn0Var = (gn0) view).f26461a) != null) {
+            fn0Var.f565i = fn0Var.N;
+            fn0Var.f563g = fn0Var.O;
+            fn0Var.h = fn0Var.P;
+            gn0Var.f26462b.d(0.0f, true);
+            gn0Var.invalidate();
+        }
+        int translationX = i10 + ((int) view.getTranslationX());
+        int translationY = i11 + ((int) view.getTranslationY());
+        R(c1Var);
+        int i14 = i12 - translationX;
+        int i15 = i13 - translationY;
+        if (i14 == 0 && i15 == 0) {
+            v(c1Var);
+            return false;
+        }
+        if (i14 != 0) {
+            view.setTranslationX(-i14);
+        }
+        if (i15 != 0) {
+            view.setTranslationY(-i15);
+        }
+        this.f45806r.add(new s4.i(c1Var, translationX, translationY, i12, i13));
+        return true;
     }
 
     @Override
-    public final void onClick(View view) {
-        cn0 cn0Var = this.f23460a.f23724c;
-        for (int i10 = 0; i10 < cn0Var.e.size(); i10++) {
-            MessageObject messageObject = (MessageObject) cn0Var.e.get(i10);
-            if (cn0Var.E) {
-                AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().cancelLoadFile(messageObject.getDocument());
-            } else {
-                AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().loadFile(messageObject.getDocument(), messageObject, 0, 0);
-                DownloadController.getInstance(cn0Var.d).updateFilesLoadingPriority();
-            }
-        }
-        cn0Var.d(true);
+    public final boolean t(s4.c1 c1Var) {
+        return true;
     }
 }

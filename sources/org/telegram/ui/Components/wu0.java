@@ -1,35 +1,20 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class wu0 extends vu0 {
-    public final xu0 D;
+public final class wu0 {
+    public final int f32342a;
+    public final int f32343b;
+    public final vu0 f32344c;
+    public final uu0 d;
+    public final xu0 f32345e;
 
     public wu0(xu0 xu0Var, Context context, int i10) {
-        super(xu0Var.e, context, i10, false);
-        this.D = xu0Var;
-    }
-
-    @Override
-    public final void l() {
-        boolean z4;
-        super.l();
-        xu0 xu0Var = this.D;
-        yu0 yu0Var = xu0Var.e;
-        int i10 = xu0Var.f30717a;
-        int[] iArr = yu0.a2;
-        qt0 W = yu0Var.W(i10);
-        if (W != null && W.f28261r.getVisibility() == 0) {
-            xu0Var.d.l();
-        }
-        if (W != null) {
-            hs0 hs0Var = W.f28263w;
-            nh.l6 l6Var = this.f30055s;
-            if (l6Var != null && (l6Var.k() || (yu0Var.i0() && this.f30055s.g() > 0))) {
-                z4 = true;
-            } else {
-                z4 = false;
-            }
-            hs0Var.e(z4, true);
-        }
+        this.f32345e = xu0Var;
+        this.f32343b = i10;
+        int i11 = xu0Var.a2;
+        xu0Var.a2 = i11 + 1;
+        this.f32342a = (i11 & 65535) | 65536;
+        this.f32344c = new vu0(this, context, i10);
+        this.d = new uu0(xu0Var, context, i10, false);
     }
 }

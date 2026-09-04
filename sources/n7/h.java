@@ -1,45 +1,146 @@
 package n7;
-public final class h extends i {
-    public final transient int f14433c;
-    public final transient int d;
-    public final i e;
 
-    public h(i iVar, int i10, int i11) {
-        this.e = iVar;
-        this.f14433c = i10;
-        this.d = i11;
+import j$.lang.Iterable$CC;
+import j$.util.Collection;
+import j$.util.Spliterator;
+import j$.util.Spliterators;
+import j$.util.stream.Stream;
+import java.io.Serializable;
+import java.util.AbstractCollection;
+import java.util.Arrays;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+import java.util.function.IntFunction;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+public abstract class h extends AbstractCollection implements Serializable, Collection {
+    public static final Object[] f16636a = new Object[0];
+
+    @Override
+    public final boolean add(Object obj) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final Object get(int i10) {
-        k7.e0.a(i10, this.d);
-        return this.e.get(i10 + this.f14433c);
+    public final boolean addAll(java.util.Collection collection) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final int n() {
-        return this.e.o() + this.f14433c + this.d;
+    public final void clear() {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final int o() {
-        return this.e.o() + this.f14433c;
+    public void forEach(Consumer consumer) {
+        Iterable$CC.$default$forEach(this, consumer);
+    }
+
+    public int i(Object[] objArr) {
+        d0 p5 = p();
+        int i10 = 0;
+        while (p5.hasNext()) {
+            objArr[i10] = p5.next();
+            i10++;
+        }
+        return i10;
+    }
+
+    public int n() {
+        throw new UnsupportedOperationException();
+    }
+
+    public int o() {
+        throw new UnsupportedOperationException();
+    }
+
+    public abstract d0 p();
+
+    @Override
+    public Stream parallelStream() {
+        return Stream.Wrapper.convert(parallelStream());
+    }
+
+    public Object[] q() {
+        return null;
     }
 
     @Override
-    public final Object[] p() {
-        return this.e.p();
+    public final boolean remove(Object obj) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final i subList(int i10, int i11) {
-        k7.e0.b(i10, i11, this.d);
-        int i12 = this.f14433c;
-        return this.e.subList(i10 + i12, i11 + i12);
+    public final boolean removeAll(java.util.Collection collection) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final int size() {
-        return this.d;
+    public boolean removeIf(Predicate predicate) {
+        return Collection.CC.$default$removeIf(this, predicate);
+    }
+
+    @Override
+    public final boolean retainAll(java.util.Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Spliterator spliterator() {
+        return Spliterator.Wrapper.convert(spliterator());
+    }
+
+    @Override
+    public java.util.stream.Stream stream() {
+        return Stream.Wrapper.convert(stream());
+    }
+
+    @Override
+    public Object[] toArray(IntFunction intFunction) {
+        Object[] array;
+        array = toArray((Object[]) intFunction.apply(0));
+        return array;
+    }
+
+    @Override
+    public j$.util.stream.Stream parallelStream() {
+        return Collection.CC.$default$parallelStream(this);
+    }
+
+    @Override
+    public final j$.util.Spliterator spliterator() {
+        return Spliterators.spliterator(this, 1296);
+    }
+
+    @Override
+    public j$.util.stream.Stream stream() {
+        return Collection.CC.$default$stream(this);
+    }
+
+    @Override
+    public final Object[] toArray() {
+        return toArray(f16636a);
+    }
+
+    @Override
+    public final Object[] toArray(Object[] objArr) {
+        objArr.getClass();
+        int size = size();
+        int length = objArr.length;
+        if (length < size) {
+            Object[] q6 = q();
+            if (q6 == null) {
+                if (length != 0) {
+                    objArr = Arrays.copyOf(objArr, 0);
+                }
+                objArr = Arrays.copyOf(objArr, size);
+            } else {
+                return Arrays.copyOfRange(q6, o(), n(), objArr.getClass());
+            }
+        } else if (length > size) {
+            objArr[size] = null;
+        }
+        i(objArr);
+        return objArr;
     }
 }

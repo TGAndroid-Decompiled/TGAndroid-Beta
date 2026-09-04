@@ -1,59 +1,60 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
-public final class jg0 implements o1.f {
-    public final int f25959a;
-    public final float f25960b;
-    public final Object f25961c;
+public final class jg0 extends ll0 {
+    public final yf.z X2;
+    public long Y2;
+    public final pg0 Z2;
 
-    public jg0(Object obj, float f10, int i10) {
-        this.f25959a = i10;
-        this.f25961c = obj;
-        this.f25960b = f10;
+    public jg0(pg0 pg0Var, Context context) {
+        super(context, null);
+        this.Z2 = pg0Var;
+        this.X2 = new yf.z(8);
     }
 
     @Override
-    public final void a(o1.h hVar, boolean z4, float f10, float f11) {
-        float dp;
-        switch (this.f25959a) {
-            case 0:
-                kg0 kg0Var = (kg0) this.f25961c;
-                if (!z4) {
-                    mg0 mg0Var = kg0Var.d;
-                    o1.k kVar = mg0Var.J.f16178u;
-                    int i10 = mg0Var.E;
-                    float f12 = (i10 / 2.0f) + this.f25960b;
-                    int i11 = AndroidUtilities.displaySize.x;
-                    if (f12 >= i11 / 2.0f) {
-                        dp = (i11 - i10) - AndroidUtilities.dp(16.0f);
-                    } else {
-                        dp = AndroidUtilities.dp(16.0f);
-                    }
-                    kVar.f16184i = dp;
-                    return;
-                }
-                return;
-            case 1:
-                ph.da daVar = (ph.da) this.f25961c;
-                if (!z4) {
-                    daVar.J0.setTranslationY(this.f25960b);
-                    daVar.J0.H = false;
-                    daVar.f41547l2 = null;
-                    daVar.f41549m2 = null;
-                    return;
-                }
-                return;
-            default:
-                rh.m3 m3Var = (rh.m3) this.f25961c;
-                m3Var.v = null;
-                float f13 = this.f25960b;
-                if (!z4) {
-                    m3Var.f43682f = f13;
-                    m3Var.c();
-                    return;
-                }
-                m3Var.h = f13;
-                return;
+    public final boolean E0(float f7) {
+        if (f7 >= this.Z2.E + AndroidUtilities.statusBarHeight) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        pg0 pg0Var = this.Z2;
+        if (pg0Var.L) {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            long abs = Math.abs(this.Y2 - elapsedRealtime);
+            if (abs > 17) {
+                abs = 16;
+            }
+            this.Y2 = elapsedRealtime;
+            pg0Var.J += (((float) abs) * pg0Var.K) / 1800.0f;
+            while (true) {
+                f7 = pg0Var.J;
+                float f10 = pg0Var.K * 2.0f;
+                if (f7 < f10) {
+                    break;
+                }
+                pg0Var.J = f7 - f10;
+            }
+            pg0Var.I.setTranslate(f7, 0.0f);
+            pg0Var.H.setLocalMatrix(pg0Var.I);
+            e1();
+            invalidate();
+        }
+        super.dispatchDraw(canvas);
+        int measuredHeight = getMeasuredHeight() - AndroidUtilities.navigationBarHeight;
+        int measuredWidth = getMeasuredWidth();
+        int measuredHeight2 = getMeasuredHeight();
+        yf.z zVar = this.X2;
+        zVar.setBounds(0, measuredHeight, measuredWidth, measuredHeight2);
+        zVar.b(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20752i5, this.f28224p2));
+        zVar.draw(canvas);
     }
 }

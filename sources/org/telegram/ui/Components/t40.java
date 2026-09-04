@@ -1,28 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-public final class t40 implements org.telegram.ui.vp0 {
-    public final x40 f28895a;
+import org.telegram.tgnet.TLRPC;
+public interface t40 {
+    void C(float f7);
 
-    public t40(x40 x40Var) {
-        this.f28895a = x40Var;
-    }
+    void L(boolean z10, boolean z11);
 
-    @Override
-    public final void a(ArrayList arrayList) {
-        x40.b(this.f28895a, false, arrayList);
-    }
+    void P();
 
-    @Override
-    public final void b() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.setType("image/*");
-            this.f28895a.f30466a.startActivityForResult(intent, 14);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
+    void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize);
+
+    boolean e();
+
+    org.telegram.ui.cv0 getCloseIntoObject();
+
+    String getInitialSearchString();
+
+    boolean t();
 }

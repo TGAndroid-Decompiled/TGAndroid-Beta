@@ -1,9 +1,27 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class zx0 extends AlertDialog$Builder {
-    public ArrayList f31502c;
-    public int d;
-    public org.telegram.ui.ActionBar.p2 e;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class zx0 implements TextWatcher {
+    public final NumberTextView f33252a;
+    public final yx0 f33253b;
+
+    public zx0(NumberTextView numberTextView, yx0 yx0Var) {
+        this.f33252a = numberTextView;
+        this.f33253b = yx0Var;
+    }
+
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        this.f33252a.a(50 - Character.codePointCount(editable, 0, editable.length()), true);
+        this.f33253b.setErrorText(null);
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
 }

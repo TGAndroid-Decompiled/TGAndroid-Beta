@@ -1,66 +1,65 @@
 package kc;
 
+import java.io.FilterInputStream;
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Socket;
-import java.net.SocketException;
-import java.net.SocketTimeoutException;
-import java.util.List;
-import java.util.logging.Level;
-public final class a implements Runnable {
-    public final InputStream f10261a;
-    public final Socket f10262b;
-    public final k f10263c;
+public final class a extends FilterInputStream {
+    public int f14891a;
+    public int f14892b;
 
-    public a(k kVar, InputStream inputStream, Socket socket) {
-        this.f10263c = kVar;
-        this.f10261a = inputStream;
-        this.f10262b = socket;
+    public a(InputStream inputStream) {
+        super(inputStream);
+        this.f14891a = -1;
+        this.f14892b = -1;
     }
 
     @Override
-    public final void run() {
-        OutputStream outputStream;
-        InputStream inputStream = this.f10261a;
-        k kVar = this.f10263c;
-        Socket socket = this.f10262b;
-        OutputStream outputStream2 = null;
-        try {
-            try {
-                outputStream = socket.getOutputStream();
-            } catch (Throwable th2) {
-                th = th2;
-            }
-        } catch (Exception e) {
-            e = e;
+    public final boolean markSupported() {
+        return false;
+    }
+
+    @Override
+    public final int read() {
+        int read = super.read();
+        if (read == 3 && this.f14891a == 0 && this.f14892b == 0) {
+            this.f14891a = -1;
+            this.f14892b = -1;
+            read = super.read();
         }
-        try {
-            d dVar = new d(kVar, new ja.c(16), this.f10261a, outputStream, socket.getInetAddress());
-            while (!socket.isClosed()) {
-                dVar.c();
-            }
-            k.d(outputStream);
-        } catch (Exception e6) {
-            e = e6;
-            outputStream2 = outputStream;
-            if ((!(e instanceof SocketException) || !"NanoHttpd Shutdown".equals(e.getMessage())) && !(e instanceof SocketTimeoutException)) {
-                k.d.log(Level.SEVERE, "Communication with the client broken, or an bug in the handler code", (Throwable) e);
-            }
-            k.d(outputStream2);
-            k.d(inputStream);
-            k.d(socket);
-            ((List) kVar.f10301c.f5660c).remove(this);
-        } catch (Throwable th3) {
-            th = th3;
-            outputStream2 = outputStream;
-            k.d(outputStream2);
-            k.d(inputStream);
-            k.d(socket);
-            ((List) kVar.f10301c.f5660c).remove(this);
-            throw th;
+        this.f14891a = this.f14892b;
+        this.f14892b = read;
+        return read;
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        bArr.getClass();
+        if (i10 < 0 || i11 < 0 || i11 > bArr.length - i10) {
+            throw new IndexOutOfBoundsException();
         }
-        k.d(inputStream);
-        k.d(socket);
-        ((List) kVar.f10301c.f5660c).remove(this);
+        if (i11 == 0) {
+            return 0;
+        }
+        int read = read();
+        if (read == -1) {
+            return -1;
+        }
+        bArr[i10] = (byte) read;
+        int i12 = 1;
+        while (true) {
+            if (i12 < i11) {
+                try {
+                    int read2 = read();
+                    if (read2 == -1) {
+                        break;
+                    }
+                    bArr[i10 + i12] = (byte) read2;
+                    i12++;
+                } catch (IOException unused) {
+                }
+            }
+            return i12;
+        }
+        return i12;
     }
 }

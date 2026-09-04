@@ -1,39 +1,42 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class ld0 implements org.telegram.ui.Components.pv0 {
-    public final int f35739a;
-    public final org.telegram.ui.ActionBar.p2 f35740b;
+import android.os.Bundle;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.play.core.integrity.IntegrityTokenResponse;
+import org.telegram.tgnet.TLRPC;
+public final class ld0 implements OnSuccessListener {
+    public final int f38304a = 0;
+    public final wg0 f38305b;
+    public final String f38306c;
+    public final TLRPC.auth_SentCode d;
+    public final Bundle f38307e;
+    public final boolean f38308f;
 
-    public ld0(int i10, org.telegram.ui.ActionBar.p2 p2Var) {
-        this.f35739a = i10;
-        this.f35740b = p2Var;
+    public ld0(wg0 wg0Var, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, String str, boolean z10) {
+        this.f38305b = wg0Var;
+        this.f38307e = bundle;
+        this.d = auth_sentcode;
+        this.f38306c = str;
+        this.f38308f = z10;
     }
 
     @Override
-    public final void G(int i10, boolean z4) {
-        eg0 eg0Var;
-        bl0 bl0Var;
-        switch (this.f35739a) {
+    public final void onSuccess(Object obj) {
+        switch (this.f38304a) {
             case 0:
-                pg0 pg0Var = (pg0) this.f35740b;
-                if (i10 > AndroidUtilities.dp(20.0f) && pg0Var.h1()) {
-                    AndroidUtilities.hideKeyboard(pg0Var.fragmentView);
-                }
-                if (i10 <= AndroidUtilities.dp(20.0f) && (eg0Var = pg0Var.Q) != null) {
-                    eg0Var.run();
-                    pg0Var.Q = null;
-                    return;
-                }
+                wg0.X(this.f38305b, this.f38307e, this.d, this.f38306c, this.f38308f, (IntegrityTokenResponse) obj);
                 return;
             default:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f35740b;
-                if (i10 >= AndroidUtilities.dp(20.0f) && (bl0Var = passcodeActivity.M) != null) {
-                    bl0Var.run();
-                    passcodeActivity.M = null;
-                    return;
-                }
+                wg0.V(this.f38305b, this.f38306c, this.d, this.f38307e, this.f38308f, (m8.d) obj);
                 return;
         }
+    }
+
+    public ld0(wg0 wg0Var, String str, TLRPC.auth_SentCode auth_sentcode, Bundle bundle, boolean z10) {
+        this.f38305b = wg0Var;
+        this.f38306c = str;
+        this.d = auth_sentcode;
+        this.f38307e = bundle;
+        this.f38308f = z10;
     }
 }

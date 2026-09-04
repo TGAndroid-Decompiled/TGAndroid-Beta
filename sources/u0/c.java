@@ -20,11 +20,11 @@ public abstract class c {
         }
     }
 
-    public static float c(EdgeEffect edgeEffect, float f10, float f11) {
+    public static float c(EdgeEffect edgeEffect, float f7, float f10) {
         try {
-            return edgeEffect.onPullDistance(f10, f11);
+            return edgeEffect.onPullDistance(f7, f10);
         } catch (Throwable unused) {
-            edgeEffect.onPull(f10, f11);
+            edgeEffect.onPull(f7, f10);
             return 0.0f;
         }
     }

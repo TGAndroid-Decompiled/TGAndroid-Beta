@@ -39,23 +39,23 @@ public class SQLiteCursor {
         throw new SQLiteException("You must call next before");
     }
 
-    public native byte[] columnByteArrayValue(long j10, int i10);
+    public native byte[] columnByteArrayValue(long j3, int i10);
 
-    public native long columnByteBufferValue(long j10, int i10);
+    public native long columnByteBufferValue(long j3, int i10);
 
-    public native int columnCount(long j10);
+    public native int columnCount(long j3);
 
-    public native double columnDoubleValue(long j10, int i10);
+    public native double columnDoubleValue(long j3, int i10);
 
-    public native int columnIntValue(long j10, int i10);
+    public native int columnIntValue(long j3, int i10);
 
-    public native int columnIsNull(long j10, int i10);
+    public native int columnIsNull(long j3, int i10);
 
-    public native long columnLongValue(long j10, int i10);
+    public native long columnLongValue(long j3, int i10);
 
-    public native String columnStringValue(long j10, int i10);
+    public native String columnStringValue(long j3, int i10);
 
-    public native int columnType(long j10, int i10);
+    public native int columnType(long j3, int i10);
 
     public void dispose() {
         this.preparedStatement.dispose();
@@ -102,7 +102,7 @@ public class SQLiteCursor {
     }
 
     public boolean next() {
-        boolean z4;
+        boolean z10;
         SQLitePreparedStatement sQLitePreparedStatement = this.preparedStatement;
         int step = sQLitePreparedStatement.step(sQLitePreparedStatement.getStatementHandle());
         if (step == -1) {
@@ -118,8 +118,8 @@ public class SQLiteCursor {
                     }
                     Thread.sleep(500L);
                     step = this.preparedStatement.step();
-                } catch (Exception e) {
-                    FileLog.e(e);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
                 }
                 if (step == 0) {
                     break;
@@ -131,12 +131,12 @@ public class SQLiteCursor {
             }
         }
         if (step == 0) {
-            z4 = true;
+            z10 = true;
         } else {
-            z4 = false;
+            z10 = false;
         }
-        this.inRow = z4;
-        return z4;
+        this.inRow = z10;
+        return z10;
     }
 
     public String stringValue(int i10) {
@@ -144,13 +144,13 @@ public class SQLiteCursor {
         return columnStringValue(this.preparedStatement.getStatementHandle(), i10);
     }
 
-    public <T extends TLObject> T tlObjectValue(int i10, Vector.TLDeserializer<T> tLDeserializer, boolean z4) {
+    public <T extends TLObject> T tlObjectValue(int i10, Vector.TLDeserializer<T> tLDeserializer, boolean z10) {
         NativeByteBuffer byteBufferValue = byteBufferValue(i10);
         if (byteBufferValue == null) {
             return null;
         }
         try {
-            return tLDeserializer.deserialize(byteBufferValue, byteBufferValue.readInt32(z4), z4);
+            return tLDeserializer.deserialize(byteBufferValue, byteBufferValue.readInt32(z10), z10);
         } finally {
             byteBufferValue.reuse();
         }

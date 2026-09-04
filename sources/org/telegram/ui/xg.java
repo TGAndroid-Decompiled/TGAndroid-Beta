@@ -1,43 +1,46 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesStorage;
-public final class xg implements MessagesStorage.IntCallback {
-    public final int f39977a;
-    public final zn f39978b;
+import org.telegram.messenger.AndroidUtilities;
+public final class xg implements Runnable {
+    public final int f42722a;
+    public final org.telegram.ui.ActionBar.b2[] f42723b;
 
-    public xg(zn znVar, int i10) {
-        this.f39977a = i10;
-        this.f39978b = znVar;
+    public xg(org.telegram.ui.ActionBar.b2[] b2VarArr, int i10) {
+        this.f42722a = i10;
+        this.f42723b = b2VarArr;
     }
 
     @Override
-    public final void run(int i10) {
-        switch (this.f39977a) {
+    public final void run() {
+        switch (this.f42722a) {
             case 0:
-                zn znVar = this.f39978b;
-                if (znVar.getParentActivity() != null && znVar.fragmentView != null && i10 > 0) {
-                    org.telegram.ui.Components.qc.a0(znVar).m(org.telegram.ui.Components.pc.f27820r, i10, 0, 0, znVar.f40534ba).j();
-                    return;
+                org.telegram.ui.ActionBar.b2[] b2VarArr = this.f42723b;
+                try {
+                    b2VarArr[0].dismiss();
+                } catch (Throwable unused) {
                 }
+                b2VarArr[0] = null;
                 return;
             case 1:
-                zn znVar2 = this.f39978b;
-                if (i10 == 0) {
-                    znVar2.f40631j6 = false;
-                    znVar2.H9();
-                    return;
+                org.telegram.ui.ActionBar.b2[] b2VarArr2 = this.f42723b;
+                try {
+                    b2VarArr2[0].dismiss();
+                } catch (Throwable unused2) {
                 }
-                znVar2.j(i10, 0, false, 0, true, 0);
+                b2VarArr2[0] = null;
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new xg(this.f42723b, 4));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new xg(this.f42723b, 5));
+                return;
+            case 4:
+                this.f42723b[0].dismiss();
                 return;
             default:
-                zn znVar3 = this.f39978b;
-                if (i10 == 0) {
-                    znVar3.Qc(true);
-                    return;
-                } else {
-                    znVar3.finishFragment();
-                    return;
-                }
+                this.f42723b[0].dismiss();
+                return;
         }
     }
 }

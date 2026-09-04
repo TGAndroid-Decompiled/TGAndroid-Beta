@@ -1,54 +1,79 @@
 package x7;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import b6.m;
-import j7.f5;
-import java.util.Arrays;
-import u6.p;
-public class i extends c6.a {
-    public static final Parcelable.Creator<i> CREATOR = new p(19);
-    public final int f46922a;
-    public final Float f46923b;
+import java.util.Map;
+public final class i extends d {
+    public final Object f49023b;
+    public int f49024c;
+    public final j d;
 
-    public i(int i10, Float f10) {
-        boolean z4 = true;
-        if (i10 != 1 && (f10 == null || f10.floatValue() < 0.0f)) {
-            z4 = false;
-        }
-        m.a("Invalid PatternItem: type=" + i10 + " length=" + f10, z4);
-        this.f46922a = i10;
-        this.f46923b = f10;
+    public i(j jVar, int i10) {
+        super(0, false);
+        this.d = jVar;
+        Object[] objArr = jVar.f49046c;
+        objArr.getClass();
+        this.f49023b = objArr[i10];
+        this.f49024c = i10;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final void a() {
+        int i10 = this.f49024c;
+        Object obj = this.f49023b;
+        j jVar = this.d;
+        if (i10 != -1 && i10 < jVar.size()) {
+            int i11 = this.f49024c;
+            Object[] objArr = jVar.f49046c;
+            objArr.getClass();
+            if (w7.l8.a(obj, objArr[i11])) {
+                return;
+            }
         }
-        if (!(obj instanceof i)) {
-            return false;
-        }
-        i iVar = (i) obj;
-        if (this.f46922a == iVar.f46922a && m.l(this.f46923b, iVar.f46923b)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f46922a), this.f46923b});
-    }
-
-    public String toString() {
-        return "[PatternItem: type=" + this.f46922a + " length=" + this.f46923b + "]";
+        Object obj2 = j.f49043s;
+        this.f49024c = jVar.e(obj);
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q10 = f5.q(parcel, 20293);
-        f5.s(parcel, 2, 4);
-        parcel.writeInt(this.f46922a);
-        f5.e(parcel, 3, this.f46923b);
-        f5.r(parcel, q10);
+    public final Object getKey() {
+        return this.f49023b;
+    }
+
+    @Override
+    public final Object getValue() {
+        j jVar = this.d;
+        Map a2 = jVar.a();
+        if (a2 != null) {
+            return a2.get(this.f49023b);
+        }
+        a();
+        int i10 = this.f49024c;
+        if (i10 == -1) {
+            return null;
+        }
+        Object[] objArr = jVar.d;
+        objArr.getClass();
+        return objArr[i10];
+    }
+
+    @Override
+    public final Object setValue(Object obj) {
+        j jVar = this.d;
+        Map a2 = jVar.a();
+        Object obj2 = this.f49023b;
+        if (a2 != null) {
+            return a2.put(obj2, obj);
+        }
+        a();
+        int i10 = this.f49024c;
+        if (i10 == -1) {
+            jVar.put(obj2, obj);
+            return null;
+        }
+        Object[] objArr = jVar.d;
+        objArr.getClass();
+        Object obj3 = objArr[i10];
+        int i11 = this.f49024c;
+        Object[] objArr2 = jVar.d;
+        objArr2.getClass();
+        objArr2[i11] = obj;
+        return obj3;
     }
 }

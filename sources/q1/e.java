@@ -6,46 +6,46 @@ import android.text.method.MetaKeyKeyListener;
 import android.view.KeyEvent;
 import android.view.View;
 public final class e implements KeyListener {
-    public final KeyListener f42717a;
-    public final ab.a f42718b;
+    public final KeyListener f44111a;
+    public final qb.b f44112b;
 
     public e(KeyListener keyListener) {
-        ab.a aVar = new ab.a(20);
-        this.f42717a = keyListener;
-        this.f42718b = aVar;
+        qb.b bVar = new qb.b(19);
+        this.f44111a = keyListener;
+        this.f44112b = bVar;
     }
 
     @Override
     public final void clearMetaKeyState(View view, Editable editable, int i10) {
-        this.f42717a.clearMetaKeyState(view, editable, i10);
+        this.f44111a.clearMetaKeyState(view, editable, i10);
     }
 
     @Override
     public final int getInputType() {
-        return this.f42717a.getInputType();
+        return this.f44111a.getInputType();
     }
 
     @Override
     public final boolean onKeyDown(View view, Editable editable, int i10, KeyEvent keyEvent) {
-        boolean v;
-        boolean z4;
-        this.f42718b.getClass();
+        boolean A;
+        boolean z10;
+        this.f44112b.getClass();
         if (i10 != 67) {
             if (i10 != 112) {
-                v = false;
+                A = false;
             } else {
-                v = af.c.v(editable, keyEvent, true);
+                A = pf.b.A(editable, keyEvent, true);
             }
         } else {
-            v = af.c.v(editable, keyEvent, false);
+            A = pf.b.A(editable, keyEvent, false);
         }
-        if (v) {
+        if (A) {
             MetaKeyKeyListener.adjustMetaAfterKeypress(editable);
-            z4 = true;
+            z10 = true;
         } else {
-            z4 = false;
+            z10 = false;
         }
-        if (z4 || this.f42717a.onKeyDown(view, editable, i10, keyEvent)) {
+        if (z10 || this.f44111a.onKeyDown(view, editable, i10, keyEvent)) {
             return true;
         }
         return false;
@@ -53,11 +53,11 @@ public final class e implements KeyListener {
 
     @Override
     public final boolean onKeyOther(View view, Editable editable, KeyEvent keyEvent) {
-        return this.f42717a.onKeyOther(view, editable, keyEvent);
+        return this.f44111a.onKeyOther(view, editable, keyEvent);
     }
 
     @Override
     public final boolean onKeyUp(View view, Editable editable, int i10, KeyEvent keyEvent) {
-        return this.f42717a.onKeyUp(view, editable, i10, keyEvent);
+        return this.f44111a.onKeyUp(view, editable, i10, keyEvent);
     }
 }

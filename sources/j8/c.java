@@ -1,29 +1,29 @@
 package j8;
+public final class c extends h {
+    public final int f13566c;
+    public final float d;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import j7.f5;
-import java.util.ArrayList;
-public final class c extends c6.a {
-    public static final Parcelable.Creator<c> CREATOR = new t(3);
-    public ArrayList f9229a;
-    public boolean f9230b;
-    public boolean f9231c;
-    public int d;
+    public c(float f7, int i10) {
+        super(0, Float.valueOf(Math.max(f7, 0.0f)));
+        this.f13566c = i10;
+        switch (i10) {
+            case 1:
+                super(2, Float.valueOf(Math.max(f7, 0.0f)));
+                this.d = Math.max(f7, 0.0f);
+                return;
+            default:
+                this.d = Math.max(f7, 0.0f);
+                return;
+        }
+    }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q10 = f5.q(parcel, 20293);
-        f5.h(parcel, 1, this.f9229a);
-        boolean z4 = this.f9230b;
-        f5.s(parcel, 2, 4);
-        parcel.writeInt(z4 ? 1 : 0);
-        boolean z10 = this.f9231c;
-        f5.s(parcel, 3, 4);
-        parcel.writeInt(z10 ? 1 : 0);
-        int i11 = this.d;
-        f5.s(parcel, 4, 4);
-        parcel.writeInt(i11);
-        f5.r(parcel, q10);
+    public final String toString() {
+        switch (this.f13566c) {
+            case 0:
+                return "[Dash: length=" + this.d + "]";
+            default:
+                return "[Gap: length=" + this.d + "]";
+        }
     }
 }

@@ -1,29 +1,48 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
 import java.util.regex.Pattern;
-public final class x80 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39922a;
-    public final LaunchActivity f39923b;
+import org.telegram.messenger.FileLog;
+public final class x80 implements Runnable {
+    public final int f42615a;
+    public final r80 f42616b;
 
-    public x80(LaunchActivity launchActivity, int i10) {
-        this.f39922a = i10;
-        this.f39923b = launchActivity;
+    public x80(r80 r80Var, int i10) {
+        this.f42615a = i10;
+        this.f42616b = r80Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f39922a;
-        LaunchActivity launchActivity = this.f39923b;
+    public final void run() {
+        int i10 = this.f42615a;
+        r80 r80Var = this.f42616b;
         switch (i10) {
             case 0:
-                launchActivity.f31624t0.invalidate();
-                return;
+                Pattern pattern = LaunchActivity.B1;
+                try {
+                    r80Var.run();
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
+            case 1:
+                Pattern pattern2 = LaunchActivity.B1;
+                try {
+                    r80Var.run();
+                    return;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return;
+                }
             default:
-                Pattern pattern = LaunchActivity.f31586y1;
-                launchActivity.getClass();
-                launchActivity.z0(((Integer) valueAnimator.getAnimatedValue()).intValue());
-                return;
+                Pattern pattern3 = LaunchActivity.B1;
+                try {
+                    r80Var.run();
+                    return;
+                } catch (Exception e11) {
+                    FileLog.e(e11);
+                    return;
+                }
         }
     }
 }

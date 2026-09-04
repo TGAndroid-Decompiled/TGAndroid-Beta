@@ -1,44 +1,31 @@
 package ih;
 
+import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-public final class f implements Runnable {
-    public final int f7559a;
-    public final j f7560b;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import w7.x5;
+public final class f extends FrameLayout {
+    public final kh.f f12328a;
 
-    public f(j jVar, int i10) {
-        this.f7559a = i10;
-        this.f7560b = jVar;
+    public f(Context context) {
+        super(context);
+        ?? view = new View(context);
+        this.f12328a = view;
+        addView((View) view, x5.g());
+    }
+
+    public final void a(bh.b bVar, eh.e eVar) {
+        kh.f fVar = this.f12328a;
+        fVar.b(bVar, eVar);
+        fVar.setIgnoreFastWay(true);
+        fVar.setFadeHeightTop(AndroidUtilities.dp(48.0f));
+        fVar.setFadeHeightBottom(AndroidUtilities.dp(48.0f));
     }
 
     @Override
-    public final void run() {
-        switch (this.f7559a) {
-            case 0:
-                j jVar = this.f7560b;
-                if (jVar.f7581j.isEmpty()) {
-                    jVar.f7580i = true;
-                    j.f7574n = null;
-                    i iVar = jVar.f7578f;
-                    if (iVar != null) {
-                        iVar.f7564a = false;
-                        jVar.f7578f = null;
-                    }
-                    jVar.d.removeView(jVar.e);
-                    if (jVar.d.getParent() instanceof ViewGroup) {
-                        ((ViewGroup) jVar.d.getParent()).removeView(jVar.d);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                ArrayList arrayList = this.f7560b.f7581j;
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    ((View) arrayList.get(i10)).invalidate();
-                }
-                return;
-        }
+    public final void onViewAdded(View view) {
+        super.onViewAdded(view);
+        bringChildToFront(this.f12328a);
     }
 }

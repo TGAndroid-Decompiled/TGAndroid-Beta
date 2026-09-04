@@ -1,5 +1,3 @@
 package i8;
-
-import android.os.IInterface;
-public interface c extends IInterface {
+public final class c extends a9.a {
 }

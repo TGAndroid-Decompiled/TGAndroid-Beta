@@ -1,21 +1,33 @@
 package f5;
 
-import j3.n0;
-import o4.s0;
-public abstract class n {
-    public final int f5929a;
-    public final s0 f5930b;
-    public final int f5931c;
-    public final n0 d;
-
-    public n(int i10, s0 s0Var, int i11) {
-        this.f5929a = i10;
-        this.f5930b = s0Var;
-        this.f5931c = i11;
-        this.d = s0Var.d[i11];
+import java.nio.ByteBuffer;
+import java.nio.channels.WritableByteChannel;
+public final class n extends com.googlecode.mp4parser.b {
+    public n() {
+        super("stsd");
     }
 
-    public abstract int a();
+    @Override
+    public final void getBox(WritableByteChannel writableByteChannel) {
+        writableByteChannel.write(d());
+        ByteBuffer allocate = ByteBuffer.allocate(8);
+        e5.b.r(0, allocate);
+        e5.b.q(0, allocate);
+        allocate.putInt(this.f6447b.size());
+        writableByteChannel.write((ByteBuffer) allocate.rewind());
+        c(writableByteChannel);
+    }
 
-    public abstract boolean b(n nVar);
+    @Override
+    public final long getSize() {
+        int i10;
+        long b10 = b();
+        long j3 = 8 + b10;
+        if (b10 + 16 >= 4294967296L) {
+            i10 = 16;
+        } else {
+            i10 = 8;
+        }
+        return j3 + i10;
+    }
 }

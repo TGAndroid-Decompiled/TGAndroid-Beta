@@ -15,12 +15,12 @@ public class Bitmaps {
         return createBitmap;
     }
 
-    public static Bitmap createScaledBitmap(Bitmap bitmap, int i10, int i11, boolean z4) {
-        return Bitmap.createScaledBitmap(bitmap, i10, i11, z4);
+    public static Bitmap createScaledBitmap(Bitmap bitmap, int i10, int i11, boolean z10) {
+        return Bitmap.createScaledBitmap(bitmap, i10, i11, z10);
     }
 
-    public static Bitmap createBitmap(Bitmap bitmap, int i10, int i11, int i12, int i13, Matrix matrix, boolean z4) {
-        return Bitmap.createBitmap(bitmap, i10, i11, i12, i13, matrix, z4);
+    public static Bitmap createBitmap(Bitmap bitmap, int i10, int i11, int i12, int i13, Matrix matrix, boolean z10) {
+        return Bitmap.createBitmap(bitmap, i10, i11, i12, i13, matrix, z10);
     }
 
     public static Bitmap createBitmap(Bitmap bitmap, int i10, int i11, int i12, int i13) {

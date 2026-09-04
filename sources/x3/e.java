@@ -1,61 +1,92 @@
 package x3;
 
-import r3.l;
+import c3.p;
+import e2.v;
+import java.io.EOFException;
 public final class e {
-    public static final long[] d = {128, 64, 32, 16, 8, 4, 2, 1};
-    public final byte[] f46832a = new byte[8];
-    public int f46833b;
-    public int f46834c;
+    public final f f48788a = new f();
+    public final v f48789b = new v(new byte[65025], 0);
+    public int f48790c = -1;
+    public int d;
+    public boolean f48791e;
 
-    public static long a(int i10, boolean z4, byte[] bArr) {
-        long j10 = bArr[0] & 255;
-        if (z4) {
-            j10 &= ~d[i10 - 1];
-        }
-        for (int i11 = 1; i11 < i10; i11++) {
-            j10 = (j10 << 8) | (bArr[i11] & 255);
-        }
-        return j10;
+    public final int a(int i10) {
+        int i11;
+        int i12 = 0;
+        this.d = 0;
+        do {
+            int i13 = this.d;
+            int i14 = i10 + i13;
+            f fVar = this.f48788a;
+            if (i14 >= fVar.f48794c) {
+                break;
+            }
+            int[] iArr = fVar.f48796f;
+            this.d = i13 + 1;
+            i11 = iArr[i14];
+            i12 += i11;
+        } while (i11 == 255);
+        return i12;
     }
 
-    public final long b(l lVar, boolean z4, boolean z10, int i10) {
-        int i11;
-        int i12 = this.f46833b;
-        byte[] bArr = this.f46832a;
-        if (i12 == 0) {
-            if (!lVar.c(bArr, 0, 1, z4)) {
-                return -1L;
-            }
-            int i13 = bArr[0] & 255;
-            int i14 = 0;
-            while (true) {
-                if (i14 < 8) {
-                    if ((d[i14] & i13) != 0) {
-                        i11 = i14 + 1;
-                        break;
+    public final boolean b(p pVar) {
+        boolean z10;
+        boolean z11;
+        int i10;
+        if (pVar != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        e2.d.g(z10);
+        boolean z12 = this.f48791e;
+        v vVar = this.f48789b;
+        if (z12) {
+            this.f48791e = false;
+            vVar.G(0);
+        }
+        while (!this.f48791e) {
+            int i11 = this.f48790c;
+            f fVar = this.f48788a;
+            if (i11 < 0) {
+                if (fVar.b(pVar, -1L) && fVar.a(pVar, true)) {
+                    int i12 = fVar.d;
+                    if ((fVar.f48792a & 1) == 1 && vVar.f8791c == 0) {
+                        i12 += a(0);
+                        i10 = this.d;
+                    } else {
+                        i10 = 0;
                     }
-                    i14++;
-                } else {
-                    i11 = -1;
-                    break;
+                    try {
+                        pVar.r(i12);
+                        this.f48790c = i10;
+                    } catch (EOFException unused) {
+                    }
+                }
+                return false;
+            }
+            int a2 = a(this.f48790c);
+            int i13 = this.f48790c + this.d;
+            if (a2 > 0) {
+                vVar.c(vVar.f8791c + a2);
+                try {
+                    pVar.readFully(vVar.f8789a, vVar.f8791c, a2);
+                    vVar.I(vVar.f8791c + a2);
+                    if (fVar.f48796f[i13 - 1] != 255) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    this.f48791e = z11;
+                } catch (EOFException unused2) {
+                    return false;
                 }
             }
-            this.f46834c = i11;
-            if (i11 != -1) {
-                this.f46833b = 1;
-            } else {
-                throw new IllegalStateException("No valid varint length mask found");
+            if (i13 == fVar.f48794c) {
+                i13 = -1;
             }
+            this.f48790c = i13;
         }
-        int i15 = this.f46834c;
-        if (i15 > i10) {
-            this.f46833b = 0;
-            return -2L;
-        }
-        if (i15 != 1) {
-            lVar.readFully(bArr, 1, i15 - 1);
-        }
-        this.f46833b = 0;
-        return a(this.f46834c, z10, bArr);
+        return true;
     }
 }

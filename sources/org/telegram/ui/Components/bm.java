@@ -1,39 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class bm extends ViewOutlineProvider {
-    public final dm f23719a;
+public final class bm extends TextView {
+    public float f24744a;
+    public boolean f24745b;
+    public final Paint f24746c;
 
-    public bm(dm dmVar) {
-        this.f23719a = dmVar;
+    public bm(Context context, Paint paint) {
+        super(context);
+        this.f24746c = paint;
+        this.f24744a = 0.0f;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
-        if (s5Var.getTag() == null) {
-            return;
-        }
-        int intValue = ((Integer) s5Var.getTag()).intValue();
-        dm dmVar = this.f23719a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = dmVar.v;
-        if (dmVar.d && chatAttachAlertPhotoLayout.Q0 == chatAttachAlertPhotoLayout.R0 && !chatAttachAlertPhotoLayout.L0) {
-            intValue++;
-        }
-        if (chatAttachAlertPhotoLayout.f22879d1) {
-            intValue++;
-        }
-        if (intValue == 0) {
-            int dp = AndroidUtilities.dp(16.0f);
-            outline.setRoundRect(0, 0, view.getMeasuredWidth() + dp, view.getMeasuredHeight() + dp, dp);
-        } else if (intValue == chatAttachAlertPhotoLayout.J0 - 1) {
-            int dp2 = AndroidUtilities.dp(16.0f);
-            outline.setRoundRect(-dp2, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + dp2, dp2);
+    public final void onDraw(Canvas canvas) {
+        int i10 = (int) ((this.f24744a * 130.0f) + 125.0f);
+        Paint paint = this.f24746c;
+        paint.setAlpha(i10);
+        if (!this.f24745b) {
+            float f7 = this.f24744a - 0.026666667f;
+            this.f24744a = f7;
+            if (f7 <= 0.0f) {
+                this.f24744a = 0.0f;
+                this.f24745b = true;
+            }
         } else {
-            outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+            float f10 = this.f24744a + 0.026666667f;
+            this.f24744a = f10;
+            if (f10 >= 1.0f) {
+                this.f24744a = 1.0f;
+                this.f24745b = false;
+            }
         }
+        super.onDraw(canvas);
+        canvas.drawCircle(AndroidUtilities.dp(14.0f), getMeasuredHeight() / 2, AndroidUtilities.dp(4.0f), paint);
+        invalidate();
     }
 }

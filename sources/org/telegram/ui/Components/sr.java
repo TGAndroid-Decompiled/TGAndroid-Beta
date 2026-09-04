@@ -1,80 +1,46 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.view.MotionEvent;
+import android.text.TextPaint;
 import android.view.View;
-import java.lang.ref.WeakReference;
 import org.telegram.messenger.AndroidUtilities;
-public final class sr implements View.OnTouchListener {
-    public final int f28797a;
-    public final Object f28798b;
+public final class sr extends View {
+    public final TextPaint f30401a;
+    public final TextPaint f30402b;
+    public final String f30403c;
+    public final String d;
+    public final Rect f30404e;
 
-    public sr(Object obj, int i10) {
-        this.f28797a = i10;
-        this.f28798b = obj;
+    public sr(Context context, String str, String str2) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.f30401a = textPaint;
+        TextPaint textPaint2 = new TextPaint(1);
+        this.f30402b = textPaint2;
+        this.f30404e = new Rect();
+        this.f30403c = str;
+        this.d = str2;
+        textPaint.setTextSize(AndroidUtilities.dp(24.0f));
+        textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
+        textPaint2.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.H6, false));
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        k70 k70Var;
-        switch (this.f28797a) {
-            case 0:
-                org.telegram.ui.ActionBar.p1 p1Var = ((ur) this.f28798b).f29289a;
-                if (motionEvent.getActionMasked() == 1 && p1Var != null && p1Var.isShowing()) {
-                    Rect rect = AndroidUtilities.rectTmp2;
-                    view.getHitRect(rect);
-                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        p1Var.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            case 1:
-                p70 p70Var = (p70) ((WeakReference) this.f28798b).get();
-                if (p70Var != null && (k70Var = p70Var.f27767m) != null && k70Var.isShowing()) {
-                    if (view.getParent() != null) {
-                        view.getParent().requestDisallowInterceptTouchEvent(true);
-                    }
-                    int actionMasked = motionEvent.getActionMasked();
-                    if (actionMasked == 2) {
-                        p70Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
-                    } else if (actionMasked == 1) {
-                        p70Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
-                        View view2 = p70Var.f27773p0;
-                        if (view2 != null) {
-                            p70Var.f27773p0 = null;
-                            view2.setPressed(false);
-                            view2.performClick();
-                        }
-                        view.setOnTouchListener(null);
-                        p70Var.f27771o0 = null;
-                    } else if (actionMasked == 3) {
-                        View view3 = p70Var.f27773p0;
-                        if (view3 != null) {
-                            view3.setPressed(false);
-                            p70Var.f27773p0 = null;
-                        }
-                        view.setOnTouchListener(null);
-                        p70Var.f27771o0 = null;
-                    }
-                    return true;
-                }
-                view.setOnTouchListener(null);
-                return false;
-            case 2:
-                qa0 qa0Var = (qa0) this.f28798b;
-                qa0Var.getClass();
-                return org.telegram.ui.rt.q().s(motionEvent, qa0Var.getListView(), qa0Var.f28133w, null, qa0Var.f28126a);
-            case 3:
-                rb0 rb0Var = (rb0) this.f28798b;
-                rb0Var.getClass();
-                if (motionEvent.getAction() == 1) {
-                    rb0Var.W.a(true);
-                }
-                return true;
-            default:
-                return xx0.v((xx0) this.f28798b, motionEvent);
-        }
+    public final void onDraw(Canvas canvas) {
+        TextPaint textPaint = this.f30402b;
+        String str = this.d;
+        float measureText = textPaint.measureText(str);
+        TextPaint textPaint2 = this.f30401a;
+        String str2 = this.f30403c;
+        float measureText2 = textPaint2.measureText(str2);
+        int length = str2.length();
+        Rect rect = this.f30404e;
+        textPaint2.getTextBounds(str2, 0, length, rect);
+        textPaint.getTextBounds(str, 0, str.length(), rect);
+        canvas.drawText(str2, (getWidth() * 0.25f) - (measureText2 / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint2);
+        canvas.drawText(str, (getWidth() * 0.7f) - (measureText / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint);
     }
 }

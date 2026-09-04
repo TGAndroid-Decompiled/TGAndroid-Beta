@@ -1,30 +1,23 @@
 package w8;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import java.util.Iterator;
-import java.util.concurrent.atomic.AtomicReference;
-public final class f extends BroadcastReceiver {
-    public static final AtomicReference f46556b = new AtomicReference();
-    public final Context f46557a;
-
-    public f(Context context) {
-        this.f46557a = context;
-    }
+import android.os.Parcel;
+import android.os.Parcelable;
+import v8.r;
+import w7.e0;
+public final class f extends o6.a {
+    public static final Parcelable.Creator<f> CREATOR = new r(22);
+    public long f48361a;
+    public long f48362b;
 
     @Override
-    public final void onReceive(Context context, Intent intent) {
-        synchronized (g.f46558k) {
-            try {
-                Iterator it = ((a0.e) g.f46559l.values()).iterator();
-                while (it.hasNext()) {
-                    ((g) it.next()).e();
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        this.f46557a.unregisterReceiver(this);
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = e0.q(parcel, 20293);
+        long j3 = this.f48361a;
+        e0.s(parcel, 2, 8);
+        parcel.writeLong(j3);
+        long j10 = this.f48362b;
+        e0.s(parcel, 3, 8);
+        parcel.writeLong(j10);
+        e0.r(parcel, q6);
     }
 }

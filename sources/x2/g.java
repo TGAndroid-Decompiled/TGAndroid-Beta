@@ -1,14 +1,18 @@
 package x2;
-public final class g implements u9.d {
-    public static final g f46739a = new Object();
-    public static final u9.c f46740b = u9.c.c("networkType");
-    public static final u9.c f46741c = u9.c.c("mobileSubtype");
+
+import e9.z;
+public final class g implements Comparable {
+    public final boolean f48716a;
+    public final boolean f48717b;
+
+    public g(b2.s sVar, int i10) {
+        this.f48716a = (sVar.f2358e & 1) != 0;
+        this.f48717b = i2.g.d(i10, false);
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        u9.e eVar = (u9.e) obj2;
-        n nVar = (n) ((v) obj);
-        eVar.e(f46740b, nVar.f46763a);
-        eVar.e(f46741c, nVar.f46764b);
+    public final int compareTo(Object obj) {
+        g gVar = (g) obj;
+        return z.f9025a.c(this.f48717b, gVar.f48717b).c(this.f48716a, gVar.f48716a).e();
     }
 }

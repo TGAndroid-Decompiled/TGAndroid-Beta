@@ -1,38 +1,73 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.NotificationCenter;
-public final class ua0 extends AnimatorListenerAdapter {
-    public final org.telegram.ui.Components.jj0 f38725a;
-    public final org.telegram.ui.Components.gj0 f38726b;
-    public final boolean f38727c;
-    public final LaunchActivity d;
+import android.os.Bundle;
+import java.util.regex.Pattern;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.tl.TL_stories;
+public final class ua0 implements e2.h {
+    public final int f41009a;
+    public final int f41010b;
+    public final Object f41011c;
+    public final Object d;
+    public final Object f41012e;
 
-    public ua0(LaunchActivity launchActivity, org.telegram.ui.Components.jj0 jj0Var, org.telegram.ui.Components.gj0 gj0Var, boolean z4) {
-        this.d = launchActivity;
-        this.f38725a = jj0Var;
-        this.f38726b = gj0Var;
-        this.f38727c = z4;
+    public ua0(Object obj, Object obj2, Object obj3, int i10, int i11) {
+        this.f41009a = i11;
+        this.f41011c = obj;
+        this.d = obj2;
+        this.f41012e = obj3;
+        this.f41010b = i10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        LaunchActivity launchActivity = this.d;
-        launchActivity.D0 = null;
-        launchActivity.f31630w0.invalidate();
-        launchActivity.f31610l0.invalidate();
-        launchActivity.f31610l0.setImageDrawable(null);
-        launchActivity.f31610l0.setVisibility(8);
-        launchActivity.m0.setVisibility(8);
-        org.telegram.ui.Components.jj0 jj0Var = this.f38725a;
-        if (jj0Var != null) {
-            jj0Var.setImageDrawable(this.f38726b);
+    public final void accept(Object obj) {
+        boolean z10;
+        int i10 = this.f41009a;
+        Object obj2 = this.f41012e;
+        Object obj3 = this.d;
+        Object obj4 = this.f41011c;
+        switch (i10) {
+            case 0:
+                LaunchActivity launchActivity = (LaunchActivity) obj4;
+                r80 r80Var = (r80) obj3;
+                Long l4 = (Long) obj2;
+                TL_stories.TL_storyAlbum tL_storyAlbum = (TL_stories.TL_storyAlbum) obj;
+                Pattern pattern = LaunchActivity.B1;
+                try {
+                    r80Var.run();
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                }
+                LaunchActivity.R();
+                if (tL_storyAlbum == null) {
+                    org.telegram.ui.Components.yc X = org.telegram.ui.Components.yc.X();
+                    if (X != null) {
+                        org.telegram.messenger.w1.o(R.string.StoryAlbumNotFound, X, R.raw.story_bomb2, 36);
+                        return;
+                    }
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                if (l4.longValue() > 0) {
+                    bundle.putLong("user_id", l4.longValue());
+                    if (l4.longValue() == UserConfig.getInstance(launchActivity.O).getClientUserId()) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    bundle.putBoolean("my_profile", z10);
+                } else {
+                    bundle.putLong("chat_id", -l4.longValue());
+                }
+                bundle.putInt("open_story_album_id", this.f41010b);
+                launchActivity.p0(new ProfileActivity(bundle, null));
+                return;
+            default:
+                a5.a aVar = (a5.a) obj4;
+                ((u2.k0) obj).h(aVar.f285b, (u2.f0) aVar.f286c, (u2.t) obj3, (u2.b0) obj2, this.f41010b);
+                return;
         }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeAccentListUpdated, new Object[0]);
-        if (!this.f38727c && jj0Var != null) {
-            jj0Var.setVisibility(0);
-        }
-        qy.f37517u4 = false;
     }
 }

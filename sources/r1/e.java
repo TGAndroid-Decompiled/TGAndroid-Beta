@@ -1,19 +1,19 @@
 package r1;
 public final class e {
-    public final long f43198a;
-    public final long f43199b;
+    public final long f44765a;
+    public final long f44766b;
 
-    public e(long j10, long j11) {
-        if (j11 == 0) {
-            this.f43198a = 0L;
-            this.f43199b = 1L;
+    public e(long j3, long j10) {
+        if (j10 == 0) {
+            this.f44765a = 0L;
+            this.f44766b = 1L;
             return;
         }
-        this.f43198a = j10;
-        this.f43199b = j11;
+        this.f44765a = j3;
+        this.f44766b = j10;
     }
 
     public final String toString() {
-        return this.f43198a + "/" + this.f43199b;
+        return this.f44765a + "/" + this.f44766b;
     }
 }

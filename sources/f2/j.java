@@ -1,22 +1,21 @@
 package f2;
+
+import e9.a1;
+import e9.i0;
 public final class j {
-    public l1 f5742a;
-    public l1 f5743b;
-    public final int f5744c;
-    public final int d;
-    public final int e;
-    public final int f5745f;
+    public final i0 f9190a;
+    public final int[] f9191b;
 
-    public j(l1 l1Var, l1 l1Var2, int i10, int i11, int i12, int i13) {
-        this.f5742a = l1Var;
-        this.f5743b = l1Var2;
-        this.f5744c = i10;
-        this.d = i11;
-        this.e = i12;
-        this.f5745f = i13;
-    }
-
-    public final String toString() {
-        return "ChangeInfo{oldHolder=" + this.f5742a + ", newHolder=" + this.f5743b + ", fromX=" + this.f5744c + ", fromY=" + this.d + ", toX=" + this.e + ", toY=" + this.f5745f + '}';
+    public j(a1 a1Var, int[] iArr, int i10) {
+        switch (i10) {
+            case 1:
+                this.f9190a = i0.v(a1Var);
+                this.f9191b = iArr;
+                return;
+            default:
+                this.f9190a = i0.v(a1Var);
+                this.f9191b = iArr;
+                return;
+        }
     }
 }

@@ -1,51 +1,63 @@
 package xb;
 
-import com.googlecode.mp4parser.c;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import yb.k;
-public abstract class a extends c {
-    public static final Logger f46954f;
-    public static final bb.b h;
-    public ByteBuffer e;
+import java.util.Arrays;
+import n6.l;
+import v7.a6;
+public final class a {
+    public final String f49332a;
+    public final float f49333b;
+    public final int f49334c;
+    public final String d;
 
-    static {
-        de.a aVar = new de.a(a.class, "AbstractDescriptorBox.java");
-        aVar.e(aVar.d("getData", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "", "", "java.nio.ByteBuffer"));
-        aVar.e(aVar.d("getDescriptor", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "", "", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.BaseDescriptor"));
-        aVar.e(aVar.d("getDescriptorAsString", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "", "", "java.lang.String"));
-        aVar.e(aVar.d("setDescriptor", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.BaseDescriptor", "descriptor", "void"));
-        h = aVar.e(aVar.d("setData", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "java.nio.ByteBuffer", "data", "void"));
-        f46954f = Logger.getLogger(a.class.getName());
+    public a(float f7, int i10, String str, String str2) {
+        int i11 = y7.b.f49559a;
+        this.f49332a = str == null ? "" : str;
+        this.f49333b = f7;
+        this.f49334c = i10;
+        this.d = str2;
     }
 
-    @Override
-    public final void _parseDetails(ByteBuffer byteBuffer) {
-        Logger logger = f46954f;
-        f(byteBuffer);
-        this.e = byteBuffer.slice();
-        byteBuffer.position(byteBuffer.remaining() + byteBuffer.position());
-        try {
-            this.e.rewind();
-            k.a(-1, this.e);
-        } catch (IOException e) {
-            logger.log(Level.WARNING, "Error parsing ObjectDescriptor", (Throwable) e);
-        } catch (IndexOutOfBoundsException e6) {
-            logger.log(Level.WARNING, "Error parsing ObjectDescriptor", (Throwable) e6);
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
+        if (!(obj instanceof a)) {
+            return false;
+        }
+        a aVar = (a) obj;
+        if (l.l(this.f49332a, aVar.f49332a) && Float.compare(this.f49333b, aVar.f49333b) == 0 && this.f49334c == aVar.f49334c && l.l(this.d, aVar.d)) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void getContent(ByteBuffer byteBuffer) {
-        i(byteBuffer);
-        this.e.rewind();
-        byteBuffer.put(this.e);
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f49332a, Float.valueOf(this.f49333b), Integer.valueOf(this.f49334c), this.d});
     }
 
-    @Override
-    public final long getContentSize() {
-        return this.e.limit() + 4;
+    public final String toString() {
+        a6 a6Var = new a6(a.class.getSimpleName());
+        a6 a6Var2 = new a6(8, false);
+        ((a6) a6Var.d).d = a6Var2;
+        a6Var.d = a6Var2;
+        a6Var2.f47379c = this.f49332a;
+        a6Var2.f47378b = "text";
+        String valueOf = String.valueOf(this.f49333b);
+        a6 a6Var3 = new a6(8, false);
+        ((a6) a6Var.d).d = a6Var3;
+        a6Var.d = a6Var3;
+        a6Var3.f47379c = valueOf;
+        a6Var3.f47378b = "confidence";
+        String valueOf2 = String.valueOf(this.f49334c);
+        a6 a6Var4 = new a6(8, false);
+        ((a6) a6Var.d).d = a6Var4;
+        a6Var4.f47379c = valueOf2;
+        a6Var4.f47378b = "index";
+        a6 a6Var5 = new a6(8, false);
+        a6Var4.d = a6Var5;
+        a6Var.d = a6Var5;
+        a6Var5.f47379c = this.d;
+        a6Var5.f47378b = "mid";
+        return a6Var.toString();
     }
 }

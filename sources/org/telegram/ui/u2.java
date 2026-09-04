@@ -4,206 +4,388 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.text.Layout;
+import android.text.StaticLayout;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
-import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
-public final class u2 extends FrameLayout implements org.telegram.ui.Cells.k9 {
-    public final p2 f38663a;
-    public final s2 f38664b;
-    public final t2 f38665c;
-    public TL_iv.pageBlockSlideshow d;
-    public f3 e;
-    public f3 f38666f;
-    public final int h;
-    public int f38667n;
-    public int f38668r;
-    public float f38669s;
-    public int v;
-    public final l4 f38670w;
-    public final n4 f38671x;
+public final class u2 extends FrameLayout implements org.telegram.ui.Components.iz0, org.telegram.ui.Cells.p9 {
+    public final v70 f40895a;
+    public final g4 f40896b;
+    public final t2 f40897c;
+    public b3 d;
+    public final org.telegram.ui.Components.jz0 f40898e;
+    public int f40899f;
+    public int h;
+    public int f40900n;
+    public boolean f40901r;
+    public TL_iv.pageBlockTable f40902s;
+    public final androidx.emoji2.text.n v;
 
-    public u2(n4 n4Var, Context context, l4 l4Var) {
+    public u2(Context context, v70 v70Var, g4 g4Var) {
         super(context);
-        this.f38671x = n4Var;
-        this.h = AndroidUtilities.dp(18.0f);
-        this.f38670w = l4Var;
-        if (n4.f36358y1 == null) {
-            Paint paint = new Paint(1);
-            n4.f36358y1 = paint;
-            paint.setColor(-1);
-        }
-        p2 p2Var = new p2(this, context);
-        this.f38663a = p2Var;
-        p2Var.b(new q2(this, 0));
-        s2 s2Var = new s2(this);
-        this.f38664b = s2Var;
-        p2Var.setAdapter(s2Var);
-        AndroidUtilities.setViewPagerEdgeEffectColor(p2Var, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19881d6, false));
-        addView(p2Var);
-        t2 t2Var = new t2(this, context);
-        this.f38665c = t2Var;
-        addView(t2Var);
+        this.v = new androidx.emoji2.text.n(this);
+        this.f40895a = v70Var;
+        this.f40896b = g4Var;
+        t2 t2Var = new t2(this, context, v70Var);
+        this.f40897c = t2Var;
+        float f7 = 18;
+        t2Var.setPadding(AndroidUtilities.dp(f7), 0, AndroidUtilities.dp(f7), 0);
+        t2Var.setClipToPadding(false);
+        addView(t2Var, w7.x5.c(-2.0f, -1));
+        org.telegram.ui.Components.jz0 jz0Var = new org.telegram.ui.Components.jz0(context, this, ((i4) v70Var).O0);
+        this.f40898e = jz0Var;
+        jz0Var.setOrientation(0);
+        jz0Var.setRowOrderPreserved(true);
+        t2Var.addView(jz0Var, new FrameLayout.LayoutParams(-2, -2));
         setWillNotDraw(false);
+    }
+
+    public final void a() {
+        int i10;
+        if (this.d == null) {
+            i10 = 0;
+        } else {
+            i10 = 1;
+        }
+        org.telegram.ui.Components.jz0 jz0Var = this.f40898e;
+        int childCount = jz0Var.getChildCount();
+        for (int i11 = 0; i11 < childCount; i11++) {
+            org.telegram.ui.Components.cz0 d = jz0Var.d(i11);
+            org.telegram.ui.Components.bz0 bz0Var = d.f25142b;
+            if (bz0Var != null) {
+                bz0Var.setX((AndroidUtilities.dp(18.0f) + (d.b() + this.f40899f)) - this.f40897c.getScrollX());
+                d.f25142b.setY(d.c() + this.h);
+                d.f25142b.setRow(d.f25148j + 10);
+                d.f25156r = i10;
+                i10++;
+            }
+        }
+    }
+
+    @Override
+    public final org.telegram.ui.Components.bz0 createTextLayout(TL_iv.pageTableCell pagetablecell, int i10) {
+        Layout.Alignment alignment;
+        if (pagetablecell == null) {
+            return null;
+        }
+        if (pagetablecell.align_right) {
+            alignment = Layout.Alignment.ALIGN_OPPOSITE;
+        } else if (pagetablecell.align_center) {
+            alignment = Layout.Alignment.ALIGN_CENTER;
+        } else {
+            alignment = Layout.Alignment.ALIGN_NORMAL;
+        }
+        Layout.Alignment alignment2 = alignment;
+        return i4.p(this.f40895a, this, null, pagetablecell.text, i10, -1, this.f40902s, alignment2, 0, this.f40896b);
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 0) {
+            this.f40895a.getClass();
+        } else if (actionMasked != 2 && (actionMasked == 1 || actionMasked == 3)) {
+            removeCallbacks(this.v);
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
     public final void fillTextLayoutBlocks(ArrayList arrayList) {
-        f3 f3Var = this.e;
-        if (f3Var != null) {
-            arrayList.add(f3Var);
+        b3 b3Var = this.d;
+        if (b3Var != null) {
+            arrayList.add(b3Var);
         }
-        f3 f3Var2 = this.f38666f;
-        if (f3Var2 != null) {
-            arrayList.add(f3Var2);
+        org.telegram.ui.Components.jz0 jz0Var = this.f40898e;
+        int childCount = jz0Var.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            org.telegram.ui.Components.bz0 bz0Var = jz0Var.d(i10).f25142b;
+            if (bz0Var != null) {
+                arrayList.add(bz0Var);
+            }
         }
+    }
+
+    public Paint getHalfLinePaint() {
+        return i4.f37205t1;
+    }
+
+    @Override
+    public Paint getHeaderPaint() {
+        return i4.f37206u1;
+    }
+
+    @Override
+    public Paint getLinePaint() {
+        return i4.f37204s1;
+    }
+
+    @Override
+    public Paint getStripPaint() {
+        return i4.f37207v1;
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        this.f40898e.invalidate();
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        f3 f3Var = this.e;
-        if (f3Var != null) {
-            f3Var.attach(this);
+        b3 b3Var = this.d;
+        if (b3Var != null) {
+            b3Var.attach(this);
         }
-        f3 f3Var2 = this.f38666f;
-        if (f3Var2 != null) {
-            f3Var2.attach(this);
+        org.telegram.ui.Components.jz0 jz0Var = this.f40898e;
+        int childCount = jz0Var.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            org.telegram.ui.Components.bz0 bz0Var = jz0Var.d(i10).f25142b;
+            if (bz0Var != null) {
+                bz0Var.attach(this);
+            }
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        f3 f3Var = this.e;
-        if (f3Var != null) {
-            f3Var.detach(this);
+        b3 b3Var = this.d;
+        if (b3Var != null) {
+            b3Var.detach(this);
         }
-        f3 f3Var2 = this.f38666f;
-        if (f3Var2 != null) {
-            f3Var2.detach(this);
+        org.telegram.ui.Components.jz0 jz0Var = this.f40898e;
+        int childCount = jz0Var.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            org.telegram.ui.Components.bz0 bz0Var = jz0Var.d(i10).f25142b;
+            if (bz0Var != null) {
+                bz0Var.detach(this);
+            }
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.d != null) {
-            f3 f3Var = this.e;
-            n4 n4Var = this.f38671x;
-            int i10 = this.h;
-            int i11 = 0;
-            if (f3Var != null) {
-                canvas.save();
-                canvas.translate(i10, this.f38667n);
-                n4.v(n4Var, canvas, this, 0);
-                this.e.draw(canvas, this);
-                canvas.restore();
-                i11 = 1;
-            }
-            if (this.f38666f != null) {
-                canvas.save();
-                canvas.translate(i10, this.f38667n + this.f38668r);
-                n4.v(n4Var, canvas, this, i11);
-                this.f38666f.draw(canvas, this);
-                canvas.restore();
-            }
+        if (this.f40902s == null) {
+            return;
         }
+        b3 b3Var = this.d;
+        v70 v70Var = this.f40895a;
+        if (b3Var != null) {
+            canvas.save();
+            canvas.translate(this.f40900n, 0);
+            i4.v(v70Var, canvas, this, 0);
+            this.d.draw(canvas, this);
+            canvas.restore();
+        }
+        i4.u(canvas, v70Var, this.f40902s, getMeasuredHeight());
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
-        StringBuilder sb = new StringBuilder(LocaleController.getString(R.string.AccDescrIVSlideshow));
-        if (this.e != null) {
-            sb.append(", ");
-            sb.append(this.e.d.getText());
+        StringBuilder sb2 = new StringBuilder(LocaleController.getString(R.string.AccDescrIVTable));
+        if (this.d != null) {
+            sb2.append(", ");
+            sb2.append(this.d.d.getText());
         }
-        if (this.f38666f != null) {
-            sb.append(", ");
-            sb.append(this.f38666f.d.getText());
-        }
-        accessibilityNodeInfo.setText(sb);
+        accessibilityNodeInfo.setText(sb2);
     }
 
     @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        int dp = AndroidUtilities.dp(8.0f);
-        p2 p2Var = this.f38663a;
-        p2Var.layout(0, dp, p2Var.getMeasuredWidth(), p2Var.getMeasuredHeight() + AndroidUtilities.dp(8.0f));
-        int bottom = p2Var.getBottom() - AndroidUtilities.dp(23.0f);
-        t2 t2Var = this.f38665c;
-        t2Var.layout(0, bottom, t2Var.getMeasuredWidth(), t2Var.getMeasuredHeight() + bottom);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int i14 = this.f40899f;
+        int i15 = this.h;
+        t2 t2Var = this.f40897c;
+        t2Var.layout(i14, i15, t2Var.getMeasuredWidth() + i14, t2Var.getMeasuredHeight() + this.h);
+        if (this.f40901r) {
+            g4 g4Var = this.f40896b;
+            if (g4Var != null && g4Var.G) {
+                t2Var.setScrollX(AndroidUtilities.dp(36.0f) + (this.f40898e.getMeasuredWidth() - t2Var.getMeasuredWidth()));
+            } else {
+                t2Var.setScrollX(0);
+            }
+            this.f40901r = false;
+        }
+    }
+
+    @Override
+    public final void onLayoutChild(org.telegram.ui.Components.bz0 bz0Var, int i10, int i11) {
+        if (bz0Var instanceof b3) {
+            v70 v70Var = this.f40895a;
+            if (!v70Var.E.isEmpty() && v70Var.F != null) {
+                b3 b3Var = (b3) bz0Var;
+                String lowerCase = b3Var.d.getText().toString().toLowerCase();
+                int i12 = 0;
+                while (true) {
+                    int indexOf = lowerCase.indexOf(v70Var.F, i12);
+                    if (indexOf >= 0) {
+                        int length = v70Var.F.length() + indexOf;
+                        if (indexOf == 0 || AndroidUtilities.isPunctuationCharacter(lowerCase.charAt(indexOf - 1))) {
+                            StaticLayout staticLayout = b3Var.d;
+                            this.f40896b.f36557y.put(v70Var.F + this.f40902s + b3Var.f34616r + indexOf, Integer.valueOf(staticLayout.getLineTop(staticLayout.getLineForOffset(indexOf)) + i11));
+                        }
+                        i12 = length;
+                    } else {
+                        return;
+                    }
+                }
+            }
+        }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12;
+        int dp;
+        int i13;
         int size = View.MeasureSpec.getSize(i10);
-        if (this.d != null) {
-            int dp = AndroidUtilities.dp(310.0f);
-            this.f38663a.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(dp, 1073741824));
-            this.d.items.size();
-            this.f38665c.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(10.0f), 1073741824));
-            int dp2 = size - AndroidUtilities.dp(36.0f);
-            int dp3 = AndroidUtilities.dp(16.0f) + dp;
-            this.f38667n = dp3;
-            TL_iv.pageBlockSlideshow pageblockslideshow = this.d;
-            TL_iv.RichText richText = pageblockslideshow.caption.text;
-            HashSet hashSet = n4.Y0;
-            Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-            n4 n4Var = this.f38671x;
-            f3 p10 = n4.p(n4Var, this, null, richText, dp2, dp3, pageblockslideshow, alignment, 0, this.f38670w);
-            this.e = p10;
-            int i13 = this.h;
-            if (p10 != null) {
-                int height = this.e.d.getHeight() + AndroidUtilities.dp(4.0f);
-                this.f38668r = height;
-                dp = org.telegram.messenger.y3.C(4.0f, height, dp);
-                f3 f3Var = this.e;
-                f3Var.f33933s = i13;
-                f3Var.v = this.f38667n;
+        TL_iv.pageBlockTable pageblocktable = this.f40902s;
+        if (pageblocktable != null) {
+            int i14 = pageblocktable.level;
+            v70 v70Var = this.f40895a;
+            if (i14 > 0) {
+                int dp2 = AndroidUtilities.dp(i14 * 14);
+                this.f40899f = dp2;
+                v70Var.getClass();
+                int dp3 = AndroidUtilities.dp(18) + dp2;
+                this.f40900n = dp3;
+                dp = size - dp3;
             } else {
-                this.f38668r = 0;
+                this.f40899f = 0;
+                v70Var.getClass();
+                this.f40900n = AndroidUtilities.dp(18);
+                dp = size - AndroidUtilities.dp(36);
             }
-            TL_iv.pageBlockSlideshow pageblockslideshow2 = this.d;
-            TL_iv.RichText richText2 = pageblockslideshow2.caption.credit;
-            if (this.f38670w.D) {
-                alignment = org.telegram.ui.Components.kw0.a();
+            int i15 = dp;
+            TL_iv.pageBlockTable pageblocktable2 = this.f40902s;
+            b3 p5 = i4.p(this.f40895a, this, null, pageblocktable2.title, i15, 0, pageblocktable2, Layout.Alignment.ALIGN_CENTER, 0, this.f40896b);
+            this.d = p5;
+            if (p5 != null) {
+                i13 = AndroidUtilities.dp(8.0f) + p5.d.getHeight();
+                this.h = i13;
+                b3 b3Var = this.d;
+                b3Var.f34617s = this.f40900n;
+                b3Var.v = 0;
+            } else {
+                this.h = AndroidUtilities.dp(8.0f);
+                i13 = 0;
             }
-            f3 p11 = n4.p(n4Var, this, null, richText2, dp2, 0, pageblockslideshow2, alignment, 0, this.f38670w);
-            this.f38666f = p11;
-            if (p11 != null) {
-                dp += this.f38666f.d.getHeight() + AndroidUtilities.dp(4.0f);
-                f3 f3Var2 = this.f38666f;
-                f3Var2.f33933s = i13;
-                f3Var2.v = this.f38667n + this.f38668r;
+            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size - this.f40899f, 1073741824);
+            int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
+            t2 t2Var = this.f40897c;
+            t2Var.measure(makeMeasureSpec, makeMeasureSpec2);
+            i12 = org.telegram.messenger.w1.C(8.0f, t2Var.getMeasuredHeight(), i13);
+            TL_iv.pageBlockTable pageblocktable3 = this.f40902s;
+            if (pageblocktable3.level > 0 && !pageblocktable3.bottom) {
+                i12 += AndroidUtilities.dp(8.0f);
             }
-            i12 = AndroidUtilities.dp(16.0f) + dp;
         } else {
             i12 = 1;
         }
         setMeasuredDimension(size, i12);
+        a();
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        f3 f3Var = this.e;
-        int i10 = this.h;
-        int i11 = this.f38667n;
-        n4 n4Var = this.f38671x;
-        if (!n4.l(n4Var, this.f38670w, motionEvent, this, f3Var, i10, i11)) {
-            if (!n4.l(n4Var, this.f38670w, motionEvent, this, this.f38666f, this.h, this.f38667n + this.f38668r) && !super.onTouchEvent(motionEvent)) {
-                return false;
+        MotionEvent motionEvent2;
+        org.telegram.ui.Components.jz0 jz0Var = this.f40898e;
+        int childCount = jz0Var.getChildCount();
+        int i10 = 0;
+        while (i10 < childCount) {
+            org.telegram.ui.Components.cz0 d = jz0Var.d(i10);
+            org.telegram.ui.Components.bz0 bz0Var = d.f25142b;
+            if (bz0Var instanceof b3) {
+                b3 b3Var = (b3) bz0Var;
+                t2 t2Var = this.f40897c;
+                int b10 = d.b() + (t2Var.getPaddingLeft() - t2Var.getScrollX()) + this.f40899f;
+                int i11 = this.h;
+                MotionEvent motionEvent3 = motionEvent;
+                motionEvent2 = motionEvent3;
+                if (i4.l(this.f40895a, this.f40896b, motionEvent3, this, b3Var, b10, d.c() + i11)) {
+                    return true;
+                }
+            } else {
+                motionEvent2 = motionEvent;
             }
-            return true;
+            i10++;
+            motionEvent = motionEvent2;
+        }
+        MotionEvent motionEvent4 = motionEvent;
+        if (!i4.l(this.f40895a, this.f40896b, motionEvent4, this, this.d, this.f40900n, 0) && !super.onTouchEvent(motionEvent4)) {
+            return false;
         }
         return true;
+    }
+
+    public void setBlock(TL_iv.pageBlockTable pageblocktable) {
+        boolean z10;
+        int i10;
+        this.f40902s = pageblocktable;
+        int i11 = org.telegram.ui.ActionBar.j6.f20663d6;
+        ((i4) this.f40895a).getClass();
+        AndroidUtilities.setScrollViewEdgeEffectColor(this.f40897c, org.telegram.ui.ActionBar.j6.w0(null, i11, false));
+        org.telegram.ui.Components.jz0 jz0Var = this.f40898e;
+        jz0Var.P.clear();
+        jz0Var.K.clear();
+        jz0Var.g();
+        jz0Var.setDrawLines(this.f40902s.bordered);
+        jz0Var.setStriped(this.f40902s.striped);
+        g4 g4Var = this.f40896b;
+        if (g4Var != null && g4Var.G) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        jz0Var.setRtl(z10);
+        if (!this.f40902s.rows.isEmpty()) {
+            TL_iv.pageTableRow pagetablerow = this.f40902s.rows.get(0);
+            int size = pagetablerow.cells.size();
+            i10 = 0;
+            for (int i12 = 0; i12 < size; i12++) {
+                int i13 = pagetablerow.cells.get(i12).colspan;
+                if (i13 == 0) {
+                    i13 = 1;
+                }
+                i10 += i13;
+            }
+        } else {
+            i10 = 0;
+        }
+        int size2 = this.f40902s.rows.size();
+        for (int i14 = 0; i14 < size2; i14++) {
+            TL_iv.pageTableRow pagetablerow2 = this.f40902s.rows.get(i14);
+            int size3 = pagetablerow2.cells.size();
+            int i15 = 0;
+            for (int i16 = 0; i16 < size3; i16++) {
+                TL_iv.pageTableCell pagetablecell = pagetablerow2.cells.get(i16);
+                int i17 = pagetablecell.colspan;
+                if (i17 == 0) {
+                    i17 = 1;
+                }
+                int i18 = pagetablecell.rowspan;
+                if (i18 == 0) {
+                    i18 = 1;
+                }
+                if (pagetablecell.text != null) {
+                    jz0Var.b(pagetablecell, i15, i14, i17);
+                } else {
+                    jz0Var.a(i15, i14, i17, i18);
+                }
+                i15 += i17;
+            }
+        }
+        jz0Var.setColumnCount(i10);
+        this.f40901r = true;
+        requestLayout();
     }
 }

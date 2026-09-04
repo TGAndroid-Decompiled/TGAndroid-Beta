@@ -1,14 +1,23 @@
 package y4;
 
-import h5.w;
-public final class a {
-    public final w f47155a = new w();
-    public final int[] f47156b = new int[256];
-    public boolean f47157c;
-    public int d;
-    public int e;
-    public int f47158f;
-    public int f47159g;
-    public int h;
-    public int f47160i;
+import android.os.Bundle;
+import android.os.Parcelable;
+import androidx.versionedparcelable.ParcelImpl;
+public abstract class a {
+    public static d a(Bundle bundle) {
+        try {
+            Bundle bundle2 = (Bundle) bundle.getParcelable("android.support.v4.media.session.SESSION_TOKEN2");
+            if (bundle2 != null) {
+                bundle2.setClassLoader(a.class.getClassLoader());
+                Parcelable parcelable = bundle2.getParcelable("a");
+                if (parcelable instanceof ParcelImpl) {
+                    return ((ParcelImpl) parcelable).f1909a;
+                }
+                throw new IllegalArgumentException("Invalid parcel");
+            }
+            return null;
+        } catch (RuntimeException unused) {
+            return null;
+        }
+    }
 }

@@ -1,80 +1,33 @@
 package n7;
+public final class e extends d {
+    public final c7.x f16623a;
 
-import java.io.Serializable;
-import java.util.AbstractCollection;
-import java.util.Arrays;
-import java.util.Collection;
-public abstract class e extends AbstractCollection implements Serializable {
-    public static final Object[] f14322a = new Object[0];
-
-    @Override
-    public final boolean add(Object obj) {
-        throw new UnsupportedOperationException();
+    public e(c7.x xVar) {
+        this.f16623a = xVar;
     }
 
     @Override
-    public final boolean addAll(Collection collection) {
-        throw new UnsupportedOperationException();
+    public final Object a() {
+        return this.f16623a;
     }
 
     @Override
-    public final void clear() {
-        throw new UnsupportedOperationException();
+    public final boolean b() {
+        return true;
     }
 
-    public abstract int i(Object[] objArr);
-
-    public int n() {
-        throw new UnsupportedOperationException();
-    }
-
-    public int o() {
-        throw new UnsupportedOperationException();
-    }
-
-    public Object[] p() {
-        return null;
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean removeAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean retainAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final Object[] toArray() {
-        return toArray(f14322a);
-    }
-
-    @Override
-    public final Object[] toArray(Object[] objArr) {
-        objArr.getClass();
-        int size = size();
-        int length = objArr.length;
-        if (length < size) {
-            Object[] p10 = p();
-            if (p10 == null) {
-                if (length != 0) {
-                    objArr = Arrays.copyOf(objArr, 0);
-                }
-                objArr = Arrays.copyOf(objArr, size);
-            } else {
-                return Arrays.copyOfRange(p10, o(), n(), objArr.getClass());
-            }
-        } else if (length > size) {
-            objArr[size] = null;
+    public final boolean equals(Object obj) {
+        if (obj instanceof e) {
+            return this.f16623a.equals(((e) obj).f16623a);
         }
-        i(objArr);
-        return objArr;
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f16623a.hashCode() + 1502476572;
+    }
+
+    public final String toString() {
+        return a4.a.p("Optional.of(", this.f16623a.toString(), ")");
     }
 }

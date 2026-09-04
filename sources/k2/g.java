@@ -1,152 +1,36 @@
 package k2;
+public final class g implements Runnable {
+    public final int f14574a;
+    public final n4.y f14575b;
+    public final i2.h f14576c;
 
-import android.content.res.Resources;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
-import android.graphics.Region;
-import android.graphics.drawable.Drawable;
-public abstract class g extends Drawable implements j0.b {
-    public Drawable f9626a;
-
-    @Override
-    public void applyTheme(Resources.Theme theme) {
-        Drawable drawable = this.f9626a;
-        if (drawable != null) {
-            drawable.applyTheme(theme);
-        }
+    public g(n4.y yVar, i2.h hVar, int i10) {
+        this.f14574a = i10;
+        this.f14575b = yVar;
+        this.f14576c = hVar;
     }
 
     @Override
-    public final void clearColorFilter() {
-        Drawable drawable = this.f9626a;
-        if (drawable != null) {
-            drawable.clearColorFilter();
-        } else {
-            super.clearColorFilter();
+    public final void run() {
+        switch (this.f14574a) {
+            case 0:
+                n4.y yVar = this.f14575b;
+                i2.h hVar = this.f14576c;
+                synchronized (hVar) {
+                }
+                String str = e2.d0.f8737a;
+                j2.f fVar = ((i2.c0) ((j) yVar.f16497c)).f11471a.f11533s;
+                j2.a n10 = fVar.n((u2.f0) fVar.d.f6377e);
+                fVar.q(n10, 1013, new j2.c(n10, hVar, 11));
+                return;
+            default:
+                n4.y yVar2 = this.f14575b;
+                i2.h hVar2 = this.f14576c;
+                String str2 = e2.d0.f8737a;
+                j2.f fVar2 = ((i2.c0) ((j) yVar2.f16497c)).f11471a.f11533s;
+                j2.a p5 = fVar2.p();
+                fVar2.q(p5, 1007, new j2.c(p5, hVar2, 4));
+                return;
         }
-    }
-
-    @Override
-    public final Drawable getCurrent() {
-        Drawable drawable = this.f9626a;
-        if (drawable != null) {
-            return drawable.getCurrent();
-        }
-        return super.getCurrent();
-    }
-
-    @Override
-    public final int getMinimumHeight() {
-        Drawable drawable = this.f9626a;
-        if (drawable != null) {
-            return drawable.getMinimumHeight();
-        }
-        return super.getMinimumHeight();
-    }
-
-    @Override
-    public final int getMinimumWidth() {
-        Drawable drawable = this.f9626a;
-        if (drawable != null) {
-            return drawable.getMinimumWidth();
-        }
-        return super.getMinimumWidth();
-    }
-
-    @Override
-    public final boolean getPadding(Rect rect) {
-        Drawable drawable = this.f9626a;
-        if (drawable != null) {
-            return drawable.getPadding(rect);
-        }
-        return super.getPadding(rect);
-    }
-
-    @Override
-    public final int[] getState() {
-        Drawable drawable = this.f9626a;
-        if (drawable != null) {
-            return drawable.getState();
-        }
-        return super.getState();
-    }
-
-    @Override
-    public final Region getTransparentRegion() {
-        Drawable drawable = this.f9626a;
-        if (drawable != null) {
-            return drawable.getTransparentRegion();
-        }
-        return super.getTransparentRegion();
-    }
-
-    @Override
-    public final void jumpToCurrentState() {
-        Drawable drawable = this.f9626a;
-        if (drawable != null) {
-            drawable.jumpToCurrentState();
-        }
-    }
-
-    @Override
-    public boolean onLevelChange(int i10) {
-        Drawable drawable = this.f9626a;
-        if (drawable != null) {
-            return drawable.setLevel(i10);
-        }
-        return super.onLevelChange(i10);
-    }
-
-    @Override
-    public final void setChangingConfigurations(int i10) {
-        Drawable drawable = this.f9626a;
-        if (drawable != null) {
-            drawable.setChangingConfigurations(i10);
-        } else {
-            super.setChangingConfigurations(i10);
-        }
-    }
-
-    @Override
-    public final void setColorFilter(int i10, PorterDuff.Mode mode) {
-        Drawable drawable = this.f9626a;
-        if (drawable != null) {
-            drawable.setColorFilter(i10, mode);
-        } else {
-            super.setColorFilter(i10, mode);
-        }
-    }
-
-    @Override
-    public final void setFilterBitmap(boolean z4) {
-        Drawable drawable = this.f9626a;
-        if (drawable != null) {
-            drawable.setFilterBitmap(z4);
-        }
-    }
-
-    @Override
-    public final void setHotspot(float f10, float f11) {
-        Drawable drawable = this.f9626a;
-        if (drawable != null) {
-            drawable.setHotspot(f10, f11);
-        }
-    }
-
-    @Override
-    public final void setHotspotBounds(int i10, int i11, int i12, int i13) {
-        Drawable drawable = this.f9626a;
-        if (drawable != null) {
-            drawable.setHotspotBounds(i10, i11, i12, i13);
-        }
-    }
-
-    @Override
-    public final boolean setState(int[] iArr) {
-        Drawable drawable = this.f9626a;
-        if (drawable != null) {
-            return drawable.setState(iArr);
-        }
-        return super.setState(iArr);
     }
 }

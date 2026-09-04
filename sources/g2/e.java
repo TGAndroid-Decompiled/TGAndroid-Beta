@@ -1,194 +1,197 @@
 package g2;
 
-import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.res.AssetFileDescriptor;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
-import android.widget.CompoundButton;
-import android.widget.TextView;
-import j7.i8;
-import java.lang.reflect.Field;
-import java.util.Iterator;
-import java.util.Map;
-import k7.u7;
-import kotlin.jvm.internal.j;
-import m.p;
-public final class e {
-    public boolean f6348a;
-    public boolean f6349b;
-    public boolean f6350c;
-    public final Object d;
-    public Parcelable e;
-    public Object f6351f;
+import j$.util.Objects;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
+public final class e extends c {
+    public final ContentResolver f10299a;
+    public Uri f10300b;
+    public AssetFileDescriptor f10301c;
+    public FileInputStream d;
+    public long f10302e;
+    public boolean f10303f;
 
-    public e(TextView textView) {
-        this.e = null;
-        this.f6351f = null;
-        this.f6348a = false;
-        this.f6349b = false;
-        this.d = textView;
+    public e(Context context) {
+        super(false);
+        this.f10299a = context.getContentResolver();
     }
 
-    public void a() {
-        Drawable drawable;
-        CompoundButton compoundButton = (CompoundButton) this.d;
-        if (Build.VERSION.SDK_INT >= 23) {
-            drawable = e0.b.d(compoundButton);
-        } else {
-            if (!u7.f9985b) {
-                try {
-                    Field declaredField = CompoundButton.class.getDeclaredField("mButtonDrawable");
-                    u7.f9984a = declaredField;
-                    declaredField.setAccessible(true);
-                } catch (NoSuchFieldException e) {
-                    Log.i("CompoundButtonCompat", "Failed to retrieve mButtonDrawable field", e);
-                }
-                u7.f9985b = true;
-            }
-            Field field = u7.f9984a;
-            if (field != null) {
-                try {
-                    drawable = (Drawable) field.get(compoundButton);
-                } catch (IllegalAccessException e6) {
-                    Log.i("CompoundButtonCompat", "Failed to get button drawable via reflection", e6);
-                    u7.f9984a = null;
-                }
-            }
-            drawable = null;
-        }
-        if (drawable != null) {
-            if (this.f6348a || this.f6349b) {
-                Drawable mutate = i8.d(drawable).mutate();
-                if (this.f6348a) {
-                    mutate.setTintList((ColorStateList) this.e);
-                }
-                if (this.f6349b) {
-                    mutate.setTintMode((PorterDuff.Mode) this.f6351f);
-                }
-                if (mutate.isStateful()) {
-                    mutate.setState(compoundButton.getDrawableState());
-                }
-                compoundButton.setButtonDrawable(mutate);
-            }
-        }
-    }
-
-    public void b() {
-        p pVar = (p) this.d;
-        Drawable checkMarkDrawable = pVar.getCheckMarkDrawable();
-        if (checkMarkDrawable != null) {
-            if (this.f6348a || this.f6349b) {
-                Drawable mutate = i8.d(checkMarkDrawable).mutate();
-                if (this.f6348a) {
-                    mutate.setTintList((ColorStateList) this.e);
-                }
-                if (this.f6349b) {
-                    mutate.setTintMode((PorterDuff.Mode) this.f6351f);
-                }
-                if (mutate.isStateful()) {
-                    mutate.setState(pVar.getDrawableState());
-                }
-                pVar.setCheckMarkDrawable(mutate);
-            }
-        }
-    }
-
-    public Bundle c(String str) {
-        if (this.f6349b) {
-            Bundle bundle = (Bundle) this.e;
-            if (bundle == null) {
-                return null;
-            }
-            Bundle bundle2 = bundle.getBundle(str);
-            Bundle bundle3 = (Bundle) this.e;
-            if (bundle3 != null) {
-                bundle3.remove(str);
-            }
-            Bundle bundle4 = (Bundle) this.e;
-            if (bundle4 != null && !bundle4.isEmpty()) {
-                return bundle2;
-            }
-            this.e = null;
-            return bundle2;
-        }
-        throw new IllegalStateException("You can consumeRestoredStateForKey only after super.onCreate of corresponding component");
-    }
-
-    public d d() {
-        Map.Entry components;
-        d dVar;
-        Iterator it = ((o.f) this.d).iterator();
-        do {
-            o.b bVar = (o.b) it;
-            if (bVar.hasNext()) {
-                components = (Map.Entry) bVar.next();
-                j.d(components, "components");
-                dVar = (d) components.getValue();
-            } else {
-                return null;
-            }
-        } while (!j.a((String) components.getKey(), "androidx.lifecycle.internal.SavedStateHandlesProvider"));
-        return dVar;
-    }
-
-    public void e(android.util.AttributeSet r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: g2.e.e(android.util.AttributeSet, int):void");
-    }
-
-    public void f(String str, d provider) {
-        Object obj;
-        j.e(provider, "provider");
-        o.f fVar = (o.f) this.d;
-        o.c i10 = fVar.i(str);
-        if (i10 != null) {
-            obj = i10.f16120b;
-        } else {
-            o.c cVar = new o.c(str, provider);
-            fVar.d++;
-            o.c cVar2 = fVar.f16126b;
-            if (cVar2 == null) {
-                fVar.f16125a = cVar;
-                fVar.f16126b = cVar;
-            } else {
-                cVar2.f16121c = cVar;
-                cVar.d = cVar2;
-                fVar.f16126b = cVar;
-            }
-            obj = null;
-        }
-        if (((d) obj) == null) {
-            return;
-        }
-        throw new IllegalArgumentException("SavedStateProvider with the given key is already registered");
-    }
-
-    public void g() {
-        if (this.f6350c) {
-            a aVar = (a) this.f6351f;
-            if (aVar == null) {
-                aVar = new a(this);
-            }
-            this.f6351f = aVar;
+    @Override
+    public final void close() {
+        this.f10300b = null;
+        try {
             try {
-                androidx.lifecycle.j.class.getDeclaredConstructor(null);
-                a aVar2 = (a) this.f6351f;
-                if (aVar2 != null) {
-                    aVar2.f6346a.add(androidx.lifecycle.j.class.getName());
-                    return;
+                FileInputStream fileInputStream = this.d;
+                if (fileInputStream != null) {
+                    fileInputStream.close();
                 }
-                return;
-            } catch (NoSuchMethodException e) {
-                throw new IllegalArgumentException("Class " + androidx.lifecycle.j.class.getSimpleName() + " must have default constructor in order to be automatically recreated", e);
+                this.d = null;
+                try {
+                    try {
+                        AssetFileDescriptor assetFileDescriptor = this.f10301c;
+                        if (assetFileDescriptor != null) {
+                            assetFileDescriptor.close();
+                        }
+                    } catch (IOException e7) {
+                        throw new j(e7, 2000);
+                    }
+                } finally {
+                    this.f10301c = null;
+                    if (this.f10303f) {
+                        this.f10303f = false;
+                        transferEnded();
+                    }
+                }
+            } catch (IOException e10) {
+                throw new j(e10, 2000);
+            }
+        } catch (Throwable th2) {
+            this.d = null;
+            try {
+                try {
+                    AssetFileDescriptor assetFileDescriptor2 = this.f10301c;
+                    if (assetFileDescriptor2 != null) {
+                        assetFileDescriptor2.close();
+                    }
+                    this.f10301c = null;
+                    if (this.f10303f) {
+                        this.f10303f = false;
+                        transferEnded();
+                    }
+                    throw th2;
+                } catch (IOException e11) {
+                    throw new j(e11, 2000);
+                }
+            } finally {
+                this.f10301c = null;
+                if (this.f10303f) {
+                    this.f10303f = false;
+                    transferEnded();
+                }
             }
         }
-        throw new IllegalStateException("Can not perform this action after onSaveInstanceState");
     }
 
-    public e() {
-        this.d = new o.f();
-        this.f6350c = true;
+    @Override
+    public final Uri getUri() {
+        return this.f10300b;
+    }
+
+    @Override
+    public final long open(m mVar) {
+        AssetFileDescriptor openAssetFileDescriptor;
+        long min;
+        int i10 = 2000;
+        try {
+            Uri uri = mVar.f10330a;
+            long j3 = mVar.f10334f;
+            long j10 = mVar.f10333e;
+            Uri normalizeScheme = uri.normalizeScheme();
+            this.f10300b = normalizeScheme;
+            transferInitializing(mVar);
+            boolean equals = Objects.equals(normalizeScheme.getScheme(), "content");
+            ContentResolver contentResolver = this.f10299a;
+            if (equals) {
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("android.provider.extra.ACCEPT_ORIGINAL_MEDIA_FORMAT", true);
+                openAssetFileDescriptor = contentResolver.openTypedAssetFileDescriptor(normalizeScheme, "*/*", bundle);
+            } else {
+                openAssetFileDescriptor = contentResolver.openAssetFileDescriptor(normalizeScheme, "r");
+            }
+            this.f10301c = openAssetFileDescriptor;
+            if (openAssetFileDescriptor != null) {
+                long length = openAssetFileDescriptor.getLength();
+                FileInputStream fileInputStream = new FileInputStream(openAssetFileDescriptor.getFileDescriptor());
+                this.d = fileInputStream;
+                int i11 = (length > (-1L) ? 1 : (length == (-1L) ? 0 : -1));
+                if (i11 != 0 && j10 > length) {
+                    throw new j((Exception) null, 2008);
+                }
+                long startOffset = openAssetFileDescriptor.getStartOffset();
+                long skip = fileInputStream.skip(startOffset + j10) - startOffset;
+                if (skip == j10) {
+                    if (i11 == 0) {
+                        FileChannel channel = fileInputStream.getChannel();
+                        long size = channel.size();
+                        if (size == 0) {
+                            this.f10302e = -1L;
+                        } else {
+                            long position = size - channel.position();
+                            this.f10302e = position;
+                            if (position < 0) {
+                                throw new j((Exception) null, 2008);
+                            }
+                        }
+                    } else {
+                        long j11 = length - skip;
+                        this.f10302e = j11;
+                        if (j11 < 0) {
+                            throw new j((Exception) null, 2008);
+                        }
+                    }
+                    int i12 = (j3 > (-1L) ? 1 : (j3 == (-1L) ? 0 : -1));
+                    if (i12 != 0) {
+                        long j12 = this.f10302e;
+                        if (j12 == -1) {
+                            min = j3;
+                        } else {
+                            min = Math.min(j12, j3);
+                        }
+                        this.f10302e = min;
+                    }
+                    this.f10303f = true;
+                    transferStarted(mVar);
+                    if (i12 != 0) {
+                        return j3;
+                    }
+                    return this.f10302e;
+                }
+                throw new j((Exception) null, 2008);
+            }
+            throw new j(new IOException("Could not open file descriptor for: " + normalizeScheme), 2000);
+        } catch (d e7) {
+            throw e7;
+        } catch (IOException e10) {
+            if (e10 instanceof FileNotFoundException) {
+                i10 = 2005;
+            }
+            throw new j(e10, i10);
+        }
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        if (i11 == 0) {
+            return 0;
+        }
+        long j3 = this.f10302e;
+        if (j3 != 0) {
+            if (j3 != -1) {
+                try {
+                    i11 = (int) Math.min(j3, i11);
+                } catch (IOException e7) {
+                    throw new j(e7, 2000);
+                }
+            }
+            FileInputStream fileInputStream = this.d;
+            String str = e2.d0.f8737a;
+            int read = fileInputStream.read(bArr, i10, i11);
+            if (read != -1) {
+                long j10 = this.f10302e;
+                if (j10 != -1) {
+                    this.f10302e = j10 - read;
+                }
+                bytesTransferred(read);
+                return read;
+            }
+        }
+        return -1;
     }
 }

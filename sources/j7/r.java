@@ -1,6 +1,0 @@
-package j7;
-public abstract class r {
-    public static androidx.emoji2.text.r a(android.content.Context r8) {
-        throw new UnsupportedOperationException("Method not decompiled: j7.r.a(android.content.Context):androidx.emoji2.text.r");
-    }
-}

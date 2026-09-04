@@ -1,131 +1,44 @@
 package af;
 
-import android.graphics.Typeface;
-import android.media.MediaRoute2Info;
-import android.util.Log;
-import cg.r0;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.components.ComponentRegistrar;
-import com.google.firebase.messaging.o;
-import dg.q3;
-import g5.l;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.List;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.ui.ActionBar.c2;
-import org.telegram.ui.ActionBar.d2;
-import s5.m;
-public final class a implements l, c9.g, ba.a, c9.f, r0, Continuation, v2.e, OnFailureListener, c2 {
-    public final int f149a;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import t7.u;
+public abstract class a {
+    public static final Pattern f420a = Pattern.compile("[\\\\&]");
+    public static final Pattern f421b = Pattern.compile("\\\\[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]|&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
+    public static final Pattern f422c;
+    public static final u d;
 
-    public a(int i10) {
-        this.f149a = i10;
+    static {
+        Pattern.compile("(%[a-fA-F0-9]{0,2}|[^:/?#@!$&'()*+,;=a-zA-Z0-9\\-._~])");
+        f422c = Pattern.compile("[ \t\r\n]+");
+        d = new u(1);
     }
 
-    public static MediaRoute2Info d(Object obj) {
-        return (MediaRoute2Info) obj;
-    }
-
-    @Override
-    public Typeface a() {
-        switch (this.f149a) {
-            case 9:
-                return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
-            case 10:
-                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
-            case 11:
-                return Typeface.create("serif", 1);
-            case 12:
-                return AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf");
-            case 13:
-                return AndroidUtilities.getTypeface("fonts/rmono.ttf");
-            default:
-                return AndroidUtilities.getTypeface("fonts/mw_bold.ttf");
-        }
-    }
-
-    @Override
-    public Object apply(Object obj) {
-        ia.e eVar = (ia.e) obj;
-        eVar.getClass();
-        m mVar = o.f4001a;
-        mVar.getClass();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        try {
-            mVar.g(eVar, byteArrayOutputStream);
-        } catch (IOException unused) {
-        }
-        return byteArrayOutputStream.toByteArray();
-    }
-
-    @Override
-    public List b(ComponentRegistrar componentRegistrar) {
-        return componentRegistrar.getComponents();
-    }
-
-    @Override
-    public g5.m createDataSource() {
-        return new g5.c(ApplicationLoader.applicationContext);
-    }
-
-    @Override
-    public java.lang.Object d0(c5.j r45) {
-        throw new UnsupportedOperationException("Method not decompiled: af.a.d0(c5.j):java.lang.Object");
-    }
-
-    @Override
-    public void f(ba.b bVar) {
-        switch (this.f149a) {
-            case 7:
-                return;
-            default:
-                if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                    Log.d("FirebaseCrashlytics", "AnalyticsConnector now available.", null);
+    public static String a(String str) {
+        if (f420a.matcher(str).find()) {
+            Matcher matcher = f421b.matcher(str);
+            if (matcher.find()) {
+                StringBuilder sb2 = new StringBuilder(str.length() + 16);
+                int i10 = 0;
+                do {
+                    sb2.append((CharSequence) str, i10, matcher.start());
+                    String group = matcher.group();
+                    d.getClass();
+                    if (group.charAt(0) == '\\') {
+                        sb2.append((CharSequence) group, 1, group.length());
+                    } else {
+                        sb2.append(b.a(group));
+                    }
+                    i10 = matcher.end();
+                } while (matcher.find());
+                if (i10 != str.length()) {
+                    sb2.append((CharSequence) str, i10, str.length());
                 }
-                bVar.get().getClass();
-                throw new ClassCastException();
+                return sb2.toString();
+            }
+            return str;
         }
-    }
-
-    @Override
-    public void l(d2 d2Var, int i10) {
-        switch (this.f149a) {
-            case 28:
-                d2Var.dismiss();
-                return;
-            default:
-                d2Var.dismiss();
-                return;
-        }
-    }
-
-    @Override
-    public void onFailure(Exception exc) {
-        int i10 = q3.f4743o0;
-    }
-
-    @Override
-    public Object then(Task task) {
-        int i10;
-        switch (this.f149a) {
-            case 16:
-                i10 = 403;
-                break;
-            default:
-                i10 = -1;
-                break;
-        }
-        return Integer.valueOf(i10);
-    }
-
-    public a(Object obj, int i10) {
-        this.f149a = i10;
-    }
-
-    private final void c(ba.b bVar) {
+        return str;
     }
 }

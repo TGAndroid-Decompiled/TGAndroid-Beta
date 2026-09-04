@@ -1,30 +1,39 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class oh implements RequestDelegate {
-    public final int f36808a;
-    public final zn f36809b;
-    public final TLRPC.TL_attachMenuBot f36810c;
-    public final TLRPC.User d;
+import org.telegram.messenger.Utilities;
+public final class oh implements Utilities.Callback {
+    public final int f39246a;
+    public final long f39247b;
+    public final long f39248c;
+    public final Long d;
+    public final Object f39249e;
 
-    public oh(zn znVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.User user, int i10) {
-        this.f36808a = i10;
-        this.f36809b = znVar;
-        this.f36810c = tL_attachMenuBot;
-        this.d = user;
+    public oh(Object obj, long j3, long j10, Long l4, int i10) {
+        this.f39246a = i10;
+        this.f39249e = obj;
+        this.f39247b = j3;
+        this.f39248c = j10;
+        this.d = l4;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f36808a) {
+    public final void run(Object obj) {
+        int i10;
+        boolean z10;
+        switch (this.f39246a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new rh(this.f36809b, this.f36810c, tL_error, this.d));
+                co.Y((co) this.f39249e, this.f39247b, this.f39248c, this.d, (Boolean) obj);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new rh(this.f36809b, tL_error, this.f36810c, this.d));
+                Boolean bool = (Boolean) obj;
+                i10 = ((org.telegram.ui.ActionBar.n2) ((nj) this.f39249e).f38967b).currentAccount;
+                zh.s5 y3 = zh.s5.y(i10, false);
+                if (this.d.longValue() > 0 && bool.booleanValue()) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                y3.i0(this.f39247b, this.f39248c, z10, true);
                 return;
         }
     }

@@ -87,5 +87,5 @@ public interface Predicate<T> {
 
     Predicate<T> or(Predicate<? super T> predicate);
 
-    boolean test(T t6);
+    boolean test(T t10);
 }

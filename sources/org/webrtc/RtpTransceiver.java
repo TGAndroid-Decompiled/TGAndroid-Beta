@@ -3,7 +3,6 @@ package org.webrtc;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import kf.k0;
 import org.webrtc.MediaStreamTrack;
 import org.webrtc.RtpCapabilities;
 import org.webrtc.RtpParameters;
@@ -32,7 +31,7 @@ public class RtpTransceiver {
                     return rtpTransceiverDirection;
                 }
             }
-            throw new IllegalArgumentException(k0.j(i10, "Uknown native RtpTransceiverDirection type"));
+            throw new IllegalArgumentException(i2.g.i(i10, "Uknown native RtpTransceiverDirection type"));
         }
 
         public int getNativeIndex() {
@@ -76,10 +75,10 @@ public class RtpTransceiver {
         }
     }
 
-    public RtpTransceiver(long j10) {
-        this.nativeRtpTransceiver = j10;
-        this.cachedSender = nativeGetSender(j10);
-        this.cachedReceiver = nativeGetReceiver(j10);
+    public RtpTransceiver(long j3) {
+        this.nativeRtpTransceiver = j3;
+        this.cachedSender = nativeGetSender(j3);
+        this.cachedReceiver = nativeGetReceiver(j3);
     }
 
     private void checkRtpTransceiverExists() {
@@ -89,27 +88,27 @@ public class RtpTransceiver {
         throw new IllegalStateException("RtpTransceiver has been disposed.");
     }
 
-    private static native RtpTransceiverDirection nativeCurrentDirection(long j10);
+    private static native RtpTransceiverDirection nativeCurrentDirection(long j3);
 
-    private static native RtpTransceiverDirection nativeDirection(long j10);
+    private static native RtpTransceiverDirection nativeDirection(long j3);
 
-    private static native MediaStreamTrack.MediaType nativeGetMediaType(long j10);
+    private static native MediaStreamTrack.MediaType nativeGetMediaType(long j3);
 
-    private static native String nativeGetMid(long j10);
+    private static native String nativeGetMid(long j3);
 
-    private static native RtpReceiver nativeGetReceiver(long j10);
+    private static native RtpReceiver nativeGetReceiver(long j3);
 
-    private static native RtpSender nativeGetSender(long j10);
+    private static native RtpSender nativeGetSender(long j3);
 
-    private static native void nativeSetCodecPreferences(long j10, List<RtpCapabilities.CodecCapability> list);
+    private static native void nativeSetCodecPreferences(long j3, List<RtpCapabilities.CodecCapability> list);
 
-    private static native boolean nativeSetDirection(long j10, RtpTransceiverDirection rtpTransceiverDirection);
+    private static native boolean nativeSetDirection(long j3, RtpTransceiverDirection rtpTransceiverDirection);
 
-    private static native void nativeStopInternal(long j10);
+    private static native void nativeStopInternal(long j3);
 
-    private static native void nativeStopStandard(long j10);
+    private static native void nativeStopStandard(long j3);
 
-    private static native boolean nativeStopped(long j10);
+    private static native boolean nativeStopped(long j3);
 
     public void dispose() {
         checkRtpTransceiverExists();

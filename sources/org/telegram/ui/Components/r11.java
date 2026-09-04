@@ -1,101 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.ViewPropertyAnimator;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class r11 implements TextWatcher {
-    public final s11 f28378a;
+import android.graphics.Bitmap;
+import org.telegram.tgnet.TLObject;
+public final class r11 implements Runnable {
+    public final int f29880a;
+    public final int f29881b;
+    public final Object f29882c;
+    public final Object d;
+    public final Object f29883e;
 
-    public r11(s11 s11Var) {
-        this.f28378a = s11Var;
+    public r11(int i10, Object obj, Object obj2, TLObject tLObject, int i11) {
+        this.f29880a = i11;
+        this.f29881b = i10;
+        this.f29882c = obj;
+        this.d = obj2;
+        this.f29883e = tLObject;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z4;
-        boolean z10;
-        float f10;
-        if (this.f28378a.f28640b.length() > 0) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        float f11 = 0.0f;
-        if (this.f28378a.f28639a.getAlpha() != 0.0f) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z4 != z10) {
-            ViewPropertyAnimator animate = this.f28378a.f28639a.animate();
-            float f12 = 1.0f;
-            if (z4) {
-                f11 = 1.0f;
-            }
-            ViewPropertyAnimator duration = animate.alpha(f11).setDuration(150L);
-            if (z4) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.1f;
-            }
-            ViewPropertyAnimator scaleX = duration.scaleX(f10);
-            if (!z4) {
-                f12 = 0.1f;
-            }
-            scaleX.scaleY(f12).start();
-        }
-        String obj = this.f28378a.f28640b.getText().toString();
-        if (obj.length() != 0) {
-            mz mzVar = this.f28378a.f28641c.e;
-            if (mzVar != null) {
-                mzVar.setText(LocaleController.getString(R.string.NoResult));
-            }
-        } else {
-            f2.o0 adapter = this.f28378a.f28641c.f23177c.getAdapter();
-            ThemeEditorView.EditorAlert editorAlert = this.f28378a.f28641c;
-            if (adapter != editorAlert.f23179n) {
-                int I = ThemeEditorView.EditorAlert.I(editorAlert);
-                this.f28378a.f28641c.e.setText(LocaleController.getString(R.string.NoChats));
-                this.f28378a.f28641c.e.c();
-                ThemeEditorView.EditorAlert editorAlert2 = this.f28378a.f28641c;
-                editorAlert2.f23177c.setAdapter(editorAlert2.f23179n);
-                this.f28378a.f28641c.f23179n.l();
-                if (I > 0) {
-                    this.f28378a.f28641c.h.h1(0, -I);
-                }
-            }
-        }
-        o11 o11Var = this.f28378a.f28641c.f23180r;
-        if (o11Var != null && !obj.equals(o11Var.f27432n)) {
-            o11Var.f27432n = obj;
-            if (o11Var.h != null) {
-                Utilities.searchQueue.cancelRunnable(o11Var.h);
-                o11Var.h = null;
-            }
-            if (obj.length() == 0) {
-                o11Var.e.clear();
-                ThemeEditorView.EditorAlert editorAlert3 = o11Var.f27433r;
-                editorAlert3.C = ThemeEditorView.EditorAlert.I(editorAlert3);
-                o11Var.d = -1;
-                o11Var.l();
-                return;
-            }
-            int i10 = o11Var.d + 1;
-            o11Var.d = i10;
-            o11Var.h = new ey(o11Var, obj, i10, 20);
-            Utilities.searchQueue.postRunnable(o11Var.h, 300L);
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r11.run():void");
     }
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public r11(Object obj, int i10, Object obj2, Object obj3, int i11) {
+        this.f29880a = i11;
+        this.f29882c = obj;
+        this.f29881b = i10;
+        this.d = obj2;
+        this.f29883e = obj3;
     }
 
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public r11(Object obj, Object obj2, int i10, Object obj3, int i11) {
+        this.f29880a = i11;
+        this.f29882c = obj;
+        this.d = obj2;
+        this.f29881b = i10;
+        this.f29883e = obj3;
+    }
+
+    public r11(Object obj, Object obj2, Object obj3, int i10, int i11) {
+        this.f29880a = i11;
+        this.f29882c = obj;
+        this.d = obj2;
+        this.f29883e = obj3;
+        this.f29881b = i10;
+    }
+
+    public r11(rg.o2 o2Var, Bitmap bitmap, int i10, org.telegram.ui.or0 or0Var) {
+        this.f29880a = 16;
+        this.f29882c = o2Var;
+        this.f29883e = bitmap;
+        this.f29881b = i10;
+        this.d = or0Var;
     }
 }

@@ -1,32 +1,52 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class ij implements oj {
-    public final int f25727a;
-    public final TLRPC.User f25728b;
+import android.content.Context;
+import org.telegram.ui.WallpapersListActivity;
+import org.telegram.ui.ij1;
+import org.telegram.ui.jj1;
+import org.telegram.ui.wd1;
+public final class ij extends org.telegram.ui.Cells.eb {
+    public final int f27146w;
+    public final kl0 f27147x;
 
-    public ij(int i10, TLRPC.User user) {
-        this.f25727a = i10;
-        this.f25728b = user;
+    public ij(kl0 kl0Var, Context context, int i10) {
+        super(context, 5);
+        this.f27146w = i10;
+        this.f27147x = kl0Var;
     }
 
     @Override
-    public final String run() {
-        se.b c3;
-        StringBuilder sb;
-        String str;
-        switch (this.f25727a) {
+    public final void a(int i10, Object obj) {
+        switch (this.f27146w) {
             case 0:
-                c3 = se.b.c();
-                sb = new StringBuilder("+");
-                str = this.f25728b.phone;
-                break;
+                q0.a aVar = ((jj) ((za) this.f27147x).f33114f).f27517x;
+                if (aVar != null) {
+                    aVar.accept(obj);
+                    return;
+                }
+                return;
+            case 1:
+                WallpapersListActivity.r0(((ij1) this.f27147x).d, this, obj, i10);
+                return;
             default:
-                c3 = se.b.c();
-                sb = new StringBuilder("+");
-                str = this.f25728b.phone;
-                break;
+                ((jj1) this.f27147x).E.presentFragment(new wd1(obj, null, true));
+                return;
         }
-        return org.telegram.messenger.y3.j(sb, str, c3);
+    }
+
+    @Override
+    public boolean b(Object obj, int i10) {
+        switch (this.f27146w) {
+            case 1:
+                return WallpapersListActivity.s0(((ij1) this.f27147x).d, this, obj, i10);
+            default:
+                return super.b(obj, i10);
+        }
+    }
+
+    public ij(za zaVar, Context context) {
+        super(context, 1);
+        this.f27146w = 0;
+        this.f27147x = zaVar;
     }
 }

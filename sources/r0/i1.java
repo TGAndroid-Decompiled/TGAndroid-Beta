@@ -1,26 +1,124 @@
 package r0;
 
-import android.view.WindowInsets;
-import org.telegram.ui.cl0;
-public final class i1 extends h1 {
-    public static final m1 f43140s = m1.h(null, cl0.d());
+import android.os.Build;
+import android.view.View;
+import j$.util.Objects;
+public class i1 {
+    public static final l1 f44701b;
+    public final l1 f44702a;
 
-    public i1(m1 m1Var, WindowInsets windowInsets) {
-        super(m1Var, windowInsets);
+    static {
+        b1 x0Var;
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 34) {
+            x0Var = new a1();
+        } else if (i10 >= 30) {
+            x0Var = new z0();
+        } else if (i10 >= 29) {
+            x0Var = new y0();
+        } else {
+            x0Var = new x0();
+        }
+        f44701b = x0Var.b().f44711a.a().f44711a.b().f44711a.c();
     }
 
-    @Override
-    public i0.b f(int i10) {
-        return i0.b.c(this.f43119c.getInsets(l1.a(i10)));
+    public i1(l1 l1Var) {
+        this.f44702a = l1Var;
     }
 
-    @Override
-    public i0.b g(int i10) {
-        return i0.b.c(this.f43119c.getInsetsIgnoringVisibility(l1.a(i10)));
+    public l1 a() {
+        return this.f44702a;
     }
 
-    @Override
+    public l1 b() {
+        return this.f44702a;
+    }
+
+    public l1 c() {
+        return this.f44702a;
+    }
+
+    public i e() {
+        return null;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof i1)) {
+            return false;
+        }
+        i1 i1Var = (i1) obj;
+        if (o() == i1Var.o() && n() == i1Var.n() && Objects.equals(k(), i1Var.k()) && Objects.equals(i(), i1Var.i()) && Objects.equals(e(), i1Var.e())) {
+            return true;
+        }
+        return false;
+    }
+
+    public i0.c f(int i10) {
+        return i0.c.f11424e;
+    }
+
+    public i0.c g(int i10) {
+        if ((i10 & 8) == 0) {
+            return i0.c.f11424e;
+        }
+        throw new IllegalArgumentException("Unable to query the maximum insets for IME");
+    }
+
+    public i0.c h() {
+        return k();
+    }
+
+    public int hashCode() {
+        return Objects.hash(Boolean.valueOf(o()), Boolean.valueOf(n()), k(), i(), e());
+    }
+
+    public i0.c i() {
+        return i0.c.f11424e;
+    }
+
+    public i0.c j() {
+        return k();
+    }
+
+    public i0.c k() {
+        return i0.c.f11424e;
+    }
+
+    public i0.c l() {
+        return k();
+    }
+
+    public l1 m(int i10, int i11, int i12, int i13) {
+        return f44701b;
+    }
+
+    public boolean n() {
+        return false;
+    }
+
+    public boolean o() {
+        return false;
+    }
+
     public boolean p(int i10) {
-        return this.f43119c.isVisible(l1.a(i10));
+        return true;
+    }
+
+    public void d(View view) {
+    }
+
+    public void q(i0.c[] cVarArr) {
+    }
+
+    public void r(l1 l1Var) {
+    }
+
+    public void s(i0.c cVar) {
+    }
+
+    public void t(int i10) {
     }
 }

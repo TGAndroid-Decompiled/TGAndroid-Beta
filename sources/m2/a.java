@@ -1,48 +1,22 @@
 package m2;
 
-import android.database.DataSetObservable;
-import android.database.DataSetObserver;
-import android.view.View;
-public abstract class a {
-    public final DataSetObservable f13695a = new DataSetObservable();
-    public DataSetObserver f13696b;
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.List;
+public final class a {
+    public final long f15748a;
+    public final int f15749b;
+    public final List f15750c;
+    public final List d;
+    public final List f15751e;
+    public final List f15752f;
 
-    public abstract void a(h hVar, Object obj);
-
-    public abstract int b();
-
-    public int c(Object obj) {
-        return -1;
-    }
-
-    public CharSequence d(int i10) {
-        return null;
-    }
-
-    public abstract Object e(h hVar, int i10);
-
-    public abstract boolean f(View view, Object obj);
-
-    public void g() {
-        synchronized (this) {
-            try {
-                DataSetObserver dataSetObserver = this.f13696b;
-                if (dataSetObserver != null) {
-                    dataSetObserver.onChanged();
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        this.f13695a.notifyChanged();
-    }
-
-    public final void i(DataSetObserver dataSetObserver) {
-        synchronized (this) {
-            this.f13696b = dataSetObserver;
-        }
-    }
-
-    public void h(int i10) {
+    public a(long j3, int i10, ArrayList arrayList, List list, List list2, List list3) {
+        this.f15748a = j3;
+        this.f15749b = i10;
+        this.f15750c = DesugarCollections.unmodifiableList(arrayList);
+        this.d = DesugarCollections.unmodifiableList(list);
+        this.f15751e = DesugarCollections.unmodifiableList(list2);
+        this.f15752f = DesugarCollections.unmodifiableList(list3);
     }
 }

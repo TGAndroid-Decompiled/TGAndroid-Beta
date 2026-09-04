@@ -1,37 +1,44 @@
 package r8;
-public final class b extends a {
-    public final char f43409a;
 
-    public b(char c3) {
-        this.f43409a = c3;
-    }
+import android.os.Parcel;
+import android.os.Parcelable;
+import w7.e0;
+public final class b extends o6.a {
+    public static final Parcelable.Creator<b> CREATOR = new p7.j(11);
+    public int f44973a;
+    public int f44974b;
+    public int f44975c;
+    public int d;
+    public int f44976e;
+    public int f44977f;
+    public boolean h;
+    public String f44978n;
 
     @Override
-    public final boolean a(char c3) {
-        if (c3 == this.f43409a) {
-            return true;
-        }
-        return false;
-    }
-
-    public final String toString() {
-        char[] cArr = new char[6];
-        cArr[0] = '\\';
-        cArr[1] = 'u';
-        cArr[2] = 0;
-        cArr[3] = 0;
-        cArr[4] = 0;
-        cArr[5] = 0;
-        char c3 = this.f43409a;
-        for (int i10 = 0; i10 < 4; i10++) {
-            cArr[5 - i10] = "0123456789ABCDEF".charAt(c3 & 15);
-            c3 = (char) (c3 >> 4);
-        }
-        String copyValueOf = String.copyValueOf(cArr);
-        StringBuilder sb = new StringBuilder(String.valueOf(copyValueOf).length() + 18);
-        sb.append("CharMatcher.is('");
-        sb.append(copyValueOf);
-        sb.append("')");
-        return sb.toString();
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = e0.q(parcel, 20293);
+        int i11 = this.f44973a;
+        e0.s(parcel, 2, 4);
+        parcel.writeInt(i11);
+        int i12 = this.f44974b;
+        e0.s(parcel, 3, 4);
+        parcel.writeInt(i12);
+        int i13 = this.f44975c;
+        e0.s(parcel, 4, 4);
+        parcel.writeInt(i13);
+        int i14 = this.d;
+        e0.s(parcel, 5, 4);
+        parcel.writeInt(i14);
+        int i15 = this.f44976e;
+        e0.s(parcel, 6, 4);
+        parcel.writeInt(i15);
+        int i16 = this.f44977f;
+        e0.s(parcel, 7, 4);
+        parcel.writeInt(i16);
+        boolean z10 = this.h;
+        e0.s(parcel, 8, 4);
+        parcel.writeInt(z10 ? 1 : 0);
+        e0.l(parcel, 9, this.f44978n);
+        e0.r(parcel, q6);
     }
 }

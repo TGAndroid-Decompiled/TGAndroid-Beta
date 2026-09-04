@@ -1,89 +1,56 @@
 package org.telegram.ui.web;
 
-import android.text.TextUtils;
-import android.widget.EditText;
+import android.util.LongSparseArray;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.y3;
-import org.telegram.ui.ActionBar.h5;
-import org.telegram.ui.Components.a61;
-public final class f1 extends h5 {
-    public final q0 f39437f = new q0(this, 2);
-    public final g1 h;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.q31;
+public abstract class f1 {
+    public static boolean f42088a;
+    public static boolean f42089b;
+    public static ArrayList f42090c;
+    public static LongSparseArray d;
+    public static ArrayList f42091e;
 
-    public f1(g1 g1Var) {
-        this.h = g1Var;
-    }
-
-    public static boolean t(String str, String str2) {
-        if (str != null && str2 != null) {
-            String lowerCase = str.toLowerCase();
-            String lowerCase2 = str2.toLowerCase();
-            if (!lowerCase.startsWith(lowerCase2) && !y3.w(" ", lowerCase2, lowerCase) && !y3.w(".", lowerCase2, lowerCase)) {
-                String translitSafe = AndroidUtilities.translitSafe(lowerCase);
-                String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
-                if (translitSafe.startsWith(translitSafe2) || y3.w(" ", translitSafe2, translitSafe) || y3.w(".", translitSafe2, translitSafe)) {
-                    return true;
-                }
-                return false;
+    public static ArrayList a(Utilities.Callback callback) {
+        boolean z10;
+        if (callback != null && !f42089b) {
+            if (f42091e == null) {
+                f42091e = new ArrayList();
             }
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void m() {
-        int i10;
-        g1 g1Var = this.h;
-        g1Var.f39450n = null;
-        g1Var.h = false;
-        AndroidUtilities.cancelRunOnUIThread(this.f39437f);
-        a61 a61Var = g1Var.f23568a;
-        if (a61Var != null) {
-            a61Var.V2.N(true);
-            g1Var.f23568a.U2.h1(0, 0);
-        }
-        ih.s sVar = g1Var.f39453w.d;
-        if (TextUtils.isEmpty(g1Var.f39450n)) {
-            i10 = R.string.WebNoHistory;
+            f42091e.add(callback);
+            z10 = true;
         } else {
-            i10 = R.string.WebNoSearchedHistory;
+            z10 = false;
         }
-        sVar.setText(LocaleController.getString(i10));
+        b();
+        if (z10) {
+            return null;
+        }
+        return f42090c;
     }
 
-    @Override
-    public final void q(EditText editText) {
-        int i10;
-        g1 g1Var = this.h;
-        boolean z4 = !TextUtils.isEmpty(g1Var.f39450n);
-        String obj = editText.getText().toString();
-        if (!TextUtils.equals(g1Var.f39450n, obj)) {
-            g1Var.f39450n = obj;
-            g1Var.h = true;
-            q0 q0Var = this.f39437f;
-            AndroidUtilities.cancelRunOnUIThread(q0Var);
-            AndroidUtilities.runOnUIThread(q0Var, 500L);
-            ih.s sVar = g1Var.f39453w.d;
-            if (TextUtils.isEmpty(obj)) {
-                i10 = R.string.WebNoHistory;
+    public static void b() {
+        if (!f42088a && !f42089b) {
+            f42088a = true;
+            f42090c = new ArrayList();
+            d = new LongSparseArray();
+            Utilities.globalQueue.postRunnable(new q31(6));
+        }
+    }
+
+    public static void c(e1 e1Var) {
+        if (e1Var != null && e1Var.d != null) {
+            b();
+            e1 e1Var2 = (e1) d.get(e1Var.f42076a);
+            if (e1Var2 != null) {
+                e1Var2.d = e1Var.d;
             } else {
-                i10 = R.string.WebNoSearchedHistory;
+                f42090c.add(e1Var);
+                d.put(e1Var.f42076a, e1Var);
             }
-            sVar.setText(LocaleController.getString(i10));
+            AndroidUtilities.cancelRunOnUIThread(new q31(5));
+            AndroidUtilities.runOnUIThread(new q31(5), 1000L);
         }
-        a61 a61Var = g1Var.f23568a;
-        if (a61Var != null) {
-            a61Var.V2.N(true);
-            if (z4 != (!TextUtils.isEmpty(obj))) {
-                g1Var.f23568a.U2.h1(0, 0);
-            }
-        }
-    }
-
-    @Override
-    public final void n() {
     }
 }

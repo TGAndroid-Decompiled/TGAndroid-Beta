@@ -1,114 +1,62 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
-import org.telegram.tgnet.TLRPC;
-public final class mj extends ql0 {
-    public final Context f27073c;
-    public ArrayList d = new ArrayList();
-    public ArrayList e = new ArrayList();
-    public kj f27074f;
-    public int h;
-    public final qj f27075n;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+public final class mj implements TextWatcher {
+    public final yj f28457a;
 
-    public mj(qj qjVar, Context context) {
-        this.f27075n = qjVar;
-        this.f27073c = context;
+    public mj(yj yjVar) {
+        this.f28457a = yjVar;
     }
 
     @Override
-    public final boolean D(f2.l1 l1Var) {
-        if (l1Var.f5777f == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final Object E(int i10) {
-        int i11 = i10 - 1;
-        if (i11 >= 0 && i11 < this.d.size()) {
-            return this.d.get(i11);
-        }
-        return null;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.size() + 2;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 1;
-        }
-        if (i10 == h() - 1) {
-            return 2;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void l() {
-        super.l();
-        this.f27075n.N();
-    }
-
-    @Override
-    public final void v(f2.l1 l1Var, int i10) {
-        boolean z4;
-        TLRPC.User user;
-        if (l1Var.f5777f == 0) {
-            pj pjVar = (pj) l1Var.f5774a;
-            if (i10 != h() - 2) {
-                z4 = true;
-            } else {
-                z4 = false;
-            }
-            Object E = E(i10);
-            if (E instanceof ContactsController.Contact) {
-                ContactsController.Contact contact = (ContactsController.Contact) E;
-                user = contact.user;
-                if (user == null) {
-                    pjVar.setCurrentId(contact.contact_id);
-                    pjVar.a(null, (CharSequence) this.e.get(i10 - 1), new hj(contact, 1), z4);
-                    user = null;
-                }
-            } else {
-                user = (TLRPC.User) E;
-            }
-            if (user != null) {
-                pjVar.a(user, (CharSequence) this.e.get(i10 - 1), new ij(1, user), z4);
-            }
-            boolean containsKey = this.f27075n.f28195w.containsKey(fj.a(E));
-            kp kpVar = pjVar.d;
-            if (kpVar.getVisibility() != 0) {
-                kpVar.setVisibility(0);
-            }
-            kpVar.a(containsKey, false);
-        }
-    }
-
-    @Override
-    public final f2.l1 x(ViewGroup viewGroup, int i10) {
-        View pjVar;
-        Context context = this.f27073c;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                pjVar = new View(context);
-                pjVar.setTag(-33024);
-            } else {
-                pjVar = new View(context);
-                pjVar.setLayoutParams(new f2.w0(-1, AndroidUtilities.dp(56.0f)));
-                pjVar.setTag(-33024);
+    public final void afterTextChanged(Editable editable) {
+        int currentTop;
+        String obj = editable.toString();
+        if (!obj.isEmpty()) {
+            mz mzVar = this.f28457a.G;
+            if (mzVar != null) {
+                mzVar.setText(LocaleController.getString(R.string.NoResult));
             }
         } else {
-            pjVar = new pj(context, this.f27075n.f24281a);
+            s4.h0 adapter = this.f28457a.f32933s.getAdapter();
+            yj yjVar = this.f28457a;
+            if (adapter != yjVar.E) {
+                currentTop = yjVar.getCurrentTop();
+                this.f28457a.G.setText(LocaleController.getString(R.string.NoContacts));
+                this.f28457a.G.c();
+                yj yjVar2 = this.f28457a;
+                yjVar2.f32933s.setAdapter(yjVar2.E);
+                this.f28457a.E.l();
+                if (currentTop > 0) {
+                    this.f28457a.v.h1(0, -currentTop);
+                }
+            }
         }
-        return new f2.l1(pjVar);
+        uj ujVar = this.f28457a.F;
+        if (ujVar != null) {
+            if (ujVar.f30910f != null) {
+                Utilities.searchQueue.cancelRunnable(ujVar.f30910f);
+                ujVar.f30910f = null;
+            }
+            int i10 = ujVar.h + 1;
+            ujVar.h = i10;
+            DispatchQueue dispatchQueue = Utilities.searchQueue;
+            tj tjVar = new tj(ujVar, obj, i10, 0);
+            ujVar.f30910f = tjVar;
+            dispatchQueue.postRunnable(tjVar, 300L);
+        }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

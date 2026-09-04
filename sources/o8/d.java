@@ -1,3 +1,6 @@
 package o8;
-public final class d extends RuntimeException {
+
+import android.os.IInterface;
+public interface d extends IInterface {
+    void B(h hVar);
 }

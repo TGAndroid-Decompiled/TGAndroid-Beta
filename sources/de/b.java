@@ -1,42 +1,26 @@
 package de;
-public final class b {
-    public static final b e;
-    public boolean f4325a;
-    public boolean f4326b;
-    public boolean f4327c;
-    public boolean d;
 
-    static {
-        ?? obj = new Object();
-        obj.f4325a = true;
-        obj.f4326b = true;
-        obj.f4327c = false;
-        obj.d = false;
-        e = obj;
-        obj.f4325a = true;
-        obj.f4326b = true;
-        obj.f4327c = false;
-        obj.d = false;
-    }
+import ce.n;
+import ce.p;
+public abstract class b {
+    public p[] f6792a;
+    public int f6793b;
+    public int f6794c;
 
-    public static String a(String str, Class cls, boolean z4) {
-        if (cls == null) {
-            return "ANONYMOUS";
-        }
-        if (cls.isArray()) {
-            Class<?> componentType = cls.getComponentType();
-            StringBuffer stringBuffer = new StringBuffer();
-            stringBuffer.append(a(componentType.getName(), componentType, z4));
-            stringBuffer.append("[]");
-            return stringBuffer.toString();
-        } else if (z4) {
-            int lastIndexOf = str.lastIndexOf(46);
-            if (lastIndexOf != -1) {
-                str = str.substring(lastIndexOf + 1);
+    public final void b(p pVar) {
+        synchronized (this) {
+            try {
+                int i10 = this.f6793b - 1;
+                this.f6793b = i10;
+                if (i10 == 0) {
+                    this.f6794c = 0;
+                }
+                kotlin.jvm.internal.i.c(pVar, "null cannot be cast to non-null type kotlinx.coroutines.flow.internal.AbstractSharedFlowSlot<kotlin.Any>");
+                n nVar = (n) this;
+                pVar.f4795a.set(null);
+            } catch (Throwable th2) {
+                throw th2;
             }
-            return str.replace('$', '.');
-        } else {
-            return str.replace('$', '.');
         }
     }
 }

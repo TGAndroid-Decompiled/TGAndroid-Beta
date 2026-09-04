@@ -1,37 +1,26 @@
 package k2;
+public interface n {
+    void K();
 
-import android.content.res.ColorStateList;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-public final class n extends Drawable.ConstantState {
-    public int f9659a;
-    public m f9660b;
-    public ColorStateList f9661c;
-    public PorterDuff.Mode d;
-    public boolean e;
-    public Bitmap f9662f;
-    public ColorStateList f9663g;
-    public PorterDuff.Mode h;
-    public int f9664i;
-    public boolean f9665j;
-    public boolean f9666k;
-    public Paint f9667l;
+    void O(k kVar);
 
-    @Override
-    public int getChangingConfigurations() {
-        return this.f9659a;
-    }
+    void T();
 
-    @Override
-    public final Drawable newDrawable() {
-        return new p(this);
-    }
+    void V(k kVar);
 
-    @Override
-    public final Drawable newDrawable(Resources resources) {
-        return new p(this);
-    }
+    void b(long j3);
+
+    void d();
+
+    void l();
+
+    void onAudioSessionIdChanged(int i10);
+
+    void onSkipSilenceEnabledChanged(boolean z10);
+
+    void q(int i10, long j3, long j10);
+
+    void x();
+
+    void z(Exception exc);
 }

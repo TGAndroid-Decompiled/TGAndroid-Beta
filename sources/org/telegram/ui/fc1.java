@@ -1,13 +1,12 @@
 package org.telegram.ui;
-public final class fc1 extends f2.l {
-    public final jd1 F;
 
-    public fc1(jd1 jd1Var) {
-        this.F = jd1Var;
-    }
-
+import android.view.MotionEvent;
+public final class fc1 extends org.telegram.ui.Cells.ia {
     @Override
-    public final void P(f2.l1 l1Var) {
-        this.F.f35223r0.e1();
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (getParent() != null && getParent().getParent() != null) {
+            getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+        }
+        return super.onInterceptTouchEvent(motionEvent);
     }
 }

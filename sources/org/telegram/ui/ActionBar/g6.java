@@ -8,28 +8,28 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class g6 extends Drawable {
-    public float[] f19712b;
-    public Path f19711a = new Path();
-    public boolean f19713c = true;
+    public float[] f20472b;
+    public Path f20471a = new Path();
+    public boolean f20473c = true;
 
-    public g6(float f10, float f11) {
-        this.f19712b = r0;
-        float dp = AndroidUtilities.dp(f10);
-        float dp2 = AndroidUtilities.dp(f11);
+    public g6(float f7, float f10) {
+        this.f20472b = r0;
+        float dp = AndroidUtilities.dp(f7);
+        float dp2 = AndroidUtilities.dp(f10);
         float[] fArr = {dp, dp, dp, dp, dp2, dp2, dp2, dp2};
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Path path = this.f19711a;
-        if (this.f19713c) {
-            this.f19713c = false;
+        Path path = this.f20471a;
+        if (this.f20473c) {
+            this.f20473c = false;
             path.reset();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(getBounds());
-            path.addRoundRect(rectF, this.f19712b, Path.Direction.CW);
+            path.addRoundRect(rectF, this.f20472b, Path.Direction.CW);
         }
-        canvas.drawPath(path, j6.f20267z);
+        canvas.drawPath(path, j6.f21054z);
     }
 
     @Override
@@ -39,7 +39,7 @@ public final class g6 extends Drawable {
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        this.f19713c = true;
+        this.f20473c = true;
     }
 
     @Override

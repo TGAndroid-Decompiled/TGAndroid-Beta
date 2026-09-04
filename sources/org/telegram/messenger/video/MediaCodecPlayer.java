@@ -11,9 +11,9 @@ public class MediaCodecPlayer {
     private boolean done;
     private final MediaExtractor extractor;
     private final int h;
-    private final int f18667o;
+    private final int f19254o;
     private final Surface outputSurface;
-    private final int f18668w;
+    private final int f19255w;
     private boolean first = true;
     private long lastPositionUs = 0;
 
@@ -39,12 +39,12 @@ public class MediaCodecPlayer {
         }
         if (i10 != -1 && mediaFormat != null) {
             this.extractor.selectTrack(i10);
-            this.f18668w = mediaFormat.getInteger("width");
+            this.f19255w = mediaFormat.getInteger("width");
             this.h = mediaFormat.getInteger("height");
             if (mediaFormat.containsKey("rotation-degrees")) {
-                this.f18667o = mediaFormat.getInteger("rotation-degrees");
+                this.f19254o = mediaFormat.getInteger("rotation-degrees");
             } else {
-                this.f18667o = 0;
+                this.f19254o = 0;
             }
             MediaCodec createDecoderByType = MediaCodec.createDecoderByType(mediaFormat.getString("mime"));
             this.codec = createDecoderByType;
@@ -55,19 +55,19 @@ public class MediaCodecPlayer {
         throw new IllegalArgumentException("No video track found in file.");
     }
 
-    public boolean ensure(long j10) {
+    public boolean ensure(long j3) {
         ByteBuffer inputBuffer;
         if (this.done) {
             return false;
         }
-        boolean z4 = this.first;
+        boolean z10 = this.first;
         this.first = false;
-        long j11 = j10 * 1000;
-        if (!z4 && j11 <= this.lastPositionUs) {
+        long j10 = j3 * 1000;
+        if (!z10 && j10 <= this.lastPositionUs) {
             return false;
         }
-        if (this.extractor.getSampleTime() > j11 || (z4 && j11 > 1000000)) {
-            this.extractor.seekTo(j11, 0);
+        if (this.extractor.getSampleTime() > j10 || (z10 && j10 > 1000000)) {
+            this.extractor.seekTo(j10, 0);
         }
         while (true) {
             int dequeueInputBuffer = this.codec.dequeueInputBuffer(10000L);
@@ -85,9 +85,9 @@ public class MediaCodecPlayer {
             MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
             int dequeueOutputBuffer = this.codec.dequeueOutputBuffer(bufferInfo, 10000L);
             if (dequeueOutputBuffer >= 0) {
-                long j12 = bufferInfo.presentationTimeUs;
-                if (j12 >= j11 - 16000) {
-                    this.lastPositionUs = j12;
+                long j11 = bufferInfo.presentationTimeUs;
+                if (j11 >= j10 - 16000) {
+                    this.lastPositionUs = j11;
                     this.codec.releaseOutputBuffer(dequeueOutputBuffer, true);
                     return true;
                 }
@@ -101,25 +101,25 @@ public class MediaCodecPlayer {
     }
 
     public int getOrientation() {
-        return this.f18667o;
+        return this.f19254o;
     }
 
     public int getOrientedHeight() {
-        if ((this.f18667o / 90) % 2 == 1) {
-            return this.f18668w;
+        if ((this.f19254o / 90) % 2 == 1) {
+            return this.f19255w;
         }
         return this.h;
     }
 
     public int getOrientedWidth() {
-        if ((this.f18667o / 90) % 2 == 1) {
+        if ((this.f19254o / 90) % 2 == 1) {
             return this.h;
         }
-        return this.f18668w;
+        return this.f19255w;
     }
 
     public int getWidth() {
-        return this.f18668w;
+        return this.f19255w;
     }
 
     public void release() {

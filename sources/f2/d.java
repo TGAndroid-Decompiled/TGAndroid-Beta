@@ -1,24 +1,45 @@
 package f2;
 
-import android.animation.ValueAnimator;
-public final class d implements ValueAnimator.AnimatorUpdateListener {
-    public final int f5663a;
-    public final l f5664b;
+import java.util.ArrayList;
+import java.util.Arrays;
+public final class d extends dd.k {
+    public final long f9175c;
+    public final ArrayList d;
+    public final ArrayList f9176e;
 
-    public d(l lVar, l1 l1Var, int i10) {
-        this.f5663a = i10;
-        this.f5664b = lVar;
+    public d(int i10, long j3) {
+        super(i10, 1);
+        this.f9175c = j3;
+        this.d = new ArrayList();
+        this.f9176e = new ArrayList();
+    }
+
+    public final d i(int i10) {
+        ArrayList arrayList = this.f9176e;
+        int size = arrayList.size();
+        for (int i11 = 0; i11 < size; i11++) {
+            d dVar = (d) arrayList.get(i11);
+            if (dVar.f6773b == i10) {
+                return dVar;
+            }
+        }
+        return null;
+    }
+
+    public final e j(int i10) {
+        ArrayList arrayList = this.d;
+        int size = arrayList.size();
+        for (int i11 = 0; i11 < size; i11++) {
+            e eVar = (e) arrayList.get(i11);
+            if (eVar.f6773b == i10) {
+                return eVar;
+            }
+        }
+        return null;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f5663a) {
-            case 0:
-                this.f5664b.Q();
-                return;
-            default:
-                this.f5664b.M();
-                return;
-        }
+    public final String toString() {
+        return dd.k.b(this.f6773b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.f9176e.toArray());
     }
 }

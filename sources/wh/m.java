@@ -1,21 +1,14 @@
 package wh;
-public final class m extends f2.k {
-    public int f46684f;
-    public int f46685g;
-    public int h;
-    public int f46686i;
-    public boolean f46687j;
-    public boolean f46688k;
-    public boolean f46689l;
-    public boolean f46690m;
-    public boolean f46691n;
-    public float f46692o;
-    public float f46693p;
-    public float f46694q;
-    public float f46695r;
-    public int f46696s;
-    public int f46697t;
-    public int f46698u;
-    public int v;
-    public boolean f46699w;
+
+import android.view.View;
+import java.util.List;
+public final class m {
+    public final l.d f48657a;
+    public boolean f48658b;
+    public int f48659c;
+    public int d;
+
+    public m(View view, List list, l lVar) {
+        this.f48657a = new l.d(view.getContext(), new k(this, view, list, lVar));
+    }
 }

@@ -1,156 +1,79 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class jj extends nl0 {
-    public final int f25967r = UserConfig.selectedAccount;
-    public final Context f25968s;
-    public final qj v;
-
-    public jj(qj qjVar, Context context) {
-        this.v = qjVar;
-        this.f25968s = context;
-    }
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class jj extends ni {
+    public bi.o0 f27513n;
+    public int f27514r;
+    public ci.k f27515s;
+    public za v;
+    public int f27516w;
+    public q0.a f27517x;
 
     @Override
-    public final String F(int i10) {
-        return null;
-    }
-
-    @Override
-    public final void G(rl0 rl0Var, float f10, int[] iArr) {
-        iArr[0] = 0;
-        iArr[1] = 0;
-    }
-
-    @Override
-    public final int M(int i10) {
-        if (i10 == 0 || i10 == R() - 1) {
-            return 1;
+    public final void D(ni niVar) {
+        vi viVar = this.f28753b;
+        try {
+            viVar.X0.getTitleTextView().setBuildFullLayout(true);
+        } catch (Exception unused) {
         }
-        int i11 = i10 - 1;
-        int i12 = this.f25967r;
-        HashMap<String, ArrayList<Object>> hashMap = ContactsController.getInstance(i12).phoneBookSectionsDict;
-        ArrayList<String> arrayList = ContactsController.getInstance(i12).phoneBookSectionsArray;
-        if (i11 < arrayList.size()) {
-            return hashMap.get(arrayList.get(i11)).size();
-        }
-        return 0;
+        viVar.X0.setTitle(LocaleController.getString(R.string.SelectColor));
+        this.f27515s.h1(0, 0);
     }
 
     @Override
-    public final Object O(int i10, int i11) {
-        if (i10 == 0) {
-            return null;
-        }
-        int i12 = i10 - 1;
-        int i13 = this.f25967r;
-        HashMap<String, ArrayList<Object>> hashMap = ContactsController.getInstance(i13).phoneBookSectionsDict;
-        ArrayList<String> arrayList = ContactsController.getInstance(i13).phoneBookSectionsArray;
-        if (i12 < arrayList.size()) {
-            ArrayList<Object> arrayList2 = hashMap.get(arrayList.get(i12));
-            if (i11 < arrayList2.size()) {
-                return arrayList2.get(i11);
-            }
-        }
-        return null;
+    public final void G() {
+        this.f27513n.x0(0);
     }
 
     @Override
-    public final int P(int i10, int i11) {
-        if (i10 == 0) {
-            return 1;
+    public int getCurrentItemTop() {
+        bi.o0 o0Var = this.f27513n;
+        if (o0Var.getChildCount() <= 0) {
+            o0Var.setTopGlowOffset(o0Var.getPaddingTop());
+            return Integer.MAX_VALUE;
         }
-        if (i10 == R() - 1) {
-            return 2;
+        View childAt = o0Var.getChildAt(0);
+        vk0 vk0Var = (vk0) o0Var.G(childAt);
+        int top = childAt.getTop();
+        int dp = AndroidUtilities.dp(7.0f);
+        if (top < AndroidUtilities.dp(7.0f) || vk0Var == null || vk0Var.b() != 0) {
+            top = dp;
         }
-        return 0;
+        o0Var.setTopGlowOffset(top);
+        return top;
     }
 
     @Override
-    public final int R() {
-        return ContactsController.getInstance(this.f25967r).phoneBookSectionsArray.size() + 2;
+    public int getFirstOffset() {
+        return AndroidUtilities.dp(56.0f) + getListTopPadding();
     }
 
     @Override
-    public final View T(int i10, View view) {
-        return null;
+    public int getListTopPadding() {
+        return this.f27513n.getPaddingTop();
     }
 
     @Override
-    public final boolean V(int i10, int i11, f2.l1 l1Var) {
-        if (i10 != 0 && i10 != R() - 1) {
-            int i12 = this.f25967r;
-            if (i11 < ContactsController.getInstance(i12).phoneBookSectionsDict.get(ContactsController.getInstance(i12).phoneBookSectionsArray.get(i10 - 1)).size()) {
-                return true;
-            }
-            return false;
-        }
-        return false;
+    public final int h() {
+        return 1;
+    }
+
+    public void setDelegate(q0.a aVar) {
+        this.f27517x = aVar;
     }
 
     @Override
-    public final void W(int i10, int i11, f2.l1 l1Var) {
-        TLRPC.User user;
-        if (l1Var.f5777f == 0) {
-            pj pjVar = (pj) l1Var.f5774a;
-            Object O = O(i10, i11);
-            boolean z4 = true;
-            if (i10 == R() - 2 && i11 == M(i10) - 1) {
-                z4 = false;
-            }
-            if (O instanceof ContactsController.Contact) {
-                ContactsController.Contact contact = (ContactsController.Contact) O;
-                user = contact.user;
-                if (user == null) {
-                    pjVar.setCurrentId(contact.contact_id);
-                    pjVar.a(null, ContactsController.formatName(contact.first_name, contact.last_name), new hj(contact, 0), z4);
-                    user = null;
-                }
-            } else {
-                user = (TLRPC.User) O;
-            }
-            if (user != null) {
-                pjVar.a(user, null, new ij(0, user), z4);
-            }
-            boolean containsKey = this.v.f28195w.containsKey(fj.a(O));
-            kp kpVar = pjVar.d;
-            if (kpVar.getVisibility() != 0) {
-                kpVar.setVisibility(0);
-            }
-            kpVar.a(containsKey, false);
-        }
+    public void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        this.f28753b.getSheetContainer().invalidate();
+        invalidate();
     }
 
     @Override
-    public final void l() {
-        X(false);
-        this.v.N();
-    }
-
-    @Override
-    public final f2.l1 x(ViewGroup viewGroup, int i10) {
-        View pjVar;
-        Context context = this.f25968s;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                pjVar = new View(context);
-                pjVar.setTag(-33024);
-            } else {
-                pjVar = new View(context);
-                pjVar.setLayoutParams(new f2.w0(-1, AndroidUtilities.dp(56.0f)));
-                pjVar.setTag(-33024);
-            }
-        } else {
-            pjVar = new pj(context, this.v.f24281a);
-        }
-        return new f2.l1(pjVar);
+    public final void y(int r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.jj.y(int, int):void");
     }
 }

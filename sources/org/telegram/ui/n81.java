@@ -1,39 +1,36 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class n81 implements Utilities.Callback5, Utilities.Callback5Return, r0.o {
-    public final w81 f36409a;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+public final class n81 implements org.telegram.ui.ActionBar.a2 {
+    public final int f38851a;
+    public final SessionsActivity f38852b;
 
-    public n81(w81 w81Var) {
-        this.f36409a = w81Var;
+    public n81(SessionsActivity sessionsActivity, int i10) {
+        this.f38851a = i10;
+        this.f38852b = sessionsActivity;
     }
 
     @Override
-    public r0.m1 M0(View view, r0.m1 m1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
-        int i10 = defaultWindowInsets.d;
-        w81 w81Var = this.f36409a;
-        w81Var.P = i10;
-        w81Var.f39311c.setPadding(0, AndroidUtilities.dp(12.0f) + defaultWindowInsets.f7197b, 0, w81Var.P + w81Var.Q);
-        return r0.m1.f43153b;
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        return Boolean.valueOf(w81.U(this.f36409a, (org.telegram.ui.Components.i51) obj, (View) obj2));
-    }
-
-    @Override
-    public void mo27run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        w81.e0(this.f36409a, (org.telegram.ui.Components.i51) obj);
+    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f38851a) {
+            case 0:
+                SessionsActivity sessionsActivity = this.f38852b;
+                sessionsActivity.getClass();
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    sessionsActivity.getParentActivity().startActivity(intent);
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
+            default:
+                SessionsActivity.W(this.f38852b);
+                return;
+        }
     }
 }

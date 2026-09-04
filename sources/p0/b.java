@@ -1,25 +1,25 @@
 package p0;
 
 import android.text.SpannableStringBuilder;
-import c2.u;
+import b2.p;
 public final class b {
-    public static final String f40949b;
-    public static final String f40950c;
+    public static final String f43626b;
+    public static final String f43627c;
     public static final b d;
-    public static final b e;
-    public final boolean f40951a;
+    public static final b f43628e;
+    public final boolean f43629a;
 
     static {
-        u uVar = f.f40958c;
-        f40949b = Character.toString((char) 8206);
-        f40950c = Character.toString((char) 8207);
+        p pVar = f.f43636c;
+        f43626b = Character.toString((char) 8206);
+        f43627c = Character.toString((char) 8207);
         d = new b(false);
-        e = new b(true);
+        f43628e = new b(true);
     }
 
-    public b(boolean z4) {
-        u uVar = f.f40956a;
-        this.f40951a = z4;
+    public b(boolean z10) {
+        p pVar = f.f43634a;
+        this.f43629a = z10;
     }
 
     public static int a(java.lang.CharSequence r9) {
@@ -28,10 +28,10 @@ public final class b {
 
     public static int b(CharSequence charSequence) {
         a aVar = new a(charSequence);
-        aVar.f40948c = aVar.f40947b;
+        aVar.f43625c = aVar.f43624b;
         int i10 = 0;
         int i11 = 0;
-        while (aVar.f40948c > 0) {
+        while (aVar.f43625c > 0) {
             byte a2 = aVar.a();
             if (a2 != 0) {
                 if (a2 != 1 && a2 != 2) {
@@ -84,55 +84,55 @@ public final class b {
     }
 
     public final SpannableStringBuilder c(CharSequence charSequence) {
-        u uVar;
+        p pVar;
         String str;
-        u uVar2;
-        char c3;
-        u uVar3 = f.f40958c;
+        p pVar2;
+        char c10;
+        p pVar3 = f.f43636c;
         if (charSequence == null) {
             return null;
         }
-        boolean g10 = uVar3.g(charSequence.length(), charSequence);
+        boolean h = pVar3.h(charSequence.length(), charSequence);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        if (g10) {
-            uVar = f.f40957b;
+        if (h) {
+            pVar = f.f43635b;
         } else {
-            uVar = f.f40956a;
+            pVar = f.f43634a;
         }
-        boolean g11 = uVar.g(charSequence.length(), charSequence);
+        boolean h10 = pVar.h(charSequence.length(), charSequence);
         String str2 = "";
-        String str3 = f40950c;
-        String str4 = f40949b;
-        boolean z4 = this.f40951a;
-        if (!z4 && (g11 || a(charSequence) == 1)) {
+        String str3 = f43627c;
+        String str4 = f43626b;
+        boolean z10 = this.f43629a;
+        if (!z10 && (h10 || a(charSequence) == 1)) {
             str = str4;
-        } else if (!z4 || (g11 && a(charSequence) != -1)) {
+        } else if (!z10 || (h10 && a(charSequence) != -1)) {
             str = "";
         } else {
             str = str3;
         }
         spannableStringBuilder.append((CharSequence) str);
-        if (g10 != z4) {
-            if (g10) {
-                c3 = 8235;
+        if (h != z10) {
+            if (h) {
+                c10 = 8235;
             } else {
-                c3 = 8234;
+                c10 = 8234;
             }
-            spannableStringBuilder.append(c3);
+            spannableStringBuilder.append(c10);
             spannableStringBuilder.append(charSequence);
             spannableStringBuilder.append((char) 8236);
         } else {
             spannableStringBuilder.append(charSequence);
         }
-        if (g10) {
-            uVar2 = f.f40957b;
+        if (h) {
+            pVar2 = f.f43635b;
         } else {
-            uVar2 = f.f40956a;
+            pVar2 = f.f43634a;
         }
-        boolean g12 = uVar2.g(charSequence.length(), charSequence);
-        if (!z4 && (g12 || b(charSequence) == 1)) {
+        boolean h11 = pVar2.h(charSequence.length(), charSequence);
+        if (!z10 && (h11 || b(charSequence) == 1)) {
             str2 = str4;
-        } else if (z4 && (!g12 || b(charSequence) == -1)) {
+        } else if (z10 && (!h11 || b(charSequence) == -1)) {
             str2 = str3;
         }
         spannableStringBuilder.append((CharSequence) str2);

@@ -1,9 +1,13 @@
 package org.telegram.ui.Components;
+public final class r81 implements org.telegram.ui.ActionBar.a2 {
+    public final Object f29989a;
 
-import android.graphics.Bitmap;
-import java.io.File;
-public interface r81 {
-    void a();
+    public r81(Object obj) {
+        this.f29989a = obj;
+    }
 
-    void b(File file, Bitmap bitmap, boolean z4);
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        ((fu) this.f29989a).f26183a.d.r();
+    }
 }

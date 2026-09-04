@@ -1,38 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.widget.Toast;
-import java.util.List;
-import org.telegram.messenger.ChatThemeController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-public final class dp implements ResultCallback {
-    public final ChatThemeController f24334a;
-    public final jp f24335b;
+import org.telegram.ui.nd1;
+public final class dp implements nd1 {
+    public final lp f25433a;
 
-    public dp(jp jpVar, ChatThemeController chatThemeController) {
-        this.f24335b = jpVar;
-        this.f24334a = chatThemeController;
+    public dp(lp lpVar) {
+        this.f25433a = lpVar;
     }
 
     @Override
-    public final void onComplete(Object obj) {
-        int i10;
-        List list = (List) obj;
-        List<org.telegram.ui.ActionBar.e4> emojiThemes = this.f24334a.getEmojiThemes(7);
-        jp jpVar = this.f24335b;
-        i10 = ((org.telegram.ui.ActionBar.g3) jpVar).currentAccount;
-        NotificationCenter.getInstance(i10).doOnIdle(new em(2, this, emojiThemes));
-        jpVar.Y = false;
+    public final boolean Z0() {
+        return true;
     }
 
     @Override
-    public final void onError(Throwable th2) {
-        org.telegram.tgnet.k.a(this, th2);
+    public final boolean a() {
+        return this.f25433a.N;
     }
 
     @Override
-    public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f24335b.getContext(), tL_error.text, 0).show();
+    public final void p1(boolean z10) {
+        TLRPC.WallPaper wallPaper;
+        lp lpVar = this.f25433a;
+        org.telegram.ui.co coVar = lpVar.v;
+        lpVar.N = !lpVar.N;
+        if (lpVar.M != null) {
+            lpVar.P = true;
+            coVar.e7 = true;
+            if (lpVar.v()) {
+                wallPaper = null;
+            } else {
+                wallPaper = lpVar.f28267n.h;
+            }
+            TLRPC.WallPaper wallPaper2 = wallPaper;
+            org.telegram.ui.ActionBar.d4 d4Var = lpVar.M.f27882a;
+            if (d4Var.f20361a) {
+                lpVar.f28267n.i(null, wallPaper2, z10, Boolean.valueOf(lpVar.N), false);
+            } else {
+                lpVar.f28267n.i(d4Var, wallPaper2, z10, Boolean.valueOf(lpVar.N), false);
+            }
+            coVar.e7 = false;
+        }
     }
 }

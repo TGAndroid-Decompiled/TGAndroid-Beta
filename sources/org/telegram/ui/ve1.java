@@ -1,17 +1,28 @@
 package org.telegram.ui;
-public final class ve1 extends f2.e0 {
-    public final sf1 P;
 
-    public ve1(sf1 sf1Var, rf1 rf1Var) {
-        super(rf1Var);
-        this.P = sf1Var;
+import org.telegram.messenger.AndroidUtilities;
+public final class ve1 implements Runnable {
+    public final int f41526a;
+    public final af1 f41527b;
+
+    public ve1(af1 af1Var, int i10) {
+        this.f41526a = i10;
+        this.f41527b = af1Var;
     }
 
     @Override
-    public final boolean q() {
-        if (this.P.f38215x > 0) {
-            return true;
+    public final void run() {
+        switch (this.f41526a) {
+            case 0:
+                af1 af1Var = this.f41527b;
+                af1Var.getClass();
+                new sg.a1((org.telegram.ui.ActionBar.n2) af1Var, 11, false).show();
+                return;
+            default:
+                af1 af1Var2 = this.f41527b;
+                af1Var2.f34413e.requestFocus();
+                AndroidUtilities.showKeyboard(af1Var2.f34413e);
+                return;
         }
-        return false;
     }
 }

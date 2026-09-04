@@ -1,111 +1,53 @@
 package x5;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Looper;
-import android.os.Message;
-import android.os.Messenger;
+import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
-import java.util.regex.Matcher;
-public final class c extends a7.e {
-    public final a f46878a;
+import j$.util.Objects;
+import java.util.Arrays;
+import n6.l;
+import v8.r;
+import w7.e0;
+public final class c extends o6.a {
+    public static final Parcelable.Creator<c> CREATOR = new r(29);
+    public final boolean f48895a;
+    public final byte[] f48896b;
+    public final String f48897c;
 
-    public c(a aVar, Looper looper) {
-        super(looper);
-        this.f46878a = aVar;
-        Looper.getMainLooper();
+    public c(boolean z10, byte[] bArr, String str) {
+        if (z10) {
+            l.h(bArr);
+            l.h(str);
+        }
+        this.f48895a = z10;
+        this.f48896b = bArr;
+        this.f48897c = str;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof c)) {
+            return false;
+        }
+        c cVar = (c) obj;
+        if (this.f48895a == cVar.f48895a && Arrays.equals(this.f48896b, cVar.f48896b) && Objects.equals(this.f48897c, cVar.f48897c)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(this.f48896b) + (Objects.hash(Boolean.valueOf(this.f48895a), this.f48897c) * 31);
     }
 
     @Override
-    public final void handleMessage(Message message) {
-        String str;
-        a aVar = this.f46878a;
-        if (message != null) {
-            Object obj = message.obj;
-            if (obj instanceof Intent) {
-                Intent intent = (Intent) obj;
-                intent.setExtrasClassLoader(new e());
-                if (intent.hasExtra("google.messenger")) {
-                    Parcelable parcelableExtra = intent.getParcelableExtra("google.messenger");
-                    if (parcelableExtra instanceof f) {
-                        aVar.f46875g = (f) parcelableExtra;
-                    }
-                    if (parcelableExtra instanceof Messenger) {
-                        aVar.f46874f = (Messenger) parcelableExtra;
-                    }
-                }
-                Intent intent2 = (Intent) message.obj;
-                String action = intent2.getAction();
-                if (action != "com.google.android.c2dm.intent.REGISTRATION" && (action == null || !action.equals("com.google.android.c2dm.intent.REGISTRATION"))) {
-                    if (Log.isLoggable("Rpc", 3)) {
-                        Log.d("Rpc", "Unexpected response action: ".concat(String.valueOf(action)));
-                        return;
-                    }
-                    return;
-                }
-                String stringExtra = intent2.getStringExtra("registration_id");
-                if (stringExtra == null) {
-                    stringExtra = intent2.getStringExtra("unregistered");
-                }
-                if (stringExtra == null) {
-                    String stringExtra2 = intent2.getStringExtra("error");
-                    if (stringExtra2 == null) {
-                        Log.w("Rpc", "Unexpected response, no error or registration id ".concat(String.valueOf(intent2.getExtras())));
-                        return;
-                    }
-                    if (Log.isLoggable("Rpc", 3)) {
-                        Log.d("Rpc", "Received InstanceID error ".concat(stringExtra2));
-                    }
-                    if (stringExtra2.startsWith("|")) {
-                        String[] split = stringExtra2.split("\\|");
-                        if (split.length > 2 && ((str = split[1]) == "ID" || (str != null && str.equals("ID")))) {
-                            String str2 = split[2];
-                            String str3 = split[3];
-                            if (str3.startsWith(":")) {
-                                str3 = str3.substring(1);
-                            }
-                            aVar.d(str2, intent2.putExtra("error", str3).getExtras());
-                            return;
-                        }
-                        Log.w("Rpc", "Unexpected structured response ".concat(stringExtra2));
-                        return;
-                    }
-                    synchronized (aVar.f46871a) {
-                        int i10 = 0;
-                        while (true) {
-                            try {
-                                a0.k kVar = aVar.f46871a;
-                                if (i10 < kVar.f25c) {
-                                    aVar.d((String) kVar.e(i10), intent2.getExtras());
-                                    i10++;
-                                }
-                            } catch (Throwable th2) {
-                                throw th2;
-                            }
-                        }
-                    }
-                    return;
-                }
-                Matcher matcher = a.f46870j.matcher(stringExtra);
-                if (!matcher.matches()) {
-                    if (Log.isLoggable("Rpc", 3)) {
-                        Log.d("Rpc", "Unexpected response string: ".concat(stringExtra));
-                        return;
-                    }
-                    return;
-                }
-                String group = matcher.group(1);
-                String group2 = matcher.group(2);
-                if (group != null) {
-                    Bundle extras = intent2.getExtras();
-                    extras.putString("registration_id", group2);
-                    aVar.d(group, extras);
-                    return;
-                }
-                return;
-            }
-        }
-        Log.w("Rpc", "Dropping invalid message");
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = e0.q(parcel, 20293);
+        e0.s(parcel, 1, 4);
+        parcel.writeInt(this.f48895a ? 1 : 0);
+        e0.c(parcel, 2, this.f48896b);
+        e0.l(parcel, 3, this.f48897c);
+        e0.r(parcel, q6);
     }
 }

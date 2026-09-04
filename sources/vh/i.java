@@ -1,48 +1,94 @@
 package vh;
 
+import android.app.Activity;
+import android.content.res.Configuration;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.ViewTreeObserver;
-public final class i implements ViewTreeObserver.OnGlobalFocusChangeListener {
-    public final int f46004a;
-    public final Object f46005b;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.Cells.t1;
+public final class i extends View {
+    public final HashMap f47894a;
+    public final ArrayList f47895b;
+    public final ArrayList f47896c;
+    public final int d;
 
-    public i(Object obj, int i10) {
-        this.f46004a = i10;
-        this.f46005b = obj;
+    public i(Activity activity) {
+        super(activity);
+        this.f47894a = new HashMap();
+        this.f47895b = new ArrayList();
+        this.f47896c = new ArrayList();
+        this.d = UserConfig.selectedAccount;
+    }
+
+    public static String b(t1 t1Var) {
+        MessageObject messageObject = t1Var.getMessageObject();
+        if (messageObject == null) {
+            return null;
+        }
+        return messageObject.getChatId() + "_" + messageObject.getId();
+    }
+
+    public final boolean a() {
+        for (Map.Entry entry : this.f47894a.entrySet()) {
+            if (!((h) entry.getValue()).O) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public final void onGlobalFocusChanged(View view, View view2) {
-        boolean z4;
-        switch (this.f46004a) {
-            case 0:
-                ((q) this.f46005b).Z();
-                return;
-            case 1:
-                ((y1) this.f46005b).w0();
-                return;
-            case 2:
-                s3 s3Var = (s3) this.f46005b;
-                if (view2 != null && s3Var.F(view2) != null) {
-                    z4 = true;
-                } else {
-                    z4 = false;
+    public final void invalidateDrawable(Drawable drawable) {
+        super.invalidateDrawable(drawable);
+        if (drawable instanceof h) {
+            invalidate();
+        }
+    }
+
+    @Override
+    public final void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        HashMap hashMap = this.f47894a;
+        for (Map.Entry entry : hashMap.entrySet()) {
+            ((h) entry.getValue()).d();
+        }
+        hashMap.clear();
+        this.f47895b.clear();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        HashMap hashMap = this.f47894a;
+        for (Map.Entry entry : hashMap.entrySet()) {
+            ((h) entry.getValue()).draw(canvas);
+        }
+        ArrayList arrayList = this.f47895b;
+        if (!arrayList.isEmpty()) {
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                h hVar = (h) hashMap.remove((String) obj);
+                if (hVar != null) {
+                    hVar.d();
                 }
-                s3Var.X2 = z4;
-                if (view2 instanceof e1) {
-                    s3Var.I3 = (e1) view2;
-                    return;
-                }
-                return;
-            default:
-                j5 j5Var = (j5) this.f46005b;
-                j5Var.x();
-                l5 l5Var = j5Var.v;
-                if (l5Var != null) {
-                    l5Var.invalidate();
-                    return;
-                }
-                return;
+            }
+            arrayList.clear();
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        for (Map.Entry entry : this.f47894a.entrySet()) {
+            ((h) entry.getValue()).setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
         }
     }
 }

@@ -1,63 +1,50 @@
 package org.telegram.ui;
 
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class al0 implements Runnable {
-    public final int f32608a;
-    public final PasscodeActivity f32609b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.RadioButton;
+public final class al0 extends FrameLayout {
+    public TextView f34468a;
+    public RadioButton f34469b;
+    public org.telegram.ui.Components.mp f34470c;
+    public boolean d;
+    public zk0 f34471e;
 
-    public al0(PasscodeActivity passcodeActivity, int i10) {
-        this.f32608a = i10;
-        this.f32609b = passcodeActivity;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f7;
+        if (this.d) {
+            float f10 = 60.0f;
+            if (LocaleController.isRTL) {
+                f7 = 0.0f;
+            } else {
+                f7 = 60.0f;
+            }
+            float dp = AndroidUtilities.dp(f7);
+            float height = getHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (!LocaleController.isRTL) {
+                f10 = 0.0f;
+            }
+            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f10), getHeight() - 1, org.telegram.ui.ActionBar.j6.f20785k0);
+        }
     }
 
     @Override
-    public final void run() {
-        long j10;
-        switch (this.f32608a) {
-            case 0:
-                PasscodeActivity passcodeActivity = this.f32609b;
-                passcodeActivity.f31660n.postDelayed(passcodeActivity.L, 3000L);
-                passcodeActivity.K = true;
-                return;
-            case 1:
-                PasscodeActivity passcodeActivity2 = new PasscodeActivity(0);
-                PasscodeActivity passcodeActivity3 = this.f32609b;
-                passcodeActivity3.presentFragment(passcodeActivity2, true);
-                sb0 sb0Var = passcodeActivity3.N;
-                if (sb0Var != null) {
-                    AndroidUtilities.runOnUIThread(sb0Var);
-                    passcodeActivity3.N = null;
-                    return;
-                }
-                return;
-            case 2:
-                PasscodeActivity passcodeActivity4 = this.f32609b;
-                al0 al0Var = new al0(passcodeActivity4, 3);
-                if (passcodeActivity4.e0()) {
-                    j10 = 150;
-                } else {
-                    j10 = 1000;
-                }
-                AndroidUtilities.runOnUIThread(al0Var, j10);
-                return;
-            case 3:
-                PasscodeActivity passcodeActivity5 = this.f32609b;
-                if (passcodeActivity5.e0()) {
-                    for (ds dsVar : passcodeActivity5.f31660n.f32635f) {
-                        dsVar.i(0.0f);
-                    }
-                    return;
-                }
-                passcodeActivity5.f31659f.a(0.0f);
-                return;
-            case 4:
-                PasscodeActivity passcodeActivity6 = this.f32609b;
-                passcodeActivity6.K = false;
-                AndroidUtilities.updateViewVisibilityAnimated(passcodeActivity6.f31661r, false);
-                return;
-            default:
-                this.f32609b.k0();
-                return;
-        }
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.RadioButton");
+        accessibilityNodeInfo.setCheckable(true);
+        accessibilityNodeInfo.setChecked(this.f34469b.f24110f);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
     }
 }

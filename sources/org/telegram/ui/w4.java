@@ -1,11 +1,24 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class w4 extends g5 {
-    public final cb.m D;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class w4 extends z4 {
+    @Override
+    public final void a() {
+        MessagesController.getInstance(UserConfig.selectedAccount).loadFullChat(((TLRPC.Chat) this.f43285c).f19869id, this.d, false);
+    }
 
-    public w4(cb.m mVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, z4 z4Var) {
-        super(context, f6Var, z4Var);
-        this.D = mVar;
+    @Override
+    public final void b(Object... objArr) {
+        boolean z10;
+        TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
+        if (chatFull != null && chatFull.f19870id == ((TLRPC.Chat) this.f43285c).f19869id && (z10 = this.f43288g)) {
+            if (z10) {
+                this.f43288g = false;
+                this.f43284b.removeObserver(this.f43283a, this.f43286e);
+            }
+            this.f43287f.accept(chatFull);
+        }
     }
 }

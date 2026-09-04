@@ -1,8 +1,12 @@
 package ia;
-public final class e {
-    public final d f7453a;
+public interface e {
+    e a(c cVar, Object obj);
 
-    public e(d dVar) {
-        this.f7453a = dVar;
-    }
+    e c(c cVar, boolean z10);
+
+    e e(c cVar, int i10);
+
+    e f(c cVar, long j3);
+
+    e g(c cVar, double d);
 }

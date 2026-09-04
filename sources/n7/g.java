@@ -1,81 +1,36 @@
 package n7;
 
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
-public final class g extends com.google.android.gms.internal.cast.u0 implements ListIterator {
-    public final int f14346b;
-    public int f14347c;
-    public final i d;
+import java.io.Serializable;
+import java.util.Comparator;
+public final class g extends w implements Serializable {
+    public final Comparator f16632a;
 
-    public g(i iVar, int i10) {
-        super(8);
-        int size = iVar.size();
-        if (i10 >= 0 && i10 <= size) {
-            this.f14346b = size;
-            this.f14347c = i10;
-            this.d = iVar;
-            return;
-        }
-        throw new IndexOutOfBoundsException(k7.e0.c(i10, size, "index"));
-    }
-
-    public final Object a(int i10) {
-        return this.d.get(i10);
+    public g(Comparator comparator) {
+        comparator.getClass();
+        this.f16632a = comparator;
     }
 
     @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
+    public final int compare(Object obj, Object obj2) {
+        return this.f16632a.compare(obj, obj2);
     }
 
     @Override
-    public final boolean hasNext() {
-        if (this.f14347c < this.f14346b) {
+    public final boolean equals(Object obj) {
+        if (obj == this) {
             return true;
+        }
+        if (obj instanceof g) {
+            return this.f16632a.equals(((g) obj).f16632a);
         }
         return false;
     }
 
-    @Override
-    public final boolean hasPrevious() {
-        if (this.f14347c > 0) {
-            return true;
-        }
-        return false;
+    public final int hashCode() {
+        return this.f16632a.hashCode();
     }
 
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i10 = this.f14347c;
-            this.f14347c = i10 + 1;
-            return a(i10);
-        }
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public final int nextIndex() {
-        return this.f14347c;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i10 = this.f14347c - 1;
-            this.f14347c = i10;
-            return a(i10);
-        }
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.f14347c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
+    public final String toString() {
+        return this.f16632a.toString();
     }
 }

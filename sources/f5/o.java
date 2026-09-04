@@ -1,56 +1,82 @@
 package f5;
 
-import h5.d0;
-import s8.g0;
-public final class o extends n {
-    public final int B;
-    public final boolean C;
-    public final boolean D;
-    public final int E;
-    public final boolean e;
-    public final h f5932f;
-    public final boolean h;
-    public final boolean f5933n;
-    public final int f5934r;
-    public final int f5935s;
-    public final int v;
-    public final int f5936w;
-    public final boolean f5937x;
-    public final boolean f5938y;
+import com.google.android.gms.internal.vision.e2;
+import java.nio.ByteBuffer;
+import w7.p6;
+public final class o extends com.googlecode.mp4parser.c {
+    public static final mg.n f9328n;
+    public static final mg.n f9329r;
+    public static final mg.n f9330s;
+    public static final mg.n v;
+    public long f9331e;
+    public long[] f9332f;
+    public int h;
 
-    public o(int r6, o4.s0 r7, int r8, f5.h r9, int r10, int r11, boolean r12) {
-        throw new UnsupportedOperationException("Method not decompiled: f5.o.<init>(int, o4.s0, int, f5.h, int, int, boolean):void");
-    }
-
-    public static int c(o oVar, o oVar2) {
-        s8.p b10 = s8.p.f44207a.c(oVar.f5933n, oVar2.f5933n).a(oVar.f5936w, oVar2.f5936w).c(oVar.f5937x, oVar2.f5937x).c(oVar.e, oVar2.e).c(oVar.h, oVar2.h).b(Integer.valueOf(oVar.v), Integer.valueOf(oVar2.v), g0.f44192c);
-        boolean z4 = oVar.C;
-        s8.p c3 = b10.c(z4, oVar2.C);
-        boolean z10 = oVar.D;
-        s8.p c10 = c3.c(z10, oVar2.D);
-        if (z4 && z10) {
-            c10 = c10.a(oVar.E, oVar2.E);
-        }
-        return c10.e();
+    static {
+        re.a aVar = new re.a(o.class, "SampleSizeBox.java");
+        f9328n = aVar.e(aVar.d("getSampleSize", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "long"));
+        aVar.e(aVar.d("setSampleSize", "com.coremedia.iso.boxes.SampleSizeBox", "long", "sampleSize", "void"));
+        aVar.e(aVar.d("getSampleSizeAtIndex", "com.coremedia.iso.boxes.SampleSizeBox", "int", "index", "long"));
+        f9329r = aVar.e(aVar.d("getSampleCount", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "long"));
+        aVar.e(aVar.d("getSampleSizes", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "[J"));
+        f9330s = aVar.e(aVar.d("setSampleSizes", "com.coremedia.iso.boxes.SampleSizeBox", "[J", "sampleSizes", "void"));
+        v = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "java.lang.String"));
     }
 
     @Override
-    public final int a() {
-        return this.B;
-    }
-
-    @Override
-    public final boolean b(n nVar) {
-        o oVar = (o) nVar;
-        if (this.f5938y || d0.a(this.d.C, oVar.d.C)) {
-            if (!this.f5932f.Q) {
-                if (this.C != oVar.C || this.D != oVar.D) {
-                    return false;
-                }
-                return true;
+    public final void _parseDetails(ByteBuffer byteBuffer) {
+        f(byteBuffer);
+        this.f9331e = e5.b.i(byteBuffer);
+        int a2 = p6.a(e5.b.i(byteBuffer));
+        this.h = a2;
+        if (this.f9331e == 0) {
+            this.f9332f = new long[a2];
+            for (int i10 = 0; i10 < this.h; i10++) {
+                this.f9332f[i10] = e5.b.i(byteBuffer);
             }
-            return true;
         }
-        return false;
+    }
+
+    @Override
+    public final void getContent(ByteBuffer byteBuffer) {
+        i(byteBuffer);
+        byteBuffer.putInt((int) this.f9331e);
+        if (this.f9331e == 0) {
+            byteBuffer.putInt(this.f9332f.length);
+            for (long j3 : this.f9332f) {
+                byteBuffer.putInt((int) j3);
+            }
+            return;
+        }
+        byteBuffer.putInt(this.h);
+    }
+
+    @Override
+    public final long getContentSize() {
+        int i10;
+        if (this.f9331e == 0) {
+            i10 = this.f9332f.length * 4;
+        } else {
+            i10 = 0;
+        }
+        return i10 + 12;
+    }
+
+    public final String toString() {
+        int length;
+        com.google.firebase.messaging.s b10 = re.a.b(v, this, this);
+        com.googlecode.mp4parser.g.a().getClass();
+        com.googlecode.mp4parser.g.b(b10);
+        StringBuilder sb2 = new StringBuilder("SampleSizeBox[sampleSize=");
+        e2.q(re.a.b(f9328n, this, this));
+        sb2.append(this.f9331e);
+        sb2.append(";sampleCount=");
+        e2.q(re.a.b(f9329r, this, this));
+        if (this.f9331e > 0) {
+            length = this.h;
+        } else {
+            length = this.f9332f.length;
+        }
+        return a4.a.r(sb2, length, "]");
     }
 }

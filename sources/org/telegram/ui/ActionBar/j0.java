@@ -1,85 +1,34 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
-public final class j0 implements ActionMode.Callback {
-    public final int f19797a;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+public final class j0 implements TextWatcher {
+    public final v0 f20561a;
+
+    public j0(v0 v0Var) {
+        this.f20561a = v0Var;
+    }
 
     @Override
-    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        switch (this.f19797a) {
-            case 0:
-                return false;
-            case 1:
-                return false;
-            case 2:
-                return false;
-            case 3:
-                return false;
-            case 4:
-                return false;
-            default:
-                return false;
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        v0 v0Var = this.f20561a;
+        g5 g5Var = v0Var.H;
+        if (g5Var != null) {
+            g5Var.q(v0Var.f21383e);
+        }
+        v0Var.j();
+        if (!v0Var.f21387g0.isEmpty() && !TextUtils.isEmpty(v0Var.f21383e.getText()) && v0Var.f21388h0 >= 0) {
+            v0Var.f21388h0 = -1;
+            v0Var.y();
         }
     }
 
     @Override
-    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        switch (this.f19797a) {
-            case 0:
-                return false;
-            case 1:
-                return false;
-            case 2:
-                return false;
-            case 3:
-                return false;
-            case 4:
-                return false;
-            default:
-                return false;
-        }
+    public final void afterTextChanged(Editable editable) {
     }
 
     @Override
-    public final void onDestroyActionMode(ActionMode actionMode) {
-        int i10 = this.f19797a;
-    }
-
-    @Override
-    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        switch (this.f19797a) {
-            case 0:
-                return false;
-            case 1:
-                return false;
-            case 2:
-                return false;
-            case 3:
-                return false;
-            case 4:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    private final void a(ActionMode actionMode) {
-    }
-
-    private final void b(ActionMode actionMode) {
-    }
-
-    private final void c(ActionMode actionMode) {
-    }
-
-    private final void d(ActionMode actionMode) {
-    }
-
-    private final void e(ActionMode actionMode) {
-    }
-
-    private final void f(ActionMode actionMode) {
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

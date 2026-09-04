@@ -1,3 +1,4 @@
 package id;
-public abstract class f {
+public interface f extends h {
+    g getKey();
 }

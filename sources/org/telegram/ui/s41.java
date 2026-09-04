@@ -1,28 +1,47 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class s41 implements View.OnClickListener {
-    public final int f38100a;
-    public final w41 f38101b;
+import j$.util.Objects;
+import org.telegram.messenger.SaveToGallerySettingsHelper;
+public final class s41 extends pg.a {
+    public final SaveToGallerySettingsHelper.DialogException f40300c;
+    public final String d;
 
-    public s41(w41 w41Var, int i10) {
-        this.f38100a = i10;
-        this.f38101b = w41Var;
+    public s41(int i10) {
+        super(i10, false);
+        this.f40300c = null;
     }
 
-    @Override
-    public final void onClick(View view) {
-        switch (this.f38100a) {
-            case 0:
-                w41 w41Var = this.f38101b;
-                if (w41Var.V == null) {
-                    w41Var.dismiss();
-                    return;
-                }
-                return;
-            default:
-                this.f38101b.dismiss();
-                return;
+    public final boolean equals(Object obj) {
+        SaveToGallerySettingsHelper.DialogException dialogException;
+        if (this == obj) {
+            return true;
         }
+        if (obj == null || s41.class != obj.getClass()) {
+            return false;
+        }
+        s41 s41Var = (s41) obj;
+        if (this.f44071a != s41Var.f44071a) {
+            return false;
+        }
+        String str = this.d;
+        if (str != null) {
+            return Objects.equals(str, s41Var.d);
+        }
+        SaveToGallerySettingsHelper.DialogException dialogException2 = this.f40300c;
+        if (dialogException2 == null || (dialogException = s41Var.f40300c) == null || dialogException2.dialogId == dialogException.dialogId) {
+            return true;
+        }
+        return false;
+    }
+
+    public s41(SaveToGallerySettingsHelper.DialogException dialogException) {
+        super(2, false);
+        this.f40300c = dialogException;
+    }
+
+    public s41(int i10, String str) {
+        super(i10, false);
+        this.d = str;
+        this.f40300c = null;
     }
 }

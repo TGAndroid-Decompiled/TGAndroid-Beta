@@ -1,49 +1,51 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class vn implements g8 {
-    public final org.telegram.ui.ActionBar.p1[] f29512a;
-    public final yn f29513b;
+import java.util.concurrent.atomic.AtomicReference;
+public final class vn implements Runnable {
+    public final int f31374a;
+    public final co f31375b;
 
-    public vn(yn ynVar, org.telegram.ui.ActionBar.p1[] p1VarArr) {
-        this.f29513b = ynVar;
-        this.f29512a = p1VarArr;
+    public vn(co coVar, int i10) {
+        this.f31374a = i10;
+        this.f31375b = coVar;
     }
 
     @Override
-    public final void Q0(int i10, int i11) {
-        int i12;
-        org.telegram.ui.zn znVar = this.f29513b.D;
-        if (znVar != null) {
-            znVar.getMessagesController().setDialogHistoryTTL(znVar.a(), i10);
-            TLRPC.ChatFull chatFull = znVar.W7;
-            TLRPC.UserFull userFull = znVar.X7;
-            if (userFull != null || chatFull != null) {
-                znVar.Q7();
-                UndoView undoView = znVar.f40775v3;
-                if (undoView != null) {
-                    long a2 = znVar.a();
-                    TLRPC.User i13 = znVar.i();
-                    if (userFull != null) {
-                        i12 = userFull.ttl_period;
-                    } else {
-                        i12 = chatFull.ttl_period;
-                    }
-                    undoView.k(a2, i11, i13, Integer.valueOf(i12), null, null);
+    public final void run() {
+        switch (this.f31374a) {
+            case 0:
+                co coVar = this.f31375b;
+                AtomicReference atomicReference = coVar.f25055n;
+                org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) atomicReference.get();
+                if (j5Var != null) {
+                    coVar.removeView(j5Var);
+                    atomicReference.set(null);
+                    return;
                 }
-            }
+                return;
+            case 1:
+                co coVar2 = this.f31375b;
+                AtomicReference atomicReference2 = coVar2.v;
+                org.telegram.ui.ActionBar.j5 j5Var2 = (org.telegram.ui.ActionBar.j5) atomicReference2.get();
+                if (j5Var2 != null) {
+                    coVar2.removeView(j5Var2);
+                    atomicReference2.set(null);
+                    if (!coVar2.f25040b) {
+                        coVar2.setClipChildren(true);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                co coVar3 = this.f31375b;
+                coVar3.f25052j0 = false;
+                coVar3.f25050h0.c(false);
+                if (coVar3.a()) {
+                    coVar3.f();
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void dismiss() {
-        org.telegram.ui.ActionBar.p1 p1Var = this.f29512a[0];
-        if (p1Var != null) {
-            p1Var.dismiss();
-        }
-    }
-
-    @Override
-    public final void i1() {
     }
 }

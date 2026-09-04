@@ -1,96 +1,43 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
-public final class vi extends AnimatorListenerAdapter {
-    public final int f39115a;
-    public final zn f39116b;
+public final class vi implements Runnable {
+    public final int f41566a;
+    public final wi f41567b;
+    public final int f41568c;
+    public final boolean d;
+    public final org.telegram.ui.Components.fk0 f41569e;
+    public final float f41570f;
+    public final float h;
+    public final ah.j1 f41571n;
 
-    public vi(zn znVar, int i10) {
-        this.f39115a = i10;
-        this.f39116b = znVar;
+    public vi(wi wiVar, int i10, boolean z10, org.telegram.ui.Components.fk0 fk0Var, float f7, float f10, ah.j1 j1Var, int i11) {
+        this.f41566a = i11;
+        this.f41567b = wiVar;
+        this.f41568c = i10;
+        this.d = z10;
+        this.f41569e = fk0Var;
+        this.f41570f = f7;
+        this.h = f10;
+        this.f41571n = j1Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        sj sjVar;
-        switch (this.f39115a) {
+    public final void run() {
+        int i10;
+        switch (this.f41566a) {
             case 0:
-                zn znVar = this.f39116b;
-                fl flVar = znVar.Y2;
-                if (flVar != null) {
-                    flVar.setIsMessageTransition(false);
-                    znVar.Y2.h(true);
-                    znVar.Y2.setVisibility(4);
-                    return;
-                }
-                return;
-            case 1:
-                zn znVar2 = this.f39116b;
-                znVar2.f40809x9 = AndroidUtilities.dp(30.0f);
-                znVar2.o9();
-                return;
-            case 2:
-                zn znVar3 = this.f39116b;
-                if (znVar3.fragmentView != null && (sjVar = znVar3.f40759u0) != null) {
-                    sjVar.invalidate();
-                    znVar3.fragmentView.invalidate();
-                    return;
-                }
-                return;
-            case 3:
-                this.f39116b.M.setVisibility(4);
-                return;
-            case 4:
-                AndroidUtilities.runOnUIThread(new bj(this, 3), 2000L);
-                return;
-            case 5:
-                zn znVar4 = this.f39116b;
-                if (animator.equals(znVar4.f40553d3)) {
-                    znVar4.f40553d3 = null;
-                    return;
-                }
-                return;
-            case 6:
-                zn znVar5 = this.f39116b;
-                if (animator.equals(znVar5.f40553d3)) {
-                    znVar5.f40553d3 = null;
-                    return;
-                }
-                return;
-            case 7:
-                zn znVar6 = this.f39116b;
-                if (animator.equals(znVar6.f40566e3)) {
-                    znVar6.f40579f3 = 1.0f;
-                    znVar6.lc();
-                    znVar6.f40566e3 = null;
-                    return;
-                }
-                return;
-            case 8:
-                zn znVar7 = this.f39116b;
-                if (animator.equals(znVar7.f40566e3)) {
-                    znVar7.f40579f3 = 0.0f;
-                    znVar7.lc();
-                    znVar7.f40566e3 = null;
-                    return;
-                }
-                return;
-            case 9:
-                this.f39116b.Q4 = null;
-                return;
-            case 10:
-                zn znVar8 = this.f39116b;
-                znVar8.Aa = 1.0f;
-                znVar8.V.setVisibility(4);
-                znVar8.L0.setVisibility(4);
-                znVar8.o9();
+                AndroidUtilities.runOnUIThread(new vi(this.f41567b, this.f41568c, this.d, this.f41569e, this.f41570f, this.h, this.f41571n, 1), 50L);
                 return;
             default:
-                zn znVar9 = this.f39116b;
-                znVar9.Aa = 0.0f;
-                znVar9.o9();
+                co coVar = this.f41567b.f42407s;
+                org.telegram.ui.Cells.a0 q82 = coVar.q8(this.f41568c, true);
+                if (this.d) {
+                    i10 = ((org.telegram.ui.ActionBar.n2) coVar).currentAccount;
+                    ah.e1.d(coVar, this.f41569e, q82, null, this.f41570f, this.h, this.f41571n, i10, 1);
+                    ah.e1.f();
+                    return;
+                }
                 return;
         }
     }

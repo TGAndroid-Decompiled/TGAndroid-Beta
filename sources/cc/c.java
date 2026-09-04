@@ -1,19 +1,17 @@
 package cc;
+public final class c extends h {
+    public static final c f4731c;
 
-import java.util.logging.Logger;
-public abstract class c {
-    public static c a(Class cls) {
-        if (System.getProperty("java.vm.name").equalsIgnoreCase("Dalvik")) {
-            String simpleName = cls.getSimpleName();
-            a aVar = new a(0);
-            aVar.f2276b = simpleName;
-            return aVar;
-        }
-        String simpleName2 = cls.getSimpleName();
-        a aVar2 = new a(1);
-        aVar2.f2276b = Logger.getLogger(simpleName2);
-        return aVar2;
+    static {
+        ?? exc = new Exception();
+        f4731c = exc;
+        exc.setStackTrace(h.f4741b);
     }
 
-    public abstract void b(String str);
+    public static c a() {
+        if (h.f4740a) {
+            return new Exception();
+        }
+        return f4731c;
+    }
 }

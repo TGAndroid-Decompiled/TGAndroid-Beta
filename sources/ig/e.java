@@ -1,83 +1,124 @@
 package ig;
 
-import android.content.Context;
-import k7.b6;
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
-public class e extends d {
-    public static final int f7488s = 0;
-    public int f7489r;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.cq;
+import org.telegram.ui.Components.i9;
+import org.telegram.ui.Components.pr;
+import org.telegram.ui.Components.q6;
+import org.telegram.ui.Components.x9;
+import org.telegram.ui.co;
+import w7.x5;
+public final class e extends FrameLayout {
+    public final int f12030a;
+    public final i9 f12031b;
+    public final x9 f12032c;
+    public final LinearLayout d;
+    public final q6 f12033e;
+    public final q6 f12034f;
+    public final cq h;
+    public final ImageView f12035n;
+    public boolean f12036r;
+    public long f12037s;
+    public long v;
+    public int f12038w;
+    public String f12039x;
+    public float f12040y;
 
-    public e(Context context, f6 f6Var) {
-        super(context, f6Var);
-        this.d.setTypeface(AndroidUtilities.bold());
-    }
-
-    @Override
-    public boolean b() {
-        return !(this instanceof f);
-    }
-
-    @Override
-    public void d() {
+    public e(Activity activity, f6 f6Var, co coVar) {
+        super(activity);
         int i10;
-        int i11;
-        float f10;
-        float f11;
-        int i12;
-        float f12;
-        float f13;
-        int i13 = 3;
-        if (LocaleController.isRTL) {
-            i10 = 5;
+        this.f12030a = coVar.getCurrentAccount();
+        this.f12036r = false;
+        x9 x9Var = new x9(activity);
+        this.f12032c = x9Var;
+        TLRPC.User user = coVar.getMessagesController().getUser(Long.valueOf(this.v));
+        i9 i9Var = new i9((f6) null);
+        this.f12031b = i9Var;
+        i9Var.r(user);
+        x9Var.setRoundRadius(AndroidUtilities.dp(16.0f));
+        x9Var.e(user, i9Var);
+        addView(x9Var, x5.d(32, 32.0f, 19, 10.0f, 0.0f, 10.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(activity);
+        this.d = linearLayout;
+        linearLayout.setOrientation(1);
+        q6 q6Var = new q6(activity, false, false, false);
+        this.f12033e = q6Var;
+        q6Var.f29600n = false;
+        q6Var.getDrawable().o(true, false, false);
+        q6Var.setTypeface(AndroidUtilities.bold());
+        q6Var.setTextSize(AndroidUtilities.dp(14.0f));
+        q6Var.setText(UserObject.getUserName(user));
+        q6Var.setTextColor(j6.v0(j6.G6, f6Var));
+        q6Var.setEllipsizeByGradient(true);
+        linearLayout.addView(q6Var, x5.k(0.0f, 0.0f, 0.0f, 1.0f, -1, 17));
+        q6 q6Var2 = new q6(activity, false, false, false);
+        this.f12034f = q6Var2;
+        q6Var2.f29600n = false;
+        q6Var2.getDrawable().o(true, false, false);
+        q6Var2.setTextSize(AndroidUtilities.dp(13.0f));
+        q6Var2.setText(LocaleController.getString(R.string.BizBotStatusManages));
+        q6Var2.setTextColor(j6.v0(j6.f20724ge, f6Var));
+        q6Var2.setEllipsizeByGradient(true);
+        linearLayout.addView(q6Var2, x5.n(-1, 17));
+        addView(linearLayout, x5.d(-2, -2.0f, 16, 52.0f, 0.0f, 49.0f, 0.0f));
+        cq cqVar = new cq(activity);
+        this.h = cqVar;
+        cqVar.getDrawable().o(true, true, false);
+        cqVar.b(0.75f, 350L, pr.h);
+        cqVar.setScaleProperty(0.6f);
+        cqVar.setTypeface(AndroidUtilities.bold());
+        int dp = AndroidUtilities.dp(14.0f);
+        int i11 = j6.Oh;
+        int v02 = j6.v0(i11, f6Var);
+        int v = j6.v(j6.v0(i11, f6Var), j6.l1(0.12f, -1));
+        cqVar.setBackgroundDrawable(j6.i0(dp, dp, dp, dp, v02, v, v));
+        cqVar.setTextSize(AndroidUtilities.dp(14.0f));
+        cqVar.setGravity(5);
+        cqVar.setTextColor(j6.v0(j6.Sh, f6Var));
+        cqVar.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), 0);
+        cqVar.setOnClickListener(new ah.h0(this, 25));
+        cqVar.setOnWidthUpdatedListener(new d(this, 0));
+        if (this.f12036r) {
+            i10 = R.string.BizBotStart;
         } else {
-            i10 = 3;
+            i10 = R.string.BizBotStop;
         }
-        this.f7483c.setLayoutParams(b6.d(40, 40.0f, i10 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
-        boolean z4 = LocaleController.isRTL;
-        if (z4) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        int i14 = i11 | 16;
-        if (z4) {
-            f10 = 20.0f;
-        } else {
-            f10 = 109.0f;
-        }
-        if (z4) {
-            f11 = 109.0f;
-        } else {
-            f11 = 20.0f;
-        }
-        this.d.setLayoutParams(b6.d(-1, -2.0f, i14, f10, 0.0f, f11, 0.0f));
-        boolean z10 = LocaleController.isRTL;
-        if (z10) {
-            i12 = 5;
-        } else {
-            i12 = 3;
-        }
-        int i15 = i12 | 16;
-        if (z10) {
-            f12 = 20.0f;
-        } else {
-            f12 = 109.0f;
-        }
-        if (z10) {
-            f13 = 109.0f;
-        } else {
-            f13 = 20.0f;
-        }
-        this.e.setLayoutParams(b6.d(-1, -2.0f, i15, f12, 0.0f, f13, 0.0f));
-        if (LocaleController.isRTL) {
-            i13 = 5;
-        }
-        this.f7484f.setLayoutParams(b6.d(22, 22.0f, i13 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
+        cqVar.setText(LocaleController.getString(i10));
+        addView(cqVar, x5.d(64, 28.0f, 21, 0.0f, 0.0f, 46.0f, 0.0f));
+        ImageView imageView = new ImageView(activity);
+        this.f12035n = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.msg_mini_customize);
+        imageView.setBackground(j6.M(j6.v0(j6.f20753i6, f6Var), 0, 0));
+        imageView.setColorFilter(new PorterDuffColorFilter(j6.v0(j6.f20671de, f6Var), PorterDuff.Mode.MULTIPLY));
+        imageView.setOnClickListener(new bi.x(this, coVar, f6Var, 7));
+        addView(imageView, x5.d(32, 32.0f, 21, 8.0f, 0.0f, 6.0f, 0.0f));
     }
 
-    public int getSelectedType() {
-        return this.f7489r;
+    public final void a() {
+        float f7 = this.f12040y;
+        cq cqVar = this.h;
+        float d = cqVar.getDrawable().d() + f7 + cqVar.getPaddingLeft() + cqVar.getPaddingRight() + AndroidUtilities.dp(12.0f);
+        this.f12033e.setRightPadding(d);
+        this.f12034f.setRightPadding(d);
+    }
+
+    public void setLeftMargin(float f7) {
+        this.f12040y = f7;
+        this.f12032c.setTranslationX(f7);
+        this.d.setTranslationX(f7);
+        a();
     }
 }

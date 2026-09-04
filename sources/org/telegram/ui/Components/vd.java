@@ -1,68 +1,25 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class vd implements Utilities.Callback {
-    public final int f29457a = 0;
-    public final Object f29458b;
-    public final boolean f29459c;
-    public final int d;
-    public final int e;
-    public final boolean f29460f;
-    public final String f29461g;
-    public final Object h;
-    public final Object f29462i;
-    public final Object f29463j;
-
-    public vd(xf xfVar, Object obj, MediaController.PhotoEntry photoEntry, boolean z4, int i10, int i11, boolean z10, String str, Object obj2) {
-        this.h = xfVar;
-        this.f29458b = obj;
-        this.f29462i = photoEntry;
-        this.f29459c = z4;
-        this.d = i10;
-        this.e = i11;
-        this.f29460f = z10;
-        this.f29461g = str;
-        this.f29463j = obj2;
-    }
-
+import android.text.InputFilter;
+import android.text.Spanned;
+public final class vd implements InputFilter {
     @Override
-    public final void run(Object obj) {
-        int i10 = this.f29457a;
-        Object obj2 = this.f29462i;
-        Object obj3 = this.h;
-        switch (i10) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj3;
-                int i11 = ChatActivityEnterView.f22702j5;
-                hd hdVar = new hd(chatActivityEnterView, (TLRPC.Document) obj2, this.f29461g, (MessageObject.SendAnimationData) this.f29463j, this.f29459c, this.d, this.e, this.f29458b, (Long) obj, this.f29460f);
-                if (!chatActivityEnterView.r1(hdVar)) {
-                    hdVar.run();
-                    return;
+    public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
+        int i14 = ChatActivityEnterView.f23661m5;
+        for (int i15 = i10; i15 < i11; i15++) {
+            char charAt = charSequence.charAt(i15);
+            if (charAt == '\n' || charAt == '\r') {
+                StringBuilder sb2 = new StringBuilder(i11 - i10);
+                while (i10 < i11) {
+                    char charAt2 = charSequence.charAt(i10);
+                    if (charAt2 != '\n' && charAt2 != '\r') {
+                        sb2.append(charAt2);
+                    }
+                    i10++;
                 }
-                return;
-            default:
-                xf xfVar = (xf) obj3;
-                hd hdVar2 = new hd(xfVar, this.f29458b, (MediaController.PhotoEntry) obj2, this.f29459c, this.d, this.e, this.f29460f, (Long) obj, this.f29461g, this.f29463j);
-                if (!xfVar.f30632a.r1(hdVar2)) {
-                    hdVar2.run();
-                    return;
-                }
-                return;
+                return sb2;
+            }
         }
-    }
-
-    public vd(ChatActivityEnterView chatActivityEnterView, TLRPC.Document document, String str, MessageObject.SendAnimationData sendAnimationData, boolean z4, int i10, int i11, Object obj, boolean z10) {
-        this.h = chatActivityEnterView;
-        this.f29462i = document;
-        this.f29461g = str;
-        this.f29463j = sendAnimationData;
-        this.f29459c = z4;
-        this.d = i10;
-        this.e = i11;
-        this.f29458b = obj;
-        this.f29460f = z10;
+        return null;
     }
 }

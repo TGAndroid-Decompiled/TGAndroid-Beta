@@ -20,9 +20,9 @@ public class ColorAtom extends Atom implements Row {
         this.color = color2;
     }
 
-    private static Color convColor(float f10, float f11, float f12, float f13) {
-        float f14 = 1.0f - f13;
-        return new Color((1.0f - f10) * f14, (1.0f - f11) * f14, (1.0f - f12) * f14);
+    private static Color convColor(float f7, float f10, float f11, float f12) {
+        float f13 = 1.0f - f12;
+        return new Color((1.0f - f7) * f13, (1.0f - f10) * f13, (1.0f - f11) * f13);
     }
 
     public static Color getColor(String str) {

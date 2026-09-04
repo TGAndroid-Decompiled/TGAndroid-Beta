@@ -1,26 +1,52 @@
 package pf;
 
-import android.graphics.Matrix;
-import android.graphics.RectF;
-import org.telegram.tgnet.SerializedData;
-public final class c {
-    public final RectF f41228a;
-    public final Matrix f41229b;
+import g2.h;
+import g2.m;
+import java.io.IOException;
+import java.io.InputStream;
+public final class c extends InputStream {
+    public final h f44048a;
+    public final byte[] f44049b = new byte[1];
+    public long f44050c;
 
-    public c(RectF rectF, Matrix matrix) {
-        this.f41228a = rectF;
-        this.f41229b = matrix;
+    public c(h hVar, m mVar) {
+        this.f44048a = hVar;
+        try {
+            this.f44050c = hVar.open(mVar);
+        } catch (IOException e7) {
+            throw new RuntimeException(e7);
+        }
     }
 
-    public static c a(SerializedData serializedData) {
-        float readFloat = serializedData.readFloat(true);
-        float readFloat2 = serializedData.readFloat(true);
-        float readFloat3 = serializedData.readFloat(true);
-        float readFloat4 = serializedData.readFloat(true);
-        float[] fArr = {serializedData.readFloat(true), serializedData.readFloat(true), serializedData.readFloat(true), serializedData.readFloat(true), serializedData.readFloat(true), serializedData.readFloat(true), serializedData.readFloat(true), serializedData.readFloat(true), serializedData.readFloat(true)};
-        RectF rectF = new RectF(readFloat, readFloat2, readFloat3 + readFloat, readFloat4 + readFloat2);
-        Matrix matrix = new Matrix();
-        matrix.setValues(fArr);
-        return new c(rectF, matrix);
+    @Override
+    public final int available() {
+        return (int) this.f44050c;
+    }
+
+    @Override
+    public final void close() {
+        this.f44048a.close();
+    }
+
+    @Override
+    public final int read() {
+        h hVar = this.f44048a;
+        byte[] bArr = this.f44049b;
+        int read = hVar.read(bArr, 0, 1);
+        this.f44050c--;
+        if (read == -1) {
+            return -1;
+        }
+        return bArr[0] & 255;
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        if (i11 == 0) {
+            return 0;
+        }
+        int read = this.f44048a.read(bArr, i10, i11);
+        this.f44050c -= read;
+        return read;
     }
 }

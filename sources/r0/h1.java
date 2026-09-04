@@ -1,31 +1,31 @@
 package r0;
 
-import android.view.View;
 import android.view.WindowInsets;
-import org.telegram.ui.cl0;
-public class h1 extends g1 {
-    public static final m1 f43131r = m1.h(null, cl0.d());
+public final class h1 extends g1 {
+    public static final l1 f44695s;
 
-    public h1(m1 m1Var, WindowInsets windowInsets) {
-        super(m1Var, windowInsets);
+    static {
+        WindowInsets windowInsets;
+        windowInsets = WindowInsets.CONSUMED;
+        f44695s = l1.h(null, windowInsets);
+    }
+
+    public h1(l1 l1Var, WindowInsets windowInsets) {
+        super(l1Var, windowInsets);
     }
 
     @Override
-    public i0.b f(int i10) {
-        return i0.b.c(this.f43119c.getInsets(k1.a(i10)));
+    public i0.c f(int i10) {
+        return i0.c.c(this.f44671c.getInsets(k1.a(i10)));
     }
 
     @Override
-    public i0.b g(int i10) {
-        return i0.b.c(this.f43119c.getInsetsIgnoringVisibility(k1.a(i10)));
+    public i0.c g(int i10) {
+        return i0.c.c(this.f44671c.getInsetsIgnoringVisibility(k1.a(i10)));
     }
 
     @Override
     public boolean p(int i10) {
-        return this.f43119c.isVisible(k1.a(i10));
-    }
-
-    @Override
-    public final void d(View view) {
+        return this.f44671c.isVisible(k1.a(i10));
     }
 }

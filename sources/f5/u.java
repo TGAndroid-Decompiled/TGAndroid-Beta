@@ -1,47 +1,47 @@
 package f5;
 
-import h5.d0;
-import java.util.Collections;
-import java.util.List;
-import o4.s0;
-public final class u implements j3.g {
-    public static final String f5954c;
-    public static final String d;
-    public final s0 f5955a;
-    public final s8.v f5956b;
+import java.nio.ByteBuffer;
+import w7.p6;
+public final class u extends com.googlecode.mp4parser.c {
+    public static final mg.n f9343f;
+    public static final mg.n h;
+    public long[] f9344e;
 
     static {
-        int i10 = d0.f6924a;
-        f5954c = Integer.toString(0, 36);
-        d = Integer.toString(1, 36);
+        re.a aVar = new re.a(u.class, "SyncSampleBox.java");
+        aVar.e(aVar.d("getSampleNumber", "com.coremedia.iso.boxes.SyncSampleBox", "", "", "[J"));
+        f9343f = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SyncSampleBox", "", "", "java.lang.String"));
+        h = aVar.e(aVar.d("setSampleNumber", "com.coremedia.iso.boxes.SyncSampleBox", "[J", "sampleNumber", "void"));
     }
 
-    public u(s0 s0Var, int i10) {
-        this(s0Var, s8.v.x(Integer.valueOf(i10)));
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void _parseDetails(ByteBuffer byteBuffer) {
+        f(byteBuffer);
+        int a2 = p6.a(e5.b.i(byteBuffer));
+        this.f9344e = new long[a2];
+        for (int i10 = 0; i10 < a2; i10++) {
+            this.f9344e[i10] = e5.b.i(byteBuffer);
         }
-        if (obj != null && u.class == obj.getClass()) {
-            u uVar = (u) obj;
-            if (this.f5955a.equals(uVar.f5955a) && this.f5956b.equals(uVar.f5956b)) {
-                return true;
-            }
-        }
-        return false;
     }
 
-    public final int hashCode() {
-        return (this.f5956b.hashCode() * 31) + this.f5955a.hashCode();
+    @Override
+    public final void getContent(ByteBuffer byteBuffer) {
+        i(byteBuffer);
+        byteBuffer.putInt(this.f9344e.length);
+        for (long j3 : this.f9344e) {
+            byteBuffer.putInt((int) j3);
+        }
     }
 
-    public u(s0 s0Var, List list) {
-        if (!list.isEmpty() && (((Integer) Collections.min(list)).intValue() < 0 || ((Integer) Collections.max(list)).intValue() >= s0Var.f16400a)) {
-            throw new IndexOutOfBoundsException();
-        }
-        this.f5955a = s0Var;
-        this.f5956b = s8.v.t(list);
+    @Override
+    public final long getContentSize() {
+        return (this.f9344e.length * 4) + 8;
+    }
+
+    public final String toString() {
+        com.google.firebase.messaging.s b10 = re.a.b(f9343f, this, this);
+        com.googlecode.mp4parser.g.a().getClass();
+        com.googlecode.mp4parser.g.b(b10);
+        return a4.a.n(this.f9344e.length, "]", new StringBuilder("SyncSampleBox[entryCount="));
     }
 }

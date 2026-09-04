@@ -1,37 +1,38 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-public final class by0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f32958a;
-    public final ProfileActivity f32959b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class by0 implements Runnable {
+    public final int f34943a;
+    public final PrivacySettingsActivity f34944b;
 
-    public by0(ProfileActivity profileActivity, int i10) {
-        this.f32958a = i10;
-        this.f32959b = profileActivity;
+    public by0(PrivacySettingsActivity privacySettingsActivity, int i10) {
+        this.f34943a = i10;
+        this.f34944b = privacySettingsActivity;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f32958a) {
+    public final void run() {
+        switch (this.f34943a) {
             case 0:
-                ProfileActivity profileActivity = this.f32959b;
-                profileActivity.getClass();
-                profileActivity.J4(valueAnimator.getAnimatedFraction());
+                PrivacySettingsActivity privacySettingsActivity = this.f34944b;
+                privacySettingsActivity.f33842a.l();
+                privacySettingsActivity.R = true;
                 return;
             case 1:
-                this.f32959b.f32142u0.setAlpha((int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f));
-                return;
-            case 2:
-                ProfileActivity profileActivity2 = this.f32959b;
-                View view = profileActivity2.fragmentView;
-                if (view != null) {
-                    view.invalidate();
-                }
-                profileActivity2.l5(true);
+                this.f34944b.f33846c.dismiss();
                 return;
             default:
-                this.f32959b.l5(true);
+                PrivacySettingsActivity privacySettingsActivity2 = this.f34944b;
+                org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(privacySettingsActivity2.getParentActivity(), null);
+                ybVar.d(R.raw.email_check_inbox, new String[0]);
+                ybVar.f32876b.setText(LocaleController.getString(R.string.YourLoginEmailChangedSuccess));
+                org.telegram.ui.Components.qc.g(privacySettingsActivity2, ybVar, 1500).j();
+                try {
+                    privacySettingsActivity2.fragmentView.performHapticFeedback(3, 2);
+                } catch (Exception unused) {
+                }
+                privacySettingsActivity2.z0();
                 return;
         }
     }

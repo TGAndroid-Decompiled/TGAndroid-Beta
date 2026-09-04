@@ -1,164 +1,156 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.content.DialogInterface;
+import android.text.TextUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class br extends ql0 {
-    public final dr f23738c;
-
-    public br(dr drVar) {
-        this.f23738c = drVar;
-    }
-
-    @Override
-    public final boolean D(f2.l1 l1Var) {
-        if (l1Var.f5777f == 3) {
-            return true;
+import org.telegram.ui.LaunchActivity;
+public abstract class br {
+    public static void a(Context context, final int i10, TLRPC.User user, TLRPC.TL_requestPeerTypeCreateBot tL_requestPeerTypeCreateBot, boolean z10, final Utilities.Callback callback, org.telegram.ui.ActionBar.f6 f6Var, yc ycVar) {
+        yc ycVar2;
+        String userName;
+        if (!user.bot_can_manage_bots) {
+            if (ycVar == null) {
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U == null) {
+                    callback.run(null);
+                    return;
+                }
+                ycVar2 = yc.a0(U);
+            } else {
+                ycVar2 = ycVar;
+            }
+            if (!TextUtils.isEmpty(UserObject.getPublicUsername(user))) {
+                userName = "@" + UserObject.getPublicUsername(user);
+            } else {
+                userName = UserObject.getUserName(user);
+            }
+            ycVar2.Q(R.raw.error, 36, AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.CreateManagedBotUnsupported, userName), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Gi, f6Var))).j();
+            callback.run(null);
+            return;
         }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        dr drVar = this.f23738c;
-        if (drVar.W) {
-            return drVar.V.size() + 3;
+        org.telegram.ui.ActionBar.f3 i11 = org.telegram.messenger.wl.i(1, context, f6Var, true);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setClipChildren(false);
+        linearLayout.setClipToPadding(false);
+        linearLayout.setOrientation(1);
+        i11.customView = linearLayout;
+        x9 x9Var = new x9(context);
+        i9 i9Var = new i9((org.telegram.ui.ActionBar.f6) null);
+        i9Var.r(user);
+        x9Var.e(user, i9Var);
+        x9Var.setRoundRadius(AndroidUtilities.dp(40.0f));
+        linearLayout.addView(x9Var, w7.x5.t(80, 80, 49, 0, 22, 0, 16));
+        TextView textView = new TextView(context);
+        textView.setTypeface(AndroidUtilities.bold());
+        int i12 = org.telegram.ui.ActionBar.j6.G6;
+        org.telegram.messenger.wl.n(i12, f6Var, textView, 1, 20.0f);
+        org.telegram.messenger.wl.k(R.string.CreateManagedBotTitle, textView, 17);
+        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.x5.t(-1, -2, 55, 16, 0, 16, 8), context);
+        org.telegram.messenger.wl.n(i12, f6Var, h, 1, 14.0f);
+        h.setText(AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.CreateManagedBotText, UserObject.getUserName(user)), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.gc, f6Var)));
+        h.setGravity(17);
+        linearLayout.addView(h, w7.x5.t(-1, -2, 55, 16, 0, 16, 22));
+        org.telegram.ui.Cells.i3 i3Var = new org.telegram.ui.Cells.i3(context, LocaleController.getString(R.string.CreateManagedBotName), false, false, -1, f6Var);
+        org.telegram.ui.Cells.g3 g3Var = i3Var.f22074b;
+        g3Var.setImeOptions(5);
+        int dp = AndroidUtilities.dp(16.0f);
+        int i13 = org.telegram.ui.ActionBar.j6.f20663d6;
+        i3Var.setBackground(org.telegram.ui.ActionBar.j6.b0(dp, org.telegram.ui.ActionBar.j6.v0(i13, f6Var)));
+        i3Var.setText(tL_requestPeerTypeCreateBot.suggested_name);
+        linearLayout.addView(i3Var, w7.x5.t(-1, -2, 55, 12, 0, 12, 0));
+        org.telegram.ui.Cells.e9 e9Var = new org.telegram.ui.Cells.e9(context, f6Var);
+        e9Var.setText(LocaleController.getString(R.string.CreateManagedBotNameInfo));
+        linearLayout.addView(e9Var, w7.x5.n(-1, -2));
+        org.telegram.ui.Cells.i3 i3Var2 = new org.telegram.ui.Cells.i3(context, LocaleController.getString(R.string.CreateManagedBotUsername), false, false, 29, f6Var);
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(0);
+        org.telegram.ui.Cells.g3 g3Var2 = i3Var2.f22074b;
+        i3Var2.removeView(g3Var2);
+        g3Var2.setHintColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.H6, f6Var));
+        g3Var2.setRightText("bot");
+        g3Var2.setPadding(0, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(63.0f), AndroidUtilities.dp(15.0f));
+        TextView textView2 = new TextView(context);
+        textView2.setTextSize(1, 17.0f);
+        textView2.setText("@");
+        textView2.setTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
+        textView2.setGravity(17);
+        textView2.setPadding(0, AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f));
+        linearLayout2.addView(textView2, w7.x5.k(21.0f, -1.0f, 0.0f, 0.0f, -2, -1));
+        linearLayout2.addView(g3Var2, w7.x5.p(0, -1, 119.0f, 1, 0, 0, 0, 0));
+        i3Var2.addView(linearLayout2, w7.x5.c(-1.0f, -1));
+        i3Var2.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(16.0f), org.telegram.ui.ActionBar.j6.v0(i13, f6Var)));
+        g3Var2.setImeOptions(6);
+        String str = tL_requestPeerTypeCreateBot.suggested_username;
+        if (str != null) {
+            str = str.trim();
         }
-        if (drVar.X) {
-            return 2;
+        if (str != null && str.toLowerCase().endsWith("bot")) {
+            str = com.google.android.gms.internal.vision.e2.i(3, 0, str);
         }
-        return 1;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 != 0) {
-            int i11 = 1;
-            if (i10 != 1) {
-                i11 = 2;
-                if (i10 != 2) {
-                    return 3;
+        i3Var2.setText(str);
+        linearLayout.addView(i3Var2, w7.x5.t(-1, -2, 55, 12, 0, 12, 0));
+        g3Var.setOnEditorActionListener(new f1(i3Var2, 1));
+        org.telegram.ui.Cells.e9 e9Var2 = new org.telegram.ui.Cells.e9(context, f6Var);
+        e9Var2.setText(LocaleController.getString(R.string.CreateManagedBotUsernameInfo));
+        linearLayout.addView(e9Var2, w7.x5.n(-1, -2));
+        LinearLayout linearLayout3 = new LinearLayout(context);
+        linearLayout3.setOrientation(0);
+        linearLayout3.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
+        linearLayout3.setClipToPadding(false);
+        linearLayout.addView(linearLayout3, w7.x5.n(-1, -2));
+        di.d dVar = new di.d(context, f6Var, true);
+        dVar.setRoundRadius(24);
+        dVar.d();
+        dVar.setText(LocaleController.getString(R.string.Cancel));
+        linearLayout3.addView(dVar, w7.x5.p(0, 48, 119.0f, 1, 0, 0, 5, 0));
+        di.d g10 = org.telegram.messenger.wl.g(24, context, f6Var, true);
+        g10.setText(LocaleController.getString(R.string.CreateManagedBotButton));
+        linearLayout3.addView(g10, w7.x5.p(0, 48, 119.0f, 1, 5, 0, 0, 0));
+        i11.useBackgroundTopPadding = false;
+        i11.smoothKeyboardAnimationEnabled = true;
+        i11.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20607a7, f6Var));
+        i11.fixNavigationBar();
+        final boolean[] zArr = new boolean[1];
+        String[] strArr = new String[1];
+        final int[] iArr = {-1};
+        int[] iArr2 = {4};
+        org.telegram.messenger.jb jbVar = new org.telegram.messenger.jb(i3Var2, new int[]{-1}, i10, strArr, new String[1], g10, e9Var2, f6Var, iArr2);
+        wq wqVar = new wq(strArr, jbVar, i3Var, iArr2, g10, z10, i10, user, iArr, zArr, callback, i11, f6Var, context);
+        g3Var2.addTextChangedListener(new ar(jbVar));
+        if (!TextUtils.isEmpty(str)) {
+            jbVar.run();
+        }
+        g3Var2.setOnEditorActionListener(new f1(wqVar, 2));
+        dVar.setOnClickListener(new e3(i11, 2));
+        g10.setEnabled(false);
+        g10.setOnClickListener(new g0(wqVar, 10));
+        i11.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public final void onDismiss(DialogInterface dialogInterface) {
+                boolean[] zArr2 = zArr;
+                if (!zArr2[0]) {
+                    zArr2[0] = true;
+                    Utilities.Callback callback2 = callback;
+                    if (callback2 != null) {
+                        callback2.run(null);
+                    }
+                }
+                int[] iArr3 = iArr;
+                if (iArr3[0] >= 0) {
+                    ConnectionsManager.getInstance(i10).cancelRequest(iArr3[0], true);
+                    iArr3[0] = -1;
                 }
             }
-            return i11;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(f2.l1 l1Var, int i10) {
-        int i11;
-        TLObject chat;
-        String str;
-        boolean z4;
-        int i12;
-        int i13 = l1Var.f5777f;
-        View view = l1Var.f5774a;
-        boolean z10 = true;
-        if (i13 == 3) {
-            dr drVar = this.f23738c;
-            TLRPC.Peer peer = (TLRPC.Peer) drVar.V.get(i10 - 3);
-            long peerId = MessageObject.getPeerId(peer);
-            if (peerId > 0) {
-                i12 = ((org.telegram.ui.ActionBar.g3) drVar).currentAccount;
-                chat = MessagesController.getInstance(i12).getUser(Long.valueOf(peerId));
-                str = LocaleController.getString(R.string.VoipGroupPersonalAccount);
-            } else {
-                i11 = ((org.telegram.ui.ActionBar.g3) drVar).currentAccount;
-                chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-peerId));
-                str = null;
-            }
-            org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) view;
-            if (i10 != h() - 1) {
-                z4 = true;
-            } else {
-                z4 = false;
-            }
-            f4Var.e(chat, null, str, z4);
-            if (peer != drVar.f24341a0) {
-                z10 = false;
-            }
-            f4Var.c(z10, false);
-        } else if (i13 == 2) {
-            org.telegram.ui.Cells.l4 l4Var = (org.telegram.ui.Cells.l4) view;
-            l4Var.setTextSize(15.0f);
-            l4Var.setPadding(0, 0, 0, AndroidUtilities.dp(2.0f));
-            l4Var.setText(LocaleController.getString(R.string.VoipChatDisplayedAs).replace(":", ""));
-        } else if (i13 == 1) {
-            ((org.telegram.ui.Cells.z8) view).setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.VoipChatStreamWithAnotherApp), org.telegram.ui.ActionBar.j6.L6, 0, new up(this, 3)), true, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f)));
-        }
-    }
-
-    @Override
-    public final f2.l1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.ActionBar.f6 f6Var;
-        FrameLayout frameLayout;
-        String formatString;
-        String formatString2;
-        Context context = viewGroup.getContext();
-        dr drVar = this.f23738c;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    boolean z4 = drVar.Y;
-                    LinearLayout linearLayout = new LinearLayout(context);
-                    linearLayout.setOrientation(1);
-                    ?? imageView = new ImageView(context);
-                    imageView.setAutoRepeat(true);
-                    imageView.f(R.raw.utyan_schedule, 112, 112, null);
-                    imageView.d();
-                    linearLayout.addView((View) imageView, k7.b6.t(112, 112, 49, 0, 24, 0, 0));
-                    TextView textView = new TextView(context);
-                    textView.setTypeface(AndroidUtilities.bold());
-                    if (z4) {
-                        formatString = LocaleController.formatString(R.string.StartVoipChannelTitle, new Object[0]);
-                    } else {
-                        formatString = LocaleController.formatString(R.string.StartVoipChatTitle, new Object[0]);
-                    }
-                    textView.setText(formatString);
-                    textView.setTextSize(1, 20.0f);
-                    textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
-                    linearLayout.addView(textView, k7.b6.t(-2, -2, 1, 0, 14, 0, 7));
-                    TextView textView2 = new TextView(context);
-                    textView2.setTextSize(1, 14.0f);
-                    textView2.setGravity(1);
-                    textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19987j5, false));
-                    if (z4) {
-                        formatString2 = LocaleController.formatString(R.string.VoipChannelStart2, new Object[0]);
-                    } else {
-                        formatString2 = LocaleController.formatString(R.string.VoipGroupStart2, new Object[0]);
-                    }
-                    textView2.setText(formatString2);
-                    textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
-                    linearLayout.addView(textView2, k7.b6.t(-2, -2, 1, 28, 0, 28, 17));
-                    frameLayout = linearLayout;
-                } else {
-                    frameLayout = new org.telegram.ui.Cells.f4(context, 1, 0, false);
-                }
-            } else {
-                frameLayout = new org.telegram.ui.Cells.l4(context, 22);
-            }
-        } else {
-            org.telegram.ui.Cells.z8 z8Var = new org.telegram.ui.Cells.z8(context);
-            int i11 = org.telegram.ui.ActionBar.j6.f19827a7;
-            f6Var = ((org.telegram.ui.ActionBar.g3) drVar).resourcesProvider;
-            z8Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-            z8Var.setTopPadding(17);
-            z8Var.setBottomPadding(17);
-            frameLayout = z8Var;
-        }
-        frameLayout.setLayoutParams(new f2.w0(-1, -2));
-        return new f2.l1(frameLayout);
+        });
+        i11.show();
     }
 }

@@ -14,115 +14,115 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
 public class CheckBox extends View {
-    public static Paint E;
-    public static Paint F;
-    public static Paint G;
     public static Paint H;
-    public int B;
-    public int C;
-    public String D;
-    public final Drawable f22915a;
-    public final TextPaint f22916b;
-    public Bitmap f22917c;
+    public static Paint I;
+    public static Paint J;
+    public static Paint K;
+    public int E;
+    public int F;
+    public String G;
+    public final Drawable f23882a;
+    public final TextPaint f23883b;
+    public Bitmap f23884c;
     public Bitmap d;
-    public Canvas e;
-    public Canvas f22918f;
+    public Canvas f23885e;
+    public Canvas f23886f;
     public boolean h;
-    public boolean f22919n;
-    public float f22920r;
-    public ObjectAnimator f22921s;
+    public boolean f23887n;
+    public float f23888r;
+    public ObjectAnimator f23889s;
     public boolean v;
-    public boolean f22922w;
-    public boolean f22923x;
-    public int f22924y;
+    public boolean f23890w;
+    public boolean f23891x;
+    public int f23892y;
 
     public CheckBox(Context context, int i10) {
         super(context);
         this.v = true;
-        this.f22924y = 22;
-        if (E == null) {
-            E = new Paint(1);
+        this.f23892y = 22;
+        if (H == null) {
+            H = new Paint(1);
             Paint paint = new Paint(1);
-            F = paint;
+            I = paint;
             paint.setColor(0);
-            Paint paint2 = F;
+            Paint paint2 = I;
             PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
             paint2.setXfermode(new PorterDuffXfermode(mode));
             Paint paint3 = new Paint(1);
-            G = paint3;
+            J = paint3;
             paint3.setColor(0);
-            Paint paint4 = G;
+            Paint paint4 = J;
             Paint.Style style = Paint.Style.STROKE;
             paint4.setStyle(style);
-            G.setXfermode(new PorterDuffXfermode(mode));
+            J.setXfermode(new PorterDuffXfermode(mode));
             Paint paint5 = new Paint(1);
-            H = paint5;
+            K = paint5;
             paint5.setColor(-1);
-            H.setStyle(style);
+            K.setStyle(style);
         }
-        G.setStrokeWidth(AndroidUtilities.dp(28.0f));
-        H.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        J.setStrokeWidth(AndroidUtilities.dp(28.0f));
+        K.setStrokeWidth(AndroidUtilities.dp(2.0f));
         TextPaint textPaint = new TextPaint(1);
-        this.f22916b = textPaint;
+        this.f23883b = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(18.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
-        this.f22915a = context.getResources().getDrawable(i10).mutate();
+        this.f23882a = context.getResources().getDrawable(i10).mutate();
     }
 
-    public final void a(boolean z4) {
-        b(z4, false);
+    public final void a(boolean z10) {
+        b(z10, false);
     }
 
-    public final void b(boolean z4, boolean z10) {
-        if (z4 == this.f22923x) {
+    public final void b(boolean z10, boolean z11) {
+        if (z10 == this.f23891x) {
             return;
         }
-        this.f22923x = z4;
-        float f10 = 0.0f;
-        if (this.f22922w && z10) {
-            this.v = z4;
-            if (z4) {
-                f10 = 1.0f;
+        this.f23891x = z10;
+        float f7 = 0.0f;
+        if (this.f23890w && z11) {
+            this.v = z10;
+            if (z10) {
+                f7 = 1.0f;
             }
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f10);
-            this.f22921s = ofFloat;
-            ofFloat.addListener(new a9(this, 11));
-            this.f22921s.setDuration(300L);
-            this.f22921s.start();
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f7);
+            this.f23889s = ofFloat;
+            ofFloat.addListener(new j6(this, 15));
+            this.f23889s.setDuration(300L);
+            this.f23889s.start();
             return;
         }
-        ObjectAnimator objectAnimator = this.f22921s;
+        ObjectAnimator objectAnimator = this.f23889s;
         if (objectAnimator != null) {
             objectAnimator.cancel();
-            this.f22921s = null;
+            this.f23889s = null;
         }
-        if (z4) {
-            f10 = 1.0f;
+        if (z10) {
+            f7 = 1.0f;
         }
-        setProgress(f10);
+        setProgress(f7);
     }
 
     public final void c(int i10, int i11) {
-        this.C = i10;
-        this.f22915a.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.MULTIPLY));
-        this.f22916b.setColor(i11);
+        this.F = i10;
+        this.f23882a.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.MULTIPLY));
+        this.f23883b.setColor(i11);
         invalidate();
     }
 
     public float getProgress() {
-        return this.f22920r;
+        return this.f23888r;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f22922w = true;
+        this.f23890w = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f22922w = false;
+        this.f23890w = false;
     }
 
     @Override
@@ -135,78 +135,78 @@ public class CheckBox extends View {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f22923x);
+        accessibilityNodeInfo.setChecked(this.f23891x);
     }
 
     @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        super.onLayout(z4, i10, i11, i12, i13);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
     }
 
     @Override
     public void setBackgroundColor(int i10) {
-        this.C = i10;
+        this.F = i10;
         invalidate();
     }
 
     public void setCheckColor(int i10) {
-        this.f22915a.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
-        this.f22916b.setColor(i10);
+        this.f23882a.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
+        this.f23883b.setColor(i10);
         invalidate();
     }
 
     public void setCheckOffset(int i10) {
-        this.B = i10;
+        this.E = i10;
     }
 
-    public void setDrawBackground(boolean z4) {
-        this.h = z4;
+    public void setDrawBackground(boolean z10) {
+        this.h = z10;
     }
 
-    public void setHasBorder(boolean z4) {
-        this.f22919n = z4;
+    public void setHasBorder(boolean z10) {
+        this.f23887n = z10;
     }
 
     public void setNum(int i10) {
         if (i10 >= 0) {
-            this.D = "" + (i10 + 1);
-        } else if (this.f22921s == null) {
-            this.D = null;
+            this.G = "" + (i10 + 1);
+        } else if (this.f23889s == null) {
+            this.G = null;
         }
         invalidate();
     }
 
-    public void setProgress(float f10) {
-        if (this.f22920r == f10) {
+    public void setProgress(float f7) {
+        if (this.f23888r == f7) {
             return;
         }
-        this.f22920r = f10;
+        this.f23888r = f7;
         invalidate();
     }
 
     public void setSize(int i10) {
-        this.f22924y = i10;
+        this.f23892y = i10;
         if (i10 == 40) {
-            this.f22916b.setTextSize(AndroidUtilities.dp(24.0f));
+            this.f23883b.setTextSize(AndroidUtilities.dp(24.0f));
         }
     }
 
     public void setStrokeWidth(int i10) {
-        H.setStrokeWidth(i10);
+        K.setStrokeWidth(i10);
     }
 
     @Override
     public void setVisibility(int i10) {
         super.setVisibility(i10);
-        if (i10 == 0 && this.f22917c == null) {
+        if (i10 == 0 && this.f23884c == null) {
             try {
-                int dp = AndroidUtilities.dp(this.f22924y);
-                int dp2 = AndroidUtilities.dp(this.f22924y);
+                int dp = AndroidUtilities.dp(this.f23892y);
+                int dp2 = AndroidUtilities.dp(this.f23892y);
                 Bitmap.Config config = Bitmap.Config.ARGB_4444;
-                this.f22917c = Bitmap.createBitmap(dp, dp2, config);
-                this.e = new Canvas(this.f22917c);
-                this.d = Bitmap.createBitmap(AndroidUtilities.dp(this.f22924y), AndroidUtilities.dp(this.f22924y), config);
-                this.f22918f = new Canvas(this.d);
+                this.f23884c = Bitmap.createBitmap(dp, dp2, config);
+                this.f23885e = new Canvas(this.f23884c);
+                this.d = Bitmap.createBitmap(AndroidUtilities.dp(this.f23892y), AndroidUtilities.dp(this.f23892y), config);
+                this.f23886f = new Canvas(this.d);
             } catch (Throwable unused) {
             }
         }

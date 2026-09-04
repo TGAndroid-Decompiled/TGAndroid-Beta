@@ -16,7 +16,7 @@ public class ImageLocation {
     public long documentId;
     public byte[] file_reference;
     public int imageType;
-    public org.telegram.ui.web.g2 instantFile;
+    public org.telegram.ui.web.i2 instantFile;
     public byte[] iv;
     public byte[] key;
     public TLRPC.TL_fileLocationToBeDeprecated location;
@@ -49,12 +49,12 @@ public class ImageLocation {
         return imageLocation;
     }
 
-    public static ImageLocation getForInstantFile(org.telegram.ui.web.g2 g2Var) {
-        if (g2Var == null) {
+    public static ImageLocation getForInstantFile(org.telegram.ui.web.i2 i2Var) {
+        if (i2Var == null) {
             return null;
         }
         ImageLocation imageLocation = new ImageLocation();
-        imageLocation.instantFile = g2Var;
+        imageLocation.instantFile = i2Var;
         return imageLocation;
     }
 
@@ -156,7 +156,7 @@ public class ImageLocation {
         }
         if (stickerSet.access_hash != 0) {
             tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetID();
-            tL_inputStickerSetShortName.f19179id = stickerSet.f19186id;
+            tL_inputStickerSetShortName.f19889id = stickerSet.f19896id;
             tL_inputStickerSetShortName.access_hash = stickerSet.access_hash;
         } else {
             tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
@@ -204,19 +204,19 @@ public class ImageLocation {
         String simpleName;
         String strippedKeyInternal = getStrippedKeyInternal(obj, obj2, obj3);
         if (BuildVars.LOGS_ENABLED && (obj instanceof MessageObject) && (message = ((MessageObject) obj).messageOwner) != null && message.rich_message != null) {
-            StringBuilder t6 = android.support.v4.media.a.t("[richmedia] strippedKey=", strippedKeyInternal, " fullObject=");
+            StringBuilder v = a4.a.v("[richmedia] strippedKey=", strippedKeyInternal, " fullObject=");
             String str = "null";
             if (obj2 == null) {
                 simpleName = "null";
             } else {
                 simpleName = obj2.getClass().getSimpleName();
             }
-            t6.append(simpleName);
-            t6.append(" stripped=");
+            v.append(simpleName);
+            v.append(" stripped=");
             if (obj3 != null) {
                 str = obj3.getClass().getSimpleName();
             }
-            org.telegram.ui.ai.v(str, t6);
+            com.google.android.gms.internal.vision.e2.t(str, v);
         }
         return strippedKeyInternal;
     }
@@ -225,10 +225,10 @@ public class ImageLocation {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLocation.getStrippedKeyInternal(java.lang.Object, java.lang.Object, java.lang.Object):java.lang.String");
     }
 
-    public String getKey(Object obj, Object obj2, boolean z4) {
+    public String getKey(Object obj, Object obj2, boolean z10) {
         int i10;
         if (this.secureDocument != null) {
-            return this.secureDocument.secureFile.dc_id + "_" + this.secureDocument.secureFile.f19294id;
+            return this.secureDocument.secureFile.dc_id + "_" + this.secureDocument.secureFile.f20004id;
         }
         TLRPC.PhotoSize photoSize = this.photoSize;
         if (!(photoSize instanceof TLRPC.TL_photoStrippedSize) && !(photoSize instanceof TLRPC.TL_photoPathSize)) {
@@ -239,38 +239,38 @@ public class ImageLocation {
             if (webFile != null) {
                 return Utilities.MD5(webFile.url);
             }
-            org.telegram.ui.web.g2 g2Var = this.instantFile;
-            if (g2Var != null) {
-                return Utilities.MD5(g2Var.f39455b);
+            org.telegram.ui.web.i2 i2Var = this.instantFile;
+            if (i2Var != null) {
+                return Utilities.MD5(i2Var.f42129b);
             }
             TLRPC.Document document = this.document;
             if (document != null) {
-                if (!z4 && (document instanceof DocumentObject.ThemeDocument)) {
+                if (!z10 && (document instanceof DocumentObject.ThemeDocument)) {
                     DocumentObject.ThemeDocument themeDocument = (DocumentObject.ThemeDocument) document;
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(this.document.dc_id);
-                    sb.append("_");
-                    sb.append(this.document.f19165id);
-                    sb.append("_");
-                    sb.append(org.telegram.ui.ActionBar.j6.q0(themeDocument.themeSettings));
-                    sb.append("_");
-                    sb.append(themeDocument.themeSettings.accent_color);
-                    sb.append("_");
+                    StringBuilder sb2 = new StringBuilder();
+                    sb2.append(this.document.dc_id);
+                    sb2.append("_");
+                    sb2.append(this.document.f19875id);
+                    sb2.append("_");
+                    sb2.append(org.telegram.ui.ActionBar.j6.q0(themeDocument.themeSettings));
+                    sb2.append("_");
+                    sb2.append(themeDocument.themeSettings.accent_color);
+                    sb2.append("_");
                     int i11 = 0;
                     if (themeDocument.themeSettings.message_colors.size() > 1) {
                         i10 = themeDocument.themeSettings.message_colors.get(1).intValue();
                     } else {
                         i10 = 0;
                     }
-                    sb.append(i10);
-                    sb.append("_");
+                    sb2.append(i10);
+                    sb2.append("_");
                     if (themeDocument.themeSettings.message_colors.size() > 0) {
                         i11 = themeDocument.themeSettings.message_colors.get(0).intValue();
                     }
-                    sb.append(i11);
-                    return sb.toString();
-                } else if (document.f19165id != 0 && document.dc_id != 0) {
-                    return this.document.dc_id + "_" + this.document.f19165id;
+                    sb2.append(i11);
+                    return sb2.toString();
+                } else if (document.f19875id != 0 && document.dc_id != 0) {
+                    return this.document.dc_id + "_" + this.document.f19875id;
                 } else {
                     return null;
                 }
@@ -350,11 +350,11 @@ public class ImageLocation {
                 return null;
             }
             tL_inputPeerChat = new TLRPC.TL_inputPeerChannel();
-            tL_inputPeerChat.channel_id = chat.f19159id;
+            tL_inputPeerChat.channel_id = chat.f19869id;
             tL_inputPeerChat.access_hash = chat.access_hash;
         } else {
             tL_inputPeerChat = new TLRPC.TL_inputPeerChat();
-            tL_inputPeerChat.chat_id = chat.f19159id;
+            tL_inputPeerChat.chat_id = chat.f19869id;
         }
         TLRPC.InputPeer inputPeer = tL_inputPeerChat;
         int i12 = chat.photo.dc_id;
@@ -434,14 +434,14 @@ public class ImageLocation {
                 if (photo != null) {
                     imageLocation.file_reference = photo.file_reference;
                     imageLocation.access_hash = photo.access_hash;
-                    imageLocation.photoId = photo.f19183id;
+                    imageLocation.photoId = photo.f19893id;
                     imageLocation.thumbSize = str;
                     return imageLocation;
                 }
                 if (document != null) {
                     imageLocation.file_reference = document.file_reference;
                     imageLocation.access_hash = document.access_hash;
-                    imageLocation.documentId = document.f19165id;
+                    imageLocation.documentId = document.f19875id;
                     imageLocation.thumbSize = str;
                 }
                 return imageLocation;

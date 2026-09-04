@@ -1,118 +1,26 @@
 package org.telegram.ui.Cells;
 
-import android.app.Activity;
-import android.text.TextUtils;
+import android.graphics.Canvas;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.Space;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UnconfirmedAuthController;
 public final class ra extends FrameLayout {
-    public static final int f21894f = 0;
-    public final LinearLayout f21895a;
-    public final TextView f21896b;
-    public final TextView f21897c;
-    public final qa d;
-    public final qa e;
+    public boolean f22697a;
+    public org.telegram.ui.Components.x9 f22698b;
+    public TextView f22699c;
+    public TextView d;
 
-    public ra(Activity activity) {
-        super(activity);
-        setClickable(true);
-        LinearLayout linearLayout = new LinearLayout(activity);
-        this.f21895a = linearLayout;
-        linearLayout.setOrientation(1);
-        TextView textView = new TextView(activity);
-        this.f21896b = textView;
-        textView.setGravity(17);
-        textView.setTextSize(1, 14.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setText(LocaleController.getString(R.string.UnconfirmedAuthTitle));
-        linearLayout.addView(textView, k7.b6.p(-1, -2, 0.0f, 55, 28, 8, 28, 0));
-        TextView textView2 = new TextView(activity);
-        this.f21897c = textView2;
-        textView2.setGravity(17);
-        textView2.setTextSize(1, 13.0f);
-        textView2.setLineSpacing(AndroidUtilities.dpf2(2.0f), 1.0f);
-        linearLayout.addView(textView2, k7.b6.p(-1, -2, 0.0f, 55, 28, 2, 28, 0));
-        LinearLayout linearLayout2 = new LinearLayout(activity);
-        linearLayout2.setOrientation(0);
-        linearLayout2.setGravity(17);
-        linearLayout2.addView(new Space(activity), k7.b6.o(-2, 1, 17.0f, 1));
-        qa qaVar = new qa(activity);
-        this.d = qaVar;
-        qaVar.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f));
-        qaVar.setTypeface(AndroidUtilities.bold());
-        qaVar.setTextSize(1, 14.22f);
-        qaVar.setText(LocaleController.getString(R.string.UnconfirmedAuthConfirm));
-        linearLayout2.addView(qaVar, k7.b6.n(-2, 30));
-        linearLayout2.addView(new Space(activity), k7.b6.o(-2, 1, 17.0f, 1));
-        qa qaVar2 = new qa(activity);
-        this.e = qaVar2;
-        qaVar2.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f));
-        qaVar2.setTypeface(AndroidUtilities.bold());
-        qaVar2.setTextSize(1, 14.22f);
-        qaVar2.setText(LocaleController.getString(R.string.UnconfirmedAuthDeny));
-        linearLayout2.addView(qaVar2, k7.b6.n(-2, 30));
-        linearLayout2.addView(new Space(activity), k7.b6.o(-2, 1, 17.0f, 1));
-        linearLayout.addView(linearLayout2, k7.b6.k(28.0f, 4.0f, 28.0f, 8.0f, -1, -2));
-        addView(linearLayout, k7.b6.e(-1, -1, 119));
-        b();
-    }
-
-    public static String a(UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth) {
-        if (unconfirmedAuth == null) {
-            return "";
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.f22697a) {
+            canvas.drawLine(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f20785k0);
         }
-        String str = "" + unconfirmedAuth.device;
-        if (!TextUtils.isEmpty(unconfirmedAuth.location) && !str.isEmpty()) {
-            str = str.concat(", ");
-        }
-        StringBuilder l10 = e2.c.l(str);
-        l10.append(unconfirmedAuth.location);
-        return l10.toString();
-    }
-
-    public final void b() {
-        float f10;
-        this.f21896b.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
-        this.f21897c.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20256y6, false));
-        int i10 = org.telegram.ui.ActionBar.j6.I6;
-        int w02 = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
-        qa qaVar = this.d;
-        qaVar.setTextColor(w02);
-        int w03 = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
-        float f11 = 0.15f;
-        if (org.telegram.ui.ActionBar.j6.I.q()) {
-            f10 = 0.3f;
-        } else {
-            f10 = 0.15f;
-        }
-        qaVar.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.l1(f10, w03), 7, AndroidUtilities.dp(8.0f)));
-        int i11 = org.telegram.ui.ActionBar.j6.f20116q7;
-        int w04 = org.telegram.ui.ActionBar.j6.w0(null, i11, false);
-        qa qaVar2 = this.e;
-        qaVar2.setTextColor(w04);
-        int w05 = org.telegram.ui.ActionBar.j6.w0(null, i11, false);
-        if (org.telegram.ui.ActionBar.j6.I.q()) {
-            f11 = 0.3f;
-        }
-        qaVar2.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.l1(f11, w05), 7, AndroidUtilities.dp(8.0f)));
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        if (size <= 0) {
-            size = AndroidUtilities.displaySize.x;
-        }
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((size - getPaddingLeft()) - getPaddingRight(), 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE);
-        LinearLayout linearLayout = this.f21895a;
-        linearLayout.measure(makeMeasureSpec, makeMeasureSpec2);
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + linearLayout.getMeasuredHeight() + 1, 1073741824));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
     }
 }

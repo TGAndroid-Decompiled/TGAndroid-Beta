@@ -1,56 +1,54 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class bj0 extends LinearLayout {
-    public static final int d = 0;
-    public final TextView[] f32899a;
-    public final TextView[] f32900b;
-    public final cj0 f32901c;
+public final class bj0 extends org.telegram.ui.Cells.t1 {
+    public int Fe;
+    public int Ge;
+    public int He;
+    public final cj0 Ie;
 
-    public bj0(cj0 cj0Var, Context context) {
-        super(context);
-        float f10;
-        this.f32901c = cj0Var;
-        this.f32899a = new TextView[4];
-        this.f32900b = new TextView[4];
-        setOrientation(1);
-        setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-        for (int i10 = 0; i10 < 2; i10++) {
-            LinearLayout f11 = org.telegram.messenger.y3.f(context, 0);
-            for (int i11 = 0; i11 < 2; i11++) {
-                LinearLayout f12 = org.telegram.messenger.y3.f(context, 1);
-                LinearLayout f13 = org.telegram.messenger.y3.f(context, 0);
-                int i12 = (i10 * 2) + i11;
-                this.f32899a[i12] = new TextView(context);
-                this.f32900b[i12] = new TextView(context);
-                this.f32899a[i12].setTypeface(AndroidUtilities.bold());
-                this.f32899a[i12].setTextSize(1, 17.0f);
-                this.f32900b[i12].setTextSize(1, 13.0f);
-                this.f32900b[i12].setGravity(3);
-                f13.addView(this.f32899a[i12]);
-                f12.addView(f13);
-                f12.addView(this.f32900b[i12]);
-                f11.addView(f12, k7.b6.l(1.0f, -1, -2));
-            }
-            if (i10 == 0) {
-                f10 = 16.0f;
+    public bj0(cj0 cj0Var, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, i10, true, null, f6Var);
+        this.Ie = cj0Var;
+        this.Fe = Integer.MAX_VALUE;
+        this.Ge = Integer.MAX_VALUE;
+        this.He = -1;
+    }
+
+    @Override
+    public final boolean isPressed() {
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int id2;
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (this.Zc.f22802w0 && i11 != 0 && this.Fe != Integer.MAX_VALUE && i13 != 0 && this.Ge != Integer.MAX_VALUE) {
+            int i14 = this.He;
+            int i15 = 0;
+            if (getMessageObject() == null) {
+                id2 = 0;
             } else {
-                f10 = 0.0f;
+                id2 = getMessageObject().getId();
             }
-            addView(f11, k7.b6.d(-1, -2.0f, 0, 0.0f, 0.0f, 0.0f, f10));
+            if (i14 == id2) {
+                if (!this.Ie.f35157w0) {
+                    setTranslationY(-(i11 - this.Fe));
+                    animate().translationY(0.0f).setDuration(320L).setInterpolator(org.telegram.ui.Components.pr.h).start();
+                }
+                this.Fe = getTop();
+                this.Ge = getBottom();
+                if (getMessageObject() != null) {
+                    i15 = getMessageObject().getId();
+                }
+                this.He = i15;
+            }
         }
     }
 
-    public final void a() {
-        for (int i10 = 0; i10 < 4; i10++) {
-            TextView textView = this.f32899a[i10];
-            int i11 = org.telegram.ui.ActionBar.j6.G6;
-            cj0 cj0Var = this.f32901c;
-            textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, cj0Var.getResourceProvider()));
-            this.f32900b[i10].setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20273z6, cj0Var.getResourceProvider()));
-        }
+    @Override
+    public final wh.g w3() {
+        return wh.g.d(1, this, this.Ie.F);
     }
 }

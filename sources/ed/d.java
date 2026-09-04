@@ -1,15 +1,51 @@
 package ed;
-public abstract class d {
-    public static final a f5192a;
 
-    static {
-        b bVar;
-        Integer num = ad.a.f148a;
-        if (num != null && num.intValue() < 34) {
-            bVar = new b();
-        } else {
-            bVar = new Object();
+import bf.p;
+import bf.s;
+public final class d extends h {
+    public final int f9037e;
+
+    @Override
+    public final p b() {
+        switch (this.f9037e) {
+            case 0:
+                int i10 = this.d + 1;
+                this.d = i10;
+                if (c() == '[') {
+                    this.d++;
+                    s f7 = f("![");
+                    i iVar = this.f9041a;
+                    f6.f fVar = iVar.f9055i;
+                    f6.f fVar2 = new f6.f(f7, i10, fVar, iVar.h, true);
+                    if (fVar != null) {
+                        fVar.d = true;
+                    }
+                    iVar.f9055i = fVar2;
+                    return f7;
+                }
+                return null;
+            default:
+                int i11 = this.d;
+                this.d = i11 + 1;
+                s f10 = f("[");
+                i iVar2 = this.f9041a;
+                f6.f fVar3 = iVar2.f9055i;
+                f6.f fVar4 = new f6.f(f10, i11, fVar3, iVar2.h, false);
+                if (fVar3 != null) {
+                    fVar3.d = true;
+                }
+                iVar2.f9055i = fVar4;
+                return f10;
         }
-        f5192a = bVar;
+    }
+
+    @Override
+    public final char d() {
+        switch (this.f9037e) {
+            case 0:
+                return '!';
+            default:
+                return '[';
+        }
     }
 }

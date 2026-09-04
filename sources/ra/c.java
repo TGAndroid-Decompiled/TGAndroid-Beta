@@ -1,80 +1,56 @@
 package ra;
 
-import j$.util.Objects;
-import java.io.Serializable;
-import java.lang.reflect.Type;
-import java.lang.reflect.WildcardType;
-public final class c implements WildcardType, Serializable {
-    public final Type f43424a;
-    public final Type f43425b;
+import android.content.SharedPreferences;
+import android.util.Base64;
+import android.util.Log;
+import java.security.KeyFactory;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
+public final class c {
+    public static final String[] f45074c = {"*", "FCM", "GCM", ""};
+    public final SharedPreferences f45075a;
+    public final String f45076b;
 
-    public c(Type[] typeArr, Type[] typeArr2) {
-        boolean z4;
-        boolean z10;
-        if (typeArr2.length <= 1) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        d.b(z4);
-        if (typeArr.length == 1) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        d.b(z10);
-        if (typeArr2.length == 1) {
-            Objects.requireNonNull(typeArr2[0]);
-            d.c(typeArr2[0]);
-            d.b(typeArr[0] == Object.class);
-            this.f43425b = d.a(typeArr2[0]);
-            this.f43424a = Object.class;
-            return;
-        }
-        Objects.requireNonNull(typeArr[0]);
-        d.c(typeArr[0]);
-        this.f43425b = null;
-        this.f43424a = d.a(typeArr[0]);
+    public c(k9.h r4) {
+        throw new UnsupportedOperationException("Method not decompiled: ra.c.<init>(k9.h):void");
     }
 
-    public final boolean equals(Object obj) {
-        if ((obj instanceof WildcardType) && d.e(this, (WildcardType) obj)) {
-            return true;
+    public final String a() {
+        String string;
+        synchronized (this.f45075a) {
+            string = this.f45075a.getString("|S|id", null);
         }
-        return false;
+        return string;
     }
 
-    @Override
-    public final Type[] getLowerBounds() {
-        Type type = this.f43425b;
-        return type != null ? new Type[]{type} : d.f43426a;
-    }
-
-    @Override
-    public final Type[] getUpperBounds() {
-        return new Type[]{this.f43424a};
-    }
-
-    public final int hashCode() {
-        int i10;
-        Type type = this.f43425b;
-        if (type != null) {
-            i10 = type.hashCode() + 31;
-        } else {
-            i10 = 1;
+    public final String b() {
+        PublicKey publicKey;
+        synchronized (this.f45075a) {
+            String str = null;
+            String string = this.f45075a.getString("|S||P|", null);
+            if (string == null) {
+                return null;
+            }
+            try {
+                publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(Base64.decode(string, 8)));
+            } catch (IllegalArgumentException | NoSuchAlgorithmException | InvalidKeySpecException e7) {
+                Log.w("ContentValues", "Invalid key stored " + e7);
+                publicKey = null;
+            }
+            if (publicKey == null) {
+                return null;
+            }
+            try {
+                byte[] digest = MessageDigest.getInstance("SHA1").digest(publicKey.getEncoded());
+                digest[0] = (byte) (((digest[0] & 15) + 112) & 255);
+                str = Base64.encodeToString(digest, 0, 8, 11);
+            } catch (NoSuchAlgorithmException unused) {
+                Log.w("ContentValues", "Unexpected error, device missing required algorithms");
+            }
+            return str;
         }
-        return i10 ^ (this.f43424a.hashCode() + 31);
-    }
-
-    public final String toString() {
-        Type type = this.f43425b;
-        if (type != null) {
-            return "? super " + d.k(type);
-        }
-        Type type2 = this.f43424a;
-        if (type2 == Object.class) {
-            return "?";
-        }
-        return "? extends " + d.k(type2);
     }
 }

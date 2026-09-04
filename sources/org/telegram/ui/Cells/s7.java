@@ -1,92 +1,39 @@
 package org.telegram.ui.Cells;
 
-import android.location.Address;
-import android.location.Geocoder;
-import android.text.TextUtils;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import android.util.SparseArray;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.LocationController;
-import org.telegram.ui.Components.al;
-public final class s7 implements Runnable {
-    public final int f22304a;
-    public final FrameLayout f22305b;
-    public final double f22306c;
-    public final double d;
+import org.telegram.messenger.R;
+public final class s7 {
+    public final TextPaint f22844a;
+    public final Paint f22845b;
+    public final Drawable f22846c;
+    public final Drawable d;
+    public final Paint f22847e;
+    public final SparseArray f22848f;
+    public final HashMap f22849g;
 
-    public s7(FrameLayout frameLayout, double d, double d10, int i10) {
-        this.f22304a = i10;
-        this.f22305b = frameLayout;
-        this.f22306c = d;
-        this.d = d10;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f22304a) {
-            case 0:
-                t7 t7Var = (t7) this.f22305b;
-                double d = this.f22306c;
-                double d10 = this.d;
-                try {
-                    List<Address> fromLocation = new Geocoder(ApplicationLoader.applicationContext, LocaleController.getInstance().getCurrentLocale()).getFromLocation(d, d10, 1);
-                    if (fromLocation.isEmpty()) {
-                        String detectOcean = LocationController.detectOcean(d10, d);
-                        t7Var.F = detectOcean;
-                        if (detectOcean == null) {
-                            t7Var.F = "";
-                        } else {
-                            t7Var.F = "🌊 " + ((Object) t7Var.F);
-                        }
-                    } else {
-                        Address address = fromLocation.get(0);
-                        StringBuilder sb = new StringBuilder();
-                        HashSet hashSet = new HashSet();
-                        hashSet.add(address.getSubAdminArea());
-                        hashSet.add(address.getAdminArea());
-                        hashSet.add(address.getLocality());
-                        hashSet.add(address.getCountryName());
-                        Iterator it = hashSet.iterator();
-                        while (it.hasNext()) {
-                            String str = (String) it.next();
-                            if (!TextUtils.isEmpty(str)) {
-                                if (sb.length() > 0) {
-                                    sb.append(", ");
-                                }
-                                sb.append(str);
-                            }
-                        }
-                        t7Var.F = sb.toString();
-                        String countryCodeToEmoji = LocationController.countryCodeToEmoji(address.getCountryCode());
-                        if (countryCodeToEmoji != null && Emoji.getEmojiDrawable(countryCodeToEmoji) != null) {
-                            t7Var.F = countryCodeToEmoji + " " + ((Object) t7Var.F);
-                        }
-                    }
-                } catch (Exception unused) {
-                }
-                AndroidUtilities.runOnUIThread(new s7(t7Var, d, d10, 1));
-                return;
-            case 1:
-                t7 t7Var2 = (t7) this.f22305b;
-                double d11 = this.f22306c;
-                double d12 = this.d;
-                t7Var2.C = d11;
-                t7Var2.D = d12;
-                t7Var2.B = false;
-                CharSequence charSequence = t7Var2.F;
-                org.telegram.ui.ActionBar.k5 k5Var = t7Var2.f22338b;
-                CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, k5Var.getPaint().getFontMetricsInt(), false);
-                t7Var2.F = replaceEmoji;
-                k5Var.l(replaceEmoji, false);
-                return;
-            default:
-                ((al) this.f22305b).b0(this.f22306c, this.d);
-                return;
-        }
+    public s7(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        TextPaint textPaint = new TextPaint(1);
+        this.f22844a = textPaint;
+        Paint paint = new Paint();
+        this.f22845b = paint;
+        this.f22847e = new Paint();
+        this.f22848f = new SparseArray();
+        this.f22849g = new HashMap();
+        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        textPaint.setColor(-1);
+        textPaint.setTypeface(AndroidUtilities.bold());
+        Drawable mutate = context.getDrawable(R.drawable.play_mini_video).mutate();
+        this.f22846c = mutate;
+        mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
+        Drawable mutate2 = context.getDrawable(R.drawable.filled_views).mutate();
+        this.d = mutate2;
+        mutate2.setBounds(0, 0, (int) (mutate2.getIntrinsicWidth() * 0.7f), (int) (mutate2.getIntrinsicHeight() * 0.7f));
+        paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Lh, f6Var));
     }
 }

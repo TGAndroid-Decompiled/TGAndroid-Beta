@@ -1,44 +1,24 @@
 package gh;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.rl0;
-import org.telegram.ui.Components.w51;
-public final class e extends h51 {
-    public static final int f6824a = 0;
+import android.graphics.Canvas;
+import dh.f;
+public final class e implements a {
+    public a f10661a;
 
-    static {
-        h51.setup(new h51());
+    @Override
+    public final dh.d k() {
+        return new f(this);
     }
 
     @Override
-    public final void bindView(View view, i51 i51Var, boolean z4, w51 w51Var, g61 g61Var) {
-        kg.c cVar = (kg.c) view;
-        cVar.f10523s = (TLRPC.TL_help_country) i51Var.G;
-        cVar.f();
-        cVar.setDivider(z4);
-        cVar.c(i51Var.e, false);
+    public final void v(Canvas canvas, float f7, float f10, float f11, float f12) {
+        a aVar = this.f10661a;
+        if (aVar != null) {
+            aVar.v(canvas, f7, f10, f11, f12);
+        }
     }
 
     @Override
-    public final boolean contentsEquals(i51 i51Var, i51 i51Var2) {
-        return i51Var.H(i51Var2);
-    }
-
-    @Override
-    public final View createView(Context context, rl0 rl0Var, int i10, int i11, f6 f6Var) {
-        kg.c cVar = new kg.c(context, f6Var);
-        cVar.setBackground(null);
-        return cVar;
-    }
-
-    @Override
-    public final boolean equals(i51 i51Var, i51 i51Var2) {
-        return i51Var.I(i51Var2);
+    public final void e() {
     }
 }

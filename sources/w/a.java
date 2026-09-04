@@ -1,744 +1,553 @@
 package w;
 
-import a8.h;
-import a8.i;
-import android.accounts.Account;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.media.MediaDescription;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.IInterface;
 import android.os.Parcel;
-import android.os.ParcelFileDescriptor;
 import android.os.Parcelable;
+import android.os.ResultReceiver;
 import android.support.v4.media.MediaBrowserCompat$MediaItem;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.RatingCompat;
-import androidx.fragment.app.f0;
-import androidx.fragment.app.o0;
-import b6.g0;
-import b6.k;
-import b6.o;
-import b6.p;
-import b6.v;
-import b6.w;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.common.data.DataHolder;
-import com.google.android.gms.common.internal.BinderWrapper;
+import androidx.fragment.app.e0;
+import androidx.fragment.app.k0;
+import androidx.fragment.app.n0;
+import c7.a0;
+import c7.b0;
+import c7.h0;
+import c7.j;
+import c7.k;
+import c7.m;
+import c7.m0;
+import c7.o0;
+import c7.p0;
+import c7.q0;
+import c7.t;
+import c7.u;
+import c7.v;
+import c7.w;
+import c7.x;
+import c7.y;
+import c7.z;
+import c7.z0;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.internal.SignInConfiguration;
+import com.google.android.gms.fido.common.Transport;
 import j$.util.Objects;
-import j7.f5;
-import j7.l0;
 import java.util.ArrayList;
-import kotlin.jvm.internal.j;
+import kotlin.jvm.internal.i;
+import n7.s0;
+import w7.d0;
 public final class a implements Parcelable.Creator {
-    public final int f46426a;
+    public final int f47897a;
 
     public a(int i10) {
-        this.f46426a = i10;
-    }
-
-    public static void a(b6.f fVar, Parcel parcel, int i10) {
-        int q10 = f5.q(parcel, 20293);
-        int i11 = fVar.f1584a;
-        f5.s(parcel, 1, 4);
-        parcel.writeInt(i11);
-        int i12 = fVar.f1585b;
-        f5.s(parcel, 2, 4);
-        parcel.writeInt(i12);
-        int i13 = fVar.f1586c;
-        f5.s(parcel, 3, 4);
-        parcel.writeInt(i13);
-        f5.l(parcel, 4, fVar.d);
-        f5.f(parcel, 5, fVar.e);
-        f5.o(parcel, 6, fVar.f1587f, i10);
-        f5.b(parcel, 7, fVar.h);
-        f5.k(parcel, 8, fVar.f1588n, i10);
-        f5.o(parcel, 10, fVar.f1589r, i10);
-        f5.o(parcel, 11, fVar.f1590s, i10);
-        boolean z4 = fVar.v;
-        f5.s(parcel, 12, 4);
-        parcel.writeInt(z4 ? 1 : 0);
-        int i14 = fVar.f1591w;
-        f5.s(parcel, 13, 4);
-        parcel.writeInt(i14);
-        boolean z10 = fVar.f1592x;
-        f5.s(parcel, 14, 4);
-        parcel.writeInt(z10 ? 1 : 0);
-        f5.l(parcel, 15, fVar.f1593y);
-        f5.r(parcel, q10);
+        this.f47897a = i10;
     }
 
     @Override
-    public final Object createFromParcel(final Parcel inParcel) {
-        switch (this.f46426a) {
+    public final Object createFromParcel(Parcel inParcel) {
+        s0 t10;
+        s0 t11;
+        int i10 = 0;
+        int i11 = 0;
+        boolean z10 = false;
+        boolean z11 = false;
+        boolean z12 = false;
+        Bundle bundle = null;
+        String str = null;
+        String str2 = null;
+        String str3 = null;
+        byte[][] bArr = null;
+        s0 s0Var = null;
+        String str4 = null;
+        c.b bVar = null;
+        String str5 = null;
+        switch (this.f47897a) {
             case 0:
                 Bundle readBundle = inParcel.readBundle(a.class.getClassLoader());
                 Objects.requireNonNull(readBundle);
                 return new b(readBundle);
             case 1:
-                int z4 = l0.z(inParcel);
-                int i10 = 0;
-                Uri uri = null;
-                int i11 = 0;
+                int z13 = d0.z(inParcel);
                 int i12 = 0;
-                while (inParcel.dataPosition() < z4) {
+                while (inParcel.dataPosition() < z13) {
                     int readInt = inParcel.readInt();
-                    char c3 = (char) readInt;
-                    if (c3 != 1) {
-                        if (c3 != 2) {
-                            if (c3 != 3) {
-                                if (c3 != 4) {
-                                    l0.y(inParcel, readInt);
-                                } else {
-                                    i12 = l0.u(inParcel, readInt);
-                                }
+                    char c10 = (char) readInt;
+                    if (c10 != 1) {
+                        if (c10 != 2) {
+                            if (c10 != 3) {
+                                d0.y(inParcel, readInt);
                             } else {
-                                i11 = l0.u(inParcel, readInt);
+                                bundle = d0.a(inParcel, readInt);
                             }
                         } else {
-                            uri = (Uri) l0.g(inParcel, readInt, Uri.CREATOR);
+                            i12 = d0.u(inParcel, readInt);
                         }
                     } else {
-                        i10 = l0.u(inParcel, readInt);
+                        i10 = d0.u(inParcel, readInt);
                     }
                 }
-                l0.m(inParcel, z4);
-                return new a6.a(i10, uri, i11, i12);
+                d0.m(inParcel, z13);
+                return new a6.a(i10, i12, bundle);
             case 2:
-                int z10 = l0.z(inParcel);
-                String str = null;
-                while (inParcel.dataPosition() < z10) {
+                int z14 = d0.z(inParcel);
+                GoogleSignInOptions googleSignInOptions = null;
+                while (inParcel.dataPosition() < z14) {
                     int readInt2 = inParcel.readInt();
-                    if (((char) readInt2) != 2) {
-                        l0.y(inParcel, readInt2);
-                    } else {
-                        str = l0.h(inParcel, readInt2);
-                    }
-                }
-                l0.m(inParcel, z10);
-                return new a8.f(str);
-            case 3:
-                int z11 = l0.z(inParcel);
-                String str2 = null;
-                byte[] bArr = null;
-                int i13 = 0;
-                while (inParcel.dataPosition() < z11) {
-                    int readInt3 = inParcel.readInt();
-                    char c10 = (char) readInt3;
-                    if (c10 != 2) {
-                        if (c10 != 3) {
-                            if (c10 != 4) {
-                                l0.y(inParcel, readInt3);
-                            } else {
-                                i13 = l0.u(inParcel, readInt3);
-                            }
+                    char c11 = (char) readInt2;
+                    if (c11 != 2) {
+                        if (c11 != 5) {
+                            d0.y(inParcel, readInt2);
                         } else {
-                            bArr = l0.b(inParcel, readInt3);
+                            googleSignInOptions = (GoogleSignInOptions) d0.g(inParcel, readInt2, GoogleSignInOptions.CREATOR);
                         }
                     } else {
-                        str2 = l0.h(inParcel, readInt3);
+                        str5 = d0.h(inParcel, readInt2);
                     }
                 }
-                l0.m(inParcel, z11);
-                return new a8.a(str2, bArr, i13);
+                d0.m(inParcel, z14);
+                return new SignInConfiguration(str5, googleSignInOptions);
+            case 3:
+                try {
+                    return Transport.a(inParcel.readString());
+                } catch (a7.a e7) {
+                    throw new RuntimeException(e7);
+                }
             case 4:
-                int z12 = l0.z(inParcel);
-                long j10 = 0;
-                a8.a[] aVarArr = null;
-                int i14 = 0;
-                boolean z13 = false;
-                while (inParcel.dataPosition() < z12) {
+                return new MediaBrowserCompat$MediaItem(inParcel);
+            case 5:
+                return MediaDescriptionCompat.a(MediaDescription.CREATOR.createFromParcel(inParcel));
+            case 6:
+                return new MediaMetadataCompat(inParcel);
+            case 7:
+                return new RatingCompat(inParcel.readInt(), inParcel.readFloat());
+            case 8:
+                return new androidx.activity.result.a(inParcel);
+            case 9:
+                i.e(inParcel, "inParcel");
+                Parcelable readParcelable = inParcel.readParcelable(IntentSender.class.getClassLoader());
+                i.b(readParcelable);
+                return new androidx.activity.result.g((IntentSender) readParcelable, (Intent) inParcel.readParcelable(Intent.class.getClassLoader()), inParcel.readInt(), inParcel.readInt());
+            case 10:
+                return new androidx.fragment.app.b(inParcel);
+            case 11:
+                return new androidx.fragment.app.c(inParcel);
+            case 12:
+                ?? obj = new Object();
+                obj.f1424a = inParcel.readString();
+                obj.f1425b = inParcel.readInt();
+                return obj;
+            case 13:
+                ?? obj2 = new Object();
+                obj2.f1467e = null;
+                obj2.f1468f = new ArrayList();
+                obj2.h = new ArrayList();
+                obj2.f1464a = inParcel.createStringArrayList();
+                obj2.f1465b = inParcel.createStringArrayList();
+                obj2.f1466c = (androidx.fragment.app.b[]) inParcel.createTypedArray(androidx.fragment.app.b.CREATOR);
+                obj2.d = inParcel.readInt();
+                obj2.f1467e = inParcel.readString();
+                obj2.f1468f = inParcel.createStringArrayList();
+                obj2.h = inParcel.createTypedArrayList(androidx.fragment.app.c.CREATOR);
+                obj2.f1469n = inParcel.createTypedArrayList(e0.CREATOR);
+                return obj2;
+            case 14:
+                return new n0(inParcel);
+            case 15:
+                ?? obj3 = new Object();
+                IBinder readStrongBinder = inParcel.readStrongBinder();
+                int i13 = c.c.f4097b;
+                if (readStrongBinder != null) {
+                    IInterface queryLocalInterface = readStrongBinder.queryLocalInterface(c.b.h);
+                    if (queryLocalInterface != null && (queryLocalInterface instanceof c.b)) {
+                        bVar = (c.b) queryLocalInterface;
+                    } else {
+                        ?? obj4 = new Object();
+                        obj4.f4096a = readStrongBinder;
+                        bVar = obj4;
+                    }
+                }
+                obj3.f4099a = bVar;
+                return obj3;
+            case 16:
+                try {
+                    return c7.c.a(inParcel.readString());
+                } catch (c7.b e10) {
+                    throw new RuntimeException(e10);
+                }
+            case 17:
+                int z15 = d0.z(inParcel);
+                while (inParcel.dataPosition() < z15) {
+                    int readInt3 = inParcel.readInt();
+                    if (((char) readInt3) != 1) {
+                        d0.y(inParcel, readInt3);
+                    } else {
+                        z12 = d0.n(inParcel, readInt3);
+                    }
+                }
+                d0.m(inParcel, z15);
+                return new z0(z12);
+            case 18:
+                int z16 = d0.z(inParcel);
+                long j3 = 0;
+                while (inParcel.dataPosition() < z16) {
                     int readInt4 = inParcel.readInt();
-                    char c11 = (char) readInt4;
-                    if (c11 != 2) {
-                        if (c11 != 3) {
-                            if (c11 != 4) {
-                                if (c11 != 5) {
-                                    l0.y(inParcel, readInt4);
+                    if (((char) readInt4) != 1) {
+                        d0.y(inParcel, readInt4);
+                    } else {
+                        j3 = d0.w(inParcel, readInt4);
+                    }
+                }
+                d0.m(inParcel, z16);
+                return new m0(j3);
+            case 19:
+                int z17 = d0.z(inParcel);
+                while (inParcel.dataPosition() < z17) {
+                    int readInt5 = inParcel.readInt();
+                    if (((char) readInt5) != 1) {
+                        d0.y(inParcel, readInt5);
+                    } else {
+                        z11 = d0.n(inParcel, readInt5);
+                    }
+                }
+                d0.m(inParcel, z17);
+                return new c7.n0(z11);
+            case 20:
+                int z18 = d0.z(inParcel);
+                while (inParcel.dataPosition() < z18) {
+                    int readInt6 = inParcel.readInt();
+                    if (((char) readInt6) != 1) {
+                        d0.y(inParcel, readInt6);
+                    } else {
+                        z10 = d0.n(inParcel, readInt6);
+                    }
+                }
+                d0.m(inParcel, z18);
+                return new t(z10);
+            case 21:
+                int z19 = d0.z(inParcel);
+                while (inParcel.dataPosition() < z19) {
+                    int readInt7 = inParcel.readInt();
+                    if (((char) readInt7) != 1) {
+                        d0.y(inParcel, readInt7);
+                    } else {
+                        str4 = d0.h(inParcel, readInt7);
+                    }
+                }
+                d0.m(inParcel, z19);
+                return new o0(str4);
+            case 22:
+                int z20 = d0.z(inParcel);
+                byte[] bArr2 = null;
+                byte[] bArr3 = null;
+                byte[] bArr4 = null;
+                while (inParcel.dataPosition() < z20) {
+                    int readInt8 = inParcel.readInt();
+                    char c12 = (char) readInt8;
+                    if (c12 != 1) {
+                        if (c12 != 2) {
+                            if (c12 != 3) {
+                                if (c12 != 4) {
+                                    d0.y(inParcel, readInt8);
                                 } else {
-                                    z13 = l0.n(inParcel, readInt4);
+                                    i11 = d0.u(inParcel, readInt8);
                                 }
                             } else {
-                                i14 = l0.u(inParcel, readInt4);
+                                bArr4 = d0.b(inParcel, readInt8);
                             }
                         } else {
-                            aVarArr = (a8.a[]) l0.k(inParcel, readInt4, a8.a.CREATOR);
+                            bArr3 = d0.b(inParcel, readInt8);
                         }
                     } else {
-                        j10 = l0.w(inParcel, readInt4);
+                        bArr2 = d0.b(inParcel, readInt8);
                     }
                 }
-                l0.m(inParcel, z12);
-                return new a8.g(j10, aVarArr, i14, z13);
-            case 5:
-                int z14 = l0.z(inParcel);
-                String str3 = null;
-                while (inParcel.dataPosition() < z14) {
-                    int readInt5 = inParcel.readInt();
-                    if (((char) readInt5) != 2) {
-                        l0.y(inParcel, readInt5);
+                d0.m(inParcel, z20);
+                if (bArr2 == null) {
+                    t10 = null;
+                } else {
+                    t10 = s0.t(bArr2.length, bArr2);
+                }
+                if (bArr3 == null) {
+                    t11 = null;
+                } else {
+                    t11 = s0.t(bArr3.length, bArr3);
+                }
+                if (bArr4 != null) {
+                    s0Var = s0.t(bArr4.length, bArr4);
+                }
+                return new p0(t10, t11, s0Var, i11);
+            case 23:
+                int z21 = d0.z(inParcel);
+                while (inParcel.dataPosition() < z21) {
+                    int readInt9 = inParcel.readInt();
+                    if (((char) readInt9) != 1) {
+                        d0.y(inParcel, readInt9);
                     } else {
-                        str3 = l0.h(inParcel, readInt5);
+                        bArr = d0.c(inParcel, readInt9);
                     }
                 }
-                l0.m(inParcel, z14);
-                return new h(str3);
-            case 6:
-                int z15 = l0.z(inParcel);
-                int i15 = 0;
-                boolean z16 = false;
-                while (inParcel.dataPosition() < z15) {
-                    int readInt6 = inParcel.readInt();
-                    char c12 = (char) readInt6;
-                    if (c12 != 2) {
-                        if (c12 != 3) {
-                            l0.y(inParcel, readInt6);
-                        } else {
-                            z16 = l0.n(inParcel, readInt6);
-                        }
-                    } else {
-                        i15 = l0.u(inParcel, readInt6);
+                d0.m(inParcel, z21);
+                return new q0(bArr);
+            case 24:
+                int z22 = d0.z(inParcel);
+                y yVar = null;
+                b0 b0Var = null;
+                byte[] bArr5 = null;
+                ArrayList arrayList = null;
+                Double d = null;
+                ArrayList arrayList2 = null;
+                m mVar = null;
+                Integer num = null;
+                h0 h0Var = null;
+                String str6 = null;
+                c7.f fVar = null;
+                String str7 = null;
+                ResultReceiver resultReceiver = null;
+                while (inParcel.dataPosition() < z22) {
+                    int readInt10 = inParcel.readInt();
+                    switch ((char) readInt10) {
+                        case 2:
+                            yVar = (y) d0.g(inParcel, readInt10, y.CREATOR);
+                            break;
+                        case 3:
+                            b0Var = (b0) d0.g(inParcel, readInt10, b0.CREATOR);
+                            break;
+                        case 4:
+                            bArr5 = d0.b(inParcel, readInt10);
+                            break;
+                        case 5:
+                            arrayList = d0.l(inParcel, readInt10, x.CREATOR);
+                            break;
+                        case 6:
+                            int x10 = d0.x(inParcel, readInt10);
+                            if (x10 == 0) {
+                                d = null;
+                                break;
+                            } else {
+                                d0.A(inParcel, x10, 8);
+                                d = Double.valueOf(inParcel.readDouble());
+                                break;
+                            }
+                        case 7:
+                            arrayList2 = d0.l(inParcel, readInt10, w.CREATOR);
+                            break;
+                        case '\b':
+                            mVar = (m) d0.g(inParcel, readInt10, m.CREATOR);
+                            break;
+                        case '\t':
+                            num = d0.v(inParcel, readInt10);
+                            break;
+                        case '\n':
+                            h0Var = (h0) d0.g(inParcel, readInt10, h0.CREATOR);
+                            break;
+                        case 11:
+                            str6 = d0.h(inParcel, readInt10);
+                            break;
+                        case '\f':
+                            fVar = (c7.f) d0.g(inParcel, readInt10, c7.f.CREATOR);
+                            break;
+                        case '\r':
+                            str7 = d0.h(inParcel, readInt10);
+                            break;
+                        case 14:
+                            resultReceiver = (ResultReceiver) d0.g(inParcel, readInt10, ResultReceiver.CREATOR);
+                            break;
+                        default:
+                            d0.y(inParcel, readInt10);
+                            break;
                     }
                 }
-                l0.m(inParcel, z15);
-                return new i(i15, z16);
-            case 7:
-                int z17 = l0.z(inParcel);
-                String str4 = null;
-                byte[] bArr2 = null;
-                long j11 = 0;
-                DataHolder dataHolder = null;
-                ParcelFileDescriptor parcelFileDescriptor = null;
-                while (inParcel.dataPosition() < z17) {
-                    int readInt7 = inParcel.readInt();
-                    char c13 = (char) readInt7;
+                d0.m(inParcel, z22);
+                return new v(yVar, b0Var, bArr5, arrayList, d, arrayList2, mVar, num, h0Var, str6, fVar, str7, resultReceiver);
+            case 25:
+                int z23 = d0.z(inParcel);
+                String str8 = null;
+                String str9 = null;
+                byte[] bArr6 = null;
+                j jVar = null;
+                c7.i iVar = null;
+                k kVar = null;
+                c7.g gVar = null;
+                String str10 = null;
+                while (inParcel.dataPosition() < z23) {
+                    int readInt11 = inParcel.readInt();
+                    switch ((char) readInt11) {
+                        case 1:
+                            str8 = d0.h(inParcel, readInt11);
+                            break;
+                        case 2:
+                            str9 = d0.h(inParcel, readInt11);
+                            break;
+                        case 3:
+                            bArr6 = d0.b(inParcel, readInt11);
+                            break;
+                        case 4:
+                            jVar = (j) d0.g(inParcel, readInt11, j.CREATOR);
+                            break;
+                        case 5:
+                            iVar = (c7.i) d0.g(inParcel, readInt11, c7.i.CREATOR);
+                            break;
+                        case 6:
+                            kVar = (k) d0.g(inParcel, readInt11, k.CREATOR);
+                            break;
+                        case 7:
+                            gVar = (c7.g) d0.g(inParcel, readInt11, c7.g.CREATOR);
+                            break;
+                        case '\b':
+                            str10 = d0.h(inParcel, readInt11);
+                            break;
+                        case '\t':
+                            d0.h(inParcel, readInt11);
+                            break;
+                        default:
+                            d0.y(inParcel, readInt11);
+                            break;
+                    }
+                }
+                d0.m(inParcel, z23);
+                return new u(str8, str9, bArr6, jVar, iVar, kVar, gVar, str10);
+            case 26:
+                int z24 = d0.z(inParcel);
+                byte[] bArr7 = null;
+                ArrayList arrayList3 = null;
+                while (inParcel.dataPosition() < z24) {
+                    int readInt12 = inParcel.readInt();
+                    char c13 = (char) readInt12;
                     if (c13 != 2) {
                         if (c13 != 3) {
                             if (c13 != 4) {
-                                if (c13 != 5) {
-                                    if (c13 != 6) {
-                                        l0.y(inParcel, readInt7);
-                                    } else {
-                                        bArr2 = l0.b(inParcel, readInt7);
-                                    }
-                                } else {
-                                    j11 = l0.w(inParcel, readInt7);
-                                }
+                                d0.y(inParcel, readInt12);
                             } else {
-                                parcelFileDescriptor = (ParcelFileDescriptor) l0.g(inParcel, readInt7, ParcelFileDescriptor.CREATOR);
+                                arrayList3 = d0.l(inParcel, readInt12, Transport.CREATOR);
                             }
                         } else {
-                            dataHolder = (DataHolder) l0.g(inParcel, readInt7, DataHolder.CREATOR);
+                            bArr7 = d0.b(inParcel, readInt12);
                         }
                     } else {
-                        str4 = l0.h(inParcel, readInt7);
+                        str3 = d0.h(inParcel, readInt12);
                     }
                 }
-                l0.m(inParcel, z17);
-                ?? obj = new Object();
-                obj.f129a = str4;
-                obj.f130b = dataHolder;
-                obj.f131c = parcelFileDescriptor;
-                obj.d = j11;
-                obj.e = bArr2;
-                return obj;
-            case 8:
-                return new Parcelable(inParcel) {
-                    public static final Parcelable.Creator<MediaBrowserCompat$MediaItem> CREATOR = new w.a(8);
-                    public final int f220a;
-                    public final MediaDescriptionCompat f221b;
-
-                    {
-                        this.f220a = inParcel.readInt();
-                        this.f221b = MediaDescriptionCompat.CREATOR.createFromParcel(inParcel);
-                    }
-
-                    @Override
-                    public final int describeContents() {
-                        return 0;
-                    }
-
-                    public final String toString() {
-                        return "MediaItem{mFlags=" + this.f220a + ", mDescription=" + this.f221b + '}';
-                    }
-
-                    @Override
-                    public final void writeToParcel(Parcel parcel, int i16) {
-                        parcel.writeInt(this.f220a);
-                        this.f221b.writeToParcel(parcel, i16);
-                    }
-                };
-            case 9:
-                return MediaDescriptionCompat.a(MediaDescription.CREATOR.createFromParcel(inParcel));
-            case 10:
-                return new MediaMetadataCompat(inParcel);
-            case 11:
-                return new RatingCompat(inParcel.readInt(), inParcel.readFloat());
-            case 12:
-                return new androidx.activity.result.a(inParcel);
-            case 13:
-                j.e(inParcel, "inParcel");
-                Parcelable readParcelable = inParcel.readParcelable(IntentSender.class.getClassLoader());
-                j.b(readParcelable);
-                return new androidx.activity.result.g((IntentSender) readParcelable, (Intent) inParcel.readParcelable(Intent.class.getClassLoader()), inParcel.readInt(), inParcel.readInt());
-            case 14:
-                return new androidx.fragment.app.b(inParcel);
-            case 15:
-                return new androidx.fragment.app.c(inParcel);
-            case 16:
-                ?? obj2 = new Object();
-                obj2.f854a = inParcel.readString();
-                obj2.f855b = inParcel.readInt();
-                return obj2;
-            case 17:
-                ?? obj3 = new Object();
-                obj3.e = null;
-                obj3.f895f = new ArrayList();
-                obj3.h = new ArrayList();
-                obj3.f892a = inParcel.createStringArrayList();
-                obj3.f893b = inParcel.createStringArrayList();
-                obj3.f894c = (androidx.fragment.app.b[]) inParcel.createTypedArray(androidx.fragment.app.b.CREATOR);
-                obj3.d = inParcel.readInt();
-                obj3.e = inParcel.readString();
-                obj3.f895f = inParcel.createStringArrayList();
-                obj3.h = inParcel.createTypedArrayList(androidx.fragment.app.c.CREATOR);
-                obj3.f896n = inParcel.createTypedArrayList(f0.CREATOR);
-                return obj3;
-            case 18:
-                return new o0(inParcel);
-            case 19:
-                int z18 = l0.z(inParcel);
-                String str5 = null;
-                int i16 = 0;
-                while (inParcel.dataPosition() < z18) {
-                    int readInt8 = inParcel.readInt();
-                    char c14 = (char) readInt8;
-                    if (c14 != 1) {
-                        if (c14 != 2) {
-                            l0.y(inParcel, readInt8);
-                        } else {
-                            str5 = l0.h(inParcel, readInt8);
-                        }
-                    } else {
-                        i16 = l0.u(inParcel, readInt8);
-                    }
-                }
-                l0.m(inParcel, z18);
-                return new b6.d(i16, str5);
-            case 20:
-                int z19 = l0.z(inParcel);
-                ArrayList arrayList = null;
-                int i17 = 0;
-                while (inParcel.dataPosition() < z19) {
-                    int readInt9 = inParcel.readInt();
-                    char c15 = (char) readInt9;
-                    if (c15 != 1) {
-                        if (c15 != 2) {
-                            l0.y(inParcel, readInt9);
-                        } else {
-                            arrayList = l0.l(inParcel, readInt9, k.CREATOR);
-                        }
-                    } else {
-                        i17 = l0.u(inParcel, readInt9);
-                    }
-                }
-                l0.m(inParcel, z19);
-                return new p(i17, arrayList);
-            case 21:
-                int z20 = l0.z(inParcel);
-                String str6 = null;
-                String str7 = null;
-                long j12 = 0;
-                long j13 = 0;
-                int i18 = 0;
-                int i19 = 0;
-                int i20 = 0;
-                int i21 = 0;
-                int i22 = -1;
-                while (inParcel.dataPosition() < z20) {
-                    int readInt10 = inParcel.readInt();
-                    switch ((char) readInt10) {
-                        case 1:
-                            i18 = l0.u(inParcel, readInt10);
-                            break;
-                        case 2:
-                            i19 = l0.u(inParcel, readInt10);
-                            break;
-                        case 3:
-                            i20 = l0.u(inParcel, readInt10);
-                            break;
-                        case 4:
-                            j12 = l0.w(inParcel, readInt10);
-                            break;
-                        case 5:
-                            j13 = l0.w(inParcel, readInt10);
-                            break;
-                        case 6:
-                            str6 = l0.h(inParcel, readInt10);
-                            break;
-                        case 7:
-                            str7 = l0.h(inParcel, readInt10);
-                            break;
-                        case '\b':
-                            i21 = l0.u(inParcel, readInt10);
-                            break;
-                        case '\t':
-                            i22 = l0.u(inParcel, readInt10);
-                            break;
-                        default:
-                            l0.y(inParcel, readInt10);
-                            break;
-                    }
-                }
-                l0.m(inParcel, z20);
-                return new k(i18, i19, i20, j12, j13, str6, str7, i21, i22);
-            case 22:
-                int z21 = l0.z(inParcel);
-                Account account = null;
-                GoogleSignInAccount googleSignInAccount = null;
-                int i23 = 0;
-                int i24 = 0;
-                while (inParcel.dataPosition() < z21) {
-                    int readInt11 = inParcel.readInt();
-                    char c16 = (char) readInt11;
-                    if (c16 != 1) {
-                        if (c16 != 2) {
-                            if (c16 != 3) {
-                                if (c16 != 4) {
-                                    l0.y(inParcel, readInt11);
-                                } else {
-                                    googleSignInAccount = (GoogleSignInAccount) l0.g(inParcel, readInt11, GoogleSignInAccount.CREATOR);
-                                }
-                            } else {
-                                i24 = l0.u(inParcel, readInt11);
-                            }
-                        } else {
-                            account = (Account) l0.g(inParcel, readInt11, Account.CREATOR);
-                        }
-                    } else {
-                        i23 = l0.u(inParcel, readInt11);
-                    }
-                }
-                l0.m(inParcel, z21);
-                return new v(i23, account, i24, googleSignInAccount);
-            case 23:
-                int z22 = l0.z(inParcel);
-                IBinder iBinder = null;
-                y5.a aVar = null;
-                int i25 = 0;
-                boolean z23 = false;
-                boolean z24 = false;
-                while (inParcel.dataPosition() < z22) {
-                    int readInt12 = inParcel.readInt();
-                    char c17 = (char) readInt12;
-                    if (c17 != 1) {
-                        if (c17 != 2) {
-                            if (c17 != 3) {
-                                if (c17 != 4) {
-                                    if (c17 != 5) {
-                                        l0.y(inParcel, readInt12);
-                                    } else {
-                                        z24 = l0.n(inParcel, readInt12);
-                                    }
-                                } else {
-                                    z23 = l0.n(inParcel, readInt12);
-                                }
-                            } else {
-                                aVar = (y5.a) l0.g(inParcel, readInt12, y5.a.CREATOR);
-                            }
-                        } else {
-                            iBinder = l0.t(inParcel, readInt12);
-                        }
-                    } else {
-                        i25 = l0.u(inParcel, readInt12);
-                    }
-                }
-                l0.m(inParcel, z22);
-                return new w(i25, iBinder, aVar, z23, z24);
-            case 24:
-                int z25 = l0.z(inParcel);
-                int i26 = 0;
-                int i27 = 0;
-                int i28 = 0;
-                boolean z26 = false;
-                boolean z27 = false;
+                d0.m(inParcel, z24);
+                return new w(str3, bArr7, arrayList3);
+            case 27:
+                int z25 = d0.z(inParcel);
+                Integer num2 = null;
                 while (inParcel.dataPosition() < z25) {
                     int readInt13 = inParcel.readInt();
-                    char c18 = (char) readInt13;
-                    if (c18 != 1) {
-                        if (c18 != 2) {
-                            if (c18 != 3) {
-                                if (c18 != 4) {
-                                    if (c18 != 5) {
-                                        l0.y(inParcel, readInt13);
-                                    } else {
-                                        i28 = l0.u(inParcel, readInt13);
-                                    }
-                                } else {
-                                    i27 = l0.u(inParcel, readInt13);
-                                }
-                            } else {
-                                z27 = l0.n(inParcel, readInt13);
-                            }
+                    char c14 = (char) readInt13;
+                    if (c14 != 2) {
+                        if (c14 != 3) {
+                            d0.y(inParcel, readInt13);
                         } else {
-                            z26 = l0.n(inParcel, readInt13);
+                            num2 = d0.v(inParcel, readInt13);
                         }
                     } else {
-                        i26 = l0.u(inParcel, readInt13);
+                        str2 = d0.h(inParcel, readInt13);
                     }
                 }
-                l0.m(inParcel, z25);
-                return new o(i26, i27, i28, z26, z27);
-            case 25:
-                return new BinderWrapper(inParcel);
-            case 26:
-                int z28 = l0.z(inParcel);
-                Bundle bundle = null;
-                y5.c[] cVarArr = null;
-                b6.e eVar = null;
-                int i29 = 0;
-                while (inParcel.dataPosition() < z28) {
-                    int readInt14 = inParcel.readInt();
-                    char c19 = (char) readInt14;
-                    if (c19 != 1) {
-                        if (c19 != 2) {
-                            if (c19 != 3) {
-                                if (c19 != 4) {
-                                    l0.y(inParcel, readInt14);
-                                } else {
-                                    eVar = (b6.e) l0.g(inParcel, readInt14, b6.e.CREATOR);
-                                }
-                            } else {
-                                i29 = l0.u(inParcel, readInt14);
-                            }
-                        } else {
-                            cVarArr = (y5.c[]) l0.k(inParcel, readInt14, y5.c.CREATOR);
-                        }
-                    } else {
-                        bundle = l0.a(inParcel, readInt14);
-                    }
-                }
-                l0.m(inParcel, z28);
-                ?? obj4 = new Object();
-                obj4.f1605a = bundle;
-                obj4.f1606b = cVarArr;
-                obj4.f1607c = i29;
-                obj4.d = eVar;
-                return obj4;
-            case 27:
-                int z29 = l0.z(inParcel);
-                o oVar = null;
-                int[] iArr = null;
-                int[] iArr2 = null;
-                boolean z30 = false;
-                boolean z31 = false;
-                int i30 = 0;
-                while (inParcel.dataPosition() < z29) {
-                    int readInt15 = inParcel.readInt();
-                    switch ((char) readInt15) {
-                        case 1:
-                            oVar = (o) l0.g(inParcel, readInt15, o.CREATOR);
-                            break;
-                        case 2:
-                            z30 = l0.n(inParcel, readInt15);
-                            break;
-                        case 3:
-                            z31 = l0.n(inParcel, readInt15);
-                            break;
-                        case 4:
-                            iArr = l0.d(inParcel, readInt15);
-                            break;
-                        case 5:
-                            i30 = l0.u(inParcel, readInt15);
-                            break;
-                        case 6:
-                            iArr2 = l0.d(inParcel, readInt15);
-                            break;
-                        default:
-                            l0.y(inParcel, readInt15);
-                            break;
-                    }
-                }
-                l0.m(inParcel, z29);
-                return new b6.e(oVar, z30, z31, iArr, i30, iArr2);
+                d0.m(inParcel, z25);
+                return new x(str2, num2.intValue());
             case 28:
-                int z32 = l0.z(inParcel);
-                Bundle bundle2 = new Bundle();
-                Scope[] scopeArr = b6.f.B;
-                String str8 = null;
-                IBinder iBinder2 = null;
-                Account account2 = null;
-                String str9 = null;
-                y5.c[] cVarArr2 = b6.f.C;
-                y5.c[] cVarArr3 = cVarArr2;
-                int i31 = 0;
-                int i32 = 0;
-                int i33 = 0;
-                boolean z33 = false;
-                int i34 = 0;
-                boolean z34 = false;
-                while (inParcel.dataPosition() < z32) {
-                    int readInt16 = inParcel.readInt();
-                    switch ((char) readInt16) {
-                        case 1:
-                            i31 = l0.u(inParcel, readInt16);
-                            break;
-                        case 2:
-                            i32 = l0.u(inParcel, readInt16);
-                            break;
-                        case 3:
-                            i33 = l0.u(inParcel, readInt16);
-                            break;
-                        case 4:
-                            str8 = l0.h(inParcel, readInt16);
-                            break;
-                        case 5:
-                            iBinder2 = l0.t(inParcel, readInt16);
-                            break;
-                        case 6:
-                            scopeArr = (Scope[]) l0.k(inParcel, readInt16, Scope.CREATOR);
-                            break;
-                        case 7:
-                            bundle2 = l0.a(inParcel, readInt16);
-                            break;
-                        case '\b':
-                            account2 = (Account) l0.g(inParcel, readInt16, Account.CREATOR);
-                            break;
-                        case '\t':
-                        default:
-                            l0.y(inParcel, readInt16);
-                            break;
-                        case '\n':
-                            cVarArr2 = (y5.c[]) l0.k(inParcel, readInt16, y5.c.CREATOR);
-                            break;
-                        case 11:
-                            cVarArr3 = (y5.c[]) l0.k(inParcel, readInt16, y5.c.CREATOR);
-                            break;
-                        case '\f':
-                            z33 = l0.n(inParcel, readInt16);
-                            break;
-                        case '\r':
-                            i34 = l0.u(inParcel, readInt16);
-                            break;
-                        case 14:
-                            z34 = l0.n(inParcel, readInt16);
-                            break;
-                        case 15:
-                            str9 = l0.h(inParcel, readInt16);
-                            break;
-                    }
-                }
-                l0.m(inParcel, z32);
-                return new b6.f(i31, i32, i33, str8, iBinder2, scopeArr, bundle2, account2, cVarArr2, cVarArr3, z33, i34, z34, str9);
-            default:
-                int z35 = l0.z(inParcel);
-                String str10 = null;
+                int z26 = d0.z(inParcel);
                 String str11 = null;
                 String str12 = null;
-                String str13 = null;
-                b9.a aVar2 = null;
-                String str14 = null;
-                Bundle bundle3 = null;
-                while (inParcel.dataPosition() < z35) {
-                    int readInt17 = inParcel.readInt();
-                    switch ((char) readInt17) {
-                        case 1:
-                            str10 = l0.h(inParcel, readInt17);
-                            break;
-                        case 2:
-                            str11 = l0.h(inParcel, readInt17);
-                            break;
-                        case 3:
-                            str12 = l0.h(inParcel, readInt17);
-                            break;
-                        case 4:
-                            str13 = l0.h(inParcel, readInt17);
-                            break;
-                        case 5:
-                            aVar2 = (b9.a) l0.g(inParcel, readInt17, b9.a.CREATOR);
-                            break;
-                        case 6:
-                            str14 = l0.h(inParcel, readInt17);
-                            break;
-                        case 7:
-                            bundle3 = l0.a(inParcel, readInt17);
-                            break;
-                        default:
-                            l0.y(inParcel, readInt17);
-                            break;
+                while (inParcel.dataPosition() < z26) {
+                    int readInt14 = inParcel.readInt();
+                    char c15 = (char) readInt14;
+                    if (c15 != 2) {
+                        if (c15 != 3) {
+                            if (c15 != 4) {
+                                d0.y(inParcel, readInt14);
+                            } else {
+                                str12 = d0.h(inParcel, readInt14);
+                            }
+                        } else {
+                            str11 = d0.h(inParcel, readInt14);
+                        }
+                    } else {
+                        str = d0.h(inParcel, readInt14);
                     }
                 }
-                l0.m(inParcel, z35);
-                return new b9.b(str10, str11, str12, str13, aVar2, str14, bundle3);
+                d0.m(inParcel, z26);
+                return new y(str, str11, str12);
+            default:
+                try {
+                    return a0.a(inParcel.readString());
+                } catch (z e11) {
+                    throw new RuntimeException(e11);
+                }
         }
     }
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f46426a) {
+        switch (this.f47897a) {
             case 0:
                 return new b[i10];
             case 1:
                 return new a6.a[i10];
             case 2:
-                return new a8.f[i10];
+                return new SignInConfiguration[i10];
             case 3:
-                return new a8.a[i10];
+                return new Transport[i10];
             case 4:
-                return new a8.g[i10];
-            case 5:
-                return new h[i10];
-            case 6:
-                return new i[i10];
-            case 7:
-                return new a8.b[i10];
-            case 8:
                 return new MediaBrowserCompat$MediaItem[i10];
-            case 9:
+            case 5:
                 return new MediaDescriptionCompat[i10];
-            case 10:
+            case 6:
                 return new MediaMetadataCompat[i10];
-            case 11:
+            case 7:
                 return new RatingCompat[i10];
-            case 12:
+            case 8:
                 return new androidx.activity.result.a[i10];
-            case 13:
+            case 9:
                 return new androidx.activity.result.g[i10];
-            case 14:
+            case 10:
                 return new androidx.fragment.app.b[i10];
-            case 15:
+            case 11:
                 return new androidx.fragment.app.c[i10];
+            case 12:
+                return new e0[i10];
+            case 13:
+                return new k0[i10];
+            case 14:
+                return new n0[i10];
+            case 15:
+                return new c.d[i10];
             case 16:
-                return new f0[i10];
+                return new c7.c[i10];
             case 17:
-                return new androidx.fragment.app.l0[i10];
+                return new z0[i10];
             case 18:
-                return new o0[i10];
+                return new m0[i10];
             case 19:
-                return new b6.d[i10];
+                return new c7.n0[i10];
             case 20:
-                return new p[i10];
+                return new t[i10];
             case 21:
-                return new k[i10];
+                return new o0[i10];
             case 22:
-                return new v[i10];
+                return new p0[i10];
             case 23:
-                return new w[i10];
+                return new q0[i10];
             case 24:
-                return new o[i10];
+                return new v[i10];
             case 25:
-                return new BinderWrapper[i10];
+                return new u[i10];
             case 26:
-                return new g0[i10];
+                return new w[i10];
             case 27:
-                return new b6.e[i10];
+                return new x[i10];
             case 28:
-                return new b6.f[i10];
+                return new y[i10];
             default:
-                return new b9.b[i10];
+                return new a0[i10];
         }
     }
 }

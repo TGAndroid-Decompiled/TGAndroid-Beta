@@ -1,54 +1,49 @@
 package org.telegram.ui.ActionBar;
 
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.cq;
-import org.telegram.ui.Components.dn0;
-import org.telegram.ui.Components.wy;
-import org.telegram.ui.n51;
-public final class m0 extends cq {
-    public final int h;
-    public final Object f20421i;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import java.util.ArrayList;
+public final class m0 extends AnimatorListenerAdapter {
+    public final int f21189a;
+    public final ArrayList f21190b;
+    public final v0 f21191c;
 
-    public m0(int i10, FrameLayout frameLayout) {
-        this.h = i10;
-        this.f20421i = frameLayout;
+    public m0(v0 v0Var, ArrayList arrayList, int i10) {
+        this.f21189a = i10;
+        this.f21191c = v0Var;
+        this.f21190b = arrayList;
     }
 
     @Override
-    public final int a() {
-        switch (this.h) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f21189a) {
             case 0:
-                return ((w0) this.f20421i).f20626c.f20748b.f20312o0;
-            case 1:
-                return j6.v0(j6.Je, ((wy) this.f20421i).D.W1);
-            case 2:
-                return j6.v0(j6.Q5, ((dn0) this.f20421i).f24328f);
-            case 3:
-                return j6.v0(j6.Je, ((n51) this.f20421i).f35664y.W0);
+                v0 v0Var = this.f21191c;
+                v0Var.F.setAlpha(0.0f);
+                int i10 = 0;
+                while (true) {
+                    ArrayList arrayList = this.f21190b;
+                    if (i10 < arrayList.size()) {
+                        ((View) arrayList.get(i10)).setAlpha(1.0f);
+                        i10++;
+                    } else {
+                        v0Var.F.setVisibility(8);
+                        return;
+                    }
+                }
             default:
-                return j6.v0(j6.Je, (f6) this.f20421i);
+                this.f21191c.F.setAlpha(1.0f);
+                int i11 = 0;
+                while (true) {
+                    ArrayList arrayList2 = this.f21190b;
+                    if (i11 < arrayList2.size()) {
+                        ((View) arrayList2.get(i11)).setAlpha(0.0f);
+                        i11++;
+                    } else {
+                        return;
+                    }
+                }
         }
-    }
-
-    public m0(wy wyVar) {
-        super(1.25f);
-        this.h = 1;
-        this.f20421i = wyVar;
-        this.f24014f = AndroidUtilities.dp(7.0f);
-    }
-
-    public m0(f6 f6Var) {
-        super(1.25f);
-        this.h = 4;
-        this.f20421i = f6Var;
-        this.f24014f = AndroidUtilities.dp(7.0f);
-    }
-
-    public m0(n51 n51Var) {
-        super(1.25f);
-        this.h = 3;
-        this.f20421i = n51Var;
-        this.f24014f = AndroidUtilities.dp(7.0f);
     }
 }

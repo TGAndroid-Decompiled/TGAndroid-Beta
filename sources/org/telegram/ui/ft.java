@@ -1,55 +1,72 @@
 package org.telegram.ui;
 
-import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.view.View;
-public final class ft implements View.OnClickListener {
-    public final int f34220a;
-    public final rt f34221b;
+import org.telegram.messenger.AndroidUtilities;
+public final class ft implements r0.n, org.telegram.ui.Components.ek0 {
+    public final st f36464a;
 
-    public ft(rt rtVar, int i10) {
-        this.f34220a = i10;
-        this.f34221b = rtVar;
+    public ft(st stVar) {
+        this.f36464a = stVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f34220a) {
-            case 0:
-                rt rtVar = this.f34221b;
-                rtVar.K = false;
-                rtVar.f38053z.invalidate();
-                rtVar.n();
-                return;
-            case 1:
-                rt rtVar2 = this.f34221b;
-                Activity activity = rtVar2.f38050w;
-                if (activity instanceof LaunchActivity) {
-                    LaunchActivity launchActivity = (LaunchActivity) activity;
-                    if (launchActivity.O() != null && launchActivity.O().getLastFragment() != null) {
-                        launchActivity.O().getLastFragment().dismissCurrentDialog();
-                    }
-                    launchActivity.p0(new PremiumPreviewFragment(0, PremiumPreviewFragment.l0(5)));
+    public void B(View view, ah.j1 j1Var, boolean z10, boolean z11) {
+        if (j1Var != null) {
+            st stVar = this.f36464a;
+            ah.u0 reactionsWindow = stVar.P.getReactionsWindow();
+            if (stVar.f40541o.contains(j1Var.f597f)) {
+                if (stVar.f40541o.size() > 1) {
+                    stVar.f40541o.remove(j1Var.f597f);
+                } else {
+                    return;
                 }
-                rtVar2.K = false;
-                rtVar2.f38053z.invalidate();
-                rtVar2.n();
-                return;
-            case 2:
-                rt rtVar3 = this.f34221b;
-                pt ptVar = rtVar3.f38040l;
-                if (ptVar != null) {
-                    ptVar.K();
+            } else {
+                stVar.f40541o.add(j1Var.f597f);
+                if (stVar.f40541o.size() > 7) {
+                    stVar.f40541o.remove(0);
                 }
-                rtVar3.p();
-                return;
-            default:
-                rt rtVar4 = this.f34221b;
-                pt ptVar2 = rtVar4.f38040l;
-                if (ptVar2 != null) {
-                    ptVar2.r();
+            }
+            stVar.P.setSelectedEmojis(stVar.f40541o);
+            if (reactionsWindow != null) {
+                ah.o0 o0Var = reactionsWindow.f695m;
+                stVar.P.p(null, null, false);
+                if (o0Var != null) {
+                    o0Var.setSelectedReactions(stVar.f40541o);
+                    o0Var.setRecentReactions(stVar.P.V);
                 }
-                rtVar4.p();
-                return;
+                reactionsWindow.d();
+            }
         }
+    }
+
+    @Override
+    public boolean S() {
+        return false;
+    }
+
+    @Override
+    public r0.l1 T0(View view, r0.l1 l1Var) {
+        this.f36464a.f40543q = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        return l1Var;
+    }
+
+    @Override
+    public boolean n() {
+        return true;
+    }
+
+    @Override
+    public boolean t() {
+        return false;
+    }
+
+    @Override
+    public void J() {
+    }
+
+    @Override
+    public void I(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

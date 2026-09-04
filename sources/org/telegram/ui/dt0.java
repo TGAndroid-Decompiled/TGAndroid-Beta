@@ -1,21 +1,19 @@
 package org.telegram.ui;
 
-import android.media.MediaFormat;
-import org.telegram.messenger.AndroidUtilities;
-public final class dt0 implements i5.n {
-    public final PhotoViewer f33530a;
+import android.content.DialogInterface;
+import android.widget.ImageView;
+public final class dt0 implements DialogInterface.OnDismissListener {
+    public final PhotoViewer f35859a;
 
     public dt0(PhotoViewer photoViewer) {
-        this.f33530a = photoViewer;
+        this.f35859a = photoViewer;
     }
 
     @Override
-    public final void a(long j10, long j11, j3.n0 n0Var, MediaFormat mediaFormat) {
-        org.telegram.ui.Components.i71 i71Var;
-        PhotoViewer photoViewer = this.f33530a;
-        if (!photoViewer.G4 || (i71Var = photoViewer.C2) == null) {
-            return;
+    public final void onDismiss(DialogInterface dialogInterface) {
+        ImageView imageView = this.f35859a.E3;
+        if (imageView != null) {
+            imageView.animate().alpha(0.0f).withEndAction(new rl0(this, 15)).setDuration(150L).start();
         }
-        AndroidUtilities.runOnUIThread(new gr0(3, this, i71Var));
     }
 }

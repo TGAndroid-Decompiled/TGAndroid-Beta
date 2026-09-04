@@ -1,34 +1,46 @@
 package rh;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
+import android.text.TextUtils;
+import java.io.File;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import ph.e6;
-public final class a implements Utilities.Callback {
-    public final int f43516a;
-    public final j f43517b;
+public final class a {
+    public final int f45594a;
+    public final TLRPC.Document f45595b;
+    public final String f45596c;
+    public final MessageObject d;
+    public final String f45597e;
+    public boolean f45598f;
+    public boolean f45599g;
 
-    public a(j jVar, int i10) {
-        this.f43516a = i10;
-        this.f43517b = jVar;
+    public a(int i10, MessageObject messageObject, TLRPC.Document document, String str) {
+        this.f45594a = i10;
+        this.d = messageObject;
+        this.f45595b = document;
+        this.f45596c = str;
+        this.f45597e = TextUtils.isEmpty(str) ? FileLoader.getAttachFileName(document) : str;
+        a();
     }
 
-    @Override
-    public final void run(Object obj) {
-        switch (this.f43516a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new e6(12, this.f43517b, (TLRPC.UserFull) obj));
-                return;
-            case 1:
-                j jVar = this.f43517b;
-                jVar.V.commission_permille = ((Integer) obj).intValue();
-                jVar.I0();
-                return;
-            default:
-                j jVar2 = this.f43517b;
-                jVar2.V.duration_months = ((Integer) jVar2.X.get(((Integer) obj).intValue())).intValue();
-                jVar2.I0();
-                return;
+    public final void a() {
+        boolean z10;
+        boolean z11 = false;
+        String str = this.f45596c;
+        if (str != null) {
+            z10 = new File(str).exists();
+        } else {
+            z10 = false;
         }
+        int i10 = this.f45594a;
+        if (!z10) {
+            z10 = FileLoader.getInstance(i10).getPathToAttach(this.f45595b).exists();
+        }
+        this.f45598f = z10;
+        String str2 = this.f45597e;
+        if (!TextUtils.isEmpty(str2) && FileLoader.getInstance(i10).isLoadingFile(str2)) {
+            z11 = true;
+        }
+        this.f45599g = z11;
     }
 }

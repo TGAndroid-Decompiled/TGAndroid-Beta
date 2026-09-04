@@ -1,29 +1,67 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.ConnectionsManager;
-public final class rb0 implements Runnable {
-    public final int f37792a;
-    public final yb0 f37793b;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.Emoji;
+public final class rb0 implements TextWatcher {
+    public final int f40125a;
+    public final xb0 f40126b;
 
-    public rb0(yb0 yb0Var, int i10) {
-        this.f37792a = i10;
-        this.f37793b = yb0Var;
+    public rb0(xb0 xb0Var, int i10) {
+        this.f40125a = i10;
+        this.f40126b = xb0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37792a) {
+    public final void afterTextChanged(Editable editable) {
+        switch (this.f40125a) {
             case 0:
-                yb0 yb0Var = this.f37793b;
-                if (yb0Var.h >= 0) {
-                    ConnectionsManager.getInstance(yb0Var.f40222b).cancelRequest(yb0Var.h, true);
-                    yb0Var.h = -1;
-                    return;
-                }
+                Emoji.replaceEmoji(editable, this.f40126b.K.getPaint().getFontMetricsInt(), false);
                 return;
             default:
-                this.f37793b.a();
+                xb0 xb0Var = this.f40126b;
+                if (!xb0Var.O) {
+                    if (editable.toString().equals("0")) {
+                        xb0Var.F.setText("");
+                        return;
+                    }
+                    try {
+                        int parseInt = Integer.parseInt(editable.toString());
+                        if (parseInt > 100000) {
+                            xb0Var.X();
+                            return;
+                        } else {
+                            xb0Var.W(parseInt);
+                            return;
+                        }
+                    } catch (NumberFormatException unused) {
+                        xb0Var.X();
+                        return;
+                    }
+                }
                 return;
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f40125a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f40125a;
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

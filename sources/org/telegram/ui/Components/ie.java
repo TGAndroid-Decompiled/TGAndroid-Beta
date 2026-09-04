@@ -1,32 +1,49 @@
 package org.telegram.ui.Components;
+public final class ie implements Runnable {
+    public final int f27105a;
+    public final ChatActivityEnterView f27106b;
 
-import android.view.View;
-public final class ie implements y4, jl0 {
-    public final ChatActivityEnterView f25691a;
-
-    public ie(ChatActivityEnterView chatActivityEnterView) {
-        this.f25691a = chatActivityEnterView;
+    public ie(ChatActivityEnterView chatActivityEnterView, int i10) {
+        this.f27105a = i10;
+        this.f27106b = chatActivityEnterView;
     }
 
     @Override
-    public void J(int i10, int i11, boolean z4) {
-        ChatActivityEnterView chatActivityEnterView = this.f25691a;
-        boolean T0 = chatActivityEnterView.T0(i10, z4, i11, true, 0L);
-        cf cfVar = chatActivityEnterView.I0;
-        if (cfVar != null) {
-            cfVar.h(!T0);
-            chatActivityEnterView.I0 = null;
+    public final void run() {
+        int i10 = this.f27105a;
+        ChatActivityEnterView chatActivityEnterView = this.f27106b;
+        switch (i10) {
+            case 0:
+                og ogVar = chatActivityEnterView.Y2;
+                if (ogVar != null) {
+                    ogVar.k1();
+                    return;
+                }
+                return;
+            case 1:
+                qf qfVar = chatActivityEnterView.E0;
+                if (qfVar != null) {
+                    qfVar.setText("");
+                    return;
+                }
+                return;
+            case 2:
+                qf qfVar2 = chatActivityEnterView.E0;
+                if (qfVar2 != null) {
+                    qfVar2.setText("");
+                }
+                chatActivityEnterView.K(true);
+                return;
+            case 3:
+                chatActivityEnterView.f23750p0.callOnClick();
+                return;
+            case 4:
+                chatActivityEnterView.f23750p0.callOnClick();
+                return;
+            default:
+                int i11 = ChatActivityEnterView.f23661m5;
+                chatActivityEnterView.C();
+                return;
         }
-    }
-
-    @Override
-    public boolean d(int i10, View view) {
-        if (view instanceof rh.x) {
-            ChatActivityEnterView chatActivityEnterView = this.f25691a;
-            chatActivityEnterView.setFieldText(((rh.x) view).getCommand() + " ");
-            chatActivityEnterView.f22759j0.c();
-            return true;
-        }
-        return false;
     }
 }

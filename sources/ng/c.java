@@ -1,162 +1,149 @@
 package ng;
 
-import android.graphics.RecordingCanvas;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
-import android.support.v4.media.session.y;
-import org.telegram.messenger.MediaDataController;
-public final class c {
-    public final RenderNode f14967a = y.c();
-    public final RenderNode[] f14968b;
-    public final RenderNode[] f14969c;
-    public final boolean d;
-    public int e;
-    public int f14970f;
-    public float f14971g;
-    public float h;
-    public long f14972i;
-    public final e f14973j;
+import android.app.Activity;
+import android.content.Context;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
+import n7.z0;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.w1;
+import org.telegram.messenger.wl;
+import org.telegram.ui.ActionBar.f3;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.k4;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Components.fo0;
+import org.telegram.ui.Components.ov0;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.i5;
+import w7.x5;
+public final class c implements Runnable {
+    public final int f16724a;
+    public final i f16725b;
 
-    public c(e eVar, String str, int i10, boolean z4) {
-        this.f14973j = eVar;
-        int i11 = i10 + 1;
-        this.f14968b = new RenderNode[i11];
-        for (int i12 = 0; i12 < i11; i12++) {
-            RenderNode[] renderNodeArr = this.f14968b;
-            y.i();
-            renderNodeArr[i12] = y.d(str + "_down_" + i10);
-        }
-        if (i10 <= 0 && !z4) {
-            this.f14969c = this.f14968b;
-        } else {
-            this.f14969c = new RenderNode[i11];
-            for (int i13 = 0; i13 < i11; i13++) {
-                this.f14969c[i13] = y.c();
-            }
-        }
-        this.d = this.f14969c == this.f14968b;
-        this.f14970f = 1;
-        this.e = 1;
+    public c(i iVar, int i10) {
+        this.f16724a = i10;
+        this.f16725b = iVar;
     }
 
-    public final void a(RenderNode renderNode) {
-        boolean z4;
-        RenderNode[] renderNodeArr;
-        boolean z10;
-        int width = renderNode.getWidth();
-        int height = renderNode.getHeight();
-        float f10 = width;
-        e eVar = this.f14973j;
-        int round = Math.round((eVar.d * f10) / this.e);
-        float f11 = height;
-        int round2 = Math.round((eVar.d * f11) / this.f14970f);
-        float f12 = round;
-        float f13 = f12 / f10;
-        float f14 = round2;
-        float f15 = f14 / f11;
-        int i10 = eVar.d;
-        float f16 = (f10 * i10) / f12;
-        float f17 = (f11 * i10) / f14;
-        long calcHash = MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(0L, renderNode.getUniqueId()), round), round2), width), height);
-        if (this.f14967a.hasDisplayList() && this.f14968b[0].hasDisplayList()) {
-            z4 = false;
-        } else {
-            z4 = true;
-        }
-        int i11 = 0;
-        while (true) {
-            int length = this.f14968b.length;
-            z10 = this.d;
-            if (i11 >= length) {
-                break;
-            }
-            z4 |= !renderNodeArr[i11].hasDisplayList();
-            if (!z10) {
-                z4 |= !this.f14969c[i11].hasDisplayList();
-            }
-            i11++;
-        }
-        if (this.f14972i != calcHash || z4) {
-            this.f14972i = calcHash;
-            int i12 = 0;
-            this.f14967a.setPosition(0, 0, width, height);
-            this.f14967a.beginRecording(width, height).drawRenderNode(renderNode);
-            this.f14967a.endRecording();
-            this.f14968b[0].setPosition(0, 0, round, round2);
-            RecordingCanvas beginRecording = this.f14968b[0].beginRecording(round, round2);
-            beginRecording.scale(f13, f15);
-            beginRecording.drawRenderNode(this.f14967a);
-            this.f14968b[0].endRecording();
-            int i13 = 0;
-            while (true) {
-                RenderNode[] renderNodeArr2 = this.f14968b;
-                if (i13 < renderNodeArr2.length) {
-                    renderNodeArr2[i13].setPosition(i12, i12, round, round2);
-                    RecordingCanvas beginRecording2 = this.f14968b[i13].beginRecording(round, round2);
-                    if (i13 > 0) {
-                        beginRecording2.drawRenderNode(this.f14968b[i12]);
-                    } else {
-                        beginRecording2.scale(f13, f15);
-                        beginRecording2.drawRenderNode(this.f14967a);
-                    }
-                    this.f14968b[i13].endRecording();
-                    if (z10) {
-                        this.f14968b[i13].setScaleX(f16);
-                        this.f14968b[i13].setScaleY(f17);
-                        this.f14968b[i13].setPivotX(0.0f);
-                        this.f14968b[i13].setPivotY(0.0f);
-                    } else {
-                        this.f14969c[i13].setPosition(0, 0, width, height);
-                        RecordingCanvas beginRecording3 = this.f14969c[i13].beginRecording(width, height);
-                        beginRecording3.scale(f16, f17);
-                        beginRecording3.drawRenderNode(this.f14968b[i13]);
-                        this.f14969c[i13].endRecording();
-                    }
-                    i13++;
-                    i12 = 0;
+    @Override
+    public final void run() {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        switch (this.f16724a) {
+            case 0:
+                n2 R = LaunchActivity.R();
+                ?? f3Var = new f3(R.getParentActivity(), false);
+                if (R.getFragmentView() instanceof ov0) {
+                    f3Var.f37242b = (ov0) R.getFragmentView();
+                }
+                Activity parentActivity = R.getParentActivity();
+                LinearLayout f7 = w1.f(parentActivity, 1);
+                TextView textView = new TextView(parentActivity);
+                textView.setText("Saturation " + (i5.f37240c * 5.0f));
+                int i17 = j6.f20845n5;
+                wl.r(textView, j6.w0(null, i17, false), 1, 16.0f, 1);
+                textView.setMaxLines(1);
+                textView.setSingleLine(true);
+                if (LocaleController.isRTL) {
+                    i10 = 3;
                 } else {
+                    i10 = 5;
+                }
+                textView.setGravity(i10 | 48);
+                if (LocaleController.isRTL) {
+                    i11 = 3;
+                } else {
+                    i11 = 5;
+                }
+                f7.addView(textView, x5.d(-2, -1.0f, i11 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+                fo0 fo0Var = new fo0(parentActivity);
+                fo0Var.setDelegate(new o0.a(f3Var, textView, false, 1));
+                fo0Var.setReportChanges(true);
+                f7.addView(fo0Var, x5.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
+                TextView textView2 = new TextView(parentActivity);
+                textView2.setText("Alpha " + i5.f37241e);
+                wl.r(textView2, j6.w0(null, i17, false), 1, 16.0f, 1);
+                textView2.setMaxLines(1);
+                textView2.setSingleLine(true);
+                if (LocaleController.isRTL) {
+                    i12 = 3;
+                } else {
+                    i12 = 5;
+                }
+                textView2.setGravity(i12 | 48);
+                if (LocaleController.isRTL) {
+                    i13 = 3;
+                } else {
+                    i13 = 5;
+                }
+                f7.addView(textView2, x5.d(-2, -1.0f, i13 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+                fo0 fo0Var2 = new fo0(parentActivity);
+                fo0Var2.setDelegate(new z0(f3Var, textView2, false, 2));
+                fo0Var2.setReportChanges(true);
+                f7.addView(fo0Var2, x5.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
+                TextView textView3 = new TextView(parentActivity);
+                textView3.setText("Blur Radius");
+                wl.r(textView3, j6.w0(null, i17, false), 1, 16.0f, 1);
+                textView3.setMaxLines(1);
+                textView3.setSingleLine(true);
+                if (LocaleController.isRTL) {
+                    i14 = 3;
+                } else {
+                    i14 = 5;
+                }
+                textView3.setGravity(i14 | 48);
+                if (LocaleController.isRTL) {
+                    i15 = 3;
+                } else {
+                    i15 = 5;
+                }
+                f7.addView(textView3, x5.d(-2, -1.0f, i15 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+                fo0 fo0Var3 = new fo0(parentActivity);
+                fo0Var3.setDelegate(new org.telegram.ui.g(f3Var, 5));
+                fo0Var3.setReportChanges(true);
+                f7.addView(fo0Var3, x5.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
+                f7.addOnLayoutChangeListener(new k4(fo0Var, fo0Var3, fo0Var2));
+                ScrollView scrollView = new ScrollView(parentActivity);
+                scrollView.addView(f7);
+                f3Var.setCustomView(scrollView);
+                f3Var.show();
+                this.f16725b.c(false);
+                return;
+            case 1:
+                i iVar = this.f16725b;
+                iVar.getClass();
+                SharedConfig.toggleDebugWebView();
+                Context context = iVar.getContext();
+                if (SharedConfig.debugWebView) {
+                    i16 = R.string.DebugMenuWebViewDebugEnabled;
+                } else {
+                    i16 = R.string.DebugMenuWebViewDebugDisabled;
+                }
+                Toast.makeText(context, LocaleController.getString(i16), 0).show();
+                return;
+            case 2:
+                ProfileActivity.H4((Activity) this.f16725b.getContext(), false);
+                return;
+            default:
+                i iVar2 = this.f16725b;
+                iVar2.f16748n = true;
+                try {
+                    iVar2.performHapticFeedback(0);
+                    return;
+                } catch (Exception unused) {
                     return;
                 }
-            }
         }
-    }
-
-    public final void b(float f10, float f11) {
-        float f12;
-        RenderNode[] renderNodeArr;
-        int i10 = this.e;
-        float f13 = 0.0f;
-        if (i10 >= 2) {
-            f12 = (this.f14971g + f10) % i10;
-        } else {
-            f12 = 0.0f;
-        }
-        this.f14971g = f12;
-        int i11 = this.f14970f;
-        if (i11 >= 2) {
-            f13 = (this.h + f11) % i11;
-        }
-        this.h = f13;
-        if (this.f14973j.f14978b) {
-            this.f14967a.setTranslationX(f12);
-            this.f14967a.setTranslationY(this.h);
-            for (RenderNode renderNode : this.f14969c) {
-                renderNode.setTranslationX(-this.f14971g);
-                renderNode.setTranslationY(-this.h);
-            }
-        }
-    }
-
-    public final void c(float f10) {
-        this.f14968b[0].setRenderEffect(RenderEffect.createBlurEffect(e.a(f10, this.e), e.a(f10, this.f14970f), Shader.TileMode.CLAMP));
-    }
-
-    public final void d(float f10, RenderEffect renderEffect) {
-        this.f14968b[0].setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(e.a(f10, this.e), e.a(f10, this.f14970f), Shader.TileMode.CLAMP), renderEffect));
-    }
-
-    public final void e(RenderEffect renderEffect) {
-        this.f14968b[1].setRenderEffect(renderEffect);
     }
 }

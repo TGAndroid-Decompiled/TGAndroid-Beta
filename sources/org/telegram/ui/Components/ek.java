@@ -1,33 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
 import android.view.View;
-public final class ek extends AnimatorListenerAdapter {
-    public final int f24623a = 0;
-    public final org.telegram.ui.xq f24624b;
+import org.telegram.messenger.AndroidUtilities;
+public final class ek extends s4.d0 {
+    public final ig.e0 f25721r;
 
-    public ek(org.telegram.ui.xq xqVar) {
-        this.f24624b = xqVar;
+    public ek(ig.e0 e0Var, Context context) {
+        super(context);
+        this.f25721r = e0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f24623a) {
-            case 0:
-                ((gk) this.f24624b.d).R.unlock();
-                return;
-            default:
-                org.telegram.ui.xq xqVar = this.f24624b;
-                View view = xqVar.f40052b;
-                view.setAlpha(1.0f);
-                f2.v0.x0(view);
-                ((gk) xqVar.d).U.f25436r.removeView(view);
-                return;
-        }
+    public final int k(int i10, View view) {
+        return org.telegram.messenger.w1.z(56.0f, ((ok) this.f25721r.V).f29092r.getPaddingTop() - AndroidUtilities.statusBarHeight, super.k(i10, view));
     }
 
-    public ek(org.telegram.ui.xq xqVar, f2.v0 v0Var) {
-        this.f24624b = xqVar;
+    @Override
+    public final int m(int i10) {
+        return super.m(i10) * 2;
     }
 }

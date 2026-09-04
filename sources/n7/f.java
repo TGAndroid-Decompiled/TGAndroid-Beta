@@ -1,28 +1,26 @@
 package n7;
 
 import java.io.Serializable;
-public final class f extends l7.f implements Serializable {
-    public final Object f14331b;
-    public final l7.e f14332c;
+import java.util.Arrays;
+public final class f implements Serializable {
+    public final Object f16627a;
 
-    public f(Object obj, l7.e eVar) {
-        super(1, false);
-        this.f14331b = obj;
-        this.f14332c = eVar;
+    public f(Object obj) {
+        this.f16627a = obj;
     }
 
-    @Override
-    public final Object getKey() {
-        return this.f14331b;
+    public final boolean equals(Object obj) {
+        if (obj instanceof f) {
+            return a.h(this.f16627a, ((f) obj).f16627a);
+        }
+        return false;
     }
 
-    @Override
-    public final Object getValue() {
-        return this.f14332c;
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f16627a});
     }
 
-    @Override
-    public final Object setValue(Object obj) {
-        throw new UnsupportedOperationException();
+    public final String toString() {
+        return a4.a.p("Suppliers.ofInstance(", this.f16627a.toString(), ")");
     }
 }

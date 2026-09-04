@@ -1,14 +1,5 @@
 package xd;
-public interface d {
-    void a();
 
-    void f(boolean z4);
-
-    boolean g();
-
-    boolean i(float f10);
-
-    void j();
-
-    void x();
+import w7.t8;
+public abstract class d extends t8 {
 }

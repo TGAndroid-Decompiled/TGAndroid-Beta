@@ -1,3 +1,7 @@
 package g6;
-public final class e extends a7.a {
+
+import android.os.Bundle;
+import android.os.IInterface;
+public interface e extends IInterface {
+    void k0(Bundle bundle);
 }

@@ -1,102 +1,55 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.drawable.Drawable;
+import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.Crop.CropAreaView;
-public final class sq0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f38295a;
-    public final PhotoViewer f38296b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+public final class sq0 extends org.telegram.ui.ActionBar.g5 {
+    public final rl0 f40501f = new rl0(this, 11);
+    public final br0 h;
 
-    public sq0(PhotoViewer photoViewer, int i10) {
-        this.f38295a = i10;
-        this.f38296b = photoViewer;
+    public sq0(br0 br0Var) {
+        this.h = br0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f38295a;
-        PhotoViewer photoViewer = this.f38296b;
-        switch (i10) {
-            case 0:
-                Drawable[] drawableArr = PhotoViewer.Q8;
-                photoViewer.getClass();
-                photoViewer.f31718f3.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 1:
-                CropAreaView cropAreaView = photoViewer.f31898z1.f31372b.f47310a;
-                float lerp = AndroidUtilities.lerp(photoViewer.X5, photoViewer.f31685b6, photoViewer.f31748i6);
-                float lerp2 = AndroidUtilities.lerp(photoViewer.U5, photoViewer.Z5, photoViewer.f31748i6);
-                float lerp3 = AndroidUtilities.lerp(photoViewer.V5, photoViewer.f31675a6, photoViewer.f31748i6);
-                cropAreaView.f22983k0 = 0.0f;
-                cropAreaView.f22984l0 = lerp;
-                cropAreaView.m0 = lerp2;
-                cropAreaView.f22986n0 = lerp3;
-                cropAreaView.invalidate();
-                return;
-            case 2:
-                photoViewer.I1.t0(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 3:
-                photoViewer.I1.setOffsetTranslationX(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 4:
-                Drawable[] drawableArr2 = PhotoViewer.Q8;
-                photoViewer.getClass();
-                photoViewer.f31757j6 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
-            case 5:
-                Drawable[] drawableArr3 = PhotoViewer.Q8;
-                photoViewer.s3();
-                return;
-            case 6:
-                photoViewer.I1.t0(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 7:
-                photoViewer.I1.setOffsetTranslationX(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 8:
-                mt0 mt0Var = photoViewer.I1;
-                if (mt0Var != null) {
-                    mt0Var.f4464a1.invalidate();
-                    return;
-                }
-                return;
-            case 9:
-                Drawable[] drawableArr4 = PhotoViewer.Q8;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                photoViewer.W5 = floatValue;
-                mt0 mt0Var2 = photoViewer.I1;
-                if (mt0Var2 != null && Math.abs(floatValue - mt0Var2.U1) > 0.1f) {
-                    mt0Var2.U1 = floatValue;
-                    mt0Var2.v0(mt0Var2.F0, mt0Var2.G0, mt0Var2.H0, mt0Var2.K0, mt0Var2.L0);
-                }
-                photoViewer.f31679b0.invalidate();
-                return;
-            case 10:
-                Drawable[] drawableArr5 = PhotoViewer.Q8;
-                photoViewer.getClass();
-                photoViewer.f31757j6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                photoViewer.F1();
-                return;
-            case 11:
-                Drawable[] drawableArr6 = PhotoViewer.Q8;
-                photoViewer.getClass();
-                photoViewer.f31757j6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
-            case 12:
-                Drawable[] drawableArr7 = PhotoViewer.Q8;
-                photoViewer.getClass();
-                photoViewer.f31757j6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
-            case 13:
-                photoViewer.T0[0].e(1, ((Float) valueAnimator.getAnimatedValue()).floatValue(), false);
-                return;
-            default:
-                Drawable[] drawableArr8 = PhotoViewer.Q8;
-                photoViewer.getClass();
-                photoViewer.f31757j6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
+    public final boolean b() {
+        this.h.finishFragment();
+        return false;
+    }
+
+    @Override
+    public final void p(di.h2 h2Var) {
+        this.h.b0(h2Var);
+    }
+
+    @Override
+    public final void q(EditText editText) {
+        int i10;
+        if (editText.getText().length() == 0) {
+            br0 br0Var = this.h;
+            br0Var.f34890f.clear();
+            br0Var.h.clear();
+            br0Var.v = null;
+            br0Var.f34905s = true;
+            br0Var.f34903r = false;
+            if (br0Var.f34912x != 0) {
+                i10 = ((org.telegram.ui.ActionBar.n2) br0Var).currentAccount;
+                ConnectionsManager.getInstance(i10).cancelRequest(br0Var.f34912x, true);
+                br0Var.f34912x = 0;
+            }
+            br0Var.N.d.setText(LocaleController.getString(R.string.NoRecentSearches));
+            br0Var.N.e(false, true);
+            br0Var.j0();
+            return;
         }
+        rl0 rl0Var = this.f40501f;
+        AndroidUtilities.cancelRunOnUIThread(rl0Var);
+        AndroidUtilities.runOnUIThread(rl0Var, 1200L);
+    }
+
+    @Override
+    public final void n() {
     }
 }

@@ -1,19 +1,8 @@
 package org.telegram.ui.Components;
+public final class fz0 {
+    public int f26211a;
 
-import android.graphics.Canvas;
-import android.view.View;
-public interface fz0 extends org.telegram.ui.Cells.w9 {
-    void attach(View view);
-
-    void detach(View view);
-
-    void draw(Canvas canvas, View view);
-
-    int getEmojiOnlyCount();
-
-    void setRow(int i10);
-
-    void setX(int i10);
-
-    void setY(int i10);
+    public fz0(int i10) {
+        this.f26211a = i10;
+    }
 }

@@ -1,10 +1,10 @@
 package k1;
-public final class b extends e0 {
-    public final Object f9532a;
-    public final int f9533b;
+public final class b extends b0 {
+    public final Object f14436a;
+    public final int f14437b;
 
     public b(Object obj, int i10) {
-        this.f9532a = obj;
-        this.f9533b = i10;
+        this.f14436a = obj;
+        this.f14437b = i10;
     }
 }

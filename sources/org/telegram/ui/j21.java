@@ -1,26 +1,11 @@
 package org.telegram.ui;
-public final class j21 implements Runnable {
-    public final int f35070a;
 
-    public j21(int i10) {
-        this.f35070a = i10;
-    }
+import android.content.ClipboardManager;
+public final class j21 implements ClipboardManager.OnPrimaryClipChangedListener {
+    public final q21 f37497a;
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.j21.run():void");
-    }
-
-    public j21(Object obj, int i10) {
-        this.f35070a = i10;
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
-    }
-
-    private final void c() {
+    public final void onPrimaryClipChanged() {
+        this.f37497a.W();
     }
 }

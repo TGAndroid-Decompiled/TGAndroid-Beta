@@ -1,20 +1,33 @@
 package r0;
 
-import android.content.Context;
-import android.view.VelocityTracker;
-import org.telegram.ui.Components.tp0;
+import android.view.DisplayCutout;
+import j$.util.Objects;
 public final class i {
-    public final Context f43132a;
-    public final tp0 f43133b;
-    public VelocityTracker f43134c;
-    public float d;
-    public int e = -1;
-    public int f43135f = -1;
-    public int f43136g = -1;
-    public final int[] h = {Integer.MAX_VALUE, 0};
+    public final DisplayCutout f44696a;
 
-    public i(Context context, tp0 tp0Var) {
-        this.f43132a = context;
-        this.f43133b = tp0Var;
+    public i(DisplayCutout displayCutout) {
+        this.f44696a = displayCutout;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && i.class == obj.getClass()) {
+            return Objects.equals(this.f44696a, ((i) obj).f44696a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        DisplayCutout displayCutout = this.f44696a;
+        if (displayCutout == null) {
+            return 0;
+        }
+        return displayCutout.hashCode();
+    }
+
+    public final String toString() {
+        return "DisplayCutoutCompat{" + this.f44696a + "}";
     }
 }

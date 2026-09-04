@@ -1,29 +1,36 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class vc0 extends tf.i0 {
-    public final cd0 K;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.FileLog;
+import org.telegram.tgnet.TLRPC;
+public final class vc0 extends org.telegram.ui.ActionBar.j {
+    public final id0 f41513a;
 
-    public vc0(cd0 cd0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z4) {
-        super(context, f6Var, false, z4);
-        this.K = cd0Var;
+    public vc0(id0 id0Var) {
+        this.f41513a = id0Var;
     }
 
     @Override
-    public final void l() {
-        cd0 cd0Var = this.K;
-        org.telegram.ui.ActionBar.w0 w0Var = cd0Var.f33111w;
-        if (w0Var != null) {
-            w0Var.setShowSearchProgress(cd0Var.T.G);
+    public final void b(int i10) {
+        id0 id0Var = this.f41513a;
+        if (i10 == -1) {
+            id0Var.finishFragment();
+        } else if (i10 == 1) {
+            try {
+                TLRPC.GeoPoint geoPoint = id0Var.B0.messageOwner.media.geo;
+                double d = geoPoint.lat;
+                double d10 = geoPoint._long;
+                Activity parentActivity = id0Var.getParentActivity();
+                parentActivity.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d10 + "?q=" + d + "," + d10)));
+            } catch (Exception e7) {
+                FileLog.e(e7);
+            }
+        } else if (i10 == 5) {
+            id0Var.s0(false);
+        } else if (i10 == 6) {
+            id0Var.r0(null);
         }
-        TextView textView = cd0Var.f33104r;
-        if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, cd0Var.T.f44736x)));
-        }
-        super.l();
     }
 }

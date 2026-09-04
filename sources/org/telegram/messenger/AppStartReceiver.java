@@ -16,7 +16,7 @@ public class AppStartReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent != null && "android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
-            AndroidUtilities.runOnUIThread(new x1(2));
+            AndroidUtilities.runOnUIThread(new u1(2));
         }
     }
 }

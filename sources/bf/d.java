@@ -1,30 +1,18 @@
 package bf;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
-import ph.i3;
-public final class d implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final int f1805a;
-    public final Object f1806b;
-
-    public d(Object obj, int i10) {
-        this.f1805a = i10;
-        this.f1806b = obj;
-    }
+import v7.i0;
+public final class d extends p {
+    public final int f2624g;
+    public String h;
 
     @Override
-    public final void onGlobalLayout() {
-        switch (this.f1805a) {
+    public final void a(i0 i0Var) {
+        switch (this.f2624g) {
             case 0:
-                f fVar = (f) this.f1806b;
-                View view = fVar.f1823j;
-                if (view != null) {
-                    fVar.e(view);
-                    return;
-                }
+                i0Var.c(this);
                 return;
             default:
-                ((i3) this.f1806b).d();
+                i0Var.q(this);
                 return;
         }
     }

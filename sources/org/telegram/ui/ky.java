@@ -1,10 +1,17 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public interface ky {
-    boolean C();
+import android.content.Context;
+import android.view.MotionEvent;
+public final class ky extends org.telegram.ui.Components.b20 {
+    public ky(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+    }
 
-    boolean I(qy qyVar);
-
-    boolean w(qy qyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, sf1 sf1Var);
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && getAlpha() < 0.25f) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
 }

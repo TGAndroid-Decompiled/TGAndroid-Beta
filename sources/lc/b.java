@@ -1,60 +1,48 @@
 package lc;
 
-import j4.h;
-import k7.u;
-import ke.e;
-import ne.p;
-public final class b extends pe.a {
-    public final a f11963a = new p();
-    public final StringBuilder f11964b = new StringBuilder();
-    public final int f11965c;
+import com.google.android.gms.internal.vision.e2;
+import java.nio.ByteBuffer;
+import mg.n;
+public final class b extends a {
+    public static final n f15361n;
+    public static final n f15362r;
 
-    public b(int i10) {
-        this.f11965c = i10;
+    static {
+        re.a aVar = new re.a(b.class, "ESDescriptorBox.java");
+        aVar.e(aVar.d("getEsDescriptor", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.ESDescriptor"));
+        aVar.e(aVar.d("setEsDescriptor", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.ESDescriptor", "esDescriptor", "void"));
+        f15361n = aVar.e(aVar.d("equals", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "java.lang.Object", "o", "boolean"));
+        f15362r = aVar.e(aVar.d("hashCode", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "int"));
     }
 
-    @Override
-    public final void a(CharSequence charSequence) {
-        StringBuilder sb = this.f11964b;
-        sb.append(charSequence);
-        sb.append('\n');
-    }
-
-    @Override
-    public final void d() {
-        this.f11963a.f11962g = this.f11964b.toString();
-    }
-
-    @Override
-    public final ne.a e() {
-        return this.f11963a;
-    }
-
-    @Override
-    public final h h(e eVar) {
-        int i10;
-        int i11 = eVar.e;
-        CharSequence charSequence = eVar.f10326a;
-        int length = charSequence.length();
-        if (eVar.f10330g < 4) {
-            int i12 = i11;
-            while (true) {
-                if (i12 < length) {
-                    if ('$' != charSequence.charAt(i12)) {
-                        i10 = i12 - i11;
-                        break;
+    public final boolean equals(Object obj) {
+        e2.q(re.a.c(f15361n, this, this, obj));
+        if (this != obj) {
+            if (obj != null && b.class == obj.getClass()) {
+                ByteBuffer byteBuffer = this.f15360e;
+                ByteBuffer byteBuffer2 = ((b) obj).f15360e;
+                if (byteBuffer != null) {
+                    if (byteBuffer.equals(byteBuffer2)) {
+                        return true;
                     }
-                    i12++;
+                    return false;
+                } else if (byteBuffer2 == null) {
+                    return true;
                 } else {
-                    i10 = length - i11;
-                    break;
+                    return false;
                 }
             }
-            int i13 = this.f11965c;
-            if (i10 == i13 && u.b(' ', charSequence, i11 + i13, length) == length) {
-                return new h(-1, -1, true);
-            }
+            return false;
         }
-        return h.a(eVar.f10327b);
+        return true;
+    }
+
+    public final int hashCode() {
+        e2.q(re.a.b(f15362r, this, this));
+        ByteBuffer byteBuffer = this.f15360e;
+        if (byteBuffer != null) {
+            return byteBuffer.hashCode();
+        }
+        return 0;
     }
 }

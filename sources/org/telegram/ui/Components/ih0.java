@@ -1,92 +1,185 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.R;
-public final class ih0 {
-    public static final ih0 B;
-    public static final ih0 C;
-    public static final ih0 D;
-    public static final ih0 E;
-    public static final ih0 F;
-    public static final ih0 G;
-    public static final ih0 H;
-    public static final ih0[] I;
-    public static final ih0 d;
-    public static final ih0 e;
-    public static final ih0 f25709f;
-    public static final ih0 h;
-    public static final ih0 f25710n;
-    public static final ih0 f25711r;
-    public static final ih0 f25712s;
-    public static final ih0 v;
-    public static final ih0 f25713w;
-    public static final ih0 f25714x;
-    public static final ih0 f25715y;
-    public final int f25716a;
-    public final int f25717b;
-    public final int f25718c;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+public final class ih0 extends x9 implements lv0 {
+    public final int G;
+    public RadialProgress2 H;
+    public ValueAnimator I;
+    public float J;
+    public long K;
+    public boolean L;
+    public final int M;
+    public final Paint N;
+    public Runnable O;
+    public final oh0 P;
 
-    static {
-        int i10 = R.string.ProfileActionsMessage;
-        int i11 = R.drawable.filled_profile_message_24;
-        int i12 = R.drawable.outline_profile_message_24;
-        ih0 ih0Var = new ih0("MESSAGE", 0, i10, i11, i12);
-        d = ih0Var;
-        ih0 ih0Var2 = new ih0("NOTIFICATION_MUTE", 1, R.string.ProfileButtonMute, R.drawable.filled_profile_mute_24, R.drawable.outline_profile_mute_24);
-        e = ih0Var2;
-        ih0 ih0Var3 = new ih0("NOTIFICATION_UNMUTE", 2, R.string.ProfileButtonUnmute, R.drawable.filled_profile_unmute_24, R.drawable.outline_profile_unmute_24);
-        f25709f = ih0Var3;
-        ih0 ih0Var4 = new ih0("DISCUSS", 3, R.string.ProfileActionsDiscuss, i11, i12);
-        h = ih0Var4;
-        ih0 ih0Var5 = new ih0("GIFT", 4, R.string.ProfileActionsGift, R.drawable.gift, R.drawable.input_gift_s);
-        f25710n = ih0Var5;
-        ih0 ih0Var6 = new ih0("SHARE", 5, R.string.ProfileActionsShare, R.drawable.action_share, R.drawable.msg_share);
-        f25711r = ih0Var6;
-        ih0 ih0Var7 = new ih0("CALL", 6, R.string.ProfileActionsCall, R.drawable.filled_profile_call_24, R.drawable.outline_profile_call_24);
-        f25712s = ih0Var7;
-        ih0 ih0Var8 = new ih0("VIDEO", 7, R.string.ProfileActionsVideo, R.drawable.filled_profile_video_24, R.drawable.outline_profile_video_24);
-        v = ih0Var8;
-        ih0 ih0Var9 = new ih0("JOIN", 8, R.string.ProfileActionsJoin, R.drawable.filled_profile_member_24, R.drawable.outline_profile_member_24);
-        f25713w = ih0Var9;
-        ih0 ih0Var10 = new ih0("REPORT", 9, R.string.ProfileActionsReport, R.drawable.report, R.drawable.msg_report);
-        f25714x = ih0Var10;
-        int i13 = R.string.ProfileActionsLeave;
-        int i14 = R.drawable.leave;
-        ih0 ih0Var11 = new ih0("LEAVE", 10, i13, i14, i14);
-        f25715y = ih0Var11;
-        int i15 = R.string.ProfileActionsVoiceChat;
-        int i16 = R.drawable.live_stream;
-        ih0 ih0Var12 = new ih0("VOICE_CHAT", 11, i15, i16, i16);
-        B = ih0Var12;
-        ih0 ih0Var13 = new ih0("STREAM", 12, R.string.ProfileActionsLiveStream, i16, i16);
-        C = ih0Var13;
-        ih0 ih0Var14 = new ih0("STORY", 13, R.string.ProfileActionsAddStory, R.drawable.filled_profile_story, R.drawable.outline_profile_story);
-        D = ih0Var14;
-        ih0 ih0Var15 = new ih0("STOP", 14, R.string.ProfileActionsStop, R.drawable.filled_profile_stop_24, R.drawable.outline_profile_stop_24);
-        E = ih0Var15;
-        ih0 ih0Var16 = new ih0("SET_PHOTO", 15, R.string.ProfileActionsEditPhoto2, R.drawable.filled_profile_photo, R.drawable.outline_profile_photo);
-        F = ih0Var16;
-        int i17 = R.string.ProfileActionsEditUsername;
-        int i18 = R.drawable.filled_profile_edit_24;
-        int i19 = R.drawable.outline_profile_edit_24;
-        ih0 ih0Var17 = new ih0("EDIT_USERNAME", 16, i17, i18, i19);
-        ih0 ih0Var18 = new ih0("EDIT_INFO", 17, R.string.ProfileActionsEditInfo, i18, i19);
-        G = ih0Var18;
-        ih0 ih0Var19 = new ih0("SETTINGS", 18, R.string.Settings, R.drawable.filled_profile_settings, R.drawable.outline_profile_settings);
-        H = ih0Var19;
-        I = new ih0[]{ih0Var, ih0Var2, ih0Var3, ih0Var4, ih0Var5, ih0Var6, ih0Var7, ih0Var8, ih0Var9, ih0Var10, ih0Var11, ih0Var12, ih0Var13, ih0Var14, ih0Var15, ih0Var16, ih0Var17, ih0Var18, ih0Var19};
+    public ih0(oh0 oh0Var, Context context, int i10, Paint paint) {
+        super(context);
+        this.P = oh0Var;
+        this.G = AndroidUtilities.dp(64.0f);
+        this.K = -1L;
+        this.M = i10;
+        this.N = paint;
+        setLayerNum(oh0Var.l1);
     }
 
-    public ih0(String str, int i10, int i11, int i12, int i13) {
-        this.f25716a = i11;
-        this.f25717b = i12;
-        this.f25718c = i13;
+    @Override
+    public final void g(Runnable runnable) {
+        this.O = runnable;
     }
 
-    public static ih0 valueOf(String str) {
-        return (ih0) Enum.valueOf(ih0.class, str);
+    @Override
+    public final void invalidate(int i10, int i11, int i12, int i13) {
+        super.invalidate(i10, i11, i12, i13);
+        Runnable runnable = this.O;
+        if (runnable != null) {
+            runnable.run();
+        }
     }
 
-    public static ih0[] values() {
-        return (ih0[]) I.clone();
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        t90 t90Var;
+        long j3;
+        oh0 oh0Var = this.P;
+        float[] fArr = oh0Var.O0;
+        Path path = oh0Var.M0;
+        ArrayList arrayList = oh0Var.f29055b1;
+        RectF rectF = oh0Var.N0;
+        org.telegram.ui.ov0 ov0Var = oh0Var.f29061h1;
+        if (ov0Var == null || !ov0Var.f39337n) {
+            if (this.H != null) {
+                int k10 = oh0Var.D0.k(this.M);
+                if (oh0Var.f29062i1) {
+                    k10--;
+                }
+                Drawable drawable = getImageReceiver().getDrawable();
+                long j10 = 0;
+                if (k10 >= arrayList.size() || arrayList.get(k10) == null ? !(drawable == null || (this.L && (!(drawable instanceof d6) || ((d6) drawable).d[4] <= 0))) : ((Float) arrayList.get(k10)).floatValue() >= 1.0f) {
+                    if (this.I == null) {
+                        RadialProgress2 radialProgress2 = this.H;
+                        if (radialProgress2.f24072c) {
+                            t90Var = radialProgress2.f24077j;
+                        } else {
+                            t90Var = radialProgress2.f24076i;
+                        }
+                        if (t90Var.f30578w < 1.0f) {
+                            radialProgress2.o(1.0f, true);
+                            j10 = 100;
+                        }
+                        this.J = this.H.E;
+                        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        this.I = ofFloat;
+                        ofFloat.setStartDelay(j10);
+                        this.I.setDuration(this.J * 250.0f);
+                        this.I.setInterpolator(pr.f29466f);
+                        this.I.addUpdateListener(new h70(this, 4));
+                        this.I.addListener(new fi.v2(this, k10, 8));
+                        this.I.start();
+                    }
+                } else {
+                    if (this.K < 0) {
+                        this.K = System.currentTimeMillis();
+                    } else {
+                        long currentTimeMillis = System.currentTimeMillis() - this.K;
+                        if (this.L) {
+                            j3 = 250;
+                        } else {
+                            j3 = 750;
+                        }
+                        if (currentTimeMillis <= 250 + j3 && currentTimeMillis > j3) {
+                            this.H.E = pr.f29466f.getInterpolation(((float) (currentTimeMillis - j3)) / 250.0f);
+                        }
+                    }
+                    if (oh0Var.f29060g1) {
+                        invalidate();
+                    } else {
+                        postInvalidateOnAnimation();
+                    }
+                    invalidate();
+                }
+                int i10 = oh0Var.f29065m1;
+                if (i10 == 0 && oh0Var.f29066n1 == 0) {
+                    canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.N);
+                    canvas2 = canvas;
+                } else {
+                    canvas2 = canvas;
+                    int i11 = oh0Var.f29066n1;
+                    Paint paint = this.N;
+                    if (i10 == i11) {
+                        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                        float f7 = oh0Var.f29065m1;
+                        canvas2.drawRoundRect(rectF, f7, f7, paint);
+                    } else {
+                        path.reset();
+                        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                        for (int i12 = 0; i12 < 4; i12++) {
+                            fArr[i12] = oh0Var.f29065m1;
+                            fArr[i12 + 4] = oh0Var.f29066n1;
+                        }
+                        path.addRoundRect(rectF, fArr, Path.Direction.CW);
+                        canvas2.drawPath(path, paint);
+                    }
+                }
+            } else {
+                canvas2 = canvas;
+            }
+            super.onDraw(canvas);
+            RadialProgress2 radialProgress22 = this.H;
+            if (radialProgress22 != null && radialProgress22.E > 0.0f) {
+                radialProgress22.draw(canvas2);
+            }
+        }
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        int i14;
+        super.onSizeChanged(i10, i11, i12, i13);
+        if (this.H != null) {
+            if (this.P.f29073z0.getOccupyStatusBar()) {
+                i14 = AndroidUtilities.statusBarHeight;
+            } else {
+                i14 = 0;
+            }
+            int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i14;
+            int dp2 = AndroidUtilities.dp2(80.0f);
+            RadialProgress2 radialProgress2 = this.H;
+            int i15 = this.G;
+            int i16 = (i11 - currentActionBarHeight) - dp2;
+            radialProgress2.q((i10 - i15) / 2, i2.g.C(i16, i15, 2, currentActionBarHeight), (i10 + i15) / 2, ((i16 + i15) / 2) + currentActionBarHeight);
+        }
+    }
+
+    @Override
+    public final void invalidate(Rect rect) {
+        super.invalidate(rect);
+        Runnable runnable = this.O;
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        oh0 oh0Var = this.P;
+        if (oh0Var.f29060g1) {
+            oh0Var.invalidate();
+        }
+        Runnable runnable = this.O;
+        if (runnable != null) {
+            runnable.run();
+        }
     }
 }

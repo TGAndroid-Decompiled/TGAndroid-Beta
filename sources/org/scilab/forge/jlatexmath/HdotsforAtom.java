@@ -4,9 +4,9 @@ public class HdotsforAtom extends MulticolumnAtom {
     private static final Atom thin = new SpaceAtom(1);
     private float coeff;
 
-    public HdotsforAtom(int i10, float f10) {
+    public HdotsforAtom(int i10, float f7) {
         super(i10, "c", ldotp);
-        this.coeff = f10;
+        this.coeff = f7;
     }
 
     @Override
@@ -15,12 +15,12 @@ public class HdotsforAtom extends MulticolumnAtom {
         HorizontalBox horizontalBox = new HorizontalBox(strutBox);
         horizontalBox.add(ldotp.createBox(teXEnvironment));
         horizontalBox.add(strutBox);
-        if (this.f16621w != 0.0f) {
+        if (this.f17052w != 0.0f) {
             float width = horizontalBox.getWidth();
-            float f10 = (width <= 0.0f || Float.isInfinite(width) || Float.isNaN(width) || this.f16621w > 65536.0f) ? 0.0f : 0.0f;
+            float f7 = (width <= 0.0f || Float.isInfinite(width) || Float.isNaN(width) || this.f17052w > 65536.0f) ? 0.0f : 0.0f;
             HorizontalBox horizontalBox2 = new HorizontalBox(horizontalBox);
             int i10 = 0;
-            while (horizontalBox2.getWidth() < f10) {
+            while (horizontalBox2.getWidth() < f7) {
                 int i11 = i10 + 1;
                 if (i10 >= 65536) {
                     break;
@@ -28,8 +28,8 @@ public class HdotsforAtom extends MulticolumnAtom {
                 horizontalBox2.add(horizontalBox);
                 i10 = i11;
             }
-            if (f10 != 0.0f) {
-                horizontalBox = new HorizontalBox(horizontalBox2, f10, 2);
+            if (f7 != 0.0f) {
+                horizontalBox = new HorizontalBox(horizontalBox2, f7, 2);
             } else {
                 horizontalBox = horizontalBox2;
             }

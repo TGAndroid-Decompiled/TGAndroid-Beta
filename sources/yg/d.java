@@ -1,52 +1,47 @@
 package yg;
 
-import f2.l1;
-import f2.o0;
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.voip.GroupCallMessage;
-import org.telegram.messenger.voip.GroupCallMessagesController;
-import org.telegram.tgnet.TLRPC;
-public abstract class d extends o0 implements GroupCallMessagesController.CallMessageListener {
-    public List f47330c;
-    public boolean d;
-    public int e;
-    public TLRPC.InputGroupCall f47331f;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import com.google.android.gms.internal.vision.e2;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import w7.x5;
+public final class d extends FrameLayout {
+    public final f6 f50167a;
+    public final TextView f50168b;
 
-    @Override
-    public final int h() {
-        List list = this.f47330c;
-        if (list != null) {
-            return list.size();
+    public d(Context context, f6 f6Var) {
+        super(context);
+        int i10;
+        this.f50167a = f6Var;
+        setBackgroundColor(j6.v0(j6.e7, f6Var));
+        TextView textView = new TextView(getContext());
+        this.f50168b = textView;
+        e2.m(14.0f, 1, textView);
+        textView.setTextColor(j6.v0(j6.f7, f6Var));
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
         }
-        return 0;
+        textView.setGravity(i10 | 16);
+        addView(textView, x5.d(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
     }
 
     @Override
-    public final void onNewGroupCallMessage(long j10, GroupCallMessage groupCallMessage) {
-        if (this.f47330c == null) {
-            this.f47330c = new ArrayList();
-        }
-        this.f47330c.add(0, groupCallMessage);
-        o(0);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
     }
 
-    @Override
-    public final void onPopGroupCallMessage() {
-        List list = this.f47330c;
-        if (list != null && !list.isEmpty()) {
-            int size = this.f47330c.size() - 1;
-            this.f47330c.remove(size);
-            u(size);
-        }
+    public void setLetter(CharSequence charSequence) {
+        this.f50168b.setText(charSequence);
     }
 
-    @Override
-    public final void v(l1 l1Var, int i10) {
-        b bVar = (b) l1Var;
-        List list = this.f47330c;
-        if (list != null && list.size() > i10) {
-            ((c) bVar.f5774a).set((GroupCallMessage) this.f47330c.get(i10));
-        }
+    public void setTextColor(int i10) {
+        this.f50168b.setTextColor(j6.v0(i10, this.f50167a));
     }
 }

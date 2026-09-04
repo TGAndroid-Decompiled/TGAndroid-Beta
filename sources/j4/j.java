@@ -1,34 +1,25 @@
 package j4;
 
-import j3.d1;
-import j3.n0;
-public abstract class j implements e4.b {
-    public final String f8906a;
+import java.util.Arrays;
+public final class j {
+    public static final byte[] f13317e = {0, 0, 1};
+    public boolean f13318a;
+    public int f13319b;
+    public int f13320c;
+    public byte[] d;
 
-    public j(String str) {
-        this.f8906a = str;
-    }
-
-    @Override
-    public final n0 b() {
-        return null;
-    }
-
-    @Override
-    public final byte[] d() {
-        return null;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public String toString() {
-        return this.f8906a;
-    }
-
-    @Override
-    public void c(d1 d1Var) {
+    public final void a(int i10, int i11, byte[] bArr) {
+        if (!this.f13318a) {
+            return;
+        }
+        int i12 = i11 - i10;
+        byte[] bArr2 = this.d;
+        int length = bArr2.length;
+        int i13 = this.f13319b + i12;
+        if (length < i13) {
+            this.d = Arrays.copyOf(bArr2, i13 * 2);
+        }
+        System.arraycopy(bArr, i10, this.d, this.f13319b, i12);
+        this.f13319b += i12;
     }
 }

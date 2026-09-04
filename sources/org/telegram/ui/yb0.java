@@ -1,369 +1,169 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_aicompose;
-public final class yb0 {
-    public final LaunchActivity f40221a;
-    public final int f40222b;
-    public final ze.c f40223c;
-    public final boolean d;
-    public org.telegram.ui.ActionBar.d2 e;
-    public boolean f40224f;
-    public boolean f40225g;
-    public int h = -1;
+public final class yb0 implements Runnable {
+    public final int f43070a;
+    public final ProfileActivity f43071b;
 
-    public yb0(LaunchActivity launchActivity, int i10, ze.c cVar, boolean z4) {
-        this.f40221a = launchActivity;
-        this.f40222b = i10;
-        this.f40223c = cVar;
-        this.d = z4;
+    public yb0(ProfileActivity profileActivity, int i10) {
+        this.f43070a = i10;
+        this.f43071b = profileActivity;
     }
 
-    public static org.telegram.ui.Components.qc b() {
-        org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
-        if (U == null) {
-            return org.telegram.ui.Components.qc.X();
-        }
-        return org.telegram.ui.Components.qc.a0(U);
-    }
-
-    public static boolean l(java.lang.String r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yb0.l(java.lang.String):boolean");
-    }
-
-    public final void a() {
-        if (this.f40225g) {
-            return;
-        }
-        org.telegram.ui.ActionBar.d2 d2Var = this.e;
-        if (d2Var != null) {
-            d2Var.dismiss();
-        }
-        ze.c cVar = this.f40223c;
-        if (cVar != null) {
-            cVar.b();
-        }
-        this.f40225g = true;
-    }
-
-    public final org.telegram.ui.ActionBar.e5 c() {
-        return this.f40221a.O();
-    }
-
-    public final UserConfig d() {
-        return UserConfig.getInstance(this.f40222b);
-    }
-
-    public final boolean e(Uri uri) {
-        String str;
-        String path;
-        String str2;
-        boolean z4;
-        String scheme;
-        String schemeSpecificPart;
-        if (uri != null) {
-            String scheme2 = uri.getScheme();
-            boolean equalsIgnoreCase = "tonsite".equalsIgnoreCase(scheme2);
-            LaunchActivity launchActivity = this.f40221a;
-            if (equalsIgnoreCase) {
-                ze.d.p(launchActivity, uri, true, true);
-                return true;
-            }
-            String str3 = null;
-            if (!"http".equalsIgnoreCase(scheme2) && !"https".equalsIgnoreCase(scheme2)) {
-                if ("tg".equalsIgnoreCase(scheme2)) {
-                    if (uri.isOpaque() && (scheme = uri.getScheme()) != null && uri.getAuthority() == null && (schemeSpecificPart = uri.getSchemeSpecificPart()) != null) {
-                        uri = Uri.parse(scheme + "://" + schemeSpecificPart);
-                    }
-                    List<String> pathSegments = uri.getPathSegments();
-                    if (pathSegments != null) {
-                        ArrayList arrayList = new ArrayList(pathSegments);
-                        String authority = uri.getAuthority();
-                        if (!TextUtils.isEmpty(authority)) {
-                            arrayList.add(0, authority);
-                        }
-                        if (!arrayList.isEmpty()) {
-                            String str4 = (String) arrayList.get(0);
-                            if (arrayList.size() > 1) {
-                                str2 = (String) arrayList.get(1);
-                            } else {
-                                str2 = null;
-                            }
-                            if ("newbot".equalsIgnoreCase(str4)) {
-                                h(uri.getQueryParameter("manager"), uri.getQueryParameter("username"), uri.getQueryParameter("name"));
-                                return true;
-                            } else if ("resolve".equalsIgnoreCase(str4)) {
-                                List<String> pathSegments2 = uri.getPathSegments();
-                                if (pathSegments2 != null) {
-                                    ArrayList arrayList2 = new ArrayList(pathSegments2);
-                                    String authority2 = uri.getAuthority();
-                                    if (!TextUtils.isEmpty(authority2)) {
-                                        arrayList2.add(0, authority2);
-                                    }
-                                    if (!arrayList2.isEmpty()) {
-                                        arrayList2.remove(0);
-                                        String queryParameter = uri.getQueryParameter("domain");
-                                        String queryParameter2 = uri.getQueryParameter("startapp");
-                                        if ("oauth".equalsIgnoreCase(queryParameter) && !TextUtils.isEmpty(queryParameter2)) {
-                                            return i(uri, queryParameter2);
-                                        }
-                                    }
-                                }
-                            } else if ("invoice".equalsIgnoreCase(str4)) {
-                                return g(uri.getQueryParameter("slug"));
-                            } else {
-                                if ("oauth".equalsIgnoreCase(str4)) {
-                                    return i(uri, uri.getQueryParameter("token"));
-                                }
-                                if ("settings".equalsIgnoreCase(str4)) {
-                                    return j(arrayList.subList(1, arrayList.size()));
-                                }
-                                if ("chats".equalsIgnoreCase(str4)) {
-                                    "search".equalsIgnoreCase(str2);
-                                    "edit".equalsIgnoreCase(str2);
-                                    "emoji-status".equalsIgnoreCase(str2);
-                                }
-                                if ("new".equalsIgnoreCase(str4)) {
-                                    if ("group".equalsIgnoreCase(str2)) {
-                                        n(new a70(new Bundle()), false);
-                                        return true;
-                                    } else if ("contact".equalsIgnoreCase(str2)) {
-                                        new uj0(launchActivity, LaunchActivity.U()).show();
-                                        return true;
-                                    } else if ("channel".equalsIgnoreCase(str2)) {
-                                        SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-                                        if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
-                                            n(new pd(android.support.v4.media.a.h(0, "step")), false);
-                                            return true;
-                                        }
-                                        n(new i(0), false);
-                                        globalMainSettings.edit().putBoolean("channel_intro", true).commit();
-                                        return true;
-                                    } else {
-                                        n(new ContactsActivity(android.support.v4.media.a.i("destroyAfterSelect", true)), false);
-                                        return true;
-                                    }
-                                } else if ("post".equalsIgnoreCase(str4)) {
-                                    ?? r15 = "video".equalsIgnoreCase(str2);
-                                    if ("live".equalsIgnoreCase(str2)) {
-                                        r15 = -1;
-                                    }
-                                    ph.da E = ph.da.E(launchActivity, this.f40222b);
-                                    if (E.L1 != r15) {
-                                        E.L1 = r15;
-                                        ?? r22 = E.N0;
-                                        if (r22 != 0) {
-                                            r22.a(r15);
-                                        }
-                                        if (r15 == 1) {
-                                            z4 = true;
-                                        } else {
-                                            z4 = false;
-                                        }
-                                        E.i0(z4, true);
-                                        ph.u uVar = E.F0;
-                                        if (uVar != null) {
-                                            uVar.a(false, true);
-                                        }
-                                        E.m0(false);
-                                    }
-                                    E.R(null);
-                                    return true;
-                                } else if ("contacts".equalsIgnoreCase(str4)) {
-                                    if ("new".equalsIgnoreCase(str2)) {
-                                        new uj0(launchActivity, LaunchActivity.U()).show();
-                                        return true;
-                                    }
-                                    Bundle bundle = new Bundle();
-                                    bundle.putBoolean("needPhonebook", true);
-                                    bundle.putBoolean("needFinishFragment", true);
-                                    n(new ContactsActivity(bundle), false);
-                                    "search".equalsIgnoreCase(str2);
-                                    "sort".equalsIgnoreCase(str2);
-                                    if ("invite".equalsIgnoreCase(str2)) {
-                                        o("phonebookRow");
-                                        return true;
-                                    }
-                                    return true;
-                                } else if ("addstyle".equalsIgnoreCase(str4)) {
-                                    return f(uri.getQueryParameter("slug"));
-                                }
-                            }
-                        }
-                    }
+    @Override
+    public final void run() {
+        a11 a11Var;
+        switch (this.f43070a) {
+            case 0:
+                ProfileActivity profileActivity = this.f43071b;
+                m01 m01Var = profileActivity.O;
+                if (m01Var != null) {
+                    m01Var.Y0(14);
+                    profileActivity.G4(false);
+                    return;
                 }
-            } else {
-                String host = uri.getHost();
-                if (host != null) {
-                    Matcher matcher = LaunchActivity.f31586y1.matcher(host.toLowerCase());
-                    boolean find = matcher.find();
-                    if ("telegram.me".equalsIgnoreCase(host) || "t.me".equalsIgnoreCase(host) || "telegram.dog".equalsIgnoreCase(host) || find) {
-                        if (find) {
-                            StringBuilder sb = new StringBuilder("https://t.me/");
-                            sb.append(matcher.group(1));
-                            String str5 = "";
-                            if (TextUtils.isEmpty(uri.getPath())) {
-                                path = "";
-                            } else {
-                                path = uri.getPath();
-                            }
-                            sb.append(path);
-                            if (!TextUtils.isEmpty(uri.getQuery())) {
-                                str5 = "?" + uri.getQuery();
-                            }
-                            sb.append(str5);
-                            uri = Uri.parse(sb.toString());
-                        }
-                        String path2 = uri.getPath();
-                        if (path2 != null && path2.length() > 1) {
-                            String substring = path2.substring(1);
-                            List<String> pathSegments3 = uri.getPathSegments();
-                            if (pathSegments3 != null && !pathSegments3.isEmpty()) {
-                                String str6 = pathSegments3.get(0);
-                                if (pathSegments3.size() > 1) {
-                                    str = pathSegments3.get(1);
-                                } else {
-                                    str = null;
-                                }
-                                if ("$".equalsIgnoreCase(str6)) {
-                                    return g(substring.substring(1));
-                                }
-                                if ("invoice".equalsIgnoreCase(str6)) {
-                                    return g(str);
-                                }
-                                if ("addstyle".equalsIgnoreCase(str6)) {
-                                    return f(str);
-                                }
-                                if ("oauth".equalsIgnoreCase(str6)) {
-                                    return i(uri, uri.getQueryParameter("startapp"));
-                                }
-                                if ("newbot".equalsIgnoreCase(str6)) {
-                                    if (pathSegments3.size() >= 2) {
-                                        if (pathSegments3.size() >= 3) {
-                                            str3 = pathSegments3.get(2);
-                                        }
-                                        h(str, str3, uri.getQueryParameter("name"));
-                                        return true;
-                                    }
-                                    return true;
-                                }
-                            }
-                        }
-                    }
+                return;
+            case 1:
+                ProfileActivity profileActivity2 = this.f43071b;
+                m01 m01Var2 = profileActivity2.O;
+                if (m01Var2 != null) {
+                    m01Var2.Y0(14);
+                    profileActivity2.G4(false);
+                    return;
                 }
-            }
-        }
-        return false;
-    }
-
-    public final boolean f(String str) {
-        if (TextUtils.isEmpty(str)) {
-            return false;
-        }
-        TL_aicompose.getTone gettone = new TL_aicompose.getTone();
-        TL_aicompose.inputAiComposeToneSlug inputaicomposetoneslug = new TL_aicompose.inputAiComposeToneSlug();
-        inputaicomposetoneslug.slug = str;
-        gettone.tone = inputaicomposetoneslug;
-        k();
-        ConnectionsManager.getInstance(this.f40222b).sendRequestTyped(gettone, new Object(), new f5(this, 14));
-        return true;
-    }
-
-    public final boolean g(String str) {
-        if (TextUtils.isEmpty(str)) {
-            return false;
-        }
-        k();
-        TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
-        TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug = new TLRPC.TL_inputInvoiceSlug();
-        tL_inputInvoiceSlug.slug = str;
-        tL_payments_getPaymentForm.invoice = tL_inputInvoiceSlug;
-        this.h = ConnectionsManager.getInstance(this.f40222b).sendRequest(tL_payments_getPaymentForm, new da((Object) this, (TLObject) tL_inputInvoiceSlug, str, 18));
-        return true;
-    }
-
-    public final void h(String str, String str2, String str3) {
-        TLRPC.TL_requestPeerTypeCreateBot tL_requestPeerTypeCreateBot = new TLRPC.TL_requestPeerTypeCreateBot();
-        tL_requestPeerTypeCreateBot.bot_managed = true;
-        if (!TextUtils.isEmpty(str3)) {
-            tL_requestPeerTypeCreateBot.flags |= 2;
-            tL_requestPeerTypeCreateBot.suggested_name = str3;
-        }
-        if (!TextUtils.isEmpty(str2)) {
-            tL_requestPeerTypeCreateBot.flags |= 4;
-            tL_requestPeerTypeCreateBot.suggested_username = str2;
-        }
-        org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
-        if (U != null && U.getContext() != null) {
-            k();
-            TLRPC.User[] userArr = {null};
-            MessagesController.getInstance(this.f40222b).getUserNameResolver().resolve(str, new lh(this, userArr, new c30(this, U, userArr, tL_requestPeerTypeCreateBot, 6), 3));
-        }
-    }
-
-    public final boolean i(Uri uri, String str) {
-        if (!this.d) {
-            return true;
-        }
-        if (TextUtils.isEmpty(str)) {
-            return false;
-        }
-        k();
-        TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = new TLRPC.TL_messages_requestUrlAuth();
-        tL_messages_requestUrlAuth.flags |= 4;
-        tL_messages_requestUrlAuth.url = uri.toString();
-        ConnectionsManager.getInstance(this.f40222b).sendRequestTyped(tL_messages_requestUrlAuth, new Object(), new dh.v(21, this, tL_messages_requestUrlAuth));
-        return true;
-    }
-
-    public final boolean j(java.util.List r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yb0.j(java.util.List):boolean");
-    }
-
-    public final void k() {
-        if (!this.f40224f && !this.f40225g) {
-            ze.c cVar = this.f40223c;
-            if (cVar == null) {
-                if (this.e == null) {
-                    this.e = new org.telegram.ui.ActionBar.d2(this.f40221a, 3, null);
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new yb0(this.f43071b, 0), 200L);
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new yb0(this.f43071b, 1), 200L);
+                return;
+            case 4:
+                ProfileActivity profileActivity3 = this.f43071b;
+                profileActivity3.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", profileActivity3.f33888e1, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                return;
+            case 5:
+                this.f43071b.z4(false);
+                return;
+            case 6:
+                ProfileActivity profileActivity4 = this.f43071b;
+                profileActivity4.getClass();
+                profileActivity4.presentFragment(new UserInfoActivity());
+                return;
+            case 7:
+                this.f43071b.z4(true);
+                return;
+            case 8:
+                ProfileActivity profileActivity5 = this.f43071b;
+                profileActivity5.getClass();
+                profileActivity5.presentFragment(new ig.g1());
+                return;
+            case 9:
+                ProfileActivity profileActivity6 = this.f43071b;
+                profileActivity6.getClass();
+                profileActivity6.presentFragment(new ig.e1());
+                return;
+            case 10:
+                ProfileActivity profileActivity7 = this.f43071b;
+                profileActivity7.getClass();
+                profileActivity7.presentFragment(new qa(null));
+                return;
+            case 11:
+                ProfileActivity profileActivity8 = this.f43071b;
+                profileActivity8.getClass();
+                profileActivity8.presentFragment(new UserInfoActivity());
+                return;
+            case 12:
+                ProfileActivity profileActivity9 = this.f43071b;
+                profileActivity9.getClass();
+                profileActivity9.presentFragment(new h(3));
+                return;
+            case 13:
+                ?? obj = new Object();
+                obj.f21142a = true;
+                this.f43071b.showAsSheet(new PrivacyControlActivity(11, false), obj);
+                return;
+            case 14:
+                ProfileActivity profileActivity10 = this.f43071b;
+                profileActivity10.k4(true);
+                if (profileActivity10.f33925j2.isRunning()) {
+                    profileActivity10.f33925j2.cancel();
                 }
-                this.e.setOnCancelListener(new kg(this, 3));
-                this.e.q(300L);
-            } else {
-                cVar.f47468b = new rb0(this, 0);
-                cVar.d();
-            }
-            this.f40224f = true;
+                profileActivity10.J4(1.0f);
+                return;
+            case 15:
+                this.f43071b.e5(false, false);
+                return;
+            case 16:
+                this.f43071b.F3();
+                return;
+            case 17:
+                ProfileActivity profileActivity11 = this.f43071b;
+                m01 m01Var3 = profileActivity11.O;
+                if (m01Var3 != null) {
+                    m01Var3.v1(true);
+                    profileActivity11.O.n1();
+                    return;
+                }
+                return;
+            case 18:
+                ProfileActivity profileActivity12 = this.f43071b;
+                profileActivity12.getMessagesController().reloadUser(profileActivity12.a());
+                return;
+            case 19:
+                ProfileActivity profileActivity13 = this.f43071b;
+                if (!profileActivity13.f33856a.b0() && (a11Var = profileActivity13.d) != null) {
+                    a11Var.l();
+                    return;
+                }
+                return;
+            case 20:
+                this.f43071b.e5(false, false);
+                return;
+            case 21:
+                this.f43071b.f34030y5.setVisibility(8);
+                return;
+            case 22:
+                ProfileActivity profileActivity14 = this.f43071b;
+                profileActivity14.getClass();
+                Bundle bundle = new Bundle();
+                bundle.putLong("chat_id", profileActivity14.f33896f1);
+                bundle.putLong("user_id", profileActivity14.f33888e1);
+                profileActivity14.presentFragment(new g31(bundle));
+                return;
+            case 23:
+                ProfileActivity profileActivity15 = this.f43071b;
+                profileActivity15.getClass();
+                profileActivity15.presentFragment(new qa(null));
+                return;
+            case 24:
+                ProfileActivity.W(this.f43071b);
+                return;
+            case 25:
+                ProfileActivity profileActivity16 = this.f43071b;
+                TLRPC.UserFull userFull = profileActivity16.f34006v2;
+                if (userFull != null) {
+                    AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(userFull.note, false));
+                    org.telegram.messenger.wl.o(R.string.TextCopied, org.telegram.ui.Components.yc.a0(profileActivity16));
+                    return;
+                }
+                return;
+            case 26:
+                ProfileActivity profileActivity17 = this.f43071b;
+                profileActivity17.getClass();
+                Bundle bundle2 = new Bundle();
+                bundle2.putLong("user_id", profileActivity17.f33888e1);
+                bundle2.putBoolean("focus_notes", true);
+                profileActivity17.presentFragment(new ss(bundle2, profileActivity17.f34031z0));
+                return;
+            default:
+                this.f43071b.G4(true);
+                return;
         }
-    }
-
-    public final void m(org.telegram.ui.ActionBar.p2 p2Var) {
-        n(p2Var, false);
-    }
-
-    public final void n(org.telegram.ui.ActionBar.p2 p2Var, boolean z4) {
-        LaunchActivity launchActivity = this.f40221a;
-        launchActivity.q0(p2Var, z4, false);
-        if (AndroidUtilities.isTablet()) {
-            launchActivity.f31612n0.U(true, true);
-            launchActivity.f31616p0.U(true, true);
-        }
-    }
-
-    public final void o(String str) {
-        AndroidUtilities.scrollToFragmentRow(this.f40221a.O(), str);
     }
 }

@@ -1,123 +1,44 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
 import android.view.View;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class h51 extends FrameLayout {
-    public final int f34583a;
+public final class h51 implements r0.n, org.telegram.ui.ActionBar.a2 {
+    public final int f36888a;
+    public final k51 f36889b;
 
-    public h51(Context context, int i10) {
-        super(context);
-        this.f34583a = i10;
+    public h51(k51 k51Var, int i10) {
+        this.f36888a = i10;
+        this.f36889b = k51Var;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f34583a) {
-            case 6:
-                org.telegram.ui.ActionBar.j6.f19968i3.setBounds(0, 0, getMeasuredWidth(), org.telegram.ui.ActionBar.j6.f19968i3.getIntrinsicHeight());
-                org.telegram.ui.ActionBar.j6.f19968i3.draw(canvas);
-                super.dispatchDraw(canvas);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
+    public r0.l1 T0(View view, r0.l1 l1Var) {
+        i0.c defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        k51 k51Var = this.f36889b;
+        k51Var.f37924e = defaultWindowInsets;
+        k51Var.f37921c.setPadding(defaultWindowInsets.f11425a, defaultWindowInsets.f11426b, defaultWindowInsets.f11427c, defaultWindowInsets.d);
+        k51Var.f37919b.requestLayout();
+        return r0.l1.f44710b;
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f34583a) {
-            case 5:
-                super.onDraw(canvas);
-                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, org.telegram.ui.ActionBar.j6.f20000k0);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        switch (this.f34583a) {
-            case 2:
-                int childCount = getChildCount();
-                int i14 = 0;
-                int i15 = 0;
-                for (int i16 = 0; i16 < childCount; i16++) {
-                    if (getChildAt(i16).getMeasuredWidth() + i14 > getMeasuredWidth()) {
-                        i15 += getChildAt(i16).getMeasuredHeight();
-                        i14 = 0;
-                    }
-                    getChildAt(i16).layout(i14, i15, getChildAt(i16).getMeasuredWidth() + i14, getChildAt(i16).getMeasuredHeight() + i15);
-                    i14 += getChildAt(i16).getMeasuredWidth();
-                }
-                return;
-            default:
-                super.onLayout(z4, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        int i12;
-        switch (this.f34583a) {
-            case 0:
-                super.onMeasure(i10, b.B(36.0f, View.MeasureSpec.getSize(i11), 1073741824));
-                return;
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f36888a) {
             case 1:
-                super.onMeasure(i10, i11);
-                return;
-            case 2:
-                int size = View.MeasureSpec.getSize(i10);
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
-                int childCount = getChildCount();
-                int i13 = 0;
-                if (childCount > 0) {
-                    i12 = getChildAt(0).getMeasuredHeight();
-                } else {
-                    i12 = 0;
+                org.telegram.ui.ActionBar.b2 b2Var2 = this.f36889b.f37922c0;
+                if (b2Var2 != null) {
+                    b2Var2.dismiss();
+                    return;
                 }
-                int i14 = 0;
-                int i15 = 0;
-                for (int i16 = 0; i16 < childCount; i16++) {
-                    if (getChildAt(i16).getMeasuredWidth() + i14 > size) {
-                        i15 += getChildAt(i16).getMeasuredHeight();
-                        i14 = 0;
-                    }
-                    i14 += getChildAt(i16).getMeasuredWidth();
-                }
-                int measuredWidth = getMeasuredWidth();
-                if (getChildCount() != 0) {
-                    i13 = AndroidUtilities.dp(16.0f) + i12 + i15;
-                }
-                setMeasuredDimension(measuredWidth, i13);
                 return;
-            case 3:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
-                return;
-            case 4:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
-                return;
-            case 5:
-            case 6:
-            case 7:
-            case 8:
             default:
-                super.onMeasure(i10, i11);
-                return;
-            case 9:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(12.0f), 1073741824));
-                return;
-            case 10:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
-                return;
-            case 11:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(60.0f)), View.MeasureSpec.getMode(i11)));
+                k51 k51Var = this.f36889b;
+                org.telegram.ui.ActionBar.b2 b2Var3 = k51Var.f37922c0;
+                if (b2Var3 != null) {
+                    b2Var3.dismiss();
+                    k51Var.f37922c0 = null;
+                }
+                k51Var.dismiss();
                 return;
         }
     }

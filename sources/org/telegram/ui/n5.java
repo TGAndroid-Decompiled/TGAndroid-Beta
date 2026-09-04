@@ -1,9 +1,22 @@
 package org.telegram.ui;
 
-import android.graphics.Color;
-public final class n5 extends org.telegram.ui.ActionBar.g3 {
-    public static float f36387c = 1.0f;
-    public static float d = 1.0f;
-    public static float e = 1.0f - (Color.alpha(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20247xf, false)) / 255.0f);
-    public org.telegram.ui.Components.qv0 f36388b;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+public final class n5 extends org.telegram.ui.Cells.x4 {
+    public final int f38829f;
+
+    public n5(Context context, int i10) {
+        super(context);
+        this.f38829f = i10;
+    }
+
+    @Override
+    public final int getFullHeight() {
+        switch (this.f38829f) {
+            case 0:
+                return AndroidUtilities.dp(50.0f);
+            default:
+                return AndroidUtilities.dp(50.0f);
+        }
+    }
 }

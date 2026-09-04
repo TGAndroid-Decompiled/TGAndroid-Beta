@@ -1,76 +1,122 @@
 package j4;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import h5.d0;
-import java.util.Arrays;
-public final class d extends j {
-    public static final Parcelable.Creator<d> CREATOR = new f8.o(15);
-    public final String f8894b;
-    public final boolean f8895c;
-    public final boolean d;
-    public final String[] e;
-    public final j[] f8896f;
+import e9.a1;
+import e9.i0;
+import java.util.List;
+public final class d implements c3.o {
+    public final int f13239a;
+    public final e2.v d;
+    public final a4.h f13242e;
+    public c3.q f13243f;
+    public long f13244g;
+    public boolean f13246j;
+    public boolean f13247k;
+    public boolean f13248l;
+    public final e f13240b = new e(0, null, "audio/mp4a-latm", true);
+    public final e2.v f13241c = new e2.v(2048);
+    public int f13245i = -1;
+    public long h = -1;
 
-    public d(String str, boolean z4, boolean z10, String[] strArr, j[] jVarArr) {
-        super("CTOC");
-        this.f8894b = str;
-        this.f8895c = z4;
-        this.d = z10;
-        this.e = strArr;
-        this.f8896f = jVarArr;
+    public d(int i10) {
+        this.f13239a = i10;
+        e2.v vVar = new e2.v(10);
+        this.d = vVar;
+        byte[] bArr = vVar.f8789a;
+        this.f13242e = new a4.h(bArr, bArr.length);
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && d.class == obj.getClass()) {
-            d dVar = (d) obj;
-            if (this.f8895c == dVar.f8895c && this.d == dVar.d && d0.a(this.f8894b, dVar.f8894b) && Arrays.equals(this.e, dVar.e) && Arrays.equals(this.f8896f, dVar.f8896f)) {
-                return true;
+    public final int a(c3.p pVar) {
+        int i10 = 0;
+        while (true) {
+            e2.v vVar = this.d;
+            pVar.b(0, 10, vVar.f8789a);
+            vVar.J(0);
+            if (vVar.A() != 4801587) {
+                break;
             }
+            vVar.K(3);
+            int w10 = vVar.w();
+            i10 += w10 + 10;
+            pVar.l(w10);
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        int i10;
-        int i11 = (((527 + (this.f8895c ? 1 : 0)) * 31) + (this.d ? 1 : 0)) * 31;
-        String str = this.f8894b;
-        if (str != null) {
-            i10 = str.hashCode();
-        } else {
-            i10 = 0;
+        pVar.q();
+        pVar.l(i10);
+        if (this.h == -1) {
+            this.h = i10;
         }
-        return i11 + i10;
+        return i10;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f8894b);
-        parcel.writeByte(this.f8895c ? (byte) 1 : (byte) 0);
-        parcel.writeByte(this.d ? (byte) 1 : (byte) 0);
-        parcel.writeStringArray(this.e);
-        j[] jVarArr = this.f8896f;
-        parcel.writeInt(jVarArr.length);
-        for (j jVar : jVarArr) {
-            parcel.writeParcelable(jVar, 0);
-        }
+    public final boolean b(c3.p pVar) {
+        int a2 = a(pVar);
+        int i10 = a2;
+        int i11 = 0;
+        int i12 = 0;
+        do {
+            e2.v vVar = this.d;
+            c3.l lVar = (c3.l) pVar;
+            lVar.j(vVar.f8789a, 0, 2, false);
+            vVar.J(0);
+            if ((vVar.D() & 65526) == 65520) {
+                i11++;
+                if (i11 >= 4 && i12 > 188) {
+                    return true;
+                }
+                lVar.j(vVar.f8789a, 0, 4, false);
+                a4.h hVar = this.f13242e;
+                hVar.q(14);
+                int i13 = hVar.i(13);
+                if (i13 <= 6) {
+                    i10++;
+                    lVar.f4286f = 0;
+                    lVar.v(i10, false);
+                } else {
+                    lVar.v(i13 - 6, false);
+                    i12 += i13;
+                }
+            } else {
+                i10++;
+                lVar.f4286f = 0;
+                lVar.v(i10, false);
+            }
+            i11 = 0;
+            i12 = 0;
+        } while (i10 - a2 < 8192);
+        return false;
     }
 
-    public d(Parcel parcel) {
-        super("CTOC");
-        String readString = parcel.readString();
-        int i10 = d0.f6924a;
-        this.f8894b = readString;
-        this.f8895c = parcel.readByte() != 0;
-        this.d = parcel.readByte() != 0;
-        this.e = parcel.createStringArray();
-        int readInt = parcel.readInt();
-        this.f8896f = new j[readInt];
-        for (int i11 = 0; i11 < readInt; i11++) {
-            this.f8896f[i11] = (j) parcel.readParcelable(j.class.getClassLoader());
-        }
+    @Override
+    public final void g(c3.q qVar) {
+        this.f13243f = qVar;
+        this.f13240b.e(qVar, new f0(0, 1));
+        qVar.Z0();
+    }
+
+    @Override
+    public final void h(long j3, long j10) {
+        this.f13247k = false;
+        this.f13240b.d();
+        this.f13244g = j10;
+    }
+
+    @Override
+    public final List i() {
+        e9.g0 g0Var = i0.f8957b;
+        return a1.f8920e;
+    }
+
+    @Override
+    public final int m(c3.p r19, c3.s r20) {
+        throw new UnsupportedOperationException("Method not decompiled: j4.d.m(c3.p, c3.s):int");
+    }
+
+    @Override
+    public final c3.o c() {
+        return this;
+    }
+
+    @Override
+    public final void release() {
     }
 }

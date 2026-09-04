@@ -1,70 +1,66 @@
 package sa;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.lang.reflect.WildcardType;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-public final class d implements pa.v {
-    public final int f44242a;
-    public final q5.c0 f44243b;
+import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
+import qa.j;
+public final class d {
+    public static final long d = TimeUnit.HOURS.toMillis(24);
+    public static final long f45977e = TimeUnit.MINUTES.toMillis(30);
+    public final j f45978a;
+    public long f45979b;
+    public int f45980c;
 
-    public d(int i10, q5.c0 c0Var) {
-        this.f44242a = i10;
-        this.f44243b = c0Var;
+    public d() {
+        if (na.d.f16716a == null) {
+            Pattern pattern = j.f44267c;
+            na.d.f16716a = new Object();
+        }
+        na.d dVar = na.d.f16716a;
+        if (j.d == null) {
+            j.d = new j(dVar);
+        }
+        this.f45978a = j.d;
     }
 
-    @Override
-    public final pa.u create(pa.g gVar, wa.a aVar) {
-        Type[] actualTypeArguments;
-        pa.u uVar;
-        int i10 = this.f44242a;
-        q5.c0 c0Var = this.f44243b;
-        Type type = Object.class;
-        switch (i10) {
-            case 0:
-                Type type2 = aVar.f46588b;
-                Class cls = aVar.f46587a;
-                if (!Collection.class.isAssignableFrom(cls)) {
-                    return null;
-                }
-                if (type2 instanceof WildcardType) {
-                    type2 = ((WildcardType) type2).getUpperBounds()[0];
-                }
-                ra.d.b(Collection.class.isAssignableFrom(cls));
-                Type j10 = ra.d.j(type2, cls, ra.d.g(type2, cls, Collection.class), new HashMap());
-                if (j10 instanceof ParameterizedType) {
-                    type = ((ParameterizedType) j10).getActualTypeArguments()[0];
-                }
-                return new c(gVar, type, gVar.b(new wa.a(type)), c0Var.E(aVar));
-            default:
-                Type type3 = aVar.f46588b;
-                Class cls2 = aVar.f46587a;
-                if (!Map.class.isAssignableFrom(cls2)) {
-                    return null;
-                }
-                if (type3 == Properties.class) {
-                    actualTypeArguments = new Type[]{String.class, String.class};
-                } else {
-                    if (type3 instanceof WildcardType) {
-                        type3 = ((WildcardType) type3).getUpperBounds()[0];
-                    }
-                    ra.d.b(Map.class.isAssignableFrom(cls2));
-                    Type j11 = ra.d.j(type3, cls2, ra.d.g(type3, cls2, Map.class), new HashMap());
-                    actualTypeArguments = j11 instanceof ParameterizedType ? ((ParameterizedType) j11).getActualTypeArguments() : new Type[]{type, type};
-                }
-                Type type4 = actualTypeArguments[0];
-                if (type4 != Boolean.TYPE && type4 != Boolean.class) {
-                    uVar = gVar.b(new wa.a(type4));
-                } else {
-                    uVar = h1.f44251c;
-                }
-                pa.u b10 = gVar.b(new wa.a(actualTypeArguments[1]));
-                ra.m E = c0Var.E(aVar);
-                Type[] typeArr = actualTypeArguments;
-                return new o(this, gVar, typeArr[0], uVar, typeArr[1], b10, E);
+    public final synchronized long a(int i10) {
+        boolean z10;
+        if (i10 != 429 && (i10 < 500 || i10 >= 600)) {
+            z10 = false;
+        } else {
+            z10 = true;
         }
+        if (!z10) {
+            return d;
+        }
+        double pow = Math.pow(2.0d, this.f45980c);
+        this.f45978a.getClass();
+        return (long) Math.min(pow + ((long) (Math.random() * 1000.0d)), f45977e);
+    }
+
+    public final synchronized boolean b() {
+        boolean z10;
+        if (this.f45980c != 0) {
+            this.f45978a.f44268a.getClass();
+            if (System.currentTimeMillis() <= this.f45979b) {
+                z10 = false;
+            }
+        }
+        z10 = true;
+        return z10;
+    }
+
+    public final synchronized void c() {
+        this.f45980c = 0;
+    }
+
+    public final synchronized void d(int i10) {
+        if ((i10 < 200 || i10 >= 300) && i10 != 401 && i10 != 404) {
+            this.f45980c++;
+            long a2 = a(i10);
+            this.f45978a.f44268a.getClass();
+            this.f45979b = System.currentTimeMillis() + a2;
+            return;
+        }
+        c();
     }
 }

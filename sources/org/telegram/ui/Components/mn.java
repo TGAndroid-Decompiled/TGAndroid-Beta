@@ -3,147 +3,65 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.ActionMode;
 import android.view.Menu;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Arrays;
-import org.telegram.ui.rb1;
-public final class mn extends org.telegram.ui.Cells.b6 {
-    public final nn C;
+public final class mn extends org.telegram.ui.Cells.c6 {
+    public final int F;
+    public final rn G;
 
-    public mn(nn nnVar, Context context, int i10, hn hnVar, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, i10, hnVar, f6Var);
-        this.C = nnVar;
+    public mn(rn rnVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
+        super(context, i10, null, f6Var);
+        this.G = rnVar;
+        this.F = i11;
     }
 
     @Override
-    public final boolean e() {
-        f2.l1 T;
-        pn pnVar = this.C.d;
-        rb1 rb1Var = pnVar.f27960s;
-        View F = rb1Var.F(this);
-        if (F == null) {
-            T = null;
-        } else {
-            T = rb1Var.T(F);
-        }
-        if (T != null) {
-            int b10 = T.b();
-            int i10 = pnVar.J;
-            if (i10 == pnVar.G && b10 == (pnVar.f27957q0 + i10) - 1) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean f(org.telegram.ui.Cells.b6 b6Var) {
-        f2.l1 T;
-        int b10;
-        pn pnVar = this.C.d;
-        rb1 rb1Var = pnVar.f27960s;
-        View F = rb1Var.F(b6Var);
-        if (F == null) {
-            T = null;
-        } else {
-            T = rb1Var.T(F);
-        }
-        if (T != null && (b10 = T.b()) != -1) {
-            return pnVar.I[b10 - pnVar.f27957q0];
-        }
-        return false;
-    }
-
-    @Override
-    public final void g(dh.b bVar, ActionMode actionMode) {
-        pn pnVar = this.C.d;
-        if (pnVar.f27953n && bVar.isFocused() && bVar.hasSelection()) {
+    public final void g(org.telegram.ui.Cells.b6 b6Var, ActionMode actionMode) {
+        tn tnVar = this.G.d;
+        if (!tnVar.f30647n && this.F == 11 && b6Var.isFocused() && b6Var.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                org.telegram.ui.zn.k8(menu, ((org.telegram.ui.zn) pnVar.f24282b.f26685c0).h, false, true, true, true);
+                org.telegram.ui.co.k8(menu, ((org.telegram.ui.co) tnVar.f28753b.f31279f0).h, false, true, true, true);
             }
         }
     }
 
     @Override
-    public final void h(org.telegram.ui.Cells.b6 b6Var, boolean z4) {
-        f2.l1 T;
-        int b10;
-        pn pnVar = this.C.d;
-        if (z4 && pnVar.W && !pnVar.V) {
-            Arrays.fill(pnVar.I, false);
-            pnVar.f27960s.getChildCount();
-            for (int i10 = pnVar.f27957q0; i10 < pnVar.f27957q0 + pnVar.J; i10++) {
-                f2.l1 K = pnVar.f27960s.K(i10);
-                if (K != null) {
-                    View view = K.f5774a;
-                    if (view instanceof org.telegram.ui.Cells.b6) {
-                        ((org.telegram.ui.Cells.b6) view).f20849r.a(false, true);
-                    }
-                }
-            }
-        }
-        super.h(b6Var, z4);
-        rb1 rb1Var = pnVar.f27960s;
-        View F = rb1Var.F(b6Var);
-        if (F == null) {
-            T = null;
-        } else {
-            T = rb1Var.T(F);
-        }
-        if (T != null && (b10 = T.b()) != -1) {
-            pnVar.I[b10 - pnVar.f27957q0] = z4;
-        }
-        pnVar.T();
+    public final void i(boolean z10) {
+        tn.M(this.G.d, this, z10);
     }
 
     @Override
-    public final void i(boolean z4) {
-        pn.M(this.C.d, this, z4);
+    public final void j(org.telegram.ui.Cells.c6 c6Var) {
+        tn.N(this.G.d, c6Var);
     }
 
     @Override
-    public final void j(org.telegram.ui.Cells.b6 b6Var) {
-        pn.N(this.C.d, b6Var);
-    }
-
-    @Override
-    public final void k(dh.b bVar) {
-        this.C.d.f24282b.t1(bVar, true);
+    public final void k(org.telegram.ui.Cells.b6 b6Var) {
+        this.G.d.f28753b.t1(b6Var, true);
     }
 
     @Override
     public final boolean l(ArrayList arrayList) {
-        pn pnVar = this.C.d;
-        if (!arrayList.isEmpty()) {
-            pnVar.f27960s.getClass();
-            int R = RecyclerView.R(this) - pnVar.f27957q0;
-            if (R >= 0) {
-                dh.b bVar = this.d;
-                bVar.getText().replace(bVar.getSelectionStart(), bVar.getSelectionEnd(), (CharSequence) arrayList.remove(0));
-                int i10 = R + 1;
-                while (!arrayList.isEmpty() && i10 < pnVar.G) {
-                    for (int length = pnVar.H.length - 1; length > i10; length--) {
-                        CharSequence[] charSequenceArr = pnVar.H;
-                        charSequenceArr[length] = charSequenceArr[length - 1];
-                    }
-                    pnVar.H[i10] = (CharSequence) arrayList.remove(0);
-                    pnVar.J++;
-                    i10++;
-                }
-                pnVar.h0();
-                pnVar.f27946h0 = (pnVar.f27957q0 + i10) - 1;
-                pnVar.f27960s.setItemAnimator(pnVar.v);
-                pnVar.f27958r.l();
-                return true;
-            }
+        tn tnVar = this.G.d;
+        if (arrayList.isEmpty()) {
+            return false;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean o() {
-        return this.C.d.W;
+        org.telegram.ui.Cells.b6 b6Var = this.d;
+        b6Var.getText().replace(b6Var.getSelectionStart(), b6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
+        int i10 = 0;
+        while (!arrayList.isEmpty() && i10 < tnVar.J) {
+            for (int length = tnVar.K.length - 1; length > i10; length--) {
+                CharSequence[] charSequenceArr = tnVar.K;
+                charSequenceArr[length] = charSequenceArr[length - 1];
+            }
+            tnVar.K[i10] = (CharSequence) arrayList.remove(0);
+            tnVar.M++;
+            i10++;
+        }
+        tnVar.h0();
+        tnVar.f30644k0 = (tnVar.f30656t0 + i10) - 1;
+        tnVar.f30654s.setItemAnimator(tnVar.v);
+        tnVar.f30652r.l();
+        return true;
     }
 }

@@ -1,55 +1,37 @@
 package v5;
 
-import java.util.Iterator;
-import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import u5.b;
+import android.util.SparseArray;
+import i2.g;
+import i5.d;
+import java.util.HashMap;
 public abstract class a {
-    public static final b f45678a = new b("MetadataUtils", null);
-    public static final String[] f45679b;
-    public static final String f45680c;
+    public static final SparseArray f47365a = new SparseArray();
+    public static final HashMap f47366b;
 
     static {
-        String[] strArr = {"Z", "+hh", "+hhmm", "+hh:mm"};
-        f45679b = strArr;
-        f45680c = "yyyyMMdd'T'HHmmss".concat(String.valueOf(strArr[0]));
-    }
-
-    public static java.util.Calendar a(java.lang.String r8) {
-        throw new UnsupportedOperationException("Method not decompiled: v5.a.a(java.lang.String):java.util.Calendar");
-    }
-
-    public static JSONArray b(List list) {
-        list.getClass();
-        JSONArray jSONArray = new JSONArray();
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            a6.a aVar = (a6.a) it.next();
-            aVar.getClass();
-            JSONObject jSONObject = new JSONObject();
-            try {
-                jSONObject.put("url", aVar.f120b.toString());
-                jSONObject.put("width", aVar.f121c);
-                jSONObject.put("height", aVar.d);
-            } catch (JSONException unused) {
-            }
-            jSONArray.put(jSONObject);
+        HashMap hashMap = new HashMap();
+        f47366b = hashMap;
+        hashMap.put(d.f11859a, 0);
+        hashMap.put(d.f11860b, 1);
+        hashMap.put(d.f11861c, 2);
+        for (d dVar : hashMap.keySet()) {
+            f47365a.append(((Integer) f47366b.get(dVar)).intValue(), dVar);
         }
-        return jSONArray;
     }
 
-    public static void c(List list, JSONArray jSONArray) {
-        try {
-            list.clear();
-            for (int i10 = 0; i10 < jSONArray.length(); i10++) {
-                try {
-                    list.add(new a6.a(jSONArray.getJSONObject(i10)));
-                } catch (IllegalArgumentException unused) {
-                }
-            }
-        } catch (JSONException unused2) {
+    public static int a(d dVar) {
+        Integer num = (Integer) f47366b.get(dVar);
+        if (num != null) {
+            return num.intValue();
         }
+        throw new IllegalStateException("PriorityMapping is missing known Priority value " + dVar);
+    }
+
+    public static d b(int i10) {
+        d dVar = (d) f47365a.get(i10);
+        if (dVar != null) {
+            return dVar;
+        }
+        throw new IllegalArgumentException(g.i(i10, "Unknown Priority for value "));
     }
 }
